@@ -1,8 +1,6 @@
-// @inheritedComponent ButtonBase
-
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
 import unsupportedProp from '../utils/unsupportedProp';
@@ -13,10 +11,7 @@ export const styles = theme => ({
     transition: theme.transitions.create(['color', 'padding-top'], {
       duration: theme.transitions.duration.short,
     }),
-    paddingTop: 8,
-    paddingBottom: 10,
-    paddingLeft: 12,
-    paddingRight: 12,
+    padding: '6px 12px 8px',
     minWidth: 80,
     maxWidth: 168,
     color: theme.palette.text.secondary,
@@ -29,9 +24,9 @@ export const styles = theme => ({
       color: theme.palette.primary.main,
     },
   },
-  /* Styles applied to the root element if selected. */
+  /* Pseudo-class applied to the root element if selected. */
   selected: {},
-  /* Styles applied to the root element if `showLabel={false}` and not selected. */
+  /* Pseudo-class applied to the root element if `showLabel={false}` and not selected. */
   iconOnly: {},
   /* Styles applied to the span element that wraps the icon and label. */
   wrapper: {
@@ -58,10 +53,21 @@ export const styles = theme => ({
   },
 });
 
-class BottomNavigationAction extends React.Component {
-  handleChange = event => {
-    const { onChange, value, onClick } = this.props;
+const BottomNavigationAction = React.forwardRef(function BottomNavigationAction(props, ref) {
+  const {
+    classes,
+    className,
+    icon,
+    label,
+    onChange,
+    onClick,
+    selected,
+    showLabel,
+    value,
+    ...other
+  } = props;
 
+  const handleChange = event => {
     if (onChange) {
       onChange(event, value);
     }
@@ -71,54 +77,45 @@ class BottomNavigationAction extends React.Component {
     }
   };
 
-  render() {
-    const {
-      classes,
-      className: classNameProp,
-      icon,
-      label,
-      onChange,
-      onClick,
-      selected,
-      showLabel: showLabelProp,
-      value,
-      ...other
-    } = this.props;
-
-    const className = classNames(
-      classes.root,
-      {
-        [classes.selected]: selected,
-        [classes.iconOnly]: !showLabelProp && !selected,
-      },
-      classNameProp,
-    );
-
-    const labelClassName = classNames(classes.label, {
-      [classes.selected]: selected,
-      [classes.iconOnly]: !showLabelProp && !selected,
-    });
-
-    return (
-      <ButtonBase className={className} focusRipple onClick={this.handleChange} {...other}>
-        <span className={classes.wrapper}>
-          {icon}
-          <span className={labelClassName}>{label}</span>
+  return (
+    <ButtonBase
+      ref={ref}
+      className={clsx(
+        classes.root,
+        {
+          [classes.selected]: selected,
+          [classes.iconOnly]: !showLabel && !selected,
+        },
+        className,
+      )}
+      focusRipple
+      onClick={handleChange}
+      {...other}
+    >
+      <span className={classes.wrapper}>
+        {icon}
+        <span
+          className={clsx(classes.label, {
+            [classes.selected]: selected,
+            [classes.iconOnly]: !showLabel && !selected,
+          })}
+        >
+          {label}
         </span>
-      </ButtonBase>
-    );
-  }
-}
+      </span>
+    </ButtonBase>
+  );
+});
 
 BottomNavigationAction.propTypes = {
   /**
-   * This property isn't supported.
-   * Use the `component` property if you need to change the children structure.
+   * This prop isn't supported.
+   * Use the `component` prop if you need to change the children structure.
    */
   children: unsupportedProp,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**

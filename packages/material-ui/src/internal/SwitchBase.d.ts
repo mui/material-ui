@@ -5,7 +5,7 @@ import { IconButtonProps } from '../IconButton';
 export interface SwitchBaseProps
   extends StandardProps<IconButtonProps, SwitchBaseClassKey, 'onChange' | 'value'> {
   autoFocus?: boolean;
-  checked?: boolean | string;
+  checked?: boolean;
   checkedIcon: React.ReactNode;
   defaultChecked?: boolean;
   disabled?: boolean;
@@ -18,7 +18,7 @@ export interface SwitchBaseProps
   readOnly?: boolean;
   required?: boolean;
   tabIndex?: number;
-  value?: string | number | boolean;
+  value?: unknown;
 }
 
 export type SwitchBaseClassKey = 'root' | 'checked' | 'disabled' | 'input';

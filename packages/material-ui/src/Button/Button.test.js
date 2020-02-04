@@ -1,322 +1,367 @@
 import React from 'react';
-import { assert } from 'chai';
-import { createShallow, createRender, getClasses } from '@material-ui/core/test-utils';
+import { expect } from 'chai';
+import { createMount, getClasses } from '@material-ui/core/test-utils';
+import describeConformance from '../test-utils/describeConformance';
+import { act, createClientRender, fireEvent } from 'test/utils/createClientRender';
+import createServerRender from 'test/utils/createServerRender';
 import Button from './Button';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
 import ButtonBase from '../ButtonBase';
-import Icon from '../Icon';
 
 describe('<Button />', () => {
-  let shallow;
-  let render;
+  let mount;
+  const render = createClientRender();
   let classes;
 
   before(() => {
-    shallow = createShallow({ dive: true });
-    render = createRender();
+    mount = createMount({ strict: true });
     classes = getClasses(<Button>Hello World</Button>);
   });
 
-  it('should render a <ButtonBase> element', () => {
-    const wrapper = shallow(<Button>Hello World</Button>);
-    assert.strictEqual(wrapper.type(), ButtonBase);
-    assert.strictEqual(wrapper.props().type, 'button');
+  describeConformance(<Button>Conformance?</Button>, () => ({
+    classes,
+    inheritComponent: ButtonBase,
+    mount,
+    refInstanceof: window.HTMLButtonElement,
+    skip: ['componentProp'],
+    after: () => mount.cleanUp(),
+  }));
+
+  it('should render with the root & text classes but no others', () => {
+    const { getByRole } = render(<Button>Hello World</Button>);
+    const button = getByRole('button');
+
+    expect(button).to.have.class(classes.root);
+    expect(button).to.have.class(classes.text);
+    expect(button).not.to.have.class(classes.textPrimary);
+    expect(button).not.to.have.class(classes.textSecondary);
+    expect(button).not.to.have.class(classes.outlined);
+    expect(button).not.to.have.class(classes.outlinedPrimary);
+    expect(button).not.to.have.class(classes.outlinedSecondary);
+    expect(button).not.to.have.class(classes.contained);
+    expect(button).not.to.have.class(classes.containedPrimary);
+    expect(button).not.to.have.class(classes.containedSecondary);
+    expect(button).not.to.have.class(classes.textSizeSmall);
+    expect(button).not.to.have.class(classes.textSizeLarge);
+    expect(button).not.to.have.class(classes.outlinedSizeSmall);
+    expect(button).not.to.have.class(classes.outlinedSizeLarge);
+    expect(button).not.to.have.class(classes.containedSizeSmall);
+    expect(button).not.to.have.class(classes.containedSizeLarge);
   });
 
-  it('should render with the root & flat classes but no others', () => {
-    const wrapper = shallow(<Button>Hello World</Button>);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.flat), true);
-    assert.strictEqual(wrapper.hasClass(classes.fab), false);
-    assert.strictEqual(wrapper.hasClass(classes.textPrimary), false);
-    assert.strictEqual(wrapper.hasClass(classes.textSecondary), false);
-    assert.strictEqual(wrapper.hasClass(classes.flatPrimary), false);
-    assert.strictEqual(wrapper.hasClass(classes.flatSecondary), false);
-    assert.strictEqual(wrapper.hasClass(classes.contained), false);
-    assert.strictEqual(wrapper.hasClass(classes.containedPrimary), false);
-    assert.strictEqual(wrapper.hasClass(classes.containedSecondary), false);
-    assert.strictEqual(wrapper.hasClass(classes.raised), false);
-    assert.strictEqual(wrapper.hasClass(classes.raisedPrimary), false);
-    assert.strictEqual(wrapper.hasClass(classes.outlined), false);
+  it('can render a text primary button', () => {
+    const { getByRole } = render(<Button color="primary">Hello World</Button>);
+    const button = getByRole('button');
+
+    expect(button).to.have.class(classes.root);
+    expect(button).not.to.have.class(classes.contained);
+    expect(button).to.have.class(classes.textPrimary);
+    expect(button).not.to.have.class(classes.textSecondary);
   });
 
-  it('should render the custom className and the root class', () => {
-    const wrapper = shallow(<Button className="test-class-name">Hello World</Button>);
-    assert.strictEqual(wrapper.is('.test-class-name'), true);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-  });
+  it('should render a text secondary button', () => {
+    const { getByRole } = render(<Button color="secondary">Hello World</Button>);
+    const button = getByRole('button');
 
-  it('should render a primary button', () => {
-    const wrapper = shallow(<Button color="primary">Hello World</Button>);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.flat), true);
-    assert.strictEqual(wrapper.hasClass(classes.contained), false);
-    assert.strictEqual(wrapper.hasClass(classes.fab), false);
-    assert.strictEqual(wrapper.hasClass(classes.textPrimary), true);
-    assert.strictEqual(wrapper.hasClass(classes.textSecondary), false);
-    assert.strictEqual(wrapper.hasClass(classes.flatPrimary), true);
-    assert.strictEqual(wrapper.hasClass(classes.flatSecondary), false);
-  });
-
-  it('should render a secondary button', () => {
-    const wrapper = shallow(<Button color="secondary">Hello World</Button>);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.flat), true);
-    assert.strictEqual(wrapper.hasClass(classes.contained), false);
-    assert.strictEqual(wrapper.hasClass(classes.fab), false);
-    assert.strictEqual(wrapper.hasClass(classes.textPrimary), false);
-    assert.strictEqual(wrapper.hasClass(classes.textSecondary), true);
-    assert.strictEqual(wrapper.hasClass(classes.flatPrimary), false);
-    assert.strictEqual(wrapper.hasClass(classes.flatSecondary), true);
-  });
-
-  it('should render a contained button', () => {
-    const wrapper = shallow(<Button variant="contained">Hello World</Button>);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.contained), true);
-    assert.strictEqual(wrapper.hasClass(classes.fab), false);
-    assert.strictEqual(wrapper.hasClass(classes.textPrimary), false);
-    assert.strictEqual(wrapper.hasClass(classes.textSecondary), false);
-  });
-
-  it('should render a contained primary button', () => {
-    const wrapper = shallow(
-      <Button variant="contained" color="primary">
-        Hello World
-      </Button>,
-    );
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.contained), true);
-    assert.strictEqual(wrapper.hasClass(classes.fab), false);
-    assert.strictEqual(wrapper.hasClass(classes.containedPrimary), true);
-    assert.strictEqual(wrapper.hasClass(classes.containedSecondary), false);
-  });
-
-  it('should render a contained secondary button', () => {
-    const wrapper = shallow(
-      <Button variant="contained" color="secondary">
-        Hello World
-      </Button>,
-    );
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.contained), true);
-    assert.strictEqual(wrapper.hasClass(classes.fab), false);
-    assert.strictEqual(wrapper.hasClass(classes.containedPrimary), false);
-    assert.strictEqual(wrapper.hasClass(classes.containedSecondary), true);
-  });
-
-  it('should render a small button', () => {
-    const wrapper = shallow(<Button size="small">Hello World</Button>);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.sizeSmall), true);
-    assert.strictEqual(wrapper.hasClass(classes.sizeLarge), false);
-  });
-
-  it('should render a large button', () => {
-    const wrapper = shallow(<Button size="large">Hello World</Button>);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.sizeSmall), false);
-    assert.strictEqual(wrapper.hasClass(classes.sizeLarge), true);
-  });
-
-  describe('raised legacy', () => {
-    beforeEach(() => {
-      consoleErrorMock.spy();
-    });
-
-    afterEach(() => {
-      consoleErrorMock.reset();
-    });
-
-    it('should render a raised button', () => {
-      const wrapper = shallow(<Button variant="raised">Hello World</Button>);
-      assert.strictEqual(wrapper.hasClass(classes.root), true);
-      assert.strictEqual(wrapper.hasClass(classes.contained), true);
-      assert.strictEqual(wrapper.hasClass(classes.raised), true);
-      assert.strictEqual(wrapper.hasClass(classes.fab), false);
-      assert.strictEqual(wrapper.hasClass(classes.containedPrimary), false);
-      assert.strictEqual(wrapper.hasClass(classes.raisedPrimary), false);
-      assert.strictEqual(wrapper.hasClass(classes.containedSecondary), false);
-      assert.strictEqual(wrapper.hasClass(classes.raisedSecondary), false);
-    });
-
-    it('should render a raised primary button', () => {
-      const wrapper = shallow(
-        <Button variant="raised" color="primary">
-          Hello World
-        </Button>,
-      );
-      assert.strictEqual(wrapper.hasClass(classes.root), true);
-      assert.strictEqual(wrapper.hasClass(classes.contained), true);
-      assert.strictEqual(wrapper.hasClass(classes.raised), true);
-      assert.strictEqual(wrapper.hasClass(classes.fab), false);
-      assert.strictEqual(wrapper.hasClass(classes.containedPrimary), true);
-      assert.strictEqual(wrapper.hasClass(classes.raisedPrimary), true);
-      assert.strictEqual(wrapper.hasClass(classes.containedSecondary), false);
-      assert.strictEqual(wrapper.hasClass(classes.raisedSecondary), false);
-    });
-
-    it('should render a flat secondary button', () => {
-      const wrapper = shallow(
-        <Button variant="flat" color="secondary">
-          Hello World
-        </Button>,
-      );
-      assert.strictEqual(wrapper.hasClass(classes.root), true);
-      assert.strictEqual(wrapper.hasClass(classes.text), true);
-      assert.strictEqual(wrapper.hasClass(classes.flat), true);
-      assert.strictEqual(wrapper.hasClass(classes.textSecondary), true);
-      assert.strictEqual(wrapper.hasClass(classes.flatSecondary), true);
-    });
-
-    it('should render a floating action button', () => {
-      const wrapper = shallow(<Button variant="fab">Hello World</Button>);
-      assert.strictEqual(wrapper.hasClass(classes.root), true);
-      assert.strictEqual(wrapper.hasClass(classes.contained), true);
-      assert.strictEqual(wrapper.hasClass(classes.fab), true);
-      assert.strictEqual(wrapper.hasClass(classes.extendedFab), false);
-      assert.strictEqual(wrapper.hasClass(classes.flat), false);
-      assert.strictEqual(wrapper.hasClass(classes.textPrimary), false);
-      assert.strictEqual(wrapper.hasClass(classes.textSecondary), false);
-    });
-
-    it('should render an extended floating action button', () => {
-      const wrapper = shallow(<Button variant="extendedFab">Hello World</Button>);
-      assert.strictEqual(wrapper.hasClass(classes.root), true);
-      assert.strictEqual(wrapper.hasClass(classes.contained), true);
-      assert.strictEqual(wrapper.hasClass(classes.fab), true);
-      assert.strictEqual(wrapper.hasClass(classes.extendedFab), true);
-      assert.strictEqual(wrapper.hasClass(classes.flat), false);
-      assert.strictEqual(wrapper.hasClass(classes.textPrimary), false);
-      assert.strictEqual(wrapper.hasClass(classes.textSecondary), false);
-    });
-
-    it('should render a mini floating action button', () => {
-      const wrapper = shallow(
-        <Button variant="fab" mini>
-          Hello World
-        </Button>,
-      );
-      assert.strictEqual(wrapper.hasClass(classes.root), true);
-      assert.strictEqual(wrapper.hasClass(classes.contained), true);
-      assert.strictEqual(wrapper.hasClass(classes.fab), true);
-      assert.strictEqual(wrapper.hasClass(classes.mini), true);
-      assert.strictEqual(wrapper.hasClass(classes.textPrimary), false);
-      assert.strictEqual(wrapper.hasClass(classes.textSecondary), false);
-    });
-
-    it('should render a primary floating action button', () => {
-      const wrapper = shallow(
-        <Button variant="fab" color="primary">
-          Hello World
-        </Button>,
-      );
-      assert.strictEqual(wrapper.hasClass(classes.root), true);
-      assert.strictEqual(wrapper.hasClass(classes.contained), true);
-      assert.strictEqual(wrapper.hasClass(classes.fab), true);
-      assert.strictEqual(wrapper.hasClass(classes.containedPrimary), true);
-      assert.strictEqual(wrapper.hasClass(classes.containedSecondary), false);
-    });
-
-    it('should render an secondary floating action button', () => {
-      const wrapper = shallow(
-        <Button variant="fab" color="secondary">
-          Hello World
-        </Button>,
-      );
-      assert.strictEqual(wrapper.hasClass(classes.root), true);
-      assert.strictEqual(wrapper.hasClass(classes.contained), true);
-      assert.strictEqual(wrapper.hasClass(classes.fab), true);
-      assert.strictEqual(wrapper.hasClass(classes.containedPrimary), false);
-      assert.strictEqual(wrapper.hasClass(classes.containedSecondary), true);
-    });
+    expect(button).to.have.class(classes.root);
+    expect(button).not.to.have.class(classes.contained);
+    expect(button).not.to.have.class(classes.textPrimary);
+    expect(button).to.have.class(classes.textSecondary);
   });
 
   it('should render an outlined button', () => {
-    const wrapper = shallow(<Button variant="outlined">Hello World</Button>);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.outlined), true);
-    assert.strictEqual(
-      wrapper.hasClass(classes.contained),
-      false,
-      'should not have the contained class',
-    );
-    assert.strictEqual(wrapper.hasClass(classes.text), false);
-    assert.strictEqual(wrapper.hasClass(classes.raised), false);
-    assert.strictEqual(wrapper.hasClass(classes.fab), false);
+    const { getByRole } = render(<Button variant="outlined">Hello World</Button>);
+    const button = getByRole('button');
+
+    expect(button).to.have.class(classes.root);
+    expect(button).to.have.class(classes.outlined);
+    expect(button).not.to.have.class(classes.contained);
+    expect(button).not.to.have.class(classes.text);
   });
 
   it('should render a primary outlined button', () => {
-    const wrapper = shallow(
+    const { getByRole } = render(
       <Button variant="outlined" color="primary">
         Hello World
       </Button>,
     );
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.outlined), true);
-    assert.strictEqual(wrapper.hasClass(classes.outlinedPrimary), true);
-    assert.strictEqual(wrapper.hasClass(classes.text), false);
-    assert.strictEqual(wrapper.hasClass(classes.textPrimary), false);
-    assert.strictEqual(wrapper.hasClass(classes.contained), false);
-    assert.strictEqual(wrapper.hasClass(classes.raised), false);
-    assert.strictEqual(wrapper.hasClass(classes.fab), false);
+    const button = getByRole('button');
+
+    expect(button).to.have.class(classes.root);
+    expect(button).to.have.class(classes.outlined);
+    expect(button).to.have.class(classes.outlinedPrimary);
+    expect(button).not.to.have.class(classes.text);
+    expect(button).not.to.have.class(classes.textPrimary);
+    expect(button).not.to.have.class(classes.contained);
   });
 
   it('should render a secondary outlined button', () => {
-    const wrapper = shallow(
+    const { getByRole } = render(
       <Button variant="outlined" color="secondary">
         Hello World
       </Button>,
     );
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.outlined), true);
-    assert.strictEqual(wrapper.hasClass(classes.outlinedSecondary), true);
-    assert.strictEqual(wrapper.hasClass(classes.text), false);
-    assert.strictEqual(wrapper.hasClass(classes.textSecondary), false);
-    assert.strictEqual(wrapper.hasClass(classes.contained), false);
-    assert.strictEqual(wrapper.hasClass(classes.raised), false);
-    assert.strictEqual(wrapper.hasClass(classes.fab), false);
+    const button = getByRole('button');
+
+    expect(button).to.have.class(classes.root);
+    expect(button).to.have.class(classes.outlined);
+    expect(button).to.have.class(classes.outlinedSecondary);
+    expect(button).not.to.have.class(classes.text);
+    expect(button).not.to.have.class(classes.textSecondary);
+    expect(button).not.to.have.class(classes.contained);
+  });
+
+  it('should render an inherit outlined button', () => {
+    const { getByRole } = render(
+      <Button variant="outlined" color="inherit">
+        Hello World
+      </Button>,
+    );
+    const button = getByRole('button');
+
+    expect(button).to.have.class(classes.root);
+    expect(button).to.have.class(classes.outlined);
+    expect(button).to.have.class(classes.colorInherit);
+    expect(button).not.to.have.class(classes.text);
+    expect(button).not.to.have.class(classes.textSecondary);
+    expect(button).not.to.have.class(classes.contained);
+  });
+
+  it('should render a contained button', () => {
+    const { getByRole } = render(<Button variant="contained">Hello World</Button>);
+    const button = getByRole('button');
+
+    expect(button).to.have.class(classes.root);
+    expect(button).not.to.have.class(classes.text);
+    expect(button).not.to.have.class(classes.textPrimary);
+    expect(button).not.to.have.class(classes.textSecondary);
+    expect(button).to.have.class(classes.contained);
+  });
+
+  it('should render a contained primary button', () => {
+    const { getByRole } = render(
+      <Button variant="contained" color="primary">
+        Hello World
+      </Button>,
+    );
+    const button = getByRole('button');
+
+    expect(button).to.have.class(classes.root);
+    expect(button).not.to.have.class(classes.text);
+    expect(button).to.have.class(classes.contained);
+    expect(button).to.have.class(classes.containedPrimary);
+    expect(button).not.to.have.class(classes.containedSecondary);
+  });
+
+  it('should render a contained secondary button', () => {
+    const { getByRole } = render(
+      <Button variant="contained" color="secondary">
+        Hello World
+      </Button>,
+    );
+    const button = getByRole('button');
+
+    expect(button).to.have.class(classes.root);
+    expect(button).not.to.have.class(classes.text);
+    expect(button).to.have.class(classes.contained);
+    expect(button).not.to.have.class(classes.containedPrimary);
+    expect(button).to.have.class(classes.containedSecondary);
+  });
+
+  it('should render a small text button', () => {
+    const { getByRole } = render(<Button size="small">Hello World</Button>);
+    const button = getByRole('button');
+
+    expect(button).to.have.class(classes.root);
+    expect(button).to.have.class(classes.text);
+    expect(button).to.have.class(classes.textSizeSmall);
+    expect(button).not.to.have.class(classes.textSizeLarge);
+    expect(button).not.to.have.class(classes.outlinedSizeSmall);
+    expect(button).not.to.have.class(classes.outlinedSizeLarge);
+    expect(button).not.to.have.class(classes.containedSizeSmall);
+    expect(button).not.to.have.class(classes.containedSizeLarge);
+  });
+
+  it('should render a large text button', () => {
+    const { getByRole } = render(<Button size="large">Hello World</Button>);
+    const button = getByRole('button');
+
+    expect(button).to.have.class(classes.root);
+    expect(button).to.have.class(classes.text);
+    expect(button).not.to.have.class(classes.textSizeSmall);
+    expect(button).to.have.class(classes.textSizeLarge);
+    expect(button).not.to.have.class(classes.outlinedSizeSmall);
+    expect(button).not.to.have.class(classes.outlinedSizeLarge);
+    expect(button).not.to.have.class(classes.containedSizeSmall);
+    expect(button).not.to.have.class(classes.containedSizeLarge);
+  });
+
+  it('should render a small outlined button', () => {
+    const { getByRole } = render(
+      <Button variant="outlined" size="small">
+        Hello World
+      </Button>,
+    );
+    const button = getByRole('button');
+
+    expect(button).to.have.class(classes.root);
+    expect(button).to.have.class(classes.outlined);
+    expect(button).not.to.have.class(classes.textSizeSmall);
+    expect(button).not.to.have.class(classes.textSizeLarge);
+    expect(button).to.have.class(classes.outlinedSizeSmall);
+    expect(button).not.to.have.class(classes.outlinedSizeLarge);
+    expect(button).not.to.have.class(classes.containedSizeSmall);
+    expect(button).not.to.have.class(classes.containedSizeLarge);
+  });
+
+  it('should render a large outlined button', () => {
+    const { getByRole } = render(
+      <Button variant="outlined" size="large">
+        Hello World
+      </Button>,
+    );
+    const button = getByRole('button');
+
+    expect(button).to.have.class(classes.root);
+    expect(button).to.have.class(classes.outlined);
+    expect(button).not.to.have.class(classes.textSizeSmall);
+    expect(button).not.to.have.class(classes.textSizeLarge);
+    expect(button).not.to.have.class(classes.outlinedSizeSmall);
+    expect(button).to.have.class(classes.outlinedSizeLarge);
+    expect(button).not.to.have.class(classes.containedSizeSmall);
+    expect(button).not.to.have.class(classes.containedSizeLarge);
+  });
+
+  it('should render a small contained button', () => {
+    const { getByRole } = render(
+      <Button variant="contained" size="small">
+        Hello World
+      </Button>,
+    );
+    const button = getByRole('button');
+
+    expect(button).to.have.class(classes.root);
+    expect(button).to.have.class(classes.contained);
+    expect(button).not.to.have.class(classes.textSizeSmall);
+    expect(button).not.to.have.class(classes.textSizeLarge);
+    expect(button).not.to.have.class(classes.outlinedSizeSmall);
+    expect(button).not.to.have.class(classes.outlinedSizeLarge);
+    expect(button).to.have.class(classes.containedSizeSmall);
+    expect(button).not.to.have.class(classes.containedSizeLarge);
+  });
+
+  it('should render a large contained button', () => {
+    const { getByRole } = render(
+      <Button variant="contained" size="large">
+        Hello World
+      </Button>,
+    );
+    const button = getByRole('button');
+
+    expect(button).to.have.class(classes.root);
+    expect(button).to.have.class(classes.contained);
+    expect(button).not.to.have.class(classes.textSizeSmall);
+    expect(button).not.to.have.class(classes.textSizeLarge);
+    expect(button).not.to.have.class(classes.outlinedSizeSmall);
+    expect(button).not.to.have.class(classes.outlinedSizeLarge);
+    expect(button).not.to.have.class(classes.containedSizeSmall);
+    expect(button).to.have.class(classes.containedSizeLarge);
+  });
+
+  it('should render a button with startIcon', () => {
+    const { getByRole } = render(<Button startIcon={<span>icon</span>}>Hello World</Button>);
+    const button = getByRole('button');
+    const label = button.querySelector(`.${classes.label}`);
+
+    expect(button).to.have.class(classes.root);
+    expect(button).to.have.class(classes.text);
+    expect(label.firstChild).not.to.have.class(classes.endIcon);
+    expect(label.firstChild).to.have.class(classes.startIcon);
+  });
+
+  it('should render a button with endIcon', () => {
+    const { getByRole } = render(<Button endIcon={<span>icon</span>}>Hello World</Button>);
+    const button = getByRole('button');
+    const label = button.querySelector(`.${classes.label}`);
+
+    expect(button).to.have.class(classes.root);
+    expect(button).to.have.class(classes.text);
+    expect(label.lastChild).not.to.have.class(classes.startIcon);
+    expect(label.lastChild).to.have.class(classes.endIcon);
   });
 
   it('should have a ripple by default', () => {
-    const wrapper = shallow(<Button>Hello World</Button>);
-    assert.strictEqual(wrapper.props().disableRipple, undefined);
+    const { getByRole } = render(
+      <Button TouchRippleProps={{ className: 'touch-ripple' }}>Hello World</Button>,
+    );
+    const button = getByRole('button');
+
+    expect(button.querySelector('.touch-ripple')).to.be.ok;
   });
 
-  it('should pass disableRipple to ButtonBase', () => {
-    const wrapper = shallow(<Button disableRipple>Hello World</Button>);
-    assert.strictEqual(wrapper.props().disableRipple, true);
+  it('can disable the ripple', () => {
+    const { getByRole } = render(
+      <Button disableRipple TouchRippleProps={{ className: 'touch-ripple' }}>
+        Hello World
+      </Button>,
+    );
+    const button = getByRole('button');
+
+    expect(button.querySelector('.touch-ripple')).to.be.null;
+  });
+
+  it('can disable the elevation', () => {
+    const { getByRole } = render(<Button disableElevation>Hello World</Button>);
+    const button = getByRole('button');
+
+    expect(button).to.have.class(classes.disableElevation);
   });
 
   it('should have a focusRipple by default', () => {
-    const wrapper = shallow(<Button>Hello World</Button>);
-    assert.strictEqual(wrapper.props().focusRipple, true);
+    const { getByRole } = render(
+      <Button TouchRippleProps={{ classes: { ripplePulsate: 'pulsate-focus-visible' } }}>
+        Hello World
+      </Button>,
+    );
+    const button = getByRole('button');
+
+    act(() => {
+      fireEvent.keyDown(document.body, { key: 'TAB' });
+      button.focus();
+    });
+
+    expect(button.querySelector('.pulsate-focus-visible')).to.be.ok;
   });
 
-  it('should pass disableFocusRipple to ButtonBase', () => {
-    const wrapper = shallow(<Button disableFocusRipple>Hello World</Button>);
-    assert.strictEqual(wrapper.props().focusRipple, false);
+  it('can disable the focusRipple', () => {
+    const { getByRole } = render(
+      <Button
+        disableFocusRipple
+        TouchRippleProps={{ classes: { ripplePulsate: 'pulsate-focus-visible' } }}
+      >
+        Hello World
+      </Button>,
+    );
+    const button = getByRole('button');
+
+    act(() => {
+      fireEvent.keyDown(document.body, { key: 'TAB' });
+      button.focus();
+    });
+
+    expect(button.querySelector('.pulsate-focus-visible')).to.be.null;
   });
 
-  it('should render Icon children with right classes', () => {
-    const childClassName = 'child-woof';
-    const iconChild = <Icon className={childClassName} />;
-    const wrapper = shallow(<Button>{iconChild}</Button>);
-    const label = wrapper.childAt(0);
-    const renderedIconChild = label.childAt(0);
-    assert.strictEqual(renderedIconChild.type(), Icon);
-    assert.strictEqual(renderedIconChild.hasClass(childClassName), true);
-  });
-
-  describe('server side', () => {
+  describe('server-side', () => {
     // Only run the test on node.
     if (!/jsdom/.test(window.navigator.userAgent)) {
       return;
     }
 
-    it('should server side render', () => {
-      const markup = render(<Button>Hello World</Button>);
-      assert.strictEqual(markup.text(), 'Hello World');
+    const serverRender = createServerRender({ expectUseLayoutEffectWarning: true });
+
+    it('should server-side render', () => {
+      const markup = serverRender(<Button>Hello World</Button>);
+      expect(markup.text()).to.equal('Hello World');
     });
   });
 });

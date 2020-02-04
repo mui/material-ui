@@ -1,26 +1,27 @@
-// @inheritedComponent FormLabel
-
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import formControlState from '../FormControl/formControlState';
-import withFormControlContext from '../FormControl/withFormControlContext';
+import useFormControl from '../FormControl/useFormControl';
 import withStyles from '../styles/withStyles';
 import FormLabel from '../FormLabel';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
+    display: 'block',
     transformOrigin: 'top left',
   },
-  /* Styles applied to the root element if `focused={true}`. */
+  /* Pseudo-class applied to the root element if `focused={true}`. */
   focused: {},
-  /* Styles applied to the root element if `disabled={true}`. */
+  /* Pseudo-class applied to the root element if `disabled={true}`. */
   disabled: {},
-  /* Styles applied to the root element if `error={true}`. */
+  /* Pseudo-class applied to the root element if `error={true}`. */
   error: {},
-  /* Styles applied to the root element if `required={true}`. */
+  /* Pseudo-class applied to the root element if `required={true}`. */
   required: {},
+  /* Pseudo-class applied to the asterisk element. */
+  asterisk: {},
   /* Styles applied to the root element if the component is a descendant of `FormControl`. */
   formControl: {
     position: 'absolute',
@@ -72,7 +73,7 @@ export const styles = theme => ({
     pointerEvents: 'none',
     transform: 'translate(14px, 20px) scale(1)',
     '&$marginDense': {
-      transform: 'translate(14px, 17px) scale(1)',
+      transform: 'translate(14px, 12px) scale(1)',
     },
     '&$shrink': {
       transform: 'translate(14px, -6px) scale(0.75)',
@@ -80,19 +81,18 @@ export const styles = theme => ({
   },
 });
 
-function InputLabel(props) {
+const InputLabel = React.forwardRef(function InputLabel(props, ref) {
   const {
-    children,
     classes,
-    className: classNameProp,
-    disableAnimation,
-    FormLabelClasses,
+    className,
+    disableAnimation = false,
     margin,
-    muiFormControl,
     shrink: shrinkProp,
     variant,
     ...other
   } = props;
+
+  const muiFormControl = useFormControl();
 
   let shrink = shrinkProp;
   if (typeof shrink === 'undefined' && muiFormControl) {
@@ -105,36 +105,33 @@ function InputLabel(props) {
     states: ['margin', 'variant'],
   });
 
-  const className = classNames(
-    classes.root,
-    {
-      [classes.formControl]: muiFormControl,
-      [classes.animated]: !disableAnimation,
-      [classes.shrink]: shrink,
-      [classes.marginDense]: fcs.margin === 'dense',
-      [classes.filled]: fcs.variant === 'filled',
-      [classes.outlined]: fcs.variant === 'outlined',
-    },
-    classNameProp,
-  );
-
   return (
     <FormLabel
       data-shrink={shrink}
-      className={className}
+      className={clsx(
+        classes.root,
+        {
+          [classes.formControl]: muiFormControl,
+          [classes.animated]: !disableAnimation,
+          [classes.shrink]: shrink,
+          [classes.marginDense]: fcs.margin === 'dense',
+          [classes.filled]: fcs.variant === 'filled',
+          [classes.outlined]: fcs.variant === 'outlined',
+        },
+        className,
+      )}
       classes={{
         focused: classes.focused,
         disabled: classes.disabled,
         error: classes.error,
         required: classes.required,
-        ...FormLabelClasses,
+        asterisk: classes.asterisk,
       }}
+      ref={ref}
       {...other}
-    >
-      {children}
-    </FormLabel>
+    />
   );
-}
+});
 
 InputLabel.propTypes = {
   /**
@@ -143,13 +140,17 @@ InputLabel.propTypes = {
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * The color of the component. It supports those theme colors that make sense for this component.
+   */
+  color: PropTypes.oneOf(['primary', 'secondary']),
   /**
    * If `true`, the transition animation is disabled.
    */
@@ -167,18 +168,10 @@ InputLabel.propTypes = {
    */
   focused: PropTypes.bool,
   /**
-   * `classes` property applied to the [`FormLabel`](/api/form-label/) element.
-   */
-  FormLabelClasses: PropTypes.object,
-  /**
    * If `dense`, will adjust vertical spacing. This is normally obtained via context from
    * FormControl.
    */
   margin: PropTypes.oneOf(['dense']),
-  /**
-   * @ignore
-   */
-  muiFormControl: PropTypes.object,
   /**
    * if `true`, the label will indicate that the input is required.
    */
@@ -193,8 +186,4 @@ InputLabel.propTypes = {
   variant: PropTypes.oneOf(['standard', 'outlined', 'filled']),
 };
 
-InputLabel.defaultProps = {
-  disableAnimation: false,
-};
-
-export default withStyles(styles, { name: 'MuiInputLabel' })(withFormControlContext(InputLabel));
+export default withStyles(styles, { name: 'MuiInputLabel' })(InputLabel);

@@ -1,19 +1,22 @@
 import * as React from 'react';
-import { StandardProps, PropTypes } from '..';
+import { StandardProps } from '..';
 import { InputBaseProps } from '../InputBase';
 
 export interface OutlinedInputProps extends StandardProps<InputBaseProps, OutlinedInputClassKey> {
+  label?: React.ReactNode;
   notched?: boolean;
-  labelWidth: number;
+  labelWidth?: number;
 }
 
 export type OutlinedInputClassKey =
   | 'root'
+  | 'colorSecondary'
   | 'focused'
   | 'disabled'
   | 'adornedStart'
   | 'adornedEnd'
   | 'error'
+  | 'marginDense'
   | 'multiline'
   | 'notchedOutline'
   | 'input'

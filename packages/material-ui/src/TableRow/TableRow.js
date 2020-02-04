@@ -1,77 +1,67 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
+import { fade } from '../styles/colorManipulator';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
     color: 'inherit',
     display: 'table-row',
-    height: 48,
     verticalAlign: 'middle',
     // We disable the focus ring for mouse, touch and keyboard users.
-    outline: 'none',
-    '&$selected': {
-      backgroundColor:
-        theme.palette.type === 'light'
-          ? 'rgba(0, 0, 0, 0.04)' // grey[100]
-          : 'rgba(255, 255, 255, 0.08)',
-    },
+    outline: 0,
     '&$hover:hover': {
-      backgroundColor:
-        theme.palette.type === 'light'
-          ? 'rgba(0, 0, 0, 0.07)' // grey[200]
-          : 'rgba(255, 255, 255, 0.14)',
+      backgroundColor: theme.palette.action.hover,
+    },
+    '&$selected,&$selected:hover': {
+      backgroundColor: fade(theme.palette.secondary.main, theme.palette.action.selectedOpacity),
     },
   },
-  /* Styles applied to the root element if `selected={true}`. */
+  /* Pseudo-class applied to the root element if `selected={true}`. */
   selected: {},
-  /* Styles applied to the root element if `hover={true}`. */
+  /* Pseudo-class applied to the root element if `hover={true}`. */
   hover: {},
-  /* Styles applied to the root element if table variant = 'head'. */
-  head: {
-    height: 56,
-  },
-  /* Styles applied to the root element if table variant = 'footer'. */
-  footer: {
-    height: 56,
-  },
+  /* Styles applied to the root element if table variant="head". */
+  head: {},
+  /* Styles applied to the root element if table variant="footer". */
+  footer: {},
 });
 
 /**
  * Will automatically set dynamic row height
  * based on the material table element parent (head, body, etc).
  */
-function TableRow(props) {
+const TableRow = React.forwardRef(function TableRow(props, ref) {
   const {
     classes,
-    className: classNameProp,
-    component: Component,
-    hover,
-    selected,
+    className,
+    component: Component = 'tr',
+    hover = false,
+    selected = false,
     ...other
   } = props;
+  const tablelvl2 = React.useContext(Tablelvl2Context);
 
   return (
-    <Tablelvl2Context.Consumer>
-      {tablelvl2 => {
-        const className = classNames(
-          classes.root,
-          {
-            [classes.head]: tablelvl2 && tablelvl2.variant === 'head',
-            [classes.footer]: tablelvl2 && tablelvl2.variant === 'footer',
-            [classes.hover]: hover,
-            [classes.selected]: selected,
-          },
-          classNameProp,
-        );
-        return <Component className={className} {...other} />;
-      }}
-    </Tablelvl2Context.Consumer>
+    <Component
+      ref={ref}
+      className={clsx(
+        classes.root,
+        {
+          [classes.head]: tablelvl2 && tablelvl2.variant === 'head',
+          [classes.footer]: tablelvl2 && tablelvl2.variant === 'footer',
+          [classes.hover]: hover,
+          [classes.selected]: selected,
+        },
+        className,
+      )}
+      {...other}
+    />
   );
-}
+});
 
 TableRow.propTypes = {
   /**
@@ -80,7 +70,7 @@ TableRow.propTypes = {
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -91,7 +81,7 @@ TableRow.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  component: PropTypes.elementType,
   /**
    * If `true`, the table row will shade on hover.
    */
@@ -100,12 +90,6 @@ TableRow.propTypes = {
    * If `true`, the table row will have the selected shading.
    */
   selected: PropTypes.bool,
-};
-
-TableRow.defaultProps = {
-  component: 'tr',
-  hover: false,
-  selected: false,
 };
 
 export default withStyles(styles, { name: 'MuiTableRow' })(TableRow);

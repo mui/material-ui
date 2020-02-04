@@ -1,30 +1,45 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 
-export const styles = {
+export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
     flex: '1 1 auto',
-    overflowY: 'auto',
     WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
-    padding: '0 24px 24px',
+    overflowY: 'auto',
+    padding: '8px 24px',
     '&:first-child': {
-      paddingTop: 24,
+      // dialog without title
+      paddingTop: 20,
     },
   },
-};
+  /* Styles applied to the root element if `dividers={true}`. */
+  dividers: {
+    padding: '16px 24px',
+    borderTop: `1px solid ${theme.palette.divider}`,
+    borderBottom: `1px solid ${theme.palette.divider}`,
+  },
+});
 
-function DialogContent(props) {
-  const { classes, children, className, ...other } = props;
+const DialogContent = React.forwardRef(function DialogContent(props, ref) {
+  const { classes, className, dividers = false, ...other } = props;
 
   return (
-    <div className={classNames(classes.root, className)} {...other}>
-      {children}
-    </div>
+    <div
+      className={clsx(
+        classes.root,
+        {
+          [classes.dividers]: dividers,
+        },
+        className,
+      )}
+      ref={ref}
+      {...other}
+    />
   );
-}
+});
 
 DialogContent.propTypes = {
   /**
@@ -33,13 +48,17 @@ DialogContent.propTypes = {
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * Display the top and bottom dividers.
+   */
+  dividers: PropTypes.bool,
 };
 
 export default withStyles(styles, { name: 'MuiDialogContent' })(DialogContent);

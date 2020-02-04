@@ -7,16 +7,17 @@ export interface SwitchProps
   checkedIcon?: React.ReactNode;
   color?: 'primary' | 'secondary' | 'default';
   icon?: React.ReactNode;
+  size?: 'small' | 'medium';
 }
 
 export type SwitchClassKey =
   | SwitchBaseClassKey
-  | 'bar'
-  | 'icon'
-  | 'iconChecked'
   | 'switchBase'
   | 'colorPrimary'
-  | 'colorSecondary';
+  | 'colorSecondary'
+  | 'sizeSmall'
+  | 'thumb'
+  | 'track';
 
 declare const Switch: React.ComponentType<SwitchProps>;
 

@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-
 import { assert } from 'chai';
 import consoleErrorMock from './consoleErrorMock';
 

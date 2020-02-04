@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 
 export const styles = theme => ({
@@ -11,7 +11,14 @@ export const styles = theme => ({
     alignItems: 'center',
   },
   /* Styles applied to the root element if `disableGutters={false}`. */
-  gutters: theme.mixins.gutters(),
+  gutters: {
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(2),
+    [theme.breakpoints.up('sm')]: {
+      paddingLeft: theme.spacing(3),
+      paddingRight: theme.spacing(3),
+    },
+  },
   /* Styles applied to the root element if `variant="regular"`. */
   regular: theme.mixins.toolbar,
   /* Styles applied to the root element if `variant="dense"`. */
@@ -20,24 +27,31 @@ export const styles = theme => ({
   },
 });
 
-function Toolbar(props) {
-  const { children, classes, className: classNameProp, disableGutters, variant, ...other } = props;
-
-  const className = classNames(
-    classes.root,
-    classes[variant],
-    {
-      [classes.gutters]: !disableGutters,
-    },
-    classNameProp,
-  );
+const Toolbar = React.forwardRef(function Toolbar(props, ref) {
+  const {
+    classes,
+    className,
+    component: Component = 'div',
+    disableGutters = false,
+    variant = 'regular',
+    ...other
+  } = props;
 
   return (
-    <div className={className} {...other}>
-      {children}
-    </div>
+    <Component
+      className={clsx(
+        classes.root,
+        classes[variant],
+        {
+          [classes.gutters]: !disableGutters,
+        },
+        className,
+      )}
+      ref={ref}
+      {...other}
+    />
   );
-}
+});
 
 Toolbar.propTypes = {
   /**
@@ -46,13 +60,18 @@ Toolbar.propTypes = {
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component: PropTypes.elementType,
   /**
    * If `true`, disables gutter padding.
    */
@@ -61,11 +80,6 @@ Toolbar.propTypes = {
    * The variant to use.
    */
   variant: PropTypes.oneOf(['regular', 'dense']),
-};
-
-Toolbar.defaultProps = {
-  disableGutters: false,
-  variant: 'regular',
 };
 
 export default withStyles(styles, { name: 'MuiToolbar' })(Toolbar);

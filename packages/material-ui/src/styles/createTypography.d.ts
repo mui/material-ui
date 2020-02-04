@@ -1,8 +1,8 @@
 import { Palette } from './createPalette';
-import { Overwrite, Omit } from '..';
+import * as React from 'react';
 import { CSSProperties } from './withStyles';
 
-export type ThemeStyle =
+export type Variant =
   | 'h1'
   | 'h2'
   | 'h3'
@@ -15,48 +15,37 @@ export type ThemeStyle =
   | 'body2'
   | 'caption'
   | 'button'
-  | 'overline'
-  | 'display4' // deprecated
-  | 'display3'
-  | 'display2'
-  | 'display1'
-  | 'headline'
-  | 'title'
-  | 'subheading';
+  | 'overline';
 
 export interface FontStyle
   extends Required<{
-    fontFamily: CSSProperties['fontFamily'];
+    fontFamily: React.CSSProperties['fontFamily'];
     fontSize: number;
-    fontWeightLight: CSSProperties['fontWeight'];
-    fontWeightRegular: CSSProperties['fontWeight'];
-    fontWeightMedium: CSSProperties['fontWeight'];
+    fontWeightLight: React.CSSProperties['fontWeight'];
+    fontWeightRegular: React.CSSProperties['fontWeight'];
+    fontWeightMedium: React.CSSProperties['fontWeight'];
+    fontWeightBold: React.CSSProperties['fontWeight'];
   }> {}
 
 export interface FontStyleOptions extends Partial<FontStyle> {
   htmlFontSize?: number;
-  allVariants?: CSSProperties;
-  useNextVariants?: boolean;
+  allVariants?: React.CSSProperties;
 }
 
-export type TypographyStyle = Required<
-  Pick<CSSProperties, 'fontFamily' | 'fontSize' | 'fontWeight' | 'color'>
-> &
-  Partial<Pick<CSSProperties, 'letterSpacing' | 'lineHeight' | 'textTransform'>>;
-
-export interface TypographyStyleOptions extends Partial<TypographyStyle> {}
+// TODO: which one should actually be allowed to be subject to module augmentation?
+// current type vs interface decision is kept for historical reasons until we
+// made a decision
+export type TypographyStyle = CSSProperties;
+export interface TypographyStyleOptions extends TypographyStyle {}
 
 export interface TypographyUtils {
   pxToRem: (px: number) => string;
 }
 
-export interface Typography
-  extends Record<ThemeStyle, TypographyStyle>,
-    FontStyle,
-    TypographyUtils {}
+export interface Typography extends Record<Variant, TypographyStyle>, FontStyle, TypographyUtils {}
 
 export interface TypographyOptions
-  extends Partial<Record<ThemeStyle, TypographyStyleOptions> & FontStyleOptions> {}
+  extends Partial<Record<Variant, TypographyStyleOptions> & FontStyleOptions> {}
 
 export default function createTypography(
   palette: Palette,

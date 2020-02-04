@@ -1,33 +1,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
-import { cloneChildrenWithClassName } from '../utils/reactHelpers';
-import '../Button'; // So we don't have any override priority issue.
 
 export const styles = {
   /* Styles applied to the root element. */
   root: {
     display: 'flex',
     alignItems: 'center',
+    padding: 8,
     justifyContent: 'flex-end',
-    padding: '16px 8px',
   },
-  /* Styles applied to the children. */
-  action: {
-    marginLeft: 8,
+  /* Styles applied to the root element if `disableSpacing={false}`. */
+  spacing: {
+    '& > :not(:first-child)': {
+      marginLeft: 8,
+    },
   },
 };
 
-function ExpansionPanelActions(props) {
-  const { children, classes, className, ...other } = props;
+const ExpansionPanelActions = React.forwardRef(function ExpansionPanelActions(props, ref) {
+  const { classes, className, disableSpacing = false, ...other } = props;
 
   return (
-    <div className={classNames(classes.root, className)} {...other}>
-      {cloneChildrenWithClassName(children, classes.action)}
-    </div>
+    <div
+      className={clsx(classes.root, { [classes.spacing]: !disableSpacing }, className)}
+      ref={ref}
+      {...other}
+    />
   );
-}
+});
 
 ExpansionPanelActions.propTypes = {
   /**
@@ -36,13 +38,17 @@ ExpansionPanelActions.propTypes = {
   children: PropTypes.node.isRequired,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * If `true`, the actions do not have additional margin.
+   */
+  disableSpacing: PropTypes.bool,
 };
 
 export default withStyles(styles, { name: 'MuiExpansionPanelActions' })(ExpansionPanelActions);

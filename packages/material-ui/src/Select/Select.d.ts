@@ -9,8 +9,11 @@ export interface SelectProps
     Pick<SelectInputProps, 'onChange'> {
   autoWidth?: boolean;
   displayEmpty?: boolean;
-  IconComponent?: React.ReactType;
+  IconComponent?: React.ElementType;
   input?: React.ReactNode;
+  label?: React.ReactNode;
+  labelId?: string;
+  labelWidth?: number;
   MenuProps?: Partial<MenuProps>;
   multiple?: boolean;
   native?: boolean;
@@ -19,18 +22,21 @@ export interface SelectProps
   open?: boolean;
   renderValue?: (value: SelectProps['value']) => React.ReactNode;
   SelectDisplayProps?: React.HTMLAttributes<HTMLDivElement>;
-  value?: Array<string | number | boolean | object> | string | number | boolean | object;
+  value?: unknown;
   variant?: 'standard' | 'outlined' | 'filled';
 }
 
 export type SelectClassKey =
   | 'root'
   | 'select'
+  | 'filled'
+  | 'outlined'
   | 'selectMenu'
   | 'disabled'
   | 'icon'
-  | 'filled'
-  | 'outlined';
+  | 'iconOpen'
+  | 'iconFilled'
+  | 'iconOutlined';
 
 declare const Select: React.ComponentType<SelectProps>;
 

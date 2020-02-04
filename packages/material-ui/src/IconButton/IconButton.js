@@ -1,12 +1,11 @@
-// @inheritedComponent ButtonBase
-
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
+import { chainPropTypes } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import { fade } from '../styles/colorManipulator';
 import ButtonBase from '../ButtonBase';
-import { capitalize } from '../utils/helpers';
+import capitalize from '../utils/capitalize';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -27,12 +26,24 @@ export const styles = theme => ({
       '@media (hover: none)': {
         backgroundColor: 'transparent',
       },
-      '&$disabled': {
-        backgroundColor: 'transparent',
-      },
     },
     '&$disabled': {
+      backgroundColor: 'transparent',
       color: theme.palette.action.disabled,
+    },
+  },
+  /* Styles applied to the root element if `edge="start"`. */
+  edgeStart: {
+    marginLeft: -12,
+    '$sizeSmall&': {
+      marginLeft: -3,
+    },
+  },
+  /* Styles applied to the root element if `edge="end"`. */
+  edgeEnd: {
+    marginRight: -12,
+    '$sizeSmall&': {
+      marginRight: -3,
     },
   },
   /* Styles applied to the root element if `color="inherit"`. */
@@ -61,8 +72,13 @@ export const styles = theme => ({
       },
     },
   },
-  /* Styles applied to the root element if `disabled={true}`. */
+  /* Pseudo-class applied to the root element if `disabled={true}`. */
   disabled: {},
+  /* Styles applied to the root element if `size="small"`. */
+  sizeSmall: {
+    padding: 3,
+    fontSize: theme.typography.pxToRem(18),
+  },
   /* Styles applied to the children container element. */
   label: {
     width: '100%',
@@ -73,40 +89,72 @@ export const styles = theme => ({
 });
 
 /**
- * Refer to the [Icons](/style/icons/) section of the documentation
+ * Refer to the [Icons](/components/icons/) section of the documentation
  * regarding the available icon options.
  */
-function IconButton(props) {
-  const { children, classes, className, color, disabled, ...other } = props;
+const IconButton = React.forwardRef(function IconButton(props, ref) {
+  const {
+    edge = false,
+    children,
+    classes,
+    className,
+    color = 'default',
+    disabled = false,
+    disableFocusRipple = false,
+    size = 'medium',
+    ...other
+  } = props;
 
   return (
     <ButtonBase
-      className={classNames(
+      className={clsx(
         classes.root,
         {
           [classes[`color${capitalize(color)}`]]: color !== 'default',
           [classes.disabled]: disabled,
+          [classes[`size${capitalize(size)}`]]: size !== 'medium',
+          [classes.edgeStart]: edge === 'start',
+          [classes.edgeEnd]: edge === 'end',
         },
         className,
       )}
       centerRipple
-      focusRipple
+      focusRipple={!disableFocusRipple}
       disabled={disabled}
+      ref={ref}
       {...other}
     >
       <span className={classes.label}>{children}</span>
     </ButtonBase>
   );
-}
+});
 
 IconButton.propTypes = {
   /**
    * The icon element.
    */
-  children: PropTypes.node,
+  children: chainPropTypes(PropTypes.node, props => {
+    const found = React.Children.toArray(props.children).some(
+      child => React.isValidElement(child) && child.props.onClick,
+    );
+
+    if (found) {
+      return new Error(
+        [
+          'Material-UI: you are providing an onClick event listener ' +
+            'to a child of a button element.',
+          'Firefox will never trigger the event.',
+          'You should move the onClick listener to the parent button element.',
+          'https://github.com/mui-org/material-ui/issues/13957',
+        ].join('\n'),
+      );
+    }
+
+    return null;
+  }),
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -122,14 +170,26 @@ IconButton.propTypes = {
    */
   disabled: PropTypes.bool,
   /**
-   * If `true`, the ripple will be disabled.
+   * If `true`, the  keyboard focus ripple will be disabled.
+   * `disableRipple` must also be true.
+   */
+  disableFocusRipple: PropTypes.bool,
+  /**
+   * If `true`, the ripple effect will be disabled.
    */
   disableRipple: PropTypes.bool,
-};
-
-IconButton.defaultProps = {
-  color: 'default',
-  disabled: false,
+  /**
+   * If given, uses a negative margin to counteract the padding on one
+   * side (this is often helpful for aligning the left or right
+   * side of the icon with content above or below, without ruining the border
+   * size and shape).
+   */
+  edge: PropTypes.oneOf(['start', 'end', false]),
+  /**
+   * The size of the button.
+   * `small` is equivalent to the dense button styling.
+   */
+  size: PropTypes.oneOf(['small', 'medium']),
 };
 
 export default withStyles(styles, { name: 'MuiIconButton' })(IconButton);

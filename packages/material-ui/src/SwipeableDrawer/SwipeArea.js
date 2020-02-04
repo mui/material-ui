@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
-import { capitalize } from '../utils/helpers';
+import capitalize from '../utils/capitalize';
 import { isHorizontal } from '../Drawer/Drawer';
 
 export const styles = theme => ({
@@ -35,19 +35,20 @@ export const styles = theme => ({
 /**
  * @ignore - internal component.
  */
-function SwipeArea(props) {
+const SwipeArea = React.forwardRef(function SwipeArea(props, ref) {
   const { anchor, classes, className, width, ...other } = props;
 
   return (
     <div
-      className={classNames(classes.root, classes[`anchor${capitalize(anchor)}`], className)}
+      className={clsx(classes.root, classes[`anchor${capitalize(anchor)}`], className)}
+      ref={ref}
       style={{
-        [isHorizontal(props) ? 'width' : 'height']: width,
+        [isHorizontal(anchor) ? 'width' : 'height']: width,
       }}
       {...other}
     />
   );
-}
+});
 
 SwipeArea.propTypes = {
   /**
@@ -69,4 +70,4 @@ SwipeArea.propTypes = {
   width: PropTypes.number.isRequired,
 };
 
-export default withStyles(styles, { name: 'MuiPrivateSwipeArea' })(SwipeArea);
+export default withStyles(styles, { name: 'PrivateSwipeArea' })(SwipeArea);

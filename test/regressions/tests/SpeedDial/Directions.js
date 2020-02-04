@@ -1,9 +1,9 @@
-import classNames from 'classnames';
+import clsx from 'clsx';
 import React from 'react';
 import PropTypes from 'prop-types';
 import Avatar from '@material-ui/core/Avatar';
 import { withStyles } from '@material-ui/core/styles';
-import { capitalize } from '@material-ui/core/utils/helpers';
+import { capitalize } from '@material-ui/core/utils';
 import SpeedDial from '@material-ui/lab/SpeedDial';
 import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon';
 import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
@@ -46,41 +46,40 @@ function SimpleSpeedDial(props) {
     down: 'right',
     left: 'bottom',
   };
-  const secondaryPlacement = ['-start', '', '-end'];
 
   return (
     <SpeedDial icon={<SpeedDialIcon />} open {...props}>
-      {['A', 'B', 'C'].map((name, i) => {
-        return (
-          <SpeedDialAction
-            key={name}
-            icon={<Avatar>{name}</Avatar>}
-            tooltipOpen
-            tooltipPlacement={`${tooltipPlacement[props.direction]}${secondaryPlacement[i]}`}
-            tooltipTitle={'Tooltip'}
-          />
-        );
-      })}
+      {['A', 'B', 'C'].map(name => (
+        <SpeedDialAction
+          key={name}
+          icon={<Avatar>{name}</Avatar>}
+          tooltipOpen
+          tooltipPlacement={tooltipPlacement[props.direction]}
+          tooltipTitle={'Tooltip'}
+        />
+      ))}
     </SpeedDial>
   );
 }
 
+SimpleSpeedDial.propTypes = {
+  direction: PropTypes.string.isRequired,
+};
+
 function Directions({ classes }) {
   const speedDialClassName = direction =>
-    classNames(classes.speedDial, classes[`direction${capitalize(direction)}`]);
+    clsx(classes.speedDial, classes[`direction${capitalize(direction)}`]);
 
   return (
     <div className={classes.root}>
-      {['up', 'right', 'down', 'left'].map(direction => {
-        return (
-          <SimpleSpeedDial
-            key={direction}
-            ariaLabel={direction}
-            className={speedDialClassName(direction)}
-            direction={direction}
-          />
-        );
-      })}
+      {['up', 'down'].map(direction => (
+        <SimpleSpeedDial
+          key={direction}
+          ariaLabel={direction}
+          className={speedDialClassName(direction)}
+          direction={direction}
+        />
+      ))}
     </div>
   );
 }

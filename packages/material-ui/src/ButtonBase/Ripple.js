@@ -1,82 +1,79 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import Transition from 'react-transition-group/Transition';
+import clsx from 'clsx';
+import useEventCallback from '../utils/useEventCallback';
+
+const useEnhancedEffect = typeof window === 'undefined' ? React.useEffect : React.useLayoutEffect;
 
 /**
  * @ignore - internal component.
  */
-class Ripple extends React.Component {
-  state = {
-    visible: false,
-    leaving: false,
+function Ripple(props) {
+  const {
+    classes,
+    pulsate = false,
+    rippleX,
+    rippleY,
+    rippleSize,
+    in: inProp,
+    onExited = () => {},
+    timeout,
+  } = props;
+  const [leaving, setLeaving] = React.useState(false);
+
+  const rippleClassName = clsx(classes.ripple, classes.rippleVisible, {
+    [classes.ripplePulsate]: pulsate,
+  });
+
+  const rippleStyles = {
+    width: rippleSize,
+    height: rippleSize,
+    top: -(rippleSize / 2) + rippleY,
+    left: -(rippleSize / 2) + rippleX,
   };
 
-  handleEnter = () => {
-    this.setState({
-      visible: true,
-    });
-  };
+  const childClassName = clsx(classes.child, {
+    [classes.childLeaving]: leaving,
+    [classes.childPulsate]: pulsate,
+  });
 
-  handleExit = () => {
-    this.setState({
-      leaving: true,
-    });
-  };
+  const handleExited = useEventCallback(onExited);
+  // Ripple is used for user feedback (e.g. click or press) so we want to apply styles with the highest priority
+  useEnhancedEffect(() => {
+    if (!inProp) {
+      // react-transition-group#onExit
+      setLeaving(true);
 
-  render() {
-    const {
-      classes,
-      className: classNameProp,
-      pulsate,
-      rippleX,
-      rippleY,
-      rippleSize,
-      ...other
-    } = this.props;
-    const { visible, leaving } = this.state;
+      // react-transition-group#onExited
+      const timeoutId = setTimeout(handleExited, timeout);
+      return () => {
+        clearTimeout(timeoutId);
+      };
+    }
+    return undefined;
+  }, [handleExited, inProp, timeout]);
 
-    const rippleClassName = classNames(
-      classes.ripple,
-      {
-        [classes.rippleVisible]: visible,
-        [classes.ripplePulsate]: pulsate,
-      },
-      classNameProp,
-    );
-
-    const rippleStyles = {
-      width: rippleSize,
-      height: rippleSize,
-      top: -(rippleSize / 2) + rippleY,
-      left: -(rippleSize / 2) + rippleX,
-    };
-
-    const childClassName = classNames(classes.child, {
-      [classes.childLeaving]: leaving,
-      [classes.childPulsate]: pulsate,
-    });
-
-    return (
-      <Transition onEnter={this.handleEnter} onExit={this.handleExit} {...other}>
-        <span className={rippleClassName} style={rippleStyles}>
-          <span className={childClassName} />
-        </span>
-      </Transition>
-    );
-  }
+  return (
+    <span className={rippleClassName} style={rippleStyles}>
+      <span className={childClassName} />
+    </span>
+  );
 }
 
 Ripple.propTypes = {
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
-   * @ignore
+   * @ignore - injected from TransitionGroup
    */
-  className: PropTypes.string,
+  in: PropTypes.bool,
+  /**
+   * @ignore - injected from TransitionGroup
+   */
+  onExited: PropTypes.func,
   /**
    * If `true`, the ripple pulsates, typically indicating the keyboard focus state of an element.
    */
@@ -93,10 +90,10 @@ Ripple.propTypes = {
    * Vertical position of the ripple center.
    */
   rippleY: PropTypes.number,
-};
-
-Ripple.defaultProps = {
-  pulsate: false,
+  /**
+   * exit delay
+   */
+  timeout: PropTypes.number.isRequired,
 };
 
 export default Ripple;

@@ -6,22 +6,22 @@
 
 The most recent version is recommended in production.
 
-{{"demo": "pages/versions/StableVersions.js", "hideHeader": true}}
+{{"demo": "pages/versions/StableVersions.js", "hideHeader": true, "bg": "inline"}}
 
-## Latest version
+## Latest versions
 
 Here you can find the latest unreleased documentation and code.
 You can use it to see what changes are coming and provide better feedback to Material-UI contributors.
 
-{{"demo": "pages/versions/LatestVersion.js", "hideHeader": true}}
+{{"demo": "pages/versions/LatestVersions.js", "hideHeader": true, "bg": "inline"}}
 
 ## Versioning strategy
 
-We recognize that you need **stability** from the Material-UI library. Stability ensures that reusable components and libraries, tutorials, tools, and learned practices don't become obsolete unexpectedly. Stability is essential for the ecosystem around Material-UI to thrive.
+ Stability ensures that reusable components and libraries, tutorials, tools, and learned practices don't become obsolete unexpectedly. Stability is essential for the ecosystem around Material-UI to thrive.
 
-This document contains **the practices that we follow** to provide you with a leading-edge UI library, balanced with stability. We strive to ensure that future changes are always introduced in a predictable way. We want everyone who depends on Material-UI to know when and how new features are added, and to be well-prepared when obsolete ones are removed.
+This document contains the practices that are followed to provide you with a leading-edge UI library, balanced with stability, ensuring that future changes are always introduced in a predictable way.
 
-Material-UI strictly follows [Semantic Versioning 2.0.0](https://semver.org/).
+Material-UI follows [Semantic Versioning 2.0.0](https://semver.org/).
 Material-UI version numbers have three parts: `major.minor.patch`.
 The version number is incremented based on the level of change included in the release.
 
@@ -33,41 +33,43 @@ No developer assistance is expected during update.
 
 ## Release frequency
 
-We work toward a regular schedule of releases, so that you can plan and coordinate your updates with the continuing evolution of Material-UI.
+A regular schedule of releases helps you plan and coordinate your updates with the continuing evolution of Material-UI.
 
 In general, you can expect the following release cycle:
 
-- A **major** release every 6 months.
+- A **major** release every 12 months.
 - 1-3 **minor** releases for each major release.
 - A **patch** release every week (anytime for urgent bugfix).
 
 ## Release schedule
 
-> Disclaimer: The dates are offered as general guidance and may be adjusted by us when necessary to ensure delivery of a high-quality code.
+| Date | Version | Status |
+|:-----|:--------|:-------|
+| May 2018 | v1.0.0 | Released |
+| September 2018 | v3.0.0 | Released |
+| May 2019 | v4.0.0 | Released |
+| Q3 2020 | v5.0.0 | ⏳ |
 
-| Date | Version |
-|:-----|:--------|
-| January 2019 | `@material-ui/core` v4.0.0 |
-| July 2019 | `@material-ui/core` v5.0.0 |
+You can follow the [milestones](https://github.com/mui-org/material-ui/milestones) for a more detailed overview.
 
-You can follow [our milestones](https://github.com/mui-org/material-ui/milestones) for a more detailed overview.
+> ⚠️ **Disclaimer**: We operate in a dynamic environment, and things are subject to change. The information provided is intended to outline the general framework direction. It's intended for informational purposes only. We may decide to add/remove new items at any time depending on our capability to deliver while meeting our quality standards. The development, releases and timing of any features or functionality of Material-UI remains at the sole discretion of Material-UI. The roadmap does not represent a commitment, obligation or promise to deliver at any time.
 
 ## Support policy
 
-We only support the latest version of Material-UI.
-We don't yet have the resources to offer [LTS](https://en.wikipedia.org/wiki/Long-term_support) releases.
+Find details on the [supported versions](/getting-started/support/#supported-versions).
 
 ## Deprecation practices
 
 Sometimes **"breaking changes"**, such as the removal of support for select APIs and features, are necessary.
 
-To make these transitions as easy as possible, we make two commitments to you:
+To make these transitions as easy as possible:
 
-- We work hard to minimize the number of breaking changes and to provide migration tools when possible.
-- We follow the deprecation policy described here, so you have time to update your apps to the latest APIs and best practices.
+- The number of breaking changes is minimized, and migration tools provided when possible.
+- The deprecation policy described below is followed, so that you have time to update your apps to the latest APIs and best practices.
 
-To help ensure that you have sufficient time and a clear path to update, this is our deprecation policy:
-- We announce deprecated features in the changelog, and when possible, with warnings at runtime.
-- When we announce a deprecation, we also announce a recommended update path.
-- We support existing use of a stable API during the deprecation period, so your code will keep working during that period.
-- We only make peer dependency updates (React) that require changes to your apps in a major release.
+### Deprecation policy
+
+- Deprecated features are announced in the changelog, and when possible, with warnings at runtime.
+- When a deprecation is announced, recommended update path is provided.
+- Existing use of a stable API during the deprecation period is supported, so your code will keep working during that period.
+- Peer dependency updates (React) that require changes to your apps are only made in a major release.

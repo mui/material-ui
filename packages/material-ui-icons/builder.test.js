@@ -2,10 +2,7 @@ import { assert } from 'chai';
 import fs from 'fs';
 import path from 'path';
 import temp from 'temp';
-import builder from './builder';
-
-// Automatically track and cleanup files at exit
-temp.track();
+import { RENAME_FILTER_MUI, RENAME_FILTER_DEFAULT, main, getComponentName } from './builder';
 
 const DISABLE_LOG = true;
 
@@ -18,18 +15,18 @@ const GAME_ICONS_ROOT = path.join(__dirname, './fixtures/game-icons/');
 const GAME_ICONS_SVG_DIR = path.join(GAME_ICONS_ROOT, 'svg/icons/');
 
 describe('builder', () => {
-  describe('#getComponentName', () => {
-    it('should be a function', () => {
-      assert.strictEqual(builder.hasOwnProperty('getComponentName'), true);
-      assert.isFunction(builder.getComponentName);
-    });
+  before(() => {
+    // Automatically track and cleanup files at exit
+    temp.track();
+  });
 
+  describe('#getComponentName', () => {
     it('should change capitalize dashes', () => {
-      assert.strictEqual(builder.getComponentName('hi-world'), 'HiWorld', true);
+      assert.strictEqual(getComponentName('hi-world'), 'HiWorld', true);
     });
 
     it('should capitalize based on environment path.sep', () => {
-      assert.strictEqual(builder.getComponentName(`this${path.sep}dir`), 'ThisDir', true);
+      assert.strictEqual(getComponentName(`this${path.sep}dir`), 'ThisDir', true);
     });
   });
 
@@ -38,8 +35,7 @@ describe('builder', () => {
   });
 
   it('should have main', () => {
-    assert.strictEqual(builder.hasOwnProperty('main'), true);
-    assert.isFunction(builder.main);
+    assert.isFunction(main);
   });
 
   describe('--output-dir', () => {
@@ -47,7 +43,7 @@ describe('builder', () => {
       svgDir: MUI_ICONS_SVG_DIR,
       innerPath: '/svg/production/',
       glob: '/**/production/*_24px.svg',
-      renameFilter: builder.RENAME_FILTER_MUI,
+      renameFilter: RENAME_FILTER_MUI,
       disableLog: DISABLE_LOG,
       outputDir: null,
     };
@@ -61,7 +57,7 @@ describe('builder', () => {
     });
 
     it('script outputs to directory', async () => {
-      await builder.main(options);
+      await main(options);
       assert.strictEqual(fs.lstatSync(options.outputDir).isDirectory(), true);
       assert.strictEqual(fs.lstatSync(path.join(options.outputDir, 'index.js')).isFile(), true);
     });
@@ -72,7 +68,7 @@ describe('builder', () => {
       svgDir: GAME_ICONS_SVG_DIR,
       glob: '**/*.svg',
       innerPath: '/dice/svg/000000/transparent/',
-      renameFilter: builder.RENAME_FILTER_DEFAULT,
+      renameFilter: RENAME_FILTER_DEFAULT,
       disableLog: DISABLE_LOG,
       outputDir: null,
     };
@@ -86,7 +82,7 @@ describe('builder', () => {
     });
 
     it('script outputs to directory', async () => {
-      await builder.main(options);
+      await main(options);
       assert.strictEqual(fs.lstatSync(options.outputDir).isDirectory(), true);
       assert.strictEqual(
         fs.lstatSync(path.join(options.outputDir, 'delapouite')).isDirectory(),
@@ -112,9 +108,9 @@ describe('builder', () => {
   describe('Template rendering', () => {
     const options = {
       svgDir: MUI_ICONS_SVG_DIR,
-      innerPath: '/svg/production/',
-      glob: '/**/production/*_24px.svg',
-      renameFilter: builder.RENAME_FILTER_MUI,
+      innerPath: '/svg/',
+      glob: '/*_24px.svg',
+      renameFilter: RENAME_FILTER_MUI,
       disableLog: DISABLE_LOG,
       outputDir: null,
     };
@@ -128,18 +124,27 @@ describe('builder', () => {
     });
 
     it('should produce the expected output', async () => {
-      await builder.main(options);
-      const expectedFilePath = path.join(MUI_ICONS_ROOT, 'expected', 'Accessibility.js');
-      const actualFilePath = path.join(options.outputDir, 'Accessibility.js');
-
+      await main(options);
       assert.strictEqual(fs.lstatSync(options.outputDir).isDirectory(), true);
-      assert.strictEqual(fs.existsSync(expectedFilePath), true);
-      assert.strictEqual(fs.existsSync(actualFilePath), true);
 
-      const expected = fs.readFileSync(expectedFilePath, { encoding: 'utf8' });
-      const actual = fs.readFileSync(actualFilePath, { encoding: 'utf8' });
+      const cases = [
+        'Accessibility.js',
+        'StarRounded.js',
+        'QueueMusicOutlined.js',
+        'AccessAlarms.js',
+      ];
 
-      assert.include(actual, expected);
+      cases.forEach(name => {
+        const actual = fs.readFileSync(path.join(options.outputDir, name), { encoding: 'utf8' });
+        // Update the snapshots
+        // fs.writeFileSync(path.join(MUI_ICONS_ROOT, 'expected', name), actual, { encoding: 'utf8' });
+
+        const expected = fs.readFileSync(path.join(MUI_ICONS_ROOT, 'expected', name), {
+          encoding: 'utf8',
+        });
+
+        assert.include(actual, expected);
+      });
     });
   });
 });

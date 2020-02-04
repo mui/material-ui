@@ -1,32 +1,39 @@
 import React from 'react';
-import { assert } from 'chai';
-import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
-import InputBase from '../InputBase';
+import { expect } from 'chai';
+import { createMount, getClasses } from '@material-ui/core/test-utils';
+import describeConformance from '../test-utils/describeConformance';
+import { createClientRender } from 'test/utils/createClientRender';
 import FilledInput from './FilledInput';
+import InputBase from '../InputBase';
 
 describe('<FilledInput />', () => {
   let classes;
-  let shallow;
   let mount;
+  const render = createClientRender();
 
   before(() => {
-    shallow = createShallow({ untilSelector: 'FilledInput' });
-    mount = createMount();
+    mount = createMount({ strict: true });
     classes = getClasses(<FilledInput />);
   });
 
-  after(() => {
-    mount.cleanUp();
+  describeConformance(<FilledInput open />, () => ({
+    classes,
+    inheritComponent: InputBase,
+    mount,
+    refInstanceof: window.HTMLDivElement,
+    skip: ['componentProp'],
+    after: () => mount.cleanUp(),
+  }));
+
+  it('should have the underline class', () => {
+    const { container } = render(<FilledInput />);
+    const root = container.firstChild;
+    expect(root).to.have.class(classes.underline);
   });
 
-  it('should render a <div />', () => {
-    const wrapper = shallow(<FilledInput />);
-    assert.strictEqual(wrapper.type(), InputBase);
-    assert.include(wrapper.props().classes.root, classes.underline);
-  });
-
-  it('should disable the underline', () => {
-    const wrapper = shallow(<FilledInput disableUnderline />);
-    assert.notInclude(wrapper.props().classes.root, classes.underline);
+  it('can disable the underline', () => {
+    const { container } = render(<FilledInput disableUnderline />);
+    const root = container.firstChild;
+    expect(root).not.to.have.class(classes.underline);
   });
 });

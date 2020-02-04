@@ -23,7 +23,7 @@ const styles = theme => ({
   },
   root: {
     backgroundColor: theme.palette.background.default,
-    padding: theme.spacing.unit,
+    padding: theme.spacing(1),
   },
 });
 

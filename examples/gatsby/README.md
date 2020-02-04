@@ -4,14 +4,14 @@
 
 Download the example [or clone the repo](https://github.com/mui-org/material-ui):
 
-```bash
+```sh
 curl https://codeload.github.com/mui-org/material-ui/tar.gz/master | tar -xz --strip=2  material-ui-master/examples/gatsby
 cd gatsby
 ```
 
 Install it and run:
 
-```bash
+```sh
 npm install
 npm run develop
 ```
@@ -20,8 +20,7 @@ npm run develop
 
 [Gatsby](https://github.com/gatsbyjs/gatsby) is a static site generator for React.
 
-## `withRoot` usage
+## gatsby-theme-material-ui
 
-We are using the `withRoot` higher-order component to accommodate Material-UI's styling solution with Gatsby.
-
-⚠️ You should only use a single `withRoot` for rendering one page.
+Looking for an example with fewer boilerplate but less freedom?
+Check [`/examples/gatsby-theme`](https://github.com/mui-org/material-ui/tree/master/examples/gatsby-theme) out.

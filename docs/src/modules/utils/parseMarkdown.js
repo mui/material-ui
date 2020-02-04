@@ -15,16 +15,19 @@ export function getHeaders(markdown) {
 
   header = header[1];
 
-  let regexMatchs;
+  let regexMatches;
   const headers = {};
 
   // eslint-disable-next-line no-cond-assign
-  while ((regexMatchs = headerKeyValueRegExp.exec(header)) !== null) {
-    headers[regexMatchs[1]] = regexMatchs[2];
+  while ((regexMatches = headerKeyValueRegExp.exec(header)) !== null) {
+    headers[regexMatches[1]] = regexMatches[2];
   }
 
   if (headers.components) {
-    headers.components = headers.components.split(', ').sort();
+    headers.components = headers.components
+      .split(',')
+      .map(x => x.trim())
+      .sort();
   } else {
     headers.components = [];
   }
@@ -32,10 +35,12 @@ export function getHeaders(markdown) {
   return headers;
 }
 
+export const demoRegexp = /^"demo": "(.*)"/;
+
 export function getContents(markdown) {
   return markdown
     .replace(headerRegExp, '') // Remove header information
-    .split(/^{{|}}$/gm) // Split markdown into an array, separating demos
+    .split(/^{{("demo":[^}]*)}}$/gm) // Split markdown into an array, separating demos
     .filter(content => !emptyRegExp.test(content)); // Remove empty lines
 }
 

@@ -5,7 +5,7 @@ import Typography, { TypographyProps } from '@material-ui/core/Typography';
 const styles = ({ palette, spacing }: Theme) =>
   createStyles({
     root: {
-      padding: spacing.unit,
+      padding: spacing(1),
       backgroundColor: palette.background.default,
       color: palette.primary.dark,
     },

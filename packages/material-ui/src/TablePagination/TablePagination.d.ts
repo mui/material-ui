@@ -1,6 +1,7 @@
 import * as React from 'react';
+import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import { Omit } from '@material-ui/types';
 import { TablePaginationActionsProps } from './TablePaginationActions';
-import { StandardProps } from '..';
 import { TableCellProps } from '../TableCell';
 import { IconButtonProps } from '../IconButton';
 import { SelectProps } from '../Select';
@@ -12,24 +13,29 @@ export interface LabelDisplayedRowsArgs {
   page: number;
 }
 
-export interface TablePaginationProps
-  extends StandardProps<TablePaginationBaseProps, TablePaginationClassKey> {
-  ActionsComponent?: React.ReactType<TablePaginationActionsProps>;
-  backIconButtonProps?: Partial<IconButtonProps>;
-  component?: React.ReactType<TablePaginationBaseProps>;
-  count: number;
-  labelDisplayedRows?: (paginationInfo: LabelDisplayedRowsArgs) => React.ReactNode;
-  labelRowsPerPage?: React.ReactNode;
-  nextIconButtonProps?: Partial<IconButtonProps>;
-  onChangePage: (event: React.MouseEvent<HTMLButtonElement> | null, page: number) => void;
-  onChangeRowsPerPage?: React.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>;
-  page: number;
-  rowsPerPage: number;
-  rowsPerPageOptions?: number[];
-  SelectProps?: Partial<SelectProps>;
+export interface TablePaginationTypeMap<P, D extends React.ElementType> {
+  props: P &
+    TablePaginationBaseProps & {
+      ActionsComponent?: React.ElementType<TablePaginationActionsProps>;
+      backIconButtonProps?: Partial<IconButtonProps>;
+      count: number;
+      labelDisplayedRows?: (paginationInfo: LabelDisplayedRowsArgs) => React.ReactNode;
+      labelRowsPerPage?: React.ReactNode;
+      nextIconButtonProps?: Partial<IconButtonProps>;
+      onChangePage: (event: React.MouseEvent<HTMLButtonElement> | null, page: number) => void;
+      onChangeRowsPerPage?: React.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>;
+      page: number;
+      rowsPerPage: number;
+      rowsPerPageOptions?: Array<number | { value: number; label: string }>;
+      SelectProps?: Partial<SelectProps>;
+    };
+  defaultComponent: D;
+  classKey: TablePaginationClassKey;
 }
 
-export type TablePaginationBaseProps = TableCellProps;
+declare const TablePagination: OverridableComponent<
+  TablePaginationTypeMap<{}, React.ComponentType<TablePaginationBaseProps>>
+>;
 
 export type TablePaginationClassKey =
   | 'root'
@@ -43,6 +49,11 @@ export type TablePaginationClassKey =
   | 'selectIcon'
   | 'actions';
 
-declare const TablePagination: React.ComponentType<TablePaginationProps>;
+export type TablePaginationBaseProps = Omit<TableCellProps, 'classes' | 'component'>;
+
+export type TablePaginationProps<
+  D extends React.ElementType = React.ComponentType<TablePaginationBaseProps>,
+  P = {}
+> = OverrideProps<TablePaginationTypeMap<P, D>, D>;
 
 export default TablePagination;

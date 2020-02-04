@@ -7,14 +7,14 @@ supportLabel: support
 # to a support page, or set to `false` to disable
 supportComment: |
   👋 Thanks for using Material-UI!
-  
-  We use the issue tracker exclusively for bug reports and feature requests, however,
-  this issue appears to be a support request or question. Please ask on [StackOverflow](http://stackoverflow.com/questions/tagged/material-ui) where the
-  community will do their best to help. There is a "material-ui" tag that you can use to tag your
-  question.
-  
-  If you would like to link from here to your question on SO, it will help others find it.
-  If your issues is confirmed as a bug, you are welcome to reopen the issue using the issue template.
+
+  We use GitHub issues exclusively as a bug and feature requests tracker, however,
+  this issue appears to be a support request.
+
+  For support, please check out https://material-ui.com/getting-started/support/. Thanks!
+
+  If you have a question on StackOverflow, you are welcome to link to it here, it might help others.
+  If your issue is subsequently confirmed as a bug,  and the report follows the issue template, it can be reopened.
 
 # Whether to close issues marked as support requests
 close: true

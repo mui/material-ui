@@ -1,8 +1,6 @@
-// @inheritedComponent ButtonBase
-
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
 
@@ -19,38 +17,41 @@ export const styles = theme => ({
       opacity: 0.12,
     },
   },
-  /* Styles applied to the ButtonBase root element if the action area is keyboard focused. */
+  /* Pseudo-class applied to the ButtonBase root element if the action area is keyboard focused. */
   focusVisible: {},
   /* Styles applied to the overlay that covers the action area when it is keyboard focused. */
   focusHighlight: {
+    overflow: 'hidden',
     pointerEvents: 'none',
     position: 'absolute',
-    backgroundColor: 'currentcolor',
     top: 0,
     right: 0,
     bottom: 0,
     left: 0,
+    borderRadius: 'inherit',
     opacity: 0,
+    backgroundColor: 'currentcolor',
     transition: theme.transitions.create('opacity', {
       duration: theme.transitions.duration.short,
     }),
   },
 });
 
-function CardActionArea(props) {
+const CardActionArea = React.forwardRef(function CardActionArea(props, ref) {
   const { children, classes, className, focusVisibleClassName, ...other } = props;
 
   return (
     <ButtonBase
-      className={classNames(classes.root, className)}
-      focusVisibleClassName={classNames(focusVisibleClassName, classes.focusVisible)}
+      className={clsx(classes.root, className)}
+      focusVisibleClassName={clsx(focusVisibleClassName, classes.focusVisible)}
+      ref={ref}
       {...other}
     >
       {children}
       <span className={classes.focusHighlight} />
     </ButtonBase>
   );
-}
+});
 
 CardActionArea.propTypes = {
   /**
@@ -59,7 +60,7 @@ CardActionArea.propTypes = {
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**

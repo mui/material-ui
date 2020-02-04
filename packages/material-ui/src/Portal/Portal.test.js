@@ -1,227 +1,240 @@
-/* eslint-disable react/no-multi-comp */
-
+/* eslint-disable react/prop-types */
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createMount, createRender } from '@material-ui/core/test-utils';
+import createServerRender from 'test/utils/createServerRender';
+import consoleErrorMock from 'test/utils/consoleErrorMock';
+import { createClientRender } from 'test/utils/createClientRender';
 import Portal from './Portal';
-import Select from '../Select';
-import MenuItem from '../MenuItem';
 
 describe('<Portal />', () => {
-  let mount;
-  let render;
-  const reactDomMock = {};
+  const serverRender = createServerRender();
+  const render = createClientRender();
 
-  before(() => {
-    mount = createMount();
-    render = createRender();
-  });
-
-  after(() => {
-    mount.cleanUp();
-  });
-
-  it('should work with a high level component like the Select', () => {
-    const wrapper = mount(
-      <Select value={1} open>
-        <MenuItem value={1}>
-          <em>1</em>
-        </MenuItem>
-        <MenuItem value={2}>
-          <em>2</em>
-        </MenuItem>
-      </Select>,
-    );
-
-    assert.strictEqual(wrapper.find(MenuItem).length, 2);
-  });
-
-  describe('prop: disablePortal', () => {
-    it('should work as expected', () => {
-      const wrapper = mount(
-        <Portal disablePortal>
-          <h1 className="woofPortal">Foo</h1>
-        </Portal>,
-      );
-      assert.strictEqual(wrapper.children().length, 1, 'should have one children');
-    });
-  });
-
-  describe('mount', () => {
-    let cleanUp;
+  describe('server-side', () => {
+    // Only run the test on node.
+    if (!/jsdom/.test(window.navigator.userAgent)) {
+      return;
+    }
 
     beforeEach(() => {
-      reactDomMock.createPortal = ReactDOM.createPortal;
-      ReactDOM.createPortal = (children, mountNode) => {
-        const element = document.createElement(children.type);
-        element.textContent = children.props.children;
-        element.setAttribute('id', children.props.id);
-        element.setAttribute('class', children.props.className);
-        mountNode.appendChild(element);
-        if (cleanUp) {
-          cleanUp.mountNode.removeChild(cleanUp.element);
-        }
-        cleanUp = {
-          element,
-          mountNode,
-        };
-        return null;
-      };
+      consoleErrorMock.spy();
     });
 
     afterEach(() => {
-      ReactDOM.createPortal = reactDomMock.createPortal;
-
-      if (cleanUp) {
-        cleanUp.mountNode.removeChild(cleanUp.element);
-        cleanUp = null;
-      }
+      consoleErrorMock.reset();
     });
 
-    describe('server side', () => {
-      // Only run the test on node.
-      if (!/jsdom/.test(window.navigator.userAgent)) {
-        return;
-      }
+    it('render nothing on the server', () => {
+      const markup1 = serverRender(<div>Bar</div>);
+      expect(markup1.text()).to.equal('Bar');
 
-      it('render nothing on the server', () => {
-        const markup1 = render(<div>Bar</div>);
-        assert.strictEqual(markup1.text(), 'Bar');
-
-        const markup2 = render(
-          <Portal>
-            <div>Bar</div>
-          </Portal>,
-        );
-        assert.strictEqual(markup2.text(), '');
-      });
-    });
-
-    it('should render nothing directly', () => {
-      const wrapper = mount(
+      const markup2 = serverRender(
         <Portal>
-          <h1 className="woofPortal">Foo</h1>
+          <div>Bar</div>
         </Portal>,
       );
-      assert.strictEqual(wrapper.children().length, 0, 'should have no children');
+      expect(markup2.text()).to.equal('');
     });
+  });
 
-    it('should have access to the mountNode', () => {
-      const wrapper = mount(
-        <Portal>
+  describe('ref', () => {
+    it('should have access to the mountNode when disabledPortal={false}', () => {
+      const refSpy = spy();
+      const { unmount } = render(
+        <Portal ref={refSpy}>
           <h1>Foo</h1>
         </Portal>,
       );
-      const instance = wrapper.instance();
-      assert.strictEqual(instance.getMountNode(), instance.mountNode);
+      expect(refSpy.args).to.deep.equal([[document.body]]);
+      unmount();
+      expect(refSpy.args).to.deep.equal([[document.body], [null]]);
     });
 
-    it('should render in a different node', () => {
-      const wrapper = mount(
-        <Portal>
+    it('should have access to the mountNode when disabledPortal={true}', () => {
+      const refSpy = spy();
+      const { unmount } = render(
+        <Portal disablePortal ref={refSpy}>
           <h1 className="woofPortal">Foo</h1>
         </Portal>,
       );
-      const instance = wrapper.instance();
-      assert.notStrictEqual(instance.mountNode, null, 'should have a mountNode');
-      assert.strictEqual(document.querySelectorAll('.woofPortal').length, 1);
+      const mountNode = document.querySelector('.woofPortal');
+      expect(refSpy.args).to.deep.equal([[mountNode]]);
+      unmount();
+      expect(refSpy.args).to.deep.equal([[mountNode], [null]]);
     });
 
-    it('should unmount when parent unmounts', () => {
-      class Parent extends React.Component {
-        state = {
-          show: true,
-        };
-
-        render() {
-          return <div>{this.state.show ? <Child /> : null}</div>;
-        }
-      }
-
-      class Child extends React.Component {
-        render() {
-          return (
-            <div>
-              <div
-                ref={ref => {
-                  this.containerRef = ref;
-                }}
-              />
-              <Portal container={() => this.containerRef}>
-                <div id="test1" />
-              </Portal>
-            </div>
-          );
-        }
-      }
-
-      const wrapper = mount(<Parent />);
-      assert.strictEqual(document.querySelectorAll('#test1').length, 1);
-      wrapper.setState({ show: false });
-      assert.strictEqual(document.querySelectorAll('#test1').length, 0);
+    it('should have access to the mountNode when switching disabledPortal', () => {
+      const refSpy = spy();
+      const { setProps, unmount } = render(
+        <Portal disablePortal ref={refSpy}>
+          <h1 className="woofPortal">Foo</h1>
+        </Portal>,
+      );
+      const mountNode = document.querySelector('.woofPortal');
+      expect(refSpy.args).to.deep.equal([[mountNode]]);
+      setProps({
+        disablePortal: false,
+        ref: refSpy,
+      });
+      expect(refSpy.args).to.deep.equal([[mountNode], [null], [document.body]]);
+      unmount();
+      expect(refSpy.args).to.deep.equal([[mountNode], [null], [document.body], [null]]);
     });
+  });
 
-    it('should render overlay into container (document)', () => {
-      mount(
+  it('should render in a different node', () => {
+    render(
+      <div id="test1">
+        <h1 className="woofPortal1">Foo</h1>
         <Portal>
-          <div id="test2" />
-        </Portal>,
+          <h1 className="woofPortal2">Foo</h1>
+        </Portal>
+      </div>,
+    );
+    const rootElement = document.querySelector('#test1');
+    expect(rootElement.contains(document.querySelector('.woofPortal1'))).to.equal(true);
+    expect(rootElement.contains(document.querySelector('.woofPortal2'))).to.equal(false);
+  });
+
+  it('should unmount when parent unmounts', () => {
+    function Parent(props) {
+      const { show = true } = props;
+      return <div>{show ? <Child /> : null}</div>;
+    }
+
+    function Child() {
+      const containerRef = React.useRef();
+      return (
+        <div>
+          <div ref={containerRef} />
+          <Portal container={() => containerRef.current}>
+            <div id="test1" />
+          </Portal>
+        </div>
       );
+    }
 
-      assert.strictEqual(document.querySelectorAll('#test2').length, 1);
-    });
+    const { setProps } = render(<Parent />);
+    expect(document.querySelectorAll('#test1').length).to.equal(1);
+    setProps({ show: false });
+    expect(document.querySelectorAll('#test1').length).to.equal(0);
+  });
 
-    it('should render overlay into container (DOMNode)', () => {
-      const container = document.createElement('div');
+  it('should render overlay into container (document)', () => {
+    render(
+      <Portal>
+        <div className="test2" />
+        <div className="test2" />
+      </Portal>,
+    );
+    expect(document.querySelectorAll('.test2').length).to.equal(2);
+  });
 
-      mount(
-        <Portal container={container}>
-          <div id="test2" />
-        </Portal>,
+  it('should render overlay into container (DOMNode)', () => {
+    const container = document.createElement('div');
+    render(
+      <Portal container={container}>
+        <div id="test2" />
+      </Portal>,
+    );
+    expect(container.querySelectorAll('#test2').length).to.equal(1);
+  });
+
+  it('should change container on prop change', () => {
+    function ContainerTest(props) {
+      const { containerElement = false, disablePortal = true } = props;
+      const containerRef = React.useRef();
+      const container = React.useCallback(() => (containerElement ? containerRef.current : null), [
+        containerElement,
+      ]);
+
+      return (
+        <span>
+          <strong ref={containerRef} />
+          <Portal disablePortal={disablePortal} container={container}>
+            <div id="test3" />
+          </Portal>
+        </span>
       );
+    }
 
-      assert.strictEqual(container.querySelectorAll('#test2').length, 1);
+    const { setProps } = render(<ContainerTest />);
+    expect(document.querySelector('#test3').parentElement.nodeName).to.equal('SPAN');
+    setProps({
+      containerElement: true,
+      disablePortal: true,
     });
+    expect(document.querySelector('#test3').parentElement.nodeName).to.equal('SPAN');
+    setProps({
+      containerElement: true,
+      disablePortal: false,
+    });
+    expect(document.querySelector('#test3').parentElement.nodeName).to.equal('STRONG');
+    setProps({
+      containerElement: false,
+      disablePortal: false,
+    });
+    expect(document.querySelector('#test3').parentElement.nodeName).to.equal('BODY');
+  });
 
-    it('should change container on prop change', () => {
-      class ContainerTest extends React.Component {
-        state = {
-          container: null,
-        };
+  it('should call onRendered', () => {
+    const ref = React.createRef();
+    const handleRendered = spy();
+    render(
+      <Portal
+        ref={ref}
+        onRendered={() => {
+          handleRendered();
+          expect(ref.current !== null).to.equal(true);
+        }}
+      >
+        <div />
+      </Portal>,
+    );
+    expect(handleRendered.callCount).to.equal(1);
+  });
 
-        render() {
-          return (
-            <div>
-              <div
-                ref={ref => {
-                  this.containerRef = ref;
-                }}
-              />
-              <Portal container={this.state.container}>
-                <div id="test3" />
-              </Portal>
-            </div>
-          );
-        }
+  it('should call ref after child effect', () => {
+    const callOrder = [];
+    const handleRef = node => {
+      if (node) {
+        callOrder.push('ref');
       }
+    };
+    const updateFunction = () => {
+      callOrder.push('effect');
+    };
 
-      const wrapper = mount(<ContainerTest />);
+    function Test(props) {
+      const { container } = props;
 
-      assert.strictEqual(document.querySelector('#test3').parentNode.nodeName, 'BODY');
-      wrapper.setState({ container: wrapper.instance().containerRef });
-      assert.strictEqual(document.querySelector('#test3').parentNode.nodeName, 'DIV');
-    });
+      React.useEffect(() => {
+        updateFunction();
+      }, [container]);
 
-    it('should call onRendered', () => {
-      const handleRendered = spy();
-      mount(
-        <Portal onRendered={handleRendered}>
+      return (
+        <Portal ref={handleRef} container={container}>
           <div />
-        </Portal>,
+        </Portal>
       );
-      assert.strictEqual(handleRendered.callCount, 1);
-    });
+    }
+
+    const { setProps } = render(<Test container={document.createElement('div')} />);
+
+    setProps({ container: null });
+    setProps({ container: document.createElement('div') });
+    setProps({ container: null });
+
+    expect(callOrder).to.deep.equal([
+      'effect',
+      'ref',
+      'effect',
+      'ref',
+      'effect',
+      'ref',
+      'effect',
+      'ref',
+    ]);
   });
 });

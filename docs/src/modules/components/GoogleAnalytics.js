@@ -1,10 +1,18 @@
 import React from 'react';
+import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 
+// So we can write code like:
+//
+// <Button
+//   ga-event-category="demo"
+//   ga-event-action="expand"
+// >
+//   Foo
+// </Button>
 function handleClick(event) {
-  const rootNode = document;
   let element = event.target;
 
-  while (element && element !== rootNode) {
+  while (element && element !== document) {
     const category = element.getAttribute('data-ga-event-category');
 
     // We reach a tracking element, no need to look higher in the dom tree.
@@ -18,44 +26,27 @@ function handleClick(event) {
       break;
     }
 
-    element = element.parentNode;
+    element = element.parentElement;
   }
 }
 
-let binded = false;
+let bound = false;
 
-// So we can write code like:
-//
-// <Button
-//   ga-event-category="demo"
-//   ga-event-action="expand"
-// >
-//   Foo
-// </Button>
-function bindEvents() {
-  if (binded) {
-    return;
-  }
-
-  binded = true;
-  document.addEventListener('click', handleClick);
-}
-
-class GoogleAnalytics extends React.Component {
-  googleTimer = null;
-
-  componentDidMount() {
-    bindEvents();
+export default function GoogleAnalytics() {
+  React.useEffect(() => {
     // Wait for the title to be updated.
     setTimeout(() => {
-      window.ga('set', { page: window.location.pathname });
+      const { canonical } = pathnameToLanguage(window.location.pathname);
+      window.ga('set', { page: canonical });
       window.ga('send', { hitType: 'pageview' });
     });
-  }
 
-  render() {
-    return null;
-  }
+    if (bound) {
+      return;
+    }
+    bound = true;
+    document.addEventListener('click', handleClick);
+  }, []);
+
+  return null;
 }
-
-export default GoogleAnalytics;

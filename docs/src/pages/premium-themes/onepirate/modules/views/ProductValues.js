@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import LayoutBody from '../components/LayoutBody';
+import Container from '@material-ui/core/Container';
 import Typography from '../components/Typography';
 
 const styles = theme => ({
@@ -11,9 +11,9 @@ const styles = theme => ({
     overflow: 'hidden',
     backgroundColor: theme.palette.secondary.light,
   },
-  layoutBody: {
-    marginTop: theme.spacing.unit * 15,
-    marginBottom: theme.spacing.unit * 30,
+  container: {
+    marginTop: theme.spacing(15),
+    marginBottom: theme.spacing(30),
     display: 'flex',
     position: 'relative',
   },
@@ -21,14 +21,14 @@ const styles = theme => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    padding: `0px ${theme.spacing.unit * 5}px`,
+    padding: theme.spacing(0, 5),
   },
   image: {
     height: 55,
   },
   title: {
-    marginTop: theme.spacing.unit * 5,
-    marginBottom: theme.spacing.unit * 5,
+    marginTop: theme.spacing(5),
+    marginBottom: theme.spacing(5),
   },
   curvyLines: {
     pointerEvents: 'none',
@@ -42,13 +42,13 @@ function ProductValues(props) {
 
   return (
     <section className={classes.root}>
-      <LayoutBody className={classes.layoutBody} width="large">
+      <Container className={classes.container}>
         <img
           src="/static/themes/onepirate/productCurvyLines.png"
           className={classes.curvyLines}
           alt="curvy lines"
         />
-        <Grid container spacing={40}>
+        <Grid container spacing={5}>
           <Grid item xs={12} md={4}>
             <div className={classes.item}>
               <img
@@ -98,7 +98,7 @@ function ProductValues(props) {
             </div>
           </Grid>
         </Grid>
-      </LayoutBody>
+      </Container>
     </section>
   );
 }

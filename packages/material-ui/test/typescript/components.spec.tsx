@@ -38,6 +38,7 @@ import {
   Input,
   InputAdornment,
   InputLabel,
+  Link,
   LinearProgress,
   List,
   ListItem,
@@ -68,7 +69,6 @@ import {
   Toolbar,
   Tooltip,
   Typography,
-  withMobileDialog,
 } from '@material-ui/core';
 import {
   withStyles,
@@ -77,15 +77,21 @@ import {
   Theme,
   createStyles,
 } from '@material-ui/core/styles';
-import { DialogProps } from '@material-ui/core/Dialog';
+import { Link as ReactRouterLink, LinkProps as ReactRouterLinkProps } from 'react-router-dom';
+import { ButtonBaseActions } from '@material-ui/core/ButtonBase';
+import { IconButtonProps } from '@material-ui/core/IconButton';
 
 const log = console.log;
 const FakeIcon = () => <div>ICON</div>;
 
+const TestOverride = React.forwardRef<HTMLDivElement, { x?: number }>((props, ref) => (
+  <div ref={ref} />
+));
+
 const AppBarTest = () => (
   <AppBar position="static">
     <Toolbar>
-      <IconButton color="inherit" aria-label="Menu">
+      <IconButton color="inherit" aria-label="menu">
         <FakeIcon />
       </IconButton>
       <Typography variant="h6" color="inherit">
@@ -96,9 +102,55 @@ const AppBarTest = () => (
   </AppBar>
 );
 
-const AvatarTest = () => <Avatar alt="Image Alt" src="example.jpg" />;
+const AvatarTest = () => (
+  <div>
+    <Avatar
+      ref={elem => {
+        elem; // $ExpectType HTMLDivElement | null
+      }}
+      onClick={e => {
+        e; // $ExpectType MouseEvent<HTMLDivElement, MouseEvent>
+        log(e);
+      }}
+      alt="Image Alt"
+      src="example.jpg"
+    />
+    <Avatar<'button'>
+      component="button"
+      ref={elem => {
+        elem; // $ExpectType HTMLButtonElement | null
+      }}
+      onClick={e => {
+        e; // $ExpectType MouseEvent<HTMLButtonElement, MouseEvent>
+        log(e);
+      }}
+      alt="Image Alt"
+      src="example.jpg"
+    />
+    <Avatar
+      component="button"
+      ref={(elem: HTMLButtonElement) => {}}
+      onClick={(e: React.MouseEvent<HTMLButtonElement>) => log(e)}
+      alt="Image Alt"
+      src="example.jpg"
+    />
+    <Avatar component={TestOverride} x={3} alt="Image Alt" src="example.jpg" />
+    <Avatar<typeof TestOverride>
+      component={TestOverride}
+      ref={elem => {
+        elem; // $ExpectType HTMLDivElement | null
+      }}
+      x={3}
+      alt="Image Alt"
+      src="example.jpg"
+    />
+    // onClick isn't allowed since we're overriding with a component that // doesn't have that prop:
+    // $ExpectError
+    <Avatar component={TestOverride} onClick={log} />
+  </div>
+);
 
-const AvaterClassName = () => <Avatar className="foo" />;
+const AvatarClassName = () => <Avatar className="foo" />;
 
 const BadgeTest = () => (
   <Badge badgeContent={4} color="primary">
@@ -110,7 +162,7 @@ const BottomNavigationTest = () => {
   const value = 123;
 
   return (
-    <BottomNavigation value={value} onChange={log} showLabels>
+    <BottomNavigation value={value} onChange={e => log(e)} showLabels>
       <BottomNavigationAction label="Recents" icon={<FakeIcon />} />
       <BottomNavigationAction label="Favorites" />
       <BottomNavigationAction label={<span>Nearby</span>} icon={<FakeIcon />} />
@@ -118,42 +170,36 @@ const BottomNavigationTest = () => {
   );
 };
 
-const ButtonTest = () => (
-  <div>
-    <Button>I am a button!</Button>
-    <Button color="inherit">Contrast</Button>
-    <Button disabled>Disabled</Button>
-    <Button href="#flat-buttons">Link</Button>
-    <Button size="small">Small</Button>
-    <Button variant="contained">Contained</Button>
-    <Button variant="fab" color="primary" aria-label="add">
-      <FakeIcon />
-    </Button>
-    <Button tabIndex={1} title="some button">
-      Raised
-    </Button>
-    <Button component="a">Simple Link</Button>
-    <Button component={props => <a {...props} />}>Complexe Link</Button>
-  </div>
-);
-
 const IconButtonTest = () => (
   <div>
-    <IconButton aria-label="Delete">
+    <IconButton aria-label="delete">
       <FakeIcon />
     </IconButton>
-    <IconButton aria-label="Delete" disabled>
+    <IconButton aria-label="delete" disabled>
       <FakeIcon />
     </IconButton>
-    <IconButton color="secondary" aria-label="Add an alarm">
+    <IconButton color="secondary" aria-label="add an alarm">
       <FakeIcon />
     </IconButton>
-    <IconButton color="inherit" aria-label="Add to shopping cart">
+    <IconButton color="inherit" aria-label="add to shopping cart">
       <FakeIcon />
     </IconButton>
-    <IconButton color="primary" aria-label="Add to shopping cart">
+    <IconButton color="primary" aria-label="add to shopping cart">
       <FakeIcon />
     </IconButton>
+    {() => {
+      const ForwardedLink = React.forwardRef<HTMLAnchorElement, ReactRouterLinkProps>(
+        (props, ref) => <ReactRouterLink {...props} innerRef={ref} />,
+      );
+      const ExtendedIconButton: React.FC<IconButtonProps<typeof ForwardedLink>> = props => (
+        <IconButton component={ForwardedLink} {...props} />
+      );
+      return (
+        <ExtendedIconButton color="secondary" aria-label="Go to top page." to="/" target="_self">
+          <FakeIcon />
+        </ExtendedIconButton>
+      );
+    }}
   </div>
 );
 
@@ -180,7 +226,7 @@ const CardTest = () => (
 const CardMediaTest = () => (
   <Card>
     <CardHeader
-      avatar={<Avatar aria-label="Recipe">R</Avatar>}
+      avatar={<Avatar aria-label="recipe">R</Avatar>}
       title="Shrimp and Chorizo Paella"
       subheader="September 14, 2016"
     />
@@ -193,14 +239,14 @@ const CardMediaTest = () => (
         guests. Add 1 cup of frozen peas along with the mussels, if you like.
       </Typography>
     </CardContent>
-    <CardActions disableActionSpacing>
-      <IconButton aria-label="Add to favorites">
+    <CardActions disableSpacing>
+      <IconButton aria-label="add to favorites">
         <FakeIcon />
       </IconButton>
-      <IconButton aria-label="Share">
+      <IconButton aria-label="share">
         <FakeIcon />
       </IconButton>
-      <IconButton aria-label="Show more">
+      <IconButton aria-label="show more">
         <FakeIcon />
       </IconButton>
     </CardActions>
@@ -239,8 +285,8 @@ const CardMediaTest = () => (
 const ChipsTest = () => (
   <div>
     <Chip label="Basic Chip" />
-    <Chip avatar={<Avatar>MB</Avatar>} label="Clickable Chip" onClick={log} />
-    <Chip avatar={<Avatar src={'image.bmp'} />} label="Deletable Chip" onDelete={log} />
+    <Chip avatar={<Avatar>M</Avatar>} label="Clickable Chip" onClick={e => log(e)} />
+    <Chip avatar={<Avatar src={'image.bmp'} />} label="Deletable Chip" onDelete={e => log(e)} />
     <Chip
       avatar={
         <Avatar>
@@ -248,8 +294,8 @@ const ChipsTest = () => (
         </Avatar>
       }
       label="Clickable Deletable Chip"
-      onClick={log}
-      onDelete={log}
+      onClick={e => log(e)}
+      onDelete={e => log(e)}
     />
   </div>
 );
@@ -257,12 +303,12 @@ const ChipsTest = () => (
 const DialogTest = () => {
   const emails = ['username@gmail.com', 'user02@gmail.com'];
   return (
-    <Dialog onClose={log} open>
+    <Dialog onClose={e => log(e)} open>
       <DialogTitle>Set backup account</DialogTitle>
       <div>
         <List>
           {emails.map(email => (
-            <ListItem button onClick={log} key={email}>
+            <ListItem button onClick={e => log(e)} key={email}>
               <ListItemAvatar>
                 <Avatar>
                   <FakeIcon />
@@ -271,13 +317,52 @@ const DialogTest = () => {
               <ListItemText primary={email} />
             </ListItem>
           ))}
-          <ListItem button onClick={log}>
+          <ListItem
+            ref={elem => {
+              elem; // $ExpectType HTMLLIElement | null
+            }}
+            onClick={e => {
+              e; // $ExpectType MouseEvent<HTMLLIElement, MouseEvent>
+              log(e);
+            }}
+          >
+            <ListItemIcon>
+              <FakeIcon />
+            </ListItemIcon>
+            <ListItemText primary="Inbox" />
+          </ListItem>
+          <ListItem
+            button
+            ref={elem => {
+              elem; // $ExpectType HTMLDivElement | null
+            }}
+            onClick={e => {
+              e; // $ExpectType MouseEvent<HTMLDivElement, MouseEvent>
+              log(e);
+            }}
+          >
             <ListItemAvatar>
               <Avatar>
                 <FakeIcon />
               </Avatar>
             </ListItemAvatar>
             <ListItemText primary="add account" />
+          </ListItem>
+          <ListItem<'a'>
+            component="a"
+            ref={elem => {
+              elem; // $ExpectType HTMLAnchorElement | null
+            }}
+            onClick={e => {
+              e; // $ExpectType MouseEvent<HTMLAnchorElement, MouseEvent>
+              log(e);
+            }}
+            button
+          >
+            <ListItemIcon>
+              <FakeIcon />
+            </ListItemIcon>
+            <ListItemText primary="Inbox" />
           </ListItem>
           <ListItem button>
             <ListItemIcon>
@@ -312,25 +397,37 @@ const DrawerTest = () => {
   };
   return (
     <div>
-      <Drawer variant="persistent" open={open.left} onClose={log} onClick={log}>
+      <Drawer variant="persistent" open={open.left} onClose={e => log(e)} onClick={e => log(e)}>
         List
       </Drawer>
       <Drawer
         variant="temporary"
         anchor="top"
         open={open.top}
-        onClose={log}
-        onClick={log}
+        onClose={e => log(e)}
+        onClick={e => log(e)}
         ModalProps={{
           hideBackdrop: true,
         }}
       >
         List
       </Drawer>
-      <Drawer anchor="bottom" variant="temporary" open={open.bottom} onClose={log} onClick={log}>
+      <Drawer
+        anchor="bottom"
+        variant="temporary"
+        open={open.bottom}
+        onClose={e => log(e)}
+        onClick={e => log(e)}
+      >
         List
       </Drawer>
-      <Drawer variant="persistent" anchor="right" open={open.right} onClose={log} onClick={log}>
+      <Drawer
+        variant="persistent"
+        anchor="right"
+        open={open.right}
+        onClose={e => log(e)}
+        onClick={e => log(e)}
+      >
         List
       </Drawer>
     </div>
@@ -346,31 +443,42 @@ const SwipeableDrawerTest = () => {
   };
   return (
     <div>
-      <SwipeableDrawer open={open.left} onClose={log} onClick={log} onOpen={log}>
+      <SwipeableDrawer
+        open={open.left}
+        onClose={e => log(e)}
+        onClick={e => log(e)}
+        onOpen={e => log(e)}
+      >
         List
       </SwipeableDrawer>
       <SwipeableDrawer
         anchor="top"
         open={open.top}
-        onClose={log}
-        onClick={log}
-        onOpen={log}
+        onClose={e => log(e)}
+        onClick={e => log(e)}
+        onOpen={e => log(e)}
         ModalProps={{
           hideBackdrop: true,
         }}
       >
         List
       </SwipeableDrawer>
-      <SwipeableDrawer anchor="bottom" open={open.bottom} onClose={log} onClick={log} onOpen={log}>
+      <SwipeableDrawer
+        anchor="bottom"
+        open={open.bottom}
+        onClose={e => log(e)}
+        onClick={e => log(e)}
+        onOpen={e => log(e)}
+      >
         List
       </SwipeableDrawer>
       <SwipeableDrawer
         variant="temporary"
         anchor="right"
         open={open.right}
-        onClose={log}
-        onClick={log}
-        onOpen={log}
+        onClose={e => log(e)}
+        onClick={e => log(e)}
+        onOpen={e => log(e)}
       >
         List
       </SwipeableDrawer>
@@ -380,7 +488,7 @@ const SwipeableDrawerTest = () => {
 
 const ExpansionPanelTest = () => (
   <div>
-    <ExpansionPanel onChange={log} expanded disabled>
+    <ExpansionPanel onChange={e => log(e)} expanded disabled>
       <ExpansionPanelSummary />
       <ExpansionPanelDetails />
     </ExpansionPanel>
@@ -416,8 +524,8 @@ const GridTest = () => (
 );
 
 const GridListTest = () => (
-  <GridList cellHeight={160} cols={3} onClick={log}>
-    <GridListTile cols={1} rows={4} onClick={log}>
+  <GridList cellHeight={160} cols={3} onClick={e => log(e)}>
+    <GridListTile cols={1} rows={4} onClick={e => log(e)}>
       <img src="img.png" alt="alt text" />
     </GridListTile>
     ,
@@ -427,11 +535,11 @@ const GridListTest = () => (
 const ListTest = () => (
   <List>
     {[0, 1, 2, 3].map(value => (
-      <ListItem dense button selected={false} key={value} onClick={log}>
+      <ListItem dense button selected={false} key={value} onClick={e => log(e)}>
         <Checkbox checked={true} tabIndex={-1} disableRipple />
         <ListItemText primary={`Line item ${value + 1}`} />
         <ListItemSecondaryAction>
-          <IconButton aria-label="Comments">
+          <IconButton aria-label="comments">
             <FakeIcon />
           </IconButton>
         </ListItemSecondaryAction>
@@ -450,20 +558,64 @@ const MenuTest = () => {
     'Hide sensitive notification content',
     'Hide all notification content',
   ];
+  const buttonActionRef = React.useRef<ButtonBaseActions | null>(null);
 
   return (
     <Menu
       id="lock-menu"
       anchorEl={anchorEl}
       open={true}
-      onClose={log}
+      onClose={e => log(e)}
       PopoverClasses={{ paper: 'foo' }}
     >
       {options.map((option, index) => (
-        <MenuItem key={option} selected={false} onClick={log}>
+        <MenuItem
+          key={option}
+          selected={false}
+          ref={elem => {
+            elem; // $ExpectType HTMLLIElement | null
+          }}
+          onClick={e => {
+            e; // $ExpectType MouseEvent<HTMLLIElement, MouseEvent>
+            log(e);
+          }}
+        >
           {option}
         </MenuItem>
       ))}
+      <MenuItem<'a'>
+        action={action => {
+          buttonActionRef.current = action;
+        }}
+        component="a"
+        ref={elem => {
+          elem; // $ExpectType HTMLAnchorElement | null
+        }}
+        onClick={e => {
+          e; // $ExpectType MouseEvent<HTMLAnchorElement, MouseEvent>
+          log(e);
+        }}
+      >
+        Link Item
+      </MenuItem>
+      <MenuItem
+        button={false}
+        ref={elem => {
+          elem; // $ExpectType HTMLLIElement | null
+        }}
+      />
+      <MenuItem
+        action={action => {
+          buttonActionRef.current = action;
+        }}
+        // 'false' is not assignable to true | undefined
+        button={false} // $ExpectError
+        ref={elem => {
+          // previous error throws type checker off. Since this is an error anyway
+          // `any` is fine
+          elem; // $ExpectType any
+        }}
+      />
     </Menu>
   );
 };
@@ -479,7 +631,7 @@ const PaperTest = () => (
   </Paper>
 );
 
-const CircularProgessTest = () => (
+const CircularProgressTest = () => (
   <div>
     <CircularProgress />
     <CircularProgress size={50} />
@@ -557,15 +709,15 @@ const SwitchTest = () => {
 
 const SnackbarTest = () => (
   <div>
-    <Button onClick={log}>Open simple snackbar</Button>
+    <Button onClick={e => log(e)}>Open simple snackbar</Button>
     <Snackbar
       anchorOrigin={{
         vertical: 'bottom',
         horizontal: 'left',
       }}
       open={true}
-      autoHideDuration={6e3}
-      onClose={log}
+      autoHideDuration={6000}
+      onClose={e => log(e)}
       ContentProps={
         {
           // 'aria-describedby': 'message-id',
@@ -574,10 +726,10 @@ const SnackbarTest = () => (
       }
       message={<span id="message-id">Note archived</span>}
       action={[
-        <Button key="undo" color="secondary" size="small" onClick={log}>
+        <Button key="undo" color="secondary" size="small" onClick={e => log(e)}>
           UNDO
         </Button>,
-        <IconButton key="close" aria-label="Close" color="inherit" onClick={log}>
+        <IconButton key="close" aria-label="close" color="inherit" onClick={e => log(e)}>
           <FakeIcon />
         </IconButton>,
       ]}
@@ -658,7 +810,7 @@ const TableTest = () => {
     return createStyles({
       paper: {
         width: '100%',
-        marginTop: theme.spacing.unit * 3,
+        marginTop: theme.spacing(3),
         backgroundColor,
         overflowX: 'auto',
       },
@@ -688,10 +840,10 @@ const TableTest = () => {
           <TableHead classes={{ root: 'foo' }}>
             <TableRow>
               <TableCell colSpan={2}>Dessert (100g serving)</TableCell>
-              <TableCell numeric>Calories</TableCell>
-              <TableCell numeric>Fat (g)</TableCell>
-              <TableCell numeric>Carbs (g)</TableCell>
-              <TableCell numeric>Protein (g)</TableCell>
+              <TableCell align="right">Calories</TableCell>
+              <TableCell align="right">Fat (g)</TableCell>
+              <TableCell align="right">Carbs (g)</TableCell>
+              <TableCell align="right">Protein (g)</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -699,10 +851,10 @@ const TableTest = () => {
               return (
                 <TableRow key={n.id}>
                   <TableCell>{n.name}</TableCell>
-                  <TableCell numeric>{n.calories}</TableCell>
-                  <TableCell numeric>{n.fat}</TableCell>
-                  <TableCell numeric>{n.carbs}</TableCell>
-                  <TableCell numeric>{n.protein}</TableCell>
+                  <TableCell align="right">{n.calories}</TableCell>
+                  <TableCell align="right">{n.fat}</TableCell>
+                  <TableCell align="right">{n.carbs}</TableCell>
+                  <TableCell align="right">{n.protein}</TableCell>
                 </TableRow>
               );
             })}
@@ -727,14 +879,16 @@ const TableTest = () => {
 };
 
 const TabsTest = () => {
-  const TabContainer: React.SFC = props => <div style={{ padding: 20 }}>{props.children}</div>;
+  const TabContainer: React.FunctionComponent = props => (
+    <div style={{ padding: 20 }}>{props.children}</div>
+  );
 
   type ClassKey = 'root' | 'button';
 
-  const styles: StyleRulesCallback<ClassKey> = theme => ({
+  const styles: StyleRulesCallback<Theme, any, ClassKey> = theme => ({
     root: {
       flexGrow: 1,
-      marginTop: theme.spacing.unit * 3,
+      marginTop: theme.spacing(3),
       backgroundColor: theme.palette.background.paper,
     },
     button: {
@@ -747,17 +901,13 @@ const TabsTest = () => {
       value: 0,
     };
 
-    handleChange = (event: React.SyntheticEvent<any>, value: number) => {
-      this.setState({ value });
-    };
-
     render() {
       const classes = this.props.classes;
 
       return (
         <div className={classes.root}>
           <AppBar position="static">
-            <Tabs value={this.state.value} onChange={this.handleChange}>
+            <Tabs value={this.state.value} onChange={(event, value) => this.setState({ value })}>
               <Tab label="Item One" />
               <Tab label="Item Two" />
               <Tab label="Item Three" />
@@ -797,6 +947,7 @@ const TextFieldTest = () => (
         },
       }}
     />
+    <Input inputComponent="input" />
   </div>
 );
 
@@ -812,17 +963,6 @@ const SelectTest = () => (
 );
 
 const InputAdornmentTest = () => <InputAdornment position="end" onClick={() => alert('Hello')} />;
-
-const ResponsiveComponentTest = () => {
-  const ResponsiveComponent = withMobileDialog({
-    breakpoint: 'sm',
-  })(({ children, width, fullScreen }) => (
-    <div style={{ width, position: fullScreen ? 'fixed' : 'static' }}>{children}</div>
-  ));
-  <ResponsiveComponent />;
-
-  const ResponsiveDialogComponent = withMobileDialog<DialogProps>()(Dialog);
-};
 
 const TooltipComponentTest = () => (
   <div>
@@ -842,7 +982,7 @@ const ClickAwayListenerComponentTest = () => (
 );
 
 const TransitionTest = () => (
-  <>
+  <React.Fragment>
     <Fade in={false}>
       <div />
     </Fade>
@@ -852,16 +992,16 @@ const TransitionTest = () => (
     <Grow in={false} timeout="auto" onEnter={() => {}}>
       <div />
     </Grow>
-  </>
+  </React.Fragment>
 );
 
 const BackdropTest = () => <Backdrop open onTouchMove={() => {}} />;
 
-const PopoverTest = () => <Popover open ModalClasses={{ root: 'foo', hidden: 'bar' }} />;
+const PopoverTest = () => <Popover open />;
 
 const InputLabelTest = () => (
   <InputLabel
-    FormLabelClasses={{
+    classes={{
       root: 'foo',
       asterisk: 'foo',
       disabled: 'foo',
@@ -872,3 +1012,47 @@ const InputLabelTest = () => (
     }}
   />
 );
+
+const LinkTest = () => {
+  const dudUrl = 'javascript:;';
+  return (
+    <Typography>
+      <Link href={dudUrl}>Link</Link>
+      <Link href={dudUrl} color="inherit">
+        {'color="inherit"'}
+      </Link>
+      <Link href={dudUrl} variant="body1">
+        {'variant="body1"'}
+      </Link>
+    </Typography>
+  );
+};
+
+const refTest = () => {
+  // for a detailed explanation of refs in react see https://github.com/mui-org/material-ui/pull/15199
+  const genericRef = React.createRef<Element>();
+  const divRef = React.createRef<HTMLDivElement>();
+  const inputRef = React.createRef<HTMLInputElement>();
+
+  <Paper ref={genericRef} />;
+  <Paper ref={divRef} />;
+  // undesired: throws when assuming inputRef.current.value !== undefined
+  <Paper ref={inputRef} />;
+  // recommended: soundness is the responsibility of the dev
+  // alternatively use React.useRef<unknown>()  or React.createRef<unknown>()
+  <Paper
+    ref={ref => {
+      // with runtime overhead, sound usage
+      if (ref instanceof HTMLInputElement) {
+        const i: number = ref.valueAsNumber;
+      }
+      // unsafe casts, sound usage, no runtime overhead
+      const j: number = (ref as HTMLInputElement).valueAsNumber;
+      // unsafe casts, unsound usage, no runtime overhead
+      const k: number = (ref as any).valueAsNumber;
+      // tslint:disable-next-line ban-ts-ignore
+      // @ts-ignore unsound usage, no runtime overhead, least syntax
+      const n: number = ref.valueAsNumber;
+    }}
+  />;
+};

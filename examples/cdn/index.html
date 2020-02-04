@@ -1,118 +1,119 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
   <head>
     <title>My page</title>
     <meta charset="utf-8" />
-    <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no">
+    <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
     <script src="https://unpkg.com/react@latest/umd/react.development.js" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/react-dom@latest/umd/react-dom.development.js" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/@material-ui/core/umd/material-ui.development.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/react-dom@latest/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@material-ui/core@latest/umd/material-ui.development.js" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/babel-standalone@latest/babel.min.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <!-- Fonts to support Material Design -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+    <!-- Icons to support Material Design -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
   </head>
   <body>
     <div id="root"></div>
     <script type="text/babel">
 const {
-  Button,
   colors,
-  createMuiTheme,
   CssBaseline,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  Icon,
-  MuiThemeProvider,
+  ThemeProvider,
   Typography,
-  withStyles,
-} = window['material-ui'];
+  Container,
+  makeStyles,
+  createMuiTheme,
+  Box,
+  SvgIcon,
+  Link,
+} = MaterialUI;
 
+// Create a theme instance.
 const theme = createMuiTheme({
   palette: {
     primary: {
-      light: colors.purple[300],
-      main: colors.purple[500],
-      dark: colors.purple[700],
+      main: '#556cd6',
     },
     secondary: {
-      light: colors.green[300],
-      main: colors.green[500],
-      dark: colors.green[700],
+      main: '#19857b',
+    },
+    error: {
+      main: colors.red.A400,
+    },
+    background: {
+      default: '#fff',
     },
   },
-  typography: {
-    useNextVariants: true,
-  },
 });
 
-const styles = theme => ({
-  root: {
-    textAlign: 'center',
-    paddingTop: theme.spacing.unit * 20,
-  },
-  icon: {
-    marginRight: theme.spacing.unit,
-  },
-});
-
-class Index extends React.Component {
-  state = {
-    open: false,
-  };
-
-  handleClose = () => {
-    this.setState({
-      open: false,
-    });
-  };
-
-  handleClick = () => {
-    this.setState({
-      open: true,
-    });
-  };
-
-  render() {
-    const { classes } = this.props;
-    const { open } = this.state;
-
-    return (
-      <MuiThemeProvider theme={theme}>
-        <div className={classes.root}>
-          <CssBaseline />
-          <Dialog open={open} onClose={this.handleClose}>
-            <DialogTitle>Super Secret Password</DialogTitle>
-            <DialogContent>
-              <DialogContentText>1-2-3-4-5</DialogContentText>
-            </DialogContent>
-            <DialogActions>
-              <Button color="primary" onClick={this.handleClose}>
-                OK
-              </Button>
-            </DialogActions>
-          </Dialog>
-          <Typography variant="h4" gutterBottom>
-            Material-UI
-          </Typography>
-          <Typography variant="subtitle1" gutterBottom>
-            example project
-          </Typography>
-          <Button variant="contained" color="secondary" onClick={this.handleClick}>
-            <Icon className={classes.icon}>fingerprint</Icon>
-            Super Secret Password
-          </Button>
-        </div>
-      </MuiThemeProvider>
-    );
-  }
+function LightBulbIcon(props) {
+  return (
+    <SvgIcon {...props}>
+      <path d="M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7zm2.85 11.1l-.85.6V16h-4v-2.3l-.85-.6C7.8 12.16 7 10.63 7 9c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.63-.8 3.16-2.15 4.1z" />
+    </SvgIcon>
+  );
 }
 
-const App = withStyles(styles)(Index);
+const useStyles = makeStyles(theme => ({
+  root: {
+    margin: theme.spacing(6, 0, 3),
+  },
+  lightBulb: {
+    verticalAlign: 'middle',
+    marginRight: theme.spacing(1),
+  },
+}));
 
-ReactDOM.render(<App />, document.getElementById('root'));
+function ProTip() {
+  const classes = useStyles();
+  return (
+    <Typography className={classes.root} color="textSecondary">
+      <LightBulbIcon className={classes.lightBulb} />
+      Pro tip: See more{' '}
+      <Link href="https://material-ui.com/getting-started/templates/">
+        templates
+      </Link>{' '}
+      on the Material-UI documentation.
+    </Typography>
+  );
+}
+
+function Copyright() {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {'Copyright © '}
+      <Link color="inherit" href="https://material-ui.com/">
+        Your Website
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
+}
+
+function App() {
+  return (
+    <Container maxWidth="sm">
+      <div style={{ marginTop: 24, }}>
+        <Typography variant="h4" component="h1" gutterBottom>
+          CDN v4-beta example
+        </Typography>
+        <ProTip />
+        <Copyright />
+      </div>
+    </Container>
+  );
+}
+
+ReactDOM.render(
+  <ThemeProvider theme={theme}>
+    {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+    <CssBaseline />
+    <App />
+  </ThemeProvider>,
+  document.querySelector('#root'),
+);
     </script>
   </body>
 </html>

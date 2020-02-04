@@ -3,19 +3,17 @@ import {
   createStyles,
   withStyles,
   createMuiTheme,
-  MuiThemeProvider,
   Theme,
   withTheme,
-  StyleRules,
   StyleRulesCallback,
-  StyledComponentProps,
   WithStyles,
+  WithTheme,
+  makeStyles,
+  styled,
 } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button/Button';
-import blue from '@material-ui/core/colors/blue';
-import { WithTheme } from '@material-ui/core/styles/withTheme';
-import { PropsOf, StandardProps } from '@material-ui/core';
-import { TypographyStyle } from '@material-ui/core/styles/createTypography';
+import { ThemeProvider } from '@material-ui/styles';
+import Button from '@material-ui/core/Button';
+import { blue } from '@material-ui/core/colors';
 
 // Shared types for examples
 interface ComponentProps extends WithStyles<typeof styles> {
@@ -25,7 +23,7 @@ interface ComponentProps extends WithStyles<typeof styles> {
 // Example 1
 const styles = ({ palette, spacing }: Theme) => ({
   root: {
-    padding: spacing.unit,
+    padding: spacing(1),
     backgroundColor: palette.background.default,
     color: palette.primary.dark,
   },
@@ -37,9 +35,10 @@ const StyledExampleOne = withStyles(styles)(({ classes, text }: ComponentProps) 
 <StyledExampleOne text="I am styled!" />;
 
 // Example 2
-const Component: React.SFC<ComponentProps & WithStyles<typeof styles>> = ({ classes, text }) => (
-  <div className={classes.root}>{text}</div>
-);
+const Component: React.FunctionComponent<ComponentProps & WithStyles<typeof styles>> = ({
+  classes,
+  text,
+}) => <div className={classes.root}>{text}</div>;
 
 const StyledExampleTwo = withStyles(styles)(Component);
 <StyledExampleTwo text="I am styled!" />;
@@ -54,9 +53,10 @@ const styleRule = createStyles({
   },
 });
 
-const ComponentWithChildren: React.SFC<WithStyles<typeof styles>> = ({ classes, children }) => (
-  <div className={classes.root}>{children}</div>
-);
+const ComponentWithChildren: React.FunctionComponent<WithStyles<typeof styles>> = ({
+  classes,
+  children,
+}) => <div className={classes.root}>{children}</div>;
 
 const StyledExampleThree = withStyles(styleRule)(ComponentWithChildren);
 <StyledExampleThree />;
@@ -102,7 +102,7 @@ const theme = createMuiTheme({
       short: 50,
     },
   },
-  spacing: {},
+  spacing: 5,
   zIndex: {
     appBar: 42,
   },
@@ -153,18 +153,26 @@ const theme2 = createMuiTheme({
   },
 });
 
+const t1: number = createMuiTheme().spacing(1);
+const t2: string = createMuiTheme().spacing(1, 2);
+const t3: string = createMuiTheme().spacing(1, 2, 3);
+const t4: string = createMuiTheme().spacing(1, 2, 3, 4);
+// $ExpectError
+const t5 = createMuiTheme().spacing(1, 2, 3, 4, 5);
+
 function OverridesTheme() {
   return (
-    <MuiThemeProvider theme={theme}>
+    <ThemeProvider theme={theme}>
       <Button>{'Overrides'}</Button>
-    </MuiThemeProvider>
+    </ThemeProvider>
   );
 }
 
 // withTheme
-const ComponentWithTheme = withTheme()(({ theme }: WithTheme) => <div>{theme.spacing.unit}</div>);
+const ComponentWithTheme = withTheme(({ theme }: WithTheme) => <div>{theme.spacing(1)}</div>);
 
-<ComponentWithTheme />;
+const componentWithThemeRef = React.createRef<HTMLDivElement>();
+<ComponentWithTheme ref={componentWithThemeRef} />;
 
 // withStyles + withTheme
 type AllTheProps = WithTheme & WithStyles<typeof styles>;
@@ -176,12 +184,12 @@ const StyledComponent = withStyles(styles)(({ theme, classes }: AllTheProps) => 
 // missing prop theme
 <StyledComponent />; // $ExpectError
 
-const AllTheComposition = withTheme()(StyledComponent);
+const AllTheComposition = withTheme(StyledComponent);
 
 <AllTheComposition />;
 
 {
-  const Foo = withTheme()(
+  const Foo = withTheme(
     class extends React.Component<WithTheme> {
       render() {
         return null;
@@ -197,15 +205,20 @@ declare const themed: boolean;
   // Test that withTheme: true guarantees the presence of the theme
   const Foo = withStyles({}, { withTheme: true })(
     class extends React.Component<WithTheme> {
+      hasRef() {
+        // innerRef does not exists, originally caused https://github.com/mui-org/material-ui/issues/14095
+        return Boolean(this.props.innerRef); // $ExpectError
+      }
+
       render() {
-        return <div style={{ margin: this.props.theme.spacing.unit }} />;
+        return <div style={{ margin: this.props.theme.spacing(1) }} />;
       }
     },
   );
   <Foo />;
 
   const Bar = withStyles({}, { withTheme: true })(({ theme }: WithStyles<string, true>) => (
-    <div style={{ margin: theme.spacing.unit }} />
+    <div style={{ margin: theme.spacing(1) }} />
   ));
   <Bar />;
 }
@@ -228,11 +241,11 @@ const DecoratedComponent = withStyles(styles)(
 // Allow nested pseudo selectors
 withStyles(theme =>
   createStyles({
-    guttered: theme.mixins.gutters({
+    guttered: {
       '&:hover': {
         textDecoration: 'none',
       },
-    }),
+    },
     listItem: {
       '&:hover $listItemIcon': {
         visibility: 'inherit',
@@ -250,8 +263,8 @@ withStyles(theme =>
     content: {
       minHeight: '100vh',
     },
+    // $ExpectError
     '@media (min-width: 960px)': {
-      // $ExpectError
       content: {
         display: 'flex',
       },
@@ -281,10 +294,9 @@ withStyles(theme =>
         flex: '1 1 auto',
         padding: '0 16px',
       },
-
-      iiiinset: {
+      inset: {
         '&:first-child': {
-          paddingLeft: theme.spacing.unit * 7,
+          paddingLeft: theme.spacing(7),
         },
       },
       row: {
@@ -295,7 +307,7 @@ withStyles(theme =>
     });
 
   interface ListItemContentProps extends WithStyles<typeof styles> {
-    children?: React.ReactElement<any>;
+    children?: React.ReactElement;
     inset?: boolean;
     row?: boolean;
   }
@@ -383,7 +395,7 @@ withStyles(theme =>
 
 {
   // https://github.com/mui-org/material-ui/issues/11164
-  const style: StyleRulesCallback = theme => ({
+  const style: StyleRulesCallback<Theme, any, any> = theme => ({
     text: theme.typography.body2,
   });
 }
@@ -398,7 +410,7 @@ withStyles(theme =>
   // $ExpectError
   const StyledComponent = withStyles(styles)(Component);
 
-  // implicit SFC
+  // implicit FunctionComponent
   withStyles(styles)((props: Props) => null); // $ExpectError
   withStyles(styles)((props: Props & WithStyles<typeof styles>) => null); // $ExpectError
   withStyles(styles)((props: Props & { children?: React.ReactNode }) => null); // $ExpectError
@@ -408,8 +420,10 @@ withStyles(theme =>
 
   // explicit not but with "Property 'children' is missing in type 'ValidationMap<Props>'".
   // which is not helpful
-  const StatelessComponent: React.SFC<Props> = props => null;
-  const StatelessComponentWithStyles: React.SFC<Props & WithStyles<typeof styles>> = props => null;
+  const StatelessComponent: React.FunctionComponent<Props> = props => null;
+  const StatelessComponentWithStyles: React.FunctionComponent<
+    Props & WithStyles<typeof styles>
+  > = props => null;
   withStyles(styles)(StatelessComponent); // $ExpectError
   withStyles(styles)(StatelessComponentWithStyles); // $ExpectError
 }
@@ -448,4 +462,190 @@ withStyles(theme =>
   const CorrectUsage = () => <StyledMyButton nonDefaulted="2" />;
   // Property 'nonDefaulted' is missing in type '{}'
   const MissingPropUsage = () => <StyledMyButton />; // $ExpectError
+}
+
+{
+  // theme is defaulted to type of Theme
+  const useStyles = makeStyles(theme => {
+    // $ExpectType Theme
+    const t = theme;
+    return {
+      root: {
+        margin: t.spacing(1),
+      },
+    };
+  });
+}
+
+{
+  // https://github.com/mui-org/material-ui/pull/15546
+  // Update type definition to let CSS properties be functions
+  interface testProps {
+    foo: boolean;
+  }
+
+  // makeStyles accepts properties as functions
+  {
+    const useStyles = makeStyles({
+      root: {
+        width: (prop: testProps) => (prop.foo ? 100 : 0),
+      },
+      root2: (prop2: testProps) => ({
+        width: (prop: testProps) => (prop.foo && prop2.foo ? 100 : 0),
+      }),
+    });
+
+    const styles = useStyles({ foo: true });
+    // $ExpectType string
+    const root = styles.root;
+    // $ExpectType string
+    const root2 = styles.root2;
+  }
+
+  // makeStyles accepts properties as functions using a callback
+  {
+    const useStyles = makeStyles(theme => ({
+      root: {
+        width: (prop: testProps) => (prop.foo ? 100 : 0),
+      },
+      root2: (prop2: testProps) => ({
+        width: (prop: testProps) => (prop.foo && prop2.foo ? 100 : 0),
+        margin: theme.spacing(1),
+      }),
+    }));
+
+    const styles = useStyles({ foo: true });
+    // $ExpectType string
+    const root = styles.root;
+    // $ExpectType string
+    const root2 = styles.root2;
+  }
+
+  // createStyles accepts properties as functions
+  {
+    const styles = createStyles({
+      root: {
+        width: (prop: testProps) => (prop.foo ? 100 : 0),
+      },
+      root2: (prop2: testProps) => ({
+        width: (prop: testProps) => (prop.foo && prop2.foo ? 100 : 0),
+      }),
+    });
+
+    // $ExpectType string
+    const root = makeStyles(styles)({ foo: true }).root;
+  }
+
+  // withStyles accepts properties as functions
+  {
+    withStyles({
+      root: {
+        width: (prop: testProps) => (prop.foo ? 100 : 0),
+      },
+      root2: (prop2: testProps) => ({
+        width: (prop: testProps) => (prop.foo && prop2.foo ? 100 : 0),
+        margin: 8,
+      }),
+    });
+  }
+
+  // withStyles accepts properties as functions using a callback
+  {
+    withStyles(theme => ({
+      root: {
+        width: (prop: testProps) => (prop.foo ? 100 : 0),
+      },
+      root2: (prop2: testProps) => ({
+        width: (prop: testProps) => (prop.foo && prop2.foo ? 100 : 0),
+        height: theme.spacing(1),
+      }),
+    }));
+  }
+}
+
+{
+  // Make theme property on styled components optional
+  // https://github.com/mui-org/material-ui/issues/16379#issuecomment-507209971
+  const style = (props: { value: number }) => ({});
+  const styleWithTheme = (props: { value: number; theme: Theme }) => ({});
+  const Component: React.FC = () => null;
+  const ComponentWithTheme: React.FC<{ theme: { zIndex: { [k: string]: number } } }> = () => null;
+
+  const ComponentStyled = styled(Component)(style);
+  const ComponentStyledWithTheme = styled(Component)(styleWithTheme);
+  const ComponentWithThemeStyled = styled(ComponentWithTheme)(style);
+  const ComponentWithThemeStyledWithTheme = styled(ComponentWithTheme)(styleWithTheme);
+
+  // prop 'theme' must not be required
+  <ComponentStyled value={1} />;
+  <ComponentStyledWithTheme value={1} />;
+  // error: type {} is missing properties from 'Theme' ...
+  <ComponentStyledWithTheme value={1} theme={{}} />; // $ExpectError
+  // error: property 'theme' is missing in type ... (because the component requires it)
+  <ComponentWithThemeStyled value={1} />; // $ExpectError
+  <ComponentWithThemeStyledWithTheme value={1} />; // $ExpectError
+  // error: type {} is not assignable to type ...
+  <ComponentWithThemeStyledWithTheme value={1} theme={{}} />; // $ExpectError
+  // error: missing properties from type 'ZIndex' ...
+  <ComponentWithThemeStyledWithTheme value={1} theme={{ zIndex: { appBar: 100 } }} />; // $ExpectError
+
+  const ComponentWithOptionalTheme: React.FC<{
+    theme?: { zIndex: { [k: string]: number } };
+  }> = () => null;
+  const ComponentWithOptionalThemeStyledWithTheme = styled(ComponentWithOptionalTheme)(
+    styleWithTheme,
+  );
+
+  // prop 'theme' must not be required
+  <ComponentWithOptionalThemeStyledWithTheme value={1} />;
+  // error: property 'zIndex' is missing in type {}
+  <ComponentWithOptionalThemeStyledWithTheme value={1} theme={{}} />; // $ExpectError
+  // error: missing properties from type 'Theme' ...
+  <ComponentWithOptionalThemeStyledWithTheme value={1} theme={{ zIndex: { appBar: 100 } }} />; // $ExpectError
+}
+
+{
+  // Make sure theme and props have the correct types
+  // https://github.com/mui-org/material-ui/issues/16351
+
+  // Theme has default type
+  styled(Button)(({ theme }) => {
+    // $ExpectType Theme
+    theme;
+
+    return { padding: theme.spacing(1) };
+  });
+
+  interface myProps {
+    testValue: boolean;
+  }
+
+  // Type of props follow all the way to css properties
+  styled(Button)<Theme, myProps>(({ theme, testValue }) => {
+    // $ExpectType Theme
+    theme;
+
+    // $ExpectType boolean
+    testValue;
+
+    return {
+      padding: props => {
+        // $ExpectType myProps
+        props;
+
+        // $ExpectType boolean
+        props.testValue;
+        return theme.spacing(1);
+      },
+    };
+  });
+}
+
+function themeProviderTest() {
+  <ThemeProvider theme={{ foo: 1 }}>{null}</ThemeProvider>;
+  // $ExpectError
+  <ThemeProvider<Theme> theme={{ foo: 1 }}>{null}</ThemeProvider>;
+  <ThemeProvider<Theme> theme={{ props: { MuiAppBar: { 'aria-atomic': 'true' } } }}>
+    {null}
+  </ThemeProvider>;
 }

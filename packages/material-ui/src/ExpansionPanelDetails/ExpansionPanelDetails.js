@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 
 export const styles = {
@@ -11,15 +11,11 @@ export const styles = {
   },
 };
 
-function ExpansionPanelDetails(props) {
-  const { classes, children, className, ...other } = props;
+const ExpansionPanelDetails = React.forwardRef(function ExpansionPanelDetails(props, ref) {
+  const { classes, className, ...other } = props;
 
-  return (
-    <div className={classNames(classes.root, className)} {...other}>
-      {children}
-    </div>
-  );
-}
+  return <div className={clsx(classes.root, className)} ref={ref} {...other} />;
+});
 
 ExpansionPanelDetails.propTypes = {
   /**
@@ -28,7 +24,7 @@ ExpansionPanelDetails.propTypes = {
   children: PropTypes.node.isRequired,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**

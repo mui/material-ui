@@ -5,8 +5,8 @@ import { TransitionHandlerProps, TransitionProps } from '../transitions/transiti
 import { ClickAwayListenerProps } from '../ClickAwayListener';
 
 export interface SnackbarOrigin {
-  horizontal: 'left' | 'center' | 'right';
   vertical: 'top' | 'bottom';
+  horizontal: 'left' | 'center' | 'right';
 }
 
 export interface SnackbarProps
@@ -16,7 +16,7 @@ export interface SnackbarProps
   > {
   action?: SnackbarContentProps['action'];
   anchorOrigin?: SnackbarOrigin;
-  autoHideDuration?: number;
+  autoHideDuration?: number | null;
   ClickAwayListenerProps?: Partial<ClickAwayListenerProps>;
   ContentProps?: Partial<SnackbarContentProps>;
   disableWindowBlurListener?: boolean;
@@ -26,7 +26,7 @@ export interface SnackbarProps
   onMouseLeave?: React.MouseEventHandler<any>;
   open: boolean;
   resumeHideDuration?: number;
-  TransitionComponent?: React.ReactType;
+  TransitionComponent?: React.ComponentType<TransitionProps>;
   transitionDuration?: TransitionProps['timeout'];
   TransitionProps?: TransitionProps;
 }

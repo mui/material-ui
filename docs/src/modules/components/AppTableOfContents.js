@@ -1,205 +1,282 @@
 /* eslint-disable react/no-danger */
-
 import React from 'react';
 import PropTypes from 'prop-types';
-import Link from 'docs/src/modules/components/Link';
-import marked from 'marked';
-import warning from 'warning';
+import marked from 'marked/lib/marked';
 import throttle from 'lodash/throttle';
-import EventListener from 'react-event-listener';
-import { withStyles } from '@material-ui/core/styles';
+import clsx from 'clsx';
+import Box from '@material-ui/core/Box';
+import { useSelector } from 'react-redux';
+import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import { textToHash } from '@material-ui/docs/MarkdownElement/MarkdownElement';
+import textToHash from 'docs/src/modules/utils/textToHash';
+import DiamondSponsors from 'docs/src/modules/components/DiamondSponsors';
+import Link from 'docs/src/modules/components/Link';
+import PageContext from 'docs/src/modules/components/PageContext';
 
-const renderer = new marked.Renderer();
-
-let itemsServer = null;
-renderer.heading = (text, level) => {
-  if (level === 2) {
-    itemsServer.push({
-      text,
-      level,
-      hash: textToHash(text),
-      children: [],
-    });
-  } else if (level === 3) {
-    if (!itemsServer[itemsServer.length - 1]) {
-      throw new Error(`Missing parent level for: ${text}`);
-    }
-
-    itemsServer[itemsServer.length - 1].children.push({
-      text,
-      level,
-      hash: textToHash(text),
-    });
-  }
-};
-
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     top: 70,
     // Fix IE 11 position sticky issue.
     marginTop: 70,
-    width: 162,
+    width: 175,
     flexShrink: 0,
-    order: 2,
     position: 'sticky',
-    wordBreak: 'break-word',
     height: 'calc(100vh - 70px)',
     overflowY: 'auto',
-    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 2}px ${theme.spacing.unit *
-      2}px 0`,
+    padding: theme.spacing(2, 2, 2, 0),
     display: 'none',
     [theme.breakpoints.up('sm')]: {
       display: 'block',
     },
   },
   contents: {
-    marginTop: theme.spacing.unit * 2,
+    marginTop: theme.spacing(2),
+    paddingLeft: theme.spacing(1.5),
   },
   ul: {
     padding: 0,
     margin: 0,
-    listStyleType: 'none',
+    listStyle: 'none',
   },
   item: {
     fontSize: 13,
-    padding: `${theme.spacing.unit / 2}px 0`,
+    padding: theme.spacing(0.5, 0, 0.5, 1),
+    borderLeft: '4px solid transparent',
+    boxSizing: 'content-box',
+    '&:hover': {
+      borderLeft: `4px solid ${
+        theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[900]
+      }`,
+    },
+    '&$active,&:active': {
+      borderLeft: `4px solid ${
+        theme.palette.type === 'light' ? theme.palette.grey[300] : theme.palette.grey[800]
+      }`,
+    },
   },
-});
+  secondaryItem: {
+    paddingLeft: theme.spacing(2.5),
+  },
+  active: {},
+}));
 
-function checkDuplication(uniq, item) {
-  warning(!uniq[item.hash], `Duplicated table of content ${item.hash}`);
+const renderer = new marked.Renderer();
 
-  if (!uniq[item.hash]) {
-    uniq[item.hash] = true;
-  }
+function setRenderer(itemsCollector, unique) {
+  renderer.heading = (text2, level) => {
+    const text = text2
+      .replace(
+        /([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g,
+        '',
+      ) // remove emojis
+      .replace(/<\/?[^>]+(>|$)/g, ''); // remove HTML
+
+    if (level === 2) {
+      itemsCollector.current.push({
+        text,
+        level,
+        hash: textToHash(text, unique),
+        children: [],
+      });
+    } else if (level === 3) {
+      if (!itemsCollector.current[itemsCollector.current.length - 1]) {
+        throw new Error(`Missing parent level for: ${text}`);
+      }
+
+      itemsCollector.current[itemsCollector.current.length - 1].children.push({
+        text,
+        level,
+        hash: textToHash(text, unique),
+      });
+    }
+  };
 }
 
-class AppTableOfContents extends React.Component {
-  handleScroll = throttle(() => {
-    this.findActiveIndex();
-  }, 166); // Corresponds to 10 frames at 60 Hz.
+function getItemsServer(contents, itemsCollector) {
+  marked(contents.join(''), { renderer });
+  return itemsCollector.current;
+}
 
-  constructor(props) {
-    super(props);
-    itemsServer = [];
-    marked(props.contents.join(''), {
-      renderer,
+function getItemsClient(items) {
+  const itemsClient = [];
+
+  items.forEach(item2 => {
+    itemsClient.push({
+      ...item2,
+      node: document.getElementById(item2.hash),
     });
-  }
 
-  state = {
-    active: null,
-  };
-
-  componentDidMount() {
-    this.itemsClient = [];
-    const uniq = {};
-
-    itemsServer.forEach(item2 => {
-      checkDuplication(uniq, item2);
-      this.itemsClient.push({
-        ...item2,
-        node: document.getElementById(item2.hash),
-      });
-
-      if (item2.children.length > 0) {
-        item2.children.forEach(item3 => {
-          checkDuplication(uniq, item3);
-          this.itemsClient.push({
-            ...item3,
-            node: document.getElementById(item3.hash),
-          });
+    if (item2.children.length > 0) {
+      item2.children.forEach(item3 => {
+        itemsClient.push({
+          ...item3,
+          node: document.getElementById(item3.hash),
         });
-      }
-    });
+      });
+    }
+  });
+  return itemsClient;
+}
 
-    this.findActiveIndex();
-  }
+const noop = () => {};
 
-  componentWillUnmount() {
-    this.handleScroll.cancel();
-  }
+function useThrottledOnScroll(callback, delay) {
+  const throttledCallback = React.useMemo(() => (callback ? throttle(callback, delay) : noop), [
+    callback,
+    delay,
+  ]);
 
-  findActiveIndex = () => {
+  React.useEffect(() => {
+    if (throttledCallback === noop) {
+      return undefined;
+    }
+
+    window.addEventListener('scroll', throttledCallback);
+    return () => {
+      window.removeEventListener('scroll', throttledCallback);
+      throttledCallback.cancel();
+    };
+  }, [throttledCallback]);
+}
+
+export default function AppTableOfContents(props) {
+  const { contents } = props;
+  const classes = useStyles();
+  const t = useSelector(state => state.options.t);
+
+  const itemsServer = React.useMemo(() => {
+    const itemsCollectorRef = { current: [] };
+    setRenderer(itemsCollectorRef, {});
+    return getItemsServer(contents, itemsCollectorRef);
+  }, [contents]);
+
+  const itemsClientRef = React.useRef([]);
+  React.useEffect(() => {
+    itemsClientRef.current = getItemsClient(itemsServer);
+  }, [itemsServer]);
+
+  const { activePage } = React.useContext(PageContext);
+  const [activeState, setActiveState] = React.useState(null);
+  const clickedRef = React.useRef(false);
+  const unsetClickedRef = React.useRef(null);
+  const findActiveIndex = React.useCallback(() => {
+    // Don't set the active index based on scroll if a link was just clicked
+    if (clickedRef.current) {
+      return;
+    }
+
     let active;
+    for (let i = itemsClientRef.current.length - 1; i >= 0; i -= 1) {
+      // No hash if we're near the top of the page
+      if (document.documentElement.scrollTop < 200) {
+        active = { hash: null };
+        break;
+      }
 
-    for (let i = 0; i < this.itemsClient.length; i += 1) {
-      const item = this.itemsClient[i];
+      const item = itemsClientRef.current[i];
+
+      if (process.env.NODE_ENV !== 'production') {
+        if (!item.node) {
+          console.error(`Missing node on the item ${JSON.stringify(item, null, 2)}`);
+        }
+      }
+
       if (
-        document.documentElement.scrollTop < item.node.offsetTop + 100 ||
-        i === this.itemsClient.length - 1
+        item.node &&
+        item.node.offsetTop <
+          document.documentElement.scrollTop + document.documentElement.clientHeight / 8
       ) {
         active = item;
         break;
       }
     }
 
-    if (active && this.state.active !== active.hash) {
-      this.setState({
-        active: active.hash,
-      });
+    if (active && activeState !== active.hash) {
+      setActiveState(active.hash);
+    }
+  }, [activeState]);
+
+  // Corresponds to 10 frames at 60 Hz
+  useThrottledOnScroll(itemsServer.length > 0 ? findActiveIndex : null, 166);
+
+  const handleClick = hash => event => {
+    // Ignore click for new tab/new window behavior
+    if (
+      event.defaultPrevented ||
+      event.button !== 0 || // ignore everything but left-click
+      event.metaKey ||
+      event.ctrlKey ||
+      event.altKey ||
+      event.shiftKey
+    ) {
+      return;
+    }
+
+    // Used to disable findActiveIndex if the page scrolls due to a click
+    clickedRef.current = true;
+    unsetClickedRef.current = setTimeout(() => {
+      clickedRef.current = false;
+    }, 1000);
+
+    if (activeState !== hash) {
+      setActiveState(hash);
     }
   };
 
-  render() {
-    const { classes } = this.props;
-    const { active } = this.state;
+  React.useEffect(
+    () => () => {
+      clearTimeout(unsetClickedRef.current);
+    },
+    [],
+  );
 
-    return (
-      <nav className={classes.root}>
-        {itemsServer.length > 0 ? (
-          <React.Fragment>
-            <Typography gutterBottom className={classes.contents}>
-              Contents
-            </Typography>
-            <EventListener target="window" onScroll={this.handleScroll} />
-            <ul className={classes.ul}>
-              {itemsServer.map(item2 => (
-                <li key={item2.text}>
-                  <Typography
-                    color={active === item2.hash ? 'textPrimary' : 'textSecondary'}
-                    className={classes.item}
-                    component={linkProps => (
-                      <Link {...linkProps} variant="inherit" href={`#${item2.hash}`} />
-                    )}
-                  >
-                    <span dangerouslySetInnerHTML={{ __html: item2.text }} />
-                  </Typography>
-                  {item2.children.length > 0 ? (
-                    <ul className={classes.ul}>
-                      {item2.children.map(item3 => (
-                        <li key={item3.text}>
-                          <Typography
-                            className={classes.item}
-                            style={{
-                              paddingLeft: 8 * 2,
-                            }}
-                            color={active === item3.hash ? 'textPrimary' : 'textSecondary'}
-                            component={linkProps => (
-                              <Link {...linkProps} variant="inherit" href={`#${item3.hash}`} />
-                            )}
-                          >
-                            <span dangerouslySetInnerHTML={{ __html: item3.text }} />
-                          </Typography>
-                        </li>
-                      ))}
-                    </ul>
-                  ) : null}
-                </li>
-              ))}
-            </ul>
-          </React.Fragment>
-        ) : null}
-      </nav>
-    );
-  }
+  const itemLink = (item, secondary) => (
+    <Link
+      display="block"
+      color={activeState === item.hash ? 'textPrimary' : 'textSecondary'}
+      href={`${activePage.pathname}#${item.hash}`}
+      underline="none"
+      onClick={handleClick(item.hash)}
+      className={clsx(
+        classes.item,
+        { [classes.secondaryItem]: secondary },
+        activeState === item.hash ? classes.active : undefined,
+      )}
+    >
+      <span dangerouslySetInnerHTML={{ __html: item.text }} />
+    </Link>
+  );
+
+  return (
+    <nav className={classes.root} aria-label={t('pageTOC')}>
+      {itemsServer.length > 0 ? (
+        <React.Fragment>
+          <Typography gutterBottom className={classes.contents}>
+            {t('tableOfContents')}
+          </Typography>
+          <Typography component="ul" className={classes.ul}>
+            {itemsServer.map(item2 => (
+              <li key={item2.text}>
+                {itemLink(item2)}
+                {item2.children.length > 0 ? (
+                  <ul className={classes.ul}>
+                    {item2.children.map(item3 => (
+                      <li key={item3.text}>{itemLink(item3, true)}</li>
+                    ))}
+                  </ul>
+                ) : null}
+              </li>
+            ))}
+          </Typography>
+        </React.Fragment>
+      ) : null}
+      <Box mt={3} mb={2} mx={1.5}>
+        <DiamondSponsors />
+      </Box>
+    </nav>
+  );
 }
 
 AppTableOfContents.propTypes = {
-  classes: PropTypes.object.isRequired,
   contents: PropTypes.array.isRequired,
 };
-
-export default withStyles(styles)(AppTableOfContents);

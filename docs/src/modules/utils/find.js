@@ -77,12 +77,12 @@ function findComponents(directory, components = []) {
 const jsRegex = /\.js$/;
 const blackList = ['/.eslintrc', '/_document', '/_app'];
 
-// Returns the next.js pages available in a nested format.
+// Returns the Next.js pages available in a nested format.
 // The output is in the next.js format.
 // Each pathname is a route you can navigate to.
 function findPages(
   options = {},
-  directory = path.resolve(__dirname, '../../../../pages'),
+  directory = path.resolve(__dirname, '../../../pages'),
   pages = [],
 ) {
   fs.readdirSync(directory).forEach(item => {
@@ -94,11 +94,14 @@ function findPages(
       .replace(/^\/index$/, '/') // Replace `index` by `/`.
       .replace(/\/index$/, '');
 
+    if (pathname.indexOf('.eslintrc') !== -1) {
+      return;
+    }
+
     if (
       options.front &&
-      pathname.indexOf('/demos') === -1 &&
-      pathname.indexOf('/api') === -1 &&
-      pathname.indexOf('/lab') === -1
+      pathname.indexOf('/components') === -1 &&
+      pathname.indexOf('/api') === -1
     ) {
       return;
     }

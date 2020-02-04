@@ -1,20 +1,32 @@
-import * as React from 'react';
-import { StandardProps, PropTypes } from '..';
-import { ButtonBaseProps } from '../ButtonBase';
+import { PropTypes } from '..';
+import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
+import { OverrideProps } from '../OverridableComponent';
 
-export interface ButtonProps extends StandardProps<ButtonBaseProps, ButtonClassKey, 'component'> {
-  color?: PropTypes.Color;
-  component?: React.ReactType<ButtonProps>;
-  disabled?: boolean;
-  disableFocusRipple?: boolean;
-  disableRipple?: boolean;
-  fullWidth?: boolean;
-  href?: string;
-  mini?: boolean;
-  size?: 'small' | 'medium' | 'large';
-  type?: string;
-  variant?: 'text' | 'flat' | 'outlined' | 'contained' | 'raised' | 'fab' | 'extendedFab';
-}
+export type ButtonTypeMap<
+  P = {},
+  D extends React.ElementType = 'button'
+> = ExtendButtonBaseTypeMap<{
+  props: P & {
+    color?: PropTypes.Color;
+    disableElevation?: boolean;
+    disableFocusRipple?: boolean;
+    endIcon?: React.ReactNode;
+    fullWidth?: boolean;
+    href?: string;
+    size?: 'small' | 'medium' | 'large';
+    startIcon?: React.ReactNode;
+    variant?: 'text' | 'outlined' | 'contained';
+  };
+  defaultComponent: D;
+  classKey: ButtonClassKey;
+}>;
+
+declare const Button: ExtendButtonBase<ButtonTypeMap>;
+
+export type ButtonProps<
+  D extends React.ElementType = ButtonTypeMap['defaultComponent'],
+  P = {}
+> = OverrideProps<ButtonTypeMap<P, D>, D>;
 
 export type ButtonClassKey =
   | 'root'
@@ -22,28 +34,29 @@ export type ButtonClassKey =
   | 'text'
   | 'textPrimary'
   | 'textSecondary'
-  | 'flat'
-  | 'flatPrimary'
-  | 'flatSecondary'
   | 'outlined'
   | 'outlinedPrimary'
   | 'outlinedSecondary'
-  | 'colorInherit'
   | 'contained'
   | 'containedPrimary'
   | 'containedSecondary'
-  | 'raised'
-  | 'raisedPrimary'
-  | 'raisedSecondary'
+  | 'disableElevation'
   | 'focusVisible'
   | 'disabled'
-  | 'fab'
-  | 'extendedFab'
-  | 'mini'
+  | 'colorInherit'
+  | 'textSizeSmall'
+  | 'textSizeLarge'
+  | 'outlinedSizeSmall'
+  | 'outlinedSizeLarge'
+  | 'containedSizeSmall'
+  | 'containedSizeLarge'
   | 'sizeSmall'
   | 'sizeLarge'
-  | 'fullWidth';
-
-declare const Button: React.ComponentType<ButtonProps>;
+  | 'fullWidth'
+  | 'startIcon'
+  | 'endIcon'
+  | 'iconSizeSmall'
+  | 'iconSizeMedium'
+  | 'iconSizeLarge';
 
 export default Button;

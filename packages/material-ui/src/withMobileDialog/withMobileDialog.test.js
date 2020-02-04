@@ -23,13 +23,7 @@ describe('withMobileDialog', () => {
             foo
           </ResponsiveDialog>,
         );
-        assert.strictEqual(
-          wrapper
-            .find('WithMobileDialog')
-            .shallow()
-            .props().fullScreen,
-          true,
-        );
+        assert.strictEqual(wrapper.props().fullScreen, true);
       });
     });
   }
@@ -43,13 +37,7 @@ describe('withMobileDialog', () => {
             foo
           </ResponsiveDialog>,
         );
-        assert.strictEqual(
-          wrapper
-            .find('WithMobileDialog')
-            .shallow()
-            .props().fullScreen,
-          false,
-        );
+        assert.strictEqual(wrapper.props().fullScreen, false);
       });
     });
   }

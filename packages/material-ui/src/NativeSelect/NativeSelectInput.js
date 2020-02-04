@@ -1,50 +1,45 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
+import { refType } from '@material-ui/utils';
+import capitalize from '../utils/capitalize';
 
 /**
  * @ignore - internal component.
  */
-function NativeSelectInput(props) {
+const NativeSelectInput = React.forwardRef(function NativeSelectInput(props, ref) {
   const {
-    children,
     classes,
     className,
     disabled,
     IconComponent,
     inputRef,
-    name,
-    onChange,
-    value,
-    variant,
+    variant = 'standard',
     ...other
   } = props;
 
   return (
-    <div className={classes.root}>
+    <React.Fragment>
       <select
-        className={classNames(
+        className={clsx(
+          classes.root, // TODO v5: merge root and select
           classes.select,
+          classes[variant],
           {
-            [classes.filled]: variant === 'filled',
-            [classes.outlined]: variant === 'outlined',
             [classes.disabled]: disabled,
           },
           className,
         )}
-        name={name}
         disabled={disabled}
-        onChange={onChange}
-        value={value}
-        ref={inputRef}
+        ref={inputRef || ref}
         {...other}
-      >
-        {children}
-      </select>
-      <IconComponent className={classes.icon} />
-    </div>
+      />
+      {props.multiple ? null : (
+        <IconComponent className={clsx(classes.icon, classes[`icon${capitalize(variant)}`])} />
+      )}
+    </React.Fragment>
   );
-}
+});
 
 NativeSelectInput.propTypes = {
   /**
@@ -54,7 +49,7 @@ NativeSelectInput.propTypes = {
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -68,11 +63,16 @@ NativeSelectInput.propTypes = {
   /**
    * The icon that displays the arrow.
    */
-  IconComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  IconComponent: PropTypes.elementType.isRequired,
   /**
-   * Use that property to pass a ref callback to the native select element.
+   * Use that prop to pass a ref to the native select element.
+   * @deprecated
    */
-  inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  inputRef: refType,
+  /**
+   * @ignore
+   */
+  multiple: PropTypes.bool,
   /**
    * Name attribute of the `select` or hidden `input` element.
    */
@@ -81,13 +81,13 @@ NativeSelectInput.propTypes = {
    * Callback function fired when a menu item is selected.
    *
    * @param {object} event The event source of the callback.
-   * You can pull out the new value by accessing `event.target.value`.
+   * You can pull out the new value by accessing `event.target.value` (string).
    */
   onChange: PropTypes.func,
   /**
    * The input value.
    */
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
+  value: PropTypes.any,
   /**
    * The variant to use.
    */

@@ -25,14 +25,14 @@ const styles = theme => ({
     alignItems: 'center',
   },
   contentAction: {
-    paddingLeft: theme.spacing.unit * 2,
+    paddingLeft: theme.spacing(2),
   },
   info: {
     flexShrink: 0,
-    marginRight: theme.spacing.unit * 2,
+    marginRight: theme.spacing(2),
   },
   close: {
-    padding: theme.spacing.unit,
+    padding: theme.spacing(1),
   },
 });
 
@@ -46,10 +46,9 @@ function Snackbar(props) {
   return (
     <MuiSnackbar
       anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-      autoHideDuration={6e3}
+      autoHideDuration={6000}
       transition={Transition}
       ContentProps={{
-        'aria-describedby': 'snackbar',
         classes: {
           root: classes.content,
           message: classes.contentMessage,
@@ -59,13 +58,13 @@ function Snackbar(props) {
       message={
         <React.Fragment>
           <InfoIcon className={classes.info} />
-          <span id="snackbar">{message}</span>
+          <span>{message}</span>
         </React.Fragment>
       }
       action={[
         <IconButton
           key="close"
-          aria-label="Close"
+          aria-label="close"
           color="inherit"
           className={classes.close}
           onClick={onClose}

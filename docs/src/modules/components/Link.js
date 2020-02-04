@@ -1,118 +1,72 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */
-
+/* eslint-disable jsx-a11y/anchor-has-content */
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import compose from 'recompose/compose';
-import { withRouter } from 'next/router';
+import clsx from 'clsx';
+import { useRouter } from 'next/router';
 import NextLink from 'next/link';
-import { withStyles } from '@material-ui/core/styles';
+import MuiLink from '@material-ui/core/Link';
+import { useSelector } from 'react-redux';
 
-const styles = theme => ({
-  root: {
-    textDecoration: 'none',
-    '&:hover': {
-      textDecoration: 'underline',
-    },
-  },
-  default: {
-    color: 'inherit',
-  },
-  primary: {
-    color: theme.palette.primary.main,
-  },
-  secondary: {
-    color: theme.palette.secondary.main,
-  },
-  button: {
-    '&:hover': {
-      textDecoration: 'inherit',
-    },
-  },
+const NextComposed = React.forwardRef(function NextComposed(props, ref) {
+  const { as, href, prefetch, ...other } = props;
+
+  return (
+    <NextLink href={href} prefetch={prefetch} as={as}>
+      <a ref={ref} {...other} />
+    </NextLink>
+  );
 });
 
+NextComposed.propTypes = {
+  as: PropTypes.string,
+  href: PropTypes.string,
+  prefetch: PropTypes.bool,
+};
+
+// A styled version of the Next.js Link component:
+// https://nextjs.org/docs/#with-link
 function Link(props) {
   const {
-    activeClassName,
-    children: childrenProp,
-    classes,
-    className: classNameProp,
-    component: ComponentProp,
-    href,
-    onClick,
-    prefetch,
-    router,
-    variant,
+    activeClassName = 'active',
+    className: classNameProps,
+    innerRef,
+    naked,
+    role: roleProp,
     ...other
   } = props;
+  const router = useRouter();
 
-  let ComponentRoot;
-  const className = classNames(
-    classes.root,
-    {
-      [classes[variant]]: variant !== 'inherit',
-    },
-    classNameProp,
-  );
-  let RootProps;
-  let children = childrenProp;
+  const userLanguage = useSelector(state => state.options.userLanguage);
+  const className = clsx(classNameProps, {
+    [activeClassName]: router.pathname === props.href && activeClassName,
+  });
 
-  if (ComponentProp) {
-    ComponentRoot = ComponentProp;
-    RootProps = {
-      ...other,
-      className,
-    };
-  } else if (href) {
-    ComponentRoot = NextLink;
-    RootProps = {
-      href,
-      prefetch,
-      passHref: true,
-    };
-    children = (
-      <a
-        className={classNames(className, {
-          [activeClassName]: router.pathname === href && activeClassName,
-        })}
-        onClick={onClick}
-        {...other}
-      >
-        {children}
-      </a>
-    );
-  } else {
-    ComponentRoot = 'a';
-    RootProps = {
-      ...other,
-      className,
-    };
+  if (userLanguage !== 'en' && other.href.indexOf('/') === 0 && other.href.indexOf('/blog') !== 0) {
+    other.as = `/${userLanguage}${other.href}`;
   }
 
-  return <ComponentRoot {...RootProps}>{children}</ComponentRoot>;
-}
+  // catch role passed from ButtonBase. This is definitely a link
+  const role = roleProp === 'button' ? undefined : roleProp;
 
-Link.defaultProps = {
-  variant: 'default',
-  activeClassName: 'active',
-};
+  if (naked) {
+    return <NextComposed className={className} ref={innerRef} role={role} {...other} />;
+  }
+
+  return (
+    <MuiLink component={NextComposed} className={className} ref={innerRef} role={role} {...other} />
+  );
+}
 
 Link.propTypes = {
   activeClassName: PropTypes.string,
-  children: PropTypes.node.isRequired,
-  classes: PropTypes.object.isRequired,
+  as: PropTypes.string,
   className: PropTypes.string,
-  component: PropTypes.any,
   href: PropTypes.string,
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  naked: PropTypes.bool,
   onClick: PropTypes.func,
   prefetch: PropTypes.bool,
-  router: PropTypes.shape({
-    pathname: PropTypes.string.isRequired,
-  }).isRequired,
-  variant: PropTypes.oneOf(['default', 'primary', 'secondary', 'button', 'inherit']),
+  role: PropTypes.string,
 };
 
-export default compose(
-  withRouter,
-  withStyles(styles),
-)(Link);
+export default React.forwardRef((props, ref) => <Link {...props} innerRef={ref} />);

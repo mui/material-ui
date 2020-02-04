@@ -22,7 +22,7 @@ generates the appropriate `.js` files in the `build` folder, and creates a `pack
 
 `node build.js --help` can be used to display the options available for building.
 
-You can build your own SVG icons as well as collections like [game-icons](http://game-icons.net/)
+You can build your own SVG icons as well as collections like [game-icons](https://game-icons.net/)
 through command line options.
 
 * `--output-dir` - Directory to output generated components.

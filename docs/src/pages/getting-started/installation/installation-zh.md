@@ -1,52 +1,62 @@
 # 安装
 
-<p class="description">安装Material-UI——这个世界上最受欢迎的React UI框架.</p>
+<p class="description">安装 Material-UI —— 世界上最受欢迎的 React UI 框架。</p>
 
-Material-UI 可作为 [npm](https://www.npmjs.com/package/@material-ui/core) 包使用。
+Material-UI 可以通过 [npm 包](https://www.npmjs.com/package/@material-ui/core)来安装。
 
 ## npm
 
-下载并保存到你的 `package.json` 依赖，运行
+安装 Material-UI 并写入 `package.json` 依赖文件：
 
 ```sh
+// 用npm安装
 npm install @material-ui/core
+
+// 用yarn安装
+yarn add @material-ui/core
 ```
 
-请注意 [react](https://www.npmjs.com/package/react) >= 16.3.0和[react-dom](https://www.npmjs.com/package/react-dom) >= 16.3.0 是对等依赖
+请注意，需要依赖 [react](https://www.npmjs.com/package/react) >= 16.8.0 版和 [react-dom](https://www.npmjs.com/package/react-dom) >= 16.8.0 版。
 
 ## Roboto 字体
 
-Material-UI的设计考虑了 [Roboto](https://fonts.google.com/specimen/Roboto)字体 因此，请务必遵循这些说明。 例如，通过Google Web Fonts引入：
+Material-UI 的设计与 [Roboto](https://fonts.google.com/specimen/Roboto) 字体相配。 因此，请按照[此说明](/components/typography/#general)载入字体。 例如，使用 Google Web Fonts：
 
 ```html
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
 ```
 
 ## 字体图标
 
-为了使用字体`Icon` 组件, 你必须添加[Material icons](https://material.io/tools/icons/)字体. 这是如何去做的 [一些说明](/style/icons/#font-icons) 例如，通过Google Web Fonts引入：
+为了使用字体`图标` 组件，你必须添加 [Material icons](https://material.io/tools/icons/) 字体. 这是如何去做的 [一些说明](/components/icons/#font-icons) 例如，使用 Google Web Fonts：
 
 ```html
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 ```
 
 ## SVG 图标
 
-为了使用预构建的SVG Material icons，例如在[组件演示](/demos/app-bar/)中找到的那些, 你必须先安装 [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons)包
+为了使用预先构建的 SVG Material 图标，例如这里的[演示图标](/components/icons/)，你必须先安装 [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons)包：
 
 ```sh
+// with npm
 npm install @material-ui/icons
+
+// with yarn
+yarn add @material-ui/icons
 ```
 
 ## CDN
 
-您可以使用最少的前端基础架构开始使用Material-UI，这对于原型设计很有用 我们不鼓励在生产中使用这种方法, 客户端必须下载整个库, 而不管实际使用哪些组件, 影响性能和带宽利用率。
+您可以使用最少的前端基础架构开始使用Material-UI，这对于原型设计很有用
 
-#### UMD 版本
+提供两个通用模块定义（** UMD ** ）的文件：
 
-我们提供两个通用模块定义 (UMD) 文件:
-
-- 一个用于开发: https://unpkg.com/@material-ui/core/umd/material-ui.development.js
-- 一个用于生产: https://unpkg.com/@material-ui/core/umd/material-ui.production.min.js
+- 一个用于开发: https://unpkg.com/@material-ui/core@latest/umd/material-ui.development.js
+- 一个用于生产: https://unpkg.com/@material-ui/core@latest/umd/material-ui.production.min.js
 
 您可以按照[此CDN示例](https://github.com/mui-org/material-ui/tree/master/examples/cdn)快速开始。
+
+⚠️在**生产环境**使用这种方式是**不推荐**的，因为客户端必须下载整个库，而不管实际上只使用哪些组件，这样的话会影响性能和带宽利用率。
+
+⚠️ UMD 链接使用 `latest` 标签指向最新版本的库。 这个指向是**不稳定的**，它随着我们发布的新版本而改变。 您应该考虑指向一个具体的版本，如 [v4.4.0](https://unpkg.com/@material-ui/core@4.4.0/umd/material-ui.development.js)。

@@ -1,49 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import JssProvider from 'react-jss/lib/JssProvider';
-import {
-  MuiThemeProvider,
-  createMuiTheme,
-  createGenerateClassName,
-} from '@material-ui/core/styles';
-import green from '@material-ui/core/colors/green';
-import red from '@material-ui/core/colors/red';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import { ThemeProvider } from '@material-ui/core/styles';
 import App from './App';
+import theme from './theme';
 
-class Main extends React.Component {
-  // Remove the server-side injected CSS.
-  componentDidMount() {
-    const jssStyles = document.getElementById('jss-server-side');
-    if (jssStyles && jssStyles.parentNode) {
-      jssStyles.parentNode.removeChild(jssStyles);
+function Main() {
+  React.useEffect(() => {
+    const jssStyles = document.querySelector('#jss-server-side');
+    if (jssStyles) {
+      jssStyles.parentElement.removeChild(jssStyles);
     }
-  }
+  }, []);
 
-  render() {
-    return <App />;
-  }
+  return (
+    <ThemeProvider theme={theme}>
+      {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+      <CssBaseline />
+      <App />
+    </ThemeProvider>
+  );
 }
 
-// Create a theme instance.
-const theme = createMuiTheme({
-  palette: {
-    primary: green,
-    accent: red,
-    type: 'light',
-  },
-  typography: {
-    useNextVariants: true,
-  },
-});
-
-// Create a new class name generator.
-const generateClassName = createGenerateClassName();
-
-ReactDOM.hydrate(
-  <JssProvider generateClassName={generateClassName}>
-    <MuiThemeProvider theme={theme}>
-      <Main />
-    </MuiThemeProvider>
-  </JssProvider>,
-  document.querySelector('#root'),
-);
+ReactDOM.hydrate(<Main />, document.querySelector('#root'));

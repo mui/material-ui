@@ -1,19 +1,26 @@
 import * as React from 'react';
-import { StandardProps } from '..';
-import { ButtonBaseProps } from '../ButtonBase';
+import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
+import { OverrideProps } from '../OverridableComponent';
 
-export interface TabProps extends StandardProps<ButtonBaseProps, TabClassKey, 'onChange'> {
-  disabled?: boolean;
-  fullWidth?: boolean;
-  icon?: string | React.ReactElement<any>;
-  value?: any;
-  label?: React.ReactNode;
-  onChange?: (event: React.ChangeEvent<{ checked: boolean }>, value: any) => void;
-  onClick?: React.EventHandler<any>;
-  selected?: boolean;
-  style?: React.CSSProperties;
-  textColor?: string | 'secondary' | 'primary' | 'inherit';
-}
+export type TabTypeMap<P = {}, D extends React.ElementType = 'div'> = ExtendButtonBaseTypeMap<{
+  props: P & {
+    disableFocusRipple?: boolean;
+    fullWidth?: boolean;
+    icon?: string | React.ReactElement;
+    label?: React.ReactNode;
+    onChange?: (event: React.ChangeEvent<{ checked: boolean }>, value: any) => void;
+    onClick?: React.EventHandler<any>;
+    selected?: boolean;
+    style?: React.CSSProperties;
+    textColor?: string | 'secondary' | 'primary' | 'inherit';
+    value?: any;
+    wrapped?: boolean;
+  };
+  defaultComponent: D;
+  classKey: TabClassKey;
+}>;
+
+declare const Tab: ExtendButtonBase<TabTypeMap>;
 
 export type TabClassKey =
   | 'root'
@@ -24,11 +31,12 @@ export type TabClassKey =
   | 'selected'
   | 'disabled'
   | 'fullWidth'
-  | 'wrapper'
-  | 'labelContainer'
-  | 'label'
-  | 'labelWrapped';
+  | 'wrapped'
+  | 'wrapper';
 
-declare const Tab: React.ComponentType<TabProps>;
+export type TabProps<
+  D extends React.ElementType = TabTypeMap['defaultComponent'],
+  P = {}
+> = OverrideProps<TabTypeMap<P, D>, D>;
 
 export default Tab;

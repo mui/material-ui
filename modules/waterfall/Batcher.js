@@ -1,4 +1,4 @@
-// Inspired by http://caolan.github.io/async/docs.html#cargo
+// Inspired by https://caolan.github.io/async/v3/docs.html#cargo
 // The main difference is that we have a timeout.
 class Batcher {
   pendingEntries = [];

@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { isFilled, isAdornedStart } from '../InputBase/utils';
 import withStyles from '../styles/withStyles';
-import { capitalize } from '../utils/helpers';
-import { isMuiElement } from '../utils/reactHelpers';
+import capitalize from '../utils/capitalize';
+import isMuiElement from '../utils/isMuiElement';
 import FormControlContext from './FormControlContext';
 
 export const styles = {
@@ -38,36 +38,71 @@ export const styles = {
 
 /**
  * Provides context such as filled/focused/error/required for form inputs.
- * Relying on the context provides high flexibilty and ensures that the state always stays
+ * Relying on the context provides high flexibility and ensures that the state always stays
  * consistent across the children of the `FormControl`.
  * This context is used by the following components:
+ *
  *  - FormLabel
  *  - FormHelperText
  *  - Input
  *  - InputLabel
  *
- * ⚠️ Only one input can be used within a FormControl.
+ * You can find one composition example below and more going to [the demos](/components/text-fields/#components).
+ *
+ * ```jsx
+ * <FormControl>
+ *   <InputLabel htmlFor="my-input">Email address</InputLabel>
+ *   <Input id="my-input" aria-describedby="my-helper-text" />
+ *   <FormHelperText id="my-helper-text">We'll never share your email.</FormHelperText>
+ * </FormControl>
+ * ```
+ *
+ * ⚠️Only one input can be used within a FormControl.
  */
-class FormControl extends React.Component {
-  static getDerivedStateFromProps(props, state) {
-    if (props.disabled && state.focused) {
-      return { focused: false };
-    }
-    return null;
-  }
+const FormControl = React.forwardRef(function FormControl(props, ref) {
+  const {
+    children,
+    classes,
+    className,
+    color = 'primary',
+    component: Component = 'div',
+    disabled = false,
+    error = false,
+    fullWidth = false,
+    hiddenLabel = false,
+    margin = 'none',
+    required = false,
+    size,
+    variant = 'standard',
+    ...other
+  } = props;
 
-  constructor(props) {
-    super();
-
-    this.state = {
-      adornedStart: false,
-      filled: false,
-      focused: false,
-    };
-
+  const [adornedStart, setAdornedStart] = React.useState(() => {
     // We need to iterate through the children and find the Input in order
-    // to fully support server side rendering.
-    const { children } = props;
+    // to fully support server-side rendering.
+    let initialAdornedStart = false;
+
+    if (children) {
+      React.Children.forEach(children, child => {
+        if (!isMuiElement(child, ['Input', 'Select'])) {
+          return;
+        }
+
+        const input = isMuiElement(child, ['Select']) ? child.props.input : child;
+
+        if (input && isAdornedStart(input.props)) {
+          initialAdornedStart = true;
+        }
+      });
+    }
+    return initialAdornedStart;
+  });
+
+  const [filled, setFilled] = React.useState(() => {
+    // We need to iterate through the children and find the Input in order
+    // to fully support server-side rendering.
+    let initialFilled = false;
+
     if (children) {
       React.Children.forEach(children, child => {
         if (!isMuiElement(child, ['Input', 'Select'])) {
@@ -75,85 +110,93 @@ class FormControl extends React.Component {
         }
 
         if (isFilled(child.props, true)) {
-          this.state.filled = true;
-        }
-
-        const input = isMuiElement(child, ['Select']) ? child.props.input : child;
-
-        if (input && isAdornedStart(input.props)) {
-          this.state.adornedStart = true;
+          initialFilled = true;
         }
       });
     }
+
+    return initialFilled;
+  });
+
+  const [focused, setFocused] = React.useState(false);
+
+  if (disabled && focused) {
+    setFocused(false);
   }
 
-  handleFocus = () => {
-    this.setState(state => (!state.focused ? { focused: true } : null));
-  };
+  let registerEffect;
+  if (process.env.NODE_ENV !== 'production') {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const registeredInput = React.useRef(false);
+    registerEffect = () => {
+      if (registeredInput.current) {
+        console.error(
+          [
+            'Material-UI: there are multiple InputBase components inside a FormControl.',
+            'This is not supported. It might cause infinite rendering loops.',
+            'Only use one InputBase.',
+          ].join('\n'),
+        );
+      }
 
-  handleBlur = () => {
-    this.setState(state => (state.focused ? { focused: false } : null));
-  };
-
-  handleDirty = () => {
-    if (!this.state.filled) {
-      this.setState({ filled: true });
-    }
-  };
-
-  handleClean = () => {
-    if (this.state.filled) {
-      this.setState({ filled: false });
-    }
-  };
-
-  render() {
-    const {
-      classes,
-      className,
-      component: Component,
-      disabled,
-      error,
-      fullWidth,
-      margin,
-      required,
-      variant,
-      ...other
-    } = this.props;
-    const { adornedStart, filled, focused } = this.state;
-
-    const childContext = {
-      adornedStart,
-      disabled,
-      error,
-      filled,
-      focused,
-      margin,
-      onBlur: this.handleBlur,
-      onEmpty: this.handleClean,
-      onFilled: this.handleDirty,
-      onFocus: this.handleFocus,
-      required,
-      variant,
+      registeredInput.current = true;
+      return () => {
+        registeredInput.current = false;
+      };
     };
-
-    return (
-      <FormControlContext.Provider value={childContext}>
-        <Component
-          className={classNames(
-            classes.root,
-            {
-              [classes[`margin${capitalize(margin)}`]]: margin !== 'none',
-              [classes.fullWidth]: fullWidth,
-            },
-            className,
-          )}
-          {...other}
-        />
-      </FormControlContext.Provider>
-    );
   }
-}
+
+  const onFilled = React.useCallback(() => {
+    setFilled(true);
+  }, []);
+
+  const onEmpty = React.useCallback(() => {
+    setFilled(false);
+  }, []);
+
+  const childContext = {
+    adornedStart,
+    setAdornedStart,
+    color,
+    disabled,
+    error,
+    filled,
+    focused,
+    fullWidth,
+    hiddenLabel,
+    margin: (size === 'small' ? 'dense' : undefined) || margin,
+    onBlur: () => {
+      setFocused(false);
+    },
+    onEmpty,
+    onFilled,
+    onFocus: () => {
+      setFocused(true);
+    },
+    registerEffect,
+    required,
+    variant,
+  };
+
+  return (
+    <FormControlContext.Provider value={childContext}>
+      <Component
+        className={clsx(
+          classes.root,
+          {
+            [classes[`margin${capitalize(margin)}`]]: margin !== 'none',
+            [classes.fullWidth]: fullWidth,
+          },
+          className,
+        )}
+        ref={ref}
+        {...other}
+      >
+        {children}
+      </Component>
+    </FormControlContext.Provider>
+  );
+});
 
 FormControl.propTypes = {
   /**
@@ -162,7 +205,7 @@ FormControl.propTypes = {
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -170,10 +213,14 @@ FormControl.propTypes = {
    */
   className: PropTypes.string,
   /**
+   * The color of the component. It supports those theme colors that make sense for this component.
+   */
+  color: PropTypes.oneOf(['primary', 'secondary']),
+  /**
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  component: PropTypes.elementType,
   /**
    * If `true`, the label, input and helper text should be displayed in a disabled state.
    */
@@ -187,6 +234,12 @@ FormControl.propTypes = {
    */
   fullWidth: PropTypes.bool,
   /**
+   * If `true`, the label will be hidden.
+   * This is used to increase density for a `FilledInput`.
+   * Be sure to add `aria-label` to the `input` element.
+   */
+  hiddenLabel: PropTypes.bool,
+  /**
    * If `dense` or `normal`, will adjust vertical spacing of this and contained components.
    */
   margin: PropTypes.oneOf(['none', 'dense', 'normal']),
@@ -195,19 +248,13 @@ FormControl.propTypes = {
    */
   required: PropTypes.bool,
   /**
+   * The size of the text field.
+   */
+  size: PropTypes.oneOf(['small', 'medium']),
+  /**
    * The variant to use.
    */
   variant: PropTypes.oneOf(['standard', 'outlined', 'filled']),
-};
-
-FormControl.defaultProps = {
-  component: 'div',
-  disabled: false,
-  error: false,
-  fullWidth: false,
-  margin: 'none',
-  required: false,
-  variant: 'standard',
 };
 
 export default withStyles(styles, { name: 'MuiFormControl' })(FormControl);

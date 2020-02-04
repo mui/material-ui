@@ -1,16 +1,21 @@
 import * as React from 'react';
-import { StandardProps } from '..';
-import { ButtonBaseProps } from '../ButtonBase';
+import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { IconButtonProps } from '../IconButton';
+import { OverrideProps } from '../OverridableComponent';
 
-export interface ExpansionPanelSummaryProps
-  extends StandardProps<ButtonBaseProps, ExpansionPanelSummaryClassKey> {
-  disabled?: boolean;
-  expanded?: boolean;
-  expandIcon?: React.ReactNode;
-  IconButtonProps?: Partial<IconButtonProps>;
-  onChange?: React.ReactEventHandler<{}>;
-}
+export type ExpansionPanelSummaryTypeMap<
+  P = {},
+  D extends React.ElementType = 'div'
+> = ExtendButtonBaseTypeMap<{
+  props: P & {
+    expandIcon?: React.ReactNode;
+    IconButtonProps?: Partial<IconButtonProps>;
+  };
+  defaultComponent: D;
+  classKey: ExpansionPanelSummaryClassKey;
+}>;
+
+declare const ExpansionPanelSummary: ExtendButtonBase<ExpansionPanelSummaryTypeMap>;
 
 export type ExpansionPanelSummaryClassKey =
   | 'root'
@@ -20,6 +25,9 @@ export type ExpansionPanelSummaryClassKey =
   | 'content'
   | 'expandIcon';
 
-declare const ExpansionPanelSummary: React.ComponentType<ExpansionPanelSummaryProps>;
+export type ExpansionPanelSummaryProps<
+  D extends React.ElementType = ExpansionPanelSummaryTypeMap['defaultComponent'],
+  P = {}
+> = OverrideProps<ExpansionPanelSummaryTypeMap<P, D>, D>;
 
 export default ExpansionPanelSummary;

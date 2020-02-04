@@ -1,6 +1,14 @@
 files:
-  - source: /docs/src/pages/**/*.md
+  - source: /docs/src/**/*.md
     ignore:
       - /**/%file_name%-%two_letters_code%.md
-      - /docs/src/pages/getting-started/page-layout-examples/**/*
+      - /docs/src/pages/getting-started/templates/*/**/*
+      - /docs/src/pages/premium-themes/*/**/*
+      - /docs/src/pages/discover-more/backers/*
+      - /docs/src/pages/discover-more/roadmap/*
+      - /docs/src/pages/company/**/*
+    translation: /%original_path%/%file_name%-%two_letters_code%.%file_extension%
+  - source: /docs/translations/*.json
+    ignore:
+      - /**/%file_name%-%two_letters_code%.json
     translation: /%original_path%/%file_name%-%two_letters_code%.%file_extension%

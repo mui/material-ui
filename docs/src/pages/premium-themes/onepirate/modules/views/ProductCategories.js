@@ -2,16 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import ButtonBase from '@material-ui/core/ButtonBase';
-import LayoutBody from '../components/LayoutBody';
+import Container from '@material-ui/core/Container';
 import Typography from '../components/Typography';
 
 const styles = theme => ({
   root: {
-    marginTop: theme.spacing.unit * 8,
-    marginBottom: theme.spacing.unit * 4,
+    marginTop: theme.spacing(8),
+    marginBottom: theme.spacing(4),
   },
   images: {
-    marginTop: theme.spacing.unit * 8,
+    marginTop: theme.spacing(8),
     display: 'flex',
     flexWrap: 'wrap',
   },
@@ -70,7 +70,7 @@ const styles = theme => ({
   },
   imageTitle: {
     position: 'relative',
-    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 4}px ${theme.spacing.unit + 6}px`,
+    padding: `${theme.spacing(2)}px ${theme.spacing(4)}px 14px`,
   },
   imageMarked: {
     height: 3,
@@ -144,7 +144,7 @@ function ProductCategories(props) {
   ];
 
   return (
-    <LayoutBody className={classes.root} component="section" width="large">
+    <Container className={classes.root} component="section">
       <Typography variant="h4" marked="center" align="center" component="h2">
         For all tastes and all desires
       </Typography>
@@ -178,7 +178,7 @@ function ProductCategories(props) {
           </ButtonBase>
         ))}
       </div>
-    </LayoutBody>
+    </Container>
   );
 }
 

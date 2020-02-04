@@ -8,14 +8,14 @@ export interface StepProps
   alternativeLabel?: boolean;
   children?: React.ReactNode;
   completed?: boolean;
-  connector?: React.ReactElement<any>;
+  connector?: React.ReactElement;
   disabled?: boolean;
   index?: number;
   last?: boolean;
   orientation?: Orientation;
 }
 
-export type StepClasskey = 'root' | 'horizontal' | 'vertical' | 'alternativeLabel';
+export type StepClasskey = 'root' | 'horizontal' | 'vertical' | 'alternativeLabel' | 'completed';
 
 declare const Step: React.ComponentType<StepProps>;
 

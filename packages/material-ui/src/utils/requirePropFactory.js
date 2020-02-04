@@ -1,5 +1,4 @@
-function requirePropFactory(componentNameInError) {
-  /* istanbul ignore if */
+export default function requirePropFactory(componentNameInError) {
   if (process.env.NODE_ENV === 'production') {
     return () => null;
   }
@@ -9,7 +8,7 @@ function requirePropFactory(componentNameInError) {
 
     if (typeof props[propName] !== 'undefined' && !props[requiredProp]) {
       return new Error(
-        `The property \`${propFullNameSafe}\` of ` +
+        `The prop \`${propFullNameSafe}\` of ` +
           `\`${componentNameInError}\` must be used on \`${requiredProp}\`.`,
       );
     }
@@ -18,5 +17,3 @@ function requirePropFactory(componentNameInError) {
   };
   return requireProp;
 }
-
-export default requirePropFactory;

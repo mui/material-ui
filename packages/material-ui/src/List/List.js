@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import ListContext from './ListContext';
 
@@ -17,49 +17,49 @@ export const styles = {
     paddingTop: 8,
     paddingBottom: 8,
   },
-  /* Styles applied to the root element if `dense={true}` & `disablePadding={false}`. */
-  dense: {
-    paddingTop: 4,
-    paddingBottom: 4,
-  },
+  /* Styles applied to the root element if dense. */
+  dense: {},
   /* Styles applied to the root element if a `subheader` is provided. */
   subheader: {
     paddingTop: 0,
   },
 };
 
-function List(props) {
+const List = React.forwardRef(function List(props, ref) {
   const {
     children,
     classes,
     className,
-    component: Component,
-    dense,
-    disablePadding,
+    component: Component = 'ul',
+    dense = false,
+    disablePadding = false,
     subheader,
     ...other
   } = props;
 
+  const context = React.useMemo(() => ({ dense }), [dense]);
+
   return (
-    <Component
-      className={classNames(
-        classes.root,
-        {
-          [classes.dense]: dense && !disablePadding,
-          [classes.padding]: !disablePadding,
-          [classes.subheader]: subheader,
-        },
-        className,
-      )}
-      {...other}
-    >
-      <ListContext.Provider value={{ dense }}>
+    <ListContext.Provider value={context}>
+      <Component
+        className={clsx(
+          classes.root,
+          {
+            [classes.dense]: dense,
+            [classes.padding]: !disablePadding,
+            [classes.subheader]: subheader,
+          },
+          className,
+        )}
+        ref={ref}
+        {...other}
+      >
         {subheader}
         {children}
-      </ListContext.Provider>
-    </Component>
+      </Component>
+    </ListContext.Provider>
   );
-}
+});
 
 List.propTypes = {
   /**
@@ -68,7 +68,7 @@ List.propTypes = {
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -79,11 +79,11 @@ List.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  component: PropTypes.elementType,
   /**
    * If `true`, compact vertical padding designed for keyboard and mouse input will be used for
-   * the list and list items. The property is available to descendant components as the
-   * `dense` context.
+   * the list and list items.
+   * The prop is available to descendant components as the `dense` context.
    */
   dense: PropTypes.bool,
   /**
@@ -94,12 +94,6 @@ List.propTypes = {
    * The content of the subheader, normally `ListSubheader`.
    */
   subheader: PropTypes.node,
-};
-
-List.defaultProps = {
-  component: 'ul',
-  dense: false,
-  disablePadding: false,
 };
 
 export default withStyles(styles, { name: 'MuiList' })(List);

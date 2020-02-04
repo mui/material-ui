@@ -1,7 +1,7 @@
 import React from 'react';
+import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import warning from 'warning';
+import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 
 export const styles = {
@@ -16,22 +16,23 @@ export const styles = {
   },
 };
 
-function GridList(props) {
+const GridList = React.forwardRef(function GridList(props, ref) {
   const {
-    cellHeight,
+    cellHeight = 180,
     children,
     classes,
-    className: classNameProp,
-    cols,
-    component: Component,
-    spacing,
+    className,
+    cols = 2,
+    component: Component = 'ul',
+    spacing = 4,
     style,
     ...other
   } = props;
 
   return (
     <Component
-      className={classNames(classes.root, classNameProp)}
+      className={clsx(classes.root, className)}
+      ref={ref}
       style={{ margin: -spacing / 2, ...style }}
       {...other}
     >
@@ -40,13 +41,16 @@ function GridList(props) {
           return null;
         }
 
-        warning(
-          child.type !== React.Fragment,
-          [
-            "Material-UI: the GridList component doesn't accept a Fragment as a child.",
-            'Consider providing an array instead.',
-          ].join('\n'),
-        );
+        if (process.env.NODE_ENV !== 'production') {
+          if (isFragment(child)) {
+            console.error(
+              [
+                "Material-UI: the GridList component doesn't accept a Fragment as a child.",
+                'Consider providing an array instead.',
+              ].join('\n'),
+            );
+          }
+        }
 
         const childCols = child.props.cols || 1;
         const childRows = child.props.rows || 1;
@@ -64,7 +68,7 @@ function GridList(props) {
       })}
     </Component>
   );
-}
+});
 
 GridList.propTypes = {
   /**
@@ -78,7 +82,7 @@ GridList.propTypes = {
   children: PropTypes.node.isRequired,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -93,7 +97,7 @@ GridList.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  component: PropTypes.elementType,
   /**
    * Number of px for the spacing between tiles.
    */
@@ -102,13 +106,6 @@ GridList.propTypes = {
    * @ignore
    */
   style: PropTypes.object,
-};
-
-GridList.defaultProps = {
-  cellHeight: 180,
-  cols: 2,
-  component: 'ul',
-  spacing: 4,
 };
 
 export default withStyles(styles, { name: 'MuiGridList' })(GridList);

@@ -1,16 +1,23 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
-export interface ListProps
-  extends StandardProps<React.HTMLAttributes<HTMLUListElement>, ListClassKey> {
-  component?: React.ReactType<ListProps>;
-  dense?: boolean;
-  disablePadding?: boolean;
-  subheader?: React.ReactElement<any>;
+export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
+  props: P & {
+    dense?: boolean;
+    disablePadding?: boolean;
+    subheader?: React.ReactElement;
+  };
+  defaultComponent: D;
+  classKey: ListClassKey;
 }
+
+declare const List: OverridableComponent<ListTypeMap>;
 
 export type ListClassKey = 'root' | 'padding' | 'dense' | 'subheader';
 
-declare const List: React.ComponentType<ListProps>;
+export type ListProps<
+  D extends React.ElementType = ListTypeMap['defaultComponent'],
+  P = {}
+> = OverrideProps<ListTypeMap<P, D>, D>;
 
 export default List;

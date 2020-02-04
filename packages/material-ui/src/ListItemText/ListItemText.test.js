@@ -1,6 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { getClasses, createMount, findOutermostIntrinsic } from '@material-ui/core/test-utils';
+import describeConformance from '../test-utils/describeConformance';
 import Typography from '../Typography';
 import ListItemText from './ListItemText';
 
@@ -9,7 +10,7 @@ describe('<ListItemText />', () => {
   let classes;
 
   before(() => {
-    mount = createMount();
+    mount = createMount({ strict: true });
     classes = getClasses(<ListItemText />);
   });
 
@@ -17,19 +18,13 @@ describe('<ListItemText />', () => {
     mount.cleanUp();
   });
 
-  it('should render a div', () => {
-    const wrapper = mount(<ListItemText />);
-    const listItemText = findOutermostIntrinsic(wrapper);
-    assert.strictEqual(listItemText.name(), 'div');
-    assert.strictEqual(listItemText.hasClass(classes.root), true);
-  });
-
-  it('should render with the user and root classes', () => {
-    const wrapper = mount(<ListItemText className="woofListItemText" />);
-    const listItemText = findOutermostIntrinsic(wrapper);
-    assert.strictEqual(listItemText.hasClass('woofListItemText'), true);
-    assert.strictEqual(listItemText.hasClass(classes.root), true);
-  });
+  describeConformance(<ListItemText />, () => ({
+    classes,
+    inheritComponent: 'div',
+    mount,
+    refInstanceof: window.HTMLDivElement,
+    skip: ['componentProp'],
+  }));
 
   it('should render with inset class', () => {
     const wrapper = mount(<ListItemText inset />);
@@ -48,12 +43,14 @@ describe('<ListItemText />', () => {
 
   describe('prop: primary', () => {
     it('should render primary text', () => {
-      const wrapper = mount(<ListItemText primary="This is the primary text" />);
+      const ref = React.createRef();
+      const text = () => ref.current.textContent;
+      const wrapper = mount(<ListItemText primary="This is the primary text" ref={ref} />);
       const listItemText = findOutermostIntrinsic(wrapper);
       const typography = listItemText.find(Typography);
       assert.strictEqual(typography.exists(), true);
-      assert.strictEqual(typography.props().variant, 'subheading');
-      assert.strictEqual(wrapper.text(), 'This is the primary text');
+      assert.strictEqual(typography.props().variant, 'body1');
+      assert.strictEqual(text(), 'This is the primary text');
     });
 
     it('should use the primary node', () => {
@@ -109,7 +106,7 @@ describe('<ListItemText />', () => {
       assert.strictEqual(texts.length, 2);
 
       const primaryText = texts.first();
-      assert.strictEqual(primaryText.props().variant, 'subheading');
+      assert.strictEqual(primaryText.props().variant, 'body1');
       assert.strictEqual(primaryText.text(), 'This is the primary text');
 
       const secondaryText = texts.last();

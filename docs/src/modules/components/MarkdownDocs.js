@@ -1,112 +1,205 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import warning from 'warning';
+import clsx from 'clsx';
+import { useSelector } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import Portal from '@material-ui/core/Portal';
-import MarkdownElement from '@material-ui/docs/MarkdownElement';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import Button from '@material-ui/core/Button';
+import Divider from '@material-ui/core/Divider';
 import Head from 'docs/src/modules/components/Head';
-import AppContent from 'docs/src/modules/components/AppContent';
-import Demo from 'docs/src/modules/components/Demo';
+import useMarkdownDocs from 'docs/src/modules/components/useMarkdownDocs';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import AppTableOfContents from 'docs/src/modules/components/AppTableOfContents';
 import Ad from 'docs/src/modules/components/Ad';
 import EditPage from 'docs/src/modules/components/EditPage';
-import MarkdownDocsContents from 'docs/src/modules/components/MarkdownDocsContents';
+import AppContainer from 'docs/src/modules/components/AppContainer';
+import PageContext from 'docs/src/modules/components/PageContext';
 import { getHeaders, getTitle, getDescription } from 'docs/src/modules/utils/parseMarkdown';
+import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
+import Link from 'docs/src/modules/components/Link';
 
 const styles = theme => ({
   root: {
-    marginBottom: 100,
+    width: '100%',
   },
-  header: {
+  container: {
+    position: 'relative',
+  },
+  actions: {
+    position: 'absolute',
+    right: 16,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-end',
   },
-  markdownElement: {
-    marginTop: theme.spacing.unit * 2,
-    marginBottom: theme.spacing.unit * 2,
-    padding: `0 ${theme.spacing.unit}px`,
+  ad: {
+    '& .description': {
+      marginBottom: 196,
+    },
+    '& .description.ad': {
+      marginBottom: 40,
+    },
+  },
+  toc: {
+    [theme.breakpoints.up('sm')]: {
+      width: 'calc(100% - 175px)',
+    },
+    [theme.breakpoints.up('lg')]: {
+      width: 'calc(100% - 175px - 240px)',
+    },
+  },
+  footer: {
+    marginTop: theme.spacing(12),
+  },
+  pagination: {
+    margin: theme.spacing(3, 0, 4),
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
+  pageLinkButton: {
+    textTransform: 'none',
+    fontWeight: theme.typography.fontWeightRegular,
   },
 });
 
-const demoRegexp = /^"demo": "(.*)"/;
-const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/blob/master';
+function flattenPages(pages, current = []) {
+  return pages.reduce((items, item) => {
+    if (item.children && item.children.length > 1) {
+      items = flattenPages(item.children, items);
+    } else {
+      items.push(item.children && item.children.length === 1 ? item.children[0] : item);
+    }
+    return items;
+  }, current);
+}
+
+// To replace with .findIndex() once we stop IE 11 support.
+function findIndex(array, comp) {
+  for (let i = 0; i < array.length; i += 1) {
+    if (comp(array[i])) {
+      return i;
+    }
+  }
+
+  return -1;
+}
 
 function MarkdownDocs(props) {
-  const { classes, demos, disableAd, markdown, markdownLocation: markdownLocationProp } = props;
-  const headers = getHeaders(markdown);
+  const {
+    classes,
+    disableAd = false,
+    disableToc = false,
+    markdown: markdownProp,
+    markdownLocation: markdownLocationProp,
+    req,
+    reqPrefix,
+    reqSource,
+  } = props;
+
+  const t = useSelector(state => state.options.t);
+
+  const markdownDocs = useMarkdownDocs({
+    markdown: markdownProp,
+    markdownLocation: markdownLocationProp,
+    req,
+    reqPrefix,
+    reqSource,
+  });
+
+  const headers = getHeaders(markdownDocs.markdown);
+
+  const { activePage, pages } = React.useContext(PageContext);
+  const pageList = flattenPages(pages);
+  const currentPageNum = findIndex(pageList, page => page.pathname === activePage.pathname);
+  const currentPage = pageList[currentPageNum];
+  const prevPage = pageList[currentPageNum - 1];
+  const nextPage = pageList[currentPageNum + 1];
 
   return (
-    <MarkdownDocsContents markdown={markdown} markdownLocation={markdownLocationProp}>
-      {({ contents, markdownLocation }) => (
-        <AppFrame>
-          <Head
-            title={`${headers.title || getTitle(markdown)} - Material-UI`}
-            description={headers.description || getDescription(markdown)}
-          />
-          <AppTableOfContents contents={contents} />
-          {disableAd ? null : (
-            <Portal container={() => document.querySelector('.description')}>
-              <Ad />
-            </Portal>
-          )}
-          <AppContent className={classes.root}>
-            <div className={classes.header}>
-              <EditPage
-                markdownLocation={markdownLocation}
-                sourceCodeRootUrl={SOURCE_CODE_ROOT_URL}
-              />
-            </div>
-            {contents.map((content, index) => {
-              const match = content.match(demoRegexp);
-
-              if (match && demos) {
-                let demoOptions;
-                try {
-                  demoOptions = JSON.parse(`{${content}}`);
-                } catch (err) {
-                  console.error(err); // eslint-disable-line no-console
-                  return null;
-                }
-
-                const name = demoOptions.demo;
-                warning(demos && demos[name], `Missing demo: ${name}.`);
-                return (
-                  <Demo
-                    key={content}
-                    js={demos[name].js}
-                    raw={demos[name].raw}
-                    index={index}
-                    demoOptions={demoOptions}
-                    githubLocation={`${SOURCE_CODE_ROOT_URL}/docs/src/${name}`}
-                  />
-                );
-              }
-
-              return (
-                <MarkdownElement className={classes.markdownElement} key={content} text={content} />
-              );
-            })}
-          </AppContent>
-        </AppFrame>
+    <AppFrame>
+      <Head
+        title={`${headers.title || getTitle(markdownDocs.markdown)} - Material-UI`}
+        description={headers.description || getDescription(markdownDocs.markdown)}
+      />
+      {disableAd ? null : (
+        <Portal
+          container={() => {
+            const container = document.querySelector('.description');
+            container.classList.add('ad');
+            return container;
+          }}
+        >
+          <Ad />
+        </Portal>
       )}
-    </MarkdownDocsContents>
+      <div
+        className={clsx(classes.root, {
+          [classes.ad]: !disableAd,
+          [classes.toc]: !disableToc,
+        })}
+      >
+        <AppContainer className={classes.container}>
+          <div className={classes.actions}>
+            <EditPage markdownLocation={markdownDocs.location} />
+          </div>
+          {markdownDocs.element}
+          <footer className={classes.footer}>
+            {!currentPage ||
+            currentPage.displayNav === false ||
+            (nextPage.displayNav === false && !prevPage) ? null : (
+              <React.Fragment>
+                <Divider />
+                <div className={classes.pagination}>
+                  {prevPage ? (
+                    <Button
+                      component={Link}
+                      naked
+                      href={prevPage.pathname}
+                      size="large"
+                      className={classes.pageLinkButton}
+                      startIcon={<ChevronLeftIcon />}
+                    >
+                      {pageToTitleI18n(prevPage, t)}
+                    </Button>
+                  ) : (
+                    <div />
+                  )}
+                  {nextPage.displayNav === false ? null : (
+                    <Button
+                      component={Link}
+                      naked
+                      href={nextPage.pathname}
+                      size="large"
+                      className={classes.pageLinkButton}
+                      endIcon={<ChevronRightIcon />}
+                    >
+                      {pageToTitleI18n(nextPage, t)}
+                    </Button>
+                  )}
+                </div>
+              </React.Fragment>
+            )}
+          </footer>
+        </AppContainer>
+      </div>
+      {disableToc ? null : <AppTableOfContents contents={markdownDocs.contents} />}
+    </AppFrame>
   );
 }
 
 MarkdownDocs.propTypes = {
   classes: PropTypes.object.isRequired,
-  demos: PropTypes.object,
   disableAd: PropTypes.bool,
-  markdown: PropTypes.string.isRequired,
+  disableToc: PropTypes.bool,
+  markdown: PropTypes.string,
   // You can define the direction location of the markdown file.
   // Otherwise, we try to determine it with an heuristic.
   markdownLocation: PropTypes.string,
-};
-
-MarkdownDocs.defaultProps = {
-  disableAd: false,
+  req: PropTypes.func,
+  reqPrefix: PropTypes.string,
+  reqSource: PropTypes.func,
 };
 
 export default withStyles(styles)(MarkdownDocs);

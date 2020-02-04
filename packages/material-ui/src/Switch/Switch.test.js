@@ -1,56 +1,137 @@
 import React from 'react';
-import { assert } from 'chai';
-import classNames from 'classnames';
-import { createShallow, getClasses } from '@material-ui/core/test-utils';
-import SwitchBase from '../internal/SwitchBase';
+import { expect } from 'chai';
+import { createMount, getClasses } from '@material-ui/core/test-utils';
+import describeConformance from '../test-utils/describeConformance';
+import { createClientRender, fireEvent } from 'test/utils/createClientRender';
+import FormControl from '../FormControl';
 import Switch from './Switch';
 
 describe('<Switch />', () => {
-  let shallow;
+  let mount;
   let classes;
+  const render = createClientRender();
 
   before(() => {
-    shallow = createShallow({ untilSelector: 'span' });
+    mount = createMount({ strict: true });
     classes = getClasses(<Switch />);
   });
 
+  describeConformance(<Switch />, () => ({
+    mount,
+    only: ['refForwarding'],
+    refInstanceof: window.HTMLSpanElement,
+    after: () => mount.cleanUp(),
+  }));
+
+  /* TODO Switch violates root component
+  describeConformance(<Switch />, () => ({
+    classes,
+    inheritComponent: IconButton,
+    mount,
+    refInstanceof: window.HTMLSpanElement,
+    skip: ['componentProp'],
+  })); */
+
   describe('styleSheet', () => {
     it('should have the classes required for SwitchBase', () => {
-      assert.strictEqual(typeof classes.root, 'string');
-      assert.strictEqual(typeof classes.checked, 'string');
-      assert.strictEqual(typeof classes.disabled, 'string');
+      expect(classes).to.include.all.keys(['root', 'checked', 'disabled']);
     });
   });
 
-  describe('default Switch export', () => {
-    let wrapper;
+  specify('should render an .thumb element inside the .switchBase element', () => {
+    const { container } = render(
+      <Switch classes={{ thumb: 'thumb', switchBase: 'switch-base' }} />,
+    );
 
-    beforeEach(() => {
-      wrapper = shallow(<Switch className="foo" />);
+    expect(container.querySelector('.switch-base .thumb')).to.be.ok;
+  });
+
+  it('should render the track as the 2nd child', () => {
+    const {
+      container: { firstChild: root },
+    } = render(<Switch />);
+
+    expect(root.childNodes[1]).to.have.property('tagName', 'SPAN');
+    expect(root.childNodes[1]).to.have.class(classes.track);
+  });
+
+  it('renders a `role="checkbox"` with the Unechecked state by default', () => {
+    const { getByRole } = render(<Switch />);
+
+    expect(getByRole('checkbox')).to.have.property('checked', false);
+  });
+
+  it('renders a checkbox with the Checked state when checked', () => {
+    const { getByRole } = render(<Switch defaultChecked />);
+
+    expect(getByRole('checkbox')).to.have.property('checked', true);
+  });
+
+  specify('the switch can be disabled', () => {
+    const { getByRole } = render(<Switch disabled />);
+
+    expect(getByRole('checkbox')).to.have.property('disabled', true);
+  });
+
+  specify('the switch can be readonly', () => {
+    const { getByRole } = render(<Switch readOnly />);
+
+    expect(getByRole('checkbox')).to.have.property('readOnly', true);
+  });
+
+  specify('the Checked state changes after change events', () => {
+    const { getByRole } = render(<Switch defaultChecked />);
+
+    // how a user would trigger it
+    getByRole('checkbox').click();
+    fireEvent.change(getByRole('checkbox'), { target: { checked: '' } });
+
+    expect(getByRole('checkbox')).to.have.property('checked', false);
+  });
+
+  describe('with FormControl', () => {
+    describe('enabled', () => {
+      it('should not have the disabled class', () => {
+        const { getByRole } = render(
+          <FormControl>
+            <Switch />
+          </FormControl>,
+        );
+
+        expect(getByRole('checkbox')).not.to.have.attribute('disabled');
+      });
+
+      it('should be overridden by props', () => {
+        const { getByRole } = render(
+          <FormControl>
+            <Switch disabled />
+          </FormControl>,
+        );
+
+        expect(getByRole('checkbox')).to.have.attribute('disabled');
+      });
     });
 
-    it('should render a span with the root and user classes', () => {
-      assert.strictEqual(wrapper.name(), 'span');
-      assert.strictEqual(wrapper.hasClass(classes.root), true);
-      assert.strictEqual(wrapper.hasClass('foo'), true);
-    });
+    describe('disabled', () => {
+      it('should have the disabled class', () => {
+        const { getByRole } = render(
+          <FormControl disabled>
+            <Switch />
+          </FormControl>,
+        );
 
-    it('should render SwitchBase with a custom span icon with the icon class', () => {
-      const switchBase = wrapper.childAt(0);
-      assert.strictEqual(switchBase.type(), SwitchBase);
-      assert.strictEqual(switchBase.props().icon.type, 'span');
-      assert.strictEqual(switchBase.props().icon.props.className, classes.icon);
-      assert.strictEqual(switchBase.props().checkedIcon.type, 'span');
-      assert.strictEqual(
-        switchBase.props().checkedIcon.props.className,
-        classNames(classes.icon, classes.iconChecked),
-      );
-    });
+        expect(getByRole('checkbox')).to.have.attribute('disabled');
+      });
 
-    it('should render the bar as the 2nd child', () => {
-      const bar = wrapper.childAt(1);
-      assert.strictEqual(bar.name(), 'span');
-      assert.strictEqual(bar.hasClass(classes.bar), true);
+      it('should be overridden by props', () => {
+        const { getByRole } = render(
+          <FormControl disabled>
+            <Switch disabled={false} />
+          </FormControl>,
+        );
+
+        expect(getByRole('checkbox')).not.to.have.attribute('disabled');
+      });
     });
   });
 });

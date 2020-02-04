@@ -7,6 +7,7 @@ import Grid from '@material-ui/core/Grid';
 import HelpIcon from '@material-ui/icons/Help';
 import Hidden from '@material-ui/core/Hidden';
 import IconButton from '@material-ui/core/IconButton';
+import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import Tab from '@material-ui/core/Tab';
@@ -23,7 +24,7 @@ const styles = theme => ({
     zIndex: 0,
   },
   menuButton: {
-    marginLeft: -theme.spacing.unit,
+    marginLeft: -theme.spacing(1),
   },
   iconButtonAvatar: {
     padding: 4,
@@ -47,12 +48,12 @@ function Header(props) {
     <React.Fragment>
       <AppBar color="primary" position="sticky" elevation={0}>
         <Toolbar>
-          <Grid container spacing={8} alignItems="center">
+          <Grid container spacing={1} alignItems="center">
             <Hidden smUp>
               <Grid item>
                 <IconButton
                   color="inherit"
-                  aria-label="Open drawer"
+                  aria-label="open drawer"
                   onClick={onDrawerToggle}
                   className={classes.menuButton}
                 >
@@ -62,12 +63,12 @@ function Header(props) {
             </Hidden>
             <Grid item xs />
             <Grid item>
-              <Typography className={classes.link} component="a" href="#">
+              <Link className={classes.link} href="#" variant="body2">
                 Go to docs
-              </Typography>
+              </Link>
             </Grid>
             <Grid item>
-              <Tooltip title="Alerts • No alters">
+              <Tooltip title="Alerts • No alerts">
                 <IconButton color="inherit">
                   <NotificationsIcon />
                 </IconButton>
@@ -75,7 +76,7 @@ function Header(props) {
             </Grid>
             <Grid item>
               <IconButton color="inherit" className={classes.iconButtonAvatar}>
-                <Avatar className={classes.avatar} src="/static/images/avatar/1.jpg" />
+                <Avatar src="/static/images/avatar/1.jpg" alt="My Avatar" />
               </IconButton>
             </Grid>
           </Grid>
@@ -89,9 +90,9 @@ function Header(props) {
         elevation={0}
       >
         <Toolbar>
-          <Grid container alignItems="center" spacing={8}>
+          <Grid container alignItems="center" spacing={1}>
             <Grid item xs>
-              <Typography color="inherit" variant="h5">
+              <Typography color="inherit" variant="h5" component="h1">
                 Authentication
               </Typography>
             </Grid>

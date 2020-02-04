@@ -1,0 +1,18 @@
+{
+  "name": "gatsby-theme",
+  "version": "4.0.0",
+  "private": true,
+  "dependencies": {
+    "@material-ui/core": "latest",
+    "gatsby": "latest",
+    "gatsby-theme-material-ui": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-helmet": "latest"
+  },
+  "scripts": {
+    "develop": "gatsby develop",
+    "build": "gatsby build",
+    "serve": "gatsby serve"
+  }
+}

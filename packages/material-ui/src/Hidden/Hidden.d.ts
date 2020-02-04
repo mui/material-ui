@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { StandardProps } from '..';
 import { Breakpoint } from '../styles/createBreakpoints';
 
-export interface HiddenProps extends StandardProps<{}, never> {
+export interface HiddenProps {
   implementation?: 'js' | 'css';
   initialWidth?: Breakpoint;
   lgDown?: boolean;

@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
+import { refType } from '@material-ui/utils';
 import SwitchBase from '../internal/SwitchBase';
 import CheckBoxOutlineBlankIcon from '../internal/svg-icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '../internal/svg-icons/CheckBox';
+import { fade } from '../styles/colorManipulator';
 import IndeterminateCheckBoxIcon from '../internal/svg-icons/IndeterminateCheckBox';
-import { capitalize } from '../utils/helpers';
+import capitalize from '../utils/capitalize';
 import withStyles from '../styles/withStyles';
 
 export const styles = theme => ({
@@ -13,16 +15,23 @@ export const styles = theme => ({
   root: {
     color: theme.palette.text.secondary,
   },
-  /* Styles applied to the root element if `checked={true}`. */
+  /* Pseudo-class applied to the root element if `checked={true}`. */
   checked: {},
-  /* Styles applied to the root element if `disabled={true}`. */
+  /* Pseudo-class applied to the root element if `disabled={true}`. */
   disabled: {},
-  /* Styles applied to the root element if `indeterminate={true}`. */
+  /* Pseudo-class applied to the root element if `indeterminate={true}`. */
   indeterminate: {},
   /* Styles applied to the root element if `color="primary"`. */
   colorPrimary: {
     '&$checked': {
       color: theme.palette.primary.main,
+      '&:hover': {
+        backgroundColor: fade(theme.palette.primary.main, theme.palette.action.hoverOpacity),
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          backgroundColor: 'transparent',
+        },
+      },
     },
     '&$disabled': {
       color: theme.palette.action.disabled,
@@ -32,6 +41,13 @@ export const styles = theme => ({
   colorSecondary: {
     '&$checked': {
       color: theme.palette.secondary.main,
+      '&:hover': {
+        backgroundColor: fade(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          backgroundColor: 'transparent',
+        },
+      },
     },
     '&$disabled': {
       color: theme.palette.action.disabled,
@@ -39,68 +55,70 @@ export const styles = theme => ({
   },
 });
 
-function Checkbox(props) {
+const defaultCheckedIcon = <CheckBoxIcon />;
+const defaultIcon = <CheckBoxOutlineBlankIcon />;
+const defaultIndeterminateIcon = <IndeterminateCheckBoxIcon />;
+
+const Checkbox = React.forwardRef(function Checkbox(props, ref) {
   const {
-    checkedIcon,
+    checkedIcon = defaultCheckedIcon,
     classes,
-    className,
-    color,
-    icon,
-    indeterminate,
-    indeterminateIcon,
+    color = 'secondary',
+    icon = defaultIcon,
+    indeterminate = false,
+    indeterminateIcon = defaultIndeterminateIcon,
     inputProps,
+    size = 'medium',
     ...other
   } = props;
 
   return (
     <SwitchBase
       type="checkbox"
-      checkedIcon={indeterminate ? indeterminateIcon : checkedIcon}
-      className={classNames(
-        {
-          [classes.indeterminate]: indeterminate,
-        },
-        className,
-      )}
       classes={{
-        root: classNames(classes.root, classes[`color${capitalize(color)}`]),
+        root: clsx(classes.root, classes[`color${capitalize(color)}`], {
+          [classes.indeterminate]: indeterminate,
+        }),
         checked: classes.checked,
         disabled: classes.disabled,
       }}
+      color={color}
       inputProps={{
         'data-indeterminate': indeterminate,
         ...inputProps,
       }}
-      icon={indeterminate ? indeterminateIcon : icon}
+      icon={React.cloneElement(indeterminate ? indeterminateIcon : icon, {
+        fontSize: size === 'small' ? 'small' : 'default',
+      })}
+      checkedIcon={React.cloneElement(indeterminate ? indeterminateIcon : checkedIcon, {
+        fontSize: size === 'small' ? 'small' : 'default',
+      })}
+      ref={ref}
       {...other}
     />
   );
-}
+});
 
 Checkbox.propTypes = {
   /**
    * If `true`, the component is checked.
    */
-  checked: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+  checked: PropTypes.bool,
   /**
    * The icon to display when the component is checked.
    */
   checkedIcon: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    */
   color: PropTypes.oneOf(['primary', 'secondary', 'default']),
   /**
-   * If `true`, the switch will be disabled.
+   * If `true`, the checkbox will be disabled.
    */
   disabled: PropTypes.bool,
   /**
@@ -127,37 +145,37 @@ Checkbox.propTypes = {
    */
   indeterminateIcon: PropTypes.node,
   /**
-   * Properties applied to the `input` element.
+   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
    */
   inputProps: PropTypes.object,
   /**
-   * Use that property to pass a ref callback to the native input component.
+   * Pass a ref to the `input` element.
    */
-  inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  inputRef: refType,
   /**
    * Callback fired when the state is changed.
    *
    * @param {object} event The event source of the callback.
-   * You can pull out the new value by accessing `event.target.checked`.
-   * @param {boolean} checked The `checked` value of the switch
+   * You can pull out the new checked state by accessing `event.target.checked` (boolean).
    */
   onChange: PropTypes.func,
   /**
-   * The input component property `type`.
+   * If `true`, the `input` element will be required.
+   */
+  required: PropTypes.bool,
+  /**
+   * The size of the checkbox.
+   * `small` is equivalent to the dense checkbox styling.
+   */
+  size: PropTypes.oneOf(['small', 'medium']),
+  /**
+   * The input component prop `type`.
    */
   type: PropTypes.string,
   /**
-   * The value of the component.
+   * The value of the component. The DOM API casts this to a string.
    */
-  value: PropTypes.string,
-};
-
-Checkbox.defaultProps = {
-  checkedIcon: <CheckBoxIcon />,
-  color: 'secondary',
-  icon: <CheckBoxOutlineBlankIcon />,
-  indeterminate: false,
-  indeterminateIcon: <IndeterminateCheckBoxIcon />,
+  value: PropTypes.any,
 };
 
 export default withStyles(styles, { name: 'MuiCheckbox' })(Checkbox);

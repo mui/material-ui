@@ -1,34 +1,25 @@
 import React from 'react';
-import { assert } from 'chai';
-import { createShallow, getClasses } from '@material-ui/core/test-utils';
+import { expect } from 'chai';
+import { getClasses } from '@material-ui/core/test-utils';
+import { createClientRender } from 'test/utils/createClientRender';
+import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import NotchedOutline from './NotchedOutline';
 
 describe('<NotchedOutline />', () => {
-  let shallow;
+  const render = createClientRender();
+
   let classes;
-  const theme = {
-    direction: 'ltr',
-  };
   const defaultProps = {
     labelWidth: 36,
     notched: true,
   };
 
   before(() => {
-    shallow = createShallow({ dive: true });
     classes = getClasses(<NotchedOutline {...defaultProps} />);
   });
 
-  it('should be a fieldset', () => {
-    const wrapper = shallow(<NotchedOutline {...defaultProps} />);
-    assert.strictEqual(wrapper.name(), 'fieldset');
-    assert.strictEqual(wrapper.props()['aria-hidden'], true);
-    assert.strictEqual(wrapper.children().length, 1);
-    assert.strictEqual(wrapper.childAt(0).name(), 'legend');
-  });
-
   it('should pass props', () => {
-    const wrapper = shallow(
+    const { container } = render(
       <NotchedOutline
         {...defaultProps}
         className="notched-outline"
@@ -38,28 +29,34 @@ describe('<NotchedOutline />', () => {
       />,
     );
 
-    // Ensure that these overrides are properly spread
-    assert.notStrictEqual(wrapper.props().style, 17);
-    assert.strictEqual(wrapper.hasClass('notched-outline'), true);
-    const legend = wrapper.find('legend');
-    assert.strictEqual(legend.hasClass(classes.legend), true);
+    expect(container.querySelector('fieldset')).to.have.class('notched-outline');
+    expect(container.querySelector('fieldset').style.width).to.equal('17px');
+    expect(container.querySelector('legend')).to.have.class(classes.legend);
   });
 
   it('should set alignment rtl', () => {
-    const wrapper1 = shallow(<NotchedOutline {...defaultProps} theme={theme} />);
-    assert.deepEqual(wrapper1.props().style, { paddingLeft: 8 });
-    assert.deepEqual(wrapper1.childAt(0).props().style, { width: 35 });
-
-    const wrapper2 = shallow(
-      <NotchedOutline
-        {...defaultProps}
-        theme={{
-          ...theme,
-          direction: 'rtl',
-        }}
-      />,
+    const { container: container1 } = render(
+      <ThemeProvider
+        theme={createMuiTheme({
+          direction: 'ltr',
+        })}
+      >
+        <NotchedOutline {...defaultProps} />
+      </ThemeProvider>,
     );
-    assert.deepEqual(wrapper2.props().style, { paddingRight: 8 });
-    assert.deepEqual(wrapper2.childAt(0).props().style, { width: 35 });
+    expect(container1.querySelector('fieldset').style.paddingLeft).to.equal('8px');
+    expect(container1.querySelector('legend').style.width).to.equal('35px');
+
+    const { container: container2 } = render(
+      <ThemeProvider
+        theme={createMuiTheme({
+          direction: 'rtl',
+        })}
+      >
+        <NotchedOutline {...defaultProps} />
+      </ThemeProvider>,
+    );
+    expect(container2.querySelector('fieldset').style.paddingRight).to.equal('8px');
+    expect(container2.querySelector('legend').style.width).to.equal('35px');
   });
 });

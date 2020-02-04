@@ -1,7 +1,8 @@
 import React from 'react';
 import { assert } from 'chai';
 import CheckCircle from '../internal/svg-icons/CheckCircle';
-import { createShallow, createMount } from '@material-ui/core/test-utils';
+import { createShallow, createMount, getClasses } from '@material-ui/core/test-utils';
+import describeConformance from '../test-utils/describeConformance';
 import Paper from '../Paper';
 import Step from '../Step';
 import StepLabel from '../StepLabel';
@@ -10,36 +11,41 @@ import StepContent from '../StepContent';
 import Stepper from './Stepper';
 
 describe('<Stepper />', () => {
+  let classes;
   let shallow;
   let mount;
 
   before(() => {
+    classes = getClasses(<Stepper />);
     shallow = createShallow({ dive: true });
-    mount = createMount();
+    // StrictModeViolation: test uses StepContent
+    mount = createMount({ strict: false });
   });
 
   after(() => {
     mount.cleanUp();
   });
 
-  it('merges user className into the root node', () => {
-    const wrapper = shallow(
-      <Stepper className="foo">
-        <Step />
-      </Stepper>,
-    );
+  describeConformance(
+    <Stepper>
+      <Step />
+    </Stepper>,
+    () => ({
+      classes,
+      inheritComponent: Paper,
+      mount,
+      refInstanceof: window.HTMLDivElement,
+      skip: ['componentProp'],
+    }),
+  );
 
-    assert.include(wrapper.props().className, 'foo');
-  });
-
-  it('should render a Paper component', () => {
-    const wrapper = shallow(
+  it('has no elevation by default', () => {
+    const wrapper = mount(
       <Stepper>
         <Step />
       </Stepper>,
     );
-    assert.strictEqual(wrapper.type(), Paper);
-    assert.strictEqual(wrapper.props().elevation, 0, 'should have no elevation');
+    assert.strictEqual(wrapper.find(Paper).props().elevation, 0, 'should have no elevation');
   });
 
   describe('rendering children', () => {

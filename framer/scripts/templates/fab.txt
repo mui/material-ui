@@ -1,0 +1,37 @@
+{{=« »=}}
+import * as React from 'react';
+import { addPropertyControls, ControlType } from 'framer';
+// tslint:disable-next-line: ban-ts-ignore
+// @ts-ignore
+import Mui«componentName» from '@material-ui/core/«componentName»';
+import { Icon } from './Icon';
+
+interface Props {
+«& tsInterface»
+}
+
+const defaultProps: Props =  {
+«& defaultProps»
+};
+
+export const «componentName»: React.SFC<Props> = (props: Props) => {
+  const { height, icon, label, iconTheme, variant, width, ...other } = props;
+  return (
+    <MuiFab variant={variant} {...other}>
+      <Icon
+        icon={icon}
+        theme={iconTheme}
+        // tslint:disable-next-line: ban-ts-ignore
+        // @ts-ignore
+        style={variant === 'extended' ? { marginRight: 8 } : {}}
+      />
+      {variant === 'extended' ? label : null}
+    </MuiFab>
+    );
+}
+
+«componentName».defaultProps = defaultProps;
+
+addPropertyControls(«componentName», {
+«& propertyControls»
+});

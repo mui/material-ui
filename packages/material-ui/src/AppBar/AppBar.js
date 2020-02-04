@@ -1,10 +1,8 @@
-// @inheritedComponent Paper
-
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
-import { capitalize } from '../utils/helpers';
+import capitalize from '../utils/capitalize';
 import Paper from '../Paper';
 
 export const styles = theme => {
@@ -27,6 +25,10 @@ export const styles = theme => {
       top: 0,
       left: 'auto',
       right: 0,
+      '@media print': {
+        // Prevent the app bar to be visible on each printed page.
+        position: 'absolute',
+      },
     },
     /* Styles applied to the root element if `position="absolute"`. */
     positionAbsolute: {
@@ -37,6 +39,7 @@ export const styles = theme => {
     },
     /* Styles applied to the root element if `position="sticky"`. */
     positionSticky: {
+      // ⚠️ sticky is not supported by IE 11.
       position: 'sticky',
       top: 0,
       left: 'auto',
@@ -45,6 +48,7 @@ export const styles = theme => {
     /* Styles applied to the root element if `position="static"`. */
     positionStatic: {
       position: 'static',
+      transform: 'translateZ(0)', // Make sure we can see the elevation.
     },
     /* Styles applied to the root element if `position="relative"`. */
     positionRelative: {
@@ -65,39 +69,55 @@ export const styles = theme => {
       backgroundColor: theme.palette.secondary.main,
       color: theme.palette.secondary.contrastText,
     },
+    /* Styles applied to the root element if `color="inherit"`. */
+    colorInherit: {
+      color: 'inherit',
+    },
+    /* Styles applied to the root element if `color="transparent"`. */
+    colorTransparent: {
+      backgroundColor: 'transparent',
+      color: 'inherit',
+    },
   };
 };
 
-function AppBar(props) {
-  const { children, classes, className: classNameProp, color, position, ...other } = props;
-
-  const className = classNames(
-    classes.root,
-    classes[`position${capitalize(position)}`],
-    {
-      [classes[`color${capitalize(color)}`]]: color !== 'inherit',
-      'mui-fixed': position === 'fixed', // Useful for the Dialog
-    },
-    classNameProp,
-  );
+const AppBar = React.forwardRef(function AppBar(props, ref) {
+  const { classes, className, color = 'primary', position = 'fixed', ...other } = props;
 
   return (
-    <Paper square component="header" elevation={4} className={className} {...other}>
-      {children}
-    </Paper>
+    <Paper
+      square
+      component="header"
+      elevation={4}
+      className={clsx(
+        classes.root,
+        classes[`position${capitalize(position)}`],
+        classes[`color${capitalize(color)}`],
+        {
+          'mui-fixed': position === 'fixed', // Useful for the Dialog
+        },
+        className,
+      )}
+      ref={ref}
+      {...other}
+    />
   );
-}
+});
 
 AppBar.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * The content of the component.
    */
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -105,18 +125,13 @@ AppBar.propTypes = {
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    */
-  color: PropTypes.oneOf(['inherit', 'primary', 'secondary', 'default']),
+  color: PropTypes.oneOf(['default', 'inherit', 'primary', 'secondary', 'transparent']),
   /**
    * The positioning type. The behavior of the different options is described
-   * [here](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Positioning).
+   * [in the MDN web docs](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Positioning).
    * Note: `sticky` is not universally supported and will fall back to `static` when unavailable.
    */
-  position: PropTypes.oneOf(['fixed', 'absolute', 'sticky', 'static', 'relative']),
-};
-
-AppBar.defaultProps = {
-  color: 'primary',
-  position: 'fixed',
+  position: PropTypes.oneOf(['absolute', 'fixed', 'relative', 'static', 'sticky']),
 };
 
 export default withStyles(styles, { name: 'MuiAppBar' })(AppBar);

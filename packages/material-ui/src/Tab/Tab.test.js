@@ -1,151 +1,164 @@
 import React from 'react';
-import { assert } from 'chai';
-import { spy, stub } from 'sinon';
-import { createShallow, createMount, getClasses, unwrap } from '@material-ui/core/test-utils';
+import { expect } from 'chai';
+import { spy } from 'sinon';
+import { createMount, getClasses } from '@material-ui/core/test-utils';
+import describeConformance from '../test-utils/describeConformance';
+import { act, createClientRender, fireEvent } from 'test/utils/createClientRender';
 import Tab from './Tab';
 import ButtonBase from '../ButtonBase';
-import Icon from '../Icon';
+
+const render = createClientRender();
 
 describe('<Tab />', () => {
-  let shallow;
   let mount;
   let classes;
-  const icon = <Icon>restore</Icon>;
 
   before(() => {
-    shallow = createShallow({ dive: true });
-    mount = createMount();
+    mount = createMount({ strict: true });
     classes = getClasses(<Tab textColor="inherit" />);
   });
 
-  after(() => {
-    mount.cleanUp();
+  describeConformance(<Tab textColor="inherit" />, () => ({
+    classes,
+    inheritComponent: ButtonBase,
+    mount,
+    refInstanceof: window.HTMLButtonElement,
+    after: () => mount.cleanUp(),
+  }));
+
+  it('should have a ripple by default', () => {
+    const { container } = render(<Tab TouchRippleProps={{ className: 'touch-ripple' }} />);
+
+    expect(container.querySelector('.touch-ripple')).to.be.ok;
   });
 
-  it('should render with the root class', () => {
-    const wrapper = shallow(<Tab textColor="inherit" />);
-    assert.strictEqual(wrapper.type(), ButtonBase);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
+  it('can disable the ripple', () => {
+    const { container } = render(
+      <Tab disableRipple TouchRippleProps={{ className: 'touch-ripple' }} />,
+    );
+
+    expect(container.querySelector('.touch-ripple')).to.be.null;
   });
 
-  describe('prop: className', () => {
-    it('should render with the user and root classes', () => {
-      const wrapper = shallow(<Tab textColor="inherit" className="woofTab" />);
-      assert.strictEqual(wrapper.hasClass('woofTab'), true);
-      assert.strictEqual(wrapper.hasClass(classes.root), true);
+  it('should have a focusRipple by default', () => {
+    const { container, getByRole } = render(
+      <Tab TouchRippleProps={{ classes: { ripplePulsate: 'focus-ripple' } }} />,
+    );
+    // simulate pointer device
+    fireEvent.pointerDown(document.body);
+
+    act(() => {
+      fireEvent.keyDown(document.activeElement, { key: 'Tab' });
+      // jsdom doesn't actually support tab focus, we need to do it manually
+      getByRole('tab').focus();
     });
+
+    expect(container.querySelector('.focus-ripple')).to.be.ok;
+  });
+
+  it('can disable the focusRipple', () => {
+    const { container, getByRole } = render(
+      <Tab disableFocusRipple TouchRippleProps={{ classes: { ripplePulsate: 'focus-ripple' } }} />,
+    );
+    // simulate pointer device
+    fireEvent.pointerDown(document.body);
+
+    act(() => {
+      fireEvent.keyDown(document.activeElement, { key: 'Tab' });
+      // jsdom doesn't actually support tab focus, we need to do it manually
+      getByRole('tab').focus();
+    });
+
+    expect(container.querySelector('.focus-ripple')).to.be.null;
   });
 
   describe('prop: selected', () => {
     it('should render with the selected and root classes', () => {
-      const wrapper = shallow(<Tab selected textColor="secondary" />);
-      assert.strictEqual(wrapper.hasClass(classes.selected), true);
-      assert.strictEqual(wrapper.hasClass(classes.textColorSecondary), true);
-      assert.strictEqual(wrapper.hasClass(classes.root), true);
-      assert.strictEqual(wrapper.props()['aria-selected'], true);
+      const { getByRole } = render(<Tab selected textColor="secondary" />);
+
+      const tab = getByRole('tab');
+      expect(tab).to.have.class(classes.root);
+      expect(tab).to.have.class(classes.selected);
+      expect(tab).to.have.class(classes.textColorSecondary);
+      expect(tab).to.have.attribute('aria-selected', 'true');
     });
   });
 
   describe('prop: disabled', () => {
     it('should render with the disabled and root classes', () => {
-      const wrapper = shallow(<Tab disabled textColor="secondary" />);
-      assert.strictEqual(wrapper.hasClass(classes.disabled), true);
-      assert.strictEqual(wrapper.hasClass(classes.textColorSecondary), true);
-      assert.strictEqual(wrapper.hasClass(classes.root), true);
+      const { getByRole } = render(<Tab disabled textColor="secondary" />);
+
+      const tab = getByRole('tab');
+      expect(tab).to.have.class(classes.root);
+      expect(tab).to.have.class(classes.disabled);
+      expect(tab).to.have.class(classes.textColorSecondary);
     });
   });
 
   describe('prop: onClick', () => {
     it('should be called when a click is triggered', () => {
       const handleClick = spy();
-      const wrapper = shallow(
-        <Tab textColor="inherit" onClick={handleClick} onChange={() => {}} />,
-      );
-      wrapper.simulate('click');
-      assert.strictEqual(handleClick.callCount, 1, 'it should forward the onClick');
+      const { getByRole } = render(<Tab onClick={handleClick} />);
+
+      getByRole('tab').click();
+
+      expect(handleClick.callCount).to.equal(1);
     });
   });
 
   describe('prop: label', () => {
-    it('should render label with the label class', () => {
-      const wrapper = shallow(<Tab textColor="inherit" label="foo" />);
-      const label = wrapper
-        .childAt(0)
-        .childAt(0)
-        .childAt(0);
-      assert.strictEqual(label.hasClass(classes.label), true);
-    });
+    it('should render label', () => {
+      const { getByRole } = render(<Tab label="foo" />);
 
-    it('should render with text wrapping', () => {
-      const wrapper = shallow(<Tab textColor="inherit" label="foo" />);
-      const instance = wrapper.instance();
-      instance.labelRef = { getClientRects: stub().returns({ length: 2 }) };
-      instance.checkTextWrap();
-      wrapper.update();
-      const label = wrapper
-        .childAt(0)
-        .childAt(0)
-        .childAt(0);
-      assert.strictEqual(
-        label.hasClass(classes.labelWrapped),
-        true,
-        'should have labelWrapped class',
-      );
-      assert.strictEqual(wrapper.state().labelWrapped, true, 'labelWrapped state should be true');
+      expect(getByRole('tab')).to.have.text('foo');
     });
   });
 
-  describe('prop: classes', () => {
-    it('should render label with a custom label class', () => {
-      const wrapper = shallow(
-        <Tab textColor="inherit" label="foo" classes={{ label: 'MyLabel' }} />,
-      );
-      const label = wrapper
-        .childAt(0)
-        .childAt(0)
-        .childAt(0);
-      assert.strictEqual(label.hasClass(classes.label), true);
-      assert.strictEqual(label.hasClass('MyLabel'), true);
+  describe('prop: wrapped', () => {
+    it('should add the wrapped class', () => {
+      const { getByRole } = render(<Tab wrapped />);
+
+      expect(getByRole('tab')).to.have.class(classes.wrapped);
     });
   });
 
   describe('prop: icon', () => {
     it('should render icon element', () => {
-      const wrapper = shallow(<Tab textColor="inherit" icon={icon} />);
-      const iconWrapper = wrapper.childAt(0).childAt(0);
-      assert.strictEqual(iconWrapper.is(Icon), true);
+      const { getByTestId } = render(<Tab icon={<div data-testid="icon" />} />);
+
+      expect(getByTestId('icon')).to.be.ok;
     });
   });
 
   describe('prop: textColor', () => {
     it('should support the inherit value', () => {
-      const wrapper = shallow(<Tab selected textColor="inherit" />);
-      assert.strictEqual(wrapper.hasClass(classes.selected), true);
-      assert.strictEqual(wrapper.hasClass(classes.textColorInherit), true);
-      assert.strictEqual(wrapper.hasClass(classes.root), true);
+      const { getByRole } = render(<Tab selected textColor="inherit" />);
+
+      const tab = getByRole('tab');
+      expect(tab).to.have.class(classes.selected);
+      expect(tab).to.have.class(classes.textColorInherit);
+      expect(tab).to.have.class(classes.root);
     });
   });
 
   describe('prop: fullWidth', () => {
     it('should have the fullWidth class', () => {
-      const wrapper = shallow(<Tab textColor="inherit" fullWidth />);
-      assert.strictEqual(wrapper.hasClass(classes.fullWidth), true);
+      const { getByRole } = render(<Tab fullWidth />);
+
+      expect(getByRole('tab')).to.have.class(classes.fullWidth);
     });
   });
 
   describe('prop: style', () => {
     it('should be able to override everything', () => {
-      const style = { width: '80%', color: 'red', alignText: 'center' };
-      const wrapper = shallow(<Tab fullWidth style={style} />);
-      assert.deepEqual(wrapper.props().style, style);
-    });
-  });
+      const { getByRole } = render(
+        <Tab fullWidth style={{ width: '80%', color: 'red', alignText: 'center' }} />,
+      );
 
-  it('should have a ref on label property', () => {
-    const TabNaked = unwrap(Tab);
-    const instance = mount(
-      <TabNaked textColor="inherit" label="foo" classes={classes} />,
-    ).instance();
-    assert.isDefined(instance.labelRef, 'should be defined');
+      const { style } = getByRole('tab');
+      expect(style).to.have.property('width', '80%');
+      expect(style).to.have.property('color', 'red');
+      expect(style).to.have.property('alignText', 'center');
+    });
   });
 });

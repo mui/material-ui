@@ -20,8 +20,8 @@ function StressGrid(props) {
 
   return (
     <div className={classes.root}>
-      <Grid container spacing={24} direction="column">
-        <Grid container item spacing={8}>
+      <Grid container spacing={3} direction="column">
+        <Grid container item spacing={1}>
           <Grid item xs={3}>
             <Paper className={classes.paper}>xs=3</Paper>
           </Grid>
@@ -29,7 +29,7 @@ function StressGrid(props) {
             <Paper className={classes.paper}>xs=9</Paper>
           </Grid>
         </Grid>
-        <Grid container item spacing={8} direction="row-reverse">
+        <Grid container item spacing={1} direction="row-reverse">
           <Grid item xs={3}>
             <Paper className={classes.paper}>first</Paper>
           </Grid>
@@ -37,7 +37,7 @@ function StressGrid(props) {
             <Paper className={classes.paper}>last</Paper>
           </Grid>
         </Grid>
-        <Grid container item spacing={8} justify="space-between">
+        <Grid container item spacing={1} justify="space-between">
           <Grid item xs={3}>
             <Paper className={classes.paper}>space</Paper>
           </Grid>
@@ -45,7 +45,7 @@ function StressGrid(props) {
             <Paper className={classes.paper}>between</Paper>
           </Grid>
         </Grid>
-        <Grid container item spacing={8} alignItems="stretch" direction="column-reverse">
+        <Grid container item spacing={1} alignItems="stretch" direction="column-reverse">
           <Grid item>
             <Paper className={classes.paper}>reverse</Paper>
           </Grid>

@@ -1,15 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import EventListener from 'react-event-listener';
-import debounce from 'debounce'; // < 1kb payload overhead when lodash/debounce is > 3kb.
+import debounce from '../utils/debounce';
 
 const styles = {
-  width: 100,
-  height: 100,
+  width: 99,
+  height: 99,
   position: 'absolute',
-  top: -10000,
+  top: -9999,
   overflow: 'scroll',
-  msOverflowStyle: 'scrollbar',
 };
 
 /**
@@ -17,67 +15,40 @@ const styles = {
  * The component is originates from https://github.com/STORIS/react-scrollbar-size.
  * It has been moved into the core in order to minimize the bundle size.
  */
-class ScrollbarSize extends React.Component {
-  constructor() {
-    super();
+export default function ScrollbarSize(props) {
+  const { onChange, ...other } = props;
+  const scrollbarHeight = React.useRef();
+  const nodeRef = React.useRef(null);
 
-    if (typeof window !== 'undefined') {
-      this.handleResize = debounce(() => {
-        const { onChange } = this.props;
-
-        const prevHeight = this.scrollbarHeight;
-        const prevWidth = this.scrollbarWidth;
-        this.setMeasurements();
-        if (prevHeight !== this.scrollbarHeight || prevWidth !== this.scrollbarWidth) {
-          onChange({ scrollbarHeight: this.scrollbarHeight, scrollbarWidth: this.scrollbarWidth });
-        }
-      }, 166); // Corresponds to 10 frames at 60 Hz.
-    }
-  }
-
-  componentDidMount() {
-    this.setMeasurements();
-    this.props.onLoad({
-      scrollbarHeight: this.scrollbarHeight,
-      scrollbarWidth: this.scrollbarWidth,
-    });
-  }
-
-  componentWillUnmount() {
-    this.handleResize.clear();
-  }
-
-  setMeasurements = () => {
-    const nodeRef = this.nodeRef;
-
-    if (!nodeRef) {
-      return;
-    }
-
-    this.scrollbarHeight = nodeRef.offsetHeight - nodeRef.clientHeight;
-    this.scrollbarWidth = nodeRef.offsetWidth - nodeRef.clientWidth;
+  const setMeasurements = () => {
+    scrollbarHeight.current = nodeRef.current.offsetHeight - nodeRef.current.clientHeight;
   };
 
-  render() {
-    const { onChange } = this.props;
+  React.useEffect(() => {
+    const handleResize = debounce(() => {
+      const prevHeight = scrollbarHeight.current;
+      setMeasurements();
 
-    return (
-      <div>
-        {onChange ? <EventListener target="window" onResize={this.handleResize} /> : null}
-        <div
-          style={styles}
-          ref={ref => {
-            this.nodeRef = ref;
-          }}
-        />
-      </div>
-    );
-  }
+      if (prevHeight !== scrollbarHeight.current) {
+        onChange(scrollbarHeight.current);
+      }
+    });
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      handleResize.clear();
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [onChange]);
+
+  React.useEffect(() => {
+    setMeasurements();
+    onChange(scrollbarHeight.current);
+  }, [onChange]);
+
+  return <div style={styles} ref={nodeRef} {...other} />;
 }
 
 ScrollbarSize.propTypes = {
   onChange: PropTypes.func.isRequired,
-  onLoad: PropTypes.func.isRequired,
 };
-
-export default ScrollbarSize;

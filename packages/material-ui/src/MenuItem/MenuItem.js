@@ -1,43 +1,62 @@
-// @inheritedComponent ListItem
-
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import ListItem from '../ListItem';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
-    ...theme.typography.subheading,
-    height: 24,
-    boxSizing: 'content-box',
+    ...theme.typography.body1,
+    minHeight: 48,
+    paddingTop: 6,
+    paddingBottom: 6,
+    boxSizing: 'border-box',
     width: 'auto',
     overflow: 'hidden',
     whiteSpace: 'nowrap',
-    '&$selected': {},
+    [theme.breakpoints.up('sm')]: {
+      minHeight: 'auto',
+    },
   },
+  // TODO v5: remove
   /* Styles applied to the root element if `disableGutters={false}`. */
-  gutters: {
-    paddingLeft: 16,
-    paddingRight: 16,
-  },
+  gutters: {},
   /* Styles applied to the root element if `selected={true}`. */
   selected: {},
+  /* Styles applied to the root element if dense. */
+  dense: {
+    ...theme.typography.body2,
+    minHeight: 'auto',
+  },
 });
 
-function MenuItem(props) {
-  const { classes, className, component, disableGutters, role, selected, ...other } = props;
+const MenuItem = React.forwardRef(function MenuItem(props, ref) {
+  const {
+    classes,
+    className,
+    component = 'li',
+    disableGutters = false,
+    role = 'menuitem',
+    selected,
+    tabIndex: tabIndexProp,
+    ...other
+  } = props;
 
+  let tabIndex;
+  if (!props.disabled) {
+    tabIndex = tabIndexProp !== undefined ? tabIndexProp : -1;
+  }
   return (
     <ListItem
       button
       role={role}
-      tabIndex={-1}
+      tabIndex={tabIndex}
       component={component}
       selected={selected}
       disableGutters={disableGutters}
-      className={classNames(
+      classes={{ dense: classes.dense }}
+      className={clsx(
         classes.root,
         {
           [classes.selected]: selected,
@@ -45,10 +64,11 @@ function MenuItem(props) {
         },
         className,
       )}
+      ref={ref}
       {...other}
     />
   );
-}
+});
 
 MenuItem.propTypes = {
   /**
@@ -57,7 +77,7 @@ MenuItem.propTypes = {
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -68,7 +88,15 @@ MenuItem.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  component: PropTypes.elementType,
+  /**
+   * If `true`, compact vertical padding designed for keyboard and mouse input will be used.
+   */
+  dense: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  disabled: PropTypes.bool,
   /**
    * If `true`, the left and right padding is removed.
    */
@@ -81,12 +109,10 @@ MenuItem.propTypes = {
    * @ignore
    */
   selected: PropTypes.bool,
-};
-
-MenuItem.defaultProps = {
-  component: 'li',
-  disableGutters: false,
-  role: 'menuitem',
+  /**
+   * @ignore
+   */
+  tabIndex: PropTypes.number,
 };
 
 export default withStyles(styles, { name: 'MuiMenuItem' })(MenuItem);

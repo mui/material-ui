@@ -1,12 +1,10 @@
-// @inheritedComponent ButtonBase
-
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import ArrowDownwardIcon from '../internal/svg-icons/ArrowDownward';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
-import { capitalize } from '../utils/helpers';
+import capitalize from '../utils/capitalize';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -16,23 +14,29 @@ export const styles = theme => ({
     justifyContent: 'flex-start',
     flexDirection: 'inherit',
     alignItems: 'center',
-    '&:hover': {
-      color: theme.palette.text.primary,
-    },
     '&:focus': {
+      color: theme.palette.text.secondary,
+    },
+    '&:hover': {
+      color: theme.palette.text.secondary,
+      '& $icon': {
+        opacity: 0.5,
+      },
+    },
+    '&$active': {
       color: theme.palette.text.primary,
+      // && instead of & is a workaround for https://github.com/cssinjs/jss/issues/1045
+      '&& $icon': {
+        opacity: 1,
+        color: theme.palette.text.secondary,
+      },
     },
   },
-  /* Styles applied to the root element if `active={true}`. */
-  active: {
-    color: theme.palette.text.primary,
-    '& $icon': {
-      opacity: 1,
-    },
-  },
+  /* Pseudo-class applied to the root element if `active={true}`. */
+  active: {},
   /* Styles applied to the icon component. */
   icon: {
-    height: 16,
+    fontSize: 18,
     marginRight: 4,
     marginLeft: 4,
     opacity: 0,
@@ -40,7 +44,6 @@ export const styles = theme => ({
       duration: theme.transitions.duration.shorter,
     }),
     userSelect: 'none',
-    width: 16,
   },
   /* Styles applied to the icon component if `direction="desc"`. */
   iconDirectionDesc: {
@@ -55,34 +58,35 @@ export const styles = theme => ({
 /**
  * A button based label for placing inside `TableCell` for column sorting.
  */
-function TableSortLabel(props) {
+const TableSortLabel = React.forwardRef(function TableSortLabel(props, ref) {
   const {
-    active,
+    active = false,
     children,
     classes,
     className,
-    direction,
-    hideSortIcon,
-    IconComponent,
+    direction = 'asc',
+    hideSortIcon = false,
+    IconComponent = ArrowDownwardIcon,
     ...other
   } = props;
 
   return (
     <ButtonBase
-      className={classNames(classes.root, { [classes.active]: active }, className)}
+      className={clsx(classes.root, { [classes.active]: active }, className)}
       component="span"
       disableRipple
+      ref={ref}
       {...other}
     >
       {children}
       {hideSortIcon && !active ? null : (
         <IconComponent
-          className={classNames(classes.icon, classes[`iconDirection${capitalize(direction)}`])}
+          className={clsx(classes.icon, classes[`iconDirection${capitalize(direction)}`])}
         />
       )}
     </ButtonBase>
   );
-}
+});
 
 TableSortLabel.propTypes = {
   /**
@@ -95,7 +99,7 @@ TableSortLabel.propTypes = {
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -113,14 +117,7 @@ TableSortLabel.propTypes = {
   /**
    * Sort icon to use.
    */
-  IconComponent: PropTypes.func,
-};
-
-TableSortLabel.defaultProps = {
-  active: false,
-  direction: 'desc',
-  hideSortIcon: false,
-  IconComponent: ArrowDownwardIcon,
+  IconComponent: PropTypes.elementType,
 };
 
 export default withStyles(styles, { name: 'MuiTableSortLabel' })(TableSortLabel);

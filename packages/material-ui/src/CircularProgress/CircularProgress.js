@@ -1,15 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
+import { chainPropTypes } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
-import { capitalize } from '../utils/helpers';
-import chainPropTypes from '../utils/chainPropTypes';
+import capitalize from '../utils/capitalize';
 
 const SIZE = 44;
 
 function getRelativeValue(value, min, max) {
-  const clampedValue = Math.min(Math.max(min, value), max);
-  return (clampedValue - min) / (max - min);
+  return (Math.min(Math.max(min, value), max) - min) / (max - min);
 }
 
 function easeOut(t) {
@@ -27,7 +26,6 @@ export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
     display: 'inline-block',
-    lineHeight: 1, // Keep the progress centered
   },
   /* Styles applied to the root element if `variant="static"`. */
   static: {
@@ -35,7 +33,7 @@ export const styles = theme => ({
   },
   /* Styles applied to the root element if `variant="indeterminate"`. */
   indeterminate: {
-    animation: 'mui-progress-circular-rotate 1.4s linear infinite',
+    animation: '$circular-rotate 1.4s linear infinite',
   },
   /* Styles applied to the root element if `color="primary"`. */
   colorPrimary: {
@@ -46,7 +44,9 @@ export const styles = theme => ({
     color: theme.palette.secondary.main,
   },
   /* Styles applied to the `svg` element. */
-  svg: {},
+  svg: {
+    display: 'block', // Keeps the progress centered
+  },
   /* Styles applied to the `circle` svg path. */
   circle: {
     stroke: 'currentColor',
@@ -59,17 +59,17 @@ export const styles = theme => ({
   },
   /* Styles applied to the `circle` svg path if `variant="indeterminate"`. */
   circleIndeterminate: {
-    animation: 'mui-progress-circular-dash 1.4s ease-in-out infinite',
+    animation: '$circular-dash 1.4s ease-in-out infinite',
     // Some default value that looks fine waiting for the animation to kicks in.
     strokeDasharray: '80px, 200px',
     strokeDashoffset: '0px', // Add the unit to fix a Edge 16 and below bug.
   },
-  '@keyframes mui-progress-circular-rotate': {
+  '@keyframes circular-rotate': {
     '100%': {
       transform: 'rotate(360deg)',
     },
   },
-  '@keyframes mui-progress-circular-dash': {
+  '@keyframes circular-dash': {
     '0%': {
       strokeDasharray: '1px, 200px',
       strokeDashoffset: '0px',
@@ -80,7 +80,7 @@ export const styles = theme => ({
     },
     '100%': {
       strokeDasharray: '100px, 200px',
-      strokeDashoffset: '-120px',
+      strokeDashoffset: '-125px',
     },
   },
   /* Styles applied to the `circle` svg path if `disableShrink={true}`. */
@@ -96,17 +96,17 @@ export const styles = theme => ({
  * you should use `aria-describedby` to point to the progress bar, and set the `aria-busy`
  * attribute to `true` on that region until it has finished loading.
  */
-function CircularProgress(props) {
+const CircularProgress = React.forwardRef(function CircularProgress(props, ref) {
   const {
     classes,
     className,
-    color,
-    disableShrink,
-    size,
+    color = 'primary',
+    disableShrink = false,
+    size = 40,
     style,
-    thickness,
-    value,
-    variant,
+    thickness = 3.6,
+    value = 0,
+    variant = 'indeterminate',
     ...other
   } = props;
 
@@ -132,7 +132,7 @@ function CircularProgress(props) {
 
   return (
     <div
-      className={classNames(
+      className={clsx(
         classes.root,
         {
           [classes[`color${capitalize(color)}`]]: color !== 'inherit',
@@ -142,13 +142,14 @@ function CircularProgress(props) {
         className,
       )}
       style={{ width: size, height: size, ...rootStyle, ...style }}
+      ref={ref}
       role="progressbar"
       {...rootProps}
       {...other}
     >
       <svg className={classes.svg} viewBox={`${SIZE / 2} ${SIZE / 2} ${SIZE} ${SIZE}`}>
         <circle
-          className={classNames(classes.circle, {
+          className={clsx(classes.circle, {
             [classes.circleIndeterminate]: variant === 'indeterminate',
             [classes.circleStatic]: variant === 'static',
             [classes.circleDisableShrink]: disableShrink,
@@ -163,12 +164,12 @@ function CircularProgress(props) {
       </svg>
     </div>
   );
-}
+});
 
 CircularProgress.propTypes = {
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -184,10 +185,9 @@ CircularProgress.propTypes = {
    * This only works if variant is `indeterminate`.
    */
   disableShrink: chainPropTypes(PropTypes.bool, props => {
-    /* istanbul ignore if */
-    if (props.disableShrink && props.variant !== 'indeterminate') {
+    if (props.disableShrink && props.variant && props.variant !== 'indeterminate') {
       return new Error(
-        'Material-UI: you have provided the `disableShrink` property ' +
+        'Material-UI: you have provided the `disableShrink` prop ' +
           'with a variant other than `indeterminate`. This will have no effect.',
       );
     }
@@ -196,6 +196,8 @@ CircularProgress.propTypes = {
   }),
   /**
    * The size of the circle.
+   * If using a number, the pixel unit is assumed.
+   * If using a string, you need to provide the CSS unit, e.g '3rem'.
    */
   size: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
@@ -216,15 +218,6 @@ CircularProgress.propTypes = {
    * Use indeterminate when there is no progress value.
    */
   variant: PropTypes.oneOf(['determinate', 'indeterminate', 'static']),
-};
-
-CircularProgress.defaultProps = {
-  color: 'primary',
-  disableShrink: false,
-  size: 40,
-  thickness: 3.6,
-  value: 0,
-  variant: 'indeterminate',
 };
 
 export default withStyles(styles, { name: 'MuiCircularProgress', flip: false })(CircularProgress);

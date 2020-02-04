@@ -1,19 +1,25 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
-export interface FormLabelProps extends StandardProps<FormLabelBaseProps, FormLabelClassKey> {
-  component?: React.ReactType<FormLabelBaseProps>;
-  disabled?: boolean;
-  error?: boolean;
-  filled?: boolean;
-  focused?: boolean;
-  required?: boolean;
+export interface FormLabelTypeMap<P = {}, D extends React.ElementType = 'label'> {
+  props: P &
+    FormLabelBaseProps & {
+      color?: 'primary' | 'secondary';
+      disabled?: boolean;
+      error?: boolean;
+      filled?: boolean;
+      focused?: boolean;
+      required?: boolean;
+    };
+  defaultComponent: D;
+  classKey: FormLabelClassKey;
 }
 
-export type FormLabelBaseProps = React.LabelHTMLAttributes<HTMLLabelElement>;
+declare const FormLabel: OverridableComponent<FormLabelTypeMap>;
 
 export type FormLabelClassKey =
   | 'root'
+  | 'colorSecondary'
   | 'focused'
   | 'disabled'
   | 'error'
@@ -21,6 +27,11 @@ export type FormLabelClassKey =
   | 'required'
   | 'asterisk';
 
-declare const FormLabel: React.ComponentType<FormLabelProps>;
+export type FormLabelBaseProps = React.LabelHTMLAttributes<HTMLLabelElement>;
+
+export type FormLabelProps<
+  D extends React.ElementType = FormLabelTypeMap['defaultComponent'],
+  P = {}
+> = OverrideProps<FormLabelTypeMap<P, D>, D>;
 
 export default FormLabel;

@@ -1,12 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
-    marginTop: theme.spacing.unit * 4,
-    marginRight: theme.spacing.unit * 2,
+    marginTop: theme.spacing(4),
+    marginRight: theme.spacing(2),
   },
   affected: {
     textAlign: 'right',
@@ -15,10 +14,10 @@ const styles = theme => ({
     flip: false,
     textAlign: 'right',
   },
-});
+}));
 
-function RtlOptOut(props) {
-  const { classes } = props;
+export default function RtlOptOut() {
+  const classes = useStyles();
 
   return (
     <div className={classes.root}>
@@ -27,9 +26,3 @@ function RtlOptOut(props) {
     </div>
   );
 }
-
-RtlOptOut.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(RtlOptOut);

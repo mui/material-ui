@@ -1,7 +1,3 @@
-/* eslint-disable no-restricted-globals */
-
-import warning from 'warning';
-
 // Follow https://material.google.com/motion/duration-easing.html#duration-easing-natural-easing-curves
 // to learn the context in which each easing should be used.
 export const easing = {
@@ -32,9 +28,9 @@ export const duration = {
   leavingScreen: 195,
 };
 
-export const formatMs = milliseconds => `${Math.round(milliseconds)}ms`;
-export const isString = value => typeof value === 'string';
-export const isNumber = value => !isNaN(parseFloat(value));
+function formatMs(milliseconds) {
+  return `${Math.round(milliseconds)}ms`;
+}
 
 /**
  * @param {string|Array} props
@@ -55,23 +51,31 @@ export default {
       ...other
     } = options;
 
-    warning(
-      isString(props) || Array.isArray(props),
-      'Material-UI: argument "props" must be a string or Array.',
-    );
-    warning(
-      isNumber(durationOption) || isString(durationOption),
-      `Material-UI: argument "duration" must be a number or a string but found ${durationOption}.`,
-    );
-    warning(isString(easingOption), 'Material-UI: argument "easing" must be a string.');
-    warning(
-      isNumber(delay) || isString(delay),
-      'Material-UI: argument "delay" must be a number or a string.',
-    );
-    warning(
-      Object.keys(other).length === 0,
-      `Material-UI: unrecognized argument(s) [${Object.keys(other).join(',')}]`,
-    );
+    if (process.env.NODE_ENV !== 'production') {
+      const isString = value => typeof value === 'string';
+      const isNumber = value => !isNaN(parseFloat(value));
+      if (!isString(props) && !Array.isArray(props)) {
+        console.error('Material-UI: argument "props" must be a string or Array.');
+      }
+
+      if (!isNumber(durationOption) && !isString(durationOption)) {
+        console.error(
+          `Material-UI: argument "duration" must be a number or a string but found ${durationOption}.`,
+        );
+      }
+
+      if (!isString(easingOption)) {
+        console.error('Material-UI: argument "easing" must be a string.');
+      }
+
+      if (!isNumber(delay) && !isString(delay)) {
+        console.error('Material-UI: argument "delay" must be a number or a string.');
+      }
+
+      if (Object.keys(other).length !== 0) {
+        console.error(`Material-UI: unrecognized argument(s) [${Object.keys(other).join(',')}]`);
+      }
+    }
 
     return (Array.isArray(props) ? props : [props])
       .map(

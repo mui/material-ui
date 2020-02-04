@@ -1,22 +1,31 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import compose from 'recompose/compose';
-import pure from 'recompose/pure';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import LayoutBody from '../components/LayoutBody';
+import Link from '@material-ui/core/Link';
+import Container from '@material-ui/core/Container';
 import Typography from '../components/Typography';
-import Link from '../next/Link';
 import TextField from '../components/TextField';
 
-const styles = theme => ({
+function Copyright() {
+  return (
+    <React.Fragment>
+      {'© '}
+      <Link color="inherit" href="https://material-ui.com/">
+        Your Website
+      </Link>{' '}
+      {new Date().getFullYear()}
+    </React.Fragment>
+  );
+}
+
+const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     backgroundColor: theme.palette.secondary.light,
   },
-  layoutBody: {
-    marginTop: theme.spacing.unit * 8,
-    marginBottom: theme.spacing.unit * 8,
+  container: {
+    marginTop: theme.spacing(8),
+    marginBottom: theme.spacing(8),
     display: 'flex',
   },
   iconsWrapper: {
@@ -32,7 +41,7 @@ const styles = theme => ({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: theme.palette.warning.main,
-    marginRight: theme.spacing.unit,
+    marginRight: theme.spacing(1),
     '&:hover': {
       backgroundColor: theme.palette.warning.dark,
     },
@@ -40,17 +49,17 @@ const styles = theme => ({
   list: {
     margin: 0,
     listStyle: 'none',
-    paddingLeft: 0,
+    padding: 0,
   },
   listItem: {
-    paddingTop: theme.spacing.unit / 2,
-    paddingBottom: theme.spacing.unit / 2,
+    paddingTop: theme.spacing(0.5),
+    paddingBottom: theme.spacing(0.5),
   },
   language: {
-    marginTop: theme.spacing.unit,
+    marginTop: theme.spacing(1),
     width: 150,
   },
-});
+}));
 
 const LANGUAGES = [
   {
@@ -63,20 +72,20 @@ const LANGUAGES = [
   },
 ];
 
-function AppFooter(props) {
-  const { classes } = props;
+export default function AppFooter() {
+  const classes = useStyles();
 
   return (
     <Typography component="footer" className={classes.root}>
-      <LayoutBody className={classes.layoutBody} width="large">
-        <Grid container spacing={40}>
-          <Grid item xs={6} sm={4} md={2}>
+      <Container className={classes.container}>
+        <Grid container spacing={5}>
+          <Grid item xs={6} sm={4} md={3}>
             <Grid
               container
               direction="column"
               justify="flex-end"
               className={classes.iconsWrapper}
-              spacing={16}
+              spacing={2}
             >
               <Grid item className={classes.icons}>
                 <a href="https://material-ui.com/" className={classes.icon}>
@@ -86,7 +95,9 @@ function AppFooter(props) {
                   <img src="/static/themes/onepirate/appFooterTwitter.png" alt="Twitter" />
                 </a>
               </Grid>
-              <Grid item>© 2018 Onepirate</Grid>
+              <Grid item>
+                <Copyright />
+              </Grid>
             </Grid>
           </Grid>
           <Grid item xs={6} sm={4} md={2}>
@@ -95,10 +106,10 @@ function AppFooter(props) {
             </Typography>
             <ul className={classes.list}>
               <li className={classes.listItem}>
-                <Link href="/premium-themes/onepirate/terms">Terms</Link>
+                <Link href="/premium-themes/onepirate/terms/">Terms</Link>
               </li>
               <li className={classes.listItem}>
-                <Link href="/premium-themes/onepirate/privacy">Privacy</Link>
+                <Link href="/premium-themes/onepirate/privacy/">Privacy</Link>
               </li>
             </ul>
           </Grid>
@@ -123,16 +134,16 @@ function AppFooter(props) {
           <Grid item>
             <Typography variant="caption">
               {'Icons made by '}
-              <Link href="http://www.freepik.com" title="Freepik">
+              <Link href="https://www.freepik.com" rel="sponsored" title="Freepik">
                 Freepik
               </Link>
               {' from '}
-              <Link href="https://www.flaticon.com/" title="Flaticon">
+              <Link href="https://www.flaticon.com" rel="sponsored" title="Flaticon">
                 www.flaticon.com
               </Link>
               {' is licensed by '}
               <Link
-                href="http://creativecommons.org/licenses/by/3.0/"
+                href="https://creativecommons.org/licenses/by/3.0/"
                 title="Creative Commons BY 3.0"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -142,16 +153,7 @@ function AppFooter(props) {
             </Typography>
           </Grid>
         </Grid>
-      </LayoutBody>
+      </Container>
     </Typography>
   );
 }
-
-AppFooter.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default compose(
-  pure,
-  withStyles(styles),
-)(AppFooter);

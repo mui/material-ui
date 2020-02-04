@@ -1,43 +1,46 @@
 import React from 'react';
-import { assert } from 'chai';
+import { expect, assert } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import { createShallow, createMount, getClasses } from '@material-ui/core/test-utils';
+import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { createClientRender } from 'test/utils/createClientRender';
+import describeConformance from '../test-utils/describeConformance';
 import Snackbar from './Snackbar';
-import Slide from '../Slide';
+import Grow from '../Grow';
 
 describe('<Snackbar />', () => {
-  let shallow;
   let mount;
   let classes;
+  const render = createClientRender({ strict: false });
 
   before(() => {
-    shallow = createShallow({ dive: true });
     classes = getClasses(<Snackbar open />);
-    mount = createMount();
+    // StrictModeViolation: uses Slide
+    mount = createMount({ strict: false });
   });
 
   after(() => {
     mount.cleanUp();
   });
 
-  it('should render a ClickAwayListener with classes', () => {
-    const wrapper = shallow(<Snackbar open message="message" />);
-    assert.strictEqual(wrapper.name(), 'ClickAwayListener');
-    assert.strictEqual(
-      wrapper.childAt(0).hasClass(classes.root),
-      true,
-      'should have the root class',
-    );
-    assert.strictEqual(wrapper.find(Slide).length, 1, 'should use a Slide by default');
-  });
+  describeConformance(<Snackbar open message="message" />, () => ({
+    classes,
+    inheritComponent: 'div',
+    mount,
+    refInstanceof: window.HTMLDivElement,
+    skip: [
+      'componentProp',
+      // react-transition-group issue
+      'reactTestRenderer',
+    ],
+  }));
 
   describe('prop: onClose', () => {
     it('should be call when clicking away', () => {
       const handleClose = spy();
       mount(<Snackbar open onClose={handleClose} message="message" />);
 
-      const event = new window.Event('mouseup', { view: window, bubbles: true, cancelable: true });
-      window.document.body.dispatchEvent(event);
+      const event = new window.Event('click', { view: window, bubbles: true, cancelable: true });
+      document.body.dispatchEvent(event);
 
       assert.strictEqual(handleClose.callCount, 1);
       assert.deepEqual(handleClose.args[0], [event, 'clickaway']);
@@ -127,6 +130,27 @@ describe('<Snackbar />', () => {
       clock.tick(autoHideDuration);
       assert.strictEqual(handleClose.callCount, 1);
       assert.deepEqual(handleClose.args[0], [null, 'timeout']);
+    });
+
+    it('calls onClose at timeout even if the prop changes', () => {
+      const handleClose1 = spy();
+      const handleClose2 = spy();
+      const autoHideDuration = 2e3;
+      const { setProps } = render(
+        <Snackbar
+          open={false}
+          onClose={handleClose1}
+          message="message"
+          autoHideDuration={autoHideDuration}
+        />,
+      );
+
+      setProps({ open: true });
+      clock.tick(autoHideDuration / 2);
+      setProps({ open: true, onClose: handleClose2 });
+      clock.tick(autoHideDuration / 2);
+      expect(handleClose1.callCount).to.equal(0);
+      expect(handleClose2.callCount).to.equal(1);
     });
 
     it('should not call onClose when the autoHideDuration is reset', () => {
@@ -365,35 +389,36 @@ describe('<Snackbar />', () => {
 
   describe('prop: open', () => {
     it('should not render anything when closed', () => {
-      const wrapper = shallow(<Snackbar open={false} message="" />);
-      assert.strictEqual(wrapper.type(), null);
+      const wrapper = mount(<Snackbar open={false} message="Hello, World!" />);
+      assert.strictEqual(wrapper.text(), '');
     });
 
     it('should be able show it after mounted', () => {
-      const wrapper = shallow(<Snackbar open={false} message="" />);
-      assert.strictEqual(wrapper.type(), null);
+      const wrapper = mount(<Snackbar open={false} message="Hello, World!" />);
+      assert.strictEqual(wrapper.text(), '');
       wrapper.setProps({ open: true });
-      assert.strictEqual(wrapper.find(Slide).length, 1, 'should use a Slide by default');
+      assert.strictEqual(wrapper.text(), 'Hello, World!');
     });
   });
 
   describe('prop: children', () => {
     it('should render the children', () => {
       const children = <div />;
-      const wrapper = shallow(<Snackbar open>{children}</Snackbar>);
-      assert.strictEqual(wrapper.contains(children), true);
+      const wrapper = mount(<Snackbar open>{children}</Snackbar>);
+      assert.strictEqual(wrapper.containsMatchingElement(children), true);
     });
   });
 
   describe('prop: TransitionComponent', () => {
-    it('should render a Snackbar with TransitionComponent', () => {
-      const Transition = props => <div className="cloned-element-class" {...props} />;
-      const wrapper = shallow(<Snackbar open TransitionComponent={Transition} />);
-      assert.strictEqual(
-        wrapper.find(Transition).length,
-        1,
-        'should include element given in TransitionComponent',
-      );
+    it('should use a Grow by default', () => {
+      const wrapper = mount(<Snackbar open message="message" />);
+      assert.strictEqual(wrapper.find(Grow).exists(), true);
+    });
+
+    it('accepts a different component that handles the transition', () => {
+      const Transition = () => <div className="cloned-element-class" />;
+      const wrapper = mount(<Snackbar open TransitionComponent={Transition} />);
+      assert.strictEqual(wrapper.find(Transition).exists(), true);
     });
   });
 });

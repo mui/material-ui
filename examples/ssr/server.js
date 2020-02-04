@@ -1,66 +1,45 @@
 import express from 'express';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
-import { SheetsRegistry } from 'jss';
-import JssProvider from 'react-jss/lib/JssProvider';
-import {
-  MuiThemeProvider,
-  createMuiTheme,
-  createGenerateClassName,
-} from '@material-ui/core/styles';
-import green from '@material-ui/core/colors/green';
-import red from '@material-ui/core/colors/red';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import { ServerStyleSheets, ThemeProvider } from '@material-ui/core/styles';
 import App from './App';
+import theme from './theme';
 
 function renderFullPage(html, css) {
   return `
-    <!doctype html>
-    <html>
+    <!DOCTYPE html>
+    <html lang="en">
       <head>
-        <title>Material-UI</title>
+        <title>My page</title>
+        <style id="jss-server-side">${css}</style>
+        <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
       </head>
       <body>
         <script async src="build/bundle.js"></script>
         <div id="root">${html}</div>
-        <style id="jss-server-side">${css}</style>
       </body>
     </html>
   `;
 }
 
 function handleRender(req, res) {
-  // Create a sheetsRegistry instance.
-  const sheetsRegistry = new SheetsRegistry();
-
-  // Create a sheetsManager instance.
-  const sheetsManager = new Map();
-
-  // Create a theme instance.
-  const theme = createMuiTheme({
-    palette: {
-      primary: green,
-      accent: red,
-      type: 'light',
-    },
-    typography: {
-      useNextVariants: true,
-    },
-  });
-
-  // Create a new class name generator.
-  const generateClassName = createGenerateClassName();
+  const sheets = new ServerStyleSheets();
 
   // Render the component to a string.
   const html = ReactDOMServer.renderToString(
-    <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
-      <MuiThemeProvider theme={theme} sheetsManager={sheetsManager}>
+    sheets.collect(
+      <ThemeProvider theme={theme}>
+        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+        <CssBaseline />
         <App />
-      </MuiThemeProvider>
-    </JssProvider>,
+      </ThemeProvider>,
+    ),
   );
 
-  // Grab the CSS from our sheetsRegistry.
-  const css = sheetsRegistry.toString();
+  // Grab the CSS from our sheets.
+  const css = sheets.toString();
 
   // Send the rendered page back to the client.
   res.send(renderFullPage(html, css));
@@ -70,8 +49,11 @@ const app = express();
 
 app.use('/build', express.static('build'));
 
-// This is fired every time the server side receives a request.
+// This is fired every time the server-side receives a request.
 app.use(handleRender);
 
 const port = 3000;
-app.listen(port);
+app.listen(port, () => {
+  // eslint-disable-next-line no-console
+  console.log(`Listening on ${port}`);
+});

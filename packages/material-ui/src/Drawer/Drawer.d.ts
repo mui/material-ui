@@ -25,6 +25,7 @@ export interface DrawerProps
 }
 
 export type DrawerClassKey =
+  | 'root'
   | 'docked'
   | 'paper'
   | 'paperAnchorLeft'

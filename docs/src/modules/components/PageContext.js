@@ -7,7 +7,11 @@ const PageContext = React.createContext({
     pathname: '',
   },
   pages: [],
-  userLanguage: '',
+  versions: [],
 });
+
+if (process.env.NODE_ENV !== 'production') {
+  PageContext.displayName = 'PageContext';
+}
 
 export default PageContext;

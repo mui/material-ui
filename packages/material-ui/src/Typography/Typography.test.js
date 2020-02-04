@@ -1,39 +1,52 @@
+// @ts-check
 import React from 'react';
 import { assert } from 'chai';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
-import createMuiTheme from '../styles/createMuiTheme';
-import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
+import { createShallow, createMount, getClasses } from '@material-ui/core/test-utils';
+import describeConformance from '../test-utils/describeConformance';
 import Typography from './Typography';
 
 describe('<Typography />', () => {
+  /**
+   * @type {ReturnType<typeof createMount>}
+   */
+  let mount;
+  /**
+   * @type {ReturnType<typeof createShallow>}
+   */
   let shallow;
+  /**
+   * // we test at runtime that this is equal to
+   * Record<import('./Typography').TypographyClassKey, string>
+   * @type {Record<string, string>}
+   */
   let classes;
 
   before(() => {
+    mount = createMount({ strict: true });
     shallow = createShallow({ dive: true });
     classes = getClasses(<Typography />);
   });
 
+  after(() => {
+    mount.cleanUp();
+  });
+
+  describeConformance(<Typography />, () => ({
+    classes,
+    inheritComponent: 'p',
+    mount,
+    refInstanceof: window.HTMLParagraphElement,
+  }));
+
   it('should render the text', () => {
     const wrapper = shallow(<Typography>Hello</Typography>);
-    assert.strictEqual(wrapper.childAt(0).equals('Hello'), true);
+    assert.strictEqual(wrapper.text(), 'Hello');
   });
 
-  it('should spread props', () => {
-    const wrapper = shallow(<Typography data-test="hello">Hello</Typography>);
-    assert.strictEqual(wrapper.props()['data-test'], 'hello');
-  });
-
-  it('should render body2 root by default', () => {
+  it('should render body1 root by default', () => {
     const wrapper = shallow(<Typography>Hello</Typography>);
-    assert.strictEqual(wrapper.hasClass(classes.body2), true);
+    assert.strictEqual(wrapper.hasClass(classes.body1), true);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
-  });
-
-  it('should merge user classes', () => {
-    const wrapper = shallow(<Typography className="woofTypography">Hello</Typography>);
-    assert.strictEqual(wrapper.hasClass(classes.body2), true);
-    assert.strictEqual(wrapper.hasClass('woofTypography'), true);
   });
 
   it('should center text', () => {
@@ -47,6 +60,7 @@ describe('<Typography />', () => {
   ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'subtitle1', 'body2', 'body1', 'caption', 'button'].forEach(
     variant => {
       it(`should render ${variant} text`, () => {
+        // @ts-ignore literal/tuple type widening
         const wrapper = shallow(<Typography variant={variant}>Hello</Typography>);
         assert.strictEqual(classes[variant] != null, true);
         assert.strictEqual(wrapper.hasClass(classes[variant]), true, `should be ${variant} text`);
@@ -62,6 +76,7 @@ describe('<Typography />', () => {
     ['error', 'colorError'],
   ].forEach(([color, className]) => {
     it(`should render ${color} color`, () => {
+      // @ts-ignore literal/tuple type widening
       const wrapper = shallow(<Typography color={color}>Hello</Typography>);
       assert.strictEqual(classes[className] != null, true);
       assert.strictEqual(wrapper.hasClass(classes[className]), true, `should be ${color} text`);
@@ -97,59 +112,10 @@ describe('<Typography />', () => {
     });
   });
 
-  describe('v2 migration', () => {
-    const mount = createMount();
-
-    beforeEach(() => {
-      // eslint-disable-next-line no-underscore-dangle
-      global.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = false;
-      consoleErrorMock.spy();
-    });
-
-    afterEach(() => {
-      // eslint-disable-next-line no-underscore-dangle
-      global.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
-      consoleErrorMock.reset();
-    });
-
-    /**
-     * tests if a warning is issued from the `warning` module when mounting {component}
-     */
-    const testMount = (component, expectWarning) => {
-      const wrapper = mount(component);
-      wrapper.unmount();
-
-      if (expectWarning) {
-        assert.strictEqual(consoleErrorMock.callCount(), 1);
-        assert.include(consoleErrorMock.args()[0], 'deprecated');
-      } else {
-        assert.strictEqual(consoleErrorMock.callCount(), 0);
-      }
-    };
-
-    describe('prop: internalDeprecatedVariant', () => {
-      it('suppresses warnings if the user is on a v2 theme', () => {
-        testMount(<Typography internalDeprecatedVariant variant="headline" />, false);
-      });
-    });
-
-    describe('theme.typography.useNextVariants', () => {
-      it('maps internal deprecated variants', () => {
-        const wrapper = shallow(<Typography variant="display4" />);
-        assert.strictEqual(wrapper.hasClass(classes.h1), true);
-      });
-
-      it('suppresses warnings for restyled variants', () => {
-        const theme = createMuiTheme({ typography: { useNextVariants: true } });
-        testMount(<Typography theme={theme} variant="h1" />, false);
-      });
-    });
-  });
-
-  describe('prop: headlineMapping', () => {
+  describe('prop: variantMapping', () => {
     it('should work with a single value', () => {
       const wrapper = shallow(
-        <Typography variant="h6" headlineMapping={{ h6: 'aside' }}>
+        <Typography variant="h6" variantMapping={{ h6: 'aside' }}>
           Hello
         </Typography>,
       );
@@ -158,11 +124,34 @@ describe('<Typography />', () => {
 
     it('should work event without the full mapping', () => {
       const wrapper = shallow(
-        <Typography variant="h6" headlineMapping={{}}>
+        <Typography variant="h6" variantMapping={{}}>
           Hello
         </Typography>,
       );
       assert.strictEqual(wrapper.type(), 'h6');
+    });
+  });
+
+  describe('prop: display', () => {
+    it('should render with displayInline class in display="inline"', () => {
+      const wrapper = shallow(<Typography display="inline">Hello</Typography>);
+      assert.strictEqual(wrapper.hasClass(classes.root), true);
+      assert.strictEqual(wrapper.hasClass(classes.displayInline), true);
+      assert.strictEqual(wrapper.hasClass(classes.displayBlock), false);
+    });
+
+    it('should render with displayInline class in display="block"', () => {
+      const wrapper = shallow(<Typography display="block">Hello</Typography>);
+      assert.strictEqual(wrapper.hasClass(classes.root), true);
+      assert.strictEqual(wrapper.hasClass(classes.displayBlock), true);
+      assert.strictEqual(wrapper.hasClass(classes.displayInline), false);
+    });
+
+    it('should render with no display classes if display="initial"', () => {
+      const wrapper = shallow(<Typography display="initial">Hello</Typography>);
+      assert.strictEqual(wrapper.hasClass(classes.root), true);
+      assert.strictEqual(wrapper.hasClass(classes.displayBlock), false);
+      assert.strictEqual(wrapper.hasClass(classes.displayInline), false);
     });
   });
 });

@@ -1,25 +1,28 @@
 import * as React from 'react';
-import { StandardProps } from '..';
-import { ButtonBaseProps } from '../ButtonBase/ButtonBase';
-import { TabIndicatorProps } from './TabIndicator';
+import ButtonBase from '../ButtonBase/ButtonBase';
+import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
-export interface TabsProps
-  extends StandardProps<ButtonBaseProps, TabsClassKey, 'onChange' | 'action' | 'component'> {
-  action?: (actions: TabsActions) => void;
-  centered?: boolean;
-  children?: React.ReactNode;
-  component?: React.ReactType<TabsProps>;
-  fullWidth?: boolean;
-  indicatorColor?: 'secondary' | 'primary' | string;
-  onChange?: (event: React.ChangeEvent<{}>, value: any) => void;
-  scrollable?: boolean;
-  ScrollButtonComponent?: React.ReactType;
-  scrollButtons?: 'auto' | 'on' | 'off';
-  TabIndicatorProps?: Partial<TabIndicatorProps>;
-  textColor?: 'secondary' | 'primary' | 'inherit' | string;
-  value: any;
-  width?: string;
+export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof ButtonBase> {
+  props: P & {
+    action?: React.Ref<TabsActions>;
+    centered?: boolean;
+    children?: React.ReactNode;
+    indicatorColor?: 'secondary' | 'primary' | string;
+    onChange?: (event: React.ChangeEvent<{}>, value: any) => void;
+    orientation?: 'horizontal' | 'vertical';
+    ScrollButtonComponent?: React.ElementType;
+    scrollButtons?: 'auto' | 'desktop' | 'on' | 'off';
+    TabIndicatorProps?: Partial<React.HTMLAttributes<HTMLDivElement>>;
+    textColor?: 'secondary' | 'primary' | 'inherit' | string;
+    value: any;
+    variant?: 'standard' | 'scrollable' | 'fullWidth';
+    width?: string;
+  };
+  defaultComponent: D;
+  classKey: TabsClassKey;
 }
+
+declare const Tabs: OverridableComponent<TabsTypeMap>;
 
 export type TabsClassKey =
   | 'root'
@@ -29,13 +32,16 @@ export type TabsClassKey =
   | 'scrollable'
   | 'centered'
   | 'scrollButtons'
-  | 'scrollButtonsAuto'
+  | 'scrollButtonsDesktop'
   | 'indicator';
 
 export interface TabsActions {
   updateIndicator(): void;
 }
 
-declare const Tabs: React.ComponentType<TabsProps>;
+export type TabsProps<
+  D extends React.ElementType = TabsTypeMap['defaultComponent'],
+  P = {}
+> = OverrideProps<TabsTypeMap<P, D>, D>;
 
 export default Tabs;

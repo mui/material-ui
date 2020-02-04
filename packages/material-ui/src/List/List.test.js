@@ -1,73 +1,81 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, getClasses } from '@material-ui/core/test-utils';
+import { createMount, findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
+import describeConformance from '../test-utils/describeConformance';
 import ListSubheader from '../ListSubheader';
 import List from './List';
+import ListItem from '../ListItem';
 
 describe('<List />', () => {
-  let shallow;
+  let mount;
   let classes;
 
   before(() => {
-    shallow = createShallow({ dive: true });
+    mount = createMount({ strict: true });
     classes = getClasses(<List />);
   });
 
-  it('should render a div', () => {
-    const wrapper = shallow(<List component="div" />);
-    assert.strictEqual(wrapper.name(), 'div');
+  after(() => {
+    mount.cleanUp();
   });
 
-  it('should render a ul', () => {
-    const wrapper = shallow(<List />);
-    assert.strictEqual(wrapper.name(), 'ul');
+  describeConformance(<List />, () => ({
+    classes,
+    inheritComponent: 'ul',
+    mount,
+    refInstanceof: window.HTMLUListElement,
+  }));
+
+  it('should render with padding classes', () => {
+    const wrapper = mount(<List className="woofList" />);
+    const root = wrapper.find('ul');
+    assert.strictEqual(root.hasClass(classes.padding), true);
   });
 
-  it('should render with the user, root and padding classes', () => {
-    const wrapper = shallow(<List className="woofList" />);
-    assert.strictEqual(wrapper.hasClass('woofList'), true);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.padding), true);
-  });
-
-  it('should disable the padding', () => {
-    const wrapper = shallow(<List disablePadding />);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(
-      wrapper.hasClass(classes.padding),
-      false,
-      'should not have the padding class',
-    );
+  it('can disable the padding', () => {
+    const wrapper = mount(<List disablePadding />);
+    assert.strictEqual(wrapper.find('ul').hasClass(classes.padding), false);
   });
 
   describe('prop: subheader', () => {
     it('should render with subheader class', () => {
-      const wrapper = shallow(<List subheader={<ListSubheader>Title</ListSubheader>} />);
-      assert.strictEqual(wrapper.hasClass(classes.root), true);
-      assert.strictEqual(
-        wrapper.hasClass(classes.subheader),
-        true,
-        'should have the subheader class',
-      );
+      const wrapper = mount(<List subheader={<ListSubheader>Title</ListSubheader>} />);
+      assert.strictEqual(wrapper.find('ul').hasClass(classes.subheader), true);
     });
 
     it('should render ListSubheader', () => {
-      const wrapper = shallow(<List subheader={<ListSubheader>Title</ListSubheader>} />);
+      const wrapper = mount(<List subheader={<ListSubheader>Title</ListSubheader>} />);
       assert.strictEqual(wrapper.find(ListSubheader).length, 1);
     });
   });
 
-  describe('context: dense', () => {
-    it('should forward the context', () => {
-      const wrapper1 = shallow(<List />);
-      assert.strictEqual(
-        wrapper1.hasClass(classes.dense),
-        false,
-        'dense should be false by default',
+  describe('prop: dense', () => {
+    it('is disabled by default', () => {
+      const wrapper = mount(<List />);
+      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.dense), false);
+    });
+
+    it('adds a dense class', () => {
+      const wrapper = mount(<List dense />);
+      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.dense), true);
+    });
+
+    it('sets dense on deep nested ListItem', () => {
+      // mocking a tooltip
+      const Tooltip = React.Fragment;
+
+      const wrapper = mount(
+        <List dense>
+          <Tooltip>
+            <ListItem>Inbox</ListItem>
+          </Tooltip>
+          <ListItem>Drafts</ListItem>
+          <ListItem />
+        </List>,
       );
 
-      const wrapper2 = shallow(<List dense />);
-      assert.strictEqual(wrapper2.hasClass(classes.dense), true);
+      const listItemClasses = getClasses(<ListItem />);
+      assert.strictEqual(wrapper.find('li').every(`.${listItemClasses.dense}`), true);
     });
   });
 });

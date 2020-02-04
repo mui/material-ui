@@ -1,0 +1,27 @@
+{
+  "buildCommand": "build:codesandbox",
+  "packages": [
+    "packages/material-ui",
+    "packages/material-ui-icons",
+    "packages/material-ui-lab",
+    "packages/material-ui-styles",
+    "packages/material-ui-system",
+    "packages/material-ui-types",
+    "packages/material-ui-utils"
+  ],
+  "publishDirectory": {
+    "@material-ui/core": "packages/material-ui/build",
+    "@material-ui/icons": "packages/material-ui-icons/build",
+    "@material-ui/lab": "packages/material-ui-lab/build",
+    "@material-ui/styles": "packages/material-ui-styles/build",
+    "@material-ui/system": "packages/material-ui-system/build",
+    "@material-ui/types": "packages/material-ui-types",
+    "@material-ui/utils": "packages/material-ui-utils/build"
+  },
+  "sandboxes": [
+    "new",
+    "github/mui-org/material-ui/tree/master/examples/create-react-app",
+    "github/mui-org/material-ui/tree/master/examples/create-react-app-with-typescript"
+  ],
+  "silent": true
+}

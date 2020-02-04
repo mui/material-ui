@@ -1,206 +1,579 @@
 import React from 'react';
-import keycode from 'keycode';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import { spy } from 'sinon';
-import MenuList from 'packages/material-ui/src/MenuList';
-import MenuItem from 'packages/material-ui/src/MenuItem';
-import { createMount } from 'packages/material-ui/src/test-utils';
-
-function assertMenuItemTabIndexed(wrapper, tabIndexed) {
-  const items = wrapper.find('MenuItem');
-
-  items.forEach((item, index) => {
-    if (index === tabIndexed) {
-      assert.strictEqual(item.props().tabIndex, 0, 'should have the tab index');
-    } else {
-      assert.strictEqual(
-        item.props().tabIndex,
-        -1,
-        `item at index ${index} should not be tab focusable`,
-      );
-    }
-  });
-}
-
-function assertMenuItemFocused(wrapper, tabIndexed) {
-  const items = wrapper.find('MenuItem');
-
-  items.forEach((item, index) => {
-    if (index === tabIndexed) {
-      assert.strictEqual(item.find('li').instance(), document.activeElement, 'should be focused');
-    }
-  });
-}
+import MenuList from '@material-ui/core/MenuList';
+import MenuItem from '@material-ui/core/MenuItem';
+import Divider from '@material-ui/core/Divider';
+import { createClientRender, fireEvent } from 'test/utils/createClientRender';
 
 describe('<MenuList> integration', () => {
-  let mount;
+  const render = createClientRender();
 
-  before(() => {
-    mount = createMount();
-  });
+  if (/Chrome\/49\.0/.test(window.navigator.userAgent)) {
+    // fails repeatedly on chrome 49 in karma but works when manually testing
+    // the same component tree (-TrackCommitCountMenuItem) in isolation in browserstack
+    return;
+  }
 
-  after(() => {
-    mount.cleanUp();
+  specify('the MenuItems have the `menuitem` role', () => {
+    const { getAllByRole } = render(
+      <MenuList>
+        <MenuItem>Menu Item 1</MenuItem>
+        <MenuItem>Menu Item 2</MenuItem>
+        <MenuItem>Menu Item 3</MenuItem>
+      </MenuList>,
+    );
+
+    expect(getAllByRole('menuitem')).to.have.length(3);
   });
 
   describe('keyboard controls and tabIndex manipulation', () => {
-    let wrapper;
-
-    const resetWrapper = () => {
-      wrapper = mount(
+    specify('the specified item should be in tab order while the rest is focusable', () => {
+      const { getAllByRole } = render(
         <MenuList>
-          <MenuItem>Menu Item 1</MenuItem>
+          <MenuItem tabIndex={0}>Menu Item 1</MenuItem>
           <MenuItem>Menu Item 2</MenuItem>
-          <MenuItem>Menu Item 2</MenuItem>
-          <MenuItem>Menu Item 4</MenuItem>
+          <MenuItem>Menu Item 3</MenuItem>
         </MenuList>,
       );
-    };
+      const menuitems = getAllByRole('menuitem');
 
-    before(resetWrapper);
-
-    it('should have the first item tabIndexed', () => {
-      assertMenuItemTabIndexed(wrapper, 0);
+      expect(menuitems[0]).to.have.property('tabIndex', 0);
+      expect(menuitems[1]).to.have.property('tabIndex', -1);
+      expect(menuitems[2]).to.have.property('tabIndex', -1);
     });
 
-    it('should select/focus the first item', () => {
-      wrapper.instance().focus();
-      assertMenuItemTabIndexed(wrapper, 0);
-      assertMenuItemFocused(wrapper, 0);
+    it('focuses the specified item on mount', () => {
+      const { getAllByRole } = render(
+        <MenuList autoFocusItem>
+          <MenuItem>Menu Item 1</MenuItem>
+          <MenuItem>Menu Item 2</MenuItem>
+          <MenuItem>Menu Item 3</MenuItem>
+        </MenuList>,
+      );
+
+      expect(getAllByRole('menuitem')[0]).to.have.focus;
     });
 
-    it('should still have the first item tabIndexed', () => {
-      wrapper.simulate('keyDown', { which: keycode('up') });
-      assertMenuItemTabIndexed(wrapper, 0);
+    it('should select the last item when pressing up if the first item is focused', () => {
+      const { getAllByRole } = render(
+        <MenuList autoFocusItem>
+          <MenuItem selected>Menu Item 1</MenuItem>
+          <MenuItem>Menu Item 2</MenuItem>
+          <MenuItem>Menu Item 3</MenuItem>
+        </MenuList>,
+      );
+
+      fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
+      const menuitems = getAllByRole('menuitem');
+
+      expect(menuitems[2]).to.have.focus;
+      expect(menuitems[0]).to.have.property('tabIndex', 0);
+      expect(menuitems[1]).to.have.property('tabIndex', -1);
+      expect(menuitems[2]).to.have.property('tabIndex', -1);
     });
 
-    it('should still have the first item tabIndexed', () => {
-      wrapper.simulate('keyDown', { which: keycode('down') });
-      wrapper.simulate('keyDown', { which: keycode('up') });
-      assertMenuItemFocused(wrapper, 0);
+    it('should select the secont item when pressing down if the first item is selected', () => {
+      const { getAllByRole } = render(
+        <MenuList autoFocusItem>
+          <MenuItem selected>Menu Item 1</MenuItem>
+          <MenuItem>Menu Item 2</MenuItem>
+          <MenuItem>Menu Item 3</MenuItem>
+        </MenuList>,
+      );
+
+      fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+      const menuitems = getAllByRole('menuitem');
+
+      expect(menuitems[1]).to.have.focus;
+      expect(menuitems[0]).to.have.property('tabIndex', 0);
+      expect(menuitems[1]).to.have.property('tabIndex', -1);
+      expect(menuitems[2]).to.have.property('tabIndex', -1);
     });
 
-    it('should focus the second item', () => {
-      wrapper.instance().focus();
-      wrapper.simulate('keyDown', { which: keycode('down') });
-      assertMenuItemTabIndexed(wrapper, 1);
-      assertMenuItemFocused(wrapper, 1);
+    it('should still be focused and focusable when going back and forth', () => {
+      const { getAllByRole } = render(
+        <MenuList autoFocusItem>
+          <MenuItem selected>Menu Item 1</MenuItem>
+          <MenuItem>Menu Item 2</MenuItem>
+          <MenuItem>Menu Item 3</MenuItem>
+        </MenuList>,
+      );
+
+      fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+      fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
+      const menuitems = getAllByRole('menuitem');
+
+      expect(menuitems[0]).to.have.focus;
+      expect(menuitems[0]).to.have.property('tabIndex', 0);
+      expect(menuitems[1]).to.have.property('tabIndex', -1);
+      expect(menuitems[2]).to.have.property('tabIndex', -1);
     });
 
-    it('should reset the tabIndex to the first item after blur', done => {
+    it('should leave tabIndex on the first item after blur', () => {
       const handleBlur = spy();
-      wrapper.setProps({ onBlur: handleBlur });
+      const { getAllByRole } = render(
+        <MenuList autoFocusItem onBlur={handleBlur}>
+          <MenuItem selected>Menu Item 1</MenuItem>
+          <MenuItem>Menu Item 2</MenuItem>
+          <MenuItem>Menu Item 3</MenuItem>
+        </MenuList>,
+      );
 
-      if (!document.activeElement) {
-        throw new Error('missing active element');
-      }
-
+      expect(document.activeElement).to.be.ok;
       document.activeElement.blur();
-      setTimeout(() => {
-        assert.strictEqual(handleBlur.callCount, 1);
-        wrapper.update();
-        assertMenuItemTabIndexed(wrapper, 0);
-        done();
-      }, 60);
+      const menuitems = getAllByRole('menuitem');
+
+      expect(handleBlur.callCount).to.equal(1);
+      expect(menuitems[0]).to.have.property('tabIndex', 0);
+      expect(menuitems[1]).to.have.property('tabIndex', -1);
+      expect(menuitems[2]).to.have.property('tabIndex', -1);
+      expect(menuitems[0]).not.to.have.focus;
+      expect(menuitems[1]).not.to.have.focus;
+      expect(menuitems[2]).not.to.have.focus;
     });
 
-    it('should reset the tabIndex to the focused element when calling resetTabIndex', () => {
-      wrapper.instance().focus();
-      wrapper.simulate('keyDown', { which: keycode('down') });
-      wrapper.instance().setTabIndex(2);
-      wrapper.instance().resetTabIndex();
+    it('can imperatively focus the first item', () => {
+      const { getAllByRole } = render(
+        <MenuList autoFocusItem>
+          <MenuItem selected>Menu Item 1</MenuItem>
+          <MenuItem>Menu Item 2</MenuItem>
+          <MenuItem>Menu Item 3</MenuItem>
+        </MenuList>,
+      );
+      const menuitems = getAllByRole('menuitem');
 
-      assertMenuItemTabIndexed(wrapper, 1);
-      assertMenuItemFocused(wrapper, 1);
+      menuitems[0].focus();
 
-      resetWrapper();
+      expect(menuitems[0]).to.have.focus;
+      expect(menuitems[0]).to.have.property('tabIndex', 0);
+      expect(menuitems[1]).to.have.property('tabIndex', -1);
+      expect(menuitems[2]).to.have.property('tabIndex', -1);
     });
 
-    it('should select/focus the first item', () => {
-      wrapper.instance().focus();
-      assertMenuItemTabIndexed(wrapper, 0);
-      assertMenuItemFocused(wrapper, 0);
-    });
+    it('down arrow can go to all items while not changing tabIndex', () => {
+      const { getAllByRole } = render(
+        <MenuList autoFocusItem>
+          <MenuItem selected>Menu Item 1</MenuItem>
+          <MenuItem>Menu Item 2</MenuItem>
+          <MenuItem>Menu Item 3</MenuItem>
+        </MenuList>,
+      );
+      const menuitems = getAllByRole('menuitem');
 
-    it('should focus the second item', () => {
-      wrapper.simulate('keyDown', { which: keycode('down') });
-      assertMenuItemTabIndexed(wrapper, 1);
-      assertMenuItemFocused(wrapper, 1);
-    });
+      fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
 
-    it('should focus the third item', () => {
-      wrapper.simulate('keyDown', { which: keycode('down') });
-      assertMenuItemTabIndexed(wrapper, 2);
-      assertMenuItemFocused(wrapper, 2);
-    });
+      expect(menuitems[1]).to.have.focus;
+      expect(menuitems[0]).to.have.property('tabIndex', 0);
+      expect(menuitems[1]).to.have.property('tabIndex', -1);
+      expect(menuitems[2]).to.have.property('tabIndex', -1);
 
-    it('should focus the first item if not focused', () => {
-      resetWrapper();
-      wrapper.simulate('keyDown', { which: keycode('down') });
-      assertMenuItemTabIndexed(wrapper, 0);
-      assertMenuItemFocused(wrapper, 0);
+      fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
 
-      resetWrapper();
-      wrapper.simulate('keyDown', { which: keycode('up') });
-      assertMenuItemTabIndexed(wrapper, 0);
-      assertMenuItemFocused(wrapper, 0);
+      expect(menuitems[2]).to.have.focus;
+      expect(menuitems[0]).to.have.property('tabIndex', 0);
+      expect(menuitems[1]).to.have.property('tabIndex', -1);
+      expect(menuitems[2]).to.have.property('tabIndex', -1);
     });
   });
 
   describe('keyboard controls and tabIndex manipulation - preselected item', () => {
-    let wrapper;
-
-    const resetWrapper = () => {
-      wrapper = mount(
+    it('should auto focus the second item', () => {
+      const { getAllByRole } = render(
         <MenuList>
           <MenuItem>Menu Item 1</MenuItem>
+          <MenuItem autoFocus selected tabIndex={0}>
+            Menu Item 2
+          </MenuItem>
+          <MenuItem>Menu Item 3</MenuItem>
+        </MenuList>,
+      );
+      const menuitems = getAllByRole('menuitem');
+
+      expect(menuitems[1]).to.have.focus;
+      expect(menuitems[0]).to.have.property('tabIndex', -1);
+      expect(menuitems[1]).to.have.property('tabIndex', 0);
+      expect(menuitems[2]).to.have.property('tabIndex', -1);
+    });
+
+    it('should focus next item on ArrowDown', () => {
+      const { getAllByRole } = render(
+        <MenuList>
+          <MenuItem>Menu Item 1</MenuItem>
+          <MenuItem autoFocus selected tabIndex={0}>
+            Menu Item 2
+          </MenuItem>
+          <MenuItem>Menu Item 3</MenuItem>
+        </MenuList>,
+      );
+      const menuitems = getAllByRole('menuitem');
+
+      fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+
+      expect(menuitems[2]).to.have.focus;
+      expect(menuitems[0]).to.have.property('tabIndex', -1);
+      expect(menuitems[1]).to.have.property('tabIndex', 0);
+      expect(menuitems[2]).to.have.property('tabIndex', -1);
+    });
+  });
+
+  describe('keyboard controls and tabIndex manipulation - preselected item, no item autoFocus', () => {
+    it('should focus the first item if no item is focused when pressing ArrowDown', () => {
+      const { getAllByRole } = render(
+        <MenuList autoFocus>
+          <MenuItem>Menu Item 1</MenuItem>
           <MenuItem selected>Menu Item 2</MenuItem>
+          <MenuItem>Menu Item 3</MenuItem>
+        </MenuList>,
+      );
+      const menuitems = getAllByRole('menuitem');
+
+      fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+
+      expect(menuitems[0]).to.have.focus;
+      expect(menuitems[0]).to.have.property('tabIndex', -1);
+      expect(menuitems[1]).to.have.property('tabIndex', 0);
+      expect(menuitems[2]).to.have.property('tabIndex', -1);
+    });
+
+    it('should focus the third item if no item is focused when pressing ArrowUp', () => {
+      const { getAllByRole } = render(
+        <MenuList autoFocus>
+          <MenuItem>Menu Item 1</MenuItem>
+          <MenuItem selected tabIndex={0}>
+            Menu Item 2
+          </MenuItem>
+          <MenuItem>Menu Item 3</MenuItem>
+        </MenuList>,
+      );
+      const menuitems = getAllByRole('menuitem');
+
+      fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
+
+      expect(menuitems[2]).to.have.focus;
+      expect(menuitems[0]).to.have.property('tabIndex', -1);
+      expect(menuitems[1]).to.have.property('tabIndex', 0);
+      expect(menuitems[2]).to.have.property('tabIndex', -1);
+    });
+  });
+
+  specify(
+    'initial focus is controlled by setting the selected prop when `autoFocusItem` is enabled',
+    () => {
+      const { getAllByRole } = render(
+        <MenuList autoFocusItem>
+          <MenuItem>Menu Item 1</MenuItem>
           <MenuItem>Menu Item 2</MenuItem>
+          <MenuItem selected>Menu Item 3</MenuItem>
           <MenuItem>Menu Item 4</MenuItem>
         </MenuList>,
       );
-    };
+      const menuitems = getAllByRole('menuitem');
 
-    before(resetWrapper);
+      expect(menuitems[2]).to.have.focus;
+      expect(menuitems[0]).to.have.property('tabIndex', -1);
+      expect(menuitems[1]).to.have.property('tabIndex', -1);
+      expect(menuitems[2]).to.have.property('tabIndex', 0);
+      expect(menuitems[3]).to.have.property('tabIndex', -1);
+    },
+  );
 
-    it('should have the 2nd item tabIndexed', () => {
-      assertMenuItemTabIndexed(wrapper, 1);
+  describe('MenuList with disableListWrap', () => {
+    it('should not wrap focus with ArrowUp from first', () => {
+      const { getAllByRole } = render(
+        <MenuList autoFocusItem disableListWrap>
+          <MenuItem selected>Menu Item 1</MenuItem>
+          <MenuItem>Menu Item 2</MenuItem>
+        </MenuList>,
+      );
+      const menuitems = getAllByRole('menuitem');
+
+      fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
+
+      expect(menuitems[0]).to.have.focus;
+      expect(menuitems[0]).to.have.property('tabIndex', 0);
+      expect(menuitems[1]).to.have.property('tabIndex', -1);
     });
 
-    it('should select/focus the second item', () => {
-      wrapper.instance().focus();
-      assertMenuItemTabIndexed(wrapper, 1);
-      assertMenuItemFocused(wrapper, 1);
-    });
+    it('should not wrap focus with ArrowDown from last', () => {
+      const { getAllByRole } = render(
+        <MenuList autoFocusItem disableListWrap>
+          <MenuItem>Menu Item 1</MenuItem>
+          <MenuItem selected>Menu Item 2</MenuItem>
+        </MenuList>,
+      );
+      const menuitems = getAllByRole('menuitem');
 
-    it('should focus the third item', () => {
-      wrapper.instance().focus();
-      wrapper.simulate('keyDown', { which: keycode('down') });
-      assertMenuItemTabIndexed(wrapper, 2);
-      assertMenuItemFocused(wrapper, 2);
-    });
+      fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
 
-    it('should focus the preselected item if not focused', () => {
-      resetWrapper();
-      wrapper.simulate('keyDown', { which: keycode('down') });
-      assertMenuItemTabIndexed(wrapper, 1);
-      assertMenuItemFocused(wrapper, 1);
-
-      resetWrapper();
-      wrapper.simulate('keyDown', { which: keycode('up') });
-      assertMenuItemTabIndexed(wrapper, 1);
-      assertMenuItemFocused(wrapper, 1);
+      expect(menuitems[1]).to.have.focus;
+      expect(menuitems[0]).to.have.property('tabIndex', -1);
+      expect(menuitems[1]).to.have.property('tabIndex', 0);
     });
   });
 
-  it('should not crash and burn when calling focus() on an empty MenuList', () => {
-    const wrapper = mount(<MenuList />);
-    wrapper.instance().focus();
+  it('should skip divider and disabled menu item', () => {
+    const { getAllByRole } = render(
+      <MenuList autoFocus>
+        <MenuItem>Menu Item 1</MenuItem>
+        <Divider component="li" />
+        <MenuItem>Menu Item 2</MenuItem>
+        <MenuItem disabled>Menu Item 3</MenuItem>
+        <MenuItem>Menu Item 4</MenuItem>
+      </MenuList>,
+    );
+    const menuitems = getAllByRole('menuitem');
+
+    fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+
+    expect(menuitems[0]).to.have.focus;
+
+    fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+
+    expect(menuitems[1]).to.have.focus;
+
+    fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+
+    expect(menuitems[3]).to.have.focus;
+
+    fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+
+    expect(menuitems[0]).to.have.focus;
+
+    // and ArrowUp again
+
+    fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
+
+    expect(menuitems[3]).to.have.focus;
+
+    fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
+
+    expect(menuitems[1]).to.have.focus;
+
+    fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
+
+    expect(menuitems[0]).to.have.focus;
+
+    fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
+
+    expect(menuitems[3]).to.have.focus;
   });
 
-  it('should not crash and burn when calling focus() on an unmounted MenuList', () => {
-    const wrapper = mount(<MenuList />);
-    delete wrapper.instance().list;
-    wrapper.instance().focus();
+  it('should stay on a single item if it is the only focusable one', () => {
+    const { getAllByRole } = render(
+      <MenuList autoFocus>
+        <MenuItem disabled>Menu Item 1</MenuItem>
+        <MenuItem>Menu Item 2</MenuItem>
+        <MenuItem disabled>Menu Item 3</MenuItem>
+        <MenuItem disabled>Menu Item 4</MenuItem>
+      </MenuList>,
+    );
+    const menuitems = getAllByRole('menuitem');
+
+    fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+
+    expect(menuitems[1]).to.have.focus;
+
+    fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+
+    expect(menuitems[1]).to.have.focus;
+
+    fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+
+    expect(menuitems[1]).to.have.focus;
+
+    fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
+
+    expect(menuitems[1]).to.have.focus;
+
+    fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
+
+    expect(menuitems[1]).to.have.focus;
+  });
+
+  it('should keep focus on the menu if all items are disabled', () => {
+    const { getByRole } = render(
+      <MenuList autoFocus>
+        <MenuItem disabled>Menu Item 1</MenuItem>
+        <MenuItem disabled>Menu Item 2</MenuItem>
+        <MenuItem disabled>Menu Item 3</MenuItem>
+        <MenuItem disabled>Menu Item 4</MenuItem>
+      </MenuList>,
+    );
+    const menu = getByRole('menu');
+
+    fireEvent.keyDown(document.activeElement, { key: 'Home' });
+
+    expect(menu).to.have.focus;
+
+    fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+
+    expect(menu).to.have.focus;
+
+    fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+
+    expect(menu).to.have.focus;
+
+    fireEvent.keyDown(document.activeElement, { key: 'End' });
+
+    expect(menu).to.have.focus;
+
+    fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
+
+    expect(menu).to.have.focus;
+  });
+
+  describe('MenuList text-based keyboard controls', () => {
+    let innerTextSupported;
+
+    before(() => {
+      const element = document.createElement('div');
+      element.appendChild(document.createTextNode('Hello, Dave!'));
+      innerTextSupported = element.innerText !== undefined;
+    });
+
+    it('selects the first item starting with the character', () => {
+      const { getByRole, getByText } = render(
+        <MenuList>
+          <MenuItem>Arizona</MenuItem>
+          <MenuItem>Berizona</MenuItem>
+        </MenuList>,
+      );
+      getByRole('menu').focus();
+
+      fireEvent.keyDown(document.activeElement, { key: 'a' });
+
+      expect(getByText('Arizona')).to.have.focus;
+    });
+
+    it('selects the next item starting with the typed character', () => {
+      const { getByText } = render(
+        <MenuList>
+          <MenuItem>Arizona</MenuItem>
+          <MenuItem>Arcansas</MenuItem>
+        </MenuList>,
+      );
+      getByText('Arizona').focus();
+
+      fireEvent.keyDown(document.activeElement, { key: 'a' });
+
+      expect(getByText('Arcansas')).to.have.focus;
+    });
+
+    it('should not get focusVisible class on click', () => {
+      const { getByText } = render(
+        <MenuList>
+          <MenuItem focusVisibleClassName="focus-visible">Arizona</MenuItem>
+        </MenuList>,
+      );
+
+      const menuitem = getByText('Arizona');
+      // user click
+      fireEvent.mouseDown(menuitem);
+      menuitem.focus();
+      fireEvent.click(menuitem);
+
+      expect(menuitem).to.have.focus;
+      expect(menuitem).not.to.have.class('focus-visible');
+    });
+
+    it('should not move focus when no match', () => {
+      const { getByText } = render(
+        <MenuList>
+          <MenuItem autoFocus>Arizona</MenuItem>
+          <MenuItem>Berizona</MenuItem>
+        </MenuList>,
+      );
+
+      fireEvent.keyDown(document.activeElement, { key: 'c' });
+
+      expect(getByText('Arizona')).to.have.focus;
+    });
+
+    it('should not move focus when keys match current focus', () => {
+      const { getByText } = render(
+        <MenuList>
+          <MenuItem autoFocus>Arizona</MenuItem>
+          <MenuItem>Berizona</MenuItem>
+        </MenuList>,
+      );
+
+      fireEvent.keyDown(document.activeElement, { key: 'A' });
+
+      expect(getByText('Arizona')).to.have.focus;
+
+      fireEvent.keyDown(document.activeElement, { key: 'r' });
+
+      expect(getByText('Arizona')).to.have.focus;
+    });
+
+    it('should not move focus if focus starts on descendant and the key doesnt match', () => {
+      const { getByText } = render(
+        <MenuList>
+          <MenuItem>Arizona</MenuItem>
+          <MenuItem>
+            <button type="button">Focusable Descendant</button>
+          </MenuItem>
+        </MenuList>,
+      );
+      const button = getByText('Focusable Descendant');
+      button.focus();
+
+      fireEvent.keyDown(document.activeElement, { key: 'z' });
+
+      expect(button).to.have.focus;
+    });
+
+    it('matches rapidly typed text', () => {
+      const { getByText } = render(
+        <MenuList autoFocus>
+          <MenuItem>Worm</MenuItem>
+          <MenuItem>Ordinary</MenuItem>
+        </MenuList>,
+      );
+
+      fireEvent.keyDown(document.activeElement, { key: 'W' });
+      fireEvent.keyDown(document.activeElement, { key: 'o' });
+
+      expect(getByText('Worm')).to.have.focus;
+    });
+
+    it('should reset the character buffer after 500ms', done => {
+      const { getByText } = render(
+        <MenuList autoFocus>
+          <MenuItem>Worm</MenuItem>
+          <MenuItem>Ordinary</MenuItem>
+        </MenuList>,
+      );
+
+      fireEvent.keyDown(document.activeElement, { key: 'W' });
+      setTimeout(() => {
+        fireEvent.keyDown(document.activeElement, { key: 'o' });
+
+        expect(getByText('Ordinary')).to.have.focus;
+        done();
+      }, 500);
+    });
+
+    it('should match ignoring hidden text', function testHiddenText() {
+      if (!innerTextSupported) {
+        // Will only be executed in Karma tests, since jsdom doesn't support innerText
+        this.skip();
+      }
+
+      const { getByText } = render(
+        <MenuList autoFocus>
+          <MenuItem>
+            W<span style={{ display: 'none' }}>Should not block type focus</span>orm
+          </MenuItem>
+          <MenuItem>Ordinary</MenuItem>
+        </MenuList>,
+      );
+
+      fireEvent.keyDown(document.activeElement, { key: 'W' });
+      fireEvent.keyDown(document.activeElement, { key: 'o' });
+
+      expect(getByText('Worm')).to.have.focus;
+    });
   });
 });

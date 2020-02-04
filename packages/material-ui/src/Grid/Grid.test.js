@@ -1,22 +1,32 @@
 import React from 'react';
-import { assert } from 'chai';
-import { createShallow, getClasses } from '@material-ui/core/test-utils';
-import Grid from './Grid';
+import { assert, expect } from 'chai';
+import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
+import { createMuiTheme } from '@material-ui/core/styles';
+import describeConformance from '../test-utils/describeConformance';
+import Grid, { styles } from './Grid';
 
 describe('<Grid />', () => {
+  let mount;
   let shallow;
   let classes;
 
   before(() => {
+    mount = createMount({ strict: true });
     shallow = createShallow({ dive: true });
     classes = getClasses(<Grid />);
   });
 
-  it('should render', () => {
-    const wrapper = shallow(<Grid className="woofGrid" />);
-    assert.strictEqual(wrapper.name(), 'div');
-    assert.strictEqual(wrapper.hasClass('woofGrid'), true);
+  after(() => {
+    mount.cleanUp();
   });
+
+  describeConformance(<Grid />, () => ({
+    classes,
+    inheritComponent: 'div',
+    mount,
+    refInstanceof: window.HTMLDivElement,
+    testComponentPropWith: 'span',
+  }));
 
   describe('prop: container', () => {
     it('should apply the container class', () => {
@@ -29,13 +39,6 @@ describe('<Grid />', () => {
     it('should apply the item class', () => {
       const wrapper = shallow(<Grid item />);
       assert.strictEqual(wrapper.hasClass(classes.item), true);
-    });
-  });
-
-  describe('prop: component', () => {
-    it('should change the component', () => {
-      const wrapper = shallow(<Grid component="span" />);
-      assert.strictEqual(wrapper.name(), 'span');
     });
   });
 
@@ -58,8 +61,8 @@ describe('<Grid />', () => {
 
   describe('prop: spacing', () => {
     it('should have a spacing', () => {
-      const wrapper = shallow(<Grid container spacing={8} />);
-      assert.strictEqual(wrapper.hasClass(classes['spacing-xs-8']), true);
+      const wrapper = shallow(<Grid container spacing={1} />);
+      assert.strictEqual(wrapper.hasClass(classes['spacing-xs-1']), true);
     });
   });
 
@@ -85,10 +88,30 @@ describe('<Grid />', () => {
   });
 
   describe('prop: other', () => {
-    it('should spread the other properties to the root element', () => {
+    it('should spread the other props to the root element', () => {
       const handleClick = () => {};
       const wrapper = shallow(<Grid component="span" onClick={handleClick} />);
       assert.strictEqual(wrapper.props().onClick, handleClick);
+    });
+  });
+
+  describe('gutter', () => {
+    it('should generate the right values', () => {
+      const defaultTheme = createMuiTheme();
+      const remTheme = createMuiTheme({
+        spacing: factor => `${0.25 * factor}rem`,
+      });
+
+      expect(styles(remTheme)['spacing-xs-2']).to.deep.equal({
+        margin: '-0.25rem',
+        width: 'calc(100% + 0.5rem)',
+        '& > $item': { padding: '0.25rem' },
+      });
+      expect(styles(defaultTheme)['spacing-xs-2']).to.deep.equal({
+        margin: '-8px',
+        width: 'calc(100% + 16px)',
+        '& > $item': { padding: '8px' },
+      });
     });
   });
 });

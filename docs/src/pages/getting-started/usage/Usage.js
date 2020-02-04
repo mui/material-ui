@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Usage() {
+export default function Usage() {
   return (
     <iframe
       title="codesandbox"
@@ -14,5 +14,3 @@ function Usage() {
     />
   );
 }
-
-export default Usage;

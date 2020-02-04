@@ -1,89 +1,187 @@
-# 构成
+# Composition（组合）
 
-<p class="description">Material-UI tries to make composition as easy as possible.</p>
+<p class="description">Material-UI 试着让组合尽可能的简单。</p>
 
-## Wrapping components
+## 封装组件
 
-In order to provide the maximum flexibility and performance, we need a way to know the nature of the child elements a component receives. To solve this problem we tag some of our components when needed with a `muiName` static property.
+我们需要一种了解组件接收的子元素的本质的方式，这样可以尽可能提供最大的灵活性和最好的性能。 To solve this problem we tag some of the components with a `muiName` static property when needed.
 
-However, users like to wrap components in order to enhance them. That can conflict with our `muiName` solution. If you encounter this issue, you need to:
+但是，您仍可能需要封装一个组件以增强它的功能，而这可能与 `muiName` 的解决方案相冲突。 If you wrap a component, verify if that component has this static property set.
 
-1. Forward the properties.
-2. Use the same tag for your wrapping component that is used with the wrapped component.
+如果您遇到此问题，那么请为封装组件附加上与被封装组件一样的标记。 另外，鉴于父组件可能需要对被封装的组件属性加以控制，您应该向父组件传递这些属性。
 
-Let's see an example:
+让我们来看一个例子：
 
 ```jsx
 const WrappedIcon = props => <Icon {...props} />;
-WrappedIcon.muiName = 'Icon';
+WrappedIcon.muiName = Icon.muiName;
 ```
 
 {{"demo": "pages/guides/composition/Composition.js"}}
 
-## Component property
+## Component prop
 
-Material-UI allows you to change the root node that will be rendered via a property called `component`. The component will render like this:
+Material-UI allows you to change the root element that will be rendered via a prop called `component`.
+
+### 它是如何工作的呢？
+
+该组件将这样渲染：
 
 ```js
-return React.createElement(this.props.component, props)
+return React.createElement(props.component, props)
 ```
 
-For example, by default a `List` will render a `<ul>` element. This can be changed by passing a [React component](https://reactjs.org/docs/components-and-props.html#functional-and-class-components) to the `component` property. The following example will render the `List` component with a `<nav>` element as root node instead:
+例如，在默认情况下，`List` 组件会渲染 `<ul>` 元素。 This can be changed by passing a [React component](https://reactjs.org/docs/components-and-props.html#function-and-class-components) to the `component` prop. The following example will render the `List` component with a `<nav>` element as root element instead:
 
 ```jsx
 <List component="nav">
-  <ListItem>
+  <ListItem button>
     <ListItemText primary="Trash" />
   </ListItem>
-  <ListItem>
+  <ListItem button>
     <ListItemText primary="Spam" />
   </ListItem>
 </List>
 ```
 
-This pattern is very powerful and allows for great flexibility, as well as a way to interoperate with other libaries, such as `react-router` or your favorite forms library. But it also **comes with a small caveat!**
+This pattern is very powerful and allows for great flexibility, as well as a way to interoperate with other libraries, such as your favorite routing or forms library. 但它也**带有一个小小的警告!**
 
-### Caveat with inlining
+### 当与内联函数一起使用时要注意
 
-Using an inline function as an argument for the `component` property may result in **unexpected unmounting**, since you pass a new component to the `component` property every time React renders. For instance, if you want to create a custom `ListItem` that acts as a link, you could do the following:
-
-```jsx
-const ListItemLink = ({ icon, primary, secondary, to }) => (
-  <li>
-    <ListItem button component={props => <Link to={to} {...props} />}>
-      {icon && <ListItemIcon>{icon}</ListItemIcon>}
-      <ListItemText inset primary={primary} secondary={secondary} />
-    </ListItem>
-  </li>
-);
-```
-
-However, since we are using an inline function to change the rendered component, React will unmount the link every time `ListItemLink` is rendered. Not only will React update the DOM unnecessarily, the ripple effect of the `ListItem` will also not work correctly.
-
-The solution is simple: **avoid inline functions and pass a static component to the `component` property** instead. Let's change our `ListItemLink` to the following:
+Using an inline function as an argument for the `component` prop may result in **unexpected unmounting**, since a new component is passed every time React renders. 例如，如果要创建自定义` ListItem `作为链接，您可以执行以下操作：
 
 ```jsx
-class ListItemLink extends React.Component {
-  renderLink = itemProps => <Link to={this.props.to} {...itemProps} />;
+import { Link } from 'react-router-dom';
 
-  render() {
-    const { icon, primary, secondary, to } = this.props;
-    return (
-      <li>
-        <ListItem button component={this.renderLink}>
-          {icon && <ListItemIcon>{icon}</ListItemIcon>}
-          <ListItemText inset primary={primary} secondary={secondary} />
-        </ListItem>
-      </li>
-    );
-  }
+function ListItemLink(props) {
+  const { icon, primary, to } = props;
+
+  return (
+    <li>
+      <ListItem button component={props => <Link to={to} {...props} />}>
+        <ListItemIcon>{icon}</ListItemIcon>
+        <ListItemText primary={primary} />
+      </ListItem>
+    </li>
+  );
 }
 ```
 
-`renderLink` will now always reference the same component.
+⚠️然而，由于我们使用内联函数来更改呈现的组件，因此，在每一次` ListItemLink `被渲染时，React都会先将它卸载。 不只是React会更新那些不必要的DOM，`ListItem` 的涟漪效应也将无法正常工作。
 
-### React Router
+The solution is simple: **avoid inline functions and pass a static component to the `component` prop** instead. Let's change the `ListItemLink` to the following:
 
-Here is a demo with [React Router](https://github.com/ReactTraining/react-router):
+```jsx
+import { Link } from 'react-router-dom';
 
-{{"demo": "pages/guides/composition/ComponentProperty.js"}}
+function ListItemLink(props) {
+  const { icon, primary, to } = props;
+
+  const renderLink = React.useMemo(
+    () =>
+      React.forwardRef((linkProps, ref) => (
+        <Link ref={ref} to={to} {...linkProps} />
+      )),
+    [to],
+  );
+
+  return (
+    <li>
+      <ListItem button component={renderLink}>
+        <ListItemIcon>{icon}</ListItemIcon>
+        <ListItemText primary={primary} />
+      </ListItem>
+    </li>
+  );
+}
+```
+
+` renderLink `现在将始终引用相同的组件。
+
+### Caveat with prop forwarding
+
+You can take advantage of the prop forwarding to simplify the code. 在此示例中，我们不创建任何中间组件：
+
+```jsx
+import { Link } from 'react-router-dom';
+
+<ListItem button component={Link} to="/">
+```
+
+⚠️ However, this strategy suffers from a limitation: prop collisions. The component providing the `component` prop (e.g. ListItem) might not forward all the props (for example dense) to the root element.
+
+### 使用 TypeScript
+
+您可以在[ TypeScript指南中找到详细信息](/guides/typescript/#usage-of-component-prop) 。
+
+## Routing libraries
+
+The integration with third-party routing libraries is achieved with the `component` prop. The behavior is identical to the description of the prop above. Here are a few demos with [react-router-dom](https://github.com/ReactTraining/react-router). It covers the Button, Link, and List components, you should be able to apply the same strategy with all the components.
+
+### Buttons（按钮）
+
+{{"demo": "pages/guides/composition/ButtonRouter.js"}}
+
+### Link
+
+{{"demo": "pages/guides/composition/LinkRouter.js"}}
+
+### Lists（列表）
+
+{{"demo": "pages/guides/composition/ListRouter.js"}}
+
+## 使用refs时要注意
+
+本节介绍将自定义组件用作`子组件`或`component`属性的值时的注意事项。
+
+某些组件需要访问DOM节点。 之前提到，通过使用` ReactDOM.findDOMNode ` 就能实现。 该方法已被废弃，代替的是使用` ref `和 ref 转递。 然而，只有下列组件类型才可获得 `ref`：
+
+- 任何Material-UI组件
+- 类组件，如 `React.Component` 或 `React.PureComponent` 等
+- DOM (或 host) 组件，例如 `div` 或 `button`等
+- [React.forwardRef组件](https://reactjs.org/docs/react-api.html#reactforwardref)
+- [React.lazy组件](https://reactjs.org/docs/react-api.html#reactlazy)
+- [React.memo组件](https://reactjs.org/docs/react-api.html#reactmemo)
+
+如果在将组件与Material-UI结合使用时未使用上述类型之一，则可能会在控制台中看到来自React的警告，类似于：
+
+> Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
+
+请注意，在使用 `lazy` 和 `memo` 组件时，如果被封装的组件无法持有 ref，您仍然有可能收到这个警告。
+
+In some instances an additional warning is issued to help with debugging, similar to:
+
+> Invalid prop `component` supplied to `ComponentName`. Expected an element type that can hold a ref.
+
+Only the two most common use cases are covered. 更多信息见[React官方文档中的本章节](https://reactjs.org/docs/forwarding-refs.html)。
+
+```diff
+- const MyButton = props => <div role="button" {...props} />;
++ const MyButton = React.forwardRef((props, ref) => <div role="button" {...props} ref={ref} />);
+<Button component={MyButton} />;
+```
+
+```diff
+- const SomeContent = props => <div {...props}>Hello, World!</div>;
++ const SomeContent = React.forwardRef((props, ref) => <div {...props} ref={ref}>Hello, World!</div>);
+<Tooltip title="Hello, again."><SomeContent /></Tooltip>;
+```
+
+要确定您使用的Material-UI组件是否具有此需求，请查阅该组件的props API文档。 如果您需要转递 refs，描述将链接到此部分。
+
+### Caveat with StrictMode
+
+If you use class components for the cases described above you will still see warnings in `React.StrictMode`. `ReactDOM.findDOMNode` is used internally for backwards compatibility. You can use `React.forwardRef` and a designated prop in your class component to forward the `ref` to a DOM component. Doing so should not trigger any more warnings related to the deprecation of `ReactDOM.findDOMNode`.
+
+```diff
+class Component extends React.Component {
+  render() {
+-   const { props } = this;
++   const { forwardedRef, ...props } = this.props;
+    return <div {...props} ref={forwardedRef} />;
+  }
+}
+
+-export default Component;
++export default React.forwardRef((props, ref) => <Component {...props} forwardedRef={ref} />);
+```

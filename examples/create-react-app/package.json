@@ -1,18 +1,18 @@
 {
   "name": "create-react-app",
-  "version": "3.2.2",
+  "version": "4.0.0",
   "private": true,
-  "dependencies": {
-    "@material-ui/core": "latest",
-    "prop-types": "latest",
-    "react": "latest",
-    "react-dom": "latest",
-    "react-scripts": "latest"
-  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "react-scripts test",
     "eject": "react-scripts eject"
+  },
+  "dependencies": {
+    "@material-ui/core": "latest",
+    "clsx": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-scripts": "latest"
   }
 }

@@ -1,19 +1,19 @@
 # API设计方法
 
-<p class="description">我们已经学习了很多关于如何使用Material-UI的知识，而v1重写允许我们完全重新思考组件API。</p>
+<p class="description">开发团队在之前的版本了解了 Material-UI 如何被使用。在v1重写时，重新考虑了组件API的设计方法论。</p>
 
-> API设计很难，因为你可以让它看起来很简单，但它实际上看似复杂，或者说它实际上很简单但看起来很复杂。
+> API设计的难点在于你可以让一些复杂的东西看起来简单，也可能把简单的东西搞得复杂。
 
 [@sebmarkbage](https://twitter.com/sebmarkbage/status/728433349337841665)
 
-正如Sebastian Markbage 指出</ 0>，没有抽象优于错误的抽象。 我们提供低级组件以最大化组合功能。</p> 
+正如Sebastian Markbage [指出](https://2014.jsconf.eu/speakers/sebastian-markbage-minimal-api-surface-area-learning-patterns-instead-of-frameworks.html)，没有抽象优于错误的抽象。 我们提供低级的组件以最大化保留可用性。
 
 ## 构成
 
 您可能已经注意到API中有关组合组件的一些不一致之处。 为了提供一些透明度，我们在设计API时一直使用以下规则：
 
 1. 使用` children `属性是使用React进行合成的惯用方法。
-2. 有时我们只需要有限的子组成，例如当我们不需要允许子顺序排列时。 在这种情况下，提供显式属性可以使实现更简单，更高效; 例如，`Tab `采用`icon</ 0>和<code>label`属性。
+2. 有时我们只需要有限的子组成，例如当我们不需要允许子顺序排列时。 在这种情况下，提供显式属性可以使实现更简单，更高效; 例如，`Tab`采用`icon`和`label`属性。
 3. API一致性很重要。
 
 ## 规则
@@ -34,11 +34,11 @@
 
 ### 原生属性
 
-我们避免记录DOM支持的本机属性，如[` className `](/customization/overrides/#overriding-with-class-names)。
+我们避免记录DOM支持的本机属性，如[` className `](/customization/components/#overriding-styles-with-class-names)。
 
 ### CSS classes
 
-所有组件都接受[`classes`](/customization/overrides/#overriding-with-classes)属性来自定义样式。 类设计回答了两个约束： 使类结构尽可能简单，同时足以实现Material Design规范。
+所有组件都接受[`classes`](/customization/components/#overriding-styles-with-classes)属性来自定义样式。 类设计回答了两个约束： 使类结构尽可能简单，同时足以实现Material Design规范。
 
 - 应用于根元素的类始终称为` root `。
 - 所有默认样式都分组在一个类中。
@@ -67,7 +67,7 @@ const styles = {
 - 当它们是顶级组件抽象的关键时，它们自己的扁平属性， 例如，`input`组件的` id `属性。
 - 当用户可能需要调整内部render方法的子组件时，他们自己的` xxxProps `属性，例如，在内部使用`input`的组件上公开` inputProps `和` InputProps `属性。
 - 他们自己的` xxxComponent `属性，用于执行组件注入。
-- 当用户可能需要执行命令性操作时，他们自己的` xxxRef `属性， 例如，公开` inputRef `属性以访问`input`组件上的native `input`。 这有助于回答问题[“我如何访问DOM元素？”](/getting-started/faq/#how-can-i-access-the-dom-element-)
+- 当用户可能需要执行命令性操作时，他们自己的` xxxRef `属性， 例如，公开` inputRef `属性以访问`input`组件上的native `input`。 这有助于回答问题[“我如何访问DOM元素？”](/getting-started/faq/#how-can-i-access-the-dom-element)
 
 ### 属性名称
 
@@ -101,17 +101,29 @@ const styles = {
     
     ```tsx
     type Props = {
-    variant: 'text' | 'contained' | 'fab';
+      variant: 'text' | 'contained' | 'fab';
     }
     ```
     
     这个API更详细： `<Button>`,`<Button variant="contained">`,`<Button variant="fab">`。
     
-    但是它可以防止使用无效组合， 限制暴露的属性数量， 并且可以在将来轻松支持新的价值观。
+    However it prevents an invalid combination from being used, bounds the number of properties exposed, and can easily support new values in the future.
 
 Material-UI组件根据以下规则使用两种方法的组合：
 
-- 当需要** 2 **自由度时，使用*布尔*。
-- 当需要**> 2 **自由度时，或者如果将来可能需要额外的自由度，则使用*枚举*。
+- 当需要**2**自由度时，使用*布尔*。
+- 当需要**>2**自由度时，或者如果将来可能需要额外的自由度，则使用*枚举*。
 
 回到上一个按钮示例; 因为它需要3个自由度，所以我们使用* enum *。
+
+### Ref
+
+The `ref` is forwarded to the root element. This means that, without changing the rendered root element via the `component` prop, it is forwarded to the outermost DOM element that which component renders. If you pass a different component via the `component` prop the ref will be attached to that component instead.
+
+## Glossary
+
+- **host component**: a DOM node type in the context of `react-dom`, e.g. a `'div'`. See also [React Implementation Notes](https://reactjs.org/docs/implementation-notes.html#mounting-host-elements).
+- **host element**: a DOM node in the context of `react-dom`, e.g. an instance of `window.HTMLDivElement`.
+- **outermost**: The first component when reading the component tree from top to bottom i.e. breadth-first search.
+- **root component**: the outermost component that renders a host component.
+- **root element**: the outermost element that renders a host component.

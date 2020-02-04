@@ -1,21 +1,37 @@
-import * as React from 'react';
+import {
+  ButtonBaseClassKey,
+  ExtendButtonBase,
+  ExtendButtonBaseTypeMap,
+} from '@material-ui/core/ButtonBase';
+import { OverrideProps } from '@material-ui/core/OverridableComponent';
 
-import { PropTypes, StandardProps } from '@material-ui/core';
-import { ButtonBaseClassKey, ButtonBaseProps } from '@material-ui/core/ButtonBase';
+export type ToggleButtonTypeMap<
+  P = {},
+  D extends React.ElementType = 'button'
+> = ExtendButtonBaseTypeMap<{
+  props: P & {
+    disableFocusRipple?: boolean;
+    selected?: boolean;
+    size?: 'small' | 'medium' | 'large';
+    value?: any;
+  };
+  defaultComponent: D;
+  classKey: ToggleButtonClassKey;
+}>;
 
-export interface ToggleButtonProps
-  extends StandardProps<ButtonBaseProps, ToggleButtonClassKey, 'component'> {
-  component?: React.ReactType<ToggleButtonProps>;
-  disabled?: boolean;
-  disableFocusRipple?: boolean;
-  disableRipple?: boolean;
-  selected?: boolean;
-  type?: string;
-  value?: any;
-}
+declare const ToggleButton: ExtendButtonBase<ToggleButtonTypeMap>;
 
-export type ToggleButtonClassKey = ButtonBaseClassKey | 'label' | 'selected';
+export type ToggleButtonProps<
+  D extends React.ElementType = ToggleButtonTypeMap['defaultComponent'],
+  P = {}
+> = OverrideProps<ToggleButtonTypeMap<P, D>, D>;
 
-declare const ToggleButton: React.ComponentType<ToggleButtonProps>;
+export type ToggleButtonClassKey =
+  | 'root'
+  | 'disabled'
+  | 'selected'
+  | 'label'
+  | 'sizeSmall'
+  | 'sizeLarge';
 
 export default ToggleButton;

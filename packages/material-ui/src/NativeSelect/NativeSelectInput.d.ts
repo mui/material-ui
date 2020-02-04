@@ -2,13 +2,13 @@ import * as React from 'react';
 
 export interface NativeSelectInputProps {
   disabled?: boolean;
-  IconComponent?: React.ReactType;
+  IconComponent?: React.ElementType;
   inputRef?: (
     ref: HTMLSelectElement | { node: HTMLInputElement; value: NativeSelectInputProps['value'] },
   ) => void;
   name?: string;
   onChange?: (event: React.ChangeEvent<HTMLSelectElement>, child: React.ReactNode) => void;
-  value?: string | number | boolean;
+  value?: unknown;
   variant?: 'standard' | 'outlined' | 'filled';
 }
 

@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
-import classNames from 'classnames';
-import keycode from 'keycode';
-import ownerWindow from '../utils/ownerWindow';
+import clsx from 'clsx';
+import { elementTypeAcceptingRef, refType } from '@material-ui/utils';
+import useForkRef from '../utils/useForkRef';
+import useEventCallback from '../utils/useEventCallback';
 import withStyles from '../styles/withStyles';
 import NoSsr from '../NoSsr';
-import { listenForFocusKeys, detectFocusVisible } from './focusVisible';
+import { useIsFocusVisible } from '../utils/focusVisible';
 import TouchRipple from './TouchRipple';
-import createRippleHandler from './createRippleHandler';
 
 export const styles = {
   /* Styles applied to the root element. */
@@ -17,11 +17,10 @@ export const styles = {
     alignItems: 'center',
     justifyContent: 'center',
     position: 'relative',
-    // Remove grey highlight
     WebkitTapHighlightColor: 'transparent',
     backgroundColor: 'transparent', // Reset default value
     // We disable the focus ring for mouse, touch and keyboard users.
-    outline: 'none',
+    outline: 0,
     border: 0,
     margin: 0, // Remove the margin in Safari
     borderRadius: 0,
@@ -42,133 +41,168 @@ export const styles = {
       cursor: 'default',
     },
   },
-  /* Styles applied to the root element if `disabled={true}`. */
+  /* Pseudo-class applied to the root element if `disabled={true}`. */
   disabled: {},
-  /* Styles applied to the root element if keyboard focused. */
+  /* Pseudo-class applied to the root element if keyboard focused. */
   focusVisible: {},
 };
-
-/* istanbul ignore if */
-if (process.env.NODE_ENV !== 'production' && !React.createContext) {
-  throw new Error('Material-UI: react@16.3.0 or greater is required.');
-}
 
 /**
  * `ButtonBase` contains as few styles as possible.
  * It aims to be a simple building block for creating a button.
  * It contains a load of style reset and some focus/ripple logic.
  */
-class ButtonBase extends React.Component {
-  state = {};
+const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
+  const {
+    action,
+    buttonRef: buttonRefProp,
+    centerRipple = false,
+    children,
+    classes,
+    className,
+    component = 'button',
+    disabled = false,
+    disableRipple = false,
+    disableTouchRipple = false,
+    focusRipple = false,
+    focusVisibleClassName,
+    onBlur,
+    onClick,
+    onFocus,
+    onFocusVisible,
+    onKeyDown,
+    onKeyUp,
+    onMouseDown,
+    onMouseLeave,
+    onMouseUp,
+    onTouchEnd,
+    onTouchMove,
+    onTouchStart,
+    onDragLeave,
+    tabIndex = 0,
+    TouchRippleProps,
+    type = 'button',
+    ...other
+  } = props;
 
-  keyDown = false; // Used to help track keyboard activation keyDown
+  const buttonRef = React.useRef(null);
+  function getButtonNode() {
+    // #StrictMode ready
+    return ReactDOM.findDOMNode(buttonRef.current);
+  }
 
-  focusVisibleCheckTime = 50;
+  const rippleRef = React.useRef(null);
 
-  focusVisibleMaxCheckTimes = 5;
+  const [focusVisible, setFocusVisible] = React.useState(false);
+  if (disabled && focusVisible) {
+    setFocusVisible(false);
+  }
+  const { isFocusVisible, onBlurVisible, ref: focusVisibleRef } = useIsFocusVisible();
 
-  handleMouseDown = createRippleHandler(this, 'MouseDown', 'start', () => {
-    clearTimeout(this.focusVisibleTimeout);
-    if (this.state.focusVisible) {
-      this.setState({ focusVisible: false });
+  React.useImperativeHandle(
+    action,
+    () => ({
+      focusVisible: () => {
+        setFocusVisible(true);
+        buttonRef.current.focus();
+      },
+    }),
+    [],
+  );
+
+  React.useEffect(() => {
+    if (focusVisible && focusRipple && !disableRipple) {
+      rippleRef.current.pulsate();
     }
-  });
+  }, [disableRipple, focusRipple, focusVisible]);
 
-  handleMouseUp = createRippleHandler(this, 'MouseUp', 'stop');
+  function useRippleHandler(rippleAction, eventCallback, skipRippleAction = disableTouchRipple) {
+    return useEventCallback(event => {
+      if (eventCallback) {
+        eventCallback(event);
+      }
 
-  handleMouseLeave = createRippleHandler(this, 'MouseLeave', 'stop', event => {
-    if (this.state.focusVisible) {
+      const ignore = skipRippleAction;
+      if (!ignore && rippleRef.current) {
+        rippleRef.current[rippleAction](event);
+      }
+
+      return true;
+    });
+  }
+
+  const handleMouseDown = useRippleHandler('start', onMouseDown);
+  const handleDragLeave = useRippleHandler('stop', onDragLeave);
+  const handleMouseUp = useRippleHandler('stop', onMouseUp);
+  const handleMouseLeave = useRippleHandler('stop', event => {
+    if (focusVisible) {
       event.preventDefault();
     }
-  });
-
-  handleTouchStart = createRippleHandler(this, 'TouchStart', 'start');
-
-  handleTouchEnd = createRippleHandler(this, 'TouchEnd', 'stop');
-
-  handleTouchMove = createRippleHandler(this, 'TouchMove', 'stop');
-
-  handleBlur = createRippleHandler(this, 'Blur', 'stop', () => {
-    clearTimeout(this.focusVisibleTimeout);
-    if (this.state.focusVisible) {
-      this.setState({ focusVisible: false });
+    if (onMouseLeave) {
+      onMouseLeave(event);
     }
   });
-
-  componentDidMount() {
-    this.button = ReactDOM.findDOMNode(this);
-    listenForFocusKeys(ownerWindow(this.button));
-
-    if (this.props.action) {
-      this.props.action({
-        focusVisible: () => {
-          this.setState({ focusVisible: true });
-          this.button.focus();
-        },
-      });
+  const handleTouchStart = useRippleHandler('start', onTouchStart);
+  const handleTouchEnd = useRippleHandler('stop', onTouchEnd);
+  const handleTouchMove = useRippleHandler('stop', onTouchMove);
+  const handleBlur = useRippleHandler(
+    'stop',
+    event => {
+      if (focusVisible) {
+        onBlurVisible(event);
+        setFocusVisible(false);
+      }
+      if (onBlur) {
+        onBlur(event);
+      }
+    },
+    false,
+  );
+  const handleFocus = useEventCallback(event => {
+    if (disabled) {
+      return;
     }
-  }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (
-      this.props.focusRipple &&
-      !this.props.disableRipple &&
-      !prevState.focusVisible &&
-      this.state.focusVisible
-    ) {
-      this.ripple.pulsate();
+    // Fix for https://github.com/facebook/react/issues/7769
+    if (!buttonRef.current) {
+      buttonRef.current = event.currentTarget;
     }
-  }
 
-  componentWillUnmount() {
-    clearTimeout(this.focusVisibleTimeout);
-  }
+    if (isFocusVisible(event)) {
+      setFocusVisible(true);
 
-  onRippleRef = node => {
-    this.ripple = node;
+      if (onFocusVisible) {
+        onFocusVisible(event);
+      }
+    }
+
+    if (onFocus) {
+      onFocus(event);
+    }
+  });
+
+  const isNonNativeButton = () => {
+    const button = getButtonNode();
+    return component && component !== 'button' && !(button.tagName === 'A' && button.href);
   };
 
-  onFocusVisibleHandler = event => {
-    this.keyDown = false;
-    this.setState({ focusVisible: true });
-
-    if (this.props.onFocusVisible) {
-      this.props.onFocusVisible(event);
-    }
-  };
-
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (typeof prevState.focusVisible === 'undefined') {
-      return {
-        focusVisible: false,
-        lastDisabled: nextProps.disabled,
-      };
-    }
-
-    // The blur won't fire when the disabled state is set on a focused input.
-    // We need to book keep the focused state manually.
-    if (!prevState.prevState && nextProps.disabled && prevState.focusVisible) {
-      return {
-        focusVisible: false,
-        lastDisabled: nextProps.disabled,
-      };
-    }
-
-    return {
-      lastDisabled: nextProps.disabled,
-    };
-  }
-
-  handleKeyDown = event => {
-    const { component, focusRipple, onKeyDown, onClick } = this.props;
-    const key = keycode(event);
-
+  /**
+   * IE 11 shim for https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/repeat
+   */
+  const keydownRef = React.useRef(false);
+  const handleKeyDown = useEventCallback(event => {
     // Check if key is already down to avoid repeats being counted as multiple activations
-    if (focusRipple && !this.keyDown && this.state.focusVisible && this.ripple && key === 'space') {
-      this.keyDown = true;
+    if (
+      focusRipple &&
+      !keydownRef.current &&
+      focusVisible &&
+      rippleRef.current &&
+      event.key === ' '
+    ) {
+      keydownRef.current = true;
       event.persist();
-      this.ripple.stop(event, () => {
-        this.ripple.start(event);
+      rippleRef.current.stop(event, () => {
+        rippleRef.current.start(event);
       });
     }
 
@@ -177,157 +211,120 @@ class ButtonBase extends React.Component {
     }
 
     // Keyboard accessibility for non interactive elements
+    if (event.target === event.currentTarget && isNonNativeButton() && event.key === 'Enter') {
+      event.preventDefault();
+      if (onClick) {
+        onClick(event);
+      }
+    }
+  });
+  const handleKeyUp = useEventCallback(event => {
+    // calling preventDefault in keyUp on a <button> will not dispatch a click event if Space is pressed
+    // https://codesandbox.io/s/button-keyup-preventdefault-dn7f0
+    if (
+      focusRipple &&
+      event.key === ' ' &&
+      rippleRef.current &&
+      focusVisible &&
+      !event.defaultPrevented
+    ) {
+      keydownRef.current = false;
+      event.persist();
+      rippleRef.current.stop(event, () => {
+        rippleRef.current.pulsate(event);
+      });
+    }
+    if (onKeyUp) {
+      onKeyUp(event);
+    }
+
+    // Keyboard accessibility for non interactive elements
     if (
       event.target === event.currentTarget &&
-      component &&
-      component !== 'button' &&
-      (key === 'space' || key === 'enter') &&
-      !(this.button.tagName === 'A' && this.button.href)
+      isNonNativeButton() &&
+      event.key === ' ' &&
+      !event.defaultPrevented
     ) {
       event.preventDefault();
       if (onClick) {
         onClick(event);
       }
     }
-  };
+  });
 
-  handleKeyUp = event => {
-    if (
-      this.props.focusRipple &&
-      keycode(event) === 'space' &&
-      this.ripple &&
-      this.state.focusVisible
-    ) {
-      this.keyDown = false;
-      event.persist();
-      this.ripple.stop(event, () => {
-        this.ripple.pulsate(event);
-      });
-    }
-    if (this.props.onKeyUp) {
-      this.props.onKeyUp(event);
-    }
-  };
+  let ComponentProp = component;
 
-  handleFocus = event => {
-    if (this.props.disabled) {
-      return;
-    }
+  if (ComponentProp === 'button' && other.href) {
+    ComponentProp = 'a';
+  }
 
-    // Fix for https://github.com/facebook/react/issues/7769
-    if (!this.button) {
-      this.button = event.currentTarget;
-    }
-
-    event.persist();
-    detectFocusVisible(this, this.button, () => {
-      this.onFocusVisibleHandler(event);
-    });
-
-    if (this.props.onFocus) {
-      this.props.onFocus(event);
-    }
-  };
-
-  render() {
-    const {
-      action,
-      buttonRef,
-      centerRipple,
-      children,
-      classes,
-      className: classNameProp,
-      component,
-      disabled,
-      disableRipple,
-      disableTouchRipple,
-      focusRipple,
-      focusVisibleClassName,
-      onBlur,
-      onFocus,
-      onFocusVisible,
-      onKeyDown,
-      onKeyUp,
-      onMouseDown,
-      onMouseLeave,
-      onMouseUp,
-      onTouchEnd,
-      onTouchMove,
-      onTouchStart,
-      tabIndex,
-      TouchRippleProps,
-      type,
-      ...other
-    } = this.props;
-
-    const className = classNames(
-      classes.root,
-      {
-        [classes.disabled]: disabled,
-        [classes.focusVisible]: this.state.focusVisible,
-        [focusVisibleClassName]: this.state.focusVisible,
-      },
-      classNameProp,
-    );
-
-    let ComponentProp = component;
-
-    if (ComponentProp === 'button' && other.href) {
-      ComponentProp = 'a';
-    }
-
-    const buttonProps = {};
-    if (ComponentProp === 'button') {
-      buttonProps.type = type || 'button';
-      buttonProps.disabled = disabled;
-    } else {
+  const buttonProps = {};
+  if (ComponentProp === 'button') {
+    buttonProps.type = type;
+    buttonProps.disabled = disabled;
+  } else {
+    if (ComponentProp !== 'a' || !other.href) {
       buttonProps.role = 'button';
     }
-
-    return (
-      <ComponentProp
-        className={className}
-        onBlur={this.handleBlur}
-        onFocus={this.handleFocus}
-        onKeyDown={this.handleKeyDown}
-        onKeyUp={this.handleKeyUp}
-        onMouseDown={this.handleMouseDown}
-        onMouseLeave={this.handleMouseLeave}
-        onMouseUp={this.handleMouseUp}
-        onTouchEnd={this.handleTouchEnd}
-        onTouchMove={this.handleTouchMove}
-        onTouchStart={this.handleTouchStart}
-        ref={buttonRef}
-        tabIndex={disabled ? '-1' : tabIndex}
-        {...buttonProps}
-        {...other}
-      >
-        {children}
-        {!disableRipple && !disabled ? (
-          <NoSsr>
-            {/* TouchRipple is only needed client side, x2 boost on the server. */}
-            <TouchRipple innerRef={this.onRippleRef} center={centerRipple} {...TouchRippleProps} />
-          </NoSsr>
-        ) : null}
-      </ComponentProp>
-    );
+    buttonProps['aria-disabled'] = disabled;
   }
-}
+
+  const handleUserRef = useForkRef(buttonRefProp, ref);
+  const handleOwnRef = useForkRef(focusVisibleRef, buttonRef);
+  const handleRef = useForkRef(handleUserRef, handleOwnRef);
+
+  return (
+    <ComponentProp
+      className={clsx(
+        classes.root,
+        {
+          [classes.disabled]: disabled,
+          [classes.focusVisible]: focusVisible,
+          [focusVisibleClassName]: focusVisible,
+        },
+        className,
+      )}
+      onBlur={handleBlur}
+      onClick={onClick}
+      onFocus={handleFocus}
+      onKeyDown={handleKeyDown}
+      onKeyUp={handleKeyUp}
+      onMouseDown={handleMouseDown}
+      onMouseLeave={handleMouseLeave}
+      onMouseUp={handleMouseUp}
+      onDragLeave={handleDragLeave}
+      onTouchEnd={handleTouchEnd}
+      onTouchMove={handleTouchMove}
+      onTouchStart={handleTouchStart}
+      ref={handleRef}
+      tabIndex={disabled ? -1 : tabIndex}
+      {...buttonProps}
+      {...other}
+    >
+      {children}
+      {!disableRipple && !disabled ? (
+        <NoSsr>
+          {/* TouchRipple is only needed client-side, x2 boost on the server. */}
+          <TouchRipple ref={rippleRef} center={centerRipple} {...TouchRippleProps} />
+        </NoSsr>
+      ) : null}
+    </ComponentProp>
+  );
+});
 
 ButtonBase.propTypes = {
   /**
-   * Callback fired when the component mounts.
-   * This is useful when you want to trigger an action programmatically.
+   * A ref for imperative actions.
    * It currently only supports `focusVisible()` action.
-   *
-   * @param {object} actions This object contains all possible actions
-   * that can be triggered programmatically.
    */
-  action: PropTypes.func,
+  action: refType,
   /**
-   * Use that property to pass a ref callback to the native button component.
+   * @ignore
+   *
+   * Use that prop to pass a ref to the native button component.
+   * @deprecated Use `ref` instead.
    */
-  buttonRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  buttonRef: refType,
   /**
    * If `true`, the ripples will be centered.
    * They won't start at the cursor interaction position.
@@ -339,7 +336,7 @@ ButtonBase.propTypes = {
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -350,13 +347,16 @@ ButtonBase.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  component: elementTypeAcceptingRef,
   /**
    * If `true`, the base button will be disabled.
    */
   disabled: PropTypes.bool,
   /**
    * If `true`, the ripple effect will be disabled.
+   *
+   * ⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure
+   * to highlight the element by applying separate styles with the `focusVisibleClassName`.
    */
   disableRipple: PropTypes.bool,
   /**
@@ -369,10 +369,12 @@ ButtonBase.propTypes = {
    */
   focusRipple: PropTypes.bool,
   /**
-   * This property can help a person know which element has the keyboard focus.
+   * This prop can help a person know which element has the keyboard focus.
    * The class name will be applied when the element gain the focus through a keyboard interaction.
-   * It's a polyfill for the [CSS :focus-visible feature](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo).
-   * The rational for using this feature [is explain here](https://github.com/WICG/focus-visible/blob/master/explainer.md).
+   * It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo).
+   * The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md).
+   * A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components
+   * if needed.
    */
   focusVisibleClassName: PropTypes.string,
   /**
@@ -383,6 +385,10 @@ ButtonBase.propTypes = {
    * @ignore
    */
   onClick: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onDragLeave: PropTypes.func,
   /**
    * @ignore
    */
@@ -433,25 +439,14 @@ ButtonBase.propTypes = {
    */
   tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
-   * Properties applied to the `TouchRipple` element.
+   * Props applied to the `TouchRipple` element.
    */
   TouchRippleProps: PropTypes.object,
   /**
    * Used to control the button's purpose.
-   * This property passes the value to the `type` attribute of the native button component.
-   * Valid property values include `button`, `submit`, and `reset`.
+   * This prop passes the value to the `type` attribute of the native button component.
    */
-  type: PropTypes.string,
-};
-
-ButtonBase.defaultProps = {
-  centerRipple: false,
-  component: 'button',
-  disableRipple: false,
-  disableTouchRipple: false,
-  focusRipple: false,
-  tabIndex: '0',
-  type: 'button',
+  type: PropTypes.oneOf(['submit', 'reset', 'button']),
 };
 
 export default withStyles(styles, { name: 'MuiButtonBase' })(ButtonBase);

@@ -1,9 +1,10 @@
 import { Color } from '@material-ui/core';
-import blue from '@material-ui/core/colors/blue';
-import createPalette, {
+import { blue } from '@material-ui/core/colors';
+import {
+  createPalette,
   PaletteColorOptions,
   SimplePaletteColorOptions,
-} from '@material-ui/core/styles/createPalette';
+} from '@material-ui/core/styles';
 
 {
   const palette = createPalette({});
@@ -19,4 +20,5 @@ import createPalette, {
   palette.augmentColor(option, 400); // $ExpectError
   palette.augmentColor(colorOrOption);
   palette.augmentColor(colorOrOption, 400); // $ExpectError
+  const augmentedColor = palette.augmentColor(colorOrOption);
 }

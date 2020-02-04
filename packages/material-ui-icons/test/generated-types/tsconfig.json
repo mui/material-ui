@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es5",
+    "lib": ["es6", "dom"],
+    "jsx": "react",
+    "moduleResolution": "node",
+    "strict": true,
+    "noEmit": true,
+    "baseUrl": "../../../",
+    "noErrorTruncation": true,
+    "paths": {
+      "@material-ui/core": ["./material-ui/src"],
+      "@material-ui/core/*": ["./material-ui/src/*"],
+      "@material-ui/icons": ["./material-ui-icons/build"],
+      "@material-ui/icons/*": ["./material-ui-icons/build/*"]
+    }
+  },
+  "exclude": ["**/node_modules/"]
+}

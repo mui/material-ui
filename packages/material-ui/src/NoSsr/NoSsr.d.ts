@@ -2,6 +2,7 @@ import * as React from 'react';
 
 export interface NoSsrProps {
   children: React.ReactNode;
+  defer?: boolean;
   fallback?: React.ReactNode;
 }
 

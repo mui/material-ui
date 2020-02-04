@@ -1,6 +1,6 @@
 # Right-to-left
 
-<p class="description">To change the direction of Material-UI components you must follow the following steps.</p>
+<p class="description">To change the direction of Material-UI components you must follow the following steps. UIs for languages that are read from right-to-left (RTL), such as Arabic and Hebrew, should be mirrored.</p>
 
 ## Steps
 
@@ -29,30 +29,24 @@ npm install jss-rtl
 ```
 Having installed the plugin in your project, Material-UI components still require it to be loaded by the jss instance, as described below.
 Internally, withStyles is using this JSS plugin when `direction: 'rtl'` is set on the theme.
-
-The [CSS-in-JS documentation](/customization/css-in-js/#opting-out-of-rtl-transformation) explains a bit more about how this plugin works.
 Head to the [plugin README](https://github.com/alitaheri/jss-rtl) to learn more about it.
 
 Once you have created a new JSS instance with the plugin, you need to make it available to all the components in the component tree.
-JSS has a [`JssProvider`](https://github.com/cssinjs/react-jss) component for this:
+The [`StylesProvider`](/styles/api/#stylesprovider) component enables this:
 
 ```jsx
 import { create } from 'jss';
 import rtl from 'jss-rtl';
-import JssProvider from 'react-jss/lib/JssProvider';
-import { createGenerateClassName, jssPreset } from '@material-ui/core/styles';
+import { StylesProvider, jssPreset } from '@material-ui/core/styles';
 
 // Configure JSS
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
 
-// Custom Material-UI class name generator.
-const generateClassName = createGenerateClassName();
-
 function RTL(props) {
   return (
-    <JssProvider jss={jss} generateClassName={generateClassName}>
+    <StylesProvider jss={jss}>
       {props.children}
-    </JssProvider>
+    </StylesProvider>
   );
 }
 ```
@@ -66,8 +60,8 @@ function RTL(props) {
 
 ## Opting out of rtl transformation
 
-If you want to prevent a specific rule-set from being affected by the `rtl` transformation you can add `flip: false` at the begining:
+If you want to prevent a specific rule-set from being affected by the `rtl` transformation you can add `flip: false` at the beginning.
 
-*Use the direction toggle button on the top right corner to see the effect*
+*Use the direction toggle button on the top right corner to see the effect.*
 
 {{"demo": "pages/guides/right-to-left/RtlOptOut.js", "hideEditButton": true}}

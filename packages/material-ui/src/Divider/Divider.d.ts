@@ -1,17 +1,23 @@
-import * as React from 'react';
-import { StandardProps } from '..';
+import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
-export interface DividerProps
-  extends StandardProps<React.HTMLAttributes<HTMLHRElement>, DividerClassKey> {
-  absolute?: boolean;
-  component?: React.ReactType<DividerProps>;
-  inset?: boolean;
-  light?: boolean;
-  variant?: 'fullWidth' | 'inset' | 'middle';
+export interface DividerTypeMap<P = {}, D extends React.ElementType = 'hr'> {
+  props: P & {
+    absolute?: boolean;
+    light?: boolean;
+    orientation?: 'horizontal' | 'vertical';
+    variant?: 'fullWidth' | 'inset' | 'middle';
+  };
+  defaultComponent: D;
+  classKey: DividerClassKey;
 }
 
-export type DividerClassKey = 'root' | 'absolute' | 'inset' | 'light' | 'middle';
+declare const Divider: OverridableComponent<DividerTypeMap>;
 
-declare const Divider: React.ComponentType<DividerProps>;
+export type DividerClassKey = 'root' | 'absolute' | 'inset' | 'light' | 'middle' | 'vertical';
+
+export type DividerProps<
+  D extends React.ElementType = DividerTypeMap['defaultComponent'],
+  P = {}
+> = OverrideProps<DividerTypeMap<P, D>, D>;
 
 export default Divider;

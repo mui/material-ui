@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Grid } from '@material-ui/core';
-import { Theme, createStyles } from '@material-ui/core/styles';
-import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
+import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
 import withWidth, { WithWidth } from '@material-ui/core/withWidth';
 
 const styles = (theme: Theme) =>

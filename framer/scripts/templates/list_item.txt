@@ -1,0 +1,112 @@
+{{=« »=}}
+import * as React from 'react';
+import { addPropertyControls, ControlType } from 'framer';
+// tslint:disable-next-line: ban-ts-ignore
+// @ts-ignore
+import MuiListItem from '@material-ui/core/ListItem';
+// tslint:disable-next-line: ban-ts-ignore
+// @ts-ignore
+import MuiListItemIcon from '@material-ui/core/ListItemIcon';
+// tslint:disable-next-line: ban-ts-ignore
+// @ts-ignore
+import MuiListItemAvatar from '@material-ui/core/ListItemAvatar';
+// tslint:disable-next-line: ban-ts-ignore
+// @ts-ignore
+import MuiListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+// tslint:disable-next-line: ban-ts-ignore
+// @ts-ignore
+import MuiListItemText from '@material-ui/core/ListItemText';
+import { Avatar } from './Avatar';
+// tslint:disable-next-line: ban-ts-ignore
+// @ts-ignore
+import MuiCheckbox from '@material-ui/core/Checkbox';
+// tslint:disable-next-line: ban-ts-ignore
+// @ts-ignore
+import MuiSwitch from '@material-ui/core/Switch';
+import { Icon } from './Icon';
+import { IconButton } from './IconButton';
+
+interface Props {
+«& tsInterface»
+}
+
+const defaultProps: Props =  {
+«& defaultProps»
+};
+
+export const «componentName»: React.SFC<Props> = (props: Props) => {
+  const {
+    height,
+    imageFile,
+    imageUrl,
+    inset,
+    label,
+    primaryAction,
+    primaryIcon,
+    secondaryAction,
+    secondaryIcon,
+    secondaryLabel,
+    width,
+    ...other
+  } = props;
+
+  let primary = null;
+  let secondary = null;
+
+  switch (primaryAction) {
+    case 'icon':
+      primary = (
+        <MuiListItemIcon>
+          <Icon icon={primaryIcon} />
+        </MuiListItemIcon>
+      );
+      break;
+    case 'avatar':
+      primary = (
+        <MuiListItemAvatar>
+          <Avatar icon={primaryIcon} imageFile={imageFile} imageUrl={imageUrl} />
+        </MuiListItemAvatar>
+      );
+      break;
+    case 'checkbox':
+      primary = (
+        <MuiListItemIcon>
+          <MuiCheckbox edge="start" />
+        </MuiListItemIcon>
+      );
+      break;
+  }
+
+  switch (secondaryAction) {
+    case 'iconButton':
+      secondary = <IconButton icon={secondaryIcon} edge="end" />;
+      break;
+    case 'checkbox':
+      secondary = <MuiCheckbox edge="end" />;
+      break;
+    case 'switch':
+      secondary = <MuiSwitch edge="end" />;
+      break;
+  }
+
+  return (
+    <MuiListItem {...other}>
+      {primary}
+      <MuiListItemText
+        inset={inset}
+        primary={label}
+        secondary={secondaryLabel ? secondaryLabel : undefined}
+      />
+      {/* MuiListItemSecondaryAction causes the text to have a bullet. No idea why! */}
+      {/* <MuiListItemSecondaryAction> */}
+      {secondary}
+      {/* </MuiListItemSecondaryAction> */}
+    </MuiListItem>
+  );
+};
+
+«componentName».defaultProps = defaultProps;
+
+addPropertyControls(«componentName», {
+«& propertyControls»
+});

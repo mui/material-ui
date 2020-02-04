@@ -8,7 +8,7 @@ export interface StepperProps extends StandardProps<PaperProps, StepperClasskey>
   activeStep?: number;
   alternativeLabel?: boolean;
   children: React.ReactNode;
-  connector?: React.ReactElement<any> | React.ReactNode;
+  connector?: React.ReactElement | React.ReactNode;
   nonLinear?: boolean;
   orientation?: Orientation;
 }

@@ -6,8 +6,8 @@ export interface InputLabelProps extends StandardProps<FormLabelProps, InputLabe
   disableAnimation?: boolean;
   disabled?: boolean;
   error?: boolean;
-  FormLabelClasses?: FormLabelProps['classes'];
   focused?: boolean;
+  margin?: 'dense';
   required?: boolean;
   shrink?: boolean;
   variant?: 'standard' | 'outlined' | 'filled';
@@ -19,6 +19,7 @@ export type InputLabelClassKey =
   | 'disabled'
   | 'error'
   | 'required'
+  | 'asterisk'
   | 'formControl'
   | 'marginDense'
   | 'shrink'

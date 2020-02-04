@@ -2,6 +2,7 @@ import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
 import { createShallow, getClasses, createMount } from '@material-ui/core/test-utils';
+import describeConformance from '../test-utils/describeConformance';
 import ListItem from '../ListItem';
 import ListItemSecondaryAction from '../ListItemSecondaryAction';
 import MenuItem from './MenuItem';
@@ -14,24 +15,26 @@ describe('<MenuItem />', () => {
   before(() => {
     shallow = createShallow({ dive: true });
     classes = getClasses(<MenuItem />);
-    mount = createMount();
+    mount = createMount({ strict: true });
   });
 
   after(() => {
     mount.cleanUp();
   });
 
+  describeConformance(<MenuItem />, () => ({
+    classes,
+    inheritComponent: ListItem,
+    mount,
+    refInstanceof: window.HTMLLIElement,
+    testComponentPropWith: 'a',
+  }));
+
   it('should render a button ListItem with with ripple', () => {
     const wrapper = shallow(<MenuItem />);
     assert.strictEqual(wrapper.type(), ListItem);
-    assert.strictEqual(wrapper.props().button, true);
-    assert.strictEqual(wrapper.props().disableRipple, undefined);
-  });
-
-  it('should render with the user and root classes', () => {
-    const wrapper = shallow(<MenuItem className="woofMenuItem" />);
-    assert.strictEqual(wrapper.hasClass('woofMenuItem'), true);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    assert.strictEqual(wrapper.find(ListItem).props().button, true);
+    assert.strictEqual(wrapper.find(ListItem).props().disableRipple, undefined);
   });
 
   it('should render with the selected class', () => {
@@ -81,15 +84,6 @@ describe('<MenuItem />', () => {
         wrapper.simulate(event, { persist: () => {} });
         assert.strictEqual(handlers[n].callCount, 1, `should have called the ${n} handler`);
       });
-    });
-  });
-
-  describe('prop: component', () => {
-    it('should be able to override the rendered component', () => {
-      const wrapper = shallow(<MenuItem component="a" />);
-
-      assert.strictEqual(wrapper.props().component, 'a');
-      assert.strictEqual(wrapper.props().disableRipple, undefined);
     });
   });
 

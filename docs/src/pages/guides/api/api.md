@@ -37,11 +37,11 @@ The `disableRipple` property will flow this way: [`MenuItem`](/api/menu-item/) >
 
 ### Native properties
 
-We avoid documenting native properties supported by the DOM like [`className`](/customization/overrides/#overriding-with-class-names).
+We avoid documenting native properties supported by the DOM like [`className`](/customization/components/#overriding-styles-with-class-names).
 
 ### CSS Classes
 
-All the components accept a [`classes`](/customization/overrides/#overriding-with-classes) property to customize the styles.
+All the components accept a [`classes`](/customization/components/#overriding-styles-with-classes) property to customize the styles.
 The classes design answers two constraints:
 to make the classes structure as simple as possible, while sufficient to implement the Material Design specification.
 - The class applied to the root element is always called `root`.
@@ -81,7 +81,7 @@ Nested components inside a component have:
 - their own `xxxComponent` property for performing component injection.
 - their own `xxxRef` property when user might need to perform imperative actions,
   for instance, exposing a `inputRef` property to access the native `input` on the `Input` component.
-  This helps answer the  question ["How can I access the DOM element?"](/getting-started/faq/#how-can-i-access-the-dom-element-)
+  This helps answer the  question ["How can I access the DOM element?"](/getting-started/faq/#how-can-i-access-the-dom-element)
 
 ### Property naming
 
@@ -133,6 +133,21 @@ For example, let's take a button that has different types. Each option has its p
 
 The Material-UI components use a combination of the two approaches according to the following rules:
 - A *boolean* is used when **2** degrees of freedom are required.
-- An *enum* is used when **> 2** degrees of freedom are required, or if there is the possbility that additional degrees of freedom may be required in the future.
+- An *enum* is used when **> 2** degrees of freedom are required, or if there is the possibility that additional degrees of freedom may be required in the future.
 
 Going back to the previous button example; since it requires 3 degrees of freedom, we use an *enum*.
+
+### Ref
+
+The `ref` is forwarded to the root element. This means that, without changing the rendered root element
+via the `component` prop, it is forwarded to the outermost DOM element that which component
+renders. If you pass a different component via the `component` prop the ref will be attached
+to that component instead.
+
+## Glossary
+
+- **host component**: a DOM node type in the context of `react-dom`, e.g. a `'div'`. See also [React Implementation Notes](https://reactjs.org/docs/implementation-notes.html#mounting-host-elements).
+- **host element**: a DOM node in the context of `react-dom`, e.g. an instance of `window.HTMLDivElement`.
+- **outermost**: The first component when reading the component tree from top to bottom i.e. breadth-first search.
+- **root component**: the outermost component that renders a host component.
+- **root element**: the outermost element that renders a host component.

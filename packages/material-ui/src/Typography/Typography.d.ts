@@ -1,20 +1,38 @@
 import * as React from 'react';
 import { StandardProps, PropTypes } from '..';
-import { ThemeStyle } from '../styles/createTypography';
+import { OverrideProps, OverridableTypeMap, OverridableComponent } from '../OverridableComponent';
+import { Variant as ThemeVariant } from '../styles/createTypography';
 
-type Style = ThemeStyle | 'srOnly';
+type Variant = ThemeVariant | 'srOnly';
 
-export interface TypographyProps
-  extends StandardProps<React.HTMLAttributes<HTMLElement>, TypographyClassKey> {
-  align?: PropTypes.Alignment;
-  color?: PropTypes.Color | 'textPrimary' | 'textSecondary' | 'error';
-  component?: React.ReactType<TypographyProps>;
-  gutterBottom?: boolean;
-  headlineMapping?: { [type in Style]: string };
-  noWrap?: boolean;
-  paragraph?: boolean;
-  variant?: Style | 'inherit';
+export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'> {
+  props: P & {
+    align?: PropTypes.Alignment;
+    color?:
+      | 'initial'
+      | 'inherit'
+      | 'primary'
+      | 'secondary'
+      | 'textPrimary'
+      | 'textSecondary'
+      | 'error';
+    display?: 'initial' | 'block' | 'inline';
+    gutterBottom?: boolean;
+    noWrap?: boolean;
+    paragraph?: boolean;
+    variant?: Variant | 'inherit';
+    variantMapping?: Partial<Record<Variant, string>>;
+  };
+  defaultComponent: D;
+  classKey: TypographyClassKey;
 }
+
+declare const Typography: OverridableComponent<TypographyTypeMap>;
+
+export type TypographyProps<
+  D extends React.ElementType = TypographyTypeMap['defaultComponent'],
+  P = {}
+> = OverrideProps<TypographyTypeMap<P, D>, D>;
 
 export type TypographyClassKey =
   | 'root'
@@ -42,14 +60,8 @@ export type TypographyClassKey =
   | 'colorInherit'
   | 'colorSecondary'
   | 'colorTextSecondary'
-  | 'display4' // deprecated
-  | 'display3'
-  | 'display2'
-  | 'display1'
-  | 'headline'
-  | 'title'
-  | 'subheading';
-
-declare const Typography: React.ComponentType<TypographyProps>;
+  | 'colorError'
+  | 'displayInline'
+  | 'displayBlock';
 
 export default Typography;

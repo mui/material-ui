@@ -1,11 +1,24 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
     <title>vrtest</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0, minimum-scale=1">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
     <style>body { background-color: white; }</style>
   </head>
   <body>
     <script src="../../tmp/tests.js"></script>
   </body>
 </html>
+<!--
+
+Load the page and run
+
+__vrtest__.runBeforeHooks();
+__vrtest__.createTestController();
+__vrtest__.testController.start();
+__vrtest__.testController.next();
+
+https://github.com/nathanmarks/vrtest/blob/e2240dc018d3392ca232712bb34aef7b80ee1000/src/server/runner.js#L94
+
+ -->

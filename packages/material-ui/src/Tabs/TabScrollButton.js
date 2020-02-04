@@ -1,42 +1,66 @@
+/* eslint-disable jsx-a11y/aria-role */
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import KeyboardArrowLeft from '../internal/svg-icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '../internal/svg-icons/KeyboardArrowRight';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
 
 export const styles = {
-  /* Styles applied to the root element. */
   root: {
-    color: 'inherit',
-    flex: '0 0 56px',
+    width: 40,
+    flexShrink: 0,
+  },
+  vertical: {
+    width: '100%',
+    height: 40,
+    '& svg': {
+      transform: 'rotate(90deg)',
+    },
   },
 };
 
 /**
  * @ignore - internal component.
  */
-function TabScrollButton(props) {
-  const { classes, className: classNameProp, direction, onClick, visible, ...other } = props;
+const TabScrollButton = React.forwardRef(function TabScrollButton(props, ref) {
+  const { classes, className: classNameProp, direction, orientation, visible, ...other } = props;
 
-  const className = classNames(classes.root, classNameProp);
+  const className = clsx(
+    classes.root,
+    {
+      [classes.vertical]: orientation === 'vertical',
+    },
+    classNameProp,
+  );
 
   if (!visible) {
     return <div className={className} />;
   }
 
   return (
-    <ButtonBase className={className} onClick={onClick} tabIndex={-1} {...other}>
-      {direction === 'left' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+    <ButtonBase
+      component="div"
+      className={className}
+      ref={ref}
+      role={null}
+      tabIndex={null}
+      {...other}
+    >
+      {direction === 'left' ? (
+        <KeyboardArrowLeft fontSize="small" />
+      ) : (
+        <KeyboardArrowRight fontSize="small" />
+      )}
     </ButtonBase>
   );
-}
+});
 
 TabScrollButton.propTypes = {
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -46,19 +70,15 @@ TabScrollButton.propTypes = {
   /**
    * Which direction should the button indicate?
    */
-  direction: PropTypes.oneOf(['left', 'right']),
+  direction: PropTypes.oneOf(['left', 'right']).isRequired,
   /**
-   * Callback to execute for button press.
+   * The tabs orientation (layout flow direction).
    */
-  onClick: PropTypes.func,
+  orientation: PropTypes.oneOf(['horizontal', 'vertical']).isRequired,
   /**
    * Should the button be present or just consume space.
    */
-  visible: PropTypes.bool,
+  visible: PropTypes.bool.isRequired,
 };
 
-TabScrollButton.defaultProps = {
-  visible: true,
-};
-
-export default withStyles(styles, { name: 'MuiPrivateTabScrollButton' })(TabScrollButton);
+export default withStyles(styles, { name: 'PrivateTabScrollButton' })(TabScrollButton);

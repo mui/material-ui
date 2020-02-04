@@ -1,0 +1,52 @@
+{{=« »=}}
+import * as React from 'react';
+import { addPropertyControls, ControlType } from 'framer';
+// tslint:disable-next-line: ban-ts-ignore
+// @ts-ignore
+import Mui«componentName» from '@material-ui/core/«componentName»';
+import { Icon } from './Icon';
+import { Avatar } from './Avatar';
+
+interface Props {
+«& tsInterface»
+}
+
+const defaultProps: Props =  {
+«& defaultProps»
+};
+
+export const «componentName»: React.SFC<Props> = (props: Props) => {
+  const {
+    avatarImageFile,
+    avatarImageUrl,
+    deletable,
+    deleteIcon,
+    height,
+    icon,
+    iconTheme,
+    width,
+    ...other
+  } = props;
+
+  return (
+    <Mui«componentName»
+      avatar={
+        avatarImageFile || avatarImageUrl ? (
+          <Avatar imageFile={avatarImageFile} imageUrl={avatarImageUrl} />
+        ) : (
+          undefined
+        )
+      }
+      icon={<Icon icon={icon} theme={iconTheme} />}
+      onDelete = {deletable ? () => {} : undefined}
+      deleteIcon={deleteIcon === '' ? undefined : <Icon icon={deleteIcon} />}
+      {...other}
+    />
+  );
+}
+
+«componentName».defaultProps = defaultProps;
+
+addPropertyControls(«componentName», {
+«& propertyControls»
+});

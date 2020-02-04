@@ -1,15 +1,14 @@
 /* eslint-disable no-console */
-
 // Based on similar script in React
 // https://github.com/facebook/react/blob/b87aabdfe1b7461e7331abb3601d9e6bb27544bc/scripts/prettier/index.js
 
 // supported modes = check, check-changed, write, write-changed
 
-import glob from 'glob-gitignore';
-import prettier from 'prettier';
-import fs from 'fs';
-import path from 'path';
-import listChangedFiles from './listChangedFiles';
+const glob = require('glob-gitignore');
+const prettier = require('prettier');
+const fs = require('fs');
+const path = require('path');
+const listChangedFiles = require('./listChangedFiles');
 
 const mode = process.argv[2] || 'write-changed';
 const shouldWrite = mode === 'write' || mode === 'write-changed';

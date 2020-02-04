@@ -1,0 +1,46 @@
+{{=« »=}}
+import * as React from 'react';
+import { addPropertyControls, ControlType } from 'framer';
+// tslint:disable-next-line: ban-ts-ignore
+// @ts-ignore
+import Mui«componentName» from '@material-ui/core/«componentName»';
+import { Icon } from './Icon';
+
+interface Props {
+«& tsInterface»
+}
+
+const defaultProps: Props =  {
+«& defaultProps»
+};
+
+export const «componentName»: React.SFC<Props> = (props: Props) => {
+  const {
+    endIcon,
+    endIconTheme,
+    height,
+    label,
+    startIcon,
+    startIconTheme,
+    variant,
+    width,
+    ...other
+  } = props;
+
+  const StartIcon = startIcon === '' ? undefined : <Icon icon={startIcon} theme={startIconTheme} />
+  const EndIcon = endIcon === '' ? undefined : <Icon icon={endIcon} theme={endIconTheme} />
+
+  return (
+    <div>
+      <Mui«componentName» variant={variant} startIcon={StartIcon} endIcon={EndIcon} {...other}>
+        {label}
+      </Mui«componentName»>
+    </div>
+  );
+}
+
+«componentName».defaultProps = defaultProps;
+
+addPropertyControls(«componentName», {
+«& propertyControls»
+});

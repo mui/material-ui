@@ -1,25 +1,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
+import { refType } from '@material-ui/utils';
 import SwitchBase from '../internal/SwitchBase';
-import RadioButtonUncheckedIcon from '../internal/svg-icons/RadioButtonUnchecked';
-import RadioButtonCheckedIcon from '../internal/svg-icons/RadioButtonChecked';
-import { capitalize } from '../utils/helpers';
+import RadioButtonIcon from './RadioButtonIcon';
+import { fade } from '../styles/colorManipulator';
+import capitalize from '../utils/capitalize';
+import createChainedFunction from '../utils/createChainedFunction';
 import withStyles from '../styles/withStyles';
+import useRadioGroup from '../RadioGroup/useRadioGroup';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
     color: theme.palette.text.secondary,
   },
-  /* Styles applied to the root element if `checked={true}`. */
+  /* Pseudo-class applied to the root element if `checked={true}`. */
   checked: {},
-  /* Styles applied to the root element if `disabled={true}`. */
+  /* Pseudo-class applied to the root element if `disabled={true}`. */
   disabled: {},
   /* Styles applied to the root element if `color="primary"`. */
   colorPrimary: {
     '&$checked': {
       color: theme.palette.primary.main,
+      '&:hover': {
+        backgroundColor: fade(theme.palette.primary.main, theme.palette.action.hoverOpacity),
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          backgroundColor: 'transparent',
+        },
+      },
     },
     '&$disabled': {
       color: theme.palette.action.disabled,
@@ -29,6 +39,13 @@ export const styles = theme => ({
   colorSecondary: {
     '&$checked': {
       color: theme.palette.secondary.main,
+      '&:hover': {
+        backgroundColor: fade(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          backgroundColor: 'transparent',
+        },
+      },
     },
     '&$disabled': {
       color: theme.palette.action.disabled,
@@ -36,36 +53,68 @@ export const styles = theme => ({
   },
 });
 
-function Radio(props) {
-  const { classes, color, ...other } = props;
+const defaultCheckedIcon = <RadioButtonIcon checked />;
+const defaultIcon = <RadioButtonIcon />;
+
+const Radio = React.forwardRef(function Radio(props, ref) {
+  const {
+    checked: checkedProp,
+    classes,
+    color = 'secondary',
+    name: nameProp,
+    onChange: onChangeProp,
+    size = 'medium',
+    ...other
+  } = props;
+  const radioGroup = useRadioGroup();
+
+  let checked = checkedProp;
+  const onChange = createChainedFunction(onChangeProp, radioGroup && radioGroup.onChange);
+  let name = nameProp;
+
+  if (radioGroup) {
+    if (typeof checked === 'undefined') {
+      checked = radioGroup.value === props.value;
+    }
+    if (typeof name === 'undefined') {
+      name = radioGroup.name;
+    }
+  }
 
   return (
     <SwitchBase
+      color={color}
       type="radio"
-      icon={<RadioButtonUncheckedIcon />}
-      checkedIcon={<RadioButtonCheckedIcon />}
+      icon={React.cloneElement(defaultIcon, { fontSize: size === 'small' ? 'small' : 'default' })}
+      checkedIcon={React.cloneElement(defaultCheckedIcon, {
+        fontSize: size === 'small' ? 'small' : 'default',
+      })}
       classes={{
-        root: classNames(classes.root, classes[`color${capitalize(color)}`]),
+        root: clsx(classes.root, classes[`color${capitalize(color)}`]),
         checked: classes.checked,
         disabled: classes.disabled,
       }}
+      name={name}
+      checked={checked}
+      onChange={onChange}
+      ref={ref}
       {...other}
     />
   );
-}
+});
 
 Radio.propTypes = {
   /**
    * If `true`, the component is checked.
    */
-  checked: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+  checked: PropTypes.bool,
   /**
    * The icon to display when the component is checked.
    */
   checkedIcon: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -73,7 +122,7 @@ Radio.propTypes = {
    */
   color: PropTypes.oneOf(['primary', 'secondary', 'default']),
   /**
-   * If `true`, the switch will be disabled.
+   * If `true`, the radio will be disabled.
    */
   disabled: PropTypes.bool,
   /**
@@ -89,33 +138,42 @@ Radio.propTypes = {
    */
   id: PropTypes.string,
   /**
-   * Attributes applied to the `input` element.
+   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
    */
   inputProps: PropTypes.object,
   /**
-   * Use that property to pass a ref callback to the native input component.
+   * Pass a ref to the `input` element.
    */
-  inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  inputRef: refType,
+  /**
+   * Name attribute of the `input` element.
+   */
+  name: PropTypes.string,
   /**
    * Callback fired when the state is changed.
    *
    * @param {object} event The event source of the callback.
-   * You can pull out the new value by accessing `event.target.value`.
-   * @param {boolean} checked The `checked` value of the switch
+   * You can pull out the new value by accessing `event.target.value` (string).
+   * You can pull out the new checked state by accessing `event.target.checked` (boolean).
    */
   onChange: PropTypes.func,
   /**
-   * The input component property `type`.
+   * If `true`, the `input` element will be required.
+   */
+  required: PropTypes.bool,
+  /**
+   * The size of the radio.
+   * `small` is equivalent to the dense radio styling.
+   */
+  size: PropTypes.oneOf(['small', 'medium']),
+  /**
+   * The input component prop `type`.
    */
   type: PropTypes.string,
   /**
-   * The value of the component.
+   * The value of the component. The DOM API casts this to a string.
    */
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
-};
-
-Radio.defaultProps = {
-  color: 'secondary',
+  value: PropTypes.any,
 };
 
 export default withStyles(styles, { name: 'MuiRadio' })(Radio);

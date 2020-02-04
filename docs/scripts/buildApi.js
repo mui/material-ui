@@ -1,14 +1,19 @@
 /* eslint-disable no-console */
-
 import { mkdir, readFileSync, writeFileSync } from 'fs';
+import { getLineFeed } from './helpers';
 import path from 'path';
 import kebabCase from 'lodash/kebabCase';
-import { parse as docgenParse } from 'react-docgen';
+import { defaultHandlers, parse as docgenParse } from 'react-docgen';
+import muiDefaultPropsHandler from '../src/modules/utils/defaultPropsHandler';
 import generateMarkdown from '../src/modules/utils/generateMarkdown';
 import { findPagesMarkdown, findComponents } from '../src/modules/utils/find';
 import { getHeaders } from '../src/modules/utils/parseMarkdown';
+import parseTest from '../src/modules/utils/parseTest';
 import createMuiTheme from '../../packages/material-ui/src/styles/createMuiTheme';
-import getStylesCreator from '../../packages/material-ui/src/styles/getStylesCreator';
+import getStylesCreator from '../../packages/material-ui-styles/src/getStylesCreator';
+import createGenerateClassName from '../../packages/material-ui-styles/src/createGenerateClassName';
+
+const generateClassName = createGenerateClassName();
 
 function ensureExists(pat, mask, cb) {
   mkdir(pat, mask, err => {
@@ -39,47 +44,51 @@ if (args.length < 4) {
 
 const rootDirectory = path.resolve(__dirname, '../../');
 const docsApiDirectory = path.resolve(rootDirectory, args[3]);
-const theme = createMuiTheme({ typography: { useNextVariants: true } });
+const theme = createMuiTheme();
 
 const inheritedComponentRegexp = /\/\/ @inheritedComponent (.*)/;
 
-function getInheritance(src) {
-  const inheritedComponent = src.match(inheritedComponentRegexp);
+function getInheritance(testInfo, src) {
+  let inheritedComponentName = testInfo.inheritComponent;
 
-  if (!inheritedComponent) {
+  if (inheritedComponentName == null) {
+    const match = src.match(inheritedComponentRegexp);
+    if (match !== null) {
+      inheritedComponentName = match[1];
+    }
+  }
+
+  if (inheritedComponentName == null) {
     return null;
   }
 
-  const component = inheritedComponent[1];
   let pathname;
 
-  switch (component) {
+  switch (inheritedComponentName) {
     case 'Transition':
-      pathname = 'https://reactcommunity.org/react-transition-group/#Transition';
-      break;
-
-    case 'EventListener':
-      pathname = 'https://github.com/oliviertassinari/react-event-listener';
+      pathname = 'https://reactcommunity.org/react-transition-group/transition#Transition-props';
       break;
 
     default:
-      pathname = `/api/${kebabCase(component)}`;
+      pathname = `/api/${kebabCase(inheritedComponentName)}`;
       break;
   }
 
   return {
-    component,
+    component: inheritedComponentName,
     pathname,
   };
 }
 
-function buildDocs(options) {
+async function buildDocs(options) {
   const { component: componentObject, pagesMarkdown } = options;
   const src = readFileSync(componentObject.filename, 'utf8');
 
   if (src.match(/@ignore - internal component\./) || src.match(/@ignore - do not document\./)) {
     return;
   }
+
+  const spread = !src.match(/ = exactProp\(/);
 
   // eslint-disable-next-line global-require, import/no-dynamic-require
   const component = require(componentObject.filename);
@@ -96,12 +105,29 @@ function buildDocs(options) {
       className => !className.match(/^(@media|@keyframes)/),
     );
     styles.name = component.default.options.name;
+    styles.globalClasses = styles.classes.reduce((acc, key) => {
+      acc[key] = generateClassName(
+        {
+          key,
+        },
+        {
+          options: {
+            name: styles.name,
+            theme: {},
+          },
+        },
+      );
+      return acc;
+    }, {});
 
     let styleSrc = src;
     // Exception for Select where the classes are imported from NativeSelect
     if (name === 'Select') {
       styleSrc = readFileSync(
-        componentObject.filename.replace('Select/Select', 'NativeSelect/NativeSelect'),
+        componentObject.filename.replace(
+          `Select${path.sep}Select`,
+          `NativeSelect${path.sep}NativeSelect`,
+        ),
         'utf8',
       );
     }
@@ -113,6 +139,7 @@ function buildDocs(options) {
     const styleRegexp = /\/\* (.*) \*\/[\r\n]\s*(\w*)/g;
     // Extract the styles section from the source
     const stylesSrc = stylesRegexp.exec(styleSrc);
+
     if (stylesSrc) {
       // Extract individual classes and descriptions
       stylesSrc[0].replace(styleRegexp, (match, desc, key) => {
@@ -123,7 +150,9 @@ function buildDocs(options) {
 
   let reactAPI;
   try {
-    reactAPI = docgenParse(src);
+    reactAPI = docgenParse(src, null, defaultHandlers.concat(muiDefaultPropsHandler), {
+      filename: componentObject.filename,
+    });
   } catch (err) {
     console.log('Error parsing src for', componentObject.filename);
     throw err;
@@ -133,14 +162,20 @@ function buildDocs(options) {
   reactAPI.styles = styles;
   reactAPI.pagesMarkdown = pagesMarkdown;
   reactAPI.src = src;
+  reactAPI.spread = spread;
+  reactAPI.EOL = getLineFeed(src);
 
-  // if (reactAPI.name !== 'Button') {
+  const testInfo = await parseTest(componentObject.filename);
+  // no Object.assign to visually check for collisions
+  reactAPI.forwardsRefTo = testInfo.forwardsRefTo;
+
+  // if (reactAPI.name !== 'TableCell') {
   //   return;
   // }
 
   // Relative location in the file system.
   reactAPI.filename = componentObject.filename.replace(rootDirectory, '');
-  reactAPI.inheritance = getInheritance(src);
+  reactAPI.inheritance = getInheritance(testInfo, src);
 
   let markdown;
   try {
@@ -156,20 +191,20 @@ function buildDocs(options) {
       return;
     }
 
-    writeFileSync(path.resolve(docsApiDirectory, `${kebabCase(reactAPI.name)}.md`), markdown);
+    writeFileSync(
+      path.resolve(docsApiDirectory, `${kebabCase(reactAPI.name)}.md`),
+      markdown.replace(/\r?\n/g, reactAPI.EOL),
+    );
     writeFileSync(
       path.resolve(docsApiDirectory, `${kebabCase(reactAPI.name)}.js`),
       `import React from 'react';
-import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import markdown from './${kebabCase(reactAPI.name)}.md';
 
-function Page() {
+export default function Page() {
   return <MarkdownDocs markdown={markdown} />;
 }
-
-export default withRoot(Page);
-`,
+`.replace(/\r?\n/g, reactAPI.EOL),
     );
 
     console.log('Built markdown docs for', reactAPI.name);
@@ -189,7 +224,11 @@ function run() {
   const components = findComponents(path.resolve(rootDirectory, args[2]));
 
   components.forEach(component => {
-    buildDocs({ component, pagesMarkdown });
+    buildDocs({ component, pagesMarkdown }).catch(error => {
+      console.warn(`error building docs for ${component.filename}`);
+      console.error(error);
+      process.exit(1);
+    });
   });
 }
 

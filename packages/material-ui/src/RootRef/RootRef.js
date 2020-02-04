@@ -1,10 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import { exactProp } from '@material-ui/utils';
-import { setRef } from '../utils/reactHelpers';
+import { exactProp, refType } from '@material-ui/utils';
+import setRef from '../utils/setRef';
 
 /**
+ * ⚠️⚠️⚠️
+ * If you want the DOM element of a Material-UI component check out
+ * [FAQ: How can I access the DOM element?](/getting-started/faq/#how-can-i-access-the-dom-element)
+ * first.
+ *
+ * This component uses `findDOMNode` which is deprecated in React.StrictMode.
+ *
  * Helper component to allow attaching a ref to a
  * wrapped element to access the underlying DOM element.
  *
@@ -14,23 +21,18 @@ import { setRef } from '../utils/reactHelpers';
  * import React from 'react';
  * import RootRef from '@material-ui/core/RootRef';
  *
- * class MyComponent extends React.Component {
- *   constructor() {
- *     super();
- *     this.domRef = React.createRef();
- *   }
+ * function MyComponent() {
+ *   const domRef = React.useRef();
  *
- *   componentDidMount() {
- *     console.log(this.domRef.current); // DOM node
- *   }
+ *   React.useEffect(() => {
+ *     console.log(domRef.current); // DOM node
+ *   }, []);
  *
- *   render() {
- *     return (
- *       <RootRef rootRef={this.domRef}>
- *         <SomeChildComponent />
- *       </RootRef>
- *     );
- *   }
+ *   return (
+ *     <RootRef rootRef={domRef}>
+ *       <SomeChildComponent />
+ *     </RootRef>
+ *   );
  * }
  * ```
  */
@@ -69,12 +71,13 @@ RootRef.propTypes = {
    */
   children: PropTypes.element.isRequired,
   /**
-   * Provide a way to access the DOM node of the wrapped element.
-   * You can provide a callback ref or a `React.createRef()` ref.
+   * A ref that points to the first DOM node of the wrapped element.
    */
-  rootRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]).isRequired,
+  rootRef: refType.isRequired,
 };
 
-RootRef.propTypes = exactProp(RootRef.propTypes);
+if (process.env.NODE_ENV !== 'production') {
+  RootRef.propTypes = exactProp(RootRef.propTypes);
+}
 
 export default RootRef;

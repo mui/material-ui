@@ -9,6 +9,7 @@ export interface CheckboxProps
   icon?: React.ReactNode;
   indeterminate?: boolean;
   indeterminateIcon?: React.ReactNode;
+  size?: 'small' | 'medium';
 }
 
 export type CheckboxClassKey =

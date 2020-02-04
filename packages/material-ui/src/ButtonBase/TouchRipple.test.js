@@ -1,43 +1,72 @@
 import React from 'react';
 import { useFakeTimers } from 'sinon';
-import { assert } from 'chai';
-import { createShallow, createMount, getClasses, unwrap } from '@material-ui/core/test-utils';
+import { expect } from 'chai';
+import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { createClientRender } from 'test/utils/createClientRender';
+import describeConformance from '../test-utils/describeConformance';
 import TouchRipple, { DELAY_RIPPLE } from './TouchRipple';
 
 const cb = () => {};
 
 describe('<TouchRipple />', () => {
-  let shallow;
-  let mount;
   let classes;
-  const TouchRippleNaked = unwrap(TouchRipple);
+  let mount;
+  const render = createClientRender();
+
+  /**
+   * @param {object} other props to spread to TouchRipple
+   */
+  function renderTouchRipple(other) {
+    const touchRippleRef = React.createRef();
+    const { container, unmount } = render(
+      <TouchRipple
+        ref={touchRippleRef}
+        classes={{
+          ripple: 'ripple',
+          rippleVisible: 'ripple-visible',
+          child: 'child',
+          childLeaving: 'child-leaving',
+        }}
+        {...other}
+      />,
+    );
+
+    return {
+      instance: touchRippleRef.current,
+      queryAllActiveRipples() {
+        return container.querySelectorAll('.ripple-visible .child:not(.child-leaving)');
+      },
+      queryAllStoppingRipples() {
+        return container.querySelectorAll('.ripple-visible .child-leaving');
+      },
+      queryRipple() {
+        return container.querySelector('.ripple');
+      },
+      unmount,
+    };
+  }
 
   before(() => {
-    shallow = createShallow({ dive: true });
-    mount = createMount();
     classes = getClasses(<TouchRipple />);
+    mount = createMount({ strict: true });
   });
 
   after(() => {
     mount.cleanUp();
   });
 
-  it('should render a <ReactTransitionGroup> component', () => {
-    const wrapper = shallow(<TouchRipple />);
-    assert.strictEqual(wrapper.name(), 'TransitionGroup');
-    assert.strictEqual(wrapper.props().component, 'span');
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-  });
-
-  it('should render the custom className', () => {
-    const wrapper = shallow(<TouchRipple className="test-class-name" />);
-    assert.strictEqual(wrapper.is('.test-class-name'), true);
-  });
+  describeConformance(<TouchRipple />, () => ({
+    classes,
+    inheritComponent: 'span',
+    mount,
+    refInstanceof: Object,
+    skip: ['componentProp', 'refForwarding'],
+  }));
 
   describe('prop: center', () => {
     it('should should compute the right ripple dimensions', () => {
-      const wrapper = shallow(<TouchRipple center />);
-      const instance = wrapper.instance();
+      const { instance, queryRipple } = renderTouchRipple({ center: true });
+
       instance.start(
         {},
         {
@@ -45,40 +74,46 @@ describe('<TouchRipple />', () => {
         },
         cb,
       );
-      wrapper.update();
-      assert.strictEqual(wrapper.childAt(0).props().rippleSize, 1);
+      expect(queryRipple().style).to.have.property('height', '1px');
+      expect(queryRipple().style).to.have.property('width', '1px');
     });
   });
 
   it('should create individual ripples', () => {
-    const wrapper = mount(<TouchRippleNaked classes={{}} />);
-    const instance = wrapper.instance();
+    const { instance, queryAllActiveRipples, queryAllStoppingRipples } = renderTouchRipple();
 
-    assert.strictEqual(wrapper.state().ripples.length, 0);
-
-    instance.start({ clientX: 0, clientY: 0 }, cb);
-    assert.strictEqual(wrapper.state().ripples.length, 1);
+    expect(queryAllActiveRipples()).to.have.lengthOf(0);
+    expect(queryAllStoppingRipples()).to.have.lengthOf(0);
 
     instance.start({ clientX: 0, clientY: 0 }, cb);
-    assert.strictEqual(wrapper.state().ripples.length, 2);
+    expect(queryAllActiveRipples()).to.have.lengthOf(1);
+    expect(queryAllStoppingRipples()).to.have.lengthOf(0);
 
     instance.start({ clientX: 0, clientY: 0 }, cb);
-    assert.strictEqual(wrapper.state().ripples.length, 3);
+    expect(queryAllActiveRipples()).to.have.lengthOf(2);
+    expect(queryAllStoppingRipples()).to.have.lengthOf(0);
+
+    instance.start({ clientX: 0, clientY: 0 }, cb);
+    expect(queryAllActiveRipples()).to.have.lengthOf(3);
+    expect(queryAllStoppingRipples()).to.have.lengthOf(0);
 
     instance.stop({ type: 'mouseup' });
-    assert.strictEqual(wrapper.state().ripples.length, 2);
+    expect(queryAllActiveRipples()).to.have.lengthOf(2);
+    expect(queryAllStoppingRipples()).to.have.lengthOf(1);
 
     instance.stop({ type: 'mouseup' });
-    assert.strictEqual(wrapper.state().ripples.length, 1);
+    expect(queryAllActiveRipples()).to.have.lengthOf(1);
+    expect(queryAllStoppingRipples()).to.have.lengthOf(2);
 
     instance.stop({ type: 'mouseup' });
-    assert.strictEqual(wrapper.state().ripples.length, 0);
+    expect(queryAllActiveRipples()).to.have.lengthOf(0);
+    expect(queryAllStoppingRipples()).to.have.lengthOf(3);
   });
 
   describe('creating unique ripples', () => {
     it('should create a ripple', () => {
-      const wrapper = shallow(<TouchRipple />);
-      const instance = wrapper.instance();
+      const { instance, queryAllActiveRipples, queryAllStoppingRipples } = renderTouchRipple();
+
       instance.start(
         {},
         {
@@ -87,39 +122,43 @@ describe('<TouchRipple />', () => {
         },
         cb,
       );
-      assert.strictEqual(wrapper.state().ripples.length, 1);
+      expect(queryAllActiveRipples()).to.have.lengthOf(1);
+      expect(queryAllStoppingRipples()).to.have.lengthOf(0);
     });
 
-    it('should ignore a mousedown event', () => {
-      const wrapper = shallow(<TouchRipple />);
-      const instance = wrapper.instance();
-      instance.ignoringMouseDown = true;
+    it('should ignore a mousedown event after a touchstart event', () => {
+      const { instance, queryAllActiveRipples, queryAllStoppingRipples } = renderTouchRipple();
+
+      instance.start({ type: 'touchstart' }, cb);
       instance.start({ type: 'mousedown' }, cb);
-      assert.strictEqual(wrapper.state().ripples.length, 0);
-    });
-
-    it('should set ignoringMouseDown to true', () => {
-      const wrapper = shallow(<TouchRipple />);
-      const instance = wrapper.instance();
-      assert.strictEqual(instance.ignoringMouseDown === true, false);
-      instance.start({ type: 'touchstart' }, { fakeElement: true }, cb);
-      assert.strictEqual(wrapper.state().ripples.length, 1);
-      assert.strictEqual(instance.ignoringMouseDown, true);
+      expect(queryAllActiveRipples()).to.have.lengthOf(1);
+      expect(queryAllStoppingRipples()).to.have.lengthOf(0);
     });
 
     it('should create a specific ripple', () => {
-      const wrapper = shallow(<TouchRipple />);
-      const instance = wrapper.instance();
+      const {
+        instance,
+        queryAllActiveRipples,
+        queryAllStoppingRipples,
+        queryRipple,
+      } = renderTouchRipple({
+        center: true,
+      });
       const clientX = 1;
       const clientY = 1;
+
       instance.start({ clientX, clientY }, { fakeElement: true }, cb);
-      assert.strictEqual(wrapper.state().ripples.length, 1);
-      assert.strictEqual(wrapper.state().ripples[0].props.rippleX, clientX);
-      assert.strictEqual(wrapper.state().ripples[0].props.rippleY, clientY);
+      expect(queryAllActiveRipples()).to.have.lengthOf(1);
+      expect(queryAllStoppingRipples()).to.have.lengthOf(0);
+      expect(queryRipple().style).to.have.property('top', '-0.5px');
+      expect(queryRipple().style).to.have.property('left', '-0.5px');
     });
   });
 
   describe('mobile', () => {
+    /**
+     * @type {ReturnType<typeof useFakeTimers>}
+     */
     let clock;
 
     before(() => {
@@ -131,52 +170,78 @@ describe('<TouchRipple />', () => {
     });
 
     it('should delay the display of the ripples', () => {
-      const wrapper = shallow(<TouchRipple />);
-      const instance = wrapper.instance();
+      const { instance, queryAllActiveRipples, queryAllStoppingRipples } = renderTouchRipple();
 
-      assert.strictEqual(wrapper.state().ripples.length, 0);
+      expect(queryAllActiveRipples()).to.have.lengthOf(0);
+      expect(queryAllStoppingRipples()).to.have.lengthOf(0);
+
       instance.start({ touches: [], clientX: 0, clientY: 0 }, { fakeElement: true }, cb);
-      assert.strictEqual(wrapper.state().ripples.length, 0);
+      expect(queryAllActiveRipples()).to.have.lengthOf(0);
+      expect(queryAllStoppingRipples()).to.have.lengthOf(0);
 
       clock.tick(DELAY_RIPPLE);
-      assert.strictEqual(wrapper.state().ripples.length, 1);
+      expect(queryAllActiveRipples()).to.have.lengthOf(1);
+      expect(queryAllStoppingRipples()).to.have.lengthOf(0);
 
       clock.tick(DELAY_RIPPLE);
       instance.stop({ type: 'touchend' }, cb);
-      assert.strictEqual(wrapper.state().ripples.length, 0);
+      expect(queryAllActiveRipples()).to.have.lengthOf(0);
+      expect(queryAllStoppingRipples()).to.have.lengthOf(1);
     });
 
     it('should trigger the ripple for short touch interactions', () => {
-      const wrapper = shallow(<TouchRipple />);
-      const instance = wrapper.instance();
+      const { instance, queryAllActiveRipples, queryAllStoppingRipples } = renderTouchRipple();
 
-      assert.strictEqual(wrapper.state().ripples.length, 0);
+      expect(queryAllActiveRipples()).to.have.lengthOf(0);
+      expect(queryAllStoppingRipples()).to.have.lengthOf(0);
+
       instance.start({ touches: [], clientX: 0, clientY: 0 }, { fakeElement: true }, cb);
-      assert.strictEqual(wrapper.state().ripples.length, 0);
+      expect(queryAllActiveRipples()).to.have.lengthOf(0);
+      expect(queryAllStoppingRipples()).to.have.lengthOf(0);
 
       clock.tick(DELAY_RIPPLE / 2);
-      assert.strictEqual(wrapper.state().ripples.length, 0);
+      expect(queryAllActiveRipples()).to.have.lengthOf(0);
+      expect(queryAllStoppingRipples()).to.have.lengthOf(0);
+
       instance.stop({ type: 'touchend', persist: () => {} }, cb);
-      assert.strictEqual(wrapper.state().ripples.length, 1);
+      expect(queryAllActiveRipples()).to.have.lengthOf(1);
+      expect(queryAllStoppingRipples()).to.have.lengthOf(0);
 
       clock.tick(1);
-      assert.strictEqual(wrapper.state().ripples.length, 0);
+      expect(queryAllActiveRipples()).to.have.lengthOf(0);
+      expect(queryAllStoppingRipples()).to.have.lengthOf(1);
     });
 
-    it('should interupt the ripple schedule', () => {
-      const wrapper = shallow(<TouchRipple />);
-      const instance = wrapper.instance();
+    it('should interrupt the ripple schedule', () => {
+      const { instance, queryAllActiveRipples, queryAllStoppingRipples } = renderTouchRipple();
 
-      assert.strictEqual(wrapper.state().ripples.length, 0);
+      expect(queryAllActiveRipples()).to.have.lengthOf(0);
+      expect(queryAllStoppingRipples()).to.have.lengthOf(0);
+
       instance.start({ touches: [], clientX: 0, clientY: 0 }, { fakeElement: true }, cb);
-      assert.strictEqual(wrapper.state().ripples.length, 0);
+      expect(queryAllActiveRipples()).to.have.lengthOf(0);
+      expect(queryAllStoppingRipples()).to.have.lengthOf(0);
 
       clock.tick(DELAY_RIPPLE / 2);
-      assert.strictEqual(wrapper.state().ripples.length, 0);
+      expect(queryAllActiveRipples()).to.have.lengthOf(0);
+      expect(queryAllStoppingRipples()).to.have.lengthOf(0);
 
       instance.stop({ type: 'touchmove' });
       clock.tick(DELAY_RIPPLE);
-      assert.strictEqual(wrapper.state().ripples.length, 0);
+      expect(queryAllActiveRipples()).to.have.lengthOf(0);
+      expect(queryAllStoppingRipples()).to.have.lengthOf(0);
+    });
+
+    it('should not leak on multi-touch', function multiTouchTest() {
+      const { instance, unmount } = renderTouchRipple();
+
+      instance.start({ type: 'touchstart', touches: [{}] }, () => {});
+      instance.start({ type: 'touchstart', touches: [{}] }, () => {});
+      unmount();
+
+      // expect this to run gracefully without
+      // "react state update on an unmounted component"
+      clock.runAll();
     });
   });
 });

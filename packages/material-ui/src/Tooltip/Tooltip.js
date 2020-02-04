@@ -1,35 +1,137 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import warning from 'warning';
-import classNames from 'classnames';
-import RootRef from '../RootRef';
+import clsx from 'clsx';
+import { elementAcceptingRef } from '@material-ui/utils';
+import { fade } from '../styles/colorManipulator';
 import withStyles from '../styles/withStyles';
-import { capitalize } from '../utils/helpers';
+import capitalize from '../utils/capitalize';
 import Grow from '../Grow';
 import Popper from '../Popper';
+import useForkRef from '../utils/useForkRef';
+import setRef from '../utils/setRef';
+import { useIsFocusVisible } from '../utils/focusVisible';
+import useControlled from '../utils/useControlled';
+import useTheme from '../styles/useTheme';
+
+function round(value) {
+  return Math.round(value * 1e5) / 1e5;
+}
+
+function arrowGenerator() {
+  return {
+    '&[x-placement*="bottom"] $arrow': {
+      flip: false,
+      top: 0,
+      left: 0,
+      marginTop: '-0.95em',
+      marginLeft: 4,
+      marginRight: 4,
+      width: '2em',
+      height: '1em',
+      '&::before': {
+        flip: false,
+        borderWidth: '0 1em 1em 1em',
+        borderColor: 'transparent transparent currentcolor transparent',
+      },
+    },
+    '&[x-placement*="top"] $arrow': {
+      flip: false,
+      bottom: 0,
+      left: 0,
+      marginBottom: '-0.95em',
+      marginLeft: 4,
+      marginRight: 4,
+      width: '2em',
+      height: '1em',
+      '&::before': {
+        flip: false,
+        borderWidth: '1em 1em 0 1em',
+        borderColor: 'currentcolor transparent transparent transparent',
+      },
+    },
+    '&[x-placement*="right"] $arrow': {
+      flip: false,
+      left: 0,
+      marginLeft: '-0.95em',
+      marginTop: 4,
+      marginBottom: 4,
+      height: '2em',
+      width: '1em',
+      '&::before': {
+        flip: false,
+        borderWidth: '1em 1em 1em 0',
+        borderColor: 'transparent currentcolor transparent transparent',
+      },
+    },
+    '&[x-placement*="left"] $arrow': {
+      flip: false,
+      right: 0,
+      marginRight: '-0.95em',
+      marginTop: 4,
+      marginBottom: 4,
+      height: '2em',
+      width: '1em',
+      '&::before': {
+        flip: false,
+        borderWidth: '1em 0 1em 1em',
+        borderColor: 'transparent transparent transparent currentcolor',
+      },
+    },
+  };
+}
 
 export const styles = theme => ({
   /* Styles applied to the Popper component. */
   popper: {
     zIndex: theme.zIndex.tooltip,
-    opacity: 0.9,
+    pointerEvents: 'none',
+    flip: false, // disable jss-rtl plugin
   },
+  /* Styles applied to the Popper component if `interactive={true}`. */
+  popperInteractive: {
+    pointerEvents: 'auto',
+  },
+  /* Styles applied to the Popper component if `arrow={true}`. */
+  popperArrow: arrowGenerator(),
   /* Styles applied to the tooltip (label wrapper) element. */
   tooltip: {
-    backgroundColor: theme.palette.grey[700],
+    backgroundColor: fade(theme.palette.grey[700], 0.9),
     borderRadius: theme.shape.borderRadius,
     color: theme.palette.common.white,
     fontFamily: theme.typography.fontFamily,
     padding: '4px 8px',
     fontSize: theme.typography.pxToRem(10),
-    lineHeight: `${theme.typography.round(14 / 10)}em`,
+    lineHeight: `${round(14 / 10)}em`,
     maxWidth: 300,
+    wordWrap: 'break-word',
+    fontWeight: theme.typography.fontWeightMedium,
+  },
+  /* Styles applied to the tooltip (label wrapper) element if `arrow={true}`. */
+  tooltipArrow: {
+    position: 'relative',
+    margin: '0',
+  },
+  /* Styles applied to the arrow element. */
+  arrow: {
+    position: 'absolute',
+    fontSize: 6,
+    color: fade(theme.palette.grey[700], 0.9),
+    '&::before': {
+      content: '""',
+      margin: 'auto',
+      display: 'block',
+      width: 0,
+      height: 0,
+      borderStyle: 'solid',
+    },
   },
   /* Styles applied to the tooltip (label wrapper) element if the tooltip is opened by touch. */
   touch: {
     padding: '8px 16px',
     fontSize: theme.typography.pxToRem(14),
-    lineHeight: `${theme.typography.round(16 / 14)}em`,
+    lineHeight: `${round(16 / 14)}em`,
+    fontWeight: theme.typography.fontWeightRegular,
   },
   /* Styles applied to the tooltip (label wrapper) element if `placement` contains "left". */
   tooltipPlacementLeft: {
@@ -65,313 +167,389 @@ export const styles = theme => ({
   },
 });
 
-class Tooltip extends React.Component {
-  ignoreNonTouchEvents = false;
+let hystersisOpen = false;
+let hystersisTimer = null;
 
-  constructor(props) {
-    super();
-    this.isControlled = props.open != null;
-    this.state = {
-      open: null,
-    };
+export function testReset() {
+  hystersisOpen = false;
+  clearTimeout(hystersisTimer);
+}
 
-    if (!this.isControlled) {
-      // not controlled, use internal state
-      this.state.open = false;
-    }
+const Tooltip = React.forwardRef(function Tooltip(props, ref) {
+  const {
+    arrow = false,
+    children,
+    classes,
+    disableFocusListener = false,
+    disableHoverListener = false,
+    disableTouchListener = false,
+    enterDelay = 0,
+    enterTouchDelay = 700,
+    id: idProp,
+    interactive = false,
+    leaveDelay = 0,
+    leaveTouchDelay = 1500,
+    onClose,
+    onOpen,
+    open: openProp,
+    placement = 'bottom',
+    PopperProps,
+    title,
+    TransitionComponent = Grow,
+    TransitionProps,
+    ...other
+  } = props;
+  const theme = useTheme();
+
+  const [childNode, setChildNode] = React.useState();
+  const [arrowRef, setArrowRef] = React.useState(null);
+  const ignoreNonTouchEvents = React.useRef(false);
+
+  const closeTimer = React.useRef();
+  const enterTimer = React.useRef();
+  const leaveTimer = React.useRef();
+  const touchTimer = React.useRef();
+
+  const [openState, setOpenState] = useControlled({
+    controlled: openProp,
+    default: false,
+    name: 'Tooltip',
+  });
+  let open = openState;
+
+  if (process.env.NODE_ENV !== 'production') {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const { current: isControlled } = React.useRef(openProp !== undefined);
+
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    React.useEffect(() => {
+      if (
+        childNode &&
+        childNode.disabled &&
+        !isControlled &&
+        title !== '' &&
+        childNode.tagName.toLowerCase() === 'button'
+      ) {
+        console.error(
+          [
+            'Material-UI: you are providing a disabled `button` child to the Tooltip component.',
+            'A disabled element does not fire events.',
+            "Tooltip needs to listen to the child element's events to display the title.",
+            '',
+            'Add a simple wrapper element, such as a `span`.',
+          ].join('\n'),
+        );
+      }
+    }, [title, childNode, isControlled]);
   }
 
-  componentDidMount() {
-    warning(
-      !this.childrenRef.disabled ||
-        (this.childrenRef.disabled && this.props.title === '') ||
-        this.childrenRef.tagName.toLowerCase() !== 'button',
-      [
-        'Material-UI: you are providing a disabled `button` child to the Tooltip component.',
-        'A disabled element does not fire events.',
-        "Tooltip needs to listen to the child element's events to display the title.",
-        '',
-        'Place a `div` container on top of the element.',
-      ].join('\n'),
-    );
+  const [defaultId, setDefaultId] = React.useState();
+  const id = idProp || defaultId;
+  React.useEffect(() => {
+    if (!open || defaultId) {
+      return;
+    }
 
     // Fallback to this default id when possible.
-    // Use the random value for client side rendering only.
-    // We can't use it server side.
-    this.defaultId = `mui-tooltip-${Math.round(Math.random() * 1e5)}`;
+    // Use the random value for client-side rendering only.
+    // We can't use it server-side.
+    setDefaultId(`mui-tooltip-${Math.round(Math.random() * 1e5)}`);
+  }, [open, defaultId]);
 
-    // Rerender with this.defaultId and this.childrenRef.
-    if (this.props.open) {
-      this.forceUpdate();
-    }
-  }
+  React.useEffect(() => {
+    return () => {
+      clearTimeout(closeTimer.current);
+      clearTimeout(enterTimer.current);
+      clearTimeout(leaveTimer.current);
+      clearTimeout(touchTimer.current);
+    };
+  }, []);
 
-  componentWillUnmount() {
-    clearTimeout(this.closeTimer);
-    clearTimeout(this.enterTimer);
-    clearTimeout(this.focusTimer);
-    clearTimeout(this.leaveTimer);
-    clearTimeout(this.touchTimer);
-  }
+  const handleOpen = event => {
+    clearTimeout(hystersisTimer);
+    hystersisOpen = true;
 
-  onRootRef = ref => {
-    this.childrenRef = ref;
-  };
+    // The mouseover event will trigger for every nested element in the tooltip.
+    // We can skip rerendering when the tooltip is already open.
+    // We are using the mouseover event instead of the mouseenter event to fix a hide/show issue.
+    setOpenState(true);
 
-  handleFocus = event => {
-    event.persist();
-    // The autoFocus of React might trigger the event before the componentDidMount.
-    // We need to account for this eventuality.
-    this.focusTimer = setTimeout(() => {
-      // We need to make sure the focus hasn't moved since the event was triggered.
-      if (this.childrenRef === document.activeElement) {
-        this.handleEnter(event);
-      }
-    }, 0);
-
-    const childrenProps = this.props.children.props;
-    if (childrenProps.onFocus) {
-      childrenProps.onFocus(event);
+    if (onOpen) {
+      onOpen(event);
     }
   };
 
-  handleEnter = event => {
-    const { children, enterDelay } = this.props;
+  const handleEnter = event => {
     const childrenProps = children.props;
 
-    if (event.type === 'mouseover' && childrenProps.onMouseOver) {
+    if (
+      event.type === 'mouseover' &&
+      childrenProps.onMouseOver &&
+      event.currentTarget === childNode
+    ) {
       childrenProps.onMouseOver(event);
     }
 
-    if (this.ignoreNonTouchEvents && event.type !== 'touchstart') {
+    if (ignoreNonTouchEvents.current && event.type !== 'touchstart') {
       return;
     }
 
     // Remove the title ahead of time.
     // We don't want to wait for the next render commit.
     // We would risk displaying two tooltips at the same time (native + this one).
-    this.childrenRef.setAttribute('title', '');
+    if (childNode) {
+      childNode.removeAttribute('title');
+    }
 
-    clearTimeout(this.enterTimer);
-    clearTimeout(this.leaveTimer);
-    if (enterDelay) {
+    clearTimeout(enterTimer.current);
+    clearTimeout(leaveTimer.current);
+    if (enterDelay && !hystersisOpen) {
       event.persist();
-      this.enterTimer = setTimeout(() => {
-        this.handleOpen(event);
+      enterTimer.current = setTimeout(() => {
+        handleOpen(event);
       }, enterDelay);
     } else {
-      this.handleOpen(event);
+      handleOpen(event);
     }
   };
 
-  handleOpen = event => {
-    // The mouseover event will trigger for every nested element in the tooltip.
-    // We can skip rerendering when the tooltip is already open.
-    // We are using the mouseover event instead of the mouseenter event to fix a hide/show issue.
-    if (!this.isControlled && !this.state.open) {
-      this.setState({ open: true });
-    }
-
-    if (this.props.onOpen) {
-      this.props.onOpen(event);
+  const { isFocusVisible, onBlurVisible, ref: focusVisibleRef } = useIsFocusVisible();
+  const [childIsFocusVisible, setChildIsFocusVisible] = React.useState(false);
+  const handleBlur = () => {
+    if (childIsFocusVisible) {
+      setChildIsFocusVisible(false);
+      onBlurVisible();
     }
   };
 
-  handleLeave = event => {
-    const { children, leaveDelay } = this.props;
+  const handleFocus = event => {
+    // Workaround for https://github.com/facebook/react/issues/7769
+    // The autoFocus of React might trigger the event before the componentDidMount.
+    // We need to account for this eventuality.
+    if (!childNode) {
+      setChildNode(event.currentTarget);
+    }
+
+    if (isFocusVisible(event)) {
+      setChildIsFocusVisible(true);
+      handleEnter(event);
+    }
+
+    const childrenProps = children.props;
+    if (childrenProps.onFocus && event.currentTarget === childNode) {
+      childrenProps.onFocus(event);
+    }
+  };
+
+  const handleClose = event => {
+    clearTimeout(hystersisTimer);
+    hystersisTimer = setTimeout(() => {
+      hystersisOpen = false;
+    }, 500);
+    // Use 500 ms per https://github.com/reach/reach-ui/blob/3b5319027d763a3082880be887d7a29aee7d3afc/packages/tooltip/src/index.js#L214
+
+    setOpenState(false);
+
+    if (onClose) {
+      onClose(event);
+    }
+
+    clearTimeout(closeTimer.current);
+    closeTimer.current = setTimeout(() => {
+      ignoreNonTouchEvents.current = false;
+    }, theme.transitions.duration.shortest);
+  };
+
+  const handleLeave = event => {
     const childrenProps = children.props;
 
-    if (event.type === 'blur' && childrenProps.onBlur) {
-      childrenProps.onBlur(event);
+    if (event.type === 'blur') {
+      if (childrenProps.onBlur && event.currentTarget === childNode) {
+        childrenProps.onBlur(event);
+      }
+      handleBlur(event);
     }
 
-    if (event.type === 'mouseleave' && childrenProps.onMouseLeave) {
+    if (
+      event.type === 'mouseleave' &&
+      childrenProps.onMouseLeave &&
+      event.currentTarget === childNode
+    ) {
       childrenProps.onMouseLeave(event);
     }
 
-    clearTimeout(this.enterTimer);
-    clearTimeout(this.leaveTimer);
-    if (leaveDelay) {
-      event.persist();
-      this.leaveTimer = setTimeout(() => {
-        this.handleClose(event);
-      }, leaveDelay);
-    } else {
-      this.handleClose(event);
-    }
-  };
-
-  handleClose = event => {
-    if (!this.isControlled) {
-      this.setState({ open: false });
-    }
-
-    if (this.props.onClose) {
-      this.props.onClose(event);
-    }
-
-    clearTimeout(this.closeTimer);
-    this.closeTimer = setTimeout(() => {
-      this.ignoreNonTouchEvents = false;
-    }, this.props.theme.transitions.duration.shortest);
-  };
-
-  handleTouchStart = event => {
-    this.ignoreNonTouchEvents = true;
-    const { children, enterTouchDelay } = this.props;
-
-    if (children.props.onTouchStart) {
-      children.props.onTouchStart(event);
-    }
-
-    clearTimeout(this.leaveTimer);
-    clearTimeout(this.closeTimer);
-    clearTimeout(this.touchTimer);
+    clearTimeout(enterTimer.current);
+    clearTimeout(leaveTimer.current);
     event.persist();
-    this.touchTimer = setTimeout(() => {
-      this.handleEnter(event);
+    leaveTimer.current = setTimeout(() => {
+      handleClose(event);
+    }, leaveDelay);
+  };
+
+  const handleTouchStart = event => {
+    ignoreNonTouchEvents.current = true;
+    const childrenProps = children.props;
+
+    if (childrenProps.onTouchStart) {
+      childrenProps.onTouchStart(event);
+    }
+
+    clearTimeout(leaveTimer.current);
+    clearTimeout(closeTimer.current);
+    clearTimeout(touchTimer.current);
+    event.persist();
+    touchTimer.current = setTimeout(() => {
+      handleEnter(event);
     }, enterTouchDelay);
   };
 
-  handleTouchEnd = event => {
-    const { children, leaveTouchDelay } = this.props;
-
+  const handleTouchEnd = event => {
     if (children.props.onTouchEnd) {
       children.props.onTouchEnd(event);
     }
 
-    clearTimeout(this.touchTimer);
-    clearTimeout(this.leaveTimer);
+    clearTimeout(touchTimer.current);
+    clearTimeout(leaveTimer.current);
     event.persist();
-    this.leaveTimer = setTimeout(() => {
-      this.handleClose(event);
+    leaveTimer.current = setTimeout(() => {
+      handleClose(event);
     }, leaveTouchDelay);
   };
 
-  render() {
-    const {
-      children,
-      classes,
-      disableFocusListener,
-      disableHoverListener,
-      disableTouchListener,
-      enterDelay,
-      enterTouchDelay,
-      id,
-      interactive,
-      leaveDelay,
-      leaveTouchDelay,
-      onClose,
-      onOpen,
-      open: openProp,
-      placement,
-      PopperProps,
-      theme,
-      title,
-      TransitionComponent,
-      TransitionProps,
-      ...other
-    } = this.props;
+  const handleUseRef = useForkRef(setChildNode, ref);
+  const handleFocusRef = useForkRef(focusVisibleRef, handleUseRef);
+  // can be removed once we drop support for non ref forwarding class components
+  const handleOwnRef = React.useCallback(
+    instance => {
+      // #StrictMode ready
+      setRef(handleFocusRef, ReactDOM.findDOMNode(instance));
+    },
+    [handleFocusRef],
+  );
+  const handleRef = useForkRef(children.ref, handleOwnRef);
 
-    let open = this.isControlled ? openProp : this.state.open;
-
-    // There is no point in displaying an empty tooltip.
-    if (title === '') {
-      open = false;
-    }
-
-    // For accessibility and SEO concerns, we render the title to the DOM node when
-    // the tooltip is hidden. However, we have made a tradeoff when
-    // `disableHoverListener` is set. This title logic is disabled.
-    // It's allowing us to keep the implementation size minimal.
-    // We are open to change the tradeoff.
-    const shouldShowNativeTitle = !open && !disableHoverListener;
-    const childrenProps = {
-      'aria-describedby': open ? id || this.defaultId : null,
-      title: shouldShowNativeTitle && typeof title === 'string' ? title : null,
-      ...other,
-      ...children.props,
-      className: classNames(other.className, children.props.className),
-    };
-
-    if (!disableTouchListener) {
-      childrenProps.onTouchStart = this.handleTouchStart;
-      childrenProps.onTouchEnd = this.handleTouchEnd;
-    }
-
-    if (!disableHoverListener) {
-      childrenProps.onMouseOver = this.handleEnter;
-      childrenProps.onMouseLeave = this.handleLeave;
-    }
-
-    if (!disableFocusListener) {
-      childrenProps.onFocus = this.handleFocus;
-      childrenProps.onBlur = this.handleLeave;
-    }
-
-    const interactiveWrapperListeners = interactive
-      ? {
-          onMouseOver: childrenProps.onMouseOver,
-          onMouseLeave: childrenProps.onMouseLeave,
-          onFocus: childrenProps.onFocus,
-          onBlur: childrenProps.onBlur,
-        }
-      : {};
-
-    warning(
-      !children.props.title,
-      [
-        'Material-UI: you have provided a `title` property to the child of <Tooltip />.',
-        `Remove this title property \`${children.props.title}\` or the Tooltip component.`,
-      ].join('\n'),
-    );
-
-    return (
-      <React.Fragment>
-        <RootRef rootRef={this.onRootRef}>{React.cloneElement(children, childrenProps)}</RootRef>
-        <Popper
-          className={classes.popper}
-          placement={placement}
-          anchorEl={this.childrenRef}
-          open={open}
-          id={childrenProps['aria-describedby']}
-          transition
-          {...interactiveWrapperListeners}
-          {...PopperProps}
-        >
-          {({ placement: placementInner, TransitionProps: TransitionPropsInner }) => (
-            <TransitionComponent
-              timeout={theme.transitions.duration.shorter}
-              {...TransitionPropsInner}
-              {...TransitionProps}
-            >
-              <div
-                className={classNames(
-                  classes.tooltip,
-                  {
-                    [classes.touch]: this.ignoreNonTouchEvents,
-                  },
-                  classes[`tooltipPlacement${capitalize(placementInner.split('-')[0])}`],
-                )}
-              >
-                {title}
-              </div>
-            </TransitionComponent>
-          )}
-        </Popper>
-      </React.Fragment>
-    );
+  // There is no point in displaying an empty tooltip.
+  if (title === '') {
+    open = false;
   }
-}
+
+  // For accessibility and SEO concerns, we render the title to the DOM node when
+  // the tooltip is hidden. However, we have made a tradeoff when
+  // `disableHoverListener` is set. This title logic is disabled.
+  // It's allowing us to keep the implementation size minimal.
+  // We are open to change the tradeoff.
+  const shouldShowNativeTitle = !open && !disableHoverListener;
+  const childrenProps = {
+    'aria-describedby': open ? id : null,
+    title: shouldShowNativeTitle && typeof title === 'string' ? title : null,
+    ...other,
+    ...children.props,
+    className: clsx(other.className, children.props.className),
+  };
+
+  if (!disableTouchListener) {
+    childrenProps.onTouchStart = handleTouchStart;
+    childrenProps.onTouchEnd = handleTouchEnd;
+  }
+
+  if (!disableHoverListener) {
+    childrenProps.onMouseOver = handleEnter;
+    childrenProps.onMouseLeave = handleLeave;
+  }
+
+  if (!disableFocusListener) {
+    childrenProps.onFocus = handleFocus;
+    childrenProps.onBlur = handleLeave;
+  }
+
+  const interactiveWrapperListeners = interactive
+    ? {
+        onMouseOver: childrenProps.onMouseOver,
+        onMouseLeave: childrenProps.onMouseLeave,
+        onFocus: childrenProps.onFocus,
+        onBlur: childrenProps.onBlur,
+      }
+    : {};
+
+  if (process.env.NODE_ENV !== 'production') {
+    if (children.props.title) {
+      console.error(
+        [
+          'Material-UI: you have provided a `title` prop to the child of <Tooltip />.',
+          `Remove this title prop \`${children.props.title}\` or the Tooltip component.`,
+        ].join('\n'),
+      );
+    }
+  }
+
+  // Avoid the creation of a new Popper.js instance at each render.
+  const popperOptions = React.useMemo(
+    () => ({
+      modifiers: {
+        arrow: {
+          enabled: Boolean(arrowRef),
+          element: arrowRef,
+        },
+      },
+    }),
+    [arrowRef],
+  );
+
+  return (
+    <React.Fragment>
+      {React.cloneElement(children, { ref: handleRef, ...childrenProps })}
+      <Popper
+        className={clsx(classes.popper, {
+          [classes.popperInteractive]: interactive,
+          [classes.popperArrow]: arrow,
+        })}
+        placement={placement}
+        anchorEl={childNode}
+        open={childNode ? open : false}
+        id={childrenProps['aria-describedby']}
+        transition
+        popperOptions={popperOptions}
+        {...interactiveWrapperListeners}
+        {...PopperProps}
+      >
+        {({ placement: placementInner, TransitionProps: TransitionPropsInner }) => (
+          <TransitionComponent
+            timeout={theme.transitions.duration.shorter}
+            {...TransitionPropsInner}
+            {...TransitionProps}
+          >
+            <div
+              className={clsx(
+                classes.tooltip,
+                {
+                  [classes.touch]: ignoreNonTouchEvents.current,
+                  [classes.tooltipArrow]: arrow,
+                },
+                classes[`tooltipPlacement${capitalize(placementInner.split('-')[0])}`],
+              )}
+            >
+              {title}
+              {arrow ? <span className={classes.arrow} ref={setArrowRef} /> : null}
+            </div>
+          </TransitionComponent>
+        )}
+      </Popper>
+    </React.Fragment>
+  );
+});
 
 Tooltip.propTypes = {
   /**
+   * If `true`, adds an arrow to the tooltip.
+   */
+  arrow: PropTypes.bool,
+  /**
    * Tooltip reference element.
    */
-  children: PropTypes.element.isRequired,
+  children: elementAcceptingRef.isRequired,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -388,7 +566,7 @@ Tooltip.propTypes = {
   disableTouchListener: PropTypes.bool,
   /**
    * The number of milliseconds to wait before showing the tooltip.
-   * This property won't impact the enter touch delay (`enterTouchDelay`).
+   * This prop won't impact the enter touch delay (`enterTouchDelay`).
    */
   enterDelay: PropTypes.number,
   /**
@@ -396,9 +574,8 @@ Tooltip.propTypes = {
    */
   enterTouchDelay: PropTypes.number,
   /**
-   * The relationship between the tooltip and the wrapper component is not clear from the DOM.
-   * This property is used with aria-describedby to solve the accessibility issue.
-   * If you don't provide this property. It falls back to a randomly generated id.
+   * This prop is used to help implement the accessibility logic.
+   * If you don't provide this prop. It falls back to a randomly generated id.
    */
   id: PropTypes.string,
   /**
@@ -408,7 +585,7 @@ Tooltip.propTypes = {
   interactive: PropTypes.bool,
   /**
    * The number of milliseconds to wait before hiding the tooltip.
-   * This property won't impact the leave touch delay (`leaveTouchDelay`).
+   * This prop won't impact the leave touch delay (`leaveTouchDelay`).
    */
   leaveDelay: PropTypes.number,
   /**
@@ -416,15 +593,15 @@ Tooltip.propTypes = {
    */
   leaveTouchDelay: PropTypes.number,
   /**
-   * Callback fired when the tooltip requests to be closed.
+   * Callback fired when the component requests to be closed.
    *
-   * @param {object} event The event source of the callback
+   * @param {object} event The event source of the callback.
    */
   onClose: PropTypes.func,
   /**
-   * Callback fired when the tooltip requests to be open.
+   * Callback fired when the component requests to be open.
    *
-   * @param {object} event The event source of the callback
+   * @param {object} event The event source of the callback.
    */
   onOpen: PropTypes.func,
   /**
@@ -449,38 +626,22 @@ Tooltip.propTypes = {
     'top',
   ]),
   /**
-   * Properties applied to the [`Popper`](/api/popper/) element.
+   * Props applied to the [`Popper`](/api/popper/) element.
    */
   PopperProps: PropTypes.object,
-  /**
-   * @ignore
-   */
-  theme: PropTypes.object.isRequired,
   /**
    * Tooltip title. Zero-length titles string are never displayed.
    */
   title: PropTypes.node.isRequired,
   /**
-   * Transition component.
+   * The component used for the transition.
+   * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    */
-  TransitionComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  TransitionComponent: PropTypes.elementType,
   /**
-   * Properties applied to the `Transition` element.
+   * Props applied to the [`Transition`](http://reactcommunity.org/react-transition-group/transition#Transition-props) element.
    */
   TransitionProps: PropTypes.object,
 };
 
-Tooltip.defaultProps = {
-  disableFocusListener: false,
-  disableHoverListener: false,
-  disableTouchListener: false,
-  enterDelay: 0,
-  enterTouchDelay: 1000,
-  interactive: false,
-  leaveDelay: 0,
-  leaveTouchDelay: 1500,
-  placement: 'bottom',
-  TransitionComponent: Grow,
-};
-
-export default withStyles(styles, { name: 'MuiTooltip', withTheme: true })(Tooltip);
+export default withStyles(styles, { name: 'MuiTooltip' })(Tooltip);

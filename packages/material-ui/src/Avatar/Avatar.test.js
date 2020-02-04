@@ -1,17 +1,32 @@
 import React from 'react';
 import { assert } from 'chai';
 import CancelIcon from '../internal/svg-icons/Cancel';
-import { createShallow, getClasses } from '@material-ui/core/test-utils';
+import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
+import describeConformance from '../test-utils/describeConformance';
 import Avatar from './Avatar';
 
 describe('<Avatar />', () => {
+  let mount;
   let shallow;
   let classes;
 
   before(() => {
+    mount = createMount({ strict: true });
     shallow = createShallow({ dive: true });
     classes = getClasses(<Avatar />);
   });
+
+  after(() => {
+    mount.cleanUp();
+  });
+
+  describeConformance(<Avatar />, () => ({
+    classes,
+    inheritComponent: 'div',
+    mount,
+    refInstanceof: window.HTMLDivElement,
+    testComponentPropWith: 'span',
+  }));
 
   describe('image avatar', () => {
     it('should render a div containing an img', () => {
@@ -36,10 +51,24 @@ describe('<Avatar />', () => {
       assert.strictEqual(img.props().src, 'something.jpg');
     });
 
-    it('should be able to add more properties to the image', () => {
+    it('should be able to add more props to the image', () => {
       const onError = () => {};
       const wrapper = shallow(<Avatar src="something.jpg" imgProps={{ onError }} />);
       assert.strictEqual(wrapper.childAt(0).props().onError, onError);
+    });
+  });
+
+  describe('image avatar with unrendered children', () => {
+    it('should render a div containing an img, not children', () => {
+      const wrapper = mount(<Avatar src="something.jpg">MB</Avatar>);
+      assert.strictEqual(wrapper.find('img').length, 1);
+      assert.strictEqual(wrapper.text(), '');
+    });
+
+    it('should be able to add more props to the image', () => {
+      const onError = () => {};
+      const wrapper = mount(<Avatar src="something.jpg" imgProps={{ onError }} />);
+      assert.strictEqual(wrapper.find('img').props().onError, onError);
     });
   });
 
@@ -48,7 +77,7 @@ describe('<Avatar />', () => {
 
     before(() => {
       wrapper = shallow(
-        <Avatar className="my-avatar" data-my-prop="woofAvatar" childrenClassName="my-children">
+        <Avatar className="my-avatar" data-my-prop="woofAvatar">
           <span className="my-icon-font">icon</span>
         </Avatar>,
       );
@@ -71,10 +100,6 @@ describe('<Avatar />', () => {
     it('should apply the colorDefault class', () => {
       assert.strictEqual(wrapper.hasClass(classes.colorDefault), true);
     });
-
-    it('should apply the childrenClassName class', () => {
-      assert.strictEqual(wrapper.childAt(0).hasClass('my-children'), true);
-    });
   });
 
   describe('svg icon avatar', () => {
@@ -82,7 +107,7 @@ describe('<Avatar />', () => {
 
     before(() => {
       wrapper = shallow(
-        <Avatar className="my-avatar" data-my-prop="woofAvatar" childrenClassName="my-children">
+        <Avatar className="my-avatar" data-my-prop="woofAvatar">
           <CancelIcon />
         </Avatar>,
       );
@@ -90,7 +115,7 @@ describe('<Avatar />', () => {
 
     it('should render a div containing an svg icon', () => {
       assert.strictEqual(wrapper.name(), 'div');
-      assert.strictEqual(wrapper.childAt(0).name(), 'pure(Cancel)');
+      assert.strictEqual(wrapper.childAt(0).type(), CancelIcon);
     });
 
     it('should merge user classes & spread custom props to the root node', () => {
@@ -101,10 +126,6 @@ describe('<Avatar />', () => {
 
     it('should apply the colorDefault class', () => {
       assert.strictEqual(wrapper.hasClass(classes.colorDefault), true);
-    });
-
-    it('should apply the childrenClassName class', () => {
-      assert.strictEqual(wrapper.childAt(0).hasClass('my-children'), true);
     });
   });
 

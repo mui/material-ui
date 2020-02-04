@@ -6,17 +6,10 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import Github from '@material-ui/docs/svgIcons/GitHub';
-import Twitter from '@material-ui/docs/svgIcons/Twitter';
+import GitHubIcon from '@material-ui/icons/GitHub';
+import TwitterIcon from '@material-ui/icons/Twitter';
 
-const members = [
-  {
-    name: 'Hai Nguyen',
-    github: 'hai-cea',
-    twitter: 'haicea',
-    flag: 'v0.x creator',
-    city: 'Dallas, Texas, US',
-  },
+const activeCore = [
   {
     name: 'Olivier Tassinari',
     github: 'oliviertassinari',
@@ -28,22 +21,39 @@ const members = [
     name: 'Matt Brookes',
     github: 'mbrookes',
     twitter: 'randomtechdude',
-    flag: 'Core team',
+    flag: 'Core focus: *',
     city: 'London, UK',
-  },
-  {
-    name: 'Kevin Ross',
-    github: 'rosskevin',
-    twitter: 'rosskevin',
-    flag: 'Core team',
-    city: 'Franklin, Tennessee, US',
   },
   {
     name: 'Sebastian Silbermann',
     github: 'eps1lon',
     twitter: 'sebsilbermann',
-    flag: 'Core team',
+    flag: 'Core focus: *',
     city: 'Dresden, Germany',
+  },
+  {
+    name: 'Josh Wooding',
+    github: 'joshwooding',
+    twitter: 'JoshWooding_',
+    flag: 'Core focus: *',
+    city: 'London, UK',
+  },
+  {
+    name: 'Dmitriy Kovalenko',
+    github: 'dmtrKovalenko',
+    twitter: 'dmtrKovalenko',
+    flag: 'Core focus: pickers',
+    city: 'Kharkiv, Ukraine',
+  },
+];
+
+const emeriti = [
+  {
+    name: 'Hai Nguyen',
+    github: 'hai-cea',
+    twitter: 'haicea',
+    flag: 'v0.x creator',
+    city: 'Dallas, Texas, US',
   },
   {
     name: 'Nathan Marks',
@@ -52,117 +62,171 @@ const members = [
     city: 'Toronto, ON',
   },
   {
+    name: 'Kevin Ross',
+    github: 'rosskevin',
+    twitter: 'rosskevin',
+    flag: 'Core focus: *',
+    city: 'Franklin, Tennessee, US',
+  },
+  {
     name: 'Sebastian Sebald',
     github: 'sebald',
     twitter: 'sebastiansebald',
-    flag: 'Community partner, TypeScript',
+    flag: 'Core focus: *',
     city: 'Freiburg, Germany',
-  },
-  {
-    name: 'Maik Marschner',
-    github: 'leMaik',
-    twitter: 'leMaikOfficial',
-    flag: 'Community partner',
-    city: 'Hannover, Germany',
-  },
-  {
-    name: 'Oleg Slobodskoi',
-    github: 'kof',
-    twitter: 'oleg008',
-    flag: 'Community partner, JSS',
-    city: 'Berlin, Germany',
   },
   {
     name: 'Ken Gregory',
     github: 'kgregory',
-    flag: 'Community partner',
+    flag: 'Core focus: *',
     city: 'New Jersey, US',
   },
   {
     name: 'Tom Crockett',
     github: 'pelotom',
     twitter: 'pelotom',
-    flag: 'Community partner',
+    flag: 'Core focus: *',
     city: 'Los Angeles, California, US',
+  },
+  {
+    name: 'Maik Marschner',
+    github: 'leMaik',
+    twitter: 'leMaikOfficial',
+    flag: 'Core focus: *',
+    city: 'Hannover, Germany',
+  },
+];
+
+const partners = [
+  {
+    name: 'Oleg Slobodskoi',
+    github: 'kof',
+    twitter: 'oleg008',
+    flag: 'JSS',
+    city: 'Berlin, Germany',
   },
 ];
 
 const styles = theme => ({
   details: {
-    margin: `${theme.spacing.unit}px ${theme.spacing.unit}px ${theme.spacing.unit}px 0`,
+    margin: theme.spacing(1, 1, 1, 0),
   },
   cover: {
-    width: theme.spacing.unit * 10,
-    height: theme.spacing.unit * 10,
-    margin: theme.spacing.unit * 2,
+    width: theme.spacing(10),
+    height: theme.spacing(10),
+    margin: theme.spacing(2),
     borderRadius: '50%',
     flexShrink: 0,
     backgroundColor: theme.palette.background.default,
   },
   icon: {
     fontSize: 18,
-    padding: theme.spacing.unit,
+    padding: theme.spacing(1),
+  },
+  container: {
+    margin: theme.spacing(2, 0, 4),
   },
 });
 
-function Team(props) {
-  const { classes } = props;
+function Group(props) {
+  const { title, description, classes, members } = props;
   return (
-    <Grid container spacing={16}>
-      {members.map(member => (
-        <Grid key={member.name} item xs={12} md={6}>
-          <Paper>
-            <Grid container wrap="nowrap">
-              <Grid item>
-                <CardMedia
-                  className={classes.cover}
-                  image={`https://github.com/${member.github}.png`}
-                  title="Picture"
-                />
+    <div>
+      <Typography gutterBottom component="h2" variant="h5">
+        {title}
+      </Typography>
+      <Typography>{description}</Typography>
+      <Grid container spacing={2} className={classes.container}>
+        {members.map(member => (
+          <Grid key={member.name} item xs={12} md={6}>
+            <Paper variant="outlined">
+              <Grid container wrap="nowrap">
+                <Grid item>
+                  <CardMedia
+                    className={classes.cover}
+                    image={`https://github.com/${member.github}.png`}
+                    title="Avatar"
+                  />
+                </Grid>
+                <Grid item>
+                  <div className={classes.details}>
+                    <Typography component="h3" variant="h6">
+                      {member.name}
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary">
+                      {member.flag}
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary">
+                      {member.city}
+                    </Typography>
+                    <Grid container>
+                      {member.github && (
+                        <IconButton
+                          aria-label="github"
+                          component="a"
+                          href={`https://github.com/${member.github}`}
+                          className={classes.icon}
+                        >
+                          <GitHubIcon fontSize="inherit" />
+                        </IconButton>
+                      )}
+                      {member.twitter && (
+                        <IconButton
+                          aria-label="twitter"
+                          component="a"
+                          href={`https://twitter.com/${member.twitter}`}
+                          className={classes.icon}
+                        >
+                          <TwitterIcon fontSize="inherit" />
+                        </IconButton>
+                      )}
+                    </Grid>
+                  </div>
+                </Grid>
               </Grid>
-              <Grid item>
-                <div className={classes.details}>
-                  <Typography component="h2" variant="h5">
-                    {member.name}
-                  </Typography>
-                  <Typography variant="subtitle1" color="textSecondary">
-                    {member.flag}
-                  </Typography>
-                  <Typography color="textSecondary">{member.city}</Typography>
-                  <Grid container>
-                    {member.github && (
-                      <IconButton
-                        aria-label="GitHub"
-                        component="a"
-                        href={`https://github.com/${member.github}`}
-                        className={classes.icon}
-                      >
-                        <Github fontSize="inherit" />
-                      </IconButton>
-                    )}
-                    {member.twitter && (
-                      <IconButton
-                        aria-label="Twitter"
-                        component="a"
-                        href={`https://twitter.com/${member.twitter}`}
-                        className={classes.icon}
-                      >
-                        <Twitter fontSize="inherit" />
-                      </IconButton>
-                    )}
-                  </Grid>
-                </div>
-              </Grid>
-            </Grid>
-          </Paper>
-        </Grid>
-      ))}
-    </Grid>
+            </Paper>
+          </Grid>
+        ))}
+      </Grid>
+    </div>
   );
 }
 
-Team.propTypes = {
+Group.propTypes = {
   classes: PropTypes.object.isRequired,
+  description: PropTypes.string.isRequired,
+  members: PropTypes.array.isRequired,
+  title: PropTypes.string.isRequired,
 };
+
+function Team(props) {
+  return (
+    <div>
+      <Group
+        title="Active Core Team"
+        description={`The development of the project and its ecosystem is
+guided by an international team,
+some of whom have chosen to be featured below.`}
+        members={activeCore}
+        {...props}
+      />
+      <Group
+        title="Core Team Emeriti"
+        description={`We honor some no-longer-active core team members who have made
+valuable contributions in the past.
+They advise us from time-to-time.`}
+        members={emeriti}
+        {...props}
+      />
+      <Group
+        title="Community Partners"
+        description={`Some members of the community have so enriched it,
+that they deserve special mention.`}
+        members={partners}
+        {...props}
+      />
+    </div>
+  );
+}
 
 export default withStyles(styles)(Team);

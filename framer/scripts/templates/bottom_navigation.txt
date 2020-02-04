@@ -1,0 +1,55 @@
+{{=« »=}}
+import * as React from 'react';
+import { addPropertyControls, ControlType } from 'framer';
+// tslint:disable-next-line: ban-ts-ignore
+// @ts-ignore
+import Mui«componentName» from '@material-ui/core/«componentName»';
+// tslint:disable-next-line: ban-ts-ignore
+// @ts-ignore
+import MuiBottomNavigationAction from '@material-ui/core/BottomNavigationAction';
+import { Icon } from './Icon';
+
+interface Props {
+«& tsInterface»
+}
+
+const defaultProps: Props =  {
+«& defaultProps»
+};
+
+export const «componentName»: React.SFC<Props> = (props: Props) => {
+  const { labels, icons, ...other } = props;
+
+  // tslint:disable-next-line: ban-ts-ignore
+  // @ts-ignore
+  const [value, setValue] =React.useState(0)
+
+  const handleChange = (event, value) => {
+    setValue(value);
+  };
+
+  const items = icons.length > labels.length ? icons : labels;
+
+  return (
+    <MuiBottomNavigation value={value} onChange={handleChange} {...other}>
+      {items.map(
+        (item, index) =>
+          (labels[index] !== undefined || icons[index] !== undefined) && (
+            <MuiBottomNavigationAction
+              key={item}
+              value={index}
+              label={labels[index]}
+              icon={<Icon icon={icons[index] || ''} />}
+            />
+          ),
+      )}
+    </MuiBottomNavigation>
+  );
+}
+
+«componentName».defaultProps = defaultProps;
+
+addPropertyControls(«componentName», {
+«& propertyControls»
+});
+

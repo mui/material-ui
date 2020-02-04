@@ -12,7 +12,7 @@ process.env.CHROME_BIN = require('puppeteer').executablePath();
 module.exports = function setKarmaConfig(config) {
   const baseConfig = {
     basePath: '../',
-    browsers: ['ChromeHeadless'],
+    browsers: ['ChromeHeadlessNoSandbox'],
     browserDisconnectTimeout: 120000, // default 2000
     browserDisconnectTolerance: 1, // default 0
     browserNoActivityTimeout: 300000, // default 10000
@@ -54,6 +54,7 @@ module.exports = function setKarmaConfig(config) {
         new webpack.DefinePlugin({
           'process.env': {
             NODE_ENV: JSON.stringify('test'),
+            CI: JSON.stringify(process.env.CI),
           },
         }),
       ],
@@ -62,8 +63,7 @@ module.exports = function setKarmaConfig(config) {
           {
             test: /\.js$/,
             loader: 'babel-loader',
-            // https://github.com/sinonjs/sinon/issues/1951
-            exclude: /node_modules(\\|\/)(?!(sinon)(\\|\/)).*/,
+            exclude: /node_modules/,
           },
         ],
       },
@@ -71,11 +71,28 @@ module.exports = function setKarmaConfig(config) {
         // Some tests import fs
         fs: 'empty',
       },
+      resolve: {
+        alias: {
+          // https://github.com/sinonjs/sinon/issues/1951
+          // use the cdn main field. Neither module nor main are supported for browserbuilds
+          sinon: 'sinon/pkg/sinon.js',
+          // https://github.com/testing-library/react-testing-library/issues/486
+          // "default" bundles are not browser compatible
+          '@testing-library/react/pure':
+            '@testing-library/react/dist/@testing-library/react.pure.esm',
+        },
+      },
     },
     webpackServer: {
       noInfo: true,
     },
-    customLaunchers: {},
+    customLaunchers: {
+      ChromeHeadlessNoSandbox: {
+        base: 'ChromeHeadless',
+        flags: ['--no-sandbox'],
+      },
+    },
+    singleRun: Boolean(process.env.CI),
   };
 
   let newConfig = baseConfig;
@@ -96,7 +113,7 @@ module.exports = function setKarmaConfig(config) {
           os: 'OS X',
           os_version: 'Sierra',
           browser: 'Chrome',
-          browser_version: '41.0',
+          browser_version: '49.0',
         },
         BrowserStack_Firefox: {
           base: 'BrowserStack',

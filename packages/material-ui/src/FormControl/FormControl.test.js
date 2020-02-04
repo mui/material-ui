@@ -1,25 +1,27 @@
 import React from 'react';
-import { assert } from 'chai';
-import { createMount, findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
+import { expect } from 'chai';
+import { spy } from 'sinon';
+import { createMount, getClasses } from '@material-ui/core/test-utils';
+import describeConformance from '../test-utils/describeConformance';
+import { createClientRender } from 'test/utils/createClientRender';
 import Input from '../Input';
 import Select from '../Select';
 import FormControl from './FormControl';
-import FormControlContext from './FormControlContext';
+import useFormControl from './useFormControl';
 
 describe('<FormControl />', () => {
   let mount;
+  const render = createClientRender();
   let classes;
 
-  function setState(wrapper, state) {
-    return wrapper.find('FormControl').setState(state);
-  }
-
-  function getState(wrapper) {
-    return wrapper.find('FormControl').state();
+  function TestComponent(props) {
+    const context = useFormControl();
+    props.contextCallback(context);
+    return null;
   }
 
   before(() => {
-    mount = createMount();
+    mount = createMount({ strict: true });
     classes = getClasses(<FormControl />);
   });
 
@@ -27,225 +29,273 @@ describe('<FormControl />', () => {
     mount.cleanUp();
   });
 
+  describeConformance(<FormControl />, () => ({
+    classes,
+    inheritComponent: 'div',
+    mount,
+    refInstanceof: window.HTMLDivElement,
+    testComponentPropWith: 'fieldset',
+  }));
+
   describe('initial state', () => {
-    it('should render a div with the root and user classes', () => {
-      const wrapper = mount(<FormControl className="woofFormControl" />);
-
-      assert.strictEqual(wrapper.getDOMNode().nodeName, 'DIV');
-      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.root), true);
-      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass('woofFormControl'), true);
-    });
-
     it('should have no margin', () => {
-      const wrapper = mount(<FormControl />);
+      const { container } = render(<FormControl />);
+      const root = container.firstChild;
 
-      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.marginNormal), false);
-      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.marginDense), false);
+      expect(root).not.to.have.class(classes.marginNormal);
+      expect(root).not.to.have.class(classes.marginDense);
     });
 
-    it('should have the margin normal class', () => {
-      const wrapper = mount(<FormControl margin="normal" />);
+    it('can have the margin normal class', () => {
+      const { container } = render(<FormControl margin="normal" />);
+      const root = container.firstChild;
 
-      assert.strictEqual(wrapper.getDOMNode().nodeName, 'DIV');
-      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.marginNormal), true);
+      expect(root).to.have.class(classes.marginNormal);
+      expect(root).not.to.have.class(classes.marginDense);
     });
 
-    it('should have the margin dense class', () => {
-      const wrapper = mount(<FormControl margin="dense" />);
+    it('can have the margin dense class', () => {
+      const { container } = render(<FormControl margin="dense" />);
+      const root = container.firstChild;
 
-      assert.strictEqual(findOutermostIntrinsic(wrapper).name(), 'div');
-      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.marginDense), true);
-      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.marginNormal), false);
-    });
-  });
-
-  describe('initial state', () => {
-    let wrapper;
-
-    beforeEach(() => {
-      wrapper = mount(<FormControl />);
+      expect(root).to.have.class(classes.marginDense);
+      expect(root).not.to.have.class(classes.marginNormal);
     });
 
     it('should not be filled initially', () => {
-      assert.strictEqual(getState(wrapper).filled, false);
+      const readContext = spy();
+      render(
+        <FormControl>
+          <TestComponent contextCallback={readContext} />
+        </FormControl>,
+      );
+      expect(readContext.args[0][0]).to.have.property('filled', false);
     });
 
     it('should not be focused initially', () => {
-      assert.strictEqual(getState(wrapper).focused, false);
+      const readContext = spy();
+      render(
+        <FormControl>
+          <TestComponent contextCallback={readContext} />
+        </FormControl>,
+      );
+      expect(readContext.args[0][0]).to.have.property('focused', false);
     });
   });
 
   describe('prop: required', () => {
     it('should not apply it to the DOM', () => {
-      const wrapper = mount(<FormControl required />);
-      assert.strictEqual(findOutermostIntrinsic(wrapper).props().required, undefined);
+      const { container } = render(<FormControl required />);
+      expect(container.firstChild).not.to.have.attribute('required');
     });
   });
 
   describe('prop: disabled', () => {
     it('will be unfocused if it gets disabled', () => {
-      const wrapper = mount(<FormControl />);
-      setState(wrapper, { focused: true });
-      wrapper.setProps({ disabled: true });
-      assert.strictEqual(getState(wrapper).focused, false);
+      const readContext = spy();
+      const { container, setProps } = render(
+        <FormControl>
+          <Input />
+          <TestComponent contextCallback={readContext} />
+        </FormControl>,
+      );
+      expect(readContext.args[0][0]).to.have.property('focused', false);
+
+      container.querySelector('input').focus();
+      expect(readContext.args[1][0]).to.have.property('focused', true);
+
+      setProps({ disabled: true });
+      expect(readContext.args[2][0]).to.have.property('focused', false);
     });
   });
 
   describe('input', () => {
-    it('should be filled with a value', () => {
-      const wrapper = mount(
+    it('should be filled when a value is set', () => {
+      const readContext = spy();
+      render(
         <FormControl>
           <Input value="bar" />
+          <TestComponent contextCallback={readContext} />
         </FormControl>,
       );
-      assert.strictEqual(getState(wrapper).filled, true);
+      expect(readContext.args[0][0]).to.have.property('filled', true);
     });
 
-    it('should be filled with a defaultValue', () => {
-      const wrapper = mount(
+    it('should be filled when a defaultValue is set', () => {
+      const readContext = spy();
+      render(
         <FormControl>
           <Input defaultValue="bar" />
+          <TestComponent contextCallback={readContext} />
         </FormControl>,
       );
-      assert.strictEqual(getState(wrapper).filled, true);
+      expect(readContext.args[0][0]).to.have.property('filled', true);
     });
 
-    it('should be adorned with an endAdornment', () => {
-      const wrapper = mount(
+    it('should not be adornedStart with an endAdornment', () => {
+      const readContext = spy();
+      render(
         <FormControl>
           <Input endAdornment={<div />} />
+          <TestComponent contextCallback={readContext} />
         </FormControl>,
       );
-      assert.strictEqual(getState(wrapper).adornedStart, false);
+      expect(readContext.args[0][0]).to.have.property('adornedStart', false);
     });
 
-    it('should be adorned with a startAdornment', () => {
-      const wrapper = mount(
+    it('should be adornedStar with a startAdornment', () => {
+      const readContext = spy();
+      render(
         <FormControl>
           <Input startAdornment={<div />} />
+          <TestComponent contextCallback={readContext} />
         </FormControl>,
       );
-      assert.strictEqual(getState(wrapper).adornedStart, true);
+      expect(readContext.args[0][0]).to.have.property('adornedStart', true);
     });
   });
 
   describe('select', () => {
     it('should not be adorned without a startAdornment', () => {
-      const wrapper = mount(
+      const readContext = spy();
+      render(
         <FormControl>
           <Select value="" />
+          <TestComponent contextCallback={readContext} />
         </FormControl>,
       );
-      assert.strictEqual(getState(wrapper).adornedStart, false);
+      expect(readContext.args[0][0]).to.have.property('adornedStart', false);
     });
 
     it('should be adorned with a startAdornment', () => {
-      const wrapper = mount(
+      const readContext = spy();
+      render(
         <FormControl>
           <Select value="" input={<Input startAdornment={<div />} />} />
+          <TestComponent contextCallback={readContext} />
         </FormControl>,
       );
-      assert.strictEqual(getState(wrapper).adornedStart, true);
+      expect(readContext.args[0][0].adornedStart, true);
     });
   });
 
-  describe('muiFormControl child context', () => {
-    let wrapper;
-    let muiFormControlContext;
-
-    beforeEach(() => {
-      wrapper = mount(
-        <FormControl>
-          <FormControlContext.Consumer>
-            {context => {
-              muiFormControlContext = context;
-            }}
-          </FormControlContext.Consumer>
-        </FormControl>,
-      );
+  describe('useFormControl', () => {
+    const FormController = React.forwardRef((_, ref) => {
+      const formControl = useFormControl();
+      React.useImperativeHandle(ref, () => formControl, [formControl]);
+      return null;
     });
 
-    describe('from state', () => {
-      it('should have the filled state from the instance', () => {
-        assert.strictEqual(muiFormControlContext.filled, false);
-        setState(wrapper, { filled: true });
-        assert.strictEqual(muiFormControlContext.filled, true);
-      });
-
-      it('should have the focused state from the instance', () => {
-        assert.strictEqual(muiFormControlContext.focused, false);
-        setState(wrapper, { focused: true });
-        assert.strictEqual(muiFormControlContext.focused, true);
-      });
-
-      it('should have the adornedStart state from the instance', () => {
-        assert.strictEqual(muiFormControlContext.adornedStart, false);
-        setState(wrapper, { adornedStart: true });
-        assert.strictEqual(muiFormControlContext.adornedStart, true);
-      });
+    const FormControlled = React.forwardRef(function FormControlled(props, ref) {
+      return (
+        <FormControl {...props}>
+          <FormController ref={ref} />
+        </FormControl>
+      );
     });
 
     describe('from props', () => {
       it('should have the required prop from the instance', () => {
-        assert.strictEqual(muiFormControlContext.required, false);
-        wrapper.setProps({ required: true });
-        assert.strictEqual(muiFormControlContext.required, true);
+        const formControlRef = React.createRef();
+        const { setProps } = render(<FormControlled ref={formControlRef} />);
+
+        expect(formControlRef.current).to.have.property('required', false);
+
+        setProps({ required: true });
+        expect(formControlRef.current).to.have.property('required', true);
       });
 
       it('should have the error prop from the instance', () => {
-        assert.strictEqual(muiFormControlContext.error, false);
-        wrapper.setProps({ error: true });
-        assert.strictEqual(muiFormControlContext.error, true);
+        const formControlRef = React.createRef();
+        const { setProps } = render(<FormControlled ref={formControlRef} />);
+
+        expect(formControlRef.current).to.have.property('error', false);
+
+        setProps({ error: true });
+        expect(formControlRef.current).to.have.property('error', true);
       });
 
       it('should have the margin prop from the instance', () => {
-        assert.strictEqual(muiFormControlContext.margin, 'none');
-        wrapper.setProps({ margin: 'dense' });
-        assert.strictEqual(muiFormControlContext.margin, 'dense');
+        const formControlRef = React.createRef();
+        const { setProps } = render(<FormControlled ref={formControlRef} />);
+
+        expect(formControlRef.current).to.have.property('margin', 'none');
+
+        setProps({ margin: 'dense' });
+        expect(formControlRef.current).to.have.property('margin', 'dense');
+      });
+
+      it('should have the fullWidth prop from the instance', () => {
+        const formControlRef = React.createRef();
+        const { setProps } = render(<FormControlled ref={formControlRef} />);
+
+        expect(formControlRef.current).to.have.property('fullWidth', false);
+
+        setProps({ fullWidth: true });
+        expect(formControlRef.current).to.have.property('fullWidth', true);
       });
     });
 
     describe('callbacks', () => {
       describe('onFilled', () => {
         it('should set the filled state', () => {
-          assert.strictEqual(muiFormControlContext.filled, false);
-          muiFormControlContext.onFilled();
-          assert.strictEqual(muiFormControlContext.filled, true);
-          muiFormControlContext.onFilled();
-          assert.strictEqual(muiFormControlContext.filled, true);
+          const formControlRef = React.createRef();
+          render(<FormControlled ref={formControlRef} />);
+
+          expect(formControlRef.current).to.have.property('filled', false);
+
+          formControlRef.current.onFilled();
+          expect(formControlRef.current).to.have.property('filled', true);
+
+          formControlRef.current.onFilled();
+          expect(formControlRef.current).to.have.property('filled', true);
         });
       });
 
       describe('onEmpty', () => {
         it('should clean the filled state', () => {
-          muiFormControlContext.onFilled();
-          assert.strictEqual(muiFormControlContext.filled, true);
-          muiFormControlContext.onEmpty();
-          assert.strictEqual(muiFormControlContext.filled, false);
-          muiFormControlContext.onEmpty();
-          assert.strictEqual(muiFormControlContext.filled, false);
+          const formControlRef = React.createRef();
+          render(<FormControlled ref={formControlRef} />);
+
+          formControlRef.current.onFilled();
+          expect(formControlRef.current).to.have.property('filled', true);
+
+          formControlRef.current.onEmpty();
+          expect(formControlRef.current).to.have.property('filled', false);
+
+          formControlRef.current.onEmpty();
+          expect(formControlRef.current).to.have.property('filled', false);
         });
       });
 
       describe('handleFocus', () => {
         it('should set the focused state', () => {
-          assert.strictEqual(getState(wrapper).focused, false);
-          muiFormControlContext.onFocus();
-          assert.strictEqual(getState(wrapper).focused, true);
-          muiFormControlContext.onFocus();
-          assert.strictEqual(getState(wrapper).focused, true);
+          const formControlRef = React.createRef();
+          render(<FormControlled ref={formControlRef} />);
+          expect(formControlRef.current).to.have.property('focused', false);
+
+          formControlRef.current.onFocus();
+          expect(formControlRef.current).to.have.property('focused', true);
+
+          formControlRef.current.onFocus();
+          expect(formControlRef.current).to.have.property('focused', true);
         });
       });
 
       describe('handleBlur', () => {
         it('should clear the focused state', () => {
-          assert.strictEqual(getState(wrapper).focused, false);
-          muiFormControlContext.onFocus();
-          assert.strictEqual(getState(wrapper).focused, true);
-          muiFormControlContext.onBlur();
-          assert.strictEqual(getState(wrapper).focused, false);
-          muiFormControlContext.onBlur();
-          assert.strictEqual(getState(wrapper).focused, false);
+          const formControlRef = React.createRef();
+          render(<FormControlled ref={formControlRef} />);
+          expect(formControlRef.current).to.have.property('focused', false);
+
+          formControlRef.current.onFocus();
+          expect(formControlRef.current).to.have.property('focused', true);
+
+          formControlRef.current.onBlur();
+          expect(formControlRef.current).to.have.property('focused', false);
+
+          formControlRef.current.onBlur();
+          expect(formControlRef.current).to.have.property('focused', false);
         });
       });
     });

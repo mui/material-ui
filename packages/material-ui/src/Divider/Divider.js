@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import { fade } from '../styles/colorManipulator';
-import chainPropTypes from '../utils/chainPropTypes';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -31,39 +30,47 @@ export const styles = theme => ({
   },
   /* Styles applied to the root element if `variant="middle"`. */
   middle: {
-    marginLeft: theme.spacing.unit * 2,
-    marginRight: theme.spacing.unit * 2,
+    marginLeft: theme.spacing(2),
+    marginRight: theme.spacing(2),
+  },
+  /* Styles applied to the root element if `orientation="vertical"`. */
+  vertical: {
+    height: '100%',
+    width: 1,
   },
 });
 
-function Divider(props) {
+const Divider = React.forwardRef(function Divider(props, ref) {
   const {
-    absolute,
+    absolute = false,
     classes,
     className,
-    component: Component,
-    inset,
-    light,
-    variant,
+    component: Component = 'hr',
+    light = false,
+    orientation = 'horizontal',
+    role = Component !== 'hr' ? 'separator' : undefined,
+    variant = 'fullWidth',
     ...other
   } = props;
 
   return (
     <Component
-      className={classNames(
+      className={clsx(
         classes.root,
         {
-          [classes.inset]: inset || variant === 'inset',
-          [classes.middle]: variant === 'middle',
+          [classes[variant]]: variant !== 'fullWidth',
           [classes.absolute]: absolute,
           [classes.light]: light,
+          [classes.vertical]: orientation === 'vertical',
         },
         className,
       )}
+      role={role}
+      ref={ref}
       {...other}
     />
   );
-}
+});
 
 Divider.propTypes = {
   /**
@@ -72,7 +79,7 @@ Divider.propTypes = {
   absolute: PropTypes.bool,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -83,39 +90,23 @@ Divider.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
-  /**
-   * If `true`, the divider will be indented.
-   * __WARNING__: `inset` is deprecated.
-   * Instead use `variant="inset"`.
-   */
-  inset: chainPropTypes(PropTypes.bool, props => {
-    /* istanbul ignore if */
-    if (props.inset) {
-      return new Error(
-        'Material-UI: you are using the deprecated `inset` property ' +
-          'that will be removed in the next major release. The property `variant="inset"` ' +
-          'is equivalent and should be used instead.',
-      );
-    }
-
-    return null;
-  }),
+  component: PropTypes.elementType,
   /**
    * If `true`, the divider will have a lighter color.
    */
   light: PropTypes.bool,
   /**
-   *  The variant to use.
+   * The divider orientation.
+   */
+  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
+  /**
+   * @ignore
+   */
+  role: PropTypes.string,
+  /**
+   * The variant to use.
    */
   variant: PropTypes.oneOf(['fullWidth', 'inset', 'middle']),
-};
-
-Divider.defaultProps = {
-  absolute: false,
-  component: 'hr',
-  light: false,
-  variant: 'fullWidth',
 };
 
 export default withStyles(styles, { name: 'MuiDivider' })(Divider);

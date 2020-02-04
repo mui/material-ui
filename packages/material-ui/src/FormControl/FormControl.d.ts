@@ -1,21 +1,30 @@
 import * as React from 'react';
-import { StandardProps, PropTypes } from '..';
+import { PropTypes } from '..';
+import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
-export interface FormControlProps
-  extends StandardProps<React.HtmlHTMLAttributes<HTMLDivElement>, FormControlClassKey> {
-  component?: React.ReactType<FormControlProps>;
-  disabled?: boolean;
-  error?: boolean;
-  fullWidth?: boolean;
-  margin?: PropTypes.Margin;
-  onBlur?: React.EventHandler<any>;
-  onFocus?: React.EventHandler<any>;
-  required?: boolean;
-  variant?: 'standard' | 'outlined' | 'filled';
+export interface FormControlTypeMap<P = {}, D extends React.ElementType = 'div'> {
+  props: P & {
+    color?: 'primary' | 'secondary';
+    disabled?: boolean;
+    error?: boolean;
+    fullWidth?: boolean;
+    hiddenLabel?: boolean;
+    margin?: PropTypes.Margin;
+    required?: boolean;
+    size?: 'small' | 'medium';
+    variant?: 'standard' | 'outlined' | 'filled';
+  };
+  defaultComponent: D;
+  classKey: FormControlClassKey;
 }
+
+declare const FormControl: OverridableComponent<FormControlTypeMap>;
 
 export type FormControlClassKey = 'root' | 'marginNormal' | 'marginDense' | 'fullWidth';
 
-declare const FormControl: React.ComponentType<FormControlProps>;
+export type FormControlProps<
+  D extends React.ElementType = FormControlTypeMap['defaultComponent'],
+  P = {}
+> = OverrideProps<FormControlTypeMap<P, D>, D>;
 
 export default FormControl;

@@ -1,7 +1,10 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow } from '@material-ui/core/test-utils';
+import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
+import describeConformance from '../test-utils/describeConformance';
 import GridList from './GridList';
+import consoleErrorMock from 'test/utils/consoleErrorMock';
+import PropTypes from 'prop-types';
 
 const tilesData = [
   {
@@ -17,29 +20,32 @@ const tilesData = [
 ];
 
 describe('<GridList />', () => {
+  let classes;
+  let mount;
   let shallow;
 
   before(() => {
+    classes = getClasses(<GridList />);
+    mount = createMount({ strict: true });
     shallow = createShallow({ dive: true });
   });
 
-  it('should render a ul', () => {
-    const wrapper = shallow(
-      <GridList>
-        <br />
-      </GridList>,
-    );
-    assert.strictEqual(wrapper.name(), 'ul');
+  after(() => {
+    mount.cleanUp();
   });
 
-  it('should render a ul', () => {
-    const wrapper = shallow(
-      <GridList component="ul">
-        <br />
-      </GridList>,
-    );
-    assert.strictEqual(wrapper.name(), 'ul');
-  });
+  describeConformance(
+    <GridList>
+      <div />
+    </GridList>,
+    () => ({
+      classes,
+      inheritComponent: 'ul',
+      mount,
+      refInstanceof: window.HTMLUListElement,
+      testComponentPropWith: 'li',
+    }),
+  );
 
   it('should render children and change cellHeight', () => {
     const cellHeight = 250;
@@ -179,6 +185,31 @@ describe('<GridList />', () => {
           .at(0)
           .props().style.height,
         'auto',
+      );
+    });
+  });
+
+  describe('warnings', () => {
+    before(() => {
+      consoleErrorMock.spy();
+    });
+
+    after(() => {
+      consoleErrorMock.reset();
+      PropTypes.resetWarningCache();
+    });
+
+    it('warns a Fragment is passed as a child', () => {
+      mount(
+        <GridList>
+          <React.Fragment />
+        </GridList>,
+      );
+
+      assert.strictEqual(consoleErrorMock.callCount(), 1);
+      assert.include(
+        consoleErrorMock.args()[0][0],
+        "Material-UI: the GridList component doesn't accept a Fragment as a child.",
       );
     });
   });

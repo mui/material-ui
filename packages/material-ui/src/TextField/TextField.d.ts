@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StandardProps, PropTypes } from '..';
-import { FormControlClassKey, FormControlProps } from '../FormControl';
+import { FormControlProps } from '../FormControl';
 import { FormHelperTextProps } from '../FormHelperText';
 import { InputProps as StandardInputProps } from '../Input';
 import { FilledInputProps } from '../FilledInput';
@@ -9,11 +9,17 @@ import { InputLabelProps } from '../InputLabel';
 import { SelectProps } from '../Select';
 
 export interface BaseTextFieldProps
-  extends StandardProps<FormControlProps, TextFieldClassKey, 'onChange' | 'defaultValue'> {
+  extends StandardProps<
+    FormControlProps,
+    TextFieldClassKey,
+    // event handlers are declared on derived interfaces
+    'onChange' | 'onBlur' | 'onFocus' | 'defaultValue'
+  > {
   autoComplete?: string;
   autoFocus?: boolean;
+  color?: 'primary' | 'secondary';
   children?: React.ReactNode;
-  defaultValue?: string | number;
+  defaultValue?: unknown;
   disabled?: boolean;
   error?: boolean;
   FormHelperTextProps?: Partial<FormHelperTextProps>;
@@ -21,35 +27,44 @@ export interface BaseTextFieldProps
   helperText?: React.ReactNode;
   id?: string;
   InputLabelProps?: Partial<InputLabelProps>;
-  inputRef?: React.Ref<any> | React.RefObject<any>;
+  inputRef?: React.Ref<any>;
   label?: React.ReactNode;
   margin?: PropTypes.Margin;
   multiline?: boolean;
   name?: string;
-  onChange?: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>;
   placeholder?: string;
   required?: boolean;
   rows?: string | number;
   rowsMax?: string | number;
+  size?: 'small' | 'medium';
   select?: boolean;
   SelectProps?: Partial<SelectProps>;
   type?: string;
-  value?: Array<string | number | boolean> | string | number | boolean;
+  value?: unknown;
 }
 
 export interface StandardTextFieldProps extends BaseTextFieldProps {
+  onBlur?: StandardInputProps['onBlur'];
+  onChange?: StandardInputProps['onChange'];
+  onFocus?: StandardInputProps['onFocus'];
   variant?: 'standard';
   InputProps?: Partial<StandardInputProps>;
   inputProps?: StandardInputProps['inputProps'];
 }
 
 export interface FilledTextFieldProps extends BaseTextFieldProps {
+  onBlur?: FilledInputProps['onBlur'];
+  onChange?: FilledInputProps['onChange'];
+  onFocus?: FilledInputProps['onFocus'];
   variant: 'filled';
   InputProps?: Partial<FilledInputProps>;
   inputProps?: FilledInputProps['inputProps'];
 }
 
 export interface OutlinedTextFieldProps extends BaseTextFieldProps {
+  onBlur?: OutlinedInputProps['onBlur'];
+  onChange?: OutlinedInputProps['onChange'];
+  onFocus?: OutlinedInputProps['onFocus'];
   variant: 'outlined';
   InputProps?: Partial<OutlinedInputProps>;
   inputProps?: OutlinedInputProps['inputProps'];
@@ -57,7 +72,7 @@ export interface OutlinedTextFieldProps extends BaseTextFieldProps {
 
 export type TextFieldProps = StandardTextFieldProps | FilledTextFieldProps | OutlinedTextFieldProps;
 
-export type TextFieldClassKey = FormControlClassKey;
+export type TextFieldClassKey = 'root';
 
 declare const TextField: React.ComponentType<TextFieldProps>;
 

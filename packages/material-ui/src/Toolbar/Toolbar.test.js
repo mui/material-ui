@@ -1,38 +1,43 @@
 import React from 'react';
-import { assert } from 'chai';
-import { createShallow, getClasses } from '@material-ui/core/test-utils';
+import { expect } from 'chai';
+import { createMount, getClasses } from '@material-ui/core/test-utils';
+import describeConformance from '../test-utils/describeConformance';
+import { createClientRender } from 'test/utils/createClientRender';
 import Toolbar from './Toolbar';
 
 describe('<Toolbar />', () => {
-  let shallow;
+  let mount;
+  const render = createClientRender();
   let classes;
 
   before(() => {
-    shallow = createShallow({ dive: true });
+    mount = createMount({ strict: true });
     classes = getClasses(<Toolbar>foo</Toolbar>);
   });
 
-  it('should render a div', () => {
-    const wrapper = shallow(<Toolbar>foo</Toolbar>);
-    assert.strictEqual(wrapper.name(), 'div');
+  describeConformance(<Toolbar />, () => ({
+    classes,
+    inheritComponent: 'div',
+    mount,
+    refInstanceof: window.HTMLDivElement,
+    after: () => mount.cleanUp(),
+  }));
+
+  it('should render with gutters class', () => {
+    const { container } = render(<Toolbar className="woofToolbar">foo</Toolbar>);
+
+    expect(container.firstChild).to.have.class(classes.gutters);
   });
 
-  it('should render with the user, root and gutters classes', () => {
-    const wrapper = shallow(<Toolbar className="woofToolbar">foo</Toolbar>);
-    assert.strictEqual(wrapper.hasClass('woofToolbar'), true);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.gutters), true);
+  it('can disable the gutters', () => {
+    const { container } = render(<Toolbar disableGutters>foo</Toolbar>);
+
+    expect(container.firstChild).not.to.have.class(classes.gutters);
   });
 
-  it('should disable the gutters', () => {
-    const wrapper = shallow(<Toolbar disableGutters>foo</Toolbar>);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.gutters), false);
-  });
+  it('can condense itself', () => {
+    const { container } = render(<Toolbar variant="dense">foo</Toolbar>);
 
-  it('should condense itself', () => {
-    const wrapper = shallow(<Toolbar variant="dense">foo</Toolbar>);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.dense), true);
+    expect(container.firstChild).to.have.class(classes.dense);
   });
 });

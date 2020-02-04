@@ -1,36 +1,34 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
-import { cloneChildrenWithClassName } from '../utils/reactHelpers';
-import '../Button'; // So we don't have any override priority issue.
 
-export const styles = theme => ({
+export const styles = {
   /* Styles applied to the root element. */
   root: {
     display: 'flex',
     alignItems: 'center',
-    boxSizing: 'border-box',
-    padding: '8px 4px',
-    [theme.breakpoints.up('sm')]: {
-      padding: '8px 12px',
+    padding: 8,
+  },
+  /* Styles applied to the root element if `disableSpacing={false}`. */
+  spacing: {
+    '& > :not(:first-child)': {
+      marginLeft: 8,
     },
   },
-  /* Styles applied to the children. */
-  action: {
-    margin: '0 4px',
-  },
-});
+};
 
-function CardActions(props) {
-  const { disableActionSpacing, children, classes, className, ...other } = props;
+const CardActions = React.forwardRef(function CardActions(props, ref) {
+  const { disableSpacing = false, classes, className, ...other } = props;
 
   return (
-    <div className={classNames(classes.root, className)} {...other}>
-      {disableActionSpacing ? children : cloneChildrenWithClassName(children, classes.action)}
-    </div>
+    <div
+      className={clsx(classes.root, { [classes.spacing]: !disableSpacing }, className)}
+      ref={ref}
+      {...other}
+    />
   );
-}
+});
 
 CardActions.propTypes = {
   /**
@@ -39,7 +37,7 @@ CardActions.propTypes = {
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -47,13 +45,9 @@ CardActions.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * If `true`, the card actions do not have additional margin.
+   * If `true`, the actions do not have additional margin.
    */
-  disableActionSpacing: PropTypes.bool,
-};
-
-CardActions.defaultProps = {
-  disableActionSpacing: false,
+  disableSpacing: PropTypes.bool,
 };
 
 export default withStyles(styles, { name: 'MuiCardActions' })(CardActions);

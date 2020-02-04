@@ -4,7 +4,7 @@ import { Palette, PaletteOptions } from './createPalette';
 import { Typography, TypographyOptions } from './createTypography';
 import { Shadows } from './shadows';
 import { Shape, ShapeOptions } from './shape';
-import { Spacing, SpacingOptions } from './spacing';
+import { Spacing, SpacingOptions } from './createSpacing';
 import { Transitions, TransitionsOptions } from './transitions';
 import { ZIndex, ZIndexOptions } from './zIndex';
 import { Overrides } from './overrides';
@@ -42,4 +42,4 @@ export interface Theme {
   zIndex: ZIndex;
 }
 
-export default function createMuiTheme(options?: ThemeOptions): Theme;
+export default function createMuiTheme(options?: ThemeOptions, ...args: object[]): Theme;

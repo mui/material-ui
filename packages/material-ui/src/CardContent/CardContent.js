@@ -1,29 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 
-export const styles = theme => ({
+export const styles = {
   /* Styles applied to the root element. */
-  root: theme.mixins.gutters({
-    paddingTop: 16,
-    paddingBottom: 16,
+  root: {
+    padding: 16,
     '&:last-child': {
       paddingBottom: 24,
     },
-  }),
+  },
+};
+
+const CardContent = React.forwardRef(function CardContent(props, ref) {
+  const { classes, className, component: Component = 'div', ...other } = props;
+
+  return <Component className={clsx(classes.root, className)} ref={ref} {...other} />;
 });
-
-function CardContent(props) {
-  const { classes, className, component: Component, ...other } = props;
-
-  return <Component className={classNames(classes.root, className)} {...other} />;
-}
 
 CardContent.propTypes = {
   /**
+   * The content of the component.
+   */
+  children: PropTypes.node,
+  /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -34,11 +37,7 @@ CardContent.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
-};
-
-CardContent.defaultProps = {
-  component: 'div',
+  component: PropTypes.elementType,
 };
 
 export default withStyles(styles, { name: 'MuiCardContent' })(CardContent);

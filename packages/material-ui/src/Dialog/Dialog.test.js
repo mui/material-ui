@@ -1,272 +1,283 @@
 import React from 'react';
-import { assert } from 'chai';
-import { spy } from 'sinon';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
-import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
-import Paper from '../Paper';
-import Fade from '../Fade';
+import { expect } from 'chai';
+import { spy, useFakeTimers } from 'sinon';
+import { createMount, getClasses } from '@material-ui/core/test-utils';
+import describeConformance from '../test-utils/describeConformance';
+import { createClientRender, fireEvent } from 'test/utils/createClientRender';
 import Modal from '../Modal';
 import Dialog from './Dialog';
 
+/**
+ * more comprehensive simulation of a user click (mousedown + click)
+ * @param {HTMLElement} element
+ */
+function userClick(element) {
+  fireEvent.mouseDown(element);
+  element.click();
+}
+
+/**
+ * @param {HTMLElement} container
+ */
+function findBackdrop(container) {
+  return container.querySelector('[data-mui-test="FakeBackdrop"]');
+}
+
+/**
+ * @param {HTMLElement} container
+ */
+function clickBackdrop(container) {
+  userClick(findBackdrop(container));
+}
+
 describe('<Dialog />', () => {
+  let clock;
   let mount;
-  let shallow;
   let classes;
-  const defaultProps = {
-    open: false,
-  };
+  const render = createClientRender({ strict: false });
 
   before(() => {
-    mount = createMount();
-    shallow = createShallow({ dive: true });
-    classes = getClasses(<Dialog {...defaultProps}>foo</Dialog>);
+    // StrictModeViolation: uses Fade
+    mount = createMount({ strict: false });
+    classes = getClasses(<Dialog>foo</Dialog>);
   });
 
-  after(() => {
-    mount.cleanUp();
+  beforeEach(() => {
+    clock = useFakeTimers();
   });
 
-  it('should render a Modal', () => {
-    const wrapper = shallow(<Dialog {...defaultProps}>foo</Dialog>);
-    assert.strictEqual(wrapper.type(), Modal);
+  afterEach(() => {
+    clock.restore();
   });
 
-  it('should render a Modal with TransitionComponent', () => {
-    const Transition = props => <div className="cloned-element-class" {...props} />;
-    const wrapper = shallow(
-      <Dialog {...defaultProps} TransitionComponent={Transition}>
+  describeConformance(<Dialog open>foo</Dialog>, () => ({
+    classes,
+    inheritComponent: Modal,
+    mount,
+    refInstanceof: window.HTMLDivElement,
+    skip: [
+      'componentProp',
+      // react-transition-group issue
+      'reactTestRenderer',
+    ],
+    after: () => mount.cleanUp(),
+  }));
+
+  it('should render with a TransitionComponent', () => {
+    const Transition = React.forwardRef(() => <div data-testid="Transition" tabIndex={-1} />);
+    const { getAllByTestId } = render(
+      <Dialog open TransitionComponent={Transition}>
         foo
       </Dialog>,
     );
-    assert.strictEqual(wrapper.find(Transition).length, 1);
+
+    expect(getAllByTestId('Transition')).to.have.lengthOf(1);
   });
 
-  it('should put Modal specific props on the root Modal node', () => {
-    const onBackdropClick = () => {};
-    const onEscapeKeyDown = () => {};
-    const onClose = () => {};
-    const wrapper = shallow(
+  it('calls onEscapeKeydown when pressing Esc followed by onClose and removes the content after the specified duration', () => {
+    const onEscapeKeyDown = spy();
+    const onClose = spy();
+    function TestCase() {
+      const [open, close] = React.useReducer(() => false, true);
+      const handleClose = (...args) => {
+        close();
+        onClose(...args);
+      };
+
+      return (
+        <Dialog
+          open={open}
+          transitionDuration={100}
+          onEscapeKeyDown={onEscapeKeyDown}
+          onClose={handleClose}
+        >
+          foo
+        </Dialog>
+      );
+    }
+    const { getByRole, queryByRole } = render(<TestCase />);
+    const dialog = getByRole('dialog');
+    expect(dialog).to.be.ok;
+
+    dialog.click();
+    fireEvent.keyDown(document.activeElement, { key: 'Esc' });
+    expect(onEscapeKeyDown.calledOnce).to.equal(true);
+    expect(onClose.calledOnce).to.equal(true);
+
+    clock.tick(100);
+    expect(queryByRole('dialog')).to.equal(null);
+  });
+
+  it('can ignore backdrop click and Esc keydown', () => {
+    const onClose = spy();
+    const { getByRole } = render(
       <Dialog
         open
-        transitionDuration={100}
-        onBackdropClick={onBackdropClick}
-        onEscapeKeyDown={onEscapeKeyDown}
+        disableBackdropClick
+        disableEscapeKeyDown
         onClose={onClose}
-        hideOnBackdropClick={false}
-        hideOnEscapeKeyUp={false}
+        transitionDuration={0}
       >
         foo
       </Dialog>,
     );
-    assert.strictEqual(wrapper.props().open, true);
-    assert.strictEqual(wrapper.props().BackdropProps.transitionDuration, 100);
-    assert.strictEqual(wrapper.props().onBackdropClick, onBackdropClick);
-    assert.strictEqual(wrapper.props().onEscapeKeyDown, onEscapeKeyDown);
-    assert.strictEqual(wrapper.props().onClose, onClose);
-    assert.strictEqual(wrapper.props().hideOnBackdropClick, false);
-    assert.strictEqual(wrapper.props().hideOnEscapeKeyUp, false);
+    const dialog = getByRole('dialog');
+    expect(dialog).to.be.ok;
+
+    dialog.click();
+    fireEvent.keyDown(document.activeElement, { key: 'Esc' });
+    expect(onClose.callCount).to.equal(0);
+
+    clickBackdrop(document.body);
+    expect(onClose.callCount).to.equal(0);
   });
 
-  it('should spread custom props on the paper (dialog "root") node', () => {
-    const wrapper = shallow(
-      <Dialog {...defaultProps} data-my-prop="woofDialog">
+  it('should spread custom props on the modal root node', () => {
+    render(
+      <Dialog data-my-prop="woofDialog" open>
         foo
       </Dialog>,
     );
-    assert.strictEqual(wrapper.props()['data-my-prop'], 'woofDialog');
-  });
-
-  it('should render with the user classes on the root node', () => {
-    const wrapper = shallow(
-      <Dialog {...defaultProps} className="woofDialog">
-        foo
-      </Dialog>,
-    );
-    assert.strictEqual(wrapper.hasClass('woofDialog'), true);
-  });
-
-  it('should render Fade > div > Paper > children inside the Modal', () => {
-    const children = <p>Hello</p>;
-    const wrapper = shallow(<Dialog {...defaultProps}>{children}</Dialog>);
-
-    const fade = wrapper.childAt(0);
-    assert.strictEqual(fade.type(), Fade);
-
-    const div = fade.childAt(0);
-    assert.strictEqual(div.type(), 'div');
-
-    const paper = div.childAt(0);
-    assert.strictEqual(paper.length === 1 && paper.type(), Paper);
-
-    assert.strictEqual(paper.hasClass(classes.paper), true);
-  });
-
-  it('should not be open by default', () => {
-    const wrapper = shallow(<Dialog {...defaultProps}>foo</Dialog>);
-    assert.strictEqual(wrapper.props().open, false);
-    assert.strictEqual(wrapper.find(Fade).props().in, false);
-  });
-
-  it('should be open by default', () => {
-    const wrapper = shallow(<Dialog open>foo</Dialog>);
-    assert.strictEqual(wrapper.props().open, true);
-    assert.strictEqual(wrapper.find(Fade).props().in, true);
-  });
-
-  it('should fade down and make the transition appear on first mount', () => {
-    const wrapper = shallow(<Dialog {...defaultProps}>foo</Dialog>);
-    assert.strictEqual(wrapper.find(Fade).props().appear, true);
+    const modal = document.querySelector('[data-mui-test="Modal"]');
+    expect(modal).to.have.attribute('data-my-prop', 'woofDialog');
   });
 
   describe('backdrop', () => {
-    let wrapper;
+    it('does have `role` `none presentation`', () => {
+      render(<Dialog open>foo</Dialog>);
 
-    beforeEach(() => {
-      wrapper = shallow(<Dialog open>foo</Dialog>);
+      expect(findBackdrop(document.body)).to.have.attribute('role', 'none presentation');
     });
 
-    it('should attach a handler to the backdrop that fires onClose', () => {
+    it('calls onBackdropClick and onClose when clicked', () => {
+      const onBackdropClick = spy();
       const onClose = spy();
-      wrapper.setProps({ onClose });
-
-      const handler = wrapper.instance().handleBackdropClick;
-      const backdrop = wrapper.find('div');
-      assert.strictEqual(
-        backdrop.props().onClick,
-        handler,
-        'should attach the handleBackdropClick handler',
+      render(
+        <Dialog onBackdropClick={onBackdropClick} onClose={onClose} open>
+          foo
+        </Dialog>,
       );
 
-      handler({});
-      assert.strictEqual(onClose.callCount, 1, 'should fire the onClose callback');
-    });
-
-    it('should let the user disable backdrop click triggering onClose', () => {
-      const onClose = spy();
-      wrapper.setProps({ onClose, disableBackdropClick: true });
-
-      const handler = wrapper.instance().handleBackdropClick;
-
-      handler({});
-      assert.strictEqual(onClose.callCount, 0, 'should not fire the onClose callback');
-    });
-
-    it('should call through to the user specified onBackdropClick callback', () => {
-      const onBackdropClick = spy();
-      wrapper.setProps({ onBackdropClick });
-
-      const handler = wrapper.instance().handleBackdropClick;
-
-      handler({});
-      assert.strictEqual(onBackdropClick.callCount, 1, 'should fire the onBackdropClick callback');
+      clickBackdrop(document);
+      expect(onBackdropClick.callCount).to.equal(1);
+      expect(onClose.callCount).to.equal(1);
     });
 
     it('should ignore the backdrop click if the event did not come from the backdrop', () => {
       const onBackdropClick = spy();
-      wrapper.setProps({ onBackdropClick });
-
-      const handler = wrapper.instance().handleBackdropClick;
-
-      handler({
-        target: {
-          /* a dom node */
-        },
-        currentTarget: {
-          /* another dom node */
-        },
-      });
-      assert.strictEqual(
-        onBackdropClick.callCount,
-        0,
-        'should not fire the onBackdropClick callback',
+      const { getByRole } = render(
+        <Dialog onBackdropClick={onBackdropClick} open>
+          <div tabIndex={-1}>
+            <h2>my dialog</h2>
+          </div>
+        </Dialog>,
       );
+
+      userClick(getByRole('heading'));
+      expect(onBackdropClick.callCount).to.equal(0);
+    });
+
+    it('should not close if the target changes between the mousedown and the click', () => {
+      const { getByRole } = render(
+        <Dialog open>
+          <h2>my dialog</h2>
+        </Dialog>,
+      );
+
+      fireEvent.mouseDown(getByRole('heading'));
+      findBackdrop(document.body).click();
+      expect(getByRole('dialog')).to.be.ok;
     });
   });
 
   describe('prop: classes', () => {
     it('should add the class on the Paper element', () => {
-      const className = 'foo';
-      const wrapper = shallow(
-        <Dialog {...defaultProps} classes={{ paper: className }}>
+      const { getByTestId } = render(
+        <Dialog open classes={{ paper: 'my-paperclass' }} PaperProps={{ 'data-testid': 'paper' }}>
           foo
         </Dialog>,
       );
-      assert.strictEqual(wrapper.find(Paper).hasClass(className), true);
+      expect(getByTestId('paper')).to.have.class('my-paperclass');
     });
   });
 
   describe('prop: maxWidth', () => {
     it('should use the right className', () => {
-      const wrapper = shallow(
-        <Dialog {...defaultProps} maxWidth="xs">
+      const { getByTestId } = render(
+        <Dialog open maxWidth="xs" PaperProps={{ 'data-testid': 'paper' }}>
           foo
         </Dialog>,
       );
-      assert.strictEqual(wrapper.find(Paper).hasClass(classes.paperWidthXs), true);
+      expect(getByTestId('paper')).to.have.class(classes.paperWidthXs);
     });
   });
 
   describe('prop: fullWidth', () => {
     it('should set `fullWidth` class if specified', () => {
-      const wrapper = shallow(
-        <Dialog {...defaultProps} fullWidth>
+      const { getByTestId } = render(
+        <Dialog open fullWidth PaperProps={{ 'data-testid': 'paper' }}>
           foo
         </Dialog>,
       );
-      assert.strictEqual(wrapper.find(Paper).hasClass(classes.paperFullWidth), true);
+      expect(getByTestId('paper')).to.have.class(classes.paperFullWidth);
     });
 
     it('should not set `fullWidth` class if not specified', () => {
-      const wrapper = shallow(<Dialog {...defaultProps}>foo</Dialog>);
-      assert.strictEqual(wrapper.find(Paper).hasClass(classes.paperFullWidth), false);
+      const { getByTestId } = render(
+        <Dialog open PaperProps={{ 'data-testid': 'paper' }}>
+          foo
+        </Dialog>,
+      );
+      expect(getByTestId('paper')).not.to.have.class(classes.paperFullWidth);
     });
   });
 
   describe('prop: fullScreen', () => {
-    it('true should render fullScreen', () => {
-      const wrapper = shallow(
-        <Dialog {...defaultProps} fullScreen>
+    it('can render fullScreen if true', () => {
+      const { getByTestId } = render(
+        <Dialog open fullScreen PaperProps={{ 'data-testid': 'paper' }}>
           foo
         </Dialog>,
       );
-      assert.strictEqual(wrapper.find(Paper).hasClass(classes.paperFullScreen), true);
+      expect(getByTestId('paper')).to.have.class(classes.paperFullScreen);
     });
 
-    it('false should not render fullScreen', () => {
-      const wrapper = shallow(
-        <Dialog {...defaultProps} fullScreen={false}>
+    it('does not render fullScreen by default', () => {
+      const { getByTestId } = render(
+        <Dialog open PaperProps={{ 'data-testid': 'paper' }}>
           foo
         </Dialog>,
       );
-      assert.strictEqual(wrapper.find(Paper).hasClass(classes.paperFullScreen), false);
+      expect(getByTestId('paper')).not.to.have.class(classes.paperFullScreen);
     });
   });
 
   describe('prop: PaperProps.className', () => {
-    before(() => {
-      consoleErrorMock.spy();
-    });
-
-    after(() => {
-      consoleErrorMock.reset();
-    });
-
-    it('warns on className usage', () => {
-      const wrapper = mount(
-        <Dialog open PaperProps={{ className: 'custom-paper-class' }}>
+    it('should merge the className', () => {
+      const { getByTestId } = render(
+        <Dialog open PaperProps={{ className: 'custom-paper-class', 'data-testid': 'paper' }}>
           foo
         </Dialog>,
       );
-      const paperWrapper = wrapper.find('div.custom-paper-class');
 
-      assert.strictEqual(paperWrapper.exists(), true);
-      assert.strictEqual(paperWrapper.hasClass(classes.paper), false);
-      assert.strictEqual(consoleErrorMock.callCount(), 1);
-      assert.include(
-        consoleErrorMock.args()[0][0],
-        '`className` overrides all `Dialog` specific styles in `Paper`. If you wanted to add ' +
-          'styles to the `Paper` component use `classes.paper` in the `Dialog` props instead.',
+      expect(getByTestId('paper')).to.have.class(classes.paper);
+      expect(getByTestId('paper')).to.have.class('custom-paper-class');
+    });
+  });
+
+  describe('a11y', () => {
+    it('can be labelled by another element', () => {
+      const { getByRole } = render(
+        <Dialog open aria-labelledby="dialog-title">
+          <h1 id="dialog-title">Choose either one</h1>
+          <div>Actually you cant</div>
+        </Dialog>,
       );
+
+      const dialog = getByRole('dialog');
+      expect(dialog).to.have.attr('aria-labelledby', 'dialog-title');
+      const label = document.getElementById(dialog.getAttribute('aria-labelledby'));
+      expect(label).to.have.text('Choose either one');
     });
   });
 });

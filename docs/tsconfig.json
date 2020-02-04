@@ -1,0 +1,11 @@
+{
+  "extends": "../tsconfig.json",
+  "include": ["types", "src/pages/**/*"],
+  "compilerOptions": {
+    "allowJs": false,
+    /* files are emmitted by babel */
+    "noEmit": true,
+    "noUnusedLocals": true,
+    "types": ["react"]
+  }
+}

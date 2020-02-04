@@ -1,20 +1,20 @@
-# Right-to-left
+# 从右到左读取
 
-<p class="description">To change the direction of Material-UI components you must follow the following steps.</p>
+<p class="description">要更改 Material-UI 组件的读取方向，您必须执行以下步骤。 对从右到左（RTL）读取的语言的 UI，例如阿拉伯语和希伯来语，应该被反射。</p>
 
-## Steps
+## 步骤
 
-### 1. HTML
+### 1。 HTML
 
-Make sure the `dir` attribute is set on the body, otherwise native components will break:
+确保在 body 上设置了 `dir` 属性，否则本机组件将中断：
 
 ```html
 <body dir="rtl">
 ```
 
-### 2. Theme
+### 2。 主题
 
-Set the direction in your custom theme:
+在您自定义的主题中设置方向：
 
 ```js
 const theme = createMuiTheme({
@@ -22,51 +22,45 @@ const theme = createMuiTheme({
 });
 ```
 
-### 3. jss-rtl
+### 3。 jss-rtl
 
-You need this JSS plugin to flip the styles: [jss-rtl](https://github.com/alitaheri/jss-rtl).
+你需要这个 JSS 插件来翻转样式： [jss-rtl](https://github.com/alitaheri/jss-rtl)。
 
 ```sh
 npm install jss-rtl
 ```
 
-Having installed the plugin in your project, Material-UI components still require it to be loaded by the jss instance, as described below. Internally, withStyles is using this JSS plugin when `direction: 'rtl'` is set on the theme.
+如下所述，在项目中安装了插件后，Material-UI 组件仍然需要通过 jss 实例来加载。 在内部，若 `direction: 'rtl'` 上在主题设置了，withStyles 则会使用该 JSS 插件 。 请前往 [此插件的 README](https://github.com/alitaheri/jss-rtl) 来了解更多信息。
 
-The [CSS-in-JS documentation](/customization/css-in-js/#opting-out-of-rtl-transformation) explains a bit more about how this plugin works. Head to the [plugin README](https://github.com/alitaheri/jss-rtl) to learn more about it.
-
-Once you have created a new JSS instance with the plugin, you need to make it available to all the components in the component tree. JSS has a [`JssProvider`](https://github.com/cssinjs/react-jss) component for this:
+一旦您通过插件创建了一个新的 JSS 实例，您需要提给组件树中的所有组件。 The [`StylesProvider`](/styles/api/#stylesprovider) component enables this:
 
 ```jsx
 import { create } from 'jss';
 import rtl from 'jss-rtl';
-import JssProvider from 'react-jss/lib/JssProvider';
-import { createGenerateClassName, jssPreset } from '@material-ui/core/styles';
+import { StylesProvider, jssPreset } from '@material-ui/core/styles';
 
 // Configure JSS
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
 
-// Custom Material-UI class name generator.
-const generateClassName = createGenerateClassName();
-
 function RTL(props) {
   return (
-    <JssProvider jss={jss} generateClassName={generateClassName}>
+    <StylesProvider jss={jss}>
       {props.children}
-    </JssProvider>
+    </StylesProvider>
   );
 }
 ```
 
-## Demo
+## 演示
 
-*Use the direction toggle button on the top right corner to flip the whole documentation*
+*请使用右上角的方向切换按钮来翻转整个文档。*
 
 {{"demo": "pages/guides/right-to-left/Direction.js"}}
 
-## Opting out of rtl transformation
+## 选择退出 rtl 转换
 
-If you want to prevent a specific rule-set from being affected by the `rtl` transformation you can add `flip: false` at the begining:
+若您想避免一个特殊的特定规则受到 `rtl` 转换的影响，您可以在最开始时加上`flip: false`。
 
-*Use the direction toggle button on the top right corner to see the effect*
+*请使用右上角的方向切换按钮来查看效果。*
 
 {{"demo": "pages/guides/right-to-left/RtlOptOut.js", "hideEditButton": true}}

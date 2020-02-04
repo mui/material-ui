@@ -2,7 +2,7 @@ import React from 'react';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 
-function SelectOverflow() {
+export default function SelectOverflow() {
   return (
     <Select value={10} style={{ maxWidth: 100 }}>
       <MenuItem value="">
@@ -12,5 +12,3 @@ function SelectOverflow() {
     </Select>
   );
 }
-
-export default SelectOverflow;

@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
-import LayoutBody from '../components/LayoutBody';
+import Container from '@material-ui/core/Container';
 
 const styles = theme => ({
   root: {
@@ -16,9 +16,9 @@ const styles = theme => ({
       maxHeight: 1300,
     },
   },
-  layoutBody: {
-    marginTop: theme.spacing.unit * 3,
-    marginBottom: theme.spacing.unit * 14,
+  container: {
+    marginTop: theme.spacing(3),
+    marginBottom: theme.spacing(14),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -45,7 +45,7 @@ const styles = theme => ({
   },
   arrowDown: {
     position: 'absolute',
-    bottom: theme.spacing.unit * 4,
+    bottom: theme.spacing(4),
   },
 });
 
@@ -54,7 +54,7 @@ function ProductHeroLayout(props) {
 
   return (
     <section className={classes.root}>
-      <LayoutBody className={classes.layoutBody} width="full">
+      <Container className={classes.container}>
         <img
           src="/static/themes/onepirate/productHeroWonder.png"
           alt="wonder"
@@ -63,7 +63,7 @@ function ProductHeroLayout(props) {
         />
         {children}
         <div className={classes.backdrop} />
-        <div className={classNames(classes.background, backgroundClassName)} />
+        <div className={clsx(classes.background, backgroundClassName)} />
         <img
           className={classes.arrowDown}
           src="/static/themes/onepirate/productHeroArrowDown.png"
@@ -71,7 +71,7 @@ function ProductHeroLayout(props) {
           width="12"
           alt="arrow down"
         />
-      </LayoutBody>
+      </Container>
     </section>
   );
 }

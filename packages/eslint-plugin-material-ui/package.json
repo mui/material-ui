@@ -1,11 +1,14 @@
 {
   "name": "eslint-plugin-material-ui",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "private": true,
   "description": "Custom eslint rules for Material-UI.",
   "main": "src/index.js",
+  "dependencies": {
+    "emoji-regex": "^8.0.0"
+  },
   "scripts": {
-    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/eslint-plugin-material-ui/**/*.test.js'"
+    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/eslint-plugin-material-ui/**/*.test.js' --exclude '**/node_modules/**'"
   },
   "repository": {
     "type": "git",

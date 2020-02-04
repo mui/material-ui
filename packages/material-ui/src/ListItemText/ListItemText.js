@@ -1,113 +1,97 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
 import ListContext from '../List/ListContext';
 
-export const styles = theme => ({
+export const styles = {
   /* Styles applied to the root element. */
   root: {
     flex: '1 1 auto',
     minWidth: 0,
-    padding: '0 16px',
-    '&:first-child': {
-      paddingLeft: 0,
-    },
+    marginTop: 4,
+    marginBottom: 4,
   },
+  /* Styles applied to the `Typography` components if primary and secondary are set. */
+  multiline: {
+    marginTop: 6,
+    marginBottom: 6,
+  },
+  /* Styles applied to the `Typography` components if dense. */
+  dense: {},
   /* Styles applied to the root element if `inset={true}`. */
   inset: {
-    '&:first-child': {
-      paddingLeft: 56,
-    },
-  },
-  /* Styles applied to the root element if `context.dense` is `true`. */
-  dense: {
-    fontSize: theme.typography.pxToRem(13),
+    paddingLeft: 56,
   },
   /* Styles applied to the primary `Typography` component. */
-  primary: {
-    '&$textDense': {
-      fontSize: 'inherit',
-    },
-  },
+  primary: {},
   /* Styles applied to the secondary `Typography` component. */
-  secondary: {
-    '&$textDense': {
-      fontSize: 'inherit',
-    },
-  },
-  /* Styles applied to the `Typography` components if `context.dense` is `true`. */
-  textDense: {},
-});
+  secondary: {},
+};
 
-function ListItemText(props) {
+const ListItemText = React.forwardRef(function ListItemText(props, ref) {
   const {
     children,
     classes,
-    className: classNameProp,
-    disableTypography,
-    inset,
+    className,
+    disableTypography = false,
+    inset = false,
     primary: primaryProp,
     primaryTypographyProps,
     secondary: secondaryProp,
     secondaryTypographyProps,
     ...other
   } = props;
+  const { dense } = React.useContext(ListContext);
+
+  let primary = primaryProp != null ? primaryProp : children;
+  if (primary != null && primary.type !== Typography && !disableTypography) {
+    primary = (
+      <Typography
+        variant={dense ? 'body2' : 'body1'}
+        className={classes.primary}
+        component="span"
+        {...primaryTypographyProps}
+      >
+        {primary}
+      </Typography>
+    );
+  }
+
+  let secondary = secondaryProp;
+  if (secondary != null && secondary.type !== Typography && !disableTypography) {
+    secondary = (
+      <Typography
+        variant="body2"
+        className={classes.secondary}
+        color="textSecondary"
+        {...secondaryTypographyProps}
+      >
+        {secondary}
+      </Typography>
+    );
+  }
 
   return (
-    <ListContext.Consumer>
-      {({ dense }) => {
-        let primary = primaryProp != null ? primaryProp : children;
-        if (primary != null && primary.type !== Typography && !disableTypography) {
-          primary = (
-            <Typography
-              variant="subheading"
-              internalDeprecatedVariant
-              className={classNames(classes.primary, { [classes.textDense]: dense })}
-              component="span"
-              {...primaryTypographyProps}
-            >
-              {primary}
-            </Typography>
-          );
-        }
-
-        let secondary = secondaryProp;
-        if (secondary != null && secondary.type !== Typography && !disableTypography) {
-          secondary = (
-            <Typography
-              className={classNames(classes.secondary, {
-                [classes.textDense]: dense,
-              })}
-              color="textSecondary"
-              {...secondaryTypographyProps}
-            >
-              {secondary}
-            </Typography>
-          );
-        }
-
-        return (
-          <div
-            className={classNames(
-              classes.root,
-              {
-                [classes.dense]: dense,
-                [classes.inset]: inset,
-              },
-              classNameProp,
-            )}
-            {...other}
-          >
-            {primary}
-            {secondary}
-          </div>
-        );
-      }}
-    </ListContext.Consumer>
+    <div
+      className={clsx(
+        classes.root,
+        {
+          [classes.dense]: dense,
+          [classes.inset]: inset,
+          [classes.multiline]: primary && secondary,
+        },
+        className,
+      )}
+      ref={ref}
+      {...other}
+    >
+      {primary}
+      {secondary}
+    </div>
   );
-}
+});
 
 ListItemText.propTypes = {
   /**
@@ -116,7 +100,7 @@ ListItemText.propTypes = {
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -153,11 +137,6 @@ ListItemText.propTypes = {
    * (as long as disableTypography is not `true`).
    */
   secondaryTypographyProps: PropTypes.object,
-};
-
-ListItemText.defaultProps = {
-  disableTypography: false,
-  inset: false,
 };
 
 export default withStyles(styles, { name: 'MuiListItemText' })(ListItemText);

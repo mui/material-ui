@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { StandardProps } from '..';
 import { IconButtonProps } from '../IconButton/IconButton';
 
 export interface TablePaginationActionsProps extends React.HTMLAttributes<HTMLDivElement> {

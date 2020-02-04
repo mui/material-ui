@@ -1,57 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Link from 'docs/src/modules/components/Link';
 import Head from 'docs/src/modules/components/Head';
 
-const styles = theme => ({
-  credit: {
-    marginTop: theme.spacing.unit * 6,
-    marginBottom: theme.spacing.unit * 4,
-  },
-  hideCredit: {
-    position: 'absolute',
-    top: 0,
-  },
-});
+export default function AppTheme(props) {
+  const { children } = props;
 
-function AppTheme(props) {
-  const { children, classes, description, hideCredit, title } = props;
   return (
     <React.Fragment>
-      <Head title={title} description={description} />
+      <Head>
+        <meta name="robots" content="noindex,nofollow" />
+      </Head>
       {children}
-      <Typography
-        color="textSecondary"
-        align="center"
-        className={classNames(classes.credit, {
-          [classes.hideCredit]: hideCredit,
-        })}
-      >
-        {'Build with '}
-        <span role="img" aria-label="Love">
-          ❤️
-        </span>
-        {' by the '}
-        <Link href="/">Material-UI</Link>
-        {' team.'}
-      </Typography>
     </React.Fragment>
   );
 }
 
 AppTheme.propTypes = {
   children: PropTypes.element.isRequired,
-  classes: PropTypes.object.isRequired,
-  description: PropTypes.string.isRequired,
-  hideCredit: PropTypes.bool,
-  title: PropTypes.string.isRequired,
 };
-
-AppTheme.defaultProps = {
-  hideCredit: false,
-};
-
-export default withStyles(styles)(AppTheme);

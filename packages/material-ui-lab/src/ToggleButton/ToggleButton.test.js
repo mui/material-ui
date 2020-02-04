@@ -1,108 +1,131 @@
 import React from 'react';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRender, createShallow, getClasses } from '@material-ui/core/test-utils';
+import { createClientRender } from 'test/utils/createClientRender';
+import createServerRender from 'test/utils/createServerRender';
+import { createMount, getClasses } from '@material-ui/core/test-utils';
+import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import ToggleButton from './ToggleButton';
 
 describe('<ToggleButton />', () => {
-  let shallow;
-  let render;
+  let mount;
   let classes;
+  const render = createClientRender();
 
   before(() => {
-    shallow = createShallow({ dive: true });
-    render = createRender();
+    mount = createMount({ strict: true });
     classes = getClasses(<ToggleButton value="classes">Hello World</ToggleButton>);
   });
 
-  it('should render a <ButtonBase> element', () => {
-    const wrapper = shallow(<ToggleButton value="hello">Hello World</ToggleButton>);
-    assert.strictEqual(wrapper.type(), ButtonBase);
-  });
+  describeConformance(<ToggleButton value="X">Hello, World!</ToggleButton>, () => ({
+    after: () => mount.cleanUp(),
+    classes,
+    inheritComponent: ButtonBase,
+    mount,
+    refInstanceof: window.HTMLButtonElement,
+    testComponentPropWith: 'div',
+  }));
 
-  it('should render the custom className and the root class', () => {
-    const wrapper = shallow(
-      <ToggleButton className="test-class-name" value="hello">
+  it('adds the `selected` class to the root element if selected={true}', () => {
+    const { getByTestId } = render(
+      <ToggleButton data-testid="root" selected value="hello">
         Hello World
       </ToggleButton>,
     );
-    assert.strictEqual(wrapper.is('.test-class-name'), true);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
+
+    expect(getByTestId('root')).to.have.class(classes.selected);
   });
 
-  it('should render a selected button', () => {
-    const wrapper = shallow(
-      <ToggleButton selected value="hello">
-        Hello World
-      </ToggleButton>,
-    );
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.selected), true);
-  });
-
-  it('should render a disabled button', () => {
-    const wrapper = shallow(
+  it('should render a disabled button if `distabled={true}`', () => {
+    const { getByRole } = render(
       <ToggleButton disabled value="hello">
         Hello World
       </ToggleButton>,
     );
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.disabled), true);
+
+    expect(getByRole('button')).to.have.property('disabled', true);
+  });
+
+  it('can render a small button', () => {
+    const { getByTestId } = render(
+      <ToggleButton data-testid="root" size="small" value="hello">
+        Hello World
+      </ToggleButton>,
+    );
+
+    const root = getByTestId('root');
+    expect(root).to.have.class(classes.root);
+    expect(root).to.have.class(classes.sizeSmall);
+    expect(root).not.to.have.class(classes.sizeLarge);
+  });
+
+  it('should render a large button', () => {
+    const { getByTestId } = render(
+      <ToggleButton data-testid="root" size="large" value="hello">
+        Hello World
+      </ToggleButton>,
+    );
+
+    const root = getByTestId('root');
+    expect(root).to.have.class(classes.root);
+    expect(root).not.to.have.class(classes.sizeSmall);
+    expect(root).to.have.class(classes.sizeLarge);
   });
 
   describe('prop: onChange', () => {
     it('should be called when clicked', () => {
       const handleChange = spy();
-      const wrapper = shallow(
+      const { getByRole } = render(
         <ToggleButton value="1" onChange={handleChange}>
           Hello
         </ToggleButton>,
       );
-      const event = {};
-      wrapper.simulate('click', event);
-      assert.strictEqual(handleChange.callCount, 1);
+
+      getByRole('button').click();
+
+      expect(handleChange.callCount).to.equal(1);
     });
 
     it('should be called with the button value', () => {
       const handleChange = spy();
-      const wrapper = shallow(
-        <ToggleButton value="one" onChange={handleChange}>
+      const { getByRole } = render(
+        <ToggleButton value="1" onChange={handleChange}>
           Hello
         </ToggleButton>,
       );
-      const event = {};
-      wrapper.simulate('click', event);
-      assert.strictEqual(handleChange.callCount, 1);
-      assert.strictEqual(handleChange.args[0][1], 'one');
+
+      getByRole('button').click();
+
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.equal('1');
     });
 
     it('should not be called if the click is prevented', () => {
       const handleChange = spy();
-      const wrapper = shallow(
+      const { getByRole } = render(
         <ToggleButton value="one" onChange={handleChange} onClick={event => event.preventDefault()}>
           Hello
         </ToggleButton>,
       );
-      const event = {
-        preventDefault: () => {},
-        isDefaultPrevented: () => true,
-      };
 
-      wrapper.simulate('click', event);
-      assert.strictEqual(handleChange.callCount, 0);
+      getByRole('button').click();
+
+      expect(handleChange.callCount).to.equal(0);
     });
   });
 
-  describe('server side', () => {
+  describe('server-side', () => {
     // Only run the test on node.
     if (!/jsdom/.test(window.navigator.userAgent)) {
       return;
     }
 
-    it('should server side render', () => {
-      const markup = render(<ToggleButton value="hello">Hello World</ToggleButton>);
-      assert.strictEqual(markup.text(), 'Hello World');
+    const serverRender = createServerRender({ expectUseLayoutEffectWarning: true });
+
+    it('should server-side render', () => {
+      const markup = serverRender(<ToggleButton value="hello">Hello World</ToggleButton>);
+      expect(markup.text()).to.equal('Hello World');
     });
   });
 });

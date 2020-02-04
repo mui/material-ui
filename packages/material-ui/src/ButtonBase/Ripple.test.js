@@ -1,83 +1,59 @@
 import React from 'react';
-import { assert } from 'chai';
+import { assert, expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import { createShallow, getClasses, createMount } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import { createClientRender } from 'test/utils/createClientRender';
 import TouchRipple from './TouchRipple';
 import Ripple from './Ripple';
 
 describe('<Ripple />', () => {
-  let shallow;
   let classes;
-  let mount;
+  const render = createClientRender();
 
   before(() => {
-    shallow = createShallow();
     classes = getClasses(<TouchRipple />);
-    mount = createMount();
-  });
-
-  after(() => {
-    mount.cleanUp();
-  });
-
-  it('should render a Transition', () => {
-    const wrapper = shallow(
-      <Ripple classes={classes} timeout={{}} rippleX={0} rippleY={0} rippleSize={10} />,
-    );
-    assert.strictEqual(wrapper.name(), 'Transition');
   });
 
   it('should have the ripple className', () => {
-    const wrapper = shallow(
-      <Ripple classes={classes} timeout={{}} rippleX={0} rippleY={0} rippleSize={11} />,
+    const { container } = render(
+      <Ripple classes={classes} timeout={0} rippleX={0} rippleY={0} rippleSize={11} />,
     );
-    assert.strictEqual(wrapper.childAt(0).hasClass(classes.ripple), true);
-    assert.strictEqual(wrapper.childAt(0).hasClass(classes.fast), false);
+    const ripple = container.querySelector('span');
+    expect(ripple).to.have.class(classes.ripple);
+    expect(ripple).not.to.have.class(classes.fast);
   });
 
   describe('starting and stopping', () => {
     let wrapper;
 
     before(() => {
-      wrapper = mount(
-        <Ripple
-          classes={classes}
-          timeout={{ exit: 0, enter: 0 }}
-          in={false}
-          rippleX={0}
-          rippleY={0}
-          rippleSize={11}
-        />,
+      wrapper = render(
+        <Ripple classes={classes} timeout={0} rippleX={0} rippleY={0} rippleSize={11} />,
       );
     });
 
     it('should start the ripple', () => {
-      assert.strictEqual(wrapper.state().visible, false);
       wrapper.setProps({ in: true });
-      wrapper.update();
-      assert.strictEqual(wrapper.state().visible, true);
-      const rippleWrapper = wrapper.find('span').first();
-      assert.strictEqual(rippleWrapper.hasClass(classes.rippleVisible), true);
+      const ripple = wrapper.container.querySelector('span');
+      expect(ripple).to.have.class(classes.rippleVisible);
     });
 
     it('should stop the ripple', () => {
       wrapper.setProps({ in: true });
       wrapper.setProps({ in: false });
-      wrapper.update();
-      assert.strictEqual(wrapper.state().leaving, true);
-      const childWrapper = wrapper.find('span').last();
-      assert.strictEqual(childWrapper.hasClass(classes.childLeaving), true);
+      const child = wrapper.container.querySelector('span > span');
+      expect(child).to.have.class(classes.childLeaving);
     });
   });
 
-  describe('pulsating and stopping', () => {
+  describe('pulsating and stopping 1', () => {
     let wrapper;
 
     before(() => {
-      wrapper = mount(
+      wrapper = render(
         <Ripple
           classes={classes}
-          timeout={{ enter: 0, exit: 0 }}
+          timeout={0}
           in={false}
           rippleX={0}
           rippleY={0}
@@ -88,45 +64,40 @@ describe('<Ripple />', () => {
     });
 
     it('should render the ripple inside a pulsating Ripple', () => {
-      assert.strictEqual(wrapper.name(), 'Ripple');
-      const rippleWrapper = wrapper.find('span').first();
-      assert.strictEqual(rippleWrapper.hasClass(classes.ripple), true);
-      assert.strictEqual(rippleWrapper.hasClass(classes.ripplePulsate), true);
-      const childWrapper = wrapper.find('span').last();
-      assert.strictEqual(childWrapper.hasClass(classes.childPulsate), true);
+      const ripple = wrapper.container.querySelector('span');
+      expect(ripple).to.have.class(classes.ripple);
+      expect(ripple).to.have.class(classes.ripplePulsate);
+      const child = wrapper.container.querySelector('span > span');
+      expect(child).to.have.class(classes.childPulsate);
     });
 
     it('should start the ripple', () => {
-      assert.strictEqual(wrapper.state().visible, false);
       wrapper.setProps({ in: true });
-      wrapper.update();
-      assert.strictEqual(wrapper.state().visible, true);
-      const rippleWrapper = wrapper.find('span').first();
-      assert.strictEqual(rippleWrapper.hasClass(classes.rippleVisible), true);
-      const childWrapper = wrapper.find('span').last();
-      assert.strictEqual(childWrapper.hasClass(classes.childPulsate), true);
+      const ripple = wrapper.container.querySelector('span');
+      expect(ripple).to.have.class(classes.rippleVisible);
+      const child = wrapper.container.querySelector('span > span');
+      expect(child).to.have.class(classes.childPulsate);
     });
 
     it('should stop the ripple', () => {
+      wrapper.setProps({ in: true });
       wrapper.setProps({ in: false });
-      wrapper.update();
-      assert.strictEqual(wrapper.state().leaving, true);
-      const childWrapper = wrapper.find('span').last();
-      assert.strictEqual(childWrapper.hasClass(classes.childLeaving), true);
+      const child = wrapper.container.querySelector('span > span');
+      expect(child).to.have.class(classes.childLeaving);
     });
   });
 
-  describe('pulsating and stopping', () => {
+  describe('pulsating and stopping 2', () => {
     let wrapper;
     let clock;
     let callbackSpy;
 
     beforeEach(() => {
       callbackSpy = spy();
-      wrapper = mount(
+      wrapper = render(
         <Ripple
           classes={classes}
-          timeout={{ exit: 550 }}
+          timeout={550}
           in
           onExited={callbackSpy}
           rippleX={0}

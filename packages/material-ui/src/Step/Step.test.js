@@ -1,96 +1,151 @@
 import React from 'react';
-import { assert } from 'chai';
-import { createShallow, createMount } from '@material-ui/core/test-utils';
+import * as PropTypes from 'prop-types';
+import { expect } from 'chai';
+import { createMount, getClasses } from '@material-ui/core/test-utils';
+import describeConformance from '../test-utils/describeConformance';
+import { createClientRender, within } from 'test/utils/createClientRender';
 import Step from './Step';
 
+/**
+ * Exposes props stringified in the dataset of the `[data-testid="props"]`
+ */
+function PropsAsDataset(props) {
+  const elementRef = React.useRef();
+  React.useEffect(() => {
+    const { current: element } = elementRef;
+
+    Object.keys(props).forEach(key => {
+      // converted to strings internally. writing it out for readability
+      element.dataset[key] = String(props[key]);
+    });
+  });
+
+  return <span data-testid="props" ref={elementRef} />;
+}
+
+/**
+ * A component that can be used as a child of `Step`.
+ * It passes through all unrelated props to the underlying `div`
+ * The props passed from `Step` are intercepted
+ */
+function StepChildDiv(props) {
+  const {
+    active,
+    alternativeLabel,
+    completed,
+    disabled,
+    expanded,
+    icon,
+    last,
+    orientation,
+    ...other
+  } = props;
+
+  return <div {...other} />;
+}
+StepChildDiv.propTypes = {
+  active: PropTypes.bool,
+  alternativeLabel: PropTypes.bool,
+  completed: PropTypes.bool,
+  disabled: PropTypes.bool,
+  expanded: PropTypes.bool,
+  icon: PropTypes.node,
+  last: PropTypes.bool,
+  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
+};
+
 describe('<Step />', () => {
-  let shallow;
+  let classes;
   let mount;
 
+  const render = createClientRender();
+
   before(() => {
-    shallow = createShallow({ dive: true });
-    mount = createMount();
+    classes = getClasses(<Step />);
+    mount = createMount({ strict: true });
   });
 
-  after(() => {
-    mount.cleanUp();
-  });
+  describeConformance(<Step />, () => ({
+    classes,
+    inheritComponent: 'div',
+    mount,
+    refInstanceof: window.HTMLDivElement,
+    skip: ['componentProp'],
+    after: () => mount.cleanUp(),
+  }));
 
   it('merges styles and other props into the root node', () => {
-    const wrapper = shallow(
+    const { getByTestId } = render(
       <Step
         index={1}
         style={{ paddingRight: 200, color: 'purple', border: '1px solid tomato' }}
-        role="Menuitem"
+        data-testid="root"
         orientation="horizontal"
       />,
     );
-    const { style, role } = wrapper.props();
-    assert.strictEqual(style.paddingRight, 200);
-    assert.strictEqual(style.color, 'purple');
-    assert.strictEqual(style.border, '1px solid tomato');
-    assert.strictEqual(role, 'Menuitem');
+
+    const rootNode = getByTestId('root');
+    expect(rootNode.style).to.have.property('paddingRight', '200px');
+    expect(rootNode.style).to.have.property('color', 'purple');
+    expect(rootNode.style).to.have.property('border', '1px solid tomato');
   });
 
   describe('rendering children', () => {
     it('renders children', () => {
-      const children = <h1 className="hello-world">Hello World</h1>;
-      const wrapper = shallow(
-        <Step label="Step One" index={1} orientation="horizontal">
-          {children}
+      const { getByTestId } = render(
+        <Step data-testid="root" label="Step One" index={1} orientation="horizontal">
+          <StepChildDiv data-testid="child">Hello World</StepChildDiv>
         </Step>,
       );
-      assert.strictEqual(wrapper.find('.hello-world').length, 1);
+
+      expect(within(getByTestId('root')).getByTestId('child')).to.be.ok;
     });
 
     it('renders children with all props passed through', () => {
-      const children = [
-        <h1 key={1} className="hello-world">
-          Hello World
-        </h1>,
-        <p key={2} className="hay">
-          How are you?
-        </p>,
-      ];
-      const wrapper = shallow(
+      const { getAllByTestId } = render(
         <Step active={false} completed disabled index={0} orientation="horizontal">
-          {children}
+          <PropsAsDataset />
+          <PropsAsDataset />
         </Step>,
       );
-      const child1 = wrapper.find('.hello-world');
-      const child2 = wrapper.find('.hay');
-      [child1, child2].forEach(child => {
-        assert.strictEqual(child.length, 1);
-        assert.strictEqual(child.props().active, false);
-        assert.strictEqual(child.props().completed, true);
-        assert.strictEqual(child.props().disabled, true);
-        assert.strictEqual(child.props().icon, 1);
+      getAllByTestId('props').forEach(child => {
+        // HTMLElement.dataset is a DOMStringMap which fails deep.equal
+        const datasetAsObject = { ...child.dataset };
+        expect(datasetAsObject).to.deep.equal({
+          // props passed from Step
+          active: 'false',
+          alternativeLabel: 'undefined',
+          completed: 'true',
+          disabled: 'true',
+          expanded: 'false',
+          last: 'undefined',
+          icon: '1',
+          orientation: 'horizontal',
+          // test impl details
+          testid: 'props',
+        });
       });
     });
 
     it('honours children overriding props passed through', () => {
-      const children = (
-        <h1 active={false} className="hello-world">
-          Hello World
-        </h1>
-      );
-      const wrapper = shallow(
+      const { getByTestId } = render(
         <Step active label="Step One" orientation="horizontal" index={0}>
-          {children}
+          <PropsAsDataset active={false} />
         </Step>,
       );
-      const childWrapper = wrapper.find('.hello-world');
-      assert.strictEqual(childWrapper.props().active, false);
+
+      expect(getByTestId('props').dataset).to.have.property('active', 'false');
     });
 
-    it('should handle invalid children', () => {
-      const wrapper = shallow(
+    it('should handle null children', () => {
+      const { getByTestId } = render(
         <Step label="Step One" index={1} orientation="horizontal">
-          <h1 className="hello-world">Hello World</h1>
+          <StepChildDiv data-testid="child">Hello World</StepChildDiv>
           {null}
         </Step>,
       );
-      assert.strictEqual(wrapper.find('.hello-world').length, 1);
+
+      expect(getByTestId('child')).to.be.ok;
     });
   });
 });

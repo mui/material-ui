@@ -1,12 +1,48 @@
-import css from 'dom-helpers/style';
-import getScrollbarSize from 'dom-helpers/util/scrollbarSize';
+import getScrollbarSize from '../utils/getScrollbarSize';
 import ownerDocument from '../utils/ownerDocument';
-import isOverflowing from './isOverflowing';
-import { ariaHidden, ariaHiddenSiblings } from './manageAriaHidden';
+import ownerWindow from '../utils/ownerWindow';
 
-function findIndexOf(data, callback) {
+// Is a vertical scrollbar displayed?
+function isOverflowing(container) {
+  const doc = ownerDocument(container);
+
+  if (doc.body === container) {
+    return ownerWindow(doc).innerWidth > doc.documentElement.clientWidth;
+  }
+
+  return container.scrollHeight > container.clientHeight;
+}
+
+export function ariaHidden(node, show) {
+  if (show) {
+    node.setAttribute('aria-hidden', 'true');
+  } else {
+    node.removeAttribute('aria-hidden');
+  }
+}
+
+function getPaddingRight(node) {
+  return parseInt(window.getComputedStyle(node)['padding-right'], 10) || 0;
+}
+
+function ariaHiddenSiblings(container, mountNode, currentNode, nodesToExclude = [], show) {
+  const blacklist = [mountNode, currentNode, ...nodesToExclude];
+  const blacklistTagNames = ['TEMPLATE', 'SCRIPT', 'STYLE'];
+
+  [].forEach.call(container.children, node => {
+    if (
+      node.nodeType === 1 &&
+      blacklist.indexOf(node) === -1 &&
+      blacklistTagNames.indexOf(node.tagName) === -1
+    ) {
+      ariaHidden(node, show);
+    }
+  });
+}
+
+function findIndexOf(containerInfo, callback) {
   let idx = -1;
-  data.some((item, index) => {
+  containerInfo.some((item, index) => {
     if (callback(item)) {
       idx = index;
       return true;
@@ -16,152 +52,181 @@ function findIndexOf(data, callback) {
   return idx;
 }
 
-function getPaddingRight(node) {
-  return parseInt(css(node, 'paddingRight') || 0, 10);
-}
+function handleContainer(containerInfo, props) {
+  const restoreStyle = [];
+  const restorePaddings = [];
+  const container = containerInfo.container;
+  let fixedNodes;
 
-function setContainerStyle(data) {
-  const style = { overflow: 'hidden' };
+  if (!props.disableScrollLock) {
+    if (isOverflowing(container)) {
+      // Compute the size before applying overflow hidden to avoid any scroll jumps.
+      const scrollbarSize = getScrollbarSize();
 
-  // We are only interested in the actual `style` here because we will override it.
-  data.style = {
-    overflow: data.container.style.overflow,
-    paddingRight: data.container.style.paddingRight,
+      restoreStyle.push({
+        value: container.style.paddingRight,
+        key: 'padding-right',
+        el: container,
+      });
+      // Use computed style, here to get the real padding to add our scrollbar width.
+      container.style['padding-right'] = `${getPaddingRight(container) + scrollbarSize}px`;
+
+      // .mui-fixed is a global helper.
+      fixedNodes = ownerDocument(container).querySelectorAll('.mui-fixed');
+      [].forEach.call(fixedNodes, node => {
+        restorePaddings.push(node.style.paddingRight);
+        node.style.paddingRight = `${getPaddingRight(node) + scrollbarSize}px`;
+      });
+    }
+
+    // Improve Gatsby support
+    // https://css-tricks.com/snippets/css/force-vertical-scrollbar/
+    const parent = container.parentElement;
+    const scrollContainer =
+      parent.nodeName === 'HTML' && window.getComputedStyle(parent)['overflow-y'] === 'scroll'
+        ? parent
+        : container;
+
+    // Block the scroll even if no scrollbar is visible to account for mobile keyboard
+    // screensize shrink.
+    restoreStyle.push({
+      value: scrollContainer.style.overflow,
+      key: 'overflow',
+      el: scrollContainer,
+    });
+    scrollContainer.style.overflow = 'hidden';
+  }
+
+  const restore = () => {
+    if (fixedNodes) {
+      [].forEach.call(fixedNodes, (node, i) => {
+        if (restorePaddings[i]) {
+          node.style.paddingRight = restorePaddings[i];
+        } else {
+          node.style.removeProperty('padding-right');
+        }
+      });
+    }
+
+    restoreStyle.forEach(({ value, el, key }) => {
+      if (value) {
+        el.style.setProperty(key, value);
+      } else {
+        el.style.removeProperty(key);
+      }
+    });
   };
 
-  if (data.overflowing) {
-    const scrollbarSize = getScrollbarSize();
-
-    // Use computed style, here to get the real padding to add our scrollbar width.
-    style.paddingRight = `${getPaddingRight(data.container) + scrollbarSize}px`;
-
-    // .mui-fixed is a global helper.
-    const fixedNodes = ownerDocument(data.container).querySelectorAll('.mui-fixed');
-    for (let i = 0; i < fixedNodes.length; i += 1) {
-      const paddingRight = getPaddingRight(fixedNodes[i]);
-      data.prevPaddings.push(paddingRight);
-      fixedNodes[i].style.paddingRight = `${paddingRight + scrollbarSize}px`;
-    }
-  }
-
-  Object.keys(style).forEach(key => {
-    data.container.style[key] = style[key];
-  });
+  return restore;
 }
 
-function removeContainerStyle(data) {
-  // The modal might be closed before it had the chance to be mounted in the DOM.
-  if (data.style) {
-    Object.keys(data.style).forEach(key => {
-      data.container.style[key] = data.style[key];
-    });
-  }
-
-  const fixedNodes = ownerDocument(data.container).querySelectorAll('.mui-fixed');
-  for (let i = 0; i < fixedNodes.length; i += 1) {
-    fixedNodes[i].style.paddingRight = `${data.prevPaddings[i]}px`;
-  }
+function getHiddenSiblings(container) {
+  const hiddenSiblings = [];
+  [].forEach.call(container.children, node => {
+    if (node.getAttribute && node.getAttribute('aria-hidden') === 'true') {
+      hiddenSiblings.push(node);
+    }
+  });
+  return hiddenSiblings;
 }
 
 /**
  * @ignore - do not document.
  *
- * Proper state managment for containers and the modals in those containers.
+ * Proper state management for containers and the modals in those containers.
  * Simplified, but inspired by react-overlay's ModalManager class.
  * Used by the Modal to ensure proper styling of containers.
  */
-class ModalManager {
-  constructor(options = {}) {
-    const { hideSiblingNodes = true, handleContainerOverflow = true } = options;
-
-    this.hideSiblingNodes = hideSiblingNodes;
-    this.handleContainerOverflow = handleContainerOverflow;
-
-    // this.modals[modalIdx] = modal
+export default class ModalManager {
+  constructor() {
+    // this.modals[modalIndex] = modal
     this.modals = [];
-    // this.data[containerIdx] = {
+    // this.containers[containerIndex] = {
     //   modals: [],
     //   container,
-    //   overflowing,
-    //   prevPaddings,
+    //   restore: null,
     // }
-    this.data = [];
+    this.containers = [];
   }
 
   add(modal, container) {
-    let modalIdx = this.modals.indexOf(modal);
-    if (modalIdx !== -1) {
-      return modalIdx;
+    let modalIndex = this.modals.indexOf(modal);
+    if (modalIndex !== -1) {
+      return modalIndex;
     }
 
-    modalIdx = this.modals.length;
+    modalIndex = this.modals.length;
     this.modals.push(modal);
 
     // If the modal we are adding is already in the DOM.
     if (modal.modalRef) {
       ariaHidden(modal.modalRef, false);
     }
-    if (this.hideSiblingNodes) {
-      ariaHiddenSiblings(container, modal.mountNode, modal.modalRef, true);
+
+    const hiddenSiblingNodes = getHiddenSiblings(container);
+    ariaHiddenSiblings(container, modal.mountNode, modal.modalRef, hiddenSiblingNodes, true);
+
+    const containerIndex = findIndexOf(this.containers, item => item.container === container);
+    if (containerIndex !== -1) {
+      this.containers[containerIndex].modals.push(modal);
+      return modalIndex;
     }
 
-    const containerIdx = findIndexOf(this.data, item => item.container === container);
-    if (containerIdx !== -1) {
-      this.data[containerIdx].modals.push(modal);
-      return modalIdx;
-    }
-
-    const data = {
+    this.containers.push({
       modals: [modal],
       container,
-      overflowing: isOverflowing(container),
-      prevPaddings: [],
-    };
+      restore: null,
+      hiddenSiblingNodes,
+    });
 
-    this.data.push(data);
-
-    return modalIdx;
+    return modalIndex;
   }
 
-  mount(modal) {
-    const containerIdx = findIndexOf(this.data, item => item.modals.indexOf(modal) !== -1);
-    const data = this.data[containerIdx];
+  mount(modal, props) {
+    const containerIndex = findIndexOf(this.containers, item => item.modals.indexOf(modal) !== -1);
+    const containerInfo = this.containers[containerIndex];
 
-    if (!data.style && this.handleContainerOverflow) {
-      setContainerStyle(data);
+    if (!containerInfo.restore) {
+      containerInfo.restore = handleContainer(containerInfo, props);
     }
   }
 
   remove(modal) {
-    const modalIdx = this.modals.indexOf(modal);
+    const modalIndex = this.modals.indexOf(modal);
 
-    if (modalIdx === -1) {
-      return modalIdx;
+    if (modalIndex === -1) {
+      return modalIndex;
     }
 
-    const containerIdx = findIndexOf(this.data, item => item.modals.indexOf(modal) !== -1);
-    const data = this.data[containerIdx];
+    const containerIndex = findIndexOf(this.containers, item => item.modals.indexOf(modal) !== -1);
+    const containerInfo = this.containers[containerIndex];
 
-    data.modals.splice(data.modals.indexOf(modal), 1);
-    this.modals.splice(modalIdx, 1);
+    containerInfo.modals.splice(containerInfo.modals.indexOf(modal), 1);
+    this.modals.splice(modalIndex, 1);
 
     // If that was the last modal in a container, clean up the container.
-    if (data.modals.length === 0) {
-      if (this.handleContainerOverflow) {
-        removeContainerStyle(data);
+    if (containerInfo.modals.length === 0) {
+      // The modal might be closed before it had the chance to be mounted in the DOM.
+      if (containerInfo.restore) {
+        containerInfo.restore();
       }
 
-      // In case the modal wasn't in the DOM yet.
       if (modal.modalRef) {
+        // In case the modal wasn't in the DOM yet.
         ariaHidden(modal.modalRef, true);
       }
-      if (this.hideSiblingNodes) {
-        ariaHiddenSiblings(data.container, modal.mountNode, modal.modalRef, false);
-      }
-      this.data.splice(containerIdx, 1);
-    } else if (this.hideSiblingNodes) {
-      // Otherwise make sure the next top modal is visible to a screan reader.
-      const nextTop = data.modals[data.modals.length - 1];
+
+      ariaHiddenSiblings(
+        containerInfo.container,
+        modal.mountNode,
+        modal.modalRef,
+        containerInfo.hiddenSiblingNodes,
+        false,
+      );
+      this.containers.splice(containerIndex, 1);
+    } else {
+      // Otherwise make sure the next top modal is visible to a screen reader.
+      const nextTop = containerInfo.modals[containerInfo.modals.length - 1];
       // as soon as a modal is adding its modalRef is undefined. it can't set
       // aria-hidden because the dom element doesn't exist either
       // when modal was unmounted before modalRef gets null
@@ -170,12 +235,10 @@ class ModalManager {
       }
     }
 
-    return modalIdx;
+    return modalIndex;
   }
 
   isTopModal(modal) {
-    return !!this.modals.length && this.modals[this.modals.length - 1] === modal;
+    return this.modals.length > 0 && this.modals[this.modals.length - 1] === modal;
   }
 }
-
-export default ModalManager;

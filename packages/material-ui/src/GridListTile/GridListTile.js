@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import EventListener from 'react-event-listener';
-import debounce from 'debounce'; // < 1kb payload overhead when lodash/debounce is > 3kb.
+import clsx from 'clsx';
+import debounce from '../utils/debounce';
 import withStyles from '../styles/withStyles';
+import isMuiElement from '../utils/isMuiElement';
 
 export const styles = {
   /* Styles applied to the root element. */
@@ -34,89 +34,89 @@ export const styles = {
   },
 };
 
-class GridListTile extends React.Component {
-  constructor() {
-    super();
-
-    if (typeof window !== 'undefined') {
-      this.handleResize = debounce(() => {
-        this.fit();
-      }, 166); // Corresponds to 10 frames at 60 Hz.
-    }
+const fit = (imgEl, classes) => {
+  if (!imgEl || !imgEl.complete) {
+    return;
   }
 
-  componentDidMount() {
-    this.ensureImageCover();
+  if (
+    imgEl.width / imgEl.height >
+    imgEl.parentElement.offsetWidth / imgEl.parentElement.offsetHeight
+  ) {
+    imgEl.classList.remove(...classes.imgFullWidth.split(' '));
+    imgEl.classList.add(...classes.imgFullHeight.split(' '));
+  } else {
+    imgEl.classList.remove(...classes.imgFullHeight.split(' '));
+    imgEl.classList.add(...classes.imgFullWidth.split(' '));
+  }
+};
+
+function ensureImageCover(imgEl, classes) {
+  if (!imgEl) {
+    return;
   }
 
-  componentDidUpdate() {
-    this.ensureImageCover();
-  }
-
-  componentWillUnmount() {
-    this.handleResize.clear();
-  }
-
-  fit = () => {
-    const imgElement = this.imgElement;
-
-    if (!imgElement || !imgElement.complete) {
-      return;
-    }
-
-    if (
-      imgElement.width / imgElement.height >
-      imgElement.parentNode.offsetWidth / imgElement.parentNode.offsetHeight
-    ) {
-      imgElement.classList.remove(...this.props.classes.imgFullWidth.split(' '));
-      imgElement.classList.add(...this.props.classes.imgFullHeight.split(' '));
-    } else {
-      imgElement.classList.remove(...this.props.classes.imgFullHeight.split(' '));
-      imgElement.classList.add(...this.props.classes.imgFullWidth.split(' '));
-    }
-
-    imgElement.removeEventListener('load', this.fit);
-  };
-
-  ensureImageCover() {
-    if (!this.imgElement) {
-      return;
-    }
-
-    if (this.imgElement.complete) {
-      this.fit();
-    } else {
-      this.imgElement.addEventListener('load', this.fit);
-    }
-  }
-
-  render() {
-    const { children, classes, className, cols, component: Component, rows, ...other } = this.props;
-
-    return (
-      <Component className={classNames(classes.root, className)} {...other}>
-        <EventListener target="window" onResize={this.handleResize} />
-        <div className={classes.tile}>
-          {React.Children.map(children, child => {
-            if (!React.isValidElement(child)) {
-              return null;
-            }
-
-            if (child.type === 'img') {
-              return React.cloneElement(child, {
-                ref: node => {
-                  this.imgElement = node;
-                },
-              });
-            }
-
-            return child;
-          })}
-        </div>
-      </Component>
-    );
+  if (imgEl.complete) {
+    fit(imgEl, classes);
+  } else {
+    imgEl.addEventListener('load', () => {
+      fit(imgEl, classes);
+    });
   }
 }
+
+const GridListTile = React.forwardRef(function GridListTile(props, ref) {
+  // cols rows default values are for docs only
+  const {
+    children,
+    classes,
+    className,
+    // eslint-disable-next-line no-unused-vars
+    cols = 1,
+    component: Component = 'li',
+    // eslint-disable-next-line no-unused-vars
+    rows = 1,
+    ...other
+  } = props;
+
+  const imgRef = React.useRef(null);
+
+  React.useEffect(() => {
+    ensureImageCover(imgRef.current, classes);
+  });
+
+  React.useEffect(() => {
+    const handleResize = debounce(() => {
+      fit(imgRef.current, classes);
+    });
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      handleResize.clear();
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [classes]);
+
+  return (
+    <Component className={clsx(classes.root, className)} ref={ref} {...other}>
+      <div className={classes.tile}>
+        {React.Children.map(children, child => {
+          if (!React.isValidElement(child)) {
+            return null;
+          }
+
+          if (child.type === 'img' || isMuiElement(child, ['Image'])) {
+            return React.cloneElement(child, {
+              ref: imgRef,
+            });
+          }
+
+          return child;
+        })}
+      </div>
+    </Component>
+  );
+});
 
 GridListTile.propTypes = {
   /**
@@ -127,7 +127,7 @@ GridListTile.propTypes = {
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -142,17 +142,11 @@ GridListTile.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  component: PropTypes.elementType,
   /**
    * Height of the tile in number of grid cells.
    */
   rows: PropTypes.number,
-};
-
-GridListTile.defaultProps = {
-  cols: 1,
-  component: 'li',
-  rows: 1,
 };
 
 export default withStyles(styles, { name: 'MuiGridListTile' })(GridListTile);

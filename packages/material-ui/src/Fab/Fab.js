@@ -1,11 +1,9 @@
-// @inheritedComponent ButtonBase
-
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
-import { capitalize } from '../utils/helpers';
+import capitalize from '../utils/capitalize';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -83,12 +81,27 @@ export const styles = theme => ({
     borderRadius: 48 / 2,
     padding: '0 16px',
     width: 'auto',
+    minHeight: 'auto',
     minWidth: 48,
     height: 48,
+    '&$sizeSmall': {
+      width: 'auto',
+      padding: '0 8px',
+      borderRadius: 34 / 2,
+      minWidth: 34,
+      height: 34,
+    },
+    '&$sizeMedium': {
+      width: 'auto',
+      padding: '0 16px',
+      borderRadius: 40 / 2,
+      minWidth: 40,
+      height: 40,
+    },
   },
-  /* Styles applied to the ButtonBase root element if the button is keyboard focused. */
+  /* Pseudo-class applied to the ButtonBase root element if the button is keyboard focused. */
   focusVisible: {},
-  /* Styles applied to the root element if `disabled={true}`. */
+  /* Pseudo-class applied to the root element if `disabled={true}`. */
   disabled: {},
   /* Styles applied to the root element if `color="inherit"`. */
   colorInherit: {
@@ -106,23 +119,24 @@ export const styles = theme => ({
   },
 });
 
-function Fab(props) {
+const Fab = React.forwardRef(function Fab(props, ref) {
   const {
     children,
     classes,
     className,
-    color,
-    disabled,
-    disableFocusRipple,
+    color = 'default',
+    component = 'button',
+    disabled = false,
+    disableFocusRipple = false,
     focusVisibleClassName,
-    size,
-    variant,
+    size = 'large',
+    variant = 'round',
     ...other
   } = props;
 
   return (
     <ButtonBase
-      className={classNames(
+      className={clsx(
         classes.root,
         {
           [classes.extended]: variant === 'extended',
@@ -134,15 +148,17 @@ function Fab(props) {
         },
         className,
       )}
+      component={component}
       disabled={disabled}
       focusRipple={!disableFocusRipple}
-      focusVisibleClassName={classNames(classes.focusVisible, focusVisibleClassName)}
+      focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
+      ref={ref}
       {...other}
     >
       <span className={classes.label}>{children}</span>
     </ButtonBase>
   );
-}
+});
 
 Fab.propTypes = {
   /**
@@ -151,7 +167,7 @@ Fab.propTypes = {
   children: PropTypes.node.isRequired,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -166,7 +182,7 @@ Fab.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  component: PropTypes.elementType,
   /**
    * If `true`, the button will be disabled.
    */
@@ -202,16 +218,6 @@ Fab.propTypes = {
    * The variant to use.
    */
   variant: PropTypes.oneOf(['round', 'extended']),
-};
-
-Fab.defaultProps = {
-  color: 'default',
-  component: 'button',
-  disabled: false,
-  disableFocusRipple: false,
-  size: 'large',
-  type: 'button',
-  variant: 'round',
 };
 
 export default withStyles(styles, { name: 'MuiFab' })(Fab);

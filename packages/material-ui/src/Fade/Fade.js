@@ -1,11 +1,10 @@
-// @inheritedComponent Transition
-
 import React from 'react';
 import PropTypes from 'prop-types';
-import Transition from 'react-transition-group/Transition';
+import { Transition } from 'react-transition-group';
 import { duration } from '../styles/transitions';
-import withTheme from '../styles/withTheme';
+import useTheme from '../styles/useTheme';
 import { reflow, getTransitionProps } from '../transitions/utils';
+import useForkRef from '../utils/useForkRef';
 
 const styles = {
   entering: {
@@ -16,70 +15,91 @@ const styles = {
   },
 };
 
+const defaultTimeout = {
+  enter: duration.enteringScreen,
+  exit: duration.leavingScreen,
+};
+
 /**
- * The Fade transition is used by the [Modal](/utils/modal/) component.
+ * The Fade transition is used by the [Modal](/components/modal/) component.
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
-class Fade extends React.Component {
-  handleEnter = node => {
-    const { theme } = this.props;
+const Fade = React.forwardRef(function Fade(props, ref) {
+  const {
+    children,
+    in: inProp,
+    onEnter,
+    onExit,
+    style,
+    timeout = defaultTimeout,
+    ...other
+  } = props;
+  const theme = useTheme();
+  const handleRef = useForkRef(children.ref, ref);
+
+  const handleEnter = (node, isAppearing) => {
     reflow(node); // So the animation always start from the start.
 
-    const transitionProps = getTransitionProps(this.props, {
-      mode: 'enter',
-    });
-    node.style.webkitTransition = theme.transitions.create('opacity', transitionProps);
-    node.style.transition = theme.transitions.create('opacity', transitionProps);
-
-    if (this.props.onEnter) {
-      this.props.onEnter(node);
-    }
-  };
-
-  handleExit = node => {
-    const { theme } = this.props;
-    const transitionProps = getTransitionProps(this.props, {
-      mode: 'exit',
-    });
-    node.style.webkitTransition = theme.transitions.create('opacity', transitionProps);
-    node.style.transition = theme.transitions.create('opacity', transitionProps);
-
-    if (this.props.onExit) {
-      this.props.onExit(node);
-    }
-  };
-
-  render() {
-    const { children, onEnter, onExit, style: styleProp, theme, ...other } = this.props;
-
-    const style = {
-      ...styleProp,
-      ...(React.isValidElement(children) ? children.props.style : {}),
-    };
-
-    return (
-      <Transition appear onEnter={this.handleEnter} onExit={this.handleExit} {...other}>
-        {(state, childProps) => {
-          return React.cloneElement(children, {
-            style: {
-              opacity: 0,
-              willChange: 'opacity',
-              ...styles[state],
-              ...style,
-            },
-            ...childProps,
-          });
-        }}
-      </Transition>
+    const transitionProps = getTransitionProps(
+      { style, timeout },
+      {
+        mode: 'enter',
+      },
     );
-  }
-}
+    node.style.webkitTransition = theme.transitions.create('opacity', transitionProps);
+    node.style.transition = theme.transitions.create('opacity', transitionProps);
+
+    if (onEnter) {
+      onEnter(node, isAppearing);
+    }
+  };
+
+  const handleExit = node => {
+    const transitionProps = getTransitionProps(
+      { style, timeout },
+      {
+        mode: 'exit',
+      },
+    );
+    node.style.webkitTransition = theme.transitions.create('opacity', transitionProps);
+    node.style.transition = theme.transitions.create('opacity', transitionProps);
+
+    if (onExit) {
+      onExit(node);
+    }
+  };
+
+  return (
+    <Transition
+      appear
+      in={inProp}
+      onEnter={handleEnter}
+      onExit={handleExit}
+      timeout={timeout}
+      {...other}
+    >
+      {(state, childProps) => {
+        return React.cloneElement(children, {
+          style: {
+            opacity: 0,
+            visibility: state === 'exited' && !inProp ? 'hidden' : undefined,
+            ...styles[state],
+            ...style,
+            ...children.props.style,
+          },
+          ref: handleRef,
+          ...childProps,
+        });
+      }}
+    </Transition>
+  );
+});
 
 Fade.propTypes = {
   /**
    * A single child content element.
    */
-  children: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
+  children: PropTypes.element,
   /**
    * If `true`, the component will transition in.
    */
@@ -97,10 +117,6 @@ Fade.propTypes = {
    */
   style: PropTypes.object,
   /**
-   * @ignore
-   */
-  theme: PropTypes.object.isRequired,
-  /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
    */
@@ -110,11 +126,4 @@ Fade.propTypes = {
   ]),
 };
 
-Fade.defaultProps = {
-  timeout: {
-    enter: duration.enteringScreen,
-    exit: duration.leavingScreen,
-  },
-};
-
-export default withTheme()(Fade);
+export default Fade;

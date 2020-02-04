@@ -1,93 +1,117 @@
 import React from 'react';
-import { assert } from 'chai';
-import { createMount, findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
-import FormControlContext from '../FormControl/FormControlContext';
+import PropTypes from 'prop-types';
+import { expect } from 'chai';
+import { createMount, getClasses } from '@material-ui/core/test-utils';
+import describeConformance from '../test-utils/describeConformance';
+import { createClientRender } from 'test/utils/createClientRender';
+import FormControl from '../FormControl';
+import Input from '../Input';
 import InputLabel from './InputLabel';
+import FormLabel from '../FormLabel';
 
 describe('<InputLabel />', () => {
   let mount;
+  const render = createClientRender();
   let classes;
 
   before(() => {
-    mount = createMount();
+    mount = createMount({ strict: true });
     classes = getClasses(<InputLabel />);
   });
 
-  after(() => {
-    mount.cleanUp();
+  describeConformance(<InputLabel>Foo</InputLabel>, () => ({
+    classes,
+    inheritComponent: FormLabel,
+    mount,
+    refInstanceof: window.HTMLLabelElement,
+    skip: ['componentProp'],
+    after: () => mount.cleanUp(),
+  }));
+
+  it('should render a label with text', () => {
+    const { container } = render(<InputLabel>Foo</InputLabel>);
+    expect(container.querySelector('label')).to.have.text('Foo');
   });
 
-  it('should render a FormLabel', () => {
-    const wrapper = mount(<InputLabel>Foo</InputLabel>);
-    assert.strictEqual(findOutermostIntrinsic(wrapper).type(), 'label');
-    assert.strictEqual(wrapper.text(), 'Foo');
-  });
-
-  it('should have the root and animated classes by default', () => {
-    const wrapper = mount(<InputLabel>Foo</InputLabel>);
-    assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.root), true);
-    assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.animated), true);
+  it('should have the animated class by default', () => {
+    const { container } = render(<InputLabel>Foo</InputLabel>);
+    expect(container.firstChild).to.have.class(classes.animated);
   });
 
   it('should not have the animated class when disabled', () => {
-    const wrapper = mount(<InputLabel disableAnimation>Foo</InputLabel>);
-    assert.strictEqual(wrapper.hasClass(classes.animated), false);
+    const { container } = render(<InputLabel disableAnimation>Foo</InputLabel>);
+    expect(container.firstChild).not.to.have.class(classes.animated);
   });
 
-  describe('prop: FormLabelClasses', () => {
-    it('should be able to change the FormLabel style', () => {
-      const wrapper = mount(<InputLabel FormLabelClasses={{ root: 'bar' }}>Foo</InputLabel>);
-      assert.include(wrapper.find('FormLabel').props().classes.root, 'bar');
-    });
-  });
-
-  describe('with muiFormControl context', () => {
-    let wrapper;
-
-    function setFormControlContext(muiFormControlContext) {
-      wrapper.setProps({ context: muiFormControlContext });
-    }
-
-    beforeEach(() => {
-      function Provider(props) {
-        const { context, ...other } = props;
-        return (
-          <FormControlContext.Provider value={context}>
-            <InputLabel {...other} />
-          </FormControlContext.Provider>
-        );
-      }
-
-      wrapper = mount(<Provider />);
-    });
-
+  describe('with FormControl', () => {
     it('should have the formControl class', () => {
-      setFormControlContext({});
-      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.formControl), true);
+      const { getByTestId } = render(
+        <FormControl>
+          <InputLabel data-testid="root" />
+        </FormControl>,
+      );
+      expect(getByTestId('root')).to.have.class(classes.formControl);
     });
 
     it('should have the labelDense class when margin is dense', () => {
-      setFormControlContext({ margin: 'dense' });
-      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.marginDense), true);
+      const { getByTestId } = render(
+        <FormControl margin="dense">
+          <InputLabel data-testid="root" />
+        </FormControl>,
+      );
+
+      expect(getByTestId('root')).to.have.class(classes.marginDense);
     });
 
-    ['filled', 'focused'].forEach(state => {
-      describe(state, () => {
-        beforeEach(() => {
-          setFormControlContext({ [state]: true });
+    describe('filled', () => {
+      it('applies a shrink class that can be controlled by props', () => {
+        function Wrapper({ children }) {
+          return (
+            <FormControl>
+              <Input defaultValue="Dave" />
+              {children}
+            </FormControl>
+          );
+        }
+        Wrapper.propTypes = { children: PropTypes.node };
+        const { getByTestId, setProps } = render(<InputLabel data-testid="root">name</InputLabel>, {
+          wrapper: Wrapper,
         });
 
-        it('should have the shrink class', () => {
-          assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.shrink), true);
-        });
+        expect(getByTestId('root')).to.have.class(classes.shrink);
 
-        it('should be overridden by the shrink prop', () => {
-          assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.shrink), true);
-          wrapper.setProps({ shrink: false });
-          assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.shrink), false);
-          wrapper.setProps({ shrink: true });
-          assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.shrink), true);
+        setProps({ shrink: false });
+        expect(getByTestId('root')).not.to.have.class(classes.shrink);
+
+        setProps({ shrink: true });
+        expect(getByTestId('root')).to.have.class(classes.shrink);
+      });
+    });
+
+    describe('focused', () => {
+      it('applies a shrink class that can be controlled by props', () => {
+        function Wrapper({ children }) {
+          return (
+            <FormControl>
+              <Input />
+              {children}
+            </FormControl>
+          );
+        }
+        Wrapper.propTypes = { children: PropTypes.node };
+
+        const { container, getByTestId, setProps } = render(<InputLabel data-testid="root" />, {
+          wrapper: Wrapper,
         });
+        container.querySelector('input').focus();
+
+        expect(getByTestId('root')).to.have.class(classes.shrink);
+
+        setProps({ shrink: false });
+        expect(getByTestId('root')).not.to.have.class(classes.shrink);
+
+        setProps({ shrink: true });
+        expect(getByTestId('root')).to.have.class(classes.shrink);
       });
     });
   });

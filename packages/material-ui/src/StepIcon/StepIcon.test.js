@@ -1,8 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
-import CheckCircle from '../internal/svg-icons/CheckCircle';
-import Warning from '../internal/svg-icons/Warning';
 import { createShallow, createMount } from '@material-ui/core/test-utils';
+import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import StepIcon from './StepIcon';
 import SvgIcon from '../SvgIcon';
 
@@ -12,22 +11,28 @@ describe('<StepIcon />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    mount = createMount();
+    mount = createMount({ strict: true });
   });
 
   after(() => {
     mount.cleanUp();
   });
 
+  describeConformance(<StepIcon icon={1} />, () => ({
+    mount,
+    only: ['refForwarding'],
+    refInstanceof: window.SVGSVGElement,
+  }));
+
   it('renders <CheckCircle> when completed', () => {
     const wrapper = mount(<StepIcon icon={1} completed />);
-    const checkCircle = wrapper.find(CheckCircle);
+    const checkCircle = wrapper.find('svg[data-mui-test="CheckCircleIcon"]');
     assert.strictEqual(checkCircle.length, 1, 'should have an <CheckCircle />');
   });
 
-  it('renders <Warning> when error occured', () => {
+  it('renders <Warning> when error occurred', () => {
     const wrapper = mount(<StepIcon icon={1} error />);
-    const warning = wrapper.find(Warning);
+    const warning = wrapper.find('svg[data-mui-test="WarningIcon"]');
     assert.strictEqual(warning.length, 1, 'should have an <Warning />');
   });
 
