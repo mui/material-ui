@@ -71,6 +71,10 @@ Head to the [Customized Autocomplete](#customized-autocomplete) section for a cu
 
 {{"demo": "pages/components/autocomplete/Asynchronous.js"}}
 
+## Asynchronous requests with default value
+
+{{"demo": "pages/components/autocomplete/AsynchronousDefaultValue.js"}}
+
 ### Google Maps place
 
 A customized UI for Google Maps Places Autocomplete.

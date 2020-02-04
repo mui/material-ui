@@ -204,14 +204,17 @@ export default function useAutocomplete(props) {
 
   const [focused, setFocused] = React.useState(false);
 
-  const resetInputValue = useEventCallback((event, newValue) => {
+  const resetInputValue = useEventCallback((event, newValue, firstRender = false) => {
     let newInputValue;
     if (multiple) {
       newInputValue = '';
     } else if (newValue == null) {
       newInputValue = '';
     } else {
-      const optionLabel = getOptionLabel(newValue);
+      let selectedOption;
+      if (firstRender) selectedOption = options.find(option => getOptionSelected(option, newValue));
+      const searchValue = selectedOption || newValue;
+      const optionLabel = getOptionLabel(searchValue);
 
       if (process.env.NODE_ENV !== 'production') {
         if (typeof optionLabel !== 'string') {
@@ -242,8 +245,9 @@ export default function useAutocomplete(props) {
   });
 
   React.useEffect(() => {
-    resetInputValue(null, value);
-  }, [value, resetInputValue]);
+    const firstRender = typeof value === 'string';
+    resetInputValue(null, value, firstRender);
+  }, [options, value, resetInputValue]);
 
   const { current: isOpenControlled } = React.useRef(openProp != null);
   const [openState, setOpenState] = React.useState(false);
