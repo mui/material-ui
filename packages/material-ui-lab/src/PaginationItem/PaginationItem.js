@@ -31,7 +31,7 @@ export const styles = theme => ({
     '&$selected': {
       backgroundColor: theme.palette.action.selected,
       '&:hover, &:focus': {
-        backgroundColor: theme.palette.action.disabledBackground,
+        backgroundColor: 'rgba(0, 0, 0, 0.12)',
       },
       '&$disabled': {
         backgroundColor: theme.palette.action.disabledBackground,
@@ -61,11 +61,11 @@ export const styles = theme => ({
       theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
     }`,
     '&:hover, &:focus': {
-      backgroundColor: fade(theme.palette.action.active, 0.05),
+      backgroundColor: theme.palette.action.hover,
     },
     '&$disabled': {
-      color: fade(theme.palette.action.disabled, 0.2),
-      backgroundColor: fade(theme.palette.action.disabled, 0.03),
+      color: theme.palette.action.disabled,
+      backgroundColor: 'rgba(0, 0, 0, 0.03)',
       border: `1px solid ${
         theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.13)' : 'rgba(255, 255, 255, 0.13)'
       }`,
@@ -73,13 +73,13 @@ export const styles = theme => ({
     },
     '&$selected': {
       color: theme.palette.action.active,
-      backgroundColor: fade(theme.palette.action.active, 0.12),
+      backgroundColor: 'rgba(0, 0, 0, 0.12)',
       '&:hover, &:focus': {
-        backgroundColor: fade(theme.palette.action.active, 0.15),
+        backgroundColor: 'rgba(0, 0, 0, 0.15)',
       },
       '&$disabled': {
-        color: fade(theme.palette.action.disabled, 0.3),
-        backgroundColor: fade(theme.palette.action.disabled, 0.06),
+        color: theme.palette.action.disabled,
+        backgroundColor: 'rgba(0, 0, 0, 0.06)',
       },
     },
   },
@@ -87,7 +87,7 @@ export const styles = theme => ({
   textPrimary: {
     '&:hover, &:focus': {
       color: theme.palette.primary.main,
-      backgroundColor: fade(theme.palette.primary.main, 0.2),
+      backgroundColor: 'rgba(0, 0, 0, 0.2)',
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         backgroundColor: 'transparent',
@@ -105,7 +105,7 @@ export const styles = theme => ({
       },
       '&$disabled': {
         color: theme.palette.text.primary,
-        backgroundColor: fade(theme.palette.action.disabled, 0.07),
+        backgroundColor: 'rgba(0, 0, 0, 0.07)',
       },
     },
   },
@@ -113,7 +113,7 @@ export const styles = theme => ({
   textSecondary: {
     '&:hover, &:focus': {
       color: theme.palette.secondary.main,
-      backgroundColor: fade(theme.palette.secondary.main, 0.2),
+      backgroundColor: 'rgba(0, 0, 0, 0.2)',
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         backgroundColor: 'transparent',
@@ -131,7 +131,7 @@ export const styles = theme => ({
       },
       '&$disabled': {
         color: theme.palette.text.secondary,
-        backgroundColor: fade(theme.palette.action.disabled, 0.07),
+        backgroundColor: 'rgba(0, 0, 0, 0.13)',
       },
     },
   },
