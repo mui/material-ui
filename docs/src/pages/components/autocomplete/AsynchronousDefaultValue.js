@@ -16,7 +16,7 @@ export default function Asynchronous() {
   const [options, setOptions] = React.useState([]);
   const loading = open && options.length === 0;
 
-  const defaultValue = "PT";
+  const defaultValue = 'PT';
 
   React.useEffect(() => {
     let active = true;
@@ -58,8 +58,10 @@ export default function Asynchronous() {
       onClose={() => {
         setOpen(false);
       }}
-      getOptionSelected={(option, value) => option.country === (typeof value === 'string' ? value : value.country)}
-      getOptionLabel={option => typeof option === 'string' ? option : option.name}
+      getOptionSelected={(option, value) =>
+        option.country === (typeof value === 'string' ? value : value.country)
+      }
+      getOptionLabel={option => (typeof option === 'string' ? option : option.name)}
       options={options}
       loading={loading}
       renderInput={params => (
