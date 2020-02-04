@@ -267,7 +267,7 @@ const PaginationItem = React.forwardRef(function PaginationItem(props, ref) {
       component={component}
       disabled={disabled}
       aria-label={getAriaLabel(type, page, selected)}
-      aria-current={selected ? 'page' : undefined}
+      aria-current={selected ? 'true' : undefined}
       onClick={event => handleClick(event, page)}
       className={clsx(
         classes.root,
