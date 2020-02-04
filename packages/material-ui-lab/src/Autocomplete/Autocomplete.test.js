@@ -49,7 +49,51 @@ describe('<Autocomplete />', () => {
     });
   });
 
+  describe('prop: autoHighlight', () => {
+    it('should set the focus on the first item', () => {
+      const options = ['one', 'two'];
+      const { getByRole } = render(
+        <Autocomplete
+          freeSolo
+          autoHighlight
+          options={options}
+          renderInput={params => <TextField autoFocus {...params} />}
+        />,
+      );
+
+      function checkHighlightIs(expected) {
+        expect(getByRole('listbox').querySelector('li[data-focus]')).to.have.text(expected);
+      }
+
+      checkHighlightIs('one');
+      fireEvent.change(document.activeElement, { target: { value: 'oo' } });
+      fireEvent.change(document.activeElement, { target: { value: 'o' } });
+      checkHighlightIs('one');
+    });
+  });
+
   describe('prop: autoSelect', () => {
+    it('should not clear on blur when value does not match any option', () => {
+      const handleChange = spy();
+      const options = ['one', 'two'];
+
+      render(
+        <Autocomplete
+          freeSolo
+          autoSelect
+          options={options}
+          onChange={handleChange}
+          renderInput={params => <TextField autoFocus {...params} />}
+        />,
+      );
+      fireEvent.change(document.activeElement, { target: { value: 'o' } });
+      fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+      fireEvent.change(document.activeElement, { target: { value: 'oo' } });
+      document.activeElement.blur();
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.deep.equal('oo');
+    });
+
     it('should add new value when autoSelect & multiple on blur', () => {
       const handleChange = spy();
       const options = ['one', 'two'];
