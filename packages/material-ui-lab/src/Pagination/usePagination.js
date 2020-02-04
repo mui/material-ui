@@ -37,7 +37,7 @@ export default function usePagination(props = {}) {
     }, 240);
   };
 
-  https://dev.to/namirsab/comment/2050
+  // https://dev.to/namirsab/comment/2050
   const range = (start, end) => {
     const length = end - start + 1;
     return Array.from({ length }, (_, i) => start + i);

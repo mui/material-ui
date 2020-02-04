@@ -59,7 +59,7 @@ export const styles = theme => ({
   outlined: {
     border: `1px solid ${
       theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
-    }`,
+      }`,
     '&:hover, &:focus': {
       backgroundColor: theme.palette.action.hover,
     },
@@ -68,7 +68,7 @@ export const styles = theme => ({
       backgroundColor: 'rgba(0, 0, 0, 0.03)',
       border: `1px solid ${
         theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.13)' : 'rgba(255, 255, 255, 0.13)'
-      }`,
+        }`,
       pointerEvents: 'none',
     },
     '&$selected': {
@@ -226,7 +226,7 @@ export const styles = theme => ({
   selected: {},
 });
 
-function ariaLabel(type, page, selected) {
+function defaultGetAriaLabel(type, page, selected) {
   if (type === 'page') {
     return `${selected ? '' : 'go to '}page ${page}`;
   }
@@ -240,7 +240,7 @@ const PaginationItem = React.forwardRef(function PaginationItem(props, ref) {
     color = 'standard',
     component,
     disabled = false,
-    getAriaLabel,
+    getAriaLabel = defaultGetAriaLabel,
     page,
     onClick: handleClick,
     selected,
@@ -262,60 +262,58 @@ const PaginationItem = React.forwardRef(function PaginationItem(props, ref) {
       …
     </div>
   ) : (
-    <ButtonBase
-      ref={ref}
-      component={component}
-      disabled={disabled}
-      aria-label={
-        getAriaLabel ? getAriaLabel(type, page, selected) : ariaLabel(type, page, selected)
-      }
-      aria-current={selected ? 'page' : undefined}
-      onClick={event => handleClick(event, page)}
-      className={clsx(
-        classes.root,
-        classes[variant],
-        classes[shape],
-        {
-          [classes[`${variant}${capitalize(color)}`]]: color !== 'standard',
-          [classes.disabled]: disabled,
-          [classes.selected]: selected,
-          [classes[`size${capitalize(size)}`]]: size !== 'medium',
-        },
-        className,
-      )}
-      {...other}
-    >
-      {type === 'page' && page}
-      {type === 'previous' && (
-        <NavigateBeforeIcon
-          className={clsx(classes.icon, {
+      <ButtonBase
+        ref={ref}
+        component={component}
+        disabled={disabled}
+        aria-label={getAriaLabel(type, page, selected)}
+        aria-current={selected ? 'page' : undefined}
+        onClick={event => handleClick(event, page)}
+        className={clsx(
+          classes.root,
+          classes[variant],
+          classes[shape],
+          {
+            [classes[`${variant}${capitalize(color)}`]]: color !== 'standard',
+            [classes.disabled]: disabled,
+            [classes.selected]: selected,
             [classes[`size${capitalize(size)}`]]: size !== 'medium',
-          })}
-        />
-      )}
-      {type === 'next' && (
-        <NavigateNextIcon
-          className={clsx(classes.icon, {
-            [classes[`size${capitalize(size)}`]]: size !== 'medium',
-          })}
-        />
-      )}
-      {type === 'first' && (
-        <FirstPageIcon
-          className={clsx(classes.icon, {
-            [classes[`size${capitalize(size)}`]]: size !== 'medium',
-          })}
-        />
-      )}
-      {type === 'last' && (
-        <LastPageIcon
-          className={clsx(classes.icon, {
-            [classes[`size${capitalize(size)}`]]: size !== 'medium',
-          })}
-        />
-      )}
-    </ButtonBase>
-  );
+          },
+          className,
+        )}
+        {...other}
+      >
+        {type === 'page' && page}
+        {type === 'previous' && (
+          <NavigateBeforeIcon
+            className={clsx(classes.icon, {
+              [classes[`size${capitalize(size)}`]]: size !== 'medium',
+            })}
+          />
+        )}
+        {type === 'next' && (
+          <NavigateNextIcon
+            className={clsx(classes.icon, {
+              [classes[`size${capitalize(size)}`]]: size !== 'medium',
+            })}
+          />
+        )}
+        {type === 'first' && (
+          <FirstPageIcon
+            className={clsx(classes.icon, {
+              [classes[`size${capitalize(size)}`]]: size !== 'medium',
+            })}
+          />
+        )}
+        {type === 'last' && (
+          <LastPageIcon
+            className={clsx(classes.icon, {
+              [classes[`size${capitalize(size)}`]]: size !== 'medium',
+            })}
+          />
+        )}
+      </ButtonBase>
+    );
 });
 
 PaginationItem.propTypes = {
