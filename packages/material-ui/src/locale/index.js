@@ -268,6 +268,31 @@ export const frFR = {
   },
 };
 
+export const huHU = {
+  props: {
+    MuiTablePagination: {
+      backIconButtonText: 'Előző oldal',
+      labelRowsPerPage: 'Sorok száma:',
+      labelDisplayedRows: ({ from, to, count }) => `${from}-${to === -1 ? count : to} / ${count}`,
+      nextIconButtonText: 'Következő oldal',
+    },
+    MuiRating: {
+      getLabelText: value => `${value} Csillag`,
+      emptyLabelText: 'Üres',
+    },
+    MuiAutocomplete: {
+      clearText: 'Törlés',
+      closeText: 'Bezárás',
+      loadingText: 'Töltés…',
+      noOptionsText: 'Nincs találat',
+      openText: 'Megnyitás',
+    },
+    MuiAlert: {
+      closeText: 'Bezárás',
+    },
+  },
+};
+
 export const isIS = {
   props: {
     MuiTablePagination: {
