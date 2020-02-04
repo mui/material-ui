@@ -5,6 +5,7 @@ import describeConformance from '@material-ui/core/test-utils/describeConformanc
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import { spy } from 'sinon';
 import { createClientRender, fireEvent } from 'test/utils/createClientRender';
+import { createFilterOptions } from '../useAutocomplete/useAutocomplete';
 import Autocomplete from './Autocomplete';
 import TextField from '@material-ui/core/TextField';
 
@@ -910,6 +911,30 @@ describe('<Autocomplete />', () => {
       fireEvent.change(document.activeElement, { target: { value: 'one' } });
       options = queryAllByRole('option');
       expect(options.length).to.equal(1);
+    });
+
+    it('limits the amount of rendered options when `limit` is set in `createFilterOptions`', () => {
+      const filterOptions = createFilterOptions({ limit: 2 });
+      const { queryAllByRole } = render(
+        <Autocomplete
+          options={['one', 'two', 'three']}
+          renderInput={params => <TextField {...params} autoFocus />}
+          filterOptions={filterOptions}
+        />,
+      );
+      expect(queryAllByRole('option').length).to.equal(2);
+    });
+
+    it('does not limit the amount of rendered options when `limit` is not set in `createFilterOptions`', () => {
+      const filterOptions = createFilterOptions({});
+      const { queryAllByRole } = render(
+        <Autocomplete
+          options={['one', 'two', 'three']}
+          renderInput={params => <TextField {...params} autoFocus />}
+          filterOptions={filterOptions}
+        />,
+      );
+      expect(queryAllByRole('option').length).to.equal(3);
     });
   });
 

@@ -6,6 +6,7 @@ export interface CreateFilterOptionsConfig<T> {
   matchFrom?: 'any' | 'start';
   stringify?: (option: T) => string;
   trim?: boolean;
+  limit?: number;
 }
 
 export interface FilterOptionsState {
