@@ -1,7 +1,8 @@
 /* eslint-disable no-constant-condition */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { setRef, useEventCallback, useControlled } from '@material-ui/core/utils';
+import difference from 'lodash/difference';
+import { setRef, useEventCallback, useControlled, usePrevious } from '@material-ui/core/utils';
 
 // https://stackoverflow.com/questions/990904/remove-accents-diacritics-in-a-string-in-javascript
 // Give up on IE 11 support for this feature
@@ -113,6 +114,8 @@ export default function useAutocomplete(props) {
     value: valueProp,
     componentName = 'useAutocomplete',
   } = props;
+
+  const previousOptions = usePrevious(options);
 
   const [defaultId, setDefaultId] = React.useState();
   const id = idProp || defaultId;
@@ -246,8 +249,12 @@ export default function useAutocomplete(props) {
 
   React.useEffect(() => {
     const firstRender = typeof value === 'string';
+    const optionDifference = difference(options, previousOptions);
+    if (!(firstRender && optionDifference.length)) return undefined;
     resetInputValue(null, value, firstRender);
-  }, [options, value, resetInputValue]);
+    return undefined;
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [value, resetInputValue, options]);
 
   const { current: isOpenControlled } = React.useRef(openProp != null);
   const [openState, setOpenState] = React.useState(false);
