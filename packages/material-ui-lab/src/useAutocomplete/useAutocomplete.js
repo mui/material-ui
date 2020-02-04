@@ -253,7 +253,7 @@ export default function useAutocomplete(props) {
     if (!(firstRender && optionDifference.length)) return undefined;
     resetInputValue(null, value, firstRender);
     return undefined;
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value, resetInputValue, options]);
 
   const { current: isOpenControlled } = React.useRef(openProp != null);

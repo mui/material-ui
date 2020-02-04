@@ -5,7 +5,7 @@ import React from 'react';
  * @param {function} fn
  */
 
- export default function usePrevious(value) {
+export default function usePrevious(value) {
   const ref = React.useRef();
   React.useEffect(() => {
     ref.current = value;
