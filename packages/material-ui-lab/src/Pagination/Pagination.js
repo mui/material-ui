@@ -44,7 +44,9 @@ const Pagination = React.forwardRef(function Pagination(props, ref) {
     >
       {children ||
         items.map(item => (
-          <li key={item.type !== undefined ? item.type : item.page.toString()}>{renderItem({ ...item, ...itemProps })}</li>
+          <li key={item.type !== undefined ? item.type : item.page.toString()}>
+            {renderItem({ ...item, ...itemProps })}
+          </li>
         ))}
     </ul>
   );
