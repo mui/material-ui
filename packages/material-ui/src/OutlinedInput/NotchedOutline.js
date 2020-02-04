@@ -39,7 +39,7 @@ export const styles = theme => {
       textAlign: 'left',
       padding: 0,
       height: 11, // sync with `lineHeight` in `legend` styles
-      fontSize: '1.05rem',
+      fontSize: '0.75em',
       visibility: 'hidden',
       maxWidth: 0.01,
       transition: theme.transitions.create('max-width', {
