@@ -37,6 +37,7 @@ export type TabsClassKey =
 
 export interface TabsActions {
   updateIndicator(): void;
+  updateScrollButtons(): void;
 }
 
 export type TabsProps<
