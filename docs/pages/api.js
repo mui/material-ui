@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import fetch from 'isomorphic-fetch';
 import AppFrame from 'docs/src/modules/components/AppFrame';
-import AppContent from 'docs/src/modules/components/AppContent';
+import AppContainer from 'docs/src/modules/components/AppContainer';
 import Head from 'docs/src/modules/components/Head';
 import MarkdownElement, {
   styles as markdownStyles,
@@ -598,7 +598,7 @@ function ComponentApi(props) {
   return (
     <React.Fragment>
       <ScrollableTableOfContents items={toCItems} />
-      <AppContent disableAd={false} disableToc={false}>
+      <AppContainer>
         <EditPage
           className={classes.editButton}
           markdownLocation={api.filename}
@@ -647,7 +647,7 @@ function ComponentApi(props) {
             </React.Fragment>
           )}
         </div>
-      </AppContent>
+      </AppContainer>
     </React.Fragment>
   );
 }
@@ -658,13 +658,13 @@ ComponentApi.propTypes = {
 
 function Index() {
   return (
-    <AppContent>
+    <AppContainer>
       <Typography variant="h1">Component-API</Typography>
       <Typography variant="body1">
         We couldn&apos;t find the API for the requested component. Try one from the navigation under
         the item <em>Component API</em>.
       </Typography>
-    </AppContent>
+    </AppContainer>
   );
 }
 
@@ -686,7 +686,7 @@ function uppercaseFirst(string) {
   return string[0].toUpperCase() + string.slice(1);
 }
 
-ApiPage.getInitialProps = async ({ ctx }) => {
+ApiPage.getInitialProps = async ctx => {
   const { query, req } = ctx;
   if (query.component === undefined) {
     return {};
