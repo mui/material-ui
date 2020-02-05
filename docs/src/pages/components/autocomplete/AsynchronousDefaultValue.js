@@ -11,7 +11,7 @@ function sleep(delay = 0) {
   });
 }
 
-export default function Asynchronous() {
+export default function AsynchronousDefaultValue() {
   const [open, setOpen] = React.useState(false);
   const [options, setOptions] = React.useState([]);
   const loading = open && options.length === 0;

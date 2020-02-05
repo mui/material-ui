@@ -215,7 +215,10 @@ export default function useAutocomplete(props) {
       newInputValue = '';
     } else {
       let selectedOption;
-      if (firstRender) selectedOption = options.find(option => getOptionSelected(option, newValue));
+      if (firstRender) {
+        selectedOption = options.find(option => getOptionSelected(option, newValue));
+        setValue(selectedOption);
+      }
       const searchValue = selectedOption || newValue;
       const optionLabel = getOptionLabel(searchValue);
 
