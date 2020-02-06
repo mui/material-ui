@@ -86,7 +86,7 @@ The work you would be doing is somewhat unique and idiosyncratic. You probably h
 
 ## Benefits for you
 
-- Competitive compensation, depending on the profile, of up to $120k/year. Could go higher in case of an extraordinary match.
+- Competitive compensation of up to $120k/year, depending on the profile. Could go higher in the case of an extraordinary match.
 - Flexible workplace & hours.
 
 ## Apply
