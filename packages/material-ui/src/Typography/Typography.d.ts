@@ -1,13 +1,15 @@
 import * as React from 'react';
-import { StandardProps, PropTypes } from '..';
-import { OverrideProps, OverridableTypeMap, OverridableComponent } from '../OverridableComponent';
+import { PropTypes } from '..';
+import { OverrideProps, OverridableComponent } from '../OverridableComponent';
 import { Variant as ThemeVariant } from '../styles/createTypography';
 
-type Variant = ThemeVariant | 'srOnly';
+export type TypographyVariant = ThemeVariant | 'srOnly';
+
+export type TypographyAlignment = PropTypes.Alignment;
 
 export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'> {
   props: P & {
-    align?: PropTypes.Alignment;
+    align?: TypographyAlignment;
     color?:
       | 'initial'
       | 'inherit'
@@ -20,8 +22,8 @@ export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'>
     gutterBottom?: boolean;
     noWrap?: boolean;
     paragraph?: boolean;
-    variant?: Variant | 'inherit';
-    variantMapping?: Partial<Record<Variant, string>>;
+    variant?: TypographyVariant | 'inherit';
+    variantMapping?: Partial<Record<TypographyVariant, string>>;
   };
   defaultComponent: D;
   classKey: TypographyClassKey;
