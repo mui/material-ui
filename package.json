@@ -167,5 +167,10 @@
     "docs",
     "framer"
   ],
-  "dependencies": {}
+  "dependencies": {
+    "@babel/runtime": "^7.7.4",
+    "@babel/runtime-corejs2": "^7.7.4",
+    "@minh.nguyen/plugin-transform-destructuring": "npm:@minh.nguyen/plugin-transform-destructuring@^7.5.2",
+    "terser": "^4.1.2"
+  }
 }
