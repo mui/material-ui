@@ -119,7 +119,11 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
   };
 
   return (
-    <React.Fragment>
+    <div
+      style={{
+        all: 'inherit',
+      }}
+    >
       <textarea
         value={value}
         onChange={handleChange}
@@ -143,7 +147,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
         tabIndex={-1}
         style={{ ...styles.shadow, ...style }}
       />
-    </React.Fragment>
+    </div>
   );
 });
 

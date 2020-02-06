@@ -21,6 +21,14 @@ It supports standard, outlined and filled styling.
 ([here's why](https://medium.com/google-design/the-evolution-of-material-designs-text-fields-603688b3fe03)),
 but Material-UI will continue to support it.
 
+## TextField (Maximum update depth exceeded error IE11)
+
+The `TextField` wrapper component is a complete form control including a label, input and help text.
+
+It supports standard, outlined and filled styling.
+
+{{"demo": "pages/components/text-fields/BasicTextFieldsRow.js"}}
+
 ## Form props
 
 Standard form attributes are supported e.g. `required`, `disabled`, `type`, etc. as well as a `helperText` which is used to give context about a field’s input, such as how the input will be used.
@@ -133,10 +141,13 @@ In some circumstances, we can't determine the "shrink" state (number input, date
 ![shrink](/static/images/text-fields/shrink.png)
 
 To workaround the issue, you can force the "shrink" state of the label.
+
 ```jsx
 <TextField InputLabelProps={{ shrink: true }} />
 ```
+
 or
+
 ```jsx
 <InputLabel shrink>Count</InputLabel>
 ```
