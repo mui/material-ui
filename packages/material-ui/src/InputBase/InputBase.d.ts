@@ -15,6 +15,7 @@ export interface InputBaseProps
   endAdornment?: React.ReactNode;
   error?: boolean;
   fullWidth?: boolean;
+  hiddenLabel?: boolean;
   id?: string;
   inputComponent?: React.ElementType<InputBaseComponentProps>;
   inputProps?: InputBaseComponentProps;
