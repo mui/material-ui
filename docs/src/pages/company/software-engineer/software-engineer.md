@@ -25,7 +25,7 @@ Both our open source products and community, and our premium products are [growi
 
 We need help to continue to improve the health of Material-UI open source: make the library easier to use, make it support more use cases, improve performance, make it more accessible, and make it easier to customize to support [in-house design systems](https://medium.com/google-design/state-of-design-systems-2019-ff5f26ada71). We also need help keeping up with the community, guiding developers to answers, and just generally being a positive presence in the open source community.
 
-We also need to develop our premium content. We have a store, and soon an enterprise class offering, starting with the data grid.
+We also need to develop our premium content. We have a store, and soon an enterprise offering, starting with the data grid.
 Enterprise features will build on the open source version of the components.
 
 ## Why this is interesting
