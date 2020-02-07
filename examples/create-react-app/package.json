@@ -6,8 +6,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "post-update": "echo \"codesandbox preview only, need an update\" && yarn upgrade --latest"
+    "eject": "react-scripts eject"
   },
   "dependencies": {
     "@material-ui/core": "latest",
