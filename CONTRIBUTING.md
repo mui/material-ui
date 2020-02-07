@@ -254,7 +254,7 @@ If you are no familiar with that language, write the demo in JavaScript, a core 
 
 #### 4. You are done 🎉!
 
-In case you missed something, [we have a real example that can be used as a summary report](https://github.com/mui-org/material-ui/pull/8922/files).
+In case you missed something, [we have a real example that can be used as a summary report](https://github.com/mui-org/material-ui/pull/19582/files).
 
 ## Translations
 

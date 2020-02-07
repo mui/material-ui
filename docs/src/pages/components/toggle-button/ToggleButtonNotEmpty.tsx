@@ -4,12 +4,9 @@ import FormatAlignLeftIcon from '@material-ui/icons/FormatAlignLeft';
 import FormatAlignCenterIcon from '@material-ui/icons/FormatAlignCenter';
 import FormatAlignRightIcon from '@material-ui/icons/FormatAlignRight';
 import FormatAlignJustifyIcon from '@material-ui/icons/FormatAlignJustify';
-import FormatBoldIcon from '@material-ui/icons/FormatBold';
-import FormatItalicIcon from '@material-ui/icons/FormatItalic';
-import FormatUnderlinedIcon from '@material-ui/icons/FormatUnderlined';
-import FormatColorFillIcon from '@material-ui/icons/FormatColorFill';
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import Typography from '@material-ui/core/Typography';
+import LaptopIcon from '@material-ui/icons/Laptop';
+import TvIcon from '@material-ui/icons/Tv';
+import PhoneAndroidIcon from '@material-ui/icons/PhoneAndroid';
 import Grid from '@material-ui/core/Grid';
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
@@ -20,16 +17,20 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function ToggleButtons() {
-  const [alignment, setAlignment] = React.useState<string | null>('left');
-  const [formats, setFormats] = React.useState(() => ['bold']);
+export default function ToggleButtonNotEmpty() {
+  const [alignment, setAlignment] = React.useState('left');
+  const [formats, setFormats] = React.useState(() => ['phone']);
 
   const handleFormat = (event: React.MouseEvent<HTMLElement>, newFormats: string[]) => {
-    setFormats(newFormats);
+    if (newFormats.length) {
+      setFormats(newFormats);
+    }
   };
 
   const handleAlignment = (event: React.MouseEvent<HTMLElement>, newAlignment: string | null) => {
-    setAlignment(newAlignment);
+    if (newAlignment !== null) {
+      setAlignment(newAlignment);
+    }
   };
 
   const classes = useStyles();
@@ -58,36 +59,21 @@ export default function ToggleButtons() {
             </ToggleButton>
           </ToggleButtonGroup>
         </div>
-        <Typography gutterBottom>Exclusive Selection</Typography>
-        <Typography>
-          Text justification toggle buttons present options for left, right, center, full, and
-          justified text with only one item available for selection at a time. Selecting one option
-          deselects any other.
-        </Typography>
       </Grid>
       <Grid item sm={12} md={6}>
         <div className={classes.toggleContainer}>
-          <ToggleButtonGroup value={formats} onChange={handleFormat} aria-label="text formatting">
-            <ToggleButton value="bold" aria-label="bold">
-              <FormatBoldIcon />
+          <ToggleButtonGroup value={formats} onChange={handleFormat} aria-label="device">
+            <ToggleButton value="laptop" aria-label="laptop">
+              <LaptopIcon />
             </ToggleButton>
-            <ToggleButton value="italic" aria-label="italic">
-              <FormatItalicIcon />
+            <ToggleButton value="tv" aria-label="tv">
+              <TvIcon />
             </ToggleButton>
-            <ToggleButton value="underlined" aria-label="underlined">
-              <FormatUnderlinedIcon />
-            </ToggleButton>
-            <ToggleButton value="color" aria-label="color" disabled>
-              <FormatColorFillIcon />
-              <ArrowDropDownIcon />
+            <ToggleButton value="phone" aria-label="phone">
+              <PhoneAndroidIcon />
             </ToggleButton>
           </ToggleButtonGroup>
         </div>
-        <Typography gutterBottom>Multiple Selection</Typography>
-        <Typography>
-          Logically-grouped options, like Bold, Italic, and Underline, allow multiple options to be
-          selected.
-        </Typography>
       </Grid>
     </Grid>
   );
