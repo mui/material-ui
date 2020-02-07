@@ -12,6 +12,8 @@ If available options can be collapsed, consider using a dropdown menu because it
 
 Radio buttons should have the most commonly used option selected by default.
 
+## Radio Group
+
 `RadioGroup` is a helpful wrapper used to group `Radio` components that provides an easier API, and proper keyboard accessibility to the group.
 
 {{"demo": "pages/components/radio-buttons/RadioButtonsGroup.js"}}
@@ -27,6 +29,13 @@ Radio buttons should have the most commonly used option selected by default.
 You can change the placement of the label:
 
 {{"demo": "pages/components/radio-buttons/FormControlLabelPosition.js"}}
+
+
+## Show Error
+
+You can show an error:
+
+{{"demo": "pages/components/radio-buttons/ErrorRadios.js"}}
 
 ## Customized radios
 

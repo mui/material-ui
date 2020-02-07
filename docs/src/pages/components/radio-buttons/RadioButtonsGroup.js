@@ -21,11 +21,9 @@ export default function RadioButtonsGroup() {
     setValue(event.target.value);
   };
 
-  const error = value === 'error';
-
   return (
     <div>
-      <FormControl component="fieldset" className={classes.formControl} error={error}>
+      <FormControl component="fieldset" className={classes.formControl}>
         <FormLabel component="legend">Gender</FormLabel>
         <RadioGroup aria-label="gender" name="gender1" value={value} onChange={handleChange}>
           <FormControlLabel value="female" control={<Radio />} label="Female" />
@@ -37,10 +35,9 @@ export default function RadioButtonsGroup() {
             control={<Radio />}
             label="(Disabled option)"
           />
-          <FormControlLabel value="error" control={<Radio />} label="Error" />
         </RadioGroup>
       </FormControl>
-      <FormControl component="fieldset" className={classes.formControl} error={error}>
+      <FormControl component="fieldset" className={classes.formControl}>
         <FormLabel component="legend">Gender</FormLabel>
         <RadioGroup aria-label="gender" name="gender2" value={value} onChange={handleChange}>
           <FormControlLabel
@@ -66,12 +63,6 @@ export default function RadioButtonsGroup() {
             disabled
             control={<Radio />}
             label="(Disabled option)"
-            labelPlacement="start"
-          />
-          <FormControlLabel
-            value="error"
-            control={<Radio color="primary" />}
-            label="Error"
             labelPlacement="start"
           />
         </RadioGroup>

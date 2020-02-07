@@ -71,10 +71,8 @@ export default function CustomizedRadios() {
     setValue((event.target as HTMLInputElement).value);
   };
 
-  const error = value === 'error';
-
   return (
-    <FormControl component="fieldset" error={error}>
+    <FormControl component="fieldset">
       <FormLabel component="legend">Gender</FormLabel>
       <RadioGroup
         defaultValue="female"
@@ -92,7 +90,6 @@ export default function CustomizedRadios() {
           control={<StyledRadio />}
           label="(Disabled option)"
         />
-        <FormControlLabel value="error" control={<StyledRadio />} label="Error" />
       </RadioGroup>
     </FormControl>
   );
