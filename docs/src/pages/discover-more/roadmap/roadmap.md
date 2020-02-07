@@ -69,6 +69,7 @@ Here are the components we will work on being supported in the Material-UI ecosy
 | Combo Box | 🧪 |
 | Multiselect | 🧪 |
 | Alert | 🧪 |
+| Pagination | 🧪 |
 | Date Picker (& range) | 🛠 |
 | Data Table | 🛠⭐️ |
 | Carousel | ⏳ |
@@ -79,7 +80,6 @@ Here are the components we will work on being supported in the Material-UI ecosy
 | Navbar | ⏳ |
 | Nested Menu | ⏳ |
 | Numeric Input | ⏳ |
-| Pagination | ⏳ |
 | Scrollspy | ⏳ |
 | TopLayout | ⏳ |
 | Big Calendar | ⏳⭐️ |
@@ -88,7 +88,7 @@ Here are the components we will work on being supported in the Material-UI ecosy
 | Color Picker | ⏳⭐️ |
 | Gantt Chart | ⏳⭐️ |
 | Gauge | ⏳⭐️ |
-| Masonery | ⏳⭐️ |
+| Masonry | ⏳⭐️ |
 | Pivot Grid | ⏳⭐️ |
 | Rich Text Editor | ⏳⭐️ |
 | Scheduler | ⏳⭐️ |

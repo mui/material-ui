@@ -53,6 +53,7 @@
     "@babel/register": "^7.7.4",
     "@testing-library/dom": "^6.8.1",
     "@testing-library/react": "^9.3.2",
+    "@testing-library/react-hooks": "3.2.1",
     "@types/chai": "^4.2.3",
     "@types/chai-dom": "^0.0.8",
     "@types/enzyme": "^3.10.3",
