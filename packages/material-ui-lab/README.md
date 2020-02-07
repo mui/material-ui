@@ -1,6 +1,6 @@
 # @material-ui/lab
 
-This package hosts the incubator components that are not yet ready to move to `core`. 
+This package hosts the incubator components that are not yet ready to move to `core`.
 
 The main difference between the `lab` and the `core` is how the components are versioned. Having the lab within Material UI allows us to release breaking changes when necessary while the core package follows a [slower-moving policy](https://material-ui.com/versions/#release-frequency).
 
