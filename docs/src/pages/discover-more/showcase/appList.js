@@ -647,7 +647,7 @@ const appList = [
   {
     title: 'SaaS Template',
     description:
-      'An open-source template for an SaaS app. Features a landing page, a blog,' +
+      'An open-source template for an SaaS app. Features a landing page, a blog, ' +
       'an admin dashboard, an image uploader and a textarea with emoji support.',
     image: 'react-saas-template.jpg',
     link: 'https://reactsaastemplate.com/',
