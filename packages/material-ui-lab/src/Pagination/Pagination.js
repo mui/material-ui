@@ -37,7 +37,7 @@ const Pagination = React.forwardRef(function Pagination(props, ref) {
   return (
     <ul
       role="navigation"
-      aria-label="Pagination navigation"
+      aria-label="pagination navigation"
       className={clsx(classes.root, className)}
       ref={ref}
       {...other}

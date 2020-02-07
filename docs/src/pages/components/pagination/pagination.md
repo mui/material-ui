@@ -41,14 +41,19 @@ You can specify how many digits to display either side of current page with the 
 
 ## Router integration
 
+Pagination supports two approaches for Router integration, the `renderItem` prop:
+
 {{"demo": "pages/components/pagination/PaginationLink.js"}}
+
+And children:
+
 {{"demo": "pages/components/pagination/PaginationLinkChildren.js"}}
 
 ## Accessibility
 
 ### ARIA
 
-The root node has a role of "navigation" and aria-label "Pagination navigation" by default. The page items have an aria-label that identifies the purpose of the item ("go to first page", "go to previous page", "go to page 1" etc.). You can override these using the `getItemAriaLabel` prop.
+The root node has a role of "navigation" and aria-label "pagination navigation" by default. The page items have an aria-label that identifies the purpose of the item ("go to first page", "go to previous page", "go to page 1" etc.). You can override these using the `getItemAriaLabel` prop.
 
 ### Keyboard
 
