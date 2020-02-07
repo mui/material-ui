@@ -644,6 +644,17 @@ const appList = [
     stars: 4,
     dateAdded: '2020-01-31',
   },
+  {
+    title: 'SaaS Template',
+    description:
+      'An open-source template for an SaaS app. Features a landing page, a blog,' +
+      'an admin dashboard, an image uploader and a textarea with emoji support.',
+    image: 'react-saas-template.jpg',
+    link: 'https://reactsaastemplate.com/',
+    source: 'https://github.com/dunky11/react-saas-template',
+    stars: 1,
+    dateAdded: '2020-02-07',
+  },
 ];
 
 export default appList;
