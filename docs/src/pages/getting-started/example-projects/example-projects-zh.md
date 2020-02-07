@@ -25,6 +25,7 @@ Create React App 是一个很棒的学习 React 的项目。 请看一下这些[
 ### 免费的资源
 
 - [React 最常用到的](https://github.com/TarikHuber/react-most-wanted)：
+    
   - 使用 Create React App 创建
   - Custom Create React App script to start a new project with just a single CLI command
   - 使用官方的 Firebase Web Auth UI 进行 Firebase 的构建，包括身份验证
@@ -32,29 +33,23 @@ Create React App 是一个很棒的学习 React 的项目。 请看一下这些[
   - All PWA features included (SW, Notifications, deferred installation prompt and more)
   - Optimized and scalable performance (all ~100 points on Lighthouse)
 - [RMUIF](https://github.com/phoqe/rmuif):
+    
   - Bootstrapped with Create React App, the same tooling works from the get-go
   - Built on top of Firebase with all their products for the web included
   - Robust routing with React Router including protected routes and error handling
   - 全面的移动支持，带有全屏对话框和选项卡的可轻扫视图
   - Cross-platform application monitoring with a focus on error reporting with Sentry
 - [Material Sense](https://github.com/alexanmtz/material-sense):
-
+    
   - 使用 recharts 的图表
   - 在导航示例中涵盖了 React Router
   - 一个具有用于生产环境创造的 Nginx 服务器的 Docker container(Docker 容器)。
   - 使用 Create React App 创建
 
-- [React SaaS Template](https://github.com/dunky11/react-saas-template):
-
-  - Created with Create React App
-  - Features a landing page, a blog, an area to login/register and an admin-dashboard
-  - Fully routed using react-router
-  - Lazy loads components to boost performance
-  - Components for statistics, text with emoji support, image upload and much more...
-
 ### 付费的资源
 
 - [ScaffoldHub](https://scaffoldhub.io/?partner=1):
+    
   - Build your complete application with this online tool
   - Choose your framework and library (React & Material-UI!)
   - Choose your database (SQL, MongoDB or Firestore)
