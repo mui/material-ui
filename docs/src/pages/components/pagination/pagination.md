@@ -45,9 +45,18 @@ Pagination supports two approaches for Router integration, the `renderItem` prop
 
 {{"demo": "pages/components/pagination/PaginationLink.js"}}
 
-And children:
+## `usePagination`
 
-{{"demo": "pages/components/pagination/PaginationLinkChildren.js"}}
+For advanced customization use cases, we expose a `usePagination()` hook.
+It accepts almost the same options as the Pagination component minus all the props
+related to the rendering of JSX.
+The Pagination component uses this hook internally.
+
+```jsx
+import { usePagination } from '@material-ui/lab/Pagination';
+```
+
+{{"demo": "pages/components/pagination/UsePagination.js"}}
 
 ## Accessibility
 

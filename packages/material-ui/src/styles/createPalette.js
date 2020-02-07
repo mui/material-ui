@@ -40,9 +40,13 @@ export const light = {
     selected: 'rgba(0, 0, 0, 0.08)',
     selectedOpacity: 0.08,
     // The color of a disabled action.
-    disabled: 'rgba(0, 0, 0, 0.26)',
+    disabled: 'rgba(0, 0, 0, 0.38)',
     // The background color of a disabled action.
     disabledBackground: 'rgba(0, 0, 0, 0.12)',
+    disabledOpacity: 0.38,
+    focus: 'rgba(0, 0, 0, 0.12)',
+    focusOpacity: 0.12,
+    activatedOpaciy: 0.12,
   },
 };
 
@@ -65,8 +69,12 @@ export const dark = {
     hoverOpacity: 0.08,
     selected: 'rgba(255, 255, 255, 0.16)',
     selectedOpacity: 0.16,
-    disabled: 'rgba(255, 255, 255, 0.3)',
+    disabled: 'rgba(255, 255, 255, 0.38)',
     disabledBackground: 'rgba(255, 255, 255, 0.12)',
+    disabledOpacity: 0.38,
+    focus: 'rgba(255, 255, 255, 0.12)',
+    focusOpacity: 0.12,
+    activatedOpaciy: 0.24,
   },
 };
 

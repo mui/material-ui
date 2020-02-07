@@ -7,15 +7,24 @@ import PaginationItem from '../PaginationItem';
 
 export const styles = {
   /* Styles applied to the root element. */
-  root: {
+  root: {},
+  /* Styles applied to the ul element. */
+  ul: {
     display: 'flex',
     flexWrap: 'wrap',
     alignItems: 'center',
+    padding: 0,
+    margin: 0,
     listStyle: 'none',
-    padding: 0, // Reset
-    margin: 0, // Reset
   },
 };
+
+function defaultGetAriaLabel(type, page, selected) {
+  if (type === 'page') {
+    return `${selected ? '' : 'Go to '}page ${page}`;
+  }
+  return `Go to ${type} page`;
+}
 
 const Pagination = React.forwardRef(function Pagination(props, ref) {
   const {
@@ -23,32 +32,38 @@ const Pagination = React.forwardRef(function Pagination(props, ref) {
     classes,
     className,
     color = 'standard',
-    getItemAriaLabel: getAriaLabel,
+    getItemAriaLabel: getAriaLabel = defaultGetAriaLabel,
     items,
     renderItem = item => <PaginationItem {...item} />,
     shape = 'round',
-    size,
+    size = 'medium',
     variant = 'text',
     ...other
   } = usePagination({ ...props, componentName: 'Pagination' });
 
-  const itemProps = { color, getAriaLabel, shape, size, variant };
-
   return (
-    <ul
-      role="navigation"
+    <nav
       aria-label="pagination navigation"
       className={clsx(classes.root, className)}
       ref={ref}
       {...other}
     >
-      {children ||
-        items.map(item => (
-          <li key={item.type !== undefined ? item.type : item.page.toString()}>
-            {renderItem({ ...item, ...itemProps })}
-          </li>
-        ))}
-    </ul>
+      <ul className={classes.ul}>
+        {children ||
+          items.map((item, index) => (
+            <li key={index}>
+              {renderItem({
+                ...item,
+                color,
+                'aria-label': getAriaLabel(item.type, item.page, item.selected),
+                shape,
+                size,
+                variant,
+              })}
+            </li>
+          ))}
+      </ul>
+    </nav>
   );
 });
 
@@ -88,6 +103,8 @@ Pagination.propTypes = {
   disabled: PropTypes.bool,
   /**
    * Accepts a function which returns a string value that provides a user-friendly name for the current page.
+   *
+   * For localization purposes, you can use the provided [translations](/guides/localization/).
    *
    * @param {string} [type = page] The link or button type to format ('page' | 'first' | 'last' | 'next' | 'previous').
    * @param {number} page The page number to format.

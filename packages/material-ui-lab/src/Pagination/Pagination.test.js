@@ -17,9 +17,9 @@ describe('<Pagination />', () => {
 
   describeConformance(<Pagination />, () => ({
     classes,
-    inheritComponent: 'ul',
+    inheritComponent: 'nav',
     mount,
-    refInstanceof: window.HTMLUListElement,
+    refInstanceof: window.HTMLElement,
     after: () => mount.cleanUp(),
     skip: ['componentProp'],
   }));

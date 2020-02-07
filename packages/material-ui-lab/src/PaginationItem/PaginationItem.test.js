@@ -1,6 +1,5 @@
 import React from 'react';
 import { expect } from 'chai';
-import { spy } from 'sinon';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import { createClientRender } from 'test/utils/createClientRender';
@@ -56,10 +55,10 @@ describe('<PaginationItem />', () => {
       </PaginationItem>,
     );
 
-    const root = getByTestId('root');
-    expect(root).to.have.class(classes.root);
-    expect(root).to.have.class(classes.sizeSmall);
-    expect(root).not.to.have.class(classes.sizeLarge);
+    const rootNode = getByTestId('root');
+    expect(rootNode).to.have.class(classes.root);
+    expect(rootNode).to.have.class(classes.sizeSmall);
+    expect(rootNode).not.to.have.class(classes.sizeLarge);
   });
 
   it('should render a large button', () => {
@@ -69,30 +68,9 @@ describe('<PaginationItem />', () => {
       </PaginationItem>,
     );
 
-    const root = getByTestId('root');
-    expect(root).to.have.class(classes.root);
-    expect(root).not.to.have.class(classes.sizeSmall);
-    expect(root).to.have.class(classes.sizeLarge);
-  });
-
-  describe('prop: onClick', () => {
-    it('should be called when clicked', () => {
-      const handleClick = spy();
-      const { getByRole } = render(<PaginationItem page={1} onClick={handleClick} />);
-
-      getByRole('button').click();
-
-      expect(handleClick.callCount).to.equal(1);
-    });
-
-    it('should be called with the button value', () => {
-      const handleClick = spy();
-      const { getByRole } = render(<PaginationItem page={1} onClick={handleClick} />);
-
-      getByRole('button').click();
-
-      expect(handleClick.callCount).to.equal(1);
-      expect(handleClick.args[0][1]).to.equal(1);
-    });
+    const rootNode = getByTestId('root');
+    expect(rootNode).to.have.class(classes.root);
+    expect(rootNode).not.to.have.class(classes.sizeSmall);
+    expect(rootNode).to.have.class(classes.sizeLarge);
   });
 });

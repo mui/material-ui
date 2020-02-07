@@ -28,10 +28,10 @@ describe('<FormControlLabel />', () => {
 
   it('should render the label text inside an additional element', () => {
     const { container, getByText } = render(<FormControlLabel label="Pizza" control={<div />} />);
-    const root = container.firstChild;
+    const rootNode = container.firstChild;
 
-    expect(root).to.have.property('nodeName', 'LABEL');
-    expect(root).to.have.class(classes.root);
+    expect(rootNode).to.have.property('nodeName', 'LABEL');
+    expect(rootNode).to.have.class(classes.root);
     expect(getByText(/Pizza/)).not.to.have.class(classes.root);
     expect(getByText(/Pizza/)).to.have.class(classes.label);
   });
@@ -41,11 +41,11 @@ describe('<FormControlLabel />', () => {
       const { container, getByTestId, getByText } = render(
         <FormControlLabel label="Pizza" disabled control={<div data-testid="control" />} />,
       );
-      const root = container.firstChild;
+      const rootNode = container.firstChild;
       const control = getByTestId('control');
       const label = getByText(/Pizza/);
 
-      expect(root).to.have.class(classes.disabled);
+      expect(rootNode).to.have.class(classes.disabled);
       expect(control).to.have.attribute('disabled');
       expect(label).to.have.class(classes.disabled);
     });
@@ -58,11 +58,11 @@ describe('<FormControlLabel />', () => {
           control={<div data-testid="control" disabled />}
         />,
       );
-      const root = container.firstChild;
+      const rootNode = container.firstChild;
       const control = getByTestId('control');
       const label = getByText(/Pizza/);
 
-      expect(root).to.have.class(classes.disabled);
+      expect(rootNode).to.have.class(classes.disabled);
       expect(control).to.have.attribute('disabled');
       expect(label).to.have.class(classes.disabled);
     });

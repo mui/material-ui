@@ -25,9 +25,6 @@ export const styles = theme => ({
     },
     color: theme.palette.getContrastText(theme.palette.grey[300]),
     backgroundColor: theme.palette.grey[300],
-    '&$focusVisible': {
-      boxShadow: theme.shadows[6],
-    },
     '&:hover': {
       backgroundColor: theme.palette.grey.A100,
       // Reset on touch devices, it doesn't add specificity
@@ -38,6 +35,9 @@ export const styles = theme => ({
         backgroundColor: theme.palette.action.disabledBackground,
       },
       textDecoration: 'none',
+    },
+    '&$focusVisible': {
+      boxShadow: theme.shadows[6],
     },
     '&$disabled': {
       color: theme.palette.action.disabled,

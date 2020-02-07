@@ -31,7 +31,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 | <span class="prop-name">count</span> | <span class="prop-type">number</span> |  | The total number of pages. |
 | <span class="prop-name">defaultPage</span> | <span class="prop-type">number</span> |  | The page selected by default when the component is uncontrolled. |
 | <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> |  | If `true`, all the pagination component will be disabled. |
-| <span class="prop-name">getItemAriaLabel</span> | <span class="prop-type">func</span> |  | Accepts a function which returns a string value that provides a user-friendly name for the current page.<br><br>**Signature:**<br>`function(type?: string, page: number, selected: bool) => string`<br>*type:* The link or button type to format ('page' | 'first' | 'last' | 'next' | 'previous').<br>*page:* The page number to format.<br>*selected:* If true, the current page is selected. |
+| <span class="prop-name">getItemAriaLabel</span> | <span class="prop-type">func</span> |  | Accepts a function which returns a string value that provides a user-friendly name for the current page.<br>For localization purposes, you can use the provided [translations](/guides/localization/).<br><br>**Signature:**<br>`function(type?: string, page: number, selected: bool) => string`<br>*type:* The link or button type to format ('page' | 'first' | 'last' | 'next' | 'previous').<br>*page:* The page number to format.<br>*selected:* If true, the current page is selected. |
 | <span class="prop-name">hideNextButton</span> | <span class="prop-type">bool</span> |  | If `true`, hide the next-page button. |
 | <span class="prop-name">hidePrevButton</span> | <span class="prop-type">bool</span> |  | If `true`, hide the previous-page button. |
 | <span class="prop-name">onChange</span> | <span class="prop-type">func</span> |  | Callback fired when the page is changed.<br><br>**Signature:**<br>`function(event: object, page: number) => void`<br>*event:* The event source of the callback.<br>*page:* The page selected. |
@@ -56,6 +56,7 @@ Any other props supplied will be provided to the root element (native element).
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
 | <span class="prop-name">root</span> | <span class="prop-name">.MuiPagination-root</span> | Styles applied to the root element.
+| <span class="prop-name">ul</span> | <span class="prop-name">.MuiPagination-ul</span> | Styles applied to the ul element.
 
 You can override the style of the component thanks to one of these customization points:
 

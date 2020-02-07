@@ -207,12 +207,12 @@ export const styles = theme => ({
     '&[data-focus="true"]': {
       backgroundColor: theme.palette.action.hover,
     },
-    '&[aria-disabled="true"]': {
-      opacity: 0.5,
-      pointerEvents: 'none',
-    },
     '&:active': {
       backgroundColor: theme.palette.action.selected,
+    },
+    '&[aria-disabled="true"]': {
+      opacity: theme.palette.action.disabledOpacity,
+      pointerEvents: 'none',
     },
   },
   /* Styles applied to the group's label elements. */

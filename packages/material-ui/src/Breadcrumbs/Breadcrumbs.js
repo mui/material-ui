@@ -14,8 +14,8 @@ export const styles = {
     display: 'flex',
     flexWrap: 'wrap',
     alignItems: 'center',
-    padding: 0, // Reset
-    margin: 0, // Reset
+    padding: 0,
+    margin: 0,
     listStyle: 'none',
   },
   /* Styles applied to the li element. */
