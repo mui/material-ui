@@ -35,10 +35,6 @@ function valuetext(value) {
   return `${value}°C`;
 }
 
-function valueLabelFormat(value) {
-  return marks.findIndex(mark => mark.value === value) + 1;
-}
-
 export default function DiscreteSlider() {
   const classes = useStyles();
 
