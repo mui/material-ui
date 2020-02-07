@@ -5,11 +5,9 @@ import { Variant as ThemeVariant } from '../styles/createTypography';
 
 export type TypographyVariant = ThemeVariant | 'srOnly';
 
-export type TypographyAlignment = PropTypes.Alignment;
-
 export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'> {
   props: P & {
-    align?: TypographyAlignment;
+    align?: PropTypes.Alignment;
     color?:
       | 'initial'
       | 'inherit'
