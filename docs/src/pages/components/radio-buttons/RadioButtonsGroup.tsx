@@ -25,7 +25,6 @@ export default function RadioButtonsGroup() {
 
   const error = value === 'error';
 
-
   return (
     <div>
       <FormControl component="fieldset" className={classes.formControl} error={error}>
