@@ -12,12 +12,12 @@ Material-UI started back in 2014 to unify React and Material Design. Today, Mate
 
 ## Details of the Role
 
-- Type of work: Contractor (long mission, full-time, convertible to an employee position in the future)
-- Start date: Immediately
-- Location: Remote (preference for UTC-5 to UTC+4), or Paris
-- Level: [Senior Engineer or above](https://open.buffer.com/engineering-career-framework/)
-- We're a 100% remote company, we prefer asynchronous communication over meetings
-- We work independently, the rest of us won't know what you're doing day-to-day unless you tell us
+- Type of work: Contractor (long mission, full-time, convertible to an employee position in the future).
+- Start date: Immediately.
+- Location: Remote (preference for UTC-5 to UTC+4).
+- Level: [Senior Engineer or above](https://open.buffer.com/engineering-career-framework/).
+- We're a remote company, we prefer asynchronous communication over meetings.
+- We work independently, the rest of us won't know what you're doing day-to-day unless you tell us.
 
 ## Why we’re hiring
 
