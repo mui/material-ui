@@ -1,4 +1,4 @@
-# Software Engineer
+# Senior Software Engineer
 
 <p class="description">We are looking for a software engineer to help support our open source team, assist the Material-UI community and grow our premium products. Join us in our mission to make React application development fun by making it simple.</p>
 
@@ -12,17 +12,20 @@ Material-UI started back in 2014 to unify React and Material Design. Today, Mate
 
 ## Details of the Role
 
-- Type of work: Contractor (long mission, full-time, convertible to an employee position)
-- Start date: Immediately
-- Location: Remote (preference for UTC-5 to UTC+4), or Paris
+- Type of work: Contractor (long mission, full-time, convertible to an employee position in the future).
+- Start date: Immediately.
+- Location: Remote (preference for UTC-5 to UTC+4).
+- Level: [Senior Engineer or above](https://open.buffer.com/engineering-career-framework/).
+- We're a remote company, we prefer asynchronous communication over meetings.
+- We work independently, the rest of us won't know what you're doing day-to-day unless you tell us.
 
 ## Why we’re hiring
 
 Both our open source products and community, and our premium products are [growing fast](https://www.rank2traffic.com/material-ui.com) and we need talented engineers to keep that going!
 
-We need help to continue to improve the health of Material-UI open source: make the library easier to use, make it support more use cases, improve performance, make it more accessible, and make it easier to customize. We also need help keeping up with the community, guiding developers to answers, and just generally being a positive presence in the open source community.
+We need help to continue to improve the health of Material-UI open source: make the library easier to use, make it support more use cases, improve performance, make it more accessible, and make it easier to customize to support [in-house design systems](https://medium.com/google-design/state-of-design-systems-2019-ff5f26ada71). We also need help keeping up with the community, guiding developers to answers, and just generally being a positive presence in the open source community.
 
-We also need to develop our premium content. We have a premium store, and soon an enterprise class offering, starting with the data grid.
+We also need to develop our premium content. We have a store, and soon an enterprise offering, starting with the data grid.
 Enterprise features will build on the open source version of the components.
 
 ## Why this is interesting
@@ -38,7 +41,7 @@ Depending on the day, you’ll:
 On the open source side:
 
 - **Help guide architectural decisions**. From modernizing the way we handle styles to building new components, the future of Material-UI is discussed and planned in our public RFCs and issues. You’ll be helping drive these conversations and guiding Material-UI toward the best possible solutions.
-- **Contribute to deep, meaningful refactors and feature releases**. Material-UI is a complex codebase. Components we’ve shipped recently, such as the Tree View and Slider have required weeks of dedicated, careful work.
+- **Contribute to deep, meaningful refactors and feature releases**. Material-UI is a complex codebase. Components we’ve shipped recently, such as the Tree View, Autocomplete, and Slider have required weeks of dedicated, careful work.
 - **Reduce friction**. A large amount of the work on Material-UI is reducing friction and making it easier to use. This might involve careful API design, identifying and fixing top bugs, creating easier to understand error messages, and writing documentation and blog posts about features you ship.
 - **Collaborate with the community**. Many small as well as meaningful fixes and features have been contributed by the community. Your role as a core team maintainer is to draw the best out of the community — to inspire those across the world to create and contribute through your reviews of their issues and pull requests.
 - **Experiment and play**. Great, unexpected features and heisenbug fixes have come from a number of sources — relentlessly methodical processes of elimination, free-flowing team collaboration, inspiration by adjacent libraries and projects, and difficult-to-explain individual strokes of brilliance. Whatever your preferred style is for creating new things that others might not have thought of, you’ll find a welcome home on the team.
@@ -47,6 +50,7 @@ Premium components:
 
 - **Take ownership of features from idea/mockup to live deployment**. You’ll shape and guide the direction of crucial new features, including new components.
 - **Ship. Early and often**. You’ll iterate and ship frequently. You’ll have a real impact on the end-user experience and you’ll love working on a team that builds stunning UIs and prioritizes delivering real user value as often as possible.
+- **You'll be interacting with our customers** on a regular basis, handling inbound support and feature requests (every developer helps with support).
 
 ## Experience you should have
 
@@ -61,6 +65,7 @@ Premium components:
 
 ## Experience it would be nice if you had, but isn’t required
 
+- **You’ve contributed to a design system before**. You have worked on enterprise components in the past, maybe for internal usage in your company. You have built complex and advanced features while making sure the accessibility was fully functional.
 - **You’ve maintained an active repository before**. Maybe you’ve helped maintain a popular open source repo, or perhaps you’ve worked on internal repos that saw contributions from multiple teams. Previous experience with highly active repo workflows is a definite plus for this role.
 - **You have used Material-UI before**. You have built a non trivial application with Material-UI in the past. You know the limitations of the library, you know a few areas that could be improved.
 - **You have contributed code to Material-UI before**. A history of contributing to Material-UI would be a definite plus.
@@ -81,7 +86,7 @@ The work you would be doing is somewhat unique and idiosyncratic. You probably h
 
 ## Benefits for you
 
-- A competitive compensation.
+- Competitive compensation of up to $120k/year, depending on the profile. Could go higher in the case of an extraordinary match.
 - Flexible workplace & hours.
 
 ## Apply
