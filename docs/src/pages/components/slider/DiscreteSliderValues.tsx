@@ -43,7 +43,6 @@ export default function DiscreteSlider() {
 
   return (
     <div className={classes.root}>
-
       <Typography id="discrete-slider-restrict" gutterBottom>
         Restricted values
       </Typography>
