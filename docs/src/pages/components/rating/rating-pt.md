@@ -19,7 +19,7 @@ Aqui esta um exemplo de customização do componente. Você pode aprender mais s
 
 ## Feedback ao passar mouse
 
-Você pode exibir um rótulo ao passar o mouse para ajudar os usuários a escolher o valor de avaliação correto. A primeira demo usa a propriedade `onChangeActive` enquanto o último usa a propriedade `IconContainerComponent`.
+Você pode exibir um rótulo ao passar o mouse para ajudar os usuários a escolher o valor de avaliação correto. The demo uses the `onChangeActive` prop.
 
 {{"demo": "pages/components/rating/HoverRating.js"}}
 

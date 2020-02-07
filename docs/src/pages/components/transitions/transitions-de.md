@@ -55,7 +55,7 @@ Das zweite Beispiel zeigt, wie Sie die `transform-origin` ändern können und be
 
 Slide in from the edge of the screen. The `direction` property controls which edge of the screen the transition starts from.
 
-Die `mountOnEnter` -Eigenschaft der Transition-Komponente verhindert, dass die untergeordnete Komponente gezeigt wird, bis `in` gleich `true` ist. Dadurch wird verhindert, dass die relativ positionierte Komponente von der Off-Screen-Position in die Ansicht gescrollt wird. In ähnlicher Weise entfernt die `unmountOnExit` -Eigenschaft die Komponente aus dem DOM, nachdem der Übergang vom Bildschirm beendet wurde.
+The Transition component's `mountOnEnter` property prevents the child component from being mounted until `in` is `true`. Dadurch wird verhindert, dass die relativ positionierte Komponente von der Off-Screen-Position in die Ansicht gescrollt wird. In ähnlicher Weise entfernt die `unmountOnExit` -Eigenschaft die Komponente aus dem DOM, nachdem der Übergang vom Bildschirm beendet wurde.
 
 {{"demo": "pages/components/transitions/SimpleSlide.js", "bg": true}}
 
@@ -66,3 +66,11 @@ Erweitern sich von der Mitte des untergeordneten Elements nach außen.
 In diesem Beispiel veranschaulicht, wie der Eintritts animation verzögert wird.
 
 {{"demo": "pages/components/transitions/SimpleZoom.js", "bg": true}}
+
+## TransitionComponent prop
+
+The components accept a `TransitionComponent` prop to customize the default transitions. You can use any of the above components or your own. Es sollte folgende Bedingungen einhalten:
+
+- Accepts an `in` prop. This corresponds to the open/close state.
+- Call the `onEnter` callback prop when the enter transition starts.
+- Call the `onExited` callback prop when the exit transition is completed. These two callbacks allow to unmount the children when in a closed state and fully transitioned.

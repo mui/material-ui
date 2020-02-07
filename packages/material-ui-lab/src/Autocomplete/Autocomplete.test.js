@@ -5,6 +5,7 @@ import describeConformance from '@material-ui/core/test-utils/describeConformanc
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import { spy } from 'sinon';
 import { createClientRender, fireEvent } from 'test/utils/createClientRender';
+import { createFilterOptions } from '../useAutocomplete/useAutocomplete';
 import Autocomplete from './Autocomplete';
 import TextField from '@material-ui/core/TextField';
 
@@ -49,7 +50,51 @@ describe('<Autocomplete />', () => {
     });
   });
 
+  describe('prop: autoHighlight', () => {
+    it('should set the focus on the first item', () => {
+      const options = ['one', 'two'];
+      const { getByRole } = render(
+        <Autocomplete
+          freeSolo
+          autoHighlight
+          options={options}
+          renderInput={params => <TextField autoFocus {...params} />}
+        />,
+      );
+
+      function checkHighlightIs(expected) {
+        expect(getByRole('listbox').querySelector('li[data-focus]')).to.have.text(expected);
+      }
+
+      checkHighlightIs('one');
+      fireEvent.change(document.activeElement, { target: { value: 'oo' } });
+      fireEvent.change(document.activeElement, { target: { value: 'o' } });
+      checkHighlightIs('one');
+    });
+  });
+
   describe('prop: autoSelect', () => {
+    it('should not clear on blur when value does not match any option', () => {
+      const handleChange = spy();
+      const options = ['one', 'two'];
+
+      render(
+        <Autocomplete
+          freeSolo
+          autoSelect
+          options={options}
+          onChange={handleChange}
+          renderInput={params => <TextField autoFocus {...params} />}
+        />,
+      );
+      fireEvent.change(document.activeElement, { target: { value: 'o' } });
+      fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+      fireEvent.change(document.activeElement, { target: { value: 'oo' } });
+      document.activeElement.blur();
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.deep.equal('oo');
+    });
+
     it('should add new value when autoSelect & multiple on blur', () => {
       const handleChange = spy();
       const options = ['one', 'two'];
@@ -867,6 +912,30 @@ describe('<Autocomplete />', () => {
       options = queryAllByRole('option');
       expect(options.length).to.equal(1);
     });
+
+    it('limits the amount of rendered options when `limit` is set in `createFilterOptions`', () => {
+      const filterOptions = createFilterOptions({ limit: 2 });
+      const { queryAllByRole } = render(
+        <Autocomplete
+          options={['one', 'two', 'three']}
+          renderInput={params => <TextField {...params} autoFocus />}
+          filterOptions={filterOptions}
+        />,
+      );
+      expect(queryAllByRole('option').length).to.equal(2);
+    });
+
+    it('does not limit the amount of rendered options when `limit` is not set in `createFilterOptions`', () => {
+      const filterOptions = createFilterOptions({});
+      const { queryAllByRole } = render(
+        <Autocomplete
+          options={['one', 'two', 'three']}
+          renderInput={params => <TextField {...params} autoFocus />}
+          filterOptions={filterOptions}
+        />,
+      );
+      expect(queryAllByRole('option').length).to.equal(3);
+    });
   });
 
   describe('prop: freeSolo', () => {
@@ -909,6 +978,24 @@ describe('<Autocomplete />', () => {
       fireEvent.change(document.activeElement, { target: { value: 'three' } });
       fireEvent.keyDown(document.activeElement, { key: 'Enter' });
       expect(container.querySelectorAll('[class*="MuiChip-root"]')).to.have.length(3);
+    });
+
+    it('should not fire change event until the IME is confirmed', () => {
+      const handleChange = spy();
+      render(
+        <Autocomplete
+          freeSolo
+          onChange={handleChange}
+          renderInput={params => <TextField {...params} autoFocus />}
+        />,
+      );
+      // Actual behavior when "あ" (Japanese) is entered on macOS/Safari with IME
+      fireEvent.change(document.activeElement, { target: { value: 'あ' } });
+      fireEvent.keyDown(document.activeElement, { key: 'Enter', keyCode: 229 });
+      expect(handleChange.callCount).to.equal(0);
+      fireEvent.keyDown(document.activeElement, { key: 'Enter', keyCode: 13 });
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.equal('あ');
     });
   });
 

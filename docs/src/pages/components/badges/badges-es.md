@@ -7,7 +7,7 @@ components: Badge
 
 <p class="description">El componente Badge genera un pequeño badge en la esquina superior derecha de su(s) hijo(s).</p>
 
-## Basic badges
+## Badges básicos
 
 Ejemplos de insignias que contienen texto, utilizando colores primarios y secundarios. La insignia se aplica a sus hijos.
 
@@ -19,36 +19,36 @@ Here is an example of customizing the component. You can learn more about this i
 
 {{"demo": "pages/demos/badges/CustomizedBadge.js"}}
 
-## Visibilidad de la placa
+## Visibilidad del Badge
 
 La visibilidad del badge puede ser controlada usando la propiedad `invisible`.
 
 {{"demo": "pages/components/badges/BadgeVisibility.js"}}
 
-The badge auto hides with badgeContent is zero. You can override this with the `showZero` property.
+El badge automáticamente se oculta con `badgeContent` igual a cero. Usted puede sobrescribir esto con la propiedad `showZero`.
 
 {{"demo": "pages/components/badges/ShowZeroBadge.js"}}
 
-## Maximum value
+## Valor máximo
 
-You can use the `max` property to cap the value of the badge content.
+Usted puede usar la propiedad `max` para establecer el valor máximo que puede contener el Badge.
 
 {{"demo": "pages/components/badges/BadgeMax.js"}}
 
-## Dot badge
+## Badge de punto
 
-The `dot` property changes a badge into a small dot. This can be used as a notification that something has changed without giving a count.
+La propiedad `dot` cambia el badge a un pequeño punto. Esto puede ser usado para mostrar una notificación sin mostrar el valor.
 
 {{"demo": "pages/components/badges/DotBadge.js"}}
 
-## Superposición de insignia
+## Superposición del Badge
 
-You can use the `overlap` property to place the badge relative to the corner of the wrapped element.
+Usted puede usar la propiedad `overlap` para establecer el Badge relativo a la esquina del elemento envuelto.
 
 {{"demo": "pages/components/badges/BadgeOverlap.js"}}
 
-## Alineación de la insignia
+## Alineación del Badge
 
-You can use the `anchorOrigin` prop to move the badge to any corner of the wrapped element.
+Usted puede usar la propiedad `anchorOrigin` para mover el Badge a cualquier esquina del elemento envuelto.
 
 {{"demo": "pages/components/badges/BadgeAlignment.js", "hideHeader": true}}

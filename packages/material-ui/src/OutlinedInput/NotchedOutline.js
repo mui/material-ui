@@ -35,6 +35,7 @@ export const styles = theme => {
     /* Styles applied to the legend element. */
     legendLabelled: {
       display: 'block',
+      width: 'auto',
       textAlign: 'left',
       padding: 0,
       height: 11, // sync with `lineHeight` in `legend` styles

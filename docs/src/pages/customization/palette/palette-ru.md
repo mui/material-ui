@@ -17,7 +17,7 @@
 
 Для более подробного изучения цветовых настроек можно посетить [секцию про цвета](/customization/color/).
 
-{{"demo": "pages/customization/palette/Intentions.js", "bg": "inline"}}
+{{"demo": "pages/customization/palette/Intentions.js", "bg": "inline", "hideHeader": true}}
 
 ### Кастомизация
 
@@ -33,7 +33,7 @@ interface PaletteIntention {
   main: string;
   dark?: string;
   contrastText?: string;
-};
+}
 ```
 
 **Using a color object**
@@ -86,7 +86,7 @@ const theme = createMuiTheme({
 As in the example above, if the intention object contains custom colors using any of the "main", "light", "dark" or "contrastText" keys, these map as follows:
 
 - If the "dark" and / or "light" keys are omitted, their value(s) will be calculated from "main", according to the "tonalOffset" value.
-- If "contrastText" is omitted, its value will be calculated to contrast with "main", according to the"contrastThreshold" value.
+- If "contrastText" is omitted, its value will be calculated to contrast with "main", according to the "contrastThreshold" value.
 
 Both the "tonalOffset" and "contrastThreshold" values may be customized as needed. A higher value for "tonalOffset" will make calculated values for "light" lighter, and "dark" darker. A higher value for "contrastThreshold" increases the point at which a background color is considered light, and given a dark "contrastText".
 
@@ -112,15 +112,17 @@ const darkTheme = createMuiTheme({
 });
 ```
 
-{{"demo": "pages/customization/palette/DarkTheme.js", "bg": "inline", "defaultCodeOpen": false}}
+The colors modified by the palette type are the following:
+
+{{"demo": "pages/customization/palette/DarkTheme.js", "bg": "inline", "hideHeader": true}}
 
 ### User preference
 
-Пользователи могли указать предпочтение светлой или темной теме. The method by which the user expresses their preference can vary. It might be a system-wide setting exposed by the Operating System, or a setting controlled by the User Agent.
+Users might have specified a preference for a light or dark theme. The method by which the user expresses their preference can vary. It might be a system-wide setting exposed by the Operating System, or a setting controlled by the User Agent.
 
 You can leverage this preference dynamically with the [useMediaQuery](/components/use-media-query/) hook and the [prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme) media query.
 
-Например, можно включить темный режим автоматически:
+For instance, you can enable the dark mode automatically:
 
 ```jsx
 import React from 'react';

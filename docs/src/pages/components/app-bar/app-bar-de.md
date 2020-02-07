@@ -49,7 +49,7 @@ A prominent app bar.
 
 When you render the app bar position fixed, the dimension of the element doesn't impact the rest of the page. This can cause some part of your content to be invisible, behind the app bar. Here are 3 possible solutions:
 
-1. You can use `position="sticky"` instead of fixed. ⚠️ sticky is not supported by IE 11.
+1. You can use `position="sticky"` instead of fixed. ⚠️ sticky wird vom IE 11 nicht unterstützt.
 2. You can render a second `<Toolbar />` component:
 
 ```jsx
@@ -101,9 +101,9 @@ The app bar elevates on scroll to communicate that the user is not at the top of
 
 {{"demo": "pages/components/app-bar/ElevateAppBar.js", "iframe": true}}
 
-### Back to top
+### Zurück nach oben
 
-A floating action buttons appears on scroll to make it easy to get back to the top of the page.
+Beim Scrollen erscheint ein schwebender Button, um einfach wieder zum Seitenanfang zu gelangen.
 
 {{"demo": "pages/components/app-bar/BackToTop.js", "iframe": true}}
 

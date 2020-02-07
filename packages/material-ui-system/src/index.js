@@ -6,6 +6,8 @@ export { default as css } from './css';
 export { default as display } from './display';
 export { default as flexbox } from './flexbox';
 export * from './flexbox';
+export { default as grid } from './grid';
+export * from './grid';
 export { default as palette } from './palette';
 export * from './palette';
 export { default as positions } from './positions';

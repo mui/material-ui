@@ -268,6 +268,31 @@ export const frFR = {
   },
 };
 
+export const huHU = {
+  props: {
+    MuiTablePagination: {
+      backIconButtonText: 'Előző oldal',
+      labelRowsPerPage: 'Sorok száma:',
+      labelDisplayedRows: ({ from, to, count }) => `${from}-${to === -1 ? count : to} / ${count}`,
+      nextIconButtonText: 'Következő oldal',
+    },
+    MuiRating: {
+      getLabelText: value => `${value} Csillag`,
+      emptyLabelText: 'Üres',
+    },
+    MuiAutocomplete: {
+      clearText: 'Törlés',
+      closeText: 'Bezárás',
+      loadingText: 'Töltés…',
+      noOptionsText: 'Nincs találat',
+      openText: 'Megnyitás',
+    },
+    MuiAlert: {
+      closeText: 'Bezárás',
+    },
+  },
+};
+
 export const idID = {
   props: {
     MuiTablePagination: {
@@ -290,6 +315,31 @@ export const idID = {
     },
     MuiAlert: {
       closeText: 'Tutup',
+    },
+  },
+};
+
+export const isIS = {
+  props: {
+    MuiTablePagination: {
+      backIconButtonText: 'Fyrri síða',
+      labelRowsPerPage: 'Raðir á síðu:',
+      labelDisplayedRows: ({ from, to, count }) => `${from}-${to === -1 ? count : to} af ${count}`,
+      nextIconButtonText: 'Næsta síða',
+    },
+    MuiRating: {
+      getLabelText: value => `${value} ${value === 1 ? 'Stjarna' : 'Stjörnur'}`,
+      emptyLabelText: 'Tómt',
+    },
+    MuiAutocomplete: {
+      clearText: 'Hreinsa',
+      closeText: 'Loka',
+      loadingText: 'Hlaða…',
+      noOptionsText: 'Engar niðurstöður',
+      openText: 'Opna',
+    },
+    MuiAlert: {
+      closeText: 'Loka',
     },
   },
 };

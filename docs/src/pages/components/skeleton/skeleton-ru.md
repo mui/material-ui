@@ -1,15 +1,15 @@
 ---
-title: Skeleton React component
-components: Skeleton
+title: 'Компонент React: Скелет'
+components: Скелет
 ---
 
-# Skeleton
+# Скелет
 
-<p class="description">Display a placeholder preview of your content before the data gets loaded to reduce load-time frustration.</p>
+<p class="description">Отображайте макет вашего приложения перед загрузкой данных, чтобы уменьшить дискомфорт от загрузки.</p>
 
-The data for your components might not be immediately available. You can increase the perceived performance for users by using skeletons. It feels like things are happening immediately, then the information is incrementally displayed on the screen (Cf. [Avoid The Spinner](https://www.lukew.com/ff/entry.asp?1797)).
+Данные ваших компонентов могут не быть доступны сразу. Вы можете увеличить предполагаемую производительность для пользователей с помощью скелетов. Кажется, что все происходит мгновенно, затем информация постепенно отображается на экране. (см. [Avoid The Spinner](https://www.lukew.com/ff/entry.asp?1797)).
 
-The component is designed to be used **directly in your components**. For instance:
+Компонент разработан для использования **напрямую в ваших компонентах**. Например:
 
 ```jsx
 {item ? (
@@ -21,20 +21,20 @@ The component is designed to be used **directly in your components**. For instan
 
 ## Variants
 
-The component supports 3 shape variants.
+Компонент поддерживает 3 формы.
 
 {{"demo": "pages/components/skeleton/Variants.js"}}
 
-## Animations
+## Анимации
 
-By default, the skeleton pulsate, but you can change the animation for a wave or disable it entirely.
+По умолчанию скелет пульсирует, но вы можете изменить анимацию волны или полностью отключить ее.
 
 {{"demo": "pages/components/skeleton/Animations.js"}}
 
-## YouTube example
+## Пример в качестве YouTube
 
 {{"demo": "pages/components/skeleton/YouTube.js", "defaultCodeOpen": false}}
 
-## Facebook example
+## Пример в качестве Facebook
 
 {{"demo": "pages/components/skeleton/Facebook.js", "defaultCodeOpen": false, "bg": true}}

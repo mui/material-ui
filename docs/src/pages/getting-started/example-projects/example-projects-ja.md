@@ -32,12 +32,13 @@ If you want to start with a more complete and real-world example, you could take
   - エラー処理（404）および遅延ロードを含むReact Routerによるルーティング
   - All PWA features included (SW, Notifications, deferred installation prompt and more)
   - 最適化されたスケーラブルなパフォーマンス（すべてLighthouseで最大100ポイント）
-- [React + Material-UI + Firebase](https://github.com/Phoqe/react-material-ui-firebase):
+- [RMUIF](https://github.com/phoqe/rmuif):
     
-  - React Appの作成でブートストラップされ、同じツールがすぐに使用できます
-  - 認証、Cloud Firestore、Cloud Functions、Storage、およびPerformance Monitoringを最初から使用できるFirebaseの上に構築
-  - エラー処理を含むReact Routerによる堅牢なルーティング
+  - Bootstrapped with Create React App, the same tooling works from the get-go
+  - Built on top of Firebase with all their products for the web included
+  - Robust routing with React Router including protected routes and error handling
   - フルスクリーンダイアログと react-swipeable-viewsによる広範なモバイルサポートタブ用
+  - Cross-platform application monitoring with a focus on error reporting with Sentry
 - [Material Sense](https://github.com/alexanmtz/material-sense):
     
   - rechartsを用いたグラフ

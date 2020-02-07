@@ -41,17 +41,17 @@ Material-UI es desarrollado bajo el esquema "móviles primero", una estrategia e
 ```html
 <meta
   name="viewport"
-  content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
+  content="minimum-scale=1, initial-scale=1, width=device-width"
 />
 ```
 
 ### CssBaseline
 
-Material-UI proporciona un componente opcional llamado [CssBaseline](/components/css-baseline/). It fixes some inconsistencies across browsers and devices while providing slightly more opinionated resets to common HTML elements.
+Material-UI proporciona un componente opcional llamado [CssBaseline](/components/css-baseline/). Regulariza algunas inconsistencias entre navegadores y dispositivos, aunque provee reseteos ligeramente más dogmáticos respecto a elementos HTML comunes.
 
 ## Documentación versionada
 
-Ésta documentación siempre refleja la última versión estable de Material-UI. Podrás encontrar versiones antiguas en una [página apartada](https://material-ui.com/versions/).
+Esta documentación siempre refleja la última versión estable de Material-UI. Podrás encontrar versiones antiguas en una [página apartada](https://material-ui.com/versions/).
 
 ## Siguientes pasos
 

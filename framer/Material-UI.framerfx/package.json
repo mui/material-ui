@@ -1,32 +1,32 @@
 {
-	"name": "@framer/material-ui.material-ui",
-	"author": "Material-UI Team",
-	"description": "Material-UI Framer components",
-	"version": "1.0.0",
-	"main": "dist/index.js",
-	"license": "MIT",
-	"homepage": "http://material-ui.com/",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/mui-org/material-ui.git"
-	},
-	"bugs": {
-		"url": "https://github.com/mui-org/material-ui/issues"
-	},
-	"devDependencies": {
-		"@types/react": "^16.8"
-	},
-	"dependencies": {
-		"@material-ui/core": "^4.5.0",
-		"@material-ui/icons": "^4.4.0",
-		"naming-style": "^1.0.0"
-	},
-	"peerDependencies": {
-		"framer": "^1.0.0",
-		"react": "^16.8.0"
-	},
-	"framer": {
-		"displayName": "Material-UI",
-		"id": "ee255265-d0d6-4999-a685-9461c1248b6a"
-	}
+  "name": "@framer/material-ui.material-ui",
+  "author": "Material-UI Team",
+  "description": "Material-UI Framer components",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "license": "MIT",
+  "homepage": "http://material-ui.com/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mui-org/material-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mui-org/material-ui/issues"
+  },
+  "devDependencies": {
+    "@types/react": "^16.8"
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.9.0",
+    "@material-ui/icons": "^4.5.1",
+    "naming-style": "^1.0.0"
+  },
+  "peerDependencies": {
+    "framer": "^1.0.0",
+    "react": "^16.8.0"
+  },
+  "framer": {
+    "displayName": "Material-UI",
+    "id": "ee255265-d0d6-4999-a685-9461c1248b6a"
+  }
 }

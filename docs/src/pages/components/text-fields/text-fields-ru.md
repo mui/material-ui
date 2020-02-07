@@ -103,21 +103,23 @@ The `color` prop changes the highlight color of the text field when focused.
 
 {{"demo": "pages/components/text-fields/CustomizedInputBase.js", "bg": true}}
 
+👑 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/components/text-field).
+
 ## Ограничения
 
 ### Сжатие
 
-Состояние метки поля ввода (label) "shrink" не всегда корректно. Предполагается, что метка поля ввода уменьшается, как только в поле ввода что-нибудь отображается. В некоторых случаях мы не можем определить состояние "shrink" (числовое поле, поле даты, Stripe input). Вы могли заметить совпадения.
+The input label "shrink" state isn't always correct. The input label is supposed to shrink as soon as the input is displaying something. In some circumstances, we can't determine the "shrink" state (number input, datetime input, Stripe input). You might notice an overlap.
 
-![сжатие](/static/images/text-fields/shrink.png)
+![shrink](/static/images/text-fields/shrink.png)
 
-Чтобы решить эту проблему, вы можете принудительно изменить состояние метки.
+To workaround the issue, you can force the "shrink" state of the label.
 
 ```jsx
 <TextField InputLabelProps={{ shrink: true }} />
 ```
 
-или
+or
 
 ```jsx
 <InputLabel shrink>Contagem</InputLabel>
@@ -125,17 +127,17 @@ The `color` prop changes the highlight color of the text field when focused.
 
 ### Плавающая метка
 
-Плавающий ярлык абсолютно позиционируется, он не повлияет на макет страницы. Необходимо убедиться, что поле ввода больше, чем метка для корректного отображения.
+The floating label is absolutely positioned, it won't impact the layout of the page. You need to make sure that the input is larger than the label to display correctly.
 
 ## Интеграция с сторонними библиотеками текстовых полей
 
-Вы можете использовать сторонние библиотеки для форматирования ввода. Вы должны предоставить пользовательскую реализацию элемента `<input>` со свойством `inputComponent`.
+You can use third-party libraries to format an input. You have to provide a custom implementation of the `<input>` element with the `inputComponent` property.
 
-В следующем примере используются библиотеки [response-text-mask](https://github.com/text-mask/text-mask) и [response-number-format](https://github.com/s-yadav/react-number-format). The same concept could be applied to [e.g. react-stripe-element](https://github.com/mui-org/material-ui/issues/16037).
+The following demo uses the [react-text-mask](https://github.com/text-mask/text-mask) and [react-number-format](https://github.com/s-yadav/react-number-format) libraries. The same concept could be applied to [e.g. react-stripe-element](https://github.com/mui-org/material-ui/issues/16037).
 
 {{"demo": "pages/components/text-fields/FormattedInputs.js"}}
 
-Предоставленный компонент ввода должен обрабатывать свойство `inputRef`. Свойство должно вызываться со значением, которое реализует следующий интерфейс:
+The provided input component should handle the `inputRef` property. The property should be called with a value that implements the following interface:
 
 ```ts
 interface InputElement {

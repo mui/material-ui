@@ -635,14 +635,13 @@ const appList = [
     dateAdded: '2020-01-20',
   },
   {
-    title: 'SaaS Template',
-    description:
-      'An open source Template for an SaaS app. Features a landing page, a blog,' +
-      'an admin dashboard and an image uploader with emoji support.',
-    image: '',
-    link: 'https://reactsaastemplate.com/',
-    source: 'https://github.com/dunky11/react-saas-template',
-    stars: 1,
+    title: 'CinemaPlus',
+    description: 'Cinema Plus is an online Movie Ticket Booking web app with MERN Stack.',
+    image: 'cinemaplus.jpg',
+    link: 'https://elcinema.herokuapp.com/',
+    similarWebVisits: 100,
+    source: 'https://github.com/georgesimos/cinema-plus',
+    stars: 4,
     dateAdded: '2020-01-31',
   },
 ];

@@ -35,7 +35,7 @@ Der erste Schritt besteht darin, die `InputBase` Komponente zu formatieren. Ansc
 
 The `Select` component can handle multiple selections. It's enabled with the `multiple` property.
 
-Like with the single selection, you can pull out the new value by accessing `event.target.value` in the `onChange` callback. It's always an array.
+Like with the single selection, you can pull out the new value by accessing `event.target.value` in the `onChange` callback. Es ist immer ein Array.
 
 {{"demo": "pages/components/selects/MultipleSelect.js"}}
 
@@ -49,7 +49,7 @@ Während es von der Material Design-Spezifikation nicht empfohlen wird, können 
 
 {{"demo": "pages/components/selects/DialogSelect.js"}}
 
-## Grouping
+## Gruppierung
 
 Display categories with the `ListSubheader` component or the native `<optgroup>` element.
 

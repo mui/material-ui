@@ -5,9 +5,11 @@ components: Alert
 
 # Alert
 
-<p class="description">An alert displays a short, important message in a way that attracts the user's attention without interrupting the user's task.</p>
+<p class="description">Une alerte affiche un message court et important d'une manière qui attire l'attention de l'utilisateur sans interrompre sa tâche.</p>
 
-## Simple alerts
+**Note:** This component is not documented in the [Material Design guidelines](https://material.io/), but Material-UI supports it.
+
+## Alertes simples
 
 The alert offers four severity levels that set a distinctive icon and color.
 

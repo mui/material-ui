@@ -1,4 +1,4 @@
-# Our Vision
+# 我们的愿景
 
 <p class="description">我们的愿景是遵循 Material Design 的设计准则，来提供一个精致的 React 实现方案，并且能够能按照您的需求量身定制，将您的品牌特色表现得淋漓尽致。</p>
 

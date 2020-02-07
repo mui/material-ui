@@ -32,7 +32,9 @@ components: TextField, Popper, Autocomplete
 
 ## 自由独奏
 
-将 `freeSolo` 设置为true，以便在文本框中输入任意值。
+Set `freeSolo` to true so the textbox can contain any arbitrary value. The prop is designed to cover the primary use case of a search box with suggestions, e.g. Google search.
+
+However, if you intend to use it for a [combo box](#combo-box) like experience (an enhanced version of a select element) we recommend setting `selectOnFocus`.
 
 {{"demo": "pages/components/autocomplete/FreeSolo.js"}}
 
@@ -42,11 +44,11 @@ components: TextField, Popper, Autocomplete
 
 ## 已禁用的选项
 
-{{"demo": "pages/components/autocomplete/disabledOptions.js"}}
+{{"demo": "pages/components/autocomplete/DisabledOptions.js"}}
 
 ## `使用自动完成`
 
-作为一种高级定制方式，我们公开了一个 `useAutocomplete()` 钩子方法。 It accepts almost the same options as the Autocomplete component minus all the props related to the rendering of JSX. Autocomplete组件内部也是使用的此钩子方法。
+For advanced customization use cases, we expose a `useAutocomplete()` hook. It accepts almost the same options as the Autocomplete component minus all the props related to the rendering of JSX. The Autocomplete component uses this hook internally.
 
 ```jsx
 import useAutocomplete from '@material-ui/lab/useAutocomplete';
@@ -58,13 +60,13 @@ import useAutocomplete from '@material-ui/lab/useAutocomplete';
 
 ### 自定义钩子
 
-{{"demo": "pages/components/autocomplete/ustomizedHook.js"}}
+{{"demo": "pages/components/autocomplete/CustomizedHook.js"}}
 
-转到[自定义自动完成](#customized-autocomplete)部分，查看使用 `Autocomplete` 组件（而不是钩子）的例子。
+Head to the [Customized Autocomplete](#customized-autocomplete) section for a customization example with the `Autocomplete` component instead of the hook.
 
 ## 异步请求
 
-{{"demo": "pages/components/autocomplete/disabledOptions.js"}}
+{{"demo": "pages/components/autocomplete/Asynchronous.js"}}
 
 ### Google Maps place
 
@@ -76,13 +78,13 @@ For this demo, we need to load the [Google Maps JavaScript](https://developers.g
 
 > ⚠️ Before you can start using the Google Maps JavaScript API, you must sign up and create a billing account.
 
-## Multiple values
+## Multiple values（多重值）
 
-Also known as tags, the user is allowed to enter more than one value.
+这也称为标签，允许用户输入多个值。
 
 {{"demo": "pages/components/autocomplete/Tags.js"}}
 
-### Fixed options
+### 固定选项
 
 In the event that you need to lock certain tag so that they can't be removed in the interface, you can set the chips disabled.
 
@@ -100,7 +102,7 @@ Fancy smaller inputs? Use the `size` prop.
 
 ## 定制的自动完成组件
 
-This demo reproduces the GitHub's label picker:
+该演示再现了GitHub的标签选择器：
 
 {{"demo": "pages/components/autocomplete/GitHubLabel.js"}}
 
@@ -163,9 +165,32 @@ Search within 10,000 randomly generated options. The list is virtualized thanks 
 
 ## 局限性
 
+### autocomplete/autofill
+
+The browsers have heuristics to help the users fill the form inputs. However, it can harm the UX of the component.
+
+By default, the component disable the **autocomplete** feature (remembering what the user has typed for a given field in a previous session) with the `autoComplete="off"` attribute.
+
+However, in addition to remembering past entered values, the browser might also propose **autofill** suggestions (saved login, address, or payment details). In the event you want the avoid autofill, you can try the following:
+
+- Name the input without leaking any information the browser can use. e.g. `id="field1"` instead of `id="country"`. If you leave the id empty, the component uses a random id.
+- Set `autoComplete="new-password"`: 
+        jsx
+        <TextField
+        {...params}
+        inputProps={{
+          ...params.inputProps,
+          autoComplete: 'new-password',
+        }}
+        />
+
 ### iOS VoiceOver
 
 VoiceOver on iOS Safari doesn't support the `aria-owns` attribute very well. You can work around the issue with the `disablePortal` prop.
+
+### TypeScript
+
+To fully take advantage of type inference, you need to set the `multiple` prop to `undefined`, `false` or `true`. See [this discussion](https://github.com/mui-org/material-ui/pull/18854#discussion_r364215153) for more details. TypeScript might solve this bug in the future.
 
 ## 可访问性
 

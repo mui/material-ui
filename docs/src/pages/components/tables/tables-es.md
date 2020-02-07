@@ -5,11 +5,11 @@ components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead,
 
 # Table (tabla)
 
-<p class="description">Tables display sets of data. They can be fully customized.</p>
+<p class="description">Las tablas muestran conjuntos de datos. Pueden ser totalmente personalizadas.</p>
 
-[Tables](https://material.io/design/components/data-tables.html) display information in a way that’s easy to scan, so that users can look for patterns and insights. Se pueden integrar en contenido principal, tal como tarjetas.
+Las [tablas](https://material.io/design/components/data-tables.html) muestran información de una forma fácil de analizar, revelando así patrones e ideas a los usuarios. Se pueden integrar en contenido principal, tal como tarjetas.
 
-Tables can include:
+Las tablas pueden incluir:
 
 - Un elemento visual correspondiente
 - Navegación
@@ -45,17 +45,17 @@ La Tabla tiene un ancho fijo para demostrar el desplazamiento horizontal. Para e
 
 {{"demo": "pages/components/tables/EnhancedTable.js", "bg": true}}
 
-## Customized tables
+## Tablas personalizadas
 
 Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 
 {{"demo": "pages/components/tables/CustomizedTables.js", "bg": true}}
 
-### Custom pagination options
+### Opciones de paginación personalizada
 
-It's possible to customise the options shown in the "Rows per page" select using the `rowsPerPageOptions` prop. You should either provide an array of:
+Es posible personalizar las opciones en el item "Filas por página" usando la propiedad `rowsPerPageOptions`. Debes proveer alguna de estas opciones de array:
 
-- **numbers**, each number will be used for the option's label and value.
+- **numbers**, cada número será usado para la etiqueta y el valor de la opción.
     
     ```jsx
     <TablePagination rowsPerPageOptions={[10, 50]} />

@@ -19,7 +19,7 @@ Karten können zwar mehrere Aktionen, UI-Steuerelemente und ein Überlaufmenü u
 
 ### Outlined Card
 
-Set `variant="outlined` to render an outlined card.
+Set `variant="outlined"` to render an outlined card.
 
 {{"demo": "pages/components/cards/OutlinedCard.js", "bg": true}}
 
@@ -39,7 +39,7 @@ Standardmäßig verwenden wir die Kombination aus einem `<div>`-Element und eine
 
 {{"demo": "pages/components/cards/ImgMediaCard.js", "bg": true}}
 
-> ⚠️ When `component="img"`, CardMedia relies on `object-fit` for centering the image. It's not supported by IE 11.
+> ⚠️ When `component="img"`, CardMedia relies on `object-fit` for centering the image. Es wird vom IE 11 nicht unterstützt.
 
 ## Steuerelemente der Benutzeroberfläche
 
@@ -48,3 +48,7 @@ Ergänzende Aktionen innerhalb der Karte werden explizit mit Symbolen, Text und 
 Hier ist ein Beispiel für eine Mediensteuerungskarte.
 
 {{"demo": "pages/components/cards/MediaControlCard.js", "bg": true}}
+
+## Individuelle Anpassung
+
+👑 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/components/card).

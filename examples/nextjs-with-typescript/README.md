@@ -16,12 +16,9 @@ npm install
 npm run dev
 ```
 
-or
+or:
 
-```sh
-yarn
-yarn dev
-```
+[![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/mui-org/material-ui/tree/master/examples/nextjs-with-typescript)
 
 ## The idea behind the example
 
