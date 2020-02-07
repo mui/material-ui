@@ -14,6 +14,6 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "post-update": "yarn upgrade --latest"
+    "post-update": "echo \"codesandbox preview only, need an update\" && yarn upgrade --latest"
   }
 }
