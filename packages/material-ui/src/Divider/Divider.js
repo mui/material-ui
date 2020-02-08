@@ -38,7 +38,7 @@ export const styles = theme => ({
     height: '100%',
     width: 1,
   },
-  /* Styles applied to the root element if flexItem={true}. */
+  /* Styles applied to the root element if `flexItem={true}`. */
   flexItem: {
     alignSelf: 'stretch',
     height: 'auto',
@@ -51,7 +51,7 @@ const Divider = React.forwardRef(function Divider(props, ref) {
     classes,
     className,
     component: Component = 'hr',
-    flexItem,
+    flexItem = false,
     light = false,
     orientation = 'horizontal',
     role = Component !== 'hr' ? 'separator' : undefined,
@@ -99,7 +99,7 @@ Divider.propTypes = {
    */
   component: PropTypes.elementType,
   /**
-   * If true, the divider will apply different strategy for height
+   * If `true`, the divider will apply different strategy for height
    */
   flexItem: PropTypes.bool,
   /**
