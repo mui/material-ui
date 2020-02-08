@@ -51,14 +51,13 @@ const Divider = React.forwardRef(function Divider(props, ref) {
     classes,
     className,
     component: Component = 'hr',
+    flexItem,
     light = false,
     orientation = 'horizontal',
     role = Component !== 'hr' ? 'separator' : undefined,
-    variant = 'fullWidth',
-    flexItem,
+    variant = 'fullWidth',    
     ...other
   } = props;
-  console.log('!!flexItem', flexItem, classes.flexItem)
 
   return (
     <Component
@@ -67,9 +66,9 @@ const Divider = React.forwardRef(function Divider(props, ref) {
         {
           [classes[variant]]: variant !== 'fullWidth',
           [classes.absolute]: absolute,
+          [classes.flexItem]: !!flexItem,
           [classes.light]: light,
           [classes.vertical]: orientation === 'vertical',
-          [classes.flexItem]: !!flexItem
         },
         className,
       )}
@@ -100,6 +99,10 @@ Divider.propTypes = {
    */
   component: PropTypes.elementType,
   /**
+   * If true, the divider will apply different strategy for height
+   */
+  flexItem: PropTypes.bool,
+  /**
    * If `true`, the divider will have a lighter color.
    */
   light: PropTypes.bool,
@@ -115,10 +118,6 @@ Divider.propTypes = {
    * The variant to use.
    */
   variant: PropTypes.oneOf(['fullWidth', 'inset', 'middle']),
-  /**
-   * If true, the divider will apply different strategy for height
-   */
-  flexItem: PropTypes.bool
 };
 
 export default withStyles(styles, { name: 'MuiDivider' })(Divider);
