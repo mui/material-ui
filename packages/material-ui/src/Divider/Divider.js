@@ -66,7 +66,7 @@ const Divider = React.forwardRef(function Divider(props, ref) {
         {
           [classes[variant]]: variant !== 'fullWidth',
           [classes.absolute]: absolute,
-          [classes.flexItem]: !!flexItem,
+          [classes.flexItem]: flexItem,
           [classes.light]: light,
           [classes.vertical]: orientation === 'vertical',
         },
