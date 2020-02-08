@@ -4,6 +4,7 @@ export interface DividerTypeMap<P = {}, D extends React.ElementType = 'hr'> {
   props: P & {
     absolute?: boolean;
     light?: boolean;
+    flexItem?: boolean;
     orientation?: 'horizontal' | 'vertical';
     variant?: 'fullWidth' | 'inset' | 'middle';
   };

@@ -38,6 +38,11 @@ export const styles = theme => ({
     height: '100%',
     width: 1,
   },
+  /* Styles applied to the root element if flexItem={true}. */
+  flexItem: {
+    alignSelf: 'stretch',
+    height: 'auto',
+  },
 });
 
 const Divider = React.forwardRef(function Divider(props, ref) {
@@ -50,8 +55,10 @@ const Divider = React.forwardRef(function Divider(props, ref) {
     orientation = 'horizontal',
     role = Component !== 'hr' ? 'separator' : undefined,
     variant = 'fullWidth',
+    flexItem,
     ...other
   } = props;
+  console.log('!!flexItem', flexItem, classes.flexItem)
 
   return (
     <Component
@@ -62,6 +69,7 @@ const Divider = React.forwardRef(function Divider(props, ref) {
           [classes.absolute]: absolute,
           [classes.light]: light,
           [classes.vertical]: orientation === 'vertical',
+          [classes.flexItem]: !!flexItem
         },
         className,
       )}
@@ -107,6 +115,10 @@ Divider.propTypes = {
    * The variant to use.
    */
   variant: PropTypes.oneOf(['fullWidth', 'inset', 'middle']),
+  /**
+   * If true, the divider will apply different strategy for height
+   */
+  flexItem: PropTypes.bool
 };
 
 export default withStyles(styles, { name: 'MuiDivider' })(Divider);
