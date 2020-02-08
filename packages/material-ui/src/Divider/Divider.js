@@ -55,7 +55,7 @@ const Divider = React.forwardRef(function Divider(props, ref) {
     light = false,
     orientation = 'horizontal',
     role = Component !== 'hr' ? 'separator' : undefined,
-    variant = 'fullWidth',    
+    variant = 'fullWidth',
     ...other
   } = props;
 
