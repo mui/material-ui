@@ -459,16 +459,6 @@ const appList = [
     dateAdded: '2018-01-03',
   },
   {
-    title: 'Trafikito',
-    description:
-      'Free servers monitoring solution which can track any output of any command and do ' +
-      'automated action. By default it tracks average load, CPU, HDD, RAM and sends email when ' +
-      'something is going wrong.',
-    image: 'trafikito-monitoring.jpg',
-    link: 'https://trafikito.com/',
-    dateAdded: '2018-01-20',
-  },
-  {
     title: 'Hokan',
     description:
       'Customer management and contract management we service for the insurance industry. 🇯🇵',
