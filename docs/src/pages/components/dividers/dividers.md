@@ -36,5 +36,6 @@ The examples below show two ways of achieving this.
 ## Vertical Dividers
 
 You can also render a divider vertically using the `orientation` prop.
+Note the usage of the `flexItem` prop to accommodate for the flex container.
 
 {{"demo": "pages/components/dividers/VerticalDividers.js", "bg": true}}
