@@ -5,39 +5,6 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import TreeItem from '@material-ui/lab/TreeItem';
 
-export default function RecursiveTreeView() {
-  const classes = useStyles();
-
-  const TreeRender = data => {
-    if (Array.isArray(data.children)) {
-      return (
-        <TreeItem key={data.name} nodeId={data.name} label={data.name}>
-          {data.children.map((node, idx) => TreeRender(node))}
-        </TreeItem>
-      );
-    }
-    return <TreeItem key={data.name} nodeId={data.name} label={data.name} />;
-  };
-
-  return (
-    <TreeView
-      className={classes.root}
-      defaultCollapseIcon={<ExpandMoreIcon />}
-      defaultExpandIcon={<ChevronRightIcon />}
-    >
-      {TreeRender(data)}
-    </TreeView>
-  );
-}
-
-const useStyles = makeStyles({
-  root: {
-    height: 216,
-    flexGrow: 1,
-    maxWidth: 400,
-  },
-});
-
 const data = {
   id: 'root',
   name: 'Parent',
@@ -72,3 +39,36 @@ const data = {
     },
   ],
 };
+
+const useStyles = makeStyles({
+  root: {
+    height: 216,
+    flexGrow: 1,
+    maxWidth: 400,
+  },
+});
+
+export default function RecursiveTreeView() {
+  const classes = useStyles();
+
+  const TreeRender = data => {
+    if (Array.isArray(data.children)) {
+      return (
+        <TreeItem key={data.name} nodeId={data.name} label={data.name}>
+          {data.children.map(node => TreeRender(node))}
+        </TreeItem>
+      );
+    }
+    return <TreeItem key={data.name} nodeId={data.name} label={data.name} />;
+  };
+
+  return (
+    <TreeView
+      className={classes.root}
+      defaultCollapseIcon={<ExpandMoreIcon />}
+      defaultExpandIcon={<ChevronRightIcon />}
+    >
+      {TreeRender(data)}
+    </TreeView>
+  );
+}

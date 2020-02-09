@@ -11,39 +11,6 @@ interface TreeRenderProps {
   children: TreeRenderProps[] | null;
 }
 
-export default function RecursiveTreeView() {
-  const classes = useStyles();
-
-  const TreeRender = (data: TreeRenderProps) => {
-    if (Array.isArray(data.children)) {
-      return (
-        <TreeItem key={data.name} nodeId={data.name} label={data.name}>
-          {data.children.map((node, idx) => TreeRender(node))}
-        </TreeItem>
-      );
-    }
-    return <TreeItem key={data.name} nodeId={data.name} label={data.name} />;
-  };
-
-  return (
-    <TreeView
-      className={classes.root}
-      defaultCollapseIcon={<ExpandMoreIcon />}
-      defaultExpandIcon={<ChevronRightIcon />}
-    >
-      {TreeRender(data)}
-    </TreeView>
-  );
-}
-
-const useStyles = makeStyles({
-  root: {
-    height: 216,
-    flexGrow: 1,
-    maxWidth: 400,
-  },
-});
-
 const data: TreeRenderProps = {
   id: 'root',
   name: 'Parent',
@@ -78,3 +45,36 @@ const data: TreeRenderProps = {
     },
   ],
 };
+
+const useStyles = makeStyles({
+  root: {
+    height: 216,
+    flexGrow: 1,
+    maxWidth: 400,
+  },
+});
+
+export default function RecursiveTreeView() {
+  const classes = useStyles();
+
+  const TreeRender = (data: TreeRenderProps) => {
+    if (Array.isArray(data.children)) {
+      return (
+        <TreeItem key={data.name} nodeId={data.name} label={data.name}>
+          {data.children.map(node => TreeRender(node))}
+        </TreeItem>
+      );
+    }
+    return <TreeItem key={data.name} nodeId={data.name} label={data.name} />;
+  };
+
+  return (
+    <TreeView
+      className={classes.root}
+      defaultCollapseIcon={<ExpandMoreIcon />}
+      defaultExpandIcon={<ChevronRightIcon />}
+    >
+      {TreeRender(data)}
+    </TreeView>
+  );
+}
