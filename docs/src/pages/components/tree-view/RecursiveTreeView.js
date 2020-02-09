@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import TreeView from '@material-ui/lab/TreeView';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -12,27 +13,14 @@ const data = {
     {
       id: '1',
       name: 'Child - 1',
-      children: [
-        {
-          id: '2',
-          name: 'Child - 2',
-          children: [
-            {
-              id: '3',
-              name: 'Child - 3',
-              children: null,
-            },
-          ],
-        },
-      ],
     },
     {
-      id: '4',
-      name: 'Child - 4',
+      id: '3',
+      name: 'Child - 3',
       children: [
         {
-          id: '5',
-          name: 'Child - 5',
+          id: '4',
+          name: 'Child - 4',
           children: null,
         },
       ],
@@ -42,34 +30,38 @@ const data = {
 
 const useStyles = makeStyles({
   root: {
-    height: 216,
+    height: 110,
     flexGrow: 1,
     maxWidth: 400,
   },
 });
 
+function renderTree(nodes) {
+  return (
+    <TreeItem key={nodes.id} nodeId={nodes.id} label={nodes.name}>
+      {Array.isArray(nodes.children) ? nodes.children.map(node => renderTree(node)) : null}
+    </TreeItem>
+  );
+}
+
+renderTree.propTypes = {
+  children: PropTypes.oneOfType([PropTypes.oneOf([null]), PropTypes.arrayOf(PropTypes.object)])
+    .isRequired,
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+};
+
 export default function RecursiveTreeView() {
   const classes = useStyles();
-
-  const TreeRender = nodes => {
-    const { children, name } = nodes;
-    if (Array.isArray(children)) {
-      return (
-        <TreeItem key={name} nodeId={name} label={name}>
-          {children.map(node => TreeRender(node))}
-        </TreeItem>
-      );
-    }
-    return <TreeItem key={name} nodeId={name} label={name} />;
-  };
 
   return (
     <TreeView
       className={classes.root}
       defaultCollapseIcon={<ExpandMoreIcon />}
+      defaultExpanded={['root']}
       defaultExpandIcon={<ChevronRightIcon />}
     >
-      {TreeRender(data)}
+      {renderTree(data)}
     </TreeView>
   );
 }

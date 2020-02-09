@@ -17,11 +17,27 @@ The tree view also offers a controlled API.
 
 {{"demo": "pages/components/tree-view/ControlledTreeView.js"}}
 
-## Recursive
+## Rich object
 
-Render tree view with recursion approach.
+While the `TreeView`/`TreeItem` component API is great to maximize flexibility, an extra step is needed to handle a rich object.
 
-{{"demo": "pages/components/tree-view/RecursiveTreeView.js"}}
+Let's consider a data variable with the following shape, a recursion can be used to handle it.
+
+```js
+const data = {
+  id: 'root',
+  name: 'Parent',
+  children: [
+    {
+      id: '1',
+      name: 'Child - 1',
+    },
+    // …
+  ],
+};
+```
+
+{{"demo": "pages/components/tree-view/RecursiveTreeView.js", "defaultCodeOpen": false}}
 
 ## Customized tree view
 
