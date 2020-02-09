@@ -105,9 +105,10 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   };
 
   const handleMouseDown = event => {
-    if (event.button !== 0)
-      // ignore everything but left-click
+    // Ignore everything but left-click
+    if (event.button !== 0) {
       return;
+    }
     // Hijack the default focus behavior.
     event.preventDefault();
     displayNode.focus();
