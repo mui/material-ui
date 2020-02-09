@@ -63,7 +63,7 @@ export default function Notifications() {
     document.cookie = `lastSeenNotification=${messageList[0].id};path=/;max-age=31536000`;
   };
 
-  const handleNotificationsMenuClose = event => {
+  const handleNotificationsMenuClose = () => {
     setNotificationsMenu(null);
   };
 
