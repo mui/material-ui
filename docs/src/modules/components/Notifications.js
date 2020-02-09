@@ -177,6 +177,7 @@ export default function Notifications() {
                                 dangerouslySetInnerHTML={{ __html: message.text }}
                               />
                             }
+                            secondaryTypographyProps={{ color: 'textPrimary' }}
                           />
                         </ListItem>
                         {index < messageList.length - 1 ? <Divider /> : null}
