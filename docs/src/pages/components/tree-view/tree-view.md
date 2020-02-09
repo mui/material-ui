@@ -19,7 +19,7 @@ The tree view also offers a controlled API.
 
 ## Recursive
 
-render tree view with recursion approach
+Render tree view with recursion approach.
 
 {{"demo": "pages/components/tree-view/RecursiveTreeView.js"}}
 
