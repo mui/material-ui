@@ -101,7 +101,7 @@ export default function MiniDrawer() {
     setOpen(false);
   };
 
-  const handleClick = index => () => {
+  const handleClick = (index: number) => () => {
     if (index === openIndex) {
       setOpenIndex(-1);
     } else {
