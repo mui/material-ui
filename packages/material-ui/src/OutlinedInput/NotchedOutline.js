@@ -5,63 +5,61 @@ import withStyles from '../styles/withStyles';
 import useTheme from '../styles/useTheme';
 import capitalize from '../utils/capitalize';
 
-export const styles = theme => {
-  return {
-    /* Styles applied to the root element. */
-    root: {
-      position: 'absolute',
-      bottom: 0,
-      right: 0,
-      top: -5,
-      left: 0,
-      margin: 0,
-      padding: 0,
-      paddingLeft: 8,
-      pointerEvents: 'none',
-      borderRadius: 'inherit',
-      borderStyle: 'solid',
-      borderWidth: 1,
+export const styles = theme => ({
+  /* Styles applied to the root element. */
+  root: {
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
+    top: -5,
+    left: 0,
+    margin: 0,
+    padding: 0,
+    paddingLeft: 8,
+    pointerEvents: 'none',
+    borderRadius: 'inherit',
+    borderStyle: 'solid',
+    borderWidth: 1,
+  },
+  /* Styles applied to the legend element when `labelWidth` is provided. */
+  legend: {
+    textAlign: 'left',
+    padding: 0,
+    lineHeight: '11px', // sync with `height` in `legend` styles
+    transition: theme.transitions.create('width', {
+      duration: 150,
+      easing: theme.transitions.easing.easeOut,
+    }),
+  },
+  /* Styles applied to the legend element. */
+  legendLabelled: {
+    display: 'block',
+    width: 'auto',
+    textAlign: 'left',
+    padding: 0,
+    height: 11, // sync with `lineHeight` in `legend` styles
+    fontSize: '0.75em',
+    visibility: 'hidden',
+    maxWidth: 0.01,
+    transition: theme.transitions.create('max-width', {
+      duration: 50,
+      easing: theme.transitions.easing.easeOut,
+    }),
+    '& span': {
+      paddingLeft: 5,
+      paddingRight: 5,
     },
-    /* Styles applied to the legend element when `labelWidth` is provided. */
-    legend: {
-      textAlign: 'left',
-      padding: 0,
-      lineHeight: '11px', // sync with `height` in `legend` styles
-      transition: theme.transitions.create('width', {
-        duration: 150,
-        easing: theme.transitions.easing.easeOut,
-      }),
-    },
-    /* Styles applied to the legend element. */
-    legendLabelled: {
-      display: 'block',
-      width: 'auto',
-      textAlign: 'left',
-      padding: 0,
-      height: 11, // sync with `lineHeight` in `legend` styles
-      fontSize: '0.75em',
-      visibility: 'hidden',
-      maxWidth: 0.01,
-      transition: theme.transitions.create('max-width', {
-        duration: 50,
-        easing: theme.transitions.easing.easeOut,
-      }),
-      '& span': {
-        paddingLeft: 5,
-        paddingRight: 5,
-      },
-    },
-    /* Styles applied to the legend element is notched. */
-    legendNotched: {
-      maxWidth: 1000,
-      transition: theme.transitions.create('max-width', {
-        duration: 100,
-        easing: theme.transitions.easing.easeOut,
-        delay: 50,
-      }),
-    },
-  };
-};
+  },
+  /* Styles applied to the legend element is notched. */
+  legendNotched: {
+    maxWidth: 1000,
+    transition: theme.transitions.create('max-width', {
+      duration: 100,
+      easing: theme.transitions.easing.easeOut,
+      delay: 50,
+    }),
+  },
+});
 
 /**
  * @ignore - internal component.
