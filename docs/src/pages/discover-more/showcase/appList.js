@@ -644,6 +644,16 @@ const appList = [
     stars: 4,
     dateAdded: '2020-01-31',
   },
+  {
+    title: 'React JS Agency',
+    description: 'React js freelance using Gatsby.',
+    image: 'cinemaplus.jpg',
+    link: 'https://reacter.dev/',
+    similarWebVisits: 100,
+    source: 'https://appdesign.dev/',
+    stars: 448,
+    dateAdded: '2020-02-09',
+  },
 ];
 
 export default appList;
