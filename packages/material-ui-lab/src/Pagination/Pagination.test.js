@@ -8,10 +8,10 @@ import Pagination from './Pagination';
 describe('<Pagination />', () => {
   let classes;
   let mount;
-  const render = createClientRender({ strict: false });
+  const render = createClientRender();
 
   before(() => {
-    mount = createMount();
+    mount = createMount({ strict: true });
     classes = getClasses(<Pagination />);
   });
 

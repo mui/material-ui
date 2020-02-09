@@ -84,15 +84,15 @@ describe('<IconButton />', () => {
 
   describe('prop: size', () => {
     it('should render the right class', () => {
-      let rootNode;
-      rootNode = render(<IconButton size="small">book</IconButton>).container.firstChild;
-      expect(rootNode).to.have.class(classes.sizeSmall);
+      let root;
+      root = render(<IconButton size="small">book</IconButton>).container.firstChild;
+      expect(root).to.have.class(classes.sizeSmall);
 
-      rootNode = render(<IconButton size="medium">book</IconButton>).container.firstChild;
-      expect(rootNode).not.to.have.class(classes.sizeSmall);
+      root = render(<IconButton size="medium">book</IconButton>).container.firstChild;
+      expect(root).not.to.have.class(classes.sizeSmall);
 
-      rootNode = render(<IconButton>book</IconButton>).container.firstChild;
-      expect(rootNode).not.to.have.class(classes.sizeSmall);
+      root = render(<IconButton>book</IconButton>).container.firstChild;
+      expect(root).not.to.have.class(classes.sizeSmall);
     });
   });
 

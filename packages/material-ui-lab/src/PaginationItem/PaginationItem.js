@@ -204,7 +204,7 @@ const PaginationItem = React.forwardRef(function PaginationItem(props, ref) {
     shape = 'round',
     size = 'medium',
     type = 'page',
-    variant,
+    variant = 'text',
     ...other
   } = props;
 
@@ -286,7 +286,7 @@ PaginationItem.propTypes = {
    * The size of the pagination item.
    */
   size: PropTypes.oneOf(['small', 'medium', 'large']),
-  /*
+  /**
    * The type of pagination item.
    */
   type: PropTypes.oneOf([
@@ -298,7 +298,7 @@ PaginationItem.propTypes = {
     'start-ellipsis',
     'end-ellipsis',
   ]),
-  /*
+  /**
    * The pagination item variant.
    */
   variant: PropTypes.oneOf(['text', 'outlined']),

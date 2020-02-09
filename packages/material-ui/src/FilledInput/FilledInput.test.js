@@ -27,13 +27,13 @@ describe('<FilledInput />', () => {
 
   it('should have the underline class', () => {
     const { container } = render(<FilledInput />);
-    const rootNode = container.firstChild;
-    expect(rootNode).to.have.class(classes.underline);
+    const root = container.firstChild;
+    expect(root).to.have.class(classes.underline);
   });
 
   it('can disable the underline', () => {
     const { container } = render(<FilledInput disableUnderline />);
-    const rootNode = container.firstChild;
-    expect(rootNode).not.to.have.class(classes.underline);
+    const root = container.firstChild;
+    expect(root).not.to.have.class(classes.underline);
   });
 });

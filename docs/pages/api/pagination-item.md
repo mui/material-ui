@@ -31,8 +31,8 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 | <span class="prop-name">selected</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true` the pagination item is selected. |
 | <span class="prop-name">shape</span> | <span class="prop-type">'round'<br>&#124;&nbsp;'rounded'</span> | <span class="prop-default">'round'</span> | The shape of the pagination item. |
 | <span class="prop-name">size</span> | <span class="prop-type">'small'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'large'</span> | <span class="prop-default">'medium'</span> | The size of the pagination item. |
-| <span class="prop-name">type</span> | <span class="prop-type">'page'<br>&#124;&nbsp;'first'<br>&#124;&nbsp;'last'<br>&#124;&nbsp;'next'<br>&#124;&nbsp;'previous'<br>&#124;&nbsp;'start-ellipsis'<br>&#124;&nbsp;'end-ellipsis'</span> | <span class="prop-default">'page'</span> |  |
-| <span class="prop-name">variant</span> | <span class="prop-type">'text'<br>&#124;&nbsp;'outlined'</span> |  |  |
+| <span class="prop-name">type</span> | <span class="prop-type">'page'<br>&#124;&nbsp;'first'<br>&#124;&nbsp;'last'<br>&#124;&nbsp;'next'<br>&#124;&nbsp;'previous'<br>&#124;&nbsp;'start-ellipsis'<br>&#124;&nbsp;'end-ellipsis'</span> | <span class="prop-default">'page'</span> | The type of pagination item. |
+| <span class="prop-name">variant</span> | <span class="prop-type">'text'<br>&#124;&nbsp;'outlined'</span> | <span class="prop-default">'text'</span> | The pagination item variant. |
 
 The `ref` is forwarded to the root element.
 

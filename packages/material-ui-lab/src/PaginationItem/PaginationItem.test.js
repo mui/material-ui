@@ -8,10 +8,10 @@ import PaginationItem from './PaginationItem';
 describe('<PaginationItem />', () => {
   let classes;
   let mount;
-  const render = createClientRender({ strict: false });
+  const render = createClientRender();
 
   before(() => {
-    mount = createMount();
+    mount = createMount({ strict: true });
     classes = getClasses(<PaginationItem />);
   });
 
@@ -55,10 +55,10 @@ describe('<PaginationItem />', () => {
       </PaginationItem>,
     );
 
-    const rootNode = getByTestId('root');
-    expect(rootNode).to.have.class(classes.root);
-    expect(rootNode).to.have.class(classes.sizeSmall);
-    expect(rootNode).not.to.have.class(classes.sizeLarge);
+    const root = getByTestId('root');
+    expect(root).to.have.class(classes.root);
+    expect(root).to.have.class(classes.sizeSmall);
+    expect(root).not.to.have.class(classes.sizeLarge);
   });
 
   it('should render a large button', () => {
@@ -68,9 +68,9 @@ describe('<PaginationItem />', () => {
       </PaginationItem>,
     );
 
-    const rootNode = getByTestId('root');
-    expect(rootNode).to.have.class(classes.root);
-    expect(rootNode).not.to.have.class(classes.sizeSmall);
-    expect(rootNode).to.have.class(classes.sizeLarge);
+    const root = getByTestId('root');
+    expect(root).to.have.class(classes.root);
+    expect(root).not.to.have.class(classes.sizeSmall);
+    expect(root).to.have.class(classes.sizeLarge);
   });
 });

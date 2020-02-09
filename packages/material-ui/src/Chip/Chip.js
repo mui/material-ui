@@ -38,7 +38,7 @@ export const styles = theme => {
       verticalAlign: 'middle',
       boxSizing: 'border-box',
       '&$disabled': {
-        opacity: theme.palette.action.disabledOpacity,
+        opacity: 0.5,
         pointerEvents: 'none',
       },
       '& $avatar': {

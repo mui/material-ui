@@ -40,26 +40,26 @@ describe('<FormControl />', () => {
   describe('initial state', () => {
     it('should have no margin', () => {
       const { container } = render(<FormControl />);
-      const rootNode = container.firstChild;
+      const root = container.firstChild;
 
-      expect(rootNode).not.to.have.class(classes.marginNormal);
-      expect(rootNode).not.to.have.class(classes.marginDense);
+      expect(root).not.to.have.class(classes.marginNormal);
+      expect(root).not.to.have.class(classes.marginDense);
     });
 
     it('can have the margin normal class', () => {
       const { container } = render(<FormControl margin="normal" />);
-      const rootNode = container.firstChild;
+      const root = container.firstChild;
 
-      expect(rootNode).to.have.class(classes.marginNormal);
-      expect(rootNode).not.to.have.class(classes.marginDense);
+      expect(root).to.have.class(classes.marginNormal);
+      expect(root).not.to.have.class(classes.marginDense);
     });
 
     it('can have the margin dense class', () => {
       const { container } = render(<FormControl margin="dense" />);
-      const rootNode = container.firstChild;
+      const root = container.firstChild;
 
-      expect(rootNode).to.have.class(classes.marginDense);
-      expect(rootNode).not.to.have.class(classes.marginNormal);
+      expect(root).to.have.class(classes.marginDense);
+      expect(root).not.to.have.class(classes.marginNormal);
     });
 
     it('should not be filled initially', () => {

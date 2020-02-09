@@ -29,7 +29,7 @@ export const styles = theme => ({
       backgroundColor: theme.palette.action.selected,
     },
     '&$disabled': {
-      opacity: theme.palette.action.disabledOpacity,
+      opacity: 0.5,
     },
   },
   /* Styles applied to the `container` element if `children` includes `ListItemSecondaryAction`. */

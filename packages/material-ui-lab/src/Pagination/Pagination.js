@@ -27,19 +27,31 @@ function defaultGetAriaLabel(type, page, selected) {
 }
 
 const Pagination = React.forwardRef(function Pagination(props, ref) {
+  /* eslint-disable no-unused-vars */
   const {
+    boundaryCount = 1,
     children,
     classes,
     className,
     color = 'standard',
+    count = 1,
+    defaultPage = 1,
+    disabled = false,
     getItemAriaLabel: getAriaLabel = defaultGetAriaLabel,
-    items,
+    hideNextButton = false,
+    hidePrevButton = false,
     renderItem = item => <PaginationItem {...item} />,
     shape = 'round',
+    showFirstButton = false,
+    showLastButton = false,
+    siblingCount = 1,
     size = 'medium',
     variant = 'text',
     ...other
-  } = usePagination({ ...props, componentName: 'Pagination' });
+  } = props;
+  /* eslint-enable no-unused-vars */
+
+  const { items } = usePagination({ ...props, componentName: 'Pagination' });
 
   return (
     <nav
@@ -134,7 +146,7 @@ Pagination.propTypes = {
   /**
    * Render the item.
    *
-   * @param {object} params
+   * @param {object} params The props to spread on a PaginationItem.
    * @returns {ReactNode}
    */
   renderItem: PropTypes.func,
@@ -153,7 +165,7 @@ Pagination.propTypes = {
   /**
    * Number of always visible pages before and after the current page.
    */
-  siblingRange: PropTypes.number,
+  siblingCount: PropTypes.number,
   /**
    * The size of the pagination component.
    */

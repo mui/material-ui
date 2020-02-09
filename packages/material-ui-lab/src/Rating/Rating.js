@@ -40,7 +40,7 @@ export const styles = theme => ({
     cursor: 'pointer',
     WebkitTapHighlightColor: 'transparent',
     '&$disabled': {
-      opacity: theme.palette.action.disabledOpacity,
+      opacity: 0.5,
       pointerEvents: 'none',
     },
     '&$focusVisible $iconActive': {
