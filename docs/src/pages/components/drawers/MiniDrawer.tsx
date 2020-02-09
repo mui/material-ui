@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import clsx from 'clsx';
 import { createStyles, makeStyles, useTheme, Theme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -9,11 +9,15 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
+import Collapse from '@material-ui/core/Collapse';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ExpandLessIcon from '@material-ui/icons/ExpandLess';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import StarIcon from '@material-ui/icons/Star';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
@@ -87,6 +91,7 @@ export default function MiniDrawer() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const [openIndex, setOpenIndex] = useState(-1);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -94,6 +99,14 @@ export default function MiniDrawer() {
 
   const handleDrawerClose = () => {
     setOpen(false);
+  };
+
+  const handleClick = index => () => {
+    if (index === openIndex) {
+      setOpenIndex(-1);
+    } else {
+      setOpenIndex(index);
+    }
   };
 
   return (
@@ -143,10 +156,27 @@ export default function MiniDrawer() {
         <Divider />
         <List>
           {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
+            <>
+              <ListItem button key={text} onClick={handleClick(index)}>
+                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                <ListItemText primary={text} />
+                {openIndex === index ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+              </ListItem>
+              <Collapse in={openIndex === index} timeout="auto" unmountOnExit>
+                <>
+                  <List component="div" disablePadding>
+                    {['First', 'Second'].map((subText, i) => (
+                      <ListItem key={i} button>
+                        <ListItemIcon>
+                          <StarIcon />
+                        </ListItemIcon>
+                        <ListItemText primary={subText} />
+                      </ListItem>
+                    ))}
+                  </List>
+                </>
+              </Collapse>
+            </>
           ))}
         </List>
         <Divider />
