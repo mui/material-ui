@@ -5,7 +5,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import TreeItem from '@material-ui/lab/TreeItem';
 
-export default function FileSystemNavigator() {
+export default function RecursiveTreeView() {
   const classes = useStyles();
 
   const TreeRender = data => {
