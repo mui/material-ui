@@ -2,11 +2,25 @@
 import 'isomorphic-fetch';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import Button from '@material-ui/core/Button';
-import { useRouter } from 'next/router';
-import Snackbar from '@material-ui/core/Snackbar';
+import { makeStyles } from '@material-ui/core/styles';
+import NotificationsIcon from '@material-ui/icons/Notifications';
+import Tooltip from '@material-ui/core/Tooltip';
+import NoSsr from '@material-ui/core/NoSsr';
+import IconButton from '@material-ui/core/IconButton';
+import Badge from '@material-ui/core/Badge';
+import Menu from '@material-ui/core/Menu';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import Divider from '@material-ui/core/Divider';
 import sleep from 'modules/waterfall/sleep';
 import { getCookie } from 'docs/src/modules/utils/helpers';
+import notifications from '../../../notifications.json';
+
+const useStyles = makeStyles(theme => ({
+  menu: {
+    maxWidth: theme.spacing(40),
+  },
+}));
 
 function getLastSeenNotification() {
   const seen = getCookie('lastSeenNotification');
@@ -14,6 +28,10 @@ function getLastSeenNotification() {
 }
 
 let messages = null;
+
+if (process.env.NODE_ENV !== 'production') {
+  messages = notifications;
+}
 
 async function getMessages() {
   try {
@@ -32,43 +50,47 @@ async function getMessages() {
 }
 
 export default function Notifications() {
-  const [open, setOpen] = React.useState(false);
-  const [message, setMessage] = React.useState({});
-  const { route } = useRouter();
+  const classes = useStyles();
+  const [messageList, setMessageList] = React.useState([]);
+  const [unseenNotificationsCount, setUnseenNotificationsCount] = React.useState(0);
+  const [notificationsMenu, setNotificationsMenu] = React.useState(null);
   const t = useSelector(state => state.options.t);
   const userLanguage = useSelector(state => state.options.userLanguage);
 
+  const handleNotificationsMenuClick = event => {
+    setNotificationsMenu(event.currentTarget);
+    setUnseenNotificationsCount(0);
+    document.cookie = `lastSeenNotification=${messageList[0].id};path=/;max-age=31536000`;
+  };
+
+  const handleNotificationsMenuClose = event => {
+    setNotificationsMenu(null);
+  };
+
   const handleMessage = () => {
     const lastSeen = getLastSeenNotification();
-    const unseenMessages = messages.filter(message2 => {
-      if (message2.id <= lastSeen) {
-        return false;
-      }
 
+    const userMessages = messages.filter(message => {
       if (
-        message2.userLanguage &&
-        message2.userLanguage !== userLanguage &&
-        message2.userLanguage !== navigator.language.substring(0, 2)
+        message.userLanguage &&
+        message.userLanguage !== userLanguage &&
+        message.userLanguage !== navigator.language.substring(0, 2)
       ) {
         return false;
       }
-
-      if (message2.route && message2.route !== route) {
-        return false;
-      }
-
       return true;
     });
 
-    if (unseenMessages.length > 0) {
-      setMessage(unseenMessages[0]);
-      setOpen(true);
-    }
-  };
+    const unseenCount = userMessages.reduce(
+      (count, message) => (message.id > lastSeen ? count + 1 : count),
+      0,
+    );
 
-  const handleClose = () => {
-    setOpen(false);
-    document.cookie = `lastSeenNotification=${message.id};path=/;max-age=31536000`;
+    if (unseenCount > 0) {
+      setUnseenNotificationsCount(unseenCount);
+    }
+
+    setMessageList(userMessages.reverse());
   };
 
   React.useEffect(() => {
@@ -89,25 +111,50 @@ export default function Notifications() {
     return () => {
       active = false;
     };
-  }, [route]);
+  }, []);
 
   return (
-    <Snackbar
-      key={message.id}
-      anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-      ContentProps={{ 'aria-describedby': 'notification-message' }}
-      message={
-        <span id="notification-message" dangerouslySetInnerHTML={{ __html: message.text }} />
-      }
-      action={
-        <Button size="small" color="secondary" onClick={handleClose}>
-          {t('close')}
-        </Button>
-      }
-      open={open}
-      autoHideDuration={20e3}
-      onClose={handleClose}
-      onExited={handleMessage}
-    />
+    <React.Fragment>
+      <Tooltip title={t('notifications')} enterDelay={300}>
+        <IconButton
+          color="inherit"
+          aria-owns={notificationsMenu ? 'notifications-menu' : undefined}
+          aria-haspopup="true"
+          aria-label={t('notifications')}
+          onClick={handleNotificationsMenuClick}
+          data-ga-event-category="AppBar"
+          data-ga-event-action="notifications"
+        >
+          <Badge color="secondary" badgeContent={unseenNotificationsCount}>
+            <NotificationsIcon />
+          </Badge>
+        </IconButton>
+      </Tooltip>
+      <NoSsr>
+        <Menu
+          id="notifications-menu"
+          anchorEl={notificationsMenu}
+          open={Boolean(notificationsMenu)}
+          onClose={handleNotificationsMenuClose}
+        >
+          {messageList.map((message, index) => (
+            <div key={message.id} className={classes.menu}>
+              <ListItem alignItems="flex-start">
+                <ListItemText
+                  primary={message.title}
+                  secondary={
+                    <span
+                      id="notification-message"
+                      dangerouslySetInnerHTML={{ __html: message.text }}
+                    />
+                  }
+                />
+              </ListItem>
+              {index < messageList.length - 1 ? <Divider /> : null}
+            </div>
+          ))}
+        </Menu>
+      </NoSsr>
+    </React.Fragment>
   );
 }
