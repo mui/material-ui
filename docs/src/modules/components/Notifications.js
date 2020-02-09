@@ -8,7 +8,11 @@ import Tooltip from '@material-ui/core/Tooltip';
 import NoSsr from '@material-ui/core/NoSsr';
 import IconButton from '@material-ui/core/IconButton';
 import Badge from '@material-ui/core/Badge';
-import Menu from '@material-ui/core/Menu';
+import Popper from '@material-ui/core/Popper';
+import Grow from '@material-ui/core/Grow';
+import Paper from '@material-ui/core/Paper';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
@@ -17,7 +21,7 @@ import { getCookie } from 'docs/src/modules/utils/helpers';
 import notifications from '../../../notifications.json';
 
 const useStyles = makeStyles(theme => ({
-  menu: {
+  list: {
     maxWidth: theme.spacing(40),
   },
 }));
@@ -53,18 +57,29 @@ export default function Notifications() {
   const classes = useStyles();
   const [messageList, setMessageList] = React.useState([]);
   const [unseenNotificationsCount, setUnseenNotificationsCount] = React.useState(0);
-  const [notificationsMenu, setNotificationsMenu] = React.useState(null);
+  const [open, setOpen] = React.useState(false);
+  const [tooltipOpen, setTooltipOpen] = React.useState(false);
+  const anchorRef = React.useRef(null);
   const t = useSelector(state => state.options.t);
   const userLanguage = useSelector(state => state.options.userLanguage);
 
-  const handleNotificationsMenuClick = event => {
-    setNotificationsMenu(event.currentTarget);
+  const handleToggle = () => {
+    setOpen(prevOpen => !prevOpen);
+    setTooltipOpen(false);
     setUnseenNotificationsCount(0);
     document.cookie = `lastSeenNotification=${messageList[0].id};path=/;max-age=31536000`;
   };
 
-  const handleNotificationsMenuClose = () => {
-    setNotificationsMenu(null);
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleTooltipOpen = () => {
+    setTooltipOpen(!open);
+  };
+
+  const handleTooltipClose = () => {
+    setTooltipOpen(false);
   };
 
   const handleMessage = () => {
@@ -115,13 +130,20 @@ export default function Notifications() {
 
   return (
     <React.Fragment>
-      <Tooltip title={t('notifications')} enterDelay={300}>
+      <Tooltip
+        open={tooltipOpen}
+        onOpen={handleTooltipOpen}
+        onClose={handleTooltipClose}
+        title={t('notifications')}
+        enterDelay={300}
+      >
         <IconButton
           color="inherit"
-          aria-owns={notificationsMenu ? 'notifications-menu' : undefined}
+          ref={anchorRef}
+          aria-controls={open ? 'notifications-popup' : undefined}
           aria-haspopup="true"
           aria-label={t('notifications')}
-          onClick={handleNotificationsMenuClick}
+          onClick={handleToggle}
           data-ga-event-category="AppBar"
           data-ga-event-action="notifications"
         >
@@ -131,29 +153,41 @@ export default function Notifications() {
         </IconButton>
       </Tooltip>
       <NoSsr>
-        <Menu
-          id="notifications-menu"
-          anchorEl={notificationsMenu}
-          open={Boolean(notificationsMenu)}
-          onClose={handleNotificationsMenuClose}
+        <Popper
+          id="notifications-popup"
+          anchorEl={anchorRef.current}
+          open={open}
+          placement="bottom-end"
+          transition
+          disablePortal
         >
-          {messageList.map((message, index) => (
-            <div key={message.id} className={classes.menu}>
-              <ListItem alignItems="flex-start">
-                <ListItemText
-                  primary={message.title}
-                  secondary={
-                    <span
-                      id="notification-message"
-                      dangerouslySetInnerHTML={{ __html: message.text }}
-                    />
-                  }
-                />
-              </ListItem>
-              {index < messageList.length - 1 ? <Divider /> : null}
-            </div>
-          ))}
-        </Menu>
+          {({ TransitionProps }) => (
+            <Grow style={{ transformOrigin: 'top right' }} {...TransitionProps}>
+              <ClickAwayListener onClickAway={handleClose}>
+                <Paper>
+                  <List className={classes.list}>
+                    {messageList.map((message, index) => (
+                      <React.Fragment>
+                        <ListItem key={message.id} alignItems="flex-start">
+                          <ListItemText
+                            primary={message.title}
+                            secondary={
+                              <span
+                                id="notification-message"
+                                dangerouslySetInnerHTML={{ __html: message.text }}
+                              />
+                            }
+                          />
+                        </ListItem>
+                        {index < messageList.length - 1 ? <Divider /> : null}
+                      </React.Fragment>
+                    ))}
+                  </List>
+                </Paper>
+              </ClickAwayListener>
+            </Grow>
+          )}
+        </Popper>
       </NoSsr>
     </React.Fragment>
   );
