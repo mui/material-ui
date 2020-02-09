@@ -15,6 +15,12 @@ update_configs:
           # for new releases and file a PR if you got time.
           dependency_name: '@babel/*'
       - match:
+          # Can't upgrade while using `@material-ui/pickers@3.x`
+          dependency_name: '@date-io/core'
+      - match:
+          # Can't upgrade while using `@material-ui/pickers@3.x`
+          dependency_name: '@date-io/date-fns'
+      - match:
           # as of 3.x prevaled code is no longer transpiled
           dependency_name: 'babel-plugin-preval'
           version_requirement: '>= 3.0'

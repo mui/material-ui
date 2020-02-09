@@ -1,5 +1,50 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.9.2
+###### *Feb 9, 2020*
+
+Big thanks to the 24 contributors who made this release possible.
+
+### `@material-ui/core@v4.9.2`
+
+- [AppBar] Add color transparent support  (#19393) @lexskir
+- [Divider] Fix height for vertical divider in a flexbox (#19614) @captain-yossarian
+- [Modal] Fix zoom out on iOS (#19548) @TommyJackson85
+- [MobileStepper] Fix TypeScript props not aligning with prop-types (#19594) @illusionalsagacity
+- [Tabs] Add missing updateScrollButtons type in TabActions (#19570) @notsidney
+- [TextField] Fix blurry text on label (#19547) @chybisov
+- [TextField] Fix label notch for custom htmlFontSize (#19558) @kusmierz
+- [Typography] Add missing classes to TypographyClassKey (#19588) @galechus
+- [l10n] Add Hungarian (hu-HU) locale (#19566) @vgaborabs
+- [l10n] Add Icelandic (is-IS) locale (#19538) @axelbjornsson
+
+### `@material-ui/lab@v4.0.0-alpha.42`
+
+- [Autocomplete] Fix unexpected clearing (#19511) @captain-yossarian
+- [Autocomplete] Support limiting the amount of options (#19539) @govizlora
+- [Pagination] Introduce new component (#19049) @mbrookes
+
+### Docs
+
+- [docs] Add ToggleButton demo for not accepting null value (#19582) @LorenzHenk
+- [docs] Add blocks section to related-projects (#19562) @alexandre-lelain
+- [docs] Add generic props usage examples (#19341) @fyodore82
+- [docs] Add links to sandbox option in examples readme files (#19592) @garethx
+- [docs] Add new starting template  (#19604) @dunky11
+- [docs] Add post-update to examples so they run on CodeSandbox (#19605) @garethx
+- [docs] Fix typo in the Avatar docs (#19544) @UltimateForm
+- [docs] Improve entry points for issue repros (#19501) @eps1lon
+- [docs] Link a VSCode extension for working with Material-UI (#19280) @jedwards1211
+- [docs] Notification blog post @oliviertassinari
+- [docs] Refactor EnchancedTable demo (#19560) @ahmad-reza619
+- [docs] The error style rule is a pseudo-class (#19555) @TommyJackson85
+- [docs] Update link to example for adding a new demo (#19590) @LorenzHenk
+
+### Core
+
+- [company] Polish the job post (#19593) @oliviertassinari
+- [core] Ignore `@date-ui/` updates (#19633) @eps1lon
+
 ## 4.9.1
 ###### *Feb 2, 2020*
 
