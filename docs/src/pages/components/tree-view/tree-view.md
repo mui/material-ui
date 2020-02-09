@@ -17,6 +17,12 @@ The tree view also offers a controlled API.
 
 {{"demo": "pages/components/tree-view/ControlledTreeView.js"}}
 
+## Recursive
+
+render tree view with recursion approach
+
+{{"demo": "pages/components/tree-view/RecursiveTreeView.js"}}
+
 ## Customized tree view
 
 ### Custom icons, border and animation
