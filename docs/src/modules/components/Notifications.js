@@ -141,10 +141,10 @@ export default function Notifications() {
           ref={anchorRef}
           aria-controls={open ? 'notifications-popup' : undefined}
           aria-haspopup="true"
-          aria-label={t('notifications')}
+          aria-label={t('toggleNotifications')}
           onClick={handleToggle}
           data-ga-event-category="AppBar"
-          data-ga-event-action="notifications"
+          data-ga-event-action="toggleNotifications"
         >
           <Badge color="secondary" badgeContent={unseenNotificationsCount}>
             <NotificationsIcon />
