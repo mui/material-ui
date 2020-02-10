@@ -167,6 +167,7 @@ export default function Notifications() {
         placement="bottom-end"
         transition
         disablePortal
+        role={undefined}
       >
         {({ TransitionProps }) => (
           <ClickAwayListener onClickAway={handleClose}>
