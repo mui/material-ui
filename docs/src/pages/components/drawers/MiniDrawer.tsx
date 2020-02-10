@@ -73,6 +73,9 @@ const useStyles = makeStyles((theme: Theme) =>
         width: theme.spacing(9) + 1,
       },
     },
+    drawerClosedIcon: {
+      marginLeft: -theme.spacing(3.5),
+    },
     toolbar: {
       display: 'flex',
       alignItems: 'center',
@@ -160,7 +163,19 @@ export default function MiniDrawer() {
               <ListItem button key={text} onClick={handleClick(index)}>
                 <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
                 <ListItemText primary={text} />
-                {openIndex === index ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+                {openIndex === index ? (
+                  <ExpandLessIcon
+                    className={clsx({
+                      [classes.drawerClosedIcon]: !open,
+                    })}
+                  />
+                ) : (
+                  <ExpandMoreIcon
+                    className={clsx({
+                      [classes.drawerClosedIcon]: !open,
+                    })}
+                  />
+                )}
               </ListItem>
               <Collapse in={openIndex === index} timeout="auto" unmountOnExit>
                 <>
