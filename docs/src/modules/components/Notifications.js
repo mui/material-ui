@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import Tooltip from '@material-ui/core/Tooltip';
-import NoSsr from '@material-ui/core/NoSsr';
 import IconButton from '@material-ui/core/IconButton';
 import Badge from '@material-ui/core/Badge';
 import Popper from '@material-ui/core/Popper';
@@ -152,44 +151,42 @@ export default function Notifications() {
           </Badge>
         </IconButton>
       </Tooltip>
-      <NoSsr>
-        <Popper
-          id="notifications-popup"
-          anchorEl={anchorRef.current}
-          open={open}
-          placement="bottom-end"
-          transition
-          disablePortal
-        >
-          {({ TransitionProps }) => (
-            <Grow style={{ transformOrigin: 'top right' }} {...TransitionProps}>
-              <ClickAwayListener onClickAway={handleClose}>
-                <Paper>
-                  <List className={classes.list}>
-                    {messageList.map((message, index) => (
-                      <React.Fragment>
-                        <ListItem key={message.id} alignItems="flex-start">
-                          <ListItemText
-                            primary={message.title}
-                            secondary={
-                              <span
-                                id="notification-message"
-                                dangerouslySetInnerHTML={{ __html: message.text }}
-                              />
-                            }
-                            secondaryTypographyProps={{ color: 'textPrimary' }}
-                          />
-                        </ListItem>
-                        {index < messageList.length - 1 ? <Divider /> : null}
-                      </React.Fragment>
-                    ))}
-                  </List>
-                </Paper>
-              </ClickAwayListener>
+      <Popper
+        id="notifications-popup"
+        anchorEl={anchorRef.current}
+        open={open}
+        placement="bottom-end"
+        transition
+        disablePortal
+      >
+        {({ TransitionProps }) => (
+          <ClickAwayListener onClickAway={handleClose}>
+            <Grow in={open} {...TransitionProps}>
+              <Paper style={{ transformOrigin: 'top right' }}>
+                <List className={classes.list}>
+                  {messageList.map((message, index) => (
+                    <React.Fragment key={index}>
+                      <ListItem key={message.id} alignItems="flex-start">
+                        <ListItemText
+                          primary={message.title}
+                          secondary={
+                            <span
+                              id="notification-message"
+                              dangerouslySetInnerHTML={{ __html: message.text }}
+                            />
+                          }
+                          secondaryTypographyProps={{ color: 'textPrimary' }}
+                        />
+                      </ListItem>
+                      {index < messageList.length - 1 ? <Divider /> : null}
+                    </React.Fragment>
+                  ))}
+                </List>
+              </Paper>
             </Grow>
-          )}
-        </Popper>
-      </NoSsr>
+          </ClickAwayListener>
+        )}
+      </Popper>
     </React.Fragment>
   );
 }
