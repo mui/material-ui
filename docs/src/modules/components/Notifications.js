@@ -20,8 +20,17 @@ import { getCookie } from 'docs/src/modules/utils/helpers';
 import notifications from '../../../notifications.json';
 
 const useStyles = makeStyles(theme => ({
+  paper: {
+    transformOrigin: 'top right',
+  },
   list: {
     maxWidth: theme.spacing(40),
+    maxHeight: theme.spacing(40),
+    overflow: 'auto',
+  },
+  listItem: {
+    display: 'flex',
+    flexDirection: 'column',
   },
 }));
 
@@ -133,7 +142,7 @@ export default function Notifications() {
         open={tooltipOpen}
         onOpen={handleTooltipOpen}
         onClose={handleTooltipClose}
-        title={t('notifications')}
+        title={t('toggleNotifications')}
         enterDelay={300}
       >
         <IconButton
@@ -162,11 +171,20 @@ export default function Notifications() {
         {({ TransitionProps }) => (
           <ClickAwayListener onClickAway={handleClose}>
             <Grow in={open} {...TransitionProps}>
-              <Paper style={{ transformOrigin: 'top right' }}>
+              <Paper className={classes.paper}>
                 <List className={classes.list}>
                   {messageList.map((message, index) => (
-                    <React.Fragment key={index}>
-                      <ListItem key={message.id} alignItems="flex-start">
+                    <React.Fragment key={message.id}>
+                      <ListItem alignItems="flex-start" className={classes.listItem}>
+                        {message.date && (
+                          <ListItemText
+                            secondary={new Date(message.date).toLocaleDateString('en-US', {
+                              year: 'numeric',
+                              month: 'long',
+                              day: 'numeric',
+                            })}
+                          />
+                        )}
                         <ListItemText
                           primary={message.title}
                           secondary={
@@ -178,7 +196,7 @@ export default function Notifications() {
                           secondaryTypographyProps={{ color: 'textPrimary' }}
                         />
                       </ListItem>
-                      {index < messageList.length - 1 ? <Divider /> : null}
+                      {index < messageList.length - 1 ? <Divider variant="middle" /> : null}
                     </React.Fragment>
                   ))}
                 </List>
