@@ -1,5 +1,5 @@
 /* eslint-disable react/no-danger, react-hooks/exhaustive-deps */
-import 'isomorphic-fetch';
+import fetch from 'cross-fetch';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import Button from '@material-ui/core/Button';
