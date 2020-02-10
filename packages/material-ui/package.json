@@ -62,9 +62,7 @@
     "react-is": "^16.8.0",
     "react-transition-group": "^4.3.0"
   },
-  "devDependencies": {
-    "react-test-renderer": "^16.11.0"
-  },
+  "devDependencies": {},
   "sideEffects": false,
   "publishConfig": {
     "access": "public"
