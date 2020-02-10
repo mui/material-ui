@@ -74,7 +74,7 @@ const useStyles = makeStyles((theme: Theme) =>
       },
     },
     drawerClosedIcon: {
-      marginLeft: -theme.spacing(3.5),
+      marginLeft: -theme.spacing(4.5),
     },
     toolbar: {
       display: 'flex',
