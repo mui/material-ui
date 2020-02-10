@@ -19,8 +19,8 @@ const users = [
   },
   {
     logo: 'walmart-labs.svg',
-    logoWidth: 274,
-    logoHeight: 52,
+    logoWidth: 205,
+    logoHeight: 39,
     caption: 'Walmart Labs',
     class: 'walmart',
   },
@@ -112,7 +112,7 @@ const styles = theme => ({
     margin: theme.spacing(0.5, 3, 1.5),
   },
   walmart: {
-    margin: theme.spacing(0.9, 3, 1.5),
+    margin: '13px 4px 12px',
   },
   button: {
     margin: theme.spacing(2, 0, 0),

@@ -99,7 +99,7 @@ Divider.propTypes = {
    */
   component: PropTypes.elementType,
   /**
-   * If `true`, the divider will apply adapt to a parent flex container.
+   * If `true`, the divider will adapt to a parent flex container.
    */
   flexItem: PropTypes.bool,
   /**

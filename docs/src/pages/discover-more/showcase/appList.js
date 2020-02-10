@@ -19,7 +19,7 @@ const appList = [
       'design to simplify the rental of residential real estate.',
     image: 'quintoandar.png',
     link: 'https://www.quintoandar.com.br/',
-    similarWebVisits: 3000,
+    similarWebVisits: 6000,
     dateAdded: '2019-05-08',
   },
   {
@@ -29,7 +29,7 @@ const appList = [
       'Skyrim, Wolfenstein, The Elder Scrolls, more. Your source for news, features & community.',
     image: 'bethesda.jpg',
     link: 'https://bethesda.net/',
-    similarWebVisits: 18600,
+    similarWebVisits: 4000,
     dateAdded: '2019-01-01',
   },
   {
@@ -39,7 +39,7 @@ const appList = [
       'education-to-employment programs and career coaching services for students worldwide. ',
     image: 'openclassrooms.jpg',
     link: 'https://openclassrooms.com/en/',
-    similarWebVisits: 10190,
+    similarWebVisits: 6000,
     dateAdded: '2018-01-34',
   },
   {
@@ -51,7 +51,7 @@ const appList = [
       'idraulica… Ritira in negozio o ricevi comodamente a casa. 🇮🇹',
     image: 'leroymerlin.jpg',
     link: 'https://www.leroymerlin.it/',
-    similarWebVisits: 4400,
+    similarWebVisits: 5700,
     dateAdded: '2019-01-01',
   },
   {
@@ -62,7 +62,7 @@ const appList = [
       'and read programming tutorials from our community of developers.',
     image: 'codementor.jpg',
     link: 'https://www.codementor.io/',
-    similarWebVisits: 2980,
+    similarWebVisits: 1500,
     dateAdded: '2018-01-34',
   },
   {
@@ -70,7 +70,7 @@ const appList = [
     description: 'Japan Music Network. 🇯🇵',
     image: 'barks.jpg',
     link: 'https://www.barks.jp/',
-    similarWebVisits: 2700,
+    similarWebVisits: 3000,
     dateAdded: '2019-01-01',
   },
   {
@@ -90,7 +90,7 @@ const appList = [
       'magazines and real time streams, personalized for you. 🇫🇷',
     image: 'sfrpresse.jpg',
     link: 'https://sfrpresse.sfr.fr/',
-    similarWebVisits: 710,
+    similarWebVisits: 800,
     dateAdded: '2018-01-25',
   },
   {
@@ -111,7 +111,7 @@ const appList = [
       'Join the global community of readers and writers!',
     image: 'sweek.jpg',
     link: 'https://sweek.com/',
-    similarWebVisits: 383,
+    similarWebVisits: 200,
     dateAdded: '2019-01-01',
   },
   {
@@ -137,7 +137,7 @@ const appList = [
     description: 'NEO blockchain explorer and wallet.',
     image: 'neotracker.jpg',
     link: 'https://neotracker.io/',
-    similarWebVisits: 350,
+    similarWebVisits: 30,
     dateAdded: '2019-01-01',
   },
   {
@@ -156,7 +156,7 @@ const appList = [
       'online. The marketing website is also built with Material-UI: https://www.housecallpro.com/',
     image: 'housecall.jpg',
     link: 'https://pro.housecall.io/pro/log_in',
-    similarWebVisits: 214,
+    similarWebVisits: 750,
     dateAdded: '2019-01-01',
   },
   {
@@ -166,7 +166,7 @@ const appList = [
       'de forma direta e segura no Brasil. 🇧🇷',
     image: 'bitcambio.jpg',
     link: 'https://bitcambio.com.br/',
-    similarWebVisits: 148,
+    similarWebVisits: 50,
     dateAdded: '2019-01-01',
   },
   {
@@ -209,7 +209,7 @@ const appList = [
       'with more than 200K advertising options, and more than 1M satisfied customers.',
     image: 'themediaant.jpg',
     link: 'https://www.themediaant.com/',
-    similarWebVisits: 112,
+    similarWebVisits: 90,
     dateAdded: '2019-01-01',
   },
   {
@@ -459,16 +459,6 @@ const appList = [
     dateAdded: '2018-01-03',
   },
   {
-    title: 'Trafikito',
-    description:
-      'Free servers monitoring solution which can track any output of any command and do ' +
-      'automated action. By default it tracks average load, CPU, HDD, RAM and sends email when ' +
-      'something is going wrong.',
-    image: 'trafikito-monitoring.jpg',
-    link: 'https://trafikito.com/',
-    dateAdded: '2018-01-20',
-  },
-  {
     title: 'Hokan',
     description:
       'Customer management and contract management we service for the insurance industry. 🇯🇵',
@@ -540,13 +530,6 @@ const appList = [
     dateAdded: '2018-01-10',
   },
   {
-    title: 'PhotoUtils',
-    description: 'Online photo editor. 6 simple and free image editing tools.',
-    image: 'photoutils.jpg',
-    link: 'https://photoutils.com/',
-    dateAdded: '2018-01-32',
-  },
-  {
     title: 'npm registry browser',
     description:
       'An open source web app that lets you search the npm registry ' +
@@ -580,13 +563,6 @@ const appList = [
     dateAdded: '2018-01-35',
   },
   {
-    title: 'Persona',
-    description: 'Zero knowledge digital identity management system built on blockchain.',
-    link: 'https://persona.im/',
-    image: 'persona.jpg',
-    dateAdded: '2019-01-27',
-  },
-  {
     title: 'MQTT Explorer',
     description:
       'A comprehensive MQTT Client which visualizes broker traffic in a hierarchical view. ' +
@@ -597,16 +573,6 @@ const appList = [
     image: 'mqtt-explorer.png',
     stars: 510,
     dateAdded: '2019-03-25',
-  },
-  {
-    title: 'Learnseeker',
-    description:
-      'A data driven 1-1 tuition matching platform. ' +
-      'Incubated at the National University of Singapore. ' +
-      "It's based on one of our premium theme.",
-    link: 'https://learnseeker.sg/',
-    image: 'learnseeker.jpg',
-    dateAdded: '2019-03-26',
   },
   {
     title: 'TagSpaces',
@@ -631,7 +597,7 @@ const appList = [
     description: 'NBA trade machine and social analysis tools for the basketball community.',
     image: 'tradenba.jpg',
     link: 'https://tradenba.com/',
-    similarWebVisits: 145,
+    similarWebVisits: 160,
     dateAdded: '2020-01-20',
   },
   {
