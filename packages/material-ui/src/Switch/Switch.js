@@ -169,6 +169,7 @@ const Switch = React.forwardRef(function Switch(props, ref) {
         },
         className,
       )}
+      ref={ref}
     >
       <SwitchBase
         type="checkbox"
@@ -180,7 +181,7 @@ const Switch = React.forwardRef(function Switch(props, ref) {
           checked: classes.checked,
           disabled: classes.disabled,
         }}
-        ref={ref}
+        
         {...other}
       />
       <span className={classes.track} />
