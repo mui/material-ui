@@ -50,6 +50,8 @@ export const styles = theme => ({
         },
       },
       '&$disabled': {
+        opacity: 1,
+        color: theme.palette.action.disabled,
         backgroundColor: theme.palette.action.selected,
       },
     },
@@ -79,19 +81,6 @@ export const styles = theme => ({
       fontSize: theme.typography.pxToRem(22),
     },
   },
-  /* Styles applied to the root element if `outlined="true"`. */
-  outlined: {
-    border: `1px solid ${
-      theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
-    }`,
-    '&$selected': {
-      '&$disabled': {
-        border: `1px solid ${
-          theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
-        }`,
-      },
-    },
-  },
   /* Styles applied to the root element if `variant="text"` and `color="primary"`. */
   textPrimary: {
     '&$selected': {
@@ -105,7 +94,7 @@ export const styles = theme => ({
         },
       },
       '&$disabled': {
-        color: theme.palette.text.primary,
+        color: theme.palette.action.disabled,
       },
     },
   },
@@ -122,7 +111,18 @@ export const styles = theme => ({
         },
       },
       '&$disabled': {
-        color: theme.palette.text.primary,
+        color: theme.palette.action.disabled,
+      },
+    },
+  },
+  /* Styles applied to the root element if `outlined="true"`. */
+  outlined: {
+    border: `1px solid ${
+      theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
+    }`,
+    '&$selected': {
+      '&$disabled': {
+        border: `1px solid ${theme.palette.action.disabledBackground}`,
       },
     },
   },
@@ -143,7 +143,7 @@ export const styles = theme => ({
         },
       },
       '&$disabled': {
-        color: theme.palette.text.primary,
+        color: theme.palette.action.disabled,
       },
     },
   },
@@ -164,7 +164,7 @@ export const styles = theme => ({
         },
       },
       '&$disabled': {
-        color: theme.palette.text.primary,
+        color: theme.palette.action.disabled,
       },
     },
   },

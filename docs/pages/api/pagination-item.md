@@ -49,9 +49,9 @@ Any other props supplied will be provided to the root element (native element).
 | <span class="prop-name">page</span> | <span class="prop-name">.MuiPaginationItem-page</span> | Styles applied to the root element if `type="page"`.
 | <span class="prop-name">sizeSmall</span> | <span class="prop-name">.MuiPaginationItem-sizeSmall</span> | Styles applied applied to the root element if `size="small"`.
 | <span class="prop-name">sizeLarge</span> | <span class="prop-name">.MuiPaginationItem-sizeLarge</span> | Styles applied applied to the root element if `size="large"`.
-| <span class="prop-name">outlined</span> | <span class="prop-name">.MuiPaginationItem-outlined</span> | Styles applied to the root element if `outlined="true"`.
 | <span class="prop-name">textPrimary</span> | <span class="prop-name">.MuiPaginationItem-textPrimary</span> | Styles applied to the root element if `variant="text"` and `color="primary"`.
 | <span class="prop-name">textSecondary</span> | <span class="prop-name">.MuiPaginationItem-textSecondary</span> | Styles applied to the root element if `variant="text"` and `color="secondary"`.
+| <span class="prop-name">outlined</span> | <span class="prop-name">.MuiPaginationItem-outlined</span> | Styles applied to the root element if `outlined="true"`.
 | <span class="prop-name">outlinedPrimary</span> | <span class="prop-name">.MuiPaginationItem-outlinedPrimary</span> | Styles applied to the root element if `variant="outlined"` and `color="primary"`.
 | <span class="prop-name">outlinedSecondary</span> | <span class="prop-name">.MuiPaginationItem-outlinedSecondary</span> | Styles applied to the root element if `variant="outlined"` and `color="secondary"`.
 | <span class="prop-name">rounded</span> | <span class="prop-name">.MuiPaginationItem-rounded</span> | Styles applied to the root element if `rounded="true"`.

@@ -7,7 +7,7 @@ components: Pagination, PaginationItem
 
 <p class="description">The Pagination component enables the user to select a specific page from a range of pages.</p>
 
-## Pagination
+## Basic pagination
 
 {{"demo": "pages/components/pagination/BasicPagination.js"}}
 
