@@ -19,9 +19,9 @@ The tree view also offers a controlled API.
 
 ## Rich object
 
-While the `TreeView`/`TreeItem` component API is great to maximize flexibility, an extra step is needed to handle a rich object.
+While the `TreeView`/`TreeItem` component API maximizes flexibility, an extra step is needed to handle a rich object.
 
-Let's consider a data variable with the following shape, a recursion can be used to handle it.
+Let's consider a data variable with the following shape, recursion can be used to handle it.
 
 ```js
 const data = {

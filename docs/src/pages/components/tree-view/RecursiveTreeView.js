@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import TreeView from '@material-ui/lab/TreeView';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -21,7 +20,6 @@ const data = {
         {
           id: '4',
           name: 'Child - 4',
-          children: null,
         },
       ],
     },
@@ -36,23 +34,14 @@ const useStyles = makeStyles({
   },
 });
 
-function renderTree(nodes) {
-  return (
+export default function RecursiveTreeView() {
+  const classes = useStyles();
+
+  const renderTree = nodes => (
     <TreeItem key={nodes.id} nodeId={nodes.id} label={nodes.name}>
       {Array.isArray(nodes.children) ? nodes.children.map(node => renderTree(node)) : null}
     </TreeItem>
   );
-}
-
-renderTree.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.oneOf([null]), PropTypes.arrayOf(PropTypes.object)])
-    .isRequired,
-  id: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-};
-
-export default function RecursiveTreeView() {
-  const classes = useStyles();
 
   return (
     <TreeView

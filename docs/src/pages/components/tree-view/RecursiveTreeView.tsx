@@ -5,13 +5,13 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import TreeItem from '@material-ui/lab/TreeItem';
 
-interface TreeRenderProps {
+interface RenderTree {
   id: string;
   name: string;
-  children: TreeRenderProps[] | null;
+  children?: RenderTree[];
 }
 
-const data: TreeRenderProps = {
+const data: RenderTree = {
   id: 'root',
   name: 'Parent',
   children: [
@@ -26,7 +26,6 @@ const data: TreeRenderProps = {
         {
           id: '4',
           name: 'Child - 4',
-          children: null,
         },
       ],
     },
@@ -41,16 +40,14 @@ const useStyles = makeStyles({
   },
 });
 
-function renderTree(nodes: TreeRenderProps) {
-  return (
+export default function RecursiveTreeView() {
+  const classes = useStyles();
+
+  const renderTree = (nodes: RenderTree) => (
     <TreeItem key={nodes.id} nodeId={nodes.id} label={nodes.name}>
       {Array.isArray(nodes.children) ? nodes.children.map(node => renderTree(node)) : null}
     </TreeItem>
   );
-}
-
-export default function RecursiveTreeView() {
-  const classes = useStyles();
 
   return (
     <TreeView
