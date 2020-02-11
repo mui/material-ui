@@ -107,10 +107,8 @@ export default function MiniDrawer() {
 
   const handleClick = index => () => {
     if (index === openIndex) {
-      console.log("its opened");
       setOpenIndex(-1);
     } else {
-      console.log("its closed");
       setOpenIndex(index);
     }
   };

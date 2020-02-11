@@ -87,6 +87,9 @@ const useStyles = makeStyles((theme: Theme) =>
       flexGrow: 1,
       padding: theme.spacing(3),
     },
+    droppedItem: {
+      background: '#333',
+    },
   }),
 );
 
@@ -181,7 +184,7 @@ export default function MiniDrawer() {
                 <>
                   <List component="div" disablePadding>
                     {['First', 'Second'].map((subText, i) => (
-                      <ListItem key={i} button>
+                      <ListItem className={classes.droppedItem} key={i} button>
                         <ListItemIcon>
                           <StarIcon />
                         </ListItemIcon>
@@ -189,6 +192,7 @@ export default function MiniDrawer() {
                       </ListItem>
                     ))}
                   </List>
+                  <Divider />
                 </>
               </Collapse>
             </>
