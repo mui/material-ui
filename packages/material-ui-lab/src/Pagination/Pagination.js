@@ -7,48 +7,75 @@ import PaginationItem from '../PaginationItem';
 
 export const styles = {
   /* Styles applied to the root element. */
-  root: {
+  root: {},
+  /* Styles applied to the ul element. */
+  ul: {
     display: 'flex',
     flexWrap: 'wrap',
     alignItems: 'center',
+    padding: 0,
+    margin: 0,
     listStyle: 'none',
-    padding: 0, // Reset
-    margin: 0, // Reset
   },
 };
 
+function defaultGetAriaLabel(type, page, selected) {
+  if (type === 'page') {
+    return `${selected ? '' : 'Go to '}page ${page}`;
+  }
+  return `Go to ${type} page`;
+}
+
 const Pagination = React.forwardRef(function Pagination(props, ref) {
+  /* eslint-disable no-unused-vars */
   const {
+    boundaryCount = 1,
     children,
     classes,
     className,
     color = 'standard',
-    getItemAriaLabel: getAriaLabel,
-    items,
+    count = 1,
+    defaultPage = 1,
+    disabled = false,
+    getItemAriaLabel: getAriaLabel = defaultGetAriaLabel,
+    hideNextButton = false,
+    hidePrevButton = false,
     renderItem = item => <PaginationItem {...item} />,
     shape = 'round',
-    size,
+    showFirstButton = false,
+    showLastButton = false,
+    siblingCount = 1,
+    size = 'medium',
     variant = 'text',
     ...other
-  } = usePagination({ ...props, componentName: 'Pagination' });
+  } = props;
+  /* eslint-enable no-unused-vars */
 
-  const itemProps = { color, getAriaLabel, shape, size, variant };
+  const { items } = usePagination({ ...props, componentName: 'Pagination' });
 
   return (
-    <ul
-      role="navigation"
+    <nav
       aria-label="pagination navigation"
       className={clsx(classes.root, className)}
       ref={ref}
       {...other}
     >
-      {children ||
-        items.map(item => (
-          <li key={item.type !== undefined ? item.type : item.page.toString()}>
-            {renderItem({ ...item, ...itemProps })}
-          </li>
-        ))}
-    </ul>
+      <ul className={classes.ul}>
+        {children ||
+          items.map((item, index) => (
+            <li key={index}>
+              {renderItem({
+                ...item,
+                color,
+                'aria-label': getAriaLabel(item.type, item.page, item.selected),
+                shape,
+                size,
+                variant,
+              })}
+            </li>
+          ))}
+      </ul>
+    </nav>
   );
 });
 
@@ -89,6 +116,8 @@ Pagination.propTypes = {
   /**
    * Accepts a function which returns a string value that provides a user-friendly name for the current page.
    *
+   * For localization purposes, you can use the provided [translations](/guides/localization/).
+   *
    * @param {string} [type = page] The link or button type to format ('page' | 'first' | 'last' | 'next' | 'previous').
    * @param {number} page The page number to format.
    * @param {bool} selected If true, the current page is selected.
@@ -117,7 +146,7 @@ Pagination.propTypes = {
   /**
    * Render the item.
    *
-   * @param {object} params
+   * @param {object} params The props to spread on a PaginationItem.
    * @returns {ReactNode}
    */
   renderItem: PropTypes.func,
@@ -136,7 +165,7 @@ Pagination.propTypes = {
   /**
    * Number of always visible pages before and after the current page.
    */
-  siblingRange: PropTypes.number,
+  siblingCount: PropTypes.number,
   /**
    * The size of the pagination component.
    */

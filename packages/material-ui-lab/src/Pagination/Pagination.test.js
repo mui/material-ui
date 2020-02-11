@@ -8,18 +8,18 @@ import Pagination from './Pagination';
 describe('<Pagination />', () => {
   let classes;
   let mount;
-  const render = createClientRender({ strict: false });
+  const render = createClientRender();
 
   before(() => {
-    mount = createMount();
+    mount = createMount({ strict: true });
     classes = getClasses(<Pagination />);
   });
 
   describeConformance(<Pagination />, () => ({
     classes,
-    inheritComponent: 'ul',
+    inheritComponent: 'nav',
     mount,
-    refInstanceof: window.HTMLUListElement,
+    refInstanceof: window.HTMLElement,
     after: () => mount.cleanUp(),
     skip: ['componentProp'],
   }));

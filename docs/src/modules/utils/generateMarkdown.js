@@ -272,6 +272,11 @@ function generateProps(reactAPI) {
       )}</span>`;
     }
 
+    // Give up
+    if (defaultValue.length > 180) {
+      defaultValue = '';
+    }
+
     const chainedPropType = getChained(prop.type);
 
     if (

@@ -265,6 +265,27 @@ export const frFR = {
     MuiAlert: {
       closeText: 'Fermer',
     },
+    MuiPagination: {
+      'aria-label': 'pagination navigation',
+      getItemAriaLabel: (type, page, selected) => {
+        if (type === 'page') {
+          return `${selected ? '' : 'Aller à la '}page ${page}`;
+        }
+        if (type === 'first') {
+          return 'Aller à la première page';
+        }
+        if (type === 'last') {
+          return 'Aller à la dernière page';
+        }
+        if (type === 'next') {
+          return 'Aller à la page suivante';
+        }
+        if (type === 'previous') {
+          return 'Aller à la page précédente';
+        }
+        return undefined;
+      },
+    },
   },
 };
 
