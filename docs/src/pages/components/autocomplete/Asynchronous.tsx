@@ -1,5 +1,5 @@
 // *https://www.registers.service.gov.uk/registers/country/use-the-api*
-import 'isomorphic-fetch';
+import fetch from 'cross-fetch';
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
