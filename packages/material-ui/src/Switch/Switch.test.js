@@ -89,8 +89,20 @@ describe('<Switch />', () => {
     expect(getByRole('checkbox')).to.have.property('checked', false);
   });
 
-  describe('with FormControl', () => {
+  describe('with Ref', () => {
+    it('should check if Ref is on root element', () => {
+      const ref = React.createRef();
+      render(
+        <FormControl>
+          <Switch edge='start' ref={ref} />
+        </FormControl>,
+      );
+      const isRootRef = ref.current.className.includes('MuiSwitch-root')
+      expect(isRootRef).to.equal(true);
+    });
+  });
 
+  describe('with FormControl', () => {
     describe('enabled', () => {
       it('should not have the disabled class', () => {
         const { getByRole } = render(
