@@ -204,7 +204,6 @@ function AppFrame(props) {
       <MuiLink color="secondary" className={classes.skipNav} href="#main-content">
         {t('skipToContent')}
       </MuiLink>
-      <Notifications />
       <MarkdownLinks />
       <AppBar className={appBarClassName}>
         <Toolbar>
@@ -320,6 +319,7 @@ function AppFrame(props) {
               )}
             </IconButton>
           </Tooltip>
+          <Notifications />
           <Tooltip title={t('github')} enterDelay={300}>
             <IconButton
               edge="end"

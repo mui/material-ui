@@ -1,15 +1,20 @@
 [
   {
-    "id": 27,
-    "text": "You can <a style=\"color: inherit;\" target=\"_blank\" rel=\"noopener\" href=\"https://twitter.com/MaterialUI\">follow us on Twitter</a> to receive exclusive tips and updates about Material-UI and the React ecosystem."
-  },
-  {
     "id": 35,
-    "text": "Let's translate! <a style=\"color: inherit;\" target=\"_blank\" rel=\"noopener\" data-ga-event-category=\"l10n\" data-ga-event-action=\"notification\" data-ga-event-label=\"zh\" href=\"https://translate.material-ui.com/\">帮助 Material-UI 将文档翻译成中文</a>. 🇨🇳",
+    "title": "Let's translate!",
+    "text": "<a style=\"color: inherit;\" target=\"_blank\" rel=\"noopener\" data-ga-event-category=\"l10n\" data-ga-event-action=\"notification\" data-ga-event-label=\"zh\" href=\"https://translate.material-ui.com/\">帮助 Material-UI 将文档翻译成中文</a>. 🇨🇳",
     "userLanguage": "zh"
   },
   {
+    "id": 47,
+    "date": "2020-01-25",
+    "title": "New blog post",
+    "text": "<a style=\"color: inherit;\" target=\"_blank\" rel=\"noopener\" href=\"https://medium.com/material-ui/2019-in-review-and-beyond-34f85e29926\">2019 in review and beyond</a>. 2019 was a great year for Material-UI. It puts us on an exciting path to solve even greater challenges in the coming years!"
+  },
+  {
     "id": 48,
-    "text": "Material-UI is hiring <a style=\"color: inherit;\" target=\"_blank\" rel=\"noopener\" href=\"https://material-ui.com/company/software-engineer/\">a senior software developer</a>."
+    "date": "2020-02-08",
+    "title": "Material-UI is hiring",
+    "text": "We're looking for <a style=\"color: inherit;\" target=\"_blank\" rel=\"noopener\" href=\"https://material-ui.com/company/software-engineer/\">a senior software developer</a> to join the team."
   }
 ]
