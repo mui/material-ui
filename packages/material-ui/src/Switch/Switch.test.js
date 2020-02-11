@@ -90,6 +90,7 @@ describe('<Switch />', () => {
   });
 
   describe('with FormControl', () => {
+
     describe('enabled', () => {
       it('should not have the disabled class', () => {
         const { getByRole } = render(
