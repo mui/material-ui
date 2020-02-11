@@ -94,10 +94,10 @@ describe('<Switch />', () => {
       const ref = React.createRef();
       render(
         <FormControl>
-          <Switch edge='start' ref={ref} />
+          <Switch edge="start" ref={ref} />
         </FormControl>,
       );
-      const isRootRef = ref.current.className.includes('MuiSwitch-root')
+      const isRootRef = ref.current.className.includes('MuiSwitch-root');
       expect(isRootRef).to.equal(true);
     });
   });

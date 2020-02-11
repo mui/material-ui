@@ -181,7 +181,6 @@ const Switch = React.forwardRef(function Switch(props, ref) {
           checked: classes.checked,
           disabled: classes.disabled,
         }}
-        
         {...other}
       />
       <span className={classes.track} />
