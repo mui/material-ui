@@ -11,7 +11,7 @@ APIs.
 
 ## Setup & Run
 
-- `npm install @material-ui/codemod`
+- `npm install -D @material-ui/codemod`
 - `npx jscodeshift -t <codemod-script> <path>`
 - Use the `-d` option for a dry-run and use `-p` to print the output
   for comparison
