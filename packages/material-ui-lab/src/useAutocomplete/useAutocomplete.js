@@ -108,7 +108,7 @@ export default function useAutocomplete(props) {
     onOpen,
     onInputChange,
     open: openProp,
-    options = [],
+    options,
     selectOnFocus = !props.freeSolo,
     value: valueProp,
     componentName = 'useAutocomplete',

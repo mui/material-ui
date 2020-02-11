@@ -277,7 +277,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     onOpen,
     open,
     openText = 'Open',
-    options = [],
+    options,
     PaperComponent = Paper,
     PopperComponent: PopperComponentProp = Popper,
     popupIcon = <ArrowDropDownIcon />,
@@ -700,7 +700,7 @@ Autocomplete.propTypes = {
   /**
    * Array of options.
    */
-  options: PropTypes.array,
+  options: PropTypes.array.isRequired,
   /**
    * The component used to render the body of the popup.
    */
