@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles, useTheme, emphasize } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -87,7 +87,7 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(3),
   },
   droppedItem: {
-    background: '#333',
+    background: emphasize(theme.palette.background.paper),
   },
 }));
 
