@@ -22,6 +22,23 @@ export default function MyApp() {
 }
 ```
 
+## Scoping on children
+
+It's possible to apply the baseline only on the children by setting the prop `scopeToChildren` to true.
+
+```jsx
+import React from 'react';
+import CssBaseline from '@material-ui/core/CssBaseline';
+
+export default function MyApp() {
+  return (
+    <CssBaseline scopeToChildren>
+      {/* The rest of your application */}
+    </CssBaseline>
+  );
+}
+```
+
 ## Approach
 
 ### Page

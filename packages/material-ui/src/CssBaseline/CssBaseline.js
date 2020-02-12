@@ -98,6 +98,9 @@ CssBaseline.propTypes = {
    * You can wrap a node.
    */
   children: PropTypes.node,
+  /**
+   * If true the css baseline is only applied to the children
+   */
   scopeToChildren: PropTypes.bool,
 };
 

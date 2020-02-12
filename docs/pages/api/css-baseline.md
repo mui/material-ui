@@ -25,6 +25,7 @@ Kickstart an elegant, consistent, and simple baseline to build upon.
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> | <span class="prop-default">null</span> | You can wrap a node. |
+| <span class="prop-name">scopeToChildren</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If true the css baseline is only applied to the children |
 
 The component cannot hold a ref.
 
