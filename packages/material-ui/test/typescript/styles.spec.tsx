@@ -263,9 +263,9 @@ withStyles(theme =>
     content: {
       minHeight: '100vh',
     },
-    // $ExpectError
     '@media (min-width: 960px)': {
       content: {
+        // $ExpectError
         display: 'flex',
       },
     },
