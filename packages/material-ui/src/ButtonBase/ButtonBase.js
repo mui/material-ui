@@ -111,7 +111,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
   );
 
   React.useEffect(() => {
-    if (focusVisible && focusRipple && !disableRipple) {
+    if (rippleRef.current && focusVisible && focusRipple && !disableRipple) {
       rippleRef.current.pulsate();
     }
   }, [disableRipple, focusRipple, focusVisible]);
