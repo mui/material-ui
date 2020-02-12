@@ -192,7 +192,6 @@ export default function MiniDrawer() {
                       </ListItem>
                     ))}
                   </List>
-                  <Divider />
                 </>
               </Collapse>
             </>
