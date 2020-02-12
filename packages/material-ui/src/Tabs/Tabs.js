@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import { refType } from '@material-ui/utils';
 import debounce from '../utils/debounce';
 import ownerWindow from '../utils/ownerWindow';
-import { getNormalizedScrollLeft, detectScrollType } from 'normalize-scroll-left';
+import { getNormalizedScrollLeft, detectScrollType } from '../utils/scrollLeft';
 import animate from '../internal/animate';
 import ScrollbarSize from './ScrollbarSize';
 import withStyles from '../styles/withStyles';
