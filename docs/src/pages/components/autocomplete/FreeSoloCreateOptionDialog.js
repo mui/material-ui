@@ -11,52 +11,55 @@ import Autocomplete, { createFilterOptions } from '@material-ui/lab/Autocomplete
 
 const filter = createFilterOptions();
 
-export default function ComboBox() {
-  const [value, setValue] = React.useState('');
-
+export default function FreeSoloCreateOptionDialog() {
+  const [value, setValue] = React.useState(null);
   const [open, toggleOpen] = React.useState(false);
 
   const handleClose = () => {
     setDialogValue({
       title: '',
-      year: null,
+      year: '',
     });
+
     toggleOpen(false);
   };
 
   const [dialogValue, setDialogValue] = React.useState({
     title: '',
-    year: null,
+    year: '',
   });
 
   const handleAdd = () => {
-    setValue(dialogValue);
+    setValue({
+      title: dialogValue.title,
+      year: parseInt(dialogValue.title, 10),
+    });
+
     handleClose();
   };
 
   return (
-    <>
+    <React.Fragment>
       <Autocomplete
         value={value}
         onChange={(event, newValue) => {
-          if (newValue && newValue.freeSolo) {
+          if (newValue && newValue.inputValue) {
             toggleOpen(true);
             setDialogValue({
               title: newValue.inputValue,
-              year: null,
+              year: '',
             });
+
             return;
           }
 
           setValue(newValue);
         }}
         filterOptions={(options, params) => {
-          console.log(params);
           const filtered = filter(options, params);
 
           if (params.inputValue !== '') {
             filtered.push({
-              freeSolo: true,
               inputValue: params.inputValue,
               title: `Add "${params.inputValue}"`,
             });
@@ -66,7 +69,17 @@ export default function ComboBox() {
         }}
         id="free-solo-dialog-demo"
         options={top100Films}
-        getOptionLabel={option => option.title}
+        getOptionLabel={option => {
+          // e.g value selected with enter, right from the input
+          if (typeof option === 'string') {
+            return option;
+          }
+          if (option.inputValue) {
+            return option.inputValue;
+          }
+          return option.title;
+        }}
+        renderOption={option => option.title}
         style={{ width: 300 }}
         freeSolo
         renderInput={params => (
@@ -106,7 +119,7 @@ export default function ComboBox() {
           </Button>
         </DialogActions>
       </Dialog>
-    </>
+    </React.Fragment>
   );
 }
 
