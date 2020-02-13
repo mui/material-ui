@@ -34,9 +34,20 @@ Choose one country between 248.
 
 Set `freeSolo` to true so the textbox can contain any arbitrary value. The prop is designed to cover the primary use case of a search box with suggestions, e.g. Google search.
 
-However, if you intend to use it for a [combo box](#combo-box) like experience (an enhanced version of a select element) we recommend setting `selectOnFocus`.
+However, if you intend to use it for a [combo box](#combo-box) like experience (an enhanced version of a select element) we recommend setting `selectOnFocus` (it helps the user clearning the selected value).
 
 {{"demo": "pages/components/autocomplete/FreeSolo.js"}}
+
+### Helper message
+
+Sometimes you want to make explicit to the user that he/she can add whatever value he/she wants.
+The following demo adds a last option: `Add "YOUR SEARCH"`.
+
+{{"demo": "pages/components/autocomplete/FreeSoloCreateOption.js"}}
+
+You could also display a dialog when the user wants to add a new value.
+
+{{"demo": "pages/components/autocomplete/FreeSoloCreateOptionDialog.js"}}
 
 ## Grouped
 
