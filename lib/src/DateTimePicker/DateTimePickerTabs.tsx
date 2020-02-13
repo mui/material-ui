@@ -71,8 +71,8 @@ export const DateTimePickerTabs: React.SFC<DateTimePickerTabsProps> = ({
         className={classes.tabs}
         indicatorColor={indicatorColor}
       >
-        <Tab value="date" icon={<>{dateRangeIcon}</>} />
-        <Tab value="time" icon={<>{timeIcon}</>} />
+        <Tab value="date" aria-label="pick date" icon={<>{dateRangeIcon}</>} />
+        <Tab value="time" aria-label="pick time" icon={<>{timeIcon}</>} />
       </Tabs>
     </Paper>
   );

@@ -42,11 +42,22 @@ export const useStyles = makeStyles(
 
 interface PickerToolbarProps
   extends ExtendMui<ToolbarProps>,
-    Pick<ToolbarComponentProps, 'isMobileKeyboardViewOpen' | 'toggleMobileKeyboardView'> {
+    Pick<
+      ToolbarComponentProps,
+      | 'getMobileKeyboardInputViewButtonText'
+      | 'isMobileKeyboardViewOpen'
+      | 'toggleMobileKeyboardView'
+    > {
   title: string;
   landscapeDirection?: 'row' | 'column';
   isLandscape: boolean;
   penIconClassName?: string;
+}
+
+function defaultGetKeyboardInputSwitchingButtonText(isKeyboardInputOpen: boolean) {
+  return isKeyboardInputOpen
+    ? 'text input view is open, go to calendar view'
+    : 'calendar view is open, go to text input view';
 }
 
 const PickerToolbar: React.SFC<PickerToolbarProps> = ({
@@ -58,6 +69,7 @@ const PickerToolbar: React.SFC<PickerToolbarProps> = ({
   penIconClassName,
   toggleMobileKeyboardView,
   isMobileKeyboardViewOpen,
+  getMobileKeyboardInputViewButtonText = defaultGetKeyboardInputSwitchingButtonText,
   ...other
 }) => {
   const classes = useStyles();
@@ -82,6 +94,7 @@ const PickerToolbar: React.SFC<PickerToolbarProps> = ({
           className={penIconClassName}
           color="inherit"
           data-mui-test="toggle-mobile-keyboard-view"
+          aria-label={getMobileKeyboardInputViewButtonText(isMobileKeyboardViewOpen)}
         >
           {isMobileKeyboardViewOpen ? (
             <KeyboardIcon color="inherit" />

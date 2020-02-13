@@ -3,6 +3,8 @@ import { PickerView } from '../../Picker/Picker';
 import { arrayIncludes } from '../../_helpers/utils';
 import { MaterialUiPickersDate } from '../../typings/date';
 
+export type PickerOnChangeFn = (date: MaterialUiPickersDate, isFinish?: boolean | symbol) => void;
+
 export function useViews({
   views,
   openTo,
@@ -12,7 +14,7 @@ export function useViews({
 }: {
   views: PickerView[];
   openTo: PickerView;
-  onChange: (date: MaterialUiPickersDate, isFinish?: boolean) => void;
+  onChange: PickerOnChangeFn;
   isMobileKeyboardViewOpen: boolean;
   toggleMobileKeyboardView: () => void;
 }) {
@@ -39,9 +41,9 @@ export function useViews({
   }, [nextView, setOpenView]);
 
   const handleChangeAndOpenNext = React.useCallback(
-    (date: MaterialUiPickersDate, isFinish?: boolean) => {
+    (date: MaterialUiPickersDate, isFinish?: boolean | symbol) => {
       // do not close picker if needs to show next view
-      onChange(date, Boolean(isFinish && !nextView));
+      onChange(date, Boolean(nextView) ? false : isFinish);
 
       if (isFinish) {
         openNext();

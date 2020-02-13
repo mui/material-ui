@@ -1,12 +1,13 @@
 import * as React from 'react';
 import TextField, { TextFieldProps } from '@material-ui/core/TextField';
-import { useUtils } from './hooks/useUtils';
 import { ExtendMui } from '../typings/helpers';
+import { onSpaceOrEnter } from '../_helpers/utils';
 import { ParsableDate } from '../constants/prop-types';
 import { MaterialUiPickersDate } from '../typings/date';
+import { useUtils, MuiPickersUtils } from './hooks/useUtils';
 import { IconButtonProps } from '@material-ui/core/IconButton';
-import { getDisplayDate } from '../_helpers/text-field-helper';
 import { InputAdornmentProps } from '@material-ui/core/InputAdornment';
+import { getDisplayDate, getTextFieldAriaText } from '../_helpers/text-field-helper';
 
 export type NotOverridableProps =
   | 'openPicker'
@@ -77,6 +78,8 @@ export interface DateInputProps
    * @default false
    */
   disableMaskedInput?: boolean;
+  /** Get aria-label text for control that opens datepicker dialog. Aria-label have to include selected date. */
+  getOpenDialogAriaText?: (value: ParsableDate, utils: MuiPickersUtils) => string;
   // ?? TODO when it will be possible to display "empty" date in datepicker use it instead of ignoring invalid inputs
   ignoreInvalidInputs?: boolean;
 }
@@ -102,6 +105,8 @@ export const PureDateInput: React.FC<DateInputProps> = ({
   hideOpenPickerButton,
   ignoreInvalidInputs,
   KeyboardButtonProps,
+  disableMaskedInput,
+  getOpenDialogAriaText = getTextFieldAriaText,
   ...other
 }) => {
   const utils = useUtils();
@@ -126,17 +131,12 @@ export const PureDateInput: React.FC<DateInputProps> = ({
       error={Boolean(validationError)}
       helperText={validationError}
       {...other}
+      aria-label={getOpenDialogAriaText(rawValue, utils)}
       // do not overridable
       onClick={onOpen}
       value={inputValue}
       InputProps={PureDateInputProps}
-      onKeyDown={e => {
-        // space
-        if (e.keyCode === 32) {
-          e.stopPropagation();
-          onOpen();
-        }
-      }}
+      onKeyDown={onSpaceOrEnter(onOpen)}
     />
   );
 };

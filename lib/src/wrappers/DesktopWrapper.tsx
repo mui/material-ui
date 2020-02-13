@@ -3,9 +3,9 @@ import * as PropTypes from 'prop-types';
 import KeyboardDateInput from '../_shared/KeyboardDateInput';
 import Popover, { PopoverProps } from '@material-ui/core/Popover';
 import { WrapperProps } from './Wrapper';
+import { makeStyles } from '@material-ui/core';
 import { InnerMobileWrapperProps } from './MobileWrapper';
 import { WrapperVariantContext } from './WrapperVariantContext';
-import { useKeyDownHandler } from '../_shared/hooks/useKeyDown';
 
 export interface InnerDesktopWrapperProps {
   /** Popover props passed to material-ui Popover */
@@ -16,6 +16,14 @@ export interface DesktopWrapperProps
   extends InnerDesktopWrapperProps,
     WrapperProps,
     Partial<InnerMobileWrapperProps> {}
+
+const useStyles = makeStyles({
+  popover: {
+    '&:focus': {
+      outline: 'auto',
+    },
+  },
+});
 
 export const DesktopWrapper: React.FC<DesktopWrapperProps> = ({
   open,
@@ -38,19 +46,18 @@ export const DesktopWrapper: React.FC<DesktopWrapperProps> = ({
   ...other
 }) => {
   const ref = React.useRef();
-  const handleKeydown = useKeyDownHandler(open, {
-    13: onAccept, // Enter
-  });
+  const classes = useStyles();
 
   return (
     <WrapperVariantContext.Provider value="desktop">
       <KeyboardDateInput {...other} {...DateInputProps} inputRef={ref} />
 
       <Popover
+        role="dialog"
         open={open}
         onClose={onDismiss}
         anchorEl={ref.current}
-        onEscapeKeyDown={handleKeydown}
+        classes={{ paper: classes.popover }}
         anchorOrigin={{
           vertical: 'bottom',
           horizontal: 'center',
@@ -59,9 +66,10 @@ export const DesktopWrapper: React.FC<DesktopWrapperProps> = ({
           vertical: 'top',
           horizontal: 'center',
         }}
-        children={children}
         {...PopoverProps}
-      />
+      >
+        {children}
+      </Popover>
     </WrapperVariantContext.Provider>
   );
 };

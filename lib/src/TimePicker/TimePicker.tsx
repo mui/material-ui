@@ -1,9 +1,9 @@
-import { useUtils } from '../_shared/hooks/useUtils';
 import { TimePickerToolbar } from './TimePickerToolbar';
 import { BaseClockViewProps } from '../views/Clock/ClockView';
-import { timePickerDefaultProps } from '../constants/prop-types';
 import { ResponsiveWrapper } from '../wrappers/ResponsiveWrapper';
 import { pick12hOr24hFormat } from '../_helpers/text-field-helper';
+import { useUtils, MuiPickersUtils } from '../_shared/hooks/useUtils';
+import { timePickerDefaultProps, ParsableDate } from '../constants/prop-types';
 import { ModalWrapper, InlineWrapper, StaticWrapper } from '../wrappers/Wrapper';
 import {
   WithDateInputProps,
@@ -15,6 +15,12 @@ export interface TimePickerProps
   extends BaseClockViewProps,
     WithViewsProps<'hours' | 'minutes' | 'seconds'>,
     WithDateInputProps {}
+
+export function getTextFieldAriaText(value: ParsableDate, utils: MuiPickersUtils) {
+  return value && utils.isValid(utils.date(value))
+    ? `Choose time, selected time is ${utils.format(utils.date(value), 'fullTime')}`
+    : 'Choose time';
+}
 
 function useDefaultProps({
   ampm,
@@ -33,6 +39,7 @@ function useDefaultProps({
     ampm: willUseAmPm,
     acceptRegex: willUseAmPm ? /[\dapAP]/gi : /\d/gi,
     mask: mask || willUseAmPm ? '__:__ _M' : '__:__',
+    getOpenDialogAriaText: getTextFieldAriaText,
     format: pick12hOr24hFormat(format, ampm, {
       localized: utils.formats.fullTime,
       '12h': utils.formats.fullTime12h,

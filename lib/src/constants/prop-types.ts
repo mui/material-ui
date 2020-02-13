@@ -26,7 +26,6 @@ export const datePickerDefaultProps = {
   invalidDateMessage: 'Invalid Date Format',
   minDateMessage: 'Date should not be before minimal date',
   maxDateMessage: 'Date should not be after maximal date',
-  allowKeyboardControl: true,
 } as BaseDatePickerProps;
 
 export const dateTimePickerDefaultProps = {

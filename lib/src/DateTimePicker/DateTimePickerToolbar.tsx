@@ -65,6 +65,7 @@ export const DateTimePickerToolbar: React.FC<ToolbarComponentProps> = ({
       >
         <div className={classes.dateContainer}>
           <ToolbarButton
+            tabIndex={-1}
             variant="subtitle1"
             onClick={() => setOpenView('year')}
             selected={openView === 'year'}
@@ -72,6 +73,7 @@ export const DateTimePickerToolbar: React.FC<ToolbarComponentProps> = ({
           />
 
           <ToolbarButton
+            tabIndex={-1}
             variant="h4"
             onClick={() => setOpenView('date')}
             selected={openView === 'date'}
@@ -81,6 +83,7 @@ export const DateTimePickerToolbar: React.FC<ToolbarComponentProps> = ({
 
         <div className={classes.timeContainer}>
           <ToolbarButton
+            tabIndex={-1}
             variant="h3"
             onClick={() => setOpenView('hours')}
             selected={openView === 'hours'}
@@ -91,6 +94,7 @@ export const DateTimePickerToolbar: React.FC<ToolbarComponentProps> = ({
           <ToolbarText variant="h3" label=":" className={classes.separator} />
 
           <ToolbarButton
+            tabIndex={-1}
             variant="h3"
             onClick={() => setOpenView('minutes')}
             selected={openView === 'minutes'}

@@ -6,7 +6,9 @@ function BasicDatePicker() {
 
   return (
     <DatePicker
-      label="Basic example"
+      disableMaskedInput
+      placeholder="mm/dd/yyyy"
+      label="Accessible"
       value={selectedDate}
       onChange={date => handleDateChange(date)}
     />

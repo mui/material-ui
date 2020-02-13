@@ -31,6 +31,7 @@
     "@types/prismjs": "^1.9.1",
     "@types/react": "^16.8.13",
     "@types/react-kawaii": "^0.11.0",
+    "@types/react-redux": "^7.1.7",
     "@types/sinon": "^7.0.13",
     "@zeit/next-bundle-analyzer": "^0.1.2",
     "@zeit/next-css": "^1.0.1",
@@ -71,8 +72,7 @@
     "sinon": "^7.3.2",
     "styled-jsx": "^3.2.4",
     "ts-loader": "^6.0.2",
-    "typescript": "^3.4.4",
-    "@types/react-redux": "^7.1.7"
+    "typescript": "^3.4.4"
   },
   "devDependencies": {
     "dotenv": "^7.0.0",

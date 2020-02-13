@@ -1,10 +1,11 @@
 import * as React from 'react';
 import Year from './Year';
 import { DateType } from '@date-io/type';
-import { makeStyles } from '@material-ui/core/styles';
 import { useUtils } from '../../_shared/hooks/useUtils';
 import { MaterialUiPickersDate } from '../../typings/date';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { WrapperVariantContext } from '../../wrappers/WrapperVariantContext';
+import { useGlobalKeyDown, keycode as keys } from '../../_shared/hooks/useKeyDown';
 
 export interface YearSelectionProps {
   date: MaterialUiPickersDate;
@@ -13,6 +14,8 @@ export interface YearSelectionProps {
   onChange: (date: MaterialUiPickersDate, isFinish: boolean) => void;
   disablePast?: boolean | null | undefined;
   disableFuture?: boolean | null | undefined;
+  allowKeyboardControl?: boolean;
+  isDateDisabled: (day: MaterialUiPickersDate) => boolean;
   onYearChange?: (date: MaterialUiPickersDate) => void;
 }
 
@@ -37,9 +40,14 @@ export const YearSelection: React.FC<YearSelectionProps> = ({
   maxDate,
   disablePast,
   disableFuture,
+  isDateDisabled,
+  allowKeyboardControl,
 }) => {
+  const theme = useTheme();
   const utils = useUtils();
   const classes = useStyles();
+  const currentYear = utils.getYear(date);
+  const [focusedYear, setFocused] = React.useState<number | null>(currentYear);
   const wrapperVariant = React.useContext(WrapperVariantContext);
   const selectedYearRef = React.useRef<HTMLDivElement>(null);
 
@@ -56,18 +64,30 @@ export const YearSelection: React.FC<YearSelectionProps> = ({
     }
   }, []); // eslint-disable-line
 
-  const currentYear = utils.getYear(date);
-  const onYearSelect = React.useCallback(
-    (year: number) => {
+  const handleYearSelection = React.useCallback(
+    (year: number, isFinish = true) => {
       const newDate = utils.setYear(date, year);
+      if (isDateDisabled(newDate)) {
+        return;
+      }
+
       if (onYearChange) {
         onYearChange(newDate);
       }
 
-      onChange(newDate, true);
+      onChange(newDate, isFinish);
     },
-    [date, onChange, onYearChange, utils]
+    [date, isDateDisabled, onChange, onYearChange, utils]
   );
+
+  const yearsInRow = wrapperVariant === 'desktop' ? 4 : 3;
+  const nowFocusedYear = focusedYear || currentYear;
+  useGlobalKeyDown(Boolean(allowKeyboardControl ?? wrapperVariant !== 'static'), {
+    [keys.ArrowUp]: () => setFocused(nowFocusedYear - yearsInRow),
+    [keys.ArrowDown]: () => setFocused(nowFocusedYear + yearsInRow),
+    [keys.ArrowLeft]: () => setFocused(nowFocusedYear + (theme.direction === 'ltr' ? -1 : 1)),
+    [keys.ArrowRight]: () => setFocused(nowFocusedYear + (theme.direction === 'ltr' ? 1 : -1)),
+  });
 
   return (
     <div>
@@ -81,7 +101,8 @@ export const YearSelection: React.FC<YearSelectionProps> = ({
               key={utils.format(year, 'year')}
               selected={selected}
               value={yearNumber}
-              onSelect={onYearSelect}
+              onSelect={handleYearSelection}
+              focused={yearNumber === focusedYear}
               ref={selected ? selectedYearRef : undefined}
               disabled={Boolean(
                 (disablePast && utils.isBeforeYear(year, utils.date())) ||

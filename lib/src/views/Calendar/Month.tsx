@@ -2,6 +2,7 @@ import * as React from 'react';
 import clsx from 'clsx';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import { onSpaceOrEnter } from '../../_helpers/utils';
 
 export interface MonthProps {
   children: React.ReactNode;
@@ -63,7 +64,7 @@ export const Month: React.FC<MonthProps> = ({
       })}
       tabIndex={disabled ? -1 : 0}
       onClick={handleSelection}
-      onKeyPress={handleSelection}
+      onKeyDown={onSpaceOrEnter(handleSelection)}
       color={selected ? 'primary' : undefined}
       variant={selected ? 'h5' : 'subtitle1'}
       children={children}

@@ -11,8 +11,6 @@ export interface WrapperProps {
   onClear: () => void;
   onSetToday: () => void;
   DateInputProps: DateInputProps;
-  wider?: boolean;
-  showTabs?: boolean;
 }
 
 export type OmitInnerWrapperProps<T extends WrapperProps> = Omit<T, keyof WrapperProps>;

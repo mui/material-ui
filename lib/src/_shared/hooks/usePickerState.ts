@@ -1,20 +1,20 @@
-import { useUtils } from './useUtils';
+import { useUtils, useNow } from './useUtils';
 import { IUtils } from '@date-io/core/IUtils';
 import { useOpenState } from './useOpenState';
 import { WrapperVariant } from '../../wrappers/Wrapper';
 import { MaterialUiPickersDate } from '../../typings/date';
 import { BasePickerProps } from '../../typings/BasePicker';
 import { validate } from '../../_helpers/text-field-helper';
-import { useCallback, useDebugValue, useEffect, useMemo, useState, useRef } from 'react';
+import { useCallback, useDebugValue, useEffect, useMemo, useState } from 'react';
 
 const useValueToDate = (
   utils: IUtils<MaterialUiPickersDate>,
   { value, initialFocusedDate }: BasePickerProps
 ) => {
-  const nowRef = useRef(utils.date());
-  const date = utils.date(value || initialFocusedDate || nowRef.current);
+  const now = useNow();
+  const date = utils.date(value || initialFocusedDate || now);
 
-  return date && utils.isValid(date) ? date : nowRef.current;
+  return date && utils.isValid(date) ? date : now;
 };
 
 function useDateValues(props: BasePickerProps) {
@@ -28,6 +28,8 @@ function useDateValues(props: BasePickerProps) {
 
   return { date, format };
 }
+
+export const FORCE_FINISH_PICKER = Symbol('Force closing picker, used for accessibility ');
 
 export function usePickerState(props: BasePickerProps) {
   const { autoOk, disabled, readOnly, onAccept, onChange, onError, value } = props;
@@ -49,13 +51,16 @@ export function usePickerState(props: BasePickerProps) {
   }, [date, isMobileKeyboardViewOpen, isOpen, pickerDate, utils]);
 
   const acceptDate = useCallback(
-    (acceptedDate: MaterialUiPickersDate) => {
+    (acceptedDate: MaterialUiPickersDate, needClosePicker: boolean) => {
       onChange(acceptedDate);
-      if (onAccept) {
-        onAccept(acceptedDate);
-      }
 
-      setIsOpen(false);
+      if (needClosePicker) {
+        setIsOpen(false);
+
+        if (onAccept) {
+          onAccept(acceptedDate);
+        }
+      }
     },
     [onAccept, onChange, setIsOpen]
   );
@@ -64,8 +69,8 @@ export function usePickerState(props: BasePickerProps) {
     () => ({
       format,
       open: isOpen,
-      onClear: () => acceptDate(null),
-      onAccept: () => acceptDate(pickerDate),
+      onClear: () => acceptDate(null, true),
+      onAccept: () => acceptDate(pickerDate, true),
       onSetToday: () => setPickerDate(utils.date()),
       onDismiss: () => setIsOpen(false),
     }),
@@ -87,23 +92,25 @@ export function usePickerState(props: BasePickerProps) {
       onDateChange: (
         newDate: MaterialUiPickersDate,
         currentVariant: WrapperVariant,
-        isFinish = true
+        isFinish: boolean | symbol = true
       ) => {
         setPickerDate(newDate);
+        const isFinishing =
+          typeof isFinish === 'boolean' ? isFinish : isFinish === FORCE_FINISH_PICKER;
 
-        if (isFinish && autoOk) {
-          acceptDate(newDate);
-          return;
-        }
+        if (isFinishing) {
+          const autoAcceptRequested = Boolean(autoOk) || isFinish === FORCE_FINISH_PICKER;
+          if (currentVariant === 'mobile' && autoAcceptRequested) {
+            acceptDate(newDate, true);
+          }
 
-        // simulate autoOk, but do not close the modal
-        if (currentVariant === 'desktop' || currentVariant === 'static') {
-          onChange(newDate);
-          onAccept && onAccept(newDate);
+          if (currentVariant !== 'mobile') {
+            acceptDate(newDate, autoAcceptRequested);
+          }
         }
       },
     }),
-    [acceptDate, autoOk, isMobileKeyboardViewOpen, onAccept, onChange, pickerDate]
+    [acceptDate, autoOk, isMobileKeyboardViewOpen, pickerDate]
   );
 
   const validationError = validate(value, utils, props as any);

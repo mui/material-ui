@@ -1,3 +1,5 @@
+import * as React from 'react';
+
 /** Use it instead of .includes method for IE support */
 export function arrayIncludes<T>(array: T[] | readonly T[], itemOrItems: T | T[]) {
   if (Array.isArray(itemOrItems)) {
@@ -6,3 +8,13 @@ export function arrayIncludes<T>(array: T[] | readonly T[], itemOrItems: T | T[]
 
   return array.indexOf(itemOrItems) !== -1;
 }
+
+export const onSpaceOrEnter = (innerFn: () => void) => (e: React.KeyboardEvent) => {
+  if (e.key === 'Enter' || e.key === ' ') {
+    innerFn();
+
+    // prevent any side effects
+    e.preventDefault();
+    e.stopPropagation();
+  }
+};

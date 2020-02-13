@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useRef } from 'react';
 import { IUtils } from '@date-io/core/IUtils';
 import { MaterialUiPickersDate } from '../../typings/date';
 import { MuiPickersContext } from '../../MuiPickersUtilsProvider';
@@ -18,3 +18,12 @@ export function useUtils() {
 
   return utils!;
 }
+
+export function useNow() {
+  const utils = useUtils();
+  const now = useRef(utils.date());
+
+  return now.current;
+}
+
+export type MuiPickersUtils = IUtils<MaterialUiPickersDate>;

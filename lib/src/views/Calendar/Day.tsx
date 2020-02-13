@@ -1,8 +1,10 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { ButtonBase } from '@material-ui/core';
+import { useUtils } from '../../_shared/hooks/useUtils';
+import { MaterialUiPickersDate } from '../../typings/date';
 import { makeStyles, fade } from '@material-ui/core/styles';
+import { ButtonBase, ButtonBaseProps } from '@material-ui/core';
 
 export const useStyles = makeStyles(
   theme => ({
@@ -15,9 +17,6 @@ export const useStyles = makeStyles(
       color: theme.palette.text.primary,
       fontSize: theme.typography.caption.fontSize,
       fontWeight: theme.typography.fontWeightMedium,
-      '&:focus': {
-        backgroundColor: fade(theme.palette.action.active, theme.palette.action.hoverOpacity),
-      },
       '&:hover': {
         backgroundColor: fade(theme.palette.action.active, theme.palette.action.hoverOpacity),
       },
@@ -26,7 +25,7 @@ export const useStyles = makeStyles(
       opacity: 0,
       pointerEvents: 'none',
     },
-    current: {
+    today: {
       '&:not($daySelected)': {
         border: `1px solid ${theme.palette.text.hint}`,
       },
@@ -40,11 +39,7 @@ export const useStyles = makeStyles(
       }),
       '&:hover': {
         willChange: 'background-color',
-        backgroundColor: theme.palette.primary.light,
-      },
-      '&:focus': {
-        willChange: 'background-color',
-        backgroundColor: theme.palette.primary.light,
+        backgroundColor: theme.palette.primary.dark,
       },
     },
     dayDisabled: {
@@ -58,44 +53,72 @@ export const useStyles = makeStyles(
   { name: 'MuiPickersDay' }
 );
 
-export interface DayProps {
-  /** Day text */
-  children: React.ReactNode;
+export interface DayProps extends ButtonBaseProps {
+  /** The date to show */
+  day: MaterialUiPickersDate;
+  /** Is focused by keyboard navigation */
+  focused?: boolean;
+  /** Can be focused by tabbing in */
+  focusable?: boolean;
+  /** Is day in current month */
+  isInCurrentMonth: boolean;
+  /** Is switching month animation going on right now */
+  isAnimating: boolean;
   /** Is today? */
-  current?: boolean;
+  isToday?: boolean;
   /** Disabled? */
   disabled?: boolean;
-  /** Hidden? */
-  hidden?: boolean;
   /** Selected? */
   selected?: boolean;
 }
 
 export const Day: React.FC<DayProps> = ({
-  children,
+  day,
   disabled,
-  hidden,
-  current,
+  isInCurrentMonth,
+  isToday,
   selected,
+  focused = false,
+  focusable = false,
+  isAnimating,
+  onFocus,
   ...other
 }) => {
+  const ref = React.useRef<HTMLButtonElement>(null);
+  const utils = useUtils();
   const classes = useStyles();
   const className = clsx(classes.day, {
-    [classes.hidden]: hidden,
-    [classes.current]: current,
+    [classes.hidden]: !isInCurrentMonth,
+    [classes.today]: isToday,
     [classes.daySelected]: selected,
     [classes.dayDisabled]: disabled,
   });
 
+  React.useEffect(() => {
+    if (focused && !isAnimating && !disabled && isInCurrentMonth && ref.current) {
+      ref.current.focus();
+    }
+  }, [disabled, focused, isAnimating, isInCurrentMonth]);
+
   return (
     <ButtonBase
-      data-mui-test="day"
+      aria-hidden={!isInCurrentMonth}
+      ref={ref}
       centerRipple
+      focusRipple
+      // disableRipple={selected}
+      data-mui-test="day"
+      aria-label={utils.format(day, 'fullDate')}
+      tabIndex={focused || focusable ? 0 : -1}
       className={className}
-      tabIndex={hidden || disabled ? -1 : 0}
+      onFocus={e => {
+        if (!focused && onFocus) {
+          onFocus(e);
+        }
+      }}
       {...other}
     >
-      <span className={classes.dayLabel}>{children}</span>
+      <span className={classes.dayLabel}>{utils.format(day, 'dayOfMonth')}</span>
     </ButtonBase>
   );
 };
@@ -103,7 +126,7 @@ export const Day: React.FC<DayProps> = ({
 Day.displayName = 'Day';
 
 Day.propTypes = {
-  current: PropTypes.bool,
+  isToday: PropTypes.bool,
   disabled: PropTypes.bool,
   hidden: PropTypes.bool,
   selected: PropTypes.bool,
@@ -112,7 +135,7 @@ Day.propTypes = {
 Day.defaultProps = {
   disabled: false,
   hidden: false,
-  current: false,
+  isToday: false,
   selected: false,
 };
 

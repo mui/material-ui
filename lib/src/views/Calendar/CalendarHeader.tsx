@@ -15,7 +15,7 @@ import { ArrowLeftIcon } from '../../_shared/icons/ArrowLeftIcon';
 import { ArrowRightIcon } from '../../_shared/icons/ArrowRightIcon';
 import { ArrowDropDownIcon } from '../../_shared/icons/ArrowDropDownIcon';
 
-export interface CalendarWithHeaderProps
+export interface CalendarHeaderProps
   extends Pick<CalendarProps, 'minDate' | 'maxDate' | 'disablePast' | 'disableFuture'> {
   view: DatePickerView;
   views: DatePickerView[];
@@ -24,6 +24,10 @@ export interface CalendarWithHeaderProps
   leftArrowIcon?: React.ReactNode;
   /** Right arrow icon */
   rightArrowIcon?: React.ReactNode;
+  /** Left arrow icon aria-label text */
+  leftArrowButtonText?: string;
+  /** Right arrow icon aria-label text */
+  rightArrowButtonText?: string;
   /**
    * Props to pass to left arrow button
    * @type {Partial<IconButtonProps>}
@@ -34,6 +38,8 @@ export interface CalendarWithHeaderProps
    * @type {Partial<IconButtonProps>}
    */
   rightArrowButtonProps?: Partial<IconButtonProps>;
+  /** Get aria-label text for switching between views button */
+  getViewSwitchingButtonText?: (currentView: DatePickerView) => string;
   reduceAnimations: boolean;
   changeView: (view: DatePickerView) => void;
   onMonthChange: (date: MaterialUiPickersDate, slideDirection: SlideDirection) => void;
@@ -83,21 +89,30 @@ export const useStyles = makeStyles(
   { name: 'MuiPickersCalendarHeader' }
 );
 
-export const CalendarHeader: React.SFC<CalendarWithHeaderProps> = ({
+function getSwitchingViewAriaText(view: DatePickerView) {
+  return view === 'year'
+    ? 'year view is open, switch to calendar view'
+    : 'calendar view is open, switch to year view';
+}
+
+export const CalendarHeader: React.SFC<CalendarHeaderProps> = ({
   view,
   views,
   month,
+  changeView,
+  minDate,
+  maxDate,
+  disablePast,
+  disableFuture,
+  onMonthChange,
+  reduceAnimations,
   leftArrowIcon,
   rightArrowIcon,
   leftArrowButtonProps,
   rightArrowButtonProps,
-  changeView,
-  onMonthChange,
-  minDate,
-  maxDate,
-  reduceAnimations,
-  disableFuture,
-  disablePast,
+  leftArrowButtonText = 'previous month',
+  rightArrowButtonText = 'next month',
+  getViewSwitchingButtonText = getSwitchingViewAriaText,
 }) => {
   const utils = useUtils();
   const theme = useTheme();
@@ -152,6 +167,7 @@ export const CalendarHeader: React.SFC<CalendarWithHeaderProps> = ({
             transKey={utils.format(month, 'month')}
           >
             <Typography
+              aria-live="polite"
               data-mui-test="calendar-month-text"
               align="center"
               variant="subtitle1"
@@ -164,6 +180,7 @@ export const CalendarHeader: React.SFC<CalendarWithHeaderProps> = ({
             transKey={utils.format(month, 'year')}
           >
             <Typography
+              aria-live="polite"
               data-mui-test="calendar-year-text"
               align="center"
               variant="subtitle1"
@@ -172,10 +189,11 @@ export const CalendarHeader: React.SFC<CalendarWithHeaderProps> = ({
           </FadeTransitionGroup>
 
           <IconButton
-            data-mui-test="calendar-view-switcher"
             size="small"
+            data-mui-test="calendar-view-switcher"
             onClick={toggleView}
             className={classes.yearSelectionSwitcher}
+            aria-label={getViewSwitchingButtonText(view)}
           >
             <ArrowDropDownIcon
               className={clsx(classes.switchViewDropdown, {
@@ -190,6 +208,7 @@ export const CalendarHeader: React.SFC<CalendarWithHeaderProps> = ({
             <IconButton
               data-mui-test="previous-month"
               size="small"
+              aria-label={leftArrowButtonText}
               {...leftArrowButtonProps}
               disabled={isPreviousMonthDisabled}
               onClick={selectPreviousMonth}
@@ -204,6 +223,7 @@ export const CalendarHeader: React.SFC<CalendarWithHeaderProps> = ({
 
             <IconButton
               size="small"
+              aria-label={rightArrowButtonText}
               {...rightArrowButtonProps}
               disabled={isNextMonthDisabled}
               onClick={selectNextMonth}

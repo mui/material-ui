@@ -5,7 +5,6 @@ import { WrapperProps } from './Wrapper';
 import { PureDateInput } from '../_shared/PureDateInput';
 import { InnerDesktopWrapperProps } from './DesktopWrapper';
 import { WrapperVariantContext } from './WrapperVariantContext';
-import { useKeyDownHandler } from '../_shared/hooks/useKeyDown';
 import { DialogProps as MuiDialogProps } from '@material-ui/core/Dialog';
 
 export interface InnerMobileWrapperProps {
@@ -44,6 +43,8 @@ export interface InnerMobileWrapperProps {
    * @type {Partial<MuiDialogProps>}
    */
   DialogProps?: Partial<Omit<MuiDialogProps, 'classes'>>;
+  showTabs?: boolean;
+  wider?: boolean;
 }
 
 export interface MobileWrapperProps
@@ -71,16 +72,11 @@ export const MobileWrapper: React.FC<MobileWrapperProps> = ({
   PopoverProps,
   ...other
 }) => {
-  const handleKeyDown = useKeyDownHandler(open, {
-    13: onAccept, // Enter
-  });
-
   return (
     <WrapperVariantContext.Provider value="mobile">
       <PureDateInput {...other} {...DateInputProps} />
 
       <ModalDialog
-        onKeyDown={handleKeyDown}
         wider={wider}
         showTabs={showTabs}
         open={open}

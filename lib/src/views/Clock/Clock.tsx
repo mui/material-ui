@@ -2,12 +2,15 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import clsx from 'clsx';
 import ClockPointer from './ClockPointer';
+import { useUtils } from '../../_shared/hooks/useUtils';
 import { VIEW_HEIGHT } from '../../constants/dimensions';
 import { ClockViewType } from '../../constants/ClockType';
 import { MaterialUiPickersDate } from '../../typings/date';
+import { PickerOnChangeFn } from '../../_shared/hooks/useViews';
 import { getHours, getMinutes } from '../../_helpers/time-utils';
 import { useMeridiemMode } from '../../TimePicker/TimePickerToolbar';
 import { IconButton, Typography, makeStyles } from '@material-ui/core';
+import { useGlobalKeyDown, keycode } from '../../_shared/hooks/useKeyDown';
 import { WrapperVariantContext } from '../../wrappers/WrapperVariantContext';
 
 export interface ClockProps {
@@ -15,11 +18,12 @@ export interface ClockProps {
   type: ClockViewType;
   value: number;
   children: React.ReactElement<any>[];
-  onDateChange: (date: MaterialUiPickersDate, isFinish?: boolean) => void;
-  onChange: (value: number, isFinish?: boolean) => void;
+  onDateChange: PickerOnChangeFn;
+  onChange: (value: number, isFinish?: boolean | symbol) => void;
   ampm?: boolean;
   minutesStep?: number;
   ampmInClock?: boolean;
+  allowKeyboardControl?: boolean;
 }
 
 export const useStyles = makeStyles(
@@ -94,9 +98,11 @@ export const Clock: React.FC<ClockProps> = ({
   children: numbersElementsArray,
   type,
   ampm,
-  minutesStep,
+  minutesStep = 1,
+  allowKeyboardControl,
   onChange,
 }) => {
+  const utils = useUtils();
   const classes = useStyles();
   const wrapperVariant = React.useContext(WrapperVariantContext);
   const isMoving = React.useRef(false);
@@ -162,6 +168,17 @@ export const Clock: React.FC<ClockProps> = ({
     return value % 5 === 0;
   }, [type, value]);
 
+  const keyboardControlStep = type === 'minutes' ? minutesStep : 1;
+  useGlobalKeyDown(
+    Boolean(allowKeyboardControl ?? wrapperVariant !== 'static') && !isMoving.current,
+    {
+      [keycode.Home]: () => onChange(0), // annulate both hours and minutes
+      [keycode.End]: () => onChange(type === 'minutes' ? 59 : 23, false),
+      [keycode.ArrowUp]: () => onChange(value + keyboardControlStep, false),
+      [keycode.ArrowDown]: () => onChange(value - keyboardControlStep, false),
+    }
+  );
+
   return (
     <div className={classes.container}>
       <div className={classes.clock}>
@@ -182,6 +199,8 @@ export const Clock: React.FC<ClockProps> = ({
           value={value}
           isInner={isPointerInner}
           hasSelected={hasSelected}
+          aria-live="polite"
+          aria-label={`Selected time ${utils.format(date, 'fullTime')}`}
         />
 
         {numbersElementsArray}

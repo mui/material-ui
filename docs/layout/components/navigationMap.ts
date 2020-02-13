@@ -38,6 +38,7 @@ export const navItems = [
   {
     title: 'Guides',
     children: [
+      { title: 'Accessibility', href: '/guides/accessibility' },
       { title: 'Form integration', href: '/guides/form-integration' },
       { title: 'CSS overrides', href: '/guides/css-overrides' },
       { title: 'Global format customization', href: '/guides/formats' },

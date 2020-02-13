@@ -3,6 +3,7 @@ import * as PropTypes from 'prop-types';
 import Clock from './Clock';
 import { useUtils } from '../../_shared/hooks/useUtils';
 import { MaterialUiPickersDate } from '../../typings/date';
+import { PickerOnChangeFn } from '../../_shared/hooks/useViews';
 import { getHourNumbers, getMinutesNumbers } from './ClockNumbers';
 import { convertToMeridiem, getMeridiem } from '../../_helpers/time-utils';
 
@@ -30,74 +31,117 @@ export interface ClockViewProps extends BaseClockViewProps {
   /** Clock type */
   type: 'hours' | 'minutes' | 'seconds';
   /** On change date without moving between views @DateIOType */
-  onDateChange: (date: MaterialUiPickersDate, isFinish?: boolean) => void;
-  /** On hour change @DateIOType */
-  onHourChange: (date: MaterialUiPickersDate, isFinish?: boolean) => void;
-  /** On minutes change @DateIOType */
-  onMinutesChange: (date: MaterialUiPickersDate, isFinish?: boolean) => void;
-  /** On seconds change @DateIOType */
-  onSecondsChange: (date: MaterialUiPickersDate, isFinish?: boolean) => void;
+  onDateChange: PickerOnChangeFn;
+  /** On change callback @DateIOType */
+  onChange: PickerOnChangeFn;
+  /** Get clock number aria-text for hours */
+  getHoursClockNumberText?: (hoursText: string) => string;
+  /** Get clock number aria-text for minutes */
+  getMinutesClockNumberText?: (minutesText: string) => string;
+  /** Get clock number aria-text for seconds */
+  getSecondsClockNumberText?: (secondsText: string) => string;
+  /**
+   * Enables keyboard listener for moving between days in calendar
+   * @default currentWrapper !== 'static'
+   */
+  allowKeyboardControl?: boolean;
 }
 
+const getHoursAriaText = (hour: string) => `${hour} hours`;
+const getMinutesAriaText = (minute: string) => `${minute} minutes`;
+const getSecondsAriaText = (seconds: string) => `${seconds} seconds`;
 export const ClockView: React.FC<ClockViewProps> = ({
   type,
   onDateChange,
-  onHourChange,
-  onMinutesChange,
-  onSecondsChange,
+  onChange,
   ampm,
   date,
   minutesStep,
   ampmInClock,
+  allowKeyboardControl,
+  getHoursClockNumberText = getHoursAriaText,
+  getMinutesClockNumberText = getMinutesAriaText,
+  getSecondsClockNumberText = getSecondsAriaText,
 }) => {
   const utils = useUtils();
   const viewProps = React.useMemo(() => {
     switch (type) {
       case 'hours':
-        return {
-          value: utils.getHours(date),
-          children: getHourNumbers({ date, utils, ampm: Boolean(ampm) }),
-          onChange: (value: number, isFinish?: boolean) => {
-            const currentMeridiem = getMeridiem(date, utils);
-            const updatedTimeWithMeridiem = convertToMeridiem(
-              utils.setHours(date, value),
-              currentMeridiem,
-              Boolean(ampm),
-              utils
-            );
+        const handleHoursChange = (value: number, isFinish?: boolean | symbol) => {
+          const currentMeridiem = getMeridiem(date, utils);
+          const updatedTimeWithMeridiem = convertToMeridiem(
+            utils.setHours(date, value),
+            currentMeridiem,
+            Boolean(ampm),
+            utils
+          );
 
-            onHourChange(updatedTimeWithMeridiem, isFinish);
-          },
+          onChange(updatedTimeWithMeridiem, isFinish);
+        };
+
+        return {
+          onChange: handleHoursChange,
+          value: utils.getHours(date),
+          children: getHourNumbers({
+            date,
+            utils,
+            onChange: handleHoursChange,
+            ampm: Boolean(ampm),
+            getClockNumberText: getHoursClockNumberText,
+          }),
         };
 
       case 'minutes':
         const minutesValue = utils.getMinutes(date);
+        const handleMinutesChange = (value: number, isFinish?: boolean | symbol) => {
+          const updatedTime = utils.setMinutes(date, value);
+
+          onChange(updatedTime, isFinish);
+        };
+
         return {
           value: minutesValue,
-          children: getMinutesNumbers({ value: minutesValue, utils }),
-          onChange: (value: number, isFinish?: boolean) => {
-            const updatedTime = utils.setMinutes(date, value);
-
-            onMinutesChange(updatedTime, isFinish);
-          },
+          onChange: handleMinutesChange,
+          children: getMinutesNumbers({
+            utils,
+            value: minutesValue,
+            onChange: handleMinutesChange,
+            getClockNumberText: getMinutesClockNumberText,
+          }),
         };
 
       case 'seconds':
         const secondsValue = utils.getSeconds(date);
+        const handleSecondsChange = (value: number, isFinish?: boolean | symbol) => {
+          const updatedTime = utils.setSeconds(date, value);
+
+          onChange(updatedTime, isFinish);
+        };
+
         return {
           value: secondsValue,
-          children: getMinutesNumbers({ value: secondsValue, utils }),
-          onChange: (value: number, isFinish?: boolean) => {
-            const updatedTime = utils.setSeconds(date, value);
-
-            onSecondsChange(updatedTime, isFinish);
-          },
+          onChange: handleSecondsChange,
+          children: getMinutesNumbers({
+            utils,
+            value: secondsValue,
+            onChange: handleSecondsChange,
+            getClockNumberText: getSecondsClockNumberText,
+          }),
         };
 
       default:
         throw new Error('You must provide the type for ClockView');
     }
-  }, [ampm, date, onHourChange, onMinutesChange, onSecondsChange, type, utils]);
+  }, [
+    ampm,
+    date,
+    getHoursClockNumberText,
+    getMinutesClockNumberText,
+    getSecondsClockNumberText,
+    onChange,
+    type,
+    utils,
+  ]);
 
   return (
     <Clock
@@ -107,6 +151,7 @@ export const ClockView: React.FC<ClockViewProps> = ({
       type={type}
       ampm={ampm}
       minutesStep={minutesStep}
+      allowKeyboardControl={allowKeyboardControl}
       {...viewProps}
     />
   );
@@ -117,9 +162,7 @@ ClockView.displayName = 'ClockView';
 // @ts-ignore
 ClockView.propTypes = {
   date: PropTypes.object.isRequired,
-  onHourChange: PropTypes.func.isRequired,
-  onMinutesChange: PropTypes.func.isRequired,
-  onSecondsChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
   ampm: PropTypes.bool,
   minutesStep: PropTypes.number,
   type: PropTypes.oneOf(['minutes', 'hours', 'seconds']).isRequired,

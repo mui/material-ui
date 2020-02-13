@@ -1,11 +1,15 @@
 import * as React from 'react';
+import { onSpaceOrEnter } from '../../_helpers/utils';
+import { MaterialUiPickersDate } from '../../typings/date';
+import { PickerOnChangeFn } from '../../_shared/hooks/useViews';
+import { FORCE_FINISH_PICKER } from '../../_shared/hooks/usePickerState';
 
 export interface DayWrapperProps {
-  value: any;
+  value: MaterialUiPickersDate;
   children: React.ReactNode;
   dayInCurrentMonth?: boolean;
   disabled?: boolean;
-  onSelect: (value: any) => void;
+  onSelect: PickerOnChangeFn;
 }
 
 const DayWrapper: React.FC<DayWrapperProps> = ({
@@ -16,13 +20,17 @@ const DayWrapper: React.FC<DayWrapperProps> = ({
   dayInCurrentMonth,
   ...other
 }) => {
-  const handleClick = React.useCallback(() => onSelect(value), [onSelect, value]);
+  const handleSelection = (isFinish: symbol | boolean) => {
+    if (dayInCurrentMonth && !disabled) {
+      onSelect(value, isFinish);
+    }
+  };
 
   return (
     <div
-      role="presentation"
-      onClick={dayInCurrentMonth && !disabled ? handleClick : undefined}
-      onKeyPress={dayInCurrentMonth && !disabled ? handleClick : undefined}
+      role="cell"
+      onClick={() => handleSelection(true)}
+      onKeyDown={onSpaceOrEnter(() => handleSelection(FORCE_FINISH_PICKER))}
       children={children}
       {...other}
     />

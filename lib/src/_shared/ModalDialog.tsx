@@ -30,6 +30,11 @@ export const useStyles = makeStyles(
     dialogRootWider: {
       minWidth: DIALOG_WIDTH_WIDER,
     },
+    dialogContainer: {
+      '&:focus > $dialogRoot': {
+        outline: 'auto',
+      },
+    },
     dialog: {
       '&:first-child': {
         padding: 0,
@@ -69,6 +74,7 @@ export const ModalDialog: React.FC<ModalDialogProps> = ({
     <Dialog
       onClose={onDismiss}
       classes={{
+        container: classes.dialogContainer,
         paper: clsx(classes.dialogRoot, {
           [classes.dialogRootWider]: wider,
         }),

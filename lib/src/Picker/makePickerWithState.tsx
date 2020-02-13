@@ -76,6 +76,8 @@ export function makePickerWithStateAndWrapper<
       title,
       invalidDateMessage,
       minDateMessage,
+      wider,
+      showTabs,
       maxDateMessage,
       // WrapperProps
       clearable,
@@ -100,6 +102,8 @@ export function makePickerWithStateAndWrapper<
         todayLabel={todayLabel}
         cancelLabel={cancelLabel}
         DateInputProps={inputProps}
+        wider={wider}
+        showTabs={showTabs}
         {...wrapperProps}
         {...restPropsForTextField}
       >

@@ -68,6 +68,8 @@ export function useMeridiemMode(
   return { meridiemMode, handleMeridiemChange };
 }
 
+const clockTypographyVariant = 'h3';
+
 export const TimePickerToolbar: React.FC<ToolbarComponentProps> = ({
   date,
   views,
@@ -87,8 +89,6 @@ export const TimePickerToolbar: React.FC<ToolbarComponentProps> = ({
   const showAmPmControl = ampm && !ampmInClock;
   const { meridiemMode, handleMeridiemChange } = useMeridiemMode(date, ampm, onChange);
 
-  const clockTypographyVariant = 'h3';
-
   return (
     <PickerToolbar
       landscapeDirection="row"
@@ -106,6 +106,7 @@ export const TimePickerToolbar: React.FC<ToolbarComponentProps> = ({
       >
         {arrayIncludes(views, 'hours') && (
           <ToolbarButton
+            tabIndex={-1}
             variant={clockTypographyVariant}
             onClick={() => setOpenView('hours')}
             selected={openView === 'hours'}
@@ -115,6 +116,7 @@ export const TimePickerToolbar: React.FC<ToolbarComponentProps> = ({
 
         {arrayIncludes(views, ['hours', 'minutes']) && (
           <ToolbarText
+            tabIndex={-1}
             label=":"
             variant={clockTypographyVariant}
             selected={false}
@@ -124,6 +126,7 @@ export const TimePickerToolbar: React.FC<ToolbarComponentProps> = ({
 
         {arrayIncludes(views, 'minutes') && (
           <ToolbarButton
+            tabIndex={-1}
             variant={clockTypographyVariant}
             onClick={() => setOpenView('minutes')}
             selected={openView === 'minutes'}
@@ -152,9 +155,9 @@ export const TimePickerToolbar: React.FC<ToolbarComponentProps> = ({
           })}
         >
           <ToolbarButton
-            data-mui-test="toolbar-am-btn"
             disableRipple
             variant="subtitle2"
+            data-mui-test="toolbar-am-btn"
             selected={meridiemMode === 'am'}
             typographyClassName={classes.ampmLabel}
             label={utils.getMeridiemText('am')}
@@ -162,9 +165,9 @@ export const TimePickerToolbar: React.FC<ToolbarComponentProps> = ({
           />
 
           <ToolbarButton
-            data-mui-test="toolbar-pm-btn"
             disableRipple
             variant="subtitle2"
+            data-mui-test="toolbar-pm-btn"
             selected={meridiemMode === 'pm'}
             typographyClassName={classes.ampmLabel}
             label={utils.getMeridiemText('pm')}

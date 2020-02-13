@@ -6,13 +6,13 @@ import { Breakpoint } from '@material-ui/core/styles/createBreakpoints';
 
 export interface ResponsiveWrapperProps extends DesktopWrapperProps, MobileWrapperProps {
   /** Breakpoint when `Desktop` mode will be changed to `Mobile`
-   * @default 'sm'
+   * @default 'md'
    */
   desktopModeBreakpoint?: Breakpoint;
 }
 
 export const ResponsiveWrapper: React.FC<ResponsiveWrapperProps> = ({
-  desktopModeBreakpoint = 'sm',
+  desktopModeBreakpoint = 'md',
   okLabel,
   cancelLabel,
   clearLabel,

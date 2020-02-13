@@ -34,6 +34,7 @@ export type ToolbarComponentProps<T extends PickerView = any> = BaseDatePickerPr
     ampmInClock?: boolean;
     isMobileKeyboardViewOpen: boolean;
     toggleMobileKeyboardView: () => void;
+    getMobileKeyboardInputViewButtonText?: () => string;
   };
 
 export interface PickerViewProps<TView extends PickerView>
@@ -58,7 +59,7 @@ interface PickerProps<T extends PickerView> extends PickerViewProps<T> {
   onDateChange: (
     date: MaterialUiPickersDate,
     currentVariant: WrapperVariant,
-    isFinish?: boolean
+    isFinish?: boolean | symbol
   ) => void;
 }
 
@@ -104,7 +105,7 @@ export function Picker({
   const isLandscape = useIsLandscape(views, orientation);
   const wrapperVariant = React.useContext(WrapperVariantContext);
   const onChange = React.useCallback(
-    (date: MaterialUiPickersDate, isFinish?: boolean) => {
+    (date: MaterialUiPickersDate, isFinish?: boolean | symbol) => {
       onDateChange(date, wrapperVariant, isFinish);
     },
     [onDateChange, wrapperVariant]
@@ -170,9 +171,7 @@ export function Picker({
                 date={date}
                 type={openView as 'hours' | 'minutes' | 'seconds'}
                 onDateChange={onChange}
-                onHourChange={handleChangeAndOpenNext}
-                onMinutesChange={handleChangeAndOpenNext}
-                onSecondsChange={handleChangeAndOpenNext}
+                onChange={handleChangeAndOpenNext}
               />
             )}
           </>

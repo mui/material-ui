@@ -3,8 +3,13 @@ import LeftArrowIcon from '@material-ui/icons/KeyboardArrowLeft';
 import RightArrowIcon from '@material-ui/icons/KeyboardArrowRight';
 import { Grid, Typography } from '@material-ui/core';
 import { MuiPickersContext } from '@material-ui/pickers';
-import { MobileDatePicker, DesktopDatePicker } from '@material-ui/pickers';
 import { createRegressionDay as createRegressionDayRenderer } from './RegressionDay';
+import {
+  MobileDatePicker,
+  DesktopDatePicker,
+  MobileTimePicker,
+  DesktopTimePicker,
+} from '@material-ui/pickers';
 
 function Regression() {
   const utils = useContext(MuiPickersContext);
@@ -49,6 +54,15 @@ function Regression() {
         />
         <MobileDatePicker disabled id="disabled" {...sharedProps} />
         <MobileDatePicker readOnly id="readonly" {...sharedProps} />
+      </Grid>
+
+      <Typography align="center" variant="h4" component="span" gutterBottom>
+        TimePicker
+      </Typography>
+
+      <Grid container justify="center" wrap="wrap">
+        <MobileTimePicker id="mobile-timepicker" value={date} onChange={changeDate} />
+        <DesktopTimePicker id="desktop-timepicker" value={date} onChange={changeDate} />
       </Grid>
     </div>
   );

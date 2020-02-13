@@ -4,7 +4,7 @@ import { DatePickerToolbar } from './DatePickerToolbar';
 import { getFormatByViews } from '../_helpers/date-utils';
 import { datePickerDefaultProps } from '../constants/prop-types';
 import { ResponsiveWrapper } from '../wrappers/ResponsiveWrapper';
-import { ExportedCalendarProps } from '../views/Calendar/CalendarView';
+import { ExportedCalendarViewProps } from '../views/Calendar/CalendarView';
 import { ModalWrapper, InlineWrapper, StaticWrapper } from '../wrappers/Wrapper';
 import {
   WithDateInputProps,
@@ -14,7 +14,7 @@ import {
 
 export type DatePickerView = 'year' | 'date' | 'month';
 
-export interface BaseDatePickerProps extends ExportedCalendarProps {
+export interface BaseDatePickerProps extends ExportedCalendarViewProps {
   /** Callback firing on year change @DateIOType */
   onYearChange?: (date: MaterialUiPickersDate) => void;
 }

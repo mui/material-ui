@@ -1,12 +1,18 @@
-import { IUtils } from '@date-io/core/IUtils';
 import { DatePickerProps } from '../DatePicker';
 import { ParsableDate } from '../constants/prop-types';
 import { MaterialUiPickersDate } from '../typings/date';
 import { DateInputProps } from '../_shared/PureDateInput';
+import { MuiPickersUtils } from '../_shared/hooks/useUtils';
+
+export function getTextFieldAriaText(rawValue: ParsableDate, utils: MuiPickersUtils) {
+  return rawValue && utils.isValid(utils.date(rawValue))
+    ? `Choose date, selected date is ${utils.format(utils.date(rawValue), 'fullDate')}`
+    : 'Choose date';
+}
 
 export const getDisplayDate = (
   value: ParsableDate,
-  utils: IUtils<MaterialUiPickersDate>,
+  utils: MuiPickersUtils,
   {
     format,
     invalidLabel = '',
@@ -49,7 +55,11 @@ export interface DateValidationProps extends BaseValidationProps {
   maxDateMessage?: React.ReactNode;
 }
 
-const getComparisonMaxDate = (utils: IUtils<any>, strictCompareDates: boolean, date: Date) => {
+const getComparisonMaxDate = (
+  utils: MuiPickersUtils,
+  strictCompareDates: boolean,
+  date: MaterialUiPickersDate
+) => {
   if (strictCompareDates) {
     return date;
   }
@@ -57,7 +67,11 @@ const getComparisonMaxDate = (utils: IUtils<any>, strictCompareDates: boolean, d
   return utils.endOfDay(date);
 };
 
-const getComparisonMinDate = (utils: IUtils<any>, strictCompareDates: boolean, date: Date) => {
+const getComparisonMinDate = (
+  utils: MuiPickersUtils,
+  strictCompareDates: boolean,
+  date: MaterialUiPickersDate
+) => {
   if (strictCompareDates) {
     return date;
   }
@@ -67,7 +81,7 @@ const getComparisonMinDate = (utils: IUtils<any>, strictCompareDates: boolean, d
 
 export const validate = (
   value: ParsableDate,
-  utils: IUtils<any>,
+  utils: MuiPickersUtils,
   {
     maxDate,
     minDate,
@@ -149,7 +163,7 @@ export function checkMaskIsValidForCurrentFormat(
   maskChar: string,
   format: string,
   acceptRegex: RegExp,
-  utils: IUtils<any>
+  utils: MuiPickersUtils
 ) {
   const formattedDateWith1Digit = utils.formatByString(
     utils.date(staticDateWith1DigitTokens),

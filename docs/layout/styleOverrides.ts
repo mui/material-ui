@@ -43,6 +43,21 @@ export const createOverrides = (theme: Theme): StyleRules<any> => ({
     color: theme.palette.text.primary,
   },
   li: theme.typography.body1,
+  '.mui-pickers-markdown-table': {
+    boxShadow: theme.shadows[3],
+    backgroundColor: theme.palette.background.paper,
+    borderCollapse: 'collapse',
+
+    '& th, td': {
+      padding: 16,
+      ...theme.typography.body1,
+      border: `1px solid ${theme.palette.divider}`,
+    },
+
+    '& th': {
+      ...theme.typography.h6,
+    },
+  },
   code: {
     fontSize: 16,
     lineHeight: 1.4,

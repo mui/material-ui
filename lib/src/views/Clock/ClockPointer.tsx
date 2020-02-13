@@ -3,7 +3,9 @@ import clsx from 'clsx';
 import { ClockViewType } from '../../constants/ClockType';
 import { withStyles, createStyles, Theme, WithStyles } from '@material-ui/core/styles';
 
-export interface ClockPointerProps extends WithStyles<typeof styles> {
+export interface ClockPointerProps
+  extends React.HTMLProps<HTMLDivElement>,
+    WithStyles<typeof styles> {
   value: number;
   hasSelected: boolean;
   isInner: boolean;
@@ -50,10 +52,11 @@ export class ClockPointer extends React.Component<ClockPointerProps> {
   };
 
   public render() {
-    const { classes, hasSelected } = this.props;
+    const { classes, hasSelected, isInner, type, ...other } = this.props;
 
     return (
       <div
+        {...other}
         style={this.getAngleStyle()}
         className={clsx(classes.pointer, {
           [classes.animateTransform]: this.state.toAnimateTransform,

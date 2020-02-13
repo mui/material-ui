@@ -2,9 +2,10 @@ import * as React from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { CSSTransitionProps } from 'react-transition-group/CSSTransition';
 
 export type SlideDirection = 'right' | 'left';
-interface SlideTransitionProps {
+interface SlideTransitionProps extends Omit<CSSTransitionProps, 'timeout'> {
   transKey: React.Key;
   className?: string;
   reduceAnimations: boolean;
@@ -12,11 +13,11 @@ interface SlideTransitionProps {
   children: React.ReactElement;
 }
 
-const animationDuration = 350;
+export const slideAnimationDuration = 350;
 export const useStyles = makeStyles(
   theme => {
     const slideTransition = theme.transitions.create('transform', {
-      duration: animationDuration,
+      duration: slideAnimationDuration,
       easing: 'cubic-bezier(0.35, 0.8, 0.4, 1)',
     });
 
@@ -67,11 +68,12 @@ const SlideTransition: React.SFC<SlideTransitionProps> = ({
   transKey,
   reduceAnimations,
   slideDirection,
-  className = null,
+  className = undefined,
+  ...other
 }) => {
   const classes = useStyles();
   if (reduceAnimations) {
-    return children;
+    return <div className={className}>{children}</div>;
   }
 
   const transitionClasses = {
@@ -95,10 +97,11 @@ const SlideTransition: React.SFC<SlideTransitionProps> = ({
       <CSSTransition
         mountOnEnter
         unmountOnExit
-        key={transKey + slideDirection}
-        timeout={animationDuration}
+        key={transKey}
+        timeout={slideAnimationDuration}
         classNames={transitionClasses}
         children={children}
+        {...other}
       />
     </TransitionGroup>
   );
