@@ -38,16 +38,14 @@ However, if you intend to use it for a [combo box](#combo-box) like experience (
 
 {{"demo": "pages/components/autocomplete/FreeSolo.js"}}
 
-### Free solo with explicit text
+### Helper message
 
 Sometimes you want to make explicit to the user that he/she can add whatever value he/she wants.
-The following demo adds a last option: `Add "YOUR SEARCH"` .
+The following demo adds a last option: `Add "YOUR SEARCH"`.
 
 {{"demo": "pages/components/autocomplete/FreeSoloCreateOption.js"}}
 
-### Free solo to open a dialog
-
-You could also create dialog when the user wants to add a new value.
+You could also display a dialog when the user wants to add a new value.
 
 {{"demo": "pages/components/autocomplete/FreeSoloCreateOptionDialog.js"}}
 

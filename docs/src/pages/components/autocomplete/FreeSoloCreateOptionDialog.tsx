@@ -28,7 +28,8 @@ export default function FreeSoloCreateOptionDialog() {
     year: '',
   });
 
-  const handleAdd = () => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     setValue({
       title: dialogValue.title,
       year: parseInt(dialogValue.title, 10),
@@ -41,6 +42,18 @@ export default function FreeSoloCreateOptionDialog() {
       <Autocomplete
         value={value}
         onChange={(event: any, newValue: FilmOptionType | null) => {
+          if (typeof newValue === 'string') {
+            // timeout to avoid instant validation of the dialog's form.
+            setTimeout(() => {
+              toggleOpen(true);
+              setDialogValue({
+                title: newValue,
+                year: '',
+              });
+            });
+            return;
+          }
+
           if (newValue && newValue.inputValue) {
             toggleOpen(true);
             setDialogValue({
@@ -84,37 +97,41 @@ export default function FreeSoloCreateOptionDialog() {
         )}
       />
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">Add a new film</DialogTitle>
-        <DialogContent>
-          <DialogContentText>Did you miss any film in our list? Please, add it!</DialogContentText>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            value={dialogValue.title}
-            onChange={event => setDialogValue({ ...dialogValue, title: event.target.value })}
-            label="title"
-            type="text"
-            fullWidth
-          />
-          <TextField
-            margin="dense"
-            id="name"
-            value={dialogValue.year}
-            onChange={event => setDialogValue({ ...dialogValue, year: event.target.value })}
-            label="year"
-            type="number"
-            fullWidth
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Cancel
-          </Button>
-          <Button onClick={handleAdd} color="primary">
-            Add
-          </Button>
-        </DialogActions>
+        <form onSubmit={handleSubmit}>
+          <DialogTitle id="form-dialog-title">Add a new film</DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              Did you miss any film in our list? Please, add it!
+            </DialogContentText>
+            <TextField
+              autoFocus
+              margin="dense"
+              id="name"
+              value={dialogValue.title}
+              onChange={event => setDialogValue({ ...dialogValue, title: event.target.value })}
+              label="title"
+              type="text"
+              fullWidth
+            />
+            <TextField
+              margin="dense"
+              id="name"
+              value={dialogValue.year}
+              onChange={event => setDialogValue({ ...dialogValue, year: event.target.value })}
+              label="year"
+              type="number"
+              fullWidth
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose} color="primary">
+              Cancel
+            </Button>
+            <Button type="submit" color="primary">
+              Add
+            </Button>
+          </DialogActions>
+        </form>
       </Dialog>
     </React.Fragment>
   );
