@@ -12,11 +12,11 @@ const defaultProps = {
 export default function BorderSubtractive() {
   return (
     <Box display="flex" justifyContent="center">
-      <Box border={0} {...defaultProps} />
-      <Box borderTop={0} {...defaultProps} />
-      <Box borderRight={0} {...defaultProps} />
-      <Box borderBottom={0} {...defaultProps} />
-      <Box borderLeft={0} {...defaultProps} />
+      <Box {...defaultProps} border={0} />
+      <Box {...defaultProps} borderTop={0} />
+      <Box {...defaultProps} borderRight={0} />
+      <Box {...defaultProps} borderBottom={0} />
+      <Box {...defaultProps} borderLeft={0} />
     </Box>
   );
 }
