@@ -2,11 +2,37 @@
 import fetch from 'cross-fetch';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import Button from '@material-ui/core/Button';
-import { useRouter } from 'next/router';
-import Snackbar from '@material-ui/core/Snackbar';
+import { makeStyles } from '@material-ui/core/styles';
+import NotificationsIcon from '@material-ui/icons/Notifications';
+import Tooltip from '@material-ui/core/Tooltip';
+import IconButton from '@material-ui/core/IconButton';
+import Badge from '@material-ui/core/Badge';
+import Popper from '@material-ui/core/Popper';
+import Grow from '@material-ui/core/Grow';
+import Paper from '@material-ui/core/Paper';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import Divider from '@material-ui/core/Divider';
 import sleep from 'modules/waterfall/sleep';
 import { getCookie } from 'docs/src/modules/utils/helpers';
+import notifications from '../../../notifications.json';
+
+const useStyles = makeStyles(theme => ({
+  paper: {
+    transformOrigin: 'top right',
+  },
+  list: {
+    maxWidth: theme.spacing(40),
+    maxHeight: theme.spacing(40),
+    overflow: 'auto',
+  },
+  listItem: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+}));
 
 function getLastSeenNotification() {
   const seen = getCookie('lastSeenNotification');
@@ -14,6 +40,10 @@ function getLastSeenNotification() {
 }
 
 let messages = null;
+
+if (process.env.NODE_ENV !== 'production') {
+  messages = notifications;
+}
 
 async function getMessages() {
   try {
@@ -32,43 +62,58 @@ async function getMessages() {
 }
 
 export default function Notifications() {
+  const classes = useStyles();
+  const [messageList, setMessageList] = React.useState([]);
+  const [unseenNotificationsCount, setUnseenNotificationsCount] = React.useState(0);
   const [open, setOpen] = React.useState(false);
-  const [message, setMessage] = React.useState({});
-  const { route } = useRouter();
+  const [tooltipOpen, setTooltipOpen] = React.useState(false);
+  const anchorRef = React.useRef(null);
   const t = useSelector(state => state.options.t);
   const userLanguage = useSelector(state => state.options.userLanguage);
 
-  const handleMessage = () => {
-    const lastSeen = getLastSeenNotification();
-    const unseenMessages = messages.filter(message2 => {
-      if (message2.id <= lastSeen) {
-        return false;
-      }
-
-      if (
-        message2.userLanguage &&
-        message2.userLanguage !== userLanguage &&
-        message2.userLanguage !== navigator.language.substring(0, 2)
-      ) {
-        return false;
-      }
-
-      if (message2.route && message2.route !== route) {
-        return false;
-      }
-
-      return true;
-    });
-
-    if (unseenMessages.length > 0) {
-      setMessage(unseenMessages[0]);
-      setOpen(true);
-    }
+  const handleToggle = () => {
+    setOpen(prevOpen => !prevOpen);
+    setTooltipOpen(false);
+    setUnseenNotificationsCount(0);
+    document.cookie = `lastSeenNotification=${messageList[0].id};path=/;max-age=31536000`;
   };
 
   const handleClose = () => {
     setOpen(false);
-    document.cookie = `lastSeenNotification=${message.id};path=/;max-age=31536000`;
+  };
+
+  const handleTooltipOpen = () => {
+    setTooltipOpen(!open);
+  };
+
+  const handleTooltipClose = () => {
+    setTooltipOpen(false);
+  };
+
+  const handleMessage = () => {
+    const lastSeen = getLastSeenNotification();
+
+    const userMessages = messages.filter(message => {
+      if (
+        message.userLanguage &&
+        message.userLanguage !== userLanguage &&
+        message.userLanguage !== navigator.language.substring(0, 2)
+      ) {
+        return false;
+      }
+      return true;
+    });
+
+    const unseenCount = userMessages.reduce(
+      (count, message) => (message.id > lastSeen ? count + 1 : count),
+      0,
+    );
+
+    if (unseenCount > 0) {
+      setUnseenNotificationsCount(unseenCount);
+    }
+
+    setMessageList(userMessages.reverse());
   };
 
   React.useEffect(() => {
@@ -89,25 +134,78 @@ export default function Notifications() {
     return () => {
       active = false;
     };
-  }, [route]);
+  }, []);
 
   return (
-    <Snackbar
-      key={message.id}
-      anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-      ContentProps={{ 'aria-describedby': 'notification-message' }}
-      message={
-        <span id="notification-message" dangerouslySetInnerHTML={{ __html: message.text }} />
-      }
-      action={
-        <Button size="small" color="secondary" onClick={handleClose}>
-          {t('close')}
-        </Button>
-      }
-      open={open}
-      autoHideDuration={20e3}
-      onClose={handleClose}
-      onExited={handleMessage}
-    />
+    <React.Fragment>
+      <Tooltip
+        open={tooltipOpen}
+        onOpen={handleTooltipOpen}
+        onClose={handleTooltipClose}
+        title={t('toggleNotifications')}
+        enterDelay={300}
+      >
+        <IconButton
+          color="inherit"
+          ref={anchorRef}
+          aria-controls={open ? 'notifications-popup' : undefined}
+          aria-haspopup="true"
+          aria-label={t('toggleNotifications')}
+          onClick={handleToggle}
+          data-ga-event-category="AppBar"
+          data-ga-event-action="toggleNotifications"
+        >
+          <Badge color="secondary" badgeContent={unseenNotificationsCount}>
+            <NotificationsIcon />
+          </Badge>
+        </IconButton>
+      </Tooltip>
+      <Popper
+        id="notifications-popup"
+        anchorEl={anchorRef.current}
+        open={open}
+        placement="bottom-end"
+        transition
+        disablePortal
+        role={undefined}
+      >
+        {({ TransitionProps }) => (
+          <ClickAwayListener onClickAway={handleClose}>
+            <Grow in={open} {...TransitionProps}>
+              <Paper className={classes.paper}>
+                <List className={classes.list}>
+                  {messageList.map((message, index) => (
+                    <React.Fragment key={message.id}>
+                      <ListItem alignItems="flex-start" className={classes.listItem}>
+                        {message.date && (
+                          <ListItemText
+                            secondary={new Date(message.date).toLocaleDateString('en-US', {
+                              year: 'numeric',
+                              month: 'long',
+                              day: 'numeric',
+                            })}
+                          />
+                        )}
+                        <ListItemText
+                          primary={message.title}
+                          secondary={
+                            <span
+                              id="notification-message"
+                              dangerouslySetInnerHTML={{ __html: message.text }}
+                            />
+                          }
+                          secondaryTypographyProps={{ color: 'textPrimary' }}
+                        />
+                      </ListItem>
+                      {index < messageList.length - 1 ? <Divider variant="middle" /> : null}
+                    </React.Fragment>
+                  ))}
+                </List>
+              </Paper>
+            </Grow>
+          </ClickAwayListener>
+        )}
+      </Popper>
+    </React.Fragment>
   );
 }

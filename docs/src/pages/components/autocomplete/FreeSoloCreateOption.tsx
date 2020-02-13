@@ -6,24 +6,23 @@ import Autocomplete, { createFilterOptions } from '@material-ui/lab/Autocomplete
 const filter = createFilterOptions();
 
 export default function FreeSoloCreateOption() {
-  const [value, setValue] = React.useState(null);
+  const [value, setValue] = React.useState<FilmOptionType | null>(null);
 
   return (
     <Autocomplete
       value={value}
-      onChange={(event, newValue) => {
+      onChange={(event: any, newValue: FilmOptionType | null) => {
         if (newValue && newValue.inputValue) {
           setValue({
             title: newValue.inputValue,
           });
-
           return;
         }
 
         setValue(newValue);
       }}
       filterOptions={(options, params) => {
-        const filtered = filter(options, params);
+        const filtered = filter(options, params) as FilmOptionType[];
 
         if (params.inputValue !== '') {
           filtered.push({
@@ -35,7 +34,7 @@ export default function FreeSoloCreateOption() {
         return filtered;
       }}
       id="free-solo-with-text-demo"
-      options={top100Films}
+      options={top100Films as FilmOptionType[]}
       getOptionLabel={option => {
         // e.g value selected with enter, right from the input
         if (typeof option === 'string') {
@@ -54,6 +53,12 @@ export default function FreeSoloCreateOption() {
       )}
     />
   );
+}
+
+interface FilmOptionType {
+  inputValue?: string;
+  title: string;
+  year?: number;
 }
 
 // Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top

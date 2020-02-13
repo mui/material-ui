@@ -160,6 +160,7 @@ export interface UseAutocompleteCommonProps<T> {
   options: T[];
   /**
    * If `true`, the input's text will be selected on focus.
+   * It helps the user clearning the selected value.
    */
   selectOnFocus?: boolean;
 }

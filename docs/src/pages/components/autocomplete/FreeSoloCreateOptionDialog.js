@@ -11,52 +11,68 @@ import Autocomplete, { createFilterOptions } from '@material-ui/lab/Autocomplete
 
 const filter = createFilterOptions();
 
-export default function ComboBox() {
-  const [value, setValue] = React.useState('');
-
+export default function FreeSoloCreateOptionDialog() {
+  const [value, setValue] = React.useState(null);
   const [open, toggleOpen] = React.useState(false);
 
   const handleClose = () => {
     setDialogValue({
       title: '',
-      year: null,
+      year: '',
     });
+
     toggleOpen(false);
   };
 
   const [dialogValue, setDialogValue] = React.useState({
     title: '',
-    year: null,
+    year: '',
   });
 
-  const handleAdd = () => {
-    setValue(dialogValue);
+  const handleSubmit = event => {
+    event.preventDefault();
+    setValue({
+      title: dialogValue.title,
+      year: parseInt(dialogValue.year, 10),
+    });
+
     handleClose();
   };
 
   return (
-    <>
+    <React.Fragment>
       <Autocomplete
         value={value}
         onChange={(event, newValue) => {
-          if (newValue && newValue.freeSolo) {
+          if (typeof newValue === 'string') {
+            // timeout to avoid instant validation of the dialog's form.
+            setTimeout(() => {
+              toggleOpen(true);
+              setDialogValue({
+                title: newValue,
+                year: '',
+              });
+            });
+            return;
+          }
+
+          if (newValue && newValue.inputValue) {
             toggleOpen(true);
             setDialogValue({
               title: newValue.inputValue,
-              year: null,
+              year: '',
             });
+
             return;
           }
 
           setValue(newValue);
         }}
         filterOptions={(options, params) => {
-          console.log(params);
           const filtered = filter(options, params);
 
           if (params.inputValue !== '') {
             filtered.push({
-              freeSolo: true,
               inputValue: params.inputValue,
               title: `Add "${params.inputValue}"`,
             });
@@ -66,7 +82,17 @@ export default function ComboBox() {
         }}
         id="free-solo-dialog-demo"
         options={top100Films}
-        getOptionLabel={option => option.title}
+        getOptionLabel={option => {
+          // e.g value selected with enter, right from the input
+          if (typeof option === 'string') {
+            return option;
+          }
+          if (option.inputValue) {
+            return option.inputValue;
+          }
+          return option.title;
+        }}
+        renderOption={option => option.title}
         style={{ width: 300 }}
         freeSolo
         renderInput={params => (
@@ -74,39 +100,43 @@ export default function ComboBox() {
         )}
       />
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">Add a new film</DialogTitle>
-        <DialogContent>
-          <DialogContentText>Did you miss any film in our list? Please, add it!</DialogContentText>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            value={dialogValue.title}
-            onChange={event => setDialogValue({ ...dialogValue, title: event.target.value })}
-            label="title"
-            type="text"
-            fullWidth
-          />
-          <TextField
-            margin="dense"
-            id="name"
-            value={dialogValue.year}
-            onChange={event => setDialogValue({ ...dialogValue, year: event.target.value })}
-            label="year"
-            type="number"
-            fullWidth
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Cancel
-          </Button>
-          <Button onClick={handleAdd} color="primary">
-            Add
-          </Button>
-        </DialogActions>
+        <form onSubmit={handleSubmit}>
+          <DialogTitle id="form-dialog-title">Add a new film</DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              Did you miss any film in our list? Please, add it!
+            </DialogContentText>
+            <TextField
+              autoFocus
+              margin="dense"
+              id="name"
+              value={dialogValue.title}
+              onChange={event => setDialogValue({ ...dialogValue, title: event.target.value })}
+              label="title"
+              type="text"
+              fullWidth
+            />
+            <TextField
+              margin="dense"
+              id="name"
+              value={dialogValue.year}
+              onChange={event => setDialogValue({ ...dialogValue, year: event.target.value })}
+              label="year"
+              type="number"
+              fullWidth
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose} color="primary">
+              Cancel
+            </Button>
+            <Button type="submit" color="primary">
+              Add
+            </Button>
+          </DialogActions>
+        </form>
       </Dialog>
-    </>
+    </React.Fragment>
   );
 }
 
