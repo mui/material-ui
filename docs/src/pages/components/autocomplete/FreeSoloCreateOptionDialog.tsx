@@ -32,7 +32,7 @@ export default function FreeSoloCreateOptionDialog() {
     event.preventDefault();
     setValue({
       title: dialogValue.title,
-      year: parseInt(dialogValue.title, 10),
+      year: parseInt(dialogValue.year, 10),
     });
     handleClose();
   };
