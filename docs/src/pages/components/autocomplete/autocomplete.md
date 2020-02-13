@@ -12,14 +12,6 @@ The widget is useful for setting the value of a single-line textbox in one of tw
 1. The value for the textbox must be chosen from a predefined set of allowed values, e.g., a location field must contain a valid location name: [combo box](#combo-box).
 2. The textbox may contain any arbitrary value, but it is advantageous to suggest possible values to the user, e.g., a search field may suggest similar or previous searches to save the user time: [free solo](#free-solo).
 
-## Creatable Autocomplete
-
-{{"demo": "pages/components/autocomplete/CreatableAutocomplete.js"}}
-
-## Creatable Autocomplete Dialog
-
-{{"demo": "pages/components/autocomplete/CreatableAutocompleteDialog.js"}}
-
 ## Combo box
 
 The value must be chosen from a predefined set of allowed values.
@@ -45,6 +37,18 @@ Set `freeSolo` to true so the textbox can contain any arbitrary value. The prop 
 However, if you intend to use it for a [combo box](#combo-box) like experience (an enhanced version of a select element) we recommend setting `selectOnFocus`.
 
 {{"demo": "pages/components/autocomplete/FreeSolo.js"}}
+
+### Free solo with explicit text
+
+Sometimes you want to make explicit to the user that he/she can add whatever value he/she wants.
+
+{{"demo": "pages/components/autocomplete/FreeSoloCreateOption.js"}}
+
+### Free solo to open a Dialog
+
+You could also create dialog when the user wants to add a new value.
+
+{{"demo": "pages/components/autocomplete/FreeSoloCreateOptionDialog.js"}}
 
 ## Grouped
 
