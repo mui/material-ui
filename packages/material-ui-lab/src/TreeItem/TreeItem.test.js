@@ -151,13 +151,13 @@ describe('<TreeItem />', () => {
 
   describe('Accessibility', () => {
     it('should have the role `treeitem`', () => {
-      const { getByRole } = render(
+      const { getByTestId } = render(
         <TreeView>
-          <TreeItem nodeId="test" label="test" />
+          <TreeItem nodeId="test" label="test" data-testid="test" />
         </TreeView>,
       );
 
-      expect(getByRole('treeitem')).to.be.ok;
+      expect(getByTestId('test')).to.have.attribute('role', 'treeitem');
     });
 
     it('should add the role `group` to a component containing children', () => {
@@ -186,25 +186,25 @@ describe('<TreeItem />', () => {
       });
 
       it('should have the attribute `aria-expanded=true` if expanded', () => {
-        const { container } = render(
+        const { getByTestId } = render(
           <TreeView defaultExpanded={['test']}>
-            <TreeItem nodeId="test" label="test">
-              <TreeItem nodeId="test2" label="test" />
+            <TreeItem nodeId="test" label="test" data-testid="test">
+              <TreeItem nodeId="test2" label="test2" />
             </TreeItem>
           </TreeView>,
         );
 
-        expect(container.querySelector('[aria-expanded=true]')).to.be.ok;
+        expect(getByTestId('test')).to.have.attribute('aria-expanded', 'true');
       });
 
       it('should not have the attribute `aria-expanded` if no children are present', () => {
-        const { container } = render(
+        const { getByTestId } = render(
           <TreeView>
-            <TreeItem nodeId="test" label="test" />
+            <TreeItem nodeId="test" label="test" data-testid="test" />
           </TreeView>,
         );
 
-        expect(container.querySelector('[aria-expanded]')).to.not.be.ok;
+        expect(getByTestId('test')).to.not.have.attribute('aria-expanded');
       });
     });
 
@@ -229,14 +229,14 @@ describe('<TreeItem />', () => {
         expect(getByTestId('test')).to.have.attribute('aria-selected', 'true');
       });
 
-      it('should not have the attribute `aria-selected` disableSelection is true', () => {
-        const { container } = render(
+      it('should not have the attribute `aria-selected` if disableSelection is true', () => {
+        const { getByTestId } = render(
           <TreeView disableSelection>
-            <TreeItem nodeId="test" label="test" />
+            <TreeItem nodeId="test" label="test" data-testid="test" />
           </TreeView>,
         );
 
-        expect(container.querySelector('[aria-selected]')).to.not.be.ok;
+        expect(getByTestId('test')).to.not.have.attribute('aria-selected');
       });
     });
 
@@ -423,7 +423,7 @@ describe('<TreeItem />', () => {
       });
 
       describe('down arrow interaction', () => {
-        it('moves focus to a non-nested sibling node', () => {
+        it('moves focus to a sibling node', () => {
           const { getByTestId } = render(
             <TreeView>
               <TreeItem nodeId="one" label="one" data-testid="one" />
@@ -436,7 +436,7 @@ describe('<TreeItem />', () => {
           expect(getByTestId('two')).to.have.focus;
         });
 
-        it('moves focus to a nested node', () => {
+        it('moves focus to a child node', () => {
           const { getByTestId } = render(
             <TreeView defaultExpanded={['one']}>
               <TreeItem nodeId="one" label="one" data-testid="one">
@@ -470,7 +470,7 @@ describe('<TreeItem />', () => {
       });
 
       describe('up arrow interaction', () => {
-        it('moves focus to a non-nested sibling node', () => {
+        it('moves focus to a sibling node', () => {
           const { getByTestId, getByText } = render(
             <TreeView>
               <TreeItem nodeId="one" label="one" data-testid="one" />
