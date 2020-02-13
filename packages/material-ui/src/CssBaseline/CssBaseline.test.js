@@ -24,13 +24,4 @@ describe('<CssBaseline />', () => {
     );
     assert.strictEqual(wrapper.find('#child').type(), 'div');
   });
-
-  it('renders its children when scoped', () => {
-    const scopedWrapper = mount(
-      <CssBaseline scopeToChildren>
-        <div id="child" />
-      </CssBaseline>,
-    );
-    assert.strictEqual(scopedWrapper.find('#child').type(), 'div');
-  });
 });
