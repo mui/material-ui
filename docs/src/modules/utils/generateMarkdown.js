@@ -342,8 +342,11 @@ function generateClasses(reactAPI) {
   text = `| Rule name | Global class | Description |
 |:-----|:-------------|:------------|\n`;
   text += reactAPI.styles.classes
-    .filter(cls => cls !== '@global')
     .map(styleRule => {
+      if (styleRule === '@global') {
+        return '| <span class="prop-name">@global</span> | | Apply global styles.';
+      }
+
       const description = reactAPI.styles.descriptions[styleRule];
 
       if (typeof description === 'undefined' && ['Grid', 'Paper'].indexOf(reactAPI.name) === -1) {
