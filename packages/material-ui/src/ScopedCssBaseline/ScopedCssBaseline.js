@@ -12,7 +12,7 @@ export const styles = theme => ({
     '& *, & *::before, & *::after': {
       boxSizing: 'inherit',
     },
-    '& strong, &b': {
+    '& strong, & b': {
       fontWeight: theme.typography.fontWeightBold,
     },
   },
