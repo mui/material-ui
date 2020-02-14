@@ -215,6 +215,27 @@ export const etEE = {
     MuiAlert: {
       closeText: 'Sulge',
     },
+    MuiPagination: {
+      'aria-label': 'Lehekülgede valik',
+      getItemAriaLabel: (type, page, selected) => {
+        if (type === 'page') {
+          return `${selected ? '' : 'Vali '}lehekülg ${page}`;
+        }
+        if (type === 'first') {
+          return 'Vali esimene lehekülg';
+        }
+        if (type === 'last') {
+          return 'Vali viimane lehekülg';
+        }
+        if (type === 'next') {
+          return 'Vali järgmine lehekülg';
+        }
+        if (type === 'previous') {
+          return 'Vali eelmine lehekülg';
+        }
+        return undefined;
+      },
+    },
   },
 };
 
