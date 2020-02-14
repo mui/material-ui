@@ -5,6 +5,7 @@ export const csCZ: object;
 export const deDE: object;
 export const enUS: object;
 export const esES: object;
+export const etEE: object;
 export const faIR: object;
 export const fiFI: object;
 export const frFR: object;

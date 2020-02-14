@@ -193,6 +193,31 @@ export const esES = {
   },
 };
 
+export const etEE = {
+  props: {
+    MuiTablePagination: {
+      backIconButtonText: 'Eelmine lehekülg',
+      labelRowsPerPage: 'Ridu leheküljel:',
+      labelDisplayedRows: ({ from, to, count }) => `${from}-${to === -1 ? count : to} / ${count}`,
+      nextIconButtonText: 'Järgmine lehekülg',
+    },
+    MuiRating: {
+      getLabelText: value => `${value} Tärn${value !== 1 ? 'i' : ''}`,
+      emptyLabelText: 'Tühi',
+    },
+    MuiAutocomplete: {
+      clearText: 'Tühjenda',
+      closeText: 'Sulge',
+      loadingText: 'Laen…',
+      noOptionsText: 'Valikuid ei ole',
+      openText: 'Ava',
+    },
+    MuiAlert: {
+      closeText: 'Sulge',
+    },
+  },
+};
+
 export const faIR = {
   props: {
     MuiTablePagination: {
