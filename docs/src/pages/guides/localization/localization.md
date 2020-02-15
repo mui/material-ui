@@ -34,6 +34,7 @@ const theme = createMuiTheme({
 | Czech | cs-CZ | `csCZ` |
 | Dutch | nl-NL | `nlNL` |
 | English (United States) | en-US | `enUS` |
+| Estonian | et-EE | `etEE` |
 | Finnish | fi-FI | `fiFI` |
 | French | fr-FR | `frFR` |
 | German | de-DE |  `deDE` |
