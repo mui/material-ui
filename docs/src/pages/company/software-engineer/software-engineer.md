@@ -67,7 +67,6 @@ Premium components:
 
 - **You’ve contributed to a design system before**. You have worked on enterprise components in the past, maybe for internal usage in your company. You have built complex and advanced features while making sure the accessibility was fully functional.
 - **You’ve maintained an active repository before**. Maybe you’ve helped maintain a popular open source repo, or perhaps you’ve worked on internal repos that saw contributions from multiple teams. Previous experience with highly active repo workflows is a definite plus for this role.
-- **You have used Material-UI before**. You have built a non trivial application with Material-UI in the past. You know the limitations of the library, you know a few areas that could be improved.
 - **You have contributed code to Material-UI before**. A history of contributing to Material-UI would be a definite plus.
 
 ## The best parts of this job

@@ -10,7 +10,7 @@ The core of Material-UI is a crowd-funded open-source project, licensed under th
 
 *3/3 slots available*
 
-Diamond Sponsors are those who have pledged $2,000/month or more to Material-UI.
+Diamond Sponsors are those who have pledged $1,500/month or more to Material-UI.
 Please contact us at diamond@material-ui.com to subscribe to this tier.
 
 ### Gold 🏆
