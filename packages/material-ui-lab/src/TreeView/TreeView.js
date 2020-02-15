@@ -81,6 +81,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     id => (Array.isArray(expanded) ? expanded.indexOf(id) !== -1 : false),
     [expanded],
   );
+
   const isSelected = React.useCallback(
     id => (Array.isArray(selected) ? selected.indexOf(id) !== -1 : selected === id),
     [selected],
