@@ -38,9 +38,7 @@ export default function useControlled({ controlled, default: defaultProp, name }
   }
 
   const setValueIfUncontrolled = React.useCallback(newValue => {
-    if (!isControlled) {
-      setValue(newValue);
-    }
+    setValue(newValue);
   }, []);
 
   return [value, setValueIfUncontrolled];

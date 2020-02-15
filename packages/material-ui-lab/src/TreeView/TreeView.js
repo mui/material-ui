@@ -62,25 +62,23 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
   const firstCharMap = React.useRef({});
   const visibleNodes = React.useRef([]);
 
-  const [expandedState, setExpandedState] = useControlled({
+  const [expanded, setExpandedState] = useControlled({
     controlled: expandedProp,
     default: defaultExpanded,
     name: 'TreeView',
   });
 
-  const [selectedState, setSelectedState] = useControlled({
+  const [selected, setSelectedState] = useControlled({
     controlled: selectedProp,
     default: defaultSelected,
     name: 'TreeView',
   });
 
-  const expanded = expandedState || defaultExpandedDefault;
-  const selected = selectedState || defaultSelected;
 
   /*
    * Status Helpers
    */
-  const isExpanded = React.useCallback(id => expanded.indexOf(id) !== -1, [expanded]);
+  const isExpanded = React.useCallback(id => Array.isArray(expanded) ? expanded.indexOf(id) !== -1 : false, [expanded]);
   const isSelected = React.useCallback(
     id => (Array.isArray(selected) ? selected.indexOf(id) !== -1 : selected === id),
     [selected],
@@ -181,45 +179,50 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
    */
 
   const toggleExpansion = (event, value = focused) => {
-    let newExpanded;
-    if (expanded.indexOf(value) !== -1) {
-      newExpanded = expanded.filter(id => id !== value);
-      setTabbable(oldTabbable => {
-        const map = nodeMap.current[oldTabbable];
-        if (oldTabbable && (map && map.parent ? map.parent.id : null) === value) {
-          return value;
-        }
-        return oldTabbable;
-      });
-    } else {
-      newExpanded = [value, ...expanded];
-    }
+    setExpandedState(oldExpanded => {
+      let newExpanded;
+      if (oldExpanded.indexOf(value) !== -1) {
+        newExpanded = oldExpanded.filter(id => id !== value);
+        setTabbable(oldTabbable => {
+          const map = nodeMap.current[oldTabbable];
+          if (oldTabbable && (map && map.parent ? map.parent.id : null) === value) {
+            return value;
+          }
+          return oldTabbable;
+        });
+      } else {
+        newExpanded = [value, ...oldExpanded];
+      }
 
-    if (onNodeToggle) {
-      onNodeToggle(event, newExpanded);
-    }
+      if (onNodeToggle) {
+        onNodeToggle(event, newExpanded);
+      }
 
-    setExpandedState(newExpanded);
+      return newExpanded;
+    });
   };
 
   const expandAllSiblings = (event, id) => {
-    const map = nodeMap.current[id];
-    const parent = nodeMap.current[map.parent];
 
-    let diff;
-    if (parent) {
-      diff = parent.children.filter(child => !isExpanded(child));
-    } else {
-      const topLevelNodes = nodeMap.current[-1].children;
-      diff = topLevelNodes.filter(node => !isExpanded(node));
-    }
-    const newExpanded = [...expanded, ...diff];
+    setExpandedState(oldExpanded => {
+      const map = nodeMap.current[id];
+      const parent = nodeMap.current[map.parent];
 
-    setExpandedState(newExpanded);
+      let diff;
+      if (parent) {
+        diff = parent.children.filter(child => !isExpanded(child));
+      } else {
+        const topLevelNodes = nodeMap.current[-1].children;
+        diff = topLevelNodes.filter(node => !isExpanded(node));
+      }
+      const newExpanded = [...oldExpanded, ...diff];
 
-    if (onNodeToggle) {
-      onNodeToggle(event, newExpanded);
-    }
+      if (onNodeToggle) {
+        onNodeToggle(event, newExpanded);
+      }
+
+      return newExpanded;
+    });
   };
 
   /*
@@ -232,59 +235,65 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
   const previousArrowSelection = React.useRef([]);
 
   const handleRangeArrowSelect = (event, start, value) => {
-    let base = selected;
+    setSelectedState(oldSelected => {
+      let base = oldSelected;
 
-    if (lastSelectionMode.current === 'RANGE-ARROW') {
-      if (isSelected(value)) {
-        base = base.filter(id => id === start || id !== previousArrowSelection.current);
+      if (lastSelectionMode.current === 'RANGE-ARROW') {
+        if (isSelected(value)) {
+          base = base.filter(id => id === start || id !== previousArrowSelection.current);
+        } else {
+          base.push(value);
+        }
       } else {
         base.push(value);
       }
-    } else {
-      base.push(value);
-    }
 
-    previousArrowSelection.current = value;
+      previousArrowSelection.current = value;
 
-    if (onNodeSelect) {
-      onNodeSelect(event, base);
-    }
+      if (onNodeSelect) {
+        onNodeSelect(event, base);
+      }
 
-    setSelectedState(base);
+      return base;
+    })
   };
 
   const handleRangeSelect = (event, start, end) => {
-    let base = selected;
-    // If last selection was a range selection ignore nodes that were selected.
-    if (lastSelectionMode.current === 'RANGE') {
-      base = selected.filter(id => lastRangeSelection.current.indexOf(id) === -1);
-    }
+    setSelectedState(oldSelected => {
+      let base = oldSelected;
+      // If last selection was a range selection ignore nodes that were selected.
+      if (lastSelectionMode.current === 'RANGE') {
+        base = oldSelected.filter(id => lastRangeSelection.current.indexOf(id) === -1);
+      }
 
-    const range = getNodesInRange(start, end);
-    lastRangeSelection.current = range;
-    let newSelected = base.concat(range);
-    newSelected = newSelected.filter((id, i) => newSelected.indexOf(id) === i);
+      const range = getNodesInRange(start, end);
+      lastRangeSelection.current = range;
+      let newSelected = base.concat(range);
+      newSelected = newSelected.filter((id, i) => newSelected.indexOf(id) === i);
 
-    if (onNodeSelect) {
-      onNodeSelect(event, newSelected);
-    }
+      if (onNodeSelect) {
+        onNodeSelect(event, newSelected);
+      }
 
-    setSelectedState(newSelected);
+      return newSelected;
+    })
   };
 
   const handleMultipleSelect = (event, value) => {
-    let newSelected = [];
-    if (selected.indexOf(value) !== -1) {
-      newSelected = selected.filter(id => id !== value);
-    } else {
-      newSelected = [value, ...selected];
-    }
+    setSelectedState(oldSelected => {
+      let newSelected = [];
+      if (oldSelected.indexOf(value) !== -1) {
+        newSelected = oldSelected.filter(id => id !== value);
+      } else {
+        newSelected = [value, ...oldSelected];
+      }
 
-    if (onNodeSelect) {
-      onNodeSelect(event, newSelected);
-    }
+      if (onNodeSelect) {
+        onNodeSelect(event, newSelected);
+      }
 
-    setSelectedState(newSelected);
+      return newSelected;
+    });
   };
 
   const handleSingleSelect = (event, value) => {
