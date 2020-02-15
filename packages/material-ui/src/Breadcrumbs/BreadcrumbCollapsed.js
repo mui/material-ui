@@ -31,9 +31,20 @@ const styles = theme => ({
  * @ignore - internal component.
  */
 function BreadcrumbCollapsed(props) {
-  const { classes, ...other } = props;
+  const { classes, onClick, ...other } = props;
+
+  const handleKeyDown = e => {
+    e.preventDefault();    
+    switch (e.keyCode) {
+      case 32 /** Space */:
+      case 13 /** Enter */: {
+        onClick();
+      }
+    }
+  };
+  
   return (
-    <li className={classes.root} {...other}>
+    <li className={classes.root} tabIndex={0} onKeyDownCapture={handleKeyDown} onClick={onClick} {...other}>
       <MoreHorizIcon className={classes.icon} />
     </li>
   );
