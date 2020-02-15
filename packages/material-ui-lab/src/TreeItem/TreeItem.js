@@ -16,11 +16,26 @@ export const styles = theme => ({
     padding: 0,
     outline: 0,
     WebkitTapHighlightColor: 'transparent',
-    '&:focus > $content $label': {
-      backgroundColor: theme.palette.action.hover,
+    '&:focus > $content $overlay': {
+      opacity: theme.palette.action.hoverOpacity,
     },
-    '&$selected > $content $label': {
-      backgroundColor: theme.palette.action.selected,
+    '&$selected > $content $overlay': {
+      opacity: theme.palette.action.selectedOpacity,
+    },
+    '&$selected:focus > $content $overlay': {
+      opacity: theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+    },
+  },
+  overlay: {
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+    top: 0,
+    left: 0,
+    backgroundColor: theme.palette.type === 'light' ? '#000000' : '#ffffff',
+    opacity: 0,
+    '&:hover': {
+      opacity: theme.palette.action.hoverOpacity,
     },
   },
   /* Pseudo-class applied to the root element when expanded. */
@@ -55,9 +70,7 @@ export const styles = theme => ({
   label: {
     width: '100%',
     paddingLeft: 4,
-    '&:hover': {
-      backgroundColor: theme.palette.action.hover,
-    },
+    position: 'relative'
   },
 });
 
@@ -376,6 +389,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
         <div className={classes.iconContainer}>{icon}</div>
         <Typography component="div" className={classes.label}>
           {label}
+          <div className={classes.overlay} />
         </Typography>
       </div>
       {children && (
