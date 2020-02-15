@@ -75,7 +75,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
     const overflow = Math.abs(outerHeight - innerHeight) <= 1;
 
     setState(prevState => {
-      // Need a large enough different to update the height.
+      // Need a large enough difference to update the height.
       // This prevents infinite rendering loop.
       if (
         (outerHeightStyle > 0 &&
@@ -106,7 +106,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
 
   useEnhancedEffect(() => {
     syncHeight();
-  });
+  }, []);
 
   const handleChange = event => {
     if (!isControlled) {
@@ -128,7 +128,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
         rows={rowsMin}
         style={{
           height: state.outerHeightStyle,
-          // Need a large enough different to allow scrolling.
+          // Need a large enough difference to allow scrolling.
           // This prevents infinite rendering loop.
           overflow: state.overflow ? 'hidden' : null,
           ...style,
