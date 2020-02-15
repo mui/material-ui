@@ -371,8 +371,8 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
       });
       visibleNodes.current = nodeMap.current[-1].children;
       prevChildIds.current = childIds;
+      setChildrenCalculated(true)
     }
-    setChildrenCalculated(true)
   }, [children]);
 
   React.useEffect(() => {
