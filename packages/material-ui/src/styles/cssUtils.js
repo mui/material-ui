@@ -1,3 +1,63 @@
+export function isUnitless(value) {
+  return String(parseFloat(value)).length === String(value).length;
+}
+
+// Ported from Compass
+// https://github.com/Compass/compass/blob/master/core/stylesheets/compass/typography/_units.scss
+// Emulate the sass function "unit"
+export function getUnit(input) {
+  return String(input).match(/[\d.\-+]*\s*(.*)/)[1] || '';
+}
+
+// Emulate the sass function "unitless"
+export function toUnitless(length) {
+  return parseFloat(length);
+}
+
+// Convert any CSS <length> or <percentage> value to any another.
+// From https://github.com/KyleAMathews/convert-css-length
+export function convertLength(baseFontSize) {
+  return (length, toUnit) => {
+    const fromUnit = getUnit(length);
+
+    // Optimize for cases where `from` and `to` units are accidentally the same.
+    if (fromUnit === toUnit) {
+      return length;
+    }
+
+    // Convert input length to pixels.
+    let pxLength = toUnitless(length);
+
+    if (fromUnit !== 'px') {
+      if (fromUnit === 'em') {
+        pxLength = toUnitless(length) * toUnitless(baseFontSize);
+      } else if (fromUnit === 'rem') {
+        pxLength = toUnitless(length) * toUnitless(baseFontSize);
+      } else if (fromUnit === 'ex') {
+        pxLength = toUnitless(length) * toUnitless(baseFontSize) * 2;
+      } else {
+        return length;
+      }
+    }
+
+    // Convert length in pixels to the output unit
+    let outputLength = pxLength;
+    if (toUnit !== 'px') {
+      if (toUnit === 'em') {
+        outputLength = pxLength / toUnitless(baseFontSize);
+      } else if (toUnit === 'rem') {
+        outputLength = pxLength / toUnitless(baseFontSize);
+      } else if (toUnit === 'ex') {
+        outputLength = pxLength / toUnitless(baseFontSize) / 2;
+      } else {
+        return length;
+      }
+    }
+
+    return parseFloat(outputLength.toFixed(5)) + toUnit;
+  };
+}
+
 export function alignProperty({ size, grid }) {
   const sizeBelow = size - (size % grid);
   const sizeAbove = sizeBelow + grid;
