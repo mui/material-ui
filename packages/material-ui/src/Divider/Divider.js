@@ -99,7 +99,8 @@ Divider.propTypes = {
    */
   component: PropTypes.elementType,
   /**
-   * If `true`, the divider will adapt to a parent flex container.
+   * If `true`, a vertical divider will have the correct height when used in flex container.
+   * (By default, a vertical divider will have a calculated height of `0px` if it is the child of a flex container.)
    */
   flexItem: PropTypes.bool,
   /**
