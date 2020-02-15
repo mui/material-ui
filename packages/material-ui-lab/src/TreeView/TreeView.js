@@ -2,8 +2,8 @@ import React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import TreeViewContext from './TreeViewContext';
-import { withStyles } from '@material-ui/core/styles';
-import { useControlled } from '@material-ui/core/utils';
+import {withStyles} from '@material-ui/core/styles';
+import {useControlled} from '@material-ui/core/utils';
 
 export const styles = {
   /* Styles applied to the root element. */
@@ -181,49 +181,45 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
    */
 
   const toggleExpansion = (event, value = focused) => {
-    setExpandedState(oldExpanded => {
-      let newExpanded;
-      if (oldExpanded.indexOf(value) !== -1) {
-        newExpanded = oldExpanded.filter(id => id !== value);
-        setTabbable(oldTabbable => {
-          const map = nodeMap.current[oldTabbable];
-          if (oldTabbable && (map && map.parent ? map.parent.id : null) === value) {
-            return value;
-          }
-          return oldTabbable;
-        });
-      } else {
-        newExpanded = [value, ...oldExpanded];
-      }
+    let newExpanded;
+    if (expanded.indexOf(value) !== -1) {
+      newExpanded = expanded.filter(id => id !== value);
+      setTabbable(oldTabbable => {
+        const map = nodeMap.current[oldTabbable];
+        if (oldTabbable && (map && map.parent ? map.parent.id : null) === value) {
+          return value;
+        }
+        return oldTabbable;
+      });
+    } else {
+      newExpanded = [value, ...expanded];
+    }
 
-      if (onNodeToggle) {
-        onNodeToggle(event, newExpanded);
-      }
+    if (onNodeToggle) {
+      onNodeToggle(event, newExpanded);
+    }
 
-      return newExpanded;
-    });
+    setExpandedState(newExpanded);
   };
 
   const expandAllSiblings = (event, id) => {
-    setExpandedState(oldExpanded => {
-      const map = nodeMap.current[id];
-      const parent = nodeMap.current[map.parent];
+    const map = nodeMap.current[id];
+    const parent = nodeMap.current[map.parent];
 
-      let diff;
-      if (parent) {
-        diff = parent.children.filter(child => !isExpanded(child));
-      } else {
-        const topLevelNodes = nodeMap.current[-1].children;
-        diff = topLevelNodes.filter(node => !isExpanded(node));
-      }
-      const newExpanded = [...oldExpanded, ...diff];
+    let diff;
+    if (parent) {
+      diff = parent.children.filter(child => !isExpanded(child));
+    } else {
+      const topLevelNodes = nodeMap.current[-1].children;
+      diff = topLevelNodes.filter(node => !isExpanded(node));
+    }
+    const newExpanded = [...expanded, ...diff];
 
-      if (onNodeToggle) {
-        onNodeToggle(event, newExpanded);
-      }
+    setExpandedState(newExpanded);
 
-      return newExpanded;
-    });
+    if (onNodeToggle) {
+      onNodeToggle(event, newExpanded);
+    }
   };
 
   /*
@@ -236,65 +232,59 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
   const previousArrowSelection = React.useRef([]);
 
   const handleRangeArrowSelect = (event, start, value) => {
-    setSelectedState(oldSelected => {
-      let base = oldSelected;
+    let base = selected;
 
-      if (lastSelectionMode.current === 'RANGE-ARROW') {
-        if (isSelected(value)) {
-          base = base.filter(id => id === start || id !== previousArrowSelection.current);
-        } else {
-          base.push(value);
-        }
+    if (lastSelectionMode.current === 'RANGE-ARROW') {
+      if (isSelected(value)) {
+        base = base.filter(id => id === start || id !== previousArrowSelection.current);
       } else {
         base.push(value);
       }
+    } else {
+      base.push(value);
+    }
 
-      previousArrowSelection.current = value;
+    previousArrowSelection.current = value;
 
-      if (onNodeSelect) {
-        onNodeSelect(event, base);
-      }
+    if (onNodeSelect) {
+      onNodeSelect(event, base);
+    }
 
-      return base;
-    });
+    setSelectedState(base);
   };
 
   const handleRangeSelect = (event, start, end) => {
-    setSelectedState(oldSelected => {
-      let base = oldSelected;
-      // If last selection was a range selection ignore nodes that were selected.
-      if (lastSelectionMode.current === 'RANGE') {
-        base = oldSelected.filter(id => lastRangeSelection.current.indexOf(id) === -1);
-      }
+    let base = selected;
+    // If last selection was a range selection ignore nodes that were selected.
+    if (lastSelectionMode.current === 'RANGE') {
+      base = selected.filter(id => lastRangeSelection.current.indexOf(id) === -1);
+    }
 
-      const range = getNodesInRange(start, end);
-      lastRangeSelection.current = range;
-      let newSelected = base.concat(range);
-      newSelected = newSelected.filter((id, i) => newSelected.indexOf(id) === i);
+    const range = getNodesInRange(start, end);
+    lastRangeSelection.current = range;
+    let newSelected = base.concat(range);
+    newSelected = newSelected.filter((id, i) => newSelected.indexOf(id) === i);
 
-      if (onNodeSelect) {
-        onNodeSelect(event, newSelected);
-      }
+    if (onNodeSelect) {
+      onNodeSelect(event, newSelected);
+    }
 
-      return newSelected;
-    });
+    setSelectedState(newSelected);
   };
 
   const handleMultipleSelect = (event, value) => {
-    setSelectedState(oldSelected => {
-      let newSelected = [];
-      if (oldSelected.indexOf(value) !== -1) {
-        newSelected = oldSelected.filter(id => id !== value);
-      } else {
-        newSelected = [value, ...oldSelected];
-      }
+    let newSelected = [];
+    if (selected.indexOf(value) !== -1) {
+      newSelected = selected.filter(id => id !== value);
+    } else {
+      newSelected = [value, ...selected];
+    }
 
-      if (onNodeSelect) {
-        onNodeSelect(event, newSelected);
-      }
+    if (onNodeSelect) {
+      onNodeSelect(event, newSelected);
+    }
 
-      return newSelected;
-    });
+    setSelectedState(newSelected);
   };
 
   const handleSingleSelect = (event, value) => {
@@ -338,11 +328,11 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
 
   const addNodeToNodeMap = (id, childrenIds) => {
     const currentMap = nodeMap.current[id];
-    nodeMap.current[id] = { ...currentMap, children: childrenIds, id };
+    nodeMap.current[id] = {...currentMap, children: childrenIds, id};
 
     childrenIds.forEach(childId => {
       const currentChildMap = nodeMap.current[childId];
-      nodeMap.current[childId] = { ...currentChildMap, parent: id, id: childId };
+      nodeMap.current[childId] = {...currentChildMap, parent: id, id: childId};
     });
   };
 
@@ -353,7 +343,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
         const parentMap = nodeMap.current[map.parent];
         if (parentMap && parentMap.children) {
           const parentChildren = parentMap.children.filter(c => c !== id);
-          nodeMap.current[map.parent] = { ...parentMap, children: parentChildren };
+          nodeMap.current[map.parent] = {...parentMap, children: parentChildren};
         }
       }
 
@@ -370,13 +360,13 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
   React.useEffect(() => {
     const childIds = React.Children.map(children, child => child.props.nodeId) || [];
     if (arrayDiff(prevChildIds.current, childIds)) {
-      nodeMap.current[-1] = { parent: null, children: childIds };
+      nodeMap.current[-1] = {parent: null, children: childIds};
 
       childIds.forEach((id, index) => {
         if (index === 0) {
           setTabbable(id);
         }
-        nodeMap.current[id] = { parent: null };
+        nodeMap.current[id] = {parent: null};
       });
       visibleNodes.current = nodeMap.current[-1].children;
       prevChildIds.current = childIds;
@@ -406,7 +396,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
   return (
     <TreeViewContext.Provider
       value={{
-        icons: { defaultCollapseIcon, defaultExpandIcon, defaultParentIcon, defaultEndIcon },
+        icons: {defaultCollapseIcon, defaultExpandIcon, defaultParentIcon, defaultEndIcon},
         focus,
         focusFirstNode,
         focusLastNode,
@@ -525,4 +515,4 @@ TreeView.propTypes = {
   selected: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.string), PropTypes.string]),
 };
 
-export default withStyles(styles, { name: 'MuiTreeView' })(TreeView);
+export default withStyles(styles, {name: 'MuiTreeView'})(TreeView);
