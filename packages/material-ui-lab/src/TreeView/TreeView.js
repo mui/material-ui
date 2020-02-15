@@ -289,7 +289,6 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
 
   const handleSingleSelect = (event, value) => {
     const newSelected = multiSelect ? [value] : value;
-    setSelectedState(newSelected);
 
     if (onNodeSelect) {
       onNodeSelect(event, newSelected);
