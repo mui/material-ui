@@ -106,7 +106,7 @@ const TextField = React.forwardRef(function TextField(props, ref) {
     if (InputLabelProps && typeof InputLabelProps.shrink !== 'undefined') {
       InputMore.notched = InputLabelProps.shrink;
     }
-    if (label) {
+    if (label ) {
       InputMore.label = (
         <React.Fragment>
           {label}
