@@ -26,6 +26,7 @@ export const styles = theme => ({
       opacity: theme.palette.action.hoverOpacity + theme.palette.action.selectedOpacity,
     },
   },
+  /* Styles applied to the overlay element. */
   overlay: {
     position: 'absolute',
     width: '100%',
