@@ -2,8 +2,8 @@ import React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import TreeViewContext from './TreeViewContext';
-import {withStyles} from '@material-ui/core/styles';
-import {useControlled} from '@material-ui/core/utils';
+import { withStyles } from '@material-ui/core/styles';
+import { useControlled } from '@material-ui/core/utils';
 
 export const styles = {
   /* Styles applied to the root element. */
@@ -328,11 +328,11 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
 
   const addNodeToNodeMap = (id, childrenIds) => {
     const currentMap = nodeMap.current[id];
-    nodeMap.current[id] = {...currentMap, children: childrenIds, id};
+    nodeMap.current[id] = { ...currentMap, children: childrenIds, id };
 
     childrenIds.forEach(childId => {
       const currentChildMap = nodeMap.current[childId];
-      nodeMap.current[childId] = {...currentChildMap, parent: id, id: childId};
+      nodeMap.current[childId] = { ...currentChildMap, parent: id, id: childId };
     });
   };
 
@@ -343,7 +343,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
         const parentMap = nodeMap.current[map.parent];
         if (parentMap && parentMap.children) {
           const parentChildren = parentMap.children.filter(c => c !== id);
-          nodeMap.current[map.parent] = {...parentMap, children: parentChildren};
+          nodeMap.current[map.parent] = { ...parentMap, children: parentChildren };
         }
       }
 
@@ -356,21 +356,19 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
   };
 
   const prevChildIds = React.useRef([]);
-  const [mounted, setMounted] = React.useState(false);
   React.useEffect(() => {
     const childIds = React.Children.map(children, child => child.props.nodeId) || [];
     if (arrayDiff(prevChildIds.current, childIds)) {
-      nodeMap.current[-1] = {parent: null, children: childIds};
+      nodeMap.current[-1] = { parent: null, children: childIds };
 
       childIds.forEach((id, index) => {
         if (index === 0) {
           setTabbable(id);
         }
-        nodeMap.current[id] = {parent: null};
+        nodeMap.current[id] = { parent: null };
       });
       visibleNodes.current = nodeMap.current[-1].children;
       prevChildIds.current = childIds;
-      setMounted(true);
     }
   }, [children]);
 
@@ -388,15 +386,13 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
       return list;
     };
 
-    if (mounted) {
-      visibleNodes.current = buildVisible(nodeMap.current[-1].children);
-    }
-  }, [expanded, mounted, isExpanded]);
+    visibleNodes.current = buildVisible(nodeMap.current[-1].children);
+  }, [expanded, isExpanded]);
 
   return (
     <TreeViewContext.Provider
       value={{
-        icons: {defaultCollapseIcon, defaultExpandIcon, defaultParentIcon, defaultEndIcon},
+        icons: { defaultCollapseIcon, defaultExpandIcon, defaultParentIcon, defaultEndIcon },
         focus,
         focusFirstNode,
         focusLastNode,
@@ -515,4 +511,4 @@ TreeView.propTypes = {
   selected: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.string), PropTypes.string]),
 };
 
-export default withStyles(styles, {name: 'MuiTreeView'})(TreeView);
+export default withStyles(styles, { name: 'MuiTreeView' })(TreeView);

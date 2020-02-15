@@ -16,14 +16,14 @@ export const styles = theme => ({
     padding: 0,
     outline: 0,
     WebkitTapHighlightColor: 'transparent',
-    '&:focus > $content $overlay': {
+    '&:focus > $content $overlay, & > $content $overlay:hover': {
       opacity: theme.palette.action.hoverOpacity,
     },
     '&$selected > $content $overlay': {
       opacity: theme.palette.action.selectedOpacity,
     },
-    '&$selected:focus > $content $overlay': {
-      opacity: theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+    '&$selected > $content $overlay:hover, &$selected:focus > $content $overlay, &:focus > $content $overlay:hover': {
+      opacity: theme.palette.action.hoverOpacity + theme.palette.action.selectedOpacity,
     },
   },
   overlay: {
@@ -34,9 +34,6 @@ export const styles = theme => ({
     left: 0,
     backgroundColor: theme.palette.type === 'light' ? '#000000' : '#ffffff',
     opacity: 0,
-    '&:hover': {
-      opacity: theme.palette.action.hoverOpacity,
-    },
   },
   /* Pseudo-class applied to the root element when expanded. */
   expanded: {},
