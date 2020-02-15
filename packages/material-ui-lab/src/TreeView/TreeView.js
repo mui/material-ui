@@ -74,11 +74,13 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     name: 'TreeView',
   });
 
-
   /*
    * Status Helpers
    */
-  const isExpanded = React.useCallback(id => Array.isArray(expanded) ? expanded.indexOf(id) !== -1 : false, [expanded]);
+  const isExpanded = React.useCallback(
+    id => (Array.isArray(expanded) ? expanded.indexOf(id) !== -1 : false),
+    [expanded],
+  );
   const isSelected = React.useCallback(
     id => (Array.isArray(selected) ? selected.indexOf(id) !== -1 : selected === id),
     [selected],
@@ -203,7 +205,6 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
   };
 
   const expandAllSiblings = (event, id) => {
-
     setExpandedState(oldExpanded => {
       const map = nodeMap.current[id];
       const parent = nodeMap.current[map.parent];
@@ -255,7 +256,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
       }
 
       return base;
-    })
+    });
   };
 
   const handleRangeSelect = (event, start, end) => {
@@ -276,7 +277,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
       }
 
       return newSelected;
-    })
+    });
   };
 
   const handleMultipleSelect = (event, value) => {

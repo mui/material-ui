@@ -70,7 +70,7 @@ export const styles = theme => ({
   label: {
     width: '100%',
     paddingLeft: 4,
-    position: 'relative'
+    position: 'relative',
   },
 });
 
