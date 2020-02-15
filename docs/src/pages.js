@@ -118,6 +118,7 @@ const pages = [
           { pathname: '/components/about-the-lab' },
           { pathname: '/components/alert' },
           { pathname: '/components/autocomplete' },
+          { pathname: '/components/pagination' },
           { pathname: '/components/rating' },
           { pathname: '/components/skeleton' },
           { pathname: '/components/speed-dial' },
@@ -214,11 +215,9 @@ const pages = [
       { pathname: '/discover-more/languages' },
     ],
   },
-  { pathname: '/versions', displayNav: false },
+  { pathname: '/versions', disableNav: true },
   { pathname: '/', displayNav: false, disableDrawer: true },
   { pathname: 'https://medium.com/material-ui', title: 'Blog' },
-  { pathname: '/company/about', displayNav: false, disableDrawer: true },
-  { pathname: '/company/contact', displayNav: false, disableDrawer: true },
 ];
 
 export default pages;

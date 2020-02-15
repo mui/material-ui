@@ -21,14 +21,14 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function ToggleButtons() {
-  const [alignment, setAlignment] = React.useState('left');
+  const [alignment, setAlignment] = React.useState<string | null>('left');
   const [formats, setFormats] = React.useState(() => ['bold']);
 
   const handleFormat = (event: React.MouseEvent<HTMLElement>, newFormats: string[]) => {
     setFormats(newFormats);
   };
 
-  const handleAlignment = (event: React.MouseEvent<HTMLElement>, newAlignment: string) => {
+  const handleAlignment = (event: React.MouseEvent<HTMLElement>, newAlignment: string | null) => {
     setAlignment(newAlignment);
   };
 

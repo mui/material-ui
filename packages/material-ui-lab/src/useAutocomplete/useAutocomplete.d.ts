@@ -6,6 +6,7 @@ export interface CreateFilterOptionsConfig<T> {
   matchFrom?: 'any' | 'start';
   stringify?: (option: T) => string;
   trim?: boolean;
+  limit?: number;
 }
 
 export interface FilterOptionsState {
@@ -135,7 +136,7 @@ export interface UseAutocompleteCommonProps<T> {
    *
    * @param {object} event The event source of the callback.
    * @param {string} value The new value of the text input.
-   * @param {string} reason Can be: "input" (user input), "reset" (programmatic change), `"clear"`.
+   * @param {string} reason Can be: `"input"` (user input), `"reset"` (programmatic change), `"clear"`.
    */
   onInputChange?: (
     event: React.ChangeEvent<{}>,
@@ -156,9 +157,10 @@ export interface UseAutocompleteCommonProps<T> {
   /**
    * Array of options.
    */
-  options?: T[];
+  options: T[];
   /**
    * If `true`, the input's text will be selected on focus.
+   * It helps the user clearning the selected value.
    */
   selectOnFocus?: boolean;
 }

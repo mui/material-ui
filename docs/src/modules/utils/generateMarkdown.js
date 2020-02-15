@@ -272,6 +272,11 @@ function generateProps(reactAPI) {
       )}</span>`;
     }
 
+    // Give up
+    if (defaultValue.length > 180) {
+      defaultValue = '';
+    }
+
     const chainedPropType = getChained(prop.type);
 
     if (
@@ -338,6 +343,10 @@ function generateClasses(reactAPI) {
 |:-----|:-------------|:------------|\n`;
   text += reactAPI.styles.classes
     .map(styleRule => {
+      if (styleRule === '@global') {
+        return '| <span class="prop-name">@global</span> | | Apply global styles.';
+      }
+
       const description = reactAPI.styles.descriptions[styleRule];
 
       if (typeof description === 'undefined' && ['Grid', 'Paper'].indexOf(reactAPI.name) === -1) {

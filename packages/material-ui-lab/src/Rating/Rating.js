@@ -352,7 +352,11 @@ const Rating = React.forwardRef(function Rating(props, ref) {
     );
 
     if (readOnly) {
-      return <React.Fragment key={state.value}>{container}</React.Fragment>;
+      return (
+        <span key={state.value} {...labelProps}>
+          {container}
+        </span>
+      );
     }
 
     return (

@@ -71,7 +71,7 @@ Any other props supplied will be provided to the root element ([InputBase](/api/
 | <span class="prop-name">disabled</span> | <span class="prop-name">.Mui-disabled</span> | Styles applied to the root element if `disabled={true}`.
 | <span class="prop-name">adornedStart</span> | <span class="prop-name">.MuiOutlinedInput-adornedStart</span> | Styles applied to the root element if `startAdornment` is provided.
 | <span class="prop-name">adornedEnd</span> | <span class="prop-name">.MuiOutlinedInput-adornedEnd</span> | Styles applied to the root element if `endAdornment` is provided.
-| <span class="prop-name">error</span> | <span class="prop-name">.Mui-error</span> | Styles applied to the root element if `error={true}`.
+| <span class="prop-name">error</span> | <span class="prop-name">.Mui-error</span> | Pseudo-class applied to the root element if `error={true}`.
 | <span class="prop-name">marginDense</span> | <span class="prop-name">.MuiOutlinedInput-marginDense</span> | Styles applied to the `input` element if `margin="dense"`.
 | <span class="prop-name">multiline</span> | <span class="prop-name">.MuiOutlinedInput-multiline</span> | Styles applied to the root element if `multiline={true}`.
 | <span class="prop-name">notchedOutline</span> | <span class="prop-name">.MuiOutlinedInput-notchedOutline</span> | Styles applied to the `NotchedOutline` element.

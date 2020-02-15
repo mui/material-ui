@@ -17,7 +17,7 @@ A color intention とは、パレットをアプリケーション内の特定�
 
 色の詳細については、[色セクション](/customization/color/)をご覧ください。
 
-{{"demo": "pages/customization/palette/Intentions.js", "bg": "inline"}}
+{{"demo": "pages/customization/palette/Intentions.js", "bg": "inline", "hideHeader": true}}
 
 ### カスタマイズ
 
@@ -33,7 +33,7 @@ interface PaletteIntention {
   main: string;
   dark?: string;
   contrastText?: string;
-};
+}
 ```
 
 **カラーオブジェクトを使用する**
@@ -86,7 +86,7 @@ const theme = createMuiTheme({
 As in the example above, if the intention object contains custom colors using any of the "main", "light", "dark" or "contrastText" keys, these map as follows:
 
 - If the "dark" and / or "light" keys are omitted, their value(s) will be calculated from "main", according to the "tonalOffset" value.
-- If "contrastText" is omitted, its value will be calculated to contrast with "main", according to the"contrastThreshold" value.
+- If "contrastText" is omitted, its value will be calculated to contrast with "main", according to the "contrastThreshold" value.
 
 Both the "tonalOffset" and "contrastThreshold" values may be customized as needed. A higher value for "tonalOffset" will make calculated values for "light" lighter, and "dark" darker. A higher value for "contrastThreshold" increases the point at which a background color is considered light, and given a dark "contrastText".
 
@@ -112,7 +112,9 @@ const darkTheme = createMuiTheme({
 });
 ```
 
-{{"demo": "pages/customization/palette/DarkTheme.js", "bg": "inline", "defaultCodeOpen": false}}
+The colors modified by the palette type are the following:
+
+{{"demo": "pages/customization/palette/DarkTheme.js", "bg": "inline", "hideHeader": true}}
 
 ### User preference
 

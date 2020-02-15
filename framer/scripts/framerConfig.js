@@ -191,16 +191,6 @@ export const componentSettings = {
     },
     template: 'self_closing.txt',
   },
-  ThemeProvider: {
-    ignoredProps: ['theme'],
-    propValues: {
-      paletteType: 'light',
-      primary: "'#3f51b5'",
-      secondary: "'#f50057'",
-      error: "'#f44336'",
-    },
-    template: 'theme_provider.txt',
-  },
   Paper: {
     ignoredProps: [],
     propValues: {

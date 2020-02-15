@@ -21,6 +21,27 @@ Fancy larger or smaller buttons? Use the `size` property.
 
 {{"demo": "pages/components/toggle-button/ToggleButtonSizes.js"}}
 
+## Enforce value set
+
+If you want to enforce at least one button to be active, you can adapt your handleChange
+function.
+
+```jsx
+const handleFormat = (event, newFormats) => {
+  if (newFormats.length) {
+    setFormats(newFormats);
+  }
+};
+
+const handleAlignment = (event, newAlignment) => {
+  if (newAlignment !== null) {
+    setAlignment(newAlignment);
+  }
+};
+```
+
+{{"demo": "pages/components/toggle-button/ToggleButtonNotEmpty.js"}}
+
 ## Standalone toggle button
 
 {{"demo": "pages/components/toggle-button/StandaloneToggleButton.js"}}

@@ -38,6 +38,7 @@
 | [sizing](/system/sizing/) | `minHeight` | `minHeight`| `min-height` | none |
 | [sizing](/system/sizing/) | `minWidth` | `minWidth` | `min-width` | none |
 | [sizing](/system/sizing/) | `width` | `width` | `width` | none |
+| [sizing](/system/sizing/) | `boxSizing` | `boxSizing` | `box-sizing` | none |
 | [spacing](/system/spacing/) | `spacing` | `m` | `margin` | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
 | [spacing](/system/spacing/) | `spacing` | `mb` | `margin-bottom` | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
 | [spacing](/system/spacing/) | `spacing` | `ml` | `margin-left` | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |

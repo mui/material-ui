@@ -2,6 +2,7 @@ import React from 'react';
 import orderBy from 'lodash/orderBy';
 import sortedUniqBy from 'lodash/sortedUniqBy';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
+import fetch from 'cross-fetch';
 
 const req = require.context('docs/src/pages/versions', false, /\.(md|js|tsx)$/);
 const reqSource = require.context('!raw-loader!../src/pages/versions', false, /\.(js|tsx)$/);
@@ -12,12 +13,13 @@ export default function Page() {
 }
 
 async function getBranches() {
+  const githubAuthorizationToken = process.env.GITHUB_AUTH || '';
+
   const result = await fetch('https://api.github.com/repos/mui-org/material-ui-docs/branches', {
     headers: {
-      Authorization: `Basic ${Buffer.from(process.env.GITHUB_AUTH).toString('base64')}`,
+      Authorization: `Basic ${Buffer.from(githubAuthorizationToken).toString('base64')}`,
     },
   });
-  // console.log('headers', result.headers);
   const branches = await result.json();
   return branches;
 }

@@ -19,7 +19,7 @@ components: レート
 
 ## ホバーのフィードバック
 
-ユーザーが正しい評価値を選択するのに役立つように、ホバーにラベルを表示できます。 最初のデモは `onChangeActive` prop を使用し、最後のデモは `IconContainerComponent` prop を使用します。
+ユーザーが正しい評価値を選択するのに役立つように、ホバーにラベルを表示できます。 The demo uses the `onChangeActive` prop.
 
 {{"demo": "pages/components/rating/HoverRating.js"}}
 

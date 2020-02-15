@@ -5,7 +5,7 @@ components: ClickAwayListener
 
 # Wegklick Zuhörer
 
-<p class="description">Detect if a click event happened outside of an element. It listens for clicks that occur somewhere in the document.</p>
+<p class="description">Detect if a click event happened outside of an element. Es hört auf Klicks, die irgendwo im Dokument auftreten.</p>
 
 - 📦 [1.5 kB gzipped](/size-snapshot).
 
@@ -15,4 +15,4 @@ Wenn Sie beispielsweise ein Dropdown-Menü ausblenden müssen, wenn Personen auf
 
 {{"demo": "pages/components/click-away-listener/ClickAway.js"}}
 
-Notice that the component only accepts one child element. You can find a more advanced demo on the [Menu documentation section](/components/menus/#menulist-composition).
+Beachten Sie, dass die Komponente nur ein untergeordnetes Element akzeptiert. You can find a more advanced demo on the [Menu documentation section](/components/menus/#menulist-composition).

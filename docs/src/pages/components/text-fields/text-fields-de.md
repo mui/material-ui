@@ -25,13 +25,13 @@ Standard form attributes are supported e.g. `required`, `disabled`, `type`, etc.
 
 {{"demo": "pages/components/text-fields/FormPropsTextFields.js"}}
 
-## Validation
+## Validierung
 
 The `error` prop toggles the error state, the `helperText` prop can then be used to provide feedback to the user about the error.
 
 {{"demo": "pages/components/text-fields/ValidationTextFields.js"}}
 
-## Multiline
+## Mehrzeilig
 
 The `multiline` prop transforms the text field into a [textarea](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) or a [TextareaAutosize](/components/textarea-autosize/).
 
@@ -57,7 +57,7 @@ The main way is with an `InputAdornment`. Diese können verwendet werden, um ein
 
 ## Größen
 
-Fancy smaller inputs? Use the `size` prop.
+Fancy smaller inputs? Verwenden Sie die `size` Prop.
 
 {{"demo": "pages/components/text-fields/TextFieldSizes.js"}}
 
@@ -103,21 +103,23 @@ Die Anpassung endet nicht bei CSS. Sie können Komposition verwenden, um benutze
 
 {{"demo": "pages/components/text-fields/CustomizedInputBase.js", "bg": true}}
 
+👑 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/components/text-field).
+
 ## Einschränkungen
 
 ### Shrink
 
-Der Status des Eingabe-Labels "Verkleinern" ist nicht immer korrekt. Das Eingabeetikett soll schrumpfen, sobald die Eingabe etwas anzeigt. Unter bestimmten Umständen können wir den Status "Schrumpfen" nicht ermitteln (Zahleneingabe, Datumseingabe, Stripe-Eingabe). Möglicherweise stellen Sie eine Überlappung fest.
+The input label "shrink" state isn't always correct. The input label is supposed to shrink as soon as the input is displaying something. In some circumstances, we can't determine the "shrink" state (number input, datetime input, Stripe input). Sie könnten eine Überlappung bemerken.
 
-![schrumpfen](/static/images/text-fields/shrink.png)
+![shrink](/static/images/text-fields/shrink.png)
 
-Um das Problem zu umgehen, können Sie den Status des Labels "verkleinern" erzwingen.
+To workaround the issue, you can force the "shrink" state of the label.
 
 ```jsx
 <TextField InputLabelProps={{ shrink: true }} />
 ```
 
-oder
+or
 
 ```jsx
 <InputLabel shrink>Contagem</InputLabel>
@@ -129,13 +131,13 @@ The floating label is absolutely positioned, it won't impact the layout of the p
 
 ## Integration with 3rd party input libraries
 
-Sie können Bibliotheken von Drittanbietern verwenden, um eine Eingabe zu formatieren. Sie müssen eine benutzerdefinierte Implementierung des `<input>` -Elements mit der `inputComponent` -Eigenschaft bereitstellen.
+You can use third-party libraries to format an input. You have to provide a custom implementation of the `<input>` element with the `inputComponent` property.
 
-Die folgende Demo verwendet die Bibliotheken [react-text-mask](https://github.com/text-mask/text-mask) und [react-number-format](https://github.com/s-yadav/react-number-format). The same concept could be applied to [e.g. react-stripe-element](https://github.com/mui-org/material-ui/issues/16037).
+The following demo uses the [react-text-mask](https://github.com/text-mask/text-mask) and [react-number-format](https://github.com/s-yadav/react-number-format) libraries. The same concept could be applied to [e.g. react-stripe-element](https://github.com/mui-org/material-ui/issues/16037).
 
 {{"demo": "pages/components/text-fields/FormattedInputs.js"}}
 
-Die bereitgestellte Eingabekomponente sollte die Eigenschaft `inputRef` haben. The property should be called with a value that implements the following interface:
+The provided input component should handle the `inputRef` property. The property should be called with a value that implements the following interface:
 
 ```ts
 interface InputElement {

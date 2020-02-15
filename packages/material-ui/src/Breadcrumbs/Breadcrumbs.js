@@ -14,13 +14,12 @@ export const styles = {
     display: 'flex',
     flexWrap: 'wrap',
     alignItems: 'center',
-    padding: 0, // Reset
-    margin: 0, // Reset
-  },
-  /* Styles applied to the li element. */
-  li: {
+    padding: 0,
+    margin: 0,
     listStyle: 'none',
   },
+  /* Styles applied to the li element. */
+  li: {},
   /* Styles applied to the separator element. */
   separator: {
     display: 'flex',

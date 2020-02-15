@@ -66,13 +66,14 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
+| <span class="prop-name">@global</span> | | Apply global styles.
 | <span class="prop-name">root</span> | <span class="prop-name">.MuiInputBase-root</span> | Styles applied to the root element.
 | <span class="prop-name">formControl</span> | <span class="prop-name">.MuiInputBase-formControl</span> | Styles applied to the root element if the component is a descendant of `FormControl`.
 | <span class="prop-name">focused</span> | <span class="prop-name">.Mui-focused</span> | Styles applied to the root element if the component is focused.
 | <span class="prop-name">disabled</span> | <span class="prop-name">.Mui-disabled</span> | Styles applied to the root element if `disabled={true}`.
 | <span class="prop-name">adornedStart</span> | <span class="prop-name">.MuiInputBase-adornedStart</span> | Styles applied to the root element if `startAdornment` is provided.
 | <span class="prop-name">adornedEnd</span> | <span class="prop-name">.MuiInputBase-adornedEnd</span> | Styles applied to the root element if `endAdornment` is provided.
-| <span class="prop-name">error</span> | <span class="prop-name">.Mui-error</span> | Styles applied to the root element if `error={true}`.
+| <span class="prop-name">error</span> | <span class="prop-name">.Mui-error</span> | Pseudo-class applied to the root element if `error={true}`.
 | <span class="prop-name">marginDense</span> | <span class="prop-name">.MuiInputBase-marginDense</span> | Styles applied to the `input` element if `margin="dense"`.
 | <span class="prop-name">multiline</span> | <span class="prop-name">.MuiInputBase-multiline</span> | Styles applied to the root element if `multiline={true}`.
 | <span class="prop-name">colorSecondary</span> | <span class="prop-name">.MuiInputBase-colorSecondary</span> | Styles applied to the root element if the color is secondary.

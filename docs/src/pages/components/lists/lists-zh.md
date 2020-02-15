@@ -92,3 +92,7 @@ This feature relies on CSS sticky positioning. Unfortunately it's [not implement
 {{"demo": "pages/components/lists/VirtualizedList.js", "bg": true}}
 
 The use of [react-window](https://github.com/bvaughn/react-window) when possible is encouraged. 如果这个库不包括你的用例，你应该考虑使用 [react-virtualized](https://github.com/bvaughn/react-virtualized)，然后使用 [react-virtuoso](https://github.com/petyosi/react-virtuoso)等替代品。
+
+## 个性化
+
+👑 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/components/menu-list).

@@ -29,7 +29,7 @@ The badge auto hides with badgeContent is zero. You can override this with the `
 
 {{"demo": "pages/components/badges/ShowZeroBadge.js"}}
 
-## Maximum value
+## Maximaler Wert
 
 You can use the `max` property to cap the value of the badge content.
 

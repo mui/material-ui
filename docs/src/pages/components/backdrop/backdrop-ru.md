@@ -1,12 +1,12 @@
 ---
-title: Overlay React component
-components: Backdrop
+title: 'Затемнение: компонент React'
+components: Затемнение
 ---
 
-# Backdrop
+# Затемнение
 
-<p class="description">The backdrop component is used to provide emphasis on a particular element or parts of it.</p>
+<p class="description">Затемнение предназначено для акцентирования внимания пользователя на определенном элементе интерфейса.</p>
 
-The overlay signals to the user of a state change within the application and can be used for creating loaders, dialogs and more. In its simplest form, the backdrop component will add a dimmed layer over your application.
+Затемнение обозначает изменение состояния приложения и может быть использовано для создания диалогов, экранов загрузки и т.д. Проще говоря, затемнение добавляет затемнённый слой поверх вашего приложения.
 
 {{"demo": "pages/components/backdrop/SimpleBackdrop.js"}}

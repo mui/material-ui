@@ -90,10 +90,10 @@ const blacklist = [
   'docs-components-snackbars/SimpleSnackbar.png', // Needs interaction
   'docs-components-snackbars/TransitionsSnackbar.png', // Needs interaction
   'docs-components-speed-dial', // Needs interaction
-  'docs-components-stepper/HorizontalNonLinearAlternativeLabelStepper.png', // Redundant
-  'docs-components-stepper/HorizontalNonLinearStepper.png', // Redundant
-  'docs-components-stepper/SwipeableTextMobileStepper.png', // Redundant
+  'docs-components-steppers/HorizontalNonLinearAlternativeLabelStepper.png', // Redundant
+  'docs-components-steppers/HorizontalNonLinearStepper.png', // Redundant
   'docs-components-steppers/SwipeableTextMobileStepper.png', // Flaky image loading
+  'docs-components-steppers/TextMobileStepper.png', // Flaky image loading
   'docs-components-textarea-autosize', // Superseded by a dedicated regression test
   'docs-components-tooltips', // Needs interaction
   'docs-components-transitions', // Needs interaction

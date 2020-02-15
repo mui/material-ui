@@ -19,7 +19,7 @@ They should be easy to scan for relevant and actionable information. Elements, l
 
 ### Outlined Card
 
-Set `variant="outlined` to render an outlined card.
+Set `variant="outlined"` to render an outlined card.
 
 {{"demo": "pages/components/cards/OutlinedCard.js", "bg": true}}
 
@@ -48,3 +48,7 @@ Set `variant="outlined` to render an outlined card.
 Вот пример карточки с элементами управления мультимедиа.
 
 {{"demo": "pages/components/cards/MediaControlCard.js", "bg": true}}
+
+## Кастомизация
+
+👑 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/components/card).

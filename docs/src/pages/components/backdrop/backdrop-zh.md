@@ -1,9 +1,9 @@
 ---
-title: Overlay React component
-components: Backdrop
+title: 覆盖 React 组件
+components: 背景板（Backdrop）
 ---
 
-# Backdrop
+# 背景板（Backdrop）
 
 <p class="description">Backdrop 组件用于提供对特定元素或其部分的强调。</p>
 

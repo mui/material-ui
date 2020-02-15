@@ -1,41 +1,43 @@
 ---
-title: Alert React component
+title: Componente Alert React
 components: Alert
 ---
 
 # Alert
 
-<p class="description">An alert displays a short, important message in a way that attracts the user's attention without interrupting the user's task.</p>
+<p class="description">Un Alert muestra un breve mensaje importante de una forma que atrae la atención del usuario sin necesidad de interrumpir el trabajo al usuario.</p>
 
-## Simple alerts
+**Nota:** Este componente no está documentado en la pautas [Material Design](https://material.io/), pero Material-UI lo soporta.
 
-The alert offers four severity levels that set a distinctive icon and color.
+## Alert simples
+
+El componente Alert ofrece cuatro niveles de gravedad que establecen un icono y un color distintivos.
 
 {{"demo": "pages/components/alert/SimpleAlerts.js"}}
 
 ## Descripción
 
-You can use the `AlertTitle` component to display a formatted title above the content.
+Puede utilizar el componente `AlertTitle` para mostrar un título formateado por encima del contenido.
 
 {{"demo": "pages/components/alert/DescriptionAlerts.js"}}
 
-## Actions
+## Acciones
 
-An alert can have an action, such as a close or undo button. It is rendered after the message, at the end of the alert.
+El componente Alert puede tener una acción, como un botón cerrar o deshacer. Es rendereado después del mensaje, al final del Alert.
 
-If an `onClose` callback is provided and no `action` prop is set, a close icon is displayed. The `action` prop can be used to provide an alternative action, for example using a Button or IconButton.
+Si se proporciona una devolución de llamada `onClose` y no se establece ningún accesorio de `action`, se muestra un icono de cierre. El accesorio de `action` se puede usar para proporcionar una acción alternativa, por ejemplo, usando un Button o un IconButton.
 
 {{"demo": "pages/components/alert/ActionAlerts.js"}}
 
-### Transition
+### Transición
 
-You can use a [transition component](/components/transitions/) such as `Collapse` to transition the appearance of the alert.
+Puede utilizar el componente de [ transition ](/components/transitions/) como `Colapse` para la transición del componente Alert.
 
 {{"demo": "pages/components/alert/TransitionAlerts.js"}}
 
 ## Iconos
 
-The `icon` prop allows you to add an icon to the beginning of the alert component. This will override the default icon for the specified severity.
+El `icon` prop permite añadir un icono para el inicio del componente Alert. This will override the default icon for the specified severity.
 
 You can change the default severity to icon mapping with the `iconMapping` prop. This can be defined globally using [theme customization](/customization/globals/#default-props).
 

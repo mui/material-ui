@@ -19,7 +19,7 @@ function omit(input, fields) {
 
 // styled-components's API removes the mapping between components and styles.
 // Using components as a low-level styling construct can be simpler.
-function styled(Component) {
+export default function styled(Component) {
   const componentCreator = (style, options = {}) => {
     const { name, ...stylesOptions } = options;
 
@@ -147,5 +147,3 @@ function styled(Component) {
 
   return componentCreator;
 }
-
-export default styled;

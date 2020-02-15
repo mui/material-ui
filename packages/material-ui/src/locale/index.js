@@ -193,6 +193,52 @@ export const esES = {
   },
 };
 
+export const etEE = {
+  props: {
+    MuiTablePagination: {
+      backIconButtonText: 'Eelmine lehekülg',
+      labelRowsPerPage: 'Ridu leheküljel:',
+      labelDisplayedRows: ({ from, to, count }) => `${from}-${to === -1 ? count : to} / ${count}`,
+      nextIconButtonText: 'Järgmine lehekülg',
+    },
+    MuiRating: {
+      getLabelText: value => `${value} Tärn${value !== 1 ? 'i' : ''}`,
+      emptyLabelText: 'Tühi',
+    },
+    MuiAutocomplete: {
+      clearText: 'Tühjenda',
+      closeText: 'Sulge',
+      loadingText: 'Laen…',
+      noOptionsText: 'Valikuid ei ole',
+      openText: 'Ava',
+    },
+    MuiAlert: {
+      closeText: 'Sulge',
+    },
+    MuiPagination: {
+      'aria-label': 'Lehekülgede valik',
+      getItemAriaLabel: (type, page, selected) => {
+        if (type === 'page') {
+          return `${selected ? '' : 'Vali '}lehekülg ${page}`;
+        }
+        if (type === 'first') {
+          return 'Vali esimene lehekülg';
+        }
+        if (type === 'last') {
+          return 'Vali viimane lehekülg';
+        }
+        if (type === 'next') {
+          return 'Vali järgmine lehekülg';
+        }
+        if (type === 'previous') {
+          return 'Vali eelmine lehekülg';
+        }
+        return undefined;
+      },
+    },
+  },
+};
+
 export const faIR = {
   props: {
     MuiTablePagination: {
@@ -214,6 +260,31 @@ export const faIR = {
     },
     MuiAlert: {
       closeText: 'بستن',
+    },
+  },
+};
+
+export const fiFI = {
+  props: {
+    MuiTablePagination: {
+      backIconButtonText: 'Edellinen sivu',
+      labelRowsPerPage: 'Rivejä per sivu:',
+      labelDisplayedRows: ({ from, to, count }) => `${from}-${to === -1 ? count : to} / ${count}`,
+      nextIconButtonText: 'Seuraava sivu',
+    },
+    MuiRating: {
+      getLabelText: value => `${value} Täht${value !== 1 ? 'eä' : 'i'}`,
+      emptyLabelText: 'Tyhjä',
+    },
+    MuiAutocomplete: {
+      clearText: 'Tyhjennä',
+      closeText: 'Sulje',
+      loadingText: 'Ladataan…',
+      noOptionsText: 'Ei valintoja',
+      openText: 'Avaa',
+    },
+    MuiAlert: {
+      closeText: 'Sulje',
     },
   },
 };
@@ -240,6 +311,52 @@ export const frFR = {
     MuiAlert: {
       closeText: 'Fermer',
     },
+    MuiPagination: {
+      'aria-label': 'pagination navigation',
+      getItemAriaLabel: (type, page, selected) => {
+        if (type === 'page') {
+          return `${selected ? '' : 'Aller à la '}page ${page}`;
+        }
+        if (type === 'first') {
+          return 'Aller à la première page';
+        }
+        if (type === 'last') {
+          return 'Aller à la dernière page';
+        }
+        if (type === 'next') {
+          return 'Aller à la page suivante';
+        }
+        if (type === 'previous') {
+          return 'Aller à la page précédente';
+        }
+        return undefined;
+      },
+    },
+  },
+};
+
+export const huHU = {
+  props: {
+    MuiTablePagination: {
+      backIconButtonText: 'Előző oldal',
+      labelRowsPerPage: 'Sorok száma:',
+      labelDisplayedRows: ({ from, to, count }) => `${from}-${to === -1 ? count : to} / ${count}`,
+      nextIconButtonText: 'Következő oldal',
+    },
+    MuiRating: {
+      getLabelText: value => `${value} Csillag`,
+      emptyLabelText: 'Üres',
+    },
+    MuiAutocomplete: {
+      clearText: 'Törlés',
+      closeText: 'Bezárás',
+      loadingText: 'Töltés…',
+      noOptionsText: 'Nincs találat',
+      openText: 'Megnyitás',
+    },
+    MuiAlert: {
+      closeText: 'Bezárás',
+    },
   },
 };
 
@@ -265,6 +382,31 @@ export const idID = {
     },
     MuiAlert: {
       closeText: 'Tutup',
+    },
+  },
+};
+
+export const isIS = {
+  props: {
+    MuiTablePagination: {
+      backIconButtonText: 'Fyrri síða',
+      labelRowsPerPage: 'Raðir á síðu:',
+      labelDisplayedRows: ({ from, to, count }) => `${from}-${to === -1 ? count : to} af ${count}`,
+      nextIconButtonText: 'Næsta síða',
+    },
+    MuiRating: {
+      getLabelText: value => `${value} ${value === 1 ? 'Stjarna' : 'Stjörnur'}`,
+      emptyLabelText: 'Tómt',
+    },
+    MuiAutocomplete: {
+      clearText: 'Hreinsa',
+      closeText: 'Loka',
+      loadingText: 'Hlaða…',
+      noOptionsText: 'Engar niðurstöður',
+      openText: 'Opna',
+    },
+    MuiAlert: {
+      closeText: 'Loka',
     },
   },
 };

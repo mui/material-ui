@@ -32,7 +32,7 @@
     "emotion-theming": "^10.0.27",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-jss": "^10.0.3",
+    "react-jss": "^10.0.4",
     "styled-system": "^5.1.2"
   }
 }

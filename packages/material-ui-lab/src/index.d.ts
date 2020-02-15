@@ -10,6 +10,12 @@ export * from './Autocomplete';
 export { default as AvatarGroup } from './AvatarGroup';
 export * from './AvatarGroup';
 
+export { default as Pagination } from './Pagination';
+export * from './Pagination';
+
+export { default as PaginationItem } from './PaginationItem';
+export * from './PaginationItem';
+
 export { default as Rating } from './Rating';
 export * from './Rating';
 
