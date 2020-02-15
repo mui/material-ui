@@ -357,7 +357,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
   };
 
   const prevChildIds = React.useRef([]);
-  const [mounted, setMounted] = React.useState(false);
+  const [childrenCalculated, setChildrenCalculated] = React.useState(false);
   React.useEffect(() => {
     const childIds = React.Children.map(children, child => child.props.nodeId) || [];
     if (arrayDiff(prevChildIds.current, childIds)) {
@@ -371,8 +371,8 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
       });
       visibleNodes.current = nodeMap.current[-1].children;
       prevChildIds.current = childIds;
-      setMounted(true);
     }
+    setChildrenCalculated(true)
   }, [children]);
 
   React.useEffect(() => {
@@ -389,10 +389,10 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
       return list;
     };
 
-    if (mounted) {
+    if (childrenCalculated) {
       visibleNodes.current = buildVisible(nodeMap.current[-1].children);
     }
-  }, [expanded, mounted, isExpanded]);
+  }, [expanded, childrenCalculated, isExpanded]);
 
   return (
     <TreeViewContext.Provider
