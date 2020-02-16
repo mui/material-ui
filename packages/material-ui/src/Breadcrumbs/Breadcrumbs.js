@@ -110,7 +110,6 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(props, ref) {
 
   return (
     <Typography
-      aria-label="Breadcrumb"
       ref={ref}
       component={Component}
       color="textSecondary"
