@@ -64,7 +64,7 @@ describe('<TextField />', () => {
     });
 
     ['', undefined].forEach(label => {
-      it(`should not render empty - [${label}] label element`, () => {
+      it(`should not render empty (${label}) label element`, () => {
         const { container } = render(<TextField id="labelled" label={label} />);
 
         expect(container.querySelector('label')).to.be.null;
