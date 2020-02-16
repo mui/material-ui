@@ -3,7 +3,7 @@ title: 没有SSR React组件
 components: NoSsr
 ---
 
-# 没有SSR
+# SSR 没有
 
 <p class="description">NoSsr故意从服务器端渲染（SSR）主题中删除组件。</p>
 

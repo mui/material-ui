@@ -2,7 +2,7 @@
 components: Typography
 ---
 
-# Typography
+# Typography 文字铸排
 
 <p class="description">使用活版印刷可以尽可能清晰、高效地呈现您的设计和内容。</p>
 

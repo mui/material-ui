@@ -3,11 +3,11 @@ title: Material Icons (材料图标)
 components: Icon, SvgIcon
 ---
 
-# Material Icons (材料图标)
+# Material Icons 材料图标
 
-<p class="description">可以从官方网站上使用超过1,000个React Material图标。</p>
+<p class="description">1,100+ React Material icons ready to use from the official website.</p>
 
-我们提供[@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons)这样一个单独的 npm 包，其中包括1000多个已转换为 Svg 图标`SvgIcon` [材料图标](https://material.io/tools/icons/?style=baseline)。</p> 
+The following npm package, [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons), includes the 1,100+ official [Material icons](https://material.io/tools/icons/?style=baseline) converted to [`SvgIcon`](/api/svg-icon/) components.
 
 {{"demo": "pages/components/material-icons/SearchIcons.js", "hideHeader": true, "bg": true}}
 

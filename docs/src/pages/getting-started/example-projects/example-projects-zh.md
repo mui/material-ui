@@ -45,6 +45,13 @@ Create React App 是一个很棒的学习 React 的项目。 请看一下这些[
   - 在导航示例中涵盖了 React Router
   - 一个具有用于生产环境创造的 Nginx 服务器的 Docker container(Docker 容器)。
   - 使用 Create React App 创建
+- [React SaaS Template](https://github.com/dunky11/react-saas-template):
+    
+  - 使用 Create React App 创建
+  - Features a landing page, a blog, an area to login/register and an admin-dashboard
+  - Fully routed using react-router
+  - Lazy loads components to boost performance
+  - Components for statistics, text with emoji support, image upload and much more...
 
 ### 付费的资源
 

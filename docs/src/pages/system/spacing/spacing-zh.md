@@ -1,4 +1,4 @@
-# Spacing（间距）
+# Spacing 间距
 
 <p class="description">各种简写响应边距和填充实用程序类，用于修改元素的外观。</p>
 
@@ -110,7 +110,7 @@ import { spacing } from '@material-ui/system';
 | `spacing` | `py` | `padding-top`, `padding-bottom` | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
 
 
-*Some people find the prop shorthand confusing, you can use the full version if you prefer:*
+*有些人觉得属性简写让人困惑，如果你愿意，可以使用完整版：*
 
 ```diff
 -<Box pt={2} />

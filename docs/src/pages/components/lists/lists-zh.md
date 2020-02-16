@@ -3,7 +3,7 @@ title: React List（列表）组件
 components: Collapse, Divider, List, ListItem, ListItemAvatar, ListItemIcon, ListItemSecondaryAction, ListItemText, ListSubheader
 ---
 
-# Lists（列表）
+# Lists 列表
 
 <p class="description">列表是对文本或图像的连续、垂直的索引。</p>
 
@@ -67,7 +67,7 @@ The checkbox is the primary action and the state indicator for the list item. Th
 
 {{"demo": "pages/components/lists/CheckboxListSecondary.js", "bg": true}}
 
-### Switch （开关）
+### Switch
 
 该开关是辅助操作和单独的目标。
 

@@ -3,7 +3,7 @@ title: React Icon（图标）组件
 components: Icon, SvgIcon
 ---
 
-# Icons（图标）
+# Icons 图标
 
 <p class="description">一些在 Material-UI 中使用图标的建议和指导。</p>
 
@@ -15,7 +15,7 @@ Material-UI通过三种方式提供图标支持：
 
 ## Material Icons (材料图标)
 
-Material Design已经标准化了1,000多个官方图标，每个图标都有五个不同的“主题”(见下文)。 对于每个SVG图标，我们从 @ material-ui/icons 包中导出相应的React组件。 You can [search the full list of these icons](/components/material-icons/).
+Material Design has standardized over 1,100 official icons, each in five different "themes" (see below). 对于每个SVG图标，我们从 @ material-ui/icons 包中导出相应的React组件。 You can [search the full list of these icons](/components/material-icons/).
 
 ### 使用
 
@@ -96,7 +96,7 @@ import StarIcon from './star.svg';
 
 #### Material Design (recommended)
 
-Material Design has standardized over [1,000 official icons](#material-icons).
+Material Design has standardized over [1,100 official icons](#material-icons).
 
 #### MDI
 

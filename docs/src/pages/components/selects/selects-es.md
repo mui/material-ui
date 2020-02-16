@@ -13,17 +13,23 @@ Los menús son colocados sobre sus emisores de elementos tales que el elemento d
 
 {{"demo": "pages/components/selects/SimpleSelect.js"}}
 
-## Selección nativa
+## Advanced features
 
-Dado que la experiencia del usuario puede mejorarse en móvil usando la selección nativa de la plataforma, permitimos ese patrón.
+The Select component is meant to be interchangeable with a native `<select>` element.
+
+If you are looking for more advanced features, like combobox, multiselect, autocomplete, async or creatable support, head to the [`Autocomplete` component](/components/autocomplete/). It's also meant to be an improved version of the "react-select" package.
+
+## Native Select
+
+As the user experience can be improved on mobile using the native select of the platform, we allow such pattern.
 
 {{"demo": "pages/components/selects/NativeSelects.js"}}
 
-## Campos de texto
+## Text Fields
 
 El componente `TextField` es un control de formulario completo, incluyendo una etiqueta, el campo de texto y texto de ayuda. You can find an example with the select mode [in this section](/components/text-fields/#select).
 
-## Selecciones personalizadas
+## Customized selects
 
 Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 

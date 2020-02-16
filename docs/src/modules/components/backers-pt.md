@@ -1,6 +1,6 @@
 <h2 align="center">Patrocinadores do Material-UI</h2>
 
-The continued development and maintenance of Material-UI is made possible by these generous sponsors:
+O desenvolvimento contínuo e manutenção do Material-UI possível por causa destes generosos patrocinadores:
 
 ### Diamante 💎
 
@@ -10,7 +10,7 @@ The continued development and maintenance of Material-UI is made possible by the
 
 <p style="display: flex; justify-content: center;">
   <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="tidelift" href="https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=material_ui&utm_medium=referral&utm_campaign=homepage" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img width="96" src="https://github.com/tidelift.png?size=96" alt="tidelift" title="Enterprise-ready open source software" /></a>
-  <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="bitsrc" href="https://bit.dev" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img width="96" src="https://github.com/teambit.png?size=96" alt="bitsrc" title="The fastest way to share code" /></a>
+  <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="bitsrc" href="https://bit.dev" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img width="96" src="https://github.com/teambit.png?size=96" alt="bitsrc" title="O jeito mais rápido de compartilhar código" /></a>
 </p>
 
 <p style="display: flex; justify-content: center; flex-wrap: wrap;">
@@ -19,4 +19,4 @@ The continued development and maintenance of Material-UI is made possible by the
 
 ### E tem mais!
 
-See the full list of [our sponsors](/discover-more/backers/), and learn how you can contribute to the future of Material-UI.
+Veja a lista completa dos [nossos patrocinadores](/discover-more/backers/) e saiba como você pode contribuir com o futuro do Material-UI.

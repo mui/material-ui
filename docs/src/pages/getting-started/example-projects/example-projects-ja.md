@@ -45,6 +45,13 @@ If you want to start with a more complete and real-world example, you could take
   - ナビゲーションのサンプルに含まれるReact Router
   - プロダクションビルド用のNginxサーバ含むdockerコンテナ
   - Create React Appによる生成
+- [React SaaS Template](https://github.com/dunky11/react-saas-template):
+    
+  - Create React Appによる生成
+  - Features a landing page, a blog, an area to login/register and an admin-dashboard
+  - Fully routed using react-router
+  - Lazy loads components to boost performance
+  - Components for statistics, text with emoji support, image upload and much more...
 
 ### 有料
 

@@ -37,7 +37,7 @@ Puede utilizar el componente de [ transition ](/components/transitions/) como `C
 
 ## Iconos
 
-El `icon` prop permite añadir un icono para el inicio del componente Alert. This will override the default icon for the specified severity.
+El `icon` prop permite añadir un icono para el inicio del componente Alert. Esto anulará el icono por defecto para la gravedad especificada.
 
 You can change the default severity to icon mapping with the `iconMapping` prop. This can be defined globally using [theme customization](/customization/globals/#default-props).
 

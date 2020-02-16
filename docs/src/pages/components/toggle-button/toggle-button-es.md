@@ -19,11 +19,31 @@ Botones más grandes o más pequeños? Usa la propiedad `size`.
 
 {{"demo": "pages/components/toggle-button/ToggleButtonSizes.js"}}
 
-## Botón de conmutación independiente
+## Enforce value set
+
+If you want to enforce at least one button to be active, you can adapt your handleChange function.
+
+```jsx
+const handleFormat = (event, newFormats) => {
+  if (newFormats.length) {
+    setFormats(newFormats);
+  }
+};
+
+const handleAlignment = (event, newAlignment) => {
+  if (newAlignment !== null) {
+    setAlignment(newAlignment);
+  }
+};
+```
+
+{{"demo": "pages/components/toggle-button/ToggleButtonNotEmpty.js"}}
+
+## Standalone toggle button
 
 {{"demo": "pages/components/toggle-button/StandaloneToggleButton.js"}}
 
-## Botón de conmutación personalizado
+## Customized toggle button
 
 Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 

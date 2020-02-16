@@ -92,7 +92,7 @@ crwdns107917:0crwdne107917:0
 crwdns107919:0crwdne107919:0
 
 ```jsx
-crwdns107121:0{ ThemeProvider }crwdne107121:0 crwdns107123:0[prefersDarkMode]crwdnd107123:0{theme}crwdne107123:0
+crwdns109825:0{ createMuiTheme, ThemeProvider }crwdne109825:0 crwdns107123:0[prefersDarkMode]crwdnd107123:0{theme}crwdne107123:0
 ```
 
 ## crwdns107125:0crwdne107125:0

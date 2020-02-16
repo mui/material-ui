@@ -45,6 +45,13 @@ If you want to start with a more complete and real-world example, you could take
   - React Router incluído com um exemplo de navegação
   - Um contêiner docker com um servidor Nginx para compilação de produção
   - Criado com o Create React App
+- [React SaaS Template](https://github.com/dunky11/react-saas-template):
+    
+  - Criado com o Create React App
+  - Features a landing page, a blog, an area to login/register and an admin-dashboard
+  - Fully routed using react-router
+  - Lazy loads components to boost performance
+  - Components for statistics, text with emoji support, image upload and much more...
 
 ### Pago
 

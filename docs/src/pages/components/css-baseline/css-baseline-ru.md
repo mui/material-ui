@@ -1,10 +1,12 @@
 ---
-components: CssBaseline
+components: CssBaseline, ScopedCssBaseline
 ---
 
 # CSS Baseline
 
 <p class="description">Material-UI предоставляет компонент CssBaseline, чтобы создать элегантную, согласованную и простую основу для работы.</p>
+
+## Global reset
 
 You might be familiar with [normalize.css](https://github.com/necolas/normalize.css), a collection of HTML element and attribute style-normalizations.
 
@@ -18,6 +20,23 @@ export default function MyApp() {
       <CssBaseline />
       {/* The rest of your application */}
     </React.Fragment>
+  );
+}
+```
+
+## Scoping on children
+
+However, you might be progressively migrating a website to Material-UI, using a global reset might not be an option. It's possible to apply the baseline only to the children by using the `ScopedCssBaseline` component.
+
+```jsx
+import React from 'react';
+import ScopedCssBaseline from '@material-ui/core/ScopedCssBaseline';
+
+export default function MyApp() {
+  return (
+    <ScopedCssBaseline>
+      {/* The rest of your application */}
+    </ScopedCssBaseline>
   );
 }
 ```
@@ -39,5 +58,5 @@ The `<html>` and `<body>` elements are updated to provide better page-wide defau
 
 - No base font-size is declared on the `<html>`, but 16px is assumed (the browser default). You can learn more about the implications of changing the `<html>` default font size in [the theme documentation](/customization/typography/#typography-html-font-size) page.
 - Set the `theme.typography.body2` style on the `<body>` element.
-- Set the font-weight to "bolder" for the `<b>` and `<strong>` elements. Bolder is one font weight heavier than the parent element (among the available weights of the font).
+- Set the font-weight to `theme.typography.fontWeightBold` for the `<b>` and `<strong>` elements.
 - Сглаживание шрифтов включено для лучшего отображения шрифта Roboto.

@@ -3,7 +3,7 @@ title: Transfer List React component
 components: List, ListItem, Checkbox, Switch
 ---
 
-# 传输列表
+# Transfer List 传递列表
 
 <p class="description">传输列表(或“穿梭”) 使用户可以在列表之间移动一个或多个列表项。</p>
 

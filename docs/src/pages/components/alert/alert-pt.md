@@ -1,23 +1,23 @@
 ---
-title: Alert React component
+title: Componente do React Alert
 components: Alert
 ---
 
 # Alert
 
-<p class="description">An alert displays a short, important message in a way that attracts the user's attention without interrupting the user's task.</p>
+<p class="description">Um alerta exibe uma mensagem curta e importante de uma forma que atrai a atenção do usuário sem interromper o que ele estiver fazendo.</p>
 
-**Note:** This component is not documented in the [Material Design guidelines](https://material.io/), but Material-UI supports it.
+**Observação:** Este componente não está documentado nos [guias do Material Design](https://material.io/), mas o Material-UI o suporta.
 
-## Simple alerts
+## Alerta simples
 
-The alert offers four severity levels that set a distinctive icon and color.
+Este alerta oferece quatro níveis de severidade que definem diferentes ícones e cores.
 
 {{"demo": "pages/components/alert/SimpleAlerts.js"}}
 
 ## Descrição
 
-You can use the `AlertTitle` component to display a formatted title above the content.
+Você pode usar o componente `AlertTitle` para exibir um título formatado acima do conteúdo.
 
 {{"demo": "pages/components/alert/DescriptionAlerts.js"}}
 

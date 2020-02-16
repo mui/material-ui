@@ -3,7 +3,7 @@ title: React Button（按钮）组件
 components: Button, IconButton, ButtonBase
 ---
 
-# Button（按钮）
+# Button 按钮
 
 <p class="description">只需通过轻按一下按钮，用户即可采取行动并做出选择。</p>
 
