@@ -36,7 +36,7 @@ function BreadcrumbCollapsed(props) {
 
   return (
     <li className={classes.root}>
-      <ButtonBase focusRipple {...other}>
+      <ButtonBase role="button" focusRipple {...other}>
         <MoreHorizIcon className={classes.icon} />
       </ButtonBase>
     </li>
