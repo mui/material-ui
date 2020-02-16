@@ -227,6 +227,11 @@
     "/components/rating": "Rating",
     "/components/skeleton": "Skeleton",
     "/components/tree-view": "Tree View",
-    "/customization/density": "Density"
+    "/customization/density": "Density",
+    "/components/button-group": "Button Group",
+    "/components/floating-action-button": "Floating Action Button",
+    "/components/backdrop": "Backdrop",
+    "/components/alert": "Alert",
+    "/components/pagination": "Pagination"
   }
 }
