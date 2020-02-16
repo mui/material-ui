@@ -3,7 +3,7 @@ title: Switch React component
 components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel
 ---
 
-# Switch （开关）
+# Switch 开关
 
 <p class="description">开关控制是改变单个设置状态打开或关闭的控件。</p>
 

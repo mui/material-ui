@@ -1,10 +1,10 @@
 # Proyectos de Ejemplo
 
-<p class="description">A selection of example projects to get started with.</p>
+<p class="description">Una selección de proyectos de ejemplo para empezar.</p>
 
-## Official examples
+## Ejemplos oficiales
 
-You can find some example projects in the [GitHub repository](https://github.com/mui-org/material-ui) under the [`/examples`](https://github.com/mui-org/material-ui/tree/master/examples) folder:
+Puedes encontrar algunos proyectos de ejemplo en el [repositorio de Github](https://github.com/mui-org/material-ui) dentro de la carpeta [`/examples`](https://github.com/mui-org/material-ui/tree/master/examples):
 
 - [Create React App](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app)
 - [Gatsby](https://github.com/mui-org/material-ui/tree/master/examples/gatsby)
@@ -27,7 +27,7 @@ If you want to start with a more complete and real-world example, you could take
 - [React Most Wanted](https://github.com/TarikHuber/react-most-wanted):
     
   - Creado con Create React App
-  - Custom Create React App script to start a new project with just a single CLI command
+  - Crear un script de Create React App personalizado para iniciar un nuevo proyecto con un solo comando CLI
   - Build for Firebase including Authentication using the official Firebase Web Auth UI
   - Routing with React Router including error handling (404) and lazy loading
   - All PWA features included (SW, Notifications, deferred installation prompt and more)
@@ -45,6 +45,13 @@ If you want to start with a more complete and real-world example, you could take
   - React Router incluido con un ejemplo de navegación
   - Un contenedor de docker con servidor Nginx para compilado de producción
   - Creado con Create React App
+- [React SaaS Template](https://github.com/dunky11/react-saas-template):
+    
+  - Creado con Create React App
+  - Features a landing page, a blog, an area to login/register and an admin-dashboard
+  - Fully routed using react-router
+  - Lazy loads components to boost performance
+  - Components for statistics, text with emoji support, image upload and much more...
 
 ### De Pago
 

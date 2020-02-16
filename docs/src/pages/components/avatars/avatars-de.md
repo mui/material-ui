@@ -42,7 +42,7 @@ If you need square or rounded avatars, use the `variant` prop.
 If there is an error loading the avatar image, the component falls back to an alternative in the following order:
 
 - the provided children
-- the first letter of tha `alt` text
+- the first letter of the `alt` text
 - ein generisches Avatar-Symbol
 
 {{"demo": "pages/components/avatars/FallbackAvatars.js"}}

@@ -34,9 +34,19 @@ Wählen Sie ein Land aus 248.
 
 Set `freeSolo` to true so the textbox can contain any arbitrary value. The prop is designed to cover the primary use case of a search box with suggestions, e.g. Google search.
 
-However, if you intend to use it for a [combo box](#combo-box) like experience (an enhanced version of a select element) we recommend setting `selectOnFocus`.
+However, if you intend to use it for a [combo box](#combo-box) like experience (an enhanced version of a select element) we recommend setting `selectOnFocus` (it helps the user clearning the selected value).
 
 {{"demo": "pages/components/autocomplete/FreeSolo.js"}}
+
+### Helper message
+
+Sometimes you want to make explicit to the user that he/she can add whatever value he/she wants. The following demo adds a last option: `Add "YOUR SEARCH"`.
+
+{{"demo": "pages/components/autocomplete/FreeSoloCreateOption.js"}}
+
+You could also display a dialog when the user wants to add a new value.
+
+{{"demo": "pages/components/autocomplete/FreeSoloCreateOptionDialog.js"}}
 
 ## Grouped
 
@@ -68,29 +78,29 @@ Head to the [Customized Autocomplete](#customized-autocomplete) section for a cu
 
 {{"demo": "pages/components/autocomplete/Asynchronous.js"}}
 
-### Google Maps Ort
+### Google Maps place
 
-Eine angepasste Oberfläche für Google Maps Places Autovervollständigung.
+A customized UI for Google Maps Places Autocomplete.
 
 {{"demo": "pages/components/autocomplete/GoogleMaps.js"}}
 
-Für diese Demo müssen wir die [Google Maps JavaScript](https://developers.google.com/maps/documentation/javascript/tutorial) API laden.
+For this demo, we need to load the [Google Maps JavaScript](https://developers.google.com/maps/documentation/javascript/tutorial) API.
 
 > ⚠️ Bevor Sie die Google Maps JavaScript-API verwenden können, müssen Sie sich anmelden und ein Abrechnungskonto erstellen.
 
 ## Mehrere Werte
 
-Auch als Tags bekannt, darf der Benutzer mehr als einen Wert eingeben.
+Also known as tags, the user is allowed to enter more than one value.
 
 {{"demo": "pages/components/autocomplete/Tags.js"}}
 
-### Feste Optionen
+### Fixed options
 
-Falls Sie bestimmte Tags sperren müssen, damit sie nicht in der Schnittstelle entfernt werden können, können Sie die Chips deaktivieren.
+In the event that you need to lock certain tag so that they can't be removed in the interface, you can set the chips disabled.
 
 {{"demo": "pages/components/autocomplete/FixedTags.js"}}
 
-### Kontrollkästchen
+### Checkboxes
 
 {{"demo": "pages/components/autocomplete/CheckboxesTags.js"}}
 
@@ -102,7 +112,7 @@ Fancy smaller inputs? Verwenden Sie die `size` Prop.
 
 ## Angepasste Autovervollständigung
 
-Diese Demo reproduziert die Label-Auswahl von GitHub:
+This demo reproduces the GitHub's label picker:
 
 {{"demo": "pages/components/autocomplete/GitHubLabel.js"}}
 
@@ -116,13 +126,13 @@ The following demo relies on [autosuggest-highlight](https://github.com/moroshko
 
 ## Benutzerderfinierter Filter
 
-The component exposes a factory to create a filter method that can provided to the `filerOption` prop. Sie können es verwenden, um das Standard-Filterverhalten der Option zu ändern.
+The component exposes a factory to create a filter method that can provided to the `filerOption` prop. You can use it to change the default option filter behavior.
 
 ```js
 import { createFilterOptions } from '@material-ui/lab/Autocomplete';
 ```
 
-Es unterstützt die folgenden Optionen:
+It supports the following options:
 
 1. `config` (*Object* [optional]): 
   - `config.ignoreAccents` (*Boolean* [optional]): Defaults to `true`. Remove diacritics.
@@ -130,8 +140,9 @@ Es unterstützt die folgenden Optionen:
   - `config.matchFrom` (*'any' | 'start'* [optional]): Defaults to `'any'`.
   - `config.stringify` (*Func* [optional]): Defaults to `JSON.stringify`.
   - `config.trim ` (*Boolean* [optional]): Standardeinstellung ist `false`. Abschließende Leerzeichen entfernen.
+  - `config.limit` (*Number* [optional]): Default to null. Limit the number of suggested options to be shown. For example, if `config.limit` is `100`, only the first `100` matching options are shown. It can be useful if a lot of options match and virtualization wasn't set up.
 
-In der folgenden Demo müssen die Optionen mit dem Abfragepräfix beginnen:
+In the following demo, the options need to start with the query prefix:
 
 ```js
 const filterOptions = createFilterOptions({
@@ -159,7 +170,7 @@ const filterOptions = (options, { inputValue }) =>
 
 ## Virtualisierung
 
-Suche innerhalb von 10.000 zufällig generierten Optionen. Die Liste ist virtualisiert dank [react-window](https://github.com/bvaughn/react-window).
+Search within 10,000 randomly generated options. The list is virtualized thanks to [react-window](https://github.com/bvaughn/react-window).
 
 {{"demo": "pages/components/autocomplete/Virtualize.js"}}
 
@@ -167,11 +178,11 @@ Suche innerhalb von 10.000 zufällig generierten Optionen. Die Liste ist virtual
 
 ### autocomplete/autofill
 
-Die Browser haben Heuristiken, um den Benutzern zu helfen, die Formulareingaben auszufüllen. Es kann jedoch die UX der Komponente negativ beeinflussen.
+The browsers have heuristics to help the users fill the form inputs. However, it can harm the UX of the component.
 
 By default, the component disable the **autocomplete** feature (remembering what the user has typed for a given field in a previous session) with the `autoComplete="off"` attribute.
 
-Zusätzlich zur Speicherung der eingegebenen Werte kann der Browser aber auch **Autofill** Vorschläge vorschlagen (gespeichertes Login, Adresse oder Zahlungsinformationen). Falls Sie die automatische Füllung vermeiden möchten, können Sie Folgendes versuchen:
+However, in addition to remembering past entered values, the browser might also propose **autofill** suggestions (saved login, address, or payment details). In the event you want the avoid autofill, you can try the following:
 
 - Name the input without leaking any information the browser can use. e.g. `id="field1"` instead of `id="country"`. Wenn Sie die ID leer lassen, verwendet die Komponente eine zufällige ID.
 - Setze `autoComplete="neues Passwort"`: 
@@ -186,14 +197,14 @@ Zusätzlich zur Speicherung der eingegebenen Werte kann der Browser aber auch **
 
 ### iOS VoiceOver
 
-VoiceOver auf iOS Safari unterstützt das `aria-owns` Attribut nicht sehr gut. You can work around the issue with the `disablePortal` prop.
+VoiceOver on iOS Safari doesn't support the `aria-owns` attribute very well. You can work around the issue with the `disablePortal` prop.
 
 ### TypeScript
 
-To fully take advantage of type inference, you need to set the `multiple` prop to `undefined`, `false` or `true`. See [this discussion](https://github.com/mui-org/material-ui/pull/18854#discussion_r364215153) for more details. TypeScript könnte diesen Fehler in Zukunft lösen.
+To fully take advantage of type inference, you need to set the `multiple` prop to `undefined`, `false` or `true`. See [this discussion](https://github.com/mui-org/material-ui/pull/18854#discussion_r364215153) for more details. TypeScript might solve this bug in the future.
 
 ## Barrierefreiheit
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#combobox)
 
-Wir empfehlen die Verwendung eines Labels für die Textbox. Die Komponente implementiert die WAI-ARIA Autorenpraktiken.
+We encourage the usage of a label for the textbox. The component implements the WAI-ARIA authoring practices.

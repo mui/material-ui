@@ -5,6 +5,7 @@
   "useDarkTheme": "Dunkles Design verwenden",
   "toggleTheme": "helles/dunkles Thema umschalten",
   "toggleRTL": "rechtsläufig/linksläufig umschalten",
+  "toggleNotifications": "Toggle notifications panel",
   "github": "GitHub-Repository",
   "strapline": "React Komponenten für schnellere und einfachere Web-Entwicklung. Bauen Sie ihr eigenes Design-System oder starten Sie mit Material Design.",
   "getStarted": "Erste Schritte",

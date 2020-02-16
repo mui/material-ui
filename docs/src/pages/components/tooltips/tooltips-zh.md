@@ -3,7 +3,7 @@ title: 文字提示 React 组件
 components: Tooltip
 ---
 
-# Tooltip（文字提示）
+# Tooltip 提示
 
 <p class="description">当用户鼠标悬浮，聚焦或者轻触一个元素时，文字提示会显示有意义的文本。</p>
 

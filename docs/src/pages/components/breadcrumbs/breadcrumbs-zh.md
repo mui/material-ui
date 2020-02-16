@@ -3,7 +3,7 @@ title: React Breadcrumbs（面包屑导航）组件
 components: Breadcrumbs, Link, Typography
 ---
 
-# Breadcrumbs（面包屑导航）
+# Breadcrumbs 面包屑导航
 
 <p class="description">面包屑导航允许用户在一系列的值中进行选择。</p>
 

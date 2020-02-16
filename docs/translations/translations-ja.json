@@ -5,6 +5,7 @@
   "useDarkTheme": "Use dark theme",
   "toggleTheme": "ライト/ダークテーマに変更する",
   "toggleRTL": "左右反転する",
+  "toggleNotifications": "Toggle notifications panel",
   "github": "GitHubリポジトリ",
   "strapline": "ウェブ開発をより高速かつ簡単なものにするReactコンポーネントです。あなたのデザインシステムを構築するかMaterial Designで始めましょう。",
   "getStarted": "はじめましょう!",

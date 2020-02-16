@@ -3,7 +3,7 @@ title: React 选项卡组件
 components: Tabs, Tab
 ---
 
-# 选项卡
+# Tabs 选项卡
 
 <p class="description">选项卡可以轻松浏览和切换不同的视图.</p>
 

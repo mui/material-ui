@@ -3,7 +3,7 @@ title: React Text Field（文本框）组件
 components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField
 ---
 
-# TextField（文本框）
+# TextField 文本框
 
 <p class="description">用户可以在文本框内输入或编辑文字。</p>
 
@@ -43,7 +43,7 @@ The `select` prop makes the text field use the [Select](/components/selects/) co
 
 {{"demo": "pages/components/text-fields/SelectTextFields.js"}}
 
-## Icons（图标）
+## Icons 图标
 
 There are multiple ways to display an icon with a text field.
 
@@ -75,7 +75,7 @@ The component can be controlled or uncontrolled
 
 {{"demo": "pages/components/text-fields/StateTextFields.js"}}
 
-## Components（组件）
+## 组件
 
 `TextField` 是由较小的组件组成的 ( [`FormControl`](/api/form-control/), [`Input`](/api/input/), [`FilledInput`](/api/filled-input/), [`InputLabel`](/api/input-label/), [`OutlinedInput`](/api/outlined-input/), and [`FormHelperText`](/api/form-helper-text/) ) 你可以利用这一点来自定义你的表单输入.
 
@@ -83,7 +83,7 @@ The component can be controlled or uncontrolled
 
 {{"demo": "pages/components/text-fields/ComposedTextField.js"}}
 
-## Inputs（输入）
+## 输入
 
 {{"demo": "pages/components/text-fields/Inputs.js"}}
 
@@ -198,7 +198,6 @@ In order for the text field to be accessible, **the input should be linked to th
 
 对于更高级的用例，您可以利用：
 
-- [formik-material-ui](https://github.com/stackworx/formik-material-ui) 用于结合formik来使用Material-UI的绑定。
-- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui) 用于更加方便地与Redux Form配搭来使用Material UI的一组包装组件。
-- [final-form-material-ui](https://github.com/Deadly0/final-form-material-ui)：一组配合 Final Form 和 Material UI 的封装组件。
-- [mui-rff](https://github.com/lookfirst/mui-rff) A set of wrapper components to facilitate using Material UI with React Final Form.
+- [formik-material-ui](https://github.com/stackworx/formik-material-ui) Bindings for using Material-UI with [formik](https://jaredpalmer.com/formik).
+- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui) Bindings for using Material UI with [Redux Form](https://redux-form.com/).
+- [mui-rff](https://github.com/lookfirst/mui-rff) Bindings for using Material UI with [React Final Form](https://final-form.org/react).

@@ -3,7 +3,7 @@ title: React Paper（纸张）组件
 components: Paper
 ---
 
-# Paper
+# Paper 纸张
 
 <p class="description">在 Material Design 中，我们在屏幕上展现了纸张的物理属性。 </p>
 
@@ -11,7 +11,7 @@ components: Paper
 
 {{"demo": "pages/components/paper/SimplePaper.js", "bg": true}}
 
-## 变种(Variants)
+## 变种
 
 If you need an outlined surface, use the `variant` prop.
 
