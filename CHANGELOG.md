@@ -1,5 +1,46 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.9.3
+###### *Feb 16, 2020*
+
+Big thanks to the 18 contributors who made this release possible.
+
+### `@material-ui/core@v4.9.3`
+
+- [l10n] Add Estonian (et-EE) locale (#19707) @villuv
+- [ScopedCssBaseline] Allow css to be only applied on children (#19669) @TomPradat
+
+### `@material-ui/system@v4.9.3`
+
+- [system] Add boxSizing to sizing styled system (#19684) @mesteche
+
+### `@material-ui/lab@v4.0.0-alpha.43`
+
+- [Autocomplete] Improve freeSolo UX (#19663) @itelofilho
+- [Autocomplete] Make options required (#19648) @alexandesigner
+- [Pagination] Second iteration (#19612) @oliviertassinari
+
+### Docs
+
+- [TreeView] Add recursive demo (#19636) @captain-yossarian
+- [docs] Encourage mui-rff (#19676) @lookfirst
+- [docs] Fix missing import in auto-dark theme palette example (#19694) @vinyldarkscratch
+- [docs] Fix typo in sticky footer template (#19695) @bryndyment
+- [docs] List default attributes first (#19693) @amcasey
+- [docs] Revamp the notifications (#19615) @mbrookes
+- [docs] Revert sidebar scrolling (#19678) @kristenmills
+- [docs] Switch to cross-fetch (#19644) @eps1lon
+- [docs] Update codemod documentation (#19661) @larsenwork
+- [docs] What's the lab about? (#19611) @jcafiero
+
+### Core
+
+- [core] Export TypographyVariant type (#19598) @aleccaputo
+- [core] Host normalize-scroll-left (#19638) @oliviertassinari
+- [core] Misc dependency fixes (#19643) @eps1lon
+- [core] Batch small changes (#19639) @oliviertassinari
+- [core] Batch small changes (#19717) @oliviertassinari
+
 ## 4.9.2
 ###### *Feb 9, 2020*
 
