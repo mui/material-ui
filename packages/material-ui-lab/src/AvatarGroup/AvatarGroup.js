@@ -4,6 +4,8 @@ import { isFragment } from 'react-is';
 import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
 
+const SPACINGS = {"large":-4, "medium":-8, "small":-16};
+
 export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
@@ -12,13 +14,11 @@ export const styles = theme => ({
   /* Styles applied to the avatar elements. */
   avatar: {
     border: `2px solid ${theme.palette.background.default}`,
-    marginLeft: -8,
   },
 });
 
 const AvatarGroup = React.forwardRef(function AvatarGroup(props, ref) {
-  const { children: childrenProp, classes, className, ...other } = props;
-
+  const { children: childrenProp, classes, className, spacing, ...other } = props;
   const children = React.Children.toArray(childrenProp).filter(child => {
     if (process.env.NODE_ENV !== 'production') {
       if (isFragment(child)) {
@@ -41,6 +41,7 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(props, ref) {
           className: clsx(child.props.className, classes.avatar),
           style: {
             zIndex: children.length - index,
+            marginLeft: spacing && SPACINGS[spacing] ? SPACINGS[spacing] : -8,
             ...child.props.style,
           },
         });
@@ -63,6 +64,10 @@ AvatarGroup.propTypes = {
    * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object,
+  /**
+   * Defines the space between the type `avatar` component.
+   */
+  spacing: PropTypes.oneOf(SPACINGS),
   /**
    * @ignore
    */

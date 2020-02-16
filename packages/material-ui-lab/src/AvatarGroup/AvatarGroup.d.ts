@@ -7,6 +7,10 @@ export interface AvatarGroupProps
    * The avatars to stack.
    */
   children: React.ReactNode;
+  /**
+   * Spacing between avatars
+   */
+  spacing?: 'small' | 'medium' | 'large';
 }
 
 export type AvatarGroupClassKey = 'root' | 'avatar';
