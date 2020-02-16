@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import withStyles from '../styles/withStyles';
 import { emphasize } from '../styles/colorManipulator';
 import MoreHorizIcon from '../internal/svg-icons/MoreHoriz';
+import ButtonBase from '../ButtonBase';
 
 const styles = theme => ({
   root: {
@@ -31,27 +32,13 @@ const styles = theme => ({
  * @ignore - internal component.
  */
 function BreadcrumbCollapsed(props) {
-  const { classes, onClick, ...other } = props;
-
-  const handleKeyDown = e => {
-    e.preventDefault();
-    switch (e.key) {
-      case 'Space':
-      case 'Enter': {
-        onClick();
-      }
-    }
-  };
+  const { classes, ...other } = props;
 
   return (
-    <li
-      className={classes.root}
-      tabIndex={0}
-      onKeyDownCapture={handleKeyDown}
-      onClick={onClick}
-      {...other}
-    >
-      <MoreHorizIcon className={classes.icon} />
+    <li className={classes.root}>
+      <ButtonBase focusRipple {...other}>
+        <MoreHorizIcon className={classes.icon} />
+      </ButtonBase>
     </li>
   );
 }
