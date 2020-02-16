@@ -71,7 +71,7 @@
     "@babel/core": "^7.6.0",
     "@babel/node": "^7.6.1",
     "@babel/plugin-proposal-class-properties": "^7.5.5",
-    "@babel/plugin-transform-object-assign": "^7.2.0",
+    "@babel/plugin-transform-object-assign": "^7.8.3",
     "@babel/plugin-transform-react-constant-elements": "^7.7.4",
     "@babel/plugin-transform-runtime": "~7.6.0",
     "@babel/preset-env": "^7.6.0",
