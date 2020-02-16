@@ -6,6 +6,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormLabel from '@material-ui/core/FormLabel';
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles(theme => ({
   formControl: {
@@ -16,23 +17,28 @@ const useStyles = makeStyles(theme => ({
 export default function RadioButtonsGroup() {
   const classes = useStyles();
   const [value, setValue] = React.useState('female');
+  const [error, setError] = React.useState(false);
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue((event.target as HTMLInputElement).value);
   };
-
-  const error = value === 'error';
+  const checkAnswer = () => {
+    console.log('CHECKING');
+    setError(value == 'wrong');
+  };
 
   return (
     <div>
       <FormControl component="fieldset" className={classes.formControl} error={error}>
         <FormLabel component="legend">Age</FormLabel>
-        <RadioGroup aria-label="age" name="age1" value={value} onChange={handleChange}>
-          <FormControlLabel value="old" control={<Radio />} label="Old" />
-          <FormControlLabel value="young" control={<Radio />} label="Young" />
-          <FormControlLabel value="error" control={<Radio />} label="Error" />
+        <RadioGroup aria-label="age" name="age1" value={value} onChange={handleRadioChange}>
+          <FormControlLabel value="right" control={<Radio />} label="Right Answer" />
+          <FormControlLabel value="wrong" control={<Radio />} label="Wrong Answer" />
         </RadioGroup>
-        <FormHelperText>Choose an age group</FormHelperText>
+        <FormHelperText>Choose wisely</FormHelperText>
+        <Button variant="outlined" color="primary" onClick={checkAnswer}>
+          Check Answer
+        </Button>
       </FormControl>
     </div>
   );
