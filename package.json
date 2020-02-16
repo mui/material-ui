@@ -16,8 +16,9 @@
   ],
   "scripts": {
     "test": "jest test/index.test.ts",
-    "build": "tsc",
-    "release": "yarn build && standard-version"
+    "build": "rm -rf dist && tsc",
+    "release": "run build && standard-version",
+    "prepack": "run build"
   },
   "devDependencies": {
     "@types/babel__core": "^7.1.2",
@@ -27,7 +28,7 @@
     "@types/node": "^12.6.2",
     "@types/react": "^16.8.23",
     "@types/uuid": "^3.4.5",
-    "husky": "4.0.0-beta.3",
+    "husky": "^4.2.3",
     "jest": "^24.8.0",
     "prettier": "^1.18.2",
     "pretty-quick": "^1.11.1",

@@ -8,8 +8,8 @@ const relPnpApiPath = '../../../../.pnp.js';
 const absPnpApiPath = resolve(__dirname, relPnpApiPath);
 const absRequire = (createRequire || createRequireFromPath)(absPnpApiPath);
 
-// Setup the environment to be able to require typescript/lib/tsserver.js
+// Setup the environment to be able to require typescript/lib/tsc.js
 require(absPnpApiPath).setup();
 
-// Defer to the real typescript/lib/tsserver.js your application uses
-module.exports = absRequire(`typescript/lib/tsserver.js`);
+// Defer to the real typescript/lib/tsc.js your application uses
+module.exports = absRequire(`typescript/lib/tsc.js`);
