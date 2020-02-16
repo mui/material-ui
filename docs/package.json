@@ -56,7 +56,7 @@
     "next-images": "^1.3.0",
     "next-transpile-modules": "^2.0.0",
     "notistack": "^0.9.4",
-    "prismjs": "^1.15.0",
+    "prismjs": "^1.19.0",
     "raw-loader": "^1.0.0",
     "react": "^16.8.2",
     "react-docgen-typescript": "^1.16.2",
