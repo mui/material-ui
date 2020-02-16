@@ -24,7 +24,7 @@ export default function RadioButtonsGroup() {
   };
   const checkAnswer = () => {
     console.log('CHECKING');
-    setError(value == 'wrong');
+    setError(value === 'wrong');
   };
 
   return (
