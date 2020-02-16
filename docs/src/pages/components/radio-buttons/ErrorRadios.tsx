@@ -22,6 +22,7 @@ export default function RadioButtonsGroup() {
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue((event.target as HTMLInputElement).value);
   };
+
   const checkAnswer = () => {
     console.log('CHECKING');
     setError(value === 'wrong');

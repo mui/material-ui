@@ -18,13 +18,14 @@ export default function RadioButtonsGroup() {
   const classes = useStyles();
   const [value, setValue] = React.useState('female');
   const [error, setError] = React.useState(false);
+  
   const handleRadioChange = event => {
     setValue(event.target.value);
   };
 
   const checkAnswer = () => {
     console.log('CHECKING');
-    setError(value == 'wrong');
+    setError(value === 'wrong');
   };
 
   return (
