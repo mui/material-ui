@@ -3,7 +3,7 @@ title: React Chip（纸片）组件
 components: Chip
 ---
 
-# Chip（纸片组件）
+# Chip 纸片组件
 
 <p class="description">纸片组件是用来表示输入框、属性或操作的紧凑元素。</p>
 

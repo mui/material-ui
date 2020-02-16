@@ -159,7 +159,7 @@ export const styles = theme => ({
   },
   /* Styles applied to the root element if `color="primary"`. */
   colorPrimary: {
-    // TODO v5, move the style here
+    // TODO v5: move the style here
   },
   /* Styles applied to the root element if `color="secondary"`. */
   colorSecondary: {
@@ -277,7 +277,7 @@ export const styles = theme => ({
   },
   /* Styles applied to the thumb element if `color="primary"`. */
   thumbColorPrimary: {
-    // TODO v5, move the style here
+    // TODO v5: move the style here
   },
   /* Styles applied to the thumb element if `color="secondary"`. */
   thumbColorSecondary: {

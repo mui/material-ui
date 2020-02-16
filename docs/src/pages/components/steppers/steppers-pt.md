@@ -46,13 +46,13 @@ O uso do `StepButton` aqui, demonstra rótulos de etapas clicáveis, além de de
 
 {{"demo": "pages/components/steppers/HorizontalNonLinearStepper.js", "bg": true}}
 
-### Não Linear - Rótulo Alternativo
+### Non-linear - Alternative Label
 
 Os rótulos podem ser colocados abaixo do ícone da etapa, definindo a propriedade `alternativeLabel` no componente `Stepper`.
 
 {{"demo": "pages/components/steppers/HorizontalNonLinearAlternativeLabelStepper.js", "bg": true}}
 
-### Não Linear - Etapa de Erro
+### Non-linear - Error Step
 
 {{"demo": "pages/components/steppers/HorizontalNonLinearStepperWithError.js", "bg": true}}
 

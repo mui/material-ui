@@ -13,13 +13,19 @@ Menus are positioned over their emitting elements such that the currently select
 
 {{"demo": "pages/components/selects/SimpleSelect.js"}}
 
+## Advanced features
+
+The Select component is meant to be interchangeable with a native `<select>` element.
+
+If you are looking for more advanced features, like combobox, multiselect, autocomplete, async or creatable support, head to the [`Autocomplete` component](/components/autocomplete/). It's also meant to be an improved version of the "react-select" package.
+
 ## Native Select
 
 As the user experience can be improved on mobile using the native select of the platform, we allow such pattern.
 
 {{"demo": "pages/components/selects/NativeSelects.js"}}
 
-## Текстовые поля
+## Text Fields
 
 `TextField` представляет собой полноценный элемент управления формы, включая метку (label), само поле ввода и вспомогательный текст. You can find an example with the select mode [in this section](/components/text-fields/#select).
 

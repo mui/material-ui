@@ -3,7 +3,7 @@ title: Textarea Autosize React component
 components: TextareaAutosize
 ---
 
-# Textarea自动调整大小
+# Textarea 自动调整大小
 
 <p class="description">A textarea component for React which grows with content.</p>
 

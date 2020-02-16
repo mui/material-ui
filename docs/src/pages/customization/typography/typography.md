@@ -56,7 +56,7 @@ const raleway = {
 Next, you need to change the theme to use this new font.
 In order to globally define Raleway as a font face, the [`CssBaseline`](/components/css-baseline/) component can be used (or any other CSS solution of your choice).
 
-```js
+```jsx
 const theme = createMuiTheme({
   typography: {
     fontFamily: 'Raleway, Arial',
@@ -71,10 +71,12 @@ const theme = createMuiTheme({
 });
 
 // ...
-<ThemeProvider theme={theme}>
-  <CssBaseline />
-  {children}
-</ThemeProvider>;
+return (
+  <ThemeProvider theme={theme}>
+    <CssBaseline />
+    {children}
+  </ThemeProvider>
+);
 ```
 
 ## Font size

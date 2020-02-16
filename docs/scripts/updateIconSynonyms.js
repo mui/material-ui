@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import 'isomorphic-fetch';
+import fetch from 'cross-fetch';
 import fse from 'fs-extra';
 import path from 'path';
 import synonyms from 'docs/src/pages/components/material-icons/synonyms';

@@ -167,7 +167,7 @@ export const styles = theme => {
         backgroundColor: fade(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
       },
     },
-    // TODO remove in V5
+    // TODO v5: remove
     /* Styles applied to the `avatar` element. */
     avatar: {},
     /* Styles applied to the `avatar` element if `size="small"`. */

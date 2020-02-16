@@ -1,30 +1,22 @@
 <h2 align="center">Спонсоры Material-UI</h2>
 
-Material-UI - это проект с открытым исходным кодом, [финансируемый общественностью](/discover-more/backers/), имеющий лицензию открытого программного обеспечения (MIT licese). Спонсорство ускоряет исправление ошибок, улучшение документации и разработку нового функционала.
+Дальнейшее развитие и поддержание Material-UI возможно благодаря этим щедрым спонсорам:
 
 ### Алмазные 💎
 
 *3/3 мест свободно*
 
-Diamond Sponsors are those who have pledged $2,000/month or more to Material-UI. Пожалуйста, свяжитесь с нами по адресу diamond@material-ui.com, чтобы стать одни из них.
-
 ### Золотые 🏆
 
-на [Patreon](https://www.patreon.com/oliviertassinari)
-
 <p style="display: flex; justify-content: center;">
-  <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="tidelift" href="https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=material_ui&utm_medium=referral&utm_campaign=homepage" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img width="96" src="https://github.com/tidelift.png?size=96" alt="Tidelift" title="Корпоративное программное обеспечение с открытым исходным кодом" /></a>
-  <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="bitsrc" href="https://bit.dev" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img width="96" src="https://github.com/teambit.png?size=96" alt="Bit" title="Самый быстрый способ поделиться кодом" /></a>
+  <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="tidelift" href="https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=material_ui&utm_medium=referral&utm_campaign=homepage" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img width="96" src="https://github.com/tidelift.png?size=96" alt="tidelift" title="Enterprise-ready open source software" /></a>
+  <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="bitsrc" href="https://bit.dev" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img width="96" src="https://github.com/teambit.png?size=96" alt="bitsrc" title="The fastest way to share code" /></a>
 </p>
-
-на [OpenCollective](https://opencollective.com/material-ui)
 
 <p style="display: flex; justify-content: center; flex-wrap: wrap;">
-  <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="callemall" href="https://www.call-em-all.com" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img src="https://images.opencollective.com/proxy/images?src=https%3A%2F%2Fopencollective-production.s3-us-west-1.amazonaws.com%2Ff4053300-e0ea-11e7-acf0-0fa7c0509f4e.png&height=100" alt="call-em-all" title="Простой способ общения с вашей командой" width="100" loading="lazy"></a>
+  <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="callemall" href="https://www.call-em-all.com" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img src="https://images.opencollective.com/proxy/images?src=https%3A%2F%2Fopencollective-production.s3-us-west-1.amazonaws.com%2Ff4053300-e0ea-11e7-acf0-0fa7c0509f4e.png&height=100" alt="call-em-all" title="The easy way to message your group" width="100" loading="lazy"></a>
 </p>
-
-Gold Sponsors are those who have pledged $500/month or more to Material-UI.
 
 ### Узнать больше!
 
-Посмотреть полный список [спонсоров](/discover-more/backers/).
+Ознакомьтесь с полным списком [наших спонсоров](/discover-more/backers/), и узнайте, как вы можете внести свой вклад в будущее Material-UI.

@@ -122,7 +122,7 @@ Radio.propTypes = {
    */
   color: PropTypes.oneOf(['primary', 'secondary', 'default']),
   /**
-   * If `true`, the switch will be disabled.
+   * If `true`, the radio will be disabled.
    */
   disabled: PropTypes.bool,
   /**

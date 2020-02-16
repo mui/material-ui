@@ -3,7 +3,7 @@ title: Switch React component
 components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel
 ---
 
-# Switch （开关）
+# Switch 开关
 
 <p class="description">开关控制是改变单个设置状态打开或关闭的控件。</p>
 
@@ -19,7 +19,7 @@ components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel
 
 ## 多个 Switch 情况下使用 FormGroup
 
-`FormGroup`提供相对简单的 API 对选择控件进行分组。 但在这种情况下我们更建议您使用 [复选框](#checkboxes)。
+`FormGroup`提供相对简单的 API 对选择控件进行分组。 However, we encourage you to use a [Checkbox](/components/checkboxes/) instead.
 
 {{"demo": "pages/components/switches/SwitchesGroup.js"}}
 

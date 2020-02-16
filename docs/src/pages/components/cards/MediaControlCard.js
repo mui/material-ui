@@ -10,7 +10,7 @@ import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import SkipNextIcon from '@material-ui/icons/SkipNext';
 
 const useStyles = makeStyles(theme => ({
-  card: {
+  root: {
     display: 'flex',
   },
   details: {
@@ -40,7 +40,7 @@ export default function MediaControlCard() {
   const theme = useTheme();
 
   return (
-    <Card className={classes.card}>
+    <Card className={classes.root}>
       <div className={classes.details}>
         <CardContent className={classes.content}>
           <Typography component="h5" variant="h5">

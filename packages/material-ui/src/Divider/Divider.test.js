@@ -37,6 +37,11 @@ describe('<Divider />', () => {
     assert.strictEqual(wrapper.hasClass(classes.light), true);
   });
 
+  it('should set the flexItem class', () => {
+    const wrapper = shallow(<Divider flexItem />);
+    assert.strictEqual(wrapper.hasClass(classes.flexItem), true);
+  });
+
   describe('prop: variant', () => {
     it('should default to variant="fullWidth"', () => {
       const wrapper = shallow(<Divider />);

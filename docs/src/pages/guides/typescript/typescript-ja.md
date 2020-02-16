@@ -239,7 +239,8 @@ declare module '@material-ui/core/styles/createMuiTheme' {
 **./styles/createMyTheme**:
 
 ```ts
-import createMuiTheme, { ThemeOptions } from '@material-ui/core/styles/createMuiTheme';
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeOptions } from '@material-ui/core/styles/createMuiTheme';
 
 export default function createMyTheme(options: ThemeOptions) {
   return createMuiTheme({
@@ -264,12 +265,48 @@ const theme = createMyTheme({ appDrawer: { breakpoint: 'md' }});
 
 Many Material-UI components allow you to replace their root node via a `component` prop, this will be detailed in the component's API documentation. For example, a Button's root node can be replaced with a React Router's Link, and any additional props that are passed to Button, such as `to`, will be spread to the Link component. For a code example concerning Button and react-router-dom checkout [these demos](/guides/composition/#routing-libraries).
 
-すべてのコンポーネントが、渡すコンポーネントタイプを完全にサポートしているわけではありません。 次のような問題が発生した場合 TypeScriptで `component`プロパティを拒否するコンポーネントの問題を開いてください。 コンポーネントプロップを汎用化することで、この問題を解決するための取り組みが続けられています。
+To be able to use props of such a Material-UI component on their own, props should be used with type arguments. Otherwise, the `component` prop will not be present in the props of the Material-UI component.
+
+The examples below use `TypographyProps` but the same will work for any component which has props defined with `OverrideProps`.
+
+The following `CustomComponent` component has the same props as the `Typography` component.
+
+```ts
+function CustomComponent(props: TypographyProps<'a', { component: 'a' }>) {
+  /* ... */
+}
+```
+
+Now the `CustomComponent` can be used with a `component` prop which should be set to `'a'`. In addition, the `CustomComponent` will have all props of a `<a>` HTML element. The other props of the `Typography` component will also be present in props of the `CustomComponent`.
+
+It is possible to have generic `CustomComponent` which will accept any React component, custom and HTML elements.
+
+```ts
+function GenericCustomComponent<C extends React.ElementType>(
+  props: TypographyProps<C, { component?: C }>,
+) {
+  /* ... */
+}
+```
+
+Now if the `GenericCustomComponent` will be used with a `component` prop provided, it should also have all props required by the provided component.
+
+```ts
+function ThirdPartyComponent({ prop1 } : { prop1: string }) {
+  return <div />
+}
+// ...
+<GenericCustomComponent component={ThirdPartyComponent} prop1="some value" />;
+```
+
+The `prop1` became required for the `GenericCustomComponent` as the `ThirdPartyComponent` has it as a requirement.
+
+Not every component fully supports any component type you pass in. If you encounter a component that rejects its `component` props in TypeScript please open an issue. There is an ongoing effort to fix this by making component props generic.
 
 ## `value` およびイベントハンドラの処理
 
-ユーザ入力に関連する多くのコンポーネントは、現在の `value`を含む`value`プロパティまたはイベントハンドラを提供します。 ほとんどの場合、`値`のみが処理されます。 オブジェクトや配列などの任意のタイプを使用できます。
+Many components concerned with user input offer a `value` prop or event handlers which include the current `value`. In most situations that `value` is only handled within React which allows it be of any type, such as objects or arrays.
 
-ただし、そのタイプは、たとえば`Select`または`RadioGroup`など、コンポーネントの子に依存する状況では、コンパイル時に検証できません。 つまり、soundest オプションは、それを`unknown`として入力し、その型をどのように絞り込むかを開発者に決定させることです。 [同じ理由で` event.target` は Reactでは一般的ではないため](https://github.com/DefinitelyTyped/DefinitelyTyped/issues/11508#issuecomment-256045682)これらの場合にジェネリック タイプを使用する可能性は提供しません。
+However, that type cannot be verified at compile time in situations where it depends on the component's children e.g. for `Select` or `RadioGroup`. This means that the soundest option is to type it as `unknown` and let the developer decide how they want to narrow that type down. We do not offer the possibility to use a generic type in those cases for [the same reasons `event.target` is not generic in React](https://github.com/DefinitelyTyped/DefinitelyTyped/issues/11508#issuecomment-256045682).
 
-The demos include typed variants that use type casting. すべての型が単一のファイル内にあり、非常に基本的であるため、これは許容できるトレードオフです。 同じトレードオフが受け入れられるかどうかは、自分で判断する必要があります。 The library types are be strict by default and loose via opt-in.
+The demos include typed variants that use type casting. It is an acceptable tradeoff because the types are all located in a single file and are very basic. You have to decide for yourself if the same tradeoff is acceptable for you. The library types are be strict by default and loose via opt-in.

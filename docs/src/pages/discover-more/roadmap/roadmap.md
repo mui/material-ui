@@ -19,7 +19,7 @@ Here are the top priorities:
   - Encourage the usage of third-party components if they already exist and are well maintained.
   - Offer an option to the highly used and well maintained components to move to the official organization: mui-org/x on GitHub, @material-ui/x on npm and x.material-ui.com for the documentation.
 - 0.5 - **Better customization.** 💅 We want to make our component customization intuitive, no matter if you are using global CSS or styled-components:
-  - Better support for styled-components: [#6115](https://github.com/mui-org/material-ui/issues/6115).
+  - Use styled-components by default: [#6115](https://github.com/mui-org/material-ui/issues/6115).
   - Allow the use of the Box props in all the core components: [#15561](https://github.com/mui-org/material-ui/issues/15561).
   - Allow the usage of dynamic theme variants and colors: [#15573](https://github.com/mui-org/material-ui/issues/15573) & [#13875](https://github.com/mui-org/material-ui/issues/13875).
   - Allow the use of the components without any styles: [#6218](https://github.com/mui-org/material-ui/issues/6218).
@@ -69,6 +69,7 @@ Here are the components we will work on being supported in the Material-UI ecosy
 | Combo Box | 🧪 |
 | Multiselect | 🧪 |
 | Alert | 🧪 |
+| Pagination | 🧪 |
 | Date Picker (& range) | 🛠 |
 | Data Table | 🛠⭐️ |
 | Carousel | ⏳ |
@@ -79,7 +80,6 @@ Here are the components we will work on being supported in the Material-UI ecosy
 | Navbar | ⏳ |
 | Nested Menu | ⏳ |
 | Numeric Input | ⏳ |
-| Pagination | ⏳ |
 | Scrollspy | ⏳ |
 | TopLayout | ⏳ |
 | Big Calendar | ⏳⭐️ |
@@ -88,7 +88,7 @@ Here are the components we will work on being supported in the Material-UI ecosy
 | Color Picker | ⏳⭐️ |
 | Gantt Chart | ⏳⭐️ |
 | Gauge | ⏳⭐️ |
-| Masonery | ⏳⭐️ |
+| Masonry | ⏳⭐️ |
 | Pivot Grid | ⏳⭐️ |
 | Rich Text Editor | ⏳⭐️ |
 | Scheduler | ⏳⭐️ |

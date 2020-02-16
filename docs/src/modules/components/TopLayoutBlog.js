@@ -19,8 +19,9 @@ const styles = theme => ({
   },
   container: {
     marginBottom: theme.spacing(20),
-    maxWidth: 680 + 64,
+    maxWidth: 680 + theme.spacing(8 + 4),
     '& .markdownElement': {
+      paddingRight: theme.spacing(4),
       fontSize: 18,
       lineHeight: 1.7,
     },

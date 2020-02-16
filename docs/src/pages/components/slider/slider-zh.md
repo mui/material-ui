@@ -3,7 +3,7 @@ title: React 滑块组件
 components: Slider
 ---
 
-# Slider
+# Slider 滑块
 
 <p class="description">用户可以使用滑块组件从某一范围内选取所需数值。</p>
 
@@ -62,6 +62,12 @@ The track can be turned off with `track={false}`.
 The track can be inverted with `track="inverted"`.
 
 {{"demo": "pages/components/slider/TrackInvertedSlider.js"}}
+
+## Non-linear scale
+
+You can use the `scale` prop to represent the `value` on a different scale. For instance, in the following demo, the value *x* represents the power of *10^x*.
+
+{{"demo": "pages/components/slider/NonLinearSlider.js"}}
 
 ## 可访问性
 

@@ -15,7 +15,7 @@ Material-UI обеспечивает поддержку иконок тремя 
 
 ## Material Icons
 
-Material Design has standardized over 1,000 official icons, each in five different "themes" (see below). For each SVG icon, we export the respective React component from the @material-ui/icons package. You can [search the full list of these icons](/components/material-icons/).
+Material Design has standardized over 1,100 official icons, each in five different "themes" (see below). For each SVG icon, we export the respective React component from the @material-ui/icons package. You can [search the full list of these icons](/components/material-icons/).
 
 ### Использование
 
@@ -96,7 +96,7 @@ import StarIcon from './star.svg';
 
 #### Material Design (recommended)
 
-Material Design has standardized over [1,000 official icons](#material-icons).
+Material Design has standardized over [1,100 official icons](#material-icons).
 
 #### MDI
 

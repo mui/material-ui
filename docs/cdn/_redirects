@@ -24,7 +24,8 @@ https://material-ui.dev/* https://material-ui.com/:splat 301!
 /r/caveat-with-refs-guide /guides/composition/#caveat-with-refs 302
 /r/pseudo-classes-guide /customization/components/#pseudo-classes 302
 /r/input-component-ref-interface /components/text-fields/#integration-with-3rd-party-input-libraries 302
-
+/r/issue-template https://codesandbox.io/s/material-ui-issue-dh2yh
+/r/ts-issue-template https://www.typescriptlang.org/play/#code/JYWwDg9gTgLgBAKjgQwM5wEoFNkGN4BmUEIcA5FDvmQNwBQokscA3nXHAPSdwwAWWOLhKQAdllEx0ATwgBXOHNRYAJnQC+cIiXIABEMhhYowZABsAtHOCdhlMnToE5o-MAii4AESwgIACgBKVnYuHgBNeSghCBUsDSA 302
 # To remove at some point (2021).
 
 /css-in-js/* /styles/:splat 301

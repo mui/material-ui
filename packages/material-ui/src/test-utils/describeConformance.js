@@ -84,7 +84,7 @@ function testComponentProp(element, getOptions) {
  * @param {() => ConformanceOptions} getOptions
  */
 function testPropsSpread(element, getOptions) {
-  it(`does spread props to the root component`, () => {
+  it(`spreads props to the root component`, () => {
     // type def in ConformanceOptions
     const { classes, inheritComponent, mount } = getOptions();
     const testProp = 'data-test-props-spread';
@@ -131,7 +131,7 @@ function describeRef(element, getOptions) {
  * @param {() => ConformanceOptions} getOptions
  */
 function testRootClass(element, getOptions) {
-  it('applies to root class to the root component if it has this class', () => {
+  it('applies the root class to the root component if it has this class', () => {
     const { classes, mount } = getOptions();
     if (classes.root == null) {
       return;

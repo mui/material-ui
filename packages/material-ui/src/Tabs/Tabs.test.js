@@ -25,6 +25,8 @@ const hasRightScrollButton = container => findScrollButton(container, 'right') !
 
 describe('<Tabs />', () => {
   const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+  // tests mocking getBoundingClientRect prevent mocha to exit
+  const isJSDOM = navigator.userAgent === 'node.js';
 
   // The test fails on Safari with just:
   //
@@ -173,7 +175,11 @@ describe('<Tabs />', () => {
         expect(container.querySelector(`.${classes.indicator}`)).to.be.ok;
       });
 
-      it('should update the indicator at each render', () => {
+      it('should update the indicator at each render', function test() {
+        if (isJSDOM) {
+          this.skip();
+        }
+
         const { setProps, container, getByRole } = render(
           <Tabs value={1}>
             <Tab />
@@ -281,7 +287,10 @@ describe('<Tabs />', () => {
       expect(container.querySelectorAll(selector)).to.have.lengthOf(1);
     });
 
-    it('should response to scroll events', () => {
+    it('should response to scroll events', function test() {
+      if (isJSDOM) {
+        this.skip();
+      }
       const { container, setProps, getByRole } = render(tabs);
       const tablistContainer = getByRole('tablist').parentElement;
 
@@ -358,7 +367,11 @@ describe('<Tabs />', () => {
       expect(container.querySelectorAll(`.${classes.scrollButtons}`)).to.have.lengthOf(2);
     });
 
-    it('should handle window resize event', () => {
+    it('should handle window resize event', function test() {
+      if (isJSDOM) {
+        this.skip();
+      }
+
       const { container, setProps, getByRole } = render(
         <Tabs
           value={0}
@@ -555,7 +568,11 @@ describe('<Tabs />', () => {
       clock.restore();
     });
 
-    it('should scroll left tab into view', () => {
+    it('should scroll left tab into view', function test() {
+      if (isJSDOM) {
+        this.skip();
+      }
+
       const { setProps, getByRole } = render(
         <Tabs value={0} variant="scrollable" style={{ width: 200 }}>
           <Tab />
@@ -598,7 +615,11 @@ describe('<Tabs />', () => {
   });
 
   describe('prop: orientation', () => {
-    it('should support orientation="vertical"', () => {
+    it('should support orientation="vertical"', function test() {
+      if (isJSDOM) {
+        this.skip();
+      }
+
       const { setProps, container, getByRole } = render(
         <Tabs value={1} variant="scrollable" scrollButtons="on" orientation="vertical">
           <Tab />

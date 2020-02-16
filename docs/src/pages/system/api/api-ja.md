@@ -38,6 +38,7 @@
 | [sizing](/system/sizing/)         | `minHeight`      | `minHeight`      | `min-height`                    | none                                                                   |
 | [sizing](/system/sizing/)         | `minWidth`       | `minWidth`       | `min-width`                     | none                                                                   |
 | [sizing](/system/sizing/)         | `width`          | `width`          | `width`                         | none                                                                   |
+| [sizing](/system/sizing/)         | `boxSizing`      | `boxSizing`      | `box-sizing`                    | none                                                                   |
 | [spacing](/system/spacing/)       | `spacing`        | `m`              | `margin`                        | [`spacing`](/customization/default-theme/?expand-path=$.spacing)       |
 | [spacing](/system/spacing/)       | `spacing`        | `mb`             | `margin-bottom`                 | [`spacing`](/customization/default-theme/?expand-path=$.spacing)       |
 | [spacing](/system/spacing/)       | `spacing`        | `ml`             | `margin-left`                   | [`spacing`](/customization/default-theme/?expand-path=$.spacing)       |
@@ -53,6 +54,6 @@
 | [spacing](/system/spacing/)       | `spacing`        | `px`             | `padding-left`, `padding-right` | [`spacing`](/customization/default-theme/?expand-path=$.spacing)       |
 | [spacing](/system/spacing/)       | `spacing`        | `py`             | `padding-top`, `padding-bottom` | [`spacing`](/customization/default-theme/?expand-path=$.spacing)       |
 | [typography](/system/typography/) | `fontFamily`     | `fontFamily`     | `font-family`                   | [`typography`](/customization/default-theme/?expand-path=$.typography) |
-| [typography](/system/typography/) | `fontSize`       | `fontSize`       | `フォント サイズ`                      | [`typography`](/customization/default-theme/?expand-path=$.typography) |
+| [typography](/system/typography/) | `fontSize`       | `fontSize`       | `font-size`                     | [`typography`](/customization/default-theme/?expand-path=$.typography) |
 | [typography](/system/typography/) | `fontWeight`     | `fontWeight`     | `font-weight`                   | [`typography`](/customization/default-theme/?expand-path=$.typography) |
 | [typography](/system/typography/) | `textAlign`      | `textAlign`      | `text-align`                    | none                                                                   |

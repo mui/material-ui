@@ -48,7 +48,7 @@ Please note that `@next` will only point to pre-releases; to get the latest stab
 
 ### Diamond 💎
 
-Diamond Sponsors are those who have pledged $2,000/month or more to Material-UI.
+Diamond Sponsors are those who have pledged $1,500/month or more to Material-UI.
 
 ### Gold 🏆
 

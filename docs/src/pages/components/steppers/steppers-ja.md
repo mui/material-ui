@@ -46,13 +46,13 @@ The use of the `StepButton` here demonstrates clickable step labels, as well as 
 
 {{"demo": "pages/components/steppers/HorizontalNonLinearStepper.js", "bg": true}}
 
-### Non Linear - Alternative Label
+### Non-linear - Alternative Label
 
 `Stepper`コンポーネントで`alternativeLabel`propを 設定すると、ステップアイコンの下にラベルを配置できます。
 
 {{"demo": "pages/components/steppers/HorizontalNonLinearAlternativeLabelStepper.js", "bg": true}}
 
-### Non Linear - Error Step
+### Non-linear - Error Step
 
 {{"demo": "pages/components/steppers/HorizontalNonLinearStepperWithError.js", "bg": true}}
 

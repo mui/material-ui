@@ -41,7 +41,7 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
       </IconButton>
       <IconButton
         onClick={handleNextButtonClick}
-        disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+        disabled={count !== -1 ? page >= Math.ceil(count / rowsPerPage) - 1 : false}
         color="inherit"
         {...nextIconButtonProps}
       >

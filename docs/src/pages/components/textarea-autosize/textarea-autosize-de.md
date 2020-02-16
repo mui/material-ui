@@ -15,10 +15,10 @@ The `TextareaAutosize` component automatically adjust the textarea height on key
 
 {{"demo": "pages/components/textarea-autosize/EmptyTextarea.js"}}
 
-## Minimum height
+## Minimale Höhe
 
 {{"demo": "pages/components/textarea-autosize/MinHeightTextarea.js"}}
 
-## Maximum height
+## Maximale Höhe
 
 {{"demo": "pages/components/textarea-autosize/MaxHeightTextarea.js"}}
