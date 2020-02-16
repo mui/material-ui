@@ -72,10 +72,11 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
 
     // Take the box sizing into account for applying this value as a style.
     const outerHeightStyle = outerHeight + (boxSizing === 'border-box' ? padding + border : 0);
-    const overflow = Math.abs(outerHeight - innerHeight) <= 1;
+    const diff = Math.abs(outerHeight - innerHeight);
+    const overflow = diff <= 1 || diff === innerHeight;
 
     setState(prevState => {
-      // Need a large enough different to update the height.
+      // Need a large enough difference to update the height.
       // This prevents infinite rendering loop.
       if (
         (outerHeightStyle > 0 &&
@@ -128,7 +129,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
         rows={rowsMin}
         style={{
           height: state.outerHeightStyle,
-          // Need a large enough different to allow scrolling.
+          // Need a large enough difference to allow scrolling.
           // This prevents infinite rendering loop.
           overflow: state.overflow ? 'hidden' : null,
           ...style,
