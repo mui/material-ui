@@ -62,15 +62,13 @@ describe('<TextField />', () => {
 
       expect(container.querySelector('label')).to.have.class('foo');
     });
-    it('should not render empty label element', () => {
-      const { container } = render(<TextField id="labelled" label="" />);
 
-      expect(container.querySelector('label')).to.be.null;
-    });
-    it('should not render undefined label element', () => {
-      const { container } = render(<TextField id="labelled" label={undefined} />);
+    ['', undefined].forEach(label => {
+      it(`should not render empty - [${label}] label element`, () => {
+        const { container } = render(<TextField id="labelled" label={label} />);
 
-      expect(container.querySelector('label')).to.be.null;
+        expect(container.querySelector('label')).to.be.null;
+      });
     });
   });
 
