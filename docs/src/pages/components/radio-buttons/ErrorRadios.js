@@ -14,29 +14,30 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function RadioButtonsGroup() {
+export default function RadioButtonsError() {
   const classes = useStyles();
-  const [value, setValue] = React.useState('female');
+  const [value, setValue] = React.useState('');
   const [error, setError] = React.useState(false);
+  const [helperText, setHelperText] = React.useState('Choose wisely');
 
   const handleRadioChange = event => {
     setValue(event.target.value);
   };
 
   const checkAnswer = () => {
-    console.log('CHECKING');
-    setError(value === 'wrong');
+    setError(value === 'worst');
+    setHelperText(value === 'worst' ? 'Sorry, wrong answer!' : 'You got it!');
   };
 
   return (
     <div>
       <FormControl component="fieldset" className={classes.formControl} error={error}>
-        <FormLabel component="legend">Age</FormLabel>
-        <RadioGroup aria-label="age" name="age1" value={value} onChange={handleRadioChange}>
-          <FormControlLabel value="right" control={<Radio />} label="Right Answer" />
-          <FormControlLabel value="wrong" control={<Radio />} label="Wrong Answer" />
+        <FormLabel component="legend">Pop quiz: Material-UI is...</FormLabel>
+        <RadioGroup aria-label="quiz" name="quiz" value={value} onChange={handleRadioChange}>
+          <FormControlLabel value="best" control={<Radio />} label="The best!" />
+          <FormControlLabel value="worst" control={<Radio />} label="The worst." />
         </RadioGroup>
-        <FormHelperText>Choose wisely</FormHelperText>
+        <FormHelperText>{helperText}</FormHelperText>
         <Button variant="outlined" color="primary" onClick={checkAnswer}>
           Check Answer
         </Button>
