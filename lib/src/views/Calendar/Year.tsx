@@ -12,6 +12,7 @@ export interface YearProps {
   selected: boolean;
   focused: boolean;
   value: any;
+  allowKeyboardControl?: boolean;
   forwardedRef?: React.Ref<HTMLDivElement>;
 }
 
@@ -62,6 +63,7 @@ export const Year: React.FC<YearProps> = ({
   disabled,
   children,
   focused,
+  allowKeyboardControl,
   ...other
 }) => {
   const classes = useStyles();
@@ -69,10 +71,10 @@ export const Year: React.FC<YearProps> = ({
   const wrapperVariant = React.useContext(WrapperVariantContext);
 
   React.useEffect(() => {
-    if (focused && ref.current) {
+    if (focused && ref.current && !disabled && allowKeyboardControl) {
       ref.current.focus();
     }
-  }, [focused]);
+  }, [allowKeyboardControl, disabled, focused]);
 
   return (
     <div

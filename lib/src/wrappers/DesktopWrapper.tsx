@@ -21,6 +21,9 @@ const useStyles = makeStyles({
   popover: {
     '&:focus': {
       outline: 'auto',
+      '@media (pointer:coarse)': {
+        outline: 0,
+      },
     },
   },
 });

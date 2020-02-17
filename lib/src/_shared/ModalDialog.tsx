@@ -33,6 +33,9 @@ export const useStyles = makeStyles(
     dialogContainer: {
       '&:focus > $dialogRoot': {
         outline: 'auto',
+        '@media (pointer:coarse)': {
+          outline: 0,
+        },
       },
     },
     dialog: {

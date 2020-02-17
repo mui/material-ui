@@ -153,6 +153,7 @@ export const CalendarView: React.FC<CalendarViewProps> = ({
   reduceAnimations = typeof window !== 'undefined' && /(android)/i.test(window.navigator.userAgent),
   loadingIndicator = <CircularProgress data-mui-test="loading-progress" />,
   shouldDisableDate,
+  allowKeyboardControl: allowKeyboardControlProp,
   ...other
 }) => {
   const now = useNow();
@@ -161,6 +162,7 @@ export const CalendarView: React.FC<CalendarViewProps> = ({
   const minDate = useParsedDate(unparsedMinDate);
   const maxDate = useParsedDate(unparsedMaxDate);
   const wrapperVariant = React.useContext(WrapperVariantContext);
+  const allowKeyboardControl = allowKeyboardControlProp ?? wrapperVariant !== 'static';
 
   const [
     { currentMonth, isMonthSwitchingAnimating, focusedDay, loadingQueue, slideDirection },
@@ -264,6 +266,7 @@ export const CalendarView: React.FC<CalendarViewProps> = ({
               minDate={minDate}
               maxDate={maxDate}
               isDateDisabled={isDateDisabled}
+              allowKeyboardControl={allowKeyboardControl}
             />
           )}
 
@@ -304,8 +307,8 @@ export const CalendarView: React.FC<CalendarViewProps> = ({
                 onChange={onChange}
                 minDate={minDate}
                 maxDate={maxDate}
-                wrapperVariant={wrapperVariant}
                 isDateDisabled={isDateDisabled}
+                allowKeyboardControl={allowKeyboardControl}
               />
             ))}
         </div>

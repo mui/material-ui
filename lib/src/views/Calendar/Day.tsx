@@ -20,6 +20,13 @@ export const useStyles = makeStyles(
       '&:hover': {
         backgroundColor: fade(theme.palette.action.active, theme.palette.action.hoverOpacity),
       },
+      '&:focus': {
+        backgroundColor: fade(theme.palette.action.active, theme.palette.action.hoverOpacity),
+        '&$daySelected': {
+          willChange: 'background-color',
+          backgroundColor: theme.palette.primary.dark,
+        },
+      },
     },
     hidden: {
       opacity: 0,
@@ -70,6 +77,8 @@ export interface DayProps extends ButtonBaseProps {
   disabled?: boolean;
   /** Selected? */
   selected?: boolean;
+  /** Is keyboard control and focus management enabled */
+  allowKeyboardControl?: boolean;
 }
 
 export const Day: React.FC<DayProps> = ({
@@ -82,6 +91,7 @@ export const Day: React.FC<DayProps> = ({
   focusable = false,
   isAnimating,
   onFocus,
+  allowKeyboardControl,
   ...other
 }) => {
   const ref = React.useRef<HTMLButtonElement>(null);
@@ -95,18 +105,23 @@ export const Day: React.FC<DayProps> = ({
   });
 
   React.useEffect(() => {
-    if (focused && !isAnimating && !disabled && isInCurrentMonth && ref.current) {
+    if (
+      focused &&
+      !isAnimating &&
+      !disabled &&
+      isInCurrentMonth &&
+      ref.current &&
+      allowKeyboardControl
+    ) {
       ref.current.focus();
     }
-  }, [disabled, focused, isAnimating, isInCurrentMonth]);
+  }, [allowKeyboardControl, disabled, focused, isAnimating, isInCurrentMonth]);
 
   return (
     <ButtonBase
       aria-hidden={!isInCurrentMonth}
       ref={ref}
       centerRipple
-      focusRipple
-      // disableRipple={selected}
       data-mui-test="day"
       aria-label={utils.format(day, 'fullDate')}
       tabIndex={focused || focusable ? 0 : -1}

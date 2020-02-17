@@ -7,11 +7,11 @@ import { useUtils } from './hooks/useUtils';
 import { DateInputProps } from './PureDateInput';
 import { KeyboardIcon } from './icons/KeyboardIcon';
 import {
-  staticDateWith1DigitTokens,
   maskedDateFormatter,
   getDisplayDate,
   checkMaskIsValidForCurrentFormat,
   getTextFieldAriaText,
+  staticDateWith2DigitTokens,
 } from '../_helpers/text-field-helper';
 
 export const KeyboardDateInput: React.FC<DateInputProps> = ({
@@ -58,7 +58,7 @@ export const KeyboardDateInput: React.FC<DateInputProps> = ({
     if (!mask || disableMaskedInput) {
       return {
         isMaskValid: false,
-        placeholder: utils.formatByString(staticDateWith1DigitTokens, format),
+        placeholder: utils.formatByString(staticDateWith2DigitTokens, format),
       };
     }
 

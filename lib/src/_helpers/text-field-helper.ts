@@ -156,7 +156,7 @@ export function pick12hOr24hFormat(
   return ampm ? formats['12h'] : formats['24h'];
 }
 
-const staticDateWith2DigitTokens = new Date('2019-11-21T22:30:00.000');
+export const staticDateWith2DigitTokens = new Date('2019-11-21T22:30:00.000');
 export const staticDateWith1DigitTokens = new Date('2019-01-01T09:00:00.000');
 export function checkMaskIsValidForCurrentFormat(
   mask: string,

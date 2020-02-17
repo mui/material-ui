@@ -2,7 +2,6 @@ import * as React from 'react';
 import Day from './Day';
 import DayWrapper from './DayWrapper';
 import SlideTransition, { SlideDirection } from './SlideTransition';
-import { WrapperVariant } from '../../wrappers/Wrapper';
 import { MaterialUiPickersDate } from '../../typings/date';
 import { useUtils, useNow } from '../../_shared/hooks/useUtils';
 import { PickerOnChangeFn } from '../../_shared/hooks/useViews';
@@ -52,7 +51,6 @@ export interface CalendarProps extends ExportedCalendarProps {
   changeFocusedDay: (newFocusedDay: MaterialUiPickersDate) => void;
   isMonthSwitchingAnimating: boolean;
   onMonthSwitchingAnimationEnd: () => void;
-  wrapperVariant: WrapperVariant | null;
 }
 
 export const useStyles = makeStyles(theme => ({
@@ -110,7 +108,6 @@ export const Calendar: React.FC<CalendarProps> = ({
   renderDay,
   reduceAnimations,
   allowKeyboardControl,
-  wrapperVariant,
   isDateDisabled,
 }) => {
   const now = useNow();
@@ -142,7 +139,7 @@ export const Calendar: React.FC<CalendarProps> = ({
   }, []); // eslint-disable-line
 
   const nowFocusedDay = focusedDay || date;
-  useGlobalKeyDown(Boolean(allowKeyboardControl ?? wrapperVariant !== 'static'), {
+  useGlobalKeyDown(Boolean(allowKeyboardControl), {
     [keycode.ArrowUp]: () => changeFocusedDay(utils.addDays(nowFocusedDay, -7)),
     [keycode.ArrowDown]: () => changeFocusedDay(utils.addDays(nowFocusedDay, 7)),
     [keycode.ArrowLeft]: () =>
@@ -191,6 +188,7 @@ export const Calendar: React.FC<CalendarProps> = ({
                     day={day}
                     isAnimating={isMonthSwitchingAnimating}
                     disabled={disabled}
+                    allowKeyboardControl={allowKeyboardControl}
                     focused={Boolean(focusedDay) && utils.isSameDay(day, focusedDay)}
                     onFocus={() => changeFocusedDay(day)}
                     focusable={
