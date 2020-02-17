@@ -45,7 +45,7 @@ export interface MuiPickersOverrides {
   MuiPickersCalendarView?: Classes<typeof CalendarViewStyles>;
   MuiPickersCalendarHeader?: Classes<typeof CalendarHeaderStyles>;
   MuiPickersSlideTransition?: Classes<typeof SlideTransitionStyles>;
-  MuiPickersYearSelectionStyles?: Classes<typeof MuiPickersYearSelectionStyles>;
+  MuiPickersYearSelection?: Classes<typeof MuiPickersYearSelectionStyles>;
   MuiPickersYear?: Classes<typeof MuiPickersYearStyles>;
   MuiPickersMonthSelection?: Classes<typeof MuiPickersMonthSelectionStyles>;
   MuiPickersMonth?: Classes<typeof MuiPickersMonthStyles>;
