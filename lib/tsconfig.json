@@ -3,6 +3,7 @@
     "module": "commonjs",
     "outDir": "build",
     "declaration": true,
+    "emitDeclarationOnly": true,
     "target": "es5",
     "lib": ["dom", "es2016"],
     "types": ["jest"],
@@ -17,6 +18,6 @@
     "suppressImplicitAnyIndexErrors": true,
     "resolveJsonModule": true
   },
-  "include": ["src/**/*.ts*", "./typings.d.ts"],
-  "exclude": ["./src/__tests__/**/*", "build", "cypress/**/*.ts*"]
+  "include": ["src/**/*.ts*", "adapter/**/*.ts*", "./typings.d.ts"],
+  "exclude": ["./src/__tests__/**/*", "./rollup.config.js", "build", "cypress/**/*.ts*"]
 }
