@@ -8,9 +8,9 @@ export interface AvatarGroupProps
    */
   children: React.ReactNode;
   /**
-   * Spacing between avatars
+   * Spacing between avatars.
    */
-  spacing?: 'small' | 'medium' | 'large';
+  spacing?: 'small' | 'medium' | 'large' | number;
 }
 
 export type AvatarGroupClassKey = 'root' | 'avatar';
