@@ -27,21 +27,16 @@ describe('<BreadcrumbCollapsed />', () => {
     assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 
-  it('should be focusable', () => {
-    const wrapper = shallow(<BreadcrumbCollapsed />);
-    const listElement = wrapper.find('li');
-    assert.strictEqual(listElement.prop('tabIndex'), 0);
-  });
-
-  describe('prop: onClick', () => {
+  describe('prop: onKeyDown', () => {
     ['Space', 'Enter'].forEach(key => {
       it(`should be called on key press - ${key}`, () => {
-        const handleClick = spy();
-        const wrapper = mount(<BreadcrumbCollapsed onClick={handleClick} />);
+        const handleKeyDown = spy();
+        const wrapper = mount(<BreadcrumbCollapsed onKeyDown={handleKeyDown} />);
         const listElement = wrapper.find('li');
         listElement.simulate('focus');
-        listElement.simulate('keydown', { key });
-        assert.strictEqual(handleClick.callCount, 1);
+        listElement.simulate('keydown', { key });   
+
+        assert.strictEqual(handleKeyDown.callCount, 1);
       });
     });
   });
