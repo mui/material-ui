@@ -26,8 +26,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The avatars to stack. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <span class="prop-name">spacing</span> | <span class="prop-type">'small'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'large'<br>&#124;&nbsp;number</span> |  | Defines the spacing between `avatar` as `'large': -4px`, `'medium': -8px`, and `'small': -16px` or define a `number` as the spacing. |
-
+| <span class="prop-name">spacing</span> | <span class="prop-type">'large'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'small'<br>&#124;&nbsp;number</span> | <span class="prop-default">'medium'</span> | Spacing between avatars. |
 
 The `ref` is forwarded to the root element.
 

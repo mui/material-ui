@@ -15,4 +15,4 @@ export interface AvatarGroupProps
 
 export type AvatarGroupClassKey = 'root' | 'avatar';
 
-export default function AvatarGroup(props: AvatarGroupProps): JSX.Element | null;
+export default function AvatarGroup(props: AvatarGroupProps): JSX.Element;
