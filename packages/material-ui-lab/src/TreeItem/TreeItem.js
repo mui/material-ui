@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import Collapse from '@material-ui/core/Collapse';
-import { withStyles, useTheme } from '@material-ui/core/styles';
+import { fade, withStyles, useTheme } from '@material-ui/core/styles';
 import { useForkRef } from '@material-ui/core/utils';
 import TreeViewContext from '../TreeView/TreeViewContext';
 
@@ -16,25 +16,22 @@ export const styles = theme => ({
     padding: 0,
     outline: 0,
     WebkitTapHighlightColor: 'transparent',
-    '&:focus > $content $overlay, & > $content $overlay:hover': {
-      opacity: theme.palette.action.hoverOpacity,
+    '&:focus > $content $label': {
+      backgroundColor: theme.palette.action.hover,
     },
-    '&$selected > $content $overlay': {
-      opacity: theme.palette.action.selectedOpacity,
+    '&$selected > $content $label': {
+      backgroundColor: fade(theme.palette.primary.main, theme.palette.action.selectedOpacity),
     },
-    '&$selected > $content $overlay:hover, &$selected:focus > $content $overlay, &:focus > $content $overlay:hover': {
-      opacity: theme.palette.action.hoverOpacity + theme.palette.action.selectedOpacity,
+    '&$selected > $content $label:hover, &$selected:focus > $content $label': {
+      backgroundColor: fade(
+        theme.palette.primary.main,
+        theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+      ),
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor: 'transparent',
+      },
     },
-  },
-  /* Styles applied to the overlay element. */
-  overlay: {
-    position: 'absolute',
-    width: '100%',
-    height: '100%',
-    top: 0,
-    left: 0,
-    backgroundColor: theme.palette.type === 'light' ? '#000000' : '#ffffff',
-    opacity: 0,
   },
   /* Pseudo-class applied to the root element when expanded. */
   expanded: {},
@@ -69,6 +66,13 @@ export const styles = theme => ({
     width: '100%',
     paddingLeft: 4,
     position: 'relative',
+    '&:hover': {
+      backgroundColor: theme.palette.action.hover,
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor: 'transparent',
+      },
+    },
   },
 });
 
@@ -387,7 +391,6 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
         <div className={classes.iconContainer}>{icon}</div>
         <Typography component="div" className={classes.label}>
           {label}
-          <div className={classes.overlay} />
         </Typography>
       </div>
       {children && (
