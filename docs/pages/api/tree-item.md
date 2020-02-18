@@ -47,7 +47,6 @@ Any other props supplied will be provided to the root element (native element).
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
 | <span class="prop-name">root</span> | <span class="prop-name">.MuiTreeItem-root</span> | Styles applied to the root element.
-| <span class="prop-name">overlay</span> | <span class="prop-name">.MuiTreeItem-overlay</span> | Styles applied to the overlay element.
 | <span class="prop-name">expanded</span> | <span class="prop-name">.Mui-expanded</span> | Pseudo-class applied to the root element when expanded.
 | <span class="prop-name">selected</span> | <span class="prop-name">.Mui-selected</span> | Pseudo-class applied to the root element when selected.
 | <span class="prop-name">group</span> | <span class="prop-name">.MuiTreeItem-group</span> | Styles applied to the `role="group"` element.
