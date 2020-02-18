@@ -623,7 +623,7 @@ SwipeableDrawer.propTypes = {
     style: PropTypes.object,
   }),
   /**
-   * The element is used to intercept the touch events on the edge..
+   * The element is used to intercept the touch events on the edge.
    */
   SwipeAreaProps: PropTypes.object,
   /**
