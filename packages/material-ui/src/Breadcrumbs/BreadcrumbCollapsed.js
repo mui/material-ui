@@ -33,13 +33,18 @@ const styles = theme => ({
  */
 function BreadcrumbCollapsed(props) {
   const { classes, ...other } = props;
+  const handleKeyDown = e => e.preventDefault();
 
   return (
-    <li className={classes.root}>
-      <ButtonBase role="button" focusRipple {...other}>
-        <MoreHorizIcon className={classes.icon} />
-      </ButtonBase>
-    </li>
+    <ButtonBase
+      component="li"
+      className={classes.root}
+      onKeyDown={handleKeyDown}
+      focusRipple
+      {...other}
+    >
+      <MoreHorizIcon className={classes.icon} />
+    </ButtonBase>
   );
 }
 
