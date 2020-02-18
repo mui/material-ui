@@ -79,7 +79,7 @@ describe('<Breadcrumbs />', () => {
     );
 
     getByRole('button').click();
-    
+
     expect(getAllByRole('listitem', { hidden: false })).to.have.length(9);
   });
 
