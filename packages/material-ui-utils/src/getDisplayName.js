@@ -1,4 +1,4 @@
-import { ForwardRef } from 'react-is';
+import { ForwardRef, Memo } from 'react-is';
 
 // Simplified polyfill for IE 11 support
 // https://github.com/JamesMGreene/Function.name/blob/58b314d4a983110c3682f1228f845d39ccca1817/Function.name.js#L3
@@ -50,6 +50,8 @@ export default function getDisplayName(Component) {
     switch (Component.$$typeof) {
       case ForwardRef:
         return getWrappedName(Component, Component.render, 'ForwardRef');
+      case Memo:
+        return getWrappedName(Component, Component.type, 'memo');
       default:
         return undefined;
     }
