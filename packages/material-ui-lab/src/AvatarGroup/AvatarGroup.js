@@ -45,7 +45,7 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(props, ref) {
           className: clsx(child.props.className, classes.avatar),
           style: {
             zIndex: children.length - index,
-            marginLeft: spacing && SPACINGS[spacing] ? SPACINGS[spacing] : spacing,
+            marginLeft: spacing ? (SPACINGS[spacing] ? SPACINGS[spacing] : spacing) : -8,
             ...child.props.style,
           },
         });
