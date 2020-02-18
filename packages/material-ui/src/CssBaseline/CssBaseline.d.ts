@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 export interface CssBaselineProps {
-  children?: React.ReactElement;
+  children?: React.ReactNode;
 }
 
 declare const CssBaseline: React.ComponentType<CssBaselineProps>;

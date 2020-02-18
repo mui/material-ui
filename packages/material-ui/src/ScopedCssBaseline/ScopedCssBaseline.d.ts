@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 export interface ScopedCssBaselineProps {
-  children?: React.ReactElement;
+  children?: React.ReactNode;
 }
 
 declare const ScopedCssBaseline: React.ComponentType<ScopedCssBaselineProps>;
