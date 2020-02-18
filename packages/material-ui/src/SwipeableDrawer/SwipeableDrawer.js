@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import { elementTypeAcceptingRef } from '@material-ui/utils';
-import { getThemeProps, useTheme } from '@material-ui/styles';
+import { getThemeProps } from '@material-ui/styles';
 import Drawer, { getAnchor, isHorizontal } from '../Drawer/Drawer';
 import ownerDocument from '../utils/ownerDocument';
 import useEventCallback from '../utils/useEventCallback';
@@ -145,7 +145,6 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
     ...other
   } = props;
 
-  const theme = useTheme();
   const [maybeSwiping, setMaybeSwiping] = React.useState(false);
   const swipeInstance = React.useRef({
     isSwiping: null,
@@ -623,7 +622,7 @@ SwipeableDrawer.propTypes = {
     style: PropTypes.object,
   }),
   /**
-   * The element is used to intercept the touch events on the edge..
+   * The element is used to intercept the touch events on the edge.
    */
   SwipeAreaProps: PropTypes.object,
   /**
