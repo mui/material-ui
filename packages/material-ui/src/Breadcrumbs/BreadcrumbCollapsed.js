@@ -32,20 +32,12 @@ const styles = theme => ({
  * @ignore - internal component.
  */
 function BreadcrumbCollapsed(props) {
-  const { classes, onKeyDown, ...other } = props;
-
-  const handleKeyDown = e => {
-    e.preventDefault();
-    if (onKeyDown) {
-      onKeyDown(e);
-    }
-  };
+  const { classes, ...other } = props;
 
   return (
     <ButtonBase
       component="li"
       className={classes.root}
-      onKeyDown={handleKeyDown}
       focusRipple
       {...other}
     >

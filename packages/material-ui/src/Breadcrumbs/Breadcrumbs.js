@@ -52,6 +52,7 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(props, ref) {
     classes,
     className,
     component: Component = 'nav',
+    expandText = 'Show path',
     itemsAfterCollapse = 1,
     itemsBeforeCollapse = 1,
     maxItems = 8,
@@ -82,7 +83,7 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(props, ref) {
 
     return [
       ...allItems.slice(0, itemsBeforeCollapse),
-      <BreadcrumbCollapsed key="ellipsis" onClick={handleClickExpand} />,
+      <BreadcrumbCollapsed aria-label={expandText} key="ellipsis" onClick={handleClickExpand} />,
       ...allItems.slice(allItems.length - itemsAfterCollapse, allItems.length),
     ];
   };
@@ -149,6 +150,12 @@ Breadcrumbs.propTypes = {
    * By default, it maps the variant to a good default headline component.
    */
   component: PropTypes.elementType,
+  /**
+   * Override the default label for the expand button.
+   *
+   * For localization purposes, you can use the provided [translations](/guides/localization/).
+   */
+  expandText: PropTypes.string,
   /**
    * If max items is exceeded, the number of items to show after the ellipsis.
    */

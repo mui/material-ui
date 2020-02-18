@@ -291,6 +291,9 @@ export const fiFI = {
 
 export const frFR = {
   props: {
+    MuiBreadcrumbs: {
+      expandText: 'Montrer le chemin',
+    },
     MuiTablePagination: {
       backIconButtonText: 'Page précédente',
       labelRowsPerPage: 'Lignes par page :',

@@ -1,47 +1,42 @@
 import React from 'react';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createShallow, createMount, getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
 import BreadcrumbCollapsed from './BreadcrumbCollapsed';
-import MoreHorizIcon from '../internal/svg-icons/MoreHoriz';
+import { fireEvent, createClientRender } from 'test/utils/createClientRender';
 
 describe('<BreadcrumbCollapsed />', () => {
-  let mount;
-  let shallow;
   let classes;
+  const render = createClientRender();
 
   before(() => {
-    shallow = createShallow({ dive: true });
-    mount = createMount({ strict: true });
     classes = getClasses(<BreadcrumbCollapsed />);
   });
 
-  after(() => {
-    mount.cleanUp();
-  });
+  it('should render an icon', () => {
+    const { container } = render(<BreadcrumbCollapsed />);
 
-  it('should render an <SvgIcon>', () => {
-    const wrapper = shallow(<BreadcrumbCollapsed />);
-
-    assert.strictEqual(wrapper.find(MoreHorizIcon).length, 1);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    expect(container.querySelectorAll('svg').length).to.equal(1);
+    expect(container.firstChild).to.have.class(classes.root);
   });
 
   describe('prop: onKeyDown', () => {
-    ['Space', 'Enter'].forEach(key => {
-      it(`should be called on key press - ${key}`, () => {
-        const handleKeyDown = spy();
-        const wrapper = mount(<BreadcrumbCollapsed onKeyDown={handleKeyDown} />);
-        const listElement = wrapper.find('li');
-        listElement.simulate('focus');
-        listElement.simulate('keydown', { key });   
-
-        assert.strictEqual(handleKeyDown.callCount, 1);
-      });
+    it(`should be called on key down - Enter`, () => {
+      const handleClick = spy();
+      const { container } = render(<BreadcrumbCollapsed onClick={handleClick} />);
+      const expand = container.firstChild;
+      expand.focus();
+      fireEvent.keyDown(expand, { key: 'Enter' });
+      expect(handleClick.callCount).to.equal(1);
     });
-  });
 
-  it('should mount', () => {
-    mount(<BreadcrumbCollapsed />);
+    it(`should be called on key up - Space`, () => {
+      const handleClick = spy();
+      const { container } = render(<BreadcrumbCollapsed onClick={handleClick} />);
+      const expand = container.firstChild;
+      expand.focus();
+      fireEvent.keyUp(expand, { key: ' ' });
+      expect(handleClick.callCount).to.equal(1);
+    });
   });
 });
