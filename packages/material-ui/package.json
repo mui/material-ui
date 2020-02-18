@@ -54,7 +54,6 @@
     "@material-ui/utils": "^4.7.1",
     "@types/react-transition-group": "^4.2.0",
     "clsx": "^1.0.2",
-    "convert-css-length": "^2.0.1",
     "hoist-non-react-statics": "^3.3.2",
     "popper.js": "^1.14.1",
     "prop-types": "^15.7.2",
