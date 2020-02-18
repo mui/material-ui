@@ -65,7 +65,7 @@
     "build:typescript": "tsc --project tsconfig.json",
     "build": "yarn build:typescript && yarn build:bundle && yarn build:copy",
     "build:analyze": "yarn build",
-    "release": "yarn test && yarn version && yarn build && yarn publish --non-interactive build"
+    "release": "yarn test && yarn version && yarn build && yarn publish --non-interactive --tag next build"
   },
   "devDependencies": {
     "@babel/core": "^7.6.0",
