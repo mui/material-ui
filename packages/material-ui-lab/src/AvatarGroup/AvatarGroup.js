@@ -69,12 +69,9 @@ AvatarGroup.propTypes = {
    */
   classes: PropTypes.object,
   /**
-   * Defines the space between the type `avatar` component.
+   * Spacing between avatars.
    */
-  spacing:  PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-  ]),
+  spacing: PropTypes.oneOfType([PropTypes.oneOf(['large', 'medium', 'small']), PropTypes.number]),
   /**
    * @ignore
    */
