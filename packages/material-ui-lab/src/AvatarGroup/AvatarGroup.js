@@ -4,7 +4,11 @@ import { isFragment } from 'react-is';
 import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
 
-const SPACINGS = {'large': -4, 'medium': -8, 'small': -16};
+const SPACINGS = {
+  large: -4, 
+  medium: -8, 
+  small: -16
+};
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
