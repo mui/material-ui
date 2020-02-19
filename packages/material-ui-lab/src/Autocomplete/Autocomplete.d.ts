@@ -126,7 +126,7 @@ export interface AutocompleteProps<T>
   /**
    * Render the input.
    *
-   * @param {object} params
+   * @param {object} params The props for an Input component
    * @returns {ReactNode}
    */
   renderInput: (params: RenderInputParams) => React.ReactNode;

@@ -185,7 +185,7 @@ export interface UseAutocompleteMultipleProps<T> extends UseAutocompleteCommonPr
    * Callback fired when the value changes.
    *
    * @param {object} event The event source of the callback.
-   * @param {T[]} value
+   * @param {T[]} value The new value of the Autocomplete
    */
   onChange?: (event: React.ChangeEvent<{}>, value: T[]) => void;
 }
@@ -210,7 +210,7 @@ export interface UseAutocompleteSingleProps<T> extends UseAutocompleteCommonProp
    * Callback fired when the value changes.
    *
    * @param {object} event The event source of the callback.
-   * @param {T} value
+   * @param {T} value The new value of the Autocomplete
    */
   onChange?: (event: React.ChangeEvent<{}>, value: T | null) => void;
 }
