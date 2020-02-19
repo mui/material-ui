@@ -44,7 +44,7 @@
     "@types/react-text-mask": "^5.4.6",
     "@types/react-virtualized": "^9.21.4",
     "@types/react-window": "^1.7.0",
-    "@types/styled-components": "4.4.2",
+    "@types/styled-components": "4.4.3",
     "@zeit/next-typescript": "^1.1.1",
     "accept-language": "^3.0.18",
     "address": "^1.0.3",
