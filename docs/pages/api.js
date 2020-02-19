@@ -118,6 +118,10 @@ function FunctionSignature(props) {
       <br />
       <Join separator={<br />}>
         {paramTags.map(tag => {
+          if (tag.description == null) {
+            throw new TypeError(`@param tag '${tag.name}' has no description`);
+          }
+
           return (
             <React.Fragment key={tag.name}>
               <em>{tag.name}: </em>
