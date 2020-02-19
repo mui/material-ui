@@ -712,7 +712,7 @@ describe('<ButtonBase />', () => {
 
         expect(onClickSpy.callCount).to.equal(1);
         // defaultPrevented?
-        expect(onClickSpy.returnValues[0]).to.equal(true);
+        expect(onClickSpy.returnValues[0]).to.equal(false);
       });
 
       it('does not call onClick when a spacebar is released and the default is prevented', () => {

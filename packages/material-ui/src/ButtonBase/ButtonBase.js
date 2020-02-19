@@ -210,6 +210,9 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
       onKeyDown(event);
     }
 
+    if (event.target === event.currentTarget && isNonNativeButton() && event.key === ' ') {
+      event.preventDefault();
+    }
     // Keyboard accessibility for non interactive elements
     if (event.target === event.currentTarget && isNonNativeButton() && event.key === 'Enter') {
       event.preventDefault();
@@ -240,15 +243,13 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
 
     // Keyboard accessibility for non interactive elements
     if (
+      onClick &&
       event.target === event.currentTarget &&
       isNonNativeButton() &&
       event.key === ' ' &&
       !event.defaultPrevented
     ) {
-      event.preventDefault();
-      if (onClick) {
-        onClick(event);
-      }
+      onClick(event);
     }
   });
 
