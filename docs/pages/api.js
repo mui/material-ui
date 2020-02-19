@@ -16,6 +16,7 @@ import EditPage from 'docs/src/modules/components/EditPage';
 import ScrollableTableOfContents from 'docs/src/modules/components/ScrollableTableOfContents';
 import textToHash from 'docs/src/modules/utils/textToHash';
 import Ad from 'docs/src/modules/components/Ad';
+import NoSsr from '@material-ui/core/NoSsr';
 
 const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/blob/master';
 const PATH_REPLACE_REGEX = /\\/g;
@@ -621,7 +622,9 @@ function ComponentApi(props) {
           <p className="description">
             The API documentation of the {api.name} React component. Learn more about the props and
             the CSS customization points.
-            <Ad />
+            <NoSsr>
+              <Ad />
+            </NoSsr>
           </p>
 
           <ToCAbleHeading item={toCItems[0]} />
