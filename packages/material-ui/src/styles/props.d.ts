@@ -81,6 +81,7 @@ import { StepLabelProps } from '../StepLabel';
 import { StepperProps } from '../Stepper';
 import { StepProps } from '../Step';
 import { SvgIconProps } from '../SvgIcon';
+import { SwipeableDrawerProps } from '../SwipeableDrawer';
 import { SwitchProps } from '../Switch';
 import { TableBodyProps } from '../TableBody';
 import { TableCellProps } from '../TableCell';
@@ -186,6 +187,7 @@ export interface ComponentsPropsList {
   MuiStepLabel: StepLabelProps;
   MuiStepper: StepperProps;
   MuiSvgIcon: SvgIconProps;
+  MuiSwipeableDrawer: SwipeableDrawerProps;
   MuiSwitch: SwitchProps;
   MuiTab: TabProps;
   MuiTable: TableProps;

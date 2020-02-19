@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import { elementTypeAcceptingRef } from '@material-ui/utils';
+import { getThemeProps } from '@material-ui/styles';
 import Drawer, { getAnchor, isHorizontal } from '../Drawer/Drawer';
 import ownerDocument from '../utils/ownerDocument';
 import useEventCallback from '../utils/useEventCallback';
@@ -121,7 +122,9 @@ const transitionDurationDefault = { enter: duration.enteringScreen, exit: durati
 
 const useEnhancedEffect = typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
 
-const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(props, ref) {
+const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) {
+  const theme = useTheme();
+  const props = getThemeProps({ name: 'MuiSwipeableDrawer', props: { ...inProps }, theme });
   const {
     anchor = 'left',
     disableBackdropTransition = false,
@@ -142,7 +145,6 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(props, ref) {
     ...other
   } = props;
 
-  const theme = useTheme();
   const [maybeSwiping, setMaybeSwiping] = React.useState(false);
   const swipeInstance = React.useRef({
     isSwiping: null,
@@ -615,7 +617,7 @@ SwipeableDrawer.propTypes = {
     style: PropTypes.object,
   }),
   /**
-   * Props applied to the swipe area element.
+   * The element is used to intercept the touch events on the edge.
    */
   SwipeAreaProps: PropTypes.object,
   /**
