@@ -736,6 +736,36 @@ describe('<Autocomplete />', () => {
         'For the input option: "a", `getOptionLabel` returns: undefined',
       );
     });
+
+    it('warn if getOptionSelected match multiple values for a given option', () => {
+      const value = [{ id: '10', text: 'One' }, { id: '20', text: 'Two' }];
+      const options = [
+        { id: '10', text: 'One' },
+        { id: '20', text: 'Two' },
+        { id: '30', text: 'Three' },
+      ];
+
+      render(
+        <Autocomplete
+          {...defaultProps}
+          multiple
+          options={options}
+          value={value}
+          getOptionLabel={option => option.text}
+          getOptionSelected={option => value.find(v => v.id === option.id)}
+          renderInput={params => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+      fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+      fireEvent.keyDown(document.activeElement, { key: 'Enter' });
+
+      expect(consoleErrorMock.callCount()).to.equal(1); // strict mode renders twice
+      expect(consoleErrorMock.args()[0][0]).to.include(
+        'The component expects a single value to match a given option but found 2 matches.',
+      );
+    });
   });
 
   describe('prop: options', () => {
