@@ -616,8 +616,10 @@ function ComponentApi(props) {
           sourceCodeRootUrl={SOURCE_CODE_ROOT_URL}
         />
         <div className={markdownClasses.root}>
-          {/* TODO: component name + desc */}
-          <Head description="API for AppBar component" title="AppBar API - Material-UI" />
+          <Head
+            description={`API for ${api.name} component`}
+            title={`${api.name} API - Material-UI`}
+          />
           <h1>{api.name} API</h1>
           <p className="description">
             The API documentation of the {api.name} React component. Learn more about the props and
