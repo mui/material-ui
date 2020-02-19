@@ -109,7 +109,7 @@ const TextField = React.forwardRef(function TextField(props, ref) {
     if (label) {
       InputMore.label = (
         <React.Fragment>
-          {label}
+          {label }
           {required && '\u00a0*'}
         </React.Fragment>
       );
