@@ -548,29 +548,6 @@ function ComponentDemos(props) {
 
 ComponentDemos.propTypes = { pages: PropTypes.arrayOf(PropTypes.string.isRequired) };
 
-const useMarkdownStyles = makeStyles(markdownStyles);
-const useComponentApiStyles = makeStyles(theme => {
-  return {
-    editButton: { position: 'absolute', right: theme.spacing(2) },
-  };
-});
-
-function useTocItems(texts) {
-  return React.useMemo(() => {
-    const items = texts.map(text => {
-      return {
-        children: [],
-        hash: textToHash(text),
-        text,
-        ref(instance) {
-          this.node = instance;
-        },
-      };
-    });
-    return items;
-  }, [texts]);
-}
-
 function ToCAbleHeading(props) {
   const { item } = props;
 
@@ -586,7 +563,40 @@ ToCAbleHeading.propTypes = {
     .isRequired,
 };
 
+function useTocItems(texts) {
+  return React.useMemo(() => {
+    const items = texts.map(text => {
+      return {
+        children: [],
+        hash: textToHash(text),
+        node: null,
+        text,
+        ref(instance) {
+          this.node = instance;
+        },
+      };
+    });
+    return items;
+  }, [texts]);
+}
+
 const headings = ['Import', 'Props', 'CSS', 'Inheritance', 'Demos'];
+
+const useMarkdownStyles = makeStyles(markdownStyles);
+const useComponentApiStyles = makeStyles(
+  theme => {
+    return {
+      container: {
+        position: 'relative',
+      },
+      editButton: {
+        position: 'absolute',
+        right: theme.spacing(2),
+      },
+    };
+  },
+  { name: 'ComponentApi' },
+);
 
 function ComponentApi(props) {
   const { api } = props;
@@ -597,8 +607,7 @@ function ComponentApi(props) {
 
   return (
     <React.Fragment>
-      <ScrollableTableOfContents items={toCItems} />
-      <AppContainer>
+      <AppContainer className={classes.container}>
         <EditPage
           className={classes.editButton}
           markdownLocation={api.filename}
@@ -648,6 +657,7 @@ function ComponentApi(props) {
           )}
         </div>
       </AppContainer>
+      <ScrollableTableOfContents items={toCItems} />
     </React.Fragment>
   );
 }
