@@ -569,24 +569,41 @@ ToCAbleHeading.propTypes = {
     .isRequired,
 };
 
-function useTocItems(texts) {
+const headingLabels = {
+  import: 'Import',
+  props: 'Props',
+  css: 'CSS',
+  inheritance: 'Inheritance',
+  demos: 'Demo',
+};
+function useTocItems(api) {
+  const ids = React.useMemo(() => {
+    const order = ['import', 'props', 'css'];
+    if (api.inheritance) {
+      order.push('inheritance');
+    }
+    if (api.usedInPages.length > 0) {
+      order.push('demos');
+    }
+
+    return order;
+  }, [api]);
+
   return React.useMemo(() => {
-    const items = texts.map(text => {
+    const items = ids.map(id => {
       return {
         children: [],
-        hash: textToHash(text),
+        hash: id,
         node: null,
-        text,
+        text: headingLabels[id],
         ref(instance) {
           this.node = instance;
         },
       };
     });
     return items;
-  }, [texts]);
+  }, [ids]);
 }
-
-const headings = ['Import', 'Props', 'CSS', 'Inheritance', 'Demos'];
 
 const useMarkdownStyles = makeStyles(markdownStyles);
 const useComponentApiStyles = makeStyles(
@@ -609,7 +626,12 @@ function ComponentApi(props) {
 
   const classes = useComponentApiStyles();
   const markdownClasses = useMarkdownStyles();
-  const toCItems = useTocItems(headings);
+
+  const toCItems = useTocItems(api);
+  const headings = {};
+  toCItems.forEach(item => {
+    headings[item.hash] = item;
+  });
 
   return (
     <React.Fragment>
@@ -633,11 +655,11 @@ function ComponentApi(props) {
             </NoSsr>
           </p>
 
-          <ToCAbleHeading item={toCItems[0]} />
+          <ToCAbleHeading item={headings.import} />
           <ComponentImport api={api} />
           <p>{api.description}</p>
 
-          <ToCAbleHeading item={toCItems[1]} />
+          <ToCAbleHeading item={headings.props} />
           <ComponentPropsTable propsApi={api.props} />
           <RefHint filename={api.filename} forwardsRefTo={api.forwardsRefTo} />
           {api.spread && (
@@ -652,17 +674,17 @@ function ComponentApi(props) {
             </p>
           )}
 
-          <ToCAbleHeading item={toCItems[2]} />
+          <ToCAbleHeading item={headings.css} />
           <ComponentStyles filename={api.filename} styles={api.styles} />
-          {api.inheritance && (
+          {headings.inheritance !== undefined && (
             <React.Fragment>
-              <ToCAbleHeading item={toCItems[3]} />
+              <ToCAbleHeading item={headings.inheritance} />
               <ComponentInheritance inheritance={api.inheritance} />
             </React.Fragment>
           )}
-          {api.usedInPages.length > 0 && (
+          {headings.demos !== undefined > 0 && (
             <React.Fragment>
-              <ToCAbleHeading item={toCItems[4]} />
+              <ToCAbleHeading item={headings.demos} />
               <ComponentDemos pages={api.usedInPages} />
             </React.Fragment>
           )}
