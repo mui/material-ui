@@ -23,6 +23,9 @@ const PATH_REPLACE_REGEX = /\\/g;
 const PATH_SEPARATOR = '/';
 const DEMO_IGNORE = LANGUAGES_IN_PROGRESS.map(language => `-${language}.md`);
 
+// TODO:
+// * DiamondSponsors
+
 function normalizePath(path) {
   return path.replace(PATH_REPLACE_REGEX, PATH_SEPARATOR);
 }
@@ -52,16 +55,16 @@ function ComponentImport(props) {
         <span className="token keyword">import</span> {api.name}{' '}
         <span className="token keyword">from</span>{' '}
         <span className="token string">
-          '{source}/{api.name}'
+          &lsquo;{source}/{api.name}&rsquo;
         </span>
         <span className="token punctuation">;</span>
         <br />
-        <span className="token comment">// or</span>
+        <span className="token comment">{'// or'}</span>
         <br />
         <span className="token keyword">import</span>{' '}
         <span className="token punctuation">{'{'}</span> {api.name}{' '}
         <span className="token punctuation">{'}'}</span> <span className="token keyword">from</span>{' '}
-        <span className="token string">'{source}'</span>
+        <span className="token string">&lsquo;{source}&rsquo;</span>
         <span className="token punctuation">;</span>
       </code>
     </pre>
