@@ -17,6 +17,7 @@ import {
   CircularProgress,
   ClickAwayListener,
   Collapse,
+  CssBaseline,
   Dialog,
   DialogTitle,
   DialogContent,
@@ -80,6 +81,7 @@ import {
 import { Link as ReactRouterLink, LinkProps as ReactRouterLinkProps } from 'react-router-dom';
 import { ButtonBaseActions } from '@material-ui/core/ButtonBase';
 import { IconButtonProps } from '@material-ui/core/IconButton';
+import ScopedCssBaseline from '@material-ui/core/ScopedCssBaseline';
 
 const log = console.log;
 const FakeIcon = () => <div>ICON</div>;
@@ -1056,3 +1058,7 @@ const refTest = () => {
     }}
   />;
 };
+
+const CssBaselineTest = () => <CssBaseline>Test</CssBaseline>;
+
+const ScopedCssBaselineTest = () => <ScopedCssBaseline>Test</ScopedCssBaseline>;
