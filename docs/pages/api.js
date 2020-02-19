@@ -319,7 +319,6 @@ function ComponentProp(props) {
 
   return (
     <tr>
-      {/* TODO: entangle the custom required logic */}
       <td className={clsx(classes.propName, { [classes.required]: required })}>
         {name}
         {required && '&nbsp;*'}
