@@ -504,11 +504,6 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(props, ref) {
     backdropRef.current = ReactDOM.findDOMNode(instance);
   }, []);
 
-  const handlePaperRef = React.useCallback(instance => {
-    // #StrictMode ready
-    paperRef.current = ReactDOM.findDOMNode(instance);
-  }, []);
-
   return (
     <React.Fragment>
       <Drawer
@@ -527,7 +522,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(props, ref) {
             pointerEvents: variant === 'temporary' && !open ? 'none' : '',
             ...PaperProps.style,
           },
-          ref: handlePaperRef,
+          ref: paperRef,
         }}
         anchor={anchor}
         transitionDuration={calculatedDurationRef.current || transitionDuration}
