@@ -659,7 +659,7 @@ Autocomplete.propTypes = {
    * Callback fired when the value changes.
    *
    * @param {object} event The event source of the callback.
-   * @param {T} value
+   * @param {T} value The new value of the Autocomplete
    */
   onChange: PropTypes.func,
   /**
@@ -724,7 +724,7 @@ Autocomplete.propTypes = {
   /**
    * Render the input.
    *
-   * @param {object} params
+   * @param {object} params The props for an Input component
    * @returns {ReactNode}
    */
   renderInput: PropTypes.func.isRequired,
