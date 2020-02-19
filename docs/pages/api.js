@@ -7,7 +7,6 @@ import Head from 'docs/src/modules/components/Head';
 import MarkdownElement, {
   styles as markdownStyles,
 } from 'docs/src/modules/components/MarkdownElement';
-import { LANGUAGES_IN_PROGRESS } from 'docs/src/modules/constants';
 import clsx from 'clsx';
 import { makeStyles, styled } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
@@ -21,7 +20,6 @@ import Ad from 'docs/src/modules/components/Ad';
 const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/blob/master';
 const PATH_REPLACE_REGEX = /\\/g;
 const PATH_SEPARATOR = '/';
-const DEMO_IGNORE = LANGUAGES_IN_PROGRESS.map(language => `-${language}.md`);
 
 // TODO:
 // * DiamondSponsors
