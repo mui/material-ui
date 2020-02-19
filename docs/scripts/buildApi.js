@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { readFileSync } from 'fs';
 import { writeJSON } from 'fs-extra';
 import { getLineFeed } from './helpers';
@@ -132,7 +131,7 @@ async function buildComponentApi(componentObject) {
       },
     );
   } catch (err) {
-    console.log('Error parsing src for', componentObject.filename);
+    console.error('Error parsing src for', componentObject.filename);
     throw err;
   }
 
@@ -163,6 +162,7 @@ async function buildComponentApi(componentObject) {
   reactAPI.filename = componentObject.filename.replace(rootDirectory, '');
   reactAPI.inheritance = getInheritance(testInfo, src);
 
+  // eslint-disable-next-line no-console
   console.log('Built API data for', reactAPI.name);
   return reactAPI;
 }
