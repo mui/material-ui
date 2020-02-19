@@ -5,8 +5,8 @@ import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
 
 const SPACINGS = {
-  large: -4,
   small: -16,
+  medium: null,
 };
 
 export const styles = theme => ({
@@ -46,7 +46,7 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(props, ref) {
           className: clsx(child.props.className, classes.avatar),
           style: {
             zIndex: children.length - index,
-            marginLeft: spacing && SPACINGS[spacing] ? SPACINGS[spacing] : -spacing,
+            marginLeft: spacing && SPACINGS[spacing] !== undefined ? SPACINGS[spacing] : -spacing,
             ...child.props.style,
           },
         });
@@ -76,7 +76,7 @@ AvatarGroup.propTypes = {
   /**
    * Spacing between avatars.
    */
-  spacing: PropTypes.oneOfType([PropTypes.oneOf(['large', 'medium', 'small']), PropTypes.number]),
+  spacing: PropTypes.oneOfType([PropTypes.oneOf(['medium', 'small']), PropTypes.number]),
 };
 
 export default withStyles(styles, { name: 'MuiAvatarGroup' })(AvatarGroup);

@@ -10,7 +10,7 @@ export interface AvatarGroupProps
   /**
    * Spacing between avatars.
    */
-  spacing?: 'small' | 'medium' | 'large' | number;
+  spacing?: 'small' | 'medium' | number;
 }
 
 export type AvatarGroupClassKey = 'root' | 'avatar';
