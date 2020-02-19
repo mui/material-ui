@@ -4,6 +4,11 @@ import { isFragment } from 'react-is';
 import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
 
+const SPACINGS = {
+  small: -16,
+  medium: null,
+};
+
 export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
@@ -17,7 +22,7 @@ export const styles = theme => ({
 });
 
 const AvatarGroup = React.forwardRef(function AvatarGroup(props, ref) {
-  const { children: childrenProp, classes, className, ...other } = props;
+  const { children: childrenProp, classes, className, spacing = 'medium', ...other } = props;
 
   const children = React.Children.toArray(childrenProp).filter(child => {
     if (process.env.NODE_ENV !== 'production') {
@@ -41,6 +46,7 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(props, ref) {
           className: clsx(child.props.className, classes.avatar),
           style: {
             zIndex: children.length - index,
+            marginLeft: spacing && SPACINGS[spacing] !== undefined ? SPACINGS[spacing] : -spacing,
             ...child.props.style,
           },
         });
@@ -67,6 +73,10 @@ AvatarGroup.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * Spacing between avatars.
+   */
+  spacing: PropTypes.oneOfType([PropTypes.oneOf(['medium', 'small']), PropTypes.number]),
 };
 
 export default withStyles(styles, { name: 'MuiAvatarGroup' })(AvatarGroup);
