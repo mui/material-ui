@@ -680,9 +680,10 @@ describe('<ButtonBase />', () => {
 
     describe('keyboard accessibility for non interactive elements', () => {
       it('does not call onClick when a spacebar is pressed on the element', () => {
+        const onKeyDown = spy(event => event.defaultPrevented);
         const onClickSpy = spy(event => event.defaultPrevented);
         const { getByRole } = render(
-          <ButtonBase onClick={onClickSpy} component="div">
+          <ButtonBase onClick={onClickSpy} onKeyDown={onKeyDown} component="div">
             Hello
           </ButtonBase>,
         );
@@ -694,6 +695,8 @@ describe('<ButtonBase />', () => {
         });
 
         expect(onClickSpy.callCount).to.equal(0);
+        // defaultPrevented?
+        expect(onKeyDown.returnValues[0]).to.equal(true);
       });
 
       it('does call onClick when a spacebar is released on the element', () => {
