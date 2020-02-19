@@ -94,7 +94,7 @@
     "babel-loader": "^8.0.6",
     "babel-plugin-optimize-clsx": "^2.3.0",
     "babel-plugin-react-remove-properties": "^0.3.0",
-    "codecov": "^3.1.0",
+    "codecov": "^3.6.5",
     "cross-env": "^5.2.0",
     "cypress-react-unit-test": "^2.4.3",
     "date-fns": "^2.0.0-alpha.27",
