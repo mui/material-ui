@@ -745,7 +745,7 @@ Autocomplete.propTypes = {
   renderTags: PropTypes.func,
   /**
    * If `true`, the input's text will be selected on focus.
-   * It helps the user clearning the selected value.
+   * It helps the user clear the selected value.
    */
   selectOnFocus: PropTypes.bool,
   /**
