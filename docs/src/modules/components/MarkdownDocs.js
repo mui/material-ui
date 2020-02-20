@@ -11,7 +11,7 @@ import Divider from '@material-ui/core/Divider';
 import Head from 'docs/src/modules/components/Head';
 import useMarkdownDocs from 'docs/src/modules/components/useMarkdownDocs';
 import AppFrame from 'docs/src/modules/components/AppFrame';
-import AppTableOfContents from 'docs/src/modules/components/AppTableOfContents';
+import MarkdownTableOfContents from 'docs/src/modules/components/MarkdownTableOfContents';
 import Ad from 'docs/src/modules/components/Ad';
 import EditPage from 'docs/src/modules/components/EditPage';
 import AppContainer from 'docs/src/modules/components/AppContainer';
@@ -184,7 +184,7 @@ function MarkdownDocs(props) {
           </footer>
         </AppContainer>
       </div>
-      {disableToc ? null : <AppTableOfContents contents={markdownDocs.contents} />}
+      {disableToc ? null : <MarkdownTableOfContents contents={markdownDocs.contents} />}
     </AppFrame>
   );
 }

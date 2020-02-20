@@ -63,7 +63,7 @@ function getItemsClient(items) {
   return itemsClient;
 }
 
-export default function AppTableOfContents(props) {
+export default function MarkdownTableOfContents(props) {
   const { contents } = props;
 
   const itemsServer = React.useMemo(() => {
@@ -83,6 +83,6 @@ export default function AppTableOfContents(props) {
   return <ScrollableTableOfContents items={items} />;
 }
 
-AppTableOfContents.propTypes = {
+MarkdownTableOfContents.propTypes = {
   contents: PropTypes.array.isRequired,
 };
