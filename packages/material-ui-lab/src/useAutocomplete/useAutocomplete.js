@@ -439,6 +439,21 @@ export default function useAutocomplete(props) {
       const item = newValue;
       newValue = Array.isArray(value) ? [...value] : [];
 
+      if (process.env.NODE_ENV !== 'production') {
+        const matches = newValue.filter(val => getOptionSelected(item, val));
+
+        if (matches.length > 1) {
+          console.error(
+            [
+              'Material-UI: the `getOptionSelected` method of useAutocomplete do not handle the arguments correctly.',
+              `The component expects a single value to match a given option but found ${
+                matches.length
+              } matches.`,
+            ].join('\n'),
+          );
+        }
+      }
+
       const itemIndex = findIndex(newValue, valueItem => getOptionSelected(item, valueItem));
 
       if (itemIndex === -1) {
