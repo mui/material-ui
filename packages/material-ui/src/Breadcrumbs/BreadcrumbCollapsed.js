@@ -8,15 +8,11 @@ import ButtonBase from '../ButtonBase';
 const styles = theme => ({
   root: {
     display: 'flex',
-  },
-  icon: {
-    width: 24,
-    height: 16,
+    marginLeft: theme.spacing(0.5),
+    marginRight: theme.spacing(0.5),
     backgroundColor: theme.palette.grey[100],
     color: theme.palette.grey[700],
     borderRadius: 2,
-    marginLeft: theme.spacing(0.5),
-    marginRight: theme.spacing(0.5),
     cursor: 'pointer',
     '&:hover, &:focus': {
       backgroundColor: theme.palette.grey[200],
@@ -25,6 +21,10 @@ const styles = theme => ({
       boxShadow: theme.shadows[0],
       backgroundColor: emphasize(theme.palette.grey[200], 0.12),
     },
+  },
+  icon: {
+    width: 24,
+    height: 16,
   },
 });
 
