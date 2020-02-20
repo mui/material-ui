@@ -1,32 +1,42 @@
 import React from 'react';
-import { assert } from 'chai';
-import { createShallow, createMount, getClasses } from '@material-ui/core/test-utils';
+import { expect } from 'chai';
+import { spy } from 'sinon';
+import { getClasses } from '@material-ui/core/test-utils';
 import BreadcrumbCollapsed from './BreadcrumbCollapsed';
-import MoreHorizIcon from '../internal/svg-icons/MoreHoriz';
+import { fireEvent, createClientRender } from 'test/utils/createClientRender';
 
 describe('<BreadcrumbCollapsed />', () => {
-  let mount;
-  let shallow;
   let classes;
+  const render = createClientRender();
 
   before(() => {
-    shallow = createShallow({ dive: true });
-    mount = createMount({ strict: true });
     classes = getClasses(<BreadcrumbCollapsed />);
   });
 
-  after(() => {
-    mount.cleanUp();
+  it('should render an icon', () => {
+    const { container } = render(<BreadcrumbCollapsed />);
+
+    expect(container.querySelectorAll('svg').length).to.equal(1);
+    expect(container.firstChild).to.have.class(classes.root);
   });
 
-  it('should render an <SvgIcon>', () => {
-    const wrapper = shallow(<BreadcrumbCollapsed />);
+  describe('prop: onKeyDown', () => {
+    it(`should be called on key down - Enter`, () => {
+      const handleClick = spy();
+      const { container } = render(<BreadcrumbCollapsed onClick={handleClick} />);
+      const expand = container.firstChild;
+      expand.focus();
+      fireEvent.keyDown(expand, { key: 'Enter' });
+      expect(handleClick.callCount).to.equal(1);
+    });
 
-    assert.strictEqual(wrapper.find(MoreHorizIcon).length, 1);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-  });
-
-  it('should mount', () => {
-    mount(<BreadcrumbCollapsed />);
+    it(`should be called on key up - Space`, () => {
+      const handleClick = spy();
+      const { container } = render(<BreadcrumbCollapsed onClick={handleClick} />);
+      const expand = container.firstChild;
+      expand.focus();
+      fireEvent.keyUp(expand, { key: ' ' });
+      expect(handleClick.callCount).to.equal(1);
+    });
   });
 });
