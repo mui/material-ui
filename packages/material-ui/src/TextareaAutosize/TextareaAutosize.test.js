@@ -3,6 +3,7 @@ import { assert } from 'chai';
 import sinon, { spy, stub, useFakeTimers } from 'sinon';
 import { createMount } from '@material-ui/core/test-utils';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
+import consoleErrorMock from 'test/utils/consoleErrorMock';
 import TextareaAutosize from './TextareaAutosize';
 
 function getStyle(wrapper) {
@@ -38,7 +39,9 @@ describe('<TextareaAutosize />', () => {
 
     const getComputedStyleStub = {};
 
-    function setLayout(wrapper, { getComputedStyle, scrollHeight, lineHeight }) {
+    function setLayout(wrapper, { getComputedStyle, scrollHeight, lineHeight: lineHeightArg }) {
+      const lineHeight = typeof lineHeightArg === 'function' ? lineHeightArg : () => lineHeightArg;
+
       const input = wrapper
         .find('textarea')
         .at(0)
@@ -53,7 +56,7 @@ describe('<TextareaAutosize />', () => {
       let index = 0;
       stub(shadow, 'scrollHeight').get(() => {
         index += 1;
-        return index % 2 === 1 ? scrollHeight : lineHeight;
+        return index % 2 === 1 ? scrollHeight : lineHeight();
       });
     }
 
@@ -236,6 +239,36 @@ describe('<TextareaAutosize />', () => {
       wrapper.setProps({ rowsMax: 2 });
       wrapper.update();
       assert.deepEqual(getStyle(wrapper), { height: lineHeight * 2, overflow: null });
+    });
+
+    describe('warnings', () => {
+      before(() => {
+        consoleErrorMock.spy();
+      });
+
+      after(() => {
+        consoleErrorMock.reset();
+      });
+
+      it('warns if layout is unstable but not crash', () => {
+        const wrapper = mount(<TextareaAutosize rowsMax={3} />);
+        let index = 0;
+        setLayout(wrapper, {
+          getComputedStyle: {
+            'box-sizing': 'content-box',
+          },
+          scrollHeight: 100,
+          lineHeight: () => {
+            index += 1;
+            return 15 + index;
+          },
+        });
+        wrapper.setProps();
+        wrapper.update();
+
+        assert.strictEqual(consoleErrorMock.callCount(), 3);
+        assert.include(consoleErrorMock.args()[0][0], 'Material-UI: too many re-renders.');
+      });
     });
   });
 });

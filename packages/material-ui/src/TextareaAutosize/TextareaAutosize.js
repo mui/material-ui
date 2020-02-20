@@ -35,6 +35,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
   const inputRef = React.useRef(null);
   const handleRef = useForkRef(ref, inputRef);
   const shadowRef = React.useRef(null);
+  const renders = React.useRef(0);
   const [state, setState] = React.useState({});
 
   const syncHeight = React.useCallback(() => {
@@ -75,17 +76,30 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
     const overflow = Math.abs(outerHeight - innerHeight) <= 1;
 
     setState(prevState => {
-      // Need a large enough different to update the height.
+      // Need a large enough difference to update the height.
       // This prevents infinite rendering loop.
       if (
-        (outerHeightStyle > 0 &&
+        renders.current < 20 &&
+        ((outerHeightStyle > 0 &&
           Math.abs((prevState.outerHeightStyle || 0) - outerHeightStyle) > 1) ||
-        prevState.overflow !== overflow
+          prevState.overflow !== overflow)
       ) {
+        renders.current += 1;
         return {
           overflow,
           outerHeightStyle,
         };
+      }
+
+      if (process.env.NODE_ENV !== 'production') {
+        if (renders.current === 20) {
+          console.error(
+            [
+              'Material-UI: too many re-renders. The layout is unstable.',
+              'TextareaAutosize limits the number of renders to prevent an infinite loop.',
+            ].join('\n'),
+          );
+        }
       }
 
       return prevState;
@@ -94,6 +108,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
 
   React.useEffect(() => {
     const handleResize = debounce(() => {
+      renders.current = 0;
       syncHeight();
     });
 
@@ -108,7 +123,13 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
     syncHeight();
   });
 
+  React.useEffect(() => {
+    renders.current = 0;
+  }, [value]);
+
   const handleChange = event => {
+    renders.current = 0;
+
     if (!isControlled) {
       syncHeight();
     }
@@ -128,7 +149,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
         rows={rowsMin}
         style={{
           height: state.outerHeightStyle,
-          // Need a large enough different to allow scrolling.
+          // Need a large enough difference to allow scrolling.
           // This prevents infinite rendering loop.
           overflow: state.overflow ? 'hidden' : null,
           ...style,
