@@ -1,6 +1,5 @@
 import { readFileSync } from 'fs';
 import { writeJSON } from 'fs-extra';
-import { getLineFeed } from './helpers';
 import path from 'path';
 import * as _ from 'lodash';
 import { defaultHandlers, parse as docgenParse } from 'react-docgen';
@@ -146,9 +145,7 @@ async function buildComponentApi(componentObject) {
   );
   reactAPI.name = name;
   reactAPI.styles = styles;
-  reactAPI.src = src;
   reactAPI.spread = spread;
-  reactAPI.EOL = getLineFeed(src);
 
   const testInfo = await parseTest(componentObject.filename);
   // no Object.assign to visually check for collisions

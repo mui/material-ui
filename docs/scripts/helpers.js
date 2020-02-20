@@ -15,7 +15,6 @@ function fixLineEndings(source, target) {
 }
 
 module.exports = {
-  getLineFeed,
   fixBabelGeneratorIssues,
   fixLineEndings,
 };
