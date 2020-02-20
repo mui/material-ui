@@ -1,5 +1,5 @@
 export * from './colorManipulator';
-export { default as createMuiTheme, Theme, Direction } from './createMuiTheme';
+export { default as createMuiTheme, ThemeOptions, Theme, Direction } from './createMuiTheme';
 export {
   default as createPalette,
   PaletteColorOptions,
