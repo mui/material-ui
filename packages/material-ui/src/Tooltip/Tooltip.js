@@ -167,6 +167,14 @@ export const styles = theme => ({
   },
 });
 
+let hystersisOpen = false;
+let hystersisTimer = null;
+
+export function testReset() {
+  hystersisOpen = false;
+  clearTimeout(hystersisTimer);
+}
+
 const Tooltip = React.forwardRef(function Tooltip(props, ref) {
   const {
     arrow = false,
@@ -175,7 +183,8 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     disableFocusListener = false,
     disableHoverListener = false,
     disableTouchListener = false,
-    enterDelay = 0,
+    enterDelay = 200,
+    enterNextDelay = 0,
     enterTouchDelay = 700,
     id: idProp,
     interactive = false,
@@ -201,9 +210,6 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
   const enterTimer = React.useRef();
   const leaveTimer = React.useRef();
   const touchTimer = React.useRef();
-  
-  const hystersisOpen = React.useRef(false);
-  const hystersisTimer = React.userRef(null);
 
   const [openState, setOpenState] = useControlled({
     controlled: openProp,
@@ -261,8 +267,8 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
   }, []);
 
   const handleOpen = event => {
-    clearTimeout(hystersisTimer.current);
-    hystersisOpen.current = true;
+    clearTimeout(hystersisTimer);
+    hystersisOpen = true;
 
     // The mouseover event will trigger for every nested element in the tooltip.
     // We can skip rerendering when the tooltip is already open.
@@ -298,11 +304,14 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
 
     clearTimeout(enterTimer.current);
     clearTimeout(leaveTimer.current);
-    if (enterDelay && !hystersisOpen.current) {
+    if (enterDelay || (hystersisOpen && enterNextDelay)) {
       event.persist();
-      enterTimer.current = setTimeout(() => {
-        handleOpen(event);
-      }, enterDelay);
+      enterTimer.current = setTimeout(
+        () => {
+          handleOpen(event);
+        },
+        hystersisOpen ? enterNextDelay : enterDelay,
+      );
     } else {
       handleOpen(event);
     }
@@ -337,12 +346,11 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
   };
 
   const handleClose = event => {
-    clearTimeout(hystersisTimer.current);
-    hystersisTimer.current = setTimeout(() => {
-      hystersisOpen.current = false;
-    }, 500);
-    // Use 500 ms per https://github.com/reach/reach-ui/blob/3b5319027d763a3082880be887d7a29aee7d3afc/packages/tooltip/src/index.js#L214
-
+    clearTimeout(hystersisTimer);
+    hystersisTimer = setTimeout(() => {
+      hystersisOpen = false;
+    }, 800 + leaveDelay);
+    // Wait x ms, about the same amount of time the Web platform do.
     setOpenState(false);
 
     if (onClose) {
@@ -564,6 +572,10 @@ Tooltip.propTypes = {
    * This prop won't impact the enter touch delay (`enterTouchDelay`).
    */
   enterDelay: PropTypes.number,
+  /**
+   * The number of milliseconds to wait before showing the tooltip when one was already recently opened.
+   */
+  enterNextDelay: PropTypes.number,
   /**
    * The number of milliseconds a user must touch the element before showing the tooltip.
    */
