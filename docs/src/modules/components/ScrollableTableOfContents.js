@@ -5,9 +5,11 @@ import throttle from 'lodash/throttle';
 import clsx from 'clsx';
 import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Link from 'docs/src/modules/components/Link';
 import PageContext from 'docs/src/modules/components/PageContext';
+import DiamondSponsors from 'docs/src/modules/components/DiamondSponsors';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -182,6 +184,9 @@ export default function ScrollableTableOfContents(props) {
           </li>
         ))}
       </Typography>
+      <Box mt={3} mb={2} mx={1.5}>
+        <DiamondSponsors />
+      </Box>
     </nav>
   );
 }
