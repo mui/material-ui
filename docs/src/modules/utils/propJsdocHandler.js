@@ -1,6 +1,9 @@
 import { parse as parseDoctrine } from 'doctrine';
 
-export default function propJsdocHandler(documentation, componentDefinition) {
+/**
+ * parses JSDOC of propTypes
+ */
+export default function propJsdocHandler(documentation) {
   const { props } = documentation.toObject();
 
   Object.keys(props).forEach(propName => {

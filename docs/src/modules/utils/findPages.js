@@ -1,4 +1,7 @@
+// false positive
+// eslint-disable-next-line import/order
 import { findPages } from 'docs/src/modules/utils/find';
+
 const api = require('docs/static/api.json');
 
 const pages = [

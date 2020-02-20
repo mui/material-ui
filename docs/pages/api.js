@@ -14,7 +14,6 @@ import Link from 'docs/src/modules/components/Link';
 import { pageToTitle } from 'docs/src/modules/utils/helpers';
 import EditPage from 'docs/src/modules/components/EditPage';
 import ScrollableTableOfContents from 'docs/src/modules/components/ScrollableTableOfContents';
-import textToHash from 'docs/src/modules/utils/textToHash';
 import Ad from 'docs/src/modules/components/Ad';
 import NoSsr from '@material-ui/core/NoSsr';
 
