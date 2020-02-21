@@ -91,13 +91,13 @@ describe('<CardMedia />', () => {
       PropTypes.resetWarningCache();
     });
 
-    it('warns when neither `children`, nor `image`, nor `src` are provided', () => {
+    it('warns when neither `children`, nor `image`, nor `src`, nor `component` are provided', () => {
       mount(<CardMedia />);
 
       assert.strictEqual(consoleErrorMock.callCount(), 1);
       assert.include(
         consoleErrorMock.args()[0][0],
-        'Material-UI: either `children`, `image` or `src` prop must be specified.',
+        'Material-UI: either `children`, `image`, `src` or `component` prop must be specified.',
       );
     });
   });
