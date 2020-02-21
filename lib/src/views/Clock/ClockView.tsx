@@ -76,8 +76,8 @@ export const ClockView: React.FC<ClockViewProps> = ({
   getSecondsClockNumberText = getSecondsAriaText,
 }) => {
   const utils = useUtils();
-  const minTime = useParsedDate(unparsedMinTime)
-  const maxTime = useParsedDate(unparsedMaxTime)
+  const minTime = useParsedDate(unparsedMinTime);
+  const maxTime = useParsedDate(unparsedMaxTime);
   const { meridiemMode, handleMeridiemChange } = useMeridiemMode(date, ampm, onDateChange);
 
   const isTimeDisabled = React.useCallback(
@@ -175,7 +175,18 @@ export const ClockView: React.FC<ClockViewProps> = ({
       default:
         throw new Error('You must provide the type for ClockView');
     }
-  }, [type, utils, date, ampm, getHoursClockNumberText, getMinutesClockNumberText, getSecondsClockNumberText, meridiemMode, onChange, isTimeDisabled]);
+  }, [
+    type,
+    utils,
+    date,
+    ampm,
+    getHoursClockNumberText,
+    getMinutesClockNumberText,
+    getSecondsClockNumberText,
+    meridiemMode,
+    onChange,
+    isTimeDisabled,
+  ]);
 
   return (
     <Clock
