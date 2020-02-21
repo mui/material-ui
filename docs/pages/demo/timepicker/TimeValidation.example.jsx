@@ -27,10 +27,10 @@ function TimeValidation() {
         label="Disable odd hours"
         shouldDisableTime={(timeValue, clockType) => {
           if (clockType === 'hours' && timeValue % 2) {
-            return true
+            return true;
           }
 
-          return false
+          return false;
         }}
         value={selectedDate}
         onChange={date => handleDateChange(date)}
