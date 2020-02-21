@@ -13,10 +13,11 @@ import { IconButton, Typography, makeStyles } from '@material-ui/core';
 import { useGlobalKeyDown, keycode } from '../../_shared/hooks/useKeyDown';
 import { WrapperVariantContext } from '../../wrappers/WrapperVariantContext';
 
-export interface ClockProps {
+export interface ClockProps extends ReturnType<typeof useMeridiemMode> {
   date: MaterialUiPickersDate;
   type: ClockViewType;
   value: number;
+  isTimeDisabled: (timeValue: number, type: ClockViewType) => boolean;
   children: React.ReactElement<any>[];
   onDateChange: PickerOnChangeFn;
   onChange: (value: number, isFinish?: boolean | symbol) => void;
@@ -92,23 +93,33 @@ export const useStyles = makeStyles(
 
 export const Clock: React.FC<ClockProps> = ({
   date,
-  onDateChange,
   ampmInClock = false,
   value,
   children: numbersElementsArray,
   type,
   ampm,
+  isTimeDisabled,
   minutesStep = 1,
   allowKeyboardControl,
   onChange,
+  meridiemMode,
+  handleMeridiemChange,
 }) => {
   const utils = useUtils();
   const classes = useStyles();
   const wrapperVariant = React.useContext(WrapperVariantContext);
   const isMoving = React.useRef(false);
-  const { meridiemMode, handleMeridiemChange } = useMeridiemMode(date, ampm, onDateChange);
 
+  const isSelectedTimeDisabled = isTimeDisabled(value, type);
   const isPointerInner = !ampm && type === 'hours' && (value < 1 || value > 12);
+
+  const handleValueChange = (newValue: number, isFinish: boolean) => {
+    if (isTimeDisabled(newValue, type)) {
+      return;
+    }
+
+    onChange(newValue, isFinish);
+  };
 
   const setTime = (e: any, isFinish = false) => {
     let { offsetX, offsetY } = e;
@@ -125,7 +136,7 @@ export const Clock: React.FC<ClockProps> = ({
         ? getMinutes(offsetX, offsetY, minutesStep)
         : getHours(offsetX, offsetY, Boolean(ampm));
 
-    onChange(value, isFinish);
+    handleValueChange(value, isFinish);
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
@@ -172,10 +183,10 @@ export const Clock: React.FC<ClockProps> = ({
   useGlobalKeyDown(
     Boolean(allowKeyboardControl ?? wrapperVariant !== 'static') && !isMoving.current,
     {
-      [keycode.Home]: () => onChange(0), // annulate both hours and minutes
-      [keycode.End]: () => onChange(type === 'minutes' ? 59 : 23, false),
-      [keycode.ArrowUp]: () => onChange(value + keyboardControlStep, false),
-      [keycode.ArrowDown]: () => onChange(value - keyboardControlStep, false),
+      [keycode.Home]: () => handleValueChange(0, false), // annulate both hours and minutes
+      [keycode.End]: () => handleValueChange(type === 'minutes' ? 59 : 23, false),
+      [keycode.ArrowUp]: () => handleValueChange(value + keyboardControlStep, false),
+      [keycode.ArrowDown]: () => handleValueChange(value - keyboardControlStep, false),
     }
   );
 
@@ -192,16 +203,20 @@ export const Clock: React.FC<ClockProps> = ({
           onMouseMove={handleMouseMove}
         />
 
-        <div className={classes.pin} />
+        {!isSelectedTimeDisabled && (
+          <>
+            <div className={classes.pin} />
 
-        <ClockPointer
-          type={type}
-          value={value}
-          isInner={isPointerInner}
-          hasSelected={hasSelected}
-          aria-live="polite"
-          aria-label={`Selected time ${utils.format(date, 'fullTime')}`}
-        />
+            <ClockPointer
+              type={type}
+              value={value}
+              isInner={isPointerInner}
+              hasSelected={hasSelected}
+              aria-live="polite"
+              aria-label={`Selected time ${utils.format(date, 'fullTime')}`}
+            />
+          </>
+        )}
 
         {numbersElementsArray}
       </div>

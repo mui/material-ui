@@ -1,5 +1,5 @@
 import { useUtils } from '../_shared/hooks/useUtils';
-import { BaseClockViewProps } from '../views/Clock/ClockView';
+import { ExportedClockViewProps } from '../views/Clock/ClockView';
 import { BaseDatePickerProps } from '../DatePicker/DatePicker';
 import { DateTimePickerToolbar } from './DateTimePickerToolbar';
 import { ResponsiveWrapper } from '../wrappers/ResponsiveWrapper';
@@ -14,7 +14,7 @@ import {
 
 export type DateTimePickerView = 'year' | 'date' | 'month' | 'hours' | 'minutes' | 'seconds';
 
-export type BaseDateTimePickerProps = BaseClockViewProps & BaseDatePickerProps;
+export type BaseDateTimePickerProps = ExportedClockViewProps & BaseDatePickerProps;
 
 export interface DateTimePickerViewsProps extends BaseDateTimePickerProps {
   /** To show tabs */

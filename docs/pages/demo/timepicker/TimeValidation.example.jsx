@@ -1,27 +1,23 @@
 import React, { Fragment, useState } from 'react';
 import { TimePicker } from '@material-ui/pickers';
 
-function SecondsTimePicker() {
+function TimeValidation() {
   const [selectedDate, handleDateChange] = useState(new Date());
 
   return (
     <Fragment>
       <TimePicker
-        ampm={false}
-        openTo="hours"
-        views={['hours', 'minutes', 'seconds']}
-        format="HH:mm:ss"
-        label="With seconds"
         value={selectedDate}
         onChange={date => handleDateChange(date)}
+        minTime={new Date(0, 0, 0, 8)}
+        maxTime={new Date(0, 0, 0, 18, 45)}
       />
 
       <TimePicker
-        ampmInClock
-        openTo="minutes"
-        views={['minutes', 'seconds']}
-        format="mm:ss"
-        a
+        ampm={false} // This is not needed if you are using localization
+        label="24 hours"
+        minTime={new Date(0, 0, 0, 8)}
+        maxTime={new Date(0, 0, 0, 18, 45)}
         value={selectedDate}
         onChange={date => handleDateChange(date)}
       />
@@ -29,4 +25,4 @@ function SecondsTimePicker() {
   );
 }
 
-export default SecondsTimePicker;
+export default TimeValidation;

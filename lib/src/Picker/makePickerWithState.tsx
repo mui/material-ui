@@ -87,6 +87,8 @@ export function makePickerWithStateAndWrapper<
       okLabel,
       cancelLabel,
       todayLabel,
+      minTime,
+      maxTime,
       ...restPropsForTextField
     } = allProps;
 
@@ -124,6 +126,8 @@ export function makePickerWithStateAndWrapper<
           loadingIndicator={loadingIndicator}
           maxDate={maxDate}
           minDate={minDate}
+          minTime={minTime}
+          maxTime={maxTime}
           minutesStep={minutesStep}
           onMonthChange={onMonthChange}
           onYearChange={onYearChange}

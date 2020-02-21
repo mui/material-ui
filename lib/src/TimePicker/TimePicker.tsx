@@ -1,5 +1,5 @@
 import { TimePickerToolbar } from './TimePickerToolbar';
-import { BaseClockViewProps } from '../views/Clock/ClockView';
+import { ExportedClockViewProps } from '../views/Clock/ClockView';
 import { ResponsiveWrapper } from '../wrappers/ResponsiveWrapper';
 import { pick12hOr24hFormat } from '../_helpers/text-field-helper';
 import { useUtils, MuiPickersUtils } from '../_shared/hooks/useUtils';
@@ -12,7 +12,7 @@ import {
 } from '../Picker/makePickerWithState';
 
 export interface TimePickerProps
-  extends BaseClockViewProps,
+  extends ExportedClockViewProps,
     WithViewsProps<'hours' | 'minutes' | 'seconds'>,
     WithDateInputProps {}
 

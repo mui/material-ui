@@ -124,3 +124,87 @@ describe('e2e - TimePicker with seconds', () => {
     toHaveBeenCalledExceptMoment(onChangeMock, [utilsToUse.date('2018-01-01T00:00:53.000')]);
   });
 });
+
+describe('e2e - TimePicker time validation', () => {
+  let component: ReactWrapper<TimePickerProps>;
+  const onChangeMock = jest.fn();
+
+  const clockTouchEvents = {
+    '13:--': {
+      buttons: 1,
+      offsetX: 166,
+      offsetY: 76,
+    },
+    '20:--': {
+      buttons: 1,
+      offsetX: 66,
+      offsetY: 157,
+    },
+    '--:10': {
+      buttons: 1,
+      offsetX: 220,
+      offsetY: 72,
+    },
+    '--:20': {
+      buttons: 1,
+      offsetX: 222,
+      offsetY: 180,
+    },
+  };
+
+  beforeEach(() => {
+    jest.clearAllMocks();
+    component = mount(
+      <TimePicker
+        open
+        ampm={false}
+        onChange={onChangeMock}
+        views={['hours', 'minutes', 'seconds']}
+        value={utilsToUse.date('2018-01-01T00:00:00.000')}
+        minTime={new Date(0, 0, 0, 12, 15, 15)}
+        maxTime={new Date(0, 0, 0, 15, 45, 30)}
+      />
+    );
+  });
+
+  it('Should select enabled hour', () => {
+    component.find('Clock div[role="menu"]').simulate('touchMove', clockTouchEvents['13:--']);
+    expect(component.find('button[data-mui-test="hours"] h3').text()).toBe('13');
+  });
+
+  it('Should select enabled minute', () => {
+    component.find('Clock div[role="menu"]').simulate('touchMove', clockTouchEvents['13:--']);
+    component.find('button[data-mui-test="minutes"]').simulate('click');
+    component.find('Clock div[role="menu"]').simulate('touchMove', clockTouchEvents['--:20']);
+
+    expect(component.find('button[data-mui-test="minutes"] h3').text()).toBe('20');
+  });
+
+  it('Should not select minute when hour is disabled ', () => {
+    component.find('Clock div[role="menu"]').simulate('touchMove', clockTouchEvents['20:--']);
+    component.find('button[data-mui-test="minutes"]').simulate('click');
+    component.find('Clock div[role="menu"]').simulate('touchMove', clockTouchEvents['--:20']);
+  });
+
+  it('Should not select disabled hour', () => {
+    component.find('Clock div[role="menu"]').simulate('touchMove', clockTouchEvents['20:--']);
+    expect(component.find('button[data-mui-test="hours"] h3').text()).toBe('00');
+  });
+
+  it('Should not select disabled second', () => {
+    component.find('button[data-mui-test="seconds"]').simulate('click');
+    component.find('Clock div[role="menu"]').simulate('touchMove', clockTouchEvents['--:20']);
+
+    expect(component.find('button[data-mui-test="seconds"] h3').text()).toBe('00');
+  });
+
+  it.only('Should select enabled second', () => {
+    component.find('Clock div[role="menu"]').simulate('touchMove', clockTouchEvents['13:--']);
+    component.find('button[data-mui-test="minutes"]').simulate('click');
+    component.find('Clock div[role="menu"]').simulate('touchMove', clockTouchEvents['--:20']);
+    component.find('button[data-mui-test="seconds"]').simulate('click');
+    component.find('Clock div[role="menu"]').simulate('touchMove', clockTouchEvents['--:10']);
+
+    expect(component.find('button[data-mui-test="seconds"] h3').text()).toBe('10');
+  });
+});

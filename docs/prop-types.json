@@ -984,7 +984,7 @@
       "name": "ampm",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/views/Clock/ClockView.tsx",
-        "name": "BaseClockViewProps"
+        "name": "ExportedClockViewProps"
       },
       "required": false,
       "type": {
@@ -999,7 +999,7 @@
       "name": "minutesStep",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/views/Clock/ClockView.tsx",
-        "name": "BaseClockViewProps"
+        "name": "ExportedClockViewProps"
       },
       "required": false,
       "type": {
@@ -1014,11 +1014,65 @@
       "name": "ampmInClock",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/views/Clock/ClockView.tsx",
-        "name": "BaseClockViewProps"
+        "name": "ExportedClockViewProps"
       },
       "required": false,
       "type": {
         "name": "boolean"
+      }
+    },
+    "allowKeyboardControl": {
+      "defaultValue": {
+        "value": "currentWrapper !== 'static'"
+      },
+      "description": "Enables keyboard listener for moving between days in calendar",
+      "name": "allowKeyboardControl",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Clock/ClockView.tsx",
+        "name": "ExportedClockViewProps"
+      },
+      "required": false,
+      "type": {
+        "name": "boolean"
+      }
+    },
+    "minTime": {
+      "defaultValue": null,
+      "description": "Min time, date part of passed object will be ignored",
+      "name": "minTime",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Clock/ClockView.tsx",
+        "name": "ExportedClockViewProps"
+      },
+      "required": false,
+      "type": {
+        "name": "any"
+      }
+    },
+    "maxTime": {
+      "defaultValue": null,
+      "description": "Max time, date part of passed object will be ignored",
+      "name": "maxTime",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Clock/ClockView.tsx",
+        "name": "ExportedClockViewProps"
+      },
+      "required": false,
+      "type": {
+        "name": "any"
+      }
+    },
+    "shouldDisableTime": {
+      "defaultValue": null,
+      "description": "Dynamically check if time is disabled or not",
+      "name": "shouldDisableTime",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Clock/ClockView.tsx",
+        "name": "ExportedClockViewProps"
+      },
+      "required": false,
+      "type": {
+        "name": "(timeValue: number, type: \"hours\" | \"minutes\" | \"seconds\") => boolean"
       }
     },
     "views": {
@@ -2028,7 +2082,7 @@
       "name": "ampm",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/views/Clock/ClockView.tsx",
-        "name": "BaseClockViewProps"
+        "name": "ExportedClockViewProps"
       },
       "required": false,
       "type": {
@@ -2043,7 +2097,7 @@
       "name": "minutesStep",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/views/Clock/ClockView.tsx",
-        "name": "BaseClockViewProps"
+        "name": "ExportedClockViewProps"
       },
       "required": false,
       "type": {
@@ -2058,11 +2112,65 @@
       "name": "ampmInClock",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/views/Clock/ClockView.tsx",
-        "name": "BaseClockViewProps"
+        "name": "ExportedClockViewProps"
       },
       "required": false,
       "type": {
         "name": "boolean"
+      }
+    },
+    "allowKeyboardControl": {
+      "defaultValue": {
+        "value": "currentWrapper !== 'static'\ncurrentWrapper !== 'static'"
+      },
+      "description": "Enables keyboard listener for moving between days in calendar\nEnables keyboard listener for moving between days in calendar",
+      "name": "allowKeyboardControl",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Clock/ClockView.tsx",
+        "name": "ExportedClockViewProps"
+      },
+      "required": false,
+      "type": {
+        "name": "boolean"
+      }
+    },
+    "minTime": {
+      "defaultValue": null,
+      "description": "Min time, date part of passed object will be ignored",
+      "name": "minTime",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Clock/ClockView.tsx",
+        "name": "ExportedClockViewProps"
+      },
+      "required": false,
+      "type": {
+        "name": "any"
+      }
+    },
+    "maxTime": {
+      "defaultValue": null,
+      "description": "Max time, date part of passed object will be ignored",
+      "name": "maxTime",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Clock/ClockView.tsx",
+        "name": "ExportedClockViewProps"
+      },
+      "required": false,
+      "type": {
+        "name": "any"
+      }
+    },
+    "shouldDisableTime": {
+      "defaultValue": null,
+      "description": "Dynamically check if time is disabled or not",
+      "name": "shouldDisableTime",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Clock/ClockView.tsx",
+        "name": "ExportedClockViewProps"
+      },
+      "required": false,
+      "type": {
+        "name": "(timeValue: number, type: \"hours\" | \"minutes\" | \"seconds\") => boolean"
       }
     },
     "onYearChange": {
@@ -2281,21 +2389,6 @@
       "required": false,
       "type": {
         "name": "(day: DateIOType, selectedDate: DateIOType, dayInCurrentMonth: boolean, dayComponent: Element) => Element"
-      }
-    },
-    "allowKeyboardControl": {
-      "defaultValue": {
-        "value": "currentWrapper !== 'static'"
-      },
-      "description": "Enables keyboard listener for moving between days in calendar",
-      "name": "allowKeyboardControl",
-      "parent": {
-        "fileName": "material-ui-pickers/lib/src/views/Calendar/Calendar.tsx",
-        "name": "ExportedCalendarProps"
-      },
-      "required": false,
-      "type": {
-        "name": "boolean"
       }
     },
     "loadingIndicator": {
@@ -2535,21 +2628,6 @@
         "name": "(secondsText: string) => string"
       }
     },
-    "allowKeyboardControl": {
-      "defaultValue": {
-        "value": "currentWrapper !== 'static'"
-      },
-      "description": "Enables keyboard listener for moving between days in calendar",
-      "name": "allowKeyboardControl",
-      "parent": {
-        "fileName": "material-ui-pickers/lib/src/views/Clock/ClockView.tsx",
-        "name": "ClockViewProps"
-      },
-      "required": false,
-      "type": {
-        "name": "boolean"
-      }
-    },
     "ampm": {
       "defaultValue": {
         "value": true
@@ -2558,7 +2636,7 @@
       "name": "ampm",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/views/Clock/ClockView.tsx",
-        "name": "BaseClockViewProps"
+        "name": "ExportedClockViewProps"
       },
       "required": false,
       "type": {
@@ -2573,7 +2651,7 @@
       "name": "minutesStep",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/views/Clock/ClockView.tsx",
-        "name": "BaseClockViewProps"
+        "name": "ExportedClockViewProps"
       },
       "required": false,
       "type": {
@@ -2588,11 +2666,65 @@
       "name": "ampmInClock",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/views/Clock/ClockView.tsx",
-        "name": "BaseClockViewProps"
+        "name": "ExportedClockViewProps"
       },
       "required": false,
       "type": {
         "name": "boolean"
+      }
+    },
+    "allowKeyboardControl": {
+      "defaultValue": {
+        "value": "currentWrapper !== 'static'"
+      },
+      "description": "Enables keyboard listener for moving between days in calendar",
+      "name": "allowKeyboardControl",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Clock/ClockView.tsx",
+        "name": "ExportedClockViewProps"
+      },
+      "required": false,
+      "type": {
+        "name": "boolean"
+      }
+    },
+    "minTime": {
+      "defaultValue": null,
+      "description": "Min time, date part of passed object will be ignored",
+      "name": "minTime",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Clock/ClockView.tsx",
+        "name": "ExportedClockViewProps"
+      },
+      "required": false,
+      "type": {
+        "name": "any"
+      }
+    },
+    "maxTime": {
+      "defaultValue": null,
+      "description": "Max time, date part of passed object will be ignored",
+      "name": "maxTime",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Clock/ClockView.tsx",
+        "name": "ExportedClockViewProps"
+      },
+      "required": false,
+      "type": {
+        "name": "any"
+      }
+    },
+    "shouldDisableTime": {
+      "defaultValue": null,
+      "description": "Dynamically check if time is disabled or not",
+      "name": "shouldDisableTime",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Clock/ClockView.tsx",
+        "name": "ExportedClockViewProps"
+      },
+      "required": false,
+      "type": {
+        "name": "(timeValue: number, type: \"hours\" | \"minutes\" | \"seconds\") => boolean"
       }
     }
   }
