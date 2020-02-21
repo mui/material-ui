@@ -405,8 +405,6 @@ export default function useAutocomplete(props) {
       onOpen(event);
     }
     if (!isOpenControlled) {
-      setFocusedTag(-1);
-      focusTag(-1);
       setOpenState(true);
     }
   };
