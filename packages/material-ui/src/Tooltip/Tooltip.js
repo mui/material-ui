@@ -350,7 +350,6 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     hystersisTimer = setTimeout(() => {
       hystersisOpen = false;
     }, 800 + leaveDelay);
-    // Wait x ms, about the same amount of time the Web platform do.
     setOpenState(false);
 
     if (onClose) {
