@@ -34,7 +34,7 @@ const useStyles = makeStyles(theme => ({
   ul: {
     padding: 0,
     margin: 0,
-    listStyleType: 'none',
+    listStyle: 'none',
   },
   item: {
     fontSize: 13,
