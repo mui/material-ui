@@ -12,6 +12,9 @@ const useStyles = makeStyles(theme => ({
   formControl: {
     margin: theme.spacing(3),
   },
+  button: {
+    margin: theme.spacing(1, 1, 0, 0),
+  },
 }));
 
 export default function RadioButtonsError() {
@@ -22,23 +25,33 @@ export default function RadioButtonsError() {
 
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue((event.target as HTMLInputElement).value);
+    setHelperText('Check your answer...');
+    setError(false);
   };
 
   const checkAnswer = () => {
-    setError(value === 'worst');
-    setHelperText(value === 'worst' ? 'Sorry, wrong answer!' : "You got it!")
+    if (value === 'best') {
+      setHelperText('You got it!');
+      setError(false);
+    } else if (value === 'worst') {
+      setHelperText('Sorry, wrong answer!');
+      setError(true);
+    } else {
+      setHelperText('Please select an option.');
+      setError(true);
+    }
   };
 
   return (
     <div>
-      <FormControl component="fieldset" className={classes.formControl} error={error}>
+      <FormControl component="fieldset" error={error} className={classes.formControl}>
         <FormLabel component="legend">Pop quiz: Material-UI is...</FormLabel>
         <RadioGroup aria-label="quiz" name="quiz" value={value} onChange={handleRadioChange}>
           <FormControlLabel value="best" control={<Radio />} label="The best!" />
           <FormControlLabel value="worst" control={<Radio />} label="The worst." />
         </RadioGroup>
         <FormHelperText>{helperText}</FormHelperText>
-        <Button variant="outlined" color="primary" onClick={checkAnswer}>
+        <Button variant="outlined" color="primary" onClick={checkAnswer} className={classes.button}>
           Check Answer
         </Button>
       </FormControl>
