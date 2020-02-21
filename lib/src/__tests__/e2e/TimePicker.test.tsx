@@ -2,7 +2,12 @@ import * as React from 'react';
 import { ReactWrapper } from 'enzyme';
 import { clickOKButton } from './commands';
 import { mount, utilsToUse, toHaveBeenCalledExceptMoment } from '../test-utils';
-import { MobileTimePicker, TimePicker, TimePickerProps } from '../../TimePicker/TimePicker';
+import {
+  MobileTimePicker,
+  DesktopTimePicker,
+  TimePicker,
+  TimePickerProps,
+} from '../../TimePicker/TimePicker';
 
 const fakeTouchEvent = {
   buttons: 1,
@@ -122,6 +127,39 @@ describe('e2e - TimePicker with seconds', () => {
 
     clickOKButton(component);
     toHaveBeenCalledExceptMoment(onChangeMock, [utilsToUse.date('2018-01-01T00:00:53.000')]);
+  });
+});
+
+describe('e2e - Timepicker view navigation', () => {
+  let component: ReactWrapper<TimePickerProps>;
+
+  beforeEach(() => {
+    component = mount(
+      <DesktopTimePicker
+        views={['hours', 'minutes', 'seconds']}
+        onChange={jest.fn()}
+        value={utilsToUse.date('2018-01-01T00:00:12.000')}
+      />
+    );
+  });
+
+  it('Should switch between views', () => {
+    component.find('button[data-mui-test="open-picker-from-keyboard"]').simulate('click');
+
+    expect(component.find('ClockView').prop('type')).toBe('hours');
+    expect(component.find('button[data-mui-test="previous-arrow-button"]').prop('disabled')).toBe(
+      true
+    );
+
+    component.find('button[data-mui-test="next-arrow-button"]').simulate('click');
+    expect(component.find('ClockView').prop('type')).toBe('minutes');
+    expect(component.find('button[data-mui-test="previous-arrow-button"]').prop('disabled')).toBe(
+      false
+    );
+
+    component.find('button[data-mui-test="next-arrow-button"]').simulate('click');
+    expect(component.find('ClockView').prop('type')).toBe('seconds');
+    expect(component.find('button[data-mui-test="next-arrow-button"]').prop('disabled')).toBe(true);
   });
 });
 
