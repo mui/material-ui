@@ -54,12 +54,10 @@
   },
   "lint-staged": {
     "lib/src/**/*.{ts,tsx}": [
-      "yarn docgen",
-      "git add docs/prop-types.json"
+      "yarn docgen"
     ],
     "*.{js,jsx,ts,tsx,json,css,md,mdx}": [
-      "prettier --write",
-      "git add"
+      "prettier --write"
     ]
   },
   "eslintIgnore": [
