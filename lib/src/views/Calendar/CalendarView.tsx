@@ -159,8 +159,8 @@ export const CalendarView: React.FC<CalendarViewProps> = ({
   const now = useNow();
   const utils = useUtils();
   const classes = useStyles();
-  const minDate = useParsedDate(unparsedMinDate);
-  const maxDate = useParsedDate(unparsedMaxDate);
+  const minDate = useParsedDate(unparsedMinDate)!;
+  const maxDate = useParsedDate(unparsedMaxDate)!;
   const wrapperVariant = React.useContext(WrapperVariantContext);
   const allowKeyboardControl = allowKeyboardControlProp ?? wrapperVariant !== 'static';
 
