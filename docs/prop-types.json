@@ -254,8 +254,8 @@
       "description": "Left arrow icon",
       "name": "leftArrowIcon",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/views/Calendar/CalendarHeader.tsx",
-        "name": "CalendarHeaderProps"
+        "fileName": "material-ui-pickers/lib/src/_shared/ArrowSwitcher.tsx",
+        "name": "ExportedArrowSwitcherProps"
       },
       "required": false,
       "type": {
@@ -267,8 +267,8 @@
       "description": "Right arrow icon",
       "name": "rightArrowIcon",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/views/Calendar/CalendarHeader.tsx",
-        "name": "CalendarHeaderProps"
+        "fileName": "material-ui-pickers/lib/src/_shared/ArrowSwitcher.tsx",
+        "name": "ExportedArrowSwitcherProps"
       },
       "required": false,
       "type": {
@@ -280,8 +280,8 @@
       "description": "Props to pass to left arrow button",
       "name": "leftArrowButtonProps",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/views/Calendar/CalendarHeader.tsx",
-        "name": "CalendarHeaderProps"
+        "fileName": "material-ui-pickers/lib/src/_shared/ArrowSwitcher.tsx",
+        "name": "ExportedArrowSwitcherProps"
       },
       "required": false,
       "type": {
@@ -293,8 +293,8 @@
       "description": "Props to pass to right arrow button",
       "name": "rightArrowButtonProps",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/views/Calendar/CalendarHeader.tsx",
-        "name": "CalendarHeaderProps"
+        "fileName": "material-ui-pickers/lib/src/_shared/ArrowSwitcher.tsx",
+        "name": "ExportedArrowSwitcherProps"
       },
       "required": false,
       "type": {
@@ -306,8 +306,8 @@
       "description": "Left arrow icon aria-label text",
       "name": "leftArrowButtonText",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/views/Calendar/CalendarHeader.tsx",
-        "name": "CalendarHeaderProps"
+        "fileName": "material-ui-pickers/lib/src/_shared/ArrowSwitcher.tsx",
+        "name": "ExportedArrowSwitcherProps"
       },
       "required": false,
       "type": {
@@ -319,8 +319,8 @@
       "description": "Right arrow icon aria-label text",
       "name": "rightArrowButtonText",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/views/Calendar/CalendarHeader.tsx",
-        "name": "CalendarHeaderProps"
+        "fileName": "material-ui-pickers/lib/src/_shared/ArrowSwitcher.tsx",
+        "name": "ExportedArrowSwitcherProps"
       },
       "required": false,
       "type": {
@@ -1072,7 +1072,7 @@
       },
       "required": false,
       "type": {
-        "name": "(timeValue: number, type: \"hours\" | \"minutes\" | \"seconds\") => boolean"
+        "name": "(timeValue: number, clockType: \"hours\" | \"minutes\" | \"seconds\") => boolean"
       }
     },
     "views": {
@@ -2170,7 +2170,7 @@
       },
       "required": false,
       "type": {
-        "name": "(timeValue: number, type: \"hours\" | \"minutes\" | \"seconds\") => boolean"
+        "name": "(timeValue: number, clockType: \"hours\" | \"minutes\" | \"seconds\") => boolean"
       }
     },
     "onYearChange": {
@@ -2191,8 +2191,8 @@
       "description": "Left arrow icon",
       "name": "leftArrowIcon",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/views/Calendar/CalendarHeader.tsx",
-        "name": "CalendarHeaderProps"
+        "fileName": "material-ui-pickers/lib/src/_shared/ArrowSwitcher.tsx",
+        "name": "ExportedArrowSwitcherProps"
       },
       "required": false,
       "type": {
@@ -2204,8 +2204,8 @@
       "description": "Right arrow icon",
       "name": "rightArrowIcon",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/views/Calendar/CalendarHeader.tsx",
-        "name": "CalendarHeaderProps"
+        "fileName": "material-ui-pickers/lib/src/_shared/ArrowSwitcher.tsx",
+        "name": "ExportedArrowSwitcherProps"
       },
       "required": false,
       "type": {
@@ -2217,8 +2217,8 @@
       "description": "Props to pass to left arrow button",
       "name": "leftArrowButtonProps",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/views/Calendar/CalendarHeader.tsx",
-        "name": "CalendarHeaderProps"
+        "fileName": "material-ui-pickers/lib/src/_shared/ArrowSwitcher.tsx",
+        "name": "ExportedArrowSwitcherProps"
       },
       "required": false,
       "type": {
@@ -2230,8 +2230,8 @@
       "description": "Props to pass to right arrow button",
       "name": "rightArrowButtonProps",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/views/Calendar/CalendarHeader.tsx",
-        "name": "CalendarHeaderProps"
+        "fileName": "material-ui-pickers/lib/src/_shared/ArrowSwitcher.tsx",
+        "name": "ExportedArrowSwitcherProps"
       },
       "required": false,
       "type": {
@@ -2243,8 +2243,8 @@
       "description": "Left arrow icon aria-label text",
       "name": "leftArrowButtonText",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/views/Calendar/CalendarHeader.tsx",
-        "name": "CalendarHeaderProps"
+        "fileName": "material-ui-pickers/lib/src/_shared/ArrowSwitcher.tsx",
+        "name": "ExportedArrowSwitcherProps"
       },
       "required": false,
       "type": {
@@ -2256,8 +2256,8 @@
       "description": "Right arrow icon aria-label text",
       "name": "rightArrowButtonText",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/views/Calendar/CalendarHeader.tsx",
-        "name": "CalendarHeaderProps"
+        "fileName": "material-ui-pickers/lib/src/_shared/ArrowSwitcher.tsx",
+        "name": "ExportedArrowSwitcherProps"
       },
       "required": false,
       "type": {
@@ -2630,7 +2630,7 @@
     },
     "ampm": {
       "defaultValue": {
-        "value": true
+        "value": "true"
       },
       "description": "12h/24h view for hour selection clock",
       "name": "ampm",
@@ -2724,7 +2724,89 @@
       },
       "required": false,
       "type": {
-        "name": "(timeValue: number, type: \"hours\" | \"minutes\" | \"seconds\") => boolean"
+        "name": "(timeValue: number, clockType: \"hours\" | \"minutes\" | \"seconds\") => boolean"
+      }
+    },
+    "leftArrowIcon": {
+      "defaultValue": null,
+      "description": "Left arrow icon",
+      "name": "leftArrowIcon",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/_shared/ArrowSwitcher.tsx",
+        "name": "ExportedArrowSwitcherProps"
+      },
+      "required": false,
+      "type": {
+        "name": "ReactNode"
+      }
+    },
+    "rightArrowIcon": {
+      "defaultValue": null,
+      "description": "Right arrow icon",
+      "name": "rightArrowIcon",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/_shared/ArrowSwitcher.tsx",
+        "name": "ExportedArrowSwitcherProps"
+      },
+      "required": false,
+      "type": {
+        "name": "ReactNode"
+      }
+    },
+    "leftArrowButtonText": {
+      "defaultValue": {
+        "value": "open previous view"
+      },
+      "description": "Left arrow icon aria-label text",
+      "name": "leftArrowButtonText",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/_shared/ArrowSwitcher.tsx",
+        "name": "ExportedArrowSwitcherProps"
+      },
+      "required": false,
+      "type": {
+        "name": "string"
+      }
+    },
+    "rightArrowButtonText": {
+      "defaultValue": {
+        "value": "open next view"
+      },
+      "description": "Right arrow icon aria-label text",
+      "name": "rightArrowButtonText",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/_shared/ArrowSwitcher.tsx",
+        "name": "ExportedArrowSwitcherProps"
+      },
+      "required": false,
+      "type": {
+        "name": "string"
+      }
+    },
+    "leftArrowButtonProps": {
+      "defaultValue": null,
+      "description": "Props to pass to left arrow button",
+      "name": "leftArrowButtonProps",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/_shared/ArrowSwitcher.tsx",
+        "name": "ExportedArrowSwitcherProps"
+      },
+      "required": false,
+      "type": {
+        "name": "Partial<IconButtonProps>"
+      }
+    },
+    "rightArrowButtonProps": {
+      "defaultValue": null,
+      "description": "Props to pass to right arrow button",
+      "name": "rightArrowButtonProps",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/_shared/ArrowSwitcher.tsx",
+        "name": "ExportedArrowSwitcherProps"
+      },
+      "required": false,
+      "type": {
+        "name": "Partial<IconButtonProps>"
       }
     }
   }

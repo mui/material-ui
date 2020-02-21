@@ -263,4 +263,6 @@ ClockView.propTypes = {
   type: PropTypes.oneOf(['minutes', 'hours', 'seconds']).isRequired,
 };
 
+ClockView.displayName = 'ClockView';
+
 export default React.memo(ClockView);

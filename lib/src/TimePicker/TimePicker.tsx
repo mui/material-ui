@@ -1,3 +1,5 @@
+import React from 'react';
+import ClockIcon from '../_shared/icons/ClockIcon';
 import { TimePickerToolbar } from './TimePickerToolbar';
 import { ExportedClockViewProps } from '../views/Clock/ClockView';
 import { ResponsiveWrapper } from '../wrappers/ResponsiveWrapper';
@@ -40,6 +42,7 @@ function useDefaultProps({
     acceptRegex: willUseAmPm ? /[\dapAP]/gi : /\d/gi,
     mask: mask || willUseAmPm ? '__:__ _M' : '__:__',
     getOpenDialogAriaText: getTextFieldAriaText,
+    keyboardIcon: <ClockIcon />,
     format: pick12hOr24hFormat(format, ampm, {
       localized: utils.formats.fullTime,
       '12h': utils.formats.fullTime12h,
