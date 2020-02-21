@@ -3,5 +3,9 @@ import { useUtils } from './useUtils';
 
 export function useParsedDate(possiblyUnparsedValue: any) {
   const utils = useUtils();
-  return React.useMemo(() => utils.date(possiblyUnparsedValue)!, [possiblyUnparsedValue, utils]);
+  return React.useMemo(
+    () =>
+      typeof possiblyUnparsedValue === 'undefined' ? undefined : utils.date(possiblyUnparsedValue)!,
+    [possiblyUnparsedValue, utils]
+  );
 }
