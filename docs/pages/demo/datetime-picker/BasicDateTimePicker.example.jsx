@@ -11,7 +11,6 @@ function BasicDateTimePicker() {
         variant="outlined"
         value={selectedDate}
         onChange={handleDateChange}
-        minDateTime={new Date()}
       />
     </Fragment>
   );
