@@ -6,7 +6,7 @@ import { onSpaceOrEnter } from '../../_helpers/utils';
 import { makeStyles, fade } from '@material-ui/core/styles';
 import { FORCE_FINISH_PICKER } from '../../_shared/hooks/usePickerState';
 
-const positions = {
+const positions: Record<number, [number, number]> = {
   0: [0, 40],
   1: [55, 19.6],
   2: [94.4, 59.5],
@@ -31,7 +31,7 @@ const positions = {
   21: [-74, 114],
   22: [-64, 77],
   23: [-37, 50],
-} as const;
+};
 
 export interface ClockNumberProps {
   index: number;
