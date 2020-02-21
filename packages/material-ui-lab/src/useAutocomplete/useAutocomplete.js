@@ -256,21 +256,21 @@ export default function useAutocomplete(props) {
 
   const filteredOptions = popupOpen
     ? filterOptions(
-        options.filter(option => {
-          if (
-            filterSelectedOptions &&
-            (multiple ? value : [value]).some(
-              value2 => value2 !== null && getOptionSelected(option, value2),
-            )
-          ) {
-            return false;
-          }
-          return true;
-        }),
-        // we use the empty string to manipulate `filterOptions` to not filter any options
-        // i.e. the filter predicate always returns true
-        { inputValue: inputValueIsSelectedValue ? '' : inputValue },
-      )
+      options.filter(option => {
+        if (
+          filterSelectedOptions &&
+          (multiple ? value : [value]).some(
+            value2 => value2 !== null && getOptionSelected(option, value2),
+          )
+        ) {
+          return false;
+        }
+        return true;
+      }),
+      // we use the empty string to manipulate `filterOptions` to not filter any options
+      // i.e. the filter predicate always returns true
+      { inputValue: inputValueIsSelectedValue ? '' : inputValue },
+    )
     : [];
 
   popupOpen = freeSolo && filteredOptions.length === 0 ? false : popupOpen;
@@ -405,6 +405,7 @@ export default function useAutocomplete(props) {
       onOpen(event);
     }
     if (!isOpenControlled) {
+      setFocusedTag(-1);
       focusTag(-1);
       setOpenState(true);
     }
@@ -448,7 +449,7 @@ export default function useAutocomplete(props) {
             [
               'Material-UI: the `getOptionSelected` method of useAutocomplete do not handle the arguments correctly.',
               `The component expects a single value to match a given option but found ${
-                matches.length
+              matches.length
               } matches.`,
             ].join('\n'),
           );
