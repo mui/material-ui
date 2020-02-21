@@ -558,6 +558,7 @@ export default function useAutocomplete(props) {
           // Prevent scroll of the page
           event.preventDefault();
           changeHighlightedIndex('start', 'next');
+          handleOpen(event);
         }
         break;
       case 'End':
@@ -565,6 +566,7 @@ export default function useAutocomplete(props) {
           // Prevent scroll of the page
           event.preventDefault();
           changeHighlightedIndex('end', 'previous');
+          handleOpen(event);
         }
         break;
       case 'PageUp':
