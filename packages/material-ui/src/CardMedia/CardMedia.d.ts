@@ -5,7 +5,6 @@ export interface CardMediaTypeMap<P, D extends React.ElementType> {
   props: P & {
     image?: string;
     src?: string;
-    component?: string | React.Component
   };
   defaultComponent: D;
   classKey: CardMediaClassKey;
