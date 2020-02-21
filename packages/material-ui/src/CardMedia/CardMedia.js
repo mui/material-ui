@@ -67,7 +67,9 @@ CardMedia.propTypes = {
    */
   children: chainPropTypes(PropTypes.node, props => {
     if (!props.children && !props.image && !props.src && !props.component) {
-      return new Error('Material-UI: either `children`, `image`, `src` or `component` prop must be specified.');
+      return new Error(
+        'Material-UI: either `children`, `image`, `src` or `component` prop must be specified.',
+      );
     }
     return null;
   }),
