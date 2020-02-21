@@ -36,7 +36,7 @@ export interface ExportedClockViewProps {
   /** Max time, date part of passed object will be ignored */
   maxTime?: MaterialUiPickersDate;
   /** Dynamically check if time is disabled or not */
-  shouldDisableTime?: (timeValue: number, type: 'hours' | 'minutes' | 'seconds') => boolean;
+  shouldDisableTime?: (timeValue: number, clockType: 'hours' | 'minutes' | 'seconds') => boolean;
 }
 
 export interface ClockViewProps extends ExportedClockViewProps {
