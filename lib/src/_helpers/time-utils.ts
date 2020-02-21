@@ -89,3 +89,10 @@ export const getHours = (offsetX: number, offsetY: number, ampm: boolean) => {
 export function getSecondsInDay(date: MaterialUiPickersDate, utils: MuiPickersUtils) {
   return utils.getHours(date) * 3600 + utils.getMinutes(date) * 60 + utils.getSeconds(date);
 }
+
+export const createIsAfterIgnoreDatePart = (utils: MuiPickersUtils) => (
+  dateLeft: MaterialUiPickersDate,
+  dateRight: MaterialUiPickersDate
+) => {
+  return getSecondsInDay(dateLeft, utils) > getSecondsInDay(dateRight, utils);
+};

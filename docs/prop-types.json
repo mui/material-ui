@@ -1038,7 +1038,7 @@
     },
     "minTime": {
       "defaultValue": null,
-      "description": "Min time, date part of passed object will be ignored",
+      "description": "Min time, date part by default, will be ignored",
       "name": "minTime",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/views/Clock/ClockView.tsx",
@@ -1051,7 +1051,7 @@
     },
     "maxTime": {
       "defaultValue": null,
-      "description": "Max time, date part of passed object will be ignored",
+      "description": "Max time, date part by default, will be ignored",
       "name": "maxTime",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/views/Clock/ClockView.tsx",
@@ -1073,6 +1073,19 @@
       "required": false,
       "type": {
         "name": "(timeValue: number, clockType: \"hours\" | \"minutes\" | \"seconds\") => boolean"
+      }
+    },
+    "disableTimeValidationIgnoreDatePart": {
+      "defaultValue": null,
+      "description": "Do not ignore date part when validating min/max time",
+      "name": "disableTimeValidationIgnoreDatePart",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Clock/ClockView.tsx",
+        "name": "ExportedClockViewProps"
+      },
+      "required": false,
+      "type": {
+        "name": "boolean"
       }
     },
     "views": {
@@ -2162,7 +2175,7 @@
     },
     "minTime": {
       "defaultValue": null,
-      "description": "Min time, date part of passed object will be ignored",
+      "description": "Min time, date part by default, will be ignored",
       "name": "minTime",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/views/Clock/ClockView.tsx",
@@ -2175,7 +2188,7 @@
     },
     "maxTime": {
       "defaultValue": null,
-      "description": "Max time, date part of passed object will be ignored",
+      "description": "Max time, date part by default, will be ignored",
       "name": "maxTime",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/views/Clock/ClockView.tsx",
@@ -2197,6 +2210,19 @@
       "required": false,
       "type": {
         "name": "(timeValue: number, clockType: \"hours\" | \"minutes\" | \"seconds\") => boolean"
+      }
+    },
+    "disableTimeValidationIgnoreDatePart": {
+      "defaultValue": null,
+      "description": "Do not ignore date part when validating min/max time",
+      "name": "disableTimeValidationIgnoreDatePart",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Clock/ClockView.tsx",
+        "name": "ExportedClockViewProps"
+      },
+      "required": false,
+      "type": {
+        "name": "boolean"
       }
     },
     "onYearChange": {
@@ -2716,7 +2742,7 @@
     },
     "minTime": {
       "defaultValue": null,
-      "description": "Min time, date part of passed object will be ignored",
+      "description": "Min time, date part by default, will be ignored",
       "name": "minTime",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/views/Clock/ClockView.tsx",
@@ -2729,7 +2755,7 @@
     },
     "maxTime": {
       "defaultValue": null,
-      "description": "Max time, date part of passed object will be ignored",
+      "description": "Max time, date part by default, will be ignored",
       "name": "maxTime",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/views/Clock/ClockView.tsx",
@@ -2751,6 +2777,19 @@
       "required": false,
       "type": {
         "name": "(timeValue: number, clockType: \"hours\" | \"minutes\" | \"seconds\") => boolean"
+      }
+    },
+    "disableTimeValidationIgnoreDatePart": {
+      "defaultValue": null,
+      "description": "Do not ignore date part when validating min/max time",
+      "name": "disableTimeValidationIgnoreDatePart",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Clock/ClockView.tsx",
+        "name": "ExportedClockViewProps"
+      },
+      "required": false,
+      "type": {
+        "name": "boolean"
       }
     },
     "leftArrowIcon": {

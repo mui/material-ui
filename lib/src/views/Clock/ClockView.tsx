@@ -10,8 +10,8 @@ import { PickerOnChangeFn } from '../../_shared/hooks/useViews';
 import { useParsedDate } from '../../_shared/hooks/useParsedDate';
 import { getHourNumbers, getMinutesNumbers } from './ClockNumbers';
 import { useMeridiemMode } from '../../TimePicker/TimePickerToolbar';
-import { convertValueToMeridiem, getSecondsInDay } from '../../_helpers/time-utils';
 import { ArrowSwitcher, ExportedArrowSwitcherProps } from '../../_shared/ArrowSwitcher';
+import { convertValueToMeridiem, createIsAfterIgnoreDatePart } from '../../_helpers/time-utils';
 
 export interface ExportedClockViewProps {
   /**
@@ -34,12 +34,14 @@ export interface ExportedClockViewProps {
    * @default currentWrapper !== 'static'
    */
   allowKeyboardControl?: boolean;
-  /** Min time, date part of passed object will be ignored */
+  /** Min time, date part by default, will be ignored */
   minTime?: ParsableDate;
-  /** Max time, date part of passed object will be ignored */
+  /** Max time, date part by default, will be ignored */
   maxTime?: ParsableDate;
   /** Dynamically check if time is disabled or not */
   shouldDisableTime?: (timeValue: number, clockType: 'hours' | 'minutes' | 'seconds') => boolean;
+  /** Do not ignore date part when validating min/max time */
+  disableTimeValidationIgnoreDatePart?: boolean;
 }
 
 export interface ClockViewProps extends ExportedClockViewProps, ExportedArrowSwitcherProps {
@@ -105,6 +107,7 @@ export const ClockView: React.FC<ClockViewProps> = ({
   nextViewAvailable,
   showViewSwitcher,
   previousViewAvailable,
+  disableTimeValidationIgnoreDatePart,
 }) => {
   const utils = useUtils();
   const classes = useStyles();
@@ -117,12 +120,14 @@ export const ClockView: React.FC<ClockViewProps> = ({
       const validateTimeValue = (
         getRequestedTimePoint: (when: 'start' | 'end') => MaterialUiPickersDate
       ) => {
+        const isAfterComparingFn = disableTimeValidationIgnoreDatePart
+          ? utils.isAfter
+          : createIsAfterIgnoreDatePart(utils);
+
         // prettier-ignore
         return Boolean(
-          (minTime &&
-            getSecondsInDay(minTime, utils) > getSecondsInDay(getRequestedTimePoint('end'), utils)) ||
-          (maxTime &&
-            getSecondsInDay(maxTime, utils) < getSecondsInDay(getRequestedTimePoint('start'), utils)) ||
+          (minTime && isAfterComparingFn(minTime, getRequestedTimePoint('end'))) ||
+          (maxTime && isAfterComparingFn(getRequestedTimePoint('start'), maxTime)) ||
           (shouldDisableTime && shouldDisableTime(rawValue, type))
         );
       };
@@ -148,7 +153,16 @@ export const ClockView: React.FC<ClockViewProps> = ({
           return validateTimeValue(() => utils.setSeconds(date, rawValue));
       }
     },
-    [ampm, date, maxTime, meridiemMode, minTime, shouldDisableTime, utils]
+    [
+      ampm,
+      date,
+      disableTimeValidationIgnoreDatePart,
+      maxTime,
+      meridiemMode,
+      minTime,
+      shouldDisableTime,
+      utils,
+    ]
   );
 
   const viewProps = React.useMemo(() => {
