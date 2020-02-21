@@ -183,7 +183,8 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     disableFocusListener = false,
     disableHoverListener = false,
     disableTouchListener = false,
-    enterDelay = 0,
+    enterDelay = 200,
+    enterNextDelay = 0,
     enterTouchDelay = 700,
     id: idProp,
     interactive = false,
@@ -303,11 +304,14 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
 
     clearTimeout(enterTimer.current);
     clearTimeout(leaveTimer.current);
-    if (enterDelay && !hystersisOpen) {
+    if (enterDelay || (hystersisOpen && enterNextDelay)) {
       event.persist();
-      enterTimer.current = setTimeout(() => {
-        handleOpen(event);
-      }, enterDelay);
+      enterTimer.current = setTimeout(
+        () => {
+          handleOpen(event);
+        },
+        hystersisOpen ? enterNextDelay : enterDelay,
+      );
     } else {
       handleOpen(event);
     }
@@ -345,9 +349,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     clearTimeout(hystersisTimer);
     hystersisTimer = setTimeout(() => {
       hystersisOpen = false;
-    }, 500);
-    // Use 500 ms per https://github.com/reach/reach-ui/blob/3b5319027d763a3082880be887d7a29aee7d3afc/packages/tooltip/src/index.js#L214
-
+    }, 800 + leaveDelay);
     setOpenState(false);
 
     if (onClose) {
@@ -569,6 +571,10 @@ Tooltip.propTypes = {
    * This prop won't impact the enter touch delay (`enterTouchDelay`).
    */
   enterDelay: PropTypes.number,
+  /**
+   * The number of milliseconds to wait before showing the tooltip when one was already recently opened.
+   */
+  enterNextDelay: PropTypes.number,
   /**
    * The number of milliseconds a user must touch the element before showing the tooltip.
    */

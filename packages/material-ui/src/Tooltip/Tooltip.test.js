@@ -36,6 +36,7 @@ describe('<Tooltip />', () => {
   const render = createClientRender({ strict: false });
   let clock;
   const defaultProps = {
+    enterDelay: 0,
     children: (
       <button id="testChild" type="submit">
         Hello World
@@ -186,7 +187,7 @@ describe('<Tooltip />', () => {
       const AutoFocus = props => (
         <div>
           {props.open ? (
-            <Tooltip title="Title">
+            <Tooltip {...defaultProps} title="Title">
               <Input value="value" autoFocus />
             </Tooltip>
           ) : null}
@@ -222,6 +223,7 @@ describe('<Tooltip />', () => {
         <Tooltip
           {...defaultProps}
           enterDelay={111}
+          enterNextDelay={30}
           leaveDelay={5}
           TransitionProps={{ timeout: 6 }}
         />,
@@ -237,7 +239,9 @@ describe('<Tooltip />', () => {
       expect(document.body.querySelectorAll('[role="tooltip"]').length).to.equal(0);
 
       focusVisible(children);
-      // Bypass `enterDelay` wait, instant display.
+      // Bypass `enterDelay` wait, use `enterNextDelay`.
+      expect(document.body.querySelectorAll('[role="tooltip"]').length).to.equal(0);
+      clock.tick(30);
       expect(document.body.querySelectorAll('[role="tooltip"]').length).to.equal(1);
     });
 
@@ -351,7 +355,7 @@ describe('<Tooltip />', () => {
   describe('prop: interactive', () => {
     it('should keep the overlay open if the popper element is hovered', () => {
       const wrapper = mount(
-        <Tooltip title="Hello World" interactive leaveDelay={111}>
+        <Tooltip {...defaultProps} title="Hello World" interactive leaveDelay={111}>
           <button id="testChild" type="submit">
             Hello World
           </button>
