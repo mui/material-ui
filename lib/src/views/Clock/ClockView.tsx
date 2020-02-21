@@ -5,6 +5,7 @@ import { pipe } from '../../_helpers/utils';
 import { useUtils } from '../../_shared/hooks/useUtils';
 import { MaterialUiPickersDate } from '../../typings/date';
 import { PickerOnChangeFn } from '../../_shared/hooks/useViews';
+import { useParsedDate } from '../../_shared/hooks/useParsedDate';
 import { getHourNumbers, getMinutesNumbers } from './ClockNumbers';
 import { useMeridiemMode } from '../../TimePicker/TimePickerToolbar';
 import { convertValueToMeridiem, getSecondsInDay } from '../../_helpers/time-utils';
@@ -66,8 +67,8 @@ export const ClockView: React.FC<ClockViewProps> = ({
   date,
   minutesStep,
   ampmInClock,
-  minTime,
-  maxTime,
+  minTime: unparsedMinTime,
+  maxTime: unparsedMaxTime,
   allowKeyboardControl,
   shouldDisableTime,
   getHoursClockNumberText = getHoursAriaText,
@@ -75,6 +76,8 @@ export const ClockView: React.FC<ClockViewProps> = ({
   getSecondsClockNumberText = getSecondsAriaText,
 }) => {
   const utils = useUtils();
+  const minTime = useParsedDate(unparsedMinTime)
+  const maxTime = useParsedDate(unparsedMaxTime)
   const { meridiemMode, handleMeridiemChange } = useMeridiemMode(date, ampm, onDateChange);
 
   const isTimeDisabled = React.useCallback(
@@ -142,8 +145,6 @@ export const ClockView: React.FC<ClockViewProps> = ({
         return {
           value: minutesValue,
           onChange: handleMinutesChange,
-          minValue: minTime && utils.getMinutes(minTime),
-          maxValue: maxTime && utils.getMinutes(maxTime),
           children: getMinutesNumbers({
             utils,
             value: minutesValue,
@@ -162,8 +163,6 @@ export const ClockView: React.FC<ClockViewProps> = ({
         return {
           value: secondsValue,
           onChange: handleSecondsChange,
-          minValue: minTime && utils.getSeconds(minTime),
-          maxValue: maxTime && utils.getSeconds(maxTime),
           children: getMinutesNumbers({
             utils,
             value: secondsValue,
@@ -176,20 +175,7 @@ export const ClockView: React.FC<ClockViewProps> = ({
       default:
         throw new Error('You must provide the type for ClockView');
     }
-  }, [
-    type,
-    utils,
-    date,
-    ampm,
-    getHoursClockNumberText,
-    minTime,
-    maxTime,
-    getMinutesClockNumberText,
-    getSecondsClockNumberText,
-    meridiemMode,
-    onChange,
-    isTimeDisabled,
-  ]);
+  }, [type, utils, date, ampm, getHoursClockNumberText, getMinutesClockNumberText, getSecondsClockNumberText, meridiemMode, onChange, isTimeDisabled]);
 
   return (
     <Clock
