@@ -6,38 +6,20 @@ import { CalendarProps } from './Calendar';
 import { DatePickerView } from '../../DatePicker';
 import { SlideDirection } from './SlideTransition';
 import { Fade, IconButton } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import { useUtils } from '../../_shared/hooks/useUtils';
 import { MaterialUiPickersDate } from '../../typings/date';
 import { FadeTransitionGroup } from './FadeTransitionGroup';
-import { IconButtonProps } from '@material-ui/core/IconButton';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import { ArrowLeftIcon } from '../../_shared/icons/ArrowLeftIcon';
-import { ArrowRightIcon } from '../../_shared/icons/ArrowRightIcon';
 import { ArrowDropDownIcon } from '../../_shared/icons/ArrowDropDownIcon';
+import { ArrowSwitcher, ExportedArrowSwitcherProps } from '../../_shared/ArrowSwitcher';
 
 export interface CalendarHeaderProps
-  extends Pick<CalendarProps, 'minDate' | 'maxDate' | 'disablePast' | 'disableFuture'> {
+  extends ExportedArrowSwitcherProps,
+    Pick<CalendarProps, 'minDate' | 'maxDate' | 'disablePast' | 'disableFuture'> {
   view: DatePickerView;
   views: DatePickerView[];
   month: MaterialUiPickersDate;
-  /** Left arrow icon */
-  leftArrowIcon?: React.ReactNode;
-  /** Right arrow icon */
-  rightArrowIcon?: React.ReactNode;
-  /** Left arrow icon aria-label text */
-  leftArrowButtonText?: string;
-  /** Right arrow icon aria-label text */
-  rightArrowButtonText?: string;
-  /**
-   * Props to pass to left arrow button
-   * @type {Partial<IconButtonProps>}
-   */
-  leftArrowButtonProps?: Partial<IconButtonProps>;
-  /**
-   * Props to pass to right arrow button
-   * @type {Partial<IconButtonProps>}
-   */
-  rightArrowButtonProps?: Partial<IconButtonProps>;
+
   /** Get aria-label text for switching between views button */
   getViewSwitchingButtonText?: (currentView: DatePickerView) => string;
   reduceAnimations: boolean;
@@ -61,10 +43,7 @@ export const useStyles = makeStyles(
     yearSelectionSwitcher: {
       marginRight: 'auto',
     },
-    iconButton: {
-      zIndex: 1,
-      backgroundColor: theme.palette.background.paper,
-    },
+
     previousMonthButton: {
       marginRight: 24,
     },
@@ -106,18 +85,16 @@ export const CalendarHeader: React.SFC<CalendarHeaderProps> = ({
   disableFuture,
   onMonthChange,
   reduceAnimations,
-  leftArrowIcon,
-  rightArrowIcon,
   leftArrowButtonProps,
   rightArrowButtonProps,
+  leftArrowIcon,
+  rightArrowIcon,
   leftArrowButtonText = 'previous month',
   rightArrowButtonText = 'next month',
   getViewSwitchingButtonText = getSwitchingViewAriaText,
 }) => {
   const utils = useUtils();
-  const theme = useTheme();
-  const classes = useStyles({ view });
-  const isRtl = theme.direction === 'rtl';
+  const classes = useStyles();
 
   const selectNextMonth = () => onMonthChange(utils.getNextMonth(month), 'left');
   const selectPreviousMonth = () => onMonthChange(utils.getPreviousMonth(month), 'right');
@@ -204,7 +181,19 @@ export const CalendarHeader: React.SFC<CalendarHeaderProps> = ({
         </div>
 
         <Fade in={view === 'date'}>
-          <div>
+          <ArrowSwitcher
+            leftArrowButtonProps={leftArrowButtonProps}
+            rightArrowButtonProps={rightArrowButtonProps}
+            leftArrowButtonText={leftArrowButtonText}
+            rightArrowButtonText={rightArrowButtonText}
+            leftArrowIcon={leftArrowIcon}
+            rightArrowIcon={rightArrowIcon}
+            onLeftClick={selectPreviousMonth}
+            onRightClick={selectNextMonth}
+            isLeftDisabled={isPreviousMonthDisabled}
+            isRightDisabled={isNextMonthDisabled}
+          />
+          {/* <div>
             <IconButton
               data-mui-test="previous-month"
               size="small"
@@ -231,7 +220,7 @@ export const CalendarHeader: React.SFC<CalendarHeaderProps> = ({
             >
               {isRtl ? leftArrowIcon : rightArrowIcon}
             </IconButton>
-          </div>
+          </div> */}
         </Fade>
       </div>
     </>
@@ -243,11 +232,8 @@ CalendarHeader.displayName = 'CalendarHeader';
 CalendarHeader.propTypes = {
   leftArrowIcon: PropTypes.node,
   rightArrowIcon: PropTypes.node,
-};
-
-CalendarHeader.defaultProps = {
-  leftArrowIcon: <ArrowLeftIcon />,
-  rightArrowIcon: <ArrowRightIcon />,
+  leftArrowButtonText: PropTypes.string,
+  rightArrowButtonText: PropTypes.string,
 };
 
 export default CalendarHeader;

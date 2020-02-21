@@ -87,6 +87,9 @@ export const useStyles = makeStyles(
   { name: 'MuiPickersBasePicker' }
 );
 
+const isTimePickerByViews = (views: DateTimePickerView[]) =>
+  !views.some(view => view === 'year' || view === 'month' || view === 'date');
+
 export function Picker({
   date,
   openTo = 'date',
@@ -114,7 +117,7 @@ export function Picker({
   const toShowToolbar =
     typeof showToolbar === 'undefined' ? wrapperVariant !== 'desktop' : showToolbar;
 
-  const { openView, setOpenView, handleChangeAndOpenNext } = useViews({
+  const { openView, nextView, previousView, setOpenView, handleChangeAndOpenNext } = useViews({
     views,
     openTo,
     onChange,
@@ -172,6 +175,11 @@ export function Picker({
                 type={openView as 'hours' | 'minutes' | 'seconds'}
                 onDateChange={onChange}
                 onChange={handleChangeAndOpenNext}
+                openNextView={() => setOpenView(nextView)}
+                openPreviousView={() => setOpenView(previousView)}
+                nextViewAvailable={!Boolean(nextView)}
+                previousViewAvailable={!Boolean(previousView)}
+                showViewSwitcher={isTimePickerByViews(views) && wrapperVariant === 'desktop'}
               />
             )}
           </>
