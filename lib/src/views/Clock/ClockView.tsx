@@ -4,6 +4,7 @@ import Clock from './Clock';
 import { pipe } from '../../_helpers/utils';
 import { makeStyles } from '@material-ui/styles';
 import { useUtils } from '../../_shared/hooks/useUtils';
+import { ParsableDate } from '../../constants/prop-types';
 import { MaterialUiPickersDate } from '../../typings/date';
 import { PickerOnChangeFn } from '../../_shared/hooks/useViews';
 import { useParsedDate } from '../../_shared/hooks/useParsedDate';
@@ -34,9 +35,9 @@ export interface ExportedClockViewProps {
    */
   allowKeyboardControl?: boolean;
   /** Min time, date part of passed object will be ignored */
-  minTime?: MaterialUiPickersDate;
+  minTime?: ParsableDate;
   /** Max time, date part of passed object will be ignored */
-  maxTime?: MaterialUiPickersDate;
+  maxTime?: ParsableDate;
   /** Dynamically check if time is disabled or not */
   shouldDisableTime?: (timeValue: number, clockType: 'hours' | 'minutes' | 'seconds') => boolean;
 }
@@ -113,11 +114,15 @@ export const ClockView: React.FC<ClockViewProps> = ({
 
   const isTimeDisabled = React.useCallback(
     (rawValue: number, type: 'hours' | 'minutes' | 'seconds') => {
-      const validateTimeValue = (timePoint: MaterialUiPickersDate) => {
+      const validateTimeValue = (
+        getRequestedTimePoint: (when: 'start' | 'end') => MaterialUiPickersDate
+      ) => {
         // prettier-ignore
         return Boolean(
-          (minTime && getSecondsInDay(minTime, utils) > getSecondsInDay(timePoint, utils)) ||
-          (maxTime && getSecondsInDay(maxTime, utils) < getSecondsInDay(timePoint, utils)) ||
+          (minTime &&
+            getSecondsInDay(minTime, utils) > getSecondsInDay(getRequestedTimePoint('end'), utils)) ||
+          (maxTime &&
+            getSecondsInDay(maxTime, utils) < getSecondsInDay(getRequestedTimePoint('start'), utils)) ||
           (shouldDisableTime && shouldDisableTime(rawValue, type))
         );
       };
@@ -125,22 +130,22 @@ export const ClockView: React.FC<ClockViewProps> = ({
       switch (type) {
         case 'hours':
           const hoursWithMeridiem = convertValueToMeridiem(rawValue, meridiemMode, Boolean(ampm));
-          return validateTimeValue(
+          return validateTimeValue((when: 'start' | 'end') =>
             pipe(
               currentDate => utils.setHours(currentDate, hoursWithMeridiem),
-              dateWithHours => utils.setMinutes(dateWithHours, 0),
-              dateWithMinutes => utils.setSeconds(dateWithMinutes, 0)
+              dateWithHours => utils.setMinutes(dateWithHours, when === 'start' ? 0 : 59),
+              dateWithMinutes => utils.setSeconds(dateWithMinutes, when === 'start' ? 0 : 59)
             )(date)
           );
         case 'minutes':
-          return validateTimeValue(
+          return validateTimeValue((when: 'start' | 'end') =>
             pipe(
               currentDate => utils.setMinutes(currentDate, rawValue),
-              dateWithMinutes => utils.setSeconds(dateWithMinutes, 0)
+              dateWithMinutes => utils.setSeconds(dateWithMinutes, when === 'start' ? 0 : 59)
             )(date)
           );
         case 'seconds':
-          return validateTimeValue(utils.setSeconds(date, rawValue));
+          return validateTimeValue(() => utils.setSeconds(date, rawValue));
       }
     },
     [ampm, date, maxTime, meridiemMode, minTime, shouldDisableTime, utils]

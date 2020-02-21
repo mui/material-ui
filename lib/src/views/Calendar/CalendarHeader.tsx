@@ -24,6 +24,8 @@ export interface CalendarHeaderProps
   getViewSwitchingButtonText?: (currentView: DatePickerView) => string;
   reduceAnimations: boolean;
   changeView: (view: DatePickerView) => void;
+  minDate: MaterialUiPickersDate;
+  maxDate: MaterialUiPickersDate;
   onMonthChange: (date: MaterialUiPickersDate, slideDirection: SlideDirection) => void;
 }
 
@@ -102,7 +104,7 @@ export const CalendarHeader: React.SFC<CalendarHeaderProps> = ({
   const isPreviousMonthDisabled = React.useMemo(() => {
     const now = utils.date();
     const firstEnabledMonth = utils.startOfMonth(
-      disablePast && utils.isAfter(now, utils.date(minDate)) ? now : utils.date(minDate)
+      disablePast && utils.isAfter(now, minDate) ? now : minDate
     );
 
     return !utils.isBefore(firstEnabledMonth, month);
@@ -111,7 +113,7 @@ export const CalendarHeader: React.SFC<CalendarHeaderProps> = ({
   const isNextMonthDisabled = React.useMemo(() => {
     const now = utils.date();
     const lastEnabledMonth = utils.startOfMonth(
-      disableFuture && utils.isBefore(now, utils.date(maxDate)) ? now : utils.date(maxDate)
+      disableFuture && utils.isBefore(now, maxDate) ? now : maxDate
     );
 
     return !utils.isAfter(lastEnabledMonth, month);

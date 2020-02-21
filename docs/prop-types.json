@@ -1046,7 +1046,7 @@
       },
       "required": false,
       "type": {
-        "name": "any"
+        "name": "ParsableDate"
       }
     },
     "maxTime": {
@@ -1059,7 +1059,7 @@
       },
       "required": false,
       "type": {
-        "name": "any"
+        "name": "ParsableDate"
       }
     },
     "shouldDisableTime": {
@@ -2074,6 +2074,32 @@
         "name": "ReactNode"
       }
     },
+    "minDateTime": {
+      "defaultValue": null,
+      "description": "`minDate` + `minTime` combined",
+      "name": "minDateTime",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/DateTimePicker/DateTimePicker.tsx",
+        "name": "DateTimePickerViewsProps"
+      },
+      "required": false,
+      "type": {
+        "name": "ParsableDate"
+      }
+    },
+    "maxDateTime": {
+      "defaultValue": null,
+      "description": "`maxDate` + `maxTime` combined",
+      "name": "maxDateTime",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/DateTimePicker/DateTimePicker.tsx",
+        "name": "DateTimePickerViewsProps"
+      },
+      "required": false,
+      "type": {
+        "name": "ParsableDate"
+      }
+    },
     "ampm": {
       "defaultValue": {
         "value": "true"
@@ -2144,7 +2170,7 @@
       },
       "required": false,
       "type": {
-        "name": "any"
+        "name": "ParsableDate"
       }
     },
     "maxTime": {
@@ -2157,7 +2183,7 @@
       },
       "required": false,
       "type": {
-        "name": "any"
+        "name": "ParsableDate"
       }
     },
     "shouldDisableTime": {
@@ -2698,7 +2724,7 @@
       },
       "required": false,
       "type": {
-        "name": "any"
+        "name": "ParsableDate"
       }
     },
     "maxTime": {
@@ -2711,7 +2737,7 @@
       },
       "required": false,
       "type": {
-        "name": "any"
+        "name": "ParsableDate"
       }
     },
     "shouldDisableTime": {
