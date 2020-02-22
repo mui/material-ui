@@ -19,7 +19,7 @@ export default function FontAwesome() {
 
   React.useEffect(() => {
     loadCSS(
-      'https://use.fontawesome.com/releases/v5.1.0/css/all.css',
+      'https://use.fontawesome.com/releases/v5.12.0/css/all.css',
       document.querySelector('#font-awesome-css'),
     );
   }, []);
