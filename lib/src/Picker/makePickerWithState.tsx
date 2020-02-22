@@ -21,7 +21,7 @@ export interface WithViewsProps<T extends DateTimePickerView> {
 export type WithDateInputProps = DateValidationProps & BasePickerProps & ExportedDateInputProps;
 
 export interface MakePickerOptions<T extends unknown> {
-  useDefaultProps: (props: T) => Partial<T> & { format: string };
+  useDefaultProps: (props: T) => Partial<T> & { inputFormat?: string };
   DefaultToolbarComponent: React.ComponentType<ToolbarComponentProps>;
 }
 
@@ -47,7 +47,7 @@ export function makePickerWithStateAndWrapper<
       disableFuture,
       disablePast,
       showToolbar,
-      format,
+      inputFormat,
       hideTabs,
       initialFocusedDate,
       leftArrowButtonProps,

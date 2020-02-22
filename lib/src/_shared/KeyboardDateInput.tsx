@@ -26,7 +26,7 @@ export const KeyboardDateInput: React.FC<DateInputProps> = ({
   mask,
   maskChar = '_',
   acceptRegex = /[\d]/gi,
-  format,
+  inputFormat,
   disabled,
   rifmFormatter,
   TextFieldComponent = TextField,
@@ -46,7 +46,7 @@ export const KeyboardDateInput: React.FC<DateInputProps> = ({
   const [isFocused, setIsFocused] = React.useState(false);
   const getInputValue = () =>
     getDisplayDate(rawValue, utils, {
-      format,
+      inputFormat,
       emptyLabel,
       invalidLabel,
       labelFunc,
@@ -58,12 +58,12 @@ export const KeyboardDateInput: React.FC<DateInputProps> = ({
     if (!mask || disableMaskedInput) {
       return {
         isMaskValid: false,
-        placeholder: utils.formatByString(staticDateWith2DigitTokens, format),
+        placeholder: utils.formatByString(staticDateWith2DigitTokens, inputFormat),
       };
     }
 
-    return checkMaskIsValidForCurrentFormat(mask, maskChar, format, acceptRegex, utils);
-  }, [format, mask]); // eslint-disable-line
+    return checkMaskIsValidForCurrentFormat(mask, maskChar, inputFormat, acceptRegex, utils);
+  }, [inputFormat, mask]); // eslint-disable-line
 
   // prettier-ignore
   const formatter = React.useMemo(
@@ -85,7 +85,7 @@ export const KeyboardDateInput: React.FC<DateInputProps> = ({
     const finalString = text === '' || text === mask ? null : text;
     setInnerInputValue(finalString);
 
-    const date = finalString === null ? null : utils.parse(finalString, format);
+    const date = finalString === null ? null : utils.parse(finalString, inputFormat);
     if (ignoreInvalidInputs && !utils.isValid(date)) {
       return;
     }

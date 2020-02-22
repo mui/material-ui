@@ -568,10 +568,10 @@
         "name": "boolean"
       }
     },
-    "format": {
+    "inputFormat": {
       "defaultValue": null,
       "description": "Format string",
-      "name": "format",
+      "name": "inputFormat",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
         "name": "BasePickerProps"
@@ -1200,10 +1200,10 @@
         "name": "boolean"
       }
     },
-    "format": {
+    "inputFormat": {
       "defaultValue": null,
       "description": "Format string",
-      "name": "format",
+      "name": "inputFormat",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
         "name": "BasePickerProps"
@@ -1668,10 +1668,10 @@
         "name": "boolean"
       }
     },
-    "format": {
+    "inputFormat": {
       "defaultValue": null,
       "description": "Format string",
-      "name": "format",
+      "name": "inputFormat",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
         "name": "BasePickerProps"

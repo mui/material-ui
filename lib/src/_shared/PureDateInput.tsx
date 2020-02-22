@@ -9,20 +9,10 @@ import { IconButtonProps } from '@material-ui/core/IconButton';
 import { InputAdornmentProps } from '@material-ui/core/InputAdornment';
 import { getDisplayDate, getTextFieldAriaText } from '../_helpers/text-field-helper';
 
-export type NotOverridableProps =
-  | 'openPicker'
-  | 'inputValue'
-  | 'onChange'
-  | 'format'
-  | 'validationError'
-  | 'format'
-  | 'rawValue'
-  | 'forwardedRef';
-
 export interface DateInputProps
   extends ExtendMui<TextFieldProps, 'onError' | 'onChange' | 'value'> {
   rawValue: ParsableDate;
-  format: string;
+  inputFormat: string;
   onChange: (date: MaterialUiPickersDate | null, keyboardInputValue?: string) => void;
   openPicker: () => void;
   validationError?: React.ReactNode;
@@ -84,11 +74,20 @@ export interface DateInputProps
   ignoreInvalidInputs?: boolean;
 }
 
-export type ExportedDateInputProps = Omit<DateInputProps, NotOverridableProps>;
+export type ExportedDateInputProps = Omit<
+  DateInputProps,
+  | 'openPicker'
+  | 'inputValue'
+  | 'onChange'
+  | 'inputFormat'
+  | 'validationError'
+  | 'rawValue'
+  | 'forwardedRef'
+>;
 
 export const PureDateInput: React.FC<DateInputProps> = ({
   onChange,
-  format,
+  inputFormat: format,
   rifmFormatter,
   acceptRegex: refuse,
   mask,
@@ -120,7 +119,7 @@ export const PureDateInput: React.FC<DateInputProps> = ({
   );
 
   const inputValue = getDisplayDate(rawValue, utils, {
-    format,
+    inputFormat: format,
     emptyLabel,
     invalidLabel,
     labelFunc,

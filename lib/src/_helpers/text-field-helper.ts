@@ -14,11 +14,11 @@ export const getDisplayDate = (
   value: ParsableDate,
   utils: MuiPickersUtils,
   {
-    format,
+    inputFormat,
     invalidLabel = '',
     emptyLabel,
     labelFunc,
-  }: Pick<DateInputProps, 'format' | 'invalidLabel' | 'emptyLabel' | 'labelFunc'>
+  }: Pick<DateInputProps, 'inputFormat' | 'invalidLabel' | 'emptyLabel' | 'labelFunc'>
 ) => {
   const date = utils.date(value);
   const isEmpty = value === null;
@@ -31,7 +31,7 @@ export const getDisplayDate = (
     return emptyLabel || '';
   }
 
-  return utils.isValid(date) ? utils.formatByString(date, format) : invalidLabel;
+  return utils.isValid(date) ? utils.formatByString(date, inputFormat) : invalidLabel;
 };
 
 export interface BaseValidationProps {

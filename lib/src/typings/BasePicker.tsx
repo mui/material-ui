@@ -13,7 +13,7 @@ export interface BasePickerProps {
    */
   autoOk?: boolean;
   /** Format string */
-  format?: string;
+  inputFormat?: string;
   /** Disable picker and text field */
   disabled?: boolean;
   /** Make picker read only */
