@@ -33,9 +33,6 @@ export function convertLength(baseFontSize) {
         pxLength = toUnitless(length) * toUnitless(baseFontSize);
       } else if (fromUnit === 'rem') {
         pxLength = toUnitless(length) * toUnitless(baseFontSize);
-      } else if (fromUnit === 'ex') {
-        pxLength = toUnitless(length) * toUnitless(baseFontSize) * 2;
-      } else {
         return length;
       }
     }
@@ -47,8 +44,6 @@ export function convertLength(baseFontSize) {
         outputLength = pxLength / toUnitless(baseFontSize);
       } else if (toUnit === 'rem') {
         outputLength = pxLength / toUnitless(baseFontSize);
-      } else if (toUnit === 'ex') {
-        outputLength = pxLength / toUnitless(baseFontSize) / 2;
       } else {
         return length;
       }
