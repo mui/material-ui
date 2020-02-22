@@ -1,6 +1,6 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
+import * as ReactDOM from 'react-dom';
 import clsx from 'clsx';
 import { elementTypeAcceptingRef, refType } from '@material-ui/utils';
 import useForkRef from '../utils/useForkRef';

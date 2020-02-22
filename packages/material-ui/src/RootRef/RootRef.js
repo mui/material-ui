@@ -1,5 +1,5 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { exactProp, refType } from '@material-ui/utils';
 import setRef from '../utils/setRef';
@@ -18,7 +18,7 @@ import setRef from '../utils/setRef';
  * It's highly inspired by https://github.com/facebook/react/issues/11401#issuecomment-340543801.
  * For example:
  * ```jsx
- * import React from 'react';
+ * import * as React from 'react';
  * import RootRef from '@material-ui/core/RootRef';
  *
  * function MyComponent() {

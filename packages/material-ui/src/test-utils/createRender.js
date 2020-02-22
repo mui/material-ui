@@ -1,5 +1,5 @@
 import { render as enzymeRender } from 'enzyme';
-import React from 'react';
+import * as React from 'react';
 import { RenderContext } from './RenderMode';
 
 /**

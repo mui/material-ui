@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
 import { createMount, getClasses } from '@material-ui/core/test-utils';

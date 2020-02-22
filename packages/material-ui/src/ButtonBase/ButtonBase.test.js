@@ -1,5 +1,5 @@
 // @ts-check
-import React from 'react';
+import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createMount, getClasses } from '@material-ui/core/test-utils';

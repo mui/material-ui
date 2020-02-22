@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { assert, expect } from 'chai';
 import { createMount, findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';

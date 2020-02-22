@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import ScopedCssBaseline from './ScopedCssBaseline';
 import describeConformance from '../test-utils/describeConformance';

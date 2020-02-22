@@ -1,6 +1,6 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
+import * as ReactDOM from 'react-dom';
 import { elementTypeAcceptingRef } from '@material-ui/utils';
 import { getThemeProps } from '@material-ui/styles';
 import Drawer, { getAnchor, isHorizontal } from '../Drawer/Drawer';

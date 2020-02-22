@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { assert } from 'chai';
 import { mount } from 'enzyme';
 import { spy, useFakeTimers, stub } from 'sinon';

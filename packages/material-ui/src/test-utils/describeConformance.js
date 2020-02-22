@@ -1,5 +1,5 @@
 import { assert } from 'chai';
-import React from 'react';
+import * as React from 'react';
 import findOutermostIntrinsic from './findOutermostIntrinsic';
 import ReactTestRenderer from 'react-test-renderer';
 import testRef from './testRef';

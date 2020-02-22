@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import FormControlContext from './FormControlContext';
 
 export default function useFormControl() {
