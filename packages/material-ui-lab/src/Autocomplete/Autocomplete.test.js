@@ -913,6 +913,25 @@ describe('<Autocomplete />', () => {
       expect(textbox.selectionStart).to.equal(0);
       expect(textbox.selectionEnd).to.equal(3);
     });
+
+    it('should focus the input when clicking on the open action', () => {
+      const { getByRole, queryByTitle } = render(
+        <Autocomplete
+          {...defaultProps}
+          value="one"
+          options={['one', 'two']}
+          renderInput={params => <TextField {...params} />}
+        />,
+      );
+
+      const textbox = getByRole('textbox');
+      fireEvent.click(textbox);
+      expect(textbox).to.have.focus;
+      textbox.blur();
+
+      fireEvent.click(queryByTitle('Open'));
+      expect(textbox).to.have.focus;
+    });
   });
 
   describe('controlled', () => {
@@ -1141,8 +1160,7 @@ describe('<Autocomplete />', () => {
       fireEvent.click(firstOption);
       expect(textbox).to.not.have.focus;
 
-      const opener = queryByTitle('Open');
-      fireEvent.click(opener);
+      fireEvent.click(queryByTitle('Open'));
       expect(textbox).to.have.focus;
       firstOption = getByRole('option');
       fireEvent.touchStart(firstOption);
@@ -1166,8 +1184,7 @@ describe('<Autocomplete />', () => {
       fireEvent.click(firstOption);
       expect(textbox).to.have.focus;
 
-      const opener = queryByTitle('Open');
-      fireEvent.click(opener);
+      fireEvent.click(queryByTitle('Open'));
       firstOption = getByRole('option');
       fireEvent.touchStart(firstOption);
       fireEvent.click(firstOption);
@@ -1191,8 +1208,7 @@ describe('<Autocomplete />', () => {
       fireEvent.click(firstOption);
       expect(textbox).to.have.focus;
 
-      const opener = queryByTitle('Open');
-      fireEvent.click(opener);
+      fireEvent.click(queryByTitle('Open'));
       firstOption = getByRole('option');
       fireEvent.click(firstOption);
       expect(textbox).to.not.have.focus;
