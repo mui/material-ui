@@ -193,10 +193,7 @@ workflows:
             - checkout
       - test_regressions:
           requires:
-            - test_unit
-            - test_static
-            - test_types
-            - test_browser
+            - checkout
   react-next:
     triggers:
       - schedule:
