@@ -1,7 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { useViews } from '../_shared/hooks/useViews';
 import { WrapperVariant } from '../wrappers/Wrapper';
+import { useViews } from '../_shared/hooks/useViews';
 import { makeStyles } from '@material-ui/core/styles';
 import { DateTimePickerView } from '../DateTimePicker';
 import { WithViewsProps } from './makePickerWithState';
@@ -11,15 +11,15 @@ import { DateInputProps } from '../_shared/PureDateInput';
 import { CalendarView } from '../views/Calendar/CalendarView';
 import { useIsLandscape } from '../_shared/hooks/useIsLandscape';
 import { DIALOG_WIDTH, VIEW_HEIGHT } from '../constants/dimensions';
-import { ClockView, BaseClockViewProps } from '../views/Clock/ClockView';
 import { WrapperVariantContext } from '../wrappers/WrapperVariantContext';
 import { MobileKeyboardInputView } from '../views/MobileKeyboardInputView';
+import { ClockView, ExportedClockViewProps } from '../views/Clock/ClockView';
 import { BaseDatePickerProps, DatePickerView } from '../DatePicker/DatePicker';
 
 export type PickerView = DateTimePickerView;
 
 export type ToolbarComponentProps<T extends PickerView = any> = BaseDatePickerProps &
-  BaseClockViewProps & {
+  ExportedClockViewProps & {
     views: T[];
     openView: T;
     date: MaterialUiPickersDate;
@@ -41,7 +41,7 @@ export interface PickerViewProps<TView extends PickerView>
   extends Omit<BasePickerProps, 'value' | 'onChange'>,
     WithViewsProps<TView>,
     BaseDatePickerProps,
-    BaseClockViewProps {
+    ExportedClockViewProps {
   title?: string;
   showToolbar?: boolean;
   ToolbarComponent: React.ComponentType<ToolbarComponentProps<any>>;
@@ -87,6 +87,9 @@ export const useStyles = makeStyles(
   { name: 'MuiPickersBasePicker' }
 );
 
+const isTimePickerByViews = (views: DateTimePickerView[]) =>
+  !views.some(view => view === 'year' || view === 'month' || view === 'date');
+
 export function Picker({
   date,
   openTo = 'date',
@@ -114,7 +117,7 @@ export function Picker({
   const toShowToolbar =
     typeof showToolbar === 'undefined' ? wrapperVariant !== 'desktop' : showToolbar;
 
-  const { openView, setOpenView, handleChangeAndOpenNext } = useViews({
+  const { openView, nextView, previousView, setOpenView, handleChangeAndOpenNext } = useViews({
     views,
     openTo,
     onChange,
@@ -172,6 +175,11 @@ export function Picker({
                 type={openView as 'hours' | 'minutes' | 'seconds'}
                 onDateChange={onChange}
                 onChange={handleChangeAndOpenNext}
+                openNextView={() => setOpenView(nextView)}
+                openPreviousView={() => setOpenView(previousView)}
+                nextViewAvailable={!Boolean(nextView)}
+                previousViewAvailable={!Boolean(previousView)}
+                showViewSwitcher={isTimePickerByViews(views) && wrapperVariant === 'desktop'}
               />
             )}
           </>

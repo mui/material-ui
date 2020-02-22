@@ -13,6 +13,7 @@ import { convertToMeridiem, getMeridiem } from '../_helpers/time-utils';
 export const useStyles = makeStyles(
   {
     separator: {
+      outline: 0,
       margin: '0 4px 0 2px',
       cursor: 'default',
     },
@@ -89,6 +90,16 @@ export const TimePickerToolbar: React.FC<ToolbarComponentProps> = ({
   const showAmPmControl = ampm && !ampmInClock;
   const { meridiemMode, handleMeridiemChange } = useMeridiemMode(date, ampm, onChange);
 
+  const separator = (
+    <ToolbarText
+      tabIndex={-1}
+      label=":"
+      variant={clockTypographyVariant}
+      selected={false}
+      className={classes.separator}
+    />
+  );
+
   return (
     <PickerToolbar
       landscapeDirection="row"
@@ -106,6 +117,7 @@ export const TimePickerToolbar: React.FC<ToolbarComponentProps> = ({
       >
         {arrayIncludes(views, 'hours') && (
           <ToolbarButton
+            data-mui-test="hours"
             tabIndex={-1}
             variant={clockTypographyVariant}
             onClick={() => setOpenView('hours')}
@@ -114,18 +126,11 @@ export const TimePickerToolbar: React.FC<ToolbarComponentProps> = ({
           />
         )}
 
-        {arrayIncludes(views, ['hours', 'minutes']) && (
-          <ToolbarText
-            tabIndex={-1}
-            label=":"
-            variant={clockTypographyVariant}
-            selected={false}
-            className={classes.separator}
-          />
-        )}
+        {arrayIncludes(views, ['hours', 'minutes']) && separator}
 
         {arrayIncludes(views, 'minutes') && (
           <ToolbarButton
+            data-mui-test="minutes"
             tabIndex={-1}
             variant={clockTypographyVariant}
             onClick={() => setOpenView('minutes')}
@@ -134,12 +139,11 @@ export const TimePickerToolbar: React.FC<ToolbarComponentProps> = ({
           />
         )}
 
-        {arrayIncludes(views, ['minutes', 'seconds']) && (
-          <ToolbarText variant="h2" label=":" selected={false} className={classes.separator} />
-        )}
+        {arrayIncludes(views, ['minutes', 'seconds']) && separator}
 
         {arrayIncludes(views, 'seconds') && (
           <ToolbarButton
+            data-mui-test="seconds"
             variant={clockTypographyVariant}
             onClick={() => setOpenView('seconds')}
             selected={openView === 'seconds'}

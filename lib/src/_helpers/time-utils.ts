@@ -1,5 +1,34 @@
 import { IUtils } from '@date-io/core/IUtils';
 import { MaterialUiPickersDate } from '../typings/date';
+import { MuiPickersUtils } from '../_shared/hooks/useUtils';
+
+export const getMeridiem = (
+  date: MaterialUiPickersDate,
+  utils: IUtils<MaterialUiPickersDate>
+): 'am' | 'pm' => {
+  return utils.getHours(date) >= 12 ? 'pm' : 'am';
+};
+
+export const convertValueToMeridiem = (value: number, meridiem: 'am' | 'pm', ampm: boolean) => {
+  if (ampm) {
+    const currentMeridiem = value >= 12 ? 'pm' : 'am';
+    if (currentMeridiem !== meridiem) {
+      return meridiem === 'am' ? value - 12 : value + 12;
+    }
+  }
+
+  return value;
+};
+
+export const convertToMeridiem = (
+  time: MaterialUiPickersDate,
+  meridiem: 'am' | 'pm',
+  ampm: boolean,
+  utils: IUtils<MaterialUiPickersDate>
+) => {
+  const newHoursAmount = convertValueToMeridiem(utils.getHours(time), meridiem, ampm);
+  return utils.setHours(time, newHoursAmount);
+};
 
 const clockCenter = {
   x: 260 / 2,
@@ -33,6 +62,14 @@ const getAngleValue = (step: number, offsetX: number, offsetY: number) => {
   return { value, distance };
 };
 
+export const getMinutes = (offsetX: number, offsetY: number, step = 1) => {
+  const angleStep = step * 6;
+  let { value } = getAngleValue(angleStep, offsetX, offsetY);
+  value = (value * step) % 60;
+
+  return value;
+};
+
 export const getHours = (offsetX: number, offsetY: number, ampm: boolean) => {
   let { value, distance } = getAngleValue(30, offsetX, offsetY);
   value = value || 12;
@@ -49,35 +86,13 @@ export const getHours = (offsetX: number, offsetY: number, ampm: boolean) => {
   return value;
 };
 
-export const getMinutes = (offsetX: number, offsetY: number, step = 1) => {
-  const angleStep = step * 6;
-  let { value } = getAngleValue(angleStep, offsetX, offsetY);
-  value = (value * step) % 60;
+export function getSecondsInDay(date: MaterialUiPickersDate, utils: MuiPickersUtils) {
+  return utils.getHours(date) * 3600 + utils.getMinutes(date) * 60 + utils.getSeconds(date);
+}
 
-  return value;
-};
-
-export const getMeridiem = (
-  date: MaterialUiPickersDate,
-  utils: IUtils<MaterialUiPickersDate>
-): 'am' | 'pm' => {
-  return utils.getHours(date) >= 12 ? 'pm' : 'am';
-};
-
-export const convertToMeridiem = (
-  time: MaterialUiPickersDate,
-  meridiem: 'am' | 'pm',
-  ampm: boolean,
-  utils: IUtils<MaterialUiPickersDate>
+export const createIsAfterIgnoreDatePart = (utils: MuiPickersUtils) => (
+  dateLeft: MaterialUiPickersDate,
+  dateRight: MaterialUiPickersDate
 ) => {
-  if (ampm) {
-    const currentMeridiem = utils.getHours(time) >= 12 ? 'pm' : 'am';
-    if (currentMeridiem !== meridiem) {
-      const hours = meridiem === 'am' ? utils.getHours(time) - 12 : utils.getHours(time) + 12;
-
-      return utils.setHours(time, hours);
-    }
-  }
-
-  return time;
+  return getSecondsInDay(dateLeft, utils) > getSecondsInDay(dateRight, utils);
 };

@@ -68,6 +68,7 @@ export function makePickerWithStateAndWrapper<
       rightArrowButtonProps,
       rightArrowIcon,
       shouldDisableDate,
+      shouldDisableTime,
       strictCompareDates,
       timeIcon,
       ToolbarComponent = DefaultToolbarComponent,
@@ -79,6 +80,7 @@ export function makePickerWithStateAndWrapper<
       wider,
       showTabs,
       maxDateMessage,
+      disableTimeValidationIgnoreDatePart,
       // WrapperProps
       clearable,
       clearLabel,
@@ -87,6 +89,8 @@ export function makePickerWithStateAndWrapper<
       okLabel,
       cancelLabel,
       todayLabel,
+      minTime,
+      maxTime,
       ...restPropsForTextField
     } = allProps;
 
@@ -124,6 +128,8 @@ export function makePickerWithStateAndWrapper<
           loadingIndicator={loadingIndicator}
           maxDate={maxDate}
           minDate={minDate}
+          minTime={minTime}
+          maxTime={maxTime}
           minutesStep={minutesStep}
           onMonthChange={onMonthChange}
           onYearChange={onYearChange}
@@ -133,10 +139,12 @@ export function makePickerWithStateAndWrapper<
           rightArrowButtonProps={rightArrowButtonProps}
           rightArrowIcon={rightArrowIcon}
           shouldDisableDate={shouldDisableDate}
+          shouldDisableTime={shouldDisableTime}
           strictCompareDates={strictCompareDates}
           timeIcon={timeIcon}
           ToolbarComponent={ToolbarComponent}
           views={views}
+          disableTimeValidationIgnoreDatePart={disableTimeValidationIgnoreDatePart}
         />
       </WrapperComponent>
     );

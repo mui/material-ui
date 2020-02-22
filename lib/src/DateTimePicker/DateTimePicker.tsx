@@ -1,11 +1,11 @@
 import { useUtils } from '../_shared/hooks/useUtils';
-import { BaseClockViewProps } from '../views/Clock/ClockView';
 import { BaseDatePickerProps } from '../DatePicker/DatePicker';
 import { DateTimePickerToolbar } from './DateTimePickerToolbar';
+import { ExportedClockViewProps } from '../views/Clock/ClockView';
 import { ResponsiveWrapper } from '../wrappers/ResponsiveWrapper';
 import { pick12hOr24hFormat } from '../_helpers/text-field-helper';
-import { dateTimePickerDefaultProps } from '../constants/prop-types';
 import { InlineWrapper, ModalWrapper, StaticWrapper } from '../wrappers/Wrapper';
+import { dateTimePickerDefaultProps, ParsableDate } from '../constants/prop-types';
 import {
   makePickerWithStateAndWrapper,
   WithDateInputProps,
@@ -14,7 +14,7 @@ import {
 
 export type DateTimePickerView = 'year' | 'date' | 'month' | 'hours' | 'minutes' | 'seconds';
 
-export type BaseDateTimePickerProps = BaseClockViewProps & BaseDatePickerProps;
+export type BaseDateTimePickerProps = ExportedClockViewProps & BaseDatePickerProps;
 
 export interface DateTimePickerViewsProps extends BaseDateTimePickerProps {
   /** To show tabs */
@@ -23,6 +23,10 @@ export interface DateTimePickerViewsProps extends BaseDateTimePickerProps {
   dateRangeIcon?: React.ReactNode;
   /** Time tab icon */
   timeIcon?: React.ReactNode;
+  /** Minimal selectable moment of time with binding to date, to set min time in each day use `minTime` */
+  minDateTime?: ParsableDate;
+  /** Minimal selectable moment of time with binding to date, to set max time in each day use `maxTime` */
+  maxDateTime?: ParsableDate;
 }
 
 export type DateTimePickerProps = WithDateInputProps &
@@ -33,6 +37,8 @@ function useDefaultProps({
   ampm,
   format,
   mask,
+  maxDateTime,
+  minDateTime,
   orientation = 'portrait',
   openTo = 'date',
   views = ['year', 'date', 'hours', 'minutes'],
@@ -53,6 +59,11 @@ function useDefaultProps({
     ampmInClock: true,
     orientation,
     showToolbar: true,
+    minDate: minDateTime,
+    minTime: minDateTime,
+    maxDate: maxDateTime,
+    maxTime: maxDateTime,
+    disableTimeValidationIgnoreDatePart: Boolean(minDateTime || maxDateTime),
     acceptRegex: willUseAmPm ? /[\dap]/gi : /\d/gi,
     mask: mask || willUseAmPm ? '__/__/____ __:__ _M' : '__/__/____ __:__',
     format: pick12hOr24hFormat(format, ampm, {

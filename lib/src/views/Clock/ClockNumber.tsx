@@ -2,8 +2,8 @@ import * as React from 'react';
 import clsx from 'clsx';
 import Typography from '@material-ui/core/Typography';
 import { ButtonBase } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
 import { onSpaceOrEnter } from '../../_helpers/utils';
+import { makeStyles, fade } from '@material-ui/core/styles';
 import { FORCE_FINISH_PICKER } from '../../_shared/hooks/usePickerState';
 
 const positions: Record<number, [number, number]> = {
@@ -37,6 +37,7 @@ export interface ClockNumberProps {
   index: number;
   label: string;
   selected: boolean;
+  disabled: boolean;
   onSelect: (isFinish: boolean | symbol) => void;
   isInner?: boolean;
   getClockNumberText: (currentItemText: string) => string;
@@ -45,12 +46,14 @@ export interface ClockNumberProps {
 export const useStyles = makeStyles(
   theme => {
     const size = 32;
+    const clockNumberColor =
+      theme.palette.type === 'light' ? theme.palette.text.primary : theme.palette.text.hint;
 
     return {
       clockNumber: {
         outline: 0,
         width: size,
-        height: 32,
+        height: size,
         userSelect: 'none',
         position: 'absolute',
         left: `calc((100% - ${typeof size === 'number' ? `${size}px` : size}) / 2)`,
@@ -58,14 +61,17 @@ export const useStyles = makeStyles(
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: '50%',
-        color:
-          theme.palette.type === 'light' ? theme.palette.text.primary : theme.palette.text.hint,
+        color: clockNumberColor,
         '&:focused': {
           backgroundColor: theme.palette.background.paper,
         },
       },
       clockNumberSelected: {
         color: theme.palette.primary.contrastText,
+      },
+      clockNumberDisabled: {
+        pointerEvents: 'none',
+        color: fade(clockNumberColor, 0.2),
       },
     };
   },
@@ -78,12 +84,14 @@ export const ClockNumber: React.FC<ClockNumberProps> = ({
   index,
   onSelect,
   isInner,
+  disabled,
   getClockNumberText,
 }) => {
   const ref = React.useRef<HTMLSpanElement>(null);
   const classes = useStyles();
   const className = clsx(classes.clockNumber, {
     [classes.clockNumberSelected]: selected,
+    [classes.clockNumberDisabled]: disabled,
   });
 
   const transformStyle = React.useMemo(() => {
@@ -105,7 +113,7 @@ export const ClockNumber: React.FC<ClockNumberProps> = ({
       focusRipple
       centerRipple
       ref={ref}
-      tabIndex={0}
+      tabIndex={disabled ? -1 : 0}
       component="span"
       className={className}
       style={transformStyle}

@@ -58,8 +58,7 @@
       "git add docs/prop-types.json"
     ],
     "*.{js,jsx,ts,tsx,json,css,md,mdx}": [
-      "prettier --write",
-      "git add"
+      "prettier --write"
     ]
   },
   "eslintIgnore": [

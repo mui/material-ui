@@ -1,2 +1,3 @@
 *.js text eol=lf
 *.jsx text eol=lf
+docs/prop-types.json linguist-generated=true

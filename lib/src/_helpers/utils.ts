@@ -18,3 +18,10 @@ export const onSpaceOrEnter = (innerFn: () => void) => (e: React.KeyboardEvent) 
     e.stopPropagation();
   }
 };
+
+/** Quick untyped helper to improve function composition readability */
+export const pipe = (...fns: ((...args: any[]) => any)[]) =>
+  fns.reduceRight(
+    (prevFn, nextFn) => (...args) => nextFn(prevFn(...args)),
+    value => value
+  );

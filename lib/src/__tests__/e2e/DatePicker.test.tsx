@@ -162,7 +162,7 @@ describe('e2e - DatePicker month change sync', () => {
 
   it('Should not add to loading queue when synchronous', () => {
     component
-      .find('button[data-mui-test="previous-month"]')
+      .find('button[data-mui-test="previous-arrow-button"]')
       .first()
       .simulate('click');
 
@@ -192,13 +192,13 @@ describe('e2e - DatePicker month change async', () => {
   });
 
   it('Should add to loading queue when loading asynchronous data', () => {
-    component.find('button[data-mui-test="previous-month"]').simulate('click');
+    component.find('button[data-mui-test="previous-arrow-button"]').simulate('click');
 
     expect(component.find('[data-mui-test="loading-progress"]').length).toBeGreaterThan(1);
   });
 
   it.skip('Should empty loading queue after loading asynchronous data', async () => {
-    component.find('button[data-mui-test="previous-month"]').simulate('click');
+    component.find('button[data-mui-test="previous-arrow-button"]').simulate('click');
     jest.runTimersToTime(10);
 
     expect(component.find('[data-mui-test="loading-progress"]').length).toBe(0);

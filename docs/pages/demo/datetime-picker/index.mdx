@@ -6,6 +6,7 @@ import LinkedComponents from '_shared/LinkedComponents';
 import * as BasicDateTimePicker from './BasicDateTimePicker.example';
 import * as DateTimePickers from './DateTimePickers.example';
 import * as CustomDateTimePicker from './CustomDateTimePicker.example';
+import * as DateTimeValidation from './DateTimeValidation.example';
 
 <PageMeta component="Date & Time picker" />
 
@@ -28,6 +29,14 @@ Allows choosing date then time. There are too many views, so tabs are required t
 DateTimePicker is a complex control, so you may consider using `MobileDateTimePicker` for desktop users as well.
 
 <Example source={DateTimePickers} />
+
+#### Date & Time validation
+
+It is possible to restrict date and time selection in couple of different ways. If you need to restrict time selection
+you could use `minDateTime` to restrict selecting date and time before particular moment of time.
+Or you can use `minTime` to disable a part of time in each day.
+
+<Example source={DateTimeValidation} />
 
 #### Customization
 

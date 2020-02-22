@@ -33,6 +33,7 @@ export function useViews({
     [isMobileKeyboardViewOpen, toggleMobileKeyboardView]
   );
 
+  const previousView = views[views.indexOf(openView!) - 1];
   const nextView = views[views.indexOf(openView!) + 1];
   const openNext = React.useCallback(() => {
     if (nextView) {
@@ -42,18 +43,18 @@ export function useViews({
 
   const handleChangeAndOpenNext = React.useCallback(
     (date: MaterialUiPickersDate, isFinish?: boolean | symbol) => {
-      // do not close picker if needs to show next view
-      onChange(date, Boolean(nextView) ? false : isFinish);
+      onChange(date, isFinish);
 
       if (isFinish) {
         openNext();
       }
     },
-    [nextView, onChange, openNext]
+    [onChange, openNext]
   );
 
   return {
     nextView,
+    previousView,
     openNext,
     handleChangeAndOpenNext,
     openView,
