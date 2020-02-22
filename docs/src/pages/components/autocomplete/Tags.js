@@ -31,7 +31,6 @@ export default function Tags() {
             variant="standard"
             label="Multiple values"
             placeholder="Favorites"
-            fullWidth
           />
         )}
       />
@@ -48,7 +47,6 @@ export default function Tags() {
             variant="outlined"
             label="filterSelectedOptions"
             placeholder="Favorites"
-            fullWidth
           />
         )}
       />
@@ -64,13 +62,7 @@ export default function Tags() {
           ))
         }
         renderInput={params => (
-          <TextField
-            {...params}
-            variant="filled"
-            label="freeSolo"
-            placeholder="Favorites"
-            fullWidth
-          />
+          <TextField {...params} variant="filled" label="freeSolo" placeholder="Favorites" />
         )}
       />
     </div>

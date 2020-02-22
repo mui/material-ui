@@ -386,6 +386,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
         {renderInput({
           id,
           disabled,
+          fullWidth: true,
           size: size === 'small' ? 'small' : undefined,
           InputLabelProps: getInputLabelProps(),
           InputProps: {
