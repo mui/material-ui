@@ -23,9 +23,9 @@ export interface DateTimePickerViewsProps extends BaseDateTimePickerProps {
   dateRangeIcon?: React.ReactNode;
   /** Time tab icon */
   timeIcon?: React.ReactNode;
-  /** `minDate` + `minTime` combined */
+  /** Minimal selectable moment of time with binding to date, to set min time in each day use `minTime` */
   minDateTime?: ParsableDate;
-  /** `maxDate` + `maxTime` combined */
+  /** Minimal selectable moment of time with binding to date, to set max time in each day use `maxTime` */
   maxDateTime?: ParsableDate;
 }
 

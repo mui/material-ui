@@ -2089,7 +2089,7 @@
     },
     "minDateTime": {
       "defaultValue": null,
-      "description": "`minDate` + `minTime` combined",
+      "description": "Minimal selectable moment of time with binding to date, to set min time in each day use `minTime`",
       "name": "minDateTime",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/DateTimePicker/DateTimePicker.tsx",
@@ -2102,7 +2102,7 @@
     },
     "maxDateTime": {
       "defaultValue": null,
-      "description": "`maxDate` + `maxTime` combined",
+      "description": "Minimal selectable moment of time with binding to date, to set max time in each day use `maxTime`",
       "name": "maxDateTime",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/DateTimePicker/DateTimePicker.tsx",
