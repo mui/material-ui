@@ -236,7 +236,7 @@ describe('e2e - TimePicker time validation', () => {
     expect(component.find('button[data-mui-test="seconds"] h3').text()).toBe('00');
   });
 
-  it.only('Should select enabled second', () => {
+  it('Should select enabled second', () => {
     component.find('Clock div[role="menu"]').simulate('touchMove', clockTouchEvents['13:--']);
     component.find('button[data-mui-test="minutes"]').simulate('click');
     component.find('Clock div[role="menu"]').simulate('touchMove', clockTouchEvents['--:20']);
