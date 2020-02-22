@@ -37,7 +37,7 @@ const PremiumThemesLink = React.forwardRef((props, ref) => {
       data-ga-event-category="premium-themes"
       data-ga-event-action="click"
       data-ga-event-label="home-link"
-      href="https://themes.material-ui.com/"
+      href="https://material-ui.com/store/"
       naked
       ref={ref}
       {...props}
@@ -61,7 +61,7 @@ function HomeThemes(props) {
             {t('themesDescr')}
           </Typography>
           <Link
-            href="https://themes.material-ui.com/"
+            href="https://material-ui.com/store/"
             data-ga-event-category="premium-themes"
             data-ga-event-action="click"
             data-ga-event-label="home-image"

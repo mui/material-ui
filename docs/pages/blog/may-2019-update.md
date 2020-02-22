@@ -26,7 +26,7 @@ But this summary is just scratching the surface. We have accepted 206 commits fr
 
 ![Tree View](/static/blog/may-2019-update/tree-view.png)
 
-- We will add more themes to the [premium theme marketplace](https://themes.material-ui.com/).
+- We will add more themes to the [premium theme marketplace](https://material-ui.com/store/).
 - We will start exploring how we can provide style adapters in v5 (styled-components, JSS, linaria, naked, etc.)
 - We will experiment around advisory offerings for enterprises.
 If you are an enterprise and are looking for one of the following:
