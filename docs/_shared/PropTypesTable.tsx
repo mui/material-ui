@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 import Code from './Code';
 import FuzzySearch from 'fuzzy-search';
+import ReactMarkdown from 'react-markdown';
 import PropTypesDoc from '../prop-types.json';
 import SearchBar from 'material-ui-search-bar';
 import React, { useMemo, useState } from 'react';
@@ -141,7 +142,7 @@ const PropTypesTableLazy: React.FC<PropTypesTableProps> = ({ disableHeader, src 
                 </TableCell>
 
                 <TableCell className={classes.description}>
-                  <span dangerouslySetInnerHTML={{ __html: prop.description }} />
+                  <ReactMarkdown source={prop.description} />
                 </TableCell>
               </TableRow>
             ))}

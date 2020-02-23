@@ -16,8 +16,6 @@ export interface DateInputProps
   onChange: (date: MaterialUiPickersDate | null, keyboardInputValue?: string) => void;
   openPicker: () => void;
   validationError?: React.ReactNode;
-  /** Dynamic formatter of text field value @DateIOType */
-  labelFunc?: (date: MaterialUiPickersDate, invalidLabel: string) => string;
   /** Override input component */
   TextFieldComponent?: React.ComponentType<TextFieldProps>;
   /**
@@ -87,7 +85,7 @@ export type ExportedDateInputProps = Omit<
 
 export const PureDateInput: React.FC<DateInputProps> = ({
   onChange,
-  inputFormat: format,
+  inputFormat,
   rifmFormatter,
   acceptRegex: refuse,
   mask,
@@ -100,7 +98,6 @@ export const PureDateInput: React.FC<DateInputProps> = ({
   variant,
   emptyLabel,
   invalidLabel,
-  labelFunc,
   keyboardIcon,
   hideOpenPickerButton,
   ignoreInvalidInputs,
@@ -119,10 +116,9 @@ export const PureDateInput: React.FC<DateInputProps> = ({
   );
 
   const inputValue = getDisplayDate(rawValue, utils, {
-    inputFormat: format,
+    inputFormat,
     emptyLabel,
     invalidLabel,
-    labelFunc,
   });
 
   return (

@@ -34,7 +34,6 @@ export const KeyboardDateInput: React.FC<DateInputProps> = ({
   variant,
   emptyLabel,
   invalidLabel,
-  labelFunc,
   hideOpenPickerButton,
   ignoreInvalidInputs,
   onFocus,
@@ -49,7 +48,6 @@ export const KeyboardDateInput: React.FC<DateInputProps> = ({
       inputFormat,
       emptyLabel,
       invalidLabel,
-      labelFunc,
     });
 
   const [innerInputValue, setInnerInputValue] = React.useState<string | null>(getInputValue());

@@ -17,15 +17,10 @@ export const getDisplayDate = (
     inputFormat,
     invalidLabel = '',
     emptyLabel,
-    labelFunc,
-  }: Pick<DateInputProps, 'inputFormat' | 'invalidLabel' | 'emptyLabel' | 'labelFunc'>
+  }: Pick<DateInputProps, 'inputFormat' | 'invalidLabel' | 'emptyLabel'>
 ) => {
   const date = utils.date(value);
   const isEmpty = value === null;
-
-  if (labelFunc) {
-    return labelFunc(isEmpty ? null : date, invalidLabel!);
-  }
 
   if (isEmpty) {
     return emptyLabel || '';

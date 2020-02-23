@@ -21,7 +21,7 @@ const DayWrapper: React.FC<DayWrapperProps> = ({
   ...other
 }) => {
   const handleSelection = (isFinish: symbol | boolean) => {
-    if (dayInCurrentMonth && !disabled) {
+    if (!disabled) {
       onSelect(value, isFinish);
     }
   };

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Day from './Day';
+import Day, { DayProps } from './Day';
 import DayWrapper from './DayWrapper';
 import SlideTransition, { SlideDirection } from './SlideTransition';
 import { MaterialUiPickersDate } from '../../typings/date';
@@ -9,7 +9,7 @@ import { findClosestEnabledDate } from '../../_helpers/date-utils';
 import { makeStyles, useTheme, Typography } from '@material-ui/core';
 import { useGlobalKeyDown, keycode } from '../../_shared/hooks/useKeyDown';
 
-export interface ExportedCalendarProps {
+export interface ExportedCalendarProps extends Pick<DayProps, 'showDaysOutsideCurrentMonth'> {
   /** Calendar Date @DateIOType */
   date: MaterialUiPickersDate;
   /** Calendar onChange */
@@ -24,12 +24,11 @@ export interface ExportedCalendarProps {
    * @default false
    */
   disableFuture?: boolean;
-  /** Custom renderer for day @DateIOType */
+  /** Custom renderer for day, check [DayComponentProps api](/api/Day) @DateIOType */
   renderDay?: (
     day: MaterialUiPickersDate,
     selectedDate: MaterialUiPickersDate,
-    dayInCurrentMonth: boolean,
-    dayComponent: JSX.Element
+    DayComponentProps: DayProps,
   ) => JSX.Element;
   /**
    * Enables keyboard listener for moving between days in calendar
@@ -109,6 +108,7 @@ export const Calendar: React.FC<CalendarProps> = ({
   reduceAnimations,
   allowKeyboardControl,
   isDateDisabled,
+  showDaysOutsideCurrentMonth,
 }) => {
   const now = useNow();
   const utils = useUtils();
@@ -183,37 +183,35 @@ export const Calendar: React.FC<CalendarProps> = ({
                 const disabled = isDateDisabled(day);
                 const isDayInCurrentMonth = utils.getMonth(day) === currentMonthNumber;
 
-                let dayComponent = (
-                  <Day
-                    day={day}
-                    isAnimating={isMonthSwitchingAnimating}
-                    disabled={disabled}
-                    allowKeyboardControl={allowKeyboardControl}
-                    focused={Boolean(focusedDay) && utils.isSameDay(day, focusedDay)}
-                    onFocus={() => changeFocusedDay(day)}
-                    focusable={
-                      Boolean(nowFocusedDay) &&
-                      utils.toJsDate(nowFocusedDay).getDate() === utils.toJsDate(day).getDate()
-                    }
-                    isToday={utils.isSameDay(day, now)}
-                    hidden={!isDayInCurrentMonth}
-                    isInCurrentMonth={isDayInCurrentMonth}
-                    selected={utils.isSameDay(selectedDate, day)}
-                  />
-                );
+                const dayProps = {
+                  day: day,
+                  isAnimating: isMonthSwitchingAnimating,
+                  disabled: disabled,
+                  allowKeyboardControl: allowKeyboardControl,
+                  focused: Boolean(focusedDay) && utils.isSameDay(day, focusedDay),
+                  onFocus: () => changeFocusedDay(day),
+                  isToday: utils.isSameDay(day, now),
+                  hidden: !isDayInCurrentMonth,
+                  isInCurrentMonth: isDayInCurrentMonth,
+                  selected: utils.isSameDay(selectedDate, day),
+                  showDaysOutsideCurrentMonth,
+                  focusable:
+                  Boolean(nowFocusedDay) &&
+                  utils.toJsDate(nowFocusedDay).getDate() === utils.toJsDate(day).getDate(),
+                };
 
-                if (renderDay) {
-                  dayComponent = renderDay(day, selectedDate, isDayInCurrentMonth, dayComponent);
-                }
+                let dayComponent = renderDay
+                  ? renderDay(day, selectedDate, dayProps)
+                  : <Day {...dayProps} />
 
                 return (
                   <DayWrapper
                     key={day!.toString()}
                     value={day}
                     disabled={disabled}
-                    dayInCurrentMonth={isDayInCurrentMonth}
                     onSelect={handleDaySelect}
                     children={dayComponent}
+                    dayInCurrentMonth={isDayInCurrentMonth}
                   />
                 );
               })}

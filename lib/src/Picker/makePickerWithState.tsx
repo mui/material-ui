@@ -81,6 +81,7 @@ export function makePickerWithStateAndWrapper<
       showTabs,
       maxDateMessage,
       disableTimeValidationIgnoreDatePart,
+      showDaysOutsideCurrentMonth,
       // WrapperProps
       clearable,
       clearLabel,
@@ -144,6 +145,7 @@ export function makePickerWithStateAndWrapper<
           timeIcon={timeIcon}
           ToolbarComponent={ToolbarComponent}
           views={views}
+          showDaysOutsideCurrentMonth={showDaysOutsideCurrentMonth}
           disableTimeValidationIgnoreDatePart={disableTimeValidationIgnoreDatePart}
         />
       </WrapperComponent>

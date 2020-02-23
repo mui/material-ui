@@ -32,6 +32,7 @@ const components = [
   'DateTimePicker/KeyboardDateTimePicker.tsx',
   // internal components
   'views/Calendar/Calendar.tsx',
+  'views/Calendar/Day.tsx',
   'views/Clock/ClockView.tsx',
 ];
 
