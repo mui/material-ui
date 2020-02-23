@@ -1,5 +1,53 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.9.4
+###### *Feb 23, 2020*
+
+Big thanks to the 18 contributors who made this release possible.
+
+Here are some highlights ✨:
+
+- ♿️ Improve the accessibility support of the Breadcrumbs and ButtonBase (#19724, #19784) @captain-yossarian.
+- 💄 Polish the new Pagination component (#19758) @zettca.
+- 🐛 Fix Preact support of the swipeable drawer (#19782) @TommyJackson85.
+- 💅 Introduce a small delay in the appearance of the tooltip (#19766) @Ritorna.
+- And many more 🐛 bug fixes and 📚 improvements.
+
+### `@material-ui/core@v4.9.4`
+
+- [Breadcrumbs] Fix expand/collapsed Breadcrumbs via keyboard (#19724) @captain-yossarian
+- [ButtonBase] Fix space handling for non native button elements (#19784) @captain-yossarian
+- [CardMedia] Fix propTypes to allow `component` prop (#19790) @stevenmusumeche
+- [CssBaseline] Change of children type to ReactNode (#19770) @dfernandez-asapp
+- [Framer] Release v1.1.0 (#19800) @mbrookes
+- [SwipeableDrawer] Improve Preact support (#19782) @TommyJackson85
+- [SwipeableDrawer] Support global theme changes (#19771) @TommyJackson85
+- [TextareaAutosize] Prevent "Maximum update depth exceeded" (#19743) @SofianeDjellouli
+- [theme] Built-in convertLength method (#19720) @oliviertassinari
+- [Tooltip] Add enterNextDelay prop (#19766) @Ritorna
+
+### `@material-ui/lab@v4.0.0-alpha.44`
+
+- [Autocomplete] Built-in fullWidth (#19805) @oliviertassinari
+- [Autocomplete] Fix stuck with open popup  (#19794) @hasanozacar
+- [Autocomplete] Warn when using wrong getOptionSelected (#19699) @ahmad-reza619
+- [AvatarGroup] Add spacing prop (#19761) @GFynbo
+- [Pagination] Fix activatedOpacity typo (#19758) @zettca
+
+### Docs
+
+- [docs] Fix typo in Autocomplete (#19775) @aurnik
+- [docs] Add Data Driven Forms to the list of libraries (#19747) @rvsia
+- [docs] Improve wording of bundle size guide (#19768) @larsenwork
+- [docs] Sync translations.json @oliviertassinari
+- [docs] Update the translations (#19741) @mbrookes
+
+### Core
+
+- [core] Export ThemeOptions (#19789) @dbarabashdev
+- [core] Small fixes (#19803) @oliviertassinari
+- [core] Update getDisplayName to handle React.memo (#19762) @dantman
+
 ## 4.9.3
 ###### *Feb 16, 2020*
 
