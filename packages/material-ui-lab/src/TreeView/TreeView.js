@@ -2,8 +2,8 @@ import React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import TreeViewContext from './TreeViewContext';
-import { withStyles } from '@material-ui/core/styles';
-import { useControlled } from '@material-ui/core/utils';
+import {withStyles} from '@material-ui/core/styles';
+import {useControlled} from '@material-ui/core/utils';
 
 export const styles = {
   /* Styles applied to the root element. */
@@ -228,24 +228,25 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
    */
 
   const lastSelectedNode = React.useRef(null);
-  const lastSelectionMode = React.useRef(null);
-  const lastRangeSelection = React.useRef([]);
-  const previousArrowSelection = React.useRef([]);
+  const lastSelectionWasRange = React.useRef(false);
+  const currentRangeSelection = React.useRef([]);
 
-  const handleRangeArrowSelect = (event, start, value) => {
+  const handleRangeArrowSelect = (event, nodes) => {
     let base = selected;
+    const {start, next, current} = nodes;
 
-    if (lastSelectionMode.current === 'RANGE-ARROW') {
-      if (isSelected(value)) {
-        base = base.filter(id => id === start || id !== previousArrowSelection.current);
+    if (lastSelectionWasRange.current) {
+      if (currentRangeSelection.current.indexOf(next) !== -1) {
+        base = base.filter(id => id === start || id !== current);
+        currentRangeSelection.current = currentRangeSelection.current.filter(id => id === start || id !== current);
       } else {
-        base.push(value);
+        base.push(next);
+        currentRangeSelection.current.push(next);
       }
     } else {
-      base.push(value);
+      base.push(next);
+      currentRangeSelection.current.push(current, next);
     }
-
-    previousArrowSelection.current = value;
 
     if (onNodeSelect) {
       onNodeSelect(event, base);
@@ -254,15 +255,16 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     setSelectedState(base);
   };
 
-  const handleRangeSelect = (event, start, end) => {
+  const handleRangeSelect = (event, nodes) => {
     let base = selected;
+    const {start, end} = nodes;
     // If last selection was a range selection ignore nodes that were selected.
-    if (lastSelectionMode.current === 'RANGE') {
-      base = selected.filter(id => lastRangeSelection.current.indexOf(id) === -1);
+    if (lastSelectionWasRange.current) {
+      base = selected.filter(id => currentRangeSelection.current.indexOf(id) === -1);
     }
 
     const range = getNodesInRange(start, end);
-    lastRangeSelection.current = range;
+    currentRangeSelection.current = range;
     let newSelected = base.concat(range);
     newSelected = newSelected.filter((id, i) => newSelected.indexOf(id) === i);
 
@@ -298,42 +300,73 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     setSelectedState(newSelected);
   };
 
-  const select = (event, value, selectionMode = 'NODE') => {
-    if (value) {
-      if (selectionMode === 'NONE') {
-        handleSingleSelect(event, value);
-      } else if (selectionMode === 'MULTIPLE') {
-        handleMultipleSelect(event, value);
-      } else if (selectionMode === 'RANGE' && lastSelectedNode.current) {
-        handleRangeSelect(event, lastSelectedNode.current, value);
-      } else if (selectionMode === 'RANGE-ARROW') {
-        handleRangeArrowSelect(event, lastSelectedNode.current, value);
+  const selectNode = (event, id, multiple = false) => {
+    if (id) {
+      if (multiple) {
+        handleMultipleSelect(event, id);
+      } else {
+        handleSingleSelect(event, id);
       }
-      if (selectionMode === 'MULTIPLE' || selectionMode === 'NONE') {
-        lastSelectedNode.current = value;
-      }
-      lastSelectionMode.current = selectionMode;
+      lastSelectedNode.current = id;
+      lastSelectionWasRange.current = false;
+      currentRangeSelection.current = [];
     }
   };
 
-  const rangeSelectFirst = event => select(event, getFirstNode(), 'RANGE');
-  const rangeSelectLast = event => select(event, getLastNode(), 'RANGE');
+  const selectRange = (event, nodes, stacked = false) => {
+    const {start = lastSelectedNode.current, end, current} = nodes;
+    if (stacked) {
+      handleRangeArrowSelect(event, {start, next: end, current});
+    } else {
+      handleRangeSelect(event, {start, end});
+    }
+    lastSelectionWasRange.current = true;
+  };
 
-  const selectNextNode = (event, id) => select(event, getNextNode(id), 'RANGE-ARROW');
-  const selectPreviousNode = (event, id) => select(event, getPreviousNode(id), 'RANGE-ARROW');
-  const selectAllNodes = event => handleRangeSelect(event, getFirstNode(), getLastNode());
+  const rangeSelectToFirst = (event, id) => {
+    if (!lastSelectedNode.current) {
+      lastSelectedNode.current = id;
+    }
 
+    const start = lastSelectionWasRange.current ? lastSelectedNode.current : id;
+
+    selectRange(event, {
+      start,
+      end: getFirstNode()
+    });
+  };
+  const rangeSelectToLast = (event, id) => {
+    if (!lastSelectedNode.current) {
+      lastSelectedNode.current = id;
+    }
+
+    const start = lastSelectionWasRange.current ? lastSelectedNode.current : id;
+
+    selectRange(event, {
+      start,
+      end: getLastNode()
+    });
+  };
+  const selectNextNode = (event, id) => selectRange(event, {
+    end: getNextNode(id),
+    current: id,
+  }, true);
+  const selectPreviousNode = (event, id) => selectRange(event, {
+    end: getPreviousNode(id),
+    current: id,
+  }, true);
+  const selectAllNodes = event => selectRange(event, {start: getFirstNode(), end: getLastNode()});
   /*
    * Mapping Helpers
    */
 
   const addNodeToNodeMap = (id, childrenIds) => {
     const currentMap = nodeMap.current[id];
-    nodeMap.current[id] = { ...currentMap, children: childrenIds, id };
+    nodeMap.current[id] = {...currentMap, children: childrenIds, id};
 
     childrenIds.forEach(childId => {
       const currentChildMap = nodeMap.current[childId];
-      nodeMap.current[childId] = { ...currentChildMap, parent: id, id: childId };
+      nodeMap.current[childId] = {...currentChildMap, parent: id, id: childId};
     });
   };
 
@@ -344,7 +377,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
         const parentMap = nodeMap.current[map.parent];
         if (parentMap && parentMap.children) {
           const parentChildren = parentMap.children.filter(c => c !== id);
-          nodeMap.current[map.parent] = { ...parentMap, children: parentChildren };
+          nodeMap.current[map.parent] = {...parentMap, children: parentChildren};
         }
       }
 
@@ -361,13 +394,13 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
   React.useEffect(() => {
     const childIds = React.Children.map(children, child => child.props.nodeId) || [];
     if (arrayDiff(prevChildIds.current, childIds)) {
-      nodeMap.current[-1] = { parent: null, children: childIds };
+      nodeMap.current[-1] = {parent: null, children: childIds};
 
       childIds.forEach((id, index) => {
         if (index === 0) {
           setTabbable(id);
         }
-        nodeMap.current[id] = { parent: null };
+        nodeMap.current[id] = {parent: null};
       });
       visibleNodes.current = nodeMap.current[-1].children;
       prevChildIds.current = childIds;
@@ -397,24 +430,25 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
   return (
     <TreeViewContext.Provider
       value={{
-        icons: { defaultCollapseIcon, defaultExpandIcon, defaultParentIcon, defaultEndIcon },
+        icons: {defaultCollapseIcon, defaultExpandIcon, defaultParentIcon, defaultEndIcon},
         focus,
         focusFirstNode,
         focusLastNode,
         focusNextNode,
         focusPreviousNode,
         focusByFirstCharacter,
-        rangeSelectFirst,
-        rangeSelectLast,
-        selectAllNodes,
-        selectNextNode,
-        selectPreviousNode,
-        select,
         expandAllSiblings,
         toggleExpansion,
         isExpanded,
         isFocused,
         isSelected,
+        selectNode,
+        selectRange,
+        selectNextNode,
+        selectPreviousNode,
+        rangeSelectToFirst,
+        rangeSelectToLast,
+        selectAllNodes,
         isTabbable,
         multiSelect,
         selectionDisabled: disableSelection,
@@ -516,4 +550,4 @@ TreeView.propTypes = {
   selected: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.string), PropTypes.string]),
 };
 
-export default withStyles(styles, { name: 'MuiTreeView' })(TreeView);
+export default withStyles(styles, {name: 'MuiTreeView'})(TreeView);
