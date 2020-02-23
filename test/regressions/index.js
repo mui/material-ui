@@ -180,7 +180,7 @@ vrtest.before(() => {
         families: ['Roboto:300,400,500,700', 'Material+Icons'],
       },
       custom: {
-        families: ['Font Awesome 5 Free:400,900'],
+        families: ['Font Awesome 5 Free:n9'],
         urls: ['https://use.fontawesome.com/releases/v5.1.0/css/all.css'],
       },
       timeout: 20000,
