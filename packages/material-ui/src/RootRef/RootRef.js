@@ -18,7 +18,7 @@ import setRef from '../utils/setRef';
  * It's highly inspired by https://github.com/facebook/react/issues/11401#issuecomment-340543801.
  * For example:
  * ```jsx
- * import * as React from 'react';
+ * import React from 'react';
  * import RootRef from '@material-ui/core/RootRef';
  *
  * function MyComponent() {
