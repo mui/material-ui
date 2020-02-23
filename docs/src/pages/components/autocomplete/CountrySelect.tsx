@@ -46,7 +46,6 @@ export default function CountrySelect() {
           {...params}
           label="Choose a country"
           variant="outlined"
-          fullWidth
           inputProps={{
             ...params.inputProps,
             autoComplete: 'new-password', // disable autocomplete and autofill

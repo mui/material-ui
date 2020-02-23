@@ -10,9 +10,7 @@ export default function DisabledOptions() {
       options={timeSlots}
       getOptionDisabled={option => option === timeSlots[0] || option === timeSlots[2]}
       style={{ width: 300 }}
-      renderInput={params => (
-        <TextField {...params} label="Disabled options" variant="outlined" fullWidth />
-      )}
+      renderInput={params => <TextField {...params} label="Disabled options" variant="outlined" />}
     />
   );
 }

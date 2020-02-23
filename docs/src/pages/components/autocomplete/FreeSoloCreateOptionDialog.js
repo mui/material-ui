@@ -96,7 +96,7 @@ export default function FreeSoloCreateOptionDialog() {
         style={{ width: 300 }}
         freeSolo
         renderInput={params => (
-          <TextField {...params} label="Free solo dialog" variant="outlined" fullWidth />
+          <TextField {...params} label="Free solo dialog" variant="outlined" />
         )}
       />
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
@@ -114,7 +114,6 @@ export default function FreeSoloCreateOptionDialog() {
               onChange={event => setDialogValue({ ...dialogValue, title: event.target.value })}
               label="title"
               type="text"
-              fullWidth
             />
             <TextField
               margin="dense"
@@ -123,7 +122,6 @@ export default function FreeSoloCreateOptionDialog() {
               onChange={event => setDialogValue({ ...dialogValue, year: event.target.value })}
               label="year"
               type="number"
-              fullWidth
             />
           </DialogContent>
           <DialogActions>
