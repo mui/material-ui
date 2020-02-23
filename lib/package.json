@@ -43,7 +43,7 @@
     }
   },
   "dependencies": {
-    "@babel/runtime": "^7.6.0",
+    "@babel/runtime": "^7.8.4",
     "@date-io/date-fns": "^2.1.0",
     "@date-io/dayjs": "^2.1.0",
     "@date-io/luxon": "^2.1.0",
