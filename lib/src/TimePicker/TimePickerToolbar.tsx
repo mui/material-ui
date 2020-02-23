@@ -82,7 +82,7 @@ export const TimePickerToolbar: React.FC<ToolbarComponentProps> = ({
   ampmInClock,
   isMobileKeyboardViewOpen,
   toggleMobileKeyboardView,
-  title = 'SELECT TIME',
+  toolbarTitle = 'SELECT TIME',
 }) => {
   const utils = useUtils();
   const theme = useTheme();
@@ -103,7 +103,7 @@ export const TimePickerToolbar: React.FC<ToolbarComponentProps> = ({
   return (
     <PickerToolbar
       landscapeDirection="row"
-      title={title}
+      toolbarTitle={toolbarTitle}
       isLandscape={isLandscape}
       isMobileKeyboardViewOpen={isMobileKeyboardViewOpen}
       toggleMobileKeyboardView={toggleMobileKeyboardView}

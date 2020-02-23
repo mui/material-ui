@@ -25,7 +25,7 @@ export type ToolbarComponentProps<T extends PickerView = any> = BaseDatePickerPr
     date: MaterialUiPickersDate;
     setOpenView: (view: T) => void;
     onChange: (date: MaterialUiPickersDate, isFinish?: boolean) => void;
-    title?: string;
+    toolbarTitle?: string;
     // TODO move out, cause it is DateTimePickerOnly
     hideTabs?: boolean;
     dateRangeIcon?: React.ReactNode;
@@ -42,7 +42,7 @@ export interface PickerViewProps<TView extends PickerView>
     WithViewsProps<TView>,
     BaseDatePickerProps,
     ExportedClockViewProps {
-  title?: string;
+  toolbarTitle?: string;
   showToolbar?: boolean;
   ToolbarComponent: React.ComponentType<ToolbarComponentProps<any>>;
   // TODO move out, cause it is DateTimePickerOnly
@@ -94,7 +94,7 @@ export function Picker({
   date,
   openTo = 'date',
   views = ['year', 'month', 'date', 'hours', 'minutes', 'seconds'],
-  title,
+  toolbarTitle,
   showToolbar,
   onDateChange,
   ToolbarComponent,
@@ -140,7 +140,7 @@ export function Picker({
           onChange={onChange}
           setOpenView={setOpenView}
           openView={openView}
-          title={title}
+          toolbarTitle={toolbarTitle}
           ampmInClock={other.ampmInClock}
           isMobileKeyboardViewOpen={isMobileKeyboardViewOpen}
           toggleMobileKeyboardView={toggleMobileKeyboardView}

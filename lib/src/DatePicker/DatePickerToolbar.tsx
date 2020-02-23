@@ -26,7 +26,7 @@ export const DatePickerToolbar: React.FC<ToolbarComponentProps> = ({
   isLandscape,
   isMobileKeyboardViewOpen,
   toggleMobileKeyboardView,
-  title = 'SELECT DATE',
+  toolbarTitle = 'SELECT DATE',
 }) => {
   const utils = useUtils();
   const classes = useStyles();
@@ -50,7 +50,7 @@ export const DatePickerToolbar: React.FC<ToolbarComponentProps> = ({
 
   return (
     <PickerToolbar
-      title={title}
+      toolbarTitle={toolbarTitle}
       isMobileKeyboardViewOpen={isMobileKeyboardViewOpen}
       toggleMobileKeyboardView={toggleMobileKeyboardView}
       isLandscape={isLandscape}

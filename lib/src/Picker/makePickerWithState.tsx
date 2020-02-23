@@ -74,7 +74,7 @@ export function makePickerWithStateAndWrapper<
       ToolbarComponent = DefaultToolbarComponent,
       value,
       views,
-      title,
+      toolbarTitle,
       invalidDateMessage,
       minDateMessage,
       wider,
@@ -115,7 +115,8 @@ export function makePickerWithStateAndWrapper<
         <Picker
           {...pickerProps}
           DateInputProps={{ ...inputProps, ...restPropsForTextField }}
-          title={title}
+          // @ts-ignore
+          toolbarTitle={toolbarTitle || restPropsForTextField.label}
           allowKeyboardControl={allowKeyboardControl}
           ampm={ampm}
           ampmInClock={ampmInClock}
