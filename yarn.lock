@@ -9776,10 +9776,10 @@ react-jss@^8.6.1:
     prop-types "^15.6.0"
     theming "^1.3.0"
 
-react-kawaii@^0.12.0:
-  version "0.12.0"
-  resolved "https://registry.yarnpkg.com/react-kawaii/-/react-kawaii-0.12.0.tgz#e1eeb5bc3818d91bb609f5bf2992ce9bbea738ed"
-  integrity sha512-qcRhCy8+8CFWw9VZu2pY9eMsjcaB83ZmJ6sH+BqyeaZnA0YlEzB3oPGVBJEX4KYd7/Dj/dB/7R98OnSixIY5Wg==
+react-kawaii@^0.16.0:
+  version "0.16.0"
+  resolved "https://registry.yarnpkg.com/react-kawaii/-/react-kawaii-0.16.0.tgz#6543f82a911269b9e7a470bf5316fe3976404636"
+  integrity sha512-ZD8QkK8pQbLdV391aJ4CAwuFq2rxVeRhYIsyj9d9q68aobFjcs3UwmGOFgSLWoI642ecXJD/4wBscYXMCcCWJw==
   dependencies:
     prop-types "^15.6.2"
 
