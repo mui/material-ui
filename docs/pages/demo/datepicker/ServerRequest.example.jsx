@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Badge } from '@material-ui/core';
-import { DatePicker } from '@material-ui/pickers';
+import { DatePicker, Day } from '@material-ui/pickers';
 import { makeJSDateObject } from '../../../utils/helpers';
 
 function getRandomNumber(min, max) {
@@ -24,16 +24,20 @@ function ServerRequest() {
   return (
     <>
       <DatePicker
-        label="With server data"
         value={selectedDate}
         onChange={date => handleDateChange(date)}
         onMonthChange={handleMonthChange}
-        renderDay={(day, selectedDate, isInCurrentMonth, dayComponent) => {
+        renderDay={(day, selectedDate, DayComponentProps) => {
           const date = makeJSDateObject(day); // skip this step, it is required to support date libs
-          const isSelected = isInCurrentMonth && selectedDays.includes(date.getDate());
+          const isSelected =
+            DayComponentProps.isInCurrentMonth && selectedDays.includes(date.getDate());
 
           // You can also use our internal <Day /> component
-          return <Badge badgeContent={isSelected ? '🌚' : undefined}>{dayComponent}</Badge>;
+          return (
+            <Badge badgeContent={isSelected ? '🌚' : undefined}>
+              <Day {...DayComponentProps} />
+            </Badge>
+          );
         }}
       />
     </>
