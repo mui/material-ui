@@ -117,6 +117,14 @@ const Popover = React.forwardRef(function Popover(props, ref) {
   } = props;
   const paperRef = React.useRef();
 
+
+  const [openState, setOpenState] = React.useState();
+  React.useEffect(()=> {
+    if (!open) {
+      setOpenState(undefined)
+    }
+  }, [open])
+
   // Returns the top/left offset of the position
   // to attach to on the anchor element (or body if none is provided)
   const getAnchorOffset = React.useCallback(
@@ -179,12 +187,22 @@ const Popover = React.forwardRef(function Popover(props, ref) {
       let contentAnchorOffset = 0;
 
       if (getContentAnchorEl && anchorReference === 'anchorEl') {
-        const contentAnchorEl = getContentAnchorEl(element);
+
+        const {content, top} = openState || {};
+        const contentAnchorEl = content || getContentAnchorEl(element);
 
         if (contentAnchorEl && element.contains(contentAnchorEl)) {
-          const scrollTop = getScrollParent(element, contentAnchorEl);
+          const scrollTop = top !== undefined ? top : getScrollParent(element, contentAnchorEl);
+
           contentAnchorOffset =
             contentAnchorEl.offsetTop + contentAnchorEl.clientHeight / 2 - scrollTop || 0;
+
+          if (openState === undefined)  {
+            setOpenState({
+              content: contentAnchorEl, top: scrollTop
+            })
+          }
+        
         }
 
         // != the default value
@@ -205,7 +223,7 @@ const Popover = React.forwardRef(function Popover(props, ref) {
 
       return contentAnchorOffset;
     },
-    [anchorOrigin.vertical, anchorReference, getContentAnchorEl],
+    [anchorOrigin.vertical, anchorReference, getContentAnchorEl, openState, setOpenState],
   );
 
   // Return the base transform origin using the element
@@ -384,6 +402,8 @@ const Popover = React.forwardRef(function Popover(props, ref) {
   // If neither are provided let the Modal take care of choosing the container
   const container =
     containerProp || (anchorEl ? ownerDocument(getAnchorEl(anchorEl)).body : undefined);
+
+
 
   return (
     <Modal
