@@ -1,3 +1,5 @@
+import { DayProps as DayPropsType } from './views/Calendar/Day';
+
 export * from './DatePicker';
 
 export * from './TimePicker';
@@ -8,7 +10,9 @@ export { Calendar } from './views/Calendar/Calendar';
 
 export * from './views/Calendar/CalendarView';
 
-export { default as Day } from './views/Calendar/Day';
+export { Day } from './views/Calendar/Day';
+
+export type DayProps = DayPropsType;
 
 export { default as TimePickerView, ClockView } from './views/Clock/ClockView';
 

@@ -148,6 +148,7 @@ export function makePickerWithStateAndWrapper<
           strictCompareDates={strictCompareDates}
           timeIcon={timeIcon}
           ToolbarComponent={ToolbarComponent}
+          // @ts-ignore
           toolbarTitle={toolbarTitle || restPropsForTextField.label}
           views={views}
         />

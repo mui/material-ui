@@ -182,5 +182,3 @@ Day.defaultProps = {
   isToday: false,
   selected: false,
 };
-
-export default Day;
