@@ -377,7 +377,7 @@ describe('<ButtonBase />', () => {
 
       it('should not crash when changes enableRipple from false to true', () => {
         function App() {
-          /** @type {React.MutableRefObject<import('./ButtonBase').ButtonBaseActions | null)> | null} */
+          /** @type {React.MutableRefObject<import('./ButtonBase').ButtonBaseActions | null>} */
           const buttonRef = React.useRef(null);
           const [enableRipple, setRipple] = React.useState(false);
 
