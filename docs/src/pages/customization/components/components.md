@@ -166,7 +166,7 @@ It implements all these custom pseudo-classes:
 
 ### Use `$ruleName` to reference a local rule within the same style sheet
 
-The [jss-nested](https://github.com/cssinjs/jss-nested) plugin (available by default) can make the process of increasing specificity easier.
+The [jss-nested](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-nested) plugin (available by default) can make the process of increasing specificity easier.
 
 ```js
 const styles = {
