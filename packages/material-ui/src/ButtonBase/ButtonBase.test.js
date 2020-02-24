@@ -377,7 +377,12 @@ describe('<ButtonBase />', () => {
 
       it('should not crash when changes enableRipple from false to true', () => {
         function App() {
+          const buttonRef = React.useRef();
           const [enableRipple, setRipple] = React.useState(false);
+
+          React.useEffect(() => {
+            buttonRef.current.focusVisible();
+          }, []);
 
           return (
             <div>
@@ -392,6 +397,7 @@ describe('<ButtonBase />', () => {
               </button>
               <ButtonBase
                 autoFocus
+                action={buttonRef}
                 TouchRippleProps={{
                   classes: {
                     ripplePulsate: 'ripple-pulsate',
@@ -400,10 +406,7 @@ describe('<ButtonBase />', () => {
                 focusRipple
                 disableRipple={!enableRipple}
               >
-                1
-              </ButtonBase>
-              <ButtonBase autoFocus focusRipple>
-                2
+                the button
               </ButtonBase>
             </div>
           );
