@@ -382,7 +382,7 @@ describe('<ButtonBase />', () => {
 
           React.useEffect(() => {
             // @ts-ignore
-            buttonRef.current.focusVisible()
+            buttonRef.current.focusVisible();
           }, []);
 
           return (
@@ -398,7 +398,7 @@ describe('<ButtonBase />', () => {
               </button>
               <ButtonBase
                 autoFocus
-                 // @ts-ignore
+                // @ts-ignore
                 action={buttonRef}
                 TouchRippleProps={{
                   classes: {
