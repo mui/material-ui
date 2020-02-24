@@ -36,6 +36,10 @@ const Ad: React.FC = () => {
     }
   }, []);
 
+  if (process.env.VISUAL_TESTING) {
+    return null;
+  }
+
   return (
     <Grid container>
       <span id="codefund-script-position" />
