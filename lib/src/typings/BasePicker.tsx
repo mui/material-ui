@@ -44,7 +44,7 @@ export interface BasePickerProps {
    * Mobile picker title, displaying in the toolbar
    * @default "SELECT DATE"
    */
-  title?: string;
+  toolbarTitle?: string;
   /**
    * Compare dates by the exact timestamp, instead of start/end of date
    * @default false

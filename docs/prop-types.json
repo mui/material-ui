@@ -754,12 +754,12 @@
         "name": "ComponentClass<ToolbarComponentProps<any>, any> | FunctionComponent<ToolbarComponentProps<any>>"
       }
     },
-    "title": {
+    "toolbarTitle": {
       "defaultValue": {
         "value": "\"SELECT DATE\""
       },
       "description": "Mobile picker title, displaying in the toolbar",
-      "name": "title",
+      "name": "toolbarTitle",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
         "name": "BasePickerProps"
@@ -1373,12 +1373,12 @@
         "name": "ComponentClass<ToolbarComponentProps<any>, any> | FunctionComponent<ToolbarComponentProps<any>>"
       }
     },
-    "title": {
+    "toolbarTitle": {
       "defaultValue": {
         "value": "\"SELECT DATE\""
       },
       "description": "Mobile picker title, displaying in the toolbar",
-      "name": "title",
+      "name": "toolbarTitle",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
         "name": "BasePickerProps"
@@ -1828,12 +1828,12 @@
         "name": "ComponentClass<ToolbarComponentProps<any>, any> | FunctionComponent<ToolbarComponentProps<any>>"
       }
     },
-    "title": {
+    "toolbarTitle": {
       "defaultValue": {
         "value": "\"SELECT DATE\""
       },
       "description": "Mobile picker title, displaying in the toolbar",
-      "name": "title",
+      "name": "toolbarTitle",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
         "name": "BasePickerProps"
