@@ -136,7 +136,7 @@
     "size-limit": "^0.21.0",
     "ts-node": "^8.3.0",
     "tslint": "5.14.0",
-    "typescript": "3.2.4",
+    "typescript": "^3.8.2",
     "typescript-to-proptypes": "^1.4.0",
     "vrtest": "^0.2.0",
     "webpack": "^4.41.0",

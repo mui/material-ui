@@ -14833,20 +14833,15 @@ typescript-to-proptypes@^1.4.0:
     typescript "3.5.2"
     uuid "^3.3.2"
 
-typescript@3.2.4:
-  version "3.2.4"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.2.4.tgz#c585cb952912263d915b462726ce244ba510ef3d"
-  integrity sha512-0RNDbSdEokBeEAkgNbxJ+BLwSManFy9TeXz8uW+48j/xhEXv1ePME60olyzw2XzUqUBNAYFeJadIqAgNqIACwg==
-
 typescript@3.5.2:
   version "3.5.2"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.5.2.tgz#a09e1dc69bc9551cadf17dba10ee42cf55e5d56c"
   integrity sha512-7KxJovlYhTX5RaRbUdkAXN1KUZ8PwWlTzQdHV6xNqvuFOs7+WBo10TQUqT19Q/Jz2hk5v9TQDIhyLhhJY4p5AA==
 
-typescript@next:
-  version "3.3.0-dev.20190112"
-  resolved "https://registry.npmjs.org/typescript/-/typescript-3.3.0-dev.20190112.tgz#7d0485527d10db1acbfbc6f87bcd8541ec71c32f"
-  integrity sha512-aEfjOBzSPfd/sxQwEz6y+xl8+bYmGb2zl+sGIoJUNaKV+xk/Cf4bWtTlHcP/sTBRDQoE4iCT2gZZBmxfe3hWyg==
+typescript@^3.8.2, typescript@next:
+  version "3.8.2"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.8.2.tgz#91d6868aaead7da74f493c553aeff76c0c0b1d5a"
+  integrity sha512-EgOVgL/4xfVrCMbhYKUQTdF37SQn4Iw73H5BgCrF1Abdun7Kwy/QZsE/ssAy0y4LxBbvua3PIbFsbRczWWnDdQ==
 
 uglify-js@^3.1.4:
   version "3.7.2"

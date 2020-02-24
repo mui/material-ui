@@ -107,8 +107,8 @@ import { createStyles, makeStyles } from '@material-ui/styles';
     defaultTheme: validCustomTheme,
   });
 
-  // $ExpectError
   makeStyles(style, {
+    // $ExpectError
     defaultTheme: invalidCustomTheme,
   });
 

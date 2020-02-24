@@ -7,7 +7,7 @@ function themeTest() {
     value: number;
     theme: { palette: { primary: string } };
   }) => ({});
-  const Component: React.FC = () => null;
+  const Component: React.FC<{ value: number }> = () => null;
   const ComponentWithTheme: React.FC<{ theme: { zIndex: { [k: string]: number } } }> = () => null;
 
   const ComponentStyled = styled(Component)(style);

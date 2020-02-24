@@ -60,9 +60,6 @@ update_configs:
           dependency_name: 'tslint'
           version_requirement: '5.x'
       - match:
-          # we support typescript ^3.2.2 updating it in the repo might not catch new syntax
-          dependency_name: 'typescript'
-      - match:
           # as of 3.x requires node@10. We can upgrade once we do as well
           dependency_name: 'url-loader'
           version_requirement: '>= 3.0'

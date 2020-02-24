@@ -552,6 +552,9 @@ describe('<ButtonBase />', () => {
 
   describe('prop: component', () => {
     it('should allow to use a link component', () => {
+      /**
+       * @type {React.ForwardRefExoticComponent<React.HTMLAttributes<HTMLDivElement>>}
+       */
       const Link = React.forwardRef((props, ref) => (
         <div data-testid="link" ref={ref} {...props} />
       ));
