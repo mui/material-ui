@@ -32,9 +32,8 @@ function ServerRequest() {
           const isSelected =
             DayComponentProps.isInCurrentMonth && selectedDays.includes(date.getDate());
 
-          // You can also use our internal <Day /> component
           return (
-            <Badge badgeContent={isSelected ? '🌚' : undefined}>
+            <Badge overlap="circle" badgeContent={isSelected ? '🌚' : undefined}>
               <Day {...DayComponentProps} />
             </Badge>
           );

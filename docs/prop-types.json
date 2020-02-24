@@ -458,7 +458,7 @@
     },
     "renderDay": {
       "defaultValue": null,
-      "description": "Custom renderer for day, check [DayComponentProps api](/api/Day)",
+      "description": "Custom renderer for day. Check [DayComponentProps api](https://material-ui-pickers.dev/api/Day)",
       "name": "renderDay",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/views/Calendar/Calendar.tsx",
@@ -2423,7 +2423,7 @@
     },
     "renderDay": {
       "defaultValue": null,
-      "description": "Custom renderer for day, check [DayComponentProps api](/api/Day)",
+      "description": "Custom renderer for day. Check [DayComponentProps api](https://material-ui-pickers.dev/api/Day)",
       "name": "renderDay",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/views/Calendar/Calendar.tsx",
@@ -2533,7 +2533,7 @@
     },
     "renderDay": {
       "defaultValue": null,
-      "description": "Custom renderer for day, check [DayComponentProps api](/api/Day)",
+      "description": "Custom renderer for day. Check [DayComponentProps api](https://material-ui-pickers.dev/api/Day)",
       "name": "renderDay",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/views/Calendar/Calendar.tsx",

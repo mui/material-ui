@@ -63,9 +63,9 @@ function WeekPicker(props) {
       value={selectedDate}
       onChange={handleDateChange}
       renderDay={renderWeekPickerDay}
-      inputinputFormat={props.__willBeReplacedGetFormatString({
+      inputFormat={props.__willBeReplacedGetFormatString({
         moment: `[Week of] MMM D`,
-        dateFns: `'Week of' MMM d`,
+        dateFns: "'Week of' MMM d",
       })}
     />
   );

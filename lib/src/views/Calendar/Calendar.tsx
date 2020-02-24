@@ -24,11 +24,11 @@ export interface ExportedCalendarProps extends Pick<DayProps, 'showDaysOutsideCu
    * @default false
    */
   disableFuture?: boolean;
-  /** Custom renderer for day, check [DayComponentProps api](/api/Day) @DateIOType */
+  /** Custom renderer for day. Check [DayComponentProps api](https://material-ui-pickers.dev/api/Day) @DateIOType */
   renderDay?: (
     day: MaterialUiPickersDate,
     selectedDate: MaterialUiPickersDate,
-    DayComponentProps: DayProps,
+    DayComponentProps: DayProps
   ) => JSX.Element;
   /**
    * Enables keyboard listener for moving between days in calendar
@@ -196,13 +196,15 @@ export const Calendar: React.FC<CalendarProps> = ({
                   selected: utils.isSameDay(selectedDate, day),
                   showDaysOutsideCurrentMonth,
                   focusable:
-                  Boolean(nowFocusedDay) &&
-                  utils.toJsDate(nowFocusedDay).getDate() === utils.toJsDate(day).getDate(),
+                    Boolean(nowFocusedDay) &&
+                    utils.toJsDate(nowFocusedDay).getDate() === utils.toJsDate(day).getDate(),
                 };
 
-                let dayComponent = renderDay
-                  ? renderDay(day, selectedDate, dayProps)
-                  : <Day {...dayProps} />
+                let dayComponent = renderDay ? (
+                  renderDay(day, selectedDate, dayProps)
+                ) : (
+                  <Day {...dayProps} />
+                );
 
                 return (
                   <DayWrapper
