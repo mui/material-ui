@@ -82,6 +82,7 @@ export function makePickerWithStateAndWrapper<
       maxDateMessage,
       disableTimeValidationIgnoreDatePart,
       showDaysOutsideCurrentMonth,
+      disableHighlightToday,
       // WrapperProps
       clearable,
       clearLabel,
@@ -116,22 +117,22 @@ export function makePickerWithStateAndWrapper<
           {...pickerProps}
           DateInputProps={{ ...inputProps, ...restPropsForTextField }}
           // @ts-ignore
-          toolbarTitle={toolbarTitle || restPropsForTextField.label}
           allowKeyboardControl={allowKeyboardControl}
           ampm={ampm}
           ampmInClock={ampmInClock}
           dateRangeIcon={dateRangeIcon}
           disableFuture={disableFuture}
+          disableHighlightToday={disableHighlightToday}
           disablePast={disablePast}
-          showToolbar={showToolbar}
+          disableTimeValidationIgnoreDatePart={disableTimeValidationIgnoreDatePart}
           hideTabs={hideTabs}
           leftArrowButtonProps={leftArrowButtonProps}
           leftArrowIcon={leftArrowIcon}
           loadingIndicator={loadingIndicator}
           maxDate={maxDate}
+          maxTime={maxTime}
           minDate={minDate}
           minTime={minTime}
-          maxTime={maxTime}
           minutesStep={minutesStep}
           onMonthChange={onMonthChange}
           onYearChange={onYearChange}
@@ -142,12 +143,13 @@ export function makePickerWithStateAndWrapper<
           rightArrowIcon={rightArrowIcon}
           shouldDisableDate={shouldDisableDate}
           shouldDisableTime={shouldDisableTime}
+          showDaysOutsideCurrentMonth={showDaysOutsideCurrentMonth}
+          showToolbar={showToolbar}
           strictCompareDates={strictCompareDates}
           timeIcon={timeIcon}
           ToolbarComponent={ToolbarComponent}
+          toolbarTitle={toolbarTitle || restPropsForTextField.label}
           views={views}
-          showDaysOutsideCurrentMonth={showDaysOutsideCurrentMonth}
-          disableTimeValidationIgnoreDatePart={disableTimeValidationIgnoreDatePart}
         />
       </WrapperComponent>
     );

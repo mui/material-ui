@@ -35,7 +35,7 @@ export const useStyles = makeStyles(
       height: daySize,
     },
     dayOutsideMonth: {
-      color: theme.palette.text.hint
+      color: theme.palette.text.hint,
     },
     hidden: {
       opacity: 0,
@@ -95,6 +95,10 @@ export interface DayProps extends ExtendMui<ButtonBaseProps> {
    * @default false
    */
   showDaysOutsideCurrentMonth?: boolean;
+  /** Disable highlighting today date with a circle
+   * @default false
+   */
+  disableHighlightToday?: boolean;
 }
 
 export const Day: React.FC<DayProps> = ({
@@ -110,6 +114,7 @@ export const Day: React.FC<DayProps> = ({
   onFocus,
   disableMargin = false,
   allowKeyboardControl,
+  disableHighlightToday = false,
   showDaysOutsideCurrentMonth = false,
   ...other
 }) => {
@@ -141,10 +146,10 @@ export const Day: React.FC<DayProps> = ({
       className={clsx(
         classes.day,
         {
-          [classes.today]: isToday,
           [classes.daySelected]: selected,
           [classes.dayDisabled]: disabled,
           [classes.dayWithMargin]: !disableMargin,
+          [classes.today]: !disableHighlightToday && isToday,
           [classes.hidden]: !isInCurrentMonth && !showDaysOutsideCurrentMonth,
           [classes.dayOutsideMonth]: !isInCurrentMonth && showDaysOutsideCurrentMonth,
         },

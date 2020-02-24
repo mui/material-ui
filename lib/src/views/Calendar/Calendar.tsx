@@ -9,7 +9,8 @@ import { findClosestEnabledDate } from '../../_helpers/date-utils';
 import { makeStyles, useTheme, Typography } from '@material-ui/core';
 import { useGlobalKeyDown, keycode } from '../../_shared/hooks/useKeyDown';
 
-export interface ExportedCalendarProps extends Pick<DayProps, 'showDaysOutsideCurrentMonth'> {
+export interface ExportedCalendarProps
+  extends Pick<DayProps, 'disableHighlightToday' | 'showDaysOutsideCurrentMonth'> {
   /** Calendar Date @DateIOType */
   date: MaterialUiPickersDate;
   /** Calendar onChange */
@@ -108,6 +109,7 @@ export const Calendar: React.FC<CalendarProps> = ({
   reduceAnimations,
   allowKeyboardControl,
   isDateDisabled,
+  disableHighlightToday,
   showDaysOutsideCurrentMonth,
 }) => {
   const now = useNow();
@@ -194,6 +196,7 @@ export const Calendar: React.FC<CalendarProps> = ({
                   hidden: !isDayInCurrentMonth,
                   isInCurrentMonth: isDayInCurrentMonth,
                   selected: utils.isSameDay(selectedDate, day),
+                  disableHighlightToday,
                   showDaysOutsideCurrentMonth,
                   focusable:
                     Boolean(nowFocusedDay) &&

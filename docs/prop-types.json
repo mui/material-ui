@@ -249,6 +249,21 @@
         "name": "(date: DateIOType) => void"
       }
     },
+    "disableHighlightToday": {
+      "defaultValue": {
+        "value": "false"
+      },
+      "description": "Disable highlighting today date with a circle",
+      "name": "disableHighlightToday",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Calendar/Day.tsx",
+        "name": "DayProps"
+      },
+      "required": false,
+      "type": {
+        "name": "boolean"
+      }
+    },
     "showDaysOutsideCurrentMonth": {
       "defaultValue": {
         "value": "false"
@@ -2214,6 +2229,21 @@
         "name": "(date: DateIOType) => void"
       }
     },
+    "disableHighlightToday": {
+      "defaultValue": {
+        "value": "false"
+      },
+      "description": "Disable highlighting today date with a circle",
+      "name": "disableHighlightToday",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Calendar/Day.tsx",
+        "name": "DayProps"
+      },
+      "required": false,
+      "type": {
+        "name": "boolean"
+      }
+    },
     "showDaysOutsideCurrentMonth": {
       "defaultValue": {
         "value": "false"
@@ -2572,6 +2602,21 @@
         "name": "Element"
       }
     },
+    "disableHighlightToday": {
+      "defaultValue": {
+        "value": "false"
+      },
+      "description": "Disable highlighting today date with a circle",
+      "name": "disableHighlightToday",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Calendar/Day.tsx",
+        "name": "DayProps"
+      },
+      "required": false,
+      "type": {
+        "name": "boolean"
+      }
+    },
     "showDaysOutsideCurrentMonth": {
       "defaultValue": {
         "value": "false"
@@ -2737,6 +2782,21 @@
       },
       "description": "Display disabled dates outside the current month",
       "name": "showDaysOutsideCurrentMonth",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Calendar/Day.tsx",
+        "name": "DayProps"
+      },
+      "required": false,
+      "type": {
+        "name": "boolean"
+      }
+    },
+    "disableHighlightToday": {
+      "defaultValue": {
+        "value": false
+      },
+      "description": "Disable highlighting today date with a circle",
+      "name": "disableHighlightToday",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/views/Calendar/Day.tsx",
         "name": "DayProps"
