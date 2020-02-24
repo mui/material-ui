@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
+import AlarmIcon from '@material-ui/icons/Alarm';
 import SnoozeIcon from '@material-ui/icons/Snooze';
-import AlarmIcon from '@material-ui/icons/AddAlarm';
-import { IconButton, InputAdornment } from '@material-ui/core';
+import ClockIcon from '@material-ui/icons/AccessTime';
 import { DateTimePicker, MobileDateTimePicker } from '@material-ui/pickers';
 
 function CustomDateTimePicker(props) {
@@ -14,25 +14,20 @@ function CustomDateTimePicker(props) {
         autoOk
         disableFuture
         hideTabs
-        ampm={false}
+        showTodayButton
+        todayLabel="now"
+        openTo="hours"
         value={selectedDate}
         onChange={date => handleDateChange(date)}
-        allowKeyboardControl={false}
         minDate={new Date('2018-01-01')}
         helperText="Hardcoded helper text"
         leftArrowIcon={<AlarmIcon />}
-        leftArrowButtonProps={{ 'aria-label': 'Prev month' }}
-        rightArrowButtonProps={{ 'aria-label': 'Next month' }}
         rightArrowIcon={<SnoozeIcon />}
-        InputProps={{
-          endAdornment: (
-            <InputAdornment position="end">
-              <IconButton>
-                <AlarmIcon />
-              </IconButton>
-            </InputAdornment>
-          ),
-        }}
+        leftArrowButtonText="Open previous month"
+        rightArrowButtonText="Open next month"
+        keyboardIcon={<ClockIcon />}
+        minTime={new Date(0, 0, 0, 9)}
+        maxTime={new Date(0, 0, 0, 20)}
       />
 
       <MobileDateTimePicker
@@ -41,7 +36,7 @@ function CustomDateTimePicker(props) {
         label="With error handler"
         onError={console.log}
         minDate={new Date('2018-01-01T00:00')}
-        format={props.__willBeReplacedGetFormatString({
+        inputFormat={props.__willBeReplacedGetFormatString({
           moment: 'YYYY/MM/DD hh:mm A',
           dateFns: 'yyyy/MM/dd hh:mm a',
         })}

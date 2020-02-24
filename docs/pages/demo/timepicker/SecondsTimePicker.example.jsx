@@ -10,7 +10,7 @@ function SecondsTimePicker() {
         ampm={false}
         openTo="hours"
         views={['hours', 'minutes', 'seconds']}
-        format="HH:mm:ss"
+        inputFormat="HH:mm:ss"
         label="With seconds"
         value={selectedDate}
         onChange={date => handleDateChange(date)}
@@ -20,7 +20,7 @@ function SecondsTimePicker() {
         ampmInClock
         openTo="minutes"
         views={['minutes', 'seconds']}
-        format="mm:ss"
+        inputFormat="mm:ss"
         label="Minutes and seconds"
         value={selectedDate}
         onChange={date => handleDateChange(date)}

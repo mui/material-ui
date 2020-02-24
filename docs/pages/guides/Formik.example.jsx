@@ -13,7 +13,7 @@ const DatePickerField = ({ field, form, ...other }) => {
       disablePast
       name={field.name}
       value={field.value}
-      format="dd/MM/yyyy"
+      inputFormat="dd/MM/yyyy"
       helperText={currentError}
       error={Boolean(currentError)}
       onError={error => {

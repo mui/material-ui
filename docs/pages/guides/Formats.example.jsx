@@ -19,7 +19,7 @@ function DateFnsLocalizationExample() {
       <DatePicker
         clearable
         helperText="Localization done right"
-        format="d MMM yyyy"
+        inputFormat="d MMM yyyy"
         value={selectedDate}
         onChange={handleDateChange}
         clearLabel="vider"

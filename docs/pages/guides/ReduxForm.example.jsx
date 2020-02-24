@@ -23,7 +23,7 @@ const DateField = props => {
     <DatePicker
       {...inputProps}
       {...others}
-      format="dd/MM/yyyy"
+      inputFormat="dd/MM/yyyy"
       value={value ? new Date(value) : null}
       disabled={submitting}
       onBlur={() => onBlur(value ? new Date(value).toISOString() : null)}

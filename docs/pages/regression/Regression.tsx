@@ -44,7 +44,7 @@ function Regression() {
           autoOk
           id="keyboard-mask-datepicker"
           {...sharedProps}
-          format="MM/dd/yyyy"
+          inputFormat="MM/dd/yyyy"
         />
         <DesktopDatePicker
           autoOk

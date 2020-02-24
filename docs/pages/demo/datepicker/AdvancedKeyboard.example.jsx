@@ -12,7 +12,7 @@ function AdvancedKeyboardExample(props) {
         variant="outlined"
         label="Advanced keyboard"
         placeholder="2018/01/01"
-        format={props.__willBeReplacedGetFormatString({
+        inputFormat={props.__willBeReplacedGetFormatString({
           moment: 'YYYY/MM/DD',
           dateFns: 'yyyy/MM/dd',
         })}
