@@ -111,7 +111,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
   );
 
   React.useEffect(() => {
-    if (rippleRef.current && focusVisible && focusRipple && !disableRipple) {
+    if (focusVisible && focusRipple && !disableRipple) {
       rippleRef.current.pulsate();
     }
   }, [disableRipple, focusRipple, focusVisible]);
@@ -302,12 +302,12 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
       {...other}
     >
       {children}
-      {!disableRipple && !disabled ? (
-        <NoSsr>
-          {/* TouchRipple is only needed client-side, x2 boost on the server. */}
+      <NoSsr>
+        {!disableRipple && !disabled && (
+          /* TouchRipple is only needed client-side, x2 boost on the server. */
           <TouchRipple ref={rippleRef} center={centerRipple} {...TouchRippleProps} />
-        </NoSsr>
-      ) : null}
+        )}
+      </NoSsr>
     </ComponentProp>
   );
 });
