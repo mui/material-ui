@@ -25,8 +25,7 @@ export interface ExportedArrowSwitcherProps {
   rightArrowButtonProps?: Partial<IconButtonProps>;
 }
 
-interface ArrowSwitcherProps extends ExportedArrowSwitcherProps {
-  className?: string;
+interface ArrowSwitcherProps extends ExportedArrowSwitcherProps, React.HTMLProps<HTMLDivElement> {
   isLeftDisabled: boolean;
   isRightDisabled: boolean;
   onLeftClick: () => void;
@@ -55,13 +54,14 @@ export const ArrowSwitcher: React.FC<ArrowSwitcherProps> = ({
   onRightClick,
   leftArrowIcon = <ArrowLeftIcon />,
   rightArrowIcon = <ArrowRightIcon />,
+  ...other
 }) => {
   const classes = useStyles();
   const theme = useTheme();
   const isRtl = theme.direction === 'rtl';
 
   return (
-    <div className={className}>
+    <div className={className} {...other}>
       <IconButton
         data-mui-test="previous-arrow-button"
         size="small"
