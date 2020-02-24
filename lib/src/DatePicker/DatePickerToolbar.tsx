@@ -64,6 +64,7 @@ export const DatePickerToolbar: React.FC<ToolbarComponentProps> = ({
       <Typography
         variant="h4"
         children={dateText}
+        data-mui-test="datepicker-toolbar-date"
         align={isLandscape ? 'left' : 'center'}
         className={clsx({ [classes.dateTitleLandscape]: isLandscape })}
       />

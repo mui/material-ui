@@ -44,4 +44,17 @@ describe('DatePicker - different props', () => {
       'Default label'
     );
   });
+
+  it('toolbarFormat – should format toolbar according to passed format', () => {
+    const component = mount(
+      <MobileDatePicker
+        open
+        onChange={jest.fn()}
+        toolbarFormat="MMMM"
+        value={utilsToUse.date('2018-01-01T00:00:00.000Z')}
+      />
+    );
+
+    expect(component.find('h4[data-mui-test="datepicker-toolbar-date"]').text()).toBe('January');
+  });
 });
