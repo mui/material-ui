@@ -27,6 +27,8 @@ export interface DateTimePickerViewsProps extends BaseDateTimePickerProps {
   minDateTime?: ParsableDate;
   /** Minimal selectable moment of time with binding to date, to set max time in each day use `maxTime` */
   maxDateTime?: ParsableDate;
+  /** Date format, that is displaying in toolbar */
+  toolbarFormat?: string;
 }
 
 export type DateTimePickerProps = WithDateInputProps &

@@ -71,6 +71,7 @@ export function makePickerWithStateAndWrapper<
       shouldDisableTime,
       strictCompareDates,
       timeIcon,
+      toolbarFormat,
       ToolbarComponent = DefaultToolbarComponent,
       value,
       views,
@@ -147,6 +148,7 @@ export function makePickerWithStateAndWrapper<
           showToolbar={showToolbar}
           strictCompareDates={strictCompareDates}
           timeIcon={timeIcon}
+          toolbarFormat={toolbarFormat}
           ToolbarComponent={ToolbarComponent}
           // @ts-ignore
           toolbarTitle={toolbarTitle || restPropsForTextField.label}

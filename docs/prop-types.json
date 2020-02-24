@@ -249,6 +249,19 @@
         "name": "(date: DateIOType) => void"
       }
     },
+    "toolbarFormat": {
+      "defaultValue": null,
+      "description": "Date format, that is displaying in toolbar",
+      "name": "toolbarFormat",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/DatePicker/DatePicker.tsx",
+        "name": "BaseDatePickerProps"
+      },
+      "required": false,
+      "type": {
+        "name": "string"
+      }
+    },
     "disableHighlightToday": {
       "defaultValue": {
         "value": "false"
@@ -2102,6 +2115,19 @@
       "required": false,
       "type": {
         "name": "ParsableDate"
+      }
+    },
+    "toolbarFormat": {
+      "defaultValue": null,
+      "description": "Date format, that is displaying in toolbar",
+      "name": "toolbarFormat",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/DateTimePicker/DateTimePicker.tsx",
+        "name": "DateTimePickerViewsProps"
+      },
+      "required": false,
+      "type": {
+        "name": "string"
       }
     },
     "ampm": {

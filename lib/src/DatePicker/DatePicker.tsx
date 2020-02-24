@@ -17,6 +17,8 @@ export type DatePickerView = 'year' | 'date' | 'month';
 export interface BaseDatePickerProps extends ExportedCalendarViewProps {
   /** Callback firing on year change @DateIOType */
   onYearChange?: (date: MaterialUiPickersDate) => void;
+  /** Date format, that is displaying in toolbar */
+  toolbarFormat?: string;
 }
 
 export type DatePickerProps = BaseDatePickerProps &

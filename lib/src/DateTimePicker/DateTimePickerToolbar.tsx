@@ -45,6 +45,7 @@ export const DateTimePickerToolbar: React.FC<ToolbarComponentProps> = ({
   hideTabs,
   dateRangeIcon,
   timeIcon,
+  toolbarFormat,
   isMobileKeyboardViewOpen,
   toggleMobileKeyboardView,
   toolbarTitle = 'SELECT DATE & TIME',
@@ -77,7 +78,11 @@ export const DateTimePickerToolbar: React.FC<ToolbarComponentProps> = ({
             variant="h4"
             onClick={() => setOpenView('date')}
             selected={openView === 'date'}
-            label={utils.format(date, 'shortDate')}
+            label={
+              toolbarFormat
+                ? utils.formatByString(date, toolbarFormat)
+                : utils.format(date, 'shortDate')
+            }
           />
         </div>
 
