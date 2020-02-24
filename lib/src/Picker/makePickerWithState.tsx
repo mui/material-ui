@@ -49,7 +49,7 @@ export function makePickerWithStateAndWrapper<
       showToolbar,
       inputFormat,
       hideTabs,
-      initialFocusedDate,
+      defaultHighlight,
       leftArrowButtonProps,
       leftArrowIcon,
       loadingIndicator,

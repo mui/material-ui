@@ -19,7 +19,7 @@ export interface BasePickerProps {
   /** Make picker read only */
   readOnly?: boolean;
   /** Date that will be initially highlighted if null was passed */
-  initialFocusedDate?: ParsableDate;
+  defaultHighlight?: ParsableDate;
   /** Callback fired when date is accepted @DateIOType */
   onAccept?: (date: MaterialUiPickersDate) => void;
   /** Callback fired when new error should be displayed

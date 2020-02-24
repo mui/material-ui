@@ -622,10 +622,10 @@
         "name": "boolean"
       }
     },
-    "initialFocusedDate": {
+    "defaultHighlight": {
       "defaultValue": null,
       "description": "Date that will be initially highlighted if null was passed",
-      "name": "initialFocusedDate",
+      "name": "defaultHighlight",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
         "name": "BasePickerProps"
@@ -1241,10 +1241,10 @@
         "name": "boolean"
       }
     },
-    "initialFocusedDate": {
+    "defaultHighlight": {
       "defaultValue": null,
       "description": "Date that will be initially highlighted if null was passed",
-      "name": "initialFocusedDate",
+      "name": "defaultHighlight",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
         "name": "BasePickerProps"
@@ -1696,10 +1696,10 @@
         "name": "boolean"
       }
     },
-    "initialFocusedDate": {
+    "defaultHighlight": {
       "defaultValue": null,
       "description": "Date that will be initially highlighted if null was passed",
-      "name": "initialFocusedDate",
+      "name": "defaultHighlight",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
         "name": "BasePickerProps"

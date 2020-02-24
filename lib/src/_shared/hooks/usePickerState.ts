@@ -9,10 +9,10 @@ import { useCallback, useDebugValue, useEffect, useMemo, useState } from 'react'
 
 const useValueToDate = (
   utils: IUtils<MaterialUiPickersDate>,
-  { value, initialFocusedDate }: BasePickerProps
+  { value, defaultHighlight }: BasePickerProps
 ) => {
   const now = useNow();
-  const date = utils.date(value || initialFocusedDate || now);
+  const date = utils.date(value || defaultHighlight || now);
 
   return date && utils.isValid(date) ? date : now;
 };
