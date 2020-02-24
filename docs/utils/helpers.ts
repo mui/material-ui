@@ -23,7 +23,7 @@ export function makeJSDateObject(date: Date | Moment | DateTime | Dayjs) {
     return new Date(date.getTime());
   }
 
-  return date as any // handle case with invalid input
+  return date as any; // handle case with invalid input
 }
 
 export function copy(text: string) {
