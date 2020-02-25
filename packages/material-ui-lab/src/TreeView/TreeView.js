@@ -2,8 +2,8 @@ import React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import TreeViewContext from './TreeViewContext';
-import {withStyles} from '@material-ui/core/styles';
-import {useControlled} from '@material-ui/core/utils';
+import { withStyles } from '@material-ui/core/styles';
+import { useControlled } from '@material-ui/core/utils';
 
 export const styles = {
   /* Styles applied to the root element. */
@@ -233,12 +233,14 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
 
   const handleRangeArrowSelect = (event, nodes) => {
     let base = selected;
-    const {start, next, current} = nodes;
+    const { start, next, current } = nodes;
 
     if (lastSelectionWasRange.current) {
       if (currentRangeSelection.current.indexOf(next) !== -1) {
         base = base.filter(id => id === start || id !== current);
-        currentRangeSelection.current = currentRangeSelection.current.filter(id => id === start || id !== current);
+        currentRangeSelection.current = currentRangeSelection.current.filter(
+          id => id === start || id !== current,
+        );
       } else {
         base.push(next);
         currentRangeSelection.current.push(next);
@@ -257,7 +259,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
 
   const handleRangeSelect = (event, nodes) => {
     let base = selected;
-    const {start, end} = nodes;
+    const { start, end } = nodes;
     // If last selection was a range selection ignore nodes that were selected.
     if (lastSelectionWasRange.current) {
       base = selected.filter(id => currentRangeSelection.current.indexOf(id) === -1);
@@ -314,11 +316,11 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
   };
 
   const selectRange = (event, nodes, stacked = false) => {
-    const {start = lastSelectedNode.current, end, current} = nodes;
+    const { start = lastSelectedNode.current, end, current } = nodes;
     if (stacked) {
-      handleRangeArrowSelect(event, {start, next: end, current});
+      handleRangeArrowSelect(event, { start, next: end, current });
     } else {
-      handleRangeSelect(event, {start, end});
+      handleRangeSelect(event, { start, end });
     }
     lastSelectionWasRange.current = true;
   };
@@ -332,7 +334,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
 
     selectRange(event, {
       start,
-      end: getFirstNode()
+      end: getFirstNode(),
     });
   };
   const rangeSelectToLast = (event, id) => {
@@ -344,29 +346,39 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
 
     selectRange(event, {
       start,
-      end: getLastNode()
+      end: getLastNode(),
     });
   };
-  const selectNextNode = (event, id) => selectRange(event, {
-    end: getNextNode(id),
-    current: id,
-  }, true);
-  const selectPreviousNode = (event, id) => selectRange(event, {
-    end: getPreviousNode(id),
-    current: id,
-  }, true);
-  const selectAllNodes = event => selectRange(event, {start: getFirstNode(), end: getLastNode()});
+  const selectNextNode = (event, id) =>
+    selectRange(
+      event,
+      {
+        end: getNextNode(id),
+        current: id,
+      },
+      true,
+    );
+  const selectPreviousNode = (event, id) =>
+    selectRange(
+      event,
+      {
+        end: getPreviousNode(id),
+        current: id,
+      },
+      true,
+    );
+  const selectAllNodes = event => selectRange(event, { start: getFirstNode(), end: getLastNode() });
   /*
    * Mapping Helpers
    */
 
   const addNodeToNodeMap = (id, childrenIds) => {
     const currentMap = nodeMap.current[id];
-    nodeMap.current[id] = {...currentMap, children: childrenIds, id};
+    nodeMap.current[id] = { ...currentMap, children: childrenIds, id };
 
     childrenIds.forEach(childId => {
       const currentChildMap = nodeMap.current[childId];
-      nodeMap.current[childId] = {...currentChildMap, parent: id, id: childId};
+      nodeMap.current[childId] = { ...currentChildMap, parent: id, id: childId };
     });
   };
 
@@ -377,7 +389,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
         const parentMap = nodeMap.current[map.parent];
         if (parentMap && parentMap.children) {
           const parentChildren = parentMap.children.filter(c => c !== id);
-          nodeMap.current[map.parent] = {...parentMap, children: parentChildren};
+          nodeMap.current[map.parent] = { ...parentMap, children: parentChildren };
         }
       }
 
@@ -394,13 +406,13 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
   React.useEffect(() => {
     const childIds = React.Children.map(children, child => child.props.nodeId) || [];
     if (arrayDiff(prevChildIds.current, childIds)) {
-      nodeMap.current[-1] = {parent: null, children: childIds};
+      nodeMap.current[-1] = { parent: null, children: childIds };
 
       childIds.forEach((id, index) => {
         if (index === 0) {
           setTabbable(id);
         }
-        nodeMap.current[id] = {parent: null};
+        nodeMap.current[id] = { parent: null };
       });
       visibleNodes.current = nodeMap.current[-1].children;
       prevChildIds.current = childIds;
@@ -430,7 +442,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
   return (
     <TreeViewContext.Provider
       value={{
-        icons: {defaultCollapseIcon, defaultExpandIcon, defaultParentIcon, defaultEndIcon},
+        icons: { defaultCollapseIcon, defaultExpandIcon, defaultParentIcon, defaultEndIcon },
         focus,
         focusFirstNode,
         focusLastNode,
@@ -550,4 +562,4 @@ TreeView.propTypes = {
   selected: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.string), PropTypes.string]),
 };
 
-export default withStyles(styles, {name: 'MuiTreeView'})(TreeView);
+export default withStyles(styles, { name: 'MuiTreeView' })(TreeView);
