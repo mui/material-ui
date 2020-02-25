@@ -13,13 +13,13 @@ export function getTextFieldAriaText(rawValue: ParsableDate, utils: MuiPickersUt
 export const getDisplayDate = (
   value: ParsableDate,
   utils: MuiPickersUtils,
-  { inputFormat, emptyLabel }: Pick<DateInputProps, 'inputFormat' | 'emptyLabel'>
+  { inputFormat, emptyInputText }: Pick<DateInputProps, 'inputFormat' | 'emptyInputText'>
 ) => {
   const date = utils.date(value);
   const isEmpty = value === null;
 
   if (isEmpty) {
-    return emptyLabel || '';
+    return emptyInputText || '';
   }
 
   return utils.isValid(date) ? utils.formatByString(date, inputFormat) : '';

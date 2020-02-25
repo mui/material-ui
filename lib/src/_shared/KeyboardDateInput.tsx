@@ -32,7 +32,7 @@ export const KeyboardDateInput: React.FC<DateInputProps> = ({
   TextFieldComponent = TextField,
   keyboardIcon = <KeyboardIcon />,
   variant,
-  emptyLabel,
+  emptyInputText: emptyLabel,
   hideOpenPickerButton,
   ignoreInvalidInputs,
   onFocus,
@@ -45,7 +45,7 @@ export const KeyboardDateInput: React.FC<DateInputProps> = ({
   const getInputValue = () =>
     getDisplayDate(rawValue, utils, {
       inputFormat,
-      emptyLabel,
+      emptyInputText: emptyLabel,
     });
 
   const [innerInputValue, setInnerInputValue] = React.useState<string | null>(getInputValue());

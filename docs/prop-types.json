@@ -823,12 +823,12 @@
         "name": "ComponentClass<TextFieldProps, any> | FunctionComponent<TextFieldProps>"
       }
     },
-    "emptyLabel": {
+    "emptyInputText": {
       "defaultValue": {
         "value": "' '"
       },
       "description": "Message displaying in read-only text field when null passed",
-      "name": "emptyLabel",
+      "name": "emptyInputText",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/_shared/PureDateInput.tsx",
         "name": "DateInputProps"
@@ -1427,12 +1427,12 @@
         "name": "ComponentClass<TextFieldProps, any> | FunctionComponent<TextFieldProps>"
       }
     },
-    "emptyLabel": {
+    "emptyInputText": {
       "defaultValue": {
         "value": "' '"
       },
       "description": "Message displaying in read-only text field when null passed",
-      "name": "emptyLabel",
+      "name": "emptyInputText",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/_shared/PureDateInput.tsx",
         "name": "DateInputProps"
@@ -1867,12 +1867,12 @@
         "name": "ComponentClass<TextFieldProps, any> | FunctionComponent<TextFieldProps>"
       }
     },
-    "emptyLabel": {
+    "emptyInputText": {
       "defaultValue": {
         "value": "' '"
       },
       "description": "Message displaying in read-only text field when null passed",
-      "name": "emptyLabel",
+      "name": "emptyInputText",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/_shared/PureDateInput.tsx",
         "name": "DateInputProps"

@@ -22,7 +22,7 @@ export interface DateInputProps
    * Message displaying in read-only text field when null passed
    * @default ' '
    */
-  emptyLabel?: string;
+  emptyInputText?: string;
   /** Icon displaying for open picker button */
   keyboardIcon?: React.ReactNode;
   /**
@@ -91,7 +91,7 @@ export const PureDateInput: React.FC<DateInputProps> = ({
   openPicker: onOpen,
   TextFieldComponent = TextField,
   variant,
-  emptyLabel,
+  emptyInputText: emptyLabel,
   keyboardIcon,
   hideOpenPickerButton,
   ignoreInvalidInputs,
@@ -111,7 +111,7 @@ export const PureDateInput: React.FC<DateInputProps> = ({
 
   const inputValue = getDisplayDate(rawValue, utils, {
     inputFormat,
-    emptyLabel,
+    emptyInputText: emptyLabel,
   });
 
   return (
