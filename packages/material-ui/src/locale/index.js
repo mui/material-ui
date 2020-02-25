@@ -363,6 +363,31 @@ export const huHU = {
   },
 };
 
+export const hyAM = {
+  props: {
+    MuiTablePagination: {
+      backIconButtonText: 'Նախորդը',
+      labelRowsPerPage: 'Տողեր մեկ էջում`',
+      labelDisplayedRows: ({ from, to, count }) => `${from}-${to === -1 ? count : to} / ${count}`,
+      nextIconButtonText: 'Հաջորդը',
+    },
+    MuiRating: {
+      getLabelText: value => `${value} Աստղ`,
+      emptyLabelText: 'Դատարկ',
+    },
+    MuiAutocomplete: {
+      clearText: 'Մաքրել',
+      closeText: 'Փակել',
+      loadingText: 'Բեռնում…',
+      noOptionsText: 'Տարբերակներ չկան',
+      openText: 'Բացել',
+    },
+    MuiAlert: {
+      closeText: 'Փակել',
+    },
+  },
+};
+
 export const idID = {
   props: {
     MuiTablePagination: {
