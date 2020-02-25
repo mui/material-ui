@@ -338,6 +338,32 @@ export const frFR = {
   },
 };
 
+export const heIL = {
+  props: {
+    MuiTablePagination: {
+      backIconButtonText: "העמוד הקודם",
+      labelRowsPerPage: "שורות בעמוד:",
+      labelDisplayedRows: ({ from, to, count }) =>
+        `${from}-${to === -1 ? count : to} מתוך ${count}`,
+      nextIconButtonText: "העמוד הבא"
+    },
+    MuiRating: {
+      getLabelText: value => `${value} כוכב${value !== 1 ? "ים" : ""}`,
+      emptyLabelText: "ריק"
+    },
+    MuiAutocomplete: {
+      clearText: "נקה",
+      closeText: "סגור",
+      loadingText: "טוען…",
+      noOptionsText: "אין אופציות",
+      openText: "פתח"
+    },
+    MuiAlert: {
+      closeText: "סגור"
+    }
+  }
+};
+
 export const huHU = {
   props: {
     MuiTablePagination: {
