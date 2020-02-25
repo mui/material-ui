@@ -19,9 +19,9 @@ function HijriExample() {
         okLabel="موافق"
         cancelLabel="الغاء"
         clearLabel="مسح"
-        labelFunc={date => (date ? date.format('iYYYY/iMM/iDD') : '')}
+        inputFormat="iYYYY/iMM/iDD"
         value={selectedDate}
-        onChange={handleDateChange}
+        onChange={date => handleDateChange(date)}
         minDate="1937-03-14"
         maxDate="2076-11-26"
       />
@@ -31,17 +31,17 @@ function HijriExample() {
         okLabel="موافق"
         cancelLabel="الغاء"
         clearLabel="مسح"
-        labelFunc={date => (date ? date.format('hh:mm A') : '')}
+        inputFormat="hh:mm A"
         value={selectedDate}
-        onChange={handleDateChange}
+        onChange={date => handleDateChange(date)}
       />
 
       <DateTimePicker
         okLabel="موافق"
         cancelLabel="الغاء"
-        labelFunc={date => (date ? date.format('iYYYY/iMM/iDD hh:mm A') : '')}
+        inputFormat="iYYYY/iMM/iDD"
         value={selectedDate}
-        onChange={handleDateChange}
+        onChange={date => handleDateChange(date)}
         minDate="1937-03-14"
         maxDate="2076-11-26"
       />

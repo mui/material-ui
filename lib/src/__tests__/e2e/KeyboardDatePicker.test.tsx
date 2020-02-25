@@ -13,7 +13,7 @@ describe('e2e -- DatePicker keyboard input', () => {
       <DesktopDatePicker
         label="Masked input"
         placeholder="10/10/2018"
-        format={process.env.UTILS === 'moment' ? 'DD/MM/YYYY' : 'dd/MM/yyyy'}
+        inputFormat={process.env.UTILS === 'moment' ? 'DD/MM/YYYY' : 'dd/MM/yyyy'}
         value={new Date('2018-01-01T00:00:00.000Z')}
         onChange={onChangeMock}
         InputAdornmentProps={{
@@ -41,7 +41,7 @@ describe('e2e -- KeyboardDatePicker validation errors', () => {
   it('Should render error message if date is unparseable', () => {
     const component = mount(
       <DesktopDatePicker
-        format={process.env.UTILS === 'moment' ? 'DD/MM/YYYY' : 'dd/MM/yyyy'}
+        inputFormat={process.env.UTILS === 'moment' ? 'DD/MM/YYYY' : 'dd/MM/yyyy'}
         value={new Date(NaN)}
         onChange={jest.fn()}
       />
@@ -56,7 +56,7 @@ describe('e2e -- KeyboardDatePicker validation errors', () => {
         onChange={jest.fn()}
         disableFuture
         value={addDays(new Date(), 2)}
-        format={process.env.UTILS === 'moment' ? 'DD/MM/YYYY' : 'dd/MM/yyyy'}
+        inputFormat={process.env.UTILS === 'moment' ? 'DD/MM/YYYY' : 'dd/MM/yyyy'}
       />
     );
 
@@ -71,7 +71,7 @@ describe('e2e -- KeyboardDatePicker validation errors', () => {
         onChange={jest.fn()}
         disablePast
         value={addDays(new Date(), -2)}
-        format={process.env.UTILS === 'moment' ? 'DD/MM/YYYY' : 'dd/MM/yyyy'}
+        inputFormat={process.env.UTILS === 'moment' ? 'DD/MM/YYYY' : 'dd/MM/yyyy'}
       />
     );
 
@@ -86,7 +86,7 @@ describe('e2e -- KeyboardDatePicker validation errors', () => {
         onChange={jest.fn()}
         maxDate={new Date('2018-01-01T00:00:00.000Z')}
         value={new Date('2018-01-01T01:00:00.000Z')}
-        format={process.env.UTILS === 'moment' ? 'DD/MM/YYYY' : 'dd/MM/yyyy'}
+        inputFormat={process.env.UTILS === 'moment' ? 'DD/MM/YYYY' : 'dd/MM/yyyy'}
       />
     );
 
@@ -100,7 +100,7 @@ describe('e2e -- KeyboardDatePicker validation errors', () => {
         maxDate={new Date('2018-01-01T00:00:00.000Z')}
         value={new Date('2018-01-01T01:00:00.000Z')}
         strictCompareDates
-        format={process.env.UTILS === 'moment' ? 'DD/MM/YYYY' : 'dd/MM/yyyy'}
+        inputFormat={process.env.UTILS === 'moment' ? 'DD/MM/YYYY' : 'dd/MM/yyyy'}
       />
     );
 
@@ -115,7 +115,7 @@ describe('e2e -- KeyboardDatePicker validation errors', () => {
         onChange={jest.fn()}
         minDate={new Date('2018-01-01T01:00:00.000Z')}
         value={new Date('2018-01-01T00:00:00.000Z')}
-        format={process.env.UTILS === 'moment' ? 'DD/MM/YYYY' : 'dd/MM/yyyy'}
+        inputFormat={process.env.UTILS === 'moment' ? 'DD/MM/YYYY' : 'dd/MM/yyyy'}
       />
     );
 
@@ -129,7 +129,7 @@ describe('e2e -- KeyboardDatePicker validation errors', () => {
         minDate={new Date('2018-01-01T01:00:00.000Z')}
         value={new Date('2018-01-01T00:00:00.000Z')}
         strictCompareDates
-        format={process.env.UTILS === 'moment' ? 'DD/MM/YYYY' : 'dd/MM/yyyy'}
+        inputFormat={process.env.UTILS === 'moment' ? 'DD/MM/YYYY' : 'dd/MM/yyyy'}
       />
     );
 

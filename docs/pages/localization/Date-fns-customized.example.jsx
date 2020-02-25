@@ -68,7 +68,7 @@ function DateFnsLocalizationExample() {
       <DatePicker
         value={selectedDate}
         onChange={handleDateChange}
-        format={localeFormatMap[locale]}
+        inputFormat={localeFormatMap[locale]}
         cancelLabel={localeCancelLabelMap[locale]}
         InputProps={{
           endAdornment: (

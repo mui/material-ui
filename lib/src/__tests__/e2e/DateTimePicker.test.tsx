@@ -15,7 +15,7 @@ describe('e2e - DateTimePicker', () => {
     component = mount(
       <DateTimePicker
         clearable
-        format={format}
+        inputFormat={format}
         onClose={onCloseMock}
         onChange={onChangeMock}
         value={utilsToUse.date('2018-01-01T00:00:00.000Z')}

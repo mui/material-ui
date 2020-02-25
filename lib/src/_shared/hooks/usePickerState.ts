@@ -9,10 +9,10 @@ import { useCallback, useDebugValue, useEffect, useMemo, useState } from 'react'
 
 const useValueToDate = (
   utils: IUtils<MaterialUiPickersDate>,
-  { value, initialFocusedDate }: BasePickerProps
+  { value, defaultHighlight }: BasePickerProps
 ) => {
   const now = useNow();
-  const date = utils.date(value || initialFocusedDate || now);
+  const date = utils.date(value || defaultHighlight || now);
 
   return date && utils.isValid(date) ? date : now;
 };
@@ -20,13 +20,13 @@ const useValueToDate = (
 function useDateValues(props: BasePickerProps) {
   const utils = useUtils();
   const date = useValueToDate(utils, props);
-  const format = props.format;
+  const inputFormat = props.inputFormat;
 
-  if (!format) {
+  if (!inputFormat) {
     throw new Error('format prop is required');
   }
 
-  return { date, format };
+  return { date, inputFormat };
 }
 
 export const FORCE_FINISH_PICKER = Symbol('Force closing picker, used for accessibility ');
@@ -35,7 +35,7 @@ export function usePickerState(props: BasePickerProps) {
   const { autoOk, disabled, readOnly, onAccept, onChange, onError, value } = props;
 
   const utils = useUtils();
-  const { date, format } = useDateValues(props);
+  const { date, inputFormat } = useDateValues(props);
   const [pickerDate, setPickerDate] = useState(date);
 
   // Mobile keyboard view is a special case.
@@ -67,14 +67,14 @@ export function usePickerState(props: BasePickerProps) {
 
   const wrapperProps = useMemo(
     () => ({
-      format,
+      format: inputFormat,
       open: isOpen,
       onClear: () => acceptDate(null, true),
       onAccept: () => acceptDate(pickerDate, true),
       onSetToday: () => setPickerDate(utils.date()),
       onDismiss: () => setIsOpen(false),
     }),
-    [acceptDate, format, isOpen, pickerDate, setIsOpen, utils]
+    [acceptDate, inputFormat, isOpen, pickerDate, setIsOpen, utils]
   );
 
   const pickerProps = useMemo(
@@ -123,12 +123,12 @@ export function usePickerState(props: BasePickerProps) {
   const inputProps = useMemo(
     () => ({
       onChange,
-      format,
+      inputFormat,
       rawValue: value,
       validationError,
       openPicker: () => !readOnly && !disabled && setIsOpen(true),
     }),
-    [disabled, format, onChange, readOnly, setIsOpen, validationError, value]
+    [disabled, inputFormat, onChange, readOnly, setIsOpen, validationError, value]
   );
 
   const pickerState = { pickerProps, inputProps, wrapperProps };

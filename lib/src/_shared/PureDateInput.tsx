@@ -9,37 +9,20 @@ import { IconButtonProps } from '@material-ui/core/IconButton';
 import { InputAdornmentProps } from '@material-ui/core/InputAdornment';
 import { getDisplayDate, getTextFieldAriaText } from '../_helpers/text-field-helper';
 
-export type NotOverridableProps =
-  | 'openPicker'
-  | 'inputValue'
-  | 'onChange'
-  | 'format'
-  | 'validationError'
-  | 'format'
-  | 'rawValue'
-  | 'forwardedRef';
-
 export interface DateInputProps
   extends ExtendMui<TextFieldProps, 'onError' | 'onChange' | 'value'> {
   rawValue: ParsableDate;
-  format: string;
+  inputFormat: string;
   onChange: (date: MaterialUiPickersDate | null, keyboardInputValue?: string) => void;
   openPicker: () => void;
   validationError?: React.ReactNode;
-  /** Dynamic formatter of text field value @DateIOType */
-  labelFunc?: (date: MaterialUiPickersDate, invalidLabel: string) => string;
   /** Override input component */
   TextFieldComponent?: React.ComponentType<TextFieldProps>;
   /**
-   * Message displaying in text field, if null passed
+   * Message displaying in read-only text field when null passed
    * @default ' '
    */
-  emptyLabel?: string;
-  /**
-   * Message displaying in text field if date is invalid (doesn't work in keyboard mode)
-   * @default 'unknown'
-   */
-  invalidLabel?: string;
+  emptyInputText?: string;
   /** Icon displaying for open picker button */
   keyboardIcon?: React.ReactNode;
   /**
@@ -84,11 +67,20 @@ export interface DateInputProps
   ignoreInvalidInputs?: boolean;
 }
 
-export type ExportedDateInputProps = Omit<DateInputProps, NotOverridableProps>;
+export type ExportedDateInputProps = Omit<
+  DateInputProps,
+  | 'openPicker'
+  | 'inputValue'
+  | 'onChange'
+  | 'inputFormat'
+  | 'validationError'
+  | 'rawValue'
+  | 'forwardedRef'
+>;
 
 export const PureDateInput: React.FC<DateInputProps> = ({
   onChange,
-  format,
+  inputFormat,
   rifmFormatter,
   acceptRegex: refuse,
   mask,
@@ -99,9 +91,7 @@ export const PureDateInput: React.FC<DateInputProps> = ({
   openPicker: onOpen,
   TextFieldComponent = TextField,
   variant,
-  emptyLabel,
-  invalidLabel,
-  labelFunc,
+  emptyInputText: emptyLabel,
   keyboardIcon,
   hideOpenPickerButton,
   ignoreInvalidInputs,
@@ -120,10 +110,8 @@ export const PureDateInput: React.FC<DateInputProps> = ({
   );
 
   const inputValue = getDisplayDate(rawValue, utils, {
-    format,
-    emptyLabel,
-    invalidLabel,
-    labelFunc,
+    inputFormat,
+    emptyInputText: emptyLabel,
   });
 
   return (

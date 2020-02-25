@@ -64,7 +64,7 @@
       "defaultValue": {
         "value": false
       },
-      "description": "If true today button will be displayed <b>Note*</b> that clear button has higher priority",
+      "description": "If true today button will be displayed. **Note** that clear button has higher priority",
       "name": "showTodayButton",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/wrappers/MobileWrapper.tsx",
@@ -195,7 +195,7 @@
       "defaultValue": {
         "value": "false"
       },
-      "description": "If true today button will be displayed <b>Note*</b> that clear button has higher priority",
+      "description": "If true today button will be displayed. **Note** that clear button has higher priority",
       "name": "showTodayButton",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/wrappers/MobileWrapper.tsx",
@@ -247,6 +247,49 @@
       "required": false,
       "type": {
         "name": "(date: DateIOType) => void"
+      }
+    },
+    "toolbarFormat": {
+      "defaultValue": null,
+      "description": "Date format, that is displaying in toolbar",
+      "name": "toolbarFormat",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/DatePicker/DatePicker.tsx",
+        "name": "BaseDatePickerProps"
+      },
+      "required": false,
+      "type": {
+        "name": "string"
+      }
+    },
+    "disableHighlightToday": {
+      "defaultValue": {
+        "value": "false"
+      },
+      "description": "Disable highlighting today date with a circle",
+      "name": "disableHighlightToday",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Calendar/Day.tsx",
+        "name": "DayProps"
+      },
+      "required": false,
+      "type": {
+        "name": "boolean"
+      }
+    },
+    "showDaysOutsideCurrentMonth": {
+      "defaultValue": {
+        "value": "false"
+      },
+      "description": "Display disabled dates outside the current month",
+      "name": "showDaysOutsideCurrentMonth",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Calendar/Day.tsx",
+        "name": "DayProps"
+      },
+      "required": false,
+      "type": {
+        "name": "boolean"
       }
     },
     "leftArrowIcon": {
@@ -443,7 +486,7 @@
     },
     "renderDay": {
       "defaultValue": null,
-      "description": "Custom renderer for day",
+      "description": "Custom renderer for day. Check [DayComponentProps api](https://material-ui-pickers.dev/api/Day)",
       "name": "renderDay",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/views/Calendar/Calendar.tsx",
@@ -451,7 +494,7 @@
       },
       "required": false,
       "type": {
-        "name": "(day: DateIOType, selectedDate: DateIOType, dayInCurrentMonth: boolean, dayComponent: Element) => Element"
+        "name": "(day: DateIOType, selectedDate: DateIOType, DayComponentProps: DayProps) => Element"
       }
     },
     "allowKeyboardControl": {
@@ -568,10 +611,10 @@
         "name": "boolean"
       }
     },
-    "format": {
+    "inputFormat": {
       "defaultValue": null,
       "description": "Format string",
-      "name": "format",
+      "name": "inputFormat",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
         "name": "BasePickerProps"
@@ -607,10 +650,10 @@
         "name": "boolean"
       }
     },
-    "initialFocusedDate": {
+    "defaultHighlight": {
       "defaultValue": null,
       "description": "Date that will be initially highlighted if null was passed",
-      "name": "initialFocusedDate",
+      "name": "defaultHighlight",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
         "name": "BasePickerProps"
@@ -724,12 +767,12 @@
         "name": "ComponentClass<ToolbarComponentProps<any>, any> | FunctionComponent<ToolbarComponentProps<any>>"
       }
     },
-    "title": {
+    "toolbarTitle": {
       "defaultValue": {
         "value": "\"SELECT DATE\""
       },
       "description": "Mobile picker title, displaying in the toolbar",
-      "name": "title",
+      "name": "toolbarTitle",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
         "name": "BasePickerProps"
@@ -767,19 +810,6 @@
         "name": "string"
       }
     },
-    "labelFunc": {
-      "defaultValue": null,
-      "description": "Dynamic formatter of text field value",
-      "name": "labelFunc",
-      "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/PureDateInput.tsx",
-        "name": "DateInputProps"
-      },
-      "required": false,
-      "type": {
-        "name": "(date: DateIOType, invalidLabel: string) => string"
-      }
-    },
     "TextFieldComponent": {
       "defaultValue": null,
       "description": "Override input component",
@@ -793,27 +823,12 @@
         "name": "ComponentClass<TextFieldProps, any> | FunctionComponent<TextFieldProps>"
       }
     },
-    "emptyLabel": {
+    "emptyInputText": {
       "defaultValue": {
         "value": "' '"
       },
-      "description": "Message displaying in text field, if null passed",
-      "name": "emptyLabel",
-      "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/PureDateInput.tsx",
-        "name": "DateInputProps"
-      },
-      "required": false,
-      "type": {
-        "name": "string"
-      }
-    },
-    "invalidLabel": {
-      "defaultValue": {
-        "value": "'unknown'"
-      },
-      "description": "Message displaying in text field if date is invalid (doesn't work in keyboard mode)",
-      "name": "invalidLabel",
+      "description": "Message displaying in read-only text field when null passed",
+      "name": "emptyInputText",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/_shared/PureDateInput.tsx",
         "name": "DateInputProps"
@@ -1200,10 +1215,10 @@
         "name": "boolean"
       }
     },
-    "format": {
+    "inputFormat": {
       "defaultValue": null,
       "description": "Format string",
-      "name": "format",
+      "name": "inputFormat",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
         "name": "BasePickerProps"
@@ -1239,10 +1254,10 @@
         "name": "boolean"
       }
     },
-    "initialFocusedDate": {
+    "defaultHighlight": {
       "defaultValue": null,
       "description": "Date that will be initially highlighted if null was passed",
-      "name": "initialFocusedDate",
+      "name": "defaultHighlight",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
         "name": "BasePickerProps"
@@ -1356,12 +1371,12 @@
         "name": "ComponentClass<ToolbarComponentProps<any>, any> | FunctionComponent<ToolbarComponentProps<any>>"
       }
     },
-    "title": {
+    "toolbarTitle": {
       "defaultValue": {
         "value": "\"SELECT DATE\""
       },
       "description": "Mobile picker title, displaying in the toolbar",
-      "name": "title",
+      "name": "toolbarTitle",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
         "name": "BasePickerProps"
@@ -1399,19 +1414,6 @@
         "name": "string"
       }
     },
-    "labelFunc": {
-      "defaultValue": null,
-      "description": "Dynamic formatter of text field value",
-      "name": "labelFunc",
-      "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/PureDateInput.tsx",
-        "name": "DateInputProps"
-      },
-      "required": false,
-      "type": {
-        "name": "(date: DateIOType, invalidLabel: string) => string"
-      }
-    },
     "TextFieldComponent": {
       "defaultValue": null,
       "description": "Override input component",
@@ -1425,27 +1427,12 @@
         "name": "ComponentClass<TextFieldProps, any> | FunctionComponent<TextFieldProps>"
       }
     },
-    "emptyLabel": {
+    "emptyInputText": {
       "defaultValue": {
         "value": "' '"
       },
-      "description": "Message displaying in text field, if null passed",
-      "name": "emptyLabel",
-      "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/PureDateInput.tsx",
-        "name": "DateInputProps"
-      },
-      "required": false,
-      "type": {
-        "name": "string"
-      }
-    },
-    "invalidLabel": {
-      "defaultValue": {
-        "value": "'unknown'"
-      },
-      "description": "Message displaying in text field if date is invalid (doesn't work in keyboard mode)",
-      "name": "invalidLabel",
+      "description": "Message displaying in read-only text field when null passed",
+      "name": "emptyInputText",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/_shared/PureDateInput.tsx",
         "name": "DateInputProps"
@@ -1668,10 +1655,10 @@
         "name": "boolean"
       }
     },
-    "format": {
+    "inputFormat": {
       "defaultValue": null,
       "description": "Format string",
-      "name": "format",
+      "name": "inputFormat",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
         "name": "BasePickerProps"
@@ -1707,10 +1694,10 @@
         "name": "boolean"
       }
     },
-    "initialFocusedDate": {
+    "defaultHighlight": {
       "defaultValue": null,
       "description": "Date that will be initially highlighted if null was passed",
-      "name": "initialFocusedDate",
+      "name": "defaultHighlight",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
         "name": "BasePickerProps"
@@ -1824,12 +1811,12 @@
         "name": "ComponentClass<ToolbarComponentProps<any>, any> | FunctionComponent<ToolbarComponentProps<any>>"
       }
     },
-    "title": {
+    "toolbarTitle": {
       "defaultValue": {
         "value": "\"SELECT DATE\""
       },
       "description": "Mobile picker title, displaying in the toolbar",
-      "name": "title",
+      "name": "toolbarTitle",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
         "name": "BasePickerProps"
@@ -1867,19 +1854,6 @@
         "name": "string"
       }
     },
-    "labelFunc": {
-      "defaultValue": null,
-      "description": "Dynamic formatter of text field value",
-      "name": "labelFunc",
-      "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/PureDateInput.tsx",
-        "name": "DateInputProps"
-      },
-      "required": false,
-      "type": {
-        "name": "(date: DateIOType, invalidLabel: string) => string"
-      }
-    },
     "TextFieldComponent": {
       "defaultValue": null,
       "description": "Override input component",
@@ -1893,27 +1867,12 @@
         "name": "ComponentClass<TextFieldProps, any> | FunctionComponent<TextFieldProps>"
       }
     },
-    "emptyLabel": {
+    "emptyInputText": {
       "defaultValue": {
         "value": "' '"
       },
-      "description": "Message displaying in text field, if null passed",
-      "name": "emptyLabel",
-      "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/PureDateInput.tsx",
-        "name": "DateInputProps"
-      },
-      "required": false,
-      "type": {
-        "name": "string"
-      }
-    },
-    "invalidLabel": {
-      "defaultValue": {
-        "value": "'unknown'"
-      },
-      "description": "Message displaying in text field if date is invalid (doesn't work in keyboard mode)",
-      "name": "invalidLabel",
+      "description": "Message displaying in read-only text field when null passed",
+      "name": "emptyInputText",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/_shared/PureDateInput.tsx",
         "name": "DateInputProps"
@@ -2113,6 +2072,19 @@
         "name": "ParsableDate"
       }
     },
+    "toolbarFormat": {
+      "defaultValue": null,
+      "description": "Date format, that is displaying in toolbar",
+      "name": "toolbarFormat",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/DateTimePicker/DateTimePicker.tsx",
+        "name": "DateTimePickerViewsProps"
+      },
+      "required": false,
+      "type": {
+        "name": "string"
+      }
+    },
     "ampm": {
       "defaultValue": {
         "value": "true"
@@ -2236,6 +2208,36 @@
       "required": false,
       "type": {
         "name": "(date: DateIOType) => void"
+      }
+    },
+    "disableHighlightToday": {
+      "defaultValue": {
+        "value": "false"
+      },
+      "description": "Disable highlighting today date with a circle",
+      "name": "disableHighlightToday",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Calendar/Day.tsx",
+        "name": "DayProps"
+      },
+      "required": false,
+      "type": {
+        "name": "boolean"
+      }
+    },
+    "showDaysOutsideCurrentMonth": {
+      "defaultValue": {
+        "value": "false"
+      },
+      "description": "Display disabled dates outside the current month",
+      "name": "showDaysOutsideCurrentMonth",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Calendar/Day.tsx",
+        "name": "DayProps"
+      },
+      "required": false,
+      "type": {
+        "name": "boolean"
       }
     },
     "leftArrowIcon": {
@@ -2432,7 +2434,7 @@
     },
     "renderDay": {
       "defaultValue": null,
-      "description": "Custom renderer for day",
+      "description": "Custom renderer for day. Check [DayComponentProps api](https://material-ui-pickers.dev/api/Day)",
       "name": "renderDay",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/views/Calendar/Calendar.tsx",
@@ -2440,7 +2442,7 @@
       },
       "required": false,
       "type": {
-        "name": "(day: DateIOType, selectedDate: DateIOType, dayInCurrentMonth: boolean, dayComponent: Element) => Element"
+        "name": "(day: DateIOType, selectedDate: DateIOType, DayComponentProps: DayProps) => Element"
       }
     },
     "loadingIndicator": {
@@ -2542,7 +2544,7 @@
     },
     "renderDay": {
       "defaultValue": null,
-      "description": "Custom renderer for day",
+      "description": "Custom renderer for day. Check [DayComponentProps api](https://material-ui-pickers.dev/api/Day)",
       "name": "renderDay",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/views/Calendar/Calendar.tsx",
@@ -2550,7 +2552,7 @@
       },
       "required": false,
       "type": {
-        "name": "(day: DateIOType, selectedDate: DateIOType, dayInCurrentMonth: boolean, dayComponent: Element) => Element"
+        "name": "(day: DateIOType, selectedDate: DateIOType, DayComponentProps: DayProps) => Element"
       }
     },
     "allowKeyboardControl": {
@@ -2579,6 +2581,210 @@
       "required": false,
       "type": {
         "name": "Element"
+      }
+    },
+    "disableHighlightToday": {
+      "defaultValue": {
+        "value": "false"
+      },
+      "description": "Disable highlighting today date with a circle",
+      "name": "disableHighlightToday",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Calendar/Day.tsx",
+        "name": "DayProps"
+      },
+      "required": false,
+      "type": {
+        "name": "boolean"
+      }
+    },
+    "showDaysOutsideCurrentMonth": {
+      "defaultValue": {
+        "value": "false"
+      },
+      "description": "Display disabled dates outside the current month",
+      "name": "showDaysOutsideCurrentMonth",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Calendar/Day.tsx",
+        "name": "DayProps"
+      },
+      "required": false,
+      "type": {
+        "name": "boolean"
+      }
+    }
+  },
+  "Day": {
+    "day": {
+      "defaultValue": null,
+      "description": "The date to show",
+      "name": "day",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Calendar/Day.tsx",
+        "name": "DayProps"
+      },
+      "required": true,
+      "type": {
+        "name": "any"
+      }
+    },
+    "focused": {
+      "defaultValue": {
+        "value": false
+      },
+      "description": "Is focused by keyboard navigation",
+      "name": "focused",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Calendar/Day.tsx",
+        "name": "DayProps"
+      },
+      "required": false,
+      "type": {
+        "name": "boolean"
+      }
+    },
+    "focusable": {
+      "defaultValue": {
+        "value": false
+      },
+      "description": "Can be focused by tabbing in",
+      "name": "focusable",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Calendar/Day.tsx",
+        "name": "DayProps"
+      },
+      "required": false,
+      "type": {
+        "name": "boolean"
+      }
+    },
+    "isInCurrentMonth": {
+      "defaultValue": null,
+      "description": "Is day in current month",
+      "name": "isInCurrentMonth",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Calendar/Day.tsx",
+        "name": "DayProps"
+      },
+      "required": true,
+      "type": {
+        "name": "boolean"
+      }
+    },
+    "isAnimating": {
+      "defaultValue": null,
+      "description": "Is switching month animation going on right now",
+      "name": "isAnimating",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Calendar/Day.tsx",
+        "name": "DayProps"
+      },
+      "required": false,
+      "type": {
+        "name": "boolean"
+      }
+    },
+    "isToday": {
+      "defaultValue": {
+        "value": false
+      },
+      "description": "Is today?",
+      "name": "isToday",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Calendar/Day.tsx",
+        "name": "DayProps"
+      },
+      "required": false,
+      "type": {
+        "name": "boolean"
+      }
+    },
+    "disabled": {
+      "defaultValue": {
+        "value": false
+      },
+      "description": "Disabled?",
+      "name": "disabled",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Calendar/Day.tsx",
+        "name": "DayProps"
+      },
+      "required": false,
+      "type": {
+        "name": "boolean"
+      }
+    },
+    "selected": {
+      "defaultValue": {
+        "value": false
+      },
+      "description": "Selected?",
+      "name": "selected",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Calendar/Day.tsx",
+        "name": "DayProps"
+      },
+      "required": false,
+      "type": {
+        "name": "boolean"
+      }
+    },
+    "allowKeyboardControl": {
+      "defaultValue": null,
+      "description": "Is keyboard control and focus management enabled",
+      "name": "allowKeyboardControl",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Calendar/Day.tsx",
+        "name": "DayProps"
+      },
+      "required": false,
+      "type": {
+        "name": "boolean"
+      }
+    },
+    "disableMargin": {
+      "defaultValue": {
+        "value": false
+      },
+      "description": "Disable margin between days, useful for displaying range of days",
+      "name": "disableMargin",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Calendar/Day.tsx",
+        "name": "DayProps"
+      },
+      "required": false,
+      "type": {
+        "name": "boolean"
+      }
+    },
+    "showDaysOutsideCurrentMonth": {
+      "defaultValue": {
+        "value": false
+      },
+      "description": "Display disabled dates outside the current month",
+      "name": "showDaysOutsideCurrentMonth",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Calendar/Day.tsx",
+        "name": "DayProps"
+      },
+      "required": false,
+      "type": {
+        "name": "boolean"
+      }
+    },
+    "disableHighlightToday": {
+      "defaultValue": {
+        "value": false
+      },
+      "description": "Disable highlighting today date with a circle",
+      "name": "disableHighlightToday",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Calendar/Day.tsx",
+        "name": "DayProps"
+      },
+      "required": false,
+      "type": {
+        "name": "boolean"
       }
     }
   },

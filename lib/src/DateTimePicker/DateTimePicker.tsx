@@ -27,6 +27,8 @@ export interface DateTimePickerViewsProps extends BaseDateTimePickerProps {
   minDateTime?: ParsableDate;
   /** Minimal selectable moment of time with binding to date, to set max time in each day use `maxTime` */
   maxDateTime?: ParsableDate;
+  /** Date format, that is displaying in toolbar */
+  toolbarFormat?: string;
 }
 
 export type DateTimePickerProps = WithDateInputProps &
@@ -35,8 +37,8 @@ export type DateTimePickerProps = WithDateInputProps &
 
 function useDefaultProps({
   ampm,
-  format,
   mask,
+  inputFormat,
   maxDateTime,
   minDateTime,
   orientation = 'portrait',
@@ -66,7 +68,7 @@ function useDefaultProps({
     disableTimeValidationIgnoreDatePart: Boolean(minDateTime || maxDateTime),
     acceptRegex: willUseAmPm ? /[\dap]/gi : /\d/gi,
     mask: mask || willUseAmPm ? '__/__/____ __:__ _M' : '__/__/____ __:__',
-    format: pick12hOr24hFormat(format, ampm, {
+    inputFormat: pick12hOr24hFormat(inputFormat, ampm, {
       localized: utils.formats.keyboardDateTime,
       '12h': utils.formats.keyboardDateTime12h,
       '24h': utils.formats.keyboardDateTime24h,

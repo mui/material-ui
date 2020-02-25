@@ -48,7 +48,7 @@ interface PickerToolbarProps
       | 'isMobileKeyboardViewOpen'
       | 'toggleMobileKeyboardView'
     > {
-  title: string;
+  toolbarTitle: string;
   landscapeDirection?: 'row' | 'column';
   isLandscape: boolean;
   penIconClassName?: string;
@@ -63,7 +63,7 @@ function defaultGetKeyboardInputSwitchingButtonText(isKeyboardInputOpen: boolean
 const PickerToolbar: React.SFC<PickerToolbarProps> = ({
   children,
   isLandscape,
-  title,
+  toolbarTitle,
   landscapeDirection = 'column',
   className = null,
   penIconClassName,
@@ -80,7 +80,9 @@ const PickerToolbar: React.SFC<PickerToolbarProps> = ({
       className={clsx(classes.toolbar, { [classes.toolbarLandscape]: isLandscape }, className)}
       {...other}
     >
-      <Typography color="inherit" variant="overline" children={title} />
+      <Typography data-mui-test="picker-toolbar-title" color="inherit" variant="overline">
+        {toolbarTitle}
+      </Typography>
       <Grid
         container
         justify="space-between"

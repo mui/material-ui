@@ -21,9 +21,9 @@ function PersianExample() {
         okLabel="تأیید"
         cancelLabel="لغو"
         clearLabel="پاک کردن"
-        labelFunc={date => (date ? date.format('jYYYY/jMM/jDD') : '')}
+        inputFormat="jYYYY/iMM/iDD"
         value={selectedDate}
-        onChange={handleDateChange}
+        onChange={date => handleDateChange(date)}
       />
 
       <TimePicker
@@ -31,17 +31,17 @@ function PersianExample() {
         okLabel="تأیید"
         cancelLabel="لغو"
         clearLabel="پاک کردن"
-        labelFunc={date => (date ? date.format('hh:mm A') : '')}
+        inputFormat="hh:mm A"
         value={selectedDate}
-        onChange={handleDateChange}
+        onChange={date => handleDateChange(date)}
       />
 
       <DateTimePicker
         okLabel="تأیید"
         cancelLabel="لغو"
-        labelFunc={date => (date ? date.format('jYYYY/jMM/jDD hh:mm A') : '')}
+        inputFormat="jYYYY/iMM/iDD"
         value={selectedDate}
-        onChange={handleDateChange}
+        onChange={date => handleDateChange(date)}
       />
     </MuiPickersUtilsProvider>
   );

@@ -29,7 +29,7 @@ export interface InnerMobileWrapperProps {
    */
   todayLabel?: React.ReactNode;
   /**
-   * If true today button will be displayed <b>Note*</b> that clear button has higher priority
+   * If true today button will be displayed. **Note** that clear button has higher priority
    * @default false
    */
   showTodayButton?: boolean;

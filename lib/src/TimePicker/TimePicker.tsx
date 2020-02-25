@@ -26,8 +26,8 @@ export function getTextFieldAriaText(value: ParsableDate, utils: MuiPickersUtils
 
 function useDefaultProps({
   ampm,
-  format,
   mask,
+  inputFormat,
   openTo = 'hours',
   views = ['hours', 'minutes'],
 }: TimePickerProps) {
@@ -43,7 +43,7 @@ function useDefaultProps({
     mask: mask || willUseAmPm ? '__:__ _M' : '__:__',
     getOpenDialogAriaText: getTextFieldAriaText,
     keyboardIcon: <ClockIcon />,
-    format: pick12hOr24hFormat(format, ampm, {
+    inputFormat: pick12hOr24hFormat(inputFormat, ampm, {
       localized: utils.formats.fullTime,
       '12h': utils.formats.fullTime12h,
       '24h': utils.formats.fullTime24h,

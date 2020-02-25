@@ -195,34 +195,6 @@ export const CalendarHeader: React.SFC<CalendarHeaderProps> = ({
             isLeftDisabled={isPreviousMonthDisabled}
             isRightDisabled={isNextMonthDisabled}
           />
-          {/* <div>
-            <IconButton
-              data-mui-test="previous-month"
-              size="small"
-              aria-label={leftArrowButtonText}
-              {...leftArrowButtonProps}
-              disabled={isPreviousMonthDisabled}
-              onClick={selectPreviousMonth}
-              className={clsx(
-                classes.iconButton,
-                classes.previousMonthButton,
-                leftArrowButtonProps?.className
-              )}
-            >
-              {isRtl ? rightArrowIcon : leftArrowIcon}
-            </IconButton>
-
-            <IconButton
-              size="small"
-              aria-label={rightArrowButtonText}
-              {...rightArrowButtonProps}
-              disabled={isNextMonthDisabled}
-              onClick={selectNextMonth}
-              className={clsx(classes.iconButton, rightArrowButtonProps?.className)}
-            >
-              {isRtl ? leftArrowIcon : rightArrowIcon}
-            </IconButton>
-          </div> */}
         </Fade>
       </div>
     </>

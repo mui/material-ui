@@ -1,12 +1,11 @@
 import React from 'react';
 import { IUtils } from '@date-io/core/IUtils';
-import { IconButtonProps } from '@material-ui/core/IconButton';
+import { Day, DayProps } from '@material-ui/pickers';
 
 export const createRegressionDay = (utils: IUtils<any>) => (
   day: any,
   selectedDate: any,
-  dayInCurrentMonth: boolean,
-  dayComponent: React.ReactElement<IconButtonProps>
+  dayProps: DayProps
 ) => {
-  return <span data-day={utils.formatByString(day, 'dd/MM/yyyy')}>{dayComponent}</span>;
+  return <Day {...dayProps} data-day={utils.formatByString(day, 'dd/MM/yyyy')} />;
 };

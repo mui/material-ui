@@ -21,7 +21,7 @@ export interface WithViewsProps<T extends DateTimePickerView> {
 export type WithDateInputProps = DateValidationProps & BasePickerProps & ExportedDateInputProps;
 
 export interface MakePickerOptions<T extends unknown> {
-  useDefaultProps: (props: T) => Partial<T> & { format: string };
+  useDefaultProps: (props: T) => Partial<T> & { inputFormat?: string };
   DefaultToolbarComponent: React.ComponentType<ToolbarComponentProps>;
 }
 
@@ -47,9 +47,9 @@ export function makePickerWithStateAndWrapper<
       disableFuture,
       disablePast,
       showToolbar,
-      format,
+      inputFormat,
       hideTabs,
-      initialFocusedDate,
+      defaultHighlight,
       leftArrowButtonProps,
       leftArrowIcon,
       loadingIndicator,
@@ -71,16 +71,19 @@ export function makePickerWithStateAndWrapper<
       shouldDisableTime,
       strictCompareDates,
       timeIcon,
+      toolbarFormat,
       ToolbarComponent = DefaultToolbarComponent,
       value,
       views,
-      title,
+      toolbarTitle,
       invalidDateMessage,
       minDateMessage,
       wider,
       showTabs,
       maxDateMessage,
       disableTimeValidationIgnoreDatePart,
+      showDaysOutsideCurrentMonth,
+      disableHighlightToday,
       // WrapperProps
       clearable,
       clearLabel,
@@ -114,22 +117,23 @@ export function makePickerWithStateAndWrapper<
         <Picker
           {...pickerProps}
           DateInputProps={{ ...inputProps, ...restPropsForTextField }}
-          title={title}
+          // @ts-ignore
           allowKeyboardControl={allowKeyboardControl}
           ampm={ampm}
           ampmInClock={ampmInClock}
           dateRangeIcon={dateRangeIcon}
           disableFuture={disableFuture}
+          disableHighlightToday={disableHighlightToday}
           disablePast={disablePast}
-          showToolbar={showToolbar}
+          disableTimeValidationIgnoreDatePart={disableTimeValidationIgnoreDatePart}
           hideTabs={hideTabs}
           leftArrowButtonProps={leftArrowButtonProps}
           leftArrowIcon={leftArrowIcon}
           loadingIndicator={loadingIndicator}
           maxDate={maxDate}
+          maxTime={maxTime}
           minDate={minDate}
           minTime={minTime}
-          maxTime={maxTime}
           minutesStep={minutesStep}
           onMonthChange={onMonthChange}
           onYearChange={onYearChange}
@@ -140,11 +144,15 @@ export function makePickerWithStateAndWrapper<
           rightArrowIcon={rightArrowIcon}
           shouldDisableDate={shouldDisableDate}
           shouldDisableTime={shouldDisableTime}
+          showDaysOutsideCurrentMonth={showDaysOutsideCurrentMonth}
+          showToolbar={showToolbar}
           strictCompareDates={strictCompareDates}
           timeIcon={timeIcon}
+          toolbarFormat={toolbarFormat}
           ToolbarComponent={ToolbarComponent}
+          // @ts-ignore
+          toolbarTitle={toolbarTitle || restPropsForTextField.label}
           views={views}
-          disableTimeValidationIgnoreDatePart={disableTimeValidationIgnoreDatePart}
         />
       </WrapperComponent>
     );

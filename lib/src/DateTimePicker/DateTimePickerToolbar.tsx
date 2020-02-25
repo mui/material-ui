@@ -45,9 +45,10 @@ export const DateTimePickerToolbar: React.FC<ToolbarComponentProps> = ({
   hideTabs,
   dateRangeIcon,
   timeIcon,
+  toolbarFormat,
   isMobileKeyboardViewOpen,
   toggleMobileKeyboardView,
-  title = 'SELECT DATE & TIME',
+  toolbarTitle = 'SELECT DATE & TIME',
 }) => {
   const utils = useUtils();
   const classes = useStyles();
@@ -56,7 +57,7 @@ export const DateTimePickerToolbar: React.FC<ToolbarComponentProps> = ({
   return (
     <>
       <PickerToolbar
-        title={title}
+        toolbarTitle={toolbarTitle}
         isLandscape={false}
         penIconClassName={classes.penIcon}
         className={classes.toolbar}
@@ -77,7 +78,11 @@ export const DateTimePickerToolbar: React.FC<ToolbarComponentProps> = ({
             variant="h4"
             onClick={() => setOpenView('date')}
             selected={openView === 'date'}
-            label={utils.format(date, 'shortDate')}
+            label={
+              toolbarFormat
+                ? utils.formatByString(date, toolbarFormat)
+                : utils.format(date, 'shortDate')
+            }
           />
         </div>
 

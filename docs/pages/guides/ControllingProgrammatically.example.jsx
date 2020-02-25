@@ -23,7 +23,7 @@ function ControllingProgrammaticallyExample() {
         onOpen={() => setIsOpen(true)}
         onClose={() => setIsOpen(false)}
         label="Open me from button"
-        format="d MMM yyyy"
+        inputFormat="d MMM yyyy"
         value={selectedDate}
         onChange={handleDateChange}
       />

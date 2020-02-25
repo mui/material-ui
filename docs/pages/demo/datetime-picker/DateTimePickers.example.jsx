@@ -28,7 +28,7 @@ function DateTimePickerDemo(props) {
         value={selectedDate}
         onChange={handleDateChange}
         onError={console.log}
-        format={props.__willBeReplacedGetFormatString({
+        inputFormat={props.__willBeReplacedGetFormatString({
           moment: 'YYYY/MM/DD HH:mm',
           dateFns: 'yyyy/MM/dd HH:mm',
         })}

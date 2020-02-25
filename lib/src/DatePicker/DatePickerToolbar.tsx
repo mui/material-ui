@@ -26,12 +26,17 @@ export const DatePickerToolbar: React.FC<ToolbarComponentProps> = ({
   isLandscape,
   isMobileKeyboardViewOpen,
   toggleMobileKeyboardView,
-  title = 'SELECT DATE',
+  toolbarFormat,
+  toolbarTitle = 'SELECT DATE',
 }) => {
   const utils = useUtils();
   const classes = useStyles();
 
   const dateText = React.useMemo(() => {
+    if (toolbarFormat) {
+      return utils.formatByString(date, toolbarFormat);
+    }
+
     if (isYearOnlyView(views as DatePickerView[])) {
       return utils.format(date, 'year');
     }
@@ -46,11 +51,11 @@ export const DatePickerToolbar: React.FC<ToolbarComponentProps> = ({
     return /en/.test(utils.getCurrentLocaleCode())
       ? utils.format(date, 'normalDateWithWeekday')
       : utils.format(date, 'normalDate');
-  }, [date, utils, views]);
+  }, [date, toolbarFormat, utils, views]);
 
   return (
     <PickerToolbar
-      title={title}
+      toolbarTitle={toolbarTitle}
       isMobileKeyboardViewOpen={isMobileKeyboardViewOpen}
       toggleMobileKeyboardView={toggleMobileKeyboardView}
       isLandscape={isLandscape}
@@ -59,6 +64,7 @@ export const DatePickerToolbar: React.FC<ToolbarComponentProps> = ({
       <Typography
         variant="h4"
         children={dateText}
+        data-mui-test="datepicker-toolbar-date"
         align={isLandscape ? 'left' : 'center'}
         className={clsx({ [classes.dateTitleLandscape]: isLandscape })}
       />

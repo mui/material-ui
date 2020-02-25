@@ -1,17 +1,18 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { ExtendMui } from '../../typings/helpers';
 import { useUtils } from '../../_shared/hooks/useUtils';
 import { MaterialUiPickersDate } from '../../typings/date';
 import { makeStyles, fade } from '@material-ui/core/styles';
 import { ButtonBase, ButtonBaseProps } from '@material-ui/core';
 
+const daySize = 36;
 export const useStyles = makeStyles(
   theme => ({
     day: {
-      margin: '1px 2px',
-      width: 36,
-      height: 36,
+      width: daySize + 4,
+      height: daySize + 2,
       borderRadius: '50%',
       padding: 0,
       color: theme.palette.text.primary,
@@ -27,6 +28,14 @@ export const useStyles = makeStyles(
           backgroundColor: theme.palette.primary.dark,
         },
       },
+    },
+    dayWithMargin: {
+      margin: '1px 2px',
+      width: daySize,
+      height: daySize,
+    },
+    dayOutsideMonth: {
+      color: theme.palette.text.hint,
     },
     hidden: {
       opacity: 0,
@@ -60,7 +69,7 @@ export const useStyles = makeStyles(
   { name: 'MuiPickersDay' }
 );
 
-export interface DayProps extends ButtonBaseProps {
+export interface DayProps extends ExtendMui<ButtonBaseProps> {
   /** The date to show */
   day: MaterialUiPickersDate;
   /** Is focused by keyboard navigation */
@@ -70,7 +79,7 @@ export interface DayProps extends ButtonBaseProps {
   /** Is day in current month */
   isInCurrentMonth: boolean;
   /** Is switching month animation going on right now */
-  isAnimating: boolean;
+  isAnimating?: boolean;
   /** Is today? */
   isToday?: boolean;
   /** Disabled? */
@@ -79,9 +88,21 @@ export interface DayProps extends ButtonBaseProps {
   selected?: boolean;
   /** Is keyboard control and focus management enabled */
   allowKeyboardControl?: boolean;
+  /** Disable margin between days, useful for displaying range of days */
+  disableMargin?: boolean;
+  /**
+   * Display disabled dates outside the current month
+   * @default false
+   */
+  showDaysOutsideCurrentMonth?: boolean;
+  /** Disable highlighting today date with a circle
+   * @default false
+   */
+  disableHighlightToday?: boolean;
 }
 
 export const Day: React.FC<DayProps> = ({
+  className,
   day,
   disabled,
   isInCurrentMonth,
@@ -91,24 +112,21 @@ export const Day: React.FC<DayProps> = ({
   focusable = false,
   isAnimating,
   onFocus,
+  disableMargin = false,
   allowKeyboardControl,
+  disableHighlightToday = false,
+  showDaysOutsideCurrentMonth = false,
   ...other
 }) => {
   const ref = React.useRef<HTMLButtonElement>(null);
   const utils = useUtils();
   const classes = useStyles();
-  const className = clsx(classes.day, {
-    [classes.hidden]: !isInCurrentMonth,
-    [classes.today]: isToday,
-    [classes.daySelected]: selected,
-    [classes.dayDisabled]: disabled,
-  });
 
   React.useEffect(() => {
     if (
       focused &&
-      !isAnimating &&
       !disabled &&
+      !isAnimating &&
       isInCurrentMonth &&
       ref.current &&
       allowKeyboardControl
@@ -125,7 +143,18 @@ export const Day: React.FC<DayProps> = ({
       data-mui-test="day"
       aria-label={utils.format(day, 'fullDate')}
       tabIndex={focused || focusable ? 0 : -1}
-      className={className}
+      className={clsx(
+        classes.day,
+        {
+          [classes.daySelected]: selected,
+          [classes.dayDisabled]: disabled,
+          [classes.dayWithMargin]: !disableMargin,
+          [classes.today]: !disableHighlightToday && isToday,
+          [classes.hidden]: !isInCurrentMonth && !showDaysOutsideCurrentMonth,
+          [classes.dayOutsideMonth]: !isInCurrentMonth && showDaysOutsideCurrentMonth,
+        },
+        className
+      )}
       onFocus={e => {
         if (!focused && onFocus) {
           onFocus(e);
@@ -153,5 +182,3 @@ Day.defaultProps = {
   isToday: false,
   selected: false,
 };
-
-export default Day;

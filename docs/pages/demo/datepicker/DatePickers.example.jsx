@@ -12,7 +12,7 @@ function DatePickersVariants(props) {
         value={selectedDate}
         placeholder="10/10/2018"
         onChange={date => handleDateChange(date)}
-        format={props.__willBeReplacedGetFormatString({
+        inputFormat={props.__willBeReplacedGetFormatString({
           moment: 'MM/DD/YYYY',
           dateFns: 'MM/dd/yyyy',
         })}

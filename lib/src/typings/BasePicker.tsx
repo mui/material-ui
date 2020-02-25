@@ -13,13 +13,13 @@ export interface BasePickerProps {
    */
   autoOk?: boolean;
   /** Format string */
-  format?: string;
+  inputFormat?: string;
   /** Disable picker and text field */
   disabled?: boolean;
   /** Make picker read only */
   readOnly?: boolean;
   /** Date that will be initially highlighted if null was passed */
-  initialFocusedDate?: ParsableDate;
+  defaultHighlight?: ParsableDate;
   /** Callback fired when date is accepted @DateIOType */
   onAccept?: (date: MaterialUiPickersDate) => void;
   /** Callback fired when new error should be displayed
@@ -44,7 +44,7 @@ export interface BasePickerProps {
    * Mobile picker title, displaying in the toolbar
    * @default "SELECT DATE"
    */
-  title?: string;
+  toolbarTitle?: string;
   /**
    * Compare dates by the exact timestamp, instead of start/end of date
    * @default false

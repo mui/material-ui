@@ -209,6 +209,7 @@ test('Custom toolbar component', () => {
   const component = mount(
     <MobileDatePicker
       open
+      disableHighlightToday
       inputProps={{}}
       value={new Date()}
       onChange={jest.fn()}

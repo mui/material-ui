@@ -7,7 +7,7 @@ import { PageMeta } from '_shared/PageMeta';
 import { WithRouterProps, withRouter } from 'next/router';
 import { Typography, Grid, makeStyles } from '@material-ui/core';
 
-const internalComponents = ['Calendar', 'ClockView'];
+const internalComponents = ['Calendar', 'ClockView', 'Day'];
 const useStyles = makeStyles(theme => ({
   kawaiiIcon: {
     marginTop: 48,
