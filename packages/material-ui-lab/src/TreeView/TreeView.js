@@ -345,6 +345,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
       end: getFirstNode(),
     });
   };
+
   const rangeSelectToLast = (event, id) => {
     if (!lastSelectedNode.current) {
       lastSelectedNode.current = id;
@@ -357,6 +358,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
       end: getLastNode(),
     });
   };
+
   const selectNextNode = (event, id) =>
     selectRange(
       event,
@@ -366,6 +368,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
       },
       true,
     );
+
   const selectPreviousNode = (event, id) =>
     selectRange(
       event,
@@ -375,7 +378,9 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
       },
       true,
     );
+
   const selectAllNodes = event => selectRange(event, { start: getFirstNode(), end: getLastNode() });
+
   /*
    * Mapping Helpers
    */
