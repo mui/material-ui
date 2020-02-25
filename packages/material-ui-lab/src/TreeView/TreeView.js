@@ -235,11 +235,11 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     let base = selected;
     const { start, next, current } = nodes;
 
-    if(!next || !current){
+    if (!next || !current) {
       return;
     }
 
-    if (currentRangeSelection.current.indexOf(current) === -1){
+    if (currentRangeSelection.current.indexOf(current) === -1) {
       currentRangeSelection.current = [];
     }
 
