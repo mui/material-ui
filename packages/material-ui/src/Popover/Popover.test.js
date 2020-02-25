@@ -266,7 +266,7 @@ describe('<Popover />', () => {
       assert.strictEqual(paper.hasClass(classes.paper), true);
     });
 
-    it('should have a elevation prop passed down', () => {
+    it('should have an elevation prop passed down', () => {
       const wrapper = mount(
         <Popover {...defaultProps} open>
           <div />
