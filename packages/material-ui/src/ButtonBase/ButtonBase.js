@@ -303,10 +303,10 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
     >
       {children}
       <NoSsr>
-        {!disableRipple && !disabled && (
+        {!disableRipple && !disabled ? (
           /* TouchRipple is only needed client-side, x2 boost on the server. */
           <TouchRipple ref={rippleRef} center={centerRipple} {...TouchRippleProps} />
-        )}
+        ) : null}
       </NoSsr>
     </ComponentProp>
   );
