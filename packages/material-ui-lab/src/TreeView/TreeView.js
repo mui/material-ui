@@ -235,6 +235,14 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     let base = selected;
     const { start, next, current } = nodes;
 
+    if(!next || !current){
+      return;
+    }
+
+    if (currentRangeSelection.current.indexOf(current) === -1){
+      currentRangeSelection.current = [];
+    }
+
     if (lastSelectionWasRange.current) {
       if (currentRangeSelection.current.indexOf(next) !== -1) {
         base = base.filter(id => id === start || id !== current);
