@@ -1,4 +1,3 @@
-export const hyAM: object;
 export const azAZ: object;
 export const bgBG: object;
 export const caES: object;
@@ -11,6 +10,7 @@ export const faIR: object;
 export const fiFI: object;
 export const frFR: object;
 export const huHU: object;
+export const hyAM: object;
 export const idID: object;
 export const isIS: object;
 export const itIT: object;
