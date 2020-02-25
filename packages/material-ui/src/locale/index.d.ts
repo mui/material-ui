@@ -1,3 +1,4 @@
+export const hyAM: object;
 export const azAZ: object;
 export const bgBG: object;
 export const caES: object;
