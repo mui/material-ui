@@ -900,6 +900,95 @@ describe('<Popover />', () => {
       assert.strictEqual(elementStyle.top, '157px');
       assert.strictEqual(elementStyle.left, '160px');
     });
+
+    it('should not change position when scrolling', () => {
+      const handleEntering = spy();
+      const divRef = React.createRef();
+      const getContentAnchorEl = () => {
+        Object.defineProperties(divRef.current, {
+          offsetTop: { value: 8, writable: true },
+          clientHeight: { value: 48 },
+          clientWidth: { value: 116 },
+        });
+        return divRef.current;
+      };
+
+      const wrapper = mount(
+        <Popover
+          anchorEl={mockedAnchorEl}
+          onEntering={handleEntering}
+          getContentAnchorEl={getContentAnchorEl}
+          open
+        >
+          <div ref={divRef} />
+        </Popover>,
+      );
+
+      const elementStyle = handleEntering.args[0][0].style;
+      const beforeStyle = {
+        top: elementStyle.top,
+        left: elementStyle.left,
+        transformOrigin: elementStyle.transformOrigin,
+      };
+      wrapper.setProps({
+        getContentAnchorEl: () => {
+          Object.defineProperty(divRef.current, 'offsetTop', { value: -80 });
+          return divRef.current;
+        },
+      });
+      const afterStyle = {
+        top: elementStyle.top,
+        left: elementStyle.left,
+        transformOrigin: elementStyle.transformOrigin,
+      };
+      expect(JSON.stringify(beforeStyle)).to.equal(JSON.stringify(afterStyle));
+    });
+
+    it('should not reuse the cached contentAnchorOffset when reopening', () => {
+      const handleEntering = spy();
+      const divRef = React.createRef();
+      const getContentAnchorEl = () => {
+        Object.defineProperties(divRef.current, {
+          offsetTop: { value: 8, writable: true },
+          clientHeight: { value: 48 },
+          clientWidth: { value: 116 },
+        });
+        return divRef.current;
+      };
+
+      const wrapper = mount(
+        <Popover
+          anchorEl={mockedAnchorEl}
+          onEntering={handleEntering}
+          getContentAnchorEl={getContentAnchorEl}
+          open
+        >
+          <div ref={divRef} />
+        </Popover>,
+      );
+
+      let elementStyle = handleEntering.args[0][0].style;
+      const beforeStyle = {
+        top: elementStyle.top,
+        left: elementStyle.left,
+        transformOrigin: elementStyle.transformOrigin,
+      };
+      wrapper.setProps({ open: false });
+      wrapper.setProps({
+        open: true,
+        getContentAnchorEl: () => {
+          Object.defineProperty(divRef.current, 'offsetTop', { value: 20 });
+          return divRef.current;
+        },
+      });
+      elementStyle = handleEntering.args[1][0].style;
+      const afterStyle = {
+        top: elementStyle.top,
+        left: elementStyle.left,
+        transformOrigin: elementStyle.transformOrigin,
+      };
+      expect(JSON.stringify(beforeStyle)).to.not.equal(JSON.stringify(afterStyle));
+    });
   });
 
   describe('prop: transitionDuration', () => {

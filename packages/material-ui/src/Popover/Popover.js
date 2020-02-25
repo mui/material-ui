@@ -173,9 +173,15 @@ const Popover = React.forwardRef(function Popover(props, ref) {
     [anchorEl, anchorOrigin.horizontal, anchorOrigin.vertical, anchorPosition, anchorReference],
   );
 
+  const cachedContentAnchorOffset = React.useRef(null);
+
   // Returns the vertical offset of inner content to anchor the transform on if provided
   const getContentAnchorOffset = React.useCallback(
     element => {
+      if (cachedContentAnchorOffset.current) {
+        return cachedContentAnchorOffset.current;
+      }
+
       let contentAnchorOffset = 0;
 
       if (getContentAnchorEl && anchorReference === 'anchorEl') {
@@ -203,7 +209,8 @@ const Popover = React.forwardRef(function Popover(props, ref) {
         }
       }
 
-      return contentAnchorOffset;
+      cachedContentAnchorOffset.current = contentAnchorOffset;
+      return cachedContentAnchorOffset.current;
     },
     [anchorOrigin.vertical, anchorReference, getContentAnchorEl],
   );
@@ -341,6 +348,8 @@ const Popover = React.forwardRef(function Popover(props, ref) {
   React.useEffect(() => {
     if (open) {
       setPositioningStyles();
+    } else {
+      cachedContentAnchorOffset.current = null;
     }
   });
 
