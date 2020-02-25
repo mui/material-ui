@@ -42,6 +42,7 @@ export interface TreeItemProps
 export type TreeItemClassKey =
   | 'root'
   | 'expanded'
+  | 'selected'
   | 'group'
   | 'content'
   | 'iconContainer'

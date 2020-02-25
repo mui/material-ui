@@ -31,8 +31,13 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 | <span class="prop-name">defaultExpanded</span> | <span class="prop-type">Array&lt;string&gt;</span> | <span class="prop-default">[]</span> | Expanded node ids. (Uncontrolled) |
 | <span class="prop-name">defaultExpandIcon</span> | <span class="prop-type">node</span> |  | The default icon used to expand the node. |
 | <span class="prop-name">defaultParentIcon</span> | <span class="prop-type">node</span> |  | The default icon displayed next to a parent node. This is applied to all parent nodes and can be overridden by the TreeItem `icon` prop. |
+| <span class="prop-name">defaultSelected</span> | <span class="prop-type">Array&lt;string&gt;<br>&#124;&nbsp;string</span> | <span class="prop-default">[]</span> | Selected node ids. (Uncontrolled) When `multiSelect` is true this takes an array of strings; when false (default) a string. |
+| <span class="prop-name">disableSelection</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true` selection is disabled. |
 | <span class="prop-name">expanded</span> | <span class="prop-type">Array&lt;string&gt;</span> |  | Expanded node ids. (Controlled) |
+| <span class="prop-name">multiSelect</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If true `ctrl` and `shift` will trigger multiselect. |
+| <span class="prop-name">onNodeSelect</span> | <span class="prop-type">func</span> |  | Callback fired when tree items are selected/unselected.<br><br>**Signature:**<br>`function(event: object, value: undefined) => void`<br>*event:* The event source of the callback<br>*value:* of the selected nodes. When `multiSelect` is true this is an array of strings; when false (default) a string. |
 | <span class="prop-name">onNodeToggle</span> | <span class="prop-type">func</span> |  | Callback fired when tree items are expanded/collapsed.<br><br>**Signature:**<br>`function(event: object, nodeIds: array) => void`<br>*event:* The event source of the callback.<br>*nodeIds:* The ids of the expanded nodes. |
+| <span class="prop-name">selected</span> | <span class="prop-type">Array&lt;string&gt;<br>&#124;&nbsp;string</span> |  | Selected node ids. (Controlled) When `multiSelect` is true this takes an array of strings; when false (default) a string. |
 
 The `ref` is forwarded to the root element.
 

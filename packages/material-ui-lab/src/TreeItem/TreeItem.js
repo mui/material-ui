@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import Collapse from '@material-ui/core/Collapse';
-import { withStyles, useTheme } from '@material-ui/core/styles';
+import { fade, withStyles, useTheme } from '@material-ui/core/styles';
 import { useForkRef } from '@material-ui/core/utils';
 import TreeViewContext from '../TreeView/TreeViewContext';
 
@@ -16,17 +16,32 @@ export const styles = theme => ({
     padding: 0,
     outline: 0,
     WebkitTapHighlightColor: 'transparent',
-    '&:focus > $content': {
-      backgroundColor: theme.palette.grey[400],
+    '&:focus > $content $label': {
+      backgroundColor: theme.palette.action.hover,
+    },
+    '&$selected > $content $label': {
+      backgroundColor: fade(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+    },
+    '&$selected > $content $label:hover, &$selected:focus > $content $label': {
+      backgroundColor: fade(
+        theme.palette.primary.main,
+        theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+      ),
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor: 'transparent',
+      },
     },
   },
   /* Pseudo-class applied to the root element when expanded. */
   expanded: {},
+  /* Pseudo-class applied to the root element when selected. */
+  selected: {},
   /* Styles applied to the `role="group"` element. */
   group: {
     margin: 0,
     padding: 0,
-    marginLeft: 26,
+    marginLeft: 17,
   },
   /* Styles applied to the tree node content. */
   content: {
@@ -34,20 +49,30 @@ export const styles = theme => ({
     display: 'flex',
     alignItems: 'center',
     cursor: 'pointer',
-    '&:hover': {
-      backgroundColor: theme.palette.action.hover,
-    },
   },
   /* Styles applied to the tree node icon and collapse/expand icon. */
   iconContainer: {
-    marginRight: 2,
-    width: 24,
+    marginRight: 4,
+    width: 15,
     display: 'flex',
+    flexShrink: 0,
     justifyContent: 'center',
+    '& svg': {
+      fontSize: 18,
+    },
   },
   /* Styles applied to the label element. */
   label: {
     width: '100%',
+    paddingLeft: 4,
+    position: 'relative',
+    '&:hover': {
+      backgroundColor: theme.palette.action.hover,
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor: 'transparent',
+      },
+    },
   },
 });
 
@@ -69,28 +94,39 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     onClick,
     onFocus,
     onKeyDown,
+    onMouseDown,
     TransitionComponent = Collapse,
     TransitionProps,
     ...other
   } = props;
 
   const {
-    expandAllSiblings,
+    icons: contextIcons,
     focus,
     focusFirstNode,
     focusLastNode,
     focusNextNode,
     focusPreviousNode,
-    handleFirstChars,
-    handleLeftArrow,
-    addNodeToNodeMap,
-    removeNodeFromNodeMap,
-    icons: contextIcons,
+    focusByFirstCharacter,
+    selectNode,
+    selectRange,
+    selectNextNode,
+    selectPreviousNode,
+    rangeSelectToFirst,
+    rangeSelectToLast,
+    selectAllNodes,
+    expandAllSiblings,
+    toggleExpansion,
     isExpanded,
     isFocused,
+    isSelected,
     isTabbable,
-    setFocusByFirstCharacter,
-    toggle,
+    multiSelect,
+    selectionDisabled,
+    getParent,
+    mapFirstChar,
+    addNodeToNodeMap,
+    removeNodeFromNodeMap,
   } = React.useContext(TreeViewContext);
 
   const nodeRef = React.useRef(null);
@@ -103,6 +139,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
   const expanded = isExpanded ? isExpanded(nodeId) : false;
   const focused = isFocused ? isFocused(nodeId) : false;
   const tabbable = isTabbable ? isTabbable(nodeId) : false;
+  const selected = isSelected ? isSelected(nodeId) : false;
   const icons = contextIcons || {};
   const theme = useTheme();
 
@@ -127,8 +164,23 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
       focus(nodeId);
     }
 
-    if (expandable) {
-      toggle(event, nodeId);
+    const multiple = multiSelect && (event.shiftKey || event.ctrlKey || event.metaKey);
+
+    // If already expanded and trying to toggle selection don't close
+    if (expandable && !(multiple && isExpanded(nodeId))) {
+      toggleExpansion(event, nodeId);
+    }
+
+    if (!selectionDisabled) {
+      if (multiple) {
+        if (event.shiftKey) {
+          selectRange(event, { end: nodeId });
+        } else {
+          selectNode(event, nodeId, true);
+        }
+      } else {
+        selectNode(event, nodeId);
+      }
     }
 
     if (onClick) {
@@ -136,14 +188,19 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     }
   };
 
-  const printableCharacter = (event, key) => {
-    if (key === '*') {
-      expandAllSiblings(event, nodeId);
-      return true;
+  const handleMouseDown = event => {
+    if (event.shiftKey || event.ctrlKey || event.metaKey) {
+      event.preventDefault();
     }
 
+    if (onMouseDown) {
+      onMouseDown(event);
+    }
+  };
+
+  const printableCharacter = (event, key) => {
     if (isPrintableCharacter(key)) {
-      setFocusByFirstCharacter(nodeId, key);
+      focusByFirstCharacter(nodeId, key);
       return true;
     }
     return false;
@@ -154,75 +211,110 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
       if (expanded) {
         focusNextNode(nodeId);
       } else {
-        toggle(event);
+        toggleExpansion(event);
       }
     }
+    return true;
   };
 
   const handlePreviousArrow = event => {
-    handleLeftArrow(nodeId, event);
+    if (expanded) {
+      toggleExpansion(event, nodeId);
+      return true;
+    }
+
+    const parent = getParent(nodeId);
+    if (parent) {
+      focus(parent);
+      return true;
+    }
+    return false;
   };
 
   const handleKeyDown = event => {
     let flag = false;
     const key = event.key;
 
-    if (event.altKey || event.ctrlKey || event.metaKey || event.currentTarget !== event.target) {
+    if (event.altKey || event.currentTarget !== event.target) {
       return;
     }
-    if (event.shift) {
-      if (key === ' ' || key === 'Enter') {
+
+    const ctrlPressed = event.ctrlKey || event.metaKey;
+
+    switch (key) {
+      case ' ':
+        if (nodeRef.current === event.currentTarget) {
+          if (multiSelect && event.shiftKey) {
+            selectRange(event, { end: nodeId });
+          } else if (multiSelect) {
+            selectNode(event, nodeId, true);
+          } else {
+            selectNode(event, nodeId);
+          }
+
+          flag = true;
+        }
         event.stopPropagation();
-      } else if (isPrintableCharacter(key)) {
-        flag = printableCharacter(event, key);
-      }
-    } else {
-      switch (key) {
-        case 'Enter':
-        case ' ':
-          if (nodeRef.current === event.currentTarget && expandable) {
-            toggle(event);
-            flag = true;
-          }
-          event.stopPropagation();
-          break;
-        case 'ArrowDown':
-          focusNextNode(nodeId);
+        break;
+      case 'Enter':
+        if (nodeRef.current === event.currentTarget && expandable) {
+          toggleExpansion(event);
           flag = true;
-          break;
-        case 'ArrowUp':
-          focusPreviousNode(nodeId);
+        }
+        event.stopPropagation();
+        break;
+      case 'ArrowDown':
+        if (multiSelect && event.shiftKey) {
+          selectNextNode(event, nodeId);
+        }
+        focusNextNode(nodeId);
+        flag = true;
+        break;
+      case 'ArrowUp':
+        if (multiSelect && event.shiftKey) {
+          selectPreviousNode(event, nodeId);
+        }
+        focusPreviousNode(nodeId);
+        flag = true;
+        break;
+      case 'ArrowRight':
+        if (theme.direction === 'rtl') {
+          flag = handlePreviousArrow(event);
+        } else {
+          flag = handleNextArrow(event);
+        }
+        break;
+      case 'ArrowLeft':
+        if (theme.direction === 'rtl') {
+          flag = handleNextArrow(event);
+        } else {
+          flag = handlePreviousArrow(event);
+        }
+        break;
+      case 'Home':
+        if (multiSelect && ctrlPressed && event.shiftKey) {
+          rangeSelectToFirst(event, nodeId);
+        }
+        focusFirstNode();
+        flag = true;
+        break;
+      case 'End':
+        if (multiSelect && ctrlPressed && event.shiftKey) {
+          rangeSelectToLast(event, nodeId);
+        }
+        focusLastNode();
+        flag = true;
+        break;
+      default:
+        if (key === '*') {
+          expandAllSiblings(event, nodeId);
           flag = true;
-          break;
-        case 'ArrowRight':
-          if (theme.direction === 'rtl') {
-            handlePreviousArrow(event);
-          } else {
-            handleNextArrow(event);
-            flag = true;
-          }
-          break;
-        case 'ArrowLeft':
-          if (theme.direction === 'rtl') {
-            handleNextArrow(event);
-            flag = true;
-          } else {
-            handlePreviousArrow(event);
-          }
-          break;
-        case 'Home':
-          focusFirstNode();
+        } else if (multiSelect && ctrlPressed && key.toLowerCase() === 'a') {
+          selectAllNodes(event);
           flag = true;
-          break;
-        case 'End':
-          focusLastNode();
-          flag = true;
-          break;
-        default:
-          if (isPrintableCharacter(key)) {
-            flag = printableCharacter(event, key);
-          }
-      }
+        } else if (isPrintableCharacter(key)) {
+          flag = printableCharacter(event, key);
+        }
     }
 
     if (flag) {
@@ -262,10 +354,10 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
   }, [nodeId, removeNodeFromNodeMap]);
 
   React.useEffect(() => {
-    if (handleFirstChars && label) {
-      handleFirstChars(nodeId, contentRef.current.textContent.substring(0, 1).toLowerCase());
+    if (mapFirstChar && label) {
+      mapFirstChar(nodeId, contentRef.current.textContent.substring(0, 1).toLowerCase());
     }
-  }, [handleFirstChars, nodeId, label]);
+  }, [mapFirstChar, nodeId, label]);
 
   React.useEffect(() => {
     if (focused) {
@@ -277,17 +369,24 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     <li
       className={clsx(classes.root, className, {
         [classes.expanded]: expanded,
+        [classes.selected]: selected,
       })}
       role="treeitem"
       onKeyDown={handleKeyDown}
       onFocus={handleFocus}
       aria-expanded={expandable ? expanded : null}
+      aria-selected={!selectionDisabled && isSelected ? isSelected(nodeId) : undefined}
       ref={handleRef}
       tabIndex={tabbable ? 0 : -1}
       {...other}
     >
-      <div className={classes.content} onClick={handleClick} ref={contentRef}>
-        {icon ? <div className={classes.iconContainer}>{icon}</div> : null}
+      <div
+        className={classes.content}
+        onClick={handleClick}
+        onMouseDown={handleMouseDown}
+        ref={contentRef}
+      >
+        <div className={classes.iconContainer}>{icon}</div>
         <Typography component="div" className={classes.label}>
           {label}
         </Typography>
@@ -362,6 +461,10 @@ TreeItem.propTypes = {
    * @ignore
    */
   onKeyDown: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onMouseDown: PropTypes.func,
   /**
    * The component used for the transition.
    * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
