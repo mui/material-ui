@@ -384,6 +384,8 @@ describe('<ButtonBase />', () => {
           React.useEffect(() => {
             if (buttonRef.current) {
               buttonRef.current.focusVisible();
+            } else {
+              throw new Error("buttonRef.current must be available")
             }
           }, []);
 
