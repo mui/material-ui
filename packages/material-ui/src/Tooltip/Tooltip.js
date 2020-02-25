@@ -484,17 +484,21 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     }
   }
 
+  const { popperOptions, ...PopperPropsRest } = PopperProps || {};
+
   // Avoid the creation of a new Popper.js instance at each render.
-  const popperOptions = React.useMemo(
+  const popperOptionsWithArrow = React.useMemo(
     () => ({
+      ...popperOptions,
       modifiers: {
         arrow: {
           enabled: Boolean(arrowRef),
           element: arrowRef,
         },
+        ...(popperOptions && popperOptions.modifiers),
       },
     }),
-    [arrowRef],
+    [arrowRef, popperOptions],
   );
 
   return (
@@ -510,9 +514,9 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
         open={childNode ? open : false}
         id={childrenProps['aria-describedby']}
         transition
-        popperOptions={popperOptions}
+        popperOptions={popperOptionsWithArrow}
         {...interactiveWrapperListeners}
-        {...PopperProps}
+        {...PopperPropsRest}
       >
         {({ placement: placementInner, TransitionProps: TransitionPropsInner }) => (
           <TransitionComponent
