@@ -19,15 +19,10 @@ export interface DateInputProps
   /** Override input component */
   TextFieldComponent?: React.ComponentType<TextFieldProps>;
   /**
-   * Message displaying in text field, if null passed
+   * Message displaying in read-only text field when null passed
    * @default ' '
    */
   emptyLabel?: string;
-  /**
-   * Message displaying in text field if date is invalid (doesn't work in keyboard mode)
-   * @default 'unknown'
-   */
-  invalidLabel?: string;
   /** Icon displaying for open picker button */
   keyboardIcon?: React.ReactNode;
   /**
@@ -97,7 +92,6 @@ export const PureDateInput: React.FC<DateInputProps> = ({
   TextFieldComponent = TextField,
   variant,
   emptyLabel,
-  invalidLabel,
   keyboardIcon,
   hideOpenPickerButton,
   ignoreInvalidInputs,
@@ -118,7 +112,6 @@ export const PureDateInput: React.FC<DateInputProps> = ({
   const inputValue = getDisplayDate(rawValue, utils, {
     inputFormat,
     emptyLabel,
-    invalidLabel,
   });
 
   return (

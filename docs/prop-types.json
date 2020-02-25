@@ -827,23 +827,8 @@
       "defaultValue": {
         "value": "' '"
       },
-      "description": "Message displaying in text field, if null passed",
+      "description": "Message displaying in read-only text field when null passed",
       "name": "emptyLabel",
-      "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/PureDateInput.tsx",
-        "name": "DateInputProps"
-      },
-      "required": false,
-      "type": {
-        "name": "string"
-      }
-    },
-    "invalidLabel": {
-      "defaultValue": {
-        "value": "'unknown'"
-      },
-      "description": "Message displaying in text field if date is invalid (doesn't work in keyboard mode)",
-      "name": "invalidLabel",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/_shared/PureDateInput.tsx",
         "name": "DateInputProps"
@@ -1446,23 +1431,8 @@
       "defaultValue": {
         "value": "' '"
       },
-      "description": "Message displaying in text field, if null passed",
+      "description": "Message displaying in read-only text field when null passed",
       "name": "emptyLabel",
-      "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/PureDateInput.tsx",
-        "name": "DateInputProps"
-      },
-      "required": false,
-      "type": {
-        "name": "string"
-      }
-    },
-    "invalidLabel": {
-      "defaultValue": {
-        "value": "'unknown'"
-      },
-      "description": "Message displaying in text field if date is invalid (doesn't work in keyboard mode)",
-      "name": "invalidLabel",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/_shared/PureDateInput.tsx",
         "name": "DateInputProps"
@@ -1901,23 +1871,8 @@
       "defaultValue": {
         "value": "' '"
       },
-      "description": "Message displaying in text field, if null passed",
+      "description": "Message displaying in read-only text field when null passed",
       "name": "emptyLabel",
-      "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/PureDateInput.tsx",
-        "name": "DateInputProps"
-      },
-      "required": false,
-      "type": {
-        "name": "string"
-      }
-    },
-    "invalidLabel": {
-      "defaultValue": {
-        "value": "'unknown'"
-      },
-      "description": "Message displaying in text field if date is invalid (doesn't work in keyboard mode)",
-      "name": "invalidLabel",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/_shared/PureDateInput.tsx",
         "name": "DateInputProps"
