@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
 import CheckBox from '../internal/svg-icons/CheckBox';

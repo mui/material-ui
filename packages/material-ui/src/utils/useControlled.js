@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks, react-hooks/exhaustive-deps */
-import React from 'react';
+import * as React from 'react';
 
 export default function useControlled({ controlled, default: defaultProp, name }) {
   const { current: isControlled } = React.useRef(controlled !== undefined);

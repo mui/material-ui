@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import setRef from './setRef';
 
 export default function useForkRef(refA, refB) {

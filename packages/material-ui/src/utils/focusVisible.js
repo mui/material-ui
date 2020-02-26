@@ -1,6 +1,6 @@
 // based on https://github.com/WICG/focus-visible/blob/v4.1.5/src/focus-visible.js
-import React from 'react';
-import ReactDOM from 'react-dom';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 
 let hadKeyboardEvent = true;
 let hadFocusVisibleRecently = false;
