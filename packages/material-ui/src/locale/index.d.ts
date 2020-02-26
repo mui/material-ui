@@ -9,6 +9,7 @@ export const etEE: object;
 export const faIR: object;
 export const fiFI: object;
 export const frFR: object;
+export const heIL: object;
 export const huHU: object;
 export const hyAM: object;
 export const idID: object;
