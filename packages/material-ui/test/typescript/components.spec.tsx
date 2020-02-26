@@ -794,12 +794,12 @@ const StepperTest = () =>
       };
       return (
         <MobileStepper
+          {...defaultProps}
           variant="dots"
           steps={6}
           position="static"
           activeStep={this.state.activeStep}
           className={classes.root}
-          {...defaultProps}
         />
       );
     }
