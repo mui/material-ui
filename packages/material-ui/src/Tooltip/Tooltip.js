@@ -494,6 +494,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
         arrow: {
           enabled: Boolean(arrowRef),
           element: arrowRef,
+          ...(popperOptions && popperOptions.modifiers && popperOptions.modifiers.arrow),
         },
         ...(popperOptions && popperOptions.modifiers),
       },
