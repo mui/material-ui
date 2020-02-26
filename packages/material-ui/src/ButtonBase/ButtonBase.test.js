@@ -385,7 +385,7 @@ describe('<ButtonBase />', () => {
             if (buttonRef.current) {
               buttonRef.current.focusVisible();
             } else {
-              throw new Error("buttonRef.current must be available")
+              throw new Error('buttonRef.current must be available');
             }
           }, []);
 
