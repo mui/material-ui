@@ -11,6 +11,10 @@ export interface AvatarGroupProps
    * Spacing between avatars.
    */
   spacing?: 'small' | 'medium' | number;
+  /**
+   * Max avatars to show before +x.
+   */
+  max?: number;
 }
 
 export type AvatarGroupClassKey = 'root' | 'avatar';
