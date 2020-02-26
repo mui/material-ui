@@ -7,7 +7,7 @@ import Collapse from '@material-ui/core/Collapse';
 import { fade, withStyles, useTheme } from '@material-ui/core/styles';
 import { useForkRef } from '@material-ui/core/utils';
 import TreeViewContext from '../TreeView/TreeViewContext';
-import Checkbox from "@material-ui/core/Checkbox";
+import Checkbox from '@material-ui/core/Checkbox';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -77,8 +77,8 @@ export const styles = theme => ({
   },
   /* Styles applied to the checkbox. */
   checkbox: {
-    padding:0
-  }
+    padding: 0,
+  },
 });
 
 const isPrintableCharacter = str => {
@@ -147,8 +147,8 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
   const tabbable = isTabbable ? isTabbable(nodeId) : false;
   const selected = isSelected ? isSelected(nodeId) : false;
   const icons = contextIcons || {};
-  const multiSelect = variant === "multi-select";
-  const checkbox = variant === "checkbox";
+  const multiSelect = variant === 'multi-select';
+  const checkbox = variant === 'checkbox';
   const theme = useTheme();
 
   if (!icon) {
@@ -184,7 +184,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
         if (event.shiftKey) {
           selectRange(event, { end: nodeId });
         } else {
-          selectNode(event, nodeId, "multiple");
+          selectNode(event, nodeId, 'multiple');
         }
       } else {
         selectNode(event, nodeId);
@@ -255,7 +255,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
           if (multiSelect && event.shiftKey) {
             selectRange(event, { end: nodeId });
           } else if (multiSelect) {
-            selectNode(event, nodeId, "multiple");
+            selectNode(event, nodeId, 'multiple');
           } else {
             selectNode(event, nodeId);
           }
@@ -350,7 +350,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
   };
 
   const handleCheckbox = event => {
-    selectNode(event, nodeId, "checkbox")
+    selectNode(event, nodeId, 'checkbox');
   };
 
   React.useEffect(() => {
@@ -358,7 +358,6 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     if (addNodeToNodeMap) {
       addNodeToNodeMap(nodeId, childIds);
     }
-
   }, [children, nodeId, addNodeToNodeMap]);
 
   React.useEffect(() => {
@@ -406,7 +405,16 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
         ref={contentRef}
       >
         <div className={classes.iconContainer}>{icon}</div>
-        {checkbox && <Checkbox className={classes.checkbox} size="small" onClick={handleCheckboxClick} onChange={handleCheckbox} checked={checked} indeterminate={indeterminate}/>}
+        {checkbox && (
+          <Checkbox
+            className={classes.checkbox}
+            size="small"
+            onClick={handleCheckboxClick}
+            onChange={handleCheckbox}
+            checked={checked}
+            indeterminate={indeterminate}
+          />
+        )}
         <Typography component="div" className={classes.label}>
           {label}
         </Typography>

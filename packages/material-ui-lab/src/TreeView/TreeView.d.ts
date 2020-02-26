@@ -65,7 +65,7 @@ export interface MultiSelectTreeViewProps extends TreeViewPropsBase {
   /**
    * The tree view's variant.
    */
-  variant?: "multi-select" | "checkbox";
+  variant?: 'multi-select' | 'checkbox';
 }
 
 export interface SingleSelectTreeViewProps extends TreeViewPropsBase {
@@ -90,7 +90,7 @@ export interface SingleSelectTreeViewProps extends TreeViewPropsBase {
   /**
    * The tree view's variant.
    */
-  variant?: "standard";
+  variant?: 'standard';
 }
 
 export type TreeViewProps = SingleSelectTreeViewProps | MultiSelectTreeViewProps;
