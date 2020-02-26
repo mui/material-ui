@@ -13,7 +13,6 @@ import setRef from '../utils/setRef';
 import { useIsFocusVisible } from '../utils/focusVisible';
 import useControlled from '../utils/useControlled';
 import useTheme from '../styles/useTheme';
-import deepmerge from 'deepmerge'
 
 function round(value) {
   return Math.round(value * 1e5) / 1e5;
@@ -485,18 +484,22 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     }
   }
 
-  const PopperPropsToPassToPopper = React.useMemo(() => {
-    const defaultPopperOptions = {
+  const { popperOptions, ...PopperPropsRest } = PopperProps || {};
+
+  // Avoid the creation of a new Popper.js instance at each render.
+  const popperOptionsWithArrow = React.useMemo(
+    () => ({
+      ...popperOptions,
       modifiers: {
         arrow: {
           enabled: Boolean(arrowRef),
-          element: arrowRef
-        }
-      }
-    }
-
-    return deepmerge({ popperOptions: defaultPopperOptions }, PopperProps || {})
-  }, [arrowRef, PopperProps])
+          element: arrowRef,
+        },
+        ...(popperOptions && popperOptions.modifiers),
+      },
+    }),
+    [arrowRef, popperOptions],
+  );
 
   return (
     <React.Fragment>
@@ -511,8 +514,9 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
         open={childNode ? open : false}
         id={childrenProps['aria-describedby']}
         transition
+        popperOptions={popperOptionsWithArrow}
         {...interactiveWrapperListeners}
-        {...PopperPropsToPassToPopper}
+        {...PopperPropsRest}
       >
         {({ placement: placementInner, TransitionProps: TransitionPropsInner }) => (
           <TransitionComponent
