@@ -7,6 +7,7 @@ import Collapse from '@material-ui/core/Collapse';
 import { fade, withStyles, useTheme } from '@material-ui/core/styles';
 import { useForkRef } from '@material-ui/core/utils';
 import TreeViewContext from '../TreeView/TreeViewContext';
+import Checkbox from "@material-ui/core/Checkbox";
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -74,6 +75,10 @@ export const styles = theme => ({
       },
     },
   },
+  /* Styles applied to the checkbox. */
+  checkbox: {
+    padding:0
+  }
 });
 
 const isPrintableCharacter = str => {
@@ -121,9 +126,10 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     isFocused,
     isSelected,
     isTabbable,
-    multiSelect,
+    variant,
     selectionDisabled,
     getParent,
+    getCheckboxStatus,
     mapFirstChar,
     addNodeToNodeMap,
     removeNodeFromNodeMap,
@@ -141,6 +147,8 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
   const tabbable = isTabbable ? isTabbable(nodeId) : false;
   const selected = isSelected ? isSelected(nodeId) : false;
   const icons = contextIcons || {};
+  const multiSelect = variant === "multi-select";
+  const checkbox = variant === "checkbox";
   const theme = useTheme();
 
   if (!icon) {
@@ -171,12 +179,12 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
       toggleExpansion(event, nodeId);
     }
 
-    if (!selectionDisabled) {
+    if (!selectionDisabled && !checkbox) {
       if (multiple) {
         if (event.shiftKey) {
           selectRange(event, { end: nodeId });
         } else {
-          selectNode(event, nodeId, true);
+          selectNode(event, nodeId, "multiple");
         }
       } else {
         selectNode(event, nodeId);
@@ -247,7 +255,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
           if (multiSelect && event.shiftKey) {
             selectRange(event, { end: nodeId });
           } else if (multiSelect) {
-            selectNode(event, nodeId, true);
+            selectNode(event, nodeId, "multiple");
           } else {
             selectNode(event, nodeId);
           }
@@ -337,11 +345,20 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     }
   };
 
+  const handleCheckboxClick = event => {
+    event.stopPropagation();
+  };
+
+  const handleCheckbox = event => {
+    selectNode(event, nodeId, "checkbox")
+  };
+
   React.useEffect(() => {
     const childIds = React.Children.map(children, child => child.props.nodeId) || [];
     if (addNodeToNodeMap) {
       addNodeToNodeMap(nodeId, childIds);
     }
+
   }, [children, nodeId, addNodeToNodeMap]);
 
   React.useEffect(() => {
@@ -365,11 +382,13 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     }
   }, [focused]);
 
+  const { checked, indeterminate } = getCheckboxStatus(nodeId);
+
   return (
     <li
       className={clsx(classes.root, className, {
         [classes.expanded]: expanded,
-        [classes.selected]: selected,
+        [classes.selected]: multiSelect && selected,
       })}
       role="treeitem"
       onKeyDown={handleKeyDown}
@@ -387,6 +406,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
         ref={contentRef}
       >
         <div className={classes.iconContainer}>{icon}</div>
+        {checkbox && <Checkbox className={classes.checkbox} size="small" onClick={handleCheckboxClick} onChange={handleCheckbox} checked={checked} indeterminate={indeterminate}/>}
         <Typography component="div" className={classes.label}>
           {label}
         </Typography>

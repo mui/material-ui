@@ -116,14 +116,14 @@ describe('<TreeView />', () => {
     expect(getByTestId('two')).to.have.attribute('aria-selected', 'true');
   });
 
-  it('should be able to be controlled with the selected prop and multiSelect', () => {
+  it('should be able to be controlled with the selected prop when `variant="multi-select"`', () => {
     function MyComponent() {
       const [selectedState, setSelectedState] = React.useState([]);
       const handleNodeSelect = (event, nodes) => {
         setSelectedState(nodes);
       };
       return (
-        <TreeView selected={selectedState} onNodeSelect={handleNodeSelect} multiSelect>
+        <TreeView selected={selectedState} onNodeSelect={handleNodeSelect} variant="multi-select">
           <TreeItem nodeId="1" label="one" data-testid="one" />
           <TreeItem nodeId="2" label="two" data-testid="two" />
         </TreeView>
@@ -207,7 +207,7 @@ describe('<TreeView />', () => {
     });
 
     it('(TreeView) should have the attribute `aria-multiselectable=true if using multi select`', () => {
-      const { getByRole } = render(<TreeView multiSelect />);
+      const { getByRole } = render(<TreeView variant="multi-select" />);
 
       expect(getByRole('tree')).to.have.attribute('aria-multiselectable', 'true');
     });

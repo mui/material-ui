@@ -53,6 +53,7 @@ Any other props supplied will be provided to the root element (native element).
 | <span class="prop-name">content</span> | <span class="prop-name">.MuiTreeItem-content</span> | Styles applied to the tree node content.
 | <span class="prop-name">iconContainer</span> | <span class="prop-name">.MuiTreeItem-iconContainer</span> | Styles applied to the tree node icon and collapse/expand icon.
 | <span class="prop-name">label</span> | <span class="prop-name">.MuiTreeItem-label</span> | Styles applied to the label element.
+| <span class="prop-name">checkbox</span> | <span class="prop-name">.MuiTreeItem-checkbox</span> | Styles applied to the checkbox.
 
 You can override the style of the component thanks to one of these customization points:
 

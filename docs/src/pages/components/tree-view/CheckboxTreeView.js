@@ -21,7 +21,7 @@ export default function MultiSelectTreeView() {
       className={classes.root}
       defaultCollapseIcon={<ExpandMoreIcon />}
       defaultExpandIcon={<ChevronRightIcon />}
-      variant="multi-select"
+      variant="checkbox"
     >
       <TreeItem nodeId="1" label="Applications">
         <TreeItem nodeId="2" label="Calendar" />

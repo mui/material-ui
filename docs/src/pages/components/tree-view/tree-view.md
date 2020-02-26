@@ -19,6 +19,10 @@ Tree views also support multi selection.
 
 {{"demo": "pages/components/tree-view/MultiSelectTreeView.js"}}
 
+## Checkbox
+
+{{"demo": "pages/components/tree-view/CheckboxTreeView.js"}}
+
 ### Controlled tree view
 
 The tree view also offers a controlled API.

@@ -720,7 +720,7 @@ describe('<TreeItem />', () => {
       describe('range selection', () => {
         specify('keyboard arrow', () => {
           const { getByTestId, getByText, container } = render(
-            <TreeView multiSelect defaultExpanded={['two']}>
+            <TreeView variant="multi-select" defaultExpanded={['two']}>
               <TreeItem nodeId="one" label="one" data-testid="one" />
               <TreeItem nodeId="two" label="two" data-testid="two" />
               <TreeItem nodeId="three" label="three" data-testid="three" />
@@ -757,7 +757,7 @@ describe('<TreeItem />', () => {
 
         specify('keyboard arrow merge', () => {
           const { getByTestId, getByText, container } = render(
-            <TreeView multiSelect defaultExpanded={['two']}>
+            <TreeView variant="multi-select" defaultExpanded={['two']}>
               <TreeItem nodeId="one" label="one" data-testid="one" />
               <TreeItem nodeId="two" label="two" data-testid="two" />
               <TreeItem nodeId="three" label="three" data-testid="three" />
@@ -783,7 +783,7 @@ describe('<TreeItem />', () => {
 
         specify('keyboard space', () => {
           const { getByTestId, getByText } = render(
-            <TreeView multiSelect defaultExpanded={['two']}>
+            <TreeView variant="multi-select" defaultExpanded={['two']}>
               <TreeItem nodeId="one" label="one" data-testid="one" />
               <TreeItem nodeId="two" label="two" data-testid="two">
                 <TreeItem nodeId="three" label="three" data-testid="three" />
@@ -825,7 +825,7 @@ describe('<TreeItem />', () => {
 
         specify('keyboard home and end', () => {
           const { getByTestId } = render(
-            <TreeView multiSelect defaultExpanded={['two', 'five']}>
+            <TreeView variant="multi-select" defaultExpanded={['two', 'five']}>
               <TreeItem nodeId="one" label="one" data-testid="one" />
               <TreeItem nodeId="two" label="two" data-testid="two">
                 <TreeItem nodeId="three" label="three" data-testid="three" />
@@ -861,7 +861,7 @@ describe('<TreeItem />', () => {
 
         specify('mouse', () => {
           const { getByTestId, getByText } = render(
-            <TreeView multiSelect defaultExpanded={['two']}>
+            <TreeView variant="multi-select" defaultExpanded={['two']}>
               <TreeItem nodeId="one" label="one" data-testid="one" />
               <TreeItem nodeId="two" label="two" data-testid="two">
                 <TreeItem nodeId="three" label="three" data-testid="three" />
@@ -895,7 +895,7 @@ describe('<TreeItem />', () => {
       describe('multi selection', () => {
         specify('keyboard', () => {
           const { getByTestId } = render(
-            <TreeView multiSelect>
+            <TreeView variant="multi-select">
               <TreeItem nodeId="one" label="one" data-testid="one" />
               <TreeItem nodeId="two" label="two" data-testid="two" />
             </TreeView>,
@@ -915,7 +915,7 @@ describe('<TreeItem />', () => {
 
         specify('mouse using ctrl', () => {
           const { getByTestId, getByText } = render(
-            <TreeView multiSelect>
+            <TreeView variant="multi-select">
               <TreeItem nodeId="one" label="one" data-testid="one" />
               <TreeItem nodeId="two" label="two" data-testid="two" />
             </TreeView>,
@@ -933,7 +933,7 @@ describe('<TreeItem />', () => {
 
         specify('mouse using meta', () => {
           const { getByTestId, getByText } = render(
-            <TreeView multiSelect>
+            <TreeView variant="multi-select">
               <TreeItem nodeId="one" label="one" data-testid="one" />
               <TreeItem nodeId="two" label="two" data-testid="two" />
             </TreeView>,
@@ -952,7 +952,7 @@ describe('<TreeItem />', () => {
 
       specify('ctrl + a selects all', () => {
         const { getByTestId, container } = render(
-          <TreeView multiSelect>
+          <TreeView variant="multi-select">
             <TreeItem nodeId="one" label="one" data-testid="one" />
             <TreeItem nodeId="two" label="two" data-testid="two" />
             <TreeItem nodeId="three" label="three" data-testid="three" />
