@@ -374,6 +374,54 @@ describe('<ButtonBase />', () => {
           button.querySelectorAll('.ripple-visible .child:not(.child-leaving)'),
         ).to.have.lengthOf(0);
       });
+
+      it('should not crash when changes enableRipple from false to true', () => {
+        function App() {
+          /** @type {React.MutableRefObject<import('./ButtonBase').ButtonBaseActions | null>} */
+          const buttonRef = React.useRef(null);
+          const [enableRipple, setRipple] = React.useState(false);
+
+          React.useEffect(() => {
+            if (buttonRef.current) {
+              buttonRef.current.focusVisible();
+            } else {
+              throw new Error('buttonRef.current must be available');
+            }
+          }, []);
+
+          return (
+            <div>
+              <button
+                type="button"
+                data-testid="trigger"
+                onClick={() => {
+                  setRipple(true);
+                }}
+              >
+                Trigger crash
+              </button>
+              <ButtonBase
+                autoFocus
+                action={buttonRef}
+                TouchRippleProps={{
+                  classes: {
+                    ripplePulsate: 'ripple-pulsate',
+                  },
+                }}
+                focusRipple
+                disableRipple={!enableRipple}
+              >
+                the button
+              </ButtonBase>
+            </div>
+          );
+        }
+
+        const { container, getByTestId } = render(<App />);
+
+        fireEvent.click(getByTestId('trigger'));
+        expect(container.querySelectorAll('.ripple-pulsate')).to.have.lengthOf(1);
+      });
     });
   });
 
