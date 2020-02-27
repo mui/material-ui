@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { elementAcceptingRef } from '@material-ui/utils';
+import { deepmerge, elementAcceptingRef } from '@material-ui/utils';
 import { fade } from '../styles/colorManipulator';
 import withStyles from '../styles/withStyles';
 import capitalize from '../utils/capitalize';
@@ -13,7 +13,6 @@ import setRef from '../utils/setRef';
 import { useIsFocusVisible } from '../utils/focusVisible';
 import useControlled from '../utils/useControlled';
 import useTheme from '../styles/useTheme';
-import deepmerge from 'deepmerge'
 
 function round(value) {
   return Math.round(value * 1e5) / 1e5;
