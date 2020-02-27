@@ -2151,6 +2151,18 @@
           },
           "tags": []
         },
+        "expandText": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "Override the default label for the expand button.\n\nFor localization purposes, you can use the provided [translations](/guides/localization/).",
+          "defaultValue": {
+            "value": "'Show path'",
+            "computed": false
+          },
+          "tags": []
+        },
         "itemsAfterCollapse": {
           "type": {
             "name": "number"
@@ -2698,7 +2710,8 @@
         "descriptions": {
           "root": "Styles applied to the root element.",
           "disabled": "Pseudo-class applied to the root element if `disabled={true}`.",
-          "focusVisible": "Pseudo-class applied to the root element if keyboard focused."
+          "focusVisible": "Pseudo-class applied to the root element if keyboard focused.",
+          "": "TouchRipple is only needed client-side, x2 boost on the server."
         },
         "globalClasses": {
           "root": "MuiButtonBase-root",
@@ -3333,7 +3346,7 @@
         "children": {
           "type": {
             "name": "chained",
-            "raw": "chainPropTypes(PropTypes.node, props => {\n  if (!props.children && !props.image && !props.src) {\n    return new Error('Material-UI: either `children`, `image` or `src` prop must be specified.');\n  }\n  return null;\n})",
+            "raw": "chainPropTypes(PropTypes.node, props => {\n  if (!props.children && !props.image && !props.src && !props.component) {\n    return new Error(\n      'Material-UI: either `children`, `image`, `src` or `component` prop must be specified.',\n    );\n  }\n  return null;\n})",
             "chained": {
               "name": "node"
             }
@@ -11942,7 +11955,7 @@
           "type": {
             "name": "node"
           },
-          "required": true,
+          "required": false,
           "description": "You can wrap a node.",
           "tags": []
         },
@@ -15360,8 +15373,26 @@
               "title": "param",
               "description": "The new value.",
               "type": {
-                "type": "NameExpression",
-                "name": "any"
+                "type": "UnionType",
+                "elements": [
+                  {
+                    "type": "NameExpression",
+                    "name": "number"
+                  },
+                  {
+                    "type": "TypeApplication",
+                    "expression": {
+                      "type": "NameExpression",
+                      "name": "Array"
+                    },
+                    "applications": [
+                      {
+                        "type": "NameExpression",
+                        "name": "number"
+                      }
+                    ]
+                  }
+                ]
               },
               "name": "value"
             }
@@ -15387,8 +15418,26 @@
               "title": "param",
               "description": "The new value.",
               "type": {
-                "type": "NameExpression",
-                "name": "any"
+                "type": "UnionType",
+                "elements": [
+                  {
+                    "type": "NameExpression",
+                    "name": "number"
+                  },
+                  {
+                    "type": "TypeApplication",
+                    "expression": {
+                      "type": "NameExpression",
+                      "name": "Array"
+                    },
+                    "applications": [
+                      {
+                        "type": "NameExpression",
+                        "name": "number"
+                      }
+                    ]
+                  }
+                ]
               },
               "name": "value"
             }
@@ -20120,6 +20169,18 @@
           "required": false,
           "description": "The number of milliseconds to wait before showing the tooltip.\nThis prop won't impact the enter touch delay (`enterTouchDelay`).",
           "defaultValue": {
+            "value": "200",
+            "computed": false
+          },
+          "tags": []
+        },
+        "enterNextDelay": {
+          "type": {
+            "name": "number"
+          },
+          "required": false,
+          "description": "The number of milliseconds to wait before showing the tooltip when one was already recently opened.",
+          "defaultValue": {
             "value": "0",
             "computed": false
           },
@@ -20469,6 +20530,7 @@
         "classes": [
           "root",
           "expanded",
+          "selected",
           "group",
           "content",
           "iconContainer",
@@ -20478,6 +20540,7 @@
         "descriptions": {
           "root": "Styles applied to the root element.",
           "expanded": "Pseudo-class applied to the root element when expanded.",
+          "selected": "Pseudo-class applied to the root element when selected.",
           "group": "Styles applied to the `role=\"group\"` element.",
           "content": "Styles applied to the tree node content.",
           "iconContainer": "Styles applied to the tree node icon and collapse/expand icon.",
@@ -20486,6 +20549,7 @@
         "globalClasses": {
           "root": "MuiTreeItem-root",
           "expanded": "Mui-expanded",
+          "selected": "Mui-selected",
           "group": "MuiTreeItem-group",
           "content": "MuiTreeItem-content",
           "iconContainer": "MuiTreeItem-iconContainer",
@@ -20567,6 +20631,41 @@
           "description": "The default icon displayed next to a parent node. This is applied to all\nparent nodes and can be overridden by the TreeItem `icon` prop.",
           "tags": []
         },
+        "defaultSelected": {
+          "type": {
+            "name": "union",
+            "value": [
+              {
+                "name": "arrayOf",
+                "value": {
+                  "name": "string"
+                }
+              },
+              {
+                "name": "string"
+              }
+            ]
+          },
+          "required": false,
+          "description": "Selected node ids. (Uncontrolled)\nWhen `multiSelect` is true this takes an array of strings; when false (default) a string.",
+          "defaultValue": {
+            "value": "[]",
+            "computed": false
+          },
+          "tags": []
+        },
+        "disableSelection": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "If `true` selection is disabled.",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          },
+          "tags": []
+        },
         "expanded": {
           "type": {
             "name": "arrayOf",
@@ -20577,6 +20676,54 @@
           "required": false,
           "description": "Expanded node ids. (Controlled)",
           "tags": []
+        },
+        "multiSelect": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "If true `ctrl` and `shift` will trigger multiselect.",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          },
+          "tags": []
+        },
+        "onNodeSelect": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "Callback fired when tree items are selected/unselected.",
+          "tags": [
+            {
+              "title": "param",
+              "description": "The event source of the callback",
+              "type": {
+                "type": "NameExpression",
+                "name": "object"
+              },
+              "name": "event"
+            },
+            {
+              "title": "param",
+              "description": "of the selected nodes. When `multiSelect` is true\nthis is an array of strings; when false (default) a string.",
+              "type": {
+                "type": "UnionType",
+                "elements": [
+                  {
+                    "type": "NameExpression",
+                    "name": "array"
+                  },
+                  {
+                    "type": "NameExpression",
+                    "name": "string"
+                  }
+                ]
+              },
+              "name": "value"
+            }
+          ]
         },
         "onNodeToggle": {
           "type": {
@@ -20604,6 +20751,25 @@
               "name": "nodeIds"
             }
           ]
+        },
+        "selected": {
+          "type": {
+            "name": "union",
+            "value": [
+              {
+                "name": "arrayOf",
+                "value": {
+                  "name": "string"
+                }
+              },
+              {
+                "name": "string"
+              }
+            ]
+          },
+          "required": false,
+          "description": "Selected node ids. (Controlled)\nWhen `multiSelect` is true this takes an array of strings; when false (default) a string.",
+          "tags": []
         }
       },
       "name": "TreeView",
