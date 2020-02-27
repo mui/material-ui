@@ -1,4 +1,5 @@
 const fs = require('fs');
+const glob = require('glob');
 const path = require('path');
 
 const markdownRegex = /\.md$/;
@@ -77,6 +78,22 @@ function findComponents(directory, components = []) {
 const jsRegex = /\.js$/;
 const blackList = ['/.eslintrc', '/_document', '/_app'];
 
+function findComponentApiPages() {
+  const apiDir = path.resolve(__dirname, '../../../static/api');
+  const components = glob
+    .sync(path.resolve(__dirname, path.join(apiDir, '*.json')))
+    .map(filename => path.basename(filename, '.json'))
+    .sort((a, b) => a.localeCompare(b));
+
+  return components.map(componentName => {
+    return {
+      page: '/api',
+      pathname: `/api/${componentName}`,
+      query: { component: componentName },
+    };
+  });
+}
+
 // Returns the Next.js pages available in a nested format.
 // The output is in the next.js format.
 // Each pathname is a route you can navigate to.
@@ -95,6 +112,11 @@ function findPages(
       .replace(/\/index$/, '');
 
     if (pathname.indexOf('.eslintrc') !== -1) {
+      return;
+    }
+
+    if (pathname.indexOf('/api') === 0) {
+      pages.push(...findComponentApiPages());
       return;
     }
 
@@ -140,5 +162,6 @@ function findPages(
 module.exports = {
   findPages,
   findPagesMarkdown,
+  findComponentApiPages,
   findComponents,
 };

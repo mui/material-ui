@@ -552,7 +552,6 @@ ComponentDemos.propTypes = { pages: PropTypes.arrayOf(PropTypes.string.isRequire
 
 function ToCAbleHeading(props) {
   const { item } = props;
-
   return (
     <h2 id={item.hash} ref={item.ref.bind(item)}>
       {item.text}
@@ -678,7 +677,7 @@ function ComponentApi(props) {
               <ComponentInheritance inheritance={api.inheritance} />
             </React.Fragment>
           )}
-          {headings.demos !== undefined > 0 && (
+          {headings.demos !== undefined && (
             <React.Fragment>
               <ToCAbleHeading item={headings.demos} />
               <ComponentDemos pages={api.usedInPages} />
@@ -733,10 +732,13 @@ ApiPage.getInitialProps = async ctx => {
 
   const componentId = uppercaseFirst(kebapToCamelCase(query.component));
   const relativeApiUrl = `/static/api/${componentId}.json`;
-  // https://github.com/zeit/next.js/issues/1213#issuecomment-280978022
+  // eslint-disable-next-line no-nested-ternary
   const apiUrl = process.browser
     ? relativeApiUrl
-    : `${req.protocol}://${req.get('Host')}${relativeApiUrl}`;
+    : typeof req.get === 'function'
+    ? `${req.protocol}://${req.get('Host')}${relativeApiUrl}`
+    : // we're in next export, navigate to `/docs`
+      `${__dirname}/../../../../..${relativeApiUrl}`;
 
   try {
     const apiResponse = await fetch(apiUrl);

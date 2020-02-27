@@ -140,8 +140,10 @@ module.exports = withTypescript({
         if (!page.children) {
           map[`${prefix}${page.pathname}`] = {
             page: page.pathname,
+            ...page,
             query: {
               userLanguage,
+              ...page.query,
             },
           };
           return;

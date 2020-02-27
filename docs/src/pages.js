@@ -1,4 +1,15 @@
-import findPages from /* preval */ 'docs/src/modules/utils/findPages';
+import foundApiPages from /* preval */ 'docs/src/modules/utils/componentApiPages';
+
+const apiPages = {
+  title: 'Component API',
+  pathname: '/api',
+  children: foundApiPages.map(page => {
+    return {
+      pathname: page.pathname,
+      title: page.query.component,
+    };
+  }),
+};
 
 const pages = [
   {
@@ -128,7 +139,7 @@ const pages = [
       },
     ],
   },
-  { title: 'Component API', ...findPages[0] },
+  apiPages,
   {
     pathname: '/styles',
     children: [

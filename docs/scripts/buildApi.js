@@ -1,5 +1,5 @@
 import { readFileSync } from 'fs';
-import { writeJSON, writeJson } from 'fs-extra';
+import { writeJson } from 'fs-extra';
 import path from 'path';
 import * as _ from 'lodash';
 import { defaultHandlers, parse as docgenParse } from 'react-docgen';
