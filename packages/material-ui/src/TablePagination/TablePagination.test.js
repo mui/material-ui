@@ -201,7 +201,7 @@ describe('<TablePagination />', () => {
       assert.strictEqual(page, 0);
     });
 
-    it('should hide console warning when count is out of range', () => {
+    it('should handle when count is out of range', () => {
       let page = 0;
       const wrapper = mount(
         <table>
