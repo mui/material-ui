@@ -5,6 +5,10 @@ const apiPages = {
   pathname: '/api',
   children: foundApiPages.map(page => {
     return {
+      linkProps: {
+        as: `/api/${page.query.component}`,
+        href: { pathname: '/api', query: page.query },
+      },
       pathname: page.pathname,
       title: page.query.component,
     };

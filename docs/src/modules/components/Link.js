@@ -19,7 +19,7 @@ const NextComposed = React.forwardRef(function NextComposed(props, ref) {
 
 NextComposed.propTypes = {
   as: PropTypes.string,
-  href: PropTypes.string,
+  href: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   prefetch: PropTypes.bool,
 };
 
