@@ -10,6 +10,7 @@ import TableFooter from '../TableFooter';
 import TableCell from '../TableCell';
 import Typography from '../Typography';
 import TableRow from '../TableRow';
+import TableBody from '../TableBody';
 import TablePagination from './TablePagination';
 
 describe('<TablePagination />', () => {
@@ -200,29 +201,28 @@ describe('<TablePagination />', () => {
       assert.strictEqual(page, 0);
     });
 
-    it('should display 0 as start number if the table is empty ', () => {
+    it('should hide console warning when count is out of range', () => {
+      let page = 0;
       const wrapper = mount(
         <table>
-          <TableFooter>
+          <TableBody>
             <TableRow>
               <TablePagination
-                count={0}
-                page={0}
+                count={-1}
+                page={page}
+                onChangePage={(event, nextPage) => {
+                  page = nextPage;
+                }}
                 rowsPerPage={10}
-                onChangePage={noop}
-                onChangeRowsPerPage={noop}
               />
             </TableRow>
-          </TableFooter>
+          </TableBody>
         </table>,
       );
-      assert.strictEqual(
-        wrapper
-          .find(Typography)
-          .at(1)
-          .text(),
-        '0-0 of 0',
-      );
+
+      const nextButton = wrapper.find(IconButton).at(1);
+      nextButton.simulate('click');
+      assert.strictEqual(page, 2);
     });
 
     it('should hide the rows per page selector if there are less than two options', () => {
