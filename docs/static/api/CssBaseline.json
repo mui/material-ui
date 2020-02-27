@@ -1,0 +1,47 @@
+{
+  "description": "Kickstart an elegant, consistent, and simple baseline to build upon.",
+  "displayName": "CssBaseline",
+  "methods": [],
+  "props": {
+    "children": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "You can wrap a node.",
+      "defaultValue": {
+        "value": "null",
+        "computed": false
+      },
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": false,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    }
+  },
+  "name": "CssBaseline",
+  "styles": {
+    "classes": [
+      "@global"
+    ],
+    "name": "MuiCssBaseline",
+    "descriptions": {
+      "const": "eslint-disable no-unused-vars",
+      "return": "eslint-enable no-unused-vars"
+    },
+    "globalClasses": {
+      "@global": "MuiCssBaseline-@global"
+    }
+  },
+  "spread": false,
+  "filename": "/packages/material-ui/src/CssBaseline/CssBaseline.js",
+  "inheritance": null,
+  "usedInPages": [
+    "/components/css-baseline"
+  ]
+}

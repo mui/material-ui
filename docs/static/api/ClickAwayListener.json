@@ -1,0 +1,92 @@
+{
+  "description": "Listen for click events that occur somewhere in the document, outside of the element itself.\nFor instance, if you need to hide a menu when people click anywhere else on your page.",
+  "methods": [],
+  "props": {
+    "children": {
+      "type": {
+        "name": "custom",
+        "raw": "elementAcceptingRef.isRequired"
+      },
+      "required": false,
+      "description": "The wrapped element.",
+      "tags": []
+    },
+    "mouseEvent": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'onClick'",
+            "computed": false
+          },
+          {
+            "value": "'onMouseDown'",
+            "computed": false
+          },
+          {
+            "value": "'onMouseUp'",
+            "computed": false
+          },
+          {
+            "value": "false",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "The mouse event to listen to. You can disable the listener by providing `false`.",
+      "defaultValue": {
+        "value": "'onClick'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "onClickAway": {
+      "type": {
+        "name": "func"
+      },
+      "required": true,
+      "description": "Callback fired when a \"click away\" event is detected.",
+      "tags": []
+    },
+    "touchEvent": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'onTouchStart'",
+            "computed": false
+          },
+          {
+            "value": "'onTouchEnd'",
+            "computed": false
+          },
+          {
+            "value": "false",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "The touch event to listen to. You can disable the listener by providing `false`.",
+      "defaultValue": {
+        "value": "'onTouchEnd'",
+        "computed": false
+      },
+      "tags": []
+    }
+  },
+  "name": "ClickAwayListener",
+  "styles": {
+    "classes": [],
+    "name": null,
+    "descriptions": {}
+  },
+  "spread": false,
+  "filename": "/packages/material-ui/src/ClickAwayListener/ClickAwayListener.js",
+  "inheritance": null,
+  "usedInPages": [
+    "/components/click-away-listener",
+    "/components/menus"
+  ]
+}

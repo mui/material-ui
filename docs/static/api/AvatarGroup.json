@@ -1,0 +1,75 @@
+{
+  "description": "",
+  "methods": [],
+  "props": {
+    "children": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The avatars to stack.",
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": false,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "spacing": {
+      "type": {
+        "name": "union",
+        "value": [
+          {
+            "name": "enum",
+            "value": [
+              {
+                "value": "'medium'",
+                "computed": false
+              },
+              {
+                "value": "'small'",
+                "computed": false
+              }
+            ]
+          },
+          {
+            "name": "number"
+          }
+        ]
+      },
+      "required": false,
+      "description": "Spacing between avatars.",
+      "defaultValue": {
+        "value": "'medium'",
+        "computed": false
+      },
+      "tags": []
+    }
+  },
+  "name": "AvatarGroup",
+  "styles": {
+    "classes": [
+      "root",
+      "avatar"
+    ],
+    "name": "MuiAvatarGroup",
+    "descriptions": {
+      "root": "Styles applied to the root element.",
+      "avatar": "Styles applied to the avatar elements."
+    },
+    "globalClasses": {
+      "root": "MuiAvatarGroup-root",
+      "avatar": "MuiAvatarGroup-avatar"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui-lab/src/AvatarGroup/AvatarGroup.js",
+  "inheritance": null,
+  "usedInPages": [
+    "/components/avatars"
+  ]
+}

@@ -1,0 +1,152 @@
+{
+  "description": "An alternative to `<Select native />` with a much smaller bundle size footprint.",
+  "methods": [],
+  "props": {
+    "children": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The option elements to populate the select with.\nCan be some `<option>` elements.",
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": true,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "IconComponent": {
+      "type": {
+        "name": "elementType"
+      },
+      "required": false,
+      "description": "The icon that displays the arrow.",
+      "defaultValue": {
+        "value": "ArrowDropDownIcon",
+        "computed": true
+      },
+      "tags": []
+    },
+    "input": {
+      "type": {
+        "name": "element"
+      },
+      "required": false,
+      "description": "An `Input` element; does not have to be a material-ui specific `Input`.",
+      "defaultValue": {
+        "value": "<Input />",
+        "computed": false
+      },
+      "tags": []
+    },
+    "inputProps": {
+      "type": {
+        "name": "object"
+      },
+      "required": false,
+      "description": "Attributes applied to the `select` element.",
+      "tags": []
+    },
+    "onChange": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Callback function fired when a menu item is selected.",
+      "tags": [
+        {
+          "title": "param",
+          "description": "The event source of the callback.\nYou can pull out the new value by accessing `event.target.value` (string).",
+          "type": {
+            "type": "NameExpression",
+            "name": "object"
+          },
+          "name": "event"
+        }
+      ]
+    },
+    "value": {
+      "type": {
+        "name": "any"
+      },
+      "required": false,
+      "description": "The input value. The DOM API casts this to a string.",
+      "tags": []
+    },
+    "variant": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'standard'",
+            "computed": false
+          },
+          {
+            "value": "'outlined'",
+            "computed": false
+          },
+          {
+            "value": "'filled'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "The variant to use.",
+      "tags": []
+    }
+  },
+  "name": "NativeSelect",
+  "styles": {
+    "classes": [
+      "root",
+      "select",
+      "filled",
+      "outlined",
+      "selectMenu",
+      "disabled",
+      "icon",
+      "iconOpen",
+      "iconFilled",
+      "iconOutlined"
+    ],
+    "name": "MuiNativeSelect",
+    "descriptions": {
+      "root": "Styles applied to the select component `root` class.",
+      "select": "Styles applied to the select component `select` class.",
+      "filled": "Styles applied to the select component if `variant=\"filled\"`.",
+      "outlined": "Styles applied to the select component if `variant=\"outlined\"`.",
+      "selectMenu": "Styles applied to the select component `selectMenu` class.",
+      "disabled": "Pseudo-class applied to the select component `disabled` class.",
+      "icon": "Styles applied to the icon component.",
+      "iconOpen": "Styles applied to the icon component if the popup is open.",
+      "iconFilled": "Styles applied to the icon component if `variant=\"filled\"`.",
+      "iconOutlined": "Styles applied to the icon component if `variant=\"outlined\"`."
+    },
+    "globalClasses": {
+      "root": "MuiNativeSelect-root",
+      "select": "MuiNativeSelect-select",
+      "filled": "MuiNativeSelect-filled",
+      "outlined": "MuiNativeSelect-outlined",
+      "selectMenu": "MuiNativeSelect-selectMenu",
+      "disabled": "Mui-disabled",
+      "icon": "MuiNativeSelect-icon",
+      "iconOpen": "MuiNativeSelect-iconOpen",
+      "iconFilled": "MuiNativeSelect-iconFilled",
+      "iconOutlined": "MuiNativeSelect-iconOutlined"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/NativeSelect/NativeSelect.js",
+  "inheritance": {
+    "component": "Input",
+    "pathname": "/api/input"
+  },
+  "usedInPages": [
+    "/components/selects"
+  ]
+}

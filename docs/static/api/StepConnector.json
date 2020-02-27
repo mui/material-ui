@@ -1,0 +1,61 @@
+{
+  "description": "",
+  "methods": [],
+  "props": {
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": true,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    }
+  },
+  "name": "StepConnector",
+  "styles": {
+    "classes": [
+      "root",
+      "horizontal",
+      "vertical",
+      "alternativeLabel",
+      "active",
+      "completed",
+      "disabled",
+      "line",
+      "lineHorizontal",
+      "lineVertical"
+    ],
+    "name": "MuiStepConnector",
+    "descriptions": {
+      "root": "Styles applied to the root element.",
+      "horizontal": "Styles applied to the root element if `orientation=\"horizontal\"`.",
+      "vertical": "Styles applied to the root element if `orientation=\"vertical\"`.",
+      "alternativeLabel": "Styles applied to the root element if `alternativeLabel={true}`.",
+      "active": "Pseudo-class applied to the root element if `active={true}`.",
+      "completed": "Pseudo-class applied to the root element if `completed={true}`.",
+      "disabled": "Pseudo-class applied to the root element if `disabled={true}`.",
+      "line": "Styles applied to the line element.",
+      "lineHorizontal": "Styles applied to the root element if `orientation=\"horizontal\"`.",
+      "lineVertical": "Styles applied to the root element if `orientation=\"vertical\"`."
+    },
+    "globalClasses": {
+      "root": "MuiStepConnector-root",
+      "horizontal": "MuiStepConnector-horizontal",
+      "vertical": "MuiStepConnector-vertical",
+      "alternativeLabel": "MuiStepConnector-alternativeLabel",
+      "active": "MuiStepConnector-active",
+      "completed": "MuiStepConnector-completed",
+      "disabled": "Mui-disabled",
+      "line": "MuiStepConnector-line",
+      "lineHorizontal": "MuiStepConnector-lineHorizontal",
+      "lineVertical": "MuiStepConnector-lineVertical"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/StepConnector/StepConnector.js",
+  "inheritance": null,
+  "usedInPages": [
+    "/components/steppers"
+  ]
+}

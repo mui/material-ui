@@ -1,0 +1,101 @@
+{
+  "description": "",
+  "methods": [],
+  "props": {
+    "children": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The content of the component.",
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": false,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "component": {
+      "type": {
+        "name": "elementType"
+      },
+      "required": false,
+      "description": "The component used for the root node.\nEither a string to use a DOM element or a component.",
+      "defaultValue": {
+        "value": "'div'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "onChange": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Callback fired when the value changes.",
+      "tags": [
+        {
+          "title": "param",
+          "description": "The event source of the callback.",
+          "type": {
+            "type": "NameExpression",
+            "name": "object"
+          },
+          "name": "event"
+        },
+        {
+          "title": "param",
+          "description": "We default to the index of the child.",
+          "type": {
+            "type": "NameExpression",
+            "name": "any"
+          },
+          "name": "value"
+        }
+      ]
+    },
+    "showLabels": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, all `BottomNavigationAction`s will show their labels.\nBy default, only the selected `BottomNavigationAction` will show its label.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "value": {
+      "type": {
+        "name": "any"
+      },
+      "required": false,
+      "description": "The value of the currently selected `BottomNavigationAction`.",
+      "tags": []
+    }
+  },
+  "name": "BottomNavigation",
+  "styles": {
+    "classes": [
+      "root"
+    ],
+    "name": "MuiBottomNavigation",
+    "descriptions": {
+      "root": "Styles applied to the root element."
+    },
+    "globalClasses": {
+      "root": "MuiBottomNavigation-root"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/BottomNavigation/BottomNavigation.js",
+  "inheritance": null,
+  "usedInPages": [
+    "/components/bottom-navigation"
+  ]
+}

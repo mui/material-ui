@@ -1,0 +1,102 @@
+{
+  "description": "",
+  "methods": [],
+  "props": {
+    "active": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "Sets the step as active. Is passed to child components.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "children": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "Should be `Step` sub-components such as `StepLabel`, `StepContent`.",
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": true,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "completed": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "Mark the step as completed. Is passed to child components.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "disabled": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "Mark the step as disabled, will also disable the button if\n`StepButton` is a child of `Step`. Is passed to child components.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "expanded": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "Expand the step.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    }
+  },
+  "name": "Step",
+  "styles": {
+    "classes": [
+      "root",
+      "horizontal",
+      "vertical",
+      "alternativeLabel",
+      "completed"
+    ],
+    "name": "MuiStep",
+    "descriptions": {
+      "root": "Styles applied to the root element.",
+      "horizontal": "Styles applied to the root element if `orientation=\"horizontal\"`.",
+      "vertical": "Styles applied to the root element if `orientation=\"vertical\"`.",
+      "alternativeLabel": "Styles applied to the root element if `alternativeLabel={true}`.",
+      "completed": "Pseudo-class applied to the root element if `completed={true}`."
+    },
+    "globalClasses": {
+      "root": "MuiStep-root",
+      "horizontal": "MuiStep-horizontal",
+      "vertical": "MuiStep-vertical",
+      "alternativeLabel": "MuiStep-alternativeLabel",
+      "completed": "MuiStep-completed"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/Step/Step.js",
+  "inheritance": null,
+  "usedInPages": [
+    "/components/steppers"
+  ]
+}

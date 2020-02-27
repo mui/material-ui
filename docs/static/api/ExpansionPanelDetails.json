@@ -1,0 +1,42 @@
+{
+  "description": "",
+  "methods": [],
+  "props": {
+    "children": {
+      "type": {
+        "name": "node"
+      },
+      "required": true,
+      "description": "The content of the expansion panel details.",
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": true,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    }
+  },
+  "name": "ExpansionPanelDetails",
+  "styles": {
+    "classes": [
+      "root"
+    ],
+    "name": "MuiExpansionPanelDetails",
+    "descriptions": {
+      "root": "Styles applied to the root element."
+    },
+    "globalClasses": {
+      "root": "MuiExpansionPanelDetails-root"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/ExpansionPanelDetails/ExpansionPanelDetails.js",
+  "inheritance": null,
+  "usedInPages": [
+    "/components/expansion-panels"
+  ]
+}

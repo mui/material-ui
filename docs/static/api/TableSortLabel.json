@@ -1,0 +1,115 @@
+{
+  "description": "A button based label for placing inside `TableCell` for column sorting.",
+  "methods": [],
+  "props": {
+    "active": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the label will have the active styling (should be true for the sorted column).",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "children": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "Label contents, the arrow will be appended automatically.",
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": true,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "direction": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'asc'",
+            "computed": false
+          },
+          {
+            "value": "'desc'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "The current sort direction.",
+      "defaultValue": {
+        "value": "'asc'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "hideSortIcon": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "Hide sort icon when active is false.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "IconComponent": {
+      "type": {
+        "name": "elementType"
+      },
+      "required": false,
+      "description": "Sort icon to use.",
+      "defaultValue": {
+        "value": "ArrowDownwardIcon",
+        "computed": true
+      },
+      "tags": []
+    }
+  },
+  "name": "TableSortLabel",
+  "styles": {
+    "classes": [
+      "root",
+      "active",
+      "icon",
+      "iconDirectionDesc",
+      "iconDirectionAsc"
+    ],
+    "name": "MuiTableSortLabel",
+    "descriptions": {
+      "root": "Styles applied to the root element.",
+      "active": "Pseudo-class applied to the root element if `active={true}`.",
+      "icon": "Styles applied to the icon component.",
+      "iconDirectionDesc": "Styles applied to the icon component if `direction=\"desc\"`.",
+      "iconDirectionAsc": "Styles applied to the icon component if `direction=\"asc\"`."
+    },
+    "globalClasses": {
+      "root": "MuiTableSortLabel-root",
+      "active": "MuiTableSortLabel-active",
+      "icon": "MuiTableSortLabel-icon",
+      "iconDirectionDesc": "MuiTableSortLabel-iconDirectionDesc",
+      "iconDirectionAsc": "MuiTableSortLabel-iconDirectionAsc"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLSpanElement",
+  "filename": "/packages/material-ui/src/TableSortLabel/TableSortLabel.js",
+  "inheritance": {
+    "component": "ButtonBase",
+    "pathname": "/api/button-base"
+  },
+  "usedInPages": [
+    "/components/tables"
+  ]
+}

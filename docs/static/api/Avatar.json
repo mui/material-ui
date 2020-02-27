@@ -1,0 +1,138 @@
+{
+  "description": "",
+  "methods": [],
+  "props": {
+    "alt": {
+      "type": {
+        "name": "string"
+      },
+      "required": false,
+      "description": "Used in combination with `src` or `srcSet` to\nprovide an alt attribute for the rendered `img` element.",
+      "tags": []
+    },
+    "children": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "Used to render icon or text elements inside the Avatar if `src` is not set.\nThis can be an element, or just a string.",
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": true,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "component": {
+      "type": {
+        "name": "elementType"
+      },
+      "required": false,
+      "description": "The component used for the root node.\nEither a string to use a DOM element or a component.",
+      "defaultValue": {
+        "value": "'div'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "imgProps": {
+      "type": {
+        "name": "object"
+      },
+      "required": false,
+      "description": "Attributes applied to the `img` element if the component is used to display an image.\nIt can be used to listen for the loading error event.",
+      "tags": []
+    },
+    "sizes": {
+      "type": {
+        "name": "string"
+      },
+      "required": false,
+      "description": "The `sizes` attribute for the `img` element.",
+      "tags": []
+    },
+    "src": {
+      "type": {
+        "name": "string"
+      },
+      "required": false,
+      "description": "The `src` attribute for the `img` element.",
+      "tags": []
+    },
+    "srcSet": {
+      "type": {
+        "name": "string"
+      },
+      "required": false,
+      "description": "The `srcSet` attribute for the `img` element.\nUse this attribute for responsive image display.",
+      "tags": []
+    },
+    "variant": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'circle'",
+            "computed": false
+          },
+          {
+            "value": "'rounded'",
+            "computed": false
+          },
+          {
+            "value": "'square'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "The shape of the avatar.",
+      "defaultValue": {
+        "value": "'circle'",
+        "computed": false
+      },
+      "tags": []
+    }
+  },
+  "name": "Avatar",
+  "styles": {
+    "classes": [
+      "root",
+      "colorDefault",
+      "circle",
+      "rounded",
+      "square",
+      "img",
+      "fallback"
+    ],
+    "name": "MuiAvatar",
+    "descriptions": {
+      "root": "Styles applied to the root element.",
+      "colorDefault": "Styles applied to the root element if not `src` or `srcSet`.",
+      "circle": "Styles applied to the root element if `variant=\"circle\"`.",
+      "rounded": "Styles applied to the root element if `variant=\"rounded\"`.",
+      "square": "Styles applied to the root element if `variant=\"square\"`.",
+      "img": "Styles applied to the img element if either `src` or `srcSet` is defined.",
+      "fallback": "Styles applied to the fallback icon"
+    },
+    "globalClasses": {
+      "root": "MuiAvatar-root",
+      "colorDefault": "MuiAvatar-colorDefault",
+      "circle": "MuiAvatar-circle",
+      "rounded": "MuiAvatar-rounded",
+      "square": "MuiAvatar-square",
+      "img": "MuiAvatar-img",
+      "fallback": "MuiAvatar-fallback"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/Avatar/Avatar.js",
+  "inheritance": null,
+  "usedInPages": [
+    "/components/avatars"
+  ]
+}

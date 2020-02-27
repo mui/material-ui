@@ -1,0 +1,78 @@
+{
+  "description": "The Grow transition is used by the [Tooltip](/components/tooltips/) and\n[Popover](/components/popover/) components.\nIt uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.",
+  "methods": [],
+  "props": {
+    "children": {
+      "type": {
+        "name": "element"
+      },
+      "required": false,
+      "description": "A single child content element.",
+      "tags": []
+    },
+    "in": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, show the component; triggers the enter or exit animation.",
+      "tags": []
+    },
+    "timeout": {
+      "type": {
+        "name": "union",
+        "value": [
+          {
+            "name": "number"
+          },
+          {
+            "name": "shape",
+            "value": {
+              "enter": {
+                "name": "number",
+                "required": false
+              },
+              "exit": {
+                "name": "number",
+                "required": false
+              }
+            }
+          },
+          {
+            "name": "enum",
+            "value": [
+              {
+                "value": "'auto'",
+                "computed": false
+              }
+            ]
+          }
+        ]
+      },
+      "required": false,
+      "description": "The duration for the transition, in milliseconds.\nYou may specify a single timeout for all transitions, or individually with an object.\n\nSet to 'auto' to automatically calculate transition time based on height.",
+      "defaultValue": {
+        "value": "'auto'",
+        "computed": false
+      },
+      "tags": []
+    }
+  },
+  "name": "Grow",
+  "styles": {
+    "classes": [],
+    "name": null,
+    "descriptions": {}
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/Grow/Grow.js",
+  "inheritance": {
+    "component": "Transition",
+    "pathname": "https://reactcommunity.org/react-transition-group/transition#Transition-props"
+  },
+  "usedInPages": [
+    "/components/popover",
+    "/components/transitions"
+  ]
+}

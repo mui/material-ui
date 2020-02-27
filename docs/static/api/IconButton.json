@@ -1,0 +1,184 @@
+{
+  "description": "Refer to the [Icons](/components/icons/) section of the documentation\nregarding the available icon options.",
+  "methods": [],
+  "props": {
+    "children": {
+      "type": {
+        "name": "chained",
+        "raw": "chainPropTypes(PropTypes.node, props => {\n  const found = React.Children.toArray(props.children).some(\n    child => React.isValidElement(child) && child.props.onClick,\n  );\n\n  if (found) {\n    return new Error(\n      [\n        'Material-UI: you are providing an onClick event listener ' +\n          'to a child of a button element.',\n        'Firefox will never trigger the event.',\n        'You should move the onClick listener to the parent button element.',\n        'https://github.com/mui-org/material-ui/issues/13957',\n      ].join('\\n'),\n    );\n  }\n\n  return null;\n})",
+        "chained": {
+          "name": "node"
+        }
+      },
+      "required": false,
+      "description": "The icon element.",
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": true,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "color": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'default'",
+            "computed": false
+          },
+          {
+            "value": "'inherit'",
+            "computed": false
+          },
+          {
+            "value": "'primary'",
+            "computed": false
+          },
+          {
+            "value": "'secondary'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "The color of the component. It supports those theme colors that make sense for this component.",
+      "defaultValue": {
+        "value": "'default'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "disabled": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the button will be disabled.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "disableFocusRipple": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the  keyboard focus ripple will be disabled.\n`disableRipple` must also be true.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "disableRipple": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the ripple effect will be disabled.",
+      "tags": []
+    },
+    "edge": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'start'",
+            "computed": false
+          },
+          {
+            "value": "'end'",
+            "computed": false
+          },
+          {
+            "value": "false",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "If given, uses a negative margin to counteract the padding on one\nside (this is often helpful for aligning the left or right\nside of the icon with content above or below, without ruining the border\nsize and shape).",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "size": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'small'",
+            "computed": false
+          },
+          {
+            "value": "'medium'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "The size of the button.\n`small` is equivalent to the dense button styling.",
+      "defaultValue": {
+        "value": "'medium'",
+        "computed": false
+      },
+      "tags": []
+    }
+  },
+  "name": "IconButton",
+  "styles": {
+    "classes": [
+      "root",
+      "edgeStart",
+      "edgeEnd",
+      "colorInherit",
+      "colorPrimary",
+      "colorSecondary",
+      "disabled",
+      "sizeSmall",
+      "label"
+    ],
+    "name": "MuiIconButton",
+    "descriptions": {
+      "root": "Styles applied to the root element.",
+      "edgeStart": "Styles applied to the root element if `edge=\"start\"`.",
+      "edgeEnd": "Styles applied to the root element if `edge=\"end\"`.",
+      "colorInherit": "Styles applied to the root element if `color=\"inherit\"`.",
+      "colorPrimary": "Styles applied to the root element if `color=\"primary\"`.",
+      "colorSecondary": "Styles applied to the root element if `color=\"secondary\"`.",
+      "disabled": "Pseudo-class applied to the root element if `disabled={true}`.",
+      "sizeSmall": "Styles applied to the root element if `size=\"small\"`.",
+      "label": "Styles applied to the children container element."
+    },
+    "globalClasses": {
+      "root": "MuiIconButton-root",
+      "edgeStart": "MuiIconButton-edgeStart",
+      "edgeEnd": "MuiIconButton-edgeEnd",
+      "colorInherit": "MuiIconButton-colorInherit",
+      "colorPrimary": "MuiIconButton-colorPrimary",
+      "colorSecondary": "MuiIconButton-colorSecondary",
+      "disabled": "Mui-disabled",
+      "sizeSmall": "MuiIconButton-sizeSmall",
+      "label": "MuiIconButton-label"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLButtonElement",
+  "filename": "/packages/material-ui/src/IconButton/IconButton.js",
+  "inheritance": {
+    "component": "ButtonBase",
+    "pathname": "/api/button-base"
+  },
+  "usedInPages": [
+    "/components/buttons",
+    "/components/grid-list"
+  ]
+}

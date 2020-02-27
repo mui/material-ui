@@ -1,0 +1,157 @@
+{
+  "description": "",
+  "methods": [],
+  "props": {
+    "children": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The content of the component.",
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": true,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "component": {
+      "type": {
+        "name": "elementType"
+      },
+      "required": false,
+      "description": "The component used for the root node.\nEither a string to use a DOM element or a component.",
+      "defaultValue": {
+        "value": "'div'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "elevation": {
+      "type": {
+        "name": "number"
+      },
+      "required": false,
+      "description": "Shadow depth, corresponds to `dp` in the spec.\nIt accepts values between 0 and 24 inclusive.",
+      "defaultValue": {
+        "value": "1",
+        "computed": false
+      },
+      "tags": []
+    },
+    "square": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, rounded corners are disabled.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "variant": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'elevation'",
+            "computed": false
+          },
+          {
+            "value": "'outlined'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "The variant to use.",
+      "defaultValue": {
+        "value": "'elevation'",
+        "computed": false
+      },
+      "tags": []
+    }
+  },
+  "name": "Paper",
+  "styles": {
+    "classes": [
+      "root",
+      "rounded",
+      "outlined",
+      "elevation0",
+      "elevation1",
+      "elevation2",
+      "elevation3",
+      "elevation4",
+      "elevation5",
+      "elevation6",
+      "elevation7",
+      "elevation8",
+      "elevation9",
+      "elevation10",
+      "elevation11",
+      "elevation12",
+      "elevation13",
+      "elevation14",
+      "elevation15",
+      "elevation16",
+      "elevation17",
+      "elevation18",
+      "elevation19",
+      "elevation20",
+      "elevation21",
+      "elevation22",
+      "elevation23",
+      "elevation24"
+    ],
+    "name": "MuiPaper",
+    "descriptions": {
+      "root": "Styles applied to the root element.",
+      "rounded": "Styles applied to the root element if `square={false}`.",
+      "outlined": "Styles applied to the root element if `variant=\"outlined\"`"
+    },
+    "globalClasses": {
+      "root": "MuiPaper-root",
+      "rounded": "MuiPaper-rounded",
+      "outlined": "MuiPaper-outlined",
+      "elevation0": "MuiPaper-elevation0",
+      "elevation1": "MuiPaper-elevation1",
+      "elevation2": "MuiPaper-elevation2",
+      "elevation3": "MuiPaper-elevation3",
+      "elevation4": "MuiPaper-elevation4",
+      "elevation5": "MuiPaper-elevation5",
+      "elevation6": "MuiPaper-elevation6",
+      "elevation7": "MuiPaper-elevation7",
+      "elevation8": "MuiPaper-elevation8",
+      "elevation9": "MuiPaper-elevation9",
+      "elevation10": "MuiPaper-elevation10",
+      "elevation11": "MuiPaper-elevation11",
+      "elevation12": "MuiPaper-elevation12",
+      "elevation13": "MuiPaper-elevation13",
+      "elevation14": "MuiPaper-elevation14",
+      "elevation15": "MuiPaper-elevation15",
+      "elevation16": "MuiPaper-elevation16",
+      "elevation17": "MuiPaper-elevation17",
+      "elevation18": "MuiPaper-elevation18",
+      "elevation19": "MuiPaper-elevation19",
+      "elevation20": "MuiPaper-elevation20",
+      "elevation21": "MuiPaper-elevation21",
+      "elevation22": "MuiPaper-elevation22",
+      "elevation23": "MuiPaper-elevation23",
+      "elevation24": "MuiPaper-elevation24"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/Paper/Paper.js",
+  "inheritance": null,
+  "usedInPages": [
+    "/components/cards",
+    "/components/paper"
+  ]
+}

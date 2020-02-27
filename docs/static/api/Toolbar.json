@@ -1,0 +1,97 @@
+{
+  "description": "",
+  "methods": [],
+  "props": {
+    "children": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "Toolbar children, usually a mixture of `IconButton`, `Button` and `Typography`.",
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": true,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "component": {
+      "type": {
+        "name": "elementType"
+      },
+      "required": false,
+      "description": "The component used for the root node.\nEither a string to use a DOM element or a component.",
+      "defaultValue": {
+        "value": "'div'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "disableGutters": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, disables gutter padding.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "variant": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'regular'",
+            "computed": false
+          },
+          {
+            "value": "'dense'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "The variant to use.",
+      "defaultValue": {
+        "value": "'regular'",
+        "computed": false
+      },
+      "tags": []
+    }
+  },
+  "name": "Toolbar",
+  "styles": {
+    "classes": [
+      "root",
+      "gutters",
+      "regular",
+      "dense"
+    ],
+    "name": "MuiToolbar",
+    "descriptions": {
+      "root": "Styles applied to the root element.",
+      "gutters": "Styles applied to the root element if `disableGutters={false}`.",
+      "regular": "Styles applied to the root element if `variant=\"regular\"`.",
+      "dense": "Styles applied to the root element if `variant=\"dense\"`."
+    },
+    "globalClasses": {
+      "root": "MuiToolbar-root",
+      "gutters": "MuiToolbar-gutters",
+      "regular": "MuiToolbar-regular",
+      "dense": "MuiToolbar-dense"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/Toolbar/Toolbar.js",
+  "inheritance": null,
+  "usedInPages": [
+    "/components/app-bar"
+  ]
+}

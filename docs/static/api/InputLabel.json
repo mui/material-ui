@@ -1,0 +1,184 @@
+{
+  "description": "",
+  "methods": [],
+  "props": {
+    "children": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The contents of the `InputLabel`.",
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": true,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "color": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'primary'",
+            "computed": false
+          },
+          {
+            "value": "'secondary'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "The color of the component. It supports those theme colors that make sense for this component.",
+      "tags": []
+    },
+    "disableAnimation": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the transition animation is disabled.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "disabled": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, apply disabled class.",
+      "tags": []
+    },
+    "error": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the label will be displayed in an error state.",
+      "tags": []
+    },
+    "focused": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the input of this label is focused.",
+      "tags": []
+    },
+    "margin": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'dense'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "If `dense`, will adjust vertical spacing. This is normally obtained via context from\nFormControl.",
+      "tags": []
+    },
+    "required": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "if `true`, the label will indicate that the input is required.",
+      "tags": []
+    },
+    "shrink": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the label is shrunk.",
+      "tags": []
+    },
+    "variant": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'standard'",
+            "computed": false
+          },
+          {
+            "value": "'outlined'",
+            "computed": false
+          },
+          {
+            "value": "'filled'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "The variant to use.",
+      "tags": []
+    }
+  },
+  "name": "InputLabel",
+  "styles": {
+    "classes": [
+      "root",
+      "focused",
+      "disabled",
+      "error",
+      "required",
+      "asterisk",
+      "formControl",
+      "marginDense",
+      "shrink",
+      "animated",
+      "filled",
+      "outlined"
+    ],
+    "name": "MuiInputLabel",
+    "descriptions": {
+      "root": "Styles applied to the root element.",
+      "focused": "Pseudo-class applied to the root element if `focused={true}`.",
+      "disabled": "Pseudo-class applied to the root element if `disabled={true}`.",
+      "error": "Pseudo-class applied to the root element if `error={true}`.",
+      "required": "Pseudo-class applied to the root element if `required={true}`.",
+      "asterisk": "Pseudo-class applied to the asterisk element.",
+      "formControl": "Styles applied to the root element if the component is a descendant of `FormControl`.",
+      "marginDense": "Styles applied to the root element if `margin=\"dense\"`.",
+      "shrink": "Styles applied to the `input` element if `shrink={true}`.",
+      "animated": "Styles applied to the `input` element if `disableAnimation={false}`.",
+      "filled": "Styles applied to the root element if `variant=\"filled\"`.",
+      "outlined": "Styles applied to the root element if `variant=\"outlined\"`."
+    },
+    "globalClasses": {
+      "root": "MuiInputLabel-root",
+      "focused": "Mui-focused",
+      "disabled": "Mui-disabled",
+      "error": "Mui-error",
+      "required": "Mui-required",
+      "asterisk": "MuiInputLabel-asterisk",
+      "formControl": "MuiInputLabel-formControl",
+      "marginDense": "MuiInputLabel-marginDense",
+      "shrink": "MuiInputLabel-shrink",
+      "animated": "MuiInputLabel-animated",
+      "filled": "MuiInputLabel-filled",
+      "outlined": "MuiInputLabel-outlined"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLLabelElement",
+  "filename": "/packages/material-ui/src/InputLabel/InputLabel.js",
+  "inheritance": {
+    "component": "FormLabel",
+    "pathname": "/api/form-label"
+  },
+  "usedInPages": [
+    "/components/text-fields"
+  ]
+}

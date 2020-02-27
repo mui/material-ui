@@ -1,0 +1,137 @@
+{
+  "description": "",
+  "methods": [],
+  "props": {
+    "children": {
+      "type": {
+        "name": "chained",
+        "raw": "chainPropTypes(PropTypes.node.isRequired, props => {\n  const summary = React.Children.toArray(props.children)[0];\n  if (isFragment(summary)) {\n    return new Error(\n      \"Material-UI: the ExpansionPanel doesn't accept a Fragment as a child. \" +\n        'Consider providing an array instead.',\n    );\n  }\n\n  if (!React.isValidElement(summary)) {\n    return new Error(\n      'Material-UI: expected the first child of ExpansionPanel to be a valid element.',\n    );\n  }\n\n  return null;\n})",
+        "chained": {
+          "name": "node"
+        }
+      },
+      "required": false,
+      "description": "The content of the expansion panel.",
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": true,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "defaultExpanded": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, expands the panel by default.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "disabled": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the panel will be displayed in a disabled state.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "expanded": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, expands the panel, otherwise collapse it.\nSetting this prop enables control over the panel.",
+      "tags": []
+    },
+    "onChange": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Callback fired when the expand/collapse state is changed.",
+      "tags": [
+        {
+          "title": "param",
+          "description": "The event source of the callback.",
+          "type": {
+            "type": "NameExpression",
+            "name": "object"
+          },
+          "name": "event"
+        },
+        {
+          "title": "param",
+          "description": "The `expanded` state of the panel.",
+          "type": {
+            "type": "NameExpression",
+            "name": "boolean"
+          },
+          "name": "expanded"
+        }
+      ]
+    },
+    "TransitionComponent": {
+      "type": {
+        "name": "elementType"
+      },
+      "required": false,
+      "description": "The component used for the collapse effect.\n[Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.",
+      "defaultValue": {
+        "value": "Collapse",
+        "computed": true
+      },
+      "tags": []
+    },
+    "TransitionProps": {
+      "type": {
+        "name": "object"
+      },
+      "required": false,
+      "description": "Props applied to the [`Transition`](http://reactcommunity.org/react-transition-group/transition#Transition-props) element.",
+      "tags": []
+    }
+  },
+  "name": "ExpansionPanel",
+  "styles": {
+    "classes": [
+      "root",
+      "rounded",
+      "expanded",
+      "disabled"
+    ],
+    "name": "MuiExpansionPanel",
+    "descriptions": {
+      "root": "Styles applied to the root element.",
+      "rounded": "Styles applied to the root element if `square={false}`.",
+      "expanded": "Styles applied to the root element if `expanded={true}`.",
+      "disabled": "Styles applied to the root element if `disabled={true}`."
+    },
+    "globalClasses": {
+      "root": "MuiExpansionPanel-root",
+      "rounded": "MuiExpansionPanel-rounded",
+      "expanded": "Mui-expanded",
+      "disabled": "Mui-disabled"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/ExpansionPanel/ExpansionPanel.js",
+  "inheritance": {
+    "component": "Paper",
+    "pathname": "/api/paper"
+  },
+  "usedInPages": [
+    "/components/expansion-panels"
+  ]
+}

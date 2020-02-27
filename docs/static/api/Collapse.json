@@ -1,0 +1,138 @@
+{
+  "description": "The Collapse transition is used by the\n[Vertical Stepper](/components/steppers/#vertical-stepper) StepContent component.\nIt uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.",
+  "methods": [],
+  "props": {
+    "children": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The content node to be collapsed.",
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": true,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "collapsedHeight": {
+      "type": {
+        "name": "union",
+        "value": [
+          {
+            "name": "string"
+          },
+          {
+            "name": "number"
+          }
+        ]
+      },
+      "required": false,
+      "description": "The height of the container when collapsed.",
+      "defaultValue": {
+        "value": "'0px'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "component": {
+      "type": {
+        "name": "elementType"
+      },
+      "required": false,
+      "description": "The component used for the root node.\nEither a string to use a DOM element or a component.",
+      "defaultValue": {
+        "value": "'div'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "in": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the component will transition in.",
+      "tags": []
+    },
+    "timeout": {
+      "type": {
+        "name": "union",
+        "value": [
+          {
+            "name": "number"
+          },
+          {
+            "name": "shape",
+            "value": {
+              "enter": {
+                "name": "number",
+                "required": false
+              },
+              "exit": {
+                "name": "number",
+                "required": false
+              }
+            }
+          },
+          {
+            "name": "enum",
+            "value": [
+              {
+                "value": "'auto'",
+                "computed": false
+              }
+            ]
+          }
+        ]
+      },
+      "required": false,
+      "description": "The duration for the transition, in milliseconds.\nYou may specify a single timeout for all transitions, or individually with an object.\n\nSet to 'auto' to automatically calculate transition time based on height.",
+      "defaultValue": {
+        "value": "duration.standard",
+        "computed": true
+      },
+      "tags": []
+    }
+  },
+  "name": "Collapse",
+  "styles": {
+    "classes": [
+      "container",
+      "entered",
+      "hidden",
+      "wrapper",
+      "wrapperInner"
+    ],
+    "name": "MuiCollapse",
+    "descriptions": {
+      "container": "Styles applied to the container element.",
+      "entered": "Styles applied to the container element when the transition has entered.",
+      "hidden": "Styles applied to the container element when the transition has exited and `collapsedHeight` != 0px.",
+      "wrapper": "Styles applied to the outer wrapper element.",
+      "wrapperInner": "Styles applied to the inner wrapper element."
+    },
+    "globalClasses": {
+      "container": "MuiCollapse-container",
+      "entered": "MuiCollapse-entered",
+      "hidden": "MuiCollapse-hidden",
+      "wrapper": "MuiCollapse-wrapper",
+      "wrapperInner": "MuiCollapse-wrapperInner"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/Collapse/Collapse.js",
+  "inheritance": {
+    "component": "Transition",
+    "pathname": "https://reactcommunity.org/react-transition-group/transition#Transition-props"
+  },
+  "usedInPages": [
+    "/components/cards",
+    "/components/lists",
+    "/components/transitions"
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "description": "",
+  "methods": [],
+  "props": {
+    "children": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The content of the expansion panel summary.",
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": true,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "expandIcon": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The icon to display as the expand indicator.",
+      "tags": []
+    },
+    "IconButtonProps": {
+      "type": {
+        "name": "object"
+      },
+      "required": false,
+      "description": "Props applied to the `IconButton` element wrapping the expand icon.",
+      "tags": []
+    }
+  },
+  "name": "ExpansionPanelSummary",
+  "styles": {
+    "classes": [
+      "root",
+      "expanded",
+      "focused",
+      "disabled",
+      "content",
+      "expandIcon"
+    ],
+    "name": "MuiExpansionPanelSummary",
+    "descriptions": {
+      "root": "Styles applied to the root element.",
+      "expanded": "Pseudo-class applied to the root element, children wrapper element and `IconButton` component if `expanded={true}`.",
+      "focused": "Pseudo-class applied to the root element if `focused={true}`.",
+      "disabled": "Pseudo-class applied to the root element if `disabled={true}`.",
+      "content": "Styles applied to the children wrapper element.",
+      "expandIcon": "Styles applied to the `IconButton` component when `expandIcon` is supplied."
+    },
+    "globalClasses": {
+      "root": "MuiExpansionPanelSummary-root",
+      "expanded": "Mui-expanded",
+      "focused": "Mui-focused",
+      "disabled": "Mui-disabled",
+      "content": "MuiExpansionPanelSummary-content",
+      "expandIcon": "MuiExpansionPanelSummary-expandIcon"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/ExpansionPanelSummary/ExpansionPanelSummary.js",
+  "inheritance": {
+    "component": "ButtonBase",
+    "pathname": "/api/button-base"
+  },
+  "usedInPages": [
+    "/components/expansion-panels"
+  ]
+}

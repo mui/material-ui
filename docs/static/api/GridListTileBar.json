@@ -1,0 +1,132 @@
+{
+  "description": "",
+  "methods": [],
+  "props": {
+    "actionIcon": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "An IconButton element to be used as secondary action target\n(primary action target is the tile itself).",
+      "tags": []
+    },
+    "actionPosition": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'left'",
+            "computed": false
+          },
+          {
+            "value": "'right'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "Position of secondary action IconButton.",
+      "defaultValue": {
+        "value": "'right'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": true,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "subtitle": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "String or element serving as subtitle (support text).",
+      "tags": []
+    },
+    "title": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "Title to be displayed on tile.",
+      "tags": []
+    },
+    "titlePosition": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'top'",
+            "computed": false
+          },
+          {
+            "value": "'bottom'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "Position of the title bar.",
+      "defaultValue": {
+        "value": "'bottom'",
+        "computed": false
+      },
+      "tags": []
+    }
+  },
+  "name": "GridListTileBar",
+  "styles": {
+    "classes": [
+      "root",
+      "titlePositionBottom",
+      "titlePositionTop",
+      "rootSubtitle",
+      "titleWrap",
+      "titleWrapActionPosLeft",
+      "titleWrapActionPosRight",
+      "title",
+      "subtitle",
+      "actionIcon",
+      "actionIconActionPosLeft"
+    ],
+    "name": "MuiGridListTileBar",
+    "descriptions": {
+      "root": "Styles applied to the root element.",
+      "titlePositionBottom": "Styles applied to the root element if `titlePosition=\"bottom\"`.",
+      "titlePositionTop": "Styles applied to the root element if `titlePosition=\"top\"`.",
+      "rootSubtitle": "Styles applied to the root element if a `subtitle` is provided.",
+      "titleWrap": "Styles applied to the title and subtitle container element.",
+      "titleWrapActionPosLeft": "Styles applied to the container element if `actionPosition=\"left\"`.",
+      "titleWrapActionPosRight": "Styles applied to the container element if `actionPosition=\"right\"`.",
+      "title": "Styles applied to the title container element.",
+      "subtitle": "Styles applied to the subtitle container element.",
+      "actionIcon": "Styles applied to the actionIcon if supplied.",
+      "actionIconActionPosLeft": "Styles applied to the actionIcon if `actionPosition=\"left\"`."
+    },
+    "globalClasses": {
+      "root": "MuiGridListTileBar-root",
+      "titlePositionBottom": "MuiGridListTileBar-titlePositionBottom",
+      "titlePositionTop": "MuiGridListTileBar-titlePositionTop",
+      "rootSubtitle": "MuiGridListTileBar-rootSubtitle",
+      "titleWrap": "MuiGridListTileBar-titleWrap",
+      "titleWrapActionPosLeft": "MuiGridListTileBar-titleWrapActionPosLeft",
+      "titleWrapActionPosRight": "MuiGridListTileBar-titleWrapActionPosRight",
+      "title": "MuiGridListTileBar-title",
+      "subtitle": "MuiGridListTileBar-subtitle",
+      "actionIcon": "MuiGridListTileBar-actionIcon",
+      "actionIconActionPosLeft": "MuiGridListTileBar-actionIconActionPosLeft"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/GridListTileBar/GridListTileBar.js",
+  "inheritance": null,
+  "usedInPages": [
+    "/components/grid-list"
+  ]
+}

@@ -1,0 +1,149 @@
+{
+  "description": "",
+  "methods": [],
+  "props": {
+    "absolute": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "Absolutely position the element.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": true,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "component": {
+      "type": {
+        "name": "elementType"
+      },
+      "required": false,
+      "description": "The component used for the root node.\nEither a string to use a DOM element or a component.",
+      "defaultValue": {
+        "value": "'hr'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "flexItem": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, a vertical divider will have the correct height when used in flex container.\n(By default, a vertical divider will have a calculated height of `0px` if it is the child of a flex container.)",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "light": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the divider will have a lighter color.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "orientation": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'horizontal'",
+            "computed": false
+          },
+          {
+            "value": "'vertical'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "The divider orientation.",
+      "defaultValue": {
+        "value": "'horizontal'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "variant": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'fullWidth'",
+            "computed": false
+          },
+          {
+            "value": "'inset'",
+            "computed": false
+          },
+          {
+            "value": "'middle'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "The variant to use.",
+      "defaultValue": {
+        "value": "'fullWidth'",
+        "computed": false
+      },
+      "tags": []
+    }
+  },
+  "name": "Divider",
+  "styles": {
+    "classes": [
+      "root",
+      "absolute",
+      "inset",
+      "light",
+      "middle",
+      "vertical",
+      "flexItem"
+    ],
+    "name": "MuiDivider",
+    "descriptions": {
+      "root": "Styles applied to the root element.",
+      "absolute": "Styles applied to the root element if `absolute={true}`.",
+      "inset": "Styles applied to the root element if `variant=\"inset\"`.",
+      "light": "Styles applied to the root element if `light={true}`.",
+      "middle": "Styles applied to the root element if `variant=\"middle\"`.",
+      "vertical": "Styles applied to the root element if `orientation=\"vertical\"`.",
+      "flexItem": "Styles applied to the root element if `flexItem={true}`."
+    },
+    "globalClasses": {
+      "root": "MuiDivider-root",
+      "absolute": "MuiDivider-absolute",
+      "inset": "MuiDivider-inset",
+      "light": "MuiDivider-light",
+      "middle": "MuiDivider-middle",
+      "vertical": "MuiDivider-vertical",
+      "flexItem": "MuiDivider-flexItem"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLHRElement",
+  "filename": "/packages/material-ui/src/Divider/Divider.js",
+  "inheritance": null,
+  "usedInPages": [
+    "/components/dividers",
+    "/components/lists"
+  ]
+}

@@ -732,7 +732,7 @@ ApiPage.getInitialProps = async ctx => {
   }
 
   const componentId = uppercaseFirst(kebapToCamelCase(query.component));
-  const relativeApiUrl = '/static/api.json';
+  const relativeApiUrl = `/static/api/${componentId}.json`;
   // https://github.com/zeit/next.js/issues/1213#issuecomment-280978022
   const apiUrl = process.browser
     ? relativeApiUrl
@@ -742,7 +742,7 @@ ApiPage.getInitialProps = async ctx => {
     const apiResponse = await fetch(apiUrl);
     const api = await apiResponse.json();
 
-    return { api: api.components[componentId] };
+    return { api };
   } catch (error) {
     return {};
   }

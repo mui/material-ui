@@ -1,0 +1,253 @@
+{
+  "description": "",
+  "methods": [],
+  "props": {
+    "anchorEl": {
+      "type": {
+        "name": "union",
+        "value": [
+          {
+            "name": "object"
+          },
+          {
+            "name": "func"
+          }
+        ]
+      },
+      "required": false,
+      "description": "The DOM element used to set the position of the menu.",
+      "tags": []
+    },
+    "autoFocus": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true` (Default) will focus the `[role=\"menu\"]` if no focusable child is found. Disabled\nchildren are not focusable. If you set this prop to `false` focus will be placed\non the parent modal container. This has severe accessibility implications\nand should only be considered if you manage focus otherwise.",
+      "defaultValue": {
+        "value": "true",
+        "computed": false
+      },
+      "tags": []
+    },
+    "children": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "Menu contents, normally `MenuItem`s.",
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": true,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "disableAutoFocusItem": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "When opening the menu will not focus the active item but the `[role=\"menu\"]`\nunless `autoFocus` is also set to `false`. Not using the default means not\nfollowing WAI-ARIA authoring practices. Please be considerate about possible\naccessibility implications.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "MenuListProps": {
+      "type": {
+        "name": "object"
+      },
+      "required": false,
+      "description": "Props applied to the [`MenuList`](/api/menu-list/) element.",
+      "defaultValue": {
+        "value": "{}",
+        "computed": false
+      },
+      "tags": []
+    },
+    "onClose": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Callback fired when the component requests to be closed.",
+      "tags": [
+        {
+          "title": "param",
+          "description": "The event source of the callback.",
+          "type": {
+            "type": "NameExpression",
+            "name": "object"
+          },
+          "name": "event"
+        },
+        {
+          "title": "param",
+          "description": "Can be: `\"escapeKeyDown\"`, `\"backdropClick\"`, `\"tabKeyDown\"`.",
+          "type": {
+            "type": "NameExpression",
+            "name": "string"
+          },
+          "name": "reason"
+        }
+      ]
+    },
+    "onEnter": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Callback fired before the Menu enters.",
+      "tags": []
+    },
+    "onEntered": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Callback fired when the Menu has entered.",
+      "tags": []
+    },
+    "onEntering": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Callback fired when the Menu is entering.",
+      "tags": []
+    },
+    "onExit": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Callback fired before the Menu exits.",
+      "tags": []
+    },
+    "onExited": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Callback fired when the Menu has exited.",
+      "tags": []
+    },
+    "onExiting": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Callback fired when the Menu is exiting.",
+      "tags": []
+    },
+    "open": {
+      "type": {
+        "name": "bool"
+      },
+      "required": true,
+      "description": "If `true`, the menu is visible.",
+      "tags": []
+    },
+    "PopoverClasses": {
+      "type": {
+        "name": "object"
+      },
+      "required": false,
+      "description": "`classes` prop applied to the [`Popover`](/api/popover/) element.",
+      "tags": []
+    },
+    "transitionDuration": {
+      "type": {
+        "name": "union",
+        "value": [
+          {
+            "name": "number"
+          },
+          {
+            "name": "shape",
+            "value": {
+              "enter": {
+                "name": "number",
+                "required": false
+              },
+              "exit": {
+                "name": "number",
+                "required": false
+              }
+            }
+          },
+          {
+            "name": "enum",
+            "value": [
+              {
+                "value": "'auto'",
+                "computed": false
+              }
+            ]
+          }
+        ]
+      },
+      "required": false,
+      "description": "The length of the transition in `ms`, or 'auto'",
+      "defaultValue": {
+        "value": "'auto'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "variant": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'menu'",
+            "computed": false
+          },
+          {
+            "value": "'selectedMenu'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "The variant to use. Use `menu` to prevent selected items from impacting the initial focus\nand the vertical alignment relative to the anchor element.",
+      "defaultValue": {
+        "value": "'selectedMenu'",
+        "computed": false
+      },
+      "tags": []
+    }
+  },
+  "name": "Menu",
+  "styles": {
+    "classes": [
+      "paper",
+      "list"
+    ],
+    "name": "MuiMenu",
+    "descriptions": {
+      "paper": "Styles applied to the `Paper` component.",
+      "list": "Styles applied to the `List` component via `MenuList`."
+    },
+    "globalClasses": {
+      "paper": "MuiMenu-paper",
+      "list": "MuiMenu-list"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/Menu/Menu.js",
+  "inheritance": {
+    "component": "Popover",
+    "pathname": "/api/popover"
+  },
+  "usedInPages": [
+    "/components/app-bar",
+    "/components/menus"
+  ]
+}

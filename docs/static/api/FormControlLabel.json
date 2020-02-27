@@ -1,0 +1,156 @@
+{
+  "description": "Drop in replacement of the `Radio`, `Switch` and `Checkbox` component.\nUse this component if you want to display an extra label.",
+  "methods": [],
+  "props": {
+    "checked": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the component appears selected.",
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": true,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "control": {
+      "type": {
+        "name": "element"
+      },
+      "required": false,
+      "description": "A control element. For instance, it can be be a `Radio`, a `Switch` or a `Checkbox`.",
+      "tags": []
+    },
+    "disabled": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the control will be disabled.",
+      "tags": []
+    },
+    "inputRef": {
+      "type": {
+        "name": "custom",
+        "raw": "refType"
+      },
+      "required": false,
+      "description": "Pass a ref to the `input` element.",
+      "tags": []
+    },
+    "label": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The text to be used in an enclosing label element.",
+      "tags": []
+    },
+    "labelPlacement": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'end'",
+            "computed": false
+          },
+          {
+            "value": "'start'",
+            "computed": false
+          },
+          {
+            "value": "'top'",
+            "computed": false
+          },
+          {
+            "value": "'bottom'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "The position of the label.",
+      "defaultValue": {
+        "value": "'end'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "name": {
+      "type": {
+        "name": "string"
+      },
+      "required": false,
+      "description": "",
+      "tags": []
+    },
+    "onChange": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Callback fired when the state is changed.",
+      "tags": [
+        {
+          "title": "param",
+          "description": "The event source of the callback.\nYou can pull out the new checked state by accessing `event.target.checked` (boolean).",
+          "type": {
+            "type": "NameExpression",
+            "name": "object"
+          },
+          "name": "event"
+        }
+      ]
+    },
+    "value": {
+      "type": {
+        "name": "any"
+      },
+      "required": false,
+      "description": "The value of the component.",
+      "tags": []
+    }
+  },
+  "name": "FormControlLabel",
+  "styles": {
+    "classes": [
+      "root",
+      "labelPlacementStart",
+      "labelPlacementTop",
+      "labelPlacementBottom",
+      "disabled",
+      "label"
+    ],
+    "name": "MuiFormControlLabel",
+    "descriptions": {
+      "root": "Styles applied to the root element.",
+      "labelPlacementStart": "Styles applied to the root element if `labelPlacement=\"start\"`.",
+      "labelPlacementTop": "Styles applied to the root element if `labelPlacement=\"top\"`.",
+      "labelPlacementBottom": "Styles applied to the root element if `labelPlacement=\"bottom\"`.",
+      "disabled": "Pseudo-class applied to the root element if `disabled={true}`.",
+      "label": "Styles applied to the label's Typography component."
+    },
+    "globalClasses": {
+      "root": "MuiFormControlLabel-root",
+      "labelPlacementStart": "MuiFormControlLabel-labelPlacementStart",
+      "labelPlacementTop": "MuiFormControlLabel-labelPlacementTop",
+      "labelPlacementBottom": "MuiFormControlLabel-labelPlacementBottom",
+      "disabled": "Mui-disabled",
+      "label": "MuiFormControlLabel-label"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLLabelElement",
+  "filename": "/packages/material-ui/src/FormControlLabel/FormControlLabel.js",
+  "inheritance": null,
+  "usedInPages": [
+    "/components/checkboxes",
+    "/components/radio-buttons",
+    "/components/switches"
+  ]
+}

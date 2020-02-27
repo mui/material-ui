@@ -1,0 +1,257 @@
+{
+  "description": "",
+  "methods": [],
+  "props": {
+    "ariaLabel": {
+      "type": {
+        "name": "string"
+      },
+      "required": true,
+      "description": "The aria-label of the button element.\nAlso used to provide the `id` for the `SpeedDial` element and its children.",
+      "tags": []
+    },
+    "children": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "SpeedDialActions to display when the SpeedDial is `open`.",
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": false,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "direction": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'down'",
+            "computed": false
+          },
+          {
+            "value": "'left'",
+            "computed": false
+          },
+          {
+            "value": "'right'",
+            "computed": false
+          },
+          {
+            "value": "'up'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "The direction the actions open relative to the floating action button.",
+      "defaultValue": {
+        "value": "'up'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "FabProps": {
+      "type": {
+        "name": "object"
+      },
+      "required": false,
+      "description": "Props applied to the [`Fab`](/api/fab/) element.",
+      "defaultValue": {
+        "value": "{}",
+        "computed": false
+      },
+      "tags": []
+    },
+    "hidden": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the SpeedDial will be hidden.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "icon": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The icon to display in the SpeedDial Fab. The `SpeedDialIcon` component\nprovides a default Icon with animation.",
+      "tags": []
+    },
+    "onClose": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Callback fired when the component requests to be closed.",
+      "tags": [
+        {
+          "title": "param",
+          "description": "The event source of the callback.",
+          "type": {
+            "type": "NameExpression",
+            "name": "object"
+          },
+          "name": "event"
+        },
+        {
+          "title": "param",
+          "description": "Can be: `\"toggle\"`, `\"blur\"`, `\"mouseLeave\"`, `\"escapeKeyDown\"`.",
+          "type": {
+            "type": "NameExpression",
+            "name": "string"
+          },
+          "name": "reason"
+        }
+      ]
+    },
+    "onOpen": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Callback fired when the component requests to be open.",
+      "tags": [
+        {
+          "title": "param",
+          "description": "The event source of the callback.",
+          "type": {
+            "type": "NameExpression",
+            "name": "object"
+          },
+          "name": "event"
+        },
+        {
+          "title": "param",
+          "description": "Can be: `\"toggle\"`, `\"focus\"`, `\"mouseEnter\"`.",
+          "type": {
+            "type": "NameExpression",
+            "name": "string"
+          },
+          "name": "reason"
+        }
+      ]
+    },
+    "open": {
+      "type": {
+        "name": "bool"
+      },
+      "required": true,
+      "description": "If `true`, the SpeedDial is open.",
+      "tags": []
+    },
+    "openIcon": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The icon to display in the SpeedDial Fab when the SpeedDial is open.",
+      "tags": []
+    },
+    "TransitionComponent": {
+      "type": {
+        "name": "elementType"
+      },
+      "required": false,
+      "description": "The component used for the transition.\n[Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.",
+      "defaultValue": {
+        "value": "Zoom",
+        "computed": true
+      },
+      "tags": []
+    },
+    "transitionDuration": {
+      "type": {
+        "name": "union",
+        "value": [
+          {
+            "name": "number"
+          },
+          {
+            "name": "shape",
+            "value": {
+              "appear": {
+                "name": "number",
+                "required": false
+              },
+              "enter": {
+                "name": "number",
+                "required": false
+              },
+              "exit": {
+                "name": "number",
+                "required": false
+              }
+            }
+          }
+        ]
+      },
+      "required": false,
+      "description": "The duration for the transition, in milliseconds.\nYou may specify a single timeout for all transitions, or individually with an object.",
+      "defaultValue": {
+        "value": "{\n  enter: duration.enteringScreen,\n  exit: duration.leavingScreen,\n}",
+        "computed": false
+      },
+      "tags": []
+    },
+    "TransitionProps": {
+      "type": {
+        "name": "object"
+      },
+      "required": false,
+      "description": "Props applied to the [`Transition`](http://reactcommunity.org/react-transition-group/transition#Transition-props) element.",
+      "tags": []
+    }
+  },
+  "name": "SpeedDial",
+  "styles": {
+    "classes": [
+      "root",
+      "fab",
+      "directionUp",
+      "directionDown",
+      "directionLeft",
+      "directionRight",
+      "actions",
+      "actionsClosed"
+    ],
+    "name": "MuiSpeedDial",
+    "descriptions": {
+      "root": "Styles applied to the root element.",
+      "fab": "Styles applied to the Fab component.",
+      "directionUp": "Styles applied to the root if direction=\"up\"",
+      "directionDown": "Styles applied to the root if direction=\"down\"",
+      "directionLeft": "Styles applied to the root if direction=\"left\"",
+      "directionRight": "Styles applied to the root if direction=\"right\"",
+      "actions": "Styles applied to the actions (`children` wrapper) element.",
+      "actionsClosed": "Styles applied to the actions (`children` wrapper) element if `open={false}`."
+    },
+    "globalClasses": {
+      "root": "MuiSpeedDial-root",
+      "fab": "MuiSpeedDial-fab",
+      "directionUp": "MuiSpeedDial-directionUp",
+      "directionDown": "MuiSpeedDial-directionDown",
+      "directionLeft": "MuiSpeedDial-directionLeft",
+      "directionRight": "MuiSpeedDial-directionRight",
+      "actions": "MuiSpeedDial-actions",
+      "actionsClosed": "MuiSpeedDial-actionsClosed"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui-lab/src/SpeedDial/SpeedDial.js",
+  "inheritance": null,
+  "usedInPages": [
+    "/components/speed-dial"
+  ]
+}

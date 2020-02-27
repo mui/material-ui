@@ -1,0 +1,268 @@
+{
+  "description": "Chips represent complex entities in small blocks, such as a contact.",
+  "methods": [],
+  "props": {
+    "avatar": {
+      "type": {
+        "name": "element"
+      },
+      "required": false,
+      "description": "Avatar element.",
+      "tags": []
+    },
+    "children": {
+      "type": {
+        "name": "custom",
+        "raw": "unsupportedProp"
+      },
+      "required": false,
+      "description": "This prop isn't supported.\nUse the `component` prop if you need to change the children structure.",
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": true,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "clickable": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the chip will appear clickable, and will raise when pressed,\neven if the onClick prop is not defined.\nIf false, the chip will not be clickable, even if onClick prop is defined.\nThis can be used, for example,\nalong with the component prop to indicate an anchor Chip is clickable.",
+      "tags": []
+    },
+    "color": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'default'",
+            "computed": false
+          },
+          {
+            "value": "'primary'",
+            "computed": false
+          },
+          {
+            "value": "'secondary'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "The color of the component. It supports those theme colors that make sense for this component.",
+      "defaultValue": {
+        "value": "'default'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "component": {
+      "type": {
+        "name": "elementType"
+      },
+      "required": false,
+      "description": "The component used for the root node.\nEither a string to use a DOM element or a component.",
+      "tags": []
+    },
+    "deleteIcon": {
+      "type": {
+        "name": "element"
+      },
+      "required": false,
+      "description": "Override the default delete icon element. Shown only if `onDelete` is set.",
+      "tags": []
+    },
+    "disabled": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the chip should be displayed in a disabled state.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "icon": {
+      "type": {
+        "name": "element"
+      },
+      "required": false,
+      "description": "Icon element.",
+      "tags": []
+    },
+    "label": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The content of the label.",
+      "tags": []
+    },
+    "onDelete": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Callback function fired when the delete icon is clicked.\nIf set, the delete icon will be shown.",
+      "tags": []
+    },
+    "size": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'small'",
+            "computed": false
+          },
+          {
+            "value": "'medium'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "The size of the chip.",
+      "defaultValue": {
+        "value": "'medium'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "variant": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'default'",
+            "computed": false
+          },
+          {
+            "value": "'outlined'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "The variant to use.",
+      "defaultValue": {
+        "value": "'default'",
+        "computed": false
+      },
+      "tags": []
+    }
+  },
+  "name": "Chip",
+  "styles": {
+    "classes": [
+      "root",
+      "sizeSmall",
+      "colorPrimary",
+      "colorSecondary",
+      "disabled",
+      "clickable",
+      "clickableColorPrimary",
+      "clickableColorSecondary",
+      "deletable",
+      "deletableColorPrimary",
+      "deletableColorSecondary",
+      "outlined",
+      "outlinedPrimary",
+      "outlinedSecondary",
+      "avatar",
+      "avatarSmall",
+      "avatarColorPrimary",
+      "avatarColorSecondary",
+      "icon",
+      "iconSmall",
+      "iconColorPrimary",
+      "iconColorSecondary",
+      "label",
+      "labelSmall",
+      "deleteIcon",
+      "deleteIconSmall",
+      "deleteIconColorPrimary",
+      "deleteIconColorSecondary",
+      "deleteIconOutlinedColorPrimary",
+      "deleteIconOutlinedColorSecondary"
+    ],
+    "name": "MuiChip",
+    "descriptions": {
+      "root": "Styles applied to the root element.",
+      "sizeSmall": "Styles applied to the root element if `size=\"small\"`.",
+      "colorPrimary": "Styles applied to the root element if `color=\"primary\"`.",
+      "colorSecondary": "Styles applied to the root element if `color=\"secondary\"`.",
+      "disabled": "Pseudo-class applied to the root element if `disabled={true}`.",
+      "clickable": "Styles applied to the root element if `onClick` is defined or `clickable={true}`.",
+      "clickableColorPrimary": "Styles applied to the root element if `onClick` and `color=\"primary\"` is defined or `clickable={true}`.",
+      "clickableColorSecondary": "Styles applied to the root element if `onClick` and `color=\"secondary\"` is defined or `clickable={true}`.",
+      "deletable": "Styles applied to the root element if `onDelete` is defined.",
+      "deletableColorPrimary": "Styles applied to the root element if `onDelete` and `color=\"primary\"` is defined.",
+      "deletableColorSecondary": "Styles applied to the root element if `onDelete` and `color=\"secondary\"` is defined.",
+      "outlined": "Styles applied to the root element if `variant=\"outlined\"`.",
+      "outlinedPrimary": "Styles applied to the root element if `variant=\"outlined\"` and `color=\"primary\"`.",
+      "outlinedSecondary": "Styles applied to the root element if `variant=\"outlined\"` and `color=\"secondary\"`.",
+      "avatar": "Styles applied to the `avatar` element.",
+      "avatarSmall": "Styles applied to the `avatar` element if `size=\"small\"`.",
+      "avatarColorPrimary": "Styles applied to the `avatar` element if `color=\"primary\"`.",
+      "avatarColorSecondary": "Styles applied to the `avatar` element if `color=\"secondary\"`.",
+      "icon": "Styles applied to the `icon` element.",
+      "iconSmall": "Styles applied to the `icon` element if `size=\"small\"`.",
+      "iconColorPrimary": "Styles applied to the `icon` element if `color=\"primary\"`.",
+      "iconColorSecondary": "Styles applied to the `icon` element if `color=\"secondary\"`.",
+      "label": "Styles applied to the label `span` element.",
+      "labelSmall": "Styles applied to the label `span` element if `size=\"small\"`.",
+      "deleteIcon": "Styles applied to the `deleteIcon` element.",
+      "deleteIconSmall": "Styles applied to the `deleteIcon` element if `size=\"small\"`.",
+      "deleteIconColorPrimary": "Styles applied to the deleteIcon element if `color=\"primary\"` and `variant=\"default\"`.",
+      "deleteIconColorSecondary": "Styles applied to the deleteIcon element if `color=\"secondary\"` and `variant=\"default\"`.",
+      "deleteIconOutlinedColorPrimary": "Styles applied to the deleteIcon element if `color=\"primary\"` and `variant=\"outlined\"`.",
+      "deleteIconOutlinedColorSecondary": "Styles applied to the deleteIcon element if `color=\"secondary\"` and `variant=\"outlined\"`."
+    },
+    "globalClasses": {
+      "root": "MuiChip-root",
+      "sizeSmall": "MuiChip-sizeSmall",
+      "colorPrimary": "MuiChip-colorPrimary",
+      "colorSecondary": "MuiChip-colorSecondary",
+      "disabled": "Mui-disabled",
+      "clickable": "MuiChip-clickable",
+      "clickableColorPrimary": "MuiChip-clickableColorPrimary",
+      "clickableColorSecondary": "MuiChip-clickableColorSecondary",
+      "deletable": "MuiChip-deletable",
+      "deletableColorPrimary": "MuiChip-deletableColorPrimary",
+      "deletableColorSecondary": "MuiChip-deletableColorSecondary",
+      "outlined": "MuiChip-outlined",
+      "outlinedPrimary": "MuiChip-outlinedPrimary",
+      "outlinedSecondary": "MuiChip-outlinedSecondary",
+      "avatar": "MuiChip-avatar",
+      "avatarSmall": "MuiChip-avatarSmall",
+      "avatarColorPrimary": "MuiChip-avatarColorPrimary",
+      "avatarColorSecondary": "MuiChip-avatarColorSecondary",
+      "icon": "MuiChip-icon",
+      "iconSmall": "MuiChip-iconSmall",
+      "iconColorPrimary": "MuiChip-iconColorPrimary",
+      "iconColorSecondary": "MuiChip-iconColorSecondary",
+      "label": "MuiChip-label",
+      "labelSmall": "MuiChip-labelSmall",
+      "deleteIcon": "MuiChip-deleteIcon",
+      "deleteIconSmall": "MuiChip-deleteIconSmall",
+      "deleteIconColorPrimary": "MuiChip-deleteIconColorPrimary",
+      "deleteIconColorSecondary": "MuiChip-deleteIconColorSecondary",
+      "deleteIconOutlinedColorPrimary": "MuiChip-deleteIconOutlinedColorPrimary",
+      "deleteIconOutlinedColorSecondary": "MuiChip-deleteIconOutlinedColorSecondary"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/Chip/Chip.js",
+  "inheritance": null,
+  "usedInPages": [
+    "/components/chips"
+  ]
+}

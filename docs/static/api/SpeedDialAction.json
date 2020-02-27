@@ -1,0 +1,177 @@
+{
+  "description": "",
+  "methods": [],
+  "props": {
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": false,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "delay": {
+      "type": {
+        "name": "number"
+      },
+      "required": false,
+      "description": "Adds a transition delay, to allow a series of SpeedDialActions to be animated.",
+      "defaultValue": {
+        "value": "0",
+        "computed": false
+      },
+      "tags": []
+    },
+    "FabProps": {
+      "type": {
+        "name": "object"
+      },
+      "required": false,
+      "description": "Props applied to the [`Fab`](/api/fab/) component.",
+      "defaultValue": {
+        "value": "{}",
+        "computed": false
+      },
+      "tags": []
+    },
+    "icon": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The Icon to display in the SpeedDial Fab.",
+      "tags": []
+    },
+    "TooltipClasses": {
+      "type": {
+        "name": "object"
+      },
+      "required": false,
+      "description": "Classes applied to the [`Tooltip`](/api/tooltip/) element.",
+      "tags": []
+    },
+    "tooltipOpen": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "Make the tooltip always visible when the SpeedDial is open.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "tooltipPlacement": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'bottom-end'",
+            "computed": false
+          },
+          {
+            "value": "'bottom-start'",
+            "computed": false
+          },
+          {
+            "value": "'bottom'",
+            "computed": false
+          },
+          {
+            "value": "'left-end'",
+            "computed": false
+          },
+          {
+            "value": "'left-start'",
+            "computed": false
+          },
+          {
+            "value": "'left'",
+            "computed": false
+          },
+          {
+            "value": "'right-end'",
+            "computed": false
+          },
+          {
+            "value": "'right-start'",
+            "computed": false
+          },
+          {
+            "value": "'right'",
+            "computed": false
+          },
+          {
+            "value": "'top-end'",
+            "computed": false
+          },
+          {
+            "value": "'top-start'",
+            "computed": false
+          },
+          {
+            "value": "'top'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "Placement of the tooltip.",
+      "defaultValue": {
+        "value": "'left'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "tooltipTitle": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "Label to display in the tooltip.",
+      "tags": []
+    }
+  },
+  "name": "SpeedDialAction",
+  "styles": {
+    "classes": [
+      "fab",
+      "fabClosed",
+      "staticTooltip",
+      "staticTooltipClosed",
+      "staticTooltipLabel",
+      "tooltipPlacementLeft",
+      "tooltipPlacementRight"
+    ],
+    "name": "MuiSpeedDialAction",
+    "descriptions": {
+      "fab": "Styles applied to the Fab component.",
+      "fabClosed": "Styles applied to the Fab component if `open={false}`.",
+      "staticTooltip": "Styles applied to the root element if `tooltipOpen={true}`.",
+      "staticTooltipClosed": "Styles applied to the root element if `tooltipOpen={true}` and `open={false}`.",
+      "staticTooltipLabel": "Styles applied to the static tooltip label if `tooltipOpen={true}`.",
+      "tooltipPlacementLeft": "Styles applied to the root if `tooltipOpen={true}` and `tooltipPlacement=\"left\"``",
+      "tooltipPlacementRight": "Styles applied to the root if `tooltipOpen={true}` and `tooltipPlacement=\"right\"``"
+    },
+    "globalClasses": {
+      "fab": "MuiSpeedDialAction-fab",
+      "fabClosed": "MuiSpeedDialAction-fabClosed",
+      "staticTooltip": "MuiSpeedDialAction-staticTooltip",
+      "staticTooltipClosed": "MuiSpeedDialAction-staticTooltipClosed",
+      "staticTooltipLabel": "MuiSpeedDialAction-staticTooltipLabel",
+      "tooltipPlacementLeft": "MuiSpeedDialAction-tooltipPlacementLeft",
+      "tooltipPlacementRight": "MuiSpeedDialAction-tooltipPlacementRight"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLButtonElement",
+  "filename": "/packages/material-ui-lab/src/SpeedDialAction/SpeedDialAction.js",
+  "inheritance": {
+    "component": "Tooltip",
+    "pathname": "/api/tooltip"
+  },
+  "usedInPages": [
+    "/components/speed-dial"
+  ]
+}

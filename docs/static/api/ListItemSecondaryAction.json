@@ -1,0 +1,42 @@
+{
+  "description": "Must be used as the last child of ListItem to function properly.",
+  "methods": [],
+  "props": {
+    "children": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The content of the component, normally an `IconButton` or selection control.",
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": true,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    }
+  },
+  "name": "ListItemSecondaryAction",
+  "styles": {
+    "classes": [
+      "root"
+    ],
+    "name": "MuiListItemSecondaryAction",
+    "descriptions": {
+      "root": "Styles applied to the root element."
+    },
+    "globalClasses": {
+      "root": "MuiListItemSecondaryAction-root"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/ListItemSecondaryAction/ListItemSecondaryAction.js",
+  "inheritance": null,
+  "usedInPages": [
+    "/components/lists"
+  ]
+}

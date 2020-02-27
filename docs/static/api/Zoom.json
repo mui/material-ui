@@ -1,0 +1,68 @@
+{
+  "description": "The Zoom transition can be used for the floating variant of the\n[Button](/components/buttons/#floating-action-buttons) component.\nIt uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.",
+  "methods": [],
+  "props": {
+    "children": {
+      "type": {
+        "name": "element"
+      },
+      "required": false,
+      "description": "A single child content element.",
+      "tags": []
+    },
+    "in": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the component will transition in.",
+      "tags": []
+    },
+    "timeout": {
+      "type": {
+        "name": "union",
+        "value": [
+          {
+            "name": "number"
+          },
+          {
+            "name": "shape",
+            "value": {
+              "enter": {
+                "name": "number",
+                "required": false
+              },
+              "exit": {
+                "name": "number",
+                "required": false
+              }
+            }
+          }
+        ]
+      },
+      "required": false,
+      "description": "The duration for the transition, in milliseconds.\nYou may specify a single timeout for all transitions, or individually with an object.",
+      "defaultValue": {
+        "value": "{\n  enter: duration.enteringScreen,\n  exit: duration.leavingScreen,\n}",
+        "computed": false
+      },
+      "tags": []
+    }
+  },
+  "name": "Zoom",
+  "styles": {
+    "classes": [],
+    "name": null,
+    "descriptions": {}
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/Zoom/Zoom.js",
+  "inheritance": {
+    "component": "Transition",
+    "pathname": "https://reactcommunity.org/react-transition-group/transition#Transition-props"
+  },
+  "usedInPages": [
+    "/components/transitions"
+  ]
+}

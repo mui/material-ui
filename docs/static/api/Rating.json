@@ -1,0 +1,313 @@
+{
+  "description": "",
+  "methods": [],
+  "props": {
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": true,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "defaultValue": {
+      "type": {
+        "name": "number"
+      },
+      "required": false,
+      "description": "The default value. Use when the component is not controlled.",
+      "defaultValue": {
+        "value": "null",
+        "computed": false
+      },
+      "tags": []
+    },
+    "disabled": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the rating will be disabled.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "emptyIcon": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The icon to display when empty.",
+      "tags": []
+    },
+    "emptyLabelText": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The label read when the rating input is empty.",
+      "defaultValue": {
+        "value": "'Empty'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "getLabelText": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Accepts a function which returns a string value that provides a user-friendly name for the current value of the rating.\n\nFor localization purposes, you can use the provided [translations](/guides/localization/).",
+      "defaultValue": {
+        "value": "function defaultLabelText(value) {\n  return `${value} Star${value !== 1 ? 's' : ''}`;\n}",
+        "computed": false
+      },
+      "tags": [
+        {
+          "title": "param",
+          "description": "The rating label's value to format.",
+          "type": {
+            "type": "NameExpression",
+            "name": "number"
+          },
+          "name": "value"
+        },
+        {
+          "title": "returns",
+          "description": null,
+          "type": {
+            "type": "NameExpression",
+            "name": "string"
+          }
+        }
+      ]
+    },
+    "icon": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The icon to display.",
+      "defaultValue": {
+        "value": "<Star fontSize=\"inherit\" />",
+        "computed": false
+      },
+      "tags": []
+    },
+    "IconContainerComponent": {
+      "type": {
+        "name": "elementType"
+      },
+      "required": false,
+      "description": "The component containing the icon.",
+      "defaultValue": {
+        "value": "function IconContainer(props) {\n  const { value, ...other } = props;\n  return <span {...other} />;\n}",
+        "computed": false
+      },
+      "tags": []
+    },
+    "max": {
+      "type": {
+        "name": "number"
+      },
+      "required": false,
+      "description": "Maximum rating.",
+      "defaultValue": {
+        "value": "5",
+        "computed": false
+      },
+      "tags": []
+    },
+    "name": {
+      "type": {
+        "name": "chained",
+        "raw": "chainPropTypes(PropTypes.string, props => {\n  if (!props.readOnly && !props.name) {\n    return new Error(\n      [\n        'Material-UI: the prop `name` is required (when `readOnly` is false).',\n        'Additionally, the input name should be unique within the parent form.',\n      ].join('\\n'),\n    );\n  }\n  return null;\n})",
+        "chained": {
+          "name": "string"
+        }
+      },
+      "required": false,
+      "description": "The name attribute of the radio `input` elements.\nIf `readOnly` is false, the prop is required,\nthis input name`should be unique within the parent form.",
+      "tags": []
+    },
+    "onChange": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Callback fired when the value changes.",
+      "tags": [
+        {
+          "title": "param",
+          "description": "The event source of the callback.",
+          "type": {
+            "type": "NameExpression",
+            "name": "object"
+          },
+          "name": "event"
+        },
+        {
+          "title": "param",
+          "description": "The new value.",
+          "type": {
+            "type": "NameExpression",
+            "name": "number"
+          },
+          "name": "value"
+        }
+      ]
+    },
+    "onChangeActive": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Callback function that is fired when the hover state changes.",
+      "tags": [
+        {
+          "title": "param",
+          "description": "The event source of the callback.",
+          "type": {
+            "type": "NameExpression",
+            "name": "object"
+          },
+          "name": "event"
+        },
+        {
+          "title": "param",
+          "description": "The new value.",
+          "type": {
+            "type": "NameExpression",
+            "name": "number"
+          },
+          "name": "value"
+        }
+      ]
+    },
+    "precision": {
+      "type": {
+        "name": "number"
+      },
+      "required": false,
+      "description": "The minimum increment value change allowed.",
+      "defaultValue": {
+        "value": "1",
+        "computed": false
+      },
+      "tags": []
+    },
+    "readOnly": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "Removes all hover effects and pointer events.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "size": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'small'",
+            "computed": false
+          },
+          {
+            "value": "'medium'",
+            "computed": false
+          },
+          {
+            "value": "'large'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "The size of the rating.",
+      "defaultValue": {
+        "value": "'medium'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "value": {
+      "type": {
+        "name": "number"
+      },
+      "required": false,
+      "description": "The rating value.",
+      "tags": []
+    }
+  },
+  "name": "Rating",
+  "styles": {
+    "classes": [
+      "root",
+      "sizeSmall",
+      "sizeLarge",
+      "readOnly",
+      "disabled",
+      "focusVisible",
+      "visuallyhidden",
+      "pristine",
+      "label",
+      "icon",
+      "iconEmpty",
+      "iconFilled",
+      "iconHover",
+      "iconFocus",
+      "iconActive",
+      "decimal"
+    ],
+    "name": "MuiRating",
+    "descriptions": {
+      "root": "Styles applied to the root element.",
+      "sizeSmall": "Styles applied to the root element if `size=\"small\"`.",
+      "sizeLarge": "Styles applied to the root element if `size=\"large\"`.",
+      "readOnly": "Styles applied to the root element if `readOnly={true}`.",
+      "disabled": "Pseudo-class applied to the root element if `disabled={true}`.",
+      "focusVisible": "Pseudo-class applied to the root element if keyboard focused.",
+      "visuallyhidden": "Visually hide an element.",
+      "pristine": "Styles applied to the pristine label.",
+      "label": "Styles applied to the label elements.",
+      "icon": "Styles applied to the icon wrapping elements.",
+      "iconEmpty": "Styles applied to the icon wrapping elements when empty.",
+      "iconFilled": "Styles applied to the icon wrapping elements when filled.",
+      "iconHover": "Styles applied to the icon wrapping elements when hover.",
+      "iconFocus": "Styles applied to the icon wrapping elements when focus.",
+      "iconActive": "Styles applied to the icon wrapping elements when active.",
+      "decimal": "Styles applied to the icon wrapping elements when decimals are necessary."
+    },
+    "globalClasses": {
+      "root": "MuiRating-root",
+      "sizeSmall": "MuiRating-sizeSmall",
+      "sizeLarge": "MuiRating-sizeLarge",
+      "readOnly": "MuiRating-readOnly",
+      "disabled": "Mui-disabled",
+      "focusVisible": "Mui-focusVisible",
+      "visuallyhidden": "MuiRating-visuallyhidden",
+      "pristine": "MuiRating-pristine",
+      "label": "MuiRating-label",
+      "icon": "MuiRating-icon",
+      "iconEmpty": "MuiRating-iconEmpty",
+      "iconFilled": "MuiRating-iconFilled",
+      "iconHover": "MuiRating-iconHover",
+      "iconFocus": "MuiRating-iconFocus",
+      "iconActive": "MuiRating-iconActive",
+      "decimal": "MuiRating-decimal"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLSpanElement",
+  "filename": "/packages/material-ui-lab/src/Rating/Rating.js",
+  "inheritance": null,
+  "usedInPages": [
+    "/components/rating"
+  ]
+}

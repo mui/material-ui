@@ -1,0 +1,107 @@
+{
+  "description": "",
+  "methods": [],
+  "props": {
+    "children": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "Step content.",
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": true,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "TransitionComponent": {
+      "type": {
+        "name": "elementType"
+      },
+      "required": false,
+      "description": "The component used for the transition.\n[Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.",
+      "defaultValue": {
+        "value": "Collapse",
+        "computed": true
+      },
+      "tags": []
+    },
+    "transitionDuration": {
+      "type": {
+        "name": "union",
+        "value": [
+          {
+            "name": "number"
+          },
+          {
+            "name": "shape",
+            "value": {
+              "enter": {
+                "name": "number",
+                "required": false
+              },
+              "exit": {
+                "name": "number",
+                "required": false
+              }
+            }
+          },
+          {
+            "name": "enum",
+            "value": [
+              {
+                "value": "'auto'",
+                "computed": false
+              }
+            ]
+          }
+        ]
+      },
+      "required": false,
+      "description": "Adjust the duration of the content expand transition.\nPassed as a prop to the transition component.\n\nSet to 'auto' to automatically calculate transition time based on height.",
+      "defaultValue": {
+        "value": "'auto'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "TransitionProps": {
+      "type": {
+        "name": "object"
+      },
+      "required": false,
+      "description": "Props applied to the [`Transition`](http://reactcommunity.org/react-transition-group/transition#Transition-props) element.",
+      "tags": []
+    }
+  },
+  "name": "StepContent",
+  "styles": {
+    "classes": [
+      "root",
+      "last",
+      "transition"
+    ],
+    "name": "MuiStepContent",
+    "descriptions": {
+      "root": "Styles applied to the root element.",
+      "last": "Styles applied to the root element if `last={true}` (controlled by `Step`).",
+      "transition": "Styles applied to the Transition component."
+    },
+    "globalClasses": {
+      "root": "MuiStepContent-root",
+      "last": "MuiStepContent-last",
+      "transition": "MuiStepContent-transition"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/StepContent/StepContent.js",
+  "inheritance": null,
+  "usedInPages": [
+    "/components/steppers"
+  ]
+}

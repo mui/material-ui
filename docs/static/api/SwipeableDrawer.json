@@ -1,0 +1,184 @@
+{
+  "description": "",
+  "methods": [],
+  "props": {
+    "children": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The content of the component.",
+      "tags": []
+    },
+    "disableBackdropTransition": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "Disable the backdrop transition.\nThis can improve the FPS on low-end devices.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "disableDiscovery": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, touching the screen near the edge of the drawer will not slide in the drawer a bit\nto promote accidental discovery of the swipe gesture.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "disableSwipeToOpen": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, swipe to open is disabled. This is useful in browsers where swiping triggers\nnavigation actions. Swipe to open is disabled on iOS browsers by default.",
+      "defaultValue": {
+        "value": "typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent)",
+        "computed": false
+      },
+      "tags": []
+    },
+    "hysteresis": {
+      "type": {
+        "name": "number"
+      },
+      "required": false,
+      "description": "Affects how far the drawer must be opened/closed to change his state.\nSpecified as percent (0-1) of the width of the drawer",
+      "defaultValue": {
+        "value": "0.52",
+        "computed": false
+      },
+      "tags": []
+    },
+    "minFlingVelocity": {
+      "type": {
+        "name": "number"
+      },
+      "required": false,
+      "description": "Defines, from which (average) velocity on, the swipe is\ndefined as complete although hysteresis isn't reached.\nGood threshold is between 250 - 1000 px/s",
+      "defaultValue": {
+        "value": "450",
+        "computed": false
+      },
+      "tags": []
+    },
+    "onClose": {
+      "type": {
+        "name": "func"
+      },
+      "required": true,
+      "description": "Callback fired when the component requests to be closed.",
+      "tags": [
+        {
+          "title": "param",
+          "description": "The event source of the callback.",
+          "type": {
+            "type": "NameExpression",
+            "name": "object"
+          },
+          "name": "event"
+        }
+      ]
+    },
+    "onOpen": {
+      "type": {
+        "name": "func"
+      },
+      "required": true,
+      "description": "Callback fired when the component requests to be opened.",
+      "tags": [
+        {
+          "title": "param",
+          "description": "The event source of the callback.",
+          "type": {
+            "type": "NameExpression",
+            "name": "object"
+          },
+          "name": "event"
+        }
+      ]
+    },
+    "open": {
+      "type": {
+        "name": "bool"
+      },
+      "required": true,
+      "description": "If `true`, the drawer is open.",
+      "tags": []
+    },
+    "SwipeAreaProps": {
+      "type": {
+        "name": "object"
+      },
+      "required": false,
+      "description": "The element is used to intercept the touch events on the edge.",
+      "tags": []
+    },
+    "swipeAreaWidth": {
+      "type": {
+        "name": "number"
+      },
+      "required": false,
+      "description": "The width of the left most (or right most) area in pixels where the\ndrawer can be swiped open from.",
+      "defaultValue": {
+        "value": "20",
+        "computed": false
+      },
+      "tags": []
+    },
+    "transitionDuration": {
+      "type": {
+        "name": "union",
+        "value": [
+          {
+            "name": "number"
+          },
+          {
+            "name": "shape",
+            "value": {
+              "enter": {
+                "name": "number",
+                "required": false
+              },
+              "exit": {
+                "name": "number",
+                "required": false
+              }
+            }
+          }
+        ]
+      },
+      "required": false,
+      "description": "The duration for the transition, in milliseconds.\nYou may specify a single timeout for all transitions, or individually with an object.",
+      "defaultValue": {
+        "value": "{ enter: duration.enteringScreen, exit: duration.leavingScreen }",
+        "computed": false
+      },
+      "tags": []
+    }
+  },
+  "name": "SwipeableDrawer",
+  "styles": {
+    "classes": [],
+    "name": null,
+    "descriptions": {}
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/SwipeableDrawer/SwipeableDrawer.js",
+  "inheritance": {
+    "component": "Drawer",
+    "pathname": "/api/drawer"
+  },
+  "usedInPages": [
+    "/components/drawers"
+  ]
+}

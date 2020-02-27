@@ -1,0 +1,113 @@
+{
+  "description": "",
+  "methods": [],
+  "props": {
+    "children": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "Alias for the `primary` property.",
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": true,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "disableTypography": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the children won't be wrapped by a Typography component.\nThis can be useful to render an alternative Typography variant by wrapping\nthe `children` (or `primary`) text, and optional `secondary` text\nwith the Typography component.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "inset": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the children will be indented.\nThis should be used if there is no left avatar or left icon.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "primary": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The main content element.",
+      "tags": []
+    },
+    "primaryTypographyProps": {
+      "type": {
+        "name": "object"
+      },
+      "required": false,
+      "description": "These props will be forwarded to the primary typography component\n(as long as disableTypography is not `true`).",
+      "tags": []
+    },
+    "secondary": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The secondary content element.",
+      "tags": []
+    },
+    "secondaryTypographyProps": {
+      "type": {
+        "name": "object"
+      },
+      "required": false,
+      "description": "These props will be forwarded to the secondary typography component\n(as long as disableTypography is not `true`).",
+      "tags": []
+    }
+  },
+  "name": "ListItemText",
+  "styles": {
+    "classes": [
+      "root",
+      "multiline",
+      "dense",
+      "inset",
+      "primary",
+      "secondary"
+    ],
+    "name": "MuiListItemText",
+    "descriptions": {
+      "root": "Styles applied to the root element.",
+      "multiline": "Styles applied to the `Typography` components if primary and secondary are set.",
+      "dense": "Styles applied to the `Typography` components if dense.",
+      "inset": "Styles applied to the root element if `inset={true}`.",
+      "primary": "Styles applied to the primary `Typography` component.",
+      "secondary": "Styles applied to the secondary `Typography` component."
+    },
+    "globalClasses": {
+      "root": "MuiListItemText-root",
+      "multiline": "MuiListItemText-multiline",
+      "dense": "MuiListItemText-dense",
+      "inset": "MuiListItemText-inset",
+      "primary": "MuiListItemText-primary",
+      "secondary": "MuiListItemText-secondary"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/ListItemText/ListItemText.js",
+  "inheritance": null,
+  "usedInPages": [
+    "/components/lists"
+  ]
+}

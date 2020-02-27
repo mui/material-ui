@@ -1,0 +1,88 @@
+{
+  "description": "A permanently displayed menu following https://www.w3.org/TR/wai-aria-practices/#menubutton\nIt's exposed to help customization of the [`Menu`](/api/menu/) component. If you\nuse it separately you need to move focus into the component manually. Once\nthe focus is placed inside the component it is fully keyboard accessible.",
+  "methods": [],
+  "props": {
+    "autoFocus": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, will focus the `[role=\"menu\"]` container and move into tab order",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "autoFocusItem": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, will focus the first menuitem if `variant=\"menu\"` or selected item\nif `variant=\"selectedMenu\"`",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "children": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "MenuList contents, normally `MenuItem`s.",
+      "tags": []
+    },
+    "disableListWrap": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the menu items will not wrap focus.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "variant": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'menu'",
+            "computed": false
+          },
+          {
+            "value": "'selectedMenu'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "The variant to use. Use `menu` to prevent selected items from impacting the initial focus\nand the vertical alignment relative to the anchor element.",
+      "defaultValue": {
+        "value": "'selectedMenu'",
+        "computed": false
+      },
+      "tags": []
+    }
+  },
+  "name": "MenuList",
+  "styles": {
+    "classes": [],
+    "name": null,
+    "descriptions": {}
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLUListElement",
+  "filename": "/packages/material-ui/src/MenuList/MenuList.js",
+  "inheritance": {
+    "component": "List",
+    "pathname": "/api/list"
+  },
+  "usedInPages": [
+    "/components/menus"
+  ]
+}

@@ -1,0 +1,132 @@
+{
+  "description": "",
+  "methods": [],
+  "props": {
+    "children": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The content of the component.",
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": true,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "color": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'default'",
+            "computed": false
+          },
+          {
+            "value": "'primary'",
+            "computed": false
+          },
+          {
+            "value": "'inherit'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "The color of the component. It supports those theme colors that make sense for this component.",
+      "defaultValue": {
+        "value": "'default'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "component": {
+      "type": {
+        "name": "elementType"
+      },
+      "required": false,
+      "description": "The component used for the root node.\nEither a string to use a DOM element or a component.",
+      "defaultValue": {
+        "value": "'li'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "disableGutters": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the List Subheader will not have gutters.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "disableSticky": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the List Subheader will not stick to the top during scroll.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "inset": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the List Subheader will be indented.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    }
+  },
+  "name": "ListSubheader",
+  "styles": {
+    "classes": [
+      "root",
+      "colorPrimary",
+      "colorInherit",
+      "gutters",
+      "inset",
+      "sticky"
+    ],
+    "name": "MuiListSubheader",
+    "descriptions": {
+      "root": "Styles applied to the root element.",
+      "colorPrimary": "Styles applied to the root element if `color=\"primary\"`.",
+      "colorInherit": "Styles applied to the root element if `color=\"inherit\"`.",
+      "gutters": "Styles applied to the inner `component` element if `disableGutters={false}`.",
+      "inset": "Styles applied to the root element if `inset={true}`.",
+      "sticky": "Styles applied to the root element if `disableSticky={false}`."
+    },
+    "globalClasses": {
+      "root": "MuiListSubheader-root",
+      "colorPrimary": "MuiListSubheader-colorPrimary",
+      "colorInherit": "MuiListSubheader-colorInherit",
+      "gutters": "MuiListSubheader-gutters",
+      "inset": "MuiListSubheader-inset",
+      "sticky": "MuiListSubheader-sticky"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLLIElement",
+  "filename": "/packages/material-ui/src/ListSubheader/ListSubheader.js",
+  "inheritance": null,
+  "usedInPages": [
+    "/components/grid-list",
+    "/components/lists"
+  ]
+}

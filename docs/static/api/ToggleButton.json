@@ -1,0 +1,112 @@
+{
+  "description": "",
+  "methods": [],
+  "props": {
+    "children": {
+      "type": {
+        "name": "node"
+      },
+      "required": true,
+      "description": "The content of the button.",
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": true,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "disabled": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the button will be disabled.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "disableFocusRipple": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the  keyboard focus ripple will be disabled.\n`disableRipple` must also be true.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "disableRipple": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the ripple effect will be disabled.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "selected": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the button will be rendered in an active state.",
+      "tags": []
+    },
+    "value": {
+      "type": {
+        "name": "any"
+      },
+      "required": true,
+      "description": "The value to associate with the button when selected in a\nToggleButtonGroup.",
+      "tags": []
+    }
+  },
+  "name": "ToggleButton",
+  "styles": {
+    "classes": [
+      "root",
+      "disabled",
+      "selected",
+      "label",
+      "sizeSmall",
+      "sizeLarge"
+    ],
+    "name": "MuiToggleButton",
+    "descriptions": {
+      "root": "Styles applied to the root element.",
+      "disabled": "Pseudo-class applied to the root element if `disabled={true}`.",
+      "selected": "Pseudo-class applied to the root element if `selected={true}`.",
+      "label": "Styles applied to the `label` wrapper element.",
+      "sizeSmall": "Styles applied to the root element if `size=\"small\"`.",
+      "sizeLarge": "Styles applied to the root element if `size=\"large\"`."
+    },
+    "globalClasses": {
+      "root": "MuiToggleButton-root",
+      "disabled": "Mui-disabled",
+      "selected": "Mui-selected",
+      "label": "MuiToggleButton-label",
+      "sizeSmall": "MuiToggleButton-sizeSmall",
+      "sizeLarge": "MuiToggleButton-sizeLarge"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLButtonElement",
+  "filename": "/packages/material-ui-lab/src/ToggleButton/ToggleButton.js",
+  "inheritance": {
+    "component": "ButtonBase",
+    "pathname": "/api/button-base"
+  },
+  "usedInPages": [
+    "/components/toggle-button"
+  ]
+}

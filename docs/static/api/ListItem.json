@@ -1,0 +1,215 @@
+{
+  "description": "Uses an additional container component if `ListItemSecondaryAction` is the last child.",
+  "methods": [],
+  "props": {
+    "alignItems": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'flex-start'",
+            "computed": false
+          },
+          {
+            "value": "'center'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "Defines the `align-items` style property.",
+      "defaultValue": {
+        "value": "'center'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "autoFocus": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the list item will be focused during the first mount.\nFocus will also be triggered if the value changes from false to true.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "button": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the list item will be a button (using `ButtonBase`). Props intended\nfor `ButtonBase` can then be applied to `ListItem`.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "children": {
+      "type": {
+        "name": "chained",
+        "raw": "chainPropTypes(PropTypes.node, props => {\n  const children = React.Children.toArray(props.children);\n\n  // React.Children.toArray(props.children).findLastIndex(isListItemSecondaryAction)\n  let secondaryActionIndex = -1;\n  for (let i = children.length - 1; i >= 0; i -= 1) {\n    const child = children[i];\n    if (isMuiElement(child, ['ListItemSecondaryAction'])) {\n      secondaryActionIndex = i;\n      break;\n    }\n  }\n\n  //  is ListItemSecondaryAction the last child of ListItem\n  if (secondaryActionIndex !== -1 && secondaryActionIndex !== children.length - 1) {\n    return new Error(\n      'Material-UI: you used an element after ListItemSecondaryAction. ' +\n        'For ListItem to detect that it has a secondary action ' +\n        'you must pass it as the last child to ListItem.',\n    );\n  }\n\n  return null;\n})",
+        "chained": {
+          "name": "node"
+        }
+      },
+      "required": false,
+      "description": "The content of the component. If a `ListItemSecondaryAction` is used it must\nbe the last child.",
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": true,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "component": {
+      "type": {
+        "name": "elementType"
+      },
+      "required": false,
+      "description": "The component used for the root node.\nEither a string to use a DOM element or a component.\nBy default, it's a `li` when `button` is `false` and a `div` when `button` is `true`.",
+      "tags": []
+    },
+    "ContainerComponent": {
+      "type": {
+        "name": "elementType"
+      },
+      "required": false,
+      "description": "The container component used when a `ListItemSecondaryAction` is the last child.",
+      "defaultValue": {
+        "value": "'li'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "ContainerProps": {
+      "type": {
+        "name": "object"
+      },
+      "required": false,
+      "description": "Props applied to the container component if used.",
+      "defaultValue": {
+        "value": "{}",
+        "computed": false
+      },
+      "tags": []
+    },
+    "dense": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, compact vertical padding designed for keyboard and mouse input will be used.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "disabled": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the list item will be disabled.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "disableGutters": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the left and right padding is removed.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "divider": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, a 1px light border is added to the bottom of the list item.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "selected": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "Use to apply selected styling.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    }
+  },
+  "name": "ListItem",
+  "styles": {
+    "classes": [
+      "root",
+      "container",
+      "focusVisible",
+      "dense",
+      "alignItemsFlexStart",
+      "disabled",
+      "divider",
+      "gutters",
+      "button",
+      "secondaryAction",
+      "selected"
+    ],
+    "name": "MuiListItem",
+    "descriptions": {
+      "root": "Styles applied to the (normally root) `component` element. May be wrapped by a `container`.",
+      "container": "Styles applied to the `container` element if `children` includes `ListItemSecondaryAction`.",
+      "focusVisible": "Pseudo-class applied to the `component`'s `focusVisibleClassName` prop if `button={true}`.",
+      "dense": "Styles applied to the `component` element if dense.",
+      "alignItemsFlexStart": "Styles applied to the `component` element if `alignItems=\"flex-start\"`.",
+      "disabled": "Pseudo-class applied to the inner `component` element if `disabled={true}`.",
+      "divider": "Styles applied to the inner `component` element if `divider={true}`.",
+      "gutters": "Styles applied to the inner `component` element if `disableGutters={false}`.",
+      "button": "Styles applied to the inner `component` element if `button={true}`.",
+      "secondaryAction": "Styles applied to the `component` element if `children` includes `ListItemSecondaryAction`.",
+      "selected": "Pseudo-class applied to the root element if `selected={true}`."
+    },
+    "globalClasses": {
+      "root": "MuiListItem-root",
+      "container": "MuiListItem-container",
+      "focusVisible": "Mui-focusVisible",
+      "dense": "MuiListItem-dense",
+      "alignItemsFlexStart": "MuiListItem-alignItemsFlexStart",
+      "disabled": "Mui-disabled",
+      "divider": "MuiListItem-divider",
+      "gutters": "MuiListItem-gutters",
+      "button": "MuiListItem-button",
+      "secondaryAction": "MuiListItem-secondaryAction",
+      "selected": "Mui-selected"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLLIElement",
+  "filename": "/packages/material-ui/src/ListItem/ListItem.js",
+  "inheritance": null,
+  "usedInPages": [
+    "/components/lists",
+    "/components/transfer-list"
+  ]
+}

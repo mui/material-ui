@@ -1,0 +1,124 @@
+{
+  "description": "",
+  "methods": [],
+  "props": {
+    "activeStep": {
+      "type": {
+        "name": "number"
+      },
+      "required": false,
+      "description": "Set the active step (zero based index).\nSet to -1 to disable all the steps.",
+      "defaultValue": {
+        "value": "0",
+        "computed": false
+      },
+      "tags": []
+    },
+    "alternativeLabel": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If set to 'true' and orientation is horizontal,\nthen the step label will be positioned under the icon.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "children": {
+      "type": {
+        "name": "node"
+      },
+      "required": true,
+      "description": "Two or more `<Step />` components.",
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": true,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "connector": {
+      "type": {
+        "name": "element"
+      },
+      "required": false,
+      "description": "An element to be placed between each step.",
+      "defaultValue": {
+        "value": "<StepConnector />",
+        "computed": false
+      },
+      "tags": []
+    },
+    "nonLinear": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If set the `Stepper` will not assist in controlling steps for linear flow.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "orientation": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'horizontal'",
+            "computed": false
+          },
+          {
+            "value": "'vertical'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "The stepper orientation (layout flow direction).",
+      "defaultValue": {
+        "value": "'horizontal'",
+        "computed": false
+      },
+      "tags": []
+    }
+  },
+  "name": "Stepper",
+  "styles": {
+    "classes": [
+      "root",
+      "horizontal",
+      "vertical",
+      "alternativeLabel"
+    ],
+    "name": "MuiStepper",
+    "descriptions": {
+      "root": "Styles applied to the root element.",
+      "horizontal": "Styles applied to the root element if `orientation=\"horizontal\"`.",
+      "vertical": "Styles applied to the root element if `orientation=\"vertical\"`.",
+      "alternativeLabel": "Styles applied to the root element if `alternativeLabel={true}`."
+    },
+    "globalClasses": {
+      "root": "MuiStepper-root",
+      "horizontal": "MuiStepper-horizontal",
+      "vertical": "MuiStepper-vertical",
+      "alternativeLabel": "MuiStepper-alternativeLabel"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/Stepper/Stepper.js",
+  "inheritance": {
+    "component": "Paper",
+    "pathname": "/api/paper"
+  },
+  "usedInPages": [
+    "/components/steppers"
+  ]
+}

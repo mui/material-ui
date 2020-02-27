@@ -1,0 +1,924 @@
+{
+  "description": "",
+  "methods": [],
+  "props": {
+    "autoComplete": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the portion of the selected suggestion that has not been typed by the user,\nknown as the completion string, appears inline after the input cursor in the textbox.\nThe inline completion string is visually highlighted and has a selected state.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "autoHighlight": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the first option is automatically highlighted.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "autoSelect": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the selected option becomes the value of the input\nwhen the Autocomplete loses focus unless the user chooses\na different option or changes the character string in the input.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "blurOnSelect": {
+      "type": {
+        "name": "union",
+        "value": [
+          {
+            "name": "enum",
+            "value": [
+              {
+                "value": "'mouse'",
+                "computed": false
+              },
+              {
+                "value": "'touch'",
+                "computed": false
+              }
+            ]
+          },
+          {
+            "name": "bool"
+          }
+        ]
+      },
+      "required": false,
+      "description": "Control if the input should be blurred when an option is selected:\n\n- `false` the input is not blurred.\n- `true` the input is always blurred.\n- `touch` the input is blurred after a touch event.\n- `mouse` the input is blurred after a mouse event.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "ChipProps": {
+      "type": {
+        "name": "object"
+      },
+      "required": false,
+      "description": "Props applied to the [`Chip`](/api/chip/) element.",
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": false,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "clearOnEscape": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, clear all values when the user presses escape and the popup is closed.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "clearText": {
+      "type": {
+        "name": "string"
+      },
+      "required": false,
+      "description": "Override the default text for the *clear* icon button.\n\nFor localization purposes, you can use the provided [translations](/guides/localization/).",
+      "defaultValue": {
+        "value": "'Clear'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "closeIcon": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The icon to display in place of the default close icon.",
+      "defaultValue": {
+        "value": "<CloseIcon fontSize=\"small\" />",
+        "computed": false
+      },
+      "tags": []
+    },
+    "closeText": {
+      "type": {
+        "name": "string"
+      },
+      "required": false,
+      "description": "Override the default text for the *close popup* icon button.\n\nFor localization purposes, you can use the provided [translations](/guides/localization/).",
+      "defaultValue": {
+        "value": "'Close'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "debug": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the popup will ignore the blur event if the input if filled.\nYou can inspect the popup markup with your browser tools.\nConsider this option when you need to customize the component.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "defaultValue": {
+      "type": {
+        "name": "union",
+        "value": [
+          {
+            "name": "any"
+          },
+          {
+            "name": "array"
+          }
+        ]
+      },
+      "required": false,
+      "description": "The default input value. Use when the component is not controlled.",
+      "defaultValue": {
+        "value": "props.multiple ? [] : null",
+        "computed": false
+      },
+      "tags": []
+    },
+    "disableClearable": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the input can't be cleared.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "disableCloseOnSelect": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the popup won't close when a value is selected.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "disabled": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the input will be disabled.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "disableListWrap": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the list box in the popup will not wrap focus.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "disableOpenOnFocus": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the popup won't open on input focus.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "disablePortal": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "Disable the portal behavior.\nThe children stay within it's parent DOM hierarchy.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "filterOptions": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "A filter function that determines the options that are eligible.",
+      "tags": [
+        {
+          "title": "param",
+          "description": "The options to render.",
+          "type": {
+            "type": "TypeApplication",
+            "expression": {
+              "type": "NameExpression",
+              "name": "Array"
+            },
+            "applications": [
+              {
+                "type": "NameExpression",
+                "name": "T"
+              }
+            ]
+          },
+          "name": "options"
+        },
+        {
+          "title": "param",
+          "description": "The state of the component.",
+          "type": {
+            "type": "NameExpression",
+            "name": "object"
+          },
+          "name": "state"
+        },
+        {
+          "title": "returns",
+          "description": null,
+          "type": {
+            "type": "TypeApplication",
+            "expression": {
+              "type": "NameExpression",
+              "name": "Array"
+            },
+            "applications": [
+              {
+                "type": "NameExpression",
+                "name": "T"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "filterSelectedOptions": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, hide the selected options from the list box.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "forcePopupIcon": {
+      "type": {
+        "name": "union",
+        "value": [
+          {
+            "name": "enum",
+            "value": [
+              {
+                "value": "'auto'",
+                "computed": false
+              }
+            ]
+          },
+          {
+            "name": "bool"
+          }
+        ]
+      },
+      "required": false,
+      "description": "Force the visibility display of the popup icon.",
+      "defaultValue": {
+        "value": "'auto'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "freeSolo": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the Autocomplete is free solo, meaning that the user input is not bound to provided options.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "getOptionDisabled": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Used to determine the disabled state for a given option.",
+      "tags": []
+    },
+    "getOptionLabel": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Used to determine the string value for a given option.\nIt's used to fill the input (and the list box options if `renderOption` is not provided).",
+      "defaultValue": {
+        "value": "x => x",
+        "computed": false
+      },
+      "tags": []
+    },
+    "getOptionSelected": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Used to determine if an option is selected.\nUses strict equality by default.",
+      "tags": []
+    },
+    "groupBy": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "If provided, the options will be grouped under the returned string.\nThe groupBy value is also used as the text for group headings when `renderGroup` is not provided.",
+      "tags": [
+        {
+          "title": "param",
+          "description": "The option to group.",
+          "type": {
+            "type": "NameExpression",
+            "name": "T"
+          },
+          "name": "options"
+        },
+        {
+          "title": "returns",
+          "description": null,
+          "type": {
+            "type": "NameExpression",
+            "name": "string"
+          }
+        }
+      ]
+    },
+    "id": {
+      "type": {
+        "name": "string"
+      },
+      "required": false,
+      "description": "This prop is used to help implement the accessibility logic.\nIf you don't provide this prop. It falls back to a randomly generated id.",
+      "tags": []
+    },
+    "includeInputInList": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the highlight can move to the input.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "inputValue": {
+      "type": {
+        "name": "string"
+      },
+      "required": false,
+      "description": "The input value.",
+      "tags": []
+    },
+    "ListboxComponent": {
+      "type": {
+        "name": "elementType"
+      },
+      "required": false,
+      "description": "The component used to render the listbox.",
+      "defaultValue": {
+        "value": "'ul'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "ListboxProps": {
+      "type": {
+        "name": "object"
+      },
+      "required": false,
+      "description": "Props applied to the Listbox element.",
+      "tags": []
+    },
+    "loading": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the component is in a loading state.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "loadingText": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "Text to display when in a loading state.\n\nFor localization purposes, you can use the provided [translations](/guides/localization/).",
+      "defaultValue": {
+        "value": "'Loading…'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "multiple": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, `value` must be an array and the menu will support multiple selections.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "noOptionsText": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "Text to display when there are no options.\n\nFor localization purposes, you can use the provided [translations](/guides/localization/).",
+      "defaultValue": {
+        "value": "'No options'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "onChange": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Callback fired when the value changes.",
+      "tags": [
+        {
+          "title": "param",
+          "description": "The event source of the callback.",
+          "type": {
+            "type": "NameExpression",
+            "name": "object"
+          },
+          "name": "event"
+        },
+        {
+          "title": "param",
+          "description": "The new value of the Autocomplete",
+          "type": {
+            "type": "NameExpression",
+            "name": "T"
+          },
+          "name": "value"
+        }
+      ]
+    },
+    "onClose": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Callback fired when the popup requests to be closed.\nUse in controlled mode (see open).",
+      "tags": [
+        {
+          "title": "param",
+          "description": "The event source of the callback.",
+          "type": {
+            "type": "NameExpression",
+            "name": "object"
+          },
+          "name": "event"
+        }
+      ]
+    },
+    "onInputChange": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Callback fired when the input value changes.",
+      "tags": [
+        {
+          "title": "param",
+          "description": "The event source of the callback.",
+          "type": {
+            "type": "NameExpression",
+            "name": "object"
+          },
+          "name": "event"
+        },
+        {
+          "title": "param",
+          "description": "The new value of the text input.",
+          "type": {
+            "type": "NameExpression",
+            "name": "string"
+          },
+          "name": "value"
+        },
+        {
+          "title": "param",
+          "description": "Can be: `\"input\"` (user input), `\"reset\"` (programmatic change), `\"clear\"`.",
+          "type": {
+            "type": "NameExpression",
+            "name": "string"
+          },
+          "name": "reason"
+        }
+      ]
+    },
+    "onOpen": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Callback fired when the popup requests to be opened.\nUse in controlled mode (see open).",
+      "tags": [
+        {
+          "title": "param",
+          "description": "The event source of the callback.",
+          "type": {
+            "type": "NameExpression",
+            "name": "object"
+          },
+          "name": "event"
+        }
+      ]
+    },
+    "open": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "Control the popup` open state.",
+      "tags": []
+    },
+    "openText": {
+      "type": {
+        "name": "string"
+      },
+      "required": false,
+      "description": "Override the default text for the *open popup* icon button.\n\nFor localization purposes, you can use the provided [translations](/guides/localization/).",
+      "defaultValue": {
+        "value": "'Open'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "options": {
+      "type": {
+        "name": "array"
+      },
+      "required": true,
+      "description": "Array of options.",
+      "tags": []
+    },
+    "PaperComponent": {
+      "type": {
+        "name": "elementType"
+      },
+      "required": false,
+      "description": "The component used to render the body of the popup.",
+      "defaultValue": {
+        "value": "Paper",
+        "computed": true
+      },
+      "tags": []
+    },
+    "PopperComponent": {
+      "type": {
+        "name": "elementType"
+      },
+      "required": false,
+      "description": "The component used to position the popup.",
+      "defaultValue": {
+        "value": "Popper",
+        "computed": true
+      },
+      "tags": []
+    },
+    "popupIcon": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The icon to display in place of the default popup icon.",
+      "defaultValue": {
+        "value": "<ArrowDropDownIcon />",
+        "computed": false
+      },
+      "tags": []
+    },
+    "renderGroup": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Render the group.",
+      "tags": [
+        {
+          "title": "param",
+          "description": "The group to render.",
+          "type": {
+            "type": "NameExpression",
+            "name": "any"
+          },
+          "name": "option"
+        },
+        {
+          "title": "returns",
+          "description": null,
+          "type": {
+            "type": "NameExpression",
+            "name": "ReactNode"
+          }
+        }
+      ]
+    },
+    "renderInput": {
+      "type": {
+        "name": "func"
+      },
+      "required": true,
+      "description": "Render the input.",
+      "tags": [
+        {
+          "title": "param",
+          "description": "The props for an Input component",
+          "type": {
+            "type": "NameExpression",
+            "name": "object"
+          },
+          "name": "params"
+        },
+        {
+          "title": "returns",
+          "description": null,
+          "type": {
+            "type": "NameExpression",
+            "name": "ReactNode"
+          }
+        }
+      ]
+    },
+    "renderOption": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Render the option, use `getOptionLabel` by default.",
+      "tags": [
+        {
+          "title": "param",
+          "description": "The option to render.",
+          "type": {
+            "type": "NameExpression",
+            "name": "T"
+          },
+          "name": "option"
+        },
+        {
+          "title": "param",
+          "description": "The state of the component.",
+          "type": {
+            "type": "NameExpression",
+            "name": "object"
+          },
+          "name": "state"
+        },
+        {
+          "title": "returns",
+          "description": null,
+          "type": {
+            "type": "NameExpression",
+            "name": "ReactNode"
+          }
+        }
+      ]
+    },
+    "renderTags": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Render the selected value.",
+      "tags": [
+        {
+          "title": "param",
+          "description": "The `value` provided to the component.",
+          "type": {
+            "type": "TypeApplication",
+            "expression": {
+              "type": "NameExpression",
+              "name": "Array"
+            },
+            "applications": [
+              {
+                "type": "NameExpression",
+                "name": "T"
+              }
+            ]
+          },
+          "name": "value"
+        },
+        {
+          "title": "param",
+          "description": "A tag props getter.",
+          "type": {
+            "type": "NameExpression",
+            "name": "function"
+          },
+          "name": "getTagProps"
+        },
+        {
+          "title": "returns",
+          "description": null,
+          "type": {
+            "type": "NameExpression",
+            "name": "ReactNode"
+          }
+        }
+      ]
+    },
+    "selectOnFocus": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the input's text will be selected on focus.\nIt helps the user clear the selected value.",
+      "defaultValue": {
+        "value": "!props.freeSolo",
+        "computed": false
+      },
+      "tags": []
+    },
+    "size": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'medium'",
+            "computed": false
+          },
+          {
+            "value": "'small'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "The size of the autocomplete.",
+      "defaultValue": {
+        "value": "'medium'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "value": {
+      "type": {
+        "name": "union",
+        "value": [
+          {
+            "name": "any"
+          },
+          {
+            "name": "array"
+          }
+        ]
+      },
+      "required": false,
+      "description": "The value of the autocomplete.\n\nThe value must have reference equality with the option in order to be selected.\nYou can customize the equality behavior with the `getOptionSelected` prop.",
+      "tags": []
+    }
+  },
+  "name": "Autocomplete",
+  "styles": {
+    "classes": [
+      "root",
+      "focused",
+      "tag",
+      "tagSizeSmall",
+      "hasPopupIcon",
+      "hasClearIcon",
+      "inputRoot",
+      "input",
+      "inputFocused",
+      "endAdornment",
+      "clearIndicator",
+      "clearIndicatorDirty",
+      "popupIndicator",
+      "popupIndicatorOpen",
+      "popper",
+      "popperDisablePortal",
+      "paper",
+      "listbox",
+      "loading",
+      "noOptions",
+      "option",
+      "groupLabel",
+      "groupUl"
+    ],
+    "name": "MuiAutocomplete",
+    "descriptions": {
+      "root": "Styles applied to the root element.",
+      "focused": "Pseudo-class applied to the root element if focused.",
+      "tag": "Styles applied to the tag elements, e.g. the chips.",
+      "tagSizeSmall": "Styles applied to the tag elements, e.g. the chips if `size=\"small\"`.",
+      "hasPopupIcon": "Styles applied when the popup icon is rendered.",
+      "hasClearIcon": "Styles applied when the clear icon is rendered.",
+      "inputRoot": "Styles applied to the Input element.",
+      "input": "Styles applied to the input element.",
+      "inputFocused": "Styles applied to the input element if tag focused.",
+      "endAdornment": "Styles applied to the endAdornment element.",
+      "clearIndicator": "Styles applied to the clear indicator.",
+      "clearIndicatorDirty": "Styles applied to the clear indicator if the input is dirty.",
+      "popupIndicator": "Styles applied to the popup indicator.",
+      "popupIndicatorOpen": "Styles applied to the popup indicator if the popup is open.",
+      "popper": "Styles applied to the popper element.",
+      "popperDisablePortal": "Styles applied to the popper element if `disablePortal={true}`.",
+      "paper": "Styles applied to the `Paper` component.",
+      "listbox": "Styles applied to the `listbox` component.",
+      "loading": "Styles applied to the loading wrapper.",
+      "noOptions": "Styles applied to the no option wrapper.",
+      "option": "Styles applied to the option elements.",
+      "groupLabel": "Styles applied to the group's label elements.",
+      "groupUl": "Styles applied to the group's ul elements.",
+      "const": "eslint-enable no-unused-vars"
+    },
+    "globalClasses": {
+      "root": "MuiAutocomplete-root",
+      "focused": "Mui-focused",
+      "tag": "MuiAutocomplete-tag",
+      "tagSizeSmall": "MuiAutocomplete-tagSizeSmall",
+      "hasPopupIcon": "MuiAutocomplete-hasPopupIcon",
+      "hasClearIcon": "MuiAutocomplete-hasClearIcon",
+      "inputRoot": "MuiAutocomplete-inputRoot",
+      "input": "MuiAutocomplete-input",
+      "inputFocused": "MuiAutocomplete-inputFocused",
+      "endAdornment": "MuiAutocomplete-endAdornment",
+      "clearIndicator": "MuiAutocomplete-clearIndicator",
+      "clearIndicatorDirty": "MuiAutocomplete-clearIndicatorDirty",
+      "popupIndicator": "MuiAutocomplete-popupIndicator",
+      "popupIndicatorOpen": "MuiAutocomplete-popupIndicatorOpen",
+      "popper": "MuiAutocomplete-popper",
+      "popperDisablePortal": "MuiAutocomplete-popperDisablePortal",
+      "paper": "MuiAutocomplete-paper",
+      "listbox": "MuiAutocomplete-listbox",
+      "loading": "MuiAutocomplete-loading",
+      "noOptions": "MuiAutocomplete-noOptions",
+      "option": "MuiAutocomplete-option",
+      "groupLabel": "MuiAutocomplete-groupLabel",
+      "groupUl": "MuiAutocomplete-groupUl"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui-lab/src/Autocomplete/Autocomplete.js",
+  "inheritance": null,
+  "usedInPages": [
+    "/components/autocomplete"
+  ]
+}

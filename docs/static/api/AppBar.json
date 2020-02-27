@@ -1,0 +1,143 @@
+{
+  "description": "",
+  "methods": [],
+  "props": {
+    "children": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The content of the component.",
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": false,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "color": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'default'",
+            "computed": false
+          },
+          {
+            "value": "'inherit'",
+            "computed": false
+          },
+          {
+            "value": "'primary'",
+            "computed": false
+          },
+          {
+            "value": "'secondary'",
+            "computed": false
+          },
+          {
+            "value": "'transparent'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "The color of the component. It supports those theme colors that make sense for this component.",
+      "defaultValue": {
+        "value": "'primary'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "position": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'absolute'",
+            "computed": false
+          },
+          {
+            "value": "'fixed'",
+            "computed": false
+          },
+          {
+            "value": "'relative'",
+            "computed": false
+          },
+          {
+            "value": "'static'",
+            "computed": false
+          },
+          {
+            "value": "'sticky'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "The positioning type. The behavior of the different options is described\n[in the MDN web docs](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Positioning).\nNote: `sticky` is not universally supported and will fall back to `static` when unavailable.",
+      "defaultValue": {
+        "value": "'fixed'",
+        "computed": false
+      },
+      "tags": []
+    }
+  },
+  "name": "AppBar",
+  "styles": {
+    "classes": [
+      "root",
+      "positionFixed",
+      "positionAbsolute",
+      "positionSticky",
+      "positionStatic",
+      "positionRelative",
+      "colorDefault",
+      "colorPrimary",
+      "colorSecondary",
+      "colorInherit",
+      "colorTransparent"
+    ],
+    "name": "MuiAppBar",
+    "descriptions": {
+      "root": "Styles applied to the root element.",
+      "positionFixed": "Styles applied to the root element if `position=\"fixed\"`.",
+      "positionAbsolute": "Styles applied to the root element if `position=\"absolute\"`.",
+      "positionSticky": "Styles applied to the root element if `position=\"sticky\"`.",
+      "positionStatic": "Styles applied to the root element if `position=\"static\"`.",
+      "positionRelative": "Styles applied to the root element if `position=\"relative\"`.",
+      "colorDefault": "Styles applied to the root element if `color=\"default\"`.",
+      "colorPrimary": "Styles applied to the root element if `color=\"primary\"`.",
+      "colorSecondary": "Styles applied to the root element if `color=\"secondary\"`.",
+      "colorInherit": "Styles applied to the root element if `color=\"inherit\"`.",
+      "colorTransparent": "Styles applied to the root element if `color=\"transparent\"`."
+    },
+    "globalClasses": {
+      "root": "MuiAppBar-root",
+      "positionFixed": "MuiAppBar-positionFixed",
+      "positionAbsolute": "MuiAppBar-positionAbsolute",
+      "positionSticky": "MuiAppBar-positionSticky",
+      "positionStatic": "MuiAppBar-positionStatic",
+      "positionRelative": "MuiAppBar-positionRelative",
+      "colorDefault": "MuiAppBar-colorDefault",
+      "colorPrimary": "MuiAppBar-colorPrimary",
+      "colorSecondary": "MuiAppBar-colorSecondary",
+      "colorInherit": "MuiAppBar-colorInherit",
+      "colorTransparent": "MuiAppBar-colorTransparent"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLElement",
+  "filename": "/packages/material-ui/src/AppBar/AppBar.js",
+  "inheritance": {
+    "component": "Paper",
+    "pathname": "/api/paper"
+  },
+  "usedInPages": [
+    "/components/app-bar"
+  ]
+}

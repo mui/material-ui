@@ -1,0 +1,128 @@
+{
+  "description": "",
+  "methods": [],
+  "props": {
+    "children": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "In most cases will simply be a string containing a title for the label.",
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": true,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "disabled": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "Mark the step as disabled, will also disable the button if\n`StepLabelButton` is a child of `StepLabel`. Is passed to child components.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "error": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "Mark the step as failed.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "icon": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "Override the default label of the step icon.",
+      "tags": []
+    },
+    "optional": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The optional node to display.",
+      "tags": []
+    },
+    "StepIconComponent": {
+      "type": {
+        "name": "elementType"
+      },
+      "required": false,
+      "description": "The component to render in place of the [`StepIcon`](/api/step-icon/).",
+      "tags": []
+    },
+    "StepIconProps": {
+      "type": {
+        "name": "object"
+      },
+      "required": false,
+      "description": "Props applied to the [`StepIcon`](/api/step-icon/) element.",
+      "tags": []
+    }
+  },
+  "name": "StepLabel",
+  "styles": {
+    "classes": [
+      "root",
+      "horizontal",
+      "vertical",
+      "label",
+      "active",
+      "completed",
+      "error",
+      "disabled",
+      "iconContainer",
+      "alternativeLabel",
+      "labelContainer"
+    ],
+    "name": "MuiStepLabel",
+    "descriptions": {
+      "root": "Styles applied to the root element.",
+      "horizontal": "Styles applied to the root element if `orientation=\"horizontal\".",
+      "vertical": "Styles applied to the root element if `orientation=\"vertical\".",
+      "label": "Styles applied to the `Typography` component which wraps `children`.",
+      "active": "Pseudo-class applied to the `Typography` component if `active={true}`.",
+      "completed": "Pseudo-class applied to the `Typography` component if `completed={true}`.",
+      "error": "Pseudo-class applied to the root element and `Typography` component if `error={true}`.",
+      "disabled": "Pseudo-class applied to the root element and `Typography` component if `disabled={true}`.",
+      "iconContainer": "Styles applied to the `icon` container element.",
+      "alternativeLabel": "Pseudo-class applied to the root and icon container and `Typography` if `alternativeLabel={true}`.",
+      "labelContainer": "Styles applied to the container element which wraps `Typography` and `optional`."
+    },
+    "globalClasses": {
+      "root": "MuiStepLabel-root",
+      "horizontal": "MuiStepLabel-horizontal",
+      "vertical": "MuiStepLabel-vertical",
+      "label": "MuiStepLabel-label",
+      "active": "MuiStepLabel-active",
+      "completed": "MuiStepLabel-completed",
+      "error": "Mui-error",
+      "disabled": "Mui-disabled",
+      "iconContainer": "MuiStepLabel-iconContainer",
+      "alternativeLabel": "MuiStepLabel-alternativeLabel",
+      "labelContainer": "MuiStepLabel-labelContainer"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLSpanElement",
+  "filename": "/packages/material-ui/src/StepLabel/StepLabel.js",
+  "inheritance": null,
+  "usedInPages": [
+    "/components/steppers"
+  ]
+}

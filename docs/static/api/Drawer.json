@@ -1,0 +1,235 @@
+{
+  "description": "The props of the [Modal](/api/modal/) component are available\nwhen `variant=\"temporary\"` is set.",
+  "methods": [],
+  "props": {
+    "anchor": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'left'",
+            "computed": false
+          },
+          {
+            "value": "'top'",
+            "computed": false
+          },
+          {
+            "value": "'right'",
+            "computed": false
+          },
+          {
+            "value": "'bottom'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "Side from which the drawer will appear.",
+      "defaultValue": {
+        "value": "'left'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "children": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The contents of the drawer.",
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": true,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "elevation": {
+      "type": {
+        "name": "number"
+      },
+      "required": false,
+      "description": "The elevation of the drawer.",
+      "defaultValue": {
+        "value": "16",
+        "computed": false
+      },
+      "tags": []
+    },
+    "ModalProps": {
+      "type": {
+        "name": "object"
+      },
+      "required": false,
+      "description": "Props applied to the [`Modal`](/api/modal/) element.",
+      "defaultValue": {
+        "value": "{}",
+        "computed": false
+      },
+      "tags": []
+    },
+    "onClose": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Callback fired when the component requests to be closed.",
+      "tags": [
+        {
+          "title": "param",
+          "description": "The event source of the callback.",
+          "type": {
+            "type": "NameExpression",
+            "name": "object"
+          },
+          "name": "event"
+        }
+      ]
+    },
+    "open": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the drawer is open.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "PaperProps": {
+      "type": {
+        "name": "object"
+      },
+      "required": false,
+      "description": "Props applied to the [`Paper`](/api/paper/) element.",
+      "defaultValue": {
+        "value": "{}",
+        "computed": false
+      },
+      "tags": []
+    },
+    "SlideProps": {
+      "type": {
+        "name": "object"
+      },
+      "required": false,
+      "description": "Props applied to the [`Slide`](/api/slide/) element.",
+      "tags": []
+    },
+    "transitionDuration": {
+      "type": {
+        "name": "union",
+        "value": [
+          {
+            "name": "number"
+          },
+          {
+            "name": "shape",
+            "value": {
+              "enter": {
+                "name": "number",
+                "required": false
+              },
+              "exit": {
+                "name": "number",
+                "required": false
+              }
+            }
+          }
+        ]
+      },
+      "required": false,
+      "description": "The duration for the transition, in milliseconds.\nYou may specify a single timeout for all transitions, or individually with an object.",
+      "defaultValue": {
+        "value": "{ enter: duration.enteringScreen, exit: duration.leavingScreen }",
+        "computed": false
+      },
+      "tags": []
+    },
+    "variant": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'permanent'",
+            "computed": false
+          },
+          {
+            "value": "'persistent'",
+            "computed": false
+          },
+          {
+            "value": "'temporary'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "The variant to use.",
+      "defaultValue": {
+        "value": "'temporary'",
+        "computed": false
+      },
+      "tags": []
+    }
+  },
+  "name": "Drawer",
+  "styles": {
+    "classes": [
+      "root",
+      "docked",
+      "paper",
+      "paperAnchorLeft",
+      "paperAnchorRight",
+      "paperAnchorTop",
+      "paperAnchorBottom",
+      "paperAnchorDockedLeft",
+      "paperAnchorDockedTop",
+      "paperAnchorDockedRight",
+      "paperAnchorDockedBottom",
+      "modal"
+    ],
+    "name": "MuiDrawer",
+    "descriptions": {
+      "root": "Styles applied to the root element.",
+      "docked": "Styles applied to the root element if `variant=\"permanent or persistent\"`.",
+      "paper": "Styles applied to the `Paper` component.",
+      "paperAnchorLeft": "Styles applied to the `Paper` component if `anchor=\"left\"`.",
+      "paperAnchorRight": "Styles applied to the `Paper` component if `anchor=\"right\"`.",
+      "paperAnchorTop": "Styles applied to the `Paper` component if `anchor=\"top\"`.",
+      "paperAnchorBottom": "Styles applied to the `Paper` component if `anchor=\"bottom\"`.",
+      "paperAnchorDockedLeft": "Styles applied to the `Paper` component if `anchor=\"left\"` and `variant` is not \"temporary\".",
+      "paperAnchorDockedTop": "Styles applied to the `Paper` component if `anchor=\"top\"` and `variant` is not \"temporary\".",
+      "paperAnchorDockedRight": "Styles applied to the `Paper` component if `anchor=\"right\"` and `variant` is not \"temporary\".",
+      "paperAnchorDockedBottom": "Styles applied to the `Paper` component if `anchor=\"bottom\"` and `variant` is not \"temporary\".",
+      "modal": "Styles applied to the `Modal` component."
+    },
+    "globalClasses": {
+      "root": "MuiDrawer-root",
+      "docked": "MuiDrawer-docked",
+      "paper": "MuiDrawer-paper",
+      "paperAnchorLeft": "MuiDrawer-paperAnchorLeft",
+      "paperAnchorRight": "MuiDrawer-paperAnchorRight",
+      "paperAnchorTop": "MuiDrawer-paperAnchorTop",
+      "paperAnchorBottom": "MuiDrawer-paperAnchorBottom",
+      "paperAnchorDockedLeft": "MuiDrawer-paperAnchorDockedLeft",
+      "paperAnchorDockedTop": "MuiDrawer-paperAnchorDockedTop",
+      "paperAnchorDockedRight": "MuiDrawer-paperAnchorDockedRight",
+      "paperAnchorDockedBottom": "MuiDrawer-paperAnchorDockedBottom",
+      "modal": "MuiDrawer-modal"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/Drawer/Drawer.js",
+  "inheritance": null,
+  "usedInPages": [
+    "/components/drawers"
+  ]
+}

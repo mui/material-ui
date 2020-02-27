@@ -1,0 +1,90 @@
+{
+  "description": "",
+  "methods": [],
+  "props": {
+    "active": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "Whether this step is active.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": true,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "completed": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "Mark the step as completed. Is passed to child components.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "error": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "Mark the step as failed.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "icon": {
+      "type": {
+        "name": "node"
+      },
+      "required": true,
+      "description": "The label displayed in the step icon.",
+      "tags": []
+    }
+  },
+  "name": "StepIcon",
+  "styles": {
+    "classes": [
+      "root",
+      "text",
+      "active",
+      "completed",
+      "error"
+    ],
+    "name": "MuiStepIcon",
+    "descriptions": {
+      "root": "Styles applied to the root element.",
+      "text": "Styles applied to the SVG text element.",
+      "active": "Pseudo-class applied to the root element if `active={true}`.",
+      "completed": "Pseudo-class applied to the root element if `completed={true}`.",
+      "error": "Pseudo-class applied to the root element if `error={true}`."
+    },
+    "globalClasses": {
+      "root": "MuiStepIcon-root",
+      "text": "MuiStepIcon-text",
+      "active": "MuiStepIcon-active",
+      "completed": "MuiStepIcon-completed",
+      "error": "Mui-error"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "SVGSVGElement",
+  "filename": "/packages/material-ui/src/StepIcon/StepIcon.js",
+  "inheritance": null,
+  "usedInPages": [
+    "/components/steppers"
+  ]
+}

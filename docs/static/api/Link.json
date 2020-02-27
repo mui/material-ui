@@ -1,0 +1,162 @@
+{
+  "description": "",
+  "methods": [],
+  "props": {
+    "children": {
+      "type": {
+        "name": "node"
+      },
+      "required": true,
+      "description": "The content of the link.",
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": true,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "color": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'default'",
+            "computed": false
+          },
+          {
+            "value": "'error'",
+            "computed": false
+          },
+          {
+            "value": "'inherit'",
+            "computed": false
+          },
+          {
+            "value": "'primary'",
+            "computed": false
+          },
+          {
+            "value": "'secondary'",
+            "computed": false
+          },
+          {
+            "value": "'textPrimary'",
+            "computed": false
+          },
+          {
+            "value": "'textSecondary'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "The color of the link.",
+      "defaultValue": {
+        "value": "'primary'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "component": {
+      "type": {
+        "name": "custom",
+        "raw": "elementTypeAcceptingRef"
+      },
+      "required": false,
+      "description": "The component used for the root node.\nEither a string to use a DOM element or a component.",
+      "defaultValue": {
+        "value": "'a'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "TypographyClasses": {
+      "type": {
+        "name": "object"
+      },
+      "required": false,
+      "description": "`classes` prop applied to the [`Typography`](/api/typography/) element.",
+      "tags": []
+    },
+    "underline": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'none'",
+            "computed": false
+          },
+          {
+            "value": "'hover'",
+            "computed": false
+          },
+          {
+            "value": "'always'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "Controls when the link should have an underline.",
+      "defaultValue": {
+        "value": "'hover'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "variant": {
+      "type": {
+        "name": "string"
+      },
+      "required": false,
+      "description": "Applies the theme typography styles.",
+      "defaultValue": {
+        "value": "'inherit'",
+        "computed": false
+      },
+      "tags": []
+    }
+  },
+  "name": "Link",
+  "styles": {
+    "classes": [
+      "root",
+      "underlineNone",
+      "underlineHover",
+      "underlineAlways",
+      "button",
+      "focusVisible"
+    ],
+    "name": "MuiLink",
+    "descriptions": {
+      "root": "Styles applied to the root element.",
+      "underlineNone": "Styles applied to the root element if `underline=\"none\"`.",
+      "underlineHover": "Styles applied to the root element if `underline=\"hover\"`.",
+      "underlineAlways": "Styles applied to the root element if `underline=\"always\"`.",
+      "button": "Styles applied to the root element if `component=\"button\"`.",
+      "focusVisible": "Pseudo-class applied to the root element if the link is keyboard focused."
+    },
+    "globalClasses": {
+      "root": "MuiLink-root",
+      "underlineNone": "MuiLink-underlineNone",
+      "underlineHover": "MuiLink-underlineHover",
+      "underlineAlways": "MuiLink-underlineAlways",
+      "button": "MuiLink-button",
+      "focusVisible": "Mui-focusVisible"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLAnchorElement",
+  "filename": "/packages/material-ui/src/Link/Link.js",
+  "inheritance": {
+    "component": "Typography",
+    "pathname": "/api/typography"
+  },
+  "usedInPages": [
+    "/components/breadcrumbs",
+    "/components/links"
+  ]
+}

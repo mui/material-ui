@@ -1,0 +1,65 @@
+{
+  "description": "",
+  "methods": [],
+  "props": {
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": false,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "icon": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The icon to display in the SpeedDial Floating Action Button.",
+      "tags": []
+    },
+    "openIcon": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The icon to display in the SpeedDial Floating Action Button when the SpeedDial is open.",
+      "tags": []
+    }
+  },
+  "name": "SpeedDialIcon",
+  "styles": {
+    "classes": [
+      "root",
+      "icon",
+      "iconOpen",
+      "iconWithOpenIconOpen",
+      "openIcon",
+      "openIconOpen"
+    ],
+    "name": "MuiSpeedDialIcon",
+    "descriptions": {
+      "root": "Styles applied to the root element.",
+      "icon": "Styles applied to the icon component.",
+      "iconOpen": "Styles applied to the icon component if `open={true}`.",
+      "iconWithOpenIconOpen": "Styles applied to the icon when and `openIcon` is provided and if `open={true}`.",
+      "openIcon": "Styles applied to the `openIcon` if provided.",
+      "openIconOpen": "Styles applied to the `openIcon` if provided and if `open={true}`."
+    },
+    "globalClasses": {
+      "root": "MuiSpeedDialIcon-root",
+      "icon": "MuiSpeedDialIcon-icon",
+      "iconOpen": "MuiSpeedDialIcon-iconOpen",
+      "iconWithOpenIconOpen": "MuiSpeedDialIcon-iconWithOpenIconOpen",
+      "openIcon": "MuiSpeedDialIcon-openIcon",
+      "openIconOpen": "MuiSpeedDialIcon-openIconOpen"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLSpanElement",
+  "filename": "/packages/material-ui-lab/src/SpeedDialIcon/SpeedDialIcon.js",
+  "inheritance": null,
+  "usedInPages": [
+    "/components/speed-dial"
+  ]
+}

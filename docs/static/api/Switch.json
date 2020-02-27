@@ -1,0 +1,252 @@
+{
+  "description": "",
+  "methods": [],
+  "props": {
+    "checked": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the component is checked.",
+      "tags": []
+    },
+    "checkedIcon": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The icon to display when the component is checked.",
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": true,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "color": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'primary'",
+            "computed": false
+          },
+          {
+            "value": "'secondary'",
+            "computed": false
+          },
+          {
+            "value": "'default'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "The color of the component. It supports those theme colors that make sense for this component.",
+      "defaultValue": {
+        "value": "'secondary'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "disabled": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the switch will be disabled.",
+      "tags": []
+    },
+    "disableRipple": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the ripple effect will be disabled.",
+      "tags": []
+    },
+    "edge": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'start'",
+            "computed": false
+          },
+          {
+            "value": "'end'",
+            "computed": false
+          },
+          {
+            "value": "false",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "If given, uses a negative margin to counteract the padding on one\nside (this is often helpful for aligning the left or right\nside of the icon with content above or below, without ruining the border\nsize and shape).",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "icon": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The icon to display when the component is unchecked.",
+      "tags": []
+    },
+    "id": {
+      "type": {
+        "name": "string"
+      },
+      "required": false,
+      "description": "The id of the `input` element.",
+      "tags": []
+    },
+    "inputProps": {
+      "type": {
+        "name": "object"
+      },
+      "required": false,
+      "description": "[Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.",
+      "tags": []
+    },
+    "inputRef": {
+      "type": {
+        "name": "custom",
+        "raw": "refType"
+      },
+      "required": false,
+      "description": "Pass a ref to the `input` element.",
+      "tags": []
+    },
+    "onChange": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Callback fired when the state is changed.",
+      "tags": [
+        {
+          "title": "param",
+          "description": "The event source of the callback.\nYou can pull out the new checked state by accessing `event.target.checked` (boolean).",
+          "type": {
+            "type": "NameExpression",
+            "name": "object"
+          },
+          "name": "event"
+        }
+      ]
+    },
+    "required": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the `input` element will be required.",
+      "tags": []
+    },
+    "size": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'small'",
+            "computed": false
+          },
+          {
+            "value": "'medium'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "The size of the switch.\n`small` is equivalent to the dense switch styling.",
+      "defaultValue": {
+        "value": "'medium'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "type": {
+      "type": {
+        "name": "string"
+      },
+      "required": false,
+      "description": "The input component prop `type`.",
+      "tags": []
+    },
+    "value": {
+      "type": {
+        "name": "any"
+      },
+      "required": false,
+      "description": "The value of the component. The DOM API casts this to a string.",
+      "tags": []
+    }
+  },
+  "name": "Switch",
+  "styles": {
+    "classes": [
+      "root",
+      "edgeStart",
+      "edgeEnd",
+      "switchBase",
+      "colorPrimary",
+      "colorSecondary",
+      "sizeSmall",
+      "checked",
+      "disabled",
+      "input",
+      "thumb",
+      "track"
+    ],
+    "name": "MuiSwitch",
+    "descriptions": {
+      "root": "Styles applied to the root element.",
+      "edgeStart": "Styles applied to the root element if `edge=\"start\"`.",
+      "edgeEnd": "Styles applied to the root element if `edge=\"end\"`.",
+      "switchBase": "Styles applied to the internal `SwitchBase` component's `root` class.",
+      "colorPrimary": "Styles applied to the internal SwitchBase component's root element if `color=\"primary\"`.",
+      "colorSecondary": "Styles applied to the internal SwitchBase component's root element if `color=\"secondary\"`.",
+      "sizeSmall": "Styles applied to the root element if `size=\"small\"`.",
+      "checked": "Pseudo-class applied to the internal `SwitchBase` component's `checked` class.",
+      "disabled": "Pseudo-class applied to the internal SwitchBase component's disabled class.",
+      "input": "Styles applied to the internal SwitchBase component's input element.",
+      "thumb": "Styles used to create the thumb passed to the internal `SwitchBase` component `icon` prop.",
+      "track": "Styles applied to the track element."
+    },
+    "globalClasses": {
+      "root": "MuiSwitch-root",
+      "edgeStart": "MuiSwitch-edgeStart",
+      "edgeEnd": "MuiSwitch-edgeEnd",
+      "switchBase": "MuiSwitch-switchBase",
+      "colorPrimary": "MuiSwitch-colorPrimary",
+      "colorSecondary": "MuiSwitch-colorSecondary",
+      "sizeSmall": "MuiSwitch-sizeSmall",
+      "checked": "Mui-checked",
+      "disabled": "Mui-disabled",
+      "input": "MuiSwitch-input",
+      "thumb": "MuiSwitch-thumb",
+      "track": "MuiSwitch-track"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLSpanElement",
+  "filename": "/packages/material-ui/src/Switch/Switch.js",
+  "inheritance": {
+    "component": "IconButton",
+    "pathname": "/api/icon-button"
+  },
+  "usedInPages": [
+    "/components/switches",
+    "/components/transfer-list"
+  ]
+}

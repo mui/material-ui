@@ -1,0 +1,70 @@
+{
+  "description": "",
+  "methods": [],
+  "props": {
+    "children": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "Can be a `StepLabel` or a node to place inside `StepLabel` as children.",
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": true,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "icon": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The icon displayed by the step label.",
+      "tags": []
+    },
+    "optional": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The optional node to display.",
+      "tags": []
+    }
+  },
+  "name": "StepButton",
+  "styles": {
+    "classes": [
+      "root",
+      "horizontal",
+      "vertical",
+      "touchRipple"
+    ],
+    "name": "MuiStepButton",
+    "descriptions": {
+      "root": "Styles applied to the root element.",
+      "horizontal": "Styles applied to the root element if `orientation=\"horizontal\"`.",
+      "vertical": "Styles applied to the root element if `orientation=\"vertical\"`.",
+      "touchRipple": "Styles applied to the `ButtonBase` touch-ripple."
+    },
+    "globalClasses": {
+      "root": "MuiStepButton-root",
+      "horizontal": "MuiStepButton-horizontal",
+      "vertical": "MuiStepButton-vertical",
+      "touchRipple": "MuiStepButton-touchRipple"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLButtonElement",
+  "filename": "/packages/material-ui/src/StepButton/StepButton.js",
+  "inheritance": {
+    "component": "ButtonBase",
+    "pathname": "/api/button-base"
+  },
+  "usedInPages": [
+    "/components/steppers"
+  ]
+}

@@ -1,0 +1,147 @@
+{
+  "description": "",
+  "methods": [],
+  "props": {
+    "children": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The name of the icon font ligature.",
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": true,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "color": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'inherit'",
+            "computed": false
+          },
+          {
+            "value": "'primary'",
+            "computed": false
+          },
+          {
+            "value": "'secondary'",
+            "computed": false
+          },
+          {
+            "value": "'action'",
+            "computed": false
+          },
+          {
+            "value": "'error'",
+            "computed": false
+          },
+          {
+            "value": "'disabled'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "The color of the component. It supports those theme colors that make sense for this component.",
+      "defaultValue": {
+        "value": "'inherit'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "component": {
+      "type": {
+        "name": "elementType"
+      },
+      "required": false,
+      "description": "The component used for the root node.\nEither a string to use a DOM element or a component.",
+      "defaultValue": {
+        "value": "'span'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "fontSize": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'inherit'",
+            "computed": false
+          },
+          {
+            "value": "'default'",
+            "computed": false
+          },
+          {
+            "value": "'small'",
+            "computed": false
+          },
+          {
+            "value": "'large'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size.",
+      "defaultValue": {
+        "value": "'default'",
+        "computed": false
+      },
+      "tags": []
+    }
+  },
+  "name": "Icon",
+  "styles": {
+    "classes": [
+      "root",
+      "colorPrimary",
+      "colorSecondary",
+      "colorAction",
+      "colorError",
+      "colorDisabled",
+      "fontSizeInherit",
+      "fontSizeSmall",
+      "fontSizeLarge"
+    ],
+    "name": "MuiIcon",
+    "descriptions": {
+      "root": "Styles applied to the root element.",
+      "colorPrimary": "Styles applied to the root element if `color=\"primary\"`.",
+      "colorSecondary": "Styles applied to the root element if `color=\"secondary\"`.",
+      "colorAction": "Styles applied to the root element if `color=\"action\"`.",
+      "colorError": "Styles applied to the root element if `color=\"error\"`.",
+      "colorDisabled": "Styles applied to the root element if `color=\"disabled\"`.",
+      "fontSizeInherit": "Styles applied to the root element if `fontSize=\"inherit\"`.",
+      "fontSizeSmall": "Styles applied to the root element if `fontSize=\"small\"`.",
+      "fontSizeLarge": "Styles applied to the root element if `fontSize=\"large\"`."
+    },
+    "globalClasses": {
+      "root": "MuiIcon-root",
+      "colorPrimary": "MuiIcon-colorPrimary",
+      "colorSecondary": "MuiIcon-colorSecondary",
+      "colorAction": "MuiIcon-colorAction",
+      "colorError": "MuiIcon-colorError",
+      "colorDisabled": "MuiIcon-colorDisabled",
+      "fontSizeInherit": "MuiIcon-fontSizeInherit",
+      "fontSizeSmall": "MuiIcon-fontSizeSmall",
+      "fontSizeLarge": "MuiIcon-fontSizeLarge"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLSpanElement",
+  "filename": "/packages/material-ui/src/Icon/Icon.js",
+  "inheritance": null,
+  "usedInPages": [
+    "/components/icons",
+    "/components/material-icons"
+  ]
+}

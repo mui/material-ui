@@ -1,0 +1,124 @@
+{
+  "description": "",
+  "methods": [],
+  "props": {
+    "children": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The content of the button.",
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": false,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "exclusive": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, only allow one of the child ToggleButton values to be selected.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "onChange": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Callback fired when the value changes.",
+      "tags": [
+        {
+          "title": "param",
+          "description": "The event source of the callback.",
+          "type": {
+            "type": "NameExpression",
+            "name": "object"
+          },
+          "name": "event"
+        },
+        {
+          "title": "param",
+          "description": "of the selected buttons. When `exclusive` is true\nthis is a single value; when false an array of selected values. If no value\nis selected and `exclusive` is true the value is null; when false an empty array.",
+          "type": {
+            "type": "NameExpression",
+            "name": "any"
+          },
+          "name": "value"
+        }
+      ]
+    },
+    "size": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'large'",
+            "computed": false
+          },
+          {
+            "value": "'medium'",
+            "computed": false
+          },
+          {
+            "value": "'small'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "The size of the buttons.",
+      "defaultValue": {
+        "value": "'medium'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "value": {
+      "type": {
+        "name": "any"
+      },
+      "required": false,
+      "description": "The currently selected value within the group or an array of selected\nvalues when `exclusive` is false.",
+      "tags": []
+    }
+  },
+  "name": "ToggleButtonGroup",
+  "styles": {
+    "classes": [
+      "root",
+      "grouped",
+      "groupedSizeSmall",
+      "groupedSizeLarge"
+    ],
+    "name": "MuiToggleButtonGroup",
+    "descriptions": {
+      "root": "Styles applied to the root element.",
+      "grouped": "Styles applied to the children.",
+      "groupedSizeSmall": "Styles applied to the children if `size=\"small\"`.",
+      "groupedSizeLarge": "Styles applied to the children if `size=\"large\"`."
+    },
+    "globalClasses": {
+      "root": "MuiToggleButtonGroup-root",
+      "grouped": "MuiToggleButtonGroup-grouped",
+      "groupedSizeSmall": "MuiToggleButtonGroup-groupedSizeSmall",
+      "groupedSizeLarge": "MuiToggleButtonGroup-groupedSizeLarge"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui-lab/src/ToggleButtonGroup/ToggleButtonGroup.js",
+  "inheritance": null,
+  "usedInPages": [
+    "/components/toggle-button"
+  ]
+}

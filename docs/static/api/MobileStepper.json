@@ -1,0 +1,154 @@
+{
+  "description": "",
+  "methods": [],
+  "props": {
+    "activeStep": {
+      "type": {
+        "name": "number"
+      },
+      "required": false,
+      "description": "Set the active step (zero based index).\nDefines which dot is highlighted when the variant is 'dots'.",
+      "defaultValue": {
+        "value": "0",
+        "computed": false
+      },
+      "tags": []
+    },
+    "backButton": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "A back button element. For instance, it can be a `Button` or an `IconButton`.",
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": true,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "LinearProgressProps": {
+      "type": {
+        "name": "object"
+      },
+      "required": false,
+      "description": "Props applied to the `LinearProgress` element.",
+      "tags": []
+    },
+    "nextButton": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "A next button element. For instance, it can be a `Button` or an `IconButton`.",
+      "tags": []
+    },
+    "position": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'bottom'",
+            "computed": false
+          },
+          {
+            "value": "'top'",
+            "computed": false
+          },
+          {
+            "value": "'static'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "Set the positioning type.",
+      "defaultValue": {
+        "value": "'bottom'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "steps": {
+      "type": {
+        "name": "number"
+      },
+      "required": true,
+      "description": "The total steps.",
+      "tags": []
+    },
+    "variant": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'text'",
+            "computed": false
+          },
+          {
+            "value": "'dots'",
+            "computed": false
+          },
+          {
+            "value": "'progress'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "The variant to use.",
+      "defaultValue": {
+        "value": "'dots'",
+        "computed": false
+      },
+      "tags": []
+    }
+  },
+  "name": "MobileStepper",
+  "styles": {
+    "classes": [
+      "root",
+      "positionBottom",
+      "positionTop",
+      "positionStatic",
+      "dots",
+      "dot",
+      "dotActive",
+      "progress"
+    ],
+    "name": "MuiMobileStepper",
+    "descriptions": {
+      "root": "Styles applied to the root element.",
+      "positionBottom": "Styles applied to the root element if `position=\"bottom\"`.",
+      "positionTop": "Styles applied to the root element if `position=\"top\"`.",
+      "positionStatic": "Styles applied to the root element if `position=\"static\"`.",
+      "dots": "Styles applied to the dots container if `variant=\"dots\"`.",
+      "dot": "Styles applied to each dot if `variant=\"dots\"`.",
+      "dotActive": "Styles applied to a dot if `variant=\"dots\"` and this is the active step.",
+      "progress": "Styles applied to the Linear Progress component if `variant=\"progress\"`."
+    },
+    "globalClasses": {
+      "root": "MuiMobileStepper-root",
+      "positionBottom": "MuiMobileStepper-positionBottom",
+      "positionTop": "MuiMobileStepper-positionTop",
+      "positionStatic": "MuiMobileStepper-positionStatic",
+      "dots": "MuiMobileStepper-dots",
+      "dot": "MuiMobileStepper-dot",
+      "dotActive": "MuiMobileStepper-dotActive",
+      "progress": "MuiMobileStepper-progress"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/MobileStepper/MobileStepper.js",
+  "inheritance": {
+    "component": "Paper",
+    "pathname": "/api/paper"
+  },
+  "usedInPages": [
+    "/components/steppers"
+  ]
+}

@@ -1,5 +1,5 @@
 import { readFileSync } from 'fs';
-import { writeJSON } from 'fs-extra';
+import { writeJSON, writeJson } from 'fs-extra';
 import path from 'path';
 import * as _ from 'lodash';
 import { defaultHandlers, parse as docgenParse } from 'react-docgen';
@@ -165,7 +165,7 @@ async function buildComponentApi(componentObject) {
 }
 
 async function run() {
-  const outputPath = path.resolve(__dirname, '../static/api.json');
+  const outputDir = path.resolve(__dirname, '../static/api');
   const pagesMarkdown = findPagesMarkdown().map(markdown => {
     const markdownSource = readFileSync(markdown.filename, 'utf8');
     return {
@@ -221,15 +221,11 @@ async function run() {
     }),
   );
 
-  const sortedComponentApis = {};
-  Object.keys(componentApis)
-    .sort()
-    .forEach(key => {
-      sortedComponentApis[key] = componentApis[key];
-    });
-
-  const muiApi = { components: sortedComponentApis };
-  await writeJSON(outputPath, muiApi, { spaces: 2 });
+  await Promise.all(
+    Object.values(componentApis).map(api => {
+      return writeJson(path.join(outputDir, `${api.name}.json`), api, { spaces: 2 });
+    }),
+  );
 }
 
 run().catch(error => {

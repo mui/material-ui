@@ -1,0 +1,34 @@
+{
+  "description": "⚠️⚠️⚠️\nIf you want the DOM element of a Material-UI component check out\n[FAQ: How can I access the DOM element?](/getting-started/faq/#how-can-i-access-the-dom-element)\nfirst.\n\nThis component uses `findDOMNode` which is deprecated in React.StrictMode.\n\nHelper component to allow attaching a ref to a\nwrapped element to access the underlying DOM element.\n\nIt's highly inspired by https://github.com/facebook/react/issues/11401#issuecomment-340543801.\nFor example:\n```jsx\nimport React from 'react';\nimport RootRef from '@material-ui/core/RootRef';\n\nfunction MyComponent() {\n  const domRef = React.useRef();\n\n  React.useEffect(() => {\n    console.log(domRef.current); // DOM node\n  }, []);\n\n  return (\n    <RootRef rootRef={domRef}>\n      <SomeChildComponent />\n    </RootRef>\n  );\n}\n```",
+  "displayName": "RootRef",
+  "methods": [],
+  "props": {
+    "children": {
+      "type": {
+        "name": "element"
+      },
+      "required": true,
+      "description": "The wrapped element.",
+      "tags": []
+    },
+    "rootRef": {
+      "type": {
+        "name": "custom",
+        "raw": "refType.isRequired"
+      },
+      "required": false,
+      "description": "A ref that points to the first DOM node of the wrapped element.",
+      "tags": []
+    }
+  },
+  "name": "RootRef",
+  "styles": {
+    "classes": [],
+    "name": null,
+    "descriptions": {}
+  },
+  "spread": false,
+  "filename": "/packages/material-ui/src/RootRef/RootRef.js",
+  "inheritance": null,
+  "usedInPages": []
+}

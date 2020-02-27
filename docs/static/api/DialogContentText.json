@@ -1,0 +1,45 @@
+{
+  "description": "",
+  "methods": [],
+  "props": {
+    "children": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The content of the component.",
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": true,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    }
+  },
+  "name": "DialogContentText",
+  "styles": {
+    "classes": [
+      "root"
+    ],
+    "name": "MuiDialogContentText",
+    "descriptions": {
+      "root": "Styles applied to the root element."
+    },
+    "globalClasses": {
+      "root": "MuiDialogContentText-root"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLParagraphElement",
+  "filename": "/packages/material-ui/src/DialogContentText/DialogContentText.js",
+  "inheritance": {
+    "component": "Typography",
+    "pathname": "/api/typography"
+  },
+  "usedInPages": [
+    "/components/dialogs"
+  ]
+}

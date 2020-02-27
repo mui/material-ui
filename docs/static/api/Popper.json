@@ -1,0 +1,208 @@
+{
+  "description": "Poppers rely on the 3rd party library [Popper.js](https://github.com/FezVrasta/popper.js) for positioning.",
+  "methods": [],
+  "props": {
+    "anchorEl": {
+      "type": {
+        "name": "chained",
+        "raw": "chainPropTypes(PropTypes.oneOfType([PropTypes.object, PropTypes.func]), props => {\n  if (props.open) {\n    const resolvedAnchorEl = getAnchorEl(props.anchorEl);\n    const containerWindow = ownerWindow(resolvedAnchorEl);\n\n    if (resolvedAnchorEl instanceof containerWindow.Element) {\n      const box = resolvedAnchorEl.getBoundingClientRect();\n\n      if (\n        process.env.NODE_ENV !== 'test' &&\n        box.top === 0 &&\n        box.left === 0 &&\n        box.right === 0 &&\n        box.bottom === 0\n      ) {\n        return new Error(\n          [\n            'Material-UI: the `anchorEl` prop provided to the component is invalid.',\n            'The anchor element should be part of the document layout.',\n            \"Make sure the element is present in the document or that it's not display none.\",\n          ].join('\\n'),\n        );\n      }\n    } else if (\n      !resolvedAnchorEl ||\n      typeof resolvedAnchorEl.clientWidth !== 'number' ||\n      typeof resolvedAnchorEl.clientHeight !== 'number' ||\n      typeof resolvedAnchorEl.getBoundingClientRect !== 'function'\n    ) {\n      return new Error(\n        [\n          'Material-UI: the `anchorEl` prop provided to the component is invalid.',\n          'It should be an HTML Element instance or a referenceObject:',\n          'https://popper.js.org/popper-documentation.html#referenceObject.',\n        ].join('\\n'),\n      );\n    }\n  }\n\n  return null;\n})",
+        "chained": {
+          "name": "union",
+          "value": [
+            {
+              "name": "object"
+            },
+            {
+              "name": "func"
+            }
+          ]
+        }
+      },
+      "required": false,
+      "description": "This is the reference element, or a function that returns the reference element,\nthat may be used to set the position of the popover.\nThe return value will passed as the reference object of the Popper\ninstance.\n\nThe reference element should be an HTML Element instance or a referenceObject:\nhttps://popper.js.org/popper-documentation.html#referenceObject.",
+      "tags": []
+    },
+    "children": {
+      "type": {
+        "name": "union",
+        "value": [
+          {
+            "name": "node"
+          },
+          {
+            "name": "func"
+          }
+        ]
+      },
+      "required": true,
+      "description": "Popper render function or node.",
+      "tags": []
+    },
+    "container": {
+      "type": {
+        "name": "union",
+        "value": [
+          {
+            "name": "object"
+          },
+          {
+            "name": "func"
+          }
+        ]
+      },
+      "required": false,
+      "description": "A node, component instance, or function that returns either.\nThe `container` will passed to the Modal component.\nBy default, it uses the body of the anchorEl's top-level document object,\nso it's simply `document.body` most of the time.",
+      "tags": []
+    },
+    "disablePortal": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "Disable the portal behavior.\nThe children stay within it's parent DOM hierarchy.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "keepMounted": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "Always keep the children in the DOM.\nThis prop can be useful in SEO situation or\nwhen you want to maximize the responsiveness of the Popper.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "modifiers": {
+      "type": {
+        "name": "object"
+      },
+      "required": false,
+      "description": "Popper.js is based on a \"plugin-like\" architecture,\nmost of its features are fully encapsulated \"modifiers\".\n\nA modifier is a function that is called each time Popper.js needs to\ncompute the position of the popper.\nFor this reason, modifiers should be very performant to avoid bottlenecks.\nTo learn how to create a modifier, [read the modifiers documentation](https://github.com/FezVrasta/popper.js/blob/master/docs/_includes/popper-documentation.md#modifiers--object).",
+      "tags": []
+    },
+    "open": {
+      "type": {
+        "name": "bool"
+      },
+      "required": true,
+      "description": "If `true`, the popper is visible.",
+      "tags": []
+    },
+    "placement": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'bottom-end'",
+            "computed": false
+          },
+          {
+            "value": "'bottom-start'",
+            "computed": false
+          },
+          {
+            "value": "'bottom'",
+            "computed": false
+          },
+          {
+            "value": "'left-end'",
+            "computed": false
+          },
+          {
+            "value": "'left-start'",
+            "computed": false
+          },
+          {
+            "value": "'left'",
+            "computed": false
+          },
+          {
+            "value": "'right-end'",
+            "computed": false
+          },
+          {
+            "value": "'right-start'",
+            "computed": false
+          },
+          {
+            "value": "'right'",
+            "computed": false
+          },
+          {
+            "value": "'top-end'",
+            "computed": false
+          },
+          {
+            "value": "'top-start'",
+            "computed": false
+          },
+          {
+            "value": "'top'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "Popper placement.",
+      "defaultValue": {
+        "value": "'bottom'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "popperOptions": {
+      "type": {
+        "name": "object"
+      },
+      "required": false,
+      "description": "Options provided to the [`popper.js`](https://github.com/FezVrasta/popper.js) instance.",
+      "defaultValue": {
+        "value": "{}",
+        "computed": false
+      },
+      "tags": []
+    },
+    "popperRef": {
+      "type": {
+        "name": "custom",
+        "raw": "refType"
+      },
+      "required": false,
+      "description": "A ref that points to the used popper instance.",
+      "tags": []
+    },
+    "transition": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "Help supporting a react-transition-group/Transition component.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    }
+  },
+  "name": "Popper",
+  "styles": {
+    "classes": [],
+    "name": null,
+    "descriptions": {}
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/Popper/Popper.js",
+  "inheritance": null,
+  "usedInPages": [
+    "/components/autocomplete",
+    "/components/menus",
+    "/components/popper"
+  ]
+}

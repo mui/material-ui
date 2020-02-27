@@ -1,0 +1,334 @@
+{
+  "description": "",
+  "methods": [],
+  "props": {
+    "autoWidth": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the width of the popover will automatically be set according to the items inside the\nmenu, otherwise it will be at least the width of the select input.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "children": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The option elements to populate the select with.\nCan be some `MenuItem` when `native` is false and `option` when `native` is true.\n\n⚠️The `MenuItem` elements **must** be direct descendants when `native` is false.",
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": true,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "defaultValue": {
+      "type": {
+        "name": "any"
+      },
+      "required": false,
+      "description": "The default element value. Use when the component is not controlled.",
+      "tags": []
+    },
+    "displayEmpty": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, a value is displayed even if no items are selected.\n\nIn order to display a meaningful value, a function should be passed to the `renderValue` prop which returns the value to be displayed when no items are selected.\nYou can only use it when the `native` prop is `false` (default).",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "IconComponent": {
+      "type": {
+        "name": "elementType"
+      },
+      "required": false,
+      "description": "The icon that displays the arrow.",
+      "defaultValue": {
+        "value": "ArrowDropDownIcon",
+        "computed": true
+      },
+      "tags": []
+    },
+    "input": {
+      "type": {
+        "name": "element"
+      },
+      "required": false,
+      "description": "An `Input` element; does not have to be a material-ui specific `Input`.",
+      "tags": []
+    },
+    "inputProps": {
+      "type": {
+        "name": "object"
+      },
+      "required": false,
+      "description": "[Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.\nWhen `native` is `true`, the attributes are applied on the `select` element.",
+      "tags": []
+    },
+    "label": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "See [OutlinedLabel#label](/api/outlined-input/#props)",
+      "tags": []
+    },
+    "labelId": {
+      "type": {
+        "name": "string"
+      },
+      "required": false,
+      "description": "The ID of an element that acts as an additional label. The Select will\nbe labelled by the additional label and the selected value.",
+      "tags": []
+    },
+    "labelWidth": {
+      "type": {
+        "name": "number"
+      },
+      "required": false,
+      "description": "See OutlinedLabel#label",
+      "defaultValue": {
+        "value": "0",
+        "computed": false
+      },
+      "tags": []
+    },
+    "MenuProps": {
+      "type": {
+        "name": "object"
+      },
+      "required": false,
+      "description": "Props applied to the [`Menu`](/api/menu/) element.",
+      "tags": []
+    },
+    "multiple": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, `value` must be an array and the menu will support multiple selections.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "native": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the component will be using a native `select` element.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "onChange": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Callback function fired when a menu item is selected.",
+      "tags": [
+        {
+          "title": "param",
+          "description": "The event source of the callback.\nYou can pull out the new value by accessing `event.target.value` (any).",
+          "type": {
+            "type": "NameExpression",
+            "name": "object"
+          },
+          "name": "event"
+        },
+        {
+          "title": "param",
+          "description": "The react element that was selected when `native` is `false` (default).",
+          "type": {
+            "type": "OptionalType",
+            "expression": {
+              "type": "NameExpression",
+              "name": "object"
+            }
+          },
+          "name": "child"
+        }
+      ]
+    },
+    "onClose": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Callback fired when the component requests to be closed.\nUse in controlled mode (see open).",
+      "tags": [
+        {
+          "title": "param",
+          "description": "The event source of the callback.",
+          "type": {
+            "type": "NameExpression",
+            "name": "object"
+          },
+          "name": "event"
+        }
+      ]
+    },
+    "onOpen": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Callback fired when the component requests to be opened.\nUse in controlled mode (see open).",
+      "tags": [
+        {
+          "title": "param",
+          "description": "The event source of the callback.",
+          "type": {
+            "type": "NameExpression",
+            "name": "object"
+          },
+          "name": "event"
+        }
+      ]
+    },
+    "open": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "Control `select` open state.\nYou can only use it when the `native` prop is `false` (default).",
+      "tags": []
+    },
+    "renderValue": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Render the selected value.\nYou can only use it when the `native` prop is `false` (default).",
+      "tags": [
+        {
+          "title": "param",
+          "description": "The `value` provided to the component.",
+          "type": {
+            "type": "NameExpression",
+            "name": "any"
+          },
+          "name": "value"
+        },
+        {
+          "title": "returns",
+          "description": null,
+          "type": {
+            "type": "NameExpression",
+            "name": "ReactNode"
+          }
+        }
+      ]
+    },
+    "SelectDisplayProps": {
+      "type": {
+        "name": "object"
+      },
+      "required": false,
+      "description": "Props applied to the clickable div element.",
+      "tags": []
+    },
+    "value": {
+      "type": {
+        "name": "any"
+      },
+      "required": false,
+      "description": "The input value. Providing an empty string will select no options.\nThis prop is required when the `native` prop is `false` (default).\nSet to an empty string `''` if you don't want any of the available options to be selected.\n\nIf the value is an object it must have reference equality with the option in order to be selected.\nIf the value is not an object, the string representation must match with the string representation of the option in order to be selected.",
+      "tags": []
+    },
+    "variant": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'standard'",
+            "computed": false
+          },
+          {
+            "value": "'outlined'",
+            "computed": false
+          },
+          {
+            "value": "'filled'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "The variant to use.",
+      "defaultValue": {
+        "value": "'standard'",
+        "computed": false
+      },
+      "tags": []
+    }
+  },
+  "name": "Select",
+  "styles": {
+    "classes": [
+      "root",
+      "select",
+      "filled",
+      "outlined",
+      "selectMenu",
+      "disabled",
+      "icon",
+      "iconOpen",
+      "iconFilled",
+      "iconOutlined"
+    ],
+    "name": "MuiSelect",
+    "descriptions": {
+      "root": "Styles applied to the select component `root` class.",
+      "select": "Styles applied to the select component `select` class.",
+      "filled": "Styles applied to the select component if `variant=\"filled\"`.",
+      "outlined": "Styles applied to the select component if `variant=\"outlined\"`.",
+      "selectMenu": "Styles applied to the select component `selectMenu` class.",
+      "disabled": "Pseudo-class applied to the select component `disabled` class.",
+      "icon": "Styles applied to the icon component.",
+      "iconOpen": "Styles applied to the icon component if the popup is open.",
+      "iconFilled": "Styles applied to the icon component if `variant=\"filled\"`.",
+      "iconOutlined": "Styles applied to the icon component if `variant=\"outlined\"`."
+    },
+    "globalClasses": {
+      "root": "MuiSelect-root",
+      "select": "MuiSelect-select",
+      "filled": "MuiSelect-filled",
+      "outlined": "MuiSelect-outlined",
+      "selectMenu": "MuiSelect-selectMenu",
+      "disabled": "Mui-disabled",
+      "icon": "MuiSelect-icon",
+      "iconOpen": "MuiSelect-iconOpen",
+      "iconFilled": "MuiSelect-iconFilled",
+      "iconOutlined": "MuiSelect-iconOutlined"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/Select/Select.js",
+  "inheritance": {
+    "component": "Input",
+    "pathname": "/api/input"
+  },
+  "usedInPages": [
+    "/components/selects"
+  ]
+}

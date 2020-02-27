@@ -1,0 +1,96 @@
+{
+  "description": "",
+  "methods": [],
+  "props": {
+    "children": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The content of the component.",
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": true,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "component": {
+      "type": {
+        "name": "elementType"
+      },
+      "required": false,
+      "description": "The component used for the root node.\nEither a string to use a DOM element or a component.",
+      "defaultValue": {
+        "value": "'ul'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "dense": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, compact vertical padding designed for keyboard and mouse input will be used for\nthe list and list items.\nThe prop is available to descendant components as the `dense` context.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "disablePadding": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, vertical padding will be removed from the list.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "subheader": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The content of the subheader, normally `ListSubheader`.",
+      "tags": []
+    }
+  },
+  "name": "List",
+  "styles": {
+    "classes": [
+      "root",
+      "padding",
+      "dense",
+      "subheader"
+    ],
+    "name": "MuiList",
+    "descriptions": {
+      "root": "Styles applied to the root element.",
+      "padding": "Styles applied to the root element if `disablePadding={false}`.",
+      "dense": "Styles applied to the root element if dense.",
+      "subheader": "Styles applied to the root element if a `subheader` is provided."
+    },
+    "globalClasses": {
+      "root": "MuiList-root",
+      "padding": "MuiList-padding",
+      "dense": "MuiList-dense",
+      "subheader": "MuiList-subheader"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLUListElement",
+  "filename": "/packages/material-ui/src/List/List.js",
+  "inheritance": null,
+  "usedInPages": [
+    "/components/lists",
+    "/components/transfer-list"
+  ]
+}

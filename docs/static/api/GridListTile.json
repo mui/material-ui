@@ -1,0 +1,87 @@
+{
+  "description": "",
+  "methods": [],
+  "props": {
+    "children": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "Theoretically you can pass any node as children, but the main use case is to pass an img,\nin which case GridListTile takes care of making the image \"cover\" available space\n(similar to `background-size: cover` or to `object-fit: cover`).",
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": true,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "cols": {
+      "type": {
+        "name": "number"
+      },
+      "required": false,
+      "description": "Width of the tile in number of grid cells.",
+      "defaultValue": {
+        "value": "1",
+        "computed": false
+      },
+      "tags": []
+    },
+    "component": {
+      "type": {
+        "name": "elementType"
+      },
+      "required": false,
+      "description": "The component used for the root node.\nEither a string to use a DOM element or a component.",
+      "defaultValue": {
+        "value": "'li'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "rows": {
+      "type": {
+        "name": "number"
+      },
+      "required": false,
+      "description": "Height of the tile in number of grid cells.",
+      "defaultValue": {
+        "value": "1",
+        "computed": false
+      },
+      "tags": []
+    }
+  },
+  "name": "GridListTile",
+  "styles": {
+    "classes": [
+      "root",
+      "tile",
+      "imgFullHeight",
+      "imgFullWidth"
+    ],
+    "name": "MuiGridListTile",
+    "descriptions": {
+      "root": "Styles applied to the root element.",
+      "tile": "Styles applied to the `div` element that wraps the children.",
+      "imgFullHeight": "Styles applied to an `img` element child, if needed to ensure it covers the tile.",
+      "imgFullWidth": "Styles applied to an `img` element child, if needed to ensure it covers the tile."
+    },
+    "globalClasses": {
+      "root": "MuiGridListTile-root",
+      "tile": "MuiGridListTile-tile",
+      "imgFullHeight": "MuiGridListTile-imgFullHeight",
+      "imgFullWidth": "MuiGridListTile-imgFullWidth"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLLIElement",
+  "filename": "/packages/material-ui/src/GridListTile/GridListTile.js",
+  "inheritance": null,
+  "usedInPages": [
+    "/components/grid-list"
+  ]
+}

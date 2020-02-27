@@ -1,0 +1,552 @@
+{
+  "description": "",
+  "methods": [],
+  "props": {
+    "aria-label": {
+      "type": {
+        "name": "chained",
+        "raw": "chainPropTypes(PropTypes.string, props => {\n  const range = Array.isArray(props.value || props.defaultValue);\n\n  if (range && props['aria-label'] != null) {\n    return new Error(\n      'Material-UI: you need to use the `getAriaLabel` prop instead of `aria-label` when using a range slider.',\n    );\n  }\n\n  return null;\n})",
+        "chained": {
+          "name": "string"
+        }
+      },
+      "required": false,
+      "description": "The label of the slider.",
+      "tags": []
+    },
+    "aria-labelledby": {
+      "type": {
+        "name": "string"
+      },
+      "required": false,
+      "description": "The id of the element containing a label for the slider.",
+      "tags": []
+    },
+    "aria-valuetext": {
+      "type": {
+        "name": "chained",
+        "raw": "chainPropTypes(PropTypes.string, props => {\n  const range = Array.isArray(props.value || props.defaultValue);\n\n  if (range && props['aria-valuetext'] != null) {\n    return new Error(\n      'Material-UI: you need to use the `getAriaValueText` prop instead of `aria-valuetext` when using a range slider.',\n    );\n  }\n\n  return null;\n})",
+        "chained": {
+          "name": "string"
+        }
+      },
+      "required": false,
+      "description": "A string value that provides a user-friendly name for the current value of the slider.",
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": true,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "color": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'primary'",
+            "computed": false
+          },
+          {
+            "value": "'secondary'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "The color of the component. It supports those theme colors that make sense for this component.",
+      "defaultValue": {
+        "value": "'primary'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "component": {
+      "type": {
+        "name": "elementType"
+      },
+      "required": false,
+      "description": "The component used for the root node.\nEither a string to use a DOM element or a component.",
+      "defaultValue": {
+        "value": "'span'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "defaultValue": {
+      "type": {
+        "name": "union",
+        "value": [
+          {
+            "name": "number"
+          },
+          {
+            "name": "arrayOf",
+            "value": {
+              "name": "number"
+            }
+          }
+        ]
+      },
+      "required": false,
+      "description": "The default element value. Use when the component is not controlled.",
+      "tags": []
+    },
+    "disabled": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the slider will be disabled.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "getAriaLabel": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Accepts a function which returns a string value that provides a user-friendly name for the thumb labels of the slider.",
+      "tags": [
+        {
+          "title": "param",
+          "description": "The thumb label's index to format.",
+          "type": {
+            "type": "NameExpression",
+            "name": "number"
+          },
+          "name": "index"
+        },
+        {
+          "title": "returns",
+          "description": null,
+          "type": {
+            "type": "NameExpression",
+            "name": "string"
+          }
+        }
+      ]
+    },
+    "getAriaValueText": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Accepts a function which returns a string value that provides a user-friendly name for the current value of the slider.",
+      "tags": [
+        {
+          "title": "param",
+          "description": "The thumb label's value to format.",
+          "type": {
+            "type": "NameExpression",
+            "name": "number"
+          },
+          "name": "value"
+        },
+        {
+          "title": "param",
+          "description": "The thumb label's index to format.",
+          "type": {
+            "type": "NameExpression",
+            "name": "number"
+          },
+          "name": "index"
+        },
+        {
+          "title": "returns",
+          "description": null,
+          "type": {
+            "type": "NameExpression",
+            "name": "string"
+          }
+        }
+      ]
+    },
+    "marks": {
+      "type": {
+        "name": "union",
+        "value": [
+          {
+            "name": "bool"
+          },
+          {
+            "name": "array"
+          }
+        ]
+      },
+      "required": false,
+      "description": "Marks indicate predetermined values to which the user can move the slider.\nIf `true` the marks will be spaced according the value of the `step` prop.\nIf an array, it should contain objects with `value` and an optional `label` keys.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "max": {
+      "type": {
+        "name": "number"
+      },
+      "required": false,
+      "description": "The maximum allowed value of the slider.\nShould not be equal to min.",
+      "defaultValue": {
+        "value": "100",
+        "computed": false
+      },
+      "tags": []
+    },
+    "min": {
+      "type": {
+        "name": "number"
+      },
+      "required": false,
+      "description": "The minimum allowed value of the slider.\nShould not be equal to max.",
+      "defaultValue": {
+        "value": "0",
+        "computed": false
+      },
+      "tags": []
+    },
+    "name": {
+      "type": {
+        "name": "string"
+      },
+      "required": false,
+      "description": "Name attribute of the hidden `input` element.",
+      "tags": []
+    },
+    "onChange": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Callback function that is fired when the slider's value changed.",
+      "tags": [
+        {
+          "title": "param",
+          "description": "The event source of the callback.",
+          "type": {
+            "type": "NameExpression",
+            "name": "object"
+          },
+          "name": "event"
+        },
+        {
+          "title": "param",
+          "description": "The new value.",
+          "type": {
+            "type": "UnionType",
+            "elements": [
+              {
+                "type": "NameExpression",
+                "name": "number"
+              },
+              {
+                "type": "TypeApplication",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "Array"
+                },
+                "applications": [
+                  {
+                    "type": "NameExpression",
+                    "name": "number"
+                  }
+                ]
+              }
+            ]
+          },
+          "name": "value"
+        }
+      ]
+    },
+    "onChangeCommitted": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Callback function that is fired when the `mouseup` is triggered.",
+      "tags": [
+        {
+          "title": "param",
+          "description": "The event source of the callback.",
+          "type": {
+            "type": "NameExpression",
+            "name": "object"
+          },
+          "name": "event"
+        },
+        {
+          "title": "param",
+          "description": "The new value.",
+          "type": {
+            "type": "UnionType",
+            "elements": [
+              {
+                "type": "NameExpression",
+                "name": "number"
+              },
+              {
+                "type": "TypeApplication",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "Array"
+                },
+                "applications": [
+                  {
+                    "type": "NameExpression",
+                    "name": "number"
+                  }
+                ]
+              }
+            ]
+          },
+          "name": "value"
+        }
+      ]
+    },
+    "orientation": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'horizontal'",
+            "computed": false
+          },
+          {
+            "value": "'vertical'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "The slider orientation.",
+      "defaultValue": {
+        "value": "'horizontal'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "scale": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "A transformation function, to change the scale of the slider.",
+      "defaultValue": {
+        "value": "x => x",
+        "computed": false
+      },
+      "tags": []
+    },
+    "step": {
+      "type": {
+        "name": "number"
+      },
+      "required": false,
+      "description": "The granularity with which the slider can step through values. (A \"discrete\" slider.)\nThe `min` prop serves as the origin for the valid values.\nWe recommend (max - min) to be evenly divisible by the step.\n\nWhen step is `null`, the thumb can only be slid onto marks provided with the `marks` prop.",
+      "defaultValue": {
+        "value": "1",
+        "computed": false
+      },
+      "tags": []
+    },
+    "ThumbComponent": {
+      "type": {
+        "name": "elementType"
+      },
+      "required": false,
+      "description": "The component used to display the value label.",
+      "defaultValue": {
+        "value": "'span'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "track": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'normal'",
+            "computed": false
+          },
+          {
+            "value": "false",
+            "computed": false
+          },
+          {
+            "value": "'inverted'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "The track presentation:\n\n- `normal` the track will render a bar representing the slider value.\n- `inverted` the track will render a bar representing the remaining slider value.\n- `false` the track will render without a bar.",
+      "defaultValue": {
+        "value": "'normal'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "value": {
+      "type": {
+        "name": "union",
+        "value": [
+          {
+            "name": "number"
+          },
+          {
+            "name": "arrayOf",
+            "value": {
+              "name": "number"
+            }
+          }
+        ]
+      },
+      "required": false,
+      "description": "The value of the slider.\nFor ranged sliders, provide an array with two values.",
+      "tags": []
+    },
+    "ValueLabelComponent": {
+      "type": {
+        "name": "elementType"
+      },
+      "required": false,
+      "description": "The value label component.",
+      "defaultValue": {
+        "value": "ValueLabel",
+        "computed": true
+      },
+      "tags": []
+    },
+    "valueLabelDisplay": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'on'",
+            "computed": false
+          },
+          {
+            "value": "'auto'",
+            "computed": false
+          },
+          {
+            "value": "'off'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "Controls when the value label is displayed:\n\n- `auto` the value label will display when the thumb is hovered or focused.\n- `on` will display persistently.\n- `off` will never display.",
+      "defaultValue": {
+        "value": "'off'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "valueLabelFormat": {
+      "type": {
+        "name": "union",
+        "value": [
+          {
+            "name": "string"
+          },
+          {
+            "name": "func"
+          }
+        ]
+      },
+      "required": false,
+      "description": "The format function the value label's value.\n\nWhen a function is provided, it should have the following signature:\n\n- {number} value The value label's value to format\n- {number} index The value label's index to format",
+      "defaultValue": {
+        "value": "x => x",
+        "computed": false
+      },
+      "tags": []
+    }
+  },
+  "name": "Slider",
+  "styles": {
+    "classes": [
+      "root",
+      "colorPrimary",
+      "colorSecondary",
+      "marked",
+      "vertical",
+      "disabled",
+      "rail",
+      "track",
+      "trackFalse",
+      "trackInverted",
+      "thumb",
+      "thumbColorPrimary",
+      "thumbColorSecondary",
+      "active",
+      "focusVisible",
+      "valueLabel",
+      "mark",
+      "markActive",
+      "markLabel",
+      "markLabelActive"
+    ],
+    "name": "MuiSlider",
+    "descriptions": {
+      "root": "Styles applied to the root element.",
+      "colorPrimary": "Styles applied to the root element if `color=\"primary\"`.",
+      "colorSecondary": "Styles applied to the root element if `color=\"secondary\"`.",
+      "marked": "Styles applied to the root element if `marks` is provided with at least one label.",
+      "vertical": "Pseudo-class applied to the root element if `orientation=\"vertical\"`.",
+      "disabled": "Pseudo-class applied to the root and thumb element if `disabled={true}`.",
+      "rail": "Styles applied to the rail element.",
+      "track": "Styles applied to the track element.",
+      "trackFalse": "Styles applied to the track element if `track={false}`.",
+      "trackInverted": "Styles applied to the track element if `track=\"inverted\"`.",
+      "thumb": "Styles applied to the thumb element.",
+      "thumbColorPrimary": "Styles applied to the thumb element if `color=\"primary\"`.",
+      "thumbColorSecondary": "Styles applied to the thumb element if `color=\"secondary\"`.",
+      "active": "Pseudo-class applied to the thumb element if it's active.",
+      "focusVisible": "Pseudo-class applied to the thumb element if keyboard focused.",
+      "valueLabel": "Styles applied to the thumb label element.",
+      "mark": "Styles applied to the mark element.",
+      "markActive": "Styles applied to the mark element if active (depending on the value).",
+      "markLabel": "Styles applied to the mark label element.",
+      "markLabelActive": "Styles applied to the mark label element if active (depending on the value)."
+    },
+    "globalClasses": {
+      "root": "MuiSlider-root",
+      "colorPrimary": "MuiSlider-colorPrimary",
+      "colorSecondary": "MuiSlider-colorSecondary",
+      "marked": "MuiSlider-marked",
+      "vertical": "MuiSlider-vertical",
+      "disabled": "Mui-disabled",
+      "rail": "MuiSlider-rail",
+      "track": "MuiSlider-track",
+      "trackFalse": "MuiSlider-trackFalse",
+      "trackInverted": "MuiSlider-trackInverted",
+      "thumb": "MuiSlider-thumb",
+      "thumbColorPrimary": "MuiSlider-thumbColorPrimary",
+      "thumbColorSecondary": "MuiSlider-thumbColorSecondary",
+      "active": "MuiSlider-active",
+      "focusVisible": "Mui-focusVisible",
+      "valueLabel": "MuiSlider-valueLabel",
+      "mark": "MuiSlider-mark",
+      "markActive": "MuiSlider-markActive",
+      "markLabel": "MuiSlider-markLabel",
+      "markLabelActive": "MuiSlider-markLabelActive"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLSpanElement",
+  "filename": "/packages/material-ui/src/Slider/Slider.js",
+  "inheritance": null,
+  "usedInPages": [
+    "/components/slider"
+  ]
+}

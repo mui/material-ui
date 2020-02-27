@@ -1,0 +1,57 @@
+{
+  "description": "",
+  "methods": [],
+  "props": {
+    "children": {
+      "type": {
+        "name": "node"
+      },
+      "required": true,
+      "description": "The content of the component.",
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": true,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "disableSpacing": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the actions do not have additional margin.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    }
+  },
+  "name": "ExpansionPanelActions",
+  "styles": {
+    "classes": [
+      "root",
+      "spacing"
+    ],
+    "name": "MuiExpansionPanelActions",
+    "descriptions": {
+      "root": "Styles applied to the root element.",
+      "spacing": "Styles applied to the root element if `disableSpacing={false}`."
+    },
+    "globalClasses": {
+      "root": "MuiExpansionPanelActions-root",
+      "spacing": "MuiExpansionPanelActions-spacing"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/ExpansionPanelActions/ExpansionPanelActions.js",
+  "inheritance": null,
+  "usedInPages": [
+    "/components/expansion-panels"
+  ]
+}

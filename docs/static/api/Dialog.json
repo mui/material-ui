@@ -1,0 +1,384 @@
+{
+  "description": "Dialogs are overlaid modal paper based components with a backdrop.",
+  "methods": [],
+  "props": {
+    "aria-describedby": {
+      "type": {
+        "name": "string"
+      },
+      "required": false,
+      "description": "The id(s) of the element(s) that describe the dialog.",
+      "tags": []
+    },
+    "aria-labelledby": {
+      "type": {
+        "name": "string"
+      },
+      "required": false,
+      "description": "The id(s) of the element(s) that label the dialog.",
+      "tags": []
+    },
+    "children": {
+      "type": {
+        "name": "node"
+      },
+      "required": true,
+      "description": "Dialog children, usually the included sub-components.",
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": true,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "disableBackdropClick": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, clicking the backdrop will not fire the `onClose` callback.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "disableEscapeKeyDown": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, hitting escape will not fire the `onClose` callback.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "fullScreen": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the dialog will be full-screen",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "fullWidth": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the dialog stretches to `maxWidth`.\n\nNotice that the dialog width grow is limited by the default margin.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "maxWidth": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'xs'",
+            "computed": false
+          },
+          {
+            "value": "'sm'",
+            "computed": false
+          },
+          {
+            "value": "'md'",
+            "computed": false
+          },
+          {
+            "value": "'lg'",
+            "computed": false
+          },
+          {
+            "value": "'xl'",
+            "computed": false
+          },
+          {
+            "value": "false",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "Determine the max-width of the dialog.\nThe dialog width grows with the size of the screen.\nSet to `false` to disable `maxWidth`.",
+      "defaultValue": {
+        "value": "'sm'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "onBackdropClick": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Callback fired when the backdrop is clicked.",
+      "tags": []
+    },
+    "onClose": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Callback fired when the component requests to be closed.",
+      "tags": [
+        {
+          "title": "param",
+          "description": "The event source of the callback.",
+          "type": {
+            "type": "NameExpression",
+            "name": "object"
+          },
+          "name": "event"
+        },
+        {
+          "title": "param",
+          "description": "Can be: `\"escapeKeyDown\"`, `\"backdropClick\"`.",
+          "type": {
+            "type": "NameExpression",
+            "name": "string"
+          },
+          "name": "reason"
+        }
+      ]
+    },
+    "onEnter": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Callback fired before the dialog enters.",
+      "tags": []
+    },
+    "onEntered": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Callback fired when the dialog has entered.",
+      "tags": []
+    },
+    "onEntering": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Callback fired when the dialog is entering.",
+      "tags": []
+    },
+    "onEscapeKeyDown": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Callback fired when the escape key is pressed,\n`disableKeyboard` is false and the modal is in focus.",
+      "tags": []
+    },
+    "onExit": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Callback fired before the dialog exits.",
+      "tags": []
+    },
+    "onExited": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Callback fired when the dialog has exited.",
+      "tags": []
+    },
+    "onExiting": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Callback fired when the dialog is exiting.",
+      "tags": []
+    },
+    "open": {
+      "type": {
+        "name": "bool"
+      },
+      "required": true,
+      "description": "If `true`, the Dialog is open.",
+      "tags": []
+    },
+    "PaperComponent": {
+      "type": {
+        "name": "elementType"
+      },
+      "required": false,
+      "description": "The component used to render the body of the dialog.",
+      "defaultValue": {
+        "value": "Paper",
+        "computed": true
+      },
+      "tags": []
+    },
+    "PaperProps": {
+      "type": {
+        "name": "object"
+      },
+      "required": false,
+      "description": "Props applied to the [`Paper`](/api/paper/) element.",
+      "defaultValue": {
+        "value": "{}",
+        "computed": false
+      },
+      "tags": []
+    },
+    "scroll": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'body'",
+            "computed": false
+          },
+          {
+            "value": "'paper'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "Determine the container for scrolling the dialog.",
+      "defaultValue": {
+        "value": "'paper'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "TransitionComponent": {
+      "type": {
+        "name": "elementType"
+      },
+      "required": false,
+      "description": "The component used for the transition.\n[Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.",
+      "defaultValue": {
+        "value": "Fade",
+        "computed": true
+      },
+      "tags": []
+    },
+    "transitionDuration": {
+      "type": {
+        "name": "union",
+        "value": [
+          {
+            "name": "number"
+          },
+          {
+            "name": "shape",
+            "value": {
+              "enter": {
+                "name": "number",
+                "required": false
+              },
+              "exit": {
+                "name": "number",
+                "required": false
+              }
+            }
+          }
+        ]
+      },
+      "required": false,
+      "description": "The duration for the transition, in milliseconds.\nYou may specify a single timeout for all transitions, or individually with an object.",
+      "defaultValue": {
+        "value": "{ enter: duration.enteringScreen, exit: duration.leavingScreen }",
+        "computed": false
+      },
+      "tags": []
+    },
+    "TransitionProps": {
+      "type": {
+        "name": "object"
+      },
+      "required": false,
+      "description": "Props applied to the [`Transition`](http://reactcommunity.org/react-transition-group/transition#Transition-props) element.",
+      "tags": []
+    }
+  },
+  "name": "Dialog",
+  "styles": {
+    "classes": [
+      "root",
+      "scrollPaper",
+      "scrollBody",
+      "container",
+      "paper",
+      "paperScrollPaper",
+      "paperScrollBody",
+      "paperWidthFalse",
+      "paperWidthXs",
+      "paperWidthSm",
+      "paperWidthMd",
+      "paperWidthLg",
+      "paperWidthXl",
+      "paperFullWidth",
+      "paperFullScreen"
+    ],
+    "name": "MuiDialog",
+    "descriptions": {
+      "root": "Styles applied to the root element.",
+      "scrollPaper": "Styles applied to the container element if `scroll=\"paper\"`.",
+      "scrollBody": "Styles applied to the container element if `scroll=\"body\"`.",
+      "container": "Styles applied to the container element.",
+      "paper": "Styles applied to the `Paper` component.",
+      "paperScrollPaper": "Styles applied to the `Paper` component if `scroll=\"paper\"`.",
+      "paperScrollBody": "Styles applied to the `Paper` component if `scroll=\"body\"`.",
+      "paperWidthFalse": "Styles applied to the `Paper` component if `maxWidth=false`.",
+      "paperWidthXs": "Styles applied to the `Paper` component if `maxWidth=\"xs\"`.",
+      "paperWidthSm": "Styles applied to the `Paper` component if `maxWidth=\"sm\"`.",
+      "paperWidthMd": "Styles applied to the `Paper` component if `maxWidth=\"md\"`.",
+      "paperWidthLg": "Styles applied to the `Paper` component if `maxWidth=\"lg\"`.",
+      "paperWidthXl": "Styles applied to the `Paper` component if `maxWidth=\"xl\"`.",
+      "paperFullWidth": "Styles applied to the `Paper` component if `fullWidth={true}`.",
+      "paperFullScreen": "Styles applied to the `Paper` component if `fullScreen={true}`."
+    },
+    "globalClasses": {
+      "root": "MuiDialog-root",
+      "scrollPaper": "MuiDialog-scrollPaper",
+      "scrollBody": "MuiDialog-scrollBody",
+      "container": "MuiDialog-container",
+      "paper": "MuiDialog-paper",
+      "paperScrollPaper": "MuiDialog-paperScrollPaper",
+      "paperScrollBody": "MuiDialog-paperScrollBody",
+      "paperWidthFalse": "MuiDialog-paperWidthFalse",
+      "paperWidthXs": "MuiDialog-paperWidthXs",
+      "paperWidthSm": "MuiDialog-paperWidthSm",
+      "paperWidthMd": "MuiDialog-paperWidthMd",
+      "paperWidthLg": "MuiDialog-paperWidthLg",
+      "paperWidthXl": "MuiDialog-paperWidthXl",
+      "paperFullWidth": "MuiDialog-paperFullWidth",
+      "paperFullScreen": "MuiDialog-paperFullScreen"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/Dialog/Dialog.js",
+  "inheritance": {
+    "component": "Modal",
+    "pathname": "/api/modal"
+  },
+  "usedInPages": [
+    "/components/dialogs"
+  ]
+}

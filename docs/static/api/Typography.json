@@ -1,0 +1,362 @@
+{
+  "description": "",
+  "methods": [],
+  "props": {
+    "align": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'inherit'",
+            "computed": false
+          },
+          {
+            "value": "'left'",
+            "computed": false
+          },
+          {
+            "value": "'center'",
+            "computed": false
+          },
+          {
+            "value": "'right'",
+            "computed": false
+          },
+          {
+            "value": "'justify'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "Set the text-align on the component.",
+      "defaultValue": {
+        "value": "'inherit'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "children": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The content of the component.",
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": true,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "color": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'initial'",
+            "computed": false
+          },
+          {
+            "value": "'inherit'",
+            "computed": false
+          },
+          {
+            "value": "'primary'",
+            "computed": false
+          },
+          {
+            "value": "'secondary'",
+            "computed": false
+          },
+          {
+            "value": "'textPrimary'",
+            "computed": false
+          },
+          {
+            "value": "'textSecondary'",
+            "computed": false
+          },
+          {
+            "value": "'error'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "The color of the component. It supports those theme colors that make sense for this component.",
+      "defaultValue": {
+        "value": "'initial'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "component": {
+      "type": {
+        "name": "elementType"
+      },
+      "required": false,
+      "description": "The component used for the root node.\nEither a string to use a DOM element or a component.\nOverrides the behavior of the `variantMapping` prop.",
+      "tags": []
+    },
+    "display": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'initial'",
+            "computed": false
+          },
+          {
+            "value": "'block'",
+            "computed": false
+          },
+          {
+            "value": "'inline'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "Controls the display type",
+      "defaultValue": {
+        "value": "'initial'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "gutterBottom": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the text will have a bottom margin.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "noWrap": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the text will not wrap, but instead will truncate with a text overflow ellipsis.\n\nNote that text overflow can only happen with block or inline-block level elements\n(the element needs to have a width in order to overflow).",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "paragraph": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the text will have a bottom margin.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "variant": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'h1'",
+            "computed": false
+          },
+          {
+            "value": "'h2'",
+            "computed": false
+          },
+          {
+            "value": "'h3'",
+            "computed": false
+          },
+          {
+            "value": "'h4'",
+            "computed": false
+          },
+          {
+            "value": "'h5'",
+            "computed": false
+          },
+          {
+            "value": "'h6'",
+            "computed": false
+          },
+          {
+            "value": "'subtitle1'",
+            "computed": false
+          },
+          {
+            "value": "'subtitle2'",
+            "computed": false
+          },
+          {
+            "value": "'body1'",
+            "computed": false
+          },
+          {
+            "value": "'body2'",
+            "computed": false
+          },
+          {
+            "value": "'caption'",
+            "computed": false
+          },
+          {
+            "value": "'button'",
+            "computed": false
+          },
+          {
+            "value": "'overline'",
+            "computed": false
+          },
+          {
+            "value": "'srOnly'",
+            "computed": false
+          },
+          {
+            "value": "'inherit'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "Applies the theme typography styles.",
+      "defaultValue": {
+        "value": "'body1'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "variantMapping": {
+      "type": {
+        "name": "object"
+      },
+      "required": false,
+      "description": "The component maps the variant prop to a range of different DOM element types.\nFor instance, subtitle1 to `<h6>`.\nIf you wish to change that mapping, you can provide your own.\nAlternatively, you can use the `component` prop.",
+      "defaultValue": {
+        "value": "{\n  h1: 'h1',\n  h2: 'h2',\n  h3: 'h3',\n  h4: 'h4',\n  h5: 'h5',\n  h6: 'h6',\n  subtitle1: 'h6',\n  subtitle2: 'h6',\n  body1: 'p',\n  body2: 'p',\n}",
+        "computed": false
+      },
+      "tags": []
+    }
+  },
+  "name": "Typography",
+  "styles": {
+    "classes": [
+      "root",
+      "body2",
+      "body1",
+      "caption",
+      "button",
+      "h1",
+      "h2",
+      "h3",
+      "h4",
+      "h5",
+      "h6",
+      "subtitle1",
+      "subtitle2",
+      "overline",
+      "srOnly",
+      "alignLeft",
+      "alignCenter",
+      "alignRight",
+      "alignJustify",
+      "noWrap",
+      "gutterBottom",
+      "paragraph",
+      "colorInherit",
+      "colorPrimary",
+      "colorSecondary",
+      "colorTextPrimary",
+      "colorTextSecondary",
+      "colorError",
+      "displayInline",
+      "displayBlock"
+    ],
+    "name": "MuiTypography",
+    "descriptions": {
+      "root": "Styles applied to the root element.",
+      "body2": "Styles applied to the root element if `variant=\"body2\"`.",
+      "body1": "Styles applied to the root element if `variant=\"body1\"`.",
+      "caption": "Styles applied to the root element if `variant=\"caption\"`.",
+      "button": "Styles applied to the root element if `variant=\"button\"`.",
+      "h1": "Styles applied to the root element if `variant=\"h1\"`.",
+      "h2": "Styles applied to the root element if `variant=\"h2\"`.",
+      "h3": "Styles applied to the root element if `variant=\"h3\"`.",
+      "h4": "Styles applied to the root element if `variant=\"h4\"`.",
+      "h5": "Styles applied to the root element if `variant=\"h5\"`.",
+      "h6": "Styles applied to the root element if `variant=\"h6\"`.",
+      "subtitle1": "Styles applied to the root element if `variant=\"subtitle1\"`.",
+      "subtitle2": "Styles applied to the root element if `variant=\"subtitle2\"`.",
+      "overline": "Styles applied to the root element if `variant=\"overline\"`.",
+      "srOnly": "Styles applied to the root element if `variant=\"srOnly\"`. Only accessible to screen readers.",
+      "alignLeft": "Styles applied to the root element if `align=\"left\"`.",
+      "alignCenter": "Styles applied to the root element if `align=\"center\"`.",
+      "alignRight": "Styles applied to the root element if `align=\"right\"`.",
+      "alignJustify": "Styles applied to the root element if `align=\"justify\"`.",
+      "noWrap": "Styles applied to the root element if `nowrap={true}`.",
+      "gutterBottom": "Styles applied to the root element if `gutterBottom={true}`.",
+      "paragraph": "Styles applied to the root element if `paragraph={true}`.",
+      "colorInherit": "Styles applied to the root element if `color=\"inherit\"`.",
+      "colorPrimary": "Styles applied to the root element if `color=\"primary\"`.",
+      "colorSecondary": "Styles applied to the root element if `color=\"secondary\"`.",
+      "colorTextPrimary": "Styles applied to the root element if `color=\"textPrimary\"`.",
+      "colorTextSecondary": "Styles applied to the root element if `color=\"textSecondary\"`.",
+      "colorError": "Styles applied to the root element if `color=\"error\"`.",
+      "displayInline": "Styles applied to the root element if `display=\"inline\"`.",
+      "displayBlock": "Styles applied to the root element if `display=\"block\"`."
+    },
+    "globalClasses": {
+      "root": "MuiTypography-root",
+      "body2": "MuiTypography-body2",
+      "body1": "MuiTypography-body1",
+      "caption": "MuiTypography-caption",
+      "button": "MuiTypography-button",
+      "h1": "MuiTypography-h1",
+      "h2": "MuiTypography-h2",
+      "h3": "MuiTypography-h3",
+      "h4": "MuiTypography-h4",
+      "h5": "MuiTypography-h5",
+      "h6": "MuiTypography-h6",
+      "subtitle1": "MuiTypography-subtitle1",
+      "subtitle2": "MuiTypography-subtitle2",
+      "overline": "MuiTypography-overline",
+      "srOnly": "MuiTypography-srOnly",
+      "alignLeft": "MuiTypography-alignLeft",
+      "alignCenter": "MuiTypography-alignCenter",
+      "alignRight": "MuiTypography-alignRight",
+      "alignJustify": "MuiTypography-alignJustify",
+      "noWrap": "MuiTypography-noWrap",
+      "gutterBottom": "MuiTypography-gutterBottom",
+      "paragraph": "MuiTypography-paragraph",
+      "colorInherit": "MuiTypography-colorInherit",
+      "colorPrimary": "MuiTypography-colorPrimary",
+      "colorSecondary": "MuiTypography-colorSecondary",
+      "colorTextPrimary": "MuiTypography-colorTextPrimary",
+      "colorTextSecondary": "MuiTypography-colorTextSecondary",
+      "colorError": "MuiTypography-colorError",
+      "displayInline": "MuiTypography-displayInline",
+      "displayBlock": "MuiTypography-displayBlock"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLParagraphElement",
+  "filename": "/packages/material-ui/src/Typography/Typography.js",
+  "inheritance": null,
+  "usedInPages": [
+    "/components/breadcrumbs",
+    "/components/typography"
+  ]
+}

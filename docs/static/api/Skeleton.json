@@ -1,0 +1,145 @@
+{
+  "description": "",
+  "methods": [],
+  "props": {
+    "animation": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'pulse'",
+            "computed": false
+          },
+          {
+            "value": "'wave'",
+            "computed": false
+          },
+          {
+            "value": "false",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "The animation.\nIf `false` the animation effect is disabled.",
+      "defaultValue": {
+        "value": "'pulse'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": true,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "component": {
+      "type": {
+        "name": "elementType"
+      },
+      "required": false,
+      "description": "The component used for the root node.\nEither a string to use a DOM element or a component.",
+      "defaultValue": {
+        "value": "'span'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "height": {
+      "type": {
+        "name": "union",
+        "value": [
+          {
+            "name": "number"
+          },
+          {
+            "name": "string"
+          }
+        ]
+      },
+      "required": false,
+      "description": "Height of the skeleton.\nUseful when you don't want to adapt the skeleton to a text element but for instance a card.",
+      "tags": []
+    },
+    "variant": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'text'",
+            "computed": false
+          },
+          {
+            "value": "'rect'",
+            "computed": false
+          },
+          {
+            "value": "'circle'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "The type of content that will be rendered.",
+      "defaultValue": {
+        "value": "'text'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "width": {
+      "type": {
+        "name": "union",
+        "value": [
+          {
+            "name": "number"
+          },
+          {
+            "name": "string"
+          }
+        ]
+      },
+      "required": false,
+      "description": "Width of the skeleton.\nUseful when the skeleton is inside an inline element with no width of its own.",
+      "tags": []
+    }
+  },
+  "name": "Skeleton",
+  "styles": {
+    "classes": [
+      "root",
+      "text",
+      "rect",
+      "circle",
+      "pulse",
+      "wave"
+    ],
+    "name": "MuiSkeleton",
+    "descriptions": {
+      "root": "Styles applied to the root element.",
+      "text": "Styles applied to the root element if `variant=\"text\"`.",
+      "rect": "Styles applied to the root element if `variant=\"rect\"`.",
+      "circle": "Styles applied to the root element if `variant=\"circle\"`.",
+      "pulse": "Styles applied to the root element if `animation=\"pulse\"`.",
+      "wave": "Styles applied to the root element if `animation=\"wave\"`."
+    },
+    "globalClasses": {
+      "root": "MuiSkeleton-root",
+      "text": "MuiSkeleton-text",
+      "rect": "MuiSkeleton-rect",
+      "circle": "MuiSkeleton-circle",
+      "pulse": "MuiSkeleton-pulse",
+      "wave": "MuiSkeleton-wave"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLSpanElement",
+  "filename": "/packages/material-ui-lab/src/Skeleton/Skeleton.js",
+  "inheritance": null,
+  "usedInPages": [
+    "/components/skeleton"
+  ]
+}

@@ -1,0 +1,260 @@
+{
+  "description": "",
+  "methods": [],
+  "props": {
+    "action": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The action to display. It renders after the message, at the end of the alert.",
+      "tags": []
+    },
+    "children": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The content of the component.",
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": false,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "closeText": {
+      "type": {
+        "name": "string"
+      },
+      "required": false,
+      "description": "Override the default label for the *close popup* icon button.\n\nFor localization purposes, you can use the provided [translations](/guides/localization/).",
+      "defaultValue": {
+        "value": "'Close'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "color": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'error'",
+            "computed": false
+          },
+          {
+            "value": "'info'",
+            "computed": false
+          },
+          {
+            "value": "'success'",
+            "computed": false
+          },
+          {
+            "value": "'warning'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "The main color for the alert. Unless provided, the value is taken from the `severity` prop.",
+      "tags": []
+    },
+    "icon": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "Override the icon displayed before the children.\nUnless provided, the icon is mapped to the value of the `severity` prop.",
+      "tags": []
+    },
+    "iconMapping": {
+      "type": {
+        "name": "shape",
+        "value": {
+          "error": {
+            "name": "node",
+            "required": false
+          },
+          "info": {
+            "name": "node",
+            "required": false
+          },
+          "success": {
+            "name": "node",
+            "required": false
+          },
+          "warning": {
+            "name": "node",
+            "required": false
+          }
+        }
+      },
+      "required": false,
+      "description": "The component maps the `severity` prop to a range of different icons,\nfor instance success to `<SuccessOutlined>`.\nIf you wish to change this mapping, you can provide your own.\nAlternatively, you can use the `icon` prop to override the icon displayed.",
+      "defaultValue": {
+        "value": "{\n  success: <SuccessOutlinedIcon fontSize=\"inherit\" />,\n  warning: <ReportProblemOutlinedIcon fontSize=\"inherit\" />,\n  error: <ErrorOutlineIcon fontSize=\"inherit\" />,\n  info: <InfoOutlinedIcon fontSize=\"inherit\" />,\n}",
+        "computed": false
+      },
+      "tags": []
+    },
+    "onClose": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Callback fired when the component requests to be closed.\nWhen provided and no `action` prop is set, a close icon button is displayed that triggers the callback when clicked.",
+      "tags": [
+        {
+          "title": "param",
+          "description": "The event source of the callback.",
+          "type": {
+            "type": "NameExpression",
+            "name": "object"
+          },
+          "name": "event"
+        }
+      ]
+    },
+    "role": {
+      "type": {
+        "name": "string"
+      },
+      "required": false,
+      "description": "The ARIA role attribute of the element.",
+      "defaultValue": {
+        "value": "'alert'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "severity": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'error'",
+            "computed": false
+          },
+          {
+            "value": "'info'",
+            "computed": false
+          },
+          {
+            "value": "'success'",
+            "computed": false
+          },
+          {
+            "value": "'warning'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "The severity of the alert. This defines the color and icon used.",
+      "defaultValue": {
+        "value": "'success'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "variant": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'filled'",
+            "computed": false
+          },
+          {
+            "value": "'outlined'",
+            "computed": false
+          },
+          {
+            "value": "'standard'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "The variant to use.",
+      "defaultValue": {
+        "value": "'standard'",
+        "computed": false
+      },
+      "tags": []
+    }
+  },
+  "name": "Alert",
+  "styles": {
+    "classes": [
+      "root",
+      "standardSuccess",
+      "standardInfo",
+      "standardWarning",
+      "standardError",
+      "outlinedSuccess",
+      "outlinedInfo",
+      "outlinedWarning",
+      "outlinedError",
+      "filledSuccess",
+      "filledInfo",
+      "filledWarning",
+      "filledError",
+      "icon",
+      "message",
+      "action"
+    ],
+    "name": "MuiAlert",
+    "descriptions": {
+      "root": "Styles applied to the root element.",
+      "standardSuccess": "Styles applied to the root element if `variant=\"standard\"` and `color=\"success\"`.",
+      "standardInfo": "Styles applied to the root element if `variant=\"standard\"` and `color=\"info\"`.",
+      "standardWarning": "Styles applied to the root element if `variant=\"standard\"` and `color=\"warning\"`.",
+      "standardError": "Styles applied to the root element if `variant=\"standard\"` and `color=\"error\"`.",
+      "outlinedSuccess": "Styles applied to the root element if `variant=\"outlined\"` and `color=\"success\"`.",
+      "outlinedInfo": "Styles applied to the root element if `variant=\"outlined\"` and `color=\"info\"`.",
+      "outlinedWarning": "Styles applied to the root element if `variant=\"outlined\"` and `color=\"warning\"`.",
+      "outlinedError": "Styles applied to the root element if `variant=\"outlined\"` and `color=\"error\"`.",
+      "filledSuccess": "Styles applied to the root element if `variant=\"filled\"` and `color=\"success\"`.",
+      "filledInfo": "Styles applied to the root element if `variant=\"filled\"` and `color=\"info\"`.",
+      "filledWarning": "Styles applied to the root element if `variant=\"filled\"` and `color=\"warning\"`.",
+      "filledError": "Styles applied to the root element if `variant=\"filled\"` and `color=\"error\"`.",
+      "icon": "Styles applied to the icon wrapper element.",
+      "message": "Styles applied to the message wrapper element.",
+      "action": "Styles applied to the action wrapper element if `action` is provided."
+    },
+    "globalClasses": {
+      "root": "MuiAlert-root",
+      "standardSuccess": "MuiAlert-standardSuccess",
+      "standardInfo": "MuiAlert-standardInfo",
+      "standardWarning": "MuiAlert-standardWarning",
+      "standardError": "MuiAlert-standardError",
+      "outlinedSuccess": "MuiAlert-outlinedSuccess",
+      "outlinedInfo": "MuiAlert-outlinedInfo",
+      "outlinedWarning": "MuiAlert-outlinedWarning",
+      "outlinedError": "MuiAlert-outlinedError",
+      "filledSuccess": "MuiAlert-filledSuccess",
+      "filledInfo": "MuiAlert-filledInfo",
+      "filledWarning": "MuiAlert-filledWarning",
+      "filledError": "MuiAlert-filledError",
+      "icon": "MuiAlert-icon",
+      "message": "MuiAlert-message",
+      "action": "MuiAlert-action"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui-lab/src/Alert/Alert.js",
+  "inheritance": {
+    "component": "Paper",
+    "pathname": "/api/paper"
+  },
+  "usedInPages": [
+    "/components/alert"
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "description": "",
+  "methods": [],
+  "props": {
+    "children": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The content of the component.",
+      "tags": []
+    },
+    "defaultValue": {
+      "type": {
+        "name": "any"
+      },
+      "required": false,
+      "description": "The default `input` element value. Use when the component is not controlled.",
+      "tags": []
+    },
+    "name": {
+      "type": {
+        "name": "string"
+      },
+      "required": false,
+      "description": "The name used to reference the value of the control.",
+      "tags": []
+    },
+    "onChange": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Callback fired when a radio button is selected.",
+      "tags": [
+        {
+          "title": "param",
+          "description": "The event source of the callback.\nYou can pull out the new value by accessing `event.target.value` (string).",
+          "type": {
+            "type": "NameExpression",
+            "name": "object"
+          },
+          "name": "event"
+        }
+      ]
+    },
+    "value": {
+      "type": {
+        "name": "any"
+      },
+      "required": false,
+      "description": "Value of the selected radio button. The DOM API casts this to a string.",
+      "tags": []
+    }
+  },
+  "name": "RadioGroup",
+  "styles": {
+    "classes": [],
+    "name": null,
+    "descriptions": {}
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/RadioGroup/RadioGroup.js",
+  "inheritance": {
+    "component": "FormGroup",
+    "pathname": "/api/form-group"
+  },
+  "usedInPages": [
+    "/components/radio-buttons"
+  ]
+}

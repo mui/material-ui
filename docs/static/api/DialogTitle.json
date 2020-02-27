@@ -1,0 +1,54 @@
+{
+  "description": "",
+  "methods": [],
+  "props": {
+    "children": {
+      "type": {
+        "name": "node"
+      },
+      "required": true,
+      "description": "The content of the component.",
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": true,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "disableTypography": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the children won't be wrapped by a typography component.\nFor instance, this can be useful to render an h4 instead of the default h2.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    }
+  },
+  "name": "DialogTitle",
+  "styles": {
+    "classes": [
+      "root"
+    ],
+    "name": "MuiDialogTitle",
+    "descriptions": {
+      "root": "Styles applied to the root element."
+    },
+    "globalClasses": {
+      "root": "MuiDialogTitle-root"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/DialogTitle/DialogTitle.js",
+  "inheritance": null,
+  "usedInPages": [
+    "/components/dialogs"
+  ]
+}

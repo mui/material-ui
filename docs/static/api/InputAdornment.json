@@ -1,0 +1,136 @@
+{
+  "description": "",
+  "methods": [],
+  "props": {
+    "children": {
+      "type": {
+        "name": "node"
+      },
+      "required": true,
+      "description": "The content of the component, normally an `IconButton` or string.",
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": true,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "component": {
+      "type": {
+        "name": "elementType"
+      },
+      "required": false,
+      "description": "The component used for the root node.\nEither a string to use a DOM element or a component.",
+      "defaultValue": {
+        "value": "'div'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "disablePointerEvents": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "Disable pointer events on the root.\nThis allows for the content of the adornment to focus the input on click.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "disableTypography": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If children is a string then disable wrapping in a Typography component.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "position": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'start'",
+            "computed": false
+          },
+          {
+            "value": "'end'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "The position this adornment should appear relative to the `Input`.",
+      "tags": []
+    },
+    "variant": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'standard'",
+            "computed": false
+          },
+          {
+            "value": "'outlined'",
+            "computed": false
+          },
+          {
+            "value": "'filled'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "The variant to use.\nNote: If you are using the `TextField` component or the `FormControl` component\nyou do not have to set this manually.",
+      "tags": []
+    }
+  },
+  "name": "InputAdornment",
+  "styles": {
+    "classes": [
+      "root",
+      "filled",
+      "positionStart",
+      "positionEnd",
+      "disablePointerEvents",
+      "hiddenLabel",
+      "marginDense"
+    ],
+    "name": "MuiInputAdornment",
+    "descriptions": {
+      "root": "Styles applied to the root element.",
+      "filled": "Styles applied to the root element if `variant=\"filled\"`.",
+      "positionStart": "Styles applied to the root element if `position=\"start\"`.",
+      "positionEnd": "Styles applied to the root element if `position=\"end\"`.",
+      "disablePointerEvents": "Styles applied to the root element if `disablePointerEvents=true`.",
+      "hiddenLabel": "Styles applied if the adornment is used inside <FormControl hiddenLabel />.",
+      "marginDense": "Styles applied if the adornment is used inside <FormControl margin=\"dense\" />."
+    },
+    "globalClasses": {
+      "root": "MuiInputAdornment-root",
+      "filled": "MuiInputAdornment-filled",
+      "positionStart": "MuiInputAdornment-positionStart",
+      "positionEnd": "MuiInputAdornment-positionEnd",
+      "disablePointerEvents": "MuiInputAdornment-disablePointerEvents",
+      "hiddenLabel": "MuiInputAdornment-hiddenLabel",
+      "marginDense": "MuiInputAdornment-marginDense"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/InputAdornment/InputAdornment.js",
+  "inheritance": null,
+  "usedInPages": [
+    "/components/text-fields"
+  ]
+}

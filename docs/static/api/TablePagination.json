@@ -1,0 +1,249 @@
+{
+  "description": "A `TableCell` based component for placing inside `TableFooter` for pagination.",
+  "methods": [],
+  "props": {
+    "ActionsComponent": {
+      "type": {
+        "name": "elementType"
+      },
+      "required": false,
+      "description": "The component used for displaying the actions.\nEither a string to use a DOM element or a component.",
+      "defaultValue": {
+        "value": "TablePaginationActions",
+        "computed": true
+      },
+      "tags": []
+    },
+    "backIconButtonProps": {
+      "type": {
+        "name": "object"
+      },
+      "required": false,
+      "description": "Props applied to the back arrow [`IconButton`](/api/icon-button/) component.",
+      "tags": []
+    },
+    "backIconButtonText": {
+      "type": {
+        "name": "string"
+      },
+      "required": false,
+      "description": "Text label for the back arrow icon button.\n\nFor localization purposes, you can use the provided [translations](/guides/localization/).",
+      "defaultValue": {
+        "value": "'Previous page'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": true,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "component": {
+      "type": {
+        "name": "elementType"
+      },
+      "required": false,
+      "description": "The component used for the root node.\nEither a string to use a DOM element or a component.",
+      "defaultValue": {
+        "value": "TableCell",
+        "computed": true
+      },
+      "tags": []
+    },
+    "count": {
+      "type": {
+        "name": "number"
+      },
+      "required": true,
+      "description": "The total number of rows.\n\nTo enable server side pagination for an unknown number of items, provide -1.",
+      "tags": []
+    },
+    "labelDisplayedRows": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Customize the displayed rows label.\n\nFor localization purposes, you can use the provided [translations](/guides/localization/).",
+      "defaultValue": {
+        "value": "({ from, to, count }) =>\n`${from}-${to === -1 ? count : to} of ${count !== -1 ? count : `more than ${to}`}`",
+        "computed": false
+      },
+      "tags": []
+    },
+    "labelRowsPerPage": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "Customize the rows per page label. Invoked with a `{ from, to, count, page }`\nobject.\n\nFor localization purposes, you can use the provided [translations](/guides/localization/).",
+      "defaultValue": {
+        "value": "'Rows per page:'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "nextIconButtonProps": {
+      "type": {
+        "name": "object"
+      },
+      "required": false,
+      "description": "Props applied to the next arrow [`IconButton`](/api/icon-button/) element.",
+      "tags": []
+    },
+    "nextIconButtonText": {
+      "type": {
+        "name": "string"
+      },
+      "required": false,
+      "description": "Text label for the next arrow icon button.\n\nFor localization purposes, you can use the provided [translations](/guides/localization/).",
+      "defaultValue": {
+        "value": "'Next page'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "onChangePage": {
+      "type": {
+        "name": "func"
+      },
+      "required": true,
+      "description": "Callback fired when the page is changed.",
+      "tags": [
+        {
+          "title": "param",
+          "description": "The event source of the callback.",
+          "type": {
+            "type": "NameExpression",
+            "name": "object"
+          },
+          "name": "event"
+        },
+        {
+          "title": "param",
+          "description": "The page selected.",
+          "type": {
+            "type": "NameExpression",
+            "name": "number"
+          },
+          "name": "page"
+        }
+      ]
+    },
+    "onChangeRowsPerPage": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Callback fired when the number of rows per page is changed.",
+      "tags": [
+        {
+          "title": "param",
+          "description": "The event source of the callback.",
+          "type": {
+            "type": "NameExpression",
+            "name": "object"
+          },
+          "name": "event"
+        }
+      ]
+    },
+    "page": {
+      "type": {
+        "name": "chained",
+        "raw": "chainPropTypes(PropTypes.number.isRequired, props => {\n  const { count, page, rowsPerPage } = props;\n  const newLastPage = Math.max(0, Math.ceil(count / rowsPerPage) - 1);\n  if (page < 0 || page > newLastPage) {\n    return new Error(\n      'Material-UI: the page prop of a TablePagination is out of range ' +\n        `(0 to ${newLastPage}, but page is ${page}).`,\n    );\n  }\n  return null;\n})",
+        "chained": {
+          "name": "number"
+        }
+      },
+      "required": false,
+      "description": "The zero-based index of the current page.",
+      "tags": []
+    },
+    "rowsPerPage": {
+      "type": {
+        "name": "number"
+      },
+      "required": true,
+      "description": "The number of rows per page.",
+      "tags": []
+    },
+    "rowsPerPageOptions": {
+      "type": {
+        "name": "array"
+      },
+      "required": false,
+      "description": "Customizes the options of the rows per page select field. If less than two options are\navailable, no select field will be displayed.",
+      "defaultValue": {
+        "value": "[10, 25, 50, 100]",
+        "computed": false
+      },
+      "tags": []
+    },
+    "SelectProps": {
+      "type": {
+        "name": "object"
+      },
+      "required": false,
+      "description": "Props applied to the rows per page [`Select`](/api/select/) element.",
+      "defaultValue": {
+        "value": "{}",
+        "computed": false
+      },
+      "tags": []
+    }
+  },
+  "name": "TablePagination",
+  "styles": {
+    "classes": [
+      "root",
+      "toolbar",
+      "spacer",
+      "caption",
+      "selectRoot",
+      "select",
+      "selectIcon",
+      "input",
+      "menuItem",
+      "actions"
+    ],
+    "name": "MuiTablePagination",
+    "descriptions": {
+      "root": "Styles applied to the root element.",
+      "toolbar": "Styles applied to the Toolbar component.",
+      "spacer": "Styles applied to the spacer element.",
+      "caption": "Styles applied to the caption Typography components if `variant=\"caption\"`.",
+      "selectRoot": "Styles applied to the Select component root element.",
+      "select": "Styles applied to the Select component `select` class.",
+      "selectIcon": "Styles applied to the Select component `icon` class.",
+      "input": "Styles applied to the `InputBase` component.",
+      "menuItem": "Styles applied to the MenuItem component.",
+      "actions": "Styles applied to the internal `TablePaginationActions` component."
+    },
+    "globalClasses": {
+      "root": "MuiTablePagination-root",
+      "toolbar": "MuiTablePagination-toolbar",
+      "spacer": "MuiTablePagination-spacer",
+      "caption": "MuiTablePagination-caption",
+      "selectRoot": "MuiTablePagination-selectRoot",
+      "select": "MuiTablePagination-select",
+      "selectIcon": "MuiTablePagination-selectIcon",
+      "input": "MuiTablePagination-input",
+      "menuItem": "MuiTablePagination-menuItem",
+      "actions": "MuiTablePagination-actions"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLTableCellElement",
+  "filename": "/packages/material-ui/src/TablePagination/TablePagination.js",
+  "inheritance": {
+    "component": "TableCell",
+    "pathname": "/api/table-cell"
+  },
+  "usedInPages": [
+    "/components/tables"
+  ]
+}

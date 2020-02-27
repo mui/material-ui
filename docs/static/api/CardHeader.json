@@ -1,0 +1,121 @@
+{
+  "description": "",
+  "methods": [],
+  "props": {
+    "action": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The action to display in the card header.",
+      "tags": []
+    },
+    "avatar": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The Avatar for the Card Header.",
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": true,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "component": {
+      "type": {
+        "name": "elementType"
+      },
+      "required": false,
+      "description": "The component used for the root node.\nEither a string to use a DOM element or a component.",
+      "defaultValue": {
+        "value": "'div'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "disableTypography": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, `subheader` and `title` won't be wrapped by a Typography component.\nThis can be useful to render an alternative Typography variant by wrapping\nthe `title` text, and optional `subheader` text\nwith the Typography component.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "subheader": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The content of the component.",
+      "tags": []
+    },
+    "subheaderTypographyProps": {
+      "type": {
+        "name": "object"
+      },
+      "required": false,
+      "description": "These props will be forwarded to the subheader\n(as long as disableTypography is not `true`).",
+      "tags": []
+    },
+    "title": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The content of the Card Title.",
+      "tags": []
+    },
+    "titleTypographyProps": {
+      "type": {
+        "name": "object"
+      },
+      "required": false,
+      "description": "These props will be forwarded to the title\n(as long as disableTypography is not `true`).",
+      "tags": []
+    }
+  },
+  "name": "CardHeader",
+  "styles": {
+    "classes": [
+      "root",
+      "avatar",
+      "action",
+      "content",
+      "title",
+      "subheader"
+    ],
+    "name": "MuiCardHeader",
+    "descriptions": {
+      "root": "Styles applied to the root element.",
+      "avatar": "Styles applied to the avatar element.",
+      "action": "Styles applied to the action element.",
+      "content": "Styles applied to the content wrapper element.",
+      "title": "Styles applied to the title Typography element.",
+      "subheader": "Styles applied to the subheader Typography element."
+    },
+    "globalClasses": {
+      "root": "MuiCardHeader-root",
+      "avatar": "MuiCardHeader-avatar",
+      "action": "MuiCardHeader-action",
+      "content": "MuiCardHeader-content",
+      "title": "MuiCardHeader-title",
+      "subheader": "MuiCardHeader-subheader"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/CardHeader/CardHeader.js",
+  "inheritance": null,
+  "usedInPages": [
+    "/components/cards"
+  ]
+}

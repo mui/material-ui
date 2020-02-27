@@ -1,0 +1,181 @@
+{
+  "description": "`ButtonBase` contains as few styles as possible.\nIt aims to be a simple building block for creating a button.\nIt contains a load of style reset and some focus/ripple logic.",
+  "methods": [],
+  "props": {
+    "action": {
+      "type": {
+        "name": "custom",
+        "raw": "refType"
+      },
+      "required": false,
+      "description": "A ref for imperative actions.\nIt currently only supports `focusVisible()` action.",
+      "tags": []
+    },
+    "centerRipple": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the ripples will be centered.\nThey won't start at the cursor interaction position.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "children": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The content of the component.",
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": true,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "component": {
+      "type": {
+        "name": "custom",
+        "raw": "elementTypeAcceptingRef"
+      },
+      "required": false,
+      "description": "The component used for the root node.\nEither a string to use a DOM element or a component.",
+      "defaultValue": {
+        "value": "'button'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "disabled": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the base button will be disabled.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "disableRipple": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the ripple effect will be disabled.\n\n⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure\nto highlight the element by applying separate styles with the `focusVisibleClassName`.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "disableTouchRipple": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the touch ripple effect will be disabled.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "focusRipple": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the base button will have a keyboard focus ripple.\n`disableRipple` must also be `false`.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "focusVisibleClassName": {
+      "type": {
+        "name": "string"
+      },
+      "required": false,
+      "description": "This prop can help a person know which element has the keyboard focus.\nThe class name will be applied when the element gain the focus through a keyboard interaction.\nIt's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo).\nThe rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md).\nA [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components\nif needed.",
+      "tags": []
+    },
+    "onFocusVisible": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Callback fired when the component is focused with a keyboard.\nWe trigger a `onFocus` callback too.",
+      "tags": []
+    },
+    "TouchRippleProps": {
+      "type": {
+        "name": "object"
+      },
+      "required": false,
+      "description": "Props applied to the `TouchRipple` element.",
+      "tags": []
+    },
+    "type": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'submit'",
+            "computed": false
+          },
+          {
+            "value": "'reset'",
+            "computed": false
+          },
+          {
+            "value": "'button'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "Used to control the button's purpose.\nThis prop passes the value to the `type` attribute of the native button component.",
+      "defaultValue": {
+        "value": "'button'",
+        "computed": false
+      },
+      "tags": []
+    }
+  },
+  "name": "ButtonBase",
+  "styles": {
+    "classes": [
+      "root",
+      "disabled",
+      "focusVisible"
+    ],
+    "name": "MuiButtonBase",
+    "descriptions": {
+      "root": "Styles applied to the root element.",
+      "disabled": "Pseudo-class applied to the root element if `disabled={true}`.",
+      "focusVisible": "Pseudo-class applied to the root element if keyboard focused.",
+      "": "TouchRipple is only needed client-side, x2 boost on the server."
+    },
+    "globalClasses": {
+      "root": "MuiButtonBase-root",
+      "disabled": "Mui-disabled",
+      "focusVisible": "Mui-focusVisible"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLButtonElement",
+  "filename": "/packages/material-ui/src/ButtonBase/ButtonBase.js",
+  "inheritance": null,
+  "usedInPages": [
+    "/components/buttons"
+  ]
+}

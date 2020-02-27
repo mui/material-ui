@@ -1,0 +1,80 @@
+{
+  "description": "",
+  "methods": [],
+  "props": {
+    "children": {
+      "type": {
+        "name": "chained",
+        "raw": "chainPropTypes(PropTypes.node, props => {\n  if (!props.children && !props.image && !props.src && !props.component) {\n    return new Error(\n      'Material-UI: either `children`, `image`, `src` or `component` prop must be specified.',\n    );\n  }\n  return null;\n})",
+        "chained": {
+          "name": "node"
+        }
+      },
+      "required": false,
+      "description": "The content of the component.",
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": true,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "component": {
+      "type": {
+        "name": "elementType"
+      },
+      "required": false,
+      "description": "Component for rendering image.\nEither a string to use a DOM element or a component.",
+      "defaultValue": {
+        "value": "'div'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "image": {
+      "type": {
+        "name": "string"
+      },
+      "required": false,
+      "description": "Image to be displayed as a background image.\nEither `image` or `src` prop must be specified.\nNote that caller must specify height otherwise the image will not be visible.",
+      "tags": []
+    },
+    "src": {
+      "type": {
+        "name": "string"
+      },
+      "required": false,
+      "description": "An alias for `image` property.\nAvailable only with media components.\nMedia components: `video`, `audio`, `picture`, `iframe`, `img`.",
+      "tags": []
+    }
+  },
+  "name": "CardMedia",
+  "styles": {
+    "classes": [
+      "root",
+      "media",
+      "img"
+    ],
+    "name": "MuiCardMedia",
+    "descriptions": {
+      "root": "Styles applied to the root element.",
+      "media": "Styles applied to the root element if `component=\"video, audio, picture, iframe, or img\"`.",
+      "img": "Styles applied to the root element if `component=\"picture or img\"`."
+    },
+    "globalClasses": {
+      "root": "MuiCardMedia-root",
+      "media": "MuiCardMedia-media",
+      "img": "MuiCardMedia-img"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/CardMedia/CardMedia.js",
+  "inheritance": null,
+  "usedInPages": [
+    "/components/cards"
+  ]
+}

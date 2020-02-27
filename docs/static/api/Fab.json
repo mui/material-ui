@@ -1,0 +1,202 @@
+{
+  "description": "",
+  "methods": [],
+  "props": {
+    "children": {
+      "type": {
+        "name": "node"
+      },
+      "required": true,
+      "description": "The content of the button.",
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": true,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "color": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'default'",
+            "computed": false
+          },
+          {
+            "value": "'inherit'",
+            "computed": false
+          },
+          {
+            "value": "'primary'",
+            "computed": false
+          },
+          {
+            "value": "'secondary'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "The color of the component. It supports those theme colors that make sense for this component.",
+      "defaultValue": {
+        "value": "'default'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "component": {
+      "type": {
+        "name": "elementType"
+      },
+      "required": false,
+      "description": "The component used for the root node.\nEither a string to use a DOM element or a component.",
+      "defaultValue": {
+        "value": "'button'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "disabled": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the button will be disabled.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "disableFocusRipple": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the  keyboard focus ripple will be disabled.\n`disableRipple` must also be true.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "disableRipple": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the ripple effect will be disabled.",
+      "tags": []
+    },
+    "href": {
+      "type": {
+        "name": "string"
+      },
+      "required": false,
+      "description": "The URL to link to when the button is clicked.\nIf defined, an `a` element will be used as the root node.",
+      "tags": []
+    },
+    "size": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'small'",
+            "computed": false
+          },
+          {
+            "value": "'medium'",
+            "computed": false
+          },
+          {
+            "value": "'large'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "The size of the button.\n`small` is equivalent to the dense button styling.",
+      "defaultValue": {
+        "value": "'large'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "variant": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'round'",
+            "computed": false
+          },
+          {
+            "value": "'extended'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "The variant to use.",
+      "defaultValue": {
+        "value": "'round'",
+        "computed": false
+      },
+      "tags": []
+    }
+  },
+  "name": "Fab",
+  "styles": {
+    "classes": [
+      "root",
+      "label",
+      "primary",
+      "secondary",
+      "extended",
+      "focusVisible",
+      "disabled",
+      "colorInherit",
+      "sizeSmall",
+      "sizeMedium"
+    ],
+    "name": "MuiFab",
+    "descriptions": {
+      "root": "Styles applied to the root element.",
+      "label": "Styles applied to the span element that wraps the children.",
+      "primary": "Styles applied to the root element if `color=\"primary\"`.",
+      "secondary": "Styles applied to the root element if `color=\"secondary\"`.",
+      "extended": "Styles applied to the root element if `variant=\"extended\"`.",
+      "focusVisible": "Pseudo-class applied to the ButtonBase root element if the button is keyboard focused.",
+      "disabled": "Pseudo-class applied to the root element if `disabled={true}`.",
+      "colorInherit": "Styles applied to the root element if `color=\"inherit\"`.",
+      "sizeSmall": "Styles applied to the root element if `size=\"small\"``.",
+      "sizeMedium": "Styles applied to the root element if `size=\"medium\"``."
+    },
+    "globalClasses": {
+      "root": "MuiFab-root",
+      "label": "MuiFab-label",
+      "primary": "MuiFab-primary",
+      "secondary": "MuiFab-secondary",
+      "extended": "MuiFab-extended",
+      "focusVisible": "Mui-focusVisible",
+      "disabled": "Mui-disabled",
+      "colorInherit": "MuiFab-colorInherit",
+      "sizeSmall": "MuiFab-sizeSmall",
+      "sizeMedium": "MuiFab-sizeMedium"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLButtonElement",
+  "filename": "/packages/material-ui/src/Fab/Fab.js",
+  "inheritance": {
+    "component": "ButtonBase",
+    "pathname": "/api/button-base"
+  },
+  "usedInPages": [
+    "/components/floating-action-button"
+  ]
+}

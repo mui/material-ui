@@ -1,0 +1,262 @@
+{
+  "description": "Responsively hides children based on the selected implementation.",
+  "displayName": "Hidden",
+  "methods": [],
+  "props": {
+    "children": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The content of the component.",
+      "tags": []
+    },
+    "implementation": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'js'",
+            "computed": false
+          },
+          {
+            "value": "'css'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "Specify which implementation to use.  'js' is the default, 'css' works better for\nserver-side rendering.",
+      "defaultValue": {
+        "value": "'js'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "initialWidth": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'xs'",
+            "computed": false
+          },
+          {
+            "value": "'sm'",
+            "computed": false
+          },
+          {
+            "value": "'md'",
+            "computed": false
+          },
+          {
+            "value": "'lg'",
+            "computed": false
+          },
+          {
+            "value": "'xl'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "You can use this prop when choosing the `js` implementation with server-side rendering.\n\nAs `window.innerWidth` is unavailable on the server,\nwe default to rendering an empty component during the first mount.\nYou might want to use an heuristic to approximate\nthe screen width of the client browser screen width.\n\nFor instance, you could be using the user-agent or the client-hints.\nhttps://caniuse.com/#search=client%20hint",
+      "tags": []
+    },
+    "lgDown": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, screens this size and down will be hidden.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "lgUp": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, screens this size and up will be hidden.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "mdDown": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, screens this size and down will be hidden.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "mdUp": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, screens this size and up will be hidden.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "only": {
+      "type": {
+        "name": "union",
+        "value": [
+          {
+            "name": "enum",
+            "value": [
+              {
+                "value": "'xs'",
+                "computed": false
+              },
+              {
+                "value": "'sm'",
+                "computed": false
+              },
+              {
+                "value": "'md'",
+                "computed": false
+              },
+              {
+                "value": "'lg'",
+                "computed": false
+              },
+              {
+                "value": "'xl'",
+                "computed": false
+              }
+            ]
+          },
+          {
+            "name": "arrayOf",
+            "value": {
+              "name": "enum",
+              "value": [
+                {
+                  "value": "'xs'",
+                  "computed": false
+                },
+                {
+                  "value": "'sm'",
+                  "computed": false
+                },
+                {
+                  "value": "'md'",
+                  "computed": false
+                },
+                {
+                  "value": "'lg'",
+                  "computed": false
+                },
+                {
+                  "value": "'xl'",
+                  "computed": false
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "required": false,
+      "description": "Hide the given breakpoint(s).",
+      "tags": []
+    },
+    "smDown": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, screens this size and down will be hidden.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "smUp": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, screens this size and up will be hidden.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "xlDown": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, screens this size and down will be hidden.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "xlUp": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, screens this size and up will be hidden.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "xsDown": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, screens this size and down will be hidden.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "xsUp": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, screens this size and up will be hidden.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    }
+  },
+  "name": "Hidden",
+  "styles": {
+    "classes": [],
+    "name": null,
+    "descriptions": {}
+  },
+  "spread": true,
+  "filename": "/packages/material-ui/src/Hidden/Hidden.js",
+  "inheritance": null,
+  "usedInPages": [
+    "/components/hidden"
+  ]
+}

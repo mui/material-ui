@@ -1,0 +1,378 @@
+{
+  "description": "`InputBase` contains as few styles as possible.\nIt aims to be a simple building block for creating an input.\nIt contains a load of style reset and some state logic.",
+  "methods": [],
+  "props": {
+    "autoComplete": {
+      "type": {
+        "name": "string"
+      },
+      "required": false,
+      "description": "This prop helps users to fill forms faster, especially on mobile devices.\nThe name can be confusing, as it's more like an autofill.\nYou can learn more about it [following the specification](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill).",
+      "tags": []
+    },
+    "autoFocus": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the `input` element will be focused during the first mount.",
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": true,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "className": {
+      "type": {
+        "name": "string"
+      },
+      "required": false,
+      "description": "The CSS class name of the wrapper element.",
+      "tags": []
+    },
+    "color": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'primary'",
+            "computed": false
+          },
+          {
+            "value": "'secondary'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "The color of the component. It supports those theme colors that make sense for this component.",
+      "tags": []
+    },
+    "defaultValue": {
+      "type": {
+        "name": "any"
+      },
+      "required": false,
+      "description": "The default `input` element value. Use when the component is not controlled.",
+      "tags": []
+    },
+    "disabled": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the `input` element will be disabled.",
+      "tags": []
+    },
+    "endAdornment": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "End `InputAdornment` for this component.",
+      "tags": []
+    },
+    "error": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the input will indicate an error. This is normally obtained via context from\nFormControl.",
+      "tags": []
+    },
+    "fullWidth": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the input will take up the full width of its container.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "id": {
+      "type": {
+        "name": "string"
+      },
+      "required": false,
+      "description": "The id of the `input` element.",
+      "tags": []
+    },
+    "inputComponent": {
+      "type": {
+        "name": "elementType"
+      },
+      "required": false,
+      "description": "The component used for the `input` element.\nEither a string to use a DOM element or a component.",
+      "defaultValue": {
+        "value": "'input'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "inputProps": {
+      "type": {
+        "name": "object"
+      },
+      "required": false,
+      "description": "[Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.",
+      "defaultValue": {
+        "value": "{}",
+        "computed": false
+      },
+      "tags": []
+    },
+    "inputRef": {
+      "type": {
+        "name": "custom",
+        "raw": "refType"
+      },
+      "required": false,
+      "description": "Pass a ref to the `input` element.",
+      "tags": []
+    },
+    "margin": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'dense'",
+            "computed": false
+          },
+          {
+            "value": "'none'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "If `dense`, will adjust vertical spacing. This is normally obtained via context from\nFormControl.",
+      "tags": []
+    },
+    "multiline": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, a textarea element will be rendered.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "name": {
+      "type": {
+        "name": "string"
+      },
+      "required": false,
+      "description": "Name attribute of the `input` element.",
+      "tags": []
+    },
+    "onBlur": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Callback fired when the input is blurred.\n\nNotice that the first argument (event) might be undefined.",
+      "tags": []
+    },
+    "onChange": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Callback fired when the value is changed.",
+      "tags": [
+        {
+          "title": "param",
+          "description": "The event source of the callback.\nYou can pull out the new value by accessing `event.target.value` (string).",
+          "type": {
+            "type": "NameExpression",
+            "name": "object"
+          },
+          "name": "event"
+        }
+      ]
+    },
+    "placeholder": {
+      "type": {
+        "name": "string"
+      },
+      "required": false,
+      "description": "The short hint displayed in the input before the user enters a value.",
+      "tags": []
+    },
+    "readOnly": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "It prevents the user from changing the value of the field\n(not from interacting with the field).",
+      "tags": []
+    },
+    "required": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the `input` element will be required.",
+      "tags": []
+    },
+    "rows": {
+      "type": {
+        "name": "union",
+        "value": [
+          {
+            "name": "string"
+          },
+          {
+            "name": "number"
+          }
+        ]
+      },
+      "required": false,
+      "description": "Number of rows to display when multiline option is set to true.",
+      "tags": []
+    },
+    "rowsMax": {
+      "type": {
+        "name": "union",
+        "value": [
+          {
+            "name": "string"
+          },
+          {
+            "name": "number"
+          }
+        ]
+      },
+      "required": false,
+      "description": "Maximum number of rows to display when multiline option is set to true.",
+      "tags": []
+    },
+    "rowsMin": {
+      "type": {
+        "name": "union",
+        "value": [
+          {
+            "name": "string"
+          },
+          {
+            "name": "number"
+          }
+        ]
+      },
+      "required": false,
+      "description": "Minimum number of rows to display when multiline option is set to true.",
+      "tags": []
+    },
+    "startAdornment": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "Start `InputAdornment` for this component.",
+      "tags": []
+    },
+    "type": {
+      "type": {
+        "name": "string"
+      },
+      "required": false,
+      "description": "Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).",
+      "defaultValue": {
+        "value": "'text'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "value": {
+      "type": {
+        "name": "any"
+      },
+      "required": false,
+      "description": "The value of the `input` element, required for a controlled component.",
+      "tags": []
+    }
+  },
+  "name": "InputBase",
+  "styles": {
+    "classes": [
+      "@global",
+      "root",
+      "formControl",
+      "focused",
+      "disabled",
+      "adornedStart",
+      "adornedEnd",
+      "error",
+      "marginDense",
+      "multiline",
+      "colorSecondary",
+      "fullWidth",
+      "input",
+      "inputMarginDense",
+      "inputMultiline",
+      "inputTypeSearch",
+      "inputAdornedStart",
+      "inputAdornedEnd",
+      "inputHiddenLabel"
+    ],
+    "name": "MuiInputBase",
+    "descriptions": {
+      "root": "Styles applied to the root element.",
+      "formControl": "Styles applied to the root element if the component is a descendant of `FormControl`.",
+      "focused": "Styles applied to the root element if the component is focused.",
+      "disabled": "Styles applied to the root element if `disabled={true}`.",
+      "adornedStart": "Styles applied to the root element if `startAdornment` is provided.",
+      "adornedEnd": "Styles applied to the root element if `endAdornment` is provided.",
+      "error": "Pseudo-class applied to the root element if `error={true}`.",
+      "marginDense": "Styles applied to the `input` element if `margin=\"dense\"`.",
+      "multiline": "Styles applied to the root element if `multiline={true}`.",
+      "colorSecondary": "Styles applied to the root element if the color is secondary.",
+      "fullWidth": "Styles applied to the root element if `fullWidth={true}`.",
+      "input": "Styles applied to the `input` element.",
+      "inputMarginDense": "Styles applied to the `input` element if `margin=\"dense\"`.",
+      "inputMultiline": "Styles applied to the `input` element if `multiline={true}`.",
+      "inputTypeSearch": "Styles applied to the `input` element if `type=\"search\"`.",
+      "inputAdornedStart": "Styles applied to the `input` element if `startAdornment` is provided.",
+      "inputAdornedEnd": "Styles applied to the `input` element if `endAdornment` is provided.",
+      "inputHiddenLabel": "Styles applied to the `input` element if `hiddenLabel={true}`."
+    },
+    "globalClasses": {
+      "@global": "MuiInputBase-@global",
+      "root": "MuiInputBase-root",
+      "formControl": "MuiInputBase-formControl",
+      "focused": "Mui-focused",
+      "disabled": "Mui-disabled",
+      "adornedStart": "MuiInputBase-adornedStart",
+      "adornedEnd": "MuiInputBase-adornedEnd",
+      "error": "Mui-error",
+      "marginDense": "MuiInputBase-marginDense",
+      "multiline": "MuiInputBase-multiline",
+      "colorSecondary": "MuiInputBase-colorSecondary",
+      "fullWidth": "MuiInputBase-fullWidth",
+      "input": "MuiInputBase-input",
+      "inputMarginDense": "MuiInputBase-inputMarginDense",
+      "inputMultiline": "MuiInputBase-inputMultiline",
+      "inputTypeSearch": "MuiInputBase-inputTypeSearch",
+      "inputAdornedStart": "MuiInputBase-inputAdornedStart",
+      "inputAdornedEnd": "MuiInputBase-inputAdornedEnd",
+      "inputHiddenLabel": "MuiInputBase-inputHiddenLabel"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/InputBase/InputBase.js",
+  "inheritance": null,
+  "usedInPages": [
+    "/components/text-fields"
+  ]
+}

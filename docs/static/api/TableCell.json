@@ -1,0 +1,209 @@
+{
+  "description": "The component renders a `<th>` element when the parent context is a header\nor otherwise a `<td>` element.",
+  "methods": [],
+  "props": {
+    "align": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'inherit'",
+            "computed": false
+          },
+          {
+            "value": "'left'",
+            "computed": false
+          },
+          {
+            "value": "'center'",
+            "computed": false
+          },
+          {
+            "value": "'right'",
+            "computed": false
+          },
+          {
+            "value": "'justify'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "Set the text-align on the table cell content.\n\nMonetary or generally number fields **should be right aligned** as that allows\nyou to add them up quickly in your head without having to worry about decimals.",
+      "defaultValue": {
+        "value": "'inherit'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "children": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The table cell contents.",
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": true,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "component": {
+      "type": {
+        "name": "elementType"
+      },
+      "required": false,
+      "description": "The component used for the root node.\nEither a string to use a DOM element or a component.",
+      "tags": []
+    },
+    "padding": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'default'",
+            "computed": false
+          },
+          {
+            "value": "'checkbox'",
+            "computed": false
+          },
+          {
+            "value": "'none'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "Sets the padding applied to the cell.\nBy default, the Table parent component set the value (`default`).",
+      "tags": []
+    },
+    "scope": {
+      "type": {
+        "name": "string"
+      },
+      "required": false,
+      "description": "Set scope attribute.",
+      "tags": []
+    },
+    "size": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'small'",
+            "computed": false
+          },
+          {
+            "value": "'medium'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "Specify the size of the cell.\nBy default, the Table parent component set the value (`medium`).",
+      "tags": []
+    },
+    "sortDirection": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'asc'",
+            "computed": false
+          },
+          {
+            "value": "'desc'",
+            "computed": false
+          },
+          {
+            "value": "false",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "Set aria-sort direction.",
+      "tags": []
+    },
+    "variant": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'head'",
+            "computed": false
+          },
+          {
+            "value": "'body'",
+            "computed": false
+          },
+          {
+            "value": "'footer'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "Specify the cell type.\nBy default, the TableHead, TableBody or TableFooter parent component set the value.",
+      "tags": []
+    }
+  },
+  "name": "TableCell",
+  "styles": {
+    "classes": [
+      "root",
+      "head",
+      "body",
+      "footer",
+      "sizeSmall",
+      "paddingCheckbox",
+      "paddingNone",
+      "alignLeft",
+      "alignCenter",
+      "alignRight",
+      "alignJustify",
+      "stickyHeader"
+    ],
+    "name": "MuiTableCell",
+    "descriptions": {
+      "root": "Styles applied to the root element.",
+      "head": "Styles applied to the root element if `variant=\"head\"` or `context.table.head`.",
+      "body": "Styles applied to the root element if `variant=\"body\"` or `context.table.body`.",
+      "footer": "Styles applied to the root element if `variant=\"footer\"` or `context.table.footer`.",
+      "sizeSmall": "Styles applied to the root element if `size=\"small\"`.",
+      "paddingCheckbox": "Styles applied to the root element if `padding=\"checkbox\"`.",
+      "paddingNone": "Styles applied to the root element if `padding=\"none\"`.",
+      "alignLeft": "Styles applied to the root element if `align=\"left\"`.",
+      "alignCenter": "Styles applied to the root element if `align=\"center\"`.",
+      "alignRight": "Styles applied to the root element if `align=\"right\"`.",
+      "alignJustify": "Styles applied to the root element if `align=\"justify\"`.",
+      "stickyHeader": "Styles applied to the root element if `context.table.stickyHeader={true}`."
+    },
+    "globalClasses": {
+      "root": "MuiTableCell-root",
+      "head": "MuiTableCell-head",
+      "body": "MuiTableCell-body",
+      "footer": "MuiTableCell-footer",
+      "sizeSmall": "MuiTableCell-sizeSmall",
+      "paddingCheckbox": "MuiTableCell-paddingCheckbox",
+      "paddingNone": "MuiTableCell-paddingNone",
+      "alignLeft": "MuiTableCell-alignLeft",
+      "alignCenter": "MuiTableCell-alignCenter",
+      "alignRight": "MuiTableCell-alignRight",
+      "alignJustify": "MuiTableCell-alignJustify",
+      "stickyHeader": "MuiTableCell-stickyHeader"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLTableCellElement",
+  "filename": "/packages/material-ui/src/TableCell/TableCell.js",
+  "inheritance": null,
+  "usedInPages": [
+    "/components/tables"
+  ]
+}

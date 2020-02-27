@@ -1,0 +1,100 @@
+{
+  "description": "The Slide transition is used by the [Drawer](/components/drawers/) component.\nIt uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.",
+  "methods": [],
+  "props": {
+    "children": {
+      "type": {
+        "name": "custom",
+        "raw": "elementAcceptingRef"
+      },
+      "required": false,
+      "description": "A single child content element.",
+      "tags": []
+    },
+    "direction": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'left'",
+            "computed": false
+          },
+          {
+            "value": "'right'",
+            "computed": false
+          },
+          {
+            "value": "'up'",
+            "computed": false
+          },
+          {
+            "value": "'down'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "Direction the child node will enter from.",
+      "defaultValue": {
+        "value": "'down'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "in": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, show the component; triggers the enter or exit animation.",
+      "tags": []
+    },
+    "timeout": {
+      "type": {
+        "name": "union",
+        "value": [
+          {
+            "name": "number"
+          },
+          {
+            "name": "shape",
+            "value": {
+              "enter": {
+                "name": "number",
+                "required": false
+              },
+              "exit": {
+                "name": "number",
+                "required": false
+              }
+            }
+          }
+        ]
+      },
+      "required": false,
+      "description": "The duration for the transition, in milliseconds.\nYou may specify a single timeout for all transitions, or individually with an object.",
+      "defaultValue": {
+        "value": "{\n  enter: duration.enteringScreen,\n  exit: duration.leavingScreen,\n}",
+        "computed": false
+      },
+      "tags": []
+    }
+  },
+  "name": "Slide",
+  "styles": {
+    "classes": [],
+    "name": null,
+    "descriptions": {}
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/Slide/Slide.js",
+  "inheritance": {
+    "component": "Transition",
+    "pathname": "https://reactcommunity.org/react-transition-group/transition#Transition-props"
+  },
+  "usedInPages": [
+    "/components/dialogs",
+    "/components/transitions"
+  ]
+}

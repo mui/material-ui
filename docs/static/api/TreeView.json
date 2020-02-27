@@ -1,0 +1,229 @@
+{
+  "description": "",
+  "methods": [],
+  "props": {
+    "children": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The content of the component.",
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": false,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "defaultCollapseIcon": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The default icon used to collapse the node.",
+      "tags": []
+    },
+    "defaultEndIcon": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The default icon displayed next to a end node. This is applied to all\ntree nodes and can be overridden by the TreeItem `icon` prop.",
+      "tags": []
+    },
+    "defaultExpanded": {
+      "type": {
+        "name": "arrayOf",
+        "value": {
+          "name": "string"
+        }
+      },
+      "required": false,
+      "description": "Expanded node ids. (Uncontrolled)",
+      "defaultValue": {
+        "value": "[]",
+        "computed": false
+      },
+      "tags": []
+    },
+    "defaultExpandIcon": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The default icon used to expand the node.",
+      "tags": []
+    },
+    "defaultParentIcon": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The default icon displayed next to a parent node. This is applied to all\nparent nodes and can be overridden by the TreeItem `icon` prop.",
+      "tags": []
+    },
+    "defaultSelected": {
+      "type": {
+        "name": "union",
+        "value": [
+          {
+            "name": "arrayOf",
+            "value": {
+              "name": "string"
+            }
+          },
+          {
+            "name": "string"
+          }
+        ]
+      },
+      "required": false,
+      "description": "Selected node ids. (Uncontrolled)\nWhen `multiSelect` is true this takes an array of strings; when false (default) a string.",
+      "defaultValue": {
+        "value": "[]",
+        "computed": false
+      },
+      "tags": []
+    },
+    "disableSelection": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true` selection is disabled.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "expanded": {
+      "type": {
+        "name": "arrayOf",
+        "value": {
+          "name": "string"
+        }
+      },
+      "required": false,
+      "description": "Expanded node ids. (Controlled)",
+      "tags": []
+    },
+    "multiSelect": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If true `ctrl` and `shift` will trigger multiselect.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "onNodeSelect": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Callback fired when tree items are selected/unselected.",
+      "tags": [
+        {
+          "title": "param",
+          "description": "The event source of the callback",
+          "type": {
+            "type": "NameExpression",
+            "name": "object"
+          },
+          "name": "event"
+        },
+        {
+          "title": "param",
+          "description": "of the selected nodes. When `multiSelect` is true\nthis is an array of strings; when false (default) a string.",
+          "type": {
+            "type": "UnionType",
+            "elements": [
+              {
+                "type": "NameExpression",
+                "name": "array"
+              },
+              {
+                "type": "NameExpression",
+                "name": "string"
+              }
+            ]
+          },
+          "name": "value"
+        }
+      ]
+    },
+    "onNodeToggle": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Callback fired when tree items are expanded/collapsed.",
+      "tags": [
+        {
+          "title": "param",
+          "description": "The event source of the callback.",
+          "type": {
+            "type": "NameExpression",
+            "name": "object"
+          },
+          "name": "event"
+        },
+        {
+          "title": "param",
+          "description": "The ids of the expanded nodes.",
+          "type": {
+            "type": "NameExpression",
+            "name": "array"
+          },
+          "name": "nodeIds"
+        }
+      ]
+    },
+    "selected": {
+      "type": {
+        "name": "union",
+        "value": [
+          {
+            "name": "arrayOf",
+            "value": {
+              "name": "string"
+            }
+          },
+          {
+            "name": "string"
+          }
+        ]
+      },
+      "required": false,
+      "description": "Selected node ids. (Controlled)\nWhen `multiSelect` is true this takes an array of strings; when false (default) a string.",
+      "tags": []
+    }
+  },
+  "name": "TreeView",
+  "styles": {
+    "classes": [
+      "root"
+    ],
+    "name": "MuiTreeView",
+    "descriptions": {
+      "root": "Styles applied to the root element."
+    },
+    "globalClasses": {
+      "root": "MuiTreeView-root"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLUListElement",
+  "filename": "/packages/material-ui-lab/src/TreeView/TreeView.js",
+  "inheritance": null,
+  "usedInPages": [
+    "/components/tree-view"
+  ]
+}

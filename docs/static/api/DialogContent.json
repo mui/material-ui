@@ -1,0 +1,57 @@
+{
+  "description": "",
+  "methods": [],
+  "props": {
+    "children": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The content of the component.",
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": true,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "dividers": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "Display the top and bottom dividers.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    }
+  },
+  "name": "DialogContent",
+  "styles": {
+    "classes": [
+      "root",
+      "dividers"
+    ],
+    "name": "MuiDialogContent",
+    "descriptions": {
+      "root": "Styles applied to the root element.",
+      "dividers": "Styles applied to the root element if `dividers={true}`."
+    },
+    "globalClasses": {
+      "root": "MuiDialogContent-root",
+      "dividers": "MuiDialogContent-dividers"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/DialogContent/DialogContent.js",
+  "inheritance": null,
+  "usedInPages": [
+    "/components/dialogs"
+  ]
+}

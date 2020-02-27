@@ -1,0 +1,367 @@
+{
+  "description": "",
+  "methods": [],
+  "props": {
+    "boundaryCount": {
+      "type": {
+        "name": "number"
+      },
+      "required": false,
+      "description": "Number of always visible pages at the beginning and end.",
+      "defaultValue": {
+        "value": "1",
+        "computed": false
+      },
+      "tags": []
+    },
+    "children": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "Pagination items.",
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": true,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "color": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'default'",
+            "computed": false
+          },
+          {
+            "value": "'primary'",
+            "computed": false
+          },
+          {
+            "value": "'secondary'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "The active color.",
+      "defaultValue": {
+        "value": "'standard'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "count": {
+      "type": {
+        "name": "number"
+      },
+      "required": false,
+      "description": "The total number of pages.",
+      "defaultValue": {
+        "value": "1",
+        "computed": false
+      },
+      "tags": []
+    },
+    "defaultPage": {
+      "type": {
+        "name": "number"
+      },
+      "required": false,
+      "description": "The page selected by default when the component is uncontrolled.",
+      "defaultValue": {
+        "value": "1",
+        "computed": false
+      },
+      "tags": []
+    },
+    "disabled": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, all the pagination component will be disabled.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "getItemAriaLabel": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Accepts a function which returns a string value that provides a user-friendly name for the current page.\n\nFor localization purposes, you can use the provided [translations](/guides/localization/).",
+      "defaultValue": {
+        "value": "function defaultGetAriaLabel(type, page, selected) {\n  if (type === 'page') {\n    return `${selected ? '' : 'Go to '}page ${page}`;\n  }\n  return `Go to ${type} page`;\n}",
+        "computed": false
+      },
+      "tags": [
+        {
+          "title": "param",
+          "description": "The link or button type to format ('page' | 'first' | 'last' | 'next' | 'previous').",
+          "type": {
+            "type": "OptionalType",
+            "expression": {
+              "type": "NameExpression",
+              "name": "string"
+            }
+          },
+          "name": "type",
+          "default": "page"
+        },
+        {
+          "title": "param",
+          "description": "The page number to format.",
+          "type": {
+            "type": "NameExpression",
+            "name": "number"
+          },
+          "name": "page"
+        },
+        {
+          "title": "param",
+          "description": "If true, the current page is selected.",
+          "type": {
+            "type": "NameExpression",
+            "name": "bool"
+          },
+          "name": "selected"
+        },
+        {
+          "title": "returns",
+          "description": null,
+          "type": {
+            "type": "NameExpression",
+            "name": "string"
+          }
+        }
+      ]
+    },
+    "hideNextButton": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, hide the next-page button.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "hidePrevButton": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, hide the previous-page button.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "onChange": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Callback fired when the page is changed.",
+      "tags": [
+        {
+          "title": "param",
+          "description": "The event source of the callback.",
+          "type": {
+            "type": "NameExpression",
+            "name": "object"
+          },
+          "name": "event"
+        },
+        {
+          "title": "param",
+          "description": "The page selected.",
+          "type": {
+            "type": "NameExpression",
+            "name": "number"
+          },
+          "name": "page"
+        }
+      ]
+    },
+    "page": {
+      "type": {
+        "name": "number"
+      },
+      "required": false,
+      "description": "The current page.",
+      "tags": []
+    },
+    "renderItem": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Render the item.",
+      "defaultValue": {
+        "value": "item => <PaginationItem {...item} />",
+        "computed": false
+      },
+      "tags": [
+        {
+          "title": "param",
+          "description": "The props to spread on a PaginationItem.",
+          "type": {
+            "type": "NameExpression",
+            "name": "object"
+          },
+          "name": "params"
+        },
+        {
+          "title": "returns",
+          "description": null,
+          "type": {
+            "type": "NameExpression",
+            "name": "ReactNode"
+          }
+        }
+      ]
+    },
+    "shape": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'round'",
+            "computed": false
+          },
+          {
+            "value": "'rounded'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "The shape of the pagination items.",
+      "defaultValue": {
+        "value": "'round'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "showFirstButton": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, show the first-page button.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "showLastButton": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, show the last-page button.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "siblingCount": {
+      "type": {
+        "name": "number"
+      },
+      "required": false,
+      "description": "Number of always visible pages before and after the current page.",
+      "defaultValue": {
+        "value": "1",
+        "computed": false
+      },
+      "tags": []
+    },
+    "size": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'small'",
+            "computed": false
+          },
+          {
+            "value": "'medium'",
+            "computed": false
+          },
+          {
+            "value": "'large'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "The size of the pagination component.",
+      "defaultValue": {
+        "value": "'medium'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "variant": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'text'",
+            "computed": false
+          },
+          {
+            "value": "'outlined'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "The variant to use.",
+      "defaultValue": {
+        "value": "'text'",
+        "computed": false
+      },
+      "tags": []
+    }
+  },
+  "name": "Pagination",
+  "styles": {
+    "classes": [
+      "root",
+      "ul"
+    ],
+    "name": "MuiPagination",
+    "descriptions": {
+      "root": "Styles applied to the root element.",
+      "ul": "Styles applied to the ul element.",
+      "const": "eslint-enable no-unused-vars"
+    },
+    "globalClasses": {
+      "root": "MuiPagination-root",
+      "ul": "MuiPagination-ul"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLElement",
+  "filename": "/packages/material-ui-lab/src/Pagination/Pagination.js",
+  "inheritance": null,
+  "usedInPages": [
+    "/components/pagination"
+  ]
+}

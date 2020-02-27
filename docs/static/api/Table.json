@@ -1,0 +1,117 @@
+{
+  "description": "",
+  "methods": [],
+  "props": {
+    "children": {
+      "type": {
+        "name": "node"
+      },
+      "required": true,
+      "description": "The content of the table, normally `TableHead` and `TableBody`.",
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": true,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "component": {
+      "type": {
+        "name": "elementType"
+      },
+      "required": false,
+      "description": "The component used for the root node.\nEither a string to use a DOM element or a component.",
+      "defaultValue": {
+        "value": "'table'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "padding": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'default'",
+            "computed": false
+          },
+          {
+            "value": "'checkbox'",
+            "computed": false
+          },
+          {
+            "value": "'none'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "Allows TableCells to inherit padding of the Table.",
+      "defaultValue": {
+        "value": "'default'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "size": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'small'",
+            "computed": false
+          },
+          {
+            "value": "'medium'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "Allows TableCells to inherit size of the Table.",
+      "defaultValue": {
+        "value": "'medium'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "stickyHeader": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "Set the header sticky.\n\n⚠️ It doesn't work with IE 11.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    }
+  },
+  "name": "Table",
+  "styles": {
+    "classes": [
+      "root",
+      "stickyHeader"
+    ],
+    "name": "MuiTable",
+    "descriptions": {
+      "root": "Styles applied to the root element.",
+      "stickyHeader": "Styles applied to the root element if `stickyHeader={true}`."
+    },
+    "globalClasses": {
+      "root": "MuiTable-root",
+      "stickyHeader": "MuiTable-stickyHeader"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLTableElement",
+  "filename": "/packages/material-ui/src/Table/Table.js",
+  "inheritance": null,
+  "usedInPages": [
+    "/components/tables"
+  ]
+}

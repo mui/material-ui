@@ -1,0 +1,76 @@
+{
+  "description": "",
+  "methods": [],
+  "props": {
+    "rows": {
+      "type": {
+        "name": "union",
+        "value": [
+          {
+            "name": "string"
+          },
+          {
+            "name": "number"
+          }
+        ]
+      },
+      "required": false,
+      "description": "Use `rowsMin` instead. The prop will be removed in v5.",
+      "tags": [
+        {
+          "title": "deprecated",
+          "description": null
+        }
+      ]
+    },
+    "rowsMax": {
+      "type": {
+        "name": "union",
+        "value": [
+          {
+            "name": "string"
+          },
+          {
+            "name": "number"
+          }
+        ]
+      },
+      "required": false,
+      "description": "Maximum number of rows to display.",
+      "tags": []
+    },
+    "rowsMin": {
+      "type": {
+        "name": "union",
+        "value": [
+          {
+            "name": "string"
+          },
+          {
+            "name": "number"
+          }
+        ]
+      },
+      "required": false,
+      "description": "Minimum number of rows to display.",
+      "defaultValue": {
+        "value": "1",
+        "computed": false
+      },
+      "tags": []
+    }
+  },
+  "name": "TextareaAutosize",
+  "styles": {
+    "classes": [],
+    "name": null,
+    "descriptions": {}
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLTextAreaElement",
+  "filename": "/packages/material-ui/src/TextareaAutosize/TextareaAutosize.js",
+  "inheritance": null,
+  "usedInPages": [
+    "/components/textarea-autosize"
+  ]
+}

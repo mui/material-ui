@@ -1,0 +1,71 @@
+{
+  "description": "",
+  "methods": [],
+  "props": {
+    "action": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The action to display. It renders after the message, at the end of the snackbar.",
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": true,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "message": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The message to display.",
+      "tags": []
+    },
+    "role": {
+      "type": {
+        "name": "string"
+      },
+      "required": false,
+      "description": "The ARIA role attribute of the element.",
+      "defaultValue": {
+        "value": "'alert'",
+        "computed": false
+      },
+      "tags": []
+    }
+  },
+  "name": "SnackbarContent",
+  "styles": {
+    "classes": [
+      "root",
+      "message",
+      "action"
+    ],
+    "name": "MuiSnackbarContent",
+    "descriptions": {
+      "root": "Styles applied to the root element.",
+      "message": "Styles applied to the message wrapper element.",
+      "action": "Styles applied to the action wrapper element if `action` is provided."
+    },
+    "globalClasses": {
+      "root": "MuiSnackbarContent-root",
+      "message": "MuiSnackbarContent-message",
+      "action": "MuiSnackbarContent-action"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/SnackbarContent/SnackbarContent.js",
+  "inheritance": {
+    "component": "Paper",
+    "pathname": "/api/paper"
+  },
+  "usedInPages": [
+    "/components/snackbars"
+  ]
+}

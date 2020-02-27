@@ -1,0 +1,123 @@
+{
+  "description": "",
+  "methods": [],
+  "props": {
+    "children": {
+      "type": {
+        "name": "node"
+      },
+      "required": true,
+      "description": "The breadcrumb children.",
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": true,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "component": {
+      "type": {
+        "name": "elementType"
+      },
+      "required": false,
+      "description": "The component used for the root node.\nEither a string to use a DOM element or a component.\nBy default, it maps the variant to a good default headline component.",
+      "defaultValue": {
+        "value": "'nav'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "expandText": {
+      "type": {
+        "name": "string"
+      },
+      "required": false,
+      "description": "Override the default label for the expand button.\n\nFor localization purposes, you can use the provided [translations](/guides/localization/).",
+      "defaultValue": {
+        "value": "'Show path'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "itemsAfterCollapse": {
+      "type": {
+        "name": "number"
+      },
+      "required": false,
+      "description": "If max items is exceeded, the number of items to show after the ellipsis.",
+      "defaultValue": {
+        "value": "1",
+        "computed": false
+      },
+      "tags": []
+    },
+    "itemsBeforeCollapse": {
+      "type": {
+        "name": "number"
+      },
+      "required": false,
+      "description": "If max items is exceeded, the number of items to show before the ellipsis.",
+      "defaultValue": {
+        "value": "1",
+        "computed": false
+      },
+      "tags": []
+    },
+    "maxItems": {
+      "type": {
+        "name": "number"
+      },
+      "required": false,
+      "description": "Specifies the maximum number of breadcrumbs to display. When there are more\nthan the maximum number, only the first `itemsBeforeCollapse` and last `itemsAfterCollapse`\nwill be shown, with an ellipsis in between.",
+      "defaultValue": {
+        "value": "8",
+        "computed": false
+      },
+      "tags": []
+    },
+    "separator": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "Custom separator node.",
+      "defaultValue": {
+        "value": "'/'",
+        "computed": false
+      },
+      "tags": []
+    }
+  },
+  "name": "Breadcrumbs",
+  "styles": {
+    "classes": [
+      "root",
+      "ol",
+      "li",
+      "separator"
+    ],
+    "name": "MuiBreadcrumbs",
+    "descriptions": {
+      "root": "Styles applied to the root element.",
+      "ol": "Styles applied to the ol element.",
+      "li": "Styles applied to the li element.",
+      "separator": "Styles applied to the separator element."
+    },
+    "globalClasses": {
+      "root": "MuiBreadcrumbs-root",
+      "ol": "MuiBreadcrumbs-ol",
+      "li": "MuiBreadcrumbs-li",
+      "separator": "MuiBreadcrumbs-separator"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLElement",
+  "filename": "/packages/material-ui/src/Breadcrumbs/Breadcrumbs.js",
+  "inheritance": null,
+  "usedInPages": [
+    "/components/breadcrumbs"
+  ]
+}

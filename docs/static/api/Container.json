@@ -1,0 +1,137 @@
+{
+  "description": "",
+  "methods": [],
+  "props": {
+    "children": {
+      "type": {
+        "name": "node"
+      },
+      "required": true,
+      "description": "",
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": true,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "component": {
+      "type": {
+        "name": "elementType"
+      },
+      "required": false,
+      "description": "The component used for the root node.\nEither a string to use a DOM element or a component.",
+      "defaultValue": {
+        "value": "'div'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "disableGutters": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the left and right padding is removed.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "fixed": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "Set the max-width to match the min-width of the current breakpoint.\nThis is useful if you'd prefer to design for a fixed set of sizes\ninstead of trying to accommodate a fully fluid viewport.\nIt's fluid by default.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "maxWidth": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'xs'",
+            "computed": false
+          },
+          {
+            "value": "'sm'",
+            "computed": false
+          },
+          {
+            "value": "'md'",
+            "computed": false
+          },
+          {
+            "value": "'lg'",
+            "computed": false
+          },
+          {
+            "value": "'xl'",
+            "computed": false
+          },
+          {
+            "value": "false",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "Determine the max-width of the container.\nThe container width grows with the size of the screen.\nSet to `false` to disable `maxWidth`.",
+      "defaultValue": {
+        "value": "'lg'",
+        "computed": false
+      },
+      "tags": []
+    }
+  },
+  "name": "Container",
+  "styles": {
+    "classes": [
+      "root",
+      "disableGutters",
+      "fixed",
+      "maxWidthXs",
+      "maxWidthSm",
+      "maxWidthMd",
+      "maxWidthLg",
+      "maxWidthXl"
+    ],
+    "name": "MuiContainer",
+    "descriptions": {
+      "root": "Styles applied to the root element.",
+      "disableGutters": "Styles applied to the root element if `disableGutters={true}`.",
+      "fixed": "Styles applied to the root element if `fixed={true}`.",
+      "maxWidthXs": "Styles applied to the root element if `maxWidth=\"xs\"`.",
+      "maxWidthSm": "Styles applied to the root element if `maxWidth=\"sm\"`.",
+      "maxWidthMd": "Styles applied to the root element if `maxWidth=\"md\"`.",
+      "maxWidthLg": "Styles applied to the root element if `maxWidth=\"lg\"`.",
+      "maxWidthXl": "Styles applied to the root element if `maxWidth=\"xl\"`."
+    },
+    "globalClasses": {
+      "root": "MuiContainer-root",
+      "disableGutters": "MuiContainer-disableGutters",
+      "fixed": "MuiContainer-fixed",
+      "maxWidthXs": "MuiContainer-maxWidthXs",
+      "maxWidthSm": "MuiContainer-maxWidthSm",
+      "maxWidthMd": "MuiContainer-maxWidthMd",
+      "maxWidthLg": "MuiContainer-maxWidthLg",
+      "maxWidthXl": "MuiContainer-maxWidthXl"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLElement",
+  "filename": "/packages/material-ui/src/Container/Container.js",
+  "inheritance": null,
+  "usedInPages": [
+    "/components/container"
+  ]
+}

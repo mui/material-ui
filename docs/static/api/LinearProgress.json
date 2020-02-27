@@ -1,0 +1,153 @@
+{
+  "description": "## ARIA\n\nIf the progress bar is describing the loading progress of a particular region of a page,\nyou should use `aria-describedby` to point to the progress bar, and set the `aria-busy`\nattribute to `true` on that region until it has finished loading.",
+  "methods": [],
+  "props": {
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": true,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "color": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'primary'",
+            "computed": false
+          },
+          {
+            "value": "'secondary'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "The color of the component. It supports those theme colors that make sense for this component.",
+      "defaultValue": {
+        "value": "'primary'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "value": {
+      "type": {
+        "name": "number"
+      },
+      "required": false,
+      "description": "The value of the progress indicator for the determinate and buffer variants.\nValue between 0 and 100.",
+      "tags": []
+    },
+    "valueBuffer": {
+      "type": {
+        "name": "number"
+      },
+      "required": false,
+      "description": "The value for the buffer variant.\nValue between 0 and 100.",
+      "tags": []
+    },
+    "variant": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'determinate'",
+            "computed": false
+          },
+          {
+            "value": "'indeterminate'",
+            "computed": false
+          },
+          {
+            "value": "'buffer'",
+            "computed": false
+          },
+          {
+            "value": "'query'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "The variant to use.\nUse indeterminate or query when there is no progress value.",
+      "defaultValue": {
+        "value": "'indeterminate'",
+        "computed": false
+      },
+      "tags": []
+    }
+  },
+  "name": "LinearProgress",
+  "styles": {
+    "classes": [
+      "root",
+      "colorPrimary",
+      "colorSecondary",
+      "determinate",
+      "indeterminate",
+      "buffer",
+      "query",
+      "dashed",
+      "dashedColorPrimary",
+      "dashedColorSecondary",
+      "bar",
+      "barColorPrimary",
+      "barColorSecondary",
+      "bar1Indeterminate",
+      "bar1Determinate",
+      "bar1Buffer",
+      "bar2Indeterminate",
+      "bar2Buffer"
+    ],
+    "name": "MuiLinearProgress",
+    "descriptions": {
+      "root": "Styles applied to the root element.",
+      "colorPrimary": "Styles applied to the root and bar2 element if `color=\"primary\"`; bar2 if `variant=\"buffer\"`.",
+      "colorSecondary": "Styles applied to the root and bar2 elements if `color=\"secondary\"`; bar2 if `variant=\"buffer\"`.",
+      "determinate": "Styles applied to the root element if `variant=\"determinate\"`.",
+      "indeterminate": "Styles applied to the root element if `variant=\"indeterminate\"`.",
+      "buffer": "Styles applied to the root element if `variant=\"buffer\"`.",
+      "query": "Styles applied to the root element if `variant=\"query\"`.",
+      "dashed": "Styles applied to the additional bar element if `variant=\"buffer\"`.",
+      "dashedColorPrimary": "Styles applied to the additional bar element if `variant=\"buffer\"` and `color=\"primary\"`.",
+      "dashedColorSecondary": "Styles applied to the additional bar element if `variant=\"buffer\"` and `color=\"secondary\"`.",
+      "bar": "Styles applied to the layered bar1 and bar2 elements.",
+      "barColorPrimary": "Styles applied to the bar elements if `color=\"primary\"`; bar2 if `variant` not \"buffer\".",
+      "barColorSecondary": "Styles applied to the bar elements if `color=\"secondary\"`; bar2 if `variant` not \"buffer\".",
+      "bar1Indeterminate": "Styles applied to the bar1 element if `variant=\"indeterminate or query\"`.",
+      "bar1Determinate": "Styles applied to the bar1 element if `variant=\"determinate\"`.",
+      "bar1Buffer": "Styles applied to the bar1 element if `variant=\"buffer\"`.",
+      "bar2Indeterminate": "Styles applied to the bar2 element if `variant=\"indeterminate or query\"`.",
+      "bar2Buffer": "Styles applied to the bar2 element if `variant=\"buffer\"`."
+    },
+    "globalClasses": {
+      "root": "MuiLinearProgress-root",
+      "colorPrimary": "MuiLinearProgress-colorPrimary",
+      "colorSecondary": "MuiLinearProgress-colorSecondary",
+      "determinate": "MuiLinearProgress-determinate",
+      "indeterminate": "MuiLinearProgress-indeterminate",
+      "buffer": "MuiLinearProgress-buffer",
+      "query": "MuiLinearProgress-query",
+      "dashed": "MuiLinearProgress-dashed",
+      "dashedColorPrimary": "MuiLinearProgress-dashedColorPrimary",
+      "dashedColorSecondary": "MuiLinearProgress-dashedColorSecondary",
+      "bar": "MuiLinearProgress-bar",
+      "barColorPrimary": "MuiLinearProgress-barColorPrimary",
+      "barColorSecondary": "MuiLinearProgress-barColorSecondary",
+      "bar1Indeterminate": "MuiLinearProgress-bar1Indeterminate",
+      "bar1Determinate": "MuiLinearProgress-bar1Determinate",
+      "bar1Buffer": "MuiLinearProgress-bar1Buffer",
+      "bar2Indeterminate": "MuiLinearProgress-bar2Indeterminate",
+      "bar2Buffer": "MuiLinearProgress-bar2Buffer"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/LinearProgress/LinearProgress.js",
+  "inheritance": null,
+  "usedInPages": [
+    "/components/progress"
+  ]
+}

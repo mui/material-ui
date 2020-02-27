@@ -1,0 +1,343 @@
+{
+  "description": "",
+  "methods": [],
+  "props": {
+    "arrow": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, adds an arrow to the tooltip.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "children": {
+      "type": {
+        "name": "custom",
+        "raw": "elementAcceptingRef.isRequired"
+      },
+      "required": false,
+      "description": "Tooltip reference element.",
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": true,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "disableFocusListener": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "Do not respond to focus events.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "disableHoverListener": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "Do not respond to hover events.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "disableTouchListener": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "Do not respond to long press touch events.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "enterDelay": {
+      "type": {
+        "name": "number"
+      },
+      "required": false,
+      "description": "The number of milliseconds to wait before showing the tooltip.\nThis prop won't impact the enter touch delay (`enterTouchDelay`).",
+      "defaultValue": {
+        "value": "200",
+        "computed": false
+      },
+      "tags": []
+    },
+    "enterNextDelay": {
+      "type": {
+        "name": "number"
+      },
+      "required": false,
+      "description": "The number of milliseconds to wait before showing the tooltip when one was already recently opened.",
+      "defaultValue": {
+        "value": "0",
+        "computed": false
+      },
+      "tags": []
+    },
+    "enterTouchDelay": {
+      "type": {
+        "name": "number"
+      },
+      "required": false,
+      "description": "The number of milliseconds a user must touch the element before showing the tooltip.",
+      "defaultValue": {
+        "value": "700",
+        "computed": false
+      },
+      "tags": []
+    },
+    "id": {
+      "type": {
+        "name": "string"
+      },
+      "required": false,
+      "description": "This prop is used to help implement the accessibility logic.\nIf you don't provide this prop. It falls back to a randomly generated id.",
+      "tags": []
+    },
+    "interactive": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "Makes a tooltip interactive, i.e. will not close when the user\nhovers over the tooltip before the `leaveDelay` is expired.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "leaveDelay": {
+      "type": {
+        "name": "number"
+      },
+      "required": false,
+      "description": "The number of milliseconds to wait before hiding the tooltip.\nThis prop won't impact the leave touch delay (`leaveTouchDelay`).",
+      "defaultValue": {
+        "value": "0",
+        "computed": false
+      },
+      "tags": []
+    },
+    "leaveTouchDelay": {
+      "type": {
+        "name": "number"
+      },
+      "required": false,
+      "description": "The number of milliseconds after the user stops touching an element before hiding the tooltip.",
+      "defaultValue": {
+        "value": "1500",
+        "computed": false
+      },
+      "tags": []
+    },
+    "onClose": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Callback fired when the component requests to be closed.",
+      "tags": [
+        {
+          "title": "param",
+          "description": "The event source of the callback.",
+          "type": {
+            "type": "NameExpression",
+            "name": "object"
+          },
+          "name": "event"
+        }
+      ]
+    },
+    "onOpen": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Callback fired when the component requests to be open.",
+      "tags": [
+        {
+          "title": "param",
+          "description": "The event source of the callback.",
+          "type": {
+            "type": "NameExpression",
+            "name": "object"
+          },
+          "name": "event"
+        }
+      ]
+    },
+    "open": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the tooltip is shown.",
+      "tags": []
+    },
+    "placement": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'bottom-end'",
+            "computed": false
+          },
+          {
+            "value": "'bottom-start'",
+            "computed": false
+          },
+          {
+            "value": "'bottom'",
+            "computed": false
+          },
+          {
+            "value": "'left-end'",
+            "computed": false
+          },
+          {
+            "value": "'left-start'",
+            "computed": false
+          },
+          {
+            "value": "'left'",
+            "computed": false
+          },
+          {
+            "value": "'right-end'",
+            "computed": false
+          },
+          {
+            "value": "'right-start'",
+            "computed": false
+          },
+          {
+            "value": "'right'",
+            "computed": false
+          },
+          {
+            "value": "'top-end'",
+            "computed": false
+          },
+          {
+            "value": "'top-start'",
+            "computed": false
+          },
+          {
+            "value": "'top'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "Tooltip placement.",
+      "defaultValue": {
+        "value": "'bottom'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "PopperProps": {
+      "type": {
+        "name": "object"
+      },
+      "required": false,
+      "description": "Props applied to the [`Popper`](/api/popper/) element.",
+      "tags": []
+    },
+    "title": {
+      "type": {
+        "name": "node"
+      },
+      "required": true,
+      "description": "Tooltip title. Zero-length titles string are never displayed.",
+      "tags": []
+    },
+    "TransitionComponent": {
+      "type": {
+        "name": "elementType"
+      },
+      "required": false,
+      "description": "The component used for the transition.\n[Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.",
+      "defaultValue": {
+        "value": "Grow",
+        "computed": true
+      },
+      "tags": []
+    },
+    "TransitionProps": {
+      "type": {
+        "name": "object"
+      },
+      "required": false,
+      "description": "Props applied to the [`Transition`](http://reactcommunity.org/react-transition-group/transition#Transition-props) element.",
+      "tags": []
+    }
+  },
+  "name": "Tooltip",
+  "styles": {
+    "classes": [
+      "popper",
+      "popperInteractive",
+      "popperArrow",
+      "tooltip",
+      "tooltipArrow",
+      "arrow",
+      "touch",
+      "tooltipPlacementLeft",
+      "tooltipPlacementRight",
+      "tooltipPlacementTop",
+      "tooltipPlacementBottom"
+    ],
+    "name": "MuiTooltip",
+    "descriptions": {
+      "popper": "Styles applied to the Popper component.",
+      "popperInteractive": "Styles applied to the Popper component if `interactive={true}`.",
+      "popperArrow": "Styles applied to the Popper component if `arrow={true}`.",
+      "tooltip": "Styles applied to the tooltip (label wrapper) element.",
+      "tooltipArrow": "Styles applied to the tooltip (label wrapper) element if `arrow={true}`.",
+      "arrow": "Styles applied to the arrow element.",
+      "touch": "Styles applied to the tooltip (label wrapper) element if the tooltip is opened by touch.",
+      "tooltipPlacementLeft": "Styles applied to the tooltip (label wrapper) element if `placement` contains \"left\".",
+      "tooltipPlacementRight": "Styles applied to the tooltip (label wrapper) element if `placement` contains \"right\".",
+      "tooltipPlacementTop": "Styles applied to the tooltip (label wrapper) element if `placement` contains \"top\".",
+      "tooltipPlacementBottom": "Styles applied to the tooltip (label wrapper) element if `placement` contains \"bottom\"."
+    },
+    "globalClasses": {
+      "popper": "MuiTooltip-popper",
+      "popperInteractive": "MuiTooltip-popperInteractive",
+      "popperArrow": "MuiTooltip-popperArrow",
+      "tooltip": "MuiTooltip-tooltip",
+      "tooltipArrow": "MuiTooltip-tooltipArrow",
+      "arrow": "MuiTooltip-arrow",
+      "touch": "MuiTooltip-touch",
+      "tooltipPlacementLeft": "MuiTooltip-tooltipPlacementLeft",
+      "tooltipPlacementRight": "MuiTooltip-tooltipPlacementRight",
+      "tooltipPlacementTop": "MuiTooltip-tooltipPlacementTop",
+      "tooltipPlacementBottom": "MuiTooltip-tooltipPlacementBottom"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLButtonElement",
+  "filename": "/packages/material-ui/src/Tooltip/Tooltip.js",
+  "inheritance": null,
+  "usedInPages": [
+    "/components/tooltips"
+  ]
+}

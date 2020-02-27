@@ -1,0 +1,90 @@
+{
+  "description": "",
+  "methods": [],
+  "props": {
+    "children": {
+      "type": {
+        "name": "custom",
+        "raw": "unsupportedProp"
+      },
+      "required": false,
+      "description": "This prop isn't supported.\nUse the `component` prop if you need to change the children structure.",
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": true,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "icon": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The icon element.",
+      "tags": []
+    },
+    "label": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The label element.",
+      "tags": []
+    },
+    "showLabel": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the `BottomNavigationAction` will show its label.\nBy default, only the selected `BottomNavigationAction`\ninside `BottomNavigation` will show its label.",
+      "tags": []
+    },
+    "value": {
+      "type": {
+        "name": "any"
+      },
+      "required": false,
+      "description": "You can provide your own value. Otherwise, we fallback to the child position index.",
+      "tags": []
+    }
+  },
+  "name": "BottomNavigationAction",
+  "styles": {
+    "classes": [
+      "root",
+      "selected",
+      "iconOnly",
+      "wrapper",
+      "label"
+    ],
+    "name": "MuiBottomNavigationAction",
+    "descriptions": {
+      "root": "Styles applied to the root element.",
+      "selected": "Pseudo-class applied to the root element if selected.",
+      "iconOnly": "Pseudo-class applied to the root element if `showLabel={false}` and not selected.",
+      "wrapper": "Styles applied to the span element that wraps the icon and label.",
+      "label": "Styles applied to the label's span element."
+    },
+    "globalClasses": {
+      "root": "MuiBottomNavigationAction-root",
+      "selected": "Mui-selected",
+      "iconOnly": "MuiBottomNavigationAction-iconOnly",
+      "wrapper": "MuiBottomNavigationAction-wrapper",
+      "label": "MuiBottomNavigationAction-label"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLButtonElement",
+  "filename": "/packages/material-ui/src/BottomNavigationAction/BottomNavigationAction.js",
+  "inheritance": {
+    "component": "ButtonBase",
+    "pathname": "/api/button-base"
+  },
+  "usedInPages": [
+    "/components/bottom-navigation"
+  ]
+}

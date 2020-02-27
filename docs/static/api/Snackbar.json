@@ -1,0 +1,311 @@
+{
+  "description": "",
+  "methods": [],
+  "props": {
+    "action": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The action to display. It renders after the message, at the end of the snackbar.",
+      "tags": []
+    },
+    "anchorOrigin": {
+      "type": {
+        "name": "shape",
+        "value": {
+          "horizontal": {
+            "name": "enum",
+            "value": [
+              {
+                "value": "'left'",
+                "computed": false
+              },
+              {
+                "value": "'center'",
+                "computed": false
+              },
+              {
+                "value": "'right'",
+                "computed": false
+              }
+            ],
+            "required": true
+          },
+          "vertical": {
+            "name": "enum",
+            "value": [
+              {
+                "value": "'top'",
+                "computed": false
+              },
+              {
+                "value": "'bottom'",
+                "computed": false
+              }
+            ],
+            "required": true
+          }
+        }
+      },
+      "required": false,
+      "description": "The anchor of the `Snackbar`.",
+      "defaultValue": {
+        "value": "{ vertical: 'bottom', horizontal: 'center' }",
+        "computed": false
+      },
+      "tags": []
+    },
+    "autoHideDuration": {
+      "type": {
+        "name": "number"
+      },
+      "required": false,
+      "description": "The number of milliseconds to wait before automatically calling the\n`onClose` function. `onClose` should then set the state of the `open`\nprop to hide the Snackbar. This behavior is disabled by default with\nthe `null` value.",
+      "defaultValue": {
+        "value": "null",
+        "computed": false
+      },
+      "tags": []
+    },
+    "children": {
+      "type": {
+        "name": "element"
+      },
+      "required": false,
+      "description": "Replace the `SnackbarContent` component.",
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": true,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "ClickAwayListenerProps": {
+      "type": {
+        "name": "object"
+      },
+      "required": false,
+      "description": "Props applied to the `ClickAwayListener` element.",
+      "tags": []
+    },
+    "ContentProps": {
+      "type": {
+        "name": "object"
+      },
+      "required": false,
+      "description": "Props applied to the [`SnackbarContent`](/api/snackbar-content/) element.",
+      "tags": []
+    },
+    "disableWindowBlurListener": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the `autoHideDuration` timer will expire even if the window is not focused.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
+      "tags": []
+    },
+    "key": {
+      "type": {
+        "name": "any"
+      },
+      "required": false,
+      "description": "When displaying multiple consecutive Snackbars from a parent rendering a single\n<Snackbar/>, add the key prop to ensure independent treatment of each message.\ne.g. <Snackbar key={message} />, otherwise, the message may update-in-place and\nfeatures such as autoHideDuration may be canceled.",
+      "tags": []
+    },
+    "message": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The message to display.",
+      "tags": []
+    },
+    "onClose": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Callback fired when the component requests to be closed.\nTypically `onClose` is used to set state in the parent component,\nwhich is used to control the `Snackbar` `open` prop.\nThe `reason` parameter can optionally be used to control the response to `onClose`,\nfor example ignoring `clickaway`.",
+      "tags": [
+        {
+          "title": "param",
+          "description": "The event source of the callback.",
+          "type": {
+            "type": "NameExpression",
+            "name": "object"
+          },
+          "name": "event"
+        },
+        {
+          "title": "param",
+          "description": "Can be: `\"timeout\"` (`autoHideDuration` expired), `\"clickaway\"`.",
+          "type": {
+            "type": "NameExpression",
+            "name": "string"
+          },
+          "name": "reason"
+        }
+      ]
+    },
+    "onEnter": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Callback fired before the transition is entering.",
+      "tags": []
+    },
+    "onEntered": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Callback fired when the transition has entered.",
+      "tags": []
+    },
+    "onEntering": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Callback fired when the transition is entering.",
+      "tags": []
+    },
+    "onExit": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Callback fired before the transition is exiting.",
+      "tags": []
+    },
+    "onExited": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Callback fired when the transition has exited.",
+      "tags": []
+    },
+    "onExiting": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Callback fired when the transition is exiting.",
+      "tags": []
+    },
+    "open": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, `Snackbar` is open.",
+      "tags": []
+    },
+    "resumeHideDuration": {
+      "type": {
+        "name": "number"
+      },
+      "required": false,
+      "description": "The number of milliseconds to wait before dismissing after user interaction.\nIf `autoHideDuration` prop isn't specified, it does nothing.\nIf `autoHideDuration` prop is specified but `resumeHideDuration` isn't,\nwe default to `autoHideDuration / 2` ms.",
+      "tags": []
+    },
+    "TransitionComponent": {
+      "type": {
+        "name": "elementType"
+      },
+      "required": false,
+      "description": "The component used for the transition.\n[Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.",
+      "defaultValue": {
+        "value": "Grow",
+        "computed": true
+      },
+      "tags": []
+    },
+    "transitionDuration": {
+      "type": {
+        "name": "union",
+        "value": [
+          {
+            "name": "number"
+          },
+          {
+            "name": "shape",
+            "value": {
+              "enter": {
+                "name": "number",
+                "required": false
+              },
+              "exit": {
+                "name": "number",
+                "required": false
+              }
+            }
+          }
+        ]
+      },
+      "required": false,
+      "description": "The duration for the transition, in milliseconds.\nYou may specify a single timeout for all transitions, or individually with an object.",
+      "defaultValue": {
+        "value": "{\n  enter: duration.enteringScreen,\n  exit: duration.leavingScreen,\n}",
+        "computed": false
+      },
+      "tags": []
+    },
+    "TransitionProps": {
+      "type": {
+        "name": "object"
+      },
+      "required": false,
+      "description": "Props applied to the [`Transition`](http://reactcommunity.org/react-transition-group/transition#Transition-props) element.",
+      "tags": []
+    }
+  },
+  "name": "Snackbar",
+  "styles": {
+    "classes": [
+      "root",
+      "anchorOriginTopCenter",
+      "anchorOriginBottomCenter",
+      "anchorOriginTopRight",
+      "anchorOriginBottomRight",
+      "anchorOriginTopLeft",
+      "anchorOriginBottomLeft"
+    ],
+    "name": "MuiSnackbar",
+    "descriptions": {
+      "root": "Styles applied to the root element.",
+      "anchorOriginTopCenter": "Styles applied to the root element if `anchorOrigin={{ 'top', 'center' }}`.",
+      "anchorOriginBottomCenter": "Styles applied to the root element if `anchorOrigin={{ 'bottom', 'center' }}`.",
+      "anchorOriginTopRight": "Styles applied to the root element if `anchorOrigin={{ 'top', 'right' }}`.",
+      "anchorOriginBottomRight": "Styles applied to the root element if `anchorOrigin={{ 'bottom', 'right' }}`.",
+      "anchorOriginTopLeft": "Styles applied to the root element if `anchorOrigin={{ 'top', 'left' }}`.",
+      "anchorOriginBottomLeft": "Styles applied to the root element if `anchorOrigin={{ 'bottom', 'left' }}`."
+    },
+    "globalClasses": {
+      "root": "MuiSnackbar-root",
+      "anchorOriginTopCenter": "MuiSnackbar-anchorOriginTopCenter",
+      "anchorOriginBottomCenter": "MuiSnackbar-anchorOriginBottomCenter",
+      "anchorOriginTopRight": "MuiSnackbar-anchorOriginTopRight",
+      "anchorOriginBottomRight": "MuiSnackbar-anchorOriginBottomRight",
+      "anchorOriginTopLeft": "MuiSnackbar-anchorOriginTopLeft",
+      "anchorOriginBottomLeft": "MuiSnackbar-anchorOriginBottomLeft"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/Snackbar/Snackbar.js",
+  "inheritance": null,
+  "usedInPages": [
+    "/components/snackbars"
+  ]
+}

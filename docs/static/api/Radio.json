@@ -1,0 +1,212 @@
+{
+  "description": "",
+  "methods": [],
+  "props": {
+    "checked": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the component is checked.",
+      "tags": []
+    },
+    "checkedIcon": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The icon to display when the component is checked.",
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": true,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "color": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'primary'",
+            "computed": false
+          },
+          {
+            "value": "'secondary'",
+            "computed": false
+          },
+          {
+            "value": "'default'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "The color of the component. It supports those theme colors that make sense for this component.",
+      "defaultValue": {
+        "value": "'secondary'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "disabled": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the radio will be disabled.",
+      "tags": []
+    },
+    "disableRipple": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the ripple effect will be disabled.",
+      "tags": []
+    },
+    "icon": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The icon to display when the component is unchecked.",
+      "tags": []
+    },
+    "id": {
+      "type": {
+        "name": "string"
+      },
+      "required": false,
+      "description": "The id of the `input` element.",
+      "tags": []
+    },
+    "inputProps": {
+      "type": {
+        "name": "object"
+      },
+      "required": false,
+      "description": "[Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.",
+      "tags": []
+    },
+    "inputRef": {
+      "type": {
+        "name": "custom",
+        "raw": "refType"
+      },
+      "required": false,
+      "description": "Pass a ref to the `input` element.",
+      "tags": []
+    },
+    "name": {
+      "type": {
+        "name": "string"
+      },
+      "required": false,
+      "description": "Name attribute of the `input` element.",
+      "tags": []
+    },
+    "onChange": {
+      "type": {
+        "name": "func"
+      },
+      "required": false,
+      "description": "Callback fired when the state is changed.",
+      "tags": [
+        {
+          "title": "param",
+          "description": "The event source of the callback.\nYou can pull out the new value by accessing `event.target.value` (string).\nYou can pull out the new checked state by accessing `event.target.checked` (boolean).",
+          "type": {
+            "type": "NameExpression",
+            "name": "object"
+          },
+          "name": "event"
+        }
+      ]
+    },
+    "required": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the `input` element will be required.",
+      "tags": []
+    },
+    "size": {
+      "type": {
+        "name": "enum",
+        "value": [
+          {
+            "value": "'small'",
+            "computed": false
+          },
+          {
+            "value": "'medium'",
+            "computed": false
+          }
+        ]
+      },
+      "required": false,
+      "description": "The size of the radio.\n`small` is equivalent to the dense radio styling.",
+      "defaultValue": {
+        "value": "'medium'",
+        "computed": false
+      },
+      "tags": []
+    },
+    "type": {
+      "type": {
+        "name": "string"
+      },
+      "required": false,
+      "description": "The input component prop `type`.",
+      "tags": []
+    },
+    "value": {
+      "type": {
+        "name": "any"
+      },
+      "required": false,
+      "description": "The value of the component. The DOM API casts this to a string.",
+      "tags": []
+    }
+  },
+  "name": "Radio",
+  "styles": {
+    "classes": [
+      "root",
+      "checked",
+      "disabled",
+      "colorPrimary",
+      "colorSecondary"
+    ],
+    "name": "MuiRadio",
+    "descriptions": {
+      "root": "Styles applied to the root element.",
+      "checked": "Pseudo-class applied to the root element if `checked={true}`.",
+      "disabled": "Pseudo-class applied to the root element if `disabled={true}`.",
+      "colorPrimary": "Styles applied to the root element if `color=\"primary\"`.",
+      "colorSecondary": "Styles applied to the root element if `color=\"secondary\"`."
+    },
+    "globalClasses": {
+      "root": "MuiRadio-root",
+      "checked": "Mui-checked",
+      "disabled": "Mui-disabled",
+      "colorPrimary": "MuiRadio-colorPrimary",
+      "colorSecondary": "MuiRadio-colorSecondary"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLSpanElement",
+  "filename": "/packages/material-ui/src/Radio/Radio.js",
+  "inheritance": {
+    "component": "IconButton",
+    "pathname": "/api/icon-button"
+  },
+  "usedInPages": [
+    "/components/radio-buttons"
+  ]
+}

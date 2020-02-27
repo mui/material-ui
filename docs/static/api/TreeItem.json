@@ -1,0 +1,128 @@
+{
+  "description": "",
+  "methods": [],
+  "props": {
+    "children": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The content of the component.",
+      "tags": []
+    },
+    "classes": {
+      "type": {
+        "name": "object"
+      },
+      "required": false,
+      "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+      "tags": []
+    },
+    "collapseIcon": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The icon used to collapse the node.",
+      "tags": []
+    },
+    "endIcon": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The icon displayed next to a end node.",
+      "tags": []
+    },
+    "expandIcon": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The icon used to expand the node.",
+      "tags": []
+    },
+    "icon": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The icon to display next to the tree node's label.",
+      "tags": []
+    },
+    "label": {
+      "type": {
+        "name": "node"
+      },
+      "required": false,
+      "description": "The tree node label.",
+      "tags": []
+    },
+    "nodeId": {
+      "type": {
+        "name": "string"
+      },
+      "required": true,
+      "description": "The id of the node.",
+      "tags": []
+    },
+    "TransitionComponent": {
+      "type": {
+        "name": "elementType"
+      },
+      "required": false,
+      "description": "The component used for the transition.\n[Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.",
+      "defaultValue": {
+        "value": "Collapse",
+        "computed": true
+      },
+      "tags": []
+    },
+    "TransitionProps": {
+      "type": {
+        "name": "object"
+      },
+      "required": false,
+      "description": "Props applied to the [`Transition`](http://reactcommunity.org/react-transition-group/transition#Transition-props) element.",
+      "tags": []
+    }
+  },
+  "name": "TreeItem",
+  "styles": {
+    "classes": [
+      "root",
+      "expanded",
+      "selected",
+      "group",
+      "content",
+      "iconContainer",
+      "label"
+    ],
+    "name": "MuiTreeItem",
+    "descriptions": {
+      "root": "Styles applied to the root element.",
+      "expanded": "Pseudo-class applied to the root element when expanded.",
+      "selected": "Pseudo-class applied to the root element when selected.",
+      "group": "Styles applied to the `role=\"group\"` element.",
+      "content": "Styles applied to the tree node content.",
+      "iconContainer": "Styles applied to the tree node icon and collapse/expand icon.",
+      "label": "Styles applied to the label element."
+    },
+    "globalClasses": {
+      "root": "MuiTreeItem-root",
+      "expanded": "Mui-expanded",
+      "selected": "Mui-selected",
+      "group": "MuiTreeItem-group",
+      "content": "MuiTreeItem-content",
+      "iconContainer": "MuiTreeItem-iconContainer",
+      "label": "MuiTreeItem-label"
+    }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLLIElement",
+  "filename": "/packages/material-ui-lab/src/TreeItem/TreeItem.js",
+  "inheritance": null,
+  "usedInPages": [
+    "/components/tree-view"
+  ]
+}
