@@ -202,7 +202,7 @@ describe('<TablePagination />', () => {
     });
 
     it('should handle when count is out of range', () => {
-      let page = 0;
+      let page = 1;
       const wrapper = mount(
         <table>
           <TableBody>
