@@ -731,14 +731,21 @@ ApiPage.getInitialProps = async ctx => {
   }
 
   const componentId = uppercaseFirst(kebapToCamelCase(query.component));
+
+  // no server running during `next export` so we have to hack it via `require`
+  // until we can use next 9
+  // extra nesting to aid Dead Code Elimination of the client bundle
+  if (!process.browser) {
+    if (typeof req.get !== 'function') {
+      const requireApi = require.context('docs/static/api', false, /\.json$/);
+      return { api: requireApi(`./${componentId}.json`) };
+    }
+  }
+
   const relativeApiUrl = `/static/api/${componentId}.json`;
-  // eslint-disable-next-line no-nested-ternary
   const apiUrl = process.browser
     ? relativeApiUrl
-    : typeof req.get === 'function'
-    ? `${req.protocol}://${req.get('Host')}${relativeApiUrl}`
-    : // we're in next export, navigate to `/docs`
-      `${__dirname}/../../../../..${relativeApiUrl}`;
+    : `${req.protocol}://${req.get('Host')}${relativeApiUrl}`;
 
   try {
     const apiResponse = await fetch(apiUrl);
