@@ -112,7 +112,7 @@ Check out our [documentation website](https://material-ui.com/).
 
 ## Premium Themes
 
-You can find complete templates & themes in our [premium themes](https://material-ui.com/store/) section.
+You can find complete templates & themes in the [Material-UI store](https://material-ui.com/store/) .
 
 ## Contributing
 
