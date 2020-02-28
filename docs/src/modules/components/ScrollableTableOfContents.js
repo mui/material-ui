@@ -8,7 +8,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Link from 'docs/src/modules/components/Link';
-import PageContext from 'docs/src/modules/components/PageContext';
 import DiamondSponsors from 'docs/src/modules/components/DiamondSponsors';
 
 const useStyles = makeStyles(theme => ({
@@ -146,13 +145,11 @@ export default function ScrollableTableOfContents(props) {
     [],
   );
 
-  const { activePage } = React.useContext(PageContext);
-
   const itemLink = (item, secondary) => (
     <Link
       display="block"
       color={activeState === item.hash ? 'textPrimary' : 'textSecondary'}
-      href={`${activePage.pathname}#${item.hash}`}
+      href={`#${item.hash}`}
       underline="none"
       onClick={handleClick(item.hash)}
       className={clsx(
