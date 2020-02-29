@@ -1,4 +1,4 @@
-import { getTransformer } from '@material-ui/system';
+import { createUnarySpacing } from '@material-ui/system';
 
 let warnOnce;
 
@@ -11,7 +11,7 @@ export default function createSpacing(spacingInput = 8) {
   // Material Design layouts are visually balanced. Most measurements align to an 8dp grid applied, which aligns both spacing and the overall layout.
   // Smaller components, such as icons and type, can align to a 4dp grid.
   // https://material.io/design/layout/understanding-layout.html#usage
-  const transform = getTransformer({
+  const transform = createUnarySpacing({
     spacing: spacingInput,
   });
 

@@ -74,7 +74,7 @@ const spacingKeys = [
   'paddingY',
 ];
 
-export function getTransformer(theme) {
+export function createUnarySpacing(theme) {
   const themeSpacing = theme.spacing || 8;
 
   if (typeof themeSpacing === 'number') {
@@ -153,7 +153,7 @@ function getStyleFromPropValue(cssProperties, transformer) {
 
 function spacing(props) {
   const theme = props.theme;
-  const transformer = getTransformer(theme);
+  const transformer = createUnarySpacing(theme);
 
   return Object.keys(props)
     .map(prop => {
