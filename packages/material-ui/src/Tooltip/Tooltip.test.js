@@ -397,6 +397,38 @@ describe('<Tooltip />', () => {
     });
   });
 
+  describe('prop: PopperProps', () => {
+    it('should pass PopperProps to Popper Component', () => {
+      const { getByTestId } = render(
+        <Tooltip {...defaultProps} open PopperProps={{ 'data-testid': 'popper' }} />,
+      );
+
+      expect(getByTestId('popper')).to.be.ok;
+    });
+
+    it('should merge popperOptions with arrow modifier', () => {
+      const popperRef = React.createRef();
+      render(
+        <Tooltip
+          {...defaultProps}
+          open
+          arrow
+          PopperProps={{
+            popperRef,
+            popperOptions: {
+              modifiers: {
+                arrow: {
+                  foo: 'bar',
+                },
+              },
+            },
+          }}
+        />,
+      );
+      expect(popperRef.current.modifiers.find(x => x.name === 'arrow').foo).to.equal('bar');
+    });
+  });
+
   describe('forward', () => {
     it('should forward props to the child element', () => {
       const wrapper = mount(

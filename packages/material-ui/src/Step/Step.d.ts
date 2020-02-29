@@ -10,6 +10,7 @@ export interface StepProps
   completed?: boolean;
   connector?: React.ReactElement;
   disabled?: boolean;
+  expanded?: boolean;
   index?: number;
   last?: boolean;
   orientation?: Orientation;

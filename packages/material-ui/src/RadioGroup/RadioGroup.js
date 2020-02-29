@@ -6,7 +6,7 @@ import useControlled from '../utils/useControlled';
 import RadioGroupContext from './RadioGroupContext';
 
 const RadioGroup = React.forwardRef(function RadioGroup(props, ref) {
-  const { actions, children, name, value: valueProp, onChange, ...other } = props;
+  const { actions, children, name: nameProp, value: valueProp, onChange, ...other } = props;
   const rootRef = React.useRef(null);
 
   const [value, setValue] = useControlled({
@@ -43,6 +43,15 @@ const RadioGroup = React.forwardRef(function RadioGroup(props, ref) {
     }
   };
 
+  const [defaultName, setDefaultName] = React.useState();
+  const name = nameProp || defaultName;
+  React.useEffect(() => {
+    // Fallback to this default name when possible.
+    // Use the random value for client-side rendering only.
+    // We can't use it server-side.
+    setDefaultName(`mui-radiogroup-${Math.round(Math.random() * 1e5)}`);
+  }, []);
+
   return (
     <RadioGroupContext.Provider value={{ name, onChange: handleChange, value }}>
       <FormGroup role="radiogroup" ref={handleRef} {...other}>
@@ -67,6 +76,7 @@ RadioGroup.propTypes = {
   defaultValue: PropTypes.any,
   /**
    * The name used to reference the value of the control.
+   * If you don't provide this prop, it falls back to a randomly generated name.
    */
   name: PropTypes.string,
   /**

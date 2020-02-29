@@ -194,8 +194,8 @@ const pages = [
     ],
   },
   {
-    pathname: 'https://themes.material-ui.com/',
-    title: 'Premium Themes',
+    pathname: 'https://material-ui.com/store/',
+    title: 'Store',
     linkProps: {
       'data-ga-event-category': 'premium-themes',
       'data-ga-event-action': 'click',

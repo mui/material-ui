@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { elementAcceptingRef } from '@material-ui/utils';
+import { deepmerge, elementAcceptingRef } from '@material-ui/utils';
 import { fade } from '../styles/colorManipulator';
 import withStyles from '../styles/withStyles';
 import capitalize from '../utils/capitalize';
@@ -194,7 +194,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     onOpen,
     open: openProp,
     placement = 'bottom',
-    PopperProps,
+    PopperProps = {},
     title,
     TransitionComponent = Grow,
     TransitionProps,
@@ -484,18 +484,21 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     }
   }
 
-  // Avoid the creation of a new Popper.js instance at each render.
-  const popperOptions = React.useMemo(
-    () => ({
-      modifiers: {
-        arrow: {
-          enabled: Boolean(arrowRef),
-          element: arrowRef,
+  const mergedPopperProps = React.useMemo(() => {
+    return deepmerge(
+      {
+        popperOptions: {
+          modifiers: {
+            arrow: {
+              enabled: Boolean(arrowRef),
+              element: arrowRef,
+            },
+          },
         },
       },
-    }),
-    [arrowRef],
-  );
+      PopperProps,
+    );
+  }, [arrowRef, PopperProps]);
 
   return (
     <React.Fragment>
@@ -510,9 +513,8 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
         open={childNode ? open : false}
         id={childrenProps['aria-describedby']}
         transition
-        popperOptions={popperOptions}
         {...interactiveWrapperListeners}
-        {...PopperProps}
+        {...mergedPopperProps}
       >
         {({ placement: placementInner, TransitionProps: TransitionPropsInner }) => (
           <TransitionComponent
