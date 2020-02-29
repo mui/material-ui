@@ -43,7 +43,7 @@ Here are some recommended resources, some of which are free.
 
 - **Implement high fidelity designs**: Bridge the gap between Design & Development. Break down detailed designs and bring them to life with Material-UI and React.
 
-  - 💻 [The Course](https://www.udemy.com/course/implement-high-fidelity-designs-with-material-ui-and-reactjs/)
+  - 💻 [The Course](https://click.linksynergy.com/deeplink?id=IVuPfk1F/Ow&mid=39197&murl=https%3A%2F%2Fwww.udemy.com%2Fcourse%2Fimplement-high-fidelity-designs-with-material-ui-and-reactjs%2F)
 
 - **Cookbook**: Build modern-day applications by implementing Material Design principles in React, using Material-UI.
   - 📘 [The book](https://www.amazon.com/gp/product/1789615224/)
