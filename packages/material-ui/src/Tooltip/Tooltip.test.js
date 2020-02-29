@@ -399,63 +399,33 @@ describe('<Tooltip />', () => {
 
   describe('prop: PopperProps', () => {
     it('should pass PopperProps to Popper Component', () => {
-      const wrapper = mount(<Tooltip {...defaultProps} PopperProps={{ item: 'value' }} />);
+      const { getByTestId } = render(
+        <Tooltip {...defaultProps} open PopperProps={{ 'data-testid': 'popper' }} />,
+      );
 
-      assert.strictEqual(wrapper.find(Popper).props().item, 'value');
+      expect(getByTestId('popper')).to.be.ok;
     });
 
-    it('should pass popperOptions to Popper Component when PopperProps is undefined', () => {
-      const wrapper = mount(<Tooltip {...defaultProps} />);
-
-      assert.exists(wrapper.find(Popper).props().popperOptions.modifiers.arrow);
-    });
-
-    it('should pass popperOptions to Popper Component when PopperProps is not undefined', () => {
-      const wrapper = mount(<Tooltip {...defaultProps} PopperProps={{ item: 'value' }} />);
-
-      assert.exists(wrapper.find(Popper).props().popperOptions.modifiers.arrow);
-      assert.strictEqual(wrapper.find(Popper).props().item, 'value');
-    });
-
-    it('should merge popperOptions with arrow modifer', () => {
-      const wrapper = mount(
+    it('should merge popperOptions with arrow modifier', () => {
+      const popperRef = React.createRef();
+      render(
         <Tooltip
           {...defaultProps}
+          open
+          arrow
           PopperProps={{
-            popperOptions: { item: 'value' },
+            popperRef,
+            popperOptions: {
+              modifiers: {
+                arrow: {
+                  foo: 'bar',
+                },
+              },
+            },
           }}
         />,
       );
-
-      assert.exists(wrapper.find(Popper).props().popperOptions.modifiers.arrow);
-      assert.strictEqual(wrapper.find(Popper).props().popperOptions.item, 'value');
-    });
-
-    it('should merge popperOptions modifiers with arrow modifer', () => {
-      const wrapper = mount(
-        <Tooltip
-          {...defaultProps}
-          PopperProps={{
-            popperOptions: { modifiers: { item: 'value' } },
-          }}
-        />,
-      );
-
-      assert.exists(wrapper.find(Popper).props().popperOptions.modifiers.arrow);
-      assert.strictEqual(wrapper.find(Popper).props().popperOptions.modifiers.item, 'value');
-    });
-
-    it('should override popperOptions arrow modifier', () => {
-      const wrapper = mount(
-        <Tooltip
-          {...defaultProps}
-          PopperProps={{
-            popperOptions: { modifiers: { arrow: 'value' } },
-          }}
-        />,
-      );
-
-      assert.strictEqual(wrapper.find(Popper).props().popperOptions.modifiers.arrow, 'value');
+      expect(popperRef.current.modifiers.find(x => x.name === 'arrow').foo).to.equal('bar');
     });
   });
 

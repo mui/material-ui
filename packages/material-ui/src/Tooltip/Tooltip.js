@@ -194,7 +194,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     onOpen,
     open: openProp,
     placement = 'bottom',
-    PopperProps,
+    PopperProps = {},
     title,
     TransitionComponent = Grow,
     TransitionProps,
@@ -484,18 +484,21 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     }
   }
 
-  const PopperPropsToPassToPopper = React.useMemo(() => {
-    const defaultPopperOptions = {
-      modifiers: {
-        arrow: {
-          enabled: Boolean(arrowRef),
-          element: arrowRef
-        }
-      }
-    }
-
-    return deepmerge({ popperOptions: defaultPopperOptions }, PopperProps || {})
-  }, [arrowRef, PopperProps])
+  const mergedPopperProps = React.useMemo(() => {
+    return deepmerge(
+      {
+        popperOptions: {
+          modifiers: {
+            arrow: {
+              enabled: Boolean(arrowRef),
+              element: arrowRef,
+            },
+          },
+        },
+      },
+      PopperProps,
+    );
+  }, [arrowRef, PopperProps]);
 
   return (
     <React.Fragment>
@@ -511,7 +514,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
         id={childrenProps['aria-describedby']}
         transition
         {...interactiveWrapperListeners}
-        {...PopperPropsToPassToPopper}
+        {...mergedPopperProps}
       >
         {({ placement: placementInner, TransitionProps: TransitionPropsInner }) => (
           <TransitionComponent
