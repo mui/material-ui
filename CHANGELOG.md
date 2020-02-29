@@ -1,5 +1,40 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.9.5
+###### *Feb 29, 2020*
+
+Big thanks to the 15 contributors who made this release possible.
+
+### `@material-ui/core@v4.9.4`
+
+- [ButtonBase] Fix when changing enableRipple prop from false to true  (#19667) @dmtrKovalenko
+- [l10n] Add Armenian (hy-AM) locale (#19844) @vgevorgyan
+- [l10n] Add Hebrew (he-IL) locale (#19850) @boazberman
+- [Popper] Fix deep merge of PopperProps (#19851) @valgrindMaster
+- [RadioGroup] Random default name (#19890) @dfernandez-asapp
+- [Slider] Add explicit types for slider callbacks (#19867) @deymundson
+- [Step] Add missing expanded prop to step TypeScript (#19873) @countableSet
+
+### `@material-ui/lab@v4.0.0-alpha.45`
+
+- [Autocomplete] Fix list of countries (#19862) @FottyM
+- [TreeView] Fix conditional nodes support (#19849) @joshwooding
+- [Treeview] Add node selection support (#18357) @joshwooding
+
+### Docs
+
+- [docs] Fix broken link to jss-nested plugin (#19837) @Izhaki
+- [docs] Fix typo on supported-platforms.md (#19841) @vferdiansyah
+- [docs] Move store to a subfolder (#19822) @oliviertassinari
+
+### Core
+
+- [ci] Enable re-run of azure pipelines (#19823) @eps1lon
+- [ci] fix heap out of memory in azure pipelines (#19825) @eps1lon
+- [core] Migrate to import * as React from 'react' (#19802) @TrySound
+- [test] Fix defaultProps overriding props (#19858) @eps1lon
+- [test] Test against typescript nightlies (#19857) @eps1lon
+
 ## 4.9.4
 ###### *Feb 23, 2020*
 
