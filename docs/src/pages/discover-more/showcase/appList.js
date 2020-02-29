@@ -197,9 +197,8 @@ const appList = [
       'accounts. Create, transfer, stake, vote and more with Scatter!',
     image: 'eostoolkit.jpg',
     link: 'https://www.eostoolkit.io/',
-    source: 'https://github.com/generEOS/eostoolkit',
-    stars: 48,
-    similarWebVisits: 123,
+    source: 'https://github.com/eostoolkit/eostoolkit',
+    stars: 76,
     dateAdded: '2019-01-01',
   },
   {
