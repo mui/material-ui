@@ -10,7 +10,7 @@ Here are some highlights ✨:
 - 💄 Add selection (and multi-selection) support to tree view (#18357) @joshwooding
 - And many more 🐛 bug fixes and 📚 improvements.
 
-### `@material-ui/core@v4.9.4`
+### `@material-ui/core@v4.9.5`
 
 - [ButtonBase] Fix when changing enableRipple prop from false to true  (#19667) @dmtrKovalenko
 - [l10n] Add Armenian (hy-AM) locale (#19844) @vgevorgyan
