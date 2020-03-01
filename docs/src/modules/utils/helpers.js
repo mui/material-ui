@@ -104,9 +104,7 @@ function getDependencies(raw, options = {}) {
     '@material-ui/styles': 'latest',
     '@material-ui/system': 'latest',
     '@material-ui/utils': 'latest',
-    'date-fns': 'next',
-    jss: 'next',
-    'jss-plugin-template': 'next',
+    '@date-io/date-fns': 'v1',
   };
 
   const re = /^import\s'([^']+)'|import\s[\s\S]*?\sfrom\s+'([^']+)/gm;
