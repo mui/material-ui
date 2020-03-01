@@ -99,7 +99,6 @@ describe('<Autocomplete />', () => {
       fireEvent.keyDown(document.activeElement, { key: 'Enter' });
       fireEvent.change(document.activeElement, { target: { value: 'o' } });
       checkHighlightIs('two');
-
     });
   });
 
@@ -113,11 +112,11 @@ describe('<Autocomplete />', () => {
           renderInput={params => <TextField {...params} autoFocus />}
         />,
       );
-  
+
       function checkHighlightIs(expected) {
         expect(getByRole('listbox').querySelector('li[data-focus]')).to.have.text(expected);
       }
-  
+
       fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
       checkHighlightIs('three');
       fireEvent.keyDown(document.activeElement, { key: 'Enter' }); // selects the last option
