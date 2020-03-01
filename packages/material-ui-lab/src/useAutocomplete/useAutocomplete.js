@@ -403,11 +403,13 @@ export default function useAutocomplete(props) {
 
     const valueItem = multiple ? value[0] : value;
 
+    // The popup is empty
     if (filteredOptions.length === 0 || valueItem == null) {
       changeHighlightedIndex('reset', 'next');
       return;
     }
 
+    // Synchronize the value with the highlighted index
     if (!filterSelectedOptions && valueItem != null) {
       const itemIndex = findIndex(filteredOptions, optionItem =>
         getOptionSelected(optionItem, valueItem),
@@ -417,6 +419,7 @@ export default function useAutocomplete(props) {
       return;
     }
 
+    // Keep the index in the boundaries
     if (highlightedIndexRef.current >= filteredOptions.length - 1) {
       setHighlightedIndex(filteredOptions.length - 1);
     }
