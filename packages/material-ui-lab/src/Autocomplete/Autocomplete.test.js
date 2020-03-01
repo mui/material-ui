@@ -759,7 +759,6 @@ describe('<Autocomplete />', () => {
       );
 
       fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
-      fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
       fireEvent.keyDown(document.activeElement, { key: 'Enter' });
 
       expect(consoleErrorMock.callCount()).to.equal(1); // strict mode renders twice
