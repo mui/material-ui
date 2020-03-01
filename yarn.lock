@@ -12439,9 +12439,9 @@ react-lifecycles-compat@^3.0.4:
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
 
 react-number-format@^4.0.8:
-  version "4.4.0"
-  resolved "https://registry.yarnpkg.com/react-number-format/-/react-number-format-4.4.0.tgz#0c67f3abb39f3042ad2a4e003f353cc29404f8dd"
-  integrity sha512-a2H19Ug5hsrw8TBaXMHr0pQtPxhrIRLM8bEad9umIbSWq0L8FQEEDmq7C5FfXX70YXHJhbaTvQCA5jGmJHvoaA==
+  version "4.4.1"
+  resolved "https://registry.yarnpkg.com/react-number-format/-/react-number-format-4.4.1.tgz#d5614dd25edfc21ed48b97356213440081437a94"
+  integrity sha512-ZGFMXZ0U7DcmQ3bSZY3FULOA1mfqreT9NIMYZNoa/ouiSgiTQiYA95Uj2KN8ge6BRr+ghA5vraozqWqsHZQw3Q==
   dependencies:
     prop-types "^15.7.2"
 
