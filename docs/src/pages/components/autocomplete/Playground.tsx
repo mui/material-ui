@@ -76,9 +76,9 @@ export default function Playground() {
       />
       <Autocomplete
         {...defaultProps}
-        id="disable-open-on-focus"
-        disableOpenOnFocus
-        renderInput={params => <TextField {...params} label="disableOpenOnFocus" margin="normal" />}
+        id="open-on-focus"
+        openOnFocus
+        renderInput={params => <TextField {...params} label="openOnFocus" margin="normal" />}
       />
       <Autocomplete
         {...defaultProps}

@@ -252,7 +252,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     disableCloseOnSelect = false,
     disabled = false,
     disableListWrap = false,
-    disableOpenOnFocus = false,
     disablePortal = false,
     filterOptions,
     filterSelectedOptions = false,
@@ -276,6 +275,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     onInputChange,
     onOpen,
     open,
+    openOnFocus = false,
     openText = 'Open',
     options,
     PaperComponent = Paper,
@@ -568,10 +568,6 @@ Autocomplete.propTypes = {
    */
   disableListWrap: PropTypes.bool,
   /**
-   * If `true`, the popup won't open on input focus.
-   */
-  disableOpenOnFocus: PropTypes.bool,
-  /**
    * Disable the portal behavior.
    * The children stay within it's parent DOM hierarchy.
    */
@@ -692,6 +688,10 @@ Autocomplete.propTypes = {
    * Control the popup` open state.
    */
   open: PropTypes.bool,
+  /**
+   * If `true`, the popup will open on input focus.
+   */
+  openOnFocus: PropTypes.bool,
   /**
    * Override the default text for the *open popup* icon button.
    *

@@ -1,7 +1,7 @@
 /* eslint-disable no-constant-condition */
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { setRef, useEventCallback, useControlled, ownerDocument } from '@material-ui/core/utils';
+import { setRef, useEventCallback, useControlled } from '@material-ui/core/utils';
 
 // https://stackoverflow.com/questions/990904/remove-accents-diacritics-in-a-string-in-javascript
 // Give up on IE 11 support for this feature
@@ -86,12 +86,12 @@ export default function useAutocomplete(props) {
     autoSelect = false,
     blurOnSelect = false,
     clearOnEscape = false,
+    componentName = 'useAutocomplete',
     debug = false,
     defaultValue = props.multiple ? [] : null,
     disableClearable = false,
     disableCloseOnSelect = false,
     disableListWrap = false,
-    disableOpenOnFocus = false,
     filterOptions = defaultFilterOptions,
     filterSelectedOptions = false,
     freeSolo = false,
@@ -105,13 +105,13 @@ export default function useAutocomplete(props) {
     multiple = false,
     onChange,
     onClose,
-    onOpen,
     onInputChange,
+    onOpen,
     open: openProp,
+    openOnFocus = false,
     options,
     selectOnFocus = !props.freeSolo,
     value: valueProp,
-    componentName = 'useAutocomplete',
   } = props;
 
   const [defaultId, setDefaultId] = React.useState();
@@ -655,7 +655,7 @@ export default function useAutocomplete(props) {
   const handleFocus = event => {
     setFocused(true);
 
-    if (!disableOpenOnFocus && !ignoreFocus.current) {
+    if (openOnFocus && !ignoreFocus.current) {
       handleOpen(event);
     }
   };
@@ -692,10 +692,6 @@ export default function useAutocomplete(props) {
     }
 
     if (newValue === '') {
-      if (disableOpenOnFocus) {
-        handleClose(event);
-      }
-
       if (!disableClearable && !multiple) {
         handleValue(event, null);
       }
@@ -783,8 +779,7 @@ export default function useAutocomplete(props) {
   };
 
   const handleInputMouseDown = event => {
-    const doc = ownerDocument(inputRef.current);
-    if (inputValue === '' && (!disableOpenOnFocus || inputRef.current === doc.activeElement)) {
+    if (inputValue === '') {
       handlePopupIndicator(event);
     }
   };
@@ -969,10 +964,6 @@ useAutocomplete.propTypes = {
    */
   disableListWrap: PropTypes.bool,
   /**
-   * If `true`, the popup won't open on input focus.
-   */
-  disableOpenOnFocus: PropTypes.bool,
-  /**
    * A filter function that determins the options that are eligible.
    *
    * @param {any} options The options to render.
@@ -1051,6 +1042,10 @@ useAutocomplete.propTypes = {
    * Control the popup` open state.
    */
   open: PropTypes.bool,
+  /**
+   * If `true`, the popup will open on input focus.
+   */
+  openOnFocus: PropTypes.bool,
   /**
    * Array of options.
    */

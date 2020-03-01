@@ -108,7 +108,6 @@ export default function GoogleMaps() {
       options={options}
       autoComplete
       includeInputInList
-      disableOpenOnFocus
       renderInput={params => (
         <TextField
           {...params}
