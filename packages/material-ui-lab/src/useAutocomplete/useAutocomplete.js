@@ -133,7 +133,7 @@ export default function useAutocomplete(props) {
   const defaultHighlighted = autoHighlight ? 0 : -1;
   const highlightedIndexRef = React.useRef(defaultHighlighted);
 
-  function setHighlightedIndex(index, mouse = false) {
+  const setHighlightedIndex = useEventCallback((index, mouse = false) => {
     highlightedIndexRef.current = index;
     // does the index exist?
     if (index === -1) {
@@ -190,7 +190,7 @@ export default function useAutocomplete(props) {
         listboxNode.scrollTop = element.offsetTop - element.offsetHeight * (groupBy ? 1.3 : 0);
       }
     }
-  }
+  });
 
   const [value, setValue] = useControlled({
     controlled: valueProp,
@@ -323,7 +323,7 @@ export default function useAutocomplete(props) {
     }
   }
 
-  const changeHighlightedIndex = (diff, direction) => {
+  const changeHighlightedIndex = useEventCallback((diff, direction) => {
     if (!popupOpen) {
       return;
     }
@@ -390,11 +390,7 @@ export default function useAutocomplete(props) {
         }
       }
     }
-  };
-
-  React.useEffect(() => {
-    changeHighlightedIndex('reset', 'next');
-  }, [inputValue]); // eslint-disable-line react-hooks/exhaustive-deps
+  });
 
   React.useEffect(() => {
     if (!open) {
@@ -423,8 +419,18 @@ export default function useAutocomplete(props) {
     if (highlightedIndexRef.current >= filteredOptions.length - 1) {
       setHighlightedIndex(filteredOptions.length - 1);
     }
+
+    // Ignore filterOptions => options, getOptionSelected, getOptionLabel)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [value, open, filterSelectedOptions, multiple]);
+  }, [
+    value,
+    open,
+    filterSelectedOptions,
+    changeHighlightedIndex,
+    setHighlightedIndex,
+    inputValue,
+    multiple,
+  ]);
 
   const handleOpen = event => {
     if (open) {
