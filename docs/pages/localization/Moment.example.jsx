@@ -3,7 +3,7 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import React, { useState, useCallback } from 'react';
 import MomentAdapter from '@material-ui/pickers/adapter/moment';
 import { IconButton, Menu, MenuItem } from '@material-ui/core';
-import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
+import { DatePicker, LocalizationProvider } from '@material-ui/pickers';
 import 'moment/locale/fr';
 import 'moment/locale/ru';
 
@@ -33,7 +33,7 @@ function MomentLocalizationExample() {
   }, []);
 
   return (
-    <MuiPickersUtilsProvider libInstance={moment} utils={MomentAdapter} locale={locale}>
+    <LocalizationProvider dateLibInstance={moment} dateAdapter={MomentAdapter} locale={locale}>
       <DatePicker
         value={selectedDate}
         onChange={date => handleDateChange(date)}
@@ -66,7 +66,7 @@ function MomentLocalizationExample() {
           </MenuItem>
         ))}
       </Menu>
-    </MuiPickersUtilsProvider>
+    </LocalizationProvider>
   );
 }
 

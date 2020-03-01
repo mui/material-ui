@@ -3,11 +3,11 @@ import * as enzyme from 'enzyme';
 import LuxonUtils from '@date-io/luxon';
 import MomentUtils from '@date-io/moment';
 import DateFnsUtils from '@date-io/date-fns';
-import MuiPickersUtilsProvider from '../MuiPickersUtilsProvider';
+import LocalizationProvider from '../LocalizationProvider';
 import { IUtils } from '@date-io/core/IUtils';
 import { createMuiTheme } from '@material-ui/core';
-import { ThemeProvider } from '@material-ui/core/styles';
 import { MaterialUiPickersDate } from '../typings/date';
+import { ThemeProvider } from '@material-ui/core/styles';
 
 interface WithUtilsProps {
   utils: IUtils<MaterialUiPickersDate>;
@@ -38,7 +38,7 @@ export const shallow = <P extends WithUtilsProps>(element: React.ReactElement<P>
 export const mount = <P extends WithUtilsProps>(element: React.ReactElement<P>) =>
   enzyme.mount(
     <ThemeProvider theme={createMuiTheme()}>
-      <MuiPickersUtilsProvider utils={UtilClassToUse}>{element}</MuiPickersUtilsProvider>
+      <LocalizationProvider dateAdapter={UtilClassToUse}>{element}</LocalizationProvider>
     </ThemeProvider>
   );
 

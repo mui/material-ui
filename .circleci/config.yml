@@ -89,7 +89,7 @@ jobs:
 
   cypress_tests:
     description: Run cypress tests
-    executor: cypress/browsers-chrome73-ff68
+    executor: cypress/browsers-chrome78-ff70
     steps:
       - attach_workspace:
           at: .
@@ -111,7 +111,7 @@ jobs:
           environment:
             VISUAL_TESTING: true
       - run: npx wait-on http://localhost:3000
-      - run: yarn percy exec -- cypress run --record
+      - run: yarn percy exec -- cypress run  --record --browser chrome
 
 ####################
 # Workflow

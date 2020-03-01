@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { ReactWrapper } from 'enzyme';
 import { mount, utilsToUse } from '../test-utils';
+import { mount as enzymeDefaultMount } from 'enzyme';
+import { ThemeProvider, createMuiTheme } from '@material-ui/core';
 import { DateTimePicker, DateTimePickerProps } from '../../DateTimePicker/DateTimePicker';
 
 const format = process.env.UTILS === 'moment' ? 'MM/DD/YYYY HH:mm' : 'MM/dd/yyyy hh:mm';
@@ -75,5 +77,26 @@ describe('e2e -- Controlling open state', () => {
       .at(0)
       .simulate('click');
     expect(onCloseMock).toHaveBeenCalled();
+  });
+});
+
+describe('e2e -- Override utils using `dateAdapter`', () => {
+  let component: ReactWrapper<DateTimePickerProps>;
+
+  beforeEach(() => {
+    component = enzymeDefaultMount(
+      <ThemeProvider theme={createMuiTheme()}>
+        <DateTimePicker
+          value={utilsToUse.date('2018-01-01T00:00:00.000Z')}
+          onChange={jest.fn()}
+          dateAdapter={utilsToUse}
+        />
+      </ThemeProvider>
+    );
+  });
+
+  it('Should renders and opens without crash', () => {
+    component.find('input').simulate('click');
+    expect(component.find('[data-mui-test="datetimepicker-toolbar-date"] h4').text()).toBe('Jan 1');
   });
 });

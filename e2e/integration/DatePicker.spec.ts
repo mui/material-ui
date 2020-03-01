@@ -50,24 +50,6 @@ describe('DatePicker', () => {
       cy.get(`input${ids.basic}`).should('have.value', '02/11/2019');
     });
 
-    // TODO FIX flaky test
-    it.skip('Should open mobile keyboard input by clicking on button', () => {
-      cy.get(ids.clearable).click({ force: true });
-      cy.get('div[role="dialog"] [data-mui-test="toggle-mobile-keyboard-view"]').click({
-        force: true,
-      });
-
-      cy.get('[data-mui-test="mobile-wrapper-dialog"] [data-mui-test="keyboard-date-input"] input')
-        .should('have.value', '02/11/2019')
-        .clear()
-        .type('03/02/2019');
-
-      cy.get('[data-mui-test="picker-toolbar"]').contains('Sat, Mar 2');
-      cy.get('[data-mui-test="toggle-mobile-keyboard-view"]').click();
-
-      cy.get('[data-mui-test="day"].MuiPickersDay-daySelected').contains('2');
-    });
-
     it('Should clear the input by clear button', () => {
       cy.get(ids.clearable).click({ force: true });
 

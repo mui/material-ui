@@ -31,7 +31,7 @@ describe('Keyboard navigation', () => {
     it('Modal calendar allows to change date with keyboard', () => {
       cy.get('#basic-datepicker')
         .focus()
-        .type(' ');
+        .type(' ', { force: true });
 
       testCalendarKeyboardNavigation();
     });
@@ -39,7 +39,7 @@ describe('Keyboard navigation', () => {
     it('Popover calendar allows to change date with keyboard', () => {
       cy.get('[data-mui-test="open-picker-from-keyboard"]')
         .eq(1)
-        .type(' ');
+        .type(' ', { force: true });
 
       testCalendarKeyboardNavigation();
     });

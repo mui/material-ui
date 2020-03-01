@@ -960,7 +960,7 @@
       },
       "required": false,
       "type": {
-        "name": "(value: ParsableDate, utils: MuiPickersUtils) => string"
+        "name": "(value: ParsableDate, utils: MuiPickersAdapter) => string"
       }
     },
     "views": {
@@ -987,6 +987,19 @@
       "required": false,
       "type": {
         "name": "\"date\" | \"year\" | \"month\""
+      }
+    },
+    "dateAdapter": {
+      "defaultValue": null,
+      "description": "Allows to pass configured date-io adapter directly. More info [here](/guides/date-adapter-passing)\n```jsx\ndateAdapter={new DateFnsAdapter({ locale: ruLocale })}\n```",
+      "name": "dateAdapter",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/_shared/withDateAdapterProp.tsx",
+        "name": "WithDateAdapterProps"
+      },
+      "required": false,
+      "type": {
+        "name": "MuiPickersAdapter"
       }
     }
   },
@@ -1564,7 +1577,20 @@
       },
       "required": false,
       "type": {
-        "name": "(value: ParsableDate, utils: MuiPickersUtils) => string"
+        "name": "(value: ParsableDate, utils: MuiPickersAdapter) => string"
+      }
+    },
+    "dateAdapter": {
+      "defaultValue": null,
+      "description": "Allows to pass configured date-io adapter directly. More info [here](/guides/date-adapter-passing)\n```jsx\ndateAdapter={new DateFnsAdapter({ locale: ruLocale })}\n```",
+      "name": "dateAdapter",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/_shared/withDateAdapterProp.tsx",
+        "name": "WithDateAdapterProps"
+      },
+      "required": false,
+      "type": {
+        "name": "MuiPickersAdapter"
       }
     }
   },
@@ -2004,7 +2030,7 @@
       },
       "required": false,
       "type": {
-        "name": "(value: ParsableDate, utils: MuiPickersUtils) => string"
+        "name": "(value: ParsableDate, utils: MuiPickersAdapter) => string"
       }
     },
     "hideTabs": {
@@ -2482,6 +2508,19 @@
       "required": false,
       "type": {
         "name": "\"date\" | \"year\" | \"month\" | \"hours\" | \"minutes\""
+      }
+    },
+    "dateAdapter": {
+      "defaultValue": null,
+      "description": "Allows to pass configured date-io adapter directly. More info [here](/guides/date-adapter-passing)\n```jsx\ndateAdapter={new DateFnsAdapter({ locale: ruLocale })}\n```",
+      "name": "dateAdapter",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/_shared/withDateAdapterProp.tsx",
+        "name": "WithDateAdapterProps"
+      },
+      "required": false,
+      "type": {
+        "name": "MuiPickersAdapter"
       }
     }
   },

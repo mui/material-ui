@@ -2,9 +2,9 @@ import { DatePickerProps } from '../DatePicker';
 import { ParsableDate } from '../constants/prop-types';
 import { MaterialUiPickersDate } from '../typings/date';
 import { DateInputProps } from '../_shared/PureDateInput';
-import { MuiPickersUtils } from '../_shared/hooks/useUtils';
+import { MuiPickersAdapter } from '../_shared/hooks/useUtils';
 
-export function getTextFieldAriaText(rawValue: ParsableDate, utils: MuiPickersUtils) {
+export function getTextFieldAriaText(rawValue: ParsableDate, utils: MuiPickersAdapter) {
   return rawValue && utils.isValid(utils.date(rawValue))
     ? `Choose date, selected date is ${utils.format(utils.date(rawValue), 'fullDate')}`
     : 'Choose date';
@@ -12,7 +12,7 @@ export function getTextFieldAriaText(rawValue: ParsableDate, utils: MuiPickersUt
 
 export const getDisplayDate = (
   value: ParsableDate,
-  utils: MuiPickersUtils,
+  utils: MuiPickersAdapter,
   { inputFormat, emptyInputText }: Pick<DateInputProps, 'inputFormat' | 'emptyInputText'>
 ) => {
   const date = utils.date(value);
@@ -47,7 +47,7 @@ export interface DateValidationProps extends BaseValidationProps {
 }
 
 const getComparisonMaxDate = (
-  utils: MuiPickersUtils,
+  utils: MuiPickersAdapter,
   strictCompareDates: boolean,
   date: MaterialUiPickersDate
 ) => {
@@ -59,7 +59,7 @@ const getComparisonMaxDate = (
 };
 
 const getComparisonMinDate = (
-  utils: MuiPickersUtils,
+  utils: MuiPickersAdapter,
   strictCompareDates: boolean,
   date: MaterialUiPickersDate
 ) => {
@@ -72,7 +72,7 @@ const getComparisonMinDate = (
 
 export const validate = (
   value: ParsableDate,
-  utils: MuiPickersUtils,
+  utils: MuiPickersAdapter,
   {
     maxDate,
     minDate,
@@ -154,7 +154,7 @@ export function checkMaskIsValidForCurrentFormat(
   maskChar: string,
   format: string,
   acceptRegex: RegExp,
-  utils: MuiPickersUtils
+  utils: MuiPickersAdapter
 ) {
   const formattedDateWith1Digit = utils.formatByString(
     utils.date(staticDateWith1DigitTokens),

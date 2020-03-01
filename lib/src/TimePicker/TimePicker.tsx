@@ -4,7 +4,7 @@ import { TimePickerToolbar } from './TimePickerToolbar';
 import { ExportedClockViewProps } from '../views/Clock/ClockView';
 import { ResponsiveWrapper } from '../wrappers/ResponsiveWrapper';
 import { pick12hOr24hFormat } from '../_helpers/text-field-helper';
-import { useUtils, MuiPickersUtils } from '../_shared/hooks/useUtils';
+import { useUtils, MuiPickersAdapter } from '../_shared/hooks/useUtils';
 import { timePickerDefaultProps, ParsableDate } from '../constants/prop-types';
 import { ModalWrapper, InlineWrapper, StaticWrapper } from '../wrappers/Wrapper';
 import {
@@ -18,7 +18,7 @@ export interface TimePickerProps
     WithViewsProps<'hours' | 'minutes' | 'seconds'>,
     WithDateInputProps {}
 
-export function getTextFieldAriaText(value: ParsableDate, utils: MuiPickersUtils) {
+export function getTextFieldAriaText(value: ParsableDate, utils: MuiPickersAdapter) {
   return value && utils.isValid(utils.date(value))
     ? `Choose time, selected time is ${utils.format(utils.date(value), 'fullTime')}`
     : 'Choose time';

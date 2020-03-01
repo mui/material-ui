@@ -247,11 +247,10 @@ export const Clock: React.FC<ClockProps> = ({
   );
 };
 
-// @ts-ignore
 Clock.defaultProps = {
   ampm: PropTypes.bool,
   minutesStep: PropTypes.number,
-};
+} as any;
 
 Clock.displayName = 'Clock';
 

@@ -4,7 +4,7 @@ import { ExtendMui } from '../typings/helpers';
 import { onSpaceOrEnter } from '../_helpers/utils';
 import { ParsableDate } from '../constants/prop-types';
 import { MaterialUiPickersDate } from '../typings/date';
-import { useUtils, MuiPickersUtils } from './hooks/useUtils';
+import { useUtils, MuiPickersAdapter } from './hooks/useUtils';
 import { IconButtonProps } from '@material-ui/core/IconButton';
 import { InputAdornmentProps } from '@material-ui/core/InputAdornment';
 import { getDisplayDate, getTextFieldAriaText } from '../_helpers/text-field-helper';
@@ -62,7 +62,7 @@ export interface DateInputProps
    */
   disableMaskedInput?: boolean;
   /** Get aria-label text for control that opens datepicker dialog. Aria-label have to include selected date. */
-  getOpenDialogAriaText?: (value: ParsableDate, utils: MuiPickersUtils) => string;
+  getOpenDialogAriaText?: (value: ParsableDate, utils: MuiPickersAdapter) => string;
   // ?? TODO when it will be possible to display "empty" date in datepicker use it instead of ignoring invalid inputs
   ignoreInvalidInputs?: boolean;
 }

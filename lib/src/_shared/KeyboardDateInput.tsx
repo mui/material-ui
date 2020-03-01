@@ -106,6 +106,7 @@ export const KeyboardDateInput: React.FC<DateInputProps> = ({
       ) : (
         <InputAdornment position={adornmentPosition} {...InputAdornmentProps}>
           <IconButton
+            edge={adornmentPosition}
             data-mui-test="open-picker-from-keyboard"
             disabled={disabled}
             aria-label={getOpenDialogAriaText(rawValue, utils)}

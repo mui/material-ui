@@ -273,14 +273,13 @@ export const ClockView: React.FC<ClockViewProps> = ({
   );
 };
 
-// @ts-ignore
 ClockView.propTypes = {
   date: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
   ampm: PropTypes.bool,
   minutesStep: PropTypes.number,
   type: PropTypes.oneOf(['minutes', 'hours', 'seconds']).isRequired,
-};
+} as any;
 
 ClockView.displayName = 'ClockView';
 

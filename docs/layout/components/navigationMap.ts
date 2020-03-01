@@ -41,7 +41,8 @@ export const navItems = [
       { title: 'Accessibility', href: '/guides/accessibility' },
       { title: 'Form integration', href: '/guides/form-integration' },
       { title: 'CSS overrides', href: '/guides/css-overrides' },
-      { title: 'Global format customization', href: '/guides/formats' },
+      { title: 'Passing date adapter', href: '/guides/date-adapter-passing' },
+      { title: 'Date management customization', href: '/guides/date-io-customization' },
       {
         title: 'Open pickers programmatically',
         href: '/guides/controlling-programmatically',

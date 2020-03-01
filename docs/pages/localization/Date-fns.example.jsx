@@ -5,7 +5,7 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import React, { useState, useCallback } from 'react';
 import DateFnsAdapter from '@material-ui/pickers/adapter/date-fns';
 import { IconButton, Menu, MenuItem } from '@material-ui/core';
-import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
+import { DatePicker, LocalizationProvider } from '@material-ui/pickers';
 
 const localeMap = {
   en: enLocale,
@@ -29,7 +29,7 @@ function DateFnsLocalizationExample() {
   }, []);
 
   return (
-    <MuiPickersUtilsProvider utils={DateFnsAdapter} locale={localeMap[locale]}>
+    <LocalizationProvider dateAdapter={DateFnsAdapter} locale={localeMap[locale]}>
       <DatePicker
         value={selectedDate}
         onChange={handleDateChange}
@@ -62,7 +62,7 @@ function DateFnsLocalizationExample() {
           </MenuItem>
         ))}
       </Menu>
-    </MuiPickersUtilsProvider>
+    </LocalizationProvider>
   );
 }
 

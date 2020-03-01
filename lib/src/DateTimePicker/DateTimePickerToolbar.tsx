@@ -76,6 +76,7 @@ export const DateTimePickerToolbar: React.FC<ToolbarComponentProps> = ({
           <ToolbarButton
             tabIndex={-1}
             variant="h4"
+            data-mui-test="datetimepicker-toolbar-date"
             onClick={() => setOpenView('date')}
             selected={openView === 'date'}
             label={

@@ -8,6 +8,7 @@ import { DateValidationProps } from '../_helpers/text-field-helper';
 import { ResponsiveWrapperProps } from '../wrappers/ResponsiveWrapper';
 import { Picker, ToolbarComponentProps, PickerViewProps } from './Picker';
 import { SomeWrapper, ExtendWrapper, OmitInnerWrapperProps } from '../wrappers/Wrapper';
+import { withDateAdapterProp, WithDateAdapterProps } from '../_shared/withDateAdapterProp';
 
 export interface WithViewsProps<T extends DateTimePickerView> {
   /**
@@ -33,7 +34,7 @@ export function makePickerWithStateAndWrapper<
 >(
   Wrapper: TWrapper,
   { useDefaultProps, DefaultToolbarComponent }: MakePickerOptions<T>
-): React.FC<T & ExtendWrapper<TWrapper>> {
+): React.FC<T & WithDateAdapterProps & ExtendWrapper<TWrapper>> {
   function PickerWithState(props: T & Partial<OmitInnerWrapperProps<ResponsiveWrapperProps>>) {
     const defaultProps = useDefaultProps(props);
     const allProps = { ...defaultProps, ...props };
@@ -158,5 +159,6 @@ export function makePickerWithStateAndWrapper<
     );
   }
 
-  return PickerWithState;
+  // @ts-ignore (why prop-types validation is appearing here?)
+  return withDateAdapterProp(PickerWithState);
 }

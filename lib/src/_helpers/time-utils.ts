@@ -1,6 +1,6 @@
 import { IUtils } from '@date-io/core/IUtils';
 import { MaterialUiPickersDate } from '../typings/date';
-import { MuiPickersUtils } from '../_shared/hooks/useUtils';
+import { MuiPickersAdapter } from '../_shared/hooks/useUtils';
 
 export const getMeridiem = (
   date: MaterialUiPickersDate,
@@ -86,11 +86,11 @@ export const getHours = (offsetX: number, offsetY: number, ampm: boolean) => {
   return value;
 };
 
-export function getSecondsInDay(date: MaterialUiPickersDate, utils: MuiPickersUtils) {
+export function getSecondsInDay(date: MaterialUiPickersDate, utils: MuiPickersAdapter) {
   return utils.getHours(date) * 3600 + utils.getMinutes(date) * 60 + utils.getSeconds(date);
 }
 
-export const createIsAfterIgnoreDatePart = (utils: MuiPickersUtils) => (
+export const createIsAfterIgnoreDatePart = (utils: MuiPickersAdapter) => (
   dateLeft: MaterialUiPickersDate,
   dateRight: MaterialUiPickersDate
 ) => {

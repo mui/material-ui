@@ -20,37 +20,38 @@ yarn add @material-ui/pickers
 @material-ui/pickers was designed to use the date management library of your choice.
 We are providing interfaces for [moment](https://momentjs.com/), [date-fns 2](https://date-fns.org/), [luxon](https://moment.github.io/luxon/) and [dayjs](https://github.com/iamkun/dayjs).
 
-**Important:** we only support date-fns versions `v2` upwards.
-
 ```
-npm i @date-io/date-fns date-fns@next
+npm i date-fns
 // or
-npm i @date-io/moment moment
+npm i moment
 // or
-npm i -s @date-io/luxon luxon
+npm i luxon
 // or
-npm i -s @date-io/dayjs dayjs
+npm i dayjs
 ```
 
-Tell pickers which date management library it should use with `MuiPickersUtilsProvider`. This component takes a utils
-`prop`, and makes it available down the React tree with [React Context](https://reactjs.org/docs/context.html). It should
+Tell pickers which date management library it should use with `LocalizationProvider`. This component takes a `dateAdapter`
+prop, and makes it available down the React tree thanks to [React Context](https://reactjs.org/docs/context.html). It should
 be used at the root of your component tree, or at the highest level you wish the pickers to be available.
 
 ```jsx
-import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+import { LocalizationProvider } from '@material-ui/pickers';
 
-// pick a date util library
+// pick an adapter for your date library
 import MomentUtils from '@material-ui-pickers/adapter/moment';
 import DateFnsUtils from '@material-ui-pickers/adapter/date-fns';
 import LuxonUtils from '@material-ui-pickers/adapter/luxon';
 
 function App() {
   return (
-    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+    <LocalizationProvider dateAdapter={DateFnsUtils}>
       <Root />
-    </MuiPickersUtilsProvider>
+    </LocalizationProvider>
   );
 }
 
 ReactDOM.render(<App />, document.querySelector('#app'));
 ```
+
+Also it is possible to pass [date adapter directly to picker](/guides/date-adapter-passing) and avoid using context,
+but please use this possibility widely.

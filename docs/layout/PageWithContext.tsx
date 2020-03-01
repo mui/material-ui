@@ -6,8 +6,8 @@ import { create } from 'jss';
 import { SnackbarProvider } from 'notistack';
 import { setPrismTheme } from '../utils/prism';
 import { PageContext } from '../utils/getPageContext';
+import { LocalizationProvider } from '@material-ui/pickers';
 import { UtilsContext } from '../_shared/UtilsServiceContext';
-import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import { NotificationManager } from 'utils/NotificationManager';
 import { Theme, createMuiTheme, CssBaseline } from '@material-ui/core';
 import { createUtilsService, UtilsLib, utilsMap } from '../utils/utilsService';
@@ -99,7 +99,7 @@ export const PageWithContexts: React.SFC<Props> = ({
     >
       <ThemeProvider theme={muiTheme}>
         <SnackbarProvider maxSnack={3}>
-          <MuiPickersUtilsProvider utils={utilsMap[lib]}>
+          <LocalizationProvider dateAdapter={utilsMap[lib]}>
             <ThemeContext.Provider value={theme}>
               <UtilsContext.Provider value={createUtilsService(lib)}>
                 <CssBaseline />
@@ -113,7 +113,7 @@ export const PageWithContexts: React.SFC<Props> = ({
                 />
               </UtilsContext.Provider>
             </ThemeContext.Provider>
-          </MuiPickersUtilsProvider>
+          </LocalizationProvider>
         </SnackbarProvider>
       </ThemeProvider>
     </StylesProvider>

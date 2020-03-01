@@ -1,13 +1,13 @@
-import LuxonUtils from '@material-ui/pickers/adapter/luxon';
-import DayJsUtils from '@material-ui/pickers/adapter/dayjs';
-import MomentUtils from '@material-ui/pickers/adapter/moment';
-import DateFnsUtils from '@material-ui/pickers/adapter/date-fns';
+import LuxonAdapter from '@material-ui/pickers/adapter/luxon';
+import DayJsAdapter from '@material-ui/pickers/adapter/dayjs';
+import MomentAdapter from '@material-ui/pickers/adapter/moment';
+import DateFnsAdapter from '@material-ui/pickers/adapter/date-fns';
 
 export const utilsMap = {
-  moment: MomentUtils,
-  luxon: LuxonUtils,
-  dayjs: DayJsUtils,
-  'date-fns': DateFnsUtils,
+  moment: MomentAdapter,
+  luxon: LuxonAdapter,
+  dayjs: DayJsAdapter,
+  'date-fns': DateFnsAdapter,
 };
 
 export type UtilsLib = keyof typeof utilsMap;
