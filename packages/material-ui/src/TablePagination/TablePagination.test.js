@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { assert } from 'chai';
+import { expect, assert } from 'chai';
 import PropTypes from 'prop-types';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { fireEvent, createClientRender } from 'test/utils/createClientRender';
 import describeConformance from '../test-utils/describeConformance';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import Select from '../Select';
@@ -17,6 +18,7 @@ describe('<TablePagination />', () => {
   const noop = () => {};
   let classes;
   let mount;
+  const render = createClientRender();
 
   function mountInTable(node) {
     const wrapper = mount(
@@ -226,30 +228,6 @@ describe('<TablePagination />', () => {
       );
     });
 
-    it('should handle when count is out of range', () => {
-      let page = 1;
-      const wrapper = mount(
-        <table>
-          <TableBody>
-            <TableRow>
-              <TablePagination
-                count={-1}
-                page={page}
-                onChangePage={(event, nextPage) => {
-                  page = nextPage;
-                }}
-                rowsPerPage={10}
-              />
-            </TableRow>
-          </TableBody>
-        </table>,
-      );
-
-      const nextButton = wrapper.find(IconButton).at(1);
-      nextButton.simulate('click');
-      assert.strictEqual(page, 2);
-    });
-
     it('should hide the rows per page selector if there are less than two options', () => {
       const wrapper = mount(
         <table>
@@ -270,6 +248,36 @@ describe('<TablePagination />', () => {
 
       assert.strictEqual(wrapper.text().indexOf('Rows per page'), -1);
       assert.strictEqual(wrapper.find(Select).length, 0);
+    });
+  });
+
+  describe('prop: count=-1', () => {
+    it('should display the "of more than" text and keep the nextButton enabled', () => {
+      const Test = () => {
+        const [page, setPage] = React.useState(0);
+        return (
+          <table>
+            <TableFooter>
+              <TableRow>
+                <TablePagination
+                  page={page}
+                  rowsPerPage={10}
+                  count={-1}
+                  onChangePage={(_, newPage) => {
+                    setPage(newPage);
+                  }}
+                />
+              </TableRow>
+            </TableFooter>
+          </table>
+        );
+      };
+
+      const { container, getByLabelText } = render(<Test />);
+
+      expect(container).to.have.text('Rows per page:101-10 of more than 10');
+      fireEvent.click(getByLabelText('Next page'));
+      expect(container).to.have.text('Rows per page:1011-20 of more than 20');
     });
   });
 
@@ -306,34 +314,5 @@ describe('<TablePagination />', () => {
         'Material-UI: the page prop of a TablePagination is out of range (0 to 1, but page is 2).',
       );
     });
-  });
-
-  it('should display the "of more than" text and keep the nextButton enabled, if count is -1 ', () => {
-    const wrapper = mount(
-      <table>
-        <TableFooter>
-          <TableRow>
-            <TablePagination
-              page={0}
-              rowsPerPage={5}
-              rowsPerPageOptions={[5]}
-              onChangePage={noop}
-              onChangeRowsPerPage={noop}
-              count={-1}
-            />
-          </TableRow>
-        </TableFooter>
-      </table>,
-    );
-
-    assert.strictEqual(
-      wrapper
-        .find(Typography)
-        .at(0)
-        .text(),
-      '1-5 of more than 5',
-    );
-    const nextButton = wrapper.find(IconButton).at(1);
-    assert.strictEqual(nextButton.props().disabled, false);
   });
 });
