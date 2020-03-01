@@ -11,7 +11,6 @@ import TableFooter from '../TableFooter';
 import TableCell from '../TableCell';
 import Typography from '../Typography';
 import TableRow from '../TableRow';
-import TableBody from '../TableBody';
 import TablePagination from './TablePagination';
 
 describe('<TablePagination />', () => {
@@ -35,11 +34,14 @@ describe('<TablePagination />', () => {
     classes = getClasses(
       <TablePagination count={1} onChangePage={() => {}} page={0} rowsPerPage={10} />,
     );
-    // StrictModeViolation: test uses #html()
+  });
+
+  beforeEach(() => {
+    // StrictModeViolation: test uses #html()()
     mount = createMount({ strict: false });
   });
 
-  after(() => {
+  afterEach(() => {
     mount.cleanUp();
   });
 
