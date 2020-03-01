@@ -25,11 +25,11 @@ async function parseWithConfig(filename, configFilePath) {
   return babel.parseAsync(source, partialConfig.options);
 }
 
-function findConformanceDescriptor(program) {
+function findConformanceDescriptor(file) {
   const { types: t } = babel;
 
   let descriptor = {};
-  babel.traverse(program, {
+  babel.traverse(file, {
     CallExpression(babelPath) {
       const { node: callExpression } = babelPath;
       const { callee } = callExpression;
@@ -86,7 +86,7 @@ function getInheritComponentName(valueNode) {
 export default async function parseTest(componentFilename) {
   const testFilename = withExtension(componentFilename, '.test.js');
   const babelParseResult = await parseWithConfig(testFilename, babelConfigPath);
-  const descriptor = findConformanceDescriptor(babelParseResult.program);
+  const descriptor = findConformanceDescriptor(babelParseResult);
 
   const result = {
     forwardsRefTo: undefined,
