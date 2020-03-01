@@ -9,7 +9,7 @@ import { createFilterOptions } from '../useAutocomplete/useAutocomplete';
 import Autocomplete from './Autocomplete';
 import TextField from '@material-ui/core/TextField';
 
-describe.only('<Autocomplete />', () => {
+describe('<Autocomplete />', () => {
   let mount;
   let classes;
   const render = createClientRender();
