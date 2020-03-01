@@ -48,7 +48,6 @@ const externs = [
   'https://www.w3.org/',
   'https://devexpress.github.io/',
   'https://ui-kit.co/',
-  'https://udemy.com',
 ];
 
 renderer.link = (href, title, text) => {

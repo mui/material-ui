@@ -5,7 +5,12 @@
 
 Big thanks to the 15 contributors who made this release possible.
 
-### `@material-ui/core@v4.9.4`
+Here are some highlights ✨:
+
+- 💄 Add selection (and multi-selection) support to tree view (#18357) @joshwooding
+- And many more 🐛 bug fixes and 📚 improvements.
+
+### `@material-ui/core@v4.9.5`
 
 - [ButtonBase] Fix when changing enableRipple prop from false to true  (#19667) @dmtrKovalenko
 - [l10n] Add Armenian (hy-AM) locale (#19844) @vgevorgyan
@@ -30,7 +35,7 @@ Big thanks to the 15 contributors who made this release possible.
 ### Core
 
 - [ci] Enable re-run of azure pipelines (#19823) @eps1lon
-- [ci] fix heap out of memory in azure pipelines (#19825) @eps1lon
+- [ci] Fix heap out of memory in azure pipelines (#19825) @eps1lon
 - [core] Migrate to import * as React from 'react' (#19802) @TrySound
 - [test] Fix defaultProps overriding props (#19858) @eps1lon
 - [test] Test against typescript nightlies (#19857) @eps1lon
