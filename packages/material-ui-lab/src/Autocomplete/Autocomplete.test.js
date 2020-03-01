@@ -9,7 +9,7 @@ import { createFilterOptions } from '../useAutocomplete/useAutocomplete';
 import Autocomplete from './Autocomplete';
 import TextField from '@material-ui/core/TextField';
 
-describe('<Autocomplete />', () => {
+describe.only('<Autocomplete />', () => {
   let mount;
   let classes;
   const render = createClientRender();
@@ -75,6 +75,56 @@ describe('<Autocomplete />', () => {
       fireEvent.change(document.activeElement, { target: { value: 'oo' } });
       fireEvent.change(document.activeElement, { target: { value: 'o' } });
       checkHighlightIs('one');
+    });
+
+    it('should set the focus on selected item when dropdown is expanded', () => {
+      const options = ['one', 'two', 'three'];
+      const { getByRole } = render(
+        <Autocomplete
+          {...defaultProps}
+          freeSolo
+          autoHighlight
+          options={options}
+          renderInput={params => <TextField autoFocus {...params} />}
+          size="small"
+        />,
+      );
+
+      function checkHighlightIs(expected) {
+        expect(getByRole('listbox').querySelector('li[data-focus]')).to.have.text(expected);
+      }
+
+      checkHighlightIs('one');
+      fireEvent.change(document.activeElement, { target: { value: 'two' } });
+      fireEvent.keyDown(document.activeElement, { key: 'Enter' });
+      fireEvent.change(document.activeElement, { target: { value: 'o' } });
+      checkHighlightIs('two');
+
+    });
+  });
+
+  describe('prop: filterSelectedOptions', () => {
+    it('when the last item is selected, highlights the new last item', () => {
+      const { getByRole } = render(
+        <Autocomplete
+          {...defaultProps}
+          filterSelectedOptions
+          options={['one', 'two', 'three']}
+          renderInput={params => <TextField {...params} autoFocus />}
+        />,
+      );
+  
+      function checkHighlightIs(expected) {
+        expect(getByRole('listbox').querySelector('li[data-focus]')).to.have.text(expected);
+      }
+  
+      fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
+      checkHighlightIs('three');
+      fireEvent.keyDown(document.activeElement, { key: 'Enter' }); // selects the last option
+      const input = getByRole('textbox');
+      input.blur();
+      input.focus(); // opens the listbox again
+      checkHighlightIs('two');
     });
   });
 
