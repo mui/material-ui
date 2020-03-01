@@ -201,6 +201,31 @@ describe('<TablePagination />', () => {
       assert.strictEqual(page, 0);
     });
 
+    it('should display 0 as start number if the table is empty ', () => {
+      const wrapper = mount(
+        <table>
+          <TableFooter>
+            <TableRow>
+              <TablePagination
+                count={0}
+                page={0}
+                rowsPerPage={10}
+                onChangePage={noop}
+                onChangeRowsPerPage={noop}
+              />
+            </TableRow>
+          </TableFooter>
+        </table>,
+      );
+      assert.strictEqual(
+        wrapper
+          .find(Typography)
+          .at(1)
+          .text(),
+        '0-0 of 0',
+      );
+    });
+
     it('should handle when count is out of range', () => {
       let page = 1;
       const wrapper = mount(
