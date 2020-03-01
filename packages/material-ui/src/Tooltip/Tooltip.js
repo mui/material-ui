@@ -183,7 +183,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     disableFocusListener = false,
     disableHoverListener = false,
     disableTouchListener = false,
-    enterDelay = 200,
+    enterDelay = 100,
     enterNextDelay = 0,
     enterTouchDelay = 700,
     id: idProp,
