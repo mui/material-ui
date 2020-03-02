@@ -42,6 +42,7 @@ async function run() {
         // We remove it to normalize the pathname.
         // See `_rewriteUrlForNextExport` on Next.js side.
         pathname = pathname.replace(/\/$/, '');
+        pathname = pathname.replace(/^\/api\/(.*)/, '/api-docs/$1');
       }
 
       nextApp.render(req, res, pathname, {
