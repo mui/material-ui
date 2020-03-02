@@ -1,4 +1,5 @@
 import foundApiPages from /* preval */ 'docs/src/modules/utils/componentApiPages';
+import kebabCase from 'lodash/kebabCase';
 
 const apiPages = {
   title: 'Component API',
@@ -6,7 +7,7 @@ const apiPages = {
   children: foundApiPages.map(page => {
     return {
       linkProps: {
-        as: `/api/${page.query.component}`,
+        as: `/api/${kebabCase(page.query.component)}`,
         href: { pathname: '/api', query: page.query },
       },
       pathname: page.pathname,

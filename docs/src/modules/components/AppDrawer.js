@@ -13,6 +13,7 @@ import AppDrawerNavItem from 'docs/src/modules/components/AppDrawerNavItem';
 import DiamondSponsors from 'docs/src/modules/components/DiamondSponsors';
 import Link from 'docs/src/modules/components/Link';
 import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
+import { getAsPath, isChild } from 'docs/src/modules/utils/routing';
 import PageContext from 'docs/src/modules/components/PageContext';
 
 let savedScrollTop = null;
@@ -99,7 +100,8 @@ function reduceChildRoutes({ props, activePage, items, page, depth, t }) {
 
   if (page.children && page.children.length > 1) {
     const title = pageToTitleI18n(page, t);
-    const topLevel = activePage ? activePage.pathname.indexOf(`${page.pathname}/`) === 0 : false;
+
+    const topLevel = activePage !== null ? isChild(getAsPath(activePage), page) : false;
 
     items.push(
       <AppDrawerNavItem

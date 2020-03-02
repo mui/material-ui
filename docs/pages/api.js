@@ -152,7 +152,7 @@ function PropDescription(props) {
         <span role="img" aria-label="Warning">
           ⚠️
         </span>
-        <Link to="/guides/composition/#caveat-with-refs">Needs to be able to hold a ref</Link>.
+        <Link href="/guides/composition/#caveat-with-refs">Needs to be able to hold a ref</Link>.
       </React.Fragment>,
     );
   }
