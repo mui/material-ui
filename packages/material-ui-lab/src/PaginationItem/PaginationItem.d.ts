@@ -3,42 +3,42 @@ import { OverridableComponent, OverrideProps } from '@material-ui/core/Overridab
 import { UsePaginationItem } from '../Pagination/usePagination';
 
 export interface PaginationItemTypeMap<P = {}, D extends React.ElementType = 'div'> {
-    props: P & {
-        color?: 'standard' | 'primary' | 'secondary';
-        disabled?: boolean;
-        page?: number;
-        selected?: boolean;
-        shape?: 'round' | 'rounded';
-        size?: 'small' | 'medium' | 'large';
-        type?: UsePaginationItem['type'];
-        variant?: 'text' | 'outlined';
-    };
-    defaultComponent: D;
-    classKey: PaginationItemClassKey;
+  props: P & {
+    color?: 'standard' | 'primary' | 'secondary';
+    disabled?: boolean;
+    page?: number;
+    selected?: boolean;
+    shape?: 'round' | 'rounded';
+    size?: 'small' | 'medium' | 'large';
+    type?: UsePaginationItem['type'];
+    variant?: 'text' | 'outlined';
+  };
+  defaultComponent: D;
+  classKey: PaginationItemClassKey;
 }
 
 declare const PaginationItem: OverridableComponent<PaginationItemTypeMap>;
 
 export type PaginationItemClassKey =
-    | 'root'
-    | 'page'
-    | 'sizeSmall'
-    | 'sizeLarge'
-    | 'textPrimary'
-    | 'textSecondary'
-    | 'outlined'
-    | 'outlinedPrimary'
-    | 'outlinedSecondary'
-    | 'rounded'
-    | 'ellipsis'
-    | 'focusVisible'
-    | 'disabled'
-    | 'selected'
-    | 'icon';
+  | 'root'
+  | 'page'
+  | 'sizeSmall'
+  | 'sizeLarge'
+  | 'textPrimary'
+  | 'textSecondary'
+  | 'outlined'
+  | 'outlinedPrimary'
+  | 'outlinedSecondary'
+  | 'rounded'
+  | 'ellipsis'
+  | 'focusVisible'
+  | 'disabled'
+  | 'selected'
+  | 'icon';
 
 export type PaginationItemProps<
-    D extends React.ElementType = PaginationItemTypeMap['defaultComponent'],
-    P = {}
+  D extends React.ElementType = PaginationItemTypeMap['defaultComponent'],
+  P = {}
 > = OverrideProps<PaginationItemTypeMap<P, D>, D>;
 
 export default PaginationItem;
