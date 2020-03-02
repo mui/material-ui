@@ -21,7 +21,7 @@ export interface PaginationProps
    */
   defaultPage?: number;
   /**
-   * If `true`, all the pagination components will be disabled.
+   * If `true`, the pagination will be disabled.
    */
   disabled?: boolean;
   /**
@@ -59,9 +59,9 @@ export interface PaginationProps
    */
   page?: number;
   /**
-   * Renders the item.
+   * The pagination item component to render.
    *
-   * @param {object} params The props to spread on a PaginationItem.
+   * @param {object} params The props to spread on the component.
    * @returns {ReactNode}
    */
   renderItem?: (params: object) => React.ReactNode;
