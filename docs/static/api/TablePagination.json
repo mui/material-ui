@@ -154,7 +154,7 @@
     "page": {
       "type": {
         "name": "chained",
-        "raw": "chainPropTypes(PropTypes.number.isRequired, props => {\n  const { count, page, rowsPerPage } = props;\n  const newLastPage = Math.max(0, Math.ceil(count / rowsPerPage) - 1);\n  if (page < 0 || page > newLastPage) {\n    return new Error(\n      'Material-UI: the page prop of a TablePagination is out of range ' +\n        `(0 to ${newLastPage}, but page is ${page}).`,\n    );\n  }\n  return null;\n})",
+        "raw": "chainPropTypes(PropTypes.number.isRequired, props => {\n  const { count, page, rowsPerPage } = props;\n\n  if (count === -1) {\n    return null;\n  }\n\n  const newLastPage = Math.max(0, Math.ceil(count / rowsPerPage) - 1);\n  if (page < 0 || page > newLastPage) {\n    return new Error(\n      'Material-UI: the page prop of a TablePagination is out of range ' +\n        `(0 to ${newLastPage}, but page is ${page}).`,\n    );\n  }\n  return null;\n})",
         "chained": {
           "name": "number"
         }

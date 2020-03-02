@@ -212,18 +212,6 @@
       },
       "tags": []
     },
-    "disableOpenOnFocus": {
-      "type": {
-        "name": "bool"
-      },
-      "required": false,
-      "description": "If `true`, the popup won't open on input focus.",
-      "defaultValue": {
-        "value": "false",
-        "computed": false
-      },
-      "tags": []
-    },
     "disablePortal": {
       "type": {
         "name": "bool"
@@ -594,6 +582,18 @@
       },
       "required": false,
       "description": "Control the popup` open state.",
+      "tags": []
+    },
+    "openOnFocus": {
+      "type": {
+        "name": "bool"
+      },
+      "required": false,
+      "description": "If `true`, the popup will open on input focus.",
+      "defaultValue": {
+        "value": "false",
+        "computed": false
+      },
       "tags": []
     },
     "openText": {

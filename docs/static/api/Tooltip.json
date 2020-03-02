@@ -74,7 +74,7 @@
       "required": false,
       "description": "The number of milliseconds to wait before showing the tooltip.\nThis prop won't impact the enter touch delay (`enterTouchDelay`).",
       "defaultValue": {
-        "value": "200",
+        "value": "100",
         "computed": false
       },
       "tags": []

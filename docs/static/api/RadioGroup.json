@@ -23,7 +23,7 @@
         "name": "string"
       },
       "required": false,
-      "description": "The name used to reference the value of the control.",
+      "description": "The name used to reference the value of the control.\nIf you don't provide this prop, it falls back to a randomly generated name.",
       "tags": []
     },
     "onChange": {
