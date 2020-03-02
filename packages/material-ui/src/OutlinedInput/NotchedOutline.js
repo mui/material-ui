@@ -36,6 +36,7 @@ export const styles = theme => {
     legendLabel: {
       paddingLeft: 5,
       paddingRight: 5,
+      display: 'inline-block',
     },
     /* Styles applied to the legend element. */
     legendLabelled: {
