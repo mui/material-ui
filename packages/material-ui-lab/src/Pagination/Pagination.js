@@ -30,7 +30,6 @@ const Pagination = React.forwardRef(function Pagination(props, ref) {
   /* eslint-disable no-unused-vars */
   const {
     boundaryCount = 1,
-    children,
     classes,
     className,
     color = 'standard',
@@ -63,19 +62,18 @@ const Pagination = React.forwardRef(function Pagination(props, ref) {
       {...other}
     >
       <ul className={classes.ul}>
-        {children ||
-          items.map((item, index) => (
-            <li key={index}>
-              {renderItem({
-                ...item,
-                color,
-                'aria-label': getAriaLabel(item.type, item.page, item.selected),
-                shape,
-                size,
-                variant,
-              })}
-            </li>
-          ))}
+        {items.map((item, index) => (
+          <li key={index}>
+            {renderItem({
+              ...item,
+              color,
+              'aria-label': getAriaLabel(item.type, item.page, item.selected),
+              shape,
+              size,
+              variant,
+            })}
+          </li>
+        ))}
       </ul>
     </nav>
   );
@@ -86,10 +84,6 @@ Pagination.propTypes = {
    * Number of always visible pages at the beginning and end.
    */
   boundaryCount: PropTypes.number,
-  /**
-   * Pagination items.
-   */
-  children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
