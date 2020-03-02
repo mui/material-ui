@@ -32,6 +32,11 @@ export const styles = theme => {
         easing: theme.transitions.easing.easeOut,
       }),
     },
+    /* Styles applied to the label elemement. */
+    legendLabel: {
+      paddingLeft: 5,
+      paddingRight: 5,
+    },
     /* Styles applied to the legend element. */
     legendLabelled: {
       display: 'block',
@@ -46,10 +51,6 @@ export const styles = theme => {
         duration: 50,
         easing: theme.transitions.easing.easeOut,
       }),
-      '& span': {
-        paddingLeft: 5,
-        paddingRight: 5,
-      },
     },
     /* Styles applied to the legend element is notched. */
     legendNotched: {
@@ -96,7 +97,14 @@ const NotchedOutline = React.forwardRef(function NotchedOutline(props, ref) {
         >
           {/* Use the nominal use case of the legend, avoid rendering artefacts. */}
           {/* eslint-disable-next-line react/no-danger */}
-          {label ? <span>{label}</span> : <span dangerouslySetInnerHTML={{ __html: '&#8203;' }} />}
+          {label ? (
+            <span className={clsx(classes.legendLabel)}>{label}</span>
+          ) : (
+            <span
+              className={clsx(classes.legendLabel)}
+              dangerouslySetInnerHTML={{ __html: '&#8203;' }}
+            />
+          )}
         </legend>
       </fieldset>
     );
@@ -126,7 +134,10 @@ const NotchedOutline = React.forwardRef(function NotchedOutline(props, ref) {
       >
         {/* Use the nominal use case of the legend, avoid rendering artefacts. */}
         {/* eslint-disable-next-line react/no-danger */}
-        <span dangerouslySetInnerHTML={{ __html: '&#8203;' }} />
+        <span
+          className={clsx(classes.legendLabel)}
+          dangerouslySetInnerHTML={{ __html: '&#8203;' }}
+        />
       </legend>
     </fieldset>
   );
