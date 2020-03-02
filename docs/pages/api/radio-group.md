@@ -26,7 +26,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The content of the component. |
 | <span class="prop-name">defaultValue</span> | <span class="prop-type">any</span> |  | The default `input` element value. Use when the component is not controlled. |
-| <span class="prop-name">name</span> | <span class="prop-type">string</span> |  | The name used to reference the value of the control. |
+| <span class="prop-name">name</span> | <span class="prop-type">string</span> |  | The name used to reference the value of the control. If you don't provide this prop, it falls back to a randomly generated name. |
 | <span class="prop-name">onChange</span> | <span class="prop-type">func</span> |  | Callback fired when a radio button is selected.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback. You can pull out the new value by accessing `event.target.value` (string). |
 | <span class="prop-name">value</span> | <span class="prop-type">any</span> |  | Value of the selected radio button. The DOM API casts this to a string. |
 

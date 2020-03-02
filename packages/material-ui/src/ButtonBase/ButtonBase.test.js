@@ -1,5 +1,5 @@
 // @ts-check
-import React from 'react';
+import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
@@ -374,6 +374,54 @@ describe('<ButtonBase />', () => {
           button.querySelectorAll('.ripple-visible .child:not(.child-leaving)'),
         ).to.have.lengthOf(0);
       });
+
+      it('should not crash when changes enableRipple from false to true', () => {
+        function App() {
+          /** @type {React.MutableRefObject<import('./ButtonBase').ButtonBaseActions | null>} */
+          const buttonRef = React.useRef(null);
+          const [enableRipple, setRipple] = React.useState(false);
+
+          React.useEffect(() => {
+            if (buttonRef.current) {
+              buttonRef.current.focusVisible();
+            } else {
+              throw new Error('buttonRef.current must be available');
+            }
+          }, []);
+
+          return (
+            <div>
+              <button
+                type="button"
+                data-testid="trigger"
+                onClick={() => {
+                  setRipple(true);
+                }}
+              >
+                Trigger crash
+              </button>
+              <ButtonBase
+                autoFocus
+                action={buttonRef}
+                TouchRippleProps={{
+                  classes: {
+                    ripplePulsate: 'ripple-pulsate',
+                  },
+                }}
+                focusRipple
+                disableRipple={!enableRipple}
+              >
+                the button
+              </ButtonBase>
+            </div>
+          );
+        }
+
+        const { container, getByTestId } = render(<App />);
+
+        fireEvent.click(getByTestId('trigger'));
+        expect(container.querySelectorAll('.ripple-pulsate')).to.have.lengthOf(1);
+      });
     });
   });
 
@@ -552,6 +600,9 @@ describe('<ButtonBase />', () => {
 
   describe('prop: component', () => {
     it('should allow to use a link component', () => {
+      /**
+       * @type {React.ForwardRefExoticComponent<React.HTMLAttributes<HTMLDivElement>>}
+       */
       const Link = React.forwardRef((props, ref) => (
         <div data-testid="link" ref={ref} {...props} />
       ));
@@ -679,10 +730,11 @@ describe('<ButtonBase />', () => {
     });
 
     describe('keyboard accessibility for non interactive elements', () => {
-      it('does not call onClick when a spacebar is pressed on the element', () => {
+      it('does not call onClick when a spacebar is pressed on the element but prevents the default', () => {
+        const onKeyDown = spy(event => event.defaultPrevented);
         const onClickSpy = spy(event => event.defaultPrevented);
         const { getByRole } = render(
-          <ButtonBase onClick={onClickSpy} component="div">
+          <ButtonBase onClick={onClickSpy} onKeyDown={onKeyDown} component="div">
             Hello
           </ButtonBase>,
         );
@@ -694,6 +746,8 @@ describe('<ButtonBase />', () => {
         });
 
         expect(onClickSpy.callCount).to.equal(0);
+        // defaultPrevented?
+        expect(onKeyDown.returnValues[0]).to.equal(true);
       });
 
       it('does call onClick when a spacebar is released on the element', () => {
@@ -712,7 +766,7 @@ describe('<ButtonBase />', () => {
 
         expect(onClickSpy.callCount).to.equal(1);
         // defaultPrevented?
-        expect(onClickSpy.returnValues[0]).to.equal(true);
+        expect(onClickSpy.returnValues[0]).to.equal(false);
       });
 
       it('does not call onClick when a spacebar is released and the default is prevented', () => {

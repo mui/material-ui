@@ -141,6 +141,24 @@ jobs:
       - run:
           name: Tests TypeScript definitions
           command: yarn typescript
+  test_types_next:
+    <<: *defaults
+    steps:
+      - checkout
+      - run:
+          name: Resolve typescript version
+          environment:
+            TYPESCRIPT_DIST_TAG: next
+          command: |
+            node scripts/use-typescript-dist-tag
+            # log a patch for maintainers who want to check out this change
+            git diff HEAD
+      - install_js
+      - run:
+          name: Tests TypeScript definitions
+          # we want to see errors in all packages.
+          # without --no-bail we only see at most a single failing package
+          command: yarn typescript --no-bail
   test_browser:
     <<: *defaults
     steps:
@@ -215,3 +233,13 @@ workflows:
             - test_unit
             - test_browser
           react-dist-tag: next
+  typescript-next:
+    triggers:
+      - schedule:
+          cron: '0 0 * * *'
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - test_types_next

@@ -16,9 +16,14 @@ const useStyles = makeStyles({
 export default function ControlledTreeView() {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState([]);
+  const [selected, setSelected] = React.useState([]);
 
-  const handleChange = (event, nodes) => {
-    setExpanded(nodes);
+  const handleToggle = (event, nodeIds) => {
+    setExpanded(nodeIds);
+  };
+
+  const handleSelect = (event, nodeIds) => {
+    setSelected(nodeIds);
   };
 
   return (
@@ -27,7 +32,9 @@ export default function ControlledTreeView() {
       defaultCollapseIcon={<ExpandMoreIcon />}
       defaultExpandIcon={<ChevronRightIcon />}
       expanded={expanded}
-      onNodeToggle={handleChange}
+      selected={selected}
+      onNodeToggle={handleToggle}
+      onNodeSelect={handleSelect}
     >
       <TreeItem nodeId="1" label="Applications">
         <TreeItem nodeId="2" label="Calendar" />

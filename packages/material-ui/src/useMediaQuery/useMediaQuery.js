@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { getThemeProps, useTheme } from '@material-ui/styles';
 
 export default function useMediaQuery(queryInput, options = {}) {

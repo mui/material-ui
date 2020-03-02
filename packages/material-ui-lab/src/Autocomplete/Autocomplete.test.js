@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { expect } from 'chai';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
@@ -15,6 +15,7 @@ describe('<Autocomplete />', () => {
   const render = createClientRender();
   const defaultProps = {
     options: [],
+    openOnFocus: true,
   };
 
   before(() => {
@@ -465,25 +466,25 @@ describe('<Autocomplete />', () => {
     });
   });
 
-  describe('prop: disableOpenOnFocus', () => {
-    it('disables open on input focus', () => {
+  describe('prop: openOnFocus', () => {
+    it('enables open on input focus', () => {
       const { getByRole } = render(
         <Autocomplete
           {...defaultProps}
           options={['one', 'two', 'three']}
-          disableOpenOnFocus
+          openOnFocus
           renderInput={params => <TextField {...params} autoFocus />}
         />,
       );
       const textbox = getByRole('textbox');
       const combobox = getByRole('combobox');
 
-      expect(combobox).to.have.attribute('aria-expanded', 'false');
+      expect(combobox).to.have.attribute('aria-expanded', 'true');
       expect(textbox).to.have.focus;
 
       fireEvent.mouseDown(textbox);
       fireEvent.click(textbox);
-      expect(combobox).to.have.attribute('aria-expanded', 'true');
+      expect(combobox).to.have.attribute('aria-expanded', 'false');
 
       document.activeElement.blur();
       expect(combobox).to.have.attribute('aria-expanded', 'false');
@@ -491,12 +492,12 @@ describe('<Autocomplete />', () => {
 
       fireEvent.mouseDown(textbox);
       fireEvent.click(textbox);
-      expect(combobox).to.have.attribute('aria-expanded', 'false');
+      expect(combobox).to.have.attribute('aria-expanded', 'true');
       expect(textbox).to.have.focus;
 
       fireEvent.mouseDown(textbox);
       fireEvent.click(textbox);
-      expect(combobox).to.have.attribute('aria-expanded', 'true');
+      expect(combobox).to.have.attribute('aria-expanded', 'false');
     });
   });
 
@@ -736,6 +737,36 @@ describe('<Autocomplete />', () => {
         'For the input option: "a", `getOptionLabel` returns: undefined',
       );
     });
+
+    it('warn if getOptionSelected match multiple values for a given option', () => {
+      const value = [{ id: '10', text: 'One' }, { id: '20', text: 'Two' }];
+      const options = [
+        { id: '10', text: 'One' },
+        { id: '20', text: 'Two' },
+        { id: '30', text: 'Three' },
+      ];
+
+      render(
+        <Autocomplete
+          {...defaultProps}
+          multiple
+          options={options}
+          value={value}
+          getOptionLabel={option => option.text}
+          getOptionSelected={option => value.find(v => v.id === option.id)}
+          renderInput={params => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+      fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+      fireEvent.keyDown(document.activeElement, { key: 'Enter' });
+
+      expect(consoleErrorMock.callCount()).to.equal(1); // strict mode renders twice
+      expect(consoleErrorMock.args()[0][0]).to.include(
+        'The component expects a single value to match a given option but found 2 matches.',
+      );
+    });
   });
 
   describe('prop: options', () => {
@@ -882,6 +913,25 @@ describe('<Autocomplete />', () => {
       fireEvent.click(textbox);
       expect(textbox.selectionStart).to.equal(0);
       expect(textbox.selectionEnd).to.equal(3);
+    });
+
+    it('should focus the input when clicking on the open action', () => {
+      const { getByRole, queryByTitle } = render(
+        <Autocomplete
+          {...defaultProps}
+          value="one"
+          options={['one', 'two']}
+          renderInput={params => <TextField {...params} />}
+        />,
+      );
+
+      const textbox = getByRole('textbox');
+      fireEvent.click(textbox);
+      expect(textbox).to.have.focus;
+      textbox.blur();
+
+      fireEvent.click(queryByTitle('Open'));
+      expect(textbox).to.have.focus;
     });
   });
 
@@ -1111,8 +1161,7 @@ describe('<Autocomplete />', () => {
       fireEvent.click(firstOption);
       expect(textbox).to.not.have.focus;
 
-      const opener = queryByTitle('Open');
-      fireEvent.click(opener);
+      fireEvent.click(queryByTitle('Open'));
       expect(textbox).to.have.focus;
       firstOption = getByRole('option');
       fireEvent.touchStart(firstOption);
@@ -1136,8 +1185,7 @@ describe('<Autocomplete />', () => {
       fireEvent.click(firstOption);
       expect(textbox).to.have.focus;
 
-      const opener = queryByTitle('Open');
-      fireEvent.click(opener);
+      fireEvent.click(queryByTitle('Open'));
       firstOption = getByRole('option');
       fireEvent.touchStart(firstOption);
       fireEvent.click(firstOption);
@@ -1161,8 +1209,7 @@ describe('<Autocomplete />', () => {
       fireEvent.click(firstOption);
       expect(textbox).to.have.focus;
 
-      const opener = queryByTitle('Open');
-      fireEvent.click(opener);
+      fireEvent.click(queryByTitle('Open'));
       firstOption = getByRole('option');
       fireEvent.click(firstOption);
       expect(textbox).to.not.have.focus;

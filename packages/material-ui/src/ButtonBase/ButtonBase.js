@@ -1,6 +1,6 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
+import * as ReactDOM from 'react-dom';
 import clsx from 'clsx';
 import { elementTypeAcceptingRef, refType } from '@material-ui/utils';
 import useForkRef from '../utils/useForkRef';
@@ -206,6 +206,10 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
       });
     }
 
+    if (event.target === event.currentTarget && isNonNativeButton() && event.key === ' ') {
+      event.preventDefault();
+    }
+
     if (onKeyDown) {
       onKeyDown(event);
     }
@@ -240,15 +244,13 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
 
     // Keyboard accessibility for non interactive elements
     if (
+      onClick &&
       event.target === event.currentTarget &&
       isNonNativeButton() &&
       event.key === ' ' &&
       !event.defaultPrevented
     ) {
-      event.preventDefault();
-      if (onClick) {
-        onClick(event);
-      }
+      onClick(event);
     }
   });
 
@@ -302,12 +304,12 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
       {...other}
     >
       {children}
-      {!disableRipple && !disabled ? (
-        <NoSsr>
-          {/* TouchRipple is only needed client-side, x2 boost on the server. */}
+      <NoSsr>
+        {!disableRipple && !disabled ? (
+          /* TouchRipple is only needed client-side, x2 boost on the server. */
           <TouchRipple ref={rippleRef} center={centerRipple} {...TouchRippleProps} />
-        </NoSsr>
-      ) : null}
+        ) : null}
+      </NoSsr>
     </ComponentProp>
   );
 });

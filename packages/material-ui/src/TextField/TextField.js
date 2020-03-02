@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { refType } from '@material-ui/utils';
@@ -106,15 +106,14 @@ const TextField = React.forwardRef(function TextField(props, ref) {
     if (InputLabelProps && typeof InputLabelProps.shrink !== 'undefined') {
       InputMore.notched = InputLabelProps.shrink;
     }
-
-    InputMore.label = label ? (
-      <React.Fragment>
-        {label}
-        {required && '\u00a0*'}
-      </React.Fragment>
-    ) : (
-      label
-    );
+    if (label) {
+      InputMore.label = (
+        <React.Fragment>
+          {label}
+          {required && '\u00a0*'}
+        </React.Fragment>
+      );
+    }
   }
   if (select) {
     // unset defaults from textbox inputs

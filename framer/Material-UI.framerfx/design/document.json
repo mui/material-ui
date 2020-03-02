@@ -3778,9 +3778,12 @@
             }
           ],
           "error" : "#f44336",
+          "info" : "#2196f3",
           "paletteType" : "light",
           "primary" : "#3577CB",
-          "secondary" : "#CA2B51"
+          "secondary" : "#CA2B51",
+          "success" : "#4caf4f",
+          "warning" : "#ff9800"
         },
         "codeOverrideEnabled" : false,
         "constraintsLocked" : false,

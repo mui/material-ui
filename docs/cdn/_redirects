@@ -26,8 +26,11 @@ https://material-ui.dev/* https://material-ui.com/:splat 301!
 /r/input-component-ref-interface /components/text-fields/#integration-with-3rd-party-input-libraries 302
 /r/issue-template https://codesandbox.io/s/material-ui-issue-dh2yh
 /r/ts-issue-template https://www.typescriptlang.org/play/#code/JYWwDg9gTgLgBAKjgQwM5wEoFNkGN4BmUEIcA5FDvmQNwBQokscA3nXHAPSdwwAWWOLhKQAdllEx0ATwgBXOHNRYAJnQC+cIiXIABEMhhYowZABsAtHOCdhlMnToE5o-MAii4AESwgIACgBKVnYuHgBNeSghCBUsDSA 302
-# To remove at some point (2021).
 
+/store/* https://material-ui-store.netlify.com/:splat 200
+/store-staging/* https://master--material-ui-store.netlify.com/:splat 200
+
+# To remove at some point (2021).
 /css-in-js/* /styles/:splat 301
 /customization/css-in-js/ /styles/basics/ 301
 /customization/overrides/ /customization/components/ 301
@@ -54,7 +57,7 @@ https://material-ui.dev/* https://material-ui.com/:splat 301!
 /api/mui-theme-provider/ /styles/api/ 301
 
 # To remove at some point (2022).
-/premium-themes* https://themes.material-ui.com/ 301
+/premium-themes* https://material-ui.com/store/ 301
 /customization/themes/ /customization/theming/ 301
 https://v1-5-0.material-ui.com/* https://v1.material-ui.com/:splat 301!
 https://v3-9-0.material-ui.com/* https://v3.material-ui.com/:splat 301!

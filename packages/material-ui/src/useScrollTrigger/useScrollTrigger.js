@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 function getScrollY(ref) {
   return ref.pageYOffset !== undefined ? ref.pageYOffset : ref.scrollTop;

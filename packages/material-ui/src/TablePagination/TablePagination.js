@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import { chainPropTypes } from '@material-ui/utils';
 import clsx from 'clsx';
@@ -246,6 +246,11 @@ TablePagination.propTypes = {
    */
   page: chainPropTypes(PropTypes.number.isRequired, props => {
     const { count, page, rowsPerPage } = props;
+
+    if (count === -1) {
+      return null;
+    }
+
     const newLastPage = Math.max(0, Math.ceil(count / rowsPerPage) - 1);
     if (page < 0 || page > newLastPage) {
       return new Error(

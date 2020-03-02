@@ -84,7 +84,7 @@ There are so many new things, we can’t be exhaustive. Aside from what we have 
 - New documentation
 - Right-To-Left support
 - First class server-side support
-- [Premium themes](https://themes.material-ui.com/)
+- [Premium themes](https://material-ui.com/store/)
 - First class TypeScript support
 - **And much, much more**
 
@@ -103,9 +103,9 @@ We want to translate the documentation into Chinese and more languages. [Any hel
 
 ## Premium themes
 
-We have shipped the long-awaited Material-UI v1 stable release. With a new codebase designed to better support customization, it’s the perfect timing to start building and promoting premium themes. We are very happy to announce [the first two](https://themes.material-ui.com/) from [Creative Tim](https://themes.material-ui.com/contributors/creative-tim/). More are coming.
+We have shipped the long-awaited Material-UI v1 stable release. With a new codebase designed to better support customization, it’s the perfect timing to start building and promoting premium themes. We are very happy to announce [the first two](https://material-ui.com/store/) from [Creative Tim](https://material-ui.com/store/contributors/creative-tim/). More are coming.
 
-![[Creative Tim](https://themes.material-ui.com/contributors/creative-tim/) themes](https://cdn-images-1.medium.com/max/2000/1*jPOu6n1EMsqv4Gh652MtPA.png)
+![[Creative Tim](https://material-ui.com/store/contributors/creative-tim/) themes](https://cdn-images-1.medium.com/max/2000/1*jPOu6n1EMsqv4Gh652MtPA.png)
 <p class="blog-description">Creative Tim themes</p>
 
 ![A preview of an open source theme we will soon release.](https://cdn-images-1.medium.com/max/2000/1*CThJG6Kuk-XlSM53jM6KLQ.png)

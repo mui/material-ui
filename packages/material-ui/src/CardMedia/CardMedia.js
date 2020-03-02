@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
@@ -66,8 +66,10 @@ CardMedia.propTypes = {
    * The content of the component.
    */
   children: chainPropTypes(PropTypes.node, props => {
-    if (!props.children && !props.image && !props.src) {
-      return new Error('Material-UI: either `children`, `image` or `src` prop must be specified.');
+    if (!props.children && !props.image && !props.src && !props.component) {
+      return new Error(
+        'Material-UI: either `children`, `image`, `src` or `component` prop must be specified.',
+      );
     }
     return null;
   }),

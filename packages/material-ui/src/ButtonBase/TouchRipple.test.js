@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { useFakeTimers } from 'sinon';
 import { expect } from 'chai';
 import { createMount, getClasses } from '@material-ui/core/test-utils';

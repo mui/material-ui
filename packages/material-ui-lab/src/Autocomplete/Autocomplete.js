@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
@@ -252,7 +252,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     disableCloseOnSelect = false,
     disabled = false,
     disableListWrap = false,
-    disableOpenOnFocus = false,
     disablePortal = false,
     filterOptions,
     filterSelectedOptions = false,
@@ -276,6 +275,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     onInputChange,
     onOpen,
     open,
+    openOnFocus = false,
     openText = 'Open',
     options,
     PaperComponent = Paper,
@@ -386,6 +386,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
         {renderInput({
           id,
           disabled,
+          fullWidth: true,
           size: size === 'small' ? 'small' : undefined,
           InputLabelProps: getInputLabelProps(),
           InputProps: {
@@ -567,10 +568,6 @@ Autocomplete.propTypes = {
    */
   disableListWrap: PropTypes.bool,
   /**
-   * If `true`, the popup won't open on input focus.
-   */
-  disableOpenOnFocus: PropTypes.bool,
-  /**
    * Disable the portal behavior.
    * The children stay within it's parent DOM hierarchy.
    */
@@ -692,6 +689,10 @@ Autocomplete.propTypes = {
    */
   open: PropTypes.bool,
   /**
+   * If `true`, the popup will open on input focus.
+   */
+  openOnFocus: PropTypes.bool,
+  /**
    * Override the default text for the *open popup* icon button.
    *
    * For localization purposes, you can use the provided [translations](/guides/localization/).
@@ -745,7 +746,7 @@ Autocomplete.propTypes = {
   renderTags: PropTypes.func,
   /**
    * If `true`, the input's text will be selected on focus.
-   * It helps the user clearning the selected value.
+   * It helps the user clear the selected value.
    */
   selectOnFocus: PropTypes.bool,
   /**

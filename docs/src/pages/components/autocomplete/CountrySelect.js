@@ -46,7 +46,6 @@ export default function CountrySelect() {
           {...params}
           label="Choose a country"
           variant="outlined"
-          fullWidth
           inputProps={{
             ...params.inputProps,
             autoComplete: 'new-password', // disable autocomplete and autofill
@@ -97,9 +96,9 @@ const countries = [
   { code: 'BZ', label: 'Belize', phone: '501' },
   { code: 'CA', label: 'Canada', phone: '1', suggested: true },
   { code: 'CC', label: 'Cocos (Keeling) Islands', phone: '61' },
-  { code: 'CD', label: 'Congo, Republic of the', phone: '242' },
+  { code: 'CD', label: 'Congo, Democratic Republic of the', phone: '243' },
   { code: 'CF', label: 'Central African Republic', phone: '236' },
-  { code: 'CG', label: 'Congo, Democratic Republic of the', phone: '243' },
+  { code: 'CG', label: 'Congo, Republic of the', phone: '242' },
   { code: 'CH', label: 'Switzerland', phone: '41' },
   { code: 'CI', label: "Cote d'Ivoire", phone: '225' },
   { code: 'CK', label: 'Cook Islands', phone: '682' },

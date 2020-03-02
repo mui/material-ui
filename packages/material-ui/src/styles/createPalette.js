@@ -46,7 +46,7 @@ export const light = {
     disabledOpacity: 0.38,
     focus: 'rgba(0, 0, 0, 0.12)',
     focusOpacity: 0.12,
-    activatedOpaciy: 0.12,
+    activatedOpacity: 0.12,
   },
 };
 
@@ -74,7 +74,7 @@ export const dark = {
     disabledOpacity: 0.38,
     focus: 'rgba(255, 255, 255, 0.12)',
     focusOpacity: 0.12,
-    activatedOpaciy: 0.24,
+    activatedOpacity: 0.24,
   },
 };
 

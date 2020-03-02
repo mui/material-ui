@@ -305,7 +305,7 @@ Developers should be able to use their preferred styling solution without paying
 
 How are we going to sustain this ambitious roadmap?
 We will follow the Bootstrap model.
-We are working on [a Premium themes store](https://themes.material-ui.com/).
+We are working on [a Premium themes store](https://material-ui.com/store/).
 
 We have built partnerships with the best theme authors of the ecosystem.
 Within a few weeks, you should find a collection of the best Material-UI templates and themes 😍.

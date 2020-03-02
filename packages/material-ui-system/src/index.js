@@ -16,6 +16,7 @@ export { default as shadows } from './shadows';
 export { default as sizing } from './sizing';
 export * from './sizing';
 export { default as spacing } from './spacing';
+export * from './spacing';
 export { default as style } from './style';
 export { default as typography } from './typography';
 export * from './typography';

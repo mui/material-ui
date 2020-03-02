@@ -144,6 +144,9 @@ export const deDE = {
 export const enUS = {
   /**
   props: {
+    MuiBreadcrumbs: {
+      expandText: 'Show path',
+    },
     MuiTablePagination: {
       backIconButtonText: 'Previous page',
       labelRowsPerPage: 'Rows per page:',
@@ -163,6 +166,27 @@ export const enUS = {
     },
     MuiAlert: {
       closeText: 'Close',
+    },
+    MuiPagination: {
+      'aria-label': 'Pagination navigation',
+      getItemAriaLabel: (type, page, selected) => {
+        if (type === 'page') {
+          return `${selected ? '' : 'Go to '}page ${page}`;
+        }
+        if (type === 'first') {
+          return 'Go to first page';
+        }
+        if (type === 'last') {
+          return 'Go to last page';
+        }
+        if (type === 'next') {
+          return 'Go to next page';
+        }
+        if (type === 'previous') {
+          return 'Go to previous page';
+        }
+        return undefined;
+      },
     },
   },
 */
@@ -291,6 +315,9 @@ export const fiFI = {
 
 export const frFR = {
   props: {
+    MuiBreadcrumbs: {
+      expandText: 'Montrer le chemin',
+    },
     MuiTablePagination: {
       backIconButtonText: 'Page précédente',
       labelRowsPerPage: 'Lignes par page :',
@@ -335,6 +362,32 @@ export const frFR = {
   },
 };
 
+export const heIL = {
+  props: {
+    MuiTablePagination: {
+      backIconButtonText: 'העמוד הקודם',
+      labelRowsPerPage: 'שורות בעמוד:',
+      labelDisplayedRows: ({ from, to, count }) =>
+        `${from}-${to === -1 ? count : to} מתוך ${count}`,
+      nextIconButtonText: 'העמוד הבא',
+    },
+    MuiRating: {
+      getLabelText: value => `${value} כוכב${value !== 1 ? 'ים' : ''}`,
+      emptyLabelText: 'ריק',
+    },
+    MuiAutocomplete: {
+      clearText: 'נקה',
+      closeText: 'סגור',
+      loadingText: 'טוען…',
+      noOptionsText: 'אין אופציות',
+      openText: 'פתח',
+    },
+    MuiAlert: {
+      closeText: 'סגור',
+    },
+  },
+};
+
 export const huHU = {
   props: {
     MuiTablePagination: {
@@ -356,6 +409,31 @@ export const huHU = {
     },
     MuiAlert: {
       closeText: 'Bezárás',
+    },
+  },
+};
+
+export const hyAM = {
+  props: {
+    MuiTablePagination: {
+      backIconButtonText: 'Նախորդը',
+      labelRowsPerPage: 'Տողեր մեկ էջում`',
+      labelDisplayedRows: ({ from, to, count }) => `${from}-${to === -1 ? count : to} / ${count}`,
+      nextIconButtonText: 'Հաջորդը',
+    },
+    MuiRating: {
+      getLabelText: value => `${value} Աստղ`,
+      emptyLabelText: 'Դատարկ',
+    },
+    MuiAutocomplete: {
+      clearText: 'Մաքրել',
+      closeText: 'Փակել',
+      loadingText: 'Բեռնում…',
+      noOptionsText: 'Տարբերակներ չկան',
+      openText: 'Բացել',
+    },
+    MuiAlert: {
+      closeText: 'Փակել',
     },
   },
 };

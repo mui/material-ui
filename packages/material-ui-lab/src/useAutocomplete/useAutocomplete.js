@@ -1,5 +1,5 @@
 /* eslint-disable no-constant-condition */
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import { setRef, useEventCallback, useControlled } from '@material-ui/core/utils';
 
@@ -86,12 +86,12 @@ export default function useAutocomplete(props) {
     autoSelect = false,
     blurOnSelect = false,
     clearOnEscape = false,
+    componentName = 'useAutocomplete',
     debug = false,
     defaultValue = props.multiple ? [] : null,
     disableClearable = false,
     disableCloseOnSelect = false,
     disableListWrap = false,
-    disableOpenOnFocus = false,
     filterOptions = defaultFilterOptions,
     filterSelectedOptions = false,
     freeSolo = false,
@@ -105,13 +105,13 @@ export default function useAutocomplete(props) {
     multiple = false,
     onChange,
     onClose,
-    onOpen,
     onInputChange,
+    onOpen,
     open: openProp,
+    openOnFocus = false,
     options,
     selectOnFocus = !props.freeSolo,
     value: valueProp,
-    componentName = 'useAutocomplete',
   } = props;
 
   const [defaultId, setDefaultId] = React.useState();
@@ -439,6 +439,21 @@ export default function useAutocomplete(props) {
       const item = newValue;
       newValue = Array.isArray(value) ? [...value] : [];
 
+      if (process.env.NODE_ENV !== 'production') {
+        const matches = newValue.filter(val => getOptionSelected(item, val));
+
+        if (matches.length > 1) {
+          console.error(
+            [
+              'Material-UI: the `getOptionSelected` method of useAutocomplete do not handle the arguments correctly.',
+              `The component expects a single value to match a given option but found ${
+                matches.length
+              } matches.`,
+            ].join('\n'),
+          );
+        }
+      }
+
       const itemIndex = findIndex(newValue, valueItem => getOptionSelected(item, valueItem));
 
       if (itemIndex === -1) {
@@ -640,7 +655,7 @@ export default function useAutocomplete(props) {
   const handleFocus = event => {
     setFocused(true);
 
-    if (!disableOpenOnFocus && !ignoreFocus.current) {
+    if (openOnFocus && !ignoreFocus.current) {
       handleOpen(event);
     }
   };
@@ -677,10 +692,6 @@ export default function useAutocomplete(props) {
     }
 
     if (newValue === '') {
-      if (disableOpenOnFocus) {
-        handleClose(event);
-      }
-
       if (!disableClearable && !multiple) {
         handleValue(event, null);
       }
@@ -752,24 +763,23 @@ export default function useAutocomplete(props) {
     }
   };
 
-  // Focus the input when first interacting with the combobox
+  // Focus the input when interacting with the combobox
   const handleClick = () => {
+    inputRef.current.focus();
+
     if (
+      selectOnFocus &&
       firstFocus.current &&
       inputRef.current.selectionEnd - inputRef.current.selectionStart === 0
     ) {
-      inputRef.current.focus();
-
-      if (selectOnFocus) {
-        inputRef.current.select();
-      }
+      inputRef.current.select();
     }
 
     firstFocus.current = false;
   };
 
   const handleInputMouseDown = event => {
-    if (inputValue === '' && (!disableOpenOnFocus || inputRef.current === document.activeElement)) {
+    if (inputValue === '') {
       handlePopupIndicator(event);
     }
   };
@@ -954,10 +964,6 @@ useAutocomplete.propTypes = {
    */
   disableListWrap: PropTypes.bool,
   /**
-   * If `true`, the popup won't open on input focus.
-   */
-  disableOpenOnFocus: PropTypes.bool,
-  /**
    * A filter function that determins the options that are eligible.
    *
    * @param {any} options The options to render.
@@ -1036,6 +1042,10 @@ useAutocomplete.propTypes = {
    * Control the popup` open state.
    */
   open: PropTypes.bool,
+  /**
+   * If `true`, the popup will open on input focus.
+   */
+  openOnFocus: PropTypes.bool,
   /**
    * Array of options.
    */

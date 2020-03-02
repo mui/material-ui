@@ -70,10 +70,6 @@ export interface UseAutocompleteCommonProps<T> {
    */
   disableListWrap?: boolean;
   /**
-   * If `true`, the popup won't open on input focus.
-   */
-  disableOpenOnFocus?: boolean;
-  /**
    * A filter function that determines the options that are eligible.
    *
    * @param {T[]} options The options to render.
@@ -155,12 +151,16 @@ export interface UseAutocompleteCommonProps<T> {
    */
   open?: boolean;
   /**
+   * If `true`, the popup will open on input focus.
+   */
+  openOnFocus?: boolean;
+  /**
    * Array of options.
    */
   options: T[];
   /**
    * If `true`, the input's text will be selected on focus.
-   * It helps the user clearning the selected value.
+   * It helps the user clear the selected value.
    */
   selectOnFocus?: boolean;
 }

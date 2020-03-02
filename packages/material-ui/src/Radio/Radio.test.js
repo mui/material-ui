@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { assert, expect } from 'chai';
 import { getClasses, createMount } from '@material-ui/core/test-utils';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';

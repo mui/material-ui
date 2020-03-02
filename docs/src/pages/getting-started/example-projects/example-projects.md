@@ -24,7 +24,7 @@ build instructions.
 
 ## More advanced example projects
 
-If you want to start with a more complete and real-world example, you could take a look at the [premium themes & templates](https://themes.material-ui.com/) or:
+If you want to start with a more complete and real-world example, you could take a look at the [premium themes & templates](https://material-ui.com/store/) or:
 
 ### Free
 
