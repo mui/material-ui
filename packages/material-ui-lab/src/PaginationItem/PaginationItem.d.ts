@@ -4,13 +4,37 @@ import { UsePaginationItem } from '../Pagination/usePagination';
 
 export interface PaginationItemTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
+    /**
+     * The active color.
+     */
     color?: 'standard' | 'primary' | 'secondary';
+    /**
+     * If `true`, the item will be disabled.
+     */
     disabled?: boolean;
+    /**
+     * The current page number.
+     */
     page?: number;
+    /**
+     * If `true` the pagination item is selected.
+     */
     selected?: boolean;
+    /**
+     * The shape of the pagination item.
+     */
     shape?: 'round' | 'rounded';
+    /**
+     * The size of the pagination item.
+     */
     size?: 'small' | 'medium' | 'large';
+    /**
+     * The type of pagination item.
+     */
     type?: UsePaginationItem['type'];
+    /**
+     * The pagination item variant.
+     */
     variant?: 'text' | 'outlined';
   };
   defaultComponent: D;
