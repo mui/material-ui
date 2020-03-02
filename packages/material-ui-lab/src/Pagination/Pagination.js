@@ -40,6 +40,8 @@ const Pagination = React.forwardRef(function Pagination(props, ref) {
     getItemAriaLabel: getAriaLabel = defaultGetAriaLabel,
     hideNextButton = false,
     hidePrevButton = false,
+    onChange,
+    page,
     renderItem = item => <PaginationItem {...item} />,
     shape = 'round',
     showFirstButton = false,
@@ -68,6 +70,8 @@ const Pagination = React.forwardRef(function Pagination(props, ref) {
                 ...item,
                 color,
                 'aria-label': getAriaLabel(item.type, item.page, item.selected),
+                page,
+                onChange,
                 shape,
                 size,
                 variant,
@@ -80,19 +84,23 @@ const Pagination = React.forwardRef(function Pagination(props, ref) {
 });
 
 Pagination.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * Number of always visible pages at the beginning and end.
    */
   boundaryCount: PropTypes.number,
   /**
-   * Pagination items.
+   * The content of the component.
    */
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -110,7 +118,7 @@ Pagination.propTypes = {
    */
   defaultPage: PropTypes.number,
   /**
-   * If `true`, all the pagination component will be disabled.
+   * If `true`, all the pagination components will be disabled.
    */
   disabled: PropTypes.bool,
   /**
@@ -144,7 +152,7 @@ Pagination.propTypes = {
    */
   page: PropTypes.number,
   /**
-   * Render the item.
+   * Renders the item.
    *
    * @param {object} params The props to spread on a PaginationItem.
    * @returns {ReactNode}
@@ -169,11 +177,11 @@ Pagination.propTypes = {
   /**
    * The size of the pagination component.
    */
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  size: PropTypes.oneOf(['large', 'medium', 'small']),
   /**
    * The variant to use.
    */
-  variant: PropTypes.oneOf(['text', 'outlined']),
+  variant: PropTypes.oneOf(['outlined', 'text']),
 };
 
 export default withStyles(styles, { name: 'MuiPagination' })(Pagination);
