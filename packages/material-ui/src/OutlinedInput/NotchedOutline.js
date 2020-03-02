@@ -32,12 +32,6 @@ export const styles = theme => {
         easing: theme.transitions.easing.easeOut,
       }),
     },
-    /* Styles applied to the label elemement. */
-    legendLabel: {
-      paddingLeft: 5,
-      paddingRight: 5,
-      display: 'inline-block',
-    },
     /* Styles applied to the legend element. */
     legendLabelled: {
       display: 'block',
@@ -52,6 +46,11 @@ export const styles = theme => {
         duration: 50,
         easing: theme.transitions.easing.easeOut,
       }),
+      '& > span': {
+        paddingLeft: 5,
+        paddingRight: 5,
+        display: 'inline-block',
+      },
     },
     /* Styles applied to the legend element is notched. */
     legendNotched: {
@@ -96,16 +95,9 @@ const NotchedOutline = React.forwardRef(function NotchedOutline(props, ref) {
             [classes.legendNotched]: notched,
           })}
         >
-          {label ? (
-            <span className={clsx(classes.legendLabel)}>{label}</span>
-          ) : (
-            /* Use the nominal use case of the legend, avoid rendering artefacts. */
-            <span
-              className={clsx(classes.legendLabel)}
-              /* eslint-disable-next-line react/no-danger */
-              dangerouslySetInnerHTML={{ __html: '&#8203;' }}
-            />
-          )}
+          {/* Use the nominal use case of the legend, avoid rendering artefacts. */}
+          {/* eslint-disable-next-line react/no-danger */}
+          {label ? <span>{label}</span> : <span dangerouslySetInnerHTML={{ __html: '&#8203;' }} />}
         </legend>
       </fieldset>
     );
@@ -134,11 +126,8 @@ const NotchedOutline = React.forwardRef(function NotchedOutline(props, ref) {
         }}
       >
         {/* Use the nominal use case of the legend, avoid rendering artefacts. */}
-        <span
-          className={clsx(classes.legendLabel)}
-          /* eslint-disable-next-line react/no-danger */
-          dangerouslySetInnerHTML={{ __html: '&#8203;' }}
-        />
+        {/* eslint-disable-next-line react/no-danger */}
+        <span dangerouslySetInnerHTML={{ __html: '&#8203;' }} />
       </legend>
     </fieldset>
   );
