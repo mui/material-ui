@@ -1,0 +1,25 @@
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '10.x'
+    displayName: 'Install Node.js'
+
+  - script: |
+      yarn install
+    displayName: 'install dependencies'
+
+  - script: |
+      yarn docs:build
+      yarn docs:export
+    displayName: 'prepare docs'
+
+  - script: |
+      yarn global add netlify-cli
+      netlify deploy --auth $NETLIFY_AUTH_TOKEN --dir=docs/export --message="Manual deploy from azure pipelines" --site=$NETLIFY_SITE_ID
+    displayName: 'deploy docs'
+    env:
+      NETLIFY_AUTH_TOKEN: $(NETLIFY_AUTH_TOKEN)
+      NETLIFY_SITE_ID: $(NETLIFY_SITE_ID)
