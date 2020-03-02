@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { OverridableComponent, OverrideProps } from '@material-ui/core/OverridableComponent';
+import { UsePaginationItem } from '../Pagination/usePagination';
 
 export interface PaginationItemTypeMap<P = {}, D extends React.ElementType = 'div'> {
     props: P & {
@@ -9,7 +10,7 @@ export interface PaginationItemTypeMap<P = {}, D extends React.ElementType = 'di
         selected?: boolean;
         shape?: 'round' | 'rounded';
         size?: 'small' | 'medium' | 'large';
-        type?: 'page' | 'first' | 'last' | 'next' | 'previous' | 'start-ellipsis' | 'end-ellipsis';
+        type?: UsePaginationItem['type'];
         variant?: 'text' | 'outlined';
     };
     defaultComponent: D;

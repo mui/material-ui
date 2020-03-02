@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { StandardProps } from '@material-ui/core';
+import { UsePaginationItem } from './usePagination';
 
 export interface PaginationProps
     extends StandardProps<React.HTMLAttributes<HTMLElement>, PaginationClassKey, 'onChange'> {
@@ -8,7 +9,7 @@ export interface PaginationProps
     count?: number;
     defaultPage?: number;
     disabled?: boolean;
-    getItemAriaLabel?: (type: string | undefined, page: number, selected: boolean) => string;
+    getItemAriaLabel?: (type: UsePaginationItem['type'] | undefined, page: number, selected: boolean) => string;
     hideNextButton?: boolean;
     hidePrevButton?: boolean;
     onChange?: (event: React.ChangeEvent<{}>, page: number) => void;
