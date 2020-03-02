@@ -151,9 +151,15 @@ module.exports = {
     }
 
     // We want to speed-up the build of pull requests.
-    if (process.env.PULL_REQUEST === 'true') {
+    // TODO: This causes all SSR languages to be deployed in netlify
+    // revert the check before merge
+    if (process.env.NETLIFY !== 'true') {
+      // eslint-disable-next-line no-console
+      console.log('Considering only English for SSR');
       traverse(pages, 'en');
     } else {
+      // eslint-disable-next-line no-console
+      console.log('Considering various locales for SSR');
       LANGUAGES_SSR.forEach(userLanguage => {
         traverse(pages, userLanguage);
       });
