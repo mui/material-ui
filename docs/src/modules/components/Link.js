@@ -52,7 +52,7 @@ function Link(props) {
   // catch role passed from ButtonBase. This is definitely a link
   const role = roleProp === 'button' ? undefined : roleProp;
 
-  const isExternal = href.startsWith('https:') || href.startsWith('mailto:');
+  const isExternal = href.indexOf('https:') === 0 || href.indexOf('mailto:') === 0;
 
   if (isExternal) {
     return <MuiLink className={className} href={href} ref={innerRef} role={role} {...other} />;
