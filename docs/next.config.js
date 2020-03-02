@@ -3,7 +3,7 @@ const path = require('path');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const pkg = require('../package.json');
 const { findPages } = require('./src/modules/utils/find');
-const { LANGUAGES_SSR } = require('./src/modules/constants');
+const { LANGUAGES, LANGUAGES_SSR } = require('./src/modules/constants');
 
 const workspaceRoot = path.join(__dirname, '../');
 
@@ -163,7 +163,10 @@ module.exports = {
   },
   experimental: {
     async rewrites() {
-      return [{ source: '/api/:rest*', destination: '/api-docs/:rest*' }];
+      return [
+        { source: `/:lang(${LANGUAGES.join('|')})?/:rest`, destination: '/:rest' },
+        { source: '/api/:rest*', destination: '/api-docs/:rest*' },
+      ];
     },
   },
 };
