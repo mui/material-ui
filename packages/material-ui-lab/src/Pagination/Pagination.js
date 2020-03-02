@@ -70,8 +70,6 @@ const Pagination = React.forwardRef(function Pagination(props, ref) {
                 ...item,
                 color,
                 'aria-label': getAriaLabel(item.type, item.page, item.selected),
-                page,
-                onChange,
                 shape,
                 size,
                 variant,
