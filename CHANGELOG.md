@@ -292,7 +292,7 @@ Here are some highlights ✨:
 - [TextField] Support padding for helperText (#19198) @hiteshkundal
 - [Tooltip] Fix popper.js re-instantiation (#19304) @netochaves
 
-### `@material-ui/styles@v4.8.0`
+### `@material-ui/styles@v4.9.0`
 
 - [styles] Overload function signature instead of conditional (#19320) @eps1lon
 
