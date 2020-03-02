@@ -3,6 +3,7 @@ import 'docs/src/modules/components/bootstrap';
 // --- Post bootstrap -----
 import React from 'react';
 import App from 'next/app';
+import find from 'lodash/find';
 import { Provider as ReduxProvider, useDispatch, useSelector } from 'react-redux';
 import { loadCSS } from 'fg-loadcss/src/loadCSS';
 import NextHead from 'next/head';
@@ -241,6 +242,31 @@ Tip: you can access the documentation \`theme\` object directly in the console.
   );
 }
 
+function findActivePage(currentPages, pathname) {
+  const activePage = find(currentPages, page => {
+    if (page.children) {
+      if (pathname.indexOf(`${page.pathname}/`) === 0) {
+        // Check if one of the children matches (for /components)
+        return findActivePage(page.children, pathname);
+      }
+    }
+
+    // Should be an exact match if no children
+    return pathname === page.pathname;
+  });
+
+  if (!activePage) {
+    return null;
+  }
+
+  // We need to drill down
+  if (activePage.pathname !== pathname) {
+    return findActivePage(activePage.children, pathname);
+  }
+
+  return activePage;
+}
+
 function AppWrapper(props) {
   const { children, pageProps } = props;
 
@@ -266,8 +292,7 @@ function AppWrapper(props) {
     // See `_rewriteUrlForNextExport` on Next.js side.
     pathname = pathname.replace(/\/$/, '');
   }
-  // console.log(pages, { ...router, pathname })
-  const activePage = { pathname: router.pathname };
+  const activePage = findActivePage(pages, pathname);
 
   let fonts = ['https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap'];
   if (pathname.match(/onepirate/)) {
