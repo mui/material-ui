@@ -703,14 +703,11 @@ export default function useAutocomplete(props) {
 
   const handleBlur = event => {
     // Ignore the event when using the scrollbar with IE 11
-    if (
-      listboxRef.current != null &&
-      document.activeElement === listboxRef.current.parentElement
-    ) {
+    if (listboxRef.current != null && document.activeElement === listboxRef.current.parentElement) {
       inputRef.current.focus();
       return;
     }
-    
+
     setFocused(false);
     firstFocus.current = true;
     ignoreFocus.current = false;
