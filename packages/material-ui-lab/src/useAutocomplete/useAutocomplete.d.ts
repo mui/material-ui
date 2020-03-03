@@ -191,7 +191,12 @@ export interface UseAutocompleteMultipleProps<T> extends UseAutocompleteCommonPr
    * @param {object} event The event source of the callback.
    * @param {T[]} value
    */
-  onChange?: (event: React.ChangeEvent<{}>, value: T[], reason: ChangeReason, details?: ChangeDetails<T>) => void;
+  onChange?: (
+    event: React.ChangeEvent<{}>,
+    value: T[],
+    reason: ChangeReason,
+    details?: ChangeDetails<T>,
+  ) => void;
 }
 
 export interface UseAutocompleteSingleProps<T> extends UseAutocompleteCommonProps<T> {
@@ -216,7 +221,12 @@ export interface UseAutocompleteSingleProps<T> extends UseAutocompleteCommonProp
    * @param {object} event The event source of the callback.
    * @param {T} value
    */
-  onChange?: (event: React.ChangeEvent<{}>, value: T | null, reason: ChangeReason, details?: ChangeDetails<T>) => void;
+  onChange?: (
+    event: React.ChangeEvent<{}>,
+    value: T | null,
+    reason: ChangeReason,
+    details?: ChangeDetails<T>,
+  ) => void;
 }
 
 export type UseAutocompleteProps<T> =
