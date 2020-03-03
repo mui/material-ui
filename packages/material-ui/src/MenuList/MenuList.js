@@ -59,10 +59,7 @@ function moveFocus(list, currentFocus, disableListWrap, traversalFunction, textC
       wrappedOnce = true;
     }
     // Move to the next element.
-    if (
-      !nextFocus.hasAttribute('tabindex') ||
-      !textCriteriaMatches(nextFocus, textCriteria)
-    ) {
+    if (!nextFocus.hasAttribute('tabindex') || !textCriteriaMatches(nextFocus, textCriteria)) {
       nextFocus = traversalFunction(list, nextFocus, disableListWrap);
     } else {
       nextFocus.focus();
