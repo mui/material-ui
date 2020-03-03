@@ -74,11 +74,20 @@ const spacingKeys = [
   'paddingY',
 ];
 
-function getTransformer(theme) {
+export function createUnarySpacing(theme) {
   const themeSpacing = theme.spacing || 8;
 
   if (typeof themeSpacing === 'number') {
-    return abs => themeSpacing * abs;
+    return abs => {
+      if (process.env.NODE_ENV !== 'production') {
+        if (typeof abs !== 'number') {
+          console.error(
+            `@material-ui/system: expected spacing argument to be a number, got ${abs}.`,
+          );
+        }
+      }
+      return themeSpacing * abs;
+    };
   }
 
   if (Array.isArray(themeSpacing)) {
@@ -144,7 +153,7 @@ function getStyleFromPropValue(cssProperties, transformer) {
 
 function spacing(props) {
   const theme = props.theme;
-  const transformer = getTransformer(theme);
+  const transformer = createUnarySpacing(theme);
 
   return Object.keys(props)
     .map(prop => {

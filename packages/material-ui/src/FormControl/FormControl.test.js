@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
@@ -223,6 +223,16 @@ describe('<FormControl />', () => {
 
         setProps({ margin: 'dense' });
         expect(formControlRef.current).to.have.property('margin', 'dense');
+      });
+
+      it('should have the fullWidth prop from the instance', () => {
+        const formControlRef = React.createRef();
+        const { setProps } = render(<FormControlled ref={formControlRef} />);
+
+        expect(formControlRef.current).to.have.property('fullWidth', false);
+
+        setProps({ fullWidth: true });
+        expect(formControlRef.current).to.have.property('fullWidth', true);
       });
     });
 

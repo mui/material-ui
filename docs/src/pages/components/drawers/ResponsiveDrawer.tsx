@@ -41,6 +41,7 @@ const useStyles = makeStyles((theme: Theme) =>
         display: 'none',
       },
     },
+    // necessary for content to be below app bar
     toolbar: theme.mixins.toolbar,
     drawerPaper: {
       width: drawerWidth,
@@ -57,7 +58,7 @@ interface ResponsiveDrawerProps {
    * Injected by the documentation to work in an iframe.
    * You won't need it on your project.
    */
-  container?: Element;
+  container?: any;
 }
 
 export default function ResponsiveDrawer(props: ResponsiveDrawerProps) {

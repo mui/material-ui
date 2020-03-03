@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import { chainPropTypes } from '@material-ui/utils';
 import clsx from 'clsx';
@@ -48,10 +48,9 @@ export const styles = theme => ({
     textAlign: 'right',
     textAlignLast: 'right', // Align <select> on Chrome.
   },
+  // TODO v5: remove
   /* Styles applied to the Select component `icon` class. */
-  selectIcon: {
-    top: 1,
-  },
+  selectIcon: {},
   /* Styles applied to the `InputBase` component. */
   input: {
     color: 'inherit',
@@ -68,7 +67,7 @@ export const styles = theme => ({
 });
 
 const defaultLabelDisplayedRows = ({ from, to, count }) =>
-  `${from}-${to === -1 ? count : to} of ${count}`;
+  `${from}-${to === -1 ? count : to} of ${count !== -1 ? count : `more than ${to}`}`;
 const defaultRowsPerPageOptions = [10, 25, 50, 100];
 
 /**
@@ -139,7 +138,7 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
         <Typography color="inherit" variant="body2" className={classes.caption}>
           {labelDisplayedRows({
             from: count === 0 ? 0 : page * rowsPerPage + 1,
-            to: Math.min(count, (page + 1) * rowsPerPage),
+            to: count !== -1 ? Math.min(count, (page + 1) * rowsPerPage) : (page + 1) * rowsPerPage,
             count,
             page,
           })}
@@ -202,6 +201,8 @@ TablePagination.propTypes = {
   component: PropTypes.elementType,
   /**
    * The total number of rows.
+   *
+   * To enable server side pagination for an unknown number of items, provide -1.
    */
   count: PropTypes.number.isRequired,
   /**
@@ -245,6 +246,11 @@ TablePagination.propTypes = {
    */
   page: chainPropTypes(PropTypes.number.isRequired, props => {
     const { count, page, rowsPerPage } = props;
+
+    if (count === -1) {
+      return null;
+    }
+
     const newLastPage = Math.max(0, Math.ceil(count / rowsPerPage) - 1);
     if (page < 0 || page > newLastPage) {
       return new Error(

@@ -1,7 +1,7 @@
-import React from 'react';
+import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
+import * as ReactDOM from 'react-dom';
 import ownerDocument from '../utils/ownerDocument';
 import List from '../List';
 import getScrollbarSize from '../utils/getScrollbarSize';

@@ -1,6 +1,7 @@
 /* eslint-disable no-use-before-define */
 import React from 'react';
 import useAutocomplete from '@material-ui/lab/useAutocomplete';
+import NoSsr from '@material-ui/core/NoSsr';
 import CheckIcon from '@material-ui/icons/Check';
 import CloseIcon from '@material-ui/icons/Close';
 import styled from 'styled-components';
@@ -31,10 +32,14 @@ const InputWrapper = styled('div')`
 
   & input {
     font-size: 14px;
-    line-height: 26px;
-    padding: 2px 6px;
+    height: 30px;
+    box-sizing: border-box;
+    padding: 4px 6px;
+    width: 0;
+    min-width: 30px;
     flex-grow: 1;
     border: 0;
+    margin: 0;
     outline: 0;
   }
 `;
@@ -78,8 +83,7 @@ const Tag = styled(({ label, onDelete, ...props }) => (
 
 const Listbox = styled('ul')`
   width: 300px;
-  margin: 0;
-  margin-top: 2px;
+  margin: 2px 0 0;
   padding: 0;
   position: absolute;
   list-style: none;
@@ -143,28 +147,30 @@ export default function CustomizedHook() {
   });
 
   return (
-    <div>
-      <div {...getRootProps()}>
-        <Label {...getInputLabelProps()}>Customized hook</Label>
-        <InputWrapper ref={setAnchorEl} className={focused ? 'focused' : ''}>
-          {value.map((option, index) => (
-            <Tag label={option.title} {...getTagProps({ index })} />
-          ))}
+    <NoSsr>
+      <div>
+        <div {...getRootProps()}>
+          <Label {...getInputLabelProps()}>Customized hook</Label>
+          <InputWrapper ref={setAnchorEl} className={focused ? 'focused' : ''}>
+            {value.map((option, index) => (
+              <Tag label={option.title} {...getTagProps({ index })} />
+            ))}
 
-          <input {...getInputProps()} />
-        </InputWrapper>
+            <input {...getInputProps()} />
+          </InputWrapper>
+        </div>
+        {groupedOptions.length > 0 ? (
+          <Listbox {...getListboxProps()}>
+            {groupedOptions.map((option, index) => (
+              <li {...getOptionProps({ option, index })}>
+                <span>{option.title}</span>
+                <CheckIcon fontSize="small" />
+              </li>
+            ))}
+          </Listbox>
+        ) : null}
       </div>
-      {groupedOptions.length > 0 ? (
-        <Listbox {...getListboxProps()}>
-          {groupedOptions.map((option, index) => (
-            <li {...getOptionProps({ option, index })}>
-              <span>{option.title}</span>
-              <CheckIcon fontSize="small" />
-            </li>
-          ))}
-        </Listbox>
-      ) : null}
-    </div>
+    </NoSsr>
   );
 }
 

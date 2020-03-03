@@ -43,9 +43,8 @@ steps:
       AWS_ACCESS_KEY_ID: $(AWS_ACCESS_KEY_ID)
       AWS_SECRET_ACCESS_KEY: $(AWS_SECRET_ACCESS_KEY)
 
-  - task: PublishPipelineArtifact@0
+  - task: PublishPipelineArtifact@1
     inputs:
-      pathtoPublish: '$(Build.ArtifactStagingDirectory)'
       artifactName: 'canaries'
       targetPath: 'material-ui-core.tgz'
 

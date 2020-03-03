@@ -3,7 +3,7 @@ title: React Snackbar（消息条）组件
 components: Snackbar, SnackbarContent
 ---
 
-# Snackbar（消息条）
+# Snackbar 消息条
 
 <p class="description">Snackbars provide brief messages about app processes. The component is also known as a toast.</p>
 

@@ -3,7 +3,7 @@ title: React Autocomplete（自动补全）组件
 components: TextField, Popper, Autocomplete
 ---
 
-# Autocomplete（自动补全）
+# Autocomplete 自动补全
 
 <p class="description">自动补全是一个通过一组建议选项来帮助用户输入的普通文本输入框。</p>
 
@@ -32,9 +32,21 @@ components: TextField, Popper, Autocomplete
 
 ## 自由独奏
 
-将 `freeSolo` 设置为true，以便在文本框中输入任意值。
+Set `freeSolo` to true so the textbox can contain any arbitrary value. The prop is designed to cover the primary use case of a search box with suggestions, e.g. Google search.
+
+However, if you intend to use it for a [combo box](#combo-box) like experience (an enhanced version of a select element) we recommend setting `selectOnFocus` (it helps the user clearning the selected value).
 
 {{"demo": "pages/components/autocomplete/FreeSolo.js"}}
+
+### Helper message
+
+Sometimes you want to make explicit to the user that he/she can add whatever value he/she wants. The following demo adds a last option: `Add "YOUR SEARCH"`.
+
+{{"demo": "pages/components/autocomplete/FreeSoloCreateOption.js"}}
+
+You could also display a dialog when the user wants to add a new value.
+
+{{"demo": "pages/components/autocomplete/FreeSoloCreateOptionDialog.js"}}
 
 ## 分组
 
@@ -42,11 +54,11 @@ components: TextField, Popper, Autocomplete
 
 ## 已禁用的选项
 
-{{"demo": "pages/components/autocomplete/disabledOptions.js"}}
+{{"demo": "pages/components/autocomplete/DisabledOptions.js"}}
 
 ## `使用自动完成`
 
-作为一种高级定制方式，我们公开了一个 `useAutocomplete()` 钩子方法。 It accepts almost the same options as the Autocomplete component minus all the props related to the rendering of JSX. Autocomplete组件内部也是使用的此钩子方法。
+For advanced customization use cases, we expose a `useAutocomplete()` hook. It accepts almost the same options as the Autocomplete component minus all the props related to the rendering of JSX. The Autocomplete component uses this hook internally.
 
 ```jsx
 import useAutocomplete from '@material-ui/lab/useAutocomplete';
@@ -56,15 +68,15 @@ import useAutocomplete from '@material-ui/lab/useAutocomplete';
 
 {{"demo": "pages/components/autocomplete/UseAutocomplete.js", "defaultCodeOpen": false}}
 
-### 自定义钩子
+### Customized hook
 
-{{"demo": "pages/components/autocomplete/ustomizedHook.js"}}
+{{"demo": "pages/components/autocomplete/CustomizedHook.js"}}
 
-转到[自定义自动完成](#customized-autocomplete)部分，查看使用 `Autocomplete` 组件（而不是钩子）的例子。
+Head to the [Customized Autocomplete](#customized-autocomplete) section for a customization example with the `Autocomplete` component instead of the hook.
 
 ## 异步请求
 
-{{"demo": "pages/components/autocomplete/disabledOptions.js"}}
+{{"demo": "pages/components/autocomplete/Asynchronous.js"}}
 
 ### Google Maps place
 
@@ -74,9 +86,9 @@ A customized UI for Google Maps Places Autocomplete.
 
 For this demo, we need to load the [Google Maps JavaScript](https://developers.google.com/maps/documentation/javascript/tutorial) API.
 
-> ⚠️ Before you can start using the Google Maps JavaScript API, you must sign up and create a billing account.
+> 在你开始使用谷歌地图javascript API之前，你需要创建一个帐户 (用于使用谷歌地图api).
 
-## Multiple values
+## Multiple values（多重值）
 
 Also known as tags, the user is allowed to enter more than one value.
 
@@ -88,7 +100,7 @@ In the event that you need to lock certain tag so that they can't be removed in 
 
 {{"demo": "pages/components/autocomplete/FixedTags.js"}}
 
-### Checkboxes（复选框）
+### Checkboxes
 
 {{"demo": "pages/components/autocomplete/CheckboxesTags.js"}}
 
@@ -128,6 +140,7 @@ It supports the following options:
   - `config.matchFrom` (*'any' | 'start'* [optional]): Defaults to `'any'`.
   - `config.stringify` (*Func* [optional]): Defaults to `JSON.stringify`.
   - `config.trim` (*Boolean* [optional]): 默认值为`false`。 Remove trailing spaces.
+  - `config.limit` (*Number* [optional]): Default to null. Limit the number of suggested options to be shown. For example, if `config.limit` is `100`, only the first `100` matching options are shown. It can be useful if a lot of options match and virtualization wasn't set up.
 
 In the following demo, the options need to start with the query prefix:
 
@@ -163,9 +176,32 @@ Search within 10,000 randomly generated options. The list is virtualized thanks 
 
 ## 局限性
 
+### autocomplete/autofill
+
+The browsers have heuristics to help the users fill the form inputs. However, it can harm the UX of the component.
+
+By default, the component disable the **autocomplete** feature (remembering what the user has typed for a given field in a previous session) with the `autoComplete="off"` attribute.
+
+However, in addition to remembering past entered values, the browser might also propose **autofill** suggestions (saved login, address, or payment details). In the event you want the avoid autofill, you can try the following:
+
+- Name the input without leaking any information the browser can use. e.g. `id="field1"` instead of `id="country"`. If you leave the id empty, the component uses a random id.
+- Set `autoComplete="new-password"`: 
+        jsx
+        <TextField
+        {...params}
+        inputProps={{
+          ...params.inputProps,
+          autoComplete: 'new-password',
+        }}
+        />
+
 ### iOS VoiceOver
 
 VoiceOver on iOS Safari doesn't support the `aria-owns` attribute very well. You can work around the issue with the `disablePortal` prop.
+
+### TypeScript
+
+To fully take advantage of type inference, you need to set the `multiple` prop to `undefined`, `false` or `true`. See [this discussion](https://github.com/mui-org/material-ui/pull/18854#discussion_r364215153) for more details. TypeScript might solve this bug in the future.
 
 ## 可访问性
 

@@ -70,7 +70,7 @@ Der `Tooltip` umhüllt standardmäßig lange Texte, um diese lesbar zu machen.
 
 ## Interaktive Liste
 
-A tooltip can be interactive. It won't close when the user hovers over the tooltip before the `leaveDelay` is expired.
+Ein Tooltip kann interaktiv sein. It won't close when the user hovers over the tooltip before the `leaveDelay` is expired.
 
 {{"demo": "pages/components/tooltips/InteractiveTooltips.js"}}
 

@@ -3,7 +3,7 @@ title: React Breadcrumbs（面包屑导航）组件
 components: Breadcrumbs, Link, Typography
 ---
 
-# Breadcrumbs（面包屑导航）
+# Breadcrumbs 面包屑导航
 
 <p class="description">面包屑导航允许用户在一系列的值中进行选择。</p>
 
@@ -11,9 +11,9 @@ components: Breadcrumbs, Link, Typography
 
 {{"demo": "pages/components/breadcrumbs/SimpleBreadcrumbs.js"}}
 
-## Active last breadcrumb
+## 最后活跃的面包屑
 
-Keep the last breadcrumb interactive.
+保持最后一个面包屑的互动性
 
 {{"demo": "pages/components/breadcrumbs/ActiveLastBreadcrumb.js"}}
 

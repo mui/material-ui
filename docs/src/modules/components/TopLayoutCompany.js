@@ -3,17 +3,21 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Head from 'docs/src/modules/components/Head';
 import AppFrame from 'docs/src/modules/components/AppFrame';
-import AppContent from 'docs/src/modules/components/AppContent';
+import AppContainer from 'docs/src/modules/components/AppContainer';
 import useMarkdownDocs from 'docs/src/modules/components/useMarkdownDocs';
 import { getHeaders, getTitle, getDescription } from 'docs/src/modules/utils/parseMarkdown';
-import HomeFooter from 'docs/src/modules/components/HomeFooter';
+import AppFooter from 'docs/src/modules/components/AppFooter';
 
 const styles = theme => ({
   root: {
     flex: '1 0 100%',
   },
-  appContent: {
+  container: {
     marginBottom: theme.spacing(20),
+    maxWidth: 680 + theme.spacing(8 + 4),
+    '& .markdownElement': {
+      paddingRight: theme.spacing(4),
+    },
   },
 });
 
@@ -44,10 +48,8 @@ function TopLayoutCompany(props) {
         description={headers.description || getDescription(markdownDocs.markdown)}
       />
       <div className={classes.root}>
-        <AppContent disableAd disableToc className={classes.appContent}>
-          {markdownDocs.element}
-        </AppContent>
-        <HomeFooter />
+        <AppContainer className={classes.container}>{markdownDocs.element}</AppContainer>
+        <AppFooter />
       </div>
     </AppFrame>
   );

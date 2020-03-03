@@ -1,7 +1,7 @@
 import React from 'react';
-import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
+import TopLayoutBlog from 'docs/src/modules/components/TopLayoutBlog';
 import markdown from './april-2019-update.md';
 
 export default function Page() {
-  return <MarkdownDocs markdown={markdown} blog disableAd disableToc disableEdit />;
+  return <TopLayoutBlog markdown={markdown} />;
 }

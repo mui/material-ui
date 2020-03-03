@@ -8,7 +8,7 @@ import MuiCheckbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 export function Checkbox(props) {
-  const { checked: checkedProp, label, onChange, ...other } = props;
+  const { checked: checkedProp, label, onChange, size, ...other } = props;
   // tslint:disable-next-line: ban-ts-ignore
   // @ts-ignore
 
@@ -27,7 +27,7 @@ export function Checkbox(props) {
     setChecked(checkedProp);
   }, [checkedProp]);
 
-  const control = <MuiCheckbox checked={checked} onChange={handleChange} />;
+  const control = <MuiCheckbox checked={checked} onChange={handleChange} size={size} />;
 
   return <FormControlLabel control={control} label={label} {...other} />;
 }
@@ -36,6 +36,7 @@ Checkbox.defaultProps = {
   checked: false,
   color: 'secondary',
   disabled: false,
+  size: 'medium',
   label: 'Checkbox',
   width: 100,
   height: 42,
@@ -54,6 +55,11 @@ addPropertyControls(Checkbox, {
   disabled: {
     type: ControlType.Boolean,
     title: 'Disabled',
+  },
+  size: {
+    type: ControlType.Enum,
+    title: 'Size',
+    options: ['small', 'medium'],
   },
   label: {
     type: ControlType.String,

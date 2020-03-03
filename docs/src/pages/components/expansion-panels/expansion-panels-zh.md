@@ -3,7 +3,7 @@ title: React Expansion Panel（扩展面板）组件
 components: ExpansionPanel, ExpansionPanelActions, ExpansionPanelDetails, ExpansionPanelSummary
 ---
 
-# Expansion Panel (拓展面板)
+# Expansion Panel 拓展面板
 
 <p class="description">扩展面板包含了创建流程和轻量地编辑元素。</p>
 

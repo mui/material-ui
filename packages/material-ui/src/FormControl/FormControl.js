@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { isFilled, isAdornedStart } from '../InputBase/utils';
@@ -18,6 +18,7 @@ export const styles = {
     padding: 0,
     margin: 0,
     border: 0,
+    zIndex: 0, // Fix blur label text issue
     verticalAlign: 'top', // Fix alignment issue on Safari.
   },
   /* Styles applied to the root element if `margin="normal"`. */
@@ -162,6 +163,7 @@ const FormControl = React.forwardRef(function FormControl(props, ref) {
     error,
     filled,
     focused,
+    fullWidth,
     hiddenLabel,
     margin: (size === 'small' ? 'dense' : undefined) || margin,
     onBlur: () => {

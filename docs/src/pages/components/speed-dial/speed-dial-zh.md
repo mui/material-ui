@@ -3,7 +3,7 @@ title: 快速拨号React组件
 components: SpeedDial, SpeedDialAction, SpeedDialIcon
 ---
 
-# 快速拨号
+# Speed Dial 快速拨号
 
 <p class="description">当按下的时候，一个浮动按钮可以弹出3到6个相关联的按钮。</p>
 

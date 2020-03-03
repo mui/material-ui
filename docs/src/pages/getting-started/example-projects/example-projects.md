@@ -24,7 +24,7 @@ build instructions.
 
 ## More advanced example projects
 
-If you want to start with a more complete and real-world example, you could take a look at the [premium themes & templates](https://themes.material-ui.com/) or:
+If you want to start with a more complete and real-world example, you could take a look at the [premium themes & templates](https://material-ui.com/store/) or:
 
 ### Free
 
@@ -37,12 +37,13 @@ If you want to start with a more complete and real-world example, you could take
   - All PWA features included (SW, Notifications, deferred installation prompt and more)
   - Optimized and scalable performance (all ~100 points on Lighthouse)
 
-- [React + Material-UI + Firebase](https://github.com/Phoqe/react-material-ui-firebase):
+- [RMUIF](https://github.com/phoqe/rmuif):
 
-  - Bootstrapped with Create React App, the same tooling works out of the box
-  - Built on top of Firebase with Authentication, Cloud Firestore, Cloud Functions, Storage, and Performance Monitoring working from the start
-  - Robust routing with React Router including error handling
+  - Bootstrapped with Create React App, the same tooling works from the get-go
+  - Built on top of Firebase with all their products for the web included
+  - Robust routing with React Router including protected routes and error handling
   - Extensive mobile support with full-screen dialogs and react-swipeable-views for tabs
+  - Cross-platform application monitoring with a focus on error reporting with Sentry
 
 - [Material Sense](https://github.com/alexanmtz/material-sense):
 
@@ -50,6 +51,14 @@ If you want to start with a more complete and real-world example, you could take
   - React Router included with a navigation example
   - A docker container with an Nginx server for production build
   - Created with Create React App
+
+- [React SaaS Template](https://github.com/dunky11/react-saas-template):
+
+  - Created with Create React App
+  - Features a landing page, a blog, an area to login/register and an admin-dashboard
+  - Fully routed using react-router
+  - Lazy loads components to boost performance
+  - Components for statistics, text with emoji support, image upload and much more...
 
 ### Paid
 

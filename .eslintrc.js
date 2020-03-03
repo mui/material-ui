@@ -39,6 +39,7 @@ module.exports = {
     // Airbnb use error
     'no-param-reassign': 'off',
     'no-prototype-builtins': 'off',
+    'nonblock-statement-body-position': 'error',
     // Airbnb restricts isNaN and isFinite which are necessary for IE 11
     // we have to be disciplined about the usage and ensure the Number type for its
     // arguments
@@ -88,7 +89,10 @@ module.exports = {
     ],
 
     'react-hooks/rules-of-hooks': 'error',
-    'react-hooks/exhaustive-deps': 'error',
+    'react-hooks/exhaustive-deps': [
+      'error',
+      { additionalHooks: 'useEnhancedEffect' },
+    ],
   },
   overrides: [
     {

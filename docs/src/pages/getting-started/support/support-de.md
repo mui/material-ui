@@ -1,22 +1,22 @@
-# Support
+# Unterstützung
 
-<p class="description">From community help to premium critical business support, we’re here to help.</p>
+<p class="description">Von Community-Hilfe bis hin zu erstklassiger Unternehmensunterstützung sind wir hier um Ihnen zu helfen.</p>
 
-## Community help
+## Community-Hilfe
 
-The community is your first stop for questions and advice about the framework. Welcome to the community!
+Die Community ist Ihre erste Anlaufstelle für Fragen und Beratung zu dem Framework. Willkommen in der Community!
 
 ### StackOverflow <img src="/static/images/logos/stackoverflow.svg" width="24" height="24" alt="StackOverflow logo" loading="lazy" />
 
-For crowdsourced technical questions from expert Material-UI devs in our community. Also frequented by the Material-UI core team.
+Für crowdsourced-technische Fragen von professionellen Material-UI-Entwickler in unserer community. Auch häufig besucht vom Material-UI Kernteam.
 
-[Post a question](https://stackoverflow.com/questions/tagged/material-ui)
+[Stellen Sie eine Frage](https://stackoverflow.com/questions/tagged/material-ui)
 
 ### GitHub <img src="/static/images/logos/github.svg" width="24" height="24" alt="GitHub logo" loading="lazy" />
 
-We use GitHub issues exclusively as a bugs and feature requests tracker. If you think you have found a bug, or have a new feature idea, please start by making sure it hasn't already been [reported or fixed](https://github.com/mui-org/material-ui/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aclosed). You can search through existing issues and pull requests to see if someone has reported one similar to yours.
+Wir verwenden GitHub Issues ausschließlich als Bug und Feature Request-Tracker. Wenn Sie denken, Sie haben einen Bug gefunden, oder haben eine neue Feature-Idee, bitte stellen Sie zuerst sicher, dass diese nicht bereits [gemeldet oder behoben](https://github.com/mui-org/material-ui/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aclosed) wurde. Sie können bestehende Probleme und Pull-Requests durchsuchen, um zu sehen, ob jemand etwas ähnliches gemeldet hat.
 
-[Open an issue](https://github.com/mui-org/material-ui/issues/new/choose)
+[Ein Ticket öffnen](https://github.com/mui-org/material-ui/issues/new/choose)
 
 #### New issue guidelines
 

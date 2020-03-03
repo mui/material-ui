@@ -6,8 +6,8 @@ import rimraf from 'rimraf';
 import Mustache from 'mustache';
 import Queue from 'modules/waterfall/Queue';
 import util from 'util';
+import intersection from 'lodash/intersection';
 import glob from 'glob';
-import mkdirp from 'mkdirp';
 import SVGO from 'svgo';
 
 const globAsync = util.promisify(glob);
@@ -40,7 +40,12 @@ const svgo = new SVGO({
     { convertTransform: true },
     { removeUnknownsAndDefaults: true },
     { removeNonInheritableGroupAttrs: true },
-    { removeUselessStrokeAndFill: true },
+    {
+      removeUselessStrokeAndFill: {
+        // https://github.com/svg/svgo/issues/727#issuecomment-303115276
+        removeNone: true,
+      },
+    },
     { removeUnusedNS: true },
     { cleanupIDs: true },
     { cleanupNumericValues: true },
@@ -91,13 +96,25 @@ async function generateIndex(options) {
 
 // Noise introduced by Google by mistake
 const noises = [
-  ['<path fill="none" d="M0 0h24v24H0V0zm0 0h24v24H0V0zm0 0h24v24H0V0zm0 0h24v24H0V0z" />', ''],
-  ['<path fill="none" d="M0 0h24v24H0V0zm0 0h24v24H0V0z" />', ''],
-  ['<path fill="none" d="M0 0h24v24H0V0z" />', ''],
-  ['<path fill="none" d="M0 0h24v24H0z" />', ''],
   ['="M0 0h24v24H0V0zm0 0h24v24H0V0z', '="'],
   ['="M0 0h24v24H0zm0 0h24v24H0zm0 0h24v24H0z', '="'],
 ];
+
+function removeNoise(input, prevInput = null) {
+  if (input === prevInput) {
+    return input;
+  }
+
+  let output = input;
+
+  noises.forEach(([search, replace]) => {
+    if (output.indexOf(search) !== -1) {
+      output = output.replace(search, replace);
+    }
+  });
+
+  return removeNoise(output, input);
+}
 
 export async function cleanPaths({ svgPath, data }) {
   // Remove hardcoded color fill before optimizing so that empty groups are removed
@@ -130,11 +147,7 @@ export async function cleanPaths({ svgPath, data }) {
     paths = paths.replace(/<path /g, `<path transform="scale(${scale}, ${scale})" `);
   }
 
-  noises.forEach(([search, replace]) => {
-    if (paths.indexOf(search) !== -1) {
-      paths = paths.replace(search, replace);
-    }
-  });
+  paths = removeNoise(paths);
 
   // Add a fragment when necessary.
   if ((paths.match(/\/>/g) || []).length > 1) {
@@ -160,7 +173,7 @@ async function worker({ svgPath, options, renameFilter, template }) {
 
   if (!exists2) {
     console.log(`Making dir: ${outputFileDir}`);
-    mkdirp.sync(outputFileDir);
+    fse.mkdirpSync(outputFileDir);
   }
 
   const data = await fse.readFile(svgPath, { encoding: 'utf8' });
@@ -225,6 +238,16 @@ export async function main(options) {
 
     queue.push(svgPaths);
     await queue.wait({ empty: true });
+
+    let legacyFiles = await globAsync(path.join(__dirname, '/legacy', '*.js'));
+    legacyFiles = legacyFiles.map(file => path.basename(file));
+    let generatedFiles = await globAsync(path.join(options.outputDir, '*.js'));
+    generatedFiles = generatedFiles.map(file => path.basename(file));
+
+    if (intersection(legacyFiles, generatedFiles).length > 0) {
+      console.warn(intersection(legacyFiles, generatedFiles));
+      throw new Error('Duplicated icons in legacy folder');
+    }
 
     await fse.copy(path.join(__dirname, '/legacy'), options.outputDir);
     await fse.copy(path.join(__dirname, '/custom'), options.outputDir);

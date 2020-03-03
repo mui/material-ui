@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -14,13 +14,12 @@ export const styles = {
     display: 'flex',
     flexWrap: 'wrap',
     alignItems: 'center',
-    padding: 0, // Reset
-    margin: 0, // Reset
-  },
-  /* Styles applied to the li element. */
-  li: {
+    padding: 0,
+    margin: 0,
     listStyle: 'none',
   },
+  /* Styles applied to the li element. */
+  li: {},
   /* Styles applied to the separator element. */
   separator: {
     display: 'flex',
@@ -53,6 +52,7 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(props, ref) {
     classes,
     className,
     component: Component = 'nav',
+    expandText = 'Show path',
     itemsAfterCollapse = 1,
     itemsBeforeCollapse = 1,
     maxItems = 8,
@@ -83,7 +83,7 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(props, ref) {
 
     return [
       ...allItems.slice(0, itemsBeforeCollapse),
-      <BreadcrumbCollapsed key="ellipsis" onClick={handleClickExpand} />,
+      <BreadcrumbCollapsed aria-label={expandText} key="ellipsis" onClick={handleClickExpand} />,
       ...allItems.slice(allItems.length - itemsAfterCollapse, allItems.length),
     ];
   };
@@ -150,6 +150,12 @@ Breadcrumbs.propTypes = {
    * By default, it maps the variant to a good default headline component.
    */
   component: PropTypes.elementType,
+  /**
+   * Override the default label for the expand button.
+   *
+   * For localization purposes, you can use the provided [translations](/guides/localization/).
+   */
+  expandText: PropTypes.string,
   /**
    * If max items is exceeded, the number of items to show after the ellipsis.
    */

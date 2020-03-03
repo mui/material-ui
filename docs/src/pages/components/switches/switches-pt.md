@@ -19,7 +19,7 @@ components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel
 
 ## Interruptores com FormGroup
 
-`FormGroup` é um componente encapsulador usado para agrupar componentes de seleção para fornecer uma fácil API. No entanto, nós recomendamos que você use [Caixas de Seleção](#checkboxes).
+`FormGroup` é um componente encapsulador usado para agrupar componentes de seleção para fornecer uma fácil API. However, we encourage you to use a [Checkbox](/components/checkboxes/) instead.
 
 {{"demo": "pages/components/switches/SwitchesGroup.js"}}
 

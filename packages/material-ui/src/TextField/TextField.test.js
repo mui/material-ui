@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { expect } from 'chai';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
@@ -62,6 +62,14 @@ describe('<TextField />', () => {
 
       expect(container.querySelector('label')).to.have.class('foo');
     });
+
+    ['', undefined].forEach(label => {
+      it(`should not render empty (${label}) label element`, () => {
+        const { container } = render(<TextField id="labelled" label={label} />);
+
+        expect(container.querySelector('label')).to.be.null;
+      });
+    });
   });
 
   describe('with a helper text', () => {
@@ -92,9 +100,19 @@ describe('<TextField />', () => {
 
   describe('with an outline', () => {
     it('should set outline props', () => {
-      const wrapper = mount(<TextField variant="outlined" />);
+      const { container, getAllByTestId } = render(
+        <TextField
+          InputProps={{ classes: { notchedOutline: 'notch' } }}
+          label={<div data-testid="label">label</div>}
+          required
+          variant="outlined"
+        />,
+      );
 
-      expect(wrapper.find(OutlinedInput).props()).to.have.property('labelWidth', 0);
+      const [, fakeLabel] = getAllByTestId('label');
+      const notch = container.querySelector('.notch legend');
+      expect(notch).to.contain(fakeLabel);
+      expect(notch).to.have.text('label\u00a0*');
     });
 
     it('should set shrink prop on outline from label', () => {

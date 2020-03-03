@@ -7,9 +7,6 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import Radio from '@material-ui/core/Radio';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-// We don't have a typescript version of MarkdownElement
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 
 const useStyles = makeStyles((theme: Theme) =>

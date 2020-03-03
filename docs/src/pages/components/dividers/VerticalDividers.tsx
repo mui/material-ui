@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme: Theme) =>
       backgroundColor: theme.palette.background.paper,
       color: theme.palette.text.secondary,
       '& svg': {
-        margin: theme.spacing(2),
+        margin: theme.spacing(1.5),
       },
       '& hr': {
         margin: theme.spacing(0, 0.5),
@@ -31,14 +31,16 @@ export default function VerticalDividers() {
   const classes = useStyles();
 
   return (
-    <Grid container alignItems="center" className={classes.root}>
-      <FormatAlignLeftIcon />
-      <FormatAlignCenterIcon />
-      <FormatAlignRightIcon />
-      <Divider orientation="vertical" />
-      <FormatBoldIcon />
-      <FormatItalicIcon />
-      <FormatUnderlinedIcon />
-    </Grid>
+    <div>
+      <Grid container alignItems="center" className={classes.root}>
+        <FormatAlignLeftIcon />
+        <FormatAlignCenterIcon />
+        <FormatAlignRightIcon />
+        <Divider orientation="vertical" flexItem />
+        <FormatBoldIcon />
+        <FormatItalicIcon />
+        <FormatUnderlinedIcon />
+      </Grid>
+    </div>
   );
 }

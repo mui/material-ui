@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { refType } from '@material-ui/utils';
@@ -28,12 +28,19 @@ export const styles = theme => {
   };
 
   return {
+    '@global': {
+      '@keyframes mui-auto-fill': {
+        from: {},
+      },
+      '@keyframes mui-auto-fill-cancel': {
+        from: {},
+      },
+    },
     /* Styles applied to the root element. */
     root: {
       // Mimics the default input display property used by browsers for an input.
-      fontFamily: theme.typography.fontFamily,
+      ...theme.typography.body1,
       color: theme.palette.text.primary,
-      fontSize: theme.typography.pxToRem(16),
       lineHeight: '1.1875em', // Reset (19px), match the native input line-height
       boxSizing: 'border-box', // Prevent padding issue with fullWidth.
       position: 'relative',
@@ -55,7 +62,7 @@ export const styles = theme => {
     adornedStart: {},
     /* Styles applied to the root element if `endAdornment` is provided. */
     adornedEnd: {},
-    /* Styles applied to the root element if `error={true}`. */
+    /* Pseudo-class applied to the root element if `error={true}`. */
     error: {},
     /* Styles applied to the `input` element if `margin="dense"`. */
     marginDense: {},
@@ -87,7 +94,7 @@ export const styles = theme => {
       // Make the flex item shrink with Firefox
       minWidth: 0,
       width: '100%', // Fix IE 11 width issue
-      animationName: '$auto-fill-cancel',
+      animationName: 'mui-auto-fill-cancel',
       '&::-webkit-input-placeholder': placeholder,
       '&::-moz-placeholder': placeholder, // Firefox 19+
       '&:-ms-input-placeholder': placeholder, // IE 11
@@ -119,14 +126,8 @@ export const styles = theme => {
       },
       '&:-webkit-autofill': {
         animationDuration: '5000s',
-        animationName: '$auto-fill',
+        animationName: 'mui-auto-fill',
       },
-    },
-    '@keyframes auto-fill': {
-      from: {},
-    },
-    '@keyframes auto-fill-cancel': {
-      from: {},
     },
     /* Styles applied to the `input` element if `margin="dense"`. */
     inputMarginDense: {
@@ -387,9 +388,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
 
   const handleAutoFill = event => {
     // Provide a fake value as Chrome might not let you access it for security reasons.
-    checkDirty(
-      event.animationName.indexOf('auto-fill-cancel') !== -1 ? inputRef.current : { value: 'x' },
-    );
+    checkDirty(event.animationName === 'mui-auto-fill-cancel' ? inputRef.current : { value: 'x' });
   };
 
   React.useEffect(() => {

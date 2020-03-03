@@ -11,7 +11,7 @@ Einige der wichtigsten Funktionen:
 - ⚛️ Es verfügt über eine idiomatische React-API.
 - 🚀 Es ist performant. Es observiert das Dokument, welches erkennt, wenn sich die Medienabfragen ändern, anstatt die Werte regelmäßig abzufragen.
 - 📦 [ kB](/size-snapshot) gzipped.
-- 🤖 It supports server-side rendering.
+- 🤖 Es unterstützt serverseitiges Rendering.
 
 ## Einfache Medienabfrage
 
@@ -63,7 +63,7 @@ You can use [json2mq](https://github.com/akiran/json2mq) to generate media query
 
 You need an implementation of [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) in your test environment.
 
-For instance, [jsdom doesn't support it yet](https://github.com/jsdom/jsdom/blob/master/test/web-platform-tests/to-upstream/html/browsers/the-window-object/window-properties-dont-upstream.html). You should polyfill it. Using [css-mediaquery](https://github.com/ericf/css-mediaquery) to emulate it is recommended.
+For instance, [jsdom doesn't support it yet](https://github.com/jsdom/jsdom/blob/master/test/web-platform-tests/to-upstream/html/browsers/the-window-object/window-properties-dont-upstream.html). Du solltest ein Polyfill benutzen. Using [css-mediaquery](https://github.com/ericf/css-mediaquery) to emulate it is recommended.
 
 ```js
 import mediaQuery from 'css-mediaquery';
@@ -87,7 +87,7 @@ describe('MyTests', () => {
 
 > ⚠️ Server-side rendering and client-side media queries are fundamentally at odds. Be aware of the tradeoff. The support can only be partial.
 
-Try relying on client-side CSS media queries first. For instance, you could use:
+Try relying on client-side CSS media queries first. Zum Beispiel könnten Sie verwenden:
 
 - [`<Box display>`](/system/display/#hiding-elements)
 - [`themes.breakpoints.up(x)`](/customization/breakpoints/#css-media-queries)
@@ -97,7 +97,7 @@ If none of the above alternatives are an option, you can proceed reading this se
 
 First, you need to guess the characteristics of the client request, from the server. You have the choice between using:
 
-- **User agent**. Parse the user agent string of the client to extract information. Using [ua-parser-js](https://github.com/faisalman/ua-parser-js) to parse the user agent is recommended.
+- **User Agent**. Parsen Sie den User-Agent-String des Clients, um Informationen zu extrahieren. Using [ua-parser-js](https://github.com/faisalman/ua-parser-js) to parse the user agent is recommended.
 - **Client hints**. Read the hints the client is sending to the server. Be aware that this feature is [not supported everywhere](https://caniuse.com/#search=client%20hint).
 
 Finally, you need to provide an implementation of [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) to the `useMediaQuery` with the previously guessed characteristics. Using [css-mediaquery](https://github.com/ericf/css-mediaquery) to emulate matchMedia is recommended.

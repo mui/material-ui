@@ -3,7 +3,7 @@ title: React Grid List（网格列表）组件
 components: GridList, GridListTile, GridListTileBar, ListSubheader, IconButton
 ---
 
-# Grid List（网格列表）
+# Grid List 网格列表
 
 <p class="description">网格列表在一个系统的网格中展示了一系列的图像。</p>
 

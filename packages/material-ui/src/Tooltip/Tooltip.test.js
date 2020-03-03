@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/mouse-events-have-key-events */
-import React from 'react';
+import * as React from 'react';
 import { assert, expect } from 'chai';
 import PropTypes from 'prop-types';
 import { spy, useFakeTimers } from 'sinon';
@@ -36,6 +36,7 @@ describe('<Tooltip />', () => {
   const render = createClientRender({ strict: false });
   let clock;
   const defaultProps = {
+    enterDelay: 0,
     children: (
       <button id="testChild" type="submit">
         Hello World
@@ -186,7 +187,7 @@ describe('<Tooltip />', () => {
       const AutoFocus = props => (
         <div>
           {props.open ? (
-            <Tooltip title="Title">
+            <Tooltip {...defaultProps} title="Title">
               <Input value="value" autoFocus />
             </Tooltip>
           ) : null}
@@ -220,10 +221,11 @@ describe('<Tooltip />', () => {
     it('should use hysteresis with the enterDelay', () => {
       const { container } = render(
         <Tooltip
+          {...defaultProps}
           enterDelay={111}
+          enterNextDelay={30}
           leaveDelay={5}
           TransitionProps={{ timeout: 6 }}
-          {...defaultProps}
         />,
       );
       const children = container.querySelector('#testChild');
@@ -237,7 +239,9 @@ describe('<Tooltip />', () => {
       expect(document.body.querySelectorAll('[role="tooltip"]').length).to.equal(0);
 
       focusVisible(children);
-      // Bypass `enterDelay` wait, instant display.
+      // Bypass `enterDelay` wait, use `enterNextDelay`.
+      expect(document.body.querySelectorAll('[role="tooltip"]').length).to.equal(0);
+      clock.tick(30);
       expect(document.body.querySelectorAll('[role="tooltip"]').length).to.equal(1);
     });
 
@@ -351,7 +355,7 @@ describe('<Tooltip />', () => {
   describe('prop: interactive', () => {
     it('should keep the overlay open if the popper element is hovered', () => {
       const wrapper = mount(
-        <Tooltip title="Hello World" interactive leaveDelay={111}>
+        <Tooltip {...defaultProps} title="Hello World" interactive leaveDelay={111}>
           <button id="testChild" type="submit">
             Hello World
           </button>
@@ -390,6 +394,38 @@ describe('<Tooltip />', () => {
       popper.simulate('mouseOver', { type: 'mouseover' });
       clock.tick(0);
       assert.strictEqual(wrapper.find(Popper).props().open, true);
+    });
+  });
+
+  describe('prop: PopperProps', () => {
+    it('should pass PopperProps to Popper Component', () => {
+      const { getByTestId } = render(
+        <Tooltip {...defaultProps} open PopperProps={{ 'data-testid': 'popper' }} />,
+      );
+
+      expect(getByTestId('popper')).to.be.ok;
+    });
+
+    it('should merge popperOptions with arrow modifier', () => {
+      const popperRef = React.createRef();
+      render(
+        <Tooltip
+          {...defaultProps}
+          open
+          arrow
+          PopperProps={{
+            popperRef,
+            popperOptions: {
+              modifiers: {
+                arrow: {
+                  foo: 'bar',
+                },
+              },
+            },
+          }}
+        />,
+      );
+      expect(popperRef.current.modifiers.find(x => x.name === 'arrow').foo).to.equal('bar');
     });
   });
 
@@ -465,5 +501,21 @@ describe('<Tooltip />', () => {
         'A component is changing an uncontrolled Tooltip to be controlled.',
       );
     });
+  });
+
+  it('should use the same popper.js instance between two renders', () => {
+    const popperRef = React.createRef();
+    const { forceUpdate } = render(
+      <Tooltip
+        {...defaultProps}
+        open
+        PopperProps={{
+          popperRef,
+        }}
+      />,
+    );
+    const firstPopperInstance = popperRef.current;
+    forceUpdate();
+    expect(firstPopperInstance).to.equal(popperRef.current);
   });
 });

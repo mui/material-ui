@@ -204,7 +204,7 @@ Material-UI's styles are powered by the [@material-ui/styles](https://www.npmjs.
 
 Чтобы устранить необходимость постоянного подключения темы, к реэкспортированным модулям применяется дефолтная тема Material-UI. Это относится к модулям: `makeStyles`, `styled`, `withTheme`, `useTheme` и `withStyles` 
 
-For instance:
+Например:
 
 ```js
 // Re-export with a default theme

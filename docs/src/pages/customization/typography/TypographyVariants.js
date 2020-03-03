@@ -19,12 +19,12 @@ const theme = createMuiTheme({
 
 export default function TypographyVariants() {
   return (
-    <ThemeProvider theme={theme}>
-      <div>
+    <div>
+      <ThemeProvider theme={theme}>
         <Typography variant="subtitle1">subtitle</Typography>
         <Typography>body1</Typography>
         <Button>Button</Button>
-      </div>
-    </ThemeProvider>
+      </ThemeProvider>
+    </div>
   );
 }

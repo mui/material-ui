@@ -93,6 +93,8 @@ const darkTheme = createMuiTheme({
 });
 
 export default function DarkTheme() {
+  // Note that if you intend to use two or more themes at the same time on your site,
+  // you need to wrap them with a single ThemeProvider at the root (not like in this example).
   return (
     <div style={{ width: '100%' }}>
       <ThemeProvider theme={darkTheme}>

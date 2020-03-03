@@ -11,6 +11,7 @@ export interface TooltipProps
   disableHoverListener?: boolean;
   disableTouchListener?: boolean;
   enterDelay?: number;
+  enterNextDelay?: number;
   enterTouchDelay?: number;
   id?: string;
   interactive?: boolean;

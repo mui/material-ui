@@ -34,7 +34,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 let injectFirstNode;
 
-function StylesProvider(props) {
+export default function StylesProvider(props) {
   const { children, injectFirst = false, disableGeneration = false, ...localOptions } = props;
 
   const outerOptions = React.useContext(StylesContext);
@@ -133,5 +133,3 @@ StylesProvider.propTypes = {
 if (process.env.NODE_ENV !== 'production') {
   StylesProvider.propTypes = exactProp(StylesProvider.propTypes);
 }
-
-export default StylesProvider;

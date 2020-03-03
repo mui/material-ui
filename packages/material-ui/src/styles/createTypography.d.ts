@@ -1,4 +1,5 @@
 import { Palette } from './createPalette';
+import * as React from 'react';
 import { CSSProperties } from './withStyles';
 
 export type Variant =
@@ -18,17 +19,17 @@ export type Variant =
 
 export interface FontStyle
   extends Required<{
-    fontFamily: CSSProperties['fontFamily'];
+    fontFamily: React.CSSProperties['fontFamily'];
     fontSize: number;
-    fontWeightLight: CSSProperties['fontWeight'];
-    fontWeightRegular: CSSProperties['fontWeight'];
-    fontWeightMedium: CSSProperties['fontWeight'];
-    fontWeightBold: CSSProperties['fontWeight'];
+    fontWeightLight: React.CSSProperties['fontWeight'];
+    fontWeightRegular: React.CSSProperties['fontWeight'];
+    fontWeightMedium: React.CSSProperties['fontWeight'];
+    fontWeightBold: React.CSSProperties['fontWeight'];
   }> {}
 
 export interface FontStyleOptions extends Partial<FontStyle> {
   htmlFontSize?: number;
-  allVariants?: CSSProperties;
+  allVariants?: React.CSSProperties;
 }
 
 // TODO: which one should actually be allowed to be subject to module augmentation?

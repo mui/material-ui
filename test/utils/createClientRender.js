@@ -63,6 +63,15 @@ function clientRender(element, options = {}) {
     return result;
   };
 
+  result.forceUpdate = function forceUpdate() {
+    result.rerender(
+      React.cloneElement(element, {
+        'data-force-update': String(Math.random()),
+      }),
+    );
+    return result;
+  };
+
   return result;
 }
 

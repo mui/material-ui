@@ -182,7 +182,7 @@ function useSynchronousEffect(func, values) {
   );
 }
 
-function makeStyles(stylesOrCreator, options = {}) {
+export default function makeStyles(stylesOrCreator, options = {}) {
   const {
     // alias for classNamePrefix, if provided will listen to theme (required for theme.overrides)
     name,
@@ -239,5 +239,3 @@ function makeStyles(stylesOrCreator, options = {}) {
     return getClasses(instance.current, props.classes, Component);
   };
 }
-
-export default makeStyles;

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
@@ -130,22 +130,22 @@ export const styles = theme => ({
     right: 0,
     top: 'calc(50% - 14px)', // Center vertically
   },
-  /* Styles applied to the clear indictator. */
+  /* Styles applied to the clear indicator. */
   clearIndicator: {
     marginRight: -2,
     padding: 4,
     color: theme.palette.action.active,
     visibility: 'hidden',
   },
-  /* Styles applied to the clear indictator if the input is dirty. */
+  /* Styles applied to the clear indicator if the input is dirty. */
   clearIndicatorDirty: {},
-  /* Styles applied to the popup indictator. */
+  /* Styles applied to the popup indicator. */
   popupIndicator: {
     padding: 2,
     marginRight: -2,
     color: theme.palette.action.active,
   },
-  /* Styles applied to the popup indictator if the popup is open. */
+  /* Styles applied to the popup indicator if the popup is open. */
   popupIndicatorOpen: {
     transform: 'rotate(180deg)',
   },
@@ -207,12 +207,12 @@ export const styles = theme => ({
     '&[data-focus="true"]': {
       backgroundColor: theme.palette.action.hover,
     },
-    '&[aria-disabled="true"]': {
-      opacity: 0.5,
-      pointerEvents: 'none',
-    },
     '&:active': {
       backgroundColor: theme.palette.action.selected,
+    },
+    '&[aria-disabled="true"]': {
+      opacity: theme.palette.action.disabledOpacity,
+      pointerEvents: 'none',
     },
   },
   /* Styles applied to the group's label elements. */
@@ -247,12 +247,11 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     closeIcon = <CloseIcon fontSize="small" />,
     closeText = 'Close',
     debug = false,
-    defaultValue,
+    defaultValue = props.multiple ? [] : null,
     disableClearable = false,
     disableCloseOnSelect = false,
     disabled = false,
     disableListWrap = false,
-    disableOpenOnFocus = false,
     disablePortal = false,
     filterOptions,
     filterSelectedOptions = false,
@@ -276,8 +275,9 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     onInputChange,
     onOpen,
     open,
+    openOnFocus = false,
     openText = 'Open',
-    options = [],
+    options,
     PaperComponent = Paper,
     PopperComponent: PopperComponentProp = Popper,
     popupIcon = <ArrowDropDownIcon />,
@@ -386,6 +386,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
         {renderInput({
           id,
           disabled,
+          fullWidth: true,
           size: size === 'small' ? 'small' : undefined,
           InputLabelProps: getInputLabelProps(),
           InputProps: {
@@ -567,10 +568,6 @@ Autocomplete.propTypes = {
    */
   disableListWrap: PropTypes.bool,
   /**
-   * If `true`, the popup won't open on input focus.
-   */
-  disableOpenOnFocus: PropTypes.bool,
-  /**
    * Disable the portal behavior.
    * The children stay within it's parent DOM hierarchy.
    */
@@ -677,7 +674,7 @@ Autocomplete.propTypes = {
    *
    * @param {object} event The event source of the callback.
    * @param {string} value The new value of the text input.
-   * @param {string} reason Can be: "input" (user input), "reset" (programmatic change), `"clear"`.
+   * @param {string} reason Can be: `"input"` (user input), `"reset"` (programmatic change), `"clear"`.
    */
   onInputChange: PropTypes.func,
   /**
@@ -692,6 +689,10 @@ Autocomplete.propTypes = {
    */
   open: PropTypes.bool,
   /**
+   * If `true`, the popup will open on input focus.
+   */
+  openOnFocus: PropTypes.bool,
+  /**
    * Override the default text for the *open popup* icon button.
    *
    * For localization purposes, you can use the provided [translations](/guides/localization/).
@@ -700,7 +701,7 @@ Autocomplete.propTypes = {
   /**
    * Array of options.
    */
-  options: PropTypes.array,
+  options: PropTypes.array.isRequired,
   /**
    * The component used to render the body of the popup.
    */
@@ -745,6 +746,7 @@ Autocomplete.propTypes = {
   renderTags: PropTypes.func,
   /**
    * If `true`, the input's text will be selected on focus.
+   * It helps the user clear the selected value.
    */
   selectOnFocus: PropTypes.bool,
   /**

@@ -3,6 +3,9 @@
   "include": ["types", "src/pages/**/*"],
   "compilerOptions": {
     "allowJs": false,
-    "noUnusedLocals": true
+    /* files are emmitted by babel */
+    "noEmit": true,
+    "noUnusedLocals": true,
+    "types": ["react"]
   }
 }

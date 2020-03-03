@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { spy } from 'sinon';
 import { assert } from 'chai';
 import { createMount, getClasses } from '@material-ui/core/test-utils';

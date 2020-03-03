@@ -300,8 +300,6 @@ function AppWrapper(props) {
     fonts = [
       'https://fonts.googleapis.com/css?family=Roboto+Condensed:700|Work+Sans:300,400&display=swap',
     ];
-  } else if (pathname.match(/blog/)) {
-    fonts.push('https://fonts.googleapis.com/css?family=Roboto+Slab:300&display=swap');
   }
 
   return (
@@ -313,7 +311,7 @@ function AppWrapper(props) {
           ))}
         </NextHead>
         <ReduxProvider store={redux}>
-          <PageContext.Provider value={{ activePage, pages }}>
+          <PageContext.Provider value={{ activePage, pages, versions: pageProps.versions }}>
             <StylesProvider jss={jss}>
               <ThemeProvider>{children}</ThemeProvider>
             </StylesProvider>
@@ -344,8 +342,12 @@ export default class MyApp extends App {
   }
 }
 
-MyApp.getInitialProps = ({ ctx }) => {
+MyApp.getInitialProps = async ({ ctx, Component }) => {
   let pageProps = {};
+
+  if (Component.getInitialProps) {
+    pageProps = await Component.getInitialProps(ctx);
+  }
 
   if (!process.browser) {
     const redux = initRedux({
@@ -354,6 +356,7 @@ MyApp.getInitialProps = ({ ctx }) => {
       },
     });
     pageProps = {
+      ...pageProps,
       // No need to include other initial Redux state because when it
       // initialises on the client-side it'll create it again anyway
       reduxServerState: redux.getState(),

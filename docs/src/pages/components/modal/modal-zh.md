@@ -3,7 +3,7 @@ title: 模态框 React 组件
 components: Modal
 ---
 
-# Modal
+# Modal 模态框
 
 <p class="description">模态框组件可以用来快速创建对话框、弹出窗口，灯箱等任何你所需的组件。</p>
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
@@ -79,7 +79,7 @@ const SvgIcon = React.forwardRef(function SvgIcon(props, ref) {
       focusable="false"
       viewBox={viewBox}
       color={htmlColor}
-      aria-hidden={titleAccess ? null : 'true'}
+      aria-hidden={titleAccess ? undefined : 'true'}
       role={titleAccess ? 'img' : 'presentation'}
       ref={ref}
       {...other}

@@ -92,3 +92,7 @@ No exemplo a seguir, nós demonstramos como usar [react-window](https://github.c
 {{"demo": "pages/components/lists/VirtualizedList.js", "bg": true}}
 
 O uso de [react-window](https://github.com/bvaughn/react-window), quando possível, é recomendado. Se no seu caso esta biblioteca não resolver, você deve considerar o uso de [react-virtualized](https://github.com/bvaughn/react-virtualized), e em seguida, como alternativa [react-virtuoso](https://github.com/petyosi/react-virtuoso).
+
+## Customização
+
+👑 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/components/menu-list).

@@ -27,14 +27,21 @@ const theme = createMuiTheme({
 
 | Locale | BCP 47 language tag | Import name
 |:-------|:---------|:---------|
+| Armenian | hy-AM | `hyAM` |
 | Azerbaijani | az-AZ | `azAZ` |
 | Bulgarian | bg-BG | `bgBG` |
+| Catalan | ca-ES | `caES` |
 | Chinese (Simplified) | zh-CN | `zhCN` |
 | Czech | cs-CZ | `csCZ` |
 | Dutch | nl-NL | `nlNL` |
 | English (United States) | en-US | `enUS` |
+| Estonian | et-EE | `etEE` |
+| Finnish | fi-FI | `fiFI` |
 | French | fr-FR | `frFR` |
 | German | de-DE |  `deDE` |
+| Hebrew | he-IL | `heIL` |
+| Hungarian | hu-HU | `huHU` |
+| Icelandic | is-IS | `isIS` |
 | Indonesian | id-ID | `idID` |
 | Italian | it-IT | `itIT` |
 | Japanese | ja-JP | `jaJP` |
@@ -50,6 +57,7 @@ const theme = createMuiTheme({
 | Swedish | sv-SE | `svSE` |
 | Turkish | tr-TR | `trTR` |
 | Ukrainian | uk-UA | `ukUA` |
+| Vietnamese | vi-VN | `viVN` |
 
 You can [find the source](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/locale/index.js) in the GitHub repository.
 

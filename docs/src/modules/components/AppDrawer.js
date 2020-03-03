@@ -30,7 +30,7 @@ function PersistScroll(props) {
 
     const activeBox = activeElement.getBoundingClientRect();
 
-    if (savedScrollTop !== null || activeBox.top < savedScrollTop) {
+    if (savedScrollTop === null || activeBox.top - savedScrollTop < 0) {
       // Center the selected item in the list container.
       activeElement.scrollIntoView();
       // Fix a Chrome issue, reset the tabbable ring back to the top of the document.
@@ -99,7 +99,7 @@ function reduceChildRoutes({ props, activePage, items, page, depth, t }) {
 
   if (page.children && page.children.length > 1) {
     const title = pageToTitleI18n(page, t);
-    const topLevel = activePage.pathname.indexOf(`${page.pathname}/`) === 0;
+    const topLevel = activePage ? activePage.pathname.indexOf(`${page.pathname}/`) === 0 : false;
 
     items.push(
       <AppDrawerNavItem

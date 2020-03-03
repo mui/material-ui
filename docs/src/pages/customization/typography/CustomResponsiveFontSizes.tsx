@@ -14,12 +14,10 @@ theme.typography.h3 = {
   },
 };
 
-export default function ResponsiveFontSizes() {
+export default function CustomResponsiveFontSizes() {
   return (
-    <div>
-      <ThemeProvider theme={theme}>
-        <Typography variant="h3">Responsive h3</Typography>
-      </ThemeProvider>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Typography variant="h3">Responsive h3</Typography>
+    </ThemeProvider>
   );
 }

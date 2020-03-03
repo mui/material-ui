@@ -21,7 +21,7 @@ export default function Head(props) {
       <meta name="twitter:site" content="@MaterialUI" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content="https://material-ui.com/static/brand.png" />
+      <meta name="twitter:image" content="https://material-ui.com/static/logo.png" />
       {/* Facebook */}
       <meta property="og:type" content="website" />
       <meta property="og:title" content={title} />
@@ -30,7 +30,7 @@ export default function Head(props) {
         content={`https://material-ui.com${Router._rewriteUrlForNextExport(router.asPath)}`}
       />
       <meta property="og:description" content={description} />
-      <meta property="og:image" content="https://material-ui.com/static/brand.png" />
+      <meta property="og:image" content="https://material-ui.com/static/logo.png" />
       <meta property="og:ttl" content="604800" />
       {/* Algolia */}
       <meta name="docsearch:language" content={userLanguage} />

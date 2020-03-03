@@ -39,6 +39,15 @@ describe('utils/getDisplayName.js', () => {
       ));
       NamedForwardRefComponent.displayName = 'Div';
 
+      const AnonymousMemoComponent = React.memo((props, ref) => <div {...props} ref={ref} />);
+
+      const MemoComponent = React.memo(function Div(props, ref) {
+        return <div {...props} ref={ref} />;
+      });
+
+      const NamedMemoComponent = React.memo((props, ref) => <div {...props} ref={ref} />);
+      NamedMemoComponent.displayName = 'Div';
+
       assert.strictEqual(getDisplayName(SomeComponent), 'SomeComponent');
       assert.strictEqual(getDisplayName(SomeOtherComponent), 'CustomDisplayName');
       assert.strictEqual(getDisplayName(YetAnotherComponent), 'YetAnotherComponent');
@@ -48,6 +57,9 @@ describe('utils/getDisplayName.js', () => {
       assert.strictEqual(getDisplayName(AnonymousForwardRefComponent), 'ForwardRef');
       assert.strictEqual(getDisplayName(ForwardRefComponent), 'ForwardRef(Div)');
       assert.strictEqual(getDisplayName(NamedForwardRefComponent), 'Div');
+      assert.strictEqual(getDisplayName(AnonymousMemoComponent), 'memo');
+      assert.strictEqual(getDisplayName(MemoComponent), 'memo(Div)');
+      assert.strictEqual(getDisplayName(NamedMemoComponent), 'Div');
       assert.strictEqual(getDisplayName(), undefined);
       assert.strictEqual(getDisplayName({}), undefined);
       assert.strictEqual(getDisplayName(false), undefined);

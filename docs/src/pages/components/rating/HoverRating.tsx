@@ -17,7 +17,7 @@ const labels: { [index: string]: string } = {
 };
 
 const useStyles = makeStyles({
-  rating: {
+  root: {
     width: 200,
     display: 'flex',
     alignItems: 'center',
@@ -30,7 +30,7 @@ export default function HoverRating() {
   const classes = useStyles();
 
   return (
-    <div className={classes.rating}>
+    <div className={classes.root}>
       <Rating
         name="hover-feedback"
         value={value}

@@ -9,7 +9,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles({
-  card: {
+  root: {
     maxWidth: 345,
   },
   media: {
@@ -21,7 +21,7 @@ export default function MediaCard() {
   const classes = useStyles();
 
   return (
-    <Card className={classes.card}>
+    <Card className={classes.root}>
       <CardActionArea>
         <CardMedia
           className={classes.media}

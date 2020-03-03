@@ -1,5 +1,5 @@
 /* eslint-disable no-constant-condition */
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import { setRef, useEventCallback, useControlled } from '@material-ui/core/utils';
 
@@ -36,6 +36,7 @@ export function createFilterOptions(config = {}) {
     matchFrom = 'any',
     stringify = defaultStringify,
     trim = false,
+    limit,
   } = config;
 
   return (options, { inputValue }) => {
@@ -46,8 +47,7 @@ export function createFilterOptions(config = {}) {
     if (ignoreAccents) {
       input = stripDiacritics(input);
     }
-
-    return options.filter(option => {
+    const filteredOptions = options.filter(option => {
       let candidate = stringify(option);
       if (ignoreCase) {
         candidate = candidate.toLowerCase();
@@ -58,6 +58,8 @@ export function createFilterOptions(config = {}) {
 
       return matchFrom === 'start' ? candidate.indexOf(input) === 0 : candidate.indexOf(input) > -1;
     });
+
+    return typeof limit === 'number' ? filteredOptions.slice(0, limit) : filteredOptions;
   };
 }
 
@@ -84,12 +86,12 @@ export default function useAutocomplete(props) {
     autoSelect = false,
     blurOnSelect = false,
     clearOnEscape = false,
+    componentName = 'useAutocomplete',
     debug = false,
-    defaultValue,
+    defaultValue = props.multiple ? [] : null,
     disableClearable = false,
     disableCloseOnSelect = false,
     disableListWrap = false,
-    disableOpenOnFocus = false,
     filterOptions = defaultFilterOptions,
     filterSelectedOptions = false,
     freeSolo = false,
@@ -103,13 +105,13 @@ export default function useAutocomplete(props) {
     multiple = false,
     onChange,
     onClose,
-    onOpen,
     onInputChange,
+    onOpen,
     open: openProp,
-    options = [],
+    openOnFocus = false,
+    options,
     selectOnFocus = !props.freeSolo,
     value: valueProp,
-    componentName = 'useAutocomplete',
   } = props;
 
   const [defaultId, setDefaultId] = React.useState();
@@ -130,9 +132,8 @@ export default function useAutocomplete(props) {
   const [focusedTag, setFocusedTag] = React.useState(-1);
   const defaultHighlighted = autoHighlight ? 0 : -1;
   const highlightedIndexRef = React.useRef(defaultHighlighted);
-  const selectedIndexRef = React.useRef(-1);
 
-  function setHighlightedIndex(index, mouse = false) {
+  const setHighlightedIndex = useEventCallback((index, mouse = false) => {
     highlightedIndexRef.current = index;
     // does the index exist?
     if (index === -1) {
@@ -182,15 +183,18 @@ export default function useAutocomplete(props) {
       const elementBottom = element.offsetTop + element.offsetHeight;
       if (elementBottom > scrollBottom) {
         listboxNode.scrollTop = elementBottom - listboxNode.clientHeight;
-      } else if (element.offsetTop < listboxNode.scrollTop) {
-        listboxNode.scrollTop = element.offsetTop;
+      } else if (
+        element.offsetTop - element.offsetHeight * (groupBy ? 1.3 : 0) <
+        listboxNode.scrollTop
+      ) {
+        listboxNode.scrollTop = element.offsetTop - element.offsetHeight * (groupBy ? 1.3 : 0);
       }
     }
-  }
+  });
 
   const [value, setValue] = useControlled({
     controlled: valueProp,
-    default: defaultValue || (multiple ? [] : null),
+    default: defaultValue,
     name: componentName,
   });
 
@@ -319,7 +323,7 @@ export default function useAutocomplete(props) {
     }
   }
 
-  const changeHighlightedIndex = (diff, direction) => {
+  const changeHighlightedIndex = useEventCallback((diff, direction) => {
     if (!popupOpen) {
       return;
     }
@@ -370,7 +374,6 @@ export default function useAutocomplete(props) {
 
     const nextIndex = validOptionIndex(getNextIndex(), direction);
     setHighlightedIndex(nextIndex);
-    selectedIndexRef.current = nextIndex;
 
     if (autoComplete && diff !== 'reset') {
       if (nextIndex === -1) {
@@ -387,11 +390,47 @@ export default function useAutocomplete(props) {
         }
       }
     }
-  };
+  });
 
   React.useEffect(() => {
-    changeHighlightedIndex('reset', 'next');
-  }, [inputValue]); // eslint-disable-line react-hooks/exhaustive-deps
+    if (!open) {
+      return;
+    }
+
+    const valueItem = multiple ? value[0] : value;
+
+    // The popup is empty
+    if (filteredOptions.length === 0 || valueItem == null) {
+      changeHighlightedIndex('reset', 'next');
+      return;
+    }
+
+    // Synchronize the value with the highlighted index
+    if (!filterSelectedOptions && valueItem != null) {
+      const itemIndex = findIndex(filteredOptions, optionItem =>
+        getOptionSelected(optionItem, valueItem),
+      );
+
+      setHighlightedIndex(itemIndex);
+      return;
+    }
+
+    // Keep the index in the boundaries
+    if (highlightedIndexRef.current >= filteredOptions.length - 1) {
+      setHighlightedIndex(filteredOptions.length - 1);
+    }
+
+    // Ignore filterOptions => options, getOptionSelected, getOptionLabel)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    value,
+    open,
+    filterSelectedOptions,
+    changeHighlightedIndex,
+    setHighlightedIndex,
+    inputValue,
+    multiple,
+  ]);
 
   const handleOpen = event => {
     if (open) {
@@ -438,6 +477,21 @@ export default function useAutocomplete(props) {
     if (multiple) {
       newValue = Array.isArray(value) ? [...value] : [];
 
+      if (process.env.NODE_ENV !== 'production') {
+        const matches = newValue.filter(val => getOptionSelected(option, val));
+
+        if (matches.length > 1) {
+          console.error(
+            [
+              'Material-UI: the `getOptionSelected` method of useAutocomplete do not handle the arguments correctly.',
+              `The component expects a single value to match a given option but found ${
+                matches.length
+              } matches.`,
+            ].join('\n'),
+          );
+        }
+      }
+
       const itemIndex = findIndex(newValue, valueItem => getOptionSelected(option, valueItem));
 
       if (itemIndex === -1) {
@@ -454,8 +508,6 @@ export default function useAutocomplete(props) {
     if (!disableCloseOnSelect) {
       handleClose(event);
     }
-
-    selectedIndexRef.current = -1;
   };
 
   function validTagIndex(index, direction) {
@@ -584,6 +636,10 @@ export default function useAutocomplete(props) {
         handleFocusTag(event, 'next');
         break;
       case 'Enter':
+        // Wait until IME is settled.
+        if (event.which === 229) {
+          break;
+        }
         if (highlightedIndexRef.current !== -1 && popupOpen) {
           // We don't want to validate the form.
           event.preventDefault();
@@ -640,7 +696,7 @@ export default function useAutocomplete(props) {
   const handleFocus = event => {
     setFocused(true);
 
-    if (!disableOpenOnFocus && !ignoreFocus.current) {
+    if (openOnFocus && !ignoreFocus.current) {
       handleOpen(event);
     }
   };
@@ -654,10 +710,10 @@ export default function useAutocomplete(props) {
       return;
     }
 
-    if (autoSelect && selectedIndexRef.current !== -1) {
-      handleValue(event, filteredOptions[selectedIndexRef.current], 'blur', {
-        option: filteredOptions[selectedIndexRef.current]
-      });
+    if (autoSelect && highlightedIndexRef.current !== -1 && popupOpen) {
+      selectNewValue(event, filteredOptions[highlightedIndexRef.current], 'blur');
+    } else if (autoSelect && freeSolo && inputValue !== '') {
+      selectNewValue(event, inputValue, 'blur', 'freeSolo');
     } else if (!freeSolo) {
       resetInputValue(event, value);
     }
@@ -677,10 +733,6 @@ export default function useAutocomplete(props) {
     }
 
     if (newValue === '') {
-      if (disableOpenOnFocus) {
-        handleClose(event);
-      }
-
       if (!disableClearable && !multiple) {
         handleValue(event, null, 'clear');
       }
@@ -730,8 +782,13 @@ export default function useAutocomplete(props) {
       return;
     }
 
-    // Restore the focus to the correct option.
-    setHighlightedIndex(highlightedIndexRef.current);
+    // Automatically select the first option as the listbox become visible.
+    if (highlightedIndexRef.current === -1 && autoHighlight) {
+      changeHighlightedIndex('reset', 'next');
+    } else {
+      // Restore the focus to the correct option.
+      setHighlightedIndex(highlightedIndexRef.current);
+    }
   });
 
   const handlePopupIndicator = event => {
@@ -749,24 +806,23 @@ export default function useAutocomplete(props) {
     }
   };
 
-  // Focus the input when first interacting with the combobox
+  // Focus the input when interacting with the combobox
   const handleClick = () => {
+    inputRef.current.focus();
+
     if (
+      selectOnFocus &&
       firstFocus.current &&
       inputRef.current.selectionEnd - inputRef.current.selectionStart === 0
     ) {
-      inputRef.current.focus();
-
-      if (selectOnFocus) {
-        inputRef.current.select();
-      }
+      inputRef.current.select();
     }
 
     firstFocus.current = false;
   };
 
   const handleInputMouseDown = event => {
-    if (inputValue === '' && (!disableOpenOnFocus || inputRef.current === document.activeElement)) {
+    if (inputValue === '') {
       handlePopupIndicator(event);
     }
   };
@@ -951,10 +1007,6 @@ useAutocomplete.propTypes = {
    */
   disableListWrap: PropTypes.bool,
   /**
-   * If `true`, the popup won't open on input focus.
-   */
-  disableOpenOnFocus: PropTypes.bool,
-  /**
    * A filter function that determins the options that are eligible.
    *
    * @param {any} options The options to render.
@@ -1005,7 +1057,7 @@ useAutocomplete.propTypes = {
    *
    * @param {object} event The event source of the callback
    * @param {any} value
-   * @param {string} reason One of "input" (user input) or "reset" (programmatic change).
+   * @param {string} reason One of "create-option", "select-option", "remove-option", "blur" or "clear"
    */
   onChange: PropTypes.func,
   /**
@@ -1034,6 +1086,10 @@ useAutocomplete.propTypes = {
    * Control the popup` open state.
    */
   open: PropTypes.bool,
+  /**
+   * If `true`, the popup will open on input focus.
+   */
+  openOnFocus: PropTypes.bool,
   /**
    * Array of options.
    */

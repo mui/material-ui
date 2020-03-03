@@ -1,13 +1,13 @@
 ---
 title: Rating React component
-components: Rating
+components: Bewertung
 ---
 
-# Rating
+# Bewertung
 
 <p class="description">Ratings provide insight regarding others’ opinions and experiences with a product. Users can also rate products they’ve purchased.</p>
 
-## Simple ratings
+## Einfache Bewertungen
 
 {{"demo": "pages/components/rating/SimpleRating.js"}}
 
@@ -19,7 +19,7 @@ Hier einige Beispiele zum Anpassen der Komponente. Mehr dazu erfahren Sie auf de
 
 ## Hover feedback
 
-You can display a label on hover to help users pick the correct rating value. The first demo uses the `onChangeActive` prop while the last one uses the `IconContainerComponent` prop.
+You can display a label on hover to help users pick the correct rating value. Die Demo verwendet die `onChangeActive` Prop.
 
 {{"demo": "pages/components/rating/HoverRating.js"}}
 
@@ -31,13 +31,13 @@ The rating can display any float number with the `value` prop. Use the `precisio
 
 ## Größen
 
-Fancy larger or smaller ratings? Use the `size` prop.
+Lust auf größere oder kleinere Bewertungen? Verwenden Sie die `size` Prop.
 
 {{"demo": "pages/components/rating/RatingSize.js"}}
 
 ## Barrierefreiheit
 
-(WAI tutorial: https://www.w3.org/WAI/tutorials/forms/custom-controls/#a-star-rating)
+(WAI Tutorial: https://www.w3.org/WAI/tutorials/forms/custom-controls/#a-star-rating)
 
 Die Barrierefreiheit dieser Komponente setzt voraus:
 

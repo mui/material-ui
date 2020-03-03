@@ -19,9 +19,7 @@ export default function Grouped() {
       groupBy={option => option.firstLetter}
       getOptionLabel={option => option.title}
       style={{ width: 300 }}
-      renderInput={params => (
-        <TextField {...params} label="With categories" variant="outlined" fullWidth />
-      )}
+      renderInput={params => <TextField {...params} label="With categories" variant="outlined" />}
     />
   );
 }

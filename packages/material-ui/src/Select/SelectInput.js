@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -105,6 +105,10 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   };
 
   const handleMouseDown = event => {
+    // Ignore everything but left-click
+    if (event.button !== 0) {
+      return;
+    }
     // Hijack the default focus behavior.
     event.preventDefault();
     displayNode.focus();
@@ -417,7 +421,7 @@ SelectInput.propTypes = {
    */
   inputRef: refType,
   /**
-   * The idea of an element that acts as an additional label. The Select will
+   * The ID of an element that acts as an additional label. The Select will
    * be labelled by the additional label and the selected value.
    */
   labelId: PropTypes.string,

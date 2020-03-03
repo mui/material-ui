@@ -1,4 +1,4 @@
-# Our Vision
+# Notre mission
 
 <p class="description">Notre vision est de fournir une mise en œuvre élégante de la spécification material design pour React, qui peut être personnalisables pour correspondre parfaitement à votre marque.</p>
 

@@ -38,7 +38,8 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 | <span class="prop-name">inputComponent</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'input'</span> | The component used for the native input. Either a string to use a DOM element or a component. |
 | <span class="prop-name">inputProps</span> | <span class="prop-type">object</span> |  | [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element. |
 | <span class="prop-name">inputRef</span> | <span class="prop-type">ref</span> |  | Pass a ref to the `input` element. |
-| <span class="prop-name">labelWidth</span> | <span class="prop-type">number</span> | <span class="prop-default">0</span> | The width of the label. |
+| <span class="prop-name">label</span> | <span class="prop-type">node</span> |  | The label of the input. It is only used for layout. The actual labelling is handled by `InputLabel`. If specified `labelWidth` is ignored. |
+| <span class="prop-name">labelWidth</span> | <span class="prop-type">number</span> | <span class="prop-default">0</span> | The width of the label. Is ignored if `label` is provided. Prefer `label` if the input label appears with a strike through. |
 | <span class="prop-name">margin</span> | <span class="prop-type">'dense'<br>&#124;&nbsp;'none'</span> |  | If `dense`, will adjust vertical spacing. This is normally obtained via context from FormControl. |
 | <span class="prop-name">multiline</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, a textarea element will be rendered. |
 | <span class="prop-name">name</span> | <span class="prop-type">string</span> |  | Name attribute of the `input` element. |
@@ -70,7 +71,7 @@ Any other props supplied will be provided to the root element ([InputBase](/api/
 | <span class="prop-name">disabled</span> | <span class="prop-name">.Mui-disabled</span> | Styles applied to the root element if `disabled={true}`.
 | <span class="prop-name">adornedStart</span> | <span class="prop-name">.MuiOutlinedInput-adornedStart</span> | Styles applied to the root element if `startAdornment` is provided.
 | <span class="prop-name">adornedEnd</span> | <span class="prop-name">.MuiOutlinedInput-adornedEnd</span> | Styles applied to the root element if `endAdornment` is provided.
-| <span class="prop-name">error</span> | <span class="prop-name">.Mui-error</span> | Styles applied to the root element if `error={true}`.
+| <span class="prop-name">error</span> | <span class="prop-name">.Mui-error</span> | Pseudo-class applied to the root element if `error={true}`.
 | <span class="prop-name">marginDense</span> | <span class="prop-name">.MuiOutlinedInput-marginDense</span> | Styles applied to the `input` element if `margin="dense"`.
 | <span class="prop-name">multiline</span> | <span class="prop-name">.MuiOutlinedInput-multiline</span> | Styles applied to the root element if `multiline={true}`.
 | <span class="prop-name">notchedOutline</span> | <span class="prop-name">.MuiOutlinedInput-notchedOutline</span> | Styles applied to the `NotchedOutline` element.

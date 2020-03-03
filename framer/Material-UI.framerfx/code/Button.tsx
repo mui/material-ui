@@ -8,6 +8,7 @@ import { Icon } from './Icon';
 interface Props {
   color?: 'default' | 'inherit' | 'primary' | 'secondary';
   disabled?: boolean;
+  disableElevation?: boolean;
   endIcon?: string;
   fullWidth?: boolean;
   href?: string;
@@ -24,6 +25,7 @@ interface Props {
 const defaultProps: Props = {
   color: 'default',
   disabled: false,
+  disableElevation: false,
   endIcon: undefined,
   fullWidth: false,
   size: 'medium',
@@ -72,6 +74,10 @@ addPropertyControls(Button, {
   disabled: {
     type: ControlType.Boolean,
     title: 'Disabled',
+  },
+  disableElevation: {
+    type: ControlType.Boolean,
+    title: 'Disable elevation',
   },
   endIcon: {
     type: ControlType.String,

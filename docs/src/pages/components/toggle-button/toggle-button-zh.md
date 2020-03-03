@@ -3,7 +3,7 @@ title: 切换按钮React组件
 components: ToggleButton, ToggleButtonGroup
 ---
 
-# 切换按钮
+# Toggle Button 切换按钮
 
 <p class="description">Toggle Buttons 可用于对相关选项进行分组。</p>
 
@@ -18,6 +18,26 @@ The `ToggleButtonGroup` will control the selected state of its child buttons whe
 想要更大或更小的按钮？ 你可以使用 `size` 属性。
 
 {{"demo": "pages/components/toggle-button/ToggleButtonSizes.js"}}
+
+## Enforce value set
+
+If you want to enforce at least one button to be active, you can adapt your handleChange function.
+
+```jsx
+const handleFormat = (event, newFormats) => {
+  if (newFormats.length) {
+    setFormats(newFormats);
+  }
+};
+
+const handleAlignment = (event, newAlignment) => {
+  if (newAlignment !== null) {
+    setAlignment(newAlignment);
+  }
+};
+```
+
+{{"demo": "pages/components/toggle-button/ToggleButtonNotEmpty.js"}}
 
 ## Standalone toggle button
 

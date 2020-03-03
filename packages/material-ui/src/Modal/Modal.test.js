@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { assert, expect } from 'chai';
 import { useFakeTimers, spy } from 'sinon';
 import PropTypes from 'prop-types';

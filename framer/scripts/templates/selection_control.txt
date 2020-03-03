@@ -9,7 +9,7 @@ import Mui«componentName» from '@material-ui/core/«componentName»';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 export function «componentName»(props) {
-  const { checked: checkedProp, label, onChange, ...other } = props;
+  const { checked: checkedProp, label, onChange, size, ...other } = props;
   // tslint:disable-next-line: ban-ts-ignore
   // @ts-ignore
 
@@ -28,7 +28,7 @@ export function «componentName»(props) {
     setChecked(checkedProp);
   }, [checkedProp]);
 
-  const control = <Mui«componentName» checked={checked} onChange={handleChange} />;
+  const control = <Mui«componentName» checked={checked} onChange={handleChange} size={size} />;
 
   return <FormControlLabel control={control} label={label} {...other} />;
 }

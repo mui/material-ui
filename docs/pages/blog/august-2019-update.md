@@ -4,9 +4,7 @@ description: Here are the most significant improvements in August.
 
 # August 2019 Update
 
-**Olivier Tassinari**
-
-*September 7, 2019*
+Olivier Tassinari. September 7, 2019.
 
 Here are the most significant improvements in August:
 
@@ -26,7 +24,7 @@ Here are the most significant improvements in August:
 
   ![TypeScript](/static/blog/august-2019-update/typescript.png)
 
-- 🎨 We have worked on seeding https://themes.material-ui.com/.
+- 🎨 We have worked on seeding https://material-ui.com/store/.
 - 📖 We have updated our ROADMAP. [Check it out](/discover-more/roadmap/).
 
 But this summary is just scratching the surface. We have accepted 193 commits from 74 different contributors. We have changed 5,875 files with 35,101 additions and 14,701 deletions.
@@ -38,7 +36,3 @@ But this summary is just scratching the surface. We have accepted 193 commits fr
 - 🔍 We will keep working on providing ready to use autocomplete, combo box, and multi-select components. We announced it last month but have made little progress so far due to focusing on fixing bugs in existing components. Let's make it happen!
 
 - ❓ Please upvote our [GitHub issues](https://github.com/mui-org/material-ui/issues) if you want something specific. The number of 👍 helps us to prioritize.
-
-<hr />
-
-Material-UI is an MIT-licensed open source project. It’s an independent project with ongoing development helped by the support of these awesome [backers](/discover-more/backers/). Please join them ✨.

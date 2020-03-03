@@ -6,6 +6,7 @@ export interface CreateFilterOptionsConfig<T> {
   matchFrom?: 'any' | 'start';
   stringify?: (option: T) => string;
   trim?: boolean;
+  limit?: number;
 }
 
 export interface FilterOptionsState {
@@ -69,10 +70,6 @@ export interface UseAutocompleteCommonProps<T> {
    */
   disableListWrap?: boolean;
   /**
-   * If `true`, the popup won't open on input focus.
-   */
-  disableOpenOnFocus?: boolean;
-  /**
    * A filter function that determines the options that are eligible.
    *
    * @param {T[]} options The options to render.
@@ -135,7 +132,7 @@ export interface UseAutocompleteCommonProps<T> {
    *
    * @param {object} event The event source of the callback.
    * @param {string} value The new value of the text input.
-   * @param {string} reason Can be: "input" (user input), "reset" (programmatic change), `"clear"`.
+   * @param {string} reason Can be: `"input"` (user input), `"reset"` (programmatic change), `"clear"`.
    */
   onInputChange?: (
     event: React.ChangeEvent<{}>,
@@ -154,11 +151,16 @@ export interface UseAutocompleteCommonProps<T> {
    */
   open?: boolean;
   /**
+   * If `true`, the popup will open on input focus.
+   */
+  openOnFocus?: boolean;
+  /**
    * Array of options.
    */
-  options?: T[];
+  options: T[];
   /**
    * If `true`, the input's text will be selected on focus.
+   * It helps the user clear the selected value.
    */
   selectOnFocus?: boolean;
 }

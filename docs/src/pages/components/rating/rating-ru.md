@@ -19,7 +19,7 @@ components: Rating
 
 ## Hover feedback
 
-You can display a label on hover to help users pick the correct rating value. The first demo uses the `onChangeActive` prop while the last one uses the `IconContainerComponent` prop.
+You can display a label on hover to help users pick the correct rating value. The demo uses the `onChangeActive` prop.
 
 {{"demo": "pages/components/rating/HoverRating.js"}}
 

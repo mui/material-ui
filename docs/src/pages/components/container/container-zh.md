@@ -3,7 +3,7 @@ title: React Container（容器）组件
 components: Container
 ---
 
-# Container（容器）
+# Container 容器
 
 <p class="description">容器组件会让您页面的内容水平居中。 这是最基本的布局元素。</p>
 

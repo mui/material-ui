@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { refType } from '@material-ui/utils';
@@ -61,7 +61,6 @@ const Radio = React.forwardRef(function Radio(props, ref) {
     checked: checkedProp,
     classes,
     color = 'secondary',
-    disabled = false,
     name: nameProp,
     onChange: onChangeProp,
     size = 'medium',
@@ -99,7 +98,6 @@ const Radio = React.forwardRef(function Radio(props, ref) {
       checked={checked}
       onChange={onChange}
       ref={ref}
-      disabled={disabled}
       {...other}
     />
   );
@@ -124,7 +122,7 @@ Radio.propTypes = {
    */
   color: PropTypes.oneOf(['primary', 'secondary', 'default']),
   /**
-   * If `true`, the switch will be disabled.
+   * If `true`, the radio will be disabled.
    */
   disabled: PropTypes.bool,
   /**

@@ -110,7 +110,7 @@ import { spacing } from '@material-ui/system';
 | `spacing`  | `py`          | `padding-top`, `padding-bottom` | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
 
 
-*Some people find the prop shorthand confusing, you can use the full version if you prefer:*
+*Einige Leute finden die Prop Kurzform verwirrend, Sie können die vollständige Version verwenden, wenn Sie sie bevorzugen:*
 
 ```diff
 -<Box pt={2} />

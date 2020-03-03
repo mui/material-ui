@@ -1,6 +1,6 @@
 import { assert } from 'chai';
-import React from 'react';
-import ReactDOM from 'react-dom';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import { createMount } from '@material-ui/core/test-utils';
 import { teardown as teardownFocusVisible, useIsFocusVisible } from './focusVisible';
 import useForkRef from './useForkRef';

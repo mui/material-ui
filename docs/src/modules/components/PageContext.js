@@ -7,6 +7,7 @@ const PageContext = React.createContext({
     pathname: '',
   },
   pages: [],
+  versions: [],
 });
 
 if (process.env.NODE_ENV !== 'production') {

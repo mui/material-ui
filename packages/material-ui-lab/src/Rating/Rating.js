@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes } from '@material-ui/utils';
@@ -352,7 +352,11 @@ const Rating = React.forwardRef(function Rating(props, ref) {
     );
 
     if (readOnly) {
-      return <React.Fragment key={state.value}>{container}</React.Fragment>;
+      return (
+        <span key={state.value} {...labelProps}>
+          {container}
+        </span>
+      );
     }
 
     return (

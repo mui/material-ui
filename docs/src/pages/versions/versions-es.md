@@ -41,7 +41,7 @@ En general, espera el siguiente ciclo de lanzamiento:
 | Fecha          | Versión | Status   |
 |:-------------- |:------- |:-------- |
 | May 2018       | v1.0.0  | Released |
-| Septembre 2018 | v3.0.0  | Released |
+| September 2018 | v3.0.0  | Released |
 | May 2019       | v4.0.0  | Released |
 | Q3 2020        | v5.0.0  | ⏳        |
 

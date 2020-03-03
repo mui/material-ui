@@ -3,7 +3,7 @@ title: React Text Field（文本框）组件
 components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField
 ---
 
-# TextField（文本框）
+# TextField 文本框
 
 <p class="description">用户可以在文本框内输入或编辑文字。</p>
 
@@ -43,7 +43,7 @@ The `select` prop makes the text field use the [Select](/components/selects/) co
 
 {{"demo": "pages/components/text-fields/SelectTextFields.js"}}
 
-## Icons（图标）
+## Icons 图标
 
 There are multiple ways to display an icon with a text field.
 
@@ -75,7 +75,7 @@ The component can be controlled or uncontrolled
 
 {{"demo": "pages/components/text-fields/StateTextFields.js"}}
 
-## Components（组件）
+## 组件
 
 `TextField` 是由较小的组件组成的 ( [`FormControl`](/api/form-control/), [`Input`](/api/input/), [`FilledInput`](/api/filled-input/), [`InputLabel`](/api/input-label/), [`OutlinedInput`](/api/outlined-input/), and [`FormHelperText`](/api/form-helper-text/) ) 你可以利用这一点来自定义你的表单输入.
 
@@ -83,7 +83,7 @@ The component can be controlled or uncontrolled
 
 {{"demo": "pages/components/text-fields/ComposedTextField.js"}}
 
-## Inputs（输入）
+## 输入
 
 {{"demo": "pages/components/text-fields/Inputs.js"}}
 
@@ -103,21 +103,23 @@ The `color` prop changes the highlight color of the text field when focused.
 
 {{"demo": "pages/components/text-fields/CustomizedInputBase.js", "bg": true}}
 
+👑 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/components/text-field).
+
 ## 局限性
 
 ### Shrink
 
-输入标签 "shrink" 状态并不总是正确的。 输入标签应在输入显示内容时立即收缩。 在某些情况下, 我们无法确定 "shrink" 状态 (数字输入、日期时间输入、条带输入)。 您可能会注意到重叠。
+The input label "shrink" state isn't always correct. The input label is supposed to shrink as soon as the input is displaying something. In some circumstances, we can't determine the "shrink" state (number input, datetime input, Stripe input). You might notice an overlap.
 
-![缩小](/static/images/text-fields/shrink.png)
+![shrink](/static/images/text-fields/shrink.png)
 
-若要解决此问题, 您可以强制标签的 "shrink" 状态。
+To workaround the issue, you can force the "shrink" state of the label.
 
 ```jsx
 <TextField InputLabelProps={{ shrink: true }} />
 ```
 
-或
+or
 
 ```jsx
 <InputLabel shrink>计数</InputLabel>
@@ -129,13 +131,13 @@ The floating label is absolutely positioned, it won't impact the layout of the p
 
 ## 与第三方 input 库的整合
 
-您可以使用第三方库格式化输入。 您必须提供一个带有 `inputComponent` 属性的 `<input>` 元素的自定义实现。
+You can use third-party libraries to format an input. You have to provide a custom implementation of the `<input>` element with the `inputComponent` property.
 
-下面的演示使用 [react-text-mask](https://github.com/text-mask/text-mask)和 [react-number-format](https://github.com/s-yadav/react-number-format) 库。 同样的概念可以适用于 [这个例子：react-stripe-element](https://github.com/mui-org/material-ui/issues/16037)。
+The following demo uses the [react-text-mask](https://github.com/text-mask/text-mask) and [react-number-format](https://github.com/s-yadav/react-number-format) libraries. The same concept could be applied to [e.g. react-stripe-element](https://github.com/mui-org/material-ui/issues/16037).
 
 {{"demo": "pages/components/text-fields/FormattedInputs.js"}}
 
-提供的输入组件应该处理 `inputRef` 属性。 The property should be called with a value that implements the following interface:
+The provided input component should handle the `inputRef` property. The property should be called with a value that implements the following interface:
 
 ```ts
 interface InputElement {
@@ -196,7 +198,6 @@ In order for the text field to be accessible, **the input should be linked to th
 
 对于更高级的用例，您可以利用：
 
-- [formik-material-ui](https://github.com/stackworx/formik-material-ui) 用于结合formik来使用Material-UI的绑定。
-- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui) 用于更加方便地与Redux Form配搭来使用Material UI的一组包装组件。
-- [final-form-material-ui](https://github.com/Deadly0/final-form-material-ui)：一组配合 Final Form 和 Material UI 的封装组件。
-- [mui-rff](https://github.com/lookfirst/mui-rff) A set of wrapper components to facilitate using Material UI with React Final Form.
+- [formik-material-ui](https://github.com/stackworx/formik-material-ui) Bindings for using Material-UI with [formik](https://jaredpalmer.com/formik).
+- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui) Bindings for using Material UI with [Redux Form](https://redux-form.com/).
+- [mui-rff](https://github.com/lookfirst/mui-rff) Bindings for using Material UI with [React Final Form](https://final-form.org/react).

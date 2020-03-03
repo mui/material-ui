@@ -83,6 +83,23 @@ function isElementAcceptingRefProp(type) {
   return /^elementAcceptingRef/.test(type.raw);
 }
 
+function resolveType(type) {
+  if (type.type === 'AllLiteral') {
+    return 'any';
+  }
+
+  if (type.type === 'TypeApplication') {
+    const arrayTypeName = resolveType(type.applications[0]);
+    return `${arrayTypeName}[]`;
+  }
+
+  if (type.type === 'UnionType') {
+    return type.elements.map(t => resolveType(t)).join(' \\| ');
+  }
+
+  return type.name;
+}
+
 function generatePropDescription(prop) {
   const { description } = prop;
   const type = prop.flowType || prop.type;
@@ -136,15 +153,11 @@ function generatePropDescription(prop) {
     signature += '<br><br>**Signature:**<br>`function(';
     signature += parsedArgs
       .map(tag => {
-        if (tag.type.type === 'AllLiteral') {
-          return `${tag.name}: any`;
-        }
-
         if (tag.type.type === 'OptionalType') {
           return `${tag.name}?: ${tag.type.expression.name}`;
         }
 
-        return `${tag.name}: ${tag.type.name}`;
+        return `${tag.name}: ${resolveType(tag.type)}`;
       })
       .join(', ');
     signature += `) => ${parsedReturns.type.name}\`<br>`;
@@ -272,6 +285,11 @@ function generateProps(reactAPI) {
       )}</span>`;
     }
 
+    // Give up
+    if (defaultValue.length > 180) {
+      defaultValue = '';
+    }
+
     const chainedPropType = getChained(prop.type);
 
     if (
@@ -338,6 +356,10 @@ function generateClasses(reactAPI) {
 |:-----|:-------------|:------------|\n`;
   text += reactAPI.styles.classes
     .map(styleRule => {
+      if (styleRule === '@global') {
+        return '| <span class="prop-name">@global</span> | | Apply global styles.';
+      }
+
       const description = reactAPI.styles.descriptions[styleRule];
 
       if (typeof description === 'undefined' && ['Grid', 'Paper'].indexOf(reactAPI.name) === -1) {

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { assert } from 'chai';
 import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
@@ -35,6 +35,11 @@ describe('<Divider />', () => {
   it('should set the light class', () => {
     const wrapper = shallow(<Divider light />);
     assert.strictEqual(wrapper.hasClass(classes.light), true);
+  });
+
+  it('should set the flexItem class', () => {
+    const wrapper = shallow(<Divider flexItem />);
+    assert.strictEqual(wrapper.hasClass(classes.flexItem), true);
   });
 
   describe('prop: variant', () => {

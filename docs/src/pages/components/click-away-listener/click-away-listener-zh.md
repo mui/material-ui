@@ -3,7 +3,7 @@ title: 检测 React 组件外部的单击事件
 components: ClickAwayListener
 ---
 
-# Click away listener（他处点击监听器）
+# Click away listener 他处点击监听器
 
 <p class="description">用于检测点击事件是否发生在元素之外。 它可以监听文档中某处发生的点击事件。</p>
 

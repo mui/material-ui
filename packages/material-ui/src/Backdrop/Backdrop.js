@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
@@ -19,8 +19,6 @@ export const styles = {
     left: 0,
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
     WebkitTapHighlightColor: 'transparent',
-    // Disable scroll capabilities.
-    touchAction: 'none',
   },
   /* Styles applied to the root element if `invisible={true}`. */
   invisible: {

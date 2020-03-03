@@ -15,6 +15,9 @@ Install it and run:
 npm install
 npm run start
 ```
+or:
+
+[![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/mui-org/material-ui/tree/master/examples/preact)
 
 ## The idea behind the example
 

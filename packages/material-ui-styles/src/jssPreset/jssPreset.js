@@ -7,7 +7,7 @@ import vendorPrefixer from 'jss-plugin-vendor-prefixer';
 import propsSort from 'jss-plugin-props-sort';
 
 // Subset of jss-preset-default with only the plugins the Material-UI components are using.
-function jssPreset() {
+export default function jssPreset() {
   return {
     plugins: [
       functions(),
@@ -23,5 +23,3 @@ function jssPreset() {
     ],
   };
 }
-
-export default jssPreset;

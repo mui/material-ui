@@ -3,7 +3,7 @@ title: React Menu（菜单）组件
 components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper
 ---
 
-# Menus（菜单）
+# Menus 菜单
 
 <p class="description">菜单在临时出现的位置上展示一系列的选项列表。</p>
 
