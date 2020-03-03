@@ -57,7 +57,7 @@ export interface PaginationProps
    * @param {object} event The event source of the callback.
    * @param {number} page The page selected.
    */
-  onChange?: (event: React.ChangeEvent<{}>, page: number) => void;
+  onChange?: (event: React.ChangeEvent<unknown>, page: number) => void;
   /**
    * The current page.
    */
