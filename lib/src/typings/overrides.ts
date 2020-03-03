@@ -22,7 +22,7 @@ import { useStyles as MuiPickersYearSelectionStyles } from '../views/Calendar/Ye
 import { useStyles as MuiPickersMonthSelectionStyles } from '../views/Calendar/MonthSelection';
 import { useStyles as MuiPickerDTToolbarStyles } from '../DateTimePicker/DateTimePickerToolbar';
 
-type StylesHook<C extends string> = (props?: any) => Record<C, string>
+type StylesHook<C extends string> = (props?: any) => Record<C, string>;
 
 type Classes<T> = Partial<
   StyleRules<
