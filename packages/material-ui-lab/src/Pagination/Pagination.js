@@ -27,29 +27,31 @@ function defaultGetAriaLabel(type, page, selected) {
 }
 
 const Pagination = React.forwardRef(function Pagination(props, ref) {
+  /* eslint-disable no-unused-vars */
   const {
-    boundaryCount,
+    boundaryCount = 1,
     children,
     classes,
     className,
     color = 'standard',
-    count,
-    defaultPage,
-    disabled,
+    count = 1,
+    defaultPage = 1,
+    disabled = false,
     getItemAriaLabel: getAriaLabel = defaultGetAriaLabel,
-    hideNextButton,
-    hidePrevButton,
+    hideNextButton = false,
+    hidePrevButton = false,
     onChange,
     page,
     renderItem = item => <PaginationItem {...item} />,
     shape = 'round',
-    showFirstButton,
-    showLastButton,
-    siblingCount,
+    showFirstButton = false,
+    showLastButton = false,
+    siblingCount = 1,
     size = 'medium',
     variant = 'text',
     ...other
   } = props;
+  /* eslint-enable no-unused-vars */
 
   const { items } = usePagination({ ...props, componentName: 'Pagination' });
 
