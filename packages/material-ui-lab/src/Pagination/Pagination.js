@@ -40,6 +40,7 @@ const Pagination = React.forwardRef(function Pagination(props, ref) {
     getItemAriaLabel: getAriaLabel = defaultGetAriaLabel,
     hideNextButton = false,
     hidePrevButton = false,
+    page,
     renderItem = item => <PaginationItem {...item} />,
     shape = 'round',
     showFirstButton = false,
