@@ -5764,10 +5764,10 @@ define-property@^2.0.2:
     is-descriptor "^1.0.2"
     isobject "^3.0.1"
 
-definitelytyped-header-parser@3.8.2, definitelytyped-header-parser@^3.8.2:
-  version "3.8.2"
-  resolved "https://registry.yarnpkg.com/definitelytyped-header-parser/-/definitelytyped-header-parser-3.8.2.tgz#ac9b5710da976c6258997c15376d2180b6bd0e5c"
-  integrity sha512-kQePPP/cqQX3H6DrX5nCo2vMjJeboPsjEG8OOl43TZbTOr9zLlapWJ/oRCLnMCiyERsBRZXyLMtBXGM+1zmtgQ==
+definitelytyped-header-parser@3.9.0, definitelytyped-header-parser@^3.8.2:
+  version "3.9.0"
+  resolved "https://registry.yarnpkg.com/definitelytyped-header-parser/-/definitelytyped-header-parser-3.9.0.tgz#f992abb8e62f697ca25e1adbfd5f69ef11621644"
+  integrity sha512-slbwZ5h5lasB12t+9EAGYr060aCMqEXp6cwD7CoTriK40HNDYU56/XQ6S4sbjBK8ReGRMnB/uDx0elKkb4kuQA==
   dependencies:
     "@types/parsimmon" "^1.3.0"
     parsimmon "^1.2.0"
@@ -6044,28 +6044,30 @@ dot-prop@^4.1.0, dot-prop@^4.1.1, dot-prop@^4.2.0:
   dependencies:
     is-obj "^1.0.0"
 
-dts-critic@^2.2.4:
-  version "2.2.4"
-  resolved "https://registry.yarnpkg.com/dts-critic/-/dts-critic-2.2.4.tgz#3ef70be891eede2bdf2ff9e293d9ec398b9cf772"
-  integrity sha512-yGHhVKo66iyPBFUYRyXX1uW+XEG3/HDP1pHCR3VlPl9ho8zRHy6lzS5k+gCSuINqjNsV8UjZSUXUuTuw0wHp7g==
+dts-critic@^3.0.0:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/dts-critic/-/dts-critic-3.0.1.tgz#c4f18e08dda91456a14835b700b1f816a77ce299"
+  integrity sha512-3y34qsytqwEgfoUcYwxVm9Lv54Q+MPEXCOtZpwhl4TNM1SN/yjolWXz7Xw2U0BQv/rGhIdM2ONNTaAxRfQdJ6g==
   dependencies:
     command-exists "^1.2.8"
     definitelytyped-header-parser "^3.8.2"
     semver "^6.2.0"
+    typescript "^3.7.5"
     yargs "^12.0.5"
 
-dtslint@^2.0.0:
-  version "2.0.5"
-  resolved "https://registry.yarnpkg.com/dtslint/-/dtslint-2.0.5.tgz#2589c69751f9943c29841eab8634baa329df115b"
-  integrity sha512-73Rixb/W7VbxUb0PPSyAPT63dmaudA4JxcA+NWJvBd+d03kl9j2BW3Ldzz0+SlhWkYRyrJtp2D9IXURNLaWRpw==
+dtslint@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/dtslint/-/dtslint-3.2.0.tgz#b2c17935aaf243a1346c903c60bd8cbaea1fa5e2"
+  integrity sha512-c+fOZRCLu/U0DXjcbYJc0tY+f/ucYzwk93XhYO5807/TqB5l2Zdk/26ngpzjJYeXPWtfufLprdoIuBPEjaoEig==
   dependencies:
-    definitelytyped-header-parser "3.8.2"
-    dts-critic "^2.2.4"
+    definitelytyped-header-parser "3.9.0"
+    dts-critic "^3.0.0"
     fs-extra "^6.0.1"
-    request "^2.88.0"
+    json-stable-stringify "^1.0.1"
     strip-json-comments "^2.0.1"
     tslint "5.14.0"
     typescript next
+    yargs "^15.1.0"
 
 duplexer2@^0.1.2, duplexer2@~0.1.4:
   version "0.1.4"
@@ -9005,6 +9007,13 @@ json-stable-stringify-without-jsonify@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/json-stable-stringify-without-jsonify/-/json-stable-stringify-without-jsonify-1.0.1.tgz#9db7b59496ad3f3cfef30a75142d2d930ad72651"
   integrity sha1-nbe1lJatPzz+8wp1FC0tkwrXJlE=
+
+json-stable-stringify@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/json-stable-stringify/-/json-stable-stringify-1.0.1.tgz#9a759d39c5f2ff503fd5300646ed445f88c4f9af"
+  integrity sha1-mnWdOcXy/1A/1TAGRu1EX4jE+a8=
+  dependencies:
+    jsonify "~0.0.0"
 
 json-stringify-safe@^5.0.1, json-stringify-safe@~5.0.1:
   version "5.0.1"
@@ -14922,15 +14931,10 @@ typescript@3.5.2:
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.5.2.tgz#a09e1dc69bc9551cadf17dba10ee42cf55e5d56c"
   integrity sha512-7KxJovlYhTX5RaRbUdkAXN1KUZ8PwWlTzQdHV6xNqvuFOs7+WBo10TQUqT19Q/Jz2hk5v9TQDIhyLhhJY4p5AA==
 
-typescript@^3.8.2:
+typescript@^3.7.5, typescript@^3.8.2, typescript@next:
   version "3.8.3"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.8.3.tgz#409eb8544ea0335711205869ec458ab109ee1061"
   integrity sha512-MYlEfn5VrLNsgudQTVJeNaQFUAI7DkhnOjdpAp4T+ku1TfQClewlbSuTVHiA+8skNBgaf02TL/kLOvig4y3G8w==
-
-typescript@next:
-  version "3.8.2"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.8.2.tgz#91d6868aaead7da74f493c553aeff76c0c0b1d5a"
-  integrity sha512-EgOVgL/4xfVrCMbhYKUQTdF37SQn4Iw73H5BgCrF1Abdun7Kwy/QZsE/ssAy0y4LxBbvua3PIbFsbRczWWnDdQ==
 
 uglify-js@^3.1.4:
   version "3.7.2"
@@ -15907,7 +15911,7 @@ yargs@^14.2.2:
     y18n "^4.0.0"
     yargs-parser "^15.0.0"
 
-yargs@^15.0.1, yargs@^15.0.2, yargs@^15.2.0:
+yargs@^15.0.1, yargs@^15.0.2, yargs@^15.1.0, yargs@^15.2.0:
   version "15.2.0"
   resolved "https://registry.yarnpkg.com/yargs/-/yargs-15.2.0.tgz#cb9fc7f7ec429f7e9329b623f5c707a62dae506a"
   integrity sha512-E+o8C37U+M7N15rBJVxr0MoInp+O7XNhMqveSGWA5uhddqs8qtkZ+uvT9FI32QML0SKidXdDONr40Xe3tDO9FA==
