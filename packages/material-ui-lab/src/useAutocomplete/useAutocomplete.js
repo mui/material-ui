@@ -458,25 +458,27 @@ export default function useAutocomplete(props) {
     }
   };
 
-  const handleValue = (event, newValue) => {
+  const handleValue = (event, newValue, reason, details) => {
     if (value === newValue) {
       return;
     }
 
     if (onChange) {
-      onChange(event, newValue);
+      onChange(event, newValue, reason, details);
     }
 
     setValue(newValue);
   };
 
-  const selectNewValue = (event, newValue, origin = 'option') => {
+  const selectNewValue = (event, option, reasonProp = 'select-option', origin = 'options') => {
+    let reason = reasonProp;
+    let newValue = option;
+
     if (multiple) {
-      const item = newValue;
       newValue = Array.isArray(value) ? [...value] : [];
 
       if (process.env.NODE_ENV !== 'production') {
-        const matches = newValue.filter(val => getOptionSelected(item, val));
+        const matches = newValue.filter(val => getOptionSelected(option, val));
 
         if (matches.length > 1) {
           console.error(
@@ -490,18 +492,19 @@ export default function useAutocomplete(props) {
         }
       }
 
-      const itemIndex = findIndex(newValue, valueItem => getOptionSelected(item, valueItem));
+      const itemIndex = findIndex(newValue, valueItem => getOptionSelected(option, valueItem));
 
       if (itemIndex === -1) {
-        newValue.push(item);
+        newValue.push(option);
       } else if (origin !== 'freeSolo') {
         newValue.splice(itemIndex, 1);
+        reason = 'remove-option';
       }
     }
 
     resetInputValue(event, newValue);
 
-    handleValue(event, newValue);
+    handleValue(event, newValue, reason, { option });
     if (!disableCloseOnSelect) {
       handleClose(event);
     }
@@ -578,7 +581,7 @@ export default function useAutocomplete(props) {
       onInputChange(event, '', 'clear');
     }
 
-    handleValue(event, multiple ? [] : null);
+    handleValue(event, multiple ? [] : null, 'clear');
   };
 
   const handleKeyDown = other => event => {
@@ -640,7 +643,7 @@ export default function useAutocomplete(props) {
         if (highlightedIndexRef.current !== -1 && popupOpen) {
           // We don't want to validate the form.
           event.preventDefault();
-          selectNewValue(event, filteredOptions[highlightedIndexRef.current]);
+          selectNewValue(event, filteredOptions[highlightedIndexRef.current], 'select-option');
 
           // Move the selection to the end.
           if (autoComplete) {
@@ -654,7 +657,7 @@ export default function useAutocomplete(props) {
             // Allow people to add new values before they submit the form.
             event.preventDefault();
           }
-          selectNewValue(event, inputValue, 'freeSolo');
+          selectNewValue(event, inputValue, 'create-option', 'freeSolo');
         }
         break;
       case 'Escape':
@@ -677,7 +680,9 @@ export default function useAutocomplete(props) {
           const index = focusedTag === -1 ? value.length - 1 : focusedTag;
           const newValue = [...value];
           newValue.splice(index, 1);
-          handleValue(event, newValue);
+          handleValue(event, newValue, 'remove-option', {
+            option: value[index],
+          });
         }
         break;
       default:
@@ -706,9 +711,9 @@ export default function useAutocomplete(props) {
     }
 
     if (autoSelect && highlightedIndexRef.current !== -1 && popupOpen) {
-      selectNewValue(event, filteredOptions[highlightedIndexRef.current]);
+      selectNewValue(event, filteredOptions[highlightedIndexRef.current], 'blur');
     } else if (autoSelect && freeSolo && inputValue !== '') {
-      selectNewValue(event, inputValue, 'freeSolo');
+      selectNewValue(event, inputValue, 'blur', 'freeSolo');
     } else if (!freeSolo) {
       resetInputValue(event, value);
     }
@@ -729,7 +734,7 @@ export default function useAutocomplete(props) {
 
     if (newValue === '') {
       if (!disableClearable && !multiple) {
-        handleValue(event, null);
+        handleValue(event, null, 'clear');
       }
     } else {
       handleOpen(event);
@@ -749,7 +754,7 @@ export default function useAutocomplete(props) {
 
   const handleOptionClick = event => {
     const index = Number(event.currentTarget.getAttribute('data-option-index'));
-    selectNewValue(event, filteredOptions[index]);
+    selectNewValue(event, filteredOptions[index], 'select-option');
 
     if (
       blurOnSelect === true ||
@@ -765,7 +770,9 @@ export default function useAutocomplete(props) {
   const handleTagDelete = index => event => {
     const newValue = [...value];
     newValue.splice(index, 1);
-    handleValue(event, newValue);
+    handleValue(event, newValue, 'remove-option', {
+      option: value[index],
+    });
   };
 
   const handleListboxRef = useEventCallback(node => {
@@ -1050,6 +1057,7 @@ useAutocomplete.propTypes = {
    *
    * @param {object} event The event source of the callback
    * @param {any} value
+   * @param {string} reason One of "create-option", "select-option", "remove-option", "blur" or "clear"
    */
   onChange: PropTypes.func,
   /**

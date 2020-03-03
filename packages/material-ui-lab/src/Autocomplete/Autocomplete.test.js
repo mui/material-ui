@@ -1147,6 +1147,106 @@ describe('<Autocomplete />', () => {
     });
   });
 
+  describe('prop: onChange', () => {
+    it('provides a reason and details on option creation', () => {
+      const handleChange = spy();
+      const options = ['one', 'two', 'three'];
+      render(
+        <Autocomplete
+          freeSolo
+          onChange={handleChange}
+          options={options}
+          renderInput={params => <TextField {...params} autoFocus />}
+        />,
+      );
+      fireEvent.change(document.activeElement, { target: { value: options[2] } });
+      fireEvent.keyDown(document.activeElement, { key: 'Enter' });
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.equal(options[2]);
+      expect(handleChange.args[0][2]).to.equal('create-option');
+      expect(handleChange.args[0][3]).to.deep.equal({ option: options[2] });
+    });
+
+    it('provides a reason and details on option selection', () => {
+      const handleChange = spy();
+      const options = ['one', 'two', 'three'];
+      render(
+        <Autocomplete
+          onChange={handleChange}
+          options={options}
+          renderInput={params => <TextField {...params} autoFocus />}
+        />,
+      );
+      fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+      fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+      fireEvent.keyDown(document.activeElement, { key: 'Enter' });
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.equal(options[0]);
+      expect(handleChange.args[0][2]).to.equal('select-option');
+      expect(handleChange.args[0][3]).to.deep.equal({ option: options[0] });
+    });
+
+    it('provides a reason and details on option removing', () => {
+      const handleChange = spy();
+      const options = ['one', 'two', 'three'];
+      render(
+        <Autocomplete
+          multiple
+          onChange={handleChange}
+          value={options}
+          options={options}
+          renderInput={params => <TextField {...params} autoFocus />}
+        />,
+      );
+      fireEvent.keyDown(document.activeElement, { key: 'Backspace' });
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.deep.equal(options.slice(0, 2));
+      expect(handleChange.args[0][2]).to.equal('remove-option');
+      expect(handleChange.args[0][3]).to.deep.equal({ option: options[2] });
+    });
+
+    it('provides a reason and details on blur', () => {
+      const handleChange = spy();
+      const options = ['one', 'two', 'three'];
+      render(
+        <Autocomplete
+          autoSelect
+          onChange={handleChange}
+          options={options}
+          renderInput={params => <TextField {...params} autoFocus />}
+        />,
+      );
+      fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+      fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+      document.activeElement.blur();
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.equal(options[0]);
+      expect(handleChange.args[0][2]).to.equal('blur');
+      expect(handleChange.args[0][3]).to.deep.equal({ option: options[0] });
+    });
+
+    it('provides a reason and details on clear', () => {
+      const handleChange = spy();
+      const options = ['one', 'two', 'three'];
+      const { container } = render(
+        <Autocomplete
+          multiple
+          value={options}
+          onChange={handleChange}
+          options={options}
+          renderInput={params => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      const button = container.querySelector('button');
+      fireEvent.click(button);
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.deep.equal([]);
+      expect(handleChange.args[0][2]).to.equal('clear');
+      expect(handleChange.args[0][3]).to.equal(undefined);
+    });
+  });
+
   describe('prop: onInputChange', () => {
     it('provides a reason on input change', () => {
       const handleInputChange = spy();
