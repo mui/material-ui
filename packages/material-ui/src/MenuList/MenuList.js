@@ -61,8 +61,6 @@ function moveFocus(list, currentFocus, disableListWrap, traversalFunction, textC
     // Move to the next element.
     if (
       !nextFocus.hasAttribute('tabindex') ||
-      nextFocus.disabled ||
-      nextFocus.getAttribute('aria-disabled') === 'true' ||
       !textCriteriaMatches(nextFocus, textCriteria)
     ) {
       nextFocus = traversalFunction(list, nextFocus, disableListWrap);
