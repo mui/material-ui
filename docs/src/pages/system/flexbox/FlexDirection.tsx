@@ -9,18 +9,18 @@ export default function FlexDirection() {
           Item 1
         </Box>
         <Box p={1} bgcolor="grey.300">
-          Item 1
+          Item 2
         </Box>
         <Box p={1} bgcolor="grey.300">
-          Item 1
+          Item 3
         </Box>
       </Box>
       <Box display="flex" flexDirection="row-reverse" p={1} m={1} bgcolor="background.paper">
         <Box p={1} bgcolor="grey.300">
-          Item 1
+          Item 3
         </Box>
         <Box p={1} bgcolor="grey.300">
-          Item 1
+          Item 2
         </Box>
         <Box p={1} bgcolor="grey.300">
           Item 1
