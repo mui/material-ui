@@ -1178,6 +1178,7 @@ describe('<Autocomplete />', () => {
         />,
       );
       fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+      fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
       fireEvent.keyDown(document.activeElement, { key: 'Enter' });
       expect(handleChange.callCount).to.equal(1);
       expect(handleChange.args[0][1]).to.equal(options[0]);
@@ -1215,6 +1216,7 @@ describe('<Autocomplete />', () => {
           renderInput={params => <TextField {...params} autoFocus />}
         />,
       );
+      fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
       fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
       document.activeElement.blur();
       expect(handleChange.callCount).to.equal(1);
