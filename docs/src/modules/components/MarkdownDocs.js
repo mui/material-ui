@@ -117,6 +117,14 @@ function MarkdownDocs(props) {
   const prevPage = pageList[currentPageNum - 1];
   const nextPage = pageList[currentPageNum + 1];
 
+  // TODO: prevents crash of localized pages (e.g. /de/api/alert-tile) in IE11
+  // but unclear why
+  const getAddContainer = React.useCallback(() => {
+    const container = document.querySelector('.description');
+    container.classList.add('ad');
+    return container;
+  }, []);
+
   return (
     <AppFrame>
       <Head
@@ -124,13 +132,7 @@ function MarkdownDocs(props) {
         description={headers.description || getDescription(markdownDocs.markdown)}
       />
       {disableAd ? null : (
-        <Portal
-          container={() => {
-            const container = document.querySelector('.description');
-            container.classList.add('ad');
-            return container;
-          }}
-        >
+        <Portal container={getAddContainer}>
           <Ad />
         </Portal>
       )}
