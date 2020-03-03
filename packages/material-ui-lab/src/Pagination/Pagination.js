@@ -118,7 +118,7 @@ Pagination.propTypes = {
    *
    * For localization purposes, you can use the provided [translations](/guides/localization/).
    *
-   * @param {string} [type = page] The link or button type to format ('page' | 'first' | 'last' | 'next' | 'previous').
+   * @param {string} type The link or button type to format ('page' | 'first' | 'last' | 'next' | 'previous'). Defaults to 'page'.
    * @param {number} page The page number to format.
    * @param {bool} selected If true, the current page is selected.
    * @returns {string}
