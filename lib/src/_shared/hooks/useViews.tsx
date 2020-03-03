@@ -42,14 +42,14 @@ export function useViews({
   }, [nextView, setOpenView]);
 
   const handleChangeAndOpenNext = React.useCallback(
-    (date: MaterialUiPickersDate, isFinish?: boolean | symbol) => {
-      onChange(date, isFinish);
+    (date: MaterialUiPickersDate, isFinishedSelectionInCurrentView?: boolean | symbol) => {
+      onChange(date, Boolean(nextView) ? false : isFinishedSelectionInCurrentView);
 
-      if (isFinish) {
+      if (isFinishedSelectionInCurrentView) {
         openNext();
       }
     },
-    [onChange, openNext]
+    [nextView, onChange, openNext]
   );
 
   return {

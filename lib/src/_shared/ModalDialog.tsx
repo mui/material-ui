@@ -92,13 +92,13 @@ export const ModalDialog: React.FC<ModalDialogProps> = ({
         })}
       >
         {clearable && (
-          <Button color="primary" onClick={onClear}>
+          <Button data-mui-test="clear-action-button" color="primary" onClick={onClear}>
             {clearLabel}
           </Button>
         )}
 
         {showTodayButton && (
-          <Button color="primary" onClick={onSetToday}>
+          <Button data-mui-test="today-action-button" color="primary" onClick={onSetToday}>
             {todayLabel}
           </Button>
         )}

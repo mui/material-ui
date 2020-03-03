@@ -57,4 +57,24 @@ describe('DatePicker - different props', () => {
 
     expect(component.find('h4[data-mui-test="datepicker-toolbar-date"]').text()).toBe('January');
   });
+
+  it('showTodayLabel – accept current date when "today" button is clicked', () => {
+    const onCloseMock = jest.fn();
+    const onChangeMock = jest.fn();
+    const component = mount(
+      <MobileDatePicker
+        autoOk
+        showTodayButton
+        onClose={onCloseMock}
+        onChange={onChangeMock}
+        value={utilsToUse.date('2018-01-01T00:00:00.000Z')}
+      />
+    );
+
+    component.find('input').simulate('click');
+    component.find('button[data-mui-test="today-action-button"]').simulate('click');
+
+    expect(onCloseMock).toHaveBeenCalled();
+    expect(onChangeMock).toHaveBeenCalled();
+  });
 });
