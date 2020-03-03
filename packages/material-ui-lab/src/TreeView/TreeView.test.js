@@ -174,16 +174,16 @@ describe('<TreeView />', () => {
     expect(getByTestId('two')).to.have.focus;
   });
 
-  it('should support conditional rendered tree items', () => {
+  it('should not error when tree items is conditionally rendered', () => {
     function TestComponent() {
       const [hide, setState] = React.useState(false);
 
       return (
         <React.Fragment>
-          <button type="button" onClick={() => setState(true)}>
+          <button type="button" onClick={() => setState(value => !value)}>
             Hide
           </button>
-          <TreeView>{!hide && <TreeItem nodeId="test" label="test" />}</TreeView>
+          <TreeView>{!hide && <TreeItem nodeId="test" label="test" data-testid="test" />}</TreeView>
         </React.Fragment>
       );
     }
@@ -193,6 +193,8 @@ describe('<TreeView />', () => {
     expect(getByText('test')).to.not.be.null;
     fireEvent.click(getByText('Hide'));
     expect(queryByText('test')).to.be.null;
+    fireEvent.click(getByText('Hide'));
+    expect(getByText('test')).to.not.be.null;
   });
 
   describe('onNodeToggle', () => {

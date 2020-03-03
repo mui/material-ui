@@ -91,6 +91,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     icon: iconProp,
     label,
     nodeId,
+    onBlur,
     onClick,
     onFocus,
     onKeyDown,
@@ -103,6 +104,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
   const {
     icons: contextIcons,
     focus,
+    unfocus,
     focusFirstNode,
     focusLastNode,
     focusNextNode,
@@ -337,6 +339,16 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     }
   };
 
+  const handleBlur = event => {
+    if (focused) {
+      unfocus(event, nodeId);
+    }
+
+    if (onBlur) {
+      onBlur(event);
+    }
+  };
+
   React.useEffect(() => {
     const childIds = React.Children.map(children, child => child.props.nodeId) || [];
     if (addNodeToNodeMap) {
@@ -374,6 +386,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
       role="treeitem"
       onKeyDown={handleKeyDown}
       onFocus={handleFocus}
+      onBlur={handleBlur}
       aria-expanded={expandable ? expanded : null}
       aria-selected={!selectionDisabled && isSelected ? isSelected(nodeId) : undefined}
       ref={handleRef}
@@ -449,6 +462,10 @@ TreeItem.propTypes = {
    * The id of the node.
    */
   nodeId: PropTypes.string.isRequired,
+  /**
+   * @ignore
+   */
+  onBlur: PropTypes.func,
   /**
    * @ignore
    */

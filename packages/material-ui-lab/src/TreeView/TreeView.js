@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import TreeViewContext from './TreeViewContext';
 import { withStyles } from '@material-ui/core/styles';
-import { useControlled } from '@material-ui/core/utils';
+import { useControlled, useForkRef } from '@material-ui/core/utils';
 
 export const styles = {
   /* Styles applied to the root element. */
@@ -58,6 +58,8 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
   const [tabbable, setTabbable] = React.useState(null);
   const [focused, setFocused] = React.useState(null);
 
+  const treeRef = React.useRef(null);
+  const handleRef = useForkRef(treeRef, ref);
   const nodeMap = React.useRef({});
   const firstCharMap = React.useRef({});
   const visibleNodes = React.useRef([]);
@@ -133,6 +135,12 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     }
   };
 
+  const unfocus = (event, id) => {
+    if (!treeRef.current.contains(event.relatedTarget) && isFocused(id)) {
+      setFocused(null);
+    }
+  };
+
   const focusNextNode = id => focus(getNextNode(id));
   const focusPreviousNode = id => focus(getPreviousNode(id));
   const focusFirstNode = () => focus(getFirstNode());
@@ -183,6 +191,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
 
   const toggleExpansion = (event, value = focused) => {
     let newExpanded;
+    console.log(value, expanded);
     if (expanded.indexOf(value) !== -1) {
       newExpanded = expanded.filter(id => id !== value);
       setTabbable(oldTabbable => {
@@ -193,7 +202,11 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
         return oldTabbable;
       });
     } else {
-      newExpanded = [value, ...expanded];
+      if (value) {
+        newExpanded = [value, ...expanded];
+      } else {
+        newExpanded = [...expanded];
+      }
     }
 
     if (onNodeToggle) {
@@ -480,13 +493,14 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     if (childrenCalculated) {
       visibleNodes.current = buildVisible(nodeMap.current[-1].children);
     }
-  }, [expanded, childrenCalculated, isExpanded]);
+  }, [expanded, childrenCalculated, isExpanded, children]);
 
   return (
     <TreeViewContext.Provider
       value={{
         icons: { defaultCollapseIcon, defaultExpandIcon, defaultParentIcon, defaultEndIcon },
         focus,
+        unfocus,
         focusFirstNode,
         focusLastNode,
         focusNextNode,
@@ -517,7 +531,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
         role="tree"
         aria-multiselectable={multiSelect}
         className={clsx(classes.root, className)}
-        ref={ref}
+        ref={handleRef}
         {...other}
       >
         {children}

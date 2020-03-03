@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
-import { createEvent, createClientRender, fireEvent } from 'test/utils/createClientRender';
+import { createEvent, createClientRender, fireEvent, act } from 'test/utils/createClientRender';
 import TreeItem from './TreeItem';
 import TreeView from '../TreeView';
 
@@ -129,6 +129,48 @@ describe('<TreeItem />', () => {
     getByTestId('test').focus();
 
     expect(handleFocus.callCount).to.equal(1);
+  });
+
+  it('should not steal focus when conditionally rendered', () => {
+    function TestComponent() {
+      const [hide, setState] = React.useState(false);
+
+      return (
+        <React.Fragment>
+          <button type="button" onClick={() => setState(value => !value)}>
+            Hide
+          </button>
+          <TreeView>{!hide && <TreeItem nodeId="test" label="test" data-testid="test" />}</TreeView>
+        </React.Fragment>
+      );
+    }
+
+    const { getByText, queryByText, getByTestId } = render(<TestComponent />);
+
+    fireEvent.click(getByText('test'));
+    expect(getByText('test')).to.not.be.null;
+    fireEvent.click(getByText('Hide'));
+    getByText('Hide').focus();
+    expect(queryByText('test')).to.be.null;
+    fireEvent.click(getByText('Hide'));
+    getByText('Hide').focus();
+    expect(getByText('test')).to.not.be.null;
+    expect(getByTestId('test')).to.not.have.focus;
+  });
+
+  it('should call onBlur when blurred', () => {
+    const handleBlur = spy();
+
+    const { getByTestId } = render(
+      <TreeView>
+        <TreeItem nodeId="test" label="test" data-testid="test" onBlur={handleBlur} />
+      </TreeView>,
+    );
+
+    getByTestId('test').focus();
+    getByTestId('test').blur();
+
+    expect(handleBlur.callCount).to.equal(1);
   });
 
   it('should call onKeyDown when a key is pressed', () => {
@@ -616,6 +658,40 @@ describe('<TreeItem />', () => {
           expect(getByTestId('three')).to.have.focus;
 
           fireEvent.keyDown(document.activeElement, { key: 't' });
+          expect(getByTestId('two')).to.have.focus;
+        });
+
+        it('works after conditional rendering', () => {
+          function TestComponent() {
+            const [hide, setState] = React.useState(false);
+
+            return (
+              <React.Fragment>
+                <button type="button" onClick={() => setState(value => !value)}>
+                  Hide
+                </button>
+                <TreeView defaultExpanded={['one']}>
+                  {!hide && (
+                    <TreeItem nodeId="one" label="one" data-testid="one">
+                      <TreeItem nodeId="two" label="two" data-testid="two" />
+                    </TreeItem>
+                  )}
+                  <TreeItem nodeId="three" label="three" />
+                </TreeView>
+              </React.Fragment>
+            );
+          }
+
+          const { getByText, queryByText, getByTestId } = render(<TestComponent />);
+
+          expect(getByText('one')).to.not.be.null;
+          fireEvent.click(getByText('Hide'));
+          expect(queryByText('one')).to.be.null;
+          fireEvent.click(getByText('Hide'));
+          expect(getByText('one')).to.not.be.null;
+          getByTestId('one').focus();
+          fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+
           expect(getByTestId('two')).to.have.focus;
         });
       });
