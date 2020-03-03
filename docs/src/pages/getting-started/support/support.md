@@ -2,7 +2,7 @@
 
 <p class="description">From community help to premium critical business support, we’re here to help.</p>
 
-## Community help
+## Community help (free)
 
 The community is your first stop for questions and advice about the framework. Welcome to the community!
 
@@ -63,44 +63,7 @@ The current status of each Material-UI version is as follows:
 
 For teams and organizations that require additional support for older versions, Material-UI has [options available](#enterprise).
 
-## Professional support (Premium)
-
-### Enterprise Edition
-
-Accelerate your company’s application development with a secure, long-term solution that’s optimized for enterprise and backed by Material-UI experts.
-
-- **Long Term version support.** LTS provides developers and organizations with additional stability and reliability in the applications they’re developing, including guaranteed service level agreements (SLAs) and advisory services. Take the time you need before upgrading to the latest active version of Material-UI, or remain confident in your application’s long-term supportability by staying on whichever version you’re most comfortable with. LTS is available as a paid service, it extends to Material-UI v1 implementations and higher.
-- **Version migration assistance**.
-- **Priority fixes**.
-- **Priority support**. Timely support and troubleshooting when you need it most. Get expert help directly from the Material-UI team with guaranteed response times (next business day).
-
-For more information, [get a quote](mailto:enterprise@material-ui.com) from our team.
-
-### Advisory
-
-Supercharge your team’s development with Material-UI Advisory Services:
-
-#### Developer Advisory
-
-Everything your team needs to make sure you’re using React in the best way as you evaluate and build on Material-UI.
-
-- A private, dedicated Slack channel with access to our consultants.
-  Get real-time advice, guidance, and feedback when you need it, with live Slack access and direct private chat with Material-UI’s expert technical team.
-- An initial review of your architecture and development workflow.
-- Guidance on best practices that will help you take full advantage of Material-UI and prevent avoidable mistakes.
-
-[Get a quote](mailto:advisory@material-ui.com)
-
-#### Enterprise Advisory
-
-A complete support package, for teams using Material-UI for critical business applications and organizations deploying Material-UI across multiple teams.
-
-- Includes "Developer Advisory" scaled to your entire scope of work.
-- A designated Technical Account Manager who understands your business requirements and proactively makes sure you’re getting everything you need.
-- A designated remote consultant who works with your team through every phase of development.
-- Regular, scheduled reviews.
-
-[Get a quote](mailto:advisory@material-ui.com)
+## Professional support (premium)
 
 ### Tidelift subscription <img src="/static/images/logos/tidelift.svg" width="24" height="24" alt="Tidelift logo" loading="lazy" />
 
@@ -122,16 +85,3 @@ The end result? All of the capabilities you expect from commercial-grade softwar
 
 [Request a demo](https://tidelift.com/subscription/request-a-demo?utm_source=material_ui&utm_medium=referral&utm_campaign=enterprise)
 
-### Custom work 🛠
-
-Tweak Material-UI to meet specific requirements. Give us a summary of your needs; We'll help you if I can. We might:
-
-- Give you an estimate of time and price if the work is straightforward
-- Suggest alternatives that might not require Material-UI
-- Decline the work due to timing or relevancy
-
-Note that work must be Material-UI related.
-We don't accept general React development work.
-Our contracting price is $200/hour or $1,500/day.
-
-[Send us an email](mailto:custom-work@material-ui.com)
