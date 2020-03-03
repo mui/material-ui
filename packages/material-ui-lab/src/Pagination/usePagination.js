@@ -1,7 +1,7 @@
 import { useControlled } from '@material-ui/core/utils';
 
 export default function usePagination(props = {}) {
-  // keep default values in sync with @defaul tags in Pagination.propTypes
+  // keep default values in sync with @default tags in Pagination.propTypes
   const {
     boundaryCount: boundaryCountProp = 1,
     componentName = 'usePagination',
