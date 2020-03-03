@@ -431,8 +431,8 @@ export default function useAutocomplete(props) {
     setValue(newValue);
   };
 
-  const selectNewValue = (event, option, origin = 'options') => {
-    let reason = 'select-option';
+  const selectNewValue = (event, option, reasonProp = 'select-option', origin = 'options') => {
+    let reason = reasonProp;
     let newValue = option;
 
     if (multiple) {
@@ -587,7 +587,7 @@ export default function useAutocomplete(props) {
         if (highlightedIndexRef.current !== -1 && popupOpen) {
           // We don't want to validate the form.
           event.preventDefault();
-          selectNewValue(event, filteredOptions[highlightedIndexRef.current]);
+          selectNewValue(event, filteredOptions[highlightedIndexRef.current], 'select-option');
 
           // Move the selection to the end.
           if (autoComplete) {
@@ -601,7 +601,7 @@ export default function useAutocomplete(props) {
             // Allow people to add new values before they submit the form.
             event.preventDefault();
           }
-          selectNewValue(event, inputValue, 'freeSolo');
+          selectNewValue(event, inputValue, 'create-option', 'freeSolo');
         }
         break;
       case 'Escape':
@@ -655,7 +655,9 @@ export default function useAutocomplete(props) {
     }
 
     if (autoSelect && selectedIndexRef.current !== -1) {
-      handleValue(event, filteredOptions[selectedIndexRef.current], 'blur');
+      handleValue(event, filteredOptions[selectedIndexRef.current], 'blur', {
+        option: filteredOptions[selectedIndexRef.current]
+      });
     } else if (!freeSolo) {
       resetInputValue(event, value);
     }
@@ -700,7 +702,7 @@ export default function useAutocomplete(props) {
 
   const handleOptionClick = event => {
     const index = Number(event.currentTarget.getAttribute('data-option-index'));
-    selectNewValue(event, filteredOptions[index]);
+    selectNewValue(event, filteredOptions[index], 'select-option');
 
     if (
       blurOnSelect === true ||
