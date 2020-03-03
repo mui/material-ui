@@ -133,7 +133,7 @@ export default function useAutocomplete(props) {
   const defaultHighlighted = autoHighlight ? 0 : -1;
   const highlightedIndexRef = React.useRef(defaultHighlighted);
 
-  function setHighlightedIndex(index, mouse = false) {
+  const setHighlightedIndex = useEventCallback((index, mouse = false) => {
     highlightedIndexRef.current = index;
     // does the index exist?
     if (index === -1) {
@@ -190,7 +190,7 @@ export default function useAutocomplete(props) {
         listboxNode.scrollTop = element.offsetTop - element.offsetHeight * (groupBy ? 1.3 : 0);
       }
     }
-  }
+  });
 
   const [value, setValue] = useControlled({
     controlled: valueProp,
@@ -323,7 +323,7 @@ export default function useAutocomplete(props) {
     }
   }
 
-  const changeHighlightedIndex = (diff, direction) => {
+  const changeHighlightedIndex = useEventCallback((diff, direction) => {
     if (!popupOpen) {
       return;
     }
@@ -390,11 +390,47 @@ export default function useAutocomplete(props) {
         }
       }
     }
-  };
+  });
 
   React.useEffect(() => {
-    changeHighlightedIndex('reset', 'next');
-  }, [inputValue]); // eslint-disable-line react-hooks/exhaustive-deps
+    if (!open) {
+      return;
+    }
+
+    const valueItem = multiple ? value[0] : value;
+
+    // The popup is empty
+    if (filteredOptions.length === 0 || valueItem == null) {
+      changeHighlightedIndex('reset', 'next');
+      return;
+    }
+
+    // Synchronize the value with the highlighted index
+    if (!filterSelectedOptions && valueItem != null) {
+      const itemIndex = findIndex(filteredOptions, optionItem =>
+        getOptionSelected(optionItem, valueItem),
+      );
+
+      setHighlightedIndex(itemIndex);
+      return;
+    }
+
+    // Keep the index in the boundaries
+    if (highlightedIndexRef.current >= filteredOptions.length - 1) {
+      setHighlightedIndex(filteredOptions.length - 1);
+    }
+
+    // Ignore filterOptions => options, getOptionSelected, getOptionLabel)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    value,
+    open,
+    filterSelectedOptions,
+    changeHighlightedIndex,
+    setHighlightedIndex,
+    inputValue,
+    multiple,
+  ]);
 
   const handleOpen = event => {
     if (open) {
