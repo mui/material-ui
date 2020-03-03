@@ -29,4 +29,14 @@ describe('<Pagination />', () => {
 
     expect(container.firstChild).to.have.class(classes.root);
   });
+
+  it('moves aria-current the the specified page', () => {
+    const { container, getAllByRole } = render(<Pagination count={3} page={1} />);
+
+    // previous, page 1
+    const [, page1] = getAllByRole('button');
+    expect(page1).to.have.attribute('aria-current', 'true');
+    // verifying no regression from previous bug where `page` wasn't intercepted
+    expect(container.querySelector('[page]')).to.be.null;
+  });
 });
