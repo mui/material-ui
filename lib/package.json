@@ -79,7 +79,6 @@
     "@cypress/webpack-preprocessor": "^4.1.1",
     "@material-ui/core": "^4.9.3",
     "@material-ui/icons": "^3.0.2",
-    "@material-ui/styles": "^4.8.2",
     "@types/enzyme": "^3.10.5",
     "@types/enzyme-adapter-react-16": "^1.0.3",
     "@types/fs-extra": "^5.0.4",

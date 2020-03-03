@@ -1,4 +1,3 @@
-import { StylesHook } from '@material-ui/styles/makeStyles';
 import { useStyles as DayStyles } from '../views/Calendar/Day';
 import { useStyles as ClockStyles } from '../views/Clock/Clock';
 import { useStyles as MuiBasePickerStyles } from '../Picker/Picker';
@@ -15,19 +14,21 @@ import { useStyles as DTTabsStyles } from '../DateTimePicker/DateTimePickerTabs'
 import { useStyles as MuiPickersToolbarTextStyles } from '../_shared/ToolbarText';
 import { useStyles as DatePickerRootStyles } from '../DatePicker/DatePickerToolbar';
 import { useStyles as CalendarHeaderStyles } from '../views/Calendar/CalendarHeader';
+import { StyleRules, StyleRulesCallback } from '@material-ui/core/styles/withStyles';
 import { useStyles as DTHeaderStyles } from '../DateTimePicker/DateTimePickerToolbar';
 import { useStyles as TimePickerToolbarStyles } from '../TimePicker/TimePickerToolbar';
 import { useStyles as SlideTransitionStyles } from '../views/Calendar/SlideTransition';
 import { useStyles as MuiPickersYearSelectionStyles } from '../views/Calendar/YearSelection';
-import { StyleRules, StyleRulesCallback, Styles } from '@material-ui/core/styles/withStyles';
 import { useStyles as MuiPickersMonthSelectionStyles } from '../views/Calendar/MonthSelection';
 import { useStyles as MuiPickerDTToolbarStyles } from '../DateTimePicker/DateTimePickerToolbar';
+
+type StylesHook<C extends string> = (props?: any) => Record<C, string>
 
 type Classes<T> = Partial<
   StyleRules<
     T extends string
       ? T
-      : T extends StylesHook<Styles<any, any, infer C>>
+      : T extends StylesHook<infer C>
       ? C
       : T extends StyleRulesCallback<any, any, infer K>
       ? K
