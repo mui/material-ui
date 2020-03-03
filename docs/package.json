@@ -21,7 +21,7 @@
     "@date-io/hijri": "^2.2.0",
     "@date-io/jalaali": "^2.0.0",
     "@mapbox/rehype-prism": "^0.3.1",
-    "@material-ui/core": "^4.5.1",
+    "@material-ui/core": "^4.9.3",
     "@material-ui/icons": "^3.0.2",
     "@material-ui/pickers": "^4.0.0-alpha.1",
     "@types/fuzzy-search": "^2.1.0",
