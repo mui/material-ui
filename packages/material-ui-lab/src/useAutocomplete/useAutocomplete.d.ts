@@ -163,6 +163,10 @@ export interface UseAutocompleteCommonProps<T> {
   selectOnFocus?: boolean;
 }
 
+export type ChangeReason = 'create-option' | 'select-option' | 'remove-option' | 'clear' | 'blur';
+export interface ChangeDetails<T = string> {
+  option: T;
+}
 export interface UseAutocompleteMultipleProps<T> extends UseAutocompleteCommonProps<T> {
   /**
    * If `true`, `value` must be an array and the menu will support multiple selections.
@@ -185,7 +189,7 @@ export interface UseAutocompleteMultipleProps<T> extends UseAutocompleteCommonPr
    * @param {object} event The event source of the callback.
    * @param {T[]} value
    */
-  onChange?: (event: React.ChangeEvent<{}>, value: T[]) => void;
+  onChange?: (event: React.ChangeEvent<{}>, value: T[], reason: ChangeReason, details?: ChangeDetails<T>) => void;
 }
 
 export interface UseAutocompleteSingleProps<T> extends UseAutocompleteCommonProps<T> {
@@ -210,7 +214,7 @@ export interface UseAutocompleteSingleProps<T> extends UseAutocompleteCommonProp
    * @param {object} event The event source of the callback.
    * @param {T} value
    */
-  onChange?: (event: React.ChangeEvent<{}>, value: T | null) => void;
+  onChange?: (event: React.ChangeEvent<{}>, value: T | null, reason: ChangeReason, details?: ChangeDetails<T>) => void;
 }
 
 export type UseAutocompleteProps<T> =
