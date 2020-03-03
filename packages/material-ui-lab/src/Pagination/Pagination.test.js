@@ -32,7 +32,7 @@ describe('<Pagination />', () => {
     expect(container.firstChild).to.have.class(classes.root);
   });
 
-  it('moves aria-current the the specified page', () => {
+  it('moves aria-current to the specified page', () => {
     const { container, getAllByRole } = render(<Pagination count={3} page={1} />);
 
     // previous, page 1
