@@ -1,4 +1,4 @@
-import { assert } from 'chai';
+import { expect } from 'chai';
 import { createFilterOptions } from './useAutocomplete';
 
 describe('createFilterOptions', () => {
@@ -21,6 +21,6 @@ describe('createFilterOptions', () => {
       },
     ];
 
-    assert.deepEqual(filterOptions(options, { inputValue: 'a', getOptionLabel }), [options[0]]);
+    expect(filterOptions(options, { inputValue: 'a', getOptionLabel })).to.deep.equal([options[0]]);
   });
 });
