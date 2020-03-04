@@ -98,7 +98,13 @@ async function getNextPagesSize() {
   return Array.from(matchAll(consoleOutput, pageRegex), match => {
     const { pageUrl, sizeFormatted, sizeUnit } = match.groups;
 
-    const snapshotId = `docs:${pageUrl}`;
+    let snapshotId = `docs:${pageUrl}`;
+    // used to be tracked with custom logic hence the different ids
+    if (pageUrl === '/') {
+      snapshotId = 'docs.main';
+    } else if (pageUrl === '/_app') {
+      snapshotId = 'docs.main';
+    }
     return [
       snapshotId,
       {
@@ -111,7 +117,6 @@ async function getNextPagesSize() {
 
 async function run() {
   const rollupBundles = [path.join(workspaceRoot, 'packages/material-ui/size-snapshot.json')];
-
   const bundleSizes = lodash.fromPairs([
     ...(await getWebpackSizes()),
     ...lodash.flatten(await Promise.all(rollupBundles.map(getRollupSize))),
