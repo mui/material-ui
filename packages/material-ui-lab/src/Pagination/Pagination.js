@@ -27,31 +27,29 @@ function defaultGetAriaLabel(type, page, selected) {
 }
 
 const Pagination = React.forwardRef(function Pagination(props, ref) {
-  /* eslint-disable no-unused-vars */
   const {
-    boundaryCount = 1,
+    boundaryCount,
     children,
     classes,
     className,
     color = 'standard',
-    count = 1,
-    defaultPage = 1,
-    disabled = false,
+    count,
+    defaultPage,
+    disabled,
     getItemAriaLabel: getAriaLabel = defaultGetAriaLabel,
-    hideNextButton = false,
-    hidePrevButton = false,
+    hideNextButton,
+    hidePrevButton,
     onChange,
     page,
     renderItem = item => <PaginationItem {...item} />,
     shape = 'round',
-    showFirstButton = false,
-    showLastButton = false,
-    siblingCount = 1,
+    showFirstButton,
+    showLastButton,
+    siblingCount,
     size = 'medium',
     variant = 'text',
     ...other
   } = props;
-  /* eslint-enable no-unused-vars */
 
   const { items } = usePagination({ ...props, componentName: 'Pagination' });
 
@@ -81,9 +79,11 @@ const Pagination = React.forwardRef(function Pagination(props, ref) {
   );
 });
 
+// @default tags synced with default values from usePagination
 Pagination.propTypes = {
   /**
    * Number of always visible pages at the beginning and end.
+   * @default 1
    */
   boundaryCount: PropTypes.number,
   /**
@@ -105,14 +105,17 @@ Pagination.propTypes = {
   color: PropTypes.oneOf(['default', 'primary', 'secondary']),
   /**
    * The total number of pages.
+   * @default 1
    */
   count: PropTypes.number,
   /**
    * The page selected by default when the component is uncontrolled.
+   * @default 1
    */
   defaultPage: PropTypes.number,
   /**
    * If `true`, all the pagination component will be disabled.
+   * @default false
    */
   disabled: PropTypes.bool,
   /**
@@ -128,10 +131,12 @@ Pagination.propTypes = {
   getItemAriaLabel: PropTypes.func,
   /**
    * If `true`, hide the next-page button.
+   * @default false
    */
   hideNextButton: PropTypes.bool,
   /**
    * If `true`, hide the previous-page button.
+   * @default false
    */
   hidePrevButton: PropTypes.bool,
   /**
@@ -158,14 +163,17 @@ Pagination.propTypes = {
   shape: PropTypes.oneOf(['round', 'rounded']),
   /**
    * If `true`, show the first-page button.
+   * @default false
    */
   showFirstButton: PropTypes.bool,
   /**
    * If `true`, show the last-page button.
+   * @default false
    */
   showLastButton: PropTypes.bool,
   /**
    * Number of always visible pages before and after the current page.
+   * @default 1
    */
   siblingCount: PropTypes.number,
   /**
