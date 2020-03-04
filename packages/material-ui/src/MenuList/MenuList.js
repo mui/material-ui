@@ -58,13 +58,13 @@ function moveFocus(list, currentFocus, disableListWrap, traversalFunction, textC
       }
       wrappedOnce = true;
     }
-    // Move to the next element.
-    if (!nextFocus.hasAttribute('tabindex') || !textCriteriaMatches(nextFocus, textCriteria)) {
-      nextFocus = traversalFunction(list, nextFocus, disableListWrap);
-    } else {
+    if (nextFocus.hasAttribute('tabindex') && textCriteriaMatches(nextFocus, textCriteria)) {
       nextFocus.focus();
       return true;
     }
+
+    // Move to the next element.
+    nextFocus = traversalFunction(list, nextFocus, disableListWrap);
   }
 
   return false;
