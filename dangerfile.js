@@ -90,22 +90,6 @@ function formatDiff(absoluteChange, relativeChange) {
   )})`;
 }
 
-function computeBundleLabel(bundleId) {
-  if (bundleId === 'packages/material-ui/build/umd/material-ui.production.min.js') {
-    return '@material-ui/core[umd]';
-  }
-  if (bundleId === '@material-ui/core/Textarea') {
-    return 'TextareaAutosize';
-  }
-  if (bundleId === 'docs.main') {
-    return 'docs:/_app';
-  }
-  if (bundleId === 'docs.landing') {
-    return 'docs:/';
-  }
-  return bundleId.replace(/^@material-ui\/core\//, '').replace(/\.esm$/, '');
-}
-
 /**
  * Generates a Markdown table
  * @param {{ label: string, align: 'left' | 'center' | 'right'}[]} headers
@@ -135,7 +119,15 @@ function generateEmphasizedChange([bundle, { parsed, gzip }]) {
   return `**${bundle}**: parsed: ${changeParsed}, gzip: ${changeGzip}`;
 }
 
-function createComparisonTable(entries) {
+/**
+ *
+ * @param {[string, object][]} entries
+ * @param {object} options
+ * @param {function (string): string} options.computeBundleLabel
+ */
+function createComparisonTable(entries, options) {
+  const { computeBundleLabel } = options;
+
   return generateMDTable(
     [
       { label: 'bundle' },
@@ -228,8 +220,30 @@ async function run() {
       markdown(importantChanges.join('\n'));
     }
 
-    const mainDetailsTable = createComparisonTable(mainResults);
-    const pageDetailsTable = createComparisonTable(pageResults);
+    const mainDetailsTable = createComparisonTable(mainResults, {
+      computeBundleLabel: bundleId => {
+        if (bundleId === 'packages/material-ui/build/umd/material-ui.production.min.js') {
+          return '@material-ui/core[umd]';
+        }
+        if (bundleId === '@material-ui/core/Textarea') {
+          return 'TextareaAutosize';
+        }
+        if (bundleId === 'docs.main') {
+          return 'docs:/_app';
+        }
+        if (bundleId === 'docs.landing') {
+          return 'docs:/';
+        }
+        return bundleId.replace(/^@material-ui\/core\//, '').replace(/\.esm$/, '');
+      },
+    });
+    const pageDetailsTable = createComparisonTable(pageResults, {
+      computeBundleLabel: bundleId => {
+        const host = `https://deploy-preview-${danger.github.pr.number}--material-ui.netlify.com`;
+        const page = bundleId.replace(/^docs:/, '');
+        return `[${page}](${host}${page})`;
+      },
+    });
 
     const details = `
   <details>
