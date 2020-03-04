@@ -65,22 +65,10 @@ function StyledRadio(props) {
 }
 
 export default function CustomizedRadios() {
-  const [value, setValue] = React.useState('female');
-
-  const handleChange = event => {
-    setValue(event.target.value);
-  };
-
   return (
     <FormControl component="fieldset">
       <FormLabel component="legend">Gender</FormLabel>
-      <RadioGroup
-        defaultValue="female"
-        aria-label="gender"
-        name="customized-radios"
-        value={value}
-        onChange={handleChange}
-      >
+      <RadioGroup defaultValue="female" aria-label="gender" name="customized-radios">
         <FormControlLabel value="female" control={<StyledRadio />} label="Female" />
         <FormControlLabel value="male" control={<StyledRadio />} label="Male" />
         <FormControlLabel value="other" control={<StyledRadio />} label="Other" />
