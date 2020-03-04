@@ -2160,9 +2160,9 @@
   dependencies:
     defer-to-connect "^1.0.1"
 
-"@testing-library/dom@beta", "@testing-library/dom@https://pkg.csb.dev/testing-library/dom-testing-library/commit/da3f39cf/@testing-library/dom":
+"@testing-library/dom@beta", "@testing-library/dom@https://pkg.csb.dev/testing-library/dom-testing-library/commit/d1d55f42/@testing-library/dom":
   version "0.0.0-semantically-released"
-  resolved "https://pkg.csb.dev/testing-library/dom-testing-library/commit/da3f39cf/@testing-library/dom#45b825420aebdcc51d5dc4499acaeb93b9ba2d51"
+  resolved "https://pkg.csb.dev/testing-library/dom-testing-library/commit/d1d55f42/@testing-library/dom#cfaaac91a78354847a9b3d7615314a978249f56b"
   dependencies:
     "@babel/runtime" "^7.8.4"
     "@types/testing-library__dom" "^6.12.1"

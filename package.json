@@ -154,7 +154,7 @@
     "**/@babel/preset-react": "^7.8.3",
     "**/@babel/runtime-corejs2": "^7.8.4",
     "**/@babel/runtime": "^7.8.4",
-    "**/@testing-library/dom": "https://pkg.csb.dev/testing-library/dom-testing-library/commit/da3f39cf/@testing-library/dom",
+    "**/@testing-library/dom": "https://pkg.csb.dev/testing-library/dom-testing-library/commit/d1d55f42/@testing-library/dom",
     "**/hoist-non-react-statics": "^3.3.2",
     "**/next/terser": "^4.1.2"
   },
