@@ -104,6 +104,7 @@ function getDependencies(raw, options = {}) {
     '@material-ui/styles': 'latest',
     '@material-ui/system': 'latest',
     '@material-ui/utils': 'latest',
+    // TODO: remove once @material-ui/pickers v4 is released.
     '@date-io/date-fns': 'v1',
   };
 
