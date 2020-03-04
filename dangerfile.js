@@ -249,13 +249,13 @@ async function run() {
   <details>
   <summary>Details of bundle changes.</summary>
 
+  <p>Comparing: ${commitRange}</p>
+
   <details>
   <summary>Details of page changes</summary>
 
   ${pageDetailsTable}
   </details>
-
-  <p>Comparing: ${commitRange}</p>
 
   ${mainDetailsTable}
 
