@@ -97,6 +97,12 @@ function computeBundleLabel(bundleId) {
   if (bundleId === '@material-ui/core/Textarea') {
     return 'TextareaAutosize';
   }
+  if (bundleId === 'docs.main') {
+    return 'docs:/_app';
+  }
+  if (bundleId === 'docs.landing') {
+    return 'docs:/';
+  }
   return bundleId.replace(/^@material-ui\/core\//, '').replace(/\.esm$/, '');
 }
 
@@ -129,6 +135,66 @@ function generateEmphasizedChange([bundle, { parsed, gzip }]) {
   return `**${bundle}**: parsed: ${changeParsed}, gzip: ${changeGzip}`;
 }
 
+function createComparisonTable(entries) {
+  return generateMDTable(
+    [
+      { label: 'bundle' },
+      { label: 'Size Change', align: 'right' },
+      { label: 'Size', align: 'right' },
+      { label: 'Gzip Change', align: 'right' },
+      { label: 'Gzip', align: 'right' },
+    ],
+    entries
+      .map(([bundleId, size]) => [computeBundleLabel(bundleId), size])
+      // orderBy(|parsedDiff| DESC, |gzipDiff| DESC, name ASC)
+      .sort(([labelA, statsA], [labelB, statsB]) => {
+        const compareParsedDiff =
+          Math.abs(statsB.parsed.absoluteDiff) - Math.abs(statsA.parsed.absoluteDiff);
+        const compareGzipDiff =
+          Math.abs(statsB.gzip.absoluteDiff) - Math.abs(statsA.gzip.absoluteDiff);
+        const compareName = labelA.localeCompare(labelB);
+
+        if (compareParsedDiff === 0 && compareGzipDiff === 0) {
+          return compareName;
+        }
+        if (compareParsedDiff === 0) {
+          return compareGzipDiff;
+        }
+        return compareParsedDiff;
+      })
+      .map(([label, { parsed, gzip }]) => {
+        return [
+          label,
+          formatDiff(parsed.absoluteDiff, parsed.relativeDiff),
+          prettyBytes(parsed.current),
+          formatDiff(gzip.absoluteDiff, gzip.relativeDiff),
+          prettyBytes(gzip.current),
+        ];
+      }),
+  );
+}
+
+/**
+ * Puts results in different buckets wh
+ * @param {*} results
+ */
+function sieveResults(results) {
+  const main = [];
+  const pages = [];
+
+  results.forEach(entry => {
+    const [bundleId] = entry;
+
+    if (bundleId.startsWith('docs:')) {
+      pages.push(entry);
+    } else {
+      main.push(entry);
+    }
+  });
+
+  return { all: results, main, pages };
+}
+
 async function run() {
   // Use git locally to grab the commit which represents the place
   // where the branches differ
@@ -145,11 +211,14 @@ async function run() {
   const commitRange = `${mergeBaseCommit}...${danger.github.pr.head.sha}`;
 
   const comparison = await loadComparison(mergeBaseCommit, upstreamRef);
-  const results = Object.entries(comparison.bundles);
-  const anyResultsChanges = results.filter(createComparisonFilter(1, 1));
+
+  const { all: allResults, main: mainResults, pages: pageResults } = sieveResults(
+    Object.entries(comparison.bundles),
+  );
+  const anyResultsChanges = allResults.filter(createComparisonFilter(1, 1));
 
   if (anyResultsChanges.length > 0) {
-    const importantChanges = results
+    const importantChanges = mainResults
       .filter(createComparisonFilter(parsedSizeChangeThreshold, gzipSizeChangeThreshold))
       .filter(isPackageComparison)
       .map(generateEmphasizedChange);
@@ -159,50 +228,22 @@ async function run() {
       markdown(importantChanges.join('\n'));
     }
 
-    const detailsTable = generateMDTable(
-      [
-        { label: 'bundle' },
-        { label: 'Size Change', align: 'right' },
-        { label: 'Size', align: 'right' },
-        { label: 'Gzip Change', align: 'right' },
-        { label: 'Gzip', align: 'right' },
-      ],
-      results
-        .map(([bundleId, size]) => [computeBundleLabel(bundleId), size])
-        // orderBy(|parsedDiff| DESC, |gzipDiff| DESC, name ASC)
-        .sort(([labelA, statsA], [labelB, statsB]) => {
-          const compareParsedDiff =
-            Math.abs(statsB.parsed.absoluteDiff) - Math.abs(statsA.parsed.absoluteDiff);
-          const compareGzipDiff =
-            Math.abs(statsB.gzip.absoluteDiff) - Math.abs(statsA.gzip.absoluteDiff);
-          const compareName = labelA.localeCompare(labelB);
-
-          if (compareParsedDiff === 0 && compareGzipDiff === 0) {
-            return compareName;
-          }
-          if (compareParsedDiff === 0) {
-            return compareGzipDiff;
-          }
-          return compareParsedDiff;
-        })
-        .map(([label, { parsed, gzip }]) => {
-          return [
-            label,
-            formatDiff(parsed.absoluteDiff, parsed.relativeDiff),
-            prettyBytes(parsed.current),
-            formatDiff(gzip.absoluteDiff, gzip.relativeDiff),
-            prettyBytes(gzip.current),
-          ];
-        }),
-    );
+    const mainDetailsTable = createComparisonTable(mainResults);
+    const pageDetailsTable = createComparisonTable(pageResults);
 
     const details = `
   <details>
   <summary>Details of bundle changes.</summary>
 
+  <details>
+  <summary>Details of page changes</summary>
+
+  ${pageDetailsTable}
+  </details>
+
   <p>Comparing: ${commitRange}</p>
 
-  ${detailsTable}
+  ${mainDetailsTable}
 
   </details>`;
 
