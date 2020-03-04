@@ -137,15 +137,21 @@ You can use it to change the default option filter behavior.
 import { createFilterOptions } from '@material-ui/lab/Autocomplete';
 ```
 
-It supports the following options:
+### `createFilterOptions(config) => filterOptions`
+
+#### Arguments
 
 1. `config` (*Object* [optional]):
   - `config.ignoreAccents` (*Boolean* [optional]): Defaults to `true`. Remove diacritics.
   - `config.ignoreCase` (*Boolean* [optional]): Defaults to `true`. Lowercase everything.
   - `config.matchFrom` (*'any' | 'start'* [optional]): Defaults to `'any'`.
-  - `config.stringify` (*Func* [optional]): Defaults to `JSON.stringify`.
+  - `config.stringify` (*Func* [optional]): Controls how an option is converted into a string so that it can be matched against the input text fragment.
   - `config.trim` (*Boolean* [optional]): Defaults to `false`. Remove trailing spaces.
   - `config.limit` (*Number* [optional]): Default to null. Limit the number of suggested options to be shown. For example, if `config.limit` is `100`, only the first `100` matching options are shown. It can be useful if a lot of options match and virtualization wasn't set up.
+
+#### Returns
+
+`filterOptions`: the returned filter method can be provided directly to the `filterOptions` prop of the `Autocomplete` component, or the parameter of the same name for the hook.
 
 In the following demo, the options need to start with the query prefix:
 

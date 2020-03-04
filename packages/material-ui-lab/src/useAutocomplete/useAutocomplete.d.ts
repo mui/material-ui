@@ -9,13 +9,14 @@ export interface CreateFilterOptionsConfig<T> {
   limit?: number;
 }
 
-export interface FilterOptionsState {
+export interface FilterOptionsState<T> {
   inputValue: string;
+  getOptionLabel: (option: T) => string;
 }
 
 export function createFilterOptions<T>(
   config?: CreateFilterOptionsConfig<T>,
-): (options: T[], state: FilterOptionsState) => T[];
+): (options: T[], state: FilterOptionsState<T>) => T[];
 
 export interface UseAutocompleteCommonProps<T> {
   /**
@@ -76,7 +77,7 @@ export interface UseAutocompleteCommonProps<T> {
    * @param {object} state The state of the component.
    * @returns {T[]}
    */
-  filterOptions?: (options: T[], state: FilterOptionsState) => T[];
+  filterOptions?: (options: T[], state: FilterOptionsState<T>) => T[];
   /**
    * If `true`, hide the selected options from the list box.
    */

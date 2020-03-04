@@ -11,35 +11,17 @@ function stripDiacritics(string) {
     : string;
 }
 
-function defaultStringify(value) {
-  if (value == null) {
-    return '';
-  }
-
-  if (typeof value === 'string') {
-    return value;
-  }
-
-  if (typeof value === 'object') {
-    return Object.keys(value)
-      .map(key => value[key])
-      .join(' ');
-  }
-
-  return JSON.stringify(value);
-}
-
 export function createFilterOptions(config = {}) {
   const {
     ignoreAccents = true,
     ignoreCase = true,
     matchFrom = 'any',
-    stringify = defaultStringify,
+    stringify,
     trim = false,
     limit,
   } = config;
 
-  return (options, { inputValue }) => {
+  return (options, { inputValue, getOptionLabel }) => {
     let input = trim ? inputValue.trim() : inputValue;
     if (ignoreCase) {
       input = input.toLowerCase();
@@ -48,7 +30,7 @@ export function createFilterOptions(config = {}) {
       input = stripDiacritics(input);
     }
     const filteredOptions = options.filter(option => {
-      let candidate = stringify(option);
+      let candidate = (stringify || getOptionLabel)(option);
       if (ignoreCase) {
         candidate = candidate.toLowerCase();
       }
@@ -269,7 +251,7 @@ export default function useAutocomplete(props) {
         }),
         // we use the empty string to manipulate `filterOptions` to not filter any options
         // i.e. the filter predicate always returns true
-        { inputValue: inputValueIsSelectedValue ? '' : inputValue },
+        { inputValue: inputValueIsSelectedValue ? '' : inputValue, getOptionLabel },
       )
     : [];
 
