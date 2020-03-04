@@ -89,7 +89,7 @@ AvatarGroup.propTypes = {
    */
   spacing: PropTypes.oneOfType([PropTypes.oneOf(['medium', 'small']), PropTypes.number]),
   /**
-   * Max avatars to show before +x.
+   * The maximum number of avatars to display. An additional text avatar will display the number of hidden avatars, if any.
    */
   max: PropTypes.number,
 };
