@@ -3,11 +3,7 @@ import { StandardProps } from '@material-ui/core';
 import { UsePaginationItem } from './usePagination';
 
 export interface PaginationProps
-  extends StandardProps<
-    React.HTMLAttributes<HTMLElement>,
-    PaginationClassKey,
-    'onChange' | 'children'
-  > {
+  extends StandardProps<React.HTMLAttributes<HTMLElement>, PaginationClassKey, 'onChange'> {
   /**
    * Number of always visible pages at the beginning and end.
    */
