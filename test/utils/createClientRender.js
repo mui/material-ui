@@ -78,9 +78,9 @@ function clientRender(element, options = {}) {
 export function createClientRender(globalOptions = {}) {
   const { strict: globalStrict } = globalOptions;
 
-  afterEach(() => {
-    act(() => {
-      cleanup();
+  afterEach(async () => {
+    await act(async () => {
+      await cleanup();
     });
   });
 
