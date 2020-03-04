@@ -85,7 +85,7 @@ AvatarGroup.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * Spacing between avatars.
+   * The spacing between avatars. A group with `small` spacing value has a larger overlap.
    */
   spacing: PropTypes.oneOfType([PropTypes.oneOf(['medium', 'small']), PropTypes.number]),
   /**
