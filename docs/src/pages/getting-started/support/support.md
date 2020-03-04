@@ -85,3 +85,16 @@ The end result? All of the capabilities you expect from commercial-grade softwar
 
 [Request a demo](https://tidelift.com/subscription/request-a-demo?utm_source=material_ui&utm_medium=referral&utm_campaign=enterprise)
 
+### Custom work 🛠
+
+Tweak Material-UI to meet specific requirements. Give us a summary of your needs; We'll help you if I can. We might:
+
+- Give you an estimate of time and price if the work is straightforward
+- Suggest alternatives that might not require Material-UI
+- Decline the work due to timing or relevancy
+
+Note that work must be Material-UI related.
+We don't accept general React development work.
+Our contracting price is $200/hour or $1,500/day.
+
+[Send us an email](mailto:custom-work@material-ui.com)
