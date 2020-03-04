@@ -46,9 +46,10 @@ export const styles = theme => {
         duration: 50,
         easing: theme.transitions.easing.easeOut,
       }),
-      '& span': {
+      '& > span': {
         paddingLeft: 5,
         paddingRight: 5,
+        display: 'inline-block',
       },
     },
     /* Styles applied to the legend element is notched. */
