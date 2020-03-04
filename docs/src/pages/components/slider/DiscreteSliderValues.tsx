@@ -9,8 +9,31 @@ const useStyles = makeStyles({
   },
 });
 
+const marks = [
+  {
+    value: 0,
+    label: '0°C',
+  },
+  {
+    value: 20,
+    label: '20°C',
+  },
+  {
+    value: 37,
+    label: '37°C',
+  },
+  {
+    value: 100,
+    label: '100°C',
+  },
+];
+
 function valuetext(value: number) {
   return `${value}°C`;
+}
+
+function valueLabelFormat(value: number) {
+  return marks.findIndex(mark => mark.value === value) + 1;
 }
 
 export default function DiscreteSlider() {
@@ -18,32 +41,17 @@ export default function DiscreteSlider() {
 
   return (
     <div className={classes.root}>
-      <Typography id="discrete-slider" gutterBottom>
-        Temperature
+      <Typography id="discrete-slider-restrict" gutterBottom>
+        Restricted values
       </Typography>
       <Slider
-        defaultValue={30}
+        defaultValue={20}
+        valueLabelFormat={valueLabelFormat}
         getAriaValueText={valuetext}
-        aria-labelledby="discrete-slider"
+        aria-labelledby="discrete-slider-restrict"
+        step={null}
         valueLabelDisplay="auto"
-        step={10}
-        marks
-        min={10}
-        max={110}
-      />
-      <Typography id="discrete-slider" gutterBottom>
-        Disabled
-      </Typography>
-      <Slider
-        defaultValue={30}
-        getAriaValueText={valuetext}
-        aria-labelledby="discrete-slider"
-        valueLabelDisplay="auto"
-        step={10}
-        marks
-        min={10}
-        max={110}
-        disabled
+        marks={marks}
       />
     </div>
   );

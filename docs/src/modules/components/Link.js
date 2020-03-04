@@ -8,10 +8,10 @@ import MuiLink from '@material-ui/core/Link';
 import { useSelector } from 'react-redux';
 
 const NextComposed = React.forwardRef(function NextComposed(props, ref) {
-  const { as, href, prefetch, ...other } = props;
+  const { as, href, ...other } = props;
 
   return (
-    <NextLink href={href} prefetch={prefetch} as={as}>
+    <NextLink href={href} as={as}>
       <a ref={ref} {...other} />
     </NextLink>
   );
@@ -20,7 +20,6 @@ const NextComposed = React.forwardRef(function NextComposed(props, ref) {
 NextComposed.propTypes = {
   as: PropTypes.string,
   href: PropTypes.string,
-  prefetch: PropTypes.bool,
 };
 
 // A styled version of the Next.js Link component:
@@ -29,31 +28,49 @@ function Link(props) {
   const {
     activeClassName = 'active',
     className: classNameProps,
+    href: routerHref,
     innerRef,
     naked,
     role: roleProp,
     ...other
   } = props;
+
+  // apply nextjs rewrites
+  const href = routerHref.replace(/\/api-docs\/(.*)/, '/api/$1');
+
   const router = useRouter();
 
   const userLanguage = useSelector(state => state.options.userLanguage);
   const className = clsx(classNameProps, {
-    [activeClassName]: router.pathname === props.href && activeClassName,
+    [activeClassName]: router.pathname === routerHref && activeClassName,
   });
 
-  if (userLanguage !== 'en' && other.href.indexOf('/') === 0 && other.href.indexOf('/blog') !== 0) {
-    other.as = `/${userLanguage}${other.href}`;
+  if (userLanguage !== 'en' && href.indexOf('/') === 0 && href.indexOf('/blog') !== 0) {
+    other.as = `/${userLanguage}${href}`;
   }
 
   // catch role passed from ButtonBase. This is definitely a link
   const role = roleProp === 'button' ? undefined : roleProp;
 
+  const isExternal = href.indexOf('https:') === 0 || href.indexOf('mailto:') === 0;
+
+  if (isExternal) {
+    return <MuiLink className={className} href={href} ref={innerRef} role={role} {...other} />;
+  }
+
   if (naked) {
-    return <NextComposed className={className} ref={innerRef} role={role} {...other} />;
+    return <NextComposed className={className} href={href} ref={innerRef} role={role} {...other} />;
   }
 
   return (
-    <MuiLink component={NextComposed} className={className} ref={innerRef} role={role} {...other} />
+    <MuiLink
+      component={NextComposed}
+      className={className}
+      href={href}
+      ref={innerRef}
+      role={role}
+      {...other}
+    />
   );
 }
 
@@ -65,7 +82,6 @@ Link.propTypes = {
   innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   naked: PropTypes.bool,
   onClick: PropTypes.func,
-  prefetch: PropTypes.bool,
   role: PropTypes.string,
 };
 

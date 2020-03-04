@@ -16,16 +16,19 @@ export default function FlexWrap() {
           Item 1
         </Box>
         <Box p={1} bgcolor="grey.300">
-          Item 1
+          Item 2
         </Box>
         <Box p={1} bgcolor="grey.300">
-          Item 1
+          Item 3
         </Box>
         <Box p={1} bgcolor="grey.300">
-          Item 1
+          Item 4
         </Box>
         <Box p={1} bgcolor="grey.300">
-          Item 1
+          Item 5
+        </Box>
+        <Box p={1} bgcolor="grey.300">
+          Item 6
         </Box>
       </Box>
       <Box
@@ -40,16 +43,19 @@ export default function FlexWrap() {
           Item 1
         </Box>
         <Box p={1} bgcolor="grey.300">
-          Item 1
+          Item 2
         </Box>
         <Box p={1} bgcolor="grey.300">
-          Item 1
+          Item 3
         </Box>
         <Box p={1} bgcolor="grey.300">
-          Item 1
+          Item 4
         </Box>
         <Box p={1} bgcolor="grey.300">
-          Item 1
+          Item 5
+        </Box>
+        <Box p={1} bgcolor="grey.300">
+          Item 6
         </Box>
       </Box>
     </div>

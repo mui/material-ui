@@ -78,8 +78,8 @@ import { MuiPickersUtilsProvider, TimePicker, DatePicker } from '@material-ui/pi
 `;
 
     assert.deepEqual(getDependencies(source), {
-      'date-fns': 'next',
-      '@date-io/date-fns': 'latest',
+      'date-fns': 'latest',
+      '@date-io/date-fns': 'v1',
       '@material-ui/pickers': 'latest',
       '@material-ui/core': 'latest',
       'prop-types': 'latest',
@@ -115,7 +115,7 @@ import {
     `;
 
     assert.deepEqual(getDependencies(source), {
-      'date-fns': 'next',
+      'date-fns': 'latest',
       '@material-ui/pickers': 'latest',
       react: 'latest',
       'react-dom': 'latest',
