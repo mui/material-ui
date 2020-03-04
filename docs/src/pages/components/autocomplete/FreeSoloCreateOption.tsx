@@ -3,7 +3,7 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete, { createFilterOptions } from '@material-ui/lab/Autocomplete';
 
-const filter = createFilterOptions();
+const filter = createFilterOptions<FilmOptionType>();
 
 export default function FreeSoloCreateOption() {
   const [value, setValue] = React.useState<FilmOptionType | null>(null);
