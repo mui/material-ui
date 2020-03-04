@@ -31,7 +31,6 @@ module.exports = {
   presets: [
     // backport of https://github.com/zeit/next.js/pull/9511
     ['next/babel', { 'transform-runtime': { corejs: 2, version: transformRuntimeVersion } }],
-    '@zeit/next-typescript/babel',
   ],
   plugins: [
     'babel-plugin-optimize-clsx',

@@ -2,7 +2,7 @@
 import 'docs/src/modules/components/bootstrap';
 // --- Post bootstrap -----
 import React from 'react';
-import App, { Container } from 'next/app';
+import App from 'next/app';
 import find from 'lodash/find';
 import { Provider as ReduxProvider, useDispatch, useSelector } from 'react-redux';
 import { loadCSS } from 'fg-loadcss/src/loadCSS';
@@ -292,7 +292,6 @@ function AppWrapper(props) {
     // See `_rewriteUrlForNextExport` on Next.js side.
     pathname = pathname.replace(/\/$/, '');
   }
-  // console.log(pages, { ...router, pathname })
   const activePage = findActivePage(pages, pathname);
 
   let fonts = ['https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap'];
@@ -304,22 +303,20 @@ function AppWrapper(props) {
 
   return (
     <ReactMode>
-      <Container>
-        <NextHead>
-          {fonts.map(font => (
-            <link rel="stylesheet" href={font} key={font} />
-          ))}
-        </NextHead>
-        <ReduxProvider store={redux}>
-          <PageContext.Provider value={{ activePage, pages, versions: pageProps.versions }}>
-            <StylesProvider jss={jss}>
-              <ThemeProvider>{children}</ThemeProvider>
-            </StylesProvider>
-          </PageContext.Provider>
-          <PersistState />
-          <LanguageNegotiation />
-        </ReduxProvider>
-      </Container>
+      <NextHead>
+        {fonts.map(font => (
+          <link rel="stylesheet" href={font} key={font} />
+        ))}
+      </NextHead>
+      <ReduxProvider store={redux}>
+        <PageContext.Provider value={{ activePage, pages, versions: pageProps.versions }}>
+          <StylesProvider jss={jss}>
+            <ThemeProvider>{children}</ThemeProvider>
+          </StylesProvider>
+        </PageContext.Provider>
+        <PersistState />
+        <LanguageNegotiation />
+      </ReduxProvider>
       <GoogleAnalytics key={router.route} />
     </ReactMode>
   );
