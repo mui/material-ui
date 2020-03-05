@@ -46,7 +46,14 @@ function textCriteriaMatches(nextFocus, textCriteria) {
   return text.indexOf(textCriteria.keys.join('')) === 0;
 }
 
-function moveFocus(list, currentFocus, disableListWrap, enableFocusForDisabledItems, traversalFunction, textCriteria) {
+function moveFocus(
+  list,
+  currentFocus,
+  disableListWrap,
+  enableFocusForDisabledItems,
+  traversalFunction,
+  textCriteria,
+) {
   let wrappedOnce = false;
   let nextFocus = traversalFunction(list, currentFocus, currentFocus ? disableListWrap : false);
 
@@ -59,8 +66,14 @@ function moveFocus(list, currentFocus, disableListWrap, enableFocusForDisabledIt
       wrappedOnce = true;
     }
 
-    const nextFocusDisabled = enableFocusForDisabledItems ? false : nextFocus.disabled || nextFocus.getAttribute('aria-disabled') === 'true';
-    if (!nextFocusDisabled && nextFocus.hasAttribute('tabindex') && textCriteriaMatches(nextFocus, textCriteria)) {
+    const nextFocusDisabled = enableFocusForDisabledItems
+      ? false
+      : nextFocus.disabled || nextFocus.getAttribute('aria-disabled') === 'true';
+    if (
+      !nextFocusDisabled &&
+      nextFocus.hasAttribute('tabindex') &&
+      textCriteriaMatches(nextFocus, textCriteria)
+    ) {
       nextFocus.focus();
       return true;
     }
@@ -173,7 +186,8 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
         currentFocus && !criteria.repeating && textCriteriaMatches(currentFocus, criteria);
       if (
         criteria.previousKeyMatched &&
-        (keepFocusOnCurrent || moveFocus(list, currentFocus, false, enableFocusForDisabledItems, nextItem, criteria))
+        (keepFocusOnCurrent ||
+          moveFocus(list, currentFocus, false, enableFocusForDisabledItems, nextItem, criteria))
       ) {
         event.preventDefault();
       } else {

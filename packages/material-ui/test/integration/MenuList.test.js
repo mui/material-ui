@@ -409,26 +409,33 @@ describe('<MenuList> integration', () => {
   it('should stay on a single item if it is the only focusable one', () => {
     const { getAllByRole } = render(
       <MenuList autoFocus>
+        <MenuItem disabled>Menu Item 1</MenuItem>
         <MenuItem>Menu Item 2</MenuItem>
+        <MenuItem disabled>Menu Item 3</MenuItem>
+        <MenuItem disabled>Menu Item 4</MenuItem>
       </MenuList>,
     );
     const menuitems = getAllByRole('menuitem');
 
     fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
 
-    expect(menuitems[0]).to.have.focus;
+    expect(menuitems[1]).to.have.focus;
 
     fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
 
-    expect(menuitems[0]).to.have.focus;
+    expect(menuitems[1]).to.have.focus;
+
+    fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+
+    expect(menuitems[1]).to.have.focus;
 
     fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
 
-    expect(menuitems[0]).to.have.focus;
+    expect(menuitems[1]).to.have.focus;
 
     fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
 
-    expect(menuitems[0]).to.have.focus;
+    expect(menuitems[1]).to.have.focus;
   });
 
   it('should keep focus on the menu if all items are disabled', () => {
@@ -462,7 +469,7 @@ describe('<MenuList> integration', () => {
 
     expect(menu).to.have.focus;
   });
-  
+
   it('should allow focus on disabled items when enableFocusForDisabledItems = true', () => {
     const { getAllByRole } = render(
       <MenuList autoFocus enableFocusForDisabledItems>
