@@ -5,7 +5,6 @@ import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import { createClientRender } from 'test/utils/createClientRender';
 import Pagination from './Pagination';
-import { fireEvent } from '@testing-library/dom';
 
 describe('<Pagination />', () => {
   let classes;
@@ -51,18 +50,5 @@ describe('<Pagination />', () => {
     page2.click();
 
     expect(handleChange.callCount).to.equal(1);
-  });
-
-  it('does not attach onChange to the root element', () => {
-    const handleChange = spy();
-    const { getByRole } = render(
-      <Pagination count={3} onChange={handleChange} page={1}>
-        <input defaultValue={1} type="text" />
-      </Pagination>,
-    );
-
-    fireEvent.change(getByRole('textbox'), { target: { value: '2' } });
-
-    expect(handleChange.callCount).to.equal(0);
   });
 });
