@@ -660,6 +660,7 @@ Autocomplete.propTypes = {
    *
    * @param {object} event The event source of the callback.
    * @param {T} value
+   * @param {string} reason One of "create-option", "select-option", "remove-option", "blur" or "clear".
    */
   onChange: PropTypes.func,
   /**

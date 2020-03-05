@@ -101,7 +101,7 @@ function findPages(
     if (
       options.front &&
       pathname.indexOf('/components') === -1 &&
-      pathname.indexOf('/api') === -1
+      pathname.indexOf('/api-docs') === -1
     ) {
       return;
     }

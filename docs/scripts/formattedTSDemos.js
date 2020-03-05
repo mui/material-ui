@@ -16,6 +16,7 @@ const path = require('path');
 const babel = require('@babel/core');
 const prettier = require('prettier');
 const typescriptToProptypes = require('typescript-to-proptypes');
+const yargs = require('yargs');
 const { fixBabelGeneratorIssues, fixLineEndings } = require('./helpers');
 
 const tsConfig = typescriptToProptypes.loadConfig(path.resolve(__dirname, '../tsconfig.json'));
@@ -27,9 +28,6 @@ const babelConfig = {
   babelrc: false,
   configFile: false,
 };
-
-const watchMode = process.argv.some(arg => arg === '--watch');
-const cacheDisabled = process.argv.some(arg => arg === '--disable-cache');
 
 const workspaceRoot = path.join(__dirname, '../../');
 
@@ -69,7 +67,7 @@ const TranspileResult = {
 async function transpileFile(tsxPath, program, ignoreCache = false) {
   const jsPath = tsxPath.replace('.tsx', '.js');
   try {
-    if (!cacheDisabled && !ignoreCache && (await fse.exists(jsPath))) {
+    if (!ignoreCache && (await fse.exists(jsPath))) {
       const [jsStat, tsxStat] = await Promise.all([fse.stat(jsPath), fse.stat(tsxPath)]);
       if (jsStat.mtimeMs > tsxStat.mtimeMs) {
         // JavaScript version is newer, skip transpiling
@@ -108,7 +106,9 @@ async function transpileFile(tsxPath, program, ignoreCache = false) {
   }
 }
 
-(async () => {
+async function main(argv) {
+  const { watch: watchMode, disableCache: cacheDisabled } = argv;
+
   const tsxFiles = await getFiles(path.join(workspaceRoot, 'docs/src/pages'));
 
   const program = typescriptToProptypes.createProgram(tsxFiles, tsConfig);
@@ -116,25 +116,27 @@ async function transpileFile(tsxPath, program, ignoreCache = false) {
   let successful = 0;
   let failed = 0;
   let skipped = 0;
-  (await Promise.all(tsxFiles.map(file => transpileFile(file, program)))).forEach(result => {
-    switch (result) {
-      case TranspileResult.Success: {
-        successful += 1;
-        break;
+  (await Promise.all(tsxFiles.map(file => transpileFile(file, program, cacheDisabled)))).forEach(
+    result => {
+      switch (result) {
+        case TranspileResult.Success: {
+          successful += 1;
+          break;
+        }
+        case TranspileResult.Failed: {
+          failed += 1;
+          break;
+        }
+        case TranspileResult.Skipped: {
+          skipped += 1;
+          break;
+        }
+        default: {
+          throw new Error(`No handler for ${result}`);
+        }
       }
-      case TranspileResult.Failed: {
-        failed += 1;
-        break;
-      }
-      case TranspileResult.Skipped: {
-        skipped += 1;
-        break;
-      }
-      default: {
-        throw new Error(`No handler for ${result}`);
-      }
-    }
-  });
+    },
+  );
 
   console.log(
     [
@@ -164,4 +166,28 @@ async function transpileFile(tsxPath, program, ignoreCache = false) {
   });
 
   console.log('\nWatching for file changes...');
-})();
+}
+
+yargs
+  .command({
+    command: '$0',
+    description: 'transpile typescript demos',
+    builder: command => {
+      return command
+        .option('watch', {
+          default: false,
+          description: 'transpiles demos as soon as they changed',
+          type: 'boolean',
+        })
+        .option('disable-cache', {
+          default: false,
+          description: 'transpiles all demos even if they didnt change',
+          type: 'boolean',
+        });
+    },
+    handler: main,
+  })
+  .help()
+  .strict(true)
+  .version(false)
+  .parse();

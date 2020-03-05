@@ -1,4 +1,5 @@
 const astTypes = require('ast-types');
+const { parse: parseDoctrine } = require('doctrine');
 const { utils: docgenUtils } = require('react-docgen');
 
 const { getPropertyName, isReactForwardRefCall, printValue, resolveToValue } = docgenUtils;
@@ -8,7 +9,12 @@ const { getPropertyName, isReactForwardRefCall, printValue, resolveToValue } = d
 
 const { namedTypes: types } = astTypes;
 
-function getDefaultValue(path) {
+function getDefaultValue(propertyPath) {
+  if (!types.AssignmentPattern.check(propertyPath.get('value').node)) {
+    return null;
+  }
+  let path = propertyPath.get('value', 'right');
+
   let node = path.node;
   let defaultValue;
   if (types.Literal.check(node)) {
@@ -39,19 +45,38 @@ function getDefaultValue(path) {
   return null;
 }
 
+function getJsdocDefaultValue(jsdoc) {
+  const defaultTag = jsdoc.tags.find(tag => tag.title === 'default');
+  if (defaultTag === undefined) {
+    return undefined;
+  }
+  return { value: defaultTag.description };
+}
+
 function getDefaultValuesFromProps(properties, documentation) {
   properties
     .filter(propertyPath => types.Property.check(propertyPath.node))
-    // Don't evaluate property if component is functional and the node is not an AssignmentPattern
-    .filter(propertyPath => types.AssignmentPattern.check(propertyPath.get('value').node))
     .forEach(propertyPath => {
       const propName = getPropertyName(propertyPath);
       if (!propName) return;
 
       const propDescriptor = documentation.getPropDescriptor(propName);
-      const defaultValue = getDefaultValue(propertyPath.get('value', 'right'));
-      if (defaultValue) {
-        propDescriptor.defaultValue = defaultValue;
+
+      const jsdocDefaultValue = getJsdocDefaultValue(
+        parseDoctrine(propDescriptor.description, {
+          sloppy: true,
+        }),
+      );
+      const defaultValue = getDefaultValue(propertyPath);
+
+      if (jsdocDefaultValue != null && defaultValue != null) {
+        throw new Error(
+          `Can't have JavaScript default value and jsdoc @defaultValue in prop '${propName}'. Remove the @defaultValue if you need the JavaScript default value at runtime.`,
+        );
+      }
+      const usedDefaultValue = defaultValue || jsdocDefaultValue;
+      if (usedDefaultValue) {
+        propDescriptor.defaultValue = usedDefaultValue;
       }
     });
 }

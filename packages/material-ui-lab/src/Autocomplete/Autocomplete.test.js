@@ -76,6 +76,50 @@ describe('<Autocomplete />', () => {
       fireEvent.change(document.activeElement, { target: { value: 'o' } });
       checkHighlightIs('one');
     });
+
+    it('should set the focus on selected item when dropdown is expanded', () => {
+      const { getByRole, setProps } = render(
+        <Autocomplete
+          {...defaultProps}
+          value="one"
+          options={['one', 'two', 'three']}
+          renderInput={params => <TextField autoFocus {...params} />}
+        />,
+      );
+
+      function checkHighlightIs(expected) {
+        expect(getByRole('listbox').querySelector('li[data-focus]')).to.have.text(expected);
+      }
+
+      checkHighlightIs('one');
+      setProps({ value: 'two' });
+      checkHighlightIs('two');
+    });
+  });
+
+  describe('prop: filterSelectedOptions', () => {
+    it('when the last item is selected, highlights the new last item', () => {
+      const { getByRole } = render(
+        <Autocomplete
+          {...defaultProps}
+          filterSelectedOptions
+          options={['one', 'two', 'three']}
+          renderInput={params => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      function checkHighlightIs(expected) {
+        expect(getByRole('listbox').querySelector('li[data-focus]')).to.have.text(expected);
+      }
+
+      fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
+      checkHighlightIs('three');
+      fireEvent.keyDown(document.activeElement, { key: 'Enter' }); // selects the last option
+      const input = getByRole('textbox');
+      input.blur();
+      input.focus(); // opens the listbox again
+      checkHighlightIs('two');
+    });
   });
 
   describe('prop: autoSelect', () => {
@@ -759,7 +803,6 @@ describe('<Autocomplete />', () => {
       );
 
       fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
-      fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
       fireEvent.keyDown(document.activeElement, { key: 'Enter' });
 
       expect(consoleErrorMock.callCount()).to.equal(1); // strict mode renders twice
@@ -1101,6 +1144,106 @@ describe('<Autocomplete />', () => {
       fireEvent.keyDown(document.activeElement, { key: 'Enter', keyCode: 13 });
       expect(handleChange.callCount).to.equal(1);
       expect(handleChange.args[0][1]).to.equal('あ');
+    });
+  });
+
+  describe('prop: onChange', () => {
+    it('provides a reason and details on option creation', () => {
+      const handleChange = spy();
+      const options = ['one', 'two', 'three'];
+      render(
+        <Autocomplete
+          freeSolo
+          onChange={handleChange}
+          options={options}
+          renderInput={params => <TextField {...params} autoFocus />}
+        />,
+      );
+      fireEvent.change(document.activeElement, { target: { value: options[2] } });
+      fireEvent.keyDown(document.activeElement, { key: 'Enter' });
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.equal(options[2]);
+      expect(handleChange.args[0][2]).to.equal('create-option');
+      expect(handleChange.args[0][3]).to.deep.equal({ option: options[2] });
+    });
+
+    it('provides a reason and details on option selection', () => {
+      const handleChange = spy();
+      const options = ['one', 'two', 'three'];
+      render(
+        <Autocomplete
+          onChange={handleChange}
+          options={options}
+          renderInput={params => <TextField {...params} autoFocus />}
+        />,
+      );
+      fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+      fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+      fireEvent.keyDown(document.activeElement, { key: 'Enter' });
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.equal(options[0]);
+      expect(handleChange.args[0][2]).to.equal('select-option');
+      expect(handleChange.args[0][3]).to.deep.equal({ option: options[0] });
+    });
+
+    it('provides a reason and details on option removing', () => {
+      const handleChange = spy();
+      const options = ['one', 'two', 'three'];
+      render(
+        <Autocomplete
+          multiple
+          onChange={handleChange}
+          value={options}
+          options={options}
+          renderInput={params => <TextField {...params} autoFocus />}
+        />,
+      );
+      fireEvent.keyDown(document.activeElement, { key: 'Backspace' });
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.deep.equal(options.slice(0, 2));
+      expect(handleChange.args[0][2]).to.equal('remove-option');
+      expect(handleChange.args[0][3]).to.deep.equal({ option: options[2] });
+    });
+
+    it('provides a reason and details on blur', () => {
+      const handleChange = spy();
+      const options = ['one', 'two', 'three'];
+      render(
+        <Autocomplete
+          autoSelect
+          onChange={handleChange}
+          options={options}
+          renderInput={params => <TextField {...params} autoFocus />}
+        />,
+      );
+      fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+      fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+      document.activeElement.blur();
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.equal(options[0]);
+      expect(handleChange.args[0][2]).to.equal('blur');
+      expect(handleChange.args[0][3]).to.deep.equal({ option: options[0] });
+    });
+
+    it('provides a reason and details on clear', () => {
+      const handleChange = spy();
+      const options = ['one', 'two', 'three'];
+      const { container } = render(
+        <Autocomplete
+          multiple
+          value={options}
+          onChange={handleChange}
+          options={options}
+          renderInput={params => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      const button = container.querySelector('button');
+      fireEvent.click(button);
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.deep.equal([]);
+      expect(handleChange.args[0][2]).to.equal('clear');
+      expect(handleChange.args[0][3]).to.equal(undefined);
     });
   });
 

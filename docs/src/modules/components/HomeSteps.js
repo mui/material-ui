@@ -14,11 +14,11 @@ import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import Link from 'docs/src/modules/components/Link';
 
 const InstallationLink = React.forwardRef((buttonProps, ref) => (
-  <Link naked prefetch href="/getting-started/installation" ref={ref} {...buttonProps} />
+  <Link naked href="/getting-started/installation" ref={ref} {...buttonProps} />
 ));
 
 const UsageLink = React.forwardRef((buttonProps, ref) => (
-  <Link naked prefetch href="/getting-started/usage" ref={ref} {...buttonProps} />
+  <Link naked href="/getting-started/usage" ref={ref} {...buttonProps} />
 ));
 
 const styles = theme => ({

@@ -130,13 +130,13 @@ Link.propTypes = {
    * The color of the link.
    */
   color: PropTypes.oneOf([
-    'default',
-    'error',
+    'initial',
     'inherit',
     'primary',
     'secondary',
     'textPrimary',
     'textSecondary',
+    'error',
   ]),
   /**
    * The component used for the root node.
