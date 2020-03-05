@@ -29,7 +29,6 @@ function defaultGetAriaLabel(type, page, selected) {
 const Pagination = React.forwardRef(function Pagination(props, ref) {
   const {
     boundaryCount,
-    children,
     classes,
     className,
     color = 'standard',
@@ -61,19 +60,18 @@ const Pagination = React.forwardRef(function Pagination(props, ref) {
       {...other}
     >
       <ul className={classes.ul}>
-        {children ||
-          items.map((item, index) => (
-            <li key={index}>
-              {renderItem({
-                ...item,
-                color,
-                'aria-label': getAriaLabel(item.type, item.page, item.selected),
-                shape,
-                size,
-                variant,
-              })}
-            </li>
-          ))}
+        {items.map((item, index) => (
+          <li key={index}>
+            {renderItem({
+              ...item,
+              color,
+              'aria-label': getAriaLabel(item.type, item.page, item.selected),
+              shape,
+              size,
+              variant,
+            })}
+          </li>
+        ))}
       </ul>
     </nav>
   );
@@ -86,10 +84,6 @@ Pagination.propTypes = {
    * @default 1
    */
   boundaryCount: PropTypes.number,
-  /**
-   * Pagination items.
-   */
-  children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
