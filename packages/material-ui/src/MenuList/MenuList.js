@@ -297,7 +297,7 @@ MenuList.propTypes = {
    */
   disableListWrap: PropTypes.bool,
   /**
-   * If `true`, disabled menu items can receive focus from keyboard navigation.
+   * If `true`, will allow focus on disabled items.
    */
   enableFocusForDisabledItems: PropTypes.bool,
   /**
