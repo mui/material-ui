@@ -46,7 +46,7 @@ function textCriteriaMatches(nextFocus, textCriteria) {
   return text.indexOf(textCriteria.keys.join('')) === 0;
 }
 
-function moveFocus(list, currentFocus, disableListWrap, traversalFunction, textCriteria) {
+function moveFocus(list, currentFocus, disableListWrap, enableFocusForDisabledItems, traversalFunction, textCriteria) {
   let wrappedOnce = false;
   let nextFocus = traversalFunction(list, currentFocus, currentFocus ? disableListWrap : false);
 
@@ -58,7 +58,9 @@ function moveFocus(list, currentFocus, disableListWrap, traversalFunction, textC
       }
       wrappedOnce = true;
     }
-    if (nextFocus.hasAttribute('tabindex') && textCriteriaMatches(nextFocus, textCriteria)) {
+
+    const nextFocusDisabled = enableFocusForDisabledItems ? false : nextFocus.disabled || nextFocus.getAttribute('aria-disabled') === 'true';
+    if (!nextFocusDisabled && nextFocus.hasAttribute('tabindex') && textCriteriaMatches(nextFocus, textCriteria)) {
       nextFocus.focus();
       return true;
     }
@@ -87,8 +89,9 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
     autoFocusItem = false,
     children,
     className,
-    onKeyDown,
     disableListWrap = false,
+    enableFocusForDisabledItems = false,
+    onKeyDown,
     variant = 'selectedMenu',
     ...other
   } = props;
@@ -140,16 +143,16 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
     if (key === 'ArrowDown') {
       // Prevent scroll of the page
       event.preventDefault();
-      moveFocus(list, currentFocus, disableListWrap, nextItem);
+      moveFocus(list, currentFocus, disableListWrap, enableFocusForDisabledItems, nextItem);
     } else if (key === 'ArrowUp') {
       event.preventDefault();
-      moveFocus(list, currentFocus, disableListWrap, previousItem);
+      moveFocus(list, currentFocus, disableListWrap, enableFocusForDisabledItems, previousItem);
     } else if (key === 'Home') {
       event.preventDefault();
-      moveFocus(list, null, disableListWrap, nextItem);
+      moveFocus(list, null, disableListWrap, enableFocusForDisabledItems, nextItem);
     } else if (key === 'End') {
       event.preventDefault();
-      moveFocus(list, null, disableListWrap, previousItem);
+      moveFocus(list, null, disableListWrap, enableFocusForDisabledItems, previousItem);
     } else if (key.length === 1) {
       const criteria = textCriteriaRef.current;
       const lowerKey = key.toLowerCase();
@@ -170,7 +173,7 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
         currentFocus && !criteria.repeating && textCriteriaMatches(currentFocus, criteria);
       if (
         criteria.previousKeyMatched &&
-        (keepFocusOnCurrent || moveFocus(list, currentFocus, false, nextItem, criteria))
+        (keepFocusOnCurrent || moveFocus(list, currentFocus, false, enableFocusForDisabledItems, nextItem, criteria))
       ) {
         event.preventDefault();
       } else {
@@ -279,6 +282,10 @@ MenuList.propTypes = {
    * If `true`, the menu items will not wrap focus.
    */
   disableListWrap: PropTypes.bool,
+  /**
+   * If `true`, disabled menu items can receive focus from keyboard navigation.
+   */
+  enableFocusForDisabledItems: PropTypes.bool,
   /**
    * @ignore
    */

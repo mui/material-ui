@@ -312,9 +312,56 @@ describe('<MenuList> integration', () => {
     });
   });
 
-  it('should skip divider', () => {
+  it('should skip divider and disabled menu item', () => {
     const { getAllByRole } = render(
       <MenuList autoFocus>
+        <MenuItem>Menu Item 1</MenuItem>
+        <Divider component="li" />
+        <MenuItem>Menu Item 2</MenuItem>
+        <MenuItem disabled>Menu Item 3</MenuItem>
+        <MenuItem>Menu Item 4</MenuItem>
+      </MenuList>,
+    );
+    const menuitems = getAllByRole('menuitem');
+
+    fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+
+    expect(menuitems[0]).to.have.focus;
+
+    fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+
+    expect(menuitems[1]).to.have.focus;
+
+    fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+
+    expect(menuitems[3]).to.have.focus;
+
+    fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+
+    expect(menuitems[0]).to.have.focus;
+
+    // and ArrowUp again
+
+    fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
+
+    expect(menuitems[3]).to.have.focus;
+
+    fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
+
+    expect(menuitems[1]).to.have.focus;
+
+    fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
+
+    expect(menuitems[0]).to.have.focus;
+
+    fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
+
+    expect(menuitems[3]).to.have.focus;
+  });
+
+  it('should skip divider and not disabled menu item when enableFocusForDisabledItems = true', () => {
+    const { getAllByRole } = render(
+      <MenuList autoFocus enableFocusForDisabledItems>
         <MenuItem>Menu Item 1</MenuItem>
         <Divider component="li" />
         <MenuItem>Menu Item 2</MenuItem>
@@ -384,9 +431,41 @@ describe('<MenuList> integration', () => {
     expect(menuitems[0]).to.have.focus;
   });
 
-  it('should allow focus on disabled items', () => {
-    const { getAllByRole } = render(
+  it('should keep focus on the menu if all items are disabled', () => {
+    const { getByRole } = render(
       <MenuList autoFocus>
+        <MenuItem disabled>Menu Item 1</MenuItem>
+        <MenuItem disabled>Menu Item 2</MenuItem>
+        <MenuItem disabled>Menu Item 3</MenuItem>
+        <MenuItem disabled>Menu Item 4</MenuItem>
+      </MenuList>,
+    );
+    const menu = getByRole('menu');
+
+    fireEvent.keyDown(document.activeElement, { key: 'Home' });
+
+    expect(menu).to.have.focus;
+
+    fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+
+    expect(menu).to.have.focus;
+
+    fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+
+    expect(menu).to.have.focus;
+
+    fireEvent.keyDown(document.activeElement, { key: 'End' });
+
+    expect(menu).to.have.focus;
+
+    fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
+
+    expect(menu).to.have.focus;
+  });
+  
+  it('should allow focus on disabled items when enableFocusForDisabledItems = true', () => {
+    const { getAllByRole } = render(
+      <MenuList autoFocus enableFocusForDisabledItems>
         <MenuItem disabled>Menu Item 1</MenuItem>
         <MenuItem disabled>Menu Item 2</MenuItem>
         <MenuItem disabled>Menu Item 3</MenuItem>
