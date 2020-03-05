@@ -73,7 +73,7 @@ describe('<MenuList> integration', () => {
       expect(menuitems[2]).to.have.property('tabIndex', -1);
     });
 
-    it('should select the secont item when pressing down if the first item is selected', () => {
+    it('should select the second item when pressing down if the first item is selected', () => {
       const { getAllByRole } = render(
         <MenuList autoFocusItem>
           <MenuItem selected>Menu Item 1</MenuItem>
@@ -312,9 +312,9 @@ describe('<MenuList> integration', () => {
     });
   });
 
-  it('should skip divider and disabled menu item', () => {
+  it('should skip divider and disabled menu item when enableFocusForDisabledItems=false', () => {
     const { getAllByRole } = render(
-      <MenuList autoFocus>
+      <MenuList autoFocus enableFocusForDisabledItems={false}>
         <MenuItem>Menu Item 1</MenuItem>
         <Divider component="li" />
         <MenuItem>Menu Item 2</MenuItem>
@@ -359,9 +359,9 @@ describe('<MenuList> integration', () => {
     expect(menuitems[3]).to.have.focus;
   });
 
-  it('should skip divider and not disabled menu item when enableFocusForDisabledItems = true', () => {
+  it('should skip divider', () => {
     const { getAllByRole } = render(
-      <MenuList autoFocus enableFocusForDisabledItems>
+      <MenuList autoFocus>
         <MenuItem>Menu Item 1</MenuItem>
         <Divider component="li" />
         <MenuItem>Menu Item 2</MenuItem>
@@ -408,7 +408,7 @@ describe('<MenuList> integration', () => {
 
   it('should stay on a single item if it is the only focusable one', () => {
     const { getAllByRole } = render(
-      <MenuList autoFocus>
+      <MenuList autoFocus enableFocusForDisabledItems={false}>
         <MenuItem disabled>Menu Item 1</MenuItem>
         <MenuItem>Menu Item 2</MenuItem>
         <MenuItem disabled>Menu Item 3</MenuItem>
@@ -438,9 +438,9 @@ describe('<MenuList> integration', () => {
     expect(menuitems[1]).to.have.focus;
   });
 
-  it('should keep focus on the menu if all items are disabled', () => {
+  it('should keep focus on the menu if all items are disabled and enableFocusForDisabledItems=false', () => {
     const { getByRole } = render(
-      <MenuList autoFocus>
+      <MenuList autoFocus enableFocusForDisabledItems={false}>
         <MenuItem disabled>Menu Item 1</MenuItem>
         <MenuItem disabled>Menu Item 2</MenuItem>
         <MenuItem disabled>Menu Item 3</MenuItem>
@@ -470,9 +470,9 @@ describe('<MenuList> integration', () => {
     expect(menu).to.have.focus;
   });
 
-  it('should allow focus on disabled items when enableFocusForDisabledItems = true', () => {
+  it('should allow focus on disabled items', () => {
     const { getAllByRole } = render(
-      <MenuList autoFocus enableFocusForDisabledItems>
+      <MenuList autoFocus>
         <MenuItem disabled>Menu Item 1</MenuItem>
         <MenuItem disabled>Menu Item 2</MenuItem>
         <MenuItem disabled>Menu Item 3</MenuItem>

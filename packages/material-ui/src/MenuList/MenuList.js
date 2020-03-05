@@ -103,7 +103,7 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
     children,
     className,
     disableListWrap = false,
-    enableFocusForDisabledItems = false,
+    enableFocusForDisabledItems = true,
     onKeyDown,
     variant = 'selectedMenu',
     ...other
