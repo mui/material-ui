@@ -4,7 +4,7 @@
   "compilerOptions": {
     "allowJs": false,
     "isolatedModules": true,
-    /* files are emmitted by babel */
+    /* files are emitted by babel */
     "noEmit": true,
     "noUnusedLocals": true,
     "resolveJsonModule": true,
