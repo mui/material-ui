@@ -237,7 +237,7 @@ function AppFrame(props) {
               <ExpandMoreIcon fontSize="small" />
             </Button>
           </Tooltip>
-          <NoSsr>
+          <NoSsr defer>
             <Menu
               id="language-menu"
               anchorEl={languageMenu}

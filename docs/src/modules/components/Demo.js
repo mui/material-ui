@@ -345,7 +345,7 @@ function Demo(props) {
       <div className={classes.anchorLink} id={`${demoName}.tsx`} />
       {demoOptions.hideHeader ? null : (
         <div className={classes.header}>
-          <NoSsr>
+          <NoSsr defer>
             <DemoLanguages
               demo={demo}
               codeOpen={codeOpen}

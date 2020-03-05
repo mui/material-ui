@@ -41,7 +41,7 @@ function HomeQuickWord(props) {
   return (
     <div className={classes.root}>
       <Typography variant="caption">{t('homeQuickWord')}</Typography>
-      <NoSsr>
+      <NoSsr defer>
         <Link
           variant="body2"
           display="block"

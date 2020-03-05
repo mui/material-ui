@@ -185,7 +185,7 @@ function HomeQuotes() {
 
   return (
     <div className={classes.root}>
-      <NoSsr>
+      <NoSsr defer>
         <Container maxWidth="md" className={classes.container} disableGutters>
           <Divider />
           <div className={classes.users}>

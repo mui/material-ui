@@ -52,7 +52,7 @@ function HomeThemes(props) {
 
   return (
     <div className={classes.root}>
-      <NoSsr>
+      <NoSsr defer>
         <Container maxWidth="md">
           <Typography variant="h4" component="h2" align="center" gutterBottom>
             {t('themes')}
@@ -67,7 +67,7 @@ function HomeThemes(props) {
             data-ga-event-label="home-image"
             className={classes.link}
           >
-            <NoSsr>
+            <NoSsr defer>
               <img
                 className={classes.img}
                 alt={t('themesButton')}
