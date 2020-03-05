@@ -96,6 +96,18 @@ export const styles = (theme) => ({
   colorError: {
     color: theme.palette.error.main,
   },
+  /* Styles applied to the root element if `color="warning"`. */
+  colorWarning: {
+    color: theme.palette.warning.main,
+  },
+  /* Styles applied to the root element if `color="info"`. */
+  colorInfo: {
+    color: theme.palette.info.main,
+  },
+  /* Styles applied to the root element if `color="success"`. */
+  colorSuccess: {
+    color: theme.palette.success.main,
+  },
   /* Styles applied to the root element if `display="inline"`. */
   displayInline: {
     display: 'inline',
@@ -190,6 +202,9 @@ Typography.propTypes = {
     'textPrimary',
     'textSecondary',
     'error',
+    'warning',
+    'info',
+    'success',
   ]),
   /**
    * The component used for the root node.

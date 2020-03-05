@@ -15,7 +15,10 @@ export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'>
       | 'secondary'
       | 'textPrimary'
       | 'textSecondary'
-      | 'error';
+      | 'error'
+      | 'warning'
+      | 'info'
+      | 'success';
     display?: 'initial' | 'block' | 'inline';
     gutterBottom?: boolean;
     noWrap?: boolean;
@@ -74,6 +77,9 @@ export type TypographyClassKey =
   | 'colorTextPrimary'
   | 'colorTextSecondary'
   | 'colorError'
+  | 'colorWarning'
+  | 'colorInfo'
+  | 'colorSuccess'
   | 'displayInline'
   | 'displayBlock';
 

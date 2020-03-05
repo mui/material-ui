@@ -34,6 +34,9 @@ const TypographyTest = () => {
       <Typography component={CustomComponent} prop1="1" />
       // $ExpectError
       <Typography component={CustomComponent} prop1="1" prop2="12" />
+      <Typography align="inherit" color="warning" />
+      <Typography align="inherit" color="info" />
+      <Typography align="inherit" color="success" />
     </div>
   );
 };

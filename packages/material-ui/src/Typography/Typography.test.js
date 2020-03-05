@@ -74,6 +74,9 @@ describe('<Typography />', () => {
     ['secondary', 'colorSecondary'],
     ['inherit', 'colorInherit'],
     ['error', 'colorError'],
+    ['warning', 'colorWarning'],
+    ['info', 'colorInfo'],
+    ['success', 'colorSuccess'],
   ].forEach(([color, className]) => {
     it(`should render ${color} color`, () => {
       // @ts-ignore literal/tuple type widening
