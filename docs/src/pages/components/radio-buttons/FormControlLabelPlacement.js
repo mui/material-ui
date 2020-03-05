@@ -5,17 +5,11 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 
-export default function FormControlLabelPosition() {
-  const [value, setValue] = React.useState('top');
-
-  const handleChange = event => {
-    setValue(event.target.value);
-  };
-
+export default function FormControlLabelPlacement() {
   return (
     <FormControl component="fieldset">
       <FormLabel component="legend">labelPlacement</FormLabel>
-      <RadioGroup aria-label="position" name="position" value={value} onChange={handleChange} row>
+      <RadioGroup row aria-label="position" name="position" defaultValue="top">
         <FormControlLabel
           value="top"
           control={<Radio color="primary" />}
@@ -34,12 +28,7 @@ export default function FormControlLabelPosition() {
           label="Bottom"
           labelPlacement="bottom"
         />
-        <FormControlLabel
-          value="end"
-          control={<Radio color="primary" />}
-          label="End"
-          labelPlacement="end"
-        />
+        <FormControlLabel value="end" control={<Radio color="primary" />} label="End" />
       </RadioGroup>
     </FormControl>
   );

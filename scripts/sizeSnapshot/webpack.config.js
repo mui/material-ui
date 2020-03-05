@@ -1,4 +1,3 @@
-const fse = require('fs-extra');
 const globCallback = require('glob');
 const path = require('path');
 const CompressionPlugin = require('compression-webpack-plugin');
@@ -9,18 +8,6 @@ const glob = promisify(globCallback);
 const workspaceRoot = path.join(__dirname, '..', '..');
 
 async function getSizeLimitBundles() {
-  const nextDir = path.join(workspaceRoot, 'docs/.next');
-  const buildId = await fse.readFile(path.join(nextDir, 'BUILD_ID'), 'utf8');
-
-  const dirname = path.join(nextDir, 'static/chunks');
-  const [main] = (await fse.readdir(dirname)).reduce((result, filename) => {
-    if (filename.length === 31) {
-      return [...result, { path: `${dirname}/${filename}` }];
-    }
-
-    return result;
-  }, []);
-
   const corePackagePath = path.join(workspaceRoot, 'packages/material-ui/build/esm');
   const coreComponents = (await glob(path.join(corePackagePath, '[A-Z]*'))).map(componentPath => {
     const componentName = path.basename(componentPath);
@@ -94,16 +81,6 @@ async function getSizeLimitBundles() {
       name: '@material-ui/core/useMediaQuery',
       webpack: true,
       path: 'packages/material-ui/build/esm/useMediaQuery/index.js',
-    },
-    {
-      name: 'docs.main',
-      webpack: false,
-      path: path.relative(workspaceRoot, main.path),
-    },
-    {
-      name: 'docs.landing',
-      webpack: false,
-      path: path.relative(workspaceRoot, path.join(nextDir, `static/${buildId}/pages/index.js`)),
     },
   ];
 }
