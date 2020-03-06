@@ -25,9 +25,9 @@ export interface PaginationProps
     selected: boolean,
   ) => string;
   /**
-   * The pagination item component to render.
+   * Render the item.
    *
-   * @param {object} params The props to spread on the component.
+   * @param {object} params The props to spread on a PaginationItem.
    * @returns {ReactNode}
    */
   renderItem?: (params: object) => React.ReactNode;
