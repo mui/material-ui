@@ -143,7 +143,7 @@ Select.propTypes = {
    */
   inputProps: PropTypes.object,
   /**
-   * See [OutlinedLabel#label](/api/outlined-input/#props)
+   * See [OutlinedInput#label](/api/outlined-input/#props)
    */
   label: PropTypes.node,
   /**
@@ -152,7 +152,7 @@ Select.propTypes = {
    */
   labelId: PropTypes.string,
   /**
-   * See [OutlinedLabel#label](/api/outlined-input/#props)
+   * See [OutlinedInput#label](/api/outlined-input/#props)
    */
   labelWidth: PropTypes.number,
   /**
