@@ -3,6 +3,7 @@ import * as React from 'react';
 export interface UsePaginationProps {
   /**
    * Number of always visible pages at the beginning and end.
+   * @default 1
    */
   boundaryCount?: number;
   /**
@@ -11,22 +12,27 @@ export interface UsePaginationProps {
   componentName?: string;
   /**
    * The total number of pages.
+   * @default 1
    */
   count?: number;
   /**
    * The page selected by default when the component is uncontrolled.
+   * @default 1
    */
   defaultPage?: number;
   /**
    * If `true`, the pagination component will be disabled.
+   * @default false
    */
   disabled?: boolean;
   /**
    * If `true`, hide the next-page button.
+   * @default false
    */
   hideNextButton?: boolean;
   /**
    * If `true`, hide the previous-page button.
+   * @default false
    */
   hidePrevButton?: boolean;
   /**
@@ -42,14 +48,17 @@ export interface UsePaginationProps {
   page?: number;
   /**
    * If `true`, show the first-page button.
+   * @default false
    */
   showFirstButton?: boolean;
   /**
    * If `true`, show the last-page button.
+   * @default false
    */
   showLastButton?: boolean;
   /**
    * Number of always visible pages before and after the current page.
+   * @default 1
    */
   siblingCount?: number;
 }
