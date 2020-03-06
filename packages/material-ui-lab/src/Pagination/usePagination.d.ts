@@ -71,4 +71,8 @@ export interface UsePaginationItem {
   disabled: boolean;
 }
 
-export default function usePagination(props: UsePaginationProps): UsePaginationItem[];
+export interface UsePaginationResult {
+  items: UsePaginationItem[];
+}
+
+export default function usePagination(props: UsePaginationProps): UsePaginationResult;
