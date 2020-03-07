@@ -6,11 +6,11 @@ name: experimental
 on: status
 jobs:
   build:
-    if: github.event.state == 'success'
     runs-on: ubuntu-latest
     steps:
       - name: debug
         run: |
+          echo ${{ github.event.state }}
           echo ${{ github.event.sender }}
           echo ${{ github.event.name }}
           echo ${{ github.event.description }}
