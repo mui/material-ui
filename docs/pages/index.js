@@ -120,7 +120,7 @@ export default function HomePage() {
               <div>
                 <Typography
                   variant="h3"
-                  component="h1"
+                  component="h2"
                   color="inherit"
                   gutterBottom
                   className={classes.title}
