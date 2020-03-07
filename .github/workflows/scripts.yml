@@ -2,7 +2,7 @@
 # These scripts are experimental. We have a very "dumb" workflow here that is only responsible for triggering
 # actions in eps1lon/mui-scripts-incubator. Since those actions are experimental they'll likely break
 # and we don't want to disrupt the normal repo workflow.
-name: CI
+name: experimental
 on: push
 jobs:
   build:
