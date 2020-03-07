@@ -55,7 +55,6 @@
     "babel-plugin-preval": "^2.0.0",
     "babel-plugin-react-remove-properties": "^0.3.0",
     "babel-plugin-transform-dev-warning": "^0.1.1",
-    "babel-plugin-transform-react-constant-elements": "^6.23.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "clean-css": "^4.1.11",
     "clipboard-copy": "^3.0.0",
@@ -118,6 +117,7 @@
     "webpack-bundle-analyzer": "^3.5.1"
   },
   "devDependencies": {
+    "@babel/plugin-transform-react-constant-elements": "^7.8.3",
     "@babel/preset-typescript": "^7.7.4",
     "babel-plugin-unwrap-createstyles": "^4.1.0",
     "cpy-cli": "^3.0.0",

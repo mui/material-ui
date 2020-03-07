@@ -47,6 +47,7 @@
     "@babel/plugin-proposal-class-properties": "^7.8.3",
     "@babel/plugin-proposal-object-rest-spread": "^7.8.3",
     "@babel/plugin-transform-object-assign": "^7.8.3",
+    "@babel/plugin-transform-react-constant-elements": "^7.8.3",
     "@babel/plugin-transform-runtime": "^7.8.3",
     "@babel/preset-env": "^7.8.6",
     "@babel/preset-react": "^7.8.3",
@@ -76,7 +77,6 @@
     "babel-plugin-react-remove-properties": "^0.3.0",
     "babel-plugin-tester": "^8.0.0",
     "babel-plugin-transform-dev-warning": "^0.1.0",
-    "babel-plugin-transform-react-constant-elements": "^6.23.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.21",
     "chai": "^4.1.2",
     "chai-dom": "^1.8.1",
@@ -104,7 +104,6 @@
     "fs-extra": "^8.1.0",
     "glob": "^7.1.2",
     "glob-gitignore": "^1.0.11",
-    "lodash": "^4.17.15",
     "jsdom": "^16.0.0",
     "karma": "^4.3.0",
     "karma-browserstack-launcher": "~1.4.0",
@@ -114,6 +113,7 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^4.0.2",
     "lerna": "^3.16.4",
+    "lodash": "^4.17.15",
     "mocha": "^7.0.0",
     "node-fetch": "^ 2.6.0",
     "nyc": "^15.0.0",
@@ -173,6 +173,5 @@
     "packages/*",
     "docs",
     "framer"
-  ],
-  "dependencies": {}
+  ]
 }
