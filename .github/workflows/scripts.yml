@@ -9,15 +9,10 @@ jobs:
     if: github.event.state == 'success' && github.event.sender.login == 'netlify[bot]' && github.event.description == 'Deploy preview ready!'
     runs-on: ubuntu-latest
     steps:
-      - name: Find PR associated with this push
-        uses: jwalton/gh-find-current-pr@v1
-        id: findPr
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Run mui-scripts a11y-snapshot
         uses: peter-evans/repository-dispatch@v1
         with:
           token: ${{ secrets.MUI_SCRIPTS_INCUBATOR }}
           repository: eps1lon/mui-scripts-incubator
           event-type: a11y-snapshot
-          client-payload: '{ "pr_number": "${{ steps.findPr.outputs.pr }}"}'
+          client-payload: '{ "target_url": "${{ github.event.target_url }}" }'
