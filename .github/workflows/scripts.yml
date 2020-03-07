@@ -17,5 +17,6 @@ jobs:
         uses: peter-evans/repository-dispatch@v1
         with:
           token: ${{ secrets.MUI_SCRIPTS_INCUBATOR }}
+          repository: eps1lon/mui-scripts-incubator
           event-type: a11y-snapshot
           client-payload: '{ "pr_number": "${{ steps.findPr.outputs.pr }}"}'
