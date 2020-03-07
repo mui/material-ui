@@ -6,14 +6,9 @@ name: experimental
 on: status
 jobs:
   build:
+    if: github.event.state == 'success' && github.event.sender.login == 'netlify[bot]' && github.event.description == 'Deploy preview ready!'
     runs-on: ubuntu-latest
     steps:
-      - name: debug
-        run: |
-          echo ${{ github.event.state }}
-          echo ${{ github.event.sender }}
-          echo ${{ github.event.name }}
-          echo ${{ github.event.description }}
       - name: Find PR associated with this push
         uses: jwalton/gh-find-current-pr@v1
         id: findPr
