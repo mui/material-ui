@@ -32,28 +32,6 @@ export default function UploadButtons() {
           Upload
         </Button>
       </label>
-      <input
-        accept="image/*"
-        className={classes.input}
-        id="text-button-file"
-        multiple
-        type="file"
-      />
-      <label htmlFor="text-button-file">
-        <Button component="span">Upload</Button>
-      </label>
-      <input
-        accept="image/*"
-        className={classes.input}
-        id="outlined-button-file"
-        multiple
-        type="file"
-      />
-      <label htmlFor="outlined-button-file">
-        <Button variant="outlined" component="span">
-          Upload
-        </Button>
-      </label>
       <input accept="image/*" className={classes.input} id="icon-button-file" type="file" />
       <label htmlFor="icon-button-file">
         <IconButton color="primary" aria-label="upload picture" component="span">

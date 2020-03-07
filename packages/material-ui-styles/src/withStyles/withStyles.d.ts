@@ -9,6 +9,8 @@ export {};
 
 type JSSFontface = CSS.FontFace & { fallbacks?: CSS.FontFace[] };
 
+type PropsFunc<Props extends object, T> = (props: Props) => T;
+
 /**
  * Allows the user to augment the properties available
  */
@@ -29,7 +31,7 @@ export interface CSSProperties extends BaseCSSProperties {
 }
 
 export type BaseCreateCSSProperties<Props extends object = {}> = {
-  [P in keyof BaseCSSProperties]: BaseCSSProperties[P] | ((props: Props) => BaseCSSProperties[P])
+  [P in keyof BaseCSSProperties]: BaseCSSProperties[P] | PropsFunc<Props, BaseCSSProperties[P]>
 };
 
 export interface CreateCSSProperties<Props extends object = {}>
@@ -55,7 +57,7 @@ export type StyleRules<Props extends object = {}, ClassKey extends string = stri
   // JSS property bag where values are based on props
   | CreateCSSProperties<Props>
   // JSS property bag based on props
-  | ((props: Props) => CreateCSSProperties<Props>)
+  | PropsFunc<Props, CreateCSSProperties<Props>>
 >;
 
 /**

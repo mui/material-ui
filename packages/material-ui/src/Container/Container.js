@@ -13,6 +13,7 @@ export const styles = theme => ({
     marginRight: 'auto',
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
+    display: 'block', // Fix IE 11 layout when used with main.
     [theme.breakpoints.up('sm')]: {
       paddingLeft: theme.spacing(3),
       paddingRight: theme.spacing(3),

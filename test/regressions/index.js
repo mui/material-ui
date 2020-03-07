@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import vrtest from 'vrtest/client';
+import vrtest from 'vrtest-mui/client';
 import webfontloader from 'webfontloader';
 import TestViewer from './TestViewer';
 

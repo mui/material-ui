@@ -2,12 +2,13 @@ import * as React from 'react';
 import { StandardProps } from '@material-ui/core';
 import { PopperProps } from '@material-ui/core/Popper';
 import {
+  ChangeReason,
+  ChangeDetails,
   UseAutocompleteCommonProps,
   createFilterOptions,
   UseAutocompleteProps,
 } from '../useAutocomplete';
-
-export { createFilterOptions };
+export { ChangeReason, ChangeDetails, createFilterOptions };
 
 export interface RenderOptionState {
   inputValue: string;

@@ -9,7 +9,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import Button from '@material-ui/core/Button';
 import Autocomplete, { createFilterOptions } from '@material-ui/lab/Autocomplete';
 
-const filter = createFilterOptions();
+const filter = createFilterOptions<FilmOptionType>();
 
 export default function FreeSoloCreateOptionDialog() {
   const [value, setValue] = React.useState<FilmOptionType | null>(null);

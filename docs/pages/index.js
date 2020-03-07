@@ -95,7 +95,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const GettingStartedLink = React.forwardRef((props, ref) => {
-  return <Link href="/getting-started/installation" naked prefetch ref={ref} {...props} />;
+  return <Link href="/getting-started/installation" naked ref={ref} {...props} />;
 });
 
 export default function HomePage() {

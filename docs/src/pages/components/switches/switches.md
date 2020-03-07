@@ -11,18 +11,20 @@ components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel
 The option that the switch controls, as well as the state it’s in,
 should be made clear from the corresponding inline label.
 
+## Basic switches
+
 {{"demo": "pages/components/switches/Switches.js"}}
 
-## Switches with FormControlLabel
+## Switch with FormControlLabel
 
-`Switch` can also be used with a label description thanks to the `FormControlLabel` component.
+`Switch` can be provided with a description thanks to the `FormControlLabel` component.
 
 {{"demo": "pages/components/switches/SwitchLabels.js"}}
 
 ## Switches with FormGroup
 
 `FormGroup` is a helpful wrapper used to group selection controls components that provides an easier API.
-However, we encourage you to use a [Checkbox](/components/checkboxes/) instead.
+However, you are encouraged you to use [Checkboxes](/components/checkboxes/) instead if multiple related controls are required. (See: [When to use](#when-to-use)).
 
 {{"demo": "pages/components/switches/SwitchesGroup.js"}}
 

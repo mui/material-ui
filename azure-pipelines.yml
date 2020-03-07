@@ -1,10 +1,10 @@
 trigger:
   branches:
     include:
-    - '*'
+      - '*'
     exclude:
-    - l10n
-    - dependabot/*
+      - l10n
+      - dependabot/*
 
 pool:
   vmImage: 'ubuntu-latest'
@@ -37,7 +37,7 @@ steps:
       globExpressions: '*.tgz'
       targetFolder: 'artifacts/$(Build.SourceBranchName)/$(Build.SourceVersion)'
       filesAcl: 'public-read'
-    displayName: "Upload distributables to S3"
+    displayName: 'Upload distributables to S3'
     condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
     env:
       AWS_ACCESS_KEY_ID: $(AWS_ACCESS_KEY_ID)
@@ -49,8 +49,11 @@ steps:
       targetPath: 'material-ui-core.tgz'
 
   - script: |
-      yarn docs:build
-    displayName: 'build docs'
+      set -o pipefail
+      mkdir -p scripts/sizeSnapshot/build	
+      yarn docs:build | tee scripts/sizeSnapshot/build/docs.next	
+      set +o pipefail
+    displayName: 'build docs for size snapshot'
 
   - script: |
       yarn size:snapshot

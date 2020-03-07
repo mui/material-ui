@@ -9,13 +9,14 @@ export interface CreateFilterOptionsConfig<T> {
   limit?: number;
 }
 
-export interface FilterOptionsState {
+export interface FilterOptionsState<T> {
   inputValue: string;
+  getOptionLabel: (option: T) => string;
 }
 
 export function createFilterOptions<T>(
   config?: CreateFilterOptionsConfig<T>,
-): (options: T[], state: FilterOptionsState) => T[];
+): (options: T[], state: FilterOptionsState<T>) => T[];
 
 export interface UseAutocompleteCommonProps<T> {
   /**
@@ -70,17 +71,13 @@ export interface UseAutocompleteCommonProps<T> {
    */
   disableListWrap?: boolean;
   /**
-   * If `true`, the popup won't open on input focus.
-   */
-  disableOpenOnFocus?: boolean;
-  /**
    * A filter function that determines the options that are eligible.
    *
    * @param {T[]} options The options to render.
    * @param {object} state The state of the component.
    * @returns {T[]}
    */
-  filterOptions?: (options: T[], state: FilterOptionsState) => T[];
+  filterOptions?: (options: T[], state: FilterOptionsState<T>) => T[];
   /**
    * If `true`, hide the selected options from the list box.
    */
@@ -155,6 +152,10 @@ export interface UseAutocompleteCommonProps<T> {
    */
   open?: boolean;
   /**
+   * If `true`, the popup will open on input focus.
+   */
+  openOnFocus?: boolean;
+  /**
    * Array of options.
    */
   options: T[];
@@ -165,6 +166,10 @@ export interface UseAutocompleteCommonProps<T> {
   selectOnFocus?: boolean;
 }
 
+export type ChangeReason = 'create-option' | 'select-option' | 'remove-option' | 'clear' | 'blur';
+export interface ChangeDetails<T = string> {
+  option: T;
+}
 export interface UseAutocompleteMultipleProps<T> extends UseAutocompleteCommonProps<T> {
   /**
    * If `true`, `value` must be an array and the menu will support multiple selections.
@@ -186,8 +191,14 @@ export interface UseAutocompleteMultipleProps<T> extends UseAutocompleteCommonPr
    *
    * @param {object} event The event source of the callback.
    * @param {T[]} value
+   * @param {string} reason One of "create-option", "select-option", "remove-option", "blur" or "clear".
    */
-  onChange?: (event: React.ChangeEvent<{}>, value: T[]) => void;
+  onChange?: (
+    event: React.ChangeEvent<{}>,
+    value: T[],
+    reason: ChangeReason,
+    details?: ChangeDetails<T>,
+  ) => void;
 }
 
 export interface UseAutocompleteSingleProps<T> extends UseAutocompleteCommonProps<T> {
@@ -211,8 +222,14 @@ export interface UseAutocompleteSingleProps<T> extends UseAutocompleteCommonProp
    *
    * @param {object} event The event source of the callback.
    * @param {T} value
+   * @param {string} reason One of "create-option", "select-option", "remove-option", "blur" or "clear".
    */
-  onChange?: (event: React.ChangeEvent<{}>, value: T | null) => void;
+  onChange?: (
+    event: React.ChangeEvent<{}>,
+    value: T | null,
+    reason: ChangeReason,
+    details?: ChangeDetails<T>,
+  ) => void;
 }
 
 export type UseAutocompleteProps<T> =

@@ -25,7 +25,6 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">boundaryCount</span> | <span class="prop-type">number</span> | <span class="prop-default">1</span> | Number of always visible pages at the beginning and end. |
-| <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | Pagination items. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">color</span> | <span class="prop-type">'default'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'</span> | <span class="prop-default">'standard'</span> | The active color. |
 | <span class="prop-name">count</span> | <span class="prop-type">number</span> | <span class="prop-default">1</span> | The total number of pages. |
