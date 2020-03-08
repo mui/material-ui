@@ -5963,9 +5963,9 @@ dts-critic@^3.0.0:
     yargs "^12.0.5"
 
 dtslint@^3.2.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/dtslint/-/dtslint-3.2.0.tgz#b2c17935aaf243a1346c903c60bd8cbaea1fa5e2"
-  integrity sha512-c+fOZRCLu/U0DXjcbYJc0tY+f/ucYzwk93XhYO5807/TqB5l2Zdk/26ngpzjJYeXPWtfufLprdoIuBPEjaoEig==
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/dtslint/-/dtslint-3.3.0.tgz#e1e429a0c82e7fbe5c55c08dff2459d2280ce513"
+  integrity sha512-fQ1Q8Rvnz8ejiUe081qjYYeXi8XuNw8cR8dKv57FwZ5HG3KG541eOE3MeyBFbkZZAIZutl7KHcqhRXj0eaKg0g==
   dependencies:
     definitelytyped-header-parser "3.9.0"
     dts-critic "^3.0.0"
