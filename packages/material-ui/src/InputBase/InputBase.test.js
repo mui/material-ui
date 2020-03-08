@@ -189,7 +189,9 @@ describe('<InputBase />', () => {
             onChange({ target: { value: event.target.value } });
           };
 
-          return <input onChange={handleChange} />;
+          // TODO: required because of a bug in aria-query
+          // remove `type` once https://github.com/A11yance/aria-query/pull/42 is merged
+          return <input onChange={handleChange} type="text" />;
         }
         MockedValue.propTypes = { onChange: PropTypes.func.isRequired };
 
