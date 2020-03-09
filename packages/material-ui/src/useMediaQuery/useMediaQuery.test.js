@@ -285,7 +285,7 @@ describe('useMediaQuery', () => {
       }
 
       render(<MyComponent />);
-      expect(consoleErrorMock.args()[0][0]).to.include('the `query` argument provided is invalid');
+      expect(consoleErrorMock.messages()[0]).to.include('the `query` argument provided is invalid');
     });
   });
 });

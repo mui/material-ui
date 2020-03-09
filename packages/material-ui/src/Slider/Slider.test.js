@@ -498,14 +498,14 @@ describe('<Slider />', () => {
 
     it('should warn if aria-valuetext is provided', () => {
       render(<Slider value={[20, 50]} aria-valuetext="hot" />);
-      expect(consoleErrorMock.args()[0][0]).to.include(
+      expect(consoleErrorMock.messages()[0]).to.include(
         'you need to use the `getAriaValueText` prop instead of',
       );
     });
 
     it('should warn if aria-label is provided', () => {
       render(<Slider value={[20, 50]} aria-label="hot" />);
-      expect(consoleErrorMock.args()[0][0]).to.include(
+      expect(consoleErrorMock.messages()[0]).to.include(
         'you need to use the `getAriaLabel` prop instead of',
       );
     });
@@ -514,7 +514,7 @@ describe('<Slider />', () => {
       const { setProps } = render(<Slider value={[20, 50]} />);
 
       setProps({ value: undefined });
-      expect(consoleErrorMock.args()[0][0]).to.include(
+      expect(consoleErrorMock.messages()[0]).to.include(
         'A component is changing a controlled Slider to be uncontrolled.',
       );
     });
@@ -523,7 +523,7 @@ describe('<Slider />', () => {
       const { setProps } = render(<Slider />);
 
       setProps({ value: [20, 50] });
-      expect(consoleErrorMock.args()[0][0]).to.include(
+      expect(consoleErrorMock.messages()[0]).to.include(
         'A component is changing an uncontrolled Slider to be controlled.',
       );
     });

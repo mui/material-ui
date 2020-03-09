@@ -91,7 +91,7 @@ describe('createPalette()', () => {
   it('logs an error when an invalid type is specified', () => {
     createPalette({ type: 'foo' });
     expect(consoleErrorMock.callCount()).to.equal(1);
-    expect(consoleErrorMock.args()[0][0]).to.match(
+    expect(consoleErrorMock.messages()[0]).to.match(
       /Material-UI: the palette type `foo` is not supported/,
     );
   });
@@ -159,7 +159,7 @@ describe('createPalette()', () => {
       getContrastText('#fefefe');
 
       expect(consoleErrorMock.callCount()).to.equal(3);
-      expect(consoleErrorMock.args()[0][0]).to.include(
+      expect(consoleErrorMock.messages()[0]).to.include(
         'falls below the WCAG recommended absolute minimum contrast ratio of 3:1',
       );
     });

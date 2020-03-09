@@ -142,7 +142,7 @@ describe('<IconButton />', () => {
         </IconButton>,
       );
       expect(consoleErrorMock.callCount()).to.equal(1);
-      expect(consoleErrorMock.args()[0][0]).to.include(
+      expect(consoleErrorMock.messages()[0]).to.include(
         'you are providing an onClick event listener',
       );
     });

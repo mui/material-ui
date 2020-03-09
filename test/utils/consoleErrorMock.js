@@ -1,3 +1,4 @@
+import utilFormat from 'format-util';
 import { spy } from 'sinon';
 
 /**
@@ -34,12 +35,24 @@ class ConsoleErrorMock {
     throw new Error('Requested call count before spy() was called');
   };
 
-  args = () => {
-    if (this.consoleErrorContainer) {
-      return console.error.args;
+  /**
+   * returns the formatted message for each call
+   *
+   * you could call console.error("type %s", "foo") which would log
+   * "type foo". If you  want to assert on the actual message use messages() instead
+   */
+  messages = () => {
+    if (!this.consoleErrorContainer) {
+      throw new Error('Requested call count before spy() was called');
     }
 
-    throw new Error('Requested call count before spy() was called');
+    /**
+     * @type {import('sinon').SinonSpy}
+     */
+    const consoleSpy = console.error;
+    return consoleSpy.args.map(loggerArgs => {
+      return utilFormat(...loggerArgs);
+    });
   };
 }
 

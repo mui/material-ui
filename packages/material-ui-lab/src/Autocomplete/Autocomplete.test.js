@@ -777,7 +777,7 @@ describe('<Autocomplete />', () => {
       expect(handleChange.callCount).to.equal(1);
       expect(handleChange.args[0][1]).to.equal('a');
       expect(consoleErrorMock.callCount()).to.equal(2); // strict mode renders twice
-      expect(consoleErrorMock.args()[0][0]).to.include(
+      expect(consoleErrorMock.messages()[0]).to.include(
         'For the input option: "a", `getOptionLabel` returns: undefined',
       );
     });
@@ -806,7 +806,7 @@ describe('<Autocomplete />', () => {
       fireEvent.keyDown(document.activeElement, { key: 'Enter' });
 
       expect(consoleErrorMock.callCount()).to.equal(1); // strict mode renders twice
-      expect(consoleErrorMock.args()[0][0]).to.include(
+      expect(consoleErrorMock.messages()[0]).to.include(
         'The component expects a single value to match a given option but found 2 matches.',
       );
     });

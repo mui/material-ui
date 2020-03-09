@@ -96,7 +96,7 @@ describe('<CardMedia />', () => {
 
       assert.strictEqual(consoleErrorMock.callCount(), 1);
       assert.include(
-        consoleErrorMock.args()[0][0],
+        consoleErrorMock.messages()[0],
         'Material-UI: either `children`, `image`, `src` or `component` prop must be specified.',
       );
     });

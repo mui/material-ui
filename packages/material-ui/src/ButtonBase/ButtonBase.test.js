@@ -934,7 +934,7 @@ describe('<ButtonBase />', () => {
       // cant match the error message here because flakiness with mocha watchmode
       render(<ButtonBase component={Component} />);
 
-      expect(consoleErrorMock.args()[0][0]).to.include(
+      expect(consoleErrorMock.messages()[0]).to.include(
         'Invalid prop `component` supplied to `ForwardRef(ButtonBase)`. Expected an element type that can hold a ref',
       );
     });

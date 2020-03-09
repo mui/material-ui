@@ -10,11 +10,29 @@ describe('consoleErrorMock()', () => {
     });
   });
 
-  describe('args()', () => {
-    it('should throw error when calling args() before spy()', () => {
-      assert.throws(() => {
-        consoleErrorMock.args();
-      }, 'Requested call count before spy() was called');
+  describe('messages()', () => {
+    describe('when not spying', () => {
+      it('should throw error', () => {
+        assert.throws(() => {
+          consoleErrorMock.messages();
+        }, 'Requested call count before spy() was called');
+      });
+    });
+
+    describe('when spying', () => {
+      beforeEach(() => {
+        consoleErrorMock.spy();
+      });
+
+      afterEach(() => {
+        consoleErrorMock.reset();
+      });
+
+      it('returns the formatted output', () => {
+        console.error('expected %s but got %s', '1', 2);
+
+        assert.strictEqual(consoleErrorMock.messages()[0], 'expected 1 but got 2');
+      });
     });
   });
 

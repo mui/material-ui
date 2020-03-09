@@ -99,7 +99,7 @@ describe('withTheme', () => {
 
         assert.strictEqual(consoleErrorMock.callCount(), 1);
         assert.include(
-          consoleErrorMock.args()[0][0],
+          consoleErrorMock.messages()[0],
           'Warning: Failed prop type: Material-UI: the `innerRef` prop is deprecated',
         );
       });

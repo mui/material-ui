@@ -161,7 +161,7 @@ describe('StylesProvider', () => {
       );
       assert.strictEqual(consoleErrorMock.callCount(), 1);
       assert.include(
-        consoleErrorMock.args()[0][0],
+        consoleErrorMock.messages()[0],
         'you cannot use the jss and injectFirst props at the same time',
       );
     });

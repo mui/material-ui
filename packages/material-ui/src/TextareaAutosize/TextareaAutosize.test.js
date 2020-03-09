@@ -267,7 +267,7 @@ describe('<TextareaAutosize />', () => {
         wrapper.update();
 
         assert.strictEqual(consoleErrorMock.callCount(), 3);
-        assert.include(consoleErrorMock.args()[0][0], 'Material-UI: too many re-renders.');
+        assert.include(consoleErrorMock.messages()[0], 'Material-UI: too many re-renders.');
       });
     });
   });

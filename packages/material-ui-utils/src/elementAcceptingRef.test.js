@@ -55,7 +55,7 @@ describe('elementAcceptingRef', () => {
       assert.strictEqual(
         consoleErrorMock.callCount(),
         failsOnMount ? 1 : 0,
-        `but got '${consoleErrorMock.args()[0]}'`,
+        `but got '${consoleErrorMock.messages()[0]}'`,
       );
     }
 
@@ -132,7 +132,7 @@ describe('elementAcceptingRef', () => {
 
       assert.strictEqual(consoleErrorMock.callCount(), 1);
       assert.include(
-        consoleErrorMock.args()[0][0],
+        consoleErrorMock.messages()[0],
         'Invalid props `children` supplied to `DummyComponent`. ' +
           `Expected an element that can hold a ref. ${hint}`,
       );
@@ -141,13 +141,13 @@ describe('elementAcceptingRef', () => {
     it('rejects undefined values when required', () => {
       checkPropType(undefined, true);
       assert.strictEqual(consoleErrorMock.callCount(), 1);
-      assert.include(consoleErrorMock.args()[0][0], 'marked as required');
+      assert.include(consoleErrorMock.messages()[0], 'marked as required');
     });
 
     it('rejects null values when required', () => {
       checkPropType(null, true);
       assert.strictEqual(consoleErrorMock.callCount(), 1);
-      assert.include(consoleErrorMock.args()[0][0], 'marked as required');
+      assert.include(consoleErrorMock.messages()[0], 'marked as required');
     });
 
     it('rejects function components', () => {
