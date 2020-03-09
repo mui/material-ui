@@ -79,6 +79,11 @@ module.exports = function setKarmaConfig(config) {
       },
       resolve: {
         alias: {
+          // yarn alias for `ansi-styles@3`
+          // @testing-library/dom -> pretty-format@25 -> ansi-styles@4
+          // which uses Object.entries which isn't implemented in all browsers
+          // we support
+          'ansi-styles': require.resolve('ansi-styles-v3'),
           // https://github.com/sinonjs/sinon/issues/1951
           // use the cdn main field. Neither module nor main are supported for browserbuilds
           sinon: 'sinon/pkg/sinon.js',
