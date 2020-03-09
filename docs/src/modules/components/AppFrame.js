@@ -34,6 +34,7 @@ import { LANGUAGES_LABEL } from 'docs/src/modules/constants';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import { useChangeTheme } from 'docs/src/modules/components/ThemeContext';
 import PageContext from 'docs/src/modules/components/PageContext';
+import Skeleton from '@material-ui/lab/Skeleton';
 
 const LOCALES = { zh: 'zh-CN', pt: 'pt-BR', es: 'es-ES' };
 const CROWDIN_ROOT_URL = 'https://translate.material-ui.com/project/material-ui-docs/';
@@ -52,7 +53,7 @@ Router.onRouteChangeError = () => {
 
 const AppSearch = React.lazy(() => import('docs/src/modules/components/AppSearch'));
 function DeferredAppSearch() {
-  const fallback = null;
+  const fallback = <Skeleton height={40} variant="rect" width={200} />;
 
   const [mounted, setMounted] = React.useState(false);
   React.useEffect(() => {
@@ -67,10 +68,12 @@ function DeferredAppSearch() {
         as="style"
       />
       {/* Suspense isn't supported for SSR yet */}
-      {mounted && (
+      {mounted ? (
         <React.Suspense fallback={fallback}>
           <AppSearch />
         </React.Suspense>
+      ) : (
+        fallback
       )}
     </React.Fragment>
   );

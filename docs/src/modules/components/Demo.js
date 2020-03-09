@@ -17,6 +17,7 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Tooltip from '@material-ui/core/Tooltip';
+import Skeleton from '@material-ui/lab/Skeleton';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import DemoSandboxed from 'docs/src/modules/components/DemoSandboxed';
 import DemoLanguages from 'docs/src/modules/components/DemoLanguages';
@@ -98,11 +99,9 @@ const styles = theme => ({
       top: 0,
       right: theme.spacing(1),
       height: theme.spacing(6),
+      marginTop: theme.spacing(1),
     },
     justifyContent: 'space-between',
-  },
-  headerButtons: {
-    margin: '2px 0',
   },
   code: {
     display: 'none',
@@ -150,6 +149,19 @@ function getDemoData(codeVariant, demo, githubLocation) {
     Component: demo.js,
     sourceLanguage: 'jsx',
   };
+}
+
+function DemoToolbarFallback() {
+  return (
+    <React.Fragment>
+      {/* demo languages placeholder
+       * since they're hidden by default we use an empty div to position the next
+       * placeholder properly */}
+      <div />
+      {/* header buttons placeholder */}
+      <Skeleton height={40} variant="rect" width={200} />
+    </React.Fragment>
+  );
 }
 
 function Demo(props) {
@@ -345,7 +357,7 @@ function Demo(props) {
       <div className={classes.anchorLink} id={`${demoName}.tsx`} />
       {demoOptions.hideHeader ? null : (
         <div className={classes.header}>
-          <NoSsr defer>
+          <NoSsr defer fallback={<DemoToolbarFallback />}>
             <DemoLanguages
               demo={demo}
               codeOpen={codeOpen}
