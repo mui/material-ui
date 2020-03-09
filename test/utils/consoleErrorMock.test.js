@@ -10,6 +10,15 @@ describe('consoleErrorMock()', () => {
     });
   });
 
+  describe('args', () => {
+    it('was removed but throws a descriptive error', () => {
+      assert.throws(
+        () => consoleErrorMock.args(),
+        'args() was removed in favor of messages(). Use messages to match against the actual error message that will be displayed in the console.',
+      );
+    });
+  });
+
   describe('messages()', () => {
     describe('when not spying', () => {
       it('should throw error', () => {
