@@ -123,7 +123,7 @@ export const styles = theme => ({
   'direction-xs-column-reverse': {
     flexDirection: 'column-reverse',
   },
-  /* Styles applied to the root element if `direction="rwo-reverse"`. */
+  /* Styles applied to the root element if `direction="row-reverse"`. */
   'direction-xs-row-reverse': {
     flexDirection: 'row-reverse',
   },
