@@ -1,3 +1,5 @@
+const os = require('os');
+const path = require('path');
 const webpack = require('webpack');
 
 const browserStack = {
@@ -50,6 +52,10 @@ module.exports = function setKarmaConfig(config) {
     webpack: {
       mode: 'development',
       devtool: 'inline-source-map',
+      output: {
+        path: path.resolve(os.tmpdir(), 'karma-out'),
+        filename: `karma.js`,
+      },
       plugins: [
         new webpack.DefinePlugin({
           'process.env': {
@@ -83,8 +89,9 @@ module.exports = function setKarmaConfig(config) {
         },
       },
     },
-    webpackServer: {
+    webpackMiddleware: {
       noInfo: true,
+      writeToDisk: Boolean(process.env.CI),
     },
     customLaunchers: {
       ChromeHeadlessNoSandbox: {
