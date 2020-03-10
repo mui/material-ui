@@ -47,9 +47,7 @@ export default function CheckboxesGroup() {
             label="Jason Killian"
           />
           <FormControlLabel
-            control={
-              <Checkbox checked={antoine} onChange={handleChange} value="antoine" />
-            }
+            control={<Checkbox checked={antoine} onChange={handleChange} value="antoine" />}
             label="Antoine Llorca"
           />
         </FormGroup>
@@ -67,9 +65,7 @@ export default function CheckboxesGroup() {
             label="Jason Killian"
           />
           <FormControlLabel
-            control={
-              <Checkbox checked={antoine} onChange={handleChange} value="antoine" />
-            }
+            control={<Checkbox checked={antoine} onChange={handleChange} value="antoine" />}
             label="Antoine Llorca"
           />
         </FormGroup>

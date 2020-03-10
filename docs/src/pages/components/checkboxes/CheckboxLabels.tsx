@@ -34,9 +34,7 @@ export default function CheckboxLabels() {
   return (
     <FormGroup row>
       <FormControlLabel
-        control={
-          <Checkbox checked={state.checkedA} onChange={handleChange} value="checkedA" />
-        }
+        control={<Checkbox checked={state.checkedA} onChange={handleChange} value="checkedA" />}
         label="Secondary"
       />
       <FormControlLabel
@@ -66,11 +64,7 @@ export default function CheckboxLabels() {
       />
       <FormControlLabel
         control={
-          <GreenCheckbox
-            checked={state.checkedG}
-            onChange={handleChange}
-            value="checkedG"
-          />
+          <GreenCheckbox checked={state.checkedG} onChange={handleChange} value="checkedG" />
         }
         label="Custom color"
       />
