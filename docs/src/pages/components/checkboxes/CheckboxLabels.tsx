@@ -27,15 +27,15 @@ export default function CheckboxLabels() {
     checkedG: true,
   });
 
-  const handleChange = (name: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
-    setState({ ...state, [name]: event.target.checked });
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setState({ ...state, [event.target.value]: event.target.checked });
   };
 
   return (
     <FormGroup row>
       <FormControlLabel
         control={
-          <Checkbox checked={state.checkedA} onChange={handleChange('checkedA')} value="checkedA" />
+          <Checkbox checked={state.checkedA} onChange={handleChange} value="checkedA" />
         }
         label="Secondary"
       />
@@ -43,7 +43,7 @@ export default function CheckboxLabels() {
         control={
           <Checkbox
             checked={state.checkedB}
-            onChange={handleChange('checkedB')}
+            onChange={handleChange}
             value="checkedB"
             color="primary"
           />
@@ -57,7 +57,7 @@ export default function CheckboxLabels() {
         control={
           <Checkbox
             checked={state.checkedF}
-            onChange={handleChange('checkedF')}
+            onChange={handleChange}
             value="checkedF"
             indeterminate
           />
@@ -68,7 +68,7 @@ export default function CheckboxLabels() {
         control={
           <GreenCheckbox
             checked={state.checkedG}
-            onChange={handleChange('checkedG')}
+            onChange={handleChange}
             value="checkedG"
           />
         }
