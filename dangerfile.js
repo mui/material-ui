@@ -239,9 +239,15 @@ async function run() {
     });
     const pageDetailsTable = createComparisonTable(pageResults, {
       computeBundleLabel: bundleId => {
-        const host = `https://deploy-preview-${danger.github.pr.number}--material-ui.netlify.com`;
-        const page = bundleId.replace(/^docs:/, '');
-        return `[${page}](${host}${page})`;
+        // a page
+        if (bundleId.startsWith('docs:/')) {
+          const host = `https://deploy-preview-${danger.github.pr.number}--material-ui.netlify.com`;
+          const page = bundleId.replace(/^docs:/, '');
+          return `[${page}](${host}${page})`;
+        }
+
+        // shared
+        return bundleId;
       },
     });
 

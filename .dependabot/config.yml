@@ -31,11 +31,6 @@ update_configs:
           # These should be grouped once a PR for `jss` is opened
           dependency_name: 'jss-*'
       - match:
-          # breaks /api routes
-          # can be upgraded once https://github.com/zeit/next.js/issues/8123 is resolved
-          dependency_name: 'next'
-          version_requirement: '9.x'
-      - match:
           # 1.18 started adding trailing commas only compatible with typescript ^3.4
           dependency_name: 'prettier'
       - match:
