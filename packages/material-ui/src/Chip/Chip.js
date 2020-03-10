@@ -277,6 +277,7 @@ const Chip = React.forwardRef(function Chip(props, ref) {
     label,
     onClick,
     onDelete,
+    onKeyDown,
     onKeyUp,
     size = 'medium',
     variant = 'default',
@@ -294,6 +295,21 @@ const Chip = React.forwardRef(function Chip(props, ref) {
     }
   };
 
+  const isDeleteKeyboardEvent = keyboardEvent =>
+    keyboardEvent.key === 'Backspace' || keyboardEvent.key === 'Delete';
+
+  const handleKeyDown = event => {
+    if (isDeleteKeyboardEvent(event)) {
+      // will be handled in keyUp, otherwise some browsers
+      // might init navigation
+      event.preventDefault();
+    }
+
+    if (onKeyDown) {
+      onKeyDown(event);
+    }
+  };
+
   const handleKeyUp = event => {
     if (onKeyUp) {
       onKeyUp(event);
@@ -304,10 +320,9 @@ const Chip = React.forwardRef(function Chip(props, ref) {
       return;
     }
 
-    const key = event.key;
-    if (onDelete && (key === 'Backspace' || key === 'Delete')) {
+    if (onDelete && isDeleteKeyboardEvent(event)) {
       onDelete(event);
-    } else if (key === 'Escape' && chipRef.current) {
+    } else if (event.key === 'Escape' && chipRef.current) {
       chipRef.current.blur();
     }
   };
@@ -393,6 +408,7 @@ const Chip = React.forwardRef(function Chip(props, ref) {
       aria-disabled={disabled ? true : undefined}
       tabIndex={clickable || onDelete ? 0 : undefined}
       onClick={onClick}
+      onKeyDown={handleKeyDown}
       onKeyUp={handleKeyUp}
       ref={handleRef}
       {...moreProps}
