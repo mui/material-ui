@@ -43,7 +43,7 @@ describe('deprecatedPropType', () => {
       componentName,
     );
     assert.strictEqual(consoleErrorMock.callCount(), 1);
-    assert.match(consoleErrorMock.args()[0][0], /give me a reason/);
+    assert.match(consoleErrorMock.messages()[0], /give me a reason/);
     PropTypes.checkPropTypes(
       {
         [propName]: deprecatedPropType(PropTypes.string, 'give me a reason'),

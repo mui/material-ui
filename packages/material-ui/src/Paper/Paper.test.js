@@ -82,7 +82,7 @@ describe('<Paper />', () => {
 
     assert.strictEqual(consoleErrorMock.callCount(), 1);
     assert.include(
-      consoleErrorMock.args()[0][0],
+      consoleErrorMock.messages()[0],
       'Material-UI: this elevation `25` is not implemented.',
     );
   });

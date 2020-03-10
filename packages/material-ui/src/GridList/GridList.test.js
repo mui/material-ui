@@ -208,7 +208,7 @@ describe('<GridList />', () => {
 
       assert.strictEqual(consoleErrorMock.callCount(), 1);
       assert.include(
-        consoleErrorMock.args()[0][0],
+        consoleErrorMock.messages()[0],
         "Material-UI: the GridList component doesn't accept a Fragment as a child.",
       );
     });

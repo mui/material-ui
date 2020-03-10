@@ -104,7 +104,7 @@ describe('<Breadcrumbs />', () => {
       expect(getAllByRole('listitem', { hidden: false })).to.have.length(4);
       expect(getByRole('list')).to.have.text('first/second/third/fourth');
       expect(consoleErrorMock.callCount()).to.equal(2); // strict mode renders twice
-      expect(consoleErrorMock.args()[0][0]).to.include(
+      expect(consoleErrorMock.messages()[0]).to.include(
         'you have provided an invalid combination of props to the Breadcrumbs.\nitemsAfterCollapse={2} + itemsBeforeCollapse={2} >= maxItems={3}',
       );
     });

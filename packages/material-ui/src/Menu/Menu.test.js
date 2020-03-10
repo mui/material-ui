@@ -249,7 +249,7 @@ describe('<Menu />', () => {
 
       assert.strictEqual(consoleErrorMock.callCount(), 2);
       assert.include(
-        consoleErrorMock.args()[0][0],
+        consoleErrorMock.messages()[0],
         "Material-UI: the Menu component doesn't accept a Fragment as a child.",
       );
     });

@@ -43,6 +43,6 @@ describe('chainPropTypes', () => {
       componentName,
     );
     assert.strictEqual(consoleErrorMock.callCount(), 1);
-    assert.match(consoleErrorMock.args()[0][0], /something is wrong/);
+    assert.match(consoleErrorMock.messages()[0], /something is wrong/);
   });
 });

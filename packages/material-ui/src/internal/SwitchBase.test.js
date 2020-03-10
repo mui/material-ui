@@ -373,10 +373,10 @@ describe('<SwitchBase />', () => {
 
         wrapper.setProps({ checked: true });
         expect(consoleErrorMock.callCount()).to.equal(2);
-        expect(consoleErrorMock.args()[0][0]).to.include(
-          'A component is changing an uncontrolled input of type %s to be controlled.',
+        expect(consoleErrorMock.messages()[0]).to.include(
+          'A component is changing an uncontrolled input of type checkbox to be controlled.',
         );
-        expect(consoleErrorMock.args()[1][0]).to.include(
+        expect(consoleErrorMock.messages()[1]).to.include(
           'A component is changing an uncontrolled SwitchBase to be controlled.',
         );
       }),
@@ -392,10 +392,10 @@ describe('<SwitchBase />', () => {
 
         setProps({ checked: undefined });
         expect(consoleErrorMock.callCount()).to.equal(2);
-        expect(consoleErrorMock.args()[0][0]).to.include(
-          'A component is changing a controlled input of type %s to be uncontrolled.',
+        expect(consoleErrorMock.messages()[0]).to.include(
+          'A component is changing a controlled input of type checkbox to be uncontrolled.',
         );
-        expect(consoleErrorMock.args()[1][0]).to.include(
+        expect(consoleErrorMock.messages()[1]).to.include(
           'A component is changing a controlled SwitchBase to be uncontrolled.',
         );
       }),

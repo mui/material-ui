@@ -55,7 +55,7 @@ describe('elementTypeAcceptingRef', () => {
       assert.strictEqual(
         consoleErrorMock.callCount(),
         failsOnMount ? 1 : 0,
-        `but got '${consoleErrorMock.args()[0]}'`,
+        `but got '${consoleErrorMock.messages()[0]}'`,
       );
     }
 
@@ -132,7 +132,7 @@ describe('elementTypeAcceptingRef', () => {
 
       assert.strictEqual(consoleErrorMock.callCount(), 1);
       assert.include(
-        consoleErrorMock.args()[0][0],
+        consoleErrorMock.messages()[0],
         'Invalid props `component` supplied to `DummyComponent`. ' +
           `Expected an element type that can hold a ref. ${hint}`,
       );

@@ -509,7 +509,7 @@ describe('<Modal />', () => {
         </Modal>,
       );
       assert.strictEqual(consoleErrorMock.callCount(), 1);
-      assert.match(consoleErrorMock.args()[0][0], /the modal content node does not accept focus/);
+      assert.match(consoleErrorMock.messages()[0], /the modal content node does not accept focus/);
     });
 
     it('should not attempt to focus nonexistent children', () => {

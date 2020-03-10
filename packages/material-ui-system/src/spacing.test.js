@@ -57,9 +57,9 @@ describe('spacing', () => {
       });
       assert.deepEqual(output, { padding: undefined });
       assert.strictEqual(consoleErrorMock.callCount(), 1);
-      assert.match(consoleErrorMock.args()[0][0], /the value provided \(3\) overflows\./);
-      assert.match(consoleErrorMock.args()[0][0], /The supported values are: \[0,3,5\]\./);
-      assert.match(consoleErrorMock.args()[0][0], /3 > 2, you need to add the missing values\./);
+      assert.match(consoleErrorMock.messages()[0], /the value provided \(3\) overflows\./);
+      assert.match(consoleErrorMock.messages()[0], /The supported values are: \[0,3,5\]\./);
+      assert.match(consoleErrorMock.messages()[0], /3 > 2, you need to add the missing values\./);
     });
 
     it('should warn if the theme transformer is invalid', () => {
@@ -72,11 +72,11 @@ describe('spacing', () => {
       assert.deepEqual(output, { padding: undefined });
       assert.strictEqual(consoleErrorMock.callCount(), 1);
       assert.match(
-        consoleErrorMock.args()[0][0],
+        consoleErrorMock.messages()[0],
         /the `theme.spacing` value \(\[object Object\]\) is invalid\./,
       );
       assert.match(
-        consoleErrorMock.args()[0][0],
+        consoleErrorMock.messages()[0],
         /It should be a number, an array or a function\./,
       );
     });

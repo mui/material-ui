@@ -355,7 +355,7 @@ describe('<RadioGroup />', () => {
 
       wrapper.setProps({ value: undefined });
       assert.include(
-        consoleErrorMock.args()[0][0],
+        consoleErrorMock.messages()[0],
         'A component is changing a controlled RadioGroup to be uncontrolled.',
       );
     });
@@ -369,7 +369,7 @@ describe('<RadioGroup />', () => {
 
       wrapper.setProps({ value: 'foo' });
       assert.include(
-        consoleErrorMock.args()[0][0],
+        consoleErrorMock.messages()[0],
         'A component is changing an uncontrolled RadioGroup to be controlled.',
       );
     });

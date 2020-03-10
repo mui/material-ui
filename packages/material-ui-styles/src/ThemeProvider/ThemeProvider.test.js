@@ -144,7 +144,7 @@ describe('ThemeProvider', () => {
         </ThemeProvider>,
       );
       assert.strictEqual(consoleErrorMock.callCount(), 2); // twice in strict mode
-      assert.include(consoleErrorMock.args()[0][0], 'However, no outer theme is present.');
+      assert.include(consoleErrorMock.messages()[0], 'However, no outer theme is present.');
     });
 
     it('should warn about wrong theme function', () => {
@@ -158,7 +158,7 @@ describe('ThemeProvider', () => {
       );
       assert.strictEqual(consoleErrorMock.callCount(), 2);
       assert.include(
-        consoleErrorMock.args()[0][0],
+        consoleErrorMock.messages()[0],
         'you should return an object from your theme function',
       );
     });

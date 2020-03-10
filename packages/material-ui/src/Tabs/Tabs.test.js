@@ -65,7 +65,7 @@ describe('<Tabs />', () => {
     it('should warn if the input is invalid', () => {
       render(<Tabs value={0} centered variant="scrollable" />);
       assert.match(
-        consoleErrorMock.args()[0][0],
+        consoleErrorMock.messages()[0],
         /Material-UI: you can not use the `centered={true}` and `variant="scrollable"`/,
       );
     });
@@ -234,7 +234,7 @@ describe('<Tabs />', () => {
           </Tabs>,
         );
         expect(consoleErrorMock.callCount()).to.equal(4);
-        expect(consoleErrorMock.args()[0][0]).to.include(
+        expect(consoleErrorMock.messages()[0]).to.include(
           'You can provide one of the following values: 1, 3',
         );
       });
