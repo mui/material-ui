@@ -76,6 +76,7 @@ export const styles = () => {
       animationTimingFunction: 'step-end',
       contain: 'content',
       overflow: 'hidden',
+      transformOrigin: 'top left',
       '&$expanded': {
         animationName: '$expandWrapperAnimation',
       },
