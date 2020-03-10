@@ -24,7 +24,7 @@ async function getBranches() {
   return branches;
 }
 
-Page.getInitialProps = async () => {
+export async function getStaticProps() {
   const FILTERED_BRANCHES = ['latest', 'staging', 'l10n', 'next'];
 
   const branches = await getBranches();
@@ -48,5 +48,5 @@ Page.getInitialProps = async () => {
   versions = orderBy(versions, 'version', 'desc');
   versions = sortedUniqBy(versions, 'version');
 
-  return { versions };
-};
+  return { props: { versions } };
+}

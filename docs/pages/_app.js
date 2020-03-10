@@ -339,12 +339,8 @@ export default class MyApp extends App {
   }
 }
 
-MyApp.getInitialProps = async ({ ctx, Component }) => {
+MyApp.getInitialProps = async ({ ctx }) => {
   let pageProps = {};
-
-  if (Component.getInitialProps) {
-    pageProps = await Component.getInitialProps(ctx);
-  }
 
   if (!process.browser) {
     const redux = initRedux({
