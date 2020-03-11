@@ -198,7 +198,7 @@ export default function NativeSelects() {
         <FormHelperText>Required</FormHelperText>
       </FormControl>
       <FormControl variant="outlined" className={classes.formControl}>
-      <InputLabel htmlFor="outlined-age-native-simple">Age</InputLabel>
+        <InputLabel htmlFor="outlined-age-native-simple">Age</InputLabel>
         <Select
           native
           value={state.age}

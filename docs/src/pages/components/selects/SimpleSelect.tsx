@@ -191,7 +191,7 @@ export default function SimpleSelect() {
         <FormHelperText>Required</FormHelperText>
       </FormControl>
       <FormControl variant="outlined" className={classes.formControl}>
-      <InputLabel id="demo-simple-select-outlined-label">Age</InputLabel>
+        <InputLabel id="demo-simple-select-outlined-label">Age</InputLabel>
         <Select
           labelId="demo-simple-select-outlined-label"
           id="demo-simple-select-outlined"
