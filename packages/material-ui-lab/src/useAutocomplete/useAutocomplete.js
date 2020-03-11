@@ -200,7 +200,7 @@ export default function useAutocomplete(props) {
           const erroneousReturn = optionLabel === undefined ? 'undefined' : `${typeof optionLabel} (${optionLabel})`;
           console.error(
             [
-              `Material-UI: the \`getOptionLabel\` method of Autocomplete returned ${erroneousReturn} instead of a string for`,
+              `Material-UI: the \`getOptionLabel\` method of ${componentName} returned ${erroneousReturn} instead of a string for`,
               JSON.stringify(newValue),
             ].join('\n'),
           );
