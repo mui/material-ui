@@ -26,7 +26,7 @@ Each of the following examples demonstrate one feature of the Autocomplete compo
 
 ### Country select
 
-Choose one country between 248.
+Choose one of the 248 countries.
 
 {{"demo": "pages/components/autocomplete/CountrySelect.js"}}
 
