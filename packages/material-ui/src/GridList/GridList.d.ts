@@ -11,6 +11,16 @@ export interface GridListProps
 
 export type GridListClassKey = 'root';
 
+/**
+ * 
+ *
+ * Demos:
+ * - {@link https://material-ui.com/components/grid-list Grid List}
+ *
+ * API:
+ * - {@link https://material-ui.com/api/GridList GridList API}
+ * 
+ */
 declare const GridList: React.ComponentType<GridListProps>;
 
 export default GridList;

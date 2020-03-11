@@ -6,6 +6,16 @@ export interface ListItemAvatarProps extends StandardProps<{}, ListItemAvatarCla
 
 export type ListItemAvatarClassKey = 'root' | 'icon';
 
+/**
+ * A simple wrapper to apply `List` styles to an `Avatar`.
+ *
+ * Demos:
+ * - {@link https://material-ui.com/components/lists Lists}
+ *
+ * API:
+ * - {@link https://material-ui.com/api/ListItemAvatar ListItemAvatar API}
+ * 
+ */
 declare const ListItemAvatar: React.ComponentType<ListItemAvatarProps>;
 
 export default ListItemAvatar;

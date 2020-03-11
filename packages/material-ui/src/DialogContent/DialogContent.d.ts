@@ -8,6 +8,16 @@ export interface DialogContentProps
 
 export type DialogContentClassKey = 'root' | 'dividers';
 
+/**
+ * 
+ *
+ * Demos:
+ * - {@link https://material-ui.com/components/dialogs Dialogs}
+ *
+ * API:
+ * - {@link https://material-ui.com/api/DialogContent DialogContent API}
+ * 
+ */
 declare const DialogContent: React.ComponentType<DialogContentProps>;
 
 export default DialogContent;

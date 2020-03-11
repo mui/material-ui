@@ -16,6 +16,18 @@ export type IconButtonTypeMap<
   classKey: IconButtonClassKey;
 }>;
 
+/**
+ * Refer to the [Icons](/components/icons/) section of the documentation
+regarding the available icon options.
+ *
+ * Demos:
+ * - {@link https://material-ui.com/components/buttons Buttons}
+ * - {@link https://material-ui.com/components/grid-list Grid List}
+ *
+ * API:
+ * - {@link https://material-ui.com/api/IconButton IconButton API}
+ * - inherits {@link https://material-ui.com/api//api/button-base ButtonBase API}
+ */
 declare const IconButton: ExtendButtonBase<IconButtonTypeMap>;
 
 export type IconButtonClassKey =

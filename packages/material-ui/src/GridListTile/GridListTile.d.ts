@@ -10,6 +10,16 @@ export interface GridListTileProps
 
 export type GridListTileClassKey = 'root' | 'tile' | 'imgFullHeight' | 'imgFullWidth';
 
+/**
+ * 
+ *
+ * Demos:
+ * - {@link https://material-ui.com/components/grid-list Grid List}
+ *
+ * API:
+ * - {@link https://material-ui.com/api/GridListTile GridListTile API}
+ * 
+ */
 declare const GridListTile: React.ComponentType<GridListTileProps>;
 
 export default GridListTile;

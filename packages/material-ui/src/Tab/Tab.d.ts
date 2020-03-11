@@ -20,6 +20,16 @@ export type TabTypeMap<P = {}, D extends React.ElementType = 'div'> = ExtendButt
   classKey: TabClassKey;
 }>;
 
+/**
+ * 
+ *
+ * Demos:
+ * - {@link https://material-ui.com/components/tabs Tabs}
+ *
+ * API:
+ * - {@link https://material-ui.com/api/Tab Tab API}
+ * - inherits {@link https://material-ui.com/api//api/button-base ButtonBase API}
+ */
 declare const Tab: ExtendButtonBase<TabTypeMap>;
 
 export type TabClassKey =

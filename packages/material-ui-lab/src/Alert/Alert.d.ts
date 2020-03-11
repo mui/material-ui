@@ -70,4 +70,14 @@ export type AlertClassKey =
   | 'message'
   | 'action';
 
+/**
+ * 
+ *
+ * Demos:
+ * - {@link https://material-ui.com/components/alert Alert}
+ *
+ * API:
+ * - {@link https://material-ui.com/api/Alert Alert API}
+ * - inherits {@link https://material-ui.com/api//api/paper Paper API}
+ */
 export default function Alert(props: AlertProps): JSX.Element;

@@ -24,6 +24,16 @@ export type MobileStepperClassKey =
   | 'dotActive'
   | 'progress';
 
+/**
+ * 
+ *
+ * Demos:
+ * - {@link https://material-ui.com/components/steppers Steppers}
+ *
+ * API:
+ * - {@link https://material-ui.com/api/MobileStepper MobileStepper API}
+ * - inherits {@link https://material-ui.com/api//api/paper Paper API}
+ */
 declare const MobileStepper: React.ComponentType<MobileStepperProps>;
 
 export default MobileStepper;

@@ -16,6 +16,16 @@ export interface CardHeaderProps
 
 export type CardHeaderClassKey = 'root' | 'avatar' | 'action' | 'content' | 'title' | 'subheader';
 
+/**
+ * 
+ *
+ * Demos:
+ * - {@link https://material-ui.com/components/cards Cards}
+ *
+ * API:
+ * - {@link https://material-ui.com/api/CardHeader CardHeader API}
+ * 
+ */
 declare const CardHeader: React.ComponentType<CardHeaderProps>;
 
 export default CardHeader;

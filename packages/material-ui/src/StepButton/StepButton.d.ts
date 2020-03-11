@@ -20,6 +20,16 @@ export type StepButtonTypeMap<P, D extends React.ElementType> = ExtendButtonBase
   classKey: StepButtonClasskey;
 }>;
 
+/**
+ * 
+ *
+ * Demos:
+ * - {@link https://material-ui.com/components/steppers Steppers}
+ *
+ * API:
+ * - {@link https://material-ui.com/api/StepButton StepButton API}
+ * - inherits {@link https://material-ui.com/api//api/button-base ButtonBase API}
+ */
 declare const StepButton: ExtendButtonBase<
   StepButtonTypeMap<{}, ButtonBaseTypeMap['defaultComponent']>
 >;

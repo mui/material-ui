@@ -38,6 +38,16 @@ export type SelectClassKey =
   | 'iconFilled'
   | 'iconOutlined';
 
+/**
+ * 
+ *
+ * Demos:
+ * - {@link https://material-ui.com/components/selects Selects}
+ *
+ * API:
+ * - {@link https://material-ui.com/api/Select Select API}
+ * - inherits {@link https://material-ui.com/api//api/input Input API}
+ */
 declare const Select: React.ComponentType<SelectProps>;
 
 export default Select;

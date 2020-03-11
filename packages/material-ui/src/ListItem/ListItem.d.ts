@@ -20,6 +20,17 @@ export interface ListItemTypeMap<P, D extends React.ElementType> {
   classKey: ListItemClassKey;
 }
 
+/**
+ * Uses an additional container component if `ListItemSecondaryAction` is the last child.
+ *
+ * Demos:
+ * - {@link https://material-ui.com/components/lists Lists}
+ * - {@link https://material-ui.com/components/transfer-list Transfer List}
+ *
+ * API:
+ * - {@link https://material-ui.com/api/ListItem ListItem API}
+ * 
+ */
 declare const ListItem: OverridableComponent<ListItemTypeMap<{ button?: false }, 'li'>> &
   ExtendButtonBase<ListItemTypeMap<{ button: true }, 'div'>>;
 

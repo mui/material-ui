@@ -19,6 +19,17 @@ export type IconClassKey =
   | 'fontSizeSmall'
   | 'fontSizeLarge';
 
+/**
+ * 
+ *
+ * Demos:
+ * - {@link https://material-ui.com/components/icons Icons}
+ * - {@link https://material-ui.com/components/material-icons Material Icons}
+ *
+ * API:
+ * - {@link https://material-ui.com/api/Icon Icon API}
+ * 
+ */
 declare const Icon: React.ComponentType<IconProps>;
 
 export default Icon;

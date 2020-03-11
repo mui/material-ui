@@ -87,4 +87,14 @@ export type SpeedDialClassKey =
   | 'actions'
   | 'actionsClosed';
 
+/**
+ * 
+ *
+ * Demos:
+ * - {@link https://material-ui.com/components/speed-dial Speed Dial}
+ *
+ * API:
+ * - {@link https://material-ui.com/api/SpeedDial SpeedDial API}
+ * 
+ */
 export default function SpeedDial(props: SpeedDialProps): JSX.Element;

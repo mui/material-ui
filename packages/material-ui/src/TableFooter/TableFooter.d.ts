@@ -9,6 +9,16 @@ export type TableFooterClassKey = 'root';
 
 export type TableFooterBaseProps = React.HTMLAttributes<HTMLTableSectionElement>;
 
+/**
+ * 
+ *
+ * Demos:
+ * - {@link https://material-ui.com/components/tables Tables}
+ *
+ * API:
+ * - {@link https://material-ui.com/api/TableFooter TableFooter API}
+ * 
+ */
 declare const TableFooter: React.ComponentType<TableFooterProps>;
 
 export default TableFooter;

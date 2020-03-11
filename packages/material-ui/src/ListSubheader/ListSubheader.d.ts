@@ -13,6 +13,17 @@ export interface ListSubheaderTypeMap<P = {}, D extends React.ElementType = 'li'
   classKey: ListSubheaderClassKey;
 }
 
+/**
+ * 
+ *
+ * Demos:
+ * - {@link https://material-ui.com/components/grid-list Grid List}
+ * - {@link https://material-ui.com/components/lists Lists}
+ *
+ * API:
+ * - {@link https://material-ui.com/api/ListSubheader ListSubheader API}
+ * 
+ */
 declare const ListSubheader: OverridableComponent<ListSubheaderTypeMap>;
 
 export type ListSubheaderClassKey =

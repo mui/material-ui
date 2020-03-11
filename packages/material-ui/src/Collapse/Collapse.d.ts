@@ -13,6 +13,20 @@ export interface CollapseProps extends StandardProps<TransitionProps, CollapseCl
 
 export type CollapseClassKey = 'container' | 'entered' | 'hidden' | 'wrapper' | 'wrapperInner';
 
+/**
+ * The Collapse transition is used by the
+[Vertical Stepper](/components/steppers/#vertical-stepper) StepContent component.
+It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
+ *
+ * Demos:
+ * - {@link https://material-ui.com/components/cards Cards}
+ * - {@link https://material-ui.com/components/lists Lists}
+ * - {@link https://material-ui.com/components/transitions Transitions}
+ *
+ * API:
+ * - {@link https://material-ui.com/api/Collapse Collapse API}
+ * - inherits {@link https://material-ui.com/api/https://reactcommunity.org/react-transition-group/transition#Transition-props Transition API}
+ */
 declare const Collapse: React.ComponentType<CollapseProps>;
 
 export default Collapse;

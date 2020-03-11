@@ -19,6 +19,16 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
   classKey: ChipClassKey;
 }
 
+/**
+ * Chips represent complex entities in small blocks, such as a contact.
+ *
+ * Demos:
+ * - {@link https://material-ui.com/components/chips Chips}
+ *
+ * API:
+ * - {@link https://material-ui.com/api/Chip Chip API}
+ * 
+ */
 declare const Chip: OverridableComponent<ChipTypeMap>;
 
 export type ChipClassKey =

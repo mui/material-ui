@@ -25,6 +25,16 @@ export type OutlinedInputClassKey =
   | 'inputAdornedStart'
   | 'inputAdornedEnd';
 
+/**
+ * 
+ *
+ * Demos:
+ * - {@link https://material-ui.com/components/text-fields Text Fields}
+ *
+ * API:
+ * - {@link https://material-ui.com/api/OutlinedInput OutlinedInput API}
+ * - inherits {@link https://material-ui.com/api//api/input-base InputBase API}
+ */
 declare const OutlinedInput: React.ComponentType<OutlinedInputProps>;
 
 export default OutlinedInput;

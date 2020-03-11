@@ -27,6 +27,17 @@ export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'>
   classKey: TypographyClassKey;
 }
 
+/**
+ * 
+ *
+ * Demos:
+ * - {@link https://material-ui.com/components/breadcrumbs Breadcrumbs}
+ * - {@link https://material-ui.com/components/typography Typography}
+ *
+ * API:
+ * - {@link https://material-ui.com/api/Typography Typography API}
+ * 
+ */
 declare const Typography: OverridableComponent<TypographyTypeMap>;
 
 export type TypographyProps<

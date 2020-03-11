@@ -25,4 +25,15 @@ export interface PortalProps {
   onRendered?: () => void;
 }
 
+/**
+ * Portals provide a first-class way to render children into a DOM node
+that exists outside the DOM hierarchy of the parent component.
+ *
+ * Demos:
+ * - {@link https://material-ui.com/components/portal Portal}
+ *
+ * API:
+ * - {@link https://material-ui.com/api/Portal Portal API}
+ * 
+ */
 export default function Portal(props: PortalProps): JSX.Element;

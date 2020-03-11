@@ -8,6 +8,19 @@ export interface FormGroupProps
 
 export type FormGroupClassKey = 'root' | 'row';
 
+/**
+ * `FormGroup` wraps controls such as `Checkbox` and `Switch`.
+It provides compact row layout.
+For the `Radio`, you should be using the `RadioGroup` component instead of this one.
+ *
+ * Demos:
+ * - {@link https://material-ui.com/components/checkboxes Checkboxes}
+ * - {@link https://material-ui.com/components/switches Switches}
+ *
+ * API:
+ * - {@link https://material-ui.com/api/FormGroup FormGroup API}
+ * 
+ */
 declare const FormGroup: React.ComponentType<FormGroupProps>;
 
 export default FormGroup;

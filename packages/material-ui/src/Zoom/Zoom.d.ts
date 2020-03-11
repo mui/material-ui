@@ -7,6 +7,18 @@ export interface ZoomProps extends TransitionProps {
   theme?: Theme;
 }
 
+/**
+ * The Zoom transition can be used for the floating variant of the
+[Button](/components/buttons/#floating-action-buttons) component.
+It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
+ *
+ * Demos:
+ * - {@link https://material-ui.com/components/transitions Transitions}
+ *
+ * API:
+ * - {@link https://material-ui.com/api/Zoom Zoom API}
+ * - inherits {@link https://material-ui.com/api/https://reactcommunity.org/react-transition-group/transition#Transition-props Transition API}
+ */
 declare const Zoom: React.ComponentType<ZoomProps>;
 
 export default Zoom;

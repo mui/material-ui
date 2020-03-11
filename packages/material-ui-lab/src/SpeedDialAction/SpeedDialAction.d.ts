@@ -43,4 +43,14 @@ export type SpeedDialActionClassKey =
   | 'staticTooltipLabel'
   | 'tooltipPlacementLeft';
 
+/**
+ * 
+ *
+ * Demos:
+ * - {@link https://material-ui.com/components/speed-dial Speed Dial}
+ *
+ * API:
+ * - {@link https://material-ui.com/api/SpeedDialAction SpeedDialAction API}
+ * - inherits {@link https://material-ui.com/api//api/tooltip Tooltip API}
+ */
 export default function SpeedDialAction(props: SpeedDialActionProps): JSX.Element;

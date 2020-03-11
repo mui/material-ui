@@ -19,6 +19,17 @@ export type SwitchClassKey =
   | 'thumb'
   | 'track';
 
+/**
+ * 
+ *
+ * Demos:
+ * - {@link https://material-ui.com/components/switches Switches}
+ * - {@link https://material-ui.com/components/transfer-list Transfer List}
+ *
+ * API:
+ * - {@link https://material-ui.com/api/Switch Switch API}
+ * - inherits {@link https://material-ui.com/api//api/icon-button IconButton API}
+ */
 declare const Switch: React.ComponentType<SwitchProps>;
 
 export default Switch;

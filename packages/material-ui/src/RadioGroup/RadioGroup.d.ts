@@ -11,6 +11,16 @@ export interface RadioGroupProps
 
 export type RadioGroupClassKey = FormGroupClassKey;
 
+/**
+ * 
+ *
+ * Demos:
+ * - {@link https://material-ui.com/components/radio-buttons Radio Buttons}
+ *
+ * API:
+ * - {@link https://material-ui.com/api/RadioGroup RadioGroup API}
+ * - inherits {@link https://material-ui.com/api//api/form-group FormGroup API}
+ */
 declare const RadioGroup: React.ComponentType<RadioGroupProps>;
 
 export default RadioGroup;

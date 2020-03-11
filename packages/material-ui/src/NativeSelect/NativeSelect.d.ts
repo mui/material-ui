@@ -23,6 +23,16 @@ export type NativeSelectClassKey =
   | 'iconFilled'
   | 'iconOutlined';
 
+/**
+ * An alternative to `<Select native />` with a much smaller bundle size footprint.
+ *
+ * Demos:
+ * - {@link https://material-ui.com/components/selects Selects}
+ *
+ * API:
+ * - {@link https://material-ui.com/api/NativeSelect NativeSelect API}
+ * - inherits {@link https://material-ui.com/api//api/input Input API}
+ */
 declare const NativeSelect: React.ComponentType<NativeSelectProps>;
 
 export default NativeSelect;

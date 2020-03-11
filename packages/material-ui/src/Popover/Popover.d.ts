@@ -42,6 +42,17 @@ export interface PopoverActions {
   updatePosition(): void;
 }
 
+/**
+ * 
+ *
+ * Demos:
+ * - {@link https://material-ui.com/components/menus Menus}
+ * - {@link https://material-ui.com/components/popover Popover}
+ *
+ * API:
+ * - {@link https://material-ui.com/api/Popover Popover API}
+ * - inherits {@link https://material-ui.com/api//api/modal Modal API}
+ */
 declare const Popover: React.ComponentType<PopoverProps>;
 
 export default Popover;

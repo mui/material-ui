@@ -20,6 +20,16 @@ export type ListItemTextClassKey =
   | 'primary'
   | 'secondary';
 
+/**
+ * 
+ *
+ * Demos:
+ * - {@link https://material-ui.com/components/lists Lists}
+ *
+ * API:
+ * - {@link https://material-ui.com/api/ListItemText ListItemText API}
+ * 
+ */
 declare const ListItemText: React.ComponentType<ListItemTextProps>;
 
 export default ListItemText;

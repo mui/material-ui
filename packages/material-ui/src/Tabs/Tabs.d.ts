@@ -22,6 +22,16 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof Button
   classKey: TabsClassKey;
 }
 
+/**
+ * 
+ *
+ * Demos:
+ * - {@link https://material-ui.com/components/tabs Tabs}
+ *
+ * API:
+ * - {@link https://material-ui.com/api/Tabs Tabs API}
+ * 
+ */
 declare const Tabs: OverridableComponent<TabsTypeMap>;
 
 export type TabsClassKey =

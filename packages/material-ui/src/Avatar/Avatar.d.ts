@@ -14,6 +14,16 @@ export interface AvatarTypeMap<P = {}, D extends React.ElementType = 'div'> {
   classKey: AvatarClassKey;
 }
 
+/**
+ * 
+ *
+ * Demos:
+ * - {@link https://material-ui.com/components/avatars Avatars}
+ *
+ * API:
+ * - {@link https://material-ui.com/api/Avatar Avatar API}
+ * 
+ */
 declare const Avatar: OverridableComponent<AvatarTypeMap>;
 
 export type AvatarClassKey =

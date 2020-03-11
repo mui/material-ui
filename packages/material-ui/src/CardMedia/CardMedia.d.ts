@@ -10,6 +10,16 @@ export interface CardMediaTypeMap<P, D extends React.ElementType> {
   classKey: CardMediaClassKey;
 }
 
+/**
+ * 
+ *
+ * Demos:
+ * - {@link https://material-ui.com/components/cards Cards}
+ *
+ * API:
+ * - {@link https://material-ui.com/api/CardMedia CardMedia API}
+ * 
+ */
 declare const CardMedia: OverridableComponent<CardMediaTypeMap<{}, 'div'>>;
 
 export type CardMediaClassKey = 'root' | 'media';

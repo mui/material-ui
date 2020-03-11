@@ -38,6 +38,17 @@ export type DrawerClassKey =
   | 'paperAnchorDockedBottom'
   | 'modal';
 
+/**
+ * The props of the [Modal](/api/modal/) component are available
+when `variant="temporary"` is set.
+ *
+ * Demos:
+ * - {@link https://material-ui.com/components/drawers Drawers}
+ *
+ * API:
+ * - {@link https://material-ui.com/api/Drawer Drawer API}
+ * 
+ */
 declare const Drawer: React.ComponentType<DrawerProps>;
 
 export default Drawer;

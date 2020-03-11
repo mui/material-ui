@@ -15,6 +15,16 @@ export type ExpansionPanelSummaryTypeMap<
   classKey: ExpansionPanelSummaryClassKey;
 }>;
 
+/**
+ * 
+ *
+ * Demos:
+ * - {@link https://material-ui.com/components/expansion-panels Expansion Panels}
+ *
+ * API:
+ * - {@link https://material-ui.com/api/ExpansionPanelSummary ExpansionPanelSummary API}
+ * - inherits {@link https://material-ui.com/api//api/button-base ButtonBase API}
+ */
 declare const ExpansionPanelSummary: ExtendButtonBase<ExpansionPanelSummaryTypeMap>;
 
 export type ExpansionPanelSummaryClassKey =

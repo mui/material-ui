@@ -15,6 +15,16 @@ export interface StepperProps extends StandardProps<PaperProps, StepperClasskey>
 
 export type StepperClasskey = 'root' | 'horizontal' | 'vertical' | 'alternativeLabel';
 
+/**
+ * 
+ *
+ * Demos:
+ * - {@link https://material-ui.com/components/steppers Steppers}
+ *
+ * API:
+ * - {@link https://material-ui.com/api/Stepper Stepper API}
+ * - inherits {@link https://material-ui.com/api//api/paper Paper API}
+ */
 declare const Stepper: React.ComponentType<StepperProps>;
 
 export default Stepper;

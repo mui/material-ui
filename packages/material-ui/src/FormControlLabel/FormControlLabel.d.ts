@@ -26,6 +26,19 @@ export type FormControlLabelClassKey =
   | 'disabled'
   | 'label';
 
+/**
+ * Drop in replacement of the `Radio`, `Switch` and `Checkbox` component.
+Use this component if you want to display an extra label.
+ *
+ * Demos:
+ * - {@link https://material-ui.com/components/checkboxes Checkboxes}
+ * - {@link https://material-ui.com/components/radio-buttons Radio Buttons}
+ * - {@link https://material-ui.com/components/switches Switches}
+ *
+ * API:
+ * - {@link https://material-ui.com/api/FormControlLabel FormControlLabel API}
+ * 
+ */
 declare const FormControlLabel: React.ComponentType<FormControlLabelProps>;
 
 export default FormControlLabel;

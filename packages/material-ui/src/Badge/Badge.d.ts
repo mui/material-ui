@@ -67,4 +67,15 @@ export type BadgeClassKey =
   | 'anchorOriginTopLeftCircle'
   | 'invisible';
 
+/**
+ * 
+ *
+ * Demos:
+ * - {@link https://material-ui.com/components/avatars Avatars}
+ * - {@link https://material-ui.com/components/badges Badges}
+ *
+ * API:
+ * - {@link https://material-ui.com/api/Badge Badge API}
+ * 
+ */
 export default function Badge(props: BadgeProps): JSX.Element | null;
