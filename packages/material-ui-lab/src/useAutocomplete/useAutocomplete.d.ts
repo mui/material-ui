@@ -71,6 +71,10 @@ export interface UseAutocompleteCommonProps<T> {
    */
   disableListWrap?: boolean;
   /**
+   * If `true`, will allow focus on disabled items.
+   */
+  enableFocusForDisabledItems?: boolean,
+  /**
    * A filter function that determines the options that are eligible.
    *
    * @param {T[]} options The options to render.

@@ -1016,6 +1016,10 @@ useAutocomplete.propTypes = {
    */
   disableListWrap: PropTypes.bool,
   /**
+   * If `true`, will allow focus on disabled items.
+   */
+  enableFocusForDisabledItems: PropTypes.bool,
+  /**
    * A filter function that determins the options that are eligible.
    *
    * @param {any} options The options to render.
