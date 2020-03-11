@@ -24,7 +24,8 @@ ${Object.entries(variants)
   .join('\n')}
 };
 
-export default ${name};`;
+export default ${name};
+`;
 
   return fse.writeFile(typesFilename, typescript, { encoding: 'utf8' });
 }
