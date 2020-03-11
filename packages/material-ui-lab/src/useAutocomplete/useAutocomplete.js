@@ -74,6 +74,7 @@ export default function useAutocomplete(props) {
     disableClearable = false,
     disableCloseOnSelect = false,
     disableListWrap = false,
+    enableFocusForDisabledItems = false,
     filterOptions = defaultFilterOptions,
     filterSelectedOptions = false,
     freeSolo = false,
@@ -312,12 +313,11 @@ export default function useAutocomplete(props) {
       const option = listboxRef.current.querySelector(`[data-option-index="${nextFocus}"]`);
 
       // Same logic as MenuList.js
-      if (
-        option &&
-        (!option.hasAttribute('tabindex') ||
-          option.disabled ||
-          option.getAttribute('aria-disabled') === 'true')
-      ) {
+      const nextFocusDisabled = enableFocusForDisabledItems
+        ? false
+        : option && (option.disabled || option.getAttribute('aria-disabled') === 'true');
+
+      if ((option && !option.hasAttribute('tabindex')) || nextFocusDisabled) {
         nextFocus += direction === 'next' ? 1 : -1;
       } else {
         return nextFocus;

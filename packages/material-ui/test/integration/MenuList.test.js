@@ -470,9 +470,9 @@ describe('<MenuList> integration', () => {
     expect(menu).to.have.focus;
   });
 
-  it('should allow focus on disabled items', () => {
+  it('should allow focus on disabled items when enableFocusForDisabledItems=true', () => {
     const { getAllByRole } = render(
-      <MenuList autoFocus>
+      <MenuList autoFocus enableFocusForDisabledItems>
         <MenuItem disabled>Menu Item 1</MenuItem>
         <MenuItem disabled>Menu Item 2</MenuItem>
         <MenuItem disabled>Menu Item 3</MenuItem>
