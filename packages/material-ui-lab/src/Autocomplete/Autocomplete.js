@@ -587,10 +587,6 @@ Autocomplete.propTypes = {
    */
   disablePortal: PropTypes.bool,
   /**
-   * If `true`, will allow focus on disabled items.
-   */
-  enableFocusForDisabledItems: PropTypes.bool,
-  /**
    * A filter function that determines the options that are eligible.
    *
    * @param {T[]} options The options to render.

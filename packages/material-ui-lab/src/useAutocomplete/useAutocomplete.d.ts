@@ -73,7 +73,7 @@ export interface UseAutocompleteCommonProps<T> {
   /**
    * If `true`, will allow focus on disabled items.
    */
-  enableFocusForDisabledItems?: boolean,
+  enableFocusForDisabledItems?: boolean;
   /**
    * A filter function that determines the options that are eligible.
    *
