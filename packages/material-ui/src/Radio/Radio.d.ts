@@ -13,7 +13,7 @@ export interface RadioProps
 export type RadioClassKey = SwitchBaseClassKey | 'colorPrimary' | 'colorSecondary';
 
 /**
- * 
+ *
  *
  * Demos:
  * - {@link https://material-ui.com/components/radio-buttons Radio Buttons}

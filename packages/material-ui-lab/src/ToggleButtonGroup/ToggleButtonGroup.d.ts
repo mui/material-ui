@@ -43,13 +43,13 @@ export type ToggleButtonGroupClassKey =
   | 'groupedSizeLarge';
 
 /**
- * 
+ *
  *
  * Demos:
  * - {@link https://material-ui.com/components/toggle-button Toggle Button}
  *
  * API:
  * - {@link https://material-ui.com/api/ToggleButtonGroup ToggleButtonGroup API}
- * 
+ *
  */
 export default function ToggleButtonGroup(props: ToggleButtonGroupProps): JSX.Element;

@@ -44,7 +44,7 @@ export type SpeedDialActionClassKey =
   | 'tooltipPlacementLeft';
 
 /**
- * 
+ *
  *
  * Demos:
  * - {@link https://material-ui.com/components/speed-dial Speed Dial}

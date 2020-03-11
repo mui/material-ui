@@ -15,7 +15,7 @@ export interface DialogContentTextTypeMap<
 export type DialogContentTextClassKey = 'root';
 
 /**
- * 
+ *
  *
  * Demos:
  * - {@link https://material-ui.com/components/dialogs Dialogs}

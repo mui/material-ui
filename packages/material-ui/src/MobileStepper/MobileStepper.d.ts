@@ -25,7 +25,7 @@ export type MobileStepperClassKey =
   | 'progress';
 
 /**
- * 
+ *
  *
  * Demos:
  * - {@link https://material-ui.com/components/steppers Steppers}

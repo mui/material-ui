@@ -14,7 +14,7 @@ export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
 }
 
 /**
- * 
+ *
  *
  * Demos:
  * - {@link https://material-ui.com/components/breadcrumbs Breadcrumbs}

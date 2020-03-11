@@ -43,7 +43,7 @@ export interface PopoverActions {
 }
 
 /**
- * 
+ *
  *
  * Demos:
  * - {@link https://material-ui.com/components/menus Menus}

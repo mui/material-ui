@@ -23,7 +23,7 @@ export type InputClassKey =
   | 'inputTypeSearch';
 
 /**
- * 
+ *
  *
  * Demos:
  * - {@link https://material-ui.com/components/text-fields Text Fields}

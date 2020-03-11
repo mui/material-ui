@@ -39,7 +39,7 @@ export type SelectClassKey =
   | 'iconOutlined';
 
 /**
- * 
+ *
  *
  * Demos:
  * - {@link https://material-ui.com/components/selects Selects}

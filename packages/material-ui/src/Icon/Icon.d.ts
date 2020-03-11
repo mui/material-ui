@@ -20,7 +20,7 @@ export type IconClassKey =
   | 'fontSizeLarge';
 
 /**
- * 
+ *
  *
  * Demos:
  * - {@link https://material-ui.com/components/icons Icons}
@@ -28,7 +28,7 @@ export type IconClassKey =
  *
  * API:
  * - {@link https://material-ui.com/api/Icon Icon API}
- * 
+ *
  */
 declare const Icon: React.ComponentType<IconProps>;
 

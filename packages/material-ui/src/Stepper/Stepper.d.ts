@@ -16,7 +16,7 @@ export interface StepperProps extends StandardProps<PaperProps, StepperClasskey>
 export type StepperClasskey = 'root' | 'horizontal' | 'vertical' | 'alternativeLabel';
 
 /**
- * 
+ *
  *
  * Demos:
  * - {@link https://material-ui.com/components/steppers Steppers}

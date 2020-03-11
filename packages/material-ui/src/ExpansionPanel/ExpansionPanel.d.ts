@@ -16,7 +16,7 @@ export interface ExpansionPanelProps
 export type ExpansionPanelClassKey = 'root' | 'rounded' | 'expanded' | 'disabled';
 
 /**
- * 
+ *
  *
  * Demos:
  * - {@link https://material-ui.com/components/expansion-panels Expansion Panels}

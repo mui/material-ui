@@ -12,14 +12,14 @@ export interface StepIconProps
 export type StepIconClasskey = 'root' | 'text' | 'active' | 'completed' | 'error';
 
 /**
- * 
+ *
  *
  * Demos:
  * - {@link https://material-ui.com/components/steppers Steppers}
  *
  * API:
  * - {@link https://material-ui.com/api/StepIcon StepIcon API}
- * 
+ *
  */
 declare const StepIcon: React.ComponentType<StepIconProps>;
 

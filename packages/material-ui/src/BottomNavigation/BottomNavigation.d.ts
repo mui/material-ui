@@ -33,13 +33,13 @@ export interface BottomNavigationProps
 export type BottomNavigationClassKey = 'root';
 
 /**
- * 
+ *
  *
  * Demos:
  * - {@link https://material-ui.com/components/bottom-navigation Bottom Navigation}
  *
  * API:
  * - {@link https://material-ui.com/api/BottomNavigation BottomNavigation API}
- * 
+ *
  */
 export default function BottomNavigation(props: BottomNavigationProps): JSX.Element;

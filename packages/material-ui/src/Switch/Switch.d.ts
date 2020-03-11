@@ -20,7 +20,7 @@ export type SwitchClassKey =
   | 'track';
 
 /**
- * 
+ *
  *
  * Demos:
  * - {@link https://material-ui.com/components/switches Switches}

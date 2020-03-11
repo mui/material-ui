@@ -24,14 +24,14 @@ export type FormHelperTextClassKey =
   | 'required';
 
 /**
- * 
+ *
  *
  * Demos:
  * - {@link https://material-ui.com/components/text-fields Text Fields}
  *
  * API:
  * - {@link https://material-ui.com/api/FormHelperText FormHelperText API}
- * 
+ *
  */
 declare const FormHelperText: React.ComponentType<FormHelperTextProps>;
 

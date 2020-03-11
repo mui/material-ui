@@ -16,7 +16,7 @@ export type ExpansionPanelSummaryTypeMap<
 }>;
 
 /**
- * 
+ *
  *
  * Demos:
  * - {@link https://material-ui.com/components/expansion-panels Expansion Panels}

@@ -59,7 +59,7 @@ export type SvgIconClassKey =
   | 'fontSizeLarge';
 
 /**
- * 
+ *
  *
  * Demos:
  * - {@link https://material-ui.com/components/icons Icons}
@@ -67,6 +67,6 @@ export type SvgIconClassKey =
  *
  * API:
  * - {@link https://material-ui.com/api/SvgIcon SvgIcon API}
- * 
+ *
  */
 export default function SvgIcon(props: SvgIconProps): JSX.Element;

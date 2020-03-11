@@ -10,7 +10,7 @@ export interface SnackbarContentProps extends StandardProps<PaperProps, Snackbar
 export type SnackbarContentClassKey = 'root' | 'message' | 'action';
 
 /**
- * 
+ *
  *
  * Demos:
  * - {@link https://material-ui.com/components/snackbars Snackbars}

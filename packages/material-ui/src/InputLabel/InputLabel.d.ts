@@ -28,7 +28,7 @@ export type InputLabelClassKey =
   | 'outlined';
 
 /**
- * 
+ *
  *
  * Demos:
  * - {@link https://material-ui.com/components/text-fields Text Fields}

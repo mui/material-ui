@@ -15,7 +15,7 @@ export type FabTypeMap<P = {}, D extends React.ElementType = 'button'> = ExtendB
 }>;
 
 /**
- * 
+ *
  *
  * Demos:
  * - {@link https://material-ui.com/components/floating-action-button Floating Action Button}

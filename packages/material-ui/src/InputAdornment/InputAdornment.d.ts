@@ -20,14 +20,14 @@ export type InputAdornmentClassKey =
   | 'marginDense';
 
 /**
- * 
+ *
  *
  * Demos:
  * - {@link https://material-ui.com/components/text-fields Text Fields}
  *
  * API:
  * - {@link https://material-ui.com/api/InputAdornment InputAdornment API}
- * 
+ *
  */
 declare const InputAdornment: React.ComponentType<InputAdornmentProps>;
 

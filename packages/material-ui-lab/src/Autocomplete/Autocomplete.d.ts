@@ -185,14 +185,14 @@ export type AutocompleteClassKey =
   | 'groupUl';
 
 /**
- * 
+ *
  *
  * Demos:
  * - {@link https://material-ui.com/components/autocomplete Autocomplete}
  *
  * API:
  * - {@link https://material-ui.com/api/Autocomplete Autocomplete API}
- * 
+ *
  */
 export default function Autocomplete<T>(
   props: AutocompleteProps<T> & UseAutocompleteProps<T>,

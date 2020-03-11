@@ -11,14 +11,14 @@ export type TableContainerBaseProps = React.HTMLAttributes<HTMLDivElement>;
 export type TableContainerClassKey = 'root';
 
 /**
- * 
+ *
  *
  * Demos:
  * - {@link https://material-ui.com/components/tables Tables}
  *
  * API:
  * - {@link https://material-ui.com/api/TableContainer TableContainer API}
- * 
+ *
  */
 declare const TableContainer: React.ComponentType<TableContainerProps>;
 

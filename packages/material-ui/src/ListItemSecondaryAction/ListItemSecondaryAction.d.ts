@@ -13,7 +13,7 @@ export type ListItemSecondaryActionClassKey = 'root';
  *
  * API:
  * - {@link https://material-ui.com/api/ListItemSecondaryAction ListItemSecondaryAction API}
- * 
+ *
  */
 declare const ListItemSecondaryAction: React.ComponentType<ListItemSecondaryActionProps>;
 

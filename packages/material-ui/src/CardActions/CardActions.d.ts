@@ -9,14 +9,14 @@ export interface CardActionsProps
 export type CardActionsClassKey = 'root' | 'spacing';
 
 /**
- * 
+ *
  *
  * Demos:
  * - {@link https://material-ui.com/components/cards Cards}
  *
  * API:
  * - {@link https://material-ui.com/api/CardActions CardActions API}
- * 
+ *
  */
 declare const CardActions: React.ComponentType<CardActionsProps>;
 

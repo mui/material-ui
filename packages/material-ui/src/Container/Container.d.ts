@@ -20,14 +20,14 @@ export type ContainerClassKey =
   | 'maxWidthXl';
 
 /**
- * 
+ *
  *
  * Demos:
  * - {@link https://material-ui.com/components/container Container}
  *
  * API:
  * - {@link https://material-ui.com/api/Container Container API}
- * 
+ *
  */
 declare const Container: React.ComponentType<ContainerProps>;
 

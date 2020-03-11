@@ -9,7 +9,7 @@ export interface FilledInputProps extends StandardProps<InputBaseProps, FilledIn
 export type FilledInputClassKey = InputBaseClassKey | 'colorSecondary' | 'underline';
 
 /**
- * 
+ *
  *
  * Demos:
  * - {@link https://material-ui.com/components/text-fields Text Fields}

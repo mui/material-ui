@@ -16,7 +16,7 @@ export interface FormLabelTypeMap<P = {}, D extends React.ElementType = 'label'>
 }
 
 /**
- * 
+ *
  *
  * Demos:
  * - {@link https://material-ui.com/components/checkboxes Checkboxes}
@@ -25,7 +25,7 @@ export interface FormLabelTypeMap<P = {}, D extends React.ElementType = 'label'>
  *
  * API:
  * - {@link https://material-ui.com/api/FormLabel FormLabel API}
- * 
+ *
  */
 declare const FormLabel: OverridableComponent<FormLabelTypeMap>;
 

@@ -12,7 +12,7 @@ export interface CssBaselineProps {
  *
  * API:
  * - {@link https://material-ui.com/api/CssBaseline CssBaseline API}
- * 
+ *
  */
 declare const CssBaseline: React.ComponentType<CssBaselineProps>;
 

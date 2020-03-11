@@ -19,7 +19,7 @@ export interface MenuProps
 export type MenuClassKey = 'paper' | 'list';
 
 /**
- * 
+ *
  *
  * Demos:
  * - {@link https://material-ui.com/components/app-bar App Bar}

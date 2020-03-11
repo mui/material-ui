@@ -19,7 +19,7 @@ export type CheckboxClassKey =
   | 'colorSecondary';
 
 /**
- * 
+ *
  *
  * Demos:
  * - {@link https://material-ui.com/components/checkboxes Checkboxes}

@@ -26,7 +26,7 @@ export type OutlinedInputClassKey =
   | 'inputAdornedEnd';
 
 /**
- * 
+ *
  *
  * Demos:
  * - {@link https://material-ui.com/components/text-fields Text Fields}

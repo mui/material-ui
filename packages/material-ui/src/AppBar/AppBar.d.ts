@@ -26,7 +26,7 @@ export type AppBarClassKey =
   | 'colorSecondary';
 
 /**
- * 
+ *
  *
  * Demos:
  * - {@link https://material-ui.com/components/app-bar App Bar}

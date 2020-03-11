@@ -12,7 +12,7 @@ export interface RadioGroupProps
 export type RadioGroupClassKey = FormGroupClassKey;
 
 /**
- * 
+ *
  *
  * Demos:
  * - {@link https://material-ui.com/components/radio-buttons Radio Buttons}

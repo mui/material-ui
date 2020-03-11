@@ -42,14 +42,14 @@ export type RatingClassKey =
   | 'decimal';
 
 /**
- * 
+ *
  *
  * Demos:
  * - {@link https://material-ui.com/components/rating Rating}
  *
  * API:
  * - {@link https://material-ui.com/api/Rating Rating API}
- * 
+ *
  */
 declare const Rating: React.ComponentType<RatingProps>;
 

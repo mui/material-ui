@@ -66,14 +66,14 @@ export type SliderClassKey =
   | 'markLabelActive';
 
 /**
- * 
+ *
  *
  * Demos:
  * - {@link https://material-ui.com/components/slider Slider}
  *
  * API:
  * - {@link https://material-ui.com/api/Slider Slider API}
- * 
+ *
  */
 declare const Slider: React.ComponentType<SliderProps>;
 

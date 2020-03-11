@@ -9,7 +9,7 @@ export interface CardProps extends StandardProps<PaperProps, CardClassKey> {
 export type CardClassKey = 'root';
 
 /**
- * 
+ *
  *
  * Demos:
  * - {@link https://material-ui.com/components/cards Cards}

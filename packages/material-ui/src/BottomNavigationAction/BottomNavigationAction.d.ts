@@ -20,7 +20,7 @@ export type BottomNavigationActionTypeMap<
 }>;
 
 /**
- * 
+ *
  *
  * Demos:
  * - {@link https://material-ui.com/components/bottom-navigation Bottom Navigation}

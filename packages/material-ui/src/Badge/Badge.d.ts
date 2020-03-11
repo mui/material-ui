@@ -68,7 +68,7 @@ export type BadgeClassKey =
   | 'invisible';
 
 /**
- * 
+ *
  *
  * Demos:
  * - {@link https://material-ui.com/components/avatars Avatars}
@@ -76,6 +76,6 @@ export type BadgeClassKey =
  *
  * API:
  * - {@link https://material-ui.com/api/Badge Badge API}
- * 
+ *
  */
 export default function Badge(props: BadgeProps): JSX.Element | null;
