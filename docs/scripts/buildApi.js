@@ -128,19 +128,18 @@ async function annotateComponentDefinition(component, api) {
     );
   }
 
-  const demos = api.pagesMarkdown.reduce((accumulator, page) => {
-    if (page.components.includes(api.name)) {
-      accumulator.push(page);
-    }
-
-    return accumulator;
-  }, []);
+  const demos = uniqBy(
+    api.pagesMarkdown.filter(page => {
+      return page.components.includes(api.name);
+    }, []),
+    page => page.pathname,
+  );
 
   const jsdoc = `/**
  * ${api.description}
  *
  * Demos:
- * - ${uniqBy(demos, page => page.pathname)
+ * - ${demos
    .map(page => `{@link https://material-ui.com${page.pathname} ${pageToTitle(page)}}`)
    .join('\n * - ')}
  *
