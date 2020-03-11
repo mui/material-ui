@@ -1,3 +1,7 @@
+/* tslint:disable max-line-length */
+/**
+ * ![lightGreen 50](https://material-ui.com/static/colors-preview/lightGreen-50-24x24.svg) ![lightGreen 100](https://material-ui.com/static/colors-preview/lightGreen-100-24x24.svg) ![lightGreen 200](https://material-ui.com/static/colors-preview/lightGreen-200-24x24.svg) ![lightGreen 300](https://material-ui.com/static/colors-preview/lightGreen-300-24x24.svg) ![lightGreen 400](https://material-ui.com/static/colors-preview/lightGreen-400-24x24.svg) ![lightGreen 500](https://material-ui.com/static/colors-preview/lightGreen-500-24x24.svg) ![lightGreen 600](https://material-ui.com/static/colors-preview/lightGreen-600-24x24.svg) ![lightGreen 700](https://material-ui.com/static/colors-preview/lightGreen-700-24x24.svg) ![lightGreen 800](https://material-ui.com/static/colors-preview/lightGreen-800-24x24.svg) ![lightGreen 900](https://material-ui.com/static/colors-preview/lightGreen-900-24x24.svg) ![lightGreen A100](https://material-ui.com/static/colors-preview/lightGreen-A100-24x24.svg) ![lightGreen A200](https://material-ui.com/static/colors-preview/lightGreen-A200-24x24.svg) ![lightGreen A400](https://material-ui.com/static/colors-preview/lightGreen-A400-24x24.svg) ![lightGreen A700](https://material-ui.com/static/colors-preview/lightGreen-A700-24x24.svg)
+ */
 declare const lightGreen: {
   /**
    * Preview: ![lightGreen 50](https://material-ui.com/static/colors-preview/lightGreen-50-24x24.svg)

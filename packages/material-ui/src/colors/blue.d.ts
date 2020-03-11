@@ -1,3 +1,7 @@
+/* tslint:disable max-line-length */
+/**
+ * ![blue 50](https://material-ui.com/static/colors-preview/blue-50-24x24.svg) ![blue 100](https://material-ui.com/static/colors-preview/blue-100-24x24.svg) ![blue 200](https://material-ui.com/static/colors-preview/blue-200-24x24.svg) ![blue 300](https://material-ui.com/static/colors-preview/blue-300-24x24.svg) ![blue 400](https://material-ui.com/static/colors-preview/blue-400-24x24.svg) ![blue 500](https://material-ui.com/static/colors-preview/blue-500-24x24.svg) ![blue 600](https://material-ui.com/static/colors-preview/blue-600-24x24.svg) ![blue 700](https://material-ui.com/static/colors-preview/blue-700-24x24.svg) ![blue 800](https://material-ui.com/static/colors-preview/blue-800-24x24.svg) ![blue 900](https://material-ui.com/static/colors-preview/blue-900-24x24.svg) ![blue A100](https://material-ui.com/static/colors-preview/blue-A100-24x24.svg) ![blue A200](https://material-ui.com/static/colors-preview/blue-A200-24x24.svg) ![blue A400](https://material-ui.com/static/colors-preview/blue-A400-24x24.svg) ![blue A700](https://material-ui.com/static/colors-preview/blue-A700-24x24.svg)
+ */
 declare const blue: {
   /**
    * Preview: ![blue 50](https://material-ui.com/static/colors-preview/blue-50-24x24.svg)

@@ -1,3 +1,7 @@
+/* tslint:disable max-line-length */
+/**
+ * ![green 50](https://material-ui.com/static/colors-preview/green-50-24x24.svg) ![green 100](https://material-ui.com/static/colors-preview/green-100-24x24.svg) ![green 200](https://material-ui.com/static/colors-preview/green-200-24x24.svg) ![green 300](https://material-ui.com/static/colors-preview/green-300-24x24.svg) ![green 400](https://material-ui.com/static/colors-preview/green-400-24x24.svg) ![green 500](https://material-ui.com/static/colors-preview/green-500-24x24.svg) ![green 600](https://material-ui.com/static/colors-preview/green-600-24x24.svg) ![green 700](https://material-ui.com/static/colors-preview/green-700-24x24.svg) ![green 800](https://material-ui.com/static/colors-preview/green-800-24x24.svg) ![green 900](https://material-ui.com/static/colors-preview/green-900-24x24.svg) ![green A100](https://material-ui.com/static/colors-preview/green-A100-24x24.svg) ![green A200](https://material-ui.com/static/colors-preview/green-A200-24x24.svg) ![green A400](https://material-ui.com/static/colors-preview/green-A400-24x24.svg) ![green A700](https://material-ui.com/static/colors-preview/green-A700-24x24.svg)
+ */
 declare const green: {
   /**
    * Preview: ![green 50](https://material-ui.com/static/colors-preview/green-50-24x24.svg)

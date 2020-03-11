@@ -1,3 +1,7 @@
+/* tslint:disable max-line-length */
+/**
+ * ![deepOrange 50](https://material-ui.com/static/colors-preview/deepOrange-50-24x24.svg) ![deepOrange 100](https://material-ui.com/static/colors-preview/deepOrange-100-24x24.svg) ![deepOrange 200](https://material-ui.com/static/colors-preview/deepOrange-200-24x24.svg) ![deepOrange 300](https://material-ui.com/static/colors-preview/deepOrange-300-24x24.svg) ![deepOrange 400](https://material-ui.com/static/colors-preview/deepOrange-400-24x24.svg) ![deepOrange 500](https://material-ui.com/static/colors-preview/deepOrange-500-24x24.svg) ![deepOrange 600](https://material-ui.com/static/colors-preview/deepOrange-600-24x24.svg) ![deepOrange 700](https://material-ui.com/static/colors-preview/deepOrange-700-24x24.svg) ![deepOrange 800](https://material-ui.com/static/colors-preview/deepOrange-800-24x24.svg) ![deepOrange 900](https://material-ui.com/static/colors-preview/deepOrange-900-24x24.svg) ![deepOrange A100](https://material-ui.com/static/colors-preview/deepOrange-A100-24x24.svg) ![deepOrange A200](https://material-ui.com/static/colors-preview/deepOrange-A200-24x24.svg) ![deepOrange A400](https://material-ui.com/static/colors-preview/deepOrange-A400-24x24.svg) ![deepOrange A700](https://material-ui.com/static/colors-preview/deepOrange-A700-24x24.svg)
+ */
 declare const deepOrange: {
   /**
    * Preview: ![deepOrange 50](https://material-ui.com/static/colors-preview/deepOrange-50-24x24.svg)

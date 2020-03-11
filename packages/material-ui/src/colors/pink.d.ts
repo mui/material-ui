@@ -1,3 +1,7 @@
+/* tslint:disable max-line-length */
+/**
+ * ![pink 50](https://material-ui.com/static/colors-preview/pink-50-24x24.svg) ![pink 100](https://material-ui.com/static/colors-preview/pink-100-24x24.svg) ![pink 200](https://material-ui.com/static/colors-preview/pink-200-24x24.svg) ![pink 300](https://material-ui.com/static/colors-preview/pink-300-24x24.svg) ![pink 400](https://material-ui.com/static/colors-preview/pink-400-24x24.svg) ![pink 500](https://material-ui.com/static/colors-preview/pink-500-24x24.svg) ![pink 600](https://material-ui.com/static/colors-preview/pink-600-24x24.svg) ![pink 700](https://material-ui.com/static/colors-preview/pink-700-24x24.svg) ![pink 800](https://material-ui.com/static/colors-preview/pink-800-24x24.svg) ![pink 900](https://material-ui.com/static/colors-preview/pink-900-24x24.svg) ![pink A100](https://material-ui.com/static/colors-preview/pink-A100-24x24.svg) ![pink A200](https://material-ui.com/static/colors-preview/pink-A200-24x24.svg) ![pink A400](https://material-ui.com/static/colors-preview/pink-A400-24x24.svg) ![pink A700](https://material-ui.com/static/colors-preview/pink-A700-24x24.svg)
+ */
 declare const pink: {
   /**
    * Preview: ![pink 50](https://material-ui.com/static/colors-preview/pink-50-24x24.svg)

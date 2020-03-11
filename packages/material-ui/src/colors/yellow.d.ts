@@ -1,3 +1,7 @@
+/* tslint:disable max-line-length */
+/**
+ * ![yellow 50](https://material-ui.com/static/colors-preview/yellow-50-24x24.svg) ![yellow 100](https://material-ui.com/static/colors-preview/yellow-100-24x24.svg) ![yellow 200](https://material-ui.com/static/colors-preview/yellow-200-24x24.svg) ![yellow 300](https://material-ui.com/static/colors-preview/yellow-300-24x24.svg) ![yellow 400](https://material-ui.com/static/colors-preview/yellow-400-24x24.svg) ![yellow 500](https://material-ui.com/static/colors-preview/yellow-500-24x24.svg) ![yellow 600](https://material-ui.com/static/colors-preview/yellow-600-24x24.svg) ![yellow 700](https://material-ui.com/static/colors-preview/yellow-700-24x24.svg) ![yellow 800](https://material-ui.com/static/colors-preview/yellow-800-24x24.svg) ![yellow 900](https://material-ui.com/static/colors-preview/yellow-900-24x24.svg) ![yellow A100](https://material-ui.com/static/colors-preview/yellow-A100-24x24.svg) ![yellow A200](https://material-ui.com/static/colors-preview/yellow-A200-24x24.svg) ![yellow A400](https://material-ui.com/static/colors-preview/yellow-A400-24x24.svg) ![yellow A700](https://material-ui.com/static/colors-preview/yellow-A700-24x24.svg)
+ */
 declare const yellow: {
   /**
    * Preview: ![yellow 50](https://material-ui.com/static/colors-preview/yellow-50-24x24.svg)

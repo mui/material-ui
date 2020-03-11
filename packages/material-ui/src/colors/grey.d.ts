@@ -1,3 +1,7 @@
+/* tslint:disable max-line-length */
+/**
+ * ![grey 50](https://material-ui.com/static/colors-preview/grey-50-24x24.svg) ![grey 100](https://material-ui.com/static/colors-preview/grey-100-24x24.svg) ![grey 200](https://material-ui.com/static/colors-preview/grey-200-24x24.svg) ![grey 300](https://material-ui.com/static/colors-preview/grey-300-24x24.svg) ![grey 400](https://material-ui.com/static/colors-preview/grey-400-24x24.svg) ![grey 500](https://material-ui.com/static/colors-preview/grey-500-24x24.svg) ![grey 600](https://material-ui.com/static/colors-preview/grey-600-24x24.svg) ![grey 700](https://material-ui.com/static/colors-preview/grey-700-24x24.svg) ![grey 800](https://material-ui.com/static/colors-preview/grey-800-24x24.svg) ![grey 900](https://material-ui.com/static/colors-preview/grey-900-24x24.svg) ![grey A100](https://material-ui.com/static/colors-preview/grey-A100-24x24.svg) ![grey A200](https://material-ui.com/static/colors-preview/grey-A200-24x24.svg) ![grey A400](https://material-ui.com/static/colors-preview/grey-A400-24x24.svg) ![grey A700](https://material-ui.com/static/colors-preview/grey-A700-24x24.svg)
+ */
 declare const grey: {
   /**
    * Preview: ![grey 50](https://material-ui.com/static/colors-preview/grey-50-24x24.svg)

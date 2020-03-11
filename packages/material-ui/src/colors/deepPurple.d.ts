@@ -1,3 +1,7 @@
+/* tslint:disable max-line-length */
+/**
+ * ![deepPurple 50](https://material-ui.com/static/colors-preview/deepPurple-50-24x24.svg) ![deepPurple 100](https://material-ui.com/static/colors-preview/deepPurple-100-24x24.svg) ![deepPurple 200](https://material-ui.com/static/colors-preview/deepPurple-200-24x24.svg) ![deepPurple 300](https://material-ui.com/static/colors-preview/deepPurple-300-24x24.svg) ![deepPurple 400](https://material-ui.com/static/colors-preview/deepPurple-400-24x24.svg) ![deepPurple 500](https://material-ui.com/static/colors-preview/deepPurple-500-24x24.svg) ![deepPurple 600](https://material-ui.com/static/colors-preview/deepPurple-600-24x24.svg) ![deepPurple 700](https://material-ui.com/static/colors-preview/deepPurple-700-24x24.svg) ![deepPurple 800](https://material-ui.com/static/colors-preview/deepPurple-800-24x24.svg) ![deepPurple 900](https://material-ui.com/static/colors-preview/deepPurple-900-24x24.svg) ![deepPurple A100](https://material-ui.com/static/colors-preview/deepPurple-A100-24x24.svg) ![deepPurple A200](https://material-ui.com/static/colors-preview/deepPurple-A200-24x24.svg) ![deepPurple A400](https://material-ui.com/static/colors-preview/deepPurple-A400-24x24.svg) ![deepPurple A700](https://material-ui.com/static/colors-preview/deepPurple-A700-24x24.svg)
+ */
 declare const deepPurple: {
   /**
    * Preview: ![deepPurple 50](https://material-ui.com/static/colors-preview/deepPurple-50-24x24.svg)

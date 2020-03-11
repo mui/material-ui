@@ -1,3 +1,7 @@
+/* tslint:disable max-line-length */
+/**
+ * ![lightBlue 50](https://material-ui.com/static/colors-preview/lightBlue-50-24x24.svg) ![lightBlue 100](https://material-ui.com/static/colors-preview/lightBlue-100-24x24.svg) ![lightBlue 200](https://material-ui.com/static/colors-preview/lightBlue-200-24x24.svg) ![lightBlue 300](https://material-ui.com/static/colors-preview/lightBlue-300-24x24.svg) ![lightBlue 400](https://material-ui.com/static/colors-preview/lightBlue-400-24x24.svg) ![lightBlue 500](https://material-ui.com/static/colors-preview/lightBlue-500-24x24.svg) ![lightBlue 600](https://material-ui.com/static/colors-preview/lightBlue-600-24x24.svg) ![lightBlue 700](https://material-ui.com/static/colors-preview/lightBlue-700-24x24.svg) ![lightBlue 800](https://material-ui.com/static/colors-preview/lightBlue-800-24x24.svg) ![lightBlue 900](https://material-ui.com/static/colors-preview/lightBlue-900-24x24.svg) ![lightBlue A100](https://material-ui.com/static/colors-preview/lightBlue-A100-24x24.svg) ![lightBlue A200](https://material-ui.com/static/colors-preview/lightBlue-A200-24x24.svg) ![lightBlue A400](https://material-ui.com/static/colors-preview/lightBlue-A400-24x24.svg) ![lightBlue A700](https://material-ui.com/static/colors-preview/lightBlue-A700-24x24.svg)
+ */
 declare const lightBlue: {
   /**
    * Preview: ![lightBlue 50](https://material-ui.com/static/colors-preview/lightBlue-50-24x24.svg)

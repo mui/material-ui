@@ -1,3 +1,7 @@
+/* tslint:disable max-line-length */
+/**
+ * ![blueGrey 50](https://material-ui.com/static/colors-preview/blueGrey-50-24x24.svg) ![blueGrey 100](https://material-ui.com/static/colors-preview/blueGrey-100-24x24.svg) ![blueGrey 200](https://material-ui.com/static/colors-preview/blueGrey-200-24x24.svg) ![blueGrey 300](https://material-ui.com/static/colors-preview/blueGrey-300-24x24.svg) ![blueGrey 400](https://material-ui.com/static/colors-preview/blueGrey-400-24x24.svg) ![blueGrey 500](https://material-ui.com/static/colors-preview/blueGrey-500-24x24.svg) ![blueGrey 600](https://material-ui.com/static/colors-preview/blueGrey-600-24x24.svg) ![blueGrey 700](https://material-ui.com/static/colors-preview/blueGrey-700-24x24.svg) ![blueGrey 800](https://material-ui.com/static/colors-preview/blueGrey-800-24x24.svg) ![blueGrey 900](https://material-ui.com/static/colors-preview/blueGrey-900-24x24.svg) ![blueGrey A100](https://material-ui.com/static/colors-preview/blueGrey-A100-24x24.svg) ![blueGrey A200](https://material-ui.com/static/colors-preview/blueGrey-A200-24x24.svg) ![blueGrey A400](https://material-ui.com/static/colors-preview/blueGrey-A400-24x24.svg) ![blueGrey A700](https://material-ui.com/static/colors-preview/blueGrey-A700-24x24.svg)
+ */
 declare const blueGrey: {
   /**
    * Preview: ![blueGrey 50](https://material-ui.com/static/colors-preview/blueGrey-50-24x24.svg)

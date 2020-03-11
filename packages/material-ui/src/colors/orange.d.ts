@@ -1,3 +1,7 @@
+/* tslint:disable max-line-length */
+/**
+ * ![orange 50](https://material-ui.com/static/colors-preview/orange-50-24x24.svg) ![orange 100](https://material-ui.com/static/colors-preview/orange-100-24x24.svg) ![orange 200](https://material-ui.com/static/colors-preview/orange-200-24x24.svg) ![orange 300](https://material-ui.com/static/colors-preview/orange-300-24x24.svg) ![orange 400](https://material-ui.com/static/colors-preview/orange-400-24x24.svg) ![orange 500](https://material-ui.com/static/colors-preview/orange-500-24x24.svg) ![orange 600](https://material-ui.com/static/colors-preview/orange-600-24x24.svg) ![orange 700](https://material-ui.com/static/colors-preview/orange-700-24x24.svg) ![orange 800](https://material-ui.com/static/colors-preview/orange-800-24x24.svg) ![orange 900](https://material-ui.com/static/colors-preview/orange-900-24x24.svg) ![orange A100](https://material-ui.com/static/colors-preview/orange-A100-24x24.svg) ![orange A200](https://material-ui.com/static/colors-preview/orange-A200-24x24.svg) ![orange A400](https://material-ui.com/static/colors-preview/orange-A400-24x24.svg) ![orange A700](https://material-ui.com/static/colors-preview/orange-A700-24x24.svg)
+ */
 declare const orange: {
   /**
    * Preview: ![orange 50](https://material-ui.com/static/colors-preview/orange-50-24x24.svg)

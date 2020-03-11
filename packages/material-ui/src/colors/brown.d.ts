@@ -1,3 +1,7 @@
+/* tslint:disable max-line-length */
+/**
+ * ![brown 50](https://material-ui.com/static/colors-preview/brown-50-24x24.svg) ![brown 100](https://material-ui.com/static/colors-preview/brown-100-24x24.svg) ![brown 200](https://material-ui.com/static/colors-preview/brown-200-24x24.svg) ![brown 300](https://material-ui.com/static/colors-preview/brown-300-24x24.svg) ![brown 400](https://material-ui.com/static/colors-preview/brown-400-24x24.svg) ![brown 500](https://material-ui.com/static/colors-preview/brown-500-24x24.svg) ![brown 600](https://material-ui.com/static/colors-preview/brown-600-24x24.svg) ![brown 700](https://material-ui.com/static/colors-preview/brown-700-24x24.svg) ![brown 800](https://material-ui.com/static/colors-preview/brown-800-24x24.svg) ![brown 900](https://material-ui.com/static/colors-preview/brown-900-24x24.svg) ![brown A100](https://material-ui.com/static/colors-preview/brown-A100-24x24.svg) ![brown A200](https://material-ui.com/static/colors-preview/brown-A200-24x24.svg) ![brown A400](https://material-ui.com/static/colors-preview/brown-A400-24x24.svg) ![brown A700](https://material-ui.com/static/colors-preview/brown-A700-24x24.svg)
+ */
 declare const brown: {
   /**
    * Preview: ![brown 50](https://material-ui.com/static/colors-preview/brown-50-24x24.svg)

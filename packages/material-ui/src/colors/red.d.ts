@@ -1,3 +1,7 @@
+/* tslint:disable max-line-length */
+/**
+ * ![red 50](https://material-ui.com/static/colors-preview/red-50-24x24.svg) ![red 100](https://material-ui.com/static/colors-preview/red-100-24x24.svg) ![red 200](https://material-ui.com/static/colors-preview/red-200-24x24.svg) ![red 300](https://material-ui.com/static/colors-preview/red-300-24x24.svg) ![red 400](https://material-ui.com/static/colors-preview/red-400-24x24.svg) ![red 500](https://material-ui.com/static/colors-preview/red-500-24x24.svg) ![red 600](https://material-ui.com/static/colors-preview/red-600-24x24.svg) ![red 700](https://material-ui.com/static/colors-preview/red-700-24x24.svg) ![red 800](https://material-ui.com/static/colors-preview/red-800-24x24.svg) ![red 900](https://material-ui.com/static/colors-preview/red-900-24x24.svg) ![red A100](https://material-ui.com/static/colors-preview/red-A100-24x24.svg) ![red A200](https://material-ui.com/static/colors-preview/red-A200-24x24.svg) ![red A400](https://material-ui.com/static/colors-preview/red-A400-24x24.svg) ![red A700](https://material-ui.com/static/colors-preview/red-A700-24x24.svg)
+ */
 declare const red: {
   /**
    * Preview: ![red 50](https://material-ui.com/static/colors-preview/red-50-24x24.svg)

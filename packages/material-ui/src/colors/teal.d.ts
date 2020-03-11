@@ -1,3 +1,7 @@
+/* tslint:disable max-line-length */
+/**
+ * ![teal 50](https://material-ui.com/static/colors-preview/teal-50-24x24.svg) ![teal 100](https://material-ui.com/static/colors-preview/teal-100-24x24.svg) ![teal 200](https://material-ui.com/static/colors-preview/teal-200-24x24.svg) ![teal 300](https://material-ui.com/static/colors-preview/teal-300-24x24.svg) ![teal 400](https://material-ui.com/static/colors-preview/teal-400-24x24.svg) ![teal 500](https://material-ui.com/static/colors-preview/teal-500-24x24.svg) ![teal 600](https://material-ui.com/static/colors-preview/teal-600-24x24.svg) ![teal 700](https://material-ui.com/static/colors-preview/teal-700-24x24.svg) ![teal 800](https://material-ui.com/static/colors-preview/teal-800-24x24.svg) ![teal 900](https://material-ui.com/static/colors-preview/teal-900-24x24.svg) ![teal A100](https://material-ui.com/static/colors-preview/teal-A100-24x24.svg) ![teal A200](https://material-ui.com/static/colors-preview/teal-A200-24x24.svg) ![teal A400](https://material-ui.com/static/colors-preview/teal-A400-24x24.svg) ![teal A700](https://material-ui.com/static/colors-preview/teal-A700-24x24.svg)
+ */
 declare const teal: {
   /**
    * Preview: ![teal 50](https://material-ui.com/static/colors-preview/teal-50-24x24.svg)

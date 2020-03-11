@@ -1,3 +1,7 @@
+/* tslint:disable max-line-length */
+/**
+ * ![amber 50](https://material-ui.com/static/colors-preview/amber-50-24x24.svg) ![amber 100](https://material-ui.com/static/colors-preview/amber-100-24x24.svg) ![amber 200](https://material-ui.com/static/colors-preview/amber-200-24x24.svg) ![amber 300](https://material-ui.com/static/colors-preview/amber-300-24x24.svg) ![amber 400](https://material-ui.com/static/colors-preview/amber-400-24x24.svg) ![amber 500](https://material-ui.com/static/colors-preview/amber-500-24x24.svg) ![amber 600](https://material-ui.com/static/colors-preview/amber-600-24x24.svg) ![amber 700](https://material-ui.com/static/colors-preview/amber-700-24x24.svg) ![amber 800](https://material-ui.com/static/colors-preview/amber-800-24x24.svg) ![amber 900](https://material-ui.com/static/colors-preview/amber-900-24x24.svg) ![amber A100](https://material-ui.com/static/colors-preview/amber-A100-24x24.svg) ![amber A200](https://material-ui.com/static/colors-preview/amber-A200-24x24.svg) ![amber A400](https://material-ui.com/static/colors-preview/amber-A400-24x24.svg) ![amber A700](https://material-ui.com/static/colors-preview/amber-A700-24x24.svg)
+ */
 declare const amber: {
   /**
    * Preview: ![amber 50](https://material-ui.com/static/colors-preview/amber-50-24x24.svg)

@@ -1,3 +1,7 @@
+/* tslint:disable max-line-length */
+/**
+ * ![lime 50](https://material-ui.com/static/colors-preview/lime-50-24x24.svg) ![lime 100](https://material-ui.com/static/colors-preview/lime-100-24x24.svg) ![lime 200](https://material-ui.com/static/colors-preview/lime-200-24x24.svg) ![lime 300](https://material-ui.com/static/colors-preview/lime-300-24x24.svg) ![lime 400](https://material-ui.com/static/colors-preview/lime-400-24x24.svg) ![lime 500](https://material-ui.com/static/colors-preview/lime-500-24x24.svg) ![lime 600](https://material-ui.com/static/colors-preview/lime-600-24x24.svg) ![lime 700](https://material-ui.com/static/colors-preview/lime-700-24x24.svg) ![lime 800](https://material-ui.com/static/colors-preview/lime-800-24x24.svg) ![lime 900](https://material-ui.com/static/colors-preview/lime-900-24x24.svg) ![lime A100](https://material-ui.com/static/colors-preview/lime-A100-24x24.svg) ![lime A200](https://material-ui.com/static/colors-preview/lime-A200-24x24.svg) ![lime A400](https://material-ui.com/static/colors-preview/lime-A400-24x24.svg) ![lime A700](https://material-ui.com/static/colors-preview/lime-A700-24x24.svg)
+ */
 declare const lime: {
   /**
    * Preview: ![lime 50](https://material-ui.com/static/colors-preview/lime-50-24x24.svg)

@@ -1,3 +1,7 @@
+/* tslint:disable max-line-length */
+/**
+ * ![indigo 50](https://material-ui.com/static/colors-preview/indigo-50-24x24.svg) ![indigo 100](https://material-ui.com/static/colors-preview/indigo-100-24x24.svg) ![indigo 200](https://material-ui.com/static/colors-preview/indigo-200-24x24.svg) ![indigo 300](https://material-ui.com/static/colors-preview/indigo-300-24x24.svg) ![indigo 400](https://material-ui.com/static/colors-preview/indigo-400-24x24.svg) ![indigo 500](https://material-ui.com/static/colors-preview/indigo-500-24x24.svg) ![indigo 600](https://material-ui.com/static/colors-preview/indigo-600-24x24.svg) ![indigo 700](https://material-ui.com/static/colors-preview/indigo-700-24x24.svg) ![indigo 800](https://material-ui.com/static/colors-preview/indigo-800-24x24.svg) ![indigo 900](https://material-ui.com/static/colors-preview/indigo-900-24x24.svg) ![indigo A100](https://material-ui.com/static/colors-preview/indigo-A100-24x24.svg) ![indigo A200](https://material-ui.com/static/colors-preview/indigo-A200-24x24.svg) ![indigo A400](https://material-ui.com/static/colors-preview/indigo-A400-24x24.svg) ![indigo A700](https://material-ui.com/static/colors-preview/indigo-A700-24x24.svg)
+ */
 declare const indigo: {
   /**
    * Preview: ![indigo 50](https://material-ui.com/static/colors-preview/indigo-50-24x24.svg)

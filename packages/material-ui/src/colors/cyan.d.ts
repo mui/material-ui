@@ -1,3 +1,7 @@
+/* tslint:disable max-line-length */
+/**
+ * ![cyan 50](https://material-ui.com/static/colors-preview/cyan-50-24x24.svg) ![cyan 100](https://material-ui.com/static/colors-preview/cyan-100-24x24.svg) ![cyan 200](https://material-ui.com/static/colors-preview/cyan-200-24x24.svg) ![cyan 300](https://material-ui.com/static/colors-preview/cyan-300-24x24.svg) ![cyan 400](https://material-ui.com/static/colors-preview/cyan-400-24x24.svg) ![cyan 500](https://material-ui.com/static/colors-preview/cyan-500-24x24.svg) ![cyan 600](https://material-ui.com/static/colors-preview/cyan-600-24x24.svg) ![cyan 700](https://material-ui.com/static/colors-preview/cyan-700-24x24.svg) ![cyan 800](https://material-ui.com/static/colors-preview/cyan-800-24x24.svg) ![cyan 900](https://material-ui.com/static/colors-preview/cyan-900-24x24.svg) ![cyan A100](https://material-ui.com/static/colors-preview/cyan-A100-24x24.svg) ![cyan A200](https://material-ui.com/static/colors-preview/cyan-A200-24x24.svg) ![cyan A400](https://material-ui.com/static/colors-preview/cyan-A400-24x24.svg) ![cyan A700](https://material-ui.com/static/colors-preview/cyan-A700-24x24.svg)
+ */
 declare const cyan: {
   /**
    * Preview: ![cyan 50](https://material-ui.com/static/colors-preview/cyan-50-24x24.svg)

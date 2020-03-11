@@ -1,3 +1,7 @@
+/* tslint:disable max-line-length */
+/**
+ * ![purple 50](https://material-ui.com/static/colors-preview/purple-50-24x24.svg) ![purple 100](https://material-ui.com/static/colors-preview/purple-100-24x24.svg) ![purple 200](https://material-ui.com/static/colors-preview/purple-200-24x24.svg) ![purple 300](https://material-ui.com/static/colors-preview/purple-300-24x24.svg) ![purple 400](https://material-ui.com/static/colors-preview/purple-400-24x24.svg) ![purple 500](https://material-ui.com/static/colors-preview/purple-500-24x24.svg) ![purple 600](https://material-ui.com/static/colors-preview/purple-600-24x24.svg) ![purple 700](https://material-ui.com/static/colors-preview/purple-700-24x24.svg) ![purple 800](https://material-ui.com/static/colors-preview/purple-800-24x24.svg) ![purple 900](https://material-ui.com/static/colors-preview/purple-900-24x24.svg) ![purple A100](https://material-ui.com/static/colors-preview/purple-A100-24x24.svg) ![purple A200](https://material-ui.com/static/colors-preview/purple-A200-24x24.svg) ![purple A400](https://material-ui.com/static/colors-preview/purple-A400-24x24.svg) ![purple A700](https://material-ui.com/static/colors-preview/purple-A700-24x24.svg)
+ */
 declare const purple: {
   /**
    * Preview: ![purple 50](https://material-ui.com/static/colors-preview/purple-50-24x24.svg)

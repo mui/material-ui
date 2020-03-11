@@ -11,7 +11,18 @@ function getColorHref(name, variant) {
 
 function buildColorType(name, variants) {
   const typesFilename = path.resolve(__dirname, `../packages/material-ui/src/colors/${name}.d.ts`);
-  const typescript = `declare const ${name}: {
+
+  const typescript = `/* tslint:disable max-line-length */
+/**
+ * ${Object.entries(variants)
+   .map(entry => {
+     const [variant] = entry;
+
+     return `![${name} ${variant}](${HOST}${getColorHref(name, variant)})`;
+   })
+   .join(' ')}
+ */
+declare const ${name}: {
 ${Object.entries(variants)
   .map(entry => {
     const [variant, color] = entry;
