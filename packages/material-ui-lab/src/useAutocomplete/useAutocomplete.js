@@ -649,7 +649,7 @@ export default function useAutocomplete(props) {
           // Avoid the Modal to handle the event.
           event.stopPropagation();
           handleClose(event);
-        } else if (clearOnEscape && (inputValue !== '' || (multiple  && value.length > 0))) {
+        } else if (clearOnEscape && (inputValue !== '' || (multiple && value.length > 0))) {
           // Avoid Opera to exit fullscreen mode.
           event.preventDefault();
           // Avoid the Modal to handle the event.
