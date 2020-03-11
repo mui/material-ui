@@ -103,7 +103,7 @@
     "eslint-plugin-react-hooks": "^1.6.0",
     "fs-extra": "^7.0.1",
     "full-icu": "^1.2.1",
-    "jest": "^24.1.0",
+    "jest": "^25.1.0",
     "luxon": "^1.11.1",
     "moment": "2.22.2",
     "react": "^16.13.0",
