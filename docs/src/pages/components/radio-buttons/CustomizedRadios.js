@@ -69,13 +69,13 @@ export default function CustomizedRadios() {
     <FormControl component="fieldset">
       <FormLabel component="legend">Gender</FormLabel>
       <RadioGroup defaultValue="female" aria-label="gender" name="customized-radios">
-        <FormControlLabel value="female" control={<StyledRadio />} label="Female" />
-        <FormControlLabel value="male" control={<StyledRadio />} label="Male" />
-        <FormControlLabel value="other" control={<StyledRadio />} label="Other" />
+        <FormControlLabel value="female" control={<Radio />} label="Female" />
+        <FormControlLabel value="male" control={<Radio />} label="Male" />
+        <FormControlLabel value="other" control={<Radio />} label="Other" />
         <FormControlLabel
           value="disabled"
           disabled
-          control={<StyledRadio />}
+          control={<Radio />}
           label="(Disabled option)"
         />
       </RadioGroup>
