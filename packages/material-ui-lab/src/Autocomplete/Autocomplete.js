@@ -253,6 +253,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     disabled = false,
     disableListWrap = false,
     disablePortal = false,
+    enableFocusForDisabledItems = false,
     filterOptions,
     filterSelectedOptions = false,
     forcePopupIcon = 'auto',
