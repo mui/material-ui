@@ -9,6 +9,7 @@
     "docs:api": "rimraf ./docs/pages/api && cross-env BABEL_ENV=test __NEXT_EXPORT_TRAILING_SLASH=true babel-node ./docs/scripts/buildApi.js ./packages/material-ui/src ./docs/pages/api-docs && cross-env BABEL_ENV=test __NEXT_EXPORT_TRAILING_SLASH=true babel-node ./docs/scripts/buildApi.js ./packages/material-ui-lab/src ./docs/pages/api-docs",
     "docs:build": "yarn workspace docs build",
     "docs:build-sw": "yarn workspace docs build-sw",
+    "docs:build-color-preview": "babel-node scripts/buildColorTypes",
     "docs:deploy": "yarn workspace docs deploy",
     "docs:dev": "yarn workspace docs dev",
     "docs:export": "yarn workspace docs export",
