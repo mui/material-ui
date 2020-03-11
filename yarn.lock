@@ -4451,10 +4451,10 @@ date-now@^0.1.4:
   resolved "https://registry.yarnpkg.com/date-now/-/date-now-0.1.4.tgz#eaf439fd4d4848ad74e5cc7dbef200672b9e345b"
   integrity sha1-6vQ5/U1ISK105cx9vvIAZyueNFs=
 
-dayjs@^1.8.21:
-  version "1.8.21"
-  resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.8.21.tgz#98299185b72b9b679f31c7ed987b63923c961552"
-  integrity sha512-1kbWK0hziklUHkGgiKr7xm59KwAg/K3Tp7H/8X+f58DnNCwY3pKYjOCJpIlVs125FRBukGVZdKZojC073D0IeQ==
+dayjs@^1.8.22:
+  version "1.8.22"
+  resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.8.22.tgz#5e835d776b373e216678be8d12c336da71a25a9c"
+  integrity sha512-N8IXfxBD62Y9cKTuuuSoOlCXRnnzaTj1vu91r855iq6FbY5cZqOZnW/95nUn6kJiR+W9PHHrLykEoQOe6fUKxQ==
 
 debug@2.6.9, debug@^2.2.0, debug@^2.3.3:
   version "2.6.9"
