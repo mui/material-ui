@@ -197,7 +197,8 @@ export default function useAutocomplete(props) {
 
       if (process.env.NODE_ENV !== 'production') {
         if (typeof optionLabel !== 'string') {
-          const erroneousReturn = optionLabel === undefined ? 'undefined' : `${typeof optionLabel} (${optionLabel})`;
+          const erroneousReturn =
+            optionLabel === undefined ? 'undefined' : `${typeof optionLabel} (${optionLabel})`;
           console.error(
             [
               `Material-UI: the \`getOptionLabel\` method of ${componentName} returned ${erroneousReturn} instead of a string for`,
