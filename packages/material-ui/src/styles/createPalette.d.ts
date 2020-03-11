@@ -15,8 +15,13 @@ export interface TypeAction {
   hover: string;
   hoverOpacity: number;
   selected: string;
+  selectedOpacity: number;
   disabled: string;
+  disabledOpacity: number;
   disabledBackground: string;
+  focus: string;
+  focusOpacity: number;
+  activatedOpacity: number;
 }
 
 export interface TypeBackground {
