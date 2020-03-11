@@ -9,8 +9,8 @@ export interface ZoomProps extends TransitionProps {
 
 /**
  * The Zoom transition can be used for the floating variant of the
-[Button](/components/buttons/#floating-action-buttons) component.
-It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
+ * [Button](/components/buttons/#floating-action-buttons) component.
+ * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  *
  * Demos:
  * - {@link https://material-ui.com/components/transitions Transitions}

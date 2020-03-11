@@ -80,15 +80,15 @@ export type InputBaseClassKey =
 
 /**
  * `InputBase` contains as few styles as possible.
-It aims to be a simple building block for creating an input.
-It contains a load of style reset and some state logic.
+ * It aims to be a simple building block for creating an input.
+ * It contains a load of style reset and some state logic.
  *
  * Demos:
  * - {@link https://material-ui.com/components/text-fields Text Fields}
  *
  * API:
  * - {@link https://material-ui.com/api/InputBase InputBase API}
- * 
+ *
  */
 declare const InputBase: React.ComponentType<InputBaseProps>;
 

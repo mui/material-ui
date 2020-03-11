@@ -9,7 +9,7 @@ export interface FadeProps extends TransitionProps {
 
 /**
  * The Fade transition is used by the [Modal](/components/modal/) component.
-It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
+ * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  *
  * Demos:
  * - {@link https://material-ui.com/components/transitions Transitions}

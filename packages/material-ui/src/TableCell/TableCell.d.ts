@@ -43,14 +43,14 @@ export type TableCellClassKey =
 
 /**
  * The component renders a `<th>` element when the parent context is a header
-or otherwise a `<td>` element.
+ * or otherwise a `<td>` element.
  *
  * Demos:
  * - {@link https://material-ui.com/components/tables Tables}
  *
  * API:
  * - {@link https://material-ui.com/api/TableCell TableCell API}
- * 
+ *
  */
 declare const TableCell: React.ComponentType<TableCellProps>;
 

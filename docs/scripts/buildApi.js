@@ -136,7 +136,7 @@ async function annotateComponentDefinition(component, api) {
   );
 
   const jsdoc = `/**
- * ${api.description}
+ * ${api.description.replace(/\n/g, '\n * ')}
  *
  * Demos:
  * - ${demos
