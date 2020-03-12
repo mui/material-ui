@@ -992,4 +992,62 @@ describe('<TreeItem />', () => {
     fireEvent(input, keydownEvent);
     expect(keydownEvent.preventDefault.callCount).to.equal(0);
   });
+
+  describe('click expandable TreeItem', () => {
+    describe('iconClickExpandOnly false', () => {
+      it('should toggle expansion if label click', () => {
+        const nodeToggle = spy();
+        const { getByText } = render(
+          <TreeView onNodeToggle={nodeToggle}>
+            <TreeItem nodeId="one" label="one" data-testid="one">
+              <TreeItem nodeId="two" label="two" data-testid="two" />
+            </TreeItem>
+          </TreeView>,
+        );
+        fireEvent.click(getByText('one'));
+        expect(nodeToggle.called).to.be.true;
+      });
+
+      it('should toggle expansion if icon click', () => {
+        const nodeToggle = spy();
+        const { getByText } = render(
+          <TreeView onNodeToggle={nodeToggle}>
+            <TreeItem nodeId="one" label="one" data-testid="one" icon={<div>Icon</div>}>
+              <TreeItem nodeId="two" label="two" data-testid="two" />
+            </TreeItem>
+          </TreeView>,
+        );
+        fireEvent.click(getByText('Icon'));
+        expect(nodeToggle.called).to.be.true;
+      });
+    });
+
+    describe('iconClickExpandOnly true', () => {
+      it('should not toggle expansion if label click and iconClickExpandOnly', () => {
+        const nodeToggle = spy();
+        const { getByText } = render(
+          <TreeView onNodeToggle={nodeToggle} iconClickExpandOnly>
+            <TreeItem nodeId="one" label="one" data-testid="one">
+              <TreeItem nodeId="two" label="two" data-testid="two" />
+            </TreeItem>
+          </TreeView>,
+        );
+        fireEvent.click(getByText('one'));
+        expect(nodeToggle.called).to.be.false;
+      });
+
+      it('should toggle expansion if icon click and iconClickExpandOnly', () => {
+        const nodeToggle = spy();
+        const { getByText } = render(
+          <TreeView onNodeToggle={nodeToggle} iconClickExpandOnly>
+            <TreeItem nodeId="one" label="one" data-testid="one" icon={<div>Icon</div>}>
+              <TreeItem nodeId="two" label="two" data-testid="two" />
+            </TreeItem>
+          </TreeView>,
+        );
+        fireEvent.click(getByText('Icon'));
+        expect(nodeToggle.called).to.be.true;
+      });
+    });
+  });
 });

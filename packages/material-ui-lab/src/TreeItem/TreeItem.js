@@ -102,6 +102,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
 
   const {
     icons: contextIcons,
+    iconClickExpandOnly,
     focus,
     focusFirstNode,
     focusLastNode,
@@ -132,6 +133,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
   const nodeRef = React.useRef(null);
   const contentRef = React.useRef(null);
   const handleRef = useForkRef(nodeRef, ref);
+  const iconContainerRef = React.useRef(null);
 
   let icon = iconProp;
 
@@ -168,7 +170,13 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
 
     // If already expanded and trying to toggle selection don't close
     if (expandable && !(multiple && isExpanded(nodeId))) {
-      toggleExpansion(event, nodeId);
+      let shouldToggle = true;
+      if (iconClickExpandOnly) {
+        shouldToggle = iconContainerRef.current.contains(event.target);
+      }
+      if (shouldToggle) {
+        toggleExpansion(event, nodeId);
+      }
     }
 
     if (!selectionDisabled) {
@@ -386,7 +394,9 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
         onMouseDown={handleMouseDown}
         ref={contentRef}
       >
-        <div className={classes.iconContainer}>{icon}</div>
+        <div ref={iconContainerRef} className={classes.iconContainer}>
+          {icon}
+        </div>
         <Typography component="div" className={classes.label}>
           {label}
         </Typography>

@@ -53,6 +53,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     onNodeSelect,
     onNodeToggle,
     selected: selectedProp,
+    iconClickExpandOnly = false,
     ...other
   } = props;
   const [tabbable, setTabbable] = React.useState(null);
@@ -494,6 +495,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
         focusByFirstCharacter,
         expandAllSiblings,
         toggleExpansion,
+        iconClickExpandOnly,
         isExpanded,
         isFocused,
         isSelected,
@@ -579,6 +581,10 @@ TreeView.propTypes = {
    * Expanded node ids. (Controlled)
    */
   expanded: PropTypes.arrayOf(PropTypes.string),
+  /**
+   * if true clicking on label will not expand
+   */
+  iconClickExpandOnly: PropTypes.bool,
   /**
    * If true `ctrl` and `shift` will trigger multiselect.
    */
