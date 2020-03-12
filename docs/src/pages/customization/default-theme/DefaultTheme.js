@@ -64,14 +64,45 @@ function useTokenType(type) {
   }
 }
 
+const useObjectEntryLabelStyles = makeStyles({
+  colorPreview: {
+    margin: '0 5px 0 5px',
+  },
+});
+
 function ObjectEntryLabel({ objectKey, objectValue }) {
   const type = useType(objectValue);
   const label = useLabel(objectValue, type);
   const tokenType = useTokenType(type);
+  const classes = useObjectEntryLabelStyles();
+
+  const includeColorSample =
+    label.includes('#') ||
+    (label.includes('rgba') && !label.includes('rgba(0, 0, 0, ') && !label.includes('rgba(0,0,0'));
 
   return (
     <React.Fragment>
-      {objectKey}: <span className={clsx('token', tokenType)}>{label}</span>
+      {objectKey}:
+      <span className={clsx('token', tokenType)}>
+        {includeColorSample && (
+          <svg
+            width="12"
+            height="12"
+            version="1.1"
+            xmlns="http://www.w3.org/2000/svg"
+            className={classes.colorPreview}
+          >
+            <rect
+              width="12"
+              height="12"
+              fill={label.replace(/['"]+/g, '')}
+              stroke="white"
+              stroke-width="3"
+            />
+          </svg>
+        )}
+        {label}
+      </span>
     </React.Fragment>
   );
 }
@@ -88,6 +119,9 @@ const useObjectEntryStyles = makeStyles({
     '&:hover': {
       backgroundColor: lighten('#333', 0.08),
     },
+  },
+  colorBox: {
+    margin: '0 5px 0 10px',
   },
 });
 
