@@ -36,7 +36,7 @@ export interface TreeViewPropsBase
   /**
    * if true clicking on label will not expand
    */
-  iconClickExpandOnly: boolean;
+  iconClickExpandOnly?: boolean;
   /**
    * Callback fired when tree items are expanded/collapsed.
    *
