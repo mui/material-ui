@@ -120,9 +120,6 @@ const useObjectEntryStyles = makeStyles({
       backgroundColor: lighten('#333', 0.08),
     },
   },
-  colorBox: {
-    margin: '0 5px 0 10px',
-  },
 });
 
 function ObjectEntry(props) {
