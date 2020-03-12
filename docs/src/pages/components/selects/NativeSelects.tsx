@@ -203,6 +203,7 @@ export default function NativeSelects() {
           native
           value={state.age}
           onChange={handleChange('age')}
+          label="Age"
           inputProps={{
             name: 'age',
             id: 'outlined-age-native-simple',

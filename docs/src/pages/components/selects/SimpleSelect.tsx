@@ -197,6 +197,7 @@ export default function SimpleSelect() {
           id="demo-simple-select-outlined"
           value={age}
           onChange={handleChange}
+          label="Age"
         >
           <MenuItem value="">
             <em>None</em>
