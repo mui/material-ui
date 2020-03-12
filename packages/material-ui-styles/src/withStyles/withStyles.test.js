@@ -191,6 +191,33 @@ describe('withStyles', () => {
       wrapper.unmount();
     });
 
+    it('should use theme.props instead of defaultProps', () => {
+      const MuiFoo = () => <div />;
+      MuiFoo.defaultProps = {
+        foo: 'foo',
+      };
+
+      const styles = { root: { display: 'flex' } };
+      const StyledComponent = withStyles(styles, { name: 'MuiFoo' })(MuiFoo);
+
+      const wrapper = mount(
+        <ThemeProvider
+          theme={createMuiTheme({
+            props: {
+              MuiFoo: {
+                foo: 'bar',
+              },
+            },
+          })}
+        >
+          <StyledComponent foo={undefined} />
+        </ThemeProvider>,
+      );
+
+      assert.strictEqual(wrapper.find(MuiFoo).props().foo, 'bar');
+      wrapper.unmount();
+    });
+
     it('should work when depending on a theme', () => {
       const styles = theme => ({ root: { padding: theme.spacing(1) } });
       const StyledComponent = withStyles(styles, { name: 'MuiTextField' })(Empty);
