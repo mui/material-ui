@@ -1,3 +1,4 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 import { exactProp } from '@material-ui/utils';
 import withWidth, { isWidthDown, isWidthUp } from '../withWidth';
@@ -7,7 +8,7 @@ import useTheme from '../styles/useTheme';
  * @ignore - internal component.
  */
 function HiddenJs(props) {
-  const { children, only, width } = props;
+  const { children, only, width, ...other } = props;
   const theme = useTheme();
 
   let visible = true;
@@ -48,7 +49,13 @@ function HiddenJs(props) {
     return null;
   }
 
-  return children;
+  for (let i = 0; i < theme.breakpoints.keys.length; i += 1) {
+    const breakpoint = theme.breakpoints.keys[i];
+    delete other[`${breakpoint}Up`];
+    delete other[`${breakpoint}Down`];
+  }
+
+  return React.cloneElement(children, other);
 }
 
 HiddenJs.propTypes = {
@@ -130,9 +137,5 @@ HiddenJs.propTypes = {
    */
   xsUp: PropTypes.bool,
 };
-
-if (process.env.NODE_ENV !== 'production') {
-  HiddenJs.propTypes = exactProp(HiddenJs.propTypes);
-}
 
 export default withWidth()(HiddenJs);

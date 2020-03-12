@@ -31,23 +31,6 @@ function HiddenCss(props) {
   const { children, classes, className, only, ...other } = props;
   const theme = useTheme();
 
-  if (process.env.NODE_ENV !== 'production') {
-    const unknownProps = Object.keys(other).filter(propName => {
-      const isUndeclaredBreakpoint = !theme.breakpoints.keys.some(breakpoint => {
-        return `${breakpoint}Up` === propName || `${breakpoint}Down` === propName;
-      });
-      return isUndeclaredBreakpoint;
-    });
-
-    if (unknownProps.length > 0) {
-      console.error(
-        `Material-UI: unsupported props received by \`<Hidden implementation="css" />\`: ${unknownProps.join(
-          ', ',
-        )}. Did you forget to wrap this component in a ThemeProvider declaring these breakpoints?`,
-      );
-    }
-  }
-
   const clsx = [];
 
   if (className) {
@@ -58,6 +41,9 @@ function HiddenCss(props) {
     const breakpoint = theme.breakpoints.keys[i];
     const breakpointUp = props[`${breakpoint}Up`];
     const breakpointDown = props[`${breakpoint}Down`];
+
+    delete other[`${breakpoint}Up`];
+    delete other[`${breakpoint}Down`];
 
     if (breakpointUp) {
       clsx.push(classes[`${breakpoint}Up`]);
@@ -74,7 +60,7 @@ function HiddenCss(props) {
     });
   }
 
-  return <div className={clsx.join(' ')}>{children}</div>;
+  return <div className={clsx.join(' ')}>{React.cloneElement(children, other)}</div>;
 }
 
 HiddenCss.propTypes = {

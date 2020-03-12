@@ -15,6 +15,7 @@ export interface HiddenProps {
   xlUp?: boolean;
   xsDown?: boolean;
   xsUp?: boolean;
+  [arbitrary: string]: any;
 }
 
 declare const Hidden: React.ComponentType<HiddenProps>;
