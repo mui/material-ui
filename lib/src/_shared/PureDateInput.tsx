@@ -9,11 +9,11 @@ import { IconButtonProps } from '@material-ui/core/IconButton';
 import { InputAdornmentProps } from '@material-ui/core/InputAdornment';
 import { getDisplayDate, getTextFieldAriaText } from '../_helpers/text-field-helper';
 
-export interface DateInputProps
+export interface DateInputProps<TInputValue = ParsableDate, TDateValue = MaterialUiPickersDate>
   extends ExtendMui<TextFieldProps, 'onError' | 'onChange' | 'value'> {
-  rawValue: ParsableDate;
+  rawValue: TInputValue;
   inputFormat: string;
-  onChange: (date: MaterialUiPickersDate | null, keyboardInputValue?: string) => void;
+  onChange: (date: TDateValue | null, keyboardInputValue?: string) => void;
   openPicker: () => void;
   validationError?: React.ReactNode;
   /** Override input component */

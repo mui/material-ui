@@ -1,7 +1,9 @@
 import { arrayIncludes } from './utils';
 import { IUtils } from '@date-io/core/IUtils';
 import { MaterialUiPickersDate } from '../typings/date';
+import { BasePickerProps } from '../typings/BasePicker';
 import { DatePickerView } from '../DatePicker/DatePicker';
+import { MuiPickersAdapter } from '../_shared/hooks/useUtils';
 
 interface FindClosestDateParams {
   date: MaterialUiPickersDate;
@@ -94,3 +96,13 @@ export const getFormatByViews = (
 
   return utils.formats.keyboardDate;
 };
+
+export function parsePickerInputValue(
+  now: MaterialUiPickersDate,
+  utils: MuiPickersAdapter,
+  { value, defaultHighlight }: Pick<BasePickerProps, 'value' | 'defaultHighlight'>
+): MaterialUiPickersDate | null {
+  const parsedValue = utils.date(value || defaultHighlight || now);
+
+  return parsedValue && utils.isValid(parsedValue) ? parsedValue : now;
+}

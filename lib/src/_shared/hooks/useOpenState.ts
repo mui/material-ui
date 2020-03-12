@@ -2,7 +2,7 @@
 import { BasePickerProps } from '../../typings/BasePicker';
 import { useCallback, useState, Dispatch, SetStateAction } from 'react';
 
-export function useOpenState({ open, onOpen, onClose }: BasePickerProps) {
+export function useOpenState({ open, onOpen, onClose }: BasePickerProps<any, any>) {
   let setIsOpenState: null | Dispatch<SetStateAction<boolean>> = null;
   if (open === undefined || open === null) {
     // The component is uncontrolled, so we need to give it its own state.

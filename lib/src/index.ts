@@ -22,7 +22,7 @@ export { Picker } from './Picker/Picker';
 
 export { makePickerWithStateAndWrapper as makePickerWithState } from './Picker/makePickerWithState';
 
-export { validate } from './_helpers/text-field-helper';
+export { validateDateValue as validate } from './_helpers/text-field-helper';
 
 export { useUtils } from './_shared/hooks/useUtils';
 

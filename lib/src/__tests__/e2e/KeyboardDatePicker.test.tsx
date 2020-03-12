@@ -90,7 +90,7 @@ describe('e2e -- KeyboardDatePicker validation errors', () => {
       />
     );
 
-    expect(component.find('ForwardRef(TextField)').prop('helperText')).toBe('');
+    expect(component.find('ForwardRef(TextField)').prop('helperText')).toBe(undefined);
   });
 
   it('Should render error message if date is after maxDate with strict comparison', () => {
@@ -119,7 +119,7 @@ describe('e2e -- KeyboardDatePicker validation errors', () => {
       />
     );
 
-    expect(component.find('ForwardRef(TextField)').prop('helperText')).toBe('');
+    expect(component.find('ForwardRef(TextField)').prop('helperText')).toBe(undefined);
   });
 
   it('Should render error message if date is after minDate with strict comparison', () => {

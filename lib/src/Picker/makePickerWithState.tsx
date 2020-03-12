@@ -1,67 +1,58 @@
 import * as React from 'react';
-import { MakeOptional } from '../typings/helpers';
-import { DateTimePickerView } from '../DateTimePicker';
-import { BasePickerProps } from '../typings/BasePicker';
+import { ParsableDate } from '../constants/prop-types';
+import { MaterialUiPickersDate } from '../typings/date';
+import { PureDateInput } from '../_shared/PureDateInput';
+import { parsePickerInputValue } from '../_helpers/date-utils';
+import { KeyboardDateInput } from '../_shared/KeyboardDateInput';
 import { usePickerState } from '../_shared/hooks/usePickerState';
-import { ExportedDateInputProps } from '../_shared/PureDateInput';
-import { DateValidationProps } from '../_helpers/text-field-helper';
-import { ResponsiveWrapperProps } from '../wrappers/ResponsiveWrapper';
-import { Picker, ToolbarComponentProps, PickerViewProps } from './Picker';
-import { SomeWrapper, ExtendWrapper, OmitInnerWrapperProps } from '../wrappers/Wrapper';
-import { withDateAdapterProp, WithDateAdapterProps } from '../_shared/withDateAdapterProp';
+import { SomeWrapper, ExtendWrapper } from '../wrappers/Wrapper';
+import { validateDateValue } from '../_helpers/text-field-helper';
+import { withDateAdapterProp } from '../_shared/withDateAdapterProp';
+import { makeWrapperComponent } from '../wrappers/makeWrapperComponent';
+import { AnyPickerView, AllSharedPickerProps } from './SharedPickerProps';
+import { Picker, ToolbarComponentProps, ExportedPickerProps } from './Picker';
 
-export interface WithViewsProps<T extends DateTimePickerView> {
-  /**
-   * Array of views to show
-   */
-  views?: T[];
-  /** First view to show */
-  openTo?: T;
-}
-
-export type WithDateInputProps = DateValidationProps & BasePickerProps & ExportedDateInputProps;
+type AllAvailableForOverrideProps = ExportedPickerProps<AnyPickerView>;
 
 export interface MakePickerOptions<T extends unknown> {
-  useDefaultProps: (props: T) => Partial<T> & { inputFormat?: string };
+  useDefaultProps: (props: T & AllSharedPickerProps) => Partial<T> & { inputFormat: string };
   DefaultToolbarComponent: React.ComponentType<ToolbarComponentProps>;
 }
 
-type ExportedPickerProps = MakeOptional<PickerViewProps<any>, 'ToolbarComponent'>;
-
 export function makePickerWithStateAndWrapper<
-  T extends ExportedPickerProps & DateValidationProps & Pick<BasePickerProps, 'onChange' | 'value'>,
+  T extends AllAvailableForOverrideProps,
   TWrapper extends SomeWrapper = any
->(
-  Wrapper: TWrapper,
-  { useDefaultProps, DefaultToolbarComponent }: MakePickerOptions<T>
-): React.FC<T & WithDateAdapterProps & ExtendWrapper<TWrapper>> {
-  function PickerWithState(props: T & Partial<OmitInnerWrapperProps<ResponsiveWrapperProps>>) {
+>(Wrapper: TWrapper, { useDefaultProps, DefaultToolbarComponent }: MakePickerOptions<T>) {
+  const PickerWrapper = makeWrapperComponent(Wrapper, {
+    KeyboardDateInputComponent: KeyboardDateInput,
+    PureDateInputComponent: PureDateInput,
+  });
+
+  function PickerWithState(props: T & AllSharedPickerProps & ExtendWrapper<TWrapper>) {
     const defaultProps = useDefaultProps(props);
     const allProps = { ...defaultProps, ...props };
+
+    const { pickerProps, inputProps, wrapperProps } = usePickerState<
+      ParsableDate,
+      MaterialUiPickersDate
+    >(allProps, parsePickerInputValue, validateDateValue);
 
     const {
       allowKeyboardControl,
       ampm,
       ampmInClock,
-      autoOk,
       dateRangeIcon,
       disableFuture,
       disablePast,
       showToolbar,
-      inputFormat,
       hideTabs,
-      defaultHighlight,
       leftArrowButtonProps,
       leftArrowIcon,
       loadingIndicator,
       maxDate,
       minDate,
       minutesStep,
-      onAccept,
-      onChange,
-      onClose,
       onMonthChange,
-      onOpen,
       onYearChange,
       openTo,
       orientation,
@@ -70,55 +61,24 @@ export function makePickerWithStateAndWrapper<
       rightArrowIcon,
       shouldDisableDate,
       shouldDisableTime,
-      strictCompareDates,
       timeIcon,
       toolbarFormat,
       ToolbarComponent = DefaultToolbarComponent,
-      value,
       views,
       toolbarTitle,
-      invalidDateMessage,
-      minDateMessage,
-      wider,
-      showTabs,
-      maxDateMessage,
       disableTimeValidationIgnoreDatePart,
       showDaysOutsideCurrentMonth,
       disableHighlightToday,
-      // WrapperProps
-      clearable,
-      clearLabel,
-      DialogProps,
-      PopoverProps,
-      okLabel,
-      cancelLabel,
-      todayLabel,
       minTime,
       maxTime,
       ...restPropsForTextField
     } = allProps;
 
-    const { pickerProps, inputProps, wrapperProps } = usePickerState(allProps);
-    const WrapperComponent = Wrapper as SomeWrapper;
-
     return (
-      <WrapperComponent
-        clearable={clearable}
-        clearLabel={clearLabel}
-        DialogProps={DialogProps}
-        okLabel={okLabel}
-        todayLabel={todayLabel}
-        cancelLabel={cancelLabel}
-        DateInputProps={inputProps}
-        wider={wider}
-        showTabs={showTabs}
-        {...wrapperProps}
-        {...restPropsForTextField}
-      >
+      <PickerWrapper inputProps={inputProps} wrapperProps={wrapperProps} {...restPropsForTextField}>
         <Picker
           {...pickerProps}
           DateInputProps={{ ...inputProps, ...restPropsForTextField }}
-          // @ts-ignore
           allowKeyboardControl={allowKeyboardControl}
           ampm={ampm}
           ampmInClock={ampmInClock}
@@ -147,18 +107,15 @@ export function makePickerWithStateAndWrapper<
           shouldDisableTime={shouldDisableTime}
           showDaysOutsideCurrentMonth={showDaysOutsideCurrentMonth}
           showToolbar={showToolbar}
-          strictCompareDates={strictCompareDates}
           timeIcon={timeIcon}
           toolbarFormat={toolbarFormat}
           ToolbarComponent={ToolbarComponent}
-          // @ts-ignore
-          toolbarTitle={toolbarTitle || restPropsForTextField.label}
+          toolbarTitle={toolbarTitle || restPropsForTextField?.label}
           views={views}
         />
-      </WrapperComponent>
+      </PickerWrapper>
     );
   }
 
-  // @ts-ignore (why prop-types validation is appearing here?)
   return withDateAdapterProp(PickerWithState);
 }

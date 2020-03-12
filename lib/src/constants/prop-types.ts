@@ -1,5 +1,6 @@
 import * as PropTypes from 'prop-types';
-import { BaseDatePickerProps } from '../DatePicker/DatePicker';
+import { MaterialUiPickersDate } from '../typings/date';
+import { DatePickerProps } from '../DatePicker/DatePicker';
 import { ExportedClockViewProps } from '../views/Clock/ClockView';
 
 const date = PropTypes.oneOfType([
@@ -11,7 +12,7 @@ const date = PropTypes.oneOfType([
 
 const datePickerView = PropTypes.oneOf(['year', 'month', 'day']);
 
-export type ParsableDate = object | string | number | Date | null | undefined;
+export type ParsableDate = string | number | Date | null | undefined | MaterialUiPickersDate;
 
 export const DomainPropTypes = { date, datePickerView };
 
@@ -26,10 +27,10 @@ export const datePickerDefaultProps = {
   invalidDateMessage: 'Invalid Date Format',
   minDateMessage: 'Date should not be before minimal date',
   maxDateMessage: 'Date should not be after maximal date',
-} as BaseDatePickerProps;
+} as DatePickerProps;
 
 export const dateTimePickerDefaultProps = {
   ...timePickerDefaultProps,
   ...datePickerDefaultProps,
   showTabs: true,
-} as ExportedClockViewProps & BaseDatePickerProps;
+} as ExportedClockViewProps & DatePickerProps;

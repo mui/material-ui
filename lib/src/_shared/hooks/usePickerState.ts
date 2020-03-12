@@ -1,42 +1,34 @@
-import { useUtils, useNow } from './useUtils';
-import { IUtils } from '@date-io/core/IUtils';
 import { useOpenState } from './useOpenState';
 import { WrapperVariant } from '../../wrappers/Wrapper';
-import { MaterialUiPickersDate } from '../../typings/date';
 import { BasePickerProps } from '../../typings/BasePicker';
-import { validate } from '../../_helpers/text-field-helper';
+import { MaterialUiPickersDate } from '../../typings/date';
+import { useUtils, useNow, MuiPickersAdapter } from './useUtils';
 import { useCallback, useDebugValue, useEffect, useMemo, useState } from 'react';
-
-const useValueToDate = (
-  utils: IUtils<MaterialUiPickersDate>,
-  { value, defaultHighlight }: BasePickerProps
-) => {
-  const now = useNow();
-  const date = utils.date(value || defaultHighlight || now);
-
-  return date && utils.isValid(date) ? date : now;
-};
-
-function useDateValues(props: BasePickerProps) {
-  const utils = useUtils();
-  const date = useValueToDate(utils, props);
-  const inputFormat = props.inputFormat;
-
-  if (!inputFormat) {
-    throw new Error('format prop is required');
-  }
-
-  return { date, inputFormat };
-}
 
 export const FORCE_FINISH_PICKER = Symbol('Force closing picker, used for accessibility ');
 
-export function usePickerState(props: BasePickerProps) {
-  const { autoOk, disabled, readOnly, onAccept, onChange, onError, value } = props;
+export function usePickerState<TInput, TOutput>(
+  props: BasePickerProps<TInput, TOutput>,
+  parseInputValue: (
+    now: MaterialUiPickersDate,
+    utils: MuiPickersAdapter,
+    props: BasePickerProps<TInput, TOutput>
+  ) => TOutput | null,
+  validateInputValue: (
+    value: TInput,
+    utils: MuiPickersAdapter,
+    props: BasePickerProps<TInput, TOutput>
+  ) => React.ReactNode | undefined
+) {
+  const { autoOk, inputFormat, disabled, readOnly, onAccept, onChange, onError, value } = props;
 
-  const utils = useUtils();
+  if (!inputFormat) {
+    throw new Error('inputFormat prop is required');
+  }
+
   const now = useNow();
-  const { date, inputFormat } = useDateValues(props);
+  const utils = useUtils();
+  const date = parseInputValue(now, utils, props);
   const [pickerDate, setPickerDate] = useState(date);
 
   // Mobile keyboard view is a special case.
@@ -52,7 +44,7 @@ export function usePickerState(props: BasePickerProps) {
   }, [date, isMobileKeyboardViewOpen, isOpen, pickerDate, utils]);
 
   const acceptDate = useCallback(
-    (acceptedDate: MaterialUiPickersDate, needClosePicker: boolean) => {
+    (acceptedDate: TOutput | null, needClosePicker: boolean) => {
       onChange(acceptedDate);
 
       if (needClosePicker) {
@@ -74,8 +66,9 @@ export function usePickerState(props: BasePickerProps) {
       onAccept: () => acceptDate(pickerDate, true),
       onDismiss: () => setIsOpen(false),
       onSetToday: () => {
-        setPickerDate(now);
-        acceptDate(now, Boolean(autoOk));
+        // TODO FIX ME
+        setPickerDate(now as any);
+        acceptDate(now as any, Boolean(autoOk));
       },
     }),
     [acceptDate, autoOk, inputFormat, isOpen, now, pickerDate, setIsOpen]
@@ -94,7 +87,7 @@ export function usePickerState(props: BasePickerProps) {
         setMobileKeyboardViewOpen(!isMobileKeyboardViewOpen);
       },
       onDateChange: (
-        newDate: MaterialUiPickersDate,
+        newDate: TOutput,
         currentVariant: WrapperVariant,
         isFinish: boolean | symbol = true
       ) => {
@@ -117,7 +110,7 @@ export function usePickerState(props: BasePickerProps) {
     [acceptDate, autoOk, isMobileKeyboardViewOpen, pickerDate]
   );
 
-  const validationError = validate(value, utils, props as any);
+  const validationError = validateInputValue(value, utils, props);
   useEffect(() => {
     if (onError) {
       onError(validationError, value);

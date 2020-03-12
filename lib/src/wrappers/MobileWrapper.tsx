@@ -70,11 +70,13 @@ export const MobileWrapper: React.FC<MobileWrapperProps> = ({
   onDismiss,
   onSetToday,
   PopoverProps,
+  KeyboardDateInputComponent,
+  PureDateInputComponent = PureDateInput,
   ...other
 }) => {
   return (
     <WrapperVariantContext.Provider value="mobile">
-      <PureDateInput {...other} {...DateInputProps} />
+      <PureDateInputComponent {...other} {...DateInputProps} />
 
       <ModalDialog
         wider={wider}

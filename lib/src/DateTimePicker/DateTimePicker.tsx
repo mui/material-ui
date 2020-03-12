@@ -1,22 +1,20 @@
 import { useUtils } from '../_shared/hooks/useUtils';
-import { BaseDatePickerProps } from '../DatePicker/DatePicker';
 import { DateTimePickerToolbar } from './DateTimePickerToolbar';
 import { ExportedClockViewProps } from '../views/Clock/ClockView';
 import { ResponsiveWrapper } from '../wrappers/ResponsiveWrapper';
 import { pick12hOr24hFormat } from '../_helpers/text-field-helper';
+import { ExportedCalendarViewProps } from '../views/Calendar/CalendarView';
+import { makePickerWithStateAndWrapper } from '../Picker/makePickerWithState';
 import { InlineWrapper, ModalWrapper, StaticWrapper } from '../wrappers/Wrapper';
+import { WithViewsProps, AllSharedPickerProps } from '../Picker/SharedPickerProps';
 import { dateTimePickerDefaultProps, ParsableDate } from '../constants/prop-types';
-import {
-  makePickerWithStateAndWrapper,
-  WithDateInputProps,
-  WithViewsProps,
-} from '../Picker/makePickerWithState';
 
 export type DateTimePickerView = 'year' | 'date' | 'month' | 'hours' | 'minutes' | 'seconds';
 
-export type BaseDateTimePickerProps = ExportedClockViewProps & BaseDatePickerProps;
-
-export interface DateTimePickerViewsProps extends BaseDateTimePickerProps {
+export interface DateTimePickerProps
+  extends WithViewsProps<'year' | 'date' | 'month' | 'hours' | 'minutes'>,
+    ExportedClockViewProps,
+    ExportedCalendarViewProps {
   /** To show tabs */
   hideTabs?: boolean;
   /** Date tab icon */
@@ -31,10 +29,6 @@ export interface DateTimePickerViewsProps extends BaseDateTimePickerProps {
   toolbarFormat?: string;
 }
 
-export type DateTimePickerProps = WithDateInputProps &
-  DateTimePickerViewsProps &
-  WithViewsProps<'year' | 'date' | 'month' | 'hours' | 'minutes'>;
-
 function useDefaultProps({
   ampm,
   mask,
@@ -44,7 +38,7 @@ function useDefaultProps({
   orientation = 'portrait',
   openTo = 'date',
   views = ['year', 'date', 'hours', 'minutes'],
-}: DateTimePickerProps) {
+}: DateTimePickerProps & AllSharedPickerProps) {
   const utils = useUtils();
   const willUseAmPm = ampm ?? utils.is12HourCycleInCurrentLocale();
 

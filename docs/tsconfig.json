@@ -19,5 +19,5 @@
     "target": "esnext",
     "resolveJsonModule": true
   },
-  "include": ["../docs/**/*.ts*", "../lib/typings.d.ts"]
+  "include": ["../docs/**/*.ts*", "./typings.d.ts", "../lib/typings.d.ts"]
 }

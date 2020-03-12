@@ -21,6 +21,7 @@ export const navItems = [
     title: 'Components Demo',
     children: [
       { title: 'Date Picker', href: '/demo/datepicker' },
+      { title: 'Date Range Picker', href: '/demo/daterangepicker' },
       { title: 'Time Picker', href: '/demo/timepicker' },
       { title: 'Date & Time Picker', href: '/demo/datetime-picker' },
     ],

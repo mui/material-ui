@@ -46,6 +46,8 @@ export const DesktopWrapper: React.FC<DesktopWrapperProps> = ({
   showTodayButton,
   clearable,
   DialogProps,
+  PureDateInputComponent,
+  KeyboardDateInputComponent = KeyboardDateInput,
   ...other
 }) => {
   const ref = React.useRef();
@@ -53,7 +55,7 @@ export const DesktopWrapper: React.FC<DesktopWrapperProps> = ({
 
   return (
     <WrapperVariantContext.Provider value="desktop">
-      <KeyboardDateInput {...other} {...DateInputProps} inputRef={ref} />
+      <KeyboardDateInputComponent {...other} {...DateInputProps} inputRef={ref} />
 
       <Popover
         role="dialog"

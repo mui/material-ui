@@ -4,16 +4,18 @@ import { MobileWrapper, MobileWrapperProps } from './MobileWrapper';
 import { DesktopWrapper, DesktopWrapperProps } from './DesktopWrapper';
 import { ResponsiveWrapper, ResponsiveWrapperProps } from './ResponsiveWrapper';
 
-export interface WrapperProps {
+export interface WrapperProps<TInputProps = DateInputProps<any, any>> {
   open: boolean;
   onAccept: () => void;
   onDismiss: () => void;
   onClear: () => void;
   onSetToday: () => void;
-  DateInputProps: DateInputProps;
+  DateInputProps: TInputProps;
+  KeyboardDateInputComponent?: React.ComponentType<TInputProps>;
+  PureDateInputComponent?: React.ComponentType<TInputProps>;
 }
 
-export type OmitInnerWrapperProps<T extends WrapperProps> = Omit<T, keyof WrapperProps>;
+export type OmitInnerWrapperProps<T extends WrapperProps<any>> = Omit<T, keyof WrapperProps<any>>;
 
 export type SomeWrapper =
   | typeof ResponsiveWrapper

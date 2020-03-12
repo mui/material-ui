@@ -48,7 +48,7 @@ interface PickerToolbarProps
       | 'isMobileKeyboardViewOpen'
       | 'toggleMobileKeyboardView'
     > {
-  toolbarTitle: string;
+  toolbarTitle: React.ReactNode;
   landscapeDirection?: 'row' | 'column';
   isLandscape: boolean;
   penIconClassName?: string;

@@ -51,6 +51,8 @@ export interface CalendarViewProps extends ExportedCalendarProps, PublicCalendar
   reduceAnimations?: boolean;
   /** Disable specific date @DateIOType */
   shouldDisableDate?: (day: MaterialUiPickersDate) => boolean;
+  /** Callback firing on year change @DateIOType */
+  onYearChange?: (date: MaterialUiPickersDate) => void;
 }
 
 export type ExportedCalendarViewProps = Omit<

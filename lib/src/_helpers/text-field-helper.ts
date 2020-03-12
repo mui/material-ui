@@ -1,4 +1,3 @@
-import { DatePickerProps } from '../DatePicker';
 import { ParsableDate } from '../constants/prop-types';
 import { MaterialUiPickersDate } from '../typings/date';
 import { DateInputProps } from '../_shared/PureDateInput';
@@ -44,6 +43,11 @@ export interface DateValidationProps extends BaseValidationProps {
    * @default 'Date should not be after maximal date'
    */
   maxDateMessage?: React.ReactNode;
+  /**
+   * Compare dates by the exact timestamp, instead of start/end of date
+   * @default false
+   */
+  strictCompareDates?: boolean;
 }
 
 const getComparisonMaxDate = (
@@ -70,7 +74,7 @@ const getComparisonMinDate = (
   return utils.startOfDay(date);
 };
 
-export const validate = (
+export const validateDateValue = (
   value: ParsableDate,
   utils: MuiPickersAdapter,
   {
@@ -82,13 +86,13 @@ export const validate = (
     minDateMessage,
     invalidDateMessage,
     strictCompareDates,
-  }: Omit<DatePickerProps, 'views' | 'openTo'>
+  }: any // TODO change the typings when doing hard update of validation system
 ): React.ReactNode => {
   const parsedValue = utils.date(value);
 
   // if null - do not show error
   if (value === null) {
-    return '';
+    return undefined;
   }
 
   if (!utils.isValid(value)) {
@@ -128,7 +132,7 @@ export const validate = (
     return minDateMessage;
   }
 
-  return '';
+  return undefined;
 };
 
 export function pick12hOr24hFormat(
