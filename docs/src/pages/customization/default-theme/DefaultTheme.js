@@ -97,7 +97,7 @@ function ObjectEntryLabel({ objectKey, objectValue }) {
               height="12"
               fill={label.replace(/['"]+/g, '')}
               stroke="#fff"
-              stroke-width="3"
+              strokeWidth="3"
             />
           </svg>
         )}
