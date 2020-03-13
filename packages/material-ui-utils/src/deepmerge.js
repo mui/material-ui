@@ -3,6 +3,9 @@ export function isObject(item) {
 }
 
 function isElement(element) {
+  if (typeof window === 'undefined') {
+    return false;
+  }
   return element instanceof Element || element instanceof HTMLDocument;
 }
 
