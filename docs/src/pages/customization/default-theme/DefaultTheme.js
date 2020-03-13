@@ -77,8 +77,8 @@ function ObjectEntryLabel({ objectKey, objectValue }) {
   const classes = useObjectEntryLabelStyles();
 
   const includeColorSample =
-    label.includes('#') ||
-    (label.includes('rgba') && !label.includes('rgba(0, 0, 0, ') && !label.includes('rgba(0,0,0'));
+    (label.includes('#') ||
+    label.includes('rgba')) && !label.includes('rgba(0, 0, 0, ') && !label.includes('rgba(0,0,0'));
 
   return (
     <React.Fragment>
