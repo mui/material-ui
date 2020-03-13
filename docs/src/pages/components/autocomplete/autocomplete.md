@@ -222,9 +222,7 @@ TypeScript might solve this bug in the future.
 
 ### ListboxComponent
 
-If you provide a custom `ListboxComponent` prop, you need to make sure that the intended scroll container has the
-`role` attribute set to `listbox`. This ensures the correct behavior of the scroll, for example when using the
-keyboard to navigate.
+If you provide a custom `ListboxComponent` prop, you need to make sure that the intended scroll container has the `role` attribute set to `listbox`. This ensures the correct behavior of the scroll, for example when using the keyboard to navigate.
 
 ## Accessibility
 
