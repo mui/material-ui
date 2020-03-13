@@ -9,9 +9,9 @@ export interface CardHeaderProps
   component?: React.ElementType<React.HTMLAttributes<HTMLDivElement>>;
   disableTypography?: boolean;
   subheader?: React.ReactNode;
-  subheaderTypographyProps?: Partial<TypographyProps<any, { component: any }>>;
+  subheaderTypographyProps?: Partial<TypographyProps>;
   title?: React.ReactNode;
-  titleTypographyProps?: Partial<TypographyProps<any, { component: any }>>;
+  titleTypographyProps?: Partial<TypographyProps>;
 }
 
 export type CardHeaderClassKey = 'root' | 'avatar' | 'action' | 'content' | 'title' | 'subheader';
