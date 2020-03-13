@@ -2,6 +2,10 @@ export function isObject(item) {
   return item && typeof item === 'object' && !Array.isArray(item);
 }
 
+function isElement(element) {
+  return element instanceof Element || element instanceof HTMLDocument;
+}
+
 export default function deepmerge(target, source, options = { clone: true }) {
   const output = options.clone ? { ...target } : target;
 
@@ -12,7 +16,7 @@ export default function deepmerge(target, source, options = { clone: true }) {
         return;
       }
 
-      if (isObject(source[key]) && key in target) {
+      if (isObject(source[key]) && !isElement(source[key]) && key in target) {
         output[key] = deepmerge(target[key], source[key], options);
       } else {
         output[key] = source[key];
