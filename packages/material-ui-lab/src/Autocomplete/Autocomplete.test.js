@@ -778,7 +778,7 @@ describe('<Autocomplete />', () => {
       expect(handleChange.args[0][1]).to.equal('a');
       expect(consoleErrorMock.callCount()).to.equal(2); // strict mode renders twice
       expect(consoleErrorMock.messages()[0]).to.include(
-        'For the input option: "a", `getOptionLabel` returns: undefined',
+        'the `getOptionLabel` method of Autocomplete returned undefined instead of a string',
       );
     });
 
