@@ -17,7 +17,6 @@ describe('deepmerge', () => {
 
     const result = deepmerge({ element }, { element: element2 });
 
-    expect(result.element).not.to.eql(element);
-    expect(result.element).to.eql(element2);
+    expect(result.element).to.equal(element2);
   });
 });
