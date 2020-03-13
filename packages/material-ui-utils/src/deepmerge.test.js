@@ -9,6 +9,7 @@ describe('deepmerge', () => {
     });
     expect({}.isAdmin).to.equal(undefined);
   });
+
   // https://github.com/mui-org/material-ui/issues/20095
   it('should not merge DOM elements', () => {
     const element = document.createElement('div');
