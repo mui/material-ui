@@ -35,13 +35,6 @@ class ConsoleErrorMock {
     throw new Error('Requested call count before spy() was called');
   };
 
-  args = () => {
-    throw new TypeError(
-      'args() was removed in favor of messages(). ' +
-        'Use messages() to match against the actual error message that will be displayed in the console.',
-    );
-  };
-
   /**
    * returns the formatted message for each call
    *
