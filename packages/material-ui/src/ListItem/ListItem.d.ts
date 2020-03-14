@@ -36,9 +36,9 @@ export type ListItemClassKey =
   | 'secondaryAction'
   | 'selected';
 
-export type ListItemProps<
-  D extends React.ElementType = 'li',
-  P = {}
-> = OverrideProps<ListItemTypeMap<P, D>, D>;
+export type ListItemProps<D extends React.ElementType = 'li', P = {}> = OverrideProps<
+  ListItemTypeMap<P, D>,
+  D
+>;
 
 export default ListItem;

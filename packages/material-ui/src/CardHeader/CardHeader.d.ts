@@ -18,13 +18,7 @@ export interface CardHeaderTypeMap<P = {}, D extends React.ElementType = 'div'> 
 
 declare const CardHeader: OverridableComponent<CardHeaderTypeMap>;
 
-export type CardHeaderClassKey =
-  | 'root'
-  | 'avatar'
-  | 'action'
-  | 'content'
-  | 'title'
-  | 'subheader';
+export type CardHeaderClassKey = 'root' | 'avatar' | 'action' | 'content' | 'title' | 'subheader';
 
 export type CardHeaderProps<
   D extends React.ElementType = CardHeaderTypeMap['defaultComponent'],

@@ -12,12 +12,7 @@ export interface TableRowTypeMap<P = {}, D extends React.ElementType = 'tr'> {
 
 declare const TableRow: OverridableComponent<TableRowTypeMap>;
 
-export type TableRowClassKey =
-  | 'root'
-  | 'selected'
-  | 'hover'
-  | 'head'
-  | 'footer';
+export type TableRowClassKey = 'root' | 'selected' | 'hover' | 'head' | 'footer';
 
 export type TableRowProps<
   D extends React.ElementType = TableRowTypeMap['defaultComponent'],
