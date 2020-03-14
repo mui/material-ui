@@ -139,7 +139,7 @@ const styles = theme => ({
       padding: '2px 6px',
       color: theme.palette.text.primary,
       backgroundColor:
-        theme.palette.type === 'dark' ? 'rgba(255,229,100,0.2)' : 'rgba(255,229,100,0.1)',
+        theme.palette.type === 'light' ? 'rgba(255, 229, 100, 0.1)' : 'rgba(255, 229, 100, 0.2)',
       fontSize: 14,
       borderRadius: 2,
     },
