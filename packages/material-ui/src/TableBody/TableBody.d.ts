@@ -1,14 +1,19 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
-export interface TableBodyProps extends StandardProps<TableBodyBaseProps, TableBodyClassKey> {
-  component?: React.ElementType<TableBodyBaseProps>;
+export interface TableBodyTypeMap<P = {}, D extends React.ElementType = 'tbody'> {
+  props: P;
+  defaultComponent: D;
+  classKey: TableBodyClassKey;
 }
+
+declare const TableBody: OverridableComponent<TableBodyTypeMap>;
 
 export type TableBodyClassKey = 'root';
 
-export type TableBodyBaseProps = React.HTMLAttributes<HTMLTableSectionElement>;
-
-declare const TableBody: React.ComponentType<TableBodyProps>;
+export type TableBodyProps<
+  D extends React.ElementType = TableBodyTypeMap['defaultComponent'],
+  P = {}
+> = OverrideProps<TableBodyTypeMap<P, D>, D>;
 
 export default TableBody;
