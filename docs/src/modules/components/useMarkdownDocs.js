@@ -74,16 +74,15 @@ export default function useMarkdownDocs(options) {
   }
 
   if (headers.components.length > 0) {
-    const section = location.split('/')[4];
     contents.push(`
 ## API
 
 ${headers.components
   .map(
     component =>
-      `- [&lt;${component} /&gt;](${
-        section === 'lab' ? '/lab/api' : '/api'
-      }/${Router2._rewriteUrlForNextExport(kebabCase(component))})`,
+      `- [&lt;${component} /&gt;](${Router2._rewriteUrlForNextExport(
+        `/api/${kebabCase(component)}`,
+      )})`,
   )
   .join('\n')}
   `);
