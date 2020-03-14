@@ -1,7 +1,7 @@
 import React from 'react';
 import { ServerStyleSheets } from '@material-ui/styles';
 import Document, { Head, Main, NextScript } from 'next/document';
-import { Router as Router2 } from 'next/router';
+import { rewriteUrlForNextExport } from 'next/dist/next-server/lib/router/rewrite-url-for-export';
 import { LANGUAGES_SSR } from 'docs/src/modules/constants';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import { themeColor } from 'docs/src/modules/components/ThemeContext';
@@ -48,20 +48,20 @@ export default class MyDocument extends Document {
           {/* SEO */}
           <link
             rel="canonical"
-            href={`https://material-ui.com${Router2._rewriteUrlForNextExport(
+            href={`https://material-ui.com${rewriteUrlForNextExport(
               `${userLanguage === 'en' ? '' : `/${userLanguage}`}${canonical}`,
             )}`}
           />
           <link
             rel="alternate"
-            href={`https://material-ui.com${Router2._rewriteUrlForNextExport(canonical)}`}
+            href={`https://material-ui.com${rewriteUrlForNextExport(canonical)}`}
             hrefLang="x-default"
           />
           {LANGUAGES_SSR.map(userLanguage2 => (
             <link
               key={userLanguage2}
               rel="alternate"
-              href={`https://material-ui.com${Router2._rewriteUrlForNextExport(
+              href={`https://material-ui.com${rewriteUrlForNextExport(
                 `${userLanguage2 === 'en' ? '' : `/${userLanguage2}`}${canonical}`,
               )}`}
               hrefLang={userLanguage2}

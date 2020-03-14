@@ -11,7 +11,8 @@ import PropTypes from 'prop-types';
 import acceptLanguage from 'accept-language';
 import { create } from 'jss';
 import rtl from 'jss-rtl';
-import { Router as Router2, useRouter } from 'next/router';
+import { useRouter } from 'next/router';
+import { rewriteUrlForNextExport } from 'next/dist/next-server/lib/router/rewrite-url-for-export';
 import { StylesProvider, jssPreset } from '@material-ui/styles';
 import pages from 'docs/src/pages';
 import initRedux from 'docs/src/modules/redux/initRedux';
@@ -58,7 +59,7 @@ function LanguageNegotiation() {
 
   React.useEffect(() => {
     const { userLanguage: userLanguageUrl, canonical } = pathnameToLanguage(
-      Router2._rewriteUrlForNextExport(router.asPath),
+      rewriteUrlForNextExport(router.asPath),
     );
     const preferedLanguage =
       getCookie('userLanguage') !== 'noDefault' && userLanguage === 'en'
@@ -289,7 +290,7 @@ function AppWrapper(props) {
   if (pathname !== '/') {
     // The leading / is only added to support static hosting (resolve /index.html).
     // We remove it to normalize the pathname.
-    // See `_rewriteUrlForNextExport` on Next.js side.
+    // See `rewriteUrlForNextExport` on Next.js side.
     pathname = pathname.replace(/\/$/, '');
   }
   const activePage = findActivePage(pages, pathname);

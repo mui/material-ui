@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
-import Router, { Router as Router2, useRouter } from 'next/router';
+import Router, { useRouter } from 'next/router';
+import { rewriteUrlForNextExport } from 'next/dist/next-server/lib/router/rewrite-url-for-export';
 import { withStyles, useTheme } from '@material-ui/core/styles';
 import NProgress from 'nprogress';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -182,7 +183,7 @@ function AppFrame(props) {
   };
 
   const router = useRouter();
-  const { canonical } = pathnameToLanguage(Router2._rewriteUrlForNextExport(router.asPath));
+  const { canonical } = pathnameToLanguage(rewriteUrlForNextExport(router.asPath));
   const { activePage } = React.useContext(PageContext);
 
   let disablePermanent = false;
