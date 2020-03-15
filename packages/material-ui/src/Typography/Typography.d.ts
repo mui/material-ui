@@ -22,6 +22,7 @@ export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'>
     paragraph?: boolean;
     variant?: Variant | 'inherit';
     variantMapping?: Partial<Record<Variant, string>>;
+    component?: React.ElementType;
   };
   defaultComponent: D;
   classKey: TypographyClassKey;
@@ -31,7 +32,7 @@ declare const Typography: OverridableComponent<TypographyTypeMap>;
 
 export type TypographyProps<
   D extends React.ElementType = TypographyTypeMap['defaultComponent'],
-  P = { component?: React.ElementType }
+  P = {}
 > = OverrideProps<TypographyTypeMap<P, D>, D>;
 
 export type TypographyClassKey =

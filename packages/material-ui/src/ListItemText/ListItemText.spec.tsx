@@ -44,3 +44,6 @@ const ListItemTextTest = () => {
     </div>
   );
 };
+
+// Just so the linter doesn't complain about unused component.
+export default ListItemTextTest;

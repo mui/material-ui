@@ -6,7 +6,7 @@ declare var yada: () => void;
 
 const CardHeaderTest = () => {
   // eslint-disable-next-line react/jsx-filename-extension
-  const CustomComponent: React.FC<{ prop1: string; prop2: number }> = () => <div/>;
+  const CustomComponent: React.FC<{ prop1: string; prop2: number }> = () => <div />;
   function notAnElementType(): void {
     yada();
   }
@@ -17,7 +17,7 @@ const CardHeaderTest = () => {
     // eslint-disable-next-line react/jsx-filename-extension
     <div>
       <Card>
-        <CardHeader/>
+        <CardHeader />
       </Card>
       <Card>
         <CardHeader
