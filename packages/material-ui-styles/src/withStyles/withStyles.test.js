@@ -292,7 +292,7 @@ describe('withStyles', () => {
     it('should inject the theme', () => {
       const styles = { root: { padding: 1 } };
       const StyledComponent = withStyles(styles, { withTheme: true })(props => (
-        <option theme={props.theme} />
+        <option theme={props.theme}>themed</option>
       ));
       const theme = {};
       const wrapper = mount(

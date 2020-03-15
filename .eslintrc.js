@@ -32,6 +32,8 @@ module.exports = {
   rules: {
     'consistent-this': ['error', 'self'],
     'linebreak-style': 'off', // Doesn't play nicely with Windows
+    // just as bad as "max components per file"
+    'max-classes-per-file': 'off',
     'no-alert': 'error',
     // Strict, airbnb is using warn; allow warn and error for dev environments
     'no-console': ['error', { allow: ['warn', 'error'] }],
@@ -61,6 +63,8 @@ module.exports = {
     // It's buggy
     'react/forbid-prop-types': 'off',
     'react/jsx-curly-brace-presence': 'off',
+    // prefer <React.Fragment> over <>. The former allows `key` while the latter doesn't
+    'react/jsx-fragments': ['error', 'element'],
     'react/jsx-filename-extension': ['error', { extensions: ['.js'] }], // airbnb is using .jsx
     'react/jsx-handler-names': [
       'error',
@@ -70,6 +74,8 @@ module.exports = {
         eventHandlerPropPrefix: 'on',
       },
     ],
+    // not a good rule for components close to the DOM
+    'react/jsx-props-no-spreading': 'off',
     'react/no-danger': 'error',
     // Strict, airbnb is using off
     'react/no-direct-mutation-state': 'error',
@@ -77,6 +83,10 @@ module.exports = {
     'react/no-multi-comp': 'off',
     'react/require-default-props': 'off',
     'react/sort-prop-types': 'error',
+    // This depends entirely on what you're doing. There's no universal pattern
+    'react/state-in-constructor': 'off',
+    // stylistic opinion. For conditional assignment we want it outside, otherwise as static
+    'react/static-property-placement': 'off',
 
     'import/no-extraneous-dependencies': 'off', // It would be better to enable this rule.
     'import/namespace': ['error', { allowComputed: true }],
@@ -89,10 +99,7 @@ module.exports = {
     ],
 
     'react-hooks/rules-of-hooks': 'error',
-    'react-hooks/exhaustive-deps': [
-      'error',
-      { additionalHooks: 'useEnhancedEffect' },
-    ],
+    'react-hooks/exhaustive-deps': ['error', { additionalHooks: 'useEnhancedEffect' }],
   },
   overrides: [
     {

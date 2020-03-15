@@ -104,7 +104,8 @@ module.exports = function setKarmaConfig(config) {
   let newConfig = baseConfig;
 
   if (browserStack.accessKey) {
-    newConfig = Object.assign({}, baseConfig, {
+    newConfig = {
+      ...baseConfig,
       browserStack,
       browsers: baseConfig.browsers.concat([
         'BrowserStack_Chrome',
@@ -113,7 +114,8 @@ module.exports = function setKarmaConfig(config) {
         'BrowserStack_Edge',
       ]),
       plugins: baseConfig.plugins.concat(['karma-browserstack-launcher']),
-      customLaunchers: Object.assign({}, baseConfig.customLaunchers, {
+      customLaunchers: {
+        ...baseConfig.customLaunchers,
         BrowserStack_Chrome: {
           base: 'BrowserStack',
           os: 'OS X',
@@ -142,8 +144,8 @@ module.exports = function setKarmaConfig(config) {
           browser: 'Edge',
           browser_version: '14.0',
         },
-      }),
-    });
+      },
+    };
   }
 
   config.set(newConfig);
