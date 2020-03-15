@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { StandardProps, PropTypes } from '..';
-import { OverrideProps, OverridableTypeMap, OverridableComponent } from '../OverridableComponent';
+import { PropTypes } from '..';
+import { OverrideProps, OverridableComponent } from '../OverridableComponent';
 import { Variant as ThemeVariant } from '../styles/createTypography';
 
 type Variant = ThemeVariant | 'srOnly';
@@ -31,7 +31,7 @@ declare const Typography: OverridableComponent<TypographyTypeMap>;
 
 export type TypographyProps<
   D extends React.ElementType = TypographyTypeMap['defaultComponent'],
-  P = { component?: D }
+  P = { component?: React.ElementType }
 > = OverrideProps<TypographyTypeMap<P, D>, D>;
 
 export type TypographyClassKey =
