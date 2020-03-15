@@ -426,13 +426,13 @@ export default function useAutocomplete(props) {
     }
   };
 
-  const handleClose = event => {
+  const handleClose = (event, reason) => {
     if (!open) {
       return;
     }
 
     if (onClose) {
-      onClose(event);
+      onClose(event, reason);
     }
     if (!isOpenControlled) {
       setOpenState(false);
@@ -487,7 +487,7 @@ export default function useAutocomplete(props) {
 
     handleValue(event, newValue, reason, { option });
     if (!disableCloseOnSelect) {
-      handleClose(event);
+      handleClose(event, reason);
     }
   };
 
@@ -528,7 +528,7 @@ export default function useAutocomplete(props) {
       return;
     }
 
-    handleClose(event);
+    handleClose(event, 'toggleInput');
 
     let nextTag = focusedTag;
 
@@ -647,7 +647,7 @@ export default function useAutocomplete(props) {
           event.preventDefault();
           // Avoid the Modal to handle the event.
           event.stopPropagation();
-          handleClose(event);
+          handleClose(event, 'escape');
         } else if (clearOnEscape && (inputValue !== '' || (multiple && value.length > 0))) {
           // Avoid Opera to exit fullscreen mode.
           event.preventDefault();
@@ -708,7 +708,7 @@ export default function useAutocomplete(props) {
       resetInputValue(event, value);
     }
 
-    handleClose(event);
+    handleClose(event, 'blur');
   };
 
   const handleInputChange = event => {
@@ -783,7 +783,7 @@ export default function useAutocomplete(props) {
 
   const handlePopupIndicator = event => {
     if (open) {
-      handleClose(event);
+      handleClose(event, 'toggleInput');
     } else {
       handleOpen(event);
     }

@@ -668,6 +668,7 @@ Autocomplete.propTypes = {
    * Use in controlled mode (see open).
    *
    * @param {object} event The event source of the callback.
+   * @param {string} reason Can be: `"toggleInput"`, `"escape"`, `"select-option"`, `"blur"`.
    */
   onClose: PropTypes.func,
   /**

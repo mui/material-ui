@@ -126,8 +126,9 @@ export interface UseAutocompleteCommonProps<T> {
    * Use in controlled mode (see open).
    *
    * @param {object} event The event source of the callback.
+   * @param {string} reason Can be: `"toggleInput"`, `"escape"`, `"select-option"`, `"blur"`.
    */
-  onClose?: (event: React.ChangeEvent<{}>) => void;
+  onClose?: (event: React.ChangeEvent<{}>, reason: AutocompleteCloseReason) => void;
   /**
    * Callback fired when the input value changes.
    *
@@ -138,7 +139,7 @@ export interface UseAutocompleteCommonProps<T> {
   onInputChange?: (
     event: React.ChangeEvent<{}>,
     value: string,
-    reason: 'input' | 'reset' | 'clear',
+    reason: AutocompleteInputChangeReason,
   ) => void;
   /**
    * Callback fired when the popup requests to be opened.
@@ -166,10 +167,18 @@ export interface UseAutocompleteCommonProps<T> {
   selectOnFocus?: boolean;
 }
 
-export type ChangeReason = 'create-option' | 'select-option' | 'remove-option' | 'clear' | 'blur';
-export interface ChangeDetails<T = string> {
+export type AutocompleteChangeReason =
+  | 'create-option'
+  | 'select-option'
+  | 'remove-option'
+  | 'clear'
+  | 'blur';
+export interface AutocompleteChangeDetails<T = string> {
   option: T;
 }
+export type AutocompleteCloseReason = 'toggleInput' | 'escape' | 'select-option' | 'blur';
+export type AutocompleteInputChangeReason = 'input' | 'reset' | 'clear';
+
 export interface UseAutocompleteMultipleProps<T> extends UseAutocompleteCommonProps<T> {
   /**
    * If `true`, `value` must be an array and the menu will support multiple selections.
@@ -196,8 +205,8 @@ export interface UseAutocompleteMultipleProps<T> extends UseAutocompleteCommonPr
   onChange?: (
     event: React.ChangeEvent<{}>,
     value: T[],
-    reason: ChangeReason,
-    details?: ChangeDetails<T>,
+    reason: AutocompleteChangeReason,
+    details?: AutocompleteChangeDetails<T>,
   ) => void;
 }
 
@@ -227,8 +236,8 @@ export interface UseAutocompleteSingleProps<T> extends UseAutocompleteCommonProp
   onChange?: (
     event: React.ChangeEvent<{}>,
     value: T | null,
-    reason: ChangeReason,
-    details?: ChangeDetails<T>,
+    reason: AutocompleteChangeReason,
+    details?: AutocompleteChangeDetails<T>,
   ) => void;
 }
 

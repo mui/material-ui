@@ -128,7 +128,10 @@ export default function GitHubLabel() {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = () => {
+  const handleClose = (event, reason) => {
+    if (reason === 'toggleInput') {
+      return;
+    }
     setValue(pendingValue);
     if (anchorEl) {
       anchorEl.focus();
