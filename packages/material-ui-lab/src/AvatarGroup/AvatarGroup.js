@@ -23,7 +23,14 @@ export const styles = theme => ({
 });
 
 const AvatarGroup = React.forwardRef(function AvatarGroup(props, ref) {
-  const { children: childrenProp, classes, className, spacing = 'medium', max = 5, ...other } = props;
+  const {
+    children: childrenProp,
+    classes,
+    className,
+    spacing = 'medium',
+    max = 5,
+    ...other
+  } = props;
 
   const children = React.Children.toArray(childrenProp).filter(child => {
     if (process.env.NODE_ENV !== 'production') {
@@ -54,14 +61,17 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(props, ref) {
           },
         });
       })}
-      {extraAvatars ?
+      {extraAvatars ? (
         <Avatar
           className={classes.avatar}
           style={{
             zIndex: 0,
             marginLeft: spacing && SPACINGS[spacing] !== undefined ? SPACINGS[spacing] : -spacing,
-          }}>+{extraAvatars}</Avatar>
-      : null}
+          }}
+        >
+          +{extraAvatars}
+        </Avatar>
+      ) : null}
     </div>
   );
 });
@@ -85,13 +95,13 @@ AvatarGroup.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * The spacing between avatars. A group with `small` spacing value has a larger overlap.
-   */
-  spacing: PropTypes.oneOfType([PropTypes.oneOf(['medium', 'small']), PropTypes.number]),
-  /**
-   * The maximum number of avatars to display. An additional text avatar will display the number of hidden avatars, if any.
+   * Max avatars to show before +x.
    */
   max: PropTypes.number,
+  /**
+   * Spacing between avatars.
+   */
+  spacing: PropTypes.oneOfType([PropTypes.oneOf(['medium', 'small']), PropTypes.number]),
 };
 
 export default withStyles(styles, { name: 'MuiAvatarGroup' })(AvatarGroup);
