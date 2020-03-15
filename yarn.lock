@@ -2092,7 +2092,7 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@sinonjs/formatio@^5.0.0", "@sinonjs/formatio@^5.0.1":
+"@sinonjs/formatio@^5.0.1":
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/@sinonjs/formatio/-/formatio-5.0.1.tgz#f13e713cb3313b1ab965901b01b0828ea6b77089"
   integrity sha512-KaiQ5pBf1MpS09MuA0kp6KBQt2JUOQycqVG1NZXvzeaXe5LGFqAKueIS0bw4w0P9r7KuBSVdUk5QjXsUdu2CxQ==
@@ -2100,13 +2100,12 @@
     "@sinonjs/commons" "^1"
     "@sinonjs/samsam" "^5.0.2"
 
-"@sinonjs/samsam@^5.0.1", "@sinonjs/samsam@^5.0.2":
-  version "5.0.2"
-  resolved "https://registry.yarnpkg.com/@sinonjs/samsam/-/samsam-5.0.2.tgz#2c4772ec4a3a9b00971be32e843dc1be27a02c89"
-  integrity sha512-p3yrEVB5F/1wI+835n+X8llOGRgV8+jw5BHQ/cJoLBUXXZ5U8Tr5ApwPc4L4av/vjla48kVPoN0t6dykQm+Rvg==
+"@sinonjs/samsam@^5.0.2", "@sinonjs/samsam@^5.0.3":
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/@sinonjs/samsam/-/samsam-5.0.3.tgz#86f21bdb3d52480faf0892a480c9906aa5a52938"
+  integrity sha512-QucHkc2uMJ0pFGjJUDP3F9dq5dx8QIaqISl9QgwLOh6P9yv877uONPGXh/OH/0zmM3tW1JjuJltAZV2l7zU+uQ==
   dependencies:
     "@sinonjs/commons" "^1.6.0"
-    "@sinonjs/formatio" "^5.0.0"
     lodash.get "^4.4.2"
     type-detect "^4.0.8"
 
@@ -14361,14 +14360,14 @@ simple-swizzle@^0.2.2:
     is-arrayish "^0.3.1"
 
 sinon@^9.0.0:
-  version "9.0.0"
-  resolved "https://registry.yarnpkg.com/sinon/-/sinon-9.0.0.tgz#9f1ed502fa2e287e65220de08f6a44f33e314006"
-  integrity sha512-c4bREcvuK5VuEGyMW/Oim9I3Rq49Vzb0aMdxouFaA44QCFpilc5LJOugrX+mkrvikbqCimxuK+4cnHVNnLR41g==
+  version "9.0.1"
+  resolved "https://registry.yarnpkg.com/sinon/-/sinon-9.0.1.tgz#dbb18f7d8f5835bcf91578089c0a97b2fffdd73b"
+  integrity sha512-iTTyiQo5T94jrOx7X7QLBZyucUJ2WvL9J13+96HMfm2CGoJYbIPqRfl6wgNcqmzk0DI28jeGx5bUTXizkrqBmg==
   dependencies:
     "@sinonjs/commons" "^1.7.0"
     "@sinonjs/fake-timers" "^6.0.0"
-    "@sinonjs/formatio" "^5.0.0"
-    "@sinonjs/samsam" "^5.0.1"
+    "@sinonjs/formatio" "^5.0.1"
+    "@sinonjs/samsam" "^5.0.3"
     diff "^4.0.2"
     nise "^4.0.1"
     supports-color "^7.1.0"
