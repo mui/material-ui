@@ -49,7 +49,7 @@ export const styles = theme => ({
     overflow: 'hidden',
     '&::after': {
       animation: '$wave 1.6s linear 0.5s infinite',
-      background: `linear-gradient(90deg, transparent, ${theme.palette.action.hover}, transparent)`,
+      background: `linear-gradient(90deg, transparent, ${theme.palette.action.selected}, transparent)`,
       content: '""',
       position: 'absolute',
       transform: 'translateX(-100%)', // Avoid flash during server-side hydration
