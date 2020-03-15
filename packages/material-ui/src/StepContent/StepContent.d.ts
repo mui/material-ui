@@ -23,7 +23,7 @@ export type StepContentClasskey = 'root' | 'last' | 'transition';
  *
  *
  * Demos:
- * - {@link https://material-ui.com/components/steppers Steppers}
+ * - {@link https://material-ui.com/components/steppers/ Steppers}
  *
  * API:
  * - {@link https://material-ui.com/api/StepContent StepContent API}

@@ -39,11 +39,11 @@ export type DialogClassKey =
  * Dialogs are overlaid modal paper based components with a backdrop.
  *
  * Demos:
- * - {@link https://material-ui.com/components/dialogs Dialogs}
+ * - {@link https://material-ui.com/components/dialogs/ Dialogs}
  *
  * API:
  * - {@link https://material-ui.com/api/Dialog Dialog API}
- * - inherits {@link https://material-ui.com/api//api/modal Modal API}
+ * - inherits {@link https://material-ui.com/api/modal/ Modal API}
  */
 declare const Dialog: React.ComponentType<DialogProps>;
 

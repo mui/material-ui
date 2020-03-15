@@ -26,7 +26,7 @@ export type GridListTileBarClassKey =
  *
  *
  * Demos:
- * - {@link https://material-ui.com/components/grid-list Grid List}
+ * - {@link https://material-ui.com/components/grid-list/ Grid List}
  *
  * API:
  * - {@link https://material-ui.com/api/GridListTileBar GridListTileBar API}

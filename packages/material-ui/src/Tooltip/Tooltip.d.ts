@@ -56,7 +56,7 @@ export type TooltipClassKey =
  *
  *
  * Demos:
- * - {@link https://material-ui.com/components/tooltips Tooltips}
+ * - {@link https://material-ui.com/components/tooltips/ Tooltips}
  *
  * API:
  * - {@link https://material-ui.com/api/Tooltip Tooltip API}

@@ -71,8 +71,8 @@ export type BadgeClassKey =
  *
  *
  * Demos:
- * - {@link https://material-ui.com/components/avatars Avatars}
- * - {@link https://material-ui.com/components/badges Badges}
+ * - {@link https://material-ui.com/components/avatars/ Avatars}
+ * - {@link https://material-ui.com/components/badges/ Badges}
  *
  * API:
  * - {@link https://material-ui.com/api/Badge Badge API}

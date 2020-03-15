@@ -12,7 +12,7 @@ export type DialogActionsClassKey = 'root' | 'spacing';
  *
  *
  * Demos:
- * - {@link https://material-ui.com/components/dialogs Dialogs}
+ * - {@link https://material-ui.com/components/dialogs/ Dialogs}
  *
  * API:
  * - {@link https://material-ui.com/api/DialogActions DialogActions API}

@@ -31,7 +31,7 @@ export type CircularProgressClassKey =
  * attribute to `true` on that region until it has finished loading.
  *
  * Demos:
- * - {@link https://material-ui.com/components/progress Progress}
+ * - {@link https://material-ui.com/components/progress/ Progress}
  *
  * API:
  * - {@link https://material-ui.com/api/CircularProgress CircularProgress API}

@@ -27,7 +27,7 @@ export type FormHelperTextClassKey =
  *
  *
  * Demos:
- * - {@link https://material-ui.com/components/text-fields Text Fields}
+ * - {@link https://material-ui.com/components/text-fields/ Text Fields}
  *
  * API:
  * - {@link https://material-ui.com/api/FormHelperText FormHelperText API}

@@ -23,7 +23,7 @@ export type ContainerClassKey =
  *
  *
  * Demos:
- * - {@link https://material-ui.com/components/container Container}
+ * - {@link https://material-ui.com/components/container/ Container}
  *
  * API:
  * - {@link https://material-ui.com/api/Container Container API}

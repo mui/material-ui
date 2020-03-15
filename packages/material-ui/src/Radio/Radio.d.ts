@@ -16,11 +16,11 @@ export type RadioClassKey = SwitchBaseClassKey | 'colorPrimary' | 'colorSecondar
  *
  *
  * Demos:
- * - {@link https://material-ui.com/components/radio-buttons Radio Buttons}
+ * - {@link https://material-ui.com/components/radio-buttons/ Radio Buttons}
  *
  * API:
  * - {@link https://material-ui.com/api/Radio Radio API}
- * - inherits {@link https://material-ui.com/api//api/icon-button IconButton API}
+ * - inherits {@link https://material-ui.com/api/icon-button/ IconButton API}
  */
 declare const Radio: React.ComponentType<RadioProps>;
 

@@ -44,9 +44,9 @@ export interface PopperProps extends React.HTMLAttributes<HTMLDivElement> {
  * Poppers rely on the 3rd party library [Popper.js](https://github.com/FezVrasta/popper.js) for positioning.
  *
  * Demos:
- * - {@link https://material-ui.com/components/autocomplete Autocomplete}
- * - {@link https://material-ui.com/components/menus Menus}
- * - {@link https://material-ui.com/components/popper Popper}
+ * - {@link https://material-ui.com/components/autocomplete/ Autocomplete}
+ * - {@link https://material-ui.com/components/menus/ Menus}
+ * - {@link https://material-ui.com/components/popper/ Popper}
  *
  * API:
  * - {@link https://material-ui.com/api/Popper Popper API}

@@ -21,7 +21,7 @@ export interface ButtonGroupTypeMap<P = {}, D extends React.ElementType = 'div'>
  *
  *
  * Demos:
- * - {@link https://material-ui.com/components/button-group Button Group}
+ * - {@link https://material-ui.com/components/button-group/ Button Group}
  *
  * API:
  * - {@link https://material-ui.com/api/ButtonGroup ButtonGroup API}

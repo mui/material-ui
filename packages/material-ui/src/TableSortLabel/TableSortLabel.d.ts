@@ -21,11 +21,11 @@ export type TableSortLabelTypeMap<
  * A button based label for placing inside `TableCell` for column sorting.
  *
  * Demos:
- * - {@link https://material-ui.com/components/tables Tables}
+ * - {@link https://material-ui.com/components/tables/ Tables}
  *
  * API:
  * - {@link https://material-ui.com/api/TableSortLabel TableSortLabel API}
- * - inherits {@link https://material-ui.com/api//api/button-base ButtonBase API}
+ * - inherits {@link https://material-ui.com/api/button-base/ ButtonBase API}
  */
 declare const TableSortLabel: ExtendButtonBase<TableSortLabelTypeMap>;
 

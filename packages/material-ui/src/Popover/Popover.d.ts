@@ -46,12 +46,12 @@ export interface PopoverActions {
  *
  *
  * Demos:
- * - {@link https://material-ui.com/components/menus Menus}
- * - {@link https://material-ui.com/components/popover Popover}
+ * - {@link https://material-ui.com/components/menus/ Menus}
+ * - {@link https://material-ui.com/components/popover/ Popover}
  *
  * API:
  * - {@link https://material-ui.com/api/Popover Popover API}
- * - inherits {@link https://material-ui.com/api//api/modal Modal API}
+ * - inherits {@link https://material-ui.com/api/modal/ Modal API}
  */
 declare const Popover: React.ComponentType<PopoverProps>;
 

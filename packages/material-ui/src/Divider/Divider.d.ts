@@ -16,8 +16,8 @@ export interface DividerTypeMap<P = {}, D extends React.ElementType = 'hr'> {
  *
  *
  * Demos:
- * - {@link https://material-ui.com/components/dividers Dividers}
- * - {@link https://material-ui.com/components/lists Lists}
+ * - {@link https://material-ui.com/components/dividers/ Dividers}
+ * - {@link https://material-ui.com/components/lists/ Lists}
  *
  * API:
  * - {@link https://material-ui.com/api/Divider Divider API}

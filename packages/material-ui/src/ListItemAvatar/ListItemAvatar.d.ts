@@ -10,7 +10,7 @@ export type ListItemAvatarClassKey = 'root' | 'icon';
  * A simple wrapper to apply `List` styles to an `Avatar`.
  *
  * Demos:
- * - {@link https://material-ui.com/components/lists Lists}
+ * - {@link https://material-ui.com/components/lists/ Lists}
  *
  * API:
  * - {@link https://material-ui.com/api/ListItemAvatar ListItemAvatar API}

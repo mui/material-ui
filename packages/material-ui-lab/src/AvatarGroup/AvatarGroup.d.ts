@@ -23,7 +23,7 @@ export type AvatarGroupClassKey = 'root' | 'avatar';
  *
  *
  * Demos:
- * - {@link https://material-ui.com/components/avatars Avatars}
+ * - {@link https://material-ui.com/components/avatars/ Avatars}
  *
  * API:
  * - {@link https://material-ui.com/api/AvatarGroup AvatarGroup API}

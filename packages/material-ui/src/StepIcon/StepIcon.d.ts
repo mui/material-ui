@@ -15,7 +15,7 @@ export type StepIconClasskey = 'root' | 'text' | 'active' | 'completed' | 'error
  *
  *
  * Demos:
- * - {@link https://material-ui.com/components/steppers Steppers}
+ * - {@link https://material-ui.com/components/steppers/ Steppers}
  *
  * API:
  * - {@link https://material-ui.com/api/StepIcon StepIcon API}

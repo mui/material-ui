@@ -3,6 +3,7 @@ import * as babel from '@babel/core';
 import traverse from '@babel/traverse';
 import { mkdir, readFileSync, writeFileSync } from 'fs';
 import { getLineFeed } from './helpers';
+import { rewriteUrlForNextExport } from 'next/dist/next-server/lib/router/rewrite-url-for-export';
 import path from 'path';
 import kebabCase from 'lodash/kebabCase';
 import uniqBy from 'lodash/uniqBy';
@@ -140,16 +141,21 @@ async function annotateComponentDefinition(component, api) {
  *
  * Demos:
  * - ${demos
-   .map(page => `{@link https://material-ui.com${page.pathname} ${pageToTitle(page)}}`)
+   .map(
+     page =>
+       `{@link https://material-ui.com${rewriteUrlForNextExport(page.pathname)} ${pageToTitle(
+         page,
+       )}}`,
+   )
    .join('\n * - ')}
  *
  * API:
  * - {@link https://material-ui.com/api/${api.name} ${api.name} API}
  * ${
    api.inheritance !== null
-     ? `- inherits {@link https://material-ui.com/api/${api.inheritance.pathname} ${
-         api.inheritance.component
-       } API}`
+     ? `- inherits {@link https://material-ui.com${rewriteUrlForNextExport(
+         api.inheritance.pathname,
+       )} ${api.inheritance.component} API}`
      : ''
  }
  */`;

@@ -69,7 +69,7 @@ export type SliderClassKey =
  *
  *
  * Demos:
- * - {@link https://material-ui.com/components/slider Slider}
+ * - {@link https://material-ui.com/components/slider/ Slider}
  *
  * API:
  * - {@link https://material-ui.com/api/Slider Slider API}

@@ -43,8 +43,8 @@ export type PaperClassKey =
  *
  *
  * Demos:
- * - {@link https://material-ui.com/components/cards Cards}
- * - {@link https://material-ui.com/components/paper Paper}
+ * - {@link https://material-ui.com/components/cards/ Cards}
+ * - {@link https://material-ui.com/components/paper/ Paper}
  *
  * API:
  * - {@link https://material-ui.com/api/Paper Paper API}

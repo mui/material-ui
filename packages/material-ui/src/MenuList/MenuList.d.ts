@@ -18,11 +18,11 @@ export type MenuListClassKey = ListClassKey;
  * the focus is placed inside the component it is fully keyboard accessible.
  *
  * Demos:
- * - {@link https://material-ui.com/components/menus Menus}
+ * - {@link https://material-ui.com/components/menus/ Menus}
  *
  * API:
  * - {@link https://material-ui.com/api/MenuList MenuList API}
- * - inherits {@link https://material-ui.com/api//api/list List API}
+ * - inherits {@link https://material-ui.com/api/list/ List API}
  */
 declare const MenuList: React.ComponentType<MenuListProps>;
 

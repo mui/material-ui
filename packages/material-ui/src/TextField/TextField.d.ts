@@ -107,13 +107,13 @@ export type TextFieldClassKey = 'root';
  * - using the underlying components directly as shown in the demos
  *
  * Demos:
- * - {@link https://material-ui.com/components/autocomplete Autocomplete}
- * - {@link https://material-ui.com/components/pickers Pickers}
- * - {@link https://material-ui.com/components/text-fields Text Fields}
+ * - {@link https://material-ui.com/components/autocomplete/ Autocomplete}
+ * - {@link https://material-ui.com/components/pickers/ Pickers}
+ * - {@link https://material-ui.com/components/text-fields/ Text Fields}
  *
  * API:
  * - {@link https://material-ui.com/api/TextField TextField API}
- * - inherits {@link https://material-ui.com/api//api/form-control FormControl API}
+ * - inherits {@link https://material-ui.com/api/form-control/ FormControl API}
  */
 declare const TextField: React.ComponentType<TextFieldProps>;
 

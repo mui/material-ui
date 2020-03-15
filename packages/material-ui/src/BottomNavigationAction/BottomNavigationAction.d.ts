@@ -23,11 +23,11 @@ export type BottomNavigationActionTypeMap<
  *
  *
  * Demos:
- * - {@link https://material-ui.com/components/bottom-navigation Bottom Navigation}
+ * - {@link https://material-ui.com/components/bottom-navigation/ Bottom Navigation}
  *
  * API:
  * - {@link https://material-ui.com/api/BottomNavigationAction BottomNavigationAction API}
- * - inherits {@link https://material-ui.com/api//api/button-base ButtonBase API}
+ * - inherits {@link https://material-ui.com/api/button-base/ ButtonBase API}
  */
 declare const BottomNavigationAction: ExtendButtonBase<
   BottomNavigationActionTypeMap<{}, ButtonBaseTypeMap['defaultComponent']>

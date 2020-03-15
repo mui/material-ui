@@ -14,8 +14,8 @@ export type FormGroupClassKey = 'root' | 'row';
  * For the `Radio`, you should be using the `RadioGroup` component instead of this one.
  *
  * Demos:
- * - {@link https://material-ui.com/components/checkboxes Checkboxes}
- * - {@link https://material-ui.com/components/switches Switches}
+ * - {@link https://material-ui.com/components/checkboxes/ Checkboxes}
+ * - {@link https://material-ui.com/components/switches/ Switches}
  *
  * API:
  * - {@link https://material-ui.com/api/FormGroup FormGroup API}

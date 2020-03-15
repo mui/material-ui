@@ -31,8 +31,8 @@ export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'>
  *
  *
  * Demos:
- * - {@link https://material-ui.com/components/breadcrumbs Breadcrumbs}
- * - {@link https://material-ui.com/components/typography Typography}
+ * - {@link https://material-ui.com/components/breadcrumbs/ Breadcrumbs}
+ * - {@link https://material-ui.com/components/typography/ Typography}
  *
  * API:
  * - {@link https://material-ui.com/api/Typography Typography API}

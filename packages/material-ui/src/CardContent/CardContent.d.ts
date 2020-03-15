@@ -12,7 +12,7 @@ export type CardContentClassKey = 'root';
  *
  *
  * Demos:
- * - {@link https://material-ui.com/components/cards Cards}
+ * - {@link https://material-ui.com/components/cards/ Cards}
  *
  * API:
  * - {@link https://material-ui.com/api/CardContent CardContent API}

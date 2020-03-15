@@ -46,7 +46,7 @@ export type SnackbarClassKey =
  *
  *
  * Demos:
- * - {@link https://material-ui.com/components/snackbars Snackbars}
+ * - {@link https://material-ui.com/components/snackbars/ Snackbars}
  *
  * API:
  * - {@link https://material-ui.com/api/Snackbar Snackbar API}

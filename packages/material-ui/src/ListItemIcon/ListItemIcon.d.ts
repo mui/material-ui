@@ -11,7 +11,7 @@ export type ListItemIconClassKey = 'root';
  * A simple wrapper to apply `List` styles to an `Icon` or `SvgIcon`.
  *
  * Demos:
- * - {@link https://material-ui.com/components/lists Lists}
+ * - {@link https://material-ui.com/components/lists/ Lists}
  *
  * API:
  * - {@link https://material-ui.com/api/ListItemIcon ListItemIcon API}

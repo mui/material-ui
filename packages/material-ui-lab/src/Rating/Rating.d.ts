@@ -45,7 +45,7 @@ export type RatingClassKey =
  *
  *
  * Demos:
- * - {@link https://material-ui.com/components/rating Rating}
+ * - {@link https://material-ui.com/components/rating/ Rating}
  *
  * API:
  * - {@link https://material-ui.com/api/Rating Rating API}

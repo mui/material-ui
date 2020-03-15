@@ -188,7 +188,7 @@ export type AutocompleteClassKey =
  *
  *
  * Demos:
- * - {@link https://material-ui.com/components/autocomplete Autocomplete}
+ * - {@link https://material-ui.com/components/autocomplete/ Autocomplete}
  *
  * API:
  * - {@link https://material-ui.com/api/Autocomplete Autocomplete API}

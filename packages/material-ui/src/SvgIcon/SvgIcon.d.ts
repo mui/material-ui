@@ -62,8 +62,8 @@ export type SvgIconClassKey =
  *
  *
  * Demos:
- * - {@link https://material-ui.com/components/icons Icons}
- * - {@link https://material-ui.com/components/material-icons Material Icons}
+ * - {@link https://material-ui.com/components/icons/ Icons}
+ * - {@link https://material-ui.com/components/material-icons/ Material Icons}
  *
  * API:
  * - {@link https://material-ui.com/api/SvgIcon SvgIcon API}

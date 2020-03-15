@@ -22,12 +22,12 @@ export type MenuClassKey = 'paper' | 'list';
  *
  *
  * Demos:
- * - {@link https://material-ui.com/components/app-bar App Bar}
- * - {@link https://material-ui.com/components/menus Menus}
+ * - {@link https://material-ui.com/components/app-bar/ App Bar}
+ * - {@link https://material-ui.com/components/menus/ Menus}
  *
  * API:
  * - {@link https://material-ui.com/api/Menu Menu API}
- * - inherits {@link https://material-ui.com/api//api/popover Popover API}
+ * - inherits {@link https://material-ui.com/api/popover/ Popover API}
  */
 declare const Menu: React.ComponentType<MenuProps>;
 

@@ -46,7 +46,7 @@ export type ToggleButtonGroupClassKey =
  *
  *
  * Demos:
- * - {@link https://material-ui.com/components/toggle-button Toggle Button}
+ * - {@link https://material-ui.com/components/toggle-button/ Toggle Button}
  *
  * API:
  * - {@link https://material-ui.com/api/ToggleButtonGroup ToggleButtonGroup API}

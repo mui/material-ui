@@ -14,7 +14,7 @@ export type GridListTileClassKey = 'root' | 'tile' | 'imgFullHeight' | 'imgFullW
  *
  *
  * Demos:
- * - {@link https://material-ui.com/components/grid-list Grid List}
+ * - {@link https://material-ui.com/components/grid-list/ Grid List}
  *
  * API:
  * - {@link https://material-ui.com/api/GridListTile GridListTile API}

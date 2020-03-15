@@ -22,7 +22,7 @@ export type StepClasskey = 'root' | 'horizontal' | 'vertical' | 'alternativeLabe
  *
  *
  * Demos:
- * - {@link https://material-ui.com/components/steppers Steppers}
+ * - {@link https://material-ui.com/components/steppers/ Steppers}
  *
  * API:
  * - {@link https://material-ui.com/api/Step Step API}

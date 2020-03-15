@@ -19,13 +19,13 @@ export type CollapseClassKey = 'container' | 'entered' | 'hidden' | 'wrapper' | 
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  *
  * Demos:
- * - {@link https://material-ui.com/components/cards Cards}
- * - {@link https://material-ui.com/components/lists Lists}
- * - {@link https://material-ui.com/components/transitions Transitions}
+ * - {@link https://material-ui.com/components/cards/ Cards}
+ * - {@link https://material-ui.com/components/lists/ Lists}
+ * - {@link https://material-ui.com/components/transitions/ Transitions}
  *
  * API:
  * - {@link https://material-ui.com/api/Collapse Collapse API}
- * - inherits {@link https://material-ui.com/api/https://reactcommunity.org/react-transition-group/transition#Transition-props Transition API}
+ * - inherits {@link https://material-ui.comhttps://reactcommunity.org/react-transition-group/transition/#Transition-props Transition API}
  */
 declare const Collapse: React.ComponentType<CollapseProps>;
 

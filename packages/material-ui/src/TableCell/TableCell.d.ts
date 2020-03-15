@@ -46,7 +46,7 @@ export type TableCellClassKey =
  * or otherwise a `<td>` element.
  *
  * Demos:
- * - {@link https://material-ui.com/components/tables Tables}
+ * - {@link https://material-ui.com/components/tables/ Tables}
  *
  * API:
  * - {@link https://material-ui.com/api/TableCell TableCell API}

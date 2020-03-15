@@ -100,7 +100,7 @@ export type TreeViewClassKey = 'root';
  *
  *
  * Demos:
- * - {@link https://material-ui.com/components/tree-view Tree View}
+ * - {@link https://material-ui.com/components/tree-view/ Tree View}
  *
  * API:
  * - {@link https://material-ui.com/api/TreeView TreeView API}

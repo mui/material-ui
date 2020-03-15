@@ -45,7 +45,7 @@ export interface PaginationItemTypeMap<P = {}, D extends React.ElementType = 'di
  *
  *
  * Demos:
- * - {@link https://material-ui.com/components/pagination Pagination}
+ * - {@link https://material-ui.com/components/pagination/ Pagination}
  *
  * API:
  * - {@link https://material-ui.com/api/PaginationItem PaginationItem API}

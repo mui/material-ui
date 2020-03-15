@@ -24,7 +24,7 @@ export type ListItemTextClassKey =
  *
  *
  * Demos:
- * - {@link https://material-ui.com/components/lists Lists}
+ * - {@link https://material-ui.com/components/lists/ Lists}
  *
  * API:
  * - {@link https://material-ui.com/api/ListItemText ListItemText API}

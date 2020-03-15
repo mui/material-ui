@@ -12,8 +12,8 @@ export interface ClickAwayListenerProps {
  * For instance, if you need to hide a menu when people click anywhere else on your page.
  *
  * Demos:
- * - {@link https://material-ui.com/components/click-away-listener Click Away Listener}
- * - {@link https://material-ui.com/components/menus Menus}
+ * - {@link https://material-ui.com/components/click-away-listener/ Click Away Listener}
+ * - {@link https://material-ui.com/components/menus/ Menus}
  *
  * API:
  * - {@link https://material-ui.com/api/ClickAwayListener ClickAwayListener API}

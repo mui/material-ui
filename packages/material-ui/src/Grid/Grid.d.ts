@@ -98,7 +98,7 @@ export interface GridTypeMap<P = {}, D extends React.ElementType = 'div'> {
  *
  *
  * Demos:
- * - {@link https://material-ui.com/components/grid Grid}
+ * - {@link https://material-ui.com/components/grid/ Grid}
  *
  * API:
  * - {@link https://material-ui.com/api/Grid Grid API}
