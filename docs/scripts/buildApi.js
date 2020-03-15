@@ -136,6 +136,15 @@ async function annotateComponentDefinition(component, api) {
     page => page.pathname,
   );
 
+  let inheritanceAPILink = null;
+  if (api.inheritance !== null) {
+    const url = api.inheritance.pathname.startsWith('https://')
+      ? api.inheritance.pathname
+      : `https://material-ui.com${rewriteUrlForNextExport(api.inheritance.pathname)}`;
+
+    inheritanceAPILink = `{@link ${url} ${api.inheritance.component} API}`;
+  }
+
   const jsdoc = `/**
  * ${api.description.replace(/\n/g, '\n * ')}
  *
@@ -151,13 +160,7 @@ async function annotateComponentDefinition(component, api) {
  *
  * API:
  * - {@link https://material-ui.com/api/${kebabCase(api.name)}/ ${api.name} API}
- * ${
-   api.inheritance !== null
-     ? `- inherits {@link https://material-ui.com${rewriteUrlForNextExport(
-         api.inheritance.pathname,
-       )} ${api.inheritance.component} API}`
-     : ''
- }
+ * ${api.inheritance !== null ? `- inherits ${inheritanceAPILink}` : ''}
  */`;
   const typesSourceNew = typesSource.slice(0, start) + jsdoc + typesSource.slice(end);
   writeFileSync(typesFilename, typesSourceNew, { encoding: 'utf8' });

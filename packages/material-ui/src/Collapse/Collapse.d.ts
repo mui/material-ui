@@ -25,7 +25,7 @@ export type CollapseClassKey = 'container' | 'entered' | 'hidden' | 'wrapper' | 
  *
  * API:
  * - {@link https://material-ui.com/api/collapse/ Collapse API}
- * - inherits {@link https://material-ui.comhttps://reactcommunity.org/react-transition-group/transition/#Transition-props Transition API}
+ * - inherits {@link https://reactcommunity.org/react-transition-group/transition#Transition-props Transition API}
  */
 declare const Collapse: React.ComponentType<CollapseProps>;
 

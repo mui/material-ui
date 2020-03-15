@@ -18,7 +18,7 @@ export interface SlideProps extends TransitionProps {
  *
  * API:
  * - {@link https://material-ui.com/api/slide/ Slide API}
- * - inherits {@link https://material-ui.comhttps://reactcommunity.org/react-transition-group/transition/#Transition-props Transition API}
+ * - inherits {@link https://reactcommunity.org/react-transition-group/transition#Transition-props Transition API}
  */
 declare const Slide: React.ComponentType<SlideProps>;
 

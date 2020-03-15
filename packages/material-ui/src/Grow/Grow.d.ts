@@ -20,7 +20,7 @@ export interface GrowProps extends Omit<TransitionProps, 'timeout'> {
  *
  * API:
  * - {@link https://material-ui.com/api/grow/ Grow API}
- * - inherits {@link https://material-ui.comhttps://reactcommunity.org/react-transition-group/transition/#Transition-props Transition API}
+ * - inherits {@link https://reactcommunity.org/react-transition-group/transition#Transition-props Transition API}
  */
 declare const Grow: React.ComponentType<GrowProps>;
 
