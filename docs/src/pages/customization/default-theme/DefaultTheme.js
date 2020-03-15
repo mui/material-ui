@@ -82,7 +82,7 @@ function ObjectEntryLabel({ objectKey, objectValue }) {
 
   return (
     <React.Fragment>
-      {objectKey}:
+      {`${objectKey}: `}
       <span className={clsx('token', tokenType)}>
         {includeColorSample && (
           <svg
