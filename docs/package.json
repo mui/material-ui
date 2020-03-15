@@ -75,7 +75,7 @@
     "typescript": "^3.4.4"
   },
   "devDependencies": {
-    "dotenv": "^7.0.0",
+    "dotenv": "^8.2.0",
     "eslint-plugin-react": "^7.12.4",
     "fs-extra": "^7.0.1",
     "patreon": "^0.4.1"
