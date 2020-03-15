@@ -16,6 +16,7 @@ module.exports = {
   typescript: {
     // Motivated by https://github.com/zeit/next.js/issues/7687
     ignoreDevErrors: true,
+    ignoreBuildErrors: true,
   },
   webpack: (config, options) => {
     const plugins = config.plugins.concat([
