@@ -27,7 +27,7 @@ export type SwitchClassKey =
  * - {@link https://material-ui.com/components/transfer-list/ Transfer List}
  *
  * API:
- * - {@link https://material-ui.com/api/Switch Switch API}
+ * - {@link https://material-ui.com/api/switch/ Switch API}
  * - inherits {@link https://material-ui.com/api/icon-button/ IconButton API}
  */
 declare const Switch: React.ComponentType<SwitchProps>;

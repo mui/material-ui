@@ -17,7 +17,7 @@ export type TableContainerClassKey = 'root';
  * - {@link https://material-ui.com/components/tables/ Tables}
  *
  * API:
- * - {@link https://material-ui.com/api/TableContainer TableContainer API}
+ * - {@link https://material-ui.com/api/table-container/ TableContainer API}
  *
  */
 declare const TableContainer: React.ComponentType<TableContainerProps>;

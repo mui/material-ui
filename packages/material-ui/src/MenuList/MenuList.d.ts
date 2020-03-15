@@ -21,7 +21,7 @@ export type MenuListClassKey = ListClassKey;
  * - {@link https://material-ui.com/components/menus/ Menus}
  *
  * API:
- * - {@link https://material-ui.com/api/MenuList MenuList API}
+ * - {@link https://material-ui.com/api/menu-list/ MenuList API}
  * - inherits {@link https://material-ui.com/api/list/ List API}
  */
 declare const MenuList: React.ComponentType<MenuListProps>;

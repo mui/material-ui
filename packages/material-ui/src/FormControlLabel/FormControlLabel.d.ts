@@ -36,7 +36,7 @@ export type FormControlLabelClassKey =
  * - {@link https://material-ui.com/components/switches/ Switches}
  *
  * API:
- * - {@link https://material-ui.com/api/FormControlLabel FormControlLabel API}
+ * - {@link https://material-ui.com/api/form-control-label/ FormControlLabel API}
  *
  */
 declare const FormControlLabel: React.ComponentType<FormControlLabelProps>;

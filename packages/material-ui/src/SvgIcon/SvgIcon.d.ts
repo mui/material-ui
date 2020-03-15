@@ -66,7 +66,7 @@ export type SvgIconClassKey =
  * - {@link https://material-ui.com/components/material-icons/ Material Icons}
  *
  * API:
- * - {@link https://material-ui.com/api/SvgIcon SvgIcon API}
+ * - {@link https://material-ui.com/api/svg-icon/ SvgIcon API}
  *
  */
 export default function SvgIcon(props: SvgIconProps): JSX.Element;

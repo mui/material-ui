@@ -48,7 +48,7 @@ export interface FormControlTypeMap<P = {}, D extends React.ElementType = 'div'>
  * - {@link https://material-ui.com/components/text-fields/ Text Fields}
  *
  * API:
- * - {@link https://material-ui.com/api/FormControl FormControl API}
+ * - {@link https://material-ui.com/api/form-control/ FormControl API}
  *
  */
 declare const FormControl: OverridableComponent<FormControlTypeMap>;

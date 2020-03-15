@@ -13,7 +13,7 @@ export type ListItemAvatarClassKey = 'root' | 'icon';
  * - {@link https://material-ui.com/components/lists/ Lists}
  *
  * API:
- * - {@link https://material-ui.com/api/ListItemAvatar ListItemAvatar API}
+ * - {@link https://material-ui.com/api/list-item-avatar/ ListItemAvatar API}
  *
  */
 declare const ListItemAvatar: React.ComponentType<ListItemAvatarProps>;

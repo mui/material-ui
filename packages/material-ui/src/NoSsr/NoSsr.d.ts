@@ -19,7 +19,7 @@ export interface NoSsrProps {
  * - {@link https://material-ui.com/components/no-ssr/ No Ssr}
  *
  * API:
- * - {@link https://material-ui.com/api/NoSsr NoSsr API}
+ * - {@link https://material-ui.com/api/no-ssr/ NoSsr API}
  *
  */
 declare const NoSsr: React.ComponentType<NoSsrProps>;

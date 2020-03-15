@@ -17,7 +17,7 @@ export type ToolbarClassKey = 'root' | 'gutters' | 'regular' | 'dense';
  * - {@link https://material-ui.com/components/app-bar/ App Bar}
  *
  * API:
- * - {@link https://material-ui.com/api/Toolbar Toolbar API}
+ * - {@link https://material-ui.com/api/toolbar/ Toolbar API}
  *
  */
 declare const Toolbar: React.ComponentType<ToolbarProps>;

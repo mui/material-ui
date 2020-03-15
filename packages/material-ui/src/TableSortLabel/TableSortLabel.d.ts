@@ -24,7 +24,7 @@ export type TableSortLabelTypeMap<
  * - {@link https://material-ui.com/components/tables/ Tables}
  *
  * API:
- * - {@link https://material-ui.com/api/TableSortLabel TableSortLabel API}
+ * - {@link https://material-ui.com/api/table-sort-label/ TableSortLabel API}
  * - inherits {@link https://material-ui.com/api/button-base/ ButtonBase API}
  */
 declare const TableSortLabel: ExtendButtonBase<TableSortLabelTypeMap>;

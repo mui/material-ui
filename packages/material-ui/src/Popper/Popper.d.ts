@@ -49,7 +49,7 @@ export interface PopperProps extends React.HTMLAttributes<HTMLDivElement> {
  * - {@link https://material-ui.com/components/popper/ Popper}
  *
  * API:
- * - {@link https://material-ui.com/api/Popper Popper API}
+ * - {@link https://material-ui.com/api/popper/ Popper API}
  *
  */
 declare const Popper: React.ComponentType<PopperProps>;

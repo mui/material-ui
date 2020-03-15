@@ -27,7 +27,7 @@ export type TabTypeMap<P = {}, D extends React.ElementType = 'div'> = ExtendButt
  * - {@link https://material-ui.com/components/tabs/ Tabs}
  *
  * API:
- * - {@link https://material-ui.com/api/Tab Tab API}
+ * - {@link https://material-ui.com/api/tab/ Tab API}
  * - inherits {@link https://material-ui.com/api/button-base/ ButtonBase API}
  */
 declare const Tab: ExtendButtonBase<TabTypeMap>;

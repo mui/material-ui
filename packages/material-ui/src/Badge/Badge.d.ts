@@ -75,7 +75,7 @@ export type BadgeClassKey =
  * - {@link https://material-ui.com/components/badges/ Badges}
  *
  * API:
- * - {@link https://material-ui.com/api/Badge Badge API}
+ * - {@link https://material-ui.com/api/badge/ Badge API}
  *
  */
 export default function Badge(props: BadgeProps): JSX.Element | null;

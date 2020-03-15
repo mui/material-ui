@@ -47,7 +47,7 @@ export type PaperClassKey =
  * - {@link https://material-ui.com/components/paper/ Paper}
  *
  * API:
- * - {@link https://material-ui.com/api/Paper Paper API}
+ * - {@link https://material-ui.com/api/paper/ Paper API}
  *
  */
 declare const Paper: React.ComponentType<PaperProps>;

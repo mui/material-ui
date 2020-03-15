@@ -30,7 +30,7 @@ export type NativeSelectClassKey =
  * - {@link https://material-ui.com/components/selects/ Selects}
  *
  * API:
- * - {@link https://material-ui.com/api/NativeSelect NativeSelect API}
+ * - {@link https://material-ui.com/api/native-select/ NativeSelect API}
  * - inherits {@link https://material-ui.com/api/input/ Input API}
  */
 declare const NativeSelect: React.ComponentType<NativeSelectProps>;

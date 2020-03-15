@@ -33,7 +33,7 @@ export interface PortalProps {
  * - {@link https://material-ui.com/components/portal/ Portal}
  *
  * API:
- * - {@link https://material-ui.com/api/Portal Portal API}
+ * - {@link https://material-ui.com/api/portal/ Portal API}
  *
  */
 export default function Portal(props: PortalProps): JSX.Element;

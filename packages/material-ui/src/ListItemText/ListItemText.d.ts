@@ -27,7 +27,7 @@ export type ListItemTextClassKey =
  * - {@link https://material-ui.com/components/lists/ Lists}
  *
  * API:
- * - {@link https://material-ui.com/api/ListItemText ListItemText API}
+ * - {@link https://material-ui.com/api/list-item-text/ ListItemText API}
  *
  */
 declare const ListItemText: React.ComponentType<ListItemTextProps>;

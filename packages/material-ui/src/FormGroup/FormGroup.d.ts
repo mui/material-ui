@@ -18,7 +18,7 @@ export type FormGroupClassKey = 'root' | 'row';
  * - {@link https://material-ui.com/components/switches/ Switches}
  *
  * API:
- * - {@link https://material-ui.com/api/FormGroup FormGroup API}
+ * - {@link https://material-ui.com/api/form-group/ FormGroup API}
  *
  */
 declare const FormGroup: React.ComponentType<FormGroupProps>;

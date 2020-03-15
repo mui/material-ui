@@ -48,7 +48,7 @@ export type RatingClassKey =
  * - {@link https://material-ui.com/components/rating/ Rating}
  *
  * API:
- * - {@link https://material-ui.com/api/Rating Rating API}
+ * - {@link https://material-ui.com/api/rating/ Rating API}
  *
  */
 declare const Rating: React.ComponentType<RatingProps>;

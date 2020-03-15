@@ -46,7 +46,7 @@ export type DrawerClassKey =
  * - {@link https://material-ui.com/components/drawers/ Drawers}
  *
  * API:
- * - {@link https://material-ui.com/api/Drawer Drawer API}
+ * - {@link https://material-ui.com/api/drawer/ Drawer API}
  *
  */
 declare const Drawer: React.ComponentType<DrawerProps>;

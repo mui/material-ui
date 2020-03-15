@@ -87,7 +87,7 @@ export type InputBaseClassKey =
  * - {@link https://material-ui.com/components/text-fields/ Text Fields}
  *
  * API:
- * - {@link https://material-ui.com/api/InputBase InputBase API}
+ * - {@link https://material-ui.com/api/input-base/ InputBase API}
  *
  */
 declare const InputBase: React.ComponentType<InputBaseProps>;

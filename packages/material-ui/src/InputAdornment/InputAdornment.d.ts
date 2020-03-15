@@ -26,7 +26,7 @@ export type InputAdornmentClassKey =
  * - {@link https://material-ui.com/components/text-fields/ Text Fields}
  *
  * API:
- * - {@link https://material-ui.com/api/InputAdornment InputAdornment API}
+ * - {@link https://material-ui.com/api/input-adornment/ InputAdornment API}
  *
  */
 declare const InputAdornment: React.ComponentType<InputAdornmentProps>;

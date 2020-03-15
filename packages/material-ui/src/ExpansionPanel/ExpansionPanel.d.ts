@@ -22,7 +22,7 @@ export type ExpansionPanelClassKey = 'root' | 'rounded' | 'expanded' | 'disabled
  * - {@link https://material-ui.com/components/expansion-panels/ Expansion Panels}
  *
  * API:
- * - {@link https://material-ui.com/api/ExpansionPanel ExpansionPanel API}
+ * - {@link https://material-ui.com/api/expansion-panel/ ExpansionPanel API}
  * - inherits {@link https://material-ui.com/api/paper/ Paper API}
  */
 declare const ExpansionPanel: React.ComponentType<ExpansionPanelProps>;

@@ -46,7 +46,7 @@ export interface ModalProps
  * - {@link https://material-ui.com/components/modal/ Modal}
  *
  * API:
- * - {@link https://material-ui.com/api/Modal Modal API}
+ * - {@link https://material-ui.com/api/modal/ Modal API}
  *
  */
 declare const Modal: React.ComponentType<ModalProps>;

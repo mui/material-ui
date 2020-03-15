@@ -55,7 +55,7 @@ export type TreeItemClassKey =
  * - {@link https://material-ui.com/components/tree-view/ Tree View}
  *
  * API:
- * - {@link https://material-ui.com/api/TreeItem TreeItem API}
+ * - {@link https://material-ui.com/api/tree-item/ TreeItem API}
  *
  */
 export default function TreeItem(props: TreeItemProps): JSX.Element;

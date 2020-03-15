@@ -27,7 +27,7 @@ export type IconClassKey =
  * - {@link https://material-ui.com/components/material-icons/ Material Icons}
  *
  * API:
- * - {@link https://material-ui.com/api/Icon Icon API}
+ * - {@link https://material-ui.com/api/icon/ Icon API}
  *
  */
 declare const Icon: React.ComponentType<IconProps>;

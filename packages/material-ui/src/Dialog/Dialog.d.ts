@@ -42,7 +42,7 @@ export type DialogClassKey =
  * - {@link https://material-ui.com/components/dialogs/ Dialogs}
  *
  * API:
- * - {@link https://material-ui.com/api/Dialog Dialog API}
+ * - {@link https://material-ui.com/api/dialog/ Dialog API}
  * - inherits {@link https://material-ui.com/api/modal/ Modal API}
  */
 declare const Dialog: React.ComponentType<DialogProps>;

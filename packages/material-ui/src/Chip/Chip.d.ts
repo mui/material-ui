@@ -26,7 +26,7 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
  * - {@link https://material-ui.com/components/chips/ Chips}
  *
  * API:
- * - {@link https://material-ui.com/api/Chip Chip API}
+ * - {@link https://material-ui.com/api/chip/ Chip API}
  *
  */
 declare const Chip: OverridableComponent<ChipTypeMap>;

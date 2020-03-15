@@ -24,7 +24,7 @@ export interface HiddenProps {
  * - {@link https://material-ui.com/components/hidden/ Hidden}
  *
  * API:
- * - {@link https://material-ui.com/api/Hidden Hidden API}
+ * - {@link https://material-ui.com/api/hidden/ Hidden API}
  *
  */
 declare const Hidden: React.ComponentType<HiddenProps>;

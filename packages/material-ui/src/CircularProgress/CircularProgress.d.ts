@@ -34,7 +34,7 @@ export type CircularProgressClassKey =
  * - {@link https://material-ui.com/components/progress/ Progress}
  *
  * API:
- * - {@link https://material-ui.com/api/CircularProgress CircularProgress API}
+ * - {@link https://material-ui.com/api/circular-progress/ CircularProgress API}
  *
  */
 declare const CircularProgress: React.ComponentType<CircularProgressProps>;

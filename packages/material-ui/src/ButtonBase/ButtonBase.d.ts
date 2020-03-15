@@ -47,7 +47,7 @@ export type ExtendButtonBase<M extends OverridableTypeMap> = ((
  * - {@link https://material-ui.com/components/buttons/ Buttons}
  *
  * API:
- * - {@link https://material-ui.com/api/ButtonBase ButtonBase API}
+ * - {@link https://material-ui.com/api/button-base/ ButtonBase API}
  *
  */
 declare const ButtonBase: ExtendButtonBase<ButtonBaseTypeMap>;

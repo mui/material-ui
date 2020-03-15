@@ -34,7 +34,7 @@ export type InputLabelClassKey =
  * - {@link https://material-ui.com/components/text-fields/ Text Fields}
  *
  * API:
- * - {@link https://material-ui.com/api/InputLabel InputLabel API}
+ * - {@link https://material-ui.com/api/input-label/ InputLabel API}
  * - inherits {@link https://material-ui.com/api/form-label/ FormLabel API}
  */
 declare const InputLabel: React.ComponentType<InputLabelProps>;

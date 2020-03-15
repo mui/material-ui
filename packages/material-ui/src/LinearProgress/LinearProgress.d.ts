@@ -40,7 +40,7 @@ export type LinearProgressClassKey =
  * - {@link https://material-ui.com/components/progress/ Progress}
  *
  * API:
- * - {@link https://material-ui.com/api/LinearProgress LinearProgress API}
+ * - {@link https://material-ui.com/api/linear-progress/ LinearProgress API}
  *
  */
 declare const LinearProgress: React.ComponentType<LinearProgressProps>;

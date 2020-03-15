@@ -23,7 +23,7 @@ export type TableClassKey = 'root' | 'stickyHeader';
  * - {@link https://material-ui.com/components/tables/ Tables}
  *
  * API:
- * - {@link https://material-ui.com/api/Table Table API}
+ * - {@link https://material-ui.com/api/table/ Table API}
  *
  */
 declare const Table: React.ComponentType<TableProps>;

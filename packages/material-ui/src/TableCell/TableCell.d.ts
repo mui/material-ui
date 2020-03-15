@@ -49,7 +49,7 @@ export type TableCellClassKey =
  * - {@link https://material-ui.com/components/tables/ Tables}
  *
  * API:
- * - {@link https://material-ui.com/api/TableCell TableCell API}
+ * - {@link https://material-ui.com/api/table-cell/ TableCell API}
  *
  */
 declare const TableCell: React.ComponentType<TableCellProps>;

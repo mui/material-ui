@@ -15,7 +15,7 @@ export type CardClassKey = 'root';
  * - {@link https://material-ui.com/components/cards/ Cards}
  *
  * API:
- * - {@link https://material-ui.com/api/Card Card API}
+ * - {@link https://material-ui.com/api/card/ Card API}
  * - inherits {@link https://material-ui.com/api/paper/ Paper API}
  */
 declare const Card: React.ComponentType<CardProps>;

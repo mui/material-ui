@@ -16,7 +16,7 @@ export interface ClickAwayListenerProps {
  * - {@link https://material-ui.com/components/menus/ Menus}
  *
  * API:
- * - {@link https://material-ui.com/api/ClickAwayListener ClickAwayListener API}
+ * - {@link https://material-ui.com/api/click-away-listener/ ClickAwayListener API}
  *
  */
 declare const ClickAwayListener: React.ComponentType<ClickAwayListenerProps>;

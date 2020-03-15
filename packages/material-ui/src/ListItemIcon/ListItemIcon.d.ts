@@ -14,7 +14,7 @@ export type ListItemIconClassKey = 'root';
  * - {@link https://material-ui.com/components/lists/ Lists}
  *
  * API:
- * - {@link https://material-ui.com/api/ListItemIcon ListItemIcon API}
+ * - {@link https://material-ui.com/api/list-item-icon/ ListItemIcon API}
  *
  */
 declare const ListItemIcon: React.ComponentType<ListItemIconProps>;

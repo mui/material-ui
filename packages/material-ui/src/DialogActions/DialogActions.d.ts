@@ -15,7 +15,7 @@ export type DialogActionsClassKey = 'root' | 'spacing';
  * - {@link https://material-ui.com/components/dialogs/ Dialogs}
  *
  * API:
- * - {@link https://material-ui.com/api/DialogActions DialogActions API}
+ * - {@link https://material-ui.com/api/dialog-actions/ DialogActions API}
  *
  */
 declare const DialogActions: React.ComponentType<DialogActionsProps>;

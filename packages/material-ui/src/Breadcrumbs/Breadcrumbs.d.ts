@@ -19,7 +19,7 @@ export interface BreadcrumbsTypeMap<P = {}, D extends React.ElementType = 'nav'>
  * - {@link https://material-ui.com/components/breadcrumbs/ Breadcrumbs}
  *
  * API:
- * - {@link https://material-ui.com/api/Breadcrumbs Breadcrumbs API}
+ * - {@link https://material-ui.com/api/breadcrumbs/ Breadcrumbs API}
  *
  */
 declare const Breadcrumbs: OverridableComponent<BreadcrumbsTypeMap>;

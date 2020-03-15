@@ -112,7 +112,7 @@ export type TextFieldClassKey = 'root';
  * - {@link https://material-ui.com/components/text-fields/ Text Fields}
  *
  * API:
- * - {@link https://material-ui.com/api/TextField TextField API}
+ * - {@link https://material-ui.com/api/text-field/ TextField API}
  * - inherits {@link https://material-ui.com/api/form-control/ FormControl API}
  */
 declare const TextField: React.ComponentType<TextFieldProps>;

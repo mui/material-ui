@@ -15,7 +15,7 @@ export type FilledInputClassKey = InputBaseClassKey | 'colorSecondary' | 'underl
  * - {@link https://material-ui.com/components/text-fields/ Text Fields}
  *
  * API:
- * - {@link https://material-ui.com/api/FilledInput FilledInput API}
+ * - {@link https://material-ui.com/api/filled-input/ FilledInput API}
  * - inherits {@link https://material-ui.com/api/input-base/ InputBase API}
  */
 declare const FilledInput: React.ComponentType<FilledInputProps>;

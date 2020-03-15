@@ -31,7 +31,7 @@ export type MobileStepperClassKey =
  * - {@link https://material-ui.com/components/steppers/ Steppers}
  *
  * API:
- * - {@link https://material-ui.com/api/MobileStepper MobileStepper API}
+ * - {@link https://material-ui.com/api/mobile-stepper/ MobileStepper API}
  * - inherits {@link https://material-ui.com/api/paper/ Paper API}
  */
 declare const MobileStepper: React.ComponentType<MobileStepperProps>;

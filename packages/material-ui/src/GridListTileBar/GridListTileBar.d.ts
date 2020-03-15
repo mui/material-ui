@@ -29,7 +29,7 @@ export type GridListTileBarClassKey =
  * - {@link https://material-ui.com/components/grid-list/ Grid List}
  *
  * API:
- * - {@link https://material-ui.com/api/GridListTileBar GridListTileBar API}
+ * - {@link https://material-ui.com/api/grid-list-tile-bar/ GridListTileBar API}
  *
  */
 declare const GridListTileBar: React.ComponentType<GridListTileBarProps>;

@@ -28,7 +28,7 @@ export interface ListItemTypeMap<P, D extends React.ElementType> {
  * - {@link https://material-ui.com/components/transfer-list/ Transfer List}
  *
  * API:
- * - {@link https://material-ui.com/api/ListItem ListItem API}
+ * - {@link https://material-ui.com/api/list-item/ ListItem API}
  *
  */
 declare const ListItem: OverridableComponent<ListItemTypeMap<{ button?: false }, 'li'>> &

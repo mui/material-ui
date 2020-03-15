@@ -59,7 +59,7 @@ export type TooltipClassKey =
  * - {@link https://material-ui.com/components/tooltips/ Tooltips}
  *
  * API:
- * - {@link https://material-ui.com/api/Tooltip Tooltip API}
+ * - {@link https://material-ui.com/api/tooltip/ Tooltip API}
  *
  */
 declare const Tooltip: React.ComponentType<TooltipProps>;

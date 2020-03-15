@@ -15,7 +15,7 @@ export type DialogTitleClassKey = 'root';
  * - {@link https://material-ui.com/components/dialogs/ Dialogs}
  *
  * API:
- * - {@link https://material-ui.com/api/DialogTitle DialogTitle API}
+ * - {@link https://material-ui.com/api/dialog-title/ DialogTitle API}
  *
  */
 declare const DialogTitle: React.ComponentType<DialogTitleProps>;

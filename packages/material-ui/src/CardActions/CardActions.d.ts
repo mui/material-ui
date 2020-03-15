@@ -15,7 +15,7 @@ export type CardActionsClassKey = 'root' | 'spacing';
  * - {@link https://material-ui.com/components/cards/ Cards}
  *
  * API:
- * - {@link https://material-ui.com/api/CardActions CardActions API}
+ * - {@link https://material-ui.com/api/card-actions/ CardActions API}
  *
  */
 declare const CardActions: React.ComponentType<CardActionsProps>;

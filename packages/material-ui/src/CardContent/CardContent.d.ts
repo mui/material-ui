@@ -15,7 +15,7 @@ export type CardContentClassKey = 'root';
  * - {@link https://material-ui.com/components/cards/ Cards}
  *
  * API:
- * - {@link https://material-ui.com/api/CardContent CardContent API}
+ * - {@link https://material-ui.com/api/card-content/ CardContent API}
  *
  */
 declare const CardContent: React.ComponentType<CardContentProps>;

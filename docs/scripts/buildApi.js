@@ -150,7 +150,7 @@ async function annotateComponentDefinition(component, api) {
    .join('\n * - ')}
  *
  * API:
- * - {@link https://material-ui.com/api/${api.name} ${api.name} API}
+ * - {@link https://material-ui.com/api/${kebabCase(api.name)}/ ${api.name} API}
  * ${
    api.inheritance !== null
      ? `- inherits {@link https://material-ui.com${rewriteUrlForNextExport(

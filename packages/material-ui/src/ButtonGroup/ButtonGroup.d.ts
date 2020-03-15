@@ -24,7 +24,7 @@ export interface ButtonGroupTypeMap<P = {}, D extends React.ElementType = 'div'>
  * - {@link https://material-ui.com/components/button-group/ Button Group}
  *
  * API:
- * - {@link https://material-ui.com/api/ButtonGroup ButtonGroup API}
+ * - {@link https://material-ui.com/api/button-group/ ButtonGroup API}
  *
  */
 declare const ButtonGroup: OverridableComponent<ButtonGroupTypeMap>;
