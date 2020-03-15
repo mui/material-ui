@@ -56,14 +56,12 @@ const GridList = React.forwardRef(function GridList(props, ref) {
         const childRows = child.props.rows || 1;
 
         return React.cloneElement(child, {
-          style: Object.assign(
-            {
-              width: `${(100 / cols) * childCols}%`,
-              height: cellHeight === 'auto' ? 'auto' : cellHeight * childRows + spacing,
-              padding: spacing / 2,
-            },
-            child.props.style,
-          ),
+          style: {
+            width: `${(100 / cols) * childCols}%`,
+            height: cellHeight === 'auto' ? 'auto' : cellHeight * childRows + spacing,
+            padding: spacing / 2,
+            ...child.props.style,
+          },
         });
       })}
     </Component>

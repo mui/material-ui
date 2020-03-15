@@ -47,7 +47,7 @@ export default function NativeSelects() {
             id: 'age-native-simple',
           }}
         >
-          <option value="" />
+          <option aria-label="None" value="" />
           <option value={10}>Ten</option>
           <option value={20}>Twenty</option>
           <option value={30}>Thirty</option>
@@ -63,7 +63,7 @@ export default function NativeSelects() {
             id: 'age-native-helper',
           }}
         >
-          <option value="" />
+          <option aria-label="None" value="" />
           <option value={10}>Ten</option>
           <option value={20}>Twenty</option>
           <option value={30}>Thirty</option>
@@ -114,7 +114,7 @@ export default function NativeSelects() {
             id: 'name-native-disabled',
           }}
         >
-          <option value="" />
+          <option value="">None</option>
           <optgroup label="Author">
             <option value="hai">Hai</option>
           </optgroup>
@@ -135,7 +135,6 @@ export default function NativeSelects() {
             id: 'name-native-error',
           }}
         >
-          <option value="" />
           <optgroup label="Author">
             <option value="hai">Hai</option>
           </optgroup>
@@ -155,7 +154,6 @@ export default function NativeSelects() {
             id: 'uncontrolled-native',
           }}
         >
-          <option value="" />
           <option value={10}>Ten</option>
           <option value={20}>Twenty</option>
           <option value={30}>Thirty</option>
@@ -190,7 +188,7 @@ export default function NativeSelects() {
             id: 'age-native-required',
           }}
         >
-          <option value="" />
+          <option aria-label="None" value="" />
           <option value={10}>Ten</option>
           <option value={20}>Twenty</option>
           <option value={30}>Thirty</option>
@@ -209,7 +207,7 @@ export default function NativeSelects() {
             id: 'outlined-age-native-simple',
           }}
         >
-          <option value="" />
+          <option aria-label="None" value="" />
           <option value={10}>Ten</option>
           <option value={20}>Twenty</option>
           <option value={30}>Thirty</option>
@@ -226,7 +224,7 @@ export default function NativeSelects() {
             id: 'filled-age-native-simple',
           }}
         >
-          <option value="" />
+          <option aria-label="None" value="" />
           <option value={10}>Ten</option>
           <option value={20}>Twenty</option>
           <option value={30}>Thirty</option>

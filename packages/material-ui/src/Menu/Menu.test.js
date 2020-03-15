@@ -154,7 +154,9 @@ describe('<Menu />', () => {
   it('should open during the initial mount', () => {
     const wrapper = mount(
       <Menu {...defaultProps} open>
-        <div role="menuitem" tabIndex={-1} />
+        <div role="menuitem" tabIndex={-1}>
+          one
+        </div>
       </Menu>,
     );
     const popover = wrapper.find(Popover);

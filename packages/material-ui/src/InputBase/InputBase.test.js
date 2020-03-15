@@ -526,7 +526,7 @@ describe('<InputBase />', () => {
                 <InputBase />
               ) : (
                 <Select native>
-                  <option value="" />
+                  <option value="">empty</option>
                 </Select>
               )}
               <button type="button" onClick={() => setFlag(!flag)}>
