@@ -1481,6 +1481,19 @@ describe('<TreeItem />', () => {
     });
   });
 
+  describe('prop: deleted', () => {
+    it('should disable treeItem', () => {
+      const { getByTestId } = render(
+        <TreeView multiSelect>
+          <TreeItem nodeId="one" label="one" disabled data-testid="one" />
+          <TreeItem nodeId="two" label="two" data-testid="two" />
+        </TreeView>,
+      );
+
+      expect(getByTestId('one')).to.have.class(classes.disabled);
+    });
+  });
+
   it('should be able to type in an child input', () => {
     const { getByRole } = render(
       <TreeView defaultExpanded={['one']}>

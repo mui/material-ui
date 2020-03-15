@@ -59,6 +59,11 @@ export const styles = (theme) => ({
         ),
       },
     },
+    '&$disabled, &$disabled:hover, &$disabled$focused': {
+      color: theme.palette.action.disabled,
+      opacity: theme.palette.action.disabledOpacity,
+      backgroundColor: 'transparent',
+    },
   },
   /* Pseudo-class applied to the content element when expanded. */
   expanded: {},
@@ -66,6 +71,8 @@ export const styles = (theme) => ({
   selected: {},
   /* Pseudo-class applied to the content element when focused. */
   focused: {},
+  /* Styles applied to the element when disabled */
+  disabled: {},
   /* Styles applied to the tree node icon and collapse/expand icon. */
   iconContainer: {
     marginRight: 4,
@@ -93,6 +100,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     collapseIcon,
     endIcon,
     expandIcon,
+    disabled,
     icon: iconProp,
     id: idProp,
     label,
@@ -295,6 +303,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
           [classes.expanded]: expanded,
           [classes.selected]: selected,
           [classes.focused]: focused,
+          [classes.disabled]: disabled,
         })}
         onClick={handleClick}
         onMouseDown={handleMouseDown}
@@ -349,6 +358,10 @@ TreeItem.propTypes = {
    * The icon used to collapse the node.
    */
   collapseIcon: PropTypes.node,
+  /**
+   * If `true`, the node will be disabled.
+   */
+  disabled: PropTypes.bool,
   /**
    * The icon displayed next to a end node.
    */
