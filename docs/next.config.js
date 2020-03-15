@@ -13,6 +13,10 @@ const workspaceRoot = path.join(__dirname, '../');
 const reactMode = 'legacy';
 
 module.exports = {
+  typescript: {
+    // Motivated by https://github.com/zeit/next.js/issues/7687
+    ignoreDevErrors: true,
+  },
   webpack: (config, options) => {
     const plugins = config.plugins.concat([
       new webpack.DefinePlugin({
