@@ -2244,9 +2244,9 @@
     defer-to-connect "^1.0.1"
 
 "@testing-library/dom@^7.0.2", "@testing-library/dom@^7.0.3":
-  version "7.0.3"
-  resolved "https://registry.yarnpkg.com/@testing-library/dom/-/dom-7.0.3.tgz#284815f9995340171a4804819410db7288fd26b3"
-  integrity sha512-zBGQX1Ik+dK3nCdLa9jY5d0DHA4Bx79zaT0Zlv6avOcgop9gf6ff/43Z4rJDDIO2nFsWdoLdoJQY5VQ4TanLsw==
+  version "7.0.4"
+  resolved "https://registry.yarnpkg.com/@testing-library/dom/-/dom-7.0.4.tgz#89909046b4a2818d423dd2c786faee4ddbe32838"
+  integrity sha512-+vrLcGDvopLPsBB7JgJhf8ZoOhBSeCsI44PKJL9YoKrP2AvCkqrTg+z77wEEZJ4tSNdxV0kymil7hSvsQQ7jMQ==
   dependencies:
     "@babel/runtime" "^7.8.4"
     "@types/testing-library__dom" "^6.12.1"
