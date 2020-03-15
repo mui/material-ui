@@ -61,7 +61,7 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(props, ref) {
             zIndex: 0,
             marginLeft: spacing && SPACINGS[spacing] !== undefined ? SPACINGS[spacing] : -spacing,
           }}>+{extraAvatars}</Avatar>
-      : <></>}
+      : null}
     </div>
   );
 });
