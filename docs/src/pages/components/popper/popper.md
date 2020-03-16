@@ -50,6 +50,12 @@ Alternatively, you can use [react-spring](https://github.com/react-spring/react-
 
 {{"demo": "pages/components/popper/ScrollPlayground.js", "hideHeader": true, "bg": true}}
 
+## Popper as container for triggering component
+
+Popper that includes both content component and triggering component
+
+{{"demo": "pages/components/popper/TriggeredPopper.js", "hideHeader": true, "bg": true}}
+
 ## Faked reference object
 
 The `anchorEl` property can be a reference to a fake DOM element.
