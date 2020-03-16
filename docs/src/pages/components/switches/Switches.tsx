@@ -7,31 +7,30 @@ export default function Switches() {
     checkedB: true,
   });
 
-  const handleChange = (name: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
-    setState({ ...state, [name]: event.target.checked });
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setState({ ...state, [event.target.name]: event.target.checked });
   };
 
   return (
     <div>
       <Switch
         checked={state.checkedA}
-        onChange={handleChange('checkedA')}
-        value="checkedA"
+        onChange={handleChange}
+        name="checkedA"
         inputProps={{ 'aria-label': 'secondary checkbox' }}
       />
       <Switch
         checked={state.checkedB}
-        onChange={handleChange('checkedB')}
-        value="checkedB"
+        onChange={handleChange}
         color="primary"
+        name="checkedB"
         inputProps={{ 'aria-label': 'primary checkbox' }}
       />
-      <Switch value="checkedC" inputProps={{ 'aria-label': 'primary checkbox' }} />
-      <Switch disabled value="checkedD" inputProps={{ 'aria-label': 'disabled checkbox' }} />
-      <Switch disabled checked value="checkedE" inputProps={{ 'aria-label': 'primary checkbox' }} />
+      <Switch inputProps={{ 'aria-label': 'primary checkbox' }} />
+      <Switch disabled inputProps={{ 'aria-label': 'disabled checkbox' }} />
+      <Switch disabled checked inputProps={{ 'aria-label': 'primary checkbox' }} />
       <Switch
         defaultChecked
-        value="checkedF"
         color="default"
         inputProps={{ 'aria-label': 'checkbox with default color' }}
       />
