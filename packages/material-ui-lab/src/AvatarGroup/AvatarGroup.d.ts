@@ -8,6 +8,10 @@ export interface AvatarGroupProps
    */
   children: React.ReactNode;
   /**
+   * Max avatars to show before +x.
+   */
+  max?: number;
+  /**
    * Spacing between avatars.
    */
   spacing?: 'small' | 'medium' | number;
