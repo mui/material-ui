@@ -243,16 +243,18 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
 
     switch (key) {
       case ' ':
-        if (nodeRef.current === event.currentTarget) {
-          if (multiSelect && event.shiftKey) {
-            selectRange(event, { end: nodeId });
-          } else if (multiSelect) {
-            selectNode(event, nodeId, true);
-          } else {
-            selectNode(event, nodeId);
-          }
+        if (!selectionDisabled) {
+          if (nodeRef.current === event.currentTarget) {
+            if (multiSelect && event.shiftKey) {
+              selectRange(event, { end: nodeId });
+            } else if (multiSelect) {
+              selectNode(event, nodeId, true);
+            } else {
+              selectNode(event, nodeId);
+            }
 
-          flag = true;
+            flag = true;
+          }
         }
         event.stopPropagation();
         break;
@@ -264,14 +266,14 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
         event.stopPropagation();
         break;
       case 'ArrowDown':
-        if (multiSelect && event.shiftKey) {
+        if (multiSelect && event.shiftKey && !selectionDisabled) {
           selectNextNode(event, nodeId);
         }
         focusNextNode(nodeId);
         flag = true;
         break;
       case 'ArrowUp':
-        if (multiSelect && event.shiftKey) {
+        if (multiSelect && event.shiftKey && !selectionDisabled) {
           selectPreviousNode(event, nodeId);
         }
         focusPreviousNode(nodeId);
@@ -292,14 +294,14 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
         }
         break;
       case 'Home':
-        if (multiSelect && ctrlPressed && event.shiftKey) {
+        if (multiSelect && ctrlPressed && event.shiftKey && !selectionDisabled) {
           rangeSelectToFirst(event, nodeId);
         }
         focusFirstNode();
         flag = true;
         break;
       case 'End':
-        if (multiSelect && ctrlPressed && event.shiftKey) {
+        if (multiSelect && ctrlPressed && event.shiftKey && !selectionDisabled) {
           rangeSelectToLast(event, nodeId);
         }
         focusLastNode();
@@ -309,7 +311,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
         if (key === '*') {
           expandAllSiblings(event, nodeId);
           flag = true;
-        } else if (multiSelect && ctrlPressed && key.toLowerCase() === 'a') {
+        } else if (multiSelect && ctrlPressed && key.toLowerCase() === 'a' && !selectionDisabled) {
           selectAllNodes(event);
           flag = true;
         } else if (isPrintableCharacter(key)) {
