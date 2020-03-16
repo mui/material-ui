@@ -10,10 +10,10 @@ export const styles = theme => ({
     display: 'block',
     textAlign: 'inherit',
     width: '100%',
-    '&:hover $focusHighlight': {
+    '&:hover > $focusHighlight': {
       opacity: theme.palette.action.hoverOpacity,
     },
-    '&$focusVisible $focusHighlight': {
+    '&$focusVisible > $focusHighlight': {
       opacity: 0.12,
     },
   },
