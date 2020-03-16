@@ -2,6 +2,7 @@ import React  from "react";
 import { withStyles } from '@material-ui/core/styles';
 import Popper from '@material-ui/core/Popper';
 import Paper from "@material-ui/core/es/Paper/Paper";
+import { makeStyles } from '@material-ui/core/styles';
 
 const styles = (theme) => ({
     paper: {
@@ -13,7 +14,7 @@ const styles = (theme) => ({
 });
 
 
-class PopoverComponent extends React.Component {
+class TriggeredPopper extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -93,4 +94,50 @@ class PopoverComponent extends React.Component {
     }
 }
 
-export default withStyles(styles)(PopoverComponent);
+export default withStyles(styles)(TriggeredPopper);
+
+const useStyles = makeStyles(theme => ({
+  paper: {
+    border: '1px solid',
+    padding: theme.spacing(1),
+    backgroundColor: theme.palette.background.paper,
+  },
+}));
+
+export default function HoverTriggeredPopper() {
+  const classes = useStyles();
+
+  return (
+    <div>
+        <TriggeredPopper content={
+             <div className={classes.paper}>The content of the Popper.</div>
+        } placement={'bottom-start'} trigger={'hover'}
+        >
+          <button aria-describedby={id} type="button">
+            Toggle Popper
+          </button>
+        </TriggeredPopper>
+    </div>
+  );
+}
+
+export default function ClickTriggeredPopper() {
+  const classes = useStyles();
+  const [visible, setVisible] = React.useState(false);
+
+  return (
+    <div>
+        <TriggeredPopper 
+            content={<div className={classes.paper}>The content of the Popper.</div>} 
+            placement={'bottom-start'} 
+            trigger={'click'} 
+            visible={visible}
+            onVisibleChange={(visible)=>setVisible(visible)}
+        >
+          <button aria-describedby={id} type="button">
+            Toggle Popper
+          </button>
+        </TriggeredPopper>
+    </div>
+  );
+}
