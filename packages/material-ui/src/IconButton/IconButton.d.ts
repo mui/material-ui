@@ -17,7 +17,7 @@ export type IconButtonTypeMap<
 }>;
 
 /**
- * Refer to the [Icons](/components/icons/) section of the documentation
+ * Refer to the [Icons](https://material-ui.com/components/icons/) section of the documentation
  * regarding the available icon options.
  *
  * Demos:

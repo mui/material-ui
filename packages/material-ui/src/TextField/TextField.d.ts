@@ -83,12 +83,12 @@ export type TextFieldClassKey = 'root';
  * It's important to understand that the text field is a simple abstraction
  * on top of the following components:
  *
- * - [FormControl](/api/form-control/)
- * - [InputLabel](/api/input-label/)
- * - [FilledInput](/api/filled-input/)
- * - [OutlinedInput](/api/outlined-input/)
- * - [Input](/api/input/)
- * - [FormHelperText](/api/form-helper-text/)
+ * -   [FormControl](https://material-ui.com/api/form-control/)
+ * -   [InputLabel](https://material-ui.com/api/input-label/)
+ * -   [FilledInput](https://material-ui.com/api/filled-input/)
+ * -   [OutlinedInput](https://material-ui.com/api/outlined-input/)
+ * -   [Input](https://material-ui.com/api/input/)
+ * -   [FormHelperText](https://material-ui.com/api/form-helper-text/)
  *
  * If you wish to alter the props applied to the `input` element, you can do so as follows:
  *
@@ -103,8 +103,8 @@ export type TextFieldClassKey = 'root';
  * For advanced cases, please look at the source of TextField by clicking on the
  * "Edit this page" button above. Consider either:
  *
- * - using the upper case props for passing values directly to the components
- * - using the underlying components directly as shown in the demos
+ * -   using the upper case props for passing values directly to the components
+ * -   using the underlying components directly as shown in the demos
  *
  * Demos:
  * - [Autocomplete](https://material-ui.com/components/autocomplete/)

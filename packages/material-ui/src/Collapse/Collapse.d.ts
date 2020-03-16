@@ -15,7 +15,7 @@ export type CollapseClassKey = 'container' | 'entered' | 'hidden' | 'wrapper' | 
 
 /**
  * The Collapse transition is used by the
- * [Vertical Stepper](/components/steppers/#vertical-stepper) StepContent component.
+ * [Vertical Stepper](https://material-ui.com/components/steppers/#vertical-stepper) StepContent component.
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  *
  * Demos:

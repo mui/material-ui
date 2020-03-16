@@ -8,6 +8,8 @@ import path from 'path';
 import kebabCase from 'lodash/kebabCase';
 import uniqBy from 'lodash/uniqBy';
 import { defaultHandlers, parse as docgenParse } from 'react-docgen';
+import remark from 'remark';
+import remarkVisit from 'unist-util-visit';
 import muiDefaultPropsHandler from '../src/modules/utils/defaultPropsHandler';
 import generateMarkdown from '../src/modules/utils/generateMarkdown';
 import { findPagesMarkdown, findComponents } from '../src/modules/utils/find';
@@ -85,7 +87,40 @@ function getInheritance(testInfo, src) {
   };
 }
 
+/**
+ * Produces markdown of the description that can be hosted anywhere.
+ *
+ * By default we assume that the markdown is hosted on material-ui.com which is
+ * why the source includes relative url. We transform them to absolute urls with
+ * this method.
+ *
+ * @param {object} api
+ * @param {object} options
+ */
+function computeApiDescription(api, options) {
+  const { host } = options;
+  return new Promise((resolve, reject) => {
+    remark()
+      .use(function docsLinksAttacher() {
+        return function transformer(tree) {
+          remarkVisit(tree, 'link', linkNode => {
+            if (linkNode.url.startsWith('/')) {
+              linkNode.url = `${host}${linkNode.url}`;
+            }
+          });
+        };
+      })
+      .process(api.description, (error, file) => {
+        if (error) reject(error);
+
+        resolve(file.contents.replace(/\n/g, '\n * '));
+      });
+  });
+}
+
 async function annotateComponentDefinition(component, api) {
+  const HOST = 'https://material-ui.com';
+
   const typesFilename = component.filename.replace(/\.js$/, '.d.ts');
   const typesSource = readFileSync(typesFilename, { encoding: 'utf8' });
   const typesAST = await babel.parseAsync(typesSource, {
@@ -138,26 +173,22 @@ async function annotateComponentDefinition(component, api) {
 
   let inheritanceAPILink = null;
   if (api.inheritance !== null) {
-    const url = api.inheritance.pathname.startsWith('https://')
-      ? api.inheritance.pathname
-      : `https://material-ui.com${rewriteUrlForNextExport(api.inheritance.pathname)}`;
+    const url = api.inheritance.pathname.startsWith('/')
+      ? `${HOST}${rewriteUrlForNextExport(api.inheritance.pathname)}`
+      : api.inheritance.pathname;
 
     inheritanceAPILink = `[${api.inheritance.component} API](${url})`;
   }
 
   const jsdoc = `/**
- * ${api.description.replace(/\n/g, '\n * ')}
- *
+ * ${await computeApiDescription(api, { host: HOST })}
  * Demos:
  * - ${demos
-   .map(
-     page =>
-       `[${pageToTitle(page)}](https://material-ui.com${rewriteUrlForNextExport(page.pathname)})`,
-   )
+   .map(page => `[${pageToTitle(page)}](${HOST}${rewriteUrlForNextExport(page.pathname)})`)
    .join('\n * - ')}
  *
  * API:
- * - [${api.name} API](https://material-ui.com/api/${kebabCase(api.name)}/)
+ * - [${api.name} API](${HOST}/api/${kebabCase(api.name)}/)
  * ${api.inheritance !== null ? `- inherits ${inheritanceAPILink}` : ''}
  */`;
   const typesSourceNew = typesSource.slice(0, start) + jsdoc + typesSource.slice(end);

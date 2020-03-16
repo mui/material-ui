@@ -39,7 +39,7 @@ export type DrawerClassKey =
   | 'modal';
 
 /**
- * The props of the [Modal](/api/modal/) component are available
+ * The props of the [Modal](https://material-ui.com/api/modal/) component are available
  * when `variant="temporary"` is set.
  *
  * Demos:
