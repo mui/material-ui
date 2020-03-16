@@ -46,7 +46,7 @@ module.exports = {
     // we have to be disciplined about the usage and ensure the Number type for its
     // arguments
     'no-restricted-globals': ['error'].concat(confusingBrowserGlobals),
-    'no-underscore-dangle': ['error', { allow: ['_rewriteUrlForNextExport'] }],
+    'no-underscore-dangle': 'error',
     'prefer-arrow-callback': ['error', { allowNamedFunctions: true }],
     'prefer-destructuring': 'off', // Destructuring harm grep potential.
 

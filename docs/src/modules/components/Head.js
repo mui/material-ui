@@ -1,6 +1,7 @@
 import React from 'react';
 import NextHead from 'next/head';
-import { Router, useRouter } from 'next/router';
+import { useRouter } from 'next/router';
+import { rewriteUrlForNextExport } from 'next/dist/next-server/lib/router/rewrite-url-for-export';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 
@@ -27,7 +28,7 @@ export default function Head(props) {
       <meta property="og:title" content={title} />
       <meta
         property="og:url"
-        content={`https://material-ui.com${Router._rewriteUrlForNextExport(router.asPath)}`}
+        content={`https://material-ui.com${rewriteUrlForNextExport(router.asPath)}`}
       />
       <meta property="og:description" content={description} />
       <meta property="og:image" content="https://material-ui.com/static/logo.png" />

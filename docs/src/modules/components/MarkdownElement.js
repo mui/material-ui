@@ -124,13 +124,17 @@ const styles = theme => ({
       position: 'absolute',
     },
     '& pre': {
-      margin: '24px 0',
-      padding: '12px 18px',
+      margin: theme.spacing(3, 0),
+      padding: theme.spacing(2),
       backgroundColor: '#272c34',
       direction: 'ltr',
       borderRadius: theme.shape.borderRadius,
       overflow: 'auto',
       WebkitOverflowScrolling: 'touch', // iOS momentum scrolling.
+      maxWidth: 'calc(100vw - 32px)',
+      [theme.breakpoints.up('md')]: {
+        maxWidth: 'calc(100vw - 32px - 16px)',
+      },
     },
     '& code': {
       display: 'inline-block',

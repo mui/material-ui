@@ -16,7 +16,9 @@ const styles = theme => ({
     marginBottom: theme.spacing(20),
     maxWidth: 680 + theme.spacing(8 + 4),
     '& .markdownElement': {
-      paddingRight: theme.spacing(4),
+      [theme.breakpoints.up('md')]: {
+        paddingRight: theme.spacing(4),
+      },
     },
   },
 });

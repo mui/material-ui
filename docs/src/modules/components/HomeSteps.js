@@ -22,17 +22,20 @@ const UsageLink = React.forwardRef((buttonProps, ref) => (
 ));
 
 const styles = theme => ({
-  container: {
+  root: {
     marginTop: theme.spacing(5),
+    '& pre': {
+      margin: theme.spacing(1, 0),
+    },
   },
   step: {
     border: `12px solid ${theme.palette.background.level1}`,
     borderRightWidth: 0,
     borderLeftWidth: 0,
-    padding: theme.spacing(3, 2),
+    padding: theme.spacing(2),
     backgroundColor: theme.palette.background.level2,
     [theme.breakpoints.up('md')]: {
-      padding: theme.spacing(5, 4),
+      padding: theme.spacing(3),
     },
   },
   leftStep: {
@@ -60,17 +63,7 @@ const styles = theme => ({
     fontSize: 30,
   },
   stepBody: {
-    minHeight: 290,
-  },
-  markdownElement: {
-    maxWidth: `calc(100vw - ${(theme.spacing(5) + 1) * 2}px)`,
-    '& pre, & pre[class*="language-"], & code': {
-      // backgroundColor: 'transparent',
-    },
-    '& pre, & pre[class*="language-"]': {
-      padding: theme.spacing(1, 0),
-      margin: theme.spacing(1, 0),
-    },
+    minHeight: 270,
   },
   divider: {
     marginTop: theme.spacing(4),
@@ -92,7 +85,7 @@ function HomeSteps(props) {
   const t = useSelector(state => state.options.t);
 
   return (
-    <Container disableGutters maxwidth="lg" className={classes.container}>
+    <Container disableGutters maxwidth="lg" className={classes.root}>
       <Grid container>
         <Grid item xs={12} md={6} className={clsx(classes.step, classes.leftStep)}>
           <div className={classes.stepTitle}>
@@ -106,11 +99,10 @@ function HomeSteps(props) {
               {t('installDescr')}
             </Typography>
             <MarkdownElement
-              className={classes.markdownElement}
               text={`
-  \`\`\`sh
-  $ npm install @material-ui/core
-  \`\`\`
+\`\`\`sh
+$ npm install @material-ui/core
+\`\`\`
                 `}
             />
             <Link
@@ -125,11 +117,10 @@ function HomeSteps(props) {
               {t('loadFont')}
             </Typography>
             <MarkdownElement
-              className={classes.markdownElement}
               text={`
-  \`\`\`html
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
-  \`\`\`
+\`\`\`html
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+\`\`\`
                 `}
             />
           </div>
@@ -148,18 +139,15 @@ function HomeSteps(props) {
               {t('usageDescr')}
             </Typography>
             <MarkdownElement
-              className={classes.markdownElement}
               text={`
-  \`\`\`jsx
-  import React from 'react';
-  import Button from '@material-ui/core/Button';
+\`\`\`jsx
+import React from 'react';
+import { Button } from '@material-ui/core';
 
-  const App = () => (
-    <Button variant="contained" color="primary">
-      Hello World
-    </Button>
-  );
-  \`\`\`
+function App() {
+  return <Button color="primary">Hello World</Button>;
+}
+\`\`\`
                 `}
             />
           </div>
