@@ -220,6 +220,10 @@ To fully take advantage of type inference, you need to set the `multiple` prop t
 See [this discussion](https://github.com/mui-org/material-ui/pull/18854#discussion_r364215153) for more details.
 TypeScript might solve this bug in the future.
 
+### ListboxComponent
+
+If you provide a custom `ListboxComponent` prop, you need to make sure that the intended scroll container has the `role` attribute set to `listbox`. This ensures the correct behavior of the scroll, for example when using the keyboard to navigate.
+
 ## Accessibility
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#combobox)

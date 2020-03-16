@@ -648,7 +648,7 @@ export default function useAutocomplete(props) {
           // Avoid the Modal to handle the event.
           event.stopPropagation();
           handleClose(event);
-        } else if (clearOnEscape && inputValue !== '') {
+        } else if (clearOnEscape && (inputValue !== '' || (multiple && value.length > 0))) {
           // Avoid Opera to exit fullscreen mode.
           event.preventDefault();
           // Avoid the Modal to handle the event.
@@ -975,7 +975,7 @@ useAutocomplete.propTypes = {
    */
   componentName: PropTypes.string,
   /**
-   * If `true`, the popup will ignore the blur event if the input if filled.
+   * If `true`, the popup will ignore the blur event if the input is filled.
    * You can inspect the popup markup with your browser tools.
    * Consider this option when you need to customize the component.
    */

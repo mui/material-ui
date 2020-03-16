@@ -6,6 +6,12 @@ trigger:
       - l10n
       - dependabot/*
 
+# https://developercommunity.visualstudio.com/comments/949241/view.html
+pr:
+  branches:
+    include:
+    - '*' 
+
 pool:
   vmImage: 'ubuntu-latest'
 
