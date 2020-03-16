@@ -768,6 +768,35 @@ describe('<TreeItem />', () => {
           expect(getByTestId('five')).to.have.attribute('aria-expanded', 'true');
           expect(getByTestId('six')).to.have.attribute('aria-expanded', 'false');
         });
+
+        it('should not expand siblings that are end nodes', () => {
+          const { getByTestId } = render(
+            <TreeView>
+              <TreeItem nodeId="one" label="one" data-testid="one">
+                <TreeItem nodeId="two" label="two" data-testid="two" />
+              </TreeItem>
+              <TreeItem nodeId="three" label="three" data-testid="three">
+                <TreeItem nodeId="four" label="four" data-testid="four" />
+              </TreeItem>
+              <TreeItem nodeId="five" label="five" data-testid="five">
+                <TreeItem nodeId="six" label="six" data-testid="six">
+                  <TreeItem nodeId="seven" label="seven" data-testid="seven" />
+                </TreeItem>
+              </TreeItem>
+              <TreeItem nodeId="eight" label="eight" data-testid="eight" />
+            </TreeView>,
+          );
+
+          getByTestId('one').focus();
+          expect(getByTestId('one')).not.to.have.class('Mui-expanded');
+          expect(getByTestId('three')).not.to.have.class('Mui-expanded');
+          expect(getByTestId('five')).not.to.have.class('Mui-expanded');
+          fireEvent.keyDown(document.activeElement, { key: '*' });
+          expect(getByTestId('one')).to.have.class('Mui-expanded');
+          expect(getByTestId('three')).to.have.class('Mui-expanded');
+          expect(getByTestId('five')).to.have.class('Mui-expanded');
+          expect(getByTestId('eight')).not.to.have.class('Mui-expanded');
+        });
       });
     });
 
