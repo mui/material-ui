@@ -24,6 +24,7 @@ module.exports = {
         config: path.join(__dirname, './docs/webpackBaseConfig.js'),
       },
     },
+    'version':'detect'
   },
   /**
    * Sorted alphanumerically within each group. built-in and each plugin form
