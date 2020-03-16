@@ -19,11 +19,11 @@ export interface SwipeableDrawerProps extends Omit<DrawerProps, 'onClose' | 'ope
  *
  *
  * Demos:
- * - {@link https://material-ui.com/components/drawers/ Drawers}
+ * - [Drawers](https://material-ui.com/components/drawers/)
  *
  * API:
- * - {@link https://material-ui.com/api/swipeable-drawer/ SwipeableDrawer API}
- * - inherits {@link https://material-ui.com/api/drawer/ Drawer API}
+ * - [SwipeableDrawer API](https://material-ui.com/api/swipeable-drawer/)
+ * - inherits [Drawer API](https://material-ui.com/api/drawer/)
  */
 declare const SwipeableDrawer: React.ComponentType<SwipeableDrawerProps>;
 

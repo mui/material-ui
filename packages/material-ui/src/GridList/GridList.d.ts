@@ -15,10 +15,10 @@ export type GridListClassKey = 'root';
  *
  *
  * Demos:
- * - {@link https://material-ui.com/components/grid-list/ Grid List}
+ * - [Grid List](https://material-ui.com/components/grid-list/)
  *
  * API:
- * - {@link https://material-ui.com/api/grid-list/ GridList API}
+ * - [GridList API](https://material-ui.com/api/grid-list/)
  *
  */
 declare const GridList: React.ComponentType<GridListProps>;

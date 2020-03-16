@@ -16,10 +16,10 @@ export interface SkeletonTypeMap<P = {}, D extends React.ElementType = 'span'> {
  *
  *
  * Demos:
- * - {@link https://material-ui.com/components/skeleton/ Skeleton}
+ * - [Skeleton](https://material-ui.com/components/skeleton/)
  *
  * API:
- * - {@link https://material-ui.com/api/skeleton/ Skeleton API}
+ * - [Skeleton API](https://material-ui.com/api/skeleton/)
  *
  */
 declare const Skeleton: OverridableComponent<SkeletonTypeMap>;

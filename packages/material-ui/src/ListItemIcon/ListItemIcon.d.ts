@@ -11,10 +11,10 @@ export type ListItemIconClassKey = 'root';
  * A simple wrapper to apply `List` styles to an `Icon` or `SvgIcon`.
  *
  * Demos:
- * - {@link https://material-ui.com/components/lists/ Lists}
+ * - [Lists](https://material-ui.com/components/lists/)
  *
  * API:
- * - {@link https://material-ui.com/api/list-item-icon/ ListItemIcon API}
+ * - [ListItemIcon API](https://material-ui.com/api/list-item-icon/)
  *
  */
 declare const ListItemIcon: React.ComponentType<ListItemIconProps>;

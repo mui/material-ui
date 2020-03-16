@@ -9,10 +9,10 @@ export interface TextareaAutosizeProps extends React.TextareaHTMLAttributes<HTML
  *
  *
  * Demos:
- * - {@link https://material-ui.com/components/textarea-autosize/ Textarea Autosize}
+ * - [Textarea Autosize](https://material-ui.com/components/textarea-autosize/)
  *
  * API:
- * - {@link https://material-ui.com/api/textarea-autosize/ TextareaAutosize API}
+ * - [TextareaAutosize API](https://material-ui.com/api/textarea-autosize/)
  *
  */
 declare const TextareaAutosize: React.ComponentType<

@@ -91,10 +91,10 @@ export type SpeedDialClassKey =
  *
  *
  * Demos:
- * - {@link https://material-ui.com/components/speed-dial/ Speed Dial}
+ * - [Speed Dial](https://material-ui.com/components/speed-dial/)
  *
  * API:
- * - {@link https://material-ui.com/api/speed-dial/ SpeedDial API}
+ * - [SpeedDial API](https://material-ui.com/api/speed-dial/)
  *
  */
 export default function SpeedDial(props: SpeedDialProps): JSX.Element;

@@ -16,10 +16,10 @@ export type TableRowClassKey = 'root' | 'selected' | 'hover' | 'head' | 'footer'
  * based on the material table element parent (head, body, etc).
  *
  * Demos:
- * - {@link https://material-ui.com/components/tables/ Tables}
+ * - [Tables](https://material-ui.com/components/tables/)
  *
  * API:
- * - {@link https://material-ui.com/api/table-row/ TableRow API}
+ * - [TableRow API](https://material-ui.com/api/table-row/)
  *
  */
 declare const TableRow: React.ComponentType<TableRowProps>;

@@ -20,10 +20,10 @@ export type CardHeaderClassKey = 'root' | 'avatar' | 'action' | 'content' | 'tit
  *
  *
  * Demos:
- * - {@link https://material-ui.com/components/cards/ Cards}
+ * - [Cards](https://material-ui.com/components/cards/)
  *
  * API:
- * - {@link https://material-ui.com/api/card-header/ CardHeader API}
+ * - [CardHeader API](https://material-ui.com/api/card-header/)
  *
  */
 declare const CardHeader: React.ComponentType<CardHeaderProps>;

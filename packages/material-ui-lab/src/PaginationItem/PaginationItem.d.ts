@@ -45,10 +45,10 @@ export interface PaginationItemTypeMap<P = {}, D extends React.ElementType = 'di
  *
  *
  * Demos:
- * - {@link https://material-ui.com/components/pagination/ Pagination}
+ * - [Pagination](https://material-ui.com/components/pagination/)
  *
  * API:
- * - {@link https://material-ui.com/api/pagination-item/ PaginationItem API}
+ * - [PaginationItem API](https://material-ui.com/api/pagination-item/)
  *
  */
 declare const PaginationItem: OverridableComponent<PaginationItemTypeMap>;

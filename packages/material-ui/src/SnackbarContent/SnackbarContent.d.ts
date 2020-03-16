@@ -13,11 +13,11 @@ export type SnackbarContentClassKey = 'root' | 'message' | 'action';
  *
  *
  * Demos:
- * - {@link https://material-ui.com/components/snackbars/ Snackbars}
+ * - [Snackbars](https://material-ui.com/components/snackbars/)
  *
  * API:
- * - {@link https://material-ui.com/api/snackbar-content/ SnackbarContent API}
- * - inherits {@link https://material-ui.com/api/paper/ Paper API}
+ * - [SnackbarContent API](https://material-ui.com/api/snackbar-content/)
+ * - inherits [Paper API](https://material-ui.com/api/paper/)
  */
 declare const SnackbarContent: React.ComponentType<SnackbarContentProps>;
 

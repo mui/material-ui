@@ -12,11 +12,11 @@ export type CardClassKey = 'root';
  *
  *
  * Demos:
- * - {@link https://material-ui.com/components/cards/ Cards}
+ * - [Cards](https://material-ui.com/components/cards/)
  *
  * API:
- * - {@link https://material-ui.com/api/card/ Card API}
- * - inherits {@link https://material-ui.com/api/paper/ Paper API}
+ * - [Card API](https://material-ui.com/api/card/)
+ * - inherits [Paper API](https://material-ui.com/api/paper/)
  */
 declare const Card: React.ComponentType<CardProps>;
 

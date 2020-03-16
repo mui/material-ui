@@ -10,10 +10,10 @@ export type ExpansionPanelDetailsClassKey = 'root';
  *
  *
  * Demos:
- * - {@link https://material-ui.com/components/expansion-panels/ Expansion Panels}
+ * - [Expansion Panels](https://material-ui.com/components/expansion-panels/)
  *
  * API:
- * - {@link https://material-ui.com/api/expansion-panel-details/ ExpansionPanelDetails API}
+ * - [ExpansionPanelDetails API](https://material-ui.com/api/expansion-panel-details/)
  *
  */
 declare const ExpansionPanelDetails: React.ComponentType<ExpansionPanelDetailsProps>;

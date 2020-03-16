@@ -37,11 +37,11 @@ export interface TablePaginationTypeMap<P, D extends React.ElementType> {
  * A `TableCell` based component for placing inside `TableFooter` for pagination.
  *
  * Demos:
- * - {@link https://material-ui.com/components/tables/ Tables}
+ * - [Tables](https://material-ui.com/components/tables/)
  *
  * API:
- * - {@link https://material-ui.com/api/table-pagination/ TablePagination API}
- * - inherits {@link https://material-ui.com/api/table-cell/ TableCell API}
+ * - [TablePagination API](https://material-ui.com/api/table-pagination/)
+ * - inherits [TableCell API](https://material-ui.com/api/table-cell/)
  */
 declare const TablePagination: OverridableComponent<
   TablePaginationTypeMap<{}, React.ComponentType<TablePaginationBaseProps>>

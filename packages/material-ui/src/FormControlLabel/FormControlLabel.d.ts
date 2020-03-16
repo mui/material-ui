@@ -31,12 +31,12 @@ export type FormControlLabelClassKey =
  * Use this component if you want to display an extra label.
  *
  * Demos:
- * - {@link https://material-ui.com/components/checkboxes/ Checkboxes}
- * - {@link https://material-ui.com/components/radio-buttons/ Radio Buttons}
- * - {@link https://material-ui.com/components/switches/ Switches}
+ * - [Checkboxes](https://material-ui.com/components/checkboxes/)
+ * - [Radio Buttons](https://material-ui.com/components/radio-buttons/)
+ * - [Switches](https://material-ui.com/components/switches/)
  *
  * API:
- * - {@link https://material-ui.com/api/form-control-label/ FormControlLabel API}
+ * - [FormControlLabel API](https://material-ui.com/api/form-control-label/)
  *
  */
 declare const FormControlLabel: React.ComponentType<FormControlLabelProps>;

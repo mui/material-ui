@@ -19,11 +19,11 @@ export type StepperClasskey = 'root' | 'horizontal' | 'vertical' | 'alternativeL
  *
  *
  * Demos:
- * - {@link https://material-ui.com/components/steppers/ Steppers}
+ * - [Steppers](https://material-ui.com/components/steppers/)
  *
  * API:
- * - {@link https://material-ui.com/api/stepper/ Stepper API}
- * - inherits {@link https://material-ui.com/api/paper/ Paper API}
+ * - [Stepper API](https://material-ui.com/api/stepper/)
+ * - inherits [Paper API](https://material-ui.com/api/paper/)
  */
 declare const Stepper: React.ComponentType<StepperProps>;
 

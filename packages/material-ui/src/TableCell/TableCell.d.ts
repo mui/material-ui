@@ -46,10 +46,10 @@ export type TableCellClassKey =
  * or otherwise a `<td>` element.
  *
  * Demos:
- * - {@link https://material-ui.com/components/tables/ Tables}
+ * - [Tables](https://material-ui.com/components/tables/)
  *
  * API:
- * - {@link https://material-ui.com/api/table-cell/ TableCell API}
+ * - [TableCell API](https://material-ui.com/api/table-cell/)
  *
  */
 declare const TableCell: React.ComponentType<TableCellProps>;

@@ -12,11 +12,11 @@ export interface FadeProps extends TransitionProps {
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  *
  * Demos:
- * - {@link https://material-ui.com/components/transitions/ Transitions}
+ * - [Transitions](https://material-ui.com/components/transitions/)
  *
  * API:
- * - {@link https://material-ui.com/api/fade/ Fade API}
- * - inherits {@link https://reactcommunity.org/react-transition-group/transition#Transition-props Transition API}
+ * - [Fade API](https://material-ui.com/api/fade/)
+ * - inherits [Transition API](https://reactcommunity.org/react-transition-group/transition#Transition-props)
  */
 declare const Fade: React.ComponentType<FadeProps>;
 

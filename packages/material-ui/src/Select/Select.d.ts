@@ -42,11 +42,11 @@ export type SelectClassKey =
  *
  *
  * Demos:
- * - {@link https://material-ui.com/components/selects/ Selects}
+ * - [Selects](https://material-ui.com/components/selects/)
  *
  * API:
- * - {@link https://material-ui.com/api/select/ Select API}
- * - inherits {@link https://material-ui.com/api/input/ Input API}
+ * - [Select API](https://material-ui.com/api/select/)
+ * - inherits [Input API](https://material-ui.com/api/input/)
  */
 declare const Select: React.ComponentType<SelectProps>;
 

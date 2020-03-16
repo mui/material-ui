@@ -13,7 +13,7 @@ export type AlertTitleClassKey = 'root';
  * -
  *
  * API:
- * - {@link https://material-ui.com/api/alert-title/ AlertTitle API}
+ * - [AlertTitle API](https://material-ui.com/api/alert-title/)
  *
  */
 export default function AlertTitle(props: AlertTitleProps): JSX.Element;

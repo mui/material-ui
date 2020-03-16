@@ -30,10 +30,10 @@ export type BackdropClassKey = 'root' | 'invisible';
  *
  *
  * Demos:
- * - {@link https://material-ui.com/components/backdrop/ Backdrop}
+ * - [Backdrop](https://material-ui.com/components/backdrop/)
  *
  * API:
- * - {@link https://material-ui.com/api/backdrop/ Backdrop API}
+ * - [Backdrop API](https://material-ui.com/api/backdrop/)
  *
  */
 export default function Backdrop(props: BackdropProps): JSX.Element;

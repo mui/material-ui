@@ -31,10 +31,10 @@ export type CircularProgressClassKey =
  * attribute to `true` on that region until it has finished loading.
  *
  * Demos:
- * - {@link https://material-ui.com/components/progress/ Progress}
+ * - [Progress](https://material-ui.com/components/progress/)
  *
  * API:
- * - {@link https://material-ui.com/api/circular-progress/ CircularProgress API}
+ * - [CircularProgress API](https://material-ui.com/api/circular-progress/)
  *
  */
 declare const CircularProgress: React.ComponentType<CircularProgressProps>;

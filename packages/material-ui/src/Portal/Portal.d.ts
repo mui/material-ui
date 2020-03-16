@@ -30,10 +30,10 @@ export interface PortalProps {
  * that exists outside the DOM hierarchy of the parent component.
  *
  * Demos:
- * - {@link https://material-ui.com/components/portal/ Portal}
+ * - [Portal](https://material-ui.com/components/portal/)
  *
  * API:
- * - {@link https://material-ui.com/api/portal/ Portal API}
+ * - [Portal API](https://material-ui.com/api/portal/)
  *
  */
 export default function Portal(props: PortalProps): JSX.Element;

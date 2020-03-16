@@ -10,10 +10,10 @@ export type ListItemAvatarClassKey = 'root' | 'icon';
  * A simple wrapper to apply `List` styles to an `Avatar`.
  *
  * Demos:
- * - {@link https://material-ui.com/components/lists/ Lists}
+ * - [Lists](https://material-ui.com/components/lists/)
  *
  * API:
- * - {@link https://material-ui.com/api/list-item-avatar/ ListItemAvatar API}
+ * - [ListItemAvatar API](https://material-ui.com/api/list-item-avatar/)
  *
  */
 declare const ListItemAvatar: React.ComponentType<ListItemAvatarProps>;

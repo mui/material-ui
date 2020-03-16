@@ -84,10 +84,10 @@ export type InputBaseClassKey =
  * It contains a load of style reset and some state logic.
  *
  * Demos:
- * - {@link https://material-ui.com/components/text-fields/ Text Fields}
+ * - [Text Fields](https://material-ui.com/components/text-fields/)
  *
  * API:
- * - {@link https://material-ui.com/api/input-base/ InputBase API}
+ * - [InputBase API](https://material-ui.com/api/input-base/)
  *
  */
 declare const InputBase: React.ComponentType<InputBaseProps>;

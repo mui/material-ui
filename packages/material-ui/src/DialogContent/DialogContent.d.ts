@@ -12,10 +12,10 @@ export type DialogContentClassKey = 'root' | 'dividers';
  *
  *
  * Demos:
- * - {@link https://material-ui.com/components/dialogs/ Dialogs}
+ * - [Dialogs](https://material-ui.com/components/dialogs/)
  *
  * API:
- * - {@link https://material-ui.com/api/dialog-content/ DialogContent API}
+ * - [DialogContent API](https://material-ui.com/api/dialog-content/)
  *
  */
 declare const DialogContent: React.ComponentType<DialogContentProps>;

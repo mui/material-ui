@@ -16,11 +16,11 @@ export type MenuItemTypeMap<P = {}, D extends React.ElementType = 'li'> = Omit<
  *
  *
  * Demos:
- * - {@link https://material-ui.com/components/menus/ Menus}
+ * - [Menus](https://material-ui.com/components/menus/)
  *
  * API:
- * - {@link https://material-ui.com/api/menu-item/ MenuItem API}
- * - inherits {@link https://material-ui.com/api/list-item/ ListItem API}
+ * - [MenuItem API](https://material-ui.com/api/menu-item/)
+ * - inherits [ListItem API](https://material-ui.com/api/list-item/)
  */
 declare const MenuItem: OverridableComponent<
   MenuItemTypeMap<{ button: false }, MenuItemTypeMap['defaultComponent']>

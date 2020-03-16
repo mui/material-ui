@@ -26,11 +26,11 @@ export type InputClassKey =
  *
  *
  * Demos:
- * - {@link https://material-ui.com/components/text-fields/ Text Fields}
+ * - [Text Fields](https://material-ui.com/components/text-fields/)
  *
  * API:
- * - {@link https://material-ui.com/api/input/ Input API}
- * - inherits {@link https://material-ui.com/api/input-base/ InputBase API}
+ * - [Input API](https://material-ui.com/api/input/)
+ * - inherits [InputBase API](https://material-ui.com/api/input-base/)
  */
 declare const Input: React.ComponentType<InputProps>;
 

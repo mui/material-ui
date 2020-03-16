@@ -15,11 +15,11 @@ export type RadioGroupClassKey = FormGroupClassKey;
  *
  *
  * Demos:
- * - {@link https://material-ui.com/components/radio-buttons/ Radio Buttons}
+ * - [Radio Buttons](https://material-ui.com/components/radio-buttons/)
  *
  * API:
- * - {@link https://material-ui.com/api/radio-group/ RadioGroup API}
- * - inherits {@link https://material-ui.com/api/form-group/ FormGroup API}
+ * - [RadioGroup API](https://material-ui.com/api/radio-group/)
+ * - inherits [FormGroup API](https://material-ui.com/api/form-group/)
  */
 declare const RadioGroup: React.ComponentType<RadioGroupProps>;
 

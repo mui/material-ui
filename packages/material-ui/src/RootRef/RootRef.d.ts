@@ -40,7 +40,7 @@ export interface RootRefProps<T = any> {
  * -
  *
  * API:
- * - {@link https://material-ui.com/api/root-ref/ RootRef API}
+ * - [RootRef API](https://material-ui.com/api/root-ref/)
  *
  */
 declare const RootRef: React.ComponentType<RootRefProps>;

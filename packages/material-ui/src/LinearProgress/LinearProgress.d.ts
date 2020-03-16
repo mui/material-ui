@@ -37,10 +37,10 @@ export type LinearProgressClassKey =
  * attribute to `true` on that region until it has finished loading.
  *
  * Demos:
- * - {@link https://material-ui.com/components/progress/ Progress}
+ * - [Progress](https://material-ui.com/components/progress/)
  *
  * API:
- * - {@link https://material-ui.com/api/linear-progress/ LinearProgress API}
+ * - [LinearProgress API](https://material-ui.com/api/linear-progress/)
  *
  */
 declare const LinearProgress: React.ComponentType<LinearProgressProps>;

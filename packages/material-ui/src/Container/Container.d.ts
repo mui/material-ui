@@ -23,10 +23,10 @@ export type ContainerClassKey =
  *
  *
  * Demos:
- * - {@link https://material-ui.com/components/container/ Container}
+ * - [Container](https://material-ui.com/components/container/)
  *
  * API:
- * - {@link https://material-ui.com/api/container/ Container API}
+ * - [Container API](https://material-ui.com/api/container/)
  *
  */
 declare const Container: React.ComponentType<ContainerProps>;

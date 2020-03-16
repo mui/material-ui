@@ -13,11 +13,11 @@ export type CardActionAreaTypeMap<P, D extends React.ElementType> = ExtendButton
  *
  *
  * Demos:
- * - {@link https://material-ui.com/components/cards/ Cards}
+ * - [Cards](https://material-ui.com/components/cards/)
  *
  * API:
- * - {@link https://material-ui.com/api/card-action-area/ CardActionArea API}
- * - inherits {@link https://material-ui.com/api/button-base/ ButtonBase API}
+ * - [CardActionArea API](https://material-ui.com/api/card-action-area/)
+ * - inherits [ButtonBase API](https://material-ui.com/api/button-base/)
  */
 declare const CardActionArea: ExtendButtonBase<
   CardActionAreaTypeMap<{}, ButtonBaseTypeMap['defaultComponent']>

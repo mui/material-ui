@@ -43,11 +43,11 @@ export type PaperClassKey =
  *
  *
  * Demos:
- * - {@link https://material-ui.com/components/cards/ Cards}
- * - {@link https://material-ui.com/components/paper/ Paper}
+ * - [Cards](https://material-ui.com/components/cards/)
+ * - [Paper](https://material-ui.com/components/paper/)
  *
  * API:
- * - {@link https://material-ui.com/api/paper/ Paper API}
+ * - [Paper API](https://material-ui.com/api/paper/)
  *
  */
 declare const Paper: React.ComponentType<PaperProps>;

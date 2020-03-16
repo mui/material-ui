@@ -22,12 +22,12 @@ export type CheckboxClassKey =
  *
  *
  * Demos:
- * - {@link https://material-ui.com/components/checkboxes/ Checkboxes}
- * - {@link https://material-ui.com/components/transfer-list/ Transfer List}
+ * - [Checkboxes](https://material-ui.com/components/checkboxes/)
+ * - [Transfer List](https://material-ui.com/components/transfer-list/)
  *
  * API:
- * - {@link https://material-ui.com/api/checkbox/ Checkbox API}
- * - inherits {@link https://material-ui.com/api/icon-button/ IconButton API}
+ * - [Checkbox API](https://material-ui.com/api/checkbox/)
+ * - inherits [IconButton API](https://material-ui.com/api/icon-button/)
  */
 declare const Checkbox: React.ComponentType<CheckboxProps>;
 

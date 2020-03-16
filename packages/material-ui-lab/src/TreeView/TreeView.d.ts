@@ -100,10 +100,10 @@ export type TreeViewClassKey = 'root';
  *
  *
  * Demos:
- * - {@link https://material-ui.com/components/tree-view/ Tree View}
+ * - [Tree View](https://material-ui.com/components/tree-view/)
  *
  * API:
- * - {@link https://material-ui.com/api/tree-view/ TreeView API}
+ * - [TreeView API](https://material-ui.com/api/tree-view/)
  *
  */
 export default function TreeView(props: TreeViewProps): JSX.Element;

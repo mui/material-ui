@@ -14,10 +14,10 @@ export interface CardMediaTypeMap<P, D extends React.ElementType> {
  *
  *
  * Demos:
- * - {@link https://material-ui.com/components/cards/ Cards}
+ * - [Cards](https://material-ui.com/components/cards/)
  *
  * API:
- * - {@link https://material-ui.com/api/card-media/ CardMedia API}
+ * - [CardMedia API](https://material-ui.com/api/card-media/)
  *
  */
 declare const CardMedia: OverridableComponent<CardMediaTypeMap<{}, 'div'>>;

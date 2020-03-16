@@ -29,11 +29,11 @@ export type OutlinedInputClassKey =
  *
  *
  * Demos:
- * - {@link https://material-ui.com/components/text-fields/ Text Fields}
+ * - [Text Fields](https://material-ui.com/components/text-fields/)
  *
  * API:
- * - {@link https://material-ui.com/api/outlined-input/ OutlinedInput API}
- * - inherits {@link https://material-ui.com/api/input-base/ InputBase API}
+ * - [OutlinedInput API](https://material-ui.com/api/outlined-input/)
+ * - inherits [InputBase API](https://material-ui.com/api/input-base/)
  */
 declare const OutlinedInput: React.ComponentType<OutlinedInputProps>;
 

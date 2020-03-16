@@ -47,10 +47,10 @@ export type SpeedDialActionClassKey =
  *
  *
  * Demos:
- * - {@link https://material-ui.com/components/speed-dial/ Speed Dial}
+ * - [Speed Dial](https://material-ui.com/components/speed-dial/)
  *
  * API:
- * - {@link https://material-ui.com/api/speed-dial-action/ SpeedDialAction API}
- * - inherits {@link https://material-ui.com/api/tooltip/ Tooltip API}
+ * - [SpeedDialAction API](https://material-ui.com/api/speed-dial-action/)
+ * - inherits [Tooltip API](https://material-ui.com/api/tooltip/)
  */
 export default function SpeedDialAction(props: SpeedDialActionProps): JSX.Element;

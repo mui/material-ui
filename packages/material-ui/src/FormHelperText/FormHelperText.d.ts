@@ -27,10 +27,10 @@ export type FormHelperTextClassKey =
  *
  *
  * Demos:
- * - {@link https://material-ui.com/components/text-fields/ Text Fields}
+ * - [Text Fields](https://material-ui.com/components/text-fields/)
  *
  * API:
- * - {@link https://material-ui.com/api/form-helper-text/ FormHelperText API}
+ * - [FormHelperText API](https://material-ui.com/api/form-helper-text/)
  *
  */
 declare const FormHelperText: React.ComponentType<FormHelperTextProps>;

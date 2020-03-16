@@ -12,10 +12,10 @@ export type CardActionsClassKey = 'root' | 'spacing';
  *
  *
  * Demos:
- * - {@link https://material-ui.com/components/cards/ Cards}
+ * - [Cards](https://material-ui.com/components/cards/)
  *
  * API:
- * - {@link https://material-ui.com/api/card-actions/ CardActions API}
+ * - [CardActions API](https://material-ui.com/api/card-actions/)
  *
  */
 declare const CardActions: React.ComponentType<CardActionsProps>;

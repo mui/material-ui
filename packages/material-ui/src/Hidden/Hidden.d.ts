@@ -21,10 +21,10 @@ export interface HiddenProps {
  * Responsively hides children based on the selected implementation.
  *
  * Demos:
- * - {@link https://material-ui.com/components/hidden/ Hidden}
+ * - [Hidden](https://material-ui.com/components/hidden/)
  *
  * API:
- * - {@link https://material-ui.com/api/hidden/ Hidden API}
+ * - [Hidden API](https://material-ui.com/api/hidden/)
  *
  */
 declare const Hidden: React.ComponentType<HiddenProps>;

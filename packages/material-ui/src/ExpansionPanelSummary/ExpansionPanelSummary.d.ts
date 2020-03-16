@@ -19,11 +19,11 @@ export type ExpansionPanelSummaryTypeMap<
  *
  *
  * Demos:
- * - {@link https://material-ui.com/components/expansion-panels/ Expansion Panels}
+ * - [Expansion Panels](https://material-ui.com/components/expansion-panels/)
  *
  * API:
- * - {@link https://material-ui.com/api/expansion-panel-summary/ ExpansionPanelSummary API}
- * - inherits {@link https://material-ui.com/api/button-base/ ButtonBase API}
+ * - [ExpansionPanelSummary API](https://material-ui.com/api/expansion-panel-summary/)
+ * - inherits [ButtonBase API](https://material-ui.com/api/button-base/)
  */
 declare const ExpansionPanelSummary: ExtendButtonBase<ExpansionPanelSummaryTypeMap>;
 

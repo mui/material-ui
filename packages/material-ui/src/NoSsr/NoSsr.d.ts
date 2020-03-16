@@ -16,10 +16,10 @@ export interface NoSsrProps {
  * - Under too heavy server load, you can turn on service degradation.
  *
  * Demos:
- * - {@link https://material-ui.com/components/no-ssr/ No Ssr}
+ * - [No Ssr](https://material-ui.com/components/no-ssr/)
  *
  * API:
- * - {@link https://material-ui.com/api/no-ssr/ NoSsr API}
+ * - [NoSsr API](https://material-ui.com/api/no-ssr/)
  *
  */
 declare const NoSsr: React.ComponentType<NoSsrProps>;

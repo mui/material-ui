@@ -29,10 +29,10 @@ export type AppBarClassKey =
  *
  *
  * Demos:
- * - {@link https://material-ui.com/components/app-bar/ App Bar}
+ * - [App Bar](https://material-ui.com/components/app-bar/)
  *
  * API:
- * - {@link https://material-ui.com/api/app-bar/ AppBar API}
- * - inherits {@link https://material-ui.com/api/paper/ Paper API}
+ * - [AppBar API](https://material-ui.com/api/app-bar/)
+ * - inherits [Paper API](https://material-ui.com/api/paper/)
  */
 export default function AppBar(props: AppBarProps): JSX.Element;

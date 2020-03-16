@@ -18,11 +18,11 @@ export type DialogContentTextClassKey = 'root';
  *
  *
  * Demos:
- * - {@link https://material-ui.com/components/dialogs/ Dialogs}
+ * - [Dialogs](https://material-ui.com/components/dialogs/)
  *
  * API:
- * - {@link https://material-ui.com/api/dialog-content-text/ DialogContentText API}
- * - inherits {@link https://material-ui.com/api/typography/ Typography API}
+ * - [DialogContentText API](https://material-ui.com/api/dialog-content-text/)
+ * - inherits [Typography API](https://material-ui.com/api/typography/)
  */
 declare const DialogContentText: OverridableComponent<DialogContentTextTypeMap>;
 

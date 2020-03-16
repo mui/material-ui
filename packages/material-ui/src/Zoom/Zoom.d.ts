@@ -13,11 +13,11 @@ export interface ZoomProps extends TransitionProps {
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  *
  * Demos:
- * - {@link https://material-ui.com/components/transitions/ Transitions}
+ * - [Transitions](https://material-ui.com/components/transitions/)
  *
  * API:
- * - {@link https://material-ui.com/api/zoom/ Zoom API}
- * - inherits {@link https://reactcommunity.org/react-transition-group/transition#Transition-props Transition API}
+ * - [Zoom API](https://material-ui.com/api/zoom/)
+ * - inherits [Transition API](https://reactcommunity.org/react-transition-group/transition#Transition-props)
  */
 declare const Zoom: React.ComponentType<ZoomProps>;
 

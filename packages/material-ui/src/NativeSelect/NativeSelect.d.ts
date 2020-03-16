@@ -27,11 +27,11 @@ export type NativeSelectClassKey =
  * An alternative to `<Select native />` with a much smaller bundle size footprint.
  *
  * Demos:
- * - {@link https://material-ui.com/components/selects/ Selects}
+ * - [Selects](https://material-ui.com/components/selects/)
  *
  * API:
- * - {@link https://material-ui.com/api/native-select/ NativeSelect API}
- * - inherits {@link https://material-ui.com/api/input/ Input API}
+ * - [NativeSelect API](https://material-ui.com/api/native-select/)
+ * - inherits [Input API](https://material-ui.com/api/input/)
  */
 declare const NativeSelect: React.ComponentType<NativeSelectProps>;
 

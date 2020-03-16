@@ -8,10 +8,10 @@ export interface ScopedCssBaselineProps {
  *
  *
  * Demos:
- * - {@link https://material-ui.com/components/css-baseline/ Css Baseline}
+ * - [Css Baseline](https://material-ui.com/components/css-baseline/)
  *
  * API:
- * - {@link https://material-ui.com/api/scoped-css-baseline/ ScopedCssBaseline API}
+ * - [ScopedCssBaseline API](https://material-ui.com/api/scoped-css-baseline/)
  *
  */
 declare const ScopedCssBaseline: React.ComponentType<ScopedCssBaselineProps>;

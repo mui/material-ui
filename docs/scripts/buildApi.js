@@ -142,7 +142,7 @@ async function annotateComponentDefinition(component, api) {
       ? api.inheritance.pathname
       : `https://material-ui.com${rewriteUrlForNextExport(api.inheritance.pathname)}`;
 
-    inheritanceAPILink = `{@link ${url} ${api.inheritance.component} API}`;
+    inheritanceAPILink = `[${api.inheritance.component} API](${url})`;
   }
 
   const jsdoc = `/**
@@ -152,14 +152,12 @@ async function annotateComponentDefinition(component, api) {
  * - ${demos
    .map(
      page =>
-       `{@link https://material-ui.com${rewriteUrlForNextExport(page.pathname)} ${pageToTitle(
-         page,
-       )}}`,
+       `[${pageToTitle(page)}](https://material-ui.com${rewriteUrlForNextExport(page.pathname)})`,
    )
    .join('\n * - ')}
  *
  * API:
- * - {@link https://material-ui.com/api/${kebabCase(api.name)}/ ${api.name} API}
+ * - [${api.name} API](https://material-ui.com/api/${kebabCase(api.name)}/)
  * ${api.inheritance !== null ? `- inherits ${inheritanceAPILink}` : ''}
  */`;
   const typesSourceNew = typesSource.slice(0, start) + jsdoc + typesSource.slice(end);
