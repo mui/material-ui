@@ -4,11 +4,11 @@ import ListItemText from '@material-ui/core/ListItemText';
 declare var yada: () => void;
 
 const ListItemTextTest = () => {
-  const CustomComponent: React.FC<{ prop1: string; prop2: number }> = () => <div />;
+  const FunctionComponent: React.FC<{ prop1: string; prop2: number }> = () => <div />;
   function notAnElementType(): void {
     yada();
   }
-  function MyComponent() {
+  function SimpleFunctionComponent() {
     return <div />;
   }
   return (
@@ -24,12 +24,12 @@ const ListItemTextTest = () => {
         secondaryTypographyProps={{ align: 'center', component: 'p' }}
       />
       <ListItemText
-        primaryTypographyProps={{ align: 'center', component: CustomComponent }}
-        secondaryTypographyProps={{ align: 'center', component: CustomComponent }}
+        primaryTypographyProps={{ align: 'center', component: FunctionComponent }}
+        secondaryTypographyProps={{ align: 'center', component: FunctionComponent }}
       />
       <ListItemText
-        primaryTypographyProps={{ align: 'center', component: MyComponent }}
-        secondaryTypographyProps={{ align: 'center', component: MyComponent }}
+        primaryTypographyProps={{ align: 'center', component: SimpleFunctionComponent }}
+        secondaryTypographyProps={{ align: 'center', component: SimpleFunctionComponent }}
       />
       // $ExpectError
       <ListItemText
@@ -44,6 +44,3 @@ const ListItemTextTest = () => {
     </div>
   );
 };
-
-// Just so the linter doesn't complain about unused component.
-export default ListItemTextTest;
