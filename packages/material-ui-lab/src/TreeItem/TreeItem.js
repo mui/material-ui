@@ -338,7 +338,13 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
   };
 
   React.useEffect(() => {
-    const childIds = React.Children.map(children, child => child.props.nodeId) || [];
+    const childIds = [];
+
+    React.Children.forEach(children, child => {
+      if (React.isValidElement(child) && child.props.nodeId) {
+        childIds.push(child.props.nodeId);
+      }
+    });
     if (addNodeToNodeMap) {
       addNodeToNodeMap(nodeId, childIds);
     }
