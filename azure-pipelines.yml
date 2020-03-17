@@ -16,7 +16,7 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  DOCS_NEXT_CACHE_FOLDER: $(Pipeline.Workspace)/docs/.next/cache
+  DOCS_NEXT_CACHE_FOLDER: $(Build.SourcesDirectory)/docs/.next/cache
 
 steps:
   - task: NodeTool@0
