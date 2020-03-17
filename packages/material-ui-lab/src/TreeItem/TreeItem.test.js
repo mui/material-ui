@@ -88,15 +88,27 @@ describe('<TreeItem />', () => {
   });
 
   it('should allow conditional child', () => {
-    expect(() =>
-      render(
-        <TreeView defaultExpanded={['1']}>
-          <TreeItem nodeId="1" label="1" data-testid="1">
-            {false && <TreeItem nodeId="2" label="2" data-testid="2" />}
-          </TreeItem>
-        </TreeView>,
-      ),
-    ).to.not.throw();
+
+    function TestComponent() {
+      const [hide, setState] = React.useState(false);
+
+      return (
+        <React.Fragment>
+          <button type="button" onClick={() => setState(true)}>
+            Hide
+          </button>
+          <TreeView defaultExpanded={['1']}>
+            <TreeItem nodeId="1" label="1" data-testid="1">
+              {!hide && <TreeItem nodeId="test" label="test" data-testid="2" />}
+            </TreeItem>
+          </TreeView>
+        </React.Fragment>
+      );
+    }
+    const {getByText, queryByText} = render(<TestComponent/>);
+    expect(getByText('test')).to.not.be.null;
+    fireEvent.click(getByText('Hide'));
+    expect(queryByText('test')).to.be.null;
   });
 
   it('should treat an empty array equally to no children', () => {
