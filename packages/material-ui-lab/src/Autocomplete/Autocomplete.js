@@ -162,17 +162,14 @@ export const styles = theme => ({
     ...theme.typography.body1,
     overflow: 'hidden',
     margin: '4px 0',
-    '& > ul': {
-      maxHeight: '40vh',
-      overflow: 'auto',
-    },
   },
   /* Styles applied to the `listbox` component. */
   listbox: {
     listStyle: 'none',
     margin: 0,
     padding: '8px 0px',
-    position: 'relative',
+    maxHeight: '40vh',
+    overflow: 'auto',
   },
   /* Styles applied to the loading wrapper. */
   loading: {
@@ -223,6 +220,9 @@ export const styles = theme => ({
   /* Styles applied to the group's ul elements. */
   groupUl: {
     padding: 0,
+    '& $option': {
+      paddingLeft: 24,
+    },
   },
 });
 
