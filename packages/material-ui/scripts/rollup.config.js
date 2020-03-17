@@ -41,7 +41,21 @@ const commonjsOptions = {
 };
 
 function onwarn(warning) {
-  throw Error(warning.message);
+  let ignoreWarning = false;
+  if (
+    warning.code === 'UNUSED_EXTERNAL_IMPORT' &&
+    warning.source === 'react' &&
+    warning.names.filter(identifier => identifier !== 'useDebugValue').length === 0
+  ) {
+    // skip
+    // import * as React from 'react'
+    // if (__DEV__) React.useDebugValue()
+    ignoreWarning = true;
+  }
+
+  if (!ignoreWarning) {
+    throw Error(warning.message);
+  }
 }
 
 export default [
