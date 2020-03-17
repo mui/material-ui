@@ -88,7 +88,6 @@ describe('<TreeItem />', () => {
   });
 
   it('should allow conditional child', () => {
-
     function TestComponent() {
       const [hide, setState] = React.useState(false);
 
@@ -105,7 +104,7 @@ describe('<TreeItem />', () => {
         </React.Fragment>
       );
     }
-    const {getByText, queryByText} = render(<TestComponent/>);
+    const { getByText, queryByText } = render(<TestComponent />);
     expect(getByText('test')).to.not.be.null;
     fireEvent.click(getByText('Hide'));
     expect(queryByText('test')).to.be.null;
