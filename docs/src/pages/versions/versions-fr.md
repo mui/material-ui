@@ -6,13 +6,13 @@
 
 La version la plus récente est recommandée en production.
 
-{{"demo": "pages/versions/StableVersions.js", "hideHeader": true, "bg": "inline"}}
+{{"demo": "pages/versions/StableVersions.js", "hideToolbar": true, "bg": "inline"}}
 
 ## Versions les plus récentes
 
 Ici vous pouvez trouver la dernière documentation non publiée et le code. Vous pouvez l'utiliser pour voir les modifications à venir et fournir des retours aux contributeurs de Material-UI.
 
-{{"demo": "pages/versions/LatestVersions.js", "hideHeader": true, "bg": "inline"}}
+{{"demo": "pages/versions/LatestVersions.js", "hideToolbar": true, "bg": "inline"}}
 
 ## Stratégie de gestion des versions
 

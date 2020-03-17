@@ -46,7 +46,7 @@ Você pode usar a propriedade `size` para definir um Chip pequeno.
 
 ## Chip - Live Demo
 
-{{"demo": "pages/components/chips/ChipsPlayground.js", "hideHeader": true}}
+{{"demo": "pages/components/chips/ChipsPlayground.js", "hideToolbar": true}}
 
 ## Acessibilidade
 

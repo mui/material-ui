@@ -49,7 +49,7 @@ Algumas colunas têm várias larguras definidas, fazendo com que o leiaute seja 
 
 Abaixo está uma demonstração interativa que permite explorar os resultados visuais das diferentes configurações:
 
-{{"demo": "pages/components/grid/InteractiveGrid.js", "hideHeader": true, "bg": true}}
+{{"demo": "pages/components/grid/InteractiveGrid.js", "hideToolbar": true, "bg": true}}
 
 ## Leiaute Automático
 

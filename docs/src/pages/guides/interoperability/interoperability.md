@@ -17,7 +17,7 @@ There are examples for the following styling solutions:
 
 Nothing fancy, just plain CSS.
 
-{{"demo": "pages/guides/interoperability/StyledComponents.js", "hideHeader": true}}
+{{"demo": "pages/guides/interoperability/StyledComponents.js", "hideToolbar": true}}
 
 [![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/plain-css-mtzri)
 
@@ -71,7 +71,7 @@ You need to use the [`classes`](/styles/advanced/#overriding-styles-classes-prop
 
 The following example overrides the `label` style of `Button` in addition to the custom styles on the button itself.
 
-{{"demo": "pages/guides/interoperability/StyledComponents.js", "hideHeader": true}}
+{{"demo": "pages/guides/interoperability/StyledComponents.js", "hideToolbar": true}}
 
 **PlainCssButtonDeep.css**
 ```css
@@ -158,7 +158,7 @@ import { StylesProvider } from '@material-ui/core/styles';
 
 The `styled()` method works perfectly on all of the components.
 
-{{"demo": "pages/guides/interoperability/StyledComponents.js", "hideHeader": true}}
+{{"demo": "pages/guides/interoperability/StyledComponents.js", "hideToolbar": true}}
 
 [![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/styled-components-r1fsr)
 
@@ -339,7 +339,7 @@ const StyledMenu = styled(({ className, ...props }) => (
 It's hard to know the market share of [this styling solution](https://github.com/css-modules/css-modules) as it's dependent on the
 bundling solution people are using.
 
-{{"demo": "pages/guides/interoperability/StyledComponents.js", "hideHeader": true}}
+{{"demo": "pages/guides/interoperability/StyledComponents.js", "hideToolbar": true}}
 
 [![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/css-modules-3j29h)
 
@@ -395,7 +395,7 @@ You need to use the [`classes`](/styles/advanced/#overriding-styles-classes-prop
 
 The following example overrides the `label` style of `Button` in addition to the custom styles on the button itself.
 
-{{"demo": "pages/guides/interoperability/StyledComponents.js", "hideHeader": true}}
+{{"demo": "pages/guides/interoperability/StyledComponents.js", "hideToolbar": true}}
 
 **CssModulesButtonDeep.css**
 ```css
@@ -439,7 +439,7 @@ export default function CssModulesButtonDeep() {
 
 Emotion's **css()** method works seamlessly with Material-UI.
 
-{{"demo": "pages/guides/interoperability/EmotionCSS.js", "hideHeader": true}}
+{{"demo": "pages/guides/interoperability/EmotionCSS.js", "hideToolbar": true}}
 
 [![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/emotion-bgfxj)
 

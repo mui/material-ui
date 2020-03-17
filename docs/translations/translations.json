@@ -91,6 +91,7 @@
   "decreaseSpacing": "decrease spacing",
   "getProfessionalSupport": "Get Professional Support",
   "diamondSponsors": "Diamond Sponsors",
+  "demoToolbarLabel": "demo source",
   "pages": {
     "/getting-started": "Getting Started",
     "/getting-started/installation": "Installation",

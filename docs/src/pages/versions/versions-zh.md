@@ -6,13 +6,13 @@
 
 我们推荐在生产开发中使用最新版本。
 
-{{"demo": "pages/versions/StableVersions.js", "hideHeader": true, "bg": "inline"}}
+{{"demo": "pages/versions/StableVersions.js", "hideToolbar": true, "bg": "inline"}}
 
 ## 最新版本
 
 在这里您可以找到尚未发布的最新文档和代码。 您可以使用它来查看未来的更新，并给 Material-UI 的贡献者提供更好的反馈。
 
-{{"demo": "pages/versions/LatestVersions.js", "hideHeader": true, "bg": "inline"}}
+{{"demo": "pages/versions/LatestVersions.js", "hideToolbar": true, "bg": "inline"}}
 
 ## 版本控制方案
 

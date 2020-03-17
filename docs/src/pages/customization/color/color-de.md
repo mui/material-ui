@@ -41,13 +41,13 @@ import HUE from '@material-ui/core/colors/HUE';
 const color = HUE[SHADE];
 ```
 
-{{"demo": "pages/customization/color/Color.js", "hideHeader": true, "bg": "inline"}}
+{{"demo": "pages/customization/color/Color.js", "hideToolbar": true, "bg": "inline"}}
 
 ## Farbwerkzeug
 
 Um ein [ material.io/design/color ](https://material.io/design/color/) Farbschema mittels der Material-UI Dokumentation zu testen, wählen Sie die Farben mittels der Palette und der Regler weiter unten aus. Alternativ können Sie Hex-Werte in die Felder Primärer und Sekundärer Text eingeben.
 
-{{"demo": "pages/customization/color/ColorTool.js", "hideHeader": true, "bg": true}}
+{{"demo": "pages/customization/color/ColorTool.js", "hideToolbar": true, "bg": true}}
 
 The output shown in the color sample can be pasted directly into a [`createMuiTheme()`](/customization/theming/#createmuitheme-options-theme) function (to be used with [`ThemeProvider`](/customization/theming/#theme-provider)):
 
