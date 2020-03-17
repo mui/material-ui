@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import url from 'url';
 import { useSelector } from 'react-redux';
 import { loadCSS } from 'fg-loadcss/src/loadCSS';
@@ -8,6 +9,7 @@ import Input from '@material-ui/core/Input';
 import SearchIcon from '@material-ui/icons/Search';
 import { handleEvent } from 'docs/src/modules/components/MarkdownLinks';
 import docsearch from 'docsearch.js';
+import clsx from 'clsx';
 
 const useStyles = makeStyles(
   theme => ({
@@ -73,8 +75,6 @@ const useStyles = makeStyles(
     root: {
       fontFamily: theme.typography.fontFamily,
       position: 'relative',
-      marginRight: theme.spacing(2),
-      marginLeft: theme.spacing(1),
       borderRadius: theme.shape.borderRadius,
       backgroundColor: fade(theme.palette.common.white, 0.15),
       '&:hover': {
@@ -112,7 +112,8 @@ const useStyles = makeStyles(
  * `<link rel="preload" href="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css" as="style" />`
  * to potentially reduce load times
  */
-export default function AppSearch() {
+export default function AppSearch(props) {
+  const { className } = props;
   const classes = useStyles();
   const inputRef = React.useRef(null);
   const theme = useTheme();
@@ -213,7 +214,7 @@ export default function AppSearch() {
   }, [desktop, userLanguage]);
 
   return (
-    <div className={classes.root} style={{ display: desktop ? 'flex' : 'none' }}>
+    <div className={clsx(classes.root, className)} style={{ display: desktop ? 'flex' : 'none' }}>
       <div className={classes.search}>
         <SearchIcon />
       </div>
@@ -234,3 +235,7 @@ export default function AppSearch() {
     </div>
   );
 }
+
+AppSearch.propTypes = {
+  className: PropTypes.string,
+};

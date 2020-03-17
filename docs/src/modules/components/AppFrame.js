@@ -52,8 +52,8 @@ Router.onRouteChangeError = () => {
 };
 
 const AppSearch = React.lazy(() => import('docs/src/modules/components/AppSearch'));
-function DeferredAppSearch() {
-  const fallback = <Skeleton height={40} variant="rect" width={200} />;
+function DeferredAppSearch(props) {
+  const { className } = props;
 
   const [mounted, setMounted] = React.useState(false);
   React.useEffect(() => {
@@ -69,15 +69,18 @@ function DeferredAppSearch() {
       />
       {/* Suspense isn't supported for SSR yet */}
       {mounted ? (
-        <React.Suspense fallback={fallback}>
-          <AppSearch />
+        <React.Suspense
+          fallback={<Skeleton className={className} height={40} variant="rect" width={200} />}
+        >
+          <AppSearch className={className} />
         </React.Suspense>
-      ) : (
-        fallback
-      )}
+      ) : null}
     </React.Fragment>
   );
 }
+DeferredAppSearch.propTypes = {
+  className: PropTypes.string,
+};
 
 const styles = theme => ({
   '@global': {
@@ -118,6 +121,10 @@ const styles = theme => ({
     color: theme.palette.type === 'dark' ? '#fff' : null,
     backgroundColor: theme.palette.type === 'dark' ? theme.palette.background.level2 : null,
     transition: theme.transitions.create('width'),
+  },
+  appSearch: {
+    marginRight: theme.spacing(2),
+    marginLeft: theme.spacing(1),
   },
   language: {
     margin: theme.spacing(0, 0.5, 0, 1),
@@ -220,7 +227,7 @@ function AppFrame(props) {
             <MenuIcon />
           </IconButton>
           <div className={classes.grow} />
-          <DeferredAppSearch />
+          <DeferredAppSearch className={classes.appSearch} />
           <Tooltip title={t('changeLanguage')} enterDelay={300}>
             <Button
               color="inherit"
