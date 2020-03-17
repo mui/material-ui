@@ -64,7 +64,7 @@ steps:
         yarn | "$(Agent.OS)"
         yarn
       path: $(DOCS_NEXT_CACHE_FOLDER)
-    displayName: Cache Yarn packages
+    displayName: Cache nextjs build
 
   - script: |
       set -o pipefail
