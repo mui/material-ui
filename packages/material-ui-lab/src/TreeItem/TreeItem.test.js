@@ -436,6 +436,40 @@ describe('<TreeItem />', () => {
           expect(getByTestId('two')).to.have.focus;
         });
 
+        it('moves focus to a sibling node after conditional rendering', () => {
+          function TestComponent() {
+            const [hide, setState] = React.useState(false);
+
+            return (
+              <React.Fragment>
+                <button type="button" onClick={() => setState(value => !value)}>
+                  Hide
+                </button>
+                <TreeView defaultExpanded={['one']}>
+                  {!hide && (
+                    <TreeItem nodeId="one" label="one" data-testid="one">
+                      <TreeItem nodeId="two" label="two" data-testid="two" />
+                    </TreeItem>
+                  )}
+                  <TreeItem nodeId="three" label="three" />
+                </TreeView>
+              </React.Fragment>
+            );
+          }
+
+          const { getByText, queryByText, getByTestId } = render(<TestComponent />);
+
+          expect(getByText('one')).to.not.be.null;
+          fireEvent.click(getByText('Hide'));
+          expect(queryByText('one')).to.be.null;
+          fireEvent.click(getByText('Hide'));
+          expect(getByText('one')).to.not.be.null;
+          getByTestId('one').focus();
+          fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+
+          expect(getByTestId('two')).to.have.focus;
+        });
+
         it('moves focus to a child node', () => {
           const { getByTestId } = render(
             <TreeView defaultExpanded={['one']}>
