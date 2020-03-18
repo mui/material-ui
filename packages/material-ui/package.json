@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/core",
-  "version": "4.9.5",
+  "version": "4.9.6",
   "private": false,
   "author": "Material-UI Team",
   "description": "React components that implement Google's Material Design.",
@@ -51,7 +51,7 @@
     "@material-ui/styles": "^4.9.0",
     "@material-ui/system": "^4.9.3",
     "@material-ui/types": "^5.0.0",
-    "@material-ui/utils": "^4.7.1",
+    "@material-ui/utils": "^4.9.6",
     "@types/react-transition-group": "^4.2.0",
     "clsx": "^1.0.2",
     "hoist-non-react-statics": "^3.3.2",
