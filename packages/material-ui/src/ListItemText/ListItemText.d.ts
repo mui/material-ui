@@ -32,10 +32,10 @@ export type ListItemTextClassKey =
 // const declarations are ignored.
 /* tslint:disable:prefer-declare-function */
 declare const ListItemText: <
-  P extends React.ElementType = 'span',
-  S extends React.ElementType = 'p'
+  PrimaryTypographyComponent extends React.ElementType = 'span',
+  SecondaryTypographyComponent extends React.ElementType = 'p'
 >(
-  props: ListItemTextProps<P, S>,
+  props: ListItemTextProps<PrimaryTypographyComponent, SecondaryTypographyComponent>,
 ) => JSX.Element;
 
 export default ListItemText;
