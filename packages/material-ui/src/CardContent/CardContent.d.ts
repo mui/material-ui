@@ -6,7 +6,16 @@ export interface CardContentTypeMap<P = {}, D extends React.ElementType = 'div'>
   defaultComponent: D;
   classKey: CardContentClassKey;
 }
-
+/**
+ *
+ * Demos:
+ *
+ * - [Cards](https://material-ui.com/components/cards/)
+ *
+ * API:
+ *
+ * - [CardContent API](https://material-ui.com/api/card-content/)
+ */
 declare const CardContent: OverridableComponent<CardContentTypeMap>;
 
 export type CardContentClassKey = 'root';

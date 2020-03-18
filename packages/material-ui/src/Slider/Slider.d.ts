@@ -41,7 +41,16 @@ export interface SliderTypeMap<P = {}, D extends React.ElementType = 'span'> {
   defaultComponent: D;
   classKey: SliderClassKey;
 }
-
+/**
+ *
+ * Demos:
+ *
+ * - [Slider](https://material-ui.com/components/slider/)
+ *
+ * API:
+ *
+ * - [Slider API](https://material-ui.com/api/slider/)
+ */
 declare const Slider: OverridableComponent<SliderTypeMap>;
 
 export type SliderClassKey =

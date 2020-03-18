@@ -42,6 +42,16 @@ export type SnackbarClassKey =
   | 'anchorOriginTopLeft'
   | 'anchorOriginBottomLeft';
 
+/**
+ *
+ * Demos:
+ *
+ * - [Snackbars](https://material-ui.com/components/snackbars/)
+ *
+ * API:
+ *
+ * - [Snackbar API](https://material-ui.com/api/snackbar/)
+ */
 declare const Snackbar: React.ComponentType<SnackbarProps>;
 
 export default Snackbar;

@@ -78,6 +78,18 @@ export type InputBaseClassKey =
   | 'inputAdornedEnd'
   | 'inputHiddenLabel';
 
+/**
+ * `InputBase` contains as few styles as possible.
+ * It aims to be a simple building block for creating an input.
+ * It contains a load of style reset and some state logic.
+ * Demos:
+ *
+ * - [Text Fields](https://material-ui.com/components/text-fields/)
+ *
+ * API:
+ *
+ * - [InputBase API](https://material-ui.com/api/input-base/)
+ */
 declare const InputBase: React.ComponentType<InputBaseProps>;
 
 export default InputBase;

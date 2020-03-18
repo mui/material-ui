@@ -38,6 +38,18 @@ export type ExtendButtonBase<M extends OverridableTypeMap> = ((
 ) => JSX.Element) &
   OverridableComponent<ExtendButtonBaseTypeMap<M>>;
 
+/**
+ * `ButtonBase` contains as few styles as possible.
+ * It aims to be a simple building block for creating a button.
+ * It contains a load of style reset and some focus/ripple logic.
+ * Demos:
+ *
+ * - [Buttons](https://material-ui.com/components/buttons/)
+ *
+ * API:
+ *
+ * - [ButtonBase API](https://material-ui.com/api/button-base/)
+ */
 declare const ButtonBase: ExtendButtonBase<ButtonBaseTypeMap>;
 
 export type ButtonBaseProps<

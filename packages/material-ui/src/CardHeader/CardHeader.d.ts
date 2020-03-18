@@ -15,7 +15,16 @@ export interface CardHeaderTypeMap<P = {}, D extends React.ElementType = 'div'> 
   defaultComponent: D;
   classKey: CardHeaderClassKey;
 }
-
+/**
+ *
+ * Demos:
+ *
+ * - [Cards](https://material-ui.com/components/cards/)
+ *
+ * API:
+ *
+ * - [CardHeader API](https://material-ui.com/api/card-header/)
+ */
 declare const CardHeader: OverridableComponent<CardHeaderTypeMap>;
 
 export type CardHeaderClassKey = 'root' | 'avatar' | 'action' | 'content' | 'title' | 'subheader';

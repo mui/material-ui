@@ -6,7 +6,16 @@ export interface TableContainerTypeMap<P = {}, D extends React.ElementType = 'di
   defaultComponent: D;
   classKey: TableContainerClassKey;
 }
-
+/**
+ *
+ * Demos:
+ *
+ * - [Tables](https://material-ui.com/components/tables/)
+ *
+ * API:
+ *
+ * - [TableContainer API](https://material-ui.com/api/table-container/)
+ */
 declare const TableContainer: OverridableComponent<TableContainerTypeMap>;
 
 export type TableContainerClassKey = 'root';

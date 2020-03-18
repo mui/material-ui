@@ -184,6 +184,16 @@ export type AutocompleteClassKey =
   | 'groupLabel'
   | 'groupUl';
 
+/**
+ *
+ * Demos:
+ *
+ * - [Autocomplete](https://material-ui.com/components/autocomplete/)
+ *
+ * API:
+ *
+ * - [Autocomplete API](https://material-ui.com/api/autocomplete/)
+ */
 export default function Autocomplete<T>(
   props: AutocompleteProps<T> & UseAutocompleteProps<T>,
 ): JSX.Element;

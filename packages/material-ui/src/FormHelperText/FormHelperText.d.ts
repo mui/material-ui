@@ -14,7 +14,16 @@ export interface FormHelperTextTypeMap<P = {}, D extends React.ElementType = 'p'
   defaultComponent: D;
   classKey: FormHelperTextClassKey;
 }
-
+/**
+ *
+ * Demos:
+ *
+ * - [Text Fields](https://material-ui.com/components/text-fields/)
+ *
+ * API:
+ *
+ * - [FormHelperText API](https://material-ui.com/api/form-helper-text/)
+ */
 declare const FormHelperText: OverridableComponent<FormHelperTextTypeMap>;
 
 export type FormHelperTextClassKey =

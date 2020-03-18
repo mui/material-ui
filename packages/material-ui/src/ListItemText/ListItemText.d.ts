@@ -55,7 +55,16 @@ export type ListItemTextClassKey =
   | 'inset'
   | 'primary'
   | 'secondary';
-
+/**
+ *
+ * Demos:
+ *
+ * - [Lists](https://material-ui.com/components/lists/)
+ *
+ * API:
+ *
+ * - [ListItemText API](https://material-ui.com/api/list-item-text/)
+ */
 export default function ListItemText<
   PrimaryTypographyComponent extends React.ElementType = 'span',
   SecondaryTypographyComponent extends React.ElementType = 'p'

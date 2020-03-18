@@ -17,6 +17,16 @@ export interface ButtonGroupTypeMap<P = {}, D extends React.ElementType = 'div'>
   classKey: ButtonGroupClassKey;
 }
 
+/**
+ *
+ * Demos:
+ *
+ * - [Button Group](https://material-ui.com/components/button-group/)
+ *
+ * API:
+ *
+ * - [ButtonGroup API](https://material-ui.com/api/button-group/)
+ */
 declare const ButtonGroup: OverridableComponent<ButtonGroupTypeMap>;
 
 export type ButtonGroupClassKey =

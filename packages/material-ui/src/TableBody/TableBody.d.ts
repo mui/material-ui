@@ -6,7 +6,16 @@ export interface TableBodyTypeMap<P = {}, D extends React.ElementType = 'tbody'>
   defaultComponent: D;
   classKey: TableBodyClassKey;
 }
-
+/**
+ *
+ * Demos:
+ *
+ * - [Tables](https://material-ui.com/components/tables/)
+ *
+ * API:
+ *
+ * - [TableBody API](https://material-ui.com/api/table-body/)
+ */
 declare const TableBody: OverridableComponent<TableBodyTypeMap>;
 
 export type TableBodyClassKey = 'root';

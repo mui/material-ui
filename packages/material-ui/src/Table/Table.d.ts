@@ -14,7 +14,16 @@ export interface TableTypeMap<P = {}, D extends React.ElementType = 'table'> {
   defaultComponent: D;
   classKey: TableClassKey;
 }
-
+/**
+ *
+ * Demos:
+ *
+ * - [Tables](https://material-ui.com/components/tables/)
+ *
+ * API:
+ *
+ * - [Table API](https://material-ui.com/api/table/)
+ */
 declare const Table: OverridableComponent<TableTypeMap>;
 
 export type TableClassKey = 'root' | 'stickyHeader';

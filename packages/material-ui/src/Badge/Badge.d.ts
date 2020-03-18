@@ -65,7 +65,17 @@ export type BadgeClassKey =
   | 'anchorOriginBottomRightCircle'
   | 'anchorOriginTopLeftCircle'
   | 'invisible';
-
+/**
+ *
+ * Demos:
+ *
+ * - [Avatars](https://material-ui.com/components/avatars/)
+ * - [Badges](https://material-ui.com/components/badges/)
+ *
+ * API:
+ *
+ * - [Badge API](https://material-ui.com/api/badge/)
+ */
 declare const Badge: OverridableComponent<BadgeTypeMap>;
 
 export type BadgeProps<
