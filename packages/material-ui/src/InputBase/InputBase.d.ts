@@ -84,9 +84,11 @@ export type InputBaseClassKey =
  * It contains a load of style reset and some state logic.
  *
  * Demos:
+ *
  * - [Text Fields](https://material-ui.com/components/text-fields/)
  *
  * API:
+ *
  * - [InputBase API](https://material-ui.com/api/input-base/)
  *
  */

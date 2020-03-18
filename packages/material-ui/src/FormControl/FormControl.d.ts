@@ -42,12 +42,14 @@ export interface FormControlTypeMap<P = {}, D extends React.ElementType = 'div'>
  * ⚠️Only one input can be used within a FormControl.
  *
  * Demos:
+ *
  * - [Checkboxes](https://material-ui.com/components/checkboxes/)
  * - [Radio Buttons](https://material-ui.com/components/radio-buttons/)
  * - [Switches](https://material-ui.com/components/switches/)
  * - [Text Fields](https://material-ui.com/components/text-fields/)
  *
  * API:
+ *
  * - [FormControl API](https://material-ui.com/api/form-control/)
  *
  */

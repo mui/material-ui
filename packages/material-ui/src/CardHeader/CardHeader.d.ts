@@ -20,9 +20,11 @@ export type CardHeaderClassKey = 'root' | 'avatar' | 'action' | 'content' | 'tit
  *
  *
  * Demos:
+ *
  * - [Cards](https://material-ui.com/components/cards/)
  *
  * API:
+ *
  * - [CardHeader API](https://material-ui.com/api/card-header/)
  *
  */

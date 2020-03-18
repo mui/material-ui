@@ -71,10 +71,12 @@ export type BadgeClassKey =
  *
  *
  * Demos:
+ *
  * - [Avatars](https://material-ui.com/components/avatars/)
  * - [Badges](https://material-ui.com/components/badges/)
  *
  * API:
+ *
  * - [Badge API](https://material-ui.com/api/badge/)
  *
  */

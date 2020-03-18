@@ -13,10 +13,12 @@ export interface SlideProps extends TransitionProps {
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  *
  * Demos:
+ *
  * - [Dialogs](https://material-ui.com/components/dialogs/)
  * - [Transitions](https://material-ui.com/components/transitions/)
  *
  * API:
+ *
  * - [Slide API](https://material-ui.com/api/slide/)
  * - inherits [Transition API](https://reactcommunity.org/react-transition-group/transition#Transition-props)
  */

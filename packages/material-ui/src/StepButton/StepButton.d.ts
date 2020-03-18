@@ -24,9 +24,11 @@ export type StepButtonTypeMap<P, D extends React.ElementType> = ExtendButtonBase
  *
  *
  * Demos:
+ *
  * - [Steppers](https://material-ui.com/components/steppers/)
  *
  * API:
+ *
  * - [StepButton API](https://material-ui.com/api/step-button/)
  * - inherits [ButtonBase API](https://material-ui.com/api/button-base/)
  */

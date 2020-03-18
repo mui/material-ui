@@ -12,9 +12,11 @@ export type CardClassKey = 'root';
  *
  *
  * Demos:
+ *
  * - [Cards](https://material-ui.com/components/cards/)
  *
  * API:
+ *
  * - [Card API](https://material-ui.com/api/card/)
  * - inherits [Paper API](https://material-ui.com/api/paper/)
  */

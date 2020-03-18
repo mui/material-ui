@@ -18,9 +18,11 @@ export interface AvatarTypeMap<P = {}, D extends React.ElementType = 'div'> {
  *
  *
  * Demos:
+ *
  * - [Avatars](https://material-ui.com/components/avatars/)
  *
  * API:
+ *
  * - [Avatar API](https://material-ui.com/api/avatar/)
  *
  */

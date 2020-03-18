@@ -183,11 +183,13 @@ async function annotateComponentDefinition(component, api) {
   const jsdoc = `/**
  * ${await computeApiDescription(api, { host: HOST })}
  * Demos:
+ *
  * - ${demos
    .map(page => `[${pageToTitle(page)}](${HOST}${rewriteUrlForNextExport(page.pathname)})`)
    .join('\n * - ')}
  *
  * API:
+ *
  * - [${api.name} API](${HOST}/api/${kebabCase(api.name)}/)
  * ${api.inheritance !== null ? `- inherits ${inheritanceAPILink}` : ''}
  */`;

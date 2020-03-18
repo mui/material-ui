@@ -14,9 +14,11 @@ export type TableContainerClassKey = 'root';
  *
  *
  * Demos:
+ *
  * - [Tables](https://material-ui.com/components/tables/)
  *
  * API:
+ *
  * - [TableContainer API](https://material-ui.com/api/table-container/)
  *
  */

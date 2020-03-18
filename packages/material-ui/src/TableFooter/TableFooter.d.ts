@@ -13,9 +13,11 @@ export type TableFooterBaseProps = React.HTMLAttributes<HTMLTableSectionElement>
  *
  *
  * Demos:
+ *
  * - [Tables](https://material-ui.com/components/tables/)
  *
  * API:
+ *
  * - [TableFooter API](https://material-ui.com/api/table-footer/)
  *
  */

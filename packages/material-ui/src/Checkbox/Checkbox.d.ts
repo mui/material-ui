@@ -22,10 +22,12 @@ export type CheckboxClassKey =
  *
  *
  * Demos:
+ *
  * - [Checkboxes](https://material-ui.com/components/checkboxes/)
  * - [Transfer List](https://material-ui.com/components/transfer-list/)
  *
  * API:
+ *
  * - [Checkbox API](https://material-ui.com/api/checkbox/)
  * - inherits [IconButton API](https://material-ui.com/api/icon-button/)
  */

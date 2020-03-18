@@ -45,9 +45,11 @@ export type RatingClassKey =
  *
  *
  * Demos:
+ *
  * - [Rating](https://material-ui.com/components/rating/)
  *
  * API:
+ *
  * - [Rating API](https://material-ui.com/api/rating/)
  *
  */

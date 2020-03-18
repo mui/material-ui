@@ -26,9 +26,11 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof Button
  *
  *
  * Demos:
+ *
  * - [Tabs](https://material-ui.com/components/tabs/)
  *
  * API:
+ *
  * - [Tabs API](https://material-ui.com/api/tabs/)
  *
  */

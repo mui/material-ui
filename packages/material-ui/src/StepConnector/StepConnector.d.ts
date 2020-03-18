@@ -30,9 +30,11 @@ export type StepConnectorClasskey =
  *
  *
  * Demos:
+ *
  * - [Steppers](https://material-ui.com/components/steppers/)
  *
  * API:
+ *
  * - [StepConnector API](https://material-ui.com/api/step-connector/)
  *
  */

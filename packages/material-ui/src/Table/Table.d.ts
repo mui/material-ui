@@ -20,9 +20,11 @@ export type TableClassKey = 'root' | 'stickyHeader';
  *
  *
  * Demos:
+ *
  * - [Tables](https://material-ui.com/components/tables/)
  *
  * API:
+ *
  * - [Table API](https://material-ui.com/api/table/)
  *
  */

@@ -29,9 +29,11 @@ export type OutlinedInputClassKey =
  *
  *
  * Demos:
+ *
  * - [Text Fields](https://material-ui.com/components/text-fields/)
  *
  * API:
+ *
  * - [OutlinedInput API](https://material-ui.com/api/outlined-input/)
  * - inherits [InputBase API](https://material-ui.com/api/input-base/)
  */

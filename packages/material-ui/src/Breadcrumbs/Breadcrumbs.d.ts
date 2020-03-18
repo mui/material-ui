@@ -16,9 +16,11 @@ export interface BreadcrumbsTypeMap<P = {}, D extends React.ElementType = 'nav'>
  *
  *
  * Demos:
+ *
  * - [Breadcrumbs](https://material-ui.com/components/breadcrumbs/)
  *
  * API:
+ *
  * - [Breadcrumbs API](https://material-ui.com/api/breadcrumbs/)
  *
  */

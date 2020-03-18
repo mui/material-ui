@@ -21,10 +21,12 @@ export type IconButtonTypeMap<
  * regarding the available icon options.
  *
  * Demos:
+ *
  * - [Buttons](https://material-ui.com/components/buttons/)
  * - [Grid List](https://material-ui.com/components/grid-list/)
  *
  * API:
+ *
  * - [IconButton API](https://material-ui.com/api/icon-button/)
  * - inherits [ButtonBase API](https://material-ui.com/api/button-base/)
  */

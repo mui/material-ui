@@ -18,9 +18,11 @@ export type DialogContentTextClassKey = 'root';
  *
  *
  * Demos:
+ *
  * - [Dialogs](https://material-ui.com/components/dialogs/)
  *
  * API:
+ *
  * - [DialogContentText API](https://material-ui.com/api/dialog-content-text/)
  * - inherits [Typography API](https://material-ui.com/api/typography/)
  */

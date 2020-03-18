@@ -27,9 +27,11 @@ export type NativeSelectClassKey =
  * An alternative to `<Select native />` with a much smaller bundle size footprint.
  *
  * Demos:
+ *
  * - [Selects](https://material-ui.com/components/selects/)
  *
  * API:
+ *
  * - [NativeSelect API](https://material-ui.com/api/native-select/)
  * - inherits [Input API](https://material-ui.com/api/input/)
  */

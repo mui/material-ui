@@ -17,9 +17,11 @@ export interface NoSsrProps {
  * -   Under too heavy server load, you can turn on service degradation.
  *
  * Demos:
+ *
  * - [No Ssr](https://material-ui.com/components/no-ssr/)
  *
  * API:
+ *
  * - [NoSsr API](https://material-ui.com/api/no-ssr/)
  *
  */

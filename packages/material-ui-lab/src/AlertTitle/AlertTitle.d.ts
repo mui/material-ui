@@ -10,9 +10,11 @@ export type AlertTitleClassKey = 'root';
  *
  *
  * Demos:
+ *
  * -
  *
  * API:
+ *
  * - [AlertTitle API](https://material-ui.com/api/alert-title/)
  *
  */

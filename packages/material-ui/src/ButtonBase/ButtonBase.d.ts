@@ -44,9 +44,11 @@ export type ExtendButtonBase<M extends OverridableTypeMap> = ((
  * It contains a load of style reset and some focus/ripple logic.
  *
  * Demos:
+ *
  * - [Buttons](https://material-ui.com/components/buttons/)
  *
  * API:
+ *
  * - [ButtonBase API](https://material-ui.com/api/button-base/)
  *
  */

@@ -21,9 +21,11 @@ export interface HiddenProps {
  * Responsively hides children based on the selected implementation.
  *
  * Demos:
+ *
  * - [Hidden](https://material-ui.com/components/hidden/)
  *
  * API:
+ *
  * - [Hidden API](https://material-ui.com/api/hidden/)
  *
  */

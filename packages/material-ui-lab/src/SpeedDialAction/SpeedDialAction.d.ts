@@ -47,9 +47,11 @@ export type SpeedDialActionClassKey =
  *
  *
  * Demos:
+ *
  * - [Speed Dial](https://material-ui.com/components/speed-dial/)
  *
  * API:
+ *
  * - [SpeedDialAction API](https://material-ui.com/api/speed-dial-action/)
  * - inherits [Tooltip API](https://material-ui.com/api/tooltip/)
  */

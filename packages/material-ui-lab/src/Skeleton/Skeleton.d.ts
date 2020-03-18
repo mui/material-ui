@@ -16,9 +16,11 @@ export interface SkeletonTypeMap<P = {}, D extends React.ElementType = 'span'> {
  *
  *
  * Demos:
+ *
  * - [Skeleton](https://material-ui.com/components/skeleton/)
  *
  * API:
+ *
  * - [Skeleton API](https://material-ui.com/api/skeleton/)
  *
  */

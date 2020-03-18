@@ -52,9 +52,11 @@ export type TreeItemClassKey =
  *
  *
  * Demos:
+ *
  * - [Tree View](https://material-ui.com/components/tree-view/)
  *
  * API:
+ *
  * - [TreeItem API](https://material-ui.com/api/tree-item/)
  *
  */

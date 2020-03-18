@@ -12,9 +12,11 @@ export type CardActionsClassKey = 'root' | 'spacing';
  *
  *
  * Demos:
+ *
  * - [Cards](https://material-ui.com/components/cards/)
  *
  * API:
+ *
  * - [CardActions API](https://material-ui.com/api/card-actions/)
  *
  */

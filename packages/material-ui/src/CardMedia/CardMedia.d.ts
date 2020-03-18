@@ -14,9 +14,11 @@ export interface CardMediaTypeMap<P, D extends React.ElementType> {
  *
  *
  * Demos:
+ *
  * - [Cards](https://material-ui.com/components/cards/)
  *
  * API:
+ *
  * - [CardMedia API](https://material-ui.com/api/card-media/)
  *
  */

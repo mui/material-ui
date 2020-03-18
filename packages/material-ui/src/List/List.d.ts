@@ -15,10 +15,12 @@ export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
  *
  *
  * Demos:
+ *
  * - [Lists](https://material-ui.com/components/lists/)
  * - [Transfer List](https://material-ui.com/components/transfer-list/)
  *
  * API:
+ *
  * - [List API](https://material-ui.com/api/list/)
  *
  */

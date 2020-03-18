@@ -91,9 +91,11 @@ export type SpeedDialClassKey =
  *
  *
  * Demos:
+ *
  * - [Speed Dial](https://material-ui.com/components/speed-dial/)
  *
  * API:
+ *
  * - [SpeedDial API](https://material-ui.com/api/speed-dial/)
  *
  */

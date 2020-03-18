@@ -30,9 +30,11 @@ export type SpeedDialIconClassKey =
  *
  *
  * Demos:
+ *
  * - [Speed Dial](https://material-ui.com/components/speed-dial/)
  *
  * API:
+ *
  * - [SpeedDialIcon API](https://material-ui.com/api/speed-dial-icon/)
  *
  */

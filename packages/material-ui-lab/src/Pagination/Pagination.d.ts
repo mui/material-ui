@@ -51,9 +51,11 @@ export type PaginationClassKey = 'root' | 'ul';
  *
  *
  * Demos:
+ *
  * - [Pagination](https://material-ui.com/components/pagination/)
  *
  * API:
+ *
  * - [Pagination API](https://material-ui.com/api/pagination/)
  *
  */

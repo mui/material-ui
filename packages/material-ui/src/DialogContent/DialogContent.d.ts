@@ -12,9 +12,11 @@ export type DialogContentClassKey = 'root' | 'dividers';
  *
  *
  * Demos:
+ *
  * - [Dialogs](https://material-ui.com/components/dialogs/)
  *
  * API:
+ *
  * - [DialogContent API](https://material-ui.com/api/dialog-content/)
  *
  */

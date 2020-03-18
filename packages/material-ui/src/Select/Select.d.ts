@@ -42,9 +42,11 @@ export type SelectClassKey =
  *
  *
  * Demos:
+ *
  * - [Selects](https://material-ui.com/components/selects/)
  *
  * API:
+ *
  * - [Select API](https://material-ui.com/api/select/)
  * - inherits [Input API](https://material-ui.com/api/input/)
  */

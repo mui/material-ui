@@ -37,9 +37,11 @@ export type StepLabelClasskey =
  *
  *
  * Demos:
+ *
  * - [Steppers](https://material-ui.com/components/steppers/)
  *
  * API:
+ *
  * - [StepLabel API](https://material-ui.com/api/step-label/)
  *
  */

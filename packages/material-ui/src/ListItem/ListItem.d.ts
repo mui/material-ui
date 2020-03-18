@@ -24,10 +24,12 @@ export interface ListItemTypeMap<P, D extends React.ElementType> {
  * Uses an additional container component if `ListItemSecondaryAction` is the last child.
  *
  * Demos:
+ *
  * - [Lists](https://material-ui.com/components/lists/)
  * - [Transfer List](https://material-ui.com/components/transfer-list/)
  *
  * API:
+ *
  * - [ListItem API](https://material-ui.com/api/list-item/)
  *
  */

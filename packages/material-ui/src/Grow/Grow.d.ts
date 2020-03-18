@@ -15,10 +15,12 @@ export interface GrowProps extends Omit<TransitionProps, 'timeout'> {
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  *
  * Demos:
+ *
  * - [Popover](https://material-ui.com/components/popover/)
  * - [Transitions](https://material-ui.com/components/transitions/)
  *
  * API:
+ *
  * - [Grow API](https://material-ui.com/api/grow/)
  * - inherits [Transition API](https://reactcommunity.org/react-transition-group/transition#Transition-props)
  */

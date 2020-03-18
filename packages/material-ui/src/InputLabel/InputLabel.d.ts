@@ -31,9 +31,11 @@ export type InputLabelClassKey =
  *
  *
  * Demos:
+ *
  * - [Text Fields](https://material-ui.com/components/text-fields/)
  *
  * API:
+ *
  * - [InputLabel API](https://material-ui.com/api/input-label/)
  * - inherits [FormLabel API](https://material-ui.com/api/form-label/)
  */

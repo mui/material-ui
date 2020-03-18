@@ -23,9 +23,11 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
  * Chips represent complex entities in small blocks, such as a contact.
  *
  * Demos:
+ *
  * - [Chips](https://material-ui.com/components/chips/)
  *
  * API:
+ *
  * - [Chip API](https://material-ui.com/api/chip/)
  *
  */

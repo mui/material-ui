@@ -15,9 +15,11 @@ export type GridListClassKey = 'root';
  *
  *
  * Demos:
+ *
  * - [Grid List](https://material-ui.com/components/grid-list/)
  *
  * API:
+ *
  * - [GridList API](https://material-ui.com/api/grid-list/)
  *
  */

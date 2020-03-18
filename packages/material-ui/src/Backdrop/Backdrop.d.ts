@@ -30,9 +30,11 @@ export type BackdropClassKey = 'root' | 'invisible';
  *
  *
  * Demos:
+ *
  * - [Backdrop](https://material-ui.com/components/backdrop/)
  *
  * API:
+ *
  * - [Backdrop API](https://material-ui.com/api/backdrop/)
  *
  */

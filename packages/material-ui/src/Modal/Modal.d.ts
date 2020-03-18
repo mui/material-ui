@@ -43,9 +43,11 @@ export interface ModalProps
  * This component shares many concepts with [react-overlays](https://react-bootstrap.github.io/react-overlays/#modals).
  *
  * Demos:
+ *
  * - [Modal](https://material-ui.com/components/modal/)
  *
  * API:
+ *
  * - [Modal API](https://material-ui.com/api/modal/)
  *
  */

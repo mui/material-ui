@@ -23,10 +23,12 @@ export type IconClassKey =
  *
  *
  * Demos:
+ *
  * - [Icons](https://material-ui.com/components/icons/)
  * - [Material Icons](https://material-ui.com/components/material-icons/)
  *
  * API:
+ *
  * - [Icon API](https://material-ui.com/api/icon/)
  *
  */

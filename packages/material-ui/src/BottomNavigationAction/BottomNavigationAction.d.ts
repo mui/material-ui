@@ -23,9 +23,11 @@ export type BottomNavigationActionTypeMap<
  *
  *
  * Demos:
+ *
  * - [Bottom Navigation](https://material-ui.com/components/bottom-navigation/)
  *
  * API:
+ *
  * - [BottomNavigationAction API](https://material-ui.com/api/bottom-navigation-action/)
  * - inherits [ButtonBase API](https://material-ui.com/api/button-base/)
  */

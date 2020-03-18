@@ -14,9 +14,11 @@ export type ToolbarClassKey = 'root' | 'gutters' | 'regular' | 'dense';
  *
  *
  * Demos:
+ *
  * - [App Bar](https://material-ui.com/components/app-bar/)
  *
  * API:
+ *
  * - [Toolbar API](https://material-ui.com/api/toolbar/)
  *
  */

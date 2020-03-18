@@ -37,9 +37,11 @@ export type LinearProgressClassKey =
  * attribute to `true` on that region until it has finished loading.
  *
  * Demos:
+ *
  * - [Progress](https://material-ui.com/components/progress/)
  *
  * API:
+ *
  * - [LinearProgress API](https://material-ui.com/api/linear-progress/)
  *
  */

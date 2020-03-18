@@ -46,9 +46,11 @@ export type SnackbarClassKey =
  *
  *
  * Demos:
+ *
  * - [Snackbars](https://material-ui.com/components/snackbars/)
  *
  * API:
+ *
  * - [Snackbar API](https://material-ui.com/api/snackbar/)
  *
  */

@@ -22,10 +22,12 @@ export type MenuClassKey = 'paper' | 'list';
  *
  *
  * Demos:
+ *
  * - [App Bar](https://material-ui.com/components/app-bar/)
  * - [Menus](https://material-ui.com/components/menus/)
  *
  * API:
+ *
  * - [Menu API](https://material-ui.com/api/menu/)
  * - inherits [Popover API](https://material-ui.com/api/popover/)
  */

@@ -23,9 +23,11 @@ export type ToggleButtonTypeMap<
  *
  *
  * Demos:
+ *
  * - [Toggle Button](https://material-ui.com/components/toggle-button/)
  *
  * API:
+ *
  * - [ToggleButton API](https://material-ui.com/api/toggle-button/)
  * - inherits [ButtonBase API](https://material-ui.com/api/button-base/)
  */

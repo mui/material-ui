@@ -18,9 +18,11 @@ export type MenuListClassKey = ListClassKey;
  * the focus is placed inside the component it is fully keyboard accessible.
  *
  * Demos:
+ *
  * - [Menus](https://material-ui.com/components/menus/)
  *
  * API:
+ *
  * - [MenuList API](https://material-ui.com/api/menu-list/)
  * - inherits [List API](https://material-ui.com/api/list/)
  */

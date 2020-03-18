@@ -29,9 +29,11 @@ export type AppBarClassKey =
  *
  *
  * Demos:
+ *
  * - [App Bar](https://material-ui.com/components/app-bar/)
  *
  * API:
+ *
  * - [AppBar API](https://material-ui.com/api/app-bar/)
  * - inherits [Paper API](https://material-ui.com/api/paper/)
  */

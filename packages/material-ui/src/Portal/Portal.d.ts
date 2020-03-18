@@ -30,9 +30,11 @@ export interface PortalProps {
  * that exists outside the DOM hierarchy of the parent component.
  *
  * Demos:
+ *
  * - [Portal](https://material-ui.com/components/portal/)
  *
  * API:
+ *
  * - [Portal API](https://material-ui.com/api/portal/)
  *
  */

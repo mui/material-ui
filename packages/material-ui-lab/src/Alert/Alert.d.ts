@@ -74,9 +74,11 @@ export type AlertClassKey =
  *
  *
  * Demos:
+ *
  * - [Alert](https://material-ui.com/components/alert/)
  *
  * API:
+ *
  * - [Alert API](https://material-ui.com/api/alert/)
  * - inherits [Paper API](https://material-ui.com/api/paper/)
  */

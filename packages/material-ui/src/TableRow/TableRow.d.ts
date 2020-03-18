@@ -16,9 +16,11 @@ export type TableRowClassKey = 'root' | 'selected' | 'hover' | 'head' | 'footer'
  * based on the material table element parent (head, body, etc).
  *
  * Demos:
+ *
  * - [Tables](https://material-ui.com/components/tables/)
  *
  * API:
+ *
  * - [TableRow API](https://material-ui.com/api/table-row/)
  *
  */

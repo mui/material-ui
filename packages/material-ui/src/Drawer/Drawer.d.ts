@@ -43,9 +43,11 @@ export type DrawerClassKey =
  * when `variant="temporary"` is set.
  *
  * Demos:
+ *
  * - [Drawers](https://material-ui.com/components/drawers/)
  *
  * API:
+ *
  * - [Drawer API](https://material-ui.com/api/drawer/)
  *
  */

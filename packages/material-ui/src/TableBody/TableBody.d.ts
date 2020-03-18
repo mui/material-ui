@@ -13,9 +13,11 @@ export type TableBodyBaseProps = React.HTMLAttributes<HTMLTableSectionElement>;
  *
  *
  * Demos:
+ *
  * - [Tables](https://material-ui.com/components/tables/)
  *
  * API:
+ *
  * - [TableBody API](https://material-ui.com/api/table-body/)
  *
  */

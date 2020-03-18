@@ -36,9 +36,11 @@ export type BottomNavigationClassKey = 'root';
  *
  *
  * Demos:
+ *
  * - [Bottom Navigation](https://material-ui.com/components/bottom-navigation/)
  *
  * API:
+ *
  * - [BottomNavigation API](https://material-ui.com/api/bottom-navigation/)
  *
  */
