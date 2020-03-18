@@ -5,11 +5,11 @@ components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead,
 
 # Table (tabelle)
 
-<p class="description">Tables display sets of data. They can be fully customized.</p>
+<p class="description">Tabellen zeigen Datensätze an. Sie können vollständig angepasst werden.</p>
 
 [Tables](https://material.io/design/components/data-tables.html) display information in a way that’s easy to scan, so that users can look for patterns and insights. Sie können wie Karten in den Primär-Inhalt eingebettet werden.
 
-Tables can include:
+Tabellen können beinhalten:
 
 - Eine entsprechende Visualisierung
 - Navigation

@@ -26,7 +26,7 @@ Berührungsmechanik:
 
 Alarme sind dringende Unterbrechungen, die eine Bestätigung erfordern und den Benutzer über eine Situation informieren.
 
-Most alerts don't need titles. They summarize a decision in a sentence or two by either:
+Die meisten Alarme benötigen keine Titel. They summarize a decision in a sentence or two by either:
 
 - Eine Frage stellen (zB "Dieses Gespräch löschen?")
 - Eine Aussage zu den Aktionsschaltflächen machen

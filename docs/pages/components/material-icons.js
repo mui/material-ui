@@ -15,8 +15,6 @@ const req = name => {
 req.keys = () => ['material-icons.md', 'SearchIcons.js'];
 const reqPrefix = 'pages/components/material-icons';
 
-function Page() {
+export default function Page() {
   return <MarkdownDocs disableToc req={req} reqSource={() => {}} reqPrefix={reqPrefix} />;
 }
-
-export default Page;

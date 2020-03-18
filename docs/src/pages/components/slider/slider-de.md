@@ -63,11 +63,17 @@ The track can be inverted with `track="inverted"`.
 
 {{"demo": "pages/components/slider/TrackInvertedSlider.js"}}
 
+## Non-linear scale
+
+You can use the `scale` prop to represent the `value` on a different scale. For instance, in the following demo, the value *x* represents the power of *10^x*.
+
+{{"demo": "pages/components/slider/NonLinearSlider.js"}}
+
 ## Barrierefreiheit
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#slider)
 
-The component handles most of the work necessary to make it accessible. However, you need to make sure that:
+The component handles most of the work necessary to make it accessible. Sie müssen jedoch sicherstellen, dass:
 
 - Each thumb has a user-friendly label (`aria-label`, `aria-labelledby` or `getAriaLabel` prop).
 - Each thumb has a user-friendly text for its current value. This is not required if the value matches the semantics of the label. You can change the name with the `getAriaValueText` or `aria-valuetext` prop.

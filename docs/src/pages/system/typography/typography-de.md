@@ -53,7 +53,7 @@
 <Box fontFamily="Monospace">…
 ```
 
-## Letter Spacing
+## Zeichenabstand
 
 {{"demo": "pages/system/typography/LetterSpacing.js", "defaultCodeOpen": false}}
 
@@ -62,7 +62,7 @@
 <Box letterSpacing={10}>…
 ```
 
-## Line Height
+## Zeilenhöhe
 
 {{"demo": "pages/system/typography/LineHeight.js", "defaultCodeOpen": false}}
 

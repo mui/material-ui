@@ -7,6 +7,7 @@ import MuiPaper from '@material-ui/core/Paper';
 interface Props {
   elevation?: number;
   square?: boolean;
+  variant?: 'elevation' | 'outlined';
   width?: number;
   height?: number;
 }
@@ -14,6 +15,7 @@ interface Props {
 const defaultProps: Props = {
   elevation: 2,
   square: false,
+  variant: 'elevation',
   width: 100,
   height: 100,
 };
@@ -36,5 +38,10 @@ addPropertyControls(Paper, {
   square: {
     type: ControlType.Boolean,
     title: 'Square',
+  },
+  variant: {
+    type: ControlType.Enum,
+    title: 'Variant',
+    options: ['elevation', 'outlined'],
   },
 });

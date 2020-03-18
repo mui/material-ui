@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
@@ -259,17 +259,18 @@ describe('<SwitchBase />', () => {
   describe('with FormControl', () => {
     describe('enabled', () => {
       it('should not have the disabled class', () => {
-        const { getByTestId } = render(
+        const { getByRole, getByTestId } = render(
           <FormControl>
             <SwitchBase data-testid="root" icon="unchecked" checkedIcon="checked" type="checkbox" />
           </FormControl>,
         );
 
         expect(getByTestId('root')).not.to.have.class(classes.disabled);
+        expect(getByRole('checkbox')).not.to.have.attribute('disabled');
       });
 
       it('should be overridden by props', () => {
-        const { getByTestId } = render(
+        const { getByRole, getByTestId } = render(
           <FormControl>
             <SwitchBase
               disabled
@@ -282,23 +283,25 @@ describe('<SwitchBase />', () => {
         );
 
         expect(getByTestId('root')).to.have.class(classes.disabled);
+        expect(getByRole('checkbox')).to.have.attribute('disabled');
       });
     });
 
     describe('disabled', () => {
       it('should have the disabled class', () => {
-        const { getByTestId } = render(
+        const { getByRole, getByTestId } = render(
           <FormControl disabled>
             <SwitchBase data-testid="root" icon="unchecked" checkedIcon="checked" type="checkbox" />
           </FormControl>,
         );
 
         expect(getByTestId('root')).to.have.class(classes.disabled);
+        expect(getByRole('checkbox')).to.have.attribute('disabled');
       });
 
       it('should be overridden by props', () => {
-        const { getByTestId } = render(
-          <FormControl>
+        const { getByRole, getByTestId } = render(
+          <FormControl disabled>
             <SwitchBase
               disabled={false}
               data-testid="root"
@@ -310,6 +313,7 @@ describe('<SwitchBase />', () => {
         );
 
         expect(getByTestId('root')).not.to.have.class(classes.disabled);
+        expect(getByRole('checkbox')).not.to.have.attribute('disabled');
       });
     });
   });
@@ -327,7 +331,6 @@ describe('<SwitchBase />', () => {
         <FormControl>
           <FocusMonitor data-testid="focus-monitor" />
           <SwitchBase
-            data-testid="root"
             onBlur={handleBlur}
             onFocus={handleFocus}
             icon="unchecked"
@@ -370,10 +373,10 @@ describe('<SwitchBase />', () => {
 
         wrapper.setProps({ checked: true });
         expect(consoleErrorMock.callCount()).to.equal(2);
-        expect(consoleErrorMock.args()[0][0]).to.include(
-          'A component is changing an uncontrolled input of type %s to be controlled.',
+        expect(consoleErrorMock.messages()[0]).to.include(
+          'A component is changing an uncontrolled input of type checkbox to be controlled.',
         );
-        expect(consoleErrorMock.args()[1][0]).to.include(
+        expect(consoleErrorMock.messages()[1]).to.include(
           'A component is changing an uncontrolled SwitchBase to be controlled.',
         );
       }),
@@ -389,10 +392,10 @@ describe('<SwitchBase />', () => {
 
         setProps({ checked: undefined });
         expect(consoleErrorMock.callCount()).to.equal(2);
-        expect(consoleErrorMock.args()[0][0]).to.include(
-          'A component is changing a controlled input of type %s to be uncontrolled.',
+        expect(consoleErrorMock.messages()[0]).to.include(
+          'A component is changing a controlled input of type checkbox to be uncontrolled.',
         );
-        expect(consoleErrorMock.args()[1][0]).to.include(
+        expect(consoleErrorMock.messages()[1]).to.include(
           'A component is changing a controlled SwitchBase to be uncontrolled.',
         );
       }),

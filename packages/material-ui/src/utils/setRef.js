@@ -1,4 +1,4 @@
-// TODO: Make it private only in v5
+// TODO v5: make it private
 export default function setRef(ref, value) {
   if (typeof ref === 'function') {
     ref(value);

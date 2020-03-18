@@ -3,7 +3,7 @@ title: React Checkbox（复选框）组件
 components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 ---
 
-# Checkbox（选择框）
+# Checkbox 选择框
 
 <p class="description">在一个集合内，用户可以通过复选框来选择一个或者多个选项。</p>
 

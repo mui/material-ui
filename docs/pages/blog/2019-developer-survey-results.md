@@ -4,9 +4,7 @@ description: 2019 Material-UI Developer Survey results
 
 # 2019 Material-UI Developer Survey results
 
-**Olivier Tassinari, Matt Brookes**
-
-*March 16, 2019*
+Olivier Tassinari, Matt Brookes. March 16, 2019.
 
 While we are currently working on the upcoming release of Material-UI v4, we need to prioritize our
 roadmap for the coming year. To refine our focus, we launched a developer survey last month,
@@ -323,7 +321,3 @@ If you want to continue to influence our roadmap, please upvote 👍 the issues 
 
 <img src="/static/blog/2019-survey/vote.gif" style="display: block; margin: 0 auto;" alt="How to upvote on GitHub" />
 <div style="font-style: italic; text-align: center; margin: 8px;">Help us prioritize by upvoting.</div>
-
-<hr />
-
-Material-UI is an MIT-licensed open source project. It’s an independent project with ongoing development helped by the support of these awesome [backers](https://material-ui.com/discover-more/backers/). Please join them ✨.

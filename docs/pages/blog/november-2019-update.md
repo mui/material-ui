@@ -4,9 +4,7 @@ description: Here are the most significant improvements in November.
 
 # November 2019 Update
 
-**Olivier Tassinari**
-
-*December 12, 2019*
+Olivier Tassinari. December 12, 2019.
 
 Here are the most significant improvements in November:
 
@@ -57,7 +55,3 @@ To get a rough idea of what's coming, you can read [this blog post](https://uxde
 We want to cover styled-component [#6115](https://github.com/mui-org/material-ui/pull/#6115), the system [#15561](https://github.com/mui-org/material-ui/issues/15561), dynamic props [#15573](https://github.com/mui-org/material-ui/issues/15573) and an unstyled version [#6218](https://github.com/mui-org/material-ui/pull/6218).
 
 ❓ Please upvote our [GitHub issues](https://github.com/mui-org/material-ui/issues) if you want something specific. The number of 👍 helps us to prioritize.
-
-<hr />
-
-Material-UI is an MIT-licensed open source project. It’s an independent project with ongoing development helped by the support of these awesome [backers](/discover-more/backers/). Please join them ✨.

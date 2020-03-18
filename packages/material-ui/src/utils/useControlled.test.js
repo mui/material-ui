@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { expect } from 'chai';
 import { createClientRender } from 'test/utils/createClientRender';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
@@ -59,7 +59,7 @@ describe('useControlled', () => {
     expect(consoleErrorMock.callCount()).to.equal(0);
     setProps({ value: 'foobar' });
     expect(consoleErrorMock.callCount()).to.equal(1);
-    expect(consoleErrorMock.args()[0][0]).to.contains(
+    expect(consoleErrorMock.messages()[0]).to.contains(
       'A component is changing an uncontrolled TestComponent to be controlled.',
     );
   });
@@ -69,7 +69,7 @@ describe('useControlled', () => {
     expect(consoleErrorMock.callCount()).to.equal(0);
     setProps({ value: undefined });
     expect(consoleErrorMock.callCount()).to.equal(1);
-    expect(consoleErrorMock.args()[0][0]).to.contains(
+    expect(consoleErrorMock.messages()[0]).to.contains(
       'A component is changing a controlled TestComponent to be uncontrolled.',
     );
   });
@@ -79,7 +79,7 @@ describe('useControlled', () => {
     expect(consoleErrorMock.callCount()).to.equal(0);
     setProps({ defaultValue: 1 });
     expect(consoleErrorMock.callCount()).to.equal(1);
-    expect(consoleErrorMock.args()[0][0]).to.contains(
+    expect(consoleErrorMock.messages()[0]).to.contains(
       'A component is changing the default value of an uncontrolled TestComponent after being initialized. ',
     );
   });

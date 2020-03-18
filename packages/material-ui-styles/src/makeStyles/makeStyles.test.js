@@ -93,7 +93,7 @@ describe('makeStyles', () => {
       assert.deepEqual(extendedClasses, { root: baseClasses.root, bar: 'undefined foo' });
       assert.strictEqual(consoleErrorMock.callCount(), 1);
       assert.include(
-        consoleErrorMock.args()[0][0],
+        consoleErrorMock.messages()[0],
         'Material-UI: the key `bar` provided to the classes prop is not implemented',
       );
     });
@@ -102,9 +102,9 @@ describe('makeStyles', () => {
       const output = mountWithProps();
       output.wrapper.setProps({ classes: 'foo' });
       assert.strictEqual(consoleErrorMock.callCount() >= 1, true);
-      const args = consoleErrorMock.args();
+      const messages = consoleErrorMock.messages();
       assert.include(
-        consoleErrorMock.args()[args.length - 1][0],
+        messages[messages.length - 1],
         'You might want to use the className prop instead',
       );
     });
@@ -117,7 +117,7 @@ describe('makeStyles', () => {
       assert.deepEqual(extendedClasses, { root: `${baseClasses.root} [object Object]` });
       assert.strictEqual(consoleErrorMock.callCount(), 1);
       assert.include(
-        consoleErrorMock.args()[0][0],
+        consoleErrorMock.messages()[0],
         'Material-UI: the key `root` provided to the classes prop is not valid',
       );
     });
@@ -129,7 +129,7 @@ describe('makeStyles', () => {
         mountWithProps2({});
       });
       assert.strictEqual(consoleErrorMock.callCount(), 4);
-      assert.include(consoleErrorMock.args()[1][0], 'the `styles` argument provided is invalid');
+      assert.include(consoleErrorMock.messages()[1], 'the `styles` argument provided is invalid');
     });
   });
 

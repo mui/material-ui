@@ -29,7 +29,7 @@
 
 ### Пользовательские переменные
 
-При использовании темы Material-UI с [styling solution](/styles/basics/) или [ любым другим подходом](/guides/interoperability/#themeprovider), бывает удобным добавить в тему дополнительные переменные, которые вы сможете использовать везде. For instance:
+При использовании темы Material-UI с [styling solution](/styles/basics/) или [ любым другим подходом](/guides/interoperability/#themeprovider), бывает удобным добавить в тему дополнительные переменные, которые вы сможете использовать везде. Например:
 
 {{"demo": "pages/customization/theming/CustomStyles.js"}}
 

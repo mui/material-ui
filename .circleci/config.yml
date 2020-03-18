@@ -11,7 +11,7 @@ defaults: &defaults
     REACT_DIST_TAG: << parameters.react-dist-tag >>
   working_directory: /tmp/material-ui
   docker:
-    - image: circleci/node:8.16
+    - image: circleci/node:10
 # CircleCI has disabled the cache across forks for security reasons.
 # Following their official statement, it was a quick solution, they
 # are working on providing this feature back with appropriate security measures.
@@ -24,6 +24,11 @@ defaults: &defaults
 commands:
   install_js:
     steps:
+      - run:
+          name: View install environment
+          command: |
+            node --version
+            yarn --version
       - run:
           name: Resolve react version
           command: |
@@ -121,7 +126,7 @@ jobs:
           command: yarn lint:ci
       - run:
           name: Lint JSON
-          command: yarn jsonlint
+          command: yarn --silent jsonlint
   test_types:
     <<: *defaults
     steps:
@@ -136,6 +141,30 @@ jobs:
       - run:
           name: Tests TypeScript definitions
           command: yarn typescript
+  test_types_next:
+    <<: *defaults
+    steps:
+      - checkout
+      - run:
+          name: Resolve typescript version
+          environment:
+            TYPESCRIPT_DIST_TAG: next
+          command: |
+            node scripts/use-typescript-dist-tag
+            # log a patch for maintainers who want to check out this change
+            git diff HEAD
+      - install_js
+      - run:
+          name: Tests TypeScript definitions
+          command: |
+            # ignore build failures
+            # it's expected that typescript@next fails since the lines of the errors
+            # change frequently. This build is monitored regardless of its status
+            set +e
+            # we want to see errors in all packages.
+            # without --no-bail we only see at most a single failing package
+            yarn typescript --no-bail
+            exit 0
   test_browser:
     <<: *defaults
     steps:
@@ -145,6 +174,10 @@ jobs:
       - run:
           name: Tests real browsers
           command: yarn test:karma
+      - store_artifacts:
+          # hardcoded in karma-webpack
+          path: /tmp/_karma_webpack_
+          destination: artifact-file
       - run:
           name: Can we generate the @material-ui/core umd build?
           command: yarn workspace @material-ui/core build:umd
@@ -154,7 +187,7 @@ jobs:
   test_regressions:
     <<: *defaults
     docker:
-      - image: circleci/node:8.16
+      - image: circleci/node:10
       - image: selenium/standalone-chrome:3.11.0
     steps:
       - checkout
@@ -210,3 +243,13 @@ workflows:
             - test_unit
             - test_browser
           react-dist-tag: next
+  typescript-next:
+    triggers:
+      - schedule:
+          cron: '0 0 * * *'
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - test_types_next

@@ -1,7 +1,8 @@
-import React from 'react';
-import { assert } from 'chai';
+import * as React from 'react';
+import { expect, assert } from 'chai';
 import PropTypes from 'prop-types';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { fireEvent, createClientRender } from 'test/utils/createClientRender';
 import describeConformance from '../test-utils/describeConformance';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import Select from '../Select';
@@ -16,6 +17,7 @@ describe('<TablePagination />', () => {
   const noop = () => {};
   let classes;
   let mount;
+  const render = createClientRender();
 
   function mountInTable(node) {
     const wrapper = mount(
@@ -32,11 +34,14 @@ describe('<TablePagination />', () => {
     classes = getClasses(
       <TablePagination count={1} onChangePage={() => {}} page={0} rowsPerPage={10} />,
     );
-    // StrictModeViolation: test uses #html()
+  });
+
+  beforeEach(() => {
+    // StrictModeViolation: test uses #html()()
     mount = createMount({ strict: false });
   });
 
-  after(() => {
+  afterEach(() => {
     mount.cleanUp();
   });
 
@@ -248,6 +253,36 @@ describe('<TablePagination />', () => {
     });
   });
 
+  describe('prop: count=-1', () => {
+    it('should display the "of more than" text and keep the nextButton enabled', () => {
+      const Test = () => {
+        const [page, setPage] = React.useState(0);
+        return (
+          <table>
+            <TableFooter>
+              <TableRow>
+                <TablePagination
+                  page={page}
+                  rowsPerPage={10}
+                  count={-1}
+                  onChangePage={(_, newPage) => {
+                    setPage(newPage);
+                  }}
+                />
+              </TableRow>
+            </TableFooter>
+          </table>
+        );
+      };
+
+      const { container, getByLabelText } = render(<Test />);
+
+      expect(container).to.have.text('Rows per page:101-10 of more than 10');
+      fireEvent.click(getByLabelText('Next page'));
+      expect(container).to.have.text('Rows per page:1011-20 of more than 20');
+    });
+  });
+
   describe('warnings', () => {
     before(() => {
       consoleErrorMock.spy();
@@ -277,7 +312,7 @@ describe('<TablePagination />', () => {
       );
       assert.strictEqual(consoleErrorMock.callCount(), 1);
       assert.include(
-        consoleErrorMock.args()[0][0],
+        consoleErrorMock.messages()[0],
         'Material-UI: the page prop of a TablePagination is out of range (0 to 1, but page is 2).',
       );
     });

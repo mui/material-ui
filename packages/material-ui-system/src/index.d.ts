@@ -64,6 +64,7 @@ export const display: SimpleStyleFunction<
 
 export type DisplayProps = PropsFor<typeof display>;
 
+// flexbox.js
 export const flexbox: SimpleStyleFunction<
   | 'flexBasis'
   | 'flexDirection'
@@ -80,6 +81,23 @@ export const flexbox: SimpleStyleFunction<
   | 'justifySelf'
 >;
 export type FlexboxProps = PropsFor<typeof flexbox>;
+
+// grid.js
+export const grid: SimpleStyleFunction<
+  | 'gridGap'
+  | 'gridColumnGap'
+  | 'gridRowGap'
+  | 'gridColumn'
+  | 'gridRow'
+  | 'gridAutoFlow'
+  | 'gridAutoColumns'
+  | 'gridAutoRows'
+  | 'gridTemplateColumns'
+  | 'gridTemplateRows'
+  | 'gridTemplateAreas'
+  | 'gridArea'
+>;
+export type GridProps = PropsFor<typeof grid>;
 
 // palette.js
 export const color: SimpleStyleFunction<'color'>;
@@ -104,6 +122,7 @@ export const maxHeight: SimpleStyleFunction<'maxHeight'>;
 export const minHeight: SimpleStyleFunction<'minHeight'>;
 export const sizeWidth: SimpleStyleFunction<'sizeWidth'>;
 export const sizeHeight: SimpleStyleFunction<'sizeHeight'>;
+export const boxSizing: SimpleStyleFunction<'boxSizing'>;
 export const sizing: SimpleStyleFunction<
   | 'width'
   | 'maxWidth'
@@ -113,6 +132,7 @@ export const sizing: SimpleStyleFunction<
   | 'minHeight'
   | 'sizeWidth'
   | 'sizeHeight'
+  | 'boxSizing'
 >;
 export type SizingProps = PropsFor<typeof sizing>;
 

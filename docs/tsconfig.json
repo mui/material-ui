@@ -3,6 +3,13 @@
   "include": ["types", "src/pages/**/*"],
   "compilerOptions": {
     "allowJs": false,
-    "noUnusedLocals": true
+    "isolatedModules": true,
+    /* files are emitted by babel */
+    "noEmit": true,
+    "noUnusedLocals": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": false,
+    "esModuleInterop": true,
+    "types": ["react"]
   }
 }

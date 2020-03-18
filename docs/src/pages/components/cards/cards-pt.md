@@ -19,7 +19,7 @@ Apesar dos componentes cartões poderem suportar múltiplas ações tais como: c
 
 ### Outlined Card
 
-Set `variant="outlined` to render an outlined card.
+Set `variant="outlined"` to render an outlined card.
 
 {{"demo": "pages/components/cards/OutlinedCard.js", "bg": true}}
 
@@ -48,3 +48,7 @@ Ações suplementares dentro do cartão são explicitamente chamadas usando íco
 Aqui está um exemplo de um controle de mídia do cartão.
 
 {{"demo": "pages/components/cards/MediaControlCard.js", "bg": true}}
+
+## Customização
+
+👑 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/components/card).

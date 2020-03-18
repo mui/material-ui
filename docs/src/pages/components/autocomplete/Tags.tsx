@@ -25,7 +25,7 @@ export default function Tags() {
         multiple
         id="tags-standard"
         options={top100Films}
-        getOptionLabel={(option: FilmOptionType) => option.title}
+        getOptionLabel={option => option.title}
         defaultValue={[top100Films[13]]}
         renderInput={params => (
           <TextField
@@ -33,7 +33,6 @@ export default function Tags() {
             variant="standard"
             label="Multiple values"
             placeholder="Favorites"
-            fullWidth
           />
         )}
       />
@@ -41,7 +40,7 @@ export default function Tags() {
         multiple
         id="tags-outlined"
         options={top100Films}
-        getOptionLabel={(option: FilmOptionType) => option.title}
+        getOptionLabel={option => option.title}
         defaultValue={[top100Films[13]]}
         filterSelectedOptions
         renderInput={params => (
@@ -50,7 +49,6 @@ export default function Tags() {
             variant="outlined"
             label="filterSelectedOptions"
             placeholder="Favorites"
-            fullWidth
           />
         )}
       />
@@ -66,22 +64,11 @@ export default function Tags() {
           ))
         }
         renderInput={params => (
-          <TextField
-            {...params}
-            variant="filled"
-            label="freeSolo"
-            placeholder="Favorites"
-            fullWidth
-          />
+          <TextField {...params} variant="filled" label="freeSolo" placeholder="Favorites" />
         )}
       />
     </div>
   );
-}
-
-interface FilmOptionType {
-  title: string;
-  year: number;
 }
 
 // Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top

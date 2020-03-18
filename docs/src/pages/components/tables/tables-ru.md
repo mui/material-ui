@@ -5,11 +5,11 @@ components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead,
 
 # Table (tаблица)
 
-<p class="description">Tables display sets of data. Они могут быть полностью модифицированы.</p>
+<p class="description">Таблицы отображают наборы данных. Они могут быть полностью модифицированы.</p>
 
 [Tables](https://material.io/design/components/data-tables.html) display information in a way that’s easy to scan, so that users can look for patterns and insights. Они могут быть встроены в основной контент, например в карточки.
 
-Tables can include:
+Таблицы могу включать в себя:
 
 - Соответствующую визуализацию
 - Навигацию

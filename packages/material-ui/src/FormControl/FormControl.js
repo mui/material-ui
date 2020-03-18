@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { isFilled, isAdornedStart } from '../InputBase/utils';
@@ -162,6 +162,7 @@ const FormControl = React.forwardRef(function FormControl(props, ref) {
     error,
     filled,
     focused,
+    fullWidth,
     hiddenLabel,
     margin: (size === 'small' ? 'dense' : undefined) || margin,
     onBlur: () => {

@@ -65,7 +65,7 @@ function runPrettier(changedFiles) {
     console.log(
       '\n\nThis project uses prettier to format all JavaScript code.\n' +
         `Please run '${!changedFiles ? 'yarn prettier:all' : 'yarn prettier'}'` +
-        'and commit the changes to the files listed below:\n\n',
+        ' and commit the changes to the files listed below:\n\n',
     );
     console.log(warnedFiles.join('\n'));
   }

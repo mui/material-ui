@@ -30,7 +30,9 @@ const useStyles = makeStyles(theme => ({
 }));
 
 interface PlaceType {
+  description: string;
   structured_formatting: {
+    main_text: string;
     secondary_text: string;
     main_text_matched_substrings: [
       {
@@ -65,8 +67,8 @@ export default function GoogleMaps() {
 
   const fetch = React.useMemo(
     () =>
-      throttle((input, callback) => {
-        (autocompleteService.current as any).getPlacePredictions(input, callback);
+      throttle((request: { input: string }, callback: (results?: PlaceType[]) => void) => {
+        (autocompleteService.current as any).getPlacePredictions(request, callback);
       }, 200),
     [],
   );
@@ -106,8 +108,6 @@ export default function GoogleMaps() {
       options={options}
       autoComplete
       includeInputInList
-      freeSolo
-      disableOpenOnFocus
       renderInput={params => (
         <TextField
           {...params}

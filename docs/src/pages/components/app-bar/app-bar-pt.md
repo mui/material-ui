@@ -9,9 +9,9 @@ components: AppBar, Toolbar, Menu
 
 A [barra de aplicativos superior](https://material.io/design/components/app-bars-top.html) provê conteúdo e ações relacionados à tela atual. Ela é utilizada para a identidade visual, títulos de tela, navegação, e ações.
 
-It can transform into a contextual action bar or be used as a navbar.
+Ela pode se transformar em uma barra de ações contextual ou ser utilizada como uma barra de navegação.
 
-## App Bar simples
+## Barra de Aplicativos Simples
 
 {{"demo": "pages/components/app-bar/ButtonAppBar.js", "bg": true}}
 

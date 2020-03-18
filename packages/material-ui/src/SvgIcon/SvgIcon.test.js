@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { assert } from 'chai';
 import { createShallow, createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
@@ -59,7 +59,7 @@ describe('<SvgIcon />', () => {
         </SvgIcon>,
       );
       assert.strictEqual(wrapper.find('title').text(), 'Network');
-      assert.strictEqual(wrapper.props()['aria-hidden'], null);
+      assert.strictEqual(wrapper.props()['aria-hidden'], undefined);
     });
   });
 

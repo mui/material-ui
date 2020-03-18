@@ -33,8 +33,6 @@ const useStyles = makeStyles(theme => ({
     ul: {
       margin: 0,
       padding: 0,
-    },
-    li: {
       listStyle: 'none',
     },
   },
@@ -55,7 +53,7 @@ const useStyles = makeStyles(theme => ({
   },
   cardHeader: {
     backgroundColor:
-      theme.palette.type === 'dark' ? theme.palette.grey[700] : theme.palette.grey[200],
+      theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[700],
   },
   cardPricing: {
     display: 'flex',

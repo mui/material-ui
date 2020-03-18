@@ -7,8 +7,16 @@ export interface AvatarGroupProps
    * The avatars to stack.
    */
   children: React.ReactNode;
+  /**
+   * Max avatars to show before +x.
+   */
+  max?: number;
+  /**
+   * Spacing between avatars.
+   */
+  spacing?: 'small' | 'medium' | number;
 }
 
 export type AvatarGroupClassKey = 'root' | 'avatar';
 
-export default function AvatarGroup(props: AvatarGroupProps): JSX.Element | null;
+export default function AvatarGroup(props: AvatarGroupProps): JSX.Element;

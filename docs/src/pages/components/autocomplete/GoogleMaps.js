@@ -53,8 +53,8 @@ export default function GoogleMaps() {
 
   const fetch = React.useMemo(
     () =>
-      throttle((input, callback) => {
-        autocompleteService.current.getPlacePredictions(input, callback);
+      throttle((request, callback) => {
+        autocompleteService.current.getPlacePredictions(request, callback);
       }, 200),
     [],
   );
@@ -94,8 +94,6 @@ export default function GoogleMaps() {
       options={options}
       autoComplete
       includeInputInList
-      freeSolo
-      disableOpenOnFocus
       renderInput={params => (
         <TextField
           {...params}

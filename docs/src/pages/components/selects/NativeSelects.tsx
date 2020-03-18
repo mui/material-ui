@@ -25,15 +25,8 @@ export default function NativeSelects() {
     name: 'hai',
   });
 
-  const inputLabel = React.useRef<HTMLLabelElement>(null);
-  const [labelWidth, setLabelWidth] = React.useState(0);
-  React.useEffect(() => {
-    setLabelWidth(inputLabel.current!.offsetWidth);
-  }, []);
-
-  const handleChange = (name: keyof typeof state) => (
-    event: React.ChangeEvent<{ value: unknown }>,
-  ) => {
+  const handleChange = (event: React.ChangeEvent<{ name?: string; value: unknown }>) => {
+    const name = event.target.name as keyof typeof state;
     setState({
       ...state,
       [name]: event.target.value,
@@ -47,13 +40,13 @@ export default function NativeSelects() {
         <Select
           native
           value={state.age}
-          onChange={handleChange('age')}
+          onChange={handleChange}
           inputProps={{
             name: 'age',
             id: 'age-native-simple',
           }}
         >
-          <option value="" />
+          <option aria-label="None" value="" />
           <option value={10}>Ten</option>
           <option value={20}>Twenty</option>
           <option value={30}>Thirty</option>
@@ -63,13 +56,13 @@ export default function NativeSelects() {
         <InputLabel htmlFor="age-native-helper">Age</InputLabel>
         <NativeSelect
           value={state.age}
-          onChange={handleChange('age')}
+          onChange={handleChange}
           inputProps={{
             name: 'age',
             id: 'age-native-helper',
           }}
         >
-          <option value="" />
+          <option aria-label="None" value="" />
           <option value={10}>Ten</option>
           <option value={20}>Twenty</option>
           <option value={30}>Thirty</option>
@@ -79,7 +72,7 @@ export default function NativeSelects() {
       <FormControl className={classes.formControl}>
         <NativeSelect
           value={state.age}
-          onChange={handleChange('age')}
+          onChange={handleChange}
           name="age"
           className={classes.selectEmpty}
           inputProps={{ 'aria-label': 'age' }}
@@ -97,7 +90,7 @@ export default function NativeSelects() {
         </InputLabel>
         <NativeSelect
           value={state.age}
-          onChange={handleChange('age')}
+          onChange={handleChange}
           inputProps={{
             name: 'age',
             id: 'age-native-label-placeholder',
@@ -114,13 +107,13 @@ export default function NativeSelects() {
         <InputLabel htmlFor="name-native-disabled">Name</InputLabel>
         <NativeSelect
           value={state.name}
-          onChange={handleChange('name')}
+          onChange={handleChange}
           inputProps={{
             name: 'name',
             id: 'name-native-disabled',
           }}
         >
-          <option value="" />
+          <option value="">None</option>
           <optgroup label="Author">
             <option value="hai">Hai</option>
           </optgroup>
@@ -135,13 +128,12 @@ export default function NativeSelects() {
         <InputLabel htmlFor="name-native-error">Name</InputLabel>
         <NativeSelect
           value={state.name}
-          onChange={handleChange('name')}
+          onChange={handleChange}
           name="name"
           inputProps={{
             id: 'name-native-error',
           }}
         >
-          <option value="" />
           <optgroup label="Author">
             <option value="hai">Hai</option>
           </optgroup>
@@ -161,7 +153,6 @@ export default function NativeSelects() {
             id: 'uncontrolled-native',
           }}
         >
-          <option value="" />
           <option value={10}>Ten</option>
           <option value={20}>Twenty</option>
           <option value={30}>Thirty</option>
@@ -173,7 +164,7 @@ export default function NativeSelects() {
           className={classes.selectEmpty}
           value={state.age}
           name="age"
-          onChange={handleChange('age')}
+          onChange={handleChange}
           inputProps={{ 'aria-label': 'age' }}
         >
           <option value="" disabled>
@@ -190,13 +181,13 @@ export default function NativeSelects() {
         <Select
           native
           value={state.age}
-          onChange={handleChange('age')}
+          onChange={handleChange}
           name="age"
           inputProps={{
             id: 'age-native-required',
           }}
         >
-          <option value="" />
+          <option aria-label="None" value="" />
           <option value={10}>Ten</option>
           <option value={20}>Twenty</option>
           <option value={30}>Thirty</option>
@@ -204,20 +195,18 @@ export default function NativeSelects() {
         <FormHelperText>Required</FormHelperText>
       </FormControl>
       <FormControl variant="outlined" className={classes.formControl}>
-        <InputLabel ref={inputLabel} htmlFor="outlined-age-native-simple">
-          Age
-        </InputLabel>
+        <InputLabel htmlFor="outlined-age-native-simple">Age</InputLabel>
         <Select
           native
           value={state.age}
-          onChange={handleChange('age')}
-          labelWidth={labelWidth}
+          onChange={handleChange}
+          label="Age"
           inputProps={{
             name: 'age',
             id: 'outlined-age-native-simple',
           }}
         >
-          <option value="" />
+          <option aria-label="None" value="" />
           <option value={10}>Ten</option>
           <option value={20}>Twenty</option>
           <option value={30}>Thirty</option>
@@ -228,13 +217,13 @@ export default function NativeSelects() {
         <Select
           native
           value={state.age}
-          onChange={handleChange('age')}
+          onChange={handleChange}
           inputProps={{
             name: 'age',
             id: 'filled-age-native-simple',
           }}
         >
-          <option value="" />
+          <option aria-label="None" value="" />
           <option value={10}>Ten</option>
           <option value={20}>Twenty</option>
           <option value={30}>Thirty</option>

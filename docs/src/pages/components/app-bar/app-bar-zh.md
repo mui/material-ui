@@ -3,7 +3,7 @@ title: React App Bar（应用栏）组件
 components: AppBar, Toolbar, Menu
 ---
 
-# App Bar（应用栏）
+# App Bar 应用栏
 
 <p class="description">应用栏用来显示与当前屏幕相关的信息和操作。</p>
 

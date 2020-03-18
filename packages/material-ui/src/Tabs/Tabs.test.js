@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { expect, assert } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import * as PropTypes from 'prop-types';
@@ -25,6 +25,8 @@ const hasRightScrollButton = container => findScrollButton(container, 'right') !
 
 describe('<Tabs />', () => {
   const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+  // tests mocking getBoundingClientRect prevent mocha to exit
+  const isJSDOM = navigator.userAgent === 'node.js';
 
   // The test fails on Safari with just:
   //
@@ -63,7 +65,7 @@ describe('<Tabs />', () => {
     it('should warn if the input is invalid', () => {
       render(<Tabs value={0} centered variant="scrollable" />);
       assert.match(
-        consoleErrorMock.args()[0][0],
+        consoleErrorMock.messages()[0],
         /Material-UI: you can not use the `centered={true}` and `variant="scrollable"`/,
       );
     });
@@ -173,7 +175,11 @@ describe('<Tabs />', () => {
         expect(container.querySelector(`.${classes.indicator}`)).to.be.ok;
       });
 
-      it('should update the indicator at each render', () => {
+      it('should update the indicator at each render', function test() {
+        if (isJSDOM) {
+          this.skip();
+        }
+
         const { setProps, container, getByRole } = render(
           <Tabs value={1}>
             <Tab />
@@ -228,7 +234,7 @@ describe('<Tabs />', () => {
           </Tabs>,
         );
         expect(consoleErrorMock.callCount()).to.equal(4);
-        expect(consoleErrorMock.args()[0][0]).to.include(
+        expect(consoleErrorMock.messages()[0]).to.include(
           'You can provide one of the following values: 1, 3',
         );
       });
@@ -281,7 +287,10 @@ describe('<Tabs />', () => {
       expect(container.querySelectorAll(selector)).to.have.lengthOf(1);
     });
 
-    it('should response to scroll events', () => {
+    it('should response to scroll events', function test() {
+      if (isJSDOM) {
+        this.skip();
+      }
       const { container, setProps, getByRole } = render(tabs);
       const tablistContainer = getByRole('tablist').parentElement;
 
@@ -358,7 +367,11 @@ describe('<Tabs />', () => {
       expect(container.querySelectorAll(`.${classes.scrollButtons}`)).to.have.lengthOf(2);
     });
 
-    it('should handle window resize event', () => {
+    it('should handle window resize event', function test() {
+      if (isJSDOM) {
+        this.skip();
+      }
+
       const { container, setProps, getByRole } = render(
         <Tabs
           value={0}
@@ -555,7 +568,11 @@ describe('<Tabs />', () => {
       clock.restore();
     });
 
-    it('should scroll left tab into view', () => {
+    it('should scroll left tab into view', function test() {
+      if (isJSDOM) {
+        this.skip();
+      }
+
       const { setProps, getByRole } = render(
         <Tabs value={0} variant="scrollable" style={{ width: 200 }}>
           <Tab />
@@ -598,7 +615,11 @@ describe('<Tabs />', () => {
   });
 
   describe('prop: orientation', () => {
-    it('should support orientation="vertical"', () => {
+    it('should support orientation="vertical"', function test() {
+      if (isJSDOM) {
+        this.skip();
+      }
+
       const { setProps, container, getByRole } = render(
         <Tabs value={1} variant="scrollable" scrollButtons="on" orientation="vertical">
           <Tab />

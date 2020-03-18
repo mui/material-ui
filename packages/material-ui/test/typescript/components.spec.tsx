@@ -17,6 +17,7 @@ import {
   CircularProgress,
   ClickAwayListener,
   Collapse,
+  CssBaseline,
   Dialog,
   DialogTitle,
   DialogContent,
@@ -80,6 +81,7 @@ import {
 import { Link as ReactRouterLink, LinkProps as ReactRouterLinkProps } from 'react-router-dom';
 import { ButtonBaseActions } from '@material-ui/core/ButtonBase';
 import { IconButtonProps } from '@material-ui/core/IconButton';
+import ScopedCssBaseline from '@material-ui/core/ScopedCssBaseline';
 
 const log = console.log;
 const FakeIcon = () => <div>ICON</div>;
@@ -611,9 +613,8 @@ const MenuTest = () => {
         // 'false' is not assignable to true | undefined
         button={false} // $ExpectError
         ref={elem => {
-          // previous error throws type checker off. Since this is an error anyway
-          // `any` is fine
-          elem; // $ExpectType any
+          // inferred from `button={false}` instead of `action`
+          elem; // $ExpectType HTMLLIElement | null
         }}
       />
     </Menu>
@@ -793,12 +794,12 @@ const StepperTest = () =>
       };
       return (
         <MobileStepper
+          {...defaultProps}
           variant="dots"
           steps={6}
           position="static"
           activeStep={this.state.activeStep}
           className={classes.root}
-          {...defaultProps}
         />
       );
     }
@@ -1056,3 +1057,7 @@ const refTest = () => {
     }}
   />;
 };
+
+const CssBaselineTest = () => <CssBaseline>Test</CssBaseline>;
+
+const ScopedCssBaselineTest = () => <ScopedCssBaseline>Test</ScopedCssBaseline>;

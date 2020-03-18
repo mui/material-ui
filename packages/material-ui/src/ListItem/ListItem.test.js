@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
 import { getClasses, createMount } from '@material-ui/core/test-utils';
@@ -158,7 +158,7 @@ describe('<ListItem />', () => {
         );
 
         expect(consoleErrorMock.callCount()).to.equal(1);
-        expect(consoleErrorMock.args()[0][0]).to.include(
+        expect(consoleErrorMock.messages()[0]).to.include(
           'Warning: Failed prop type: Material-UI: you used an element',
         );
       });
@@ -167,7 +167,7 @@ describe('<ListItem />', () => {
         render(<ListItem component={NoContent} autoFocus />);
 
         expect(consoleErrorMock.callCount()).to.equal(1);
-        expect(consoleErrorMock.args()[0][0]).to.include(
+        expect(consoleErrorMock.messages()[0]).to.include(
           'Material-UI: unable to set focus to a ListItem whose component has not been rendered.',
         );
       });

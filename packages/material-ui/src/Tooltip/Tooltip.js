@@ -1,8 +1,8 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { elementAcceptingRef } from '@material-ui/utils';
+import { deepmerge, elementAcceptingRef } from '@material-ui/utils';
 import { fade } from '../styles/colorManipulator';
 import withStyles from '../styles/withStyles';
 import capitalize from '../utils/capitalize';
@@ -183,7 +183,8 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     disableFocusListener = false,
     disableHoverListener = false,
     disableTouchListener = false,
-    enterDelay = 0,
+    enterDelay = 100,
+    enterNextDelay = 0,
     enterTouchDelay = 700,
     id: idProp,
     interactive = false,
@@ -303,11 +304,14 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
 
     clearTimeout(enterTimer.current);
     clearTimeout(leaveTimer.current);
-    if (enterDelay && !hystersisOpen) {
+    if (enterDelay || (hystersisOpen && enterNextDelay)) {
       event.persist();
-      enterTimer.current = setTimeout(() => {
-        handleOpen(event);
-      }, enterDelay);
+      enterTimer.current = setTimeout(
+        () => {
+          handleOpen(event);
+        },
+        hystersisOpen ? enterNextDelay : enterDelay,
+      );
     } else {
       handleOpen(event);
     }
@@ -345,9 +349,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     clearTimeout(hystersisTimer);
     hystersisTimer = setTimeout(() => {
       hystersisOpen = false;
-    }, 500);
-    // Use 500 ms per https://github.com/reach/reach-ui/blob/3b5319027d763a3082880be887d7a29aee7d3afc/packages/tooltip/src/index.js#L214
-
+    }, 800 + leaveDelay);
     setOpenState(false);
 
     if (onClose) {
@@ -482,6 +484,22 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     }
   }
 
+  const mergedPopperProps = React.useMemo(() => {
+    return deepmerge(
+      {
+        popperOptions: {
+          modifiers: {
+            arrow: {
+              enabled: Boolean(arrowRef),
+              element: arrowRef,
+            },
+          },
+        },
+      },
+      PopperProps,
+    );
+  }, [arrowRef, PopperProps]);
+
   return (
     <React.Fragment>
       {React.cloneElement(children, { ref: handleRef, ...childrenProps })}
@@ -495,16 +513,8 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
         open={childNode ? open : false}
         id={childrenProps['aria-describedby']}
         transition
-        popperOptions={{
-          modifiers: {
-            arrow: {
-              enabled: Boolean(arrowRef),
-              element: arrowRef,
-            },
-          },
-        }}
         {...interactiveWrapperListeners}
-        {...PopperProps}
+        {...mergedPopperProps}
       >
         {({ placement: placementInner, TransitionProps: TransitionPropsInner }) => (
           <TransitionComponent
@@ -563,6 +573,10 @@ Tooltip.propTypes = {
    * This prop won't impact the enter touch delay (`enterTouchDelay`).
    */
   enterDelay: PropTypes.number,
+  /**
+   * The number of milliseconds to wait before showing the tooltip when one was already recently opened.
+   */
+  enterNextDelay: PropTypes.number,
   /**
    * The number of milliseconds a user must touch the element before showing the tooltip.
    */
@@ -629,10 +643,11 @@ Tooltip.propTypes = {
   title: PropTypes.node.isRequired,
   /**
    * The component used for the transition.
+   * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    */
   TransitionComponent: PropTypes.elementType,
   /**
-   * Props applied to the `Transition` element.
+   * Props applied to the [`Transition`](http://reactcommunity.org/react-transition-group/transition#Transition-props) element.
    */
   TransitionProps: PropTypes.object,
 };

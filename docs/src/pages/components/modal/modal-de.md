@@ -44,11 +44,11 @@ Modal has built-in support for [react-transition-group](https://github.com/react
 
 {{"demo": "pages/components/modal/TransitionsModal.js"}}
 
-Alternatively, you can use [react-spring](https://github.com/react-spring/react-spring).
+Alternativ können Sie [react-spring](https://github.com/react-spring/react-spring) verwenden.
 
 {{"demo": "pages/components/modal/SpringModal.js"}}
 
-## Server-side modal
+## Server-seitiges Modal
 
 React [doesn't support](https://github.com/facebook/react/issues/13097) the [`createPortal()`](https://reactjs.org/docs/portals.html) API on the server. In order to display the modal, you need to disable the portal feature with the `disablePortal` prop:
 
@@ -70,7 +70,7 @@ This is done for accessibility purposes, however, it might create issues. In the
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#dialog_modal)
 
-- Achten Sie darauf, eine Referenzierung des modalen Titels durch `aria-labelledby = "id..."` zu dem `Modal` hinzufügen. Additionally, you may give a description of your modal with the `aria-describedby="id..."` prop on the `Modal`.
+- Achten Sie darauf, eine Referenzierung des modalen Titels durch `aria-labelledby = "id..."` zu dem `Modal` hinzufügen. Zusätzlich können Sie eine Beschreibung Ihres Modals mit der `aria-describedby="id..."` Prop auf dem `Modal` angeben.
     
     ```jsx
     <Modal

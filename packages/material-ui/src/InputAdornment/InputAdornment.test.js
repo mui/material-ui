@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { expect } from 'chai';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
@@ -151,7 +151,7 @@ describe('<InputAdornment />', () => {
           </FormControl>,
         );
         expect(consoleErrorMock.callCount()).to.equal(1);
-        expect(consoleErrorMock.args()[0][0]).to.equal(
+        expect(consoleErrorMock.messages()[0]).to.equal(
           'Material-UI: The `InputAdornment` variant infers the variant ' +
             'prop you do not have to provide one.',
         );

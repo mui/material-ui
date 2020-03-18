@@ -13,9 +13,13 @@ If you have multiple options appearing in a list,
 you can preserve space by using checkboxes instead of on/off switches.
 If you have a single option, avoid using a checkbox and use an on/off switch instead.
 
+## Basic checkboxes
+
 {{"demo": "pages/components/checkboxes/Checkboxes.js"}}
 
-`Checkbox` can also be used with a label description thanks to the `FormControlLabel` component.
+## Checkbox with FormControlLabel
+
+`Checkbox` can be provided with a label thanks to the `FormControlLabel` component.
 
 {{"demo": "pages/components/checkboxes/CheckboxLabels.js"}}
 

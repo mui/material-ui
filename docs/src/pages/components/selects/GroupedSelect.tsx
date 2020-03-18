@@ -24,7 +24,7 @@ export default function GroupedSelect() {
       <FormControl className={classes.formControl}>
         <InputLabel htmlFor="grouped-native-select">Grouping</InputLabel>
         <Select native defaultValue="" input={<Input id="grouped-native-select" />}>
-          <option value="" />
+          <option aria-label="None" value="" />
           <optgroup label="Category 1">
             <option value={1}>Option 1</option>
             <option value={2}>Option 2</option>

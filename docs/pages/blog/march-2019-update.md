@@ -4,9 +4,7 @@ description: Here are the most significant improvements in March.
 
 # March 2019 Update
 
-**Olivier Tassinari**
-
-*April 5, 2019*
+Olivier Tassinari. April 5, 2019.
 
 Here are the most significant improvements in March:
 
@@ -36,7 +34,3 @@ Don't worry, it's almost over! We will focus on providing more components once w
   - Migration from Classes to Hooks, removal of unnecessary internal components.
   - Removal of `findDOMNode()`, support of `StrictMode`, forward of references.
 - ❓ Please upvote our [GitHub issues](https://github.com/mui-org/material-ui/issues) if you want something specific. The number of 👍 helps us to prioritize.
-
-<hr />
-
-Material-UI is an MIT-licensed open source project. It’s an independent project with ongoing development helped by the support of these awesome [backers](/discover-more/backers/). Please join them ✨.

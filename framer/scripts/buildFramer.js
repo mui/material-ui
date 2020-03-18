@@ -101,7 +101,7 @@ function getTemplateStrings(reactAPI) {
     /**
      * TS Interface
      */
-    const propTypeTS = Object.assign({}, prop.type);
+    const propTypeTS = { ...prop.type };
 
     // TODO: Refactor as switch?
     if (propTypeTS.name === 'bool') {
@@ -143,7 +143,7 @@ function getTemplateStrings(reactAPI) {
     /**
      * Property controls
      */
-    const propTypeControls = Object.assign({}, prop.type);
+    const propTypeControls = { ...prop.type };
 
     if (propTypeControls.name === 'bool') {
       propTypeControls.name = 'boolean';

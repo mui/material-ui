@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { assert, expect } from 'chai';
 import { spy } from 'sinon';
 import * as PropTypes from 'prop-types';
@@ -83,6 +83,18 @@ describe('<RadioGroup />', () => {
     assert.strictEqual(findRadio(wrapper, 'zero').props().checked, true);
     findRadio(wrapper, 'one').simulate('change');
     assert.strictEqual(findRadio(wrapper, 'one').props().checked, true);
+  });
+
+  it('should have a default name', () => {
+    const wrapper = mount(
+      <RadioGroup>
+        <Radio value="zero" />
+        <Radio value="one" />
+      </RadioGroup>,
+    );
+
+    assert.match(findRadio(wrapper, 'zero').props().name, /^mui-radiogroup-[0-9]+/);
+    assert.match(findRadio(wrapper, 'one').props().name, /^mui-radiogroup-[0-9]+/);
   });
 
   describe('imperative focus()', () => {
@@ -295,6 +307,16 @@ describe('<RadioGroup />', () => {
         setProps({ value: 'one' });
         expect(radioGroupRef.current).to.have.property('value', 'one');
       });
+
+      it('should have a default name from the instance', () => {
+        const radioGroupRef = React.createRef();
+        const { setProps } = render(<RadioGroupControlled ref={radioGroupRef} />);
+
+        expect(radioGroupRef.current.name).to.match(/^mui-radiogroup-[0-9]+/);
+
+        setProps({ name: 'anotherGroup' });
+        expect(radioGroupRef.current).to.have.property('name', 'anotherGroup');
+      });
     });
 
     describe('callbacks', () => {
@@ -333,7 +355,7 @@ describe('<RadioGroup />', () => {
 
       wrapper.setProps({ value: undefined });
       assert.include(
-        consoleErrorMock.args()[0][0],
+        consoleErrorMock.messages()[0],
         'A component is changing a controlled RadioGroup to be uncontrolled.',
       );
     });
@@ -347,7 +369,7 @@ describe('<RadioGroup />', () => {
 
       wrapper.setProps({ value: 'foo' });
       assert.include(
-        consoleErrorMock.args()[0][0],
+        consoleErrorMock.messages()[0],
         'A component is changing an uncontrolled RadioGroup to be controlled.',
       );
     });

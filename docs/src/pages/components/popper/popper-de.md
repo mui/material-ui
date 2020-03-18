@@ -5,14 +5,14 @@ components: Popper
 
 # Popper
 
-<p class="description">A Popper can be used to display some content on top of another. It's an alternative to react-popper.</p>
+<p class="description">A Popper can be used to display some content on top of another. Es ist eine Alternative zu react-popper.</p>
 
 Einige wichtige Funktionen der `Popper` Komponente:
 
 - 🕷 Popper relies on the 3rd party library ([Popper.js](https://github.com/FezVrasta/popper.js)) for perfect positioning.
-- 💄 It's an alternative API to react-popper. It aims for simplicity.
+- 💄 Es ist eine alternative API zu react-popper. Es zielt auf Einfachheit ab.
 - 📦 [10 kB gzipped](/size-snapshot) ([7 kB](https://bundlephobia.com/result?p=popper.js) from Popper.js).
-- The children is [`Portal`](/components/portal/) to the body of the document to avoid rendering problems. You can disable this behavior with `disablePortal`.
+- The children is [`Portal`](/components/portal/) to the body of the document to avoid rendering problems. Sie können dieses Verhalten mit `disablePortal` deaktivieren.
 - The scroll isn't blocked like with the [`Popover`](/components/popover/) component. The placement of the popper updates with the available area in the viewport.
 - Durch Wegklicken wird die `Popper` Komponente ausgeblendet. Wenn Sie dieses Verhalten benötigen, können Sie den [`ClickAwayListener`](/components/click-away-listener/) verwenden - siehe das Beispiel im [Menü Dokumentation Abschnitt](/components/menus/#menulist-composition).
 - Die `anchorEl` Komponente wird als Referenzobjekt übergeben, um eine neue Instanz von `Popper.js` zu erstellen.
@@ -33,7 +33,7 @@ Popper has built-in support for [react-transition-group](https://github.com/reac
 
 {{"demo": "pages/components/popper/TransitionsPopper.js"}}
 
-Alternatively, you can use [react-spring](https://github.com/react-spring/react-spring).
+Alternativ können Sie [react-spring](https://github.com/react-spring/react-spring) verwenden.
 
 {{"demo": "pages/components/popper/SpringPopper.js"}}
 

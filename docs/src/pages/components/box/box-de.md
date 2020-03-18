@@ -6,7 +6,7 @@ title: Box React Komponente
 
 <p class="description">Die Box-Komponente dient als Wrapper-Komponente für die meisten Anforderungen des CSS-Dienstprogramms.</p>
 
-Die Box-Komponenten packt [alle Stilfunktionen](/system/basics/#all-inclusive), die in `@material-ui/system` verfügbar sind. It's created using the [`styled()`](/styles/api/#styled-style-function-component) function of `@material-ui/core/styles`.
+Die Box-Komponenten packt [alle Stilfunktionen](/system/basics/#all-inclusive), die in `@material-ui/system` verfügbar sind. Es wird mit der [`styled()`](/styles/api/#styled-style-function-component) function aus `@material-ui/core/styles` erstellt.
 
 ## Beispiel
 
@@ -46,7 +46,7 @@ Die Box-Kinder akzeptieren eine Render-Funktion als Eigenschaft. Sie können den
 </Box>
 ```
 
-> ⚠️ Die CSS-Spezifität hängt von der Importreihenfolge ab. If you want the guarantee that the wrapped component's style will be overridden, you need to import the Box last.
+> ⚠️ Die CSS-Spezifität hängt von der Importreihenfolge ab. Wenn Sie garantieren wollen, dass der Stil der wrapped Komponente überschrieben wird, müssen Sie die Box zuletzt importieren.
 
 ## API
 

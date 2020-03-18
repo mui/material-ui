@@ -52,3 +52,4 @@ import { sizing } from '@material-ui/system';
 | `height`    | `height`    | `height`     | none   |
 | `maxHeight` | `maxHeight` | `max-height` | none   |
 | `minHeight` | `minHeight` | `min-height` | none   |
+| `boxSizing` | `boxSizing` | `box-sizing` | none   |

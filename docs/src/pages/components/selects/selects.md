@@ -13,6 +13,13 @@ Menus are positioned over their emitting elements such that the currently select
 
 {{"demo": "pages/components/selects/SimpleSelect.js"}}
 
+## Advanced features
+
+The Select component is meant to be interchangeable with a native `<select>` element.
+
+If you are looking for more advanced features, like combobox, multiselect, autocomplete, async or creatable support, head to the [`Autocomplete` component](/components/autocomplete/).
+It's meant to be an improved version of the "react-select" and "downshift" packages.
+
 ## Native Select
 
 As the user experience can be improved on mobile using the native select of the platform,
@@ -77,7 +84,7 @@ Alternatively a `TextField` with an `id` and `label` creates the proper markup a
 ids for you:
 
 ```jsx
-<TextField id="select" label="Age" value="20">
+<TextField id="select" label="Age" value="20" select>
   <MenuItem value="10">Ten</MenuItem>
   <MenuItem value="20">Twenty</MenuItem>
 </TextField>

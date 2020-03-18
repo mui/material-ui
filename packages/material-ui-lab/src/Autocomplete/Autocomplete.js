@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
@@ -32,10 +32,19 @@ export const styles = theme => ({
     margin: 2,
     maxWidth: 'calc(100% - 4px)',
   },
+  /* Styles applied when the popup icon is rendered. */
+  hasPopupIcon: {},
+  /* Styles applied when the clear icon is rendered. */
+  hasClearIcon: {},
   /* Styles applied to the Input element. */
   inputRoot: {
     flexWrap: 'wrap',
-    paddingRight: 62,
+    '$hasPopupIcon &, $hasClearIcon &': {
+      paddingRight: 26 + 4,
+    },
+    '$hasPopupIcon$hasClearIcon &': {
+      paddingRight: 52 + 4,
+    },
     '& $input': {
       width: 0,
       minWidth: 30,
@@ -59,7 +68,12 @@ export const styles = theme => ({
     },
     '&[class*="MuiOutlinedInput-root"]': {
       padding: 9,
-      paddingRight: 62,
+      '$hasPopupIcon &, $hasClearIcon &': {
+        paddingRight: 26 + 4 + 9,
+      },
+      '$hasPopupIcon$hasClearIcon &': {
+        paddingRight: 52 + 4 + 9,
+      },
       '& $input': {
         padding: '9.5px 4px',
       },
@@ -67,12 +81,11 @@ export const styles = theme => ({
         paddingLeft: 6,
       },
       '& $endAdornment': {
-        right: 7,
+        right: 9,
       },
     },
     '&[class*="MuiOutlinedInput-root"][class*="MuiOutlinedInput-marginDense"]': {
       padding: 6,
-      paddingRight: 62,
       '& $input': {
         padding: '4.5px 4px',
       },
@@ -80,11 +93,17 @@ export const styles = theme => ({
     '&[class*="MuiFilledInput-root"]': {
       paddingTop: 19,
       paddingLeft: 8,
+      '$hasPopupIcon &, $hasClearIcon &': {
+        paddingRight: 26 + 4 + 9,
+      },
+      '$hasPopupIcon$hasClearIcon &': {
+        paddingRight: 52 + 4 + 9,
+      },
       '& $input': {
         padding: '9px 4px',
       },
       '& $endAdornment': {
-        right: 7,
+        right: 9,
       },
     },
     '&[class*="MuiFilledInput-root"][class*="MuiFilledInput-marginDense"]': {
@@ -111,22 +130,22 @@ export const styles = theme => ({
     right: 0,
     top: 'calc(50% - 14px)', // Center vertically
   },
-  /* Styles applied to the clear indictator. */
+  /* Styles applied to the clear indicator. */
   clearIndicator: {
     marginRight: -2,
     padding: 4,
     color: theme.palette.action.active,
     visibility: 'hidden',
   },
-  /* Styles applied to the clear indictator if the input is dirty. */
+  /* Styles applied to the clear indicator if the input is dirty. */
   clearIndicatorDirty: {},
-  /* Styles applied to the popup indictator. */
+  /* Styles applied to the popup indicator. */
   popupIndicator: {
     padding: 2,
     marginRight: -2,
     color: theme.palette.action.active,
   },
-  /* Styles applied to the popup indictator if the popup is open. */
+  /* Styles applied to the popup indicator if the popup is open. */
   popupIndicatorOpen: {
     transform: 'rotate(180deg)',
   },
@@ -143,17 +162,14 @@ export const styles = theme => ({
     ...theme.typography.body1,
     overflow: 'hidden',
     margin: '4px 0',
-    '& > ul': {
-      maxHeight: '40vh',
-      overflow: 'auto',
-    },
   },
   /* Styles applied to the `listbox` component. */
   listbox: {
     listStyle: 'none',
     margin: 0,
     padding: '8px 0px',
-    position: 'relative',
+    maxHeight: '40vh',
+    overflow: 'auto',
   },
   /* Styles applied to the loading wrapper. */
   loading: {
@@ -188,12 +204,12 @@ export const styles = theme => ({
     '&[data-focus="true"]': {
       backgroundColor: theme.palette.action.hover,
     },
-    '&[aria-disabled="true"]': {
-      opacity: 0.5,
-      pointerEvents: 'none',
-    },
     '&:active': {
       backgroundColor: theme.palette.action.selected,
+    },
+    '&[aria-disabled="true"]': {
+      opacity: theme.palette.action.disabledOpacity,
+      pointerEvents: 'none',
     },
   },
   /* Styles applied to the group's label elements. */
@@ -204,6 +220,9 @@ export const styles = theme => ({
   /* Styles applied to the group's ul elements. */
   groupUl: {
     padding: 0,
+    '& $option': {
+      paddingLeft: 24,
+    },
   },
 });
 
@@ -228,12 +247,11 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     closeIcon = <CloseIcon fontSize="small" />,
     closeText = 'Close',
     debug = false,
-    defaultValue,
+    defaultValue = props.multiple ? [] : null,
     disableClearable = false,
     disableCloseOnSelect = false,
     disabled = false,
     disableListWrap = false,
-    disableOpenOnFocus = false,
     disablePortal = false,
     filterOptions,
     filterSelectedOptions = false,
@@ -257,8 +275,9 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     onInputChange,
     onOpen,
     open,
+    openOnFocus = false,
     openText = 'Open',
-    options = [],
+    options,
     PaperComponent = Paper,
     PopperComponent: PopperComponentProp = Popper,
     popupIcon = <ArrowDropDownIcon />,
@@ -266,6 +285,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     renderInput,
     renderOption: renderOptionProp,
     renderTags,
+    selectOnFocus = !props.freeSolo,
     size = 'medium',
     value: valueProp,
     ...other
@@ -345,6 +365,9 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     );
   };
 
+  const hasClearIcon = !disableClearable && !disabled;
+  const hasPopupIcon = (!freeSolo || forcePopupIcon === true) && forcePopupIcon !== false;
+
   return (
     <React.Fragment>
       <div
@@ -353,6 +376,8 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
           classes.root,
           {
             [classes.focused]: focused,
+            [classes.hasClearIcon]: hasClearIcon,
+            [classes.hasPopupIcon]: hasPopupIcon,
           },
           className,
         )}
@@ -361,6 +386,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
         {renderInput({
           id,
           disabled,
+          fullWidth: true,
           size: size === 'small' ? 'small' : undefined,
           InputLabelProps: getInputLabelProps(),
           InputProps: {
@@ -369,7 +395,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
             startAdornment,
             endAdornment: (
               <div className={classes.endAdornment}>
-                {disableClearable || disabled ? null : (
+                {hasClearIcon ? (
                   <IconButton
                     {...getClearProps()}
                     aria-label={clearText}
@@ -380,9 +406,9 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
                   >
                     {closeIcon}
                   </IconButton>
-                )}
+                ) : null}
 
-                {(!freeSolo || forcePopupIcon === true) && forcePopupIcon !== false ? (
+                {hasPopupIcon ? (
                   <IconButton
                     {...getPopupIndicatorProps()}
                     disabled={disabled}
@@ -516,7 +542,7 @@ Autocomplete.propTypes = {
    */
   closeText: PropTypes.string,
   /**
-   * If `true`, the popup will ignore the blur event if the input if filled.
+   * If `true`, the popup will ignore the blur event if the input is filled.
    * You can inspect the popup markup with your browser tools.
    * Consider this option when you need to customize the component.
    */
@@ -524,7 +550,7 @@ Autocomplete.propTypes = {
   /**
    * The default input value. Use when the component is not controlled.
    */
-  defaultValue: PropTypes.any,
+  defaultValue: PropTypes.oneOfType([PropTypes.any, PropTypes.array]),
   /**
    * If `true`, the input can't be cleared.
    */
@@ -542,10 +568,6 @@ Autocomplete.propTypes = {
    */
   disableListWrap: PropTypes.bool,
   /**
-   * If `true`, the popup won't open on input focus.
-   */
-  disableOpenOnFocus: PropTypes.bool,
-  /**
    * Disable the portal behavior.
    * The children stay within it's parent DOM hierarchy.
    */
@@ -553,9 +575,9 @@ Autocomplete.propTypes = {
   /**
    * A filter function that determines the options that are eligible.
    *
-   * @param {any[]} options The options to render.
+   * @param {T[]} options The options to render.
    * @param {object} state The state of the component.
-   * @returns {any[]}
+   * @returns {T[]}
    */
   filterOptions: PropTypes.func,
   /**
@@ -588,7 +610,7 @@ Autocomplete.propTypes = {
    * If provided, the options will be grouped under the returned string.
    * The groupBy value is also used as the text for group headings when `renderGroup` is not provided.
    *
-   * @param {any} options The option to group.
+   * @param {T} options The option to group.
    * @returns {string}
    */
   groupBy: PropTypes.func,
@@ -637,7 +659,8 @@ Autocomplete.propTypes = {
    * Callback fired when the value changes.
    *
    * @param {object} event The event source of the callback.
-   * @param {any} value
+   * @param {T} value
+   * @param {string} reason One of "create-option", "select-option", "remove-option", "blur" or "clear".
    */
   onChange: PropTypes.func,
   /**
@@ -645,6 +668,7 @@ Autocomplete.propTypes = {
    * Use in controlled mode (see open).
    *
    * @param {object} event The event source of the callback.
+   * @param {string} reason Can be: `"toggleInput"`, `"escape"`, `"select-option"`, `"blur"`.
    */
   onClose: PropTypes.func,
   /**
@@ -652,7 +676,7 @@ Autocomplete.propTypes = {
    *
    * @param {object} event The event source of the callback.
    * @param {string} value The new value of the text input.
-   * @param {string} reason Can be: "input" (user input), "reset" (programmatic change), `"clear"`.
+   * @param {string} reason Can be: `"input"` (user input), `"reset"` (programmatic change), `"clear"`.
    */
   onInputChange: PropTypes.func,
   /**
@@ -667,6 +691,10 @@ Autocomplete.propTypes = {
    */
   open: PropTypes.bool,
   /**
+   * If `true`, the popup will open on input focus.
+   */
+  openOnFocus: PropTypes.bool,
+  /**
    * Override the default text for the *open popup* icon button.
    *
    * For localization purposes, you can use the provided [translations](/guides/localization/).
@@ -675,7 +703,7 @@ Autocomplete.propTypes = {
   /**
    * Array of options.
    */
-  options: PropTypes.array,
+  options: PropTypes.array.isRequired,
   /**
    * The component used to render the body of the popup.
    */
@@ -705,7 +733,7 @@ Autocomplete.propTypes = {
   /**
    * Render the option, use `getOptionLabel` by default.
    *
-   * @param {any} option The option to render.
+   * @param {T} option The option to render.
    * @param {object} state The state of the component.
    * @returns {ReactNode}
    */
@@ -713,11 +741,16 @@ Autocomplete.propTypes = {
   /**
    * Render the selected value.
    *
-   * @param {any} value The `value` provided to the component.
+   * @param {T[]} value The `value` provided to the component.
    * @param {function} getTagProps A tag props getter.
    * @returns {ReactNode}
    */
   renderTags: PropTypes.func,
+  /**
+   * If `true`, the input's text will be selected on focus.
+   * It helps the user clear the selected value.
+   */
+  selectOnFocus: PropTypes.bool,
   /**
    * The size of the autocomplete.
    */
@@ -728,7 +761,7 @@ Autocomplete.propTypes = {
    * The value must have reference equality with the option in order to be selected.
    * You can customize the equality behavior with the `getOptionSelected` prop.
    */
-  value: PropTypes.any,
+  value: PropTypes.oneOfType([PropTypes.any, PropTypes.array]),
 };
 
 export default withStyles(styles, { name: 'MuiAutocomplete' })(Autocomplete);

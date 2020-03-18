@@ -116,8 +116,7 @@ const markedOptions = {
 
 const styles = theme => ({
   root: {
-    fontFamily: theme.typography.fontFamily,
-    fontSize: 16,
+    ...theme.typography.body1,
     color: theme.palette.text.primary,
     wordBreak: 'break-word',
     '& .anchor-link': {
@@ -125,13 +124,17 @@ const styles = theme => ({
       position: 'absolute',
     },
     '& pre': {
-      margin: '24px 0',
-      padding: '12px 18px',
+      margin: theme.spacing(3, 0),
+      padding: theme.spacing(2),
       backgroundColor: '#272c34',
       direction: 'ltr',
       borderRadius: theme.shape.borderRadius,
       overflow: 'auto',
       WebkitOverflowScrolling: 'touch', // iOS momentum scrolling.
+      maxWidth: 'calc(100vw - 32px)',
+      [theme.breakpoints.up('md')]: {
+        maxWidth: 'calc(100vw - 32px - 16px)',
+      },
     },
     '& code': {
       display: 'inline-block',
@@ -140,13 +143,15 @@ const styles = theme => ({
       padding: '2px 6px',
       color: theme.palette.text.primary,
       backgroundColor:
-        theme.palette.type === 'dark' ? 'rgba(255,229,100,0.2)' : 'rgba(255,229,100,0.1)',
+        theme.palette.type === 'light' ? 'rgba(255, 229, 100, 0.1)' : 'rgba(255, 229, 100, 0.2)',
       fontSize: 14,
       borderRadius: 2,
     },
     '& code[class*="language-"]': {
       backgroundColor: '#272c34',
       color: '#fff',
+      // Avoid layout jump after hydration (style injected by prism)
+      lineHeight: 1.5,
     },
     '& p code, & ul code, & pre code': {
       fontSize: 14,
@@ -181,9 +186,8 @@ const styles = theme => ({
       margin: '32px 0 16px',
     },
     '& p, & ul, & ol': {
-      lineHeight: 1.6,
       marginTop: 0,
-      marginBottom: '16px',
+      marginBottom: 16,
     },
     '& ul': {
       paddingLeft: 30,
@@ -216,6 +220,7 @@ const styles = theme => ({
     '& table': {
       // Trade display table for scroll overflow
       display: 'block',
+      wordBreak: 'normal',
       width: '100%',
       overflowX: 'auto',
       WebkitOverflowScrolling: 'touch', // iOS momentum scrolling.
@@ -238,7 +243,7 @@ const styles = theme => ({
       '& .prop-default': {
         fontSize: 13,
         fontFamily: 'Consolas, "Liberation Mono", Menlo, monospace',
-        borderBottom: `1px dotted ${theme.palette.text.hint}`,
+        borderBottom: `1px dotted ${theme.palette.divider}`,
       },
     },
     '& td': {

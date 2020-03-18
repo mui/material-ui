@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import { ThemeProvider } from '@material-ui/styles';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
@@ -285,7 +285,7 @@ describe('useMediaQuery', () => {
       }
 
       render(<MyComponent />);
-      expect(consoleErrorMock.args()[0][0]).to.include('the `query` argument provided is invalid');
+      expect(consoleErrorMock.messages()[0]).to.include('the `query` argument provided is invalid');
     });
   });
 });

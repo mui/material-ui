@@ -2,7 +2,7 @@
 import 'docs/src/modules/components/bootstrap';
 // --- Post bootstrap -----
 import React from 'react';
-import App, { Container } from 'next/app';
+import App from 'next/app';
 import find from 'lodash/find';
 import { Provider as ReduxProvider, useDispatch, useSelector } from 'react-redux';
 import { loadCSS } from 'fg-loadcss/src/loadCSS';
@@ -11,7 +11,8 @@ import PropTypes from 'prop-types';
 import acceptLanguage from 'accept-language';
 import { create } from 'jss';
 import rtl from 'jss-rtl';
-import { Router as Router2, useRouter } from 'next/router';
+import { useRouter } from 'next/router';
+import { rewriteUrlForNextExport } from 'next/dist/next-server/lib/router/rewrite-url-for-export';
 import { StylesProvider, jssPreset } from '@material-ui/styles';
 import pages from 'docs/src/pages';
 import initRedux from 'docs/src/modules/redux/initRedux';
@@ -58,7 +59,7 @@ function LanguageNegotiation() {
 
   React.useEffect(() => {
     const { userLanguage: userLanguageUrl, canonical } = pathnameToLanguage(
-      Router2._rewriteUrlForNextExport(router.asPath),
+      rewriteUrlForNextExport(router.asPath),
     );
     const preferedLanguage =
       getCookie('userLanguage') !== 'noDefault' && userLanguage === 'en'
@@ -289,10 +290,9 @@ function AppWrapper(props) {
   if (pathname !== '/') {
     // The leading / is only added to support static hosting (resolve /index.html).
     // We remove it to normalize the pathname.
-    // See `_rewriteUrlForNextExport` on Next.js side.
+    // See `rewriteUrlForNextExport` on Next.js side.
     pathname = pathname.replace(/\/$/, '');
   }
-  // console.log(pages, { ...router, pathname })
   const activePage = findActivePage(pages, pathname);
 
   let fonts = ['https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap'];
@@ -300,28 +300,24 @@ function AppWrapper(props) {
     fonts = [
       'https://fonts.googleapis.com/css?family=Roboto+Condensed:700|Work+Sans:300,400&display=swap',
     ];
-  } else if (pathname.match(/blog/)) {
-    fonts.push('https://fonts.googleapis.com/css?family=Roboto+Slab:300&display=swap');
   }
 
   return (
     <ReactMode>
-      <Container>
-        <NextHead>
-          {fonts.map(font => (
-            <link rel="stylesheet" href={font} key={font} />
-          ))}
-        </NextHead>
-        <ReduxProvider store={redux}>
-          <PageContext.Provider value={{ activePage, pages }}>
-            <StylesProvider jss={jss}>
-              <ThemeProvider>{children}</ThemeProvider>
-            </StylesProvider>
-          </PageContext.Provider>
-          <PersistState />
-          <LanguageNegotiation />
-        </ReduxProvider>
-      </Container>
+      <NextHead>
+        {fonts.map(font => (
+          <link rel="stylesheet" href={font} key={font} />
+        ))}
+      </NextHead>
+      <ReduxProvider store={redux}>
+        <PageContext.Provider value={{ activePage, pages, versions: pageProps.versions }}>
+          <StylesProvider jss={jss}>
+            <ThemeProvider>{children}</ThemeProvider>
+          </StylesProvider>
+        </PageContext.Provider>
+        <PersistState />
+        <LanguageNegotiation />
+      </ReduxProvider>
       <GoogleAnalytics key={router.route} />
     </ReactMode>
   );
@@ -344,8 +340,12 @@ export default class MyApp extends App {
   }
 }
 
-MyApp.getInitialProps = ({ ctx }) => {
+MyApp.getInitialProps = async ({ ctx, Component }) => {
   let pageProps = {};
+
+  if (Component.getInitialProps) {
+    pageProps = await Component.getInitialProps(ctx);
+  }
 
   if (!process.browser) {
     const redux = initRedux({
@@ -354,6 +354,7 @@ MyApp.getInitialProps = ({ ctx }) => {
       },
     });
     pageProps = {
+      ...pageProps,
       // No need to include other initial Redux state because when it
       // initialises on the client-side it'll create it again anyway
       reduxServerState: redux.getState(),

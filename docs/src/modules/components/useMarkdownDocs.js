@@ -1,6 +1,6 @@
 import React from 'react';
 import kebabCase from 'lodash/kebabCase';
-import { Router as Router2 } from 'next/router';
+import { rewriteUrlForNextExport } from 'next/dist/next-server/lib/router/rewrite-url-for-export';
 import { useSelector } from 'react-redux';
 import Demo from 'docs/src/modules/components/Demo';
 import { getHeaders, getContents, demoRegexp } from 'docs/src/modules/utils/parseMarkdown';
@@ -74,16 +74,13 @@ export default function useMarkdownDocs(options) {
   }
 
   if (headers.components.length > 0) {
-    const section = location.split('/')[4];
     contents.push(`
 ## API
 
 ${headers.components
   .map(
     component =>
-      `- [&lt;${component} /&gt;](${
-        section === 'lab' ? '/lab/api' : '/api'
-      }/${Router2._rewriteUrlForNextExport(kebabCase(component))})`,
+      `- [&lt;${component} /&gt;](${rewriteUrlForNextExport(`/api/${kebabCase(component)}`)})`,
   )
   .join('\n')}
   `);
@@ -140,10 +137,10 @@ ${headers.components
 
           return (
             <Demo
-              key={content}
+              key={`${content}${index}`}
               demo={demos[name]}
               demoOptions={demoOptions}
-              githubLocation={`${SOURCE_CODE_ROOT_URL}/${name}`}
+              githubLocation={`${SOURCE_CODE_ROOT_URL}/docs/src/${name}`}
             />
           );
         }

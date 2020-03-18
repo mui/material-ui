@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { OverridableComponent, OverrideProps } from '@material-ui/core/OverridableComponent';
 
-export interface SkeletonTypeMap<P = {}, D extends React.ElementType = 'hr'> {
+export interface SkeletonTypeMap<P = {}, D extends React.ElementType = 'span'> {
   props: P & {
     animation?: 'pulse' | 'wave' | false;
     height?: number | string;
@@ -14,7 +14,7 @@ export interface SkeletonTypeMap<P = {}, D extends React.ElementType = 'hr'> {
 
 declare const Skeleton: OverridableComponent<SkeletonTypeMap>;
 
-export type SkeletonClassKey = 'root' | 'text' | 'rect' | 'circle' | 'animate';
+export type SkeletonClassKey = 'root' | 'text' | 'rect' | 'circle' | 'pulse' | 'wave';
 
 export type SkeletonProps<
   D extends React.ElementType = SkeletonTypeMap['defaultComponent'],

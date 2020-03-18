@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { refType } from '@material-ui/utils';
@@ -78,7 +78,7 @@ export const styles = theme => {
         borderBottomStyle: 'dotted',
       },
     },
-    /* Styles applied to the root element if `error={true}`. */
+    /* Pseudo-class applied to the root element if `error={true}`. */
     error: {},
     /* Styles applied to the `input` element if `margin="dense"`. */
     marginDense: {},

@@ -2,7 +2,7 @@
 title: React Box（分组）组件
 ---
 
-# Box（分组）
+# Box 分组
 
 <p class="description">对于大多数 CSS 实用程序来说，Box 组件能够作为一个包装组件来使用。</p>
 

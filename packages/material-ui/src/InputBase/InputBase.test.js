@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { spy } from 'sinon';
@@ -189,7 +189,9 @@ describe('<InputBase />', () => {
             onChange({ target: { value: event.target.value } });
           };
 
-          return <input onChange={handleChange} />;
+          // TODO: required because of a bug in aria-query
+          // remove `type` once https://github.com/A11yance/aria-query/pull/42 is merged
+          return <input onChange={handleChange} type="text" />;
         }
         MockedValue.propTypes = { onChange: PropTypes.func.isRequired };
 
@@ -498,7 +500,7 @@ describe('<InputBase />', () => {
         );
 
         expect(consoleErrorMock.callCount()).to.eq(1);
-        expect(consoleErrorMock.args()[0][0]).to.include(
+        expect(consoleErrorMock.messages()[0]).to.include(
           'Material-UI: there are multiple InputBase components inside a FormControl.',
         );
       });
@@ -524,7 +526,7 @@ describe('<InputBase />', () => {
                 <InputBase />
               ) : (
                 <Select native>
-                  <option value="" />
+                  <option value="">empty</option>
                 </Select>
               )}
               <button type="button" onClick={() => setFlag(!flag)}>

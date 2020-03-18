@@ -13,39 +13,45 @@ Os menus são posicionados sobre seus elementos emissores, de modo que o item de
 
 {{"demo": "pages/components/selects/SimpleSelect.js"}}
 
-## Seleção Nativa
+## Advanced features
 
-Como a experiência do usuário pode ser melhorada em dispositivos móveis usando a seleção nativa da plataforma, permitimos esse padrão.
+The Select component is meant to be interchangeable with a native `<select>` element.
+
+If you are looking for more advanced features, like combobox, multiselect, autocomplete, async or creatable support, head to the [`Autocomplete` component](/components/autocomplete/). It's also meant to be an improved version of the "react-select" package.
+
+## Native Select
+
+As the user experience can be improved on mobile using the native select of the platform, we allow such pattern.
 
 {{"demo": "pages/components/selects/NativeSelects.js"}}
 
-## Campos de Texto
+## Text Fields
 
-O componente wrapper `TextField` é um controle de formulário completo, incluindo um rótulo, entrada e texto de ajuda. Você pode encontrar um exemplo de seleção [nesta seção](/components/text-fields/#select).
+O componente wrapper `TextField` é um controle de formulário completo, incluindo um rótulo, entrada e texto de ajuda. You can find an example with the select mode [in this section](/components/text-fields/#select).
 
-## Seleções Customizados
+## Customized selects
 
 Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
 
-O primeiro passo é modelar o componente `InputBase`. Uma vez estilizado, você pode usá-lo diretamente como um campo de texto ou fornecê-lo à propriedade `input` da seleção para ter um campo `select`.
+The first step is to style the `InputBase` component. Once it's styled, you can either use it directly as a text field or provide it to the select `input` property to have a `select` field.
 
 {{"demo": "pages/components/selects/CustomizedSelects.js"}}
 
-## Seleção Múltipla
+## Multiple Select
 
-O componente `Select` pode lidar com várias seleções. É ativado com a propriedade `multiple`.
+The `Select` component can handle multiple selections. It's enabled with the `multiple` property.
 
-Como na seleção única, você pode extrair o novo valor acessando `event.target.value` na chamada `onChange`. É sempre uma matriz.
+Like with the single selection, you can pull out the new value by accessing `event.target.value` in the `onChange` callback. It's always an array.
 
 {{"demo": "pages/components/selects/MultipleSelect.js"}}
 
-## Seleção Aberta Controlada
+## Controlled Open Select
 
 {{"demo": "pages/components/selects/ControlledOpenSelect.js"}}
 
-## Com uma caixa de Diálogo
+## With a Dialog
 
-Embora não seja recomendado pela especificação do Material Design, você pode usar uma seleção dentro de uma caixa de diálogo.
+While it's discouraged by the Material Design specification, you can use a select inside a dialog.
 
 {{"demo": "pages/components/selects/DialogSelect.js"}}
 

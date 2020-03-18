@@ -1,6 +1,6 @@
 import { getDisplayName } from '@material-ui/utils';
 
-function mergeClasses(options = {}) {
+export default function mergeClasses(options = {}) {
   const { baseClasses, newClasses, Component } = options;
 
   if (!newClasses) {
@@ -53,5 +53,3 @@ function mergeClasses(options = {}) {
 
   return nextClasses;
 }
-
-export default mergeClasses;

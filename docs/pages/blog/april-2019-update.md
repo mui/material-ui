@@ -4,9 +4,7 @@ description: Here are the most significant improvements in April.
 
 # April 2019 Update
 
-**Olivier Tassinari**
-
-*May 7, 2019*
+Olivier Tassinari. May 7, 2019.
 
 Here are the most significant improvements in April:
 
@@ -62,7 +60,3 @@ But this summary is just scratching the surface. We have accepted 243 commits fr
 - Something big 🌈
 
 - ❓ Please upvote our [GitHub issues](https://github.com/mui-org/material-ui/issues) if you want something specific. The number of 👍 helps us to prioritize.
-
-<hr />
-
-Material-UI is an MIT-licensed open source project. It’s an independent project with ongoing development helped by the support of these awesome [backers](/discover-more/backers/). Please join them ✨.

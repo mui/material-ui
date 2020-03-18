@@ -3,7 +3,7 @@ import { SheetsRegistry } from 'jss';
 import StylesProvider from '../StylesProvider';
 import createGenerateClassName from '../createGenerateClassName';
 
-class ServerStyleSheets {
+export default class ServerStyleSheets {
   constructor(options = {}) {
     this.options = options;
   }
@@ -33,18 +33,11 @@ class ServerStyleSheets {
   }
 
   getStyleElement(props) {
-    return React.createElement(
-      'style',
-      Object.assign(
-        {
-          id: 'jss-server-side',
-          key: 'jss-server-side',
-          dangerouslySetInnerHTML: { __html: this.toString() },
-        },
-        props,
-      ),
-    );
+    return React.createElement('style', {
+      id: 'jss-server-side',
+      key: 'jss-server-side',
+      dangerouslySetInnerHTML: { __html: this.toString() },
+      ...props,
+    });
   }
 }
-
-export default ServerStyleSheets;

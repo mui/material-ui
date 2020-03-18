@@ -1,4 +1,4 @@
-# Our Vision
+# Unsere Vision
 
 <p class="description">Unsere Vision ist es, eine elegante React-Implementierung der Material Design-Richtlinien bereitzustellen, die Sie an Ihr Produkt anpassen können.</p>
 

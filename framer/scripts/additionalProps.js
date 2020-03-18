@@ -92,6 +92,10 @@ const additionalProps = component => {
         return props.deletable === false;
       },
     },
+    disabled: {
+      type: { name: 'boolean' },
+      defaultValue: { value: false },
+    },
     elevation: {
       type: { name: 'number', min: 0, max: 24 },
       defaultValue: { value: componentSettings[component].propValues.elevation },
@@ -112,10 +116,6 @@ const additionalProps = component => {
         ],
       },
       defaultValue: { value: "'Filled'" },
-    },
-    error: {
-      type: { name: 'color' },
-      defaultValue: { value: componentSettings[component].propValues.error },
     },
     fullWidth: {
       type: { name: 'boolean' },
@@ -204,10 +204,6 @@ const additionalProps = component => {
       description: 'Theme palette type',
       defaultValue: { value: "'light'" },
     },
-    primary: {
-      type: { name: 'color' },
-      defaultValue: { value: componentSettings[component].propValues.primary },
-    },
     primaryAction: {
       type: {
         name: 'enum',
@@ -241,10 +237,6 @@ const additionalProps = component => {
         },
       },
       defaultValue: { value: componentSettings[component].propValues.progressValue },
-    },
-    secondary: {
-      type: { name: 'color' },
-      defaultValue: { value: componentSettings[component].propValues.secondary },
     },
     secondaryAction: {
       type: {

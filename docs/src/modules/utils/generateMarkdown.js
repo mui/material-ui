@@ -1,11 +1,10 @@
 import { parse as parseDoctrine } from 'doctrine';
 import * as recast from 'recast';
 import { parse as docgenParse } from 'react-docgen';
-import { Router as Router2 } from 'next/router';
+import { rewriteUrlForNextExport } from 'next/dist/next-server/lib/router/rewrite-url-for-export';
 import { pageToTitle } from './helpers';
-import { LANGUAGES_IN_PROGRESS } from 'docs/src/modules/constants';
+import { SOURCE_CODE_ROOT_URL, LANGUAGES_IN_PROGRESS } from 'docs/src/modules/constants';
 
-const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/blob/master';
 const PATH_REPLACE_REGEX = /\\/g;
 const PATH_SEPARATOR = '/';
 const DEMO_IGNORE = LANGUAGES_IN_PROGRESS.map(language => `-${language}.md`);
@@ -84,6 +83,23 @@ function isElementAcceptingRefProp(type) {
   return /^elementAcceptingRef/.test(type.raw);
 }
 
+function resolveType(type) {
+  if (type.type === 'AllLiteral') {
+    return 'any';
+  }
+
+  if (type.type === 'TypeApplication') {
+    const arrayTypeName = resolveType(type.applications[0]);
+    return `${arrayTypeName}[]`;
+  }
+
+  if (type.type === 'UnionType') {
+    return type.elements.map(t => resolveType(t)).join(' \\| ');
+  }
+
+  return type.name;
+}
+
 function generatePropDescription(prop) {
   const { description } = prop;
   const type = prop.flowType || prop.type;
@@ -137,15 +153,11 @@ function generatePropDescription(prop) {
     signature += '<br><br>**Signature:**<br>`function(';
     signature += parsedArgs
       .map(tag => {
-        if (tag.type.type === 'AllLiteral') {
-          return `${tag.name}: any`;
-        }
-
         if (tag.type.type === 'OptionalType') {
           return `${tag.name}?: ${tag.type.expression.name}`;
         }
 
-        return `${tag.name}: ${tag.type.name}`;
+        return `${tag.name}: ${resolveType(tag.type)}`;
       })
       .join(', ');
     signature += `) => ${parsedReturns.type.name}\`<br>`;
@@ -273,6 +285,11 @@ function generateProps(reactAPI) {
       )}</span>`;
     }
 
+    // Give up
+    if (defaultValue.length > 180) {
+      defaultValue = '';
+    }
+
     const chainedPropType = getChained(prop.type);
 
     if (
@@ -314,7 +331,7 @@ function generateProps(reactAPI) {
     text = `${text}
 Any other props supplied will be provided to the root element (${
       reactAPI.inheritance
-        ? `[${reactAPI.inheritance.component}](${Router2._rewriteUrlForNextExport(
+        ? `[${reactAPI.inheritance.component}](${rewriteUrlForNextExport(
             reactAPI.inheritance.pathname,
           )})`
         : 'native element'
@@ -339,6 +356,10 @@ function generateClasses(reactAPI) {
 |:-----|:-------------|:------------|\n`;
   text += reactAPI.styles.classes
     .map(styleRule => {
+      if (styleRule === '@global') {
+        return '| <span class="prop-name">@global</span> | | Apply global styles.';
+      }
+
       const description = reactAPI.styles.descriptions[styleRule];
 
       if (typeof description === 'undefined' && ['Grid', 'Paper'].indexOf(reactAPI.name) === -1) {
@@ -391,7 +412,7 @@ function generateInheritance(reactAPI) {
 
   return `## Inheritance
 
-The props of the [${inheritance.component}](${Router2._rewriteUrlForNextExport(
+The props of the [${inheritance.component}](${rewriteUrlForNextExport(
     inheritance.pathname,
   )}) component${suffix} are also available.
 You can take advantage of this behavior to [target nested components](/guides/api/#spread).
@@ -415,7 +436,7 @@ function generateDemos(reactAPI) {
   return `## Demos
 
 ${pagesMarkdown
-  .map(page => `- [${pageToTitle(page)}](${Router2._rewriteUrlForNextExport(page.pathname)})`)
+  .map(page => `- [${pageToTitle(page)}](${rewriteUrlForNextExport(page.pathname)})`)
   .join('\n')}
 
 `;

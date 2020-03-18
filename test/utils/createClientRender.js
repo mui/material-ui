@@ -63,16 +63,26 @@ function clientRender(element, options = {}) {
     return result;
   };
 
+  result.forceUpdate = function forceUpdate() {
+    result.rerender(
+      React.cloneElement(element, {
+        'data-force-update': String(Math.random()),
+      }),
+    );
+    return result;
+  };
+
   return result;
 }
 
 export function createClientRender(globalOptions = {}) {
   const { strict: globalStrict } = globalOptions;
 
-  afterEach(() => {
-    act(() => {
-      cleanup();
-    });
+  afterEach(async () => {
+    // If this issues an act() warning you probably didn't
+    // wait for an async event in your test (or didn't wrap it in act() at all).
+    // please wait for every update in your test and make appropriate assertions
+    await cleanup();
   });
 
   return function configuredClientRender(element, options = {}) {

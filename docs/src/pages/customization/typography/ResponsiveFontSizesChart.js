@@ -1,5 +1,6 @@
+/* eslint-disable material-ui/restricted-path-imports */
 import React from 'react';
-import convertLength from 'convert-css-length';
+import { convertLength } from '@material-ui/core/styles/cssUtils';
 import { makeStyles, createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
 import {
   Legend,

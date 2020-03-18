@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { spy } from 'sinon';
 import { assert } from 'chai';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
@@ -154,7 +154,9 @@ describe('<Menu />', () => {
   it('should open during the initial mount', () => {
     const wrapper = mount(
       <Menu {...defaultProps} open>
-        <div role="menuitem" tabIndex={-1} />
+        <div role="menuitem" tabIndex={-1}>
+          one
+        </div>
       </Menu>,
     );
     const popover = wrapper.find(Popover);
@@ -249,7 +251,7 @@ describe('<Menu />', () => {
 
       assert.strictEqual(consoleErrorMock.callCount(), 2);
       assert.include(
-        consoleErrorMock.args()[0][0],
+        consoleErrorMock.messages()[0],
         "Material-UI: the Menu component doesn't accept a Fragment as a child.",
       );
     });

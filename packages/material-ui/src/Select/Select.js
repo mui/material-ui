@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import { mergeClasses } from '@material-ui/styles';
 import SelectInput from './SelectInput';
@@ -24,6 +24,7 @@ const Select = React.forwardRef(function Select(props, ref) {
     id,
     input,
     inputProps,
+    label,
     labelId,
     labelWidth = 0,
     MenuProps,
@@ -53,7 +54,7 @@ const Select = React.forwardRef(function Select(props, ref) {
     input ||
     {
       standard: <Input />,
-      outlined: <OutlinedInput labelWidth={labelWidth} />,
+      outlined: <OutlinedInput label={label} labelWidth={labelWidth} />,
       filled: <FilledInput />,
     }[variant];
 
@@ -142,13 +143,16 @@ Select.propTypes = {
    */
   inputProps: PropTypes.object,
   /**
-   * The idea of an element that acts as an additional label. The Select will
+   * See [OutlinedInput#label](/api/outlined-input/#props)
+   */
+  label: PropTypes.node,
+  /**
+   * The ID of an element that acts as an additional label. The Select will
    * be labelled by the additional label and the selected value.
    */
   labelId: PropTypes.string,
   /**
-   * The label width to be used on OutlinedInput.
-   * This prop is required when the `variant` prop is `outlined`.
+   * See [OutlinedInput#label](/api/outlined-input/#props)
    */
   labelWidth: PropTypes.number,
   /**

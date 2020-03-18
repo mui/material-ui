@@ -1,36 +1,36 @@
 ---
-title: Componente React Cajón
+title: Drawer
 components: Drawer, SwipeableDrawer
 ---
 
 # Cajón
 
-<p class="description">Los cajones de navegación brindan acceso a los destinos en su aplicación. Las hojas laterales son superficies que contienen contenido complementario que están ancladas al borde izquierdo o derecho de la pantalla.</p>
+<p class="description">Los Navigation Drawers brindan acceso a los destinos en su aplicación. Las hojas laterales son superficies que contienen contenido complementario que están ancladas al borde izquierdo o derecho de la pantalla.</p>
 
-[Navigation drawers](https://material.io/design/components/navigation-drawer.html) (or "sidebars") provide access to destinations and app functionality, such as switching accounts. Pueden estar permanentemente en pantalla o controlados por un ícono del menú de navegación.
+[Navigation Drawers](https://material.io/design/components/navigation-drawer.html) proveen acceso a destinos o funcionalidades de su aplicación, como cambiar de cuentas. Pueden estar permanentemente en pantalla o controlados por un ícono del menú de navegación.
 
 [Las hojas laterales](https://material.io/design/components/sheets-side.html) son superficies suplementarias que se usan principalmente en tabletas y computadores de escritorio.
 
-## Cajón temporal
+## Drawer temporal
 
-Temporary navigation drawers can toggle open or closed. Closed by default, the drawer opens temporarily above all other content until a section is selected.
+Los Drawers temporales puedes estar abiertos o cerrados. Cerrados por defecto, el Drawer se abre temporalmente sobre todo el contenido de la app, hasta que se seleccione una opción.
 
-The Drawer can be cancelled by clicking the overlay or pressing the Esc key. It closes when an item is selected, handled by controlling the `open` prop.
+El Drawer puede ser cancelado, haciendo click sobre el Overlay o presionando la tecla Escape del teclado. Se cierra además, cuando un elemento es seleccionado, a partir del manejo de la propiedad `open`.
 
 {{"demo": "pages/components/drawers/TemporaryDrawer.js"}}
 
-## Cajón temporal deslizable
+## Drawer temporal deslizable
 
-Puede hacer que el cajón sea deslizable con el componente `SwipeableDrawer`.
+Puedes hacer que el Drawer sea deslizable con el componente `SwipeableDrawer`.
 
 Este componente viene con una sobrecarga de carga gzipped de 2 kB. Algunos dispositivos móviles de baja gama no podrán seguir los dedos a 60 FPS. Puede utilizar la propiedad `disableBackdropTransition` para ayudar.
 
 {{"demo": "pages/components/drawers/SwipeableTemporaryDrawer.js"}}
 
-The following properties are used in this documentation website for optimal usability of the component:
+Las siguientes propiedades son usadas en la web de documentación para una óptima usabilidad del componente:
 
-- iOS is hosted on high-end devices. The backdrop transition can be enabled without dropping frames. El rendimiento será lo suficientemente bueno.
-- iOS has a "swipe to go back" feature that interferes with the discovery feature, so discovery has to be disabled.
+- iOS está alojado en dispositivos de gama alta. La transición de Backdrop puede ser habilitada sin perder frames. El rendimiento será lo suficientemente bueno.
+- iOS tiene un gesto "deslizar para volver" que interfiere con la función de descubrimiento, por lo tanto esta debe ser deshabilitada.
 
 ```jsx
 const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
@@ -38,17 +38,17 @@ const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 <SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} />
 ```
 
-## Cajón responsivo
+## Drawer responsivo
 
-El componente utilitario responsivo `Hidden` permite mostrar diferentes tipos de cajones dependiendo del ancho de la pantalla. Un cajón `temporary` se muestra para pantallas pequeñas mientras que un cajón `permanent` se muestra para pantallas mas anchas.
+El componente utilitario responsivo `Hidden` permite mostrar diferentes tipos de cajones dependiendo del ancho de la pantalla. Un Drawer `temporary` se muestra para pantallas pequeñas mientras que un Drawer `permanent` se muestra para pantallas mas anchas.
 
 {{"demo": "pages/components/drawers/ResponsiveDrawer.js", "iframe": true}}
 
-## Cajón persistente
+## Drawer persistente
 
-Los cajones de navegación persistente pueden intercambiarse entre abierto o cerrado. El cajón descansa en la misma superficie de elevación que el contenido. Está cerrado por defecto y se abre seleccionando el ícono del menú, y permanece abierto hasta que es cerrado por el usuario. El estado del cajón es recordado de acción a acción y de sesión a sesión.
+Los Drawers persistentes pueden intercambiarse entre abierto o cerrado. El Drawer descansa en la misma superficie de elevación que el contenido. Está cerrado por defecto y se abre seleccionando el ícono del menú, y permanece abierto hasta que es cerrado por el usuario. El estado del Drawer es recordado de acción a acción y de sesión a sesión.
 
-Cuando el cajón está fuera de la grilla de la página y se abre, fuerza al otro contenido a cambiar su tamaño y adaptarse a la vista más pequeña.
+Cuando el Drawer está fuera de la grilla de la página y se abre, fuerza al otro contenido a cambiar su tamaño y adaptarse a la vista más pequeña.
 
 Persistent navigation drawers are acceptable for all sizes larger than mobile. They are not recommended for apps with multiple levels of hierarchy that require using an up arrow for navigation.
 

@@ -3,7 +3,7 @@ title: React Divider（分隔线）组件
 components: Divider
 ---
 
-# Divider (分隔线)
+# Divider 分隔线
 
 <p class="description">分隔线是对列表和布局中的内容进行分组的一条细线。</p>
 
@@ -33,6 +33,6 @@ In a list, you should ensure the `Divider` is rendered as an `<li>` to match the
 
 ## Vertical Dividers
 
-You can also render a divider vertically using the `orientation` prop.
+You can also render a divider vertically using the `orientation` prop. Note the use of the `flexItem` prop to accommodate for the flex container.
 
 {{"demo": "pages/components/dividers/VerticalDividers.js", "bg": true}}

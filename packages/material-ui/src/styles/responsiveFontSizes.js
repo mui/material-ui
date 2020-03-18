@@ -1,9 +1,4 @@
-import convertLength from 'convert-css-length';
-import { responsiveProperty, alignProperty, fontGrid } from './cssUtils';
-
-function isUnitless(value) {
-  return String(parseFloat(value)).length === String(value).length;
-}
+import { isUnitless, convertLength, responsiveProperty, alignProperty, fontGrid } from './cssUtils';
 
 export default function responsiveFontSizes(themeInput, options = {}) {
   const {

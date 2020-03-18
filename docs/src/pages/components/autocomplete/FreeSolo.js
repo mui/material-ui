@@ -11,7 +11,7 @@ export default function FreeSolo() {
         freeSolo
         options={top100Films.map(option => option.title)}
         renderInput={params => (
-          <TextField {...params} label="freeSolo" margin="normal" variant="outlined" fullWidth />
+          <TextField {...params} label="freeSolo" margin="normal" variant="outlined" />
         )}
       />
       <Autocomplete
@@ -25,7 +25,6 @@ export default function FreeSolo() {
             label="Search input"
             margin="normal"
             variant="outlined"
-            fullWidth
             InputProps={{ ...params.InputProps, type: 'search' }}
           />
         )}

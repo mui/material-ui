@@ -9,7 +9,7 @@
 // Follow this flexbox Guide to better understand the underlying model:
 // - https://css-tricks.com/snippets/css/a-guide-to-flexbox/
 
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
@@ -123,7 +123,7 @@ export const styles = theme => ({
   'direction-xs-column-reverse': {
     flexDirection: 'column-reverse',
   },
-  /* Styles applied to the root element if `direction="rwo-reverse"`. */
+  /* Styles applied to the root element if `direction="row-reverse"`. */
   'direction-xs-row-reverse': {
     flexDirection: 'row-reverse',
   },

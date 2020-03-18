@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { refType } from '@material-ui/utils';
@@ -64,7 +64,6 @@ const Checkbox = React.forwardRef(function Checkbox(props, ref) {
     checkedIcon = defaultCheckedIcon,
     classes,
     color = 'secondary',
-    disabled = false,
     icon = defaultIcon,
     indeterminate = false,
     indeterminateIcon = defaultIndeterminateIcon,
@@ -95,7 +94,6 @@ const Checkbox = React.forwardRef(function Checkbox(props, ref) {
         fontSize: size === 'small' ? 'small' : 'default',
       })}
       ref={ref}
-      disabled={disabled}
       {...other}
     />
   );
@@ -120,7 +118,7 @@ Checkbox.propTypes = {
    */
   color: PropTypes.oneOf(['primary', 'secondary', 'default']),
   /**
-   * If `true`, the switch will be disabled.
+   * If `true`, the checkbox will be disabled.
    */
   disabled: PropTypes.bool,
   /**
@@ -176,6 +174,7 @@ Checkbox.propTypes = {
   type: PropTypes.string,
   /**
    * The value of the component. The DOM API casts this to a string.
+   * The browser uses "on" as the default value.
    */
   value: PropTypes.any,
 };

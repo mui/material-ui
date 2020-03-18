@@ -6,6 +6,7 @@ import MuiAvatar from '@material-ui/core/Avatar';
 import { Icon } from './Icon';
 
 interface Props {
+  variant?: 'circle' | 'rounded' | 'square';
   backgroundColor?: string;
   textColor?: string;
   icon?: string;
@@ -17,6 +18,7 @@ interface Props {
 }
 
 const defaultProps: Props = {
+  variant: 'circle',
   backgroundColor: '#4154af',
   textColor: undefined,
   icon: 'face',
@@ -52,6 +54,11 @@ export const Avatar: React.SFC<Props> = (props: Props) => {
 Avatar.defaultProps = defaultProps;
 
 addPropertyControls(Avatar, {
+  variant: {
+    type: ControlType.Enum,
+    title: 'Variant',
+    options: ['circle', 'rounded', 'square'],
+  },
   backgroundColor: {
     type: ControlType.Color,
     title: 'Background color',

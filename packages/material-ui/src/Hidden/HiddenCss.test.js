@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { assert } from 'chai';
 import { createShallow, createMount, getClasses } from '@material-ui/core/test-utils';
 import HiddenCss from './HiddenCss';
@@ -162,7 +162,7 @@ describe('<HiddenCss />', () => {
 
       assert.strictEqual(consoleErrorMock.callCount(), 1);
       assert.include(
-        consoleErrorMock.args()[0][0],
+        consoleErrorMock.messages()[0],
         'Material-UI: unsupported props received by `<Hidden implementation="css" />`: xxlUp.',
       );
     });

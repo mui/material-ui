@@ -4,14 +4,14 @@ export type SpacingArgument = number;
 
 export interface Spacing {
   (): number;
-  (value1: SpacingArgument): number;
-  (value1: SpacingArgument, value2: SpacingArgument): string;
-  (value1: SpacingArgument, value2: SpacingArgument, value3: SpacingArgument): string;
+  (value: SpacingArgument): number;
+  (topBottom: SpacingArgument, rightLeft: SpacingArgument): string;
+  (top: SpacingArgument, rightLeft: SpacingArgument, bottom: SpacingArgument): string;
   (
-    value1: SpacingArgument,
-    value2: SpacingArgument,
-    value3: SpacingArgument,
-    value4: SpacingArgument,
+    top: SpacingArgument,
+    right: SpacingArgument,
+    bottom: SpacingArgument,
+    left: SpacingArgument,
   ): string;
 }
 

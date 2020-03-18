@@ -5,7 +5,7 @@ export interface AppBarProps extends StandardProps<PaperProps, AppBarClassKey> {
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    */
-  color?: PropTypes.Color;
+  color?: PropTypes.Color | 'transparent';
   /**
    * The positioning type. The behavior of the different options is described
    * [in the MDN web docs](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Positioning).

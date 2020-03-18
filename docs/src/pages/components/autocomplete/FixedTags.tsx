@@ -10,30 +10,19 @@ export default function FixedTags() {
       multiple
       id="fixed-tags-demo"
       options={top100Films}
-      getOptionLabel={(option: FilmOptionType) => option.title}
+      getOptionLabel={option => option.title}
       defaultValue={[top100Films[6], top100Films[13]]}
-      renderTags={(value: FilmOptionType[], getTagProps) =>
-        value.map((option: FilmOptionType, index: number) => (
+      renderTags={(value, getTagProps) =>
+        value.map((option, index) => (
           <Chip label={option.title} {...getTagProps({ index })} disabled={index === 0} />
         ))
       }
       style={{ width: 500 }}
       renderInput={params => (
-        <TextField
-          {...params}
-          label="Fixed tag"
-          variant="outlined"
-          placeholder="Favorites"
-          fullWidth
-        />
+        <TextField {...params} label="Fixed tag" variant="outlined" placeholder="Favorites" />
       )}
     />
   );
-}
-
-interface FilmOptionType {
-  title: string;
-  year: number;
 }
 
 // Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top

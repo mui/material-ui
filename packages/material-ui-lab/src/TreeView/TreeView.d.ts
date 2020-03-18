@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StandardProps } from '@material-ui/core';
 
-export interface TreeViewProps
+export interface TreeViewPropsBase
   extends StandardProps<React.HTMLAttributes<HTMLUListElement>, TreeViewClassKey> {
   /**
    * The default icon used to collapse the node.
@@ -26,17 +26,73 @@ export interface TreeViewProps
    */
   defaultParentIcon?: React.ReactNode;
   /**
+   * If `true` selection is disabled.
+   */
+  disableSelection?: boolean;
+  /**
    * Expanded node ids. (Controlled)
    */
   expanded?: string[];
   /**
    * Callback fired when tree items are expanded/collapsed.
    *
-   * @param {object} event The event source of the callback
+   * @param {object} event The event source of the callback.
    * @param {array} nodeIds The ids of the expanded nodes.
    */
   onNodeToggle?: (event: React.ChangeEvent<{}>, nodeIds: string[]) => void;
 }
+
+export interface MultiSelectTreeViewProps extends TreeViewPropsBase {
+  /**
+   * Selected node ids. (Uncontrolled)
+   * When `multiSelect` is true this takes an array of strings; when false (default) a string.
+   */
+  defaultSelected?: string[];
+  /**
+   * Selected node ids. (Controlled)
+   * When `multiSelect` is true this takes an array of strings; when false (default) a string.
+   */
+  selected?: string[];
+  /**
+   * If true `ctrl` and `shift` will trigger multiselect.
+   */
+  multiSelect?: true;
+  /**
+   * Callback fired when tree items are selected/unselected.
+   *
+   * @param {object} event The event source of the callback
+   * @param {(array|string)} value of the selected nodes. When `multiSelect` is true
+   * this is an array of strings; when false (default) a string.
+   */
+  onNodeSelect?: (event: React.ChangeEvent<{}>, nodeIds: string[]) => void;
+}
+
+export interface SingleSelectTreeViewProps extends TreeViewPropsBase {
+  /**
+   * Selected node ids. (Uncontrolled)
+   * When `multiSelect` is true this takes an array of strings; when false (default) a string.
+   */
+  defaultSelected?: string;
+  /**
+   * Selected node ids. (Controlled)
+   * When `multiSelect` is true this takes an array of strings; when false (default) a string.
+   */
+  selected?: string;
+  /**
+   * If true `ctrl` and `shift` will trigger multiselect.
+   */
+  multiSelect?: false;
+  /**
+   * Callback fired when tree items are selected/unselected.
+   *
+   * @param {object} event The event source of the callback
+   * @param {(array|string)} value of the selected nodes. When `multiSelect` is true
+   * this is an array of strings; when false (default) a string.
+   */
+  onNodeSelect?: (event: React.ChangeEvent<{}>, nodeIds: string) => void;
+}
+
+export type TreeViewProps = SingleSelectTreeViewProps | MultiSelectTreeViewProps;
 
 export type TreeViewClassKey = 'root';
 

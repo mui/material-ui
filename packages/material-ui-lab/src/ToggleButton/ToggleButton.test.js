@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createClientRender } from 'test/utils/createClientRender';
@@ -37,7 +37,7 @@ describe('<ToggleButton />', () => {
     expect(getByTestId('root')).to.have.class(classes.selected);
   });
 
-  it('should render a disabled button if `distabled={true}`', () => {
+  it('should render a disabled button if `disabled={true}`', () => {
     const { getByRole } = render(
       <ToggleButton disabled value="hello">
         Hello World

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -83,8 +83,8 @@ BottomNavigation.propTypes = {
   /**
    * Callback fired when the value changes.
    *
-   * @param {object} event The event source of the callback
-   * @param {any} value We default to the index of the child
+   * @param {object} event The event source of the callback.
+   * @param {any} value We default to the index of the child.
    */
   onChange: PropTypes.func,
   /**

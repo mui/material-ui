@@ -94,6 +94,7 @@ export const componentSettings = {
       width: 100,
       height: 42,
       checked: false,
+      disabled: false,
     },
     template: 'selection_control.txt',
   },
@@ -190,16 +191,6 @@ export const componentSettings = {
     },
     template: 'self_closing.txt',
   },
-  ThemeProvider: {
-    ignoredProps: ['theme'],
-    propValues: {
-      paletteType: 'light',
-      primary: "'#3f51b5'",
-      secondary: "'#f50057'",
-      error: "'#f44336'",
-    },
-    template: 'theme_provider.txt',
-  },
   Paper: {
     ignoredProps: [],
     propValues: {
@@ -215,6 +206,7 @@ export const componentSettings = {
       label: "'Radio'",
       width: "'100%'",
       height: 42,
+      disabled: false,
     },
     template: 'radio.txt',
   },
@@ -235,6 +227,7 @@ export const componentSettings = {
       'getAriaValueText',
       'onChange',
       'onChangeCommitted',
+      'scale',
       'ThumbComponent',
       'value',
       'ValueLabelComponent',
@@ -264,6 +257,7 @@ export const componentSettings = {
       width: 100,
       height: 38,
       checked: 'false',
+      disabled: false,
     },
     template: 'switch.txt',
   },

@@ -21,35 +21,35 @@ Le choix d'une option doit idéalement être validé immédiatement et fermer le
 
 ## Menus sélectionnés
 
-If used for item selection, when opened, simple menus attempt to vertically align the currently selected menu item with the anchor element, and the initial focus will be placed on the selected menu item. L'élément de menu actuellement sélectionné est défini à l'aide de la propriété `selected` (à partir de [ListItem](/api/list-item/)). To use a selected menu item without impacting the initial focus or the vertical positioning of the menu, set the `variant` property to `menu`.
+S'ils sont utilisés pour la sélection d'élément, lorsqu'ils sont ouverts, les menus simples tentent d'aligner verticalement l'élément de menu actuellement sélectionné avec l'élément d'ancrage, et la mise au point initiale sera placée sur l'élément de menu sélectionné. L'élément de menu actuellement sélectionné est défini à l'aide de la propriété `selected` (à partir de [ListItem](/api/list-item/)). Pour utiliser un élément de menu sélectionné sans affecter la mise au point initiale ou le positionnement vertical du menu, définissez la propriété `variant` à `menu`.
 
 {{"demo": "pages/components/menus/SimpleListMenu.js"}}
 
-## MenuList composition
+## Composition de MenuList
 
-The `Menu` component uses the `Popover` component internally. However, you might want to use a different positioning strategy, or not blocking the scroll. For answering those needs, we expose a `MenuList` component that you can compose, with `Popper` in this example.
+Le composant `Menu` utilise le composant `Popover` en interne. Cependant, vous voudrez peut-être utiliser une stratégie de positionnement différente ou ne pas bloquer le défilement. Pour répondre à ces besoins, nous exposons un composant `MenuList` que vous pouvez composer, avec `Popper` dans cet exemple.
 
-The primary responsibility of the `MenuList` component is to handle the focus.
+La responsabilité principale du composant `MenuList` est de gérer le focus.
 
 {{"demo": "pages/components/menus/MenuListComposition.js", "bg": true}}
 
-## Customized menus
+## Menus personnalisés
 
-Voici un exemple de personnalisation du composant. Vous pouvez en savoir plus dans la [page de documentation des overrides](/customization/components/).
+Voici un exemple de personnalisation du composant. Vous pouvez en savoir plus dans la [page de documentation des overrides (surcharges)](/customization/components/).
 
 {{"demo": "pages/components/menus/CustomizedMenus.js"}}
 
-The `MenuItem` is a wrapper around `ListItem` with some additional styles. You can use the same list composition features with the `MenuItem` component:
+Le `MenuItem` est un wrapper autour de `ListItem` avec quelques styles supplémentaires. Vous pouvez utiliser les mêmes fonctionnalités de composition de liste avec le composant `MenuItem`:
 
 ## Hauteur maximale des menus
 
-If the height of a menu prevents all menu items from being displayed, the menu can scroll internally.
+Si la hauteur d'un menu empêche l'affichage de tous les éléments du menu, le menu peut défiler en interne.
 
 {{"demo": "pages/components/menus/LongMenu.js"}}
 
 ## Limites
 
-There is [a flexbox bug](https://bugs.chromium.org/p/chromium/issues/detail?id=327437) that prevents `text-overflow: ellipsis` from working in a flexbox layout. You can use the `Typography` component with `noWrap` to workaround this issue:
+Il y a [un bug flexbox](https://bugs.chromium.org/p/chromium/issues/detail?id=327437) qui empêche `text-overflow: ellipsis` de fonctionner dans une mise en page flexbox. Vous pouvez utiliser le composant `Typography` avec `noWrap` pour contourner ce problème:
 
 {{"demo": "pages/components/menus/TypographyMenu.js", "bg": true}}
 
@@ -59,9 +59,9 @@ Utilisez une transition différente.
 
 {{"demo": "pages/components/menus/FadeMenu.js"}}
 
-## Context menu
+## Menu contextuel
 
-Here is an example of a context menu. (Right click to open.)
+Voici un exemple de menu contextuel. (Clic droit pour ouvrir.)
 
 {{"demo": "pages/components/menus/ContextMenu.js"}}
 

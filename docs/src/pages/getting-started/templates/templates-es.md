@@ -4,7 +4,7 @@ title: 9+ Free React Templates
 
 # Plantillas React
 
-<p class="description">A selection of free react templates to help you get started building your app. The collection contains react dashboard, admin, and more.</p>
+<p class="description">A selection of free react templates to help you get started building your app. The collection contains react dashboard, react admin, and more.</p>
 
 Las plantillas pueden combinarse con una de las [aplicaciones de ejemplo](https://github.com/mui-org/material-ui/tree/master/examples) para formar un proyecto de inicio completo.
 

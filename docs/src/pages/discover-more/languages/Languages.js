@@ -15,7 +15,7 @@ const useStyles = makeStyles({
   },
 });
 
-function Languages() {
+export default function Languages() {
   const classes = useStyles();
 
   return (
@@ -44,5 +44,3 @@ function Languages() {
     </Paper>
   );
 }
-
-export default Languages;

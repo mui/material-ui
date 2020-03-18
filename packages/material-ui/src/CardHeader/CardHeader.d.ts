@@ -1,21 +1,28 @@
 import * as React from 'react';
-import { StandardProps } from '..';
 import { TypographyProps } from '../Typography';
+import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
-export interface CardHeaderProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, CardHeaderClassKey, 'title'> {
-  action?: React.ReactNode;
-  avatar?: React.ReactNode;
-  component?: React.ElementType<React.HTMLAttributes<HTMLDivElement>>;
-  disableTypography?: boolean;
-  subheader?: React.ReactNode;
-  subheaderTypographyProps?: Partial<TypographyProps>;
-  title?: React.ReactNode;
-  titleTypographyProps?: Partial<TypographyProps>;
+export interface CardHeaderTypeMap<P = {}, D extends React.ElementType = 'div'> {
+  props: P & {
+    action?: React.ReactNode;
+    avatar?: React.ReactNode;
+    disableTypography?: boolean;
+    subheader?: React.ReactNode;
+    subheaderTypographyProps?: Partial<TypographyProps>;
+    title?: React.ReactNode;
+    titleTypographyProps?: Partial<TypographyProps>;
+  };
+  defaultComponent: D;
+  classKey: CardHeaderClassKey;
 }
+
+declare const CardHeader: OverridableComponent<CardHeaderTypeMap>;
 
 export type CardHeaderClassKey = 'root' | 'avatar' | 'action' | 'content' | 'title' | 'subheader';
 
-declare const CardHeader: React.ComponentType<CardHeaderProps>;
+export type CardHeaderProps<
+  D extends React.ElementType = CardHeaderTypeMap['defaultComponent'],
+  P = {}
+> = OverrideProps<CardHeaderTypeMap<P, D>, D>;
 
 export default CardHeader;

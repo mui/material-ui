@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { assert } from 'chai';
 import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
@@ -82,7 +82,7 @@ describe('<Paper />', () => {
 
     assert.strictEqual(consoleErrorMock.callCount(), 1);
     assert.include(
-      consoleErrorMock.args()[0][0],
+      consoleErrorMock.messages()[0],
       'Material-UI: this elevation `25` is not implemented.',
     );
   });

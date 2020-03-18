@@ -1,0 +1,18 @@
+# workflow for communication with eps1lon/mui-scripts-incubator
+# These scripts are experimental. We have a very "dumb" workflow here that is only responsible for triggering
+# actions in eps1lon/mui-scripts-incubator. Since those actions are experimental they'll likely break
+# and we don't want to disrupt the normal repo workflow.
+name: experimental
+on: status
+jobs:
+  build:
+    if: github.event.state == 'success' && github.event.sender.login == 'netlify[bot]' && github.event.description == 'Deploy preview ready!'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run mui-scripts a11y-snapshot
+        uses: peter-evans/repository-dispatch@v1
+        with:
+          token: ${{ secrets.MUI_SCRIPTS_INCUBATOR }}
+          repository: eps1lon/mui-scripts-incubator
+          event-type: a11y-snapshot
+          client-payload: '{ "target_url": "${{ github.event.target_url }}" }'

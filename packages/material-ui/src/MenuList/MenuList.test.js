@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { expect } from 'chai';
 import { stub } from 'sinon';
 import { createMount } from '@material-ui/core/test-utils';
@@ -39,8 +39,8 @@ describe('<MenuList />', () => {
     it('should support null children', () => {
       const { getAllByRole } = render(
         <MenuList>
-          <div role="menuitem" />
-          <div role="menuitem" />
+          <div role="menuitem">one</div>
+          <div role="menuitem">two</div>
           {null}
         </MenuList>,
       );

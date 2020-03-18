@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -48,10 +48,11 @@ export const styles = theme => ({
     position: 'relative',
     overflow: 'hidden',
     '&::after': {
-      animation: '$wave 1.5s linear 0.5s infinite',
-      background: 'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent)',
+      animation: '$wave 1.6s linear 0.5s infinite',
+      background: `linear-gradient(90deg, transparent, ${theme.palette.action.hover}, transparent)`,
       content: '""',
       position: 'absolute',
+      transform: 'translateX(-100%)', // Avoid flash during server-side hydration
       bottom: 0,
       left: 0,
       right: 0,
@@ -62,6 +63,10 @@ export const styles = theme => ({
   '@keyframes wave': {
     '0%': {
       transform: 'translateX(-100%)',
+    },
+    '60%': {
+      // +0.5s of delay between each loop
+      transform: 'translateX(100%)',
     },
     '100%': {
       transform: 'translateX(100%)',
@@ -74,7 +79,7 @@ const Skeleton = React.forwardRef(function Skeleton(props, ref) {
     animation = 'pulse',
     classes,
     className,
-    component: Component = 'div',
+    component: Component = 'span',
     height,
     variant = 'text',
     width,

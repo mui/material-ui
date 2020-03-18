@@ -1,6 +1,6 @@
 // @inheritedComponent IconButton
 
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { refType } from '@material-ui/utils';
@@ -151,7 +151,6 @@ const Switch = React.forwardRef(function Switch(props, ref) {
     classes,
     className,
     color = 'secondary',
-    disabled = false,
     edge = false,
     size = 'medium',
     ...other
@@ -182,7 +181,6 @@ const Switch = React.forwardRef(function Switch(props, ref) {
           disabled: classes.disabled,
         }}
         ref={ref}
-        disabled={disabled}
         {...other}
       />
       <span className={classes.track} />
@@ -269,6 +267,7 @@ Switch.propTypes = {
   type: PropTypes.string,
   /**
    * The value of the component. The DOM API casts this to a string.
+   * The browser uses "on" as the default value.
    */
   value: PropTypes.any,
 };

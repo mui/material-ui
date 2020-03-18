@@ -1,14 +1,18 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
-export interface InputAdornmentProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, InputAdornmentClassKey> {
-  component?: React.ElementType<React.HTMLAttributes<HTMLDivElement>>;
-  disablePointerEvents?: boolean;
-  disableTypography?: boolean;
-  position: 'start' | 'end';
-  variant?: 'standard' | 'outlined' | 'filled';
+export interface InputAdornmentTypeMap<P = {}, D extends React.ElementType = 'div'> {
+  props: P & {
+    disablePointerEvents?: boolean;
+    disableTypography?: boolean;
+    position: 'start' | 'end';
+    variant?: 'standard' | 'outlined' | 'filled';
+  };
+  defaultComponent: D;
+  classKey: InputAdornmentClassKey;
 }
+
+declare const InputAdornment: OverridableComponent<InputAdornmentTypeMap>;
 
 export type InputAdornmentClassKey =
   | 'root'
@@ -19,6 +23,9 @@ export type InputAdornmentClassKey =
   | 'hiddenLabel'
   | 'marginDense';
 
-declare const InputAdornment: React.ComponentType<InputAdornmentProps>;
+export type InputAdornmentProps<
+  D extends React.ElementType = InputAdornmentTypeMap['defaultComponent'],
+  P = {}
+> = OverrideProps<InputAdornmentTypeMap<P, D>, D>;
 
 export default InputAdornment;

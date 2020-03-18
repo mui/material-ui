@@ -1,24 +1,24 @@
 import * as React from 'react';
 
-export interface CreateFilterOptionsConfig {
+export interface CreateFilterOptionsConfig<T> {
   ignoreAccents?: boolean;
   ignoreCase?: boolean;
   matchFrom?: 'any' | 'start';
-  stringify?: (option: any) => string;
+  stringify?: (option: T) => string;
   trim?: boolean;
+  limit?: number;
 }
 
-export interface FilterOptionsState {
+export interface FilterOptionsState<T> {
   inputValue: string;
+  getOptionLabel: (option: T) => string;
 }
 
-export type CreateFilterOptions = (
-  config?: CreateFilterOptionsConfig,
-) => (option: any, state: FilterOptionsState) => any[];
+export function createFilterOptions<T>(
+  config?: CreateFilterOptionsConfig<T>,
+): (options: T[], state: FilterOptionsState<T>) => T[];
 
-export const createFilterOptions: CreateFilterOptions;
-
-export interface UseAutocompleteProps {
+export interface UseAutocompleteCommonProps<T> {
   /**
    * If `true`, the portion of the selected suggestion that has not been typed by the user,
    * known as the completion string, appears inline after the input cursor in the textbox.
@@ -53,15 +53,11 @@ export interface UseAutocompleteProps {
    */
   componentName?: string;
   /**
-   * If `true`, the popup will ignore the blur event if the input if filled.
+   * If `true`, the popup will ignore the blur event if the input is filled.
    * You can inspect the popup markup with your browser tools.
    * Consider this option when you need to customize the component.
    */
   debug?: boolean;
-  /**
-   * The default input value. Use when the component is not controlled.
-   */
-  defaultValue?: any;
   /**
    * If `true`, the input can't be cleared.
    */
@@ -75,17 +71,13 @@ export interface UseAutocompleteProps {
    */
   disableListWrap?: boolean;
   /**
-   * If `true`, the popup won't open on input focus.
-   */
-  disableOpenOnFocus?: boolean;
-  /**
    * A filter function that determines the options that are eligible.
    *
-   * @param {any[]} options The options to render.
+   * @param {T[]} options The options to render.
    * @param {object} state The state of the component.
-   * @returns {any[]}
+   * @returns {T[]}
    */
-  filterOptions?: (options: any[], state: FilterOptionsState) => any[];
+  filterOptions?: (options: T[], state: FilterOptionsState<T>) => T[];
   /**
    * If `true`, hide the selected options from the list box.
    */
@@ -97,25 +89,25 @@ export interface UseAutocompleteProps {
   /**
    * Used to determine the disabled state for a given option.
    */
-  getOptionDisabled?: (option: any) => boolean;
+  getOptionDisabled?: (option: T) => boolean;
   /**
    * Used to determine the string value for a given option.
    * It's used to fill the input (and the list box options if `renderOption` is not provided).
    */
-  getOptionLabel?: (option: any) => string;
+  getOptionLabel?: (option: T) => string;
   /**
    * Used to determine if an option is selected.
    * Uses strict equality by default.
    */
-  getOptionSelected?: (option: any, value: any) => boolean;
+  getOptionSelected?: (option: T, value: T) => boolean;
   /**
    * If provided, the options will be grouped under the returned string.
    * The groupBy value is also used as the text for group headings when `renderGroup` is not provided.
    *
-   * @param {any} options The option to group.
+   * @param {T} options The option to group.
    * @returns {string}
    */
-  groupBy?: (option: any) => string;
+  groupBy?: (option: T) => string;
   /**
    * This prop is used to help implement the accessibility logic.
    * If you don't provide this prop. It falls back to a randomly generated id.
@@ -130,31 +122,25 @@ export interface UseAutocompleteProps {
    */
   inputValue?: string;
   /**
-   * If `true`, `value` must be an array and the menu will support multiple selections.
-   */
-  multiple?: boolean;
-  /**
-   * Callback fired when the value changes.
-   *
-   * @param {object} event The event source of the callback.
-   * @param {any} value
-   */
-  onChange?: (event: React.ChangeEvent<{}>, value: any) => void;
-  /**
    * Callback fired when the popup requests to be closed.
    * Use in controlled mode (see open).
    *
    * @param {object} event The event source of the callback.
+   * @param {string} reason Can be: `"toggleInput"`, `"escape"`, `"select-option"`, `"blur"`.
    */
-  onClose?: (event: React.ChangeEvent<{}>) => void;
+  onClose?: (event: React.ChangeEvent<{}>, reason: AutocompleteCloseReason) => void;
   /**
    * Callback fired when the input value changes.
    *
    * @param {object} event The event source of the callback.
    * @param {string} value The new value of the text input.
-   * @param {string} reason Can be: "input" (user input), "reset" (programmatic change), `"clear"`.
+   * @param {string} reason Can be: `"input"` (user input), `"reset"` (programmatic change), `"clear"`.
    */
-  onInputChange?: (event: React.ChangeEvent<{}>, value: any, reason: 'input' | 'reset') => void;
+  onInputChange?: (
+    event: React.ChangeEvent<{}>,
+    value: string,
+    reason: AutocompleteInputChangeReason,
+  ) => void;
   /**
    * Callback fired when the popup requests to be opened.
    * Use in controlled mode (see open).
@@ -167,20 +153,100 @@ export interface UseAutocompleteProps {
    */
   open?: boolean;
   /**
+   * If `true`, the popup will open on input focus.
+   */
+  openOnFocus?: boolean;
+  /**
    * Array of options.
    */
-  options?: any[];
+  options: T[];
+  /**
+   * If `true`, the input's text will be selected on focus.
+   * It helps the user clear the selected value.
+   */
+  selectOnFocus?: boolean;
+}
+
+export type AutocompleteChangeReason =
+  | 'create-option'
+  | 'select-option'
+  | 'remove-option'
+  | 'clear'
+  | 'blur';
+export interface AutocompleteChangeDetails<T = string> {
+  option: T;
+}
+export type AutocompleteCloseReason = 'toggleInput' | 'escape' | 'select-option' | 'blur';
+export type AutocompleteInputChangeReason = 'input' | 'reset' | 'clear';
+
+export interface UseAutocompleteMultipleProps<T> extends UseAutocompleteCommonProps<T> {
+  /**
+   * If `true`, `value` must be an array and the menu will support multiple selections.
+   */
+  multiple: true;
   /**
    * The value of the autocomplete.
    *
    * The value must have reference equality with the option in order to be selected.
    * You can customize the equality behavior with the `getOptionSelected` prop.
    */
-  value?: any;
+  value?: T[];
+  /**
+   * The default input value. Use when the component is not controlled.
+   */
+  defaultValue?: T[];
+  /**
+   * Callback fired when the value changes.
+   *
+   * @param {object} event The event source of the callback.
+   * @param {T[]} value
+   * @param {string} reason One of "create-option", "select-option", "remove-option", "blur" or "clear".
+   */
+  onChange?: (
+    event: React.ChangeEvent<{}>,
+    value: T[],
+    reason: AutocompleteChangeReason,
+    details?: AutocompleteChangeDetails<T>,
+  ) => void;
 }
 
-export default function useAutocomplete(
-  props: UseAutocompleteProps,
+export interface UseAutocompleteSingleProps<T> extends UseAutocompleteCommonProps<T> {
+  /**
+   * If `true`, `value` must be an array and the menu will support multiple selections.
+   */
+  multiple?: false;
+  /**
+   * The value of the autocomplete.
+   *
+   * The value must have reference equality with the option in order to be selected.
+   * You can customize the equality behavior with the `getOptionSelected` prop.
+   */
+  value?: T | null;
+  /**
+   * The default input value. Use when the component is not controlled.
+   */
+  defaultValue?: T;
+  /**
+   * Callback fired when the value changes.
+   *
+   * @param {object} event The event source of the callback.
+   * @param {T} value
+   * @param {string} reason One of "create-option", "select-option", "remove-option", "blur" or "clear".
+   */
+  onChange?: (
+    event: React.ChangeEvent<{}>,
+    value: T | null,
+    reason: AutocompleteChangeReason,
+    details?: AutocompleteChangeDetails<T>,
+  ) => void;
+}
+
+export type UseAutocompleteProps<T> =
+  | UseAutocompleteSingleProps<T>
+  | UseAutocompleteMultipleProps<T>;
+
+export default function useAutocomplete<T>(
+  props: UseAutocompleteProps<T>,
 ): {
   getRootProps: () => {};
   getInputProps: () => {};
@@ -189,15 +255,17 @@ export default function useAutocomplete(
   getPopupIndicatorProps: () => {};
   getTagProps: ({ index }: { index: number }) => {};
   getListboxProps: () => {};
-  getOptionProps: ({ option, index }: { option: any; index: number }) => {};
+  getOptionProps: ({ option, index }: { option: T; index: number }) => {};
   id: string;
   inputValue: string;
-  value: any;
+  // TODO: infer the right type when the issue is resolved
+  // https://github.com/microsoft/TypeScript/issues/13995
+  value: any; // or T | T[]
   dirty: boolean;
   popupOpen: boolean;
   focused: boolean;
   anchorEl: null | HTMLElement;
   setAnchorEl: () => void;
   focusedTag: number;
-  groupedOptions: any[];
+  groupedOptions: T[];
 };

@@ -11,7 +11,7 @@ export default function Playground() {
   const flatProps = {
     options: top100Films.map(option => option.title),
   };
-  const [value, setValue] = React.useState(null);
+  const [value, setValue] = React.useState<FilmOptionType | null>(null);
 
   return (
     <div style={{ width: 300 }}>
@@ -19,110 +19,90 @@ export default function Playground() {
         {...defaultProps}
         id="debug"
         debug
-        renderInput={params => <TextField {...params} label="debug" margin="normal" fullWidth />}
+        renderInput={params => <TextField {...params} label="debug" margin="normal" />}
       />
       <Autocomplete
         {...defaultProps}
         id="disable-close-on-select"
         disableCloseOnSelect
         renderInput={params => (
-          <TextField {...params} label="disableCloseOnSelect" margin="normal" fullWidth />
+          <TextField {...params} label="disableCloseOnSelect" margin="normal" />
         )}
       />
       <Autocomplete
         {...defaultProps}
         id="clear-on-escape"
         clearOnEscape
-        renderInput={params => (
-          <TextField {...params} label="clearOnEscape" margin="normal" fullWidth />
-        )}
+        renderInput={params => <TextField {...params} label="clearOnEscape" margin="normal" />}
       />
       <Autocomplete
         {...defaultProps}
         id="disable-clearable"
         disableClearable
-        renderInput={params => (
-          <TextField {...params} label="disableClearable" margin="normal" fullWidth />
-        )}
+        renderInput={params => <TextField {...params} label="disableClearable" margin="normal" />}
       />
       <Autocomplete
         {...defaultProps}
         id="include-input-in-list"
         includeInputInList
-        renderInput={params => (
-          <TextField {...params} label="includeInputInList" margin="normal" fullWidth />
-        )}
+        renderInput={params => <TextField {...params} label="includeInputInList" margin="normal" />}
       />
       <Autocomplete
         {...flatProps}
         id="flat-demo"
-        renderInput={params => <TextField {...params} label="flat" margin="normal" fullWidth />}
+        renderInput={params => <TextField {...params} label="flat" margin="normal" />}
       />
       <Autocomplete
         {...defaultProps}
         id="controlled-demo"
         value={value}
-        onChange={(event, newValue) => {
+        onChange={(event: any, newValue: FilmOptionType | null) => {
           setValue(newValue);
         }}
-        renderInput={params => (
-          <TextField {...params} label="controlled" margin="normal" fullWidth />
-        )}
+        renderInput={params => <TextField {...params} label="controlled" margin="normal" />}
       />
       <Autocomplete
         {...defaultProps}
         id="auto-complete"
         autoComplete
         includeInputInList
-        renderInput={params => (
-          <TextField {...params} label="autoComplete" margin="normal" fullWidth />
-        )}
+        renderInput={params => <TextField {...params} label="autoComplete" margin="normal" />}
       />
       <Autocomplete
         {...defaultProps}
         id="disable-list-wrap"
         disableListWrap
-        renderInput={params => (
-          <TextField {...params} label="disableListWrap" margin="normal" fullWidth />
-        )}
+        renderInput={params => <TextField {...params} label="disableListWrap" margin="normal" />}
       />
       <Autocomplete
         {...defaultProps}
-        id="disable-open-on-focus"
-        disableOpenOnFocus
-        renderInput={params => (
-          <TextField {...params} label="disableOpenOnFocus" margin="normal" fullWidth />
-        )}
+        id="open-on-focus"
+        openOnFocus
+        renderInput={params => <TextField {...params} label="openOnFocus" margin="normal" />}
       />
       <Autocomplete
         {...defaultProps}
         id="auto-highlight"
         autoHighlight
-        renderInput={params => (
-          <TextField {...params} label="autoHighlight" margin="normal" fullWidth />
-        )}
+        renderInput={params => <TextField {...params} label="autoHighlight" margin="normal" />}
       />
       <Autocomplete
         {...defaultProps}
         id="auto-select"
         autoSelect
-        renderInput={params => (
-          <TextField {...params} label="autoSelect" margin="normal" fullWidth />
-        )}
+        renderInput={params => <TextField {...params} label="autoSelect" margin="normal" />}
       />
       <Autocomplete
         {...defaultProps}
         id="disabled"
         disabled
-        renderInput={params => <TextField {...params} label="disabled" margin="normal" fullWidth />}
+        renderInput={params => <TextField {...params} label="disabled" margin="normal" />}
       />
       <Autocomplete
         {...defaultProps}
         id="disable-portal"
         disablePortal
-        renderInput={params => (
-          <TextField {...params} label="disablePortal" margin="normal" fullWidth />
-        )}
+        renderInput={params => <TextField {...params} label="disablePortal" margin="normal" />}
       />
     </div>
   );

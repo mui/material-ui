@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
 import CheckBox from '../internal/svg-icons/CheckBox';
@@ -362,9 +362,20 @@ describe('<Chip />', () => {
       ['Backspace', 'Delete'].forEach(key => {
         it(`should call onDelete '${key}' is released`, () => {
           const handleDelete = spy();
-          const { getAllByRole } = render(<Chip onClick={() => {}} onDelete={handleDelete} />);
+          const handleKeyDown = spy(event => {
+            return event.defaultPrevented;
+          });
+          const { getAllByRole } = render(
+            <Chip onClick={() => {}} onKeyDown={handleKeyDown} onDelete={handleDelete} />,
+          );
           const chip = getAllByRole('button')[0];
           chip.focus();
+
+          fireEvent.keyDown(document.activeElement, { key });
+
+          // defaultPrevented?
+          expect(handleKeyDown.returnValues[0]).to.equal(true);
+          expect(handleDelete.callCount).to.equal(0);
 
           fireEvent.keyUp(document.activeElement, { key });
 

@@ -17,9 +17,15 @@ import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 const useTreeItemStyles = makeStyles(theme => ({
   root: {
     color: theme.palette.text.secondary,
-    '&:focus > $content': {
+    '&:hover > $content': {
+      backgroundColor: theme.palette.action.hover,
+    },
+    '&:focus > $content, &$selected > $content': {
       backgroundColor: `var(--tree-view-bg-color, ${theme.palette.grey[400]})`,
       color: 'var(--tree-view-color)',
+    },
+    '&:focus > $content $label, &:hover > $content $label, &$selected > $content $label': {
+      backgroundColor: 'transparent',
     },
   },
   content: {
@@ -39,6 +45,7 @@ const useTreeItemStyles = makeStyles(theme => ({
     },
   },
   expanded: {},
+  selected: {},
   label: {
     fontWeight: 'inherit',
     color: 'inherit',
@@ -82,6 +89,7 @@ function StyledTreeItem(props) {
         root: classes.root,
         content: classes.content,
         expanded: classes.expanded,
+        selected: classes.selected,
         group: classes.group,
         label: classes.label,
       }}

@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { StandardProps, PropTypes } from '..';
 import { OverrideProps, OverridableTypeMap, OverridableComponent } from '../OverridableComponent';
-import { ThemeStyle } from '../styles/createTypography';
+import { Variant as ThemeVariant } from '../styles/createTypography';
 
-type Style = ThemeStyle | 'srOnly';
+type Variant = ThemeVariant | 'srOnly';
 
 export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'> {
   props: P & {
@@ -20,8 +20,8 @@ export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'>
     gutterBottom?: boolean;
     noWrap?: boolean;
     paragraph?: boolean;
-    variant?: Style | 'inherit';
-    variantMapping?: Partial<Record<Style, string>>;
+    variant?: Variant | 'inherit';
+    variantMapping?: Partial<Record<Variant, string>>;
   };
   defaultComponent: D;
   classKey: TypographyClassKey;
@@ -58,7 +58,9 @@ export type TypographyClassKey =
   | 'gutterBottom'
   | 'paragraph'
   | 'colorInherit'
+  | 'colorPrimary'
   | 'colorSecondary'
+  | 'colorTextPrimary'
   | 'colorTextSecondary'
   | 'colorError'
   | 'displayInline'

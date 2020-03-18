@@ -1,10 +1,9 @@
 const webpack = require('webpack');
 const path = require('path');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-const withTypescript = require('@zeit/next-typescript');
 const pkg = require('../package.json');
 const { findPages } = require('./src/modules/utils/find');
-const { LANGUAGES_SSR } = require('./src/modules/constants');
+const { LANGUAGES, LANGUAGES_SSR } = require('./src/modules/constants');
 
 const workspaceRoot = path.join(__dirname, '../');
 
@@ -13,13 +12,19 @@ const workspaceRoot = path.join(__dirname, '../');
  */
 const reactMode = 'legacy';
 
-module.exports = withTypescript({
+module.exports = {
+  typescript: {
+    // Motivated by https://github.com/zeit/next.js/issues/7687
+    ignoreDevErrors: true,
+    ignoreBuildErrors: true,
+  },
   webpack: (config, options) => {
     const plugins = config.plugins.concat([
       new webpack.DefinePlugin({
         'process.env': {
-          LIB_VERSION: JSON.stringify(pkg.version),
           ENABLE_AD: JSON.stringify(process.env.ENABLE_AD),
+          GITHUB_AUTH: JSON.stringify(process.env.GITHUB_AUTH),
+          LIB_VERSION: JSON.stringify(pkg.version),
           REACT_MODE: JSON.stringify(reactMode),
         },
       }),
@@ -72,12 +77,14 @@ module.exports = withTypescript({
       ];
     }
 
-    return Object.assign({}, config, {
+    return {
+      ...config,
       plugins,
       node: {
         fs: 'empty',
       },
-      module: Object.assign({}, config.module, {
+      module: {
+        ...config.module,
         rules: config.module.rules.concat([
           {
             test: /\.(css|md)$/,
@@ -122,8 +129,8 @@ module.exports = withTypescript({
             use: options.defaultLoaders.babel,
           },
         ]),
-      }),
-    });
+      },
+    };
   },
   exportTrailingSlash: true,
   // Next.js provides a `defaultPathMap` argument, we could simplify the logic.
@@ -137,7 +144,7 @@ module.exports = withTypescript({
 
       pages2.forEach(page => {
         if (!page.children) {
-          map[`${prefix}${page.pathname}`] = {
+          map[`${prefix}${page.pathname.replace(/^\/api-docs\/(.*)/, '/api/$1')}`] = {
             page: page.pathname,
             query: {
               userLanguage,
@@ -152,8 +159,12 @@ module.exports = withTypescript({
 
     // We want to speed-up the build of pull requests.
     if (process.env.PULL_REQUEST === 'true') {
+      // eslint-disable-next-line no-console
+      console.log('Considering only English for SSR');
       traverse(pages, 'en');
     } else {
+      // eslint-disable-next-line no-console
+      console.log('Considering various locales for SSR');
       LANGUAGES_SSR.forEach(userLanguage => {
         traverse(pages, userLanguage);
       });
@@ -161,10 +172,12 @@ module.exports = withTypescript({
 
     return map;
   },
-  onDemandEntries: {
-    // Period (in ms) where the server will keep pages in the buffer
-    maxInactiveAge: 120 * 1e3, // default 25s
-    // Number of pages that should be kept simultaneously without being disposed
-    pagesBufferLength: 3, // default 2
+  experimental: {
+    async rewrites() {
+      return [
+        { source: `/:lang(${LANGUAGES.join('|')})?/:rest`, destination: '/:rest' },
+        { source: '/api/:rest*', destination: '/api-docs/:rest*' },
+      ];
+    },
   },
-});
+};

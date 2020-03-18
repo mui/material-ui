@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/core",
-  "version": "4.8.3",
+  "version": "4.9.7",
   "private": false,
   "author": "Material-UI Team",
   "description": "React components that implement Google's Material Design.",
@@ -48,23 +48,19 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.4.4",
-    "@material-ui/styles": "^4.8.2",
-    "@material-ui/system": "^4.7.1",
-    "@material-ui/types": "^4.1.1",
-    "@material-ui/utils": "^4.7.1",
+    "@material-ui/styles": "^4.9.6",
+    "@material-ui/system": "^4.9.6",
+    "@material-ui/types": "^5.0.0",
+    "@material-ui/utils": "^4.9.6",
     "@types/react-transition-group": "^4.2.0",
     "clsx": "^1.0.2",
-    "convert-css-length": "^2.0.1",
-    "hoist-non-react-statics": "^3.2.1",
-    "normalize-scroll-left": "^0.2.0",
+    "hoist-non-react-statics": "^3.3.2",
     "popper.js": "^1.14.1",
     "prop-types": "^15.7.2",
     "react-is": "^16.8.0",
     "react-transition-group": "^4.3.0"
   },
-  "devDependencies": {
-    "react-test-renderer": "^16.11.0"
-  },
+  "devDependencies": {},
   "sideEffects": false,
   "publishConfig": {
     "access": "public"

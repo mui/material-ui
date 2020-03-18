@@ -1,8 +1,14 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import { isFragment } from 'react-is';
 import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
+import Avatar from '@material-ui/core/Avatar';
+
+const SPACINGS = {
+  small: -16,
+  medium: null,
+};
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -17,7 +23,14 @@ export const styles = theme => ({
 });
 
 const AvatarGroup = React.forwardRef(function AvatarGroup(props, ref) {
-  const { children: childrenProp, classes, className, ...other } = props;
+  const {
+    children: childrenProp,
+    classes,
+    className,
+    spacing = 'medium',
+    max = 5,
+    ...other
+  } = props;
 
   const children = React.Children.toArray(childrenProp).filter(child => {
     if (process.env.NODE_ENV !== 'production') {
@@ -34,17 +47,31 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(props, ref) {
     return React.isValidElement(child);
   });
 
+  const extraAvatars = children.length > max ? children.length - max : 0;
+
   return (
     <div className={clsx(classes.root, className)} ref={ref} {...other}>
-      {children.map((child, index) => {
+      {children.slice(0, children.length - extraAvatars).map((child, index) => {
         return React.cloneElement(child, {
           className: clsx(child.props.className, classes.avatar),
           style: {
             zIndex: children.length - index,
+            marginLeft: spacing && SPACINGS[spacing] !== undefined ? SPACINGS[spacing] : -spacing,
             ...child.props.style,
           },
         });
       })}
+      {extraAvatars ? (
+        <Avatar
+          className={classes.avatar}
+          style={{
+            zIndex: 0,
+            marginLeft: spacing && SPACINGS[spacing] !== undefined ? SPACINGS[spacing] : -spacing,
+          }}
+        >
+          +{extraAvatars}
+        </Avatar>
+      ) : null}
     </div>
   );
 });
@@ -67,6 +94,14 @@ AvatarGroup.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * Max avatars to show before +x.
+   */
+  max: PropTypes.number,
+  /**
+   * Spacing between avatars.
+   */
+  spacing: PropTypes.oneOfType([PropTypes.oneOf(['medium', 'small']), PropTypes.number]),
 };
 
 export default withStyles(styles, { name: 'MuiAvatarGroup' })(AvatarGroup);

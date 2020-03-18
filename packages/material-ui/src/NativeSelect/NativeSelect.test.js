@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { assert } from 'chai';
 import { getClasses, createMount } from '@material-ui/core/test-utils';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
@@ -45,7 +45,7 @@ describe('<NativeSelect />', () => {
   it('should be able to mount the component', () => {
     const wrapper = mount(
       <NativeSelect {...defaultProps} value={10}>
-        <option value="" />
+        <option value="">empty</option>
         <option value={10}>Ten</option>
         <option value={20}>Twenty</option>
         <option value={30}>Thirty</option>

@@ -9,6 +9,8 @@ export interface SnackbarOrigin {
   horizontal: 'left' | 'center' | 'right';
 }
 
+export type SnackbarCloseReason = 'timeout' | 'clickaway';
+
 export interface SnackbarProps
   extends StandardProps<
     React.HTMLAttributes<HTMLDivElement> & Partial<TransitionHandlerProps>,
@@ -21,7 +23,7 @@ export interface SnackbarProps
   ContentProps?: Partial<SnackbarContentProps>;
   disableWindowBlurListener?: boolean;
   message?: SnackbarContentProps['message'];
-  onClose?: (event: React.SyntheticEvent<any>, reason: string) => void;
+  onClose?: (event: React.SyntheticEvent<any>, reason: SnackbarCloseReason) => void;
   onMouseEnter?: React.MouseEventHandler<any>;
   onMouseLeave?: React.MouseEventHandler<any>;
   open: boolean;

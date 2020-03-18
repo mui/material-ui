@@ -32,18 +32,26 @@ If you want to start with a more complete and real-world example, you could take
   - Routing with React Router including error handling (404) and lazy loading
   - All PWA features included (SW, Notifications, deferred installation prompt and more)
   - Optimized and scalable performance (all ~100 points on Lighthouse)
-- [React + Material-UI + Firebase](https://github.com/Phoqe/react-material-ui-firebase):
+- [RMUIF](https://github.com/phoqe/rmuif):
     
-  - Bootstrapped com Create React App, porém, também funcionará em seus boilerplates
-  - Construído sobre o Firebase com Autenticação, Cloud Firestore, Cloud Functions, Armazenamento e Monitoramento de Desempenho funcionando desde o início
-  - Encaminhamento robusto com o React Router, incluindo tratamento de erros
+  - Bootstrapped with Create React App, the same tooling works from the get-go
+  - Built on top of Firebase with all their products for the web included
+  - Robust routing with React Router including protected routes and error handling
   - Extensive mobile support with full-screen dialogs and react-swipeable-views for tabs
+  - Cross-platform application monitoring with a focus on error reporting with Sentry
 - [Material Sense](https://github.com/alexanmtz/material-sense):
     
   - Gráfico usando recharts
   - React Router incluído com um exemplo de navegação
   - Um contêiner docker com um servidor Nginx para compilação de produção
   - Criado com o Create React App
+- [React SaaS Template](https://github.com/dunky11/react-saas-template):
+    
+  - Criado com o Create React App
+  - Features a landing page, a blog, an area to login/register and an admin-dashboard
+  - Fully routed using react-router
+  - Lazy loads components to boost performance
+  - Components for statistics, text with emoji support, image upload and much more...
 
 ### Pago
 

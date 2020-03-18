@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
-import Router, { Router as Router2, useRouter } from 'next/router';
+import Router, { useRouter } from 'next/router';
+import { rewriteUrlForNextExport } from 'next/dist/next-server/lib/router/rewrite-url-for-export';
 import { withStyles, useTheme } from '@material-ui/core/styles';
 import NProgress from 'nprogress';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -77,6 +78,11 @@ function DeferredAppSearch() {
 }
 
 const styles = theme => ({
+  '@global': {
+    '#main-content': {
+      outline: 0,
+    },
+  },
   root: {
     display: 'flex',
     backgroundColor: theme.palette.background.level1,
@@ -107,8 +113,8 @@ const styles = theme => ({
     },
   },
   appBar: {
-    color: theme.palette.type === 'dark' ? '#fff' : null,
-    backgroundColor: theme.palette.type === 'dark' ? theme.palette.background.level2 : null,
+    color: theme.palette.type === 'light' ? null : '#fff',
+    backgroundColor: theme.palette.type === 'light' ? null : theme.palette.background.level2,
     transition: theme.transitions.create('width'),
   },
   language: {
@@ -177,15 +183,14 @@ function AppFrame(props) {
   };
 
   const router = useRouter();
-  const { canonical } = pathnameToLanguage(Router2._rewriteUrlForNextExport(router.asPath));
+  const { canonical } = pathnameToLanguage(rewriteUrlForNextExport(router.asPath));
   const { activePage } = React.useContext(PageContext);
 
   let disablePermanent = false;
   let navIconClassName = '';
   let appBarClassName = classes.appBar;
 
-  if (activePage.title === false) {
-    // home route, don't shift app bar or dock drawer
+  if (!activePage || activePage.disableDrawer === true) {
     disablePermanent = true;
     appBarClassName += ` ${classes.appBarHome}`;
   } else {
@@ -200,7 +205,6 @@ function AppFrame(props) {
       <MuiLink color="secondary" className={classes.skipNav} href="#main-content">
         {t('skipToContent')}
       </MuiLink>
-      <Notifications />
       <MarkdownLinks />
       <AppBar className={appBarClassName}>
         <Toolbar>
@@ -316,6 +320,7 @@ function AppFrame(props) {
               )}
             </IconButton>
           </Tooltip>
+          <Notifications />
           <Tooltip title={t('github')} enterDelay={300}>
             <IconButton
               edge="end"

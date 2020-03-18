@@ -13,10 +13,10 @@ interface Props {
 }
 
 export function «componentName»(props) {
-  const { label, ...other } = props;
+  const { label, size, ...other } = props;
 
   return (
-    <FormControlLabel control={<MuiRadio />} label={label} {...other} />
+    <FormControlLabel control={<MuiRadio size={size} />} label={label} {...other} />
   );
 }
 

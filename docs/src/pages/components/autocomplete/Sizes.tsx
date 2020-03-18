@@ -25,16 +25,10 @@ export default function Sizes() {
         id="size-small-standard"
         size="small"
         options={top100Films}
-        getOptionLabel={(option: FilmOptionType) => option.title}
+        getOptionLabel={option => option.title}
         defaultValue={top100Films[13]}
         renderInput={params => (
-          <TextField
-            {...params}
-            variant="standard"
-            label="Size small"
-            placeholder="Favorites"
-            fullWidth
-          />
+          <TextField {...params} variant="standard" label="Size small" placeholder="Favorites" />
         )}
       />
       <Autocomplete
@@ -42,32 +36,20 @@ export default function Sizes() {
         id="size-small-standard-multi"
         size="small"
         options={top100Films}
-        getOptionLabel={(option: FilmOptionType) => option.title}
+        getOptionLabel={option => option.title}
         defaultValue={[top100Films[13]]}
         renderInput={params => (
-          <TextField
-            {...params}
-            variant="standard"
-            label="Size small"
-            placeholder="Favorites"
-            fullWidth
-          />
+          <TextField {...params} variant="standard" label="Size small" placeholder="Favorites" />
         )}
       />
       <Autocomplete
         id="size-small-outlined"
         size="small"
         options={top100Films}
-        getOptionLabel={(option: FilmOptionType) => option.title}
+        getOptionLabel={option => option.title}
         defaultValue={top100Films[13]}
         renderInput={params => (
-          <TextField
-            {...params}
-            variant="outlined"
-            label="Size small"
-            placeholder="Favorites"
-            fullWidth
-          />
+          <TextField {...params} variant="outlined" label="Size small" placeholder="Favorites" />
         )}
       />
       <Autocomplete
@@ -75,26 +57,20 @@ export default function Sizes() {
         id="size-small-outlined-multi"
         size="small"
         options={top100Films}
-        getOptionLabel={(option: FilmOptionType) => option.title}
+        getOptionLabel={option => option.title}
         defaultValue={[top100Films[13]]}
         renderInput={params => (
-          <TextField
-            {...params}
-            variant="outlined"
-            label="Size small"
-            placeholder="Favorites"
-            fullWidth
-          />
+          <TextField {...params} variant="outlined" label="Size small" placeholder="Favorites" />
         )}
       />
       <Autocomplete
         id="size-small-filled"
         size="small"
         options={top100Films}
-        getOptionLabel={(option: FilmOptionType) => option.title}
+        getOptionLabel={option => option.title}
         defaultValue={top100Films[13]}
-        renderTags={(value: FilmOptionType[], getTagProps) =>
-          value.map((option: FilmOptionType, index: number) => (
+        renderTags={(value, getTagProps) =>
+          value.map((option, index) => (
             <Chip
               variant="outlined"
               label={option.title}
@@ -104,13 +80,7 @@ export default function Sizes() {
           ))
         }
         renderInput={params => (
-          <TextField
-            {...params}
-            variant="filled"
-            label="Size small"
-            placeholder="Favorites"
-            fullWidth
-          />
+          <TextField {...params} variant="filled" label="Size small" placeholder="Favorites" />
         )}
       />
       <Autocomplete
@@ -118,10 +88,10 @@ export default function Sizes() {
         id="size-small-filled-multi"
         size="small"
         options={top100Films}
-        getOptionLabel={(option: FilmOptionType) => option.title}
+        getOptionLabel={option => option.title}
         defaultValue={[top100Films[13]]}
-        renderTags={(value: FilmOptionType[], getTagProps) =>
-          value.map((option: FilmOptionType, index: number) => (
+        renderTags={(value, getTagProps) =>
+          value.map((option, index) => (
             <Chip
               variant="outlined"
               label={option.title}
@@ -131,22 +101,11 @@ export default function Sizes() {
           ))
         }
         renderInput={params => (
-          <TextField
-            {...params}
-            variant="filled"
-            label="Size small"
-            placeholder="Favorites"
-            fullWidth
-          />
+          <TextField {...params} variant="filled" label="Size small" placeholder="Favorites" />
         )}
       />
     </div>
   );
-}
-
-interface FilmOptionType {
-  title: string;
-  year: number;
 }
 
 // Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top

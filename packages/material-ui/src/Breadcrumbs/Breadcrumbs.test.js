@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { expect } from 'chai';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
@@ -41,7 +41,7 @@ describe('<Breadcrumbs />', () => {
     expect(getByRole('list')).to.have.text('first/second');
   });
 
-  it('should render an ellipse between `itemsAfterCollapse` and `itemsBeforeCollapse`', () => {
+  it('should render an ellipsis between `itemsAfterCollapse` and `itemsBeforeCollapse`', () => {
     const { getAllByRole, getByRole } = render(
       <Breadcrumbs>
         <span>first</span>
@@ -57,13 +57,14 @@ describe('<Breadcrumbs />', () => {
     );
 
     const listitems = getAllByRole('listitem', { hidden: false });
-    expect(listitems).to.have.length(3);
+
+    expect(listitems).to.have.length(2);
     expect(getByRole('list')).to.have.text('first//ninth');
-    expect(listitems[1].querySelector('[data-mui-test="MoreHorizIcon"]')).to.be.ok;
+    expect(getByRole('button').querySelector('[data-mui-test="MoreHorizIcon"]')).to.be.ok;
   });
 
   it('should expand when `BreadcrumbCollapsed` is clicked', () => {
-    const { getAllByRole } = render(
+    const { getAllByRole, getByRole } = render(
       <Breadcrumbs>
         <span>first</span>
         <span>second</span>
@@ -77,9 +78,9 @@ describe('<Breadcrumbs />', () => {
       </Breadcrumbs>,
     );
 
-    getAllByRole('listitem', { hidden: false })[2].click();
+    getByRole('button').click();
 
-    expect(getAllByRole('listitem', { hidden: false })).to.have.length(3);
+    expect(getAllByRole('listitem', { hidden: false })).to.have.length(9);
   });
 
   describe('warnings', () => {
@@ -103,7 +104,7 @@ describe('<Breadcrumbs />', () => {
       expect(getAllByRole('listitem', { hidden: false })).to.have.length(4);
       expect(getByRole('list')).to.have.text('first/second/third/fourth');
       expect(consoleErrorMock.callCount()).to.equal(2); // strict mode renders twice
-      expect(consoleErrorMock.args()[0][0]).to.include(
+      expect(consoleErrorMock.messages()[0]).to.include(
         'you have provided an invalid combination of props to the Breadcrumbs.\nitemsAfterCollapse={2} + itemsBeforeCollapse={2} >= maxItems={3}',
       );
     });

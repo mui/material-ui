@@ -3,7 +3,7 @@ title: React Circular Progress（环形进度条）、Linear Progress（线形�
 components: CircularProgress, LinearProgress
 ---
 
-# Progress（进度条）
+# Progress 进度条
 
 <p class="description">Progress indicators commonly known as spinners, express an unspecified wait time or display the length of a process. The animation works with CSS, not JavaScript.</p>
 

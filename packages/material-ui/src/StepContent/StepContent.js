@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import Collapse from '../Collapse';
@@ -31,6 +31,7 @@ const StepContent = React.forwardRef(function StepContent(props, ref) {
     classes,
     className,
     completed,
+    expanded,
     last,
     optional,
     orientation,
@@ -57,7 +58,7 @@ const StepContent = React.forwardRef(function StepContent(props, ref) {
   return (
     <div className={clsx(classes.root, { [classes.last]: last }, className)} ref={ref} {...other}>
       <TransitionComponent
-        in={active}
+        in={active || expanded}
         className={classes.transition}
         timeout={transitionDuration}
         unmountOnExit
@@ -100,6 +101,10 @@ StepContent.propTypes = {
   /**
    * @ignore
    */
+  expanded: PropTypes.bool,
+  /**
+   * @ignore
+   */
   last: PropTypes.bool,
   /**
    * @ignore
@@ -112,6 +117,7 @@ StepContent.propTypes = {
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   /**
    * The component used for the transition.
+   * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    */
   TransitionComponent: PropTypes.elementType,
   /**
@@ -126,7 +132,7 @@ StepContent.propTypes = {
     PropTypes.oneOf(['auto']),
   ]),
   /**
-   * Props applied to the `Transition` element.
+   * Props applied to the [`Transition`](http://reactcommunity.org/react-transition-group/transition#Transition-props) element.
    */
   TransitionProps: PropTypes.object,
 };

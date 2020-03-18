@@ -3,6 +3,7 @@ import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 export interface DividerTypeMap<P = {}, D extends React.ElementType = 'hr'> {
   props: P & {
     absolute?: boolean;
+    flexItem?: boolean;
     light?: boolean;
     orientation?: 'horizontal' | 'vertical';
     variant?: 'fullWidth' | 'inset' | 'middle';

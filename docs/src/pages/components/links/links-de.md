@@ -21,7 +21,7 @@ However, the Link component has different default properties than the Typography
 
 When you use `target="_blank"` with Links, it is [recommended](https://developers.google.com/web/tools/lighthouse/audits/noopener) to always set `rel="noopener"` or `rel="noreferrer"` when linking to third party content.
 
-- `rel="noopener"` prevents the new page from being able to access the `window.opener` property and ensures it runs in a separate process. Without this, the target page can potentially redirect your page to a malicious URL.
+- `rel="noopener"` prevents the new page from being able to access the `window.opener` property and ensures it runs in a separate process. Andernfalls kann die Zielseite Ihre Seite möglicherweise auf eine böswillige URL umleiten.
 - `rel="noreferrer"` has the same effect, but also prevents the *Referer* header from being sent to the new page. ⚠️ Das entfernen des Referrer Headers kann Auswirkungen auf Analytics haben.
 
 ## Drittanbieter-Routing Bibliothek

@@ -31,8 +31,8 @@ In einer Liste sollten sie sicherstellen, dass der `Trenner` als `<li>` gerender
 
 {{"demo": "pages/components/dividers/MiddleDividers.js", "bg": true}}
 
-## Vertical Dividers
+## Vertikale Trennlinien
 
-You can also render a divider vertically using the `orientation` prop.
+You can also render a divider vertically using the `orientation` prop. Note the use of the `flexItem` prop to accommodate for the flex container.
 
 {{"demo": "pages/components/dividers/VerticalDividers.js", "bg": true}}

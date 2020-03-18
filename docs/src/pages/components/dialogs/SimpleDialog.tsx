@@ -59,7 +59,7 @@ function SimpleDialog(props: SimpleDialogProps) {
               <AddIcon />
             </Avatar>
           </ListItemAvatar>
-          <ListItemText primary="add account" />
+          <ListItemText primary="Add account" />
         </ListItem>
       </List>
     </Dialog>

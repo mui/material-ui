@@ -2,7 +2,7 @@
 components: Link
 ---
 
-# 链接
+# Link 链接
 
 <p class="description">链接（Links）组件允许您使用主题颜色和版面设计轻松自定义锚定元素。</p>
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
@@ -52,6 +52,7 @@ const ListItemText = React.forwardRef(function ListItemText(props, ref) {
         variant={dense ? 'body2' : 'body1'}
         className={classes.primary}
         component="span"
+        display="block"
         {...primaryTypographyProps}
       >
         {primary}
@@ -66,6 +67,7 @@ const ListItemText = React.forwardRef(function ListItemText(props, ref) {
         variant="body2"
         className={classes.secondary}
         color="textSecondary"
+        display="block"
         {...secondaryTypographyProps}
       >
         {secondary}

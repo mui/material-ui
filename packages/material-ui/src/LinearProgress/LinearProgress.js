@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import capitalize from '../utils/capitalize';
@@ -22,7 +22,7 @@ export const styles = theme => {
       overflow: 'hidden',
       height: 4,
     },
-    /* Styles applied to the root and bar2 element if `color="primary"`; bar2 if `variant-"buffer"`. */
+    /* Styles applied to the root and bar2 element if `color="primary"`; bar2 if `variant="buffer"`. */
     colorPrimary: {
       backgroundColor: backgroundPrimary,
     },

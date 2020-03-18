@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
@@ -142,7 +142,7 @@ describe('<IconButton />', () => {
         </IconButton>,
       );
       expect(consoleErrorMock.callCount()).to.equal(1);
-      expect(consoleErrorMock.args()[0][0]).to.include(
+      expect(consoleErrorMock.messages()[0]).to.include(
         'you are providing an onClick event listener',
       );
     });

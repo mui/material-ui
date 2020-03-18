@@ -30,13 +30,19 @@ export interface TreeItemProps
   nodeId: string;
   /**
    * The component used for the transition.
+   * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    */
   TransitionComponent?: React.ComponentType<TransitionProps>;
+  /**
+   * Props applied to the [`Transition`](http://reactcommunity.org/react-transition-group/transition#Transition-props) element.
+   */
+  TransitionProps?: TransitionProps;
 }
 
 export type TreeItemClassKey =
   | 'root'
   | 'expanded'
+  | 'selected'
   | 'group'
   | 'content'
   | 'iconContainer'

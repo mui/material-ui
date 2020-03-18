@@ -1,5 +1,5 @@
 /* eslint-disable no-constant-condition */
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import { setRef, useEventCallback, useControlled } from '@material-ui/core/utils';
 
@@ -11,34 +11,17 @@ function stripDiacritics(string) {
     : string;
 }
 
-function defaultStringify(value) {
-  if (value == null) {
-    return '';
-  }
-
-  if (typeof value === 'string') {
-    return value;
-  }
-
-  if (typeof value === 'object') {
-    return Object.keys(value)
-      .map(key => value[key])
-      .join(' ');
-  }
-
-  return JSON.stringify(value);
-}
-
 export function createFilterOptions(config = {}) {
   const {
     ignoreAccents = true,
     ignoreCase = true,
     matchFrom = 'any',
-    stringify = defaultStringify,
+    stringify,
     trim = false,
+    limit,
   } = config;
 
-  return (options, { inputValue }) => {
+  return (options, { inputValue, getOptionLabel }) => {
     let input = trim ? inputValue.trim() : inputValue;
     if (ignoreCase) {
       input = input.toLowerCase();
@@ -46,9 +29,8 @@ export function createFilterOptions(config = {}) {
     if (ignoreAccents) {
       input = stripDiacritics(input);
     }
-
-    return options.filter(option => {
-      let candidate = stringify(option);
+    const filteredOptions = options.filter(option => {
+      let candidate = (stringify || getOptionLabel)(option);
       if (ignoreCase) {
         candidate = candidate.toLowerCase();
       }
@@ -58,6 +40,8 @@ export function createFilterOptions(config = {}) {
 
       return matchFrom === 'start' ? candidate.indexOf(input) === 0 : candidate.indexOf(input) > -1;
     });
+
+    return typeof limit === 'number' ? filteredOptions.slice(0, limit) : filteredOptions;
   };
 }
 
@@ -84,12 +68,12 @@ export default function useAutocomplete(props) {
     autoSelect = false,
     blurOnSelect = false,
     clearOnEscape = false,
+    componentName = 'useAutocomplete',
     debug = false,
-    defaultValue,
+    defaultValue = props.multiple ? [] : null,
     disableClearable = false,
     disableCloseOnSelect = false,
     disableListWrap = false,
-    disableOpenOnFocus = false,
     filterOptions = defaultFilterOptions,
     filterSelectedOptions = false,
     freeSolo = false,
@@ -103,12 +87,13 @@ export default function useAutocomplete(props) {
     multiple = false,
     onChange,
     onClose,
-    onOpen,
     onInputChange,
+    onOpen,
     open: openProp,
-    options = [],
+    openOnFocus = false,
+    options,
+    selectOnFocus = !props.freeSolo,
     value: valueProp,
-    componentName = 'useAutocomplete',
   } = props;
 
   const [defaultId, setDefaultId] = React.useState();
@@ -129,9 +114,8 @@ export default function useAutocomplete(props) {
   const [focusedTag, setFocusedTag] = React.useState(-1);
   const defaultHighlighted = autoHighlight ? 0 : -1;
   const highlightedIndexRef = React.useRef(defaultHighlighted);
-  const selectedIndexRef = React.useRef(-1);
 
-  function setHighlightedIndex(index, mouse = false) {
+  const setHighlightedIndex = useEventCallback((index, mouse = false) => {
     highlightedIndexRef.current = index;
     // does the index exist?
     if (index === -1) {
@@ -181,15 +165,18 @@ export default function useAutocomplete(props) {
       const elementBottom = element.offsetTop + element.offsetHeight;
       if (elementBottom > scrollBottom) {
         listboxNode.scrollTop = elementBottom - listboxNode.clientHeight;
-      } else if (element.offsetTop < listboxNode.scrollTop) {
-        listboxNode.scrollTop = element.offsetTop;
+      } else if (
+        element.offsetTop - element.offsetHeight * (groupBy ? 1.3 : 0) <
+        listboxNode.scrollTop
+      ) {
+        listboxNode.scrollTop = element.offsetTop - element.offsetHeight * (groupBy ? 1.3 : 0);
       }
     }
-  }
+  });
 
   const [value, setValue] = useControlled({
     controlled: valueProp,
-    default: defaultValue || (multiple ? [] : null),
+    default: defaultValue,
     name: componentName,
   });
 
@@ -210,13 +197,12 @@ export default function useAutocomplete(props) {
 
       if (process.env.NODE_ENV !== 'production') {
         if (typeof optionLabel !== 'string') {
+          const erroneousReturn =
+            optionLabel === undefined ? 'undefined' : `${typeof optionLabel} (${optionLabel})`;
           console.error(
             [
-              'Material-UI: the `getOptionLabel` method of useAutocomplete do not handle the options correctly.',
-              `The component expect a string but received ${typeof optionLabel}.`,
-              `For the input option: ${JSON.stringify(
-                newValue,
-              )}, \`getOptionLabel\` returns: ${newInputValue}.`,
+              `Material-UI: the \`getOptionLabel\` method of ${componentName} returned ${erroneousReturn} instead of a string for`,
+              JSON.stringify(newValue),
             ].join('\n'),
           );
         }
@@ -264,7 +250,7 @@ export default function useAutocomplete(props) {
         }),
         // we use the empty string to manipulate `filterOptions` to not filter any options
         // i.e. the filter predicate always returns true
-        { inputValue: inputValueIsSelectedValue ? '' : inputValue },
+        { inputValue: inputValueIsSelectedValue ? '' : inputValue, getOptionLabel },
       )
     : [];
 
@@ -318,7 +304,7 @@ export default function useAutocomplete(props) {
     }
   }
 
-  const changeHighlightedIndex = (diff, direction) => {
+  const changeHighlightedIndex = useEventCallback((diff, direction) => {
     if (!popupOpen) {
       return;
     }
@@ -369,7 +355,6 @@ export default function useAutocomplete(props) {
 
     const nextIndex = validOptionIndex(getNextIndex(), direction);
     setHighlightedIndex(nextIndex);
-    selectedIndexRef.current = nextIndex;
 
     if (autoComplete && diff !== 'reset') {
       if (nextIndex === -1) {
@@ -386,11 +371,47 @@ export default function useAutocomplete(props) {
         }
       }
     }
-  };
+  });
 
   React.useEffect(() => {
-    changeHighlightedIndex('reset', 'next');
-  }, [inputValue]); // eslint-disable-line react-hooks/exhaustive-deps
+    if (!open) {
+      return;
+    }
+
+    const valueItem = multiple ? value[0] : value;
+
+    // The popup is empty
+    if (filteredOptions.length === 0 || valueItem == null) {
+      changeHighlightedIndex('reset', 'next');
+      return;
+    }
+
+    // Synchronize the value with the highlighted index
+    if (!filterSelectedOptions && valueItem != null) {
+      const itemIndex = findIndex(filteredOptions, optionItem =>
+        getOptionSelected(optionItem, valueItem),
+      );
+
+      setHighlightedIndex(itemIndex);
+      return;
+    }
+
+    // Keep the index in the boundaries
+    if (highlightedIndexRef.current >= filteredOptions.length - 1) {
+      setHighlightedIndex(filteredOptions.length - 1);
+    }
+
+    // Ignore filterOptions => options, getOptionSelected, getOptionLabel)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    value,
+    open,
+    filterSelectedOptions,
+    changeHighlightedIndex,
+    setHighlightedIndex,
+    inputValue,
+    multiple,
+  ]);
 
   const handleOpen = event => {
     if (open) {
@@ -405,53 +426,69 @@ export default function useAutocomplete(props) {
     }
   };
 
-  const handleClose = event => {
+  const handleClose = (event, reason) => {
     if (!open) {
       return;
     }
 
     if (onClose) {
-      onClose(event);
+      onClose(event, reason);
     }
     if (!isOpenControlled) {
       setOpenState(false);
     }
   };
 
-  const handleValue = (event, newValue) => {
+  const handleValue = (event, newValue, reason, details) => {
     if (value === newValue) {
       return;
     }
 
     if (onChange) {
-      onChange(event, newValue);
+      onChange(event, newValue, reason, details);
     }
 
     setValue(newValue);
   };
 
-  const selectNewValue = (event, newValue) => {
+  const selectNewValue = (event, option, reasonProp = 'select-option', origin = 'options') => {
+    let reason = reasonProp;
+    let newValue = option;
+
     if (multiple) {
-      const item = newValue;
       newValue = Array.isArray(value) ? [...value] : [];
 
-      const itemIndex = findIndex(newValue, valueItem => getOptionSelected(item, valueItem));
+      if (process.env.NODE_ENV !== 'production') {
+        const matches = newValue.filter(val => getOptionSelected(option, val));
+
+        if (matches.length > 1) {
+          console.error(
+            [
+              `Material-UI: the \`getOptionSelected\` method of ${componentName} do not handle the arguments correctly.`,
+              `The component expects a single value to match a given option but found ${
+                matches.length
+              } matches.`,
+            ].join('\n'),
+          );
+        }
+      }
+
+      const itemIndex = findIndex(newValue, valueItem => getOptionSelected(option, valueItem));
 
       if (itemIndex === -1) {
-        newValue.push(item);
-      } else {
+        newValue.push(option);
+      } else if (origin !== 'freeSolo') {
         newValue.splice(itemIndex, 1);
+        reason = 'remove-option';
       }
     }
 
     resetInputValue(event, newValue);
 
-    handleValue(event, newValue);
+    handleValue(event, newValue, reason, { option });
     if (!disableCloseOnSelect) {
-      handleClose(event);
+      handleClose(event, reason);
     }
-
-    selectedIndexRef.current = -1;
   };
 
   function validTagIndex(index, direction) {
@@ -491,7 +528,7 @@ export default function useAutocomplete(props) {
       return;
     }
 
-    handleClose(event);
+    handleClose(event, 'toggleInput');
 
     let nextTag = focusedTag;
 
@@ -525,7 +562,7 @@ export default function useAutocomplete(props) {
       onInputChange(event, '', 'clear');
     }
 
-    handleValue(event, multiple ? [] : null);
+    handleValue(event, multiple ? [] : null, 'clear');
   };
 
   const handleKeyDown = other => event => {
@@ -580,10 +617,14 @@ export default function useAutocomplete(props) {
         handleFocusTag(event, 'next');
         break;
       case 'Enter':
+        // Wait until IME is settled.
+        if (event.which === 229) {
+          break;
+        }
         if (highlightedIndexRef.current !== -1 && popupOpen) {
           // We don't want to validate the form.
           event.preventDefault();
-          selectNewValue(event, filteredOptions[highlightedIndexRef.current]);
+          selectNewValue(event, filteredOptions[highlightedIndexRef.current], 'select-option');
 
           // Move the selection to the end.
           if (autoComplete) {
@@ -597,7 +638,7 @@ export default function useAutocomplete(props) {
             // Allow people to add new values before they submit the form.
             event.preventDefault();
           }
-          selectNewValue(event, inputValue);
+          selectNewValue(event, inputValue, 'create-option', 'freeSolo');
         }
         break;
       case 'Escape':
@@ -606,8 +647,8 @@ export default function useAutocomplete(props) {
           event.preventDefault();
           // Avoid the Modal to handle the event.
           event.stopPropagation();
-          handleClose(event);
-        } else if (clearOnEscape && inputValue !== '') {
+          handleClose(event, 'escape');
+        } else if (clearOnEscape && (inputValue !== '' || (multiple && value.length > 0))) {
           // Avoid Opera to exit fullscreen mode.
           event.preventDefault();
           // Avoid the Modal to handle the event.
@@ -620,7 +661,9 @@ export default function useAutocomplete(props) {
           const index = focusedTag === -1 ? value.length - 1 : focusedTag;
           const newValue = [...value];
           newValue.splice(index, 1);
-          handleValue(event, newValue);
+          handleValue(event, newValue, 'remove-option', {
+            option: value[index],
+          });
         }
         break;
       default:
@@ -634,12 +677,21 @@ export default function useAutocomplete(props) {
   const handleFocus = event => {
     setFocused(true);
 
-    if (!disableOpenOnFocus && !ignoreFocus.current) {
+    if (openOnFocus && !ignoreFocus.current) {
       handleOpen(event);
     }
   };
 
   const handleBlur = event => {
+    // Ignore the event when using the scrollbar with IE 11
+    if (
+      listboxRef.current !== null &&
+      document.activeElement === listboxRef.current.parentElement
+    ) {
+      inputRef.current.focus();
+      return;
+    }
+
     setFocused(false);
     firstFocus.current = true;
     ignoreFocus.current = false;
@@ -648,13 +700,15 @@ export default function useAutocomplete(props) {
       return;
     }
 
-    if (autoSelect && selectedIndexRef.current !== -1) {
-      handleValue(event, filteredOptions[selectedIndexRef.current]);
+    if (autoSelect && highlightedIndexRef.current !== -1 && popupOpen) {
+      selectNewValue(event, filteredOptions[highlightedIndexRef.current], 'blur');
+    } else if (autoSelect && freeSolo && inputValue !== '') {
+      selectNewValue(event, inputValue, 'blur', 'freeSolo');
     } else if (!freeSolo) {
       resetInputValue(event, value);
     }
 
-    handleClose(event);
+    handleClose(event, 'blur');
   };
 
   const handleInputChange = event => {
@@ -669,12 +723,8 @@ export default function useAutocomplete(props) {
     }
 
     if (newValue === '') {
-      if (disableOpenOnFocus) {
-        handleClose(event);
-      }
-
       if (!disableClearable && !multiple) {
-        handleValue(event, null);
+        handleValue(event, null, 'clear');
       }
     } else {
       handleOpen(event);
@@ -694,7 +744,7 @@ export default function useAutocomplete(props) {
 
   const handleOptionClick = event => {
     const index = Number(event.currentTarget.getAttribute('data-option-index'));
-    selectNewValue(event, filteredOptions[index]);
+    selectNewValue(event, filteredOptions[index], 'select-option');
 
     if (
       blurOnSelect === true ||
@@ -710,7 +760,9 @@ export default function useAutocomplete(props) {
   const handleTagDelete = index => event => {
     const newValue = [...value];
     newValue.splice(index, 1);
-    handleValue(event, newValue);
+    handleValue(event, newValue, 'remove-option', {
+      option: value[index],
+    });
   };
 
   const handleListboxRef = useEventCallback(node => {
@@ -720,13 +772,18 @@ export default function useAutocomplete(props) {
       return;
     }
 
-    // Restore the focus to the correct option.
-    setHighlightedIndex(highlightedIndexRef.current);
+    // Automatically select the first option as the listbox become visible.
+    if (highlightedIndexRef.current === -1 && autoHighlight) {
+      changeHighlightedIndex('reset', 'next');
+    } else {
+      // Restore the focus to the correct option.
+      setHighlightedIndex(highlightedIndexRef.current);
+    }
   });
 
   const handlePopupIndicator = event => {
     if (open) {
-      handleClose(event);
+      handleClose(event, 'toggleInput');
     } else {
       handleOpen(event);
     }
@@ -734,18 +791,20 @@ export default function useAutocomplete(props) {
 
   // Prevent input blur when interacting with the combobox
   const handleMouseDown = event => {
-    if (event.target.nodeName !== 'INPUT') {
+    if (event.target.getAttribute('id') !== id) {
       event.preventDefault();
     }
   };
 
-  // Focus the input when first interacting with the combobox
+  // Focus the input when interacting with the combobox
   const handleClick = () => {
+    inputRef.current.focus();
+
     if (
+      selectOnFocus &&
       firstFocus.current &&
       inputRef.current.selectionEnd - inputRef.current.selectionStart === 0
     ) {
-      inputRef.current.focus();
       inputRef.current.select();
     }
 
@@ -753,7 +812,7 @@ export default function useAutocomplete(props) {
   };
 
   const handleInputMouseDown = event => {
-    if (inputValue === '' && (!disableOpenOnFocus || inputRef.current === document.activeElement)) {
+    if (inputValue === '') {
       handlePopupIndicator(event);
     }
   };
@@ -916,7 +975,7 @@ useAutocomplete.propTypes = {
    */
   componentName: PropTypes.string,
   /**
-   * If `true`, the popup will ignore the blur event if the input if filled.
+   * If `true`, the popup will ignore the blur event if the input is filled.
    * You can inspect the popup markup with your browser tools.
    * Consider this option when you need to customize the component.
    */
@@ -937,10 +996,6 @@ useAutocomplete.propTypes = {
    * If `true`, the list box in the popup will not wrap focus.
    */
   disableListWrap: PropTypes.bool,
-  /**
-   * If `true`, the popup won't open on input focus.
-   */
-  disableOpenOnFocus: PropTypes.bool,
   /**
    * A filter function that determins the options that are eligible.
    *
@@ -992,6 +1047,7 @@ useAutocomplete.propTypes = {
    *
    * @param {object} event The event source of the callback
    * @param {any} value
+   * @param {string} reason One of "create-option", "select-option", "remove-option", "blur" or "clear".
    */
   onChange: PropTypes.func,
   /**
@@ -1004,9 +1060,9 @@ useAutocomplete.propTypes = {
   /**
    * Callback fired when the text input value changes.
    *
-   * @param {object} event The event source of the callback
-   * @param {string} value The new value of the text input
-   * @param {string} reason One of "input" (user input) or "reset" (programmatic change)
+   * @param {object} event The event source of the callback.
+   * @param {string} value The new value of the text input.
+   * @param {string} reason One of "input" (user input) or "reset" (programmatic change).
    */
   onInputChange: PropTypes.func,
   /**
@@ -1020,6 +1076,10 @@ useAutocomplete.propTypes = {
    * Control the popup` open state.
    */
   open: PropTypes.bool,
+  /**
+   * If `true`, the popup will open on input focus.
+   */
+  openOnFocus: PropTypes.bool,
   /**
    * Array of options.
    */

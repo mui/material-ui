@@ -40,7 +40,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function AppDrawerNavItem(props) {
+export default function AppDrawerNavItem(props) {
   const {
     children,
     depth,
@@ -112,5 +112,3 @@ AppDrawerNavItem.propTypes = {
   title: PropTypes.string.isRequired,
   topLevel: PropTypes.bool,
 };
-
-export default AppDrawerNavItem;

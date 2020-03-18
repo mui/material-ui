@@ -6,7 +6,6 @@ import { makeStyles, useTheme, rgbToHex } from '@material-ui/core/styles';
 const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
-    maxWidth: 600,
   },
   group: {
     marginTop: theme.spacing(3),
@@ -28,7 +27,7 @@ export default function Intentions() {
   const theme = useTheme();
 
   const item = (color, name) => (
-    <Grid item xs={6} sm={4} className={classes.color}>
+    <Grid item xs={12} sm={6} md={4} className={classes.color}>
       <div style={{ backgroundColor: color }} />
       <div>
         <Typography variant="body2">{name}</Typography>
@@ -44,50 +43,50 @@ export default function Intentions() {
       <Typography gutterBottom className={classes.group}>
         Primary
       </Typography>
-      <Grid container spacing={1}>
-        {item(theme.palette.primary.light, 'light')}
-        {item(theme.palette.primary.main, 'main')}
-        {item(theme.palette.primary.dark, 'dark')}
+      <Grid container spacing={2}>
+        {item(theme.palette.primary.light, 'palette.primary.light')}
+        {item(theme.palette.primary.main, 'palette.primary.main')}
+        {item(theme.palette.primary.dark, 'palette.primary.dark')}
       </Grid>
       <Typography gutterBottom className={classes.group}>
         Secondary
       </Typography>
-      <Grid container spacing={1}>
-        {item(theme.palette.secondary.light, 'light')}
-        {item(theme.palette.secondary.main, 'main')}
-        {item(theme.palette.secondary.dark, 'dark')}
+      <Grid container spacing={2}>
+        {item(theme.palette.secondary.light, 'palette.secondary.light')}
+        {item(theme.palette.secondary.main, 'palette.secondary.main')}
+        {item(theme.palette.secondary.dark, 'palette.secondary.dark')}
       </Grid>
       <Typography gutterBottom className={classes.group}>
         Error
       </Typography>
-      <Grid container spacing={1}>
-        {item(theme.palette.error.light, 'light')}
-        {item(theme.palette.error.main, 'main')}
-        {item(theme.palette.error.dark, 'dark')}
+      <Grid container spacing={2}>
+        {item(theme.palette.error.light, 'palette.error.light')}
+        {item(theme.palette.error.main, 'palette.error.main')}
+        {item(theme.palette.error.dark, 'palette.error.dark')}
       </Grid>
       <Typography gutterBottom className={classes.group}>
         Warning
       </Typography>
-      <Grid container spacing={1}>
-        {item(theme.palette.warning.light, 'light')}
-        {item(theme.palette.warning.main, 'main')}
-        {item(theme.palette.warning.dark, 'dark')}
+      <Grid container spacing={2}>
+        {item(theme.palette.warning.light, 'palette.warning.light')}
+        {item(theme.palette.warning.main, 'palette.warning.main')}
+        {item(theme.palette.warning.dark, 'palette.warning.dark')}
       </Grid>
       <Typography gutterBottom className={classes.group}>
         Info
       </Typography>
-      <Grid container spacing={1}>
-        {item(theme.palette.info.light, 'light')}
-        {item(theme.palette.info.main, 'main')}
-        {item(theme.palette.info.dark, 'dark')}
+      <Grid container spacing={2}>
+        {item(theme.palette.info.light, 'palette.info.light')}
+        {item(theme.palette.info.main, 'palette.info.main')}
+        {item(theme.palette.info.dark, 'palette.info.dark')}
       </Grid>
       <Typography gutterBottom className={classes.group}>
         Success
       </Typography>
-      <Grid container spacing={1}>
-        {item(theme.palette.success.light, 'light')}
-        {item(theme.palette.success.main, 'main')}
-        {item(theme.palette.success.dark, 'dark')}
+      <Grid container spacing={2}>
+        {item(theme.palette.success.light, 'palette.success.light')}
+        {item(theme.palette.success.main, 'palette.success.main')}
+        {item(theme.palette.success.dark, 'palette.success.dark')}
       </Grid>
     </div>
   );

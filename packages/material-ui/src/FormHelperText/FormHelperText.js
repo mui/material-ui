@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import formControlState from '../FormControl/formControlState';
@@ -11,9 +11,7 @@ export const styles = theme => ({
     color: theme.palette.text.secondary,
     ...theme.typography.caption,
     textAlign: 'left',
-    marginTop: 8,
-    lineHeight: '1em',
-    minHeight: '1em',
+    marginTop: 3,
     margin: 0,
     '&$disabled': {
       color: theme.palette.text.disabled,
@@ -32,7 +30,8 @@ export const styles = theme => ({
   },
   /* Styles applied to the root element if `variant="filled"` or `variant="outlined"`. */
   contained: {
-    margin: '8px 14px 0',
+    marginLeft: 14,
+    marginRight: 14,
   },
   /* Pseudo-class applied to the root element if `focused={true}`. */
   focused: {},
@@ -44,6 +43,7 @@ export const styles = theme => ({
 
 const FormHelperText = React.forwardRef(function FormHelperText(props, ref) {
   const {
+    children,
     classes,
     className,
     component: Component = 'p',
@@ -81,13 +81,22 @@ const FormHelperText = React.forwardRef(function FormHelperText(props, ref) {
       )}
       ref={ref}
       {...other}
-    />
+    >
+      {children === ' ' ? (
+        // eslint-disable-next-line react/no-danger
+        <span dangerouslySetInnerHTML={{ __html: '&#8203;' }} />
+      ) : (
+        children
+      )}
+    </Component>
   );
 });
 
 FormHelperText.propTypes = {
   /**
    * The content of the component.
+   *
+   * If `' '` is provided, the component reserves one line height for displaying a future message.
    */
   children: PropTypes.node,
   /**
