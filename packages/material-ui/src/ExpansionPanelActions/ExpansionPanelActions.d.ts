@@ -8,7 +8,6 @@ export type ExpansionPanelActionsClassKey = 'root' | 'spacing';
 
 /**
  *
- *
  * Demos:
  *
  * - [Expansion Panels](https://material-ui.com/components/expansion-panels/)
@@ -16,7 +15,6 @@ export type ExpansionPanelActionsClassKey = 'root' | 'spacing';
  * API:
  *
  * - [ExpansionPanelActions API](https://material-ui.com/api/expansion-panel-actions/)
- *
  */
 declare const ExpansionPanelActions: React.ComponentType<ExpansionPanelActionsProps>;
 

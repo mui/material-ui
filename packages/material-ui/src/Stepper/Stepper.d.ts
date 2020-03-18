@@ -17,7 +17,6 @@ export type StepperClasskey = 'root' | 'horizontal' | 'vertical' | 'alternativeL
 
 /**
  *
- *
  * Demos:
  *
  * - [Steppers](https://material-ui.com/components/steppers/)

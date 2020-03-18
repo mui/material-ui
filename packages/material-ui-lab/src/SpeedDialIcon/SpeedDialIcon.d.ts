@@ -28,7 +28,6 @@ export type SpeedDialIconClassKey =
 
 /**
  *
- *
  * Demos:
  *
  * - [Speed Dial](https://material-ui.com/components/speed-dial/)
@@ -36,6 +35,5 @@ export type SpeedDialIconClassKey =
  * API:
  *
  * - [SpeedDialIcon API](https://material-ui.com/api/speed-dial-icon/)
- *
  */
 export default function SpeedDialIcon(props: SpeedDialIconProps): JSX.Element;

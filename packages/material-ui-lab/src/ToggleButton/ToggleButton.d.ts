@@ -21,7 +21,6 @@ export type ToggleButtonTypeMap<
 
 /**
  *
- *
  * Demos:
  *
  * - [Toggle Button](https://material-ui.com/components/toggle-button/)

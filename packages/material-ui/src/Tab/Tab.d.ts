@@ -22,7 +22,6 @@ export type TabTypeMap<P = {}, D extends React.ElementType = 'div'> = ExtendButt
 
 /**
  *
- *
  * Demos:
  *
  * - [Tabs](https://material-ui.com/components/tabs/)

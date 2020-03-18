@@ -72,7 +72,6 @@ export type AlertClassKey =
 
 /**
  *
- *
  * Demos:
  *
  * - [Alert](https://material-ui.com/components/alert/)

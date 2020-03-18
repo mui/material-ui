@@ -49,7 +49,6 @@ export type PaginationClassKey = 'root' | 'ul';
 
 /**
  *
- *
  * Demos:
  *
  * - [Pagination](https://material-ui.com/components/pagination/)
@@ -57,6 +56,5 @@ export type PaginationClassKey = 'root' | 'ul';
  * API:
  *
  * - [Pagination API](https://material-ui.com/api/pagination/)
- *
  */
 export default function Pagination(props: PaginationProps): JSX.Element;

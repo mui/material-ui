@@ -21,7 +21,6 @@ export type BottomNavigationActionTypeMap<
 
 /**
  *
- *
  * Demos:
  *
  * - [Bottom Navigation](https://material-ui.com/components/bottom-navigation/)

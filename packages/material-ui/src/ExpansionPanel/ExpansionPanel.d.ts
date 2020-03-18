@@ -17,7 +17,6 @@ export type ExpansionPanelClassKey = 'root' | 'rounded' | 'expanded' | 'disabled
 
 /**
  *
- *
  * Demos:
  *
  * - [Expansion Panels](https://material-ui.com/components/expansion-panels/)

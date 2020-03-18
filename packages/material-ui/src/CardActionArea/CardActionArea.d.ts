@@ -11,7 +11,6 @@ export type CardActionAreaTypeMap<P, D extends React.ElementType> = ExtendButton
 
 /**
  *
- *
  * Demos:
  *
  * - [Cards](https://material-ui.com/components/cards/)

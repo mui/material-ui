@@ -14,7 +14,6 @@ export type MenuItemTypeMap<P = {}, D extends React.ElementType = 'li'> = Omit<
 
 /**
  *
- *
  * Demos:
  *
  * - [Menus](https://material-ui.com/components/menus/)

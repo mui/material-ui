@@ -44,7 +44,6 @@ export type SnackbarClassKey =
 
 /**
  *
- *
  * Demos:
  *
  * - [Snackbars](https://material-ui.com/components/snackbars/)
@@ -52,7 +51,6 @@ export type SnackbarClassKey =
  * API:
  *
  * - [Snackbar API](https://material-ui.com/api/snackbar/)
- *
  */
 declare const Snackbar: React.ComponentType<SnackbarProps>;
 

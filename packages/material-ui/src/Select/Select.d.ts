@@ -40,7 +40,6 @@ export type SelectClassKey =
 
 /**
  *
- *
  * Demos:
  *
  * - [Selects](https://material-ui.com/components/selects/)

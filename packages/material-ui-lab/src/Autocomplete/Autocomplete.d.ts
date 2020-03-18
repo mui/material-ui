@@ -186,7 +186,6 @@ export type AutocompleteClassKey =
 
 /**
  *
- *
  * Demos:
  *
  * - [Autocomplete](https://material-ui.com/components/autocomplete/)
@@ -194,7 +193,6 @@ export type AutocompleteClassKey =
  * API:
  *
  * - [Autocomplete API](https://material-ui.com/api/autocomplete/)
- *
  */
 export default function Autocomplete<T>(
   props: AutocompleteProps<T> & UseAutocompleteProps<T>,

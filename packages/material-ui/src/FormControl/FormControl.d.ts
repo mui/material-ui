@@ -40,7 +40,6 @@ export interface FormControlTypeMap<P = {}, D extends React.ElementType = 'div'>
  * ```
  *
  * ⚠️Only one input can be used within a FormControl.
- *
  * Demos:
  *
  * - [Checkboxes](https://material-ui.com/components/checkboxes/)
@@ -51,7 +50,6 @@ export interface FormControlTypeMap<P = {}, D extends React.ElementType = 'div'>
  * API:
  *
  * - [FormControl API](https://material-ui.com/api/form-control/)
- *
  */
 declare const FormControl: OverridableComponent<FormControlTypeMap>;
 

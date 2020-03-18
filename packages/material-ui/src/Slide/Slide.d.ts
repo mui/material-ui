@@ -11,7 +11,6 @@ export interface SlideProps extends TransitionProps {
 /**
  * The Slide transition is used by the [Drawer](https://material-ui.com/components/drawers/) component.
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
- *
  * Demos:
  *
  * - [Dialogs](https://material-ui.com/components/dialogs/)

@@ -44,7 +44,6 @@ export type ToggleButtonGroupClassKey =
 
 /**
  *
- *
  * Demos:
  *
  * - [Toggle Button](https://material-ui.com/components/toggle-button/)
@@ -52,6 +51,5 @@ export type ToggleButtonGroupClassKey =
  * API:
  *
  * - [ToggleButtonGroup API](https://material-ui.com/api/toggle-button-group/)
- *
  */
 export default function ToggleButtonGroup(props: ToggleButtonGroupProps): JSX.Element;

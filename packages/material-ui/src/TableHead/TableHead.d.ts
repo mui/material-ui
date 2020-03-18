@@ -11,7 +11,6 @@ export type TableHeadBaseProps = React.HTMLAttributes<HTMLTableSectionElement>;
 
 /**
  *
- *
  * Demos:
  *
  * - [Tables](https://material-ui.com/components/tables/)
@@ -19,7 +18,6 @@ export type TableHeadBaseProps = React.HTMLAttributes<HTMLTableSectionElement>;
  * API:
  *
  * - [TableHead API](https://material-ui.com/api/table-head/)
- *
  */
 declare const TableHead: React.ComponentType<TableHeadProps>;
 

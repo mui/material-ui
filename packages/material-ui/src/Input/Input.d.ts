@@ -24,7 +24,6 @@ export type InputClassKey =
 
 /**
  *
- *
  * Demos:
  *
  * - [Text Fields](https://material-ui.com/components/text-fields/)

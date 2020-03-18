@@ -29,7 +29,6 @@ export type InputLabelClassKey =
 
 /**
  *
- *
  * Demos:
  *
  * - [Text Fields](https://material-ui.com/components/text-fields/)

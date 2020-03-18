@@ -11,7 +11,6 @@ export type TableBodyBaseProps = React.HTMLAttributes<HTMLTableSectionElement>;
 
 /**
  *
- *
  * Demos:
  *
  * - [Tables](https://material-ui.com/components/tables/)
@@ -19,7 +18,6 @@ export type TableBodyBaseProps = React.HTMLAttributes<HTMLTableSectionElement>;
  * API:
  *
  * - [TableBody API](https://material-ui.com/api/table-body/)
- *
  */
 declare const TableBody: React.ComponentType<TableBodyProps>;
 

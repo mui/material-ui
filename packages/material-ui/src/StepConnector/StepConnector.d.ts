@@ -28,7 +28,6 @@ export type StepConnectorClasskey =
 
 /**
  *
- *
  * Demos:
  *
  * - [Steppers](https://material-ui.com/components/steppers/)
@@ -36,7 +35,6 @@ export type StepConnectorClasskey =
  * API:
  *
  * - [StepConnector API](https://material-ui.com/api/step-connector/)
- *
  */
 declare const StepConnector: React.ComponentType<StepConnectorProps>;
 

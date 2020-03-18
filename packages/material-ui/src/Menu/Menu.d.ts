@@ -20,7 +20,6 @@ export type MenuClassKey = 'paper' | 'list';
 
 /**
  *
- *
  * Demos:
  *
  * - [App Bar](https://material-ui.com/components/app-bar/)

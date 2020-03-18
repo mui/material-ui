@@ -10,7 +10,6 @@ export type CardClassKey = 'root';
 
 /**
  *
- *
  * Demos:
  *
  * - [Cards](https://material-ui.com/components/cards/)

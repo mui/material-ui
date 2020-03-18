@@ -21,7 +21,6 @@ export type ContainerClassKey =
 
 /**
  *
- *
  * Demos:
  *
  * - [Container](https://material-ui.com/components/container/)
@@ -29,7 +28,6 @@ export type ContainerClassKey =
  * API:
  *
  * - [Container API](https://material-ui.com/api/container/)
- *
  */
 declare const Container: React.ComponentType<ContainerProps>;
 

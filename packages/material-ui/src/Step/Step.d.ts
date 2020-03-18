@@ -20,7 +20,6 @@ export type StepClasskey = 'root' | 'horizontal' | 'vertical' | 'alternativeLabe
 
 /**
  *
- *
  * Demos:
  *
  * - [Steppers](https://material-ui.com/components/steppers/)
@@ -28,7 +27,6 @@ export type StepClasskey = 'root' | 'horizontal' | 'vertical' | 'alternativeLabe
  * API:
  *
  * - [Step API](https://material-ui.com/api/step/)
- *
  */
 declare const Step: React.ComponentType<StepProps>;
 

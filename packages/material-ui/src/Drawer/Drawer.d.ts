@@ -41,7 +41,6 @@ export type DrawerClassKey =
 /**
  * The props of the [Modal](https://material-ui.com/api/modal/) component are available
  * when `variant="temporary"` is set.
- *
  * Demos:
  *
  * - [Drawers](https://material-ui.com/components/drawers/)
@@ -49,7 +48,6 @@ export type DrawerClassKey =
  * API:
  *
  * - [Drawer API](https://material-ui.com/api/drawer/)
- *
  */
 declare const Drawer: React.ComponentType<DrawerProps>;
 

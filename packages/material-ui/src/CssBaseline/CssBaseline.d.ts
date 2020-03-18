@@ -6,7 +6,6 @@ export interface CssBaselineProps {
 
 /**
  * Kickstart an elegant, consistent, and simple baseline to build upon.
- *
  * Demos:
  *
  * - [Css Baseline](https://material-ui.com/components/css-baseline/)
@@ -14,7 +13,6 @@ export interface CssBaselineProps {
  * API:
  *
  * - [CssBaseline API](https://material-ui.com/api/css-baseline/)
- *
  */
 declare const CssBaseline: React.ComponentType<CssBaselineProps>;
 

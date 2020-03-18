@@ -37,7 +37,6 @@ export type DialogClassKey =
 
 /**
  * Dialogs are overlaid modal paper based components with a backdrop.
- *
  * Demos:
  *
  * - [Dialogs](https://material-ui.com/components/dialogs/)

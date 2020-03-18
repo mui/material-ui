@@ -16,7 +16,6 @@ export type DialogContentTextClassKey = 'root';
 
 /**
  *
- *
  * Demos:
  *
  * - [Dialogs](https://material-ui.com/components/dialogs/)

@@ -18,7 +18,6 @@ export type TableClassKey = 'root' | 'stickyHeader';
 
 /**
  *
- *
  * Demos:
  *
  * - [Tables](https://material-ui.com/components/tables/)
@@ -26,7 +25,6 @@ export type TableClassKey = 'root' | 'stickyHeader';
  * API:
  *
  * - [Table API](https://material-ui.com/api/table/)
- *
  */
 declare const Table: React.ComponentType<TableProps>;
 

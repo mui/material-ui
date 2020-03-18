@@ -45,7 +45,6 @@ export type SpeedDialActionClassKey =
 
 /**
  *
- *
  * Demos:
  *
  * - [Speed Dial](https://material-ui.com/components/speed-dial/)

@@ -14,7 +14,6 @@ export type TableRowClassKey = 'root' | 'selected' | 'hover' | 'head' | 'footer'
 /**
  * Will automatically set dynamic row height
  * based on the material table element parent (head, body, etc).
- *
  * Demos:
  *
  * - [Tables](https://material-ui.com/components/tables/)
@@ -22,7 +21,6 @@ export type TableRowClassKey = 'root' | 'selected' | 'hover' | 'head' | 'footer'
  * API:
  *
  * - [TableRow API](https://material-ui.com/api/table-row/)
- *
  */
 declare const TableRow: React.ComponentType<TableRowProps>;
 

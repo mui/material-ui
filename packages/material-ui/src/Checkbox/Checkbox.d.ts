@@ -20,7 +20,6 @@ export type CheckboxClassKey =
 
 /**
  *
- *
  * Demos:
  *
  * - [Checkboxes](https://material-ui.com/components/checkboxes/)

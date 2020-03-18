@@ -10,7 +10,6 @@ export type DialogTitleClassKey = 'root';
 
 /**
  *
- *
  * Demos:
  *
  * - [Dialogs](https://material-ui.com/components/dialogs/)
@@ -18,7 +17,6 @@ export type DialogTitleClassKey = 'root';
  * API:
  *
  * - [DialogTitle API](https://material-ui.com/api/dialog-title/)
- *
  */
 declare const DialogTitle: React.ComponentType<DialogTitleProps>;
 

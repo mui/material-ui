@@ -21,7 +21,6 @@ export type SwitchClassKey =
 
 /**
  *
- *
  * Demos:
  *
  * - [Switches](https://material-ui.com/components/switches/)

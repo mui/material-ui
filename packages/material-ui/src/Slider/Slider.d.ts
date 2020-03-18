@@ -67,7 +67,6 @@ export type SliderClassKey =
 
 /**
  *
- *
  * Demos:
  *
  * - [Slider](https://material-ui.com/components/slider/)
@@ -75,7 +74,6 @@ export type SliderClassKey =
  * API:
  *
  * - [Slider API](https://material-ui.com/api/slider/)
- *
  */
 declare const Slider: React.ComponentType<SliderProps>;
 

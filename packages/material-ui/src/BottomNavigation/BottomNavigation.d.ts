@@ -34,7 +34,6 @@ export type BottomNavigationClassKey = 'root';
 
 /**
  *
- *
  * Demos:
  *
  * - [Bottom Navigation](https://material-ui.com/components/bottom-navigation/)
@@ -42,6 +41,5 @@ export type BottomNavigationClassKey = 'root';
  * API:
  *
  * - [BottomNavigation API](https://material-ui.com/api/bottom-navigation/)
- *
  */
 export default function BottomNavigation(props: BottomNavigationProps): JSX.Element;

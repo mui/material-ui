@@ -23,7 +23,6 @@ export type ButtonTypeMap<
 
 /**
  *
- *
  * Demos:
  *
  * - [Button Group](https://material-ui.com/components/button-group/)

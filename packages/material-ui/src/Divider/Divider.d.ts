@@ -14,7 +14,6 @@ export interface DividerTypeMap<P = {}, D extends React.ElementType = 'hr'> {
 
 /**
  *
- *
  * Demos:
  *
  * - [Dividers](https://material-ui.com/components/dividers/)
@@ -23,7 +22,6 @@ export interface DividerTypeMap<P = {}, D extends React.ElementType = 'hr'> {
  * API:
  *
  * - [Divider API](https://material-ui.com/api/divider/)
- *
  */
 declare const Divider: OverridableComponent<DividerTypeMap>;
 

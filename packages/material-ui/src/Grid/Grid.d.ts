@@ -96,7 +96,6 @@ export interface GridTypeMap<P = {}, D extends React.ElementType = 'div'> {
 
 /**
  *
- *
  * Demos:
  *
  * - [Grid](https://material-ui.com/components/grid/)
@@ -104,7 +103,6 @@ export interface GridTypeMap<P = {}, D extends React.ElementType = 'div'> {
  * API:
  *
  * - [Grid API](https://material-ui.com/api/grid/)
- *
  */
 declare const Grid: OverridableComponent<GridTypeMap>;
 

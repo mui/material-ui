@@ -26,7 +26,6 @@ export type MobileStepperClassKey =
 
 /**
  *
- *
  * Demos:
  *
  * - [Steppers](https://material-ui.com/components/steppers/)

@@ -105,7 +105,6 @@ export type TextFieldClassKey = 'root';
  *
  * -   using the upper case props for passing values directly to the components
  * -   using the underlying components directly as shown in the demos
- *
  * Demos:
  *
  * - [Autocomplete](https://material-ui.com/components/autocomplete/)

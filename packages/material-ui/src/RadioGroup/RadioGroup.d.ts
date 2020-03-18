@@ -13,7 +13,6 @@ export type RadioGroupClassKey = FormGroupClassKey;
 
 /**
  *
- *
  * Demos:
  *
  * - [Radio Buttons](https://material-ui.com/components/radio-buttons/)

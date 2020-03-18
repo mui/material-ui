@@ -35,7 +35,6 @@ export type StepLabelClasskey =
 
 /**
  *
- *
  * Demos:
  *
  * - [Steppers](https://material-ui.com/components/steppers/)
@@ -43,7 +42,6 @@ export type StepLabelClasskey =
  * API:
  *
  * - [StepLabel API](https://material-ui.com/api/step-label/)
- *
  */
 declare const StepLabel: React.ComponentType<StepLabelProps>;
 

@@ -11,7 +11,6 @@ export type SnackbarContentClassKey = 'root' | 'message' | 'action';
 
 /**
  *
- *
  * Demos:
  *
  * - [Snackbars](https://material-ui.com/components/snackbars/)

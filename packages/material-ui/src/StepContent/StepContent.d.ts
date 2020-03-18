@@ -21,7 +21,6 @@ export type StepContentClasskey = 'root' | 'last' | 'transition';
 
 /**
  *
- *
  * Demos:
  *
  * - [Steppers](https://material-ui.com/components/steppers/)
@@ -29,7 +28,6 @@ export type StepContentClasskey = 'root' | 'last' | 'transition';
  * API:
  *
  * - [StepContent API](https://material-ui.com/api/step-content/)
- *
  */
 declare const StepContent: React.ComponentType<StepContentProps>;
 

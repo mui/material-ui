@@ -113,7 +113,7 @@ function computeApiDescription(api, options) {
       .process(api.description, (error, file) => {
         if (error) reject(error);
 
-        resolve(file.contents.replace(/\n/g, '\n * '));
+        resolve(file.contents.trim());
       });
   });
 }
@@ -180,19 +180,24 @@ async function annotateComponentDefinition(component, api) {
     inheritanceAPILink = `[${api.inheritance.component} API](${url})`;
   }
 
-  const jsdoc = `/**
- * ${await computeApiDescription(api, { host: HOST })}
- * Demos:
- *
- * - ${demos
-   .map(page => `[${pageToTitle(page)}](${HOST}${rewriteUrlForNextExport(page.pathname)})`)
-   .join('\n * - ')}
- *
- * API:
- *
- * - [${api.name} API](${HOST}/api/${kebabCase(api.name)}/)
- * ${api.inheritance !== null ? `- inherits ${inheritanceAPILink}` : ''}
- */`;
+  const markdownLines = (await computeApiDescription(api, { host: HOST })).split('\n');
+  markdownLines.push(
+    'Demos:',
+    '',
+    ...demos.map(
+      page => `- [${pageToTitle(page)}](${HOST}${rewriteUrlForNextExport(page.pathname)})`,
+    ),
+    '',
+  );
+
+  markdownLines.push('API:', '', `- [${api.name} API](${HOST}/api/${kebabCase(api.name)}/)`);
+  if (api.inheritance !== null) {
+    markdownLines.push(`- inherits ${inheritanceAPILink}`);
+  }
+
+  const jsdoc = `/**\n${markdownLines
+    .map(line => (line.length > 0 ? ` * ${line}` : ` *`))
+    .join('\n')}\n */`;
   const typesSourceNew = typesSource.slice(0, start) + jsdoc + typesSource.slice(end);
   writeFileSync(typesFilename, typesSourceNew, { encoding: 'utf8' });
 }

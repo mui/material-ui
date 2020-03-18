@@ -15,7 +15,6 @@ export interface NoSsrProps {
  * -   Improve the time-to-first paint on the client by only rendering above the fold.
  * -   Reduce the rendering time on the server.
  * -   Under too heavy server load, you can turn on service degradation.
- *
  * Demos:
  *
  * - [No Ssr](https://material-ui.com/components/no-ssr/)
@@ -23,7 +22,6 @@ export interface NoSsrProps {
  * API:
  *
  * - [NoSsr API](https://material-ui.com/api/no-ssr/)
- *
  */
 declare const NoSsr: React.ComponentType<NoSsrProps>;
 
