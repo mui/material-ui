@@ -181,14 +181,16 @@ async function annotateComponentDefinition(component, api) {
   }
 
   const markdownLines = (await computeApiDescription(api, { host: HOST })).split('\n');
-  markdownLines.push(
-    'Demos:',
-    '',
-    ...demos.map(
-      page => `- [${pageToTitle(page)}](${HOST}${rewriteUrlForNextExport(page.pathname)})`,
-    ),
-    '',
-  );
+  if (demos.length > 0) {
+    markdownLines.push(
+      'Demos:',
+      '',
+      ...demos.map(
+        page => `- [${pageToTitle(page)}](${HOST}${rewriteUrlForNextExport(page.pathname)})`,
+      ),
+      '',
+    );
+  }
 
   markdownLines.push('API:', '', `- [${api.name} API](${HOST}/api/${kebabCase(api.name)}/)`);
   if (api.inheritance !== null) {
