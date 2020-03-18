@@ -1,15 +1,14 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
-export interface GridListTileProps
-  extends StandardProps<React.HTMLAttributes<HTMLLIElement>, GridListTileClassKey> {
-  cols?: number;
-  component?: React.ElementType<React.HTMLAttributes<HTMLLIElement>>;
-  rows?: number;
+export interface GridListTileTypeMap<P = {}, D extends React.ElementType = 'li'> {
+  props: P & {
+    cols?: number;
+    rows?: number;
+  };
+  defaultComponent: D;
+  classKey: GridListTileClassKey;
 }
-
-export type GridListTileClassKey = 'root' | 'tile' | 'imgFullHeight' | 'imgFullWidth';
-
 /**
  *
  * Demos:
@@ -20,6 +19,13 @@ export type GridListTileClassKey = 'root' | 'tile' | 'imgFullHeight' | 'imgFullW
  *
  * - [GridListTile API](https://material-ui.com/api/grid-list-tile/)
  */
-declare const GridListTile: React.ComponentType<GridListTileProps>;
+declare const GridListTile: OverridableComponent<GridListTileTypeMap>;
+
+export type GridListTileClassKey = 'root' | 'tile' | 'imgFullHeight' | 'imgFullWidth';
+
+export type GridListTileProps<
+  D extends React.ElementType = GridListTileTypeMap['defaultComponent'],
+  P = {}
+> = OverrideProps<GridListTileTypeMap<P, D>, D>;
 
 export default GridListTile;

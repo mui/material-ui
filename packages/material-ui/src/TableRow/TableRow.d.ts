@@ -1,16 +1,14 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
-export interface TableRowProps extends StandardProps<TableRowBaseProps, TableRowClassKey> {
-  component?: React.ElementType<TableRowBaseProps>;
-  hover?: boolean;
-  selected?: boolean;
+export interface TableRowTypeMap<P = {}, D extends React.ElementType = 'tr'> {
+  props: P & {
+    hover?: boolean;
+    selected?: boolean;
+  };
+  defaultComponent: D;
+  classKey: TableRowClassKey;
 }
-
-export type TableRowBaseProps = React.HTMLAttributes<HTMLTableRowElement>;
-
-export type TableRowClassKey = 'root' | 'selected' | 'hover' | 'head' | 'footer';
-
 /**
  * Will automatically set dynamic row height
  * based on the material table element parent (head, body, etc).
@@ -22,6 +20,13 @@ export type TableRowClassKey = 'root' | 'selected' | 'hover' | 'head' | 'footer'
  *
  * - [TableRow API](https://material-ui.com/api/table-row/)
  */
-declare const TableRow: React.ComponentType<TableRowProps>;
+declare const TableRow: OverridableComponent<TableRowTypeMap>;
+
+export type TableRowClassKey = 'root' | 'selected' | 'hover' | 'head' | 'footer';
+
+export type TableRowProps<
+  D extends React.ElementType = TableRowTypeMap['defaultComponent'],
+  P = {}
+> = OverrideProps<TableRowTypeMap<P, D>, D>;
 
 export default TableRow;

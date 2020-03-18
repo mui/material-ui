@@ -10,10 +10,13 @@ trigger:
 pr:
   branches:
     include:
-    - '*' 
+      - '*'
 
 pool:
   vmImage: 'ubuntu-latest'
+
+variables:
+  DOCS_NEXT_CACHE_FOLDER: $(Build.SourcesDirectory)/docs/.next/cache
 
 steps:
   - task: NodeTool@0
@@ -53,6 +56,15 @@ steps:
     inputs:
       artifactName: 'canaries'
       targetPath: 'material-ui-core.tgz'
+
+  - task: Cache@2
+    inputs:
+      key: 'yarn | "$(Agent.OS)" | yarn.lock'
+      restoreKeys: |
+        yarn | "$(Agent.OS)"
+        yarn
+      path: $(DOCS_NEXT_CACHE_FOLDER)
+    displayName: Cache nextjs build
 
   - script: |
       set -o pipefail

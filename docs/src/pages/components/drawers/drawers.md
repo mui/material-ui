@@ -20,7 +20,7 @@ It closes when an item is selected, handled by controlling the `open` prop.
 
 {{"demo": "pages/components/drawers/TemporaryDrawer.js"}}
 
-## Swipeable Temporary drawer
+### Swipeable
 
 You can make the drawer swipeable with the `SwipeableDrawer` component.
 

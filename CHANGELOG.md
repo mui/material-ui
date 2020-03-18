@@ -1,5 +1,121 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.9.6
+###### *Mar 18, 2020*
+
+Big thanks to the 39 contributors who made this release possible.
+
+Here are some highlights ✨:
+
+- ⚛️ Improve the DX in Visual Studio Code (#20079, #19962, #19280) @eps1lon @jedwards1211.
+  - Preview the colors in right in the editor
+    ![](https://user-images.githubusercontent.com/12292047/76473891-2b70ad80-63fa-11ea-8afe-38ceee43eeaa.png)
+    ![](https://user-images.githubusercontent.com/12292047/76473890-2ad81700-63fa-11ea-9bb3-005f79a195e7.png)
+  - Preview the purpose of each theme.spacing arguments right in the editor
+    ![](https://user-images.githubusercontent.com/12292047/75786858-31192400-5d66-11ea-9382-94dd74c42985.png)
+  - Leverage code snippets to save time with [this extension](https://marketplace.visualstudio.com/items?itemName=vscodeshift.material-ui-snippets).
+- 🔍 12 patches on the Autocomplete component.
+- 💄 Polish on the Pagination component (#19933, #19964, #19966, #19987) @pvdstel @eps1lon @mbrookes.
+
+### `@material-ui/core@v4.9.6`
+
+- [Chip] Prevent event default when onDelete is triggered (#20051) @eps1lon
+- [Container] Reset display block (#19971) @oliviertassinari
+- [DatePicker] Fix codesandbox demo (#19926) @netochaves
+- [Drawer] Add a comment for clarity on the styling of height of the toolbar (#19934) @smerriman18
+- [Grid] Fix row-reverse typo (#20048) @jhthompson
+- [Link] Fix color mismatch with Typography component (#19949) Weslen do Nascimento
+- [ListItemText] Fix display block issue (#20039) @psdr03
+- [Select] Simplify the demos (remove ref) (#20076) @captain-yossarian
+- [TablePagination] Out of range warning when "count={-1}" (#19874) @dbarabashdev
+- [TextField] Avoid outline label CSS leak (#19937) @ivoiv
+- [TextField] Fix outlined render gap if label = empty string (#19722) @captain-yossarian
+- [TextField] Minimize usage of z-index (#19547)" (#20016) @piotros
+- [theme] Describe what each argument of theme.spacing affects (#19962) @eps1lon
+- [theme] Array reject on spacing transformation fixed (#19900) Weslen do Nascimento
+- [Tooltip] Fix useMemo dependency (#19899) @NMinhNguyen
+- [Tooltip] Reduce enterDelay to 100ms (#19898) @oliviertassinari
+
+### `@material-ui/styles@v4.9.6`
+
+- [styles] Fix theme default props overriden by Component default (#20091) @adridavid
+- [styles] Name anonymous function type (#19996) @eps1lon
+
+### `@material-ui/system@v4.9.6`
+
+- [theme] Array reject on spacing transformation fixed (#19900) Weslen do Nascimento
+
+### `@material-ui/utils@v4.9.6`
+
+- [core] Fix deepmerge of DOM elements (#20100) @ValentinH
+
+### `@material-ui/lab@v4.0.0-alpha.46`
+
+- [Autocomplete] Add more details in the onChange event (#19959) @akharkhonov
+- [Autocomplete] Add scrollbar support in IE11 (#19969) @SergeyUstinovich
+- [Autocomplete] Better synchronize the highlight with the value (#19923) @captain-yossarian
+- [Autocomplete] Document listbox limitation (#20101) @zatine
+- [Autocomplete] Fix clearOnEscape + multiple combination (#20065) @chaudharykiran
+- [Autocomplete] Fix GitHub's demo behavior (#19928) @hasanozacar
+- [Autocomplete] Fix typo in prop description  (#20086) @vince1995
+- [Autocomplete] Improvement popup open logic (#19901) @haseebdaone
+- [Autocomplete] Make categories more obvious (#20142) @embeddedt
+- [Autocomplete] Simplify error for wrong getOptionLabel (#20103) @oliviertassinari
+- [Autocomplete] Update onChange API @oliviertassinari
+- [Autocomplete] Use getOptionLabel over stringify (#19974) @a-type
+- [AvatarGroup] Add max avatar prop (#19853) @GFynbo
+- [Pagination] Add TypeScript types (#19933) @pvdstel
+- [Pagination] Fix prop forwarding of `onChange` and `page` (#19964) @eps1lon
+- [Pagination] Leverage `@default` over default values (#19966) @eps1lon
+- [Pagination] Remove children prop (#19987) @mbrookes
+- [Rating] Fix text alignment inheritance (#20055) @mlizchap
+- [Skeleton] Fix SkeletonClassKey type (#20047) @100terres
+- [Skeleton] Improve wave dark mode support (#20112) @oliviertassinari
+
+### Docs
+
+- [docs] Add radio error demo (#19599) @mbrookes
+- [docs] Bump next to latest (#19995) @eps1lon
+- [docs] Display color preview in IntelliSense (#20079) @eps1lon
+- [docs] Document typescript:transpile script (#19951) @eps1lon
+- [docs] Fix @material-ui/styles release version number (#19939) @jkjustjoshing
+- [docs] Fix OutlinedLabel typo (#20006) @ljcooke
+- [docs] Fix SEO issues (#20108) @oliviertassinari
+- [docs] Fix Sketch link (#19944) @mbrookes
+- [docs] Fix grammar in autocomplete doc (#20066) @dandv
+- [docs] Fix incorrect type for fontWeight @eps1lon
+- [docs] Fix missing OutlinedLabel#label link in Select API docs (#19993) @eps1lon
+- [docs] Flexbox, add element for show the good effect (#19956) @tbredillet
+- [docs] Flexbox: update item number (#19954) @tbredillet
+- [docs] Improve font size scaling of some demos (#19950) @eps1lon
+- [docs] Remove premium support offerings (#19972) @mbrookes
+- [docs] Simplify checkbox examples (#20052) @tacigar
+- [docs] Simplify some demos (#19608) @mbrookes
+- [docs] Track bundle size of pages (#19978) @eps1lon
+- [docs] Upgrade to next 9 (#18441) @eps1lon
+- [docs] Simplify drawer examples (#20040) @TommyJackson85
+- [examples] Fix typo in gatsby readme (#19998) @eps1lon
+
+### Core
+
+- [test] Match against messages not args on console methods (#20046) @eps1lon
+- [test] Resize screenshots with sharp (#19979) @oliviertassinari
+- [test] Run snapshot tests on the a11y tree (#20019) @eps1lon
+- [ci] Fix azure not running (#20127) @eps1lon
+- [ci] Fix incorre pr number for experimental scripts (#20021) @eps1lon
+- [ci] Let failed types-next jobs pass (#20007) @eps1lon
+- [ci] Let failed types-next jobs pass (#20017) @eps1lon
+- [core] Add missing properties to TypeAction (#20075) @timonweber
+- [core] Add spacing after prettier command (#20073) @dandv
+- [core] Batch small changes (#20111) @oliviertassinari
+- [core] Fix typos in code comments (#19999) @eps1lon
+- [core] Improve the DX when iterating on components (#20128) @oliviertassinari
+- [core] Use Babel 7 version of transform-react-constant-elements (#20015) @merceyz
+- [security] Bump acorn from 5.7.3 to 5.7.4 (#20105) @dependabot-preview
+- [core] Batch small changes (#19896) @oliviertassinari
+- [core] Update type defs to use OverridableComponent (#20110) @theGirrafish
+- [core] Fix docs:api cleaning the wrong directory #20164 @ro7584
+
 ## 4.9.5
 ###### *Feb 29, 2020*
 
@@ -3322,7 +3438,7 @@ Here are some highlights ✨:
   We have removed the `labelContainer`, `label` and `labelWrapped` class keys.
   We have removed 2 intermediary DOM elements.
   You should be able to move the custom styles to the root class key.
-  ![capture d ecran 2019-02-23 a 15 46 48](https://user-images.githubusercontent.com/3165635/53287870-53a35500-3782-11e9-9431-2d1a14a41be0.png)
+  ![](https://user-images.githubusercontent.com/3165635/53287870-53a35500-3782-11e9-9431-2d1a14a41be0.png)
 
 - [Table] Add dense support (#14561) @leMaik
 

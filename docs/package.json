@@ -5,7 +5,8 @@
   "author": "Material-UI Team",
   "license": "MIT",
   "scripts": {
-    "build": "rimraf .next && cross-env NODE_ENV=production next build",
+    "build": "cross-env NODE_ENV=production next build",
+    "build:clean": "rimraf .next && yarn build",
     "build-sw": "node ./scripts/buildServiceWorker.js",
     "dev": "rimraf ./node_modules/.cache/babel-loader && next dev",
     "deploy": "git push material-ui-docs master:latest",

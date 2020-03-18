@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/docs",
-  "version": "4.0.0-beta.2",
+  "version": "4.0.0-beta.3",
   "private": false,
   "author": "Material-UI Team",
   "description": "Material-UI Docs - Documentation building blocks.",
@@ -32,7 +32,7 @@
     "test": "exit 0"
   },
   "peerDependencies": {
-    "@material-ui/core": "^4.0.1",
+    "@material-ui/core": "^4.0.0",
     "@types/react": "^16.8.6",
     "react": "^16.8.0",
     "react-dom": "^16.8.0"
@@ -44,7 +44,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.4.4",
-    "@material-ui/utils": "^4.1.0",
+    "@material-ui/utils": "^4.9.6",
     "clsx": "^1.0.4",
     "marked": "^0.8.0",
     "nprogress": "^0.2.0",
