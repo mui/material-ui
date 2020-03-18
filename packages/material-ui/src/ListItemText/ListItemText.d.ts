@@ -3,15 +3,21 @@ import { StandardProps } from '..';
 import { TypographyProps } from '../Typography';
 
 export interface ListItemTextProps<
-  P extends React.ElementType = 'span',
-  S extends React.ElementType = 'p'
+  PrimaryTypographyComponent extends React.ElementType = 'span',
+  SecondaryTypographyComponent extends React.ElementType = 'p'
 > extends StandardProps<React.HTMLAttributes<HTMLDivElement>, ListItemTextClassKey> {
   disableTypography?: boolean;
   inset?: boolean;
   primary?: React.ReactNode;
-  primaryTypographyProps?: TypographyProps<P, { component?: P }>;
+  primaryTypographyProps?: TypographyProps<
+    PrimaryTypographyComponent,
+    { component?: PrimaryTypographyComponent }
+  >;
   secondary?: React.ReactNode;
-  secondaryTypographyProps?: TypographyProps<S, { component?: S }>;
+  secondaryTypographyProps?: TypographyProps<
+    SecondaryTypographyComponent,
+    { component?: SecondaryTypographyComponent }
+  >;
 }
 
 export type ListItemTextClassKey =
