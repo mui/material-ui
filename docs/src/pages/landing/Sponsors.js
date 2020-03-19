@@ -7,7 +7,7 @@ import Container from '@material-ui/core/Container';
 import Divider from '@material-ui/core/Divider';
 import mapTranslations from 'docs/src/modules/utils/mapTranslations';
 
-const req = require.context('docs/src/modules/components', false, /\.md$/);
+const req = require.context('./', false, /\.md$/);
 const backers = mapTranslations(req, 'md');
 
 const useStyles = makeStyles(

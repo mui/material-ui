@@ -4,13 +4,13 @@ import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
-import HomeSteps from 'docs/src/modules/components/HomeSteps';
-import HomeThemes from 'docs/src/modules/components/HomeThemes';
-import HomeQuickWord from 'docs/src/modules/components/HomeQuickWord';
-import HomeSponsors from 'docs/src/modules/components/HomeSponsors';
-import HomeUsers from 'docs/src/modules/components/HomeUsers';
-import HomeQuotes from 'docs/src/modules/components/HomeQuotes';
-import HomePro from 'docs/src/modules/components/HomePro';
+import Steps from 'docs/src/pages/landing/Steps';
+import Themes from 'docs/src/pages/landing/Themes';
+import QuickWord from 'docs/src/pages/landing/QuickWord';
+import Sponsors from 'docs/src/pages/landing/Sponsors';
+import Users from 'docs/src/pages/landing/Users';
+import Quotes from 'docs/src/pages/landing/Quotes';
+import Pro from 'docs/src/pages/landing/Pro';
 import AppFooter from 'docs/src/modules/components/AppFooter';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import Link from 'docs/src/modules/components/Link';
@@ -94,14 +94,14 @@ const useStyles = makeStyles(
       },
     },
   }),
-  { name: 'HomePage' },
+  { name: 'LandingPage' },
 );
 
 const GettingStartedLink = React.forwardRef((props, ref) => {
   return <Link href="/getting-started/installation" naked ref={ref} {...props} />;
 });
 
-export default function HomePage() {
+export default function LandingPage() {
   React.useEffect(() => {
     if (window.location.hash !== '' && window.location.hash !== '#main=content') {
       window.location.replace(`https://v0.material-ui.com/${window.location.hash}`);
@@ -161,13 +161,13 @@ export default function HomePage() {
               Follow
             </a>
           </div>
-          <HomePro />
-          <HomeQuickWord />
-          <HomeSteps />
-          <HomeThemes />
-          <HomeSponsors />
-          <HomeQuotes />
-          <HomeUsers />
+          <Pro />
+          <QuickWord />
+          <Steps />
+          <Themes />
+          <Sponsors />
+          <Quotes />
+          <Users />
         </main>
         <AppFooter />
       </div>
