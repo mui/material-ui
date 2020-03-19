@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 import { create } from 'jss';
 import { withStyles, useTheme, jssPreset, StylesProvider } from '@material-ui/core/styles';
 import NoSsr from '@material-ui/core/NoSsr';
+import Button from '@material-ui/core/Button';
 import rtl from 'jss-rtl';
 import Frame from 'react-frame-component';
+import { useSelector } from 'react-redux';
 import DemoErrorBoundary from 'docs/src/modules/components/DemoErrorBoundary';
 
 const styles = theme => ({
@@ -85,12 +87,20 @@ const StyledFrame = withStyles(styles)(DemoFrame);
  * to an `iframe` if `iframe={true}`.
  */
 function DemoSandboxed(props) {
-  const { component: Component, iframe, name, ...other } = props;
+  const { component: Component, iframe, name, resetDemo, ...other } = props;
   const Sandbox = iframe ? StyledFrame : React.Fragment;
   const sandboxProps = iframe ? { title: `${name} demo`, ...other } : {};
 
+  const t = useSelector(state => state.options.t);
+
   return (
-    <DemoErrorBoundary>
+    <DemoErrorBoundary
+      errorActions={
+        <Button color="secondary" onClick={resetDemo} variant="text">
+          {t('resetDemo')}
+        </Button>
+      }
+    >
       <Sandbox {...sandboxProps}>
         <Component />
       </Sandbox>
@@ -102,6 +112,7 @@ DemoSandboxed.propTypes = {
   component: PropTypes.elementType.isRequired,
   iframe: PropTypes.bool,
   name: PropTypes.string.isRequired,
+  resetDemo: PropTypes.func.isRequired,
 };
 
 export default React.memo(DemoSandboxed);

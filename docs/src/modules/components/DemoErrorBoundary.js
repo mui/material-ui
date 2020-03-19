@@ -13,7 +13,7 @@ export default class DemoErrorBoundary extends React.Component {
   }
 
   render() {
-    const { children } = this.props;
+    const { children, errorActions } = this.props;
     const { error } = this.state;
 
     if (error) {
@@ -31,6 +31,7 @@ export default class DemoErrorBoundary extends React.Component {
             .
           </Typography>
           <pre>{error.toString()}</pre>
+          {errorActions}
         </div>
       );
       /* eslint-enable material-ui/no-hardcoded-labels */
@@ -42,4 +43,8 @@ export default class DemoErrorBoundary extends React.Component {
 
 DemoErrorBoundary.propTypes = {
   children: PropTypes.node,
+  /**
+   * actions that should be displayed when the error fallback is displayed
+   */
+  errorActions: PropTypes.node,
 };
