@@ -2,7 +2,8 @@ import * as React from 'react';
 import clsx from 'clsx';
 import { ArrowLeftIcon } from './icons/ArrowLeftIcon';
 import { ArrowRightIcon } from './icons/ArrowRightIcon';
-import { IconButton, IconButtonProps, makeStyles, useTheme } from '@material-ui/core';
+import IconButton, { IconButtonProps } from '@material-ui/core/IconButton';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 
 export interface ExportedArrowSwitcherProps {
   /** Left arrow icon */

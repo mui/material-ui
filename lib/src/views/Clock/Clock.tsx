@@ -1,6 +1,9 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import clsx from 'clsx';
+import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
 import ClockPointer from './ClockPointer';
 import { useUtils } from '../../_shared/hooks/useUtils';
 import { VIEW_HEIGHT } from '../../constants/dimensions';
@@ -9,7 +12,6 @@ import { MaterialUiPickersDate } from '../../typings/date';
 import { PickerOnChangeFn } from '../../_shared/hooks/useViews';
 import { getHours, getMinutes } from '../../_helpers/time-utils';
 import { useMeridiemMode } from '../../TimePicker/TimePickerToolbar';
-import { IconButton, Typography, makeStyles } from '@material-ui/core';
 import { useGlobalKeyDown, keycode } from '../../_shared/hooks/useKeyDown';
 import { WrapperVariantContext } from '../../wrappers/WrapperVariantContext';
 

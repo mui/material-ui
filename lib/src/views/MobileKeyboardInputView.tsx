@@ -1,5 +1,5 @@
 import * as React from 'react';
-import makeStyles from '@material-ui/styles/makeStyles';
+import { makeStyles } from '@material-ui/core/styles';
 import KeyboardDateInput from '../_shared/KeyboardDateInput';
 import { DateInputProps } from '../_shared/PureDateInput';
 import { InnerMobileWrapperProps } from '../wrappers/MobileWrapper';

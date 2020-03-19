@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { useMediaQuery, Theme } from '@material-ui/core';
+import { Theme } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { MobileWrapperProps, MobileWrapper } from './MobileWrapper';
 import { DesktopWrapperProps, DesktopWrapper } from './DesktopWrapper';
 import { Breakpoint } from '@material-ui/core/styles/createBreakpoints';

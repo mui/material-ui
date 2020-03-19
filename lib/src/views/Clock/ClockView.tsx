@@ -1,8 +1,8 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
+import { makeStyles } from '@material-ui/core/styles';
 import Clock from './Clock';
 import { pipe } from '../../_helpers/utils';
-import { makeStyles } from '@material-ui/styles';
 import { useUtils } from '../../_shared/hooks/useUtils';
 import { ParsableDate } from '../../constants/prop-types';
 import { MaterialUiPickersDate } from '../../typings/date';

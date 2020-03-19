@@ -1,9 +1,9 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import KeyboardDateInput from '../_shared/KeyboardDateInput';
 import Popover, { PopoverProps } from '@material-ui/core/Popover';
+import { makeStyles } from '@material-ui/core/styles';
+import KeyboardDateInput from '../_shared/KeyboardDateInput';
 import { WrapperProps } from './Wrapper';
-import { makeStyles } from '@material-ui/core';
 import { InnerMobileWrapperProps } from './MobileWrapper';
 import { WrapperVariantContext } from './WrapperVariantContext';
 

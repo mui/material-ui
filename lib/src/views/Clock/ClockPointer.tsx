@@ -1,7 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { ClockViewType } from '../../constants/ClockType';
 import { withStyles, createStyles, Theme, WithStyles } from '@material-ui/core/styles';
+import { ClockViewType } from '../../constants/ClockType';
 
 export interface ClockPointerProps
   extends React.HTMLProps<HTMLDivElement>,

@@ -1,5 +1,8 @@
 import * as React from 'react';
 import { IUtils } from '@date-io/core/IUtils';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Grid from '@material-ui/core/Grid';
+import { makeStyles } from '@material-ui/core/styles';
 import { YearSelection } from './YearSelection';
 import { MonthSelection } from './MonthSelection';
 import { DatePickerView } from '../../DatePicker';
@@ -13,7 +16,6 @@ import { useUtils, useNow } from '../../_shared/hooks/useUtils';
 import { PickerOnChangeFn } from '../../_shared/hooks/useViews';
 import { useParsedDate } from '../../_shared/hooks/useParsedDate';
 import { CalendarHeader, CalendarHeaderProps } from './CalendarHeader';
-import { CircularProgress, Grid, makeStyles } from '@material-ui/core';
 import { WrapperVariantContext } from '../../wrappers/WrapperVariantContext';
 
 type PublicCalendarHeaderProps = Pick<

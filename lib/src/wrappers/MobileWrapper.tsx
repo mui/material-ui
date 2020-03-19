@@ -1,11 +1,11 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
+import { DialogProps as MuiDialogProps } from '@material-ui/core/Dialog';
 import ModalDialog from '../_shared/ModalDialog';
 import { WrapperProps } from './Wrapper';
 import { PureDateInput } from '../_shared/PureDateInput';
 import { InnerDesktopWrapperProps } from './DesktopWrapper';
 import { WrapperVariantContext } from './WrapperVariantContext';
-import { DialogProps as MuiDialogProps } from '@material-ui/core/Dialog';
 
 export interface InnerMobileWrapperProps {
   /**

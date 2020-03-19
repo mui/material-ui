@@ -1,4 +1,6 @@
 import * as React from 'react';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import DayWrapper from './DayWrapper';
 import SlideTransition, { SlideDirection } from './SlideTransition';
 import { Day, DayProps } from './Day';
@@ -6,7 +8,6 @@ import { MaterialUiPickersDate } from '../../typings/date';
 import { useUtils, useNow } from '../../_shared/hooks/useUtils';
 import { PickerOnChangeFn } from '../../_shared/hooks/useViews';
 import { findClosestEnabledDate } from '../../_helpers/date-utils';
-import { makeStyles, useTheme, Typography } from '@material-ui/core';
 import { useGlobalKeyDown, keycode } from '../../_shared/hooks/useKeyDown';
 
 export interface ExportedCalendarProps

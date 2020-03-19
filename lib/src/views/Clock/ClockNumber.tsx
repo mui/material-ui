@@ -1,9 +1,9 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import Typography from '@material-ui/core/Typography';
-import { ButtonBase } from '@material-ui/core';
-import { onSpaceOrEnter } from '../../_helpers/utils';
+import ButtonBase from '@material-ui/core/ButtonBase';
 import { makeStyles, fade } from '@material-ui/core/styles';
+import { onSpaceOrEnter } from '../../_helpers/utils';
 import { FORCE_FINISH_PICKER } from '../../_shared/hooks/usePickerState';
 
 const positions: Record<number, [number, number]> = {

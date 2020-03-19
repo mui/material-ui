@@ -5,9 +5,8 @@ import MomentUtils from '@date-io/moment';
 import DateFnsUtils from '@date-io/date-fns';
 import LocalizationProvider from '../LocalizationProvider';
 import { IUtils } from '@date-io/core/IUtils';
-import { createMuiTheme } from '@material-ui/core';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { MaterialUiPickersDate } from '../typings/date';
-import { ThemeProvider } from '@material-ui/core/styles';
 
 interface WithUtilsProps {
   utils: IUtils<MaterialUiPickersDate>;
