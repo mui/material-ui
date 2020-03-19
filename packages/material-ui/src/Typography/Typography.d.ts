@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { StandardProps, PropTypes } from '..';
-import { OverrideProps, OverridableTypeMap, OverridableComponent } from '../OverridableComponent';
+import { PropTypes } from '..';
+import { OverrideProps, OverridableComponent } from '../OverridableComponent';
 import { Variant as ThemeVariant } from '../styles/createTypography';
 
 type Variant = ThemeVariant | 'srOnly';
@@ -22,6 +22,7 @@ export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'>
     paragraph?: boolean;
     variant?: Variant | 'inherit';
     variantMapping?: Partial<Record<Variant, string>>;
+    component?: React.ElementType;
   };
   defaultComponent: D;
   classKey: TypographyClassKey;
