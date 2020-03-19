@@ -368,6 +368,67 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
   const hasClearIcon = !disableClearable && !disabled;
   const hasPopupIcon = (!freeSolo || forcePopupIcon === true) && forcePopupIcon !== false;
 
+  const element = renderInput({
+    id,
+    disabled,
+    fullWidth: true,
+    size: size === 'small' ? 'small' : undefined,
+    InputLabelProps: getInputLabelProps(),
+    InputProps: {
+      ref: setAnchorEl,
+      className: classes.inputRoot,
+      startAdornment,
+      endAdornment: (
+        <div className={classes.endAdornment}>
+          {hasClearIcon ? (
+            <IconButton
+              {...getClearProps()}
+              aria-label={clearText}
+              title={clearText}
+              className={clsx(classes.clearIndicator, {
+                [classes.clearIndicatorDirty]: dirty,
+              })}
+            >
+              {closeIcon}
+            </IconButton>
+          ) : null}
+
+          {hasPopupIcon ? (
+            <IconButton
+              {...getPopupIndicatorProps()}
+              disabled={disabled}
+              aria-label={popupOpen ? closeText : openText}
+              title={popupOpen ? closeText : openText}
+              className={clsx(classes.popupIndicator, {
+                [classes.popupIndicatorOpen]: popupOpen,
+              })}
+            >
+              {popupIcon}
+            </IconButton>
+          ) : null}
+        </div>
+      ),
+    },
+    inputProps: {
+      className: clsx(classes.input, {
+        [classes.inputFocused]: focusedTag === -1,
+      }),
+      disabled,
+      ...getInputProps(),
+    },
+  });
+
+  let input;
+
+  if (element) {
+    input = React.cloneElement(element, {
+      InputProps: {
+        ...element.props.InputProps,
+        ref: setAnchorEl,
+      },
+    });
+  }
+
   return (
     <React.Fragment>
       <div
@@ -383,55 +444,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
         )}
         {...getRootProps(other)}
       >
-        {renderInput({
-          id,
-          disabled,
-          fullWidth: true,
-          size: size === 'small' ? 'small' : undefined,
-          InputLabelProps: getInputLabelProps(),
-          InputProps: {
-            ref: setAnchorEl,
-            className: classes.inputRoot,
-            startAdornment,
-            endAdornment: (
-              <div className={classes.endAdornment}>
-                {hasClearIcon ? (
-                  <IconButton
-                    {...getClearProps()}
-                    aria-label={clearText}
-                    title={clearText}
-                    className={clsx(classes.clearIndicator, {
-                      [classes.clearIndicatorDirty]: dirty,
-                    })}
-                  >
-                    {closeIcon}
-                  </IconButton>
-                ) : null}
-
-                {hasPopupIcon ? (
-                  <IconButton
-                    {...getPopupIndicatorProps()}
-                    disabled={disabled}
-                    aria-label={popupOpen ? closeText : openText}
-                    title={popupOpen ? closeText : openText}
-                    className={clsx(classes.popupIndicator, {
-                      [classes.popupIndicatorOpen]: popupOpen,
-                    })}
-                  >
-                    {popupIcon}
-                  </IconButton>
-                ) : null}
-              </div>
-            ),
-          },
-          inputProps: {
-            className: clsx(classes.input, {
-              [classes.inputFocused]: focusedTag === -1,
-            }),
-            disabled,
-            ...getInputProps(),
-          },
-        })}
+        {input}
       </div>
       {popupOpen && anchorEl ? (
         <PopperComponent

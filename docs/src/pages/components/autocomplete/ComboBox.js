@@ -2,6 +2,9 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import IconButton from '@material-ui/core/IconButton';
+import SearchIcon from '@material-ui/icons/Search';
 
 export default function ComboBox() {
   return (
@@ -10,7 +13,24 @@ export default function ComboBox() {
       options={top100Films}
       getOptionLabel={option => option.title}
       style={{ width: 300 }}
-      renderInput={params => <TextField {...params} label="Combo box" variant="outlined" />}
+      renderInput={params => {
+        return (
+          <TextField
+            {...params}
+            label="Combo box"
+            variant="outlined"
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton component="label">
+                    <SearchIcon />
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
+          />
+        );
+      }}
     />
   );
 }
