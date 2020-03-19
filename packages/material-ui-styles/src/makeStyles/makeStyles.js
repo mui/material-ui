@@ -140,14 +140,16 @@ function detach({ state, theme, stylesOptions, stylesCreator }) {
   }
 
   const sheetManager = multiKeyStore.get(stylesOptions.sheetsManager, stylesCreator, theme);
-  sheetManager.refs -= 1;
-  const sheetsRegistry = stylesOptions.sheetsRegistry;
+  if (sheetManager) {
+    sheetManager.refs -= 1;
+    const sheetsRegistry = stylesOptions.sheetsRegistry;
 
-  if (sheetManager.refs === 0) {
-    multiKeyStore.delete(stylesOptions.sheetsManager, stylesCreator, theme);
-    stylesOptions.jss.removeStyleSheet(sheetManager.staticSheet);
-    if (sheetsRegistry) {
-      sheetsRegistry.remove(sheetManager.staticSheet);
+    if (sheetManager.refs === 0) {
+      multiKeyStore.delete(stylesOptions.sheetsManager, stylesCreator, theme);
+      stylesOptions.jss.removeStyleSheet(sheetManager.staticSheet);
+      if (sheetsRegistry) {
+        sheetsRegistry.remove(sheetManager.staticSheet);
+      }
     }
   }
 
