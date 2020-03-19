@@ -12,6 +12,9 @@
     "lib",
     "docs"
   ],
+  "engines": {
+    "node": ">=8.0.0"
+  },
   "scripts": {
     "start": "yarn dev",
     "dev": "yarn workspace docs dev",
