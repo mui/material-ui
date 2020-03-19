@@ -49,7 +49,7 @@ components: Grid
 
 Ниже приведен интерактивный пример, который демонстрирует результаты различных настроек сетки:
 
-{{"demo": "pages/components/grid/InteractiveGrid.js", "hideHeader": true, "bg": true}}
+{{"demo": "pages/components/grid/InteractiveGrid.js", "hideToolbar": true, "bg": true}}
 
 ## Авто-разметка
 

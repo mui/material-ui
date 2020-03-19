@@ -143,7 +143,7 @@ theme.typography.h3 = {
 
 To automate this setup, you can use the [`responsiveFontSizes()`](/customization/theming/#responsivefontsizes-theme-options-theme) helper to make Typography font sizes in the theme responsive.
 
-{{"demo": "pages/customization/typography/ResponsiveFontSizesChart.js", "hideHeader": true}}
+{{"demo": "pages/customization/typography/ResponsiveFontSizesChart.js", "hideToolbar": true}}
 
 You can see this in action in the example below. adjust your browser's window size, and notice how the font size changes as the width crosses the different [breakpoints](/customization/breakpoints/):
 

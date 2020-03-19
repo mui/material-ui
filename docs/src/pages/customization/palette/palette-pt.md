@@ -17,7 +17,7 @@ A paleta padrão usa as sombras prefixadas com `A` (`A200`, etc.) para a intenç
 
 Se você quiser aprender mais sobre cor, você pode conferir [a seção de cores](/customization/color/).
 
-{{"demo": "pages/customization/palette/Intentions.js", "bg": "inline", "hideHeader": true}}
+{{"demo": "pages/customization/palette/Intentions.js", "bg": "inline", "hideToolbar": true}}
 
 ### Customização
 
@@ -114,7 +114,7 @@ const darkTheme = createMuiTheme({
 
 The colors modified by the palette type are the following:
 
-{{"demo": "pages/customization/palette/DarkTheme.js", "bg": "inline", "hideHeader": true}}
+{{"demo": "pages/customization/palette/DarkTheme.js", "bg": "inline", "hideToolbar": true}}
 
 ### User preference
 

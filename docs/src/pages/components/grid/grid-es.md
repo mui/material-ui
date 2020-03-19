@@ -49,7 +49,7 @@ Algunas columnas tienen varios anchos definidos, causando que el layout cambie e
 
 Debajo de esta línea hay una demostración interactiva que permite explorar el resultado visual de las distintas configuraciones:
 
-{{"demo": "pages/components/grid/InteractiveGrid.js", "hideHeader": true, "bg": true}}
+{{"demo": "pages/components/grid/InteractiveGrid.js", "hideToolbar": true, "bg": true}}
 
 ## Auto-layout
 

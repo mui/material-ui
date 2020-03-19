@@ -4,7 +4,7 @@
 
 Material-UI wird von einer kleinen Gruppe unschätzbarer Kernmitarbeiter und der massiven Unterstützung und Engagement der Community gepflegt.
 
-{{"demo": "pages/discover-more/team/Team.js", "hideHeader": true, "bg": "inline"}}
+{{"demo": "pages/discover-more/team/Team.js", "hideToolbar": true, "bg": "inline"}}
 
 Machen Sie mit bei der Entwicklung von Material-UI indem Sie ein [ Problem melden](https://github.com/mui-org/material-ui/issues/new) oder einen Pull-Request erstellen. Lesen Sie unsere [ Richtlinien ](https://github.com/mui-org/material-ui/blob/master/CONTRIBUTING.md) um Informationen darüber zu erhalten, wie wir entwickeln.
 

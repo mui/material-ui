@@ -17,7 +17,7 @@ Die Standardpalette verwendet die mit `A` (`A200` usw.) gekennzeichneten Schatti
 
 Wenn Sie mehr über Farbe erfahren möchten, können Sie sich im [Farbabschnitt](/customization/color/) informeiren.
 
-{{"demo": "pages/customization/palette/Intentions.js", "bg": "inline", "hideHeader": true}}
+{{"demo": "pages/customization/palette/Intentions.js", "bg": "inline", "hideToolbar": true}}
 
 ### Individuelle Anpassung
 
@@ -114,7 +114,7 @@ const darkTheme = createMuiTheme({
 
 The colors modified by the palette type are the following:
 
-{{"demo": "pages/customization/palette/DarkTheme.js", "bg": "inline", "hideHeader": true}}
+{{"demo": "pages/customization/palette/DarkTheme.js", "bg": "inline", "hideToolbar": true}}
 
 ### User preference
 

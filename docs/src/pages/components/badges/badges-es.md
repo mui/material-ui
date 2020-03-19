@@ -51,4 +51,4 @@ Usted puede usar la propiedad `overlap` para establecer el Badge relativo a la e
 
 Usted puede usar la propiedad `anchorOrigin` para mover el Badge a cualquier esquina del elemento envuelto.
 
-{{"demo": "pages/components/badges/BadgeAlignment.js", "hideHeader": true}}
+{{"demo": "pages/components/badges/BadgeAlignment.js", "hideToolbar": true}}
