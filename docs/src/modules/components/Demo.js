@@ -361,7 +361,7 @@ function Demo(props) {
           component={DemoComponent}
           iframe={demoOptions.iframe}
           name={demoName}
-          resetDemo={resetDemo}
+          onResetDemoClick={resetDemo}
         />
       </div>
       <div className={classes.anchorLink} id={`${demoName}.js`} />

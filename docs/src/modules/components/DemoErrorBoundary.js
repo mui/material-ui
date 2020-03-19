@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
+import Button from '@material-ui/core/Button';
 
 export default class DemoErrorBoundary extends React.Component {
   state = {
@@ -13,7 +14,7 @@ export default class DemoErrorBoundary extends React.Component {
   }
 
   render() {
-    const { children, errorActions } = this.props;
+    const { children, onResetDemoClick, t } = this.props;
     const { error } = this.state;
 
     if (error) {
@@ -34,7 +35,9 @@ export default class DemoErrorBoundary extends React.Component {
             .
           </Typography>
           <pre>{error.toString()}</pre>
-          {errorActions}
+          <Button color="secondary" onClick={onResetDemoClick} variant="text">
+            {t('resetDemo')}
+          </Button>
         </div>
       );
       /* eslint-enable material-ui/no-hardcoded-labels */
@@ -46,8 +49,9 @@ export default class DemoErrorBoundary extends React.Component {
 
 DemoErrorBoundary.propTypes = {
   children: PropTypes.node,
+  onResetDemoClick: PropTypes.func.isRequired,
   /**
-   * actions that should be displayed when the error fallback is displayed
+   * translate function from redux store
    */
-  errorActions: PropTypes.node,
+  t: PropTypes.func.isRequired,
 };
