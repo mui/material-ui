@@ -65,55 +65,61 @@ const quotes = [
   },
 ];
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    minHeight: 160,
-    paddingTop: theme.spacing(5),
-    margin: theme.spacing(0, 2),
-  },
-  container: {
-    marginBottom: theme.spacing(4),
-  },
-  users: {
-    padding: theme.spacing(10, 0, 0),
-  },
-  grid: {
-    marginTop: theme.spacing(5),
-    marginBottom: theme.spacing(5),
-  },
-  img: {
-    margin: theme.spacing(1.5, 3),
-  },
-  button: {
-    margin: theme.spacing(2, 0, 0),
-  },
-}));
+const useStyles = makeStyles(
+  theme => ({
+    root: {
+      minHeight: 160,
+      paddingTop: theme.spacing(5),
+      margin: theme.spacing(0, 2),
+    },
+    container: {
+      marginBottom: theme.spacing(4),
+    },
+    users: {
+      padding: theme.spacing(10, 0, 0),
+    },
+    grid: {
+      marginTop: theme.spacing(5),
+      marginBottom: theme.spacing(5),
+    },
+    img: {
+      margin: theme.spacing(1.5, 3),
+    },
+    button: {
+      margin: theme.spacing(2, 0, 0),
+    },
+  }),
+  { name: 'HomeQuotes' },
+);
 
-const useQuoteStyles = makeStyles(theme => ({
-  card: {
-    display: 'flex',
-    flexDirection: 'column',
-    height: '100%',
-  },
-  cardAction: {
-    height: '100%',
-  },
-  avatar: {
-    width: 48,
-    height: 48,
-  },
-  twitter: {
-    marginLeft: 'auto',
-    color: theme.palette.primary.light,
-  },
-  name: {
-    fontSize: 16,
-  },
-  quote: {
-    paddingBottom: '16px !important',
-    paddingTop: 0,
-  },
-}));
+const useQuoteStyles = makeStyles(
+  theme => ({
+    card: {
+      display: 'flex',
+      flexDirection: 'column',
+      height: '100%',
+    },
+    cardAction: {
+      height: '100%',
+    },
+    avatar: {
+      width: 48,
+      height: 48,
+    },
+    twitter: {
+      marginLeft: 'auto',
+      color: theme.palette.primary.light,
+    },
+    name: {
+      fontSize: 16,
+    },
+    quote: {
+      paddingBottom: '16px !important',
+      paddingTop: 0,
+    },
+  }),
+  { name: 'HomeQuote' },
+);
 
 const HomeQuoteLink = React.forwardRef((props, ref) => {
   return (

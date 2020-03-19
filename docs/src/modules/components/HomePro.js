@@ -1,32 +1,34 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Link from 'docs/src/modules/components/Link';
 import { useSelector } from 'react-redux';
 
-const styles = theme => ({
-  root: {
-    padding: theme.spacing(1, 2, 1, 2),
-    right: 0,
-    left: 0,
-    color: theme.palette.common.white,
-    backgroundColor: '#626980',
-    position: 'relative',
-    display: 'none',
-    [theme.breakpoints.up('sm')]: {
-      display: 'flex',
-      top: 100,
-      left: 'auto',
-      position: 'absolute',
-      borderBottomLeftRadius: 36 / 2,
-      borderTopLeftRadius: 36 / 2,
+const useStyles = makeStyles(
+  theme => ({
+    root: {
+      padding: theme.spacing(1, 2, 1, 2),
+      right: 0,
+      left: 0,
+      color: theme.palette.common.white,
+      backgroundColor: '#626980',
+      position: 'relative',
+      display: 'none',
+      [theme.breakpoints.up('sm')]: {
+        display: 'flex',
+        top: 100,
+        left: 'auto',
+        position: 'absolute',
+        borderBottomLeftRadius: 36 / 2,
+        borderTopLeftRadius: 36 / 2,
+      },
     },
-  },
-});
+  }),
+  { name: 'HomePro' },
+);
 
-function HomePro(props) {
-  const { classes } = props;
+function HomePro() {
+  const classes = useStyles();
   const t = useSelector(state => state.options.t);
 
   return (
@@ -40,8 +42,4 @@ function HomePro(props) {
   );
 }
 
-HomePro.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(HomePro);
+export default HomePro;
