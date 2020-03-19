@@ -37,6 +37,8 @@ export const KeyboardDateInput: React.FC<DateInputProps> = ({
   ignoreInvalidInputs,
   onFocus,
   onBlur,
+  forwardedRef,
+  containerRef,
   getOpenDialogAriaText = getTextFieldAriaText,
   ...other
 }) => {
@@ -91,6 +93,8 @@ export const KeyboardDateInput: React.FC<DateInputProps> = ({
 
   const adornmentPosition = InputAdornmentProps?.position || 'end';
   const inputProps = {
+    ref: containerRef,
+    inputRef: forwardedRef,
     type: shouldUseMaskedInput ? 'tel' : 'text',
     disabled,
     placeholder,
@@ -147,7 +151,13 @@ export const KeyboardDateInput: React.FC<DateInputProps> = ({
       format={rifmFormatter || formatter}
     >
       {({ onChange, value }) => (
-        <TextFieldComponent value={value} onChange={onChange} {...inputProps} />
+        <TextFieldComponent
+          value={value}
+          onChange={onChange}
+          onFocus={onFocus}
+          onBlur={onBlur}
+          {...inputProps}
+        />
       )}
     </Rifm>
   );

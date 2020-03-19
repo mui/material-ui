@@ -7,6 +7,7 @@ import { KeyboardDateInput } from '../_shared/KeyboardDateInput';
 import { usePickerState } from '../_shared/hooks/usePickerState';
 import { SomeWrapper, ExtendWrapper } from '../wrappers/Wrapper';
 import { validateDateValue } from '../_helpers/text-field-helper';
+import { ResponsiveWrapper } from '../wrappers/ResponsiveWrapper';
 import { withDateAdapterProp } from '../_shared/withDateAdapterProp';
 import { makeWrapperComponent } from '../wrappers/makeWrapperComponent';
 import { AnyPickerView, AllSharedPickerProps } from './SharedPickerProps';
@@ -21,7 +22,7 @@ export interface MakePickerOptions<T extends unknown> {
 
 export function makePickerWithStateAndWrapper<
   T extends AllAvailableForOverrideProps,
-  TWrapper extends SomeWrapper = any
+  TWrapper extends SomeWrapper = typeof ResponsiveWrapper
 >(Wrapper: TWrapper, { useDefaultProps, DefaultToolbarComponent }: MakePickerOptions<T>) {
   const PickerWrapper = makeWrapperComponent(Wrapper, {
     KeyboardDateInputComponent: KeyboardDateInput,
@@ -117,5 +118,8 @@ export function makePickerWithStateAndWrapper<
     );
   }
 
-  return withDateAdapterProp(PickerWithState);
+  const FinalPickerComponent = withDateAdapterProp(PickerWithState);
+  return React.forwardRef<HTMLInputElement, React.ComponentProps<typeof FinalPickerComponent>>(
+    (props, ref) => <FinalPickerComponent {...props} forwardedRef={ref} />
+  );
 }

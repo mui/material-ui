@@ -50,12 +50,12 @@ export const DesktopWrapper: React.FC<DesktopWrapperProps> = ({
   KeyboardDateInputComponent = KeyboardDateInput,
   ...other
 }) => {
-  const ref = React.useRef();
+  const ref = React.useRef<HTMLDivElement>(null);
   const classes = useStyles();
 
   return (
     <WrapperVariantContext.Provider value="desktop">
-      <KeyboardDateInputComponent {...other} {...DateInputProps} inputRef={ref} />
+      <KeyboardDateInputComponent {...other} {...DateInputProps} containerRef={ref} />
 
       <Popover
         role="dialog"

@@ -15,7 +15,7 @@ export interface WrapperProps<TInputProps = DateInputProps<any, any>> {
   PureDateInputComponent?: React.ComponentType<TInputProps>;
 }
 
-export type OmitInnerWrapperProps<T extends WrapperProps<any>> = Omit<T, keyof WrapperProps<any>>;
+export type OmitInnerWrapperProps<T extends WrapperProps<any>> = Omit<T, keyof WrapperProps>;
 
 export type SomeWrapper =
   | typeof ResponsiveWrapper
@@ -25,12 +25,12 @@ export type SomeWrapper =
 
 export type ExtendWrapper<TWrapper extends SomeWrapper> = TWrapper extends typeof StaticWrapper
   ? {} // no additional props
+  : TWrapper extends typeof ResponsiveWrapper
+  ? OmitInnerWrapperProps<ResponsiveWrapperProps>
   : TWrapper extends typeof MobileWrapper
   ? OmitInnerWrapperProps<MobileWrapperProps>
   : TWrapper extends typeof DesktopWrapper
   ? OmitInnerWrapperProps<DesktopWrapperProps>
-  : TWrapper extends typeof ResponsiveWrapper
-  ? OmitInnerWrapperProps<ResponsiveWrapperProps>
   : never;
 
 export function getWrapperVariant(wrapper: SomeWrapper) {
