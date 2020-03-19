@@ -3,7 +3,6 @@ import { TypographyProps } from '../Typography';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
 export interface CardHeaderTypeMap<
-export interface CardHeaderTypeMap<
   Props = {},
   DefaultComponent extends React.ElementType = 'div',
   TitleTypographyComponent extends React.ElementType = 'span',
