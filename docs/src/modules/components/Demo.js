@@ -17,6 +17,7 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Tooltip from '@material-ui/core/Tooltip';
+import RefreshIcon from '@material-ui/icons/Refresh';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import DemoSandboxed from 'docs/src/modules/components/DemoSandboxed';
 import DemoLanguages from 'docs/src/modules/components/DemoLanguages';
@@ -336,6 +337,8 @@ function Demo(props) {
     showCodeLabel = showPreview ? t('showFullSource') : t('showSource');
   }
 
+  const [demoKey, resetDemo] = React.useReducer(key => key + 1, 0);
+
   const demoSourceId = useUniqueId(`demo-`);
   const openDemoSource = codeOpen || showPreview;
 
@@ -353,10 +356,12 @@ function Demo(props) {
         onMouseLeave={handleDemoHover}
       >
         <DemoSandboxed
+          key={demoKey}
           style={demoSandboxedStyle}
           component={DemoComponent}
           iframe={demoOptions.iframe}
           name={demoName}
+          onResetDemoClick={resetDemo}
         />
       </div>
       <div className={classes.anchorLink} id={`${demoName}.js`} />
@@ -426,6 +431,17 @@ function Demo(props) {
                   onClick={handleCopyClick}
                 >
                   <FileCopyIcon fontSize="small" />
+                </IconButton>
+              </Tooltip>
+              <Tooltip classes={{ popper: classes.tooltip }} title={t('resetDemo')} placement="top">
+                <IconButton
+                  aria-label={t('resetDemo')}
+                  data-ga-event-category="demo"
+                  data-ga-event-label={demoOptions.demo}
+                  data-ga-event-action="reset"
+                  onClick={resetDemo}
+                >
+                  <RefreshIcon fontSize="small" />
                 </IconButton>
               </Tooltip>
               <IconButton

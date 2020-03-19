@@ -92,6 +92,7 @@
   "getProfessionalSupport": "Get Professional Support",
   "diamondSponsors": "Diamond Sponsors",
   "demoToolbarLabel": "demo source",
+  "resetDemo": "Reset demo",
   "pages": {
     "/getting-started": "Getting Started",
     "/getting-started/installation": "Installation",
