@@ -8,27 +8,30 @@ import Button from '@material-ui/core/Button';
 import NoSsr from '@material-ui/core/NoSsr';
 import Link from 'docs/src/modules/components/Link';
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    padding: theme.spacing(2),
-    minHeight: 160,
-    marginTop: theme.spacing(8),
-  },
+const useStyles = makeStyles(
+  theme => ({
+    root: {
+      padding: theme.spacing(2),
+      minHeight: 160,
+      marginTop: theme.spacing(8),
+    },
 
-  link: {
-    marginTop: theme.spacing(1),
-    display: 'block',
-  },
-  img: {
-    maxWidth: 960,
-    width: '100%',
-    height: 'auto',
-    marginTop: theme.spacing(4),
-  },
-  button: {
-    margin: theme.spacing(4, 0, 6),
-  },
-}));
+    link: {
+      marginTop: theme.spacing(1),
+      display: 'block',
+    },
+    img: {
+      maxWidth: 960,
+      width: '100%',
+      height: 'auto',
+      marginTop: theme.spacing(4),
+    },
+    button: {
+      margin: theme.spacing(4, 0, 6),
+    },
+  }),
+  { name: 'Themes' },
+);
 
 const PremiumThemesLink = React.forwardRef((props, ref) => {
   return (
@@ -44,7 +47,7 @@ const PremiumThemesLink = React.forwardRef((props, ref) => {
   );
 });
 
-function HomeThemes() {
+export default function Themes() {
   const classes = useStyles();
   const t = useSelector(state => state.options.t);
   const theme = useTheme();
@@ -87,5 +90,3 @@ function HomeThemes() {
     </div>
   );
 }
-
-export default HomeThemes;

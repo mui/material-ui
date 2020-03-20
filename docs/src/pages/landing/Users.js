@@ -118,10 +118,10 @@ const useStyles = makeStyles(
       margin: theme.spacing(2, 0, 0),
     },
   }),
-  { name: 'HomeUsers' },
+  { name: 'Users' },
 );
 
-function HomeUsers() {
+export default function Users() {
   const classes = useStyles();
   const t = useSelector(state => state.options.t);
 
@@ -170,5 +170,3 @@ function HomeUsers() {
     </div>
   );
 }
-
-export default HomeUsers;

@@ -24,10 +24,10 @@ const useStyles = makeStyles(
       },
     },
   }),
-  { name: 'HomePro' },
+  { name: 'Pro' },
 );
 
-function HomePro() {
+export default function Pro() {
   const classes = useStyles();
   const t = useSelector(state => state.options.t);
 
@@ -41,5 +41,3 @@ function HomePro() {
     </Link>
   );
 }
-
-export default HomePro;

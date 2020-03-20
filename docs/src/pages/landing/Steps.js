@@ -79,7 +79,7 @@ const useStyles = makeStyles(
       height: 'auto',
     },
   }),
-  { name: 'HomeSteps' },
+  { name: 'Steps' },
 );
 
 function HomeSteps() {

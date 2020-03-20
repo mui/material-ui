@@ -32,10 +32,10 @@ const useStyles = makeStyles(
       paddingBottom: theme.spacing(2),
     },
   }),
-  { name: 'HomeQuickWord' },
+  { name: 'QuickWord' },
 );
 
-function HomeQuickWord() {
+export default function QuickWord() {
   const classes = useStyles();
   const t = useSelector(state => state.options.t);
   const backer = backers[Math.floor(backers.length * Math.random())];
@@ -60,5 +60,3 @@ function HomeQuickWord() {
     </div>
   );
 }
-
-export default HomeQuickWord;

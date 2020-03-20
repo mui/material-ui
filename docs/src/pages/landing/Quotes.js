@@ -89,7 +89,7 @@ const useStyles = makeStyles(
       margin: theme.spacing(2, 0, 0),
     },
   }),
-  { name: 'HomeQuotes' },
+  { name: 'Quotes' },
 );
 
 const useQuoteStyles = makeStyles(
@@ -121,7 +121,7 @@ const useQuoteStyles = makeStyles(
   { name: 'HomeQuote' },
 );
 
-const HomeQuoteLink = React.forwardRef((props, ref) => {
+const QuoteLink = React.forwardRef((props, ref) => {
   return (
     <Link
       data-ga-event-category="quote"
@@ -136,13 +136,13 @@ const HomeQuoteLink = React.forwardRef((props, ref) => {
   );
 });
 
-function HomeQuote(props) {
+function Quote(props) {
   const { avatar, href, name, quote, userName } = props;
   const classes = useQuoteStyles();
 
   return (
     <Card variant="outlined" className={classes.card}>
-      <CardActionArea component={HomeQuoteLink} href={href} className={classes.cardAction}>
+      <CardActionArea component={QuoteLink} href={href} className={classes.cardAction}>
         <CardContent>
           <Grid container spacing={3}>
             <Grid item>
@@ -171,7 +171,7 @@ function HomeQuote(props) {
   );
 }
 
-HomeQuote.propTypes = {
+Quote.propTypes = {
   avatar: PropTypes.string,
   href: PropTypes.string,
   name: PropTypes.string,
@@ -185,7 +185,7 @@ for (let i = 0; i < 3; i += 1) {
   selectedQuotes.push(quotes[(startIndex + i) % quotes.length]);
 }
 
-function HomeQuotes() {
+export default function Quotes() {
   const classes = useStyles();
   const t = useSelector(state => state.options.t);
 
@@ -204,7 +204,7 @@ function HomeQuotes() {
             <Grid container spacing={2} className={classes.grid}>
               {selectedQuotes.map(quote => (
                 <Grid item xs={12} md={4} key={quote.username}>
-                  <HomeQuote
+                  <Quote
                     avatar={quote.avatar}
                     href={quote.tweet}
                     name={quote.name}
@@ -220,5 +220,3 @@ function HomeQuotes() {
     </div>
   );
 }
-
-export default HomeQuotes;

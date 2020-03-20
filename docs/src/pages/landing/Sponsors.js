@@ -27,10 +27,10 @@ const useStyles = makeStyles(
       padding: theme.spacing(4, 0),
     },
   }),
-  { name: 'HomeSponsors' },
+  { name: 'Sponsors' },
 );
 
-function HomeSponsors() {
+export default function Sponsors() {
   const classes = useStyles();
   const userLanguage = useSelector(state => state.options.userLanguage);
 
@@ -45,5 +45,3 @@ function HomeSponsors() {
     </div>
   );
 }
-
-export default HomeSponsors;
