@@ -14,6 +14,17 @@ function createElementBasePropMixedTest() {
   React.createElement<CardHeaderProps<DefaultComponent, ComponentProp>>(CardHeader, {
     component: 'div',
   });
+  // ExpectError: type system should be demanding the required props of "CustomComponent"
+  React.createElement<CardHeaderProps<DefaultComponent, ComponentProp>>(CardHeader, {
+    component: CustomComponent,
+  });
+  // $ExpectError
+  React.createElement<CardHeaderProps<DefaultComponent, ComponentProp>>(CardHeader, {
+    // This test shouldn't fail but does; stringProp & numberProp are required props of CustomComponent
+    component: CustomComponent,
+    stringProp: '',
+    numberProp: 0,
+  });
   React.createElement<CardHeaderProps>(CardHeader, {
     disableTypography: true,
   });
@@ -27,7 +38,7 @@ function createElementBasePropMixedTest() {
   });
   // $ExpectError
   React.createElement<CardHeaderProps>(CardHeader, {
-    disableTypography: 'hello',
+    disableTypography: 1,
   });
   // $ExpectError
   React.createElement<CardHeaderProps<any, ComponentProp>>(CardHeader, {
