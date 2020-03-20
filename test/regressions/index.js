@@ -117,7 +117,7 @@ const blacklist = [
   'docs-getting-started-templates-dashboard/Title.png', // Already tested once assembled
   'docs-getting-started-templates-sign-in-side/SignInSide.png', // Flaky
   'docs-getting-started-usage/Usage.png',
-  'docs-guides',
+  /^docs-guides-.*/,
   'docs-styles-advanced',
   'docs-system-borders',
   'docs-system-display',
@@ -141,19 +141,30 @@ function excludeTest(suite, name) {
   }
 
   return blacklist.some(pattern => {
-    if (pattern === suite) {
-      unusedBlacklistPatterns.delete(pattern);
-      // eslint-disable-next-line no-console
-      console.log(`suite exact match: ignoring '${suite}/${name}'`);
-      return true;
-    }
-    if (pattern === `${suite}/${name}.png`) {
-      unusedBlacklistPatterns.delete(pattern);
-      // eslint-disable-next-line no-console
-      console.log(`suite+name exact match: ignoring '${suite}/${name}'`);
-      return true;
+    if (typeof pattern === 'string') {
+      if (pattern === suite) {
+        unusedBlacklistPatterns.delete(pattern);
+        // eslint-disable-next-line no-console
+        console.log(`suite exact match: ignoring '${suite}/${name}'`);
+        return true;
+      }
+      if (pattern === `${suite}/${name}.png`) {
+        unusedBlacklistPatterns.delete(pattern);
+        // eslint-disable-next-line no-console
+        console.log(`suite+name exact match: ignoring '${suite}/${name}'`);
+        return true;
+      }
+
+      return false;
     }
 
+    // assume regex
+    if (pattern.test(suite)) {
+      unusedBlacklistPatterns.delete(pattern);
+      // eslint-disable-next-line no-console
+      console.log(`suite matches pattern '${pattern}': ignoring '${suite}/${name}'`);
+      return true;
+    }
     return false;
   });
 }
