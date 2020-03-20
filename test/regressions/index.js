@@ -134,6 +134,16 @@ const blacklist = [
   'docs-versions',
 ];
 
+function excludeTest(suite, name) {
+  if (/^docs-premium-themes(.*)/.test(suite)) {
+    return true;
+  }
+
+  return blacklist.some(pattern => {
+    return pattern === suite || pattern === `${suite}/${name}.png`;
+  });
+}
+
 // Also use some of the demos to avoid code duplication.
 const requireDemos = require.context('docs/src/pages', true, /js$/);
 const demos = requireDemos.keys().reduce((res, path) => {
@@ -144,15 +154,7 @@ const demos = requireDemos.keys().reduce((res, path) => {
     .reverse();
   const suite = `docs-${suiteArray.reverse().join('-')}`;
 
-  if (blacklist.includes(suite)) {
-    return res;
-  }
-
-  if (blacklist.includes(`${suite}/${name}.png`)) {
-    return res;
-  }
-
-  if (/^docs-premium-themes(.*)/.test(suite)) {
+  if (excludeTest(suite, name)) {
     return res;
   }
 
