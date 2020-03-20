@@ -121,6 +121,7 @@ const blacklist = [
   'docs-getting-started-templates-sign-in-side/SignInSide.png', // Flaky
   'docs-getting-started-usage/Usage.png', // Not needed
   'docs-guides', // Not needed
+  'docs-landing', // Not needed
   'docs-styles-advanced', // Not needed
   'docs-system-borders', // Not needed
   'docs-system-display', // Not needed
