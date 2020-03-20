@@ -134,6 +134,8 @@ const blacklist = [
   'docs-versions',
 ];
 
+const unusedBlacklistPatterns = new Set(blacklist);
+
 function excludeTest(suite, name) {
   if (/^docs-premium-themes(.*)/.test(suite)) {
     // eslint-disable-next-line no-console
@@ -143,11 +145,13 @@ function excludeTest(suite, name) {
 
   return blacklist.some(pattern => {
     if (pattern === suite) {
+      unusedBlacklistPatterns.delete(pattern);
       // eslint-disable-next-line no-console
       console.log(`exact match: ignoring suite '${suite}'`);
       return true;
     }
     if (pattern === `${suite}/${name}.png`) {
+      unusedBlacklistPatterns.delete(pattern);
       // eslint-disable-next-line no-console
       console.log(`exact match: ignoring name '${name}' in suite '${suite}'`);
       return true;
@@ -234,3 +238,11 @@ tests.forEach(test => {
     );
   });
 });
+
+if (unusedBlacklistPatterns.size > 0) {
+  console.warn(
+    `The following patterns are unused:\n\n${Array.from(unusedBlacklistPatterns)
+      .map(pattern => `- ${pattern}`)
+      .join('\n')}`,
+  );
+}
