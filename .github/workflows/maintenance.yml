@@ -3,8 +3,9 @@ on:
   # So that PRs touching the same files as the push are updated
   push:
   # So that the `dirtyLabel` is removed if conflicts are resolved
-  pull_request:
-    types: [synchronize]
+  # On forks the secret isn't set. We need to manually remove it.
+  #pull_request:
+  #  types: [synchronize]
 
 jobs:
   main:
