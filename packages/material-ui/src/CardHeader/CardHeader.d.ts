@@ -45,14 +45,11 @@ export interface OverridableCardHeader extends OverridableComponent<CardHeaderTy
     TitleTypographyComponent extends React.ElementType = 'span',
     SubheaderTypographyComponent extends React.ElementType = 'span'
   >(
-    props: { component?: DefaultComponent } & OverrideProps<
-      CardHeaderTypeMap<
-        Props,
-        DefaultComponent,
-        TitleTypographyComponent,
-        SubheaderTypographyComponent
-      >,
-      DefaultComponent
+    props: CardHeaderPropsWithComponent<
+      DefaultComponent,
+      Props,
+      TitleTypographyComponent,
+      SubheaderTypographyComponent
     >,
   ): JSX.Element;
 }
@@ -72,6 +69,18 @@ export type CardHeaderProps<
     SubheaderTypographyComponent
   >,
   DefaultComponent
+>;
+
+export type CardHeaderPropsWithComponent<
+  DefaultComponent extends React.ElementType = CardHeaderTypeMap['defaultComponent'],
+  Props = {},
+  TitleTypographyComponent extends React.ElementType = 'span',
+  SubheaderTypographyComponent extends React.ElementType = 'span'
+> = { component?: DefaultComponent } & CardHeaderProps<
+  DefaultComponent,
+  Props,
+  TitleTypographyComponent,
+  SubheaderTypographyComponent
 >;
 
 export default CardHeader;

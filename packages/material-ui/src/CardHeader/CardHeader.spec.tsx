@@ -1,7 +1,107 @@
 import * as React from 'react';
-import CardHeader from '@material-ui/core/CardHeader';
+import CardHeader, { CardHeaderProps, CardHeaderTypeMap } from '@material-ui/core/CardHeader';
 
 const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> = () => <div />;
+
+type DefaultComponent = CardHeaderTypeMap['defaultComponent'];
+
+interface ComponentProp {
+  component?: React.ElementType;
+}
+
+function createElementBasePropMixedTest() {
+  React.createElement<CardHeaderProps<DefaultComponent, ComponentProp>>(CardHeader);
+  React.createElement<CardHeaderProps<DefaultComponent, ComponentProp>>(CardHeader, {
+    component: 'div',
+  });
+  React.createElement<CardHeaderProps>(CardHeader, {
+    disableTypography: true,
+  });
+  // $ExpectError
+  React.createElement<CardHeaderProps<DefaultComponent, {}, React.ElementType>>(CardHeader, {
+    unknownProp: 'shouldNotWork',
+  });
+  // $ExpectError
+  React.createElement<CardHeaderProps>(CardHeader, {
+    disableTypography: 'hello',
+  });
+  // $ExpectError
+  React.createElement<CardHeaderProps>(CardHeader, {
+    disableTypography: 'hello',
+  });
+  // $ExpectError
+  React.createElement<CardHeaderProps<any, ComponentProp>>(CardHeader, {
+    component: 'incorrectElement',
+  });
+}
+
+function createElementTypographyTest() {
+  React.createElement<CardHeaderProps>(CardHeader, {
+    titleTypographyProps: {
+      align: 'center',
+    },
+  });
+  // $ExpectError
+  React.createElement<CardHeaderProps>(CardHeader, {
+    titleTypographyProps: {
+      align: 'incorrectAlign',
+    },
+  });
+  React.createElement<CardHeaderProps>(CardHeader, {
+    titleTypographyProps: {
+      variant: 'body1',
+    },
+  });
+  // $ExpectError
+  React.createElement<CardHeaderProps>(CardHeader, {
+    titleTypographyProps: {
+      variant: 123,
+    },
+  });
+  React.createElement<CardHeaderProps<DefaultComponent, {}, React.ElementType>>(CardHeader, {
+    titleTypographyProps: {
+      component: 'div',
+    },
+  });
+  // ExpectError: This is expected to err; the type system should catch required props from "CustomComponent".
+  React.createElement<CardHeaderProps<DefaultComponent, {}, React.ElementType>>(CardHeader, {
+    titleTypographyProps: {
+      component: CustomComponent,
+    },
+  });
+  React.createElement<CardHeaderProps<DefaultComponent, {}, React.ElementType>>(CardHeader, {
+    titleTypographyProps: {
+      component: CustomComponent,
+      stringProp: '',
+      numberProp: 0,
+    },
+  });
+  // ExpectError: This is expected to err; the type system should catch the props type mismatch
+  // from "CustomComponent" props.
+  React.createElement<CardHeaderProps<DefaultComponent, {}, React.ElementType>>(CardHeader, {
+    titleTypographyProps: {
+      component: CustomComponent,
+      stringProp: 0,
+      numberProp: '',
+    },
+  });
+  // ExpectError: This is expected to err; the type system is welcoming unknown props.
+  React.createElement<CardHeaderProps<DefaultComponent, {}, React.ElementType>>(CardHeader, {
+    titleTypographyProps: {
+      unknownProp: 'shouldNotWork',
+    },
+  });
+  // $ExpectError
+  React.createElement<CardHeaderProps<DefaultComponent, {}, React.ElementType>>(CardHeader, {
+    titleTypographyProps: {
+      component: 'incorrectComponent',
+    },
+  });
+  // $ExpectError
+  React.createElement<CardHeaderProps>(CardHeader, {
+    titleTypographyProps: true,
+  });
+}
 
 function componentPropTest() {
   <CardHeader component="div" />;
@@ -89,11 +189,19 @@ function titleTypographyPropsTest() {
     }}
   />;
   // $ExpectError
+  <CardHeader
+    titleTypographyProps={{
+      component: CustomComponent,
+      stringProp: 'stringProp',
+      numberProp: '',
+    }}
+  />;
+  // $ExpectError
   <CardHeader titleTypographyProps={{ component: CustomComponent, numberProp: 2 }} />;
   <CardHeader
     titleTypographyProps={{
       component: 'a',
-      // $ExpectError
+      // ExpectError: This is expected to err; the type system is welcoming unknown props.
       propThatDoesntExist: 'shouldNotWork',
     }}
   />;
@@ -122,7 +230,7 @@ function subheaderTypographyPropsTest() {
   <CardHeader
     subheaderTypographyProps={{
       component: 'a',
-      // $ExpectError
+      // ExpectError: This is expected to err; the type system is welcoming unknown props.
       propThatDoesntExist: 'shouldNotWork',
     }}
   />;
@@ -153,12 +261,12 @@ function mixedTypographyPropsTest() {
   <CardHeader
     titleTypographyProps={{
       component: 'a',
-      // $ExpectError
+      // ExpectError: This is expected to err; the type system is welcoming unknown props.
       propThatDoesntExist: 'shouldNotWork',
     }}
     subheaderTypographyProps={{
       component: 'a',
-      // $ExpectError
+      // ExpectError: This is expected to err; the type system is welcoming unknown props.
       propThatDoesntExist: 'shouldNotWork',
     }}
   />;
