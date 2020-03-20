@@ -18,6 +18,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Tooltip from '@material-ui/core/Tooltip';
 import Skeleton from '@material-ui/lab/Skeleton';
+import RefreshIcon from '@material-ui/icons/Refresh';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import DemoSandboxed from 'docs/src/modules/components/DemoSandboxed';
 import DemoLanguages from 'docs/src/modules/components/DemoLanguages';
@@ -85,13 +86,13 @@ const styles = theme => ({
       padding: theme.spacing(3),
     },
   },
-  demoHiddenHeader: {
+  demoHiddenToolbar: {
     paddingTop: theme.spacing(2),
     [theme.breakpoints.up('sm')]: {
       paddingTop: theme.spacing(3),
     },
   },
-  header: {
+  toolbar: {
     display: 'none',
     [theme.breakpoints.up('sm')]: {
       display: 'flex',
@@ -162,6 +163,21 @@ function DemoToolbarFallback() {
       <Skeleton height={40} variant="rect" width={200} />
     </React.Fragment>
   );
+}
+
+// TODO: replace with React.useOpaqueReference if it is released
+function useUniqueId(prefix) {
+  // useOpaqueReference
+  const [id, setDemoId] = React.useState(null);
+  React.useEffect(() => {
+    setDemoId(
+      Math.random()
+        .toString(36)
+        .slice(2),
+    );
+  }, []);
+
+  return `${prefix}${id}`;
 }
 
 function Demo(props) {
@@ -321,7 +337,7 @@ function Demo(props) {
 
   const jsx = getJsxPreview(demoData.raw || '');
   const showPreview =
-    !demoOptions.hideHeader &&
+    !demoOptions.hideToolbar &&
     demoOptions.defaultCodeOpen !== false &&
     jsx !== demoData.raw &&
     jsx.split(/\n/).length <= 17;
@@ -333,11 +349,16 @@ function Demo(props) {
     showCodeLabel = showPreview ? t('showFullSource') : t('showSource');
   }
 
+  const [demoKey, resetDemo] = React.useReducer(key => key + 1, 0);
+
+  const demoSourceId = useUniqueId(`demo-`);
+  const openDemoSource = codeOpen || showPreview;
+
   return (
     <div className={classes.root}>
       <div
         className={clsx(classes.demo, {
-          [classes.demoHiddenHeader]: demoOptions.hideHeader,
+          [classes.demoHiddenToolbar]: demoOptions.hideToolbar,
           [classes.demoBgOutlined]: demoOptions.bg === 'outlined',
           [classes.demoBgTrue]: demoOptions.bg === true,
           [classes.demoBgInline]: demoOptions.bg === 'inline',
@@ -347,16 +368,23 @@ function Demo(props) {
         onMouseLeave={handleDemoHover}
       >
         <DemoSandboxed
+          key={demoKey}
           style={demoSandboxedStyle}
           component={DemoComponent}
           iframe={demoOptions.iframe}
           name={demoName}
+          onResetDemoClick={resetDemo}
         />
       </div>
       <div className={classes.anchorLink} id={`${demoName}.js`} />
       <div className={classes.anchorLink} id={`${demoName}.tsx`} />
-      {demoOptions.hideHeader ? null : (
-        <div className={classes.header}>
+      {demoOptions.hideToolbar ? null : (
+        <div
+          aria-controls={openDemoSource ? demoSourceId : null}
+          aria-label={t('demoToolbarLabel')}
+          className={classes.toolbar}
+          role="toolbar"
+        >
           <NoSsr defer fallback={<DemoToolbarFallback />}>
             <DemoLanguages
               demo={demo}
@@ -365,7 +393,7 @@ function Demo(props) {
               gaEventLabel={demoOptions.demo}
               onLanguageClick={handleCodeLanguageClick}
             />
-            <div className={classes.headerButtons}>
+            <div className={classes.toolbarButtons}>
               <Tooltip
                 classes={{ popper: classes.tooltip }}
                 key={showSourceHint}
@@ -415,6 +443,17 @@ function Demo(props) {
                   onClick={handleCopyClick}
                 >
                   <FileCopyIcon fontSize="small" />
+                </IconButton>
+              </Tooltip>
+              <Tooltip classes={{ popper: classes.tooltip }} title={t('resetDemo')} placement="top">
+                <IconButton
+                  aria-label={t('resetDemo')}
+                  data-ga-event-category="demo"
+                  data-ga-event-label={demoOptions.demo}
+                  data-ga-event-action="reset"
+                  onClick={resetDemo}
+                >
+                  <RefreshIcon fontSize="small" />
                 </IconButton>
               </Tooltip>
               <IconButton
@@ -483,9 +522,10 @@ function Demo(props) {
           </NoSsr>
         </div>
       )}
-      <Collapse in={codeOpen || showPreview} unmountOnExit>
+      <Collapse in={openDemoSource} unmountOnExit>
         <MarkdownElement
           className={classes.code}
+          id={demoSourceId}
           text={`\`\`\`${demoData.sourceLanguage}\n${codeOpen ? demoData.raw : jsx}\n\`\`\``}
         />
       </Collapse>

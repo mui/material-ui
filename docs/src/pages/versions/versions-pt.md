@@ -6,13 +6,13 @@
 
 É recomendado usar a versão mais recente em ambiente de produção.
 
-{{"demo": "pages/versions/StableVersions.js", "hideHeader": true, "bg": "inline"}}
+{{"demo": "pages/versions/StableVersions.js", "hideToolbar": true, "bg": "inline"}}
 
 ## Últimas versões
 
 Aqui pode encontrar a versão em desenvolvimento e sua documentação. Poderá usar esta versão para ver quais alterações que estão a ser implementadas e fornecer um feedback melhor para os contribuidores de Material-UI.
 
-{{"demo": "pages/versions/LatestVersions.js", "hideHeader": true, "bg": "inline"}}
+{{"demo": "pages/versions/LatestVersions.js", "hideToolbar": true, "bg": "inline"}}
 
 ## Estratégia de controle de versão
 

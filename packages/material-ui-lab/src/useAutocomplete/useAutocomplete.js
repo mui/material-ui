@@ -197,13 +197,12 @@ export default function useAutocomplete(props) {
 
       if (process.env.NODE_ENV !== 'production') {
         if (typeof optionLabel !== 'string') {
+          const erroneousReturn =
+            optionLabel === undefined ? 'undefined' : `${typeof optionLabel} (${optionLabel})`;
           console.error(
             [
-              'Material-UI: the `getOptionLabel` method of useAutocomplete do not handle the options correctly.',
-              `The component expect a string but received ${typeof optionLabel}.`,
-              `For the input option: ${JSON.stringify(
-                newValue,
-              )}, \`getOptionLabel\` returns: ${optionLabel}.`,
+              `Material-UI: the \`getOptionLabel\` method of ${componentName} returned ${erroneousReturn} instead of a string for`,
+              JSON.stringify(newValue),
             ].join('\n'),
           );
         }
@@ -427,13 +426,13 @@ export default function useAutocomplete(props) {
     }
   };
 
-  const handleClose = event => {
+  const handleClose = (event, reason) => {
     if (!open) {
       return;
     }
 
     if (onClose) {
-      onClose(event);
+      onClose(event, reason);
     }
     if (!isOpenControlled) {
       setOpenState(false);
@@ -465,7 +464,7 @@ export default function useAutocomplete(props) {
         if (matches.length > 1) {
           console.error(
             [
-              'Material-UI: the `getOptionSelected` method of useAutocomplete do not handle the arguments correctly.',
+              `Material-UI: the \`getOptionSelected\` method of ${componentName} do not handle the arguments correctly.`,
               `The component expects a single value to match a given option but found ${
                 matches.length
               } matches.`,
@@ -488,7 +487,7 @@ export default function useAutocomplete(props) {
 
     handleValue(event, newValue, reason, { option });
     if (!disableCloseOnSelect) {
-      handleClose(event);
+      handleClose(event, reason);
     }
   };
 
@@ -529,7 +528,7 @@ export default function useAutocomplete(props) {
       return;
     }
 
-    handleClose(event);
+    handleClose(event, 'toggleInput');
 
     let nextTag = focusedTag;
 
@@ -648,8 +647,8 @@ export default function useAutocomplete(props) {
           event.preventDefault();
           // Avoid the Modal to handle the event.
           event.stopPropagation();
-          handleClose(event);
-        } else if (clearOnEscape && inputValue !== '') {
+          handleClose(event, 'escape');
+        } else if (clearOnEscape && (inputValue !== '' || (multiple && value.length > 0))) {
           // Avoid Opera to exit fullscreen mode.
           event.preventDefault();
           // Avoid the Modal to handle the event.
@@ -709,7 +708,7 @@ export default function useAutocomplete(props) {
       resetInputValue(event, value);
     }
 
-    handleClose(event);
+    handleClose(event, 'blur');
   };
 
   const handleInputChange = event => {
@@ -784,7 +783,7 @@ export default function useAutocomplete(props) {
 
   const handlePopupIndicator = event => {
     if (open) {
-      handleClose(event);
+      handleClose(event, 'toggleInput');
     } else {
       handleOpen(event);
     }
@@ -976,7 +975,7 @@ useAutocomplete.propTypes = {
    */
   componentName: PropTypes.string,
   /**
-   * If `true`, the popup will ignore the blur event if the input if filled.
+   * If `true`, the popup will ignore the blur event if the input is filled.
    * You can inspect the popup markup with your browser tools.
    * Consider this option when you need to customize the component.
    */

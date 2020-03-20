@@ -165,7 +165,7 @@ describe('<ExpansionPanel />', () => {
 
         assert.throws(() => mount(<ExpansionPanel>{[]}</ExpansionPanel>));
         assert.strictEqual(consoleErrorMock.callCount(), 3);
-        assert.include(consoleErrorMock.args()[0][0], 'Material-UI: expected the first child');
+        assert.include(consoleErrorMock.messages()[0], 'Material-UI: expected the first child');
       });
 
       it('needs a valid element as the first child', () => {
@@ -176,7 +176,7 @@ describe('<ExpansionPanel />', () => {
         );
         assert.strictEqual(consoleErrorMock.callCount(), 1);
         assert.include(
-          consoleErrorMock.args()[0][0],
+          consoleErrorMock.messages()[0],
           "Material-UI: the ExpansionPanel doesn't accept a Fragment",
         );
       });
@@ -206,7 +206,7 @@ describe('<ExpansionPanel />', () => {
 
       wrapper.setProps({ expanded: undefined });
       assert.include(
-        consoleErrorMock.args()[0][0],
+        consoleErrorMock.messages()[0],
         'A component is changing a controlled ExpansionPanel to be uncontrolled.',
       );
     });
@@ -216,7 +216,7 @@ describe('<ExpansionPanel />', () => {
 
       wrapper.setProps({ expanded: true });
       assert.include(
-        consoleErrorMock.args()[0][0],
+        consoleErrorMock.messages()[0],
         'A component is changing an uncontrolled ExpansionPanel to be controlled.',
       );
     });

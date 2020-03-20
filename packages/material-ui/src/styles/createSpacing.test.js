@@ -52,7 +52,7 @@ describe('createSpacing', () => {
       const spacing = createSpacing(11);
       expect(spacing.unit).to.equal(11);
       expect(consoleErrorMock.callCount()).to.equal(1);
-      expect(consoleErrorMock.args()[0][0]).to.include(
+      expect(consoleErrorMock.messages()[0]).to.include(
         'theme.spacing.unit usage has been deprecated',
       );
     });
@@ -62,7 +62,7 @@ describe('createSpacing', () => {
         unit: 4,
       });
       expect(consoleErrorMock.callCount()).to.equal(1);
-      expect(consoleErrorMock.args()[0][0]).to.include(
+      expect(consoleErrorMock.messages()[0]).to.include(
         'the `theme.spacing` value ([object Object]) is invalid',
       );
     });

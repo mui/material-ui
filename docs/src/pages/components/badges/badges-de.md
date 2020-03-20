@@ -51,4 +51,4 @@ You can use the `overlap` property to place the badge relative to the corner of 
 
 You can use the `anchorOrigin` prop to move the badge to any corner of the wrapped element.
 
-{{"demo": "pages/components/badges/BadgeAlignment.js", "hideHeader": true}}
+{{"demo": "pages/components/badges/BadgeAlignment.js", "hideToolbar": true}}

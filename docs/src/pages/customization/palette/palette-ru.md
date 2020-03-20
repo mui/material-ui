@@ -17,7 +17,7 @@
 
 Для более подробного изучения цветовых настроек можно посетить [секцию про цвета](/customization/color/).
 
-{{"demo": "pages/customization/palette/Intentions.js", "bg": "inline", "hideHeader": true}}
+{{"demo": "pages/customization/palette/Intentions.js", "bg": "inline", "hideToolbar": true}}
 
 ### Кастомизация
 
@@ -114,7 +114,7 @@ const darkTheme = createMuiTheme({
 
 The colors modified by the palette type are the following:
 
-{{"demo": "pages/customization/palette/DarkTheme.js", "bg": "inline", "hideHeader": true}}
+{{"demo": "pages/customization/palette/DarkTheme.js", "bg": "inline", "hideToolbar": true}}
 
 ### User preference
 

@@ -38,6 +38,7 @@ export const styles = theme => ({
     fontSize: theme.typography.pxToRem(24),
     color: '#ffb400',
     cursor: 'pointer',
+    textAlign: 'left',
     WebkitTapHighlightColor: 'transparent',
     '&$disabled': {
       opacity: 0.5,

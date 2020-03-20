@@ -478,14 +478,14 @@ describe('<Popover />', () => {
       const otherWrapper = mount(<Popover open />);
       assert.strictEqual(otherWrapper.find(Modal).props().container, undefined);
       assert.strictEqual(consoleErrorMock.callCount(), 1);
-      assert.include(consoleErrorMock.args()[0][0], 'It should be an Element instance');
+      assert.include(consoleErrorMock.messages()[0], 'It should be an Element instance');
     });
 
     it('warns if a component for the Paper is used that cant hold a ref', () => {
       mount(<Popover {...defaultProps} PaperProps={{ component: () => <div />, elevation: 4 }} />);
       assert.strictEqual(consoleErrorMock.callCount(), 1);
       assert.include(
-        consoleErrorMock.args()[0][0],
+        consoleErrorMock.messages()[0],
         'Warning: Failed prop type: Invalid prop `PaperProps.component` supplied to `ForwardRef(Popover)`. Expected an element type that can hold a ref.',
       );
     });
@@ -493,7 +493,7 @@ describe('<Popover />', () => {
     // it('should warn if anchorEl is not visible', () => {
     //   mount(<Popover open anchorEl={document.createElement('div')} />);
     //   assert.strictEqual(consoleErrorMock.callCount(), 1);
-    //   assert.include(consoleErrorMock.args()[0][0], 'The node element should be visible');
+    //   assert.include(consoleErrorMock.messages()[0], 'The node element should be visible');
     // });
   });
 

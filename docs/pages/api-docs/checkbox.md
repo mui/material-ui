@@ -40,7 +40,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 | <span class="prop-name">required</span> | <span class="prop-type">bool</span> |  | If `true`, the `input` element will be required. |
 | <span class="prop-name">size</span> | <span class="prop-type">'small'<br>&#124;&nbsp;'medium'</span> | <span class="prop-default">'medium'</span> | The size of the checkbox. `small` is equivalent to the dense checkbox styling. |
 | <span class="prop-name">type</span> | <span class="prop-type">string</span> |  | The input component prop `type`. |
-| <span class="prop-name">value</span> | <span class="prop-type">any</span> |  | The value of the component. The DOM API casts this to a string. |
+| <span class="prop-name">value</span> | <span class="prop-type">any</span> |  | The value of the component. The DOM API casts this to a string. The browser uses "on" as the default value. |
 
 The `ref` is forwarded to the root element.
 

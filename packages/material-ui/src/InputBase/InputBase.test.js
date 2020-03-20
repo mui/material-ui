@@ -500,7 +500,7 @@ describe('<InputBase />', () => {
         );
 
         expect(consoleErrorMock.callCount()).to.eq(1);
-        expect(consoleErrorMock.args()[0][0]).to.include(
+        expect(consoleErrorMock.messages()[0]).to.include(
           'Material-UI: there are multiple InputBase components inside a FormControl.',
         );
       });
@@ -526,7 +526,7 @@ describe('<InputBase />', () => {
                 <InputBase />
               ) : (
                 <Select native>
-                  <option value="" />
+                  <option value="">empty</option>
                 </Select>
               )}
               <button type="button" onClick={() => setFlag(!flag)}>

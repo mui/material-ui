@@ -49,7 +49,7 @@ Fluid gridsでは、コンテンツの尺度とサイズを変更する列を使
 
 以下は、さまざまな設定の視覚的な結果を調べることができるインタラクティブなデモです。
 
-{{"demo": "pages/components/grid/InteractiveGrid.js", "hideHeader": true, "bg": true}}
+{{"demo": "pages/components/grid/InteractiveGrid.js", "hideToolbar": true, "bg": true}}
 
 ## 自動レイアウト
 

@@ -1,5 +1,8 @@
 import { Color, PaletteType } from '..';
-import { CommonColors } from '../colors/common';
+import common from '../colors/common';
+
+export {};
+type CommonColors = Record<keyof typeof common, string>;
 
 export type ColorPartial = Partial<Color>;
 
@@ -15,8 +18,13 @@ export interface TypeAction {
   hover: string;
   hoverOpacity: number;
   selected: string;
+  selectedOpacity: number;
   disabled: string;
+  disabledOpacity: number;
   disabledBackground: string;
+  focus: string;
+  focusOpacity: number;
+  activatedOpacity: number;
 }
 
 export interface TypeBackground {

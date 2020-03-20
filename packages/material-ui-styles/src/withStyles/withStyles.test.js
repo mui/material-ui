@@ -91,7 +91,7 @@ describe('withStyles', () => {
 
     //     assert.strictEqual(consoleErrorMock.callCount(), 1);
     //     assert.include(
-    //       consoleErrorMock.args()[0][0],
+    //       consoleErrorMock.messages()[0],
     //       'Warning: Failed prop type: Material-UI: the `innerRef` prop is deprecated',
     //     );
     //   });
@@ -188,6 +188,33 @@ describe('withStyles', () => {
       );
 
       assert.strictEqual(wrapper.find(Empty).props().foo, 'bar');
+      wrapper.unmount();
+    });
+
+    it('should use theme.props instead of defaultProps', () => {
+      const MuiFoo = () => <div />;
+      MuiFoo.defaultProps = {
+        foo: 'foo',
+      };
+
+      const styles = { root: { display: 'flex' } };
+      const StyledComponent = withStyles(styles, { name: 'MuiFoo' })(MuiFoo);
+
+      const wrapper = mount(
+        <ThemeProvider
+          theme={createMuiTheme({
+            props: {
+              MuiFoo: {
+                foo: 'bar',
+              },
+            },
+          })}
+        >
+          <StyledComponent foo={undefined} />
+        </ThemeProvider>,
+      );
+
+      assert.strictEqual(wrapper.find(MuiFoo).props().foo, 'bar');
       wrapper.unmount();
     });
 
@@ -292,7 +319,7 @@ describe('withStyles', () => {
     it('should inject the theme', () => {
       const styles = { root: { padding: 1 } };
       const StyledComponent = withStyles(styles, { withTheme: true })(props => (
-        <option theme={props.theme} />
+        <option theme={props.theme}>themed</option>
       ));
       const theme = {};
       const wrapper = mount(

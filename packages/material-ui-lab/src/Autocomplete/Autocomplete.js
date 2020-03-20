@@ -162,17 +162,14 @@ export const styles = theme => ({
     ...theme.typography.body1,
     overflow: 'hidden',
     margin: '4px 0',
-    '& > ul': {
-      maxHeight: '40vh',
-      overflow: 'auto',
-    },
   },
   /* Styles applied to the `listbox` component. */
   listbox: {
     listStyle: 'none',
     margin: 0,
     padding: '8px 0px',
-    position: 'relative',
+    maxHeight: '40vh',
+    overflow: 'auto',
   },
   /* Styles applied to the loading wrapper. */
   loading: {
@@ -223,6 +220,9 @@ export const styles = theme => ({
   /* Styles applied to the group's ul elements. */
   groupUl: {
     padding: 0,
+    '& $option': {
+      paddingLeft: 24,
+    },
   },
 });
 
@@ -542,7 +542,7 @@ Autocomplete.propTypes = {
    */
   closeText: PropTypes.string,
   /**
-   * If `true`, the popup will ignore the blur event if the input if filled.
+   * If `true`, the popup will ignore the blur event if the input is filled.
    * You can inspect the popup markup with your browser tools.
    * Consider this option when you need to customize the component.
    */
@@ -668,6 +668,7 @@ Autocomplete.propTypes = {
    * Use in controlled mode (see open).
    *
    * @param {object} event The event source of the callback.
+   * @param {string} reason Can be: `"toggleInput"`, `"escape"`, `"select-option"`, `"blur"`.
    */
   onClose: PropTypes.func,
   /**

@@ -87,7 +87,7 @@ describe('createTypography', () => {
 
       assert.strictEqual(consoleErrorMock.callCount(), 1);
       assert.match(
-        consoleErrorMock.args()[0][0],
+        consoleErrorMock.messages()[0],
         /Material-UI: `fontSize` is required to be a number./,
       );
     });
@@ -97,7 +97,7 @@ describe('createTypography', () => {
 
       assert.strictEqual(consoleErrorMock.callCount(), 1);
       assert.match(
-        consoleErrorMock.args()[0][0],
+        consoleErrorMock.messages()[0],
         /Material-UI: `htmlFontSize` is required to be a number./,
       );
     });

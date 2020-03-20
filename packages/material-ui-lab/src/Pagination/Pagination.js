@@ -78,7 +78,12 @@ const Pagination = React.forwardRef(function Pagination(props, ref) {
 });
 
 // @default tags synced with default values from usePagination
+
 Pagination.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * Number of always visible pages at the beginning and end.
    * @default 1
@@ -88,7 +93,7 @@ Pagination.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -108,7 +113,7 @@ Pagination.propTypes = {
    */
   defaultPage: PropTypes.number,
   /**
-   * If `true`, all the pagination component will be disabled.
+   * If `true`, the pagination component will be disabled.
    * @default false
    */
   disabled: PropTypes.bool,
@@ -117,7 +122,7 @@ Pagination.propTypes = {
    *
    * For localization purposes, you can use the provided [translations](/guides/localization/).
    *
-   * @param {string} [type = page] The link or button type to format ('page' | 'first' | 'last' | 'next' | 'previous').
+   * @param {string} type The link or button type to format ('page' | 'first' | 'last' | 'next' | 'previous'). Defaults to 'page'.
    * @param {number} page The page number to format.
    * @param {bool} selected If true, the current page is selected.
    * @returns {string}
@@ -173,11 +178,11 @@ Pagination.propTypes = {
   /**
    * The size of the pagination component.
    */
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  size: PropTypes.oneOf(['large', 'medium', 'small']),
   /**
    * The variant to use.
    */
-  variant: PropTypes.oneOf(['text', 'outlined']),
+  variant: PropTypes.oneOf(['outlined', 'text']),
 };
 
 export default withStyles(styles, { name: 'MuiPagination' })(Pagination);

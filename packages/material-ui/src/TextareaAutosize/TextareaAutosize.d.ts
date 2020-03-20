@@ -5,6 +5,16 @@ export interface TextareaAutosizeProps extends React.TextareaHTMLAttributes<HTML
   rowsMin?: string | number;
 }
 
+/**
+ *
+ * Demos:
+ *
+ * - [Textarea Autosize](https://material-ui.com/components/textarea-autosize/)
+ *
+ * API:
+ *
+ * - [TextareaAutosize API](https://material-ui.com/api/textarea-autosize/)
+ */
 declare const TextareaAutosize: React.ComponentType<
   TextareaAutosizeProps & {
     ref?: React.Ref<HTMLTextAreaElement>;

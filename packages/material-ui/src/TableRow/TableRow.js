@@ -16,7 +16,7 @@ export const styles = theme => ({
     '&$hover:hover': {
       backgroundColor: theme.palette.action.hover,
     },
-    '&$selected,&$selected:hover': {
+    '&$selected, &$selected:hover': {
       backgroundColor: fade(theme.palette.secondary.main, theme.palette.action.selectedOpacity),
     },
   },

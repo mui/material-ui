@@ -12,6 +12,16 @@ export interface BreadcrumbsTypeMap<P = {}, D extends React.ElementType = 'nav'>
   classKey: BreadcrumbsClassKey;
 }
 
+/**
+ *
+ * Demos:
+ *
+ * - [Breadcrumbs](https://material-ui.com/components/breadcrumbs/)
+ *
+ * API:
+ *
+ * - [Breadcrumbs API](https://material-ui.com/api/breadcrumbs/)
+ */
 declare const Breadcrumbs: OverridableComponent<BreadcrumbsTypeMap>;
 
 export type BreadcrumbsClassKey = 'root' | 'ol' | 'li' | 'separator';

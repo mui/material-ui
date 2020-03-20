@@ -35,6 +35,17 @@ export type DialogClassKey =
   | 'paperFullWidth'
   | 'paperFullScreen';
 
+/**
+ * Dialogs are overlaid modal paper based components with a backdrop.
+ * Demos:
+ *
+ * - [Dialogs](https://material-ui.com/components/dialogs/)
+ *
+ * API:
+ *
+ * - [Dialog API](https://material-ui.com/api/dialog/)
+ * - inherits [Modal API](https://material-ui.com/api/modal/)
+ */
 declare const Dialog: React.ComponentType<DialogProps>;
 
 export default Dialog;

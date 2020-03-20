@@ -22,6 +22,16 @@ export type GridListTileBarClassKey =
   | 'actionIcon'
   | 'actionIconActionPosLeft';
 
+/**
+ *
+ * Demos:
+ *
+ * - [Grid List](https://material-ui.com/components/grid-list/)
+ *
+ * API:
+ *
+ * - [GridListTileBar API](https://material-ui.com/api/grid-list-tile-bar/)
+ */
 declare const GridListTileBar: React.ComponentType<GridListTileBarProps>;
 
 export default GridListTileBar;

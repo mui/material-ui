@@ -179,12 +179,12 @@ describe('<LinearProgress />', () => {
     it('should warn when not used as expected', () => {
       shallow(<LinearProgress variant="determinate" value={undefined} />);
       assert.strictEqual(consoleErrorMock.callCount(), 1);
-      assert.match(consoleErrorMock.args()[0][0], /Material-UI: you need to provide a value prop/);
+      assert.match(consoleErrorMock.messages()[0], /Material-UI: you need to provide a value prop/);
       shallow(<LinearProgress variant="buffer" value={undefined} />);
       assert.strictEqual(consoleErrorMock.callCount(), 3);
-      assert.match(consoleErrorMock.args()[1][0], /Material-UI: you need to provide a value prop/);
+      assert.match(consoleErrorMock.messages()[1], /Material-UI: you need to provide a value prop/);
       assert.match(
-        consoleErrorMock.args()[2][0],
+        consoleErrorMock.messages()[2],
         /Material-UI: you need to provide a valueBuffer prop/,
       );
     });

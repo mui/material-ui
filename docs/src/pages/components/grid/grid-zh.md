@@ -49,7 +49,7 @@ components: Grid
 
 下面是一个交互式的演示，您可让探索不同设置下的视觉结果：
 
-{{"demo": "pages/components/grid/InteractiveGrid.js", "hideHeader": true, "bg": true}}
+{{"demo": "pages/components/grid/InteractiveGrid.js", "hideToolbar": true, "bg": true}}
 
 ## 自动布局
 

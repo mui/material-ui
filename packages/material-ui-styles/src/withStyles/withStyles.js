@@ -45,7 +45,10 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
 
   const WithStyles = React.forwardRef(function WithStyles(props, ref) {
     const { classes: classesProp, innerRef, ...other } = props;
-    const classes = useStyles(props);
+    // The wrapper receives only user supplied props, which could be a subset of
+    // the actual props Component might receive due to merging with defaultProps.
+    // So copying it here would give us the same result in the wrapper as well.
+    const classes = useStyles({ ...Component.defaultProps, ...props });
 
     let theme;
     let more = other;
@@ -90,11 +93,6 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
       // );
     }),
   };
-
-  // The wrapper receives only user supplied props, which could be a subset of
-  // the actual props Component might receive due to merging with defaultProps.
-  // So copying it here would give us the same result in the wrapper as well.
-  WithStyles.defaultProps = Component.defaultProps;
 
   if (process.env.NODE_ENV !== 'production') {
     WithStyles.displayName = `WithStyles(${getDisplayName(Component)})`;

@@ -13,6 +13,11 @@ const workspaceRoot = path.join(__dirname, '../');
 const reactMode = 'legacy';
 
 module.exports = {
+  typescript: {
+    // Motivated by https://github.com/zeit/next.js/issues/7687
+    ignoreDevErrors: true,
+    ignoreBuildErrors: true,
+  },
   webpack: (config, options) => {
     const plugins = config.plugins.concat([
       new webpack.DefinePlugin({
@@ -72,12 +77,14 @@ module.exports = {
       ];
     }
 
-    return Object.assign({}, config, {
+    return {
+      ...config,
       plugins,
       node: {
         fs: 'empty',
       },
-      module: Object.assign({}, config.module, {
+      module: {
+        ...config.module,
         rules: config.module.rules.concat([
           {
             test: /\.(css|md)$/,
@@ -122,8 +129,8 @@ module.exports = {
             use: options.defaultLoaders.babel,
           },
         ]),
-      }),
-    });
+      },
+    };
   },
   exportTrailingSlash: true,
   // Next.js provides a `defaultPathMap` argument, we could simplify the logic.

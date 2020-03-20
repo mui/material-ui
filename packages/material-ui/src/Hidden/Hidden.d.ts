@@ -17,6 +17,16 @@ export interface HiddenProps {
   xsUp?: boolean;
 }
 
+/**
+ * Responsively hides children based on the selected implementation.
+ * Demos:
+ *
+ * - [Hidden](https://material-ui.com/components/hidden/)
+ *
+ * API:
+ *
+ * - [Hidden API](https://material-ui.com/api/hidden/)
+ */
 declare const Hidden: React.ComponentType<HiddenProps>;
 
 export default Hidden;

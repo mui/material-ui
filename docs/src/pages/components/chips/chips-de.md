@@ -46,7 +46,7 @@ Sie können die Requisite `size` verwenden, um einen kleinen Chip zu definieren.
 
 ## Chip Spielwiese
 
-{{"demo": "pages/components/chips/ChipsPlayground.js", "hideHeader": true}}
+{{"demo": "pages/components/chips/ChipsPlayground.js", "hideToolbar": true}}
 
 ## Barrierefreiheit
 

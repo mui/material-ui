@@ -8,4 +8,4 @@ Möchten Sie Ihre App hinzufügen? App gefunden, die nicht mehr funktioniert ode
 - Viel Verkehr
 - Open Source
 
-{{"demo": "pages/discover-more/showcase/Showcase.js", "hideHeader": true, "bg": "inline"}}
+{{"demo": "pages/discover-more/showcase/Showcase.js", "hideToolbar": true, "bg": "inline"}}

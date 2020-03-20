@@ -45,7 +45,7 @@ describe('<TreeView />', () => {
       );
 
       setProps({ expanded: undefined });
-      expect(consoleErrorMock.args()[0][0]).to.include(
+      expect(consoleErrorMock.messages()[0]).to.include(
         'A component is changing a controlled TreeView to be uncontrolled',
       );
     });
@@ -58,7 +58,7 @@ describe('<TreeView />', () => {
       );
 
       setProps({ selected: undefined });
-      expect(consoleErrorMock.args()[0][0]).to.include(
+      expect(consoleErrorMock.messages()[0]).to.include(
         'A component is changing a controlled TreeView to be uncontrolled',
       );
     });

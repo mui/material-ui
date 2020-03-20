@@ -456,6 +456,29 @@ describe('<Autocomplete />', () => {
     });
   });
 
+  describe('prop: clearOnEscape', () => {
+    it('should clear on escape', () => {
+      const handleChange = spy();
+      render(
+        <Autocomplete
+          {...defaultProps}
+          onChange={handleChange}
+          clearOnEscape
+          multiple
+          value={['one']}
+          options={['one', 'two']}
+          renderInput={params => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      fireEvent.keyDown(document.activeElement, { key: 'Escape' });
+      fireEvent.keyDown(document.activeElement, { key: 'Escape' });
+
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.deep.equal([]);
+    });
+  });
+
   describe('when popup open', () => {
     it('closes the popup if Escape is pressed ', () => {
       const handleClose = spy();
@@ -777,8 +800,8 @@ describe('<Autocomplete />', () => {
       expect(handleChange.callCount).to.equal(1);
       expect(handleChange.args[0][1]).to.equal('a');
       expect(consoleErrorMock.callCount()).to.equal(2); // strict mode renders twice
-      expect(consoleErrorMock.args()[0][0]).to.include(
-        'For the input option: "a", `getOptionLabel` returns: undefined',
+      expect(consoleErrorMock.messages()[0]).to.include(
+        'the `getOptionLabel` method of Autocomplete returned undefined instead of a string',
       );
     });
 
@@ -806,7 +829,7 @@ describe('<Autocomplete />', () => {
       fireEvent.keyDown(document.activeElement, { key: 'Enter' });
 
       expect(consoleErrorMock.callCount()).to.equal(1); // strict mode renders twice
-      expect(consoleErrorMock.args()[0][0]).to.include(
+      expect(consoleErrorMock.messages()[0]).to.include(
         'The component expects a single value to match a given option but found 2 matches.',
       );
     });

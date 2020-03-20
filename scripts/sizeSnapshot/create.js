@@ -93,7 +93,7 @@ async function getNextPagesSize() {
   const consoleOutput = await fse.readFile(path.join(__dirname, 'build/docs.next'), {
     encoding: 'utf8',
   });
-  const pageRegex = /^(?<treeViewPresentation>┌|├|└)\s+(?<fileType>σ|⚡|)\s+(?<pageUrl>[^\s]+)\s+(?<sizeFormatted>[0-9.]+)\s+(?<sizeUnit>\w+)/gm;
+  const pageRegex = /(?<treeViewPresentation>┌|├|└)\s+((?<fileType>λ|○|●)\s+)?(?<pageUrl>[^\s]+)\s+(?<sizeFormatted>[0-9.]+)\s+(?<sizeUnit>\w+)/gm;
 
   return Array.from(matchAll(consoleOutput, pageRegex), match => {
     const { pageUrl, sizeFormatted, sizeUnit } = match.groups;
@@ -101,8 +101,8 @@ async function getNextPagesSize() {
     let snapshotId = `docs:${pageUrl}`;
     // used to be tracked with custom logic hence the different ids
     if (pageUrl === '/') {
-      snapshotId = 'docs.main';
-    } else if (pageUrl === '/_app') {
+      snapshotId = 'docs.landing';
+    } else if (pageUrl === 'static/pages/_app.js') {
       snapshotId = 'docs.main';
     }
     return [

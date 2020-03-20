@@ -46,7 +46,7 @@ You can use the `size` prop to define a small Chip.
 
 ## Terrain de jeu de puce
 
-{{"demo": "pages/components/chips/ChipsPlayground.js", "hideHeader": true}}
+{{"demo": "pages/components/chips/ChipsPlayground.js", "hideToolbar": true}}
 
 ## Accessibilité
 

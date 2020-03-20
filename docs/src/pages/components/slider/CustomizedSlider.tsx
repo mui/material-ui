@@ -62,7 +62,7 @@ const IOSSlider = withStyles({
     boxShadow: iOSBoxShadow,
     marginTop: -14,
     marginLeft: -14,
-    '&:focus,&:hover,&$active': {
+    '&:focus, &:hover, &$active': {
       boxShadow: '0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.3),0 0 0 1px rgba(0,0,0,0.02)',
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
@@ -111,7 +111,7 @@ const PrettoSlider = withStyles({
     border: '2px solid currentColor',
     marginTop: -8,
     marginLeft: -12,
-    '&:focus,&:hover,&$active': {
+    '&:focus, &:hover, &$active': {
       boxShadow: 'inherit',
     },
   },
@@ -143,7 +143,7 @@ const AirbnbSlider = withStyles({
     marginTop: -12,
     marginLeft: -13,
     boxShadow: '#ebebeb 0px 2px 2px',
-    '&:focus,&:hover,&$active': {
+    '&:focus, &:hover, &$active': {
       boxShadow: '#ccc 0px 2px 3px 1px',
     },
     '& .bar': {

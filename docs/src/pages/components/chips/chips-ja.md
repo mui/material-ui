@@ -46,7 +46,7 @@ Outlined chipsは代替スタイルを提供します。
 
 ## Chip Playground
 
-{{"demo": "pages/components/chips/ChipsPlayground.js", "hideHeader": true}}
+{{"demo": "pages/components/chips/ChipsPlayground.js", "hideToolbar": true}}
 
 ## アクセシビリティ
 

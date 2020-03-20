@@ -48,22 +48,12 @@ export default function InteractiveList() {
     <div className={classes.root}>
       <FormGroup row>
         <FormControlLabel
-          control={
-            <Checkbox
-              checked={dense}
-              onChange={event => setDense(event.target.checked)}
-              value="dense"
-            />
-          }
+          control={<Checkbox checked={dense} onChange={event => setDense(event.target.checked)} />}
           label="Enable dense"
         />
         <FormControlLabel
           control={
-            <Checkbox
-              checked={secondary}
-              onChange={event => setSecondary(event.target.checked)}
-              value="secondary"
-            />
+            <Checkbox checked={secondary} onChange={event => setSecondary(event.target.checked)} />
           }
           label="Enable secondary text"
         />
