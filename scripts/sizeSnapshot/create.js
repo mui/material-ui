@@ -95,7 +95,9 @@ async function getNextPagesSize() {
   });
   const pageRegex = /(?<treeViewPresentation>┌|├|└)\s+((?<fileType>λ|○|●)\s+)?(?<pageUrl>[^\s]+)\s+(?<sizeFormatted>[0-9.]+)\s+(?<sizeUnit>\w+)/gm;
 
-  return Array.from(matchAll(consoleOutput, pageRegex), match => {
+  const sharedChunks = [];
+
+  const entries = Array.from(matchAll(consoleOutput, pageRegex), match => {
     const { pageUrl, sizeFormatted, sizeUnit } = match.groups;
 
     let snapshotId = `docs:${pageUrl}`;
@@ -104,7 +106,24 @@ async function getNextPagesSize() {
       snapshotId = 'docs.landing';
     } else if (pageUrl === 'static/pages/_app.js') {
       snapshotId = 'docs.main';
+      // chunks contain a content hash that makes the names
+      // unsuitable for tracking. Using stable name instead:
+    } else if (/^runtime\/main\.(.+)\.js$/.test(pageUrl)) {
+      snapshotId = 'docs:shared:runtime/main';
+    } else if (/^runtime\/webpack\.(.+)\.js$/.test(pageUrl)) {
+      snapshotId = 'docs:shared:runtime/webpack';
+    } else if (/^chunks\/commons\.(.+)\.js$/.test(pageUrl)) {
+      snapshotId = 'docs:shared:chunk/commons';
+    } else if (/^chunks\/framework\.(.+)\.js$/.test(pageUrl)) {
+      snapshotId = 'docs:shared:chunk/framework';
+    } else if (/^chunks\/(.*)\.js$/.test(pageUrl)) {
+      // shared chunks are unnamed and only have a hash
+      // we just track their tally and summed size
+      sharedChunks.push(prettyBytesInverse(sizeFormatted, sizeUnit));
+      // and not each chunk individually
+      return null;
     }
+
     return [
       snapshotId,
       {
@@ -112,7 +131,18 @@ async function getNextPagesSize() {
         gzip: -1,
       },
     ];
-  });
+  }).filter(entry => entry !== null);
+
+  entries.push([
+    'docs:chunk:shared',
+    {
+      parsed: sharedChunks.reduce((sum, size) => sum + size, 0),
+      gzip: -1,
+      tally: sharedChunks.length,
+    },
+  ]);
+
+  return entries;
 }
 
 async function run() {
