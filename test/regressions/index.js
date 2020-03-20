@@ -136,11 +136,24 @@ const blacklist = [
 
 function excludeTest(suite, name) {
   if (/^docs-premium-themes(.*)/.test(suite)) {
+    // eslint-disable-next-line no-console
+    console.log('ingoring premium themes pages');
     return true;
   }
 
   return blacklist.some(pattern => {
-    return pattern === suite || pattern === `${suite}/${name}.png`;
+    if (pattern === suite) {
+      // eslint-disable-next-line no-console
+      console.log(`exact match: ignoring suite '${suite}'`);
+      return true;
+    }
+    if (pattern === `${suite}/${name}.png`) {
+      // eslint-disable-next-line no-console
+      console.log(`exact match: ignoring name '${name}' in suite '${suite}'`);
+      return true;
+    }
+
+    return false;
   });
 }
 
