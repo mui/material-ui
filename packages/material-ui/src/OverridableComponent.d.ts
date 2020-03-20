@@ -22,6 +22,7 @@ export type OverrideProps<
 > = (
   & BaseProps<M>
   & Omit<React.ComponentPropsWithRef<C>, keyof CommonProps<M>>
+  & { component?: C }
 );
 
 /**
