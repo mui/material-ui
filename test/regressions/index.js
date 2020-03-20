@@ -147,13 +147,13 @@ function excludeTest(suite, name) {
     if (pattern === suite) {
       unusedBlacklistPatterns.delete(pattern);
       // eslint-disable-next-line no-console
-      console.log(`exact match: ignoring suite '${suite}'`);
+      console.log(`suite exact match: ignoring '${suite}/${name}'`);
       return true;
     }
     if (pattern === `${suite}/${name}.png`) {
       unusedBlacklistPatterns.delete(pattern);
       // eslint-disable-next-line no-console
-      console.log(`exact match: ignoring name '${name}' in suite '${suite}'`);
+      console.log(`suite+name exact match: ignoring '${suite}/${name}'`);
       return true;
     }
 
