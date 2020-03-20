@@ -54,7 +54,7 @@ export default function Themes() {
 
   return (
     <div className={classes.root}>
-      <NoSsr>
+      <NoSsr defer>
         <Container maxWidth="md">
           <Typography variant="h4" component="h2" align="center" gutterBottom>
             {t('themes')}
@@ -69,7 +69,7 @@ export default function Themes() {
             data-ga-event-label="home-image"
             className={classes.link}
           >
-            <NoSsr>
+            <NoSsr defer>
               <img
                 className={classes.img}
                 alt={t('themesButton')}

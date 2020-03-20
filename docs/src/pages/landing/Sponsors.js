@@ -36,7 +36,7 @@ export default function Sponsors() {
 
   return (
     <div className={classes.root}>
-      <NoSsr>
+      <NoSsr defer>
         <Container maxWidth="md">
           <Divider />
           <MarkdownElement className={classes.markdownElement} text={backers[userLanguage]} />

@@ -102,9 +102,6 @@ const styles = theme => ({
     },
     justifyContent: 'space-between',
   },
-  toolbarButtons: {
-    margin: '2px 0',
-  },
   code: {
     display: 'none',
     padding: 0,
@@ -373,7 +370,7 @@ function Demo(props) {
           className={classes.toolbar}
           role="toolbar"
         >
-          <NoSsr>
+          <NoSsr defer>
             <DemoLanguages
               demo={demo}
               codeOpen={codeOpen}

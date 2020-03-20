@@ -52,7 +52,7 @@ function DemoFrame(props) {
 
   // NoSsr fixes a strange concurrency issue with iframe and quick React mount/unmount
   return (
-    <NoSsr>
+    <NoSsr defer>
       <Frame
         ref={handleRef}
         className={classes.frame}

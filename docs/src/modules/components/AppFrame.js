@@ -53,8 +53,6 @@ Router.onRouteChangeError = () => {
 
 const AppSearch = React.lazy(() => import('docs/src/modules/components/AppSearch'));
 function DeferredAppSearch() {
-  const fallback = null;
-
   const [mounted, setMounted] = React.useState(false);
   React.useEffect(() => {
     setMounted(true);
@@ -68,11 +66,11 @@ function DeferredAppSearch() {
         as="style"
       />
       {/* Suspense isn't supported for SSR yet */}
-      {mounted && (
-        <React.Suspense fallback={fallback}>
+      {mounted ? (
+        <React.Suspense fallback={null}>
           <AppSearch />
         </React.Suspense>
-      )}
+      ) : null}
     </React.Fragment>
   );
 }
@@ -238,7 +236,7 @@ function AppFrame(props) {
               <ExpandMoreIcon fontSize="small" />
             </Button>
           </Tooltip>
-          <NoSsr>
+          <NoSsr defer>
             <Menu
               id="language-menu"
               anchorEl={languageMenu}
