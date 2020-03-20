@@ -66,11 +66,9 @@ steps:
       path: $(DOCS_NEXT_CACHE_FOLDER)
     displayName: Cache nextjs build
 
-  - script: |
-      set -e pipefail
+  - bash: |
       mkdir -p scripts/sizeSnapshot/build	
-      yarn docs:build | tee scripts/sizeSnapshot/build/docs.next	
-      set +e pipefail
+      yarn docs:build | tee scripts/sizeSnapshot/build/docs.next
     displayName: 'build docs for size snapshot'
 
   - script: |
