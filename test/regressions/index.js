@@ -170,6 +170,8 @@ const demos = requireDemos.keys().reduce((res, path) => {
   if (excludeTest(suite, name)) {
     return res;
   }
+  // eslint-disable-next-line no-console
+  console.log(`testing ${suite}/${name}`);
 
   res.push({
     path,
