@@ -240,7 +240,7 @@ tests.forEach(test => {
 });
 
 if (unusedBlacklistPatterns.size > 0) {
-  console.warn(
+  throw new Error(
     `The following patterns are unused:\n\n${Array.from(unusedBlacklistPatterns)
       .map(pattern => `- ${pattern}`)
       .join('\n')}`,
