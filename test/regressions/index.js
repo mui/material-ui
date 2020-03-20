@@ -46,17 +46,17 @@ const blacklist = [
   'docs-components-buttons/FloatingActionButtonZoom.png', // Needs interaction
   'docs-components-chips/ChipsPlayground.png', // Redux isolation
   'docs-components-click-away-listener', // Needs interaction
-  'docs-components-container', // Not needed
+  'docs-components-container',
   'docs-components-dialogs', // Needs interaction
   'docs-components-drawers/SwipeableTemporaryDrawer.png', // Needs interaction
   'docs-components-drawers/TemporaryDrawer.png', // Needs interaction
-  'docs-components-grid-list', // Not needed
+  'docs-components-grid-list',
   'docs-components-grid-list/tileData.png', // No component
   'docs-components-grid/InteractiveGrid.png', // Redux isolation
   'docs-components-grid/SpacingGrid.png', // Needs interaction
-  'docs-components-hidden', // Not needed
+  'docs-components-hidden',
   'docs-components-material-icons/synonyms.png', // No component
-  'docs-components-menus', // Not needed
+  'docs-components-menus',
   'docs-components-modal/SimpleModal.png', // Needs interaction
   'docs-components-modal/SpringModal.png', // Needs interaction
   'docs-components-modal/TransitionsModal.png', // Needs interaction
@@ -74,7 +74,7 @@ const blacklist = [
   'docs-components-popper/SpringPopper.png', // Needs interaction
   'docs-components-popper/TransitionsPopper.png', // Needs interaction
   'docs-components-portal/SimplePortal.png', // Needs interaction
-  'docs-components-progress', // Not needed
+  'docs-components-progress',
   'docs-components-selects/ControlledOpenSelect.png', // Needs interaction
   'docs-components-selects/DialogSelect.png', // Needs interaction
   'docs-components-selects/GroupedSelect.png', // Needs interaction
@@ -84,7 +84,7 @@ const blacklist = [
   'docs-components-snackbars/ConsecutiveSnackbars.png', // Needs interaction
   'docs-components-snackbars/CustomizedSnackbars.png', // Redundant
   'docs-components-snackbars/DirectionSnackbar.png', // Needs interaction
-  'docs-components-snackbars/FabIntegrationSnackbar.png', // Not needed
+  'docs-components-snackbars/FabIntegrationSnackbar.png',
   'docs-components-snackbars/IntegrationNotistack.png', // Needs interaction
   'docs-components-snackbars/PositionedSnackbar.png', // Needs interaction
   'docs-components-snackbars/SimpleSnackbar.png', // Needs interaction
@@ -99,18 +99,18 @@ const blacklist = [
   'docs-components-transitions', // Needs interaction
   'docs-components-tree-view/ControlledTreeView.png', // Redundant
   'docs-components-tree-view/CustomizedTreeView.png', // Flaky
-  'docs-components-use-media-query', // Not needed
-  'docs-customization-breakpoints', // Not needed
-  'docs-customization-color', // Not needed
+  'docs-components-use-media-query',
+  'docs-customization-breakpoints',
+  'docs-customization-color',
   'docs-customization-default-theme', // Redux isolation
   'docs-customization-density/DensityTool.png', // Redux isolation
-  'docs-customization-typography/ResponsiveFontSizesChart.png', // Not needed
-  'docs-discover-more-languages', // Not needed
-  'docs-discover-more-showcase', // Not needed
-  'docs-discover-more-team', // Not needed
-  'docs-getting-started-templates', // Not needed
+  'docs-customization-typography/ResponsiveFontSizesChart.png',
+  'docs-discover-more-languages',
+  'docs-discover-more-showcase',
+  'docs-discover-more-team',
+  'docs-getting-started-templates',
   'docs-getting-started-templates-album/Album.png', // Flaky image loading
-  'docs-getting-started-templates-blog', // Not needed
+  'docs-getting-started-templates-blog',
   'docs-getting-started-templates-checkout/AddressForm.png', // Already tested once assembled
   'docs-getting-started-templates-checkout/PaymentForm.png', // Already tested once assembled
   'docs-getting-started-templates-checkout/Review.png', // Already tested once assembled
@@ -119,19 +119,19 @@ const blacklist = [
   'docs-getting-started-templates-dashboard/Orders.png', // Already tested once assembled
   'docs-getting-started-templates-dashboard/Title.png', // Already tested once assembled
   'docs-getting-started-templates-sign-in-side/SignInSide.png', // Flaky
-  'docs-getting-started-usage/Usage.png', // Not needed
-  'docs-guides', // Not needed
-  'docs-styles-advanced', // Not needed
-  'docs-system-borders', // Not needed
-  'docs-system-display', // Not needed
-  'docs-system-flexbox', // Not needed
-  'docs-system-palette', // Not needed
-  'docs-system-positions', // Not needed
-  'docs-system-shadows', // Not needed
-  'docs-system-sizing', // Not needed
-  'docs-system-spacing', // Not needed
-  'docs-system-typography', // Not needed
-  'docs-versions', // Not needed
+  'docs-getting-started-usage/Usage.png',
+  'docs-guides',
+  'docs-styles-advanced',
+  'docs-system-borders',
+  'docs-system-display',
+  'docs-system-flexbox',
+  'docs-system-palette',
+  'docs-system-positions',
+  'docs-system-shadows',
+  'docs-system-sizing',
+  'docs-system-spacing',
+  'docs-system-typography',
+  'docs-versions',
 ];
 
 // Also use some of the demos to avoid code duplication.
