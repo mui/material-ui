@@ -138,7 +138,7 @@ const unusedBlacklistPatterns = new Set(blacklist);
 function excludeTest(suite, name) {
   if (/^docs-premium-themes(.*)/.test(suite)) {
     // eslint-disable-next-line no-console
-    console.log('ingoring premium themes pages');
+    console.log('ignoring premium themes pages');
     return true;
   }
 
