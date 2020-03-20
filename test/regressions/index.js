@@ -42,8 +42,6 @@ const blacklist = [
   'docs-components-badges/BadgeAlignment.png', // Redux isolation
   'docs-components-badges/BadgeVisibility.png', // Needs interaction
   'docs-components-breadcrumbs/ActiveLastBreadcrumb.png', // Redundant
-  'docs-components-buttons/ButtonBases.png', // Useless
-  'docs-components-buttons/FloatingActionButtonZoom.png', // Needs interaction
   'docs-components-chips/ChipsPlayground.png', // Redux isolation
   'docs-components-click-away-listener', // Needs interaction
   'docs-components-container',
@@ -51,7 +49,6 @@ const blacklist = [
   'docs-components-drawers/SwipeableTemporaryDrawer.png', // Needs interaction
   'docs-components-drawers/TemporaryDrawer.png', // Needs interaction
   'docs-components-grid-list',
-  'docs-components-grid-list/tileData.png', // No component
   'docs-components-grid/InteractiveGrid.png', // Redux isolation
   'docs-components-grid/SpacingGrid.png', // Needs interaction
   'docs-components-hidden',
