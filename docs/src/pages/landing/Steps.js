@@ -1,8 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { useSelector } from 'react-redux';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
@@ -21,67 +20,70 @@ const UsageLink = React.forwardRef((buttonProps, ref) => (
   <Link naked href="/getting-started/usage" ref={ref} {...buttonProps} />
 ));
 
-const styles = theme => ({
-  root: {
-    marginTop: theme.spacing(5),
-    '& pre': {
-      margin: theme.spacing(1, 0),
+const useStyles = makeStyles(
+  theme => ({
+    root: {
+      marginTop: theme.spacing(5),
+      '& pre': {
+        margin: theme.spacing(1, 0),
+      },
     },
-  },
-  step: {
-    border: `12px solid ${theme.palette.background.level1}`,
-    borderRightWidth: 0,
-    borderLeftWidth: 0,
-    padding: theme.spacing(2),
-    backgroundColor: theme.palette.background.level2,
-    [theme.breakpoints.up('md')]: {
-      padding: theme.spacing(3),
+    step: {
+      border: `12px solid ${theme.palette.background.level1}`,
+      borderRightWidth: 0,
+      borderLeftWidth: 0,
+      padding: theme.spacing(2),
+      backgroundColor: theme.palette.background.level2,
+      [theme.breakpoints.up('md')]: {
+        padding: theme.spacing(3),
+      },
     },
-  },
-  leftStep: {
-    [theme.breakpoints.up('md')]: {
-      borderLeftWidth: 12,
-      borderRightWidth: 6,
+    leftStep: {
+      [theme.breakpoints.up('md')]: {
+        borderLeftWidth: 12,
+        borderRightWidth: 6,
+        borderBottomWidth: 0,
+      },
+    },
+    rightStep: {
       borderBottomWidth: 0,
+      [theme.breakpoints.up('md')]: {
+        borderLeftWidth: 6,
+        borderRightWidth: 12,
+      },
     },
-  },
-  rightStep: {
-    borderBottomWidth: 0,
-    [theme.breakpoints.up('md')]: {
-      borderLeftWidth: 6,
-      borderRightWidth: 12,
+    stepTitle: {
+      display: 'flex',
+      marginBottom: theme.spacing(3),
+      alignItems: 'center',
     },
-  },
-  stepTitle: {
-    display: 'flex',
-    marginBottom: theme.spacing(3),
-    alignItems: 'center',
-  },
-  stepIcon: {
-    color: theme.palette.primary.main,
-    marginRight: theme.spacing(2),
-    fontSize: 30,
-  },
-  stepBody: {
-    minHeight: 270,
-  },
-  divider: {
-    marginTop: theme.spacing(4),
-    marginBottom: theme.spacing(2),
-  },
-  link: {
-    marginTop: theme.spacing(1),
-    display: 'block',
-  },
-  img: {
-    maxWidth: 500,
-    width: '100%',
-    height: 'auto',
-  },
-});
+    stepIcon: {
+      color: theme.palette.primary.main,
+      marginRight: theme.spacing(2),
+      fontSize: 30,
+    },
+    stepBody: {
+      minHeight: 270,
+    },
+    divider: {
+      marginTop: theme.spacing(4),
+      marginBottom: theme.spacing(2),
+    },
+    link: {
+      marginTop: theme.spacing(1),
+      display: 'block',
+    },
+    img: {
+      maxWidth: 500,
+      width: '100%',
+      height: 'auto',
+    },
+  }),
+  { name: 'Steps' },
+);
 
-function HomeSteps(props) {
-  const { classes } = props;
+function HomeSteps() {
+  const classes = useStyles();
   const t = useSelector(state => state.options.t);
 
   return (
@@ -159,8 +161,4 @@ function App() {
   );
 }
 
-HomeSteps.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(HomeSteps);
+export default HomeSteps;

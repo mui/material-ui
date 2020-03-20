@@ -42,7 +42,6 @@ const blacklist = [
   'docs-components-badges/BadgeAlignment.png', // Redux isolation
   'docs-components-badges/BadgeVisibility.png', // Needs interaction
   'docs-components-breadcrumbs/ActiveLastBreadcrumb.png', // Redundant
-  'docs-components-buttons/ButtonBases.png', // Flaky image loading
   'docs-components-chips/ChipsPlayground.png', // Redux isolation
   'docs-components-click-away-listener', // Needs interaction
   'docs-components-container', // Can't see the impact
@@ -120,6 +119,7 @@ const blacklist = [
   'docs-getting-started-templates-sign-in-side/SignInSide.png', // Flaky
   'docs-getting-started-usage/Usage.png', // No public components
   /^docs-guides-.*/, // No public components
+  'docs-landing', // Mostly images, redundant
   'docs-styles-advanced', // Redudant
   'docs-system-borders', // Unit tests are enough
   'docs-system-display', // Unit tests are enough

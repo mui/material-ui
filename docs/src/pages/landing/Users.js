@@ -1,8 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { useSelector } from 'react-redux';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import NoSsr from '@material-ui/core/NoSsr';
 import Divider from '@material-ui/core/Divider';
 import Grid from '@material-ui/core/Grid';
@@ -83,44 +82,47 @@ const users = [
   },
 ];
 
-const styles = theme => ({
-  root: {
-    padding: theme.spacing(2),
-    minHeight: 160,
-    paddingTop: theme.spacing(5),
-  },
-  container: {
-    marginBottom: theme.spacing(4),
-  },
-  users: {
-    padding: theme.spacing(10, 4, 0),
-  },
-  grid: {
-    marginTop: theme.spacing(5),
-    marginBottom: theme.spacing(5),
-  },
-  img: {
-    margin: theme.spacing(1.5, 3),
-  },
-  amazon: {
-    margin: theme.spacing(2.4, 3, 1.5),
-  },
-  coursera: {
-    margin: theme.spacing(2.3, 3, 1.5),
-  },
-  unity: {
-    margin: theme.spacing(0.5, 3, 1.5),
-  },
-  walmart: {
-    margin: '13px 4px 12px',
-  },
-  button: {
-    margin: theme.spacing(2, 0, 0),
-  },
-});
+const useStyles = makeStyles(
+  theme => ({
+    root: {
+      padding: theme.spacing(2),
+      minHeight: 160,
+      paddingTop: theme.spacing(5),
+    },
+    container: {
+      marginBottom: theme.spacing(4),
+    },
+    users: {
+      padding: theme.spacing(10, 4, 0),
+    },
+    grid: {
+      marginTop: theme.spacing(5),
+      marginBottom: theme.spacing(5),
+    },
+    img: {
+      margin: theme.spacing(1.5, 3),
+    },
+    amazon: {
+      margin: theme.spacing(2.4, 3, 1.5),
+    },
+    coursera: {
+      margin: theme.spacing(2.3, 3, 1.5),
+    },
+    unity: {
+      margin: theme.spacing(0.5, 3, 1.5),
+    },
+    walmart: {
+      margin: '13px 4px 12px',
+    },
+    button: {
+      margin: theme.spacing(2, 0, 0),
+    },
+  }),
+  { name: 'Users' },
+);
 
-function HomeUsers(props) {
-  const { classes } = props;
+export default function Users() {
+  const classes = useStyles();
   const t = useSelector(state => state.options.t);
 
   return (
@@ -168,9 +170,3 @@ function HomeUsers(props) {
     </div>
   );
 }
-
-HomeUsers.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(HomeUsers);

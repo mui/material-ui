@@ -65,57 +65,63 @@ const quotes = [
   },
 ];
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    minHeight: 160,
-    paddingTop: theme.spacing(5),
-    margin: theme.spacing(0, 2),
-  },
-  container: {
-    marginBottom: theme.spacing(4),
-  },
-  users: {
-    padding: theme.spacing(10, 0, 0),
-  },
-  grid: {
-    marginTop: theme.spacing(5),
-    marginBottom: theme.spacing(5),
-  },
-  img: {
-    margin: theme.spacing(1.5, 3),
-  },
-  button: {
-    margin: theme.spacing(2, 0, 0),
-  },
-}));
+const useStyles = makeStyles(
+  theme => ({
+    root: {
+      minHeight: 160,
+      paddingTop: theme.spacing(5),
+      margin: theme.spacing(0, 2),
+    },
+    container: {
+      marginBottom: theme.spacing(4),
+    },
+    users: {
+      padding: theme.spacing(10, 0, 0),
+    },
+    grid: {
+      marginTop: theme.spacing(5),
+      marginBottom: theme.spacing(5),
+    },
+    img: {
+      margin: theme.spacing(1.5, 3),
+    },
+    button: {
+      margin: theme.spacing(2, 0, 0),
+    },
+  }),
+  { name: 'Quotes' },
+);
 
-const useQuoteStyles = makeStyles(theme => ({
-  card: {
-    display: 'flex',
-    flexDirection: 'column',
-    height: '100%',
-  },
-  cardAction: {
-    height: '100%',
-  },
-  avatar: {
-    width: 48,
-    height: 48,
-  },
-  twitter: {
-    marginLeft: 'auto',
-    color: theme.palette.primary.light,
-  },
-  name: {
-    fontSize: 16,
-  },
-  quote: {
-    paddingBottom: '16px !important',
-    paddingTop: 0,
-  },
-}));
+const useQuoteStyles = makeStyles(
+  theme => ({
+    card: {
+      display: 'flex',
+      flexDirection: 'column',
+      height: '100%',
+    },
+    cardAction: {
+      height: '100%',
+    },
+    avatar: {
+      width: 48,
+      height: 48,
+    },
+    twitter: {
+      marginLeft: 'auto',
+      color: theme.palette.primary.light,
+    },
+    name: {
+      fontSize: 16,
+    },
+    quote: {
+      paddingBottom: '16px !important',
+      paddingTop: 0,
+    },
+  }),
+  { name: 'HomeQuote' },
+);
 
-const HomeQuoteLink = React.forwardRef((props, ref) => {
+const QuoteLink = React.forwardRef((props, ref) => {
   return (
     <Link
       data-ga-event-category="quote"
@@ -130,13 +136,13 @@ const HomeQuoteLink = React.forwardRef((props, ref) => {
   );
 });
 
-function HomeQuote(props) {
+function Quote(props) {
   const { avatar, href, name, quote, userName } = props;
   const classes = useQuoteStyles();
 
   return (
     <Card variant="outlined" className={classes.card}>
-      <CardActionArea component={HomeQuoteLink} href={href} className={classes.cardAction}>
+      <CardActionArea component={QuoteLink} href={href} className={classes.cardAction}>
         <CardContent>
           <Grid container spacing={3}>
             <Grid item>
@@ -165,7 +171,7 @@ function HomeQuote(props) {
   );
 }
 
-HomeQuote.propTypes = {
+Quote.propTypes = {
   avatar: PropTypes.string,
   href: PropTypes.string,
   name: PropTypes.string,
@@ -179,7 +185,7 @@ for (let i = 0; i < 3; i += 1) {
   selectedQuotes.push(quotes[(startIndex + i) % quotes.length]);
 }
 
-function HomeQuotes() {
+export default function Quotes() {
   const classes = useStyles();
   const t = useSelector(state => state.options.t);
 
@@ -198,7 +204,7 @@ function HomeQuotes() {
             <Grid container spacing={2} className={classes.grid}>
               {selectedQuotes.map(quote => (
                 <Grid item xs={12} md={4} key={quote.username}>
-                  <HomeQuote
+                  <Quote
                     avatar={quote.avatar}
                     href={quote.tweet}
                     name={quote.name}
@@ -214,5 +220,3 @@ function HomeQuotes() {
     </div>
   );
 }
-
-export default HomeQuotes;

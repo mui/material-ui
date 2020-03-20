@@ -1,7 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import NoSsr from '@material-ui/core/NoSsr';
 import Link from 'docs/src/modules/components/Link';
@@ -25,16 +24,19 @@ const backers = [
   },
 ];
 
-const styles = theme => ({
-  root: {
-    textAlign: 'center',
-    minHeight: 60,
-    paddingBottom: theme.spacing(2),
-  },
-});
+const useStyles = makeStyles(
+  theme => ({
+    root: {
+      textAlign: 'center',
+      minHeight: 60,
+      paddingBottom: theme.spacing(2),
+    },
+  }),
+  { name: 'QuickWord' },
+);
 
-function HomeQuickWord(props) {
-  const { classes } = props;
+export default function QuickWord() {
+  const classes = useStyles();
   const t = useSelector(state => state.options.t);
   const backer = backers[Math.floor(backers.length * Math.random())];
 
@@ -58,9 +60,3 @@ function HomeQuickWord(props) {
     </div>
   );
 }
-
-HomeQuickWord.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(HomeQuickWord);
