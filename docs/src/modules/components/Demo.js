@@ -17,7 +17,6 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Tooltip from '@material-ui/core/Tooltip';
-import Skeleton from '@material-ui/lab/Skeleton';
 import RefreshIcon from '@material-ui/icons/Refresh';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import DemoSandboxed from 'docs/src/modules/components/DemoSandboxed';
@@ -100,7 +99,6 @@ const styles = theme => ({
       top: 0,
       right: theme.spacing(1),
       height: theme.spacing(6),
-      marginTop: theme.spacing(1),
     },
     justifyContent: 'space-between',
   },
@@ -150,19 +148,6 @@ function getDemoData(codeVariant, demo, githubLocation) {
     Component: demo.js,
     sourceLanguage: 'jsx',
   };
-}
-
-function DemoToolbarFallback() {
-  return (
-    <React.Fragment>
-      {/* demo languages placeholder
-       * since they're hidden by default we use an empty div to position the next
-       * placeholder properly */}
-      <div />
-      {/* header buttons placeholder */}
-      <Skeleton height={40} variant="rect" width={200} />
-    </React.Fragment>
-  );
 }
 
 // TODO: replace with React.useOpaqueReference if it is released
@@ -385,7 +370,7 @@ function Demo(props) {
           className={classes.toolbar}
           role="toolbar"
         >
-          <NoSsr defer fallback={<DemoToolbarFallback />}>
+          <NoSsr defer>
             <DemoLanguages
               demo={demo}
               codeOpen={codeOpen}

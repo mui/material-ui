@@ -35,7 +35,6 @@ import { LANGUAGES_LABEL } from 'docs/src/modules/constants';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import { useChangeTheme } from 'docs/src/modules/components/ThemeContext';
 import PageContext from 'docs/src/modules/components/PageContext';
-import Skeleton from '@material-ui/lab/Skeleton';
 
 const LOCALES = { zh: 'zh-CN', pt: 'pt-BR', es: 'es-ES' };
 const CROWDIN_ROOT_URL = 'https://translate.material-ui.com/project/material-ui-docs/';
@@ -53,9 +52,7 @@ Router.onRouteChangeError = () => {
 };
 
 const AppSearch = React.lazy(() => import('docs/src/modules/components/AppSearch'));
-function DeferredAppSearch(props) {
-  const { className } = props;
-
+function DeferredAppSearch() {
   const [mounted, setMounted] = React.useState(false);
   React.useEffect(() => {
     setMounted(true);
@@ -70,18 +67,13 @@ function DeferredAppSearch(props) {
       />
       {/* Suspense isn't supported for SSR yet */}
       {mounted ? (
-        <React.Suspense
-          fallback={<Skeleton className={className} height={40} variant="rect" width={200} />}
-        >
-          <AppSearch className={className} />
+        <React.Suspense fallback={null}>
+          <AppSearch />
         </React.Suspense>
       ) : null}
     </React.Fragment>
   );
 }
-DeferredAppSearch.propTypes = {
-  className: PropTypes.string,
-};
 
 const styles = theme => ({
   '@global': {
@@ -122,10 +114,6 @@ const styles = theme => ({
     color: theme.palette.type === 'light' ? null : '#fff',
     backgroundColor: theme.palette.type === 'light' ? null : theme.palette.background.level2,
     transition: theme.transitions.create('width'),
-  },
-  appSearch: {
-    marginRight: theme.spacing(2),
-    marginLeft: theme.spacing(1),
   },
   language: {
     margin: theme.spacing(0, 0.5, 0, 1),
@@ -228,7 +216,7 @@ function AppFrame(props) {
             <MenuIcon />
           </IconButton>
           <div className={classes.grow} />
-          <DeferredAppSearch className={classes.appSearch} />
+          <DeferredAppSearch />
           <Tooltip title={t('changeLanguage')} enterDelay={300}>
             <Button
               color="inherit"
