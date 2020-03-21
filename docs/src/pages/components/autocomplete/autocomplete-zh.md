@@ -30,23 +30,23 @@ components: TextField, Popper, Autocomplete
 
 {{"demo": "pages/components/autocomplete/CountrySelect.js"}}
 
-## 自由独奏
+## 免费工具
 
-Set `freeSolo` to true so the textbox can contain any arbitrary value. The prop is designed to cover the primary use case of a search box with suggestions, e.g. Google search.
+将 `freeSolo` 设置为true，以便在文本框中输入任意值。 Prop的设计是为了覆盖搜索框的主要用例，并提出建议，例如谷歌搜索。
 
-However, if you intend to use it for a [combo box](#combo-box) like experience (an enhanced version of a select element) we recommend setting `selectOnFocus` (it helps the user clearning the selected value).
+然而，仍然存在着这种情况。 如果您打算将它用于一个 [组合框](#combo-box) (一个强化的选定元素版本)，我们建议设置 `selectOnFocus` (它帮助用户清除选定的值)。
 
 {{"demo": "pages/components/autocomplete/FreeSolo.js"}}
 
-### Helper message
+### 帮助信息
 
-Sometimes you want to make explicit to the user that he/she can add whatever value he/she wants. The following demo adds a last option: `Add "YOUR SEARCH"`.
+有时您想要向用户显示他/她可以添加自己想要的任何值。 以下的演示增加了一个最新的操作方式：`添加“你的搜索”`
 
-{{"demo": "pages/components/autocomplete/FreeSoloCreateOption.js"}}
+{{"demo": "pages/components/autocomplete/FreeSolo.js"}}
 
-You could also display a dialog when the user wants to add a new value.
+您也可以在用户想要添加一个新的值时显示一个对话框
 
-{{"demo": "pages/components/autocomplete/FreeSoloCreateOptionDialog.js"}}
+{{"demo": "pages/components/autocomplete/FreeSolo.js"}}
 
 ## 分组
 
@@ -54,11 +54,11 @@ You could also display a dialog when the user wants to add a new value.
 
 ## 已禁用的选项
 
-{{"demo": "pages/components/autocomplete/DisabledOptions.js"}}
+{{"demo": "pages/components/autocomplete/disabledOptions.js"}}
 
 ## `使用自动完成`
 
-For advanced customization use cases, we expose a `useAutocomplete()` hook. It accepts almost the same options as the Autocomplete component minus all the props related to the rendering of JSX. The Autocomplete component uses this hook internally.
+作为一种高级定制方式，我们公开了一个 `useAutocomplete()` 钩子方法。 它接受几乎与Autocomplete组件相同的参数，辅以与JSX渲染有关的所有参数。 Autocomplete组件内部也是使用的此钩子方法。
 
 ```jsx
 import useAutocomplete from '@material-ui/lab/useAutocomplete';
@@ -68,51 +68,51 @@ import useAutocomplete from '@material-ui/lab/useAutocomplete';
 
 {{"demo": "pages/components/autocomplete/UseAutocomplete.js", "defaultCodeOpen": false}}
 
-### Customized hook
+### 自定义钩子
 
-{{"demo": "pages/components/autocomplete/CustomizedHook.js"}}
+{{"demo": "pages/components/autocomplete/ustomizedHook.js"}}
 
-Head to the [Customized Autocomplete](#customized-autocomplete) section for a customization example with the `Autocomplete` component instead of the hook.
+转到[自定义自动完成](#customized-autocomplete)部分，查看使用 `Autocomplete` 组件（而不是钩子）的例子。
 
 ## 异步请求
 
-{{"demo": "pages/components/autocomplete/Asynchronous.js"}}
+{{"demo": "pages/components/autocomplete/disabledOptions.js"}}
 
-### Google Maps place
+### 谷歌地图位置
 
 A customized UI for Google Maps Places Autocomplete.
 
 {{"demo": "pages/components/autocomplete/GoogleMaps.js"}}
 
-For this demo, we need to load the [Google Maps JavaScript](https://developers.google.com/maps/documentation/javascript/tutorial) API.
+对于这个演示，我们需要加载 [谷歌地图JavaScript](https://developers. google. com/maps/documentation/javascript/tutorial) API。
 
 > 在你开始使用谷歌地图javascript API之前，你需要创建一个帐户 (用于使用谷歌地图api).
 
 ## Multiple values（多重值）
 
-Also known as tags, the user is allowed to enter more than one value.
+这也称为标签，允许用户输入多个值。
 
 {{"demo": "pages/components/autocomplete/Tags.js"}}
 
-### Fixed options
+### 固定选项
 
 In the event that you need to lock certain tag so that they can't be removed in the interface, you can set the chips disabled.
 
 {{"demo": "pages/components/autocomplete/FixedTags.js"}}
 
-### Checkboxes
+### 复选框
 
 {{"demo": "pages/components/autocomplete/CheckboxesTags.js"}}
 
 ## 尺寸
 
-Fancy smaller inputs? Use the `size` prop.
+想要使用外观看起来比较小的输入框吗？ Use the `size` prop.
 
 {{"demo": "pages/components/autocomplete/Sizes.js"}}
 
 ## 定制的自动完成组件
 
-This demo reproduces the GitHub's label picker:
+该演示再现了GitHub的标签选择器：
 
 {{"demo": "pages/components/autocomplete/GitHubLabel.js"}}
 
@@ -132,15 +132,21 @@ The component exposes a factory to create a filter method that can provided to t
 import { createFilterOptions } from '@material-ui/lab/Autocomplete';
 ```
 
-It supports the following options:
+### `createFilterOptions(config) => filterOptions`
+
+#### 参数
 
 1. `config` (*Object* [optional]): 
   - `config.ignoreAccents` (*Boolean* [optional]): Defaults to `true`. Remove diacritics.
   - `config.ignoreCase` (*Boolean* [optional]): Defaults to `true`. Lowercase everything.
   - `config.matchFrom` (*'any' | 'start'* [optional]): Defaults to `'any'`.
-  - `config.stringify` (*Func* [optional]): Defaults to `JSON.stringify`.
+  - `config.stringify` (*Func* [optional]): Controls how an option is converted into a string so that it can be matched against the input text fragment.
   - `config.trim` (*Boolean* [optional]): 默认值为`false`。 Remove trailing spaces.
   - `config.limit` (*Number* [optional]): Default to null. Limit the number of suggested options to be shown. For example, if `config.limit` is `100`, only the first `100` matching options are shown. It can be useful if a lot of options match and virtualization wasn't set up.
+
+#### 返回结果
+
+`filterOptions`: the returned filter method can be provided directly to the `filterOptions` prop of the `Autocomplete` component, or the parameter of the same name for the hook.
 
 In the following demo, the options need to start with the query prefix:
 

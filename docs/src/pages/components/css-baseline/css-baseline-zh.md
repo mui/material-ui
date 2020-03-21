@@ -41,14 +41,14 @@ export default function MyApp() {
 }
 ```
 
-## Approach
+## 方法
 
 ### 页面
 
-The `<html>` and `<body>` elements are updated to provide better page-wide defaults. More specifically:
+我们更新了 `<html>` 和 `<body>` 元素，这样能够更好地设置页面范围的默认设置。 具体来说：
 
 - 所有浏览器中的边距将会被删除。
-- Material Design 的背景颜色会默认地被应用。 It's using [`theme.palette.background.default`](/customization/default-theme/?expand-path=$.palette.background) for standard devices and a white background for print devices.
+- Material Design 的背景颜色会默认地被应用。 它使用 [`theme.palette.background.default`](/customization/default-theme/?expand-path=$.palette.background) 在标准设备上而在打印设备上使用白色背景。
 
 ### 布局
 

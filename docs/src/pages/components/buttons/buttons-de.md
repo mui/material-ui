@@ -54,7 +54,7 @@ Fancy larger or smaller buttons? Verwende die Eigenschaft `size`.
 
 {{"demo": "pages/components/buttons/ButtonSizes.js"}}
 
-## Buttons with icons and label
+## Buttons mit Symbolen und Beschriftung
 
 Sometimes you might want to have icons for certain button to enhance the UX of the application as we recognize logos more easily than plain text. For example, if you have a delete button you can label it with a dustbin icon.
 

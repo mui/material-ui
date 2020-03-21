@@ -31,7 +31,7 @@ components: Alert
 
 ### 过渡效果
 
-可以使用 [过渡组件](/components/transitions) ，如 `Collapse（展开）` 来实现「提醒」出现时的过渡效果。
+可以使用 [过渡组件](/components/transitions/) ，如 `Collapse（展开）` 来实现「提醒」出现时的过渡效果。
 
 {{"demo": "pages/components/alert/TransitionAlerts.js"}}
 

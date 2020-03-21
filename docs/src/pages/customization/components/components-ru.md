@@ -144,7 +144,7 @@ const StyledButton = withStyles({
 
 ### Используйте `$ruleName` для ссылки на правило в той же таблице стилей
 
-Плагин [jss-nested](https://github.com/cssinjs/jss-nested) (доступный по умолчанию) позволяет упростить процесс повышения специфичности.
+The [jss-nested](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-nested) plugin (available by default) can make the process of increasing specificity easier.
 
 ```js
 const styles = {

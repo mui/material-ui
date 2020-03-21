@@ -18,6 +18,6 @@ So far we have demos for a dashboard, sign in page, sign up page, blog page, che
 
 ## Temas Premium
 
-Procurando por algo mais? Você pode encontrar modelos completos & temas na <a href="https://themes.material-ui.com/" data-ga-event-category="premium-themes" data-ga-event-action="click" data-ga-event-label="templates-link">seção de temas premium</a>.
+Procurando por algo mais? You can find complete templates & themes in the <a href="https://material-ui.com/store/" data-ga-event-category="premium-themes" data-ga-event-action="click" data-ga-event-label="templates-link">premium template section</a>.
 
-<a href="https://themes.material-ui.com/" data-ga-event-category="premium-themes" data-ga-event-action="click" data-ga-event-label="templates-image"><img src="/static/images/themes-light.jpg" alt="modelos react" /></a>
+<a href="https://material-ui.com/store/" data-ga-event-category="premium-themes" data-ga-event-action="click" data-ga-event-label="templates-image"><img src="/static/images/themes-light.jpg" alt="modelos react" /></a>

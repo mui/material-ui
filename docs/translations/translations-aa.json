@@ -18,7 +18,7 @@
   "usageDescr": "crwdns99848:0crwdne99848:0",
   "usageButton": "crwdns99850:0crwdne99850:0",
   "themes": "crwdns99852:0crwdne99852:0",
-  "themesDescr": "crwdns108805:0crwdne108805:0",
+  "themesDescr": "crwdns130356:0crwdne130356:0",
   "themesButton": "crwdns99856:0crwdne99856:0",
   "whosUsing": "crwdns99858:0crwdne99858:0",
   "joinThese": "crwdns99860:0crwdne99860:0",
@@ -221,12 +221,17 @@
     "/styles": "crwdns100240:0crwdne100240:0",
     "/styles/basics": "crwdns100242:0crwdne100242:0",
     "/styles/advanced": "crwdns100244:0crwdne100244:0",
-    "https://themes.material-ui.com/": "crwdns100246:0crwdne100246:0",
+    "https://material-ui.com/store/": "crwdns130358:0crwdne130358:0",
     "/components/material-icons": "crwdns100760:0crwdne100760:0",
     "/components/textarea-autosize": "crwdns100762:0crwdne100762:0",
     "/components/rating": "crwdns100764:0crwdne100764:0",
     "/components/skeleton": "crwdns100766:0crwdne100766:0",
     "/components/tree-view": "crwdns100768:0crwdne100768:0",
-    "/customization/density": "crwdns100770:0crwdne100770:0"
+    "/customization/density": "crwdns100770:0crwdne100770:0",
+    "/components/button-group": "crwdns110054:0crwdne110054:0",
+    "/components/floating-action-button": "crwdns110056:0crwdne110056:0",
+    "/components/backdrop": "crwdns110058:0crwdne110058:0",
+    "/components/alert": "crwdns110060:0crwdne110060:0",
+    "/components/pagination": "crwdns110062:0crwdne110062:0"
   }
 }

@@ -25,25 +25,25 @@ components: Badge
 
 {{"demo": "pages/components/badges/BadgeVisibility.js"}}
 
-The badge auto hides with badgeContent is zero. You can override this with the `showZero` property.
+当 badgeContent 为零时，徽章组件将会自动隐藏。 您可以使用 `showZero` 属性覆盖它。
 
 {{"demo": "pages/components/badges/ShowZeroBadge.js"}}
 
 ## Maximum value
 
-You can use the `max` property to cap the value of the badge content.
+您可以使用 `max` 属性来限制徽章内容的最大值。
 
 {{"demo": "pages/components/badges/BadgeMax.js"}}
 
 ## Dot badge
 
-The `dot` property changes a badge into a small dot. This can be used as a notification that something has changed without giving a count.
+`dot` 属性会使得徽章渲染为一个小点。 这样的组件可以作为一个提示的工具，来说明有些值已经改变，但是不需要计数。
 
 {{"demo": "pages/components/badges/DotBadge.js"}}
 
 ## 徽章组件的覆盖
 
-You can use the `overlap` property to place the badge relative to the corner of the wrapped element.
+您可以使用 `overlap` 这个属性，在封装的元素相对的一角来显示徽章组件。
 
 {{"demo": "pages/components/badges/BadgeOverlap.js"}}
 

@@ -18,7 +18,7 @@
   "usageDescr": "Les composants Material-UI fonctionnent de manière isolée. Ils sont autonomes.",
   "usageButton": "Consulter la documentation",
   "themes": "Thèmes Premium",
-  "themesDescr": "Faites passer votre projet au niveau supérieur avec des thèmes premium de notre marché officiel, tous construits sur Material-UI.",
+  "themesDescr": "Take your project to the next level with premium themes from our store – all built on Material-UI.",
   "themesButton": "Parcourir les thèmes",
   "whosUsing": "Qui utilise Material-UI ?",
   "joinThese": "Rejoignez ces organisations et d’autres formidables!",
@@ -79,7 +79,7 @@
   "mainNavigation": "Navigation principale",
   "skipToContent": "Passer au contenu",
   "openDrawer": "Voir la navigation principale",
-  "changeLanguage": "outdated, the key was removed!!!!!!!!!!!!!",
+  "changeLanguage": "Changer de langue",
   "pageTOC": "La table des matières de la page",
   "showJSSource": "Afficher la console JavaScript",
   "showTSSource": "Afficher la source TypeScript",
@@ -221,12 +221,17 @@
     "/styles": "Styles",
     "/styles/basics": "Bases",
     "/styles/advanced": "Avancé",
-    "https://themes.material-ui.com/": "Thèmes premium",
+    "https://material-ui.com/store/": "Store",
     "/components/material-icons": "Icônes Material Design",
     "/components/textarea-autosize": "Textarea Autosize (taille auto)",
     "/components/rating": "Rating (Notation)",
     "/components/skeleton": "Skeleton (Squelette)",
     "/components/tree-view": "Tree View (Vue arborescente)",
-    "/customization/density": "Densité"
+    "/customization/density": "Densité",
+    "/components/button-group": "Button Group",
+    "/components/floating-action-button": "Floating Action Button",
+    "/components/backdrop": "Backdrop",
+    "/components/alert": "Alert",
+    "/components/pagination": "Pagination"
   }
 }

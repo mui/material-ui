@@ -39,25 +39,25 @@ Puede utilizar el componente de [ transition ](/components/transitions/) como `C
 
 El `icon` prop permite añadir un icono para el inicio del componente Alert. Esto anulará el icono por defecto para la gravedad especificada.
 
-You can change the default severity to icon mapping with the `iconMapping` prop. This can be defined globally using [theme customization](/customization/globals/#default-props).
+Puede cambiar el ícono de la gravedad por defecto mediante la propidad  `iconMapping`. Esta puede ser definida de forma global usando  [Tema personalizado](/customization/globals/#default-props).
 
-Setting the icon prop to false will remove the icon altogether.
+Al establecer la propiedad `icon` en false, el ícono no se mostrará.
 
 {{"demo": "pages/components/alert/IconAlerts.js"}}
 
 ## Variants
 
-Two additional variants are available – outlined, and filled:
+Están disponibles dos variantes adicionales - outlined y filled:
 
-### Outlined
+### Contorno
 
 {{"demo": "pages/components/alert/OutlinedAlerts.js"}}
 
-### Filled
+### Relleno
 
 {{"demo": "pages/components/alert/FilledAlerts.js"}}
 
-## Toast
+## Mensaje emergente
 
 You can use the Snackbar to [display a toast](/components/snackbars/#customized-snackbars) with the Alert.
 

@@ -19,7 +19,7 @@ If you want to learn more about color, you can check out [the color section](/cu
 
 {{"demo": "pages/customization/palette/Intentions.js", "bg": "inline", "hideToolbar": true}}
 
-### 个性化
+### Customization 个性化
 
 您可以通过在主题中包含 palette 对象来覆盖默认调色板值。
 
