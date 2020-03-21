@@ -122,7 +122,7 @@ If you wish to use `not-allowed`, you have two options:
 
   However:
 
-  - You should add `pointer-events: none;` back when you need to display [tooltips on disabled elements](/components/tooltips/#disabled-elements)
+  - You should add `pointer-events: none;` back when you need to display [tooltips on disabled elements](/components/tooltips/#disabled-elements).
   - The cursor won't change if you render something other than a button element, for instance, a link `<a>` element.
 
 2. **DOM change**. You can wrap the button:
