@@ -21,11 +21,11 @@ function runPrettier(options) {
   const ignoredFiles = fs
     .readFileSync('.eslintignore', 'utf-8')
     .split(/\r*\n/)
-    .filter(notEmpty => notEmpty);
+    .filter((notEmpty) => notEmpty);
 
   const files = glob
     .sync('**/*.{js,tsx,d.ts}', { ignore: ['**/node_modules/**', ...ignoredFiles] })
-    .filter(f => !changedFiles || changedFiles.has(f));
+    .filter((f) => !changedFiles || changedFiles.has(f));
 
   if (!files.length) {
     return;
@@ -33,7 +33,7 @@ function runPrettier(options) {
 
   const prettierConfigPath = path.join(__dirname, '../prettier.config.js');
 
-  files.forEach(file => {
+  files.forEach((file) => {
     const prettierOptions = prettier.resolveConfig.sync(file, {
       config: prettierConfigPath,
     });
@@ -91,7 +91,7 @@ yargs
   .command({
     command: '$0 [mode]',
     description: 'formats codebase',
-    builder: command => {
+    builder: (command) => {
       return command.positional('mode', {
         description: '"write" | "check-changed" | "write-changed"',
         type: 'string',

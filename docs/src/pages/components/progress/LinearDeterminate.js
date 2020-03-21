@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import LinearProgress from '@material-ui/core/LinearProgress';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
     '& > * + *': {
@@ -17,7 +17,7 @@ export default function LinearDeterminate() {
 
   React.useEffect(() => {
     function progress() {
-      setCompleted(oldCompleted => {
+      setCompleted((oldCompleted) => {
         if (oldCompleted === 100) {
           return 0;
         }

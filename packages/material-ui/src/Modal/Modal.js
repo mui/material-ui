@@ -26,7 +26,7 @@ function getHasTransition(props) {
 // Modals don't open on the server so this won't conflict with concurrent requests.
 const defaultManager = new ModalManager();
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     position: 'fixed',
@@ -116,7 +116,7 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
 
   const isTopModal = React.useCallback(() => manager.isTopModal(getModal()), [manager]);
 
-  const handlePortalRef = useEventCallback(node => {
+  const handlePortalRef = useEventCallback((node) => {
     mountNodeRef.current = node;
 
     if (!node) {
@@ -168,7 +168,7 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     }
   };
 
-  const handleBackdropClick = event => {
+  const handleBackdropClick = (event) => {
     if (event.target !== event.currentTarget) {
       return;
     }
@@ -182,7 +182,7 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     }
   };
 
-  const handleKeyDown = event => {
+  const handleKeyDown = (event) => {
     // The handler doesn't take event.defaultPrevented into account:
     //
     // event.preventDefault() is meant to stop default behaviours like

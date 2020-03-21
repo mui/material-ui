@@ -7,7 +7,7 @@ import useFormControl from '../FormControl/useFormControl';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
 import Input from '../Input';
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the select component `root` class. */
   root: {},
   /* Styles applied to the select component `select` class. */

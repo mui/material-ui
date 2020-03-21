@@ -7,7 +7,7 @@ import capitalize from '../utils/capitalize';
 const RADIUS_STANDARD = 10;
 const RADIUS_DOT = 4;
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     position: 'relative',

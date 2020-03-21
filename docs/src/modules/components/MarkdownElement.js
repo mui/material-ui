@@ -53,7 +53,7 @@ const externs = [
 renderer.link = (href, title, text) => {
   let more = '';
 
-  if (externs.some(domain => href.indexOf(domain) !== -1)) {
+  if (externs.some((domain) => href.indexOf(domain) !== -1)) {
     more = ' target="_blank" rel="noopener nofollow"';
   }
 
@@ -114,7 +114,7 @@ const markedOptions = {
   renderer,
 };
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     ...theme.typography.body1,
     color: theme.palette.text.primary,
@@ -298,7 +298,7 @@ const styles = theme => ({
 function MarkdownElement(props) {
   const { classes, className, text, ...other } = props;
 
-  const userLanguage = useSelector(state => state.options.userLanguage);
+  const userLanguage = useSelector((state) => state.options.userLanguage);
 
   // eslint-disable-next-line no-underscore-dangle
   global.__MARKED_USER_LANGUAGE__ = userLanguage;

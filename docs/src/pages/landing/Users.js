@@ -83,7 +83,7 @@ const users = [
 ];
 
 const useStyles = makeStyles(
-  theme => ({
+  (theme) => ({
     root: {
       padding: theme.spacing(2),
       minHeight: 160,
@@ -123,7 +123,7 @@ const useStyles = makeStyles(
 
 export default function Users() {
   const classes = useStyles();
-  const t = useSelector(state => state.options.t);
+  const t = useSelector((state) => state.options.t);
 
   return (
     <div className={classes.root}>
@@ -138,7 +138,7 @@ export default function Users() {
               {t('joinThese')}
             </Typography>
             <Grid container justify="center" className={classes.grid}>
-              {users.map(user => (
+              {users.map((user) => (
                 <img
                   key={user.caption}
                   src={`/static/images/users/${user.logo}`}

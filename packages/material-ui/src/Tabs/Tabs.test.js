@@ -20,8 +20,8 @@ AccessibleTabScrollButton.propTypes = {
 
 const findScrollButton = (container, direction) =>
   container.querySelector(`div[data-direction="${direction}"]`);
-const hasLeftScrollButton = container => findScrollButton(container, 'left') != null;
-const hasRightScrollButton = container => findScrollButton(container, 'right') != null;
+const hasLeftScrollButton = (container) => findScrollButton(container, 'left') != null;
+const hasRightScrollButton = (container) => findScrollButton(container, 'right') != null;
 
 describe('<Tabs />', () => {
   const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
@@ -77,7 +77,7 @@ describe('<Tabs />', () => {
       render(
         <Tabs
           value={0}
-          action={actions => {
+          action={(actions) => {
             tabsActions = actions;
           }}
         >

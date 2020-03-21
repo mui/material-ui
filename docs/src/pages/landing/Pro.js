@@ -5,7 +5,7 @@ import Link from 'docs/src/modules/components/Link';
 import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles(
-  theme => ({
+  (theme) => ({
     root: {
       padding: theme.spacing(1, 2, 1, 2),
       right: 0,
@@ -29,7 +29,7 @@ const useStyles = makeStyles(
 
 export default function Pro() {
   const classes = useStyles();
-  const t = useSelector(state => state.options.t);
+  const t = useSelector((state) => state.options.t);
 
   return (
     <Link

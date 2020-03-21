@@ -29,7 +29,7 @@ async function main(distTag) {
   }
 
   const { stdout: versions } = await exec(`npm dist-tag ls typescript ${distTag}`);
-  const tagMapping = versions.split('\n').find(mapping => {
+  const tagMapping = versions.split('\n').find((mapping) => {
     return mapping.startsWith(`${distTag}: `);
   });
   if (tagMapping === undefined) {
@@ -48,7 +48,7 @@ async function main(distTag) {
   fs.writeFileSync(packageJsonPath, `${JSON.stringify(packageJson, null, 2)}${os.EOL}`);
 }
 
-main(process.env.TYPESCRIPT_DIST_TAG).catch(error => {
+main(process.env.TYPESCRIPT_DIST_TAG).catch((error) => {
   console.error(error);
   process.exit(1);
 });

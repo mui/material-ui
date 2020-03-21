@@ -184,7 +184,7 @@ describe('<Tooltip />', () => {
     });
 
     it('should handle autoFocus + onFocus forwarding', () => {
-      const AutoFocus = props => (
+      const AutoFocus = (props) => (
         <div>
           {props.open ? (
             <Tooltip {...defaultProps} title="Title">
@@ -273,7 +273,7 @@ describe('<Tooltip />', () => {
       'onMouseLeave',
       'onFocus',
       'onBlur',
-    ].forEach(name => {
+    ].forEach((name) => {
       it(`should be transparent for the ${name} event`, () => {
         const handler = spy();
         const wrapper = mount(
@@ -425,7 +425,7 @@ describe('<Tooltip />', () => {
           }}
         />,
       );
-      expect(popperRef.current.modifiers.find(x => x.name === 'arrow').foo).to.equal('bar');
+      expect(popperRef.current.modifiers.find((x) => x.name === 'arrow').foo).to.equal('bar');
     });
   });
 

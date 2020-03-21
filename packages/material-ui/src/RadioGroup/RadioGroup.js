@@ -35,7 +35,7 @@ const RadioGroup = React.forwardRef(function RadioGroup(props, ref) {
 
   const handleRef = useForkRef(ref, rootRef);
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     setValue(event.target.value);
 
     if (onChange) {

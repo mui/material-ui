@@ -14,7 +14,7 @@ function PropsAsDataset(props) {
   React.useEffect(() => {
     const { current: element } = elementRef;
 
-    Object.keys(props).forEach(key => {
+    Object.keys(props).forEach((key) => {
       // converted to strings internally. writing it out for readability
       element.dataset[key] = String(props[key]);
     });
@@ -108,7 +108,7 @@ describe('<Step />', () => {
           <PropsAsDataset />
         </Step>,
       );
-      getAllByTestId('props').forEach(child => {
+      getAllByTestId('props').forEach((child) => {
         // HTMLElement.dataset is a DOMStringMap which fails deep.equal
         const datasetAsObject = { ...child.dataset };
         expect(datasetAsObject).to.deep.equal({

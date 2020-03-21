@@ -66,7 +66,7 @@ const quotes = [
 ];
 
 const useStyles = makeStyles(
-  theme => ({
+  (theme) => ({
     root: {
       minHeight: 160,
       paddingTop: theme.spacing(5),
@@ -93,7 +93,7 @@ const useStyles = makeStyles(
 );
 
 const useQuoteStyles = makeStyles(
-  theme => ({
+  (theme) => ({
     card: {
       display: 'flex',
       flexDirection: 'column',
@@ -187,7 +187,7 @@ for (let i = 0; i < 3; i += 1) {
 
 export default function Quotes() {
   const classes = useStyles();
-  const t = useSelector(state => state.options.t);
+  const t = useSelector((state) => state.options.t);
 
   return (
     <div className={classes.root}>
@@ -202,7 +202,7 @@ export default function Quotes() {
               {t('praiseDescr')}
             </Typography>
             <Grid container spacing={2} className={classes.grid}>
-              {selectedQuotes.map(quote => (
+              {selectedQuotes.map((quote) => (
                 <Grid item xs={12} md={4} key={quote.username}>
                   <Quote
                     avatar={quote.avatar}

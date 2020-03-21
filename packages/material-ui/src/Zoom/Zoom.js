@@ -56,7 +56,7 @@ const Zoom = React.forwardRef(function Zoom(props, ref) {
     }
   };
 
-  const handleExit = node => {
+  const handleExit = (node) => {
     const transitionProps = getTransitionProps(
       { style, timeout },
       {

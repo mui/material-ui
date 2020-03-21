@@ -5,7 +5,7 @@ import Slider from '@material-ui/core/Slider';
 import Typography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     width: 300 + theme.spacing(3) * 2,
   },
@@ -199,7 +199,7 @@ export default function CustomizedSlider() {
       <Typography gutterBottom>Airbnb</Typography>
       <AirbnbSlider
         ThumbComponent={AirbnbThumbComponent}
-        getAriaLabel={index => (index === 0 ? 'Minimum price' : 'Maximum price')}
+        getAriaLabel={(index) => (index === 0 ? 'Minimum price' : 'Maximum price')}
         defaultValue={[20, 40]}
       />
     </div>

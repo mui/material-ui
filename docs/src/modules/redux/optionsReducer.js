@@ -15,7 +15,7 @@ function getPath(obj, path) {
 
 const warnOnce = {};
 
-const getT = memoize(userLanguage => (key, options = {}) => {
+const getT = memoize((userLanguage) => (key, options = {}) => {
   const { ignoreWarning = false } = options;
   const wordings = translations[userLanguage];
 

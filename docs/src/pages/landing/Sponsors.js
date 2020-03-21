@@ -11,7 +11,7 @@ const req = require.context('./', false, /\.md$/);
 const backers = mapTranslations(req, 'md');
 
 const useStyles = makeStyles(
-  theme => ({
+  (theme) => ({
     '@global': {
       '.anchor-link-style': {
         position: 'absolute',
@@ -32,7 +32,7 @@ const useStyles = makeStyles(
 
 export default function Sponsors() {
   const classes = useStyles();
-  const userLanguage = useSelector(state => state.options.userLanguage);
+  const userLanguage = useSelector((state) => state.options.userLanguage);
 
   return (
     <div className={classes.root}>

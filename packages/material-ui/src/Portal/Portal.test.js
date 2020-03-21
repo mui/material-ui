@@ -197,7 +197,7 @@ describe('<Portal />', () => {
 
   it('should call ref after child effect', () => {
     const callOrder = [];
-    const handleRef = node => {
+    const handleRef = (node) => {
       if (node) {
         callOrder.push('ref');
       }

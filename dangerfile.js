@@ -43,7 +43,7 @@ async function cleanup() {
  * @param {number} gzipThreshold
  */
 function createComparisonFilter(parsedThreshold, gzipThreshold) {
-  return comparisonEntry => {
+  return (comparisonEntry) => {
     const [, snapshot] = comparisonEntry;
     return (
       Math.abs(snapshot.parsed.absoluteDiff) >= parsedThreshold ||
@@ -97,8 +97,8 @@ function formatDiff(absoluteChange, relativeChange) {
  * @returns {string}
  */
 function generateMDTable(headers, body) {
-  const headerRow = headers.map(header => header.label);
-  const alignmentRow = headers.map(header => {
+  const headerRow = headers.map((header) => header.label);
+  const alignmentRow = headers.map((header) => {
     if (header.align === 'right') {
       return ' ---:';
     }
@@ -108,7 +108,7 @@ function generateMDTable(headers, body) {
     return ' --- ';
   });
 
-  return [headerRow, alignmentRow, ...body].map(row => row.join(' | ')).join('\n');
+  return [headerRow, alignmentRow, ...body].map((row) => row.join(' | ')).join('\n');
 }
 
 function generateEmphasizedChange([bundle, { parsed, gzip }]) {
@@ -174,7 +174,7 @@ function sieveResults(results) {
   const main = [];
   const pages = [];
 
-  results.forEach(entry => {
+  results.forEach((entry) => {
     const [bundleId] = entry;
 
     if (bundleId.startsWith('docs:')) {
@@ -221,7 +221,7 @@ async function run() {
     }
 
     const mainDetailsTable = createComparisonTable(mainResults, {
-      computeBundleLabel: bundleId => {
+      computeBundleLabel: (bundleId) => {
         if (bundleId === 'packages/material-ui/build/umd/material-ui.production.min.js') {
           return '@material-ui/core[umd]';
         }
@@ -238,7 +238,7 @@ async function run() {
       },
     });
     const pageDetailsTable = createComparisonTable(pageResults, {
-      computeBundleLabel: bundleId => {
+      computeBundleLabel: (bundleId) => {
         // a page
         if (bundleId.startsWith('docs:/')) {
           const host = `https://deploy-preview-${danger.github.pr.number}--material-ui.netlify.com`;

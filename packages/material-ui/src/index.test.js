@@ -13,7 +13,7 @@ describe('material-ui', () => {
   });
 
   it('should not do undefined exports', () => {
-    Object.keys(MaterialUI).forEach(exportKey =>
+    Object.keys(MaterialUI).forEach((exportKey) =>
       assert.strictEqual(Boolean(MaterialUI[exportKey]), true),
     );
   });

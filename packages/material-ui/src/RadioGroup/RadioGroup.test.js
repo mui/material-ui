@@ -238,7 +238,7 @@ describe('<RadioGroup />', () => {
           const { values, ...other } = props;
           return (
             <RadioGroup {...other}>
-              {values.map(value => {
+              {values.map((value) => {
                 return <Radio key={value.id} value={value} />;
               })}
             </RadioGroup>

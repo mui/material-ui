@@ -43,7 +43,7 @@ describe('<Menu />', () => {
 
   describe('event callbacks', () => {
     describe('entering', () => {
-      it('should fire callbacks', done => {
+      it('should fire callbacks', (done) => {
         const handleEnter = spy();
         const handleEntering = spy();
 
@@ -69,7 +69,7 @@ describe('<Menu />', () => {
     });
 
     describe('exiting', () => {
-      it('should fire callbacks', done => {
+      it('should fire callbacks', (done) => {
         const handleExit = spy();
         const handleExiting = spy();
 

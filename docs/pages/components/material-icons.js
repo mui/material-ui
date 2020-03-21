@@ -3,7 +3,7 @@ import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import Markdown from 'docs/src/pages/components/material-icons/material-icons.md';
 import SearchIcons from 'docs/src/pages/components/material-icons/SearchIcons';
 
-const req = name => {
+const req = (name) => {
   const map = {
     'material-icons.md': Markdown,
     'SearchIcons.js': {

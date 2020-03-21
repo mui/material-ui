@@ -76,7 +76,7 @@ export default function TemporaryDrawer() {
 
   return (
     <div>
-      {(['left', 'right', 'top', 'bottom'] as Anchor[]).map(anchor => (
+      {(['left', 'right', 'top', 'bottom'] as Anchor[]).map((anchor) => (
         <React.Fragment key={anchor}>
           <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
           <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>

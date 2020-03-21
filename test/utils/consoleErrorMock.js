@@ -57,7 +57,7 @@ class ConsoleErrorMock {
      * @type {import('sinon').SinonSpy}
      */
     const consoleSpy = console.error;
-    return consoleSpy.args.map(loggerArgs => {
+    return consoleSpy.args.map((loggerArgs) => {
       return utilFormat(...loggerArgs);
     });
   };

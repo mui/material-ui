@@ -40,7 +40,7 @@ const Pagination = React.forwardRef(function Pagination(props, ref) {
     hidePrevButton,
     onChange,
     page,
-    renderItem = item => <PaginationItem {...item} />,
+    renderItem = (item) => <PaginationItem {...item} />,
     shape = 'round',
     showFirstButton,
     showLastButton,

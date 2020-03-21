@@ -134,7 +134,7 @@ class MuiVirtualizedTable extends React.PureComponent<MuiVirtualizedTableProps> 
               return (
                 <Column
                   key={dataKey}
-                  headerRenderer={headerProps =>
+                  headerRenderer={(headerProps) =>
                     this.headerRenderer({
                       ...headerProps,
                       columnIndex: index,

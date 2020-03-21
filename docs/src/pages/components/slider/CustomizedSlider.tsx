@@ -200,7 +200,7 @@ export default function CustomizedSlider() {
       <Typography gutterBottom>Airbnb</Typography>
       <AirbnbSlider
         ThumbComponent={AirbnbThumbComponent}
-        getAriaLabel={index => (index === 0 ? 'Minimum price' : 'Maximum price')}
+        getAriaLabel={(index) => (index === 0 ? 'Minimum price' : 'Maximum price')}
         defaultValue={[20, 40]}
       />
     </div>

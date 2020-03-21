@@ -6,7 +6,7 @@ import useFormControl from '../FormControl/useFormControl';
 import capitalize from '../utils/capitalize';
 import withStyles from '../styles/withStyles';
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     color: theme.palette.text.secondary,

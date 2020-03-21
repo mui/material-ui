@@ -6,7 +6,7 @@ import synonyms from 'docs/src/pages/components/material-icons/synonyms';
 import myDestRewriter from '../../packages/material-ui-icons/renameFilters/material-design-icons';
 
 function not(a, b) {
-  return a.filter(value => b.indexOf(value) === -1);
+  return a.filter((value) => b.indexOf(value) === -1);
 }
 
 function union(a, b) {
@@ -35,7 +35,7 @@ async function run() {
     );
 
     let newSynonyms = 'const synonyms = {\n';
-    iconList.forEach(icon => {
+    iconList.forEach((icon) => {
       const synonymsIconStrings = synonyms[icon] ? synonyms[icon].split(' ') : [];
 
       // Some MD tags have multiple words in a string, so we separate those out to dedupe them
@@ -46,7 +46,7 @@ async function run() {
       let mergedStrings = union(synonymsIconStrings, materialIconStrings);
       mergedStrings = mergedStrings
         // remove strings that are substrings of others
-        .filter(tag => !mergedStrings.some(one => one.includes(tag) && one !== tag))
+        .filter((tag) => !mergedStrings.some((one) => one.includes(tag) && one !== tag))
         .sort()
         .join(' ');
 

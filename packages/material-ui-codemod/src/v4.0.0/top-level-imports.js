@@ -24,7 +24,7 @@ export default function transformer(fileInfo, api, options) {
 
   const resultSpecifiers = [];
 
-  root.find(j.ImportDeclaration).forEach(path => {
+  root.find(j.ImportDeclaration).forEach((path) => {
     if (!path.node.specifiers.length) return;
 
     if (path.value.importKind && path.value.importKind !== 'value') return;

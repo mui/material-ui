@@ -31,7 +31,7 @@ const ClickAwayListener = React.forwardRef(function ClickAwayListener(props, ref
   const handleNodeRef = useForkRef(nodeRef, ref);
   // can be removed once we drop support for non ref forwarding class components
   const handleOwnRef = React.useCallback(
-    instance => {
+    (instance) => {
       // #StrictMode ready
       setRef(handleNodeRef, ReactDOM.findDOMNode(instance));
     },
@@ -39,7 +39,7 @@ const ClickAwayListener = React.forwardRef(function ClickAwayListener(props, ref
   );
   const handleRef = useForkRef(children.ref, handleOwnRef);
 
-  const handleClickAway = useEventCallback(event => {
+  const handleClickAway = useEventCallback((event) => {
     // The handler doesn't take event.defaultPrevented into account:
     //
     // event.preventDefault() is meant to stop default behaviours like

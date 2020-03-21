@@ -8,16 +8,16 @@ import withWidth, { isWidthDown, isWidthUp } from './withWidth';
 import createMuiTheme from '../styles/createMuiTheme';
 
 function createMatchMedia(width, ref) {
-  return query => {
+  return (query) => {
     const listeners = [];
     const instance = {
       matches: mediaQuery.match(query, {
         width,
       }),
-      addListener: listener => {
+      addListener: (listener) => {
         listeners.push(listener);
       },
-      removeListener: listener => {
+      removeListener: (listener) => {
         const index = listeners.indexOf(listener);
         if (index > -1) {
           listeners.splice(index, 1);

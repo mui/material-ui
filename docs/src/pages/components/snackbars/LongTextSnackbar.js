@@ -9,7 +9,7 @@ const action = (
   </Button>
 );
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 600,
     '& > * + *': {

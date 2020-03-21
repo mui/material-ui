@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import Collapse from '../Collapse';
 import withStyles from '../styles/withStyles';
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     marginTop: 8,

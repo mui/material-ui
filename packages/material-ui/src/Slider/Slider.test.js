@@ -12,7 +12,7 @@ import Slider from './Slider';
 function createTouches(touches) {
   return {
     changedTouches: touches.map(
-      touch =>
+      (touch) =>
         new Touch({
           target: document.body,
           ...touch,
@@ -400,7 +400,7 @@ describe('<Slider />', () => {
 
   describe('markActive state', () => {
     function getActives(container) {
-      return Array.from(container.querySelectorAll(`.${classes.markLabel}`)).map(node =>
+      return Array.from(container.querySelectorAll(`.${classes.markLabel}`)).map((node) =>
         node.classList.contains(classes.markLabelActive),
       );
     }
@@ -530,7 +530,7 @@ describe('<Slider />', () => {
   });
 
   it('should support getAriaValueText', () => {
-    const getAriaValueText = value => `${value}°C`;
+    const getAriaValueText = (value) => `${value}°C`;
     const { getAllByRole } = render(
       <Slider value={[20, 50]} getAriaValueText={getAriaValueText} />,
     );
@@ -541,7 +541,7 @@ describe('<Slider />', () => {
   });
 
   it('should support getAriaLabel', () => {
-    const getAriaLabel = index => `Label ${index}`;
+    const getAriaLabel = (index) => `Label ${index}`;
     const { getAllByRole } = render(<Slider value={[20, 50]} getAriaLabel={getAriaLabel} />);
     const sliders = getAllByRole('slider');
 
@@ -562,7 +562,7 @@ describe('<Slider />', () => {
           value={10}
           ValueLabelComponent={ValueLabelComponent}
           valueLabelDisplay="on"
-          valueLabelFormat={n => n.toString(2)}
+          valueLabelFormat={(n) => n.toString(2)}
         />,
       );
 

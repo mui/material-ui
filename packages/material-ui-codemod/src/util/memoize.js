@@ -1,4 +1,4 @@
-const memoize = (func, resolver = a => a) => {
+const memoize = (func, resolver = (a) => a) => {
   const cache = new Map();
   return (...args) => {
     const key = resolver(...args);

@@ -21,11 +21,11 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
 
   const theme = useTheme();
 
-  const handleBackButtonClick = event => {
+  const handleBackButtonClick = (event) => {
     onChangePage(event, page - 1);
   };
 
-  const handleNextButtonClick = event => {
+  const handleNextButtonClick = (event) => {
     onChangePage(event, page + 1);
   };
 

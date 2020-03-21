@@ -51,7 +51,7 @@ PersistScroll.propTypes = {
   children: PropTypes.node,
 };
 
-const styles = theme => ({
+const styles = (theme) => ({
   paper: {
     width: 240,
     backgroundColor: theme.palette.background.level1,
@@ -140,7 +140,7 @@ const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 function AppDrawer(props) {
   const { classes, className, disablePermanent, mobileOpen, onClose, onOpen } = props;
   const { activePage, pages } = React.useContext(PageContext);
-  const t = useSelector(state => state.options.t);
+  const t = useSelector((state) => state.options.t);
 
   const drawer = (
     <PersistScroll>

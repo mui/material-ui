@@ -7,7 +7,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import InfoIcon from '@material-ui/icons/Info';
 import IconButton from '@material-ui/core/IconButton';
 
-const styles = theme => ({
+const styles = (theme) => ({
   content: {
     backgroundColor: theme.palette.secondary.light,
     color: theme.palette.text.primary,

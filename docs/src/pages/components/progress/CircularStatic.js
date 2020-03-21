@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     '& > * + *': {
@@ -17,7 +17,7 @@ export default function CircularStatic() {
 
   React.useEffect(() => {
     function progress() {
-      setCompleted(prevCompleted => (prevCompleted >= 100 ? 0 : prevCompleted + 10));
+      setCompleted((prevCompleted) => (prevCompleted >= 100 ? 0 : prevCompleted + 10));
     }
 
     const timer = setInterval(progress, 1000);

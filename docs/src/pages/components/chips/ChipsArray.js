@@ -4,7 +4,7 @@ import Chip from '@material-ui/core/Chip';
 import Paper from '@material-ui/core/Paper';
 import TagFacesIcon from '@material-ui/icons/TagFaces';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     justifyContent: 'center',
@@ -26,13 +26,13 @@ export default function ChipsArray() {
     { key: 4, label: 'Vue.js' },
   ]);
 
-  const handleDelete = chipToDelete => () => {
-    setChipData(chips => chips.filter(chip => chip.key !== chipToDelete.key));
+  const handleDelete = (chipToDelete) => () => {
+    setChipData((chips) => chips.filter((chip) => chip.key !== chipToDelete.key));
   };
 
   return (
     <Paper className={classes.root}>
-      {chipData.map(data => {
+      {chipData.map((data) => {
         let icon;
 
         if (data.label === 'React') {

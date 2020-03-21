@@ -21,7 +21,7 @@ const UsageLink = React.forwardRef((buttonProps, ref) => (
 ));
 
 const useStyles = makeStyles(
-  theme => ({
+  (theme) => ({
     root: {
       marginTop: theme.spacing(5),
       '& pre': {
@@ -84,7 +84,7 @@ const useStyles = makeStyles(
 
 function HomeSteps() {
   const classes = useStyles();
-  const t = useSelector(state => state.options.t);
+  const t = useSelector((state) => state.options.t);
 
   return (
     <Container disableGutters maxwidth="lg" className={classes.root}>

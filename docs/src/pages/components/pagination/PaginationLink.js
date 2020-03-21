@@ -16,7 +16,7 @@ export default function PaginationLink() {
             <Pagination
               page={page}
               count={10}
-              renderItem={item => (
+              renderItem={(item) => (
                 <PaginationItem
                   component={Link}
                   to={`/inbox${item.page === 1 ? '' : `?page=${item.page}`}`}

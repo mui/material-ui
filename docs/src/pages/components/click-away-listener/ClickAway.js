@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   wrapper: {
     position: 'relative',
   },
@@ -22,7 +22,7 @@ export default function ClickAway() {
   const [open, setOpen] = React.useState(false);
 
   const handleClick = () => {
-    setOpen(prev => !prev);
+    setOpen((prev) => !prev);
   };
 
   const handleClickAway = () => {

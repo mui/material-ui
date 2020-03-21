@@ -3,7 +3,7 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import optionsReducer from 'docs/src/modules/redux/optionsReducer';
 
 // Get the Redux DevTools extension and fallback to a no-op function
-let devtools = x => x;
+let devtools = (x) => x;
 
 if (
   process.env.NODE_ENV !== 'production' &&

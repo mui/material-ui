@@ -1,4 +1,4 @@
-export const reflow = node => node.scrollTop;
+export const reflow = (node) => node.scrollTop;
 
 export function getTransitionProps(props, options) {
   const { timeout, style = {} } = props;

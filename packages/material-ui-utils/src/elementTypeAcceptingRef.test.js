@@ -109,7 +109,9 @@ describe('elementTypeAcceptingRef', () => {
     });
 
     it('accepts lazy', () => {
-      const Component = React.lazy(() => Promise.resolve({ default: props => <div {...props} /> }));
+      const Component = React.lazy(() =>
+        Promise.resolve({ default: (props) => <div {...props} /> }),
+      );
 
       // should actually fail when mounting since the ref is forwarded to a function component
       // but since this happens in a promise our consoleErrorMock doesn't catch it properly

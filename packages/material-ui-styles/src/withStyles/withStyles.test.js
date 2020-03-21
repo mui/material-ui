@@ -99,7 +99,7 @@ describe('withStyles', () => {
   });
 
   it('should forward the props', () => {
-    const Test = props => <div>{props.foo}</div>;
+    const Test = (props) => <div>{props.foo}</div>;
     Test.propTypes = {
       foo: PropTypes.any,
     };
@@ -109,7 +109,7 @@ describe('withStyles', () => {
   });
 
   it('should work with no theme', () => {
-    const Test = props => <div>{props.foo}</div>;
+    const Test = (props) => <div>{props.foo}</div>;
     Test.propTypes = {
       foo: PropTypes.any,
     };
@@ -219,7 +219,7 @@ describe('withStyles', () => {
     });
 
     it('should work when depending on a theme', () => {
-      const styles = theme => ({ root: { padding: theme.spacing(1) } });
+      const styles = (theme) => ({ root: { padding: theme.spacing(1) } });
       const StyledComponent = withStyles(styles, { name: 'MuiTextField' })(Empty);
 
       const wrapper = mount(
@@ -318,7 +318,7 @@ describe('withStyles', () => {
   describe('option: withTheme', () => {
     it('should inject the theme', () => {
       const styles = { root: { padding: 1 } };
-      const StyledComponent = withStyles(styles, { withTheme: true })(props => (
+      const StyledComponent = withStyles(styles, { withTheme: true })((props) => (
         <option theme={props.theme}>themed</option>
       ));
       const theme = {};

@@ -14,7 +14,7 @@ describe('listChangedFiles', () => {
     try {
       await writeFileAsync(testFile, 'console.log("hello");');
       const changesAfterAdd = await listChangedFiles();
-      const addedFiles = Array.from(changesAfterAdd).filter(file => !changesBefore.has(file));
+      const addedFiles = Array.from(changesAfterAdd).filter((file) => !changesBefore.has(file));
       assert.deepEqual(addedFiles, [testFile]);
     } finally {
       await rimrafAsync(testFile);

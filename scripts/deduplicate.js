@@ -14,7 +14,7 @@ if (duplicates.length === 0) {
 }
 
 console.log(
-  `${duplicates.length} duplicated package(s) found\n${duplicates.map(x => `  ${x}`).join('\n')}`,
+  `${duplicates.length} duplicated package(s) found\n${duplicates.map((x) => `  ${x}`).join('\n')}`,
 );
 
 if (process.env.CI) {
@@ -36,6 +36,6 @@ const yarn = spawn('yarn', {
   cwd: path.resolve(__dirname, '..'),
 });
 
-yarn.on('close', code => {
+yarn.on('close', (code) => {
   process.exit(code);
 });

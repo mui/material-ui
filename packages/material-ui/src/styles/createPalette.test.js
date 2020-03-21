@@ -144,7 +144,7 @@ describe('createPalette()', () => {
         [null, 'missing background argument in getContrastText(null)'],
         ['', 'missing background argument in getContrastText()'],
         [0, 'missing background argument in getContrastText(0)'],
-      ].forEach(testEntry => {
+      ].forEach((testEntry) => {
         const [argument, errorMessage] = testEntry;
 
         expect(() => getContrastText(argument), errorMessage).to.throw();

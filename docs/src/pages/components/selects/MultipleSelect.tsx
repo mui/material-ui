@@ -96,7 +96,7 @@ export default function MultipleSelect() {
           input={<Input />}
           MenuProps={MenuProps}
         >
-          {names.map(name => (
+          {names.map((name) => (
             <MenuItem key={name} value={name} style={getStyles(name, personName, theme)}>
               {name}
             </MenuItem>
@@ -112,10 +112,10 @@ export default function MultipleSelect() {
           value={personName}
           onChange={handleChange}
           input={<Input />}
-          renderValue={selected => (selected as string[]).join(', ')}
+          renderValue={(selected) => (selected as string[]).join(', ')}
           MenuProps={MenuProps}
         >
-          {names.map(name => (
+          {names.map((name) => (
             <MenuItem key={name} value={name}>
               <Checkbox checked={personName.indexOf(name) > -1} />
               <ListItemText primary={name} />
@@ -132,16 +132,16 @@ export default function MultipleSelect() {
           value={personName}
           onChange={handleChange}
           input={<Input id="select-multiple-chip" />}
-          renderValue={selected => (
+          renderValue={(selected) => (
             <div className={classes.chips}>
-              {(selected as string[]).map(value => (
+              {(selected as string[]).map((value) => (
                 <Chip key={value} label={value} className={classes.chip} />
               ))}
             </div>
           )}
           MenuProps={MenuProps}
         >
-          {names.map(name => (
+          {names.map((name) => (
             <MenuItem key={name} value={name} style={getStyles(name, personName, theme)}>
               {name}
             </MenuItem>
@@ -155,7 +155,7 @@ export default function MultipleSelect() {
           value={personName}
           onChange={handleChange}
           input={<Input />}
-          renderValue={selected => {
+          renderValue={(selected) => {
             if ((selected as string[]).length === 0) {
               return <em>Placeholder</em>;
             }
@@ -167,7 +167,7 @@ export default function MultipleSelect() {
           <MenuItem disabled value="">
             <em>Placeholder</em>
           </MenuItem>
-          {names.map(name => (
+          {names.map((name) => (
             <MenuItem key={name} value={name} style={getStyles(name, personName, theme)}>
               {name}
             </MenuItem>
@@ -187,7 +187,7 @@ export default function MultipleSelect() {
             id: 'select-multiple-native',
           }}
         >
-          {names.map(name => (
+          {names.map((name) => (
             <option key={name} value={name}>
               {name}
             </option>

@@ -13,10 +13,10 @@ export default function Filter() {
     <Autocomplete
       id="filter-demo"
       options={top100Films}
-      getOptionLabel={option => option.title}
+      getOptionLabel={(option) => option.title}
       filterOptions={filterOptions}
       style={{ width: 300 }}
-      renderInput={params => <TextField {...params} label="Custom filter" variant="outlined" />}
+      renderInput={(params) => <TextField {...params} label="Custom filter" variant="outlined" />}
     />
   );
 }

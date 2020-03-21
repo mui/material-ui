@@ -11,7 +11,7 @@ export const html = {
   boxSizing: 'border-box',
 };
 
-export const body = theme => ({
+export const body = (theme) => ({
   color: theme.palette.text.primary,
   ...theme.typography.body2,
   backgroundColor: theme.palette.background.default,
@@ -21,7 +21,7 @@ export const body = theme => ({
   },
 });
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   '@global': {
     html,
     '*, *::before, *::after': {
