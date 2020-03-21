@@ -465,9 +465,7 @@ export default function useAutocomplete(props) {
           console.error(
             [
               `Material-UI: the \`getOptionSelected\` method of ${componentName} do not handle the arguments correctly.`,
-              `The component expects a single value to match a given option but found ${
-                matches.length
-              } matches.`,
+              `The component expects a single value to match a given option but found ${matches.length} matches.`,
             ].join('\n'),
           );
         }

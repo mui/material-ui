@@ -116,11 +116,11 @@ declare const themed: boolean;
   );
   <Foo />;
 
-  const Bar = withStyles(themedStyles, { withTheme: true })(
-    ({ theme }: WithStyles<typeof themedStyles, true>) => (
-      <div style={{ margin: theme.spacing(1) }} />
-    ),
-  );
+  const Bar = withStyles(themedStyles, {
+    withTheme: true,
+  })(({ theme }: WithStyles<typeof themedStyles, true>) => (
+    <div style={{ margin: theme.spacing(1) }} />
+  ));
   <Bar />;
 }
 
@@ -316,9 +316,8 @@ withStyles(theme =>
   // explicit not but with "Property 'children' is missing in type 'ValidationMap<Props>'".
   // which is not helpful
   const StatelessComponent: React.FunctionComponent<Props> = props => null;
-  const StatelessComponentWithStyles: React.FunctionComponent<
-    Props & WithStyles<typeof styles>
-  > = props => null;
+  const StatelessComponentWithStyles: React.FunctionComponent<Props &
+    WithStyles<typeof styles>> = props => null;
   withStyles(styles)(StatelessComponent); // $ExpectError
   withStyles(styles)(StatelessComponentWithStyles); // $ExpectError
 }

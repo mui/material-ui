@@ -34,10 +34,7 @@ function create(initialState) {
       options: optionsReducer,
     }),
     initialState, // Hydrate the store with server-side data
-    compose(
-      applyMiddleware(...middleware),
-      devtools,
-    ),
+    compose(applyMiddleware(...middleware), devtools),
   );
 }
 

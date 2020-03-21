@@ -136,7 +136,10 @@ describe('<TextField />', () => {
 
   describe('prop: select', () => {
     it('can render a <select /> when `native`', () => {
-      const currencies = [{ value: 'USD', label: '$' }, { value: 'BTC', label: '฿' }];
+      const currencies = [
+        { value: 'USD', label: '$' },
+        { value: 'BTC', label: '฿' },
+      ];
 
       const { container } = render(
         <TextField select SelectProps={{ native: true }}>

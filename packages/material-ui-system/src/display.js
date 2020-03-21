@@ -31,11 +31,4 @@ export const whiteSpace = style({
   prop: 'whiteSpace',
 });
 
-export default compose(
-  displayPrint,
-  displayRaw,
-  overflow,
-  textOverflow,
-  visibility,
-  whiteSpace,
-);
+export default compose(displayPrint, displayRaw, overflow, textOverflow, visibility, whiteSpace);

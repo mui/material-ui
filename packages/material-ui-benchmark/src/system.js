@@ -20,11 +20,7 @@ const suite = new Benchmark.Suite('system', {
 });
 Benchmark.options.minSamples = 100;
 
-const materialSystem = compose(
-  palette,
-  spacing,
-  typography,
-);
+const materialSystem = compose(palette, spacing, typography);
 const styledSystem = compose2(color, space, fontFamily, fontSize);
 
 const BoxStyles = styled('div')(styleFunction);

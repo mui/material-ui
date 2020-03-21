@@ -38,7 +38,7 @@ interface PlaceType {
       {
         offset: number;
         length: number;
-      }
+      },
     ];
   };
 }

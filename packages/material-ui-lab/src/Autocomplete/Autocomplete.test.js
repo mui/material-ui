@@ -806,7 +806,10 @@ describe('<Autocomplete />', () => {
     });
 
     it('warn if getOptionSelected match multiple values for a given option', () => {
-      const value = [{ id: '10', text: 'One' }, { id: '20', text: 'Two' }];
+      const value = [
+        { id: '10', text: 'One' },
+        { id: '20', text: 'Two' },
+      ];
       const options = [
         { id: '10', text: 'One' },
         { id: '20', text: 'Two' },

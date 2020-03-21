@@ -30,9 +30,7 @@ function downloadIcon(icon) {
     Object.keys(themeMap).map(async theme => {
       const formattedTheme = themeMap[theme].split('_').join('');
       const response = await fetch(
-        `https://fonts.gstatic.com/s/i/materialicons${formattedTheme}/${icon.name}/v${
-          icon.version
-        }/24px.svg`,
+        `https://fonts.gstatic.com/s/i/materialicons${formattedTheme}/${icon.name}/v${icon.version}/24px.svg`,
       );
       if (response.status !== 200) {
         throw new Error(`status ${response.status}`);

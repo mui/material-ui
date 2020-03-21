@@ -87,56 +87,57 @@ function Showcase(props) {
           <MenuItem value="stars">{t('stars')}</MenuItem>
         </Select>
       </FormControl>
-      {stableSort(appList.filter(item => item[sortFunctionName] !== undefined), sortFunction).map(
-        app => (
-          <div key={app.title}>
-            <Typography component="h2" variant="h4" gutterBottom className={classes.title}>
-              <span>{app.title}</span>
-              {app.source ? (
-                <IconButton
-                  href={app.source}
-                  target="_blank"
-                  aria-label={`${app.title} ${t('sourceCode')}`}
-                >
-                  <GitHubIcon />
-                </IconButton>
-              ) : null}
-            </Typography>
-            {app.image ? (
-              <Card className={classes.card}>
-                <CardMedia
-                  component="a"
-                  href={app.link}
-                  rel="noopener"
-                  target="_blank"
-                  className={classes.cardMedia}
-                  image={`/static/images/showcase/${app.image}`}
-                  title={app.title}
-                />
-              </Card>
-            ) : (
-              <Link
-                variant="body2"
+      {stableSort(
+        appList.filter(item => item[sortFunctionName] !== undefined),
+        sortFunction,
+      ).map(app => (
+        <div key={app.title}>
+          <Typography component="h2" variant="h4" gutterBottom className={classes.title}>
+            <span>{app.title}</span>
+            {app.source ? (
+              <IconButton
+                href={app.source}
                 target="_blank"
-                rel="noopener nofollow"
-                href={app.link}
-                gutterBottom
+                aria-label={`${app.title} ${t('sourceCode')}`}
               >
-                {t('visit')}
-              </Link>
-            )}
-            <Typography gutterBottom>{app.description}</Typography>
-            <Typography
-              variant="caption"
-              display="block"
-              color="textSecondary"
-              className={classes.description}
+                <GitHubIcon />
+              </IconButton>
+            ) : null}
+          </Typography>
+          {app.image ? (
+            <Card className={classes.card}>
+              <CardMedia
+                component="a"
+                href={app.link}
+                rel="noopener"
+                target="_blank"
+                className={classes.cardMedia}
+                image={`/static/images/showcase/${app.image}`}
+                title={app.title}
+              />
+            </Card>
+          ) : (
+            <Link
+              variant="body2"
+              target="_blank"
+              rel="noopener nofollow"
+              href={app.link}
+              gutterBottom
             >
-              {app.dateAdded}
-            </Typography>
-          </div>
-        ),
-      )}
+              {t('visit')}
+            </Link>
+          )}
+          <Typography gutterBottom>{app.description}</Typography>
+          <Typography
+            variant="caption"
+            display="block"
+            color="textSecondary"
+            className={classes.description}
+          >
+            {app.dateAdded}
+          </Typography>
+        </div>
+      ))}
     </div>
   );
 }

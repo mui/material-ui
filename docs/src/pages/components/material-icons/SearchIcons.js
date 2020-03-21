@@ -196,9 +196,7 @@ let DialogDetails = props => {
           <MarkdownElement
             className={classes.markdown}
             onClick={handleClick}
-            text={`\`\`\`js\nimport ${selectedIcon.key}Icon from '@material-ui/icons/${
-              selectedIcon.key
-            }';\n\`\`\``}
+            text={`\`\`\`js\nimport ${selectedIcon.key}Icon from '@material-ui/icons/${selectedIcon.key}';\n\`\`\``}
           />
           <Link
             className={classes.import}

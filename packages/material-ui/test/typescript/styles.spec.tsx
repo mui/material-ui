@@ -203,7 +203,10 @@ const AllTheComposition = withTheme(StyledComponent);
 declare const themed: boolean;
 {
   // Test that withTheme: true guarantees the presence of the theme
-  const Foo = withStyles({}, { withTheme: true })(
+  const Foo = withStyles(
+    {},
+    { withTheme: true },
+  )(
     class extends React.Component<WithTheme> {
       hasRef() {
         // innerRef does not exists, originally caused https://github.com/mui-org/material-ui/issues/14095
@@ -217,9 +220,10 @@ declare const themed: boolean;
   );
   <Foo />;
 
-  const Bar = withStyles({}, { withTheme: true })(({ theme }: WithStyles<string, true>) => (
-    <div style={{ margin: theme.spacing(1) }} />
-  ));
+  const Bar = withStyles(
+    {},
+    { withTheme: true },
+  )(({ theme }: WithStyles<string, true>) => <div style={{ margin: theme.spacing(1) }} />);
   <Bar />;
 }
 
@@ -421,9 +425,8 @@ withStyles(theme =>
   // explicit not but with "Property 'children' is missing in type 'ValidationMap<Props>'".
   // which is not helpful
   const StatelessComponent: React.FunctionComponent<Props> = props => null;
-  const StatelessComponentWithStyles: React.FunctionComponent<
-    Props & WithStyles<typeof styles>
-  > = props => null;
+  const StatelessComponentWithStyles: React.FunctionComponent<Props &
+    WithStyles<typeof styles>> = props => null;
   withStyles(styles)(StatelessComponent); // $ExpectError
   withStyles(styles)(StatelessComponentWithStyles); // $ExpectError
 }
