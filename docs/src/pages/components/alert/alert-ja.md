@@ -1,6 +1,6 @@
 ---
 title: Alert React component
-components: Alert
+components: Alert, AlertTitle
 ---
 
 # Alert
@@ -49,7 +49,7 @@ Setting the icon prop to false will remove the icon altogether.
 
 Two additional variants are available – outlined, and filled:
 
-### Outlined
+### アウトライン (Outlined)
 
 {{"demo": "pages/components/alert/OutlinedAlerts.js"}}
 

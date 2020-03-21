@@ -11,6 +11,17 @@ export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
   classKey: ListClassKey;
 }
 
+/**
+ *
+ * Demos:
+ *
+ * - [Lists](https://material-ui.com/components/lists/)
+ * - [Transfer List](https://material-ui.com/components/transfer-list/)
+ *
+ * API:
+ *
+ * - [List API](https://material-ui.com/api/list/)
+ */
 declare const List: OverridableComponent<ListTypeMap>;
 
 export type ListClassKey = 'root' | 'padding' | 'dense' | 'subheader';

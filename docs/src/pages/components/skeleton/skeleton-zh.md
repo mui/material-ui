@@ -3,7 +3,7 @@ title: Skeleton React component
 components: Skeleton
 ---
 
-# 骨架屏
+# Skeleton 骨架屏
 
 <p class="description">骨架屏可以在获取到数据之前显示一个预览占位符，从而减轻由加载时间造成的困扰。</p>
 
@@ -31,10 +31,10 @@ By default, the skeleton pulsate, but you can change the animation for a wave or
 
 {{"demo": "pages/components/skeleton/Animations.js"}}
 
-## YouTube example
+## YouTube 示例
 
 {{"demo": "pages/components/skeleton/YouTube.js", "defaultCodeOpen": false}}
 
-## Facebook example
+## Facebook 示例
 
 {{"demo": "pages/components/skeleton/Facebook.js", "defaultCodeOpen": false, "bg": true}}

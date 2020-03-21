@@ -91,19 +91,17 @@ function AnchorPlayground(props) {
     anchorReference: 'anchorEl',
   });
 
-  const handleChange = key => event => {
-    const value = event.target.value;
+  const handleChange = event => {
     setState(state => ({
       ...state,
-      [key]: value,
+      [event.target.name]: event.target.value,
     }));
   };
 
   const handleNumberInputChange = key => event => {
-    const value = event.target.value;
     setState(state => ({
       ...state,
-      [key]: parseInt(value, 10),
+      [key]: parseInt(event.target.value, 10),
     }));
   };
 
@@ -192,7 +190,7 @@ function AnchorPlayground(props) {
               aria-label="anchor reference"
               name="anchorReference"
               value={anchorReference}
-              onChange={handleChange('anchorReference')}
+              onChange={handleChange}
             >
               <FormControlLabel value="anchorEl" control={<Radio />} label="anchorEl" />
               <FormControlLabel value="anchorPosition" control={<Radio />} label="anchorPosition" />
@@ -227,7 +225,7 @@ function AnchorPlayground(props) {
               aria-label="anchor origin vertical"
               name="anchorOriginVertical"
               value={anchorOriginVertical}
-              onChange={handleChange('anchorOriginVertical')}
+              onChange={handleChange}
             >
               <FormControlLabel
                 value="top"
@@ -254,7 +252,7 @@ function AnchorPlayground(props) {
               aria-label="transform origin vertical"
               name="transformOriginVertical"
               value={transformOriginVertical}
-              onChange={handleChange('transformOriginVertical')}
+              onChange={handleChange}
             >
               <FormControlLabel value="top" control={<Radio color="primary" />} label="Top" />
               <FormControlLabel value="center" control={<Radio color="primary" />} label="Center" />
@@ -270,7 +268,7 @@ function AnchorPlayground(props) {
               aria-label="anchor origin horizontal"
               name="anchorOriginHorizontal"
               value={anchorOriginHorizontal}
-              onChange={handleChange('anchorOriginHorizontal')}
+              onChange={handleChange}
             >
               <FormControlLabel
                 value="left"
@@ -298,7 +296,7 @@ function AnchorPlayground(props) {
               aria-label="transform origin horizontal"
               name="transformOriginHorizontal"
               value={transformOriginHorizontal}
-              onChange={handleChange('transformOriginHorizontal')}
+              onChange={handleChange}
             >
               <FormControlLabel value="left" control={<Radio color="primary" />} label="Left" />
               <FormControlLabel value="center" control={<Radio color="primary" />} label="Center" />

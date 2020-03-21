@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
+import Button from '@material-ui/core/Button';
 
 export default class DemoErrorBoundary extends React.Component {
   state = {
@@ -13,7 +14,7 @@ export default class DemoErrorBoundary extends React.Component {
   }
 
   render() {
-    const { children } = this.props;
+    const { children, onResetDemoClick, t } = this.props;
     const { error } = this.state;
 
     if (error) {
@@ -25,12 +26,18 @@ export default class DemoErrorBoundary extends React.Component {
           </Typography>
           <Typography>
             We would appreciate it if you report this error directly to our{' '}
-            <Link href="https://github.com/mui-org/material-ui/issues/new/choose" target="_blank">
+            <Link
+              href="https://github.com/mui-org/material-ui/issues/new?template=1.bug.md"
+              target="_blank"
+            >
               issue tracker
             </Link>
             .
           </Typography>
           <pre>{error.toString()}</pre>
+          <Button color="secondary" onClick={onResetDemoClick} variant="text">
+            {t('resetDemo')}
+          </Button>
         </div>
       );
       /* eslint-enable material-ui/no-hardcoded-labels */
@@ -42,4 +49,9 @@ export default class DemoErrorBoundary extends React.Component {
 
 DemoErrorBoundary.propTypes = {
   children: PropTypes.node,
+  onResetDemoClick: PropTypes.func.isRequired,
+  /**
+   * translate function from redux store
+   */
+  t: PropTypes.func.isRequired,
 };

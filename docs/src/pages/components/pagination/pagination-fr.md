@@ -5,49 +5,47 @@ components: Pagination, PaginationItem
 
 # Pagination
 
-<p class="description">The Pagination component enables the user to select a specific page from a range of pages.</p>
+<p class="description">Le composant Pagination permet à l'utilisateur de sélectionner une page spécifique à partir d'une plage de pages.</p>
 
-## Basic pagination
+## Pagination de base
 
 {{"demo": "pages/components/pagination/BasicPagination.js"}}
 
-## Outlined pagination
+## Pagination délimitée
 
 {{"demo": "pages/components/pagination/PaginationOutlined.js"}}
 
-## Rounded pagination
+## Pagination arrondie
 
 {{"demo": "pages/components/pagination/PaginationRounded.js"}}
 
-## Pagination size
+## Taille de la pagination
 
 {{"demo": "pages/components/pagination/PaginationSize.js"}}
 
-## Buttons
+## Boutons
 
-You can optionally enable first-page and last-page buttons, or disable the previous-page and next-page buttons.
+Vous pouvez, au choix, activer les boutons de la première et de la dernière page, ou désactiver les boutons de la page précédente et de la page suivante.
 
 {{"demo": "pages/components/pagination/PaginationButtons.js"}}
 
-## Pagination ranges
+## Plages de pagination
 
-You can specify how many digits to display either side of current page with the `siblingRange` prop, and adjacent to the start and end page number with the `boundaryRange` prop.
+Vous pouvez spécifier le nombre de chiffres à afficher de chaque côté de la page actuelle avec la propriété `siblingRange`, et à côté du numéro de la page de début et de fin avec la propriété `boundaryRange`.
 
 {{"demo": "pages/components/pagination/PaginationRanges.js"}}
 
-## Controlled pagination
+## Pagination contrôlée
 
 {{"demo": "pages/components/pagination/PaginationControlled.js"}}
 
-## Router integration
-
-Pagination supports two approaches for Router integration, the `renderItem` prop:
+## Intégration du routeur
 
 {{"demo": "pages/components/pagination/PaginationLink.js"}}
 
 ## `usePagination`
 
-For advanced customization use cases, we expose a `usePagination()` hook. It accepts almost the same options as the Pagination component minus all the props related to the rendering of JSX. The Pagination component uses this hook internally.
+Pour les cas d'utilisation de personnalisation avancée, nous exposons un hook `usePagination()`. Il accepte presque les mêmes options que le composant de Pagination moins tous les propriétés liés au rendu de JSX. Le composant de Pagination utilise ce hook en interne.
 
 ```jsx
 import { usePagination } from '@material-ui/lab/Pagination';
@@ -59,8 +57,8 @@ import { usePagination } from '@material-ui/lab/Pagination';
 
 ### ARIA
 
-The root node has a role of "navigation" and aria-label "pagination navigation" by default. The page items have an aria-label that identifies the purpose of the item ("go to first page", "go to previous page", "go to page 1" etc.). You can override these using the `getItemAriaLabel` prop.
+Le nœud racine a un rôle de "navigation" et l'aria-label "pagination navigation" par défaut. Les éléments de page portent une étiquette "aria-label" qui identifie l'objet de l'élément ("aller à la première page", "aller à la page précédente", "aller à la page 1", etc.). Vous pouvez les remplacer en utilisant la propriété `getItemAriaLabel`.
 
-### Keyboard
+### Clavier
 
-The pagination items are in tab order, with a tabindex of "0".
+Les éléments de pagination sont dans l'ordre des tabulations, avec un indice de tabulation de "0".

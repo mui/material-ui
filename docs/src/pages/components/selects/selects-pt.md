@@ -3,7 +3,7 @@ title: Componente React para Seleção
 components: Select, NativeSelect
 ---
 
-# Select
+# Seleção
 
 <p class="description">Os componentes de seleção são usados para coletar informações fornecidas pelo usuário em uma lista de opções.</p>
 
@@ -17,41 +17,41 @@ Os menus são posicionados sobre seus elementos emissores, de modo que o item de
 
 The Select component is meant to be interchangeable with a native `<select>` element.
 
-If you are looking for more advanced features, like combobox, multiselect, autocomplete, async or creatable support, head to the [`Autocomplete` component](/components/autocomplete/). It's also meant to be an improved version of the "react-select" package.
+If you are looking for more advanced features, like combobox, multiselect, autocomplete, async or creatable support, head to the [`Autocomplete` component](/components/autocomplete/). It's meant to be an improved version of the "react-select" and "downshift" packages.
 
-## Native Select
+## Seleção Nativa
 
-As the user experience can be improved on mobile using the native select of the platform, we allow such pattern.
+Como a experiência do usuário pode ser melhorada em dispositivos móveis usando a seleção nativa da plataforma, permitimos esse padrão.
 
 {{"demo": "pages/components/selects/NativeSelects.js"}}
 
-## Text Fields
+## Campos de Texto
 
-O componente wrapper `TextField` é um controle de formulário completo, incluindo um rótulo, entrada e texto de ajuda. You can find an example with the select mode [in this section](/components/text-fields/#select).
+O componente wrapper `TextField` é um controle de formulário completo, incluindo um rótulo, entrada e texto de ajuda. Você pode encontrar um exemplo de seleção [nesta seção](/components/text-fields/#select).
 
-## Customized selects
+## Seleções Customizados
 
 Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
 
-The first step is to style the `InputBase` component. Once it's styled, you can either use it directly as a text field or provide it to the select `input` property to have a `select` field.
+O primeiro passo é modelar o componente `InputBase`. Uma vez estilizado, você pode usá-lo diretamente como um campo de texto ou fornecê-lo à propriedade `input` da seleção para ter um campo `select`.
 
 {{"demo": "pages/components/selects/CustomizedSelects.js"}}
 
-## Multiple Select
+## Seleção Múltipla
 
-The `Select` component can handle multiple selections. It's enabled with the `multiple` property.
+O componente `Select` pode lidar com várias seleções. É ativado com a propriedade `multiple`.
 
-Like with the single selection, you can pull out the new value by accessing `event.target.value` in the `onChange` callback. It's always an array.
+Como na seleção única, você pode extrair o novo valor acessando `event.target.value` na chamada `onChange`. É sempre uma matriz.
 
 {{"demo": "pages/components/selects/MultipleSelect.js"}}
 
-## Controlled Open Select
+## Seleção Aberta Controlada
 
 {{"demo": "pages/components/selects/ControlledOpenSelect.js"}}
 
-## With a Dialog
+## Com uma caixa de Diálogo
 
-While it's discouraged by the Material Design specification, you can use a select inside a dialog.
+Embora não seja recomendado pela especificação do Material Design, você pode usar uma seleção dentro de uma caixa de diálogo.
 
 {{"demo": "pages/components/selects/DialogSelect.js"}}
 
@@ -76,7 +76,7 @@ To properly label your `Select` input you need an extra element with an `id` tha
 Alternatively a `TextField` with an `id` and `label` creates the proper markup and ids for you:
 
 ```jsx
-<TextField id="select" label="Age" value="20">
+<TextField id="select" label="Age" value="20" select>
   <MenuItem value="10">Ten</MenuItem>
   <MenuItem value="20">Twenty</MenuItem>
 </TextField>

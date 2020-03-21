@@ -2,13 +2,21 @@ import * as React from 'react';
 import { StandardProps } from '@material-ui/core';
 import { PopperProps } from '@material-ui/core/Popper';
 import {
-  ChangeReason,
-  ChangeDetails,
-  UseAutocompleteCommonProps,
+  AutocompleteChangeDetails,
+  AutocompleteChangeReason,
+  AutocompleteCloseReason,
+  AutocompleteInputChangeReason,
   createFilterOptions,
+  UseAutocompleteCommonProps,
   UseAutocompleteProps,
 } from '../useAutocomplete';
-export { ChangeReason, ChangeDetails, createFilterOptions };
+export {
+  AutocompleteChangeDetails,
+  AutocompleteChangeReason,
+  AutocompleteCloseReason,
+  AutocompleteInputChangeReason,
+  createFilterOptions,
+};
 
 export interface RenderOptionState {
   inputValue: string;
@@ -176,6 +184,16 @@ export type AutocompleteClassKey =
   | 'groupLabel'
   | 'groupUl';
 
+/**
+ *
+ * Demos:
+ *
+ * - [Autocomplete](https://material-ui.com/components/autocomplete/)
+ *
+ * API:
+ *
+ * - [Autocomplete API](https://material-ui.com/api/autocomplete/)
+ */
 export default function Autocomplete<T>(
   props: AutocompleteProps<T> & UseAutocompleteProps<T>,
 ): JSX.Element;

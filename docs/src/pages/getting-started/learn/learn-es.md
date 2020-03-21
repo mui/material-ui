@@ -10,11 +10,11 @@ La [página de práctica](/getting-started/usage/#quick-start) contiene un peque
 
 ## Proyectos de Ejemplo
 
-There are [some example projects](/getting-started/example-projects/) available, providing the infrastructure needed to develop and deploy websites in React.
+Hay [algunos proyectos](/getting-started/example-projects/) disponibles, proporcionando la infraestructura necesaria para desarrollar y desplegar sitios web en React.
 
 ## Plantillas
 
-This [selection of basic templates](/getting-started/templates/) will help you get started building your app.
+Tenemos una selección de [ diseños de página básicos ](/getting-started/templates/) para ayudarte a comenzar a construir tu aplicación.
 
 ## Recursos recomendados
 
@@ -34,11 +34,14 @@ Cuando comienzas a aprender Material-UI, puedes encontrar publicaciones en blogs
 
 ### De Pago
 
-- **Material-UI with React**: Material-UI is an excellent framework to develop beautiful React components faster! This course teaches the fundamentals of Google Material Design and how to develop an end-to-end flight search and booking application using Material-UI and React.
+- **Apply Google Material Design**: This course teaches the fundamentals of Google Material Design and how to develop an end-to-end flight search and booking application using Material-UI and React.
   
   - 📹 [Watch Course Trailer](https://www.youtube.com/watch?v=hhZ6yFvCWho)
   - 💻 [The Course](https://bonsaiilabs.com/courseDetail/material-ui-with-react)
-- **React Material-UI Cookbook**: Build modern-day applications by implementing Material Design principles in React, using Material-UI.
+- **Implement high fidelity designs**: Bridge the gap between Design & Development. Break down detailed designs and bring them to life with Material-UI and React.
+  
+  - 💻 [The Course](https://click.linksynergy.com/deeplink?id=IVuPfk1F/Ow&mid=39197&murl=https%3A%2F%2Fwww.udemy.com%2Fcourse%2Fimplement-high-fidelity-designs-with-material-ui-and-reactjs%2F)
+- **Cookbook**: Build modern-day applications by implementing Material Design principles in React, using Material-UI.
   
   - [El Libro](https://www.amazon.com/gp/product/1789615224/)
 

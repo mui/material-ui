@@ -51,4 +51,4 @@ components: Badge
 
 Вы можете использовать проп `anchorOrigin` для перемещения значка в любой угол элемента.
 
-{{"demo": "pages/components/badges/BadgeAlignment.js", "hideHeader": true}}
+{{"demo": "pages/components/badges/BadgeAlignment.js", "hideToolbar": true}}

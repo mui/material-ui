@@ -1,5 +1,5 @@
 ---
-title: Componente App Bar (Barra de Aplicativos) para React
+title: Componente Barra de Aplicativos para React
 components: AppBar, Toolbar, Menu
 ---
 

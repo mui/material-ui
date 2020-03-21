@@ -4,13 +4,13 @@ import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
-import HomeSteps from 'docs/src/modules/components/HomeSteps';
-import HomeThemes from 'docs/src/modules/components/HomeThemes';
-import HomeQuickWord from 'docs/src/modules/components/HomeQuickWord';
-import HomeSponsors from 'docs/src/modules/components/HomeSponsors';
-import HomeUsers from 'docs/src/modules/components/HomeUsers';
-import HomeQuotes from 'docs/src/modules/components/HomeQuotes';
-import HomePro from 'docs/src/modules/components/HomePro';
+import Steps from 'docs/src/pages/landing/Steps';
+import Themes from 'docs/src/pages/landing/Themes';
+import QuickWord from 'docs/src/pages/landing/QuickWord';
+import Sponsors from 'docs/src/pages/landing/Sponsors';
+import Users from 'docs/src/pages/landing/Users';
+import Quotes from 'docs/src/pages/landing/Quotes';
+import Pro from 'docs/src/pages/landing/Pro';
 import AppFooter from 'docs/src/modules/components/AppFooter';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import Link from 'docs/src/modules/components/Link';
@@ -30,75 +30,78 @@ function loadDependencies() {
   loadScript('https://platform.twitter.com/widgets.js', document.querySelector('head'));
 }
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    flex: '1 0 100%',
-  },
-  hero: {
-    paddingTop: theme.spacing(8),
-    color: theme.palette.primary.main,
-  },
-  content: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    textAlign: 'center',
-    paddingTop: theme.spacing(4),
-    paddingBottom: theme.spacing(8),
-    [theme.breakpoints.up('md')]: {
-      paddingTop: theme.spacing(16),
-      paddingBottom: theme.spacing(16),
-      flexDirection: 'row',
-      alignItems: 'flex-start',
-      textAlign: 'left',
+const useStyles = makeStyles(
+  theme => ({
+    root: {
+      flex: '1 0 100%',
     },
-  },
-  title: {
-    marginLeft: -12,
-    whiteSpace: 'nowrap',
-    letterSpacing: '.7rem',
-    textIndent: '.7rem',
-    fontWeight: theme.typography.fontWeightLight,
-    [theme.breakpoints.only('xs')]: {
-      fontSize: 28,
+    hero: {
+      paddingTop: theme.spacing(8),
+      color: theme.palette.primary.main,
     },
-  },
-  logo: {
-    flexShrink: 0,
-    width: 120,
-    height: 120,
-    marginBottom: theme.spacing(2),
-    [theme.breakpoints.up('md')]: {
-      marginRight: theme.spacing(8),
-      width: 195,
-      height: 175,
-    },
-  },
-  button: {
-    marginTop: theme.spacing(4),
-  },
-  social: {
-    padding: theme.spacing(2, 0),
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    minHeight: 21,
-    boxSizing: 'content-box',
-    '& span': {
+    content: {
       display: 'flex',
-      marginRight: theme.spacing(1),
+      flexDirection: 'column',
+      alignItems: 'center',
+      textAlign: 'center',
+      paddingTop: theme.spacing(4),
+      paddingBottom: theme.spacing(8),
+      [theme.breakpoints.up('md')]: {
+        paddingTop: theme.spacing(16),
+        paddingBottom: theme.spacing(16),
+        flexDirection: 'row',
+        alignItems: 'flex-start',
+        textAlign: 'left',
+      },
     },
-    '& a': {
-      color: theme.palette.background.paper,
+    title: {
+      marginLeft: -12,
+      whiteSpace: 'nowrap',
+      letterSpacing: '.7rem',
+      textIndent: '.7rem',
+      fontWeight: theme.typography.fontWeightLight,
+      [theme.breakpoints.only('xs')]: {
+        fontSize: 28,
+      },
     },
-  },
-}));
+    logo: {
+      flexShrink: 0,
+      width: 120,
+      height: 120,
+      marginBottom: theme.spacing(2),
+      [theme.breakpoints.up('md')]: {
+        marginRight: theme.spacing(8),
+        width: 195,
+        height: 175,
+      },
+    },
+    button: {
+      marginTop: theme.spacing(4),
+    },
+    social: {
+      padding: theme.spacing(2, 0),
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      minHeight: 21,
+      boxSizing: 'content-box',
+      '& span': {
+        display: 'flex',
+        marginRight: theme.spacing(1),
+      },
+      '& a': {
+        color: theme.palette.background.paper,
+      },
+    },
+  }),
+  { name: 'LandingPage' },
+);
 
 const GettingStartedLink = React.forwardRef((props, ref) => {
   return <Link href="/getting-started/installation" naked ref={ref} {...props} />;
 });
 
-export default function HomePage() {
+export default function LandingPage() {
   React.useEffect(() => {
     if (window.location.hash !== '' && window.location.hash !== '#main=content') {
       window.location.replace(`https://v0.material-ui.com/${window.location.hash}`);
@@ -158,13 +161,13 @@ export default function HomePage() {
               Follow
             </a>
           </div>
-          <HomePro />
-          <HomeQuickWord />
-          <HomeSteps />
-          <HomeThemes />
-          <HomeSponsors />
-          <HomeQuotes />
-          <HomeUsers />
+          <Pro />
+          <QuickWord />
+          <Steps />
+          <Themes />
+          <Sponsors />
+          <Quotes />
+          <Users />
         </main>
         <AppFooter />
       </div>

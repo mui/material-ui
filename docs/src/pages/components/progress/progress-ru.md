@@ -1,5 +1,5 @@
 ---
-title: Circular Progress, Linear Progress React component
+title: Circular, Linear progress React components
 components: CircularProgress, LinearProgress
 ---
 

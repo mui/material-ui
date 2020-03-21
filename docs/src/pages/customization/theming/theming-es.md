@@ -21,7 +21,7 @@ Cambiar las variables de configuración del tema es la forma más efectiva de ad
 - [Paleta](/customization/palette/)
 - [Typography](/customization/typography/)
 - [Espaciado](/customization/spacing/)
-- [Puntos de interrupción](/customization/breakpoints/)
+- [Separaciones](/customization/breakpoints/)
 - [z-index](/customization/z-index/)
 - [Globales](/customization/globals/)
 

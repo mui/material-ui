@@ -90,9 +90,7 @@ export default function MaxWidthDialog() {
             </FormControl>
             <FormControlLabel
               className={classes.formControlLabel}
-              control={
-                <Switch checked={fullWidth} onChange={handleFullWidthChange} value="fullWidth" />
-              }
+              control={<Switch checked={fullWidth} onChange={handleFullWidthChange} />}
               label="Full width"
             />
           </form>

@@ -2,7 +2,7 @@
 
 <p class="description">从社区帮助到高级的商业化支持，我们愿意帮忙。</p>
 
-## 社区帮助
+## Community help (free)
 
 社区是您对框架提问或给出建议的第一站。 欢迎来到社区！
 
@@ -61,43 +61,7 @@ The current status of each Material-UI version is as follows:
 
 For teams and organizations that require additional support for older versions, Material-UI has [options available](#enterprise).
 
-## 专业支持(高级)
-
-### 企业版本
-
-Accelerate your company’s application development with a secure, long-term solution that’s optimized for enterprise and backed by Material-UI experts.
-
-- **Long Term version support.** LTS provides developers and organizations with additional stability and reliability in the applications they’re developing, including guaranteed service level agreements (SLAs) and advisory services. Take the time you need before upgrading to the latest active version of Material-UI, or remain confident in your application’s long-term supportability by staying on whichever version you’re most comfortable with. LTS is available as a paid service, it extends to Material-UI v1 implementations and higher.
-- **Version migration assistance**.
-- **Priority fixes**.
-- **Priority support**. Timely support and troubleshooting when you need it most. Get expert help directly from the Material-UI team with guaranteed response times (next business day).
-
-For more information, [get a quote](mailto:enterprise@material-ui.com) from our team.
-
-### 咨询
-
-Supercharge your team’s development with Material-UI Advisory Services:
-
-#### 开发者咨询
-
-Everything your team needs to make sure you’re using React in the best way as you evaluate and build on Material-UI.
-
-- A private, dedicated Slack channel with access to our consultants. Get real-time advice, guidance, and feedback when you need it, with live Slack access and direct private chat with Material-UI’s expert technical team.
-- An initial review of your architecture and development workflow.
-- Guidance on best practices that will help you take full advantage of Material-UI and prevent avoidable mistakes.
-
-[Get a quote](mailto:advisory@material-ui.com)
-
-#### 企业咨询
-
-A complete support package, for teams using Material-UI for critical business applications and organizations deploying Material-UI across multiple teams.
-
-- Includes "Developer Advisory" scaled to your entire scope of work.
-- A designated Technical Account Manager who understands your business requirements and proactively makes sure you’re getting everything you need.
-- A designated remote consultant who works with your team through every phase of development.
-- Regular, scheduled reviews.
-
-[Get a quote](mailto:advisory@material-ui.com)
+## Professional support (premium)
 
 ### Tidelift subscription <img src="/static/images/logos/tidelift.svg" width="24" height="24" alt="Tidelift logo" loading="lazy" />
 

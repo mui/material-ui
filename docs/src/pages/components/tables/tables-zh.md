@@ -7,9 +7,9 @@ components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead,
 
 <p class="description">Tables display sets of data. They can be fully customized.</p>
 
-[Tables](https://material.io/design/components/data-tables.html) display information in a way that’s easy to scan, so that users can look for patterns and insights. 表格可以被内嵌在主要内容中，如 cards（卡片）。
+[表格](https://material.io/design/components/data-tables.html)以一种一目了然地方式显示信息，这便于用户寻找一些规律和深入的见解。 表格可以被内嵌在主要内容中，如 cards（卡片）。
 
-Tables can include:
+表格可以包括这些：
 
 - 相应的可视化
 - 导航

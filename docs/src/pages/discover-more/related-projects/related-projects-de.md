@@ -6,7 +6,7 @@ Da der Umfang der Probleme, die Material-UI löst, begrenzt ist, versuchen wir, 
 
 ## Design-Ressourcen
 
-- **Sketch**: [Sketch for Material-UI](https://themes.material-ui.com/themes/sketch-react/) — A large UI kit with over 1,500 handcrafted Material-UI's symbols 💎.
+- **Sketch**: [Sketch for Material-UI](https://material-ui.com/store/items/sketch-react/) — A large UI kit with over 1,500 handcrafted Material-UI's symbols 💎.
 - **Figma**: 
   - https://material.5ly.co/ für Material-UI von Fively Team.
   - https://ui-kit.co/ ein Starter Kit für Ihr Material Design 2 Projekt.
@@ -30,32 +30,33 @@ Dies ist eine Sammlung von Drittanbieterprojekten, die Material-UI erweitern.
 
 ### Layout
 
-- [@mui-treasury/layout](https://mui-treasury.com/layout): Components to handle the overall layout of a page. You can find a couple of examples, e.g. [a reactjs.org clone](https://mui-treasury.com/layout/clones/reactjs).
+- [@mui-treasury/layout](https://mui-treasury.com/layout): Komponenten für das grundlegende Layout einer Seite. Sie können ein paar Beispiele finden, z. B. [ein reactjs.org-Klon](https://mui-treasury.com/layout/clones/reactjs).
 
 ### Tabellen
 
-- [material-table](https://github.com/mbrn/material-table): A simple and powerful Datatable for React based on Material-UI Table with some additional features. It supports many different use cases (editable, filtering, grouping, sorting, selection, i18n, tree data and more).
+- [material-table](https://github.com/mbrn/material-table): Eine einfache und leistungsstarke Datatable für React, basierend auf der Material-UI-Tabelle mit einigen zusätzlichen Funktionen. It supports many different use cases (editable, filtering, grouping, sorting, selection, i18n, tree data and more).
 - [dx-react-grid-material-ui](https://devexpress.github.io/devextreme-reactive/react/grid/): A data grid for Material-UI with paging, sorting, filtering, grouping and editing features ([paid license](https://js.devexpress.com/licensing/)).
 - [mui-datatables](https://github.com/gregnb/mui-datatables): Responsive data tables for Material-UI with filtering, sorting, search and more.
 - [tubular-react](https://github.com/unosquare/tubular-react): A Material-UI table with local or remote data-source. Featuring filtering, sorting, free-text search, export to CSV locally, and aggregations.
 
 ### Benachrichtigungen
 
-- [notistack](https://github.com/iamhosseindhv/notistack): Makes it easy to display snackbars (so you don't have to deal with open/close state of them).
+- [notistack](https://github.com/iamhosseindhv/notistack): Ermöglicht die einfache Anzeige von Snackbars (damit Sie sich nicht mit dem Öffnen/Schließen von Snackbars herumschlagen müssen).
 
 ### Upload
 
-- [material-ui-dropzone](https://github.com/Yuvaleros/material-ui-dropzone): Built on top of react-dropzone.
+- [material-ui-dropzone](https://github.com/Yuvaleros/material-ui-dropzone): Gebaut auf Basis der React-Dropzone.
 
 ### Formulare
 
 - [formik-material-ui](https://github.com/stackworx/formik-material-ui) Bindings for using Material-UI with [formik](https://jaredpalmer.com/formik).
-- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui) Bindings for using Material UI with [Redux Form](https://redux-form.com/).
-- [mui-rff](https://github.com/lookfirst/mui-rff) Bindings for using Material UI with [React Final Form](https://final-form.org/react).
+- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui) Bindings for using Material-UI with [Redux Form](https://redux-form.com/).
+- [mui-rff](https://github.com/lookfirst/mui-rff) Bindings for using Material-UI with [React Final Form](https://final-form.org/react).
+- [data-driven-forms MUI mapper](https://github.com/data-driven-forms/react-forms/tree/master/packages/mui-component-mapper) Bindings for using Material-UI with [Data Driven Forms](https://data-driven-forms.org/).
 
 ### Carousel
 
-- [material-auto-rotating-carousel](https://mui.wertarbyte.com/#material-auto-rotating-carousel): Introduce new users to your app.
+- [material-auto-rotating-carousel](https://mui.wertarbyte.com/#material-auto-rotating-carousel): Neue Benutzer in Ihre App einführen.
 
 ### Image
 

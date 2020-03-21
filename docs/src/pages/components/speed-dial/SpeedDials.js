@@ -73,9 +73,7 @@ export default function SpeedDials() {
   return (
     <div className={classes.root}>
       <FormControlLabel
-        control={
-          <Switch checked={hidden} onChange={handleHiddenChange} value="hidden" color="primary" />
-        }
+        control={<Switch checked={hidden} onChange={handleHiddenChange} color="primary" />}
         label="Hidden"
       />
       <FormLabel className={classes.radioGroup} component="legend">

@@ -141,11 +141,11 @@ theme.typography.h3 = {
 
 {{"demo": "pages/customization/typography/CustomResponsiveFontSizes.js"}}
 
-To automate this setup, you can use the [`responsiveFontSizes()`](/customization/theming/#responsivefontsizes-theme-options-theme) helper to make Typography font sizes in the theme responsive.
+Para automatizar estas configurações, você pode usar a função auxiliar [`responsiveFontSizes()`](/customization/theming/#responsivefontsizes-theme-options-theme), para fazer a tipografia responsiva em relação aos tamanhos da fonte no tema.
 
-{{"demo": "pages/customization/typography/ResponsiveFontSizesChart.js", "hideHeader": true}}
+{{"demo": "pages/customization/typography/ResponsiveFontSizesChart.js", "hideToolbar": true}}
 
-You can see this in action in the example below. adjust your browser's window size, and notice how the font size changes as the width crosses the different [breakpoints](/customization/breakpoints/):
+Você pode ver isso em ação no exemplo abaixo. Ajuste o tamanho da janela do navegador e observe como o tamanho da fonte muda à medida que a largura cruza os diferentes [pontos de quebra](/customization/breakpoints/):
 
 ```js
 import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
@@ -158,11 +158,11 @@ theme = responsiveFontSizes(theme);
 
 ### Tamanhos da fonte fluido
 
-To be done: [#15251](https://github.com/mui-org/material-ui/issues/15251).
+Para ser feito: [#15251](https://github.com/mui-org/material-ui/issues/15251).
 
 ## Variantes
 
-The typography object comes with [13 variants](/components/typography/#component) by default:
+O objeto de tipografia vem com [13 variantes](/components/typography/#component) por padrão:
 
 - h1
 - h2
@@ -178,7 +178,7 @@ The typography object comes with [13 variants](/components/typography/#component
 - caption
 - overline
 
-Each of these variants can be customized individually:
+Cada uma dessas variantes pode ser customizada individualmente:
 
 ```js
 const theme = createMuiTheme({
@@ -200,4 +200,4 @@ const theme = createMuiTheme({
 
 ## Valores padrão
 
-You can explore the default values of the typography using [the theme explorer](/customization/default-theme/?expand-path=$.typography) or by opening the dev tools console on this page (`window.theme.typography`).
+Você pode explorar os valores padrão da tipografia usando [o explorador de tema](/customization/default-theme/?expand-path=$.typography) ou abrindo o console das ferramentas de desenvolvimento nesta página (`window.theme.typography`).

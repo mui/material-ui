@@ -54,7 +54,7 @@ There are multiple ways to display an icon with a text field.
 ### Input Adornments
 
 The main way is with an `InputAdornment`.
-These can be used to add a prefix, a suffix or an action to an input.
+This can be used to add a prefix, a suffix or an action to an input.
 For instance, you can use an icon button to hide or reveal the password.
 
 {{"demo": "pages/components/text-fields/InputAdornments.js"}}
@@ -67,7 +67,7 @@ Fancy smaller inputs? Use the `size` prop.
 
 ## Layout
 
-`margin` can be used to alter the vertical spacing of inputs.
+`margin` prop can be used to alter the vertical spacing of inputs.
 Using `none` (default) will not apply margins to the `FormControl`, whereas `dense` and `normal` will.
 `dense` and `normal` alter other styles to meet the specification.
 
@@ -77,7 +77,7 @@ Using `none` (default) will not apply margins to the `FormControl`, whereas `den
 
 ## Uncontrolled vs Controlled
 
-The component can be controlled or uncontrolled
+The component can be controlled or uncontrolled.
 
 {{"demo": "pages/components/text-fields/StateTextFields.js"}}
 
@@ -192,7 +192,7 @@ function MyInputComponent(props) {
 
 ## Accessibility
 
-In order for the text field to be accessible, **the input should be linked to the label and the helper text**. The underlying DOM nodes should have this structure.
+In order for the text field to be accessible, **the input should be linked to the label and the helper text**. The underlying DOM nodes should have this structure:
 
 ```jsx
 <div class="form-control">

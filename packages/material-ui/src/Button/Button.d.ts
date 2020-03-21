@@ -21,6 +21,18 @@ export type ButtonTypeMap<
   classKey: ButtonClassKey;
 }>;
 
+/**
+ *
+ * Demos:
+ *
+ * - [Button Group](https://material-ui.com/components/button-group/)
+ * - [Buttons](https://material-ui.com/components/buttons/)
+ *
+ * API:
+ *
+ * - [Button API](https://material-ui.com/api/button/)
+ * - inherits [ButtonBase API](https://material-ui.com/api/button-base/)
+ */
 declare const Button: ExtendButtonBase<ButtonTypeMap>;
 
 export type ButtonProps<

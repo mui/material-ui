@@ -20,7 +20,7 @@ Der Quellcode für diese Dokumentationsseite ist auch im Repository enthalten. D
 
 ## Fortgeschrittenere Beispielprojekte
 
-If you want to start with a more complete and real-world example, you could take a look at the [premium themes & templates](https://themes.material-ui.com/) or:
+If you want to start with a more complete and real-world example, you could take a look at the [premium themes & templates](https://material-ui.com/store/) or:
 
 ### Kostenlos
 

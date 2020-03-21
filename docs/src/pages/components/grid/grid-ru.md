@@ -49,7 +49,7 @@ components: Grid
 
 Ниже приведен интерактивный пример, который демонстрирует результаты различных настроек сетки:
 
-{{"demo": "pages/components/grid/InteractiveGrid.js", "hideHeader": true, "bg": true}}
+{{"demo": "pages/components/grid/InteractiveGrid.js", "hideToolbar": true, "bg": true}}
 
 ## Авто-разметка
 
@@ -118,6 +118,6 @@ https://www.w3.org/TR/css-flexbox-1/#box-model
 
 ## CSS макет сетки
 
-Material UI сам по себе не предоставляет никакой функциональности CSS Grid, но, как видно ниже, вы можете легко использовать CSS Grid в макете страницы.
+Material-UI сам по себе не предоставляет никакой функциональности CSS Grid, но, как видно ниже, вы можете легко использовать CSS Grid в макете страницы.
 
 {{"demo": "pages/components/grid/CSSGrid.js", "bg": true}}

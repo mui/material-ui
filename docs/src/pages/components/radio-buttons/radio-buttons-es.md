@@ -11,21 +11,29 @@ Usa [botones de radio](https://material.io/design/components/selection-controls.
 
 Radio buttons should have the most commonly used option selected by default.
 
+## RadioGroup
+
 `RadioGroup` is a helpful wrapper used to group `Radio` components that provides an easier API, and proper keyboard accessibility to the group.
 
 {{"demo": "pages/components/radio-buttons/RadioButtonsGroup.js"}}
 
-## Standalone Radio Buttons
+## Standalone radio buttons
 
-`Radio` can also be used standalone, without the wrapper.
+`Radio` can also be used standalone, without the RadioGroup wrapper.
 
 {{"demo": "pages/components/radio-buttons/RadioButtons.js"}}
 
 ## Ubicación de Etiqueta
 
-Puede cambiar la ubicación de la etiqueta:
+You can change the placement of the label with the `FormControlLabel` component's `labelPlacement` prop:
 
-{{"demo": "pages/components/radio-buttons/FormControlLabelPosition.js"}}
+{{"demo": "pages/components/radio-buttons/FormControlLabelPlacement.js"}}
+
+## Show error
+
+In general, radio buttons should have a value selected by default. If this is not the case, you can display an error if no value is selected when the form is submitted:
+
+{{"demo": "pages/components/radio-buttons/ErrorRadios.js"}}
 
 ## Customized radios
 

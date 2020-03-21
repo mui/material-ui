@@ -1,21 +1,36 @@
 import * as React from 'react';
-import { StandardProps } from '..';
-
-export interface TableProps extends StandardProps<TableBaseProps, TableClassKey> {
-  component?: React.ElementType<TableBaseProps>;
-  padding?: Padding;
-  size?: Size;
-  stickyHeader?: boolean;
-}
-
-export type TableBaseProps = React.TableHTMLAttributes<HTMLTableElement>;
+import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
 export type Padding = 'default' | 'checkbox' | 'none';
 
 export type Size = 'small' | 'medium';
 
+export interface TableTypeMap<P = {}, D extends React.ElementType = 'table'> {
+  props: P & {
+    padding?: Padding;
+    size?: Size;
+    stickyHeader?: boolean;
+  };
+  defaultComponent: D;
+  classKey: TableClassKey;
+}
+/**
+ *
+ * Demos:
+ *
+ * - [Tables](https://material-ui.com/components/tables/)
+ *
+ * API:
+ *
+ * - [Table API](https://material-ui.com/api/table/)
+ */
+declare const Table: OverridableComponent<TableTypeMap>;
+
 export type TableClassKey = 'root' | 'stickyHeader';
 
-declare const Table: React.ComponentType<TableProps>;
+export type TableProps<
+  D extends React.ElementType = TableTypeMap['defaultComponent'],
+  P = {}
+> = OverrideProps<TableTypeMap<P, D>, D>;
 
 export default Table;

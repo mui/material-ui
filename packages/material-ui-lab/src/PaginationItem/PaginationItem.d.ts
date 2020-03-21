@@ -41,6 +41,16 @@ export interface PaginationItemTypeMap<P = {}, D extends React.ElementType = 'di
   classKey: PaginationItemClassKey;
 }
 
+/**
+ *
+ * Demos:
+ *
+ * - [Pagination](https://material-ui.com/components/pagination/)
+ *
+ * API:
+ *
+ * - [PaginationItem API](https://material-ui.com/api/pagination-item/)
+ */
 declare const PaginationItem: OverridableComponent<PaginationItemTypeMap>;
 
 export type PaginationItemClassKey =

@@ -39,8 +39,8 @@ describe('<MenuList />', () => {
     it('should support null children', () => {
       const { getAllByRole } = render(
         <MenuList>
-          <div role="menuitem" />
-          <div role="menuitem" />
+          <div role="menuitem">one</div>
+          <div role="menuitem">two</div>
           {null}
         </MenuList>,
       );

@@ -1,5 +1,8 @@
 import { Color, PaletteType } from '..';
-import { CommonColors } from '../colors/common';
+import common from '../colors/common';
+
+export {};
+type CommonColors = Record<keyof typeof common, string>;
 
 export type ColorPartial = Partial<Color>;
 

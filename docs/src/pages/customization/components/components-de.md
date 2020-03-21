@@ -144,7 +144,7 @@ Instead of providing values to the `classes` prop API, you can rely on [the glob
 
 ### Verwenden Sie `$ruleName` um eine lokale Regel innerhalb desselben Stylesheets referenzieren
 
-Das [jss-nested](https://github.com/cssinjs/jss-nested) Plugin (standardmäßig verfügbar) macht es einfach, die Spezifität verbessern.
+The [jss-nested](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-nested) plugin (available by default) can make the process of increasing specificity easier.
 
 ```js
 const styles = {

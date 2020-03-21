@@ -26,6 +26,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The avatars to stack. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <span class="prop-name">max</span> | <span class="prop-type">number</span> | <span class="prop-default">5</span> | Max avatars to show before +x. |
 | <span class="prop-name">spacing</span> | <span class="prop-type">'medium'<br>&#124;&nbsp;'small'<br>&#124;&nbsp;number</span> | <span class="prop-default">'medium'</span> | Spacing between avatars. |
 
 The `ref` is forwarded to the root element.
