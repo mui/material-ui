@@ -67,11 +67,11 @@ steps:
     displayName: Cache nextjs build
 
   - script: |
-      set -e pipefail
       mkdir -p scripts/sizeSnapshot/build	
-      yarn docs:build | tee scripts/sizeSnapshot/build/docs.next	
-      set +e pipefail
+      yarn docs:build | tee scripts/sizeSnapshot/build/docs.next
     displayName: 'build docs for size snapshot'
+    env:
+      NODE_OPTIONS: "--max_old_space_size=4096"
 
   - script: |
       yarn size:snapshot
