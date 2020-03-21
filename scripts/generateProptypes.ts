@@ -22,7 +22,7 @@ enum GenerateResult {
 const tsconfig = ttp.loadConfig(path.resolve(__dirname, '../tsconfig.json'));
 
 const prettierConfig = prettier.resolveConfig.sync(process.cwd(), {
-  config: path.join(__dirname, '../.prettierrc'),
+  config: path.join(__dirname, '../prettier.config.js'),
 });
 
 async function generateProptypes(

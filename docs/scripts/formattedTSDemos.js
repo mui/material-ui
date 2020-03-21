@@ -32,7 +32,7 @@ const babelConfig = {
 const workspaceRoot = path.join(__dirname, '../../');
 
 const prettierConfig = prettier.resolveConfig.sync(process.cwd(), {
-  config: path.join(workspaceRoot, '.prettierrc'),
+  config: path.join(workspaceRoot, 'prettier.config.js'),
 });
 
 async function getFiles(root) {

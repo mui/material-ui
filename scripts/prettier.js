@@ -31,7 +31,7 @@ function runPrettier(options) {
     return;
   }
 
-  const prettierConfigPath = path.join(__dirname, '../.prettierrc');
+  const prettierConfigPath = path.join(__dirname, '../prettier.config.js');
 
   files.forEach(file => {
     const prettierOptions = prettier.resolveConfig.sync(file, {
