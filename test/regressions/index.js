@@ -139,7 +139,7 @@ function excludeTest(suite, name) {
     return true;
   }
 
-  return blacklist.some((pattern) => {
+  return blacklist.some(pattern => {
     if (typeof pattern === 'string') {
       if (pattern === suite) {
         unusedBlacklistPatterns.delete(pattern);
@@ -221,7 +221,7 @@ vrtest.before(() => {
 let suite;
 
 const tests = regressions.concat(demos);
-tests.forEach((test) => {
+tests.forEach(test => {
   if (!suite || suite.name !== test.suite) {
     suite = vrtest.createSuite(test.suite);
   }
@@ -245,7 +245,7 @@ tests.forEach((test) => {
 if (unusedBlacklistPatterns.size > 0) {
   console.warn(
     `The following patterns are unused:\n\n${Array.from(unusedBlacklistPatterns)
-      .map((pattern) => `- ${pattern}`)
+      .map(pattern => `- ${pattern}`)
       .join('\n')}`,
   );
 }

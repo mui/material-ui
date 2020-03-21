@@ -68,7 +68,7 @@ describe('<TreeItem />', () => {
       </TreeView>,
     );
 
-    const getIcon = (testId) => getByTestId(testId).querySelector(`.${classes.iconContainer} div`);
+    const getIcon = testId => getByTestId(testId).querySelector(`.${classes.iconContainer} div`);
 
     expect(getIcon('1')).attribute('data-test').to.equal('defaultCollapseIcon');
     expect(getIcon('2')).attribute('data-test').to.equal('defaultEndIcon');

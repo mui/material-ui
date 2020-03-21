@@ -193,12 +193,12 @@ describe('<Collapse />', () => {
     it('should delay based on height when timeout is auto', () => {
       const theme = createMuiTheme({
         transitions: {
-          getAutoHeightDuration: (n) => n,
+          getAutoHeightDuration: n => n,
         },
       });
 
       const next1 = spy();
-      const Test = (props) => (
+      const Test = props => (
         <ThemeProvider theme={theme}>
           <Collapse timeout="auto" onEntered={next1} {...props}>
             <div />

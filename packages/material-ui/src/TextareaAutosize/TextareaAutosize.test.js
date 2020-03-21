@@ -52,7 +52,7 @@ describe('<TextareaAutosize />', () => {
     }
 
     before(() => {
-      stub(window, 'getComputedStyle').value((node) => getComputedStyleStub[node] || {});
+      stub(window, 'getComputedStyle').value(node => getComputedStyleStub[node] || {});
     });
 
     after(() => {

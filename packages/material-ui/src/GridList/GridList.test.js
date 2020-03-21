@@ -51,7 +51,7 @@ describe('<GridList />', () => {
     const cellHeight = 250;
     const wrapper = shallow(
       <GridList cellHeight={cellHeight}>
-        {tilesData.map((tile) => (
+        {tilesData.map(tile => (
           <span
             key={tile.img}
             className="grid-tile"
@@ -75,7 +75,7 @@ describe('<GridList />', () => {
   it('renders children by default', () => {
     const wrapper = shallow(
       <GridList>
-        {tilesData.map((tile) => (
+        {tilesData.map(tile => (
           <span
             key={tile.img}
             className="grid-tile"
@@ -95,7 +95,7 @@ describe('<GridList />', () => {
   it('renders children and change cols', () => {
     const wrapper = shallow(
       <GridList cols={4}>
-        {tilesData.map((tile) => (
+        {tilesData.map(tile => (
           <span
             key={tile.img}
             className="grid-tile"
@@ -120,7 +120,7 @@ describe('<GridList />', () => {
     const spacing = 10;
     const wrapper = shallow(
       <GridList spacing={spacing}>
-        {tilesData.map((tile) => (
+        {tilesData.map(tile => (
           <span
             key={tile.img}
             className="grid-tile"
@@ -145,7 +145,7 @@ describe('<GridList />', () => {
     const style = { backgroundColor: 'red' };
     const wrapper = shallow(
       <GridList style={style}>
-        {tilesData.map((tile) => (
+        {tilesData.map(tile => (
           <span
             key={tile.img}
             className="grid-tile"

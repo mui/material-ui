@@ -53,7 +53,7 @@ describe('<TablePagination />', () => {
       mount: mountInTable,
       refInstanceof: window.HTMLTableCellElement,
       // can only use `td` in a tr so we just fake a different component
-      testComponentPropWith: (props) => <td {...props} />,
+      testComponentPropWith: props => <td {...props} />,
     }),
   );
 

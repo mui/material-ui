@@ -14,7 +14,7 @@ import GitHubIcon from '@material-ui/icons/GitHub';
 import Link from 'docs/src/modules/components/Link';
 import appList from './appList';
 
-const styles = (theme) => ({
+const styles = theme => ({
   root: {
     flexGrow: 1,
   },
@@ -45,7 +45,7 @@ function stableSort(array, cmp) {
     if (order !== 0) return order;
     return a[1] - b[1];
   });
-  return stabilizedThis.map((el) => el[0]);
+  return stabilizedThis.map(el => el[0]);
 }
 
 // Returns a function that sorts reverse numerically by value of `key`
@@ -71,9 +71,9 @@ function Showcase(props) {
   const { classes } = props;
   const [sortFunctionName, setSortFunctionName] = React.useState('dateAdded');
   const sortFunction = sortFunctions[sortFunctionName];
-  const t = useSelector((state) => state.options.t);
+  const t = useSelector(state => state.options.t);
 
-  const handleChangeSort = (event) => {
+  const handleChangeSort = event => {
     setSortFunctionName(event.target.value);
   };
 
@@ -88,9 +88,9 @@ function Showcase(props) {
         </Select>
       </FormControl>
       {stableSort(
-        appList.filter((item) => item[sortFunctionName] !== undefined),
+        appList.filter(item => item[sortFunctionName] !== undefined),
         sortFunction,
-      ).map((app) => (
+      ).map(app => (
         <div key={app.title}>
           <Typography component="h2" variant="h4" gutterBottom className={classes.title}>
             <span>{app.title}</span>

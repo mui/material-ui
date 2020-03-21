@@ -105,7 +105,7 @@ describe('<ExpansionPanel />', () => {
   });
 
   it('should handle the TransitionComponent prop', () => {
-    const NoTransitionCollapse = (props) => {
+    const NoTransitionCollapse = props => {
       return props.in ? <div>{props.children}</div> : null;
     };
     NoTransitionCollapse.propTypes = {

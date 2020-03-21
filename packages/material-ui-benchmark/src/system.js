@@ -14,7 +14,7 @@ import styledComponents, {
 } from 'styled-components';
 
 const suite = new Benchmark.Suite('system', {
-  onError: (event) => {
+  onError: event => {
     console.log(event.target.error);
   },
 });
@@ -194,7 +194,7 @@ suite
       </StyledComponentsThemeProvider>,
     );
   })
-  .on('cycle', (event) => {
+  .on('cycle', event => {
     console.log(String(event.target));
   })
   .run();

@@ -2,7 +2,7 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import loadScript from 'docs/src/modules/utils/loadScript';
 
-const styles = (theme) => ({
+const styles = theme => ({
   '@global': {
     '#cf': {
       display: 'block',

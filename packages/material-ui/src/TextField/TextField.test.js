@@ -63,7 +63,7 @@ describe('<TextField />', () => {
       expect(container.querySelector('label')).to.have.class('foo');
     });
 
-    ['', undefined].forEach((label) => {
+    ['', undefined].forEach(label => {
       it(`should not render empty (${label}) label element`, () => {
         const { container } = render(<TextField id="labelled" label={label} />);
 
@@ -143,7 +143,7 @@ describe('<TextField />', () => {
 
       const { container } = render(
         <TextField select SelectProps={{ native: true }}>
-          {currencies.map((option) => (
+          {currencies.map(option => (
             <option key={option.value} value={option.value}>
               {option.label}
             </option>
