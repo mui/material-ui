@@ -1,20 +1,14 @@
 import React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import Markdown from 'docs/src/pages/components/material-icons/material-icons.md';
-import SearchIcons from 'docs/src/pages/components/material-icons/SearchIcons';
 
-const req = (name) => {
-  const map = {
-    'material-icons.md': Markdown,
-    'SearchIcons.js': {
-      default: SearchIcons,
-    },
-  };
-  return map[name];
-};
-req.keys = () => ['material-icons.md', 'SearchIcons.js'];
+const req = require.context('docs/src/pages/components/material-icons', false, /\.(md|js|tsx)$/);
+const reqSource = require.context(
+  '!raw-loader!../../src/pages/components/material-icons',
+  false,
+  /\.(js|tsx)$/,
+);
 const reqPrefix = 'pages/components/material-icons';
 
 export default function Page() {
-  return <MarkdownDocs disableToc req={req} reqSource={() => {}} reqPrefix={reqPrefix} />;
+  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
 }
