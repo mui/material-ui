@@ -8,9 +8,9 @@ const styles = theme => ({
       display: 'block',
       overflow: 'hidden',
       backgroundColor: theme.palette.background.level2,
-      padding: `${theme.spacing(1.5)}px ${theme.spacing(1.5)}px ${theme.spacing(
-        1.5,
-      )}px ${theme.spacing(1.5) + 130}px`,
+      padding: `${theme.spacing(1.5)}px ${theme.spacing(1.5)}px ${theme.spacing(1.5)}px ${
+        theme.spacing(1.5) + 130
+      }px`,
       borderRadius: theme.shape.borderRadius,
       '& .carbon-img': {
         float: 'left',

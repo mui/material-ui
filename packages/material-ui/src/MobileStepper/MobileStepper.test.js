@@ -101,10 +101,7 @@ describe('<MobileStepper />', () => {
   it('should render the first dot as active if activeStep is not set', () => {
     const wrapper = mount(<MobileStepper {...defaultProps} variant="dots" />);
     assert.strictEqual(
-      findOutermostIntrinsic(wrapper)
-        .childAt(1)
-        .childAt(0)
-        .hasClass(classes.dotActive),
+      findOutermostIntrinsic(wrapper).childAt(1).childAt(0).hasClass(classes.dotActive),
       true,
     );
   });
@@ -112,10 +109,7 @@ describe('<MobileStepper />', () => {
   it('should honor the activeStep prop', () => {
     const wrapper = mount(<MobileStepper {...defaultProps} variant="dots" activeStep={1} />);
     assert.strictEqual(
-      findOutermostIntrinsic(wrapper)
-        .childAt(1)
-        .childAt(1)
-        .hasClass(classes.dotActive),
+      findOutermostIntrinsic(wrapper).childAt(1).childAt(1).hasClass(classes.dotActive),
       true,
     );
   });

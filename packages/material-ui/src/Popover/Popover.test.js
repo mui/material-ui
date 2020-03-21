@@ -246,13 +246,7 @@ describe('<Popover />', () => {
         </Popover>,
       );
 
-      assert.strictEqual(
-        wrapper
-          .find(Grow)
-          .find(Paper)
-          .exists(),
-        true,
-      );
+      assert.strictEqual(wrapper.find(Grow).find(Paper).exists(), true);
     });
 
     it('should have the paper class and user classes', () => {

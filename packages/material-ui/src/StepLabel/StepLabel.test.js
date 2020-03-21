@@ -180,13 +180,7 @@ describe('<StepLabel />', () => {
           Step One
         </StepLabel>,
       );
-      assert.strictEqual(
-        wrapper
-          .find(Typography)
-          .at(1)
-          .contains('Optional Text'),
-        true,
-      );
+      assert.strictEqual(wrapper.find(Typography).at(1).contains('Optional Text'), true);
     });
   });
 });

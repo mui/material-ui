@@ -30,10 +30,7 @@ function getTranslateValue(direction, node) {
   let offsetY = 0;
 
   if (transform && transform !== 'none' && typeof transform === 'string') {
-    const transformValues = transform
-      .split('(')[1]
-      .split(')')[0]
-      .split(',');
+    const transformValues = transform.split('(')[1].split(')')[0].split(',');
     offsetX = parseInt(transformValues[4], 10);
     offsetY = parseInt(transformValues[5], 10);
   }

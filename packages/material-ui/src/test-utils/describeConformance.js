@@ -30,9 +30,7 @@ function findRootComponent(wrapper, { component }) {
 }
 
 function randomStringValue() {
-  return Math.random()
-    .toString(36)
-    .slice(2);
+  return Math.random().toString(36).slice(2);
 }
 
 /**

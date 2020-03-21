@@ -32,10 +32,7 @@ function findPagesMarkdown(
       .replace('.md', '');
 
     // Remove the last pathname segment.
-    pathname = pathname
-      .split('/')
-      .slice(0, 3)
-      .join('/');
+    pathname = pathname.split('/').slice(0, 3).join('/');
 
     pagesMarkdown.push({
       // Relative location in the path (URL) system.

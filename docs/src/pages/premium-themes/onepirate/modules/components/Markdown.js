@@ -15,7 +15,9 @@ const options = {
     h1: { component: props => <Typography gutterBottom variant="h4" {...props} /> },
     h2: { component: props => <Typography gutterBottom variant="h6" {...props} /> },
     h3: { component: props => <Typography gutterBottom variant="subtitle1" {...props} /> },
-    h4: { component: props => <Typography gutterBottom variant="caption" paragraph {...props} /> },
+    h4: {
+      component: props => <Typography gutterBottom variant="caption" paragraph {...props} />,
+    },
     p: { component: props => <Typography paragraph {...props} /> },
     a: { component: Link },
     li: {

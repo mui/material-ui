@@ -141,13 +141,7 @@ describe('<Menu />', () => {
     });
 
     it('should render a MenuList inside the Popover', () => {
-      assert.strictEqual(
-        wrapper
-          .find(Popover)
-          .find(MenuList)
-          .exists(),
-        true,
-      );
+      assert.strictEqual(wrapper.find(Popover).find(MenuList).exists(), true);
     });
   });
 

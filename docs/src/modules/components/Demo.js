@@ -155,11 +155,7 @@ function useUniqueId(prefix) {
   // useOpaqueReference
   const [id, setDemoId] = React.useState(null);
   React.useEffect(() => {
-    setDemoId(
-      Math.random()
-        .toString(36)
-        .slice(2),
-    );
+    setDemoId(Math.random().toString(36).slice(2));
   }, []);
 
   return `${prefix}${id}`;

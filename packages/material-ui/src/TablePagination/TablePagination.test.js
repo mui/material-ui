@@ -221,13 +221,7 @@ describe('<TablePagination />', () => {
           </TableFooter>
         </table>,
       );
-      assert.strictEqual(
-        wrapper
-          .find(Typography)
-          .at(1)
-          .text(),
-        '0-0 of 0',
-      );
+      assert.strictEqual(wrapper.find(Typography).at(1).text(), '0-0 of 0');
     });
 
     it('should hide the rows per page selector if there are less than two options', () => {

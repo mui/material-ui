@@ -270,10 +270,12 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
               name ? `(name="${name}") ` : ''
             }component.`,
             "Consider providing a value that matches one of the available options or ''.",
-            `The available values are ${values
-              .filter(x => x != null)
-              .map(x => `\`${x}\``)
-              .join(', ') || '""'}.`,
+            `The available values are ${
+              values
+                .filter(x => x != null)
+                .map(x => `\`${x}\``)
+                .join(', ') || '""'
+            }.`,
           ].join('\n'),
         );
       }

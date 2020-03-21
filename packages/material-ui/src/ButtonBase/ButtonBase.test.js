@@ -74,9 +74,7 @@ describe('<ButtonBase />', () => {
       );
       const checkbox = getByRole('checkbox');
       expect(checkbox).to.have.property('nodeName', 'SPAN');
-      expect(checkbox)
-        .attribute('tabIndex')
-        .to.equal('0');
+      expect(checkbox).attribute('tabIndex').to.equal('0');
     });
 
     it('should not apply role="button" if type="button"', () => {

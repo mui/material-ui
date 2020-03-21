@@ -183,10 +183,7 @@ describe('<SpeedDial />', () => {
       if (actionIndex === -1) {
         return getDialButton();
       }
-      return wrapper
-        .find(SpeedDialAction)
-        .at(actionIndex)
-        .find(Fab);
+      return wrapper.find(SpeedDialAction).at(actionIndex).find(Fab);
     };
     /**
      * @returns true if the button of the nth action is focused
@@ -225,7 +222,7 @@ describe('<SpeedDial />', () => {
     });
 
     // eslint-disable-next-line func-names
-    describe('actions navigation', function() {
+    describe('actions navigation', function () {
       this.timeout(5000); // These tests are really slow.
 
       /**

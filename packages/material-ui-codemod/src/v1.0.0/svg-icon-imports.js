@@ -12,10 +12,7 @@ function capitalize(string) {
  * @param {string} iconName
  */
 function pascalize(iconName) {
-  return iconName
-    .split('-')
-    .map(capitalize)
-    .join('');
+  return iconName.split('-').map(capitalize).join('');
 }
 
 /**

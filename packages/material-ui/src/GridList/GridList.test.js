@@ -66,10 +66,7 @@ describe('<GridList />', () => {
 
     assert.strictEqual(wrapper.find('.grid-tile').length, 2, 'should contain the children');
     assert.strictEqual(
-      wrapper
-        .children()
-        .at(0)
-        .props().style.height,
+      wrapper.children().at(0).props().style.height,
       cellHeight + 4,
       'should have height to 254',
     );
@@ -113,10 +110,7 @@ describe('<GridList />', () => {
 
     assert.strictEqual(wrapper.find('.grid-tile').length, 2, 'should contain the children');
     assert.strictEqual(
-      wrapper
-        .children()
-        .at(0)
-        .props().style.width,
+      wrapper.children().at(0).props().style.width,
       '25%',
       'should have 25% of width',
     );
@@ -141,10 +135,7 @@ describe('<GridList />', () => {
 
     assert.strictEqual(wrapper.find('.grid-tile').length, 2, 'should contain the children');
     assert.strictEqual(
-      wrapper
-        .children()
-        .at(0)
-        .props().style.padding,
+      wrapper.children().at(0).props().style.padding,
       spacing / 2,
       'should have 5 of padding',
     );
@@ -179,13 +170,7 @@ describe('<GridList />', () => {
         </GridList>,
       );
 
-      assert.strictEqual(
-        wrapper
-          .children()
-          .at(0)
-          .props().style.height,
-        'auto',
-      );
+      assert.strictEqual(wrapper.children().at(0).props().style.height, 'auto');
     });
   });
 

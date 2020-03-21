@@ -229,16 +229,10 @@ describe('<RadioGroup />', () => {
 
       it('passes the value of the selected Radio as a string', () => {
         function selectNth(wrapper, n) {
-          return wrapper
-            .find('input[type="radio"]')
-            .at(n)
-            .simulate('change');
+          return wrapper.find('input[type="radio"]').at(n).simulate('change');
         }
         function isNthChecked(wrapper, n) {
-          return wrapper
-            .find('input[type="radio"]')
-            .at(n)
-            .is('[checked=true]');
+          return wrapper.find('input[type="radio"]').at(n).is('[checked=true]');
         }
         function Test(props) {
           const { values, ...other } = props;

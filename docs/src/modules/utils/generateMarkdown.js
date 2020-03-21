@@ -65,10 +65,7 @@ function getChained(type) {
 
 function escapeCell(value) {
   // As the pipe is use for the table structure
-  return value
-    .replace(/</g, '&lt;')
-    .replace(/`&lt;/g, '`<')
-    .replace(/\|/g, '\\|');
+  return value.replace(/</g, '&lt;').replace(/`&lt;/g, '`<').replace(/\|/g, '\\|');
 }
 
 function isElementTypeAcceptingRefProp(type) {

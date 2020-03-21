@@ -234,19 +234,7 @@ describe('<Stepper />', () => {
         </Step>
       </Stepper>,
     );
-    assert.strictEqual(
-      wrapper
-        .find(StepContent)
-        .at(0)
-        .props().last,
-      false,
-    );
-    assert.strictEqual(
-      wrapper
-        .find(StepContent)
-        .at(1)
-        .props().last,
-      true,
-    );
+    assert.strictEqual(wrapper.find(StepContent).at(0).props().last, false);
+    assert.strictEqual(wrapper.find(StepContent).at(1).props().last, true);
   });
 });

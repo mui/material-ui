@@ -272,8 +272,9 @@ const Popover = React.forwardRef(function Popover(props, ref) {
           console.error(
             [
               'Material-UI: the popover component is too tall.',
-              `Some part of it can not be seen on the screen (${elemRect.height -
-                heightThreshold}px).`,
+              `Some part of it can not be seen on the screen (${
+                elemRect.height - heightThreshold
+              }px).`,
               'Please consider adding a `max-height` to improve the user-experience.',
             ].join('\n'),
           );
