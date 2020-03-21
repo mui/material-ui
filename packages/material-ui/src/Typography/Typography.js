@@ -5,6 +5,8 @@ import withStyles from '../styles/withStyles';
 import capitalize from '../utils/capitalize';
 
 export const styles = theme => ({
+  /* Styles applied to the root element if `variant` is from user defined variants (customVariants). */
+  ...theme.typography.customVariants,
   /* Styles applied to the root element. */
   root: {
     margin: 0,
@@ -219,23 +221,7 @@ Typography.propTypes = {
   /**
    * Applies the theme typography styles.
    */
-  variant: PropTypes.oneOf([
-    'h1',
-    'h2',
-    'h3',
-    'h4',
-    'h5',
-    'h6',
-    'subtitle1',
-    'subtitle2',
-    'body1',
-    'body2',
-    'caption',
-    'button',
-    'overline',
-    'srOnly',
-    'inherit',
-  ]),
+  variant: PropTypes.string,
   /**
    * The component maps the variant prop to a range of different DOM element types.
    * For instance, subtitle1 to `<h6>`.

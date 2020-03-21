@@ -174,6 +174,8 @@ To be done: [#15251](https://github.com/mui-org/material-ui/issues/15251).
 
 ## Variants
 
+### Built-in
+
 The typography object comes with [13 variants](/components/typography/#component) by default:
 
 - h1
@@ -209,6 +211,32 @@ const theme = createMuiTheme({
 ```
 
 {{"demo": "pages/customization/typography/TypographyVariants.js"}}
+
+### Custom
+
+In addition to default variants, you can specify your custom variants:
+
+```js
+const theme = createMuiTheme({
+  typography: {
+    customVariants: {
+      special1: {
+        fontSize: 15,
+        fontWeight: 600,
+        fontStyle: 'italic',
+        textTransform: 'uppercase',
+      },
+      special2: {
+        fontSize: 12,
+        fontWeight: 300,
+        fontStyle: 'italic',
+      },
+    },
+  },
+});
+```
+
+{{"demo": "pages/customization/typography/CustomVariants.js"}}
 
 ## Default values
 

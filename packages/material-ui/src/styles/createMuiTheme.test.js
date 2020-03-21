@@ -117,6 +117,27 @@ describe('createMuiTheme', () => {
     });
   });
 
+  describe('typography customVariants', () => {
+    it('should provide the default value', () => {
+      const muiTheme = createMuiTheme();
+      assert.deepEqual(muiTheme.typography.customVariants, {});
+    });
+
+    it('should have the customVariants as expected', () => {
+      const customVariants = {
+        one: {
+          fontSize: '1.8rem',
+        },
+        two: {
+          fontWeight: 300,
+        },
+      };
+
+      const muiTheme = createMuiTheme({ typography: { customVariants } });
+      assert.deepEqual(muiTheme.typography.customVariants, customVariants);
+    });
+  });
+
   it('shallow merges multiple arguments', () => {
     const muiTheme = createMuiTheme({ foo: 'I am foo' }, { bar: 'I am bar' });
     assert.strictEqual(muiTheme.foo, 'I am foo');

@@ -28,6 +28,7 @@ export default function createTypography(palette, typography) {
     // Apply the CSS properties to all the variants.
     allVariants,
     pxToRem: pxToRem2,
+    customVariants = {},
     ...other
   } = typeof typography === 'function' ? typography(palette) : typography;
 
@@ -85,6 +86,7 @@ export default function createTypography(palette, typography) {
       fontWeightRegular,
       fontWeightMedium,
       fontWeightBold,
+      customVariants,
       ...variants,
     },
     other,

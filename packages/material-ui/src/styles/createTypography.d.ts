@@ -15,7 +15,8 @@ export type Variant =
   | 'body2'
   | 'caption'
   | 'button'
-  | 'overline';
+  | 'overline'
+  | keyof CustomVariants;
 
 export interface FontStyle
   extends Required<{
@@ -38,14 +39,31 @@ export interface FontStyleOptions extends Partial<FontStyle> {
 export type TypographyStyle = CSSProperties;
 export interface TypographyStyleOptions extends TypographyStyle {}
 
+export interface CustomVariants {}
+export interface CustomVariantsOptions {}
+
+export interface TypographyCustomVariants {
+  customVariants: CustomVariants;
+}
+
+export interface TypographyCustomVariantsOptions {
+  customVariants?: CustomVariantsOptions;
+}
+
 export interface TypographyUtils {
   pxToRem: (px: number) => string;
 }
 
-export interface Typography extends Record<Variant, TypographyStyle>, FontStyle, TypographyUtils {}
+export interface Typography
+  extends Record<Variant, TypographyStyle>,
+    FontStyle,
+    TypographyUtils,
+    TypographyCustomVariants {}
 
 export interface TypographyOptions
-  extends Partial<Record<Variant, TypographyStyleOptions> & FontStyleOptions> {}
+  extends Partial<
+    Record<Variant, TypographyStyleOptions> & FontStyleOptions & TypographyCustomVariantsOptions
+  > {}
 
 export default function createTypography(
   palette: Palette,

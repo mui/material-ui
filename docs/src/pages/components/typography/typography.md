@@ -54,6 +54,10 @@ Hopefully, you might be able to take advantage of the [`typography`](/customizat
 
 {{"demo": "pages/components/typography/TypographyTheme.js"}}
 
+## Custom Variants
+
+Sometimes default variants are not enough. For this reason you can [specify your variants via theme](/customization/typography#custom)
+
 ## Changing the semantic element
 
 The Typography component uses the `variantMapping` property to associate a UI variant with a semantic element.
