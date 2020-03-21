@@ -12,7 +12,7 @@
 - ** lg， **大：1280px
 - ** xl， **超大：1920px
 
-These [breakpoint values](/customization/default-theme/?expand-path=$.breakpoints.values) are used to determine breakpoint ranges. 每个范围包含起始断点，不包含终止断点。
+这些[断点值](/customization/default-theme/?expand-path=$.breakpoints.values)用于确定断点范围。 每个范围包含起始断点，不包含终止断点。
 
 ```js
 value         |0px     600px    960px    1280px   1920px
@@ -21,7 +21,7 @@ screen width  |--------|--------|--------|--------|-------->
 range         |   xs   |   sm   |   md   |   lg   |   xl
 ```
 
-这些值可以自定义。 You will find them in the theme, in the [`breakpoints.values`](/customization/default-theme/?expand-path=$.breakpoints.values) object.
+这些值可以自定义。 这些值被用于主题设定，你可以在 [`breakpoints.values`](/customization/default-theme/?expand-path=$.breakpoints.values) 对象上找到它们。
 
 许多组件内部都使用了断点来实现响应式要求，同时你也可以利用断点来控制应用的布局，这可借助于 [Grid](/components/grid/) 和 [Hidden](/components/hidden/) 组件。
 

@@ -1,6 +1,6 @@
 ---
 title: 覆盖 React 组件
-components: Backdrop
+components: 背景板（Backdrop）
 ---
 
 # Backdrop 背景板

@@ -87,7 +87,7 @@ yarn add @material-ui/styles
   +import { hexToRgb } from '@material-ui/core/styles';
   ```
 
-- Scope the [keyframes API](https://cssinjs.org/jss-syntax/#keyframes-animation). You should apply the following changes in your codebase.
+- Scope the [keyframes API](https://cssinjs.org/jss-syntax/#keyframes-animation). Sie sollten die folgenden Änderungen in Ihrer Codebase anwenden.
   It helps isolating the animation logic:
 
   ```diff

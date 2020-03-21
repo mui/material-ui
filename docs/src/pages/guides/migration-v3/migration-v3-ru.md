@@ -246,7 +246,7 @@ This change is explained in more detail in the [TypeScript guide](/guides/typesc
 - [ExpansionPanel] Increase the CSS specificity of the `disabled` and `expanded` style rules.
 - [ExpansionPanel] Rename the `CollapseProps` prop to `TransitionProps`.
 
-### List
+### Список
 
 - [List] Rework the list components to match the specification:
   

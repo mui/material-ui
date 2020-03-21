@@ -28,7 +28,7 @@ Material-UI был разработан на основе шрифта [Roboto](
 
 ## Иконочный шрифт
 
-In order to use the font `Icon` component, you must first add the [Material icons](https://material.io/tools/icons/) font. Вот [некоторые инструкции](/components/icons/#font-icons) как это сделать. Например, через Google Web Fonts:
+Чтобы использовать компонент иконочного шрифта `Icon`, сначала необходимо установить шрифт [Material Icons](https://material.io/tools/icons/). Вот [некоторые инструкции](/components/icons/#font-icons) как это сделать. Например, через Google Web Fonts:
 
 ```html
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
@@ -39,10 +39,10 @@ In order to use the font `Icon` component, you must first add the [Material icon
 Для того, чтобы использовать предварительно собранные SVG-иконки Material, такие как те, которые используются для [демонстрации](/components/icons/), сначала необходимо установить пакет [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons):
 
 ```sh
-// with npm
+// через npm
 npm install @material-ui/icons
 
-// with yarn
+// через yarn
 yarn add @material-ui/icons
 ```
 
@@ -50,13 +50,13 @@ yarn add @material-ui/icons
 
 Вы можете начать использовать Material-UI с минимальной интерфейсной инфраструктурой, что отлично подходит для прототипирования.
 
-Two Universal Module Definition (**UMD**) files are provided:
+Предоставляются два файла в формате **UMD**:
 
 - один для разработки: https://unpkg.com/@material-ui/core@latest/umd/material-ui.development.js
 - один для публикации: https://unpkg.com/@material-ui/core@latest/umd/material-ui.production.min.js
 
 Вы можете следовать [этому примеру CDN](https://github.com/mui-org/material-ui/tree/master/examples/cdn) для быстрого старта.
 
-⚠️ Using this approach in **production** is **discouraged** though - the client has to download the entire library, regardless of which components are actually used, affecting performance and bandwidth utilization.
+Использование этого подхода в **продакшене** **не рекомендуется** - клиент вынужден загружать целую библиотеку независимо от того, какие компоненты он реально использует. Это плохо влияет на производительность.
 
-⚠️ The UMD links are using the `latest` tag to point to the latest version of the library. This pointer is **unstable**, it shifts as we release new versions. You should consider pointing to a specific version, such as [v4.4.0](https://unpkg.com/@material-ui/core@4.4.0/umd/material-ui.development.js).
+В ссылках на UMD-файлы используется тег `latest` для указания на последнюю версию библиотеки. Этот указатель **нестабильный**, он изменяется при появлении новых версий. Вы можете указывать конкретную версию, например, [v4.4.0](https://unpkg.com/@material-ui/core@4.4.0/umd/material-ui.development.js).

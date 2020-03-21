@@ -9,25 +9,7 @@ components: Slider
 
 [Les curseurs](https://material.io/design/components/sliders.html) reflètent une plage de valeurs sur une barre, à partir de laquelle les utilisateurs peuvent sélectionner une seule valeur. Ils sont idéaux pour ajuster des paramètres tels que le volume, la luminosité ou l'application de filtres d'images.
 
-- 📦 [22 kB gzipped](/size-snapshot) (but only 8 kB without @material-ui/styles).
-
-## Discrete sliders
-
-Discrete sliders can be adjusted to a specific value by referencing its value indicator. By order of demos:
-
-1. You can generate a mark for each step with `marks={true}`.
-2. You can change the default step increment.
-3. You can have custom marks by providing a rich array to the `marks` prop.
-4. You can restrict the selectable values to those provided with the `marks` prop with `step={null}`.
-5. You can force the thumb label to be always visible with `valueLabelDisplay="on"`.
-
-{{"demo": "pages/components/slider/DiscreteSlider.js"}}
-
-## Curseurs personnalisés
-
-Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
-
-{{"demo": "pages/components/slider/CustomizedSlider.js"}}
+- 📦 [22 kB gzipped](/size-snapshot) (but only +8 kB when used together with other Material-UI components).
 
 ## Continuous sliders
 
@@ -35,13 +17,55 @@ Continuous sliders allow users to select a value along a subjective range.
 
 {{"demo": "pages/components/slider/ContinuousSlider.js"}}
 
-## Range sliders
+## Discrete sliders
+
+Discrete sliders can be adjusted to a specific value by referencing its value indicator. By order of demos:
+
+You can generate a mark for each step with `marks={true}`.
+
+{{"demo": "pages/components/slider/DiscreteSlider.js"}}
+
+### Small steps
+
+You can change the default step increment.
+
+{{"demo": "pages/components/slider/DiscreteSliderSteps.js"}}
+
+### Custom marks
+
+You can have custom marks by providing a rich array to the `marks` prop.
+
+{{"demo": "pages/components/slider/DiscreteSliderMarks.js"}}
+
+### Restricted values
+
+You can restrict the selectable values to those provided with the `marks` prop with `step={null}`.
+
+{{"demo": "pages/components/slider/DiscreteSliderValues.js"}}
+
+### Label always visible
+
+You can force the thumb label to be always visible with `valueLabelDisplay="on"`.
+
+{{"demo": "pages/components/slider/DiscreteSliderLabel.js"}}
+
+## Range slider
+
+The slider can be used to set the start and end of a range by supplying an array of values to the `value` prop.
 
 {{"demo": "pages/components/slider/RangeSlider.js"}}
 
-## With input field
+## Slider with input field
+
+In this example an input allows a discrete value to be set.
 
 {{"demo": "pages/components/slider/InputSlider.js"}}
+
+## Curseurs personnalisés
+
+Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+
+{{"demo": "pages/components/slider/CustomizedSlider.js"}}
 
 ## Vertical sliders
 

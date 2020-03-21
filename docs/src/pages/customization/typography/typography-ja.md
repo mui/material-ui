@@ -94,7 +94,7 @@ const theme = createMuiTheme({
 
 ブラウザで計算されるフォントサイズは、次の数式に従います。
 
-![フォント サイズ](/static/images/font-size.gif)
+![font-size](/static/images/font-size.gif)
 
 <!-- https://latex.codecogs.com/gif.latex?computed&space;=&space;specification&space;\frac{typography.fontSize}{14}&space;\frac{html&space;font&space;size}{typography.htmlFontSize} -->
 
@@ -141,11 +141,11 @@ theme.typography.h3 = {
 
 {{"demo": "pages/customization/typography/CustomResponsiveFontSizes.js"}}
 
-To automate this setup, you can use the [`responsiveFontSizes()`](/customization/theming/#responsivefontsizes-theme-options-theme) helper to make Typography font sizes in the theme responsive.
+この設定を自動化するには、[`responsiveFontSizes()`](/customization/theming/#responsivefontsizes-theme-options-theme)ヘルパーを使用して、テーマのタイポグラフィフォントサイズを応答可能にします。
 
 {{"demo": "pages/customization/typography/ResponsiveFontSizesChart.js", "hideToolbar": true}}
 
-You can see this in action in the example below. adjust your browser's window size, and notice how the font size changes as the width crosses the different [breakpoints](/customization/breakpoints/):
+以下の例で実際にこれを見ることができます。 ブラウザのウィンドウサイズを調整し、幅が異なる[ブレークポイント](/customization/breakpoints/)を横切るときにフォントサイズがどのように変化するかを確認します。
 
 ```js
 import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
@@ -158,7 +158,7 @@ theme = responsiveFontSizes(theme);
 
 ### 滑らかなフォントサイズ
 
-To be done: [#15251](https://github.com/mui-org/material-ui/issues/15251).
+完了予定：[＃15251 ](https://github.com/mui-org/material-ui/issues/15251) 。
 
 ## バリアント
 

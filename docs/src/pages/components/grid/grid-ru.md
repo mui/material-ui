@@ -118,6 +118,6 @@ https://www.w3.org/TR/css-flexbox-1/#box-model
 
 ## CSS макет сетки
 
-Material UI сам по себе не предоставляет никакой функциональности CSS Grid, но, как видно ниже, вы можете легко использовать CSS Grid в макете страницы.
+Material-UI сам по себе не предоставляет никакой функциональности CSS Grid, но, как видно ниже, вы можете легко использовать CSS Grid в макете страницы.
 
 {{"demo": "pages/components/grid/CSSGrid.js", "bg": true}}

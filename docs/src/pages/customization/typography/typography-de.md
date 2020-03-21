@@ -145,7 +145,7 @@ To automate this setup, you can use the [`responsiveFontSizes()`](/customization
 
 {{"demo": "pages/customization/typography/ResponsiveFontSizesChart.js", "hideToolbar": true}}
 
-You can see this in action in the example below. adjust your browser's window size, and notice how the font size changes as the width crosses the different [breakpoints](/customization/breakpoints/):
+Sie können dies in dem folgenden Beispiel in Aktion sehen. Passen Sie die Fenstergröße Ihres Browsers an und beachten Sie, wie sich die Schriftgröße ändert, wenn die Breite die unterschiedlichen [Haltepunkte](/customization/breakpoints/) überschreitet:
 
 ```js
 import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
@@ -158,7 +158,7 @@ theme = responsiveFontSizes(theme);
 
 ### Fließende Schriftgrößen
 
-To be done: [#15251](https://github.com/mui-org/material-ui/issues/15251).
+Noch zu tun: [#15251](https://github.com/mui-org/material-ui/issues/15251).
 
 ## Varianten
 

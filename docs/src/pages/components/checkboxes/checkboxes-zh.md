@@ -11,19 +11,23 @@ components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 
 如果列表中有多个选择项，则可以使用复选框替代开关控件来节省空间。 如果您只需要一个选择项，请避免使用复选框，而改用开关控件。
 
+## Basic checkboxes
+
 {{"demo": "pages/components/checkboxes/Checkboxes.js"}}
 
-通过 `FormControlLabel` 组件，`复选框` 也可与标签描述一起使用。
+## Checkbox with FormControlLabel
+
+`Checkbox` can be provided with a label thanks to the `FormControlLabel` component.
 
 {{"demo": "pages/components/checkboxes/CheckboxLabels.js"}}
 
-## 使用 FormGroup（表单组）的多个复选框
+## 使用FromGroup控制多个Checkbox
 
 `FormGroup` 会提供相对简单的 API 对选择控件进行分组。
 
 {{"demo": "pages/components/checkboxes/CheckboxesGroup.js"}}
 
-## 放置标签
+## 标签放置
 
 你可以更改标签的位置:
 
@@ -40,7 +44,7 @@ components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 - [复选框 对比 单选按钮](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
 - [复选框 对比 Switches（开关控件）](https://uxplanet.org/checkbox-vs-toggle-switch-7fc6e83f10b8)
 
-## 可及性
+## 可访问性
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#checkbox)
 

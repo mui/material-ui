@@ -54,7 +54,7 @@ Outlined buttons are also a lower emphasis alternative to contained buttons, or 
 
 {{"demo": "pages/components/buttons/ButtonSizes.js"}}
 
-## Buttons with icons and label
+## アイコンとラベルの付いたButton
 
 Sometimes you might want to have icons for certain button to enhance the UX of the application as we recognize logos more easily than plain text. For example, if you have a delete button you can label it with a dustbin icon.
 
@@ -68,7 +68,7 @@ Icons are also appropriate for toggle buttons that allow a single choice to be s
 
 {{"demo": "pages/components/buttons/IconButtons.js"}}
 
-## Customized buttons
+## カスタムButton
 
 コンポーネントのカスタマイズの例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
 
@@ -76,7 +76,7 @@ Icons are also appropriate for toggle buttons that allow a single choice to be s
 
 👑 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/components/button).
 
-## Complex Buttons
+## 複雑なButton
 
 The Text Buttons, Contained Buttons, Floating Action Buttons and Icon Buttons are built on top of the same component: the `ButtonBase`. You can take advantage of this lower level component to build custom interactions.
 

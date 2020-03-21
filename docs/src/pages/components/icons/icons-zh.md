@@ -1,25 +1,25 @@
 ---
-title: React Icon（图标）组件
+title: React Icon 图标组件
 components: Icon, SvgIcon
 ---
 
 # Icons 图标
 
-<p class="description">一些在 Material-UI 中使用图标的建议和指导。</p>
+<p class="description">我们提供了一些建议和指导，能够帮组您在 Material-UI 中使用图标。</p>
 
-Material-UI通过三种方式提供图标支持：
+Material-UI 通过以下三种方式来支持图标的使用：
 
-1. Standardized [Material Design icons](#material-icons) exported as React components (SVG icons).
-1. With the [SvgIcon](#svgicon) component, a React wrapper for custom SVG icons.
-1. With the [Icon](#icon-font-icons) component, a React wrapper for custom font icons.
+1. 您可以将标准的 [Material Design 图标](#material-icons) 导出为 React 组件 (SVG icons)。
+1. 或者可以将自定义的 SVG 图标通过 [SvgIcon](#svgicon) 组件来包装成一个 React 组件。
+1. 或者可以将自定义的 font 图标通过 [ Icon ](#icon-font-icons) 组件来包装成一个 React 组件。
 
-## Material Icons (材料图标)
+## Material Icons 图标
 
-Material Design has standardized over 1,100 official icons, each in five different "themes" (see below). 对于每个SVG图标，我们从 @ material-ui/icons 包中导出相应的React组件。 You can [search the full list of these icons](/components/material-icons/).
+Material Design 已经将1,100多个官方图标标准化，而每个图标都有五个不同的“主题”(见下文)。 对于每个 SVG 图标，我们从 @ material-ui/icons 包中导出相应的React组件。 您可以 [搜索完整的图标列表](/components/material-icons/)。
 
 ### 使用
 
-Install `@material-ui/icons`. Import icons using one of these two options:
+安装 `@material-ui/icons`。 有两种导入图标的方法：
 
 - 方法 1:
 
@@ -28,15 +28,15 @@ Install `@material-ui/icons`. Import icons using one of these two options:
   import ThreeDRotation from '@material-ui/icons/ThreeDRotation';
   ```
 
-- 选项2:
+- 方法 2:
 
   ```jsx
   import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
   ```
 
-The safest is Option 1 but Option 2 can yield the best developer experience. Make sure you follow the [minimizing bundle size guide](/guides/minimizing-bundle-size/#option-2) before using the second approach. The configuration of a Babel plugin is encouraged.
+当然了，方法 1 比方法 2 安全得多，但是方法 2 提供了最好的开发体验。 在使用第二个方法之前，请确保您遵循 [最小化捆绑包大小指南](/guides/minimizing-bundle-size/#option-2)。 我们鼓励你配置一个 Babel 插件。
 
-Each icon also has a "theme": Filled (default), Outlined, Rounded, Two tone and Sharp. If you want to import the icon component with a theme other than default, append the theme name to the icon name. For example `@material-ui/icons/Delete` icon with:
+其中我们给每个图标配备了一个”主题“：Filled (default), Outlined, Rounded, Two tone 以及 Sharp。 If you want to import the icon component with a theme other than default, append the theme name to the icon name. For example `@material-ui/icons/Delete` icon with:
 
 - Filled theme (default) is exported as `@material-ui/icons/Delete`,
 - Outlined theme is exported as `@material-ui/icons/DeleteOutlined`,

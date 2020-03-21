@@ -1,18 +1,18 @@
-# Puntos de interrupción
+# Separaciones
 
-<p class="description">API that enables the use of breakpoints in a wide variety of contexts.</p>
+<p class="description">Esta API permite usar separaciones en una amplia variedad de contextos.</p>
 
-For optimal user experience, material design interfaces need to be able to adapt their layout at various breakpoints. Material-UI uses a **simplified** implementation of the original [specification](https://material.io/design/layout/responsive-layout-grid.html#breakpoints).
+Para una optima experiencia de usuario, las interfaces de material design necesitan ser capaces de adaptar su layout a varias separaciones. Material-UI usa una implementación **simplificada** de la [especificación](https://material.io/design/layout/responsive-layout-grid.html#breakpoints) original.
 
-Each breakpoint (a key) matches with a *fixed* screen width (a value):
+Cada separación (una llave) coincide con el ancho de pantalla *fijo* (un valor):
 
-- **xs,** extra-small: 0px
-- **sm,** small: 600px
-- **md,** medium: 960px
-- **lg,** large: 1280px
-- **xl,** extra-large: 1920px
+- **xs** extra-pequeño: 0px
+- **sm** pequeño: 600px
+- **md,** mediano: 960px
+- **lg,** grande: 1280px
+- **xl** extra-grande: 1920px
 
-These [breakpoint values](/customization/default-theme/?expand-path=$.breakpoints.values) are used to determine breakpoint ranges. A range starts from the breakpoint value inclusive, to the next breakpoint value exclusive:
+Estos [valores de separación](/customization/default-theme/?expand-path=$.breakpoints.values) son usados para determinar los rangos de separación. Un rango empieza desde el valor de separación inclusivo, hasta el siguiente valor de separación exclusivo:
 
 ```js
 value         |0px     600px    960px    1280px   1920px
@@ -21,9 +21,9 @@ screen width  |--------|--------|--------|--------|-------->
 range         |   xs   |   sm   |   md   |   lg   |   xl
 ```
 
-These values can always be customized. You will find them in the theme, in the [`breakpoints.values`](/customization/default-theme/?expand-path=$.breakpoints.values) object.
+Estos valores pueden ser personalizados. Los encontrarás en el tema, en el objeto [`breakpoints.values`](/customization/default-theme/?expand-path=$.breakpoints.values).
 
-The breakpoints are used internally in various components to make them responsive, but you can also take advantage of them for controlling the layout of your application through the [Grid](/components/grid/) and [Hidden](/components/hidden/) components.
+Las separaciones son usadas internamente en varios componentes para hacerlos responsive, pero también puede tomar ventaja de ellos para controlar el layout de su aplicación mediante los componentes [Grid](/components/grid/) y [Hidden](/components/hidden/).
 
 ## CSS Media Queries
 

@@ -11,9 +11,13 @@ components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 
 Se você tem várias opções aparecendo em uma lista, você pode economizar espaço usando caixas de seleção ao invés de seletores liga/desliga. Se você tem uma única opção, evite usar uma caixa de seleção e use um seletor de liga/desliga.
 
+## Basic checkboxes
+
 {{"demo": "pages/components/checkboxes/Checkboxes.js"}}
 
-Caixa de Seleção pode também ser usada com um rótulo graças ao componente `FormControlLabel`.
+## Checkbox with FormControlLabel
+
+`Checkbox` can be provided with a label thanks to the `FormControlLabel` component.
 
 {{"demo": "pages/components/checkboxes/CheckboxLabels.js"}}
 

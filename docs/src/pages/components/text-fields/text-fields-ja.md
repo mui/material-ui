@@ -7,7 +7,7 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 
 <p class="description">Text fieldを使用すると、ユーザーはテキストを入力および編集できます。</p>
 
-[テキストフィールド](https://material. io/design/components/text-fields. html) 使用すると、ユーザーはUIにテキストを入力できます。 通常、フォームとダイアログに表示されます。
+[テキストフィールド](https://material.io/design/components/text-fields.html) 使用すると、ユーザーはUIにテキストを入力できます。 通常、フォームとダイアログに表示されます。
 
 ## TextField
 
@@ -199,5 +199,5 @@ In order for the text field to be accessible, **the input should be linked to th
 より高度な使用例では、以下を利用できます。
 
 - [formik-material-ui](https://github.com/stackworx/formik-material-ui) Bindings for using Material-UI with [formik](https://jaredpalmer.com/formik).
-- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui) Bindings for using Material UI with [Redux Form](https://redux-form.com/).
-- [mui-rff](https://github.com/lookfirst/mui-rff) Bindings for using Material UI with [React Final Form](https://final-form.org/react).
+- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui) Bindings for using Material-UI with [Redux Form](https://redux-form.com/).
+- [mui-rff](https://github.com/lookfirst/mui-rff) Bindings for using Material-UI with [React Final Form](https://final-form.org/react).

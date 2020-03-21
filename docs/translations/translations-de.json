@@ -18,7 +18,7 @@
   "usageDescr": "Material-UI Komponenten funktionieren ohne zusätzliche Einrichtung und verändern keine Variablen im globalen Sichtbarkeitsbereich.",
   "usageButton": "Erkunden Sie die Dokumentation",
   "themes": "Premium Themen",
-  "themesDescr": "Take your project to the next level with premium themes from our official marketplace – all built on Material-UI.",
+  "themesDescr": "Take your project to the next level with premium themes from our store – all built on Material-UI.",
   "themesButton": "Themen durchsuchen",
   "whosUsing": "Wer nutzt Material-UI?",
   "joinThese": "Treten Sie dieser oder anderer großartiger Organisationen bei!",
@@ -221,12 +221,17 @@
     "/styles": "Stile",
     "/styles/basics": "Grundlegendes",
     "/styles/advanced": "Erweitert",
-    "https://themes.material-ui.com/": "Premium-Themes",
+    "https://material-ui.com/store/": "Store",
     "/components/material-icons": "Material Icons",
     "/components/textarea-autosize": "Textarea Autosize",
     "/components/rating": "Bewertung",
     "/components/skeleton": "Skelett",
     "/components/tree-view": "Baumstrukturansicht",
-    "/customization/density": "Dichte"
+    "/customization/density": "Dichte",
+    "/components/button-group": "Button Group",
+    "/components/floating-action-button": "Floating Action Button",
+    "/components/backdrop": "Backdrop",
+    "/components/alert": "Alert",
+    "/components/pagination": "Paginierung"
   }
 }

@@ -9,17 +9,19 @@ components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel
 
 [Interruptores](https://material.io/design/components/selection-controls.html#switches) são a forma preferida de ajustes de configuração em mobile. A opção que o interruptor controla, juntamente com o estado atual, deve ser claramente explícita no rótulo(label) inline correspondente.
 
+## Basic switches
+
 {{"demo": "pages/components/switches/Switches.js"}}
 
-## Interruptores com FormControlLabel
+## Switch with FormControlLabel
 
-`Switch` também pode ser utilizado com uma descrição de rótulo graças ao componente `FormControlLabel`.
+`Switch` can be provided with a description thanks to the `FormControlLabel` component.
 
 {{"demo": "pages/components/switches/SwitchLabels.js"}}
 
 ## Interruptores com FormGroup
 
-`FormGroup` é um componente encapsulador usado para agrupar componentes de seleção para fornecer uma fácil API. However, we encourage you to use a [Checkbox](/components/checkboxes/) instead.
+`FormGroup` é um componente encapsulador usado para agrupar componentes de seleção para fornecer uma fácil API. However, you are encouraged you to use [Checkboxes](/components/checkboxes/) instead if multiple related controls are required. (See: [When to use](#when-to-use)).
 
 {{"demo": "pages/components/switches/SwitchesGroup.js"}}
 

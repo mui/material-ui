@@ -19,7 +19,7 @@ El sistema de cuadrícula se implementa con el componente `Grid`:
 - Los elementos tienen padding para crear el espacio entre los elementos individuales.
 - Hay cinco puntos de interrupción de la cuadrícula: xs, sm, md, lg y xl.
 
-If you are **new to or unfamiliar with flexbox**, we encourage you to read this [CSS-Tricks flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) guide.
+Si recién comienzas y no estás familiarizado con flexbox, te recomendamos leer la siguiente guía [CSS-Tricks flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/).
 
 ## Espaciado
 
@@ -31,7 +31,7 @@ Esta función de transformación de la salida se puede personalizar [usando el t
 
 ## Grids fluidos
 
-Fluid grids use columns that scale and resize content. A fluid grid’s layout can use breakpoints to determine if the layout needs to change dramatically.
+El fluid grid usa columnas que escalan y redimencionan el contenido. Un layout de fluid grid puede usar separaciones para determinar si el layout necesita cambiar dramaticamente.
 
 ### Grid básica
 
@@ -53,7 +53,7 @@ Debajo de esta línea hay una demostración interactiva que permite explorar el 
 
 ## Auto-layout
 
-The Auto-layout makes the *items* equitably share the available space. That also means you can set the width of one *item* and the others will automatically resize around it.
+El Auto-layout (autodiseño) hace que los *items* compartan el espacio disponible equitativamente. Esto también quiere decir que puede establecer el ancho de un *item* y los otro se dimensionarán a partir de él.
 
 {{"demo": "pages/components/grid/AutoGrid.js", "bg": true}}
 
@@ -65,7 +65,7 @@ El siguiente ejemplo no sigue las directrices de Material Design, pero ilustra c
 
 ## Grid Anidada
 
-The `container` and `item` properties are two independent booleans. They can be combined.
+Las propiedades `container` y `item` son booleaneas e independientes. Pueden ser combinadas. 
 
 > Un **contenedor** de flex es la caja generada por un elemento con la propiedad computada display con el valor de `flex` o `inline-flex`. Los hijos en el flujo de un contenedor flex se denominan flex **items** y se establecen mediante el modelo de layout flex.
 
@@ -96,14 +96,14 @@ Existe una limitación con el margen negativo que utilizamos para implementar el
 
 ### white-space: nowrap;
 
-The initial setting on flex items is `min-width: auto`. It's causing a positioning conflict when the children is using `white-space: nowrap;`. You can experience the issue with:
+La configuración inicial en los elementos flex es `min-width: auto`. Esto causa un conflicto en el posicionamiento cuando el hijo está usando `white-space: nowrap;`. Puede experimentar este problema con: 
 
 ```jsx
 <Grid item xs>
   <Typography noWrap>
 ```
 
-In order for the item to stay within the container you need to set `min-width: 0`. In practice, you can set the `zeroMinWidth` property:
+Para que el item permanezca dentro del contenedor necesita establecer `min-width: 0`. En la practica, puede establecer la propiedad `zeroMinWidth`:
 
 ```jsx
 <Grid item xs zeroMinWidth>

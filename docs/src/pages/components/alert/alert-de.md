@@ -1,29 +1,29 @@
 ---
-title: Alert React component
+title: Hinweis React-Komponente
 components: Alert
 ---
 
-# Alert
+# Hinweis
 
-<p class="description">An alert displays a short, important message in a way that attracts the user's attention without interrupting the user's task.</p>
+<p class="description">Ein Hinweis zeigt eine kurze, wichtige Nachricht auf eine Weise, welche die Aufmerksamkeit des Benutzers auf sich zieht ohne die Aufgabe des Benutzers zu unterbrechen.</p>
 
-**Note:** This component is not documented in the [Material Design guidelines](https://material.io/), but Material-UI supports it.
+**Hinweis:** Diese Komponente ist nicht in den [Material-Design-Richtlinien](https://material.io/) dokumentiert, wird aber von Material-UI unterstützt.
 
-## Simple alerts
+## Einfache Hinweise
 
-The alert offers four severity levels that set a distinctive icon and color.
+Der Hinweis bietet vier Schweregrade an welche je ein eigenes Icon und eine eigene Farbe besitzen.
 
 {{"demo": "pages/components/alert/SimpleAlerts.js"}}
 
 ## Beschreibung
 
-You can use the `AlertTitle` component to display a formatted title above the content.
+Die `AlertTitle`-Komponente kann verwendet werden um einen formatierten Titel über dem Inhalt anzuzeigen.
 
 {{"demo": "pages/components/alert/DescriptionAlerts.js"}}
 
-## Actions
+## Aktionen
 
-An alert can have an action, such as a close or undo button. It is rendered after the message, at the end of the alert.
+Ein Hinweis kann eine Aktion wie zum Beispiel Schließen oder Zurücksetzen haben. Sie wird am Ende des Hinweises, hinter der Nachricht, angezeigt.
 
 If an `onClose` callback is provided and no `action` prop is set, a close icon is displayed. The `action` prop can be used to provide an alternative action, for example using a Button or IconButton.
 

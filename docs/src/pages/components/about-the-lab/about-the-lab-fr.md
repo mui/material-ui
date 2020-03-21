@@ -2,7 +2,7 @@
 
 <p class="description">Ce package contient des composants en incubation (en développement) qui ne sont pas encore prêts à être ajoutés au package principal.</p>
 
-The main difference between the lab and the core is how the components are versioned. Having a separate lab package allows us to release breaking changes when necessary while the core package follows a [slower-moving policy](https://material-ui.com/versions/#release-frequency).
+La principale différence entre le laboratoire et le noyau est la façon dont les composants sont versionnés. Le fait de disposer d'un paquet de laboratoire séparé nous permet de publier les modifications de rupture si nécessaire, tandis que le paquet de base suit une [politique plus lente](https://material-ui.com/versions/#release-frequency).
 
 As developers use and test the components and report issues, the maintainers learn more about shortcomings of the components: missing features, accessibility issues, bugs, API design, etc. The older and more used a component is, the less likely it is that new issues will be found and subsequently need to introduce breaking changes.
 
