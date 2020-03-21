@@ -269,6 +269,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     loading = false,
     loadingText = 'Loading…',
     multiple = false,
+    filterMax,
     noOptionsText = 'No options',
     onChange,
     onClose,
@@ -337,6 +338,14 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
           {...ChipProps}
         />
       ));
+    }
+  }
+
+  if (startAdornment) {
+    const more = startAdornment.length - filterMax;
+    if (filterMax && !focused && more > 0) {
+      startAdornment = startAdornment.splice(0, filterMax);
+      startAdornment.push(<span key={filterMax} data-testid="more">{` + ${more} more`}</span>);
     }
   }
 
@@ -572,6 +581,10 @@ Autocomplete.propTypes = {
    * The children stay within it's parent DOM hierarchy.
    */
   disablePortal: PropTypes.bool,
+  /**
+   * The numbers of items that will be visible
+   */
+  filterMax: PropTypes.number,
   /**
    * A filter function that determines the options that are eligible.
    *

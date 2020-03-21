@@ -65,6 +65,17 @@ export default function Tags() {
           <TextField {...params} variant="filled" label="freeSolo" placeholder="Favorites" />
         )}
       />
+      <Autocomplete
+        multiple
+        filterMax={2}
+        id="tags-standard"
+        options={top100Films}
+        getOptionLabel={option => option.title}
+        defaultValue={[top100Films[13], top100Films[12], top100Films[11]]}
+        renderInput={params => (
+          <TextField {...params} variant="standard" label="filterMax" placeholder="Favorites" />
+        )}
+      />
     </div>
   );
 }

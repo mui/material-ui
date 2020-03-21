@@ -97,6 +97,51 @@ describe('<Autocomplete />', () => {
     });
   });
 
+  describe('prop: filterMax', () => {
+    it('show only the max number of items', () => {
+      const { queryByTestId, getAllByRole } = render(
+        <Autocomplete
+          multiple
+          filterMax={2}
+          {...defaultProps}
+          options={['one', 'two', 'three', 'four']}
+          defaultValue={['one', 'two', 'three']}
+          renderInput={params => <TextField {...params} />}
+        />,
+      );
+
+      const tags = getAllByRole('button');
+      expect(queryByTestId('more')).to.be.exist;
+      expect(tags[0].textContent).to.be.equal('one');
+      expect(tags[1].textContent).to.be.equal('two');
+      expect(tags[2].textContent).to.not.be.equal('three');
+    });
+
+    it('show all items on focus', () => {
+      const { getAllByRole, queryByTestId, getByRole } = render(
+        <Autocomplete
+          multiple
+          filterMax={2}
+          {...defaultProps}
+          options={['one', 'two', 'three', 'four']}
+          defaultValue={['one', 'two', 'three']}
+          renderInput={params => <TextField {...params} />}
+        />,
+      );
+
+      const input = getByRole('textbox');
+      expect(getAllByRole('button')[2].textContent).to.not.be.equal('three');
+      expect(queryByTestId('more')).to.exist;
+
+      input.focus();
+      const tags = getAllByRole('button');
+      expect(queryByTestId('more')).to.not.exist;
+      expect(tags[0].textContent).to.be.equal('one');
+      expect(tags[1].textContent).to.be.equal('two');
+      expect(tags[2].textContent).to.be.equal('three');
+    });
+  });
+
   describe('prop: filterSelectedOptions', () => {
     it('when the last item is selected, highlights the new last item', () => {
       const { getByRole } = render(

@@ -84,6 +84,10 @@ export interface AutocompleteProps<T>
    */
   forcePopupIcon?: true | false | 'auto';
   /**
+   * The numbers of items that will be visible
+   */
+  filterMax?: number;
+  /**
    * The component used to render the listbox.
    */
   ListboxComponent?: React.ComponentType<React.HTMLAttributes<HTMLElement>>;
