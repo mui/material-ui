@@ -1,9 +1,10 @@
 import { Color } from '@material-ui/core';
-import { blue } from '@material-ui/core/colors';
+import { blue, common } from '@material-ui/core/colors';
 import {
   createPalette,
   PaletteColorOptions,
   SimplePaletteColorOptions,
+  Theme,
 } from '@material-ui/core/styles';
 
 {
@@ -21,4 +22,8 @@ import {
   palette.augmentColor(colorOrOption);
   palette.augmentColor(colorOrOption, 400); // $ExpectError
   const augmentedColor = palette.augmentColor(colorOrOption);
+}
+
+{
+  const themeCommons: Theme['palette']['common'] = common;
 }
