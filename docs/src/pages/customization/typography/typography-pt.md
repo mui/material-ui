@@ -162,7 +162,7 @@ Para ser feito: [#15251](https://github.com/mui-org/material-ui/issues/15251).
 
 ## Variantes
 
-The typography object comes with [13 variants](/components/typography/#component) by default:
+O objeto de tipografia vem com [13 variantes](/components/typography/#component) por padrão:
 
 - h1
 - h2
@@ -178,7 +178,7 @@ The typography object comes with [13 variants](/components/typography/#component
 - caption
 - overline
 
-Each of these variants can be customized individually:
+Cada uma dessas variantes pode ser customizada individualmente:
 
 ```js
 const theme = createMuiTheme({
@@ -200,4 +200,4 @@ const theme = createMuiTheme({
 
 ## Valores padrão
 
-You can explore the default values of the typography using [the theme explorer](/customization/default-theme/?expand-path=$.typography) or by opening the dev tools console on this page (`window.theme.typography`).
+Você pode explorar os valores padrão da tipografia usando [o explorador de tema](/customization/default-theme/?expand-path=$.typography) ou abrindo o console das ferramentas de desenvolvimento nesta página (`window.theme.typography`).

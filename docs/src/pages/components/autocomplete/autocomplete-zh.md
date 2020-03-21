@@ -12,6 +12,8 @@ components: TextField, Popper, Autocomplete
 1. 文本框必须取值于某个预设值的集合，例如位置字段必须包含合理的位置： [组合框](#combo-box)
 2. 文本框可以设置任何值，但是为用户提供可能的选项会更好，譬如搜索框可以提供近似的或者曾搜索过的选项以节省用户时间：[灵活的单文本框](#free-solo)
 
+It's meant to be an improved version of the "react-select" and "downshift" packages.
+
 ## 组合框
 
 必须取值于一个预设的可选值集合
@@ -26,7 +28,7 @@ components: TextField, Popper, Autocomplete
 
 ### 国家选择
 
-在248个国家之中选一个。
+Choose one of the 248 countries.
 
 {{"demo": "pages/components/autocomplete/CountrySelect.js"}}
 
@@ -208,6 +210,10 @@ VoiceOver on iOS Safari doesn't support the `aria-owns` attribute very well. You
 ### TypeScript
 
 To fully take advantage of type inference, you need to set the `multiple` prop to `undefined`, `false` or `true`. See [this discussion](https://github.com/mui-org/material-ui/pull/18854#discussion_r364215153) for more details. TypeScript might solve this bug in the future.
+
+### ListboxComponent
+
+If you provide a custom `ListboxComponent` prop, you need to make sure that the intended scroll container has the `role` attribute set to `listbox`. This ensures the correct behavior of the scroll, for example when using the keyboard to navigate.
 
 ## 可访问性
 

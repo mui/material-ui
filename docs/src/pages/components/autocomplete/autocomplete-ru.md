@@ -12,6 +12,8 @@ components: TextField, Popper, Autocomplete
 1. Значение для текстового поля должно быть выбрано из предопределенного набора допустимых значений, например, поле местоположения должно содержать действительное имя местоположения: [поле со списком](#combo-box).
 2. Текстовое поле может содержать любое произвольное значение, но целесообразно предлагать пользователю возможные значения. Например, поле поиска может предлагать аналогичные или предыдущие поиски, чтобы сэкономить время пользователя: [free solo](#free-solo).
 
+It's meant to be an improved version of the "react-select" and "downshift" packages.
+
 ## Комбо-Бокс
 
 Значение должно быть выбрано из предопределенного набора допустимых значений.
@@ -26,7 +28,7 @@ components: TextField, Popper, Autocomplete
 
 ### Выбор страны
 
-Выберите одну страну из 248.
+Choose one of the 248 countries.
 
 {{"demo": "pages/components/autocomplete/CountrySelect.js"}}
 
@@ -208,6 +210,10 @@ VoiceOver on iOS Safari doesn't support the `aria-owns` attribute very well. You
 ### TypeScript
 
 To fully take advantage of type inference, you need to set the `multiple` prop to `undefined`, `false` or `true`. See [this discussion](https://github.com/mui-org/material-ui/pull/18854#discussion_r364215153) for more details. TypeScript might solve this bug in the future.
+
+### ListboxComponent
+
+If you provide a custom `ListboxComponent` prop, you need to make sure that the intended scroll container has the `role` attribute set to `listbox`. This ensures the correct behavior of the scroll, for example when using the keyboard to navigate.
 
 ## Доступность
 

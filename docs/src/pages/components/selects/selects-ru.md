@@ -17,7 +17,7 @@ components: Select, NativeSelect
 
 Компонент Select взаимозаменяем с нативным элементом `<select>`.
 
-Для более продвинутых опций, таких как Комбинированные Списки, Множественный Выбор, Автодополнения, а также поддержки async или Creatable, воспользуйтесь компонентом [`Autocomplete`](/components/autocomplete/). Это также является улучшенной версией пакета "react-select".
+Для более продвинутых опций, таких как Комбинированные Списки, Множественный Выбор, Автодополнения, а также поддержки async или Creatable, воспользуйтесь компонентом [`Autocomplete`](/components/autocomplete/). It's meant to be an improved version of the "react-select" and "downshift" packages.
 
 ## Нативный список
 
@@ -76,7 +76,7 @@ components: Select, NativeSelect
 В качестве альтернативы, компонент `TextField` со свойствами `id` и `label` создадут подходящую разметку:
 
 ```jsx
-<TextField id="select" label="Age" value="20">
+<TextField id="select" label="Age" value="20" select>
   <MenuItem value="10">Ten</MenuItem>
   <MenuItem value="20">Twenty</MenuItem>
 </TextField>

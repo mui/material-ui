@@ -1,5 +1,5 @@
 ---
-title: 'Затемнение: компонент React'
+title: Backdrop React Component
 components: Backdrop
 ---
 
@@ -7,6 +7,6 @@ components: Backdrop
 
 <p class="description">Затемнение предназначено для акцентирования внимания пользователя на определенном элементе интерфейса.</p>
 
-Затемнение обозначает изменение состояния приложения и может быть использовано для создания диалогов, экранов загрузки и т.д. Проще говоря, затемнение добавляет затемнённый слой поверх вашего приложения.
+The backdrop signals to the user of a state change within the application and can be used for creating loaders, dialogs and more. Проще говоря, затемнение добавляет затемнённый слой поверх вашего приложения.
 
 {{"demo": "pages/components/backdrop/SimpleBackdrop.js"}}

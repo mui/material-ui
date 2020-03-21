@@ -12,6 +12,8 @@ El widget es útil para establecer el valor de un cuadro de texto de una sola l�
 1. El valor para el cuadro de texto debe elegirse de un conjunto predefinido de valores permitidos, por ejemplo, un campo de ubicación debe contener un nombre de ubicación válido: [cuadro combinado](#combo-box).
 2. El cuadro de texto puede contener cualquier valor arbitrario, pero es ventajoso sugerir posibles valores al usuario, por ejemplo, un campo de búsqueda puede sugerir búsquedas similares o anteriores para ahorrarle tiempo al usuario: [gratis solo](#free-solo).
 
+It's meant to be an improved version of the "react-select" and "downshift" packages.
+
 ## Combo box
 
 El valor debe elegirse de un conjunto predefinido de valores permitidos.
@@ -26,7 +28,7 @@ Cada uno de los siguientes ejemplos demuestran una característica del component
 
 ### Selección de País
 
-Choose one country between 248.
+Choose one of the 248 countries.
 
 {{"demo": "pages/components/autocomplete/CountrySelect.js"}}
 
@@ -208,6 +210,10 @@ VoiceOver on iOS Safari doesn't support the `aria-owns` attribute very well. You
 ### TypeScript
 
 To fully take advantage of type inference, you need to set the `multiple` prop to `undefined`, `false` or `true`. See [this discussion](https://github.com/mui-org/material-ui/pull/18854#discussion_r364215153) for more details. TypeScript might solve this bug in the future.
+
+### ListboxComponent
+
+If you provide a custom `ListboxComponent` prop, you need to make sure that the intended scroll container has the `role` attribute set to `listbox`. This ensures the correct behavior of the scroll, for example when using the keyboard to navigate.
 
 ## Accesibilidad
 

@@ -31,7 +31,7 @@ The badge auto hides with badgeContent is zero. You can override this with the `
 
 ## Maximaler Wert
 
-You can use the `max` property to cap the value of the badge content.
+Sie können die Eigenschaft `max` verwenden, um den Wert des Badge-Inhalts zu begrenzen.
 
 {{"demo": "pages/components/badges/BadgeMax.js"}}
 

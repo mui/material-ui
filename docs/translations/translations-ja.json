@@ -18,7 +18,7 @@
   "usageDescr": "Material-UIコンポーネントは追加の設定なしで機能し、グローバルスコープを汚染しません。",
   "usageButton": "ドキュメントを探索する",
   "themes": "プレミアムテーマ",
-  "themesDescr": "Take your project to the next level with premium themes from our store – all built on Material-UI.",
+  "themesDescr": "Take your project to the next level with premium themes from our official marketplace – all built on Material-UI.",
   "themesButton": "テーマを見る",
   "whosUsing": "誰がMaterial-UIを利用してますか？",
   "joinThese": "この素晴らしい団体に参加しましょう！",
@@ -91,6 +91,8 @@
   "decreaseSpacing": "間隔を狭める",
   "getProfessionalSupport": "Get Professional Support",
   "diamondSponsors": "Diamond Sponsors",
+  "demoToolbarLabel": "demo source",
+  "resetDemo": "Reset demo",
   "pages": {
     "/getting-started": "はじめに",
     "/getting-started/installation": "インストール",

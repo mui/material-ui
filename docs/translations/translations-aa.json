@@ -91,6 +91,8 @@
   "decreaseSpacing": "crwdns99986:0crwdne99986:0",
   "getProfessionalSupport": "crwdns103878:0crwdne103878:0",
   "diamondSponsors": "crwdns105090:0crwdne105090:0",
+  "demoToolbarLabel": "crwdns131032:0crwdne131032:0",
+  "resetDemo": "crwdns131034:0crwdne131034:0",
   "pages": {
     "/getting-started": "crwdns99988:0crwdne99988:0",
     "/getting-started/installation": "crwdns99990:0crwdne99990:0",

@@ -1,6 +1,6 @@
 ---
 title: Hinweis React-Komponente
-components: Alert
+components: Alert, AlertTitle
 ---
 
 # Hinweis
@@ -49,11 +49,11 @@ Setting the icon prop to false will remove the icon altogether.
 
 Two additional variants are available – outlined, and filled:
 
-### Outlined
+### Umrandung
 
 {{"demo": "pages/components/alert/OutlinedAlerts.js"}}
 
-### Filled
+### Gefüllt
 
 {{"demo": "pages/components/alert/FilledAlerts.js"}}
 

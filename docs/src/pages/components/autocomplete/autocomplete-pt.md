@@ -12,6 +12,8 @@ The widget is useful for setting the value of a single-line textbox in one of tw
 1. The value for the textbox must be chosen from a predefined set of allowed values, e.g., a location field must contain a valid location name: [combo box](#combo-box).
 2. The textbox may contain any arbitrary value, but it is advantageous to suggest possible values to the user, e.g., a search field may suggest similar or previous searches to save the user time: [free solo](#free-solo).
 
+It's meant to be an improved version of the "react-select" and "downshift" packages.
+
 ## Combo box
 
 O valor deve ser escolhido a partir de um conjunto predefinido de valores permitidos.
@@ -26,7 +28,7 @@ Cada um dos exemplos a seguir demonstra uma funcionalidade do componente Autocom
 
 ### Country select
 
-Escolha um país entre 248.
+Choose one of the 248 countries.
 
 {{"demo": "pages/components/autocomplete/CountrySelect.js"}}
 
@@ -208,6 +210,10 @@ VoiceOver on iOS Safari doesn't support the `aria-owns` attribute very well. You
 ### TypeScript
 
 To fully take advantage of type inference, you need to set the `multiple` prop to `undefined`, `false` or `true`. See [this discussion](https://github.com/mui-org/material-ui/pull/18854#discussion_r364215153) for more details. TypeScript might solve this bug in the future.
+
+### ListboxComponent
+
+If you provide a custom `ListboxComponent` prop, you need to make sure that the intended scroll container has the `role` attribute set to `listbox`. This ensures the correct behavior of the scroll, for example when using the keyboard to navigate.
 
 ## Acessibilidade
 

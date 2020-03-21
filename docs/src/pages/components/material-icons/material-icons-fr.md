@@ -3,7 +3,7 @@ title: Icônes Material
 components: Icones, SvgIcon
 ---
 
-# Icônes Material
+# Icônes Material Design
 
 <p class="description">Plus de 1 100 Icônes Material conçues pour React sont disponibles depuis le site officiel.</p>
 

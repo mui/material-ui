@@ -18,7 +18,7 @@
   "usageDescr": "Les composants Material-UI fonctionnent de manière isolée. Ils sont autonomes.",
   "usageButton": "Consulter la documentation",
   "themes": "Thèmes Premium",
-  "themesDescr": "Take your project to the next level with premium themes from our store – all built on Material-UI.",
+  "themesDescr": "Faites passer votre projet au niveau supérieur avec des thèmes premium de notre marché officiel, tous construits sur Material-UI.",
   "themesButton": "Parcourir les thèmes",
   "whosUsing": "Qui utilise Material-UI ?",
   "joinThese": "Rejoignez ces organisations et d’autres formidables!",
@@ -91,6 +91,8 @@
   "decreaseSpacing": "diminuer l'espacement",
   "getProfessionalSupport": "Obtenir de l'assistance professionnelle",
   "diamondSponsors": "Sponsors Diamant",
+  "demoToolbarLabel": "demo source",
+  "resetDemo": "Reset demo",
   "pages": {
     "/getting-started": "Bien démarrer",
     "/getting-started/installation": "Installation",

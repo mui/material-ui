@@ -1,9 +1,9 @@
 ---
-title: Material Icons
+title: Material Иконки
 components: Icon, SvgIcon
 ---
 
-# Material Icons
+# Material Иконки
 
 <p class="description">1,100+ React Material icons ready to use from the official website.</p>
 

@@ -1,6 +1,6 @@
 ---
 title: React 提醒组件
-components: Alert
+components: Alert, AlertTitle
 ---
 
 # Alert 提醒

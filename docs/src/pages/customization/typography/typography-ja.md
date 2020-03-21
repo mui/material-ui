@@ -178,7 +178,7 @@ The typography object comes with [13 variants](/components/typography/#component
 - キャプション
 - オーバーライン
 
-Each of these variants can be customized individually:
+これらのバリアントは各々個別にカスタマイズ可能です。
 
 ```js
 const theme = createMuiTheme({

@@ -4,7 +4,7 @@
 
 ## 密度を適用する
 
-This section explains how to apply density. It doesn't cover petential use cases, or considerations for using density in your application. Material design ガイドラインには、これらのトピックの詳細を説明した[comprehensive guide](https://material.io/design/layout/applying-density.html#typographic-density) があります。
+This section explains how to apply density. It doesn't cover potential use cases, or considerations for using density in your application. Material design ガイドラインには、これらのトピックの詳細を説明した[comprehensive guide](https://material.io/design/layout/applying-density.html#typographic-density) があります。
 
 ## 実装密度
 
@@ -14,7 +14,7 @@ This section explains how to apply density. It doesn't cover petential use cases
 
 次のコンポーネントには、高密度を適用する propsがあります。
 
-- [Button](/api/button/)
+- [Button (ボタン)](/api/button/)
 - [Fab](/api/fab/)
 - [FilledInput](/api/filled-input/)
 - [FormControl](/api/form-control/)

@@ -118,11 +118,11 @@ The colors modified by the palette type are the following:
 
 ### User preference
 
-Users might have specified a preference for a light or dark theme. The method by which the user expresses their preference can vary. It might be a system-wide setting exposed by the Operating System, or a setting controlled by the User Agent.
+Пользователи могли указать предпочтение светлой или темной теме. The method by which the user expresses their preference can vary. It might be a system-wide setting exposed by the Operating System, or a setting controlled by the User Agent.
 
 You can leverage this preference dynamically with the [useMediaQuery](/components/use-media-query/) hook and the [prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme) media query.
 
-For instance, you can enable the dark mode automatically:
+Например, можно включить темный режим автоматически:
 
 ```jsx
 import React from 'react';

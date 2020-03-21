@@ -25,19 +25,19 @@ La visibilité des badges peut être contrôlée à l'aide de la propriété `in
 
 {{"demo": "pages/components/badges/BadgeVisibility.js"}}
 
-The badge auto hides with badgeContent is zero. You can override this with the `showZero` property.
+Le badge se cache automatiquement quand badgeContent est nul. Vous pouvez la remplacer avec la propriété `showZero`.
 
 {{"demo": "pages/components/badges/ShowZeroBadge.js"}}
 
 ## Maximum value
 
-You can use the `max` property to cap the value of the badge content.
+Vous pouvez utiliser la propriété `max` pour limiter la valeur du contenu du badge.
 
 {{"demo": "pages/components/badges/BadgeMax.js"}}
 
 ## Dot badge
 
-The `dot` property changes a badge into a small dot. This can be used as a notification that something has changed without giving a count.
+La propriété `dot` change un badge en petit point. Il peut être utilisé comme une notification indiquant que quelque chose a changé sans donner un nombre.
 
 {{"demo": "pages/components/badges/DotBadge.js"}}
 

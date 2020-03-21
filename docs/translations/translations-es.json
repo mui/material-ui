@@ -18,7 +18,7 @@
   "usageDescr": "Los componentes de Material-UI funcionan sin ninguna configuración adicional, y no ensucian el global scope.",
   "usageButton": "Explore la documentación",
   "themes": "Temas Premium",
-  "themesDescr": "Take your project to the next level with premium themes from our store – all built on Material-UI.",
+  "themesDescr": "Take your project to the next level with premium themes from our official marketplace – all built on Material-UI.",
   "themesButton": "Examinar temas",
   "whosUsing": "¿Quién usa Material-UI?",
   "joinThese": "¡Únete a estas y otras grandes organizaciones!",
@@ -91,6 +91,8 @@
   "decreaseSpacing": "disminuir espaciado",
   "getProfessionalSupport": "Get Professional Support",
   "diamondSponsors": "Patrocinadores Destacados",
+  "demoToolbarLabel": "demo source",
+  "resetDemo": "Reset demo",
   "pages": {
     "/getting-started": "Primeros pasos",
     "/getting-started/installation": "Instalación",

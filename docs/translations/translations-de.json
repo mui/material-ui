@@ -18,7 +18,7 @@
   "usageDescr": "Material-UI Komponenten funktionieren ohne zusätzliche Einrichtung und verändern keine Variablen im globalen Sichtbarkeitsbereich.",
   "usageButton": "Erkunden Sie die Dokumentation",
   "themes": "Premium Themen",
-  "themesDescr": "Take your project to the next level with premium themes from our store – all built on Material-UI.",
+  "themesDescr": "Take your project to the next level with premium themes from our official marketplace – all built on Material-UI.",
   "themesButton": "Themen durchsuchen",
   "whosUsing": "Wer nutzt Material-UI?",
   "joinThese": "Treten Sie dieser oder anderer großartiger Organisationen bei!",
@@ -91,6 +91,8 @@
   "decreaseSpacing": "Abstand verringern",
   "getProfessionalSupport": "Professionellen Support erhalten",
   "diamondSponsors": "Diamant-Sponsoren",
+  "demoToolbarLabel": "demo source",
+  "resetDemo": "Reset demo",
   "pages": {
     "/getting-started": "Erste Schritte",
     "/getting-started/installation": "Installation",
@@ -231,7 +233,7 @@
     "/components/button-group": "Button Group",
     "/components/floating-action-button": "Floating Action Button",
     "/components/backdrop": "Backdrop",
-    "/components/alert": "Alert",
+    "/components/alert": "Hinweis",
     "/components/pagination": "Paginierung"
   }
 }

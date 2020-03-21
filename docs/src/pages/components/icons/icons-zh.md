@@ -34,15 +34,15 @@ Material Design 已经将1,100多个官方图标标准化，而每个图标都�
   import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
   ```
 
-当然了，方法 1 比方法 2 安全得多，但是方法 2 提供了最好的开发体验。 在使用第二个方法之前，请确保您遵循 [最小化捆绑包大小指南](/guides/minimizing-bundle-size/#option-2)。 我们鼓励你配置一个 Babel 插件。
+当然了，方法 1 比方法 2 安全得多，但是方法 2 提供了最好的开发体验。 在使用第二个方法之前，请确保您遵循 [最小化捆绑包大小指南](/guides/minimizing-bundle-size/#option-2)。 我们强烈建议您配置一个 Babel 插件。
 
-其中我们给每个图标配备了一个”主题“：Filled (default), Outlined, Rounded, Two tone 以及 Sharp。 If you want to import the icon component with a theme other than default, append the theme name to the icon name. For example `@material-ui/icons/Delete` icon with:
+其中我们给每个图标配备了一个”主题“：Filled (default), Outlined, Rounded, Two tone 以及 Sharp。 若您想导入一个不是默认主题的图标组件，在图标名加主题做为后缀可以帮助你实现。 例如，`@material-ui/icons/Delete` 图标可以：
 
-- Filled theme (default) is exported as `@material-ui/icons/Delete`,
-- Outlined theme is exported as `@material-ui/icons/DeleteOutlined`,
-- Rounded theme is exported as `@material-ui/icons/DeleteRounded`,
-- Twotone theme is exported as `@material-ui/icons/DeleteTwoTone`,
-- Sharp theme is exported as `@material-ui/icons/DeleteSharp`.
+- 导出为 Filled 主题（默认值）：`@material-ui/icons/Delete`，
+- 导出为 Outlined 主题：`@material-ui/icons/DeleteOutlined`，
+- 导出为 Rounded 主题：`@material-ui/icons/DeleteRounded `，
+- 导出为 Twotone 主题：`@material-ui/icons/DeleteTwoTone `，
+- 导出为 Sharp 主题：`@material-ui/icons/DeleteSharp `，
 
 > Note: The Material Design specification names the icons using "snake_case" naming (for example `delete_forever`, `add_a_photo`), while `@material-ui/icons` exports the respective icons using "PascalCase" naming (for example `DeleteForever`, `AddAPhoto`). There are three exceptions to this naming rule: `3d_rotation` exported as `ThreeDRotation`, `4k` exported as `FourK`, and `360` exported as `ThreeSixty`.
 
