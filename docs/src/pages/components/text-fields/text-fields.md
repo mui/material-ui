@@ -35,7 +35,7 @@ The `error` prop toggles the error state, the `helperText` prop can then be used
 
 ## Multiline
 
-The `multiline` prop transforms the text field into a [Textarea](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) or a [Textarea Autosize](/components/textarea-autosize/).
+The `multiline` prop transforms the text field into a [textarea](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) or a [TextareaAutosize](/components/textarea-autosize/).
 
 {{"demo": "pages/components/text-fields/MultilineTextFields.js"}}
 
