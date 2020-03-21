@@ -3,7 +3,7 @@ title: Button React component
 components: Button, IconButton, ButtonBase
 ---
 
-# Button
+# Buttons
 
 <p class="description">Buttons allow users to take actions, and make choices, with a single tap.</p>
 
@@ -107,7 +107,7 @@ Here is an [integration example with react-router](/guides/composition/#button).
 
 ### Cursor not-allowed
 
-The ButtonBase component sets `pointer-events: none;` on disabled buttons, which prevents the appearance of a disabled cursor.
+The `ButtonBase` component sets `pointer-events: none;` on disabled buttons, which prevents the appearance of a disabled cursor.
 
 If you wish to use `not-allowed`, you have two options:
 
@@ -122,7 +122,7 @@ If you wish to use `not-allowed`, you have two options:
 
   However:
 
-  - You should add `pointer-events: none;` back when you need to display [tooltips on disabled elements](/components/tooltips/#disabled-elements)
+  - You should add `pointer-events: none;` back when you need to display [tooltips on disabled elements](/components/tooltips/#disabled-elements).
   - The cursor won't change if you render something other than a button element, for instance, a link `<a>` element.
 
 2. **DOM change**. You can wrap the button:
