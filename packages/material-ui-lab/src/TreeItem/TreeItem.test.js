@@ -251,14 +251,14 @@ describe('<TreeItem />', () => {
           expect(getByTestId('test')).to.have.attribute('aria-selected', 'true');
         });
 
-        it('should not have the attribute `aria-selected` if disableSelection is true', () => {
+        it('should have the attribute `aria-selected` if disableSelection is true', () => {
           const { getByTestId } = render(
             <TreeView multiSelect disableSelection>
               <TreeItem nodeId="test" label="test" data-testid="test" />
             </TreeView>,
           );
 
-          expect(getByTestId('test')).to.not.have.attribute('aria-selected');
+          expect(getByTestId('test')).to.have.attribute('aria-selected', 'false');
         });
       });
     });
