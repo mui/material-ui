@@ -15,7 +15,7 @@
     "docs:export": "yarn workspace docs export",
     "docs:icons": "yarn workspace docs icons",
     "docs:size-why": "cross-env DOCS_STATS_ENABLED=true yarn docs:build",
-    "docs:start": "yarn workspace docs icons",
+    "docs:start": "yarn workspace docs start",
     "docs:i18n": "cross-env BABEL_ENV=test babel-node ./docs/scripts/i18n.js",
     "docs:typescript": "yarn workspace docs typescript:transpile:dev",
     "docs:typescript:check": "yarn workspace docs typescript",
