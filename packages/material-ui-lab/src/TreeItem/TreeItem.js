@@ -93,6 +93,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     nodeId,
     onClick,
     onFocus,
+    onBlur,
     onKeyDown,
     onMouseDown,
     TransitionComponent = Collapse,
@@ -120,13 +121,13 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     isExpanded,
     isFocused,
     isSelected,
-    isTabbable,
     multiSelect,
     selectionDisabled,
     getParent,
     mapFirstChar,
     addNodeToNodeMap,
     removeNodeFromNodeMap,
+    unfocus,
   } = React.useContext(TreeViewContext);
 
   const nodeRef = React.useRef(null);
@@ -138,7 +139,6 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
   const expandable = Boolean(Array.isArray(children) ? children.length : children);
   const expanded = isExpanded ? isExpanded(nodeId) : false;
   const focused = isFocused ? isFocused(nodeId) : false;
-  const tabbable = isTabbable ? isTabbable(nodeId) : false;
   const selected = isSelected ? isSelected(nodeId) : false;
   const icons = contextIcons || {};
   const theme = useTheme();
@@ -328,12 +328,22 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
   };
 
   const handleFocus = event => {
-    if (!focused && tabbable) {
+    if (event.currentTarget === event.target && !focused) {
       focus(nodeId);
     }
 
     if (onFocus) {
       onFocus(event);
+    }
+  };
+
+  const handleBlur = event => {
+    if (event.currentTarget === event.target) {
+      unfocus(event);
+    }
+
+    if (onBlur) {
+      onBlur(event);
     }
   };
 
@@ -374,10 +384,11 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
       role="treeitem"
       onKeyDown={handleKeyDown}
       onFocus={handleFocus}
+      onBlur={handleBlur}
       aria-expanded={expandable ? expanded : null}
       aria-selected={!selectionDisabled && isSelected ? isSelected(nodeId) : undefined}
       ref={handleRef}
-      tabIndex={tabbable ? 0 : -1}
+      tabIndex={-1}
       {...other}
     >
       <div
@@ -449,6 +460,10 @@ TreeItem.propTypes = {
    * The id of the node.
    */
   nodeId: PropTypes.string.isRequired,
+  /**
+   * @ignore
+   */
+  onBlur: PropTypes.func,
   /**
    * @ignore
    */

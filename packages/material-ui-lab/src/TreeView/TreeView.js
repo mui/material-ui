@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import TreeViewContext from './TreeViewContext';
 import { withStyles } from '@material-ui/core/styles';
-import { useControlled } from '@material-ui/core/utils';
+import { useControlled, useForkRef } from '@material-ui/core/utils';
 
 export const styles = {
   /* Styles applied to the root element. */
@@ -11,6 +11,7 @@ export const styles = {
     padding: 0,
     margin: 0,
     listStyle: 'none',
+    outline: 'none',
   },
 };
 
@@ -55,9 +56,11 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     selected: selectedProp,
     ...other
   } = props;
-  const [tabbable, setTabbable] = React.useState(null);
   const [focused, setFocused] = React.useState(null);
+  const [treeTabbable, setTreeTabbable] = React.useState(true);
 
+  const treeRef = React.useRef(null);
+  const handleRef = useForkRef(treeRef, ref);
   const nodeMap = React.useRef({});
   const firstCharMap = React.useRef({});
   const visibleNodes = React.useRef([]);
@@ -87,7 +90,6 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     [selected],
   );
 
-  const isTabbable = id => tabbable === id;
   const isFocused = id => focused === id;
 
   /*
@@ -128,8 +130,17 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
 
   const focus = id => {
     if (id) {
-      setTabbable(id);
+      if (treeTabbable) {
+        setTreeTabbable(false);
+      }
       setFocused(id);
+    }
+  };
+
+  const unfocus = event => {
+    if (!treeRef.current.contains(event.relatedTarget)) {
+      setFocused(null);
+      setTreeTabbable(true);
     }
   };
 
@@ -185,13 +196,6 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     let newExpanded;
     if (expanded.indexOf(value) !== -1) {
       newExpanded = expanded.filter(id => id !== value);
-      setTabbable(oldTabbable => {
-        const map = nodeMap.current[oldTabbable];
-        if (oldTabbable && (map && map.parent ? map.parent.id : null) === value) {
-          return value;
-        }
-        return oldTabbable;
-      });
     } else {
       newExpanded = [value, ...expanded];
     }
@@ -290,7 +294,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     if (selected.indexOf(value) !== -1) {
       newSelected = selected.filter(id => id !== value);
     } else {
-      newSelected = [value, ...selected];
+      newSelected = [...selected, value];
     }
 
     if (onNodeSelect) {
@@ -434,6 +438,95 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     [getNodesToRemove],
   );
 
+  const getVisible = nodeId => {
+    let visible = true;
+    const map = nodeMap.current;
+    const node = map[nodeId];
+    let parent = node.parent;
+    while (parent) {
+      const parentNode = map[parent];
+      if (expanded.indexOf(parent) === -1) {
+        visible = false;
+        break;
+      }
+      parent = parentNode.parent;
+    }
+    return visible;
+  };
+
+  const ensureVisible = nodeId => {
+    const newExpanded = [];
+
+    const map = nodeMap.current;
+    const node = map[nodeId];
+    let parent = node.parent;
+    while (parent) {
+      const parentNode = map[parent];
+      if (expanded.indexOf(parent) === -1) {
+        newExpanded.push(parent);
+      }
+      parent = parentNode.parent;
+    }
+
+    if (newExpanded.length > 0) {
+      setExpandedState([expanded.current].concat(newExpanded));
+    }
+  };
+
+  const focusSelected = selectedNode => {
+    if (getVisible(selectedNode)) {
+      focus(selectedNode);
+    } else {
+      // could have a prop for this scenario
+
+      // expand into view
+      ensureVisible(selectedNode);
+      focus(selectedNode);
+
+      // or focusFirstChild();
+    }
+  };
+
+  const ensureSelectedIsCurrent = () => {
+    let actualSelected = selected;
+    if (Array.isArray(selected)) {
+      const currentSelected = selected.filter(s => !!nodeMap.current[s]);
+      if (currentSelected.length !== selected.length) {
+        actualSelected = currentSelected;
+        setSelectedState(currentSelected);
+      }
+    } else if (!nodeMap.current[selected]) {
+      actualSelected = null;
+      setSelectedState([]);
+    }
+    return actualSelected;
+  };
+
+  const handleFocus = event => {
+    const focusFirstChild = () => {
+      const topLevelChildren = nodeMap.current[-1].children;
+      if (topLevelChildren.length > 0) {
+        focus(topLevelChildren[0]);
+      }
+    };
+
+    if (event.currentTarget === event.target) {
+      const actualSelected = ensureSelectedIsCurrent();
+      if (multiSelect) {
+        if (actualSelected && actualSelected.length > 0) {
+          focusSelected(actualSelected[0]);
+        } else {
+          focusFirstChild();
+        }
+      } else if (!Array.isArray(actualSelected) && actualSelected) {
+        focusSelected(actualSelected);
+      } else {
+        focusFirstChild();
+      }
+      setTreeTabbable(false);
+    }
+  };
+
   const mapFirstChar = (id, firstChar) => {
     firstCharMap.current[id] = firstChar;
   };
@@ -450,13 +543,6 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     });
     if (arrayDiff(prevChildIds.current, childIds)) {
       nodeMap.current[-1] = { parent: null, children: childIds };
-
-      childIds.forEach((id, index) => {
-        if (index === 0) {
-          setTabbable(id);
-        }
-        nodeMap.current[id] = { parent: null };
-      });
       visibleNodes.current = nodeMap.current[-1].children;
       prevChildIds.current = childIds;
       setChildrenCalculated(true);
@@ -482,6 +568,14 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     }
   }, [expanded, childrenCalculated, isExpanded]);
 
+  React.useEffect(() => {
+    if (!treeTabbable) {
+      if (!nodeMap.current[focused]) {
+        treeRef.current.focus();
+      }
+    }
+  }, [children, treeTabbable, nodeMap, focused, setTreeTabbable]);
+
   return (
     <TreeViewContext.Provider
       value={{
@@ -504,20 +598,22 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
         rangeSelectToFirst,
         rangeSelectToLast,
         selectAllNodes,
-        isTabbable,
         multiSelect,
         selectionDisabled: disableSelection,
         getParent,
         mapFirstChar,
         addNodeToNodeMap,
         removeNodeFromNodeMap,
+        unfocus,
       }}
     >
       <ul
         role="tree"
         aria-multiselectable={multiSelect}
         className={clsx(classes.root, className)}
-        ref={ref}
+        ref={handleRef}
+        tabIndex={treeTabbable ? 0 : -1}
+        onFocus={handleFocus}
         {...other}
       >
         {children}

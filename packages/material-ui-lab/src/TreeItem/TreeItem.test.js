@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
-import { createEvent, createClientRender, fireEvent } from 'test/utils/createClientRender';
+import { createEvent, createClientRender, fireEvent, wait } from 'test/utils/createClientRender';
 import TreeItem from './TreeItem';
 import TreeView from '../TreeView';
 
@@ -241,8 +241,8 @@ describe('<TreeItem />', () => {
     });
 
     describe('when a tree receives focus', () => {
-      it('should focus the first node if none of the nodes are selected before the tree receives focus', () => {
-        const { getByTestId } = render(
+      it('should focus the first node if none of the nodes are selected before the tree receives focus', async () => {
+        const { getByTestId, getByRole } = render(
           <React.Fragment>
             {/* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex */}
             <div data-testid="start" tabIndex={0} />
@@ -257,21 +257,19 @@ describe('<TreeItem />', () => {
         getByTestId('start').focus();
         expect(getByTestId('start')).to.have.focus;
 
-        fireEvent.keyDown(document.activeElement, { key: 'Tab' });
-        getByTestId('one').focus();
-
-        expect(getByTestId('one')).to.have.focus;
+        getByRole('tree').focus();
+        await wait(() => expect(getByTestId('one')).to.have.focus);
       });
 
-      it('should focus the selected node if a node is selected before the tree receives focus', () => {
-        const { getByTestId, getByText } = render(
+      it('should focus the selected node if a node is selected before the tree receives focus', async () => {
+        const { getByTestId, getByText, getByRole } = render(
           <React.Fragment>
             {/* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex */}
             <div data-testid="start" tabIndex={0} />
             <TreeView>
               <TreeItem nodeId="1" label="one" data-testid="one" />
               <TreeItem nodeId="2" label="two" data-testid="two" />
-              <TreeItem nodeId="3" label="three" />
+              <TreeItem nodeId="3" label="three" data-testid="three" />
             </TreeView>
           </React.Fragment>,
         );
@@ -279,13 +277,247 @@ describe('<TreeItem />', () => {
         fireEvent.click(getByText('two'));
         expect(getByTestId('two')).to.have.focus;
 
+        // focus to different from selected
+        fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+        expect(getByTestId('three')).to.have.focus;
+        expect(getByTestId('two')).to.have.attribute('aria-selected', 'true');
+
         getByTestId('start').focus();
         expect(getByTestId('start')).to.have.focus;
 
-        fireEvent.keyDown(document.activeElement, { key: 'Tab' });
-        getByTestId('two').focus();
+        getByRole('tree').focus();
+        await wait(() => expect(getByTestId('two')).to.have.focus);
+      });
 
+      it('should focus the first selected node if multiple nodes are selected before the tree receives focus', async () => {
+        const { getByTestId, getByText, getByRole, container } = render(
+          <React.Fragment>
+            {/* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex */}
+            <div data-testid="start" tabIndex={0} />
+            <TreeView multiSelect>
+              <TreeItem nodeId="1" label="one" data-testid="one" />
+              <TreeItem nodeId="2" label="two" data-testid="two" />
+              <TreeItem nodeId="3" label="three" data-testid="three" />
+            </TreeView>
+          </React.Fragment>,
+        );
+
+        expect(container.querySelectorAll('[aria-selected=true]').length).to.equal(0);
+        fireEvent.click(getByText('two'));
         expect(getByTestId('two')).to.have.focus;
+        expect(getByTestId('two')).to.have.attribute('aria-selected', 'true');
+        fireEvent.keyDown(document.activeElement, { key: 'ArrowDown', shiftKey: true });
+        expect(getByTestId('three')).to.have.attribute('aria-selected', 'true');
+        expect(getByTestId('two')).to.have.attribute('aria-selected', 'true');
+
+        getByTestId('start').focus();
+        expect(getByTestId('start')).to.have.focus;
+        getByRole('tree').focus();
+
+        await wait(() => expect(getByTestId('two')).to.have.focus);
+
+        // deselect
+        fireEvent.click(getByText('two'), { ctrlKey: true });
+        fireEvent.click(getByText('three'), { ctrlKey: true });
+        expect(container.querySelectorAll('[aria-selected=true]').length).to.equal(0);
+
+        // change selection order
+        fireEvent.click(getByText('three'));
+        expect(getByTestId('three')).to.have.attribute('aria-selected', 'true');
+        fireEvent.click(getByText('two'), { ctrlKey: true });
+        expect(getByTestId('three')).to.have.attribute('aria-selected', 'true');
+        expect(getByTestId('two')).to.have.attribute('aria-selected', 'true');
+
+        getByTestId('start').focus();
+        expect(getByTestId('start')).to.have.focus;
+        getByRole('tree').focus();
+        await wait(() => expect(getByTestId('three')).to.have.focus);
+      });
+
+      it('should focus the first node if the selected node is removed', async () => {
+        function TestComponent() {
+          const [hide, setHide] = React.useState(false);
+          return (
+            <React.Fragment>
+              <button type="button" onClick={() => setHide(true)}>
+                Hide
+              </button>
+              <TreeView>
+                <TreeItem nodeId="1" label="one" data-testid="one" />
+                {!hide ? <TreeItem nodeId="2" label="two" data-testid="two" /> : <span />}
+              </TreeView>
+            </React.Fragment>
+          );
+        }
+
+        const { getByTestId, getByRole, getByText, queryByTestId } = render(<TestComponent />);
+
+        fireEvent.click(getByText('two'));
+        expect(getByTestId('two')).to.have.attribute('aria-selected', 'true');
+
+        getByRole('button').focus();
+        expect(getByRole('button')).to.have.focus;
+        getByRole('tree').focus();
+        await wait(() => expect(getByTestId('two')).to.have.focus);
+
+        getByRole('button').focus();
+        expect(getByRole('button')).to.have.focus;
+        fireEvent.click(getByRole('button'));
+        expect(queryByTestId('2')).to.be.null;
+
+        getByRole('tree').focus();
+        await wait(() => expect(getByTestId('one')).to.have.focus);
+      });
+
+      it('should focus the first selected node when one of the selected nodes is removed', async () => {
+        function TestComponent() {
+          const [hide, setHide] = React.useState(false);
+          return (
+            <React.Fragment>
+              <button type="button" onClick={() => setHide(true)}>
+                Hide
+              </button>
+              <TreeView multiSelect>
+                <TreeItem nodeId="1" label="one" data-testid="one" />
+                {!hide ? <TreeItem nodeId="2" label="two" data-testid="two" /> : <span />}
+                <TreeItem nodeId="3" label="three" data-testid="three" />
+              </TreeView>
+            </React.Fragment>
+          );
+        }
+
+        const { getByTestId, getByRole, getByText, queryByTestId } = render(<TestComponent />);
+        fireEvent.click(getByText('two'));
+        fireEvent.click(getByText('three'), { ctrlKey: true });
+        expect(getByTestId('two')).to.have.attribute('aria-selected', 'true');
+        expect(getByTestId('three')).to.have.attribute('aria-selected', 'true');
+
+        getByRole('button').focus();
+        fireEvent.click(getByRole('button'));
+        expect(queryByTestId('two')).to.be.null;
+
+        getByRole('tree').focus();
+        await wait(() => expect(getByTestId('three')).to.have.focus);
+      });
+
+      it('should remove itself from the tab order', () => {
+        const { getByRole } = render(
+          <React.Fragment>
+            <TreeView>
+              <TreeItem nodeId="1" />
+            </TreeView>
+          </React.Fragment>,
+        );
+
+        expect(getByRole('tree')).to.have.attribute('tabindex', '0');
+        getByRole('tree').focus();
+        expect(getByRole('tree')).to.have.attribute('tabindex', '-1');
+      });
+
+      it('should remove itself from the tab order when a tree item is clicked', () => {
+        const { getByRole, getByText } = render(
+          <React.Fragment>
+            <TreeView>
+              <TreeItem nodeId="1" label="one" />
+            </TreeView>
+          </React.Fragment>,
+        );
+
+        expect(getByRole('tree')).to.have.attribute('tabindex', '0');
+        fireEvent.click(getByText('one'));
+        expect(getByRole('tree')).to.have.attribute('tabindex', '-1');
+      });
+
+      it('should remove itself from the tab order when a tree item is programmatically focused', () => {
+        const { getByRole, getByTestId } = render(
+          <React.Fragment>
+            <TreeView>
+              <TreeItem nodeId="1" data-testid="one" />
+            </TreeView>
+          </React.Fragment>,
+        );
+
+        expect(getByRole('tree')).to.have.attribute('tabindex', '0');
+        getByTestId('one').focus();
+        expect(getByRole('tree')).to.have.attribute('tabindex', '-1');
+      });
+
+      it('should allow programmatic focus only of tree items', async () => {
+        const { getByTestId, getByRole, getAllByRole } = render(
+          <React.Fragment>
+            {/* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex */}
+            <div data-testid="start" tabIndex={0} />
+            <TreeView>
+              <TreeItem nodeId="1" label="one" data-testid="one" />
+              <TreeItem nodeId="2" label="two" />
+              <TreeItem nodeId="3" label="three" />
+            </TreeView>
+          </React.Fragment>,
+        );
+        getAllByRole('treeitem').forEach(treeItem =>
+          expect(treeItem).to.have.attribute('tabindex', '-1'),
+        );
+        getByRole('tree').focus();
+        await wait(() => expect(getByTestId('one')).to.have.focus);
+        getAllByRole('treeitem').forEach(treeItem =>
+          expect(treeItem).to.have.attribute('tabindex', '-1'),
+        );
+      });
+    });
+
+    describe('when focus leaves the tree', () => {
+      it('should have tabindex 0', () => {
+        const { getByRole, getByText, getByTestId } = render(
+          <React.Fragment>
+            {/* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex */}
+            <div data-testid="start" tabIndex={0} />
+            <TreeView>
+              <TreeItem nodeId="1" label="one" />
+            </TreeView>
+          </React.Fragment>,
+        );
+
+        fireEvent.click(getByText('one'));
+        expect(getByRole('tree')).to.have.attribute('tabindex', '-1');
+        getByTestId('start').focus();
+        expect(getByTestId('start')).to.have.focus;
+
+        expect(getByRole('tree')).to.have.attribute('tabindex', '0');
+      });
+    });
+
+    describe('when focused tree item is removed', () => {
+      it('should re-focus the tree', async () => {
+        function TestComponent() {
+          const [hide, setHide] = React.useState(false);
+          return (
+            <React.Fragment>
+              <button type="button" onClick={() => setTimeout(() => setHide(true), 500)}>
+                Hide
+              </button>
+              <TreeView>
+                <TreeItem nodeId="1" label="one" data-testid="one" />
+                {!hide ? <TreeItem nodeId="2" label="two" data-testid="two" /> : <span />}
+                <TreeItem nodeId="3" label="three" data-testid="three" />
+              </TreeView>
+            </React.Fragment>
+          );
+        }
+
+        const { getByTestId, getByText, getByRole, queryByTestId } = render(<TestComponent />);
+
+        // select the node that the tree will focus in the normal 'when a tree receives focus' manner
+        fireEvent.click(getByText('three'));
+        expect(getByTestId('three')).to.have.attribute('aria-selected', 'true');
+
+        getByRole('button').focus();
+        expect(getByRole('button')).to.have.focus;
+        fireEvent.click(document.activeElement);
+
+        getByTestId('two').focus(); // focus the element that will be removed
+        await wait(() => expect(queryByTestId('two')).to.be.null);
+
+        await wait(() => expect(getByTestId('three')).to.have.focus);
       });
     });
 
