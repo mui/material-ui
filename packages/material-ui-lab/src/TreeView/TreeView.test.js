@@ -106,13 +106,13 @@ describe('<TreeView />', () => {
 
     const { getByTestId, getByText } = render(<MyComponent />);
 
-    expect(getByTestId('one')).to.have.attribute('aria-selected', 'false');
-    expect(getByTestId('two')).to.have.attribute('aria-selected', 'false');
+    expect(getByTestId('one')).to.not.have.attribute('aria-selected');
+    expect(getByTestId('two')).to.not.have.attribute('aria-selected');
     fireEvent.click(getByText('one'));
     expect(getByTestId('one')).to.have.attribute('aria-selected', 'true');
-    expect(getByTestId('two')).to.have.attribute('aria-selected', 'false');
+    expect(getByTestId('two')).to.not.have.attribute('aria-selected');
     fireEvent.click(getByText('two'));
-    expect(getByTestId('one')).to.have.attribute('aria-selected', 'false');
+    expect(getByTestId('one')).to.not.have.attribute('aria-selected');
     expect(getByTestId('two')).to.have.attribute('aria-selected', 'true');
   });
 

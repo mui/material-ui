@@ -365,6 +365,14 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     }
   }, [focused]);
 
+  let ariaSelected;
+  if (multiSelect) {
+    ariaSelected = selected;
+  } else if (selected) {
+    // single-selection trees unset aria-selected
+    ariaSelected = true;
+  }
+
   return (
     <li
       className={clsx(classes.root, className, {
@@ -375,7 +383,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
       onKeyDown={handleKeyDown}
       onFocus={handleFocus}
       aria-expanded={expandable ? expanded : null}
-      aria-selected={!selectionDisabled && isSelected ? isSelected(nodeId) : undefined}
+      aria-selected={ariaSelected}
       ref={handleRef}
       tabIndex={tabbable ? 0 : -1}
       {...other}
