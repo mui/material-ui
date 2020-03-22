@@ -199,34 +199,57 @@ describe('<TreeItem />', () => {
     });
 
     describe('aria-selected', () => {
-      it('should have the attribute `aria-selected=false` if not selected', () => {
-        const { getByTestId } = render(
-          <TreeView>
-            <TreeItem nodeId="test" label="test" data-testid="test" />
-          </TreeView>,
-        );
+      describe('single-select', () => {
+        it('should not have the attribute `aria-selected` if not selected', () => {
+          const { getByTestId } = render(
+            <TreeView>
+              <TreeItem nodeId="test" label="test" data-testid="test" />
+            </TreeView>,
+          );
 
-        expect(getByTestId('test')).to.have.attribute('aria-selected', 'false');
+          expect(getByTestId('test')).to.not.have.attribute('aria-selected');
+        });
+
+        it('should have the attribute `aria-selected=true` if selected', () => {
+          const { getByTestId } = render(
+            <TreeView defaultSelected={'test'}>
+              <TreeItem nodeId="test" label="test" data-testid="test" />
+            </TreeView>,
+          );
+
+          expect(getByTestId('test')).to.have.attribute('aria-selected', 'true');
+        });
       });
 
-      it('should have the attribute `aria-selected=true` if selected', () => {
-        const { getByTestId } = render(
-          <TreeView defaultSelected={'test'}>
-            <TreeItem nodeId="test" label="test" data-testid="test" />
-          </TreeView>,
-        );
+      describe('multi-select', () => {
+        it('should have the attribute `aria-selected=false` if not selected', () => {
+          const { getByTestId } = render(
+            <TreeView multiSelect>
+              <TreeItem nodeId="test" label="test" data-testid="test" />
+            </TreeView>,
+          );
 
-        expect(getByTestId('test')).to.have.attribute('aria-selected', 'true');
-      });
+          expect(getByTestId('test')).to.have.attribute('aria-selected', 'false');
+        });
+        it('should have the attribute `aria-selected=true` if selected', () => {
+          const { getByTestId } = render(
+            <TreeView multiSelect defaultSelected={'test'}>
+              <TreeItem nodeId="test" label="test" data-testid="test" />
+            </TreeView>,
+          );
 
-      it('should not have the attribute `aria-selected` if disableSelection is true', () => {
-        const { getByTestId } = render(
-          <TreeView disableSelection>
-            <TreeItem nodeId="test" label="test" data-testid="test" />
-          </TreeView>,
-        );
+          expect(getByTestId('test')).to.have.attribute('aria-selected', 'true');
+        });
 
-        expect(getByTestId('test')).to.not.have.attribute('aria-selected');
+        it('should have the attribute `aria-selected` if disableSelection is true', () => {
+          const { getByTestId } = render(
+            <TreeView multiSelect disableSelection>
+              <TreeItem nodeId="test" label="test" data-testid="test" />
+            </TreeView>,
+          );
+
+          expect(getByTestId('test')).to.have.attribute('aria-selected', 'false');
+        });
       });
     });
 
@@ -685,7 +708,7 @@ describe('<TreeItem />', () => {
           );
 
           getByTestId('one').focus();
-          expect(getByTestId('one')).to.have.attribute('aria-selected', 'false');
+          expect(getByTestId('one')).to.not.have.attribute('aria-selected');
           fireEvent.keyDown(document.activeElement, { key: ' ' });
           expect(getByTestId('one')).to.have.attribute('aria-selected', 'true');
         });
@@ -699,7 +722,7 @@ describe('<TreeItem />', () => {
             </TreeView>,
           );
 
-          expect(getByTestId('one')).to.have.attribute('aria-selected', 'false');
+          expect(getByTestId('one')).to.not.have.attribute('aria-selected');
           fireEvent.click(getByText('one'));
           expect(getByTestId('one')).to.have.attribute('aria-selected', 'true');
         });
