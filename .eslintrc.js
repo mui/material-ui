@@ -17,7 +17,7 @@ module.exports = {
     ecmaVersion: 7,
     sourceType: 'module',
   },
-  plugins: ['babel', 'mocha', 'material-ui', 'react-hooks'],
+  plugins: ['babel', 'material-ui', 'react-hooks'],
   settings: {
     'import/resolver': {
       webpack: {
@@ -111,23 +111,25 @@ module.exports = {
       env: {
         mocha: true,
       },
+      extends: ['plugin:mocha/recommended'],
       rules: {
         // does not work with wildcard imports. Mistakes will throw at runtime anyway
-        'import/named': false,
+        'import/named': 'off',
         // for expect style assertions
         'no-unused-expressions': 'off',
 
-        'mocha/handle-done-callback': 'error',
-        'mocha/no-exclusive-tests': 'error',
-        'mocha/no-global-tests': 'error',
-        'mocha/no-identical-title': 'error',
-        'mocha/no-nested-tests': 'error',
-        'mocha/no-pending-tests': 'error',
-        'mocha/no-return-and-callback': 'error',
-        'mocha/no-sibling-hooks': 'error',
-        'mocha/no-skipped-tests': 'error',
-        'mocha/no-top-level-hooks': 'error',
-        'mocha/valid-suite-description': 'error',
+        // no rationale provided in /recommended
+        'mocha/no-mocha-arrows': 'off',
+        // definitely a useful rule but too many false positives
+        // due to `describeConformance`
+        // "If you're using dynamically generated tests, you should disable this rule.""
+        'mocha/no-setup-in-describe': 'off',
+        // `beforeEach` for a single case is optimized for change
+        // when we add a test we don't have to refactor the existing
+        // test to `beforeEach`.
+        // `beforeEach`+`afterEach` also means that the `beforeEach`
+        // is cleaned up in `afterEach` if the test causes a crash
+        'mocha/no-hooks-for-single-case': 'off'
       },
     },
     {

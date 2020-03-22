@@ -1,7 +1,7 @@
 const eslint = require('eslint');
 const rule = require('./no-hardcoded-labels');
 
-const ruleTester = new eslint.RuleTester({ parser: 'babel-eslint' });
+const ruleTester = new eslint.RuleTester({ parser: require.resolve('babel-eslint') });
 ruleTester.run('no-hardcoded-labels', rule, {
   valid: [
     '<button>{42}</button>',
