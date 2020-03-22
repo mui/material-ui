@@ -59,6 +59,11 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
   const [focused, setFocused] = React.useState(null);
 
   const nodeMap = React.useRef({});
+
+  if (focused && !nodeMap.current[focused]) {
+    setFocused(null);
+  }
+
   const firstCharMap = React.useRef({});
   const visibleNodes = React.useRef([]);
 
@@ -483,11 +488,6 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     }
   }, [expanded, childrenCalculated, isExpanded]);
 
-  React.useEffect(() => {
-    if (focused && !nodeMap.current[focused]) {
-      setFocused(null);
-    }
-  }, [children, focused, setFocused, nodeMap]);
   return (
     <TreeViewContext.Provider
       value={{
