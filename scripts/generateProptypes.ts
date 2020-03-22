@@ -5,12 +5,10 @@ import * as prettier from 'prettier';
 import * as globCallback from 'glob';
 import { promisify } from 'util';
 import * as _ from 'lodash';
+import * as yargs from 'yargs';
 import { fixBabelGeneratorIssues, fixLineEndings } from '../docs/scripts/helpers';
 
 const glob = promisify(globCallback);
-
-const ignoreCache = process.argv.includes('--disable-cache');
-const verbose = process.argv.includes('--verbose');
 
 enum GenerateResult {
   Success,
@@ -75,7 +73,6 @@ async function generateProptypes(
         prop.jsDoc = prop.jsDoc.replace(documentRegExp, '');
         return true;
       }
-      console.log(prop);
 
       return undefined;
     },
@@ -93,7 +90,13 @@ async function generateProptypes(
   return GenerateResult.Success;
 }
 
-async function run() {
+interface HandlerArgv {
+  'ignore-cache': boolean;
+  verbose: boolean;
+}
+async function run(argv: HandlerArgv) {
+  const { 'ignore-cache': ignoreCache, verbose } = argv;
+
   // Matches files where the folder and file both start with uppercase letters
   // Example: AppBar/AppBar.d.ts
 
@@ -150,7 +153,26 @@ async function run() {
   console.log('Total: %d', results.length);
 }
 
-run().catch((error) => {
-  console.error(error);
-  process.exit(1);
-});
+yargs
+  .command({
+    command: '$0',
+    describe: 'formats codebase',
+    builder: (command) => {
+      return command
+        .option('ignore-cache', {
+          default: false,
+          describe: 'Considers all files on every run',
+          type: 'boolean',
+        })
+        .option('verbose', {
+          default: false,
+          describe: 'Logs result for each file',
+          type: 'boolean',
+        });
+    },
+    handler: run,
+  })
+  .help()
+  .strict(true)
+  .version(false)
+  .parse();
