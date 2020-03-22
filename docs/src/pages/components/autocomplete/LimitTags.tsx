@@ -15,20 +15,20 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default function FilterMaxTags() {
+export default function LimitTags() {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
       <Autocomplete
         multiple
-        filterMaxTags={2}
+        limitTags={2}
         id="tags-standard"
         options={top100Films}
         getOptionLabel={(option) => option.title}
         defaultValue={[top100Films[13], top100Films[12], top100Films[11]]}
         renderInput={(params) => (
-          <TextField {...params} variant="outlined" label="filterMaxTags" placeholder="Favorites" />
+          <TextField {...params} variant="outlined" label="limitTags" placeholder="Favorites" />
         )}
       />
     </div>

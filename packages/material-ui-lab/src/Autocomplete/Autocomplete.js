@@ -257,6 +257,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     filterSelectedOptions = false,
     forcePopupIcon = 'auto',
     freeSolo = false,
+    getLimitTagsText = (more) => `+${more}`,
     getOptionDisabled,
     getOptionLabel = (x) => x,
     getOptionSelected,
@@ -264,12 +265,12 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     id: idProp,
     includeInputInList = false,
     inputValue: inputValueProp,
+    limitTags = -1,
     ListboxComponent = 'ul',
     ListboxProps,
     loading = false,
     loadingText = 'Loading…',
     multiple = false,
-    filterMaxTags,
     noOptionsText = 'No options',
     onChange,
     onClose,
@@ -341,11 +342,15 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     }
   }
 
-  if (filterMaxTags && Array.isArray(startAdornment)) {
-    const more = startAdornment.length - filterMaxTags;
-    if (filterMaxTags && !focused && more > 0) {
-      startAdornment = startAdornment.splice(0, filterMaxTags);
-      startAdornment.push(<span key={filterMaxTags} data-testid="more">{` + ${more} more`}</span>);
+  if (limitTags > -1 && Array.isArray(startAdornment)) {
+    const more = startAdornment.length - limitTags;
+    if (limitTags && !focused && more > 0) {
+      startAdornment = startAdornment.splice(0, limitTags);
+      startAdornment.push(
+        <span className={classes.tag} key={startAdornment.length}>
+          {getLimitTagsText(more)}
+        </span>,
+      );
     }
   }
 
@@ -582,10 +587,6 @@ Autocomplete.propTypes = {
    */
   disablePortal: PropTypes.bool,
   /**
-   * The number of tags that will be visible. Set `-1` to display them all.
-   */
-  filterMaxTags: PropTypes.number,
-  /**
    * A filter function that determines the options that are eligible.
    *
    * @param {T[]} options The options to render.
@@ -605,6 +606,13 @@ Autocomplete.propTypes = {
    * If `true`, the Autocomplete is free solo, meaning that the user input is not bound to provided options.
    */
   freeSolo: PropTypes.bool,
+  /**
+   * The label to display when the tags are truncated (`limitTags`).
+   *
+   * @param {number} more The number of truncated tags.
+   * @returns {ReactNode}
+   */
+  getLimitTagsText: PropTypes.func,
   /**
    * Used to determine the disabled state for a given option.
    */
@@ -640,6 +648,11 @@ Autocomplete.propTypes = {
    * The input value.
    */
   inputValue: PropTypes.string,
+  /**
+   * The maximum number of tags that will be visible when not focused.
+   * Set `-1` to disable the limit.
+   */
+  limitTags: PropTypes.number,
   /**
    * The component used to render the listbox.
    */

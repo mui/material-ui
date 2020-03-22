@@ -97,48 +97,28 @@ describe('<Autocomplete />', () => {
     });
   });
 
-  describe('prop: filterMaxTags', () => {
-    it('show only the max number of items', () => {
-      const { queryByTestId, getAllByRole } = render(
-        <Autocomplete
-          multiple
-          filterMaxTags={2}
-          {...defaultProps}
-          options={['one', 'two', 'three', 'four']}
-          defaultValue={['one', 'two', 'three']}
-          renderInput={params => <TextField {...params} />}
-        />,
-      );
-
-      const tags = getAllByRole('button');
-      expect(queryByTestId('more')).to.be.exist;
-      expect(tags[0].textContent).to.be.equal('one');
-      expect(tags[1].textContent).to.be.equal('two');
-      expect(tags[2].textContent).to.not.be.equal('three');
-    });
-
+  describe('prop: limitTags', () => {
     it('show all items on focus', () => {
-      const { getAllByRole, queryByTestId, getByRole } = render(
+      const { container, getAllByRole, getByRole } = render(
         <Autocomplete
           multiple
-          filterMaxTags={2}
+          limitTags={2}
           {...defaultProps}
-          options={['one', 'two', 'three', 'four']}
+          options={['one', 'two', 'three']}
           defaultValue={['one', 'two', 'three']}
-          renderInput={params => <TextField {...params} />}
+          renderInput={(params) => <TextField {...params} />}
         />,
       );
 
-      const input = getByRole('textbox');
-      expect(getAllByRole('button')[2].textContent).to.not.be.equal('three');
-      expect(queryByTestId('more')).to.exist;
+      let tags;
+      tags = getAllByRole('button');
+      expect(container.textContent).to.equal('onetwo+1');
+      expect(tags.length).to.be.equal(4);
 
-      input.focus();
-      const tags = getAllByRole('button');
-      expect(queryByTestId('more')).to.not.exist;
-      expect(tags[0].textContent).to.be.equal('one');
-      expect(tags[1].textContent).to.be.equal('two');
-      expect(tags[2].textContent).to.be.equal('three');
+      getByRole('textbox').focus();
+      tags = getAllByRole('button');
+      expect(container.textContent).to.equal('onetwothree');
+      expect(tags.length).to.be.equal(5);
     });
   });
 
