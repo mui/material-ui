@@ -4,7 +4,7 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     width: 500,
     '& > * + *': {
@@ -23,9 +23,9 @@ export default function FilterMaxTags() {
         filterMaxTags={2}
         id="tags-standard"
         options={top100Films}
-        getOptionLabel={option => option.title}
+        getOptionLabel={(option) => option.title}
         defaultValue={[top100Films[13], top100Films[12], top100Films[11]]}
-        renderInput={params => (
+        renderInput={(params) => (
           <TextField {...params} variant="outlined" label="filterMaxTags" placeholder="Favorites" />
         )}
       />

@@ -1,17 +1,19 @@
 /* eslint-disable no-use-before-define */
 import React from 'react';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import { makeStyles, Theme } from '@material-ui/core/styles';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    width: 500,
-    '& > * + *': {
-      marginTop: theme.spacing(3),
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      width: 500,
+      '& > * + *': {
+        marginTop: theme.spacing(3),
+      },
     },
-  },
-}));
+  }),
+);
 
 export default function FilterMaxTags() {
   const classes = useStyles();
@@ -23,9 +25,9 @@ export default function FilterMaxTags() {
         filterMaxTags={2}
         id="tags-standard"
         options={top100Films}
-        getOptionLabel={option => option.title}
+        getOptionLabel={(option) => option.title}
         defaultValue={[top100Films[13], top100Films[12], top100Films[11]]}
-        renderInput={params => (
+        renderInput={(params) => (
           <TextField {...params} variant="outlined" label="filterMaxTags" placeholder="Favorites" />
         )}
       />
