@@ -14,7 +14,7 @@ import TabScrollButton from './TabScrollButton';
 import useEventCallback from '../utils/useEventCallback';
 import useTheme from '../styles/useTheme';
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     overflow: 'hidden',
@@ -203,11 +203,11 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
     }
   });
 
-  const scroll = scrollValue => {
+  const scroll = (scrollValue) => {
     animate(scrollStart, tabsRef.current, scrollValue);
   };
 
-  const moveTabsScroll = delta => {
+  const moveTabsScroll = (delta) => {
     let scrollValue = tabsRef.current[scrollStart];
 
     if (vertical) {
@@ -229,7 +229,7 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
     moveTabsScroll(tabsRef.current[clientSize]);
   };
 
-  const handleScrollbarSizeChange = React.useCallback(scrollbarHeight => {
+  const handleScrollbarSizeChange = React.useCallback((scrollbarHeight) => {
     setScrollerStyle({
       overflow: null,
       marginBottom: -scrollbarHeight,
@@ -378,7 +378,7 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
   );
 
   let childIndex = 0;
-  const children = React.Children.map(childrenProp, child => {
+  const children = React.Children.map(childrenProp, (child) => {
     if (!React.isValidElement(child)) {
       return null;
     }

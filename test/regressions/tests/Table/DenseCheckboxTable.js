@@ -9,7 +9,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     width: '100%',
   },
@@ -58,7 +58,7 @@ function DenseCheckboxTable(props) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map(row => (
+            {rows.map((row) => (
               <TableRow key={row.id}>
                 <TableCell padding="checkbox">
                   <Checkbox />

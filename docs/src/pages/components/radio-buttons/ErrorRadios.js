@@ -8,7 +8,7 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import FormLabel from '@material-ui/core/FormLabel';
 import Button from '@material-ui/core/Button';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(3),
   },
@@ -23,13 +23,13 @@ export default function ErrorRadios() {
   const [error, setError] = React.useState(false);
   const [helperText, setHelperText] = React.useState('Choose wisely');
 
-  const handleRadioChange = event => {
+  const handleRadioChange = (event) => {
     setValue(event.target.value);
     setHelperText(' ');
     setError(false);
   };
 
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     event.preventDefault();
 
     if (value === 'best') {

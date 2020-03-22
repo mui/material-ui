@@ -8,7 +8,7 @@ import Fab from '@material-ui/core/Fab';
 import Tooltip from '@material-ui/core/Tooltip';
 import { capitalize } from '@material-ui/core/utils';
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the Fab component. */
   fab: {
     margin: 8,

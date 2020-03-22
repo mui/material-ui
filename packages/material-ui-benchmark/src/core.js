@@ -6,7 +6,7 @@ import { StylesProvider } from '@material-ui/styles';
 import ButtonBase from '@material-ui/core/ButtonBase';
 
 const suite = new Benchmark.Suite('core', {
-  onError: event => {
+  onError: (event) => {
     console.log(event.target.error);
   },
 });
@@ -48,7 +48,7 @@ suite
   .add('ButtonBase disable ripple', () => {
     ReactDOMServer.renderToString(<ButtonBase disableRipple>Material-UI</ButtonBase>);
   })
-  .on('cycle', event => {
+  .on('cycle', (event) => {
     console.log(String(event.target));
   })
   .run();

@@ -81,7 +81,7 @@ describe('<Slide />', () => {
           onExited={handleExited}
         >
           <div
-            ref={ref => {
+            ref={(ref) => {
               child = ref;
             }}
           />
@@ -227,7 +227,7 @@ describe('<Slide />', () => {
       wrapper = mount(
         <Slide onEnter={handleEnterWrapper} onExiting={handleExitingWrapper}>
           <div
-            ref={ref => {
+            ref={(ref) => {
               child = ref;
             }}
           />

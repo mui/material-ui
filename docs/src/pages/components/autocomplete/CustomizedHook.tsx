@@ -143,7 +143,7 @@ export default function CustomizedHook() {
     defaultValue: [top100Films[1]],
     multiple: true,
     options: top100Films,
-    getOptionLabel: option => option.title,
+    getOptionLabel: (option) => option.title,
   });
 
   return (

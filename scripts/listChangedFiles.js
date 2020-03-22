@@ -20,10 +20,7 @@ async function exec(command, args) {
 
 async function execGitCmd(args) {
   const gitResults = await exec('git', args);
-  return gitResults
-    .trim()
-    .toString()
-    .split('\n');
+  return gitResults.trim().toString().split('\n');
 }
 
 async function listChangedFiles() {

@@ -7,7 +7,7 @@ import { darken, fade, lighten } from '../styles/colorManipulator';
 import TableContext from '../Table/TableContext';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     ...theme.typography.body2,

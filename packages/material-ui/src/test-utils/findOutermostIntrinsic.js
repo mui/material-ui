@@ -15,5 +15,5 @@ export function wrapsIntrinsicElement(reactWrapper) {
  * @returns {import('enzyme').ReactWrapper} the wrapper for the outermost DOM node
  */
 export default function findOutermostIntrinsic(reactWrapper) {
-  return reactWrapper.findWhere(n => n.exists() && wrapsIntrinsicElement(n)).first();
+  return reactWrapper.findWhere((n) => n.exists() && wrapsIntrinsicElement(n)).first();
 }

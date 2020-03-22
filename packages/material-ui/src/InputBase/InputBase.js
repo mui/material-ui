@@ -11,7 +11,7 @@ import useForkRef from '../utils/useForkRef';
 import TextareaAutosize from '../TextareaAutosize';
 import { isFilled } from './utils';
 
-export const styles = theme => {
+export const styles = (theme) => {
   const light = theme.palette.type === 'light';
   const placeholder = {
     color: 'currentColor',
@@ -203,7 +203,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
   const { current: isControlled } = React.useRef(value != null);
 
   const inputRef = React.useRef();
-  const handleInputRefWarning = React.useCallback(instance => {
+  const handleInputRefWarning = React.useCallback((instance) => {
     if (process.env.NODE_ENV !== 'production') {
       if (instance && !(instance instanceof HTMLInputElement) && !instance.focus) {
         console.error(
@@ -256,7 +256,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
   const onEmpty = muiFormControl && muiFormControl.onEmpty;
 
   const checkDirty = React.useCallback(
-    obj => {
+    (obj) => {
       if (isFilled(obj)) {
         if (onFilled) {
           onFilled();
@@ -274,7 +274,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
     }
   }, [value, checkDirty, isControlled]);
 
-  const handleFocus = event => {
+  const handleFocus = (event) => {
     // Fix a bug with IE 11 where the focus/blur events are triggered
     // while the input is disabled.
     if (fcs.disabled) {
@@ -296,7 +296,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
     }
   };
 
-  const handleBlur = event => {
+  const handleBlur = (event) => {
     if (onBlur) {
       onBlur(event);
     }
@@ -343,7 +343,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
     checkDirty(inputRef.current);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const handleClick = event => {
+  const handleClick = (event) => {
     if (inputRef.current && event.currentTarget === event.target) {
       inputRef.current.focus();
     }
@@ -386,7 +386,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
     };
   }
 
-  const handleAutoFill = event => {
+  const handleAutoFill = (event) => {
     // Provide a fake value as Chrome might not let you access it for security reasons.
     checkDirty(event.animationName === 'mui-auto-fill-cancel' ? inputRef.current : { value: 'x' });
   };

@@ -5,7 +5,7 @@ import withStyles from '../styles/withStyles';
 import capitalize from '../utils/capitalize';
 import Paper from '../Paper';
 
-export const styles = theme => {
+export const styles = (theme) => {
   const backgroundColorDefault =
     theme.palette.type === 'light' ? theme.palette.grey[100] : theme.palette.grey[900];
 

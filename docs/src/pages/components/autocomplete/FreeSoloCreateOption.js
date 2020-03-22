@@ -36,7 +36,7 @@ export default function FreeSoloCreateOption() {
       }}
       id="free-solo-with-text-demo"
       options={top100Films}
-      getOptionLabel={option => {
+      getOptionLabel={(option) => {
         // e.g value selected with enter, right from the input
         if (typeof option === 'string') {
           return option;
@@ -46,10 +46,10 @@ export default function FreeSoloCreateOption() {
         }
         return option.title;
       }}
-      renderOption={option => option.title}
+      renderOption={(option) => option.title}
       style={{ width: 300 }}
       freeSolo
-      renderInput={params => (
+      renderInput={(params) => (
         <TextField {...params} label="Free solo with text demo" variant="outlined" />
       )}
     />

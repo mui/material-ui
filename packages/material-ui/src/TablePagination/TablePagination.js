@@ -11,7 +11,7 @@ import Toolbar from '../Toolbar';
 import Typography from '../Typography';
 import TablePaginationActions from './TablePaginationActions';
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     color: theme.palette.text.primary,
@@ -124,7 +124,7 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
             onChange={onChangeRowsPerPage}
             {...SelectProps}
           >
-            {rowsPerPageOptions.map(rowsPerPageOption => (
+            {rowsPerPageOptions.map((rowsPerPageOption) => (
               <MenuItemComponent
                 className={classes.menuItem}
                 key={rowsPerPageOption.value ? rowsPerPageOption.value : rowsPerPageOption}
@@ -244,7 +244,7 @@ TablePagination.propTypes = {
   /**
    * The zero-based index of the current page.
    */
-  page: chainPropTypes(PropTypes.number.isRequired, props => {
+  page: chainPropTypes(PropTypes.number.isRequired, (props) => {
     const { count, page, rowsPerPage } = props;
 
     if (count === -1) {

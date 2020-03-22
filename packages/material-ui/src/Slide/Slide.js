@@ -30,10 +30,7 @@ function getTranslateValue(direction, node) {
   let offsetY = 0;
 
   if (transform && transform !== 'none' && typeof transform === 'string') {
-    const transformValues = transform
-      .split('(')[1]
-      .split(')')[0]
-      .split(',');
+    const transformValues = transform.split('(')[1].split(')')[0].split(',');
     offsetX = parseInt(transformValues[4], 10);
     offsetY = parseInt(transformValues[5], 10);
   }
@@ -91,7 +88,7 @@ const Slide = React.forwardRef(function Slide(props, ref) {
   /**
    * used in cloneElement(children, { ref: handleRef })
    */
-  const handleOwnRef = React.useCallback(instance => {
+  const handleOwnRef = React.useCallback((instance) => {
     // #StrictMode ready
     childrenRef.current = ReactDOM.findDOMNode(instance);
   }, []);

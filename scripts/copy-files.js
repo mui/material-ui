@@ -28,7 +28,7 @@ async function createModulePackages({ from, to }) {
   const directoryPackages = glob.sync('*/index.js', { cwd: from }).map(path.dirname);
 
   await Promise.all(
-    directoryPackages.map(async directoryPackage => {
+    directoryPackages.map(async (directoryPackage) => {
       const packageJson = {
         sideEffects: false,
         module: path.join('../esm', directoryPackage, 'index.js'),
@@ -57,7 +57,7 @@ async function typescriptCopy({ from, to }) {
   }
 
   const files = glob.sync('**/*.d.ts', { cwd: from });
-  const cmds = files.map(file => fse.copy(path.resolve(from, file), path.resolve(to, file)));
+  const cmds = files.map((file) => fse.copy(path.resolve(from, file), path.resolve(to, file)));
   return Promise.all(cmds);
 }
 
@@ -99,7 +99,7 @@ async function addLicense(packageData) {
       './esm/index.js',
       './umd/material-ui.development.js',
       './umd/material-ui.production.min.js',
-    ].map(async file => {
+    ].map(async (file) => {
       try {
         await prepend(path.resolve(buildPath, file), license);
       } catch (err) {
@@ -123,7 +123,7 @@ async function run() {
         packageData.name === '@material-ui/core' ? '../../README.md' : './README.md',
         '../../CHANGELOG.md',
         '../../LICENSE',
-      ].map(file => includeFileInBuild(file)),
+      ].map((file) => includeFileInBuild(file)),
     );
 
     await addLicense(packageData);

@@ -7,7 +7,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import WhatshotIcon from '@material-ui/icons/Whatshot';
 import GrainIcon from '@material-ui/icons/Grain';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   link: {
     display: 'flex',
   },

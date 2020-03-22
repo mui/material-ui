@@ -12,7 +12,7 @@ import Fab from '@material-ui/core/Fab';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import Zoom from '@material-ui/core/Zoom';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     position: 'fixed',
     bottom: theme.spacing(2),
@@ -32,7 +32,7 @@ function ScrollTop(props) {
     threshold: 100,
   });
 
-  const handleClick = event => {
+  const handleClick = (event) => {
     const anchor = (event.target.ownerDocument || document).querySelector('#back-to-top-anchor');
 
     if (anchor) {

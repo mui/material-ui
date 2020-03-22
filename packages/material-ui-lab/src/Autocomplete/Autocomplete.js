@@ -13,7 +13,7 @@ import useAutocomplete, { createFilterOptions } from '../useAutocomplete';
 
 export { createFilterOptions };
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     '&:hover $clearIndicatorDirty, &$focused $clearIndicatorDirty': {
@@ -258,7 +258,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     forcePopupIcon = 'auto',
     freeSolo = false,
     getOptionDisabled,
-    getOptionLabel = x => x,
+    getOptionLabel = (x) => x,
     getOptionSelected,
     groupBy,
     id: idProp,
@@ -318,7 +318,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
   let startAdornment;
 
   if (multiple && value.length > 0) {
-    const getCustomizedTagProps = params => ({
+    const getCustomizedTagProps = (params) => ({
       className: clsx(classes.tag, {
         [classes.tagSizeSmall]: size === 'small',
       }),
@@ -340,7 +340,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     }
   }
 
-  const defaultRenderGroup = params => (
+  const defaultRenderGroup = (params) => (
     <li key={params.key}>
       <ListSubheader className={classes.groupLabel} component="div">
         {params.key}

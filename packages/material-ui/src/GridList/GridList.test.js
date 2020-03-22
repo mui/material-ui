@@ -51,7 +51,7 @@ describe('<GridList />', () => {
     const cellHeight = 250;
     const wrapper = shallow(
       <GridList cellHeight={cellHeight}>
-        {tilesData.map(tile => (
+        {tilesData.map((tile) => (
           <span
             key={tile.img}
             className="grid-tile"
@@ -66,10 +66,7 @@ describe('<GridList />', () => {
 
     assert.strictEqual(wrapper.find('.grid-tile').length, 2, 'should contain the children');
     assert.strictEqual(
-      wrapper
-        .children()
-        .at(0)
-        .props().style.height,
+      wrapper.children().at(0).props().style.height,
       cellHeight + 4,
       'should have height to 254',
     );
@@ -78,7 +75,7 @@ describe('<GridList />', () => {
   it('renders children by default', () => {
     const wrapper = shallow(
       <GridList>
-        {tilesData.map(tile => (
+        {tilesData.map((tile) => (
           <span
             key={tile.img}
             className="grid-tile"
@@ -98,7 +95,7 @@ describe('<GridList />', () => {
   it('renders children and change cols', () => {
     const wrapper = shallow(
       <GridList cols={4}>
-        {tilesData.map(tile => (
+        {tilesData.map((tile) => (
           <span
             key={tile.img}
             className="grid-tile"
@@ -113,10 +110,7 @@ describe('<GridList />', () => {
 
     assert.strictEqual(wrapper.find('.grid-tile').length, 2, 'should contain the children');
     assert.strictEqual(
-      wrapper
-        .children()
-        .at(0)
-        .props().style.width,
+      wrapper.children().at(0).props().style.width,
       '25%',
       'should have 25% of width',
     );
@@ -126,7 +120,7 @@ describe('<GridList />', () => {
     const spacing = 10;
     const wrapper = shallow(
       <GridList spacing={spacing}>
-        {tilesData.map(tile => (
+        {tilesData.map((tile) => (
           <span
             key={tile.img}
             className="grid-tile"
@@ -141,10 +135,7 @@ describe('<GridList />', () => {
 
     assert.strictEqual(wrapper.find('.grid-tile').length, 2, 'should contain the children');
     assert.strictEqual(
-      wrapper
-        .children()
-        .at(0)
-        .props().style.padding,
+      wrapper.children().at(0).props().style.padding,
       spacing / 2,
       'should have 5 of padding',
     );
@@ -154,7 +145,7 @@ describe('<GridList />', () => {
     const style = { backgroundColor: 'red' };
     const wrapper = shallow(
       <GridList style={style}>
-        {tilesData.map(tile => (
+        {tilesData.map((tile) => (
           <span
             key={tile.img}
             className="grid-tile"
@@ -179,13 +170,7 @@ describe('<GridList />', () => {
         </GridList>,
       );
 
-      assert.strictEqual(
-        wrapper
-          .children()
-          .at(0)
-          .props().style.height,
-        'auto',
-      );
+      assert.strictEqual(wrapper.children().at(0).props().style.height, 'auto');
     });
   });
 

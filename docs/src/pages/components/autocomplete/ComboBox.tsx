@@ -8,9 +8,9 @@ export default function ComboBox() {
     <Autocomplete
       id="combo-box-demo"
       options={top100Films}
-      getOptionLabel={option => option.title}
+      getOptionLabel={(option) => option.title}
       style={{ width: 300 }}
-      renderInput={params => <TextField {...params} label="Combo box" variant="outlined" />}
+      renderInput={(params) => <TextField {...params} label="Combo box" variant="outlined" />}
     />
   );
 }

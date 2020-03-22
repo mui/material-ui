@@ -129,7 +129,7 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
     [],
   );
 
-  const handleKeyDown = event => {
+  const handleKeyDown = (event) => {
     const list = listRef.current;
     const key = event.key;
     /**
@@ -186,7 +186,7 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
     }
   };
 
-  const handleOwnRef = React.useCallback(instance => {
+  const handleOwnRef = React.useCallback((instance) => {
     // #StrictMode ready
     listRef.current = ReactDOM.findDOMNode(instance);
   }, []);

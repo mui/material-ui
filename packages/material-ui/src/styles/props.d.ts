@@ -101,7 +101,7 @@ import { TypographyProps } from '../Typography';
 import { WithWidthOptions } from '../withWidth';
 
 export type ComponentsProps = {
-  [Name in keyof ComponentsPropsList]?: Partial<ComponentsPropsList[Name]>
+  [Name in keyof ComponentsPropsList]?: Partial<ComponentsPropsList[Name]>;
 };
 
 export interface ComponentsPropsList {

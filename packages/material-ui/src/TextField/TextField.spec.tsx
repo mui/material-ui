@@ -26,7 +26,7 @@ import TextField from '@material-ui/core/TextField';
     <TextField
       variant="filled"
       InputProps={{ classes: { inputAdornedStart: 'adorned-start' } }}
-      onChange={event => {
+      onChange={(event) => {
         // type inference for event still works?
         const value = event.target.value; // $ExpectType string
       }}

@@ -20,7 +20,7 @@ const styles = {
 function DemoLanguages(props) {
   const { classes, codeOpen, codeVariant, demo, gaEventLabel, onLanguageClick } = props;
   const hasTSVariant = demo.rawTS;
-  const t = useSelector(state => state.options.t);
+  const t = useSelector((state) => state.options.t);
 
   function renderedCodeVariant() {
     if (codeVariant === CODE_VARIANTS.TS && hasTSVariant) {

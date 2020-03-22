@@ -19,7 +19,7 @@ function ButtonMenu(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [selectedIndex, setSelectedIndex] = React.useState(selectedIndexProp || null);
 
-  const handleClickListItem = event => {
+  const handleClickListItem = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -57,7 +57,7 @@ function ButtonMenu(props) {
           <MenuItem
             key={option}
             selected={index === selectedIndex}
-            onClick={event => handleMenuItemClick(event, index)}
+            onClick={(event) => handleMenuItemClick(event, index)}
           >
             {option}
           </MenuItem>

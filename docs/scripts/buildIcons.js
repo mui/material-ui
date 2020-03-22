@@ -9,11 +9,11 @@ const OUTPUT_DIR = path.join(__dirname, '../public/static/icons');
 console.log('Generating Icons');
 
 const promises = SIZES.map(
-  size =>
+  (size) =>
     new Promise((resolve, reject) => {
       gm(INPUT_ICON)
         .resize(size, size)
-        .write(path.join(OUTPUT_DIR, `${size}x${size}.png`), err => {
+        .write(path.join(OUTPUT_DIR, `${size}x${size}.png`), (err) => {
           if (err) {
             reject(err);
             return;
@@ -25,7 +25,7 @@ const promises = SIZES.map(
     }),
 );
 
-Promise.all(promises).catch(err => {
+Promise.all(promises).catch((err) => {
   setTimeout(() => {
     console.log(err);
     throw err;

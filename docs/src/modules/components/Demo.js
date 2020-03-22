@@ -41,7 +41,7 @@ function addHiddenInput(form, name, value) {
   form.appendChild(input);
 }
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     marginBottom: 40,
     marginLeft: -theme.spacing(2),
@@ -155,11 +155,7 @@ function useUniqueId(prefix) {
   // useOpaqueReference
   const [id, setDemoId] = React.useState(null);
   React.useEffect(() => {
-    setDemoId(
-      Math.random()
-        .toString(36)
-        .slice(2),
-    );
+    setDemoId(Math.random().toString(36).slice(2));
   }, []);
 
   return `${prefix}${id}`;
@@ -168,8 +164,8 @@ function useUniqueId(prefix) {
 function Demo(props) {
   const { classes, demo, demoOptions, githubLocation } = props;
   const dispatch = useDispatch();
-  const t = useSelector(state => state.options.t);
-  const codeVariant = useSelector(state => state.options.codeVariant);
+  const t = useSelector((state) => state.options.t);
+  const codeVariant = useSelector((state) => state.options.codeVariant);
   const demoData = getDemoData(codeVariant, demo, githubLocation);
 
   const [sourceHintSeen, setSourceHintSeen] = React.useState(false);
@@ -178,7 +174,7 @@ function Demo(props) {
   }, []);
 
   const [demoHovered, setDemoHovered] = React.useState(false);
-  const handleDemoHover = event => {
+  const handleDemoHover = (event) => {
     setDemoHovered(event.type === 'mouseenter');
   };
 
@@ -235,7 +231,7 @@ function Demo(props) {
   };
 
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const handleMoreClick = event => {
+  const handleMoreClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -264,7 +260,7 @@ function Demo(props) {
     addHiddenInput(form, 'project[description]', demoConfig.description);
     addHiddenInput(form, 'project[dependencies]', JSON.stringify(demoConfig.dependencies));
     addHiddenInput(form, 'project[devDependencies]', JSON.stringify(demoConfig.devDependencies));
-    Object.keys(demoConfig.files).forEach(key => {
+    Object.keys(demoConfig.files).forEach((key) => {
       const value = demoConfig.files[key];
       addHiddenInput(form, `project[files][${key}]`, value);
     });
@@ -293,7 +289,7 @@ function Demo(props) {
     demoOptions.bg = true;
   }
 
-  const createHandleCodeSourceLink = anchor => async () => {
+  const createHandleCodeSourceLink = (anchor) => async () => {
     try {
       await copy(`${window.location.href.split('#')[0]}#${anchor}`);
       setSnackbarMessage(t('copiedSourceLink'));
@@ -314,11 +310,11 @@ function Demo(props) {
 
   const handleCodeOpenClick = () => {
     document.cookie = `sourceHintSeen=true;path=/;max-age=31536000`;
-    setCodeOpen(open => !open);
+    setCodeOpen((open) => !open);
     setSourceHintSeen(setSourceHintSeen(true));
   };
 
-  const match = useMediaQuery(theme => theme.breakpoints.up('sm'));
+  const match = useMediaQuery((theme) => theme.breakpoints.up('sm'));
 
   const jsx = getJsxPreview(demoData.raw || '');
   const showPreview =
@@ -334,7 +330,7 @@ function Demo(props) {
     showCodeLabel = showPreview ? t('showFullSource') : t('showSource');
   }
 
-  const [demoKey, resetDemo] = React.useReducer(key => key + 1, 0);
+  const [demoKey, resetDemo] = React.useReducer((key) => key + 1, 0);
 
   const demoSourceId = useUniqueId(`demo-`);
   const openDemoSource = codeOpen || showPreview;

@@ -8,13 +8,12 @@ const glob = require('glob-gitignore');
 const prettier = require('prettier');
 const fs = require('fs');
 const path = require('path');
+const yargs = require('yargs');
 const listChangedFiles = require('./listChangedFiles');
 
-const mode = process.argv[2] || 'write-changed';
-const shouldWrite = mode === 'write' || mode === 'write-changed';
-const onlyChanged = mode === 'check-changed' || mode === 'write-changed';
+function runPrettier(options) {
+  const { changedFiles, shouldWrite } = options;
 
-function runPrettier(changedFiles) {
   let didWarn = false;
   let didError = false;
 
@@ -22,20 +21,20 @@ function runPrettier(changedFiles) {
   const ignoredFiles = fs
     .readFileSync('.eslintignore', 'utf-8')
     .split(/\r*\n/)
-    .filter(notEmpty => notEmpty);
+    .filter((notEmpty) => notEmpty);
 
   const files = glob
     .sync('**/*.{js,tsx,d.ts}', { ignore: ['**/node_modules/**', ...ignoredFiles] })
-    .filter(f => !changedFiles || changedFiles.has(f));
+    .filter((f) => !changedFiles || changedFiles.has(f));
 
   if (!files.length) {
-    process.exit(0);
+    return;
   }
 
   const prettierConfigPath = path.join(__dirname, '../prettier.config.js');
 
-  files.forEach(file => {
-    const options = prettier.resolveConfig.sync(file, {
+  files.forEach((file) => {
+    const prettierOptions = prettier.resolveConfig.sync(file, {
       config: prettierConfigPath,
     });
 
@@ -43,13 +42,13 @@ function runPrettier(changedFiles) {
       const input = fs.readFileSync(file, 'utf8');
       if (shouldWrite) {
         console.log(`Formatting ${file}`);
-        const output = prettier.format(input, { ...options, filepath: file });
+        const output = prettier.format(input, { ...prettierOptions, filepath: file });
         if (output !== input) {
           fs.writeFileSync(file, output, 'utf8');
         }
       } else {
         console.log(`Checking ${file}`);
-        if (!prettier.check(input, { ...options, filepath: file })) {
+        if (!prettier.check(input, { ...prettierOptions, filepath: file })) {
           warnedFiles.push(file);
           didWarn = true;
         }
@@ -71,22 +70,37 @@ function runPrettier(changedFiles) {
   }
 
   if (didWarn || didError) {
-    process.exit(1);
+    throw new Error('Triggered at least one error or warning');
   }
 }
 
-async function run() {
-  try {
-    if (onlyChanged) {
-      const changedFiles = await listChangedFiles();
-      runPrettier(changedFiles);
-      return;
-    }
+async function run(argv) {
+  const { mode } = argv;
+  const shouldWrite = mode === 'write' || mode === 'write-changed';
+  const onlyChanged = mode === 'check-changed' || mode === 'write-changed';
 
-    runPrettier();
-  } catch (err) {
-    console.error(err);
+  let changedFiles;
+  if (onlyChanged) {
+    changedFiles = await listChangedFiles();
   }
+
+  runPrettier({ changedFiles, shouldWrite });
 }
 
-run();
+yargs
+  .command({
+    command: '$0 [mode]',
+    description: 'formats codebase',
+    builder: (command) => {
+      return command.positional('mode', {
+        description: '"write" | "check-changed" | "write-changed"',
+        type: 'string',
+        default: 'write-changed',
+      });
+    },
+    handler: run,
+  })
+  .help()
+  .strict(true)
+  .version(false)
+  .parse();

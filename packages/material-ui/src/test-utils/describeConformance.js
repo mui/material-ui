@@ -24,15 +24,13 @@ import testRef from './testRef';
 function findRootComponent(wrapper, { component }) {
   const outermostHostElement = findOutermostIntrinsic(wrapper).getElement();
 
-  return wrapper.find(component).filterWhere(componentWrapper => {
+  return wrapper.find(component).filterWhere((componentWrapper) => {
     return componentWrapper.contains(outermostHostElement);
   });
 }
 
 function randomStringValue() {
-  return Math.random()
-    .toString(36)
-    .slice(2);
+  return Math.random().toString(36).slice(2);
 }
 
 /**
@@ -159,7 +157,7 @@ function testReactTestRenderer(element) {
   it('should render without errors in ReactTestRenderer', () => {
     ReactTestRenderer.act(() => {
       ReactTestRenderer.create(element, {
-        createNodeMock: node => {
+        createNodeMock: (node) => {
           return document.createElement(node.type);
         },
       });
@@ -201,8 +199,8 @@ export default function describeConformance(minimalElement, getOptions) {
     after(runAfterHook);
 
     Object.keys(fullSuite)
-      .filter(testKey => only.indexOf(testKey) !== -1 && skip.indexOf(testKey) === -1)
-      .forEach(testKey => {
+      .filter((testKey) => only.indexOf(testKey) !== -1 && skip.indexOf(testKey) === -1)
+      .forEach((testKey) => {
         const test = fullSuite[testKey];
         test(minimalElement, getOptions);
       });

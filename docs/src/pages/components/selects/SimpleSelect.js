@@ -6,7 +6,7 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
     minWidth: 120,
@@ -20,7 +20,7 @@ export default function SimpleSelect() {
   const classes = useStyles();
   const [age, setAge] = React.useState('');
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     setAge(event.target.value);
   };
 
@@ -112,7 +112,7 @@ export default function SimpleSelect() {
           id="demo-simple-select-error"
           value={age}
           onChange={handleChange}
-          renderValue={value => `⚠️  - ${value}`}
+          renderValue={(value) => `⚠️  - ${value}`}
         >
           <MenuItem value="">
             <em>None</em>

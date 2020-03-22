@@ -8,7 +8,7 @@ import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
   },
@@ -52,11 +52,11 @@ export default function VerticalLinearStepper() {
   const steps = getSteps();
 
   const handleNext = () => {
-    setActiveStep(prevActiveStep => prevActiveStep + 1);
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
   const handleBack = () => {
-    setActiveStep(prevActiveStep => prevActiveStep - 1);
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
   const handleReset = () => {

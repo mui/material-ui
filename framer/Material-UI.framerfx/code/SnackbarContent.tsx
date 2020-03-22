@@ -28,9 +28,7 @@ export const SnackbarContent: React.SFC<Props> = (props: Props) => {
       <MuiButton color="secondary" size="small">
         {label}
       </MuiButton>
-    ) : (
-      undefined
-    );
+    ) : undefined;
 
   return <MuiSnackbarContent action={action} {...other} />;
 };

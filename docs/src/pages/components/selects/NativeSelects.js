@@ -6,7 +6,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import NativeSelect from '@material-ui/core/NativeSelect';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
     minWidth: 120,
@@ -23,7 +23,7 @@ export default function NativeSelects() {
     name: 'hai',
   });
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     const name = event.target.name;
     setState({
       ...state,

@@ -62,11 +62,11 @@ function options(type, separator) {
   let optionsString = '';
   if (type.value) {
     if (type.name === 'enum') {
-      type.value.forEach(value => {
+      type.value.forEach((value) => {
         optionsString += `${value.value}${separator}`;
       });
     } else if (type.name === 'union') {
-      type.value.forEach(value => {
+      type.value.forEach((value) => {
         optionsString += `${value.name}${separator}`;
       });
     }
@@ -90,7 +90,7 @@ function getTemplateStrings(reactAPI) {
   let controls = '';
   let style = '';
 
-  reactAPI.propNames.forEach(propName => {
+  reactAPI.propNames.forEach((propName) => {
     const prop = reactAPI.props[propName];
     prop.name = propName;
 
@@ -172,7 +172,7 @@ ${propName}: {
 
   if (componentSettings[reactAPI.name].style) {
     const keys = Object.keys(componentSettings[reactAPI.name].style);
-    keys.forEach(key => {
+    keys.forEach((key) => {
       style += `  ${key}: '${componentSettings[reactAPI.name].style[key]}',\n`;
     });
   }
@@ -188,7 +188,7 @@ ${propName}: {
 }
 
 function ensureExists(pat, mask, cb) {
-  mkdir(pat, mask, err => {
+  mkdir(pat, mask, (err) => {
     if (err) {
       if (err.code === 'EEXIST') {
         cb(null); // ignore the error if the folder already exists
@@ -202,7 +202,7 @@ function ensureExists(pat, mask, cb) {
 }
 
 function writeFile(reactAPI) {
-  ensureExists(framerDirectory, 0o744, err => {
+  ensureExists(framerDirectory, 0o744, (err) => {
     if (err) {
       console.log('Error creating directory', framerDirectory);
       return;
@@ -252,7 +252,7 @@ function buildFramer(componentObject) {
 function run() {
   const components = findComponents(path.resolve(process.cwd(), args[2]));
 
-  components.forEach(component => {
+  components.forEach((component) => {
     if (args[4]) {
       if (args[4] === path.parse(component.filename).name) {
         buildFramer(component);

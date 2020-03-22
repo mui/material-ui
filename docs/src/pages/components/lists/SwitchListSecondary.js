@@ -10,7 +10,7 @@ import Switch from '@material-ui/core/Switch';
 import WifiIcon from '@material-ui/icons/Wifi';
 import BluetoothIcon from '@material-ui/icons/Bluetooth';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
     maxWidth: 360,
@@ -22,7 +22,7 @@ export default function SwitchListSecondary() {
   const classes = useStyles();
   const [checked, setChecked] = React.useState(['wifi']);
 
-  const handleToggle = value => () => {
+  const handleToggle = (value) => () => {
     const currentIndex = checked.indexOf(value);
     const newChecked = [...checked];
 

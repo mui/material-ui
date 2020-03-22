@@ -60,7 +60,7 @@ const ListboxComponent = React.forwardRef<HTMLDivElement>(function ListboxCompon
           key={itemCount}
           outerElementType={OuterElementType}
           innerElementType="ul"
-          itemSize={index => getChildSize(itemData[index])}
+          itemSize={(index) => getChildSize(itemData[index])}
           overscanCount={5}
           itemCount={itemCount}
         >
@@ -114,9 +114,9 @@ export default function Virtualize() {
       ListboxComponent={ListboxComponent as React.ComponentType<React.HTMLAttributes<HTMLElement>>}
       renderGroup={renderGroup}
       options={OPTIONS}
-      groupBy={option => option[0].toUpperCase()}
-      renderInput={params => <TextField {...params} variant="outlined" label="10,000 options" />}
-      renderOption={option => <Typography noWrap>{option}</Typography>}
+      groupBy={(option) => option[0].toUpperCase()}
+      renderInput={(params) => <TextField {...params} variant="outlined" label="10,000 options" />}
+      renderOption={(option) => <Typography noWrap>{option}</Typography>}
     />
   );
 }

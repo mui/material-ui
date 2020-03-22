@@ -7,10 +7,7 @@ import TestViewer from './TestViewer';
 // Get all the tests specifically written for preventing regressions.
 const requireRegression = require.context('./tests', true, /js$/);
 const regressions = requireRegression.keys().reduce((res, path) => {
-  const [suite, name] = path
-    .replace('./', '')
-    .replace('.js', '')
-    .split('/');
+  const [suite, name] = path.replace('./', '').replace('.js', '').split('/');
   res.push({
     path,
     suite: `regression-${suite}`,
@@ -142,7 +139,7 @@ function excludeTest(suite, name) {
     return true;
   }
 
-  return blacklist.some(pattern => {
+  return blacklist.some((pattern) => {
     if (typeof pattern === 'string') {
       if (pattern === suite) {
         unusedBlacklistPatterns.delete(pattern);
@@ -174,11 +171,7 @@ function excludeTest(suite, name) {
 // Also use some of the demos to avoid code duplication.
 const requireDemos = require.context('docs/src/pages', true, /js$/);
 const demos = requireDemos.keys().reduce((res, path) => {
-  const [name, ...suiteArray] = path
-    .replace('./', '')
-    .replace('.js', '')
-    .split('/')
-    .reverse();
+  const [name, ...suiteArray] = path.replace('./', '').replace('.js', '').split('/').reverse();
   const suite = `docs-${suiteArray.reverse().join('-')}`;
 
   if (excludeTest(suite, name)) {
@@ -228,7 +221,7 @@ vrtest.before(() => {
 let suite;
 
 const tests = regressions.concat(demos);
-tests.forEach(test => {
+tests.forEach((test) => {
   if (!suite || suite.name !== test.suite) {
     suite = vrtest.createSuite(test.suite);
   }
@@ -252,7 +245,7 @@ tests.forEach(test => {
 if (unusedBlacklistPatterns.size > 0) {
   console.warn(
     `The following patterns are unused:\n\n${Array.from(unusedBlacklistPatterns)
-      .map(pattern => `- ${pattern}`)
+      .map((pattern) => `- ${pattern}`)
       .join('\n')}`,
   );
 }

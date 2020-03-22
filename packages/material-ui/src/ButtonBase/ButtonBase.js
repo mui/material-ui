@@ -117,7 +117,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
   }, [disableRipple, focusRipple, focusVisible]);
 
   function useRippleHandler(rippleAction, eventCallback, skipRippleAction = disableTouchRipple) {
-    return useEventCallback(event => {
+    return useEventCallback((event) => {
       if (eventCallback) {
         eventCallback(event);
       }
@@ -134,7 +134,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
   const handleMouseDown = useRippleHandler('start', onMouseDown);
   const handleDragLeave = useRippleHandler('stop', onDragLeave);
   const handleMouseUp = useRippleHandler('stop', onMouseUp);
-  const handleMouseLeave = useRippleHandler('stop', event => {
+  const handleMouseLeave = useRippleHandler('stop', (event) => {
     if (focusVisible) {
       event.preventDefault();
     }
@@ -147,7 +147,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
   const handleTouchMove = useRippleHandler('stop', onTouchMove);
   const handleBlur = useRippleHandler(
     'stop',
-    event => {
+    (event) => {
       if (focusVisible) {
         onBlurVisible(event);
         setFocusVisible(false);
@@ -158,7 +158,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
     },
     false,
   );
-  const handleFocus = useEventCallback(event => {
+  const handleFocus = useEventCallback((event) => {
     if (disabled) {
       return;
     }
@@ -190,7 +190,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
    * IE 11 shim for https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/repeat
    */
   const keydownRef = React.useRef(false);
-  const handleKeyDown = useEventCallback(event => {
+  const handleKeyDown = useEventCallback((event) => {
     // Check if key is already down to avoid repeats being counted as multiple activations
     if (
       focusRipple &&
@@ -222,7 +222,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
       }
     }
   });
-  const handleKeyUp = useEventCallback(event => {
+  const handleKeyUp = useEventCallback((event) => {
     // calling preventDefault in keyUp on a <button> will not dispatch a click event if Space is pressed
     // https://codesandbox.io/s/button-keyup-preventdefault-dn7f0
     if (

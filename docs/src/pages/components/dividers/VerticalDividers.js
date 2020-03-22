@@ -9,7 +9,7 @@ import FormatUnderlinedIcon from '@material-ui/icons/FormatUnderlined';
 import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     width: 'fit-content',
     border: `1px solid ${theme.palette.divider}`,

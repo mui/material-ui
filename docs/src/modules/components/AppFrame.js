@@ -75,7 +75,7 @@ function DeferredAppSearch() {
   );
 }
 
-const styles = theme => ({
+const styles = (theme) => ({
   '@global': {
     '#main-content': {
       outline: 0,
@@ -146,16 +146,16 @@ const styles = theme => ({
 function AppFrame(props) {
   const { children, classes } = props;
   const theme = useTheme();
-  const t = useSelector(state => state.options.t);
-  const userLanguage = useSelector(state => state.options.userLanguage);
+  const t = useSelector((state) => state.options.t);
+  const userLanguage = useSelector((state) => state.options.userLanguage);
 
   const crowdInLocale = LOCALES[userLanguage] || userLanguage;
 
   const [languageMenu, setLanguageMenu] = React.useState(null);
-  const handleLanguageIconClick = event => {
+  const handleLanguageIconClick = (event) => {
     setLanguageMenu(event.currentTarget);
   };
-  const handleLanguageMenuClose = event => {
+  const handleLanguageMenuClose = (event) => {
     if (event.currentTarget.nodeName === 'A') {
       document.cookie = `userLanguage=noDefault;path=/;max-age=31536000`;
     }
@@ -231,7 +231,7 @@ function AppFrame(props) {
               <span className={classes.language}>
                 {userLanguage === 'aa'
                   ? 'Translating'
-                  : LANGUAGES_LABEL.filter(language => language.code === userLanguage)[0].text}
+                  : LANGUAGES_LABEL.filter((language) => language.code === userLanguage)[0].text}
               </span>
               <ExpandMoreIcon fontSize="small" />
             </Button>
@@ -243,7 +243,7 @@ function AppFrame(props) {
               open={Boolean(languageMenu)}
               onClose={handleLanguageMenuClose}
             >
-              {LANGUAGES_LABEL.map(language => (
+              {LANGUAGES_LABEL.map((language) => (
                 <MenuItem
                   component="a"
                   data-no-link="true"

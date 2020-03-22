@@ -71,7 +71,7 @@ const Menu = React.forwardRef(function Menu(props, ref) {
     }
   };
 
-  const handleListKeyDown = event => {
+  const handleListKeyDown = (event) => {
     if (event.key === 'Tab') {
       event.preventDefault();
 
@@ -118,7 +118,7 @@ const Menu = React.forwardRef(function Menu(props, ref) {
   const items = React.Children.map(children, (child, index) => {
     if (index === activeItemIndex) {
       return React.cloneElement(child, {
-        ref: instance => {
+        ref: (instance) => {
           // #StrictMode ready
           contentAnchorRef.current = ReactDOM.findDOMNode(instance);
           setRef(child.ref, instance);

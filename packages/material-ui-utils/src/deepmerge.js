@@ -6,7 +6,7 @@ export default function deepmerge(target, source, options = { clone: true }) {
   const output = options.clone ? { ...target } : target;
 
   if (isPlainObject(target) && isPlainObject(source)) {
-    Object.keys(source).forEach(key => {
+    Object.keys(source).forEach((key) => {
       // Avoid prototype pollution
       if (key === '__proto__') {
         return;

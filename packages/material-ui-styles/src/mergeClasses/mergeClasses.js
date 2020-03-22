@@ -23,7 +23,7 @@ export default function mergeClasses(options = {}) {
     }
   }
 
-  Object.keys(newClasses).forEach(key => {
+  Object.keys(newClasses).forEach((key) => {
     if (process.env.NODE_ENV !== 'production') {
       if (!baseClasses[key] && newClasses[key]) {
         console.error(

@@ -82,16 +82,16 @@ function selectNode(node) {
   selection.addRange(range);
 }
 
-let Icons = props => {
+let Icons = (props) => {
   const { icons, classes, handleClickOpen } = props;
 
-  const handleClick = event => {
+  const handleClick = (event) => {
     selectNode(event.currentTarget);
   };
 
   return (
     <div>
-      {icons.map(icon => {
+      {icons.map((icon) => {
         return (
           <span key={icon.key} className={clsx('markdown-body', classes.icon)}>
             <icon.Icon
@@ -116,7 +116,7 @@ Icons.propTypes = {
 };
 Icons = React.memo(Icons);
 
-const useDialogStyles = makeStyles(theme => ({
+const useDialogStyles = makeStyles((theme) => ({
   markdown: {
     '& pre': {
       borderRadius: 0,
@@ -172,11 +172,11 @@ const useDialogStyles = makeStyles(theme => ({
   },
 }));
 
-let DialogDetails = props => {
+let DialogDetails = (props) => {
   const classes = useDialogStyles();
   const { open, selectedIcon, handleClose } = props;
 
-  const handleClick = event => {
+  const handleClick = (event) => {
     selectNode(event.currentTarget);
   };
 
@@ -196,9 +196,7 @@ let DialogDetails = props => {
           <MarkdownElement
             className={classes.markdown}
             onClick={handleClick}
-            text={`\`\`\`js\nimport ${selectedIcon.key}Icon from '@material-ui/icons/${
-              selectedIcon.key
-            }';\n\`\`\``}
+            text={`\`\`\`js\nimport ${selectedIcon.key}Icon from '@material-ui/icons/${selectedIcon.key}';\n\`\`\``}
           />
           <Link
             className={classes.import}
@@ -278,7 +276,7 @@ DialogDetails.propTypes = {
 };
 DialogDetails = React.memo(DialogDetails);
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   form: {
     margin: theme.spacing(2, 0),
   },
@@ -343,7 +341,7 @@ const searchIndex = FlexSearch.create({
 const allIconsMap = {};
 const allIcons = Object.keys(mui)
   .sort()
-  .map(key => {
+  .map((key) => {
     let tag;
     if (key.indexOf('Outlined') !== -1) {
       tag = 'Outlined';
@@ -379,7 +377,7 @@ export default function SearchIcons() {
   const [open, setOpen] = React.useState(false);
   const [selectedIcon, setSelectedIcon] = React.useState(null);
 
-  const handleClickOpen = React.useCallback(event => {
+  const handleClickOpen = React.useCallback((event) => {
     setSelectedIcon(allIconsMap[event.currentTarget.getAttribute('title')]);
     setOpen(true);
   }, []);
@@ -398,7 +396,7 @@ export default function SearchIcons() {
 
   const handleChange = React.useMemo(
     () =>
-      debounce(value => {
+      debounce((value) => {
         if (!isMounted.current) {
           return;
         }
@@ -406,7 +404,7 @@ export default function SearchIcons() {
         if (value === '') {
           setKeys(null);
         } else {
-          searchIndex.search(value).then(results => {
+          searchIndex.search(value).then((results) => {
             setKeys(results);
 
             // Keep track of the no results so we can add synonyms in the future.
@@ -426,8 +424,8 @@ export default function SearchIcons() {
 
   const icons = React.useMemo(
     () =>
-      (keys === null ? allIcons : keys.map(key => allIconsMap[key])).filter(
-        icon => tag === icon.tag,
+      (keys === null ? allIcons : keys.map((key) => allIconsMap[key])).filter(
+        (icon) => tag === icon.tag,
       ),
     [tag, keys],
   );
@@ -437,7 +435,7 @@ export default function SearchIcons() {
       <Grid item xs={12} sm={3}>
         <form className={classes.form}>
           <RadioGroup>
-            {['Filled', 'Outlined', 'Rounded', 'Two tone', 'Sharp'].map(key => {
+            {['Filled', 'Outlined', 'Rounded', 'Two tone', 'Sharp'].map((key) => {
               return (
                 <FormControlLabel
                   key={key}
@@ -456,7 +454,7 @@ export default function SearchIcons() {
           </IconButton>
           <InputBase
             autoFocus
-            onChange={event => {
+            onChange={(event) => {
               handleChange(event.target.value);
             }}
             className={classes.input}

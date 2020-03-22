@@ -82,7 +82,7 @@ describe('<Popper />', () => {
         in: 'top',
         out: 'top',
       },
-    ].forEach(test => {
+    ].forEach((test) => {
       it(`should flip ${test.in} when direction=rtl is used`, () => {
         const renderSpy = spy();
         mount(
@@ -143,9 +143,9 @@ describe('<Popper />', () => {
   });
 
   describe('prop: popperOptions', () => {
-    it('should pass all popperOptions to popperjs', done => {
+    it('should pass all popperOptions to popperjs', (done) => {
       const popperOptions = {
-        onCreate: data => {
+        onCreate: (data) => {
           data.instance.update({ placement: 'left' });
         },
         onUpdate: () => {

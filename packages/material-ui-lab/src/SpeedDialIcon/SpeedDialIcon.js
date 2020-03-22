@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
 import AddIcon from '../internal/svg-icons/Add';
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     height: 24,

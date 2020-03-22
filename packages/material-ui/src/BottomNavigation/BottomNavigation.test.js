@@ -81,10 +81,7 @@ describe('<BottomNavigation />', () => {
         <BottomNavigationAction icon={icon} />
       </BottomNavigation>,
     );
-    wrapper
-      .find(BottomNavigationAction)
-      .at(1)
-      .simulate('click');
+    wrapper.find(BottomNavigationAction).at(1).simulate('click');
     assert.strictEqual(handleChange.callCount, 1);
     assert.strictEqual(handleChange.args[0][1], 1);
   });
@@ -97,10 +94,7 @@ describe('<BottomNavigation />', () => {
         <BottomNavigationAction value="second" icon={icon} />
       </BottomNavigation>,
     );
-    wrapper
-      .find(BottomNavigationAction)
-      .at(1)
-      .simulate('click');
+    wrapper.find(BottomNavigationAction).at(1).simulate('click');
     assert.strictEqual(
       handleChange.args[0][1],
       'second',
@@ -117,20 +111,11 @@ describe('<BottomNavigation />', () => {
         <BottomNavigationAction value={null} icon={icon} />
       </BottomNavigation>,
     );
-    wrapper
-      .find(BottomNavigationAction)
-      .at(0)
-      .simulate('click');
+    wrapper.find(BottomNavigationAction).at(0).simulate('click');
     assert.strictEqual(handleChange.args[0][1], '');
-    wrapper
-      .find(BottomNavigationAction)
-      .at(1)
-      .simulate('click');
+    wrapper.find(BottomNavigationAction).at(1).simulate('click');
     assert.strictEqual(handleChange.args[1][1], 1);
-    wrapper
-      .find(BottomNavigationAction)
-      .at(2)
-      .simulate('click');
+    wrapper.find(BottomNavigationAction).at(2).simulate('click');
     assert.strictEqual(handleChange.args[2][1], null);
   });
 });

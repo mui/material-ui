@@ -23,7 +23,7 @@ import createGenerateClassName from '../../packages/material-ui-styles/src/creat
 const generateClassName = createGenerateClassName();
 
 function ensureExists(pat, mask, cb) {
-  mkdir(pat, mask, err => {
+  mkdir(pat, mask, (err) => {
     if (err) {
       if (err.code === 'EEXIST') {
         cb(null); // ignore the error if the folder already exists
@@ -103,7 +103,7 @@ function computeApiDescription(api, options) {
     remark()
       .use(function docsLinksAttacher() {
         return function transformer(tree) {
-          remarkVisit(tree, 'link', linkNode => {
+          remarkVisit(tree, 'link', (linkNode) => {
             if (linkNode.url.startsWith('/')) {
               linkNode.url = `${host}${linkNode.url}`;
             }
@@ -165,10 +165,10 @@ async function annotateComponentDefinition(component, api) {
   }
 
   const demos = uniqBy(
-    api.pagesMarkdown.filter(page => {
+    api.pagesMarkdown.filter((page) => {
       return page.components.includes(api.name);
     }, []),
-    page => page.pathname,
+    (page) => page.pathname,
   );
 
   let inheritanceAPILink = null;
@@ -186,7 +186,7 @@ async function annotateComponentDefinition(component, api) {
       'Demos:',
       '',
       ...demos.map(
-        page => `- [${pageToTitle(page)}](${HOST}${rewriteUrlForNextExport(page.pathname)})`,
+        (page) => `- [${pageToTitle(page)}](${HOST}${rewriteUrlForNextExport(page.pathname)})`,
       ),
       '',
     );
@@ -198,7 +198,7 @@ async function annotateComponentDefinition(component, api) {
   }
 
   const jsdoc = `/**\n${markdownLines
-    .map(line => (line.length > 0 ? ` * ${line}` : ` *`))
+    .map((line) => (line.length > 0 ? ` * ${line}` : ` *`))
     .join('\n')}\n */`;
   const typesSourceNew = typesSource.slice(0, start) + jsdoc + typesSource.slice(end);
   writeFileSync(typesFilename, typesSourceNew, { encoding: 'utf8' });
@@ -226,7 +226,7 @@ async function buildDocs(options) {
   if (component.styles && component.default.options) {
     // Collect the customization points of the `classes` property.
     styles.classes = Object.keys(getStylesCreator(component.styles).create(theme)).filter(
-      className => !className.match(/^(@media|@keyframes)/),
+      (className) => !className.match(/^(@media|@keyframes)/),
     );
     styles.name = component.default.options.name;
     styles.globalClasses = styles.classes.reduce((acc, key) => {
@@ -309,7 +309,7 @@ async function buildDocs(options) {
     throw err;
   }
 
-  ensureExists(docsApiDirectory, 0o744, err => {
+  ensureExists(docsApiDirectory, 0o744, (err) => {
     if (err) {
       console.log('Error creating directory', docsApiDirectory);
       return;
@@ -339,18 +339,18 @@ export default function Page() {
 
 function run() {
   const pagesMarkdown = findPagesMarkdown()
-    .map(markdown => {
+    .map((markdown) => {
       const markdownSource = readFileSync(markdown.filename, 'utf8');
       return {
         ...markdown,
         components: getHeaders(markdownSource).components,
       };
     })
-    .filter(markdown => markdown.components.length > 0);
+    .filter((markdown) => markdown.components.length > 0);
   const components = findComponents(path.resolve(rootDirectory, args[2]));
 
-  components.forEach(component => {
-    buildDocs({ component, pagesMarkdown }).catch(error => {
+  components.forEach((component) => {
+    buildDocs({ component, pagesMarkdown }).catch((error) => {
       console.warn(`error building docs for ${component.filename}`);
       console.error(error);
       process.exit(1);

@@ -9,7 +9,7 @@ import withStyles from '../styles/withStyles';
 import ExpansionPanelContext from './ExpansionPanelContext';
 import useControlled from '../utils/useControlled';
 
-export const styles = theme => {
+export const styles = (theme) => {
   const transition = {
     duration: theme.transitions.duration.shortest,
   };
@@ -102,7 +102,7 @@ const ExpansionPanel = React.forwardRef(function ExpansionPanel(props, ref) {
   });
 
   const handleChange = React.useCallback(
-    event => {
+    (event) => {
       setExpandedState(!expanded);
 
       if (onChange) {
@@ -150,7 +150,7 @@ ExpansionPanel.propTypes = {
   /**
    * The content of the expansion panel.
    */
-  children: chainPropTypes(PropTypes.node.isRequired, props => {
+  children: chainPropTypes(PropTypes.node.isRequired, (props) => {
     const summary = React.Children.toArray(props.children)[0];
     if (isFragment(summary)) {
       return new Error(

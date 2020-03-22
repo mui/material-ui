@@ -40,7 +40,7 @@ function Link(props) {
 
   const router = useRouter();
 
-  const userLanguage = useSelector(state => state.options.userLanguage);
+  const userLanguage = useSelector((state) => state.options.userLanguage);
   const className = clsx(classNameProps, {
     [activeClassName]: router.pathname === routerHref && activeClassName,
   });

@@ -8,7 +8,7 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import FormLabel from '@material-ui/core/FormLabel';
 import Button from '@material-ui/core/Button';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(3),
   },

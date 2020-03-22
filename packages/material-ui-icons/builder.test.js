@@ -134,7 +134,7 @@ describe('builder', () => {
         'AccessAlarms.js',
       ];
 
-      cases.forEach(name => {
+      cases.forEach((name) => {
         const actual = fs.readFileSync(path.join(options.outputDir, name), { encoding: 'utf8' });
         // Update the snapshots
         // fs.writeFileSync(path.join(MUI_ICONS_ROOT, 'expected', name), actual, { encoding: 'utf8' });

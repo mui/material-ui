@@ -30,7 +30,7 @@ describe('<SvgIcon />', () => {
       inheritComponent: 'svg',
       mount,
       refInstanceof: window.SVGSVGElement,
-      testComponentPropWith: props => (
+      testComponentPropWith: (props) => (
         <svg {...props}>
           <defs>
             <linearGradient id="gradient1">

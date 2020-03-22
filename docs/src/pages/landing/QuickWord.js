@@ -25,7 +25,7 @@ const backers = [
 ];
 
 const useStyles = makeStyles(
-  theme => ({
+  (theme) => ({
     root: {
       textAlign: 'center',
       minHeight: 60,
@@ -37,7 +37,7 @@ const useStyles = makeStyles(
 
 export default function QuickWord() {
   const classes = useStyles();
-  const t = useSelector(state => state.options.t);
+  const t = useSelector((state) => state.options.t);
   const backer = backers[Math.floor(backers.length * Math.random())];
 
   return (

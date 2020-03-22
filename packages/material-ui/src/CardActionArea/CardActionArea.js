@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     display: 'block',

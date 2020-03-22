@@ -10,7 +10,7 @@ export default function FixedTags() {
       multiple
       id="fixed-tags-demo"
       options={top100Films}
-      getOptionLabel={option => option.title}
+      getOptionLabel={(option) => option.title}
       defaultValue={[top100Films[6], top100Films[13]]}
       renderTags={(value, getTagProps) =>
         value.map((option, index) => (
@@ -18,7 +18,7 @@ export default function FixedTags() {
         ))
       }
       style={{ width: 500 }}
-      renderInput={params => (
+      renderInput={(params) => (
         <TextField {...params} label="Fixed tag" variant="outlined" placeholder="Favorites" />
       )}
     />

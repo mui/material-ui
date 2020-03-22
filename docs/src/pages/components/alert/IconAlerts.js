@@ -4,7 +4,7 @@ import Alert from '@material-ui/lab/Alert';
 import CheckIcon from '@material-ui/icons/Check';
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
     '& > * + *': {

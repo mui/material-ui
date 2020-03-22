@@ -9,7 +9,7 @@ import NoSsr from '@material-ui/core/NoSsr';
 import Link from 'docs/src/modules/components/Link';
 
 const useStyles = makeStyles(
-  theme => ({
+  (theme) => ({
     root: {
       padding: theme.spacing(2),
       minHeight: 160,
@@ -49,7 +49,7 @@ const PremiumThemesLink = React.forwardRef((props, ref) => {
 
 export default function Themes() {
   const classes = useStyles();
-  const t = useSelector(state => state.options.t);
+  const t = useSelector((state) => state.options.t);
   const theme = useTheme();
 
   return (

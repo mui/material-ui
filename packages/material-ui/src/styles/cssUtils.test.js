@@ -53,7 +53,7 @@ describe('cssUtils', () => {
       { args: { size: 8, grid: 17 }, expected: 0 },
     ];
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       const {
         args: { size, grid },
         expected,
@@ -73,7 +73,7 @@ describe('cssUtils', () => {
       { lineHeight: 1.0, pixels: 3, htmlFontSize: 14 },
     ];
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       const { lineHeight, pixels, htmlFontSize } = test;
 
       describe(`when ${lineHeight} lineHeight, ${pixels} pixels,

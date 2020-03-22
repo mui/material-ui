@@ -69,7 +69,7 @@ describe('styled', () => {
   });
 
   it('should filter some props', () => {
-    const style = props => ({
+    const style = (props) => ({
       background: props.color,
       borderRadius: 3,
       border: 0,
@@ -115,6 +115,6 @@ describe('styled', () => {
   });
 
   it('should accept a child function', () => {
-    mount(<StyledButton>{props => <div {...props}>Styled Components</div>}</StyledButton>);
+    mount(<StyledButton>{(props) => <div {...props}>Styled Components</div>}</StyledButton>);
   });
 });

@@ -5,12 +5,7 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import { compose, spacing, palette, css } from '@material-ui/system';
 
 const Box = styled.div`
-  ${css(
-    compose(
-      spacing,
-      palette,
-    ),
-  )}
+  ${css(compose(spacing, palette))}
 `;
 
 const theme = createMuiTheme();

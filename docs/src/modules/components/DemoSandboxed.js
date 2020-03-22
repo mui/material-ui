@@ -8,7 +8,7 @@ import Frame from 'react-frame-component';
 import { useSelector } from 'react-redux';
 import DemoErrorBoundary from 'docs/src/modules/components/DemoErrorBoundary';
 
-const styles = theme => ({
+const styles = (theme) => ({
   frame: {
     backgroundColor: theme.palette.background.default,
     flexGrow: 1,
@@ -26,7 +26,7 @@ function DemoFrame(props) {
   });
   const instanceRef = React.useRef();
 
-  const handleRef = React.useCallback(ref => {
+  const handleRef = React.useCallback((ref) => {
     instanceRef.current = {
       contentDocument: ref ? ref.node.contentDocument : null,
       contentWindow: ref ? ref.node.contentWindow : null,
@@ -90,7 +90,7 @@ function DemoSandboxed(props) {
   const Sandbox = iframe ? StyledFrame : React.Fragment;
   const sandboxProps = iframe ? { title: `${name} demo`, ...other } : {};
 
-  const t = useSelector(state => state.options.t);
+  const t = useSelector((state) => state.options.t);
 
   return (
     <DemoErrorBoundary onResetDemoClick={onResetDemoClick} t={t}>

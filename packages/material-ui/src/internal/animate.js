@@ -16,7 +16,7 @@ export default function animate(property, element, to, options = {}, cb = () => 
     cancelled = true;
   };
 
-  const step = timestamp => {
+  const step = (timestamp) => {
     if (cancelled) {
       cb(new Error('Animation cancelled'));
       return;

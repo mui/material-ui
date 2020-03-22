@@ -68,23 +68,13 @@ describe('<TreeItem />', () => {
       </TreeView>,
     );
 
-    const getIcon = testId => getByTestId(testId).querySelector(`.${classes.iconContainer} div`);
+    const getIcon = (testId) => getByTestId(testId).querySelector(`.${classes.iconContainer} div`);
 
-    expect(getIcon('1'))
-      .attribute('data-test')
-      .to.equal('defaultCollapseIcon');
-    expect(getIcon('2'))
-      .attribute('data-test')
-      .to.equal('defaultEndIcon');
-    expect(getIcon('3'))
-      .attribute('data-test')
-      .to.equal('defaultExpandIcon');
-    expect(getIcon('5'))
-      .attribute('data-test')
-      .to.equal('icon');
-    expect(getIcon('6'))
-      .attribute('data-test')
-      .to.equal('endIcon');
+    expect(getIcon('1')).attribute('data-test').to.equal('defaultCollapseIcon');
+    expect(getIcon('2')).attribute('data-test').to.equal('defaultEndIcon');
+    expect(getIcon('3')).attribute('data-test').to.equal('defaultExpandIcon');
+    expect(getIcon('5')).attribute('data-test').to.equal('icon');
+    expect(getIcon('6')).attribute('data-test').to.equal('endIcon');
   });
 
   it('should treat an empty array equally to no children', () => {

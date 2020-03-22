@@ -40,7 +40,7 @@ const ExpansionPanelSummary = withStyles({
   expanded: {},
 })(MuiExpansionPanelSummary);
 
-const ExpansionPanelDetails = withStyles(theme => ({
+const ExpansionPanelDetails = withStyles((theme) => ({
   root: {
     padding: theme.spacing(2),
   },

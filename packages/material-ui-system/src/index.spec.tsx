@@ -11,10 +11,7 @@ function composeTest() {
     return {};
   }
 
-  const styler = compose(
-    first,
-    second,
-  );
+  const styler = compose(first, second);
   // missing `spacing`
   styler({ color: 'test' }); // $ExpectError
   // missing `color`

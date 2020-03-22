@@ -29,7 +29,7 @@ export default function SwipeableTemporaryDrawer() {
     right: false,
   });
 
-  const toggleDrawer = (anchor, open) => event => {
+  const toggleDrawer = (anchor, open) => (event) => {
     if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
@@ -37,7 +37,7 @@ export default function SwipeableTemporaryDrawer() {
     setState({ ...state, [anchor]: open });
   };
 
-  const list = anchor => (
+  const list = (anchor) => (
     <div
       className={clsx(classes.list, {
         [classes.fullList]: anchor === 'top' || anchor === 'bottom',
@@ -68,7 +68,7 @@ export default function SwipeableTemporaryDrawer() {
 
   return (
     <div>
-      {['left', 'right', 'top', 'bottom'].map(anchor => (
+      {['left', 'right', 'top', 'bottom'].map((anchor) => (
         <React.Fragment key={anchor}>
           <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
           <SwipeableDrawer

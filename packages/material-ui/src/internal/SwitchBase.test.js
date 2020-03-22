@@ -9,7 +9,7 @@ import SwitchBase from './SwitchBase';
 import FormControl, { useFormControl } from '../FormControl';
 import IconButton from '../IconButton';
 
-const shouldSuccessOnce = name => func => () => {
+const shouldSuccessOnce = (name) => (func) => () => {
   global.successOnce = global.successOnce || {};
 
   if (!global.successOnce[name]) {
@@ -186,7 +186,7 @@ describe('<SwitchBase />', () => {
 
   describe('handleInputChange()', () => {
     it('should call onChange when uncontrolled', () => {
-      const handleChange = spy(event => event.target.checked);
+      const handleChange = spy((event) => event.target.checked);
       const { getByRole } = render(
         <SwitchBase
           icon="unchecked"

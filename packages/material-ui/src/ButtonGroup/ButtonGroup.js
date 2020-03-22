@@ -11,7 +11,7 @@ import Button from '../Button';
 // eslint-disable-next-line no-unused-expressions
 Button.styles;
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     display: 'inline-flex',
@@ -199,7 +199,7 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(props, ref) {
       ref={ref}
       {...other}
     >
-      {React.Children.map(children, child => {
+      {React.Children.map(children, (child) => {
         if (!React.isValidElement(child)) {
           return null;
         }

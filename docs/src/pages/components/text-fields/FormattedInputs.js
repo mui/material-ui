@@ -8,7 +8,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
       margin: theme.spacing(1),
@@ -22,7 +22,7 @@ function TextMaskCustom(props) {
   return (
     <MaskedInput
       {...other}
-      ref={ref => {
+      ref={(ref) => {
         inputRef(ref ? ref.inputElement : null);
       }}
       mask={['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
@@ -43,7 +43,7 @@ function NumberFormatCustom(props) {
     <NumberFormat
       {...other}
       getInputRef={inputRef}
-      onValueChange={values => {
+      onValueChange={(values) => {
         onChange({
           target: {
             value: values.value,
@@ -69,7 +69,7 @@ export default function FormattedInputs() {
     numberformat: '1320',
   });
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     setValues({
       ...values,
       [event.target.name]: event.target.value,

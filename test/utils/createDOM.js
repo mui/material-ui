@@ -50,9 +50,9 @@ function createDOM() {
   };
 
   Object.keys(dom.window)
-    .filter(key => !blacklist.includes(key))
+    .filter((key) => !blacklist.includes(key))
     .concat(whitelist)
-    .forEach(key => {
+    .forEach((key) => {
       if (typeof global[key] === 'undefined') {
         global[key] = dom.window[key];
       }

@@ -40,7 +40,7 @@ async function getWebpackSizes() {
   const webpackStats = await webpack(await createWebpackConfig(webpack));
   const stats = webpackStats.toJson();
 
-  const assets = new Map(stats.assets.map(asset => [asset.name, asset]));
+  const assets = new Map(stats.assets.map((asset) => [asset.name, asset]));
 
   return Object.entries(stats.assetsByChunkName).map(([chunkName, assetName]) => {
     const parsedSize = assets.get(assetName).size;
@@ -97,7 +97,7 @@ async function getNextPagesSize() {
 
   const sharedChunks = [];
 
-  const entries = Array.from(matchAll(consoleOutput, pageRegex), match => {
+  const entries = Array.from(matchAll(consoleOutput, pageRegex), (match) => {
     const { pageUrl, sizeFormatted, sizeUnit } = match.groups;
 
     let snapshotId = `docs:${pageUrl}`;
@@ -131,7 +131,7 @@ async function getNextPagesSize() {
         gzip: -1,
       },
     ];
-  }).filter(entry => entry !== null);
+  }).filter((entry) => entry !== null);
 
   entries.push([
     'docs:chunk:shared',
@@ -156,7 +156,7 @@ async function run() {
   await fse.writeJSON(snapshotDestPath, bundleSizes, { spaces: 2 });
 }
 
-run().catch(err => {
+run().catch((err) => {
   console.error(err);
   process.exit(1);
 });

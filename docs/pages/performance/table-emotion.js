@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import NoSsr from '@material-ui/core/NoSsr';
 
-const createComponent = defaultComponent => {
+const createComponent = (defaultComponent) => {
   const MyComponent = React.forwardRef(function MyComponent(props, ref) {
     const { component: Component = defaultComponent, ...other } = props;
 

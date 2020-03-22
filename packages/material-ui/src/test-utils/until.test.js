@@ -5,7 +5,7 @@ import { shallow } from 'enzyme';
 import until from './until';
 
 const Div = () => <div />;
-const hoc = Component => () => <Component />;
+const hoc = (Component) => () => <Component />;
 
 describe('until', () => {
   it('shallow renders the current wrapper one level deep', () => {

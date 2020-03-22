@@ -9,7 +9,7 @@ import { fade } from '../styles/colorManipulator';
 import capitalize from '../utils/capitalize';
 import SwitchBase from '../internal/SwitchBase';
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     display: 'inline-flex',

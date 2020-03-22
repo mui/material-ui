@@ -14,7 +14,7 @@ NProgress.configure({
   `,
 });
 
-const styles = theme => {
+const styles = (theme) => {
   if (!theme.nprogress.color) {
     throw new Error(
       'Material-UI: you need to provide a `theme.nprogress.color` property' +

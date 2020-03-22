@@ -8,7 +8,7 @@ import { fade, withStyles, useTheme } from '@material-ui/core/styles';
 import { useForkRef } from '@material-ui/core/utils';
 import TreeViewContext from '../TreeView/TreeViewContext';
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     listStyle: 'none',
@@ -76,7 +76,7 @@ export const styles = theme => ({
   },
 });
 
-const isPrintableCharacter = str => {
+const isPrintableCharacter = (str) => {
   return str && str.length === 1 && str.match(/\S/);
 };
 
@@ -159,7 +159,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     }
   }
 
-  const handleClick = event => {
+  const handleClick = (event) => {
     if (!focused) {
       focus(nodeId);
     }
@@ -188,7 +188,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     }
   };
 
-  const handleMouseDown = event => {
+  const handleMouseDown = (event) => {
     if (event.shiftKey || event.ctrlKey || event.metaKey) {
       event.preventDefault();
     }
@@ -206,7 +206,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     return false;
   };
 
-  const handleNextArrow = event => {
+  const handleNextArrow = (event) => {
     if (expandable) {
       if (expanded) {
         focusNextNode(nodeId);
@@ -217,7 +217,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     return true;
   };
 
-  const handlePreviousArrow = event => {
+  const handlePreviousArrow = (event) => {
     if (expanded) {
       toggleExpansion(event, nodeId);
       return true;
@@ -231,7 +231,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     return false;
   };
 
-  const handleKeyDown = event => {
+  const handleKeyDown = (event) => {
     let flag = false;
     const key = event.key;
 
@@ -327,7 +327,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     }
   };
 
-  const handleFocus = event => {
+  const handleFocus = (event) => {
     if (!focused && tabbable) {
       focus(nodeId);
     }
@@ -338,7 +338,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
   };
 
   React.useEffect(() => {
-    const childIds = React.Children.map(children, child => child.props.nodeId) || [];
+    const childIds = React.Children.map(children, (child) => child.props.nodeId) || [];
     if (addNodeToNodeMap) {
       addNodeToNodeMap(nodeId, childIds);
     }

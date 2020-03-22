@@ -10,7 +10,7 @@ const SPACINGS = {
   medium: null,
 };
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     display: 'flex',
@@ -32,7 +32,7 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(props, ref) {
     ...other
   } = props;
 
-  const children = React.Children.toArray(childrenProp).filter(child => {
+  const children = React.Children.toArray(childrenProp).filter((child) => {
     if (process.env.NODE_ENV !== 'production') {
       if (isFragment(child)) {
         console.error(

@@ -5,7 +5,7 @@ import Paper from '@material-ui/core/Paper';
 import Collapse from '@material-ui/core/Collapse';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     height: 180,
   },
@@ -31,7 +31,7 @@ export default function SimpleCollapse() {
   const [checked, setChecked] = React.useState(false);
 
   const handleChange = () => {
-    setChecked(prev => !prev);
+    setChecked((prev) => !prev);
   };
 
   return (

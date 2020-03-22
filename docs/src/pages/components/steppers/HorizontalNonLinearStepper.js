@@ -6,7 +6,7 @@ import StepButton from '@material-ui/core/StepButton';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
   },
@@ -72,10 +72,10 @@ export default function HorizontalNonLinearStepper() {
   };
 
   const handleBack = () => {
-    setActiveStep(prevActiveStep => prevActiveStep - 1);
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
-  const handleStep = step => () => {
+  const handleStep = (step) => () => {
     setActiveStep(step);
   };
 

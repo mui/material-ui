@@ -46,14 +46,7 @@ describe('<Collapse />', () => {
     const wrapper = mount(<Collapse {...defaultProps}>{children}</Collapse>);
     const child = wrapper.find('Transition').childAt(0);
     assert.strictEqual(child.childAt(0).name(), 'div');
-    assert.strictEqual(
-      child
-        .childAt(0)
-        .childAt(0)
-        .children()
-        .type(),
-      'h1',
-    );
+    assert.strictEqual(child.childAt(0).childAt(0).children().type(), 'h1');
   });
 
   describe('transition lifecycle', () => {
@@ -200,12 +193,12 @@ describe('<Collapse />', () => {
     it('should delay based on height when timeout is auto', () => {
       const theme = createMuiTheme({
         transitions: {
-          getAutoHeightDuration: n => n,
+          getAutoHeightDuration: (n) => n,
         },
       });
 
       const next1 = spy();
-      const Test = props => (
+      const Test = (props) => (
         <ThemeProvider theme={theme}>
           <Collapse timeout="auto" onEntered={next1} {...props}>
             <div />
@@ -215,14 +208,9 @@ describe('<Collapse />', () => {
       const wrapper = mount(<Test />);
 
       // Gets wrapper
-      stub(
-        wrapper
-          .find('Transition')
-          .childAt(0)
-          .childAt(0)
-          .instance(),
-        'clientHeight',
-      ).get(() => 10);
+      stub(wrapper.find('Transition').childAt(0).childAt(0).instance(), 'clientHeight').get(
+        () => 10,
+      );
 
       wrapper.setProps({
         in: true,

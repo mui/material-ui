@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 import Collapse from '@material-ui/core/Collapse';
 import Link from 'docs/src/modules/components/Link';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   item: {
     display: 'block',
     paddingTop: 0,
@@ -56,7 +56,7 @@ export default function AppDrawerNavItem(props) {
   const [open, setOpen] = React.useState(openImmediately);
 
   const handleClick = () => {
-    setOpen(oldOpen => !oldOpen);
+    setOpen((oldOpen) => !oldOpen);
   };
 
   const style = {

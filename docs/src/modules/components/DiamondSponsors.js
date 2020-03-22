@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     '& a': {
       display: 'block',
@@ -35,7 +35,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function DiamondSponsors() {
   const classes = useStyles();
-  const t = useSelector(state => state.options.t);
+  const t = useSelector((state) => state.options.t);
 
   return (
     <div className={classes.root}>

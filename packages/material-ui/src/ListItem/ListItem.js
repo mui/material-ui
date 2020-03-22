@@ -9,7 +9,7 @@ import useForkRef from '../utils/useForkRef';
 import ListContext from '../List/ListContext';
 import * as ReactDOM from 'react-dom';
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the (normally root) `component` element. May be wrapped by a `container`. */
   root: {
     display: 'flex',
@@ -130,7 +130,7 @@ const ListItem = React.forwardRef(function ListItem(props, ref) {
   const hasSecondaryAction =
     children.length && isMuiElement(children[children.length - 1], ['ListItemSecondaryAction']);
 
-  const handleOwnRef = React.useCallback(instance => {
+  const handleOwnRef = React.useCallback((instance) => {
     // #StrictMode ready
     listItemRef.current = ReactDOM.findDOMNode(instance);
   }, []);
@@ -217,7 +217,7 @@ ListItem.propTypes = {
    * The content of the component. If a `ListItemSecondaryAction` is used it must
    * be the last child.
    */
-  children: chainPropTypes(PropTypes.node, props => {
+  children: chainPropTypes(PropTypes.node, (props) => {
     const children = React.Children.toArray(props.children);
 
     // React.Children.toArray(props.children).findLastIndex(isListItemSecondaryAction)

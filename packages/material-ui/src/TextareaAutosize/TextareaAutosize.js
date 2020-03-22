@@ -75,7 +75,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
     const outerHeightStyle = outerHeight + (boxSizing === 'border-box' ? padding + border : 0);
     const overflow = Math.abs(outerHeight - innerHeight) <= 1;
 
-    setState(prevState => {
+    setState((prevState) => {
       // Need a large enough difference to update the height.
       // This prevents infinite rendering loop.
       if (
@@ -127,7 +127,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
     renders.current = 0;
   }, [value]);
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     renders.current = 0;
 
     if (!isControlled) {

@@ -13,7 +13,7 @@ const AntTabs = withStyles({
   },
 })(Tabs);
 
-const AntTab = withStyles(theme => ({
+const AntTab = withStyles((theme) => ({
   root: {
     textTransform: 'none',
     minWidth: 72,
@@ -44,7 +44,7 @@ const AntTab = withStyles(theme => ({
     },
   },
   selected: {},
-}))(props => <Tab disableRipple {...props} />);
+}))((props) => <Tab disableRipple {...props} />);
 
 const StyledTabs = withStyles({
   indicator: {
@@ -57,9 +57,9 @@ const StyledTabs = withStyles({
       backgroundColor: '#635ee7',
     },
   },
-})(props => <Tabs {...props} TabIndicatorProps={{ children: <div /> }} />);
+})((props) => <Tabs {...props} TabIndicatorProps={{ children: <div /> }} />);
 
-const StyledTab = withStyles(theme => ({
+const StyledTab = withStyles((theme) => ({
   root: {
     textTransform: 'none',
     color: '#fff',
@@ -70,9 +70,9 @@ const StyledTab = withStyles(theme => ({
       opacity: 1,
     },
   },
-}))(props => <Tab disableRipple {...props} />);
+}))((props) => <Tab disableRipple {...props} />);
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },

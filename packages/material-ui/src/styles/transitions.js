@@ -52,8 +52,8 @@ export default {
     } = options;
 
     if (process.env.NODE_ENV !== 'production') {
-      const isString = value => typeof value === 'string';
-      const isNumber = value => !isNaN(parseFloat(value));
+      const isString = (value) => typeof value === 'string';
+      const isNumber = (value) => !isNaN(parseFloat(value));
       if (!isString(props) && !Array.isArray(props)) {
         console.error('Material-UI: argument "props" must be a string or Array.');
       }
@@ -79,7 +79,7 @@ export default {
 
     return (Array.isArray(props) ? props : [props])
       .map(
-        animatedProp =>
+        (animatedProp) =>
           `${animatedProp} ${
             typeof durationOption === 'string' ? durationOption : formatMs(durationOption)
           } ${easingOption} ${typeof delay === 'string' ? delay : formatMs(delay)}`,

@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 function generate(element: React.ReactElement) {
-  return [0, 1, 2].map(value =>
+  return [0, 1, 2].map((value) =>
     React.cloneElement(element, {
       key: value,
     }),
@@ -48,12 +48,17 @@ export default function InteractiveList() {
     <div className={classes.root}>
       <FormGroup row>
         <FormControlLabel
-          control={<Checkbox checked={dense} onChange={event => setDense(event.target.checked)} />}
+          control={
+            <Checkbox checked={dense} onChange={(event) => setDense(event.target.checked)} />
+          }
           label="Enable dense"
         />
         <FormControlLabel
           control={
-            <Checkbox checked={secondary} onChange={event => setSecondary(event.target.checked)} />
+            <Checkbox
+              checked={secondary}
+              onChange={(event) => setSecondary(event.target.checked)}
+            />
           }
           label="Enable secondary text"
         />

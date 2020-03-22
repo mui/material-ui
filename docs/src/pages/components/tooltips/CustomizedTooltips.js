@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 
-const LightTooltip = withStyles(theme => ({
+const LightTooltip = withStyles((theme) => ({
   tooltip: {
     backgroundColor: theme.palette.common.white,
     color: 'rgba(0, 0, 0, 0.87)',
@@ -13,7 +13,7 @@ const LightTooltip = withStyles(theme => ({
   },
 }))(Tooltip);
 
-const useStylesBootstrap = makeStyles(theme => ({
+const useStylesBootstrap = makeStyles((theme) => ({
   arrow: {
     color: theme.palette.common.black,
   },
@@ -28,7 +28,7 @@ function BootstrapTooltip(props) {
   return <Tooltip arrow classes={classes} {...props} />;
 }
 
-const HtmlTooltip = withStyles(theme => ({
+const HtmlTooltip = withStyles((theme) => ({
   tooltip: {
     backgroundColor: '#f5f5f9',
     color: 'rgba(0, 0, 0, 0.87)',

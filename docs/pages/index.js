@@ -31,7 +31,7 @@ function loadDependencies() {
 }
 
 const useStyles = makeStyles(
-  theme => ({
+  (theme) => ({
     root: {
       flex: '1 0 100%',
     },
@@ -109,7 +109,7 @@ export default function LandingPage() {
 
     loadDependencies();
   }, []);
-  const t = useSelector(state => state.options.t);
+  const t = useSelector((state) => state.options.t);
   const classes = useStyles();
 
   return (

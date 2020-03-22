@@ -3,7 +3,7 @@ import Popover from '@material-ui/core/Popover';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   popover: {
     pointerEvents: 'none',
   },
@@ -16,7 +16,7 @@ export default function MouseOverPopover() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
 
-  const handlePopoverOpen = event => {
+  const handlePopoverOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
 

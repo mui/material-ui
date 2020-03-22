@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import Person from '../internal/svg-icons/Person';
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     position: 'relative',

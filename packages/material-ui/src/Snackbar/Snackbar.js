@@ -10,7 +10,7 @@ import createChainedFunction from '../utils/createChainedFunction';
 import Grow from '../Grow';
 import SnackbarContent from '../SnackbarContent';
 
-export const styles = theme => {
+export const styles = (theme) => {
   const top1 = { top: 8 };
   const bottom1 = { bottom: 8 };
   const right = { justifyContent: 'flex-end' };
@@ -136,7 +136,7 @@ const Snackbar = React.forwardRef(function Snackbar(props, ref) {
     }
   });
 
-  const setAutoHideTimer = useEventCallback(autoHideDurationParam => {
+  const setAutoHideTimer = useEventCallback((autoHideDurationParam) => {
     if (!onClose || autoHideDurationParam == null) {
       return;
     }
@@ -171,21 +171,21 @@ const Snackbar = React.forwardRef(function Snackbar(props, ref) {
     }
   }, [autoHideDuration, resumeHideDuration, setAutoHideTimer]);
 
-  const handleMouseEnter = event => {
+  const handleMouseEnter = (event) => {
     if (onMouseEnter) {
       onMouseEnter(event);
     }
     handlePause();
   };
 
-  const handleMouseLeave = event => {
+  const handleMouseLeave = (event) => {
     if (onMouseLeave) {
       onMouseLeave(event);
     }
     handleResume();
   };
 
-  const handleClickAway = event => {
+  const handleClickAway = (event) => {
     if (onClose) {
       onClose(event, 'clickaway');
     }

@@ -10,7 +10,7 @@ import { handleEvent } from 'docs/src/modules/components/MarkdownLinks';
 import docsearch from 'docsearch.js';
 
 const useStyles = makeStyles(
-  theme => ({
+  (theme) => ({
     '@global': {
       '.algolia-autocomplete': {
         '& .ds-dropdown-menu': {
@@ -116,7 +116,7 @@ export default function AppSearch() {
   const classes = useStyles();
   const inputRef = React.useRef(null);
   const theme = useTheme();
-  const userLanguage = useSelector(state => state.options.userLanguage);
+  const userLanguage = useSelector((state) => state.options.userLanguage);
 
   React.useEffect(() => {
     const styleNode = loadCSS(
@@ -130,7 +130,7 @@ export default function AppSearch() {
   }, []);
 
   React.useEffect(() => {
-    const handleKeyDown = event => {
+    const handleKeyDown = (event) => {
       // Use event.keyCode to support IE 11
       if (
         [
@@ -178,7 +178,7 @@ export default function AppSearch() {
         // debug: true, // Set debug to true if you want to inspect the dropdown.
       });
 
-      search.autocomplete.on('autocomplete:cursorchanged', event => {
+      search.autocomplete.on('autocomplete:cursorchanged', (event) => {
         const combobox = event.target;
         const selectedOptionNode = document.getElementById(
           combobox.getAttribute('aria-activedescendant'),

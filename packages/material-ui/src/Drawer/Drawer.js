@@ -10,7 +10,7 @@ import capitalize from '../utils/capitalize';
 import { duration } from '../styles/transitions';
 import useTheme from '../styles/useTheme';
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {},
   /* Styles applied to the root element if `variant="permanent or persistent"`. */

@@ -37,7 +37,7 @@ export default function useControlled({ controlled, default: defaultProp, name }
     }, [JSON.stringify(defaultProp)]);
   }
 
-  const setValueIfUncontrolled = React.useCallback(newValue => {
+  const setValueIfUncontrolled = React.useCallback((newValue) => {
     if (!isControlled) {
       setValue(newValue);
     }

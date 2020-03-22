@@ -10,7 +10,7 @@ import Fade from '../Fade';
 import { duration } from '../styles/transitions';
 import Paper from '../Paper';
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     '@media print': {
@@ -173,10 +173,10 @@ const Dialog = React.forwardRef(function Dialog(props, ref) {
   } = props;
 
   const mouseDownTarget = React.useRef();
-  const handleMouseDown = event => {
+  const handleMouseDown = (event) => {
     mouseDownTarget.current = event.target;
   };
-  const handleBackdropClick = event => {
+  const handleBackdropClick = (event) => {
     // Ignore the events not coming from the "backdrop"
     // We don't want to close the dialog when clicking the dialog content.
     if (event.target !== event.currentTarget) {
