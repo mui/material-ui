@@ -41,19 +41,19 @@ const commonjsOptions = {
 };
 
 function onwarn(warning) {
-  let ignoreWarning = false;
   if (
     warning.code === 'UNUSED_EXTERNAL_IMPORT' &&
     warning.source === 'react' &&
-    warning.names.filter(identifier => identifier !== 'useDebugValue').length === 0
+    warning.names.filter((identifier) => identifier !== 'useDebugValue').length === 0
   ) {
-    // skip
+    // only warn for
     // import * as React from 'react'
     // if (__DEV__) React.useDebugValue()
-    ignoreWarning = true;
-  }
-
-  if (!ignoreWarning) {
+    // React.useDebug not fully dce'd from prod bundle
+    // in the sense that it's still imported but unused. Downgrading
+    // it to a warning as a reminder to fix at some point
+    console.warn(warning.message);
+  } else {
     throw Error(warning.message);
   }
 }
