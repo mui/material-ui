@@ -92,10 +92,16 @@ async function generateProptypes(
 
 interface HandlerArgv {
   'ignore-cache': boolean;
+  pattern: string;
   verbose: boolean;
 }
 async function run(argv: HandlerArgv) {
-  const { 'ignore-cache': ignoreCache, verbose } = argv;
+  const { 'ignore-cache': ignoreCache, pattern, verbose } = argv;
+
+  const filePattern = new RegExp(pattern);
+  if (pattern.length > 0) {
+    console.log(`Only considering declaration files matching ${filePattern}`);
+  }
 
   // Matches files where the folder and file both start with uppercase letters
   // Example: AppBar/AppBar.d.ts
@@ -112,7 +118,7 @@ async function run(argv: HandlerArgv) {
     ),
   );
 
-  const files = _.flatten(allFiles)
+  const programFiles = _.flatten(allFiles)
     // Filter out files where the directory name and filename doesn't match
     // Example: Modal/ModalManager.d.ts
     .filter((filePath) => {
@@ -121,8 +127,13 @@ async function run(argv: HandlerArgv) {
 
       return fileName === folderName;
     });
+  // I believe that the program still needs every file
+  // for import-extends. Not sure but compiling all to be sure
+  const program = ttp.createProgram(programFiles, tsconfig);
 
-  const program = ttp.createProgram(files, tsconfig);
+  const files = programFiles.filter((filePath) => {
+    return filePattern.test(filePath);
+  });
 
   const promises = files.map<Promise<GenerateResult>>(async (tsFile) => {
     const jsFile = tsFile.replace('.d.ts', '.js');
@@ -168,6 +179,11 @@ yargs
           default: false,
           describe: 'Logs result for each file',
           type: 'boolean',
+        })
+        .option('pattern', {
+          default: '',
+          describe: 'Only considers declaration files matching this pattern.',
+          type: 'string',
         });
     },
     handler: run,
