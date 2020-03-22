@@ -13,7 +13,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function Tags() {
+export default function FilterMaxTags() {
   const classes = useStyles();
 
   return (
