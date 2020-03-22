@@ -104,7 +104,7 @@
     "eslint-plugin-react-hooks": "^2.1.1",
     "expect-puppeteer": "^4.3.0",
     "format-util": "^1.0.5",
-    "fs-extra": "^8.1.0",
+    "fs-extra": "^9.0.0",
     "glob": "^7.1.2",
     "glob-gitignore": "^1.0.11",
     "jsdom": "^16.0.0",
