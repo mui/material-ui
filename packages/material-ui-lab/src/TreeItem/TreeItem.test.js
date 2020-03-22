@@ -77,6 +77,32 @@ describe('<TreeItem />', () => {
     expect(getIcon('6')).attribute('data-test').to.equal('endIcon');
   });
 
+  it('should allow conditional child', () => {
+    function TestComponent() {
+      const [hide, setState] = React.useState(false);
+
+      return (
+        <React.Fragment>
+          <button data-testid="button" type="button" onClick={() => setState(true)}>
+            Hide
+          </button>
+          <TreeView defaultExpanded={['1']}>
+            <TreeItem nodeId="1" data-testid="1">
+              {!hide && <TreeItem nodeId="2" data-testid="2" />}
+            </TreeItem>
+          </TreeView>
+        </React.Fragment>
+      );
+    }
+    const { getByTestId, queryByTestId } = render(<TestComponent />);
+
+    expect(getByTestId('1')).to.have.attribute('aria-expanded', 'true');
+    expect(getByTestId('2')).to.not.be.null;
+    fireEvent.click(getByTestId('button'));
+    expect(getByTestId('1')).to.not.have.attribute('aria-expanded');
+    expect(queryByTestId('2')).to.be.null;
+  });
+
   it('should treat an empty array equally to no children', () => {
     const { getByTestId } = render(
       <TreeView defaultExpanded={['1']}>
