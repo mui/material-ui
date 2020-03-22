@@ -92,7 +92,7 @@
     "dtslint": "^3.2.0",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.14.0",
-    "eslint": "^5.9.0",
+    "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.1.0",
     "eslint-config-prettier": "^6.2.0",
     "eslint-import-resolver-webpack": "^0.12.0",
