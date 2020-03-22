@@ -75,7 +75,6 @@ async function generateProptypes(
         prop.jsDoc = prop.jsDoc.replace(documentRegExp, '');
         return true;
       }
-      console.log(prop);
 
       return undefined;
     },
