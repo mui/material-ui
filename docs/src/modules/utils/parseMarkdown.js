@@ -26,7 +26,7 @@ export function getHeaders(markdown) {
   if (headers.components) {
     headers.components = headers.components
       .split(',')
-      .map(x => x.trim())
+      .map((x) => x.trim())
       .sort();
   } else {
     headers.components = [];
@@ -41,7 +41,7 @@ export function getContents(markdown) {
   return markdown
     .replace(headerRegExp, '') // Remove header information
     .split(/^{{("demo":[^}]*)}}$/gm) // Split markdown into an array, separating demos
-    .filter(content => !emptyRegExp.test(content)); // Remove empty lines
+    .filter((content) => !emptyRegExp.test(content)); // Remove empty lines
 }
 
 export function getTitle(markdown) {

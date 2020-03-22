@@ -5,7 +5,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 
 // Like https://github.com/brunobertolini/styled-by
-const styledBy = (property, mapping) => props => mapping[props[property]];
+const styledBy = (property, mapping) => (props) => mapping[props[property]];
 
 const styles = {
   root: {
@@ -32,7 +32,7 @@ const StyledButton = withStyles(styles)(({ classes, color, ...other }) => (
 export default function DynamicCSS() {
   const [color, setColor] = React.useState('default');
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     setColor(event.target.checked ? 'blue' : 'default');
   };
 

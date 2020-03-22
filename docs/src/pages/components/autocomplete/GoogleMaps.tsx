@@ -22,7 +22,7 @@ function loadScript(src: string, position: HTMLElement | null, id: string) {
 
 const autocompleteService = { current: null };
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   icon: {
     color: theme.palette.text.secondary,
     marginRight: theme.spacing(2),
@@ -38,7 +38,7 @@ interface PlaceType {
       {
         offset: number;
         length: number;
-      }
+      },
     ];
   };
 }
@@ -103,12 +103,12 @@ export default function GoogleMaps() {
     <Autocomplete
       id="google-map-demo"
       style={{ width: 300 }}
-      getOptionLabel={option => (typeof option === 'string' ? option : option.description)}
-      filterOptions={x => x}
+      getOptionLabel={(option) => (typeof option === 'string' ? option : option.description)}
+      filterOptions={(x) => x}
       options={options}
       autoComplete
       includeInputInList
-      renderInput={params => (
+      renderInput={(params) => (
         <TextField
           {...params}
           label="Add a location"
@@ -117,7 +117,7 @@ export default function GoogleMaps() {
           onChange={handleChange}
         />
       )}
-      renderOption={option => {
+      renderOption={(option) => {
         const matches = option.structured_formatting.main_text_matched_substrings;
         const parts = parse(
           option.structured_formatting.main_text,

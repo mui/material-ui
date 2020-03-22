@@ -23,7 +23,16 @@ export interface BottomNavigationTypeMap<P = {}, D extends React.ElementType = '
   defaultComponent: D;
   classKey: BottomNavigationClassKey;
 }
-
+/**
+ *
+ * Demos:
+ *
+ * - [Bottom Navigation](https://material-ui.com/components/bottom-navigation/)
+ *
+ * API:
+ *
+ * - [BottomNavigation API](https://material-ui.com/api/bottom-navigation/)
+ */
 declare const BottomNavigation: OverridableComponent<BottomNavigationTypeMap>;
 
 export type BottomNavigationClassKey = 'root';

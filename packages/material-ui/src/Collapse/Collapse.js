@@ -7,7 +7,7 @@ import { duration } from '../styles/transitions';
 import { getTransitionProps } from '../transitions/utils';
 import useTheme from '../styles/useTheme';
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the container element. */
   container: {
     height: 0,
@@ -111,7 +111,7 @@ const Collapse = React.forwardRef(function Collapse(props, ref) {
     }
   };
 
-  const handleExit = node => {
+  const handleExit = (node) => {
     const wrapperHeight = wrapperRef.current ? wrapperRef.current.clientHeight : 0;
     node.style.height = `${wrapperHeight}px`;
 
@@ -120,7 +120,7 @@ const Collapse = React.forwardRef(function Collapse(props, ref) {
     }
   };
 
-  const handleExiting = node => {
+  const handleExiting = (node) => {
     const wrapperHeight = wrapperRef.current ? wrapperRef.current.clientHeight : 0;
 
     const { duration: transitionDuration } = getTransitionProps(

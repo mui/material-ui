@@ -7,7 +7,7 @@
  * @param {jscodeshift_ast_object} root
  */
 function transformThemeSpacingApi(j, root) {
-  const mightContainApi = path => {
+  const mightContainApi = (path) => {
     return (
       j(path)
         .find(j.MemberExpression, {
@@ -24,7 +24,7 @@ function transformThemeSpacingApi(j, root) {
     );
   };
 
-  const replaceApi = pathArg => {
+  const replaceApi = (pathArg) => {
     pathArg
       .find(j.MemberExpression, {
         object: {
@@ -36,7 +36,7 @@ function transformThemeSpacingApi(j, root) {
           name: 'unit',
         },
       })
-      .replaceWith(path => {
+      .replaceWith((path) => {
         let param = null;
 
         const themeParam = path.node.object.object.name;
@@ -86,7 +86,7 @@ function transformThemeSpacingApi(j, root) {
  * @param {jscodeshift_ast_object} root
  */
 function transformThemeSpacingApiDestructured(j, root) {
-  const mightContainApi = path => {
+  const mightContainApi = (path) => {
     return (
       j(path)
         .find(j.MemberExpression, {
@@ -101,7 +101,7 @@ function transformThemeSpacingApiDestructured(j, root) {
     );
   };
 
-  const replaceApi = pathArg => {
+  const replaceApi = (pathArg) => {
     pathArg
       .find(j.MemberExpression, {
         object: {
@@ -111,7 +111,7 @@ function transformThemeSpacingApiDestructured(j, root) {
           name: 'unit',
         },
       })
-      .replaceWith(path => {
+      .replaceWith((path) => {
         let param = null;
 
         const spacingParam = path.node.object.name;

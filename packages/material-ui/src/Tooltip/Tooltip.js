@@ -81,7 +81,7 @@ function arrowGenerator() {
   };
 }
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the Popper component. */
   popper: {
     zIndex: theme.zIndex.tooltip,
@@ -266,7 +266,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     };
   }, []);
 
-  const handleOpen = event => {
+  const handleOpen = (event) => {
     clearTimeout(hystersisTimer);
     hystersisOpen = true;
 
@@ -280,7 +280,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     }
   };
 
-  const handleEnter = event => {
+  const handleEnter = (event) => {
     const childrenProps = children.props;
 
     if (
@@ -326,7 +326,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     }
   };
 
-  const handleFocus = event => {
+  const handleFocus = (event) => {
     // Workaround for https://github.com/facebook/react/issues/7769
     // The autoFocus of React might trigger the event before the componentDidMount.
     // We need to account for this eventuality.
@@ -345,7 +345,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     }
   };
 
-  const handleClose = event => {
+  const handleClose = (event) => {
     clearTimeout(hystersisTimer);
     hystersisTimer = setTimeout(() => {
       hystersisOpen = false;
@@ -362,7 +362,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     }, theme.transitions.duration.shortest);
   };
 
-  const handleLeave = event => {
+  const handleLeave = (event) => {
     const childrenProps = children.props;
 
     if (event.type === 'blur') {
@@ -388,7 +388,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     }, leaveDelay);
   };
 
-  const handleTouchStart = event => {
+  const handleTouchStart = (event) => {
     ignoreNonTouchEvents.current = true;
     const childrenProps = children.props;
 
@@ -405,7 +405,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     }, enterTouchDelay);
   };
 
-  const handleTouchEnd = event => {
+  const handleTouchEnd = (event) => {
     if (children.props.onTouchEnd) {
       children.props.onTouchEnd(event);
     }
@@ -422,7 +422,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
   const handleFocusRef = useForkRef(focusVisibleRef, handleUseRef);
   // can be removed once we drop support for non ref forwarding class components
   const handleOwnRef = React.useCallback(
-    instance => {
+    (instance) => {
       // #StrictMode ready
       setRef(handleFocusRef, ReactDOM.findDOMNode(instance));
     },

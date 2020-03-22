@@ -10,8 +10,8 @@ async function run() {
     const translationsFile = await fse.readFile(translationsFilename, 'utf8');
     const output = JSON.parse(translationsFile);
 
-    const traverse = pages2 => {
-      pages2.forEach(page => {
+    const traverse = (pages2) => {
+      pages2.forEach((page) => {
         if (page.pathname.indexOf('/api') === -1 && page.pathname.indexOf('/blog') === -1) {
           const title = pageToTitle(page);
 

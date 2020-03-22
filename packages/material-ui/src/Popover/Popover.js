@@ -42,7 +42,7 @@ export function getOffsetLeft(rect, horizontal) {
 
 function getTransformOriginValue(transformOrigin) {
   return [transformOrigin.horizontal, transformOrigin.vertical]
-    .map(n => (typeof n === 'number' ? `${n}px` : n))
+    .map((n) => (typeof n === 'number' ? `${n}px` : n))
     .join(' ');
 }
 
@@ -120,7 +120,7 @@ const Popover = React.forwardRef(function Popover(props, ref) {
   // Returns the top/left offset of the position
   // to attach to on the anchor element (or body if none is provided)
   const getAnchorOffset = React.useCallback(
-    contentAnchorOffset => {
+    (contentAnchorOffset) => {
       if (anchorReference === 'anchorPosition') {
         if (process.env.NODE_ENV !== 'production') {
           if (!anchorPosition) {
@@ -175,7 +175,7 @@ const Popover = React.forwardRef(function Popover(props, ref) {
 
   // Returns the vertical offset of inner content to anchor the transform on if provided
   const getContentAnchorOffset = React.useCallback(
-    element => {
+    (element) => {
       let contentAnchorOffset = 0;
 
       if (getContentAnchorEl && anchorReference === 'anchorEl') {
@@ -221,7 +221,7 @@ const Popover = React.forwardRef(function Popover(props, ref) {
   );
 
   const getPositioningStyle = React.useCallback(
-    element => {
+    (element) => {
       // Check if the parent has requested anchoring on an inner content node
       const contentAnchorOffset = getContentAnchorOffset(element);
       const elemRect = {
@@ -272,8 +272,9 @@ const Popover = React.forwardRef(function Popover(props, ref) {
           console.error(
             [
               'Material-UI: the popover component is too tall.',
-              `Some part of it can not be seen on the screen (${elemRect.height -
-                heightThreshold}px).`,
+              `Some part of it can not be seen on the screen (${
+                elemRect.height - heightThreshold
+              }px).`,
               'Please consider adding a `max-height` to improve the user-experience.',
             ].join('\n'),
           );
@@ -333,7 +334,7 @@ const Popover = React.forwardRef(function Popover(props, ref) {
     setPositioningStyles();
   };
 
-  const handlePaperRef = React.useCallback(instance => {
+  const handlePaperRef = React.useCallback((instance) => {
     // #StrictMode ready
     paperRef.current = ReactDOM.findDOMNode(instance);
   }, []);
@@ -430,7 +431,7 @@ Popover.propTypes = {
    * This is the DOM element, or a function that returns the DOM element,
    * that may be used to set the position of the popover.
    */
-  anchorEl: chainPropTypes(PropTypes.oneOfType([PropTypes.object, PropTypes.func]), props => {
+  anchorEl: chainPropTypes(PropTypes.oneOfType([PropTypes.object, PropTypes.func]), (props) => {
     if (props.open && (!props.anchorReference || props.anchorReference === 'anchorEl')) {
       const resolvedAnchorEl = getAnchorEl(props.anchorEl);
       const containerWindow = ownerWindow(resolvedAnchorEl);

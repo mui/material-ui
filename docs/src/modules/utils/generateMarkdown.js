@@ -7,7 +7,7 @@ import { SOURCE_CODE_ROOT_URL, LANGUAGES_IN_PROGRESS } from 'docs/src/modules/co
 
 const PATH_REPLACE_REGEX = /\\/g;
 const PATH_SEPARATOR = '/';
-const DEMO_IGNORE = LANGUAGES_IN_PROGRESS.map(language => `-${language}.md`);
+const DEMO_IGNORE = LANGUAGES_IN_PROGRESS.map((language) => `-${language}.md`);
 
 function normalizePath(path) {
   return path.replace(PATH_REPLACE_REGEX, PATH_SEPARATOR);
@@ -65,10 +65,7 @@ function getChained(type) {
 
 function escapeCell(value) {
   // As the pipe is use for the table structure
-  return value
-    .replace(/</g, '&lt;')
-    .replace(/`&lt;/g, '`<')
-    .replace(/\|/g, '\\|');
+  return value.replace(/</g, '&lt;').replace(/`&lt;/g, '`<').replace(/\|/g, '\\|');
 }
 
 function isElementTypeAcceptingRefProp(type) {
@@ -94,7 +91,7 @@ function resolveType(type) {
   }
 
   if (type.type === 'UnionType') {
-    return type.elements.map(t => resolveType(t)).join(' \\| ');
+    return type.elements.map((t) => resolveType(t)).join(' \\| ');
   }
 
   return type.name;
@@ -122,7 +119,7 @@ function generatePropDescription(prop) {
     .replace(/(\r?\n){2}/g, '<br>')
     .replace(/\r?\n/g, ' ');
 
-  if (parsed.tags.some(tag => tag.title === 'ignore')) {
+  if (parsed.tags.some((tag) => tag.title === 'ignore')) {
     return null;
   }
 
@@ -130,7 +127,7 @@ function generatePropDescription(prop) {
 
   if (type.name === 'func' && parsed.tags.length > 0) {
     // Remove new lines from tag descriptions to avoid markdown errors.
-    parsed.tags.forEach(tag => {
+    parsed.tags.forEach((tag) => {
       if (tag.description) {
         tag.description = tag.description.replace(/\r*\n/g, ' ');
       }
@@ -152,7 +149,7 @@ function generatePropDescription(prop) {
 
     signature += '<br><br>**Signature:**<br>`function(';
     signature += parsedArgs
-      .map(tag => {
+      .map((tag) => {
         if (tag.type.type === 'OptionalType') {
           return `${tag.name}?: ${tag.type.expression.name}`;
         }
@@ -161,7 +158,7 @@ function generatePropDescription(prop) {
       })
       .join(', ');
     signature += `) => ${parsedReturns.type.name}\`<br>`;
-    signature += parsedArgs.map(tag => `*${tag.name}:* ${tag.description}`).join('<br>');
+    signature += parsedArgs.map((tag) => `*${tag.name}:* ${tag.description}`).join('<br>');
     if (parsedReturns.description) {
       signature += `<br> *returns* (${parsedReturns.type.name}): ${parsedReturns.description}`;
     }
@@ -206,7 +203,7 @@ function generatePropType(type) {
 
     case 'shape':
       return `{ ${Object.keys(type.value)
-        .map(subValue => {
+        .map((subValue) => {
           const subType = type.value[subValue];
           return `${subValue}${subType.required ? '' : '?'}: ${generatePropType(subType)}`;
         })
@@ -216,7 +213,7 @@ function generatePropType(type) {
     case 'enum': {
       return (
         type.value
-          .map(type2 => {
+          .map((type2) => {
             if (type.name === 'enum') {
               return escapeCell(type2.value);
             }
@@ -355,7 +352,7 @@ function generateClasses(reactAPI) {
   text = `| Rule name | Global class | Description |
 |:-----|:-------------|:------------|\n`;
   text += reactAPI.styles.classes
-    .map(styleRule => {
+    .map((styleRule) => {
       if (styleRule === '@global') {
         return '| <span class="prop-name">@global</span> | | Apply global styles.';
       }
@@ -436,7 +433,7 @@ function generateDemos(reactAPI) {
   return `## Demos
 
 ${pagesMarkdown
-  .map(page => `- [${pageToTitle(page)}](${rewriteUrlForNextExport(page.pathname)})`)
+  .map((page) => `- [${pageToTitle(page)}](${rewriteUrlForNextExport(page.pathname)})`)
   .join('\n')}
 
 `;

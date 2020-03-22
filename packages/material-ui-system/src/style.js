@@ -12,7 +12,7 @@ function getPath(obj, path) {
 function style(options) {
   const { prop, cssProperty = options.prop, themeKey, transform } = options;
 
-  const fn = props => {
+  const fn = (props) => {
     if (props[prop] == null) {
       return null;
     }
@@ -20,7 +20,7 @@ function style(options) {
     const propValue = props[prop];
     const theme = props.theme;
     const themeMapping = getPath(theme, themeKey) || {};
-    const styleFromPropValue = propValueFinal => {
+    const styleFromPropValue = (propValueFinal) => {
       let value;
 
       if (typeof themeMapping === 'function') {

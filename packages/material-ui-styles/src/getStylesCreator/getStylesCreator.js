@@ -43,7 +43,7 @@ export default function getStylesCreator(stylesOrCreator) {
       const overrides = theme.overrides[name];
       const stylesWithOverrides = { ...styles };
 
-      Object.keys(overrides).forEach(key => {
+      Object.keys(overrides).forEach((key) => {
         if (process.env.NODE_ENV !== 'production') {
           if (!stylesWithOverrides[key]) {
             console.warn(

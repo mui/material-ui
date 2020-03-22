@@ -6,9 +6,9 @@ import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 
 export default function Head(props) {
-  const t = useSelector(state => state.options.t);
+  const t = useSelector((state) => state.options.t);
   const { description = t('strapline'), title = t('headTitle'), children } = props;
-  const userLanguage = useSelector(state => state.options.userLanguage);
+  const userLanguage = useSelector((state) => state.options.userLanguage);
   const router = useRouter();
 
   return (

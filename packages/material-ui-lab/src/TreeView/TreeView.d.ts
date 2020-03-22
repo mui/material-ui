@@ -96,4 +96,14 @@ export type TreeViewProps = SingleSelectTreeViewProps | MultiSelectTreeViewProps
 
 export type TreeViewClassKey = 'root';
 
+/**
+ *
+ * Demos:
+ *
+ * - [Tree View](https://material-ui.com/components/tree-view/)
+ *
+ * API:
+ *
+ * - [TreeView API](https://material-ui.com/api/tree-view/)
+ */
 export default function TreeView(props: TreeViewProps): JSX.Element;

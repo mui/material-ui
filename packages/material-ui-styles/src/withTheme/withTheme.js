@@ -7,7 +7,7 @@ import useTheme from '../useTheme';
 export function withThemeCreator(options = {}) {
   const { defaultTheme } = options;
 
-  const withTheme = Component => {
+  const withTheme = (Component) => {
     if (process.env.NODE_ENV !== 'production') {
       if (Component === undefined) {
         throw new Error(
@@ -30,7 +30,7 @@ export function withThemeCreator(options = {}) {
        * Use that prop to pass a ref to the decorated component.
        * @deprecated
        */
-      innerRef: chainPropTypes(PropTypes.oneOfType([PropTypes.func, PropTypes.object]), props => {
+      innerRef: chainPropTypes(PropTypes.oneOfType([PropTypes.func, PropTypes.object]), (props) => {
         if (props.innerRef == null) {
           return null;
         }

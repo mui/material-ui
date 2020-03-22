@@ -13,7 +13,7 @@ export default function SwitchesGroup() {
     antoine: true,
   });
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     setState({ ...state, [event.target.name]: event.target.checked });
   };
 

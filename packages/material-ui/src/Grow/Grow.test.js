@@ -183,7 +183,7 @@ describe('<Grow />', () => {
         const handleEntered = spy();
         const theme = createMuiTheme({
           transitions: {
-            getAutoHeightDuration: n => n,
+            getAutoHeightDuration: (n) => n,
           },
         });
         const autoTransitionDuration = 10;

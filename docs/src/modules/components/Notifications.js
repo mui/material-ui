@@ -19,7 +19,7 @@ import sleep from 'modules/waterfall/sleep';
 import { getCookie } from 'docs/src/modules/utils/helpers';
 import notifications from '../../../notifications.json';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   paper: {
     transformOrigin: 'top right',
   },
@@ -68,11 +68,11 @@ export default function Notifications() {
   const [open, setOpen] = React.useState(false);
   const [tooltipOpen, setTooltipOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
-  const t = useSelector(state => state.options.t);
-  const userLanguage = useSelector(state => state.options.userLanguage);
+  const t = useSelector((state) => state.options.t);
+  const userLanguage = useSelector((state) => state.options.userLanguage);
 
   const handleToggle = () => {
-    setOpen(prevOpen => !prevOpen);
+    setOpen((prevOpen) => !prevOpen);
     setTooltipOpen(false);
     setUnseenNotificationsCount(0);
     document.cookie = `lastSeenNotification=${messageList[0].id};path=/;max-age=31536000`;
@@ -93,7 +93,7 @@ export default function Notifications() {
   const handleMessage = () => {
     const lastSeen = getLastSeenNotification();
 
-    const userMessages = messages.filter(message => {
+    const userMessages = messages.filter((message) => {
       if (
         message.userLanguage &&
         message.userLanguage !== userLanguage &&

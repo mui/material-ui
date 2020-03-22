@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 import Fade from '@material-ui/core/Fade';
 import Paper from '@material-ui/core/Paper';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     width: 500,
   },
@@ -22,9 +22,9 @@ export default function PositionedPopper() {
   const [placement, setPlacement] = React.useState();
   const classes = useStyles();
 
-  const handleClick = newPlacement => event => {
+  const handleClick = (newPlacement) => (event) => {
     setAnchorEl(event.currentTarget);
-    setOpen(prev => placement !== newPlacement || !prev);
+    setOpen((prev) => placement !== newPlacement || !prev);
     setPlacement(newPlacement);
   };
 

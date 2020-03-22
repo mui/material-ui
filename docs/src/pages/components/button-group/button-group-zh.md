@@ -3,19 +3,19 @@ title: ButtonGroup React component
 components: Button, ButtonGroup
 ---
 
-# Button group
+# Button groups（按钮组）
 
-<p class="description">The ButtonGroup component can be used to group related buttons.</p>
+<p class="description">ButtonGroup 组件可用于对相关按钮进行分组。</p>
 
-## Basic button group
+## 基本的按钮组
 
 {{"demo": "pages/components/button-group/BasicButtonGroup.js"}}
 
-### Group sizes and colors
+### 按钮组尺寸和颜色
 
 {{"demo": "pages/components/button-group/GroupSizesColors.js"}}
 
-### Group orientation
+### 按钮组方向
 
 {{"demo": "pages/components/button-group/GroupOrientation.js"}}
 

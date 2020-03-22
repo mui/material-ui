@@ -83,7 +83,7 @@ const FormControl = React.forwardRef(function FormControl(props, ref) {
     let initialAdornedStart = false;
 
     if (children) {
-      React.Children.forEach(children, child => {
+      React.Children.forEach(children, (child) => {
         if (!isMuiElement(child, ['Input', 'Select'])) {
           return;
         }
@@ -104,7 +104,7 @@ const FormControl = React.forwardRef(function FormControl(props, ref) {
     let initialFilled = false;
 
     if (children) {
-      React.Children.forEach(children, child => {
+      React.Children.forEach(children, (child) => {
         if (!isMuiElement(child, ['Input', 'Select'])) {
           return;
         }

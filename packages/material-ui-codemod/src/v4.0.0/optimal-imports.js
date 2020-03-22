@@ -5,7 +5,7 @@ import addImports from 'jscodeshift-add-imports';
 // istanbul ignore next
 if (process.env.NODE_ENV === 'test') {
   const resolve = require.resolve;
-  require.resolve = source =>
+  require.resolve = (source) =>
     resolve(source.replace(/^@material-ui\/core\/es/, '../../../material-ui/src'));
 }
 
@@ -30,7 +30,7 @@ export default function transformer(fileInfo, api, options) {
     resultSpecifiers.get(source).push(specifier);
   };
 
-  root.find(j.ImportDeclaration).forEach(path => {
+  root.find(j.ImportDeclaration).forEach((path) => {
     if (path.value.importKind && path.value.importKind !== 'value') return;
     const importPath = path.value.source.value.replace(/(index)?(\.js)?$/, '');
     const match = importPath.match(importRegExp);
@@ -83,7 +83,7 @@ export default function transformer(fileInfo, api, options) {
     root,
     [...resultSpecifiers.keys()]
       .sort()
-      .map(source =>
+      .map((source) =>
         j.importDeclaration(resultSpecifiers.get(source).sort(), j.stringLiteral(source)),
       ),
   );

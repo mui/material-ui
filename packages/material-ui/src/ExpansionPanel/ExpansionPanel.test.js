@@ -54,20 +54,8 @@ describe('<ExpansionPanel />', () => {
       </ExpansionPanel>,
     );
 
-    assert.strictEqual(
-      wrapper
-        .find('[aria-expanded=false]')
-        .hostNodes()
-        .text(),
-      'Summary',
-    );
-    assert.strictEqual(
-      wrapper
-        .find(Collapse)
-        .find('div#panel-content')
-        .text(),
-      'Hello',
-    );
+    assert.strictEqual(wrapper.find('[aria-expanded=false]').hostNodes().text(), 'Summary');
+    assert.strictEqual(wrapper.find(Collapse).find('div#panel-content').text(), 'Hello');
   });
 
   it('should be controlled', () => {
@@ -117,7 +105,7 @@ describe('<ExpansionPanel />', () => {
   });
 
   it('should handle the TransitionComponent prop', () => {
-    const NoTransitionCollapse = props => {
+    const NoTransitionCollapse = (props) => {
       return props.in ? <div>{props.children}</div> : null;
     };
     NoTransitionCollapse.propTypes = {

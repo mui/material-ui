@@ -66,7 +66,7 @@ const Grow = React.forwardRef(function Grow(props, ref) {
     }
   };
 
-  const handleExit = node => {
+  const handleExit = (node) => {
     const { duration: transitionDuration, delay } = getTransitionProps(
       { style, timeout },
       {

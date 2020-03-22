@@ -7,7 +7,7 @@ export default function SwitchesSize() {
   const [checked, setChecked] = React.useState(false);
 
   const toggleChecked = () => {
-    setChecked(prev => !prev);
+    setChecked((prev) => !prev);
   };
 
   return (

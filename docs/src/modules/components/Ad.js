@@ -8,7 +8,7 @@ import AdCodeFund from 'docs/src/modules/components/AdCodeFund';
 import AdCarbon from 'docs/src/modules/components/AdCarbon';
 import AdInHouse from 'docs/src/modules/components/AdInHouse';
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     position: 'relative',
     minHeight: 124,
@@ -26,7 +26,7 @@ const styles = theme => ({
 });
 
 function Adblock(props) {
-  const t = useSelector(state => state.options.t);
+  const t = useSelector((state) => state.options.t);
 
   return (
     <Paper component="span" elevation={0} {...props}>
@@ -150,7 +150,7 @@ function Ad(props) {
   }, [checkAdblock]);
 
   React.useEffect(() => {
-    const handler = event => {
+    const handler = (event) => {
       if (event.detail.status === 'no-advertiser') {
         setCodeFundOut(true);
       }

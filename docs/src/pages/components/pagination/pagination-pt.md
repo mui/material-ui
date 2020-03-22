@@ -3,7 +3,7 @@ title: Pagination React component
 components: Pagination, PaginationItem
 ---
 
-# Pagination
+# Paginação
 
 <p class="description">The Pagination component enables the user to select a specific page from a range of pages.</p>
 
@@ -23,7 +23,7 @@ components: Pagination, PaginationItem
 
 {{"demo": "pages/components/pagination/PaginationSize.js"}}
 
-## Buttons
+## Botões
 
 You can optionally enable first-page and last-page buttons, or disable the previous-page and next-page buttons.
 
@@ -40,8 +40,6 @@ You can specify how many digits to display either side of current page with the 
 {{"demo": "pages/components/pagination/PaginationControlled.js"}}
 
 ## Router integration
-
-Pagination supports two approaches for Router integration, the `renderItem` prop:
 
 {{"demo": "pages/components/pagination/PaginationLink.js"}}
 

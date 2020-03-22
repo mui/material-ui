@@ -31,10 +31,10 @@ export function hexToRgb(color) {
   let colors = color.match(re);
 
   if (colors && colors[0].length === 1) {
-    colors = colors.map(n => n + n);
+    colors = colors.map((n) => n + n);
   }
 
-  return colors ? `rgb(${colors.map(n => parseInt(n, 16)).join(', ')})` : '';
+  return colors ? `rgb(${colors.map((n) => parseInt(n, 16)).join(', ')})` : '';
 }
 
 function intToHex(int) {
@@ -55,7 +55,7 @@ export function rgbToHex(color) {
   }
 
   const { values } = decomposeColor(color);
-  return `#${values.map(n => intToHex(n)).join('')}`;
+  return `#${values.map((n) => intToHex(n)).join('')}`;
 }
 
 /**
@@ -115,7 +115,7 @@ export function decomposeColor(color) {
   }
 
   let values = color.substring(marker + 1, color.length - 1).split(',');
-  values = values.map(value => parseFloat(value));
+  values = values.map((value) => parseFloat(value));
 
   return { type, values };
 }
@@ -171,7 +171,7 @@ export function getLuminance(color) {
   color = decomposeColor(color);
 
   let rgb = color.type === 'hsl' ? decomposeColor(hslToRgb(color)).values : color.values;
-  rgb = rgb.map(val => {
+  rgb = rgb.map((val) => {
     val /= 255; // normalized
     return val <= 0.03928 ? val / 12.92 : ((val + 0.055) / 1.055) ** 2.4;
   });

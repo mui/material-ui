@@ -104,7 +104,7 @@ export default function SpeedDials() {
           open={open}
           direction={direction}
         >
-          {actions.map(action => (
+          {actions.map((action) => (
             <SpeedDialAction
               key={action.name}
               icon={action.icon}

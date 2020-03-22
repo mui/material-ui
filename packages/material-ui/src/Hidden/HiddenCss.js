@@ -4,7 +4,7 @@ import capitalize from '../utils/capitalize';
 import withStyles from '../styles/withStyles';
 import useTheme from '../styles/useTheme';
 
-const styles = theme => {
+const styles = (theme) => {
   const hidden = {
     display: 'none',
   };
@@ -32,8 +32,8 @@ function HiddenCss(props) {
   const theme = useTheme();
 
   if (process.env.NODE_ENV !== 'production') {
-    const unknownProps = Object.keys(other).filter(propName => {
-      const isUndeclaredBreakpoint = !theme.breakpoints.keys.some(breakpoint => {
+    const unknownProps = Object.keys(other).filter((propName) => {
+      const isUndeclaredBreakpoint = !theme.breakpoints.keys.some((breakpoint) => {
         return `${breakpoint}Up` === propName || `${breakpoint}Down` === propName;
       });
       return isUndeclaredBreakpoint;
@@ -69,7 +69,7 @@ function HiddenCss(props) {
 
   if (only) {
     const onlyBreakpoints = Array.isArray(only) ? only : [only];
-    onlyBreakpoints.forEach(breakpoint => {
+    onlyBreakpoints.forEach((breakpoint) => {
       clsx.push(classes[`only${capitalize(breakpoint)}`]);
     });
   }

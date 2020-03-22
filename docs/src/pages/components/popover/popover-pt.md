@@ -20,7 +20,7 @@ Coisas para saber ao usar o componente `Popover`:
 
 Use os botões de opção para ajustar as posições `anchorOrigin` e `transformOrigin`. Você também pode definir `anchorReference` para `anchorPosition` ou `anchorEl`. Quando configurado com `anchorPosition`, o componente irá, ao contrário de `anchorEl`, basear se nas propriedades do `anchorPosition`, na qual você pode ajustar para definir a posição do popover.
 
-{{"demo": "pages/components/popover/AnchorPlayground.js", "hideHeader": true}}
+{{"demo": "pages/components/popover/AnchorPlayground.js", "hideToolbar": true}}
 
 ## Interação sobre o mouse
 

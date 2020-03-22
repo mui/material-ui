@@ -22,7 +22,7 @@ const currencies = [
   },
 ];
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     '& .MuiTextField-root': {
       margin: theme.spacing(1),
@@ -35,7 +35,7 @@ export default function MultilineTextFields() {
   const classes = useStyles();
   const [currency, setCurrency] = React.useState('EUR');
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     setCurrency(event.target.value);
   };
 
@@ -50,7 +50,7 @@ export default function MultilineTextFields() {
           onChange={handleChange}
           helperText="Please select your currency"
         >
-          {currencies.map(option => (
+          {currencies.map((option) => (
             <MenuItem key={option.value} value={option.value}>
               {option.label}
             </MenuItem>
@@ -67,7 +67,7 @@ export default function MultilineTextFields() {
           }}
           helperText="Please select your currency"
         >
-          {currencies.map(option => (
+          {currencies.map((option) => (
             <option key={option.value} value={option.value}>
               {option.label}
             </option>
@@ -84,7 +84,7 @@ export default function MultilineTextFields() {
           helperText="Please select your currency"
           variant="filled"
         >
-          {currencies.map(option => (
+          {currencies.map((option) => (
             <MenuItem key={option.value} value={option.value}>
               {option.label}
             </MenuItem>
@@ -102,7 +102,7 @@ export default function MultilineTextFields() {
           helperText="Please select your currency"
           variant="filled"
         >
-          {currencies.map(option => (
+          {currencies.map((option) => (
             <option key={option.value} value={option.value}>
               {option.label}
             </option>
@@ -119,7 +119,7 @@ export default function MultilineTextFields() {
           helperText="Please select your currency"
           variant="outlined"
         >
-          {currencies.map(option => (
+          {currencies.map((option) => (
             <MenuItem key={option.value} value={option.value}>
               {option.label}
             </MenuItem>
@@ -137,7 +137,7 @@ export default function MultilineTextFields() {
           helperText="Please select your currency"
           variant="outlined"
         >
-          {currencies.map(option => (
+          {currencies.map((option) => (
             <option key={option.value} value={option.value}>
               {option.label}
             </option>

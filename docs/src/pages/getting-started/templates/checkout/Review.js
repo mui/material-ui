@@ -21,7 +21,7 @@ const payments = [
   { name: 'Expiry date', detail: '04/2024' },
 ];
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   listItem: {
     padding: theme.spacing(1, 0),
   },
@@ -42,7 +42,7 @@ export default function Review() {
         Order summary
       </Typography>
       <List disablePadding>
-        {products.map(product => (
+        {products.map((product) => (
           <ListItem className={classes.listItem} key={product.name}>
             <ListItemText primary={product.name} secondary={product.desc} />
             <Typography variant="body2">{product.price}</Typography>
@@ -68,7 +68,7 @@ export default function Review() {
             Payment details
           </Typography>
           <Grid container>
-            {payments.map(payment => (
+            {payments.map((payment) => (
               <React.Fragment key={payment.name}>
                 <Grid item xs={6}>
                   <Typography gutterBottom>{payment.name}</Typography>

@@ -78,5 +78,10 @@ export default function useMediaQuery(queryInput, options = {}) {
     };
   }, [query, matchMedia, supportMatchMedia]);
 
+  if (process.env.NODE_ENV !== 'production') {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    React.useDebugValue({ query, match });
+  }
+
   return match;
 }

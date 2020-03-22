@@ -7,7 +7,7 @@ import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
 import capitalize from '../utils/capitalize';
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     display: 'inline-flex',
@@ -80,7 +80,7 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(props, ref) 
   const controlProps = {
     disabled,
   };
-  ['checked', 'name', 'onChange', 'value', 'inputRef'].forEach(key => {
+  ['checked', 'name', 'onChange', 'value', 'inputRef'].forEach((key) => {
     if (typeof control.props[key] === 'undefined' && typeof props[key] !== 'undefined') {
       controlProps[key] = props[key];
     }

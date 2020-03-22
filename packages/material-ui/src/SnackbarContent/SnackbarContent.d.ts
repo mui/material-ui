@@ -9,6 +9,17 @@ export interface SnackbarContentProps extends StandardProps<PaperProps, Snackbar
 
 export type SnackbarContentClassKey = 'root' | 'message' | 'action';
 
+/**
+ *
+ * Demos:
+ *
+ * - [Snackbars](https://material-ui.com/components/snackbars/)
+ *
+ * API:
+ *
+ * - [SnackbarContent API](https://material-ui.com/api/snackbar-content/)
+ * - inherits [Paper API](https://material-ui.com/api/paper/)
+ */
 declare const SnackbarContent: React.ComponentType<SnackbarContentProps>;
 
 export default SnackbarContent;

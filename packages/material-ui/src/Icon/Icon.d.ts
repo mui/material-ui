@@ -10,7 +10,17 @@ export interface IconTypeMap<P = {}, D extends React.ElementType = 'span'> {
   defaultComponent: D;
   classKey: IconClassKey;
 }
-
+/**
+ *
+ * Demos:
+ *
+ * - [Icons](https://material-ui.com/components/icons/)
+ * - [Material Icons](https://material-ui.com/components/material-icons/)
+ *
+ * API:
+ *
+ * - [Icon API](https://material-ui.com/api/icon/)
+ */
 declare const Icon: OverridableComponent<IconTypeMap>;
 
 export type IconClassKey =

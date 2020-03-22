@@ -17,14 +17,14 @@ export default function useMarkdownDocs(options) {
     reqSource,
   } = options;
 
-  const userLanguage = useSelector(state => state.options.userLanguage);
+  const userLanguage = useSelector((state) => state.options.userLanguage);
   let demos;
   let markdown = markdownProp;
 
   if (!markdown) {
     demos = {};
     const markdowns = {};
-    req.keys().forEach(filename => {
+    req.keys().forEach((filename) => {
       if (filename.indexOf('.md') !== -1) {
         const match = filename.match(/-([a-z]{2})\.md$/);
 
@@ -59,7 +59,7 @@ export default function useMarkdownDocs(options) {
 
   const { activePage } = React.useContext(PageContext);
   let location = locationProp || (activePage && activePage.pathname);
-  const t = useSelector(state => state.options.t);
+  const t = useSelector((state) => state.options.t);
 
   if (location && !locationProp) {
     const token = location.split('/');
@@ -79,7 +79,7 @@ export default function useMarkdownDocs(options) {
 
 ${headers.components
   .map(
-    component =>
+    (component) =>
       `- [&lt;${component} /&gt;](${rewriteUrlForNextExport(`/api/${kebabCase(component)}`)})`,
   )
   .join('\n')}

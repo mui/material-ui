@@ -151,7 +151,7 @@ describe('<FormControlLabel />', () => {
   });
 
   it('should not inject extra props', () => {
-    const Control = props => <div data-testid="control" name="Dave" {...props} />;
+    const Control = (props) => <div data-testid="control" name="Dave" {...props} />;
     const { getByTestId } = render(<FormControlLabel label="Pizza" control={<Control />} />);
 
     expect(getByTestId('control')).to.have.attribute('name', 'Dave');

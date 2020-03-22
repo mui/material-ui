@@ -12,6 +12,17 @@ export interface DividerTypeMap<P = {}, D extends React.ElementType = 'hr'> {
   classKey: DividerClassKey;
 }
 
+/**
+ *
+ * Demos:
+ *
+ * - [Dividers](https://material-ui.com/components/dividers/)
+ * - [Lists](https://material-ui.com/components/lists/)
+ *
+ * API:
+ *
+ * - [Divider API](https://material-ui.com/api/divider/)
+ */
 declare const Divider: OverridableComponent<DividerTypeMap>;
 
 export type DividerClassKey = 'root' | 'absolute' | 'inset' | 'light' | 'middle' | 'vertical';

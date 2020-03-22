@@ -15,7 +15,7 @@ describe('withMobileDialog', () => {
   });
 
   function isFullScreen(breakpoints, width) {
-    breakpoints.forEach(breakpoint => {
+    breakpoints.forEach((breakpoint) => {
       it(`is for width: ${width} <= ${breakpoint}`, () => {
         const ResponsiveDialog = withMobileDialog({ breakpoint })(Dialog);
         const wrapper = shallow(
@@ -29,7 +29,7 @@ describe('withMobileDialog', () => {
   }
 
   function isNotFullScreen(breakpoints, width) {
-    breakpoints.forEach(breakpoint => {
+    breakpoints.forEach((breakpoint) => {
       it(`is not for width: ${width} > ${breakpoint}`, () => {
         const ResponsiveDialog = withMobileDialog({ breakpoint })(Dialog);
         const wrapper = shallow(

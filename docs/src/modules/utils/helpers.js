@@ -11,7 +11,7 @@ function titleize(string) {
 
   return string
     .split('-')
-    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(' ');
 }
 
@@ -58,10 +58,10 @@ const packagesWithBundledTypes = ['@material-ui/core', '@material-ui/lab'];
  */
 function addTypeDeps(deps) {
   const packagesWithDTPackage = Object.keys(deps).filter(
-    name => packagesWithBundledTypes.indexOf(name) === -1,
+    (name) => packagesWithBundledTypes.indexOf(name) === -1,
   );
 
-  packagesWithDTPackage.forEach(name => {
+  packagesWithDTPackage.forEach((name) => {
     let resolvedName = name;
     // scoped package?
     if (name.startsWith('@')) {

@@ -7,7 +7,7 @@ import IconButton from '../IconButton';
 import withStyles from '../styles/withStyles';
 import ExpansionPanelContext from '../ExpansionPanel/ExpansionPanelContext';
 
-export const styles = theme => {
+export const styles = (theme) => {
   const transition = {
     duration: theme.transitions.duration.shortest,
   };
@@ -78,14 +78,14 @@ const ExpansionPanelSummary = React.forwardRef(function ExpansionPanelSummary(pr
   } = props;
 
   const [focusedState, setFocusedState] = React.useState(false);
-  const handleFocusVisible = event => {
+  const handleFocusVisible = (event) => {
     setFocusedState(true);
 
     if (onFocusVisible) {
       onFocusVisible(event);
     }
   };
-  const handleBlur = event => {
+  const handleBlur = (event) => {
     setFocusedState(false);
 
     if (onBlur) {
@@ -94,7 +94,7 @@ const ExpansionPanelSummary = React.forwardRef(function ExpansionPanelSummary(pr
   };
 
   const { disabled = false, expanded, toggle } = React.useContext(ExpansionPanelContext);
-  const handleChange = event => {
+  const handleChange = (event) => {
     if (toggle) {
       toggle(event);
     }

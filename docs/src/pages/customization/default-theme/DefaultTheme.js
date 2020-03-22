@@ -104,7 +104,7 @@ function ObjectEntry(props) {
     children =
       Object.keys(objectValue).length === 0
         ? undefined
-        : Object.keys(objectValue).map(key => {
+        : Object.keys(objectValue).map((key) => {
             return (
               <ObjectEntry
                 key={key}
@@ -140,7 +140,7 @@ function Inspector(props) {
   const keyPrefix = '$ROOT';
   const defaultExpanded = React.useMemo(() => {
     return Array.isArray(expandPaths)
-      ? expandPaths.map(expandPath => `${keyPrefix}.${expandPath}`)
+      ? expandPaths.map((expandPath) => `${keyPrefix}.${expandPath}`)
       : [];
   }, [keyPrefix, expandPaths]);
   // for default*  to take effect we need to remount
@@ -155,7 +155,7 @@ function Inspector(props) {
       defaultExpandIcon={<CollapseIcon />}
       {...other}
     >
-      {Object.keys(data).map(objectKey => {
+      {Object.keys(data).map((objectKey) => {
         return (
           <ObjectEntry
             key={objectKey}
@@ -174,7 +174,7 @@ Inspector.propTypes = {
   expandPaths: PropTypes.arrayOf(PropTypes.string),
 };
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     width: '100%',
   },
@@ -192,7 +192,7 @@ const styles = theme => ({
 function computeNodeIds(object, prefix) {
   if ((object !== null && typeof object === 'object') || typeof object === 'function') {
     const ids = [];
-    Object.keys(object).forEach(key => {
+    Object.keys(object).forEach((key) => {
       ids.push(`${prefix}${key}`, ...computeNodeIds(object[key], `${prefix}${key}.`));
     });
 
@@ -217,7 +217,7 @@ function DefaultTheme(props) {
   const { classes } = props;
   const [checked, setChecked] = React.useState(false);
   const [expandPaths, setExpandPaths] = React.useState(null);
-  const t = useSelector(state => state.options.t);
+  const t = useSelector((state) => state.options.t);
   const [darkTheme, setDarkTheme] = React.useState(false);
 
   React.useEffect(() => {

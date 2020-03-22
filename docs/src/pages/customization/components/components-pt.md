@@ -144,7 +144,7 @@ Em vez de fornecer valores para a propriedade `classes` da API, você pode utili
 
 ### Use `$ruleName` para referenciar uma regra local dentro da mesma folha de estilo
 
-O plugin [jss-nested](https://github.com/cssinjs/jss-nested) (disponível por padrão) pode facilitar o processo de aumentar a especificidade.
+The [jss-nested](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-nested) plugin (available by default) can make the process of increasing specificity easier.
 
 ```js
 const styles = {

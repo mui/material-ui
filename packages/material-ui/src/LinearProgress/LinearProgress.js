@@ -8,8 +8,8 @@ import useTheme from '../styles/useTheme';
 
 const TRANSITION_DURATION = 4; // seconds
 
-export const styles = theme => {
-  const getColor = color =>
+export const styles = (theme) => {
+  const getColor = (color) =>
     theme.palette.type === 'light' ? lighten(color, 0.62) : darken(color, 0.5);
 
   const backgroundPrimary = getColor(theme.palette.primary.main);

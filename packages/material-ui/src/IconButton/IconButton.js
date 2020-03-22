@@ -7,7 +7,7 @@ import { fade } from '../styles/colorManipulator';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     textAlign: 'center',
@@ -133,9 +133,9 @@ IconButton.propTypes = {
   /**
    * The icon element.
    */
-  children: chainPropTypes(PropTypes.node, props => {
+  children: chainPropTypes(PropTypes.node, (props) => {
     const found = React.Children.toArray(props.children).some(
-      child => React.isValidElement(child) && child.props.onClick,
+      (child) => React.isValidElement(child) && child.props.onClick,
     );
 
     if (found) {

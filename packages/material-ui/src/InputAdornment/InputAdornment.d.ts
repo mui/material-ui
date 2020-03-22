@@ -11,7 +11,16 @@ export interface InputAdornmentTypeMap<P = {}, D extends React.ElementType = 'di
   defaultComponent: D;
   classKey: InputAdornmentClassKey;
 }
-
+/**
+ *
+ * Demos:
+ *
+ * - [Text Fields](https://material-ui.com/components/text-fields/)
+ *
+ * API:
+ *
+ * - [InputAdornment API](https://material-ui.com/api/input-adornment/)
+ */
 declare const InputAdornment: OverridableComponent<InputAdornmentTypeMap>;
 
 export type InputAdornmentClassKey =

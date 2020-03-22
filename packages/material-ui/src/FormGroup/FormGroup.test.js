@@ -36,12 +36,6 @@ describe('<FormGroup />', () => {
 
     assert.strictEqual(wrapper.children('span').length, 0);
     assert.strictEqual(wrapper.children('div').length, 1);
-    assert.strictEqual(
-      wrapper
-        .children('div')
-        .first()
-        .hasClass('woofFormGroup'),
-      true,
-    );
+    assert.strictEqual(wrapper.children('div').first().hasClass('woofFormGroup'), true);
   });
 });

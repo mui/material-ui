@@ -8,7 +8,7 @@ import useMarkdownDocs from 'docs/src/modules/components/useMarkdownDocs';
 import { getHeaders, getTitle, getDescription } from 'docs/src/modules/utils/parseMarkdown';
 import AppFooter from 'docs/src/modules/components/AppFooter';
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     flex: '1 0 100%',
   },

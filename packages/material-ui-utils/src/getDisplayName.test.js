@@ -52,7 +52,10 @@ describe('utils/getDisplayName.js', () => {
       assert.strictEqual(getDisplayName(SomeOtherComponent), 'CustomDisplayName');
       assert.strictEqual(getDisplayName(YetAnotherComponent), 'YetAnotherComponent');
       assert.strictEqual(getDisplayName(AndAnotherComponent), 'AndAnotherComponent');
-      assert.strictEqual(getDisplayName(() => <div />), 'Component');
+      assert.strictEqual(
+        getDisplayName(() => <div />),
+        'Component',
+      );
       assert.strictEqual(getDisplayName('div'), 'div');
       assert.strictEqual(getDisplayName(AnonymousForwardRefComponent), 'ForwardRef');
       assert.strictEqual(getDisplayName(ForwardRefComponent), 'ForwardRef(Div)');

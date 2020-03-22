@@ -65,7 +65,7 @@ const Step = React.forwardRef(function Step(props, ref) {
           completed,
           disabled,
         })}
-      {React.Children.map(children, child => {
+      {React.Children.map(children, (child) => {
         if (!React.isValidElement(child)) {
           return null;
         }

@@ -10,7 +10,7 @@ import createChainedFunction from '../utils/createChainedFunction';
 import withStyles from '../styles/withStyles';
 import useRadioGroup from '../RadioGroup/useRadioGroup';
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     color: theme.palette.text.secondary,

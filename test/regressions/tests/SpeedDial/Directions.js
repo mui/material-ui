@@ -49,7 +49,7 @@ function SimpleSpeedDial(props) {
 
   return (
     <SpeedDial icon={<SpeedDialIcon />} open {...props}>
-      {['A', 'B', 'C'].map(name => (
+      {['A', 'B', 'C'].map((name) => (
         <SpeedDialAction
           key={name}
           icon={<Avatar>{name}</Avatar>}
@@ -67,12 +67,12 @@ SimpleSpeedDial.propTypes = {
 };
 
 function Directions({ classes }) {
-  const speedDialClassName = direction =>
+  const speedDialClassName = (direction) =>
     clsx(classes.speedDial, classes[`direction${capitalize(direction)}`]);
 
   return (
     <div className={classes.root}>
-      {['up', 'down'].map(direction => (
+      {['up', 'down'].map((direction) => (
         <SimpleSpeedDial
           key={direction}
           ariaLabel={direction}

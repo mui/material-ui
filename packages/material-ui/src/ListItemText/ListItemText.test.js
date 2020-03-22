@@ -140,20 +140,8 @@ describe('<ListItemText />', () => {
     );
     const texts = wrapper.find(Typography);
 
-    assert.strictEqual(
-      texts
-        .first()
-        .props()
-        .className.includes('GeneralText'),
-      true,
-    );
-    assert.strictEqual(
-      texts
-        .last()
-        .props()
-        .className.includes('SecondaryText'),
-      true,
-    );
+    assert.strictEqual(texts.first().props().className.includes('GeneralText'), true);
+    assert.strictEqual(texts.last().props().className.includes('SecondaryText'), true);
   });
 
   it('should not re-wrap the <Typography> element', () => {
@@ -186,12 +174,6 @@ describe('<ListItemText />', () => {
       />,
     );
     const listItemText = findOutermostIntrinsic(wrapper);
-    assert.strictEqual(
-      listItemText
-        .find(Typography)
-        .last()
-        .props().color,
-      'inherit',
-    );
+    assert.strictEqual(listItemText.find(Typography).last().props().color, 'inherit');
   });
 });

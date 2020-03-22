@@ -17,41 +17,41 @@ components: Select, NativeSelect
 
 The Select component is meant to be interchangeable with a native `<select>` element.
 
-If you are looking for more advanced features, like combobox, multiselect, autocomplete, async or creatable support, head to the [`Autocomplete` component](/components/autocomplete/). It's also meant to be an improved version of the "react-select" package.
+If you are looking for more advanced features, like combobox, multiselect, autocomplete, async or creatable support, head to the [`Autocomplete` component](/components/autocomplete/). It's meant to be an improved version of the "react-select" and "downshift" packages.
 
-## Native Select
+## ネイティブを選択
 
-As the user experience can be improved on mobile using the native select of the platform, we allow such pattern.
+プラットフォームのネイティブ選択を使用することで、モバイルでのユーザーエクスペリエンスを向上させることができます。 このようなパターンを許容します。
 
 {{"demo": "pages/components/selects/NativeSelects.js"}}
 
 ## Text Fields
 
-`TextField` ラッパーコンポーネントは、ラベル、入力、およびヘルプテキストを含む完全なフォームコントロールです。 You can find an example with the select mode [in this section](/components/text-fields/#select).
+`TextField` ラッパーコンポーネントは、ラベル、入力、およびヘルプテキストを含む完全なフォームコントロールです。 このセクション</a>で、選択モード 例を見つけることができます。</p> 
 
-## Customized selects
+## カスタマイズされた選択
 
 コンポーネントのカスタマイズの例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
 
-The first step is to style the `InputBase` component. Once it's styled, you can either use it directly as a text field or provide it to the select `input` property to have a `select` field.
+最初のステップは、 `InputBase` コンポーネントのスタイル設定です。 スタイルを設定したら、テキストフィールドとして直接使用するか、select `input` プロパティに提供して、 `select` フィールドを作成できます。
 
 {{"demo": "pages/components/selects/CustomizedSelects.js"}}
 
-## Multiple Select
+## 複数選択
 
-The `Select` component can handle multiple selections. It's enabled with the `multiple` property.
+`Select` コンポーネントは、複数の選択を処理できます。 `multiple` プロパティで有効になります。
 
-Like with the single selection, you can pull out the new value by accessing `event.target.value` in the `onChange` callback. It's always an array.
+単一選択の場合と同様に、 `onChange` コールバックで `event.target.value` にアクセスすることにより、新しい値を引き出すことができます。 常に配列です。
 
 {{"demo": "pages/components/selects/MultipleSelect.js"}}
 
-## Controlled Open Select
+## 制御開選択
 
 {{"demo": "pages/components/selects/ControlledOpenSelect.js"}}
 
-## With a Dialog
+## ダイアログ付き
 
-While it's discouraged by the Material Design specification, you can use a select inside a dialog.
+Material Designの仕様では推奨されていませんが、ダイアログ内でselectを使用できます。
 
 {{"demo": "pages/components/selects/DialogSelect.js"}}
 
@@ -76,7 +76,7 @@ To properly label your `Select` input you need an extra element with an `id` tha
 Alternatively a `TextField` with an `id` and `label` creates the proper markup and ids for you:
 
 ```jsx
-<TextField id="select" label="Age" value="20">
+<TextField id="select" label="Age" value="20" select>
   <MenuItem value="10">Ten</MenuItem>
   <MenuItem value="20">Twenty</MenuItem>
 </TextField>

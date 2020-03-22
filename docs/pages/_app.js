@@ -49,7 +49,7 @@ function loadCrowdin() {
 function LanguageNegotiation() {
   const dispatch = useDispatch();
   const router = useRouter();
-  const userLanguage = useSelector(state => state.options.userLanguage);
+  const userLanguage = useSelector((state) => state.options.userLanguage);
 
   React.useEffect(() => {
     if (userLanguage === 'aa') {
@@ -127,9 +127,9 @@ function usePersistCodeVariant(initialCodeVariant = CODE_VARIANTS.JS, codeVarian
 
 function PersistState() {
   const dispatch = useDispatch();
-  const options = useSelector(state => state.options);
+  const options = useSelector((state) => state.options);
 
-  const codeVariant = usePersistCodeVariant(options.codeVariant, nextCodeVariant =>
+  const codeVariant = usePersistCodeVariant(options.codeVariant, (nextCodeVariant) =>
     dispatch({ type: ACTION_TYPES.OPTIONS_CHANGE, payload: { codeVariant: nextCodeVariant } }),
   );
 
@@ -164,7 +164,7 @@ function forcePageReload(registration) {
   }
 
   function listenInstalledStateChange() {
-    registration.installing.addEventListener('statechange', event => {
+    registration.installing.addEventListener('statechange', (event) => {
       // console.log('statechange', event.target.state);
       if (event.target.state === 'installed' && registration.waiting) {
         // A new service worker is available, inform the user
@@ -244,7 +244,7 @@ Tip: you can access the documentation \`theme\` object directly in the console.
 }
 
 function findActivePage(currentPages, pathname) {
-  const activePage = find(currentPages, page => {
+  const activePage = find(currentPages, (page) => {
     if (page.children) {
       if (pathname.indexOf(`${page.pathname}/`) === 0) {
         // Check if one of the children matches (for /components)
@@ -305,7 +305,7 @@ function AppWrapper(props) {
   return (
     <ReactMode>
       <NextHead>
-        {fonts.map(font => (
+        {fonts.map((font) => (
           <link rel="stylesheet" href={font} key={font} />
         ))}
       </NextHead>

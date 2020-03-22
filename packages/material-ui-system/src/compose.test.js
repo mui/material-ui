@@ -15,10 +15,7 @@ const bgcolor = style({
 
 describe('compose', () => {
   it('should compose', () => {
-    const palette = compose(
-      textColor,
-      bgcolor,
-    );
+    const palette = compose(textColor, bgcolor);
 
     assert.strictEqual(palette.filterProps.length, 2);
     assert.deepEqual(

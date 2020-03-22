@@ -29,9 +29,9 @@ export default function responsiveFontSizes(themeInput, options = {}) {
   // Convert between css lengths e.g. em->px or px->rem
   // Set the baseFontSize for your project. Defaults to 16px (also the browser default).
   const convert = convertLength(typography.htmlFontSize);
-  const breakpointValues = breakpoints.map(x => theme.breakpoints.values[x]);
+  const breakpointValues = breakpoints.map((x) => theme.breakpoints.values[x]);
 
-  variants.forEach(variant => {
+  variants.forEach((variant) => {
     const style = typography[variant];
     const remFontSize = parseFloat(convert(style.fontSize, 'rem'));
 
@@ -61,7 +61,7 @@ export default function responsiveFontSizes(themeInput, options = {}) {
     let transform = null;
 
     if (!disableAlign) {
-      transform = value =>
+      transform = (value) =>
         alignProperty({
           size: value,
           grid: fontGrid({ pixels: 4, lineHeight, htmlFontSize: typography.htmlFontSize }),

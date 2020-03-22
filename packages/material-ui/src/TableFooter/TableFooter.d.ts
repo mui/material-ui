@@ -6,7 +6,16 @@ export interface TableFooterTypeMap<P = {}, D extends React.ElementType = 'tfoot
   defaultComponent: D;
   classKey: TableFooterClassKey;
 }
-
+/**
+ *
+ * Demos:
+ *
+ * - [Tables](https://material-ui.com/components/tables/)
+ *
+ * API:
+ *
+ * - [TableFooter API](https://material-ui.com/api/table-footer/)
+ */
 declare const TableFooter: OverridableComponent<TableFooterTypeMap>;
 
 export type TableFooterClassKey = 'root';

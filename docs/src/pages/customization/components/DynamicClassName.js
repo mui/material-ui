@@ -25,7 +25,7 @@ export default function DynamicClassName() {
   const classes = useStyles();
   const [color, setColor] = React.useState('default');
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     setColor(event.target.checked ? 'blue' : 'default');
   };
 

@@ -5,7 +5,7 @@ import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
 import unsupportedProp from '../utils/unsupportedProp';
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     transition: theme.transitions.create(['color', 'padding-top'], {
@@ -67,7 +67,7 @@ const BottomNavigationAction = React.forwardRef(function BottomNavigationAction(
     ...other
   } = props;
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     if (onChange) {
       onChange(event, value);
     }

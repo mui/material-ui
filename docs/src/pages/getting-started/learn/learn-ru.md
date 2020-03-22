@@ -1,8 +1,8 @@
 # Изучить Material-UI
 
-<p class="description">Новичок в Material-UI? Легко начать изучение если ты знаешь с чего начать! Это руководство поможет вам быстро начать работу.</p>
+<p class="description">Новичок в Material-UI? Легко начать изучение, если ты знаешь с чего начать! Это руководство поможет вам быстро начать работу.</p>
 
-Developers come to Material-UI from different backgrounds and with different learning styles. Whether you prefer a more theoretical or practical approach, we hope you’ll find this section helpful. Как и любая незнакомая технология, Material-UI имеет кривую обучения. Немного терепения и практики и вы скоро освоитесь.
+Разработчики начинают знакомиться с Material-UI с разным практическим опытом и разным подходом к обучению. Независимо от того, предпочитаете ли вы теоретический или практический подход, мы надеемся, что этот раздел руководства будет полезен для вас. Как и любая незнакомая технология, Material-UI имеет кривую обучения. Немного терепения и практики и вы скоро освоитесь.
 
 ## Первый пример
 
@@ -10,15 +10,15 @@ Developers come to Material-UI from different backgrounds and with different lea
 
 ## Примеры проектов
 
-There are [some example projects](/getting-started/example-projects/) available, providing the infrastructure needed to develop and deploy websites in React.
+Доступны [несколько примеров проектов](/getting-started/example-projects/), включающих всю инфраструктуру, необходимую для разработки и развертывания вебсайтов на React.
 
-## Templates
+## Шаблоны
 
-This [selection of basic templates](/getting-started/templates/) will help you get started building your app.
+Эта [подборка базовых шаблонов](/getting-started/templates/) поможет вам начать разработку собственного приложения.
 
 ## Рекомендуемые ресурсы
 
-Впервые изучая Material-UI, вы можете найти публикации в блогах, книги и видео курсы более полезными, чем официальная документация. Here are some recommended resources, some of which are free.
+Впервые изучая Material-UI, вы можете найти публикации в блогах, книги и видео курсы более полезными, чем официальная документация. Вот несколько рекомендуемых ресурсов, в том числе и бесплатные.
 
 ### Free
 
@@ -26,7 +26,7 @@ This [selection of basic templates](/getting-started/templates/) will help you g
   - 📝 [Сообщение в блоге](https://medium.freecodecamp.org/meet-your-material-ui-your-new-favorite-user-interface-library-6349a1c88a8c)
 - **Learn React & Material-UI**: a series of videos covering all the important Material-UI components. 
   - 📹 [Видео](https://www.youtube.com/watch?v=xm4LX5fJKZ8&list=PLcCp4mjO-z98WAu4sd0eVha1g-NMfzHZk)
-- **Getting Started With Material-UI For React**: a blog post that guides you in building a simple card list. 
+- **Getting Started With Material-UI For React**: статья, которая поможет вам создать простой список карточек. 
   - 📝 [Сообщение в блоге](https://medium.com/codingthesmartway-com-blog/getting-started-with-material-ui-for-react-material-design-for-react-364b2688b555)
   - 📹 [Видео](https://www.youtube.com/watch?v=PWadEeOuv5o)
 - **Elegant UX in React with Material-UI**: a blog post covering some important Material-UI concepts. 
@@ -34,11 +34,14 @@ This [selection of basic templates](/getting-started/templates/) will help you g
 
 ### Paid
 
-- **Material-UI with React**: Material-UI is an excellent framework to develop beautiful React components faster! This course teaches the fundamentals of Google Material Design and how to develop an end-to-end flight search and booking application using Material-UI and React.
+- **Apply Google Material Design**: This course teaches the fundamentals of Google Material Design and how to develop an end-to-end flight search and booking application using Material-UI and React.
   
   - 📹 [Watch Course Trailer](https://www.youtube.com/watch?v=hhZ6yFvCWho)
   - 💻 [The Course](https://bonsaiilabs.com/courseDetail/material-ui-with-react)
-- **React Material-UI Cookbook**: Build modern-day applications by implementing Material Design principles in React, using Material-UI.
+- **Implement high fidelity designs**: Bridge the gap between Design & Development. Break down detailed designs and bring them to life with Material-UI and React.
+  
+  - 💻 [The Course](https://click.linksynergy.com/deeplink?id=IVuPfk1F/Ow&mid=39197&murl=https%3A%2F%2Fwww.udemy.com%2Fcourse%2Fimplement-high-fidelity-designs-with-material-ui-and-reactjs%2F)
+- **Cookbook**: Build modern-day applications by implementing Material Design principles in React, using Material-UI.
   
   - 📘 [The book](https://www.amazon.com/gp/product/1789615224/)
 

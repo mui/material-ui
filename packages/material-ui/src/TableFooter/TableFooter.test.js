@@ -43,7 +43,7 @@ describe('<TableFooter />', () => {
     mountInTable(
       <TableFooter>
         <Tablelvl2Context.Consumer>
-          {value => {
+          {(value) => {
             context = value;
           }}
         </Tablelvl2Context.Consumer>

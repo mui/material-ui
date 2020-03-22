@@ -91,6 +91,8 @@
   "decreaseSpacing": "decrease spacing",
   "getProfessionalSupport": "Get Professional Support",
   "diamondSponsors": "Алмазные спонсоры",
+  "demoToolbarLabel": "demo source",
+  "resetDemo": "Reset demo",
   "pages": {
     "/getting-started": "Приступая к работе",
     "/getting-started/installation": "Инструкция по установке",
@@ -126,7 +128,7 @@
     "/components/dividers": "Divider",
     "/components/drawers": "Панель",
     "/components/expansion-panels": "Expansion Panel (панель расширения)",
-    "/components/feedback": "Feedback",
+    "/components/feedback": "Обратная связь",
     "/components/grid": "Grid",
     "/components/hidden": "Hidden",
     "/components/grid-list": "Сеть изображений",
@@ -172,7 +174,7 @@
     "/system": "Система",
     "/system/basics": "Основы",
     "/system/borders": "Границы",
-    "/system/display": "Display",
+    "/system/display": "Дисплей",
     "/system/flexbox": "Flexbox",
     "/system/palette": "Палитра",
     "/system/positions": "Positions",
@@ -221,12 +223,17 @@
     "/styles": "Стили",
     "/styles/basics": "Основы",
     "/styles/advanced": "Дополнительные параметры",
-    "https://themes.material-ui.com/": "Премиум темы",
+    "https://material-ui.com/store/": "Store",
     "/components/material-icons": "Material Иконки",
     "/components/textarea-autosize": "Textarea Autosize",
     "/components/rating": "Рейтинг",
     "/components/skeleton": "Скелет",
     "/components/tree-view": "Иерархическое представление",
-    "/customization/density": "Density"
+    "/customization/density": "Density",
+    "/components/button-group": "Button Group",
+    "/components/floating-action-button": "Floating Action Button",
+    "/components/backdrop": "Backdrop",
+    "/components/alert": "Alert",
+    "/components/pagination": "Pagination"
   }
 }

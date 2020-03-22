@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     color: theme.palette.common.white,
     position: 'relative',

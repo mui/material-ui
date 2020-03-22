@@ -9,17 +9,19 @@ components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel
 
 [开关控件](https://material.io/design/components/selection-controls.html#switches) 是在移动设备上调整设置的首选方式。 开关控制的选项，以及它当前所处的状态都应该从相应的描述标签中明确说明。
 
+## Basic switches
+
 {{"demo": "pages/components/switches/Switches.js"}}
 
-## 多个 Switch 和 FormControlLabel 的使用
+## Switch with FormControlLabel
 
-通过使用` FormControlLabel ` 组件, ` Switch ` 也可与标签描述一起使用。
+`Switch` can be provided with a description thanks to the `FormControlLabel` component.
 
 {{"demo": "pages/components/switches/SwitchLabels.js"}}
 
 ## 多个 Switch 情况下使用 FormGroup
 
-`FormGroup`提供相对简单的 API 对选择控件进行分组。 However, we encourage you to use a [Checkbox](/components/checkboxes/) instead.
+`FormGroup`提供相对简单的 API 对选择控件进行分组。 However, you are encouraged you to use [Checkboxes](/components/checkboxes/) instead if multiple related controls are required. (See: [When to use](#when-to-use)).
 
 {{"demo": "pages/components/switches/SwitchesGroup.js"}}
 

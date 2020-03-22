@@ -43,7 +43,7 @@ Como alternativa, você pode usar [react-spring](https://github.com/react-spring
 
 ## Rolagem - Exemplo interativo
 
-{{"demo": "pages/components/popper/ScrollPlayground.js", "hideHeader": true, "bg": true}}
+{{"demo": "pages/components/popper/ScrollPlayground.js", "hideToolbar": true, "bg": true}}
 
 ## Objeto de referência falsificado
 

@@ -9,7 +9,16 @@ export interface ToolbarTypeMap<P = {}, D extends React.ElementType = 'div'> {
   defaultComponent: D;
   classKey: ToolbarClassKey;
 }
-
+/**
+ *
+ * Demos:
+ *
+ * - [App Bar](https://material-ui.com/components/app-bar/)
+ *
+ * API:
+ *
+ * - [Toolbar API](https://material-ui.com/api/toolbar/)
+ */
 declare const Toolbar: OverridableComponent<ToolbarTypeMap>;
 
 export type ToolbarClassKey = 'root' | 'gutters' | 'regular' | 'dense';

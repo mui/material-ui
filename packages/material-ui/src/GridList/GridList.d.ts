@@ -10,7 +10,16 @@ export interface GridListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
   defaultComponent: D;
   classKey: GridListClassKey;
 }
-
+/**
+ *
+ * Demos:
+ *
+ * - [Grid List](https://material-ui.com/components/grid-list/)
+ *
+ * API:
+ *
+ * - [GridList API](https://material-ui.com/api/grid-list/)
+ */
 declare const GridList: OverridableComponent<GridListTypeMap>;
 
 export type GridListClassKey = 'root';

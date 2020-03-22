@@ -5,7 +5,7 @@ describe('createFilterOptions', () => {
   it('defaults to getOptionLabel for text filtering', () => {
     const filterOptions = createFilterOptions();
 
-    const getOptionLabel = option => option.name;
+    const getOptionLabel = (option) => option.name;
     const options = [
       {
         id: '1234',

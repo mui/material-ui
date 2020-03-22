@@ -97,7 +97,7 @@ describe('style', () => {
   const border = style({
     prop: 'border',
     themeKey: 'borders',
-    transform: value => (typeof value === 'number' && value > 0 ? `${value}px solid` : value),
+    transform: (value) => (typeof value === 'number' && value > 0 ? `${value}px solid` : value),
   });
 
   it('should transform the prop correctly', () => {
@@ -123,7 +123,7 @@ describe('style', () => {
 
     const output3 = border({
       theme: {
-        borders: value => `${value ** 2}px solid`,
+        borders: (value) => `${value ** 2}px solid`,
       },
       border: 2,
     });

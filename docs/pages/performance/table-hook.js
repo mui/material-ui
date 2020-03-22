@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import NoSsr from '@material-ui/core/NoSsr';
 
-const createComponent = defaultComponent => {
+const createComponent = (defaultComponent) => {
   const useStyles = makeStyles({
     root: {
       background: 'pink',

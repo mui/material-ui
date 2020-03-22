@@ -91,6 +91,8 @@
   "decreaseSpacing": "Abstand verringern",
   "getProfessionalSupport": "Professionellen Support erhalten",
   "diamondSponsors": "Diamant-Sponsoren",
+  "demoToolbarLabel": "demo source",
+  "resetDemo": "Reset demo",
   "pages": {
     "/getting-started": "Erste Schritte",
     "/getting-started/installation": "Installation",
@@ -221,12 +223,17 @@
     "/styles": "Stile",
     "/styles/basics": "Grundlegendes",
     "/styles/advanced": "Erweitert",
-    "https://themes.material-ui.com/": "Premium-Themes",
+    "https://material-ui.com/store/": "Store",
     "/components/material-icons": "Material Icons",
     "/components/textarea-autosize": "Textarea Autosize",
     "/components/rating": "Bewertung",
     "/components/skeleton": "Skelett",
     "/components/tree-view": "Baumstrukturansicht",
-    "/customization/density": "Dichte"
+    "/customization/density": "Dichte",
+    "/components/button-group": "Button Group",
+    "/components/floating-action-button": "Floating Action Button",
+    "/components/backdrop": "Backdrop",
+    "/components/alert": "Hinweis",
+    "/components/pagination": "Paginierung"
   }
 }

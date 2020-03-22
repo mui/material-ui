@@ -156,7 +156,7 @@ export default function GitHubLabel() {
           <span>Labels</span>
           <SettingsIcon />
         </ButtonBase>
-        {value.map(label => (
+        {value.map((label) => (
           <div
             key={label.name}
             className={classes.tag}
@@ -220,8 +220,8 @@ export default function GitHubLabel() {
             bi = bi === -1 ? value.length + labels.indexOf(b) : bi;
             return ai - bi;
           })}
-          getOptionLabel={option => option.name}
-          renderInput={params => (
+          getOptionLabel={(option) => option.name}
+          renderInput={(params) => (
             <InputBase
               ref={params.InputProps.ref}
               inputProps={params.inputProps}

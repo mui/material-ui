@@ -29,7 +29,7 @@ function ariaHiddenSiblings(container, mountNode, currentNode, nodesToExclude = 
   const blacklist = [mountNode, currentNode, ...nodesToExclude];
   const blacklistTagNames = ['TEMPLATE', 'SCRIPT', 'STYLE'];
 
-  [].forEach.call(container.children, node => {
+  [].forEach.call(container.children, (node) => {
     if (
       node.nodeType === 1 &&
       blacklist.indexOf(node) === -1 &&
@@ -73,7 +73,7 @@ function handleContainer(containerInfo, props) {
 
       // .mui-fixed is a global helper.
       fixedNodes = ownerDocument(container).querySelectorAll('.mui-fixed');
-      [].forEach.call(fixedNodes, node => {
+      [].forEach.call(fixedNodes, (node) => {
         restorePaddings.push(node.style.paddingRight);
         node.style.paddingRight = `${getPaddingRight(node) + scrollbarSize}px`;
       });
@@ -122,7 +122,7 @@ function handleContainer(containerInfo, props) {
 
 function getHiddenSiblings(container) {
   const hiddenSiblings = [];
-  [].forEach.call(container.children, node => {
+  [].forEach.call(container.children, (node) => {
     if (node.getAttribute && node.getAttribute('aria-hidden') === 'true') {
       hiddenSiblings.push(node);
     }
@@ -166,7 +166,7 @@ export default class ModalManager {
     const hiddenSiblingNodes = getHiddenSiblings(container);
     ariaHiddenSiblings(container, modal.mountNode, modal.modalRef, hiddenSiblingNodes, true);
 
-    const containerIndex = findIndexOf(this.containers, item => item.container === container);
+    const containerIndex = findIndexOf(this.containers, (item) => item.container === container);
     if (containerIndex !== -1) {
       this.containers[containerIndex].modals.push(modal);
       return modalIndex;
@@ -183,7 +183,10 @@ export default class ModalManager {
   }
 
   mount(modal, props) {
-    const containerIndex = findIndexOf(this.containers, item => item.modals.indexOf(modal) !== -1);
+    const containerIndex = findIndexOf(
+      this.containers,
+      (item) => item.modals.indexOf(modal) !== -1,
+    );
     const containerInfo = this.containers[containerIndex];
 
     if (!containerInfo.restore) {
@@ -198,7 +201,10 @@ export default class ModalManager {
       return modalIndex;
     }
 
-    const containerIndex = findIndexOf(this.containers, item => item.modals.indexOf(modal) !== -1);
+    const containerIndex = findIndexOf(
+      this.containers,
+      (item) => item.modals.indexOf(modal) !== -1,
+    );
     const containerInfo = this.containers[containerIndex];
 
     containerInfo.modals.splice(containerInfo.modals.indexOf(modal), 1);

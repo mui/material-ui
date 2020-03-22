@@ -15,7 +15,7 @@ import Popover from '@material-ui/core/Popover';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 
-const styles = theme => ({
+const styles = (theme) => ({
   buttonWrapper: {
     position: 'relative',
     marginBottom: theme.spacing(4),
@@ -91,29 +91,29 @@ function AnchorPlayground(props) {
     anchorReference: 'anchorEl',
   });
 
-  const handleChange = event => {
-    setState(state => ({
+  const handleChange = (event) => {
+    setState((state) => ({
       ...state,
       [event.target.name]: event.target.value,
     }));
   };
 
-  const handleNumberInputChange = key => event => {
-    setState(state => ({
+  const handleNumberInputChange = (key) => (event) => {
+    setState((state) => ({
       ...state,
       [key]: parseInt(event.target.value, 10),
     }));
   };
 
   const handleClickButton = () => {
-    setState(state => ({
+    setState((state) => ({
       ...state,
       open: true,
     }));
   };
 
   const handleClose = () => {
-    setState(state => ({
+    setState((state) => ({
       ...state,
       open: false,
     }));

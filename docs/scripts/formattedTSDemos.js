@@ -39,7 +39,7 @@ async function getFiles(root) {
   const files = [];
 
   await Promise.all(
-    (await fse.readdir(root)).map(async name => {
+    (await fse.readdir(root)).map(async (name) => {
       const filePath = path.join(root, name);
       const stat = await fse.stat(filePath);
 
@@ -48,7 +48,7 @@ async function getFiles(root) {
       } else if (
         stat.isFile() &&
         filePath.endsWith('.tsx') &&
-        !ignoreList.some(ignorePath => filePath.endsWith(path.normalize(ignorePath)))
+        !ignoreList.some((ignorePath) => filePath.endsWith(path.normalize(ignorePath)))
       ) {
         files.push(filePath);
       }
@@ -116,8 +116,8 @@ async function main(argv) {
   let successful = 0;
   let failed = 0;
   let skipped = 0;
-  (await Promise.all(tsxFiles.map(file => transpileFile(file, program, cacheDisabled)))).forEach(
-    result => {
+  (await Promise.all(tsxFiles.map((file) => transpileFile(file, program, cacheDisabled)))).forEach(
+    (result) => {
       switch (result) {
         case TranspileResult.Success: {
           successful += 1;
@@ -157,7 +157,7 @@ async function main(argv) {
     return;
   }
 
-  tsxFiles.forEach(filePath => {
+  tsxFiles.forEach((filePath) => {
     fse.watchFile(filePath, { interval: 500 }, async () => {
       if ((await transpileFile(filePath, program, true)) === 0) {
         console.log('Success - %s', filePath);
@@ -172,7 +172,7 @@ yargs
   .command({
     command: '$0',
     description: 'transpile typescript demos',
-    builder: command => {
+    builder: (command) => {
       return command
         .option('watch', {
           default: false,

@@ -21,7 +21,7 @@ const GRID_SIZES = ['auto', true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 function generateGrid(globalStyles, theme, breakpoint) {
   const styles = {};
 
-  GRID_SIZES.forEach(size => {
+  GRID_SIZES.forEach((size) => {
     const key = `grid-${breakpoint}-${size}`;
 
     if (size === true) {
@@ -71,7 +71,7 @@ function getOffset(val, div = 1) {
 function generateGutter(theme, breakpoint) {
   const styles = {};
 
-  SPACINGS.forEach(spacing => {
+  SPACINGS.forEach((spacing) => {
     const themeSpacing = theme.spacing(spacing);
 
     if (themeSpacing === 0) {
@@ -96,7 +96,7 @@ function generateGutter(theme, breakpoint) {
 // alignItems: 'flex-start',
 // flexWrap: 'nowrap',
 // justifyContent: 'flex-start',
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the root element */
   root: {},
   /* Styles applied to the root element if `container={true}`. */

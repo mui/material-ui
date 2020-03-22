@@ -25,7 +25,7 @@ function TrapFocus(props) {
 
   const rootRef = React.useRef(null);
   // can be removed once we drop support for non ref forwarding class components
-  const handleOwnRef = React.useCallback(instance => {
+  const handleOwnRef = React.useCallback((instance) => {
     // #StrictMode ready
     rootRef.current = ReactDOM.findDOMNode(instance);
   }, []);
@@ -77,7 +77,7 @@ function TrapFocus(props) {
       }
     };
 
-    const loopFocus = event => {
+    const loopFocus = (event) => {
       // 9 = Tab
       if (disableEnforceFocus || !isEnabled() || event.keyCode !== 9) {
         return;

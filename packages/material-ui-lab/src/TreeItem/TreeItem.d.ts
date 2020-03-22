@@ -48,4 +48,14 @@ export type TreeItemClassKey =
   | 'iconContainer'
   | 'label';
 
+/**
+ *
+ * Demos:
+ *
+ * - [Tree View](https://material-ui.com/components/tree-view/)
+ *
+ * API:
+ *
+ * - [TreeItem API](https://material-ui.com/api/tree-item/)
+ */
 export default function TreeItem(props: TreeItemProps): JSX.Element;

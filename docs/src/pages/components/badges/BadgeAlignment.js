@@ -9,7 +9,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import MailIcon from '@material-ui/icons/Mail';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
   },
@@ -30,11 +30,11 @@ export default function BadgeAlignment() {
   const [horizontal, setHorizontal] = React.useState('right');
   const [vertical, setVertical] = React.useState('top');
 
-  const handleHorizontalChange = event => {
+  const handleHorizontalChange = (event) => {
     setHorizontal(event.target.value);
   };
 
-  const handleVerticalChange = event => {
+  const handleVerticalChange = (event) => {
     setVertical(event.target.value);
   };
 

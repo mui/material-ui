@@ -19,7 +19,7 @@ The Drawer can be cancelled by clicking the overlay or pressing the Esc key. It 
 
 {{"demo": "pages/components/drawers/TemporaryDrawer.js"}}
 
-## 可滑动的临时抽屉
+### Swipeable
 
 您可以使用 `SwipeableDrawer` 组件来实现滑动抽屉。
 
@@ -64,7 +64,7 @@ Persistent navigation drawers are acceptable for all sizes larger than mobile. T
 
 {{"demo": "pages/components/drawers/MiniDrawer.js", "iframe": true}}
 
-## 固定的抽屉
+## 永久抽屉
 
 Permanent navigation drawers are always visible and pinned to the left edge, at the same elevation as the content or background. They cannot be closed.
 

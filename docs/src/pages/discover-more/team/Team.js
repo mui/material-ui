@@ -107,7 +107,7 @@ const partners = [
   },
 ];
 
-const styles = theme => ({
+const styles = (theme) => ({
   details: {
     margin: theme.spacing(1, 1, 1, 0),
   },
@@ -137,7 +137,7 @@ function Group(props) {
       </Typography>
       <Typography>{description}</Typography>
       <Grid container spacing={2} className={classes.container}>
-        {members.map(member => (
+        {members.map((member) => (
           <Grid key={member.name} item xs={12} md={6}>
             <Paper variant="outlined">
               <Grid container wrap="nowrap">

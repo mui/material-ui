@@ -66,7 +66,7 @@ function removeTeardown(teardown) {
 function handleKillSignals() {
   //  Process on exit and signals.
   //  https://nodejs.org/api/process.html#process_event_exit
-  process.on('exit', code => {
+  process.on('exit', (code) => {
     const msg = `💀  Node stopped with code ${code}`;
 
     if (code === 0) {
@@ -96,7 +96,7 @@ function handleKillSignals() {
     'SIGSEGV',
     'SIGUSR2',
     'SIGTERM',
-  ].forEach(signal => {
+  ].forEach((signal) => {
     process.on(signal, () => {
       shutdown(signal, 'signal');
     });

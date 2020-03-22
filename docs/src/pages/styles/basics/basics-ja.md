@@ -2,7 +2,7 @@
 
 <p class="description">Material-UIコンポーネントを使用していなくても使う事が出来ます。</p>
 
-Material-UI aims to provide a strong foundation for building dynamic UIs. For the sake of simplicity, **we expose the styling solution used in Material-UI components** as the `@material-ui/styles` package. You can use it, but you don't have to, since Material-UI is also [interoperable with](/guides/interoperability/) all the other major styling solutions.
+Material-UIは、動的なUIを構築するための強固な基盤を提供することを目指しています。 シンプルにするため、**Material-UIで使われているスタイリングソリューションを`@material-ui/styles`で公開しています。** これを使うこともできますが、Material-UIは他の主要なスタイリングソリューション全てと[相互運用が可能](/guides/interoperability/)なので、必要というわけではありません。
 
 ## Material-UIのスタイリングソリューションを使用する理由
 
@@ -18,7 +18,7 @@ Material-UI's styling solution is inspired by many other styling libraries such 
 
 ## インストール
 
-> `@material-ui/styles` is re-exported as `@material-ui/core/styles` - you only need to install it if you wish to use it independently from Material-UI.
+> `@material-ui/styles`は`@material-ui/core/styles`を切り出したものです。Material-UIを使わない場合のみインストールの必要があります。
 
 インストールして`package.json` のdependenciesに保存します。次を実行してください。
 
@@ -123,7 +123,7 @@ export default withStyles(styles)(HigherOrderComponent);
 
 ## Nesting selectors
 
-You can nest selectors to target elements inside the current class or component. The following example uses the Hook API, but it works the same way with the other APIs.
+現在のクラスやコンポーネント内のターゲット要素に、セレクターを入れ子にすることができます。 以下の例はHook APIを使用していますが、他のAPIでも同様に機能します。
 
 ```js
 const useStyles = makeStyles({
