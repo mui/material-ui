@@ -982,4 +982,31 @@ describe('<TreeItem />', () => {
     fireEvent(input, keydownEvent);
     expect(keydownEvent.preventDefault.callCount).to.equal(0);
   });
+
+  it('should not focus steal', () => {
+    function TestComponent() {
+      const [hide, setHide] = React.useState(false);
+
+      return (
+        <React.Fragment>
+          <button type="button" onClick={() => setHide(!hide)}>
+            Hide
+          </button>
+          <TreeView>
+            <TreeItem nodeId="one" label="one" data-testid="one" />
+            {!hide ? <TreeItem nodeId="two" label="two" data-testid="two" /> : <span />}
+          </TreeView>
+        </React.Fragment>
+      );
+    }
+
+    const { getByText, getByTestId, getByRole } = render(<TestComponent />);
+    fireEvent.click(getByText('two'));
+    expect(getByTestId('two')).to.have.focus;
+    getByRole('button').focus();
+    expect(getByRole('button')).to.have.focus;
+    fireEvent.click(getByRole('button'));
+    fireEvent.click(getByRole('button'));
+    expect(getByRole('button')).to.have.focus;
+  });
 });
