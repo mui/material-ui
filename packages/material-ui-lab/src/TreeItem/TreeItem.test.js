@@ -300,6 +300,26 @@ describe('<TreeItem />', () => {
 
         expect(getByTestId('two')).to.have.focus;
       });
+
+      it('should work with programmatic focus', () => {
+        const { getByTestId } = render(
+          <React.Fragment>
+            {/* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex */}
+            <div data-testid="start" tabIndex={0} />
+            <TreeView>
+              <TreeItem nodeId="1" label="one" data-testid="one" />
+              <TreeItem nodeId="2" label="two" data-testid="two" />
+            </TreeView>
+          </React.Fragment>,
+        );
+
+        expect(getByTestId('one')).to.have.attribute('tabindex', '0');
+        expect(getByTestId('two')).to.have.attribute('tabindex', '-1');
+
+        getByTestId('two').focus();
+        expect(getByTestId('one')).to.have.attribute('tabindex', '-1');
+        expect(getByTestId('two')).to.have.attribute('tabindex', '0');
+      });
     });
 
     describe('Navigation', () => {

@@ -328,7 +328,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
   };
 
   const handleFocus = (event) => {
-    if (!focused && tabbable) {
+    if (!focused && event.currentTarget === event.target) {
       focus(nodeId);
     }
 
