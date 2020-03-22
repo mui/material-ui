@@ -256,6 +256,31 @@ export default function useAutocomplete(props) {
 
   popupOpen = freeSolo && filteredOptions.length === 0 ? false : popupOpen;
 
+  if (process.env.NODE_ENV !== 'production') {
+    if (value !== null && !freeSolo && options.length > 0) {
+      const missingValue = (multiple ? value : [value]).filter(
+        (value2) => !options.some((option) => getOptionSelected(option, value2)),
+      );
+
+      if (missingValue.length > 0) {
+        console.warn(
+          [
+            `Material-UI: you have provided an out-of-range value${
+              missingValue.length > 1 ? 's' : ''
+            } \`${
+              missingValue.length > 1
+                ? JSON.stringify(missingValue)
+                : JSON.stringify(missingValue[0])
+            }\` for the autocomplete ${id ? `(id="${id}") ` : ''}component.`,
+            '',
+            'Consider providing a value that matches one of the available options.',
+            'You can use the `getOptionSelected` prop to customize the equality test.',
+          ].join('\n'),
+        );
+      }
+    }
+  }
+
   const focusTag = useEventCallback((tagToFocus) => {
     if (tagToFocus === -1) {
       inputRef.current.focus();

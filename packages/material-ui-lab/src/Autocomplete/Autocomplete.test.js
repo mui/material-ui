@@ -775,12 +775,18 @@ describe('<Autocomplete />', () => {
   });
 
   describe('warnings', () => {
+    let consoleWarnContainer = null;
+
     beforeEach(() => {
       consoleErrorMock.spy();
+      consoleWarnContainer = console.warn;
+      console.warn = spy();
     });
 
     afterEach(() => {
       consoleErrorMock.reset();
+      console.warn = consoleWarnContainer;
+      consoleWarnContainer = null;
     });
 
     it('warn if getOptionLabel do not return a string', () => {
@@ -834,6 +840,25 @@ describe('<Autocomplete />', () => {
       expect(consoleErrorMock.callCount()).to.equal(1); // strict mode renders twice
       expect(consoleErrorMock.messages()[0]).to.include(
         'The component expects a single value to match a given option but found 2 matches.',
+      );
+    });
+
+    it('warn if value does not exist in options list', () => {
+      const value = 'not a good value';
+      const options = ['first option', 'second option'];
+
+      render(
+        <Autocomplete
+          {...defaultProps}
+          value={value}
+          options={options}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+
+      expect(console.warn.callCount).to.equal(4);
+      expect(console.warn.args[0][0]).to.include(
+        'Material-UI: you have provided an out-of-range value `"not a good value"` for the autocomplete component.',
       );
     });
   });
