@@ -300,6 +300,34 @@ describe('<TreeItem />', () => {
 
         expect(getByTestId('two')).to.have.focus;
       });
+
+      it('should work when focused node is removed', () => {
+        function TestComponent() {
+          const [hide, setState] = React.useState(false);
+
+          return (
+            <React.Fragment>
+              <button type="button" onClick={() => setState(true)}>
+                Hide
+              </button>
+              <TreeView defaultExpanded={['parent']}>
+                <TreeItem nodeId="parent" label="parent" data-testid="parent">
+                  <TreeItem nodeId="1" label="one" data-testid="one" />
+                  {!hide ? <TreeItem nodeId="2" label="two" data-testid="two" /> : <span />}
+                </TreeItem>
+              </TreeView>
+            </React.Fragment>
+          );
+        }
+
+        const { getByRole, getByTestId, getByText } = render(<TestComponent />);
+        expect(getByTestId('parent')).to.have.attribute('tabindex', '0');
+        fireEvent.click(getByText('two'));
+        expect(getByTestId('two')).to.have.attribute('tabindex', '0');
+        getByRole('button').focus();
+        fireEvent.click(document.activeElement);
+        expect(getByTestId('parent')).to.have.attribute('tabindex', '0');
+      });
     });
 
     describe('Navigation', () => {
