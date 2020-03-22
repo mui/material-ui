@@ -70,7 +70,7 @@
     "remark-slug": "^5.1.1",
     "safe-json-stringify": "^1.2.0",
     "sinon": "^7.3.2",
-    "styled-jsx": "^3.2.4",
+    "styled-jsx": "^3.2.5",
     "ts-loader": "^6.0.2",
     "typescript": "^3.4.4"
   },
