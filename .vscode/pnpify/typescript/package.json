@@ -1,5 +1,5 @@
 {
-  "name": "typescript",
-  "version": "3.5.2-pnpify",
-  "main": "./lib/typescript.js"
+	"name": "typescript",
+	"version": "3.5.2-pnpify",
+	"main": "./lib/typescript.js"
 }

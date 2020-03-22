@@ -1,15 +1,15 @@
 {
-  "compilerOptions": {
-    "module": "commonjs",
-    "esModuleInterop": true,
-    "target": "es5",
-    "noImplicitAny": true,
-    "strict": true,
-    "moduleResolution": "node",
-    "sourceMap": true,
-    "declaration": true,
-    "outDir": "dist",
-    "jsx": "react"
-  },
-  "include": ["src"]
+	"compilerOptions": {
+		"module": "commonjs",
+		"esModuleInterop": true,
+		"target": "es5",
+		"noImplicitAny": true,
+		"strict": true,
+		"moduleResolution": "node",
+		"sourceMap": true,
+		"declaration": true,
+		"outDir": "dist",
+		"jsx": "react"
+	},
+	"include": ["src"]
 }
