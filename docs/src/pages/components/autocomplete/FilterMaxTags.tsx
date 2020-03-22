@@ -1,11 +1,10 @@
 /* eslint-disable no-use-before-define */
 import React from 'react';
-import Chip from '@material-ui/core/Chip';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   root: {
     width: 500,
     '& > * + *': {
@@ -14,55 +13,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Tags() {
+export default function FilterMaxTags() {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
       <Autocomplete
         multiple
+        filterMaxTags={2}
         id="tags-standard"
         options={top100Films}
-        getOptionLabel={(option) => option.title}
-        defaultValue={[top100Films[13]]}
-        renderInput={(params) => (
-          <TextField
-            {...params}
-            variant="standard"
-            label="Multiple values"
-            placeholder="Favorites"
-          />
-        )}
-      />
-      <Autocomplete
-        multiple
-        id="tags-outlined"
-        options={top100Films}
-        getOptionLabel={(option) => option.title}
-        defaultValue={[top100Films[13]]}
-        filterSelectedOptions
-        renderInput={(params) => (
-          <TextField
-            {...params}
-            variant="outlined"
-            label="filterSelectedOptions"
-            placeholder="Favorites"
-          />
-        )}
-      />
-      <Autocomplete
-        multiple
-        id="tags-filled"
-        options={top100Films.map((option) => option.title)}
-        defaultValue={[top100Films[13].title]}
-        freeSolo
-        renderTags={(value, getTagProps) =>
-          value.map((option, index) => (
-            <Chip variant="outlined" label={option} {...getTagProps({ index })} />
-          ))
-        }
-        renderInput={(params) => (
-          <TextField {...params} variant="filled" label="freeSolo" placeholder="Favorites" />
+        getOptionLabel={option => option.title}
+        defaultValue={[top100Films[13], top100Films[12], top100Films[11]]}
+        renderInput={params => (
+          <TextField {...params} variant="outlined" label="filterMaxTags" placeholder="Favorites" />
         )}
       />
     </div>

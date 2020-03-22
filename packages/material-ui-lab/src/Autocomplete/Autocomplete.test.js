@@ -97,12 +97,12 @@ describe('<Autocomplete />', () => {
     });
   });
 
-  describe('prop: filterMax', () => {
+  describe('prop: filterMaxTags', () => {
     it('show only the max number of items', () => {
       const { queryByTestId, getAllByRole } = render(
         <Autocomplete
           multiple
-          filterMax={2}
+          filterMaxTags={2}
           {...defaultProps}
           options={['one', 'two', 'three', 'four']}
           defaultValue={['one', 'two', 'three']}
@@ -121,7 +121,7 @@ describe('<Autocomplete />', () => {
       const { getAllByRole, queryByTestId, getByRole } = render(
         <Autocomplete
           multiple
-          filterMax={2}
+          filterMaxTags={2}
           {...defaultProps}
           options={['one', 'two', 'three', 'four']}
           defaultValue={['one', 'two', 'three']}

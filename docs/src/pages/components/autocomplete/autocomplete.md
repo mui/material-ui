@@ -100,6 +100,12 @@ Also known as tags, the user is allowed to enter more than one value.
 
 {{"demo": "pages/components/autocomplete/Tags.js"}}
 
+## Filter Max Tags
+
+Do you want to show only a few tags? Use the `filterMaxTags` prop.
+
+{{"demo": "pages/components/autocomplete/FilterMaxTags.js"}}
+
 ### Fixed options
 
 In the event that you need to lock certain tag so that they can't be removed in the interface, you can set the chips disabled.
@@ -143,13 +149,14 @@ import { createFilterOptions } from '@material-ui/lab/Autocomplete';
 
 #### Arguments
 
-1. `config` (*Object* [optional]):
-  - `config.ignoreAccents` (*Boolean* [optional]): Defaults to `true`. Remove diacritics.
-  - `config.ignoreCase` (*Boolean* [optional]): Defaults to `true`. Lowercase everything.
-  - `config.matchFrom` (*'any' | 'start'* [optional]): Defaults to `'any'`.
-  - `config.stringify` (*Func* [optional]): Controls how an option is converted into a string so that it can be matched against the input text fragment.
-  - `config.trim` (*Boolean* [optional]): Defaults to `false`. Remove trailing spaces.
-  - `config.limit` (*Number* [optional]): Default to null. Limit the number of suggested options to be shown. For example, if `config.limit` is `100`, only the first `100` matching options are shown. It can be useful if a lot of options match and virtualization wasn't set up.
+1. `config` (_Object_ [optional]):
+
+- `config.ignoreAccents` (_Boolean_ [optional]): Defaults to `true`. Remove diacritics.
+- `config.ignoreCase` (_Boolean_ [optional]): Defaults to `true`. Lowercase everything.
+- `config.matchFrom` (_'any' | 'start'_ [optional]): Defaults to `'any'`.
+- `config.stringify` (_Func_ [optional]): Controls how an option is converted into a string so that it can be matched against the input text fragment.
+- `config.trim` (_Boolean_ [optional]): Defaults to `false`. Remove trailing spaces.
+- `config.limit` (_Number_ [optional]): Default to null. Limit the number of suggested options to be shown. For example, if `config.limit` is `100`, only the first `100` matching options are shown. It can be useful if a lot of options match and virtualization wasn't set up.
 
 #### Returns
 
@@ -163,7 +170,7 @@ const filterOptions = createFilterOptions({
   stringify: option => option.title,
 });
 
-<Autocomplete filterOptions={filterOptions} />
+<Autocomplete filterOptions={filterOptions} />;
 ```
 
 {{"demo": "pages/components/autocomplete/Filter.js", "defaultCodeOpen": false}}
@@ -175,10 +182,9 @@ For richer filtering mechanisms, like fuzzy matching, it's recommended to look a
 ```jsx
 import matchSorter from 'match-sorter';
 
-const filterOptions = (options, { inputValue }) =>
-  matchSorter(options, inputValue);
+const filterOptions = (options, { inputValue }) => matchSorter(options, inputValue);
 
-<Autocomplete filterOptions={filterOptions} />
+<Autocomplete filterOptions={filterOptions} />;
 ```
 
 ## Virtualization

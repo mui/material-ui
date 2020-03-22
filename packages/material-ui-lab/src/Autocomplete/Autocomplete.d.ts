@@ -84,9 +84,9 @@ export interface AutocompleteProps<T>
    */
   forcePopupIcon?: true | false | 'auto';
   /**
-   * The numbers of items that will be visible
+   * The number of tags that will be visible. Set `-1` to display them all.
    */
-  filterMax?: number;
+  filterMaxTags?: number;
   /**
    * The component used to render the listbox.
    */
