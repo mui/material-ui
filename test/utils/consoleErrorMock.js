@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import utilFormat from 'format-util';
 import { spy } from 'sinon';
 
@@ -14,22 +15,26 @@ import { spy } from 'sinon';
  *   warning.restore();
  * });
  */
-class ConsoleErrorMock {
+export class ConsoleMock {
   consoleErrorContainer;
 
+  constructor(methodName) {
+    this.methodName = methodName;
+  }
+
   spy = () => {
-    this.consoleErrorContainer = console.error;
-    console.error = spy();
+    this.consoleErrorContainer = console[this.methodName];
+    console[this.methodName] = spy();
   };
 
   reset = () => {
-    console.error = this.consoleErrorContainer;
+    console[this.methodName] = this.consoleErrorContainer;
     delete this.consoleErrorContainer;
   };
 
   callCount = () => {
     if (this.consoleErrorContainer) {
-      return console.error.callCount;
+      return console[this.methodName].callCount;
     }
 
     throw new Error('Requested call count before spy() was called');
@@ -45,7 +50,7 @@ class ConsoleErrorMock {
   /**
    * returns the formatted message for each call
    *
-   * you could call console.error("type %s", "foo") which would log
+   * you could call console[this.methodName]("type %s", "foo") which would log
    * "type foo". If you  want to assert on the actual message use messages() instead
    */
   messages = () => {
@@ -56,11 +61,13 @@ class ConsoleErrorMock {
     /**
      * @type {import('sinon').SinonSpy}
      */
-    const consoleSpy = console.error;
+    const consoleSpy = console[this.methodName];
     return consoleSpy.args.map((loggerArgs) => {
       return utilFormat(...loggerArgs);
     });
   };
 }
 
-export default new ConsoleErrorMock();
+export const consoleWarnMock = new ConsoleMock('warn');
+
+export default new ConsoleMock('error');

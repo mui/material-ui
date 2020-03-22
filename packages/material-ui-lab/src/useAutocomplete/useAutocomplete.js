@@ -200,10 +200,9 @@ export default function useAutocomplete(props) {
           const erroneousReturn =
             optionLabel === undefined ? 'undefined' : `${typeof optionLabel} (${optionLabel})`;
           console.error(
-            [
-              `Material-UI: the \`getOptionLabel\` method of ${componentName} returned ${erroneousReturn} instead of a string for`,
-              JSON.stringify(newValue),
-            ].join('\n'),
+            `Material-UI: the \`getOptionLabel\` method of ${componentName} returned ${erroneousReturn} instead of a string for ${JSON.stringify(
+              newValue,
+            )}.`,
           );
         }
       }
@@ -265,15 +264,12 @@ export default function useAutocomplete(props) {
       if (missingValue.length > 0) {
         console.warn(
           [
-            `Material-UI: you have provided an out-of-range value${
-              missingValue.length > 1 ? 's' : ''
-            } \`${
+            `Material-UI: the value provided to ${componentName} is invalid.`,
+            `None of the options match with \`${
               missingValue.length > 1
                 ? JSON.stringify(missingValue)
                 : JSON.stringify(missingValue[0])
-            }\` for the autocomplete ${id ? `(id="${id}") ` : ''}component.`,
-            '',
-            'Consider providing a value that matches one of the available options.',
+            }\`.`,
             'You can use the `getOptionSelected` prop to customize the equality test.',
           ].join('\n'),
         );

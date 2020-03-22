@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
+import consoleErrorMock, { consoleWarnMock } from 'test/utils/consoleErrorMock';
 import { spy } from 'sinon';
 import { createClientRender, fireEvent } from 'test/utils/createClientRender';
 import { createFilterOptions } from '../useAutocomplete/useAutocomplete';
@@ -775,18 +775,14 @@ describe('<Autocomplete />', () => {
   });
 
   describe('warnings', () => {
-    let consoleWarnContainer = null;
-
     beforeEach(() => {
       consoleErrorMock.spy();
-      consoleWarnContainer = console.warn;
-      console.warn = spy();
+      consoleWarnMock.spy();
     });
 
     afterEach(() => {
       consoleErrorMock.reset();
-      console.warn = consoleWarnContainer;
-      consoleWarnContainer = null;
+      consoleWarnMock.reset();
     });
 
     it('warn if getOptionLabel do not return a string', () => {
@@ -856,9 +852,9 @@ describe('<Autocomplete />', () => {
         />,
       );
 
-      expect(console.warn.callCount).to.equal(4);
-      expect(console.warn.args[0][0]).to.include(
-        'Material-UI: you have provided an out-of-range value `"not a good value"` for the autocomplete component.',
+      expect(consoleWarnMock.callCount()).to.equal(4);
+      expect(consoleWarnMock.messages()[0]).to.include(
+        'None of the options match with `"not a good value"`',
       );
     });
   });

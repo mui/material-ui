@@ -153,8 +153,8 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
           if (!tab) {
             console.error(
               [
-                `Material-UI: the value provided \`${value}\` to the Tabs component is invalid.`,
-                'None of the Tabs children have this value.',
+                `Material-UI: the value provided to the Tabs component is invalid.`,
+                `None of the Tabs' children match with \`${value}\`.`,
                 valueToIndex.keys
                   ? `You can provide one of the following values: ${Array.from(
                       valueToIndex.keys(),
