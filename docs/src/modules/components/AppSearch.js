@@ -117,6 +117,7 @@ export default function AppSearch() {
   const inputRef = React.useRef(null);
   const theme = useTheme();
   const userLanguage = useSelector((state) => state.options.userLanguage);
+  const t = useSelector((state) => state.options.t);
 
   React.useEffect(() => {
     const styleNode = loadCSS(
@@ -219,9 +220,9 @@ export default function AppSearch() {
       </div>
       <Input
         disableUnderline
-        placeholder="Search…"
+        placeholder={`${t('algoliaSearch')}…`}
         inputProps={{
-          'aria-label': 'Search',
+          'aria-label': t('algoliaSearch'),
         }}
         type="search"
         id="docsearch-input"
