@@ -14,10 +14,15 @@ import Switch from '@material-ui/core/Switch';
 /**
  * @param {unknown} value
  */
-function useType(value) {
+function getType(value) {
   if (Array.isArray(value)) {
     return 'array';
   }
+
+  if (/^(#|rgb|rgba|hsl|hsla)/.test(value)) {
+    return 'color';
+  }
+
   if (value === null) {
     return 'null';
   }
@@ -28,9 +33,9 @@ function useType(value) {
 /**
  *
  * @param {unknown} value
- * @param {ReturnType<typeof useType>} type
+ * @param {ReturnType<typeof getType>} type
  */
-function useLabel(value, type) {
+function getLabel(value, type) {
   switch (type) {
     case 'array':
       return `Array(${value.length})`;
@@ -54,8 +59,10 @@ function useLabel(value, type) {
   }
 }
 
-function useTokenType(type) {
+function getTokenType(type) {
   switch (type) {
+    case 'color':
+      return 'string';
     case 'object':
     case 'array':
       return 'comment';
@@ -64,18 +71,47 @@ function useTokenType(type) {
   }
 }
 
-function ObjectEntryLabel({ objectKey, objectValue }) {
-  const type = useType(objectValue);
-  const label = useLabel(objectValue, type);
-  const tokenType = useTokenType(type);
+const useObjectEntryLabelStyles = makeStyles((theme) => ({
+  color: {
+    backgroundColor: '#fff',
+    display: 'inline-block',
+    marginBottom: -1,
+    marginRight: theme.spacing(0.5),
+    border: '1px solid',
+    backgroundImage:
+      'url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%202%202%22%3E%3Cpath%20d%3D%22M1%202V0h1v1H0v1z%22%20fill-opacity%3D%22.2%22%2F%3E%3C%2Fsvg%3E")',
+  },
+  colorInner: {
+    display: 'block',
+    width: 11,
+    height: 11,
+  },
+}));
+
+function ObjectEntryLabel(props) {
+  const { objectKey, objectValue } = props;
+  const type = getType(objectValue);
+  const label = getLabel(objectValue, type);
+  const tokenType = getTokenType(type);
+  const classes = useObjectEntryLabelStyles();
 
   return (
     <React.Fragment>
-      {objectKey}: <span className={clsx('token', tokenType)}>{label}</span>
+      {`${objectKey}: `}
+      {type === 'color' ? (
+        <span className={classes.color} style={{ borderColor: lighten(label, 0.7) }}>
+          <span className={classes.colorInner} style={{ backgroundColor: label }} />
+        </span>
+      ) : null}
+      <span className={clsx('token', tokenType)}>{label}</span>
     </React.Fragment>
   );
 }
-ObjectEntryLabel.propTypes = { objectKey: PropTypes.any, objectValue: PropTypes.any };
+
+ObjectEntryLabel.propTypes = {
+  objectKey: PropTypes.any,
+  objectValue: PropTypes.any,
+};
 
 const useObjectEntryStyles = makeStyles({
   treeItem: {
@@ -93,10 +129,9 @@ const useObjectEntryStyles = makeStyles({
 
 function ObjectEntry(props) {
   const { nodeId, objectKey, objectValue } = props;
-
   const keyPrefix = nodeId;
-
   let children = null;
+
   if (
     (objectValue !== null && typeof objectValue === 'object') ||
     typeof objectValue === 'function'
