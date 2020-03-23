@@ -24,7 +24,7 @@ const quotes = [
       'Material-UI continues to blow my mind how easily I can put together really aesthetic and functional components and minimize overhead.',
   },
   {
-    avatar: 'https://pbs.twimg.com/profile_images/1169043984561389568/pEdFvVIW_400x400.jpg',
+    avatar: 'https://pbs.twimg.com/profile_images/1231452795368329216/GhjrxYH2_400x400.jpg',
     name: 'Derek Shanks',
     username: '@fragileglass',
     tweet: 'https://twitter.com/fragileglass/status/1205256087290753025',
@@ -129,8 +129,8 @@ const QuoteLink = React.forwardRef((props, ref) => {
       data-ga-event-label="home-link"
       target="_blank"
       rel="noopener nofollow"
-      naked
       ref={ref}
+      underline="none"
       {...props}
     />
   );
