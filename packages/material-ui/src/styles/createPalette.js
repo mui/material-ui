@@ -160,41 +160,35 @@ export default function createPalette(palette) {
     }
 
     if (!color.main) {
-      if (process.env.NODE_ENV !== 'production') {
-        console.error(
-          [
-            'Material-UI: the color provided to augmentColor(color) is invalid.',
-            `The color object needs to have a \`main\` property or a \`${mainShade}\` property.`,
-          ].join('\n'),
-        );
-      }
-      color.main = indigo[500];
+      throw new Error(
+        [
+          'Material-UI: the color provided to augmentColor(color) is invalid.',
+          `The color object needs to have a \`main\` property or a \`${mainShade}\` property.`,
+        ].join('\n'),
+      );
     }
 
     if (typeof color.main !== 'string') {
-      if (process.env.NODE_ENV !== 'production') {
-        console.error(
-          [
-            'Material-UI: the color provided to augmentColor(color) is invalid.',
-            `\`color.main\` should be a string, but \`${JSON.stringify(
-              color.main,
-            )}\` was provided instead.`,
-            '',
-            'Did you intent to do one of the followings?',
-            '',
-            'import { green } from "@material-ui/core/colors";',
-            '',
-            'const theme1 = createMuiTheme({ palette: {',
-            '  primary: green,',
-            '} });',
-            '',
-            'const theme2 = createMuiTheme({ palette: {',
-            '  primary: { main: green[500] },',
-            '} });',
-          ].join('\n'),
-        );
-      }
-      color.main = indigo[500];
+      throw new Error(
+        [
+          'Material-UI: the color provided to augmentColor(color) is invalid.',
+          `\`color.main\` should be a string, but \`${JSON.stringify(
+            color.main,
+          )}\` was provided instead.`,
+          '',
+          'Did you intend to use one of the following approaches?',
+          '',
+          'import { green } from "@material-ui/core/colors";',
+          '',
+          'const theme1 = createMuiTheme({ palette: {',
+          '  primary: green,',
+          '} });',
+          '',
+          'const theme2 = createMuiTheme({ palette: {',
+          '  primary: { main: green[500] },',
+          '} });',
+        ].join('\n'),
+      );
     }
 
     addLightOrDark(color, 'light', lightShade, tonalOffset);

@@ -112,23 +112,6 @@ describe('createPalette()', () => {
     });
   });
 
-  describe('getContrastText', () => {
-    it('throws an exception with a falsy argument', () => {
-      const { getContrastText } = createPalette({});
-
-      [
-        [undefined, 'missing background argument in getContrastText(undefined)'],
-        [null, 'missing background argument in getContrastText(null)'],
-        ['', 'missing background argument in getContrastText()'],
-        [0, 'missing background argument in getContrastText(0)'],
-      ].forEach((testEntry) => {
-        const [argument, errorMessage] = testEntry;
-
-        expect(() => getContrastText(argument), errorMessage).to.throw();
-      });
-    });
-  });
-
   it('should create a palette with unique object references', () => {
     const redPalette = createPalette({ background: { paper: 'red' } });
     const bluePalette = createPalette({ background: { paper: 'blue' } });
@@ -145,7 +128,7 @@ describe('createPalette()', () => {
       consoleErrorMock.reset();
     });
 
-    it('logs an error when an invalid type is specified', () => {
+    it('throws an exception when an invalid type is specified', () => {
       createPalette({ type: 'foo' });
       expect(consoleErrorMock.callCount()).to.equal(1);
       expect(consoleErrorMock.messages()[0]).to.include(
@@ -153,16 +136,11 @@ describe('createPalette()', () => {
       );
     });
 
-    it('logs an error when a wrong color is provided', () => {
-      createPalette({ primary: '#fff' });
-      expect(consoleErrorMock.callCount()).to.equal(1);
-      expect(consoleErrorMock.messages()[0]).to.include(
+    it('throws an exception when a wrong color is provided', () => {
+      expect(() => createPalette({ primary: '#fff' })).to.throw(
         'The color object needs to have a `main` property or a `500` property.',
       );
-
-      createPalette({ primary: { main: { foo: 'bar' }} });
-      expect(consoleErrorMock.callCount()).to.equal(2);
-      expect(consoleErrorMock.messages()[1]).to.include(
+      expect(() => createPalette({ primary: { main: { foo: 'bar' } } })).to.throw(
         '`color.main` should be a string, but `{"foo":"bar"}` was provided instead.',
       );
     });
