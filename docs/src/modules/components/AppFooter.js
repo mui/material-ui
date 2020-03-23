@@ -140,11 +140,13 @@ function AppFooter(props) {
                     Contact Us
                   </Link>
                 </li>
+                {/*
                 <li>
                   <Link color="inherit" variant="body2" href="/company/jobs/">
                     Jobs
                   </Link>
                 </li>
+                */}
               </ul>
             </Grid>
           </Grid>
