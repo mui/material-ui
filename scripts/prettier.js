@@ -24,7 +24,7 @@ function runPrettier(options) {
     .filter((notEmpty) => notEmpty);
 
   const files = glob
-    .sync('**/*.{js,tsx,d.ts}', { ignore: ['**/node_modules/**', ...ignoredFiles] })
+    .sync('**/*.{js,tsx,ts}', { ignore: ['**/node_modules/**', ...ignoredFiles] })
     .filter((f) => !changedFiles || changedFiles.has(f));
 
   if (!files.length) {
