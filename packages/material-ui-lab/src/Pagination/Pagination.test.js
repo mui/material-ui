@@ -52,6 +52,7 @@ describe('<Pagination />', () => {
 
     expect(handleChange.callCount).to.equal(1);
   });
+
   it('renders controls with correct order in rtl theme', () => {
     const { getAllByRole } = render(
       <ThemeProvider
