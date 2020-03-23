@@ -99,12 +99,6 @@ describe('createPalette()', () => {
   describe('augmentColor', () => {
     const palette = createPalette({});
 
-    it('should throw when the input is invalid', () => {
-      expect(() => {
-        palette.augmentColor({});
-      }).to.throw(/The color object needs to have a/);
-    });
-
     it('should accept a color', () => {
       const color1 = palette.augmentColor(indigo);
       expect(color1).to.deep.include({

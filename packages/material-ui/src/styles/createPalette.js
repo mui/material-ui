@@ -132,12 +132,6 @@ export default function createPalette(palette) {
   // Bootstrap: https://github.com/twbs/bootstrap/blob/1d6e3710dd447de1a200f29e8fa521f8a0908f70/scss/_functions.scss#L59
   // and material-components-web https://github.com/material-components/material-components-web/blob/ac46b8863c4dab9fc22c4c662dc6bd1b65dd652f/packages/mdc-theme/_functions.scss#L54
   function getContrastText(background) {
-    if (!background) {
-      throw new TypeError(
-        `Material-UI: missing background argument in getContrastText(${background}).`,
-      );
-    }
-
     const contrastText =
       getContrastRatio(background, dark.text.primary) >= contrastThreshold
         ? dark.text.primary
@@ -159,21 +153,48 @@ export default function createPalette(palette) {
     return contrastText;
   }
 
-  function augmentColor(color, mainShade = 500, lightShade = 300, darkShade = 700) {
+  const augmentColor = (color, mainShade = 500, lightShade = 300, darkShade = 700) => {
     color = { ...color };
     if (!color.main && color[mainShade]) {
       color.main = color[mainShade];
     }
 
-    if (process.env.NODE_ENV !== 'production') {
-      if (!color.main) {
-        throw new Error(
+    if (!color.main) {
+      if (process.env.NODE_ENV !== 'production') {
+        console.error(
           [
             'Material-UI: the color provided to augmentColor(color) is invalid.',
             `The color object needs to have a \`main\` property or a \`${mainShade}\` property.`,
           ].join('\n'),
         );
       }
+      color.main = indigo[500];
+    }
+
+    if (typeof color.main !== 'string') {
+      if (process.env.NODE_ENV !== 'production') {
+        console.error(
+          [
+            'Material-UI: the color provided to augmentColor(color) is invalid.',
+            `\`color.main\` should be a string, but \`${JSON.stringify(
+              color.main,
+            )}\` was provided instead.`,
+            '',
+            'Did you intent to do one of the followings?',
+            '',
+            'import { green } from "@material-ui/core/colors";',
+            '',
+            'const theme1 = createMuiTheme({ palette: {',
+            '  primary: green,',
+            '} });',
+            '',
+            'const theme2 = createMuiTheme({ palette: {',
+            '  primary: { main: green[500] },',
+            '} });',
+          ].join('\n'),
+        );
+      }
+      color.main = indigo[500];
     }
 
     addLightOrDark(color, 'light', lightShade, tonalOffset);
@@ -183,7 +204,7 @@ export default function createPalette(palette) {
     }
 
     return color;
-  }
+  };
 
   const types = { dark, light };
 
