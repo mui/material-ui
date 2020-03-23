@@ -97,6 +97,31 @@ describe('<Autocomplete />', () => {
     });
   });
 
+  describe('prop: limitTags', () => {
+    it('show all items on focus', () => {
+      const { container, getAllByRole, getByRole } = render(
+        <Autocomplete
+          multiple
+          limitTags={2}
+          {...defaultProps}
+          options={['one', 'two', 'three']}
+          defaultValue={['one', 'two', 'three']}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+
+      let tags;
+      tags = getAllByRole('button');
+      expect(container.textContent).to.equal('onetwo+1');
+      expect(tags.length).to.be.equal(4);
+
+      getByRole('textbox').focus();
+      tags = getAllByRole('button');
+      expect(container.textContent).to.equal('onetwothree');
+      expect(tags.length).to.be.equal(5);
+    });
+  });
+
   describe('prop: filterSelectedOptions', () => {
     it('when the last item is selected, highlights the new last item', () => {
       const { getByRole } = render(
