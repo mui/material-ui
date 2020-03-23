@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
+import consoleErrorMock, { consoleWarnMock } from 'test/utils/consoleErrorMock';
 import { spy } from 'sinon';
 import { createClientRender, fireEvent } from 'test/utils/createClientRender';
 import { createFilterOptions } from '../useAutocomplete/useAutocomplete';
@@ -802,10 +802,12 @@ describe('<Autocomplete />', () => {
   describe('warnings', () => {
     beforeEach(() => {
       consoleErrorMock.spy();
+      consoleWarnMock.spy();
     });
 
     afterEach(() => {
       consoleErrorMock.reset();
+      consoleWarnMock.reset();
     });
 
     it('warn if getOptionLabel do not return a string', () => {
@@ -859,6 +861,25 @@ describe('<Autocomplete />', () => {
       expect(consoleErrorMock.callCount()).to.equal(1); // strict mode renders twice
       expect(consoleErrorMock.messages()[0]).to.include(
         'The component expects a single value to match a given option but found 2 matches.',
+      );
+    });
+
+    it('warn if value does not exist in options list', () => {
+      const value = 'not a good value';
+      const options = ['first option', 'second option'];
+
+      render(
+        <Autocomplete
+          {...defaultProps}
+          value={value}
+          options={options}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+
+      expect(consoleWarnMock.callCount()).to.equal(4);
+      expect(consoleWarnMock.messages()[0]).to.include(
+        'None of the options match with `"not a good value"`',
       );
     });
   });
