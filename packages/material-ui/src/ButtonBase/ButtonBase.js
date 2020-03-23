@@ -159,7 +159,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
     false,
   );
 
-  const handleFocus = useEventCallback(event => {
+  const handleFocus = useEventCallback((event) => {
     // Fix for https://github.com/facebook/react/issues/7769
     if (!buttonRef.current) {
       buttonRef.current = event.currentTarget;
@@ -212,7 +212,12 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
     }
 
     // Keyboard accessibility for non interactive elements
-    if (event.target === event.currentTarget && isNonNativeButton() && event.key === 'Enter') {
+    if (
+      event.target === event.currentTarget &&
+      isNonNativeButton() &&
+      event.key === 'Enter' &&
+      !disabled
+    ) {
       event.preventDefault();
       if (onClick) {
         onClick(event);

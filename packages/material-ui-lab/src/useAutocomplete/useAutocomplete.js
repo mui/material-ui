@@ -73,8 +73,8 @@ export default function useAutocomplete(props) {
     defaultValue = props.multiple ? [] : null,
     disableClearable = false,
     disableCloseOnSelect = false,
+    disabledItemsFocusable = false,
     disableListWrap = false,
-    enableFocusForDisabledItems = false,
     filterOptions = defaultFilterOptions,
     filterSelectedOptions = false,
     freeSolo = false,
@@ -313,11 +313,12 @@ export default function useAutocomplete(props) {
       const option = listboxRef.current.querySelector(`[data-option-index="${nextFocus}"]`);
 
       // Same logic as MenuList.js
-      const nextFocusDisabled = enableFocusForDisabledItems
+      const nextFocusDisabled = disabledItemsFocusable
         ? false
         : option && (option.disabled || option.getAttribute('aria-disabled') === 'true');
 
       if ((option && !option.hasAttribute('tabindex')) || nextFocusDisabled) {
+        // Move to the next element.
         nextFocus += direction === 'next' ? 1 : -1;
       } else {
         return nextFocus;
@@ -641,9 +642,16 @@ export default function useAutocomplete(props) {
           break;
         }
         if (highlightedIndexRef.current !== -1 && popupOpen) {
+          const option = filteredOptions[highlightedIndexRef.current];
+          const disabled = getOptionDisabled ? getOptionDisabled(option) : false;
+
+          if (disabled) {
+            return;
+          }
+
           // We don't want to validate the form.
           event.preventDefault();
-          selectNewValue(event, filteredOptions[highlightedIndexRef.current], 'select-option');
+          selectNewValue(event, option, 'select-option');
 
           // Move the selection to the end.
           if (autoComplete) {
@@ -1012,13 +1020,13 @@ useAutocomplete.propTypes = {
    */
   disableCloseOnSelect: PropTypes.bool,
   /**
+   * If `true`, will allow focus on disabled items.
+   */
+  disabledItemsFocusable: PropTypes.bool,
+  /**
    * If `true`, the list box in the popup will not wrap focus.
    */
   disableListWrap: PropTypes.bool,
-  /**
-   * If `true`, will allow focus on disabled items.
-   */
-  enableFocusForDisabledItems: PropTypes.bool,
   /**
    * A filter function that determins the options that are eligible.
    *

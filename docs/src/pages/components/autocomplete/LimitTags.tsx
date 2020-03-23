@@ -23,7 +23,7 @@ export default function LimitTags() {
       <Autocomplete
         multiple
         limitTags={2}
-        id="tags-standard"
+        id="limit-tags"
         options={top100Films}
         getOptionLabel={(option) => option.title}
         defaultValue={[top100Films[13], top100Films[12], top100Films[11]]}

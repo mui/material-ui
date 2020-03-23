@@ -312,9 +312,9 @@ describe('<MenuList> integration', () => {
     });
   });
 
-  it('should skip divider and disabled menu item when enableFocusForDisabledItems=false', () => {
+  it('should skip divider and disabled menu item', () => {
     const { getAllByRole } = render(
-      <MenuList autoFocus enableFocusForDisabledItems={false}>
+      <MenuList autoFocus>
         <MenuItem>Menu Item 1</MenuItem>
         <Divider component="li" />
         <MenuItem>Menu Item 2</MenuItem>
@@ -325,90 +325,28 @@ describe('<MenuList> integration', () => {
     const menuitems = getAllByRole('menuitem');
 
     fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
-
     expect(menuitems[0]).to.have.focus;
-
     fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
-
     expect(menuitems[1]).to.have.focus;
-
     fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
-
     expect(menuitems[3]).to.have.focus;
-
     fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
-
     expect(menuitems[0]).to.have.focus;
 
     // and ArrowUp again
-
     fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
-
     expect(menuitems[3]).to.have.focus;
-
     fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
-
     expect(menuitems[1]).to.have.focus;
-
     fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
-
     expect(menuitems[0]).to.have.focus;
-
     fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
-
     expect(menuitems[3]).to.have.focus;
-  });
-
-  it('should skip divider', () => {
-    const { getAllByRole } = render(
-      <MenuList autoFocus>
-        <MenuItem>Menu Item 1</MenuItem>
-        <Divider component="li" />
-        <MenuItem>Menu Item 2</MenuItem>
-        <Divider component="li" />
-        <MenuItem>Menu Item 3</MenuItem>
-      </MenuList>,
-    );
-    const menuitems = getAllByRole('menuitem');
-
-    fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
-
-    expect(menuitems[0]).to.have.focus;
-
-    fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
-
-    expect(menuitems[1]).to.have.focus;
-
-    fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
-
-    expect(menuitems[2]).to.have.focus;
-
-    fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
-
-    expect(menuitems[0]).to.have.focus;
-
-    // and ArrowUp again
-
-    fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
-
-    expect(menuitems[2]).to.have.focus;
-
-    fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
-
-    expect(menuitems[1]).to.have.focus;
-
-    fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
-
-    expect(menuitems[0]).to.have.focus;
-
-    fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
-
-    expect(menuitems[2]).to.have.focus;
   });
 
   it('should stay on a single item if it is the only focusable one', () => {
     const { getAllByRole } = render(
-      <MenuList autoFocus enableFocusForDisabledItems={false}>
+      <MenuList autoFocus>
         <MenuItem disabled>Menu Item 1</MenuItem>
         <MenuItem>Menu Item 2</MenuItem>
         <MenuItem disabled>Menu Item 3</MenuItem>
@@ -418,29 +356,20 @@ describe('<MenuList> integration', () => {
     const menuitems = getAllByRole('menuitem');
 
     fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
-
     expect(menuitems[1]).to.have.focus;
-
     fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
-
     expect(menuitems[1]).to.have.focus;
-
     fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
-
     expect(menuitems[1]).to.have.focus;
-
     fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
-
     expect(menuitems[1]).to.have.focus;
-
     fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
-
     expect(menuitems[1]).to.have.focus;
   });
 
-  it('should keep focus on the menu if all items are disabled and enableFocusForDisabledItems=false', () => {
+  it('should keep focus on the menu if all items are disabled', () => {
     const { getByRole } = render(
-      <MenuList autoFocus enableFocusForDisabledItems={false}>
+      <MenuList autoFocus>
         <MenuItem disabled>Menu Item 1</MenuItem>
         <MenuItem disabled>Menu Item 2</MenuItem>
         <MenuItem disabled>Menu Item 3</MenuItem>
@@ -450,29 +379,20 @@ describe('<MenuList> integration', () => {
     const menu = getByRole('menu');
 
     fireEvent.keyDown(document.activeElement, { key: 'Home' });
-
     expect(menu).to.have.focus;
-
     fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
-
     expect(menu).to.have.focus;
-
     fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
-
     expect(menu).to.have.focus;
-
     fireEvent.keyDown(document.activeElement, { key: 'End' });
-
     expect(menu).to.have.focus;
-
     fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
-
     expect(menu).to.have.focus;
   });
 
-  it('should allow focus on disabled items when enableFocusForDisabledItems=true', () => {
+  it('should allow focus on disabled items when disabledItemsFocusable=true', () => {
     const { getAllByRole } = render(
-      <MenuList autoFocus enableFocusForDisabledItems>
+      <MenuList autoFocus disabledItemsFocusable>
         <MenuItem disabled>Menu Item 1</MenuItem>
         <MenuItem disabled>Menu Item 2</MenuItem>
         <MenuItem disabled>Menu Item 3</MenuItem>
@@ -483,23 +403,14 @@ describe('<MenuList> integration', () => {
     const menuitems = getAllByRole('menuitem');
 
     fireEvent.keyDown(document.activeElement, { key: 'Home' });
-
     expect(menuitems[0]).to.have.focus;
-
     fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
-
     expect(menuitems[1]).to.have.focus;
-
     fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
-
     expect(menuitems[2]).to.have.focus;
-
     fireEvent.keyDown(document.activeElement, { key: 'End' });
-
     expect(menuitems[3]).to.have.focus;
-
     fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
-
     expect(menuitems[2]).to.have.focus;
   });
 

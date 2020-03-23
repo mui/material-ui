@@ -67,13 +67,13 @@ export interface UseAutocompleteCommonProps<T> {
    */
   disableCloseOnSelect?: boolean;
   /**
+   * If `true`, will allow focus on disabled items.
+   */
+  disabledItemsFocusable?: boolean;
+  /**
    * If `true`, the list box in the popup will not wrap focus.
    */
   disableListWrap?: boolean;
-  /**
-   * If `true`, will allow focus on disabled items.
-   */
-  enableFocusForDisabledItems?: boolean;
   /**
    * A filter function that determines the options that are eligible.
    *
@@ -185,6 +185,10 @@ export type AutocompleteInputChangeReason = 'input' | 'reset' | 'clear';
 
 export interface UseAutocompleteMultipleProps<T> extends UseAutocompleteCommonProps<T> {
   /**
+   * The default input value. Use when the component is not controlled.
+   */
+  defaultValue?: T[];
+  /**
    * If `true`, `value` must be an array and the menu will support multiple selections.
    */
   multiple: true;
@@ -195,10 +199,6 @@ export interface UseAutocompleteMultipleProps<T> extends UseAutocompleteCommonPr
    * You can customize the equality behavior with the `getOptionSelected` prop.
    */
   value?: T[];
-  /**
-   * The default input value. Use when the component is not controlled.
-   */
-  defaultValue?: T[];
   /**
    * Callback fired when the value changes.
    *
@@ -216,6 +216,10 @@ export interface UseAutocompleteMultipleProps<T> extends UseAutocompleteCommonPr
 
 export interface UseAutocompleteSingleProps<T> extends UseAutocompleteCommonProps<T> {
   /**
+   * The default input value. Use when the component is not controlled.
+   */
+  defaultValue?: T;
+  /**
    * If `true`, `value` must be an array and the menu will support multiple selections.
    */
   multiple?: false;
@@ -226,10 +230,6 @@ export interface UseAutocompleteSingleProps<T> extends UseAutocompleteCommonProp
    * You can customize the equality behavior with the `getOptionSelected` prop.
    */
   value?: T | null;
-  /**
-   * The default input value. Use when the component is not controlled.
-   */
-  defaultValue?: T;
   /**
    * Callback fired when the value changes.
    *

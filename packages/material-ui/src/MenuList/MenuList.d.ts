@@ -17,6 +17,10 @@ export interface MenuListProps extends StandardProps<ListProps, MenuListClassKey
    */
   children?: React.ReactNode;
   /**
+   * If `true`, will allow focus on disabled items.
+   */
+  disabledItemsFocusable?: boolean;
+  /**
    * If `true`, the menu items will not wrap focus.
    */
   disableListWrap?: boolean;

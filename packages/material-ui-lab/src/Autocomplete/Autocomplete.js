@@ -251,9 +251,9 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     disableClearable = false,
     disableCloseOnSelect = false,
     disabled = false,
+    disabledItemsFocusable = false,
     disableListWrap = false,
     disablePortal = false,
-    enableFocusForDisabledItems = false,
     filterOptions,
     filterSelectedOptions = false,
     forcePopupIcon = 'auto',
@@ -579,6 +579,10 @@ Autocomplete.propTypes = {
    */
   disabled: PropTypes.bool,
   /**
+   * If `true`, will allow focus on disabled items.
+   */
+  disabledItemsFocusable: PropTypes.bool,
+  /**
    * If `true`, the list box in the popup will not wrap focus.
    */
   disableListWrap: PropTypes.bool,
@@ -587,10 +591,6 @@ Autocomplete.propTypes = {
    * The children stay within it's parent DOM hierarchy.
    */
   disablePortal: PropTypes.bool,
-  /**
-   * If `true`, will allow focus on disabled items.
-   */
-  enableFocusForDisabledItems: PropTypes.bool,
   /**
    * A filter function that determines the options that are eligible.
    *
