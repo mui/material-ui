@@ -5,6 +5,7 @@ import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import { createClientRender } from 'test/utils/createClientRender';
 import Pagination from './Pagination';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
 describe('<Pagination />', () => {
   let classes;
@@ -50,5 +51,29 @@ describe('<Pagination />', () => {
     page2.click();
 
     expect(handleChange.callCount).to.equal(1);
+  });
+
+  it('renders controls with correct order in rtl theme', () => {
+    const { getAllByRole } = render(
+      <ThemeProvider
+        theme={createMuiTheme({
+          direction: 'rtl',
+        })}
+      >
+        <Pagination count={5} page={3} showFirstButton showLastButton />
+      </ThemeProvider>,
+    );
+
+    const buttons = getAllByRole('button');
+
+    expect(buttons[0].querySelector('svg')).to.have.attribute('data-mui-test', 'LastPageIcon');
+    expect(buttons[1].querySelector('svg')).to.have.attribute('data-mui-test', 'NavigateNextIcon');
+    expect(buttons[2].textContent).to.equal('1');
+    expect(buttons[6].textContent).to.equal('5');
+    expect(buttons[7].querySelector('svg')).to.have.attribute(
+      'data-mui-test',
+      'NavigateBeforeIcon',
+    );
+    expect(buttons[8].querySelector('svg')).to.have.attribute('data-mui-test', 'FirstPageIcon');
   });
 });
