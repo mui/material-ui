@@ -36,12 +36,12 @@ declare const Foo: OverridableComponent<{
   className="foo"
   style={{ backgroundColor: 'red' }}
   classes={{ root: 'x', foo: 'y' }}
-  callbackProp={b => console.log(b)}
+  callbackProp={(b) => console.log(b)}
 />;
 
 // Can pass props unique to the default component type; callback parameter types
 // will be inferred.
-<Foo numberProp={3} defaultProp defaultCallbackProp={s => console.log(s)} />;
+<Foo numberProp={3} defaultProp defaultCallbackProp={(s) => console.log(s)} />;
 
 // Can override the component and pass props unique to it; props of the override
 // component that are provided from the wrapping component ("inner props") do
@@ -56,7 +56,7 @@ declare const Foo: OverridableComponent<{
 // will be inferred.
 <Foo<typeof MyOverrideComponent>
   component={MyOverrideComponent}
-  myCallback={n => console.log(n)}
+  myCallback={(n) => console.log(n)}
   numberProp={3}
 />;
 
@@ -71,10 +71,10 @@ declare const Foo: OverridableComponent<{
 <Foo<'button'>
   numberProp={3}
   component="button"
-  ref={elem => {
+  ref={(elem) => {
     elem; // $ExpectType HTMLButtonElement | null
   }}
-  onClick={e => {
+  onClick={(e) => {
     e; // $ExpectType MouseEvent<HTMLButtonElement, MouseEvent>
     e.currentTarget.checkValidity();
   }}
@@ -84,7 +84,7 @@ declare const Foo: OverridableComponent<{
 <Foo<typeof MyOverrideClassComponent>
   numberProp={3}
   component={MyOverrideClassComponent}
-  ref={elem => {
+  ref={(elem) => {
     elem; // $ExpectType MyOverrideClassComponent | null
   }}
 />;
@@ -93,7 +93,7 @@ declare const Foo: OverridableComponent<{
 <Foo<typeof MyOverrideRefForwardingComponent>
   numberProp={42}
   component={MyOverrideRefForwardingComponent}
-  ref={elem => {
+  ref={(elem) => {
     elem; // $ExpectType HTMLLegendElement | null
   }}
 />;
@@ -118,7 +118,7 @@ declare const Foo: OverridableComponent<{
 <Foo
   component={MyOverrideComponent}
   // $ExpectError
-  myCallback={n => console.log(n)} // n has type any
+  myCallback={(n) => console.log(n)} // n has type any
   numberProp={3}
 />;
 
@@ -126,7 +126,7 @@ declare const Foo: OverridableComponent<{
   component={MyOverrideComponent}
   // $ExpectError
   myString={4} // should be a string
-  myCallback={n => {
+  myCallback={(n) => {
     n; // $ExpectType number
   }}
   numberProp={3}

@@ -6,7 +6,7 @@ import isValueSelected from './isValueSelected';
 import { withStyles } from '@material-ui/core/styles';
 import { capitalize } from '@material-ui/core/utils';
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     backgroundColor: theme.palette.background.paper,
@@ -77,7 +77,7 @@ const ToggleButtonGroup = React.forwardRef(function ToggleButton(props, ref) {
 
   return (
     <div className={clsx(classes.root, className)} ref={ref} role="group" {...other}>
-      {React.Children.map(children, child => {
+      {React.Children.map(children, (child) => {
         if (!React.isValidElement(child)) {
           return null;
         }

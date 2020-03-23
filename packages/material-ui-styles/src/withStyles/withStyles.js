@@ -9,7 +9,7 @@ import useTheme from '../useTheme';
 // Link a style sheet with a component.
 // It does not modify the component passed to it;
 // instead, it returns a new component, with a `classes` property.
-const withStyles = (stylesOrCreator, options = {}) => Component => {
+const withStyles = (stylesOrCreator, options = {}) => (Component) => {
   const { defaultTheme, withTheme = false, name, ...stylesOptions } = options;
 
   if (process.env.NODE_ENV !== 'production') {
@@ -81,7 +81,7 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
      * Use that prop to pass a ref to the decorated component.
      * @deprecated
      */
-    innerRef: chainPropTypes(PropTypes.oneOfType([PropTypes.func, PropTypes.object]), props => {
+    innerRef: chainPropTypes(PropTypes.oneOfType([PropTypes.func, PropTypes.object]), (props) => {
       if (props.innerRef == null) {
         return null;
       }

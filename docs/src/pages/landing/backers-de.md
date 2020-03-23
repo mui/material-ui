@@ -9,7 +9,7 @@ Die kontinuierliche Weiterentwicklung und Wartung von Material-UI wird durch die
 ### Gold 🏆
 
 <p style="display: flex; justify-content: center;">
-  <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="tidelift" href="https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=material_ui&utm_medium=referral&utm_campaign=homepage" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img width="96" src="https://github.com/tidelift.png?size=96" alt="tidelift" title="Enterprise-ready open source software" /></a>
+  <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="tidelift" href="https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=material_ui&utm_medium=referral&utm_campaign=homepage" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img width="96" src="https://github.com/tidelift.png?size=96" alt="tidelift" title="Unternehmensfähige Open-Source-Software" /></a>
   <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="bitsrc" href="https://bit.dev" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img width="96" src="https://github.com/teambit.png?size=96" alt="bitsrc" title="Die schnellste Art, Code zu teilen" /></a>
 </p>
 
@@ -19,4 +19,4 @@ Die kontinuierliche Weiterentwicklung und Wartung von Material-UI wird durch die
 
 ### Es gibt noch mehr!
 
-See the full list of [our sponsors](/discover-more/backers/), and learn how you can contribute to the future of Material-UI.
+Sehen Sie die gesamte Liste [unserer Sponsoren](/discover-more/backers/) und erfahren Sie, wie Sie zur Weiterentwicklung von Material-UI betragen können.

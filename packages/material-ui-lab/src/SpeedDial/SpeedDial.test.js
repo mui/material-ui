@@ -112,7 +112,7 @@ describe('<SpeedDial />', () => {
   });
 
   describe('prop: direction', () => {
-    const testDirection = direction => {
+    const testDirection = (direction) => {
       const className = `direction${direction}`;
       const wrapper = mount(
         <SpeedDial {...defaultProps} direction={direction.toLowerCase()}>
@@ -146,7 +146,7 @@ describe('<SpeedDial />', () => {
         <SpeedDial
           {...defaultProps}
           FabProps={{
-            ref: ref => {
+            ref: (ref) => {
               dialButtonRef = ref;
             },
           }}
@@ -157,7 +157,7 @@ describe('<SpeedDial />', () => {
             <SpeedDialAction
               key={i}
               FabProps={{
-                ref: ref => {
+                ref: (ref) => {
                   actionRefs[i] = ref;
                 },
               }}
@@ -179,24 +179,21 @@ describe('<SpeedDial />', () => {
      * @param actionIndex
      * @returns the button of the nth SpeedDialAction or the Fab if -1
      */
-    const getActionButton = actionIndex => {
+    const getActionButton = (actionIndex) => {
       if (actionIndex === -1) {
         return getDialButton();
       }
-      return wrapper
-        .find(SpeedDialAction)
-        .at(actionIndex)
-        .find(Fab);
+      return wrapper.find(SpeedDialAction).at(actionIndex).find(Fab);
     };
     /**
      * @returns true if the button of the nth action is focused
      */
-    const isActionFocused = index => {
+    const isActionFocused = (index) => {
       const expectedFocusedElement = index === -1 ? dialButtonRef : actionRefs[index];
       return expectedFocusedElement === window.document.activeElement;
     };
 
-    const resetDialToOpen = direction => {
+    const resetDialToOpen = (direction) => {
       if (wrapper && wrapper.exists()) {
         wrapper.unmount();
       }
@@ -225,7 +222,7 @@ describe('<SpeedDial />', () => {
     });
 
     // eslint-disable-next-line func-names
-    describe('actions navigation', function() {
+    describe('actions navigation', function () {
       this.timeout(5000); // These tests are really slow.
 
       /**

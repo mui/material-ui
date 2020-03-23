@@ -26,6 +26,16 @@ export type StepConnectorClasskey =
   | 'lineHorizontal'
   | 'lineVertical';
 
+/**
+ *
+ * Demos:
+ *
+ * - [Steppers](https://material-ui.com/components/steppers/)
+ *
+ * API:
+ *
+ * - [StepConnector API](https://material-ui.com/api/step-connector/)
+ */
 declare const StepConnector: React.ComponentType<StepConnectorProps>;
 
 export default StepConnector;

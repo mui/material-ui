@@ -27,6 +27,17 @@ export type InputLabelClassKey =
   | 'filled'
   | 'outlined';
 
+/**
+ *
+ * Demos:
+ *
+ * - [Text Fields](https://material-ui.com/components/text-fields/)
+ *
+ * API:
+ *
+ * - [InputLabel API](https://material-ui.com/api/input-label/)
+ * - inherits [FormLabel API](https://material-ui.com/api/form-label/)
+ */
 declare const InputLabel: React.ComponentType<InputLabelProps>;
 
 export default InputLabel;

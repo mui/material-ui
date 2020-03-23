@@ -6,7 +6,7 @@ import useFormControl from '../FormControl/useFormControl';
 import withStyles from '../styles/withStyles';
 import FormLabel from '../FormLabel';
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     display: 'block',

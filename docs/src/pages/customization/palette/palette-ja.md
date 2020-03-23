@@ -17,7 +17,7 @@ A color intention とは、パレットをアプリケーション内の特定�
 
 色の詳細については、[色セクション](/customization/color/)をご覧ください。
 
-{{"demo": "pages/customization/palette/Intentions.js", "bg": "inline", "hideHeader": true}}
+{{"demo": "pages/customization/palette/Intentions.js", "bg": "inline", "hideToolbar": true}}
 
 ### カスタマイズ
 
@@ -114,7 +114,7 @@ const darkTheme = createMuiTheme({
 
 The colors modified by the palette type are the following:
 
-{{"demo": "pages/customization/palette/DarkTheme.js", "bg": "inline", "hideHeader": true}}
+{{"demo": "pages/customization/palette/DarkTheme.js", "bg": "inline", "hideToolbar": true}}
 
 ### User preference
 

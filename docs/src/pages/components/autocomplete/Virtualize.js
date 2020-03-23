@@ -36,7 +36,7 @@ const ListboxComponent = React.forwardRef(function ListboxComponent(props, ref) 
   const itemCount = itemData.length;
   const itemSize = smUp ? 36 : 48;
 
-  const getChildSize = child => {
+  const getChildSize = (child) => {
     if (React.isValidElement(child) && child.type === ListSubheader) {
       return 48;
     }
@@ -61,7 +61,7 @@ const ListboxComponent = React.forwardRef(function ListboxComponent(props, ref) 
           key={itemCount}
           outerElementType={OuterElementType}
           innerElementType="ul"
-          itemSize={index => getChildSize(itemData[index])}
+          itemSize={(index) => getChildSize(itemData[index])}
           overscanCount={5}
           itemCount={itemCount}
         >
@@ -100,7 +100,7 @@ const OPTIONS = Array.from(new Array(10000))
   .map(() => random(10 + Math.ceil(Math.random() * 20)))
   .sort((a, b) => a.toUpperCase().localeCompare(b.toUpperCase()));
 
-const renderGroup = params => [
+const renderGroup = (params) => [
   <ListSubheader key={params.key} component="div">
     {params.key}
   </ListSubheader>,
@@ -119,9 +119,9 @@ export default function Virtualize() {
       ListboxComponent={ListboxComponent}
       renderGroup={renderGroup}
       options={OPTIONS}
-      groupBy={option => option[0].toUpperCase()}
-      renderInput={params => <TextField {...params} variant="outlined" label="10,000 options" />}
-      renderOption={option => <Typography noWrap>{option}</Typography>}
+      groupBy={(option) => option[0].toUpperCase()}
+      renderInput={(params) => <TextField {...params} variant="outlined" label="10,000 options" />}
+      renderOption={(option) => <Typography noWrap>{option}</Typography>}
     />
   );
 }

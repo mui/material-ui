@@ -43,7 +43,7 @@ Como alternativa, puedes usar [react-spring](https://github.com/react-spring/rea
 
 ## Scroll playground
 
-{{"demo": "pages/components/popper/ScrollPlayground.js", "hideHeader": true, "bg": true}}
+{{"demo": "pages/components/popper/ScrollPlayground.js", "hideToolbar": true, "bg": true}}
 
 ## Faked reference object
 

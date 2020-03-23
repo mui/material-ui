@@ -6,7 +6,7 @@ import Paper from '../Paper';
 import capitalize from '../utils/capitalize';
 import LinearProgress from '../LinearProgress';
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     display: 'flex',

@@ -2,15 +2,15 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import loadScript from 'docs/src/modules/utils/loadScript';
 
-const styles = theme => ({
+const styles = (theme) => ({
   '@global': {
     '#cf': {
       display: 'block',
       overflow: 'hidden',
       backgroundColor: theme.palette.background.level2,
-      padding: `${theme.spacing(1.5)}px ${theme.spacing(1.5)}px ${theme.spacing(
-        1.5,
-      )}px ${theme.spacing(1.5) + 130}px`,
+      padding: `${theme.spacing(1.5)}px ${theme.spacing(1.5)}px ${theme.spacing(1.5)}px ${
+        theme.spacing(1.5) + 130
+      }px`,
       borderRadius: theme.shape.borderRadius,
       '& .cf-img-wrapper.cf-img-wrapper': {
         float: 'left',

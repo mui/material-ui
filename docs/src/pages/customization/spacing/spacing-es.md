@@ -38,7 +38,7 @@ theme.spacing(2); // = 0.25 * 2rem = 0.5rem = 8px
 
 ```js
 const theme = createMuiTheme({
-  spacing: factor => [0, 4, 8, 16, 32, 64][factor],
+  spacing: [0, 4, 8, 16, 32, 64],
 });
 
 theme.spacing(2); // = 8

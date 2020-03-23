@@ -52,6 +52,16 @@ export type TooltipClassKey =
   | 'tooltipPlacementTop'
   | 'tooltipPlacementBottom';
 
+/**
+ *
+ * Demos:
+ *
+ * - [Tooltips](https://material-ui.com/components/tooltips/)
+ *
+ * API:
+ *
+ * - [Tooltip API](https://material-ui.com/api/tooltip/)
+ */
 declare const Tooltip: React.ComponentType<TooltipProps>;
 
 export default Tooltip;

@@ -1,35 +1,45 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
-export interface BottomNavigationProps
-  extends StandardProps<
-    React.HTMLAttributes<HTMLDivElement>,
-    BottomNavigationClassKey,
-    'onChange'
-  > {
-  /**
-   * The component used for the root node.
-   * Either a string to use a DOM element or a component.
-   */
-  component?: React.ElementType<React.HTMLAttributes<HTMLDivElement>>;
-  /**
-   * Callback fired when the value changes.
-   *
-   * @param {object} event The event source of the callback.
-   * @param {any} value We default to the index of the child.
-   */
-  onChange?(event: React.ChangeEvent<{}>, value: any): void;
-  /**
-   * If `true`, all `BottomNavigationAction`s will show their labels.
-   * By default, only the selected `BottomNavigationAction` will show its label.
-   */
-  showLabels?: boolean;
-  /**
-   * The value of the currently selected `BottomNavigationAction`.
-   */
-  value?: any;
+export interface BottomNavigationTypeMap<P = {}, D extends React.ElementType = 'div'> {
+  props: P & {
+    /**
+     * Callback fired when the value changes.
+     *
+     * @param {object} event The event source of the callback.
+     * @param {any} value We default to the index of the child.
+     */
+    onChange?: (event: React.ChangeEvent<{}>, value: any) => void;
+    /**
+     * If `true`, all `BottomNavigationAction`s will show their labels.
+     * By default, only the selected `BottomNavigationAction` will show its label.
+     */
+    showLabels?: boolean;
+    /**
+     * The value of the currently selected `BottomNavigationAction`.
+     */
+    value?: any;
+  };
+  defaultComponent: D;
+  classKey: BottomNavigationClassKey;
 }
+/**
+ *
+ * Demos:
+ *
+ * - [Bottom Navigation](https://material-ui.com/components/bottom-navigation/)
+ *
+ * API:
+ *
+ * - [BottomNavigation API](https://material-ui.com/api/bottom-navigation/)
+ */
+declare const BottomNavigation: OverridableComponent<BottomNavigationTypeMap>;
 
 export type BottomNavigationClassKey = 'root';
 
-export default function BottomNavigation(props: BottomNavigationProps): JSX.Element;
+export type BottomNavigationProps<
+  D extends React.ElementType = BottomNavigationTypeMap['defaultComponent'],
+  P = {}
+> = OverrideProps<BottomNavigationTypeMap<P, D>, D>;
+
+export default BottomNavigation;

@@ -9,9 +9,17 @@ components: TreeView, TreeItem
 
 As visualizações em árvore podem ser usadas para representar um navegador do sistema de arquivos que exibe pastas e arquivos, um item que representa uma pasta pode ser expandido para revelar o conteúdo da pasta, que pode ser arquivos, pastas ou ambos.
 
+## Modo básico de exibição de árvore
+
 {{"demo": "pages/components/tree-view/FileSystemNavigator.js"}}
 
-## Controlled
+## Seleção múltipla
+
+Visualizações de árvore também suportam seleção múltipla.
+
+{{"demo": "pages/components/tree-view/MultiSelectTreeView.js"}}
+
+### Controlled tree view
 
 The tree view also offers a controlled API.
 
@@ -41,11 +49,11 @@ const data = {
 
 ## Customized tree view
 
-### Ícones customizados, borda e animação
+### Custom icons, border and animation
 
 {{"demo": "pages/components/tree-view/CustomizedTreeView.js"}}
 
-### Clone do Gmail
+### Gmail clone
 
 {{"demo": "pages/components/tree-view/GmailTreeView.js"}}
 

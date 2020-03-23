@@ -10,7 +10,7 @@ function MyComponent() {
 }
 
 export default function ServerSide() {
-  const ssrMatchMedia = query => ({
+  const ssrMatchMedia = (query) => ({
     matches: mediaQuery.match(query, {
       // The estimated CSS width of the browser.
       width: 800,

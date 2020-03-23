@@ -21,7 +21,7 @@ const PurpleSwitch = withStyles({
   track: {},
 })(Switch);
 
-const IOSSwitch = withStyles(theme => ({
+const IOSSwitch = withStyles((theme) => ({
   root: {
     width: 42,
     height: 26,
@@ -74,7 +74,7 @@ const IOSSwitch = withStyles(theme => ({
   );
 });
 
-const AntSwitch = withStyles(theme => ({
+const AntSwitch = withStyles((theme) => ({
   root: {
     width: 28,
     height: 16,
@@ -115,7 +115,7 @@ export default function CustomizedSwitches() {
     checkedC: true,
   });
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     setState({ ...state, [event.target.name]: event.target.checked });
   };
 

@@ -76,8 +76,8 @@ export default function transformer(fileInfo, api) {
 
   return j(fileInfo.source)
     .find(j.ImportDeclaration)
-    .filter(path => path.value.source.value.indexOf('material-ui/') === 0)
-    .replaceWith(path => {
+    .filter((path) => path.value.source.value.indexOf('material-ui/') === 0)
+    .replaceWith((path) => {
       const pathOld = path.value.source.value;
       const pathsBase = getPathsBase(pathOld);
       const pathSuffix = pathOld.substring(pathsBase[0].length);

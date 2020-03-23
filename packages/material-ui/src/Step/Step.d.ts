@@ -18,6 +18,16 @@ export interface StepProps
 
 export type StepClasskey = 'root' | 'horizontal' | 'vertical' | 'alternativeLabel' | 'completed';
 
+/**
+ *
+ * Demos:
+ *
+ * - [Steppers](https://material-ui.com/components/steppers/)
+ *
+ * API:
+ *
+ * - [Step API](https://material-ui.com/api/step/)
+ */
 declare const Step: React.ComponentType<StepProps>;
 
 export default Step;

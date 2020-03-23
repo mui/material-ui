@@ -98,7 +98,7 @@ import { TouchRippleClassKey } from '../ButtonBase/TouchRipple';
 import { TypographyClassKey } from '../Typography';
 
 export type Overrides = {
-  [Name in keyof ComponentNameToClassKey]?: Partial<StyleRules<ComponentNameToClassKey[Name]>>
+  [Name in keyof ComponentNameToClassKey]?: Partial<StyleRules<ComponentNameToClassKey[Name]>>;
 };
 
 export interface ComponentNameToClassKey {

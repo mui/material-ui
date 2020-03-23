@@ -19,7 +19,7 @@ describe('<HiddenJs />', () => {
   }
 
   function isHidden(hiddenBreakpoints, upDownOnly, width) {
-    hiddenBreakpoints.forEach(breakpoint => {
+    hiddenBreakpoints.forEach((breakpoint) => {
       const prop = resolvePropName(upDownOnly, breakpoint);
       const descriptions = {
         Up: `${prop} is hidden for width: ${width} >= ${breakpoint}`,
@@ -40,7 +40,7 @@ describe('<HiddenJs />', () => {
   }
 
   function isVisible(visibleBreakpoints, upDownOnly, width) {
-    visibleBreakpoints.forEach(breakpoint => {
+    visibleBreakpoints.forEach((breakpoint) => {
       const prop = resolvePropName(upDownOnly, breakpoint);
       const descriptions = {
         Up: `${prop} is visible for width: ${width} < ${breakpoint}`,

@@ -26,7 +26,7 @@ const mockedAnchorEl = () => {
 };
 
 const FakePaper = React.forwardRef(function FakeWidthPaper(props, ref) {
-  const handleMocks = React.useCallback(paperInstance => {
+  const handleMocks = React.useCallback((paperInstance) => {
     if (paperInstance) {
       // For jsdom
       Object.defineProperty(paperInstance, 'offsetWidth', { value: 0 });
@@ -228,7 +228,7 @@ describe('<Popover />', () => {
       wrapper.setProps({ open: false });
       clock.tick(0);
 
-      events.forEach(eventHook => {
+      events.forEach((eventHook) => {
         assert.strictEqual(
           handlers[eventHook].callCount,
           1,
@@ -246,13 +246,7 @@ describe('<Popover />', () => {
         </Popover>,
       );
 
-      assert.strictEqual(
-        wrapper
-          .find(Grow)
-          .find(Paper)
-          .exists(),
-        true,
-      );
+      assert.strictEqual(wrapper.find(Grow).find(Paper).exists(), true);
     });
 
     it('should have the paper class and user classes', () => {
@@ -334,13 +328,13 @@ describe('<Popover />', () => {
     let expectPopover;
 
     before(() => {
-      openPopover = anchorOrigin => {
+      openPopover = (anchorOrigin) => {
         if (!anchorEl) {
           anchorEl = document.createElement('div');
         }
 
         const css = (element, styles) => {
-          Object.keys(styles).forEach(key => {
+          Object.keys(styles).forEach((key) => {
             element.style[key] = styles[key];
           });
         };
@@ -354,7 +348,7 @@ describe('<Popover />', () => {
         });
         document.body.appendChild(anchorEl);
 
-        return new Promise(resolve => {
+        return new Promise((resolve) => {
           const component = (
             <Popover
               {...defaultProps}
@@ -506,8 +500,8 @@ describe('<Popover />', () => {
     let expectPopover;
 
     before(() => {
-      openPopover = anchorOrigin =>
-        new Promise(resolve => {
+      openPopover = (anchorOrigin) =>
+        new Promise((resolve) => {
           wrapper = mount(
             <Popover
               {...defaultProps}
@@ -561,7 +555,7 @@ describe('<Popover />', () => {
 
     before(() => {
       openPopover = () =>
-        new Promise(resolve => {
+        new Promise((resolve) => {
           wrapper = mount(
             <Popover
               {...defaultProps}
@@ -683,7 +677,7 @@ describe('<Popover />', () => {
       let popoverActions;
       wrapper.setProps({
         open: true,
-        action: actions => {
+        action: (actions) => {
           popoverActions = actions;
         },
       });
@@ -709,7 +703,7 @@ describe('<Popover />', () => {
     });
   });
 
-  [0, 18, 16].forEach(marginThreshold => {
+  [0, 18, 16].forEach((marginThreshold) => {
     describe(`positioning when \`marginThreshold=${marginThreshold}\``, () => {
       function generateElementStyle(anchorEl = document.createElement('svg')) {
         const handleEntering = spy();

@@ -46,7 +46,7 @@ components: Chip
 
 ## 在线编译纸片组件
 
-{{"demo": "pages/components/chips/ChipsPlayground.js", "hideHeader": true}}
+{{"demo": "pages/components/chips/ChipsPlayground.js", "hideToolbar": true}}
 
 ## 可访问性
 

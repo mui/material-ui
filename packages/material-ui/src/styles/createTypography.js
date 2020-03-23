@@ -42,7 +42,7 @@ export default function createTypography(palette, typography) {
   }
 
   const coef = fontSize / 14;
-  const pxToRem = pxToRem2 || (size => `${(size / htmlFontSize) * coef}rem`);
+  const pxToRem = pxToRem2 || ((size) => `${(size / htmlFontSize) * coef}rem`);
   const buildVariant = (fontWeight, size, lineHeight, letterSpacing, casing) => ({
     fontFamily,
     fontWeight,

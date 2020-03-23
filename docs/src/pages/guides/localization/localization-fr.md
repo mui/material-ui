@@ -27,6 +27,7 @@ const theme = createMuiTheme({
 
 | Locale                  | BCP 47 language tag | Import name |
 |:----------------------- |:------------------- |:----------- |
+| Armenian                | hy-AM               | `hyAM`      |
 | Azerbaijani             | az-AZ               | `azAZ`      |
 | Bulgarian               | bg-BG               | `bgBG`      |
 | Catalan                 | ca-ES               | `caES`      |
@@ -38,6 +39,7 @@ const theme = createMuiTheme({
 | Finnish                 | fi-FI               | `fiFI`      |
 | French                  | fr-FR               | `frFR`      |
 | German                  | de-DE               | `deDE`      |
+| Hebrew                  | he-IL               | `heIL`      |
 | Hungarian               | hu-HU               | `huHU`      |
 | Icelandic               | is-IS               | `isIS`      |
 | Indonesian              | id-ID               | `idID`      |

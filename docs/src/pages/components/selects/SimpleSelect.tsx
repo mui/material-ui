@@ -114,7 +114,7 @@ export default function SimpleSelect() {
           id="demo-simple-select-error"
           value={age}
           onChange={handleChange}
-          renderValue={value => `⚠️  - ${value}`}
+          renderValue={(value) => `⚠️  - ${value}`}
         >
           <MenuItem value="">
             <em>None</em>

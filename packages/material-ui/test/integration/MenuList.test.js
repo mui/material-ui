@@ -538,7 +538,7 @@ describe('<MenuList> integration', () => {
       expect(getByText('Worm')).to.have.focus;
     });
 
-    it('should reset the character buffer after 500ms', done => {
+    it('should reset the character buffer after 500ms', (done) => {
       const { getByText } = render(
         <MenuList autoFocus>
           <MenuItem>Worm</MenuItem>

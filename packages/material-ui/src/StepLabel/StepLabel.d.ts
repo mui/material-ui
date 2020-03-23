@@ -33,6 +33,16 @@ export type StepLabelClasskey =
   | 'iconContainer'
   | 'labelContainer';
 
+/**
+ *
+ * Demos:
+ *
+ * - [Steppers](https://material-ui.com/components/steppers/)
+ *
+ * API:
+ *
+ * - [StepLabel API](https://material-ui.com/api/step-label/)
+ */
 declare const StepLabel: React.ComponentType<StepLabelProps>;
 
 export default StepLabel;

@@ -203,7 +203,10 @@ const AllTheComposition = withTheme(StyledComponent);
 declare const themed: boolean;
 {
   // Test that withTheme: true guarantees the presence of the theme
-  const Foo = withStyles({}, { withTheme: true })(
+  const Foo = withStyles(
+    {},
+    { withTheme: true },
+  )(
     class extends React.Component<WithTheme> {
       hasRef() {
         // innerRef does not exists, originally caused https://github.com/mui-org/material-ui/issues/14095
@@ -217,9 +220,10 @@ declare const themed: boolean;
   );
   <Foo />;
 
-  const Bar = withStyles({}, { withTheme: true })(({ theme }: WithStyles<string, true>) => (
-    <div style={{ margin: theme.spacing(1) }} />
-  ));
+  const Bar = withStyles(
+    {},
+    { withTheme: true },
+  )(({ theme }: WithStyles<string, true>) => <div style={{ margin: theme.spacing(1) }} />);
   <Bar />;
 }
 
@@ -239,7 +243,7 @@ const DecoratedComponent = withStyles(styles)(
 <DecoratedComponent text="foo" />;
 
 // Allow nested pseudo selectors
-withStyles(theme =>
+withStyles((theme) =>
   createStyles({
     guttered: {
       '&:hover': {
@@ -395,7 +399,7 @@ withStyles(theme =>
 
 {
   // https://github.com/mui-org/material-ui/issues/11164
-  const style: StyleRulesCallback<Theme, any, any> = theme => ({
+  const style: StyleRulesCallback<Theme, any, any> = (theme) => ({
     text: theme.typography.body2,
   });
 }
@@ -420,10 +424,10 @@ withStyles(theme =>
 
   // explicit not but with "Property 'children' is missing in type 'ValidationMap<Props>'".
   // which is not helpful
-  const StatelessComponent: React.FunctionComponent<Props> = props => null;
-  const StatelessComponentWithStyles: React.FunctionComponent<
-    Props & WithStyles<typeof styles>
-  > = props => null;
+  const StatelessComponent: React.FunctionComponent<Props> = (props) => null;
+  const StatelessComponentWithStyles: React.FunctionComponent<Props & WithStyles<typeof styles>> = (
+    props,
+  ) => null;
   withStyles(styles)(StatelessComponent); // $ExpectError
   withStyles(styles)(StatelessComponentWithStyles); // $ExpectError
 }
@@ -466,7 +470,7 @@ withStyles(theme =>
 
 {
   // theme is defaulted to type of Theme
-  const useStyles = makeStyles(theme => {
+  const useStyles = makeStyles((theme) => {
     // $ExpectType Theme
     const t = theme;
     return {
@@ -504,7 +508,7 @@ withStyles(theme =>
 
   // makeStyles accepts properties as functions using a callback
   {
-    const useStyles = makeStyles(theme => ({
+    const useStyles = makeStyles((theme) => ({
       root: {
         width: (prop: testProps) => (prop.foo ? 100 : 0),
       },
@@ -551,7 +555,7 @@ withStyles(theme =>
 
   // withStyles accepts properties as functions using a callback
   {
-    withStyles(theme => ({
+    withStyles((theme) => ({
       root: {
         width: (prop: testProps) => (prop.foo ? 100 : 0),
       },
@@ -629,7 +633,7 @@ withStyles(theme =>
     testValue;
 
     return {
-      padding: props => {
+      padding: (props) => {
         // $ExpectType myProps
         props;
 

@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const StyledToggleButtonGroup = withStyles(theme => ({
+const StyledToggleButtonGroup = withStyles((theme) => ({
   grouped: {
     margin: theme.spacing(0.5),
     border: 'none',

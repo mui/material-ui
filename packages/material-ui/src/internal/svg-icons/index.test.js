@@ -11,7 +11,7 @@ describe('svg-icons', () => {
     shallow = createShallow();
   });
 
-  it('should be able to render all of them', done => {
+  it('should be able to render all of them', (done) => {
     // This test can only be run on the node env
     if (!fs.readdir) {
       done();
@@ -23,7 +23,7 @@ describe('svg-icons', () => {
         throw err;
       }
 
-      files.forEach(file => {
+      files.forEach((file) => {
         // Ignore everything that's not a component
         if (!/^[A-Z].*\.js$/.test(file)) {
           return;

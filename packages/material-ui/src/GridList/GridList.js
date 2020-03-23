@@ -36,7 +36,7 @@ const GridList = React.forwardRef(function GridList(props, ref) {
       style={{ margin: -spacing / 2, ...style }}
       {...other}
     >
-      {React.Children.map(children, child => {
+      {React.Children.map(children, (child) => {
         if (!React.isValidElement(child)) {
           return null;
         }

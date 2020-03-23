@@ -37,9 +37,9 @@ const useStyles = makeStyles({
 export default function RecursiveTreeView() {
   const classes = useStyles();
 
-  const renderTree = nodes => (
+  const renderTree = (nodes) => (
     <TreeItem key={nodes.id} nodeId={nodes.id} label={nodes.name}>
-      {Array.isArray(nodes.children) ? nodes.children.map(node => renderTree(node)) : null}
+      {Array.isArray(nodes.children) ? nodes.children.map((node) => renderTree(node)) : null}
     </TreeItem>
   );
 

@@ -1,13 +1,26 @@
 import { colors, Color } from '@material-ui/core';
 
 const {
-  amber, blue, blueGrey,
-  brown, cyan, deepOrange,
-  deepPurple, green, grey,
-  indigo, lightBlue, lightGreen,
-  lime, orange, pink,
-  purple, red, teal,
-  yellow, common
+  amber,
+  blue,
+  blueGrey,
+  brown,
+  cyan,
+  deepOrange,
+  deepPurple,
+  green,
+  grey,
+  indigo,
+  lightBlue,
+  lightGreen,
+  lime,
+  orange,
+  pink,
+  purple,
+  red,
+  teal,
+  yellow,
+  common,
 } = colors;
 
 const colorList: Color[] = [

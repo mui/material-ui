@@ -14,6 +14,17 @@ export type FabTypeMap<P = {}, D extends React.ElementType = 'button'> = ExtendB
   classKey: FabClassKey;
 }>;
 
+/**
+ *
+ * Demos:
+ *
+ * - [Floating Action Button](https://material-ui.com/components/floating-action-button/)
+ *
+ * API:
+ *
+ * - [Fab API](https://material-ui.com/api/fab/)
+ * - inherits [ButtonBase API](https://material-ui.com/api/button-base/)
+ */
 declare const Fab: ExtendButtonBase<FabTypeMap>;
 
 export type FabProps<

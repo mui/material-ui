@@ -35,7 +35,7 @@ describe('<Autocomplete />', () => {
   describe('combobox', () => {
     it('should clear the input when blur', () => {
       const { getByRole } = render(
-        <Autocomplete {...defaultProps} renderInput={params => <TextField {...params} />} />,
+        <Autocomplete {...defaultProps} renderInput={(params) => <TextField {...params} />} />,
       );
       const input = getByRole('textbox');
       input.focus();
@@ -47,7 +47,7 @@ describe('<Autocomplete />', () => {
 
     it('should apply the icon classes', () => {
       const { container } = render(
-        <Autocomplete {...defaultProps} renderInput={params => <TextField {...params} />} />,
+        <Autocomplete {...defaultProps} renderInput={(params) => <TextField {...params} />} />,
       );
       expect(container.querySelector(`.${classes.root}`)).to.have.class(classes.hasClearIcon);
       expect(container.querySelector(`.${classes.root}`)).to.have.class(classes.hasPopupIcon);
@@ -63,7 +63,7 @@ describe('<Autocomplete />', () => {
           freeSolo
           autoHighlight
           options={options}
-          renderInput={params => <TextField autoFocus {...params} />}
+          renderInput={(params) => <TextField autoFocus {...params} />}
         />,
       );
 
@@ -83,7 +83,7 @@ describe('<Autocomplete />', () => {
           {...defaultProps}
           value="one"
           options={['one', 'two', 'three']}
-          renderInput={params => <TextField autoFocus {...params} />}
+          renderInput={(params) => <TextField autoFocus {...params} />}
         />,
       );
 
@@ -97,6 +97,31 @@ describe('<Autocomplete />', () => {
     });
   });
 
+  describe('prop: limitTags', () => {
+    it('show all items on focus', () => {
+      const { container, getAllByRole, getByRole } = render(
+        <Autocomplete
+          multiple
+          limitTags={2}
+          {...defaultProps}
+          options={['one', 'two', 'three']}
+          defaultValue={['one', 'two', 'three']}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+
+      let tags;
+      tags = getAllByRole('button');
+      expect(container.textContent).to.equal('onetwo+1');
+      expect(tags.length).to.be.equal(4);
+
+      getByRole('textbox').focus();
+      tags = getAllByRole('button');
+      expect(container.textContent).to.equal('onetwothree');
+      expect(tags.length).to.be.equal(5);
+    });
+  });
+
   describe('prop: filterSelectedOptions', () => {
     it('when the last item is selected, highlights the new last item', () => {
       const { getByRole } = render(
@@ -104,7 +129,7 @@ describe('<Autocomplete />', () => {
           {...defaultProps}
           filterSelectedOptions
           options={['one', 'two', 'three']}
-          renderInput={params => <TextField {...params} autoFocus />}
+          renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
 
@@ -134,7 +159,7 @@ describe('<Autocomplete />', () => {
           autoSelect
           options={options}
           onChange={handleChange}
-          renderInput={params => <TextField autoFocus {...params} />}
+          renderInput={(params) => <TextField autoFocus {...params} />}
         />,
       );
       fireEvent.change(document.activeElement, { target: { value: 'o' } });
@@ -156,7 +181,7 @@ describe('<Autocomplete />', () => {
           value={[options[0]]}
           options={options}
           onChange={handleChange}
-          renderInput={params => <TextField autoFocus {...params} />}
+          renderInput={(params) => <TextField autoFocus {...params} />}
         />,
       );
       fireEvent.change(document.activeElement, { target: { value: 't' } });
@@ -175,7 +200,7 @@ describe('<Autocomplete />', () => {
           freeSolo
           multiple
           onChange={handleChange}
-          renderInput={params => <TextField autoFocus {...params} />}
+          renderInput={(params) => <TextField autoFocus {...params} />}
         />,
       );
       fireEvent.change(document.activeElement, { target: { value: 'a' } });
@@ -190,7 +215,7 @@ describe('<Autocomplete />', () => {
       const { getByRole } = render(
         <Autocomplete
           {...defaultProps}
-          renderInput={params => <TextField {...params} />}
+          renderInput={(params) => <TextField {...params} />}
           multiple
         />,
       );
@@ -209,7 +234,7 @@ describe('<Autocomplete />', () => {
           defaultValue={options}
           options={options}
           onChange={handleChange}
-          renderInput={params => <TextField {...params} />}
+          renderInput={(params) => <TextField {...params} />}
           multiple
         />,
       );
@@ -227,7 +252,7 @@ describe('<Autocomplete />', () => {
           defaultValue={options}
           options={options}
           onChange={handleChange}
-          renderInput={params => <TextField {...params} autoFocus />}
+          renderInput={(params) => <TextField {...params} autoFocus />}
           multiple
         />,
       );
@@ -248,12 +273,12 @@ describe('<Autocomplete />', () => {
       <Autocomplete
         {...defaultProps}
         options={['one', 'two']}
-        onKeyDown={event => {
+        onKeyDown={(event) => {
           if (!event.defaultPrevented && event.key === 'Enter') {
             handleSubmit();
           }
         }}
-        renderInput={props2 => <TextField {...props2} autoFocus />}
+        renderInput={(props2) => <TextField {...props2} autoFocus />}
       />,
     );
     fireEvent.keyDown(document.activeElement, { key: 'Enter' });
@@ -282,7 +307,7 @@ describe('<Autocomplete />', () => {
   describe('WAI-ARIA conforming markup', () => {
     specify('when closed', () => {
       const { getAllByRole, getByRole, queryByRole } = render(
-        <Autocomplete {...defaultProps} renderInput={params => <TextField {...params} />} />,
+        <Autocomplete {...defaultProps} renderInput={(params) => <TextField {...params} />} />,
       );
 
       const combobox = getByRole('combobox');
@@ -310,7 +335,7 @@ describe('<Autocomplete />', () => {
       expect(buttons[0]).to.have.attribute('title', 'Clear');
       expect(buttons[1]).to.have.accessibleName('Open');
       expect(buttons[1]).to.have.attribute('title', 'Open');
-      buttons.forEach(button => {
+      buttons.forEach((button) => {
         expect(button, 'button is not in tab order').to.have.property('tabIndex', -1);
       });
     });
@@ -321,7 +346,7 @@ describe('<Autocomplete />', () => {
           {...defaultProps}
           open
           options={['one', 'two']}
-          renderInput={params => <TextField {...params} />}
+          renderInput={(params) => <TextField {...params} />}
         />,
       );
 
@@ -342,7 +367,7 @@ describe('<Autocomplete />', () => {
 
       const options = getAllByRole('option');
       expect(options).to.have.length(2);
-      options.forEach(option => {
+      options.forEach((option) => {
         expect(listbox).to.contain(option);
       });
 
@@ -352,7 +377,7 @@ describe('<Autocomplete />', () => {
       expect(buttons[0]).to.have.attribute('title', 'Clear');
       expect(buttons[1]).to.have.accessibleName('Close');
       expect(buttons[1]).to.have.attribute('title', 'Close');
-      buttons.forEach(button => {
+      buttons.forEach((button) => {
         expect(button, 'button is not in tab order').to.have.property('tabIndex', -1);
       });
     });
@@ -363,7 +388,7 @@ describe('<Autocomplete />', () => {
           {...defaultProps}
           open
           options={['one', 'two']}
-          renderInput={params => <TextField {...params} autoFocus />}
+          renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
       const textbox = getByRole('textbox');
@@ -388,7 +413,7 @@ describe('<Autocomplete />', () => {
         <Autocomplete
           {...defaultProps}
           onOpen={handleOpen}
-          renderInput={params => <TextField {...params} autoFocus />}
+          renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
 
@@ -406,7 +431,7 @@ describe('<Autocomplete />', () => {
           open={false}
           options={['one', 'two']}
           value="one"
-          renderInput={params => <TextField {...params} />}
+          renderInput={(params) => <TextField {...params} />}
         />,
       );
 
@@ -417,7 +442,7 @@ describe('<Autocomplete />', () => {
       expect(handleChange.callCount).to.equal(1);
     });
 
-    ['ArrowDown', 'ArrowUp'].forEach(key => {
+    ['ArrowDown', 'ArrowUp'].forEach((key) => {
       it(`opens on ${key} when focus is on the textbox without moving focus`, () => {
         const handleOpen = spy();
         const { getByRole } = render(
@@ -425,7 +450,7 @@ describe('<Autocomplete />', () => {
             {...defaultProps}
             open={false}
             onOpen={handleOpen}
-            renderInput={params => <TextField {...params} autoFocus />}
+            renderInput={(params) => <TextField {...params} autoFocus />}
           />,
         );
 
@@ -446,7 +471,7 @@ describe('<Autocomplete />', () => {
           open={false}
           options={['one', 'two']}
           value="one"
-          renderInput={params => <TextField {...params} autoFocus />}
+          renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
 
@@ -467,7 +492,7 @@ describe('<Autocomplete />', () => {
           multiple
           value={['one']}
           options={['one', 'two']}
-          renderInput={params => <TextField {...params} autoFocus />}
+          renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
 
@@ -488,7 +513,7 @@ describe('<Autocomplete />', () => {
           onClose={handleClose}
           open
           options={['one', 'two']}
-          renderInput={params => <TextField {...params} autoFocus />}
+          renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
 
@@ -502,7 +527,7 @@ describe('<Autocomplete />', () => {
         <Autocomplete
           {...defaultProps}
           options={['one', 'two']}
-          renderInput={params => <TextField {...params} autoFocus />}
+          renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
 
@@ -519,7 +544,7 @@ describe('<Autocomplete />', () => {
         <Autocomplete
           {...defaultProps}
           options={['one', 'two']}
-          renderInput={params => <TextField {...params} autoFocus />}
+          renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
 
@@ -540,7 +565,7 @@ describe('<Autocomplete />', () => {
           {...defaultProps}
           options={['one', 'two', 'three']}
           openOnFocus
-          renderInput={params => <TextField {...params} autoFocus />}
+          renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
       const textbox = getByRole('textbox');
@@ -574,7 +599,7 @@ describe('<Autocomplete />', () => {
         <Autocomplete
           {...defaultProps}
           options={['one', 'two', 'three']}
-          renderInput={params => <TextField {...params} autoFocus />}
+          renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
       fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
@@ -593,7 +618,7 @@ describe('<Autocomplete />', () => {
         <Autocomplete
           {...defaultProps}
           options={['one', 'two', 'three']}
-          renderInput={params => <TextField {...params} autoFocus />}
+          renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
       fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
@@ -614,7 +639,7 @@ describe('<Autocomplete />', () => {
             {...defaultProps}
             includeInputInList
             options={['one', 'two', 'three']}
-            renderInput={params => <TextField {...params} autoFocus />}
+            renderInput={(params) => <TextField {...params} autoFocus />}
           />,
         );
         fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
@@ -630,7 +655,7 @@ describe('<Autocomplete />', () => {
             {...defaultProps}
             includeInputInList
             options={['one', 'two', 'three']}
-            renderInput={params => <TextField {...params} autoFocus />}
+            renderInput={(params) => <TextField {...params} autoFocus />}
           />,
         );
         fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
@@ -648,7 +673,7 @@ describe('<Autocomplete />', () => {
             {...defaultProps}
             disableListWrap
             options={['one', 'two', 'three']}
-            renderInput={params => <TextField {...params} autoFocus />}
+            renderInput={(params) => <TextField {...params} autoFocus />}
           />,
         );
         fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
@@ -667,7 +692,7 @@ describe('<Autocomplete />', () => {
             {...defaultProps}
             disableListWrap
             options={['one', 'two', 'three']}
-            renderInput={params => <TextField {...params} autoFocus />}
+            renderInput={(params) => <TextField {...params} autoFocus />}
           />,
         );
 
@@ -688,7 +713,7 @@ describe('<Autocomplete />', () => {
             {...defaultProps}
             disableListWrap
             options={['one', 'two', 'three']}
-            renderInput={params => <TextField {...params} autoFocus />}
+            renderInput={(params) => <TextField {...params} autoFocus />}
           />,
         );
         fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
@@ -712,7 +737,7 @@ describe('<Autocomplete />', () => {
             {...defaultProps}
             disabled
             options={['one', 'two', 'three']}
-            renderInput={params => <TextField {...params} />}
+            renderInput={(params) => <TextField {...params} />}
           />,
         );
         const input = getByRole('textbox');
@@ -725,7 +750,7 @@ describe('<Autocomplete />', () => {
             {...defaultProps}
             disabled
             options={['one', 'two', 'three']}
-            renderInput={params => <TextField {...params} />}
+            renderInput={(params) => <TextField {...params} />}
           />,
         );
         expect(queryByTitle('Open').disabled).to.be.true;
@@ -737,7 +762,7 @@ describe('<Autocomplete />', () => {
             {...defaultProps}
             disabled
             options={['one', 'two', 'three']}
-            renderInput={params => <TextField {...params} />}
+            renderInput={(params) => <TextField {...params} />}
           />,
         );
         expect(queryByTitle('Clear')).to.be.null;
@@ -749,7 +774,7 @@ describe('<Autocomplete />', () => {
             {...defaultProps}
             disabled
             options={['one', 'two', 'three']}
-            renderInput={params => <TextField {...params} />}
+            renderInput={(params) => <TextField {...params} />}
           />,
         );
         expect(container.querySelector(`.${classes.root}`)).not.to.have.class(classes.hasClearIcon);
@@ -764,7 +789,7 @@ describe('<Autocomplete />', () => {
             {...defaultProps}
             disableClearable
             options={['one', 'two', 'three']}
-            renderInput={params => <TextField {...params} />}
+            renderInput={(params) => <TextField {...params} />}
           />,
         );
         expect(queryByTitle('Clear')).to.be.null;
@@ -791,8 +816,8 @@ describe('<Autocomplete />', () => {
           freeSolo
           onChange={handleChange}
           options={[{ name: 'one' }, { name: 'two ' }]}
-          getOptionLabel={option => option.name}
-          renderInput={params => <TextField {...params} autoFocus />}
+          getOptionLabel={(option) => option.name}
+          renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
       fireEvent.change(document.activeElement, { target: { value: 'a' } });
@@ -806,7 +831,10 @@ describe('<Autocomplete />', () => {
     });
 
     it('warn if getOptionSelected match multiple values for a given option', () => {
-      const value = [{ id: '10', text: 'One' }, { id: '20', text: 'Two' }];
+      const value = [
+        { id: '10', text: 'One' },
+        { id: '20', text: 'Two' },
+      ];
       const options = [
         { id: '10', text: 'One' },
         { id: '20', text: 'Two' },
@@ -819,9 +847,9 @@ describe('<Autocomplete />', () => {
           multiple
           options={options}
           value={value}
-          getOptionLabel={option => option.text}
-          getOptionSelected={option => value.find(v => v.id === option.id)}
-          renderInput={params => <TextField {...params} autoFocus />}
+          getOptionLabel={(option) => option.text}
+          getOptionSelected={(option) => value.find((v) => v.id === option.id)}
+          renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
 
@@ -841,7 +869,7 @@ describe('<Autocomplete />', () => {
         <Autocomplete
           {...defaultProps}
           options={['one', 'two']}
-          renderInput={params => <TextField {...params} autoFocus />}
+          renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
       const listbox = getByRole('listbox');
@@ -870,7 +898,7 @@ describe('<Autocomplete />', () => {
           {...defaultProps}
           onChange={handleChange}
           options={['one', 'two']}
-          renderInput={params => <TextField {...params} />}
+          renderInput={(params) => <TextField {...params} />}
         />,
       );
       const input = getByRole('textbox');
@@ -892,7 +920,7 @@ describe('<Autocomplete />', () => {
           {...defaultProps}
           onChange={handleChange}
           options={['one', 'two']}
-          renderInput={params => <TextField {...params} autoFocus />}
+          renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
       fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
@@ -912,8 +940,8 @@ describe('<Autocomplete />', () => {
           multiple
           onChange={handleChange}
           options={options}
-          getOptionLabel={option => option.name}
-          renderInput={params => <TextField {...params} autoFocus />}
+          getOptionLabel={(option) => option.name}
+          renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
       fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
@@ -932,7 +960,7 @@ describe('<Autocomplete />', () => {
           {...defaultProps}
           autoComplete
           options={['one', 'two']}
-          renderInput={params => <TextField {...params} autoFocus />}
+          renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
       fireEvent.change(document.activeElement, { target: { value: 'O' } });
@@ -954,7 +982,7 @@ describe('<Autocomplete />', () => {
         <Autocomplete
           {...defaultProps}
           options={['one', 'two']}
-          renderInput={params => <TextField {...params} />}
+          renderInput={(params) => <TextField {...params} />}
         />,
       );
       const textbox = getByRole('textbox');
@@ -972,7 +1000,7 @@ describe('<Autocomplete />', () => {
           {...defaultProps}
           value="one"
           options={['one', 'two']}
-          renderInput={params => <TextField {...params} />}
+          renderInput={(params) => <TextField {...params} />}
         />,
       );
       const textbox = getByRole('textbox');
@@ -987,7 +1015,7 @@ describe('<Autocomplete />', () => {
           {...defaultProps}
           value="one"
           options={['one', 'two']}
-          renderInput={params => <TextField {...params} />}
+          renderInput={(params) => <TextField {...params} />}
         />,
       );
 
@@ -1015,7 +1043,7 @@ describe('<Autocomplete />', () => {
             {...defaultProps}
             inputValue=""
             onInputChange={handleInputChange}
-            renderInput={params => <TextField {...params} autoFocus />}
+            renderInput={(params) => <TextField {...params} autoFocus />}
           />
         );
       }
@@ -1038,7 +1066,7 @@ describe('<Autocomplete />', () => {
           onChange={handleChange}
           onInputChange={handleInputChange}
           options={['foo']}
-          renderInput={params => <TextField {...params} autoFocus />}
+          renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
       fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
@@ -1062,8 +1090,8 @@ describe('<Autocomplete />', () => {
               label: 'Two',
             },
           ]}
-          getOptionLabel={option => option.label}
-          renderInput={params => <TextField {...params} autoFocus />}
+          getOptionLabel={(option) => option.label}
+          renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
       let options;
@@ -1085,7 +1113,7 @@ describe('<Autocomplete />', () => {
         <Autocomplete
           {...defaultProps}
           options={['one', 'two', 'three']}
-          renderInput={params => <TextField {...params} autoFocus />}
+          renderInput={(params) => <TextField {...params} autoFocus />}
           filterOptions={filterOptions}
         />,
       );
@@ -1098,7 +1126,7 @@ describe('<Autocomplete />', () => {
         <Autocomplete
           {...defaultProps}
           options={['one', 'two', 'three']}
-          renderInput={params => <TextField {...params} autoFocus />}
+          renderInput={(params) => <TextField {...params} autoFocus />}
           filterOptions={filterOptions}
         />,
       );
@@ -1116,8 +1144,8 @@ describe('<Autocomplete />', () => {
           freeSolo
           onChange={handleChange}
           options={options}
-          getOptionLabel={option => option.name}
-          renderInput={params => <TextField {...params} autoFocus />}
+          getOptionLabel={(option) => option.name}
+          renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
       fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
@@ -1138,7 +1166,7 @@ describe('<Autocomplete />', () => {
           options={options}
           onChange={handleChange}
           freeSolo
-          renderInput={params => <TextField {...params} autoFocus />}
+          renderInput={(params) => <TextField {...params} autoFocus />}
           multiple
         />,
       );
@@ -1157,7 +1185,7 @@ describe('<Autocomplete />', () => {
           {...defaultProps}
           freeSolo
           onChange={handleChange}
-          renderInput={params => <TextField {...params} autoFocus />}
+          renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
       // Actual behavior when "あ" (Japanese) is entered on macOS/Safari with IME
@@ -1179,7 +1207,7 @@ describe('<Autocomplete />', () => {
           freeSolo
           onChange={handleChange}
           options={options}
-          renderInput={params => <TextField {...params} autoFocus />}
+          renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
       fireEvent.change(document.activeElement, { target: { value: options[2] } });
@@ -1197,7 +1225,7 @@ describe('<Autocomplete />', () => {
         <Autocomplete
           onChange={handleChange}
           options={options}
-          renderInput={params => <TextField {...params} autoFocus />}
+          renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
       fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
@@ -1218,7 +1246,7 @@ describe('<Autocomplete />', () => {
           onChange={handleChange}
           value={options}
           options={options}
-          renderInput={params => <TextField {...params} autoFocus />}
+          renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
       fireEvent.keyDown(document.activeElement, { key: 'Backspace' });
@@ -1236,7 +1264,7 @@ describe('<Autocomplete />', () => {
           autoSelect
           onChange={handleChange}
           options={options}
-          renderInput={params => <TextField {...params} autoFocus />}
+          renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
       fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
@@ -1257,7 +1285,7 @@ describe('<Autocomplete />', () => {
           value={options}
           onChange={handleChange}
           options={options}
-          renderInput={params => <TextField {...params} autoFocus />}
+          renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
 
@@ -1279,8 +1307,8 @@ describe('<Autocomplete />', () => {
           {...defaultProps}
           onInputChange={handleInputChange}
           options={options}
-          getOptionLabel={option => option.name}
-          renderInput={params => <TextField {...params} autoFocus />}
+          getOptionLabel={(option) => option.name}
+          renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
       fireEvent.change(document.activeElement, { target: { value: 'a' } });
@@ -1297,8 +1325,8 @@ describe('<Autocomplete />', () => {
           {...defaultProps}
           onInputChange={handleInputChange}
           options={options}
-          getOptionLabel={option => option.name}
-          renderInput={params => <TextField {...params} autoFocus />}
+          getOptionLabel={(option) => option.name}
+          renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
       fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
@@ -1316,8 +1344,8 @@ describe('<Autocomplete />', () => {
         <Autocomplete
           {...defaultProps}
           options={options}
-          getOptionLabel={option => option.name}
-          renderInput={params => <TextField {...params} autoFocus />}
+          getOptionLabel={(option) => option.name}
+          renderInput={(params) => <TextField {...params} autoFocus />}
           blurOnSelect
         />,
       );
@@ -1341,8 +1369,8 @@ describe('<Autocomplete />', () => {
         <Autocomplete
           {...defaultProps}
           options={options}
-          getOptionLabel={option => option.name}
-          renderInput={params => <TextField {...params} autoFocus />}
+          getOptionLabel={(option) => option.name}
+          renderInput={(params) => <TextField {...params} autoFocus />}
           blurOnSelect="touch"
         />,
       );
@@ -1364,8 +1392,8 @@ describe('<Autocomplete />', () => {
         <Autocomplete
           {...defaultProps}
           options={options}
-          getOptionLabel={option => option.name}
-          renderInput={params => <TextField {...params} autoFocus />}
+          getOptionLabel={(option) => option.name}
+          renderInput={(params) => <TextField {...params} autoFocus />}
           blurOnSelect="mouse"
         />,
       );
@@ -1388,8 +1416,8 @@ describe('<Autocomplete />', () => {
         <Autocomplete
           {...defaultProps}
           options={[0, 10, 20]}
-          getOptionLabel={option => (option === 0 ? 'Any' : option.toString())}
-          renderInput={params => <TextField {...params} autoFocus />}
+          getOptionLabel={(option) => (option === 0 ? 'Any' : option.toString())}
+          renderInput={(params) => <TextField {...params} autoFocus />}
           value={0}
         />,
       );
@@ -1403,8 +1431,8 @@ describe('<Autocomplete />', () => {
         <Autocomplete
           {...defaultProps}
           options={[null, 10, 20]}
-          getOptionLabel={option => (option === null ? 'Any' : option.toString())}
-          renderInput={params => <TextField {...params} autoFocus />}
+          getOptionLabel={(option) => (option === null ? 'Any' : option.toString())}
+          renderInput={(params) => <TextField {...params} autoFocus />}
           value={null}
         />,
       );
@@ -1429,14 +1457,14 @@ describe('<Autocomplete />', () => {
         <Autocomplete
           {...defaultProps}
           options={data}
-          getOptionLabel={option => option.value}
-          renderInput={params => <TextField {...params} autoFocus />}
+          getOptionLabel={(option) => option.value}
+          renderInput={(params) => <TextField {...params} autoFocus />}
           open
-          groupBy={option => option.group}
+          groupBy={(option) => option.group}
         />,
       );
 
-      const options = getAllByRole('option').map(el => el.textContent);
+      const options = getAllByRole('option').map((el) => el.textContent);
       expect(options).to.have.length(7);
       expect(options).to.deep.equal(['A', 'B', 'C', 'D', 'E', 'F', 'G']);
     });

@@ -60,7 +60,7 @@ describe('<ListItem />', () => {
       const { setProps } = render(
         <ListItem>
           <ListContext.Consumer>
-            {options => {
+            {(options) => {
               context = options;
             }}
           </ListContext.Consumer>

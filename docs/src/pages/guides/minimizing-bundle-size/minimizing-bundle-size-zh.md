@@ -6,15 +6,19 @@
 
 Material-UI 的打包文件大小至关重要。 Size snapshots are taken on every commit for every package and critical parts of those packages ([view the latest snapshot](/size-snapshot)). 结合 [dangerJS](https://danger.systems/js/) 一起，我们可以在每个 Pull Request 中都可以查看[详细的打包文件的大小变化](https://github.com/mui-org/material-ui/pull/14638#issuecomment-466658459) 。
 
-## 如何减少打包文件的体积？
+## When and how to use tree-shaking?
 
-为方便起见，Material-UI 在顶级 `material-ui` 的 import 上暴露其完整 API。 If you're using ES6 modules and a bundler that supports tree-shaking ([`webpack` >= 2.x](https://webpack.js.org/guides/tree-shaking/), [`parcel` with a flag](https://en.parceljs.org/cli.html#enable-experimental-scope-hoisting/tree-shaking-support)) you can safely use named imports and expect only a minimal set of Material-UI components in your bundle:
+Tree-shaking of Material-UI works out of the box in modern frameworks. Material-UI exposes its full API on the top-level `material-ui` import. If you're using ES6 modules and a bundler that supports tree-shaking ([`webpack` >= 2.x](https://webpack.js.org/guides/tree-shaking/), [`parcel` with a flag](https://en.parceljs.org/cli.html#enable-experimental-scope-hoisting/tree-shaking-support)) you can safely use named imports and still get an optimised bundle size automatically:
 
 ```js
 import { Button, TextField } from '@material-ui/core';
 ```
 
-⚠️ Be aware that tree-shaking is an optimization that is usually only applied to production bundles. Development bundles will contain the full library which can lead to **slower startup times**. 在当您导入 `@material-ui/icons` 的时候，这个情况特别显著。 加载时间会大约比那些从顶层 API 的命名导入方式慢六倍。
+⚠️ The following instructions are only needed if you want to optimize your development startup times or if you are using an older bundler that doesn't support tree-shaking.
+
+## Development environment
+
+Development bundles can contain the full library which can lead to **slower startup times**. This is especially noticeable if you import from `@material-ui/icons`. 加载时间会大约比那些从顶层 API 的命名导入方式慢六倍。
 
 如果您觉得这样不妥，您还有以下几个选择：
 

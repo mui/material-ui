@@ -147,7 +147,7 @@ export function ThemeProvider(props) {
     }
   }, themeInitialOptions);
 
-  const userLanguage = useSelector(state => state.options.userLanguage);
+  const userLanguage = useSelector((state) => state.options.userLanguage);
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   const preferredType = prefersDarkMode ? 'dark' : 'light';
   const { dense, direction, paletteColors, paletteType = preferredType, spacing } = themeOptions;
@@ -235,5 +235,5 @@ ThemeProvider.propTypes = {
  */
 export function useChangeTheme() {
   const dispatch = React.useContext(DispatchContext);
-  return React.useCallback(options => dispatch({ type: 'CHANGE', payload: options }), [dispatch]);
+  return React.useCallback((options) => dispatch({ type: 'CHANGE', payload: options }), [dispatch]);
 }

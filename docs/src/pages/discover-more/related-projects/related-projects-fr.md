@@ -6,7 +6,7 @@ Because the scope of problems Material-UI solves is bound, we try to play nicely
 
 ## Design resources
 
-- **Sketch**: [Sketch for Material-UI](https://themes.material-ui.com/themes/sketch-react/) — A large UI kit with over 1,500 handcrafted Material-UI's symbols 💎.
+- **Sketch**: [Sketch for Material-UI](https://material-ui.com/store/items/sketch-react/) — A large UI kit with over 1,500 handcrafted Material-UI's symbols 💎.
 - **Figma**: 
   - https://material.5ly.co/ for Material-UI made by Fively Team.
   - https://ui-kit.co/ a starter kit for your Material Design 2 project.
@@ -32,7 +32,7 @@ This is a collection of third-party projects that extend Material-UI.
 
 - [@mui-treasury/layout](https://mui-treasury.com/layout): Components to handle the overall layout of a page. You can find a couple of examples, e.g. [a reactjs.org clone](https://mui-treasury.com/layout/clones/reactjs).
 
-### Tables
+### Table (Tableaux)
 
 - [material-table](https://github.com/mbrn/material-table): A simple and powerful Datatable for React based on Material-UI Table with some additional features. It supports many different use cases (editable, filtering, grouping, sorting, selection, i18n, tree data and more).
 - [dx-react-grid-material-ui](https://devexpress.github.io/devextreme-reactive/react/grid/): A data grid for Material-UI with paging, sorting, filtering, grouping and editing features ([paid license](https://js.devexpress.com/licensing/)).
@@ -50,8 +50,9 @@ This is a collection of third-party projects that extend Material-UI.
 ### Formulaires
 
 - [formik-material-ui](https://github.com/stackworx/formik-material-ui) Bindings for using Material-UI with [formik](https://jaredpalmer.com/formik).
-- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui) Bindings for using Material UI with [Redux Form](https://redux-form.com/).
-- [mui-rff](https://github.com/lookfirst/mui-rff) Bindings for using Material UI with [React Final Form](https://final-form.org/react).
+- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui) Bindings for using Material-UI with [Redux Form](https://redux-form.com/).
+- [mui-rff](https://github.com/lookfirst/mui-rff) Bindings for using Material-UI with [React Final Form](https://final-form.org/react).
+- [data-driven-forms MUI mapper](https://github.com/data-driven-forms/react-forms/tree/master/packages/mui-component-mapper) Bindings for using Material-UI with [Data Driven Forms](https://data-driven-forms.org/).
 
 ### Carousel
 

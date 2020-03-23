@@ -2,7 +2,7 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     '& .MuiTextField-root': {
       margin: theme.spacing(1),
@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
 export default function StateTextFields() {
   const classes = useStyles();
   const [name, setName] = React.useState('Cat in the Hat');
-  const handleChange = event => {
+  const handleChange = (event) => {
     setName(event.target.value);
   };
 

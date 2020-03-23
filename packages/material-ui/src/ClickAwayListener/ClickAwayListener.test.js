@@ -48,7 +48,7 @@ describe('<ClickAwayListener />', () => {
           <span />
         </ClickAwayListener>,
       );
-      const preventDefault = event => event.preventDefault();
+      const preventDefault = (event) => event.preventDefault();
       document.body.addEventListener('click', preventDefault);
 
       fireEvent.click(document.body);

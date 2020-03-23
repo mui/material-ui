@@ -32,7 +32,7 @@ export default function DynamicCSSVariables() {
   const classes = useStyles();
   const [color, setColor] = React.useState(defaultColor);
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     setColor(event.target.checked ? blue : defaultColor);
   };
 

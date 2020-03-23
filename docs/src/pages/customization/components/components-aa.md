@@ -118,7 +118,7 @@ crwdns93300:0crwdne93300:0
 
 ### crwdns93302:0$ruleNamecrwdne93302:0
 
-crwdns93304:0crwdne93304:0
+crwdns130122:0crwdne130122:0
 
 ```js
 crwdns93306:0$disabledcrwdnd93306:0{

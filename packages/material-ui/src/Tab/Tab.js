@@ -6,7 +6,7 @@ import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
 import unsupportedProp from '../utils/unsupportedProp';
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     ...theme.typography.button,
@@ -111,7 +111,7 @@ const Tab = React.forwardRef(function Tab(props, ref) {
     ...other
   } = props;
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     if (onChange) {
       onChange(event, value);
     }

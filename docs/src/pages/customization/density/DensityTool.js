@@ -17,7 +17,7 @@ const maxSpacing = 20;
 
 export default function DensityTool() {
   const dispatch = React.useContext(DispatchContext);
-  const handleDensityChange = event => {
+  const handleDensityChange = (event) => {
     dispatch({ type: 'SET_DENSE', payload: event.target.checked });
   };
 
@@ -40,7 +40,7 @@ export default function DensityTool() {
   const theme = useTheme();
   const spacingUnit = theme.spacing(1);
 
-  const t = useSelector(state => state.options.t);
+  const t = useSelector((state) => state.options.t);
 
   return (
     <Grid container spacing={2}>

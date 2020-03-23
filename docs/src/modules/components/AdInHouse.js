@@ -3,14 +3,14 @@ import React from 'react';
 import propTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'block',
     overflow: 'hidden',
     backgroundColor: theme.palette.background.level2,
-    padding: `${theme.spacing(1.5)}px ${theme.spacing(1.5)}px ${theme.spacing(
-      1.5,
-    )}px ${theme.spacing(1.5) + 130}px`,
+    padding: `${theme.spacing(1.5)}px ${theme.spacing(1.5)}px ${theme.spacing(1.5)}px ${
+      theme.spacing(1.5) + 130
+    }px`,
     borderRadius: theme.shape.borderRadius,
     '& $imageWrapper': {
       float: 'left',

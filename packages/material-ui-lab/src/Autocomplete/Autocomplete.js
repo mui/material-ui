@@ -13,7 +13,7 @@ import useAutocomplete, { createFilterOptions } from '../useAutocomplete';
 
 export { createFilterOptions };
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     '&:hover $clearIndicatorDirty, &$focused $clearIndicatorDirty': {
@@ -162,17 +162,14 @@ export const styles = theme => ({
     ...theme.typography.body1,
     overflow: 'hidden',
     margin: '4px 0',
-    '& > ul': {
-      maxHeight: '40vh',
-      overflow: 'auto',
-    },
   },
   /* Styles applied to the `listbox` component. */
   listbox: {
     listStyle: 'none',
     margin: 0,
     padding: '8px 0px',
-    position: 'relative',
+    maxHeight: '40vh',
+    overflow: 'auto',
   },
   /* Styles applied to the loading wrapper. */
   loading: {
@@ -223,6 +220,9 @@ export const styles = theme => ({
   /* Styles applied to the group's ul elements. */
   groupUl: {
     padding: 0,
+    '& $option': {
+      paddingLeft: 24,
+    },
   },
 });
 
@@ -257,13 +257,15 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     filterSelectedOptions = false,
     forcePopupIcon = 'auto',
     freeSolo = false,
+    getLimitTagsText = (more) => `+${more}`,
     getOptionDisabled,
-    getOptionLabel = x => x,
+    getOptionLabel = (x) => x,
     getOptionSelected,
     groupBy,
     id: idProp,
     includeInputInList = false,
     inputValue: inputValueProp,
+    limitTags = -1,
     ListboxComponent = 'ul',
     ListboxProps,
     loading = false,
@@ -318,7 +320,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
   let startAdornment;
 
   if (multiple && value.length > 0) {
-    const getCustomizedTagProps = params => ({
+    const getCustomizedTagProps = (params) => ({
       className: clsx(classes.tag, {
         [classes.tagSizeSmall]: size === 'small',
       }),
@@ -340,7 +342,19 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     }
   }
 
-  const defaultRenderGroup = params => (
+  if (limitTags > -1 && Array.isArray(startAdornment)) {
+    const more = startAdornment.length - limitTags;
+    if (limitTags && !focused && more > 0) {
+      startAdornment = startAdornment.splice(0, limitTags);
+      startAdornment.push(
+        <span className={classes.tag} key={startAdornment.length}>
+          {getLimitTagsText(more)}
+        </span>,
+      );
+    }
+  }
+
+  const defaultRenderGroup = (params) => (
     <li key={params.key}>
       <ListSubheader className={classes.groupLabel} component="div">
         {params.key}
@@ -593,6 +607,13 @@ Autocomplete.propTypes = {
    */
   freeSolo: PropTypes.bool,
   /**
+   * The label to display when the tags are truncated (`limitTags`).
+   *
+   * @param {number} more The number of truncated tags.
+   * @returns {ReactNode}
+   */
+  getLimitTagsText: PropTypes.func,
+  /**
    * Used to determine the disabled state for a given option.
    */
   getOptionDisabled: PropTypes.func,
@@ -627,6 +648,11 @@ Autocomplete.propTypes = {
    * The input value.
    */
   inputValue: PropTypes.string,
+  /**
+   * The maximum number of tags that will be visible when not focused.
+   * Set `-1` to disable the limit.
+   */
+  limitTags: PropTypes.number,
   /**
    * The component used to render the listbox.
    */

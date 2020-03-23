@@ -53,8 +53,6 @@ Router.onRouteChangeError = () => {
 
 const AppSearch = React.lazy(() => import('docs/src/modules/components/AppSearch'));
 function DeferredAppSearch() {
-  const fallback = null;
-
   const [mounted, setMounted] = React.useState(false);
   React.useEffect(() => {
     setMounted(true);
@@ -68,16 +66,16 @@ function DeferredAppSearch() {
         as="style"
       />
       {/* Suspense isn't supported for SSR yet */}
-      {mounted && (
-        <React.Suspense fallback={fallback}>
+      {mounted ? (
+        <React.Suspense fallback={null}>
           <AppSearch />
         </React.Suspense>
-      )}
+      ) : null}
     </React.Fragment>
   );
 }
 
-const styles = theme => ({
+const styles = (theme) => ({
   '@global': {
     '#main-content': {
       outline: 0,
@@ -148,16 +146,16 @@ const styles = theme => ({
 function AppFrame(props) {
   const { children, classes } = props;
   const theme = useTheme();
-  const t = useSelector(state => state.options.t);
-  const userLanguage = useSelector(state => state.options.userLanguage);
+  const t = useSelector((state) => state.options.t);
+  const userLanguage = useSelector((state) => state.options.userLanguage);
 
   const crowdInLocale = LOCALES[userLanguage] || userLanguage;
 
   const [languageMenu, setLanguageMenu] = React.useState(null);
-  const handleLanguageIconClick = event => {
+  const handleLanguageIconClick = (event) => {
     setLanguageMenu(event.currentTarget);
   };
-  const handleLanguageMenuClose = event => {
+  const handleLanguageMenuClose = (event) => {
     if (event.currentTarget.nodeName === 'A') {
       document.cookie = `userLanguage=noDefault;path=/;max-age=31536000`;
     }
@@ -233,19 +231,19 @@ function AppFrame(props) {
               <span className={classes.language}>
                 {userLanguage === 'aa'
                   ? 'Translating'
-                  : LANGUAGES_LABEL.filter(language => language.code === userLanguage)[0].text}
+                  : LANGUAGES_LABEL.filter((language) => language.code === userLanguage)[0].text}
               </span>
               <ExpandMoreIcon fontSize="small" />
             </Button>
           </Tooltip>
-          <NoSsr>
+          <NoSsr defer>
             <Menu
               id="language-menu"
               anchorEl={languageMenu}
               open={Boolean(languageMenu)}
               onClose={handleLanguageMenuClose}
             >
-              {LANGUAGES_LABEL.map(language => (
+              {LANGUAGES_LABEL.map((language) => (
                 <MenuItem
                   component="a"
                   data-no-link="true"

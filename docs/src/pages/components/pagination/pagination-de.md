@@ -41,8 +41,6 @@ You can specify how many digits to display either side of current page with the 
 
 ## Router integration
 
-Pagination supports two approaches for Router integration, the `renderItem` prop:
-
 {{"demo": "pages/components/pagination/PaginationLink.js"}}
 
 ## `usePagination`

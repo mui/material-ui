@@ -11,9 +11,9 @@ describe('createSpacing', () => {
     expect(spacing(1)).to.equal(10);
     spacing = createSpacing([0, 8, 16]);
     expect(spacing(2)).to.equal(16);
-    spacing = createSpacing(factor => factor ** 2);
+    spacing = createSpacing((factor) => factor ** 2);
     expect(spacing(2)).to.equal(4);
-    spacing = createSpacing(factor => `${0.25 * factor}rem`);
+    spacing = createSpacing((factor) => `${0.25 * factor}rem`);
     expect(spacing(2)).to.equal('0.5rem');
   });
 
@@ -26,7 +26,7 @@ describe('createSpacing', () => {
     let spacing;
     spacing = createSpacing();
     expect(spacing()).to.equal(8);
-    spacing = createSpacing(factor => `${0.25 * factor}rem`);
+    spacing = createSpacing((factor) => `${0.25 * factor}rem`);
     expect(spacing()).to.equal('0.25rem');
   });
 
@@ -34,7 +34,7 @@ describe('createSpacing', () => {
     let spacing;
     spacing = createSpacing();
     expect(spacing(1, 2)).to.equal('8px 16px');
-    spacing = createSpacing(factor => `${0.25 * factor}rem`);
+    spacing = createSpacing((factor) => `${0.25 * factor}rem`);
     expect(spacing(1, 2)).to.equal('0.25rem 0.5rem');
   });
 

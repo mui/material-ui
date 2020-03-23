@@ -123,7 +123,7 @@ describe('makeStyles', () => {
     });
 
     it('should warn if missing theme', () => {
-      const styles = theme => ({ root: { padding: theme.spacing(2) } });
+      const styles = (theme) => ({ root: { padding: theme.spacing(2) } });
       const mountWithProps2 = createGetClasses(styles);
       assert.throw(() => {
         mountWithProps2({});
@@ -218,7 +218,7 @@ describe('makeStyles', () => {
     });
 
     it('should work when depending on a theme', () => {
-      const useStyles = makeStyles(theme => ({ root: { padding: theme.spacing(1) } }), {
+      const useStyles = makeStyles((theme) => ({ root: { padding: theme.spacing(1) } }), {
         name: 'MuiTextField',
       });
       const StyledComponent = () => {
@@ -323,14 +323,14 @@ describe('makeStyles', () => {
 
     it('should handle dynamic props', () => {
       const useStyles = makeStyles({
-        root: props => ({ margin: 8, padding: props.padding || 8 }),
+        root: (props) => ({ margin: 8, padding: props.padding || 8 }),
       });
-      const StyledComponent = props => {
+      const StyledComponent = (props) => {
         const classes = useStyles(props);
         return <div className={classes.root} />;
       };
 
-      const Test = props => (
+      const Test = (props) => (
         <StylesProvider
           sheetsRegistry={sheetsRegistry}
           sheetsCache={new Map()}
@@ -459,14 +459,14 @@ describe('makeStyles', () => {
     let StressTest;
 
     before(() => {
-      const useStyles = makeStyles(theme => ({
-        root: props => ({
+      const useStyles = makeStyles((theme) => ({
+        root: (props) => ({
           backgroundColor: props.backgroundColor,
           color: theme.color,
         }),
       }));
 
-      const Component = React.memo(props => {
+      const Component = React.memo((props) => {
         const classes = useStyles(props);
         const theme = useTheme();
 
@@ -492,12 +492,12 @@ describe('makeStyles', () => {
 
       StressTest = () => {
         const [backgroundColor, setBackgroundColor] = React.useState('black');
-        const handleBackgroundColorChange = event => {
+        const handleBackgroundColorChange = (event) => {
           setBackgroundColor(event.target.value);
         };
 
         const [color, setColor] = React.useState('white');
-        const handleColorChange = event => {
+        const handleColorChange = (event) => {
           setColor(event.target.value);
         };
 

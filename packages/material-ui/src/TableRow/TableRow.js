@@ -5,7 +5,7 @@ import withStyles from '../styles/withStyles';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
 import { fade } from '../styles/colorManipulator';
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     color: 'inherit',

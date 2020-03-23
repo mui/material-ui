@@ -31,9 +31,6 @@ update_configs:
           # These should be grouped once a PR for `jss` is opened
           dependency_name: 'jss-*'
       - match:
-          # 1.18 started adding trailing commas only compatible with typescript ^3.4
-          dependency_name: 'prettier'
-      - match:
           # 2.0 started using ES modules instead of CommonJS modules
           dependency_name: 'raw-loader'
       # not ignoring `react`. We'll hijack those PRs and also upgrade the other

@@ -74,9 +74,7 @@ describe('<ButtonBase />', () => {
       );
       const checkbox = getByRole('checkbox');
       expect(checkbox).to.have.property('nodeName', 'SPAN');
-      expect(checkbox)
-        .attribute('tabIndex')
-        .to.equal('0');
+      expect(checkbox).attribute('tabIndex').to.equal('0');
     });
 
     it('should not apply role="button" if type="button"', () => {
@@ -139,7 +137,7 @@ describe('<ButtonBase />', () => {
        * @type {Record<string, import('sinon').SinonSpy>}
        */
       const handlers = {};
-      eventHandlerNames.forEach(handlerName => {
+      eventHandlerNames.forEach((handlerName) => {
         handlers[handlerName] = spy();
       });
       const onDragEnd = spy();
@@ -174,7 +172,7 @@ describe('<ButtonBase />', () => {
         expect(onDragEnd.callCount).to.equal(1);
       }
 
-      eventHandlerNames.forEach(n => {
+      eventHandlerNames.forEach((n) => {
         // onKeyDown -> keyDown
         const eventType = n.charAt(2).toLowerCase() + n.slice(3);
         // @ts-ignore eventType isn't a literal here, need const expression
@@ -731,8 +729,8 @@ describe('<ButtonBase />', () => {
 
     describe('keyboard accessibility for non interactive elements', () => {
       it('does not call onClick when a spacebar is pressed on the element but prevents the default', () => {
-        const onKeyDown = spy(event => event.defaultPrevented);
-        const onClickSpy = spy(event => event.defaultPrevented);
+        const onKeyDown = spy((event) => event.defaultPrevented);
+        const onClickSpy = spy((event) => event.defaultPrevented);
         const { getByRole } = render(
           <ButtonBase onClick={onClickSpy} onKeyDown={onKeyDown} component="div">
             Hello
@@ -751,7 +749,7 @@ describe('<ButtonBase />', () => {
       });
 
       it('does call onClick when a spacebar is released on the element', () => {
-        const onClickSpy = spy(event => event.defaultPrevented);
+        const onClickSpy = spy((event) => event.defaultPrevented);
         const { getByRole } = render(
           <ButtonBase onClick={onClickSpy} component="div">
             Hello
@@ -770,7 +768,7 @@ describe('<ButtonBase />', () => {
       });
 
       it('does not call onClick when a spacebar is released and the default is prevented', () => {
-        const onClickSpy = spy(event => event.defaultPrevented);
+        const onClickSpy = spy((event) => event.defaultPrevented);
         const { getByRole } = render(
           <ButtonBase
             onClick={onClickSpy}
@@ -778,7 +776,7 @@ describe('<ButtonBase />', () => {
               /**
                * @param {React.SyntheticEvent} event
                */
-              event => event.preventDefault()
+              (event) => event.preventDefault()
             }
             component="div"
           >
@@ -796,7 +794,7 @@ describe('<ButtonBase />', () => {
       });
 
       it('calls onClick when Enter is pressed on the element', () => {
-        const onClickSpy = spy(event => event.defaultPrevented);
+        const onClickSpy = spy((event) => event.defaultPrevented);
         const { getByRole } = render(
           <ButtonBase onClick={onClickSpy} component="div">
             Hello
@@ -815,7 +813,7 @@ describe('<ButtonBase />', () => {
       });
 
       it('does not call onClick if Enter was pressed on a child', () => {
-        const onClickSpy = spy(event => event.defaultPrevented);
+        const onClickSpy = spy((event) => event.defaultPrevented);
         const onKeyDownSpy = spy();
         render(
           <ButtonBase onClick={onClickSpy} onKeyDown={onKeyDownSpy} component="div">
@@ -832,7 +830,7 @@ describe('<ButtonBase />', () => {
       });
 
       it('does not call onClick if Space was released on a child', () => {
-        const onClickSpy = spy(event => event.defaultPrevented);
+        const onClickSpy = spy((event) => event.defaultPrevented);
         const onKeyUpSpy = spy();
         render(
           <ButtonBase onClick={onClickSpy} onKeyUp={onKeyUpSpy} component="div">
@@ -849,7 +847,7 @@ describe('<ButtonBase />', () => {
       });
 
       it('prevents default with an anchor and empty href', () => {
-        const onClickSpy = spy(event => event.defaultPrevented);
+        const onClickSpy = spy((event) => event.defaultPrevented);
         const { getByRole } = render(
           <ButtonBase component="a" onClick={onClickSpy}>
             Hello
@@ -867,7 +865,7 @@ describe('<ButtonBase />', () => {
 
       it('should ignore anchors with href', () => {
         const onClick = spy();
-        const onKeyDown = spy(event => event.defaultPrevented);
+        const onKeyDown = spy((event) => event.defaultPrevented);
         const { getByText } = render(
           <ButtonBase component="a" href="href" onClick={onClick} onKeyDown={onKeyDown}>
             Hello

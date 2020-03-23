@@ -104,7 +104,11 @@ describe('<ToggleButton />', () => {
     it('should not be called if the click is prevented', () => {
       const handleChange = spy();
       const { getByRole } = render(
-        <ToggleButton value="one" onChange={handleChange} onClick={event => event.preventDefault()}>
+        <ToggleButton
+          value="one"
+          onChange={handleChange}
+          onClick={(event) => event.preventDefault()}
+        >
           Hello
         </ToggleButton>,
       );

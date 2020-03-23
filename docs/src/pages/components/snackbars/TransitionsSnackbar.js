@@ -19,7 +19,7 @@ export default function TransitionsSnackbar() {
     Transition: Fade,
   });
 
-  const handleClick = Transition => () => {
+  const handleClick = (Transition) => () => {
     setState({
       open: true,
       Transition,

@@ -29,7 +29,7 @@ export function createFilterOptions(config = {}) {
     if (ignoreAccents) {
       input = stripDiacritics(input);
     }
-    const filteredOptions = options.filter(option => {
+    const filteredOptions = options.filter((option) => {
       let candidate = (stringify || getOptionLabel)(option);
       if (ignoreCase) {
         candidate = candidate.toLowerCase();
@@ -78,7 +78,7 @@ export default function useAutocomplete(props) {
     filterSelectedOptions = false,
     freeSolo = false,
     getOptionDisabled,
-    getOptionLabel = x => x,
+    getOptionLabel = (x) => x,
     getOptionSelected = (option, value) => option === value,
     groupBy,
     id: idProp,
@@ -237,11 +237,11 @@ export default function useAutocomplete(props) {
 
   const filteredOptions = popupOpen
     ? filterOptions(
-        options.filter(option => {
+        options.filter((option) => {
           if (
             filterSelectedOptions &&
             (multiple ? value : [value]).some(
-              value2 => value2 !== null && getOptionSelected(option, value2),
+              (value2) => value2 !== null && getOptionSelected(option, value2),
             )
           ) {
             return false;
@@ -256,7 +256,7 @@ export default function useAutocomplete(props) {
 
   popupOpen = freeSolo && filteredOptions.length === 0 ? false : popupOpen;
 
-  const focusTag = useEventCallback(tagToFocus => {
+  const focusTag = useEventCallback((tagToFocus) => {
     if (tagToFocus === -1) {
       inputRef.current.focus();
     } else {
@@ -388,7 +388,7 @@ export default function useAutocomplete(props) {
 
     // Synchronize the value with the highlighted index
     if (!filterSelectedOptions && valueItem != null) {
-      const itemIndex = findIndex(filteredOptions, optionItem =>
+      const itemIndex = findIndex(filteredOptions, (optionItem) =>
         getOptionSelected(optionItem, valueItem),
       );
 
@@ -413,7 +413,7 @@ export default function useAutocomplete(props) {
     multiple,
   ]);
 
-  const handleOpen = event => {
+  const handleOpen = (event) => {
     if (open) {
       return;
     }
@@ -459,21 +459,19 @@ export default function useAutocomplete(props) {
       newValue = Array.isArray(value) ? [...value] : [];
 
       if (process.env.NODE_ENV !== 'production') {
-        const matches = newValue.filter(val => getOptionSelected(option, val));
+        const matches = newValue.filter((val) => getOptionSelected(option, val));
 
         if (matches.length > 1) {
           console.error(
             [
               `Material-UI: the \`getOptionSelected\` method of ${componentName} do not handle the arguments correctly.`,
-              `The component expects a single value to match a given option but found ${
-                matches.length
-              } matches.`,
+              `The component expects a single value to match a given option but found ${matches.length} matches.`,
             ].join('\n'),
           );
         }
       }
 
-      const itemIndex = findIndex(newValue, valueItem => getOptionSelected(option, valueItem));
+      const itemIndex = findIndex(newValue, (valueItem) => getOptionSelected(option, valueItem));
 
       if (itemIndex === -1) {
         newValue.push(option);
@@ -554,7 +552,7 @@ export default function useAutocomplete(props) {
     focusTag(nextTag);
   };
 
-  const handleClear = event => {
+  const handleClear = (event) => {
     ignoreFocus.current = true;
     setInputValue('');
 
@@ -565,7 +563,7 @@ export default function useAutocomplete(props) {
     handleValue(event, multiple ? [] : null, 'clear');
   };
 
-  const handleKeyDown = other => event => {
+  const handleKeyDown = (other) => (event) => {
     if (focusedTag !== -1 && ['ArrowLeft', 'ArrowRight'].indexOf(event.key) === -1) {
       setFocusedTag(-1);
       focusTag(-1);
@@ -674,7 +672,7 @@ export default function useAutocomplete(props) {
     }
   };
 
-  const handleFocus = event => {
+  const handleFocus = (event) => {
     setFocused(true);
 
     if (openOnFocus && !ignoreFocus.current) {
@@ -682,7 +680,7 @@ export default function useAutocomplete(props) {
     }
   };
 
-  const handleBlur = event => {
+  const handleBlur = (event) => {
     // Ignore the event when using the scrollbar with IE 11
     if (
       listboxRef.current !== null &&
@@ -711,7 +709,7 @@ export default function useAutocomplete(props) {
     handleClose(event, 'blur');
   };
 
-  const handleInputChange = event => {
+  const handleInputChange = (event) => {
     const newValue = event.target.value;
 
     if (inputValue !== newValue) {
@@ -731,7 +729,7 @@ export default function useAutocomplete(props) {
     }
   };
 
-  const handleOptionMouseOver = event => {
+  const handleOptionMouseOver = (event) => {
     const index = Number(event.currentTarget.getAttribute('data-option-index'));
     setHighlightedIndex(index, 'mouse');
   };
@@ -742,7 +740,7 @@ export default function useAutocomplete(props) {
     isTouch.current = true;
   };
 
-  const handleOptionClick = event => {
+  const handleOptionClick = (event) => {
     const index = Number(event.currentTarget.getAttribute('data-option-index'));
     selectNewValue(event, filteredOptions[index], 'select-option');
 
@@ -757,7 +755,7 @@ export default function useAutocomplete(props) {
     isTouch.current = false;
   };
 
-  const handleTagDelete = index => event => {
+  const handleTagDelete = (index) => (event) => {
     const newValue = [...value];
     newValue.splice(index, 1);
     handleValue(event, newValue, 'remove-option', {
@@ -765,7 +763,7 @@ export default function useAutocomplete(props) {
     });
   };
 
-  const handleListboxRef = useEventCallback(node => {
+  const handleListboxRef = useEventCallback((node) => {
     setRef(listboxRef, node);
 
     if (!node) {
@@ -781,7 +779,7 @@ export default function useAutocomplete(props) {
     }
   });
 
-  const handlePopupIndicator = event => {
+  const handlePopupIndicator = (event) => {
     if (open) {
       handleClose(event, 'toggleInput');
     } else {
@@ -790,7 +788,7 @@ export default function useAutocomplete(props) {
   };
 
   // Prevent input blur when interacting with the combobox
-  const handleMouseDown = event => {
+  const handleMouseDown = (event) => {
     if (event.target.getAttribute('id') !== id) {
       event.preventDefault();
     }
@@ -811,7 +809,7 @@ export default function useAutocomplete(props) {
     firstFocus.current = false;
   };
 
-  const handleInputMouseDown = event => {
+  const handleInputMouseDown = (event) => {
     if (inputValue === '') {
       handlePopupIndicator(event);
     }
@@ -828,7 +826,7 @@ export default function useAutocomplete(props) {
     const indexByKey = new Map();
     let currentResultIndex = 0;
 
-    filteredOptions.forEach(option => {
+    filteredOptions.forEach((option) => {
       const key = groupBy(option);
       if (indexByKey.get(key) === undefined) {
         indexByKey.set(key, currentResultIndex);
@@ -843,7 +841,7 @@ export default function useAutocomplete(props) {
 
     // now we can add the `index` property based on the options length
     let indexCounter = 0;
-    result.forEach(option => {
+    result.forEach((option) => {
       option.index = indexCounter;
       indexCounter += option.options.length;
     });
@@ -903,14 +901,14 @@ export default function useAutocomplete(props) {
       id: `${id}-popup`,
       'aria-labelledby': `${id}-label`,
       ref: handleListboxRef,
-      onMouseDown: event => {
+      onMouseDown: (event) => {
         // Prevent blur
         event.preventDefault();
       },
     }),
     getOptionProps: ({ index, option }) => {
       const selected = (multiple ? value : [value]).some(
-        value2 => value2 != null && getOptionSelected(option, value2),
+        (value2) => value2 != null && getOptionSelected(option, value2),
       );
       const disabled = getOptionDisabled ? getOptionDisabled(option) : false;
 

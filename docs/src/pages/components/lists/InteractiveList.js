@@ -16,7 +16,7 @@ import Typography from '@material-ui/core/Typography';
 import FolderIcon from '@material-ui/icons/Folder';
 import DeleteIcon from '@material-ui/icons/Delete';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     maxWidth: 752,
@@ -30,7 +30,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function generate(element) {
-  return [0, 1, 2].map(value =>
+  return [0, 1, 2].map((value) =>
     React.cloneElement(element, {
       key: value,
     }),
@@ -46,12 +46,17 @@ export default function InteractiveList() {
     <div className={classes.root}>
       <FormGroup row>
         <FormControlLabel
-          control={<Checkbox checked={dense} onChange={event => setDense(event.target.checked)} />}
+          control={
+            <Checkbox checked={dense} onChange={(event) => setDense(event.target.checked)} />
+          }
           label="Enable dense"
         />
         <FormControlLabel
           control={
-            <Checkbox checked={secondary} onChange={event => setSecondary(event.target.checked)} />
+            <Checkbox
+              checked={secondary}
+              onChange={(event) => setSecondary(event.target.checked)}
+            />
           }
           label="Enable secondary text"
         />

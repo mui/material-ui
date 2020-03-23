@@ -6,4 +6,14 @@ export interface AlertTitleProps
 
 export type AlertTitleClassKey = 'root';
 
+/**
+ *
+ * Demos:
+ *
+ * - [Alert](https://material-ui.com/components/alert/)
+ *
+ * API:
+ *
+ * - [AlertTitle API](https://material-ui.com/api/alert-title/)
+ */
 export default function AlertTitle(props: AlertTitleProps): JSX.Element;

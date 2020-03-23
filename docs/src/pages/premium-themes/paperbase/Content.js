@@ -13,7 +13,7 @@ import { withStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import RefreshIcon from '@material-ui/icons/Refresh';
 
-const styles = theme => ({
+const styles = (theme) => ({
   paper: {
     maxWidth: 936,
     margin: 'auto',

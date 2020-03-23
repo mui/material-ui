@@ -15,7 +15,7 @@ function buildColorType(name, variants) {
   const typescript = `/* tslint:disable max-line-length */
 /**
  * ${Object.entries(variants)
-   .map(entry => {
+   .map((entry) => {
      const [variant] = entry;
 
      return `![${name} ${variant}](${HOST}${getColorHref(name, variant)})`;
@@ -24,7 +24,7 @@ function buildColorType(name, variants) {
  */
 declare const ${name}: {
 ${Object.entries(variants)
-  .map(entry => {
+  .map((entry) => {
     const [variant, color] = entry;
 
     return `  /**
@@ -45,7 +45,7 @@ function buildColorPreviews(name, variants) {
   const nextPublicPath = path.resolve(__dirname, '../docs/public/');
 
   return Promise.all(
-    Object.entries(variants).map(async variantEntry => {
+    Object.entries(variants).map(async (variantEntry) => {
       const [variant, color] = variantEntry;
 
       const svg = `<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
@@ -66,7 +66,7 @@ function buildColorPreviews(name, variants) {
  */
 async function main() {
   await Promise.all(
-    Object.entries(colors).map(async entry => {
+    Object.entries(colors).map(async (entry) => {
       const [name, variants] = entry;
 
       await Promise.all([buildColorPreviews(name, variants), buildColorType(name, variants)]);
@@ -74,7 +74,7 @@ async function main() {
   );
 }
 
-main().catch(error => {
+main().catch((error) => {
   console.error(error);
   process.exit(error.code || 1);
 });

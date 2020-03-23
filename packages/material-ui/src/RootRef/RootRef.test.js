@@ -48,14 +48,14 @@ describe('<RootRef />', () => {
   it('should support providing a new rootRef', () => {
     const results = [];
     const wrapper = mount(
-      <RootRef rootRef={ref => results.push(ref)}>
+      <RootRef rootRef={(ref) => results.push(ref)}>
         <Fn />
       </RootRef>,
     );
     assert.strictEqual(results.length, 1);
     assert.strictEqual(results[0] instanceof window.HTMLDivElement, true);
     wrapper.setProps({
-      rootRef: ref => results.push(ref),
+      rootRef: (ref) => results.push(ref),
     });
     assert.strictEqual(results.length, 3);
     assert.strictEqual(results[1], null);

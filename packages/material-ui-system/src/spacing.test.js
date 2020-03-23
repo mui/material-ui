@@ -31,7 +31,7 @@ describe('spacing', () => {
 
       const output3 = spacing({
         theme: {
-          spacing: x => x ** 2,
+          spacing: (x) => x ** 2,
         },
         p: 2,
       });

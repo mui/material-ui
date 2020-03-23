@@ -54,7 +54,7 @@ const Fade = React.forwardRef(function Fade(props, ref) {
     }
   };
 
-  const handleExit = node => {
+  const handleExit = (node) => {
     const transitionProps = getTransitionProps(
       { style, timeout },
       {

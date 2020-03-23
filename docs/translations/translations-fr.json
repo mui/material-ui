@@ -79,7 +79,7 @@
   "mainNavigation": "Navigation principale",
   "skipToContent": "Passer au contenu",
   "openDrawer": "Voir la navigation principale",
-  "changeLanguage": "outdated, the key was removed!!!!!!!!!!!!!",
+  "changeLanguage": "Changer de langue",
   "pageTOC": "La table des matières de la page",
   "showJSSource": "Afficher la console JavaScript",
   "showTSSource": "Afficher la source TypeScript",
@@ -91,6 +91,8 @@
   "decreaseSpacing": "diminuer l'espacement",
   "getProfessionalSupport": "Obtenir de l'assistance professionnelle",
   "diamondSponsors": "Sponsors Diamant",
+  "demoToolbarLabel": "demo source",
+  "resetDemo": "Reset demo",
   "pages": {
     "/getting-started": "Bien démarrer",
     "/getting-started/installation": "Installation",
@@ -221,12 +223,17 @@
     "/styles": "Styles",
     "/styles/basics": "Bases",
     "/styles/advanced": "Avancé",
-    "https://themes.material-ui.com/": "Thèmes premium",
+    "https://material-ui.com/store/": "Store",
     "/components/material-icons": "Icônes Material Design",
     "/components/textarea-autosize": "Textarea Autosize (taille auto)",
     "/components/rating": "Rating (Notation)",
     "/components/skeleton": "Skeleton (Squelette)",
     "/components/tree-view": "Tree View (Vue arborescente)",
-    "/customization/density": "Densité"
+    "/customization/density": "Densité",
+    "/components/button-group": "Button Group",
+    "/components/floating-action-button": "Floating Action Button",
+    "/components/backdrop": "Backdrop",
+    "/components/alert": "Alert",
+    "/components/pagination": "Pagination"
   }
 }

@@ -19,7 +19,7 @@ and the un-prefixed shades for the other intentions.
 
 If you want to learn more about color, you can check out [the color section](/customization/color/).
 
-{{"demo": "pages/customization/palette/Intentions.js", "bg": "inline", "hideHeader": true}}
+{{"demo": "pages/customization/palette/Intentions.js", "bg": "inline", "hideToolbar": true}}
 
 ### Customization
 
@@ -132,7 +132,7 @@ const darkTheme = createMuiTheme({
 
 The colors modified by the palette type are the following:
 
-{{"demo": "pages/customization/palette/DarkTheme.js", "bg": "inline", "hideHeader": true}}
+{{"demo": "pages/customization/palette/DarkTheme.js", "bg": "inline", "hideToolbar": true}}
 
 ### User preference
 

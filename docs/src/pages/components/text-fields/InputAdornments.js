@@ -13,7 +13,7 @@ import TextField from '@material-ui/core/TextField';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -39,7 +39,7 @@ export default function InputAdornments() {
     showPassword: false,
   });
 
-  const handleChange = prop => event => {
+  const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
   };
 
@@ -47,7 +47,7 @@ export default function InputAdornments() {
     setValues({ ...values, showPassword: !values.showPassword });
   };
 
-  const handleMouseDownPassword = event => {
+  const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
 

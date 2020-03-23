@@ -71,7 +71,7 @@ describe('<StepContent />', () => {
     });
 
     it('should not apply the auto prop if not supported', () => {
-      const TransitionComponent = props => <div {...props} />;
+      const TransitionComponent = (props) => <div {...props} />;
       const wrapper = shallow(
         <StepContent {...defaultProps} TransitionComponent={TransitionComponent}>
           <div />

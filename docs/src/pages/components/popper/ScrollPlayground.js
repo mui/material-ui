@@ -14,7 +14,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Switch from '@material-ui/core/Switch';
 import TextField from '@material-ui/core/TextField';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
@@ -113,10 +113,10 @@ export default function ScrollPlayground() {
   const [preventOverflow, setPreventOverflow] = React.useState('scrollParent');
 
   const handleClickButton = () => {
-    setOpen(prevOpen => !prevOpen);
+    setOpen((prevOpen) => !prevOpen);
   };
 
-  const centerScroll = element => {
+  const centerScroll = (element) => {
     if (!element) {
       return;
     }
@@ -231,7 +231,7 @@ export default function ScrollPlayground() {
                 inputProps: { 'aria-labelledby': 'scroll-playground-placement-label' },
               }}
               value={placement}
-              onChange={event => {
+              onChange={(event) => {
                 setPlacement(event.target.value);
               }}
             >
@@ -253,7 +253,7 @@ export default function ScrollPlayground() {
             control={
               <Switch
                 checked={disablePortal}
-                onChange={event => {
+                onChange={(event) => {
                   setDisablePortal(event.target.checked);
                 }}
                 value="disablePortal"
@@ -278,7 +278,7 @@ export default function ScrollPlayground() {
                 inputProps: { 'aria-labelledby': 'scroll-playground-overflow-label' },
               }}
               value={preventOverflow}
-              onChange={event => {
+              onChange={(event) => {
                 setPreventOverflow(event.target.value);
               }}
             >
@@ -292,7 +292,7 @@ export default function ScrollPlayground() {
             control={
               <Switch
                 checked={flip}
-                onChange={event => {
+                onChange={(event) => {
                   setFlip(event.target.checked);
                 }}
                 value="flip"
@@ -307,7 +307,7 @@ export default function ScrollPlayground() {
             control={
               <Switch
                 checked={arrow}
-                onChange={event => {
+                onChange={(event) => {
                   setArrow(event.target.checked);
                 }}
                 value="arrow"

@@ -46,7 +46,7 @@ function getDefaultValue(propertyPath) {
 }
 
 function getJsdocDefaultValue(jsdoc) {
-  const defaultTag = jsdoc.tags.find(tag => tag.title === 'default');
+  const defaultTag = jsdoc.tags.find((tag) => tag.title === 'default');
   if (defaultTag === undefined) {
     return undefined;
   }
@@ -55,8 +55,8 @@ function getJsdocDefaultValue(jsdoc) {
 
 function getDefaultValuesFromProps(properties, documentation) {
   properties
-    .filter(propertyPath => types.Property.check(propertyPath.node))
-    .forEach(propertyPath => {
+    .filter((propertyPath) => types.Property.check(propertyPath.node))
+    .forEach((propertyPath) => {
       const propName = getPropertyName(propertyPath);
       if (!propName) return;
 
@@ -93,10 +93,10 @@ function getPropsPath(functionBody) {
   let propsPath;
   // visitVariableDeclarator, can't use visit body.node since it looses scope information
   functionBody
-    .filter(path => {
+    .filter((path) => {
       return types.VariableDeclaration.check(path.node);
     })
-    .forEach(path => {
+    .forEach((path) => {
       const declaratorPath = path.get('declarations', 0);
       if (declaratorPath.get('init', 'name').value === 'props') {
         propsPath = declaratorPath.get('id');

@@ -123,7 +123,7 @@ import { createStyles, makeStyles } from '@material-ui/styles';
   {
     // If any generic is provided, inferrence breaks.
     // If the proposal https://github.com/Microsoft/TypeScript/issues/26242 goes through, we can fix this.
-    const useStyles = makeStyles<Theme>(theme => ({
+    const useStyles = makeStyles<Theme>((theme) => ({
       root: {
         background: 'blue',
       },

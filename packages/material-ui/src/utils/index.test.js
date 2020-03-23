@@ -77,7 +77,7 @@ describe('utils/index.js', () => {
         const { innerRef } = props;
         const ownRef = React.useRef(null);
         const [, forceUpdate] = React.useState(0);
-        React.useEffect(() => forceUpdate(n => !n), []);
+        React.useEffect(() => forceUpdate((n) => !n), []);
 
         const handleRef = useForkRef(innerRef, ownRef);
 

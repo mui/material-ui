@@ -154,7 +154,7 @@ ColorlibStepIcon.propTypes = {
   icon: PropTypes.node,
 };
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
   },
@@ -190,11 +190,11 @@ export default function CustomizedSteppers() {
   const steps = getSteps();
 
   const handleNext = () => {
-    setActiveStep(prevActiveStep => prevActiveStep + 1);
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
   const handleBack = () => {
-    setActiveStep(prevActiveStep => prevActiveStep - 1);
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
   const handleReset = () => {
@@ -204,21 +204,21 @@ export default function CustomizedSteppers() {
   return (
     <div className={classes.root}>
       <Stepper alternativeLabel activeStep={activeStep}>
-        {steps.map(label => (
+        {steps.map((label) => (
           <Step key={label}>
             <StepLabel>{label}</StepLabel>
           </Step>
         ))}
       </Stepper>
       <Stepper alternativeLabel activeStep={activeStep} connector={<QontoConnector />}>
-        {steps.map(label => (
+        {steps.map((label) => (
           <Step key={label}>
             <StepLabel StepIconComponent={QontoStepIcon}>{label}</StepLabel>
           </Step>
         ))}
       </Stepper>
       <Stepper alternativeLabel activeStep={activeStep} connector={<ColorlibConnector />}>
-        {steps.map(label => (
+        {steps.map((label) => (
           <Step key={label}>
             <StepLabel StepIconComponent={ColorlibStepIcon}>{label}</StepLabel>
           </Step>

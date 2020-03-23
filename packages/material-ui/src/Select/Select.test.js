@@ -96,7 +96,7 @@ describe('<Select />', () => {
       <Select
         onBlur={handleBlur}
         value=""
-        onMouseDown={event => {
+        onMouseDown={(event) => {
           // simulating certain platforms that focus on mousedown
           if (event.defaultPrevented === false) {
             event.currentTarget.focus();
@@ -138,7 +138,7 @@ describe('<Select />', () => {
     expect(options[1]).to.have.attribute('data-value', '20');
   });
 
-  [' ', 'ArrowUp', 'ArrowDown', 'Enter'].forEach(key => {
+  [' ', 'ArrowUp', 'ArrowDown', 'Enter'].forEach((key) => {
     it(`should open menu when pressed ${key} key on select`, () => {
       const { getByRole } = render(
         <Select value="">
@@ -156,7 +156,7 @@ describe('<Select />', () => {
   });
 
   it('should pass "name" as part of the event.target for onBlur', () => {
-    const handleBlur = stub().callsFake(event => event.target.name);
+    const handleBlur = stub().callsFake((event) => event.target.name);
     const { getByRole } = render(
       <Select onBlur={handleBlur} name="blur-testing" value="">
         <MenuItem value="">none</MenuItem>
@@ -570,7 +570,7 @@ describe('<Select />', () => {
 
   describe('prop: renderValue', () => {
     it('should use the prop to render the value', () => {
-      const renderValue = x => `0b${x.toString(2)}`;
+      const renderValue = (x) => `0b${x.toString(2)}`;
       const { getByRole } = render(
         <Select renderValue={renderValue} value={4}>
           <MenuItem value={2}>2</MenuItem>
@@ -812,12 +812,12 @@ describe('<Select />', () => {
             if (currentValues.indexOf(valueClicked) === -1) {
               return currentValues.concat(valueClicked);
             }
-            return currentValues.filter(value => {
+            return currentValues.filter((value) => {
               return value !== valueClicked;
             });
           }, []);
 
-          const handleChange = event => {
+          const handleChange = (event) => {
             onChange(event);
             clickedValue(event.target.value);
           };
@@ -830,7 +830,7 @@ describe('<Select />', () => {
             </Select>
           );
         }
-        const onChange = stub().callsFake(event => {
+        const onChange = stub().callsFake((event) => {
           return {
             name: event.target.name,
             value: event.target.value,
@@ -931,7 +931,7 @@ describe('<Select />', () => {
   });
 
   it('prevents the default when releasing Space on the children', () => {
-    const keyUpSpy = spy(event => event.defaultPrevented);
+    const keyUpSpy = spy((event) => event.defaultPrevented);
     render(
       <Select value="one" open>
         <MenuItem onKeyUp={keyUpSpy} value="one">

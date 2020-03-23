@@ -112,7 +112,7 @@ export function responsiveProperty({
   };
 
   const factor = (max - min) / breakpoints[breakpoints.length - 1];
-  breakpoints.forEach(breakpoint => {
+  breakpoints.forEach((breakpoint) => {
     let value = min + factor * breakpoint;
 
     if (transform !== null) {

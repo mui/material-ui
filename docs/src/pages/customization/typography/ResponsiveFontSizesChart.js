@@ -30,9 +30,9 @@ const useStyles = makeStyles({
 export default function ResponsiveFontSizes() {
   const classes = useStyles();
   const convert = convertLength(theme.typography.htmlFontSize);
-  const toPx = rem => parseFloat(convert(rem, 'px'));
+  const toPx = (rem) => parseFloat(convert(rem, 'px'));
 
-  const series = variants.map(variantName => {
+  const series = variants.map((variantName) => {
     const variant = theme.typography[variantName];
     const data = [];
 
@@ -41,7 +41,7 @@ export default function ResponsiveFontSizes() {
       fontSize: toPx(variant.fontSize),
     });
 
-    theme.breakpoints.keys.forEach(key => {
+    theme.breakpoints.keys.forEach((key) => {
       const viewport = theme.breakpoints.values[key];
       const value = theme.breakpoints.up(key);
 

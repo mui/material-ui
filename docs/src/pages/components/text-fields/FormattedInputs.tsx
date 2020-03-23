@@ -49,7 +49,7 @@ function NumberFormatCustom(props: NumberFormatCustomProps) {
     <NumberFormat
       {...other}
       getInputRef={inputRef}
-      onValueChange={values => {
+      onValueChange={(values) => {
         onChange({
           target: {
             value: values.value,

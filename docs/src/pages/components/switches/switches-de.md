@@ -9,17 +9,19 @@ components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel
 
 [Schalter](https://material.io/design/components/selection-controls.html#switches) sind die bevorzugte Methode zum Anpassen der Einstellungen auf dem Handy. Die Option, die der Schalter steuert, sowie der Status, in dem er sich befindet, sollte aus dem entsprechenden Inline-Label hervorgehen.
 
+## Basic switches
+
 {{"demo": "pages/components/switches/Switches.js"}}
 
-## Schalter mit FormControlLabel
+## Switch with FormControlLabel
 
-Ein `Schalter` kann dank der `FormControlLabel` Komponente auch mit einer Etikettenbeschreibung verwendet werden.
+`Switch` can be provided with a description thanks to the `FormControlLabel` component.
 
 {{"demo": "pages/components/switches/SwitchLabels.js"}}
 
 ## Schalter mit FormGroup
 
-`FormGroup` ist ein hilfreicher Wrapper zum Gruppieren von Auswahlsteuerungskomponenten, welcher eine einfachere API bietet. However, we encourage you to use a [Checkbox](/components/checkboxes/) instead.
+`FormGroup` ist ein hilfreicher Wrapper zum Gruppieren von Auswahlsteuerungskomponenten, welcher eine einfachere API bietet. However, you are encouraged you to use [Checkboxes](/components/checkboxes/) instead if multiple related controls are required. (See: [When to use](#when-to-use)).
 
 {{"demo": "pages/components/switches/SwitchesGroup.js"}}
 

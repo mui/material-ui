@@ -13,7 +13,7 @@ import Chip from '@material-ui/core/Chip';
 import FaceIcon from '@material-ui/icons/Face';
 import DoneIcon from '@material-ui/icons/Done';
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     flexGrow: 1,
   },
@@ -33,8 +33,8 @@ function ChipsPlayground(props) {
     size: 'medium',
   });
 
-  const handleChange = event => {
-    setState(state => ({
+  const handleChange = (event) => {
+    setState((state) => ({
       ...state,
       [event.target.name]: event.target.value,
     }));

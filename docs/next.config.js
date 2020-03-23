@@ -142,7 +142,7 @@ module.exports = {
     function traverse(pages2, userLanguage) {
       const prefix = userLanguage === 'en' ? '' : `/${userLanguage}`;
 
-      pages2.forEach(page => {
+      pages2.forEach((page) => {
         if (!page.children) {
           map[`${prefix}${page.pathname.replace(/^\/api-docs\/(.*)/, '/api/$1')}`] = {
             page: page.pathname,
@@ -165,7 +165,7 @@ module.exports = {
     } else {
       // eslint-disable-next-line no-console
       console.log('Considering various locales for SSR');
-      LANGUAGES_SSR.forEach(userLanguage => {
+      LANGUAGES_SSR.forEach((userLanguage) => {
         traverse(pages, userLanguage);
       });
     }

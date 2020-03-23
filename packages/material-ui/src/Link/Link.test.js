@@ -64,7 +64,7 @@ describe('<Link />', () => {
         </Link>,
       );
 
-      events.forEach(n => {
+      events.forEach((n) => {
         const event = n.charAt(2).toLowerCase() + n.slice(3);
         wrapper.simulate(event, { target: { tagName: 'a' } });
         assert.strictEqual(handlers[n].callCount, 1, `should have called the ${n} handler`);

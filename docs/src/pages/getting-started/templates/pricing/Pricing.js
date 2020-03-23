@@ -28,7 +28,7 @@ function Copyright() {
   );
 }
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   '@global': {
     ul: {
       margin: 0,
@@ -166,7 +166,7 @@ export default function Pricing() {
       {/* End hero unit */}
       <Container maxWidth="md" component="main">
         <Grid container spacing={5} alignItems="flex-end">
-          {tiers.map(tier => (
+          {tiers.map((tier) => (
             // Enterprise card is full width at sm breakpoint
             <Grid item key={tier.title} xs={12} sm={tier.title === 'Enterprise' ? 12 : 6} md={4}>
               <Card>
@@ -188,7 +188,7 @@ export default function Pricing() {
                     </Typography>
                   </div>
                   <ul>
-                    {tier.description.map(line => (
+                    {tier.description.map((line) => (
                       <Typography component="li" variant="subtitle1" align="center" key={line}>
                         {line}
                       </Typography>
@@ -208,13 +208,13 @@ export default function Pricing() {
       {/* Footer */}
       <Container maxWidth="md" component="footer" className={classes.footer}>
         <Grid container spacing={4} justify="space-evenly">
-          {footers.map(footer => (
+          {footers.map((footer) => (
             <Grid item xs={6} sm={3} key={footer.title}>
               <Typography variant="h6" color="textPrimary" gutterBottom>
                 {footer.title}
               </Typography>
               <ul>
-                {footer.description.map(item => (
+                {footer.description.map((item) => (
                   <li key={item}>
                     <Link href="#" variant="subtitle1" color="textSecondary">
                       {item}

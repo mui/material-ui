@@ -7,7 +7,7 @@ import { fade, withStyles } from '@material-ui/core/styles';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import { capitalize } from '@material-ui/core/utils';
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     ...theme.typography.button,
@@ -84,7 +84,7 @@ const ToggleButton = React.forwardRef(function ToggleButton(props, ref) {
     ...other
   } = props;
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     if (onClick) {
       onClick(event, value);
       if (event.isDefaultPrevented()) {

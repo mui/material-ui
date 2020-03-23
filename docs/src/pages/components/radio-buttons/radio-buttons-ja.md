@@ -11,21 +11,29 @@ components: Radio, RadioGroup, FormControl, FormLabel, FormControlLabel
 
 ラジオボタンは、デフォルトで最も一般的に使用されるオプションで設定されています。
 
+## RadioGroup
+
 `RadioGroup` は、 `Radio` コンポーネントをグループ化するのに使用される便利なラッパーで、より簡単なAPIと、グループへの適切なキーボードアクセシビリティを提供します。
 
 {{"demo": "pages/components/radio-buttons/RadioButtonsGroup.js"}}
 
-## スタンドアロンラジオボタン
+## Standalone radio buttons
 
-`Radio` は、ラッパーなしでスタンドアロンでも使用できます。
+`Radio` can also be used standalone, without the RadioGroup wrapper.
 
 {{"demo": "pages/components/radio-buttons/RadioButtons.js"}}
 
 ## ラベルの配置
 
-ラベルの配置は自由に変更できます。
+You can change the placement of the label with the `FormControlLabel` component's `labelPlacement` prop:
 
-{{"demo": "pages/components/radio-buttons/FormControlLabelPosition.js"}}
+{{"demo": "pages/components/radio-buttons/FormControlLabelPlacement.js"}}
+
+## Show error
+
+In general, radio buttons should have a value selected by default. If this is not the case, you can display an error if no value is selected when the form is submitted:
+
+{{"demo": "pages/components/radio-buttons/ErrorRadios.js"}}
 
 ## カスタマイズされたラジオ
 

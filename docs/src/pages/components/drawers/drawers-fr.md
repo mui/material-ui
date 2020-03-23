@@ -19,7 +19,7 @@ The Drawer can be cancelled by clicking the overlay or pressing the Esc key. It 
 
 {{"demo": "pages/components/drawers/TemporaryDrawer.js"}}
 
-## Swipeable Temporary drawer
+### Swipeable
 
 You can make the drawer swipeable with the `SwipeableDrawer` component.
 

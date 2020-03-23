@@ -21,7 +21,7 @@ describe('createTypography', () => {
   });
 
   it('should accept a function', () => {
-    const typography = createTypography(palette, paletteCurrent => {
+    const typography = createTypography(palette, (paletteCurrent) => {
       assert.strictEqual(palette, paletteCurrent);
 
       return { fontSize: 15 };
@@ -63,7 +63,7 @@ describe('createTypography', () => {
       'overline',
     ];
 
-    allVariants.forEach(variant => {
+    allVariants.forEach((variant) => {
       assert.strictEqual(typography[variant].marginLeft, 0);
     });
   });

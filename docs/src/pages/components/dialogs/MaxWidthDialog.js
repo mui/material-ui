@@ -13,7 +13,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import Switch from '@material-ui/core/Switch';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   form: {
     display: 'flex',
     flexDirection: 'column',
@@ -43,11 +43,11 @@ export default function MaxWidthDialog() {
     setOpen(false);
   };
 
-  const handleMaxWidthChange = event => {
+  const handleMaxWidthChange = (event) => {
     setMaxWidth(event.target.value);
   };
 
-  const handleFullWidthChange = event => {
+  const handleFullWidthChange = (event) => {
     setFullWidth(event.target.checked);
   };
 

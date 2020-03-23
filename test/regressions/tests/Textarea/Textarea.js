@@ -24,7 +24,7 @@ function Textarea() {
   );
   const classes = useStyles();
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     setValue(event.target.value);
   };
 

@@ -9,17 +9,19 @@ components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel
 
 [スイッチ](https://material.io/design/components/selection-controls.html#switches) は、モバイルの設定を調整するための好ましい方法です。 The option that the switch controls, as well as the state it’s in, should be made clear from the corresponding inline label.
 
+## Basic switches
+
 {{"demo": "pages/components/switches/Switches.js"}}
 
-## FormControlLabelを使用したスイッチ
+## Switch with FormControlLabel
 
-`Switch` コンポーネントは `FormControlLabel`コンポーネントを説明のラベルとして使うことができます。
+`Switch` can be provided with a description thanks to the `FormControlLabel` component.
 
 {{"demo": "pages/components/switches/SwitchLabels.js"}}
 
 ## FormGroupを使用したスイッチ
 
-`FormGroup` は、より簡単なAPIを提供する選択コントロールコンポーネントをグループ化するために使用される便利なラッパーです。 However, we encourage you to use a [Checkbox](/components/checkboxes/) instead.
+`FormGroup` は、より簡単なAPIを提供する選択コントロールコンポーネントをグループ化するために使用される便利なラッパーです。 However, you are encouraged you to use [Checkboxes](/components/checkboxes/) instead if multiple related controls are required. (See: [When to use](#when-to-use)).
 
 {{"demo": "pages/components/switches/SwitchesGroup.js"}}
 

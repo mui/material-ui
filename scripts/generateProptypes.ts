@@ -43,8 +43,8 @@ async function generateProptypes(
     return GenerateResult.NoComponent;
   }
 
-  proptypes.body.forEach(component => {
-    component.types.forEach(prop => {
+  proptypes.body.forEach((component) => {
+    component.types.forEach((prop) => {
       if (prop.name === 'classes' && prop.jsDoc) {
         prop.jsDoc += '\nSee [CSS API](#css) below for more details.';
       } else if (prop.name === 'children' && !prop.jsDoc) {
@@ -100,7 +100,7 @@ async function run() {
     [
       path.resolve(__dirname, '../packages/material-ui/src'),
       path.resolve(__dirname, '../packages/material-ui-lab/src'),
-    ].map(folderPath =>
+    ].map((folderPath) =>
       glob('+([A-Z])*/+([A-Z])*.d.ts', {
         absolute: true,
         cwd: folderPath,
@@ -111,7 +111,7 @@ async function run() {
   const files = _.flatten(allFiles)
     // Filter out files where the directory name and filename doesn't match
     // Example: Modal/ModalManager.d.ts
-    .filter(filePath => {
+    .filter((filePath) => {
       const folderName = path.basename(path.dirname(filePath));
       const fileName = path.basename(filePath, '.d.ts');
 
@@ -120,7 +120,7 @@ async function run() {
 
   const program = ttp.createProgram(files, tsconfig);
 
-  const promises = files.map<Promise<GenerateResult>>(async tsFile => {
+  const promises = files.map<Promise<GenerateResult>>(async (tsFile) => {
     const jsFile = tsFile.replace('.d.ts', '.js');
 
     if (!ignoreCache && (await fse.stat(jsFile)).mtimeMs > (await fse.stat(tsFile)).mtimeMs) {
@@ -140,7 +140,7 @@ async function run() {
   }
 
   console.log('--- Summary ---');
-  const groups = _.groupBy(results, x => x);
+  const groups = _.groupBy(results, (x) => x);
 
   _.forOwn(groups, (count, key) => {
     console.log('%s: %d', GenerateResult[(key as unknown) as GenerateResult], count.length);
@@ -149,7 +149,7 @@ async function run() {
   console.log('Total: %d', results.length);
 }
 
-run().catch(error => {
+run().catch((error) => {
   console.error(error);
   process.exit(1);
 });

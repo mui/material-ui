@@ -14,7 +14,7 @@ import PrintIcon from '@material-ui/icons/Print';
 import ShareIcon from '@material-ui/icons/Share';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     transform: 'translateZ(0px)',
     flexGrow: 1,
@@ -54,11 +54,11 @@ export default function SpeedDials() {
   const [open, setOpen] = React.useState(false);
   const [hidden, setHidden] = React.useState(false);
 
-  const handleDirectionChange = event => {
+  const handleDirectionChange = (event) => {
     setDirection(event.target.value);
   };
 
-  const handleHiddenChange = event => {
+  const handleHiddenChange = (event) => {
     setHidden(event.target.checked);
   };
 
@@ -102,7 +102,7 @@ export default function SpeedDials() {
           open={open}
           direction={direction}
         >
-          {actions.map(action => (
+          {actions.map((action) => (
             <SpeedDialAction
               key={action.name}
               icon={action.icon}

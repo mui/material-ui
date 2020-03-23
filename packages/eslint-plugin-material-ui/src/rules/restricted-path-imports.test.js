@@ -1,7 +1,9 @@
 const eslint = require('eslint');
 const rule = require('./restricted-path-imports');
 
-const ruleTester = new eslint.RuleTester({ parserOptions: { sourceType: 'module' } });
+const ruleTester = new eslint.RuleTester({
+  parserOptions: { ecmaVersion: 2015, sourceType: 'module' },
+});
 ruleTester.run('restricted-path-imports', rule, {
   valid: [
     "import { Button } from '@material-ui/core'",

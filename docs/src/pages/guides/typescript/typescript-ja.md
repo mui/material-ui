@@ -239,8 +239,7 @@ declare module '@material-ui/core/styles/createMuiTheme' {
 **./styles/createMyTheme**:
 
 ```ts
-import { createMuiTheme } from '@material-ui/core/styles';
-import { ThemeOptions } from '@material-ui/core/styles/createMuiTheme';
+import { createMuiTheme, ThemeOptions } from '@material-ui/core/styles';
 
 export default function createMyTheme(options: ThemeOptions) {
   return createMuiTheme({

@@ -55,7 +55,7 @@ describe('<Table />', () => {
     render(
       <Table>
         <TableContext.Consumer>
-          {value => {
+          {(value) => {
             context = value;
             return <tbody />;
           }}

@@ -39,6 +39,17 @@ export type PaperClassKey =
   | 'elevation23'
   | 'elevation24';
 
+/**
+ *
+ * Demos:
+ *
+ * - [Cards](https://material-ui.com/components/cards/)
+ * - [Paper](https://material-ui.com/components/paper/)
+ *
+ * API:
+ *
+ * - [Paper API](https://material-ui.com/api/paper/)
+ */
 declare const Paper: React.ComponentType<PaperProps>;
 
 export default Paper;
