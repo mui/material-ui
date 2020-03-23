@@ -42,24 +42,28 @@ export default function SimpleModal() {
     setOpen(false);
   };
 
+  const body = (
+    <div style={modalStyle} className={classes.paper}>
+      <h2 id="simple-modal-title">Text in a modal</h2>
+      <p id="simple-modal-description">
+        Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+      </p>
+      <SimpleModal />
+    </div>
+  );
+
   return (
     <div>
       <button type="button" onClick={handleOpen}>
         Open Modal
       </button>
       <Modal
-        aria-labelledby="simple-modal-title"
-        aria-describedby="simple-modal-description"
         open={open}
         onClose={handleClose}
+        aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description"
       >
-        <div style={modalStyle} className={classes.paper}>
-          <h2 id="simple-modal-title">Text in a modal</h2>
-          <p id="simple-modal-description">
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </p>
-          <SimpleModal />
-        </div>
+        {body}
       </Modal>
     </div>
   );
