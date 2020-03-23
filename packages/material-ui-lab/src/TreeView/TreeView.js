@@ -320,7 +320,10 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
       lastSelectedNode.current = id;
       lastSelectionWasRange.current = false;
       currentRangeSelection.current = [];
+
+      return true;
     }
+    return false;
   };
 
   const selectRange = (event, nodes, stacked = false) => {
@@ -331,6 +334,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
       handleRangeSelect(event, { start, end });
     }
     lastSelectionWasRange.current = true;
+    return true;
   };
 
   const rangeSelectToFirst = (event, id) => {
@@ -340,7 +344,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
 
     const start = lastSelectionWasRange.current ? lastSelectedNode.current : id;
 
-    selectRange(event, {
+    return selectRange(event, {
       start,
       end: getFirstNode(),
     });
@@ -353,7 +357,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
 
     const start = lastSelectionWasRange.current ? lastSelectedNode.current : id;
 
-    selectRange(event, {
+    return selectRange(event, {
       start,
       end: getLastNode(),
     });
@@ -483,6 +487,10 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     }
   }, [expanded, childrenCalculated, isExpanded]);
 
+  const noopSelection = () => {
+    return false;
+  };
+
   return (
     <TreeViewContext.Provider
       value={{
@@ -498,16 +506,15 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
         isExpanded,
         isFocused,
         isSelected,
-        selectNode,
-        selectRange,
-        selectNextNode,
-        selectPreviousNode,
-        rangeSelectToFirst,
-        rangeSelectToLast,
-        selectAllNodes,
+        selectNode: disableSelection ? noopSelection : selectNode,
+        selectRange: disableSelection ? noopSelection : selectRange,
+        selectNextNode: disableSelection ? noopSelection : selectNextNode,
+        selectPreviousNode: disableSelection ? noopSelection : selectPreviousNode,
+        rangeSelectToFirst: disableSelection ? noopSelection : rangeSelectToFirst,
+        rangeSelectToLast: disableSelection ? noopSelection : rangeSelectToLast,
+        selectAllNodes: disableSelection ? noopSelection : selectAllNodes,
         isTabbable,
         multiSelect,
-        selectionDisabled: disableSelection,
         getParent,
         mapFirstChar,
         addNodeToNodeMap,

@@ -122,7 +122,6 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     isSelected,
     isTabbable,
     multiSelect,
-    selectionDisabled,
     getParent,
     mapFirstChar,
     addNodeToNodeMap,
@@ -171,16 +170,14 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
       toggleExpansion(event, nodeId);
     }
 
-    if (!selectionDisabled) {
-      if (multiple) {
-        if (event.shiftKey) {
-          selectRange(event, { end: nodeId });
-        } else {
-          selectNode(event, nodeId, true);
-        }
+    if (multiple) {
+      if (event.shiftKey) {
+        selectRange(event, { end: nodeId });
       } else {
-        selectNode(event, nodeId);
+        selectNode(event, nodeId, true);
       }
+    } else {
+      selectNode(event, nodeId);
     }
 
     if (onClick) {
@@ -243,17 +240,13 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
 
     switch (key) {
       case ' ':
-        if (!selectionDisabled) {
-          if (nodeRef.current === event.currentTarget) {
-            if (multiSelect && event.shiftKey) {
-              selectRange(event, { end: nodeId });
-            } else if (multiSelect) {
-              selectNode(event, nodeId, true);
-            } else {
-              selectNode(event, nodeId);
-            }
-
-            flag = true;
+        if (nodeRef.current === event.currentTarget) {
+          if (multiSelect && event.shiftKey) {
+            flag = selectRange(event, { end: nodeId });
+          } else if (multiSelect) {
+            flag = selectNode(event, nodeId, true);
+          } else {
+            flag = selectNode(event, nodeId);
           }
         }
         event.stopPropagation();
@@ -266,14 +259,14 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
         event.stopPropagation();
         break;
       case 'ArrowDown':
-        if (multiSelect && event.shiftKey && !selectionDisabled) {
+        if (multiSelect && event.shiftKey) {
           selectNextNode(event, nodeId);
         }
         focusNextNode(nodeId);
         flag = true;
         break;
       case 'ArrowUp':
-        if (multiSelect && event.shiftKey && !selectionDisabled) {
+        if (multiSelect && event.shiftKey) {
           selectPreviousNode(event, nodeId);
         }
         focusPreviousNode(nodeId);
@@ -294,14 +287,14 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
         }
         break;
       case 'Home':
-        if (multiSelect && ctrlPressed && event.shiftKey && !selectionDisabled) {
+        if (multiSelect && ctrlPressed && event.shiftKey) {
           rangeSelectToFirst(event, nodeId);
         }
         focusFirstNode();
         flag = true;
         break;
       case 'End':
-        if (multiSelect && ctrlPressed && event.shiftKey && !selectionDisabled) {
+        if (multiSelect && ctrlPressed && event.shiftKey) {
           rangeSelectToLast(event, nodeId);
         }
         focusLastNode();
@@ -311,9 +304,8 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
         if (key === '*') {
           expandAllSiblings(event, nodeId);
           flag = true;
-        } else if (multiSelect && ctrlPressed && key.toLowerCase() === 'a' && !selectionDisabled) {
-          selectAllNodes(event);
-          flag = true;
+        } else if (multiSelect && ctrlPressed && key.toLowerCase() === 'a') {
+          flag = selectAllNodes(event);
         } else if (isPrintableCharacter(key)) {
           flag = printableCharacter(event, key);
         }

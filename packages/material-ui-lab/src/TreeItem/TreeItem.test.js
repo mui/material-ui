@@ -723,7 +723,7 @@ describe('<TreeItem />', () => {
 
           getByTestId('one').focus();
           fireEvent.keyDown(document.activeElement, { key: ' ' });
-          expect(getByTestId('one')).not.to.have.class('Mui-selected');
+          expect(getByTestId('one')).not.to.have.attribute('aria-selected');
         });
       });
 
@@ -748,7 +748,7 @@ describe('<TreeItem />', () => {
           );
 
           fireEvent.click(getByText('one'));
-          expect(getByTestId('one')).not.to.have.class('Mui-selected');
+          expect(getByTestId('one')).not.to.have.attribute('aria-selected');
         });
       });
     });
