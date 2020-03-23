@@ -484,7 +484,7 @@ describe('<Tooltip />', () => {
 
     // https://github.com/mui-org/material-ui/issues/19883
     it('should not prevent event handlers of children', () => {
-      const handleFocus = spy(event => event.currentTarget);
+      const handleFocus = spy((event) => event.currentTarget);
       // Tooltip should not assume that event handlers of children are attached to the
       // outermost host
       const TextField = React.forwardRef(function TextField(props, ref) {

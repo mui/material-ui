@@ -280,14 +280,10 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     }
   };
 
-  const handleEnter = (forward = true) => event => {
+  const handleEnter = (forward = true) => (event) => {
     const childrenProps = children.props;
 
-    if (
-      event.type === 'mouseover' &&
-      childrenProps.onMouseOver &&
-      forward
-    ) {
+    if (event.type === 'mouseover' && childrenProps.onMouseOver && forward) {
       childrenProps.onMouseOver(event);
     }
 
@@ -326,7 +322,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     }
   };
 
-  const handleFocus = (forward = true) => event => {
+  const handleFocus = (forward = true) => (event) => {
     // Workaround for https://github.com/facebook/react/issues/7769
     // The autoFocus of React might trigger the event before the componentDidMount.
     // We need to account for this eventuality.
@@ -362,7 +358,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     }, theme.transitions.duration.shortest);
   };
 
-  const handleLeave = (forward = true) => event => {
+  const handleLeave = (forward = true) => (event) => {
     const childrenProps = children.props;
 
     if (event.type === 'blur') {
