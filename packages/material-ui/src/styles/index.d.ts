@@ -1,10 +1,6 @@
 export * from './colorManipulator';
 export { default as createMuiTheme, ThemeOptions, Theme, Direction } from './createMuiTheme';
-export {
-  default as createPalette,
-  PaletteColorOptions,
-  SimplePaletteColorOptions,
-} from './createPalette';
+export { PaletteColorOptions, SimplePaletteColorOptions } from './createPalette';
 export { default as createStyles } from './createStyles';
 export { TypographyStyle, Variant as TypographyVariant } from './createTypography';
 export { default as makeStyles } from './makeStyles';
