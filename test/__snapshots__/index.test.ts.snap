@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`runs 1`] = `
+Object {
+  "body": Array [
+    Object {
+      "name": "Foo",
+      "type": "ComponentNode",
+      "types": Array [
+        Object {
+          "jsDoc": undefined,
+          "name": "bar",
+          "propType": Object {
+            "type": "StringNode",
+          },
+          "type": "PropTypeNode",
+        },
+      ],
+    },
+  ],
+  "type": "ProgramNode",
+}
+`;
