@@ -9,7 +9,7 @@
 		"sourceMap": true,
 		"declaration": true,
 		"outDir": "dist",
-		"jsx": "react"
+		"jsx": "preserve"
 	},
-	"include": ["src"]
+	"include": ["src", "test"]
 }
