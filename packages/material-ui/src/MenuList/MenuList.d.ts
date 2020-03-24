@@ -4,12 +4,12 @@ import { ListProps, ListClassKey } from '../List';
 
 export interface MenuListProps extends StandardProps<ListProps, MenuListClassKey> {
   /**
-   * If `true`, will focus the `[role="menu"]` container and move into tab order
+   * If `true`, will focus the `[role="menu"]` container and move into tab order.
    */
   autoFocus?: boolean;
   /**
    * If `true`, will focus the first menuitem if `variant="menu"` or selected item
-   * if `variant="selectedMenu"`
+   * if `variant="selectedMenu"`.
    */
   autoFocusItem?: boolean;
   /**
@@ -43,6 +43,4 @@ export type MenuListClassKey = ListClassKey;
  * - [MenuList API](https://material-ui.com/api/menu-list/)
  * - inherits [List API](https://material-ui.com/api/list/)
  */
-declare const MenuList: React.ComponentType<MenuListProps>;
-
-export default MenuList;
+export default function MenuList(props: MenuListProps): JSX.Element;
