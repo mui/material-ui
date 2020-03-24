@@ -616,7 +616,6 @@ const appList = [
       ' with a GraphQL backend written in Golang',
     image: 'googlekeepclone.jpg',
     link: 'http://googlekeep-anselm94.herokuapp.com/',
-    similarWebVisits: 100,
     source: 'https://github.com/anselm94/googlekeepclone',
     stars: 13,
     dateAdded: '2020-03-25',
