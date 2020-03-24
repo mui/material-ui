@@ -611,8 +611,9 @@ const appList = [
   },
   {
     title: 'A Clone of Google Keep',
-    description: 'A twin-looking Google Keep clone with light/dark Material theme as adapted exactly in Google Keep,' + 
-                 ' with a GraphQL backend written in Golang',
+    description:
+      'A twin-looking Google Keep clone with light/dark Material theme as adapted exactly in Google Keep,' +
+      ' with a GraphQL backend written in Golang',
     image: 'googlekeepclone.jpg',
     link: 'http://googlekeep-anselm94.herokuapp.com/',
     similarWebVisits: 100,
