@@ -6,7 +6,7 @@ import { SelectInputProps } from './SelectInput';
 
 export interface SelectProps
   extends StandardProps<InputProps, SelectClassKey, 'value' | 'onChange'>,
-    Pick<SelectInputProps, 'onChange'> {
+    Pick<SelectInputProps, 'onChange'> implements InputProps {
   autoWidth?: boolean;
   displayEmpty?: boolean;
   IconComponent?: React.ElementType;
