@@ -31,10 +31,10 @@ export const LocalizationProvider: React.FC<LocalizationProviderProps> = ({
 LocalizationProvider.propTypes = {
   dateAdapter: PropTypes.func.isRequired,
   locale: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-  children: PropTypes.oneOfType([
-    PropTypes.element.isRequired,
-    PropTypes.arrayOf(PropTypes.element.isRequired),
-  ]).isRequired,
+  /**
+   * Your component tree.
+   */
+  children: PropTypes.node.isRequired,
 } as any;
 
 export default LocalizationProvider;
