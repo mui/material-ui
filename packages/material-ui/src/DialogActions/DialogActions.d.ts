@@ -21,4 +21,4 @@ export type DialogActionsClassKey = 'root' | 'spacing';
  *
  * - [DialogActions API](https://material-ui.com/api/dialog-actions/)
  */
-export default function DialogActions(props: DialogActionsProps): JSX.Eleement;
+export default function DialogActions(props: DialogActionsProps): JSX.Element;
