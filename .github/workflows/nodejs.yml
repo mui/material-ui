@@ -23,6 +23,13 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+
+      - name: Cache dependencies
+        uses: actions/cache@v1
+        with:
+          path: ~/.yarn/berry/cache
+          key: yarn2-${{ hashFiles('yarn.lock') }}
+
       - run: yarn
       - run: yarn build
       - run: yarn test
