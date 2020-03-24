@@ -3,9 +3,27 @@ import { StandardProps } from '..';
 import { ListProps, ListClassKey } from '../List';
 
 export interface MenuListProps extends StandardProps<ListProps, MenuListClassKey> {
+  /**
+   * If `true`, will focus the `[role="menu"]` container and move into tab order
+   */
   autoFocus?: boolean;
+  /**
+   * If `true`, will focus the first menuitem if `variant="menu"` or selected item
+   * if `variant="selectedMenu"`
+   */
   autoFocusItem?: boolean;
+  /**
+   * MenuList contents, normally `MenuItem`s.
+   */
+  children?: React.ReactNode;
+  /**
+   * If `true`, the menu items will not wrap focus.
+   */
   disableListWrap?: boolean;
+  /**
+   * The variant to use. Use `menu` to prevent selected items from impacting the initial focus
+   * and the vertical alignment relative to the anchor element.
+   */
   variant?: 'menu' | 'selectedMenu';
 }
 

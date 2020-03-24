@@ -253,11 +253,15 @@ const LinearProgress = React.forwardRef(function LinearProgress(props, ref) {
 });
 
 LinearProgress.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -280,7 +284,7 @@ LinearProgress.propTypes = {
    * The variant to use.
    * Use indeterminate or query when there is no progress value.
    */
-  variant: PropTypes.oneOf(['determinate', 'indeterminate', 'buffer', 'query']),
+  variant: PropTypes.oneOf(['buffer', 'determinate', 'indeterminate', 'query']),
 };
 
 export default withStyles(styles, { name: 'MuiLinearProgress' })(LinearProgress);

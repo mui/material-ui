@@ -3,6 +3,9 @@ import { StandardProps } from '..';
 
 export interface FormGroupProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, FormGroupClassKey> {
+  /**
+   * Display group of elements in a compact row.
+   */
   row?: boolean;
 }
 
@@ -21,6 +24,4 @@ export type FormGroupClassKey = 'root' | 'row';
  *
  * - [FormGroup API](https://material-ui.com/api/form-group/)
  */
-declare const FormGroup: React.ComponentType<FormGroupProps>;
-
-export default FormGroup;
+export default function FormGroup(props: FormGroupProps): JSX.Element;

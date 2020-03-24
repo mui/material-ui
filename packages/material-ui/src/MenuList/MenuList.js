@@ -85,6 +85,8 @@ const useEnhancedEffect = typeof window === 'undefined' ? React.useEffect : Reac
  */
 const MenuList = React.forwardRef(function MenuList(props, ref) {
   const {
+    // private
+    // eslint-disable-next-line react/prop-types
     actions,
     autoFocus = false,
     autoFocusItem = false,
@@ -259,10 +261,6 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
 });
 
 MenuList.propTypes = {
-  /**
-   * @ignore
-   */
-  actions: PropTypes.shape({ current: PropTypes.object }),
   /**
    * If `true`, will focus the `[role="menu"]` container and move into tab order
    */

@@ -1,6 +1,9 @@
 import { StandardProps } from '..';
 
 export interface ListItemAvatarProps extends StandardProps<{}, ListItemAvatarClassKey> {
+  /**
+   * The content of the component – normally `Avatar`.
+   */
   children: React.ReactElement;
 }
 

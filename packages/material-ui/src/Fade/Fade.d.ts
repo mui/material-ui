@@ -3,8 +3,20 @@ import { Theme } from '../styles/createMuiTheme';
 import { TransitionProps } from '../transitions/transition';
 
 export interface FadeProps extends TransitionProps {
+  /**
+   * A single child content element.
+   */
+  children?: React.ReactElement;
+  /**
+   * If `true`, the component will transition in.
+   */
+  in?: boolean;
   ref?: React.Ref<unknown>;
-  theme?: Theme;
+  /**
+   * The duration for the transition, in milliseconds.
+   * You may specify a single timeout for all transitions, or individually with an object.
+   */
+  timeout?: TransitionProps['timeout'];
 }
 
 /**

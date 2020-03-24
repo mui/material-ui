@@ -2,7 +2,12 @@ import * as React from 'react';
 import { StandardProps } from '..';
 
 export interface ExpansionPanelActionsProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, ExpansionPanelActionsClassKey> {}
+  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, ExpansionPanelActionsClassKey> {
+  /**
+   * If `true`, the actions do not have additional margin.
+   */
+  disableSpacing?: boolean;
+}
 
 export type ExpansionPanelActionsClassKey = 'root' | 'spacing';
 
