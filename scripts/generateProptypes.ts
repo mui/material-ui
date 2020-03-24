@@ -91,12 +91,12 @@ async function generateProptypes(
 }
 
 interface HandlerArgv {
-  'ignore-cache': boolean;
+  'disable-cache': boolean;
   pattern: string;
   verbose: boolean;
 }
 async function run(argv: HandlerArgv) {
-  const { 'ignore-cache': ignoreCache, pattern, verbose } = argv;
+  const { 'disable-cache': ignoreCache, pattern, verbose } = argv;
 
   const filePattern = new RegExp(pattern);
   if (pattern.length > 0) {
@@ -170,7 +170,7 @@ yargs
     describe: 'formats codebase',
     builder: (command) => {
       return command
-        .option('ignore-cache', {
+        .option('disable-cache', {
           default: false,
           describe: 'Considers all files on every run',
           type: 'boolean',
