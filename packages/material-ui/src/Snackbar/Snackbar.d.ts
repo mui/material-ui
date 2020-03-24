@@ -73,27 +73,27 @@ export interface SnackbarProps
   /**
    * Callback fired before the transition is entering.
    */
-  onEnter: TransitionHandlerProps['onEnter'];
+  onEnter?: TransitionHandlerProps['onEnter'];
   /**
    * Callback fired when the transition has entered.
    */
-  onEntered: TransitionHandlerProps['onEntered'];
+  onEntered?: TransitionHandlerProps['onEntered'];
   /**
    * Callback fired when the transition is entering.
    */
-  onEntering: TransitionHandlerProps['onEntering'];
+  onEntering?: TransitionHandlerProps['onEntering'];
   /**
    * Callback fired before the transition is exiting.
    */
-  onExit: TransitionHandlerProps['onExit'];
+  onExit?: TransitionHandlerProps['onExit'];
   /**
    * Callback fired when the transition has exited.
    */
-  onExited: TransitionHandlerProps['onExited'];
+  onExited?: TransitionHandlerProps['onExited'];
   /**
    * Callback fired when the transition is exiting.
    */
-  onExiting: TransitionHandlerProps['onExiting'];
+  onExiting?: TransitionHandlerProps['onExiting'];
   onMouseEnter?: React.MouseEventHandler<any>;
   onMouseLeave?: React.MouseEventHandler<any>;
   /**
