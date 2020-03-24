@@ -617,7 +617,7 @@ const appList = [
     image: 'googlekeepclone.jpg',
     link: 'http://googlekeep-anselm94.herokuapp.com/',
     source: 'https://github.com/anselm94/googlekeepclone',
-    stars: 13,
+    stars: 14,
     dateAdded: '2020-03-25',
   },
 ];
