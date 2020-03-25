@@ -61,11 +61,14 @@ export const styles = (theme) => ({
       fontSize: 18,
     },
   },
+  /* Styles applied to the label container. */
+  labelContainer: {
+    width: '100%',
+    position: 'relative',
+  },
   /* Styles applied to the label element. */
   label: {
-    width: '100%',
     paddingLeft: 4,
-    position: 'relative',
     '&:hover': {
       backgroundColor: theme.palette.action.hover,
       // Reset on touch devices, it doesn't add specificity
@@ -395,9 +398,15 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
         ref={contentRef}
       >
         <div className={classes.iconContainer}>{icon}</div>
-        <Typography component="div" className={classes.label}>
-          {label}
-        </Typography>
+        <div className={classes.labelContainer}>
+          {React.isValidElement(label) ? (
+            label
+          ) : (
+            <Typography component="div" className={classes.label}>
+              {label}
+            </Typography>
+          )}
+        </div>
       </div>
       {children && (
         <TransitionComponent
