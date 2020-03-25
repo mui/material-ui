@@ -440,9 +440,10 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
         if (id === oldTabbable) {
           const topNodes = newMap[-1].children;
           if (topNodes.length > 0) {
-            setTabbable(topNodes[0]);
+            return topNodes[0];
           }
         }
+        return oldTabbable;
       });
     },
     [getNodesToRemove],
