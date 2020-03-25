@@ -45,6 +45,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 | <span class="prop-name">filterSelectedOptions</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, hide the selected options from the list box. |
 | <span class="prop-name">forcePopupIcon</span> | <span class="prop-type">'auto'<br>&#124;&nbsp;bool</span> | <span class="prop-default">'auto'</span> | Force the visibility display of the popup icon. |
 | <span class="prop-name">freeSolo</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the Autocomplete is free solo, meaning that the user input is not bound to provided options. |
+| <span class="prop-name">getLimitTagsText</span> | <span class="prop-type">func</span> | <span class="prop-default">(more) => `+${more}`</span> | The label to display when the tags are truncated (`limitTags`).<br><br>**Signature:**<br>`function(more: number) => ReactNode`<br>*more:* The number of truncated tags. |
 | <span class="prop-name">getOptionDisabled</span> | <span class="prop-type">func</span> |  | Used to determine the disabled state for a given option. |
 | <span class="prop-name">getOptionLabel</span> | <span class="prop-type">func</span> | <span class="prop-default">(x) => x</span> | Used to determine the string value for a given option. It's used to fill the input (and the list box options if `renderOption` is not provided). |
 | <span class="prop-name">getOptionSelected</span> | <span class="prop-type">func</span> |  | Used to determine if an option is selected. Uses strict equality by default. |
@@ -52,6 +53,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 | <span class="prop-name">id</span> | <span class="prop-type">string</span> |  | This prop is used to help implement the accessibility logic. If you don't provide this prop. It falls back to a randomly generated id. |
 | <span class="prop-name">includeInputInList</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the highlight can move to the input. |
 | <span class="prop-name">inputValue</span> | <span class="prop-type">string</span> |  | The input value. |
+| <span class="prop-name">limitTags</span> | <span class="prop-type">number</span> | <span class="prop-default">-1</span> | The maximum number of tags that will be visible when not focused. Set `-1` to disable the limit. |
 | <span class="prop-name">ListboxComponent</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'ul'</span> | The component used to render the listbox. |
 | <span class="prop-name">ListboxProps</span> | <span class="prop-type">object</span> |  | Props applied to the Listbox element. |
 | <span class="prop-name">loading</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the component is in a loading state. |

@@ -166,10 +166,17 @@ const Menu = React.forwardRef(function Menu(props, ref) {
 });
 
 Menu.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * The DOM element used to set the position of the menu.
    */
-  anchorEl: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
+  anchorEl: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.instanceOf(typeof Element === 'undefined' ? Object : Element),
+  ]),
   /**
    * If `true` (Default) will focus the `[role="menu"]` if no focusable child is found. Disabled
    * children are not focusable. If you set this prop to `false` focus will be placed
@@ -185,7 +192,7 @@ Menu.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * When opening the menu will not focus the active item but the `[role="menu"]`
    * unless `autoFocus` is also set to `false`. Not using the default means not
@@ -244,9 +251,13 @@ Menu.propTypes = {
    * The length of the transition in `ms`, or 'auto'
    */
   transitionDuration: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
     PropTypes.oneOf(['auto']),
+    PropTypes.number,
+    PropTypes.shape({
+      appear: PropTypes.number,
+      enter: PropTypes.number,
+      exit: PropTypes.number,
+    }),
   ]),
   /**
    * The variant to use. Use `menu` to prevent selected items from impacting the initial focus

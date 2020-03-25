@@ -7,7 +7,7 @@ export interface ListItemTextProps<
   SecondaryTypographyComponent extends React.ElementType = 'p'
 > extends StandardProps<React.HTMLAttributes<HTMLDivElement>, ListItemTextClassKey> {
   /**
-   * Alias for the `primary` property.
+   * Alias for the `primary` prop.
    */
   children?: React.ReactNode;
   /**

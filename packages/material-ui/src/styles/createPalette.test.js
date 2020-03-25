@@ -5,14 +5,6 @@ import { darken, lighten } from './colorManipulator';
 import createPalette, { dark, light } from './createPalette';
 
 describe('createPalette()', () => {
-  beforeEach(() => {
-    consoleErrorMock.spy();
-  });
-
-  afterEach(() => {
-    consoleErrorMock.reset();
-  });
-
   it('should create a palette with a rich color object', () => {
     const palette = createPalette({
       primary: deepOrange,
@@ -85,25 +77,10 @@ describe('createPalette()', () => {
       pink.A400,
     );
     expect(palette.text, 'should use dark theme text').to.equal(dark.text);
-    expect(consoleErrorMock.callCount()).to.equal(0);
-  });
-
-  it('logs an error when an invalid type is specified', () => {
-    createPalette({ type: 'foo' });
-    expect(consoleErrorMock.callCount()).to.equal(1);
-    expect(consoleErrorMock.messages()[0]).to.match(
-      /Material-UI: the palette type `foo` is not supported/,
-    );
   });
 
   describe('augmentColor', () => {
     const palette = createPalette({});
-
-    it('should throw when the input is invalid', () => {
-      expect(() => {
-        palette.augmentColor({});
-      }).to.throw(/The color object needs to have a/);
-    });
 
     it('should accept a color', () => {
       const color1 = palette.augmentColor(indigo);
@@ -135,20 +112,37 @@ describe('createPalette()', () => {
     });
   });
 
-  describe('getContrastText', () => {
-    it('throws an exception with a falsy argument', () => {
-      const { getContrastText } = createPalette({});
+  it('should create a palette with unique object references', () => {
+    const redPalette = createPalette({ background: { paper: 'red' } });
+    const bluePalette = createPalette({ background: { paper: 'blue' } });
+    expect(redPalette).to.not.equal(bluePalette);
+    expect(redPalette.background).to.not.equal(bluePalette.background);
+  });
 
-      [
-        [undefined, 'missing background argument in getContrastText(undefined)'],
-        [null, 'missing background argument in getContrastText(null)'],
-        ['', 'missing background argument in getContrastText()'],
-        [0, 'missing background argument in getContrastText(0)'],
-      ].forEach((testEntry) => {
-        const [argument, errorMessage] = testEntry;
+  describe('warnings', () => {
+    beforeEach(() => {
+      consoleErrorMock.spy();
+    });
 
-        expect(() => getContrastText(argument), errorMessage).to.throw();
-      });
+    afterEach(() => {
+      consoleErrorMock.reset();
+    });
+
+    it('throws an exception when an invalid type is specified', () => {
+      createPalette({ type: 'foo' });
+      expect(consoleErrorMock.callCount()).to.equal(1);
+      expect(consoleErrorMock.messages()[0]).to.include(
+        'Material-UI: the palette type `foo` is not supported',
+      );
+    });
+
+    it('throws an exception when a wrong color is provided', () => {
+      expect(() => createPalette({ primary: '#fff' })).to.throw(
+        'The color object needs to have a `main` property or a `500` property.',
+      );
+      expect(() => createPalette({ primary: { main: { foo: 'bar' } } })).to.throw(
+        '`color.main` should be a string, but `{"foo":"bar"}` was provided instead.',
+      );
     });
 
     it('logs an error when the contrast ratio does not reach AA', () => {
@@ -163,12 +157,5 @@ describe('createPalette()', () => {
         'falls below the WCAG recommended absolute minimum contrast ratio of 3:1',
       );
     });
-  });
-
-  it('should create a palette with unique object references', () => {
-    const redPalette = createPalette({ background: { paper: 'red' } });
-    const bluePalette = createPalette({ background: { paper: 'blue' } });
-    expect(redPalette).to.not.equal(bluePalette);
-    expect(redPalette.background).to.not.equal(bluePalette.background);
   });
 });

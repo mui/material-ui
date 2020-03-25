@@ -61,6 +61,13 @@ function getDefaultValuesFromProps(properties, documentation) {
       if (!propName) return;
 
       const propDescriptor = documentation.getPropDescriptor(propName);
+      if (propDescriptor.description === undefined) {
+        // private props have no propsType validator and therefore
+        // not description.
+        // They are either not subject to eslint react/prop-types
+        // or are and then we catch these issues during linting.
+        return;
+      }
 
       const jsdocDefaultValue = getJsdocDefaultValue(
         parseDoctrine(propDescriptor.description, {

@@ -191,6 +191,10 @@ const Collapse = React.forwardRef(function Collapse(props, ref) {
 });
 
 Collapse.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * The content node to be collapsed.
    */
@@ -199,7 +203,7 @@ Collapse.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -207,7 +211,7 @@ Collapse.propTypes = {
   /**
    * The height of the container when collapsed.
    */
-  collapsedHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  collapsedHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
@@ -248,9 +252,13 @@ Collapse.propTypes = {
    * Set to 'auto' to automatically calculate transition time based on height.
    */
   timeout: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
     PropTypes.oneOf(['auto']),
+    PropTypes.number,
+    PropTypes.shape({
+      appear: PropTypes.number,
+      enter: PropTypes.number,
+      exit: PropTypes.number,
+    }),
   ]),
 };
 

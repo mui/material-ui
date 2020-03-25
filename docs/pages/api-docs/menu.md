@@ -24,7 +24,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">anchorEl</span> | <span class="prop-type">object<br>&#124;&nbsp;func</span> |  | The DOM element used to set the position of the menu. |
+| <span class="prop-name">anchorEl</span> | <span class="prop-type">func<br>&#124;&nbsp;Element</span> |  | The DOM element used to set the position of the menu. |
 | <span class="prop-name">autoFocus</span> | <span class="prop-type">bool</span> | <span class="prop-default">true</span> | If `true` (Default) will focus the `[role="menu"]` if no focusable child is found. Disabled children are not focusable. If you set this prop to `false` focus will be placed on the parent modal container. This has severe accessibility implications and should only be considered if you manage focus otherwise. |
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | Menu contents, normally `MenuItem`s. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
@@ -39,7 +39,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 | <span class="prop-name">onExiting</span> | <span class="prop-type">func</span> |  | Callback fired when the Menu is exiting. |
 | <span class="prop-name required">open&nbsp;*</span> | <span class="prop-type">bool</span> |  | If `true`, the menu is visible. |
 | <span class="prop-name">PopoverClasses</span> | <span class="prop-type">object</span> |  | `classes` prop applied to the [`Popover`](/api/popover/) element. |
-| <span class="prop-name">transitionDuration</span> | <span class="prop-type">number<br>&#124;&nbsp;{ enter?: number, exit?: number }<br>&#124;&nbsp;'auto'</span> | <span class="prop-default">'auto'</span> | The length of the transition in `ms`, or 'auto' |
+| <span class="prop-name">transitionDuration</span> | <span class="prop-type">'auto'<br>&#124;&nbsp;number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }</span> | <span class="prop-default">'auto'</span> | The length of the transition in `ms`, or 'auto' |
 | <span class="prop-name">variant</span> | <span class="prop-type">'menu'<br>&#124;&nbsp;'selectedMenu'</span> | <span class="prop-default">'selectedMenu'</span> | The variant to use. Use `menu` to prevent selected items from impacting the initial focus and the vertical alignment relative to the anchor element. |
 
 The `ref` is forwarded to the root element.

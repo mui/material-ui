@@ -2,7 +2,12 @@ import * as React from 'react';
 import { StandardProps } from '..';
 
 export interface ExpansionPanelActionsProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, ExpansionPanelActionsClassKey> {}
+  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, ExpansionPanelActionsClassKey> {
+  /**
+   * If `true`, the actions do not have additional margin.
+   */
+  disableSpacing?: boolean;
+}
 
 export type ExpansionPanelActionsClassKey = 'root' | 'spacing';
 
@@ -16,6 +21,4 @@ export type ExpansionPanelActionsClassKey = 'root' | 'spacing';
  *
  * - [ExpansionPanelActions API](https://material-ui.com/api/expansion-panel-actions/)
  */
-declare const ExpansionPanelActions: React.ComponentType<ExpansionPanelActionsProps>;
-
-export default ExpansionPanelActions;
+export default function ExpansionPanelActions(props: ExpansionPanelActionsProps): JSX.Element;

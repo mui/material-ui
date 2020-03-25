@@ -200,10 +200,9 @@ export default function useAutocomplete(props) {
           const erroneousReturn =
             optionLabel === undefined ? 'undefined' : `${typeof optionLabel} (${optionLabel})`;
           console.error(
-            [
-              `Material-UI: the \`getOptionLabel\` method of ${componentName} returned ${erroneousReturn} instead of a string for`,
-              JSON.stringify(newValue),
-            ].join('\n'),
+            `Material-UI: the \`getOptionLabel\` method of ${componentName} returned ${erroneousReturn} instead of a string for ${JSON.stringify(
+              newValue,
+            )}.`,
           );
         }
       }
@@ -255,6 +254,28 @@ export default function useAutocomplete(props) {
     : [];
 
   popupOpen = freeSolo && filteredOptions.length === 0 ? false : popupOpen;
+
+  if (process.env.NODE_ENV !== 'production') {
+    if (value !== null && !freeSolo && options.length > 0) {
+      const missingValue = (multiple ? value : [value]).filter(
+        (value2) => !options.some((option) => getOptionSelected(option, value2)),
+      );
+
+      if (missingValue.length > 0) {
+        console.warn(
+          [
+            `Material-UI: the value provided to ${componentName} is invalid.`,
+            `None of the options match with \`${
+              missingValue.length > 1
+                ? JSON.stringify(missingValue)
+                : JSON.stringify(missingValue[0])
+            }\`.`,
+            'You can use the `getOptionSelected` prop to customize the equality test.',
+          ].join('\n'),
+        );
+      }
+    }
+  }
 
   const focusTag = useEventCallback((tagToFocus) => {
     if (tagToFocus === -1) {

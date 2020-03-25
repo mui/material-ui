@@ -2,6 +2,10 @@ import { StandardProps } from '..';
 
 export interface ListItemIconProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, ListItemIconClassKey> {
+  /**
+   * The content of the component, normally `Icon`, `SvgIcon`,
+   * or a `@material-ui/icons` SVG icon element.
+   */
   children: React.ReactElement;
 }
 
@@ -17,6 +21,4 @@ export type ListItemIconClassKey = 'root';
  *
  * - [ListItemIcon API](https://material-ui.com/api/list-item-icon/)
  */
-declare const ListItemIcon: React.ComponentType<ListItemIconProps>;
-
-export default ListItemIcon;
+export default function ListItemIcon(props: ListItemIconProps): JSX.Element;

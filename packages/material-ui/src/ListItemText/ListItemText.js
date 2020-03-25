@@ -101,7 +101,7 @@ ListItemText.propTypes = {
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
-   * Alias for the `primary` property.
+   * Alias for the `primary` prop.
    */
   children: PropTypes.node,
   /**

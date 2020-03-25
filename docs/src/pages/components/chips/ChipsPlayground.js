@@ -24,7 +24,7 @@ const styles = (theme) => ({
 
 function ChipsPlayground(props) {
   const { classes } = props;
-  const [{ color, onDelete, avatar, icon, variant, size }, setState] = React.useState({
+  const [state, setState] = React.useState({
     color: 'default',
     onDelete: 'none',
     avatar: 'none',
@@ -32,12 +32,13 @@ function ChipsPlayground(props) {
     variant: 'default',
     size: 'medium',
   });
+  const { color, onDelete, avatar, icon, variant, size } = state;
 
   const handleChange = (event) => {
-    setState((state) => ({
+    setState({
       ...state,
       [event.target.name]: event.target.value,
-    }));
+    });
   };
 
   const handleDeleteExample = () => {

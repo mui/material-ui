@@ -2,7 +2,12 @@ import * as React from 'react';
 import { StandardProps } from '..';
 
 export interface ExpansionPanelDetailsProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, ExpansionPanelDetailsClassKey> {}
+  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, ExpansionPanelDetailsClassKey> {
+  /**
+   * The content of the expansion panel details.
+   */
+  children?: React.ReactNode;
+}
 
 export type ExpansionPanelDetailsClassKey = 'root';
 
@@ -16,6 +21,4 @@ export type ExpansionPanelDetailsClassKey = 'root';
  *
  * - [ExpansionPanelDetails API](https://material-ui.com/api/expansion-panel-details/)
  */
-declare const ExpansionPanelDetails: React.ComponentType<ExpansionPanelDetailsProps>;
-
-export default ExpansionPanelDetails;
+export default function ExpansionPanelDetails(props: ExpansionPanelDetailsProps): JSX.Element;

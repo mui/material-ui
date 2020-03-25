@@ -252,6 +252,10 @@ const Snackbar = React.forwardRef(function Snackbar(props, ref) {
 });
 
 Snackbar.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * The action to display. It renders after the message, at the end of the snackbar.
    */
@@ -260,8 +264,8 @@ Snackbar.propTypes = {
    * The anchor of the `Snackbar`.
    */
   anchorOrigin: PropTypes.shape({
-    horizontal: PropTypes.oneOf(['left', 'center', 'right']).isRequired,
-    vertical: PropTypes.oneOf(['top', 'bottom']).isRequired,
+    horizontal: PropTypes.oneOf(['center', 'left', 'right']).isRequired,
+    vertical: PropTypes.oneOf(['bottom', 'top']).isRequired,
   }),
   /**
    * The number of milliseconds to wait before automatically calling the
@@ -278,7 +282,7 @@ Snackbar.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -371,7 +375,11 @@ Snackbar.propTypes = {
    */
   transitionDuration: PropTypes.oneOfType([
     PropTypes.number,
-    PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
+    PropTypes.shape({
+      appear: PropTypes.number,
+      enter: PropTypes.number,
+      exit: PropTypes.number,
+    }),
   ]),
   /**
    * Props applied to the [`Transition`](http://reactcommunity.org/react-transition-group/transition#Transition-props) element.

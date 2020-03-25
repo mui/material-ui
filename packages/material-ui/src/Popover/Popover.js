@@ -370,7 +370,7 @@ const Popover = React.forwardRef(function Popover(props, ref) {
     window.addEventListener('resize', handleResize);
     return () => {
       handleResize.clear();
-      window.removeEventListener('rezise', handleResize);
+      window.removeEventListener('resize', handleResize);
     };
   }, [open, setPositioningStyles]);
 

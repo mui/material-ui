@@ -137,13 +137,14 @@ const styles = (theme) => ({
       },
     },
     '& code': {
+      lineHeight: 1.4,
       display: 'inline-block',
       fontFamily: 'Consolas, "Liberation Mono", Menlo, Courier, monospace',
       WebkitFontSmoothing: 'subpixel-antialiased',
-      padding: '2px 6px',
+      padding: '0 3px',
       color: theme.palette.text.primary,
       backgroundColor:
-        theme.palette.type === 'light' ? 'rgba(255, 229, 100, 0.1)' : 'rgba(255, 229, 100, 0.2)',
+        theme.palette.type === 'light' ? 'rgba(255, 229, 100, 0.2)' : 'rgba(255, 229, 100, 0.2)',
       fontSize: 14,
       borderRadius: 2,
     },

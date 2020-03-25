@@ -1,10 +1,27 @@
 import * as React from 'react';
-import { Theme } from '../styles/createMuiTheme';
 import { TransitionProps } from '../transitions/transition';
 
-export interface FadeProps extends TransitionProps {
+export interface FadeProps extends Omit<TransitionProps, 'children'> {
+  /**
+   * A single child content element.
+   */
+  children?: React.ReactElement<any, any>;
+  /**
+   * If `true`, the component will transition in.
+   */
+  in?: boolean;
+  /**
+   */
+  onEnter?: TransitionProps['onEnter'];
+  /**
+   */
+  onExit?: TransitionProps['onExit'];
   ref?: React.Ref<unknown>;
-  theme?: Theme;
+  /**
+   * The duration for the transition, in milliseconds.
+   * You may specify a single timeout for all transitions, or individually with an object.
+   */
+  timeout?: TransitionProps['timeout'];
 }
 
 /**
@@ -19,6 +36,4 @@ export interface FadeProps extends TransitionProps {
  * - [Fade API](https://material-ui.com/api/fade/)
  * - inherits [Transition API](https://reactcommunity.org/react-transition-group/transition#Transition-props)
  */
-declare const Fade: React.ComponentType<FadeProps>;
-
-export default Fade;
+export default function Fade(props: FadeProps): JSX.Element;

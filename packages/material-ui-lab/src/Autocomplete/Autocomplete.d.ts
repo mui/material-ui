@@ -84,6 +84,13 @@ export interface AutocompleteProps<T>
    */
   forcePopupIcon?: true | false | 'auto';
   /**
+   * The label to display when the tags are truncated (`limitTags`).
+   *
+   * @param {number} more The number of truncated tags.
+   * @returns {ReactNode}
+   */
+  getLimitTagsText?: (more: number) => React.ReactNode;
+  /**
    * The component used to render the listbox.
    */
   ListboxComponent?: React.ComponentType<React.HTMLAttributes<HTMLElement>>;
@@ -101,6 +108,11 @@ export interface AutocompleteProps<T>
    * For localization purposes, you can use the provided [translations](/guides/localization/).
    */
   loadingText?: React.ReactNode;
+  /**
+   * The maximum number of tags that will be visible when not focused.
+   * Set `-1` to disable the limit.
+   */
+  limitTags?: number;
   /**
    * Text to display when there are no options.
    *

@@ -3,6 +3,10 @@ import { StandardProps } from '..';
 
 export interface DialogTitleProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, DialogTitleClassKey> {
+  /**
+   * If `true`, the children won't be wrapped by a typography component.
+   * For instance, this can be useful to render an h4 instead of the default h2.
+   */
   disableTypography?: boolean;
 }
 
@@ -18,6 +22,4 @@ export type DialogTitleClassKey = 'root';
  *
  * - [DialogTitle API](https://material-ui.com/api/dialog-title/)
  */
-declare const DialogTitle: React.ComponentType<DialogTitleProps>;
-
-export default DialogTitle;
+export default function DialogTitle(props: DialogTitleProps): JSX.Element;

@@ -609,6 +609,17 @@ const appList = [
     stars: 4,
     dateAdded: '2020-01-31',
   },
+  {
+    title: 'A Clone of Google Keep',
+    description:
+      'A twin-looking Google Keep clone with light/dark Material theme as adapted exactly in Google Keep,' +
+      ' with a GraphQL backend written in Golang',
+    image: 'googlekeepclone.jpg',
+    link: 'http://googlekeep-anselm94.herokuapp.com/',
+    source: 'https://github.com/anselm94/googlekeepclone',
+    stars: 14,
+    dateAdded: '2020-03-25',
+  },
 ];
 
 export default appList;

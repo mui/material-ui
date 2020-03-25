@@ -68,19 +68,7 @@ function AnchorPlayground(props) {
   const { classes } = props;
   const anchorRef = React.useRef();
 
-  const [
-    {
-      open,
-      anchorOriginVertical,
-      anchorOriginHorizontal,
-      transformOriginVertical,
-      transformOriginHorizontal,
-      positionTop,
-      positionLeft,
-      anchorReference,
-    },
-    setState,
-  ] = React.useState({
+  const [state, setState] = React.useState({
     open: false,
     anchorOriginVertical: 'top',
     anchorOriginHorizontal: 'left',
@@ -91,32 +79,43 @@ function AnchorPlayground(props) {
     anchorReference: 'anchorEl',
   });
 
+  const {
+    open,
+    anchorOriginVertical,
+    anchorOriginHorizontal,
+    transformOriginVertical,
+    transformOriginHorizontal,
+    positionTop,
+    positionLeft,
+    anchorReference,
+  } = state;
+
   const handleChange = (event) => {
-    setState((state) => ({
+    setState({
       ...state,
       [event.target.name]: event.target.value,
-    }));
+    });
   };
 
   const handleNumberInputChange = (key) => (event) => {
-    setState((state) => ({
+    setState({
       ...state,
       [key]: parseInt(event.target.value, 10),
-    }));
+    });
   };
 
   const handleClickButton = () => {
-    setState((state) => ({
+    setState({
       ...state,
       open: true,
-    }));
+    });
   };
 
   const handleClose = () => {
-    setState((state) => ({
+    setState({
       ...state,
       open: false,
-    }));
+    });
   };
 
   let mode = '';

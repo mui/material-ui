@@ -1,13 +1,14 @@
 import { Color } from '@material-ui/core';
-import { blue } from '@material-ui/core/colors';
+import { blue, common } from '@material-ui/core/colors';
 import {
-  createPalette,
+  createMuiTheme,
   PaletteColorOptions,
   SimplePaletteColorOptions,
+  Theme,
 } from '@material-ui/core/styles';
 
 {
-  const palette = createPalette({});
+  const palette = createMuiTheme().palette;
   const color: Color = blue;
   const option: SimplePaletteColorOptions = { main: blue[400] };
   const colorOrOption: PaletteColorOptions = undefined as any;
@@ -21,4 +22,8 @@ import {
   palette.augmentColor(colorOrOption);
   palette.augmentColor(colorOrOption, 400); // $ExpectError
   const augmentedColor = palette.augmentColor(colorOrOption);
+}
+
+{
+  const themeCommons: Theme['palette']['common'] = common;
 }

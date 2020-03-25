@@ -1,8 +1,12 @@
 import { Color, PaletteType } from '..';
-import common from '../colors/common';
 
 export {};
-type CommonColors = Record<keyof typeof common, string>;
+// use standalone interface over typeof colors/commons
+// to enable module augmentation
+export interface CommonColors {
+  black: string;
+  white: string;
+}
 
 export type ColorPartial = Partial<Color>;
 
