@@ -9,6 +9,7 @@ export interface MenuProps
   extends StandardProps<PopoverProps & Partial<TransitionHandlerProps>, MenuClassKey> {
   /**
    * The DOM element used to set the position of the menu.
+   * @document
    */
   anchorEl?: PopoverProps['anchorEl'];
   /**

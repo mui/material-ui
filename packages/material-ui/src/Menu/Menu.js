@@ -171,6 +171,13 @@ Menu.propTypes = {
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
+   * The DOM element used to set the position of the menu.
+   */
+  anchorEl: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.instanceOf(typeof Element === 'undefined' ? Object : Element),
+  ]),
+  /**
    * If `true` (Default) will focus the `[role="menu"]` if no focusable child is found. Disabled
    * children are not focusable. If you set this prop to `false` focus will be placed
    * on the parent modal container. This has severe accessibility implications
