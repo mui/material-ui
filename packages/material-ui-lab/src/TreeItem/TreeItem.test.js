@@ -319,13 +319,16 @@ describe('<TreeItem />', () => {
             </React.Fragment>
           );
         }
-
         const { getByRole, getByTestId, getByText } = render(<TestComponent />);
         expect(getByTestId('parent')).to.have.attribute('tabindex', '0');
+
         fireEvent.click(getByText('two'));
+
         expect(getByTestId('two')).to.have.attribute('tabindex', '0');
+
         getByRole('button').focus();
         fireEvent.click(document.activeElement);
+
         expect(getByTestId('parent')).to.have.attribute('tabindex', '0');
       });
     });
