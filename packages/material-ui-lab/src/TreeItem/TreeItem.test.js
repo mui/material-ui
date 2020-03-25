@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
-import { createEvent, createClientRender, fireEvent } from 'test/utils/createClientRender';
+import { act, createEvent, createClientRender, fireEvent } from 'test/utils/createClientRender';
 import TreeItem from './TreeItem';
 import TreeView from '../TreeView';
 
@@ -302,32 +302,37 @@ describe('<TreeItem />', () => {
       });
 
       it('should work when focused node is removed', () => {
-        function TestComponent() {
-          const [hide, setState] = React.useState(false);
+        let removeActiveItem;
+        // a TreeItem which can remove from the tree by calling `removeActiveItem`
+        function ControlledTreeItem(props) {
+          const [mounted, setMounted] = React.useReducer(() => false, true);
+          removeActiveItem = setMounted;
 
-          return (
-            <React.Fragment>
-              <button type="button" onClick={() => setState(true)}>
-                Hide
-              </button>
-              <TreeView defaultExpanded={['parent']}>
-                <TreeItem nodeId="parent" label="parent" data-testid="parent">
-                  <TreeItem nodeId="1" label="one" data-testid="one" />
-                  {!hide ? <TreeItem nodeId="2" label="two" data-testid="two" /> : <span />}
-                </TreeItem>
-              </TreeView>
-            </React.Fragment>
-          );
+          if (!mounted) {
+            return null;
+          }
+          return <TreeItem {...props} />;
         }
-        const { getByRole, getByTestId, getByText } = render(<TestComponent />);
+
+        const { getByTestId, getByText } = render(
+          <TreeView defaultExpanded={['parent']}>
+            <TreeItem nodeId="parent" label="parent" data-testid="parent">
+              <TreeItem nodeId="1" label="one" data-testid="one" />
+              <ControlledTreeItem nodeId="2" label="two" data-testid="two" />
+            </TreeItem>
+          </TreeView>,
+        );
         expect(getByTestId('parent')).to.have.attribute('tabindex', '0');
 
         fireEvent.click(getByText('two'));
 
         expect(getByTestId('two')).to.have.attribute('tabindex', '0');
 
-        getByRole('button').focus();
-        fireEvent.click(document.activeElement);
+        // generic action that removes an item.
+        // Could be promise based, or timeout, or another user interaction
+        act(() => {
+          removeActiveItem();
+        });
 
         expect(getByTestId('parent')).to.have.attribute('tabindex', '0');
       });
