@@ -365,7 +365,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
       if (childrenProps.onBlur && forward) {
         childrenProps.onBlur(event);
       }
-      handleBlur(event);
+      handleBlur();
     }
 
     if (
