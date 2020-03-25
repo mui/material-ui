@@ -62,11 +62,11 @@ the `timeout` property to change the entry speed.
 
 Slide in from the edge of the screen.
 The `direction` property controls which edge of the screen the transition starts from.
-
 The Transition component's `mountOnEnter` property prevents the child component from being mounted
 until `in` is `true`. This prevents the relatively positioned component from scrolling into view
 from it's off-screen position. Similarly the `unmountOnExit` property removes the component
 from the DOM after it has been transition off screen.
+The `parent` property makes the child component slide in from the edge of the parent component.
 
 {{"demo": "pages/components/transitions/SimpleSlide.js", "bg": true}}
 

@@ -6,6 +6,7 @@ export interface SlideProps extends TransitionProps {
   direction: 'left' | 'right' | 'up' | 'down';
   ref?: React.Ref<unknown>;
   theme?: Theme;
+  parentRef?: React.Ref<HTMLDivElement | null>;
 }
 
 /**

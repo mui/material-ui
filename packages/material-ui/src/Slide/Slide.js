@@ -12,7 +12,7 @@ import { reflow, getTransitionProps } from '../transitions/utils';
 // Translate the node so he can't be seen on the screen.
 // Later, we gonna translate back the node to his original location
 // with `none`.`
-function getTranslateValue(direction, node) {
+function getTranslateValue(direction, node, parentRef = window) {
   const rect = node.getBoundingClientRect();
 
   let transform;
@@ -36,7 +36,9 @@ function getTranslateValue(direction, node) {
   }
 
   if (direction === 'left') {
-    return `translateX(${window.innerWidth}px) translateX(-${rect.left - offsetX}px)`;
+    return `translateX(${
+      parentRef === window ? window.innerWidth : rect.left + parentRef.offsetWidth
+    }px) translateX(-${rect.left - offsetX}px)`;
   }
 
   if (direction === 'right') {
@@ -44,15 +46,17 @@ function getTranslateValue(direction, node) {
   }
 
   if (direction === 'up') {
-    return `translateY(${window.innerHeight}px) translateY(-${rect.top - offsetY}px)`;
+    return `translateY(${
+      parentRef === window ? window.innerHeight : rect.top + parentRef.offsetHeight
+    }px) translateY(-${rect.top - offsetY}px)`;
   }
 
   // direction === 'down'
   return `translateY(-${rect.top + rect.height - offsetY}px)`;
 }
 
-export function setTranslateValue(direction, node) {
-  const transform = getTranslateValue(direction, node);
+export function setTranslateValue(direction, node, parentRef) {
+  const transform = getTranslateValue(direction, node, parentRef);
 
   if (transform) {
     node.style.webkitTransform = transform;
@@ -72,6 +76,7 @@ const defaultTimeout = {
 const Slide = React.forwardRef(function Slide(props, ref) {
   const {
     children,
+    parentRef,
     direction = 'down',
     in: inProp,
     onEnter,
@@ -97,7 +102,7 @@ const Slide = React.forwardRef(function Slide(props, ref) {
 
   const handleEnter = (_, isAppearing) => {
     const node = childrenRef.current;
-    setTranslateValue(direction, node);
+    setTranslateValue(direction, node, parentRef);
     reflow(node);
 
     if (onEnter) {
@@ -144,7 +149,7 @@ const Slide = React.forwardRef(function Slide(props, ref) {
       ...transitionProps,
       easing: theme.transitions.easing.sharp,
     });
-    setTranslateValue(direction, node);
+    setTranslateValue(direction, node, parentRef);
 
     if (onExit) {
       onExit(node);
@@ -164,9 +169,9 @@ const Slide = React.forwardRef(function Slide(props, ref) {
 
   const updatePosition = React.useCallback(() => {
     if (childrenRef.current) {
-      setTranslateValue(direction, childrenRef.current);
+      setTranslateValue(direction, childrenRef.current, parentRef);
     }
-  }, [direction]);
+  }, [direction, parentRef]);
 
   React.useEffect(() => {
     // Skip configuration where the position is screen size invariant.
@@ -176,7 +181,7 @@ const Slide = React.forwardRef(function Slide(props, ref) {
 
     const handleResize = debounce(() => {
       if (childrenRef.current) {
-        setTranslateValue(direction, childrenRef.current);
+        setTranslateValue(direction, childrenRef.current, parentRef);
       }
     });
 
@@ -185,7 +190,7 @@ const Slide = React.forwardRef(function Slide(props, ref) {
       handleResize.clear();
       window.removeEventListener('resize', handleResize);
     };
-  }, [direction, inProp]);
+  }, [direction, inProp, parentRef]);
 
   React.useEffect(() => {
     if (!inProp) {
@@ -250,6 +255,10 @@ Slide.propTypes = {
    * @ignore
    */
   onExited: PropTypes.func,
+  /**
+   * If defined, then element slides in from the edge of the parentRef element, else it slides from the edge of the screen.
+   */
+  parentRef: PropTypes.object,
   /**
    * @ignore
    */

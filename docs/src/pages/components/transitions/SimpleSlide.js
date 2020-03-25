@@ -7,15 +7,29 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    height: 180,
+    height: '100%',
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'space-around',
+  },
+  controls: {
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
   },
   wrapper: {
-    width: 100 + theme.spacing(2),
+    width: 100,
+    height: 100,
+    border: '1px dashed black',
+    display: 'flex',
   },
   paper: {
     zIndex: 1,
+    width: 100,
+    height: 100,
     position: 'relative',
-    margin: theme.spacing(1),
+    left: 0,
+    top: 0,
   },
   svg: {
     width: 100,
@@ -31,19 +45,46 @@ const useStyles = makeStyles((theme) => ({
 export default function SimpleSlide() {
   const classes = useStyles();
   const [checked, setChecked] = React.useState(false);
+  const [checkedParent, setCheckedParent] = React.useState(false);
+  const parent = React.useRef(null);
 
   const handleChange = () => {
     setChecked((prev) => !prev);
+    setCheckedParent(false);
+  };
+  const handleChangeParent = () => {
+    setCheckedParent((prev) => !prev);
+    setChecked(false);
   };
 
   return (
     <div className={classes.root}>
-      <div className={classes.wrapper}>
+      <div className={classes.controls}>
         <FormControlLabel
           control={<Switch checked={checked} onChange={handleChange} />}
           label="Show"
         />
-        <Slide direction="up" in={checked} mountOnEnter unmountOnExit>
+        <FormControlLabel
+          control={<Switch checked={checkedParent} onChange={handleChangeParent} />}
+          label="Show(from parent)"
+        />
+      </div>
+      <div className={classes.wrapper} ref={parent}>
+        <Slide direction="up" in={checked} timeout={500} mountOnEnter unmountOnExit>
+          <Paper elevation={4} className={classes.paper}>
+            <svg className={classes.svg}>
+              <polygon points="0,100 50,00, 100,100" className={classes.polygon} />
+            </svg>
+          </Paper>
+        </Slide>
+        <Slide
+          direction="up"
+          in={checkedParent}
+          timeout={500}
+          parentRef={parent.current}
+          mountOnEnter
+          unmountOnExit
+        >
           <Paper elevation={4} className={classes.paper}>
             <svg className={classes.svg}>
               <polygon points="0,100 50,00, 100,100" className={classes.polygon} />
