@@ -1,6 +1,9 @@
 import { StandardProps } from '..';
 
 export interface ListItemAvatarProps extends StandardProps<{}, ListItemAvatarClassKey> {
+  /**
+   * The content of the component – normally `Avatar`.
+   */
   children: React.ReactElement;
 }
 
@@ -16,6 +19,4 @@ export type ListItemAvatarClassKey = 'root' | 'icon';
  *
  * - [ListItemAvatar API](https://material-ui.com/api/list-item-avatar/)
  */
-declare const ListItemAvatar: React.ComponentType<ListItemAvatarProps>;
-
-export default ListItemAvatar;
+export default function ListItemAvatar(props: ListItemAvatarProps): JSX.Element;

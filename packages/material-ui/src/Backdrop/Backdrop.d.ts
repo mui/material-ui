@@ -5,7 +5,7 @@ import { TransitionProps } from '../transitions/transition';
 
 export interface BackdropProps
   extends StandardProps<
-    React.HTMLAttributes<HTMLDivElement> & Partial<FadeProps>,
+    React.HTMLAttributes<HTMLDivElement> & Partial<Omit<FadeProps, 'children'>>,
     BackdropClassKey
   > {
   /**

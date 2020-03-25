@@ -6,7 +6,16 @@ import useControlled from '../utils/useControlled';
 import RadioGroupContext from './RadioGroupContext';
 
 const RadioGroup = React.forwardRef(function RadioGroup(props, ref) {
-  const { actions, children, name: nameProp, value: valueProp, onChange, ...other } = props;
+  const {
+    // private
+    // eslint-disable-next-line react/prop-types
+    actions,
+    children,
+    name: nameProp,
+    value: valueProp,
+    onChange,
+    ...other
+  } = props;
   const rootRef = React.useRef(null);
 
   const [value, setValue] = useControlled({
@@ -62,10 +71,10 @@ const RadioGroup = React.forwardRef(function RadioGroup(props, ref) {
 });
 
 RadioGroup.propTypes = {
-  /**
-   * @ignore
-   */
-  actions: PropTypes.shape({ current: PropTypes.object }),
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * The content of the component.
    */
@@ -73,16 +82,16 @@ RadioGroup.propTypes = {
   /**
    * The default `input` element value. Use when the component is not controlled.
    */
-  defaultValue: PropTypes.any,
+  defaultValue: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.string),
+    PropTypes.number,
+    PropTypes.string,
+  ]),
   /**
    * The name used to reference the value of the control.
    * If you don't provide this prop, it falls back to a randomly generated name.
    */
   name: PropTypes.string,
-  /**
-   * @ignore
-   */
-  onBlur: PropTypes.func,
   /**
    * Callback fired when a radio button is selected.
    *
@@ -90,10 +99,6 @@ RadioGroup.propTypes = {
    * You can pull out the new value by accessing `event.target.value` (string).
    */
   onChange: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onKeyDown: PropTypes.func,
   /**
    * Value of the selected radio button. The DOM API casts this to a string.
    */

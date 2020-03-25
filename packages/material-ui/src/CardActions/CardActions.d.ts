@@ -3,6 +3,9 @@ import { StandardProps } from '..';
 
 export interface CardActionsProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, CardActionsClassKey> {
+  /**
+   * If `true`, the actions do not have additional margin.
+   */
   disableSpacing?: boolean;
 }
 
@@ -18,6 +21,4 @@ export type CardActionsClassKey = 'root' | 'spacing';
  *
  * - [CardActions API](https://material-ui.com/api/card-actions/)
  */
-declare const CardActions: React.ComponentType<CardActionsProps>;
-
-export default CardActions;
+export default function CardActions(props: CardActionsProps): JSX.Element;

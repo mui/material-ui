@@ -4,8 +4,27 @@ import { Theme } from '../styles/createMuiTheme';
 import { TransitionProps } from '../transitions/transition';
 
 export interface GrowProps extends Omit<TransitionProps, 'timeout'> {
+  /**
+   * A single child content element.
+   */
+  children?: React.ReactElement<any, any>;
+  /**
+   * If `true`, show the component; triggers the enter or exit animation.
+   */
+  in?: boolean;
+  /**
+   */
+  onEnter?: TransitionProps['onEnter'];
+  /**
+   */
+  onExit?: TransitionProps['onExit'];
   ref?: React.Ref<unknown>;
-  theme?: Theme;
+  /**
+   * The duration for the transition, in milliseconds.
+   * You may specify a single timeout for all transitions, or individually with an object.
+   *
+   * Set to 'auto' to automatically calculate transition time based on height.
+   */
   timeout?: TransitionProps['timeout'] | 'auto';
 }
 
@@ -23,6 +42,4 @@ export interface GrowProps extends Omit<TransitionProps, 'timeout'> {
  * - [Grow API](https://material-ui.com/api/grow/)
  * - inherits [Transition API](https://reactcommunity.org/react-transition-group/transition#Transition-props)
  */
-declare const Grow: React.ComponentType<GrowProps>;
-
-export default Grow;
+export default function Grow(props: GrowProps): JSX.Element;

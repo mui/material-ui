@@ -3,6 +3,9 @@ import { StandardProps } from '..';
 import { PaperProps } from '../Paper';
 
 export interface CardProps extends StandardProps<PaperProps, CardClassKey> {
+  /**
+   * If `true`, the card will use raised styling.
+   */
   raised?: boolean;
 }
 
@@ -19,6 +22,4 @@ export type CardClassKey = 'root';
  * - [Card API](https://material-ui.com/api/card/)
  * - inherits [Paper API](https://material-ui.com/api/paper/)
  */
-declare const Card: React.ComponentType<CardProps>;
-
-export default Card;
+export default function Card(props: CardProps): JSX.Element;
