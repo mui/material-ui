@@ -312,7 +312,11 @@ function getUsedProps(
 		if (node && babelTypes.isObjectPattern(node)) {
 			node.properties.forEach((x) => {
 				if (babelTypes.isObjectProperty(x)) {
-					usedProps.push(x.key.name);
+					if (babelTypes.isStringLiteral(x.key)) {
+						usedProps.push(x.key.value);
+					} else {
+						usedProps.push(x.key.name);
+					}
 				} else if (babelTypes.isIdentifier(x.argument)) {
 					getUsedPropsInternal(x.argument);
 				}

@@ -15,7 +15,7 @@
 		"react"
 	],
 	"scripts": {
-		"test": "jest test/index.test.ts",
+		"test": "jest",
 		"build": "rm -rf dist && tsc",
 		"release": "run build && standard-version",
 		"prepack": "run build"
