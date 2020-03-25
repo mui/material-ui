@@ -118,7 +118,7 @@ async function run(argv: HandlerArgv) {
     ),
   );
 
-  const programFiles = _.flatten(allFiles)
+  const files = _.flatten(allFiles)
     // Filter out files where the directory name and filename doesn't match
     // Example: Modal/ModalManager.d.ts
     .filter((filePath) => {
@@ -126,14 +126,11 @@ async function run(argv: HandlerArgv) {
       const fileName = path.basename(filePath, '.d.ts');
 
       return fileName === folderName;
+    })
+    .filter((filePath) => {
+      return filePattern.test(filePath);
     });
-  // I believe that the program still needs every file
-  // for import-extends. Not sure but compiling all to be sure
-  const program = ttp.createProgram(programFiles, tsconfig);
-
-  const files = programFiles.filter((filePath) => {
-    return filePattern.test(filePath);
-  });
+  const program = ttp.createProgram(files, tsconfig);
 
   const promises = files.map<Promise<GenerateResult>>(async (tsFile) => {
     const jsFile = tsFile.replace('.d.ts', '.js');
