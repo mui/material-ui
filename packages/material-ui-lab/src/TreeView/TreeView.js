@@ -431,6 +431,15 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
         }
       });
       nodeMap.current = newMap;
+
+      setTabbable((oldTabbable) => {
+        if (id === oldTabbable) {
+          const topNodes = newMap[-1].children;
+          if (topNodes.length > 0) {
+            setTabbable(topNodes[0]);
+          }
+        }
+      });
     },
     [getNodesToRemove],
   );
@@ -452,7 +461,10 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     if (arrayDiff(prevChildIds.current, childIds)) {
       nodeMap.current[-1] = { parent: null, children: childIds };
 
-      childIds.forEach((id) => {
+      childIds.forEach((id, index) => {
+        if (index === 0) {
+          setTabbable(id);
+        }
         nodeMap.current[id] = { parent: null };
       });
       visibleNodes.current = nodeMap.current[-1].children;
@@ -460,16 +472,6 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
       setChildrenCalculated(true);
     }
   }, [children]);
-
-  React.useEffect(() => {
-    if (childrenCalculated && (!tabbable || !nodeMap.current[tabbable])) {
-      const map = nodeMap.current;
-      const topNodes = map[-1].children;
-      if (topNodes.length > 0) {
-        setTabbable(topNodes[0]);
-      }
-    }
-  }, [children, tabbable, setTabbable, childrenCalculated]);
 
   React.useEffect(() => {
     const buildVisible = (nodes) => {
