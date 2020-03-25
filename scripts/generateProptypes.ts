@@ -167,7 +167,7 @@ async function run(argv: HandlerArgv) {
 yargs
   .command({
     command: '$0',
-    describe: 'formats codebase',
+    describe: 'Generates Component.propTypes from TypeScript declarations',
     builder: (command) => {
       return command
         .option('disable-cache', {
