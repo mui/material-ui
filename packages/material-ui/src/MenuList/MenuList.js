@@ -238,9 +238,7 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
         newChildProps.tabIndex = 0;
       }
 
-      if (newChildProps !== null) {
-        return React.cloneElement(child, newChildProps);
-      }
+      return React.cloneElement(child, newChildProps);
     }
 
     return child;
