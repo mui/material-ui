@@ -10,6 +10,7 @@ import clsx from 'clsx';
 import { makeStyles, withStyles, createMuiTheme, lighten } from '@material-ui/core/styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
+import Typography from '@material-ui/core/Typography';
 
 /**
  * @param {unknown} value
@@ -96,7 +97,7 @@ function ObjectEntryLabel(props) {
   const classes = useObjectEntryLabelStyles();
 
   return (
-    <React.Fragment>
+    <Typography component="div">
       {`${objectKey}: `}
       {type === 'color' ? (
         <span className={classes.color} style={{ borderColor: lighten(label, 0.7) }}>
@@ -104,7 +105,7 @@ function ObjectEntryLabel(props) {
         </span>
       ) : null}
       <span className={clsx('token', tokenType)}>{label}</span>
-    </React.Fragment>
+    </Typography>
   );
 }
 
