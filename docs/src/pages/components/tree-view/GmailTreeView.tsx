@@ -69,7 +69,7 @@ const useTreeItemStyles = makeStyles((theme: Theme) =>
     labelRoot: {
       display: 'flex',
       alignItems: 'center',
-      padding: theme.spacing(0.5, 0),
+      padding: theme.spacing(0.5, 0, 0.5, 0.5),
     },
     labelIcon: {
       marginRight: theme.spacing(1),
