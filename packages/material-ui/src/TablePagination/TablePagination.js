@@ -206,14 +206,14 @@ TablePagination.propTypes = {
    */
   count: PropTypes.number.isRequired,
   /**
-   * Customize the displayed rows label.
+   * Customize the displayed rows label. Invoked with a `{ from, to, count, page }`
+   * object.
    *
    * For localization purposes, you can use the provided [translations](/guides/localization/).
    */
   labelDisplayedRows: PropTypes.func,
   /**
-   * Customize the rows per page label. Invoked with a `{ from, to, count, page }`
-   * object.
+   * Customize the rows per page label.
    *
    * For localization purposes, you can use the provided [translations](/guides/localization/).
    */
