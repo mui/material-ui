@@ -17,3 +17,5 @@ jobs:
           dirtyLabel: 'PR: needs rebase'
           removeOnDirtyLabel: 'PR: ready to ship'
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          retryAfter: 130
+          retryMax: 10

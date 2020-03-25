@@ -85,6 +85,7 @@ const MobileStepper = React.forwardRef(function MobileStepper(props, ref) {
           {activeStep + 1} / {steps}
         </React.Fragment>
       )}
+
       {variant === 'dots' && (
         <div className={classes.dots}>
           {[...new Array(steps)].map((_, index) => (
@@ -97,6 +98,7 @@ const MobileStepper = React.forwardRef(function MobileStepper(props, ref) {
           ))}
         </div>
       )}
+
       {variant === 'progress' && (
         <LinearProgress
           className={classes.progress}
@@ -105,12 +107,17 @@ const MobileStepper = React.forwardRef(function MobileStepper(props, ref) {
           {...LinearProgressProps}
         />
       )}
+
       {nextButton}
     </Paper>
   );
 });
 
 MobileStepper.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * Set the active step (zero based index).
    * Defines which dot is highlighted when the variant is 'dots'.
@@ -124,7 +131,7 @@ MobileStepper.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -140,7 +147,7 @@ MobileStepper.propTypes = {
   /**
    * Set the positioning type.
    */
-  position: PropTypes.oneOf(['bottom', 'top', 'static']),
+  position: PropTypes.oneOf(['bottom', 'static', 'top']),
   /**
    * The total steps.
    */
@@ -148,7 +155,7 @@ MobileStepper.propTypes = {
   /**
    * The variant to use.
    */
-  variant: PropTypes.oneOf(['text', 'dots', 'progress']),
+  variant: PropTypes.oneOf(['dots', 'progress', 'text']),
 };
 
 export default withStyles(styles, { name: 'MuiMobileStepper' })(MobileStepper);

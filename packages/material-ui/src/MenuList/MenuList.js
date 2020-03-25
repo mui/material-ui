@@ -85,6 +85,8 @@ const useEnhancedEffect = typeof window === 'undefined' ? React.useEffect : Reac
  */
 const MenuList = React.forwardRef(function MenuList(props, ref) {
   const {
+    // private
+    // eslint-disable-next-line react/prop-types
     actions,
     autoFocus = false,
     autoFocusItem = false,
@@ -236,9 +238,7 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
         newChildProps.tabIndex = 0;
       }
 
-      if (newChildProps !== null) {
-        return React.cloneElement(child, newChildProps);
-      }
+      return React.cloneElement(child, newChildProps);
     }
 
     return child;
@@ -259,17 +259,17 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
 });
 
 MenuList.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
-   * @ignore
-   */
-  actions: PropTypes.shape({ current: PropTypes.object }),
-  /**
-   * If `true`, will focus the `[role="menu"]` container and move into tab order
+   * If `true`, will focus the `[role="menu"]` container and move into tab order.
    */
   autoFocus: PropTypes.bool,
   /**
    * If `true`, will focus the first menuitem if `variant="menu"` or selected item
-   * if `variant="selectedMenu"`
+   * if `variant="selectedMenu"`.
    */
   autoFocusItem: PropTypes.bool,
   /**

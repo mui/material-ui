@@ -29,7 +29,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">subtitle</span> | <span class="prop-type">node</span> |  | String or element serving as subtitle (support text). |
 | <span class="prop-name">title</span> | <span class="prop-type">node</span> |  | Title to be displayed on tile. |
-| <span class="prop-name">titlePosition</span> | <span class="prop-type">'top'<br>&#124;&nbsp;'bottom'</span> | <span class="prop-default">'bottom'</span> | Position of the title bar. |
+| <span class="prop-name">titlePosition</span> | <span class="prop-type">'bottom'<br>&#124;&nbsp;'top'</span> | <span class="prop-default">'bottom'</span> | Position of the title bar. |
 
 The `ref` is forwarded to the root element.
 

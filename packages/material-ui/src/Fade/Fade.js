@@ -46,6 +46,7 @@ const Fade = React.forwardRef(function Fade(props, ref) {
         mode: 'enter',
       },
     );
+
     node.style.webkitTransition = theme.transitions.create('opacity', transitionProps);
     node.style.transition = theme.transitions.create('opacity', transitionProps);
 
@@ -61,6 +62,7 @@ const Fade = React.forwardRef(function Fade(props, ref) {
         mode: 'exit',
       },
     );
+
     node.style.webkitTransition = theme.transitions.create('opacity', transitionProps);
     node.style.transition = theme.transitions.create('opacity', transitionProps);
 
@@ -96,6 +98,10 @@ const Fade = React.forwardRef(function Fade(props, ref) {
 });
 
 Fade.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * A single child content element.
    */
@@ -122,7 +128,11 @@ Fade.propTypes = {
    */
   timeout: PropTypes.oneOfType([
     PropTypes.number,
-    PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
+    PropTypes.shape({
+      appear: PropTypes.number,
+      enter: PropTypes.number,
+      exit: PropTypes.number,
+    }),
   ]),
 };
 

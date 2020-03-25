@@ -25,7 +25,7 @@ when `variant="temporary"` is set.
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">anchor</span> | <span class="prop-type">'left'<br>&#124;&nbsp;'top'<br>&#124;&nbsp;'right'<br>&#124;&nbsp;'bottom'</span> | <span class="prop-default">'left'</span> | Side from which the drawer will appear. |
+| <span class="prop-name">anchor</span> | <span class="prop-type">'bottom'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right'<br>&#124;&nbsp;'top'</span> | <span class="prop-default">'left'</span> | Side from which the drawer will appear. |
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The contents of the drawer. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">elevation</span> | <span class="prop-type">number</span> | <span class="prop-default">16</span> | The elevation of the drawer. |
@@ -34,7 +34,7 @@ when `variant="temporary"` is set.
 | <span class="prop-name">open</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the drawer is open. |
 | <span class="prop-name">PaperProps</span> | <span class="prop-type">object</span> | <span class="prop-default">{}</span> | Props applied to the [`Paper`](/api/paper/) element. |
 | <span class="prop-name">SlideProps</span> | <span class="prop-type">object</span> |  | Props applied to the [`Slide`](/api/slide/) element. |
-| <span class="prop-name">transitionDuration</span> | <span class="prop-type">number<br>&#124;&nbsp;{ enter?: number, exit?: number }</span> | <span class="prop-default">{ enter: duration.enteringScreen, exit: duration.leavingScreen }</span> | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object. |
+| <span class="prop-name">transitionDuration</span> | <span class="prop-type">number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }</span> | <span class="prop-default">{ enter: duration.enteringScreen, exit: duration.leavingScreen }</span> | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object. |
 | <span class="prop-name">variant</span> | <span class="prop-type">'permanent'<br>&#124;&nbsp;'persistent'<br>&#124;&nbsp;'temporary'</span> | <span class="prop-default">'temporary'</span> | The variant to use. |
 
 The `ref` is forwarded to the root element.

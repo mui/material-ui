@@ -12,15 +12,48 @@ export interface DrawerProps
     DrawerClassKey,
     'open' | 'children'
   > {
+  /**
+   * Side from which the drawer will appear.
+   */
   anchor?: 'left' | 'top' | 'right' | 'bottom';
+  /**
+   * The contents of the drawer.
+   */
   children?: React.ReactNode;
+  /**
+   * The elevation of the drawer.
+   */
   elevation?: number;
+  /**
+   * Props applied to the [`Modal`](/api/modal/) element.
+   */
   ModalProps?: Partial<ModalProps>;
+  /**
+   * Callback fired when the component requests to be closed.
+   *
+   * @param {object} event The event source of the callback.
+   */
+  onClose?: ModalProps['onClose'];
+  /**
+   * If `true`, the drawer is open.
+   */
   open?: boolean;
+  /**
+   * Props applied to the [`Paper`](/api/paper/) element.
+   */
   PaperProps?: Partial<PaperProps>;
+  /**
+   * Props applied to the [`Slide`](/api/slide/) element.
+   */
   SlideProps?: Partial<SlideProps>;
-  theme?: Theme;
+  /**
+   * The duration for the transition, in milliseconds.
+   * You may specify a single timeout for all transitions, or individually with an object.
+   */
   transitionDuration?: TransitionProps['timeout'];
+  /**
+   * The variant to use.
+   */
   variant?: 'permanent' | 'persistent' | 'temporary';
 }
 
@@ -49,6 +82,4 @@ export type DrawerClassKey =
  *
  * - [Drawer API](https://material-ui.com/api/drawer/)
  */
-declare const Drawer: React.ComponentType<DrawerProps>;
-
-export default Drawer;
+export default function Drawer(props: DrawerProps): JSX.Element;
