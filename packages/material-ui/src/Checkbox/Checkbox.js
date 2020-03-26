@@ -169,10 +169,6 @@ Checkbox.propTypes = {
    */
   size: PropTypes.oneOf(['small', 'medium']),
   /**
-   * The input component prop `type`.
-   */
-  type: PropTypes.string,
-  /**
    * The value of the component. The DOM API casts this to a string.
    * The browser uses "on" as the default value.
    */
