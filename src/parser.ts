@@ -318,7 +318,11 @@ export function parseFromProgram(
 		// This means the type of "a" in {a?:any} isn't "any | undefined"
 		// So instead we check for the questionmark to detect optional types
 		let parsedType: t.Node | undefined = undefined;
-		if (type.flags & ts.TypeFlags.Any && declaration && ts.isPropertySignature(declaration)) {
+		if (
+			(type.flags & ts.TypeFlags.Any || type.flags & ts.TypeFlags.Unknown) &&
+			declaration &&
+			ts.isPropertySignature(declaration)
+		) {
 			parsedType = declaration.questionToken
 				? t.unionNode([t.undefinedNode(), t.anyNode()])
 				: t.anyNode();
