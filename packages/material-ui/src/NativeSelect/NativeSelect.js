@@ -72,8 +72,8 @@ export const styles = (theme) => ({
     position: 'absolute',
     right: 0,
     top: 'calc(50% - 12px)', // Center vertically
-    color: 'currentColor', // Ensure color stays consistent when disabled.
-    opacity: 0.8, // Reduced opacity to account for the icon's large surface area.
+    color: 'currentColor',
+    opacity: 0.6, // Reduced opacity to account for the icon's large surface area.
     pointerEvents: 'none', // Don't block pointer events on the select under the icon.
   },
   /* Styles applied to the icon component if the popup is open. */
