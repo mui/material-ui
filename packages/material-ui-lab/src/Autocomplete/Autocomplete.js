@@ -143,7 +143,11 @@ export const styles = (theme) => ({
   popupIndicator: {
     padding: 2,
     marginRight: -2,
-    color: theme.palette.action.active,
+    color: 'currentColor', // Unify behavior with Select component.
+    opacity: .8,
+    '&:disabled': {
+      color: 'currentColor', // Overrides IconButton's disabled color.
+    },
   },
   /* Styles applied to the popup indicator if the popup is open. */
   popupIndicatorOpen: {
