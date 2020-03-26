@@ -135,8 +135,6 @@ export const styles = (theme) => ({
     marginRight: -2,
     padding: 4,
     visibility: 'hidden',
-    color: 'currentColor',
-    opacity: 0.6,
   },
   /* Styles applied to the clear indicator if the input is dirty. */
   clearIndicatorDirty: {},
@@ -144,11 +142,6 @@ export const styles = (theme) => ({
   popupIndicator: {
     padding: 2,
     marginRight: -2,
-    color: 'currentColor',
-    opacity: 0.6,
-    '&:disabled': {
-      color: 'currentColor',
-    },
   },
   /* Styles applied to the popup indicator if the popup is open. */
   popupIndicatorOpen: {
