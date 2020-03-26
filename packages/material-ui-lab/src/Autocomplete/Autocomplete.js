@@ -249,6 +249,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     disableClearable = false,
     disableCloseOnSelect = false,
     disabled = false,
+    disabledItemsFocusable = false,
     disableListWrap = false,
     disablePortal = false,
     filterOptions,
@@ -575,6 +576,10 @@ Autocomplete.propTypes = {
    * If `true`, the input will be disabled.
    */
   disabled: PropTypes.bool,
+  /**
+   * If `true`, will allow focus on disabled items.
+   */
+  disabledItemsFocusable: PropTypes.bool,
   /**
    * If `true`, the list box in the popup will not wrap focus.
    */

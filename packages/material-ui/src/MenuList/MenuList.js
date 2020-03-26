@@ -46,7 +46,14 @@ function textCriteriaMatches(nextFocus, textCriteria) {
   return text.indexOf(textCriteria.keys.join('')) === 0;
 }
 
-function moveFocus(list, currentFocus, disableListWrap, traversalFunction, textCriteria) {
+function moveFocus(
+  list,
+  currentFocus,
+  disableListWrap,
+  disabledItemsFocusable,
+  traversalFunction,
+  textCriteria,
+) {
   let wrappedOnce = false;
   let nextFocus = traversalFunction(list, currentFocus, currentFocus ? disableListWrap : false);
 
@@ -54,25 +61,28 @@ function moveFocus(list, currentFocus, disableListWrap, traversalFunction, textC
     // Prevent infinite loop.
     if (nextFocus === list.firstChild) {
       if (wrappedOnce) {
-        return false;
+        return;
       }
       wrappedOnce = true;
     }
-    // Move to the next element.
+
+    // Same logic as useAutocomplete.js
+    const nextFocusDisabled = disabledItemsFocusable
+      ? false
+      : nextFocus.disabled || nextFocus.getAttribute('aria-disabled') === 'true';
+
     if (
       !nextFocus.hasAttribute('tabindex') ||
-      nextFocus.disabled ||
-      nextFocus.getAttribute('aria-disabled') === 'true' ||
-      !textCriteriaMatches(nextFocus, textCriteria)
+      !textCriteriaMatches(nextFocus, textCriteria) ||
+      nextFocusDisabled
     ) {
+      // Move to the next element.
       nextFocus = traversalFunction(list, nextFocus, disableListWrap);
     } else {
       nextFocus.focus();
-      return true;
+      return;
     }
   }
-
-  return false;
 }
 
 const useEnhancedEffect = typeof window === 'undefined' ? React.useEffect : React.useLayoutEffect;
@@ -92,8 +102,9 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
     autoFocusItem = false,
     children,
     className,
-    onKeyDown,
+    disabledItemsFocusable = false,
     disableListWrap = false,
+    onKeyDown,
     variant = 'selectedMenu',
     ...other
   } = props;
@@ -145,16 +156,16 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
     if (key === 'ArrowDown') {
       // Prevent scroll of the page
       event.preventDefault();
-      moveFocus(list, currentFocus, disableListWrap, nextItem);
+      moveFocus(list, currentFocus, disableListWrap, disabledItemsFocusable, nextItem);
     } else if (key === 'ArrowUp') {
       event.preventDefault();
-      moveFocus(list, currentFocus, disableListWrap, previousItem);
+      moveFocus(list, currentFocus, disableListWrap, disabledItemsFocusable, previousItem);
     } else if (key === 'Home') {
       event.preventDefault();
-      moveFocus(list, null, disableListWrap, nextItem);
+      moveFocus(list, null, disableListWrap, disabledItemsFocusable, nextItem);
     } else if (key === 'End') {
       event.preventDefault();
-      moveFocus(list, null, disableListWrap, previousItem);
+      moveFocus(list, null, disableListWrap, disabledItemsFocusable, previousItem);
     } else if (key.length === 1) {
       const criteria = textCriteriaRef.current;
       const lowerKey = key.toLowerCase();
@@ -175,7 +186,8 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
         currentFocus && !criteria.repeating && textCriteriaMatches(currentFocus, criteria);
       if (
         criteria.previousKeyMatched &&
-        (keepFocusOnCurrent || moveFocus(list, currentFocus, false, nextItem, criteria))
+        (keepFocusOnCurrent ||
+          moveFocus(list, currentFocus, false, disabledItemsFocusable, nextItem, criteria))
       ) {
         event.preventDefault();
       } else {
@@ -280,6 +292,10 @@ MenuList.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * If `true`, will allow focus on disabled items.
+   */
+  disabledItemsFocusable: PropTypes.bool,
   /**
    * If `true`, the menu items will not wrap focus.
    */
