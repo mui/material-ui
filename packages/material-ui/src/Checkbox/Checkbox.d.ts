@@ -3,7 +3,11 @@ import { StandardProps } from '..';
 import { SwitchBaseProps, SwitchBaseClassKey } from '../internal/SwitchBase';
 
 export interface CheckboxProps
-  extends StandardProps<SwitchBaseProps, CheckboxClassKey, 'checkedIcon' | 'color' | 'icon'> {
+  extends StandardProps<
+    SwitchBaseProps,
+    CheckboxClassKey,
+    'checkedIcon' | 'color' | 'icon' | 'type'
+  > {
   checkedIcon?: React.ReactNode;
   color?: 'primary' | 'secondary' | 'default';
   icon?: React.ReactNode;
