@@ -349,6 +349,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       <IconComponent
         className={clsx(classes.icon, classes[`icon${capitalize(variant)}`], {
           [classes.iconOpen]: open,
+          [classes.disabled]: disabled,
         })}
       />
       <Menu

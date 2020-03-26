@@ -72,8 +72,11 @@ export const styles = (theme) => ({
     position: 'absolute',
     right: 0,
     top: 'calc(50% - 12px)', // Center vertically
-    color: theme.palette.action.active,
     pointerEvents: 'none', // Don't block pointer events on the select under the icon.
+    color: theme.palette.action.active,
+    '&$disabled': {
+      color: theme.palette.action.disabled,
+    },
   },
   /* Styles applied to the icon component if the popup is open. */
   iconOpen: {
