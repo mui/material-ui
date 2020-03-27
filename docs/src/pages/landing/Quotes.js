@@ -149,10 +149,10 @@ function Quote(props) {
               <Avatar src={avatar} alt={name} className={classes.avatar} />
             </Grid>
             <Grid item>
-              <Typography variant="h6" color="textPrimary" className={classes.name}>
+              <Typography component="div" variant="h6" color="textPrimary" className={classes.name}>
                 {name}
               </Typography>
-              <Typography variant="subtitle2" color="textSecondary">
+              <Typography component="div" variant="subtitle2" color="textSecondary">
                 {userName}
               </Typography>
             </Grid>
