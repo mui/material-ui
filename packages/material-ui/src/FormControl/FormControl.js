@@ -69,7 +69,7 @@ const FormControl = React.forwardRef(function FormControl(props, ref) {
     disabled = false,
     error = false,
     fullWidth = false,
-    visuallyFocused,
+    focused: visuallyFocused,
     hiddenLabel = false,
     margin = 'none',
     required = false,
@@ -231,7 +231,10 @@ FormControl.propTypes = {
    * If `true`, the label should be displayed in an error state.
    */
   error: PropTypes.bool,
-
+  /**
+   * If `true`, the component will be displayed in focused state.
+   */
+  focused: PropTypes.bool,
   /**
    * If `true`, the component will take up the full width of its container.
    */
@@ -258,10 +261,6 @@ FormControl.propTypes = {
    * The variant to use.
    */
   variant: PropTypes.oneOf(['standard', 'outlined', 'filled']),
-  /**
-   * If `true`, the component will be displayed in focused state.
-   */
-  visuallyFocused: PropTypes.bool,
 };
 
 export default withStyles(styles, { name: 'MuiFormControl' })(FormControl);
