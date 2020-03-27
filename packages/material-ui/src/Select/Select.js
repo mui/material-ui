@@ -119,6 +119,10 @@ Select.propTypes = {
    */
   classes: PropTypes.object,
   /**
+   * The default element value. Use when the component is not controlled.
+   */
+  defaultValue: PropTypes.any.isRequired,
+  /**
    * If `true`, a value is displayed even if no items are selected.
    *
    * In order to display a meaningful value, a function should be passed to the `renderValue` prop which returns the value to be displayed when no items are selected.
@@ -167,6 +171,14 @@ Select.propTypes = {
    * If `true`, the component will be using a native `select` element.
    */
   native: PropTypes.bool,
+  /**
+   * Callback function fired when a menu item is selected.
+   *
+   * @param {object} event The event source of the callback.
+   * You can pull out the new value by accessing `event.target.value` (any).
+   * @param {object} [child] The react element that was selected when `native` is `false` (default).
+   */
+  onChange: PropTypes.func,
   /**
    * Callback fired when the component requests to be closed.
    * Use in controlled mode (see open).
