@@ -32,7 +32,7 @@ export function createFilterOptions(config = {}) {
     }
 
     if (startAfter > 0 && input.length <= startAfter) {
-      return false;
+      return [];
     }
 
     const filteredOptions = options.filter((option) => {

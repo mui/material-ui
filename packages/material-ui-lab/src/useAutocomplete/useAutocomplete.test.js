@@ -44,8 +44,8 @@ describe('createFilterOptions', () => {
         },
       ];
 
-      expect(filterOptions(options, { inputValue: 'c', getOptionLabel })).to.deep.equal(false);
-      expect(filterOptions(options, { inputValue: 'ca', getOptionLabel })).to.deep.equal(false);
+      expect(filterOptions(options, { inputValue: 'c', getOptionLabel })).to.deep.equal([]);
+      expect(filterOptions(options, { inputValue: 'ca', getOptionLabel })).to.deep.equal([]);
       expect(filterOptions(options, { inputValue: 'cat', getOptionLabel })).to.deep.equal([
         options[0],
       ]);
