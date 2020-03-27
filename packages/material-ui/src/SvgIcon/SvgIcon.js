@@ -80,7 +80,7 @@ const SvgIcon = React.forwardRef(function SvgIcon(props, ref) {
       viewBox={viewBox}
       color={htmlColor}
       aria-hidden={titleAccess ? undefined : 'true'}
-      role={titleAccess ? 'img' : 'presentation'}
+      role={titleAccess ? 'img' : undefined}
       ref={ref}
       {...other}
     >
