@@ -1,5 +1,2 @@
-import SvgIcon from '@material-ui/core/SvgIcon';
-
-declare function createSvgIcon(path: React.ReactNode, displayName: string): typeof SvgIcon;
-
-export default createSvgIcon;
+export { default } from '@material-ui/core/createSvgIcon';
+export * from '@material-ui/core/createSvgIcon';
