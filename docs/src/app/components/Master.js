@@ -210,7 +210,7 @@ class Master extends Component {
               Material-UI v1
             </span>
           </a>
-          &nbsp; is coming! We &nbsp;
+          &nbsp; is here! We &nbsp;
           <a
             style={prepareStyles(styles.v1Link)}
             href="https://github.com/mui-org/material-ui#should-i-start-with-v1-beta"
