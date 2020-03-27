@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.2](https://github.com/merceyz/typescript-to-proptypes/compare/v1.4.1...v1.4.2) (2020-03-27)
+
+### Bug Fixes
+
+- build had a broken output ([97b0326](https://github.com/merceyz/typescript-to-proptypes/commit/97b0326c8b3b811fd5167cefa95a5dc1aa22a212))
+
 ### [1.4.1](https://github.com/merceyz/typescript-to-proptypes/compare/v1.4.0...v1.4.1) (2020-03-27)
 
 ### Bug Fixes
