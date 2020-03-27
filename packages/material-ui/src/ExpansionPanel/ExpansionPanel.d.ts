@@ -9,7 +9,9 @@ export interface ExpansionPanelProps
   disabled?: boolean;
   expanded?: boolean;
   onChange?: (event: React.ChangeEvent<{}>, expanded: boolean) => void;
-  TransitionComponent?: React.ComponentType<TransitionProps>;
+  TransitionComponent?: React.ComponentType<
+    TransitionProps & { children?: React.ReactElement<any, any> }
+  >;
   TransitionProps?: TransitionProps;
 }
 

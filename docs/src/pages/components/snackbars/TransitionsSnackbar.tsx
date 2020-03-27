@@ -17,13 +17,15 @@ function GrowTransition(props: TransitionProps) {
 export default function TransitionsSnackbar() {
   const [state, setState] = React.useState<{
     open: boolean;
-    Transition: React.ComponentType<TransitionProps>;
+    Transition: React.ComponentType<TransitionProps & { children?: React.ReactElement<any, any> }>;
   }>({
     open: false,
     Transition: Fade,
   });
 
-  const handleClick = (Transition: React.ComponentType<TransitionProps>) => () => {
+  const handleClick = (
+    Transition: React.ComponentType<TransitionProps & { children?: React.ReactElement<any, any> }>,
+  ) => () => {
     setState({
       open: true,
       Transition,
