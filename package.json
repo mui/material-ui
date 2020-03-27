@@ -141,7 +141,7 @@
     "size-limit": "^0.21.0",
     "ts-node": "^8.3.0",
     "tslint": "5.14.0",
-    "typescript": "^3.8.2",
+    "typescript": "3.9.0-dev.20200326",
     "typescript-to-proptypes": "^1.4.2",
     "unist-util-visit": "^2.0.2",
     "vrtest-mui": "^0.3.3",
@@ -163,7 +163,8 @@
     "**/@babel/runtime": "^7.8.4",
     "**/@babel/types": "^7.8.6",
     "**/hoist-non-react-statics": "^3.3.2",
-    "**/next/terser": "^4.1.2"
+    "**/next/terser": "^4.1.2",
+    "**/dtslint/typescript": "3.9.0-dev.20200326"
   },
   "nyc": {
     "include": [

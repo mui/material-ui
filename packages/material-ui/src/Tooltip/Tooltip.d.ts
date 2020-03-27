@@ -35,7 +35,9 @@ export interface TooltipProps
     | 'top';
   PopperProps?: Partial<PopperProps>;
   title: React.ReactNode;
-  TransitionComponent?: React.ComponentType<TransitionProps>;
+  TransitionComponent?: React.ComponentType<
+    TransitionProps & { children?: React.ReactElement<any, any> }
+  >;
   TransitionProps?: TransitionProps;
 }
 
