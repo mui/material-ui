@@ -11,5 +11,5 @@
 		"outDir": "dist",
 		"jsx": "preserve"
 	},
-	"include": ["src", "test"]
+	"include": ["src"]
 }
