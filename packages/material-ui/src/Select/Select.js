@@ -97,6 +97,10 @@ const Select = React.forwardRef(function Select(props, ref) {
 });
 
 Select.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * If `true`, the width of the popover will automatically be set according to the items inside the
    * menu, otherwise it will be at least the width of the select input.
@@ -113,11 +117,7 @@ Select.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
-  /**
-   * The default element value. Use when the component is not controlled.
-   */
-  defaultValue: PropTypes.any,
+  classes: PropTypes.object,
   /**
    * If `true`, a value is displayed even if no items are selected.
    *
@@ -168,14 +168,6 @@ Select.propTypes = {
    */
   native: PropTypes.bool,
   /**
-   * Callback function fired when a menu item is selected.
-   *
-   * @param {object} event The event source of the callback.
-   * You can pull out the new value by accessing `event.target.value` (any).
-   * @param {object} [child] The react element that was selected when `native` is `false` (default).
-   */
-  onChange: PropTypes.func,
-  /**
    * Callback fired when the component requests to be closed.
    * Use in controlled mode (see open).
    *
@@ -214,11 +206,11 @@ Select.propTypes = {
    * If the value is an object it must have reference equality with the option in order to be selected.
    * If the value is not an object, the string representation must match with the string representation of the option in order to be selected.
    */
-  value: PropTypes.any,
+  value: PropTypes.any.isRequired,
   /**
    * The variant to use.
    */
-  variant: PropTypes.oneOf(['standard', 'outlined', 'filled']),
+  variant: PropTypes.oneOf(['filled', 'outlined', 'standard']),
 };
 
 Select.muiName = 'Select';

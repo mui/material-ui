@@ -130,6 +130,10 @@ const NativeSelect = React.forwardRef(function NativeSelect(props, ref) {
 });
 
 NativeSelect.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * The option elements to populate the select with.
    * Can be some `<option>` elements.
@@ -139,7 +143,7 @@ NativeSelect.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * The icon that displays the arrow.
    */
@@ -162,11 +166,11 @@ NativeSelect.propTypes = {
   /**
    * The input value. The DOM API casts this to a string.
    */
-  value: PropTypes.any,
+  value: PropTypes.any.isRequired,
   /**
    * The variant to use.
    */
-  variant: PropTypes.oneOf(['standard', 'outlined', 'filled']),
+  variant: PropTypes.oneOf(['filled', 'outlined', 'standard']),
 };
 
 NativeSelect.muiName = 'Select';

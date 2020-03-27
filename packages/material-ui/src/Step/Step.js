@@ -26,16 +26,21 @@ export const styles = {
 const Step = React.forwardRef(function Step(props, ref) {
   const {
     active = false,
+    // eslint-disable-next-line react/prop-types
     alternativeLabel,
     children,
     classes,
     className,
     completed = false,
+    // eslint-disable-next-line react/prop-types
     connector,
     disabled = false,
     expanded = false,
+    // eslint-disable-next-line react/prop-types
     index,
+    // eslint-disable-next-line react/prop-types
     last,
+    // eslint-disable-next-line react/prop-types
     orientation,
     ...other
   } = props;
@@ -65,6 +70,7 @@ const Step = React.forwardRef(function Step(props, ref) {
           completed,
           disabled,
         })}
+
       {React.Children.map(children, (child) => {
         if (!React.isValidElement(child)) {
           return null;
@@ -98,15 +104,14 @@ const Step = React.forwardRef(function Step(props, ref) {
 });
 
 Step.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * Sets the step as active. Is passed to child components.
    */
   active: PropTypes.bool,
-  /**
-   * @ignore
-   * Set internally by Stepper when it's supplied with the alternativeLabel property.
-   */
-  alternativeLabel: PropTypes.bool,
   /**
    * Should be `Step` sub-components such as `StepLabel`, `StepContent`.
    */
@@ -115,7 +120,7 @@ Step.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -125,11 +130,6 @@ Step.propTypes = {
    */
   completed: PropTypes.bool,
   /**
-   * @ignore
-   * Passed down from Stepper if alternativeLabel is also set.
-   */
-  connector: PropTypes.element,
-  /**
    * Mark the step as disabled, will also disable the button if
    * `StepButton` is a child of `Step`. Is passed to child components.
    */
@@ -138,19 +138,6 @@ Step.propTypes = {
    * Expand the step.
    */
   expanded: PropTypes.bool,
-  /**
-   * @ignore
-   * Used internally for numbering.
-   */
-  index: PropTypes.number,
-  /**
-   * @ignore
-   */
-  last: PropTypes.bool,
-  /**
-   * @ignore
-   */
-  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
 };
 
 export default withStyles(styles, { name: 'MuiStep' })(Step);
