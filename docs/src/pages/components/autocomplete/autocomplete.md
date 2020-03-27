@@ -156,6 +156,7 @@ import { createFilterOptions } from '@material-ui/lab/Autocomplete';
   - `config.stringify` (*Func* [optional]): Controls how an option is converted into a string so that it can be matched against the input text fragment.
   - `config.trim` (*Boolean* [optional]): Defaults to `false`. Remove trailing spaces.
   - `config.limit` (*Number* [optional]): Default to null. Limit the number of suggested options to be shown. For example, if `config.limit` is `100`, only the first `100` matching options are shown. It can be useful if a lot of options match and virtualization wasn't set up.
+  - `config.startAfter`(*Number* [optional]): Default to `0`. Show the suggested options only after a certain number of letters
 
 #### Returns
 

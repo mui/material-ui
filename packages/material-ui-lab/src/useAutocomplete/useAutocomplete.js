@@ -19,6 +19,7 @@ export function createFilterOptions(config = {}) {
     stringify,
     trim = false,
     limit,
+    startAfter = 0,
   } = config;
 
   return (options, { inputValue, getOptionLabel }) => {
@@ -29,6 +30,11 @@ export function createFilterOptions(config = {}) {
     if (ignoreAccents) {
       input = stripDiacritics(input);
     }
+
+    if (startAfter > 0 && input.length <= startAfter) {
+      return false;
+    }
+
     const filteredOptions = options.filter((option) => {
       let candidate = (stringify || getOptionLabel)(option);
       if (ignoreCase) {
