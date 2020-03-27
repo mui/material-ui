@@ -15,10 +15,11 @@ export function createFilterOptions(config = {}) {
   const {
     ignoreAccents = true,
     ignoreCase = true,
+    limit,
     matchFrom = 'any',
+    startAfter = 0,
     stringify,
     trim = false,
-    limit,
   } = config;
 
   return (options, { inputValue, getOptionLabel }) => {
@@ -29,6 +30,11 @@ export function createFilterOptions(config = {}) {
     if (ignoreAccents) {
       input = stripDiacritics(input);
     }
+
+    if (startAfter > 0 && input.length <= startAfter) {
+      return [];
+    }
+
     const filteredOptions = options.filter((option) => {
       let candidate = (stringify || getOptionLabel)(option);
       if (ignoreCase) {
