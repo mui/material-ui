@@ -169,6 +169,10 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
 });
 
 TextareaAutosize.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * @ignore
    */
@@ -186,15 +190,15 @@ TextareaAutosize.propTypes = {
    *
    * @deprecated
    */
-  rows: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  rows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * Maximum number of rows to display.
    */
-  rowsMax: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  rowsMax: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * Minimum number of rows to display.
    */
-  rowsMin: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  rowsMin: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * @ignore
    */
@@ -202,7 +206,11 @@ TextareaAutosize.propTypes = {
   /**
    * @ignore
    */
-  value: PropTypes.any,
+  value: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.string),
+    PropTypes.number,
+    PropTypes.string,
+  ]),
 };
 
 export default TextareaAutosize;

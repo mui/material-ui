@@ -16020,10 +16020,10 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typescript-to-proptypes@^1.4.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/typescript-to-proptypes/-/typescript-to-proptypes-1.4.0.tgz#6253e85b4640a5a1829c3c6bc92a3941062621b2"
-  integrity sha512-kGatNmhRV1jjwKCxzo0ohoQZCYqfY3pP9Zzskq02LzaKdIrlh6eLyTk9ucBw5eIWyq5ZoavxXPkRreVFUp9zGw==
+typescript-to-proptypes@^1.4.2:
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/typescript-to-proptypes/-/typescript-to-proptypes-1.4.2.tgz#ccc0d8844043a35bc00ce5eed1cbe5083a737b77"
+  integrity sha512-tEJcKj73nsJebMl69Cn2DS4MDf4GYl80Gh9kQdF2YCtinXCEqd4w8BsIgF4wShQKRqm7ApG4qP1qJovCdMNl6w==
   dependencies:
     "@babel/core" "^7.5.4"
     "@babel/plugin-syntax-class-properties" "^7.2.0"

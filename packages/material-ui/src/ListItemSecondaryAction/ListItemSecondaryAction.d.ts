@@ -1,7 +1,12 @@
 import { StandardProps } from '..';
 
 export interface ListItemSecondaryActionProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, ListItemSecondaryActionClassKey> {}
+  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, ListItemSecondaryActionClassKey> {
+  /**
+   * The content of the component, normally an `IconButton` or selection control.
+   */
+  children?: React.ReactNode;
+}
 
 export type ListItemSecondaryActionClassKey = 'root';
 
@@ -15,6 +20,4 @@ export type ListItemSecondaryActionClassKey = 'root';
  *
  * - [ListItemSecondaryAction API](https://material-ui.com/api/list-item-secondary-action/)
  */
-declare const ListItemSecondaryAction: React.ComponentType<ListItemSecondaryActionProps>;
-
-export default ListItemSecondaryAction;
+export default function ListItemSecondaryAction(props: ListItemSecondaryActionProps): JSX.Element;

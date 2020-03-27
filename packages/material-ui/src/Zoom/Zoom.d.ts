@@ -3,8 +3,26 @@ import { Theme } from '../styles/createMuiTheme';
 import { TransitionProps } from '../transitions/transition';
 
 export interface ZoomProps extends TransitionProps {
+  /**
+   * A single child content element.
+   */
+  children?: React.ReactElement<any, any>;
+  /**
+   * If `true`, the component will transition in.
+   */
+  in?: boolean;
+  /**
+   */
+  onEnter?: TransitionProps['onEnter'];
+  /**
+   */
+  onExit?: TransitionProps['onExit'];
   ref?: React.Ref<unknown>;
-  theme?: Theme;
+  /**
+   * The duration for the transition, in milliseconds.
+   * You may specify a single timeout for all transitions, or individually with an object.
+   */
+  timeout?: TransitionProps['timeout'];
 }
 
 /**
@@ -20,6 +38,4 @@ export interface ZoomProps extends TransitionProps {
  * - [Zoom API](https://material-ui.com/api/zoom/)
  * - inherits [Transition API](https://reactcommunity.org/react-transition-group/transition#Transition-props)
  */
-declare const Zoom: React.ComponentType<ZoomProps>;
-
-export default Zoom;
+export default function Zoom(props: ZoomProps): JSX.Element;

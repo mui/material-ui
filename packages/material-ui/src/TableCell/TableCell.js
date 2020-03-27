@@ -164,13 +164,17 @@ const TableCell = React.forwardRef(function TableCell(props, ref) {
 });
 
 TableCell.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * Set the text-align on the table cell content.
    *
    * Monetary or generally number fields **should be right aligned** as that allows
    * you to add them up quickly in your head without having to worry about decimals.
    */
-  align: PropTypes.oneOf(['inherit', 'left', 'center', 'right', 'justify']),
+  align: PropTypes.oneOf(['center', 'inherit', 'justify', 'left', 'right']),
   /**
    * The table cell contents.
    */
@@ -179,7 +183,7 @@ TableCell.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -193,7 +197,7 @@ TableCell.propTypes = {
    * Sets the padding applied to the cell.
    * By default, the Table parent component set the value (`default`).
    */
-  padding: PropTypes.oneOf(['default', 'checkbox', 'none']),
+  padding: PropTypes.oneOf(['checkbox', 'default', 'none']),
   /**
    * Set scope attribute.
    */
@@ -202,7 +206,7 @@ TableCell.propTypes = {
    * Specify the size of the cell.
    * By default, the Table parent component set the value (`medium`).
    */
-  size: PropTypes.oneOf(['small', 'medium']),
+  size: PropTypes.oneOf(['medium', 'small']),
   /**
    * Set aria-sort direction.
    */
@@ -211,7 +215,7 @@ TableCell.propTypes = {
    * Specify the cell type.
    * By default, the TableHead, TableBody or TableFooter parent component set the value.
    */
-  variant: PropTypes.oneOf(['head', 'body', 'footer']),
+  variant: PropTypes.oneOf(['body', 'footer', 'head']),
 };
 
 export default withStyles(styles, { name: 'MuiTableCell' })(TableCell);
