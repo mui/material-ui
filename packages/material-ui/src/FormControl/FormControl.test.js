@@ -109,11 +109,11 @@ describe('<FormControl />', () => {
     });
   });
 
-  describe.only('prop: forceFocus', () => {
+  describe('prop: visuallyFocused', () => {
     it('should display input in focused state', () => {
       const readContext = spy();
       const { container } = render(
-        <FormControl forceFocus>
+        <FormControl visuallyFocused>
           <Input />
           <TestComponent contextCallback={readContext} />
         </FormControl>,

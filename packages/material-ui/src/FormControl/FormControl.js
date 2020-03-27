@@ -69,7 +69,7 @@ const FormControl = React.forwardRef(function FormControl(props, ref) {
     disabled = false,
     error = false,
     fullWidth = false,
-    forceFocus = false,
+    visuallyFocused,
     hiddenLabel = false,
     margin = 'none',
     required = false,
@@ -84,7 +84,7 @@ const FormControl = React.forwardRef(function FormControl(props, ref) {
     let initialAdornedStart = false;
 
     if (children) {
-      React.Children.forEach(children, child => {
+      React.Children.forEach(children, (child) => {
         if (!isMuiElement(child, ['Input', 'Select'])) {
           return;
         }
@@ -105,7 +105,7 @@ const FormControl = React.forwardRef(function FormControl(props, ref) {
     let initialFilled = false;
 
     if (children) {
-      React.Children.forEach(children, child => {
+      React.Children.forEach(children, (child) => {
         if (!isMuiElement(child, ['Input', 'Select'])) {
           return;
         }
@@ -120,7 +120,7 @@ const FormControl = React.forwardRef(function FormControl(props, ref) {
   });
 
   const [_focused, setFocused] = React.useState(false);
-  const focused = forceFocus || _focused;
+  const focused = visuallyFocused ?? _focused;
 
   if (disabled && focused) {
     setFocused(false);
@@ -231,10 +231,7 @@ FormControl.propTypes = {
    * If `true`, the label should be displayed in an error state.
    */
   error: PropTypes.bool,
-  /**
-   * If `true`, the component will be displayed in focused state.
-   */
-  forceFocus: PropTypes.bool,
+
   /**
    * If `true`, the component will take up the full width of its container.
    */
@@ -261,6 +258,10 @@ FormControl.propTypes = {
    * The variant to use.
    */
   variant: PropTypes.oneOf(['standard', 'outlined', 'filled']),
+  /**
+   * If `true`, the component will be displayed in focused state.
+   */
+  visuallyFocused: PropTypes.bool,
 };
 
 export default withStyles(styles, { name: 'MuiFormControl' })(FormControl);
