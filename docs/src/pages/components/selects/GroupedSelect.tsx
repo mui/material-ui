@@ -1,7 +1,6 @@
 import React from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
-import Input from '@material-ui/core/Input';
 import MenuItem from '@material-ui/core/MenuItem';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import FormControl from '@material-ui/core/FormControl';
@@ -23,7 +22,7 @@ export default function GroupedSelect() {
     <div>
       <FormControl className={classes.formControl}>
         <InputLabel htmlFor="grouped-native-select">Grouping</InputLabel>
-        <Select native defaultValue="" input={<Input id="grouped-native-select" />}>
+        <Select native defaultValue="" id="grouped-native-select">
           <option aria-label="None" value="" />
           <optgroup label="Category 1">
             <option value={1}>Option 1</option>
@@ -37,7 +36,7 @@ export default function GroupedSelect() {
       </FormControl>
       <FormControl className={classes.formControl}>
         <InputLabel htmlFor="grouped-select">Grouping</InputLabel>
-        <Select defaultValue="" input={<Input id="grouped-select" />}>
+        <Select defaultValue="" id="grouped-select">
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
