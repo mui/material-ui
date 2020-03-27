@@ -121,7 +121,7 @@ Select.propTypes = {
   /**
    * The default element value. Use when the component is not controlled.
    */
-  defaultValue: PropTypes.any.isRequired,
+  defaultValue: PropTypes.any,
   /**
    * If `true`, a value is displayed even if no items are selected.
    *
@@ -218,7 +218,7 @@ Select.propTypes = {
    * If the value is an object it must have reference equality with the option in order to be selected.
    * If the value is not an object, the string representation must match with the string representation of the option in order to be selected.
    */
-  value: PropTypes.any.isRequired,
+  value: PropTypes.any,
   /**
    * The variant to use.
    */

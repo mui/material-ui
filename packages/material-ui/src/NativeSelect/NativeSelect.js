@@ -166,7 +166,7 @@ NativeSelect.propTypes = {
   /**
    * The input value. The DOM API casts this to a string.
    */
-  value: PropTypes.any.isRequired,
+  value: PropTypes.any,
   /**
    * The variant to use.
    */
