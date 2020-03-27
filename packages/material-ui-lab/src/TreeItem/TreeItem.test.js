@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
-import { createEvent, createClientRender, fireEvent } from 'test/utils/createClientRender';
+import { act, createEvent, createClientRender, fireEvent } from 'test/utils/createClientRender';
 import TreeItem from './TreeItem';
 import TreeView from '../TreeView';
 
@@ -1007,29 +1007,42 @@ describe('<TreeItem />', () => {
   });
 
   it('should not focus steal', () => {
-    function TestComponent() {
-      const [hide, setHide] = React.useState(false);
+    let setActiveItemMounted;
+    // a TreeItem whose mounted state we can control with `setActiveItemMounted`
+    function ControlledTreeItem(props) {
+      const [mounted, setMounted] = React.useState(true);
+      setActiveItemMounted = setMounted;
 
-      return (
-        <React.Fragment>
-          <button type="button" onClick={() => setHide(!hide)}>
-            Hide
-          </button>
-          <TreeView>
-            <TreeItem nodeId="one" label="one" data-testid="one" />
-            {!hide ? <TreeItem nodeId="two" label="two" data-testid="two" /> : <span />}
-          </TreeView>
-        </React.Fragment>
-      );
+      if (!mounted) {
+        return null;
+      }
+      return <TreeItem {...props} />;
     }
+    const { getByText, getByTestId, getByRole } = render(
+      <React.Fragment>
+        <button type="button">Some focusable element</button>
+        <TreeView>
+          <TreeItem nodeId="one" label="one" data-testid="one" />
+          <ControlledTreeItem nodeId="two" label="two" data-testid="two" />
+        </TreeView>
+      </React.Fragment>,
+    );
 
-    const { getByText, getByTestId, getByRole } = render(<TestComponent />);
     fireEvent.click(getByText('two'));
+
     expect(getByTestId('two')).to.have.focus;
+
     getByRole('button').focus();
+
     expect(getByRole('button')).to.have.focus;
-    fireEvent.click(getByRole('button'));
-    fireEvent.click(getByRole('button'));
+
+    act(() => {
+      setActiveItemMounted(false);
+    });
+    act(() => {
+      setActiveItemMounted(true);
+    });
+
     expect(getByRole('button')).to.have.focus;
   });
 });
