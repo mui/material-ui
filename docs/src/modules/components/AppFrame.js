@@ -206,7 +206,7 @@ class AppFrame extends React.Component {
                   variant="body2"
                   noWrap
                 >
-                  {'Aww yeah, Material-UI v4 is coming!'}
+                  {'Aww yeah, Material-UI v4 is here!'}
                 </Link>
                 <Toolbar>
                   <IconButton
