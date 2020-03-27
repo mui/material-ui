@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.1](https://github.com/merceyz/typescript-to-proptypes/compare/v1.4.0...v1.4.1) (2020-03-27)
+
+### Bug Fixes
+
+- include string literal object keys as used ([#5](https://github.com/merceyz/typescript-to-proptypes/issues/5)) ([3fd7b70](https://github.com/merceyz/typescript-to-proptypes/commit/3fd7b703d30e650e6692f87d3929d4ae67314cb6))
+- unknown can be optional ([#7](https://github.com/merceyz/typescript-to-proptypes/issues/7)) ([c5e8ca3](https://github.com/merceyz/typescript-to-proptypes/commit/c5e8ca31e2cae20216b1f7e45c9f3ef5198b2f93))
+
 ## [1.4.0](https://github.com/merceyz/typescript-to-proptypes/compare/v1.3.0...v1.4.0) (2019-11-16)
 
 ### Bug Fixes
