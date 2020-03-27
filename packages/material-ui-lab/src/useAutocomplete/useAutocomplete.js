@@ -15,11 +15,11 @@ export function createFilterOptions(config = {}) {
   const {
     ignoreAccents = true,
     ignoreCase = true,
+    limit,
     matchFrom = 'any',
+    startAfter = 0,
     stringify,
     trim = false,
-    limit,
-    startAfter = 0,
   } = config;
 
   return (options, { inputValue, getOptionLabel }) => {
