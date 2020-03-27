@@ -3,7 +3,7 @@ import { StandardProps } from '..';
 import { IconButtonProps } from '../IconButton';
 
 export interface SwitchBaseProps
-  extends StandardProps<IconButtonProps, SwitchBaseClassKey, 'onChange' | 'value'> {
+  extends StandardProps<IconButtonProps, SwitchBaseClassKey, 'onChange' | 'type' | 'value'> {
   autoFocus?: boolean;
   checked?: boolean;
   checkedIcon: React.ReactNode;
@@ -18,6 +18,7 @@ export interface SwitchBaseProps
   readOnly?: boolean;
   required?: boolean;
   tabIndex?: number;
+  type?: React.InputHTMLAttributes<HTMLInputElement>['type'];
   value?: unknown;
 }
 

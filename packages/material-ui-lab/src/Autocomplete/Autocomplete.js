@@ -134,7 +134,6 @@ export const styles = (theme) => ({
   clearIndicator: {
     marginRight: -2,
     padding: 4,
-    color: theme.palette.action.active,
     visibility: 'hidden',
   },
   /* Styles applied to the clear indicator if the input is dirty. */
@@ -143,7 +142,6 @@ export const styles = (theme) => ({
   popupIndicator: {
     padding: 2,
     marginRight: -2,
-    color: theme.palette.action.active,
   },
   /* Styles applied to the popup indicator if the popup is open. */
   popupIndicatorOpen: {
@@ -251,6 +249,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     disableClearable = false,
     disableCloseOnSelect = false,
     disabled = false,
+    disabledItemsFocusable = false,
     disableListWrap = false,
     disablePortal = false,
     filterOptions,
@@ -577,6 +576,10 @@ Autocomplete.propTypes = {
    * If `true`, the input will be disabled.
    */
   disabled: PropTypes.bool,
+  /**
+   * If `true`, will allow focus on disabled items.
+   */
+  disabledItemsFocusable: PropTypes.bool,
   /**
    * If `true`, the list box in the popup will not wrap focus.
    */

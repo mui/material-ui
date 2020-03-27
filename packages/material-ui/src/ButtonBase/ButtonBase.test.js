@@ -611,7 +611,7 @@ describe('<ButtonBase />', () => {
   });
 
   describe('event: focus', () => {
-    it('when disabled should not call onFocus', () => {
+    it('when disabled should be called onFocus', () => {
       const onFocusSpy = spy();
       const { getByRole } = render(
         <ButtonBase component="div" disabled onFocus={onFocusSpy}>
@@ -621,7 +621,7 @@ describe('<ButtonBase />', () => {
 
       getByRole('button').focus();
 
-      expect(onFocusSpy.callCount).to.equal(0);
+      expect(onFocusSpy.callCount).to.equal(1);
     });
 
     it('has a focus-visible polyfill', () => {

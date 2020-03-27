@@ -73,7 +73,7 @@ describe('<MenuList> integration', () => {
       expect(menuitems[2]).to.have.property('tabIndex', -1);
     });
 
-    it('should select the secont item when pressing down if the first item is selected', () => {
+    it('should select the second item when pressing down if the first item is selected', () => {
       const { getAllByRole } = render(
         <MenuList autoFocusItem>
           <MenuItem selected>Menu Item 1</MenuItem>
@@ -325,37 +325,22 @@ describe('<MenuList> integration', () => {
     const menuitems = getAllByRole('menuitem');
 
     fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
-
     expect(menuitems[0]).to.have.focus;
-
     fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
-
     expect(menuitems[1]).to.have.focus;
-
     fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
-
     expect(menuitems[3]).to.have.focus;
-
     fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
-
     expect(menuitems[0]).to.have.focus;
 
     // and ArrowUp again
-
     fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
-
     expect(menuitems[3]).to.have.focus;
-
     fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
-
     expect(menuitems[1]).to.have.focus;
-
     fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
-
     expect(menuitems[0]).to.have.focus;
-
     fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
-
     expect(menuitems[3]).to.have.focus;
   });
 
@@ -371,23 +356,14 @@ describe('<MenuList> integration', () => {
     const menuitems = getAllByRole('menuitem');
 
     fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
-
     expect(menuitems[1]).to.have.focus;
-
     fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
-
     expect(menuitems[1]).to.have.focus;
-
     fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
-
     expect(menuitems[1]).to.have.focus;
-
     fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
-
     expect(menuitems[1]).to.have.focus;
-
     fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
-
     expect(menuitems[1]).to.have.focus;
   });
 
@@ -403,24 +379,39 @@ describe('<MenuList> integration', () => {
     const menu = getByRole('menu');
 
     fireEvent.keyDown(document.activeElement, { key: 'Home' });
-
     expect(menu).to.have.focus;
-
     fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
-
     expect(menu).to.have.focus;
-
     fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
-
     expect(menu).to.have.focus;
-
     fireEvent.keyDown(document.activeElement, { key: 'End' });
-
     expect(menu).to.have.focus;
-
     fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
-
     expect(menu).to.have.focus;
+  });
+
+  it('should allow focus on disabled items when disabledItemsFocusable=true', () => {
+    const { getAllByRole } = render(
+      <MenuList autoFocus disabledItemsFocusable>
+        <MenuItem disabled>Menu Item 1</MenuItem>
+        <MenuItem disabled>Menu Item 2</MenuItem>
+        <MenuItem disabled>Menu Item 3</MenuItem>
+        <MenuItem disabled>Menu Item 4</MenuItem>
+      </MenuList>,
+    );
+
+    const menuitems = getAllByRole('menuitem');
+
+    fireEvent.keyDown(document.activeElement, { key: 'Home' });
+    expect(menuitems[0]).to.have.focus;
+    fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+    expect(menuitems[1]).to.have.focus;
+    fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+    expect(menuitems[2]).to.have.focus;
+    fireEvent.keyDown(document.activeElement, { key: 'End' });
+    expect(menuitems[3]).to.have.focus;
+    fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
+    expect(menuitems[2]).to.have.focus;
   });
 
   describe('MenuList text-based keyboard controls', () => {

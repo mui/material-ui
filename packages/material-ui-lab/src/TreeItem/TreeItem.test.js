@@ -1166,4 +1166,44 @@ describe('<TreeItem />', () => {
     fireEvent(input, keydownEvent);
     expect(keydownEvent.preventDefault.callCount).to.equal(0);
   });
+
+  it('should not focus steal', () => {
+    let setActiveItemMounted;
+    // a TreeItem whose mounted state we can control with `setActiveItemMounted`
+    function ControlledTreeItem(props) {
+      const [mounted, setMounted] = React.useState(true);
+      setActiveItemMounted = setMounted;
+
+      if (!mounted) {
+        return null;
+      }
+      return <TreeItem {...props} />;
+    }
+    const { getByText, getByTestId, getByRole } = render(
+      <React.Fragment>
+        <button type="button">Some focusable element</button>
+        <TreeView>
+          <TreeItem nodeId="one" label="one" data-testid="one" />
+          <ControlledTreeItem nodeId="two" label="two" data-testid="two" />
+        </TreeView>
+      </React.Fragment>,
+    );
+
+    fireEvent.click(getByText('two'));
+
+    expect(getByTestId('two')).to.have.focus;
+
+    getByRole('button').focus();
+
+    expect(getByRole('button')).to.have.focus;
+
+    act(() => {
+      setActiveItemMounted(false);
+    });
+    act(() => {
+      setActiveItemMounted(true);
+    });
+
+    expect(getByRole('button')).to.have.focus;
+  });
 });
