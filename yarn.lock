@@ -6243,7 +6243,7 @@ typescript@3.5.2:
 
 "typescript@patch:typescript@3.5.2#builtin<compat/typescript>":
   version: 3.5.2
-  resolution: "typescript@patch:typescript@npm%3A3.5.2#builtin<compat/typescript>::version=3.5.2&hash=273569"
+  resolution: "typescript@patch:typescript@npm%3A3.5.2#builtin<compat/typescript>::version=3.5.2&hash=270b6c"
   bin:
     tsc: ./bin/tsc
     tsserver: ./bin/tsserver
