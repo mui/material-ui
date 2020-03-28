@@ -5,7 +5,7 @@ import * as doctrine from 'doctrine';
 /**
  * Options that specify how the parser should act
  */
-interface ParserOptions {
+export interface ParserOptions {
 	/**
 	 * Called before a PropType is added to a component/object
 	 * @return true to include the PropType, false to skip it, or undefined to
