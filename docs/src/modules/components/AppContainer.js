@@ -8,8 +8,8 @@ const useStyles = makeStyles((theme) => ({
   root: {
     paddingTop: 80 + 16,
     [theme.breakpoints.up('lg')]: {
-      paddingLeft: theme.spacing(5),
-      paddingRight: theme.spacing(5),
+      paddingLeft: theme.spacing(6),
+      paddingRight: theme.spacing(6),
     },
   },
 }));

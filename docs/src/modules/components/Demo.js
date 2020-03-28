@@ -153,12 +153,12 @@ function getDemoData(codeVariant, demo, githubLocation) {
 // TODO: replace with React.useOpaqueReference if it is released
 function useUniqueId(prefix) {
   // useOpaqueReference
-  const [id, setDemoId] = React.useState(null);
+  const [id, setId] = React.useState();
   React.useEffect(() => {
-    setDemoId(Math.random().toString(36).slice(2));
+    setId(Math.random().toString(36).slice(2));
   }, []);
 
-  return `${prefix}${id}`;
+  return id ? `${prefix}${id}` : id;
 }
 
 function Demo(props) {
