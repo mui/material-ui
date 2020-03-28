@@ -4,6 +4,7 @@ import fs from 'fs';
 import glob from 'glob';
 import prettier from 'prettier';
 import * as ttp from '../src';
+import { TestOptions } from './types';
 
 const prettierConfig = prettier.resolveConfig.sync(path.join(__dirname, '../.prettierrc'));
 
@@ -20,9 +21,12 @@ for (const testCase of testCases) {
 	const testName = dirname.substr(__dirname.length + 1);
 	const astPath = path.join(dirname, 'output.json');
 	const outputPath = path.join(dirname, 'output.js');
+	const optionsPath = path.join(dirname, 'options.ts');
 
 	it(testName, () => {
-		const ast = ttp.parseFromProgram(testCase, program);
+		const options: TestOptions = fs.existsSync(optionsPath) ? require(optionsPath).default : {};
+
+		const ast = ttp.parseFromProgram(testCase, program, options.parser);
 
 		//#region Check AST matches
 		if (fs.existsSync(astPath)) {
@@ -41,7 +45,7 @@ for (const testCase of testCases) {
 		let result = '';
 		// For d.ts files we just generate the AST
 		if (testCase.endsWith('.d.ts')) {
-			result = ttp.generate(ast);
+			result = ttp.generate(ast, options.generator);
 		}
 		// For .tsx? files we transpile them and inject the proptypes
 		else {
@@ -52,7 +56,7 @@ for (const testCase of testCases) {
 				},
 			}).outputText;
 
-			const injected = ttp.inject(ast, transpiled);
+			const injected = ttp.inject(ast, transpiled, options.injector);
 			if (!injected) {
 				throw new Error('Injection failed');
 			}
