@@ -1078,8 +1078,7 @@ const refTest = () => {
       const j: number = (ref as HTMLInputElement).valueAsNumber;
       // unsafe casts, unsound usage, no runtime overhead
       const k: number = (ref as any).valueAsNumber;
-      // tslint:disable-next-line ban-ts-ignore
-      // @ts-ignore unsound usage, no runtime overhead, least syntax
+      // @ts-expect-error unsound usage, no runtime overhead, least syntax
       const n: number = ref.valueAsNumber;
     }}
   />;
