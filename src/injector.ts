@@ -19,7 +19,7 @@ export type InjectOptions = {
 	 * Used to control which props are includes in the result
 	 * @return true to include the prop, false to skip it, or undefined to
 	 * use the default behaviour
-	 * @default includeUnusedProps ? true : data.usedProps.includes(`${data.prop.name}`)
+	 * @default includeUnusedProps ? true : data.usedProps.includes(data.prop.name)
 	 */
 	shouldInclude?(data: { prop: t.PropTypeNode; usedProps: string[] }): boolean | undefined;
 } & Pick<GenerateOptions, 'sortProptypes' | 'includeJSDoc' | 'comment'>;
@@ -81,7 +81,7 @@ function plugin(
 			}
 		}
 
-		return includeUnusedProps ? true : data.usedProps.includes(`${data.prop.name}`);
+		return includeUnusedProps ? true : data.usedProps.includes(data.prop.name);
 	};
 
 	let importName = '';
