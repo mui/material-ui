@@ -651,6 +651,28 @@ describe('<TreeItem />', () => {
           fireEvent.keyDown(document.activeElement, { key: 't' });
           expect(getByTestId('two')).to.have.focus;
         });
+
+        it('should not move focus when pressing a modifier key + letter', () => {
+          const { getByTestId } = render(
+            <TreeView>
+              <TreeItem nodeId="apple" label="apple" data-testid="apple" />
+              <TreeItem nodeId="lemon" label="lemon" data-testid="lemon" />
+              <TreeItem nodeId="coconut" label="coconut" data-testid="coconut" />
+              <TreeItem nodeId="vanilla" label="vanilla" data-testid="vanilla" />
+            </TreeView>,
+          );
+
+          getByTestId('apple').focus();
+          expect(getByTestId('apple')).to.have.focus;
+          fireEvent.keyDown(document.activeElement, { key: 'v', ctrlKey: true });
+          expect(getByTestId('apple')).to.have.focus;
+
+          fireEvent.keyDown(document.activeElement, { key: 'v', metaKey: true });
+          expect(getByTestId('apple')).to.have.focus;
+
+          fireEvent.keyDown(document.activeElement, { key: 'v', shiftKey: true });
+          expect(getByTestId('apple')).to.have.focus;
+        });
       });
 
       describe('asterisk key interaction', () => {
