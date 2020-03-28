@@ -22,6 +22,11 @@ export type InjectOptions = {
 	 * @default includeUnusedProps ? true : data.usedProps.includes(data.prop.name)
 	 */
 	shouldInclude?(data: { prop: t.PropTypeNode; usedProps: string[] }): boolean | undefined;
+
+	/**
+	 * Options passed to babel.transformSync
+	 */
+	babelOptions?: babel.TransformOptions;
 } & Pick<GenerateOptions, 'sortProptypes' | 'includeJSDoc' | 'comment'>;
 
 /**
@@ -41,15 +46,19 @@ export function inject(
 
 	const propTypesToInject = new Map<string, string>();
 
+	const { plugins: babelPlugins = [], ...babelOptions } = options.babelOptions || {};
+
 	const result = babel.transformSync(target, {
 		plugins: [
 			require.resolve('@babel/plugin-syntax-class-properties'),
 			require.resolve('@babel/plugin-syntax-jsx'),
 			plugin(propTypes, options, propTypesToInject),
+			...(babelPlugins || []),
 		],
 		configFile: false,
 		babelrc: false,
 		retainLines: true,
+		...babelOptions,
 	});
 
 	let code = result && result.code;
