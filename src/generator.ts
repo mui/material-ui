@@ -70,6 +70,10 @@ export function generate(node: t.Node | t.PropTypeNode[], options: GenerateOptio
 			filteredNodes = filteredNodes.filter((x) => shouldInclude(x));
 		}
 
+		if (filteredNodes.length === 0) {
+			return '';
+		}
+
 		return filteredNodes
 			.map((prop) => generate(prop, options))
 			.reduce((prev, curr) => `${prev}\n${curr}`);
@@ -82,14 +86,16 @@ export function generate(node: t.Node | t.PropTypeNode[], options: GenerateOptio
 	}
 
 	if (t.isComponentNode(node)) {
+		const generated = generate(node.types, options);
+		if (generated.length === 0) {
+			return '';
+		}
+
 		const comment =
 			options.comment &&
 			`// ${options.comment.split(/\r?\n/gm).reduce((prev, curr) => `${prev}\n// ${curr}`)}\n`;
 
-		return `${node.name}.propTypes = {\n${comment ? comment : ''}${generate(
-			node.types,
-			options
-		)}\n}`;
+		return `${node.name}.propTypes = {\n${comment ? comment : ''}${generated}\n}`;
 	}
 
 	if (t.isPropTypeNode(node)) {

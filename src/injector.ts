@@ -165,8 +165,6 @@ function plugin(
 
 				if (usedProps.length === 0 && !includeUnusedProps) return;
 
-				needImport = true;
-
 				// Prevent visiting again
 				(node as any).hasBeenVisited = true;
 				path.skip();
@@ -216,8 +214,6 @@ function plugin(
 
 					if (usedProps.length === 0 && !includeUnusedProps) return;
 
-					needImport = true;
-
 					// Prevent visiting again
 					(node as any).hasBeenVisited = true;
 					path.skip();
@@ -243,8 +239,6 @@ function plugin(
 				const usedProps = !includeUnusedProps ? getUsedProps(path, undefined) : [];
 
 				if (usedProps.length === 0 && !includeUnusedProps) return;
-
-				needImport = true;
 
 				// Prevent visiting again
 				(node as any).hasBeenVisited = true;
@@ -273,6 +267,12 @@ function plugin(
 			importedName: importName,
 			shouldInclude: (prop) => shouldInclude!({ prop, usedProps }),
 		});
+
+		if (source.length === 0) {
+			return;
+		}
+
+		needImport = true;
 
 		const placeholder = `const a${uuid().replace(/\-/g, '_')} = null;`;
 
