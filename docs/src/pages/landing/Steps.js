@@ -87,7 +87,7 @@ function HomeSteps() {
   const t = useSelector((state) => state.options.t);
 
   return (
-    <Container disableGutters maxwidth="lg" className={classes.root}>
+    <Container disableGutters className={classes.root}>
       <Grid container>
         <Grid item xs={12} md={6} className={clsx(classes.step, classes.leftStep)}>
           <div className={classes.stepTitle}>
