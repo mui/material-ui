@@ -664,7 +664,7 @@ describe('<TreeItem />', () => {
 
           getByTestId('apple').focus();
           expect(getByTestId('apple')).to.have.focus;
-          fireEvent.keyDown(document.activeElement, { key: 'c', ctrlKey: true });
+          fireEvent.keyDown(document.activeElement, { key: 'v', ctrlKey: true });
           expect(getByTestId('apple')).to.have.focus;
 
           fireEvent.keyDown(document.activeElement, { key: 'v', metaKey: true });
