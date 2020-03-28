@@ -518,7 +518,6 @@ export default function useAutocomplete(props) {
       handleClose(event, reason);
     }
 
-
     if (
       blurOnSelect === true ||
       (blurOnSelect === 'touch' && isTouch.current) ||

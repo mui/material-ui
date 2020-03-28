@@ -107,11 +107,11 @@ export default function Playground() {
         renderInput={(params) => <TextField {...params} label="disablePortal" margin="normal" />}
       />
       <Autocomplete
-         {...defaultProps}
-         id="blur-on-select"
-         blurOnSelect
-         renderInput={params => <TextField {...params} label="blurOnSelect" margin="normal" />}
-       />
+        {...defaultProps}
+        id="blur-on-select"
+        blurOnSelect
+        renderInput={(params) => <TextField {...params} label="blurOnSelect" margin="normal" />}
+      />
     </div>
   );
 }
