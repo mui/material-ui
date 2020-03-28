@@ -1,5 +1,5 @@
 {
-  "version": "4.9.6",
+  "version": "4.9.8",
   "private": true,
   "scripts": {
     "proptypes": "ts-node --skip-project ./scripts/generateProptypes.ts",

@@ -1,5 +1,93 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.9.8
+###### *Mar 28, 2020*
+
+Big thanks to the 24 contributors who made this release possible.
+
+Here are some highlights ✨:
+
+- ⚛️ Improve the DX, migrate a couple of props' descriptions to TypeScript (#20298, #20171, #20264) @eps1lon.
+
+  ![typescript](https://user-images.githubusercontent.com/3165635/77828342-1f376080-711b-11ea-8c9d-c1c245fb17b0.png)
+
+  The coverage has increase from 17 to 50 components. We are working on migrating the 94 missing components.
+- ⚛️ Improve the DX, add debug information when using hooks (#19515) @eps1lon.
+
+  For instance, with the `useMediaQuery` hook
+
+  ![useMediaQuery](https://user-images.githubusercontent.com/3165635/77828448-bf8d8500-711b-11ea-881a-e9cc09c7d9ee.png)
+
+- And many more 🐛 bug fixes and 📚 improvements.
+
+### `@material-ui/core@v4.9.8`
+
+- [DX] Add debug values to various hooks (#19515) @eps1lon
+- [ListItem] Add component prop to primaryTypographyProps and… (#19155) @fyodore82
+- [MenuList] Include disabled items in keyboard navigation (#19967) @scottander
+- [MenuList] Remove if-statement that is always true (#20270) @CptWesley
+- [Popover] Fix resize event leak (#20272) @skmail
+- [Select] Fix disabled color to the icon (#20287) @HenryLie
+- [SvgIcon] Remove wrong role (#20307) @oliviertassinari
+- [theme] Warn when palette structure is wrong (#20253) @oliviertassinari
+- [Tooltip] Fix TextField integration (#20252) @ShehryarShoukat96
+- [Tooltip] Remove superfluous argument in handleBlur call (#20271) @CptWesley
+- [TypeScript] Enable module augmentation of CommonColors (#20212) @eps1lon
+- [TypeScript] Add JSDOC to ListItem TypeScript props (#20171) @eps1lon
+- [TypeScript] Fix Checkbox and Radio type propType (#20293) @eps1lon
+- [TypeScript] Fix incorrect typings regarding transition components a… (#20306) @eps1lon
+- [TypeScript] Link to demos and API in IntelliSense (#20078) @eps1lon
+- [TypeScript] Mark context value as nullable for optional providers (#20278) @ianschmitz
+- [TypeScript] Move more prop docs into IntelliSense (#20298) @eps1lon
+- [TypeScript] Add more props documentation to IntelliSense (#20264) @eps1lon
+
+### `@material-ui/lab@v4.0.0-alpha.47`
+
+- [Autocomplete] Add limitTags prop (#20209) @netochaves
+- [Autocomplete] Add startAfter option (#20305) @netochaves
+- [Autocomplete] Warn when value does not match options (#20235) @igorbrasileiro
+- [Pagination] Add RTL support (#20247) @HenryLie
+- [TreeView] Correct single-select aria-selected (#20102) @tonyhallett
+- [TreeView] Disable all selection when disableSelection (#20146) @tonyhallett
+- [TreeView] Fix focus steal (#20232) @tonyhallett
+- [TreeView] fix inconsistent focus for programmatically focused treeitem (#20237) @tonyhallett
+
+### Docs
+
+- [docs] Add a new site to showcase (google-keep clone) (#20260) @anselm94
+- [docs] Add color preview to default theme tree (#20082) @mlizchap
+- [docs] Add demo link (#20262) @esemeniuc
+- [docs] Extract landing-only modules (#20187) @eps1lon
+- [docs] Fix TablePagination props swap descriptions (#20274) @johncalvinroberts
+- [docs] Fix a few WAVE errors (#20304) @oliviertassinari
+- [docs] Fix icons + locale (#20213) @oliviertassinari
+- [docs] Fix popover anchor playground crash (#20265) @Zaynex
+- [docs] Fix wording in backdrop.md (#20190) @matt-savvy
+- [docs] Improve demo error boundary (#20177) @eps1lon
+- [docs] Improve doc for textField and buttons (#20207) @DDDDDanica
+- [docs] Improve loading experience (#20005) @eps1lon
+- [docs] Improve material icons installation instructions (#20290) @ArianKrasniqi
+- [docs] Mark toolbar for assistive technology (#20158) @eps1lon
+- [docs] Page size tracking fixes (#20199) @eps1lon
+- [docs] Sync translations (#20210) @oliviertassinari
+
+### Core
+
+- [test] Improve regression test suite debugging (#20194) @eps1lon
+- [ci] Retry mergable state for 30 minutes (#20269) @eps1lon
+- [core] Automatically apply "PR: needs rebase" PR label (#20169) @eps1lon
+- [core] Batch small changes (#20255) @oliviertassinari
+- [core] Fix docs:start which should start next.js server (#20202) @ro7584
+- [core] Fix maintenance workflow failing on fork PRs (#20195) @eps1lon
+- [core] Format all ts files (#20233) @eps1lon
+
+## 4.9.7
+###### *Mar 19, 2020*
+
+### `@material-ui/core@v4.9.7`
+
+- [core] Patch correct dependencies (10bc98f)
+
 ## 4.9.6
 ###### *Mar 18, 2020*
 
@@ -16,6 +104,7 @@ Here are some highlights ✨:
   - Leverage code snippets to save time with [this extension](https://marketplace.visualstudio.com/items?itemName=vscodeshift.material-ui-snippets).
 - 🔍 12 patches on the Autocomplete component.
 - 💄 Polish on the Pagination component (#19933, #19964, #19966, #19987) @pvdstel @eps1lon @mbrookes.
+- And many more 🐛 bug fixes and 📚 improvements.
 
 ### `@material-ui/core@v4.9.6`
 
