@@ -479,6 +479,8 @@ export default function useAutocomplete(props) {
     setValue(newValue);
   };
 
+  const isTouch = React.useRef(false);
+
   const selectNewValue = (event, option, reasonProp = 'select-option', origin = 'options') => {
     let reason = reasonProp;
     let newValue = option;
@@ -514,6 +516,15 @@ export default function useAutocomplete(props) {
     handleValue(event, newValue, reason, { option });
     if (!disableCloseOnSelect) {
       handleClose(event, reason);
+    }
+
+
+    if (
+      blurOnSelect === true ||
+      (blurOnSelect === 'touch' && isTouch.current) ||
+      (blurOnSelect === 'mouse' && !isTouch.current)
+    ) {
+      inputRef.current.blur();
     }
   };
 
@@ -769,8 +780,6 @@ export default function useAutocomplete(props) {
     setHighlightedIndex(index, 'mouse');
   };
 
-  const isTouch = React.useRef(false);
-
   const handleOptionTouchStart = () => {
     isTouch.current = true;
   };
@@ -778,14 +787,6 @@ export default function useAutocomplete(props) {
   const handleOptionClick = (event) => {
     const index = Number(event.currentTarget.getAttribute('data-option-index'));
     selectNewValue(event, filteredOptions[index], 'select-option');
-
-    if (
-      blurOnSelect === true ||
-      (blurOnSelect === 'touch' && isTouch.current) ||
-      (blurOnSelect === 'mouse' && !isTouch.current)
-    ) {
-      inputRef.current.blur();
-    }
 
     isTouch.current = false;
   };
