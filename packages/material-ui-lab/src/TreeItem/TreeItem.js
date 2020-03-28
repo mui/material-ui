@@ -195,14 +195,6 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     }
   };
 
-  const printableCharacter = (event, key) => {
-    if (isPrintableCharacter(key)) {
-      focusByFirstCharacter(nodeId, key);
-      return true;
-    }
-    return false;
-  };
-
   const handleNextArrow = (event) => {
     if (expandable) {
       if (expanded) {
@@ -306,8 +298,9 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
           flag = true;
         } else if (multiSelect && ctrlPressed && key.toLowerCase() === 'a') {
           flag = selectAllNodes(event);
-        } else if (isPrintableCharacter(key)) {
-          flag = printableCharacter(event, key);
+        } else if (!ctrlPressed && !event.shiftKey && isPrintableCharacter(key)) {
+          focusByFirstCharacter(nodeId, key);
+          flag = true;
         }
     }
 
