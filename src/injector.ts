@@ -163,24 +163,17 @@ function plugin(
 				const props = propTypes.body.find((prop) => prop.name === node.id!.name);
 				if (!props) return;
 
-				let usedProps: string[] = [];
-
-				if (!includeUnusedProps) {
-					const prop = node.params[0];
-					if (babelTypes.isIdentifier(prop) || babelTypes.isObjectPattern(prop)) {
-						usedProps = getUsedProps(path, prop);
-					}
-				}
-
-				if (usedProps.length === 0 && !includeUnusedProps) return;
-
 				// Prevent visiting again
 				(node as any).hasBeenVisited = true;
 				path.skip();
 
+				const prop = node.params[0];
 				injectPropTypes({
 					nodeName: node.id.name,
-					usedProps,
+					usedProps:
+						babelTypes.isIdentifier(prop) || babelTypes.isObjectPattern(prop)
+							? getUsedProps(path, prop)
+							: [],
 					path,
 					props,
 				});
@@ -215,19 +208,19 @@ function plugin(
 				}
 
 				function getFromProp(prop: babelTypes.Node) {
-					const usedProps =
-						!includeUnusedProps &&
-						(babelTypes.isIdentifier(prop) || babelTypes.isObjectPattern(prop))
-							? getUsedProps(path, prop)
-							: [];
-
-					if (usedProps.length === 0 && !includeUnusedProps) return;
-
 					// Prevent visiting again
 					(node as any).hasBeenVisited = true;
 					path.skip();
 
-					injectPropTypes({ path: path.parentPath, usedProps, props: props!, nodeName });
+					injectPropTypes({
+						path: path.parentPath,
+						usedProps:
+							babelTypes.isIdentifier(prop) || babelTypes.isObjectPattern(prop)
+								? getUsedProps(path, prop)
+								: [],
+						props: props!,
+						nodeName,
+					});
 				}
 			},
 			ClassDeclaration(path) {
@@ -245,17 +238,13 @@ function plugin(
 				const props = propTypes.body.find((prop) => prop.name === nodeName);
 				if (!props) return;
 
-				const usedProps = !includeUnusedProps ? getUsedProps(path, undefined) : [];
-
-				if (usedProps.length === 0 && !includeUnusedProps) return;
-
 				// Prevent visiting again
 				(node as any).hasBeenVisited = true;
 				path.skip();
 
 				injectPropTypes({
 					nodeName,
-					usedProps,
+					usedProps: getUsedProps(path, undefined),
 					path,
 					props,
 				});
