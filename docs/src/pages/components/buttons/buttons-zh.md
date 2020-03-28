@@ -107,7 +107,7 @@ components: Button, IconButton, ButtonBase
 
 然而：
 
-- You should add `pointer-events: none;` back when you need to display [tooltips on disabled elements](/components/tooltips/#disabled-elements).
+- 如您要[在 disabled 不可用元素上显示提示文本](/components/tooltips/#disabled-elements)，则需添加 `pointer-events: none;`
 - 若您加载除了一个 button 元素之外的元素， 例如，一个链接 `<a>` 元素，指针是不会改变的。
 
 2. **改变 DOM**。 您可以这样封装按钮：

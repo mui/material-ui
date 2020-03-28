@@ -1,6 +1,6 @@
 ---
 title: Backdrop React Component
-components: 背景板（Backdrop）
+components: Backdrop
 ---
 
 # Backdrop 背景板

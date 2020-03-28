@@ -41,7 +41,7 @@ Un exemple simple de tableau dense sans fioritures.
 
 Cet exemple illustre l'utilisation de `Checkbox` et des lignes cliquables pour la sélection, avec une `Toolbar` personnalisée. Il utilise le composant `TableSortLabel` pour aider à styliser les en-têtes de colonne.
 
-La table a reçu une largeur fixe pour illustrer le défilement horizontal. Afin d'éviter le défilement des contrôles de pagination, le composant TablePagination est utilisé en dehors du tableau. (L'exemple ['Action de pagination de table personnalisée' ](#custom-table-pagination-action) ci-dessous montre la pagination dans TableFooter.)
+La table a reçu une largeur fixe pour illustrer le défilement horizontal. Afin d'éviter le défilement des contrôles de pagination, le composant TablePagination est utilisé en dehors du tableau. (L'exemple ['Action de pagination de table personnalisée' ](#custom-pagination-actions) ci-dessous montre la pagination dans TableFooter.)
 
 {{"demo": "pages/components/tables/EnhancedTable.js", "bg": true}}
 

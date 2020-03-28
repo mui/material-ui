@@ -3,7 +3,7 @@ title: Fab React component
 components: Fab
 ---
 
-# Floating action button
+# Floating Action Button 悬浮操作按钮
 
 <p class="description">A floating action button (FAB) performs the primary, or most common, action on a screen.</p>
 
@@ -17,7 +17,7 @@ A [floating action button](https://material.io/design/components/buttons-floatin
 
 {{"demo": "pages/components/floating-action-button/FloatingActionButtons.js"}}
 
-## Size
+## Size 大小
 
 Use the `size` prop for larger or smaller floating action buttons.
 

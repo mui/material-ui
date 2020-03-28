@@ -2,7 +2,7 @@
 
 <p class="description">While you can use the JSS based styling solution provided by Material-UI to style your application, you can also use the one you already know and love (from plain CSS to styled-components).</p>
 
-本指南旨在归档当前比较流行的一些替代方案，但是您应该可以发现在这里运用的法则也可以在其他库里适用。 There are examples for the following styling solutions:
+本指南旨在归档当前比较流行的一些替代方案，但是您应该可以发现在这里运用的法则也可以在其他库里适用。 我们为以下的样式方案提供了一些方案：
 
 - [纯 CSS](#plain-css)
 - [全局 CSS](#global-css)
@@ -13,7 +13,7 @@
 
 ## 纯 CSS
 
-Nothing fancy, just plain CSS.
+没有什么特别花哨的，只是普通的旧版 CSS。
 
 {{"demo": "pages/guides/interoperability/StyledComponents.js", "hideToolbar": true}}
 

@@ -41,7 +41,7 @@ Ein einfaches Beispiel für einen dichte Tabelle ohne Schnörkel.
 
 Dieses Beispiel demonstriert die Nutzung von `Optionsfeld` und klickbaren Zeilen zur Auswahl mit einer benutzerdefinierten `Werkzeugleiste`. Es verwendet die `TableSortLabel` Komponente, um Spaltenüberschriften zu formatieren.
 
-Der Tabelle wurde eine feste Breite zugewiesen, um das horizontale Scrollen zu veranschaulichen. Um zu verhindern, dass die Paginierungssteuerelemente einen Bildlauf ausführen, wird die TablePagination-Komponente außerhalb der Tabelle verwendet. (Das [‚Custom Tabelle Paginierung Aktion‘ Beispiel](#custom-table-pagination-action) unten zeigt die Paginierung im TableFooter.)
+Der Tabelle wurde eine feste Breite zugewiesen, um das horizontale Scrollen zu veranschaulichen. Um zu verhindern, dass die Paginierungssteuerelemente einen Bildlauf ausführen, wird die TablePagination-Komponente außerhalb der Tabelle verwendet. (Das [‚Custom Tabelle Paginierung Aktion‘ Beispiel](#custom-pagination-actions) unten zeigt die Paginierung im TableFooter.)
 
 {{"demo": "pages/components/tables/EnhancedTable.js", "bg": true}}
 
@@ -111,7 +111,7 @@ Für fortgeschrittenere Anwendungsfälle können Ihnen folgende Projekte helfen:
 
 ## Barrierefreiheit
 
-(WAI tutorial: https://www.w3.org/WAI/tutorials/tables/)
+(WAI Tutorial: https://www.w3.org/WAI/tutorials/tables/)
 
 ### Caption
 

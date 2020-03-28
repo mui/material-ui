@@ -32,12 +32,12 @@ This is a collection of third-party projects that extend Material-UI.
 
 - [@mui-treasury/layout](https://mui-treasury.com/layout): Components to handle the overall layout of a page. You can find a couple of examples, e.g. [a reactjs.org clone](https://mui-treasury.com/layout/clones/reactjs).
 
-### Table（表格）
+### Table 表格
 
 - [material-table](https://github.com/mbrn/material-table): A simple and powerful Datatable for React based on Material-UI Table with some additional features. It supports many different use cases (editable, filtering, grouping, sorting, selection, i18n, tree data and more).
-- [dx-react-grid-material-ui](https://devexpress.github.io/devextreme-reactive/react/grid/): A data grid for Material-UI with paging, sorting, filtering, grouping and editing features ([paid license](https://js.devexpress.com/licensing/)).
-- [mui-datatables](https://github.com/gregnb/mui-datatables): Responsive data tables for Material-UI with filtering, sorting, search and more.
-- [tubular-react](https://github.com/unosquare/tubular-react): A Material-UI table with local or remote data-source. Featuring filtering, sorting, free-text search, export to CSV locally, and aggregations.
+- [dx-react-grid-material-ui](https://devexpress.github.io/devextreme-reactive/react/grid/)：针对 Material-UI 的兼并对数据进行排序、搜索、筛选、分组、操作等功能的数据网格（[付费的许可证](https://js.devexpress.com/licensing/)）。
+- [mui-datatables](https://github.com/gregnb/mui-datatables)：Material-UI 的响应式数据表格，包括筛选，排序，搜索等功能。
+- [tubular-response](https://github.com/unosquare/tubular-react): 一个带有本地或者远程的数据来源的 Material-UI 表格。 它能够对数据进行筛选、排序、自由搜索、导出为本地 CSV 以及汇总。
 
 ### Notifications
 

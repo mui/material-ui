@@ -1,4 +1,4 @@
-# Palette（调色）
+# Palette 调色
 
 <p class="description">The palette enables you to modify the color of the components to suit your brand.</p>
 

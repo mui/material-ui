@@ -1,5 +1,5 @@
 ---
-title: React Divider（分隔线）组件
+title: React Divider 分隔线组件
 components: Divider
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: React Grid List（网格列表）组件
+title: React Grid List 网格列表组件
 components: GridList, GridListTile, GridListTileBar, ListSubheader, IconButton
 ---
 

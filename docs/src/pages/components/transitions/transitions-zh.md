@@ -1,5 +1,5 @@
 ---
-title: React Transition（过渡动画）组件
+title: React Transition 过渡动画组件
 components: Collapse, Fade, Grow, Slide, Zoom
 ---
 
@@ -37,13 +37,13 @@ Expand vertically from the top of the child element. The `collapsedHeight` prope
 
 {{"demo": "pages/components/transitions/SimpleCollapse.js", "bg": true}}
 
-## Fade（淡入淡出）
+## Fade 淡入淡出
 
 从透明淡入至不透明。
 
 {{"demo": "pages/components/transitions/SimpleFade.js", "bg": true}}
 
-## Grow（扩展）
+## Grow 扩展
 
 从子元素的中心向外扩展，同时从透明淡入至不透明。
 
@@ -51,7 +51,7 @@ Expand vertically from the top of the child element. The `collapsedHeight` prope
 
 {{"demo": "pages/components/transitions/SimpleGrow.js", "bg": true}}
 
-## Slide（滑动）
+## Slide 滑动
 
 Slide in from the edge of the screen. The `direction` property controls which edge of the screen the transition starts from.
 
@@ -59,7 +59,7 @@ The Transition component's `mountOnEnter` property prevents the child component 
 
 {{"demo": "pages/components/transitions/SimpleSlide.js", "bg": true}}
 
-## Zoom（放大）
+## Zoom 放大
 
 从子元素的中心向外扩展。
 

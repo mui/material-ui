@@ -1,5 +1,5 @@
 ---
-title: React Card（卡片）组件
+title: React Card 卡片组件
 components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedia, Collapse, Paper
 ---
 
@@ -17,9 +17,9 @@ components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedi
 
 {{"demo": "pages/components/cards/SimpleCard.js", "bg": true}}
 
-### Outlined Card
+### 描边卡片
 
-Set `variant="outlined"` to render an outlined card.
+将 variant 的值设置为 outlined 以渲染描边卡片：`variant="outlined"` 
 
 {{"demo": "pages/components/cards/OutlinedCard.js", "bg": true}}
 
@@ -35,7 +35,7 @@ Set `variant="outlined"` to render an outlined card.
 
 {{"demo": "pages/components/cards/MediaCard.js", "bg": true}}
 
-默认情况下，我们使用给`<div>` 元素加一个 *背景图片* 的方式来显示多媒体元素。 但在某些情况下，可能会产生一些不可预知的问题。 例如, 您可能希望显示一个视频或一张响应式的图片。 对于这些用例, 请使用 `component` 属性:
+默认情况下，我们使用给`<div>` 元素加一个 *背景图片* 的方式来显示多媒体元素。 但在某些情况下，可能会产生一些不可预知的问题。 例如，您可能希望显示一段视频或一张响应式图片。 对于这些用例，请使用 `component` 属性：
 
 {{"demo": "pages/components/cards/ImgMediaCard.js", "bg": true}}
 
@@ -43,7 +43,7 @@ Set `variant="outlined"` to render an outlined card.
 
 ## UI 控件
 
-卡片中的补充操作可使用图标、文本和 UI 控件显式调用, 通常放在一个卡片的底部。
+卡片中的次要操作由图标、文本或 UI 控件呈现。次要操作的按钮通常位于卡片底部。
 
 下面是一个媒体控制卡片的例子。
 
@@ -51,4 +51,4 @@ Set `variant="outlined"` to render an outlined card.
 
 ## Customization 个性化
 
-👑如果您还在寻找灵感，您可以看看 [MUI Treasury 特别定制的一些例子](https://mui-treasury.com/components/card)。
+👑如果您还在寻找灵感，请查看 [MUI Treasury 的自定义案例](https://mui-treasury.com/components/card)。

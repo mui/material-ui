@@ -1,5 +1,5 @@
 ---
-title: React Checkbox（复选框）组件
+title: React Checkbox 复选框组件
 components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 ---
 
@@ -11,7 +11,7 @@ components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 
 如果列表中有多个选择项，则可以使用复选框替代开关控件来节省空间。 如果您只需要一个选择项，请避免使用复选框，而改用开关控件。
 
-## Basic checkboxes
+## 简单复选框
 
 {{"demo": "pages/components/checkboxes/Checkboxes.js"}}
 

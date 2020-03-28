@@ -1,5 +1,5 @@
 ---
-title: React Container（容器）组件
+title: React Container 容器组件
 components: Container
 ---
 
@@ -9,7 +9,7 @@ components: Container
 
 虽然容器可以嵌套，但大多数布局不需要嵌套的容器。
 
-## Fluid（流体布局）
+## 流体布局
 
 您可以通过 `maxWidth` 属性的值来设置一个 fluid 容器的最大宽度。
 

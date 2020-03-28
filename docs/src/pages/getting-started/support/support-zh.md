@@ -2,7 +2,7 @@
 
 <p class="description">从社区帮助到高级的商业化支持，我们愿意帮忙。</p>
 
-## Community help (free)
+## 社区帮助 
 
 社区是您对框架提问或给出建议的第一站。 欢迎来到社区！
 

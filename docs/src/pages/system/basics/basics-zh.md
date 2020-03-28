@@ -306,7 +306,7 @@ export const bgcolor = style({
 const palette = compose(textColor, bgcolor);
 ```
 
-## 变种(Variants)
+## 变种
 
 帮助函数 `style()` 也可用于根据主题来返回不同的属性给样式对象。 在在这个例子中， `variant` 属性可以是 `theme.typography` 对象的任意键(key)。
 

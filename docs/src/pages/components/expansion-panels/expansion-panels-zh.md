@@ -1,5 +1,5 @@
 ---
-title: React Expansion Panel（扩展面板）组件
+title: React Expansion Panel 扩展面板组件
 components: ExpansionPanel, ExpansionPanelActions, ExpansionPanelDetails, ExpansionPanelSummary
 ---
 

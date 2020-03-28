@@ -1,5 +1,5 @@
 ---
-title: React Select（选择器）组件
+title: React Select 选择器组件
 components: Select, NativeSelect
 ---
 
@@ -9,11 +9,11 @@ components: Select, NativeSelect
 
 ## 简单的选择器
 
-菜单位于其所点击的元素上，这样能够保证当前选定的菜单项在点击元素之上显示。
+我们通常将菜单（Menus）放置在其所点击的元素上，以确保当前选定的菜单项在点击元素之上显示。
 
 {{"demo": "pages/components/selects/SimpleSelect.js"}}
 
-## Advanced features
+## 高级功能
 
 The Select component is meant to be interchangeable with a native `<select>` element.
 

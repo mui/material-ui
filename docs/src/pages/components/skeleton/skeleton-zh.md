@@ -19,7 +19,7 @@ components: Skeleton
 )}
 ```
 
-## 变种(Variants)
+## 变种
 
 The component supports 3 shape variants.
 

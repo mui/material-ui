@@ -1,4 +1,4 @@
-# Composition（组合）
+# Composition 组合
 
 <p class="description">Material-UI 试着让组合尽可能的简单。</p>
 
@@ -118,7 +118,7 @@ import { Link } from 'react-router-dom';
 
 The integration with third-party routing libraries is achieved with the `component` prop. The behavior is identical to the description of the prop above. Here are a few demos with [react-router-dom](https://github.com/ReactTraining/react-router). It covers the Button, Link, and List components, you should be able to apply the same strategy with all the components.
 
-### Buttons（按钮）
+### Button
 
 {{"demo": "pages/guides/composition/ButtonRouter.js"}}
 
