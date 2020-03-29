@@ -312,7 +312,7 @@ function AppFrame(props) {
               aria-label={t('toggleTheme')}
               data-ga-event-category="header"
               data-ga-event-action="dark"
-              >
+            >
               {theme.palette.type === 'light' ? <Brightness4Icon /> : <Brightness7Icon />}
             </IconButton>
           </Tooltip>

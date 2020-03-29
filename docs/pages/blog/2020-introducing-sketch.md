@@ -50,6 +50,14 @@ Create MVPs efficiently and save hundreds of hours on UI Design. This is a great
 Gain in autonomy, design beautiful, consistent and accessible interface without relying on designers. You can preview how it will look before coding it.
 The UI kit was created specifically for Material-UI, a popular React UI library with a comprehensive set of components.
 
+## See it in action
+
+The following video demonstrates how the symbols can be used to design an invoice page.
+
+<iframe width="648" height="364" src="https://www.youtube.com/embed/DTU6r_VE2C4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+Sketch Cloud preview: https://material-ui.com/store/previews/sketch-react/.
+
 ## More tools
 
 According to a [recent user survey](https://medium.com/google-design/state-of-design-systems-2019-ff5f26ada71) ran by the Material Design Team, Sketch is the most popular tool used by teams to manage design systems. However, it's not the only tool.
