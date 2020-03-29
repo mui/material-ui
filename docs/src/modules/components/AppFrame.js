@@ -224,7 +224,7 @@ function AppFrame(props) {
               aria-haspopup="true"
               aria-label={t('changeLanguage')}
               onClick={handleLanguageIconClick}
-              data-ga-event-category="AppBar"
+              data-ga-event-category="header"
               data-ga-event-action="language"
             >
               <LanguageIcon />
@@ -279,6 +279,7 @@ function AppFrame(props) {
               </MenuItem>
             </Menu>
           </NoSsr>
+          <Notifications />
           <Tooltip title={t('editWebsiteColors')} enterDelay={300}>
             <IconButton
               color="inherit"
@@ -286,10 +287,22 @@ function AppFrame(props) {
               component={Link}
               naked
               href="/customization/color/#color-tool"
-              data-ga-event-category="AppBar"
+              data-ga-event-category="header"
               data-ga-event-action="colors"
             >
               <ColorsIcon />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title={t('github')} enterDelay={300}>
+            <IconButton
+              component="a"
+              color="inherit"
+              href="https://github.com/mui-org/material-ui"
+              aria-label={t('github')}
+              data-ga-event-category="header"
+              data-ga-event-action="github"
+            >
+              <GitHubIcon />
             </IconButton>
           </Tooltip>
           <Tooltip title={t('toggleTheme')} enterDelay={300}>
@@ -297,7 +310,7 @@ function AppFrame(props) {
               color="inherit"
               onClick={handleTogglePaletteType}
               aria-label={t('toggleTheme')}
-              data-ga-event-category="AppBar"
+              data-ga-event-category="header"
               data-ga-event-action="dark"
             >
               {theme.palette.type === 'light' ? <Brightness4Icon /> : <Brightness7Icon />}
@@ -305,10 +318,11 @@ function AppFrame(props) {
           </Tooltip>
           <Tooltip title={t('toggleRTL')} key={theme.direction} enterDelay={300}>
             <IconButton
+              edge="end"
               color="inherit"
               onClick={handleToggleDirection}
               aria-label={t('toggleRTL')}
-              data-ga-event-category="AppBar"
+              data-ga-event-category="header"
               data-ga-event-action="rtl"
             >
               {theme.direction === 'rtl' ? (
@@ -316,20 +330,6 @@ function AppFrame(props) {
               ) : (
                 <FormatTextdirectionRToL />
               )}
-            </IconButton>
-          </Tooltip>
-          <Notifications />
-          <Tooltip title={t('github')} enterDelay={300}>
-            <IconButton
-              edge="end"
-              component="a"
-              color="inherit"
-              href="https://github.com/mui-org/material-ui"
-              aria-label={t('github')}
-              data-ga-event-category="AppBar"
-              data-ga-event-action="github"
-            >
-              <GitHubIcon />
             </IconButton>
           </Tooltip>
         </Toolbar>

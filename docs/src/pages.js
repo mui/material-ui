@@ -197,9 +197,9 @@ const pages = [
     pathname: 'https://material-ui.com/store/',
     title: 'Store',
     linkProps: {
-      'data-ga-event-category': 'premium-themes',
+      'data-ga-event-category': 'store',
       'data-ga-event-action': 'click',
-      'data-ga-event-label': 'sidenav-link',
+      'data-ga-event-label': 'sidenav',
     },
   },
   {
