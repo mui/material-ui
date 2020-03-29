@@ -1,10 +1,13 @@
-import * as React from 'react';
-import SvgIcon from '../../SvgIcon';
+import React from 'react';
+import SvgIcon from '../SvgIcon';
 
+/**
+ * Private module reserved for @material-ui/x packages.
+ */
 export default function createSvgIcon(path, displayName) {
   const Component = React.memo(
     React.forwardRef((props, ref) => (
-      <SvgIcon {...props} data-mui-test={`${displayName}Icon`} ref={ref}>
+      <SvgIcon data-mui-test={`${displayName}Icon`} ref={ref} {...props}>
         {path}
       </SvgIcon>
     )),
