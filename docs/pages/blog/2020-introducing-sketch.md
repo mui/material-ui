@@ -6,7 +6,7 @@ description: Today, we’re excited to announce the introduction of official Ske
 
 Olivier Tassinari. March 30, 2020.
 
-Today, we’re excited to introduce the official Sketch symbols 💎 for Material-UI.
+Today, we're excited to introduce the Sketch symbols 💎 for Material-UI.
 
 [![preview](/static/blog/2020-introducing-sketch/product-preview.png)](https://material-ui.com/store/items/sketch-react/?utm_source=blog&utm_medium=blog&utm_campaign=introducing-sketch)
 

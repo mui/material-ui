@@ -305,8 +305,20 @@ function AppFrame(props) {
               <GitHubIcon />
             </IconButton>
           </Tooltip>
+          <Tooltip title={t('toggleTheme')} enterDelay={300}>
+            <IconButton
+              color="inherit"
+              onClick={handleTogglePaletteType}
+              aria-label={t('toggleTheme')}
+              data-ga-event-category="header"
+              data-ga-event-action="dark"
+              >
+              {theme.palette.type === 'light' ? <Brightness4Icon /> : <Brightness7Icon />}
+            </IconButton>
+          </Tooltip>
           <Tooltip title={t('toggleRTL')} key={theme.direction} enterDelay={300}>
             <IconButton
+              edge="end"
               color="inherit"
               onClick={handleToggleDirection}
               aria-label={t('toggleRTL')}
@@ -318,18 +330,6 @@ function AppFrame(props) {
               ) : (
                 <FormatTextdirectionRToL />
               )}
-            </IconButton>
-          </Tooltip>
-          <Tooltip title={t('toggleTheme')} enterDelay={300}>
-            <IconButton
-              edge="end"
-              color="inherit"
-              onClick={handleTogglePaletteType}
-              aria-label={t('toggleTheme')}
-              data-ga-event-category="header"
-              data-ga-event-action="dark"
-            >
-              {theme.palette.type === 'light' ? <Brightness4Icon /> : <Brightness7Icon />}
             </IconButton>
           </Tooltip>
         </Toolbar>
