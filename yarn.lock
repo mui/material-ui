@@ -9,10 +9,10 @@
   dependencies:
     cross-fetch "3.0.4"
 
-"@ampproject/toolbox-optimizer@2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@ampproject/toolbox-optimizer/-/toolbox-optimizer-2.0.0.tgz#96ea3d26bc7a9f19718a27c721e021a121003601"
-  integrity sha512-ZYRi7vB4ALC8DnTHQLchAeHMGsFml/Zr4fNWBlTiMGfvWGL0XTV9YyP4s24IDwAlunEgynmz0FTrGMJdRpNf2Q==
+"@ampproject/toolbox-optimizer@2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@ampproject/toolbox-optimizer/-/toolbox-optimizer-2.0.1.tgz#943681faf24443044aa66f0b55eefb13cdcc068c"
+  integrity sha512-zroXqrV7mY77+/6hV7kaaWxp4LA85V0B/2vg7WdF+FrwiO9Wior/lIW8UbpRek6INjw0VOp1ED73MmGJkwaDhA==
   dependencies:
     "@ampproject/toolbox-core" "^2.0.0"
     "@ampproject/toolbox-runtime-version" "^2.0.0"
@@ -21,9 +21,9 @@
     css "2.2.4"
     domhandler "3.0.0"
     domutils "2.0.0"
-    htmlparser2 "4.0.0"
+    htmlparser2 "4.1.0"
     normalize-html-whitespace "1.0.0"
-    terser "4.6.3"
+    terser "4.6.7"
 
 "@ampproject/toolbox-runtime-version@^2.0.0":
   version "2.0.0"
@@ -396,7 +396,7 @@
     "@babel/helper-plugin-utils" "^7.8.3"
     "@babel/plugin-syntax-nullish-coalescing-operator" "^7.8.0"
 
-"@babel/plugin-proposal-numeric-separator@^7.8.3":
+"@babel/plugin-proposal-numeric-separator@7.8.3", "@babel/plugin-proposal-numeric-separator@^7.8.3":
   version "7.8.3"
   resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-numeric-separator/-/plugin-proposal-numeric-separator-7.8.3.tgz#5d6769409699ec9b3b68684cd8116cedff93bad8"
   integrity sha512-jWioO1s6R/R+wEHizfaScNsAx+xKgwTLNXSh7tTC4Usj3ItsPEhYkEpU4h+lpnBwq7NBVOJXfO6cRFYcX69JUQ==
@@ -801,6 +801,16 @@
     "@babel/helper-plugin-utils" "^7.8.3"
     "@babel/plugin-syntax-jsx" "^7.8.3"
 
+"@babel/plugin-transform-react-jsx@^7.9.4":
+  version "7.9.4"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-transform-react-jsx/-/plugin-transform-react-jsx-7.9.4.tgz#86f576c8540bd06d0e95e0b61ea76d55f6cbd03f"
+  integrity sha512-Mjqf3pZBNLt854CK0C/kRuXAnE6H/bo7xYojP+WGtX8glDGSibcwnsWwhwoSuRg0+EBnxPC1ouVnuetUIlPSAw==
+  dependencies:
+    "@babel/helper-builder-react-jsx" "^7.9.0"
+    "@babel/helper-builder-react-jsx-experimental" "^7.9.0"
+    "@babel/helper-plugin-utils" "^7.8.3"
+    "@babel/plugin-syntax-jsx" "^7.8.3"
+
 "@babel/plugin-transform-regenerator@^7.8.7":
   version "7.8.7"
   resolved "https://registry.yarnpkg.com/@babel/plugin-transform-regenerator/-/plugin-transform-regenerator-7.8.7.tgz#5e46a0dca2bee1ad8285eb0527e6abc9c37672f8"
@@ -984,13 +994,13 @@
     esutils "^2.0.2"
 
 "@babel/preset-react@7.7.0", "@babel/preset-react@^7.9.0", "@babel/preset-react@^7.9.1":
-  version "7.9.1"
-  resolved "https://registry.yarnpkg.com/@babel/preset-react/-/preset-react-7.9.1.tgz#b346403c36d58c3bb544148272a0cefd9c28677a"
-  integrity sha512-aJBYF23MPj0RNdp/4bHnAP0NVqqZRr9kl0NAOP4nJCex6OYVio59+dnQzsAWFuogdLyeaKA1hmfUIVZkY5J+TQ==
+  version "7.9.4"
+  resolved "https://registry.yarnpkg.com/@babel/preset-react/-/preset-react-7.9.4.tgz#c6c97693ac65b6b9c0b4f25b948a8f665463014d"
+  integrity sha512-AxylVB3FXeOTQXNXyiuAQJSvss62FEotbX2Pzx3K/7c+MKJMdSg6Ose6QYllkdCFA8EInCJVw7M/o5QbLuA4ZQ==
   dependencies:
     "@babel/helper-plugin-utils" "^7.8.3"
     "@babel/plugin-transform-react-display-name" "^7.8.3"
-    "@babel/plugin-transform-react-jsx" "^7.9.1"
+    "@babel/plugin-transform-react-jsx" "^7.9.4"
     "@babel/plugin-transform-react-jsx-development" "^7.9.0"
     "@babel/plugin-transform-react-jsx-self" "^7.9.0"
     "@babel/plugin-transform-react-jsx-source" "^7.9.0"
@@ -2042,10 +2052,10 @@
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
 
-"@next/polyfill-nomodule@9.3.1":
-  version "9.3.1"
-  resolved "https://registry.yarnpkg.com/@next/polyfill-nomodule/-/polyfill-nomodule-9.3.1.tgz#d5e12855cbb3d9a9b668fdc133d843a025dbdb6c"
-  integrity sha512-4mP4m7cuobjLcjltQzPrv9/b/C/AQR3Q1PwQw/0VLkZTsC8HxCt/gbafXdyDmalDPsp6EEZ6IaHUpuFBz+QBmw==
+"@next/polyfill-nomodule@9.3.2":
+  version "9.3.2"
+  resolved "https://registry.yarnpkg.com/@next/polyfill-nomodule/-/polyfill-nomodule-9.3.2.tgz#f8e282fdeb448eb6b70bcc18c5d46c911072687a"
+  integrity sha512-kEa7v3trZmW6iWeTJrhg+ZsE9njae7mLkgyZB5M1r975JHr5PQ69B5aX7hrEAj7aAJYvCKETgAczx4gGR8MOzQ==
 
 "@nodelib/fs.stat@^1.1.2":
   version "1.1.3"
@@ -4003,12 +4013,12 @@ browserslist@4.8.3:
     node-releases "^1.1.44"
 
 browserslist@^4.0.0, browserslist@^4.6.4, browserslist@^4.8.3, browserslist@^4.9.1:
-  version "4.10.0"
-  resolved "https://registry.yarnpkg.com/browserslist/-/browserslist-4.10.0.tgz#f179737913eaf0d2b98e4926ac1ca6a15cbcc6a9"
-  integrity sha512-TpfK0TDgv71dzuTsEAlQiHeWQ/tiPqgNZVdv046fvNtBZrjbv2O3TsWCDU0AWGJJKCF/KsjNdLzR9hXOsh/CfA==
+  version "4.11.0"
+  resolved "https://registry.yarnpkg.com/browserslist/-/browserslist-4.11.0.tgz#aef4357b10a8abda00f97aac7cd587b2082ba1ad"
+  integrity sha512-WqEC7Yr5wUH5sg6ruR++v2SGOQYpyUdYYd4tZoAq1F7y+QXoLoYGXVbxhtaIqWmAJjtNTRjVD3HuJc1OXTel2A==
   dependencies:
     caniuse-lite "^1.0.30001035"
-    electron-to-chromium "^1.3.378"
+    electron-to-chromium "^1.3.380"
     node-releases "^1.1.52"
     pkg-up "^3.1.0"
 
@@ -6345,10 +6355,15 @@ ejs@^2.5.5, ejs@^2.6.1:
   resolved "https://registry.yarnpkg.com/ejs/-/ejs-2.6.1.tgz#498ec0d495655abc6f23cd61868d926464071aa0"
   integrity sha512-0xy4A/twfrRCnkhfk8ErDi5DqdAsAqeGxht4xkCUrsvhhbQNs7E+4jV0CN7+NKIY0aHE72+XvqtBIXzD31ZbXQ==
 
-electron-to-chromium@^1.3.322, electron-to-chromium@^1.3.378:
+electron-to-chromium@^1.3.322:
   version "1.3.379"
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.379.tgz#81dc5e82a3e72bbb830d93e15bc35eda2bbc910e"
   integrity sha512-NK9DBBYEBb5f9D7zXI0hiE941gq3wkBeQmXs1ingigA/jnTg5mhwY2Z5egwA+ZI8OLGKCx0h1Cl8/xeuIBuLlg==
+
+electron-to-chromium@^1.3.380:
+  version "1.3.390"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.390.tgz#a49e67dea22e52ea8027c475dd5447b1c00b1d4e"
+  integrity sha512-4RvbM5x+002gKI8sltkqWEk5pptn0UnzekUx8RTThAMPDSb8jjpm6SwGiSnEve7f85biyZl8DMXaipaCxDjXag==
 
 elliptic@^6.0.0:
   version "6.5.0"
@@ -8341,10 +8356,10 @@ html-tokenize@^2.0.0:
     readable-stream "~1.0.27-1"
     through2 "~0.4.1"
 
-htmlparser2@4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/htmlparser2/-/htmlparser2-4.0.0.tgz#6034658db65b7713a572a9ebf79f650832dceec8"
-  integrity sha512-cChwXn5Vam57fyXajDtPXL1wTYc8JtLbr2TN76FYu05itVVVealxLowe2B3IEznJG4p9HAYn/0tJaRlGuEglFQ==
+htmlparser2@4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/htmlparser2/-/htmlparser2-4.1.0.tgz#9a4ef161f2e4625ebf7dfbe6c0a2f52d18a59e78"
+  integrity sha512-4zDq1a1zhE4gQso/c5LP1OtrhYTncXNSpvJYtWJBtXAETPlMfi3IFNjGuQbYLuVY4ZR0QMqRVvo4Pdy9KLyP8Q==
   dependencies:
     domelementtype "^2.0.1"
     domhandler "^3.0.0"
@@ -10022,6 +10037,15 @@ loader-utils@1.2.3:
     emojis-list "^2.0.0"
     json5 "^1.0.1"
 
+loader-utils@2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/loader-utils/-/loader-utils-2.0.0.tgz#e4cace5b816d425a166b5f097e10cd12b36064b0"
+  integrity sha512-rP4F0h2RaWSvPEkD7BLDFQnvSf+nK+wr3ESUjNTyAGobqrijmW92zc+SO6d4p4B1wh7+B/Jg1mkQe5NYUEHtHQ==
+  dependencies:
+    big.js "^5.2.2"
+    emojis-list "^3.0.0"
+    json5 "^2.1.2"
+
 loader-utils@^1.0.2, loader-utils@^1.1.0, loader-utils@^1.2.3, loader-utils@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/loader-utils/-/loader-utils-1.4.0.tgz#c579b5e34cb34b1a74edc6c1fb36bfa371d5a613"
@@ -11047,14 +11071,15 @@ next-tick@~1.0.0:
   integrity sha1-yobR/ogoFpsBICCOPchCS524NCw=
 
 next@^9.3.0:
-  version "9.3.1"
-  resolved "https://registry.yarnpkg.com/next/-/next-9.3.1.tgz#f70f5d529850e46618f0ad3f829dabca39109dfd"
-  integrity sha512-fZn9eZvBsE57L77zwjrFyPe30VnOgNnFxc0wzh7P7++K4RixwjS5Gz3xMbahNqwv90FMzuQfjy1Z2ifwH1i5uQ==
+  version "9.3.2"
+  resolved "https://registry.yarnpkg.com/next/-/next-9.3.2.tgz#fabf907f5397ae3581d4227789f625533fb4e64e"
+  integrity sha512-KVNnnFyvtO1DwSEyMgt3wtxpkprnGCldEOyMXbt9Zxf8RcCw3YnRImbg8mVgrcXJRzkQpve4bdJKYY5MVwT/RA==
   dependencies:
-    "@ampproject/toolbox-optimizer" "2.0.0"
+    "@ampproject/toolbox-optimizer" "2.0.1"
     "@babel/core" "7.7.2"
     "@babel/plugin-proposal-class-properties" "7.7.0"
     "@babel/plugin-proposal-nullish-coalescing-operator" "7.7.4"
+    "@babel/plugin-proposal-numeric-separator" "7.8.3"
     "@babel/plugin-proposal-object-rest-spread" "7.6.2"
     "@babel/plugin-proposal-optional-chaining" "7.7.4"
     "@babel/plugin-syntax-bigint" "7.8.3"
@@ -11067,7 +11092,7 @@ next@^9.3.0:
     "@babel/preset-typescript" "7.7.2"
     "@babel/runtime" "7.7.2"
     "@babel/types" "7.7.4"
-    "@next/polyfill-nomodule" "9.3.1"
+    "@next/polyfill-nomodule" "9.3.2"
     amphtml-validator "1.0.30"
     async-retry "1.2.3"
     async-sema "3.0.0"
@@ -11104,11 +11129,10 @@ next@^9.3.0:
     json5 "2.1.1"
     jsonwebtoken "8.5.1"
     launch-editor "2.2.1"
-    loader-utils "1.2.3"
+    loader-utils "2.0.0"
     lodash.curry "4.1.1"
     lru-cache "5.1.1"
     mini-css-extract-plugin "0.8.0"
-    mkdirp "0.5.1"
     native-url "0.2.6"
     node-fetch "2.6.0"
     ora "3.4.0"
@@ -15621,10 +15645,10 @@ terser-webpack-plugin@^1.4.3:
     webpack-sources "^1.4.0"
     worker-farm "^1.7.0"
 
-terser@4.4.2, terser@4.6.3, terser@^4.1.2, terser@^4.6.2, terser@^4.6.3:
-  version "4.6.3"
-  resolved "https://registry.yarnpkg.com/terser/-/terser-4.6.3.tgz#e33aa42461ced5238d352d2df2a67f21921f8d87"
-  integrity sha512-Lw+ieAXmY69d09IIc/yqeBqXpEQIpDGZqT34ui1QWXIUpR2RjbqEkT8X7Lgex19hslSqcWM5iMN2kM11eMsESQ==
+terser@4.4.2, terser@4.6.7, terser@^4.1.2, terser@^4.6.2, terser@^4.6.3:
+  version "4.6.7"
+  resolved "https://registry.yarnpkg.com/terser/-/terser-4.6.7.tgz#478d7f9394ec1907f0e488c5f6a6a9a2bad55e72"
+  integrity sha512-fmr7M1f7DBly5cX2+rFDvmGBAaaZyPrHYK4mMdHEDAdNTqXSZgSOfqsfGq2HqPGT/1V0foZZuCZFx8CHKgAk3g==
   dependencies:
     commander "^2.20.0"
     source-map "~0.6.1"
