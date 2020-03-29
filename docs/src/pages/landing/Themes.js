@@ -36,10 +36,10 @@ const useStyles = makeStyles(
 const PremiumThemesLink = React.forwardRef((props, ref) => {
   return (
     <Link
-      data-ga-event-category="premium-themes"
+      data-ga-event-category="store"
       data-ga-event-action="click"
-      data-ga-event-label="home-link"
-      href="https://material-ui.com/store/"
+      data-ga-event-label="home"
+      href="https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=home-store"
       naked
       ref={ref}
       {...props}
@@ -63,10 +63,10 @@ export default function Themes() {
             {t('themesDescr')}
           </Typography>
           <Link
-            href="https://material-ui.com/store/"
-            data-ga-event-category="premium-themes"
+            href="https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=home-store"
+            data-ga-event-category="store"
             data-ga-event-action="click"
-            data-ga-event-label="home-image"
+            data-ga-event-label="home"
             className={classes.link}
           >
             <NoSsr defer>

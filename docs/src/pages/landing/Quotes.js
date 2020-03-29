@@ -126,7 +126,6 @@ const QuoteLink = React.forwardRef((props, ref) => {
     <Link
       data-ga-event-category="quote"
       data-ga-event-action="click"
-      data-ga-event-label="home-link"
       target="_blank"
       rel="noopener nofollow"
       ref={ref}

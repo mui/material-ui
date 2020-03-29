@@ -24,6 +24,14 @@ import Link from 'docs/src/modules/components/Link';
 import * as mui from '@material-ui/icons';
 import synonyms from './synonyms';
 
+if (process.env.NODE_ENV !== 'production') {
+  Object.keys(synonyms).forEach((icon) => {
+    if (!mui[icon]) {
+      throw new Error(`The icon ${icon} does no longer exist.`);
+    }
+  });
+}
+
 // Working on the logic? Uncomment these imports.
 // It will be x10 faster than working with all of the icons.
 

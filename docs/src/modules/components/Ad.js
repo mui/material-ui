@@ -58,7 +58,7 @@ const inHouseAds = [
   {
     name: 'themes-2',
     link:
-      'https://material-ui.com/store/?utm_source=material_ui&utm_medium=referral&utm_campaign=in-house-2',
+      'https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=in-house-2',
     img: '/static/in-house/themes-2.jpg',
     description:
       '<b>Premium Templates</b><br />Start your project with the best themes for admins, dashboards and more.',
@@ -66,7 +66,7 @@ const inHouseAds = [
   {
     name: 'themes',
     link:
-      'https://material-ui.com/store/?utm_source=material_ui&utm_medium=referral&utm_campaign=in-house',
+      'https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=in-house',
     img: '/static/in-house/themes.png',
     description:
       '<b>Premium Themes</b><br />Kickstart your application development with a ready-made theme.',
@@ -74,7 +74,7 @@ const inHouseAds = [
   {
     name: 'tidelift',
     link:
-      'https://tidelift.com/subscription/managed-open-source-survey?utm_source=material_ui&utm_medium=referral&utm_campaign=enterprise&utm_content=ad',
+      'https://tidelift.com/subscription/managed-open-source-survey?utm_source=docs&utm_medium=referral&utm_campaign=enterprise&utm_content=ad',
     img: '/static/in-house/tidelift.png',
     description:
       '<b>Material-UI for enterprise</b><br />Save time and reduce risk. Managed open source — backed by maintainers.',
@@ -89,7 +89,7 @@ const inHouseAds = [
   {
     name: 'sketch',
     link:
-      'https://material-ui.com/store/items/sketch-react/?utm_source=material_ui&utm_medium=referral&utm_campaign=in-house-sketch',
+      'https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=in-house-sketch',
     img: '/static/in-house/sketch.png',
     description:
       '<b>Sketch</b><br />A large UI kit with over 1,500 handcrafted Material-UI symbols 💎.',

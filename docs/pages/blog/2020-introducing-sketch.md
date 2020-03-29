@@ -8,7 +8,7 @@ Olivier Tassinari. March 30, 2020.
 
 Today, we’re excited to introduce the official Sketch symbols 💎 for Material-UI.
 
-[![preview](/static/blog/2020-introducing-sketch/product-preview.png)](https://material-ui.com/store/items/sketch-react)
+[![preview](/static/blog/2020-introducing-sketch/product-preview.png)](https://material-ui.com/store/items/sketch-react/?utm_source=blog&utm_medium=blog&utm_campaign=introducing-sketch)
 
 <p class="blog-description">Available on our <a href="https://material-ui.com/store/items/sketch-react">store</a></p>
 
@@ -64,4 +64,4 @@ We plan to release the support of **Figma** in the coming weeks. You can subscri
 
 ## Features
 
-You can learn more about the features available on the [Sketch page details](https://material-ui.com/store/items/sketch-react/) of the symbols.
+You can learn more about the features available on the [Sketch page details](https://material-ui.com/store/items/sketch-react/?utm_source=blog&utm_medium=blog&utm_campaign=introducing-sketch) of the symbols.

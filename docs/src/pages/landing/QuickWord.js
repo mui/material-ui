@@ -47,7 +47,7 @@ export default function QuickWord() {
         <Link
           variant="body2"
           display="block"
-          data-ga-event-category="sponsors"
+          data-ga-event-category="sponsor"
           data-ga-event-action="quick-word"
           data-ga-event-label={backer.alt}
           href={backer.href}
