@@ -97,7 +97,7 @@
     "cross-env": "^5.2.0",
     "cypress-react-unit-test": "^2.4.3",
     "date-fns": "^2.0.0-alpha.27",
-    "enzyme": "^3.8.0",
+    "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "^1.6.0",
