@@ -5830,10 +5830,10 @@ fsevents@^2.1.2:
   resolved "https://registry.yarnpkg.com/fsevents/-/fsevents-2.1.2.tgz#4c0a1fb34bc68e543b4b82a9ec392bfbda840805"
   integrity sha512-R4wDiBwZ0KzpgOWetKDug1FZcYhqYnUYKtfZYt4mD5SBz76q0KR4Q9o7GIPamsVPGmW3EYPPJ0dOOjvx32ldZA==
 
-full-icu@^1.2.1:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/full-icu/-/full-icu-1.3.0.tgz#1fb4d60050103ad9dcf53735c000e4a03d80c574"
-  integrity sha512-LGLpSsbkHUT0T+EKrIJltYoejYzUqg1eW+n6wm/FTte1pDiYjeKTxO0uJvrE3jgv6V9eBzMAjF6A8jH16C0+eQ==
+full-icu@^1.3.1:
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/full-icu/-/full-icu-1.3.1.tgz#e67fdf58523f1d1e0d9143b1542fe2024c1c8997"
+  integrity sha512-VMtK//85QJomhk3cXOCksNwOYaw1KWnYTS37GYGgyf7A3ajdBoPGhaJuJWAH2S2kq8GZeXkdKn+3Mfmgy11cVw==
 
 function-bind@^1.1.1:
   version "1.1.1"
