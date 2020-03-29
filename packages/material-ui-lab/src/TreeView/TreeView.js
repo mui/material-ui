@@ -468,7 +468,6 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
         if (index === 0) {
           setTabbable(id);
         }
-        nodeMap.current[id] = { parent: null };
       });
       visibleNodes.current = nodeMap.current[-1].children;
       prevChildIds.current = childIds;
@@ -493,7 +492,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     if (childrenCalculated) {
       visibleNodes.current = buildVisible(nodeMap.current[-1].children);
     }
-  }, [expanded, childrenCalculated, isExpanded]);
+  }, [expanded, childrenCalculated, isExpanded, children]);
 
   const noopSelection = () => {
     return false;

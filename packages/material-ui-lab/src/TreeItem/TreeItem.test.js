@@ -484,6 +484,45 @@ describe('<TreeItem />', () => {
           expect(getByTestId('two')).to.have.focus;
         });
 
+        it('moves focus to a child node works with a dynamic tree', () => {
+          function TestComponent() {
+            const [hide, setState] = React.useState(false);
+
+            return (
+              <React.Fragment>
+                <button
+                  data-testid="button"
+                  type="button"
+                  onClick={() => setState(value => !value)}
+                >
+                  Toggle Hide
+                </button>
+                <TreeView defaultExpanded={['one']}>
+                  {!hide && (
+                    <TreeItem nodeId="one" label="one" data-testid="one">
+                      <TreeItem nodeId="two" label="two" data-testid="two" />
+                    </TreeItem>
+                  )}
+                  <TreeItem nodeId="three" label="three" />
+                </TreeView>
+              </React.Fragment>
+            );
+          }
+
+          const { queryByTestId, getByTestId } = render(<TestComponent />);
+
+          expect(getByTestId('one')).to.not.be.null;
+          fireEvent.click(getByTestId('button'));
+          expect(queryByTestId('one')).to.be.null;
+          fireEvent.click(getByTestId('button'));
+          expect(getByTestId('one')).to.not.be.null;
+
+          getByTestId('one').focus();
+          fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+
+          expect(getByTestId('two')).to.have.focus;
+        });
+
         it("moves focus to a parent's sibling", () => {
           const { getByTestId, getByText } = render(
             <TreeView defaultExpanded={['one']}>
