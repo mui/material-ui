@@ -69,6 +69,7 @@ const FormControl = React.forwardRef(function FormControl(props, ref) {
     disabled = false,
     error = false,
     fullWidth = false,
+    focused: visuallyFocused,
     hiddenLabel = false,
     margin = 'none',
     required = false,
@@ -118,7 +119,8 @@ const FormControl = React.forwardRef(function FormControl(props, ref) {
     return initialFilled;
   });
 
-  const [focused, setFocused] = React.useState(false);
+  const [_focused, setFocused] = React.useState(false);
+  const focused = visuallyFocused !== undefined ? visuallyFocused : _focused;
 
   if (disabled && focused) {
     setFocused(false);
@@ -229,6 +231,10 @@ FormControl.propTypes = {
    * If `true`, the label should be displayed in an error state.
    */
   error: PropTypes.bool,
+  /**
+   * If `true`, the component will be displayed in focused state.
+   */
+  focused: PropTypes.bool,
   /**
    * If `true`, the component will take up the full width of its container.
    */

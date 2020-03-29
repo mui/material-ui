@@ -109,6 +109,22 @@ describe('<FormControl />', () => {
     });
   });
 
+  describe('prop: focused', () => {
+    it('should display input in focused state', () => {
+      const readContext = spy();
+      const { container } = render(
+        <FormControl focused>
+          <Input />
+          <TestComponent contextCallback={readContext} />
+        </FormControl>,
+      );
+
+      expect(readContext.args[0][0]).to.have.property('focused', true);
+      container.querySelector('input').blur();
+      expect(readContext.args[0][0]).to.have.property('focused', true);
+    });
+  });
+
   describe('input', () => {
     it('should be filled when a value is set', () => {
       const readContext = spy();
