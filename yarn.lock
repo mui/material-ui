@@ -2435,9 +2435,9 @@
     "@types/istanbul-lib-report" "*"
 
 "@types/jsdom@^16.1.0":
-  version "16.1.0"
-  resolved "https://registry.yarnpkg.com/@types/jsdom/-/jsdom-16.1.0.tgz#89d0ad0707eceb223c0db9b76611f8d487dd7d1b"
-  integrity sha512-GiBD8K4tFb0ah+rFAqkoP4tCc6DpCy96lITCCCAf1yqgvmpWNHh4S49sPIBXn4KIfvbVEcDRK+jgDHAbfVFdOw==
+  version "16.2.0"
+  resolved "https://registry.yarnpkg.com/@types/jsdom/-/jsdom-16.2.0.tgz#5a371a2efc1e0feec02c4bd2b3ce689e6ae691a2"
+  integrity sha512-I+qrFCzB97VlGJgvzGEwcUqmajpwqwTalmMvVfgJqFRVsY80lcCEQEGLJuVvge+whQyB1xcqTstAdxJshVVq0g==
   dependencies:
     "@types/node" "*"
     "@types/parse5" "*"
