@@ -77,7 +77,7 @@ describe('<Autocomplete />', () => {
       checkHighlightIs('one');
     });
 
-    it('should set the focus on selected item when dropdown is expanded', () => {
+    it('should set the highlight on selected item when dropdown is expanded', () => {
       const { getByRole, setProps } = render(
         <Autocomplete
           {...defaultProps}
@@ -93,6 +93,29 @@ describe('<Autocomplete />', () => {
 
       checkHighlightIs('one');
       setProps({ value: 'two' });
+      checkHighlightIs('two');
+    });
+
+    it('should keep the current highlight if possible', () => {
+      const { getByRole } = render(
+        <Autocomplete
+          {...defaultProps}
+          multiple
+          defaultValue={['one']}
+          options={['one', 'two', 'three']}
+          disableCloseOnSelect
+          renderInput={(params) => <TextField autoFocus {...params} />}
+        />,
+      );
+
+      function checkHighlightIs(expected) {
+        expect(getByRole('listbox').querySelector('li[data-focus]')).to.have.text(expected);
+      }
+
+      checkHighlightIs('one');
+      fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+      checkHighlightIs('two');
+      fireEvent.keyDown(document.activeElement, { key: 'Enter' });
       checkHighlightIs('two');
     });
   });
