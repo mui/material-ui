@@ -88,7 +88,7 @@
     "core-js": "^2.6.11",
     "cross-env": "^7.0.0",
     "danger": "^10.0.0",
-    "dom-accessibility-api": "^0.3.0",
+    "dom-accessibility-api": "^0.4.3",
     "dtslint": "^3.2.0",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.14.0",
