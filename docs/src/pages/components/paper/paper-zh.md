@@ -1,5 +1,5 @@
 ---
-title: React Paper（纸张）组件
+title: React Paper 纸张组件
 components: Paper
 ---
 

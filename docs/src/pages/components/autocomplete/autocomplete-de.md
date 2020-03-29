@@ -106,6 +106,12 @@ Falls Sie bestimmte Tags sperren müssen, damit sie nicht in der Schnittstelle e
 
 {{"demo": "pages/components/autocomplete/CheckboxesTags.js"}}
 
+### Limit tags
+
+You can use the `limitTags` prop to limit the number of displayed options when not focused.
+
+{{"demo": "pages/components/autocomplete/LimitTags.js"}}
+
 ## Größen
 
 Fancy smaller inputs? Verwenden Sie die `size` Prop.
@@ -141,10 +147,11 @@ import { createFilterOptions } from '@material-ui/lab/Autocomplete';
 1. `config` (*Object* [optional]): 
   - `config.ignoreAccents` (*Boolean* [optional]): Defaults to `true`. Remove diacritics.
   - `config.ignoreCase` (*Boolean* [optional]): Defaults to `true`. Alles in Kleinbuchstaben.
+  - `config.limit` (*Number* [optional]): Default to null. Limit the number of suggested options to be shown. For example, if `config.limit` is `100`, only the first `100` matching options are shown. It can be useful if a lot of options match and virtualization wasn't set up.
   - `config.matchFrom` (*'any' | 'start'* [optional]): Defaults to `'any'`.
+  - `config.startAfter`(*Number* [optional]): Default to `0`. Show the suggested options only after a certain number of letters
   - `config.stringify` (*Func* [optional]): Controls how an option is converted into a string so that it can be matched against the input text fragment.
   - `config.trim ` (*Boolean* [optional]): Standardeinstellung ist `false`. Abschließende Leerzeichen entfernen.
-  - `config.limit` (*Number* [optional]): Default to null. Limit the number of suggested options to be shown. For example, if `config.limit` is `100`, only the first `100` matching options are shown. It can be useful if a lot of options match and virtualization wasn't set up.
 
 #### Rückgabewerte
 

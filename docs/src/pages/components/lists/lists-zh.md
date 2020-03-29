@@ -67,7 +67,7 @@ The checkbox is the primary action and the state indicator for the list item. Th
 
 {{"demo": "pages/components/lists/CheckboxListSecondary.js", "bg": true}}
 
-### Switch （开关）
+### 开关
 
 该开关是辅助操作和单独的目标。
 
@@ -81,11 +81,11 @@ This feature relies on CSS sticky positioning. Unfortunately it's [not implement
 
 {{"demo": "pages/components/lists/PinnedSubheaderList.js", "bg": true}}
 
-## Inset List（嵌入列表）
+## 嵌入列表
 
 {{"demo": "pages/components/lists/InsetList.js", "bg": true}}
 
-## 大型列表渲染（Virtualized Table）
+## 大型列表渲染
 
 在下面的示例中，我们演示了如何将 [react-window](https://github.com/bvaughn/react-window) 与 `List` 组件一起使用 它渲染了200行，可以轻松处理更多行。 可视化优化了整体的性能。
 

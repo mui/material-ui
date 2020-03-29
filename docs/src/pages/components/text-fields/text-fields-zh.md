@@ -51,7 +51,7 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 
 ### 修饰输入框
 
-一个主流的方法是使用 `InputAdornment` 组件。 This can be used to add a prefix, a suffix or an action to an input. 例如，可以用一个图标按钮来隐藏或者显示输入框里的密码。
+一个主流的方法是使用 `InputAdornment` 组件。 这些可用于向输入添加前缀、后缀或动作. 例如，可以用一个图标按钮来隐藏或者显示输入框里的密码。
 
 {{"demo": "pages/components/text-fields/InputAdornments.js"}}
 
@@ -63,7 +63,7 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 
 ## Layout 布局
 
-`margin` prop can be used to alter the vertical spacing of inputs. 若您使用 `none` （默认选项），将不会在 `FormControl` 上添加间距， 相对来说，使用 `dense` 和 `normal` 会添加间距。 使用 ` dense ` 和 `normal` 会更改其他的样式，以符合规范。
+通过使用 `margin` 属性，你可以改变输入框的垂直间距。 若您使用 `none` （默认选项），将不会在 `FormControl` 上添加间距， 相对来说，使用 `dense` 和 `normal` 会添加间距。 使用 ` dense ` 和 `normal` 会更改其他的样式，以符合规范。
 
 我们提供了`fullWidth` 属性，使用它的时候，输入框会占据整个容器的宽度。
 
@@ -71,7 +71,7 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 
 ## 可控制的 vs 不可控制的
 
-The component can be controlled or uncontrolled.
+你可以选择控制的组件，或者不受控的组件。
 
 {{"demo": "pages/components/text-fields/StateTextFields.js"}}
 
@@ -173,7 +173,7 @@ function MyInputComponent(props) {
 
 ## 可及性
 
-为了确保您的文本框是可及的，**输入框必须和标签以及帮助文本连在一起调用**。 The underlying DOM nodes should have this structure:
+为了确保您的文本框是可及的，**输入框必须和标签以及帮助文本连在一起调用**。 而且，深层的 DOM 节点应该遵循这个结构。
 
 ```jsx
 <div class="form-control">

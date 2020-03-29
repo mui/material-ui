@@ -1,4 +1,4 @@
-# Minimizing Bundle Size（最小化打包文件大小）
+# Minimizing Bundle Size 最小化打包文件大小
 
 <p class="description">了解有关可用于减少打包文件大小的工具的详细信息。</p>
 

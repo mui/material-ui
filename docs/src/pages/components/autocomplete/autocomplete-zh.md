@@ -18,7 +18,7 @@ It's meant to be an improved version of the "react-select" and "downshift" packa
 
 必须取值于一个预设的可选值集合
 
-{{"demo": "pages/components/autocomplete/combox.js"}}
+{{"demo": "pages/components/autocomplete/ComboBox.js"}}
 
 ### 练习
 
@@ -44,11 +44,11 @@ Choose one of the 248 countries.
 
 有时您想要向用户显示他/她可以添加自己想要的任何值。 以下的演示增加了一个最新的操作方式：`添加“你的搜索”`
 
-{{"demo": "pages/components/autocomplete/FreeSolo.js"}}
+{{"demo": "pages/components/autocomplete/FreeSoloCreateOption.js"}}
 
 您也可以在用户想要添加一个新的值时显示一个对话框
 
-{{"demo": "pages/components/autocomplete/FreeSolo.js"}}
+{{"demo": "pages/components/autocomplete/FreeSoloCreateOptionDialog.js"}}
 
 ## 分组
 
@@ -56,7 +56,7 @@ Choose one of the 248 countries.
 
 ## 已禁用的选项
 
-{{"demo": "pages/components/autocomplete/disabledOptions.js"}}
+{{"demo": "pages/components/autocomplete/DisabledOptions.js"}}
 
 ## `使用自动完成`
 
@@ -72,13 +72,13 @@ import useAutocomplete from '@material-ui/lab/useAutocomplete';
 
 ### 自定义钩子
 
-{{"demo": "pages/components/autocomplete/ustomizedHook.js"}}
+{{"demo": "pages/components/autocomplete/CustomizedHook.js"}}
 
 转到[自定义自动完成](#customized-autocomplete)部分，查看使用 `Autocomplete` 组件（而不是钩子）的例子。
 
 ## 异步请求
 
-{{"demo": "pages/components/autocomplete/disabledOptions.js"}}
+{{"demo": "pages/components/autocomplete/Asynchronous.js"}}
 
 ### 谷歌地图位置
 
@@ -106,9 +106,15 @@ In the event that you need to lock certain tag so that they can't be removed in 
 
 {{"demo": "pages/components/autocomplete/CheckboxesTags.js"}}
 
+### Limit tags
+
+You can use the `limitTags` prop to limit the number of displayed options when not focused.
+
+{{"demo": "pages/components/autocomplete/LimitTags.js"}}
+
 ## 尺寸
 
-想要使用外观看起来比较小的输入框吗？ Use the `size` prop.
+想要使用外观看起来比较小的输入框吗？ 您可以使用 `size` 属性。
 
 {{"demo": "pages/components/autocomplete/Sizes.js"}}
 
@@ -141,10 +147,11 @@ import { createFilterOptions } from '@material-ui/lab/Autocomplete';
 1. `config` (*Object* [optional]): 
   - `config.ignoreAccents` (*Boolean* [optional]): Defaults to `true`. Remove diacritics.
   - `config.ignoreCase` (*Boolean* [optional]): Defaults to `true`. Lowercase everything.
+  - `config.limit` (*Number* [optional]): Default to null. Limit the number of suggested options to be shown. For example, if `config.limit` is `100`, only the first `100` matching options are shown. It can be useful if a lot of options match and virtualization wasn't set up.
   - `config.matchFrom` (*'any' | 'start'* [optional]): Defaults to `'any'`.
+  - `config.startAfter`(*Number* [optional]): Default to `0`. Show the suggested options only after a certain number of letters
   - `config.stringify` (*Func* [optional]): Controls how an option is converted into a string so that it can be matched against the input text fragment.
   - `config.trim` (*Boolean* [optional]): 默认值为`false`。 Remove trailing spaces.
-  - `config.limit` (*Number* [optional]): Default to null. Limit the number of suggested options to be shown. For example, if `config.limit` is `100`, only the first `100` matching options are shown. It can be useful if a lot of options match and virtualization wasn't set up.
 
 #### 返回结果
 

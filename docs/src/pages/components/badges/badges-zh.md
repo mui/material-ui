@@ -1,6 +1,6 @@
 ---
-title: React Badge（徽章）组件
-components: Badge
+title: React Badge 徽章组件
+components: 徽章
 ---
 
 # Badge 徽章

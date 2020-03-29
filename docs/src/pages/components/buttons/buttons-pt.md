@@ -3,7 +3,7 @@ title: Componente React para Botão
 components: Button, IconButton, ButtonBase
 ---
 
-# Button (botão)
+# Botão
 
 <p class="description">Botões permitem que os usuários tomem ações e decisões com um simples toque.</p>
 
@@ -21,7 +21,7 @@ components: Button, IconButton, ButtonBase
 
 {{"demo": "pages/components/buttons/ContainedButtons.js"}}
 
-You can remove the elevation with the `disableElevation` prop.
+Você pode remover a sombra com a propriedade `disableElevation`.
 
 {{"demo": "pages/components/buttons/DisableElevation.js"}}
 
@@ -44,7 +44,7 @@ Botões delineados são uma alternativa de menor ênfase comparado com botões c
 
 {{"demo": "pages/components/buttons/OutlinedButtons.js"}}
 
-## Upload button
+## Botão de Upload
 
 {{"demo": "pages/components/buttons/UploadButtons.js"}}
 

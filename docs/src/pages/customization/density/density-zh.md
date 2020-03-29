@@ -1,4 +1,4 @@
-# 间距(density)
+# density 间距
 
 <p class="description">如何自定义间距(density)</p>
 
@@ -14,7 +14,7 @@ Depending on the component, density is applied either via lower spacing, or simp
 
 The following components have props applying higher density:
 
-- [Buttons（按钮）](/api/button/)
+- [Button](/api/button/)
 - [Fab](/api/fab/)
 - [FilledInput](/api/filled-input/)
 - [FormControl](/api/form-control/)

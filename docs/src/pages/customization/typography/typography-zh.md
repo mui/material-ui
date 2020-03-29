@@ -160,7 +160,7 @@ theme = responsiveFontSizes(theme);
 
 To be done: [#15251](https://github.com/mui-org/material-ui/issues/15251).
 
-## 变种(Variants)
+## 变种
 
 The typography object comes with [13 variants](/components/typography/#component) by default:
 

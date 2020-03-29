@@ -17,9 +17,33 @@ Material-UI fornece suporte de ícones de três maneiras:
 
 Material Design has standardized over 1,100 official icons, each in five different "themes" (see below). Para cada ícone SVG, exportamos o respectivo componente React do pacote @material-ui/icons. You can [search the full list of these icons](/components/material-icons/).
 
+### Instalação
+
+Instale o pacote no diretório do projeto com:
+
+```sh
+// utilizando o npm
+npm install @material-ui/icons
+
+// utilizando o yarn
+yarn add @material-ui/icons
+```
+
+These components use the Material-UI SvgIcon component to render the SVG path for each icon, and so a have a peer-dependency on the next release of Material-UI.
+
+If you are not already using Material-UI in your project, you can add it with:
+
+```sh
+// usando npm
+npm install @material-ui/core
+
+// usando yarn
+yarn add @material-ui/core
+```
+
 ### Utilização
 
-Instale `@material-ui/icons`. Importe ícones usando uma destas duas opções:
+Importe ícones usando uma destas duas opções:
 
 - Opção 1:
 
