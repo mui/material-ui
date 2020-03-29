@@ -8,7 +8,7 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "case": "1.6.2",
+    "case": "1.6.3",
     "deepmerge": "^4.0.0",
     "docs": "^4.0.0",
     "mustache": "^4.0.0",
