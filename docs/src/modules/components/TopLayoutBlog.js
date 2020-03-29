@@ -34,6 +34,7 @@ const styles = (theme) => ({
     '& .blog-description': {
       fontSize: theme.typography.pxToRem(14),
       textAlign: 'center',
+      color: theme.palette.text.secondary,
     },
   },
 });
