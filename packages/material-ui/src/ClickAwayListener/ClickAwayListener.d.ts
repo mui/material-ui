@@ -1,9 +1,21 @@
 import * as React from 'react';
 
 export interface ClickAwayListenerProps {
-  children: React.ReactNode;
+  /**
+   * The wrapped element.
+   */
+  children: React.ReactElement<any, any>;
+  /**
+   * The mouse event to listen to. You can disable the listener by providing `false`.
+   */
   mouseEvent?: 'onClick' | 'onMouseDown' | 'onMouseUp' | false;
+  /**
+   * Callback fired when a "click away" event is detected.
+   */
   onClickAway: (event: React.MouseEvent<Document>) => void;
+  /**
+   * The touch event to listen to. You can disable the listener by providing `false`.
+   */
   touchEvent?: 'onTouchStart' | 'onTouchEnd' | false;
 }
 
@@ -19,6 +31,4 @@ export interface ClickAwayListenerProps {
  *
  * - [ClickAwayListener API](https://material-ui.com/api/click-away-listener/)
  */
-declare const ClickAwayListener: React.ComponentType<ClickAwayListenerProps>;
-
-export default ClickAwayListener;
+export default function ClickAwayListener(props: ClickAwayListenerProps): JSX.Element;

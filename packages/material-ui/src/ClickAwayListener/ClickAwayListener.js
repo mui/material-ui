@@ -37,6 +37,7 @@ const ClickAwayListener = React.forwardRef(function ClickAwayListener(props, ref
     },
     [handleNodeRef],
   );
+
   const handleRef = useForkRef(children.ref, handleOwnRef);
 
   const handleClickAway = useEventCallback((event) => {
@@ -115,6 +116,10 @@ const ClickAwayListener = React.forwardRef(function ClickAwayListener(props, ref
 });
 
 ClickAwayListener.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * The wrapped element.
    */
@@ -130,7 +135,7 @@ ClickAwayListener.propTypes = {
   /**
    * The touch event to listen to. You can disable the listener by providing `false`.
    */
-  touchEvent: PropTypes.oneOf(['onTouchStart', 'onTouchEnd', false]),
+  touchEvent: PropTypes.oneOf(['onTouchEnd', 'onTouchStart', false]),
 };
 
 if (process.env.NODE_ENV !== 'production') {
