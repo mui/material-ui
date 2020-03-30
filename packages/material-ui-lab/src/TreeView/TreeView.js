@@ -204,7 +204,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     setExpandedState(newExpanded);
   };
 
-  const isExpandable = id => {
+  const isExpandable = (id) => {
     const map = nodeMap.current[id];
     return map.children && map.children.length > 0;
   };
@@ -215,10 +215,10 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
 
     let diff;
     if (parent) {
-      diff = parent.children.filter(child => isExpandable(child) && !isExpanded(child));
+      diff = parent.children.filter((child) => isExpandable(child) && !isExpanded(child));
     } else {
       const topLevelNodes = nodeMap.current[-1].children;
-      diff = topLevelNodes.filter(node => isExpandable(node) && !isExpanded(node));
+      diff = topLevelNodes.filter((node) => isExpandable(node) && !isExpanded(node));
     }
     const newExpanded = [...expanded, ...diff];
 
