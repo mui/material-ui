@@ -519,7 +519,7 @@ describe('<TreeItem />', () => {
                 <button
                   data-testid="button"
                   type="button"
-                  onClick={() => setState(value => !value)}
+                  onClick={() => setState((value) => !value)}
                 >
                   Toggle Hide
                 </button>
