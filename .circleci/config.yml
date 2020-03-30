@@ -107,6 +107,9 @@ jobs:
       - checkout
       - install_js
       - run:
+          name: Check if yarn prettier was run
+          command: yarn prettier check-changed
+      - run:
           name: Generate PropTypes
           command: yarn proptypes --disable-cache
       - run:
@@ -118,9 +121,6 @@ jobs:
       - run:
           name: '`yarn docs:api` changes committed?'
           command: git diff --exit-code
-      - run:
-          name: Check if yarn prettier was run
-          command: yarn prettier check-changed
       - run:
           name: Lint
           command: yarn lint:ci
