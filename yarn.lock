@@ -2246,7 +2246,7 @@ fsevents@^1.2.7:
   dependencies:
     nan: ^2.12.1
     node-pre-gyp: ^0.12.0
-  checksum: 2/921b56d65896690a4768945795d26917bd88677a0c184035cd8d457b47d2cd81ec86f5556e9eac48652b54b9bf2c1936b566ed3e29a51febb30cef3287dac71f
+  checksum: 2/5f1ab7b61837bfec7e708c2616ef824139407417aa7b67d0d803796948888f567acf331ce2ea9d5fa7247ef562c5ab8ffc324c643f9f8f9bbb9be34fd02f3c9f
   languageName: node
   linkType: hard
 
@@ -5302,7 +5302,7 @@ resolve@1.1.7:
 "resolve@patch:resolve@1.1.7#builtin<compat/resolve>":
   version: 1.1.7
   resolution: "resolve@patch:resolve@npm%3A1.1.7#builtin<compat/resolve>::version=1.1.7&hash=8fccd0"
-  checksum: 2/5238277188664a6948dd7288d16f1a09e098fb36d4f9b2c749130969c998faa9bccefd30fd618073af5210fdc768730cadfc15588bbee4fc64b257f20cab6783
+  checksum: 2/876dac138d8a549b2750766bb2289041d00df2810daddb983d1b94eb0014b009f4e54e871afd5f86022a54597a168d1ba3c219e21066e5081bbba072e5ff35af
   languageName: node
   linkType: hard
 
@@ -5311,7 +5311,7 @@ resolve@1.1.7:
   resolution: "resolve@patch:resolve@npm%3A1.11.1#builtin<compat/resolve>::version=1.11.1&hash=8fccd0"
   dependencies:
     path-parse: ^1.0.6
-  checksum: 2/6a0de9521d9cc7217e322bd392e6594a3d5ab20ba10b77ee6a14f5e8991f0ab55216e98bac2795fcbd06bb972a39b688b620b2d0da0ac3ed70c2d6ac2075bbf7
+  checksum: 2/1fe1c8eabcc0ffac80eae4522d5228cdd39fc9afab16220fae950e2adbf0bde6af0dcad1784a5477fe3e5585c05751215252a0c2f0ebe8341484ec5382461847
   languageName: node
   linkType: hard
 
@@ -6247,7 +6247,7 @@ typescript@3.5.2:
   bin:
     tsc: ./bin/tsc
     tsserver: ./bin/tsserver
-  checksum: 2/a16aab1274c12d600d2bd95ce0ee6b8670c23038b02b209af260d696a9aa89c48e8ff5e66a18384a7078661479ed7ad82bed756bab423d15982e455137d8a130
+  checksum: 2/fec00f4cebc8b9c18ca721b2413b12a73b4a0a66129f1d8d25125d3c5a9054b56777c003f84d1857930318dfbcce2295146f3481471a53e59b20c64ea504d256
   languageName: node
   linkType: hard
 
