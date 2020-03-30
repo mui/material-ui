@@ -36,6 +36,10 @@ export interface SelectProps
    */
   IconComponent?: React.ElementType;
   /**
+   * The `id` of the wrapper element or the `select` elment when `native`.
+   */
+  id?: string;
+  /**
    * An `Input` element; does not have to be a material-ui specific `Input`.
    */
   input?: React.ReactElement<any, any>;

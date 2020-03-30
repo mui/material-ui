@@ -17,6 +17,39 @@ enum GenerateResult {
   Failed,
 }
 
+/**
+ * A map of components and their props that should be documented
+ * but are not used directly in their implementation.
+ *
+ * TODO: In the future we want to remove them from the API docs in favor
+ * of dynamically loading them. At that point this list should be removed.
+ * TODO: typecheck values
+ */
+const useExternalDocumentation: Record<string, string[]> = {
+  FilledInput: [
+    'autoComplete',
+    'autoFocus',
+    'color',
+    'defaultValue',
+    'disabled',
+    'endAdornment',
+    'error',
+    'inputProps',
+    'inputRef',
+    'margin',
+    'name',
+    'onChange',
+    'placeholder',
+    'readOnly',
+    'required',
+    'rows',
+    'rowsMax',
+    // TODO: why no rowsMin?
+    'startAdornment',
+    'value',
+  ],
+};
+
 const tsconfig = ttp.loadConfig(path.resolve(__dirname, '../tsconfig.json'));
 
 const prettierConfig = prettier.resolveConfig.sync(process.cwd(), {
@@ -71,7 +104,7 @@ async function generateProptypes(
 
       return generated;
     },
-    shouldInclude: ({ prop }) => {
+    shouldInclude: ({ component, prop }) => {
       if (prop.name === 'children') {
         return true;
       }
@@ -88,6 +121,14 @@ async function generateProptypes(
             shouldDocument = true;
           }
         });
+      }
+
+      const { name: componentName } = component;
+      if (
+        useExternalDocumentation[componentName] &&
+        useExternalDocumentation[componentName].includes(prop.name)
+      ) {
+        shouldDocument = true;
       }
 
       return shouldDocument;
