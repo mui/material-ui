@@ -620,6 +620,15 @@ const appList = [
     stars: 14,
     dateAdded: '2020-03-25',
   },
+  {
+    title: 'PhotoUtils',
+    description:
+      'Simple photo editor: resize, convert, crop, compress, rotate, flip your images online.' +
+      ' Homepage loads only 97 KB of JavaScript, which proves React + Material-UI bundle could be small!',
+    image: 'photoutils.jpg',
+    link: 'https://photoutils.com/',
+    dateAdded: '2020-03-30',
+  },
 ];
 
 export default appList;
