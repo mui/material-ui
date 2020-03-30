@@ -4,7 +4,7 @@ import { TransitionProps } from '../transitions/transition';
 
 export interface SlideProps extends TransitionProps {
   children?: React.ReactElement<any, any>;
-  direction: 'left' | 'right' | 'up' | 'down';
+  direction?: 'left' | 'right' | 'up' | 'down';
   ref?: React.Ref<unknown>;
   theme?: Theme;
 }
