@@ -3,7 +3,11 @@ import { StandardProps } from '..';
 import { IconButtonProps } from '../IconButton';
 
 export interface SwitchBaseProps
-  extends StandardProps<IconButtonProps, SwitchBaseClassKey, 'onChange' | 'type' | 'value'> {
+  extends StandardProps<
+    IconButtonProps,
+    SwitchBaseClassKey,
+    'children' | 'onChange' | 'type' | 'value'
+  > {
   autoFocus?: boolean;
   checked?: boolean;
   checkedIcon: React.ReactNode;

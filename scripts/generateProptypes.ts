@@ -63,18 +63,34 @@ async function generateProptypes(
       '|     To update them edit the d.ts file and run "yarn proptypes"     |',
       '----------------------------------------------------------------------',
     ].join('\n'),
+    reconcilePropTypes: (prop, previous, generated) => {
+      const usedCustomValidator = previous !== undefined && !previous.startsWith('PropTypes');
+      if (usedCustomValidator) {
+        return `${previous},`;
+      }
+
+      return generated;
+    },
     shouldInclude: ({ prop }) => {
       if (prop.name === 'children') {
         return true;
       }
+      let shouldDocument;
 
       const documentRegExp = new RegExp(/\r?\n?@document/);
       if (prop.jsDoc && documentRegExp.test(prop.jsDoc)) {
         prop.jsDoc = prop.jsDoc.replace(documentRegExp, '');
-        return true;
+        shouldDocument = true;
+      } else {
+        prop.filenames.forEach((filename) => {
+          const isExternal = filename !== tsFile;
+          if (!isExternal) {
+            shouldDocument = true;
+          }
+        });
       }
 
-      return undefined;
+      return shouldDocument;
     },
   });
 
