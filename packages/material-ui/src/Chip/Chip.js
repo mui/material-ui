@@ -299,6 +299,11 @@ const Chip = React.forwardRef(function Chip(props, ref) {
     keyboardEvent.key === 'Backspace' || keyboardEvent.key === 'Delete';
 
   const handleKeyDown = (event) => {
+    // Ignore events from children of `Chip`.
+    if (event.currentTarget !== event.target) {
+      return;
+    }
+
     if (isDeleteKeyboardEvent(event)) {
       // will be handled in keyUp, otherwise some browsers
       // might init navigation

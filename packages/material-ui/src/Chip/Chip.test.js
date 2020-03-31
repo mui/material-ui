@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
+import TextField from '@material-ui/core/TextField'
 import CheckBox from '../internal/svg-icons/CheckBox';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
-import { createClientRender, fireEvent } from 'test/utils/createClientRender';
+import { createClientRender, fireEvent, getNodeText } from 'test/utils/createClientRender';
 import Avatar from '../Avatar';
 import Chip from './Chip';
 
@@ -68,6 +69,22 @@ describe('<Chip />', () => {
       expect(chip).to.have.class(classes.colorSecondary);
     });
   });
+
+  describe('prop: label as TextField', () => {
+    it('should call handleChange of TextField on backspace', () => {
+      const handleChange = spy()
+      const label = <TextField value={'foo'} onChange={handleChange} />;
+      const {container} = render(<Chip label={label} />);
+      // const chip = container.querySelector(`.${classes.root}`);
+      // // console.log('Chip===========', chip)
+      // chip.focus();
+      getNodeText(container)
+
+      fireEvent.keyDown(document.activeElement, { key: 'Delete' });
+
+      expect(handleChange.callCount).to.equal(1);
+    })
+  })
 
   describe('clickable chip', () => {
     it('renders as a button in taborder with the label as the accessible name', () => {
