@@ -2,7 +2,7 @@ import { assert } from 'chai';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { createMount } from '@material-ui/core/test-utils';
-import { teardown as teardownFocusVisible, useIsFocusVisible } from './focusVisible';
+import useIsFocusVisible, { teardown as teardownFocusVisible } from './useIsFocusVisible';
 import useForkRef from './useForkRef';
 
 function dispatchFocusVisible(element) {

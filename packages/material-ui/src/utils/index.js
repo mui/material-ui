@@ -1,7 +1,9 @@
 export { default as capitalize } from './capitalize';
+export { default as createChainedFunction } from './deprecatedPropType';
+export { default as createSvgIcon } from './createSvgIcon';
+export { default as debounce } from './debounce';
 export { default as deprecatedPropType } from './deprecatedPropType';
 export { default as isMuiElement } from './isMuiElement';
-export { default as createSvgIcon } from './createSvgIcon';
 export { default as ownerDocument } from './ownerDocument';
 export { default as ownerWindow } from './ownerWindow';
 export { default as requirePropFactory } from './requirePropFactory';
@@ -10,4 +12,4 @@ export { default as unsupportedProp } from './unsupportedProp';
 export { default as useControlled } from './useControlled';
 export { default as useEventCallback } from './useEventCallback';
 export { default as useForkRef } from './useForkRef';
-export { useIsFocusVisible } from './focusVisible';
+export { default as useIsFocusVisible } from './useIsFocusVisible';
