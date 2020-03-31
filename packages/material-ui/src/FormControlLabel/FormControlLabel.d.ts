@@ -5,16 +5,43 @@ export interface FormControlLabelProps
   extends StandardProps<
     React.LabelHTMLAttributes<HTMLLabelElement>,
     FormControlLabelClassKey,
-    'onChange'
+    'children' | 'onChange'
   > {
+  /**
+   * If `true`, the component appears selected.
+   */
   checked?: boolean;
-  control: React.ReactElement;
+  /**
+   * A control element. For instance, it can be be a `Radio`, a `Switch` or a `Checkbox`.
+   */
+  control: React.ReactElement<any, any>;
+  /**
+   * If `true`, the control will be disabled.
+   */
   disabled?: boolean;
+  /**
+   * Pass a ref to the `input` element.
+   */
   inputRef?: React.Ref<any>;
+  /**
+   * The text to be used in an enclosing label element.
+   */
   label: React.ReactNode;
-  name?: string;
-  onChange?: (event: React.ChangeEvent<{}>, checked: boolean) => void;
+  /**
+   * The position of the label.
+   */
   labelPlacement?: 'end' | 'start' | 'top' | 'bottom';
+  name?: string;
+  /**
+   * Callback fired when the state is changed.
+   *
+   * @param {object} event The event source of the callback.
+   * You can pull out the new checked state by accessing `event.target.checked` (boolean).
+   */
+  onChange?: (event: React.ChangeEvent<{}>, checked: boolean) => void;
+  /**
+   * The value of the component.
+   */
   value?: unknown;
 }
 
@@ -39,6 +66,4 @@ export type FormControlLabelClassKey =
  *
  * - [FormControlLabel API](https://material-ui.com/api/form-control-label/)
  */
-declare const FormControlLabel: React.ComponentType<FormControlLabelProps>;
-
-export default FormControlLabel;
+export default function FormControlLabel(props: FormControlLabelProps): JSX.Element;
