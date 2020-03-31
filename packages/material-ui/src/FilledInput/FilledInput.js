@@ -228,6 +228,10 @@ FilledInput.propTypes = {
    */
   fullWidth: PropTypes.bool,
   /**
+   * The id of the `input` element.
+   */
+  id: PropTypes.string,
+  /**
    * The component used for the native input.
    * Either a string to use a DOM element or a component.
    */

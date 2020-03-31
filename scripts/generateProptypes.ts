@@ -17,6 +17,30 @@ enum GenerateResult {
   Failed,
 }
 
+const useExternalPropsFromInputBase = [
+  'autoComplete',
+  'autoFocus',
+  'color',
+  'defaultValue',
+  'disabled',
+  'endAdornment',
+  'error',
+  'id',
+  'inputProps',
+  'inputRef',
+  'margin',
+  'name',
+  'onChange',
+  'placeholder',
+  'readOnly',
+  'required',
+  'rows',
+  'rowsMax',
+  // TODO: why no rowsMin?
+  'startAdornment',
+  'value',
+];
+
 /**
  * A map of components and their props that should be documented
  * but are not used directly in their implementation.
@@ -26,28 +50,8 @@ enum GenerateResult {
  * TODO: typecheck values
  */
 const useExternalDocumentation: Record<string, string[]> = {
-  FilledInput: [
-    'autoComplete',
-    'autoFocus',
-    'color',
-    'defaultValue',
-    'disabled',
-    'endAdornment',
-    'error',
-    'inputProps',
-    'inputRef',
-    'margin',
-    'name',
-    'onChange',
-    'placeholder',
-    'readOnly',
-    'required',
-    'rows',
-    'rowsMax',
-    // TODO: why no rowsMin?
-    'startAdornment',
-    'value',
-  ],
+  FilledInput: useExternalPropsFromInputBase,
+  Input: useExternalPropsFromInputBase,
 };
 
 const tsconfig = ttp.loadConfig(path.resolve(__dirname, '../tsconfig.json'));
