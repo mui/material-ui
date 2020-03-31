@@ -214,7 +214,7 @@ describe('<Select />', () => {
     it('should get selected element from arguments', () => {
       const onChangeHandler = spy();
       const { getAllByRole, getByRole } = render(
-        <Select onChange={onChangeHandler} value="1">
+        <Select onChange={onChangeHandler} value="0">
           <MenuItem value="0" />
           <MenuItem value="1" />
           <MenuItem value="2" />

@@ -139,6 +139,10 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       newValue = child.props.value;
     }
 
+    if (value === newValue) {
+      return;
+    }
+
     setValue(newValue);
 
     if (onChange) {
