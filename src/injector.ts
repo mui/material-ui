@@ -21,7 +21,11 @@ export type InjectOptions = {
 	 * use the default behaviour
 	 * @default includeUnusedProps ? true : data.usedProps.includes(data.prop.name)
 	 */
-	shouldInclude?(data: { prop: t.PropTypeNode; usedProps: string[] }): boolean | undefined;
+	shouldInclude?(data: {
+		component: t.ComponentNode;
+		prop: t.PropTypeNode;
+		usedProps: string[];
+	}): boolean | undefined;
 
 	/**
 	 * Options passed to babel.transformSync
@@ -82,7 +86,7 @@ function plugin(
 ): babel.PluginObj {
 	const { includeUnusedProps = false, removeExistingPropTypes = false, ...otherOptions } = options;
 
-	const shouldInclude: InjectOptions['shouldInclude'] = (data) => {
+	const shouldInclude: Exclude<InjectOptions['shouldInclude'], undefined> = (data) => {
 		if (options.shouldInclude) {
 			const result = options.shouldInclude(data);
 			if (result !== undefined) {
@@ -263,7 +267,7 @@ function plugin(
 		const source = generate(props, {
 			...otherOptions,
 			importedName: importName,
-			shouldInclude: (prop) => shouldInclude!({ prop, usedProps }),
+			shouldInclude: (prop) => shouldInclude({ component: props, prop, usedProps }),
 		});
 
 		if (source.length === 0) {
