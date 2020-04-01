@@ -384,6 +384,10 @@ SelectInput.propTypes = {
   /**
    * @ignore
    */
+  'aria-label': PropTypes.string,
+  /**
+   * @ignore
+   */
   autoFocus: PropTypes.bool,
   /**
    * If `true`, the width of the popover will automatically be set according to the items inside the
