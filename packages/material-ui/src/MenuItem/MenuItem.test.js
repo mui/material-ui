@@ -109,7 +109,7 @@ describe('<MenuItem />', () => {
   });
 
   describe('prop: ListItemClasses', () => {
-    it('Should be able to change the style of ListItem', () => {
+    it('should be able to change the style of ListItem', () => {
       const wrapper = mount(<MenuItem ListItemClasses={{ disabled: 'bar' }} />);
       assert.strictEqual(wrapper.find(ListItem).props().classes.disabled, 'bar');
     });

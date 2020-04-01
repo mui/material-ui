@@ -9,11 +9,11 @@ export type MenuItemTypeMap<P = {}, D extends React.ElementType = 'li'> = Omit<
   ListItemTypeMap<P, D>,
   'classKey'
 > & {
+  classKey: MenuItemClassKey;
   /**
    * `classes` prop applied to the [`ListItem`](/api/list-item/) element.
    */
   ListItemClasses: ListItemProps['classes'];
-  classKey: MenuItemClassKey;
 };
 
 /**

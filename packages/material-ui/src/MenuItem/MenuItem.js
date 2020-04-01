@@ -34,10 +34,10 @@ export const styles = (theme) => ({
 const MenuItem = React.forwardRef(function MenuItem(props, ref) {
   const {
     classes,
-    ListItemClasses,
     className,
     component = 'li',
     disableGutters = false,
+    ListItemClasses,
     role = 'menuitem',
     selected,
     tabIndex: tabIndexProp,
