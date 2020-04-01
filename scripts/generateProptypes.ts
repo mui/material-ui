@@ -103,7 +103,10 @@ async function generateProptypes(
     ].join('\n'),
     reconcilePropTypes: (prop, previous, generated) => {
       const usedCustomValidator = previous !== undefined && !previous.startsWith('PropTypes');
-      if (usedCustomValidator) {
+      const ignoreGenerated =
+        previous !== undefined &&
+        previous.startsWith('PropTypes /* @typescript-to-proptypes-ignore */');
+      if (usedCustomValidator || ignoreGenerated) {
         return `${previous},`;
       }
 
