@@ -362,9 +362,7 @@ describe('<Chip />', () => {
       ['Backspace', 'Delete'].forEach((key) => {
         it(`should call onDelete '${key}' is released`, () => {
           const handleDelete = spy();
-          const handleKeyDown = spy((event) => {
-            return event.defaultPrevented;
-          });
+          const handleKeyDown = spy((event) => event.defaultPrevented);
           const { getAllByRole } = render(
             <Chip onClick={() => {}} onKeyDown={handleKeyDown} onDelete={handleDelete} />,
           );
@@ -381,6 +379,17 @@ describe('<Chip />', () => {
 
           expect(handleDelete.callCount).to.equal(1);
         });
+      });
+
+      it('should not prevent default on input', () => {
+        const handleKeyDown = spy((event) => event.defaultPrevented);
+        const { container } = render(<Chip label={<input />} onKeyDown={handleKeyDown} />);
+        const input = container.querySelector('input');
+        input.focus();
+        fireEvent.keyDown(document.activeElement, { key: 'Backspace' });
+
+        // defaultPrevented?
+        expect(handleKeyDown.returnValues[0]).to.equal(false);
       });
     });
 

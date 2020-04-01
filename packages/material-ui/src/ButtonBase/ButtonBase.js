@@ -224,6 +224,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
       }
     }
   });
+
   const handleKeyUp = useEventCallback((event) => {
     // calling preventDefault in keyUp on a <button> will not dispatch a click event if Space is pressed
     // https://codesandbox.io/s/button-keyup-preventdefault-dn7f0
