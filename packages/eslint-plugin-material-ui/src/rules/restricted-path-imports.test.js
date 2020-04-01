@@ -12,6 +12,7 @@ ruleTester.run('restricted-path-imports', rule, {
     "import { blue } from '@material-ui/core/colors'",
     "import * as colors from '@material-ui/core/colors'",
     "import * as colors from '@another/core/styles/withStyles'",
+    "import describeConformance from '@material-ui/core/test-utils/describeConformance'",
     "import describeConformance from '@another/core/test-utils/describeConformance'",
   ],
   invalid: [

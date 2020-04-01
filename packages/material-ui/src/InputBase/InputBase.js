@@ -41,7 +41,7 @@ export const styles = (theme) => {
       // Mimics the default input display property used by browsers for an input.
       ...theme.typography.body1,
       color: theme.palette.text.primary,
-      lineHeight: '1.1875em', // Reset (19px), match the native input line-height
+      lineHeight: '1.1876em', // Reset (19px), match the native input line-height
       boxSizing: 'border-box', // Prevent padding issue with fullWidth.
       position: 'relative',
       cursor: 'text',
@@ -87,7 +87,7 @@ export const styles = (theme) => {
       border: 0,
       boxSizing: 'content-box',
       background: 'none',
-      height: '1.1875em', // Reset (19px), match the native input line-height
+      height: '1.1876em', // Reset (19px), match the native input line-height
       margin: 0, // Reset for Safari
       WebkitTapHighlightColor: 'transparent',
       display: 'block',

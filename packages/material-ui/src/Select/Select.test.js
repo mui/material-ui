@@ -214,7 +214,7 @@ describe('<Select />', () => {
     it('should get selected element from arguments', () => {
       const onChangeHandler = spy();
       const { getAllByRole, getByRole } = render(
-        <Select onChange={onChangeHandler} value="1">
+        <Select onChange={onChangeHandler} value="0">
           <MenuItem value="0" />
           <MenuItem value="1" />
           <MenuItem value="2" />
@@ -409,7 +409,7 @@ describe('<Select />', () => {
       const { getByRole } = render(<Select value="" />);
 
       // TODO what is the accessible name actually?
-      expect(getByRole('button')).to.have.attribute('aria-labelledby', ' ');
+      expect(getByRole('button')).to.not.have.attribute('aria-labelledby');
     });
 
     it('is labelled by itself when it has a name', () => {
@@ -417,7 +417,7 @@ describe('<Select />', () => {
 
       expect(getByRole('button')).to.have.attribute(
         'aria-labelledby',
-        ` ${getByRole('button').getAttribute('id')}`,
+        getByRole('button').getAttribute('id'),
       );
     });
 
