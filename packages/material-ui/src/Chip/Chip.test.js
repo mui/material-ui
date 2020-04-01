@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
-import TextField from '@material-ui/core/TextField'
+import TextField from '@material-ui/core/TextField';
 import CheckBox from '../internal/svg-icons/CheckBox';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
-import { createClientRender, fireEvent, getNodeText } from 'test/utils/createClientRender';
+import { createClientRender, fireEvent, screen } from 'test/utils/createClientRender';
 import Avatar from '../Avatar';
 import Chip from './Chip';
 
@@ -72,19 +72,18 @@ describe('<Chip />', () => {
 
   describe('prop: label as TextField', () => {
     it('should call handleChange of TextField on backspace', () => {
-      const handleChange = spy()
+      const handleChange = spy();
       const label = <TextField value={'foo'} onChange={handleChange} />;
-      const {container} = render(<Chip label={label} />);
-      // const chip = container.querySelector(`.${classes.root}`);
-      // // console.log('Chip===========', chip)
-      // chip.focus();
-      getNodeText(container)
+      const { container } = render(<Chip label={label} />);
+      const input = container.querySelector('input');
+      input.click();
+      fireEvent.change(input, { target: { value: 'Backspace' } });
 
-      fireEvent.keyDown(document.activeElement, { key: 'Delete' });
+      fireEvent.keyDown(document.activeElement, { key: 'Backspace' });
 
       expect(handleChange.callCount).to.equal(1);
-    })
-  })
+    });
+  });
 
   describe('clickable chip', () => {
     it('renders as a button in taborder with the label as the accessible name', () => {
