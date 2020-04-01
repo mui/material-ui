@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
-import TextField from '@material-ui/core/TextField';
 import CheckBox from '../internal/svg-icons/CheckBox';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
@@ -67,21 +66,6 @@ describe('<Chip />', () => {
 
       const chip = container.querySelector(`.${classes.root}`);
       expect(chip).to.have.class(classes.colorSecondary);
-    });
-  });
-
-  describe('prop: label as TextField', () => {
-    it('should call handleChange of TextField on backspace', () => {
-      const handleChange = spy();
-      const label = <TextField value={'foo'} onChange={handleChange} />;
-      const { container } = render(<Chip label={label} />);
-      const input = container.querySelector('input');
-      input.click();
-      fireEvent.change(input, { target: { value: 'Backspace' } });
-
-      fireEvent.keyDown(document.activeElement, { key: 'Backspace' });
-
-      expect(handleChange.callCount).to.equal(1);
     });
   });
 
@@ -378,9 +362,7 @@ describe('<Chip />', () => {
       ['Backspace', 'Delete'].forEach((key) => {
         it(`should call onDelete '${key}' is released`, () => {
           const handleDelete = spy();
-          const handleKeyDown = spy((event) => {
-            return event.defaultPrevented;
-          });
+          const handleKeyDown = spy((event) => event.defaultPrevented);
           const { getAllByRole } = render(
             <Chip onClick={() => {}} onKeyDown={handleKeyDown} onDelete={handleDelete} />,
           );
@@ -397,6 +379,17 @@ describe('<Chip />', () => {
 
           expect(handleDelete.callCount).to.equal(1);
         });
+      });
+
+      it('should not prevent default on input', () => {
+        const handleKeyDown = spy((event) => event.defaultPrevented);
+        const { container } = render(<Chip label={<input />} onKeyDown={handleKeyDown} />);
+        const input = container.querySelector('input');
+        input.focus();
+        fireEvent.keyDown(document.activeElement, { key: 'Backspace' });
+
+        // defaultPrevented?
+        expect(handleKeyDown.returnValues[0]).to.equal(false);
       });
     });
 
