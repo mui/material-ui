@@ -74,7 +74,7 @@ const inHouseAds = [
   {
     name: 'tidelift',
     link:
-      'https://tidelift.com/subscription/managed-open-source-survey?utm_source=docs&utm_medium=referral&utm_campaign=enterprise&utm_content=ad',
+      'https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise&utm_content=ad',
     img: '/static/in-house/tidelift.png',
     description:
       '<b>Material-UI for enterprise</b><br />Save time and reduce risk. Managed open source — backed by maintainers.',

@@ -17,7 +17,7 @@ export const styles = (theme) => {
       display: 'flex',
       minHeight: 8 * 6,
       transition: theme.transitions.create(['min-height', 'background-color'], transition),
-      padding: '0 24px 0 24px',
+      padding: theme.spacing(0, 3),
       '&:hover:not($disabled)': {
         cursor: 'pointer',
       },
