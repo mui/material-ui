@@ -1,4 +1,4 @@
-// TODO v5: stop using it directly, replace it with useForkRef.
+// TODO v5: consider to make it private
 export default function setRef(ref, value) {
   if (typeof ref === 'function') {
     ref(value);
