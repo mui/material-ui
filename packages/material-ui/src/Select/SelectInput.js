@@ -26,6 +26,7 @@ function isEmpty(display) {
  */
 const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   const {
+    'aria-label': ariaLabel,
     autoFocus,
     autoWidth,
     children,
@@ -320,8 +321,9 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         tabIndex={tabIndex}
         role="button"
         aria-expanded={open ? 'true' : undefined}
-        aria-labelledby={[labelId, buttonId].filter(Boolean).join(' ') || undefined}
         aria-haspopup="listbox"
+        aria-label={ariaLabel}
+        aria-labelledby={[labelId, buttonId].filter(Boolean).join(' ') || undefined}
         onKeyDown={handleKeyDown}
         onMouseDown={disabled || readOnly ? null : handleMouseDown}
         onBlur={handleBlur}

@@ -35,9 +35,9 @@ export const styles = (theme) => ({
   caption: {
     flexShrink: 0,
   },
+  // TODO v5: `.selectRoot` should be merged with `.input`
   /* Styles applied to the Select component root element. */
   selectRoot: {
-    // `.selectRoot` should be merged with `.input` in v5.
     marginRight: 32,
     marginLeft: 8,
   },
@@ -122,6 +122,7 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
             input={<InputBase className={clsx(classes.input, classes.selectRoot)} />}
             value={rowsPerPage}
             onChange={onChangeRowsPerPage}
+            inputProps={{ 'aria-label': labelRowsPerPage }}
             {...SelectProps}
           >
             {rowsPerPageOptions.map((rowsPerPageOption) => (
