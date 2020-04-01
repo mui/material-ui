@@ -5,7 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import CheckBox from '../internal/svg-icons/CheckBox';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
-import { createClientRender, fireEvent, screen } from 'test/utils/createClientRender';
+import { createClientRender, fireEvent } from 'test/utils/createClientRender';
 import Avatar from '../Avatar';
 import Chip from './Chip';
 
