@@ -52,6 +52,7 @@ const useExternalPropsFromInputBase = [
 const useExternalDocumentation: Record<string, string[]> = {
   FilledInput: useExternalPropsFromInputBase,
   Input: useExternalPropsFromInputBase,
+  OutlinedInput: useExternalPropsFromInputBase,
 };
 
 const tsconfig = ttp.loadConfig(path.resolve(__dirname, '../tsconfig.json'));
