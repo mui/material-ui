@@ -59,7 +59,13 @@ export default function SimpleSelect() {
         <FormHelperText>Some important helper text</FormHelperText>
       </FormControl>
       <FormControl className={classes.formControl}>
-        <Select value={age} onChange={handleChange} displayEmpty className={classes.selectEmpty}>
+        <Select
+          value={age}
+          onChange={handleChange}
+          displayEmpty
+          className={classes.selectEmpty}
+          inputProps={{ 'aria-label': 'Without label' }}
+        >
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
@@ -162,7 +168,13 @@ export default function SimpleSelect() {
         <FormHelperText>Auto width</FormHelperText>
       </FormControl>
       <FormControl className={classes.formControl}>
-        <Select value={age} onChange={handleChange} displayEmpty className={classes.selectEmpty}>
+        <Select
+          value={age}
+          onChange={handleChange}
+          displayEmpty
+          className={classes.selectEmpty}
+          inputProps={{ 'aria-label': 'Without label' }}
+        >
           <MenuItem value="" disabled>
             Placeholder
           </MenuItem>
