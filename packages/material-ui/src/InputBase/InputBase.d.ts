@@ -13,6 +13,9 @@ export interface InputBaseProps
     'children' | 'onChange' | 'onKeyUp' | 'onKeyDown' | 'onBlur' | 'onFocus' | 'defaultValue'
   > {
   /**
+   */
+  'aria-describedby'?: string;
+  /**
    * This prop helps users to fill forms faster, especially on mobile devices.
    * The name can be confusing, as it's more like an autofill.
    * You can learn more about it [following the specification](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill).
@@ -52,7 +55,7 @@ export interface InputBaseProps
    */
   id?: string;
   /**
-   * The component used for the native input.
+   * The component used for the `input` element.
    * Either a string to use a DOM element or a component.
    */
   inputComponent?: React.ElementType<InputBaseComponentProps>;
@@ -77,6 +80,11 @@ export interface InputBaseProps
    * Name attribute of the `input` element.
    */
   name?: string;
+  /**
+   * Callback fired when the input is blurred.
+   *
+   * Notice that the first argument (event) might be undefined.
+   */
   onBlur?: React.FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>;
   /**
    * Callback fired when the value is changed.
@@ -101,7 +109,7 @@ export interface InputBaseProps
    * If `true`, the `input` element will be required.
    */
   required?: boolean;
-  renderPrefix?: (state: {
+  renderSuffix?: (state: {
     disabled?: boolean;
     error?: boolean;
     filled?: boolean;
@@ -118,6 +126,9 @@ export interface InputBaseProps
    * Maximum number of rows to display when multiline option is set to true.
    */
   rowsMax?: string | number;
+  /**
+   * Minimum number of rows to display when multiline option is set to true.
+   */
   rowsMin?: string | number;
   /**
    * Start `InputAdornment` for this component.
@@ -171,6 +182,4 @@ export type InputBaseClassKey =
  *
  * - [InputBase API](https://material-ui.com/api/input-base/)
  */
-declare const InputBase: React.ComponentType<InputBaseProps>;
-
-export default InputBase;
+export default function InputBase(props: InputBaseProps): JSX.Element;

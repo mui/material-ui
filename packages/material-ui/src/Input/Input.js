@@ -181,7 +181,7 @@ Input.propTypes = {
    */
   id: PropTypes.string,
   /**
-   * The component used for the native input.
+   * The component used for the `input` element.
    * Either a string to use a DOM element or a component.
    */
   inputComponent: PropTypes.elementType,
