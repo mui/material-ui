@@ -2,7 +2,6 @@
 import 'docs/src/modules/components/bootstrap';
 // --- Post bootstrap -----
 import React from 'react';
-import App from 'next/app';
 import find from 'lodash/find';
 import { Provider as ReduxProvider, useDispatch, useSelector } from 'react-redux';
 import { loadCSS } from 'fg-loadcss/src/loadCSS';
@@ -328,16 +327,13 @@ AppWrapper.propTypes = {
   pageProps: PropTypes.object.isRequired,
 };
 
-export default class MyApp extends App {
-  render() {
-    const { Component, pageProps } = this.props;
-
-    return (
-      <AppWrapper pageProps={pageProps}>
-        <Component {...pageProps} />
-      </AppWrapper>
-    );
-  }
+export default function MyApp(props) {
+  const { Component, pageProps } = props;
+  return (
+    <AppWrapper pageProps={pageProps}>
+      <Component {...pageProps} />
+    </AppWrapper>
+  );
 }
 
 MyApp.getInitialProps = async ({ ctx, Component }) => {
@@ -364,4 +360,9 @@ MyApp.getInitialProps = async ({ ctx, Component }) => {
   return {
     pageProps,
   };
+};
+
+MyApp.propTypes = {
+  Component: PropTypes.func.isRequired,
+  pageProps: PropTypes.object.isRequired,
 };
