@@ -3,7 +3,10 @@ import { Orientation } from '../Stepper';
 import { ButtonBaseTypeMap, ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
 
-export type StepButtonIcon = React.ReactElement | string | number | null;
+/**
+ * @deprecated use `StepButtonProps['icon']` instead
+ */
+export type StepButtonIcon = React.ReactNode;
 
 export type StepButtonTypeMap<P, D extends React.ElementType> = ExtendButtonBaseTypeMap<{
   props: P & {
