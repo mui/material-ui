@@ -12,12 +12,6 @@ export interface GrowProps extends Omit<TransitionProps, 'timeout'> {
    * If `true`, show the component; triggers the enter or exit animation.
    */
   in?: boolean;
-  /**
-   */
-  onEnter?: TransitionProps['onEnter'];
-  /**
-   */
-  onExit?: TransitionProps['onExit'];
   ref?: React.Ref<unknown>;
   /**
    * The duration for the transition, in milliseconds.

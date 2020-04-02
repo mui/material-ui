@@ -41,10 +41,6 @@ const useExternalPropsFromInputBase = [
   'value',
 ];
 
-// TODO: RESOVE_BEFORE_MERGE
-// - don't suppress jsdoc in .d.ts but when generating js propTypes
-//   This is currently done by explicitly forwarding a type with either no comment block or an empty on
-//   Example: onEnter?: TransitionProps['onEnter']
 /**
  * A map of components and their props that should be documented
  * but are not used directly in their implementation.
@@ -58,6 +54,22 @@ const useExternalDocumentation: Record<string, string[]> = {
   Input: useExternalPropsFromInputBase,
   OutlinedInput: useExternalPropsFromInputBase,
   Radio: ['disableRipple', 'id', 'inputProps', 'inputRef', 'required'],
+};
+/**
+ * These are components that use props implemented by external components.
+ * Those props have their own JSDOC which we don't want to emit in our docs
+ * but do want them to have JSDOC in IntelliSense
+ * TODO: In the future we want to ignore external docs on the initial load anyway
+ * since they will be fetched dynamically.
+ */
+const ignoreExternalDocumentation: Record<string, string[]> = {
+  Collapse: ['onEnter', 'onEntered', 'onEntering', 'onExit', 'onExiting'],
+  Fade: ['onEnter', 'onExit'],
+  Grow: ['onEnter', 'onExit'],
+  InputBase: ['aria-describedby'],
+  Menu: ['PaperProps'],
+  Slide: ['onEnter', 'onEntering', 'onExit', 'onExited'],
+  Zoom: ['onEnter', 'onExit'],
 };
 
 const tsconfig = ttp.loadConfig(path.resolve(__dirname, '../tsconfig.json'));
@@ -94,7 +106,11 @@ async function generateProptypes(
         prop.jsDoc += '\nSee [CSS API](#css) below for more details.';
       } else if (prop.name === 'children' && !prop.jsDoc) {
         prop.jsDoc = 'The content of the component.';
-      } else if (!prop.jsDoc) {
+      } else if (
+        !prop.jsDoc ||
+        (ignoreExternalDocumentation[component.name] &&
+          ignoreExternalDocumentation[component.name].includes(prop.name))
+      ) {
         prop.jsDoc = '@ignore';
       }
     });

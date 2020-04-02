@@ -17,18 +17,6 @@ export interface SlideProps extends TransitionProps {
   in?: TransitionProps['in'];
   ref?: React.Ref<unknown>;
   /**
-   */
-  onEnter?: TransitionProps['onEnter'];
-  /**
-   */
-  onEntering?: TransitionProps['onEntering'];
-  /**
-   */
-  onExit?: TransitionProps['onExit'];
-  /**
-   */
-  onExited?: TransitionProps['onExited'];
-  /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
    */

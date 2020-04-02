@@ -11,12 +11,6 @@ export interface ZoomProps extends TransitionProps {
    * If `true`, the component will transition in.
    */
   in?: boolean;
-  /**
-   */
-  onEnter?: TransitionProps['onEnter'];
-  /**
-   */
-  onExit?: TransitionProps['onExit'];
   ref?: React.Ref<unknown>;
   /**
    * The duration for the transition, in milliseconds.

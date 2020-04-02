@@ -12,8 +12,6 @@ export interface InputBaseProps
      */
     'children' | 'onChange' | 'onKeyUp' | 'onKeyDown' | 'onBlur' | 'onFocus' | 'defaultValue'
   > {
-  /**
-   */
   'aria-describedby'?: string;
   /**
    * This prop helps users to fill forms faster, especially on mobile devices.
