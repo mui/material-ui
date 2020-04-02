@@ -42,6 +42,13 @@ const useExternalPropsFromInputBase = [
 ];
 
 /**
+ * TODO: RESOLVE_BEFORE_MERGE
+ * Stop special casing `children`. They have to be implemented by each
+ * component individually and need a sensible description. There's no such thing
+ * as a default implementation for `children`.
+ */
+
+/**
  * A map of components and their props that should be documented
  * but are not used directly in their implementation.
  *
