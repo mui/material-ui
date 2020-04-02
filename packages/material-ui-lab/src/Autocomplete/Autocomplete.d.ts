@@ -27,6 +27,7 @@ export type GetTagProps = ({ index }: { index: number }) => {};
 
 export interface RenderGroupParams {
   key: string;
+  group: string;
   children: React.ReactNode;
 }
 

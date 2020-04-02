@@ -905,6 +905,33 @@ describe('<Autocomplete />', () => {
         'None of the options match with `"not a good value"`',
       );
     });
+
+    it('warn if groups options are not sorted', () => {
+      const data = [
+        { group: 1, value: 'A' },
+        { group: 2, value: 'D' },
+        { group: 2, value: 'E' },
+        { group: 1, value: 'B' },
+        { group: 3, value: 'G' },
+        { group: 2, value: 'F' },
+        { group: 1, value: 'C' },
+      ];
+      const { getAllByRole } = render(
+        <Autocomplete
+          {...defaultProps}
+          options={data}
+          getOptionLabel={(option) => option.value}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+          groupBy={(option) => option.group}
+        />,
+      );
+
+      const options = getAllByRole('option').map((el) => el.textContent);
+      expect(options).to.have.length(7);
+      expect(options).to.deep.equal(['A', 'D', 'E', 'B', 'G', 'F', 'C']);
+      expect(consoleWarnMock.callCount()).to.equal(2);
+      expect(consoleWarnMock.messages()[0]).to.include('returns duplicated headers');
+    });
   });
 
   describe('prop: options', () => {
@@ -1483,34 +1510,6 @@ describe('<Autocomplete />', () => {
 
       const options = getAllByRole('option');
       expect(options).to.have.length(3);
-    });
-  });
-
-  describe('prop: groupBy', () => {
-    it('correctly groups options and preserves option order in each group', () => {
-      const data = [
-        { group: 1, value: 'A' },
-        { group: 2, value: 'D' },
-        { group: 2, value: 'E' },
-        { group: 1, value: 'B' },
-        { group: 3, value: 'G' },
-        { group: 2, value: 'F' },
-        { group: 1, value: 'C' },
-      ];
-      const { getAllByRole } = render(
-        <Autocomplete
-          {...defaultProps}
-          options={data}
-          getOptionLabel={(option) => option.value}
-          renderInput={(params) => <TextField {...params} autoFocus />}
-          open
-          groupBy={(option) => option.group}
-        />,
-      );
-
-      const options = getAllByRole('option').map((el) => el.textContent);
-      expect(options).to.have.length(7);
-      expect(options).to.deep.equal(['A', 'B', 'C', 'D', 'E', 'F', 'G']);
     });
   });
 });
