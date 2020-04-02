@@ -25,15 +25,22 @@ export const styles = (theme) => ({
 
 const StepContent = React.forwardRef(function StepContent(props, ref) {
   const {
+    // eslint-disable-next-line react/prop-types
     active,
+    // eslint-disable-next-line react/prop-types
     alternativeLabel,
     children,
     classes,
     className,
+    // eslint-disable-next-line react/prop-types
     completed,
+    // eslint-disable-next-line react/prop-types
     expanded,
+    // eslint-disable-next-line react/prop-types
     last,
+    // eslint-disable-next-line react/prop-types
     optional,
+    // eslint-disable-next-line react/prop-types
     orientation,
     TransitionComponent = Collapse,
     transitionDuration: transitionDurationProp = 'auto',
@@ -71,16 +78,10 @@ const StepContent = React.forwardRef(function StepContent(props, ref) {
 });
 
 StepContent.propTypes = {
-  /**
-   * @ignore
-   * Expands the content.
-   */
-  active: PropTypes.bool,
-  /**
-   * @ignore
-   * Set internally by Step when it's supplied with the alternativeLabel prop.
-   */
-  alternativeLabel: PropTypes.bool,
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * Step content.
    */
@@ -89,32 +90,11 @@ StepContent.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
   className: PropTypes.string,
-  /**
-   * @ignore
-   */
-  completed: PropTypes.bool,
-  /**
-   * @ignore
-   */
-  expanded: PropTypes.bool,
-  /**
-   * @ignore
-   */
-  last: PropTypes.bool,
-  /**
-   * @ignore
-   * Set internally by Step when it's supplied with the optional prop.
-   */
-  optional: PropTypes.bool,
-  /**
-   * @ignore
-   */
-  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   /**
    * The component used for the transition.
    * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
@@ -127,9 +107,13 @@ StepContent.propTypes = {
    * Set to 'auto' to automatically calculate transition time based on height.
    */
   transitionDuration: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
     PropTypes.oneOf(['auto']),
+    PropTypes.number,
+    PropTypes.shape({
+      appear: PropTypes.number,
+      enter: PropTypes.number,
+      exit: PropTypes.number,
+    }),
   ]),
   /**
    * Props applied to the [`Transition`](http://reactcommunity.org/react-transition-group/transition#Transition-props) element.

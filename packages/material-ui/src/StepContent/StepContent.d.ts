@@ -5,15 +5,25 @@ import { TransitionProps } from '../transitions/transition';
 
 export interface StepContentProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, StepContentClasskey> {
-  active?: boolean;
-  alternativeLabel?: boolean;
+  /**
+   * Step content.
+   */
   children: React.ReactNode;
-  completed?: boolean;
-  last?: boolean;
-  optional?: boolean;
-  orientation?: Orientation;
+  /**
+   * The component used for the transition.
+   * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   */
   TransitionComponent?: React.ComponentType<TransitionProps>;
+  /**
+   * Adjust the duration of the content expand transition.
+   * Passed as a prop to the transition component.
+   *
+   * Set to 'auto' to automatically calculate transition time based on height.
+   */
   transitionDuration?: TransitionProps['timeout'] | 'auto';
+  /**
+   * Props applied to the [`Transition`](http://reactcommunity.org/react-transition-group/transition#Transition-props) element.
+   */
   TransitionProps?: TransitionProps;
 }
 
@@ -29,6 +39,4 @@ export type StepContentClasskey = 'root' | 'last' | 'transition';
  *
  * - [StepContent API](https://material-ui.com/api/step-content/)
  */
-declare const StepContent: React.ComponentType<StepContentProps>;
-
-export default StepContent;
+export default function StepContent(props: StepContentProps): JSX.Element;
