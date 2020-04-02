@@ -54,6 +54,19 @@ const useExternalDocumentation: Record<string, string[]> = {
   Input: useExternalPropsFromInputBase,
   OutlinedInput: useExternalPropsFromInputBase,
   Radio: ['disableRipple', 'id', 'inputProps', 'inputRef', 'required'],
+  Switch: [
+    'checked',
+    'defaultChecked',
+    'disabled',
+    'disableRipple',
+    'edge',
+    'id',
+    'inputProps',
+    'inputRef',
+    'onChange',
+    'required',
+    'value',
+  ],
 };
 /**
  * These are components that use props implemented by external components.
