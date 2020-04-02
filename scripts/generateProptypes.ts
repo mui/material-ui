@@ -53,6 +53,7 @@ const useExternalDocumentation: Record<string, string[]> = {
   FilledInput: useExternalPropsFromInputBase,
   Input: useExternalPropsFromInputBase,
   OutlinedInput: useExternalPropsFromInputBase,
+  Radio: ['disableRipple', 'id', 'inputProps', 'inputRef', 'required'],
 };
 
 const tsconfig = ttp.loadConfig(path.resolve(__dirname, '../tsconfig.json'));

@@ -104,6 +104,10 @@ const Radio = React.forwardRef(function Radio(props, ref) {
 });
 
 Radio.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * If `true`, the component is checked.
    */
@@ -116,11 +120,11 @@ Radio.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    */
-  color: PropTypes.oneOf(['primary', 'secondary', 'default']),
+  color: PropTypes.oneOf(['default', 'primary', 'secondary']),
   /**
    * If `true`, the radio will be disabled.
    */
@@ -165,7 +169,7 @@ Radio.propTypes = {
    * The size of the radio.
    * `small` is equivalent to the dense radio styling.
    */
-  size: PropTypes.oneOf(['small', 'medium']),
+  size: PropTypes.oneOf(['medium', 'small']),
   /**
    * The value of the component. The DOM API casts this to a string.
    */
