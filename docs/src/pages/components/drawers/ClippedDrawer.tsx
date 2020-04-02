@@ -60,7 +60,6 @@ export default function ClippedDrawer() {
           paper: classes.drawerPaper,
         }}
       >
-        <div className={classes.toolbar} />
         <Toolbar />
         <div className={classes.drawerContainer}>
           <List>
