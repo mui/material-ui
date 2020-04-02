@@ -192,7 +192,7 @@ SpeedDialAction.propTypes = {
    */
   open: PropTypes.bool,
   /**
-   * Classes applied to the [`Tooltip`](/api/tooltip/) element.
+   * `classes` prop applied to the [`Tooltip`](/api/tooltip/) element.
    */
   TooltipClasses: PropTypes.object,
   /**

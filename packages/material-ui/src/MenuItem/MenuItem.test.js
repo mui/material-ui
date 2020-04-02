@@ -107,4 +107,11 @@ describe('<MenuItem />', () => {
       assert.strictEqual(wrapper2.find('li').length, 1);
     });
   });
+
+  describe('prop: ListItemClasses', () => {
+    it('should be able to change the style of ListItem', () => {
+      const wrapper = mount(<MenuItem ListItemClasses={{ disabled: 'bar' }} />);
+      assert.strictEqual(wrapper.find(ListItem).props().classes.disabled, 'bar');
+    });
+  });
 });

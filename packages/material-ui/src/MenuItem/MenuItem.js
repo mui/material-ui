@@ -37,6 +37,7 @@ const MenuItem = React.forwardRef(function MenuItem(props, ref) {
     className,
     component = 'li',
     disableGutters = false,
+    ListItemClasses,
     role = 'menuitem',
     selected,
     tabIndex: tabIndexProp,
@@ -47,6 +48,7 @@ const MenuItem = React.forwardRef(function MenuItem(props, ref) {
   if (!props.disabled) {
     tabIndex = tabIndexProp !== undefined ? tabIndexProp : -1;
   }
+
   return (
     <ListItem
       button
@@ -55,7 +57,7 @@ const MenuItem = React.forwardRef(function MenuItem(props, ref) {
       component={component}
       selected={selected}
       disableGutters={disableGutters}
-      classes={{ dense: classes.dense }}
+      classes={{ dense: classes.dense, ...ListItemClasses }}
       className={clsx(
         classes.root,
         {
@@ -101,6 +103,10 @@ MenuItem.propTypes = {
    * If `true`, the left and right padding is removed.
    */
   disableGutters: PropTypes.bool,
+  /**
+   * `classes` prop applied to the [`ListItem`](/api/list-item/) element.
+   */
+  ListItemClasses: PropTypes.object,
   /**
    * @ignore
    */
