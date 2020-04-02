@@ -73,7 +73,7 @@ function ColorDemo(props) {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" color="inherit">
+            <Typography component="div" variant="h6" color="inherit">
               Color
             </Typography>
           </Toolbar>
