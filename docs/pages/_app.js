@@ -337,6 +337,11 @@ export default function MyApp(props) {
   );
 }
 
+MyApp.propTypes = {
+  Component: PropTypes.func.isRequired,
+  pageProps: PropTypes.object.isRequired,
+};
+
 MyApp.getInitialProps = async ({ ctx, Component }) => {
   let pageProps = {};
 
