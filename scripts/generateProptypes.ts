@@ -41,6 +41,10 @@ const useExternalPropsFromInputBase = [
   'value',
 ];
 
+// TODO: RESOVE_BEFORE_MERGE
+// - don't suppress jsdoc in .d.ts but when generating js propTypes
+//   This is currently done by explicitly forwarding a type with either no comment block or an empty on
+//   Example: onEnter?: TransitionProps['onEnter']
 /**
  * A map of components and their props that should be documented
  * but are not used directly in their implementation.
@@ -61,6 +65,10 @@ const tsconfig = ttp.loadConfig(path.resolve(__dirname, '../tsconfig.json'));
 const prettierConfig = prettier.resolveConfig.sync(process.cwd(), {
   config: path.join(__dirname, '../prettier.config.js'),
 });
+
+function isExternalProp(prop: ttp.PropTypeNode, component: ttp.ComponentNode): boolean {
+  return Array.from(prop.filenames).some((filename) => filename !== component.propsFilename);
+}
 
 async function generateProptypes(
   tsFile: string,
@@ -113,7 +121,7 @@ async function generateProptypes(
 
       return generated;
     },
-    shouldInclude: ({ component, prop }) => {
+    shouldInclude: ({ component, prop, usedProps }) => {
       if (prop.name === 'children') {
         return true;
       }
