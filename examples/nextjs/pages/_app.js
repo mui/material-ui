@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import Head from 'next/head';
 import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -27,3 +28,8 @@ export default function MyApp({ Component, pageProps }) {
     </React.Fragment>
   );
 }
+
+MyApp.propTypes = {
+  Component: PropTypes.func.isRequired,
+  pageProps: PropTypes.object.isRequired,
+};
