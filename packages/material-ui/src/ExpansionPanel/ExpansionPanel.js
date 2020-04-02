@@ -201,7 +201,7 @@ ExpansionPanel.propTypes = {
    */
   onChange: PropTypes.func,
   /**
-   * If `true`, rounded corners are disabled.
+   * @ignore
    */
   square: PropTypes.bool,
   /**

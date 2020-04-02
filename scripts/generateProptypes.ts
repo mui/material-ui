@@ -64,6 +64,7 @@ const useExternalDocumentation: Record<string, string[]> = {
  */
 const ignoreExternalDocumentation: Record<string, string[]> = {
   Collapse: ['onEnter', 'onEntered', 'onEntering', 'onExit', 'onExiting'],
+  ExpansionPanel: ['square'],
   Fade: ['onEnter', 'onExit'],
   Grow: ['onEnter', 'onExit'],
   InputBase: ['aria-describedby'],
