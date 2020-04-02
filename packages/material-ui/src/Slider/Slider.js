@@ -5,7 +5,7 @@ import { chainPropTypes } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import useTheme from '../styles/useTheme';
 import { fade, lighten, darken } from '../styles/colorManipulator';
-import { useIsFocusVisible } from '../utils/focusVisible';
+import useIsFocusVisible from '../utils/useIsFocusVisible';
 import ownerDocument from '../utils/ownerDocument';
 import useEventCallback from '../utils/useEventCallback';
 import useForkRef from '../utils/useForkRef';
