@@ -24,4 +24,5 @@ export {
   StylesProvider,
   ThemeProvider as MuiThemeProvider,
   ThemeProvider,
+  ThemeProviderProps,
 } from '@material-ui/styles';
