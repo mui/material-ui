@@ -39,7 +39,8 @@ function TextMaskCustom(props: TextMaskCustomProps) {
 
 interface NumberFormatCustomProps {
   inputRef: (instance: NumberFormat | null) => void;
-  onChange: (event: { target: { value: string } }) => void;
+  onChange: (event: { target: { name: string; value: string } }) => void;
+  name: string;
 }
 
 function NumberFormatCustom(props: NumberFormatCustomProps) {
@@ -52,6 +53,7 @@ function NumberFormatCustom(props: NumberFormatCustomProps) {
       onValueChange={(values) => {
         onChange({
           target: {
+            name: props.name,
             value: values.value,
           },
         });
@@ -89,7 +91,7 @@ export default function FormattedInputs() {
         <Input
           value={values.textmask}
           onChange={handleChange}
-          name="formatted-text-mask-input"
+          name="textmask"
           id="formatted-text-mask-input"
           inputComponent={TextMaskCustom as any}
         />
@@ -98,7 +100,7 @@ export default function FormattedInputs() {
         label="react-number-format"
         value={values.numberformat}
         onChange={handleChange}
-        name="formatted-numberformat-input"
+        name="numberformat"
         id="formatted-numberformat-input"
         InputProps={{
           inputComponent: NumberFormatCustom as any,
