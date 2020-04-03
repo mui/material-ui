@@ -100,6 +100,7 @@ function plugin(
 	let importName = '';
 	let needImport = false;
 	let alreadyImported = false;
+	let originalPropTypesPath: null | babel.NodePath = null;
 
 	return {
 		visitor: {
@@ -121,19 +122,17 @@ function plugin(
 						importName = 'PropTypes';
 					}
 
-					if (removeExistingPropTypes) {
-						path.get('body').forEach((nodePath) => {
-							const { node } = nodePath;
-							if (
-								babelTypes.isExpressionStatement(node) &&
-								babelTypes.isAssignmentExpression(node.expression, { operator: '=' }) &&
-								babelTypes.isMemberExpression(node.expression.left) &&
-								babelTypes.isIdentifier(node.expression.left.property, { name: 'propTypes' })
-							) {
-								nodePath.remove();
-							}
-						});
-					}
+					path.get('body').forEach((nodePath) => {
+						const { node } = nodePath;
+						if (
+							babelTypes.isExpressionStatement(node) &&
+							babelTypes.isAssignmentExpression(node.expression, { operator: '=' }) &&
+							babelTypes.isMemberExpression(node.expression.left) &&
+							babelTypes.isIdentifier(node.expression.left.property, { name: 'propTypes' })
+						) {
+							originalPropTypesPath = nodePath;
+						}
+					});
 				},
 				exit(path) {
 					if (alreadyImported || !needImport) return;
@@ -280,8 +279,9 @@ function plugin(
 
 		mapOfPropTypes.set(placeholder, source);
 
-		// Insert prop types
-		if (babelTypes.isExportNamedDeclaration(path.parent)) {
+		if (removeExistingPropTypes && originalPropTypesPath !== null) {
+			originalPropTypesPath.replaceWith(babel.template.ast(placeholder) as babelTypes.Statement);
+		} else if (babelTypes.isExportNamedDeclaration(path.parent)) {
 			path.insertAfter(babel.template.ast(`export { ${nodeName} };`));
 			path.insertAfter(babel.template.ast(placeholder));
 			path.parentPath.replaceWith(path.node);

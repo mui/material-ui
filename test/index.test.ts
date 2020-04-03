@@ -22,6 +22,7 @@ for (const testCase of testCases) {
 	const astPath = path.join(dirname, 'output.json');
 	const outputPath = path.join(dirname, 'output.js');
 	const optionsPath = path.join(dirname, 'options.ts');
+	const inputJS = path.join(dirname, 'input.js');
 
 	it(testName, () => {
 		const options: TestOptions = fs.existsSync(optionsPath) ? require(optionsPath).default : {};
@@ -42,21 +43,28 @@ for (const testCase of testCases) {
 		}
 		//#endregion
 
-		let result = '';
-		// For d.ts files we just generate the AST
+		let inputSource = null;
 		if (testCase.endsWith('.d.ts')) {
-			result = ttp.generate(ast, options.generator);
-		}
-		// For .tsx? files we transpile them and inject the proptypes
-		else {
-			const transpiled = ttp.ts.transpileModule(fs.readFileSync(testCase, 'utf8'), {
+			try {
+				inputSource = fs.readFileSync(inputJS, { encoding: 'utf8' });
+			} catch (error) {}
+		} else {
+			inputSource = ttp.ts.transpileModule(fs.readFileSync(testCase, 'utf8'), {
 				compilerOptions: {
 					target: ttp.ts.ScriptTarget.ESNext,
 					jsx: ttp.ts.JsxEmit.Preserve,
 				},
 			}).outputText;
+		}
 
-			const injected = ttp.inject(ast, transpiled, options.injector);
+		let result = '';
+		// For d.ts files we just generate the AST
+		if (!inputSource) {
+			result = ttp.generate(ast, options.generator);
+		}
+		// For .tsx? files we transpile them and inject the proptypes
+		else {
+			const injected = ttp.inject(ast, inputSource, options.injector);
 			if (!injected) {
 				throw new Error('Injection failed');
 			}
