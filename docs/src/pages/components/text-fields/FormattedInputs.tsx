@@ -39,7 +39,8 @@ function TextMaskCustom(props: TextMaskCustomProps) {
 
 interface NumberFormatCustomProps {
   inputRef: (instance: NumberFormat | null) => void;
-  onChange: (event: { target: { value: string } }) => void;
+  onChange: (event: { target: { name: string; value: string } }) => void;
+  name: string;
 }
 
 function NumberFormatCustom(props: NumberFormatCustomProps) {
