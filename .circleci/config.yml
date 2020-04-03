@@ -107,7 +107,7 @@ jobs:
       - checkout
       - install_js
       - run:
-          name: Check if yarn prettier was run
+          name: '`yarn prettier` changes committed?'
           command: yarn prettier check-changed
       - run:
           name: Generate PropTypes
@@ -116,7 +116,7 @@ jobs:
           name: '`yarn proptypes` changes committed?'
           command: git diff --exit-code
       - run:
-          name: Can we generate the documentation?
+          name: Generate the documentation
           command: yarn docs:api
       - run:
           name: '`yarn docs:api` changes committed?'
@@ -134,9 +134,9 @@ jobs:
       - install_js
       - run:
           name: Transpile TypeScript demos
-          command: yarn workspace docs typescript:transpile --disable-cache
+          command: yarn docs:typescript:formatted --disable-cache
       - run:
-          name: Are the compiled TypeScript demos equivalent to the JavaScript demos?
+          name: '`yarn docs:typescript:formatted` changes committed?'
           command: git add -A && git diff --exit-code --staged
       - run:
           name: Tests TypeScript definitions
