@@ -1101,13 +1101,6 @@ describe('<Autocomplete />', () => {
   });
 
   describe('controlled', () => {
-    beforeEach(() => {
-      consoleWarnMock.spy();
-    });
-
-    afterEach(() => {
-      consoleWarnMock.reset();
-    });
     it('controls the input value', () => {
       const handleChange = spy();
       function MyComponent() {
@@ -1150,49 +1143,6 @@ describe('<Autocomplete />', () => {
       fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
       fireEvent.keyDown(document.activeElement, { key: 'Enter' });
       expect(handleInputChange.calledBefore(handleChange)).to.equal(true);
-    });
-
-    it('should log warning if undefined passed as input value', () => {
-      function MyComponent() {
-        const [value, setInputValue] = React.useState('foo');
-        const handleInputChange = () => {
-          setInputValue(undefined);
-        };
-        return (
-          <Autocomplete
-            {...defaultProps}
-            inputValue={value}
-            onInputChange={handleInputChange}
-            renderInput={(params) => <TextField {...params} autoFocus />}
-          />
-        );
-      }
-      render(<MyComponent />);
-      expect(
-        consoleWarnMock
-          .getSpy()
-          .calledWithExactly(
-            'inputValue provided was null, defaulting to empty string. Check that the inputValue property gets passed a valid string value',
-          ),
-      ).to.equal(true);
-    });
-    it('should treat undefined as empty string when passed in as input value', () => {
-      function MyComponent() {
-        const [value, setInputValue] = React.useState('foo');
-        const handleInputChange = () => {
-          setInputValue(undefined);
-        };
-        return (
-          <Autocomplete
-            {...defaultProps}
-            inputValue={value}
-            onInputChange={handleInputChange}
-            renderInput={(params) => <TextField {...params} autoFocus />}
-          />
-        );
-      }
-      render(<MyComponent />);
-      expect(document.activeElement.value).to.equal('');
     });
   });
 
