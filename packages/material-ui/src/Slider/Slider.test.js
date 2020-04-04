@@ -515,7 +515,7 @@ describe('<Slider />', () => {
 
       setProps({ value: undefined });
       expect(consoleErrorMock.messages()[0]).to.include(
-        'A component is changing a controlled Slider to be uncontrolled.',
+        'Material-UI: a component is changing the controlled value state of Slider to be uncontrolled.',
       );
     });
 
@@ -524,7 +524,7 @@ describe('<Slider />', () => {
 
       setProps({ value: [20, 50] });
       expect(consoleErrorMock.messages()[0]).to.include(
-        'A component is changing an uncontrolled Slider to be controlled.',
+        'Material-UI: a component is changing the uncontrolled value state of Slider to be controlled.',
       );
     });
   });

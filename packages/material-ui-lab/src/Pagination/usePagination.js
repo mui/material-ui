@@ -25,6 +25,7 @@ export default function usePagination(props = {}) {
     controlled: pageProp,
     default: defaultPage,
     name: componentName,
+    state: 'page',
   });
 
   const handleClick = (event, value) => {

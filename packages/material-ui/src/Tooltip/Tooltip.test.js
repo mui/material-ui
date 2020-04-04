@@ -522,9 +522,8 @@ describe('<Tooltip />', () => {
       const wrapper = mount(<Tooltip {...defaultProps} />);
 
       wrapper.setProps({ open: true });
-      assert.include(
-        consoleErrorMock.messages()[0],
-        'A component is changing an uncontrolled Tooltip to be controlled.',
+      expect(consoleErrorMock.messages()[0]).to.include(
+        'Material-UI: a component is changing the uncontrolled open state of Tooltip to be controlled.',
       );
     });
   });

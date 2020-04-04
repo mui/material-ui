@@ -215,6 +215,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     controlled: openProp,
     default: false,
     name: 'Tooltip',
+    state: 'open',
   });
   let open = openState;
 

@@ -186,10 +186,12 @@ export default function useAutocomplete(props) {
     default: defaultValue,
     name: componentName,
   });
-
-  const { current: isInputValueControlled } = React.useRef(inputValueProp != null);
-  const [inputValueState, setInputValue] = React.useState('');
-  const inputValue = isInputValueControlled ? inputValueProp : inputValueState;
+  const [inputValue, setInputValue] = useControlled({
+    controlled: inputValueProp,
+    default: '',
+    name: componentName,
+    state: 'inputValue',
+  });
 
   const [focused, setFocused] = React.useState(false);
 
