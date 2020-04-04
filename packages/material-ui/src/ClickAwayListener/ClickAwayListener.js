@@ -129,32 +129,23 @@ const ClickAwayListener = React.forwardRef(function ClickAwayListener(props, ref
   }, [handleClickAway, mouseEvent]);
 
   // Keep track of mouse/touch events that bubbled up through the portal.
-  const handleSyntheticMouse = (event) => {
+  const handleSynthetic = (handlerName) => (event) => {
     syntheticEventRef.current = true;
 
     const childrenProps = children.props;
-    if (childrenProps[mouseEvent]) {
-      childrenProps[mouseEvent](event);
-    }
-  };
-
-  const handleSyntheticTouch = (event) => {
-    syntheticEventRef.current = true;
-
-    const childrenProps = children.props;
-    if (childrenProps[touchEvent]) {
-      childrenProps[touchEvent](event);
+    if (childrenProps[handlerName]) {
+      childrenProps[handlerName](event);
     }
   };
 
   const childrenProps = {};
 
   if (mouseEvent !== false) {
-    childrenProps[mouseEvent] = handleSyntheticMouse;
+    childrenProps[mouseEvent] = handleSynthetic(mouseEvent);
   }
 
   if (touchEvent !== false) {
-    childrenProps[touchEvent] = handleSyntheticTouch;
+    childrenProps[touchEvent] = handleSynthetic(touchEvent);
   }
 
   return (
