@@ -1172,7 +1172,7 @@ describe('<Autocomplete />', () => {
         consoleWarnMock
           .getSpy()
           .calledWithExactly(
-            'inputValue provided was undefined, defaulting to empty string. Check that the inputValue property gets passed a valid string value',
+            'inputValue provided was null, defaulting to empty string. Check that the inputValue property gets passed a valid string value',
           ),
       ).to.equal(true);
     });
