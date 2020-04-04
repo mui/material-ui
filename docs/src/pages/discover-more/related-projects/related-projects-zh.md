@@ -6,7 +6,7 @@ Because the scope of problems Material-UI solves is bound, we try to play nicely
 
 ## 设计资源
 
-- **Sketch**: [Sketch for Material-UI](https://material-ui.com/store/items/sketch-react/) — A large UI kit with over 1,500 handcrafted Material-UI's symbols 💎.
+- **Sketch**: [Sketch for Material-UI](https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-sketch) — A large UI kit with over 1,500 handcrafted Material-UI's symbols 💎.
 - **Figma**: 
   - https://material.5ly.co/ for Material-UI made by Fively Team.
   - https://ui-kit.co/ a starter kit for your Material Design 2 project.
@@ -37,7 +37,7 @@ This is a collection of third-party projects that extend Material-UI.
 - [material-table](https://github.com/mbrn/material-table): A simple and powerful Datatable for React based on Material-UI Table with some additional features. It supports many different use cases (editable, filtering, grouping, sorting, selection, i18n, tree data and more).
 - [dx-react-grid-material-ui](https://devexpress.github.io/devextreme-reactive/react/grid/)：针对 Material-UI 的兼并对数据进行排序、搜索、筛选、分组、操作等功能的数据网格（[付费的许可证](https://js.devexpress.com/licensing/)）。
 - [mui-datatables](https://github.com/gregnb/mui-datatables)：Material-UI 的响应式数据表格，包括筛选，排序，搜索等功能。
-- [tubular-response](https://github.com/unosquare/tubular-react): 一个带有本地或者远程的数据来源的 Material-UI 表格。 它能够对数据进行筛选、排序、自由搜索、导出为本地 CSV 以及汇总。
+- [tubular-react](https://github.com/unosquare/tubular-react): 一个带有本地或者远程的数据来源的 Material-UI 表格。 它能够对数据进行筛选、排序、自由搜索、导出为本地 CSV 以及汇总。
 
 ### Notifications
 
@@ -62,7 +62,7 @@ This is a collection of third-party projects that extend Material-UI.
 
 - [material-ui-image](https://mui.wertarbyte.com/#material-ui-image): Images are ugly until they're loaded. Materialize it with material image! It will fade in like the material image loading pattern suggests.
 
-### Pagination
+### 分页
 
 - [material-ui-flat-pagination](https://github.com/szmslab/material-ui-flat-pagination): A flat design pagination component for Material-UI.
 

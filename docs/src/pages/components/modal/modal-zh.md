@@ -31,7 +31,7 @@ components: Modal
 
 Notice that you can disable the outline (often blue or gold) with the `outline: 0` CSS property.
 
-## Transitions（过渡动画）
+## 过渡动画
 
 The open/close state of the modal can be animated with a transition component. This component should respect the following conditions:
 

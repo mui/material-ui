@@ -5,32 +5,32 @@ components: Drawer, SwipeableDrawer
 
 # Drawer 抽屉
 
-<p class="description">导航抽屉可以访问您应用中的目标地址。侧边栏包含了补充的内容，而它被固定在屏幕的左侧或右侧。</p>
+<p class="description">导航抽屉提供了一个访问您应用中的目标地址的途径。侧边栏被固定在屏幕的左侧或右侧，而它包含了一些补充内容。</p>
 
-[Navigation drawers](https://material.io/design/components/navigation-drawer.html) （或者 “sidebars”）使得用户能够访问目标地址和一些应用功能，例如切换帐户。 它们既可以永久在屏幕上，也可以由一个导航菜单图标控制。
+用户能够通过 [Navigation drawers](https://material.io/design/components/navigation-drawer.html) （或者 “sidebars”）来访问目标地址和一些应用功能，例如切换帐户。 它们既可以永久在屏幕上，也可以由一个导航菜单图标控制。
 
-[Side sheets](https://material.io/design/components/sheets-side.html)主要在平板和桌面上作为辅助的平面使用。
+[Side sheets](https://material.io/design/components/sheets-side.html) 主要在平板和桌面上作为辅助的平面使用。
 
 ## 临时抽屉
 
-Temporary navigation drawers can toggle open or closed. Closed by default, the drawer opens temporarily above all other content until a section is selected.
+你可以打开或关闭一个临时的导航抽屉。 抽屉组件的默认状态是关闭，而选中一个区则会触发抽屉组件在任何其他内容之上呈现。
 
-The Drawer can be cancelled by clicking the overlay or pressing the Esc key. It closes when an item is selected, handled by controlling the `open` prop.
+而点击覆盖的区域（overlay）或者按下 Esc 键则可以关闭抽屉。 通过操控 `open` 属性，当选中一个子项的时候，抽屉则会被关闭。
 
 {{"demo": "pages/components/drawers/TemporaryDrawer.js"}}
 
-### Swipeable
+### 可滑动的抽屉
 
 您可以使用 `SwipeableDrawer` 组件来实现滑动抽屉。
 
-此组件附带 2 kB gzip 的负载开销。 一些低端移动设备无法以60 FPS 的速度跟随手指的移动。 您可以使用 `disableBackdropTransition` 属性来解决这个问题。
+此组件附带 2 kB gzipped 的负载开销。 一些低端移动设备无法以60 FPS 的速度跟随手指的移动。 通过 `disableBackdropTransition` 这个属性，则可以解决此问题。
 
 {{"demo": "pages/components/drawers/SwipeableTemporaryDrawer.js"}}
 
-The following properties are used in this documentation website for optimal usability of the component:
+在此文档的页面中有以下的一些属性，它们用来优化组件的使用：
 
-- iOS is hosted on high-end devices. The backdrop transition can be enabled without dropping frames. 这样展示令人足够满意了。
-- iOS has a "swipe to go back" feature that interferes with the discovery feature, so discovery has to be disabled.
+- 一些高端的设备托管了 iOS。 在不丢失帧的情况下，能够启用背景过渡。 这样展示令人足够满意了。
+- iOS 有一个“滑动回退”功能，它会影响发现功能，所以必须禁用发现功能。
 
 ```jsx
 const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);

@@ -17,7 +17,7 @@ Os menus são posicionados sobre seus elementos emissores, de modo que o item de
 
 The Select component is meant to be interchangeable with a native `<select>` element.
 
-If you are looking for more advanced features, like combobox, multiselect, autocomplete, async or creatable support, head to the [`Autocomplete` component](/components/autocomplete/). It's meant to be an improved version of the "react-select" and "downshift" packages.
+If you are looking for more advanced features, like combobox, multiselect, autocomplete, async or creatable support, head to the [`Autocomplete` component](/components/autocomplete/). A ideia dessa ferramenta era para ser uma versão melhorada das bibliotecas "react-select" e "downshift".
 
 ## Seleção Nativa
 

@@ -31,7 +31,7 @@ components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead,
 
 {{"demo": "pages/components/tables/SimpleTable.js", "bg": true}}
 
-## Dense Table 紧凑的表格
+## 紧凑的表格
 
 这是一个简单紧凑型表格，并且没有多余的装饰。
 
@@ -79,13 +79,13 @@ components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead,
 
 {{"demo": "pages/components/tables/StickyHeadTable.js", "bg": true}}
 
-## Spanning Table 合并的表格
+## 合并的表格
 
 一个简单的合并行 & 列的示例。
 
 {{"demo": "pages/components/tables/SpanningTable.js", "bg": true}}
 
-## 大型列表渲染 Virtualized Table
+## 大型列表渲染
 
 以下例子展示了将 [react-virtualized](https://github.com/bvaughn/react-virtualized) 与 `表格` 组件一起使用的方法。 它能够渲染 200 行，并且可以轻松处理更多行。 可视化优化了整体的性能。
 
@@ -107,7 +107,7 @@ components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead,
 
 - [dx-react-grid-material-ui](https://devexpress.github.io/devextreme-reactive/react/grid/)：针对 Material-UI 的兼并对数据进行排序、搜索、筛选、分组、操作等功能的数据网格（[付费的许可证](https://js.devexpress.com/licensing/)）。
 - [mui-datatables](https://github.com/gregnb/mui-datatables)：Material-UI 的响应式数据表格，包括筛选，排序，搜索等功能。
-- [tubular-response](https://github.com/unosquare/tubular-react): 一个带有本地或者远程的数据来源的 Material-UI 表格。 它能够对数据进行筛选、排序、自由搜索、导出为本地 CSV 以及汇总。
+- [tubular-react](https://github.com/unosquare/tubular-react): 一个带有本地或者远程的数据来源的 Material-UI 表格。 它能够对数据进行筛选、排序、自由搜索、导出为本地 CSV 以及汇总。
 
 ## 可访问性
 
