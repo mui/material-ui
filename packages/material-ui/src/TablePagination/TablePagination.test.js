@@ -280,15 +280,14 @@ describe('<TablePagination />', () => {
   describe('warnings', () => {
     before(() => {
       consoleErrorMock.spy();
+      PropTypes.resetWarningCache();
     });
 
     after(() => {
       consoleErrorMock.reset();
-      PropTypes.resetWarningCache();
     });
 
     it('should raise a warning if the page prop is out of range', () => {
-      assert.strictEqual(consoleErrorMock.callCount(), 0);
       mount(
         <table>
           <TableFooter>
@@ -304,6 +303,7 @@ describe('<TablePagination />', () => {
           </TableFooter>
         </table>,
       );
+
       assert.strictEqual(consoleErrorMock.callCount(), 1);
       assert.include(
         consoleErrorMock.messages()[0],

@@ -84,11 +84,11 @@ describe('<CardMedia />', () => {
   describe('warnings', () => {
     before(() => {
       consoleErrorMock.spy();
+      PropTypes.resetWarningCache();
     });
 
     after(() => {
       consoleErrorMock.reset();
-      PropTypes.resetWarningCache();
     });
 
     it('warns when neither `children`, nor `image`, nor `src`, nor `component` are provided', () => {

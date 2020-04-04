@@ -128,11 +128,11 @@ describe('<IconButton />', () => {
   describe('Firefox onClick', () => {
     beforeEach(() => {
       consoleErrorMock.spy();
+      PropTypes.resetWarningCache();
     });
 
     afterEach(() => {
       consoleErrorMock.reset();
-      PropTypes.resetWarningCache();
     });
 
     it('should raise a warning', () => {

@@ -137,11 +137,11 @@ describe('<ExpansionPanel />', () => {
     describe('first child', () => {
       beforeEach(() => {
         consoleErrorMock.spy();
+        PropTypes.resetWarningCache();
       });
 
       afterEach(() => {
         consoleErrorMock.reset();
-        PropTypes.resetWarningCache();
       });
 
       it('requires at least one child', () => {
