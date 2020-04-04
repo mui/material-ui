@@ -90,7 +90,7 @@ A customized UI for Google Maps Places Autocomplete.
 
 > 在你开始使用谷歌地图javascript API之前，你需要创建一个帐户 (用于使用谷歌地图api).
 
-## Multiple values（多重值）
+## 多重值
 
 这也称为标签，允许用户输入多个值。
 

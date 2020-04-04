@@ -21,7 +21,7 @@ components: Popper
 
 {{"demo": "pages/components/popper/SimplePopper.js"}}
 
-## Transitions（过渡动画）
+## 过渡动画
 
 The open/close state of the popper can be animated with a render prop child and a transition component. This component should respect the following conditions:
 

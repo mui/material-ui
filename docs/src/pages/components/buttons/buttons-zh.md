@@ -76,7 +76,7 @@ components: Button, IconButton, ButtonBase
 
 👑如果您还在寻找灵感，您可以查看一下 [MUI Treasury 自定义的例子](https://mui-treasury.com/components/button)。
 
-## Complex Buttons 复杂按钮
+## 复杂按钮
 
 文本按钮，包含按钮，浮动操作按钮和图标按钮都基于同一个组件：`ButtonBase`。 利用此较底层的组件，您可以创建一些自定义的交互操作。
 

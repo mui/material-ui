@@ -25,25 +25,25 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 
 {{"demo": "pages/components/text-fields/FormPropsTextFields.js"}}
 
-## Validation 校验
+## 校验
 
 您可以使用 `error` 属性来切换错误的状态，同时也可以使用 `helperText` 属性来给用户提供错误的提示信息。
 
 {{"demo": "pages/components/text-fields/ValidationTextFields.js"}}
 
-## Multiline 多行属性
+## 多行属性
 
 使用 `multiline` 属性，能将一个文本框转换成[多行文本框](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea)或者 [自适应的多行文本框](/components/textarea-autosize/)。
 
 {{"demo": "pages/components/text-fields/MultilineTextFields.js"}}
 
-## Select 选择属性
+## 选择属性
 
 使用 `select` 属性的时候，您可以在文本框内插入一个 [Select](/components/selects/) 组件。
 
 {{"demo": "pages/components/text-fields/SelectTextFields.js"}}
 
-## Icons 图标
+## 图标
 
 我们提供了在文本框内展示图标的不同的方式。
 
@@ -55,13 +55,13 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 
 {{"demo": "pages/components/text-fields/InputAdornments.js"}}
 
-## Sizes 大小
+## 大小
 
 想要使用外观看起来比较小的输入框吗？ 你可以使用 `size` 属性。
 
 {{"demo": "pages/components/text-fields/TextFieldSizes.js"}}
 
-## Layout 布局
+## 布局
 
 通过使用 `margin` 属性，你可以改变输入框的垂直间距。 若您使用 `none` （默认选项），将不会在 `FormControl` 上添加间距， 相对来说，使用 `dense` 和 `normal` 会添加间距。 使用 ` dense ` 和 `normal` 会更改其他的样式，以符合规范。
 
@@ -87,7 +87,7 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 
 {{"demo": "pages/components/text-fields/Inputs.js"}}
 
-## Color 颜色属性
+## 颜色属性
 
 当使用 `color` 属性时，聚焦文本框时的高亮颜色会被改变。
 
@@ -107,7 +107,7 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 
 ## 局限性
 
-### Shrink 缩放
+### 缩放
 
 输入框标签的 "shrink" 状态并不总是正确的。 输入标签应在输入框显示内容的时候立即收缩。 在某些情况下，我们无法确定输入框的 "shrink" 状态 (如数字输入、日期时间输入、条带输入)。 这样一来，有可能出现重叠的现象。
 
@@ -125,7 +125,7 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 <InputLabel shrink>计数</InputLabel>
 ```
 
-### Floating label 悬浮的标签
+### 悬浮的标签
 
 悬浮的标签被定义了一个绝对的位置，这样的话，它将不会影响到页面的整体布局。 想要正确显示你的组件，你只要确保输入框的比输入标签大。
 

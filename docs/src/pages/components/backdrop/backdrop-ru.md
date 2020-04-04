@@ -7,6 +7,6 @@ components: Backdrop
 
 <p class="description">Затемнение предназначено для акцентирования внимания пользователя на определенном элементе интерфейса.</p>
 
-The backdrop signals to the user of a state change within the application and can be used for creating loaders, dialogs and more. Проще говоря, затемнение добавляет затемнённый слой поверх вашего приложения.
+Затемнение сигнализирует пользователю об изменении состояния в приложении и может быть использован для создания загрузчиков, диалогов и многое другое. Проще говоря, затемнение добавляет затемнённый слой поверх вашего приложения.
 
 {{"demo": "pages/components/backdrop/SimpleBackdrop.js"}}

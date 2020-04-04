@@ -31,7 +31,7 @@ export default Main() {
 }
 ```
 
-## Collapse（折叠）
+## Collapse 折叠
 
 Expand vertically from the top of the child element. The `collapsedHeight` property can be used to set the minimum height when not expanded.
 
