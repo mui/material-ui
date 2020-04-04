@@ -92,14 +92,14 @@ const ClickAwayListener = React.forwardRef(function ClickAwayListener(props, ref
     }
   });
 
-  const handleTouchMove = React.useCallback(() => {
-    movedRef.current = true;
-  }, []);
-
   React.useEffect(() => {
     if (touchEvent !== false) {
       const mappedTouchEvent = mapEventPropToEvent(touchEvent);
       const doc = ownerDocument(nodeRef.current);
+
+      const handleTouchMove = () => {
+        movedRef.current = true;
+      };
 
       doc.addEventListener(mappedTouchEvent, handleClickAway);
       doc.addEventListener('touchmove', handleTouchMove);
@@ -111,7 +111,7 @@ const ClickAwayListener = React.forwardRef(function ClickAwayListener(props, ref
     }
 
     return undefined;
-  }, [handleClickAway, handleTouchMove, touchEvent]);
+  }, [handleClickAway, touchEvent]);
 
   React.useEffect(() => {
     if (mouseEvent !== false) {
@@ -129,7 +129,7 @@ const ClickAwayListener = React.forwardRef(function ClickAwayListener(props, ref
   }, [handleClickAway, mouseEvent]);
 
   // Keep track of mouse/touch events that bubbled up through the portal.
-  const handleSynthetic = (handlerName) => (event) => {
+  const createHandleSynthetic = (handlerName) => (event) => {
     syntheticEventRef.current = true;
 
     const childrenProps = children.props;
@@ -138,21 +138,17 @@ const ClickAwayListener = React.forwardRef(function ClickAwayListener(props, ref
     }
   };
 
-  const childrenProps = {};
+  const childrenProps = { ref: handleRef };
 
   if (mouseEvent !== false) {
-    childrenProps[mouseEvent] = handleSynthetic(mouseEvent);
+    childrenProps[mouseEvent] = createHandleSynthetic(mouseEvent);
   }
 
   if (touchEvent !== false) {
-    childrenProps[touchEvent] = handleSynthetic(touchEvent);
+    childrenProps[touchEvent] = createHandleSynthetic(touchEvent);
   }
 
-  return (
-    <React.Fragment>
-      {React.cloneElement(children, { ref: handleRef, ...childrenProps })}
-    </React.Fragment>
-  );
+  return <React.Fragment>{React.cloneElement(children, childrenProps)}</React.Fragment>;
 });
 
 ClickAwayListener.propTypes = {
