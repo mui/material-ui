@@ -3,7 +3,6 @@ import * as ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import ownerDocument from '../utils/ownerDocument';
 import useForkRef from '../utils/useForkRef';
-import setRef from '../utils/setRef';
 import useEventCallback from '../utils/useEventCallback';
 import { elementAcceptingRef, exactProp } from '@material-ui/utils';
 
@@ -15,7 +14,7 @@ function mapEventPropToEvent(eventProp) {
  * Listen for click events that occur somewhere in the document, outside of the element itself.
  * For instance, if you need to hide a menu when people click anywhere else on your page.
  */
-const ClickAwayListener = React.forwardRef(function ClickAwayListener(props, ref) {
+function ClickAwayListener(props) {
   const {
     children,
     disableReactTree = false,
@@ -35,15 +34,11 @@ const ClickAwayListener = React.forwardRef(function ClickAwayListener(props, ref
     };
   }, []);
 
-  const handleNodeRef = useForkRef(nodeRef, ref);
   // can be removed once we drop support for non ref forwarding class components
-  const handleOwnRef = React.useCallback(
-    (instance) => {
-      // #StrictMode ready
-      setRef(handleNodeRef, ReactDOM.findDOMNode(instance));
-    },
-    [handleNodeRef],
-  );
+  const handleOwnRef = React.useCallback((instance) => {
+    // #StrictMode ready
+    nodeRef.current = ReactDOM.findDOMNode(instance);
+  }, []);
   const handleRef = useForkRef(children.ref, handleOwnRef);
 
   const handleClickAway = useEventCallback((event) => {
@@ -149,7 +144,7 @@ const ClickAwayListener = React.forwardRef(function ClickAwayListener(props, ref
   }
 
   return <React.Fragment>{React.cloneElement(children, childrenProps)}</React.Fragment>;
-});
+}
 
 ClickAwayListener.propTypes = {
   /**
