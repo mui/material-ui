@@ -40,6 +40,14 @@ export class ConsoleMock {
     throw new Error('Requested call count before spy() was called');
   };
 
+  getSpy = () => {
+    if (this.consoleErrorContainer) {
+      return console[this.methodName];
+    }
+
+    throw new Error('Tried to get spy before spy() was called');
+  };
+
   args = () => {
     throw new TypeError(
       'args() was removed in favor of messages(). ' +

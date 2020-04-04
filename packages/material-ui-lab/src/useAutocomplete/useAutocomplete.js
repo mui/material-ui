@@ -68,9 +68,9 @@ const defaultFilterOptions = createFilterOptions();
 const pageSize = 5;
 
 const getInputValue = (inputValue) => {
-  if (!inputValue) {
+  if (inputValue == null) {
     console.warn(
-      'inputValue provided was undefined, defaulting to empty string. Check that the inputValue property gets passed a valid string value',
+      `inputValue provided was null, defaulting to empty string. Check that the inputValue property gets passed a valid string value`,
     );
     return '';
   }
