@@ -16,10 +16,17 @@ function mapEventPropToEvent(eventProp) {
  * For instance, if you need to hide a menu when people click anywhere else on your page.
  */
 const ClickAwayListener = React.forwardRef(function ClickAwayListener(props, ref) {
-  const { children, mouseEvent = 'onClick', touchEvent = 'onTouchEnd', onClickAway } = props;
+  const {
+    children,
+    disableReactTree = false,
+    mouseEvent = 'onClick',
+    touchEvent = 'onTouchEnd',
+    onClickAway,
+  } = props;
   const movedRef = React.useRef(false);
   const nodeRef = React.useRef(null);
   const mountedRef = React.useRef(false);
+  const syntheticEventRef = React.useRef(false);
 
   React.useEffect(() => {
     mountedRef.current = true;
@@ -40,6 +47,9 @@ const ClickAwayListener = React.forwardRef(function ClickAwayListener(props, ref
   const handleRef = useForkRef(children.ref, handleOwnRef);
 
   const handleClickAway = useEventCallback((event) => {
+    const insideReactTree = syntheticEventRef.current;
+    syntheticEventRef.current = false;
+
     // The handler doesn't take event.defaultPrevented into account:
     //
     // event.preventDefault() is meant to stop default behaviours like
@@ -73,7 +83,8 @@ const ClickAwayListener = React.forwardRef(function ClickAwayListener(props, ref
       // TODO v6 remove dead logic https://caniuse.com/#search=composedPath.
       insideDOM =
         !(doc.documentElement && doc.documentElement.contains(event.target)) ||
-        nodeRef.current.contains(event.target);
+        nodeRef.current.contains(event.target) ||
+        (!disableReactTree && insideReactTree);
     }
 
     if (!insideDOM) {
@@ -117,7 +128,40 @@ const ClickAwayListener = React.forwardRef(function ClickAwayListener(props, ref
     return undefined;
   }, [handleClickAway, mouseEvent]);
 
-  return <React.Fragment>{React.cloneElement(children, { ref: handleRef })}</React.Fragment>;
+  // Keep track of mouse/touch events that bubbled up through the portal.
+  const handleSyntheticMouse = (event) => {
+    syntheticEventRef.current = true;
+
+    const childrenProps = children.props;
+    if (childrenProps[mouseEvent]) {
+      childrenProps[mouseEvent](event);
+    }
+  };
+
+  const handleSyntheticTouch = (event) => {
+    syntheticEventRef.current = true;
+
+    const childrenProps = children.props;
+    if (childrenProps[touchEvent]) {
+      childrenProps[touchEvent](event);
+    }
+  };
+
+  const childrenProps = {};
+
+  if (mouseEvent !== false) {
+    childrenProps[mouseEvent] = handleSyntheticMouse;
+  }
+
+  if (touchEvent !== false) {
+    childrenProps[touchEvent] = handleSyntheticTouch;
+  }
+
+  return (
+    <React.Fragment>
+      {React.cloneElement(children, { ref: handleRef, ...childrenProps })}
+    </React.Fragment>
+  );
 });
 
 ClickAwayListener.propTypes = {
@@ -125,6 +169,11 @@ ClickAwayListener.propTypes = {
    * The wrapped element.
    */
   children: elementAcceptingRef.isRequired,
+  /**
+   * If `true`, the React tree is ignored and only the DOM tree is considered.
+   * This prop changes how portaled elements are handled.
+   */
+  disableReactTree: PropTypes.bool,
   /**
    * The mouse event to listen to. You can disable the listener by providing `false`.
    */

@@ -2,6 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createClientRender, fireEvent } from 'test/utils/createClientRender';
+import Portal from '../Portal';
 import ClickAwayListener from './ClickAwayListener';
 
 describe('<ClickAwayListener />', () => {
@@ -55,6 +56,38 @@ describe('<ClickAwayListener />', () => {
       expect(handleClickAway.callCount).to.equal(1);
 
       document.body.removeEventListener('click', preventDefault);
+    });
+
+    it('should not be called when clicking inside a portaled element', () => {
+      const handleClickAway = spy();
+      const { getByText } = render(
+        <ClickAwayListener onClickAway={handleClickAway}>
+          <div>
+            <Portal>
+              <span>Inside a portal</span>
+            </Portal>
+          </div>
+        </ClickAwayListener>,
+      );
+
+      fireEvent.click(getByText('Inside a portal'));
+      expect(handleClickAway.callCount).to.equal(0);
+    });
+
+    it('should be called when clicking inside a portaled element and `disableReactTree` is `true`', () => {
+      const handleClickAway = spy();
+      const { getByText } = render(
+        <ClickAwayListener onClickAway={handleClickAway} disableReactTree>
+          <div>
+            <Portal>
+              <span>Inside a portal</span>
+            </Portal>
+          </div>
+        </ClickAwayListener>,
+      );
+
+      fireEvent.click(getByText('Inside a portal'));
+      expect(handleClickAway.callCount).to.equal(1);
     });
   });
 
