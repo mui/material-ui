@@ -67,6 +67,15 @@ const defaultFilterOptions = createFilterOptions();
 // Number of options to jump in list box when pageup and pagedown keys are used.
 const pageSize = 5;
 
+const getInputValue = (inputValue) => {
+  if (!inputValue) {
+    console.warn(
+      'inputValue provided was undefined, defaulting to empty string. Check that the inputValue property gets passed a valid string value',
+    );
+    return '';
+  }
+  return inputValue;
+};
 export default function useAutocomplete(props) {
   const {
     autoComplete = false,
@@ -189,7 +198,7 @@ export default function useAutocomplete(props) {
 
   const { current: isInputValueControlled } = React.useRef(inputValueProp != null);
   const [inputValueState, setInputValue] = React.useState('');
-  const inputValue = isInputValueControlled ? inputValueProp || '' : inputValueState;
+  const inputValue = isInputValueControlled ? getInputValue(inputValueProp) : inputValueState;
 
   const [focused, setFocused] = React.useState(false);
 
