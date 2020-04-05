@@ -78,9 +78,10 @@ function ClickAwayListener(props) {
       // https://github.com/videojs/video.js/pull/5872
       insideDOM =
         !(doc.documentElement && doc.documentElement.contains(event.target)) ||
-        nodeRef.current.contains(event.target) ||
-        (!disableReactTree && insideReactTree);
+        nodeRef.current.contains(event.target);
     }
+
+    insideDOM = insideDOM || (!disableReactTree && insideReactTree);
 
     if (!insideDOM) {
       onClickAway(event);
