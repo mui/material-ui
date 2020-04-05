@@ -21,6 +21,6 @@ You can find a more advanced demo on the [Menu documentation section](/component
 
 ## Portal
 
-The following demo uses [`Portal`](/components/portal/) to renders the dropdown into a new "subtree" outside of current DOM hierarchy.
+The following demo uses [`Portal`](/components/portal/) to render the dropdown into a new "subtree" outside of current DOM hierarchy.
 
 {{"demo": "pages/components/click-away-listener/PortalClickAway.js"}}
