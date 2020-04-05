@@ -8,8 +8,8 @@ const useStyles = makeStyles((theme: Theme) =>
     dropdown: {
       position: 'fixed',
       width: 200,
-      top: 0,
-      left: 0,
+      top: '50%',
+      left: '50%',
       transform: 'translate(-50%, -50%)',
       border: '1px solid',
       padding: theme.spacing(1),
