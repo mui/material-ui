@@ -16044,9 +16044,9 @@ ts-essentials@^5.0.0:
   integrity sha512-ftKWOm6Jq+/UCBekDfxUjLODEd5XGN2EM/+TIQV9LJ5xSV12je4GqdRyv7pXXGGYmEt/nQa6F00xTWYJ5PMjIQ==
 
 ts-node@^8.3.0:
-  version "8.8.1"
-  resolved "https://registry.yarnpkg.com/ts-node/-/ts-node-8.8.1.tgz#7c4d3e9ed33aa703b64b28d7f9d194768be5064d"
-  integrity sha512-10DE9ONho06QORKAaCBpPiFCdW+tZJuY/84tyypGtl6r+/C7Asq0dhqbRZURuUlLQtZxxDvT8eoj8cGW0ha6Bg==
+  version "8.8.2"
+  resolved "https://registry.yarnpkg.com/ts-node/-/ts-node-8.8.2.tgz#0b39e690bee39ea5111513a9d2bcdc0bc121755f"
+  integrity sha512-duVj6BpSpUpD/oM4MfhO98ozgkp3Gt9qIp3jGxwU2DFvl/3IRaEAvbLa8G60uS7C77457e/m5TMowjedeRxI1Q==
   dependencies:
     arg "^4.1.0"
     diff "^4.0.1"
