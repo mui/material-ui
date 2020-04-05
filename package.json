@@ -59,7 +59,7 @@
     "@testing-library/react": "^10.0.1",
     "@testing-library/react-hooks": "3.2.1",
     "@types/chai": "^4.2.3",
-    "@types/chai-dom": "^0.0.8",
+    "@types/chai-dom": "^0.0.9",
     "@types/enzyme": "^3.10.3",
     "@types/fs-extra": "^8.0.0",
     "@types/glob": "^7.1.1",
