@@ -117,6 +117,23 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     [selected],
   );
 
+  const isDisabled = (id) => {
+    let node = nodeMap.current[id];
+
+    if (node.disabled) {
+      return true;
+    }
+
+    while (node.parentId != null) {
+      if (node.disabled) {
+        return true;
+      }
+      node = nodeMap.current[node.parentId];
+    }
+
+    return false;
+  };
+
   const isFocused = (id) => focusedNodeId === id;
 
   /*
@@ -589,7 +606,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     let flag = false;
     const key = event.key;
 
-    if (event.altKey || event.currentTarget !== event.target) {
+    if (event.altKey || event.currentTarget !== event.target || isDisabled(focusedNodeId)) {
       return;
     }
 
@@ -711,6 +728,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
         isExpanded,
         isFocused,
         isSelected,
+        isDisabled,
         selectNode: disableSelection ? noopSelection : selectNode,
         selectRange: disableSelection ? noopSelection : selectRange,
         multiSelect,

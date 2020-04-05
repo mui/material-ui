@@ -100,7 +100,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     collapseIcon,
     endIcon,
     expandIcon,
-    disabled,
+    disabled: disabledProp,
     icon: iconProp,
     id: idProp,
     label,
@@ -123,6 +123,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     isExpanded,
     isFocused,
     isSelected,
+    isDisabled,
     multiSelect,
     mapFirstChar,
     unMapFirstChar,
@@ -159,6 +160,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
   const expanded = isExpanded ? isExpanded(nodeId) : false;
   const focused = isFocused ? isFocused(nodeId) : false;
   const selected = isSelected ? isSelected(nodeId) : false;
+  const disabled = isDisabled ? isDisabled(nodeId) : false;
   const icons = contextIcons || {};
 
   if (!icon) {
@@ -178,6 +180,10 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
   }
 
   const handleClick = (event) => {
+    if (disabled) {
+      return;
+    }
+
     if (!focused) {
       focus(event, nodeId);
     }
@@ -291,6 +297,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
       role="treeitem"
       aria-expanded={expandable ? expanded : null}
       aria-selected={ariaSelected}
+      aria-disabled={disabled}
       ref={handleRef}
       id={id}
       tabIndex={-1}

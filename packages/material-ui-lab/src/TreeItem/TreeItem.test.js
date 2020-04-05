@@ -227,6 +227,32 @@ describe('<TreeItem />', () => {
       });
     });
 
+    describe('aria-disabled', () => {
+      it('should have the attribute `aria-disabled=false` if disabled is false', () => {
+        const { getByTestId } = render(
+          <TreeView>
+            <TreeItem nodeId="test" label="test" data-testid="test">
+              <TreeItem nodeId="test2" label="test2" />
+            </TreeItem>
+          </TreeView>,
+        );
+
+        expect(getByTestId('test')).to.have.attribute('aria-disabled', 'false');
+      });
+
+      it('should have the attribute `aria-disabled=true` if disabled', () => {
+        const { getByTestId } = render(
+          <TreeView defaultExpanded={['test']}>
+            <TreeItem nodeId="test" label="test" disabled data-testid="test">
+              <TreeItem nodeId="test2" label="test2" />
+            </TreeItem>
+          </TreeView>,
+        );
+
+        expect(getByTestId('test')).to.have.attribute('aria-disabled', 'true');
+      });
+    });
+
     describe('aria-selected', () => {
       describe('single-select', () => {
         it('should not have the attribute `aria-selected` if not selected', () => {
@@ -1481,16 +1507,32 @@ describe('<TreeItem />', () => {
     });
   });
 
-  describe('prop: deleted', () => {
+  describe('prop: disabled', () => {
     it('should disable treeItem', () => {
       const { getByTestId } = render(
-        <TreeView multiSelect>
+        <TreeView>
           <TreeItem nodeId="one" label="one" disabled data-testid="one" />
           <TreeItem nodeId="two" label="two" data-testid="two" />
         </TreeView>,
       );
 
       expect(getByTestId('one')).to.have.class(classes.disabled);
+    });
+
+    it('should disable child items when parent item is disabled', () => {
+      const { getByTestId } = render(
+        <TreeView defaultExpanded={['one']}>
+          <TreeItem nodeId="one" label="one" disabled data-testid="one">
+            <TreeItem nodeId="two" label="two" data-testid="two" />
+            <TreeItem nodeId="three" label="three" data-testid="three" />
+          </TreeItem>
+        </TreeView>,
+      );
+
+      expect(getByTestId('two')).to.have.class(classes.disabled);
+      expect(getByTestId('two')).to.have.attribute('aria-disabled', 'true');
+      expect(getByTestId('three')).to.have.class(classes.disabled);
+      expect(getByTestId('three')).to.have.attribute('aria-disabled', 'true');
     });
   });
 
