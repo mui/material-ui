@@ -66,10 +66,7 @@ const ClickAwayListener = React.forwardRef(function ClickAwayListener(props, ref
     // Multi window support
     const doc = ownerDocument(nodeRef.current);
 
-    if (
-      doc.documentElement.contains(event.target) &&
-      !nodeRef.current.contains(event.target)
-    ) {
+    if (doc.documentElement.contains(event.target) && !nodeRef.current.contains(event.target)) {
       onClickAway(event);
     }
   });
