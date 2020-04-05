@@ -2017,6 +2017,11 @@
     react-transition-group "^4.0.0"
     rifm "^0.7.0"
 
+"@material-ui/popper.js@^1.16.0":
+  version "1.16.0"
+  resolved "https://registry.yarnpkg.com/@material-ui/popper.js/-/popper.js-1.16.0.tgz#7d6b00edb406610fe20f9ea94796738417ea817b"
+  integrity sha512-2NvFNg7lLt6xt3mrprgiqLAgR9eYgMhM3yKQGMlxyP0j41iHyOITK3ecBPFtxtp/3EvAoLMfi7ZOgtEPhcK6mg==
+
 "@material-ui/react-transition-group@^4.2.0":
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/@material-ui/react-transition-group/-/react-transition-group-4.2.0.tgz#afec833bbcc79f05a9b4d4828b3e07965cc7e321"
@@ -12405,11 +12410,6 @@ pnp-webpack-plugin@1.5.0:
   integrity sha512-jd9olUr9D7do+RN8Wspzhpxhgp1n6Vd0NtQ4SFkmIACZoEL1nkyAdW9Ygrinjec0vgDcWjscFQQ1gDW8rsfKTg==
   dependencies:
     ts-pnp "^1.1.2"
-
-popper.js@^1.14.1:
-  version "1.16.0"
-  resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.16.0.tgz#2e1816bcbbaa518ea6c2e15a466f4cb9c6e2fbb3"
-  integrity sha512-+G+EkOPoE5S/zChTpmBSSDYmhXJ5PsW8eMhH8cP/CQHMFPBG/kC9Y5IIw6qNYgdJ+/COf0ddY2li28iHaZRSjw==
 
 posix-character-classes@^0.1.0:
   version "0.1.1"
