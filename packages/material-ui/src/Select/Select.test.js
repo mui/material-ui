@@ -361,6 +361,18 @@ describe('<Select />', () => {
       expect(getByRole('button')).not.to.have.attribute('aria-expanded');
     });
 
+    it('sets aria-disabled="true" when component is disabled', () => {
+      const { getByRole } = render(<Select disabled value="" />);
+
+      expect(getByRole('button')).to.have.attribute('aria-disabled', 'true');
+    });
+
+    specify('aria-disabled is not present if component is not disabled', () => {
+      const { getByRole } = render(<Select disabled={false} value="" />);
+
+      expect(getByRole('button')).not.to.have.attribute('aria-disabled');
+    });
+
     it('indicates that activating the button displays a listbox', () => {
       const { getByRole } = render(<Select value="" />);
 
