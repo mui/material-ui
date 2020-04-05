@@ -21,6 +21,8 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 The Fade transition is used by the [Modal](/components/modal/) component.
 It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
 
+
+
 ## Props
 
 | Name | Type | Default | Description |

@@ -20,6 +20,8 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 
 Poppers rely on the 3rd party library [Popper.js](https://github.com/FezVrasta/popper.js) for positioning.
 
+
+
 ## Props
 
 | Name | Type | Default | Description |

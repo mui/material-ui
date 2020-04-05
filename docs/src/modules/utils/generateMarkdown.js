@@ -253,6 +253,17 @@ function getProp(props, key) {
   }
 }
 
+function generateName(reactAPI) {
+  if (!reactAPI.styles.classes.length) {
+    return '';
+  }
+
+  return `## Component name
+
+The \`${reactAPI.styles.name}\` name can be used for providing [default props](/customization/globals/#default-props) or [style overrides](/customization/globals/#css) at the theme level.
+`
+}
+
 function generateProps(reactAPI) {
   const header = '## Props';
 
@@ -371,9 +382,6 @@ function generateClasses(reactAPI) {
 
   return `## CSS
 
-- Style sheet name: \`${reactAPI.styles.name}\`.
-- Style sheet details:
-
 ${text}
 
 You can override the style of the component thanks to one of these customization points:
@@ -473,6 +481,8 @@ export default function generateMarkdown(reactAPI) {
     generateImportStatement(reactAPI),
     '',
     reactAPI.description,
+    '',
+    generateName(reactAPI),
     '',
     generateProps(reactAPI),
     '',
