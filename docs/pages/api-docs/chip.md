@@ -24,7 +24,6 @@ Chips represent complex entities in small blocks, such as a contact.
 
 The `MuiChip` name can be used for providing [default props](/customization/globals/#default-props) or [style overrides](/customization/globals/#css) at the theme level.
 
-
 ## Props
 
 | Name | Type | Default | Description |

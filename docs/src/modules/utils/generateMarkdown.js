@@ -259,7 +259,7 @@ function getProp(props, key) {
 
 function generateName(reactAPI) {
   if (!reactAPI.styles.classes.length) {
-    return '';
+    return '\n';
   }
 
   if (!reactAPI.styles.name) {
@@ -491,7 +491,6 @@ export default function generateMarkdown(reactAPI) {
     reactAPI.description,
     '',
     generateName(reactAPI),
-    '',
     generateProps(reactAPI),
     '',
     `${generateClasses(reactAPI)}${generateInheritance(reactAPI)}${generateDemos(reactAPI)}`,

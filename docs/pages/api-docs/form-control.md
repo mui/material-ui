@@ -44,7 +44,6 @@ You can find one composition example below and more going to [the demos](/compon
 
 The `MuiFormControl` name can be used for providing [default props](/customization/globals/#default-props) or [style overrides](/customization/globals/#css) at the theme level.
 
-
 ## Props
 
 | Name | Type | Default | Description |

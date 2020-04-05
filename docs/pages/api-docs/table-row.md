@@ -25,7 +25,6 @@ based on the material table element parent (head, body, etc).
 
 The `MuiTableRow` name can be used for providing [default props](/customization/globals/#default-props) or [style overrides](/customization/globals/#css) at the theme level.
 
-
 ## Props
 
 | Name | Type | Default | Description |

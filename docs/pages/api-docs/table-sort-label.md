@@ -24,7 +24,6 @@ A button based label for placing inside `TableCell` for column sorting.
 
 The `MuiTableSortLabel` name can be used for providing [default props](/customization/globals/#default-props) or [style overrides](/customization/globals/#css) at the theme level.
 
-
 ## Props
 
 | Name | Type | Default | Description |

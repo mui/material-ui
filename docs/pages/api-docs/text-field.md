@@ -53,7 +53,6 @@ For advanced cases, please look at the source of TextField by clicking on the
 
 The `MuiTextField` name can be used for providing [default props](/customization/globals/#default-props) or [style overrides](/customization/globals/#css) at the theme level.
 
-
 ## Props
 
 | Name | Type | Default | Description |
