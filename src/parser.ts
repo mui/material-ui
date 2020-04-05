@@ -359,9 +359,9 @@ export function parseFromProgram(
 				case 'React.Component': {
 					return t.instanceOfNode(typeName);
 				}
-				case 'Element': {
-					// Nextjs: Element isn't defined on the server
-					return t.instanceOfNode("typeof Element === 'undefined' ? Object : Element");
+				case 'Element':
+				case 'HTMLElement': {
+					return t.DOMElementNode();
 				}
 			}
 		}
@@ -374,7 +374,9 @@ export function parseFromProgram(
 		}
 
 		if (type.isUnion()) {
-			return t.unionNode(type.types.map((x) => checkType(x, typeStack, name)));
+			const node = t.unionNode(type.types.map((x) => checkType(x, typeStack, name)));
+
+			return node.types.length === 1 ? node.types[0] : node;
 		}
 
 		if (type.flags & ts.TypeFlags.String) {

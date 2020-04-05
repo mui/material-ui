@@ -112,6 +112,12 @@ export function generate(node: t.Node | t.PropTypeNode[], options: GenerateOptio
 			}
 		}
 
+		if (t.isDOMElementNode(propType)) {
+			propType.optional = isOptional;
+			// Handled internally in the validate function
+			isOptional = true;
+		}
+
 		return `${jsDoc(node)}"${node.name}": ${generate(propType, options)}${
 			isOptional ? '' : '.isRequired'
 		},`;
@@ -160,6 +166,20 @@ export function generate(node: t.Node | t.PropTypeNode[], options: GenerateOptio
 		return `${importedName}.instanceOf(${node.instance})`;
 	}
 
+	if (t.isDOMElementNode(node)) {
+		return `function (props, propName) {
+			if (props[propName] == null) {
+				return ${
+					node.optional
+						? 'null'
+						: `new Error("Prop '" + propName + "' is required but wasn't specified")`
+				}
+			} else if (typeof props[propName] !== 'object' || props[propName].nodeType !== 1) {
+				return new Error("Expected prop '" + propName + "' to be of type Element")
+			}			
+		}`;
+	}
+
 	if (t.isArrayNode(node)) {
 		if (t.isAnyNode(node.arrayType)) {
 			return `${importedName}.array`;
@@ -169,9 +189,7 @@ export function generate(node: t.Node | t.PropTypeNode[], options: GenerateOptio
 	}
 
 	if (t.isUnionNode(node)) {
-		let [literals, rest] = _.partition(node.types, t.isLiteralNode);
-		literals = _.uniqBy(literals, (x) => x.value);
-		rest = _.uniqBy(rest, (x) => (t.isInstanceOfNode(x) ? `${x.type}.${x.instance}` : x.type));
+		let [literals, rest] = _.partition(t.uniqueUnionTypes(node).types, t.isLiteralNode);
 
 		literals = literals.sort((a, b) => a.value.localeCompare(b.value));
 

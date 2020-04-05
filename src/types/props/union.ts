@@ -1,3 +1,5 @@
+import _ from 'lodash';
+import * as t from '../../types';
 import { Node } from '../nodes/baseNodes';
 
 const typeString = 'UnionNode';
@@ -21,12 +23,29 @@ export function unionNode(types: Node[]): UnionNode {
 		});
 	}
 
-	return {
+	return uniqueUnionTypes({
 		type: typeString,
 		types: flatTypes,
-	};
+	});
 }
 
 export function isUnionNode(node: Node): node is UnionNode {
 	return node.type === typeString;
+}
+
+export function uniqueUnionTypes(node: UnionNode): UnionNode {
+	return {
+		type: node.type,
+		types: _.uniqBy(node.types, (x) => {
+			if (t.isLiteralNode(x)) {
+				return x.value;
+			}
+
+			if (t.isInstanceOfNode(x)) {
+				return `${x.type}.${x.instance}`;
+			}
+
+			return x.type;
+		}),
+	};
 }
