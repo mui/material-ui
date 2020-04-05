@@ -165,7 +165,11 @@ export function parseFromProgram(
 							type.aliasTypeArguments &&
 							checker.getFullyQualifiedName(type.aliasSymbol) === 'React.ComponentType'
 						) {
-							parsePropsType(variableNode.name.getText(), type.aliasTypeArguments[0]);
+							parsePropsType(
+								variableNode.name.getText(),
+								type.aliasTypeArguments[0],
+								node.getSourceFile()
+							);
 						}
 					} else if (
 						(ts.isArrowFunction(variableNode.initializer) ||
@@ -190,7 +194,8 @@ export function parseFromProgram(
 							if (symbol) {
 								parsePropsType(
 									variableNode.name.getText(),
-									checker.getTypeOfSymbolAtLocation(symbol, symbol.valueDeclaration)
+									checker.getTypeOfSymbolAtLocation(symbol, symbol.valueDeclaration),
+									node.getSourceFile()
 								);
 							}
 						}
@@ -210,7 +215,11 @@ export function parseFromProgram(
 			if (!arg.typeArguments) return;
 
 			if (reactImports.includes(arg.expression.getText())) {
-				parsePropsType(node.name.getText(), checker.getTypeAtLocation(arg.typeArguments[0]));
+				parsePropsType(
+					node.name.getText(),
+					checker.getTypeAtLocation(arg.typeArguments[0]),
+					node.getSourceFile()
+				);
 			}
 		}
 	}
@@ -251,10 +260,10 @@ export function parseFromProgram(
 			signature.parameters[0].valueDeclaration
 		);
 
-		parsePropsType(node.name.getText(), type);
+		parsePropsType(node.name.getText(), type, node.getSourceFile());
 	}
 
-	function parsePropsType(name: string, type: ts.Type) {
+	function parsePropsType(name: string, type: ts.Type, sourceFile: ts.SourceFile | undefined) {
 		const properties = type
 			.getProperties()
 			.filter((symbol) => shouldInclude({ name: symbol.getName(), depth: 1 }));
@@ -262,10 +271,13 @@ export function parseFromProgram(
 			return;
 		}
 
+		const propsFilename = sourceFile !== undefined ? sourceFile.fileName : undefined;
+
 		programNode.body.push(
 			t.componentNode(
 				name,
-				properties.map((x) => checkSymbol(x, [(type as any).id]))
+				properties.map((x) => checkSymbol(x, [(type as any).id])),
+				propsFilename
 			)
 		);
 	}
@@ -273,6 +285,8 @@ export function parseFromProgram(
 	function checkSymbol(symbol: ts.Symbol, typeStack: number[]): t.PropTypeNode {
 		const declarations = symbol.getDeclarations();
 		const declaration = declarations && declarations[0];
+
+		const symbolFilenames = getSymbolFileNames(symbol);
 
 		// TypeChecker keeps the name for
 		// { a: React.ElementType, b: React.ReactElement | boolean }
@@ -298,7 +312,8 @@ export function parseFromProgram(
 				return t.propTypeNode(
 					symbol.getName(),
 					getDocumentation(symbol),
-					declaration.questionToken ? t.unionNode([t.undefinedNode(), elementNode]) : elementNode
+					declaration.questionToken ? t.unionNode([t.undefinedNode(), elementNode]) : elementNode,
+					symbolFilenames
 				);
 			}
 		}
@@ -330,7 +345,7 @@ export function parseFromProgram(
 			parsedType = checkType(type, typeStack, symbol.getName());
 		}
 
-		return t.propTypeNode(symbol.getName(), getDocumentation(symbol), parsedType);
+		return t.propTypeNode(symbol.getName(), getDocumentation(symbol), parsedType, symbolFilenames);
 	}
 
 	function checkType(type: ts.Type, typeStack: number[], name: string): t.Node {
@@ -467,5 +482,11 @@ export function parseFromProgram(
 
 		const comment = ts.displayPartsToString(symbol.getDocumentationComment(checker));
 		return comment ? comment : undefined;
+	}
+
+	function getSymbolFileNames(symbol: ts.Symbol): Set<string> {
+		const declarations = symbol.getDeclarations() || [];
+
+		return new Set(declarations.map((declaration) => declaration.getSourceFile().fileName));
 	}
 }
