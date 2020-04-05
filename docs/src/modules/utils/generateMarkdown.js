@@ -269,7 +269,7 @@ function generateName(reactAPI) {
   return `## Component name
 
 The \`${reactAPI.styles.name}\` name can be used for providing [default props](/customization/globals/#default-props) or [style overrides](/customization/globals/#css) at the theme level.
-`
+`;
 }
 
 function generateProps(reactAPI) {
