@@ -41,7 +41,7 @@
     "clsx": "^1.0.2",
     "date-fns": "^2.0.0",
     "dayjs": "^1.8.22",
-    "formik": "^1.5.1",
+    "formik": "^2.1.4",
     "fuzzy-search": "^3.0.1",
     "isomorphic-fetch": "^2.2.1",
     "jss": "^10.0.0",
