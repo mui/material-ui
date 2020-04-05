@@ -91,9 +91,9 @@ function ClickAwayListener(props) {
   const createHandleSynthetic = (handlerName) => (event) => {
     syntheticEventRef.current = true;
 
-    const childrenProps = children.props;
-    if (childrenProps[handlerName]) {
-      childrenProps[handlerName](event);
+    const childrenPropsHandler = children.props[handlerName];
+    if (childrenPropsHandler) {
+      childrenPropsHandler(event);
     }
   };
 
