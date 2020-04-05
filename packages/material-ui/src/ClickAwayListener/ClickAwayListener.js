@@ -81,9 +81,7 @@ function ClickAwayListener(props) {
         nodeRef.current.contains(event.target);
     }
 
-    insideDOM = insideDOM || (!disableReactTree && insideReactTree);
-
-    if (!insideDOM) {
+    if (!insideDOM && (disableReactTree || !insideReactTree)) {
       onClickAway(event);
     }
   });
