@@ -19,8 +19,8 @@ function ClickAwayListener(props) {
     children,
     disableReactTree = false,
     mouseEvent = 'onClick',
-    touchEvent = 'onTouchEnd',
     onClickAway,
+    touchEvent = 'onTouchEnd',
   } = props;
   const movedRef = React.useRef(false);
   const nodeRef = React.useRef(null);
@@ -41,30 +41,27 @@ function ClickAwayListener(props) {
   }, []);
   const handleRef = useForkRef(children.ref, handleOwnRef);
 
+  // The handler doesn't take event.defaultPrevented into account:
+  //
+  // event.preventDefault() is meant to stop default behaviours like
+  // clicking a checkbox to check it, hitting a button to submit a form,
+  // and hitting left arrow to move the cursor in a text input etc.
+  // Only special HTML elements have these default behaviors.
   const handleClickAway = useEventCallback((event) => {
+    // Given developers can stop the propagation of the synthetic event,
+    // we can only be confident with a positive value.
     const insideReactTree = syntheticEventRef.current;
     syntheticEventRef.current = false;
 
-    // The handler doesn't take event.defaultPrevented into account:
-    //
-    // event.preventDefault() is meant to stop default behaviours like
-    // clicking a checkbox to check it, hitting a button to submit a form,
-    // and hitting left arrow to move the cursor in a text input etc.
-    // Only special HTML elements have these default behaviors.
-
-    // IE 11 support, which trigger the handleClickAway even after the unbind
-    if (!mountedRef.current) {
+    // 1. IE 11 support, which trigger the handleClickAway even after the unbind
+    // 2. The child might render null.
+    if (!mountedRef.current || !nodeRef.current) {
       return;
     }
 
     // Do not act if user performed touchmove
     if (movedRef.current) {
       movedRef.current = false;
-      return;
-    }
-
-    // The child might render null.
-    if (!nodeRef.current) {
       return;
     }
 
@@ -90,6 +87,22 @@ function ClickAwayListener(props) {
     }
   });
 
+  // Keep track of mouse/touch events that bubbled up through the portal.
+  const createHandleSynthetic = (handlerName) => (event) => {
+    syntheticEventRef.current = true;
+
+    const childrenProps = children.props;
+    if (childrenProps[handlerName]) {
+      childrenProps[handlerName](event);
+    }
+  };
+
+  const childrenProps = { ref: handleRef };
+
+  if (touchEvent !== false) {
+    childrenProps[touchEvent] = createHandleSynthetic(touchEvent);
+  }
+
   React.useEffect(() => {
     if (touchEvent !== false) {
       const mappedTouchEvent = mapEventPropToEvent(touchEvent);
@@ -111,6 +124,10 @@ function ClickAwayListener(props) {
     return undefined;
   }, [handleClickAway, touchEvent]);
 
+  if (mouseEvent !== false) {
+    childrenProps[mouseEvent] = createHandleSynthetic(mouseEvent);
+  }
+
   React.useEffect(() => {
     if (mouseEvent !== false) {
       const mappedMouseEvent = mapEventPropToEvent(mouseEvent);
@@ -125,26 +142,6 @@ function ClickAwayListener(props) {
 
     return undefined;
   }, [handleClickAway, mouseEvent]);
-
-  // Keep track of mouse/touch events that bubbled up through the portal.
-  const createHandleSynthetic = (handlerName) => (event) => {
-    syntheticEventRef.current = true;
-
-    const childrenProps = children.props;
-    if (childrenProps[handlerName]) {
-      childrenProps[handlerName](event);
-    }
-  };
-
-  const childrenProps = { ref: handleRef };
-
-  if (mouseEvent !== false) {
-    childrenProps[mouseEvent] = createHandleSynthetic(mouseEvent);
-  }
-
-  if (touchEvent !== false) {
-    childrenProps[touchEvent] = createHandleSynthetic(touchEvent);
-  }
 
   return <React.Fragment>{React.cloneElement(children, childrenProps)}</React.Fragment>;
 }

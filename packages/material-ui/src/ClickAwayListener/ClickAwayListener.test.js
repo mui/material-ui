@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
@@ -87,6 +89,39 @@ describe('<ClickAwayListener />', () => {
       );
 
       fireEvent.click(getByText('Inside a portal'));
+      expect(handleClickAway.callCount).to.equal(1);
+    });
+
+    it('should not be called even if the event propagation is stopped', () => {
+      const handleClickAway = spy();
+      const { getByText } = render(
+        <ClickAwayListener onClickAway={handleClickAway} disableReactTree>
+          <div>
+            <div
+              onClick={(event) => {
+                event.stopPropagation();
+              }}
+            >
+              Outside a portal
+            </div>
+            <Portal>
+              <span
+                onClick={(event) => {
+                  event.stopPropagation();
+                }}
+              >
+                Inside a portal
+              </span>
+            </Portal>
+          </div>
+        </ClickAwayListener>,
+      );
+
+      fireEvent.click(getByText('Outside a portal'));
+      expect(handleClickAway.callCount).to.equal(0);
+
+      fireEvent.click(getByText('Inside a portal'));
+      // True-negative, we don't have enough information to do otherwise.
       expect(handleClickAway.callCount).to.equal(1);
     });
   });
