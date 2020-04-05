@@ -32,12 +32,12 @@
 		"@types/uuid": "^3.4.5",
 		"glob": "^7.1.6",
 		"husky": "^4.2.3",
-		"jest": "^24.8.0",
+		"jest": "^25.2.7",
 		"prettier": "^2.0.1",
 		"pretty-quick": "^2.0.1",
 		"react": "^16.8.6",
 		"standard-version": "7.1.0",
-		"ts-jest": "^24.2.0"
+		"ts-jest": "^25.3.1"
 	},
 	"dependencies": {
 		"@babel/core": "^7.5.4",
