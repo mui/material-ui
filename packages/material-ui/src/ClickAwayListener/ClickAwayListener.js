@@ -63,14 +63,20 @@ const ClickAwayListener = React.forwardRef(function ClickAwayListener(props, ref
       return;
     }
 
-    // Multi window support
-    const doc = ownerDocument(nodeRef.current);
+    let insideDOM;
 
-    if (
-      doc.documentElement &&
-      doc.documentElement.contains(event.target) &&
-      !nodeRef.current.contains(event.target)
-    ) {
+    // If not enough, can use https://github.com/DieterHolvoet/event-propagation-path/blob/master/propagationPath.js
+    if (event.composedPath) {
+      insideDOM = event.composedPath().indexOf(nodeRef.current) > -1;
+    } else {
+      const doc = ownerDocument(nodeRef.current);
+      // TODO v6 remove dead logic https://caniuse.com/#search=composedPath.
+      insideDOM =
+        !(doc.documentElement && doc.documentElement.contains(event.target)) ||
+        nodeRef.current.contains(event.target);
+    }
+
+    if (!insideDOM) {
       onClickAway(event);
     }
   });

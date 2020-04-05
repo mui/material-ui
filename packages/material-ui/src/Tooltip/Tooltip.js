@@ -444,6 +444,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     ...other,
     ...children.props,
     className: clsx(other.className, children.props.className),
+    ref: handleRef,
   };
 
   const interactiveWrapperListeners = {};
@@ -502,7 +503,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
 
   return (
     <React.Fragment>
-      {React.cloneElement(children, { ref: handleRef, ...childrenProps })}
+      {React.cloneElement(children, childrenProps)}
       <Popper
         className={clsx(classes.popper, {
           [classes.popperInteractive]: interactive,
