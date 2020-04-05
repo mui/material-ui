@@ -2298,9 +2298,9 @@
     defer-to-connect "^1.0.1"
 
 "@testing-library/dom@^7.0.2", "@testing-library/dom@^7.0.3":
-  version "7.1.3"
-  resolved "https://registry.yarnpkg.com/@testing-library/dom/-/dom-7.1.3.tgz#422073afb5ae9bdb910651ac4d51c9ed4382a2f9"
-  integrity sha512-wFMQdKrTwTTlTe6n0KN+KjOtgOV0viIyfr+f+7Csq+1pD0o+ho7FrjCjkNpx6NEsx8jHDtZ4WU3cGOuLc9LvQg==
+  version "7.2.0"
+  resolved "https://registry.yarnpkg.com/@testing-library/dom/-/dom-7.2.0.tgz#948894c2ef52017d299c35da02e085498363cd1e"
+  integrity sha512-K1Sao38VxsTrjTkFkzeW8m/oCtgCI5lANCE7u9ZaF+TTL3uKuiZ+vazeurxjvRHAsE6PvXjOIl6JFuZfgcWJSQ==
   dependencies:
     "@babel/runtime" "^7.9.2"
     "@types/testing-library__dom" "^7.0.0"
