@@ -3,11 +3,11 @@ import * as React from 'react';
 /**
  * Private module reserved for @material-ui/x packages.
  */
-export default function useId(idProp, skipDoubleRender) {
+export default function useId(idProp) {
   const [defaultId, setDefaultId] = React.useState();
   const id = idProp || defaultId;
   React.useEffect(() => {
-    if (skipDoubleRender || defaultId) {
+    if (defaultId) {
       return;
     }
 
@@ -15,6 +15,6 @@ export default function useId(idProp, skipDoubleRender) {
     // Use the random value for client-side rendering only.
     // We can't use it server-side.
     setDefaultId(`mui-${Math.round(Math.random() * 1e5)}`);
-  }, [skipDoubleRender, defaultId]);
+  }, [defaultId]);
   return id;
 }

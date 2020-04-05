@@ -246,7 +246,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     }, [title, childNode, isControlled]);
   }
 
-  const id = useId(idProp, !open);
+  const id = useId(idProp);
 
   React.useEffect(() => {
     return () => {
