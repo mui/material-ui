@@ -67,7 +67,6 @@ const ClickAwayListener = React.forwardRef(function ClickAwayListener(props, ref
     const doc = ownerDocument(nodeRef.current);
 
     if (
-      doc.documentElement &&
       doc.documentElement.contains(event.target) &&
       !nodeRef.current.contains(event.target)
     ) {
