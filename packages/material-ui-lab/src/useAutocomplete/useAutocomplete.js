@@ -1,7 +1,7 @@
 /* eslint-disable no-constant-condition */
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { setRef, useEventCallback, useControlled } from '@material-ui/core/utils';
+import { setRef, useEventCallback, useControlled, useId } from '@material-ui/core/utils';
 
 // https://stackoverflow.com/questions/990904/remove-accents-diacritics-in-a-string-in-javascript
 // Give up on IE 11 support for this feature
@@ -103,14 +103,7 @@ export default function useAutocomplete(props) {
     value: valueProp,
   } = props;
 
-  const [defaultId, setDefaultId] = React.useState();
-  const id = idProp || defaultId;
-  React.useEffect(() => {
-    // Fallback to this default id when possible.
-    // Use the random value for client-side rendering only.
-    // We can't use it server-side.
-    setDefaultId(`mui-autocomplete-${Math.round(Math.random() * 1e5)}`);
-  }, []);
+  const id = useId(idProp);
 
   const ignoreFocus = React.useRef(false);
   const firstFocus = React.useRef(true);
