@@ -711,20 +711,23 @@ const Slider = React.forwardRef(function Slider(props, ref) {
           <React.Fragment key={mark.value}>
             <span
               style={style}
+              data-index={index}
               className={clsx(classes.mark, {
                 [classes.markActive]: markActive,
               })}
             />
-            <span
-              aria-hidden
-              data-index={index}
-              style={style}
-              className={clsx(classes.markLabel, {
-                [classes.markLabelActive]: markActive,
-              })}
-            >
-              {mark.label}
-            </span>
+            {mark.label != null ? (
+              <span
+                aria-hidden
+                data-index={index}
+                style={style}
+                className={clsx(classes.markLabel, {
+                  [classes.markLabelActive]: markActive,
+                })}
+              >
+                {mark.label}
+              </span>
+            ) : null}
           </React.Fragment>
         );
       })}

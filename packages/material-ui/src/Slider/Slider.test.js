@@ -400,8 +400,8 @@ describe('<Slider />', () => {
 
   describe('markActive state', () => {
     function getActives(container) {
-      return Array.from(container.querySelectorAll(`.${classes.markLabel}`)).map((node) =>
-        node.classList.contains(classes.markLabelActive),
+      return Array.from(container.querySelectorAll(`.${classes.mark}`)).map((node) =>
+        node.classList.contains(classes.markActive),
       );
     }
 
@@ -547,6 +547,23 @@ describe('<Slider />', () => {
 
     expect(sliders[0]).to.have.attribute('aria-label', 'Label 0');
     expect(sliders[1]).to.have.attribute('aria-label', 'Label 1');
+  });
+
+  it('should allow customization of the marks', () => {
+    const { container } = render(
+      <Slider
+        marks={[
+          { value: 0, label: 0 },
+          { value: 20, label: 20 },
+          { value: 30, label: 30 },
+        ]}
+        defaultValue={0}
+      />,
+    );
+    expect(container.querySelectorAll(`.${classes.markLabel}`).length).to.equal(3);
+    expect(container.querySelectorAll(`.${classes.mark}`).length).to.equal(3);
+    expect(container.querySelectorAll(`.${classes.markLabel}[data-index="2"]`).length).to.equal(1);
+    expect(container.querySelectorAll(`.${classes.mark}[data-index="2"]`).length).to.equal(1);
   });
 
   describe('prop: ValueLabelComponent', () => {
