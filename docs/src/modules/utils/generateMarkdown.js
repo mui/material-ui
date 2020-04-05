@@ -63,6 +63,10 @@ function getChained(type) {
   return false;
 }
 
+function styleNameError(reactAPIName) {
+  throw new Error(`Missing styles name on ${reactAPIName} component`);
+}
+
 function escapeCell(value) {
   // As the pipe is use for the table structure
   return value.replace(/</g, '&lt;').replace(/`&lt;/g, '`<').replace(/\|/g, '\\|');
@@ -258,6 +262,10 @@ function generateName(reactAPI) {
     return '';
   }
 
+  if (!reactAPI.styles.name) {
+    styleNameError(reactAPI.name);
+  }
+
   return `## Component name
 
 The \`${reactAPI.styles.name}\` name can be used for providing [default props](/customization/globals/#default-props) or [style overrides](/customization/globals/#css) at the theme level.
@@ -355,7 +363,7 @@ function generateClasses(reactAPI) {
   }
 
   if (!reactAPI.styles.name) {
-    throw new Error(`Missing styles name on ${reactAPI.name} component`);
+    styleNameError(reactAPI.name);
   }
 
   let text = '';
