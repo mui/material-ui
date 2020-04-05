@@ -110,7 +110,17 @@ describe('<ClickAwayListener />', () => {
                   event.stopPropagation();
                 }}
               >
-                Inside a portal
+                Stop inside a portal
+              </span>
+            </Portal>
+            <Portal>
+              <span
+                onClick={(event) => {
+                  event.stopPropagation();
+                  event.nativeEvent.stopImmediatePropagation();
+                }}
+              >
+                Stop all inside a portal
               </span>
             </Portal>
           </div>
@@ -120,7 +130,10 @@ describe('<ClickAwayListener />', () => {
       fireEvent.click(getByText('Outside a portal'));
       expect(handleClickAway.callCount).to.equal(0);
 
-      fireEvent.click(getByText('Inside a portal'));
+      fireEvent.click(getByText('Stop all inside a portal'));
+      expect(handleClickAway.callCount).to.equal(0);
+
+      fireEvent.click(getByText('Stop inside a portal'));
       // True-negative, we don't have enough information to do otherwise.
       expect(handleClickAway.callCount).to.equal(1);
     });
