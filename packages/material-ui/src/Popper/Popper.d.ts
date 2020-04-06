@@ -1,5 +1,5 @@
 import * as React from 'react';
-import PopperJs, { ReferenceObject } from '@material-ui/popper.js';
+import PopperJs, { ReferenceObject } from 'popper.js';
 import { PortalProps } from '../Portal';
 import { TransitionProps } from '../transitions/transition';
 

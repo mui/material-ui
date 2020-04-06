@@ -7,7 +7,7 @@ import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import { createClientRender } from 'test/utils/createClientRender';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
-import PopperJs from '@material-ui/popper.js';
+import PopperJs from 'popper.js';
 import Grow from '../Grow';
 import Popper from './Popper';
 

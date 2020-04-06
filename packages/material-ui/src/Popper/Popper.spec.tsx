@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Tooltip from '@material-ui/core/Tooltip';
-import PopperJs from '@material-ui/popper.js';
+import PopperJs from 'popper.js';
 
 interface Props {
   children: React.ReactElement;

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import PopperJs from '@material-ui/popper.js';
+import PopperJs from 'popper.js';
 import { chainPropTypes, refType } from '@material-ui/utils';
 import { useTheme } from '@material-ui/styles';
 import Portal from '../Portal';
