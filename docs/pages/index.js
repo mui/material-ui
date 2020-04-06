@@ -130,7 +130,7 @@ export default function LandingPage() {
                 >
                   {'MATERIAL-UI'}
                 </Typography>
-                <Typography variant="h5" component="h2" color="inherit">
+                <Typography variant="h5" component="p" color="inherit">
                   {t('strapline')}
                 </Typography>
                 <Button
