@@ -1,7 +1,10 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createClientRender, fireEvent } from 'test/utils/createClientRender';
+import Portal from '../Portal';
 import ClickAwayListener from './ClickAwayListener';
 
 describe('<ClickAwayListener />', () => {
@@ -55,6 +58,84 @@ describe('<ClickAwayListener />', () => {
       expect(handleClickAway.callCount).to.equal(1);
 
       document.body.removeEventListener('click', preventDefault);
+    });
+
+    it('should not be called when clicking inside a portaled element', () => {
+      const handleClickAway = spy();
+      const { getByText } = render(
+        <ClickAwayListener onClickAway={handleClickAway}>
+          <div>
+            <Portal>
+              <span>Inside a portal</span>
+            </Portal>
+          </div>
+        </ClickAwayListener>,
+      );
+
+      fireEvent.click(getByText('Inside a portal'));
+      expect(handleClickAway.callCount).to.equal(0);
+    });
+
+    it('should be called when clicking inside a portaled element and `disableReactTree` is `true`', () => {
+      const handleClickAway = spy();
+      const { getByText } = render(
+        <ClickAwayListener onClickAway={handleClickAway} disableReactTree>
+          <div>
+            <Portal>
+              <span>Inside a portal</span>
+            </Portal>
+          </div>
+        </ClickAwayListener>,
+      );
+
+      fireEvent.click(getByText('Inside a portal'));
+      expect(handleClickAway.callCount).to.equal(1);
+    });
+
+    it('should not be called even if the event propagation is stopped', () => {
+      const handleClickAway = spy();
+      const { getByText } = render(
+        <ClickAwayListener onClickAway={handleClickAway} disableReactTree>
+          <div>
+            <div
+              onClick={(event) => {
+                event.stopPropagation();
+              }}
+            >
+              Outside a portal
+            </div>
+            <Portal>
+              <span
+                onClick={(event) => {
+                  event.stopPropagation();
+                }}
+              >
+                Stop inside a portal
+              </span>
+            </Portal>
+            <Portal>
+              <span
+                onClick={(event) => {
+                  event.stopPropagation();
+                  event.nativeEvent.stopImmediatePropagation();
+                }}
+              >
+                Stop all inside a portal
+              </span>
+            </Portal>
+          </div>
+        </ClickAwayListener>,
+      );
+
+      fireEvent.click(getByText('Outside a portal'));
+      expect(handleClickAway.callCount).to.equal(0);
+
+      fireEvent.click(getByText('Stop all inside a portal'));
+      expect(handleClickAway.callCount).to.equal(0);
+
+      fireEvent.click(getByText('Stop inside a portal'));
+      // True-negative, we don't have enough information to do otherwise.
+      expect(handleClickAway.callCount).to.equal(1);
     });
   });
 

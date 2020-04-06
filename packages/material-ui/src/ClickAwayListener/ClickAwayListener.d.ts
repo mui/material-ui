@@ -2,6 +2,7 @@ import * as React from 'react';
 
 export interface ClickAwayListenerProps {
   children: React.ReactNode;
+  disableReactTree?: boolean;
   mouseEvent?: 'onClick' | 'onMouseDown' | 'onMouseUp' | false;
   onClickAway: (event: React.MouseEvent<Document>) => void;
   touchEvent?: 'onTouchStart' | 'onTouchEnd' | false;
