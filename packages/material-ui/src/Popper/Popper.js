@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import PopperJS from 'popper.js';
+import PopperJs from 'popper.js';
 import { chainPropTypes, refType } from '@material-ui/utils';
 import { useTheme } from '@material-ui/styles';
 import Portal from '../Portal';
@@ -123,7 +123,7 @@ const Popper = React.forwardRef(function Popper(props, ref) {
       }
     }
 
-    const popper = new PopperJS(getAnchorEl(anchorEl), tooltipRef.current, {
+    const popper = new PopperJs(getAnchorEl(anchorEl), tooltipRef.current, {
       placement: rtlPlacement,
       ...popperOptions,
       modifiers: {
