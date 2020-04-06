@@ -31,7 +31,7 @@ export type InjectOptions = {
 	 * Options passed to babel.transformSync
 	 */
 	babelOptions?: babel.TransformOptions;
-} & Pick<GenerateOptions, 'sortProptypes' | 'includeJSDoc' | 'comment'>;
+} & Pick<GenerateOptions, 'sortProptypes' | 'includeJSDoc' | 'comment' | 'reconcilePropTypes'>;
 
 /**
  * Injects the PropTypes from `parse` into the provided JavaScript code
@@ -84,8 +84,16 @@ function plugin(
 	options: InjectOptions = {},
 	mapOfPropTypes: Map<string, string>
 ): babel.PluginObj {
-	const { includeUnusedProps = false, removeExistingPropTypes = false, ...otherOptions } = options;
-
+	const {
+		includeUnusedProps = false,
+		reconcilePropTypes = (
+			_prop: t.PropTypeNode,
+			_previous: string | undefined,
+			generated: string
+		) => generated,
+		removeExistingPropTypes = false,
+		...otherOptions
+	} = options;
 	const shouldInclude: Exclude<InjectOptions['shouldInclude'], undefined> = (data) => {
 		if (options.shouldInclude) {
 			const result = options.shouldInclude(data);
@@ -101,11 +109,12 @@ function plugin(
 	let needImport = false;
 	let alreadyImported = false;
 	let originalPropTypesPath: null | babel.NodePath = null;
+	let previousPropTypesSource = new Map<string, string>();
 
 	return {
 		visitor: {
 			Program: {
-				enter(path) {
+				enter(path, state: any) {
 					if (
 						!path.node.body.some((n) => {
 							if (
@@ -131,6 +140,17 @@ function plugin(
 							babelTypes.isIdentifier(node.expression.left.property, { name: 'propTypes' })
 						) {
 							originalPropTypesPath = nodePath;
+
+							if (babelTypes.isObjectExpression(node.expression.right)) {
+								const { code } = state.file;
+
+								node.expression.right.properties.forEach((property) => {
+									if (babelTypes.isObjectProperty(property)) {
+										const validatorSource = code.slice(property.value.start, property.value.end);
+										previousPropTypesSource.set(property.key.name, validatorSource);
+									}
+								});
+							}
 						}
 					});
 				},
@@ -266,6 +286,8 @@ function plugin(
 		const source = generate(props, {
 			...otherOptions,
 			importedName: importName,
+			previousPropTypesSource,
+			reconcilePropTypes,
 			shouldInclude: (prop) => shouldInclude({ component: props, prop, usedProps }),
 		});
 

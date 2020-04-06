@@ -21,6 +21,23 @@ export interface GenerateOptions {
 	includeJSDoc?: boolean;
 
 	/**
+	 * Previous source code of the validator for each prop type
+	 */
+	previousPropTypesSource?: Map<string, string>;
+
+	/**
+	 * Given the `prop`, the `previous` source of the validator and the `generated` source:
+	 * What source should be injected? `previous` is `undefined` if the validator
+	 * didn't exist before
+	 * @default Uses `generated` source
+	 */
+	reconcilePropTypes?(
+		proptype: t.PropTypeNode,
+		previous: string | undefined,
+		generated: string
+	): string;
+
+	/**
 	 * Control which PropTypes are included in the final result
 	 * @param proptype The current PropType about to be converted to text
 	 */
@@ -46,6 +63,8 @@ export function generate(node: t.Node | t.PropTypeNode[], options: GenerateOptio
 		sortProptypes = true,
 		importedName = 'PropTypes',
 		includeJSDoc = true,
+		previousPropTypesSource = new Map<string, string>(),
+		reconcilePropTypes = (_prop: t.PropTypeNode, _previous: string, generated: string) => generated,
 		shouldInclude,
 	} = options;
 
@@ -118,9 +137,13 @@ export function generate(node: t.Node | t.PropTypeNode[], options: GenerateOptio
 			isOptional = true;
 		}
 
-		return `${jsDoc(node)}"${node.name}": ${generate(propType, options)}${
-			isOptional ? '' : '.isRequired'
-		},`;
+		const validatorSource = reconcilePropTypes(
+			node,
+			previousPropTypesSource.get(node.name),
+			`${generate(propType, options)}${isOptional ? '' : '.isRequired'}`
+		);
+
+		return `${jsDoc(node)}"${node.name}": ${validatorSource},`;
 	}
 
 	if (t.isInterfaceNode(node)) {

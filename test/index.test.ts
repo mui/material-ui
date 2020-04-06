@@ -55,7 +55,7 @@ for (const testCase of testCases) {
 		let inputSource = null;
 		if (testCase.endsWith('.d.ts')) {
 			try {
-				inputSource = fs.readFileSync(inputJS, { encoding: 'utf8' });
+				inputSource = fs.readFileSync(inputJS, 'utf8');
 			} catch (error) {}
 		} else {
 			inputSource = ttp.ts.transpileModule(fs.readFileSync(testCase, 'utf8'), {
