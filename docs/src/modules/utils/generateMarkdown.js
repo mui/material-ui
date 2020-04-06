@@ -63,10 +63,6 @@ function getChained(type) {
   return false;
 }
 
-function styleNameError(reactAPIName) {
-  throw new Error(`Missing styles name on ${reactAPIName} component`);
-}
-
 function escapeCell(value) {
   // As the pipe is use for the table structure
   return value.replace(/</g, '&lt;').replace(/`&lt;/g, '`<').replace(/\|/g, '\\|');
@@ -263,7 +259,7 @@ function generateName(reactAPI) {
   }
 
   if (!reactAPI.styles.name) {
-    styleNameError(reactAPI.name);
+    throw new Error(`Missing styles name on ${reactAPI.name} component`);
   }
 
   return `## Component name
@@ -363,7 +359,7 @@ function generateClasses(reactAPI) {
   }
 
   if (!reactAPI.styles.name) {
-    styleNameError(reactAPI.name);
+    throw new Error(`Missing styles name on ${reactAPI.name} component`);
   }
 
   let text = '';
