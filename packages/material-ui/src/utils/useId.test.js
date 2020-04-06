@@ -17,14 +17,20 @@ describe('useId', () => {
   const render = createClientRender();
 
   it('returns the provided ID', () => {
-    const { getByText } = render(<TestComponent id="some-id" />);
+    const { getByText, setProps } = render(<TestComponent id="some-id" />);
 
     expect(getByText('some-id')).to.not.be.null;
+
+    setProps({ id: 'another-id' });
+    expect(getByText('another-id')).to.not.be.null;
   });
 
   it("generates an ID if one isn't provided", () => {
-    const { getByText } = render(<TestComponent />);
+    const { getByText, setProps } = render(<TestComponent />);
 
     expect(getByText(/^mui-[0-9]+$/)).to.not.be.null;
+
+    setProps({ id: 'another-id' });
+    expect(getByText('another-id')).to.not.be.null;
   });
 });
