@@ -1,6 +1,6 @@
 {
 	"name": "typescript-to-proptypes",
-	"version": "1.4.2",
+	"version": "1.5.0",
 	"description": "Generate proptypes from typescript declarations",
 	"main": "dist/index.js",
 	"files": [

@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.0](https://github.com/merceyz/typescript-to-proptypes/compare/v1.4.2...v1.5.0) (2020-04-06)
+
+### Features
+
+- **injector:** add reconcilePropTypes ([#10](https://github.com/merceyz/typescript-to-proptypes/issues/10)) ([7b0bff9](https://github.com/merceyz/typescript-to-proptypes/commit/7b0bff9666d1beb1bde445e92fbb702cf1fb3d89))
+- add `filenames` to component and proptype nodes ([#9](https://github.com/merceyz/typescript-to-proptypes/issues/9)) ([ce9a700](https://github.com/merceyz/typescript-to-proptypes/commit/ce9a7002c7fda27965b50e0b1af3ecef540a90e5))
+- **injector:** add `component` to `shouldInclude` ([#8](https://github.com/merceyz/typescript-to-proptypes/issues/8)) ([18a7fce](https://github.com/merceyz/typescript-to-proptypes/commit/18a7fcee1b3f7d64541fb0f9bd1de72e0ea0db5b))
+- **injector:** allow providing babel options ([2ab6f43](https://github.com/merceyz/typescript-to-proptypes/commit/2ab6f43ef4b785d20dd6f951b2f4b928a5521b53))
+
+### Bug Fixes
+
+- check nodeType for dom elements ([#13](https://github.com/merceyz/typescript-to-proptypes/issues/13)) ([fd028e6](https://github.com/merceyz/typescript-to-proptypes/commit/fd028e639bb28383d6e4f925368b6e2afacdbf23))
+- replace existing propTypes when removeExistingPropTypes ([#15](https://github.com/merceyz/typescript-to-proptypes/issues/15)) ([3166104](https://github.com/merceyz/typescript-to-proptypes/commit/3166104889d4f58fc22f85800664d2bb1fce6aff))
+- **injector:** always call injectPropTypes to allow shouldInclude to run ([277258d](https://github.com/merceyz/typescript-to-proptypes/commit/277258ddc73c3da816aba6fccb739c69dfe8e83a))
+- handle all props getting ignored by shouldInclude ([b69112e](https://github.com/merceyz/typescript-to-proptypes/commit/b69112e1011f089b6d5cb60f88ce75b6394252be))
+- **parser:** export ParserOptions ([3a5d55e](https://github.com/merceyz/typescript-to-proptypes/commit/3a5d55e68a723208a4b76e79d4bafe92ddf4f85a))
+
 ### [1.4.2](https://github.com/merceyz/typescript-to-proptypes/compare/v1.4.1...v1.4.2) (2020-03-27)
 
 ### Bug Fixes
