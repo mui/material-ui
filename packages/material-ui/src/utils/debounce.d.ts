@@ -4,5 +4,5 @@ export interface Cancelable {
 
 export default function debounce<T extends (...args: any[]) => any>(
   func: T,
-  wait?: number,
+  wait?: number
 ): T & Cancelable;

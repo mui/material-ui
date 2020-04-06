@@ -3,5 +3,5 @@ export default function unsupportedProp(
   propName: string,
   componentName: string,
   location: string,
-  propFullName: string,
+  propFullName: string
 ): Error | null;

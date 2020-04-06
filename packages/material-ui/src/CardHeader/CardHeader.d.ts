@@ -50,7 +50,7 @@ export interface OverridableCardHeader extends OverridableComponent<CardHeaderTy
       Props,
       TitleTypographyComponent,
       SubheaderTypographyComponent
-    >,
+    >
   ): JSX.Element;
 }
 

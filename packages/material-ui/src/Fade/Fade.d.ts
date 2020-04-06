@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Omit } from '..';
 import { TransitionProps } from '../transitions/transition';
 
 export interface FadeProps extends Omit<TransitionProps, 'children'> {

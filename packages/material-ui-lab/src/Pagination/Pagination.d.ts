@@ -22,7 +22,7 @@ export interface PaginationProps
   getItemAriaLabel?: (
     type: 'page' | 'first' | 'last' | 'next' | 'previous',
     page: number,
-    selected: boolean,
+    selected: boolean
   ) => string;
   /**
    * Render the item.
