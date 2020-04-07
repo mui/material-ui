@@ -7,7 +7,7 @@ export interface StepContentProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, StepContentClasskey> {
   active?: boolean;
   alternativeLabel?: boolean;
-  children: React.ReactNode;
+  children?: React.ReactNode;
   completed?: boolean;
   last?: boolean;
   optional?: boolean;

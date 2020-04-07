@@ -8,7 +8,7 @@ export interface StepLabelProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, StepLabelClasskey> {
   active?: boolean;
   alternativeLabel?: boolean;
-  children: React.ReactNode;
+  children?: React.ReactNode;
   completed?: boolean;
   disabled?: boolean;
   error?: boolean;
