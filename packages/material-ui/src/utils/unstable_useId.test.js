@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { createClientRender } from 'test/utils/createClientRender';
-import useId from './useId';
+import useId from './unstable_useId';
 
 const TestComponent = ({ id: idProp }) => {
   const id = useId(idProp);
@@ -13,7 +13,7 @@ TestComponent.propTypes = {
   id: PropTypes.string,
 };
 
-describe('useId', () => {
+describe('unstable_useId', () => {
   const render = createClientRender();
 
   it('returns the provided ID', () => {

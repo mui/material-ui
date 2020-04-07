@@ -9,7 +9,7 @@ import capitalize from '../utils/capitalize';
 import Grow from '../Grow';
 import Popper from '../Popper';
 import useForkRef from '../utils/useForkRef';
-import useId from '../utils/useId';
+import useId from '../utils/unstable_useId';
 import setRef from '../utils/setRef';
 import useIsFocusVisible from '../utils/useIsFocusVisible';
 import useControlled from '../utils/useControlled';

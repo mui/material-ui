@@ -3,7 +3,12 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes } from '@material-ui/utils';
 import { useTheme, withStyles } from '@material-ui/core/styles';
-import { capitalize, useForkRef, useId, useIsFocusVisible } from '@material-ui/core/utils';
+import {
+  capitalize,
+  useForkRef,
+  useIsFocusVisible,
+  unstable_useId as useId,
+} from '@material-ui/core/utils';
 import Star from '../internal/svg-icons/Star';
 
 function clamp(value, min, max) {
