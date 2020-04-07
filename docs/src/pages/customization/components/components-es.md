@@ -1,8 +1,8 @@
 # Personalizando componentes
 
-<p class="description">Usted puede personalizar fácilmente la apariencia de un Material-componente de interfaz de usuario.</p>
+<p class="description">Los componentes Material-UI pueden ser personalizados de forma sencilla. </p>
 
-As components can be used in different contexts, there are several approaches to this. Going from the narrowest use-case to the broadest, these are:
+Como los componentes pueden ser utilizados en diferentes contextos, hay varios enfoques acerca de esto. Yendo desde el caso de uso más especifico hasta aquellos más amplios, tenemos:
 
 1. [Variación específica para una situación única](#1-specific-variation-for-a-one-time-situation)
 2. [Variación dinámica para una situación única](#2-dynamic-variation-for-a-one-time-situation)
@@ -14,11 +14,11 @@ As components can be used in different contexts, there are several approaches to
 
 Tal vez necesitara cambiar el estilo de un componente para una implementación especifica, para lo cual tendrá estas soluciones a su disposición:
 
-### Overriding styles with class names
+### Sobre-escribir estilos con class names
 
-The first way to override the style of a component is to use **class names**. Every component provides a `className` property which is always applied to the root element.
+La forma mas natural de sobre-escribir el estilo de un componente es usando **class names**. Cada componente proporciona la propiedad `className` la cual es siempre aplicada al elemento raíz. 
 
-This example uses the [`withStyles()`](/styles/basics/#higher-order-component-api) higher-order component to inject custom styles into the DOM, and to pass the class name to the `ClassNames` component via its `classes` property. You can choose [any other styling solution](/guides/interoperability/), or even plain CSS to create the styles, but be sure to consider the [CSS injection order](/styles/advanced/#css-injection-order), as the CSS injected into the DOM by Material-UI to style a component has the highest specificity possible, since the `<link>` is injected at the bottom of the `<head />` to ensure the components always render correctly.
+El siguiente ejemplo usa [`withStyles`](/styles/basics/#higher-order-component-api) como un componente HOC,(high-order component), para inyectar estilos customizados en el DOM, y para pasar el class name al componente `ClassNames` mediante su propiedad `classes`. You can choose [any other styling solution](/guides/interoperability/), or even plain CSS to create the styles, but be sure to consider the [CSS injection order](/styles/advanced/#css-injection-order), as the CSS injected into the DOM by Material-UI to style a component has the highest specificity possible, since the `<link>` is injected at the bottom of the `<head />` to ensure the components always render correctly.
 
 {{"demo": "pages/customization/components/ClassNames.js"}}
 

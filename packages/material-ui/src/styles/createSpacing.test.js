@@ -38,6 +38,14 @@ describe('createSpacing', () => {
     expect(spacing(1, 2)).to.equal('0.25rem 0.5rem');
   });
 
+  it('should support string arguments', () => {
+    let spacing;
+    spacing = createSpacing();
+    expect(spacing(1, 'auto')).to.equal('8px auto');
+    spacing = createSpacing((factor) => `${0.25 * factor}rem`);
+    expect(spacing(1, 'auto', 2, 3)).to.equal('0.25rem auto 0.5rem 0.75rem');
+  });
+
   describe('warnings', () => {
     beforeEach(() => {
       consoleErrorMock.spy();

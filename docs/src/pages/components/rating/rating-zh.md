@@ -7,11 +7,11 @@ components: Rating
 
 <p class="description">评分可以展现用户对某一产品的大致态度和使用体验。 用户也可以为他们购买过的产品打分。</p>
 
-## Simple ratings 简单评分
+## 简单评分
 
 {{"demo": "pages/components/rating/SimpleRating.js"}}
 
-## Customized ratings 自定义评分
+## 自定义评分
 
 这是一些自定义样式开关的例子 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
 

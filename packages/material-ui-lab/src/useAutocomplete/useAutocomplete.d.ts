@@ -15,7 +15,7 @@ export interface FilterOptionsState<T> {
 }
 
 export function createFilterOptions<T>(
-  config?: CreateFilterOptionsConfig<T>,
+  config?: CreateFilterOptionsConfig<T>
 ): (options: T[], state: FilterOptionsState<T>) => T[];
 
 export interface UseAutocompleteCommonProps<T> {
@@ -143,7 +143,7 @@ export interface UseAutocompleteCommonProps<T> {
   onInputChange?: (
     event: React.ChangeEvent<{}>,
     value: string,
-    reason: AutocompleteInputChangeReason,
+    reason: AutocompleteInputChangeReason
   ) => void;
   /**
    * Callback fired when the popup requests to be opened.
@@ -210,7 +210,7 @@ export interface UseAutocompleteMultipleProps<T> extends UseAutocompleteCommonPr
     event: React.ChangeEvent<{}>,
     value: T[],
     reason: AutocompleteChangeReason,
-    details?: AutocompleteChangeDetails<T>,
+    details?: AutocompleteChangeDetails<T>
   ) => void;
 }
 
@@ -241,7 +241,7 @@ export interface UseAutocompleteSingleProps<T> extends UseAutocompleteCommonProp
     event: React.ChangeEvent<{}>,
     value: T | null,
     reason: AutocompleteChangeReason,
-    details?: AutocompleteChangeDetails<T>,
+    details?: AutocompleteChangeDetails<T>
   ) => void;
 }
 
@@ -250,7 +250,7 @@ export type UseAutocompleteProps<T> =
   | UseAutocompleteMultipleProps<T>;
 
 export default function useAutocomplete<T>(
-  props: UseAutocompleteProps<T>,
+  props: UseAutocompleteProps<T>
 ): {
   getRootProps: () => {};
   getInputProps: () => {};

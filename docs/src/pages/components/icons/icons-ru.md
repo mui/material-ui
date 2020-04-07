@@ -29,7 +29,7 @@ npm install @material-ui/icons
 yarn add @material-ui/icons
 ```
 
-These components use the Material-UI SvgIcon component to render the SVG path for each icon, and so a have a peer-dependency on the next release of Material-UI.
+These components use the Material-UI SvgIcon component to render the SVG path for each icon, and so they have a peer-dependency on the next release of Material-UI.
 
 If you are not already using Material-UI in your project, you can add it with:
 
@@ -120,7 +120,7 @@ import StarIcon from './star.svg';
 
 #### Material Design (recommended)
 
-Material Design has standardized over [1,100 official icons](#material-icons).
+Material Design имеет более [1,100 стандартизиваных официальных иконок](#material-icons).
 
 #### MDI
 

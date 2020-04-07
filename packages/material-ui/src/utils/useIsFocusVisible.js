@@ -131,7 +131,7 @@ function handleBlurVisible() {
   }, 100);
 }
 
-export function useIsFocusVisible() {
+export default function useIsFocusVisible() {
   const ref = React.useCallback((instance) => {
     const node = ReactDOM.findDOMNode(instance);
     if (node != null) {

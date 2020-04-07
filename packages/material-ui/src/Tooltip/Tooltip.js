@@ -10,7 +10,7 @@ import Grow from '../Grow';
 import Popper from '../Popper';
 import useForkRef from '../utils/useForkRef';
 import setRef from '../utils/setRef';
-import { useIsFocusVisible } from '../utils/focusVisible';
+import useIsFocusVisible from '../utils/useIsFocusVisible';
 import useControlled from '../utils/useControlled';
 import useTheme from '../styles/useTheme';
 
@@ -215,6 +215,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     controlled: openProp,
     default: false,
     name: 'Tooltip',
+    state: 'open',
   });
 
   let open = openState;
@@ -445,6 +446,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     ...other,
     ...children.props,
     className: clsx(other.className, children.props.className),
+    ref: handleRef,
   };
 
   const interactiveWrapperListeners = {};
@@ -503,7 +505,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
 
   return (
     <React.Fragment>
-      {React.cloneElement(children, { ref: handleRef, ...childrenProps })}
+      {React.cloneElement(children, childrenProps)}
       <Popper
         className={clsx(classes.popper, {
           [classes.popperInteractive]: interactive,

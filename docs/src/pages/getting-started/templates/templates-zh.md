@@ -1,23 +1,23 @@
 ---
-title: 9+ Free React Templates
+title: 超过 9 个免费的 React 模板
 ---
 
-# React 模版
+# React 模板
 
-<p class="description">选择一个免费的 react 模版来帮助你建立 app</p>
+<p class="description">你可以通过一系列的免费 React 模板开始建造你的程序。这个集合包含了 react dashboard， react admin，当然还有更多。</p>
 
-模板可以与 [示例应用程序](https://github. com/mui-org/material-ui/tree/master/examples) 组合成一个完整的启动程序。
+这个模板可以与任何一个[示例应用程序](https://github. com/mui-org/material-ui/tree/master/examples)组合，来构造一个完整的启动程序。
 
-布局的每个部分通过注释或使用单独的文件来明确定义，这使得提取页面的某些部分（例如「hero 单元」或页脚）在其他页面中复用变得很简单。 对于包含多个部分的示例，源代码链接的 README 中有一个表，它描述了每个文件的用途。
+通过注释或使用单独的文件，我们明确地定义了布局的每个部分，这样一来提取页面的某些部分（例如 “hero unit” 或页脚）而在其他页面中复用变得很简单。 对于包含多个部分的示例，源代码链接的 README 的一个表格则描述了每个文件的用途。
 
 {{"demo": "pages/getting-started/templates/Templates.js", "hideToolbar": true, "bg": true}}
 
-如果您在使用这些示例时进行了更改或增强以改善开发人员的体验，或者您想提供其他示例，请考虑在GitHub</a>上创建 pull 请求。</p> 
+使用这些示例时，若你有改善开发人员的体验的更改或增强意见，或者你也想贡献一下其他的示例，你可以在 GitHub 上创建一个 [pull request](https://github.com/mui-org/material-ui/pulls)。
 
-So far we have demos for a dashboard, sign in page, sign up page, blog page, checkout flow, album page, pricing page, and sticky footer page.
+目前为止，我们提供了关于主控面板（dashboard），登录页面（sign in page），注册页面（sign up page），博客（blog page），付款流程（checkout flow），专辑页面（album page），价格页面（pricing page）以及固定页脚（sticky footer page）的演示。
 
 ## 高级版主题
 
-寻找更多？ You can find complete templates & themes in the <a href="https://material-ui.com/store/" data-ga-event-category="premium-themes" data-ga-event-action="click" data-ga-event-label="templates-link">premium template section</a>.
+你还在寻找更多主题吗？ You can find complete templates & themes in the <a href="https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=templates-store" data-ga-event-category="store" data-ga-event-action="click" data-ga-event-label="templates">premium template section</a>.
 
-<a href="https://material-ui.com/store/" data-ga-event-category="premium-themes" data-ga-event-action="click" data-ga-event-label="templates-image"><img src="/static/images/themes-light.jpg" alt="react templates" /></a>
+<a href="https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=templates-store" data-ga-event-category="store" data-ga-event-action="click" data-ga-event-label="templates"><img src="/static/images/themes-light.jpg" alt="react templates" /></a>

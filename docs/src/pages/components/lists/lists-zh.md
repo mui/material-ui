@@ -9,7 +9,7 @@ components: Collapse, Divider, List, ListItem, ListItemAvatar, ListItemIcon, Lis
 
 [列表](https://material.io/design/components/lists.html) 是一组连续的文本或图像。 它们由包含主要和补充操作的项子集组成，而这些操作由图标和文本表示。
 
-## Simple List（简易列表）
+## 简易列表
 
 {{"demo": "pages/components/lists/SimpleList.js", "bg": true}}
 
@@ -29,11 +29,11 @@ function ListItemLink(props) {
 
 你可以从这里查看 [React Router与文档此部分结合使用的相关样例](/guides/composition/#react-router)。
 
-## Nested List（嵌套列表）
+## 嵌套列表
 
 {{"demo": "pages/components/lists/NestedList.js", "bg": true}}
 
-## Folder List（文件夹列表）
+## 文件夹列表
 
 {{"demo": "pages/components/lists/FolderList.js", "bg": true}}
 
@@ -43,7 +43,7 @@ function ListItemLink(props) {
 
 {{"demo": "pages/components/lists/InteractiveList.js", "bg": true}}
 
-## 可选的 ListItem
+## 可选的 
 
 {{"demo": "pages/components/lists/SelectedListItem.js", "bg": true}}
 
@@ -55,7 +55,7 @@ function ListItemLink(props) {
 
 ## 列表控件
 
-### Checkbox（选择框）
+### 选择框
 
 一个选择框既可以是主操作，又可以是辅助操作。
 
@@ -93,6 +93,6 @@ This feature relies on CSS sticky positioning. Unfortunately it's [not implement
 
 The use of [react-window](https://github.com/bvaughn/react-window) when possible is encouraged. 如果这个库不包括你的用例，你应该考虑使用 [react-virtualized](https://github.com/bvaughn/react-virtualized)，然后使用 [react-virtuoso](https://github.com/petyosi/react-virtuoso)等替代品。
 
-## Customization 个性化
+## 个性化
 
 👑如果您还在寻找灵感，您可以看看 [MUI Treasury 特别定制的一些例子](https://mui-treasury.com/components/menu-list)。

@@ -4,7 +4,11 @@ export interface ClickAwayListenerProps {
   /**
    * The wrapped element.
    */
-  children: React.ReactElement<any, any>;
+  children: React.ReactNode;
+  /**
+   * The mouse event to listen to. You can disable the listener by providing `false`.
+   */
+  disableReactTree?: boolean;
   /**
    * The mouse event to listen to. You can disable the listener by providing `false`.
    */

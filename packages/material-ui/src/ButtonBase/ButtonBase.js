@@ -6,8 +6,7 @@ import { elementTypeAcceptingRef, refType } from '@material-ui/utils';
 import useForkRef from '../utils/useForkRef';
 import useEventCallback from '../utils/useEventCallback';
 import withStyles from '../styles/withStyles';
-import NoSsr from '../NoSsr';
-import { useIsFocusVisible } from '../utils/focusVisible';
+import useIsFocusVisible from '../utils/useIsFocusVisible';
 import TouchRipple from './TouchRipple';
 
 export const styles = {
@@ -224,6 +223,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
       }
     }
   });
+
   const handleKeyUp = useEventCallback((event) => {
     // calling preventDefault in keyUp on a <button> will not dispatch a click event if Space is pressed
     // https://codesandbox.io/s/button-keyup-preventdefault-dn7f0
@@ -277,6 +277,28 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
   const handleOwnRef = useForkRef(focusVisibleRef, buttonRef);
   const handleRef = useForkRef(handleUserRef, handleOwnRef);
 
+  const [mountedState, setMountedState] = React.useState(false);
+
+  React.useEffect(() => {
+    setMountedState(true);
+  }, []);
+
+  const enableTouchRipple = mountedState && !disableRipple && !disabled;
+
+  if (process.env.NODE_ENV !== 'production') {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    React.useEffect(() => {
+      if (enableTouchRipple && !rippleRef.current) {
+        console.error(
+          [
+            'Material-UI: the `component` prop provided to ButtonBase is invalid.',
+            'Please make sure the children prop is rendered in this custom component.',
+          ].join('\n'),
+        );
+      }
+    }, [enableTouchRipple]);
+  }
+
   return (
     <ComponentProp
       className={clsx(
@@ -306,12 +328,10 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
       {...other}
     >
       {children}
-      <NoSsr>
-        {!disableRipple && !disabled ? (
-          /* TouchRipple is only needed client-side, x2 boost on the server. */
-          <TouchRipple ref={rippleRef} center={centerRipple} {...TouchRippleProps} />
-        ) : null}
-      </NoSsr>
+      {enableTouchRipple ? (
+        /* TouchRipple is only needed client-side, x2 boost on the server. */
+        <TouchRipple ref={rippleRef} center={centerRipple} {...TouchRippleProps} />
+      ) : null}
     </ComponentProp>
   );
 });

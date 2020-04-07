@@ -356,7 +356,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
   const defaultRenderGroup = (params) => (
     <li key={params.key}>
       <ListSubheader className={classes.groupLabel} component="div">
-        {params.key}
+        {params.group}
       </ListSubheader>
       <ul className={classes.groupUl}>{params.children}</ul>
     </li>
@@ -475,6 +475,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
                   if (groupBy) {
                     return renderGroup({
                       key: option.key,
+                      group: option.group,
                       children: option.options.map((option2, index2) =>
                         renderListOption(option2, option.index + index2),
                       ),

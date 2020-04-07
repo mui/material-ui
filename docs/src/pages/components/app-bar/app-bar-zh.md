@@ -1,15 +1,15 @@
 ---
-title: React App Bar（应用栏）组件
+title: React App Bar 应用栏组件
 components: AppBar, Toolbar, Menu
 ---
 
 # App Bar 应用栏
 
-<p class="description">应用栏用来显示与当前屏幕相关的信息和操作。</p>
+<p class="description">应用栏组件展示了与当前屏幕息息相关的信息和操作。</p>
 
-[顶部应用栏](https://material.io/design/components/app-bars-top.html) 提供与当前屏幕相关的内容和操作。 它用于展示品牌、屏幕标题、导航和操作选项。
+而[顶部应用栏](https://material.io/design/components/app-bars-top.html)则提供与当前屏幕相关的内容和操作。 它可用于展示品牌、屏幕标题、导航和操作选项。
 
-它可以转换为上下文相关的操作栏或直接用作导航栏。
+它既可以用作于转换为上下文相关的操作栏，又可以直接充当导航栏。
 
 ## 简单的应用栏
 
@@ -37,7 +37,7 @@ components: AppBar, Toolbar, Menu
 
 ## 突出模式
 
-一个突出模式的应用栏。
+一个突出的应用栏。
 
 {{"demo": "pages/components/app-bar/ProminentAppBar.js", "bg": true}}
 
@@ -45,12 +45,12 @@ components: AppBar, Toolbar, Menu
 
 {{"demo": "pages/components/app-bar/BottomAppBar.js", "iframe": true, "maxWidth": 400}}
 
-## 固定放置
+## 固定的位置
 
-当您固定放置应用栏时，元素的尺寸不会影响页面的其他部分。 这可能导致您的部分内容被挡在应用程序栏后面而看不见。 下面是3种可能的解决方案：
+当渲染一个固定位置的应用栏时，元素的尺寸不会影响页面的其余内容。 这可能导致部分内容会被挡在应用程序栏后面，而无法可见。 下面是3种可能的解决方案：
 
-1. 您可以使用 `position =“ sticky”` 代替 fixed。 ⚠️ IE 11不支持sticky。
-2. 您可以渲染第二个 `<Toolbar />` 组件：
+1. 使用 `position =“ sticky”` 代替 fixed。 ⚠️ IE 11不支持 sticky。
+2. 可以渲染第二个 `<Toolbar />` 组件：
 
 ```jsx
 function App() {
@@ -65,7 +65,7 @@ function App() {
 }
 ```
 
-3. 您可以使用 `theme.mixins.toolbar` CSS：
+3. 也可以用 `theme.mixins.toolbar` 的 CSS：
 
 ```jsx
 const useStyles = makeStyles(theme => ({
@@ -85,19 +85,19 @@ function App() {
 };
 ```
 
-## 滚动
+## Scrolling 滚动
 
-您可以使用 `useScrollTrigger()` 挂钩来回应用户的滚动操作。
+您可以使用 `useScrollTrigger()` 这个 hook 来相应用户触发的滚动操作。
 
 ### 隐藏应用栏
 
-当向下滚动时，应用栏将会隐藏，这样一来会留有更多的空间进行阅读。
+向下滚动会隐藏应用栏，这样一来会留有更多的空间进行阅读。
 
 {{"demo": "pages/components/app-bar/HideAppBar.js", "iframe": true}}
 
 ### 变高的应用栏
 
-The app bar elevates on scroll to communicate that the user is not at the top of the page.
+应用栏会在滚动时提升，以表明用户还未到页面的顶部。
 
 {{"demo": "pages/components/app-bar/ElevateAppBar.js", "iframe": true}}
 
@@ -119,7 +119,7 @@ The app bar elevates on scroll to communicate that the user is not at the top of
 
 #### 返回结果
 
-`trigger`: Does the scroll position match the criteria?
+`trigger`: 此滚动的位置符合要求吗？
 
 #### 例子
 

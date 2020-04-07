@@ -1,5 +1,55 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.9.9
+###### *Apr 4, 2020*
+
+Big thanks to the 20 contributors who made this release possible.
+
+### `@material-ui/core@v4.9.9`
+
+- [Card] Fix TypeScript not recognizing "component" prop (#20179) @rart
+- [Chip] Fix input integration (#20368) @chaudharykiran
+- [Drawer] Fix clipped scroll overflow  (#20396) @maksimgm
+- [ExpansionPanel] Use theme.spacing in summary (#20344) @eps1lon
+- [MenuItem] Fix prop ListItemClasses (#20377) @netochaves
+- [Select] Fix onChange fired with current value (#20361) @ksrb
+- [Select] Fix validator.w3.org error (#20356) @mfsjr
+- [Slide] Fix `direction` as optional in TypeScript (#20338) @maksimgm
+- [styles] Fix missing export of ThemeProviderProps (#20390) @TomekStaszkiewicz
+- [TextField] Fix line-height and height that cut text (#20363) @fyodorovandrei
+
+### `@material-ui/lab@v4.0.0-alpha.48`
+
+- [Autocomplete] Fix blurOnSelect consistency for keyboard (#20314) @alexbarkin
+- [Autocomplete] Fix multiselect regression (#20315) @oliviertassinari
+- [Autocomplete] Go back to the initial groupBy tradeoff (#20376) @oliviertassinari
+- [TreeView] Allow TreeItem to have conditional child (#20238) @tonyhallett
+- [TreeView] Correct visibleNodes on re-render (#20157) @tonyhallett
+- [TreeView] Fix move focus when pressing a modifier key + letter (#20309) @m4theushw
+
+### Docs
+
+- [examples] Move Copyright into its own component (#20383) @HaNdTriX
+- [blog] Introducing Material-UI for Sketch (#20295) @oliviertassinari
+- [docs] Batch small changes (#20312) @oliviertassinari
+- [docs] Explain mini-theme example (#20339) @maksimgm
+- [docs] Fix Tidelift UTM parameters (#20348) @phated
+- [docs] Fix grammer: a -> they (#20336) @nainardev
+- [docs] Fix masked text field bug (#20397) @mattcorner
+- [docs] Improve _app usage in nextjs examples (#20381) @HaNdTriX
+- [docs] Improve analytics (#20337) @oliviertassinari
+- [docs] Sync translations (#20316) @oliviertassinari
+- [docs] Next.js: Remove unused config files (#20382) @HaNdTriX
+
+### Core
+
+- [core] Add TextField `focused` prop (#20276) @dmtrKovalenko
+- [core] Add missing test case for restricted-path-imports (#20350) @NMinhNguyen
+- [core] Batch of small changes (#20349) @oliviertassinari
+- [core] Export core utils modules from barrel (#20354) @NMinhNguyen
+- [core] Improve out-of-date PR story (#20341) @eps1lon
+- [core] Remove createSvgIcon duplication (#20308) @oliviertassinari
+
 ## 4.9.8
 ###### *Mar 28, 2020*
 
@@ -140,6 +190,12 @@ Here are some highlights ✨:
 
 ### `@material-ui/lab@v4.0.0-alpha.46`
 
+#### Breaking Changes
+
+- [Autocomplete] Improvement popup open logic (#19901) @haseebdaone
+
+#### Changes
+
 - [Autocomplete] Add more details in the onChange event (#19959) @akharkhonov
 - [Autocomplete] Add scrollbar support in IE11 (#19969) @SergeyUstinovich
 - [Autocomplete] Better synchronize the highlight with the value (#19923) @captain-yossarian
@@ -147,7 +203,6 @@ Here are some highlights ✨:
 - [Autocomplete] Fix clearOnEscape + multiple combination (#20065) @chaudharykiran
 - [Autocomplete] Fix GitHub's demo behavior (#19928) @hasanozacar
 - [Autocomplete] Fix typo in prop description  (#20086) @vince1995
-- [Autocomplete] Improvement popup open logic (#19901) @haseebdaone
 - [Autocomplete] Make categories more obvious (#20142) @embeddedt
 - [Autocomplete] Simplify error for wrong getOptionLabel (#20103) @oliviertassinari
 - [Autocomplete] Update onChange API @oliviertassinari
@@ -503,7 +558,7 @@ Here are some highlights ✨:
 
 ### `@material-ui/types@v5.0.0`
 
-#### Breaking change
+#### Breaking Changes
 
 - [types] Overload function signature instead of conditional (#19320) @eps1lon
   Or, And, IsAny and IsEmptyInterface have been removed.
@@ -634,7 +689,7 @@ Big thanks to the 22 contributors who made this release possible.
 
 ### `@material-ui/lab@v4.0.0-alpha.38`
 
-#### Breaking changes
+#### Breaking Changes
 
 - [Skeleton] Add wave animation support (#19014) @oliviertassinari
 
@@ -973,7 +1028,7 @@ Here are some highlights ✨:
 
 ### `@material-ui/lab@v4.0.0-alpha.32`
 
-#### Breaking changes
+#### Breaking Changes
 
 - [Autocomplete] Fix Multiple tag delete action (#18153) @tkanzakic
 
@@ -2752,7 +2807,7 @@ You will learn more about v4 in the final release blog post and our plans for th
 
 ### `@material-ui/core@v4.0.0-beta.0`
 
-#### Breaking changes
+#### Breaking Changes
 
 - [styles] Generate global class names (#15140) @oliviertassinari
   Remove the dangerouslyUseGlobalCSS options (makes it the default behavior).
@@ -2887,7 +2942,7 @@ We hope 2-3 weeks of beta will be enough. We plan on releasing v4 stable in May.
 
 ### `@material-ui/core@v4.0.0-alpha.8`
 
-#### Breaking change
+#### Breaking Changes
 
 - [Paper] Reduce the default elevation (#15243) @oliviertassinari
   Change the default Paper elevation to match the Card and the Expansion Panel:
@@ -3037,7 +3092,7 @@ Here are some highlights ✨:
 
 ### `@material-ui/core@v4.0.0-alpha.7`
 
-#### Breaking changes
+#### Breaking Changes
 
 - [Switch][Radio][Checkbox] Improve specification compliance (#15097) @oliviertassinari
 
@@ -3140,7 +3195,7 @@ Here are some highlights ✨:
 
 ### `@material-ui/core@v4.0.0-alpha.6`
 
-#### Breaking changes
+#### Breaking Changes
 
 - [Typography] Better defaults (#15100) @oliviertassinari
 
@@ -3252,7 +3307,7 @@ Here are some highlights ✨:
 
 ### `@material-ui/core@v4.0.0-alpha.5`
 
-#### Breaking changes
+#### Breaking Changes
 
 - [TextField] Prevent fullwidth textfield expanding the screen (#14988) @FMcIntosh
 
@@ -3330,7 +3385,7 @@ Here are some highlights ✨:
 
 ### `@material-ui/core@v4.0.0-alpha.4`
 
-#### Breaking changess
+#### Breaking Changes
 
 - [ButtonBase] Require host or ref forwarding components (#13664) @eps1lon
 - [SvgIcon] Rename nativeColor -> htmlColor (#14863) @oliviertassinari
@@ -3422,7 +3477,7 @@ Here are some highlights ✨:
 
 ### `@material-ui/core@v4.0.0-alpha.3`
 
-#### Breaking changes
+#### Breaking Changes
 
 - [useMediaQuery] Remove unstable prefix (#14593)
 
@@ -3455,7 +3510,7 @@ Here are some highlights ✨:
 
 ### `@material-ui/styles@v4.0.0-alpha.3`
 
-#### Breaking changes
+#### Breaking Changes
 
 - [styles] Remove the old styles modules (#14767) @oliviertassinari
   Isolation of the styling solution of the core components in a dedicated package.
@@ -3520,7 +3575,7 @@ Here are some highlights ✨:
 
 ### `@material-ui/core@v4.0.0-alpha.2`
 
-#### Breaking changes
+#### Breaking Changes
 
 - [Tabs] Simplify override (#14638) @oliviertassinari
 
@@ -3635,7 +3690,7 @@ Here are some highlights ✨:
 
 ### `@material-ui/core@v4.0.0-alpha.1`
 
-#### Breaking changes
+#### Breaking Changes
 
 - [Typography] Remove deprecated Typography variants (#14562) @joshwooding
 
@@ -3682,7 +3737,7 @@ The `TablePagination` component does no longer try to fix invalid (`page`, `coun
 
 ### `@material-ui/styles@v4.0.0-alpha.1`
 
-#### Breaking changes
+#### Breaking Changes
 
 - [styles] Change the withTheme API (#14565) @oliviertassinari
 
@@ -3750,7 +3805,7 @@ Here are some highlights ✨:
 
 ### `@material-ui/core@v4.0.0-alpha.0`
 
-#### Breaking changes
+#### Breaking Changes
 
 - [core] Increase React peer dependency to v16.8.0 (#14432) @oliviertassinari
 
@@ -3874,7 +3929,7 @@ Remove the deprecated button flat, raised and fab variants:
 
 ### `@material-ui/lab@v4.0.0-alpha.0`
 
-#### Breaking changes
+#### Breaking Changes
 
 - [Breadcrumbs] Move to the core (#14436) @oliviertassinari
 ```diff
@@ -5100,7 +5155,7 @@ It contains many bug fixes 🐛 and documentation improvements 📝.
 
 ### `@material-ui/lab@v3.0.0-alpha.18`
 
-#### Breaking change
+#### Breaking Changes
 
 - [Slider] Replace reversed with rtl support on horizontal sliders (#12972)
 
@@ -5303,7 +5358,7 @@ Here are some highlights ✨:
 
 ### `@material-ui/lab@v3.0.0-alpha.14`
 
-#### Breaking changes
+#### Breaking Changes
 
 - [ToggleButton] Fix ToggleButtonGroup exports (#12733) @mbrookes
 
@@ -10703,6 +10758,7 @@ For more details, you can have a look a the [next milestone](https://github.com/
 ###### *Sep 8, 2016*
 
 ##### Breaking Changes
+
 - [Badge] Swapped primary and accent colors (#4449)
 - [CircularProgress] The API has become more flexible and straightforward. `size` attribute now means the outer diameter in pixels. Line thickness is variable and should be defined via the `thickness` attribute. Default margins are eliminated. If you'd like to upgrade your existing app without changing the actual sizes of your `CircularProgress` components, here are the formulas:
 ```js
@@ -10871,6 +10927,7 @@ Thanks @vizath, @hhaida, @nathanmarks and @aahan96 for their effort.
 ###### *Jun 16, 2016*
 
 ##### Breaking Changes
+
 - [Avatar] Now uses `img` instead of `div` (#4365)
 - [DatePicker] `className` prop is now set on the root element instead of being passed down (#4250)
 - [Drawer] Changed muiTheme key name from navDrawer to drawer (#4198)
@@ -11033,6 +11090,7 @@ to ease your pain. checkout the
 [readme](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod/README.md).
 
 ##### Breaking Changes
+
 - [Core] Improve import path for published lib (#3921)
 - [Core] PascalCase component names, reorganise directory structure (#3749)
 - [Core] Remove default theme handling from components (#3820)
@@ -11120,6 +11178,7 @@ Although we discourage you to use this library like that.
 ###### *Mar 18, 2016*
 
 ##### Breaking Changes
+
 - [Core] if you used Material-UI from npm in CommonJS environment,
 you need to add `.default` to your requires (#3648):
 
@@ -11230,6 +11289,7 @@ Please note that `raw-themes` are deprecated with no warning! they will be remov
 from the code with the 0.16.0 release.
 
 ##### Breaking Changes
+
 - [Cleanup] Remove the deprecated API of `0.14.x`. (#3108)
 - [Styles] Removed all `getStyles` functions from the components (#3351)
 - [Core] Remove the `window-listenable` mixin (#3334)
@@ -11548,6 +11608,7 @@ Have a look at them as well.
 ###### *Dec 4, 2015*
 
 ##### Breaking Changes
+
 - [IconMenu] removed openDirection prop in favor of anchorOrigin and targetOrigin (#2149)
 
 ##### General
@@ -11654,6 +11715,7 @@ Have a look at them as well.
 ###### *Oct 21, 2015*
 
 ##### Breaking Changes
+
 - Material-UI for React 0.14.x
 
 #### Component Fixes / Enhancements
@@ -11724,6 +11786,7 @@ v0.12.4 should have really been v0.13.0 as it breaks compatibility with React 0.
 ###### *Sep 25, 2015*
 
 ##### Breaking Changes
+
 - Theming has been re-done so that material-ui components can be used without having to worry about passing a theme (all components implement a default theme) (#1662)
   - There's now a concept of `mui theme` and `raw theme`, `mui theme` is produced from `raw theme`
   - `ThemeManager` has been changed, no longer needs `new` in call
@@ -11754,6 +11817,7 @@ v0.12.4 should have really been v0.13.0 as it breaks compatibility with React 0.
 ###### *Aug 24, 2015*
 
 ##### Breaking Changes
+
 - The Table component is now composable. (#1199)
   - JSON objects to create the table and the table component will no longer generate the table for you.
     The docs site provides a complete example of how a table might look: http://material-ui.com/#/components/table.
@@ -11843,7 +11907,8 @@ v0.12.4 should have really been v0.13.0 as it breaks compatibility with React 0.
 ## 0.10.2
 ###### *Jul 29, 2015*
 
-##### Breaking Changes (Missed in the original release notes.)
+##### Breaking Changes
+
 - Changed `date-picker/index.js` to expose DatePicker and DatePickerDialog.
   Hence `require('material-ui/lib/date-picker')` no longer works. Use
   `require('material-ui/lib/date-picker/date-picker')` instead.
@@ -12107,6 +12172,7 @@ We've cleaned up some of our click/tap events. (#771) Upgrade should be straight
 ###### *May 24, 2015*
 
 ##### Breaking Changes
+
 - Refactored all CSS into Javascript (#30, #316)
   - All Material-UI components now have their styles defined inline. This solves
     many problems with CSS as mentions in [@vjeux's presentation](https://speakerdeck.com/vjeux/react-css-in-js)
@@ -12273,6 +12339,7 @@ We've cleaned up some of our click/tap events. (#771) Upgrade should be straight
 ###### *Feb. 13, 2015*
 
 ##### Breaking Changes
+
 - Removed Icon component - Replaced with FontIcon and SvgIcon (#318, #125, #148)
   - The main motivation here is to give developers more control over which font icons to include
     in their project. Instead of automatically including all material design icons in material-ui,
@@ -12370,6 +12437,7 @@ We've cleaned up some of our click/tap events. (#771) Upgrade should be straight
 ###### *Jan. 3, 2015*
 
 ##### Breaking Changes
+
 - Removed lesshat dependency. Be sure to change your build process to include an
   [autoprefixer](https://github.com/sindresorhus/gulp-autoprefixer).
 
@@ -12419,6 +12487,7 @@ We've cleaned up some of our click/tap events. (#771) Upgrade should be straight
 ###### *Dec. 15, 2014*
 
 ##### Breaking Changes
+
 - Removed PaperButton - Use FlatButton, RaisedButton, or FloatingActionButton
 - Removed Roboto font import (#104) - Be sure to [include the Roboto](http://www.google.com/fonts#UsePlace:use/Collection:Roboto:400,300,500) font in your project.
 

@@ -214,7 +214,7 @@ describe('<Select />', () => {
     it('should get selected element from arguments', () => {
       const onChangeHandler = spy();
       const { getAllByRole, getByRole } = render(
-        <Select onChange={onChangeHandler} value="1">
+        <Select onChange={onChangeHandler} value="0">
           <MenuItem value="0" />
           <MenuItem value="1" />
           <MenuItem value="2" />
@@ -361,6 +361,18 @@ describe('<Select />', () => {
       expect(getByRole('button')).not.to.have.attribute('aria-expanded');
     });
 
+    it('sets aria-disabled="true" when component is disabled', () => {
+      const { getByRole } = render(<Select disabled value="" />);
+
+      expect(getByRole('button')).to.have.attribute('aria-disabled', 'true');
+    });
+
+    specify('aria-disabled is not present if component is not disabled', () => {
+      const { getByRole } = render(<Select disabled={false} value="" />);
+
+      expect(getByRole('button')).not.to.have.attribute('aria-disabled');
+    });
+
     it('indicates that activating the button displays a listbox', () => {
       const { getByRole } = render(<Select value="" />);
 
@@ -409,7 +421,7 @@ describe('<Select />', () => {
       const { getByRole } = render(<Select value="" />);
 
       // TODO what is the accessible name actually?
-      expect(getByRole('button')).to.have.attribute('aria-labelledby', ' ');
+      expect(getByRole('button')).to.not.have.attribute('aria-labelledby');
     });
 
     it('is labelled by itself when it has a name', () => {
@@ -417,7 +429,7 @@ describe('<Select />', () => {
 
       expect(getByRole('button')).to.have.attribute(
         'aria-labelledby',
-        ` ${getByRole('button').getAttribute('id')}`,
+        getByRole('button').getAttribute('id'),
       );
     });
 

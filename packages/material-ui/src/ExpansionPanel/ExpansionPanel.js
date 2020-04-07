@@ -99,6 +99,7 @@ const ExpansionPanel = React.forwardRef(function ExpansionPanel(props, ref) {
     controlled: expandedProp,
     default: defaultExpanded,
     name: 'ExpansionPanel',
+    state: 'expanded',
   });
 
   const handleChange = React.useCallback(

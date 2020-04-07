@@ -161,6 +161,7 @@ export default function MultipleSelect() {
             return selected.join(', ');
           }}
           MenuProps={MenuProps}
+          inputProps={{ 'aria-label': 'Without label' }}
         >
           <MenuItem disabled value="">
             <em>Placeholder</em>

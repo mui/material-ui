@@ -6,7 +6,7 @@ Because the scope of problems Material-UI solves is bound, we try to play nicely
 
 ## Design resources
 
-- **Sketch**: [Sketch for Material-UI](https://material-ui.com/store/items/sketch-react/) — A large UI kit with over 1,500 handcrafted Material-UI's symbols 💎.
+- **Sketch**: [Sketch for Material-UI](https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-sketch) — A large UI kit with over 1,500 handcrafted Material-UI's symbols 💎.
 - **Figma**: 
   - https://material.5ly.co/ for Material-UI made by Fively Team.
   - https://ui-kit.co/ a starter kit for your Material Design 2 project.

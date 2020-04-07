@@ -1,6 +1,6 @@
 ---
 title: React Grid 栅格组件
-components: Grid
+components: Grid 栅格
 ---
 
 # Grid 栅格

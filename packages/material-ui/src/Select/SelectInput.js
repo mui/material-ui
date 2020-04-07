@@ -26,6 +26,7 @@ function isEmpty(display) {
  */
 const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   const {
+    'aria-label': ariaLabel,
     autoFocus,
     autoWidth,
     children,
@@ -137,6 +138,10 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       }
     } else {
       newValue = child.props.value;
+    }
+
+    if (value === newValue) {
+      return;
     }
 
     setValue(newValue);
@@ -319,9 +324,11 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         data-mui-test="SelectDisplay"
         tabIndex={tabIndex}
         role="button"
+        aria-disabled={disabled ? 'true' : undefined}
         aria-expanded={open ? 'true' : undefined}
-        aria-labelledby={`${labelId || ''} ${buttonId || ''}`}
         aria-haspopup="listbox"
+        aria-label={ariaLabel}
+        aria-labelledby={[labelId, buttonId].filter(Boolean).join(' ') || undefined}
         onKeyDown={handleKeyDown}
         onMouseDown={disabled || readOnly ? null : handleMouseDown}
         onBlur={handleBlur}
@@ -379,6 +386,10 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 });
 
 SelectInput.propTypes = {
+  /**
+   * @ignore
+   */
+  'aria-label': PropTypes.string,
   /**
    * @ignore
    */

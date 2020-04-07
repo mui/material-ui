@@ -21,7 +21,7 @@ components: Alert, AlertTitle
 
 {{"demo": "pages/components/alert/DescriptionAlerts.js"}}
 
-## Actions（行为）
+## 行为
 
 一个「提醒」可以有一个行为，例如「关闭」或「撤销」按钮。 它在消息之后，「提醒」结束时被渲染。
 
