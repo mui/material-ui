@@ -142,7 +142,7 @@
     "ts-node": "^8.3.0",
     "tslint": "5.14.0",
     "typescript": "^3.8.2",
-    "typescript-to-proptypes": "https://pkg.csb.dev/eps1lon/typescript-to-proptypes/commit/a7fda83b/typescript-to-proptypes",
+    "typescript-to-proptypes": "^1.5.0",
     "unist-util-visit": "^2.0.2",
     "vrtest-mui": "^0.3.3",
     "webpack": "^4.41.0",

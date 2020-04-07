@@ -152,7 +152,8 @@ async function generateProptypes(
         previous !== undefined &&
         previous.startsWith('PropTypes /* @typescript-to-proptypes-ignore */');
       if (usedCustomValidator || ignoreGenerated) {
-        return `${previous},`;
+        // `usedCustomValidator` and `ignoreGenerated` narrow `previous` to `string`
+        return previous!;
       }
 
       return generated;
