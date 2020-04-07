@@ -129,7 +129,10 @@ module.exports = {
         // test to `beforeEach`.
         // `beforeEach`+`afterEach` also means that the `beforeEach`
         // is cleaned up in `afterEach` if the test causes a crash
-        'mocha/no-hooks-for-single-case': 'off'
+        'mocha/no-hooks-for-single-case': 'off',
+
+        // They are accessed to test custom validator implementation with PropTypes.checkPropTypes
+        'react/forbid-foreign-prop-types': 'off',
       },
     },
     {

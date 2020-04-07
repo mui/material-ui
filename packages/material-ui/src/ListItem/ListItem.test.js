@@ -150,11 +150,17 @@ describe('<ListItem />', () => {
       });
 
       it('warns if it cant detect the secondary action properly', () => {
-        render(
-          <ListItem>
-            <ListItemSecondaryAction>I should have come last :(</ListItemSecondaryAction>
-            <ListItemText>My position doesn not matter.</ListItemText>
-          </ListItem>,
+        PropTypes.checkPropTypes(
+          ListItem.Naked.propTypes,
+          {
+            classes: {},
+            children: [
+              <ListItemSecondaryAction>I should have come last :(</ListItemSecondaryAction>,
+              <ListItemText>My position doesn not matter.</ListItemText>,
+            ],
+          },
+          'prop',
+          'MockedName',
         );
 
         expect(consoleErrorMock.callCount()).to.equal(1);

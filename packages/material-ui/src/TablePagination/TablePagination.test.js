@@ -288,20 +288,18 @@ describe('<TablePagination />', () => {
     });
 
     it('should raise a warning if the page prop is out of range', () => {
-      mount(
-        <table>
-          <TableFooter>
-            <TableRow>
-              <TablePagination
-                page={2}
-                count={20}
-                rowsPerPage={10}
-                onChangePage={noop}
-                onChangeRowsPerPage={noop}
-              />
-            </TableRow>
-          </TableFooter>
-        </table>,
+      PropTypes.checkPropTypes(
+        TablePagination.Naked.propTypes,
+        {
+          classes: {},
+          page: 2,
+          count: 20,
+          rowsPerPage: 10,
+          onChangePage: noop,
+          onChangeRowsPerPage: noop,
+        },
+        'prop',
+        'MockedTablePagination',
       );
 
       assert.strictEqual(consoleErrorMock.callCount(), 1);

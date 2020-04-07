@@ -92,7 +92,7 @@ describe('<CardMedia />', () => {
     });
 
     it('warns when neither `children`, nor `image`, nor `src`, nor `component` are provided', () => {
-      mount(<CardMedia />);
+      PropTypes.checkPropTypes(CardMedia.Naked.propTypes, { classes: {} }, 'prop', 'MockedName');
 
       assert.strictEqual(consoleErrorMock.callCount(), 1);
       assert.include(
