@@ -227,13 +227,6 @@ const Popper = React.forwardRef(function Popper(props, ref) {
   );
 });
 
-let childrenValidator;
-if (process.env.NODE_ENV !== 'production') {
-  // can't inline it because yarn proptypes overrides it otherwise
-  // because it can't reverse engineer the union of `ReactNode | () => any`
-  childrenValidator = PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired;
-}
-
 Popper.propTypes = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
@@ -292,7 +285,10 @@ Popper.propTypes = {
   /**
    * Popper render function or node.
    */
-  children: childrenValidator,
+  children: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.node,
+    PropTypes.func,
+  ]).isRequired,
   /**
    * A node, component instance, or function that returns either.
    * The `container` will passed to the Modal component.
