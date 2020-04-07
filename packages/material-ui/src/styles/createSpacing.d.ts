@@ -1,10 +1,10 @@
 /* tslint:disable:unified-signatures */
 
-export type SpacingArgument = number;
+export type SpacingArgument = number | string;
 
 export interface Spacing {
   (): number;
-  (value: SpacingArgument): number;
+  (value: number): number;
   (topBottom: SpacingArgument, rightLeft: SpacingArgument): string;
   (top: SpacingArgument, rightLeft: SpacingArgument, bottom: SpacingArgument): string;
   (
