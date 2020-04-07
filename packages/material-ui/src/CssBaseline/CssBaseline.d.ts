@@ -1,6 +1,10 @@
 import * as React from 'react';
+import { StyledComponentProps } from '@material-ui/core/styles';
 
-export interface CssBaselineProps {
+export interface CssBaselineProps extends StyledComponentProps<never> {
+  /**
+   * You can wrap a node.
+   */
   children?: React.ReactNode;
 }
 
@@ -14,8 +18,4 @@ export interface CssBaselineProps {
  *
  * - [CssBaseline API](https://material-ui.com/api/css-baseline/)
  */
-declare const CssBaseline: React.ComponentType<CssBaselineProps>;
-
-export type CssBaselineClassKey = '@global';
-
-export default CssBaseline;
+export default function CssBaseline(props: CssBaselineProps): JSX.Element;
