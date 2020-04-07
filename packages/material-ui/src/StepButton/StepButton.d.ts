@@ -14,7 +14,7 @@ export type StepButtonTypeMap<P, D extends React.ElementType> = ExtendButtonBase
     alternativeLabel?: boolean;
     completed?: boolean;
     disabled?: boolean;
-    icon?: StepButtonIcon;
+    icon?: React.ReactNode;
     last?: boolean;
     optional?: React.ReactNode;
     orientation?: Orientation;
