@@ -20,6 +20,8 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 
 Responsively hides children based on the selected implementation.
 
+
+
 ## Props
 
 | Name | Type | Default | Description |

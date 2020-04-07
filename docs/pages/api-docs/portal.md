@@ -21,6 +21,8 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 Portals provide a first-class way to render children into a DOM node
 that exists outside the DOM hierarchy of the parent component.
 
+
+
 ## Props
 
 | Name | Type | Default | Description |

@@ -20,6 +20,10 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 
 
 
+## Component name
+
+The `MuiSpeedDialAction` name can be used for providing [default props](/customization/globals/#default-props) or [style overrides](/customization/globals/#css) at the theme level.
+
 ## Props
 
 | Name | Type | Default | Description |
@@ -38,9 +42,6 @@ The `ref` is forwarded to the root element.
 Any other props supplied will be provided to the root element ([Tooltip](/api/tooltip/)).
 
 ## CSS
-
-- Style sheet name: `MuiSpeedDialAction`.
-- Style sheet details:
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|

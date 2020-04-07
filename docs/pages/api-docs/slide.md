@@ -21,6 +21,8 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 The Slide transition is used by the [Drawer](/components/drawers/) component.
 It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
 
+
+
 ## Props
 
 | Name | Type | Default | Description |

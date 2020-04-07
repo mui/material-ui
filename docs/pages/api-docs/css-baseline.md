@@ -20,6 +20,10 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 
 Kickstart an elegant, consistent, and simple baseline to build upon.
 
+## Component name
+
+The `MuiCssBaseline` name can be used for providing [default props](/customization/globals/#default-props) or [style overrides](/customization/globals/#css) at the theme level.
+
 ## Props
 
 | Name | Type | Default | Description |
@@ -31,9 +35,6 @@ The component cannot hold a ref.
 
 
 ## CSS
-
-- Style sheet name: `MuiCssBaseline`.
-- Style sheet details:
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|

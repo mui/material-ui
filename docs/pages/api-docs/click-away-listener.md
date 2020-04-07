@@ -21,6 +21,8 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 Listen for click events that occur somewhere in the document, outside of the element itself.
 For instance, if you need to hide a menu when people click anywhere else on your page.
 
+
+
 ## Props
 
 | Name | Type | Default | Description |
