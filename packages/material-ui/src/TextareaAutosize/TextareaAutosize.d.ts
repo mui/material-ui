@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Omit } from '..';
 
 export interface TextareaAutosizeProps
   extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'children' | 'rows'> {

@@ -21,7 +21,7 @@ export type ComponentCreator<Component extends React.ElementType> = <
   styles:
     | CreateCSSProperties<Props>
     | ((props: { theme: Theme } & Props) => CreateCSSProperties<Props>),
-  options?: WithStylesOptions<Theme>,
+  options?: WithStylesOptions<Theme>
 ) => React.ComponentType<
   Omit<
     JSX.LibraryManagedAttributes<Component, React.ComponentProps<Component>>,
@@ -37,5 +37,5 @@ export interface StyledProps {
 }
 
 export default function styled<Component extends React.ElementType>(
-  Component: Component,
+  Component: Component
 ): ComponentCreator<Component>;

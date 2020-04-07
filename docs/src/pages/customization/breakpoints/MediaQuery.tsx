@@ -24,9 +24,9 @@ export default function MediaQuery() {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <Typography variant="subtitle1">{'down(sm): red'}</Typography>
-      <Typography variant="subtitle1">{'up(md): blue'}</Typography>
-      <Typography variant="subtitle1">{'up(lg): green'}</Typography>
+      <Typography>{'down(sm): red'}</Typography>
+      <Typography>{'up(md): blue'}</Typography>
+      <Typography>{'up(lg): green'}</Typography>
     </div>
   );
 }

@@ -324,6 +324,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         data-mui-test="SelectDisplay"
         tabIndex={tabIndex}
         role="button"
+        aria-disabled={disabled ? 'true' : undefined}
         aria-expanded={open ? 'true' : undefined}
         aria-haspopup="listbox"
         aria-label={ariaLabel}

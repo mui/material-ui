@@ -55,7 +55,7 @@
     "@types/react-transition-group": "^4.2.0",
     "clsx": "^1.0.2",
     "hoist-non-react-statics": "^3.3.2",
-    "popper.js": "^1.14.1",
+    "popper.js": "^1.16.1-lts",
     "prop-types": "^15.7.2",
     "react-is": "^16.8.0",
     "react-transition-group": "^4.3.0"
