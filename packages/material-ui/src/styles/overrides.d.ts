@@ -21,7 +21,6 @@ import { ChipClassKey } from '../Chip';
 import { CircularProgressClassKey } from '../CircularProgress';
 import { CollapseClassKey } from '../Collapse';
 import { ContainerClassKey } from '../Container';
-import { CssBaselineClassKey } from '../CssBaseline';
 import { DialogActionsClassKey } from '../DialogActions';
 import { DialogClassKey } from '../Dialog';
 import { DialogContentClassKey } from '../DialogContent';
@@ -124,7 +123,6 @@ export interface ComponentNameToClassKey {
   MuiCircularProgress: CircularProgressClassKey;
   MuiCollapse: CollapseClassKey;
   MuiContainer: ContainerClassKey;
-  MuiCssBaseline: CssBaselineClassKey;
   MuiDialog: DialogClassKey;
   MuiDialogActions: DialogActionsClassKey;
   MuiDialogContent: DialogContentClassKey;
