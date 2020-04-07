@@ -17,7 +17,7 @@ export interface DialogProps
   /**
    * Dialog children, usually the included sub-components.
    */
-  children: React.ReactNode;
+  children?: React.ReactNode;
   /**
    * If `true`, clicking the backdrop will not fire the `onClose` callback.
    */
