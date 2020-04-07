@@ -7,5 +7,5 @@ export interface StylesCreator<Theme, Props extends object, ClassKey extends str
 }
 
 export default function getStylesCreator<S extends Styles<any, any>>(
-  style: S,
+  style: S
 ): StylesCreator<any, any>;

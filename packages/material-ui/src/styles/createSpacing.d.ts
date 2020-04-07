@@ -11,7 +11,7 @@ export interface Spacing {
     top: SpacingArgument,
     right: SpacingArgument,
     bottom: SpacingArgument,
-    left: SpacingArgument,
+    left: SpacingArgument
   ): string;
 }
 

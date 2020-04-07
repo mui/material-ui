@@ -12,5 +12,5 @@
  */
 export default function setRef<T>(
   ref: React.RefObject<T> | ((instance: T | null) => void) | null | undefined,
-  value: T | null,
+  value: T | null
 ): void;

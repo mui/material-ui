@@ -25,7 +25,7 @@ export type ConsistentWith<DecorationTargetProps, InjectedProps> = {
 export type PropInjector<InjectedProps, AdditionalProps = {}> = <
   C extends React.ComponentType<ConsistentWith<React.ComponentProps<C>, InjectedProps>>
 >(
-  component: C,
+  component: C
 ) => React.ComponentType<
   Omit<JSX.LibraryManagedAttributes<C, React.ComponentProps<C>>, keyof InjectedProps> &
     AdditionalProps
