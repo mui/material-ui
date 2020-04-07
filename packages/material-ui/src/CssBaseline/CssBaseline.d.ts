@@ -16,6 +16,9 @@ export interface CssBaselineProps {
  */
 declare const CssBaseline: React.ComponentType<CssBaselineProps>;
 
+/**
+ * @deprecated The name of this type is misleading. `CssBaseline` implements no class at all.
+ */
 export type CssBaselineClassKey = '@global';
 
 export default CssBaseline;
