@@ -521,7 +521,7 @@ Popover.propTypes = {
    * By default, it uses the body of the anchorEl's top-level document object,
    * so it's simply `document.body` most of the time.
    */
-  container: PropTypes.oneOfType([
+  container: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.func,
     PropTypes.instanceOf(React.Component),
     PropTypes.instanceOf(typeof Element === 'undefined' ? Object : Element),
