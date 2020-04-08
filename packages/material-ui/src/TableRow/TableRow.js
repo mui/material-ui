@@ -30,6 +30,7 @@ export const styles = (theme) => ({
   footer: {},
 });
 
+const defaultComponent = 'tr';
 /**
  * Will automatically set dynamic row height
  * based on the material table element parent (head, body, etc).
@@ -38,7 +39,7 @@ const TableRow = React.forwardRef(function TableRow(props, ref) {
   const {
     classes,
     className,
-    component: Component = 'tr',
+    component: Component = defaultComponent,
     hover = false,
     selected = false,
     ...other
@@ -58,6 +59,7 @@ const TableRow = React.forwardRef(function TableRow(props, ref) {
         },
         className,
       )}
+      role={Component === defaultComponent ? null : 'row'}
       {...other}
     />
   );
