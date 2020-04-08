@@ -92,7 +92,7 @@ describe('<TableRow> integration', () => {
   it('sets role="cell" when "component" prop is set and used in the context of table body ', () => {
     const { getByTestId } = render(
       <TableBody component="div">
-          <TableCell component="div" data-testid="cell" />,
+        <TableCell component="div" data-testid="cell" />,
       </TableBody>,
     );
     expect(getByTestId('cell')).to.have.attribute('role', 'cell');
@@ -101,7 +101,7 @@ describe('<TableRow> integration', () => {
   it('sets role="cell" when "component" prop is set and used in the context of table footer ', () => {
     const { getByTestId } = render(
       <TableFooter component="div">
-          <TableCell component="div" data-testid="cell" />,
+        <TableCell component="div" data-testid="cell" />,
       </TableFooter>,
     );
     expect(getByTestId('cell')).to.have.attribute('role', 'cell');
