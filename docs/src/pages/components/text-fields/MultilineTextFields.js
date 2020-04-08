@@ -26,7 +26,7 @@ export default function MultilineTextFields() {
           id="standard-multiline-flexible"
           label="Multiline"
           multiline
-          rowsMax="4"
+          rowsMax={4}
           value={value}
           onChange={handleChange}
         />
@@ -40,7 +40,7 @@ export default function MultilineTextFields() {
           id="standard-multiline-static"
           label="Multiline"
           multiline
-          rows="4"
+          rows={4}
           defaultValue="Default Value"
         />
       </div>
@@ -49,7 +49,7 @@ export default function MultilineTextFields() {
           id="filled-multiline-flexible"
           label="Multiline"
           multiline
-          rowsMax="4"
+          rowsMax={4}
           value={value}
           onChange={handleChange}
           variant="filled"
@@ -65,7 +65,7 @@ export default function MultilineTextFields() {
           id="filled-multiline-static"
           label="Multiline"
           multiline
-          rows="4"
+          rows={4}
           defaultValue="Default Value"
           variant="filled"
         />
@@ -75,7 +75,7 @@ export default function MultilineTextFields() {
           id="outlined-multiline-flexible"
           label="Multiline"
           multiline
-          rowsMax="4"
+          rowsMax={4}
           value={value}
           onChange={handleChange}
           variant="outlined"
@@ -91,7 +91,7 @@ export default function MultilineTextFields() {
           id="outlined-multiline-static"
           label="Multiline"
           multiline
-          rows="4"
+          rows={4}
           defaultValue="Default Value"
           variant="outlined"
         />
