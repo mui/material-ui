@@ -7,7 +7,6 @@ import Popover from '../Popover';
 import Menu from './Menu';
 import MenuList from '../MenuList';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
-import PropTypes from 'prop-types';
 
 const MENU_LIST_HEIGHT = 100;
 
@@ -233,7 +232,6 @@ describe('<Menu />', () => {
 
     after(() => {
       consoleErrorMock.reset();
-      PropTypes.resetWarningCache();
     });
 
     it('warns a Fragment is passed as a child', () => {

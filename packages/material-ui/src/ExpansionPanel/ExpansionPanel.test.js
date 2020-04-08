@@ -137,31 +137,33 @@ describe('<ExpansionPanel />', () => {
     describe('first child', () => {
       beforeEach(() => {
         consoleErrorMock.spy();
+        PropTypes.resetWarningCache();
       });
 
       afterEach(() => {
         consoleErrorMock.reset();
-        PropTypes.resetWarningCache();
       });
 
       it('requires at least one child', () => {
-        if (!/jsdom/.test(window.navigator.userAgent)) {
-          // errors during mount are not caught by try-catch in the browser
-          // can't use skip since this causes multiple errors related to cleanup of the console mock
-          return;
-        }
+        PropTypes.checkPropTypes(
+          ExpansionPanel.Naked.propTypes,
+          { classes: {}, children: [] },
+          'prop',
+          'MockedName',
+        );
 
-        assert.throws(() => mount(<ExpansionPanel>{[]}</ExpansionPanel>));
-        assert.strictEqual(consoleErrorMock.callCount(), 3);
+        assert.strictEqual(consoleErrorMock.callCount(), 1);
         assert.include(consoleErrorMock.messages()[0], 'Material-UI: expected the first child');
       });
 
       it('needs a valid element as the first child', () => {
-        mount(
-          <ExpansionPanel>
-            <React.Fragment />
-          </ExpansionPanel>,
+        PropTypes.checkPropTypes(
+          ExpansionPanel.Naked.propTypes,
+          { classes: {}, children: <React.Fragment /> },
+          'prop',
+          'MockedName',
         );
+
         assert.strictEqual(consoleErrorMock.callCount(), 1);
         assert.include(
           consoleErrorMock.messages()[0],

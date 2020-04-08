@@ -85,17 +85,21 @@ describe('withTheme', () => {
     describe('innerRef', () => {
       beforeEach(() => {
         consoleErrorMock.spy();
+        PropTypes.resetWarningCache();
       });
 
       afterEach(() => {
         consoleErrorMock.reset();
-        PropTypes.resetWarningCache();
       });
 
       it('is deprecated', () => {
         const ThemedDiv = withTheme('div');
-
-        mount(<ThemedDiv innerRef={React.createRef()} />);
+        PropTypes.checkPropTypes(
+          ThemedDiv.propTypes,
+          { innerRef: React.createRef() },
+          'prop',
+          'ThemedDiv',
+        );
 
         assert.strictEqual(consoleErrorMock.callCount(), 1);
         assert.include(

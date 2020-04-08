@@ -93,19 +93,21 @@ describe('styled', () => {
   describe('warnings', () => {
     beforeEach(() => {
       consoleErrorMock.spy();
+      PropTypes.resetWarningCache();
     });
 
     afterEach(() => {
       consoleErrorMock.reset();
-      PropTypes.resetWarningCache();
     });
 
     it('warns if it cant detect the secondary action properly', () => {
-      mount(
-        <StyledButton clone component="div">
-          <div>Styled Components</div>
-        </StyledButton>,
+      PropTypes.checkPropTypes(
+        StyledButton.propTypes,
+        { clone: true, component: 'div' },
+        'prop',
+        'StyledButton',
       );
+
       assert.strictEqual(consoleErrorMock.callCount(), 1);
       assert.include(
         consoleErrorMock.messages()[0],

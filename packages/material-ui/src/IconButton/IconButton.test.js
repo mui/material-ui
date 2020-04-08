@@ -128,19 +128,21 @@ describe('<IconButton />', () => {
   describe('Firefox onClick', () => {
     beforeEach(() => {
       consoleErrorMock.spy();
+      PropTypes.resetWarningCache();
     });
 
     afterEach(() => {
       consoleErrorMock.reset();
-      PropTypes.resetWarningCache();
     });
 
     it('should raise a warning', () => {
-      render(
-        <IconButton>
-          <svg onClick={() => {}} />
-        </IconButton>,
+      PropTypes.checkPropTypes(
+        IconButton.Naked.propTypes,
+        { classes: {}, children: <svg onClick={() => {}} /> },
+        'prop',
+        'MockedName',
       );
+
       expect(consoleErrorMock.callCount()).to.equal(1);
       expect(consoleErrorMock.messages()[0]).to.include(
         'you are providing an onClick event listener',
