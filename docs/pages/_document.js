@@ -1,6 +1,6 @@
 import React from 'react';
 import { ServerStyleSheets } from '@material-ui/styles';
-import Document, { Head, Main, NextScript } from 'next/document';
+import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { rewriteUrlForNextExport } from 'next/dist/next-server/lib/router/rewrite-url-for-export';
 import { LANGUAGES_SSR } from 'docs/src/modules/constants';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
@@ -33,7 +33,7 @@ export default class MyDocument extends Document {
     const { canonical, userLanguage } = this.props;
 
     return (
-      <html lang={userLanguage}>
+      <Html lang={userLanguage}>
         <Head>
           {/*
             manifest.json provides metadata used when your web app is added to the
@@ -92,7 +92,7 @@ export default class MyDocument extends Document {
           />
           <NextScript />
         </body>
-      </html>
+      </Html>
     );
   }
 }
