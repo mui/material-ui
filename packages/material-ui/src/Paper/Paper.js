@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { chainPropTypes } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 
 export const styles = (theme) => {
@@ -40,12 +41,6 @@ const Paper = React.forwardRef(function Paper(props, ref) {
     variant = 'elevation',
     ...other
   } = props;
-
-  if (process.env.NODE_ENV !== 'production') {
-    if (classes[`elevation${elevation}`] === undefined) {
-      console.error(`Material-UI: this elevation \`${elevation}\` is not implemented.`);
-    }
-  }
 
   return (
     <Component
@@ -91,7 +86,17 @@ Paper.propTypes = {
    * Shadow depth, corresponds to `dp` in the spec.
    * It accepts values between 0 and 24 inclusive.
    */
-  elevation: PropTypes.number,
+  elevation: chainPropTypes(PropTypes.number, (props) => {
+    const { classes, elevation } = props;
+    // in case `withStyles` fails to inject we don't need this warning
+    if (classes === undefined) {
+      return null;
+    }
+    if (elevation != null && classes[`elevation${elevation}`] === undefined) {
+      return new Error(`Material-UI: this elevation \`${elevation}\` is not implemented.`);
+    }
+    return null;
+  }),
   /**
    * If `true`, rounded corners are disabled.
    */
