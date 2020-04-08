@@ -36,6 +36,11 @@ describe('<Table />', () => {
       const { container } = render(<Table component="div">foo</Table>);
       expect(container.firstChild).to.have.property('nodeName', 'DIV');
     });
+
+    it('sets role="table"', () => {
+      const { container } = render(<Table component="div">foo</Table>);
+      expect(container.firstChild).to.have.attribute('role', 'table');
+    });
   });
 
   it('should render children', () => {
