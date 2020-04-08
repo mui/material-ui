@@ -150,13 +150,11 @@ describe('<InputAdornment />', () => {
             />
           </FormControl>,
         );
-        expect(consoleErrorMock.callCount()).to.equal(2);
+        expect(consoleErrorMock.callCount()).to.equal(1);
         expect(consoleErrorMock.messages()[0]).to.equal(
           'Material-UI: The `InputAdornment` variant infers the variant ' +
             'prop you do not have to provide one.',
         );
-        // one error per render (twice rendered in StrictMode)
-        expect(consoleErrorMock.messages()[0]).to.equal(consoleErrorMock.messages()[1]);
       });
     });
   });
