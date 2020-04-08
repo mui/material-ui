@@ -39,7 +39,7 @@ const useEnhancedEffect = typeof window !== 'undefined' ? React.useLayoutEffect 
 const defaultPopperOptions = {};
 
 /**
- * Poppers rely on the 3rd party library [Popper.js](https://github.com/FezVrasta/popper.js) for positioning.
+ * Poppers rely on the 3rd party library [Popper.js](https://popper.js.org/docs/v1/) for positioning.
  */
 const Popper = React.forwardRef(function Popper(props, ref) {
   const {
@@ -238,8 +238,7 @@ Popper.propTypes = {
    * The return value will passed as the reference object of the Popper
    * instance.
    *
-   * The reference element should be an HTML Element instance or a referenceObject:
-   * https://popper.js.org/popper-documentation.html#referenceObject.
+   * The reference element should be an HTML Element instance or a [referenceObject](https://popper.js.org/docs/v1/#referenceObject).
    */
   anchorEl: chainPropTypes(PropTypes.oneOfType([PropTypes.object, PropTypes.func]), (props) => {
     if (props.open) {
@@ -273,8 +272,8 @@ Popper.propTypes = {
         return new Error(
           [
             'Material-UI: the `anchorEl` prop provided to the component is invalid.',
-            'It should be an HTML Element instance or a referenceObject:',
-            'https://popper.js.org/popper-documentation.html#referenceObject.',
+            'It should be an HTML Element instance or a referenceObject ',
+            '(https://popper.js.org/docs/v1/#referenceObject).',
           ].join('\n'),
         );
       }
@@ -318,7 +317,7 @@ Popper.propTypes = {
    * A modifier is a function that is called each time Popper.js needs to
    * compute the position of the popper.
    * For this reason, modifiers should be very performant to avoid bottlenecks.
-   * To learn how to create a modifier, [read the modifiers documentation](https://github.com/FezVrasta/popper.js/blob/master/docs/_includes/popper-documentation.md#modifiers--object).
+   * To learn how to create a modifier, [read the modifiers documentation](https://popper.js.org/docs/v1/#modifiers).
    */
   modifiers: PropTypes.object,
   /**
@@ -343,7 +342,7 @@ Popper.propTypes = {
     'top',
   ]),
   /**
-   * Options provided to the [`popper.js`](https://github.com/FezVrasta/popper.js) instance.
+   * Options provided to the [`popper.js`](https://popper.js.org/docs/v1/) instance.
    */
   popperOptions: PropTypes.object,
   /**

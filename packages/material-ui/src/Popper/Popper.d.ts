@@ -91,7 +91,7 @@ export interface PopperProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 
 }
 
 /**
- * Poppers rely on the 3rd party library [Popper.js](https://github.com/FezVrasta/popper.js) for positioning.
+ * Poppers rely on the 3rd party library [Popper.js](https://popper.js.org/docs/v1/) for positioning.
  * Demos:
  *
  * - [Autocomplete](https://material-ui.com/components/autocomplete/)
