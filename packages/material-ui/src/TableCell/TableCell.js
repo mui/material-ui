@@ -122,15 +122,18 @@ const TableCell = React.forwardRef(function TableCell(props, ref) {
   const table = React.useContext(TableContext);
   const tablelvl2 = React.useContext(Tablelvl2Context);
 
+  const isHeadCell = tablelvl2 && tablelvl2.variant === 'head';
+  let role;
   let Component;
   if (component) {
     Component = component;
+    role = isHeadCell ? 'columnheader' : 'cell';
   } else {
-    Component = tablelvl2 && tablelvl2.variant === 'head' ? 'th' : 'td';
+    Component = isHeadCell ? 'th' : 'td';
   }
 
   let scope = scopeProp;
-  if (!scope && tablelvl2 && tablelvl2.variant === 'head') {
+  if (!scope && isHeadCell) {
     scope = 'col';
   }
   const padding = paddingProp || (table && table.padding ? table.padding : 'default');
@@ -157,6 +160,7 @@ const TableCell = React.forwardRef(function TableCell(props, ref) {
         className,
       )}
       aria-sort={ariaSort}
+      role={role}
       scope={scope}
       {...other}
     />
