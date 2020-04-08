@@ -79,7 +79,7 @@ describe('<TableRow> integration', () => {
     const wrapper = mountInTable(<TableCell variant="footer" />, TableHead);
     assert.strictEqual(wrapper.find('th').hasClass(classes.footer), true);
   });
-  
+
   it('sets role="columnheader" when "component" prop is set and used in the context of table head', () => {
     const { getByTestId } = render(
       <TableHead component="div">
