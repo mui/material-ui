@@ -20,9 +20,11 @@ export const styles = (theme) => {
       duration: theme.transitions.duration.shorter,
     }),
   };
+
   const placeholderHidden = {
     opacity: '0 !important',
   };
+
   const placeholderVisible = {
     opacity: light ? 0.42 : 0.5,
   };
@@ -239,6 +241,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
     muiFormControl,
     states: ['color', 'disabled', 'error', 'hiddenLabel', 'margin', 'required', 'filled'],
   });
+
   fcs.focused = muiFormControl ? muiFormControl.focused : focused;
 
   // The blur won't fire when the disabled state is set on a focused input.
@@ -377,6 +380,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
         rowsMax,
         ...inputProps,
       };
+
       InputComponent = TextareaAutosize;
     }
   } else {
@@ -469,6 +473,10 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
 });
 
 InputBase.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * @ignore
    */
@@ -487,9 +495,9 @@ InputBase.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
-   * The CSS class name of the wrapper element.
+   * @ignore
    */
   className: PropTypes.string,
   /**
@@ -596,15 +604,15 @@ InputBase.propTypes = {
   /**
    * Number of rows to display when multiline option is set to true.
    */
-  rows: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  rows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * Maximum number of rows to display when multiline option is set to true.
    */
-  rowsMax: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  rowsMax: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * Minimum number of rows to display when multiline option is set to true.
    */
-  rowsMin: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  rowsMin: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * Start `InputAdornment` for this component.
    */

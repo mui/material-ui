@@ -32,7 +32,7 @@ The `MuiStepIcon` name can be used for providing [default props](/customization/
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">completed</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Mark the step as completed. Is passed to child components. |
 | <span class="prop-name">error</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Mark the step as failed. |
-| <span class="prop-name required">icon&nbsp;*</span> | <span class="prop-type">node</span> |  | The label displayed in the step icon. |
+| <span class="prop-name">icon</span> | <span class="prop-type">node</span> |  | The label displayed in the step icon. |
 
 The `ref` is forwarded to the root element.
 

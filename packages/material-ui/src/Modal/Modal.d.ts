@@ -21,6 +21,12 @@ export interface ModalProps
   keepMounted?: boolean;
   manager?: ModalManager;
   onBackdropClick?: React.ReactEventHandler<{}>;
+  /**
+   * Callback fired when the component requests to be closed.
+   *
+   * @param {object} event The event source of the callback.
+   * @param {string} reason Can be: `"escapeKeyDown"`, `"backdropClick"`.
+   */
   onClose?: {
     bivarianceHack(event: {}, reason: 'backdropClick' | 'escapeKeyDown'): void;
   }['bivarianceHack'];

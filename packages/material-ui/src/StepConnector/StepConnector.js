@@ -48,13 +48,19 @@ export const styles = (theme) => ({
 
 const StepConnector = React.forwardRef(function StepConnector(props, ref) {
   const {
+    // eslint-disable-next-line react/prop-types
     active,
+    // eslint-disable-next-line react/prop-types
     alternativeLabel = false,
     classes,
     className,
+    // eslint-disable-next-line react/prop-types
     completed,
+    // eslint-disable-next-line react/prop-types
     disabled,
+    // eslint-disable-next-line react/prop-types
     index,
+    // eslint-disable-next-line react/prop-types
     orientation = 'horizontal',
     ...other
   } = props;
@@ -86,40 +92,19 @@ const StepConnector = React.forwardRef(function StepConnector(props, ref) {
 });
 
 StepConnector.propTypes = {
-  /**
-   * @ignore
-   */
-  active: PropTypes.bool,
-  /**
-   * @ignore
-   * Set internally by Step when it's supplied with the alternativeLabel property.
-   */
-  alternativeLabel: PropTypes.bool,
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
   className: PropTypes.string,
-  /**
-   * @ignore
-   */
-  completed: PropTypes.bool,
-  /**
-   * @ignore
-   */
-  disabled: PropTypes.bool,
-  /**
-   * @ignore
-   */
-  index: PropTypes.number,
-  /**
-   * @ignore
-   */
-  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
 };
 
 export default withStyles(styles, { name: 'MuiStepConnector' })(StepConnector);

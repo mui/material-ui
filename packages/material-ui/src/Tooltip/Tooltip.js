@@ -218,6 +218,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     name: 'Tooltip',
     state: 'open',
   });
+
   let open = openState;
 
   if (process.env.NODE_ENV !== 'production') {
@@ -415,6 +416,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     },
     [handleFocusRef],
   );
+
   const handleRef = useForkRef(children.ref, handleOwnRef);
 
   // There is no point in displaying an empty tooltip.
@@ -534,6 +536,10 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
 });
 
 Tooltip.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * If `true`, adds an arrow to the tooltip.
    */
@@ -546,7 +552,11 @@ Tooltip.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
   /**
    * Do not respond to focus events.
    */
@@ -631,7 +641,7 @@ Tooltip.propTypes = {
   /**
    * Tooltip title. Zero-length titles string are never displayed.
    */
-  title: PropTypes.node.isRequired,
+  title: PropTypes /* @typescript-to-proptypes-ignore */.node.isRequired,
   /**
    * The component used for the transition.
    * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.

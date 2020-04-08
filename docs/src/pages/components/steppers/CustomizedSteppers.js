@@ -75,7 +75,13 @@ function QontoStepIcon(props) {
 }
 
 QontoStepIcon.propTypes = {
+  /**
+   * Whether this step is active.
+   */
   active: PropTypes.bool,
+  /**
+   * Mark the step as completed. Is passed to child components.
+   */
   completed: PropTypes.bool,
 };
 
@@ -149,8 +155,17 @@ function ColorlibStepIcon(props) {
 }
 
 ColorlibStepIcon.propTypes = {
+  /**
+   * Whether this step is active.
+   */
   active: PropTypes.bool,
+  /**
+   * Mark the step as completed. Is passed to child components.
+   */
   completed: PropTypes.bool,
+  /**
+   * The label displayed in the step icon.
+   */
   icon: PropTypes.node,
 };
 

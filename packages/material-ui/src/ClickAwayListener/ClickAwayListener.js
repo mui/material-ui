@@ -146,13 +146,16 @@ function ClickAwayListener(props) {
 }
 
 ClickAwayListener.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * The wrapped element.
    */
   children: elementAcceptingRef.isRequired,
   /**
-   * If `true`, the React tree is ignored and only the DOM tree is considered.
-   * This prop changes how portaled elements are handled.
+   * The mouse event to listen to. You can disable the listener by providing `false`.
    */
   disableReactTree: PropTypes.bool,
   /**
@@ -166,7 +169,7 @@ ClickAwayListener.propTypes = {
   /**
    * The touch event to listen to. You can disable the listener by providing `false`.
    */
-  touchEvent: PropTypes.oneOf(['onTouchStart', 'onTouchEnd', false]),
+  touchEvent: PropTypes.oneOf(['onTouchEnd', 'onTouchStart', false]),
 };
 
 if (process.env.NODE_ENV !== 'production') {

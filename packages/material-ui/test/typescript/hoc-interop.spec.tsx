@@ -34,9 +34,9 @@ const filledProps = {
 // @emotion/styled
 {
   const StyledTextField = emotionStyled(TextField)``;
+  <StyledTextField variant="filled" {...filledProps} />;
   // $ExpectError
-  <StyledTextField variant="filled" {...filledProps} />; // undesired
-  <StyledTextField {...filledProps} />; // undesired, should throw
+  <StyledTextField {...filledProps} />; // desired to throw
 }
 
 // react-router

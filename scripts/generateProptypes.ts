@@ -17,11 +17,90 @@ enum GenerateResult {
   Failed,
 }
 
+const useExternalPropsFromInputBase = [
+  'autoComplete',
+  'autoFocus',
+  'color',
+  'defaultValue',
+  'disabled',
+  'endAdornment',
+  'error',
+  'id',
+  'inputProps',
+  'inputRef',
+  'margin',
+  'name',
+  'onChange',
+  'placeholder',
+  'readOnly',
+  'required',
+  'rows',
+  'rowsMax',
+  // TODO: why no rowsMin?
+  'startAdornment',
+  'value',
+];
+
+/**
+ * TODO: RESOLVE_BEFORE_MERGE
+ * Stop special casing `children`. They have to be implemented by each
+ * component individually and need a sensible description. There's no such thing
+ * as a default implementation for `children`.
+ */
+
+/**
+ * A map of components and their props that should be documented
+ * but are not used directly in their implementation.
+ *
+ * TODO: In the future we want to remove them from the API docs in favor
+ * of dynamically loading them. At that point this list should be removed.
+ * TODO: typecheck values
+ */
+const useExternalDocumentation: Record<string, string[]> = {
+  FilledInput: useExternalPropsFromInputBase,
+  Input: useExternalPropsFromInputBase,
+  OutlinedInput: useExternalPropsFromInputBase,
+  Radio: ['disableRipple', 'id', 'inputProps', 'inputRef', 'required'],
+  Switch: [
+    'checked',
+    'defaultChecked',
+    'disabled',
+    'disableRipple',
+    'edge',
+    'id',
+    'inputProps',
+    'inputRef',
+    'onChange',
+    'required',
+    'value',
+  ],
+};
+/**
+ * These are components that use props implemented by external components.
+ * Those props have their own JSDOC which we don't want to emit in our docs
+ * but do want them to have JSDOC in IntelliSense
+ * TODO: In the future we want to ignore external docs on the initial load anyway
+ * since they will be fetched dynamically.
+ */
+const ignoreExternalDocumentation: Record<string, string[]> = {
+  Collapse: ['onEnter', 'onEntered', 'onEntering', 'onExit', 'onExiting'],
+  Fade: ['onEnter', 'onExit'],
+  Grow: ['onEnter', 'onExit'],
+  InputBase: ['aria-describedby'],
+  Menu: ['PaperProps'],
+  Slide: ['onEnter', 'onEntering', 'onExit', 'onExited'],
+  Zoom: ['onEnter', 'onExit'],
+};
+
 const tsconfig = ttp.loadConfig(path.resolve(__dirname, '../tsconfig.json'));
 
 const prettierConfig = prettier.resolveConfig.sync(process.cwd(), {
   config: path.join(__dirname, '../prettier.config.js'),
 });
+
+function isExternalProp(prop: ttp.PropTypeNode, component: ttp.ComponentNode): boolean {
+  return Array.from(prop.filenames).some((filename) => filename !== component.propsFilename);
+}
 
 async function generateProptypes(
   tsFile: string,
@@ -47,7 +126,11 @@ async function generateProptypes(
         prop.jsDoc += '\nSee [CSS API](#css) below for more details.';
       } else if (prop.name === 'children' && !prop.jsDoc) {
         prop.jsDoc = 'The content of the component.';
-      } else if (!prop.jsDoc) {
+      } else if (
+        !prop.jsDoc ||
+        (ignoreExternalDocumentation[component.name] &&
+          ignoreExternalDocumentation[component.name].includes(prop.name))
+      ) {
         prop.jsDoc = '@ignore';
       }
     });
@@ -63,18 +146,46 @@ async function generateProptypes(
       '|     To update them edit the d.ts file and run "yarn proptypes"     |',
       '----------------------------------------------------------------------',
     ].join('\n'),
-    shouldInclude: ({ prop }) => {
+    reconcilePropTypes: (prop, previous, generated) => {
+      const usedCustomValidator = previous !== undefined && !previous.startsWith('PropTypes');
+      const ignoreGenerated =
+        previous !== undefined &&
+        previous.startsWith('PropTypes /* @typescript-to-proptypes-ignore */');
+      if (usedCustomValidator || ignoreGenerated) {
+        // `usedCustomValidator` and `ignoreGenerated` narrow `previous` to `string`
+        return previous!;
+      }
+
+      return generated;
+    },
+    shouldInclude: ({ component, prop, usedProps }) => {
       if (prop.name === 'children') {
         return true;
       }
+      let shouldDocument;
 
       const documentRegExp = new RegExp(/\r?\n?@document/);
       if (prop.jsDoc && documentRegExp.test(prop.jsDoc)) {
         prop.jsDoc = prop.jsDoc.replace(documentRegExp, '');
-        return true;
+        shouldDocument = true;
+      } else {
+        prop.filenames.forEach((filename) => {
+          const isExternal = filename !== tsFile;
+          if (!isExternal) {
+            shouldDocument = true;
+          }
+        });
       }
 
-      return undefined;
+      const { name: componentName } = component;
+      if (
+        useExternalDocumentation[componentName] &&
+        useExternalDocumentation[componentName].includes(prop.name)
+      ) {
+        shouldDocument = true;
+      }
+
+      return shouldDocument;
     },
   });
 

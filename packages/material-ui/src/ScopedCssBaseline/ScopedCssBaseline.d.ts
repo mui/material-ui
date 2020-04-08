@@ -1,8 +1,10 @@
 import * as React from 'react';
+import { StandardProps } from '..';
 
-export interface ScopedCssBaselineProps {
-  children?: React.ReactNode;
-}
+export type ScopedCssBaselineClassKey = 'root';
+
+export interface ScopedCssBaselineProps
+  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, ScopedCssBaselineClassKey> {}
 
 /**
  *
@@ -14,8 +16,4 @@ export interface ScopedCssBaselineProps {
  *
  * - [ScopedCssBaseline API](https://material-ui.com/api/scoped-css-baseline/)
  */
-declare const ScopedCssBaseline: React.ComponentType<ScopedCssBaselineProps>;
-
-export type ScopedCssBaselineClassKey = 'root';
-
-export default ScopedCssBaseline;
+export default function ScopedCssBaseline(props: ScopedCssBaselineProps): JSX.Element;

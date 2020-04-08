@@ -173,7 +173,7 @@ Menu.propTypes = {
   /**
    * The DOM element used to set the position of the menu.
    */
-  anchorEl: PropTypes.oneOfType([
+  anchorEl: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.func,
     PropTypes.instanceOf(typeof Element === 'undefined' ? Object : Element),
   ]),

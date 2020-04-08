@@ -167,11 +167,15 @@ const CircularProgress = React.forwardRef(function CircularProgress(props, ref) 
 });
 
 CircularProgress.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -179,7 +183,7 @@ CircularProgress.propTypes = {
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    */
-  color: PropTypes.oneOf(['primary', 'secondary', 'inherit']),
+  color: PropTypes.oneOf(['inherit', 'primary', 'secondary']),
   /**
    * If `true`, the shrink animation is disabled.
    * This only works if variant is `indeterminate`.

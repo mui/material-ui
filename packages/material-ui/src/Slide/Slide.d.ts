@@ -3,10 +3,24 @@ import { Theme } from '../styles/createMuiTheme';
 import { TransitionProps } from '../transitions/transition';
 
 export interface SlideProps extends TransitionProps {
+  /**
+   * A single child content element.
+   */
   children?: React.ReactElement<any, any>;
+  /**
+   * Direction the child node will enter from.
+   */
   direction?: 'left' | 'right' | 'up' | 'down';
+  /**
+   * If `true`, show the component; triggers the enter or exit animation.
+   */
+  in?: TransitionProps['in'];
   ref?: React.Ref<unknown>;
-  theme?: Theme;
+  /**
+   * The duration for the transition, in milliseconds.
+   * You may specify a single timeout for all transitions, or individually with an object.
+   */
+  timeout?: TransitionProps['timeout'];
 }
 
 /**
@@ -22,6 +36,4 @@ export interface SlideProps extends TransitionProps {
  * - [Slide API](https://material-ui.com/api/slide/)
  * - inherits [Transition API](https://reactcommunity.org/react-transition-group/transition#Transition-props)
  */
-declare const Slide: React.ComponentType<SlideProps>;
-
-export default Slide;
+export default function Slide(props: SlideProps): JSX.Element;

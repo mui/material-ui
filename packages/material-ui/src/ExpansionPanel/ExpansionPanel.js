@@ -148,6 +148,10 @@ const ExpansionPanel = React.forwardRef(function ExpansionPanel(props, ref) {
 });
 
 ExpansionPanel.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * The content of the expansion panel.
    */
@@ -172,7 +176,7 @@ ExpansionPanel.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -198,7 +202,7 @@ ExpansionPanel.propTypes = {
    */
   onChange: PropTypes.func,
   /**
-   * @ignore
+   * If `true`, rounded corners are disabled.
    */
   square: PropTypes.bool,
   /**

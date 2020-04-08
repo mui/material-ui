@@ -76,9 +76,6 @@ export interface MenuProps
    */
   open: boolean;
   /**
-   */
-  PaperProps?: Partial<PaperProps>;
-  /**
    * `classes` prop applied to the [`Popover`](/api/popover/) element.
    */
   PopoverClasses?: PopoverProps['classes'];

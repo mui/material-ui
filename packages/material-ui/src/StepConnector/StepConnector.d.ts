@@ -1,18 +1,10 @@
 import * as React from 'react';
 import { StandardProps } from '..';
-import { Orientation } from '../Stepper';
 
 export type StepConnectorIcon = React.ReactElement | string | number;
 
 export interface StepConnectorProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, StepConnectorClasskey> {
-  active?: boolean;
-  alternativeLabel?: boolean;
-  completed?: boolean;
-  disabled?: boolean;
-  index?: number;
-  orientation?: Orientation;
-}
+  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, StepConnectorClasskey, 'children'> {}
 
 export type StepConnectorClasskey =
   | 'root'
@@ -36,6 +28,4 @@ export type StepConnectorClasskey =
  *
  * - [StepConnector API](https://material-ui.com/api/step-connector/)
  */
-declare const StepConnector: React.ComponentType<StepConnectorProps>;
-
-export default StepConnector;
+export default function StepConnector(props: StepConnectorProps): JSX.Element;

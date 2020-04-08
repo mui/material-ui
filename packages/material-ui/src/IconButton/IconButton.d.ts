@@ -9,6 +9,12 @@ export type IconButtonTypeMap<
   props: P & {
     color?: PropTypes.Color;
     disableFocusRipple?: boolean;
+    /**
+     * If given, uses a negative margin to counteract the padding on one
+     * side (this is often helpful for aligning the left or right
+     * side of the icon with content above or below, without ruining the border
+     * size and shape).
+     */
     edge?: 'start' | 'end' | false;
     size?: 'small' | 'medium';
   };
