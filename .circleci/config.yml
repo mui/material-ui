@@ -210,8 +210,6 @@ workflows:
       - test_unit:
           requires:
             - checkout
-          # REVERT_ME_OR_JUST_KIDDING_IT_WILL_BE_FINE
-          react-dist-tag: next
       - test_static:
           requires:
             - checkout
@@ -221,8 +219,6 @@ workflows:
       - test_browser:
           requires:
             - checkout
-          # REVERT_ME_OR_JUST_KIDDING_IT_WILL_BE_FINE
-          react-dist-tag: next
       - test_regressions:
           requires:
             - test_unit
