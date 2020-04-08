@@ -15,12 +15,19 @@ const tablelvl2 = {
   variant: 'head',
 };
 
+const defaultComponent = 'thead';
+
 const TableHead = React.forwardRef(function TableHead(props, ref) {
-  const { classes, className, component: Component = 'thead', ...other } = props;
+  const { classes, className, component: Component = defaultComponent, ...other } = props;
 
   return (
     <Tablelvl2Context.Provider value={tablelvl2}>
-      <Component className={clsx(classes.root, className)} ref={ref} {...other} />
+      <Component
+        className={clsx(classes.root, className)}
+        ref={ref}
+        role={Component === defaultComponent ? null : 'rowgroup'}
+        {...other}
+      />
     </Tablelvl2Context.Provider>
   );
 });
