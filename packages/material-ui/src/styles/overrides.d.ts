@@ -1,5 +1,4 @@
-import { StyleRules } from './withStyles';
-
+import { CSSProperties, StyleRules } from './withStyles';
 import { AppBarClassKey } from '../AppBar';
 import { AvatarClassKey } from '../Avatar';
 import { BackdropClassKey } from '../Backdrop';
@@ -99,6 +98,12 @@ import { TypographyClassKey } from '../Typography';
 
 export type Overrides = {
   [Name in keyof ComponentNameToClassKey]?: Partial<StyleRules<ComponentNameToClassKey[Name]>>;
+} & {
+  MuiCssBaseline?: {
+    '@global'?: {
+      '@font-face'?: CSSProperties['@font-face'];
+    } & Record<string, CSSProperties['@font-face'] | CSSProperties>; // allow arbitrary selectors
+  };
 };
 
 export interface ComponentNameToClassKey {
@@ -123,6 +128,10 @@ export interface ComponentNameToClassKey {
   MuiCircularProgress: CircularProgressClassKey;
   MuiCollapse: CollapseClassKey;
   MuiContainer: ContainerClassKey;
+  /**
+   * @deprecated See CssBaseline.d.ts
+   */
+  MuiCssBaseline: '@global';
   MuiDialog: DialogClassKey;
   MuiDialogActions: DialogActionsClassKey;
   MuiDialogContent: DialogContentClassKey;

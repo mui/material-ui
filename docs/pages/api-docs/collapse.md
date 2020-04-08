@@ -22,6 +22,10 @@ The Collapse transition is used by the
 [Vertical Stepper](/components/steppers/#vertical-stepper) StepContent component.
 It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
 
+## Component name
+
+The `MuiCollapse` name can be used for providing [default props](/customization/globals/#default-props) or [style overrides](/customization/globals/#css) at the theme level.
+
 ## Props
 
 | Name | Type | Default | Description |
@@ -38,9 +42,6 @@ The `ref` is forwarded to the root element.
 Any other props supplied will be provided to the root element ([Transition](https://reactcommunity.org/react-transition-group/transition/#Transition-props)).
 
 ## CSS
-
-- Style sheet name: `MuiCollapse`.
-- Style sheet details:
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|

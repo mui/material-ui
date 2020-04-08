@@ -30,6 +30,8 @@ rather than directly using Modal.
 
 This component shares many concepts with [react-overlays](https://react-bootstrap.github.io/react-overlays/#modals).
 
+
+
 ## Props
 
 | Name | Type | Default | Description |

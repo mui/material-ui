@@ -26,6 +26,8 @@ This component can be useful in a variety of situations:
 - Reduce the rendering time on the server.
 - Under too heavy server load, you can turn on service degradation.
 
+
+
 ## Props
 
 | Name | Type | Default | Description |

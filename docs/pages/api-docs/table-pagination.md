@@ -20,6 +20,10 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 
 A `TableCell` based component for placing inside `TableFooter` for pagination.
 
+## Component name
+
+The `MuiTablePagination` name can be used for providing [default props](/customization/globals/#default-props) or [style overrides](/customization/globals/#css) at the theme level.
+
 ## Props
 
 | Name | Type | Default | Description |
@@ -46,9 +50,6 @@ The `ref` is forwarded to the root element.
 Any other props supplied will be provided to the root element ([TableCell](/api/table-cell/)).
 
 ## CSS
-
-- Style sheet name: `MuiTablePagination`.
-- Style sheet details:
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|

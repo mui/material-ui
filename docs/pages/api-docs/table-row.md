@@ -21,6 +21,10 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 Will automatically set dynamic row height
 based on the material table element parent (head, body, etc).
 
+## Component name
+
+The `MuiTableRow` name can be used for providing [default props](/customization/globals/#default-props) or [style overrides](/customization/globals/#css) at the theme level.
+
 ## Props
 
 | Name | Type | Default | Description |
@@ -36,9 +40,6 @@ The `ref` is forwarded to the root element.
 Any other props supplied will be provided to the root element (native element).
 
 ## CSS
-
-- Style sheet name: `MuiTableRow`.
-- Style sheet details:
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|

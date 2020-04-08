@@ -49,6 +49,10 @@ For advanced cases, please look at the source of TextField by clicking on the
 - using the upper case props for passing values directly to the components
 - using the underlying components directly as shown in the demos
 
+## Component name
+
+The `MuiTextField` name can be used for providing [default props](/customization/globals/#default-props) or [style overrides](/customization/globals/#css) at the theme level.
+
 ## Props
 
 | Name | Type | Default | Description |
@@ -89,9 +93,6 @@ The `ref` is forwarded to the root element.
 Any other props supplied will be provided to the root element ([FormControl](/api/form-control/)).
 
 ## CSS
-
-- Style sheet name: `MuiTextField`.
-- Style sheet details:
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|

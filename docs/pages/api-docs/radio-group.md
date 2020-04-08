@@ -20,6 +20,8 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 
 
 
+
+
 ## Props
 
 | Name | Type | Default | Description |

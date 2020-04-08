@@ -227,6 +227,21 @@ describe('<Select />', () => {
       const selected = onChangeHandler.args[0][1];
       expect(React.isValidElement(selected)).to.equal(true);
     });
+
+    it('should not be called if selected element has the current value (value did not change)', () => {
+      const onChangeHandler = spy();
+      const { getAllByRole, getByRole } = render(
+        <Select onChange={onChangeHandler} value="1">
+          <MenuItem value="0" />
+          <MenuItem value="1" />
+          <MenuItem value="2" />
+        </Select>,
+      );
+      fireEvent.mouseDown(getByRole('button'));
+      getAllByRole('option')[1].click();
+
+      expect(onChangeHandler.callCount).to.equal(0);
+    });
   });
 
   describe('prop: value', () => {

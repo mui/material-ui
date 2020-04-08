@@ -21,6 +21,10 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 Refer to the [Icons](/components/icons/) section of the documentation
 regarding the available icon options.
 
+## Component name
+
+The `MuiIconButton` name can be used for providing [default props](/customization/globals/#default-props) or [style overrides](/customization/globals/#css) at the theme level.
+
 ## Props
 
 | Name | Type | Default | Description |
@@ -39,9 +43,6 @@ The `ref` is forwarded to the root element.
 Any other props supplied will be provided to the root element ([ButtonBase](/api/button-base/)).
 
 ## CSS
-
-- Style sheet name: `MuiIconButton`.
-- Style sheet details:
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
