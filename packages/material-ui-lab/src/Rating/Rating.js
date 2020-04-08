@@ -3,7 +3,12 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes } from '@material-ui/utils';
 import { useTheme, withStyles } from '@material-ui/core/styles';
-import { capitalize, useForkRef, useIsFocusVisible } from '@material-ui/core/utils';
+import {
+  capitalize,
+  useForkRef,
+  useIsFocusVisible,
+  unstable_useId as useId,
+} from '@material-ui/core/utils';
 import Star from '../internal/svg-icons/Star';
 
 function clamp(value, min, max) {
@@ -160,14 +165,7 @@ const Rating = React.forwardRef(function Rating(props, ref) {
     ...other
   } = props;
 
-  const [defaultName, setDefaultName] = React.useState();
-  const name = nameProp || defaultName;
-  React.useEffect(() => {
-    // Fallback to this default id when possible.
-    // Use the random value for client-side rendering only.
-    // We can't use it server-side.
-    setDefaultName(`mui-rating-${Math.round(Math.random() * 1e5)}`);
-  }, []);
+  const name = useId(nameProp);
 
   const { current: isControlled } = React.useRef(valueProp !== undefined);
   const [valueState, setValueState] = React.useState(defaultValue);
@@ -478,11 +476,15 @@ const Rating = React.forwardRef(function Rating(props, ref) {
 });
 
 Rating.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -573,7 +575,7 @@ Rating.propTypes = {
   /**
    * The size of the rating.
    */
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  size: PropTypes.oneOf(['large', 'medium', 'small']),
   /**
    * The rating value.
    */

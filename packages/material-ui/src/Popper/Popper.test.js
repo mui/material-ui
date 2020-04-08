@@ -284,15 +284,19 @@ describe('<Popper />', () => {
     });
 
     it('should warn if anchorEl is not valid', () => {
-      mount(<Popper {...defaultProps} open anchorEl={null} />);
+      PropTypes.checkPropTypes(
+        Popper.propTypes,
+        {
+          ...defaultProps,
+          open: true,
+          anchorEl: null,
+        },
+        'prop',
+        'MockedPopper',
+      );
+
       assert.strictEqual(consoleErrorMock.callCount(), 1);
       assert.include(consoleErrorMock.messages()[0], 'It should be an HTML Element instance');
     });
-
-    // it('should warn if anchorEl is not visible', () => {
-    //   mount(<Popper {...defaultProps} open anchorEl={document.createElement('div')} />);
-    //   assert.strictEqual(consoleErrorMock.callCount(), 1);
-    //   assert.include(consoleErrorMock.messages()[0], 'The node element should be visible');
-    // });
   });
 });

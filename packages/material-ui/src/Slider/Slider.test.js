@@ -489,22 +489,36 @@ describe('<Slider />', () => {
   describe('warnings', () => {
     beforeEach(() => {
       consoleErrorMock.spy();
+      PropTypes.resetWarningCache();
     });
 
     afterEach(() => {
       consoleErrorMock.reset();
-      PropTypes.resetWarningCache();
     });
 
     it('should warn if aria-valuetext is provided', () => {
-      render(<Slider value={[20, 50]} aria-valuetext="hot" />);
+      PropTypes.checkPropTypes(
+        Slider.Naked.propTypes,
+        { classes: {}, value: [20, 50], 'aria-valuetext': 'hot' },
+        'prop',
+        'MockedSlider',
+      );
+
+      expect(consoleErrorMock.callCount()).to.equal(1);
       expect(consoleErrorMock.messages()[0]).to.include(
         'you need to use the `getAriaValueText` prop instead of',
       );
     });
 
     it('should warn if aria-label is provided', () => {
-      render(<Slider value={[20, 50]} aria-label="hot" />);
+      PropTypes.checkPropTypes(
+        Slider.Naked.propTypes,
+        { classes: {}, value: [20, 50], 'aria-label': 'hot' },
+        'prop',
+        'MockedSlider',
+      );
+
+      expect(consoleErrorMock.callCount()).to.equal(1);
       expect(consoleErrorMock.messages()[0]).to.include(
         'you need to use the `getAriaLabel` prop instead of',
       );

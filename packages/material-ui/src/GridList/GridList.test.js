@@ -4,7 +4,6 @@ import { createMount, createShallow, getClasses } from '@material-ui/core/test-u
 import describeConformance from '../test-utils/describeConformance';
 import GridList from './GridList';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
-import PropTypes from 'prop-types';
 
 const tilesData = [
   {
@@ -181,7 +180,6 @@ describe('<GridList />', () => {
 
     after(() => {
       consoleErrorMock.reset();
-      PropTypes.resetWarningCache();
     });
 
     it('warns a Fragment is passed as a child', () => {

@@ -67,18 +67,24 @@ export const styles = (theme) => ({
 
 const StepLabel = React.forwardRef(function StepLabel(props, ref) {
   const {
+    // eslint-disable-next-line react/prop-types
     active = false,
+    // eslint-disable-next-line react/prop-types
     alternativeLabel = false,
     children,
     classes,
     className,
+    // eslint-disable-next-line react/prop-types
     completed = false,
     disabled = false,
     error = false,
+    // eslint-disable-next-line react/prop-types
     expanded,
     icon,
+    // eslint-disable-next-line react/prop-types
     last,
     optional,
+    // eslint-disable-next-line react/prop-types
     orientation = 'horizontal',
     StepIconComponent: StepIconComponentProp,
     StepIconProps,
@@ -142,14 +148,10 @@ const StepLabel = React.forwardRef(function StepLabel(props, ref) {
 });
 
 StepLabel.propTypes = {
-  /**
-   * @ignore
-   */
-  active: PropTypes.bool,
-  /**
-   * @ignore
-   */
-  alternativeLabel: PropTypes.bool,
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * In most cases will simply be a string containing a title for the label.
    */
@@ -158,15 +160,11 @@ StepLabel.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
   className: PropTypes.string,
-  /**
-   * @ignore
-   */
-  completed: PropTypes.bool,
   /**
    * Mark the step as disabled, will also disable the button if
    * `StepLabelButton` is a child of `StepLabel`. Is passed to child components.
@@ -177,25 +175,13 @@ StepLabel.propTypes = {
    */
   error: PropTypes.bool,
   /**
-   * @ignore
-   */
-  expanded: PropTypes.bool,
-  /**
    * Override the default label of the step icon.
    */
   icon: PropTypes.node,
   /**
-   * @ignore
-   */
-  last: PropTypes.bool,
-  /**
    * The optional node to display.
    */
   optional: PropTypes.node,
-  /**
-   * @ignore
-   */
-  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   /**
    * The component to render in place of the [`StepIcon`](/api/step-icon/).
    */

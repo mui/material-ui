@@ -29,11 +29,11 @@ describe('elementAcceptingRef', () => {
 
   beforeEach(() => {
     consoleErrorMock.spy();
+    PropTypes.resetWarningCache();
   });
 
   afterEach(() => {
     consoleErrorMock.reset();
-    PropTypes.resetWarningCache();
   });
 
   describe('acceptance when not required', () => {

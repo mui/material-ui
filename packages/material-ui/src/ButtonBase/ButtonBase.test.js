@@ -908,11 +908,11 @@ describe('<ButtonBase />', () => {
   describe('warnings', () => {
     beforeEach(() => {
       consoleErrorMock.spy();
+      PropTypes.resetWarningCache();
     });
 
     afterEach(() => {
       consoleErrorMock.reset();
-      PropTypes.resetWarningCache();
     });
 
     it('warns on invalid `component` prop: ref forward', () => {
@@ -929,11 +929,16 @@ describe('<ButtonBase />', () => {
         return <button type="button" {...props} />;
       }
 
-      // cant match the error message here because flakiness with mocha watchmode
-      render(<ButtonBase component={Component} />);
+      PropTypes.checkPropTypes(
+        // @ts-ignore `Naked` is internal
+        ButtonBase.Naked.propTypes,
+        { classes: {}, component: Component },
+        'prop',
+        'MockedName',
+      );
 
       expect(consoleErrorMock.messages()[0]).to.include(
-        'Invalid prop `component` supplied to `ForwardRef(ButtonBase)`. Expected an element type that can hold a ref',
+        'Invalid prop `component` supplied to `MockedName`. Expected an element type that can hold a ref',
       );
     });
 

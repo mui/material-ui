@@ -9,6 +9,7 @@ describe('deprecatedPropType', () => {
 
   beforeEach(() => {
     consoleErrorMock.spy();
+    PropTypes.resetWarningCache();
   });
 
   afterEach(() => {
@@ -30,7 +31,7 @@ describe('deprecatedPropType', () => {
   });
 
   it('should warn once', () => {
-    const propName = `children${new Date()}`;
+    const propName = `children`;
     const props = {
       [propName]: 'yolo',
     };

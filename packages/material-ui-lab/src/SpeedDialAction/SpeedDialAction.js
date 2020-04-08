@@ -184,11 +184,12 @@ SpeedDialAction.propTypes = {
    */
   icon: PropTypes.node,
   /**
-   * @ignore
+   * This prop is used to help implement the accessibility logic.
+   * If you don't provide this prop. It falls back to a randomly generated id.
    */
   id: PropTypes.string,
   /**
-   * @ignore
+   * If `true`, the tooltip is shown.
    */
   open: PropTypes.bool,
   /**

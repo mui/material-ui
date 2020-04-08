@@ -3,7 +3,7 @@ import { assert } from 'chai';
 import { spy } from 'sinon';
 import { createMount } from '@material-ui/core/test-utils';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
-import PropTypes from 'prop-types';
+import PropTypes, { checkPropTypes } from 'prop-types';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import Drawer from '../Drawer';
 import SwipeableDrawer, { reset } from './SwipeableDrawer';
@@ -525,36 +525,42 @@ describe('<SwipeableDrawer />', () => {
     });
 
     it('warns if a component for the Paper is used that cant hold a ref', () => {
-      mount(
-        <SwipeableDrawer
-          onOpen={() => {}}
-          onClose={() => {}}
-          open={false}
-          PaperProps={{ component: () => <div />, elevation: 4 }}
-        />,
+      checkPropTypes(
+        SwipeableDrawer.propTypes,
+        {
+          onOpen: () => {},
+          onClose: () => {},
+          open: false,
+          PaperProps: { component: () => <div />, elevation: 4 },
+        },
+        'prop',
+        'MockedSwipeableDrawer',
       );
 
       assert.strictEqual(consoleErrorMock.callCount(), 1);
       assert.include(
         consoleErrorMock.messages()[0],
-        'Warning: Failed prop type: Invalid prop `PaperProps.component` supplied to `ForwardRef(SwipeableDrawer)`. Expected an element type that can hold a ref.',
+        'Warning: Failed prop type: Invalid prop `PaperProps.component` supplied to `MockedSwipeableDrawer`. Expected an element type that can hold a ref.',
       );
     });
 
     it('warns if a component for the Backdrop is used that cant hold a ref', () => {
-      mount(
-        <SwipeableDrawer
-          onOpen={() => {}}
-          onClose={() => {}}
-          open={false}
-          ModalProps={{ BackdropProps: { component: () => <div />, 'data-backdrop': true } }}
-        />,
+      checkPropTypes(
+        SwipeableDrawer.propTypes,
+        {
+          onOpen: () => {},
+          onClose: () => {},
+          open: false,
+          ModalProps: { BackdropProps: { component: () => <div />, 'data-backdrop': true } },
+        },
+        'prop',
+        'MockedSwipeableDrawer',
       );
 
       assert.strictEqual(consoleErrorMock.callCount(), 1);
       assert.include(
         consoleErrorMock.messages()[0],
-        'Warning: Failed prop type: Invalid prop `ModalProps.BackdropProps.component` supplied to `ForwardRef(SwipeableDrawer)`. Expected an element type that can hold a ref.',
+        'Warning: Failed prop type: Invalid prop `ModalProps.BackdropProps.component` supplied to `MockedSwipeableDrawer`. Expected an element type that can hold a ref.',
       );
     });
   });

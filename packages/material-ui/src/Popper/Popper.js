@@ -53,6 +53,7 @@ const Popper = React.forwardRef(function Popper(props, ref) {
     placement: initialPlacement = 'bottom',
     popperOptions = defaultPopperOptions,
     popperRef: popperRefProp,
+    style,
     transition = false,
     ...other
   } = props;
@@ -143,6 +144,7 @@ const Popper = React.forwardRef(function Popper(props, ref) {
       onCreate: createChainedFunction(handlePopperUpdate, popperOptions.onCreate),
       onUpdate: createChainedFunction(handlePopperUpdate, popperOptions.onUpdate),
     });
+
     handlePopperRefRef.current(popper);
   }, [anchorEl, disablePortal, modifiers, open, rtlPlacement, popperOptions]);
 
@@ -216,7 +218,7 @@ const Popper = React.forwardRef(function Popper(props, ref) {
           // Fix Popper.js display issue
           top: 0,
           left: 0,
-          ...other.style,
+          ...style,
         }}
       >
         {typeof children === 'function' ? children(childProps) : children}
@@ -226,6 +228,10 @@ const Popper = React.forwardRef(function Popper(props, ref) {
 });
 
 Popper.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * This is the reference element, or a function that returns the reference element,
    * that may be used to set the position of the popover.
@@ -279,14 +285,21 @@ Popper.propTypes = {
   /**
    * Popper render function or node.
    */
-  children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
+  children: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.node,
+    PropTypes.func,
+  ]).isRequired,
   /**
    * A node, component instance, or function that returns either.
    * The `container` will passed to the Modal component.
    * By default, it uses the body of the anchorEl's top-level document object,
    * so it's simply `document.body` most of the time.
    */
-  container: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
+  container: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.func,
+    PropTypes.instanceOf(React.Component),
+    PropTypes.instanceOf(typeof Element === 'undefined' ? Object : Element),
+  ]),
   /**
    * Disable the portal behavior.
    * The children stay within it's parent DOM hierarchy.
@@ -337,6 +350,10 @@ Popper.propTypes = {
    * A ref that points to the used popper instance.
    */
   popperRef: refType,
+  /**
+   * @ignore
+   */
+  style: PropTypes.object,
   /**
    * Help supporting a react-transition-group/Transition component.
    */

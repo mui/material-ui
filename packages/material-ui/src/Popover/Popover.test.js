@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { assert, expect } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
-import PropTypes from 'prop-types';
 import { createMount, findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
@@ -461,7 +460,6 @@ describe('<Popover />', () => {
   describe('warnings', () => {
     beforeEach(() => {
       consoleErrorMock.spy();
-      PropTypes.resetWarningCache();
     });
 
     afterEach(() => {

@@ -22,21 +22,6 @@ export interface CollapseProps extends StandardProps<TransitionProps, CollapseCl
    */
   in?: boolean;
   /**
-   */
-  onEnter?: TransitionProps['onEnter'];
-  /**
-   */
-  onEntered?: TransitionProps['onEntered'];
-  /**
-   */
-  onEntering?: TransitionProps['onEntering'];
-  /**
-   */
-  onExit?: TransitionProps['onExit'];
-  /**
-   */
-  onExiting?: TransitionProps['onExiting'];
-  /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
    *

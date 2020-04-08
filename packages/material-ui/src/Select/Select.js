@@ -134,7 +134,7 @@ Select.propTypes = {
    */
   IconComponent: PropTypes.elementType,
   /**
-   * @ignore
+   * The `id` of the wrapper element or the `select` elment when `native`.
    */
   id: PropTypes.string,
   /**

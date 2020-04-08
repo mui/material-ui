@@ -422,6 +422,10 @@ const Popover = React.forwardRef(function Popover(props, ref) {
 });
 
 Popover.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * A ref for imperative actions.
    * It currently only supports updatePosition() action.
@@ -477,10 +481,10 @@ Popover.propTypes = {
    */
   anchorOrigin: PropTypes.shape({
     horizontal: PropTypes.oneOfType([
+      PropTypes.oneOf(['center', 'left', 'right']),
       PropTypes.number,
-      PropTypes.oneOf(['left', 'center', 'right']),
     ]).isRequired,
-    vertical: PropTypes.oneOfType([PropTypes.number, PropTypes.oneOf(['top', 'center', 'bottom'])])
+    vertical: PropTypes.oneOfType([PropTypes.oneOf(['bottom', 'center', 'top']), PropTypes.number])
       .isRequired,
   }),
   /**
@@ -493,7 +497,7 @@ Popover.propTypes = {
     left: PropTypes.number.isRequired,
     top: PropTypes.number.isRequired,
   }),
-  /*
+  /**
    * This determines which anchor prop to refer to to set
    * the position of the popover.
    */
@@ -506,7 +510,7 @@ Popover.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -517,7 +521,11 @@ Popover.propTypes = {
    * By default, it uses the body of the anchorEl's top-level document object,
    * so it's simply `document.body` most of the time.
    */
-  container: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
+  container: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.func,
+    PropTypes.instanceOf(React.Component),
+    PropTypes.instanceOf(typeof Element === 'undefined' ? Object : Element),
+  ]),
   /**
    * The elevation of the popover.
    */
@@ -537,9 +545,6 @@ Popover.propTypes = {
   marginThreshold: PropTypes.number,
   /**
    * Callback fired when the component requests to be closed.
-   *
-   * @param {object} event The event source of the callback.
-   * @param {string} reason Can be: `"escapeKeyDown"`, `"backdropClick"`.
    */
   onClose: PropTypes.func,
   /**
@@ -573,7 +578,7 @@ Popover.propTypes = {
   /**
    * Props applied to the [`Paper`](/api/paper/) element.
    */
-  PaperProps: PropTypes.shape({
+  PaperProps: PropTypes /* @typescript-to-proptypes-ignore */.shape({
     component: elementTypeAcceptingRef,
   }),
   /**
@@ -586,10 +591,10 @@ Popover.propTypes = {
    */
   transformOrigin: PropTypes.shape({
     horizontal: PropTypes.oneOfType([
+      PropTypes.oneOf(['center', 'left', 'right']),
       PropTypes.number,
-      PropTypes.oneOf(['left', 'center', 'right']),
     ]).isRequired,
-    vertical: PropTypes.oneOfType([PropTypes.number, PropTypes.oneOf(['top', 'center', 'bottom'])])
+    vertical: PropTypes.oneOfType([PropTypes.oneOf(['bottom', 'center', 'top']), PropTypes.number])
       .isRequired,
   }),
   /**
@@ -601,9 +606,13 @@ Popover.propTypes = {
    * Set to 'auto' to automatically calculate transition time based on height.
    */
   transitionDuration: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
     PropTypes.oneOf(['auto']),
+    PropTypes.number,
+    PropTypes.shape({
+      appear: PropTypes.number,
+      enter: PropTypes.number,
+      exit: PropTypes.number,
+    }),
   ]),
   /**
    * Props applied to the [`Transition`](http://reactcommunity.org/react-transition-group/transition#Transition-props) element.

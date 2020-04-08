@@ -113,14 +113,17 @@ const Slide = React.forwardRef(function Slide(props, ref) {
         mode: 'enter',
       },
     );
+
     node.style.webkitTransition = theme.transitions.create('-webkit-transform', {
       ...transitionProps,
       easing: theme.transitions.easing.easeOut,
     });
+
     node.style.transition = theme.transitions.create('transform', {
       ...transitionProps,
       easing: theme.transitions.easing.easeOut,
     });
+
     node.style.webkitTransform = 'none';
     node.style.transform = 'none';
     if (onEntering) {
@@ -136,14 +139,17 @@ const Slide = React.forwardRef(function Slide(props, ref) {
         mode: 'exit',
       },
     );
+
     node.style.webkitTransition = theme.transitions.create('-webkit-transform', {
       ...transitionProps,
       easing: theme.transitions.easing.sharp,
     });
+
     node.style.transition = theme.transitions.create('transform', {
       ...transitionProps,
       easing: theme.transitions.easing.sharp,
     });
+
     setTranslateValue(direction, node);
 
     if (onExit) {
@@ -222,6 +228,10 @@ const Slide = React.forwardRef(function Slide(props, ref) {
 });
 
 Slide.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * A single child content element.
    */
@@ -229,7 +239,7 @@ Slide.propTypes = {
   /**
    * Direction the child node will enter from.
    */
-  direction: PropTypes.oneOf(['left', 'right', 'up', 'down']),
+  direction: PropTypes.oneOf(['down', 'left', 'right', 'up']),
   /**
    * If `true`, show the component; triggers the enter or exit animation.
    */
@@ -260,7 +270,11 @@ Slide.propTypes = {
    */
   timeout: PropTypes.oneOfType([
     PropTypes.number,
-    PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
+    PropTypes.shape({
+      appear: PropTypes.number,
+      enter: PropTypes.number,
+      exit: PropTypes.number,
+    }),
   ]),
 };
 

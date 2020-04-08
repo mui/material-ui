@@ -3,6 +3,9 @@ import { StandardProps } from '..';
 import { InputBaseProps } from '../InputBase';
 
 export interface InputProps extends StandardProps<InputBaseProps, InputClassKey> {
+  /**
+   * If `true`, the input will not have an underline.
+   */
   disableUnderline?: boolean;
 }
 
@@ -33,6 +36,4 @@ export type InputClassKey =
  * - [Input API](https://material-ui.com/api/input/)
  * - inherits [InputBase API](https://material-ui.com/api/input-base/)
  */
-declare const Input: React.ComponentType<InputProps>;
-
-export default Input;
+export default function Input(props: InputProps): JSX.Element;

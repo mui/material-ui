@@ -73,11 +73,11 @@ describe('withStyles', () => {
     // describe('innerRef', () => {
     //   beforeEach(() => {
     //     consoleErrorMock.spy();
+    //     PropTypes.resetWarningCache();
     //   });
 
     //   afterEach(() => {
     //     consoleErrorMock.reset();
-    //     PropTypes.resetWarningCache();
     //   });
 
     //   it('is deprecated', () => {

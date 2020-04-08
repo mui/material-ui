@@ -11,6 +11,7 @@ describe('chainPropTypes', () => {
 
   beforeEach(() => {
     consoleErrorMock.spy();
+    PropTypes.resetWarningCache();
   });
 
   afterEach(() => {
