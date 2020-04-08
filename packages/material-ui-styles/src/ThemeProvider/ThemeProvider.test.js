@@ -67,7 +67,9 @@ describe('ThemeProvider', () => {
     const text = () => ref.current.textContent;
     function Test() {
       const theme = useTheme();
-      themes.push(theme);
+      React.useEffect(() => {
+        themes.push(theme);
+      });
 
       return (
         <span ref={ref}>

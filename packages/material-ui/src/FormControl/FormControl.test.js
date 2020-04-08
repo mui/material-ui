@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
-import { createClientRender } from 'test/utils/createClientRender';
+import { act, createClientRender } from 'test/utils/createClientRender';
 import Input from '../Input';
 import Select from '../Select';
 import FormControl from './FormControl';
@@ -16,7 +16,9 @@ describe('<FormControl />', () => {
 
   function TestComponent(props) {
     const context = useFormControl();
-    props.contextCallback(context);
+    React.useEffect(() => {
+      props.contextCallback(context);
+    });
     return null;
   }
 
@@ -101,7 +103,9 @@ describe('<FormControl />', () => {
       );
       expect(readContext.args[0][0]).to.have.property('focused', false);
 
-      container.querySelector('input').focus();
+      act(() => {
+        container.querySelector('input').focus();
+      });
       expect(readContext.args[1][0]).to.have.property('focused', true);
 
       setProps({ disabled: true });
