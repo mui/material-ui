@@ -23,8 +23,7 @@ export interface PopperProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 
    * The return value will passed as the reference object of the Popper
    * instance.
    *
-   * The reference element should be an HTML Element instance or a referenceObject:
-   * https://popper.js.org/popper-documentation.html#referenceObject.
+   * The reference element should be an HTML Element instance or a [referenceObject](https://popper.js.org/docs/v1/#referenceObject).
    */
   anchorEl?: null | ReferenceObject | (() => ReferenceObject);
   /**
@@ -65,7 +64,7 @@ export interface PopperProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 
    * A modifier is a function that is called each time Popper.js needs to
    * compute the position of the popper.
    * For this reason, modifiers should be very performant to avoid bottlenecks.
-   * To learn how to create a modifier, [read the modifiers documentation](https://github.com/FezVrasta/popper.js/blob/master/docs/_includes/popper-documentation.md#modifiers--object).
+   * To learn how to create a modifier, [read the modifiers documentation](https://popper.js.org/docs/v1/#modifiers).
    */
   modifiers?: object;
   /**
@@ -77,7 +76,7 @@ export interface PopperProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 
    */
   placement?: PopperPlacementType;
   /**
-   * Options provided to the [`popper.js`](https://github.com/FezVrasta/popper.js) instance.
+   * Options provided to the [`popper.js`](https://popper.js.org/docs/v1/) instance.
    */
   popperOptions?: object;
   /**
