@@ -9,6 +9,7 @@
  */
 const childProcess = require('child_process');
 const fs = require('fs');
+const os = require('os');
 const path = require('path');
 const { promisify } = require('util');
 
@@ -48,7 +49,7 @@ async function main(distTag) {
   packageJson.devDependencies['enzyme-adapter-react-16'] = 'npm:@eps1lon/enzyme-adapter-react-next';
 
   // CircleCI seemingly times out if it has a newline diff at the end
-  fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2));
+  fs.writeFileSync(packageJsonPath, `${JSON.stringify(packageJson, null, 2)}${os.EOL}`);
 }
 
 main(process.env.REACT_DIST_TAG).catch((error) => {
