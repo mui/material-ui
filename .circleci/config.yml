@@ -34,7 +34,7 @@ commands:
           command: |
             node scripts/use-react-dist-tag
             # log a patch for maintainers who want to check out this change
-            git diff HEAD
+            git --no-pager diff HEAD
       - restore_cache:
           keys:
             - v2-yarn-sha-{{ checksum "yarn.lock" }}
@@ -152,7 +152,7 @@ jobs:
           command: |
             node scripts/use-typescript-dist-tag
             # log a patch for maintainers who want to check out this change
-            git diff HEAD
+            git --no-pager diff HEAD
       - install_js
       - run:
           name: Tests TypeScript definitions
