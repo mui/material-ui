@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { assert } from 'chai';
 import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
+import * as PropTypes from 'prop-types';
 import describeConformance from '../test-utils/describeConformance';
 import Paper from './Paper';
 import { createMuiTheme, ThemeProvider } from '../styles';
@@ -10,14 +11,6 @@ describe('<Paper />', () => {
   let mount;
   let shallow;
   let classes;
-
-  beforeEach(() => {
-    consoleErrorMock.spy();
-  });
-
-  afterEach(() => {
-    consoleErrorMock.reset();
-  });
 
   before(() => {
     mount = createMount({ strict: true });
@@ -77,16 +70,6 @@ describe('<Paper />', () => {
     );
   });
 
-  it('warns if the given `elevation` is not implemented in the theme', () => {
-    mount(<Paper elevation={25} />);
-
-    assert.strictEqual(consoleErrorMock.callCount(), 1);
-    assert.include(
-      consoleErrorMock.messages()[0],
-      'Material-UI: this elevation `25` is not implemented.',
-    );
-  });
-
   it('allows custom elevations via theme.shadows', () => {
     const theme = createMuiTheme();
     theme.shadows.push('20px 20px');
@@ -97,5 +80,31 @@ describe('<Paper />', () => {
     );
 
     assert.strictEqual(wrapper.find('div[data-testid="paper"]').hasClass('custom-elevation'), true);
+  });
+
+  describe('warnings', () => {
+    beforeEach(() => {
+      consoleErrorMock.spy();
+      PropTypes.resetWarningCache();
+    });
+
+    afterEach(() => {
+      consoleErrorMock.reset();
+    });
+
+    it('warns if the given `elevation` is not implemented in the theme', () => {
+      PropTypes.checkPropTypes(
+        Paper.Naked.propTypes,
+        { classes: { elevation24: 'elevation-24', elevation26: 'elevation-26' }, elevation: 25 },
+        'prop',
+        'MockedPaper',
+      );
+
+      assert.strictEqual(consoleErrorMock.callCount(), 1);
+      assert.include(
+        consoleErrorMock.messages()[0],
+        'Material-UI: this elevation `25` is not implemented.',
+      );
+    });
   });
 });

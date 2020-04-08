@@ -2,6 +2,7 @@ import * as React from 'react';
 import { assert, expect } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
 import { createMount, findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
+import * as PropTypes from 'prop-types';
 import describeConformance from '../test-utils/describeConformance';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import Grow from '../Grow';
@@ -460,6 +461,7 @@ describe('<Popover />', () => {
   describe('warnings', () => {
     beforeEach(() => {
       consoleErrorMock.spy();
+      PropTypes.resetWarningCache();
     });
 
     afterEach(() => {
@@ -467,18 +469,29 @@ describe('<Popover />', () => {
     });
 
     it('should warn if anchorEl is not valid', () => {
-      const otherWrapper = mount(<Popover open />);
-      assert.strictEqual(otherWrapper.find(Modal).props().container, undefined);
+      PropTypes.checkPropTypes(
+        Popover.Naked.propTypes,
+        { classes: {}, open: true },
+        'prop',
+        'MockedPopover',
+      );
+
       assert.strictEqual(consoleErrorMock.callCount(), 1);
       assert.include(consoleErrorMock.messages()[0], 'It should be an Element instance');
     });
 
     it('warns if a component for the Paper is used that cant hold a ref', () => {
-      mount(<Popover {...defaultProps} PaperProps={{ component: () => <div />, elevation: 4 }} />);
+      PropTypes.checkPropTypes(
+        Popover.Naked.propTypes,
+        { ...defaultProps, classes: {}, PaperProps: { component: () => <div />, elevation: 4 } },
+        'prop',
+        'MockedPopover',
+      );
+
       assert.strictEqual(consoleErrorMock.callCount(), 1);
       assert.include(
         consoleErrorMock.messages()[0],
-        'Warning: Failed prop type: Invalid prop `PaperProps.component` supplied to `ForwardRef(Popover)`. Expected an element type that can hold a ref.',
+        'Warning: Failed prop type: Invalid prop `PaperProps.component` supplied to `MockedPopover`. Expected an element type that can hold a ref.',
       );
     });
 
