@@ -45,6 +45,9 @@ async function main(distTag) {
     packageJson.resolutions[reactPackageName] = version;
   });
 
+  // https://github.com/enzymejs/enzyme/issues/2358
+  packageJson.devDependencies['enzyme-adapter-react-16'] = 'npm:@eps1lon/enzyme-adapter-react-next';
+
   // CircleCI seemingly times out if it has a newline diff at the end
   fs.writeFileSync(packageJsonPath, `${JSON.stringify(packageJson, null, 2)}${os.EOL}`);
 }
