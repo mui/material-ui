@@ -9,6 +9,7 @@ import capitalize from '../utils/capitalize';
 import Grow from '../Grow';
 import Popper from '../Popper';
 import useForkRef from '../utils/useForkRef';
+import useId from '../utils/unstable_useId';
 import setRef from '../utils/setRef';
 import useIsFocusVisible from '../utils/useIsFocusVisible';
 import useControlled from '../utils/useControlled';
@@ -245,18 +246,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     }, [title, childNode, isControlled]);
   }
 
-  const [defaultId, setDefaultId] = React.useState();
-  const id = idProp || defaultId;
-  React.useEffect(() => {
-    if (!open || defaultId) {
-      return;
-    }
-
-    // Fallback to this default id when possible.
-    // Use the random value for client-side rendering only.
-    // We can't use it server-side.
-    setDefaultId(`mui-tooltip-${Math.round(Math.random() * 1e5)}`);
-  }, [open, defaultId]);
+  const id = useId(idProp);
 
   React.useEffect(() => {
     return () => {

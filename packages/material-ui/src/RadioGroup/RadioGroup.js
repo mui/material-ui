@@ -4,6 +4,7 @@ import FormGroup from '../FormGroup';
 import useForkRef from '../utils/useForkRef';
 import useControlled from '../utils/useControlled';
 import RadioGroupContext from './RadioGroupContext';
+import useId from '../utils/unstable_useId';
 
 const RadioGroup = React.forwardRef(function RadioGroup(props, ref) {
   const {
@@ -52,14 +53,7 @@ const RadioGroup = React.forwardRef(function RadioGroup(props, ref) {
     }
   };
 
-  const [defaultName, setDefaultName] = React.useState();
-  const name = nameProp || defaultName;
-  React.useEffect(() => {
-    // Fallback to this default name when possible.
-    // Use the random value for client-side rendering only.
-    // We can't use it server-side.
-    setDefaultName(`mui-radiogroup-${Math.round(Math.random() * 1e5)}`);
-  }, []);
+  const name = useId(nameProp);
 
   return (
     <RadioGroupContext.Provider value={{ name, onChange: handleChange, value }}>

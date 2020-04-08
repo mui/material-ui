@@ -93,8 +93,8 @@ describe('<RadioGroup />', () => {
       </RadioGroup>,
     );
 
-    assert.match(findRadio(wrapper, 'zero').props().name, /^mui-radiogroup-[0-9]+/);
-    assert.match(findRadio(wrapper, 'one').props().name, /^mui-radiogroup-[0-9]+/);
+    assert.match(findRadio(wrapper, 'zero').props().name, /^mui-[0-9]+/);
+    assert.match(findRadio(wrapper, 'one').props().name, /^mui-[0-9]+/);
   });
 
   describe('imperative focus()', () => {
@@ -306,7 +306,7 @@ describe('<RadioGroup />', () => {
         const radioGroupRef = React.createRef();
         const { setProps } = render(<RadioGroupControlled ref={radioGroupRef} />);
 
-        expect(radioGroupRef.current.name).to.match(/^mui-radiogroup-[0-9]+/);
+        expect(radioGroupRef.current.name).to.match(/^mui-[0-9]+/);
 
         setProps({ name: 'anotherGroup' });
         expect(radioGroupRef.current).to.have.property('name', 'anotherGroup');
