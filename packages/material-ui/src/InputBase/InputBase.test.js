@@ -47,12 +47,12 @@ describe('<InputBase />', () => {
     });
 
     it('should render an <textarea /> when passed the multiline and rows props', () => {
-      const { container } = render(<InputBase multiline rows="4" />);
+      const { container } = render(<InputBase multiline rows={4} />);
       expect(container.querySelectorAll('textarea')).to.have.lengthOf(1);
     });
 
     it('should forward the value to the TextareaAutosize', () => {
-      const wrapper = mount(<InputBase multiline rowsMax="4" value="" />);
+      const wrapper = mount(<InputBase multiline rowsMax={4} value="" />);
       expect(wrapper.find(TextareaAutosize).props()).to.have.property('value', '');
     });
   });
