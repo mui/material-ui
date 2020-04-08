@@ -23,7 +23,7 @@ export interface BadgeTypeMap<P = {}, D extends React.ElementType = 'div'> {
     /**
      * The badge will be added relative to this node.
      */
-    children: React.ReactNode;
+    children?: React.ReactNode;
     /**
      * The color of the component.
      * It supports those theme colors that make sense for this component.

@@ -8,7 +8,7 @@ export interface StepContentProps
   /**
    * Step content.
    */
-  children: React.ReactNode;
+  children?: React.ReactNode;
   /**
    * The component used for the transition.
    * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.

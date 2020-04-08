@@ -7,7 +7,7 @@ export interface StepLabelProps
   /**
    * In most cases will simply be a string containing a title for the label.
    */
-  children: React.ReactNode;
+  children?: React.ReactNode;
   /**
    * Mark the step as disabled, will also disable the button if
    * `StepLabelButton` is a child of `StepLabel`. Is passed to child components.
