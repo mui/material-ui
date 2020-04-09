@@ -1626,10 +1626,10 @@
     refractor "^2.3.0"
     unist-util-visit "^1.1.3"
 
-"@material-ui/core@^4.9.7":
-  version "4.9.7"
-  resolved "https://registry.yarnpkg.com/@material-ui/core/-/core-4.9.7.tgz#0c1caf123278770f34c5d8e9ecd9e1314f87a621"
-  integrity sha512-RTRibZgq572GHEskMAG4sP+bt3P3XyIkv3pOTR8grZAW2rSUd6JoGZLRM4S2HkuO7wS7cAU5SpU2s1EsmTgWog==
+"@material-ui/core@^4.9.9":
+  version "4.9.9"
+  resolved "https://registry.yarnpkg.com/@material-ui/core/-/core-4.9.9.tgz#902dc37eeb415dd3288feb2c92e0dc27d9caed48"
+  integrity sha512-Gp0UdJLxPEnkn7O0QpJ2/LOeIuT8nX9e6CjQFuLnOy10rUGjRsOZ2T170Y057xdUmw1VNE+0bvkkO6dOghxt4g==
   dependencies:
     "@babel/runtime" "^7.4.4"
     "@material-ui/styles" "^4.9.6"
