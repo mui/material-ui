@@ -32,15 +32,19 @@ It's possible to apply the baseline only to the children by using the `ScopedCss
 ```jsx
 import React from 'react';
 import ScopedCssBaseline from '@material-ui/core/ScopedCssBaseline';
+import MyApp from './MyApp';
 
 export default function MyApp() {
   return (
     <ScopedCssBaseline>
       {/* The rest of your application */}
+      <MyApp />
     </ScopedCssBaseline>
   );
 }
 ```
+
+⚠️ Make sure you import `ScopedCssBaseline` first to avoid box-sizing conflicts as in the above example.
 
 ## Approach
 
