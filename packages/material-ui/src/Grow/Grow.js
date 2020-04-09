@@ -26,7 +26,17 @@ const styles = {
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
 const Grow = React.forwardRef(function Grow(props, ref) {
-  const { children, in: inProp, onEnter, onExit, style, timeout = 'auto', ...other } = props;
+  const {
+    children,
+    in: inProp,
+    onEnter,
+    onExit,
+    style,
+    timeout = 'auto',
+    // eslint-disable-next-line react/prop-types
+    TransitionComponent = Transition,
+    ...other
+  } = props;
   const timer = React.useRef();
   const autoTimeout = React.useRef();
   const handleRef = useForkRef(children.ref, ref);
@@ -114,7 +124,7 @@ const Grow = React.forwardRef(function Grow(props, ref) {
   }, []);
 
   return (
-    <Transition
+    <TransitionComponent
       appear
       in={inProp}
       onEnter={handleEnter}
@@ -137,7 +147,7 @@ const Grow = React.forwardRef(function Grow(props, ref) {
           ...childProps,
         });
       }}
-    </Transition>
+    </TransitionComponent>
   );
 });
 

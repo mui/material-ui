@@ -115,6 +115,8 @@ const Drawer = React.forwardRef(function Drawer(props, ref) {
     open = false,
     PaperProps = {},
     SlideProps,
+    // eslint-disable-next-line react/prop-types
+    TransitionComponent = Slide,
     transitionDuration = defaultTransitionDuration,
     variant = 'temporary',
     ...other
@@ -157,7 +159,7 @@ const Drawer = React.forwardRef(function Drawer(props, ref) {
   }
 
   const slidingDrawer = (
-    <Slide
+    <TransitionComponent
       in={open}
       direction={oppositeDirection[anchor]}
       timeout={transitionDuration}
@@ -165,7 +167,7 @@ const Drawer = React.forwardRef(function Drawer(props, ref) {
       {...SlideProps}
     >
       {drawer}
-    </Slide>
+    </TransitionComponent>
   );
 
   if (variant === 'persistent') {

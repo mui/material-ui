@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
   ThemeProvider as MuiThemeProvider,
-  createMuiTheme,
+  createMuiTheme as createLegacyModeTheme,
+  unstable_createMuiStrictModeTheme as createStrictModeTheme,
   darken,
 } from '@material-ui/core/styles';
 import { useSelector } from 'react-redux';
@@ -96,6 +97,13 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const useEnhancedEffect = typeof window === 'undefined' ? React.useEffect : React.useLayoutEffect;
+
+let createMuiTheme;
+if (process.env.REACT_MODE === 'legacy') {
+  createMuiTheme = createLegacyModeTheme;
+} else {
+  createMuiTheme = createStrictModeTheme;
+}
 
 export function ThemeProvider(props) {
   const { children } = props;
