@@ -4,8 +4,9 @@ import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import { Rifm } from 'rifm';
 import { useUtils } from './hooks/useUtils';
-import { DateInputProps } from './PureDateInput';
 import { KeyboardIcon } from './icons/KeyboardIcon';
+import { DateInputProps, DateInputRefs } from './PureDateInput';
+import { createDelegatedEventHandler } from '../_helpers/utils';
 import {
   maskedDateFormatter,
   getDisplayDate,
@@ -14,7 +15,7 @@ import {
   staticDateWith2DigitTokens,
 } from '../_helpers/text-field-helper';
 
-export const KeyboardDateInput: React.FC<DateInputProps> = ({
+export const KeyboardDateInput: React.FC<DateInputProps & DateInputRefs> = ({
   disableMaskedInput,
   rawValue,
   validationError,
@@ -33,17 +34,22 @@ export const KeyboardDateInput: React.FC<DateInputProps> = ({
   keyboardIcon = <KeyboardIcon />,
   variant,
   emptyInputText: emptyLabel,
-  hideOpenPickerButton,
+  disableOpenPicker: hideOpenPickerButton,
   ignoreInvalidInputs,
   onFocus,
   onBlur,
+  parsedDateValue,
   forwardedRef,
   containerRef,
+  open,
+  readOnly,
+  inputProps: inputPropsPassed,
   getOpenDialogAriaText = getTextFieldAriaText,
   ...other
 }) => {
   const utils = useUtils();
   const [isFocused, setIsFocused] = React.useState(false);
+
   const getInputValue = () =>
     getDisplayDate(rawValue, utils, {
       inputFormat,
@@ -103,6 +109,10 @@ export const KeyboardDateInput: React.FC<DateInputProps> = ({
     helperText: validationError,
     'data-mui-test': 'keyboard-date-input',
     ...other,
+    inputProps: {
+      ...inputPropsPassed,
+      readOnly,
+    },
     InputProps: {
       ...InputProps,
       [`${adornmentPosition}Adornment`]: hideOpenPickerButton ? (
@@ -130,14 +140,8 @@ export const KeyboardDateInput: React.FC<DateInputProps> = ({
         value={innerInputValue || ''}
         onChange={e => handleChange(e.currentTarget.value)}
         {...inputProps}
-        onFocus={e => {
-          setIsFocused(true);
-          onFocus && onFocus(e);
-        }}
-        onBlur={e => {
-          setIsFocused(false);
-          onBlur && onBlur(e);
-        }}
+        onFocus={createDelegatedEventHandler(() => setIsFocused(true), onFocus)}
+        onBlur={createDelegatedEventHandler(() => setIsFocused(true), onBlur)}
       />
     );
   }

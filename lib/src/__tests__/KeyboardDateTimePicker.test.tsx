@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ReactWrapper } from 'enzyme';
-import { mount, utilsToUse } from '../test-utils';
-import { DesktopDateTimePicker, DateTimePickerProps } from '../../DateTimePicker/DateTimePicker';
+import { mount, utilsToUse } from './test-utils';
+import { DesktopDateTimePicker, DateTimePickerProps } from '../DateTimePicker/DateTimePicker';
 
 const format = process.env.UTILS === 'moment' ? 'MM/DD/YYYY HH:mm' : 'MM/dd/yyyy hh:mm';
 

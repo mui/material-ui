@@ -1,11 +1,12 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import { DialogProps as MuiDialogProps } from '@material-ui/core/Dialog';
 import ModalDialog from '../_shared/ModalDialog';
 import { WrapperProps } from './Wrapper';
+import { StaticWrapperProps } from './StaticWrapper';
 import { PureDateInput } from '../_shared/PureDateInput';
 import { InnerDesktopWrapperProps } from './DesktopWrapper';
 import { WrapperVariantContext } from './WrapperVariantContext';
+import { DialogProps as MuiDialogProps } from '@material-ui/core/Dialog';
 
 export interface InnerMobileWrapperProps {
   /**
@@ -50,7 +51,7 @@ export interface InnerMobileWrapperProps {
 export interface MobileWrapperProps
   extends InnerMobileWrapperProps,
     WrapperProps,
-    Partial<InnerDesktopWrapperProps> {}
+    Partial<InnerDesktopWrapperProps & StaticWrapperProps> {}
 
 export const MobileWrapper: React.FC<MobileWrapperProps> = ({
   open,
@@ -70,13 +71,14 @@ export const MobileWrapper: React.FC<MobileWrapperProps> = ({
   onDismiss,
   onSetToday,
   PopoverProps,
+  displayStaticWrapperAs,
   KeyboardDateInputComponent,
   PureDateInputComponent = PureDateInput,
   ...other
 }) => {
   return (
     <WrapperVariantContext.Provider value="mobile">
-      <PureDateInputComponent {...other} {...DateInputProps} />
+      <PureDateInputComponent readOnly {...other} {...DateInputProps} />
 
       <ModalDialog
         wider={wider}

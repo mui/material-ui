@@ -1,22 +1,32 @@
-/* eslint-disable react-hooks/rules-of-hooks */
+import * as React from 'react';
 import { BasePickerProps } from '../../typings/BasePicker';
-import { useCallback, useState, Dispatch, SetStateAction } from 'react';
 
 export function useOpenState({ open, onOpen, onClose }: BasePickerProps<any, any>) {
-  let setIsOpenState: null | Dispatch<SetStateAction<boolean>> = null;
-  if (open === undefined || open === null) {
-    // The component is uncontrolled, so we need to give it its own state.
-    [open, setIsOpenState] = useState<boolean>(false);
-  }
+  const isControllingOpenProp = React.useRef(typeof open === 'boolean').current;
+  const [_open, _setIsOpen] = React.useState(false);
 
-  // prettier-ignore
-  const setIsOpen = useCallback((newIsOpen: boolean) => {
-    setIsOpenState && setIsOpenState(newIsOpen);
+  // It is required to update inner state in useEffect in order to avoid situation when
+  // Our component is not mounted yet, but `open` state is set to `true` (e.g. initially opened)
+  React.useEffect(() => {
+    if (isControllingOpenProp) {
+      if (typeof open !== 'boolean') {
+        throw new Error('You must not mix controlling and uncontrolled mode for `open` prop');
+      }
 
-    return newIsOpen
-      ? onOpen && onOpen()
-      : onClose && onClose();
-  }, [onOpen, onClose, setIsOpenState]);
+      _setIsOpen(open);
+    }
+  }, [isControllingOpenProp, open]);
 
-  return { isOpen: open, setIsOpen };
+  const setIsOpen = React.useCallback(
+    (newIsOpen: boolean) => {
+      if (!isControllingOpenProp) {
+        _setIsOpen(newIsOpen);
+      }
+
+      return newIsOpen ? onOpen && onOpen() : onClose && onClose();
+    },
+    [isControllingOpenProp, onOpen, onClose]
+  );
+
+  return { isOpen: _open, setIsOpen };
 }

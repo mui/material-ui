@@ -1,26 +1,29 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import clsx from 'clsx';
+import Fade from '@material-ui/core/Fade';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import Fade from '@material-ui/core/Fade';
-import { makeStyles } from '@material-ui/core/styles';
 import { CalendarProps } from './Calendar';
 import { DatePickerView } from '../../DatePicker';
 import { SlideDirection } from './SlideTransition';
+import { makeStyles } from '@material-ui/core/styles';
 import { useUtils } from '../../_shared/hooks/useUtils';
 import { MaterialUiPickersDate } from '../../typings/date';
 import { FadeTransitionGroup } from './FadeTransitionGroup';
 import { ArrowDropDownIcon } from '../../_shared/icons/ArrowDropDownIcon';
 import { ArrowSwitcher, ExportedArrowSwitcherProps } from '../../_shared/ArrowSwitcher';
+import {
+  usePreviousMonthDisabled,
+  useNextMonthDisabled,
+} from '../../_shared/hooks/date-helpers-hooks';
 
 export interface CalendarHeaderProps
   extends ExportedArrowSwitcherProps,
     Pick<CalendarProps, 'minDate' | 'maxDate' | 'disablePast' | 'disableFuture'> {
   view: DatePickerView;
   views: DatePickerView[];
-  month: MaterialUiPickersDate;
-
+  currentMonth: MaterialUiPickersDate;
   /** Get aria-label text for switching between views button */
   getViewSwitchingButtonText?: (currentView: DatePickerView) => string;
   reduceAnimations: boolean;
@@ -63,6 +66,7 @@ export const useStyles = makeStyles(
       display: 'flex',
       maxHeight: 30,
       overflow: 'hidden',
+      cursor: 'pointer',
     },
     monthText: {
       marginRight: 4,
@@ -80,7 +84,7 @@ function getSwitchingViewAriaText(view: DatePickerView) {
 export const CalendarHeader: React.SFC<CalendarHeaderProps> = ({
   view,
   views,
-  month,
+  currentMonth: month,
   changeView,
   minDate,
   maxDate,
@@ -102,23 +106,8 @@ export const CalendarHeader: React.SFC<CalendarHeaderProps> = ({
   const selectNextMonth = () => onMonthChange(utils.getNextMonth(month), 'left');
   const selectPreviousMonth = () => onMonthChange(utils.getPreviousMonth(month), 'right');
 
-  const isPreviousMonthDisabled = React.useMemo(() => {
-    const now = utils.date();
-    const firstEnabledMonth = utils.startOfMonth(
-      disablePast && utils.isAfter(now, minDate) ? now : minDate
-    );
-
-    return !utils.isBefore(firstEnabledMonth, month);
-  }, [disablePast, minDate, month, utils]);
-
-  const isNextMonthDisabled = React.useMemo(() => {
-    const now = utils.date();
-    const lastEnabledMonth = utils.startOfMonth(
-      disableFuture && utils.isBefore(now, maxDate) ? now : maxDate
-    );
-
-    return !utils.isAfter(lastEnabledMonth, month);
-  }, [disableFuture, maxDate, month, utils]);
+  const isNextMonthDisabled = useNextMonthDisabled(month, { disableFuture, maxDate });
+  const isPreviousMonthDisabled = usePreviousMonthDisabled(month, { disablePast, minDate });
 
   const toggleView = () => {
     if (views.length === 1) {
@@ -134,14 +123,10 @@ export const CalendarHeader: React.SFC<CalendarHeaderProps> = ({
     }
   };
 
-  if (views.length === 1) {
-    return null;
-  }
-
   return (
     <>
       <div className={classes.switchHeader}>
-        <div className={classes.monthTitleContainer}>
+        <div className={classes.monthTitleContainer} onClick={toggleView}>
           <FadeTransitionGroup
             reduceAnimations={reduceAnimations}
             transKey={utils.format(month, 'month')}
@@ -168,19 +153,21 @@ export const CalendarHeader: React.SFC<CalendarHeaderProps> = ({
             />
           </FadeTransitionGroup>
 
-          <IconButton
-            size="small"
-            data-mui-test="calendar-view-switcher"
-            onClick={toggleView}
-            className={classes.yearSelectionSwitcher}
-            aria-label={getViewSwitchingButtonText(view)}
-          >
-            <ArrowDropDownIcon
-              className={clsx(classes.switchViewDropdown, {
-                [classes.switchViewDropdownDown]: view === 'year',
-              })}
-            />
-          </IconButton>
+          {views.length > 1 && (
+            <IconButton
+              size="small"
+              data-mui-test="calendar-view-switcher"
+              onClick={toggleView}
+              className={classes.yearSelectionSwitcher}
+              aria-label={getViewSwitchingButtonText(view)}
+            >
+              <ArrowDropDownIcon
+                className={clsx(classes.switchViewDropdown, {
+                  [classes.switchViewDropdownDown]: view === 'year',
+                })}
+              />
+            </IconButton>
+          )}
         </div>
 
         <Fade in={view === 'date'}>

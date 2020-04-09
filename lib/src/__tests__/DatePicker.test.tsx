@@ -1,14 +1,13 @@
 import * as React from 'react';
-// import { act } from 'react-dom'
 import { ReactWrapper } from 'enzyme';
-import { Picker } from '../../Picker/Picker';
-import { mount, utilsToUse } from '../test-utils';
+import { Picker } from '../Picker/Picker';
+import { mount, utilsToUse } from './test-utils';
 import {
   DatePicker,
   MobileDatePicker,
   DesktopDatePicker,
   DatePickerProps,
-} from '../../DatePicker/DatePicker';
+} from '../DatePicker/DatePicker';
 
 describe('e2e - DatePicker default year format', () => {
   let component: ReactWrapper<DatePickerProps>;

@@ -1,10 +1,10 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
 import PickerToolbar from '../_shared/PickerToolbar';
+import Typography from '@material-ui/core/Typography';
 import { DatePickerView } from './DatePicker';
 import { useUtils } from '../_shared/hooks/useUtils';
+import { makeStyles } from '@material-ui/core/styles';
 import { ToolbarComponentProps } from '../Picker/Picker';
 import { isYearAndMonthViews, isYearOnlyView } from '../_helpers/date-utils';
 

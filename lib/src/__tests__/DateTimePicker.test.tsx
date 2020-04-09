@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { ReactWrapper } from 'enzyme';
-import { mount, utilsToUse } from '../test-utils';
+import { mount, utilsToUse } from './test-utils';
 import { mount as enzymeDefaultMount } from 'enzyme';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core';
-import { DateTimePicker, DateTimePickerProps } from '../../DateTimePicker/DateTimePicker';
+import { DateTimePicker, DateTimePickerProps } from '../DateTimePicker/DateTimePicker';
 
 const format = process.env.UTILS === 'moment' ? 'MM/DD/YYYY HH:mm' : 'MM/dd/yyyy hh:mm';
 

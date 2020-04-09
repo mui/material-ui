@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { ReactWrapper } from 'enzyme';
 import { clickOKButton } from './commands';
-import { mount, utilsToUse, toHaveBeenCalledExceptMoment } from '../test-utils';
+import { mount, utilsToUse, toHaveBeenCalledExceptMoment } from './test-utils';
 import {
   MobileTimePicker,
   DesktopTimePicker,
   TimePicker,
   TimePickerProps,
-} from '../../TimePicker/TimePicker';
+} from '../TimePicker/TimePicker';
 
 const fakeTouchEvent = {
   buttons: 1,

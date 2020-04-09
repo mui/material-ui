@@ -9,9 +9,15 @@ import { PageContext } from '../utils/getPageContext';
 import { LocalizationProvider } from '@material-ui/pickers';
 import { UtilsContext } from '../_shared/UtilsServiceContext';
 import { NotificationManager } from 'utils/NotificationManager';
-import { Theme, createMuiTheme, CssBaseline } from '@material-ui/core';
 import { createUtilsService, UtilsLib, utilsMap } from '../utils/utilsService';
-import { ThemeProvider, jssPreset, StylesProvider } from '@material-ui/core/styles';
+import {
+  Theme,
+  createMuiTheme,
+  CssBaseline,
+  ThemeProvider,
+  jssPreset,
+  StylesProvider,
+} from '@material-ui/core';
 
 export type ThemeType = 'light' | 'dark';
 export type Direction = Theme['direction'];

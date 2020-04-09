@@ -26,6 +26,7 @@
     "@material-ui/pickers": "^4.0.0-alpha.1",
     "@types/fuzzy-search": "^2.1.0",
     "@types/isomorphic-fetch": "^0.0.35",
+    "@types/jss": "^10.0.0",
     "@types/luxon": "^1.11.0",
     "@types/next": "^8.0.1",
     "@types/prismjs": "^1.9.1",

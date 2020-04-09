@@ -1,19 +1,18 @@
 import * as React from 'react';
+import clsx from 'clsx';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import DayWrapper from './DayWrapper';
-import SlideTransition, { SlideDirection } from './SlideTransition';
 import { Day, DayProps } from './Day';
 import { MaterialUiPickersDate } from '../../typings/date';
 import { useUtils, useNow } from '../../_shared/hooks/useUtils';
 import { PickerOnChangeFn } from '../../_shared/hooks/useViews';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { DAY_SIZE, DAY_MARGIN } from '../../constants/dimensions';
 import { findClosestEnabledDate } from '../../_helpers/date-utils';
 import { useGlobalKeyDown, keycode } from '../../_shared/hooks/useKeyDown';
+import { SlideTransition, SlideDirection, SlideTransitionProps } from './SlideTransition';
 
 export interface ExportedCalendarProps
   extends Pick<DayProps, 'disableHighlightToday' | 'showDaysOutsideCurrentMonth'> {
-  /** Calendar Date @DateIOType */
-  date: MaterialUiPickersDate;
   /** Calendar onChange */
   onChange: PickerOnChangeFn;
   /**
@@ -29,7 +28,7 @@ export interface ExportedCalendarProps
   /** Custom renderer for day. Check [DayComponentProps api](https://material-ui-pickers.dev/api/Day) @DateIOType */
   renderDay?: (
     day: MaterialUiPickersDate,
-    selectedDate: MaterialUiPickersDate,
+    selectedDates: MaterialUiPickersDate[],
     DayComponentProps: DayProps
   ) => JSX.Element;
   /**
@@ -42,8 +41,9 @@ export interface ExportedCalendarProps
 }
 
 export interface CalendarProps extends ExportedCalendarProps {
-  minDate?: MaterialUiPickersDate;
-  maxDate?: MaterialUiPickersDate;
+  date: MaterialUiPickersDate | MaterialUiPickersDate[];
+  minDate: MaterialUiPickersDate;
+  maxDate: MaterialUiPickersDate;
   isDateDisabled: (day: MaterialUiPickersDate) => boolean;
   slideDirection: SlideDirection;
   currentMonth: MaterialUiPickersDate;
@@ -52,11 +52,16 @@ export interface CalendarProps extends ExportedCalendarProps {
   changeFocusedDay: (newFocusedDay: MaterialUiPickersDate) => void;
   isMonthSwitchingAnimating: boolean;
   onMonthSwitchingAnimationEnd: () => void;
+  className?: string;
+  TransitionProps?: Partial<SlideTransitionProps>;
 }
 
 export const useStyles = makeStyles(theme => ({
   transitionContainer: {
-    minHeight: 36 * 6 + 20,
+    minHeight: (DAY_SIZE + DAY_MARGIN * 4) * 6,
+  },
+  transitionContainerOverflowAllowed: {
+    overflowX: 'visible',
   },
   progressContainer: {
     width: '100%',
@@ -66,6 +71,7 @@ export const useStyles = makeStyles(theme => ({
     alignItems: 'center',
   },
   week: {
+    margin: `${DAY_MARGIN}px 0`,
     display: 'flex',
     justifyContent: 'center',
   },
@@ -112,6 +118,8 @@ export const Calendar: React.FC<CalendarProps> = ({
   isDateDisabled,
   disableHighlightToday,
   showDaysOutsideCurrentMonth,
+  className,
+  TransitionProps,
 }) => {
   const now = useNow();
   const utils = useUtils();
@@ -120,16 +128,17 @@ export const Calendar: React.FC<CalendarProps> = ({
 
   const handleDaySelect = React.useCallback(
     (day: MaterialUiPickersDate, isFinish: boolean | symbol = true) => {
-      onChange(utils.mergeDateAndTime(day, date), isFinish);
+      onChange(Array.isArray(date) ? day : utils.mergeDateAndTime(day, date), isFinish);
     },
     [date, onChange, utils]
   );
 
+  const initialDate = Array.isArray(date) ? date[0] : date;
   React.useEffect(() => {
-    if (isDateDisabled(date)) {
+    if (initialDate && isDateDisabled(initialDate)) {
       const closestEnabledDate = findClosestEnabledDate({
-        date,
         utils,
+        date: initialDate,
         minDate: utils.date(minDate),
         maxDate: utils.date(maxDate),
         disablePast: Boolean(disablePast),
@@ -141,7 +150,7 @@ export const Calendar: React.FC<CalendarProps> = ({
     }
   }, []); // eslint-disable-line
 
-  const nowFocusedDay = focusedDay || date;
+  const nowFocusedDay = focusedDay || initialDate;
   useGlobalKeyDown(Boolean(allowKeyboardControl), {
     [keycode.ArrowUp]: () => changeFocusedDay(utils.addDays(nowFocusedDay, -7)),
     [keycode.ArrowDown]: () => changeFocusedDay(utils.addDays(nowFocusedDay, 7)),
@@ -155,8 +164,10 @@ export const Calendar: React.FC<CalendarProps> = ({
     [keycode.PageDown]: () => changeFocusedDay(utils.getPreviousMonth(nowFocusedDay)),
   });
 
-  const selectedDate = utils.startOfDay(date);
   const currentMonthNumber = utils.getMonth(currentMonth);
+  const selectedDates = (Array.isArray(date) ? date : [date])
+    .filter(Boolean)
+    .map(selectedDateItem => utils.startOfDay(selectedDateItem));
 
   return (
     <>
@@ -173,53 +184,43 @@ export const Calendar: React.FC<CalendarProps> = ({
       </div>
 
       <SlideTransition
+        transKey={currentMonthNumber}
         onExited={onMonthSwitchingAnimationEnd}
         reduceAnimations={reduceAnimations}
         slideDirection={slideDirection}
-        transKey={currentMonthNumber}
-        className={classes.transitionContainer}
+        className={clsx(classes.transitionContainer, className)}
+        {...TransitionProps}
       >
         <div role="grid" style={{ overflow: 'hidden' }}>
           {utils.getWeekArray(currentMonth).map(week => (
-            <div role="row" key={`week-${week[0]!.toString()}`} className={classes.week}>
+            <div role="row" key={`week-${(week[0] as any)!.toString()}`} className={classes.week}>
               {week.map(day => {
                 const disabled = isDateDisabled(day);
                 const isDayInCurrentMonth = utils.getMonth(day) === currentMonthNumber;
 
-                const dayProps = {
+                const dayProps: DayProps = {
+                  key: (day as any)?.toString(),
                   day: day,
+                  role: 'cell',
                   isAnimating: isMonthSwitchingAnimating,
                   disabled: disabled,
                   allowKeyboardControl: allowKeyboardControl,
-                  focused: Boolean(focusedDay) && utils.isSameDay(day, focusedDay),
-                  onFocus: () => changeFocusedDay(day),
-                  isToday: utils.isSameDay(day, now),
-                  hidden: !isDayInCurrentMonth,
-                  isInCurrentMonth: isDayInCurrentMonth,
-                  selected: utils.isSameDay(selectedDate, day),
+                  focused:
+                    allowKeyboardControl && Boolean(focusedDay) && utils.isSameDay(day, focusedDay),
+                  today: utils.isSameDay(day, now),
+                  inCurrentMonth: isDayInCurrentMonth,
+                  selected: selectedDates.some(selectedDate => utils.isSameDay(selectedDate, day)),
                   disableHighlightToday,
                   showDaysOutsideCurrentMonth,
                   focusable:
+                    allowKeyboardControl &&
                     Boolean(nowFocusedDay) &&
                     utils.toJsDate(nowFocusedDay).getDate() === utils.toJsDate(day).getDate(),
+                  onDayFocus: changeFocusedDay,
+                  onDaySelect: handleDaySelect,
                 };
 
-                let dayComponent = renderDay ? (
-                  renderDay(day, selectedDate, dayProps)
-                ) : (
-                  <Day {...dayProps} />
-                );
-
-                return (
-                  <DayWrapper
-                    key={day!.toString()}
-                    value={day}
-                    disabled={disabled}
-                    onSelect={handleDaySelect}
-                    children={dayComponent}
-                    dayInCurrentMonth={isDayInCurrentMonth}
-                  />
-                );
+                return renderDay ? renderDay(day, selectedDates, dayProps) : <Day {...dayProps} />;
               })}
             </div>
           ))}
@@ -228,5 +229,7 @@ export const Calendar: React.FC<CalendarProps> = ({
     </>
   );
 };
+
+Calendar.displayName = 'Calendar';
 
 export default Calendar;

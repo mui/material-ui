@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { mount, utilsToUse } from '../test-utils';
-import { DatePicker, MobileDatePicker } from '../../DatePicker/DatePicker';
+import { mount, utilsToUse } from './test-utils';
+import { DatePicker, MobileDatePicker } from '../DatePicker/DatePicker';
 
 describe('DatePicker - different props', () => {
   it('Should not render toolbar if onlyCalendar = true', () => {

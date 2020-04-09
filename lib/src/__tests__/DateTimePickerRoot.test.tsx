@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { ReactWrapper } from 'enzyme';
 import { clickOKButton } from './commands';
-import { mount, utilsToUse, toHaveBeenCalledExceptMoment } from '../test-utils';
-import { MobileDateTimePicker, DateTimePickerProps } from '../../DateTimePicker/DateTimePicker';
+import { mount, utilsToUse, toHaveBeenCalledExceptMoment } from './test-utils';
+import { MobileDateTimePicker, DateTimePickerProps } from '../DateTimePicker/DateTimePicker';
 
 describe('e2e - DateTimePicker', () => {
   let component: ReactWrapper<DateTimePickerProps>;

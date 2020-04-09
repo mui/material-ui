@@ -1,15 +1,15 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
 import Clock from './Clock';
 import { pipe } from '../../_helpers/utils';
+import { makeStyles } from '@material-ui/core/styles';
 import { useUtils } from '../../_shared/hooks/useUtils';
 import { ParsableDate } from '../../constants/prop-types';
 import { MaterialUiPickersDate } from '../../typings/date';
 import { PickerOnChangeFn } from '../../_shared/hooks/useViews';
-import { useParsedDate } from '../../_shared/hooks/useParsedDate';
 import { getHourNumbers, getMinutesNumbers } from './ClockNumbers';
 import { useMeridiemMode } from '../../TimePicker/TimePickerToolbar';
+import { useParsedDate } from '../../_shared/hooks/date-helpers-hooks';
 import { ArrowSwitcher, ExportedArrowSwitcherProps } from '../../_shared/ArrowSwitcher';
 import { convertValueToMeridiem, createIsAfterIgnoreDatePart } from '../../_helpers/time-utils';
 

@@ -1,8 +1,8 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles, fade } from '@material-ui/core/styles';
 import { onSpaceOrEnter } from '../../_helpers/utils';
+import { makeStyles, fade } from '@material-ui/core/styles';
 import { WrapperVariantContext } from '../../wrappers/WrapperVariantContext';
 
 export interface YearProps {

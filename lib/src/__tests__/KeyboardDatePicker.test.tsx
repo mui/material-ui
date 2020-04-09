@@ -1,8 +1,8 @@
 import * as React from 'react';
 import addDays from 'date-fns/addDays';
+import { mount } from './test-utils';
 import { ReactWrapper } from 'enzyme';
-import { mount } from '../test-utils';
-import { DesktopDatePicker, DatePickerProps } from '../../DatePicker/DatePicker';
+import { DesktopDatePicker, DatePickerProps } from '../DatePicker/DatePicker';
 
 describe('e2e -- DatePicker keyboard input', () => {
   const onChangeMock = jest.fn();

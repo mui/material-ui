@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { ReactWrapper } from 'enzyme';
 import { clickOKButton } from './commands';
-import { mount, utilsToUse } from '../test-utils';
-import { DatePicker, DatePickerProps } from '../../DatePicker';
+import { mount, utilsToUse } from './test-utils';
+import { DatePicker, DatePickerProps } from '../DatePicker';
 
 describe('e2e - DatePicker', () => {
   let component: ReactWrapper<DatePickerProps>;

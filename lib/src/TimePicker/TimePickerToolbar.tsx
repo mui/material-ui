@@ -93,7 +93,7 @@ export const TimePickerToolbar: React.FC<ToolbarComponentProps> = ({
   const separator = (
     <ToolbarText
       tabIndex={-1}
-      label=":"
+      value=":"
       variant={clockTypographyVariant}
       selected={false}
       className={classes.separator}
@@ -122,7 +122,7 @@ export const TimePickerToolbar: React.FC<ToolbarComponentProps> = ({
             variant={clockTypographyVariant}
             onClick={() => setOpenView('hours')}
             selected={openView === 'hours'}
-            label={ampm ? utils.format(date, 'hours12h') : utils.format(date, 'hours24h')}
+            value={ampm ? utils.format(date, 'hours12h') : utils.format(date, 'hours24h')}
           />
         )}
 
@@ -135,7 +135,7 @@ export const TimePickerToolbar: React.FC<ToolbarComponentProps> = ({
             variant={clockTypographyVariant}
             onClick={() => setOpenView('minutes')}
             selected={openView === 'minutes'}
-            label={utils.format(date, 'minutes')}
+            value={utils.format(date, 'minutes')}
           />
         )}
 
@@ -147,7 +147,7 @@ export const TimePickerToolbar: React.FC<ToolbarComponentProps> = ({
             variant={clockTypographyVariant}
             onClick={() => setOpenView('seconds')}
             selected={openView === 'seconds'}
-            label={utils.format(date, 'seconds')}
+            value={utils.format(date, 'seconds')}
           />
         )}
       </div>
@@ -164,7 +164,7 @@ export const TimePickerToolbar: React.FC<ToolbarComponentProps> = ({
             data-mui-test="toolbar-am-btn"
             selected={meridiemMode === 'am'}
             typographyClassName={classes.ampmLabel}
-            label={utils.getMeridiemText('am')}
+            value={utils.getMeridiemText('am')}
             onClick={() => handleMeridiemChange('am')}
           />
 
@@ -174,7 +174,7 @@ export const TimePickerToolbar: React.FC<ToolbarComponentProps> = ({
             data-mui-test="toolbar-pm-btn"
             selected={meridiemMode === 'pm'}
             typographyClassName={classes.ampmLabel}
-            label={utils.getMeridiemText('pm')}
+            value={utils.getMeridiemText('pm')}
             onClick={() => handleMeridiemChange('pm')}
           />
         </div>

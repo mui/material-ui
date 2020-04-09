@@ -70,7 +70,7 @@ export const DateTimePickerToolbar: React.FC<ToolbarComponentProps> = ({
             variant="subtitle1"
             onClick={() => setOpenView('year')}
             selected={openView === 'year'}
-            label={utils.format(date, 'year')}
+            value={utils.format(date, 'year')}
           />
 
           <ToolbarButton
@@ -79,7 +79,7 @@ export const DateTimePickerToolbar: React.FC<ToolbarComponentProps> = ({
             data-mui-test="datetimepicker-toolbar-date"
             onClick={() => setOpenView('date')}
             selected={openView === 'date'}
-            label={
+            value={
               toolbarFormat
                 ? utils.formatByString(date, toolbarFormat)
                 : utils.format(date, 'shortDate')
@@ -93,18 +93,18 @@ export const DateTimePickerToolbar: React.FC<ToolbarComponentProps> = ({
             variant="h3"
             onClick={() => setOpenView('hours')}
             selected={openView === 'hours'}
-            label={ampm ? utils.format(date, 'hours12h') : utils.format(date, 'hours24h')}
+            value={ampm ? utils.format(date, 'hours12h') : utils.format(date, 'hours24h')}
             typographyClassName={classes.timeTypography}
           />
 
-          <ToolbarText variant="h3" label=":" className={classes.separator} />
+          <ToolbarText variant="h3" value=":" className={classes.separator} />
 
           <ToolbarButton
             tabIndex={-1}
             variant="h3"
             onClick={() => setOpenView('minutes')}
             selected={openView === 'minutes'}
-            label={utils.format(date, 'minutes')}
+            value={utils.format(date, 'minutes')}
             typographyClassName={classes.timeTypography}
           />
         </div>

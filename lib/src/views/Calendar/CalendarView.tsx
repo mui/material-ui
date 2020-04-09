@@ -1,20 +1,18 @@
 import * as React from 'react';
-import { IUtils } from '@date-io/core/IUtils';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import Grid from '@material-ui/core/Grid';
-import { makeStyles } from '@material-ui/core/styles';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import { YearSelection } from './YearSelection';
 import { MonthSelection } from './MonthSelection';
 import { DatePickerView } from '../../DatePicker';
-import { SlideDirection } from './SlideTransition';
+import { useCalendarState } from './useCalendarState';
+import { makeStyles } from '@material-ui/core/styles';
 import { VIEW_HEIGHT } from '../../constants/dimensions';
 import { ParsableDate } from '../../constants/prop-types';
 import { MaterialUiPickersDate } from '../../typings/date';
 import { FadeTransitionGroup } from './FadeTransitionGroup';
 import { Calendar, ExportedCalendarProps } from './Calendar';
-import { useUtils, useNow } from '../../_shared/hooks/useUtils';
 import { PickerOnChangeFn } from '../../_shared/hooks/useViews';
-import { useParsedDate } from '../../_shared/hooks/useParsedDate';
+import { useParsedDate } from '../../_shared/hooks/date-helpers-hooks';
 import { CalendarHeader, CalendarHeaderProps } from './CalendarHeader';
 import { WrapperVariantContext } from '../../wrappers/WrapperVariantContext';
 
@@ -35,6 +33,8 @@ export interface CalendarViewProps extends ExportedCalendarProps, PublicCalendar
   views: DatePickerView[];
   changeView: (view: DatePickerView) => void;
   onChange: PickerOnChangeFn;
+  /** Disable heavy animations @default /(android)/i.test(window.navigator.userAgent) */
+  reduceAnimations?: boolean;
   /** Callback firing on month change. Return promise to render spinner till it will not be resolved @DateIOType */
   onMonthChange?: (date: MaterialUiPickersDate) => void | Promise<void>;
   /**
@@ -47,10 +47,6 @@ export interface CalendarViewProps extends ExportedCalendarProps, PublicCalendar
    * @default Date(2100-01-01)
    */
   maxDate?: ParsableDate;
-  /** Do not show heavy animations, significantly improves performance on slow devices
-   * @default /(android)/i.test(navigator.userAgent)
-   */
-  reduceAnimations?: boolean;
   /** Disable specific date @DateIOType */
   shouldDisableDate?: (day: MaterialUiPickersDate) => boolean;
   /** Callback firing on year change @DateIOType */
@@ -61,76 +57,6 @@ export type ExportedCalendarViewProps = Omit<
   CalendarViewProps,
   'date' | 'view' | 'views' | 'onChange' | 'changeView' | 'slideDirection' | 'currentMonth'
 >;
-
-type ReducerAction<TType, TAdditional = {}> = { type: TType } & TAdditional;
-
-interface ChangeMonthPayload {
-  direction: SlideDirection;
-  newMonth: MaterialUiPickersDate;
-}
-
-interface State {
-  isMonthSwitchingAnimating: boolean;
-  loadingQueue: number;
-  currentMonth: MaterialUiPickersDate;
-  focusedDay: MaterialUiPickersDate | null;
-  slideDirection: SlideDirection;
-}
-
-const createCalendarStateReducer = (
-  reduceAnimations: boolean,
-  utils: IUtils<MaterialUiPickersDate>
-) => (
-  state: State,
-  action:
-    | ReducerAction<'popLoadingQueue'>
-    | ReducerAction<'finishMonthSwitchingAnimation'>
-    | ReducerAction<'changeMonth', ChangeMonthPayload>
-    | ReducerAction<'changeMonthLoading', ChangeMonthPayload>
-    | ReducerAction<'changeFocusedDay', { focusedDay: MaterialUiPickersDate }>
-): State => {
-  switch (action.type) {
-    case 'changeMonthLoading': {
-      return {
-        ...state,
-        loadingQueue: state.loadingQueue + 1,
-        slideDirection: action.direction,
-        currentMonth: action.newMonth,
-        isMonthSwitchingAnimating: !reduceAnimations,
-      };
-    }
-    case 'changeMonth': {
-      return {
-        ...state,
-        slideDirection: action.direction,
-        currentMonth: action.newMonth,
-        isMonthSwitchingAnimating: !reduceAnimations,
-      };
-    }
-    case 'popLoadingQueue': {
-      return {
-        ...state,
-        loadingQueue: state.loadingQueue <= 0 ? 0 : state.loadingQueue - 1,
-      };
-    }
-    case 'finishMonthSwitchingAnimation': {
-      return {
-        ...state,
-        isMonthSwitchingAnimating: false,
-      };
-    }
-    case 'changeFocusedDay': {
-      const needMonthSwitch = !utils.isSameMonth(state.currentMonth, action.focusedDay);
-      return {
-        ...state,
-        focusedDay: action.focusedDay,
-        isMonthSwitchingAnimating: needMonthSwitch && !reduceAnimations,
-        currentMonth: needMonthSwitch ? utils.startOfMonth(action.focusedDay) : state.currentMonth,
-        slideDirection: utils.isAfterDay(action.focusedDay, state.currentMonth) ? 'left' : 'right',
-      };
-    }
-  }
-};
 
 export const useStyles = makeStyles(
   {
@@ -146,6 +72,9 @@ export const useStyles = makeStyles(
   { name: 'MuiPickersCalendarView' }
 );
 
+export const defaultReduceAnimations =
+  typeof navigator !== 'undefined' && /(android)/i.test(navigator.userAgent);
+
 export const CalendarView: React.FC<CalendarViewProps> = ({
   date,
   view,
@@ -154,14 +83,14 @@ export const CalendarView: React.FC<CalendarViewProps> = ({
   onMonthChange,
   minDate: unparsedMinDate = new Date('1900-01-01'),
   maxDate: unparsedMaxDate = new Date('2100-01-01'),
-  reduceAnimations = typeof window !== 'undefined' && /(android)/i.test(window.navigator.userAgent),
+  reduceAnimations = defaultReduceAnimations,
   loadingIndicator = <CircularProgress data-mui-test="loading-progress" />,
   shouldDisableDate,
   allowKeyboardControl: allowKeyboardControlProp,
+  disablePast,
+  disableFuture,
   ...other
 }) => {
-  const now = useNow();
-  const utils = useUtils();
   const classes = useStyles();
   const minDate = useParsedDate(unparsedMinDate)!;
   const maxDate = useParsedDate(unparsedMaxDate)!;
@@ -169,51 +98,24 @@ export const CalendarView: React.FC<CalendarViewProps> = ({
   const wrapperVariant = React.useContext(WrapperVariantContext);
   const allowKeyboardControl = allowKeyboardControlProp ?? wrapperVariant !== 'static';
 
-  const [
-    { currentMonth, isMonthSwitchingAnimating, focusedDay, loadingQueue, slideDirection },
-    dispatch,
-  ] = React.useReducer(createCalendarStateReducer(reduceAnimations, utils), {
-    isMonthSwitchingAnimating: false,
-    loadingQueue: 0,
-    focusedDay: date,
-    currentMonth: utils.startOfMonth(date),
-    slideDirection: 'left',
+  const {
+    loadingQueue,
+    calendarState,
+    changeFocusedDay,
+    changeMonth,
+    isDateDisabled,
+    handleChangeMonth,
+    onMonthSwitchingAnimationEnd,
+  } = useCalendarState({
+    date,
+    reduceAnimations,
+    onMonthChange,
+    minDate,
+    maxDate,
+    shouldDisableDate,
+    disablePast,
+    disableFuture,
   });
-
-  const handleChangeMonth = React.useCallback(
-    (payload: ChangeMonthPayload) => {
-      const returnedPromise = onMonthChange && onMonthChange(payload.newMonth);
-
-      if (returnedPromise) {
-        dispatch({
-          type: 'changeMonthLoading',
-          ...payload,
-        });
-
-        returnedPromise.then(() => dispatch({ type: 'popLoadingQueue' }));
-      } else {
-        dispatch({
-          type: 'changeMonth',
-          ...payload,
-        });
-      }
-    },
-    [onMonthChange]
-  );
-
-  const changeMonth = React.useCallback(
-    (date: MaterialUiPickersDate) => {
-      if (utils.isSameMonth(date, currentMonth)) {
-        return;
-      }
-
-      handleChangeMonth({
-        newMonth: utils.startOfMonth(date),
-        direction: utils.isAfterDay(date, currentMonth) ? 'left' : 'right',
-      });
-    },
-    [currentMonth, handleChangeMonth, utils]
-  );
 
   React.useEffect(() => {
     changeMonth(date);
@@ -221,35 +123,16 @@ export const CalendarView: React.FC<CalendarViewProps> = ({
 
   React.useEffect(() => {
     if (view === 'date') {
-      dispatch({ type: 'changeFocusedDay', focusedDay: date });
+      changeFocusedDay(date);
     }
   }, [view]); // eslint-disable-line
-
-  const validateMinMaxDate = React.useCallback(
-    (day: MaterialUiPickersDate) => {
-      return Boolean(
-        (other.disableFuture && utils.isAfterDay(day, now)) ||
-          (other.disablePast && utils.isBeforeDay(day, now)) ||
-          (minDate && utils.isBeforeDay(day, minDate)) ||
-          (maxDate && utils.isAfterDay(day, maxDate))
-      );
-    },
-    [maxDate, minDate, now, other.disableFuture, other.disablePast, utils]
-  );
-
-  const isDateDisabled = React.useCallback(
-    (day: MaterialUiPickersDate) => {
-      return validateMinMaxDate(day) || Boolean(shouldDisableDate && shouldDisableDate(day));
-    },
-    [shouldDisableDate, validateMinMaxDate]
-  );
 
   return (
     <>
       <CalendarHeader
         {...other}
         view={view}
-        month={currentMonth}
+        currentMonth={calendarState.currentMonth}
         changeView={changeView}
         onMonthChange={(newMonth, direction) => handleChangeMonth({ newMonth, direction })}
         minDate={minDate}
@@ -299,15 +182,10 @@ export const CalendarView: React.FC<CalendarViewProps> = ({
             ) : (
               <Calendar
                 {...other}
-                isMonthSwitchingAnimating={isMonthSwitchingAnimating}
-                onMonthSwitchingAnimationEnd={() =>
-                  dispatch({ type: 'finishMonthSwitchingAnimation' })
-                }
-                focusedDay={focusedDay}
-                changeFocusedDay={focusedDay => dispatch({ type: 'changeFocusedDay', focusedDay })}
+                {...calendarState}
+                onMonthSwitchingAnimationEnd={onMonthSwitchingAnimationEnd}
+                changeFocusedDay={changeFocusedDay}
                 reduceAnimations={reduceAnimations}
-                currentMonth={currentMonth}
-                slideDirection={slideDirection}
                 date={date}
                 onChange={onChange}
                 minDate={minDate}

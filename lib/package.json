@@ -122,11 +122,11 @@
     "setupFilesAfterEnv": [
       "<rootDir>/src/__tests__/setup.js"
     ],
-    "testRegex": "./src/__tests__/.*\\.test\\.(js|tsx)$",
+    "testRegex": "./src/__tests__/.*\\.test\\.(js|tsx|ts)$",
     "testURL": "http://localhost/",
     "collectCoverage": true,
     "transform": {
-      "^.+\\.tsx?$": "ts-jest"
+      "^.+\\.(ts|tsx)?$": "ts-jest"
     },
     "moduleFileExtensions": [
       "ts",

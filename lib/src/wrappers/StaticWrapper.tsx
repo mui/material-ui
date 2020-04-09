@@ -16,11 +16,22 @@ const useStyles = makeStyles(
   { name: 'MuiPickersStaticWrapper' }
 );
 
-export const StaticWrapper: React.FC = ({ children }) => {
+export interface StaticWrapperProps {
+  /**
+   * Force static wrapper inner components to be rendered in mobile or desktop mode
+   * @default "static"
+   */
+  displayStaticWrapperAs?: 'desktop' | 'mobile' | 'static';
+}
+
+export const StaticWrapper: React.FC<StaticWrapperProps> = ({
+  displayStaticWrapperAs = 'static',
+  children,
+}) => {
   const classes = useStyles();
 
   return (
-    <WrapperVariantContext.Provider value="static">
+    <WrapperVariantContext.Provider value={displayStaticWrapperAs}>
       <div className={classes.staticWrapperRoot} children={children} />
     </WrapperVariantContext.Provider>
   );

@@ -46,6 +46,7 @@
     "husky": "^4.2.3",
     "lint-staged": "^10.0.8",
     "prettier": "^1.14.3",
+    "ts-loader": "^6.2.2",
     "wait-on": "^4.0.0"
   },
   "husky": {

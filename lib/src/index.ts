@@ -6,6 +6,8 @@ export * from './TimePicker';
 
 export * from './DateTimePicker';
 
+export * from './DateRangePicker/DateRangePicker';
+
 export { Calendar } from './views/Calendar/Calendar';
 
 export * from './views/Calendar/CalendarView';

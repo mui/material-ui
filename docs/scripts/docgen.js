@@ -26,10 +26,9 @@ const components = [
   'wrappers/MobileWrapper.tsx',
   'wrappers/DesktopWrapper.tsx',
   'DatePicker/DatePicker.tsx',
-  'DatePicker/KeyboardDatePicker.tsx',
   'TimePicker/TimePicker.tsx',
   'DateTimePicker/DateTimePicker.tsx',
-  'DateTimePicker/KeyboardDateTimePicker.tsx',
+  'DateRangePicker/DateRangePicker.tsx',
   // internal components
   'views/Calendar/Calendar.tsx',
   'views/Calendar/Day.tsx',

@@ -1,13 +1,13 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import Toolbar, { ToolbarProps } from '@material-ui/core/Toolbar';
-import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import Grid from '@material-ui/core/Grid';
+import Toolbar, { ToolbarProps } from '@material-ui/core/Toolbar';
 import { ExtendMui } from '../typings/helpers';
 import { PenIcon } from '../_shared/icons/PenIcon';
 import { KeyboardIcon } from './icons/KeyboardIcon';
+import { makeStyles } from '@material-ui/core/styles';
 import { ToolbarComponentProps } from '../Picker/Picker';
 
 export const useStyles = makeStyles(

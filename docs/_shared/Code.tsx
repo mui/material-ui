@@ -42,7 +42,7 @@ interface CodeProps {
   language?: 'jsx' | 'typescript' | 'markup';
 }
 
-const Code: React.SFC<CodeProps> = ({ language = 'jsx', inline, children, withMargin }) => {
+const Code: React.FC<CodeProps> = ({ language = 'typescript', inline, children, withMargin }) => {
   const classes = useStyles();
   const highlightedCode = highlight(children, language);
 

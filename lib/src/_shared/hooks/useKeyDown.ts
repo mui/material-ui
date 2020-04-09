@@ -55,4 +55,5 @@ export const keycode = {
   End: 35,
   PageUp: 33,
   PageDown: 34,
+  Esc: 27,
 };

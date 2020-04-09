@@ -9,7 +9,7 @@ export interface BasePickerProps<
   /** Picker value */
   value: TInputValue;
   /** onChange callback @DateIOType */
-  onChange: (date: TDateValue | null, keyboardInputValue?: string) => void;
+  onChange: (date: TDateValue, keyboardInputValue?: string) => void;
   /**
    * Auto accept date on selection
    * @default false
@@ -24,7 +24,7 @@ export interface BasePickerProps<
   /** Date that will be initially highlighted if null was passed */
   defaultHighlight?: ParsableDate;
   /** Callback fired when date is accepted @DateIOType */
-  onAccept?: (date: TDateValue | null) => void;
+  onAccept?: (date: TDateValue) => void;
   /** Callback fired when new error should be displayed
    * (!! This is a side effect. Be careful if you want to rerender the component) @DateIOType
    */

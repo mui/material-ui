@@ -30,7 +30,7 @@ function ServerRequest() {
         renderDay={(day, selectedDate, DayComponentProps) => {
           const date = makeJSDateObject(day); // skip this step, it is required to support date libs
           const isSelected =
-            DayComponentProps.isInCurrentMonth && selectedDays.includes(date.getDate());
+            DayComponentProps.inCurrentMonth && selectedDays.includes(date.getDate());
 
           return (
             <Badge overlap="circle" badgeContent={isSelected ? '🌚' : undefined}>

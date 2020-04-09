@@ -5,7 +5,7 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { CSSTransitionProps } from 'react-transition-group/CSSTransition';
 
 export type SlideDirection = 'right' | 'left';
-interface SlideTransitionProps extends Omit<CSSTransitionProps, 'timeout'> {
+export interface SlideTransitionProps extends Omit<CSSTransitionProps, 'timeout'> {
   transKey: React.Key;
   className?: string;
   reduceAnimations: boolean;
@@ -36,10 +36,12 @@ export const useStyles = makeStyles(
       'slideEnter-left': {
         willChange: 'transform',
         transform: 'translate(100%)',
+        zIndex: 1,
       },
       'slideEnter-right': {
         willChange: 'transform',
         transform: 'translate(-100%)',
+        zIndex: 1,
       },
       slideEnterActive: {
         transform: 'translate(0%)',
@@ -50,20 +52,22 @@ export const useStyles = makeStyles(
       },
       'slideExitActiveLeft-left': {
         willChange: 'transform',
-        transform: 'translate(-200%)',
+        transform: 'translate(-100%)',
         transition: slideTransition,
+        zIndex: 0,
       },
       'slideExitActiveLeft-right': {
         willChange: 'transform',
-        transform: 'translate(200%)',
+        transform: 'translate(100%)',
         transition: slideTransition,
+        zIndex: 0,
       },
     };
   },
   { name: 'MuiPickersSlideTransition' }
 );
 
-const SlideTransition: React.SFC<SlideTransitionProps> = ({
+export const SlideTransition: React.SFC<SlideTransitionProps> = ({
   children,
   transKey,
   reduceAnimations,
@@ -106,5 +110,3 @@ const SlideTransition: React.SFC<SlideTransitionProps> = ({
     </TransitionGroup>
   );
 };
-
-export default SlideTransition;
