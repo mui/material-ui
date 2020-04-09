@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Breakpoint } from '../styles/createBreakpoints';
 
 export interface HiddenProps {
+  className?: string;
   /**
    * Specify which implementation to use.  'js' is the default, 'css' works better for
    * server-side rendering.
