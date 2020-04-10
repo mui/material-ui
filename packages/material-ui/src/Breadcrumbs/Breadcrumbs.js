@@ -63,8 +63,15 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(props, ref) {
   const [expanded, setExpanded] = React.useState(false);
 
   const renderItemsBeforeAndAfter = (allItems) => {
-    const handleClickExpand = () => {
+    const handleClickExpand = (event) => {
       setExpanded(true);
+
+      // The clicked element received the focus but gets removed from the DOM.
+      // Let's keep the focus in the component after expanding.
+      const focusable = event.currentTarget.parentNode.querySelector('a[href],button,[tabindex]');
+      if (focusable) {
+        focusable.focus();
+      }
     };
 
     // This defends against someone passing weird input, to ensure that if all
