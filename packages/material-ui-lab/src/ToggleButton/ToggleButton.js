@@ -75,7 +75,6 @@ const ToggleButton = React.forwardRef(function ToggleButton(props, ref) {
     className,
     disabled = false,
     disableFocusRipple = false,
-    disableRipple = false,
     onChange,
     onClick,
     selected,
@@ -114,7 +113,6 @@ const ToggleButton = React.forwardRef(function ToggleButton(props, ref) {
       onClick={handleChange}
       onChange={onChange}
       value={value}
-      disableRipple={disableRipple}
       aria-pressed={selected}
       {...other}
     >
