@@ -25,11 +25,13 @@ export const styles = (theme) => ({
   },
 });
 
+const defaultComponent = 'table';
+
 const Table = React.forwardRef(function Table(props, ref) {
   const {
     classes,
     className,
-    component: Component = 'table',
+    component: Component = defaultComponent,
     padding = 'default',
     size = 'medium',
     stickyHeader = false,
@@ -44,6 +46,7 @@ const Table = React.forwardRef(function Table(props, ref) {
   return (
     <TableContext.Provider value={table}>
       <Component
+        role={Component === defaultComponent ? null : 'table'}
         ref={ref}
         className={clsx(classes.root, { [classes.stickyHeader]: stickyHeader }, className)}
         {...other}

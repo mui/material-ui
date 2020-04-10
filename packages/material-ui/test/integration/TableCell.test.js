@@ -1,13 +1,16 @@
 import * as React from 'react';
-import { assert } from 'chai';
+import { assert, expect } from 'chai';
 import { createMount, findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
+import { createClientRender } from 'test/utils/createClientRender';
 import TableCell from '@material-ui/core/TableCell';
 import TableFooter from '@material-ui/core/TableFooter';
 import TableHead from '@material-ui/core/TableHead';
+import TableBody from '@material-ui/core/TableBody';
 
 describe('<TableRow> integration', () => {
   let classes;
   let mount;
+  const render = createClientRender();
   function mountInTable(node, Variant) {
     const wrapper = mount(
       <table>
@@ -75,5 +78,32 @@ describe('<TableRow> integration', () => {
   it('should render with the footer class when variant is footer, overriding context', () => {
     const wrapper = mountInTable(<TableCell variant="footer" />, TableHead);
     assert.strictEqual(wrapper.find('th').hasClass(classes.footer), true);
+  });
+
+  it('sets role="columnheader" when "component" prop is set and used in the context of table head', () => {
+    const { getByTestId } = render(
+      <TableHead component="div">
+        <TableCell component="div" data-testid="cell" />,
+      </TableHead>,
+    );
+    expect(getByTestId('cell')).to.have.attribute('role', 'columnheader');
+  });
+
+  it('sets role="cell" when "component" prop is set and used in the context of table body ', () => {
+    const { getByTestId } = render(
+      <TableBody component="div">
+        <TableCell component="div" data-testid="cell" />,
+      </TableBody>,
+    );
+    expect(getByTestId('cell')).to.have.attribute('role', 'cell');
+  });
+
+  it('sets role="cell" when "component" prop is set and used in the context of table footer ', () => {
+    const { getByTestId } = render(
+      <TableFooter component="div">
+        <TableCell component="div" data-testid="cell" />,
+      </TableFooter>,
+    );
+    expect(getByTestId('cell')).to.have.attribute('role', 'cell');
   });
 });

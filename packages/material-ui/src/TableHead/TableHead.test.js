@@ -1,13 +1,15 @@
 import * as React from 'react';
-import { assert } from 'chai';
+import { assert, expect } from 'chai';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
+import { createClientRender } from 'test/utils/createClientRender';
 import TableHead from './TableHead';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
 
 describe('<TableHead />', () => {
   let mount;
   let classes;
+  const render = createClientRender();
   function mountInTable(node) {
     const wrapper = mount(<table>{node}</table>);
     return wrapper.find('table').childAt(0);
@@ -49,5 +51,17 @@ describe('<TableHead />', () => {
       </TableHead>,
     );
     assert.strictEqual(context.variant, 'head');
+  });
+
+  describe('prop: component', () => {
+    it('can render a different component', () => {
+      const { container } = render(<TableHead component="div" />);
+      expect(container.firstChild).to.have.property('nodeName', 'DIV');
+    });
+
+    it('sets role="rowgroup"', () => {
+      const { container } = render(<TableHead component="div" />);
+      expect(container.firstChild).to.have.attribute('role', 'rowgroup');
+    });
   });
 });

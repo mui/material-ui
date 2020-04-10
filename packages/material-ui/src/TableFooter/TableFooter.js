@@ -15,12 +15,19 @@ const tablelvl2 = {
   variant: 'footer',
 };
 
+const defaultComponent = 'tfoot';
+
 const TableFooter = React.forwardRef(function TableFooter(props, ref) {
-  const { classes, className, component: Component = 'tfoot', ...other } = props;
+  const { classes, className, component: Component = defaultComponent, ...other } = props;
 
   return (
     <Tablelvl2Context.Provider value={tablelvl2}>
-      <Component className={clsx(classes.root, className)} ref={ref} {...other} />
+      <Component
+        className={clsx(classes.root, className)}
+        ref={ref}
+        role={Component === defaultComponent ? null : 'rowgroup'}
+        {...other}
+      />
     </Tablelvl2Context.Provider>
   );
 });
