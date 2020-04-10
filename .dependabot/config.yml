@@ -1,0 +1,43 @@
+# https://dependabot.com/docs/config-file/
+# validate with https://dependabot.com/docs/config-file/validator/
+version: 1
+update_configs:
+  - package_manager: 'javascript'
+    directory: '/'
+    update_schedule: 'weekly'
+    version_requirement_updates: 'auto'
+    ignored_updates:
+      - match:
+          # These should be grouped. Maintainer advise: Watch https://github.com/babel/babel
+          # for new releases and file a PR if you got time.
+          dependency_name: '@babel/*'
+      - match:
+          # https://github.com/mui-org/material-ui/pull/17604#issuecomment-536262291
+          dependency_name: 'core-js'
+      - match:
+          # 2.0 started using ES modules instead of CommonJS modules
+          dependency_name: 'raw-loader'
+      # not ignoring `react`. We'll hijack those PRs and also upgrade the other
+      # packages in the facebook/react repository
+      - match:
+          # should be grouped with `react`
+          dependency_name: 'react-dom'
+      - match:
+          # should be grouped with `react`
+          dependency_name: 'react-is'
+      - match:
+          # should be grouped with `react`
+          dependency_name: 'react-test-renderer'
+      - match:
+          # as of 3.x requires node@10. We can upgrade once we do as well
+          dependency_name: 'url-loader'
+          version_requirement: '>= 3.0'
+      - match:
+          # Stop investment in the documentation per https://github.com/mui-org/material-ui/issues/19706
+          dependency_name: 'next'
+      - match:
+          # Stop investment in the documentation per https://github.com/mui-org/material-ui/issues/19706
+          dependency_name: '@types/next'
+       - match:
+          # Stop investment in the documentation per https://github.com/mui-org/material-ui/issues/19706
+          dependency_name: 'next-transpile-modules'
