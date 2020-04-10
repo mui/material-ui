@@ -123,9 +123,6 @@ export const styles = (theme) => {
     /* Styles applied to the message wrapper element. */
     message: {
       padding: '8px 0',
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
     },
     /* Styles applied to the action wrapper element if `action` is provided. */
     action: {
