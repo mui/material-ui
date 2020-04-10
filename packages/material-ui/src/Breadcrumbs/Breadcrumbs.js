@@ -63,8 +63,9 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(props, ref) {
   const [expanded, setExpanded] = React.useState(false);
 
   const renderItemsBeforeAndAfter = (allItems) => {
-    const handleClickExpand = () => {
+    const handleClickExpand = (event) => {
       setExpanded(true);
+      event.currentTarget.parentNode.querySelector('a').focus();
     };
 
     // This defends against someone passing weird input, to ensure that if all
