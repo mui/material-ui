@@ -64,9 +64,9 @@ describe('<Breadcrumbs />', () => {
   });
 
   it('should expand when `BreadcrumbCollapsed` is clicked', () => {
-    const { getAllByRole, getByRole } = render(
+    const { getAllByRole, getByRole, getByText } = render(
       <Breadcrumbs>
-        <span>first</span>
+        <span tabIndex="-1">first</span>
         <span>second</span>
         <span>third</span>
         <span>fourth</span>
@@ -79,7 +79,7 @@ describe('<Breadcrumbs />', () => {
     );
 
     getByRole('button').click();
-
+    expect(document.activeElement).to.equal(getByText('first'));
     expect(getAllByRole('listitem', { hidden: false })).to.have.length(9);
   });
 
