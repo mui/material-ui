@@ -567,7 +567,17 @@ Rating.propTypes = {
   /**
    * The minimum increment value change allowed.
    */
-  precision: PropTypes.number,
+  precision: chainPropTypes(PropTypes.number, (props) => {
+    if (props.precision < 0.1) {
+      return new Error(
+        [
+          'Material-UI: the prop `precision` should be above 0.1.',
+          'A value below this limit has an imperceptible impact.',
+        ].join('\n'),
+      );
+    }
+    return null;
+  }),
   /**
    * Removes all hover effects and pointer events.
    */
