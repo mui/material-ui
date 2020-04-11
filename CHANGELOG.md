@@ -1,5 +1,90 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.9.10
+###### *Apr 11, 2020*
+
+Big thanks to the 20 contributors who made this release possible.
+
+Here are some highlights ✨:
+
+- ⚛️ Migrate more descriptions of the props to TypeScript (#20342) @eps1lon.
+
+  The coverage has increased from 50 to 75 components. We are working on migrating the 48 missing components.
+
+- 🦋 Fix support for portals and dropped events with ClickAwayListener (#20406, #20409) @NMinhNguyen, @seare-kidane.
+- ♿️ Fix 3 accessibility issues (#20489, #20432, #20475) @arturbien, @ShehryarShoukat96.
+- And many more 🐛 bug fixes and 📚 improvements.
+
+Over the last 3 months, we have focused exclusively on making patch releases.
+We have done 11 so far. We have optimized for stability.
+In the coming weeks, we will initiate our work on the [next major: v5](https://github.com/mui-org/material-ui/issues/20012).
+You can expect the following:
+
+- A feature freeze on v4.
+- The introduction of deprecation messages in the next v4 minors. These messages will help developers upgrade to v5.
+- A progressive bug fixes freeze on v4, to the exception of security issues and important bugs.
+- At least 6 months of work on v5 to get to a stable release (probably more). You can follow our [milestone
+](https://github.com/mui-org/material-ui/milestone/35). We will look for hiring a new full-time member on the core team to move faster.
+
+### `@material-ui/core@v4.9.10`
+
+- [Breadcrumbs] Keep focus in the component after expanding (#20489) @ShehryarShoukat96
+- [ButtonBase] Warn with wrong component prop (#20401) @oliviertassinari
+- [ClickAwayListener] Fix support for portal (#20406) @NMinhNguyen
+- [ClickAwayListener] Fix support for removed DOM node (#20409) @seare-kidane
+- [CssBaseline] Add limitation for ScopedCssBaseline (#20481) @newrice
+- [CssBaseline] Fix typings for `@global` override (#20454) @eps1lon
+- [Dialog] Fix TypeScript type for `children` (#20450) @NMinhNguyen
+- [Popper] Fix links to popper.js (#20464) @eps1lon
+- [Popper] Fix outdated TypeScript props docs (#20465) @eps1lon
+- [Popper] Fix popper.js deprecation npm warning (#20433) @oliviertassinari
+- [Select] Add aria-disabled attribute (#20432) @arturbien
+- [Select] Add new test for onChange (#20444) @arturbien
+- [Slider] Allow individual mark customization (#17057) @mstrugo
+- [Table] Add role if the default role of elements can't be used (#20475) @arturbien
+- [TextareaAutosize] Update rows/rowMax to use number for better clarity (#20469) @esemeniuc
+- [theme] Fix typings to pass array for spacing (#20486) @denys-pavlenko
+- [theme] Fix typings for theme.spacing (#20435) @m4theushw
+- [theme] Support string args in theme.spacing (#20408) @m4theushw
+- [TypeScript] Move more prop docs into IntelliSense (#20342) @eps1lon
+- [TypeScript] Fix support for TypeScript 3.2 (#20443) @NMinhNguyen
+- [TypeScript] Fix TypeScript type for optional `children` (#20458) @NMinhNguyen
+
+### `@material-ui/styles@4.9.10`
+
+- [TypeScript] Fix support for TypeScript 3.2 (#20443) @NMinhNguyen
+
+### `@material-ui/system@4.9.10`
+
+- [TypeScript] Fix support for TypeScript 3.2 (#20443) @NMinhNguyen
+
+### `@material-ui/types@5.0.1`
+
+- [TypeScript] Fix support for TypeScript 3.2 (#20443) @NMinhNguyen
+
+### `@material-ui/lab@v4.0.0-alpha.49`
+
+- [Alert] Fix support for nested elements (#20490) @developerKumar
+- [Autocomplete] Improve virtualization example (#20496) @galkadaw
+- [Autocomplete] Warn when mixing controlled/uncontrolled inputValue states (#20403) @vileppanen
+- [Rating] Warn if precision prop is below 0.1 (#20491) @AlexAndriyanenko
+- [ToggleButton] Don't set default for disableRipple prop (#20493) @cp
+
+### Docs
+
+- [examples] Fix Next.js AMP support (#20463) @timneutkens
+- [examples] Fix Next.js prop-type (#20474) @Izhaki
+- [docs] Material-UI Developer Survey 2020 @oliviertassinari
+- [docs] Add Component name section to API docs (#20434) @Josh-Weston
+- [docs] Fix various issues with heading structure (#20389) @eps1lon
+- [docs] Synchronize translations (#20405) @oliviertassinari
+
+### Core
+
+- [core] Introduce useId hook (#20407) @NMinhNguyen
+- [test] Fix broken tests in `react@next` (#20472) @eps1lon
+- [test] Use .checkPropTypes instead of render + propTypes (#20451) @eps1lon
+
 ## 4.9.9
 ###### *Apr 4, 2020*
 
