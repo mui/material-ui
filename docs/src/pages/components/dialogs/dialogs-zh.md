@@ -5,11 +5,11 @@ components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
 
 # Dialog 对话框
 
-<p class="description">对话框将一个任务告知给用户，它包含了一些关键信息，需要用户进行确认，或者包含了多个任务。</p>
+<p class="description">对话框将一个任务告知给用户，它承载了一些需要用户进行确认的关键信息或者多个任务。</p>
 
-[对话框](https://material.io/design/components/dialogs.html)是 [modal](/components/modal/) 窗体的一种类型，它通常在应用程序内容之前呈现，来提供一些关键信息，或者要求用户做出决策。 对话框出现的时候会禁用应用程序的所有功能，只有被确认、被取消或已采取其他必要的操作时，对话框才不会留在屏幕上。
+[对话框](https://material.io/design/components/dialogs.html)是 [modal](/components/modal/) 窗体的一种类型，它通常在应用程序内容之前呈现，来提供一些关键信息，或者要求用户做出决策。 对话框出现的时候会禁用应用程序的所有功能，只有被确认、被取消或已采取其他必要的操作时，对话框会从屏幕中消失。
 
-对话框会带有目的性地中断用户体验，所以请您谨慎使用。
+对话框会带有目的性地打断工作流程，所以请您谨慎使用。
 
 ## 简单的对话框
 
@@ -17,19 +17,19 @@ components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
 
 触摸操作机制：
 
-- 选择一项将立刻触发提交选项，并关闭菜单
-- 在对话框外触摸或按下“返回”，将取消操作并关闭对话框。
+- 选中一个选项则会立刻触发提交选项，并关闭菜单的操作
+- 在对话框外点击，或按下“返回”，将会取消操作并关闭对话框。
 
 {{"demo": "pages/components/dialogs/SimpleDialog.js"}}
 
 ## 警告框
 
-警告框是一种紧急中断的行为，用以将某一情况通知用户，并需要确认。
+警告框是一种紧急中断的行为，用以通知用户，并需要确认。
 
 大多数警报不需要标题。 删繁就简，总而言之：
 
-- 问一个问题（例如："是否删除此对话？”）
-- 发表一个和动作按钮相关的声明
+- 问一个问题（例如：“是否删除此对话？”）
+- 陈述一个和动作按钮相关的声明
 
 请仅在高风险情况下使用标题栏警报，考虑到可能丢失连接。 用户应该能够单凭标题和按钮文本来理解所有的选项。
 
@@ -105,8 +105,8 @@ function MyComponent() {
 
 考虑到用户有不同的视图大小，并且使用不同的设备，对话框会变得太长，这样的情况下，对话框是可滚动的。
 
-- `scroll=paper` 可以使对话框的内容在 paper 元素中滚动。
-- `scroll=body` 可以使对话框的内容在 body 元素内滚动。
+- 使用 `scroll=paper`，对话框的内容能在 paper 元素中滚动。
+- 使用 `scroll=body`，对话框的内容能在 body 元素中滚动。
 
 请看一下下面的例子，这会帮助您加深理解：
 
@@ -114,7 +114,7 @@ function MyComponent() {
 
 ## 局限性
 
-Follow the [Modal limitations section](/components/modal/#limitations).
+参考[对话框性能部分](/components/modal/#limitations)。
 
 ## 可访问性
 

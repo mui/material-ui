@@ -85,5 +85,5 @@ This is a collection of third-party projects that extend Material-UI.
 ## 主题
 
 - [create-mui-theme](https://react-theming.github.io/create-mui-theme/): An online tool for creating Material-UI themes via Material Design Color Tool.
-- [material-ui-theme-editor](https://in-your-saas.github.io/material-ui-theme-editor/): A tool to generate themes for your Material-UI applications by just selecting the colors and having a live preview.
-- [Material调色板生成器](https://material.io/inline-tools/color/)：Material调色板生成器可用于通过您输入的任何颜色生成调色板。
+- [material-ui-theme-editor](https://in-your-saas.github.io/material-ui-theme-editor/)：只需要选择颜色即可为你的 Material-UI 应用生成主题的工具，同时还支持在线预览。
+- [Material palette generator](https://material.io/inline-tools/color/)：它可用于通过您输入的任何颜色生成一系列的调色板。

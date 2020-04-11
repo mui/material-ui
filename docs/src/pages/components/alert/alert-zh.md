@@ -61,7 +61,7 @@ components: Alert, AlertTitle
 
 你可以使用「消息条」来显示[ 带确认按钮的Toast 提示](/components/snackbars/#customized-snackbars) 。
 
-## 颜色
+## Color 颜色
 
 `color` 属性用来改变不同程度「提醒」的默认颜色。
 

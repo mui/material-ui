@@ -38,19 +38,19 @@ const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 <SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} />
 ```
 
-## 响应式抽屉
+## 响应式的抽屉
 
-利用` Hidden `组件，可以根据屏幕宽度显示不同类型的抽屉。 显示小屏幕的 `temporary` 抽屉，而更宽屏幕显示 `permanent` 抽屉。
+利用` Hidden `这个响应式的辅助组件，可以根据屏幕宽度显示不同类型的抽屉。 屏幕尺寸较小的时候会显示 `temporary` 抽屉，而更宽的屏幕则显示 `permanent` 抽屉。
 
 {{"demo": "pages/components/drawers/ResponsiveDrawer.js", "iframe": true}}
 
 ## 持久的抽屉
 
-持久抽屉可以在打开或关闭之间切换。 抽屉与内容位于同一表面的高度上。 它默认情况下是关闭的，可通过选择菜单图标打开，直到用户选择关闭之前，它都会保持打开状态。 在不同操作和不同节点切换时，抽屉的状态都会被记住。
+持久抽屉可以在打开或关闭状态之间切换。 抽屉与内容位于同一表面的高度上。 它默认情况下是关闭的，可通过选择菜单图标打开，直到用户选择关闭之前，它都会保持打开状态。 在不同操作和不同节点切换时，抽屉的状态都会被记住。
 
 当抽屉位于页面网格之外并打开时，抽屉会强制其他内容更改大小并适应较小的视口。
 
-Persistent navigation drawers are acceptable for all sizes larger than mobile. They are not recommended for apps with multiple levels of hierarchy that require using an up arrow for navigation.
+持久的抽屉能够适用于比移动设备大的屏幕尺寸。 那些有多个层次等级的应用，会用到向上的箭头作为导航，在这样的情况下，我们不推荐使用持久的抽屉。
 
 {{"demo": "pages/components/drawers/PersistentDrawerLeft.js", "iframe": true}}
 
@@ -58,21 +58,21 @@ Persistent navigation drawers are acceptable for all sizes larger than mobile. T
 
 ## 迷你变体抽屉
 
-在这种情况下，持久的抽屉会更改其宽度。 它的静止状态是一个与其内容相同的迷你抽屉，并且被应用栏夹住。 展开后，它将显示为标准的持久的导航抽屉。
+在这种情况下，持久的抽屉会更改其宽度。 它的静止状态是一个与其内容相同的迷你抽屉，由一个应用栏夹住。 展开后，它将显示为标准的持久的导航抽屉。
 
-若需要快速选择访问内容的应用部分的情况，我们建议您使用迷你变体抽屉。
+若有快速选择访问应用以及访问应用内容的需求，我们建议您使用迷你变体抽屉。
 
 {{"demo": "pages/components/drawers/MiniDrawer.js", "iframe": true}}
 
 ## 永久抽屉
 
-Permanent navigation drawers are always visible and pinned to the left edge, at the same elevation as the content or background. They cannot be closed.
+永久抽屉始终可见并固定在左侧，与内容或背景位于同一高度。 他们无法被关闭。
 
-**在桌面情况下，我们推荐的默认值是**固定的抽屉。
+**桌面上，我们推荐的默认导航是**一个固定的导航。
 
 ### 全高导航栏
 
-应用程序应该注重通过从左到右层次结构的布局的信息消费。
+一个从左到右层次结构的信息消费，是应用程序需要重视的。
 
 {{"demo": "pages/components/drawers/PermanentDrawerLeft.js", "iframe": true}}
 

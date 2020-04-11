@@ -16,7 +16,7 @@ It's meant to be an improved version of the "react-select" and "downshift" packa
 
 ## Combo box
 
-The value must be chosen from a predefined set of allowed values.
+Der Wert muss aus einer vordefinierten Menge zulässiger Werte ausgewählt werden.
 
 {{"demo": "pages/components/autocomplete/ComboBox.js"}}
 
@@ -28,7 +28,7 @@ Die folgenden Beispiele demonstrieren je eine Funktion der Autocomplete-Komponen
 
 ### Länderauswahl
 
-Choose one of the 248 countries.
+Wählen Sie eines der 248 Länder.
 
 {{"demo": "pages/components/autocomplete/CountrySelect.js"}}
 

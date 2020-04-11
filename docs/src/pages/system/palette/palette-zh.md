@@ -2,7 +2,7 @@
 
 <p class="description">通过一些颜色实用程序类的颜色传达意义。 还包括支持带悬停状态的样式链接。</p>
 
-## 颜色
+## Color 颜色
 
 {{"demo": "pages/system/palette/Color.js", "defaultCodeOpen": false}}
 

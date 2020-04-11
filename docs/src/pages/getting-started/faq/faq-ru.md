@@ -1,14 +1,14 @@
 # Часто задаваемые вопросы (FAQ)
 
-<p class="description">Столкнулись с особой проблемой? Check some of these common gotchas first in the FAQ.</p>
+<p class="description">Застряли на чём-то? Гляньте сперва список типичных граблей в FAQ.</p>
 
-If you still can't find what you're looking for, you can refer to our [support page](/getting-started/support/).
+И если всё-таки здесь не найдётся вашей проблемы, обратитесь к [странице поддержки](/getting-started/support/).
 
-## Material-UI потрясающий. Как я могу поддержать проект?
+## Material-UI просто нечто. Как я могу поддержать проект?
 
-Есть несколько способов, чтобы поддержать Material-UI:
+Способов поддержать Material-UI много:
 
-- **Распространять информацию**. Evangelize Material-UI by [linking to material-ui.com](https://material-ui.com/) on your website, every backlink matters. Follow us on [Twitter](https://twitter.com/MaterialUI), like and retweet the important news. Or just talk about us with your friends.
+- **Говорите о нас**. Продвигайте Material-UI в массы: разместите ссылки на [material-ui.com](https://material-ui.com/) на своём сайте, каждое упоминание имеет значение. Зафолловьте нас в [Твиттере](https://twitter.com/MaterialUI), лайкайте и ретвитьте значимые новости. Или просто расскажите о нас друзьям.
 - **Give us feedback**. Tell us what we're doing well or where we can improve. Please upvote (👍) the issues that you are the most interested in seeing solved.
 - **Help new users**. You can answer questions on [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui).
 - **Make changes happen**. 

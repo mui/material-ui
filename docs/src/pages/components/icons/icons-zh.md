@@ -90,7 +90,7 @@ function HomeIcon(props) {
 }
 ```
 
-### 颜色
+### Color 颜色
 
 {{"demo": "pages/components/icons/SvgIconsColor.js"}}
 
