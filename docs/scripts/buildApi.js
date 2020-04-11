@@ -215,7 +215,6 @@ async function annotateComponentDefinition(component, api) {
 
 async function buildDocs(options) {
   const { component: componentObject, pagesMarkdown } = options;
-  // This appears to be what we are after
   const src = readFileSync(componentObject.filename, 'utf8');
 
   if (src.match(/@ignore - internal component\./) || src.match(/@ignore - do not document\./)) {
@@ -347,7 +346,6 @@ export default function Page() {
   await annotateComponentDefinition(componentObject, reactAPI);
 }
 
-// Entry point
 function run() {
   const pagesMarkdown = findPagesMarkdown()
     .map((markdown) => {
