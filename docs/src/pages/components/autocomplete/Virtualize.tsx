@@ -26,6 +26,16 @@ const OuterElementType = React.forwardRef<HTMLDivElement>((props, ref) => {
   return <div ref={ref} {...props} {...outerProps} />;
 });
 
+function useResetCache(data: any) {
+  const ref = React.useRef<VariableSizeList>(null);
+  React.useEffect(() => {
+    if (ref.current != null) {
+      ref.current.resetAfterIndex(0, true);
+    }
+  }, [data]);
+  return ref;
+}
+
 // Adapter for react-window
 const ListboxComponent = React.forwardRef<HTMLDivElement>(function ListboxComponent(props, ref) {
   const { children, ...other } = props;
@@ -50,6 +60,8 @@ const ListboxComponent = React.forwardRef<HTMLDivElement>(function ListboxCompon
     return itemData.map(getChildSize).reduce((a, b) => a + b, 0);
   };
 
+  const gridRef = useResetCache(itemCount);
+
   return (
     <div ref={ref}>
       <OuterElementContext.Provider value={other}>
@@ -57,7 +69,7 @@ const ListboxComponent = React.forwardRef<HTMLDivElement>(function ListboxCompon
           itemData={itemData}
           height={getHeight() + 2 * LISTBOX_PADDING}
           width="100%"
-          key={itemCount}
+          ref={gridRef}
           outerElementType={OuterElementType}
           innerElementType="ul"
           itemSize={(index) => getChildSize(itemData[index])}
@@ -84,6 +96,7 @@ function random(length: number) {
 
 const useStyles = makeStyles({
   listbox: {
+    boxSizing: 'border-box',
     '& ul': {
       padding: 0,
       margin: 0,
