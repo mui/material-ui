@@ -58,7 +58,6 @@ const ListboxComponent = React.forwardRef(function ListboxComponent(props, ref) 
           itemData={itemData}
           height={getHeight() + 2 * LISTBOX_PADDING}
           width="100%"
-          key={itemCount}
           outerElementType={OuterElementType}
           innerElementType="ul"
           itemSize={(index) => getChildSize(itemData[index])}
