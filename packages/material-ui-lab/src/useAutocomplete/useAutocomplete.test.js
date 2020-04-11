@@ -105,11 +105,13 @@ describe('createFilterOptions', () => {
         },
       ];
     });
+
     describe('any', () => {
       it('show all results that match', () => {
         expect(filterOptions(options, { inputValue: 'a', getOptionLabel })).to.deep.equal(options);
       });
     });
+
     describe('start', () => {
       it('show only results that start with search', () => {
         expect(filterOptions(options, { inputValue: 'a', getOptionLabel })).to.deep.equal(options);
