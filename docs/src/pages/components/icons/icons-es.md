@@ -29,7 +29,7 @@ npm install @material-ui/icons
 yarn add @material-ui/icons
 ```
 
-These components use the Material-UI SvgIcon component to render the SVG path for each icon, and so they have a peer-dependency on the next release of Material-UI.
+Estos componentes utilizan el componente SvgIcon de Material-UI para representar la ruta SVG para cada icono, y por lo tanto tienen una dependencia entre pares de la siguiente versión de Material-UI.
 
 If you are not already using Material-UI in your project, you can add it with:
 

@@ -18,6 +18,6 @@ title: 超过 9 个免费的 React 模板
 
 ## 高级版主题
 
-你还在寻找更多主题吗？ You can find complete templates & themes in the <a href="https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=templates-store" data-ga-event-category="store" data-ga-event-action="click" data-ga-event-label="templates">premium template section</a>.
+你还在寻找更多主题吗？ 你可以在 <a href="https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=templates-store" data-ga-event-category="store" data-ga-event-action="click" data-ga-event-label="templates">高级模板区域</a>找到完整的模板和主题列表。
 
 <a href="https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=templates-store" data-ga-event-category="store" data-ga-event-action="click" data-ga-event-label="templates"><img src="/static/images/themes-light.jpg" alt="react templates" /></a>
