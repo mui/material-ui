@@ -60,10 +60,10 @@
     "test:moment": "UTILS=moment yarn test",
     "start": "rollup --config rollup.config.dev.js --watch & npx tsc --watch",
     "prebuild": "rimraf build",
-    "build:copy": "node copy.js",
+    "build:prepare-files": "node prepare-build-files.js",
     "build:bundle": "rollup --config",
     "build:typescript": "tsc --project tsconfig.json",
-    "build": "yarn build:typescript && yarn build:bundle && yarn build:copy",
+    "build": "yarn build:typescript && yarn build:bundle && yarn build:prepare-files",
     "build:analyze": "yarn build",
     "release": "yarn test && yarn version && yarn build && yarn publish --non-interactive --tag next build"
   },
