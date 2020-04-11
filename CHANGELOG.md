@@ -23,8 +23,7 @@ You can expect the following:
 - A feature freeze on v4.
 - The introduction of deprecation messages in the next v4 minors. These messages will help developers upgrade to v5.
 - A progressive bug fixes freeze on v4, to the exception of security issues and important bugs.
-- At least 6 months of work on v5 to get to a stable release (probably more). You can follow our [milestone
-](https://github.com/mui-org/material-ui/milestone/35). We will look for hiring a new full-time member on the core team to move faster.
+- At least 6 months of work on v5 to get to a stable release (probably more). You can follow our [milestone](https://github.com/mui-org/material-ui/milestone/35). We will look for hiring a new full-time member on the core team to move faster.
 
 ### `@material-ui/core@v4.9.10`
 

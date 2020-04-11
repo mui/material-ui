@@ -35,6 +35,10 @@ const styles = (theme) => ({
       fontSize: theme.typography.pxToRem(14),
       textAlign: 'center',
       color: theme.palette.text.secondary,
+      '& a': {
+        color: theme.palette.text.secondary,
+        textDecoration: 'underline',
+      },
     },
   },
 });
