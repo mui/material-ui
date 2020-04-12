@@ -10565,9 +10565,9 @@ markdown-table@^2.0.0:
     repeat-string "^1.0.0"
 
 markdown-to-jsx@^6.10.2:
-  version "6.11.0"
-  resolved "https://registry.yarnpkg.com/markdown-to-jsx/-/markdown-to-jsx-6.11.0.tgz#a2e3f2bc781c3402d8bb0f8e0a12a186474623b0"
-  integrity sha512-RH7LCJQ4RFmPqVeZEesKaO1biRzB/k4utoofmTCp3Eiw6D7qfvK8fzZq/2bjEJAtVkfPrM5SMt5APGf2rnaKMg==
+  version "6.11.1"
+  resolved "https://registry.yarnpkg.com/markdown-to-jsx/-/markdown-to-jsx-6.11.1.tgz#3931612cfffaa5fd6610ecf2a4055eccccb98fa8"
+  integrity sha512-FdtDAv8d9/tjyHxdCvWZxxOgK2icwzBkTq/dPk+XlQ2B+DYDcwE89FWGzT92erXQ0CQR/bQbpNK3loNYhYL70g==
   dependencies:
     prop-types "^15.6.2"
     unquote "^1.1.0"
