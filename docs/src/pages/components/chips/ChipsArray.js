@@ -9,6 +9,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     flexWrap: 'wrap',
+    listStyle: 'none',
     padding: theme.spacing(0.5),
   },
   chip: {
@@ -31,7 +32,7 @@ export default function ChipsArray() {
   };
 
   return (
-    <Paper className={classes.root}>
+    <Paper component="ul" className={classes.root}>
       {chipData.map((data) => {
         let icon;
 
@@ -40,13 +41,14 @@ export default function ChipsArray() {
         }
 
         return (
-          <Chip
-            key={data.key}
-            icon={icon}
-            label={data.label}
-            onDelete={data.label === 'React' ? undefined : handleDelete(data)}
-            className={classes.chip}
-          />
+          <li key={data.key}>
+            <Chip
+              icon={icon}
+              label={data.label}
+              onDelete={data.label === 'React' ? undefined : handleDelete(data)}
+              className={classes.chip}
+            />
+          </li>
         );
       })}
     </Paper>
