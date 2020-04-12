@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { withStyles, fade } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import Collapse from '@material-ui/core/Collapse';
+import { unstable_StrictModeCollapse as Collapse } from '@material-ui/core/Collapse';
 import NoSsr from '@material-ui/core/NoSsr';
 import EditIcon from '@material-ui/icons/Edit';
 import CodeIcon from '@material-ui/icons/Code';
