@@ -116,7 +116,7 @@
     "rollup-plugin-terser": "^5.1.1",
     "rollup-plugin-typescript": "^1.0.0",
     "ts-jest": "^24.0.1",
-    "typescript": "^3.3.3"
+    "typescript": "^3.8.3"
   },
   "jest": {
     "setupFilesAfterEnv": [

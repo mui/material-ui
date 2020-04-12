@@ -73,7 +73,7 @@
     "sinon": "^7.3.2",
     "styled-jsx": "^3.2.5",
     "ts-loader": "^6.0.2",
-    "typescript": "^3.4.4"
+    "typescript": "^3.8.3"
   },
   "devDependencies": {
     "dotenv": "^8.2.0",
