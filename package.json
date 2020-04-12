@@ -108,7 +108,7 @@
     "glob": "^7.1.2",
     "glob-gitignore": "^1.0.11",
     "jsdom": "^16.0.0",
-    "karma": "^4.3.0",
+    "karma": "^5.0.1",
     "karma-browserstack-launcher": "~1.4.0",
     "karma-chrome-launcher": "^3.0.0",
     "karma-mocha": "^1.3.0",
