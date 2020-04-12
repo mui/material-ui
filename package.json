@@ -43,7 +43,7 @@
     "eslint-plugin-pretty-imports": "^1.0.2",
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "^1.6.0",
-    "husky": "^4.2.3",
+    "husky": "^4.2.5",
     "lint-staged": "^10.0.8",
     "prettier": "^1.14.3",
     "ts-loader": "^6.2.2",
