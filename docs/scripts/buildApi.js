@@ -55,6 +55,15 @@ const theme = createMuiTheme();
 
 const inheritedComponentRegexp = /\/\/ @inheritedComponent (.*)/;
 
+/**
+ * Receives a component's test information and source code and return's an object
+ * containing the inherited component's name and pathname
+ *
+ * @param {object} testInfo Information retrieved from the component's describeConformance() in its test.js file
+ * @param {string} testInfo.forwardsRefTo The name of the element the ref is forwarded to
+ * @param {(string | undefined)} testInfo.inheritComponent The name of the component functionality is inherited from
+ * @param {string} src The component's source code
+ */
 function getInheritance(testInfo, src) {
   let inheritedComponentName = testInfo.inheritComponent;
 

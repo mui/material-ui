@@ -3,6 +3,7 @@ import { assert } from 'chai';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
 import Backdrop from './Backdrop';
+import Fade from '../Fade';
 
 describe('<Backdrop />', () => {
   let mount;
@@ -20,7 +21,7 @@ describe('<Backdrop />', () => {
 
   describeConformance(<Backdrop open />, () => ({
     classes,
-    inheritComponent: 'div',
+    inheritComponent: Fade,
     mount,
     refInstanceof: window.HTMLDivElement,
     skip: [

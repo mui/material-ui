@@ -35,5 +35,6 @@ export type BackdropClassKey = 'root' | 'invisible';
  * API:
  *
  * - [Backdrop API](https://material-ui.com/api/backdrop/)
+ * - inherits [Fade API](https://material-ui.com/api/fade/)
  */
 export default function Backdrop(props: BackdropProps): JSX.Element;
