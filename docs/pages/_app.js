@@ -198,16 +198,6 @@ async function registerServiceWorker() {
   }
 }
 
-// Add the strict mode back once the number of warnings is manageable.
-// We might miss important warnings by keeping the strict mode 🌊🌊🌊.
-const ReactMode =
-  {
-    // createSyncRoot compatible
-    sync: React.StrictMode,
-    // partial createRoot, ConcurrentMode is deprecated
-    concurrent: React.unstable_ConcurrentMode,
-  }[process.env.REACT_MODE] || React.Fragment;
-
 let dependenciesLoaded = false;
 
 function loadDependencies() {
@@ -302,7 +292,7 @@ function AppWrapper(props) {
   }
 
   return (
-    <ReactMode>
+    <React.Fragment>
       <NextHead>
         {fonts.map((font) => (
           <link rel="stylesheet" href={font} key={font} />
@@ -318,7 +308,7 @@ function AppWrapper(props) {
         <LanguageNegotiation />
       </ReduxProvider>
       <GoogleAnalytics key={router.route} />
-    </ReactMode>
+    </React.Fragment>
   );
 }
 
