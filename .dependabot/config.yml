@@ -38,6 +38,6 @@ update_configs:
       - match:
           # Stop investment in the documentation per https://github.com/mui-org/material-ui/issues/19706
           dependency_name: '@types/next'
-       - match:
+      - match:
           # Stop investment in the documentation per https://github.com/mui-org/material-ui/issues/19706
           dependency_name: 'next-transpile-modules'
