@@ -9,12 +9,6 @@ function makeUnique(hash, unique, i = 1) {
   return makeUnique(hash, unique, i + 1);
 }
 
-/**
- * @param {string} text
- * @param {object} unique - cache object, if provided textToHash has side-effects.
- *                          If you use it when rendering a react component be sure
- *                          to always pass a new cache object.
- */
 export default function textToHash(text, unique = {}) {
   return makeUnique(
     encodeURI(
