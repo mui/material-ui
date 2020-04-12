@@ -86,9 +86,6 @@ ${headers.components
   `);
   }
 
-  // eslint-disable-next-line no-underscore-dangle
-  global.__MARKED_UNIQUE__ = {};
-
   const element = (
     <React.Fragment>
       <svg style={{ display: 'none' }} xmlns="http://www.w3.org/2000/svg">

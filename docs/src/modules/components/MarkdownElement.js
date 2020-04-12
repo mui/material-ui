@@ -19,26 +19,6 @@ marked.Lexer.prototype.lex = function lex(src) {
 };
 
 const renderer = new marked.Renderer();
-renderer.heading = (text, level) => {
-  // Small title. No need for an anchor.
-  // It's reducing the risk of duplicated id and it's fewer elements in the DOM.
-  if (level >= 4) {
-    return `<h${level}>${text}</h${level}>`;
-  }
-
-  // eslint-disable-next-line no-underscore-dangle
-  const hash = textToHash(text, global.__MARKED_UNIQUE__);
-
-  return [
-    `<h${level}>`,
-    `<a class="anchor-link" id="${hash}"></a>`,
-    text,
-    `<a class="anchor-link-style" aria-hidden="true" aria-label="anchor" href="#${hash}">`,
-    '<svg><use xlink:href="#anchor-link-icon" /></svg>',
-    '</a>',
-    `</h${level}>`,
-  ].join('');
-};
 
 const externs = [
   'https://material.io/',
@@ -303,6 +283,28 @@ function MarkdownElement(props) {
 
   // eslint-disable-next-line no-underscore-dangle
   global.__MARKED_USER_LANGUAGE__ = userLanguage;
+
+  // need to reset on every render to make textToHash concurrent-safe
+  const headingIdCache = {};
+  renderer.heading = (headingText, level) => {
+    // Small title. No need for an anchor.
+    // It's reducing the risk of duplicated id and it's fewer elements in the DOM.
+    if (level >= 4) {
+      return `<h${level}>${headingText}</h${level}>`;
+    }
+
+    const hash = textToHash(headingText, headingIdCache);
+
+    return [
+      `<h${level}>`,
+      `<a class="anchor-link" id="${hash}"></a>`,
+      headingText,
+      `<a class="anchor-link-style" aria-hidden="true" aria-label="anchor" href="#${hash}">`,
+      '<svg><use xlink:href="#anchor-link-icon" /></svg>',
+      '</a>',
+      `</h${level}>`,
+    ].join('');
+  };
 
   /* eslint-disable react/no-danger */
   return (
