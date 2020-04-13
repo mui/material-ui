@@ -50,6 +50,7 @@ export const styles = (theme) => {
         paddingLeft: 5,
         paddingRight: 5,
         display: 'inline-block',
+        whiteSpace: 'nowrap',
       },
     },
     /* Styles applied to the legend element is notched. */
