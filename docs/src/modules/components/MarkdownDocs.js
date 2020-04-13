@@ -19,6 +19,7 @@ import PageContext from 'docs/src/modules/components/PageContext';
 import { getHeaders, getTitle, getDescription } from 'docs/src/modules/utils/parseMarkdown';
 import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import Link from 'docs/src/modules/components/Link';
+import MarkdownDocsContext from './MarkdownDocsContext';
 
 const styles = (theme) => ({
   root: {
@@ -96,6 +97,7 @@ function MarkdownDocs(props) {
     req,
     reqPrefix,
     reqSource,
+    toc,
   } = props;
 
   const t = useSelector((state) => state.options.t);
@@ -144,7 +146,9 @@ function MarkdownDocs(props) {
           <div className={classes.actions}>
             <EditPage markdownLocation={markdownDocs.location} />
           </div>
-          {markdownDocs.element}
+          <MarkdownDocsContext.Provider value={{ toc }}>
+            {markdownDocs.element}
+          </MarkdownDocsContext.Provider>
           <footer className={classes.footer}>
             {!currentPage ||
             currentPage.displayNav === false ||
@@ -200,6 +204,10 @@ MarkdownDocs.propTypes = {
   req: PropTypes.func,
   reqPrefix: PropTypes.string,
   reqSource: PropTypes.func,
+  /**
+   * pre-built table of content for the given markdown
+   */
+  toc: PropTypes.array,
 };
 
 export default withStyles(styles)(MarkdownDocs);

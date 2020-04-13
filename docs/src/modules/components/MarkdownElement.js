@@ -6,6 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 import textToHash from 'docs/src/modules/utils/textToHash';
 import { render as renderMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 import prism from 'docs/src/modules/components/prism';
+import MarkdownDocsContext from './MarkdownDocsContext';
 
 const externs = [
   'https://material.io/',
@@ -200,11 +201,19 @@ const styles = (theme) => ({
 });
 
 function MarkdownElement(props) {
-  const { classes, className, text, ...other } = props;
+  const { classes, className, index, text, ...other } = props;
 
   const userLanguage = useSelector((state) => state.options.userLanguage);
 
+  const toc = React.useContext(MarkdownDocsContext);
+  if (process.env.NODE_ENV !== 'production') {
+    if (toc === null) {
+      console.warn('Should a MarkdownElement be rendered without context?');
+    }
+  }
+
   const renderedMarkdown = React.useMemo(() => {
+    let chunkHeadingIndex = 0;
     return renderMarkdown(text, {
       highlight(code, language) {
         let prismLanguage;
@@ -248,8 +257,11 @@ function MarkdownElement(props) {
           return `<h${level}>${headingText}</h${level}>`;
         }
 
-        // eslint-disable-next-line no-underscore-dangle
-        const hash = textToHash(headingText, global.__MARKED_UNIQUE__);
+        const hash =
+          toc?.[userLanguage]?.[index]?.[chunkHeadingIndex] ||
+          // eslint-disable-next-line no-underscore-dangle
+          textToHash(headingText, global.__MARKED_UNIQUE__);
+        chunkHeadingIndex += 1;
 
         return [
           `<h${level}>`,
@@ -281,7 +293,7 @@ function MarkdownElement(props) {
         return `<a href="${finalHref}"${more}>${linkText}</a>`;
       },
     });
-  }, [text, userLanguage]);
+  }, [index, text, toc, userLanguage]);
 
   /* eslint-disable react/no-danger */
   return (
@@ -297,6 +309,10 @@ function MarkdownElement(props) {
 MarkdownElement.propTypes = {
   classes: PropTypes.object.isRequired,
   className: PropTypes.string,
+  /**
+   * The index of this particular element within a MarkdownDocsContext
+   */
+  index: PropTypes.number,
   text: PropTypes.string,
 };
 

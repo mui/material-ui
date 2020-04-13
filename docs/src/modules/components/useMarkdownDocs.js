@@ -145,7 +145,9 @@ ${headers.components
           );
         }
 
-        return <MarkdownElement className="markdownElement" key={index} text={content} />;
+        return (
+          <MarkdownElement className="markdownElement" key={index} index={index} text={content} />
+        );
       })}
     </React.Fragment>
   );
