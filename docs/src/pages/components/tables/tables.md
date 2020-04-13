@@ -110,9 +110,17 @@ They support many different use cases (editable, filtering, grouping, sorting, s
 
 {{"demo": "pages/components/tables/MaterialTableDemo.js", "bg": true}}
 
+### DevExtreme React Grid
+
+![stars](https://img.shields.io/github/stars/DevExpress/devextreme-reactive.svg?style=social&label=Stars)
+![npm downloads](https://img.shields.io/npm/dm/@devexpress/dx-react-grid-material-ui.svg)
+
+[dx-react-grid-material-ui](https://devexpress.github.io/devextreme-reactive/react/grid/) is a feature-complete data grid with built-in support for client and server side data sorting, paging, filtering, record grouping, summary calculations. It ships with comprehensive data editing features and powerful customization capabilities ([paid license](https://js.devexpress.com/licensing/)).
+
+{{"demo": "pages/components/tables/DXReactGridDemo.js", "bg": true}}
+
 ### Other
 
-- [dx-react-grid-material-ui](https://devexpress.github.io/devextreme-reactive/react/grid/): A data grid for Material-UI with paging, sorting, filtering, grouping and editing features ([paid license](https://js.devexpress.com/licensing/)).
 - [mui-datatables](https://github.com/gregnb/mui-datatables): Responsive data tables for Material-UI with filtering, sorting, search and more.
 - [tubular-react](https://github.com/unosquare/tubular-react): A Material-UI table with local or remote data-source. Featuring filtering, sorting, free-text search, export to CSV locally, and aggregations.
 

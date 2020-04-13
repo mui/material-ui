@@ -67,6 +67,7 @@ module.exports = {
             'notistack',
             'material-table',
             '@material-ui/pickers',
+            '@devexpress/dx-react-grid-material-ui',
           ].includes(request);
 
           if (hasDependencyOnRepoPackages) {
@@ -100,7 +101,7 @@ module.exports = {
           // transpile 3rd party packages with dependencies in this repository
           {
             test: /\.(js|mjs|jsx)$/,
-            include: /node_modules(\/|\\)(material-table|notistack|@material-ui(\/|\\)pickers)/,
+            include: /node_modules(\/|\\)(material-table|notistack|@material-ui(\/|\\)pickers|@devexpress(\/|\\)dx-react-grid-material-ui)/,
             use: {
               loader: 'babel-loader',
               options: {
@@ -113,6 +114,7 @@ module.exports = {
                     {
                       alias: {
                         '@material-ui/core': '../packages/material-ui/src',
+                        '@material-ui/icons': '../packages/material-ui-icons/src',
                       },
                       transformFunctions: ['require'],
                     },
