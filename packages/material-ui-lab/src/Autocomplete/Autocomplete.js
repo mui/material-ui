@@ -20,6 +20,10 @@ export const styles = (theme) => ({
       visibility: 'visible',
     },
   },
+  /* Styles applied to the root element if `fullWidth={true}`. */
+  fullWidth: {
+    width: '100%',
+  },
   /* Pseudo-class applied to the root element if focused. */
   focused: {},
   /* Styles applied to the tag elements, e.g. the chips. */
@@ -256,6 +260,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     filterSelectedOptions = false,
     forcePopupIcon = 'auto',
     freeSolo = false,
+    fullWidth = false,
     getLimitTagsText = (more) => `+${more}`,
     getOptionDisabled,
     getOptionLabel = (x) => x,
@@ -389,6 +394,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
           classes.root,
           {
             [classes.focused]: focused,
+            [classes.fullWidth]: fullWidth,
             [classes.hasClearIcon]: hasClearIcon,
             [classes.hasPopupIcon]: hasPopupIcon,
           },
@@ -610,6 +616,10 @@ Autocomplete.propTypes = {
    * If `true`, the Autocomplete is free solo, meaning that the user input is not bound to provided options.
    */
   freeSolo: PropTypes.bool,
+  /**
+   * If `true`, the input will take up the full width of its container.
+   */
+  fullWidth: PropTypes.bool,
   /**
    * The label to display when the tags are truncated (`limitTags`).
    *

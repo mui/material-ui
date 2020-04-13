@@ -50,6 +50,7 @@ The `MuiAutocomplete` name can be used for providing [default props](/customizat
 | <span class="prop-name">filterSelectedOptions</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, hide the selected options from the list box. |
 | <span class="prop-name">forcePopupIcon</span> | <span class="prop-type">'auto'<br>&#124;&nbsp;bool</span> | <span class="prop-default">'auto'</span> | Force the visibility display of the popup icon. |
 | <span class="prop-name">freeSolo</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the Autocomplete is free solo, meaning that the user input is not bound to provided options. |
+| <span class="prop-name">fullWidth</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the input will take up the full width of its container. |
 | <span class="prop-name">getLimitTagsText</span> | <span class="prop-type">func</span> | <span class="prop-default">(more) => `+${more}`</span> | The label to display when the tags are truncated (`limitTags`).<br><br>**Signature:**<br>`function(more: number) => ReactNode`<br>*more:* The number of truncated tags. |
 | <span class="prop-name">getOptionDisabled</span> | <span class="prop-type">func</span> |  | Used to determine the disabled state for a given option. |
 | <span class="prop-name">getOptionLabel</span> | <span class="prop-type">func</span> | <span class="prop-default">(x) => x</span> | Used to determine the string value for a given option. It's used to fill the input (and the list box options if `renderOption` is not provided). |
@@ -93,6 +94,7 @@ Any other props supplied will be provided to the root element (native element).
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
 | <span class="prop-name">root</span> | <span class="prop-name">.MuiAutocomplete-root</span> | Styles applied to the root element.
+| <span class="prop-name">fullWidth</span> | <span class="prop-name">.MuiAutocomplete-fullWidth</span> | Styles applied to the root element if `fullWidth={true}`.
 | <span class="prop-name">focused</span> | <span class="prop-name">.Mui-focused</span> | Pseudo-class applied to the root element if focused.
 | <span class="prop-name">tag</span> | <span class="prop-name">.MuiAutocomplete-tag</span> | Styles applied to the tag elements, e.g. the chips.
 | <span class="prop-name">tagSizeSmall</span> | <span class="prop-name">.MuiAutocomplete-tagSizeSmall</span> | Styles applied to the tag elements, e.g. the chips if `size="small"`.

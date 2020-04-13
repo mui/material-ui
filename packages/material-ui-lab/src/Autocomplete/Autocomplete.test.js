@@ -1512,4 +1512,20 @@ describe('<Autocomplete />', () => {
       expect(options).to.have.length(3);
     });
   });
+
+  describe('prop: fullWidth', () => {
+    it('should have the fullWidth class', () => {
+      const { container } = render(
+        <Autocomplete
+          {...defaultProps}
+          fullWidth
+          options={[0, 10, 20]}
+          renderInput={(params) => <TextField {...params} />}
+          value={null}
+        />,
+      );
+
+      expect(container.querySelector(`.${classes.root}`)).to.have.class(classes.fullWidth);
+    });
+  });
 });
