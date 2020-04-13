@@ -137,7 +137,7 @@ ${headers.components
 
           return (
             <Demo
-              key={`${content}${index}`}
+              key={index}
               demo={demos[name]}
               demoOptions={demoOptions}
               githubLocation={`${SOURCE_CODE_ROOT_URL}/docs/src/${name}`}
