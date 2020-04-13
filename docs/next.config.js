@@ -162,7 +162,9 @@ module.exports = {
     }
 
     // We want to speed-up the build of pull requests.
-    if (process.env.PULL_REQUEST === 'true') {
+    // TODO: revert
+    // eslint-disable-next-line no-constant-condition
+    if (false) {
       // eslint-disable-next-line no-console
       console.log('Considering only English for SSR');
       traverse(pages, 'en');
