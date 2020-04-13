@@ -1,5 +1,5 @@
 import * as React from 'react';
-import TextField from '@material-ui/core/TextField';
+import TextField, { TextFieldProps } from '@material-ui/core/TextField';
 
 {
   // https://github.com/mui-org/material-ui/issues/12999
@@ -66,4 +66,20 @@ function FocusHandlerTest() {
   const field = <TextField onFocus={fieldHandler} />;
 
   return null;
+}
+
+function createElementTextFieldTest() {
+  // $ExpectError
+  React.createElement<TextFieldProps>(TextField, {
+    FormHelperTextProps: {
+      component: 'some-wrong-element',
+    },
+  });
+
+  // $ExpectError
+  React.createElement<TextFieldProps>(TextField, {
+    FormHelperTextProps: {
+      component: 1234,
+    },
+  });
 }
