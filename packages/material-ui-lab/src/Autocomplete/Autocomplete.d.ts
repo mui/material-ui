@@ -85,6 +85,10 @@ export interface AutocompleteProps<T>
    */
   forcePopupIcon?: true | false | 'auto';
   /**
+   * If `true`, the input will take up the full width of its container.
+   */
+  fullWidth?: boolean;
+  /**
    * The label to display when the tags are truncated (`limitTags`).
    *
    * @param {number} more The number of truncated tags.
