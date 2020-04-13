@@ -15,12 +15,12 @@ export const styles = (theme) => {
       top: -5,
       left: 0,
       margin: 0,
-      padding: 0,
-      paddingLeft: 8,
+      padding: '0 8px',
       pointerEvents: 'none',
       borderRadius: 'inherit',
       borderStyle: 'solid',
       borderWidth: 1,
+      overflow: 'hidden',
     },
     /* Styles applied to the legend element when `labelWidth` is provided. */
     legend: {
@@ -50,7 +50,6 @@ export const styles = (theme) => {
         paddingLeft: 5,
         paddingRight: 5,
         display: 'inline-block',
-        whiteSpace: 'nowrap',
       },
     },
     /* Styles applied to the legend element is notched. */
