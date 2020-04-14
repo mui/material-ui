@@ -30,19 +30,17 @@ Here are the most significant improvements since the beginning of the year:
 
 - ⚠️ We have introduced a new [Alert](https://material-ui.com/components/alert/) component in the lab. While this component isn't mentioned in the Material Design specification, it's a common and well-established pattern. For instance, it can be interested when [combined](https://material-ui.com/components/snackbars/#notistack) with the Snackbar.
 
-  <img src="/static/blog/2020-q1-update/alert.png" alt="alert" style="max-width: 566px; margin-bottom: 24px;" />
+  <img src="/static/blog/2020-q1-update/alert.png" alt="alert" style="max-height: 369px; margin-bottom: 24px;" />
 
 - ⏭ We have introduced a new [Pagination](https://material-ui.com/components/pagination/) component.
 
-  <img src="/static/blog/2020-q1-update/pagination.png" alt="pagination" style="max-width: 376px; margin-bottom: 8px;" />
+  <img src="/static/blog/2020-q1-update/pagination.png" alt="pagination" style="max-height: 208px; margin-bottom: 8px;" />
 
 - 🦴 We have added a new "wave" animation to the [Skeleton](https://material-ui.com/components/skeleton/#animations) component.
 
-  <div style="display: flex; justify-content: center; margin-bottom: 24px;">
-    <video autoplay muted loop style="max-width: 335px;">
-      <source src="/static/blog/2020-q1-update/skeleton.webm" type="video/webm" />
-    </video>
-  </div>
+  <video autoplay muted loop style="max-height: 95px; margin-bottom: 24px;">
+    <source src="/static/blog/2020-q1-update/skeleton.webm" type="video/webm" />
+  </video>
 
 - ⚛️ We have worked on improving the developer experience inside the text editors.
   - We have migrated 60% of the components, so far, to host the descriptions of the props in TypeScript. Back-and-forths with the documentation API will be less frequent:

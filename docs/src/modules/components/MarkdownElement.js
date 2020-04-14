@@ -283,7 +283,7 @@ const styles = (theme) => ({
         textDecoration: 'underline',
       },
     },
-    '& img': {
+    '& img, video': {
       maxWidth: '100%',
     },
     '& hr': {

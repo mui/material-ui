@@ -27,7 +27,7 @@ const styles = (theme) => ({
         paddingRight: theme.spacing(4),
       },
     },
-    '& img': {
+    '& img, & video': {
       display: 'block',
       margin: 'auto',
     },
