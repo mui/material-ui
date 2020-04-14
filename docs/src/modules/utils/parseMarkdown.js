@@ -1,3 +1,5 @@
+import marked from 'marked/lib/marked';
+
 const headerRegExp = /---[\r\n]([\s\S]*)[\r\n]---/;
 const titleRegExp = /# (.*)[\r\n]/;
 const descriptionRegExp = /<p class="description">(.*)<\/p>[\r\n]/;
@@ -62,4 +64,32 @@ export function getDescription(markdown) {
   }
 
   return matches[1];
+}
+
+/**
+ * Render markdown used in the Material-UI docs
+ *
+ * @param {string} markdown
+ * @param {object} [options]
+ * @param {function} [options.highlight] - https://marked.js.org/#/USING_ADVANCED.md#highlight
+ * @param {object} [options.rest] - properties from https://marked.js.org/#/USING_PRO.md#renderer
+ */
+export function render(markdown, options = {}) {
+  const { highlight, ...rendererOptions } = options;
+
+  const renderer = Object.assign(new marked.Renderer(), rendererOptions);
+
+  const markedOptions = {
+    gfm: true,
+    tables: true,
+    breaks: false,
+    pedantic: false,
+    sanitize: false,
+    smartLists: true,
+    smartypants: false,
+    highlight,
+    renderer,
+  };
+
+  return marked(markdown, markedOptions);
 }
