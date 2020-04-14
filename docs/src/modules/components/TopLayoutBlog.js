@@ -27,7 +27,7 @@ const styles = (theme) => ({
         paddingRight: theme.spacing(4),
       },
     },
-    '& img': {
+    '& img, & video': {
       display: 'block',
       margin: 'auto',
     },
@@ -35,6 +35,10 @@ const styles = (theme) => ({
       fontSize: theme.typography.pxToRem(14),
       textAlign: 'center',
       color: theme.palette.text.secondary,
+      '& a': {
+        color: theme.palette.text.secondary,
+        textDecoration: 'underline',
+      },
     },
   },
 });
