@@ -51,7 +51,7 @@ chai.use((chaiAPI, utils) => {
     );
   });
 
-  chai.Assertion.addProperty('inaccessible', function elementIsAccessible() {
+  chai.Assertion.addMethod('toBeInaccessible', function elementIsAccessible() {
     const element = utils.flag(this, 'object');
 
     const inaccessible = isInaccessible(element);

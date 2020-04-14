@@ -18,7 +18,7 @@ declare namespace Chai {
     /**
      * checks if the element is inaccessible
      */
-    inaccessible: Assertion;
+    toBeInaccessible(): Assertion;
     /**
      * checks if the element is focused
      */

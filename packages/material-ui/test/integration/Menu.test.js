@@ -88,7 +88,7 @@ describe('<Menu /> integration', () => {
   it('is part of the DOM by default but hidden', () => {
     const { getByRole } = render(<ButtonMenu />);
 
-    expect(getByRole('menu', { hidden: true })).to.be.inaccessible;
+    expect(getByRole('menu', { hidden: true })).toBeInaccessible();
   });
 
   it('does not gain any focus when mounted ', () => {
@@ -324,7 +324,7 @@ describe('<Menu /> integration', () => {
     // react-transition-group uses one commit per state transition so we need to wait a bit
     clock.tick(0);
 
-    expect(getByRole('menu', { hidden: true })).to.be.inaccessible;
+    expect(getByRole('menu', { hidden: true })).toBeInaccessible();
   });
 
   it('closes the menu when the backdrop is clicked', () => {
@@ -337,6 +337,6 @@ describe('<Menu /> integration', () => {
     document.querySelector('[data-mui-test="Backdrop"]').click();
     clock.tick(0);
 
-    expect(getByRole('menu', { hidden: true })).to.be.inaccessible;
+    expect(getByRole('menu', { hidden: true })).toBeInaccessible();
   });
 });

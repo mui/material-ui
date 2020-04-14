@@ -62,7 +62,7 @@ describe('<ExpansionPanelSummary />', () => {
 
     const expandIcon = container.querySelector(`.${classes.expandIcon}`);
     expect(expandIcon).to.have.text('Icon');
-    expect(expandIcon).to.be.inaccessible;
+    expect(expandIcon).toBeInaccessible();
   });
 
   it('focusing adds the `focused` class if focused visible', () => {

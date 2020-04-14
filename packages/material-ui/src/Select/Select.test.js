@@ -681,7 +681,7 @@ describe('<Select />', () => {
       // it from the DOM. but it's at least immediately inaccessible.
       // It's desired that this fails one day. The additional tick required to remove
       // this from the DOM is not a feature
-      expect(getByRole('listbox', { hidden: true })).to.be.inaccessible;
+      expect(getByRole('listbox', { hidden: true })).toBeInaccessible();
       act(() => {
         clock.tick(0);
       });
