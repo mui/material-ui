@@ -7,25 +7,25 @@ declare namespace Chai {
      * Does not replace accessibility check as that requires display/visibility/layout
      * @deprecated Use `inaccessible` + `visible` instead
      */
-    toBeAriaHidden(): Assertion;
+    toBeAriaHidden(): void;
     /**
      * Check if an element is not visually hidden
      */
-    toBeVisible(): Assertion;
+    toBeVisible(): void;
     /**
      * checks if the element is inaccessible
      */
-    toBeInaccessible(): Assertion;
+    toBeInaccessible(): void;
     /**
      * checks if the accessible name computation (according to `accname` spec)
      * matches the expectation.
      * @see https://www.w3.org/TR/accname-1.2/
      * @param name
      */
-    toHaveAccessibleName(name: string): Assertion;
+    toHaveAccessibleName(name: string): void;
     /**
      * checks if the element is focused
      */
-    toHaveFocus(): Assertion;
+    toHaveFocus(): void;
   }
 }
