@@ -353,10 +353,10 @@ describe('<Modal />', () => {
         </Modal>,
       );
       const modalNode = modalRef.current;
-      expect(modalNode).to.be.ariaHidden;
+      expect(modalNode).toBeAriaHidden();
 
       wrapper.setProps({ open: true });
-      expect(modalNode).not.to.be.ariaHidden;
+      expect(modalNode).not.toBeAriaHidden();
     });
 
     // Test case for https://github.com/mui-org/material-ui/issues/15180

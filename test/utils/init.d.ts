@@ -14,7 +14,7 @@ declare namespace Chai {
      * Does not replace accessibility check as that requires display/visibility/layout
      * @deprecated Use `inaccessible` + `visible` instead
      */
-    ariaHidden: Assertion;
+    toBeAriaHidden(): Assertion;
     /**
      * checks if the element is inaccessible
      */

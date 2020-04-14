@@ -19,7 +19,7 @@ chai.use((chaiAPI, utils) => {
     );
   });
 
-  chai.Assertion.addProperty('ariaHidden', function elementIsAccessible() {
+  chai.Assertion.addMethod('toBeAriaHidden', function elementIsAccessible() {
     const element = utils.flag(this, 'object');
 
     // used for debugging failed assertions, will either point to the top most node
