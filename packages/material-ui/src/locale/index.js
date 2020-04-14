@@ -1,5 +1,8 @@
 export const azAZ = {
   props: {
+    // MuiBreadcrumbs: {
+    //   expandText: 'Show path',
+    // },
     MuiTablePagination: {
       backIconButtonText: 'Əvvəlki səhifə',
       labelRowsPerPage: 'Səhifəyə düşən sətrlər:',
@@ -17,7 +20,7 @@ export const azAZ = {
 
         return `${value} ${pluralForm}`;
       },
-      emptyLabelText: 'Empty',
+      // emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
       clearText: 'Silmək',
@@ -29,11 +32,35 @@ export const azAZ = {
     MuiAlert: {
       closeText: 'Bağlamaq',
     },
+    // MuiPagination: {
+    //   'aria-label': 'Pagination navigation',
+    //   getItemAriaLabel: (type, page, selected) => {
+    //     if (type === 'page') {
+    //       return `${selected ? '' : 'Go to '}page ${page}`;
+    //     }
+    //     if (type === 'first') {
+    //       return 'Go to first page';
+    //     }
+    //     if (type === 'last') {
+    //       return 'Go to last page';
+    //     }
+    //     if (type === 'next') {
+    //       return 'Go to next page';
+    //     }
+    //     if (type === 'previous') {
+    //       return 'Go to previous page';
+    //     }
+    //     return undefined;
+    //   },
+    // },
   },
 };
 
 export const bgBG = {
   props: {
+    // MuiBreadcrumbs: {
+    //   expandText: 'Show path',
+    // },
     MuiTablePagination: {
       backIconButtonText: 'Предишна страница',
       labelRowsPerPage: 'Редове на страница:',
@@ -54,11 +81,35 @@ export const bgBG = {
     MuiAlert: {
       closeText: 'Затвори',
     },
+    // MuiPagination: {
+    //   'aria-label': 'Pagination navigation',
+    //   getItemAriaLabel: (type, page, selected) => {
+    //     if (type === 'page') {
+    //       return `${selected ? '' : 'Go to '}page ${page}`;
+    //     }
+    //     if (type === 'first') {
+    //       return 'Go to first page';
+    //     }
+    //     if (type === 'last') {
+    //       return 'Go to last page';
+    //     }
+    //     if (type === 'next') {
+    //       return 'Go to next page';
+    //     }
+    //     if (type === 'previous') {
+    //       return 'Go to previous page';
+    //     }
+    //     return undefined;
+    //   },
+    // },
   },
 };
 
 export const caES = {
   props: {
+    // MuiBreadcrumbs: {
+    //   expandText: 'Show path',
+    // },
     MuiTablePagination: {
       backIconButtonText: 'Pàgina anterior',
       labelRowsPerPage: 'Files per pàgina:',
@@ -79,11 +130,35 @@ export const caES = {
     MuiAlert: {
       closeText: 'Tancat',
     },
+    // MuiPagination: {
+    //   'aria-label': 'Pagination navigation',
+    //   getItemAriaLabel: (type, page, selected) => {
+    //     if (type === 'page') {
+    //       return `${selected ? '' : 'Go to '}page ${page}`;
+    //     }
+    //     if (type === 'first') {
+    //       return 'Go to first page';
+    //     }
+    //     if (type === 'last') {
+    //       return 'Go to last page';
+    //     }
+    //     if (type === 'next') {
+    //       return 'Go to next page';
+    //     }
+    //     if (type === 'previous') {
+    //       return 'Go to previous page';
+    //     }
+    //     return undefined;
+    //   },
+    // },
   },
 };
 
 export const csCZ = {
   props: {
+    // MuiBreadcrumbs: {
+    //   expandText: 'Show path',
+    // },
     MuiTablePagination: {
       backIconButtonText: 'Předchozí stránka',
       labelRowsPerPage: 'Řádků na stránce:',
@@ -112,11 +187,35 @@ export const csCZ = {
     MuiAlert: {
       closeText: 'Zavřít',
     },
+    // MuiPagination: {
+    //   'aria-label': 'Pagination navigation',
+    //   getItemAriaLabel: (type, page, selected) => {
+    //     if (type === 'page') {
+    //       return `${selected ? '' : 'Go to '}page ${page}`;
+    //     }
+    //     if (type === 'first') {
+    //       return 'Go to first page';
+    //     }
+    //     if (type === 'last') {
+    //       return 'Go to last page';
+    //     }
+    //     if (type === 'next') {
+    //       return 'Go to next page';
+    //     }
+    //     if (type === 'previous') {
+    //       return 'Go to previous page';
+    //     }
+    //     return undefined;
+    //   },
+    // },
   },
 };
 
 export const deDE = {
   props: {
+    // MuiBreadcrumbs: {
+    //   expandText: 'Show path',
+    // },
     MuiTablePagination: {
       backIconButtonText: 'Nächste Seite',
       labelRowsPerPage: 'Zeilen pro Seite:',
@@ -137,6 +236,27 @@ export const deDE = {
     MuiAlert: {
       closeText: 'Schließen',
     },
+    // MuiPagination: {
+    //   'aria-label': 'Pagination navigation',
+    //   getItemAriaLabel: (type, page, selected) => {
+    //     if (type === 'page') {
+    //       return `${selected ? '' : 'Go to '}page ${page}`;
+    //     }
+    //     if (type === 'first') {
+    //       return 'Go to first page';
+    //     }
+    //     if (type === 'last') {
+    //       return 'Go to last page';
+    //     }
+    //     if (type === 'next') {
+    //       return 'Go to next page';
+    //     }
+    //     if (type === 'previous') {
+    //       return 'Go to previous page';
+    //     }
+    //     return undefined;
+    //   },
+    // },
   },
 };
 
@@ -194,6 +314,9 @@ export const enUS = {
 
 export const esES = {
   props: {
+    // MuiBreadcrumbs: {
+    //   expandText: 'Show path',
+    // },
     MuiTablePagination: {
       backIconButtonText: 'Página anterior',
       labelRowsPerPage: 'Filas por página:',
@@ -214,11 +337,35 @@ export const esES = {
     MuiAlert: {
       closeText: 'Cerrar',
     },
+    // MuiPagination: {
+    //   'aria-label': 'Pagination navigation',
+    //   getItemAriaLabel: (type, page, selected) => {
+    //     if (type === 'page') {
+    //       return `${selected ? '' : 'Go to '}page ${page}`;
+    //     }
+    //     if (type === 'first') {
+    //       return 'Go to first page';
+    //     }
+    //     if (type === 'last') {
+    //       return 'Go to last page';
+    //     }
+    //     if (type === 'next') {
+    //       return 'Go to next page';
+    //     }
+    //     if (type === 'previous') {
+    //       return 'Go to previous page';
+    //     }
+    //     return undefined;
+    //   },
+    // },
   },
 };
 
 export const etEE = {
   props: {
+    // MuiBreadcrumbs: {
+    //   expandText: 'Show path',
+    // },
     MuiTablePagination: {
       backIconButtonText: 'Eelmine lehekülg',
       labelRowsPerPage: 'Ridu leheküljel:',
@@ -265,6 +412,9 @@ export const etEE = {
 
 export const faIR = {
   props: {
+    // MuiBreadcrumbs: {
+    //   expandText: 'Show path',
+    // },
     MuiBreadcrumbs: {
       expandText: 'نمایش مسیر',
     },
@@ -272,13 +422,13 @@ export const faIR = {
       backIconButtonText: 'صفحهٔ قبل',
       labelRowsPerPage: 'تعداد سطرهای هر صفحه:',
       labelDisplayedRows: ({ from, to, count }) =>
-        `${Number(from).toLocaleString('fa-IR')}-${
-          to === -1 ? Number(count).toLocaleString('fa-IR') : Number(to).toLocaleString('fa-IR')
-        } از ${Number(count).toLocaleString('fa-IR')}`,
+        `${from.toLocaleString('fa-IR')}-${
+          to === -1 ? count.toLocaleString('fa-IR') : to.toLocaleString('fa-IR')
+        } از ${count.toLocaleString('fa-IR')}`,
       nextIconButtonText: 'صفحهٔ بعد',
     },
     MuiRating: {
-      getLabelText: (value) => `${Number(value).toLocaleString('fa-IR')} ستاره`,
+      getLabelText: (value) => `${value.toLocaleString('fa-IR')} ستاره`,
       emptyLabelText: 'خالی',
     },
     MuiAutocomplete: {
@@ -295,7 +445,7 @@ export const faIR = {
       'aria-label': 'ناوبری صفحه',
       getItemAriaLabel: (type, page, selected) => {
         if (type === 'page') {
-          return `${selected ? '' : 'رفتن به '}صفحهٔ ${Number(page).toLocaleString('fa-IR')}`;
+          return `${selected ? '' : 'رفتن به '}صفحهٔ ${page.toLocaleString('fa-IR')}`;
         }
         if (type === 'first') {
           return 'رفتن به اولین صفحه';
@@ -317,6 +467,9 @@ export const faIR = {
 
 export const fiFI = {
   props: {
+    // MuiBreadcrumbs: {
+    //   expandText: 'Show path',
+    // },
     MuiTablePagination: {
       backIconButtonText: 'Edellinen sivu',
       labelRowsPerPage: 'Rivejä per sivu:',
@@ -337,6 +490,27 @@ export const fiFI = {
     MuiAlert: {
       closeText: 'Sulje',
     },
+    // MuiPagination: {
+    //   'aria-label': 'Pagination navigation',
+    //   getItemAriaLabel: (type, page, selected) => {
+    //     if (type === 'page') {
+    //       return `${selected ? '' : 'Go to '}page ${page}`;
+    //     }
+    //     if (type === 'first') {
+    //       return 'Go to first page';
+    //     }
+    //     if (type === 'last') {
+    //       return 'Go to last page';
+    //     }
+    //     if (type === 'next') {
+    //       return 'Go to next page';
+    //     }
+    //     if (type === 'previous') {
+    //       return 'Go to previous page';
+    //     }
+    //     return undefined;
+    //   },
+    // },
   },
 };
 
@@ -391,6 +565,9 @@ export const frFR = {
 
 export const heIL = {
   props: {
+    // MuiBreadcrumbs: {
+    //   expandText: 'Show path',
+    // },
     MuiTablePagination: {
       backIconButtonText: 'העמוד הקודם',
       labelRowsPerPage: 'שורות בעמוד:',
@@ -412,11 +589,35 @@ export const heIL = {
     MuiAlert: {
       closeText: 'סגור',
     },
+    // MuiPagination: {
+    //   'aria-label': 'Pagination navigation',
+    //   getItemAriaLabel: (type, page, selected) => {
+    //     if (type === 'page') {
+    //       return `${selected ? '' : 'Go to '}page ${page}`;
+    //     }
+    //     if (type === 'first') {
+    //       return 'Go to first page';
+    //     }
+    //     if (type === 'last') {
+    //       return 'Go to last page';
+    //     }
+    //     if (type === 'next') {
+    //       return 'Go to next page';
+    //     }
+    //     if (type === 'previous') {
+    //       return 'Go to previous page';
+    //     }
+    //     return undefined;
+    //   },
+    // },
   },
 };
 
 export const huHU = {
   props: {
+    // MuiBreadcrumbs: {
+    //   expandText: 'Show path',
+    // },
     MuiTablePagination: {
       backIconButtonText: 'Előző oldal',
       labelRowsPerPage: 'Sorok száma:',
@@ -437,11 +638,35 @@ export const huHU = {
     MuiAlert: {
       closeText: 'Bezárás',
     },
+    // MuiPagination: {
+    //   'aria-label': 'Pagination navigation',
+    //   getItemAriaLabel: (type, page, selected) => {
+    //     if (type === 'page') {
+    //       return `${selected ? '' : 'Go to '}page ${page}`;
+    //     }
+    //     if (type === 'first') {
+    //       return 'Go to first page';
+    //     }
+    //     if (type === 'last') {
+    //       return 'Go to last page';
+    //     }
+    //     if (type === 'next') {
+    //       return 'Go to next page';
+    //     }
+    //     if (type === 'previous') {
+    //       return 'Go to previous page';
+    //     }
+    //     return undefined;
+    //   },
+    // },
   },
 };
 
 export const hyAM = {
   props: {
+    // MuiBreadcrumbs: {
+    //   expandText: 'Show path',
+    // },
     MuiTablePagination: {
       backIconButtonText: 'Նախորդը',
       labelRowsPerPage: 'Տողեր մեկ էջում`',
@@ -462,11 +687,35 @@ export const hyAM = {
     MuiAlert: {
       closeText: 'Փակել',
     },
+    // MuiPagination: {
+    //   'aria-label': 'Pagination navigation',
+    //   getItemAriaLabel: (type, page, selected) => {
+    //     if (type === 'page') {
+    //       return `${selected ? '' : 'Go to '}page ${page}`;
+    //     }
+    //     if (type === 'first') {
+    //       return 'Go to first page';
+    //     }
+    //     if (type === 'last') {
+    //       return 'Go to last page';
+    //     }
+    //     if (type === 'next') {
+    //       return 'Go to next page';
+    //     }
+    //     if (type === 'previous') {
+    //       return 'Go to previous page';
+    //     }
+    //     return undefined;
+    //   },
+    // },
   },
 };
 
 export const idID = {
   props: {
+    // MuiBreadcrumbs: {
+    //   expandText: 'Show path',
+    // },
     MuiTablePagination: {
       backIconButtonText: 'Halaman sebelumnya',
       labelRowsPerPage: 'Baris per halaman:',
@@ -476,7 +725,7 @@ export const idID = {
     },
     MuiRating: {
       getLabelText: (value) => `${value} Bintang`,
-      emptyLabelText: 'Empty',
+      // emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
       clearText: 'Hapus',
@@ -488,11 +737,35 @@ export const idID = {
     MuiAlert: {
       closeText: 'Tutup',
     },
+    // MuiPagination: {
+    //   'aria-label': 'Pagination navigation',
+    //   getItemAriaLabel: (type, page, selected) => {
+    //     if (type === 'page') {
+    //       return `${selected ? '' : 'Go to '}page ${page}`;
+    //     }
+    //     if (type === 'first') {
+    //       return 'Go to first page';
+    //     }
+    //     if (type === 'last') {
+    //       return 'Go to last page';
+    //     }
+    //     if (type === 'next') {
+    //       return 'Go to next page';
+    //     }
+    //     if (type === 'previous') {
+    //       return 'Go to previous page';
+    //     }
+    //     return undefined;
+    //   },
+    // },
   },
 };
 
 export const isIS = {
   props: {
+    // MuiBreadcrumbs: {
+    //   expandText: 'Show path',
+    // },
     MuiTablePagination: {
       backIconButtonText: 'Fyrri síða',
       labelRowsPerPage: 'Raðir á síðu:',
@@ -513,11 +786,35 @@ export const isIS = {
     MuiAlert: {
       closeText: 'Loka',
     },
+    // MuiPagination: {
+    //   'aria-label': 'Pagination navigation',
+    //   getItemAriaLabel: (type, page, selected) => {
+    //     if (type === 'page') {
+    //       return `${selected ? '' : 'Go to '}page ${page}`;
+    //     }
+    //     if (type === 'first') {
+    //       return 'Go to first page';
+    //     }
+    //     if (type === 'last') {
+    //       return 'Go to last page';
+    //     }
+    //     if (type === 'next') {
+    //       return 'Go to next page';
+    //     }
+    //     if (type === 'previous') {
+    //       return 'Go to previous page';
+    //     }
+    //     return undefined;
+    //   },
+    // },
   },
 };
 
 export const itIT = {
   props: {
+    // MuiBreadcrumbs: {
+    //   expandText: 'Show path',
+    // },
     MuiTablePagination: {
       backIconButtonText: 'Pagina precedente',
       labelRowsPerPage: 'Righe per pagina:',
@@ -538,11 +835,35 @@ export const itIT = {
     MuiAlert: {
       closeText: 'Chiudi',
     },
+    // MuiPagination: {
+    //   'aria-label': 'Pagination navigation',
+    //   getItemAriaLabel: (type, page, selected) => {
+    //     if (type === 'page') {
+    //       return `${selected ? '' : 'Go to '}page ${page}`;
+    //     }
+    //     if (type === 'first') {
+    //       return 'Go to first page';
+    //     }
+    //     if (type === 'last') {
+    //       return 'Go to last page';
+    //     }
+    //     if (type === 'next') {
+    //       return 'Go to next page';
+    //     }
+    //     if (type === 'previous') {
+    //       return 'Go to previous page';
+    //     }
+    //     return undefined;
+    //   },
+    // },
   },
 };
 
 export const jaJP = {
   props: {
+    // MuiBreadcrumbs: {
+    //   expandText: 'Show path',
+    // },
     MuiTablePagination: {
       backIconButtonText: '前のページ',
       labelRowsPerPage: 'ページごとの行:',
@@ -551,7 +872,7 @@ export const jaJP = {
     },
     MuiRating: {
       getLabelText: (value) => `${value} ${value !== 1 ? '出演者' : '星'}`,
-      emptyLabelText: 'Empty',
+      // emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
       clearText: 'クリア',
@@ -563,11 +884,35 @@ export const jaJP = {
     MuiAlert: {
       closeText: '閉じる',
     },
+    // MuiPagination: {
+    //   'aria-label': 'Pagination navigation',
+    //   getItemAriaLabel: (type, page, selected) => {
+    //     if (type === 'page') {
+    //       return `${selected ? '' : 'Go to '}page ${page}`;
+    //     }
+    //     if (type === 'first') {
+    //       return 'Go to first page';
+    //     }
+    //     if (type === 'last') {
+    //       return 'Go to last page';
+    //     }
+    //     if (type === 'next') {
+    //       return 'Go to next page';
+    //     }
+    //     if (type === 'previous') {
+    //       return 'Go to previous page';
+    //     }
+    //     return undefined;
+    //   },
+    // },
   },
 };
 
 export const koKR = {
   props: {
+    // MuiBreadcrumbs: {
+    //   expandText: 'Show path',
+    // },
     MuiTablePagination: {
       backIconButtonText: '이전 페이지',
       labelRowsPerPage: '페이지 당 행:',
@@ -576,7 +921,7 @@ export const koKR = {
     },
     MuiRating: {
       getLabelText: (value) => `${value} 점`,
-      emptyLabelText: 'Empty',
+      // emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
       clearText: '지우기',
@@ -590,6 +935,9 @@ export const koKR = {
 
 export const nlNL = {
   props: {
+    // MuiBreadcrumbs: {
+    //   expandText: 'Show path',
+    // },
     MuiTablePagination: {
       backIconButtonText: 'Vorige pagina',
       labelRowsPerPage: 'Regels per pagina :',
@@ -598,7 +946,7 @@ export const nlNL = {
     },
     MuiRating: {
       getLabelText: (value) => `${value} Ster${value !== 1 ? 'ren' : ''}`,
-      emptyLabelText: 'Empty',
+      // emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
       clearText: 'Wissen',
@@ -610,11 +958,35 @@ export const nlNL = {
     MuiAlert: {
       closeText: 'Sluiten',
     },
+    // MuiPagination: {
+    //   'aria-label': 'Pagination navigation',
+    //   getItemAriaLabel: (type, page, selected) => {
+    //     if (type === 'page') {
+    //       return `${selected ? '' : 'Go to '}page ${page}`;
+    //     }
+    //     if (type === 'first') {
+    //       return 'Go to first page';
+    //     }
+    //     if (type === 'last') {
+    //       return 'Go to last page';
+    //     }
+    //     if (type === 'next') {
+    //       return 'Go to next page';
+    //     }
+    //     if (type === 'previous') {
+    //       return 'Go to previous page';
+    //     }
+    //     return undefined;
+    //   },
+    // },
   },
 };
 
 export const plPL = {
   props: {
+    // MuiBreadcrumbs: {
+    //   expandText: 'Show path',
+    // },
     MuiTablePagination: {
       backIconButtonText: 'Poprzednia strona',
       labelRowsPerPage: 'Wierszy na stronę:',
@@ -634,7 +1006,7 @@ export const plPL = {
 
         return `${value} ${pluralForm}`;
       },
-      emptyLabelText: 'Empty',
+      // emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
       clearText: 'Wyczyść',
@@ -646,11 +1018,35 @@ export const plPL = {
     MuiAlert: {
       closeText: 'Zamknij',
     },
+    // MuiPagination: {
+    //   'aria-label': 'Pagination navigation',
+    //   getItemAriaLabel: (type, page, selected) => {
+    //     if (type === 'page') {
+    //       return `${selected ? '' : 'Go to '}page ${page}`;
+    //     }
+    //     if (type === 'first') {
+    //       return 'Go to first page';
+    //     }
+    //     if (type === 'last') {
+    //       return 'Go to last page';
+    //     }
+    //     if (type === 'next') {
+    //       return 'Go to next page';
+    //     }
+    //     if (type === 'previous') {
+    //       return 'Go to previous page';
+    //     }
+    //     return undefined;
+    //   },
+    // },
   },
 };
 
 export const ptBR = {
   props: {
+    // MuiBreadcrumbs: {
+    //   expandText: 'Show path',
+    // },
     MuiTablePagination: {
       backIconButtonText: 'Página anterior',
       labelRowsPerPage: 'Linhas por página:',
@@ -659,7 +1055,7 @@ export const ptBR = {
     },
     MuiRating: {
       getLabelText: (value) => `${value} Estrela${value !== 1 ? 's' : ''}`,
-      emptyLabelText: 'Empty',
+      // emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
       clearText: 'Limpar',
@@ -671,11 +1067,35 @@ export const ptBR = {
     MuiAlert: {
       closeText: 'Fechar',
     },
+    // MuiPagination: {
+    //   'aria-label': 'Pagination navigation',
+    //   getItemAriaLabel: (type, page, selected) => {
+    //     if (type === 'page') {
+    //       return `${selected ? '' : 'Go to '}page ${page}`;
+    //     }
+    //     if (type === 'first') {
+    //       return 'Go to first page';
+    //     }
+    //     if (type === 'last') {
+    //       return 'Go to last page';
+    //     }
+    //     if (type === 'next') {
+    //       return 'Go to next page';
+    //     }
+    //     if (type === 'previous') {
+    //       return 'Go to previous page';
+    //     }
+    //     return undefined;
+    //   },
+    // },
   },
 };
 
 export const ptPT = {
   props: {
+    // MuiBreadcrumbs: {
+    //   expandText: 'Show path',
+    // },
     MuiTablePagination: {
       backIconButtonText: 'Página anterior',
       labelRowsPerPage: 'Linhas por página:',
@@ -684,7 +1104,7 @@ export const ptPT = {
     },
     MuiRating: {
       getLabelText: (value) => `${value} Estrela${value !== 1 ? 's' : ''}`,
-      emptyLabelText: 'Empty',
+      // emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
       clearText: 'Limpar',
@@ -693,11 +1113,35 @@ export const ptPT = {
       noOptionsText: 'Sem opções',
       openText: 'Abrir',
     },
+    // MuiPagination: {
+    //   'aria-label': 'Pagination navigation',
+    //   getItemAriaLabel: (type, page, selected) => {
+    //     if (type === 'page') {
+    //       return `${selected ? '' : 'Go to '}page ${page}`;
+    //     }
+    //     if (type === 'first') {
+    //       return 'Go to first page';
+    //     }
+    //     if (type === 'last') {
+    //       return 'Go to last page';
+    //     }
+    //     if (type === 'next') {
+    //       return 'Go to next page';
+    //     }
+    //     if (type === 'previous') {
+    //       return 'Go to previous page';
+    //     }
+    //     return undefined;
+    //   },
+    // },
   },
 };
 
 export const roRO = {
   props: {
+    // MuiBreadcrumbs: {
+    //   expandText: 'Show path',
+    // },
     MuiTablePagination: {
       backIconButtonText: 'Pagina precedentă',
       labelRowsPerPage: 'Rânduri pe pagină:',
@@ -706,7 +1150,7 @@ export const roRO = {
     },
     MuiRating: {
       getLabelText: (value) => `${value} St${value !== 1 ? 'ele' : 'ea'}`,
-      emptyLabelText: 'Empty',
+      // emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
       clearText: 'Șterge',
@@ -718,11 +1162,35 @@ export const roRO = {
     MuiAlert: {
       closeText: 'Închide',
     },
+    // MuiPagination: {
+    //   'aria-label': 'Pagination navigation',
+    //   getItemAriaLabel: (type, page, selected) => {
+    //     if (type === 'page') {
+    //       return `${selected ? '' : 'Go to '}page ${page}`;
+    //     }
+    //     if (type === 'first') {
+    //       return 'Go to first page';
+    //     }
+    //     if (type === 'last') {
+    //       return 'Go to last page';
+    //     }
+    //     if (type === 'next') {
+    //       return 'Go to next page';
+    //     }
+    //     if (type === 'previous') {
+    //       return 'Go to previous page';
+    //     }
+    //     return undefined;
+    //   },
+    // },
   },
 };
 
 export const ruRU = {
   props: {
+    // MuiBreadcrumbs: {
+    //   expandText: 'Show path',
+    // },
     MuiTablePagination: {
       backIconButtonText: 'Предыдущая страница',
       labelRowsPerPage: 'Строк на странице:',
@@ -742,7 +1210,7 @@ export const ruRU = {
 
         return `${value} ${pluralForm}`;
       },
-      emptyLabelText: 'Empty',
+      // emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
       clearText: 'Очистить',
@@ -754,11 +1222,35 @@ export const ruRU = {
     MuiAlert: {
       closeText: 'Закрыть',
     },
+    // MuiPagination: {
+    //   'aria-label': 'Pagination navigation',
+    //   getItemAriaLabel: (type, page, selected) => {
+    //     if (type === 'page') {
+    //       return `${selected ? '' : 'Go to '}page ${page}`;
+    //     }
+    //     if (type === 'first') {
+    //       return 'Go to first page';
+    //     }
+    //     if (type === 'last') {
+    //       return 'Go to last page';
+    //     }
+    //     if (type === 'next') {
+    //       return 'Go to next page';
+    //     }
+    //     if (type === 'previous') {
+    //       return 'Go to previous page';
+    //     }
+    //     return undefined;
+    //   },
+    // },
   },
 };
 
 export const skSK = {
   props: {
+    // MuiBreadcrumbs: {
+    //   expandText: 'Show path',
+    // },
     MuiTablePagination: {
       backIconButtonText: 'Predchádzajúca stránka',
       labelRowsPerPage: 'Riadkov na stránke:',
@@ -775,7 +1267,7 @@ export const skSK = {
         }
         return `${value} hviezdičiek`;
       },
-      emptyLabelText: 'Empty',
+      // emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
       clearText: 'Vymazať',
@@ -787,11 +1279,35 @@ export const skSK = {
     MuiAlert: {
       closeText: 'Zavrieť',
     },
+    // MuiPagination: {
+    //   'aria-label': 'Pagination navigation',
+    //   getItemAriaLabel: (type, page, selected) => {
+    //     if (type === 'page') {
+    //       return `${selected ? '' : 'Go to '}page ${page}`;
+    //     }
+    //     if (type === 'first') {
+    //       return 'Go to first page';
+    //     }
+    //     if (type === 'last') {
+    //       return 'Go to last page';
+    //     }
+    //     if (type === 'next') {
+    //       return 'Go to next page';
+    //     }
+    //     if (type === 'previous') {
+    //       return 'Go to previous page';
+    //     }
+    //     return undefined;
+    //   },
+    // },
   },
 };
 
 export const svSE = {
   props: {
+    // MuiBreadcrumbs: {
+    //   expandText: 'Show path',
+    // },
     MuiTablePagination: {
       backIconButtonText: 'Föregående sida',
       labelRowsPerPage: 'Rader per sida:',
@@ -800,7 +1316,7 @@ export const svSE = {
     },
     MuiRating: {
       getLabelText: (value) => `${value} ${value !== 1 ? 'Stjärnor' : 'Stjärna'}`,
-      emptyLabelText: 'Empty',
+      // emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
       clearText: 'Rensa',
@@ -812,11 +1328,35 @@ export const svSE = {
     MuiAlert: {
       closeText: 'Stäng',
     },
+    // MuiPagination: {
+    //   'aria-label': 'Pagination navigation',
+    //   getItemAriaLabel: (type, page, selected) => {
+    //     if (type === 'page') {
+    //       return `${selected ? '' : 'Go to '}page ${page}`;
+    //     }
+    //     if (type === 'first') {
+    //       return 'Go to first page';
+    //     }
+    //     if (type === 'last') {
+    //       return 'Go to last page';
+    //     }
+    //     if (type === 'next') {
+    //       return 'Go to next page';
+    //     }
+    //     if (type === 'previous') {
+    //       return 'Go to previous page';
+    //     }
+    //     return undefined;
+    //   },
+    // },
   },
 };
 
 export const trTR = {
   props: {
+    // MuiBreadcrumbs: {
+    //   expandText: 'Show path',
+    // },
     MuiTablePagination: {
       backIconButtonText: 'Önceki sayfa',
       labelRowsPerPage: 'Sayfa başına satır:',
@@ -826,7 +1366,7 @@ export const trTR = {
     },
     MuiRating: {
       getLabelText: (value) => `${value} Yıldız`,
-      emptyLabelText: 'Empty',
+      // emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
       clearText: 'Temizle',
@@ -838,11 +1378,35 @@ export const trTR = {
     MuiAlert: {
       closeText: 'Kapat',
     },
+    // MuiPagination: {
+    //   'aria-label': 'Pagination navigation',
+    //   getItemAriaLabel: (type, page, selected) => {
+    //     if (type === 'page') {
+    //       return `${selected ? '' : 'Go to '}page ${page}`;
+    //     }
+    //     if (type === 'first') {
+    //       return 'Go to first page';
+    //     }
+    //     if (type === 'last') {
+    //       return 'Go to last page';
+    //     }
+    //     if (type === 'next') {
+    //       return 'Go to next page';
+    //     }
+    //     if (type === 'previous') {
+    //       return 'Go to previous page';
+    //     }
+    //     return undefined;
+    //   },
+    // },
   },
 };
 
 export const ukUA = {
   props: {
+    // MuiBreadcrumbs: {
+    //   expandText: 'Show path',
+    // },
     MuiTablePagination: {
       backIconButtonText: 'Попередня сторінка',
       labelRowsPerPage: 'Рядків на сторінці:',
@@ -862,7 +1426,7 @@ export const ukUA = {
 
         return `${value} ${pluralForm}`;
       },
-      emptyLabelText: 'Empty',
+      // emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
       clearText: 'Очистити',
@@ -874,11 +1438,35 @@ export const ukUA = {
     MuiAlert: {
       closeText: 'Згорнути',
     },
+    // MuiPagination: {
+    //   'aria-label': 'Pagination navigation',
+    //   getItemAriaLabel: (type, page, selected) => {
+    //     if (type === 'page') {
+    //       return `${selected ? '' : 'Go to '}page ${page}`;
+    //     }
+    //     if (type === 'first') {
+    //       return 'Go to first page';
+    //     }
+    //     if (type === 'last') {
+    //       return 'Go to last page';
+    //     }
+    //     if (type === 'next') {
+    //       return 'Go to next page';
+    //     }
+    //     if (type === 'previous') {
+    //       return 'Go to previous page';
+    //     }
+    //     return undefined;
+    //   },
+    // },
   },
 };
 
 export const viVN = {
   props: {
+    // MuiBreadcrumbs: {
+    //   expandText: 'Show path',
+    // },
     MuiTablePagination: {
       backIconButtonText: 'Trang trước',
       labelRowsPerPage: 'Số hàng mỗi trang:',
@@ -900,11 +1488,35 @@ export const viVN = {
     MuiAlert: {
       closeText: 'Đóng',
     },
+    // MuiPagination: {
+    //   'aria-label': 'Pagination navigation',
+    //   getItemAriaLabel: (type, page, selected) => {
+    //     if (type === 'page') {
+    //       return `${selected ? '' : 'Go to '}page ${page}`;
+    //     }
+    //     if (type === 'first') {
+    //       return 'Go to first page';
+    //     }
+    //     if (type === 'last') {
+    //       return 'Go to last page';
+    //     }
+    //     if (type === 'next') {
+    //       return 'Go to next page';
+    //     }
+    //     if (type === 'previous') {
+    //       return 'Go to previous page';
+    //     }
+    //     return undefined;
+    //   },
+    // },
   },
 };
 
 export const zhCN = {
   props: {
+    // MuiBreadcrumbs: {
+    //   expandText: 'Show path',
+    // },
     MuiTablePagination: {
       backIconButtonText: '上一页',
       labelRowsPerPage: '每页行数:',
@@ -913,7 +1525,7 @@ export const zhCN = {
     },
     MuiRating: {
       getLabelText: (value) => `${value} 星${value !== 1 ? '星' : ''}`,
-      emptyLabelText: 'Empty',
+      // emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
       clearText: '明确',
@@ -925,5 +1537,26 @@ export const zhCN = {
     MuiAlert: {
       closeText: '关',
     },
+    // MuiPagination: {
+    //   'aria-label': 'Pagination navigation',
+    //   getItemAriaLabel: (type, page, selected) => {
+    //     if (type === 'page') {
+    //       return `${selected ? '' : 'Go to '}page ${page}`;
+    //     }
+    //     if (type === 'first') {
+    //       return 'Go to first page';
+    //     }
+    //     if (type === 'last') {
+    //       return 'Go to last page';
+    //     }
+    //     if (type === 'next') {
+    //       return 'Go to next page';
+    //     }
+    //     if (type === 'previous') {
+    //       return 'Go to previous page';
+    //     }
+    //     return undefined;
+    //   },
+    // },
   },
 };
