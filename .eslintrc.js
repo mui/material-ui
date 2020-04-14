@@ -115,8 +115,6 @@ module.exports = {
       rules: {
         // does not work with wildcard imports. Mistakes will throw at runtime anyway
         'import/named': 'off',
-        // for expect style assertions
-        'no-unused-expressions': 'off',
 
         // no rationale provided in /recommended
         'mocha/no-mocha-arrows': 'off',
