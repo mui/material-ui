@@ -1,13 +1,13 @@
 /* eslint-disable react/no-danger */
 import React from 'react';
 import PropTypes from 'prop-types';
-import marked from 'marked/lib/marked';
 import throttle from 'lodash/throttle';
 import clsx from 'clsx';
 import Box from '@material-ui/core/Box';
 import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+import { render as renderMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 import textToHash from 'docs/src/modules/utils/textToHash';
 import DiamondSponsors from 'docs/src/modules/components/DiamondSponsors';
 import Link from 'docs/src/modules/components/Link';
@@ -60,43 +60,6 @@ const useStyles = makeStyles((theme) => ({
   active: {},
 }));
 
-const renderer = new marked.Renderer();
-
-function setRenderer(itemsCollector, unique) {
-  renderer.heading = (text2, level) => {
-    const text = text2
-      .replace(
-        /([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g,
-        '',
-      ) // remove emojis
-      .replace(/<\/?[^>]+(>|$)/g, ''); // remove HTML
-
-    if (level === 2) {
-      itemsCollector.current.push({
-        text,
-        level,
-        hash: textToHash(text, unique),
-        children: [],
-      });
-    } else if (level === 3) {
-      if (!itemsCollector.current[itemsCollector.current.length - 1]) {
-        throw new Error(`Missing parent level for: ${text}`);
-      }
-
-      itemsCollector.current[itemsCollector.current.length - 1].children.push({
-        text,
-        level,
-        hash: textToHash(text, unique),
-      });
-    }
-  };
-}
-
-function getItemsServer(contents, itemsCollector) {
-  marked(contents.join(''), { renderer });
-  return itemsCollector.current;
-}
-
 function getItemsClient(items) {
   const itemsClient = [];
 
@@ -145,9 +108,40 @@ export default function AppTableOfContents(props) {
   const t = useSelector((state) => state.options.t);
 
   const itemsServer = React.useMemo(() => {
-    const itemsCollectorRef = { current: [] };
-    setRenderer(itemsCollectorRef, {});
-    return getItemsServer(contents, itemsCollectorRef);
+    const items = [];
+    const unique = {};
+
+    renderMarkdown(contents.join(''), {
+      heading: (text2, level) => {
+        const text = text2
+          .replace(
+            /([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g,
+            '',
+          ) // remove emojis
+          .replace(/<\/?[^>]+(>|$)/g, ''); // remove HTML
+
+        if (level === 2) {
+          items.push({
+            text,
+            level,
+            hash: textToHash(text, unique),
+            children: [],
+          });
+        } else if (level === 3) {
+          if (!items[items.length - 1]) {
+            throw new Error(`Missing parent level for: ${text}`);
+          }
+
+          items[items.length - 1].children.push({
+            text,
+            level,
+            hash: textToHash(text, unique),
+          });
+        }
+      },
+    });
+
+    return items;
   }, [contents]);
 
   const itemsClientRef = React.useRef([]);

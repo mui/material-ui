@@ -2,43 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { useSelector } from 'react-redux';
-import marked from 'marked/lib/marked';
 import { withStyles } from '@material-ui/core/styles';
 import textToHash from 'docs/src/modules/utils/textToHash';
+import { render as renderMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 import prism from 'docs/src/modules/components/prism';
-
-// Monkey patch to preserve non-breaking spaces
-// https://github.com/chjj/marked/blob/6b0416d10910702f73da9cb6bb3d4c8dcb7dead7/lib/marked.js#L142-L150
-marked.Lexer.prototype.lex = function lex(src) {
-  src = src
-    .replace(/\r\n|\r/g, '\n')
-    .replace(/\t/g, '    ')
-    .replace(/\u2424/g, '\n');
-
-  return this.token(src, true);
-};
-
-const renderer = new marked.Renderer();
-renderer.heading = (text, level) => {
-  // Small title. No need for an anchor.
-  // It's reducing the risk of duplicated id and it's fewer elements in the DOM.
-  if (level >= 4) {
-    return `<h${level}>${text}</h${level}>`;
-  }
-
-  // eslint-disable-next-line no-underscore-dangle
-  const hash = textToHash(text, global.__MARKED_UNIQUE__);
-
-  return [
-    `<h${level}>`,
-    `<a class="anchor-link" id="${hash}"></a>`,
-    text,
-    `<a class="anchor-link-style" aria-hidden="true" aria-label="anchor" href="#${hash}">`,
-    '<svg><use xlink:href="#anchor-link-icon" /></svg>',
-    '</a>',
-    `</h${level}>`,
-  ].join('');
-};
 
 const externs = [
   'https://material.io/',
@@ -49,70 +16,6 @@ const externs = [
   'https://devexpress.github.io/',
   'https://ui-kit.co/',
 ];
-
-renderer.link = (href, title, text) => {
-  let more = '';
-
-  if (externs.some((domain) => href.indexOf(domain) !== -1)) {
-    more = ' target="_blank" rel="noopener nofollow"';
-  }
-
-  // eslint-disable-next-line no-underscore-dangle
-  const userLanguage = global.__MARKED_USER_LANGUAGE__;
-  let finalHref = href;
-
-  if (userLanguage !== 'en' && finalHref.indexOf('/') === 0 && finalHref !== '/size-snapshot') {
-    finalHref = `/${userLanguage}${finalHref}`;
-  }
-
-  return `<a href="${finalHref}"${more}>${text}</a>`;
-};
-
-const markedOptions = {
-  gfm: true,
-  tables: true,
-  breaks: false,
-  pedantic: false,
-  sanitize: false,
-  smartLists: true,
-  smartypants: false,
-  highlight(code, language) {
-    let prismLanguage;
-    switch (language) {
-      case 'ts':
-        prismLanguage = prism.languages.tsx;
-        break;
-
-      case 'js':
-      case 'sh':
-        prismLanguage = prism.languages.jsx;
-        break;
-
-      case 'diff':
-        prismLanguage = { ...prism.languages.diff };
-        // original `/^[-<].*$/m` matches lines starting with `<` which matches
-        // <SomeComponent />
-        // we will only use `-` as the deleted marker
-        prismLanguage.deleted = /^[-].*$/m;
-        break;
-
-      default:
-        prismLanguage = prism.languages[language];
-        break;
-    }
-
-    if (!prismLanguage) {
-      if (language) {
-        throw new Error(`unsupported language: "${language}", "${code}"`);
-      } else {
-        prismLanguage = prism.languages.jsx;
-      }
-    }
-
-    return prism.highlight(code, prismLanguage);
-  },
-  renderer,
-};
 
 const styles = (theme) => ({
   root: {
@@ -301,14 +204,90 @@ function MarkdownElement(props) {
 
   const userLanguage = useSelector((state) => state.options.userLanguage);
 
-  // eslint-disable-next-line no-underscore-dangle
-  global.__MARKED_USER_LANGUAGE__ = userLanguage;
+  const renderedMarkdown = React.useMemo(() => {
+    return renderMarkdown(text, {
+      highlight(code, language) {
+        let prismLanguage;
+        switch (language) {
+          case 'ts':
+            prismLanguage = prism.languages.tsx;
+            break;
+
+          case 'js':
+          case 'sh':
+            prismLanguage = prism.languages.jsx;
+            break;
+
+          case 'diff':
+            prismLanguage = { ...prism.languages.diff };
+            // original `/^[-<].*$/m` matches lines starting with `<` which matches
+            // <SomeComponent />
+            // we will only use `-` as the deleted marker
+            prismLanguage.deleted = /^[-].*$/m;
+            break;
+
+          default:
+            prismLanguage = prism.languages[language];
+            break;
+        }
+
+        if (!prismLanguage) {
+          if (language) {
+            throw new Error(`unsupported language: "${language}", "${code}"`);
+          } else {
+            prismLanguage = prism.languages.jsx;
+          }
+        }
+
+        return prism.highlight(code, prismLanguage);
+      },
+      heading: (headingText, level) => {
+        // Small title. No need for an anchor.
+        // It's reducing the risk of duplicated id and it's fewer elements in the DOM.
+        if (level >= 4) {
+          return `<h${level}>${headingText}</h${level}>`;
+        }
+
+        // eslint-disable-next-line no-underscore-dangle
+        const hash = textToHash(headingText, global.__MARKED_UNIQUE__);
+
+        return [
+          `<h${level}>`,
+          `<a class="anchor-link" id="${hash}"></a>`,
+          headingText,
+          `<a class="anchor-link-style" aria-hidden="true" aria-label="anchor" href="#${hash}">`,
+          '<svg><use xlink:href="#anchor-link-icon" /></svg>',
+          '</a>',
+          `</h${level}>`,
+        ].join('');
+      },
+      link: (href, title, linkText) => {
+        let more = '';
+
+        if (externs.some((domain) => href.indexOf(domain) !== -1)) {
+          more = ' target="_blank" rel="noopener nofollow"';
+        }
+
+        let finalHref = href;
+
+        if (
+          userLanguage !== 'en' &&
+          finalHref.indexOf('/') === 0 &&
+          finalHref !== '/size-snapshot'
+        ) {
+          finalHref = `/${userLanguage}${finalHref}`;
+        }
+
+        return `<a href="${finalHref}"${more}>${linkText}</a>`;
+      },
+    });
+  }, [text, userLanguage]);
 
   /* eslint-disable react/no-danger */
   return (
     <div
       className={clsx(classes.root, 'markdown-body', className)}
-      dangerouslySetInnerHTML={{ __html: marked(text, markedOptions) }}
+      dangerouslySetInnerHTML={{ __html: renderedMarkdown }}
       {...other}
     />
   );
