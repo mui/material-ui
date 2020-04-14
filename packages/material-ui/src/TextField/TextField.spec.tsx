@@ -70,16 +70,8 @@ function FocusHandlerTest() {
 
 function createElementTextFieldTest() {
   // $ExpectError
-  React.createElement<TextFieldProps>(TextField, {
-    FormHelperTextProps: {
-      component: 'some-wrong-element',
-    },
-  });
+  const stringParam = <TextField FormHelperTextProps={{ component: 'some-wrong-element' }} />;
 
   // $ExpectError
-  React.createElement<TextFieldProps>(TextField, {
-    FormHelperTextProps: {
-      component: 1234,
-    },
-  });
+  const numberParam = <TextField FormHelperTextProps={{ component: 1234 }} />;
 }
