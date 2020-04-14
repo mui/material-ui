@@ -43,7 +43,7 @@ Here are the most significant improvements since the beginning of the year:
   </video>
 
 - ⚛️ We have worked on improving the developer experience inside the text editors.
-  - We have migrated 60% of the components, so far, to host the descriptions of the props in TypeScript. Back-and-forths with the documentation API will be less frequent:
+  - We have migrated prop descriptions from JSDoc to TypeScript for 60% of the components. Back-and-forths with the documentation API will be less frequent:
 
   ![props](/static/blog/2020-q1-update/props.png)
 
