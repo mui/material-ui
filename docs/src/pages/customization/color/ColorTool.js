@@ -113,9 +113,7 @@ function ColorTool(props) {
   };
 
   const handleChangeHue = (name) => (event) => {
-    const {
-      target: { value: hue },
-    } = event;
+    const hue = event.target.value;
     const color = colors[hue][shades[state[`${name}Shade`]]];
 
     setState({

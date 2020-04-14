@@ -655,20 +655,30 @@ const SelectionControlTest = () => {
     checkedF: true,
   };
 
-  const handleChange = (name: string) => (event: React.SyntheticEvent<any>, checked: boolean) =>
-    log({ [name]: checked });
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) =>
+    log({ [event.target.name]: event.target.checked });
 
   return (
     <FormGroup row>
       <FormControlLabel
         control={
-          <Checkbox checked={state.checkedA} onChange={handleChange('checkedA')} value="checkedA" />
+          <Checkbox
+            checked={state.checkedA}
+            onChange={handleChange}
+            name="checkedA"
+            value="checkedA"
+          />
         }
         label="Option A"
       />
       <FormControlLabel
         control={
-          <Checkbox checked={state.checkedB} onChange={handleChange('checkedB')} value="checkedB" />
+          <Checkbox
+            checked={state.checkedB}
+            onChange={handleChange}
+            name="checkedB"
+            value="checkedB"
+          />
         }
         label="Option B"
       />
@@ -681,7 +691,9 @@ const SelectionControlTest = () => {
         label="Indeterminate"
       />
       <FormControlLabel
-        control={<Checkbox checked={true} onChange={handleChange('checkedF')} value="checkedF" />}
+        control={
+          <Checkbox checked={true} onChange={handleChange} name="checkedF" value="checkedF" />
+        }
         label="Custom color"
       />
     </FormGroup>
@@ -694,16 +706,32 @@ const SwitchTest = () => {
     checkedB: false,
     checkedE: true,
   };
-  const handleChange = (name: string) => (event: React.SyntheticEvent<any>, checked: boolean) =>
-    log({ [name]: checked });
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) =>
+    log({ [event.target.name]: event.target.checked });
 
   return (
     <div>
-      <Switch checked={state.checkedA} onChange={handleChange('checkedA')} aria-label="checkedA" />
-      <Switch checked={state.checkedB} onChange={handleChange('checkedB')} aria-label="checkedB" />
+      <Switch
+        checked={state.checkedA}
+        onChange={handleChange}
+        name="checkedA"
+        aria-label="checkedA"
+      />
+      <Switch
+        checked={state.checkedB}
+        onChange={handleChange}
+        name="checkedB"
+        aria-label="checkedB"
+      />
       <Switch checked={false} aria-label="checkedC" disabled />
       <Switch checked aria-label="checkedD" disabled />
-      <Switch checked={state.checkedE} onChange={handleChange('checkedE')} aria-label="checkedD" />
+      <Switch
+        checked={state.checkedE}
+        onChange={handleChange}
+        name="checkedE"
+        aria-label="checkedD"
+      />
     </div>
   );
 };
