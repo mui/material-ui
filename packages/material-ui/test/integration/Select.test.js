@@ -75,7 +75,7 @@ describe('<Select> integration', () => {
       const { getAllByRole, getByRole, queryByRole } = render(<SelectAndDialog />);
 
       const trigger = getByRole('button');
-      expect(trigger).to.have.accessibleName('Ten');
+      expect(trigger).toHaveAccessibleName('Ten');
       // Let's open the select component
       // in the browser user click also focuses
       fireEvent.mouseDown(trigger);
@@ -105,7 +105,7 @@ describe('<Select> integration', () => {
         </FormControl>,
       );
 
-      expect(getByRole('button')).to.have.accessibleName('Age Ten');
+      expect(getByRole('button')).toHaveAccessibleName('Age Ten');
     });
 
     // we're somewhat abusing "focus" here. What we're actually interested in is

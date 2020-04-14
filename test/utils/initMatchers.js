@@ -63,7 +63,7 @@ chai.use((chaiAPI, utils) => {
     );
   });
 
-  chai.Assertion.addMethod('accessibleName', function hasAccessibleName(expectedName) {
+  chai.Assertion.addMethod('toHaveAccessibleName', function hasAccessibleName(expectedName) {
     const root = utils.flag(this, 'object');
     // make sure it's an Element
     new chai.Assertion(root.nodeType, `Expected an Element but got '${String(root)}'`).to.equal(1);

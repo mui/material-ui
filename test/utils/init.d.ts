@@ -8,7 +8,7 @@ declare namespace Chai {
      * @see https://www.w3.org/TR/accname-1.2/
      * @param name
      */
-    accessibleName(name: string): Assertion;
+    toHaveAccessibleName(name: string): Assertion;
     /**
      * checks if the element in question is considered aria-hidden
      * Does not replace accessibility check as that requires display/visibility/layout

@@ -181,7 +181,7 @@ describe('<TextField />', () => {
         </TextField>,
       );
 
-      expect(getByRole('button')).to.have.accessibleName('Release: Stable');
+      expect(getByRole('button')).toHaveAccessibleName('Release: Stable');
     });
 
     it('creates an input[hidden] that has no accessible properties', () => {
