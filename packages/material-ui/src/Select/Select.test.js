@@ -223,7 +223,7 @@ describe('<Select />', () => {
       fireEvent.mouseDown(getByRole('button'));
       getAllByRole('option')[1].click();
 
-      expect(onChangeHandler.calledOnce).to.be.true;
+      expect(onChangeHandler.calledOnce).to.equal(true);
       const selected = onChangeHandler.args[0][1];
       expect(React.isValidElement(selected)).to.equal(true);
     });
@@ -717,10 +717,10 @@ describe('<Select />', () => {
 
       // If clicked by the right/middle mouse button, no options list should be opened
       fireEvent.mouseDown(trigger, { button: 1 });
-      expect(queryByRole('listbox')).to.not.exist;
+      expect(queryByRole('listbox')).to.equal(null);
 
       fireEvent.mouseDown(trigger, { button: 2 });
-      expect(queryByRole('listbox')).to.not.exist;
+      expect(queryByRole('listbox')).to.equal(null);
     });
   });
 
