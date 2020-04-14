@@ -23,7 +23,7 @@ A data table contains a header row at the top that lists column names, followed 
 
 Checkboxes should accompany each row if the user needs to select or manipulate data.
 
-For accessibility, the first column is set to be a `<th>` element, with a `scope` of `"row"`. This enables screen readers to identify a cell's value by it's row and column name.
+For accessibility, the first column is set to be a `<th>` element, with a `scope` of `"col"`. This enables screen readers to identify a cell's value by it's row and column name.
 
 ## Simple Table
 
