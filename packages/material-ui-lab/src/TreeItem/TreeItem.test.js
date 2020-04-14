@@ -97,10 +97,10 @@ describe('<TreeItem />', () => {
     const { getByTestId, queryByTestId } = render(<TestComponent />);
 
     expect(getByTestId('1')).to.have.attribute('aria-expanded', 'true');
-    expect(getByTestId('2')).to.not.be.null;
+    expect(getByTestId('2')).not.to.equal(null);
     fireEvent.click(getByTestId('button'));
     expect(getByTestId('1')).to.not.have.attribute('aria-expanded');
-    expect(queryByTestId('2')).to.be.null;
+    expect(queryByTestId('2')).to.equal(null);
   });
 
   it('should treat an empty array equally to no children', () => {
@@ -537,11 +537,11 @@ describe('<TreeItem />', () => {
 
           const { queryByTestId, getByTestId } = render(<TestComponent />);
 
-          expect(getByTestId('one')).to.not.be.null;
+          expect(getByTestId('one')).not.to.equal(null);
           fireEvent.click(getByTestId('button'));
-          expect(queryByTestId('one')).to.be.null;
+          expect(queryByTestId('one')).to.equal(null);
           fireEvent.click(getByTestId('button'));
-          expect(getByTestId('one')).to.not.be.null;
+          expect(getByTestId('one')).not.to.equal(null);
 
           getByTestId('one').focus();
           fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });

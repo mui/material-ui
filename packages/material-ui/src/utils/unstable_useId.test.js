@@ -19,18 +19,18 @@ describe('unstable_useId', () => {
   it('returns the provided ID', () => {
     const { getByText, setProps } = render(<TestComponent id="some-id" />);
 
-    expect(getByText('some-id')).to.not.be.null;
+    expect(getByText('some-id')).not.to.equal(null);
 
     setProps({ id: 'another-id' });
-    expect(getByText('another-id')).to.not.be.null;
+    expect(getByText('another-id')).not.to.equal(null);
   });
 
   it("generates an ID if one isn't provided", () => {
     const { getByText, setProps } = render(<TestComponent />);
 
-    expect(getByText(/^mui-[0-9]+$/)).to.not.be.null;
+    expect(getByText(/^mui-[0-9]+$/)).not.to.equal(null);
 
     setProps({ id: 'another-id' });
-    expect(getByText('another-id')).to.not.be.null;
+    expect(getByText('another-id')).not.to.equal(null);
   });
 });

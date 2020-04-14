@@ -141,7 +141,7 @@ describe('<Chip />', () => {
       );
 
       expect(getByRole('button')).to.have.property('tabIndex', 0);
-      expect(container.querySelector('#avatar')).to.be.ok;
+      expect(container.querySelector('#avatar')).not.to.equal(null);
     });
 
     it('should apply user value of tabIndex', () => {

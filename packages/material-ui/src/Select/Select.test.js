@@ -112,7 +112,7 @@ describe('<Select />', () => {
     fireEvent.mouseDown(trigger);
 
     expect(handleBlur.callCount).to.equal(0);
-    expect(getByRole('listbox')).to.be.ok;
+    expect(getByRole('listbox')).not.to.equal(null);
 
     act(() => {
       const options = getAllByRole('option');
@@ -121,7 +121,7 @@ describe('<Select />', () => {
     });
 
     expect(handleBlur.callCount).to.equal(0);
-    expect(queryByRole('listbox', { hidden: false })).to.be.null;
+    expect(queryByRole('listbox', { hidden: false })).to.equal(null);
   });
 
   it('options should have a data-value attribute', () => {
@@ -148,10 +148,10 @@ describe('<Select />', () => {
       getByRole('button').focus();
 
       fireEvent.keyDown(document.activeElement, { key });
-      expect(getByRole('listbox', { hidden: false })).to.be.ok;
+      expect(getByRole('listbox', { hidden: false })).not.to.equal(null);
 
       fireEvent.keyUp(document.activeElement, { key });
-      expect(getByRole('listbox', { hidden: false })).to.be.ok;
+      expect(getByRole('listbox', { hidden: false })).not.to.equal(null);
     });
   });
 
@@ -346,7 +346,7 @@ describe('<Select />', () => {
           <option value={2}>Two</option>
         </Select>,
       );
-      expect(container.querySelector('svg')).to.be.null;
+      expect(container.querySelector('svg')).to.equal(null);
     });
 
     it('should present an SVG icon', () => {
@@ -514,10 +514,10 @@ describe('<Select />', () => {
       getByRole('button').focus();
 
       fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
-      expect(queryByRole('listbox')).not.to.be.ok;
+      expect(queryByRole('listbox')).to.equal(null);
 
       fireEvent.keyUp(document.activeElement, { key: 'ArrowDown' });
-      expect(queryByRole('listbox')).not.to.be.ok;
+      expect(queryByRole('listbox')).to.equal(null);
     });
   });
 
@@ -672,7 +672,7 @@ describe('<Select />', () => {
       const { getByRole, queryByRole } = render(<ControlledWrapper />);
 
       fireEvent.mouseDown(getByRole('button'));
-      expect(getByRole('listbox')).to.be.ok;
+      expect(getByRole('listbox')).not.to.equal(null);
 
       act(() => {
         getByRole('option').click();
@@ -686,7 +686,7 @@ describe('<Select />', () => {
         clock.tick(0);
       });
 
-      expect(queryByRole('listbox', { hidden: true })).to.be.null;
+      expect(queryByRole('listbox', { hidden: true })).to.equal(null);
     });
 
     it('should be open when initially true', () => {
@@ -696,7 +696,7 @@ describe('<Select />', () => {
         </Select>,
       );
 
-      expect(getByRole('listbox')).to.be.ok;
+      expect(getByRole('listbox')).not.to.equal(null);
     });
 
     it('open only with the left mouse button click', () => {
@@ -942,7 +942,7 @@ describe('<Select />', () => {
     it('renders a <select />', () => {
       const { container } = render(<Select native />);
 
-      expect(container.querySelector('select')).not.to.be.null;
+      expect(container.querySelector('select')).not.to.equal(null);
     });
 
     it('can be labelled with a <label />', () => {

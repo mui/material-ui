@@ -838,7 +838,7 @@ describe('<Modal />', () => {
           </Modal>
         </div>,
       );
-      expect(within(getByTestId('parent')).getByTestId('child')).to.be.ok;
+      expect(within(getByTestId('parent')).getByTestId('child')).not.to.equal(null);
     });
   });
 });

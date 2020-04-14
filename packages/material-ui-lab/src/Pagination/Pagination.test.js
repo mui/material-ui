@@ -39,7 +39,7 @@ describe('<Pagination />', () => {
     const [, page1] = getAllByRole('button');
     expect(page1).to.have.attribute('aria-current', 'true');
     // verifying no regression from previous bug where `page` wasn't intercepted
-    expect(container.querySelector('[page]')).to.be.null;
+    expect(container.querySelector('[page]')).to.equal(null);
   });
 
   it('fires onChange when a different page is clicked', () => {

@@ -50,7 +50,7 @@ describe('<Table />', () => {
       </Table>,
     );
 
-    expect(getByTestId('children')).to.be.ok;
+    expect(getByTestId('children')).not.to.equal(null);
   });
 
   it('should define table in the child context', () => {

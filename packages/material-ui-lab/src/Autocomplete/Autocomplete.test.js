@@ -350,7 +350,7 @@ describe('<Autocomplete />', () => {
 
       // listbox is not only inaccessible but not in the DOM
       const listbox = queryByRole('listbox', { hidden: true });
-      expect(listbox).to.be.null;
+      expect(listbox).to.equal(null);
 
       const buttons = getAllByRole('button');
       expect(buttons).to.have.length(2);
@@ -764,7 +764,7 @@ describe('<Autocomplete />', () => {
           />,
         );
         const input = getByRole('textbox');
-        expect(input.disabled).to.be.true;
+        expect(input.disabled).to.equal(true);
       });
 
       it('should disable the popup button', () => {
@@ -776,7 +776,7 @@ describe('<Autocomplete />', () => {
             renderInput={(params) => <TextField {...params} />}
           />,
         );
-        expect(queryByTitle('Open').disabled).to.be.true;
+        expect(queryByTitle('Open').disabled).to.equal(true);
       });
 
       it('should not render the clear button', () => {
@@ -788,7 +788,7 @@ describe('<Autocomplete />', () => {
             renderInput={(params) => <TextField {...params} />}
           />,
         );
-        expect(queryByTitle('Clear')).to.be.null;
+        expect(queryByTitle('Clear')).to.equal(null);
       });
 
       it('should not apply the hasClearIcon class', () => {
@@ -815,7 +815,7 @@ describe('<Autocomplete />', () => {
             renderInput={(params) => <TextField {...params} />}
           />,
         );
-        expect(queryByTitle('Clear')).to.be.null;
+        expect(queryByTitle('Clear')).to.equal(null);
         expect(container.querySelector(`.${classes.root}`)).to.have.class(classes.hasPopupIcon);
         expect(container.querySelector(`.${classes.root}`)).not.to.have.class(classes.hasClearIcon);
       });

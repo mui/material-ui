@@ -723,7 +723,7 @@ describe('<ButtonBase />', () => {
           </ButtonBase>,
         );
 
-        expect(getByText('Hello').querySelector('.touch-ripple')).to.be.null;
+        expect(getByText('Hello').querySelector('.touch-ripple')).to.equal(null);
       });
     });
 

@@ -120,7 +120,7 @@ describe('<MenuList> integration', () => {
         </MenuList>,
       );
 
-      expect(document.activeElement).to.be.ok;
+      expect(document.activeElement).not.to.equal(null);
       document.activeElement.blur();
       const menuitems = getAllByRole('menuitem');
 

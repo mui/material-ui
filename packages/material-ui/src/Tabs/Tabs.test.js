@@ -170,9 +170,9 @@ describe('<Tabs />', () => {
           </Tabs>,
         );
         const tabElements = getAllByRole('tab');
-        expect(tabElements[0].querySelector(`.${classes.indicator}`)).to.not.be.ok;
-        expect(tabElements[1].querySelector(`.${classes.indicator}`)).to.not.be.ok;
-        expect(container.querySelector(`.${classes.indicator}`)).to.be.ok;
+        expect(tabElements[0].querySelector(`.${classes.indicator}`)).to.equal(null);
+        expect(tabElements[1].querySelector(`.${classes.indicator}`)).to.equal(null);
+        expect(container.querySelector(`.${classes.indicator}`)).not.to.equal(null);
       });
 
       it('should update the indicator at each render', function test() {
@@ -341,8 +341,8 @@ describe('<Tabs />', () => {
       );
       const baseSelector = `.${classes.scroller}`;
       const selector = `.${classes.scroller}.${classes.scrollable}`;
-      expect(container.querySelector(baseSelector)).to.be.ok;
-      expect(container.querySelector(selector)).to.not.be.ok;
+      expect(container.querySelector(baseSelector)).not.to.equal(null);
+      expect(container.querySelector(selector)).to.equal(null);
     });
   });
 

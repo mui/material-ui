@@ -67,7 +67,7 @@ describe('<Select> integration', () => {
       getByTestId('select-backdrop').click();
       clock.tick(0);
 
-      expect(queryByRole('listbox')).to.be.null;
+      expect(queryByRole('listbox')).to.equal(null);
       expect(trigger).toHaveFocus();
     });
 
@@ -87,7 +87,7 @@ describe('<Select> integration', () => {
       options[2].click();
       clock.tick(0);
 
-      expect(queryByRole('listbox')).to.be.null;
+      expect(queryByRole('listbox')).to.equal(null);
       expect(trigger).toHaveFocus();
       expect(trigger).to.have.text('Twenty');
     });

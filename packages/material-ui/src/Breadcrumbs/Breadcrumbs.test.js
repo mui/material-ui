@@ -60,7 +60,7 @@ describe('<Breadcrumbs />', () => {
 
     expect(listitems).to.have.length(2);
     expect(getByRole('list')).to.have.text('first//ninth');
-    expect(getByRole('button').querySelector('[data-mui-test="MoreHorizIcon"]')).to.be.ok;
+    expect(getByRole('button').querySelector('[data-mui-test="MoreHorizIcon"]')).not.to.equal(null);
   });
 
   it('should expand when `BreadcrumbCollapsed` is clicked', () => {

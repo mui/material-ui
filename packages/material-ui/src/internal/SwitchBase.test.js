@@ -69,7 +69,7 @@ describe('<SwitchBase />', () => {
       />,
     );
 
-    expect(getByTestId('TouchRipple')).to.be.ok;
+    expect(getByTestId('TouchRipple')).not.to.equal(null);
   });
 
   it('can disable the ripple ', () => {
@@ -83,7 +83,7 @@ describe('<SwitchBase />', () => {
       />,
     );
 
-    expect(queryByTestId('TouchRipple')).to.be.null;
+    expect(queryByTestId('TouchRipple')).to.equal(null);
   });
 
   it('should pass tabIndex to the input so it can be taken out of focus rotation', () => {
@@ -136,7 +136,7 @@ describe('<SwitchBase />', () => {
 
       expect(container.firstChild).to.have.class(classes.checked);
       expect(getByRole('checkbox')).to.have.property('checked', true);
-      expect(getByTestId('checked-icon')).to.be.ok;
+      expect(getByTestId('checked-icon')).not.to.equal(null);
     });
 
     it('should uncheck the checkbox', () => {
@@ -152,7 +152,7 @@ describe('<SwitchBase />', () => {
 
       expect(container.firstChild).not.to.have.class(classes.checked);
       expect(getByRole('checkbox')).to.have.property('checked', false);
-      expect(getByTestId('unchecked-icon')).to.be.ok;
+      expect(getByTestId('unchecked-icon')).not.to.equal(null);
     });
   });
 
@@ -169,19 +169,19 @@ describe('<SwitchBase />', () => {
 
     expect(container.firstChild).to.have.class(classes.checked);
     expect(checkbox).to.have.property('checked', true);
-    expect(getByTestId('checked-icon')).to.be.ok;
+    expect(getByTestId('checked-icon')).not.to.equal(null);
 
     checkbox.click();
 
     expect(container.firstChild).not.to.have.class(classes.checked);
     expect(checkbox).to.have.property('checked', false);
-    expect(getByTestId('unchecked-icon')).to.be.ok;
+    expect(getByTestId('unchecked-icon')).not.to.equal(null);
 
     checkbox.click();
 
     expect(container.firstChild).to.have.class(classes.checked);
     expect(checkbox).to.have.property('checked', true);
-    expect(getByTestId('checked-icon')).to.be.ok;
+    expect(getByTestId('checked-icon')).not.to.equal(null);
   });
 
   describe('handleInputChange()', () => {

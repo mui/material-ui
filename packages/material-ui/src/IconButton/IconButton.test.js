@@ -55,7 +55,7 @@ describe('<IconButton />', () => {
     const { container } = render(
       <IconButton TouchRippleProps={{ className: 'touch-ripple' }}>book</IconButton>,
     );
-    expect(container.querySelector('.touch-ripple')).to.be.ok;
+    expect(container.querySelector('.touch-ripple')).not.to.equal(null);
   });
 
   it('can disable the ripple', () => {
@@ -64,7 +64,7 @@ describe('<IconButton />', () => {
         book
       </IconButton>,
     );
-    expect(container.querySelector('.touch-ripple')).to.be.null;
+    expect(container.querySelector('.touch-ripple')).to.equal(null);
   });
 
   it('should pass centerRipple={true} to ButtonBase', () => {
