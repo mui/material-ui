@@ -21,7 +21,7 @@ Here are the most significant improvements since the beginning of the year:
 
   <p class="blog-description">useAutocomplete <a href="https://material-ui.com/components/autocomplete/#useautocomplete">hook</a> example, 4.5 kB gzipped.</p>
 
-  If you wish to make your first contribution to open source, the component has a couple of ["good first issue"](https://github.com/mui-org/material-ui/labels/lab%3A%20Autocomplete) that can be taken.
+  If you wish to make your first contribution to open source, the component has a couple of ["good first issues"](https://github.com/mui-org/material-ui/labels/lab%3A%20Autocomplete) that can be taken.
   If you have TypeScript expertise, the component could [benefit from it](https://github.com/mui-org/material-ui/issues?q=is%3Aopen+label%3A%22lab%3A+Autocomplete%22+label%3Atypescript).
 
 - 📆 We have made a first [alpha release](https://next.material-ui-pickers.dev/demo/daterangepicker) of the date range picker. It's not ready to be used in production but you can start playing. We might release some of the new features of the date picker under the upcoming Enterprise offering.
