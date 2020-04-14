@@ -70,8 +70,13 @@ function FocusHandlerTest() {
 
 function createElementTextFieldTest() {
   // $ExpectError
-  const stringParam = <TextField FormHelperTextProps={{ component: 'some-wrong-element' }} />;
+  const wrongElementType = <TextField FormHelperTextProps={{ component: 'some-wrong-element' }} />;
 
   // $ExpectError
   const numberParam = <TextField FormHelperTextProps={{ component: 1234 }} />;
+
+  // $ExpectError
+  const jsxParam = <TextField FormHelperTextProps={{ component: <div /> }} />;
+
+  const validElementType = <TextField FormHelperTextProps={{ component: 'div' }} />;
 }
