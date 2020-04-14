@@ -16,7 +16,7 @@ const NoContent = React.forwardRef(() => {
 
 describe('<ListItem />', () => {
   let mount;
-  const render = createClientRender({ strict: false });
+  const render = createClientRender();
   let classes;
 
   before(() => {
@@ -126,6 +126,21 @@ describe('<ListItem />', () => {
       expect(listItem.querySelector(`div.${classes.root}`)).not.to.equal(null);
     });
 
+    it('can autofocus a custom ContainerComponent', () => {
+      const { getByRole } = render(
+        <ListItem
+          autoFocus
+          ContainerComponent="div"
+          ContainerProps={{ role: 'listitem', tabIndex: -1 }}
+        >
+          <ListItemText primary="primary" />
+          <ListItemSecondaryAction />
+        </ListItem>,
+      );
+
+      expect(getByRole('listitem')).toHaveFocus();
+    });
+
     it('should allow customization of the wrapper', () => {
       const { getByRole } = render(
         <ListItem ContainerProps={{ className: 'bubu', role: 'listitem' }}>
@@ -175,6 +190,33 @@ describe('<ListItem />', () => {
         expect(consoleErrorMock.callCount()).to.equal(1);
         expect(consoleErrorMock.messages()[0]).to.include(
           'Material-UI: unable to set focus to a ListItem whose component has not been rendered.',
+        );
+      });
+
+      // StrictMode compatible usage is illustrated in "can autofocus a custom ContainerComponent"
+      it('warns in StrictMode if the custom ContainerComponent is a class component', () => {
+        // eslint-disable-next-line react/prefer-stateless-function
+        class CustomListItemContainer extends React.Component {
+          // React dedupes the findDOMNode deprecation warning by displayName
+          // since we can't reset modules in watchmode we implement cache busting
+          // by creating a random display name
+          static displayName = `CustomListItemContainer-#${Math.random()}`;
+
+          render() {
+            return <div role="listitem" tabIndex={-1} {...this.props} />;
+          }
+        }
+        const { getByRole } = render(
+          <ListItem autoFocus ContainerComponent={CustomListItemContainer}>
+            <ListItemText primary="primary" />
+            <ListItemSecondaryAction />
+          </ListItem>,
+        );
+
+        expect(getByRole('listitem')).toHaveFocus();
+        expect(consoleErrorMock.callCount()).to.equal(1);
+        expect(consoleErrorMock.messages()[0]).to.include(
+          'findDOMNode is deprecated in StrictMode',
         );
       });
     });
