@@ -1,5 +1,5 @@
 ---
-description: Here are the most significant improvements in August.
+description: An update on our mission for Q1 2020.
 ---
 
 # Q1 2020 Update
