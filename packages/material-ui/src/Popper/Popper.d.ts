@@ -1,5 +1,6 @@
 import * as React from 'react';
 import PopperJs, { ReferenceObject } from 'popper.js';
+import { Omit } from '..';
 import { PortalProps } from '../Portal';
 
 export type PopperPlacementType =
