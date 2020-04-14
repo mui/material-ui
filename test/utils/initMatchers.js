@@ -7,8 +7,7 @@ import { computeAccessibleName } from 'dom-accessibility-api';
 chai.use(chaiDom);
 chai.use((chaiAPI, utils) => {
   // better diff view for expect(element).to.equal(document.activeElement)
-  // use as `.to.have.focus` to match `toHaveFocus` from `jest-dom`
-  chai.Assertion.addProperty('focus', function elementIsFocused() {
+  chai.Assertion.addMethod('toHaveFocus', function elementIsFocused() {
     const element = utils.flag(this, 'object');
 
     this.assert(

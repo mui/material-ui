@@ -77,7 +77,7 @@ describe('<ExpansionPanelSummary />', () => {
     fireEvent.keyDown(document.activeElement, { key: 'Tab' }); // not actually focusing (yet)
     button.focus();
 
-    expect(button).to.have.focus;
+    expect(button).toHaveFocus();
     expect(button).to.have.class(classes.focused);
   });
 
@@ -90,7 +90,7 @@ describe('<ExpansionPanelSummary />', () => {
 
     button.blur();
 
-    expect(button).not.to.have.focus;
+    expect(button).not.toHaveFocus();
     expect(button).not.to.have.class(classes.focused);
   });
 

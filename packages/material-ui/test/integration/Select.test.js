@@ -61,14 +61,14 @@ describe('<Select> integration', () => {
       fireEvent.mouseDown(trigger);
 
       const options = getAllByRole('option');
-      expect(options[1]).to.have.focus;
+      expect(options[1]).toHaveFocus();
 
       // Now, let's close the select component
       getByTestId('select-backdrop').click();
       clock.tick(0);
 
       expect(queryByRole('listbox')).to.be.null;
-      expect(trigger).to.have.focus;
+      expect(trigger).toHaveFocus();
     });
 
     it('should be able to change the selected item', () => {
@@ -81,14 +81,14 @@ describe('<Select> integration', () => {
       fireEvent.mouseDown(trigger);
 
       const options = getAllByRole('option');
-      expect(options[1]).to.have.focus;
+      expect(options[1]).toHaveFocus();
 
       // Now, let's close the select component
       options[2].click();
       clock.tick(0);
 
       expect(queryByRole('listbox')).to.be.null;
-      expect(trigger).to.have.focus;
+      expect(trigger).toHaveFocus();
       expect(trigger).to.have.text('Twenty');
     });
   });

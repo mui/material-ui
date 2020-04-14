@@ -165,13 +165,13 @@ describe('<TreeView />', () => {
     const { getByText, getByTestId } = render(<MyComponent />);
 
     fireEvent.click(getByText('one'));
-    expect(getByTestId('one')).to.have.focus;
+    expect(getByTestId('one')).toHaveFocus();
     fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
-    expect(getByTestId('two')).to.have.focus;
+    expect(getByTestId('two')).toHaveFocus();
     fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
-    expect(getByTestId('one')).to.have.focus;
+    expect(getByTestId('one')).toHaveFocus();
     fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
-    expect(getByTestId('two')).to.have.focus;
+    expect(getByTestId('two')).toHaveFocus();
   });
 
   it('should support conditional rendered tree items', () => {

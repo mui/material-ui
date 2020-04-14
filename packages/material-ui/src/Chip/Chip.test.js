@@ -333,7 +333,7 @@ describe('<Chip />', () => {
       fireEvent.keyUp(document.activeElement, { key: 'Escape' });
 
       expect(handleBlur.callCount).to.equal(1);
-      expect(chip).not.to.to.have.focus;
+      expect(chip).not.toHaveFocus();
     });
 
     it('should call onClick when `space` is released ', () => {

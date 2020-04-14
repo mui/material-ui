@@ -595,7 +595,7 @@ describe('<Autocomplete />', () => {
       const combobox = getByRole('combobox');
 
       expect(combobox).to.have.attribute('aria-expanded', 'true');
-      expect(textbox).to.have.focus;
+      expect(textbox).toHaveFocus();
 
       fireEvent.mouseDown(textbox);
       fireEvent.click(textbox);
@@ -603,12 +603,12 @@ describe('<Autocomplete />', () => {
 
       document.activeElement.blur();
       expect(combobox).to.have.attribute('aria-expanded', 'false');
-      expect(textbox).to.not.have.focus;
+      expect(textbox).not.toHaveFocus();
 
       fireEvent.mouseDown(textbox);
       fireEvent.click(textbox);
       expect(combobox).to.have.attribute('aria-expanded', 'true');
-      expect(textbox).to.have.focus;
+      expect(textbox).toHaveFocus();
 
       fireEvent.mouseDown(textbox);
       fireEvent.click(textbox);
@@ -629,7 +629,7 @@ describe('<Autocomplete />', () => {
       fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
 
       const options = getAllByRole('option');
-      expect(document.activeElement).to.have.focus;
+      expect(document.activeElement).toHaveFocus();
       expect(document.activeElement).to.have.attribute(
         'aria-activedescendant',
         options[options.length - 1].getAttribute('id'),
@@ -648,7 +648,7 @@ describe('<Autocomplete />', () => {
       fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
 
       const options = getAllByRole('option');
-      expect(document.activeElement).to.have.focus;
+      expect(document.activeElement).toHaveFocus();
       expect(document.activeElement).to.have.attribute(
         'aria-activedescendant',
         options[0].getAttribute('id'),
@@ -668,7 +668,7 @@ describe('<Autocomplete />', () => {
         fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
         fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
 
-        expect(document.activeElement).to.have.focus;
+        expect(document.activeElement).toHaveFocus();
         expect(document.activeElement).not.to.have.attribute('aria-activedescendant');
       });
 
@@ -684,7 +684,7 @@ describe('<Autocomplete />', () => {
         fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
         fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
 
-        expect(document.activeElement).to.have.focus;
+        expect(document.activeElement).toHaveFocus();
         expect(document.activeElement).not.to.have.attribute('aria-activedescendant');
       });
     });
@@ -702,7 +702,7 @@ describe('<Autocomplete />', () => {
         fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
         fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
 
-        expect(document.activeElement).to.have.focus;
+        expect(document.activeElement).toHaveFocus();
         expect(document.activeElement).to.have.attribute(
           'aria-activedescendant',
           getAllByRole('option')[0].getAttribute('id'),
@@ -723,7 +723,7 @@ describe('<Autocomplete />', () => {
 
         const textbox = getByRole('textbox');
         const options = getAllByRole('option');
-        expect(textbox).to.have.focus;
+        expect(textbox).toHaveFocus();
         expect(textbox).to.have.attribute(
           'aria-activedescendant',
           options[options.length - 1].getAttribute('id'),
@@ -745,7 +745,7 @@ describe('<Autocomplete />', () => {
 
         const textbox = getByRole('textbox');
         const options = getAllByRole('option');
-        expect(textbox).to.have.focus;
+        expect(textbox).toHaveFocus();
         expect(textbox).to.have.attribute(
           'aria-activedescendant',
           options[options.length - 1].getAttribute('id'),
@@ -1092,11 +1092,11 @@ describe('<Autocomplete />', () => {
 
       const textbox = getByRole('textbox');
       fireEvent.click(textbox);
-      expect(textbox).to.have.focus;
+      expect(textbox).toHaveFocus();
       textbox.blur();
 
       fireEvent.click(queryByTitle('Open'));
-      expect(textbox).to.have.focus;
+      expect(textbox).toHaveFocus();
     });
   });
 
@@ -1422,16 +1422,16 @@ describe('<Autocomplete />', () => {
       );
       const textbox = getByRole('textbox');
       let firstOption = getByRole('option');
-      expect(textbox).to.have.focus;
+      expect(textbox).toHaveFocus();
       fireEvent.click(firstOption);
-      expect(textbox).to.not.have.focus;
+      expect(textbox).not.toHaveFocus();
 
       fireEvent.click(queryByTitle('Open'));
-      expect(textbox).to.have.focus;
+      expect(textbox).toHaveFocus();
       firstOption = getByRole('option');
       fireEvent.touchStart(firstOption);
       fireEvent.click(firstOption);
-      expect(textbox).to.not.have.focus;
+      expect(textbox).not.toHaveFocus();
     });
 
     it('[blurOnSelect="touch"] should only blur the input when an option is touched', () => {
@@ -1448,13 +1448,13 @@ describe('<Autocomplete />', () => {
       const textbox = getByRole('textbox');
       let firstOption = getByRole('option');
       fireEvent.click(firstOption);
-      expect(textbox).to.have.focus;
+      expect(textbox).toHaveFocus();
 
       fireEvent.click(queryByTitle('Open'));
       firstOption = getByRole('option');
       fireEvent.touchStart(firstOption);
       fireEvent.click(firstOption);
-      expect(textbox).to.not.have.focus;
+      expect(textbox).not.toHaveFocus();
     });
 
     it('[blurOnSelect="mouse"] should only blur the input when an option is clicked', () => {
@@ -1472,12 +1472,12 @@ describe('<Autocomplete />', () => {
       let firstOption = getByRole('option');
       fireEvent.touchStart(firstOption);
       fireEvent.click(firstOption);
-      expect(textbox).to.have.focus;
+      expect(textbox).toHaveFocus();
 
       fireEvent.click(queryByTitle('Open'));
       firstOption = getByRole('option');
       fireEvent.click(firstOption);
-      expect(textbox).to.not.have.focus;
+      expect(textbox).not.toHaveFocus();
     });
   });
 
