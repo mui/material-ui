@@ -9,6 +9,10 @@ declare namespace Chai {
      */
     toBeAriaHidden(): Assertion;
     /**
+     * Check if an element is not visually hidden
+     */
+    toBeVisible(): Assertion;
+    /**
      * checks if the element is inaccessible
      */
     toBeInaccessible(): Assertion;

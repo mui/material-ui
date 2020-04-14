@@ -357,7 +357,7 @@ describe('<Select />', () => {
           <option value={2}>Two</option>
         </Select>,
       );
-      expect(container.querySelector('svg')).to.be.visible;
+      expect(container.querySelector('svg')).toBeVisible();
     });
   });
 
@@ -397,7 +397,7 @@ describe('<Select />', () => {
     it('renders an element with listbox behavior', () => {
       const { getByRole } = render(<Select open value="" />);
 
-      expect(getByRole('listbox')).to.be.visible;
+      expect(getByRole('listbox')).toBeVisible();
     });
 
     specify('the listbox is focusable', () => {
