@@ -100,7 +100,7 @@ You can expect the following:
   - A progressive bug fixes freeze on v4, with the exception of security issues and important bugs.
   - At least 6 months of work on v5 to get to a stable release (probably more). You can follow our [milestone](https://github.com/mui-org/material-ui/milestone/35).
 - 🧑‍💻 We will likely look to hire a new full-time member on the core team to help deliver v5 and new features faster.
-- ⌗ We have announced, back in [October 2019](/blog/september-2019-update/#our-roadmap-intent-for-october), our intention to work on an advanced data grid component. The task was bigger than anticipated but we are making progress with it. It might take us 12 months to do it right. Damien is now leading and fully dedicated to this effort. You can follow our early-stage progress on [finui.io](https://finui.io/#/grid) and later integration into the mono-repository on [#18872](https://github.com/mui-org/material-ui/pull/18872).
+- ⌗ We announced, back in [October 2019](/blog/september-2019-update/#our-roadmap-intent-for-october), our intention to work on an advanced data grid component. The task was bigger than anticipated, but we are making progress. It might take us 12 months to do it right. Damien is now leading and fully dedicated to this effort. You can follow our early-stage progress on [finui.io](https://finui.io/#/grid) and later, integration into the mono-repository on [#18872](https://github.com/mui-org/material-ui/pull/18872).
 
   ![data grid](/static/blog/2020-q1-update/data-grid.png)
 
