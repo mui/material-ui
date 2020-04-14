@@ -295,7 +295,7 @@ describe('<Button />', () => {
     );
     const button = getByRole('button');
 
-    expect(button.querySelector('.touch-ripple')).to.be.ok;
+    expect(button.querySelector('.touch-ripple')).not.to.equal(null);
   });
 
   it('can disable the ripple', () => {
@@ -306,7 +306,7 @@ describe('<Button />', () => {
     );
     const button = getByRole('button');
 
-    expect(button.querySelector('.touch-ripple')).to.be.null;
+    expect(button.querySelector('.touch-ripple')).to.equal(null);
   });
 
   it('can disable the elevation', () => {
@@ -329,7 +329,7 @@ describe('<Button />', () => {
       button.focus();
     });
 
-    expect(button.querySelector('.pulsate-focus-visible')).to.be.ok;
+    expect(button.querySelector('.pulsate-focus-visible')).not.to.equal(null);
   });
 
   it('can disable the focusRipple', () => {
@@ -348,7 +348,7 @@ describe('<Button />', () => {
       button.focus();
     });
 
-    expect(button.querySelector('.pulsate-focus-visible')).to.be.null;
+    expect(button.querySelector('.pulsate-focus-visible')).to.equal(null);
   });
 
   describe('server-side', () => {

@@ -403,7 +403,7 @@ describe('<Tooltip />', () => {
         <Tooltip {...defaultProps} open PopperProps={{ 'data-testid': 'popper' }} />,
       );
 
-      expect(getByTestId('popper')).to.be.ok;
+      expect(getByTestId('popper')).not.to.equal(null);
     });
 
     it('should merge popperOptions with arrow modifier', () => {

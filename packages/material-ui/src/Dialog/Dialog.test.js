@@ -97,7 +97,7 @@ describe('<Dialog />', () => {
     }
     const { getByRole, queryByRole } = render(<TestCase />);
     const dialog = getByRole('dialog');
-    expect(dialog).to.be.ok;
+    expect(dialog).not.to.equal(null);
 
     dialog.click();
     fireEvent.keyDown(document.activeElement, { key: 'Esc' });
@@ -122,7 +122,7 @@ describe('<Dialog />', () => {
       </Dialog>,
     );
     const dialog = getByRole('dialog');
-    expect(dialog).to.be.ok;
+    expect(dialog).not.to.equal(null);
 
     dialog.click();
     fireEvent.keyDown(document.activeElement, { key: 'Esc' });
@@ -186,7 +186,7 @@ describe('<Dialog />', () => {
 
       fireEvent.mouseDown(getByRole('heading'));
       findBackdrop(document.body).click();
-      expect(getByRole('dialog')).to.be.ok;
+      expect(getByRole('dialog')).not.to.equal(null);
     });
   });
 

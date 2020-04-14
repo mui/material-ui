@@ -52,7 +52,7 @@ describe('<TextField />', () => {
     it('label the input', () => {
       const { getByLabelText } = render(<TextField id="labelled" label="Foo bar" />);
 
-      expect(getByLabelText('Foo bar')).to.be.ok;
+      expect(getByLabelText('Foo bar')).not.to.equal(null);
     });
 
     it('should apply the className to the label', () => {
@@ -67,7 +67,7 @@ describe('<TextField />', () => {
       it(`should not render empty (${label}) label element`, () => {
         const { container } = render(<TextField id="labelled" label={label} />);
 
-        expect(container.querySelector('label')).to.be.null;
+        expect(container.querySelector('label')).to.equal(null);
       });
     });
   });
@@ -130,7 +130,7 @@ describe('<TextField />', () => {
         <TextField InputProps={{ 'data-testid': 'InputComponent' }} />,
       );
 
-      expect(getByTestId('InputComponent')).to.be.ok;
+      expect(getByTestId('InputComponent')).not.to.equal(null);
     });
   });
 
@@ -152,7 +152,7 @@ describe('<TextField />', () => {
       );
 
       const select = container.querySelector('select');
-      expect(select).to.be.ok;
+      expect(select).not.to.equal(null);
       expect(select.options).to.have.lengthOf(2);
     });
 
@@ -181,7 +181,7 @@ describe('<TextField />', () => {
         </TextField>,
       );
 
-      expect(getByRole('button')).to.have.accessibleName('Release: Stable');
+      expect(getByRole('button')).toHaveAccessibleName('Release: Stable');
     });
 
     it('creates an input[hidden] that has no accessible properties', () => {

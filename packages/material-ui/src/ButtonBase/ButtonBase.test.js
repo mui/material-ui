@@ -656,7 +656,7 @@ describe('<ButtonBase />', () => {
       // so we need to check if we're resilient against it
       const { getByText } = render(<ButtonBase autoFocus>Hello</ButtonBase>);
 
-      expect(getByText('Hello')).to.have.focus;
+      expect(getByText('Hello')).toHaveFocus();
     });
   });
 
@@ -723,7 +723,7 @@ describe('<ButtonBase />', () => {
           </ButtonBase>,
         );
 
-        expect(getByText('Hello').querySelector('.touch-ripple')).to.be.null;
+        expect(getByText('Hello').querySelector('.touch-ripple')).to.equal(null);
       });
     });
 
@@ -900,7 +900,7 @@ describe('<ButtonBase />', () => {
       expect(typeof buttonActionsRef.current.focusVisible).to.equal('function');
       // @ts-ignore
       buttonActionsRef.current.focusVisible();
-      expect(getByText('Hello')).to.have.focus;
+      expect(getByText('Hello')).toHaveFocus();
       expect(getByText('Hello')).to.match('.focusVisible');
     });
   });

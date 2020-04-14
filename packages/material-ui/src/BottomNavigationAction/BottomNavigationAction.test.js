@@ -65,7 +65,7 @@ describe('<BottomNavigationAction />', () => {
   it('should render the passed `icon`', () => {
     const { getByRole } = render(<BottomNavigationAction icon={<div data-testid="icon" />} />);
 
-    expect(within(getByRole('button')).getByTestId('icon')).to.be.ok;
+    expect(within(getByRole('button')).getByTestId('icon')).not.to.equal(null);
   });
 
   describe('prop: onClick', () => {

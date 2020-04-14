@@ -609,7 +609,7 @@ describe('<InputBase />', () => {
         />,
       );
 
-      expect(getByTestId('adornment')).to.be.ok;
+      expect(getByTestId('adornment')).not.to.equal(null);
     });
 
     it('should render adornment after input', () => {
@@ -623,7 +623,7 @@ describe('<InputBase />', () => {
         />,
       );
 
-      expect(getByTestId('adornment')).to.be.ok;
+      expect(getByTestId('adornment')).not.to.equal(null);
     });
 
     it('should allow a Select as an adornment', () => {

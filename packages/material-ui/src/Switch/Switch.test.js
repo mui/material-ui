@@ -43,7 +43,7 @@ describe('<Switch />', () => {
       <Switch classes={{ thumb: 'thumb', switchBase: 'switch-base' }} />,
     );
 
-    expect(container.querySelector('.switch-base .thumb')).to.be.ok;
+    expect(container.querySelector('.switch-base .thumb')).not.to.equal(null);
   });
 
   it('should render the track as the 2nd child', () => {

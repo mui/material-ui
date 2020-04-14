@@ -41,8 +41,8 @@ describe('<SnackbarContent />', () => {
       const { getByText } = render(
         <SnackbarContent message="message" action={[action0, action1]} />,
       );
-      expect(getByText('action0')).to.not.be.null;
-      expect(getByText('action1')).to.not.be.null;
+      expect(getByText('action0')).not.to.equal(null);
+      expect(getByText('action1')).not.to.equal(null);
     });
   });
 

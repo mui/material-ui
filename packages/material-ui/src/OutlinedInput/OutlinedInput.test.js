@@ -30,6 +30,6 @@ describe('<OutlinedInput />', () => {
       <OutlinedInput classes={{ notchedOutline: 'notched-outlined' }} labelWidth={0} />,
     );
 
-    expect(container.querySelector('.notched-outlined')).to.be.ok;
+    expect(container.querySelector('.notched-outlined')).not.to.equal(null);
   });
 });

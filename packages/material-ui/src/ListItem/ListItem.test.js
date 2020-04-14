@@ -83,7 +83,7 @@ describe('<ListItem />', () => {
       const listItem = getByRole('listitem');
 
       expect(listItem).to.have.class(classes.container);
-      expect(listItem.querySelector(`div.${classes.root}`)).to.be.ok;
+      expect(listItem.querySelector(`div.${classes.root}`)).not.to.equal(null);
     });
 
     it('should accept a component property', () => {
@@ -96,7 +96,7 @@ describe('<ListItem />', () => {
       const listItem = getByRole('listitem');
 
       expect(listItem).to.have.class(classes.container);
-      expect(listItem.querySelector(`span.${classes.root}`)).to.be.ok;
+      expect(listItem.querySelector(`span.${classes.root}`)).not.to.equal(null);
     });
 
     it('should accept a button property', () => {
@@ -109,7 +109,7 @@ describe('<ListItem />', () => {
       const listItem = getByRole('listitem');
 
       expect(listItem).to.have.class(classes.container);
-      expect(queries.getByRole(listItem, 'button')).to.be.ok;
+      expect(queries.getByRole(listItem, 'button')).not.to.equal(null);
     });
 
     it('should accept a ContainerComponent property', () => {
@@ -123,7 +123,7 @@ describe('<ListItem />', () => {
 
       expect(listItem).to.have.property('nodeName', 'DIV');
       expect(listItem).to.have.class(classes.container);
-      expect(listItem.querySelector(`div.${classes.root}`)).to.be.ok;
+      expect(listItem.querySelector(`div.${classes.root}`)).not.to.equal(null);
     });
 
     it('should allow customization of the wrapper', () => {

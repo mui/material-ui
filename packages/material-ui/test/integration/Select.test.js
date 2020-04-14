@@ -61,34 +61,34 @@ describe('<Select> integration', () => {
       fireEvent.mouseDown(trigger);
 
       const options = getAllByRole('option');
-      expect(options[1]).to.have.focus;
+      expect(options[1]).toHaveFocus();
 
       // Now, let's close the select component
       getByTestId('select-backdrop').click();
       clock.tick(0);
 
-      expect(queryByRole('listbox')).to.be.null;
-      expect(trigger).to.have.focus;
+      expect(queryByRole('listbox')).to.equal(null);
+      expect(trigger).toHaveFocus();
     });
 
     it('should be able to change the selected item', () => {
       const { getAllByRole, getByRole, queryByRole } = render(<SelectAndDialog />);
 
       const trigger = getByRole('button');
-      expect(trigger).to.have.accessibleName('Ten');
+      expect(trigger).toHaveAccessibleName('Ten');
       // Let's open the select component
       // in the browser user click also focuses
       fireEvent.mouseDown(trigger);
 
       const options = getAllByRole('option');
-      expect(options[1]).to.have.focus;
+      expect(options[1]).toHaveFocus();
 
       // Now, let's close the select component
       options[2].click();
       clock.tick(0);
 
-      expect(queryByRole('listbox')).to.be.null;
-      expect(trigger).to.have.focus;
+      expect(queryByRole('listbox')).to.equal(null);
+      expect(trigger).toHaveFocus();
       expect(trigger).to.have.text('Twenty');
     });
   });
@@ -105,7 +105,7 @@ describe('<Select> integration', () => {
         </FormControl>,
       );
 
-      expect(getByRole('button')).to.have.accessibleName('Age Ten');
+      expect(getByRole('button')).toHaveAccessibleName('Age Ten');
     });
 
     // we're somewhat abusing "focus" here. What we're actually interested in is

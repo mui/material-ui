@@ -52,7 +52,7 @@ describe('<MenuList> integration', () => {
         </MenuList>,
       );
 
-      expect(getAllByRole('menuitem')[0]).to.have.focus;
+      expect(getAllByRole('menuitem')[0]).toHaveFocus();
     });
 
     it('should select the last item when pressing up if the first item is focused', () => {
@@ -67,7 +67,7 @@ describe('<MenuList> integration', () => {
       fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
       const menuitems = getAllByRole('menuitem');
 
-      expect(menuitems[2]).to.have.focus;
+      expect(menuitems[2]).toHaveFocus();
       expect(menuitems[0]).to.have.property('tabIndex', 0);
       expect(menuitems[1]).to.have.property('tabIndex', -1);
       expect(menuitems[2]).to.have.property('tabIndex', -1);
@@ -85,7 +85,7 @@ describe('<MenuList> integration', () => {
       fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
       const menuitems = getAllByRole('menuitem');
 
-      expect(menuitems[1]).to.have.focus;
+      expect(menuitems[1]).toHaveFocus();
       expect(menuitems[0]).to.have.property('tabIndex', 0);
       expect(menuitems[1]).to.have.property('tabIndex', -1);
       expect(menuitems[2]).to.have.property('tabIndex', -1);
@@ -104,7 +104,7 @@ describe('<MenuList> integration', () => {
       fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
       const menuitems = getAllByRole('menuitem');
 
-      expect(menuitems[0]).to.have.focus;
+      expect(menuitems[0]).toHaveFocus();
       expect(menuitems[0]).to.have.property('tabIndex', 0);
       expect(menuitems[1]).to.have.property('tabIndex', -1);
       expect(menuitems[2]).to.have.property('tabIndex', -1);
@@ -120,7 +120,7 @@ describe('<MenuList> integration', () => {
         </MenuList>,
       );
 
-      expect(document.activeElement).to.be.ok;
+      expect(document.activeElement).not.to.equal(null);
       document.activeElement.blur();
       const menuitems = getAllByRole('menuitem');
 
@@ -128,9 +128,9 @@ describe('<MenuList> integration', () => {
       expect(menuitems[0]).to.have.property('tabIndex', 0);
       expect(menuitems[1]).to.have.property('tabIndex', -1);
       expect(menuitems[2]).to.have.property('tabIndex', -1);
-      expect(menuitems[0]).not.to.have.focus;
-      expect(menuitems[1]).not.to.have.focus;
-      expect(menuitems[2]).not.to.have.focus;
+      expect(menuitems[0]).not.toHaveFocus();
+      expect(menuitems[1]).not.toHaveFocus();
+      expect(menuitems[2]).not.toHaveFocus();
     });
 
     it('can imperatively focus the first item', () => {
@@ -145,7 +145,7 @@ describe('<MenuList> integration', () => {
 
       menuitems[0].focus();
 
-      expect(menuitems[0]).to.have.focus;
+      expect(menuitems[0]).toHaveFocus();
       expect(menuitems[0]).to.have.property('tabIndex', 0);
       expect(menuitems[1]).to.have.property('tabIndex', -1);
       expect(menuitems[2]).to.have.property('tabIndex', -1);
@@ -163,14 +163,14 @@ describe('<MenuList> integration', () => {
 
       fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
 
-      expect(menuitems[1]).to.have.focus;
+      expect(menuitems[1]).toHaveFocus();
       expect(menuitems[0]).to.have.property('tabIndex', 0);
       expect(menuitems[1]).to.have.property('tabIndex', -1);
       expect(menuitems[2]).to.have.property('tabIndex', -1);
 
       fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
 
-      expect(menuitems[2]).to.have.focus;
+      expect(menuitems[2]).toHaveFocus();
       expect(menuitems[0]).to.have.property('tabIndex', 0);
       expect(menuitems[1]).to.have.property('tabIndex', -1);
       expect(menuitems[2]).to.have.property('tabIndex', -1);
@@ -190,7 +190,7 @@ describe('<MenuList> integration', () => {
       );
       const menuitems = getAllByRole('menuitem');
 
-      expect(menuitems[1]).to.have.focus;
+      expect(menuitems[1]).toHaveFocus();
       expect(menuitems[0]).to.have.property('tabIndex', -1);
       expect(menuitems[1]).to.have.property('tabIndex', 0);
       expect(menuitems[2]).to.have.property('tabIndex', -1);
@@ -210,7 +210,7 @@ describe('<MenuList> integration', () => {
 
       fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
 
-      expect(menuitems[2]).to.have.focus;
+      expect(menuitems[2]).toHaveFocus();
       expect(menuitems[0]).to.have.property('tabIndex', -1);
       expect(menuitems[1]).to.have.property('tabIndex', 0);
       expect(menuitems[2]).to.have.property('tabIndex', -1);
@@ -230,7 +230,7 @@ describe('<MenuList> integration', () => {
 
       fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
 
-      expect(menuitems[0]).to.have.focus;
+      expect(menuitems[0]).toHaveFocus();
       expect(menuitems[0]).to.have.property('tabIndex', -1);
       expect(menuitems[1]).to.have.property('tabIndex', 0);
       expect(menuitems[2]).to.have.property('tabIndex', -1);
@@ -250,7 +250,7 @@ describe('<MenuList> integration', () => {
 
       fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
 
-      expect(menuitems[2]).to.have.focus;
+      expect(menuitems[2]).toHaveFocus();
       expect(menuitems[0]).to.have.property('tabIndex', -1);
       expect(menuitems[1]).to.have.property('tabIndex', 0);
       expect(menuitems[2]).to.have.property('tabIndex', -1);
@@ -270,7 +270,7 @@ describe('<MenuList> integration', () => {
       );
       const menuitems = getAllByRole('menuitem');
 
-      expect(menuitems[2]).to.have.focus;
+      expect(menuitems[2]).toHaveFocus();
       expect(menuitems[0]).to.have.property('tabIndex', -1);
       expect(menuitems[1]).to.have.property('tabIndex', -1);
       expect(menuitems[2]).to.have.property('tabIndex', 0);
@@ -290,7 +290,7 @@ describe('<MenuList> integration', () => {
 
       fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
 
-      expect(menuitems[0]).to.have.focus;
+      expect(menuitems[0]).toHaveFocus();
       expect(menuitems[0]).to.have.property('tabIndex', 0);
       expect(menuitems[1]).to.have.property('tabIndex', -1);
     });
@@ -306,7 +306,7 @@ describe('<MenuList> integration', () => {
 
       fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
 
-      expect(menuitems[1]).to.have.focus;
+      expect(menuitems[1]).toHaveFocus();
       expect(menuitems[0]).to.have.property('tabIndex', -1);
       expect(menuitems[1]).to.have.property('tabIndex', 0);
     });
@@ -325,23 +325,23 @@ describe('<MenuList> integration', () => {
     const menuitems = getAllByRole('menuitem');
 
     fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
-    expect(menuitems[0]).to.have.focus;
+    expect(menuitems[0]).toHaveFocus();
     fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
-    expect(menuitems[1]).to.have.focus;
+    expect(menuitems[1]).toHaveFocus();
     fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
-    expect(menuitems[3]).to.have.focus;
+    expect(menuitems[3]).toHaveFocus();
     fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
-    expect(menuitems[0]).to.have.focus;
+    expect(menuitems[0]).toHaveFocus();
 
     // and ArrowUp again
     fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
-    expect(menuitems[3]).to.have.focus;
+    expect(menuitems[3]).toHaveFocus();
     fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
-    expect(menuitems[1]).to.have.focus;
+    expect(menuitems[1]).toHaveFocus();
     fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
-    expect(menuitems[0]).to.have.focus;
+    expect(menuitems[0]).toHaveFocus();
     fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
-    expect(menuitems[3]).to.have.focus;
+    expect(menuitems[3]).toHaveFocus();
   });
 
   it('should stay on a single item if it is the only focusable one', () => {
@@ -356,15 +356,15 @@ describe('<MenuList> integration', () => {
     const menuitems = getAllByRole('menuitem');
 
     fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
-    expect(menuitems[1]).to.have.focus;
+    expect(menuitems[1]).toHaveFocus();
     fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
-    expect(menuitems[1]).to.have.focus;
+    expect(menuitems[1]).toHaveFocus();
     fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
-    expect(menuitems[1]).to.have.focus;
+    expect(menuitems[1]).toHaveFocus();
     fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
-    expect(menuitems[1]).to.have.focus;
+    expect(menuitems[1]).toHaveFocus();
     fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
-    expect(menuitems[1]).to.have.focus;
+    expect(menuitems[1]).toHaveFocus();
   });
 
   it('should keep focus on the menu if all items are disabled', () => {
@@ -379,15 +379,15 @@ describe('<MenuList> integration', () => {
     const menu = getByRole('menu');
 
     fireEvent.keyDown(document.activeElement, { key: 'Home' });
-    expect(menu).to.have.focus;
+    expect(menu).toHaveFocus();
     fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
-    expect(menu).to.have.focus;
+    expect(menu).toHaveFocus();
     fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
-    expect(menu).to.have.focus;
+    expect(menu).toHaveFocus();
     fireEvent.keyDown(document.activeElement, { key: 'End' });
-    expect(menu).to.have.focus;
+    expect(menu).toHaveFocus();
     fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
-    expect(menu).to.have.focus;
+    expect(menu).toHaveFocus();
   });
 
   it('should allow focus on disabled items when disabledItemsFocusable=true', () => {
@@ -403,15 +403,15 @@ describe('<MenuList> integration', () => {
     const menuitems = getAllByRole('menuitem');
 
     fireEvent.keyDown(document.activeElement, { key: 'Home' });
-    expect(menuitems[0]).to.have.focus;
+    expect(menuitems[0]).toHaveFocus();
     fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
-    expect(menuitems[1]).to.have.focus;
+    expect(menuitems[1]).toHaveFocus();
     fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
-    expect(menuitems[2]).to.have.focus;
+    expect(menuitems[2]).toHaveFocus();
     fireEvent.keyDown(document.activeElement, { key: 'End' });
-    expect(menuitems[3]).to.have.focus;
+    expect(menuitems[3]).toHaveFocus();
     fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
-    expect(menuitems[2]).to.have.focus;
+    expect(menuitems[2]).toHaveFocus();
   });
 
   describe('MenuList text-based keyboard controls', () => {
@@ -434,7 +434,7 @@ describe('<MenuList> integration', () => {
 
       fireEvent.keyDown(document.activeElement, { key: 'a' });
 
-      expect(getByText('Arizona')).to.have.focus;
+      expect(getByText('Arizona')).toHaveFocus();
     });
 
     it('selects the next item starting with the typed character', () => {
@@ -448,7 +448,7 @@ describe('<MenuList> integration', () => {
 
       fireEvent.keyDown(document.activeElement, { key: 'a' });
 
-      expect(getByText('Arcansas')).to.have.focus;
+      expect(getByText('Arcansas')).toHaveFocus();
     });
 
     it('should not get focusVisible class on click', () => {
@@ -464,7 +464,7 @@ describe('<MenuList> integration', () => {
       menuitem.focus();
       fireEvent.click(menuitem);
 
-      expect(menuitem).to.have.focus;
+      expect(menuitem).toHaveFocus();
       expect(menuitem).not.to.have.class('focus-visible');
     });
 
@@ -478,7 +478,7 @@ describe('<MenuList> integration', () => {
 
       fireEvent.keyDown(document.activeElement, { key: 'c' });
 
-      expect(getByText('Arizona')).to.have.focus;
+      expect(getByText('Arizona')).toHaveFocus();
     });
 
     it('should not move focus when keys match current focus', () => {
@@ -491,11 +491,11 @@ describe('<MenuList> integration', () => {
 
       fireEvent.keyDown(document.activeElement, { key: 'A' });
 
-      expect(getByText('Arizona')).to.have.focus;
+      expect(getByText('Arizona')).toHaveFocus();
 
       fireEvent.keyDown(document.activeElement, { key: 'r' });
 
-      expect(getByText('Arizona')).to.have.focus;
+      expect(getByText('Arizona')).toHaveFocus();
     });
 
     it('should not move focus if focus starts on descendant and the key doesnt match', () => {
@@ -512,7 +512,7 @@ describe('<MenuList> integration', () => {
 
       fireEvent.keyDown(document.activeElement, { key: 'z' });
 
-      expect(button).to.have.focus;
+      expect(button).toHaveFocus();
     });
 
     it('matches rapidly typed text', () => {
@@ -526,7 +526,7 @@ describe('<MenuList> integration', () => {
       fireEvent.keyDown(document.activeElement, { key: 'W' });
       fireEvent.keyDown(document.activeElement, { key: 'o' });
 
-      expect(getByText('Worm')).to.have.focus;
+      expect(getByText('Worm')).toHaveFocus();
     });
 
     it('should reset the character buffer after 500ms', (done) => {
@@ -541,7 +541,7 @@ describe('<MenuList> integration', () => {
       setTimeout(() => {
         fireEvent.keyDown(document.activeElement, { key: 'o' });
 
-        expect(getByText('Ordinary')).to.have.focus;
+        expect(getByText('Ordinary')).toHaveFocus();
         done();
       }, 500);
     });
@@ -564,7 +564,7 @@ describe('<MenuList> integration', () => {
       fireEvent.keyDown(document.activeElement, { key: 'W' });
       fireEvent.keyDown(document.activeElement, { key: 'o' });
 
-      expect(getByText('Worm')).to.have.focus;
+      expect(getByText('Worm')).toHaveFocus();
     });
   });
 });

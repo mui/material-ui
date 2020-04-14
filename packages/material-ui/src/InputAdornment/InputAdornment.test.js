@@ -34,7 +34,7 @@ describe('<InputAdornment />', () => {
     const typographyClasses = getClasses(<Typography />);
     const typography = container.querySelector(`.${typographyClasses.root}`);
 
-    expect(typography).to.be.ok;
+    expect(typography).not.to.equal(null);
     expect(typography).to.have.text('foo');
   });
 
@@ -178,7 +178,7 @@ describe('<InputAdornment />', () => {
     );
     const typographyClasses = getClasses(<Typography />);
 
-    expect(container.querySelector(`.${typographyClasses.root}`)).to.be.null;
+    expect(container.querySelector(`.${typographyClasses.root}`)).to.equal(null);
   });
 
   it('should render children', () => {

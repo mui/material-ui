@@ -353,10 +353,10 @@ describe('<Modal />', () => {
         </Modal>,
       );
       const modalNode = modalRef.current;
-      expect(modalNode).to.be.ariaHidden;
+      expect(modalNode).toBeAriaHidden();
 
       wrapper.setProps({ open: true });
-      expect(modalNode).not.to.be.ariaHidden;
+      expect(modalNode).not.toBeAriaHidden();
     });
 
     // Test case for https://github.com/mui-org/material-ui/issues/15180
@@ -589,15 +589,15 @@ describe('<Modal />', () => {
         const { getByRole, setProps } = render(<WithRemovableElement />);
         const dialog = getByRole('dialog');
         const toggleButton = getByRole('button');
-        expect(dialog).to.have.focus;
+        expect(dialog).toHaveFocus();
 
         toggleButton.focus();
-        expect(toggleButton).to.have.focus;
+        expect(toggleButton).toHaveFocus();
 
         setProps({ hideButton: true });
-        expect(dialog).not.to.have.focus;
+        expect(dialog).not.toHaveFocus();
         clock.tick(500); // wait for the interval check to kick in.
-        expect(dialog).to.have.focus;
+        expect(dialog).toHaveFocus();
       });
     });
   });
@@ -838,7 +838,7 @@ describe('<Modal />', () => {
           </Modal>
         </div>,
       );
-      expect(within(getByTestId('parent')).getByTestId('child')).to.be.ok;
+      expect(within(getByTestId('parent')).getByTestId('child')).not.to.equal(null);
     });
   });
 });

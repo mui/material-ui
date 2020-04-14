@@ -98,7 +98,7 @@ describe('<Step />', () => {
         </Step>,
       );
 
-      expect(within(getByTestId('root')).getByTestId('child')).to.be.ok;
+      expect(within(getByTestId('root')).getByTestId('child')).not.to.equal(null);
     });
 
     it('renders children with all props passed through', () => {
@@ -145,7 +145,7 @@ describe('<Step />', () => {
         </Step>,
       );
 
-      expect(getByTestId('child')).to.be.ok;
+      expect(getByTestId('child')).not.to.equal(null);
     });
   });
 });

@@ -29,7 +29,7 @@ describe('<Tab />', () => {
   it('should have a ripple by default', () => {
     const { container } = render(<Tab TouchRippleProps={{ className: 'touch-ripple' }} />);
 
-    expect(container.querySelector('.touch-ripple')).to.be.ok;
+    expect(container.querySelector('.touch-ripple')).not.to.equal(null);
   });
 
   it('can disable the ripple', () => {
@@ -37,7 +37,7 @@ describe('<Tab />', () => {
       <Tab disableRipple TouchRippleProps={{ className: 'touch-ripple' }} />,
     );
 
-    expect(container.querySelector('.touch-ripple')).to.be.null;
+    expect(container.querySelector('.touch-ripple')).to.equal(null);
   });
 
   it('should have a focusRipple by default', () => {
@@ -53,7 +53,7 @@ describe('<Tab />', () => {
       getByRole('tab').focus();
     });
 
-    expect(container.querySelector('.focus-ripple')).to.be.ok;
+    expect(container.querySelector('.focus-ripple')).not.to.equal(null);
   });
 
   it('can disable the focusRipple', () => {
@@ -69,7 +69,7 @@ describe('<Tab />', () => {
       getByRole('tab').focus();
     });
 
-    expect(container.querySelector('.focus-ripple')).to.be.null;
+    expect(container.querySelector('.focus-ripple')).to.equal(null);
   });
 
   describe('prop: selected', () => {
@@ -126,7 +126,7 @@ describe('<Tab />', () => {
     it('should render icon element', () => {
       const { getByTestId } = render(<Tab icon={<div data-testid="icon" />} />);
 
-      expect(getByTestId('icon')).to.be.ok;
+      expect(getByTestId('icon')).not.to.equal(null);
     });
   });
 

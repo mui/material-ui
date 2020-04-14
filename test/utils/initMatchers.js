@@ -7,8 +7,7 @@ import { computeAccessibleName } from 'dom-accessibility-api';
 chai.use(chaiDom);
 chai.use((chaiAPI, utils) => {
   // better diff view for expect(element).to.equal(document.activeElement)
-  // use as `.to.have.focus` to match `toHaveFocus` from `jest-dom`
-  chai.Assertion.addProperty('focus', function elementIsFocused() {
+  chai.Assertion.addMethod('toHaveFocus', function elementIsFocused() {
     const element = utils.flag(this, 'object');
 
     this.assert(
@@ -20,7 +19,7 @@ chai.use((chaiAPI, utils) => {
     );
   });
 
-  chai.Assertion.addProperty('ariaHidden', function elementIsAccessible() {
+  chai.Assertion.addMethod('toBeAriaHidden', function elementIsAccessible() {
     const element = utils.flag(this, 'object');
 
     // used for debugging failed assertions, will either point to the top most node
@@ -52,7 +51,7 @@ chai.use((chaiAPI, utils) => {
     );
   });
 
-  chai.Assertion.addProperty('inaccessible', function elementIsAccessible() {
+  chai.Assertion.addMethod('toBeInaccessible', function elementIsAccessible() {
     const element = utils.flag(this, 'object');
 
     const inaccessible = isInaccessible(element);
@@ -64,7 +63,7 @@ chai.use((chaiAPI, utils) => {
     );
   });
 
-  chai.Assertion.addMethod('accessibleName', function hasAccessibleName(expectedName) {
+  chai.Assertion.addMethod('toHaveAccessibleName', function hasAccessibleName(expectedName) {
     const root = utils.flag(this, 'object');
     // make sure it's an Element
     new chai.Assertion(root.nodeType, `Expected an Element but got '${String(root)}'`).to.equal(1);
@@ -134,5 +133,13 @@ chai.use((chaiAPI, utils) => {
       )} to have accessible name '${expectedName}' but got '${actualName}' instead.`,
       `expected ${utils.elToString(root)} not to have accessible name '${expectedName}'.`,
     );
+  });
+
+  /**
+   * Correct name for `to.be.visible`
+   */
+  chai.Assertion.addMethod('toBeVisible', function toBeVisible() {
+    // eslint-disable-next-line no-underscore-dangle, no-unused-expressions
+    new chai.Assertion(this._obj).to.be.visible;
   });
 });

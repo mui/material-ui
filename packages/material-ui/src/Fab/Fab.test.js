@@ -118,7 +118,7 @@ describe('<Fab />', () => {
     const { getByTestId } = render(<Fab>{iconChild}</Fab>);
     const renderedIconChild = getByTestId('icon');
 
-    expect(renderedIconChild).to.be.ok;
+    expect(renderedIconChild).not.to.equal(null);
     expect(renderedIconChild).to.have.class(childClassName);
   });
 

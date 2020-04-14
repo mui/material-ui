@@ -75,7 +75,7 @@ describe('<Chip />', () => {
 
       const button = getByRole('button');
       expect(button).to.have.property('tabIndex', 0);
-      expect(button).to.have.accessibleName('My Chip');
+      expect(button).toHaveAccessibleName('My Chip');
     });
 
     it('should apply user value of tabIndex', () => {
@@ -141,7 +141,7 @@ describe('<Chip />', () => {
       );
 
       expect(getByRole('button')).to.have.property('tabIndex', 0);
-      expect(container.querySelector('#avatar')).to.be.ok;
+      expect(container.querySelector('#avatar')).not.to.equal(null);
     });
 
     it('should apply user value of tabIndex', () => {
@@ -333,7 +333,7 @@ describe('<Chip />', () => {
       fireEvent.keyUp(document.activeElement, { key: 'Escape' });
 
       expect(handleBlur.callCount).to.equal(1);
-      expect(chip).not.to.to.have.focus;
+      expect(chip).not.toHaveFocus();
     });
 
     it('should call onClick when `space` is released ', () => {

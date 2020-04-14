@@ -165,13 +165,13 @@ describe('<TreeView />', () => {
     const { getByText, getByTestId } = render(<MyComponent />);
 
     fireEvent.click(getByText('one'));
-    expect(getByTestId('one')).to.have.focus;
+    expect(getByTestId('one')).toHaveFocus();
     fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
-    expect(getByTestId('two')).to.have.focus;
+    expect(getByTestId('two')).toHaveFocus();
     fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
-    expect(getByTestId('one')).to.have.focus;
+    expect(getByTestId('one')).toHaveFocus();
     fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
-    expect(getByTestId('two')).to.have.focus;
+    expect(getByTestId('two')).toHaveFocus();
   });
 
   it('should support conditional rendered tree items', () => {
@@ -190,9 +190,9 @@ describe('<TreeView />', () => {
 
     const { getByText, queryByText } = render(<TestComponent />);
 
-    expect(getByText('test')).to.not.be.null;
+    expect(getByText('test')).not.to.equal(null);
     fireEvent.click(getByText('Hide'));
-    expect(queryByText('test')).to.be.null;
+    expect(queryByText('test')).to.equal(null);
   });
 
   describe('onNodeToggle', () => {
@@ -218,7 +218,7 @@ describe('<TreeView />', () => {
     it('(TreeView) should have the role `tree`', () => {
       const { getByRole } = render(<TreeView />);
 
-      expect(getByRole('tree')).to.be.ok;
+      expect(getByRole('tree')).not.to.equal(null);
     });
 
     it('(TreeView) should have the attribute `aria-multiselectable=false if using single select`', () => {

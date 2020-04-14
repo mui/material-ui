@@ -132,6 +132,6 @@ describe('<StepButton />', () => {
       </Step>,
     );
 
-    expect(getByRole('button')).to.be.ok;
+    expect(getByRole('button')).not.to.equal(null);
   });
 });
