@@ -265,15 +265,21 @@ export const etEE = {
 
 export const faIR = {
   props: {
+    MuiBreadcrumbs: {
+      expandText: 'نمایش مسیر',
+    },
     MuiTablePagination: {
       backIconButtonText: 'صفحهٔ قبل',
       labelRowsPerPage: 'تعداد سطرهای هر صفحه:',
-      labelDisplayedRows: ({ from, to, count }) => `${from}-${to === -1 ? count : to} از ${count}`,
+      labelDisplayedRows: ({ from, to, count }) =>
+        `${Number(from).toLocaleString('fa-IR')}-${
+          to === -1 ? Number(count).toLocaleString('fa-IR') : Number(to).toLocaleString('fa-IR')
+        } از ${Number(count).toLocaleString('fa-IR')}`,
       nextIconButtonText: 'صفحهٔ بعد',
     },
     MuiRating: {
-      getLabelText: (value) => `${value} ستاره`,
-      emptyLabelText: 'Empty',
+      getLabelText: (value) => `${Number(value).toLocaleString('fa-IR')} ستاره`,
+      emptyLabelText: 'خالی',
     },
     MuiAutocomplete: {
       clearText: 'پاک‌کردن',
@@ -284,6 +290,27 @@ export const faIR = {
     },
     MuiAlert: {
       closeText: 'بستن',
+    },
+    MuiPagination: {
+      'aria-label': 'ناوبری صفحه',
+      getItemAriaLabel: (type, page, selected) => {
+        if (type === 'page') {
+          return `${selected ? '' : 'رفتن به '}صفحهٔ ${Number(page).toLocaleString('fa-IR')}`;
+        }
+        if (type === 'first') {
+          return 'رفتن به اولین صفحه';
+        }
+        if (type === 'last') {
+          return 'رفتن به آخرین صفحه';
+        }
+        if (type === 'next') {
+          return 'رفتن به صفحه‌ی بعدی';
+        }
+        if (type === 'previous') {
+          return 'رفتن به صفحه‌ی قبلی';
+        }
+        return undefined;
+      },
     },
   },
 };
