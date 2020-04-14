@@ -92,7 +92,7 @@ We'll do our best, no guarantee!
 
   <img src="/static/blog/2020-q1-update/chinese.png" alt="chinese" style="max-width: 134px; margin-bottom: 24px;" />
 
-- 🔥 We will initiate our work on the [next major: v5](https://github.com/mui-org/material-ui/issues/20012).
+- 🔥 We will start to work on the [next major: v5](https://github.com/mui-org/material-ui/issues/20012).
 You can expect the following:
 
   - A feature freeze on v4.
