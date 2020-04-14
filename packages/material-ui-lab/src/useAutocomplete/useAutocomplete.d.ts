@@ -3,11 +3,11 @@ import * as React from 'react';
 export interface CreateFilterOptionsConfig<T> {
   ignoreAccents?: boolean;
   ignoreCase?: boolean;
+  limit?: number;
   matchFrom?: 'any' | 'start';
+  startAfter?: number;
   stringify?: (option: T) => string;
   trim?: boolean;
-  limit?: number;
-  startAfter?: number;
 }
 
 export interface FilterOptionsState<T> {
