@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { assert, expect } from 'chai';
+import { expect } from 'chai';
+import { spy } from 'sinon';
 import { getClasses, createMount } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
 import { createClientRender } from 'test/utils/createClientRender';
@@ -27,15 +28,46 @@ describe('<Checkbox />', () => {
   }));
 
   it('should have the classes required for Checkbox', () => {
-    assert.strictEqual(typeof classes.root, 'string');
-    assert.strictEqual(typeof classes.checked, 'string');
-    assert.strictEqual(typeof classes.disabled, 'string');
+    expect(typeof classes.root).to.equal('string');
+    expect(typeof classes.checked).to.equal('string');
+    expect(typeof classes.disabled).to.equal('string');
+  });
+
+  it('renders an unchecked `checkbox` by default', () => {
+    const { getByRole } = render(<Checkbox />);
+
+    expect(getByRole('checkbox')).to.have.property('checked', false);
+  });
+
+  it('renders an checked `checkbox` when `checked={true}`', () => {
+    const { getByRole } = render(<Checkbox checked />);
+
+    expect(getByRole('checkbox')).to.have.property('checked', true);
+  });
+
+  it('flips the checked property when clicked and calls onchange with the checked state', () => {
+    const handleChange = spy((event) => event.persist());
+    const { getByRole } = render(<Checkbox onChange={handleChange} />);
+
+    getByRole('checkbox').click();
+
+    expect(getByRole('checkbox')).to.have.property('checked', true);
+    expect(handleChange.callCount).to.equal(1);
+    expect(handleChange.getCall(0).args[0].target).to.have.property('checked', true);
+
+    getByRole('checkbox').click();
+
+    expect(getByRole('checkbox')).to.have.property('checked', false);
+    expect(handleChange.callCount).to.equal(2);
+    expect(handleChange.getCall(1).args[0].target).to.have.property('checked', false);
   });
 
   describe('prop: indeterminate', () => {
     it('should render an indeterminate icon', () => {
-      const wrapper = mount(<Checkbox indeterminate />);
-      assert.strictEqual(wrapper.find('svg[data-mui-test="IndeterminateCheckBoxIcon"]').length, 1);
+      const { container } = render(<Checkbox indeterminate />);
+      expect(
+        container.querySelector('svg[data-mui-test="IndeterminateCheckBoxIcon"]'),
+      ).not.to.equal(null);
     });
   });
 
