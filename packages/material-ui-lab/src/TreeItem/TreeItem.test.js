@@ -20,10 +20,8 @@ describe('<TreeItem />', () => {
 
   describeConformance(<TreeItem nodeId="one" label="one" />, () => ({
     classes,
-    inheritComponent: 'li',
     mount,
-    refInstanceof: window.HTMLLIElement,
-    skip: ['componentProp'],
+    skip: ['componentProp', 'refForwarding', 'mergeClassName', 'rootClass', 'propsSpread'],
     after: () => mount.cleanUp(),
   }));
 

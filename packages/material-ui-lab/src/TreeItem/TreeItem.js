@@ -1,12 +1,8 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions  */
-import * as React from 'react';
-import clsx from 'clsx';
+import React from 'react';
 import PropTypes from 'prop-types';
-import Typography from '@material-ui/core/Typography';
-import Collapse from '@material-ui/core/Collapse';
-import { fade, withStyles, useTheme } from '@material-ui/core/styles';
-import { useForkRef } from '@material-ui/core/utils';
+import { fade, withStyles } from '@material-ui/core/styles';
 import TreeViewContext from '../TreeView/TreeViewContext';
+import { useDescendant, useDescendants, DescendantProvider } from '../TreeView/decendants';
 
 export const styles = (theme) => ({
   /* Styles applied to the root element. */
@@ -76,334 +72,41 @@ export const styles = (theme) => ({
   },
 });
 
-const isPrintableCharacter = (str) => {
-  return str && str.length === 1 && str.match(/\S/);
-};
-
 const TreeItem = React.forwardRef(function TreeItem(props, ref) {
-  const {
-    children,
-    classes,
-    className,
-    collapseIcon,
-    endIcon,
-    expandIcon,
-    icon: iconProp,
-    label,
-    nodeId,
-    onClick,
-    onFocus,
-    onKeyDown,
-    onMouseDown,
-    TransitionComponent = Collapse,
-    TransitionProps,
-    ...other
-  } = props;
+  const { label, nodeId, children, ...other } = props;
 
-  const {
-    icons: contextIcons,
-    focus,
-    focusFirstNode,
-    focusLastNode,
-    focusNextNode,
-    focusPreviousNode,
-    focusByFirstCharacter,
-    selectNode,
-    selectRange,
-    selectNextNode,
-    selectPreviousNode,
-    rangeSelectToFirst,
-    rangeSelectToLast,
-    selectAllNodes,
-    expandAllSiblings,
-    toggleExpansion,
-    isExpanded,
-    isFocused,
-    isSelected,
-    isTabbable,
-    multiSelect,
-    getParent,
-    mapFirstChar,
-    addNodeToNodeMap,
-    removeNodeFromNodeMap,
-  } = React.useContext(TreeViewContext);
+  const { registerNode, unregisterNode, getNode } = React.useContext(TreeViewContext);
+  const { index, parent } = useDescendant({ parent: nodeId, label });
+  const itemsRef = useDescendants();
 
-  const nodeRef = React.useRef(null);
-  const contentRef = React.useRef(null);
-  const handleRef = useForkRef(nodeRef, ref);
+  const { nodeRef } = getNode ? getNode(nodeId) : {};
 
-  let icon = iconProp;
-
-  const expandable = Boolean(Array.isArray(children) ? children.length : children);
-  const expanded = isExpanded ? isExpanded(nodeId) : false;
-  const focused = isFocused ? isFocused(nodeId) : false;
-  const tabbable = isTabbable ? isTabbable(nodeId) : false;
-  const selected = isSelected ? isSelected(nodeId) : false;
-  const icons = contextIcons || {};
-  const theme = useTheme();
-
-  if (!icon) {
-    if (expandable) {
-      if (!expanded) {
-        icon = expandIcon || icons.defaultExpandIcon;
-      } else {
-        icon = collapseIcon || icons.defaultCollapseIcon;
-      }
-
-      if (!icon) {
-        icon = icons.defaultParentIcon;
-      }
-    } else {
-      icon = endIcon || icons.defaultEndIcon;
-    }
-  }
-
-  const handleClick = (event) => {
-    if (!focused) {
-      focus(nodeId);
-    }
-
-    const multiple = multiSelect && (event.shiftKey || event.ctrlKey || event.metaKey);
-
-    // If already expanded and trying to toggle selection don't close
-    if (expandable && !(multiple && isExpanded(nodeId))) {
-      toggleExpansion(event, nodeId);
-    }
-
-    if (multiple) {
-      if (event.shiftKey) {
-        selectRange(event, { end: nodeId });
-      } else {
-        selectNode(event, nodeId, true);
-      }
-    } else {
-      selectNode(event, nodeId);
-    }
-
-    if (onClick) {
-      onClick(event);
-    }
-  };
-
-  const handleMouseDown = (event) => {
-    if (event.shiftKey || event.ctrlKey || event.metaKey) {
-      event.preventDefault();
-    }
-
-    if (onMouseDown) {
-      onMouseDown(event);
-    }
-  };
-
-  const handleNextArrow = (event) => {
-    if (expandable) {
-      if (expanded) {
-        focusNextNode(nodeId);
-      } else {
-        toggleExpansion(event);
-      }
-    }
-    return true;
-  };
-
-  const handlePreviousArrow = (event) => {
-    if (expanded) {
-      toggleExpansion(event, nodeId);
-      return true;
-    }
-
-    const parent = getParent(nodeId);
-    if (parent) {
-      focus(parent);
-      return true;
-    }
-    return false;
-  };
-
-  const handleKeyDown = (event) => {
-    let flag = false;
-    const key = event.key;
-
-    if (event.altKey || event.currentTarget !== event.target) {
-      return;
-    }
-
-    const ctrlPressed = event.ctrlKey || event.metaKey;
-
-    switch (key) {
-      case ' ':
-        if (nodeRef.current === event.currentTarget) {
-          if (multiSelect && event.shiftKey) {
-            flag = selectRange(event, { end: nodeId });
-          } else if (multiSelect) {
-            flag = selectNode(event, nodeId, true);
-          } else {
-            flag = selectNode(event, nodeId);
-          }
-        }
-        event.stopPropagation();
-        break;
-      case 'Enter':
-        if (nodeRef.current === event.currentTarget && expandable) {
-          toggleExpansion(event);
-          flag = true;
-        }
-        event.stopPropagation();
-        break;
-      case 'ArrowDown':
-        if (multiSelect && event.shiftKey) {
-          selectNextNode(event, nodeId);
-        }
-        focusNextNode(nodeId);
-        flag = true;
-        break;
-      case 'ArrowUp':
-        if (multiSelect && event.shiftKey) {
-          selectPreviousNode(event, nodeId);
-        }
-        focusPreviousNode(nodeId);
-        flag = true;
-        break;
-      case 'ArrowRight':
-        if (theme.direction === 'rtl') {
-          flag = handlePreviousArrow(event);
-        } else {
-          flag = handleNextArrow(event);
-        }
-        break;
-      case 'ArrowLeft':
-        if (theme.direction === 'rtl') {
-          flag = handleNextArrow(event);
-        } else {
-          flag = handlePreviousArrow(event);
-        }
-        break;
-      case 'Home':
-        if (multiSelect && ctrlPressed && event.shiftKey) {
-          rangeSelectToFirst(event, nodeId);
-        }
-        focusFirstNode();
-        flag = true;
-        break;
-      case 'End':
-        if (multiSelect && ctrlPressed && event.shiftKey) {
-          rangeSelectToLast(event, nodeId);
-        }
-        focusLastNode();
-        flag = true;
-        break;
-      default:
-        if (key === '*') {
-          expandAllSiblings(event, nodeId);
-          flag = true;
-        } else if (multiSelect && ctrlPressed && key.toLowerCase() === 'a') {
-          flag = selectAllNodes(event);
-        } else if (!ctrlPressed && !event.shiftKey && isPrintableCharacter(key)) {
-          focusByFirstCharacter(nodeId, key);
-          flag = true;
-        }
-    }
-
-    if (flag) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
-
-    if (onKeyDown) {
-      onKeyDown(event);
-    }
-  };
-
-  const handleFocus = (event) => {
-    if (!focused && event.currentTarget === event.target) {
-      focus(nodeId);
-    }
-
-    if (onFocus) {
-      onFocus(event);
-    }
-  };
+  React.useImperativeHandle(ref, () => nodeRef || null, [nodeRef]);
 
   React.useEffect(() => {
-    if (addNodeToNodeMap) {
-      const childIds = [];
-      React.Children.forEach(children, (child) => {
-        if (React.isValidElement(child) && child.props.nodeId) {
-          childIds.push(child.props.nodeId);
-        }
+    if (registerNode && unregisterNode) {
+      registerNode({
+        id: nodeId,
+        label,
+        parent,
+        index,
+        props: other,
       });
-      addNodeToNodeMap(nodeId, childIds);
-    }
-  }, [children, nodeId, addNodeToNodeMap]);
 
-  React.useEffect(() => {
-    if (removeNodeFromNodeMap) {
       return () => {
-        removeNodeFromNodeMap(nodeId);
+        unregisterNode(nodeId);
       };
     }
+
     return undefined;
-  }, [nodeId, removeNodeFromNodeMap]);
-
-  React.useEffect(() => {
-    if (mapFirstChar && label) {
-      mapFirstChar(nodeId, contentRef.current.textContent.substring(0, 1).toLowerCase());
-    }
-  }, [mapFirstChar, nodeId, label]);
-
-  React.useEffect(() => {
-    if (focused) {
-      nodeRef.current.focus();
-    }
-  }, [focused]);
-
-  let ariaSelected;
-  if (multiSelect) {
-    ariaSelected = selected;
-  } else if (selected) {
-    // single-selection trees unset aria-selected
-    ariaSelected = true;
-  }
+    // See Option 3. https://github.com/facebook/react/issues/14476#issuecomment-471199055
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [nodeId, parent, label, registerNode, unregisterNode, index, JSON.stringify(other)]);
 
   return (
-    <li
-      className={clsx(classes.root, className, {
-        [classes.expanded]: expanded,
-        [classes.selected]: selected,
-      })}
-      role="treeitem"
-      onKeyDown={handleKeyDown}
-      onFocus={handleFocus}
-      aria-expanded={expandable ? expanded : null}
-      aria-selected={ariaSelected}
-      ref={handleRef}
-      tabIndex={tabbable ? 0 : -1}
-      {...other}
-    >
-      <div
-        className={classes.content}
-        onClick={handleClick}
-        onMouseDown={handleMouseDown}
-        ref={contentRef}
-      >
-        <div className={classes.iconContainer}>{icon}</div>
-        <Typography component="div" className={classes.label}>
-          {label}
-        </Typography>
-      </div>
-      {children && (
-        <TransitionComponent
-          unmountOnExit
-          className={classes.group}
-          in={expanded}
-          component="ul"
-          role="group"
-          {...TransitionProps}
-        >
-          {children}
-        </TransitionComponent>
-      )}
-    </li>
+    <DescendantProvider nodeId={nodeId} items={itemsRef}>
+      {children}
+    </DescendantProvider>
   );
 });
 
