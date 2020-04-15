@@ -10,7 +10,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { enUS, zhCN, faIR, ruRU, ptBR, esES, frFR, deDE, jaJP } from '@material-ui/core/locale';
 import { blue, pink } from '@material-ui/core/colors';
 import { getCookie } from 'docs/src/modules/utils/helpers';
-import { darkTheme, setPrismTheme } from 'docs/src/modules/components/prism';
+import { loadCSS } from 'fg-loadcss/src/loadCSS';
 
 const languageMap = {
   en: enUS,
@@ -153,7 +153,7 @@ export function ThemeProvider(props) {
   const { dense, direction, paletteColors, paletteType = preferredType, spacing } = themeOptions;
 
   React.useEffect(() => {
-    setPrismTheme(darkTheme);
+    loadCSS('/static/styles/prism-okaidia.css', document.querySelector('#prismjs'));
   }, []);
 
   React.useEffect(() => {

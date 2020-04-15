@@ -91,14 +91,7 @@ module.exports = {
         ...config.module,
         rules: config.module.rules.concat([
           {
-            test: /\.(css|md)$/,
-            loader: 'emit-file-loader',
-            options: {
-              name: 'dist/[path][name].[ext]',
-            },
-          },
-          {
-            test: /\.(css|md)$/,
+            test: /\.md$/,
             loader: 'raw-loader',
           },
           // transpile 3rd party packages with dependencies in this repository
