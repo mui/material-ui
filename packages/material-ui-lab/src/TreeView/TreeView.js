@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
 import { useControlled } from '@material-ui/core/utils';
-import { DescendantProvider, useDescendants } from './decendants';
+import { DescendantProvider, useDescendants } from './descendants';
 import TreeNode from './TreeNode';
 import TreeViewContext from './TreeViewContext';
 

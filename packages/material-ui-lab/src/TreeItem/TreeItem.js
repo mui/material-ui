@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { fade, withStyles } from '@material-ui/core/styles';
 import TreeViewContext from '../TreeView/TreeViewContext';
-import { useDescendant, useDescendants, DescendantProvider } from '../TreeView/decendants';
+import { useDescendant, useDescendants, DescendantProvider } from '../TreeView/descendants';
 
 export const styles = (theme) => ({
   /* Styles applied to the root element. */
