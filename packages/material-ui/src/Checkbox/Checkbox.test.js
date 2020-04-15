@@ -32,6 +32,18 @@ describe('<Checkbox />', () => {
     expect(typeof classes.disabled).to.equal('string');
   });
 
+  it('renders an unchecked `checkbox` by default', () => {
+    const { getByRole } = render(<Checkbox />);
+
+    expect(getByRole('checkbox')).to.have.property('checked', false);
+  });
+
+  it('renders an checked `checkbox` when `checked={true}`', () => {
+    const { getByRole } = render(<Checkbox checked />);
+
+    expect(getByRole('checkbox')).to.have.property('checked', true);
+  });
+
   describe('prop: indeterminate', () => {
     it('should render an indeterminate icon', () => {
       const { container } = render(<Checkbox indeterminate />);
