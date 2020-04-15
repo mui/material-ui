@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { assert, expect } from 'chai';
+import { expect } from 'chai';
 import { getClasses, createMount } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
 import { createClientRender } from 'test/utils/createClientRender';
@@ -27,15 +27,17 @@ describe('<Checkbox />', () => {
   }));
 
   it('should have the classes required for Checkbox', () => {
-    assert.strictEqual(typeof classes.root, 'string');
-    assert.strictEqual(typeof classes.checked, 'string');
-    assert.strictEqual(typeof classes.disabled, 'string');
+    expect(typeof classes.root).to.equal('string');
+    expect(typeof classes.checked).to.equal('string');
+    expect(typeof classes.disabled).to.equal('string');
   });
 
   describe('prop: indeterminate', () => {
     it('should render an indeterminate icon', () => {
-      const wrapper = mount(<Checkbox indeterminate />);
-      assert.strictEqual(wrapper.find('svg[data-mui-test="IndeterminateCheckBoxIcon"]').length, 1);
+      const { container } = render(<Checkbox indeterminate />);
+      expect(
+        container.querySelector('svg[data-mui-test="IndeterminateCheckBoxIcon"]'),
+      ).not.to.equal(null);
     });
   });
 
