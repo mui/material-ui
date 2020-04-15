@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
+import { spy } from 'sinon';
 import { getClasses, createMount } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
 import { createClientRender } from 'test/utils/createClientRender';
@@ -42,6 +43,23 @@ describe('<Checkbox />', () => {
     const { getByRole } = render(<Checkbox checked />);
 
     expect(getByRole('checkbox')).to.have.property('checked', true);
+  });
+
+  it('flips the checked property when clicked and calls onchange with the checked state', () => {
+    const handleChange = spy((event) => event.persist());
+    const { getByRole } = render(<Checkbox onChange={handleChange} />);
+
+    getByRole('checkbox').click();
+
+    expect(getByRole('checkbox')).to.have.property('checked', true);
+    expect(handleChange.callCount).to.equal(1);
+    expect(handleChange.getCall(0).args[0].target).to.have.property('checked', true);
+
+    getByRole('checkbox').click();
+
+    expect(getByRole('checkbox')).to.have.property('checked', false);
+    expect(handleChange.callCount).to.equal(2);
+    expect(handleChange.getCall(1).args[0].target).to.have.property('checked', false);
   });
 
   describe('prop: indeterminate', () => {
