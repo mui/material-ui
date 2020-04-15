@@ -72,6 +72,10 @@ export const styles = (theme) => ({
   },
 });
 
+/*
+ * TreeItem is used for the TreeView component API. See TreeNode if you want the component that renders HTML
+ */
+
 const TreeItem = React.forwardRef(function TreeItem(props, ref) {
   const { label, nodeId, children, ...other } = props;
 
