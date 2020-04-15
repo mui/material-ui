@@ -324,9 +324,11 @@ function TreeNode(props) {
           role="group"
           {...TransitionProps}
         >
-          {children.map((i) => (
-            <TreeNode key={i} nodeId={i} />
-          ))}
+          {children
+            .sort((a, b) => a.index - b.index)
+            .map((i) => (
+              <TreeNode key={i} nodeId={i} />
+            ))}
         </TransitionComponent>
       )}
     </li>

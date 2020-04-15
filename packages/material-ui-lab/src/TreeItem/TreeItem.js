@@ -89,7 +89,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
         id: nodeId,
         label,
         parent,
-        index,
+        index: index.current,
         props: other,
       });
 
