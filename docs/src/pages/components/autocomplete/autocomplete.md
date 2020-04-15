@@ -147,7 +147,7 @@ The following demo relies on [autosuggest-highlight](https://github.com/moroshko
 
 ## Custom filter
 
-The component exposes a factory to create a filter method that can provided to the `filerOption` prop.
+The component exposes a factory to create a filter method that can provided to the `filterOptions` prop.
 You can use it to change the default option filter behavior.
 
 ```js
