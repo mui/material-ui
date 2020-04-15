@@ -83,5 +83,23 @@ describe('<Checkbox />', () => {
         expect(getByRole('checkbox')).not.to.have.attribute('disabled');
       });
     });
+
+    describe('checkbox checked state', () => {
+     it('should detect unchecked checkbox using aria-checked', () => {
+        const { getByRole } = render(
+          <Checkbox />
+          );
+         
+        expect(getByRole('checkbox')).to.have.attribute('aria-checked', 'false');
+      })
+      it('should detect checked checkbox with aria-checked', () => {
+        const { getByRole } = render(
+          <Checkbox />
+          );
+        getByRole('checkbox').click()
+        
+        expect(getByRole('checkbox')).to.have.attribute('aria-checked', 'true');
+      });
+    });
   });
 });
