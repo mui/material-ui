@@ -61,6 +61,13 @@ export interface TypeObject {
   background: TypeBackground;
 }
 
+export interface TonalOffsetOptions {
+  light: number;
+  dark: number;
+}
+
+export type TonalOffset = number | TonalOffsetOptions;
+
 export const light: TypeObject;
 export const dark: TypeObject;
 
@@ -68,7 +75,7 @@ export interface Palette {
   common: CommonColors;
   type: PaletteType;
   contrastThreshold: number;
-  tonalOffset: number;
+  tonalOffset: TonalOffset;
   primary: PaletteColor;
   secondary: PaletteColor;
   error: PaletteColor;
@@ -102,7 +109,7 @@ export interface PaletteOptions {
   info?: PaletteColorOptions;
   success?: PaletteColorOptions;
   type?: PaletteType;
-  tonalOffset?: number;
+  tonalOffset?: TonalOffset;
   contrastThreshold?: number;
   common?: Partial<CommonColors>;
   grey?: ColorPartial;

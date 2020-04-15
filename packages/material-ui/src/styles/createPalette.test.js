@@ -43,7 +43,7 @@ describe('createPalette()', () => {
     });
   });
 
-  it('should calculate light and dark colors using the provided tonalOffset', () => {
+  it('should calculate light and dark colors using a simple tonalOffset number value', () => {
     const palette = createPalette({
       primary: { main: deepOrange[500] },
       tonalOffset: 0.1,
@@ -53,6 +53,22 @@ describe('createPalette()', () => {
       main: deepOrange[500],
       light: lighten(deepOrange[500], 0.1),
       dark: darken(deepOrange[500], 0.15),
+    });
+  });
+
+  it('should calculate light and dark colors using a custom tonalOffset object value', () => {
+    const palette = createPalette({
+      primary: { main: deepOrange[500] },
+      tonalOffset: {
+        light: 0.8,
+        dark: 0.5,
+      },
+    });
+
+    expect(palette.primary).to.deep.include({
+      main: deepOrange[500],
+      light: lighten(deepOrange[500], 0.8),
+      dark: darken(deepOrange[500], 0.5),
     });
   });
 

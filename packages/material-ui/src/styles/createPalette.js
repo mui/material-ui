@@ -79,13 +79,16 @@ export const dark = {
 };
 
 function addLightOrDark(intent, direction, shade, tonalOffset) {
+  const tonalOffsetLight = tonalOffset.light || tonalOffset;
+  const tonalOffsetDark = tonalOffset.dark || tonalOffset * 1.5;
+
   if (!intent[direction]) {
     if (intent.hasOwnProperty(shade)) {
       intent[direction] = intent[shade];
     } else if (direction === 'light') {
-      intent.light = lighten(intent.main, tonalOffset);
+      intent.light = lighten(intent.main, tonalOffsetLight);
     } else if (direction === 'dark') {
-      intent.dark = darken(intent.main, tonalOffset * 1.5);
+      intent.dark = darken(intent.main, tonalOffsetDark);
     }
   }
 }
