@@ -102,13 +102,13 @@ As in the example above, if the intention object contains custom colors using an
   according to the "contrastThreshold" value.
 
 Both the "tonalOffset" and "contrastThreshold" values may be customized as needed.
-The "tonalOffset" value can either be a number between 0 and 1, which will apply to both light and dark variants, or an object with light and dark variants specified by the following TypeScript interface:
+The "tonalOffset" value can either be a number between 0 and 1, which will apply to both light and dark variants, or an object with light and dark variants specified by the following TypeScript type:
 
 ```ts
-interface TonalOffsetOptions {
+type PaletteTonalOffset = number | {
   light: number;
   dark: number;
-}
+};
 ```
 
 A higher value for "tonalOffset" will make calculated values for "light" lighter, and "dark" darker.
