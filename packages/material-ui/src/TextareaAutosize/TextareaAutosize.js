@@ -47,7 +47,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
     inputShallow.value = input.value || props.placeholder || 'x';
     if (inputShallow.value.slice(-1) === '\n') {
       // Certain fonts which overflow the line height will cause the textarea
-      // tto report a different scrollHeight depending on whether the last line
+      // to report a different scrollHeight depending on whether the last line
       // is empty. Make it non-empty to avoid this issue.
       inputShallow.value += ' ';
     }
