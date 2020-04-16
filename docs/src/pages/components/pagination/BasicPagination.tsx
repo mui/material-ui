@@ -9,6 +9,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
+
 export default function BasicPagination() {
   const classes = useStyles();
   return (
