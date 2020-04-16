@@ -1,5 +1,6 @@
 import React from 'react';
-import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
+import MarkdownDocsX from 'docs/src/modules/components/MarkdownDocs.new';
+import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
 const req = require.context('docs/src/pages/components/buttons', false, /\.(md|js|tsx)$/);
 const reqSource = require.context(
@@ -7,8 +8,14 @@ const reqSource = require.context(
   false,
   /\.(js|tsx)$/,
 );
-const reqPrefix = 'pages/components/buttons';
+const pageFilename = 'components/buttons';
 
-export default function Page() {
-  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
+// eslint-disable-next-line react/prop-types
+export default function Page({ demos, docs }) {
+  return <MarkdownDocsX demos={demos} docs={docs} req={req} />;
 }
+
+Page.getInitialProps = async () => {
+  const { demos, docs } = prepareMarkdown({ pageFilename, req, reqSource });
+  return { demos, docs };
+};
