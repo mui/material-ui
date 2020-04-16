@@ -1,6 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import optionsReducer from 'docs/src/modules/redux/optionsReducer';
+import { createLogger } from 'redux-logger';
 
 // Get the Redux DevTools extension and fallback to a no-op function
 let devtools = (x) => x;
@@ -23,9 +24,6 @@ export default function create(initialState) {
     // redux-logger needs this feature
     Object.hasOwnProperty('assign')
   ) {
-    // eslint-disable-next-line global-require
-    const createLogger = require('redux-logger').createLogger;
-
     middleware = [...middleware, createLogger()];
   }
 
