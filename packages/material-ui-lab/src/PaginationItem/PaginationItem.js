@@ -275,7 +275,7 @@ PaginationItem.propTypes = {
   /**
    * The active color.
    */
-  color: PropTypes.oneOf(['default', 'primary', 'secondary']),
+  color: PropTypes.oneOf(['standard', 'primary', 'secondary']),
   /**
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
