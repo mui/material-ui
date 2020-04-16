@@ -101,7 +101,7 @@ Pagination.propTypes = {
   /**
    * The active color.
    */
-  color: PropTypes.oneOf(['standard', 'primary', 'secondary']),
+  color: PropTypes.oneOf(['primary', 'secondary', 'standard']),
   /**
    * The total number of pages.
    * @default 1

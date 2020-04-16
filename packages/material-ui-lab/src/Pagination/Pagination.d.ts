@@ -14,7 +14,7 @@ export interface PaginationProps
   /**
    * The active color.
    */
-  color?: 'standard' | 'primary' | 'secondary';
+  color?: 'primary' | 'secondary' | 'standard';
   /**
    * Accepts a function which returns a string value that provides a user-friendly name for the current page.
    *
