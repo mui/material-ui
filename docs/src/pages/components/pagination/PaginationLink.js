@@ -11,7 +11,6 @@ export default function PaginationLink() {
         {({ location }) => {
           const query = new URLSearchParams(location.search);
           const page = parseInt(query.get('page') || '1', 10);
-
           return (
             <Pagination
               page={page}
