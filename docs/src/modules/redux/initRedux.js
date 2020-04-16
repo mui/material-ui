@@ -13,7 +13,7 @@ if (
   devtools = window.__REDUX_DEVTOOLS_EXTENSION__();
 }
 
-function create(initialState) {
+export default function create(initialState) {
   let middleware = [];
 
   if (
@@ -36,19 +36,4 @@ function create(initialState) {
     initialState, // Hydrate the store with server-side data
     compose(applyMiddleware(...middleware), devtools),
   );
-}
-
-export default function initRedux(initialState) {
-  // Make sure to create a new store for every server-side request so that data
-  // isn't shared between connections (which would be bad)
-  if (!process.browser) {
-    return create(initialState);
-  }
-
-  // Reuse store on the client-side
-  if (!global.__INIT_REDUX_STORE__) {
-    global.__INIT_REDUX_STORE__ = create(initialState);
-  }
-
-  return global.__INIT_REDUX_STORE__;
 }

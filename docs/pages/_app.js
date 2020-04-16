@@ -261,7 +261,9 @@ function AppWrapper(props) {
   const { children, pageProps } = props;
 
   const router = useRouter();
-  const [redux] = React.useState(() => initRedux(pageProps.reduxServerState));
+  const [redux] = React.useState(() =>
+    initRedux({ options: { userLanguage: pageProps.userLanguage } }),
+  );
 
   React.useEffect(() => {
     loadDependencies();
@@ -333,24 +335,10 @@ MyApp.propTypes = {
 };
 
 MyApp.getInitialProps = async ({ ctx, Component }) => {
-  let pageProps = {};
+  let pageProps = { userLanguage: ctx.query.userLanguage };
 
   if (Component.getInitialProps) {
     pageProps = await Component.getInitialProps(ctx);
-  }
-
-  if (!process.browser) {
-    const redux = initRedux({
-      options: {
-        userLanguage: ctx.query.userLanguage,
-      },
-    });
-    pageProps = {
-      ...pageProps,
-      // No need to include other initial Redux state because when it
-      // initialises on the client-side it'll create it again anyway
-      reduxServerState: redux.getState(),
-    };
   }
 
   return {
