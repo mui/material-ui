@@ -6,7 +6,7 @@ export interface ListItemIconProps
    * The content of the component, normally `Icon`, `SvgIcon`,
    * or a `@material-ui/icons` SVG icon element.
    */
-  children: React.ReactElement;
+  children?: React.ReactNode;
 }
 
 export type ListItemIconClassKey = 'root';
