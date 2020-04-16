@@ -7,8 +7,7 @@ export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     display: 'flex',
-    padding: theme.spacing(2),
-    paddingTop: theme.spacing(1),
+    padding: theme.spacing(1, 2, 2),
   },
 });
 
