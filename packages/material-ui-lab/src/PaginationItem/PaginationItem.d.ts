@@ -7,7 +7,7 @@ export interface PaginationItemTypeMap<P = {}, D extends React.ElementType = 'di
     /**
      * The active color.
      */
-    color?: 'standard' | 'primary' | 'secondary';
+    color?: 'default' | 'primary' | 'secondary';
     /**
      * If `true`, the item will be disabled.
      */
