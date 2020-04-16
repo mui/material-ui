@@ -248,7 +248,7 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
           isEnabled={isTopModal}
           open={open}
         >
-          {React.cloneElement(children, childProps)}
+          {!open ? React.cloneElement(children, { ref: handleRef }) : null}
         </TrapFocus>
       </div>
     </Portal>
