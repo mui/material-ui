@@ -7,13 +7,13 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof Button
     action?: React.Ref<TabsActions>;
     centered?: boolean;
     children?: React.ReactNode;
-    indicatorColor?: 'secondary' | 'primary' | string;
+    indicatorColor?: 'secondary' | 'primary';
     onChange?: (event: React.ChangeEvent<{}>, value: any) => void;
     orientation?: 'horizontal' | 'vertical';
     ScrollButtonComponent?: React.ElementType;
     scrollButtons?: 'auto' | 'desktop' | 'on' | 'off';
     TabIndicatorProps?: Partial<React.HTMLAttributes<HTMLDivElement>>;
-    textColor?: 'secondary' | 'primary' | 'inherit' | string;
+    textColor?: 'secondary' | 'primary' | 'inherit';
     value: any;
     variant?: 'standard' | 'scrollable' | 'fullWidth';
     width?: string;
@@ -53,6 +53,6 @@ export interface TabsActions {
 export type TabsProps<
   D extends React.ElementType = TabsTypeMap['defaultComponent'],
   P = {}
-> = OverrideProps<TabsTypeMap<P, D>, D>;
+  > = OverrideProps<TabsTypeMap<P, D>, D>;
 
 export default Tabs;
