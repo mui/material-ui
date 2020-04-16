@@ -1,17 +1,19 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import PropTypes from 'prop-types';
+
+import ModalManager, { ariaHidden } from './ModalManager';
 import { getThemeProps, useTheme } from '@material-ui/styles';
+
+import Portal from '../Portal';
+import PropTypes from 'prop-types';
+import SimpleBackdrop from './SimpleBackdrop';
+import TrapFocus from './TrapFocus';
+import createChainedFunction from '../utils/createChainedFunction';
 import { elementAcceptingRef } from '@material-ui/utils';
 import ownerDocument from '../utils/ownerDocument';
-import Portal from '../Portal';
-import createChainedFunction from '../utils/createChainedFunction';
-import useForkRef from '../utils/useForkRef';
 import useEventCallback from '../utils/useEventCallback';
+import useForkRef from '../utils/useForkRef';
 import zIndex from '../styles/zIndex';
-import ModalManager, { ariaHidden } from './ModalManager';
-import TrapFocus from './TrapFocus';
-import SimpleBackdrop from './SimpleBackdrop';
 
 function getContainer(container) {
   container = typeof container === 'function' ? container() : container;
@@ -248,7 +250,7 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
           isEnabled={isTopModal}
           open={open}
         >
-          {React.cloneElement(children, childProps)}
+          {open ? React.cloneElement(children, { ref: handleRef }) : null}
         </TrapFocus>
       </div>
     </Portal>
