@@ -758,7 +758,7 @@ export default function useAutocomplete(props) {
       selectNewValue(event, filteredOptions[highlightedIndexRef.current], 'blur');
     } else if (autoSelect && freeSolo && inputValue !== '') {
       selectNewValue(event, inputValue, 'blur', 'freeSolo');
-    } else if (!freeSolo) {
+    } else {
       resetInputValue(event, value);
     }
 
