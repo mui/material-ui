@@ -30,7 +30,7 @@ The `MuiPagination` name can be used for providing [default props](/customizatio
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">boundaryCount</span> | <span class="prop-type">number</span> | <span class="prop-default">1</span> | Number of always visible pages at the beginning and end. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <span class="prop-name">color</span> | <span class="prop-type">'standard'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'</span> | <span class="prop-default">'standard'</span> | The active color. |
+| <span class="prop-name">color</span> | <span class="prop-type">'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'standard'</span> | <span class="prop-default">'standard'</span> | The active color. |
 | <span class="prop-name">count</span> | <span class="prop-type">number</span> | <span class="prop-default">1</span> | The total number of pages. |
 | <span class="prop-name">defaultPage</span> | <span class="prop-type">number</span> | <span class="prop-default">1</span> | The page selected by default when the component is uncontrolled. |
 | <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the pagination component will be disabled. |
