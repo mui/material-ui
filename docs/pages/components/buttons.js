@@ -1,6 +1,6 @@
 import React from 'react';
 import MarkdownDocsX from 'docs/src/modules/components/MarkdownDocs.new';
-import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
+import prepareMarkdown from 'docs/src/modules/utils/prepareMarkdown';
 
 const req = require.context('docs/src/pages/components/buttons', false, /\.(md|js|tsx)$/);
 const reqSource = require.context(
