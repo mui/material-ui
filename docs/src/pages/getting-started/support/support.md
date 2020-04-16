@@ -87,7 +87,7 @@ The end result? All of the capabilities you expect from commercial-grade softwar
 
 ### Custom work 🛠
 
-Tweak Material-UI to meet specific requirements. Give us a summary of your needs; We'll help you if I can. We might:
+Tweak Material-UI to meet specific requirements. Give us a summary of your needs and we'll help you if we can. We might:
 
 - Give you an estimate of time and price if the work is straightforward
 - Suggest alternatives that might not require Material-UI
