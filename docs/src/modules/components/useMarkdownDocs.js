@@ -9,13 +9,7 @@ import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import { LANGUAGES_IN_PROGRESS, SOURCE_CODE_ROOT_URL } from 'docs/src/modules/constants';
 
 export default function useMarkdownDocs(options) {
-  const {
-    markdownLocation: locationProp,
-    markdown: markdownProp,
-    req,
-    reqPrefix,
-    reqSource,
-  } = options;
+  const { markdown: markdownProp, req, reqPrefix, reqSource } = options;
 
   const userLanguage = useSelector((state) => state.options.userLanguage);
   let demos;
@@ -58,10 +52,10 @@ export default function useMarkdownDocs(options) {
   const headers = getHeaders(markdown);
 
   const { activePage } = React.useContext(PageContext);
-  let location = locationProp || (activePage && activePage.pathname);
+  let location = activePage && activePage.pathname;
   const t = useSelector((state) => state.options.t);
 
-  if (location && !locationProp) {
+  if (location) {
     const token = location.split('/');
     token.push(token[token.length - 1]);
     location = token.join('/');

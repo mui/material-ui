@@ -19,6 +19,7 @@ import PageContext from 'docs/src/modules/components/PageContext';
 import { getHeaders, getTitle, getDescription } from 'docs/src/modules/utils/parseMarkdown';
 import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import Link from 'docs/src/modules/components/Link';
+import { exactProp } from '@material-ui/utils';
 
 const styles = (theme) => ({
   root: {
@@ -92,7 +93,6 @@ function MarkdownDocs(props) {
     disableAd = false,
     disableToc = false,
     markdown: markdownProp,
-    markdownLocation: markdownLocationProp,
     req,
     reqPrefix,
     reqSource,
@@ -102,7 +102,6 @@ function MarkdownDocs(props) {
 
   const markdownDocs = useMarkdownDocs({
     markdown: markdownProp,
-    markdownLocation: markdownLocationProp,
     req,
     reqPrefix,
     reqSource,
@@ -194,12 +193,13 @@ MarkdownDocs.propTypes = {
   disableAd: PropTypes.bool,
   disableToc: PropTypes.bool,
   markdown: PropTypes.string,
-  // You can define the direction location of the markdown file.
-  // Otherwise, we try to determine it with an heuristic.
-  markdownLocation: PropTypes.string,
   req: PropTypes.func,
   reqPrefix: PropTypes.string,
   reqSource: PropTypes.func,
 };
+
+if (process.env.NODE_ENV !== 'production') {
+  MarkdownDocs.propTypes = exactProp(MarkdownDocs.propTypes);
+}
 
 export default withStyles(styles)(MarkdownDocs);
