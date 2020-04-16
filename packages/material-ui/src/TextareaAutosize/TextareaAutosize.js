@@ -45,6 +45,12 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
     const inputShallow = shadowRef.current;
     inputShallow.style.width = computedStyle.width;
     inputShallow.value = input.value || props.placeholder || 'x';
+    if (inputShallow.value.slice(-1) === '\n') {
+      // Certain fonts which overflow the line height will cause the textarea
+      // to report a different scrollHeight depending on whether the last line
+      // is empty. Make it non-empty to avoid this issue.
+      inputShallow.value += ' ';
+    }
 
     const boxSizing = computedStyle['box-sizing'];
     const padding =
