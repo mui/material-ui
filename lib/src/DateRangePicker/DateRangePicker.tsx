@@ -27,7 +27,7 @@ export function parseRangeInputValue(
   ) as DateRangeType;
 }
 
-interface DateRangePickerProps
+export interface DateRangePickerProps
   extends ExportedDateRangePickerViewProps,
     ExportedDateRangePickerInputProps {
   /**
