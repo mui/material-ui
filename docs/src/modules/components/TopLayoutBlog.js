@@ -89,8 +89,8 @@ TopLayoutBlog.propTypes = {
 };
 
 if (process.env.NODE_ENV !== 'production') {
-  // eslint-disable-next-line no-useless-concat, react/forbid-foreign-prop-types
-  TopLayoutBlog['propTypes' + ''] = exactProp(TopLayoutBlog.propTypes);
+  // eslint-disable-next-line react/forbid-foreign-prop-types
+  TopLayoutBlog.propTypes = exactProp(TopLayoutBlog.propTypes);
 }
 
 export default withStyles(styles)(TopLayoutBlog);
