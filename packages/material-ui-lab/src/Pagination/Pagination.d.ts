@@ -8,6 +8,7 @@ export interface PaginationRenderItemParams extends UsePaginationItem {
   size: PaginationProps['size'];
   variant: PaginationProps['variant'];
 }
+
 export interface PaginationProps
   extends UsePaginationProps,
     StandardProps<React.HTMLAttributes<HTMLElement>, PaginationClassKey, 'children' | 'onChange'> {
