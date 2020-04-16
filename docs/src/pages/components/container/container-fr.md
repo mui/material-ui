@@ -11,7 +11,7 @@ While containers can be nested, most layouts do not require a nested container.
 
 ## Fluid
 
-A fluid container width is bounded by that `maxWidth` property value.
+A fluid container width is bounded by the `maxWidth` property value.
 
 {{"demo": "pages/components/container/SimpleContainer.js", "iframe": true, "defaultCodeOpen": false}}
 
