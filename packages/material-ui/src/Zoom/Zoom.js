@@ -33,6 +33,8 @@ const Zoom = React.forwardRef(function Zoom(props, ref) {
     onExit,
     style,
     timeout = defaultTimeout,
+    // eslint-disable-next-line react/prop-types
+    TransitionComponent = Transition,
     ...other
   } = props;
 
@@ -74,7 +76,7 @@ const Zoom = React.forwardRef(function Zoom(props, ref) {
   };
 
   return (
-    <Transition
+    <TransitionComponent
       appear
       in={inProp}
       onEnter={handleEnter}
@@ -95,7 +97,7 @@ const Zoom = React.forwardRef(function Zoom(props, ref) {
           ...childProps,
         });
       }}
-    </Transition>
+    </TransitionComponent>
   );
 });
 

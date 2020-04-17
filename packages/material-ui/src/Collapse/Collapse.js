@@ -54,6 +54,8 @@ const Collapse = React.forwardRef(function Collapse(props, ref) {
     onExiting,
     style,
     timeout = duration.standard,
+    // eslint-disable-next-line react/prop-types
+    TransitionComponent = Transition,
     ...other
   } = props;
   const theme = useTheme();
@@ -153,7 +155,7 @@ const Collapse = React.forwardRef(function Collapse(props, ref) {
   };
 
   return (
-    <Transition
+    <TransitionComponent
       in={inProp}
       onEnter={handleEnter}
       onEntered={handleEntered}
@@ -186,7 +188,7 @@ const Collapse = React.forwardRef(function Collapse(props, ref) {
           </div>
         </Component>
       )}
-    </Transition>
+    </TransitionComponent>
   );
 });
 

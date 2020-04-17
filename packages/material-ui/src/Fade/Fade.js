@@ -31,6 +31,8 @@ const Fade = React.forwardRef(function Fade(props, ref) {
     onEnter,
     onExit,
     style,
+    // eslint-disable-next-line react/prop-types
+    TransitionComponent = Transition,
     timeout = defaultTimeout,
     ...other
   } = props;
@@ -72,7 +74,7 @@ const Fade = React.forwardRef(function Fade(props, ref) {
   };
 
   return (
-    <Transition
+    <TransitionComponent
       appear
       in={inProp}
       onEnter={handleEnter}
@@ -93,7 +95,7 @@ const Fade = React.forwardRef(function Fade(props, ref) {
           ...childProps,
         });
       }}
-    </Transition>
+    </TransitionComponent>
   );
 });
 

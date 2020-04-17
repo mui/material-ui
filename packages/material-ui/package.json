@@ -48,6 +48,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.4.4",
+    "@material-ui/react-transition-group": "^4.2.0",
     "@material-ui/styles": "^4.9.10",
     "@material-ui/system": "^4.9.10",
     "@material-ui/types": "^5.0.1",

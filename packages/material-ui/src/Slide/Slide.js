@@ -80,6 +80,8 @@ const Slide = React.forwardRef(function Slide(props, ref) {
     onExited,
     style,
     timeout = defaultTimeout,
+    // eslint-disable-next-line react/prop-types
+    TransitionComponent = Transition,
     ...other
   } = props;
 
@@ -202,7 +204,7 @@ const Slide = React.forwardRef(function Slide(props, ref) {
   }, [inProp, updatePosition]);
 
   return (
-    <Transition
+    <TransitionComponent
       onEnter={handleEnter}
       onEntering={handleEntering}
       onExit={handleExit}
@@ -223,7 +225,7 @@ const Slide = React.forwardRef(function Slide(props, ref) {
           ...childProps,
         });
       }}
-    </Transition>
+    </TransitionComponent>
   );
 });
 

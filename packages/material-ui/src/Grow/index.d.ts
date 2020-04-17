@@ -1,2 +1,2 @@
-export { default } from './Grow';
+export { default, default as unstable_StrictModeGrow } from './Grow';
 export * from './Grow';
