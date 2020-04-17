@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 
-export const styles = {
+export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     display: 'flex',
-    padding: '8px 24px 24px',
+    padding: theme.spacing(1, 2, 2),
   },
-};
+});
 
 const ExpansionPanelDetails = React.forwardRef(function ExpansionPanelDetails(props, ref) {
   const { classes, className, ...other } = props;
