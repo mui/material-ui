@@ -420,10 +420,9 @@ export default function useAutocomplete(props) {
 
       // Keep the current highlighted index if possible
       if (
-        (multiple &&
-          currentOption &&
-          findIndex(value, (val) => getOptionSelected(currentOption, val)) !== -1) ||
-        freeSolo
+        multiple &&
+        currentOption &&
+        findIndex(value, (val) => getOptionSelected(currentOption, val)) !== -1
       ) {
         return;
       }
@@ -432,7 +431,11 @@ export default function useAutocomplete(props) {
         getOptionSelected(optionItem, valueItem),
       );
 
-      setHighlightedIndex(itemIndex);
+      if (itemIndex === -1) {
+        changeHighlightedIndex('reset', 'next');
+      } else {
+        setHighlightedIndex(itemIndex);
+      }
       return;
     }
 

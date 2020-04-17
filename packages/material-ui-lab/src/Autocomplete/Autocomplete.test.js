@@ -83,7 +83,6 @@ describe('<Autocomplete />', () => {
         <Autocomplete
           {...defaultProps}
           value="one"
-          freeSolo
           autoHighlight
           options={options}
           renderInput={(params) => <TextField autoFocus {...params} />}
