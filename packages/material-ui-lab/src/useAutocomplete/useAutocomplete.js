@@ -420,9 +420,10 @@ export default function useAutocomplete(props) {
 
       // Keep the current highlighted index if possible
       if (
-        multiple &&
-        currentOption &&
-        findIndex(value, (val) => getOptionSelected(currentOption, val)) !== -1
+        (multiple &&
+          currentOption &&
+          findIndex(value, (val) => getOptionSelected(currentOption, val)) !== -1) ||
+        freeSolo
       ) {
         return;
       }
