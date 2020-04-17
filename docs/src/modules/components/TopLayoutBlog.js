@@ -89,7 +89,6 @@ TopLayoutBlog.propTypes = {
 };
 
 if (process.env.NODE_ENV !== 'production') {
-  // eslint-disable-next-line react/forbid-foreign-prop-types
   TopLayoutBlog.propTypes = exactProp(TopLayoutBlog.propTypes);
 }
 
