@@ -431,7 +431,11 @@ export default function useAutocomplete(props) {
         getOptionSelected(optionItem, valueItem),
       );
 
-      setHighlightedIndex(itemIndex);
+      if (itemIndex === -1) {
+        changeHighlightedIndex('reset', 'next');
+      } else {
+        setHighlightedIndex(itemIndex);
+      }
       return;
     }
 

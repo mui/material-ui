@@ -77,6 +77,27 @@ describe('<Autocomplete />', () => {
       checkHighlightIs('one');
     });
 
+    it('should keep the highlight on the first item', () => {
+      const options = ['one', 'two'];
+      const { getByRole } = render(
+        <Autocomplete
+          {...defaultProps}
+          value="one"
+          autoHighlight
+          options={options}
+          renderInput={(params) => <TextField autoFocus {...params} />}
+        />,
+      );
+
+      function checkHighlightIs(expected) {
+        expect(getByRole('listbox').querySelector('li[data-focus]')).to.have.text(expected);
+      }
+
+      checkHighlightIs('one');
+      fireEvent.change(document.activeElement, { target: { value: 'two' } });
+      checkHighlightIs('two');
+    });
+
     it('should set the highlight on selected item when dropdown is expanded', () => {
       const { getByRole, setProps } = render(
         <Autocomplete
