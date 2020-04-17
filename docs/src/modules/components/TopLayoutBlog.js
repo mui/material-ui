@@ -8,6 +8,7 @@ import Link from '@material-ui/core/Link';
 import useMarkdownDocs from 'docs/src/modules/components/useMarkdownDocs';
 import { getHeaders, getTitle, getDescription } from 'docs/src/modules/utils/parseMarkdown';
 import AppFooter from 'docs/src/modules/components/AppFooter';
+import { exactProp } from '@material-ui/utils';
 
 const styles = (theme) => ({
   root: {
@@ -44,18 +45,10 @@ const styles = (theme) => ({
 });
 
 function TopLayoutBlog(props) {
-  const {
-    classes,
-    markdown: markdownProp,
-    markdownLocation: markdownLocationProp,
-    req,
-    reqPrefix,
-    reqSource,
-  } = props;
+  const { classes, markdown: markdownProp, req, reqPrefix, reqSource } = props;
 
   const markdownDocs = useMarkdownDocs({
     markdown: markdownProp,
-    markdownLocation: markdownLocationProp,
     req,
     reqPrefix,
     reqSource,
@@ -90,12 +83,13 @@ function TopLayoutBlog(props) {
 TopLayoutBlog.propTypes = {
   classes: PropTypes.object.isRequired,
   markdown: PropTypes.string,
-  // You can define the direction location of the markdown file.
-  // Otherwise, we try to determine it with an heuristic.
-  markdownLocation: PropTypes.string,
   req: PropTypes.func,
   reqPrefix: PropTypes.string,
   reqSource: PropTypes.func,
 };
+
+if (process.env.NODE_ENV !== 'production') {
+  TopLayoutBlog.propTypes = exactProp(TopLayoutBlog.propTypes);
+}
 
 export default withStyles(styles)(TopLayoutBlog);
