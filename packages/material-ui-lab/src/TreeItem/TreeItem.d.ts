@@ -3,7 +3,7 @@ import { StandardProps } from '@material-ui/core';
 import { TransitionProps } from '@material-ui/core/transitions';
 
 export interface TreeItemProps
-  extends StandardProps<React.HTMLAttributes<HTMLLIElement>, TreeItemClassKey> {
+  extends StandardProps<React.HTMLAttributes<HTMLLIElement>, TreeItemClassKey, 'onClick'> {
   /**
    * The icon used to collapse the node.
    */
@@ -28,6 +28,12 @@ export interface TreeItemProps
    * The id of the node.
    */
   nodeId: string;
+  /**
+   *
+   * @param {object} event The click event
+   * @param {bool} isLabelClick If originated from the label or the icon
+   */
+  onClick?(event: React.MouseEvent, isLabelClick: boolean): void;
   /**
    * The component used for the transition.
    * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.

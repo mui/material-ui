@@ -182,7 +182,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
    * Expansion Helpers
    */
 
-  const toggleExpansion = (event, value = focusedNodeId) => {
+  const toggleExpansion = (event, value = focusedNodeId, isLabelClick) => {
     let newExpanded;
     if (expanded.indexOf(value) !== -1) {
       newExpanded = expanded.filter((id) => id !== value);
@@ -197,8 +197,12 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
       newExpanded = [value, ...expanded];
     }
 
+    let toggleReason = 'Keyboard';
+    if (isLabelClick !== undefined) {
+      toggleReason = isLabelClick ? 'LabelClick' : 'IconClick';
+    }
     if (onNodeToggle) {
-      onNodeToggle(event, newExpanded);
+      onNodeToggle(event, newExpanded, toggleReason);
     }
 
     setExpandedState(newExpanded);
@@ -215,12 +219,15 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
       const topLevelNodes = nodeMap.current[-1].children;
       diff = topLevelNodes.filter((node) => !isExpanded(node));
     }
-    const newExpanded = [...expanded, ...diff];
 
-    setExpandedState(newExpanded);
+    if (diff.length > 0) {
+      const newExpanded = [...expanded, ...diff];
 
-    if (onNodeToggle) {
-      onNodeToggle(event, newExpanded);
+      if (onNodeToggle) {
+        onNodeToggle(event, newExpanded, 'Keyboard');
+      }
+
+      setExpandedState(newExpanded);
     }
   };
 
@@ -607,10 +614,10 @@ TreeView.propTypes = {
    */
   onNodeSelect: PropTypes.func,
   /**
-   * Callback fired when tree items are expanded/collapsed.
-   *
+   * Callback fired when tree items are expanded/collapsed
    * @param {object} event The event source of the callback.
-   * @param {array} nodeIds The ids of the expanded nodes.
+   * @param {string[]} nodeIds The ids of the expanded nodes.
+   * @param {'Keyboard' | 'IconClick' | 'LabelClick'} reason The reason for the expansion / collapse.
    */
   onNodeToggle: PropTypes.func,
   /**

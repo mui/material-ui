@@ -158,7 +158,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     }
   }
 
-  const handleClick = (event) => {
+  const handleClick = (event, isLabelClick) => {
     if (!focused) {
       focus(nodeId);
     }
@@ -167,7 +167,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
 
     // If already expanded and trying to toggle selection don't close
     if (expandable && !(multiple && isExpanded(nodeId))) {
-      toggleExpansion(event, nodeId);
+      toggleExpansion(event, nodeId, isLabelClick);
     }
 
     if (multiple) {
@@ -181,8 +181,16 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     }
 
     if (onClick) {
-      onClick(event);
+      onClick(event, isLabelClick);
     }
+  };
+
+  const handleLabelClick = (event) => {
+    handleClick(event, true);
+  };
+
+  const handleIconClick = (event) => {
+    handleClick(event, false);
   };
 
   const handleMouseDown = (event) => {
@@ -380,14 +388,11 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
       tabIndex={tabbable ? 0 : -1}
       {...other}
     >
-      <div
-        className={classes.content}
-        onClick={handleClick}
-        onMouseDown={handleMouseDown}
-        ref={contentRef}
-      >
-        <div className={classes.iconContainer}>{icon}</div>
-        <Typography component="div" className={classes.label}>
+      <div className={classes.content} onMouseDown={handleMouseDown} ref={contentRef}>
+        <div onClick={handleIconClick} className={classes.iconContainer}>
+          {icon}
+        </div>
+        <Typography onClick={handleLabelClick} component="div" className={classes.label}>
           {label}
         </Typography>
       </div>
@@ -450,7 +455,8 @@ TreeItem.propTypes = {
    */
   nodeId: PropTypes.string.isRequired,
   /**
-   * @ignore
+   * @param {object} event The click event
+   * @param {bool} isLabelClick If originated from the label or the icon
    */
   onClick: PropTypes.func,
   /**

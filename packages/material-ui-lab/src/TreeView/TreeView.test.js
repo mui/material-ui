@@ -196,7 +196,7 @@ describe('<TreeView />', () => {
   });
 
   describe('onNodeToggle', () => {
-    it('should be called when a parent node is clicked', () => {
+    it('should be called when a parent node label is clicked', () => {
       const handleNodeToggle = spy();
 
       const { getByText } = render(
@@ -211,6 +211,88 @@ describe('<TreeView />', () => {
 
       expect(handleNodeToggle.callCount).to.equal(1);
       expect(handleNodeToggle.args[0][1]).to.deep.equal(['1']);
+      expect(handleNodeToggle.args[0][2]).to.be.equal('LabelClick');
+    });
+
+    it('should be called when a parent node icon is clicked', () => {
+      const handleNodeToggle = spy();
+
+      const { getByTestId } = render(
+        <TreeView
+          defaultParentIcon={<div data-testid="defaultParentIcon" />}
+          onNodeToggle={handleNodeToggle}
+        >
+          <TreeItem nodeId="1" label="outer">
+            <TreeItem nodeId="2" label="inner" />
+          </TreeItem>
+        </TreeView>,
+      );
+
+      fireEvent.click(getByTestId('defaultParentIcon'));
+
+      expect(handleNodeToggle.callCount).to.equal(1);
+      expect(handleNodeToggle.args[0][1]).to.deep.equal(['1']);
+      expect(handleNodeToggle.args[0][2]).to.be.equal('IconClick');
+    });
+
+    it('should be called when a parent node is expanded with arrow right', () => {
+      const handleNodeToggle = spy();
+
+      const { getByTestId } = render(
+        <TreeView onNodeToggle={handleNodeToggle}>
+          <TreeItem nodeId="1" label="outer" data-testid="one">
+            <TreeItem nodeId="2" label="inner" />
+          </TreeItem>
+        </TreeView>,
+      );
+
+      getByTestId('one').focus();
+      fireEvent.keyDown(document.activeElement, { key: 'ArrowRight' });
+
+      expect(handleNodeToggle.callCount).to.equal(1);
+      expect(handleNodeToggle.args[0][1]).to.deep.equal(['1']);
+      expect(handleNodeToggle.args[0][2]).to.be.equal('Keyboard');
+    });
+
+    it('should be called when expand all siblings', () => {
+      const handleNodeToggle = spy();
+
+      const { getByTestId } = render(
+        <TreeView onNodeToggle={handleNodeToggle}>
+          <TreeItem nodeId="1" label="outer" data-testid="one">
+            <TreeItem nodeId="2" label="inner" />
+          </TreeItem>
+        </TreeView>,
+      );
+
+      getByTestId('one').focus();
+      fireEvent.keyDown(document.activeElement, { key: '*' });
+
+      expect(handleNodeToggle.callCount).to.equal(1);
+      expect(handleNodeToggle.args[0][1]).to.deep.equal(['1']);
+      expect(handleNodeToggle.args[0][2]).to.be.equal('Keyboard');
+    });
+
+    it('should not be called if there is no change', () => {
+      const handleNodeToggle = spy();
+
+      const { getByTestId } = render(
+        <TreeView onNodeToggle={handleNodeToggle}>
+          <TreeItem nodeId="1" label="outer" data-testid="one">
+            <TreeItem nodeId="2" label="inner" />
+          </TreeItem>
+        </TreeView>,
+      );
+
+      getByTestId('one').focus();
+      fireEvent.keyDown(document.activeElement, { key: '*' });
+
+      expect(handleNodeToggle.callCount).to.equal(1);
+      expect(handleNodeToggle.args[0][1]).to.deep.equal(['1']);
+      expect(handleNodeToggle.args[0][2]).to.be.equal('Keyboard');
+
+      fireEvent.keyDown(document.activeElement, { key: '*' });
+      expect(handleNodeToggle.callCount).to.equal(1);
     });
   });
 

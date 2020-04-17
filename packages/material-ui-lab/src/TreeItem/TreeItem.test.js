@@ -27,18 +27,44 @@ describe('<TreeItem />', () => {
     after: () => mount.cleanUp(),
   }));
 
-  it('should call onClick when clicked', () => {
+  it('should call onClick when label clicked', () => {
     const handleClick = spy();
 
     const { getByText } = render(
       <TreeView>
-        <TreeItem nodeId="test" label="test" onClick={handleClick} />
+        <TreeItem
+          icon={<div data-testid="icon" />}
+          nodeId="test"
+          label="test"
+          onClick={handleClick}
+        />
       </TreeView>,
     );
 
     fireEvent.click(getByText('test'));
 
     expect(handleClick.callCount).to.equal(1);
+    expect(handleClick.args[0][1]).to.be.true;
+  });
+
+  it('should call onClick when icon clicked', () => {
+    const handleClick = spy();
+
+    const { getByTestId } = render(
+      <TreeView>
+        <TreeItem
+          icon={<div data-testid="icon" />}
+          nodeId="test"
+          label="test"
+          onClick={handleClick}
+        />
+      </TreeView>,
+    );
+
+    fireEvent.click(getByTestId('icon'));
+
+    expect(handleClick.callCount).to.equal(1);
+    expect(handleClick.args[0][1]).to.be.false;
   });
 
   it('should display the right icons', () => {
@@ -519,7 +545,7 @@ describe('<TreeItem />', () => {
                 <button
                   data-testid="button"
                   type="button"
-                  onClick={() => setState(value => !value)}
+                  onClick={() => setState((value) => !value)}
                 >
                   Toggle Hide
                 </button>

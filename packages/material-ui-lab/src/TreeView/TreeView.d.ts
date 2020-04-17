@@ -34,12 +34,16 @@ export interface TreeViewPropsBase
    */
   expanded?: string[];
   /**
-   * Callback fired when tree items are expanded/collapsed.
-   *
+   * Callback fired when tree items are expanded/collapsed
    * @param {object} event The event source of the callback.
-   * @param {array} nodeIds The ids of the expanded nodes.
+   * @param {string[]} nodeIds The ids of the expanded nodes.
+   * @param {'Keyboard' | 'IconClick' | 'LabelClick'} reason The reason for the expansion / collapse.
    */
-  onNodeToggle?: (event: React.ChangeEvent<{}>, nodeIds: string[]) => void;
+  onNodeToggle?: (
+    event: React.ChangeEvent<{}>,
+    nodeIds: string[],
+    reason: 'Keyboard' | 'IconClick' | 'LabelClick',
+  ) => void;
 }
 
 export interface MultiSelectTreeViewProps extends TreeViewPropsBase {
