@@ -6,7 +6,7 @@ import Warning from '../internal/svg-icons/Warning';
 import withStyles from '../styles/withStyles';
 import SvgIcon from '../SvgIcon';
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     display: 'block',

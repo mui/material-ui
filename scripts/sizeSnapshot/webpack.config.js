@@ -9,7 +9,7 @@ const workspaceRoot = path.join(__dirname, '..', '..');
 
 async function getSizeLimitBundles() {
   const corePackagePath = path.join(workspaceRoot, 'packages/material-ui/build/esm');
-  const coreComponents = (await glob(path.join(corePackagePath, '[A-Z]*'))).map(componentPath => {
+  const coreComponents = (await glob(path.join(corePackagePath, '[A-Z]*'))).map((componentPath) => {
     const componentName = path.basename(componentPath);
     let entryName = componentName;
     // adjust for legacy names
@@ -29,7 +29,7 @@ async function getSizeLimitBundles() {
   });
 
   const labPackagePath = path.join(workspaceRoot, 'packages/material-ui-lab/build/esm');
-  const labComponents = (await glob(path.join(labPackagePath, '[A-Z]*'))).map(componentPath => {
+  const labComponents = (await glob(path.join(labPackagePath, '[A-Z]*'))).map((componentPath) => {
     const componentName = path.basename(componentPath);
 
     return {

@@ -22,7 +22,7 @@ function easeIn(t) {
   return t * t;
 }
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     display: 'inline-block',
@@ -184,7 +184,7 @@ CircularProgress.propTypes = {
    * If `true`, the shrink animation is disabled.
    * This only works if variant is `indeterminate`.
    */
-  disableShrink: chainPropTypes(PropTypes.bool, props => {
+  disableShrink: chainPropTypes(PropTypes.bool, (props) => {
     if (props.disableShrink && props.variant && props.variant !== 'indeterminate') {
       return new Error(
         'Material-UI: you have provided the `disableShrink` prop ' +

@@ -6,7 +6,7 @@ import InputBase from '../InputBase';
 import NotchedOutline from './NotchedOutline';
 import withStyles from '../styles/withStyles';
 
-export const styles = theme => {
+export const styles = (theme) => {
   const borderColor =
     theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)';
 
@@ -113,7 +113,7 @@ const OutlinedInput = React.forwardRef(function OutlinedInput(props, ref) {
 
   return (
     <InputBase
-      renderSuffix={state => (
+      renderSuffix={(state) => (
         <NotchedOutline
           className={classes.notchedOutline}
           label={label}

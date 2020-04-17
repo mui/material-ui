@@ -13,6 +13,11 @@ const workspaceRoot = path.join(__dirname, '../');
 const reactMode = 'legacy';
 
 module.exports = {
+  typescript: {
+    // Motivated by https://github.com/zeit/next.js/issues/7687
+    ignoreDevErrors: true,
+    ignoreBuildErrors: true,
+  },
   webpack: (config, options) => {
     const plugins = config.plugins.concat([
       new webpack.DefinePlugin({
@@ -72,12 +77,14 @@ module.exports = {
       ];
     }
 
-    return Object.assign({}, config, {
+    return {
+      ...config,
       plugins,
       node: {
         fs: 'empty',
       },
-      module: Object.assign({}, config.module, {
+      module: {
+        ...config.module,
         rules: config.module.rules.concat([
           {
             test: /\.(css|md)$/,
@@ -122,8 +129,8 @@ module.exports = {
             use: options.defaultLoaders.babel,
           },
         ]),
-      }),
-    });
+      },
+    };
   },
   exportTrailingSlash: true,
   // Next.js provides a `defaultPathMap` argument, we could simplify the logic.
@@ -135,7 +142,7 @@ module.exports = {
     function traverse(pages2, userLanguage) {
       const prefix = userLanguage === 'en' ? '' : `/${userLanguage}`;
 
-      pages2.forEach(page => {
+      pages2.forEach((page) => {
         if (!page.children) {
           map[`${prefix}${page.pathname.replace(/^\/api-docs\/(.*)/, '/api/$1')}`] = {
             page: page.pathname,
@@ -158,7 +165,7 @@ module.exports = {
     } else {
       // eslint-disable-next-line no-console
       console.log('Considering various locales for SSR');
-      LANGUAGES_SSR.forEach(userLanguage => {
+      LANGUAGES_SSR.forEach((userLanguage) => {
         traverse(pages, userLanguage);
       });
     }

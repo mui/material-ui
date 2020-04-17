@@ -5,7 +5,7 @@ import withStyles from '../styles/withStyles';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
 import { fade } from '../styles/colorManipulator';
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     color: 'inherit',
@@ -16,7 +16,7 @@ export const styles = theme => ({
     '&$hover:hover': {
       backgroundColor: theme.palette.action.hover,
     },
-    '&$selected,&$selected:hover': {
+    '&$selected, &$selected:hover': {
       backgroundColor: fade(theme.palette.secondary.main, theme.palette.action.selectedOpacity),
     },
   },

@@ -24,7 +24,7 @@ export default function ClickAway() {
   const [open, setOpen] = React.useState(false);
 
   const handleClick = () => {
-    setOpen(prev => !prev);
+    setOpen((prev) => !prev);
   };
 
   const handleClickAway = () => {

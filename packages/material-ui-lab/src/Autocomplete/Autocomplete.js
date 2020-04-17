@@ -13,7 +13,7 @@ import useAutocomplete, { createFilterOptions } from '../useAutocomplete';
 
 export { createFilterOptions };
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     '&:hover $clearIndicatorDirty, &$focused $clearIndicatorDirty': {
@@ -134,7 +134,6 @@ export const styles = theme => ({
   clearIndicator: {
     marginRight: -2,
     padding: 4,
-    color: theme.palette.action.active,
     visibility: 'hidden',
   },
   /* Styles applied to the clear indicator if the input is dirty. */
@@ -143,7 +142,6 @@ export const styles = theme => ({
   popupIndicator: {
     padding: 2,
     marginRight: -2,
-    color: theme.palette.action.active,
   },
   /* Styles applied to the popup indicator if the popup is open. */
   popupIndicatorOpen: {
@@ -162,17 +160,14 @@ export const styles = theme => ({
     ...theme.typography.body1,
     overflow: 'hidden',
     margin: '4px 0',
-    '& > ul': {
-      maxHeight: '40vh',
-      overflow: 'auto',
-    },
   },
   /* Styles applied to the `listbox` component. */
   listbox: {
     listStyle: 'none',
     margin: 0,
     padding: '8px 0px',
-    position: 'relative',
+    maxHeight: '40vh',
+    overflow: 'auto',
   },
   /* Styles applied to the loading wrapper. */
   loading: {
@@ -223,6 +218,9 @@ export const styles = theme => ({
   /* Styles applied to the group's ul elements. */
   groupUl: {
     padding: 0,
+    '& $option': {
+      paddingLeft: 24,
+    },
   },
 });
 
@@ -251,19 +249,22 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     disableClearable = false,
     disableCloseOnSelect = false,
     disabled = false,
+    disabledItemsFocusable = false,
     disableListWrap = false,
     disablePortal = false,
     filterOptions,
     filterSelectedOptions = false,
     forcePopupIcon = 'auto',
     freeSolo = false,
+    getLimitTagsText = (more) => `+${more}`,
     getOptionDisabled,
-    getOptionLabel = x => x,
+    getOptionLabel = (x) => x,
     getOptionSelected,
     groupBy,
     id: idProp,
     includeInputInList = false,
     inputValue: inputValueProp,
+    limitTags = -1,
     ListboxComponent = 'ul',
     ListboxProps,
     loading = false,
@@ -318,7 +319,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
   let startAdornment;
 
   if (multiple && value.length > 0) {
-    const getCustomizedTagProps = params => ({
+    const getCustomizedTagProps = (params) => ({
       className: clsx(classes.tag, {
         [classes.tagSizeSmall]: size === 'small',
       }),
@@ -340,7 +341,19 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     }
   }
 
-  const defaultRenderGroup = params => (
+  if (limitTags > -1 && Array.isArray(startAdornment)) {
+    const more = startAdornment.length - limitTags;
+    if (limitTags && !focused && more > 0) {
+      startAdornment = startAdornment.splice(0, limitTags);
+      startAdornment.push(
+        <span className={classes.tag} key={startAdornment.length}>
+          {getLimitTagsText(more)}
+        </span>,
+      );
+    }
+  }
+
+  const defaultRenderGroup = (params) => (
     <li key={params.key}>
       <ListSubheader className={classes.groupLabel} component="div">
         {params.key}
@@ -542,7 +555,7 @@ Autocomplete.propTypes = {
    */
   closeText: PropTypes.string,
   /**
-   * If `true`, the popup will ignore the blur event if the input if filled.
+   * If `true`, the popup will ignore the blur event if the input is filled.
    * You can inspect the popup markup with your browser tools.
    * Consider this option when you need to customize the component.
    */
@@ -563,6 +576,10 @@ Autocomplete.propTypes = {
    * If `true`, the input will be disabled.
    */
   disabled: PropTypes.bool,
+  /**
+   * If `true`, will allow focus on disabled items.
+   */
+  disabledItemsFocusable: PropTypes.bool,
   /**
    * If `true`, the list box in the popup will not wrap focus.
    */
@@ -592,6 +609,13 @@ Autocomplete.propTypes = {
    * If `true`, the Autocomplete is free solo, meaning that the user input is not bound to provided options.
    */
   freeSolo: PropTypes.bool,
+  /**
+   * The label to display when the tags are truncated (`limitTags`).
+   *
+   * @param {number} more The number of truncated tags.
+   * @returns {ReactNode}
+   */
+  getLimitTagsText: PropTypes.func,
   /**
    * Used to determine the disabled state for a given option.
    */
@@ -627,6 +651,11 @@ Autocomplete.propTypes = {
    * The input value.
    */
   inputValue: PropTypes.string,
+  /**
+   * The maximum number of tags that will be visible when not focused.
+   * Set `-1` to disable the limit.
+   */
+  limitTags: PropTypes.number,
   /**
    * The component used to render the listbox.
    */
@@ -668,6 +697,7 @@ Autocomplete.propTypes = {
    * Use in controlled mode (see open).
    *
    * @param {object} event The event source of the callback.
+   * @param {string} reason Can be: `"toggleInput"`, `"escape"`, `"select-option"`, `"blur"`.
    */
   onClose: PropTypes.func,
   /**

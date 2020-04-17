@@ -43,7 +43,7 @@ Alternativ können Sie [react-spring](https://github.com/react-spring/react-spri
 
 ## Blätter Spielplatz
 
-{{"demo": "pages/components/popper/ScrollPlayground.js", "hideHeader": true, "bg": true}}
+{{"demo": "pages/components/popper/ScrollPlayground.js", "hideToolbar": true, "bg": true}}
 
 ## Gefälschtes Referenzobjekt
 

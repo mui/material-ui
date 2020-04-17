@@ -53,7 +53,7 @@ export interface UseAutocompleteCommonProps<T> {
    */
   componentName?: string;
   /**
-   * If `true`, the popup will ignore the blur event if the input if filled.
+   * If `true`, the popup will ignore the blur event if the input is filled.
    * You can inspect the popup markup with your browser tools.
    * Consider this option when you need to customize the component.
    */
@@ -66,6 +66,10 @@ export interface UseAutocompleteCommonProps<T> {
    * If `true`, the popup won't close when a value is selected.
    */
   disableCloseOnSelect?: boolean;
+  /**
+   * If `true`, will allow focus on disabled items.
+   */
+  disabledItemsFocusable?: boolean;
   /**
    * If `true`, the list box in the popup will not wrap focus.
    */
@@ -126,8 +130,9 @@ export interface UseAutocompleteCommonProps<T> {
    * Use in controlled mode (see open).
    *
    * @param {object} event The event source of the callback.
+   * @param {string} reason Can be: `"toggleInput"`, `"escape"`, `"select-option"`, `"blur"`.
    */
-  onClose?: (event: React.ChangeEvent<{}>) => void;
+  onClose?: (event: React.ChangeEvent<{}>, reason: AutocompleteCloseReason) => void;
   /**
    * Callback fired when the input value changes.
    *
@@ -138,7 +143,7 @@ export interface UseAutocompleteCommonProps<T> {
   onInputChange?: (
     event: React.ChangeEvent<{}>,
     value: string,
-    reason: 'input' | 'reset' | 'clear',
+    reason: AutocompleteInputChangeReason,
   ) => void;
   /**
    * Callback fired when the popup requests to be opened.
@@ -166,11 +171,23 @@ export interface UseAutocompleteCommonProps<T> {
   selectOnFocus?: boolean;
 }
 
-export type ChangeReason = 'create-option' | 'select-option' | 'remove-option' | 'clear' | 'blur';
-export interface ChangeDetails<T = string> {
+export type AutocompleteChangeReason =
+  | 'create-option'
+  | 'select-option'
+  | 'remove-option'
+  | 'clear'
+  | 'blur';
+export interface AutocompleteChangeDetails<T = string> {
   option: T;
 }
+export type AutocompleteCloseReason = 'toggleInput' | 'escape' | 'select-option' | 'blur';
+export type AutocompleteInputChangeReason = 'input' | 'reset' | 'clear';
+
 export interface UseAutocompleteMultipleProps<T> extends UseAutocompleteCommonProps<T> {
+  /**
+   * The default input value. Use when the component is not controlled.
+   */
+  defaultValue?: T[];
   /**
    * If `true`, `value` must be an array and the menu will support multiple selections.
    */
@@ -183,10 +200,6 @@ export interface UseAutocompleteMultipleProps<T> extends UseAutocompleteCommonPr
    */
   value?: T[];
   /**
-   * The default input value. Use when the component is not controlled.
-   */
-  defaultValue?: T[];
-  /**
    * Callback fired when the value changes.
    *
    * @param {object} event The event source of the callback.
@@ -196,12 +209,16 @@ export interface UseAutocompleteMultipleProps<T> extends UseAutocompleteCommonPr
   onChange?: (
     event: React.ChangeEvent<{}>,
     value: T[],
-    reason: ChangeReason,
-    details?: ChangeDetails<T>,
+    reason: AutocompleteChangeReason,
+    details?: AutocompleteChangeDetails<T>,
   ) => void;
 }
 
 export interface UseAutocompleteSingleProps<T> extends UseAutocompleteCommonProps<T> {
+  /**
+   * The default input value. Use when the component is not controlled.
+   */
+  defaultValue?: T;
   /**
    * If `true`, `value` must be an array and the menu will support multiple selections.
    */
@@ -214,10 +231,6 @@ export interface UseAutocompleteSingleProps<T> extends UseAutocompleteCommonProp
    */
   value?: T | null;
   /**
-   * The default input value. Use when the component is not controlled.
-   */
-  defaultValue?: T;
-  /**
    * Callback fired when the value changes.
    *
    * @param {object} event The event source of the callback.
@@ -227,8 +240,8 @@ export interface UseAutocompleteSingleProps<T> extends UseAutocompleteCommonProp
   onChange?: (
     event: React.ChangeEvent<{}>,
     value: T | null,
-    reason: ChangeReason,
-    details?: ChangeDetails<T>,
+    reason: AutocompleteChangeReason,
+    details?: AutocompleteChangeDetails<T>,
   ) => void;
 }
 

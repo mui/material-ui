@@ -1,6 +1,6 @@
 import React from 'react';
 import kebabCase from 'lodash/kebabCase';
-import { Router as Router2 } from 'next/router';
+import { rewriteUrlForNextExport } from 'next/dist/next-server/lib/router/rewrite-url-for-export';
 import { useSelector } from 'react-redux';
 import Demo from 'docs/src/modules/components/Demo';
 import { getHeaders, getContents, demoRegexp } from 'docs/src/modules/utils/parseMarkdown';
@@ -17,14 +17,14 @@ export default function useMarkdownDocs(options) {
     reqSource,
   } = options;
 
-  const userLanguage = useSelector(state => state.options.userLanguage);
+  const userLanguage = useSelector((state) => state.options.userLanguage);
   let demos;
   let markdown = markdownProp;
 
   if (!markdown) {
     demos = {};
     const markdowns = {};
-    req.keys().forEach(filename => {
+    req.keys().forEach((filename) => {
       if (filename.indexOf('.md') !== -1) {
         const match = filename.match(/-([a-z]{2})\.md$/);
 
@@ -59,7 +59,7 @@ export default function useMarkdownDocs(options) {
 
   const { activePage } = React.useContext(PageContext);
   let location = locationProp || (activePage && activePage.pathname);
-  const t = useSelector(state => state.options.t);
+  const t = useSelector((state) => state.options.t);
 
   if (location && !locationProp) {
     const token = location.split('/');
@@ -74,16 +74,13 @@ export default function useMarkdownDocs(options) {
   }
 
   if (headers.components.length > 0) {
-    const section = location.split('/')[4];
     contents.push(`
 ## API
 
 ${headers.components
   .map(
-    component =>
-      `- [&lt;${component} /&gt;](${
-        section === 'lab' ? '/lab/api' : '/api'
-      }/${Router2._rewriteUrlForNextExport(kebabCase(component))})`,
+    (component) =>
+      `- [&lt;${component} /&gt;](${rewriteUrlForNextExport(`/api/${kebabCase(component)}`)})`,
   )
   .join('\n')}
   `);

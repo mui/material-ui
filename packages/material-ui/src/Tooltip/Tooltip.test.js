@@ -184,7 +184,7 @@ describe('<Tooltip />', () => {
     });
 
     it('should handle autoFocus + onFocus forwarding', () => {
-      const AutoFocus = props => (
+      const AutoFocus = (props) => (
         <div>
           {props.open ? (
             <Tooltip {...defaultProps} title="Title">
@@ -273,7 +273,7 @@ describe('<Tooltip />', () => {
       'onMouseLeave',
       'onFocus',
       'onBlur',
-    ].forEach(name => {
+    ].forEach((name) => {
       it(`should be transparent for the ${name} event`, () => {
         const handler = spy();
         const wrapper = mount(
@@ -425,7 +425,7 @@ describe('<Tooltip />', () => {
           }}
         />,
       );
-      expect(popperRef.current.modifiers.find(x => x.name === 'arrow').foo).to.equal('bar');
+      expect(popperRef.current.modifiers.find((x) => x.name === 'arrow').foo).to.equal('bar');
     });
   });
 
@@ -480,6 +480,32 @@ describe('<Tooltip />', () => {
       focusVisibleLegacy(wrapper.find('#target'));
 
       assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), true);
+    });
+
+    // https://github.com/mui-org/material-ui/issues/19883
+    it('should not prevent event handlers of children', () => {
+      const handleFocus = spy((event) => event.currentTarget);
+      // Tooltip should not assume that event handlers of children are attached to the
+      // outermost host
+      const TextField = React.forwardRef(function TextField(props, ref) {
+        return (
+          <div ref={ref}>
+            <input type="text" {...props} />
+          </div>
+        );
+      });
+      const { getByRole } = render(
+        <Tooltip interactive open title="test">
+          <TextField onFocus={handleFocus} />
+        </Tooltip>,
+      );
+      const input = getByRole('textbox');
+
+      input.focus();
+
+      // return value is event.currentTarget
+      expect(handleFocus.callCount).to.equal(1);
+      expect(handleFocus.returned(input)).to.equal(true);
     });
   });
 

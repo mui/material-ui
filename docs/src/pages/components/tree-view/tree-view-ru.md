@@ -9,9 +9,17 @@ components: TreeView, TreeItem
 
 Иерархические представления могут использоваться для того чтобы показать структуру файловой системы. Каждый элемент может быть раскрыт, чтобы показать содержание папки, в которой могут быть файлы, папки или и то и другое.
 
+## Basic tree view
+
 {{"demo": "pages/components/tree-view/FileSystemNavigator.js"}
 
-## Controlled
+## Multi selection
+
+Tree views also support multi selection.
+
+{{"demo": "pages/components/tree-view/MultiSelectTreeView.js"}}
+
+### Controlled tree view
 
 The tree view also offers a controlled API.
 
@@ -41,11 +49,11 @@ const data = {
 
 ## Customized tree view
 
-### Пользовательские иконки, границы и анимации
+### Custom icons, border and animation
 
 {{"demo": "pages/components/tree-view/CustomizedTreeView.js"}}
 
-### Gmail клон
+### Gmail clone
 
 {{"demo": "pages/components/tree-view/GmailTreeView.js"}}
 

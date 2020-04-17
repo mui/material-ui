@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 
-export const styles = theme => {
+export const styles = (theme) => {
   const elevations = {};
   theme.shadows.forEach((shadow, index) => {
     elevations[`elevation${index}`] = {
@@ -65,6 +65,10 @@ const Paper = React.forwardRef(function Paper(props, ref) {
 });
 
 Paper.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * The content of the component.
    */
@@ -73,7 +77,7 @@ Paper.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */

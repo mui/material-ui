@@ -13,7 +13,7 @@ import Chip from '@material-ui/core/Chip';
 import FaceIcon from '@material-ui/icons/Face';
 import DoneIcon from '@material-ui/icons/Done';
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     flexGrow: 1,
   },
@@ -24,7 +24,7 @@ const styles = theme => ({
 
 function ChipsPlayground(props) {
   const { classes } = props;
-  const [{ color, onDelete, avatar, icon, variant, size }, setState] = React.useState({
+  const [state, setState] = React.useState({
     color: 'default',
     onDelete: 'none',
     avatar: 'none',
@@ -32,13 +32,13 @@ function ChipsPlayground(props) {
     variant: 'default',
     size: 'medium',
   });
+  const { color, onDelete, avatar, icon, variant, size } = state;
 
-  const handleChange = key => event => {
-    const value = event.target.value;
-    setState(state => ({
+  const handleChange = (event) => {
+    setState({
       ...state,
-      [key]: value,
-    }));
+      [event.target.name]: event.target.value,
+    });
   };
 
   const handleDeleteExample = () => {
@@ -131,7 +131,7 @@ function ChipsPlayground(props) {
                 name="variant"
                 aria-label="variant"
                 value={variant}
-                onChange={handleChange('variant')}
+                onChange={handleChange}
               >
                 <FormControlLabel value="default" control={<Radio />} label="default" />
                 <FormControlLabel value="outlined" control={<Radio />} label="outlined" />
@@ -141,13 +141,7 @@ function ChipsPlayground(props) {
           <Grid item xs={12} md={6}>
             <FormControl component="fieldset">
               <FormLabel>color</FormLabel>
-              <RadioGroup
-                row
-                name="color"
-                aria-label="color"
-                value={color}
-                onChange={handleChange('color')}
-              >
+              <RadioGroup row name="color" aria-label="color" value={color} onChange={handleChange}>
                 <FormControlLabel value="default" control={<Radio />} label="default" />
                 <FormControlLabel value="primary" control={<Radio />} label="primary" />
                 <FormControlLabel value="secondary" control={<Radio />} label="secondary" />
@@ -157,13 +151,7 @@ function ChipsPlayground(props) {
           <Grid item xs={12} md={6}>
             <FormControl component="fieldset">
               <FormLabel>size</FormLabel>
-              <RadioGroup
-                row
-                name="sizet"
-                aria-label="size"
-                value={size}
-                onChange={handleChange('size')}
-              >
+              <RadioGroup row name="size" aria-label="size" value={size} onChange={handleChange}>
                 <FormControlLabel value="medium" control={<Radio />} label="medium" />
                 <FormControlLabel value="small" control={<Radio />} label="small" />
               </RadioGroup>
@@ -172,13 +160,7 @@ function ChipsPlayground(props) {
           <Grid item xs={12} md={6}>
             <FormControl component="fieldset">
               <FormLabel>icon</FormLabel>
-              <RadioGroup
-                row
-                name="icon"
-                aria-label="icon"
-                value={icon}
-                onChange={handleChange('icon')}
-              >
+              <RadioGroup row name="icon" aria-label="icon" value={icon} onChange={handleChange}>
                 <FormControlLabel value="none" control={<Radio />} label="none" />
                 <FormControlLabel value="icon" control={<Radio />} label="icon" />
               </RadioGroup>
@@ -192,7 +174,7 @@ function ChipsPlayground(props) {
                 name="avatar"
                 aria-label="avatar"
                 value={avatar}
-                onChange={handleChange('avatar')}
+                onChange={handleChange}
               >
                 <FormControlLabel value="none" control={<Radio />} label="none" />
                 <FormControlLabel value="letter" control={<Radio />} label="letter" />
@@ -208,7 +190,7 @@ function ChipsPlayground(props) {
                 name="onDelete"
                 aria-label="on delete"
                 value={onDelete}
-                onChange={handleChange('onDelete')}
+                onChange={handleChange}
               >
                 <FormControlLabel value="none" control={<Radio />} label="none" />
                 <FormControlLabel value="default" control={<Radio />} label="default" />

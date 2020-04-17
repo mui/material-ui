@@ -1,6 +1,6 @@
 ---
 title: React 提醒组件
-components: Alert
+components: Alert, AlertTitle
 ---
 
 # Alert 提醒
@@ -31,11 +31,11 @@ components: Alert
 
 ### 过渡效果
 
-可以使用 [过渡组件](/components/transitions) ，如 `Collapse（展开）` 来实现「提醒」出现时的过渡效果。
+可以使用 [过渡组件](/components/transitions/) ，如 `Collapse（展开）` 来实现「提醒」出现时的过渡效果。
 
 {{"demo": "pages/components/alert/TransitionAlerts.js"}}
 
-## Icons 图标
+## 图标
 
 `icon`是指可以在「提醒」组件的开始的地方加一个图标。 以此来改变不同程度「提醒」的默认图标。
 
@@ -45,7 +45,7 @@ components: Alert
 
 {{"demo": "pages/components/alert/IconAlerts.js"}}
 
-## 变种(Variants)
+## 变种
 
 还可以实现「边框」和「填充」这两种变体。
 
@@ -57,7 +57,7 @@ components: Alert
 
 {{"demo": "pages/components/alert/FilledAlerts.js"}}
 
-## Toast（提示）
+## 提示
 
 你可以使用「消息条」来显示[ 带确认按钮的Toast 提示](/components/snackbars/#customized-snackbars) 。
 

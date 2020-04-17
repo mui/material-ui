@@ -14,7 +14,7 @@ function findPagesMarkdown(
 ) {
   const items = fs.readdirSync(directory);
 
-  items.forEach(item => {
+  items.forEach((item) => {
     const itemPath = path.resolve(directory, item);
 
     if (fs.statSync(itemPath).isDirectory()) {
@@ -32,10 +32,7 @@ function findPagesMarkdown(
       .replace('.md', '');
 
     // Remove the last pathname segment.
-    pathname = pathname
-      .split('/')
-      .slice(0, 3)
-      .join('/');
+    pathname = pathname.split('/').slice(0, 3).join('/');
 
     pagesMarkdown.push({
       // Relative location in the path (URL) system.
@@ -54,7 +51,7 @@ const componentRegex = /^([A-Z][a-z]+)+\.js/;
 function findComponents(directory, components = []) {
   const items = fs.readdirSync(directory);
 
-  items.forEach(item => {
+  items.forEach((item) => {
     const itemPath = path.resolve(directory, item);
 
     if (fs.statSync(itemPath).isDirectory()) {
@@ -85,7 +82,7 @@ function findPages(
   directory = path.resolve(__dirname, '../../../pages'),
   pages = [],
 ) {
-  fs.readdirSync(directory).forEach(item => {
+  fs.readdirSync(directory).forEach((item) => {
     const itemPath = path.resolve(directory, item);
     const pathname = itemPath
       .replace(new RegExp(`\\${path.sep}`, 'g'), '/')

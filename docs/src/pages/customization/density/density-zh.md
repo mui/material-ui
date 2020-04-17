@@ -1,10 +1,10 @@
-# 间距(density)
+# density 间距
 
 <p class="description">如何自定义间距(density)</p>
 
 ## 使用 `Density`
 
-This section explains how to apply density. It doesn't cover petential use cases, or considerations for using density in your application. <https://material.io/design/layout/applying-density. html#typographic-density>使用案例</>
+This section explains how to apply density. It doesn't cover potential use cases, or considerations for using density in your application. <https://material.io/design/layout/applying-density. html#typographic-density>使用案例</>
 
 ## Implementing density
 
@@ -14,7 +14,7 @@ Depending on the component, density is applied either via lower spacing, or simp
 
 The following components have props applying higher density:
 
-- [Buttons（按钮）](/api/button/)
+- [Button](/api/button/)
 - [Fab](/api/fab/)
 - [FilledInput](/api/filled-input/)
 - [FormControl](/api/form-control/)
@@ -92,4 +92,4 @@ const theme = createMuiTheme({
 });
 ```
 
-{{"demo": "pages/customization/density/DensityTool.js", "hideHeader": true}}
+{{"demo": "pages/customization/density/DensityTool.js", "hideToolbar": true}}

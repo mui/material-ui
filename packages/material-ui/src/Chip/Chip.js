@@ -9,7 +9,7 @@ import unsupportedProp from '../utils/unsupportedProp';
 import capitalize from '../utils/capitalize';
 import ButtonBase from '../ButtonBase';
 
-export const styles = theme => {
+export const styles = (theme) => {
   const backgroundColor =
     theme.palette.type === 'light' ? theme.palette.grey[300] : theme.palette.grey[700];
   const deleteIconColor = fade(theme.palette.text.primary, 0.26);
@@ -287,7 +287,7 @@ const Chip = React.forwardRef(function Chip(props, ref) {
   const chipRef = React.useRef(null);
   const handleRef = useForkRef(chipRef, ref);
 
-  const handleDeleteIconClick = event => {
+  const handleDeleteIconClick = (event) => {
     // Stop the event from bubbling up to the `Chip`
     event.stopPropagation();
     if (onDelete) {
@@ -295,10 +295,10 @@ const Chip = React.forwardRef(function Chip(props, ref) {
     }
   };
 
-  const isDeleteKeyboardEvent = keyboardEvent =>
+  const isDeleteKeyboardEvent = (keyboardEvent) =>
     keyboardEvent.key === 'Backspace' || keyboardEvent.key === 'Delete';
 
-  const handleKeyDown = event => {
+  const handleKeyDown = (event) => {
     if (isDeleteKeyboardEvent(event)) {
       // will be handled in keyUp, otherwise some browsers
       // might init navigation
@@ -310,7 +310,7 @@ const Chip = React.forwardRef(function Chip(props, ref) {
     }
   };
 
-  const handleKeyUp = event => {
+  const handleKeyUp = (event) => {
     if (onKeyUp) {
       onKeyUp(event);
     }

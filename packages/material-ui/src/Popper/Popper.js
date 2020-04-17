@@ -93,7 +93,7 @@ const Popper = React.forwardRef(function Popper(props, ref) {
       handlePopperRefRef.current(null);
     }
 
-    const handlePopperUpdate = data => {
+    const handlePopperUpdate = (data) => {
       setPlacement(data.placement);
     };
 
@@ -147,7 +147,7 @@ const Popper = React.forwardRef(function Popper(props, ref) {
   }, [anchorEl, disablePortal, modifiers, open, rtlPlacement, popperOptions]);
 
   const handleRef = React.useCallback(
-    node => {
+    (node) => {
       setRef(ownRef, node);
       handleOpen();
     },
@@ -235,7 +235,7 @@ Popper.propTypes = {
    * The reference element should be an HTML Element instance or a referenceObject:
    * https://popper.js.org/popper-documentation.html#referenceObject.
    */
-  anchorEl: chainPropTypes(PropTypes.oneOfType([PropTypes.object, PropTypes.func]), props => {
+  anchorEl: chainPropTypes(PropTypes.oneOfType([PropTypes.object, PropTypes.func]), (props) => {
     if (props.open) {
       const resolvedAnchorEl = getAnchorEl(props.anchorEl);
       const containerWindow = ownerWindow(resolvedAnchorEl);

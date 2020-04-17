@@ -6,7 +6,7 @@ import Link from '@material-ui/core/Link';
 import AppBar from '../components/AppBar';
 import Toolbar, { styles as toolbarStyles } from '../components/Toolbar';
 
-const styles = theme => ({
+const styles = (theme) => ({
   title: {
     fontSize: 24,
   },

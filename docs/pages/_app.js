@@ -11,7 +11,8 @@ import PropTypes from 'prop-types';
 import acceptLanguage from 'accept-language';
 import { create } from 'jss';
 import rtl from 'jss-rtl';
-import { Router as Router2, useRouter } from 'next/router';
+import { useRouter } from 'next/router';
+import { rewriteUrlForNextExport } from 'next/dist/next-server/lib/router/rewrite-url-for-export';
 import { StylesProvider, jssPreset } from '@material-ui/styles';
 import pages from 'docs/src/pages';
 import initRedux from 'docs/src/modules/redux/initRedux';
@@ -48,7 +49,7 @@ function loadCrowdin() {
 function LanguageNegotiation() {
   const dispatch = useDispatch();
   const router = useRouter();
-  const userLanguage = useSelector(state => state.options.userLanguage);
+  const userLanguage = useSelector((state) => state.options.userLanguage);
 
   React.useEffect(() => {
     if (userLanguage === 'aa') {
@@ -58,7 +59,7 @@ function LanguageNegotiation() {
 
   React.useEffect(() => {
     const { userLanguage: userLanguageUrl, canonical } = pathnameToLanguage(
-      Router2._rewriteUrlForNextExport(router.asPath),
+      rewriteUrlForNextExport(router.asPath),
     );
     const preferedLanguage =
       getCookie('userLanguage') !== 'noDefault' && userLanguage === 'en'
@@ -126,9 +127,9 @@ function usePersistCodeVariant(initialCodeVariant = CODE_VARIANTS.JS, codeVarian
 
 function PersistState() {
   const dispatch = useDispatch();
-  const options = useSelector(state => state.options);
+  const options = useSelector((state) => state.options);
 
-  const codeVariant = usePersistCodeVariant(options.codeVariant, nextCodeVariant =>
+  const codeVariant = usePersistCodeVariant(options.codeVariant, (nextCodeVariant) =>
     dispatch({ type: ACTION_TYPES.OPTIONS_CHANGE, payload: { codeVariant: nextCodeVariant } }),
   );
 
@@ -163,7 +164,7 @@ function forcePageReload(registration) {
   }
 
   function listenInstalledStateChange() {
-    registration.installing.addEventListener('statechange', event => {
+    registration.installing.addEventListener('statechange', (event) => {
       // console.log('statechange', event.target.state);
       if (event.target.state === 'installed' && registration.waiting) {
         // A new service worker is available, inform the user
@@ -243,7 +244,7 @@ Tip: you can access the documentation \`theme\` object directly in the console.
 }
 
 function findActivePage(currentPages, pathname) {
-  const activePage = find(currentPages, page => {
+  const activePage = find(currentPages, (page) => {
     if (page.children) {
       if (pathname.indexOf(`${page.pathname}/`) === 0) {
         // Check if one of the children matches (for /components)
@@ -289,7 +290,7 @@ function AppWrapper(props) {
   if (pathname !== '/') {
     // The leading / is only added to support static hosting (resolve /index.html).
     // We remove it to normalize the pathname.
-    // See `_rewriteUrlForNextExport` on Next.js side.
+    // See `rewriteUrlForNextExport` on Next.js side.
     pathname = pathname.replace(/\/$/, '');
   }
   const activePage = findActivePage(pages, pathname);
@@ -304,7 +305,7 @@ function AppWrapper(props) {
   return (
     <ReactMode>
       <NextHead>
-        {fonts.map(font => (
+        {fonts.map((font) => (
           <link rel="stylesheet" href={font} key={font} />
         ))}
       </NextHead>

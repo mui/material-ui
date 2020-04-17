@@ -53,7 +53,7 @@ const externs = [
 renderer.link = (href, title, text) => {
   let more = '';
 
-  if (externs.some(domain => href.indexOf(domain) !== -1)) {
+  if (externs.some((domain) => href.indexOf(domain) !== -1)) {
     more = ' target="_blank" rel="noopener nofollow"';
   }
 
@@ -114,7 +114,7 @@ const markedOptions = {
   renderer,
 };
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     ...theme.typography.body1,
     color: theme.palette.text.primary,
@@ -124,22 +124,27 @@ const styles = theme => ({
       position: 'absolute',
     },
     '& pre': {
-      margin: '24px 0',
-      padding: '12px 18px',
+      margin: theme.spacing(3, 0),
+      padding: theme.spacing(2),
       backgroundColor: '#272c34',
       direction: 'ltr',
       borderRadius: theme.shape.borderRadius,
       overflow: 'auto',
       WebkitOverflowScrolling: 'touch', // iOS momentum scrolling.
+      maxWidth: 'calc(100vw - 32px)',
+      [theme.breakpoints.up('md')]: {
+        maxWidth: 'calc(100vw - 32px - 16px)',
+      },
     },
     '& code': {
+      lineHeight: 1.4,
       display: 'inline-block',
       fontFamily: 'Consolas, "Liberation Mono", Menlo, Courier, monospace',
       WebkitFontSmoothing: 'subpixel-antialiased',
-      padding: '2px 6px',
+      padding: '0 3px',
       color: theme.palette.text.primary,
       backgroundColor:
-        theme.palette.type === 'dark' ? 'rgba(255,229,100,0.2)' : 'rgba(255,229,100,0.1)',
+        theme.palette.type === 'light' ? 'rgba(255, 229, 100, 0.2)' : 'rgba(255, 229, 100, 0.2)',
       fontSize: 14,
       borderRadius: 2,
     },
@@ -294,7 +299,7 @@ const styles = theme => ({
 function MarkdownElement(props) {
   const { classes, className, text, ...other } = props;
 
-  const userLanguage = useSelector(state => state.options.userLanguage);
+  const userLanguage = useSelector((state) => state.options.userLanguage);
 
   // eslint-disable-next-line no-underscore-dangle
   global.__MARKED_USER_LANGUAGE__ = userLanguage;

@@ -132,12 +132,17 @@ function handleBlurVisible() {
 }
 
 export function useIsFocusVisible() {
-  const ref = React.useCallback(instance => {
+  const ref = React.useCallback((instance) => {
     const node = ReactDOM.findDOMNode(instance);
     if (node != null) {
       prepare(node.ownerDocument);
     }
   }, []);
+
+  if (process.env.NODE_ENV !== 'production') {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    React.useDebugValue(isFocusVisible);
+  }
 
   return { isFocusVisible, onBlurVisible: handleBlurVisible, ref };
 }

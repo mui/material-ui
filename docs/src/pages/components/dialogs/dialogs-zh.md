@@ -1,5 +1,5 @@
 ---
-title: React Dialog（对话框）组件
+title: React Dialog 对话框组件
 components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Slide
 ---
 

@@ -1,4 +1,4 @@
-# Palette（调色）
+# Palette 调色
 
 <p class="description">The palette enables you to modify the color of the components to suit your brand.</p>
 
@@ -17,9 +17,9 @@ The default palette uses the shades prefixed with `A` (`A200`, etc.) for the sec
 
 If you want to learn more about color, you can check out [the color section](/customization/color/).
 
-{{"demo": "pages/customization/palette/Intentions.js", "bg": "inline", "hideHeader": true}}
+{{"demo": "pages/customization/palette/Intentions.js", "bg": "inline", "hideToolbar": true}}
 
-### 个性化
+### Customization 个性化
 
 您可以通过在主题中包含 palette 对象来覆盖默认调色板值。
 
@@ -114,7 +114,7 @@ const darkTheme = createMuiTheme({
 
 The colors modified by the palette type are the following:
 
-{{"demo": "pages/customization/palette/DarkTheme.js", "bg": "inline", "hideHeader": true}}
+{{"demo": "pages/customization/palette/DarkTheme.js", "bg": "inline", "hideToolbar": true}}
 
 ### User preference
 

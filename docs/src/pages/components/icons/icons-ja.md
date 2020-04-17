@@ -17,9 +17,33 @@ Material-UI provides icons support in three ways:
 
 Material Design has standardized over 1,100 official icons, each in five different "themes" (see below). For each SVG icon, we export the respective React component from the @material-ui/icons package. You can [search the full list of these icons](/components/material-icons/).
 
+### インストール
+
+Install the package in your project directory with:
+
+```sh
+// with npm
+npm install @material-ui/icons
+
+// with yarn
+yarn add @material-ui/icons
+```
+
+These components use the Material-UI SvgIcon component to render the SVG path for each icon, and so a have a peer-dependency on the next release of Material-UI.
+
+If you are not already using Material-UI in your project, you can add it with:
+
+```sh
+// npmの場合
+npm install @material-ui/core
+
+// yarnの場合
+yarn add @material-ui/core
+```
+
 ### 使い方
 
-Install `@material-ui/icons`. Import icons using one of these two options:
+Import icons using one of these two options:
 
 - Option 1:
 
@@ -112,7 +136,7 @@ Note: [mdi-material-ui](https://github.com/TeamWertarbyte/mdi-material-ui) has a
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 ```
 
-`Icon` will set the correct class name for the Material icon font. For other fonts, you must supply the class name using the Icon component's `className` property.
+`Icon` will set the correct class name for the Material icon font. 他のフォントの場合、Iconコンポーネントの `className` プロパティを使用して クラス名を指定する必要があります。
 
 アイコンを使用するには、単純にアイコン名（フォントの合字）を `Icon` コンポーネントでラップします。例えば：
 

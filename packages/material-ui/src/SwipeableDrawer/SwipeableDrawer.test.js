@@ -13,7 +13,7 @@ import useForkRef from '../utils/useForkRef';
 function fireMouseEvent(name, element, properties = {}) {
   const event = document.createEvent('MouseEvents');
   event.initEvent(name, true, true);
-  Object.keys(properties).forEach(key => {
+  Object.keys(properties).forEach((key) => {
     event[key] = properties[key];
   });
   if (element.dispatchEvent) {
@@ -31,7 +31,7 @@ function fireBodyMouseEvent(name, properties = {}) {
 function fireSwipeAreaMouseEvent(wrapper, name, properties = {}) {
   const event = document.createEvent('MouseEvents');
   event.initEvent(name, true, true);
-  Object.keys(properties).forEach(key => {
+  Object.keys(properties).forEach((key) => {
     event[key] = properties[key];
   });
   const swipeArea = wrapper.find(SwipeArea);
@@ -226,7 +226,7 @@ describe('<SwipeableDrawer />', () => {
       },
     ];
 
-    tests.forEach(params => {
+    tests.forEach((params) => {
       describe(`anchor=${params.anchor}`, () => {
         beforeEach(() => {
           wrapper.setProps({ anchor: params.anchor });

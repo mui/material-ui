@@ -13,7 +13,7 @@ workbox.core.setCacheNameDetails({
 
 workbox.routing.registerRoute(/(\/|\.js)$/, workbox.strategies.staleWhileRevalidate());
 
-self.addEventListener('message', event => {
+self.addEventListener('message', (event) => {
   switch (event.data) {
     case 'skipWaiting':
       // console.log('self.skipWaiting()');

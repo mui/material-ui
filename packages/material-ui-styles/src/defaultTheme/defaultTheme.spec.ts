@@ -13,7 +13,7 @@ declare module '@material-ui/styles' {
 }
 
 {
-  makeStyles(theme => {
+  makeStyles((theme) => {
     // $ExpectType string
     const value = theme.myProperty;
 

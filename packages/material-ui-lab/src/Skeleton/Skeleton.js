@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     display: 'block',
@@ -49,7 +49,7 @@ export const styles = theme => ({
     overflow: 'hidden',
     '&::after': {
       animation: '$wave 1.6s linear 0.5s infinite',
-      background: 'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.7), transparent)',
+      background: `linear-gradient(90deg, transparent, ${theme.palette.action.hover}, transparent)`,
       content: '""',
       position: 'absolute',
       transform: 'translateX(-100%)', // Avoid flash during server-side hydration

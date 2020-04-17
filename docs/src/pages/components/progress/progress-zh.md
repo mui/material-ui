@@ -1,5 +1,5 @@
 ---
-title: React Circular Progress（环形进度条）、Linear Progress（线形进度条）组件
+title: Circular, Linear progress React components
 components: CircularProgress, LinearProgress
 ---
 

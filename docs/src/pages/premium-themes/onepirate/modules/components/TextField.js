@@ -5,7 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 import MuiTextField from '@material-ui/core/TextField';
 import { capitalize } from '@material-ui/core/utils';
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     padding: 0,
     'label + &': {

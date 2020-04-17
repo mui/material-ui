@@ -7,10 +7,7 @@ import consoleErrorMock from 'test/utils/consoleErrorMock';
 import TextareaAutosize from './TextareaAutosize';
 
 function getStyle(wrapper) {
-  return wrapper
-    .find('textarea')
-    .at(0)
-    .props().style;
+  return wrapper.find('textarea').at(0).props().style;
 }
 
 describe('<TextareaAutosize />', () => {
@@ -42,14 +39,8 @@ describe('<TextareaAutosize />', () => {
     function setLayout(wrapper, { getComputedStyle, scrollHeight, lineHeight: lineHeightArg }) {
       const lineHeight = typeof lineHeightArg === 'function' ? lineHeightArg : () => lineHeightArg;
 
-      const input = wrapper
-        .find('textarea')
-        .at(0)
-        .instance();
-      const shadow = wrapper
-        .find('textarea')
-        .at(1)
-        .instance();
+      const input = wrapper.find('textarea').at(0).instance();
+      const shadow = wrapper.find('textarea').at(1).instance();
 
       getComputedStyleStub[input] = getComputedStyle;
 
@@ -61,7 +52,7 @@ describe('<TextareaAutosize />', () => {
     }
 
     before(() => {
-      stub(window, 'getComputedStyle').value(node => getComputedStyleStub[node] || {});
+      stub(window, 'getComputedStyle').value((node) => getComputedStyleStub[node] || {});
     });
 
     after(() => {
@@ -113,10 +104,7 @@ describe('<TextareaAutosize />', () => {
         scrollHeight: 30,
         lineHeight: 15,
       });
-      wrapper
-        .find('textarea')
-        .at(0)
-        .simulate('change');
+      wrapper.find('textarea').at(0).simulate('change');
       wrapper.update();
       assert.deepEqual(getStyle(wrapper), { height: 30, overflow: 'hidden' });
       assert.strictEqual(handleChange.callCount, 1);

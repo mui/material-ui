@@ -28,9 +28,9 @@ Page.getInitialProps = async () => {
   const FILTERED_BRANCHES = ['latest', 'staging', 'l10n', 'next'];
 
   const branches = await getBranches();
-  let versions = branches.map(n => n.name);
-  versions = versions.filter(value => FILTERED_BRANCHES.indexOf(value) === -1);
-  versions = versions.map(version => ({
+  let versions = branches.map((n) => n.name);
+  versions = versions.filter((value) => FILTERED_BRANCHES.indexOf(value) === -1);
+  versions = versions.map((version) => ({
     version,
     // Replace dot with dashes for Netlify branch subdomains
     url: `https://${version.replace(/\./g, '-')}.material-ui.com`,

@@ -30,7 +30,7 @@ const SimpleButton = React.forwardRef(function SimpleButton(props, ref) {
     }
   };
 
-  const handleFocus = event => {
+  const handleFocus = (event) => {
     if (isFocusVisible(event)) {
       setFocusVisible(true);
     }

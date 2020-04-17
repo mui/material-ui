@@ -1,5 +1,5 @@
 ---
-title: React Bottom Navigation（底部导航栏）组件
+title: React Bottom Navigation 底部导航栏组件
 components: BottomNavigation, BottomNavigationAction
 ---
 

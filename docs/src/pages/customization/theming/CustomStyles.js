@@ -3,7 +3,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import { createMuiTheme, makeStyles, ThemeProvider } from '@material-ui/core/styles';
 import { orange } from '@material-ui/core/colors';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     color: theme.status.danger,
     '&$checked': {

@@ -3,7 +3,7 @@ title: React List（列表）组件
 components: Collapse, Divider, List, ListItem, ListItemAvatar, ListItemIcon, ListItemSecondaryAction, ListItemText, ListSubheader
 ---
 
-# Lists 列表
+# List 列表
 
 <p class="description">列表是对文本或图像的连续、垂直的索引。</p>
 
@@ -67,7 +67,7 @@ The checkbox is the primary action and the state indicator for the list item. Th
 
 {{"demo": "pages/components/lists/CheckboxListSecondary.js", "bg": true}}
 
-### Switch
+### 开关
 
 该开关是辅助操作和单独的目标。
 
@@ -81,11 +81,11 @@ This feature relies on CSS sticky positioning. Unfortunately it's [not implement
 
 {{"demo": "pages/components/lists/PinnedSubheaderList.js", "bg": true}}
 
-## Inset List（嵌入列表）
+## 嵌入列表
 
 {{"demo": "pages/components/lists/InsetList.js", "bg": true}}
 
-## 大型列表渲染（Virtualized Table）
+## 大型列表渲染
 
 在下面的示例中，我们演示了如何将 [react-window](https://github.com/bvaughn/react-window) 与 `List` 组件一起使用 它渲染了200行，可以轻松处理更多行。 可视化优化了整体的性能。
 
@@ -93,6 +93,6 @@ This feature relies on CSS sticky positioning. Unfortunately it's [not implement
 
 The use of [react-window](https://github.com/bvaughn/react-window) when possible is encouraged. 如果这个库不包括你的用例，你应该考虑使用 [react-virtualized](https://github.com/bvaughn/react-virtualized)，然后使用 [react-virtuoso](https://github.com/petyosi/react-virtuoso)等替代品。
 
-## 个性化
+## Customization 个性化
 
-👑 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/components/menu-list).
+👑如果您还在寻找灵感，您可以看看 [MUI Treasury 特别定制的一些例子](https://mui-treasury.com/components/menu-list)。

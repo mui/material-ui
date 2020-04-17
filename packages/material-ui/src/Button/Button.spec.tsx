@@ -25,7 +25,7 @@ const ButtonTest = () => (
       Title
     </Button>
     <Button component="a">Simple Link</Button>
-    <Button component={props => <a {...props} />}>Complex Link</Button>
+    <Button component={(props) => <a {...props} />}>Complex Link</Button>
     <Button component={ReactRouterLink} to="/open-collective">
       Link
     </Button>
@@ -36,10 +36,10 @@ const ButtonTest = () => (
     <Button href="/open-collective">Link</Button>
     // By default the underlying component is a button element:
     <Button
-      ref={elem => {
+      ref={(elem) => {
         elem; // $ExpectType HTMLButtonElement | null
       }}
-      onClick={e => {
+      onClick={(e) => {
         e; // $ExpectType MouseEvent<HTMLButtonElement, MouseEvent>
         log(e);
       }}
@@ -49,10 +49,10 @@ const ButtonTest = () => (
     // If an href is provided, an anchor is used:
     <Button
       href="/open-collective"
-      ref={elem => {
+      ref={(elem) => {
         elem; // $ExpectType HTMLAnchorElement | null
       }}
-      onClick={e => {
+      onClick={(e) => {
         e; // $ExpectType MouseEvent<HTMLAnchorElement, MouseEvent>
         log(e);
       }}
@@ -62,10 +62,10 @@ const ButtonTest = () => (
     // If a component prop is specified, use that:
     <Button<'div'>
       component="div"
-      ref={elem => {
+      ref={(elem) => {
         elem; // $ExpectType HTMLDivElement | null
       }}
-      onClick={e => {
+      onClick={(e) => {
         e; // $ExpectType MouseEvent<HTMLDivElement, MouseEvent>
         log(e);
       }}

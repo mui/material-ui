@@ -14,7 +14,7 @@ for reuse in other pages.
 For multi-part examples, a table in the README at the linked source code location describes
 the purpose of each file.
 
-{{"demo": "pages/getting-started/templates/Templates.js", "hideHeader": true, "bg": true}}
+{{"demo": "pages/getting-started/templates/Templates.js", "hideToolbar": true, "bg": true}}
 
 If while using these examples you make changes or enhancements that could improve the
 developer experience, or you would like to contribute an additional example,
@@ -24,6 +24,6 @@ So far we have demos for a dashboard, sign in page, sign up page, blog page, che
 
 ## Premium Themes
 
-Looking for something more? You can find complete templates & themes in the <a href="https://material-ui.com/store/" data-ga-event-category="premium-themes" data-ga-event-action="click" data-ga-event-label="templates-link">premium template section</a>.
+Looking for something more? You can find complete templates & themes in the <a href="https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=templates-store" data-ga-event-category="store" data-ga-event-action="click" data-ga-event-label="templates">premium template section</a>.
 
-<a href="https://material-ui.com/store/" data-ga-event-category="premium-themes" data-ga-event-action="click" data-ga-event-label="templates-image"><img src="/static/images/themes-light.jpg" alt="react templates" /></a>
+<a href="https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=templates-store" data-ga-event-category="store" data-ga-event-action="click" data-ga-event-label="templates"><img src="/static/images/themes-light.jpg" alt="react templates" /></a>

@@ -15,7 +15,7 @@ import Popover from '@material-ui/core/Popover';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 
-const styles = theme => ({
+const styles = (theme) => ({
   buttonWrapper: {
     position: 'relative',
     marginBottom: theme.spacing(4),
@@ -68,19 +68,7 @@ function AnchorPlayground(props) {
   const { classes } = props;
   const anchorRef = React.useRef();
 
-  const [
-    {
-      open,
-      anchorOriginVertical,
-      anchorOriginHorizontal,
-      transformOriginVertical,
-      transformOriginHorizontal,
-      positionTop,
-      positionLeft,
-      anchorReference,
-    },
-    setState,
-  ] = React.useState({
+  const [state, setState] = React.useState({
     open: false,
     anchorOriginVertical: 'top',
     anchorOriginHorizontal: 'left',
@@ -91,34 +79,43 @@ function AnchorPlayground(props) {
     anchorReference: 'anchorEl',
   });
 
-  const handleChange = key => event => {
-    const value = event.target.value;
-    setState(state => ({
+  const {
+    open,
+    anchorOriginVertical,
+    anchorOriginHorizontal,
+    transformOriginVertical,
+    transformOriginHorizontal,
+    positionTop,
+    positionLeft,
+    anchorReference,
+  } = state;
+
+  const handleChange = (event) => {
+    setState({
       ...state,
-      [key]: value,
-    }));
+      [event.target.name]: event.target.value,
+    });
   };
 
-  const handleNumberInputChange = key => event => {
-    const value = event.target.value;
-    setState(state => ({
+  const handleNumberInputChange = (key) => (event) => {
+    setState({
       ...state,
-      [key]: parseInt(value, 10),
-    }));
+      [key]: parseInt(event.target.value, 10),
+    });
   };
 
   const handleClickButton = () => {
-    setState(state => ({
+    setState({
       ...state,
       open: true,
-    }));
+    });
   };
 
   const handleClose = () => {
-    setState(state => ({
+    setState({
       ...state,
       open: false,
-    }));
+    });
   };
 
   let mode = '';
@@ -192,7 +189,7 @@ function AnchorPlayground(props) {
               aria-label="anchor reference"
               name="anchorReference"
               value={anchorReference}
-              onChange={handleChange('anchorReference')}
+              onChange={handleChange}
             >
               <FormControlLabel value="anchorEl" control={<Radio />} label="anchorEl" />
               <FormControlLabel value="anchorPosition" control={<Radio />} label="anchorPosition" />
@@ -227,7 +224,7 @@ function AnchorPlayground(props) {
               aria-label="anchor origin vertical"
               name="anchorOriginVertical"
               value={anchorOriginVertical}
-              onChange={handleChange('anchorOriginVertical')}
+              onChange={handleChange}
             >
               <FormControlLabel
                 value="top"
@@ -254,7 +251,7 @@ function AnchorPlayground(props) {
               aria-label="transform origin vertical"
               name="transformOriginVertical"
               value={transformOriginVertical}
-              onChange={handleChange('transformOriginVertical')}
+              onChange={handleChange}
             >
               <FormControlLabel value="top" control={<Radio color="primary" />} label="Top" />
               <FormControlLabel value="center" control={<Radio color="primary" />} label="Center" />
@@ -270,7 +267,7 @@ function AnchorPlayground(props) {
               aria-label="anchor origin horizontal"
               name="anchorOriginHorizontal"
               value={anchorOriginHorizontal}
-              onChange={handleChange('anchorOriginHorizontal')}
+              onChange={handleChange}
             >
               <FormControlLabel
                 value="left"
@@ -298,7 +295,7 @@ function AnchorPlayground(props) {
               aria-label="transform origin horizontal"
               name="transformOriginHorizontal"
               value={transformOriginHorizontal}
-              onChange={handleChange('transformOriginHorizontal')}
+              onChange={handleChange}
             >
               <FormControlLabel value="left" control={<Radio color="primary" />} label="Left" />
               <FormControlLabel value="center" control={<Radio color="primary" />} label="Center" />

@@ -9,7 +9,7 @@ import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
@@ -54,7 +54,7 @@ export default function InteractiveGrid() {
           direction={direction}
           justify={justify}
         >
-          {[0, 1, 2].map(value => (
+          {[0, 1, 2].map((value) => (
             <Grid key={value} item>
               <Paper
                 className={classes.paper}
@@ -77,7 +77,7 @@ export default function InteractiveGrid() {
                   name="direction"
                   aria-label="direction"
                   value={direction}
-                  onChange={event => {
+                  onChange={(event) => {
                     setDirection(event.target.value);
                   }}
                 >
@@ -100,7 +100,7 @@ export default function InteractiveGrid() {
                   name="justify"
                   aria-label="justify"
                   value={justify}
-                  onChange={event => {
+                  onChange={(event) => {
                     setJustify(event.target.value);
                   }}
                 >
@@ -125,7 +125,7 @@ export default function InteractiveGrid() {
                   name="alignItems"
                   aria-label="align items"
                   value={alignItems}
-                  onChange={event => {
+                  onChange={(event) => {
                     setAlignItems(event.target.value);
                   }}
                 >

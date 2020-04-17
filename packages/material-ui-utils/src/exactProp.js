@@ -12,12 +12,12 @@ export default function exactProp(propTypes) {
 
   return {
     ...propTypes,
-    [specialProperty]: props => {
-      const unsupportedProps = Object.keys(props).filter(prop => !propTypes.hasOwnProperty(prop));
+    [specialProperty]: (props) => {
+      const unsupportedProps = Object.keys(props).filter((prop) => !propTypes.hasOwnProperty(prop));
       if (unsupportedProps.length > 0) {
         return new Error(
           `The following props are not supported: ${unsupportedProps
-            .map(prop => `\`${prop}\``)
+            .map((prop) => `\`${prop}\``)
             .join(', ')}. Please remove them.`,
         );
       }

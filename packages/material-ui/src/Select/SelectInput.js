@@ -26,6 +26,7 @@ function isEmpty(display) {
  */
 const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   const {
+    'aria-label': ariaLabel,
     autoFocus,
     autoWidth,
     children,
@@ -104,7 +105,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     }
   };
 
-  const handleMouseDown = event => {
+  const handleMouseDown = (event) => {
     // Ignore everything but left-click
     if (event.button !== 0) {
       return;
@@ -116,11 +117,11 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     update(true, event);
   };
 
-  const handleClose = event => {
+  const handleClose = (event) => {
     update(false, event);
   };
 
-  const handleItemClick = child => event => {
+  const handleItemClick = (child) => (event) => {
     if (!multiple) {
       update(false, event);
     }
@@ -139,6 +140,10 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       newValue = child.props.value;
     }
 
+    if (value === newValue) {
+      return;
+    }
+
     setValue(newValue);
 
     if (onChange) {
@@ -149,7 +154,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     }
   };
 
-  const handleKeyDown = event => {
+  const handleKeyDown = (event) => {
     if (!readOnly) {
       const validKeys = [
         ' ',
@@ -169,7 +174,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
   const open = displayNode !== null && (isOpenControlled ? openProp : openState);
 
-  const handleBlur = event => {
+  const handleBlur = (event) => {
     // if open event.stopImmediatePropagation
     if (!open && onBlur) {
       event.persist();
@@ -196,7 +201,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     }
   }
 
-  const items = React.Children.map(children, child => {
+  const items = React.Children.map(children, (child) => {
     if (!React.isValidElement(child)) {
       return null;
     }
@@ -222,7 +227,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         );
       }
 
-      selected = value.some(v => areEqualValues(v, child.props.value));
+      selected = value.some((v) => areEqualValues(v, child.props.value));
       if (selected && computeDisplay) {
         displayMultiple.push(child.props.children);
       }
@@ -240,7 +245,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     return React.cloneElement(child, {
       'aria-selected': selected ? 'true' : undefined,
       onClick: handleItemClick(child),
-      onKeyUp: event => {
+      onKeyUp: (event) => {
         if (event.key === ' ') {
           // otherwise our MenuItems dispatches a click event
           // it's not behavior of the native <option> and causes
@@ -263,17 +268,19 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     React.useEffect(() => {
       if (!foundMatch && !multiple && value !== '') {
-        const values = React.Children.toArray(children).map(child => child.props.value);
+        const values = React.Children.toArray(children).map((child) => child.props.value);
         console.warn(
           [
             `Material-UI: you have provided an out-of-range value \`${value}\` for the select ${
               name ? `(name="${name}") ` : ''
             }component.`,
             "Consider providing a value that matches one of the available options or ''.",
-            `The available values are ${values
-              .filter(x => x != null)
-              .map(x => `\`${x}\``)
-              .join(', ') || '""'}.`,
+            `The available values are ${
+              values
+                .filter((x) => x != null)
+                .map((x) => `\`${x}\``)
+                .join(', ') || '""'
+            }.`,
           ].join('\n'),
         );
       }
@@ -318,8 +325,9 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         tabIndex={tabIndex}
         role="button"
         aria-expanded={open ? 'true' : undefined}
-        aria-labelledby={`${labelId || ''} ${buttonId || ''}`}
         aria-haspopup="listbox"
+        aria-label={ariaLabel}
+        aria-labelledby={[labelId, buttonId].filter(Boolean).join(' ') || undefined}
         onKeyDown={handleKeyDown}
         onMouseDown={disabled || readOnly ? null : handleMouseDown}
         onBlur={handleBlur}
@@ -347,6 +355,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       <IconComponent
         className={clsx(classes.icon, classes[`icon${capitalize(variant)}`], {
           [classes.iconOpen]: open,
+          [classes.disabled]: disabled,
         })}
       />
       <Menu
@@ -376,6 +385,10 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 });
 
 SelectInput.propTypes = {
+  /**
+   * @ignore
+   */
+  'aria-label': PropTypes.string,
   /**
    * @ignore
    */

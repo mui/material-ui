@@ -19,7 +19,7 @@ export default function LinearDeterminate() {
 
   React.useEffect(() => {
     function progress() {
-      setCompleted(oldCompleted => {
+      setCompleted((oldCompleted) => {
         if (oldCompleted === 100) {
           return 0;
         }

@@ -40,6 +40,18 @@ export interface PopperProps extends React.HTMLAttributes<HTMLDivElement> {
   transition?: boolean;
 }
 
+/**
+ * Poppers rely on the 3rd party library [Popper.js](https://github.com/FezVrasta/popper.js) for positioning.
+ * Demos:
+ *
+ * - [Autocomplete](https://material-ui.com/components/autocomplete/)
+ * - [Menus](https://material-ui.com/components/menus/)
+ * - [Popper](https://material-ui.com/components/popper/)
+ *
+ * API:
+ *
+ * - [Popper API](https://material-ui.com/api/popper/)
+ */
 declare const Popper: React.ComponentType<PopperProps>;
 
 export default Popper;

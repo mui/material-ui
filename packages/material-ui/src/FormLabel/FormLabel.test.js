@@ -142,7 +142,7 @@ describe('<FormLabel />', () => {
 
       it('should be overridden by props', () => {
         const { container, setProps } = render(<FormLabel required={false}>name</FormLabel>, {
-          wrapper: props => <FormControl required {...props} />,
+          wrapper: (props) => <FormControl required {...props} />,
         });
 
         expect(container).to.have.text('name');

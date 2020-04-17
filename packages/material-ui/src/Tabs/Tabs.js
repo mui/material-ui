@@ -14,7 +14,7 @@ import TabScrollButton from './TabScrollButton';
 import useEventCallback from '../utils/useEventCallback';
 import useTheme from '../styles/useTheme';
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     overflow: 'hidden',
@@ -153,8 +153,8 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
           if (!tab) {
             console.error(
               [
-                `Material-UI: the value provided \`${value}\` to the Tabs component is invalid.`,
-                'None of the Tabs children have this value.',
+                `Material-UI: the value provided to the Tabs component is invalid.`,
+                `None of the Tabs' children match with \`${value}\`.`,
                 valueToIndex.keys
                   ? `You can provide one of the following values: ${Array.from(
                       valueToIndex.keys(),
@@ -203,11 +203,11 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
     }
   });
 
-  const scroll = scrollValue => {
+  const scroll = (scrollValue) => {
     animate(scrollStart, tabsRef.current, scrollValue);
   };
 
-  const moveTabsScroll = delta => {
+  const moveTabsScroll = (delta) => {
     let scrollValue = tabsRef.current[scrollStart];
 
     if (vertical) {
@@ -229,7 +229,7 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
     moveTabsScroll(tabsRef.current[clientSize]);
   };
 
-  const handleScrollbarSizeChange = React.useCallback(scrollbarHeight => {
+  const handleScrollbarSizeChange = React.useCallback((scrollbarHeight) => {
     setScrollerStyle({
       overflow: null,
       marginBottom: -scrollbarHeight,
@@ -378,7 +378,7 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
   );
 
   let childIndex = 0;
-  const children = React.Children.map(childrenProp, child => {
+  const children = React.Children.map(childrenProp, (child) => {
     if (!React.isValidElement(child)) {
       return null;
     }

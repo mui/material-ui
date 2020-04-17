@@ -99,7 +99,7 @@ describe('<Grid />', () => {
     it('should generate the right values', () => {
       const defaultTheme = createMuiTheme();
       const remTheme = createMuiTheme({
-        spacing: factor => `${0.25 * factor}rem`,
+        spacing: (factor) => `${0.25 * factor}rem`,
       });
 
       expect(styles(remTheme)['spacing-xs-2']).to.deep.equal({

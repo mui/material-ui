@@ -19,7 +19,7 @@ export default function CircularStatic() {
 
   React.useEffect(() => {
     function progress() {
-      setCompleted(prevCompleted => (prevCompleted >= 100 ? 0 : prevCompleted + 10));
+      setCompleted((prevCompleted) => (prevCompleted >= 100 ? 0 : prevCompleted + 10));
     }
 
     const timer = setInterval(progress, 1000);

@@ -5,7 +5,7 @@ import Popper from '@material-ui/core/Popper';
 import SettingsIcon from '@material-ui/icons/Settings';
 import CloseIcon from '@material-ui/icons/Close';
 import DoneIcon from '@material-ui/icons/Done';
-import Autocomplete from '@material-ui/lab/Autocomplete';
+import Autocomplete, { AutocompleteCloseReason } from '@material-ui/lab/Autocomplete';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import InputBase from '@material-ui/core/InputBase';
 
@@ -130,7 +130,10 @@ export default function GitHubLabel() {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = () => {
+  const handleClose = (event: React.ChangeEvent<{}>, reason: AutocompleteCloseReason) => {
+    if (reason === 'toggleInput') {
+      return;
+    }
     setValue(pendingValue);
     if (anchorEl) {
       anchorEl.focus();
@@ -153,7 +156,7 @@ export default function GitHubLabel() {
           <span>Labels</span>
           <SettingsIcon />
         </ButtonBase>
-        {value.map(label => (
+        {value.map((label) => (
           <div
             key={label.name}
             className={classes.tag}
@@ -217,8 +220,8 @@ export default function GitHubLabel() {
             bi = bi === -1 ? value.length + labels.indexOf(b) : bi;
             return ai - bi;
           })}
-          getOptionLabel={option => option.name}
-          renderInput={params => (
+          getOptionLabel={(option) => option.name}
+          renderInput={(params) => (
             <InputBase
               ref={params.InputProps.ref}
               inputProps={params.inputProps}

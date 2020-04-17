@@ -12,6 +12,8 @@ The widget is useful for setting the value of a single-line textbox in one of tw
 1. The value for the textbox must be chosen from a predefined set of allowed values, e.g., a location field must contain a valid location name: [combo box](#combo-box).
 2. The textbox may contain any arbitrary value, but it is advantageous to suggest possible values to the user, e.g., a search field may suggest similar or previous searches to save the user time: [free solo](#free-solo).
 
+It's meant to be an improved version of the "react-select" and "downshift" packages.
+
 ## Combo box
 
 The value must be chosen from a predefined set of allowed values.
@@ -108,6 +110,12 @@ In the event that you need to lock certain tag so that they can't be removed in 
 
 {{"demo": "pages/components/autocomplete/CheckboxesTags.js"}}
 
+### Limit tags
+
+You can use the `limitTags` prop to limit the number of displayed options when not focused.
+
+{{"demo": "pages/components/autocomplete/LimitTags.js"}}
+
 ## Sizes
 
 Fancy smaller inputs? Use the `size` prop.
@@ -144,10 +152,11 @@ import { createFilterOptions } from '@material-ui/lab/Autocomplete';
 1. `config` (*Object* [optional]):
   - `config.ignoreAccents` (*Boolean* [optional]): Defaults to `true`. Remove diacritics.
   - `config.ignoreCase` (*Boolean* [optional]): Defaults to `true`. Lowercase everything.
+  - `config.limit` (*Number* [optional]): Default to null. Limit the number of suggested options to be shown. For example, if `config.limit` is `100`, only the first `100` matching options are shown. It can be useful if a lot of options match and virtualization wasn't set up.
   - `config.matchFrom` (*'any' | 'start'* [optional]): Defaults to `'any'`.
+  - `config.startAfter`(*Number* [optional]): Default to `0`. Show the suggested options only after a certain number of letters
   - `config.stringify` (*Func* [optional]): Controls how an option is converted into a string so that it can be matched against the input text fragment.
   - `config.trim` (*Boolean* [optional]): Defaults to `false`. Remove trailing spaces.
-  - `config.limit` (*Number* [optional]): Default to null. Limit the number of suggested options to be shown. For example, if `config.limit` is `100`, only the first `100` matching options are shown. It can be useful if a lot of options match and virtualization wasn't set up.
 
 #### Returns
 
@@ -219,6 +228,10 @@ You can work around the issue with the `disablePortal` prop.
 To fully take advantage of type inference, you need to set the `multiple` prop to `undefined`, `false` or `true`.
 See [this discussion](https://github.com/mui-org/material-ui/pull/18854#discussion_r364215153) for more details.
 TypeScript might solve this bug in the future.
+
+### ListboxComponent
+
+If you provide a custom `ListboxComponent` prop, you need to make sure that the intended scroll container has the `role` attribute set to `listbox`. This ensures the correct behavior of the scroll, for example when using the keyboard to navigate.
 
 ## Accessibility
 

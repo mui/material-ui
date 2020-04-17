@@ -157,7 +157,7 @@ describe('<Modal />', () => {
       const onBackdropClick = spy();
       wrapper.setProps({
         onBackdropClick,
-        BackdropComponent: props => (
+        BackdropComponent: (props) => (
           <div data-mui-test="Backdrop" {...props}>
             <span />
           </div>
@@ -523,9 +523,9 @@ describe('<Modal />', () => {
     });
 
     it('should loop the tab key', () => {
-      const dispatchKey = properties => {
+      const dispatchKey = (properties) => {
         const event = new window.Event('keydown');
-        Object.keys(properties).forEach(key => {
+        Object.keys(properties).forEach((key) => {
           event[key] = properties[key];
         });
         document.dispatchEvent(event);
@@ -616,7 +616,7 @@ describe('<Modal />', () => {
 
   describe('two modal at the same time', () => {
     it('should open and close', () => {
-      const TestCase = props => (
+      const TestCase = (props) => (
         <React.Fragment>
           <Modal open={props.open}>
             <div>Hello</div>
@@ -639,8 +639,8 @@ describe('<Modal />', () => {
       assert.strictEqual(document.body.style.overflow, '');
     });
 
-    it('should open and close with Transitions', done => {
-      const TestCase = props => (
+    it('should open and close with Transitions', (done) => {
+      const TestCase = (props) => (
         <React.Fragment>
           <Modal open={props.open}>
             <Fade onEntered={props.onEntered} onExited={props.onExited} in={props.open}>
@@ -700,8 +700,8 @@ describe('<Modal />', () => {
   });
 
   describe('prop: closeAfterTransition', () => {
-    it('when true it should close after Transition has finished', done => {
-      const TestCase = props => (
+    it('when true it should close after Transition has finished', (done) => {
+      const TestCase = (props) => (
         <Modal open={props.open} closeAfterTransition>
           <Fade
             onEntered={props.onEntered}
@@ -743,8 +743,8 @@ describe('<Modal />', () => {
       wrapper.setProps({ open: true });
     });
 
-    it('when false it should close before Transition has finished', done => {
-      const TestCase = props => (
+    it('when false it should close before Transition has finished', (done) => {
+      const TestCase = (props) => (
         <Modal open={props.open} closeAfterTransition={false}>
           <Fade
             onEntered={props.onEntered}

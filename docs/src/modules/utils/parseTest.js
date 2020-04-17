@@ -94,7 +94,7 @@ export default async function parseTest(componentFilename) {
   };
 
   const { properties = [] } = descriptor;
-  properties.forEach(property => {
+  properties.forEach((property) => {
     const key = property.key.name;
 
     switch (key) {

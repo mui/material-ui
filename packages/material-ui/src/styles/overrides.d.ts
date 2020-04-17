@@ -67,6 +67,7 @@ import { OutlinedInputClassKey } from '../OutlinedInput';
 import { PaperClassKey } from '../Paper';
 import { PopoverClassKey } from '../Popover';
 import { RadioClassKey } from '../Radio';
+import { ScopedCssBaselineClassKey } from '../ScopedCssBaseline';
 import { SelectClassKey } from '../Select';
 import { SliderClassKey } from '../Slider';
 import { SnackbarClassKey } from '../Snackbar';
@@ -83,8 +84,8 @@ import { SwitchClassKey } from '../Switch';
 import { TabClassKey } from '../Tab';
 import { TableBodyClassKey } from '../TableBody';
 import { TableCellClassKey } from '../TableCell';
-import { TableContainerClassKey } from '../TableContainer';
 import { TableClassKey } from '../Table';
+import { TableContainerClassKey } from '../TableContainer';
 import { TableFooterClassKey } from '../TableFooter';
 import { TableHeadClassKey } from '../TableHead';
 import { TablePaginationClassKey } from '../TablePagination';
@@ -98,7 +99,7 @@ import { TouchRippleClassKey } from '../ButtonBase/TouchRipple';
 import { TypographyClassKey } from '../Typography';
 
 export type Overrides = {
-  [Name in keyof ComponentNameToClassKey]?: Partial<StyleRules<ComponentNameToClassKey[Name]>>
+  [Name in keyof ComponentNameToClassKey]?: Partial<StyleRules<ComponentNameToClassKey[Name]>>;
 };
 
 export interface ComponentNameToClassKey {
@@ -169,6 +170,7 @@ export interface ComponentNameToClassKey {
   MuiPaper: PaperClassKey;
   MuiPopover: PopoverClassKey;
   MuiRadio: RadioClassKey;
+  MuiScopedCssBaseline: ScopedCssBaselineClassKey;
   MuiSelect: SelectClassKey;
   MuiSlider: SliderClassKey;
   MuiSnackbar: SnackbarClassKey;

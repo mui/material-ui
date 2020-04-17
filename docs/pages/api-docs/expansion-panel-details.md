@@ -24,7 +24,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name required">children&nbsp;*</span> | <span class="prop-type">node</span> |  | The content of the expansion panel details. |
+| <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The content of the expansion panel details. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 
 The `ref` is forwarded to the root element.

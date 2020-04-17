@@ -13,7 +13,7 @@ import DiamondSponsors from 'docs/src/modules/components/DiamondSponsors';
 import Link from 'docs/src/modules/components/Link';
 import PageContext from 'docs/src/modules/components/PageContext';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     top: 70,
     // Fix IE 11 position sticky issue.
@@ -100,14 +100,14 @@ function getItemsServer(contents, itemsCollector) {
 function getItemsClient(items) {
   const itemsClient = [];
 
-  items.forEach(item2 => {
+  items.forEach((item2) => {
     itemsClient.push({
       ...item2,
       node: document.getElementById(item2.hash),
     });
 
     if (item2.children.length > 0) {
-      item2.children.forEach(item3 => {
+      item2.children.forEach((item3) => {
         itemsClient.push({
           ...item3,
           node: document.getElementById(item3.hash),
@@ -142,7 +142,7 @@ function useThrottledOnScroll(callback, delay) {
 export default function AppTableOfContents(props) {
   const { contents } = props;
   const classes = useStyles();
-  const t = useSelector(state => state.options.t);
+  const t = useSelector((state) => state.options.t);
 
   const itemsServer = React.useMemo(() => {
     const itemsCollectorRef = { current: [] };
@@ -199,7 +199,7 @@ export default function AppTableOfContents(props) {
   // Corresponds to 10 frames at 60 Hz
   useThrottledOnScroll(itemsServer.length > 0 ? findActiveIndex : null, 166);
 
-  const handleClick = hash => event => {
+  const handleClick = (hash) => (event) => {
     // Ignore click for new tab/new window behavior
     if (
       event.defaultPrevented ||
@@ -255,12 +255,12 @@ export default function AppTableOfContents(props) {
             {t('tableOfContents')}
           </Typography>
           <Typography component="ul" className={classes.ul}>
-            {itemsServer.map(item2 => (
+            {itemsServer.map((item2) => (
               <li key={item2.text}>
                 {itemLink(item2)}
                 {item2.children.length > 0 ? (
                   <ul className={classes.ul}>
-                    {item2.children.map(item3 => (
+                    {item2.children.map((item3) => (
                       <li key={item3.text}>{itemLink(item3, true)}</li>
                     ))}
                   </ul>

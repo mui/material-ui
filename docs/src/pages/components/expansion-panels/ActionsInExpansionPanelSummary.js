@@ -28,8 +28,8 @@ export default function ActionsInExpansionPanelSummary() {
         >
           <FormControlLabel
             aria-label="Acknowledge"
-            onClick={event => event.stopPropagation()}
-            onFocus={event => event.stopPropagation()}
+            onClick={(event) => event.stopPropagation()}
+            onFocus={(event) => event.stopPropagation()}
             control={<Checkbox />}
             label="I acknowledge that I should stop the click event propagation"
           />
@@ -50,8 +50,8 @@ export default function ActionsInExpansionPanelSummary() {
         >
           <FormControlLabel
             aria-label="Acknowledge"
-            onClick={event => event.stopPropagation()}
-            onFocus={event => event.stopPropagation()}
+            onClick={(event) => event.stopPropagation()}
+            onFocus={(event) => event.stopPropagation()}
             control={<Checkbox />}
             label="I acknowledge that I should stop the focus event propagation"
           />
@@ -72,8 +72,8 @@ export default function ActionsInExpansionPanelSummary() {
         >
           <FormControlLabel
             aria-label="Acknowledge"
-            onClick={event => event.stopPropagation()}
-            onFocus={event => event.stopPropagation()}
+            onClick={(event) => event.stopPropagation()}
+            onFocus={(event) => event.stopPropagation()}
             control={<Checkbox />}
             label="I acknowledge that I should provide an aria-label on each action that I add"
           />

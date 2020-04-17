@@ -110,22 +110,22 @@ function focusThumb({ sliderRef, activeIndex, setActive }) {
 
 const axisProps = {
   horizontal: {
-    offset: percent => ({ left: `${percent}%` }),
-    leap: percent => ({ width: `${percent}%` }),
+    offset: (percent) => ({ left: `${percent}%` }),
+    leap: (percent) => ({ width: `${percent}%` }),
   },
   'horizontal-reverse': {
-    offset: percent => ({ right: `${percent}%` }),
-    leap: percent => ({ width: `${percent}%` }),
+    offset: (percent) => ({ right: `${percent}%` }),
+    leap: (percent) => ({ width: `${percent}%` }),
   },
   vertical: {
-    offset: percent => ({ bottom: `${percent}%` }),
-    leap: percent => ({ height: `${percent}%` }),
+    offset: (percent) => ({ bottom: `${percent}%` }),
+    leap: (percent) => ({ height: `${percent}%` }),
   },
 };
 
-const Identity = x => x;
+const Identity = (x) => x;
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     height: 2,
@@ -381,7 +381,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
   const range = Array.isArray(valueDerived);
   const instanceRef = React.useRef();
   let values = range ? [...valueDerived].sort(asc) : [valueDerived];
-  values = values.map(value => clamp(value, min, max));
+  values = values.map((value) => clamp(value, min, max));
   const marks =
     marksProp === true && step !== null
       ? [...Array(Math.floor((max - min) / step) + 1)].map((_, index) => ({
@@ -400,7 +400,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
   const handleFocusRef = useForkRef(focusVisibleRef, sliderRef);
   const handleRef = useForkRef(ref, handleFocusRef);
 
-  const handleFocus = useEventCallback(event => {
+  const handleFocus = useEventCallback((event) => {
     const index = Number(event.currentTarget.getAttribute('data-index'));
     if (isFocusVisible(event)) {
       setFocusVisible(index);
@@ -414,7 +414,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     }
     setOpen(-1);
   });
-  const handleMouseOver = useEventCallback(event => {
+  const handleMouseOver = useEventCallback((event) => {
     const index = Number(event.currentTarget.getAttribute('data-index'));
     setOpen(index);
   });
@@ -422,11 +422,11 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     setOpen(-1);
   });
 
-  const handleKeyDown = useEventCallback(event => {
+  const handleKeyDown = useEventCallback((event) => {
     const index = Number(event.currentTarget.getAttribute('data-index'));
     const value = values[index];
     const tenPercents = (max - min) / 10;
-    const marksValues = marks.map(mark => mark.value);
+    const marksValues = marks.map((mark) => mark.value);
     const marksIndex = marksValues.indexOf(value);
     let newValue;
 
@@ -524,7 +524,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     if (step) {
       newValue = roundValueToStep(newValue, step, min);
     } else {
-      const marksValues = marks.map(mark => mark.value);
+      const marksValues = marks.map((mark) => mark.value);
       const closestIndex = findClosest(marksValues, newValue);
       newValue = marksValues[closestIndex];
     }
@@ -553,7 +553,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     return { newValue, activeIndex };
   };
 
-  const handleTouchMove = useEventCallback(event => {
+  const handleTouchMove = useEventCallback((event) => {
     const finger = trackFinger(event, touchId);
 
     if (!finger) {
@@ -575,7 +575,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     }
   });
 
-  const handleTouchEnd = useEventCallback(event => {
+  const handleTouchEnd = useEventCallback((event) => {
     const finger = trackFinger(event, touchId);
 
     if (!finger) {
@@ -602,7 +602,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     doc.removeEventListener('touchend', handleTouchEnd);
   });
 
-  const handleTouchStart = useEventCallback(event => {
+  const handleTouchStart = useEventCallback((event) => {
     // Workaround as Safari has partial support for touchAction: 'none'.
     event.preventDefault();
     const touch = event.changedTouches[0];
@@ -639,7 +639,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     };
   }, [handleTouchEnd, handleTouchMove, handleTouchStart]);
 
-  const handleMouseDown = useEventCallback(event => {
+  const handleMouseDown = useEventCallback((event) => {
     if (onMouseDown) {
       onMouseDown(event);
     }
@@ -675,7 +675,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
         classes[`color${capitalize(color)}`],
         {
           [classes.disabled]: disabled,
-          [classes.marked]: marks.length > 0 && marks.some(mark => mark.label),
+          [classes.marked]: marks.length > 0 && marks.some((mark) => mark.label),
           [classes.vertical]: orientation === 'vertical',
           [classes.trackInverted]: track === 'inverted',
           [classes.trackFalse]: track === false,
@@ -688,7 +688,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
       <span className={classes.rail} />
       <span className={classes.track} style={trackStyle} />
       <input value={values.join(',')} name={name} type="hidden" />
-      {marks.map(mark => {
+      {marks.map((mark) => {
         const percent = valueToPercent(mark.value, min, max);
         const style = axisProps[axis].offset(percent);
 
@@ -782,7 +782,7 @@ Slider.propTypes = {
   /**
    * The label of the slider.
    */
-  'aria-label': chainPropTypes(PropTypes.string, props => {
+  'aria-label': chainPropTypes(PropTypes.string, (props) => {
     const range = Array.isArray(props.value || props.defaultValue);
 
     if (range && props['aria-label'] != null) {
@@ -800,7 +800,7 @@ Slider.propTypes = {
   /**
    * A string value that provides a user-friendly name for the current value of the slider.
    */
-  'aria-valuetext': chainPropTypes(PropTypes.string, props => {
+  'aria-valuetext': chainPropTypes(PropTypes.string, (props) => {
     const range = Array.isArray(props.value || props.defaultValue);
 
     if (range && props['aria-valuetext'] != null) {

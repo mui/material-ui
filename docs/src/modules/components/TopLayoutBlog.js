@@ -9,7 +9,7 @@ import useMarkdownDocs from 'docs/src/modules/components/useMarkdownDocs';
 import { getHeaders, getTitle, getDescription } from 'docs/src/modules/utils/parseMarkdown';
 import AppFooter from 'docs/src/modules/components/AppFooter';
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     flexGrow: 1,
   },
@@ -21,9 +21,11 @@ const styles = theme => ({
     marginBottom: theme.spacing(20),
     maxWidth: 680 + theme.spacing(8 + 4),
     '& .markdownElement': {
-      paddingRight: theme.spacing(4),
       fontSize: 18,
       lineHeight: 1.7,
+      [theme.breakpoints.up('md')]: {
+        paddingRight: theme.spacing(4),
+      },
     },
     '& img': {
       display: 'block',
@@ -32,11 +34,12 @@ const styles = theme => ({
     '& .blog-description': {
       fontSize: theme.typography.pxToRem(14),
       textAlign: 'center',
+      color: theme.palette.text.secondary,
     },
   },
 });
 
-function TopLayoutCompany(props) {
+function TopLayoutBlog(props) {
   const {
     classes,
     markdown: markdownProp,
@@ -80,7 +83,7 @@ function TopLayoutCompany(props) {
   );
 }
 
-TopLayoutCompany.propTypes = {
+TopLayoutBlog.propTypes = {
   classes: PropTypes.object.isRequired,
   markdown: PropTypes.string,
   // You can define the direction location of the markdown file.
@@ -91,4 +94,4 @@ TopLayoutCompany.propTypes = {
   reqSource: PropTypes.func,
 };
 
-export default withStyles(styles)(TopLayoutCompany);
+export default withStyles(styles)(TopLayoutBlog);

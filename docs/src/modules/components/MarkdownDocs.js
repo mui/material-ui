@@ -20,7 +20,7 @@ import { getHeaders, getTitle, getDescription } from 'docs/src/modules/utils/par
 import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import Link from 'docs/src/modules/components/Link';
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     width: '100%',
   },
@@ -98,7 +98,7 @@ function MarkdownDocs(props) {
     reqSource,
   } = props;
 
-  const t = useSelector(state => state.options.t);
+  const t = useSelector((state) => state.options.t);
 
   const markdownDocs = useMarkdownDocs({
     markdown: markdownProp,
@@ -112,7 +112,7 @@ function MarkdownDocs(props) {
 
   const { activePage, pages } = React.useContext(PageContext);
   const pageList = flattenPages(pages);
-  const currentPageNum = findIndex(pageList, page => page.pathname === activePage.pathname);
+  const currentPageNum = findIndex(pageList, (page) => page.pathname === activePage.pathname);
   const currentPage = pageList[currentPageNum];
   const prevPage = pageList[currentPageNum - 1];
   const nextPage = pageList[currentPageNum + 1];

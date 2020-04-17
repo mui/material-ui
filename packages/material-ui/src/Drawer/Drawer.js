@@ -10,7 +10,7 @@ import capitalize from '../utils/capitalize';
 import { duration } from '../styles/transitions';
 import useTheme from '../styles/useTheme';
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {},
   /* Styles applied to the root element if `variant="permanent or persistent"`. */
@@ -198,10 +198,14 @@ const Drawer = React.forwardRef(function Drawer(props, ref) {
 });
 
 Drawer.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * Side from which the drawer will appear.
    */
-  anchor: PropTypes.oneOf(['left', 'top', 'right', 'bottom']),
+  anchor: PropTypes.oneOf(['bottom', 'left', 'right', 'top']),
   /**
    * @ignore
    */
@@ -214,7 +218,7 @@ Drawer.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -251,7 +255,11 @@ Drawer.propTypes = {
    */
   transitionDuration: PropTypes.oneOfType([
     PropTypes.number,
-    PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
+    PropTypes.shape({
+      appear: PropTypes.number,
+      enter: PropTypes.number,
+      exit: PropTypes.number,
+    }),
   ]),
   /**
    * The variant to use.

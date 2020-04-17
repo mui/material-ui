@@ -29,9 +29,9 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">LinearProgressProps</span> | <span class="prop-type">object</span> |  | Props applied to the `LinearProgress` element. |
 | <span class="prop-name">nextButton</span> | <span class="prop-type">node</span> |  | A next button element. For instance, it can be a `Button` or an `IconButton`. |
-| <span class="prop-name">position</span> | <span class="prop-type">'bottom'<br>&#124;&nbsp;'top'<br>&#124;&nbsp;'static'</span> | <span class="prop-default">'bottom'</span> | Set the positioning type. |
+| <span class="prop-name">position</span> | <span class="prop-type">'bottom'<br>&#124;&nbsp;'static'<br>&#124;&nbsp;'top'</span> | <span class="prop-default">'bottom'</span> | Set the positioning type. |
 | <span class="prop-name required">steps&nbsp;*</span> | <span class="prop-type">number</span> |  | The total steps. |
-| <span class="prop-name">variant</span> | <span class="prop-type">'text'<br>&#124;&nbsp;'dots'<br>&#124;&nbsp;'progress'</span> | <span class="prop-default">'dots'</span> | The variant to use. |
+| <span class="prop-name">variant</span> | <span class="prop-type">'dots'<br>&#124;&nbsp;'progress'<br>&#124;&nbsp;'text'</span> | <span class="prop-default">'dots'</span> | The variant to use. |
 
 The `ref` is forwarded to the root element.
 

@@ -42,7 +42,7 @@ describe('<TableHead />', () => {
     mountInTable(
       <TableHead>
         <Tablelvl2Context.Consumer>
-          {value => {
+          {(value) => {
             context = value;
           }}
         </Tablelvl2Context.Consumer>

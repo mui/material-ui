@@ -139,7 +139,7 @@ describe('ThemeProvider', () => {
 
     it('should warn about missing provider', () => {
       mount(
-        <ThemeProvider theme={theme => theme}>
+        <ThemeProvider theme={(theme) => theme}>
           <div />
         </ThemeProvider>,
       );

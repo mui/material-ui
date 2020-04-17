@@ -8,7 +8,7 @@ import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state';
 export default function PopoverPopupState() {
   return (
     <PopupState variant="popover" popupId="demo-popup-popover">
-      {popupState => (
+      {(popupState) => (
         <div>
           <Button variant="contained" color="primary" {...bindTrigger(popupState)}>
             Open Popover

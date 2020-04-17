@@ -3,11 +3,22 @@ import { StandardProps } from '..';
 
 export interface DialogContentProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, DialogContentClassKey> {
+  /**
+   * Display the top and bottom dividers.
+   */
   dividers?: boolean;
 }
 
 export type DialogContentClassKey = 'root' | 'dividers';
 
-declare const DialogContent: React.ComponentType<DialogContentProps>;
-
-export default DialogContent;
+/**
+ *
+ * Demos:
+ *
+ * - [Dialogs](https://material-ui.com/components/dialogs/)
+ *
+ * API:
+ *
+ * - [DialogContent API](https://material-ui.com/api/dialog-content/)
+ */
+export default function DialogContent(props: DialogContentProps): JSX.Element;

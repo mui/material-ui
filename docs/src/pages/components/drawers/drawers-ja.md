@@ -19,7 +19,7 @@ components: Drawer, SwipeableDrawer
 
 {{"demo": "pages/components/drawers/TemporaryDrawer.js"}}
 
-## スワイプできる　テンポラリードロワー
+### Swipeable
 
 `SwipeableDrawer` コンポーネントを使用すると、引き出しをスワイプ可能にできます。
 

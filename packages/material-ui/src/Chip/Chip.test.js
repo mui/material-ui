@@ -157,7 +157,7 @@ describe('<Chip />', () => {
 
       expect(getByRole('button')).to.have.property('tabIndex', 5);
       const elementsInTabOrder = Array.from(container.querySelectorAll('[tabIndex]')).filter(
-        element => element.tabIndex >= 0,
+        (element) => element.tabIndex >= 0,
       );
       expect(elementsInTabOrder).to.have.length(1);
     });
@@ -310,7 +310,7 @@ describe('<Chip />', () => {
 
   describe('reacts to keyboard chip', () => {
     it('should call onKeyDown when a key is pressed', () => {
-      const handleKeydown = stub().callsFake(event => event.key);
+      const handleKeydown = stub().callsFake((event) => event.key);
       const { getByRole } = render(<Chip onClick={() => {}} onKeyDown={handleKeydown} />);
       const chip = getByRole('button');
       chip.focus();
@@ -359,10 +359,10 @@ describe('<Chip />', () => {
     });
 
     describe('prop: onDelete', () => {
-      ['Backspace', 'Delete'].forEach(key => {
+      ['Backspace', 'Delete'].forEach((key) => {
         it(`should call onDelete '${key}' is released`, () => {
           const handleDelete = spy();
-          const handleKeyDown = spy(event => {
+          const handleKeyDown = spy((event) => {
             return event.defaultPrevented;
           });
           const { getAllByRole } = render(
@@ -385,7 +385,7 @@ describe('<Chip />', () => {
     });
 
     describe('with children that generate events', () => {
-      ['Backspace', 'Delete'].forEach(key => {
+      ['Backspace', 'Delete'].forEach((key) => {
         it(`should not call onDelete for child keyup event when '${key}' is released`, () => {
           const handleDelete = spy();
           const handleKeyUp = spy();

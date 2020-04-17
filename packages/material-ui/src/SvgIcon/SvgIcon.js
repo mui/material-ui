@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import capitalize from '../utils/capitalize';
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     userSelect: 'none',
@@ -80,7 +80,7 @@ const SvgIcon = React.forwardRef(function SvgIcon(props, ref) {
       viewBox={viewBox}
       color={htmlColor}
       aria-hidden={titleAccess ? undefined : 'true'}
-      role={titleAccess ? 'img' : 'presentation'}
+      role={titleAccess ? 'img' : undefined}
       ref={ref}
       {...other}
     >

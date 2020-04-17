@@ -99,7 +99,7 @@ export default function usePagination(props = {}) {
   ];
 
   // Map the button type to its page number
-  const buttonPage = type => {
+  const buttonPage = (type) => {
     switch (type) {
       case 'first':
         return 1;
@@ -115,10 +115,10 @@ export default function usePagination(props = {}) {
   };
 
   // Convert the basic item list to PaginationItem props objects
-  const items = itemList.map(item => {
+  const items = itemList.map((item) => {
     return typeof item === 'number'
       ? {
-          onClick: event => {
+          onClick: (event) => {
             handleClick(event, item);
           },
           type: 'page',
@@ -128,7 +128,7 @@ export default function usePagination(props = {}) {
           'aria-current': item === page ? 'true' : undefined,
         }
       : {
-          onClick: event => {
+          onClick: (event) => {
             handleClick(event, buttonPage(item));
           },
           type: item,

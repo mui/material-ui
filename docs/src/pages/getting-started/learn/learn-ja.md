@@ -34,11 +34,14 @@ Material-UIを初めて学ぶときは、公式のドキュメントよりもサ
 
 ### 有料
 
-- **Material-UI with React**: Material-UIは、美しいReactコンポーネントをより速く開発するための優れたフレームワークです。 このコースではGoogle Material Designの基礎を学び、Material-UIとReactを使ってエンド・ツー・エンドのフライト検索と予約アプリケーションを開発する方法を学びます。
+- **Apply Google Material Design**: This course teaches the fundamentals of Google Material Design and how to develop an end-to-end flight search and booking application using Material-UI and React.
   
   - 📹[コースの予告編を見る](https://www.youtube.com/watch?v=hhZ6yFvCWho)
   - 💻[コース](https://bonsaiilabs.com/courseDetail/material-ui-with-react)
-- **React Material-UI Cookbook**: Build modern-day applications by implementing Material Design principles in React, using Material-UI.
+- **Implement high fidelity designs**: Bridge the gap between Design & Development. Break down detailed designs and bring them to life with Material-UI and React.
+  
+  - 💻[コース](https://click.linksynergy.com/deeplink?id=IVuPfk1F/Ow&mid=39197&murl=https%3A%2F%2Fwww.udemy.com%2Fcourse%2Fimplement-high-fidelity-designs-with-material-ui-and-reactjs%2F)
+- **Cookbook**: Material-UIを使用したReactアプリケーションにMaterial Designの原則を実装することで、現代的なアプリケーションを構築します。
   
   - 📘 [書籍](https://www.amazon.com/gp/product/1789615224/)
 

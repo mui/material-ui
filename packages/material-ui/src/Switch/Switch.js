@@ -9,7 +9,7 @@ import { fade } from '../styles/colorManipulator';
 import capitalize from '../utils/capitalize';
 import SwitchBase from '../internal/SwitchBase';
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     display: 'inline-flex',
@@ -267,6 +267,7 @@ Switch.propTypes = {
   type: PropTypes.string,
   /**
    * The value of the component. The DOM API casts this to a string.
+   * The browser uses "on" as the default value.
    */
   value: PropTypes.any,
 };

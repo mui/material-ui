@@ -27,7 +27,7 @@ const aliases = {
 // memoize() impact:
 // From 300,000 ops/sec
 // To 350,000 ops/sec
-const getCssProperties = memoize(prop => {
+const getCssProperties = memoize((prop) => {
   // It's not a shorthand notation.
   if (prop.length > 2) {
     if (aliases[prop]) {
@@ -40,7 +40,7 @@ const getCssProperties = memoize(prop => {
   const [a, b] = prop.split('');
   const property = properties[a];
   const direction = directions[b] || '';
-  return Array.isArray(direction) ? direction.map(dir => property + dir) : [property + direction];
+  return Array.isArray(direction) ? direction.map((dir) => property + dir) : [property + direction];
 });
 
 const spacingKeys = [
@@ -78,7 +78,7 @@ export function createUnarySpacing(theme) {
   const themeSpacing = theme.spacing || 8;
 
   if (typeof themeSpacing === 'number') {
-    return abs => {
+    return (abs) => {
       if (process.env.NODE_ENV !== 'production') {
         if (typeof abs !== 'number') {
           console.error(
@@ -91,7 +91,7 @@ export function createUnarySpacing(theme) {
   }
 
   if (Array.isArray(themeSpacing)) {
-    return abs => {
+    return (abs) => {
       if (process.env.NODE_ENV !== 'production') {
         if (abs > themeSpacing.length - 1) {
           console.error(
@@ -144,7 +144,7 @@ function getValue(transformer, propValue) {
 }
 
 function getStyleFromPropValue(cssProperties, transformer) {
-  return propValue =>
+  return (propValue) =>
     cssProperties.reduce((acc, cssProperty) => {
       acc[cssProperty] = getValue(transformer, propValue);
       return acc;
@@ -156,7 +156,7 @@ function spacing(props) {
   const transformer = createUnarySpacing(theme);
 
   return Object.keys(props)
-    .map(prop => {
+    .map((prop) => {
       // Using a hash computation over an array iteration could be faster, but with only 28 items,
       // it's doesn't worth the bundle size.
       if (spacingKeys.indexOf(prop) === -1) {

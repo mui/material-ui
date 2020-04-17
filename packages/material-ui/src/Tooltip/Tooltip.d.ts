@@ -35,7 +35,9 @@ export interface TooltipProps
     | 'top';
   PopperProps?: Partial<PopperProps>;
   title: React.ReactNode;
-  TransitionComponent?: React.ComponentType<TransitionProps>;
+  TransitionComponent?: React.ComponentType<
+    TransitionProps & { children?: React.ReactElement<any, any> }
+  >;
   TransitionProps?: TransitionProps;
 }
 
@@ -52,6 +54,16 @@ export type TooltipClassKey =
   | 'tooltipPlacementTop'
   | 'tooltipPlacementBottom';
 
+/**
+ *
+ * Demos:
+ *
+ * - [Tooltips](https://material-ui.com/components/tooltips/)
+ *
+ * API:
+ *
+ * - [Tooltip API](https://material-ui.com/api/tooltip/)
+ */
 declare const Tooltip: React.ComponentType<TooltipProps>;
 
 export default Tooltip;

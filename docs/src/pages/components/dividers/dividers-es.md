@@ -11,13 +11,13 @@ components: Divider
 
 ## Divisores de lista
 
-The divider renders as an `<hr>` by default. You can save rendering this DOM element by using the `divider` property on the `ListItem` component.
+El divisor renderiza un `<hr>` por defecto. You can save rendering this DOM element by using the `divider` property on the `ListItem` component.
 
 {{"demo": "pages/components/dividers/ListDividers.js", "bg": true}}
 
 ## Especificación HTML5
 
-In a list, you should ensure the `Divider` is rendered as an `<li>` to match the HTML5 specification. The examples below show two ways of achieving this.
+En una lista, debe asegurarse de que el `Divider` se representa como una `<li>` para que coincida con la especificación de HTML5. El ejemplo debajo muestra dos maneras de lograr esto.
 
 ## Separadores insertados
 
@@ -31,8 +31,8 @@ In a list, you should ensure the `Divider` is rendered as an `<li>` to match the
 
 {{"demo": "pages/components/dividers/MiddleDividers.js", "bg": true}}
 
-## Vertical Dividers
+## Divisores Verticales
 
-You can also render a divider vertically using the `orientation` prop. Note the use of the `flexItem` prop to accommodate for the flex container.
+Puede también renderizar un divisor vertical usando la propiedad `orientation`. Note the use of the `flexItem` prop to accommodate for the flex container.
 
 {{"demo": "pages/components/dividers/VerticalDividers.js", "bg": true}}

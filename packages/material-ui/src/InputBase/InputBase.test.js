@@ -185,7 +185,7 @@ describe('<InputBase />', () => {
         function MockedValue(props) {
           const { onChange } = props;
 
-          const handleChange = event => {
+          const handleChange = (event) => {
             onChange({ target: { value: event.target.value } });
           };
 
@@ -526,7 +526,7 @@ describe('<InputBase />', () => {
                 <InputBase />
               ) : (
                 <Select native>
-                  <option value="" />
+                  <option value="">empty</option>
                 </Select>
               )}
               <button type="button" onClick={() => setFlag(!flag)}>
@@ -568,7 +568,7 @@ describe('<InputBase />', () => {
       function MyInputBase(props) {
         const { inputRef, onChange, ...other } = props;
 
-        const handleChange = e => {
+        const handleChange = (e) => {
           onChange(e.target.value, OUTPUT_VALUE);
         };
 

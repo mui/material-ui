@@ -69,7 +69,7 @@ describe('StylesProvider', () => {
     }
 
     const useStyles = makeStyles({ root: { display: 'flex' } });
-    const Button = props => {
+    const Button = (props) => {
       const classes = useStyles();
       return <button type="button" className={classes.root} {...props} />;
     };

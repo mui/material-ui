@@ -43,7 +43,7 @@ describe('<Menu />', () => {
 
   describe('event callbacks', () => {
     describe('entering', () => {
-      it('should fire callbacks', done => {
+      it('should fire callbacks', (done) => {
         const handleEnter = spy();
         const handleEntering = spy();
 
@@ -69,7 +69,7 @@ describe('<Menu />', () => {
     });
 
     describe('exiting', () => {
-      it('should fire callbacks', done => {
+      it('should fire callbacks', (done) => {
         const handleExit = spy();
         const handleExiting = spy();
 
@@ -141,20 +141,16 @@ describe('<Menu />', () => {
     });
 
     it('should render a MenuList inside the Popover', () => {
-      assert.strictEqual(
-        wrapper
-          .find(Popover)
-          .find(MenuList)
-          .exists(),
-        true,
-      );
+      assert.strictEqual(wrapper.find(Popover).find(MenuList).exists(), true);
     });
   });
 
   it('should open during the initial mount', () => {
     const wrapper = mount(
       <Menu {...defaultProps} open>
-        <div role="menuitem" tabIndex={-1} />
+        <div role="menuitem" tabIndex={-1}>
+          one
+        </div>
       </Menu>,
     );
     const popover = wrapper.find(Popover);

@@ -11,7 +11,7 @@ const initialState = {
 export default function ContextMenu() {
   const [state, setState] = React.useState(initialState);
 
-  const handleClick = event => {
+  const handleClick = (event) => {
     event.preventDefault();
     setState({
       mouseX: event.clientX - 2,

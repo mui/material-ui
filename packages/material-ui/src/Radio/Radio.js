@@ -10,7 +10,7 @@ import createChainedFunction from '../utils/createChainedFunction';
 import withStyles from '../styles/withStyles';
 import useRadioGroup from '../RadioGroup/useRadioGroup';
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     color: theme.palette.text.secondary,
@@ -166,10 +166,6 @@ Radio.propTypes = {
    * `small` is equivalent to the dense radio styling.
    */
   size: PropTypes.oneOf(['small', 'medium']),
-  /**
-   * The input component prop `type`.
-   */
-  type: PropTypes.string,
   /**
    * The value of the component. The DOM API casts this to a string.
    */

@@ -14,7 +14,7 @@ export type ConsistentWith<DecorationTargetProps, InjectedProps> = {
     ? InjectedProps[P] extends DecorationTargetProps[P]
       ? DecorationTargetProps[P]
       : InjectedProps[P]
-    : DecorationTargetProps[P]
+    : DecorationTargetProps[P];
 };
 
 /**

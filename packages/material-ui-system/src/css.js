@@ -4,7 +4,7 @@ import merge from './merge';
 function omit(input, fields) {
   const output = {};
 
-  Object.keys(input).forEach(prop => {
+  Object.keys(input).forEach((prop) => {
     if (fields.indexOf(prop) === -1) {
       output[prop] = input[prop];
     }
@@ -14,7 +14,7 @@ function omit(input, fields) {
 }
 
 function css(styleFunction) {
-  const newStyleFunction = props => {
+  const newStyleFunction = (props) => {
     const output = styleFunction(props);
 
     if (props.css) {

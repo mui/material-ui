@@ -31,7 +31,9 @@ export interface PopoverProps
   PaperProps?: Partial<PaperProps>;
   role?: string;
   transformOrigin?: PopoverOrigin;
-  TransitionComponent?: React.ComponentType<TransitionProps>;
+  TransitionComponent?: React.ComponentType<
+    TransitionProps & { children?: React.ReactElement<any, any> }
+  >;
   transitionDuration?: TransitionProps['timeout'] | 'auto';
   TransitionProps?: TransitionProps;
 }
@@ -42,6 +44,18 @@ export interface PopoverActions {
   updatePosition(): void;
 }
 
+/**
+ *
+ * Demos:
+ *
+ * - [Menus](https://material-ui.com/components/menus/)
+ * - [Popover](https://material-ui.com/components/popover/)
+ *
+ * API:
+ *
+ * - [Popover API](https://material-ui.com/api/popover/)
+ * - inherits [Modal API](https://material-ui.com/api/modal/)
+ */
 declare const Popover: React.ComponentType<PopoverProps>;
 
 export default Popover;

@@ -5,7 +5,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   close: {
     padding: theme.spacing(0.5),
   },
@@ -23,7 +23,7 @@ export default function ConsecutiveSnackbars() {
     }
   };
 
-  const handleClick = message => () => {
+  const handleClick = (message) => () => {
     queueRef.current.push({
       message,
       key: new Date().getTime(),

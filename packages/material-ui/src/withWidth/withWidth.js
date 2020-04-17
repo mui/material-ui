@@ -25,7 +25,7 @@ export const isWidthDown = (breakpoint, width, inclusive = true) => {
 
 const useEnhancedEffect = typeof window === 'undefined' ? React.useEffect : React.useLayoutEffect;
 
-const withWidth = (options = {}) => Component => {
+const withWidth = (options = {}) => (Component) => {
   const {
     withTheme: withThemeOption = false,
     noSSR = false,

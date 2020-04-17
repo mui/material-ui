@@ -1,20 +1,20 @@
 ---
-title: React Stepper（步骤条）组件
+title: React Stepper 步骤条组件
 components: MobileStepper, Step, StepButton, StepConnector, StepContent, StepIcon, StepLabel, Stepper
 ---
 
 # Stepper 步进器 
 
-<p class="description">步进器通过数字编号表示进度。 It provides a wizard-like workflow.</p>
+<p class="description">步进器通过数字编号表示进度。 使用步进器可以提供类似于安装向导的用户流。</p>
 
 [步骤条](https://material.io/archive/guidelines/components/steppers.html) 通过一系列逻辑和编号的步骤来显示当前操作的进度。 它们也可用于导航。 在保存一个步骤后，步骤条可能会显示短暂的反馈信息。
 
-- **Types of Steps**: Editable, Non-editable, Mobile, Optional
-- **Types of Steppers**: Horizontal, Vertical, Linear, Non-linear
+- **节点类型**：可编辑节点，不可编辑节点，移动节点，非强制节点
+- **步进器类型**：横向步进器，竖向步进器，线性步进器，非线性步进器
 
-> **Note:** Steppers are no longer documented in the [Material Design guidelines](https://material.io/), but Material-UI will continue to support them.
+> **注意：**步进器不再出现在 [Material Design 指南](https://material.io/) 中, 但 Material-UI 会继续支持步进器。
 
-## Horizontal Stepper
+## 横向步进器
 
 ### 线性的步骤条
 
@@ -26,7 +26,7 @@ components: MobileStepper, Step, StepButton, StepConnector, StepContent, StepIco
 
 ### Linear - Alternative Label
 
-Labels can be placed below the step icon by setting the `alternativeLabel` prop on the `Stepper` component.
+您可以将标签放置在节点图标之下。请在 `Stepper` 组件中设置 `alternativeLabel` 这一属性。
 
 {{"demo": "pages/components/steppers/HorizontalLinearAlternativeLabelStepper.js", "bg": true}}
 
@@ -48,7 +48,7 @@ The use of the `StepButton` here demonstrates clickable step labels, as well as 
 
 ### Non-linear - Alternative Label
 
-Labels can be placed below the step icon by setting the `alternativeLabel` prop on the `Stepper` component.
+您可以将标签放置在节点图标之下。请在 `Stepper` 组件中设置 `alternativeLabel` 这一属性。
 
 {{"demo": "pages/components/steppers/HorizontalNonLinearAlternativeLabelStepper.js", "bg": true}}
 
@@ -82,7 +82,7 @@ This is essentially a back/next button positioned correctly. You must implement 
 
 {{"demo": "pages/components/steppers/DotsMobileStepper.js", "bg": true}}
 
-### Progress 进度条
+### 进度条
 
 当有许多步骤时，或者如果在此过程中需要插入步骤（基于对早期步骤的响应），请使用进度条。
 

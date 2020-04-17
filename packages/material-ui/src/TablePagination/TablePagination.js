@@ -11,7 +11,7 @@ import Toolbar from '../Toolbar';
 import Typography from '../Typography';
 import TablePaginationActions from './TablePaginationActions';
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     color: theme.palette.text.primary,
@@ -35,9 +35,9 @@ export const styles = theme => ({
   caption: {
     flexShrink: 0,
   },
+  // TODO v5: `.selectRoot` should be merged with `.input`
   /* Styles applied to the Select component root element. */
   selectRoot: {
-    // `.selectRoot` should be merged with `.input` in v5.
     marginRight: 32,
     marginLeft: 8,
   },
@@ -122,9 +122,10 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
             input={<InputBase className={clsx(classes.input, classes.selectRoot)} />}
             value={rowsPerPage}
             onChange={onChangeRowsPerPage}
+            inputProps={{ 'aria-label': labelRowsPerPage }}
             {...SelectProps}
           >
-            {rowsPerPageOptions.map(rowsPerPageOption => (
+            {rowsPerPageOptions.map((rowsPerPageOption) => (
               <MenuItemComponent
                 className={classes.menuItem}
                 key={rowsPerPageOption.value ? rowsPerPageOption.value : rowsPerPageOption}
@@ -206,14 +207,14 @@ TablePagination.propTypes = {
    */
   count: PropTypes.number.isRequired,
   /**
-   * Customize the displayed rows label.
+   * Customize the displayed rows label. Invoked with a `{ from, to, count, page }`
+   * object.
    *
    * For localization purposes, you can use the provided [translations](/guides/localization/).
    */
   labelDisplayedRows: PropTypes.func,
   /**
-   * Customize the rows per page label. Invoked with a `{ from, to, count, page }`
-   * object.
+   * Customize the rows per page label.
    *
    * For localization purposes, you can use the provided [translations](/guides/localization/).
    */
@@ -244,7 +245,7 @@ TablePagination.propTypes = {
   /**
    * The zero-based index of the current page.
    */
-  page: chainPropTypes(PropTypes.number.isRequired, props => {
+  page: chainPropTypes(PropTypes.number.isRequired, (props) => {
     const { count, page, rowsPerPage } = props;
 
     if (count === -1) {

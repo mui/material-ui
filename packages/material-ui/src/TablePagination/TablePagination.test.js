@@ -53,7 +53,7 @@ describe('<TablePagination />', () => {
       mount: mountInTable,
       refInstanceof: window.HTMLTableCellElement,
       // can only use `td` in a tr so we just fake a different component
-      testComponentPropWith: props => <td {...props} />,
+      testComponentPropWith: (props) => <td {...props} />,
     }),
   );
 
@@ -221,13 +221,7 @@ describe('<TablePagination />', () => {
           </TableFooter>
         </table>,
       );
-      assert.strictEqual(
-        wrapper
-          .find(Typography)
-          .at(1)
-          .text(),
-        '0-0 of 0',
-      );
+      assert.strictEqual(wrapper.find(Typography).at(1).text(), '0-0 of 0');
     });
 
     it('should hide the rows per page selector if there are less than two options', () => {

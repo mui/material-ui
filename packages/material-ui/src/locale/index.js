@@ -7,7 +7,7 @@ export const azAZ = {
       nextIconButtonText: 'Növbəti səhifə',
     },
     MuiRating: {
-      getLabelText: value => {
+      getLabelText: (value) => {
         let pluralForm = 'Ulduz';
         const lastDigit = value % 10;
 
@@ -41,7 +41,7 @@ export const bgBG = {
       nextIconButtonText: 'Следваща страница',
     },
     MuiRating: {
-      getLabelText: value => `${value} Звезд${value !== 1 ? 'и' : 'а'}`,
+      getLabelText: (value) => `${value} Звезд${value !== 1 ? 'и' : 'а'}`,
       emptyLabelText: 'Изчисти',
     },
     MuiAutocomplete: {
@@ -66,7 +66,7 @@ export const caES = {
       nextIconButtonText: 'Següent pàgina',
     },
     MuiRating: {
-      getLabelText: value => `${value} ${value !== 1 ? 'Estrelles' : 'Estrella'}`,
+      getLabelText: (value) => `${value} ${value !== 1 ? 'Estrelles' : 'Estrella'}`,
       emptyLabelText: 'Buit',
     },
     MuiAutocomplete: {
@@ -91,7 +91,7 @@ export const csCZ = {
       nextIconButtonText: 'Další stránka',
     },
     MuiRating: {
-      getLabelText: value => {
+      getLabelText: (value) => {
         if (value === 1) {
           return `${value} hvězdička`;
         }
@@ -124,7 +124,7 @@ export const deDE = {
       nextIconButtonText: 'Nächste Seite',
     },
     MuiRating: {
-      getLabelText: value => `${value} ${value !== 1 ? 'Sterne' : 'Stern'}`,
+      getLabelText: (value) => `${value} ${value !== 1 ? 'Sterne' : 'Stern'}`,
       emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
@@ -201,7 +201,7 @@ export const esES = {
       nextIconButtonText: 'Siguiente página',
     },
     MuiRating: {
-      getLabelText: value => `${value} Estrella${value !== 1 ? 's' : ''}`,
+      getLabelText: (value) => `${value} Estrella${value !== 1 ? 's' : ''}`,
       emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
@@ -226,7 +226,7 @@ export const etEE = {
       nextIconButtonText: 'Järgmine lehekülg',
     },
     MuiRating: {
-      getLabelText: value => `${value} Tärn${value !== 1 ? 'i' : ''}`,
+      getLabelText: (value) => `${value} Tärn${value !== 1 ? 'i' : ''}`,
       emptyLabelText: 'Tühi',
     },
     MuiAutocomplete: {
@@ -272,7 +272,7 @@ export const faIR = {
       nextIconButtonText: 'صفحهٔ بعد',
     },
     MuiRating: {
-      getLabelText: value => `${value} ستاره`,
+      getLabelText: (value) => `${value} ستاره`,
       emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
@@ -297,7 +297,7 @@ export const fiFI = {
       nextIconButtonText: 'Seuraava sivu',
     },
     MuiRating: {
-      getLabelText: value => `${value} Täht${value !== 1 ? 'eä' : 'i'}`,
+      getLabelText: (value) => `${value} Täht${value !== 1 ? 'eä' : 'i'}`,
       emptyLabelText: 'Tyhjä',
     },
     MuiAutocomplete: {
@@ -325,7 +325,7 @@ export const frFR = {
       nextIconButtonText: 'Page suivante',
     },
     MuiRating: {
-      getLabelText: value => `${value} Etoile${value !== 1 ? 's' : ''}`,
+      getLabelText: (value) => `${value} Etoile${value !== 1 ? 's' : ''}`,
       emptyLabelText: 'Vide',
     },
     MuiAutocomplete: {
@@ -372,7 +372,7 @@ export const heIL = {
       nextIconButtonText: 'העמוד הבא',
     },
     MuiRating: {
-      getLabelText: value => `${value} כוכב${value !== 1 ? 'ים' : ''}`,
+      getLabelText: (value) => `${value} כוכב${value !== 1 ? 'ים' : ''}`,
       emptyLabelText: 'ריק',
     },
     MuiAutocomplete: {
@@ -397,7 +397,7 @@ export const huHU = {
       nextIconButtonText: 'Következő oldal',
     },
     MuiRating: {
-      getLabelText: value => `${value} Csillag`,
+      getLabelText: (value) => `${value} Csillag`,
       emptyLabelText: 'Üres',
     },
     MuiAutocomplete: {
@@ -422,7 +422,7 @@ export const hyAM = {
       nextIconButtonText: 'Հաջորդը',
     },
     MuiRating: {
-      getLabelText: value => `${value} Աստղ`,
+      getLabelText: (value) => `${value} Աստղ`,
       emptyLabelText: 'Դատարկ',
     },
     MuiAutocomplete: {
@@ -448,7 +448,7 @@ export const idID = {
       nextIconButtonText: 'Halaman selanjutnya',
     },
     MuiRating: {
-      getLabelText: value => `${value} Bintang`,
+      getLabelText: (value) => `${value} Bintang`,
       emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
@@ -473,7 +473,7 @@ export const isIS = {
       nextIconButtonText: 'Næsta síða',
     },
     MuiRating: {
-      getLabelText: value => `${value} ${value === 1 ? 'Stjarna' : 'Stjörnur'}`,
+      getLabelText: (value) => `${value} ${value === 1 ? 'Stjarna' : 'Stjörnur'}`,
       emptyLabelText: 'Tómt',
     },
     MuiAutocomplete: {
@@ -498,7 +498,7 @@ export const itIT = {
       nextIconButtonText: 'Pagina successiva',
     },
     MuiRating: {
-      getLabelText: value => `${value} Stell${value !== 1 ? 'e' : 'a'}`,
+      getLabelText: (value) => `${value} Stell${value !== 1 ? 'e' : 'a'}`,
       emptyLabelText: 'Vuoto',
     },
     MuiAutocomplete: {
@@ -523,7 +523,7 @@ export const jaJP = {
       nextIconButtonText: '次のページ',
     },
     MuiRating: {
-      getLabelText: value => `${value} ${value !== 1 ? '出演者' : '星'}`,
+      getLabelText: (value) => `${value} ${value !== 1 ? '出演者' : '星'}`,
       emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
@@ -548,7 +548,7 @@ export const koKR = {
       nextIconButtonText: '다음 페이지',
     },
     MuiRating: {
-      getLabelText: value => `${value} 점`,
+      getLabelText: (value) => `${value} 점`,
       emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
@@ -570,7 +570,7 @@ export const nlNL = {
       nextIconButtonText: 'Volgende pagina',
     },
     MuiRating: {
-      getLabelText: value => `${value} Ster${value !== 1 ? 'ren' : ''}`,
+      getLabelText: (value) => `${value} Ster${value !== 1 ? 'ren' : ''}`,
       emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
@@ -595,7 +595,7 @@ export const plPL = {
       nextIconButtonText: 'Następna strona',
     },
     MuiRating: {
-      getLabelText: value => {
+      getLabelText: (value) => {
         let pluralForm = 'gwiazdek';
         const lastDigit = value % 10;
 
@@ -631,7 +631,7 @@ export const ptBR = {
       nextIconButtonText: 'Próxima página',
     },
     MuiRating: {
-      getLabelText: value => `${value} Estrela${value !== 1 ? 's' : ''}`,
+      getLabelText: (value) => `${value} Estrela${value !== 1 ? 's' : ''}`,
       emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
@@ -656,7 +656,7 @@ export const ptPT = {
       nextIconButtonText: 'Próxima página',
     },
     MuiRating: {
-      getLabelText: value => `${value} Estrela${value !== 1 ? 's' : ''}`,
+      getLabelText: (value) => `${value} Estrela${value !== 1 ? 's' : ''}`,
       emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
@@ -678,7 +678,7 @@ export const roRO = {
       nextIconButtonText: 'Pagina următoare',
     },
     MuiRating: {
-      getLabelText: value => `${value} St${value !== 1 ? 'ele' : 'ea'}`,
+      getLabelText: (value) => `${value} St${value !== 1 ? 'ele' : 'ea'}`,
       emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
@@ -703,7 +703,7 @@ export const ruRU = {
       nextIconButtonText: 'Следующая страница',
     },
     MuiRating: {
-      getLabelText: value => {
+      getLabelText: (value) => {
         let pluralForm = 'Звёзд';
         const lastDigit = value % 10;
 
@@ -739,7 +739,7 @@ export const skSK = {
       nextIconButtonText: 'Ďalšia stránka',
     },
     MuiRating: {
-      getLabelText: value => {
+      getLabelText: (value) => {
         if (value === 1) {
           return `${value} hviezdička`;
         }
@@ -772,7 +772,7 @@ export const svSE = {
       nextIconButtonText: 'Nästa sida',
     },
     MuiRating: {
-      getLabelText: value => `${value} ${value !== 1 ? 'Stjärnor' : 'Stjärna'}`,
+      getLabelText: (value) => `${value} ${value !== 1 ? 'Stjärnor' : 'Stjärna'}`,
       emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
@@ -798,7 +798,7 @@ export const trTR = {
       nextIconButtonText: 'Sonraki sayfa',
     },
     MuiRating: {
-      getLabelText: value => `${value} Yıldız`,
+      getLabelText: (value) => `${value} Yıldız`,
       emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
@@ -823,7 +823,7 @@ export const ukUA = {
       nextIconButtonText: 'Наступна сторінка',
     },
     MuiRating: {
-      getLabelText: value => {
+      getLabelText: (value) => {
         let pluralForm = 'Зірок';
         const lastDigit = value % 10;
 
@@ -860,7 +860,7 @@ export const viVN = {
       nextIconButtonText: 'Trang sau',
     },
     MuiRating: {
-      getLabelText: value => `${value} sao`,
+      getLabelText: (value) => `${value} sao`,
       emptyLabelText: 'Trống',
     },
     MuiAutocomplete: {
@@ -885,7 +885,7 @@ export const zhCN = {
       nextIconButtonText: '下一页',
     },
     MuiRating: {
-      getLabelText: value => `${value} 星${value !== 1 ? '星' : ''}`,
+      getLabelText: (value) => `${value} 星${value !== 1 ? '星' : ''}`,
       emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {

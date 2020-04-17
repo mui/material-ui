@@ -144,7 +144,7 @@ const StyledButton = withStyles({
 
 ### 在同一样式表中，使用 `$ruleName` 引用本地规则
 
-[ jss-nested ](https://github.com/cssinjs/jss-nested)插件 (默认情况下可用) 可以使增加特异性的过程更容易。
+The [jss-nested](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-nested) plugin (available by default) can make the process of increasing specificity easier.
 
 ```js
 const styles = {

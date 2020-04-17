@@ -62,7 +62,7 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(props, ref) {
 
   const [expanded, setExpanded] = React.useState(false);
 
-  const renderItemsBeforeAndAfter = allItems => {
+  const renderItemsBeforeAndAfter = (allItems) => {
     const handleClickExpand = () => {
       setExpanded(true);
     };
@@ -89,7 +89,7 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(props, ref) {
   };
 
   const allItems = React.Children.toArray(children)
-    .filter(child => {
+    .filter((child) => {
       if (process.env.NODE_ENV !== 'production') {
         if (isFragment(child)) {
           console.error(

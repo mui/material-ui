@@ -30,7 +30,7 @@ function roundValueToPrecision(value, precision) {
   return Number(nearest.toFixed(getDecimalPrecision(precision)));
 }
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     display: 'inline-flex',
@@ -214,7 +214,7 @@ const Rating = React.forwardRef(function Rating(props, ref) {
   const handleFocusRef = useForkRef(focusVisibleRef, rootRef);
   const handleRef = useForkRef(handleFocusRef, ref);
 
-  const handleMouseMove = event => {
+  const handleMouseMove = (event) => {
     if (onMouseMove) {
       onMouseMove(event);
     }
@@ -233,7 +233,7 @@ const Rating = React.forwardRef(function Rating(props, ref) {
     let newHover = roundValueToPrecision(max * percent + precision / 2, precision);
     newHover = clamp(newHover, precision, max);
 
-    setState(prev =>
+    setState((prev) =>
       prev.hover === newHover && prev.focus === newHover
         ? prev
         : {
@@ -249,7 +249,7 @@ const Rating = React.forwardRef(function Rating(props, ref) {
     }
   };
 
-  const handleMouseLeave = event => {
+  const handleMouseLeave = (event) => {
     if (onMouseLeave) {
       onMouseLeave(event);
     }
@@ -265,7 +265,7 @@ const Rating = React.forwardRef(function Rating(props, ref) {
     }
   };
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     const newValue = parseFloat(event.target.value);
 
     if (!isControlled) {
@@ -277,7 +277,7 @@ const Rating = React.forwardRef(function Rating(props, ref) {
     }
   };
 
-  const handleClear = event => {
+  const handleClear = (event) => {
     // Ignore keyboard events
     // https://github.com/facebook/react/issues/7407
     if (event.clientX === 0 && event.clientY === 0) {
@@ -298,13 +298,13 @@ const Rating = React.forwardRef(function Rating(props, ref) {
     }
   };
 
-  const handleFocus = event => {
+  const handleFocus = (event) => {
     if (isFocusVisible(event)) {
       setFocusVisible(true);
     }
 
     const newFocus = parseFloat(event.target.value);
-    setState(prev => ({
+    setState((prev) => ({
       hover: prev.hover,
       focus: newFocus,
     }));
@@ -314,7 +314,7 @@ const Rating = React.forwardRef(function Rating(props, ref) {
     }
   };
 
-  const handleBlur = event => {
+  const handleBlur = (event) => {
     if (hover !== -1) {
       return;
     }
@@ -325,7 +325,7 @@ const Rating = React.forwardRef(function Rating(props, ref) {
     }
 
     const newFocus = -1;
-    setState(prev => ({
+    setState((prev) => ({
       hover: prev.hover,
       focus: newFocus,
     }));
@@ -529,7 +529,7 @@ Rating.propTypes = {
    * If `readOnly` is false, the prop is required,
    * this input name`should be unique within the parent form.
    */
-  name: chainPropTypes(PropTypes.string, props => {
+  name: chainPropTypes(PropTypes.string, (props) => {
     if (!props.readOnly && !props.name) {
       return new Error(
         [

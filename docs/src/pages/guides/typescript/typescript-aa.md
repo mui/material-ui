@@ -121,10 +121,10 @@ crwdns100666:0crwdne100666:0
 crwdns100668:0crwdne100668:0
 
 ```ts
-crwdns109131:0{ createMuiTheme }crwdnd109131:0{ ThemeOptions }crwdnd109131:0{
+crwdns130090:0{ createMuiTheme, ThemeOptions }crwdnd130090:0{
       width: 225,
       breakpoint: 'lg',
-    }crwdne109131:0
+    }crwdne130090:0
 ```
 
 crwdns100672:0crwdne100672:0

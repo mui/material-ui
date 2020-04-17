@@ -1,5 +1,5 @@
 ---
-title: React Avatar（头像）组件
+title: React Avatar 头像组件
 components: Avatar, AvatarGroup, Badge
 ---
 
@@ -7,13 +7,13 @@ components: Avatar, AvatarGroup, Badge
 
 <p class="description">在整个 material design 中，无论是在表格中还是到对话框菜单中，都可以找到使用头像的身影。</p>
 
-## Image avatars（图片头像）
+## 图片头像
 
 Image avatars can be created by passing standard `img` props `src` or `srcSet` to the component.
 
 {{"demo": "pages/components/avatars/ImageAvatars.js"}}
 
-## Letter avatars（字母头像）
+## 字母头像
 
 Avatars containing simple characters can be created by passing a string as `children`.
 
@@ -31,7 +31,7 @@ You can change the size of the avatar with the `height` and `width` CSS properti
 
 {{"demo": "pages/components/avatars/IconAvatars.js"}}
 
-## 变种(Variants)
+## 变种
 
 If you need square or rounded avatars, use the `variant` prop.
 

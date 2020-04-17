@@ -19,7 +19,7 @@ The Drawer can be cancelled by clicking the overlay or pressing the Esc key. It 
 
 {{"demo": "pages/components/drawers/TemporaryDrawer.js"}}
 
-## Wischbare Navigationsleisten
+### Swipeable
 
 Sie können die Leiste mit der `SwipeableDrawer` Komponente einklappbar machen.
 

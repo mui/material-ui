@@ -4,8 +4,8 @@ const fse = require('fs-extra');
 const glob = require('glob-gitignore');
 const path = require('path');
 
-const passMessage = message => `✓ ${chalk.gray(message)}`;
-const failMessage = message => `✗ ${chalk.whiteBright(message)}`;
+const passMessage = (message) => `✓ ${chalk.gray(message)}`;
+const failMessage = (message) => `✗ ${chalk.whiteBright(message)}`;
 
 async function run() {
   const workspaceRoot = path.resolve(__dirname, '..');
@@ -21,7 +21,7 @@ async function run() {
   });
 
   let passed = true;
-  const checks = filenames.map(async filename => {
+  const checks = filenames.map(async (filename) => {
     const content = await fse.readFile(path.join(workspaceRoot, filename), { encoding: 'utf8' });
     try {
       JSON.parse(content);
@@ -38,7 +38,7 @@ async function run() {
   }
 }
 
-run().catch(error => {
+run().catch((error) => {
   console.error(error);
   process.exit(1);
 });

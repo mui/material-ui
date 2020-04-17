@@ -58,7 +58,7 @@ describe('<Typography />', () => {
     assert.strictEqual(wrapper.hasClass(classes.alignCenter), true);
   });
   ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'subtitle1', 'body2', 'body1', 'caption', 'button'].forEach(
-    variant => {
+    (variant) => {
       it(`should render ${variant} text`, () => {
         // @ts-ignore literal/tuple type widening
         const wrapper = shallow(<Typography variant={variant}>Hello</Typography>);

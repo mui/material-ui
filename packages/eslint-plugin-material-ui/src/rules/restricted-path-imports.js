@@ -1,6 +1,6 @@
 // See tests for valid examples.
 // Rationale: Importing anything deeper will use the commonJS build
-module.exports = context => {
+module.exports = (context) => {
   return {
     ImportDeclaration(node) {
       const { source } = node;

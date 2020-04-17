@@ -187,4 +187,4 @@ This will apply a change such as the following:
 
 ### 未完待续...
 
-您是否已成功迁移您的应用，并助社区一臂之力？ There is an open issue in order to finish this migration guide [#7195](https://github.com/mui-org/material-ui/issues/7195). Any pull request is welcomed 😊.
+您是否已成功迁移您的应用，并助社区一臂之力？ There is an open issue in order to finish this migration guide [#7195](https://github.com/mui-org/material-ui/issues/7195). 我们欢迎任何 pull request。

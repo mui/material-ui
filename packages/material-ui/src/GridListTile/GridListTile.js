@@ -100,7 +100,7 @@ const GridListTile = React.forwardRef(function GridListTile(props, ref) {
   return (
     <Component className={clsx(classes.root, className)} ref={ref} {...other}>
       <div className={classes.tile}>
-        {React.Children.map(children, child => {
+        {React.Children.map(children, (child) => {
           if (!React.isValidElement(child)) {
             return null;
           }

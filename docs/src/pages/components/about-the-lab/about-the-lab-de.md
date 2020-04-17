@@ -2,13 +2,13 @@
 
 <p class="description">Dieses Paket enthält die Inkubator-Komponenten, die noch nicht bereit sind, in den Kern aufgenommen zu werden.</p>
 
-The main difference between the lab and the core is how the components are versioned. Having a separate lab package allows us to release breaking changes when necessary while the core package follows a [slower-moving policy](https://material-ui.com/versions/#release-frequency).
+Der Hauptunterschied zwischen dem Labor und dem Kern besteht darin, wie die Komponenten versioniert werden. Having a separate lab package allows us to release breaking changes when necessary while the core package follows a [slower-moving policy](https://material-ui.com/versions/#release-frequency).
 
 As developers use and test the components and report issues, the maintainers learn more about shortcomings of the components: missing features, accessibility issues, bugs, API design, etc. The older and more used a component is, the less likely it is that new issues will be found and subsequently need to introduce breaking changes.
 
 For a component to be ready to move to the core, the following criteria are considered:
 
-* It needs to be **used**. The Material-UI team uses Google Analytics stats among other metrics to evaluate the usage of each component. A lab component with low usage either means that it isn't fully working yet or that there is a low demand for it.
+* Es muss **verwendet werden**. Das Material-UI-Team verwendet neben anderen Metriken Google Analytics Statistiken, um die Nutzung der einzelnen Komponenten zu bewerten. Eine Laborkomponente mit geringem Verbrauch bedeutet entweder, dass sie noch nicht vollständig funktioniert oder dass eine geringe Nachfrage besteht.
 * It needs to match the **code quality** of the core components. It doesn't have to be perfect to be a part of the core, but the component should be reliable enough that developers can depend on it. 
     * Each component needs **type definitions**. It is not currently required that a lab component is typed, but it would need to be typed to move to the core.
     * Requires good **test coverage**. Some of the lab components don't currently have comprehensive tests.
@@ -17,7 +17,7 @@ For a component to be ready to move to the core, the following criteria are cons
 
 ## Installation
 
-Install the package in your project directory with:
+Installieren Sie das Paket innerhalb des Projektordners mit:
 
 ```sh
 // mit npm

@@ -12,10 +12,7 @@ function capitalize(string) {
  * @param {string} iconName
  */
 function pascalize(iconName) {
-  return iconName
-    .split('-')
-    .map(capitalize)
-    .join('');
+  return iconName.split('-').map(capitalize).join('');
 }
 
 /**
@@ -30,8 +27,8 @@ function transformSVGIconImports(j, root) {
   const pathMatchRegex = /^material-ui\/svg-icons\/.+\/(.+)$/;
   root
     .find(j.Literal)
-    .filter(path => pathMatchRegex.test(path.node.value))
-    .forEach(path => {
+    .filter((path) => pathMatchRegex.test(path.node.value))
+    .forEach((path) => {
       const [, iconName] = path.node.value.match(pathMatchRegex);
 
       // update to new path

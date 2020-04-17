@@ -21,7 +21,7 @@ const PurpleSwitch = withStyles({
   track: {},
 })(Switch);
 
-const IOSSwitch = withStyles(theme => ({
+const IOSSwitch = withStyles((theme) => ({
   root: {
     width: 42,
     height: 26,
@@ -74,7 +74,7 @@ const IOSSwitch = withStyles(theme => ({
   );
 });
 
-const AntSwitch = withStyles(theme => ({
+const AntSwitch = withStyles((theme) => ({
   root: {
     width: 28,
     height: 16,
@@ -115,41 +115,25 @@ export default function CustomizedSwitches() {
     checkedC: true,
   });
 
-  const handleChange = name => event => {
-    setState({ ...state, [name]: event.target.checked });
+  const handleChange = (event) => {
+    setState({ ...state, [event.target.name]: event.target.checked });
   };
 
   return (
     <FormGroup>
       <FormControlLabel
-        control={
-          <PurpleSwitch
-            checked={state.checkedA}
-            onChange={handleChange('checkedA')}
-            value="checkedA"
-          />
-        }
+        control={<PurpleSwitch checked={state.checkedA} onChange={handleChange} name="checkedA" />}
         label="Custom color"
       />
       <FormControlLabel
-        control={
-          <IOSSwitch
-            checked={state.checkedB}
-            onChange={handleChange('checkedB')}
-            value="checkedB"
-          />
-        }
+        control={<IOSSwitch checked={state.checkedB} onChange={handleChange} name="checkedB" />}
         label="iOS style"
       />
       <Typography component="div">
         <Grid component="label" container alignItems="center" spacing={1}>
           <Grid item>Off</Grid>
           <Grid item>
-            <AntSwitch
-              checked={state.checkedC}
-              onChange={handleChange('checkedC')}
-              value="checkedC"
-            />
+            <AntSwitch checked={state.checkedC} onChange={handleChange} name="checkedC" />
           </Grid>
           <Grid item>On</Grid>
         </Grid>

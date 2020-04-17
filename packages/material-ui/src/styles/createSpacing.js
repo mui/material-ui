@@ -33,7 +33,7 @@ export default function createSpacing(spacingInput = 8) {
     }
 
     return args
-      .map(factor => {
+      .map((factor) => {
         const output = transform(factor);
         return typeof output === 'number' ? `${output}px` : output;
       })

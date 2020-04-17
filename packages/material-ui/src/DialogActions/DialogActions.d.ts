@@ -3,11 +3,22 @@ import { StandardProps } from '..';
 
 export interface DialogActionsProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, DialogActionsClassKey> {
+  /**
+   * If `true`, the actions do not have additional margin.
+   */
   disableSpacing?: boolean;
 }
 
 export type DialogActionsClassKey = 'root' | 'spacing';
 
-declare const DialogActions: React.ComponentType<DialogActionsProps>;
-
-export default DialogActions;
+/**
+ *
+ * Demos:
+ *
+ * - [Dialogs](https://material-ui.com/components/dialogs/)
+ *
+ * API:
+ *
+ * - [DialogActions API](https://material-ui.com/api/dialog-actions/)
+ */
+export default function DialogActions(props: DialogActionsProps): JSX.Element;

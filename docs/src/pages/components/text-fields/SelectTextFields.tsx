@@ -52,7 +52,7 @@ export default function MultilineTextFields() {
           onChange={handleChange}
           helperText="Please select your currency"
         >
-          {currencies.map(option => (
+          {currencies.map((option) => (
             <MenuItem key={option.value} value={option.value}>
               {option.label}
             </MenuItem>
@@ -69,7 +69,7 @@ export default function MultilineTextFields() {
           }}
           helperText="Please select your currency"
         >
-          {currencies.map(option => (
+          {currencies.map((option) => (
             <option key={option.value} value={option.value}>
               {option.label}
             </option>
@@ -86,7 +86,7 @@ export default function MultilineTextFields() {
           helperText="Please select your currency"
           variant="filled"
         >
-          {currencies.map(option => (
+          {currencies.map((option) => (
             <MenuItem key={option.value} value={option.value}>
               {option.label}
             </MenuItem>
@@ -104,7 +104,7 @@ export default function MultilineTextFields() {
           helperText="Please select your currency"
           variant="filled"
         >
-          {currencies.map(option => (
+          {currencies.map((option) => (
             <option key={option.value} value={option.value}>
               {option.label}
             </option>
@@ -121,7 +121,7 @@ export default function MultilineTextFields() {
           helperText="Please select your currency"
           variant="outlined"
         >
-          {currencies.map(option => (
+          {currencies.map((option) => (
             <MenuItem key={option.value} value={option.value}>
               {option.label}
             </MenuItem>
@@ -139,7 +139,7 @@ export default function MultilineTextFields() {
           helperText="Please select your currency"
           variant="outlined"
         >
-          {currencies.map(option => (
+          {currencies.map((option) => (
             <option key={option.value} value={option.value}>
               {option.label}
             </option>

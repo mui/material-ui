@@ -5,7 +5,7 @@ import withStyles from '../styles/withStyles';
 import useTheme from '../styles/useTheme';
 import capitalize from '../utils/capitalize';
 
-export const styles = theme => {
+export const styles = (theme) => {
   return {
     /* Styles applied to the root element. */
     root: {

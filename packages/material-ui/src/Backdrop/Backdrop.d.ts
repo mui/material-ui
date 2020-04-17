@@ -5,7 +5,7 @@ import { TransitionProps } from '../transitions/transition';
 
 export interface BackdropProps
   extends StandardProps<
-    React.HTMLAttributes<HTMLDivElement> & Partial<FadeProps>,
+    React.HTMLAttributes<HTMLDivElement> & Partial<Omit<FadeProps, 'children'>>,
     BackdropClassKey
   > {
   /**
@@ -26,4 +26,14 @@ export interface BackdropProps
 
 export type BackdropClassKey = 'root' | 'invisible';
 
+/**
+ *
+ * Demos:
+ *
+ * - [Backdrop](https://material-ui.com/components/backdrop/)
+ *
+ * API:
+ *
+ * - [Backdrop API](https://material-ui.com/api/backdrop/)
+ */
 export default function Backdrop(props: BackdropProps): JSX.Element;

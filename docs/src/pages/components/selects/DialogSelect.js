@@ -11,7 +11,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   container: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -27,7 +27,7 @@ export default function DialogSelect() {
   const [open, setOpen] = React.useState(false);
   const [age, setAge] = React.useState('');
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     setAge(Number(event.target.value) || '');
   };
 
@@ -54,7 +54,7 @@ export default function DialogSelect() {
                 onChange={handleChange}
                 input={<Input id="demo-dialog-native" />}
               >
-                <option value="" />
+                <option aria-label="None" value="" />
                 <option value={10}>Ten</option>
                 <option value={20}>Twenty</option>
                 <option value={30}>Thirty</option>

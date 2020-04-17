@@ -3,13 +3,13 @@ import { hasValue, isFilled } from './utils';
 
 describe('Input/utils.js', () => {
   describe('hasValue', () => {
-    ['', 0].forEach(value => {
+    ['', 0].forEach((value) => {
       it(`is true for ${value}`, () => {
         assert.strictEqual(hasValue(value), true);
       });
     });
 
-    [null, undefined].forEach(value => {
+    [null, undefined].forEach((value) => {
       it(`is false for ${value}`, () => {
         assert.strictEqual(hasValue(value), false);
       });
@@ -17,7 +17,7 @@ describe('Input/utils.js', () => {
   });
 
   describe('isFilled', () => {
-    [' ', 0].forEach(value => {
+    [' ', 0].forEach((value) => {
       it(`is true for value ${value}`, () => {
         assert.strictEqual(isFilled({ value }), true);
       });
@@ -26,7 +26,7 @@ describe('Input/utils.js', () => {
         assert.strictEqual(isFilled({ defaultValue: value }, true), true);
       });
     });
-    [null, undefined, ''].forEach(value => {
+    [null, undefined, ''].forEach((value) => {
       it(`is false for value ${value}`, () => {
         assert.strictEqual(isFilled({ value }), false);
       });

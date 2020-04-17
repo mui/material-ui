@@ -49,8 +49,8 @@ A prominent app bar.
 
 アプリバーの位置を固定してレンダリングすると、要素の寸法はページの残りの部分に影響しません。 これにより、コンテンツの一部がアプリバーの背後で見えなくなる可能性があります。 以下に3つの解決策を示します。
 
-1. 固定の代わりに `position = "sticky"` を使用できます。 stickyはIE 11ではサポートされていません。
-2. You can render a second `<Toolbar />` component:
+1. fixed の代わりに `position="sticky"` を使用できます。 ⚠️ stickyはIE 11ではサポートされていません。
+2. 2番目の `<Toolbar />` コンポーネントをレンダリングできます:
 
 ```jsx
 function App() {

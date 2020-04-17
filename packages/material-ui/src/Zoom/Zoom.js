@@ -48,6 +48,7 @@ const Zoom = React.forwardRef(function Zoom(props, ref) {
         mode: 'enter',
       },
     );
+
     node.style.webkitTransition = theme.transitions.create('transform', transitionProps);
     node.style.transition = theme.transitions.create('transform', transitionProps);
 
@@ -56,13 +57,14 @@ const Zoom = React.forwardRef(function Zoom(props, ref) {
     }
   };
 
-  const handleExit = node => {
+  const handleExit = (node) => {
     const transitionProps = getTransitionProps(
       { style, timeout },
       {
         mode: 'exit',
       },
     );
+
     node.style.webkitTransition = theme.transitions.create('transform', transitionProps);
     node.style.transition = theme.transitions.create('transform', transitionProps);
 
@@ -98,6 +100,10 @@ const Zoom = React.forwardRef(function Zoom(props, ref) {
 });
 
 Zoom.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * A single child content element.
    */
@@ -124,7 +130,11 @@ Zoom.propTypes = {
    */
   timeout: PropTypes.oneOfType([
     PropTypes.number,
-    PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
+    PropTypes.shape({
+      appear: PropTypes.number,
+      enter: PropTypes.number,
+      exit: PropTypes.number,
+    }),
   ]),
 };
 

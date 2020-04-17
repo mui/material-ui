@@ -18,9 +18,9 @@
 
 更改主题配置变量是将Material-UI与您的需求相匹配的最有效方法。 以下列出了一些重要的样式变量：
 
-- [Palette（调色）](/customization/palette/)
+- [Palette 调色](/customization/palette/)
 - [Typography](/customization/typography/)
-- [Spacing（间距）](/customization/spacing/)
+- [Spacing 间距](/customization/spacing/)
 - [断点](/customization/breakpoints/)
 - [z-index](/customization/z-index/)
 - [全局样式](/customization/globals/)

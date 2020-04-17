@@ -22,7 +22,7 @@ export default function Locales() {
         <Autocomplete
           options={[]}
           style={{ width: 300 }}
-          renderInput={params => (
+          renderInput={(params) => (
             <TextField {...params} label="自动完成" variant="outlined" fullWidth />
           )}
         />
