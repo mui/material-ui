@@ -30,7 +30,7 @@ The `MuiPagination` name can be used for providing [default props](/customizatio
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">boundaryCount</span> | <span class="prop-type">number</span> | <span class="prop-default">1</span> | Number of always visible pages at the beginning and end. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <span class="prop-name">color</span> | <span class="prop-type">'default'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'</span> | <span class="prop-default">'standard'</span> | The active color. |
+| <span class="prop-name">color</span> | <span class="prop-type">'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'standard'</span> | <span class="prop-default">'standard'</span> | The active color. |
 | <span class="prop-name">count</span> | <span class="prop-type">number</span> | <span class="prop-default">1</span> | The total number of pages. |
 | <span class="prop-name">defaultPage</span> | <span class="prop-type">number</span> | <span class="prop-default">1</span> | The page selected by default when the component is uncontrolled. |
 | <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the pagination component will be disabled. |
@@ -39,7 +39,7 @@ The `MuiPagination` name can be used for providing [default props](/customizatio
 | <span class="prop-name">hidePrevButton</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, hide the previous-page button. |
 | <span class="prop-name">onChange</span> | <span class="prop-type">func</span> |  | Callback fired when the page is changed.<br><br>**Signature:**<br>`function(event: object, page: number) => void`<br>*event:* The event source of the callback.<br>*page:* The page selected. |
 | <span class="prop-name">page</span> | <span class="prop-type">number</span> |  | The current page. |
-| <span class="prop-name">renderItem</span> | <span class="prop-type">func</span> | <span class="prop-default">(item) => &lt;PaginationItem {...item} /></span> | Render the item.<br><br>**Signature:**<br>`function(params: object) => ReactNode`<br>*params:* The props to spread on a PaginationItem. |
+| <span class="prop-name">renderItem</span> | <span class="prop-type">func</span> | <span class="prop-default">(item) => &lt;PaginationItem {...item} /></span> | Render the item.<br><br>**Signature:**<br>`function(params: PaginationRenderItemParams) => ReactNode`<br>*params:* The props to spread on a PaginationItem. |
 | <span class="prop-name">shape</span> | <span class="prop-type">'round'<br>&#124;&nbsp;'rounded'</span> | <span class="prop-default">'round'</span> | The shape of the pagination items. |
 | <span class="prop-name">showFirstButton</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, show the first-page button. |
 | <span class="prop-name">showLastButton</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, show the last-page button. |

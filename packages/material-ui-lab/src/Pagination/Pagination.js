@@ -101,7 +101,7 @@ Pagination.propTypes = {
   /**
    * The active color.
    */
-  color: PropTypes.oneOf(['default', 'primary', 'secondary']),
+  color: PropTypes.oneOf(['primary', 'secondary', 'standard']),
   /**
    * The total number of pages.
    * @default 1
@@ -152,7 +152,7 @@ Pagination.propTypes = {
   /**
    * Render the item.
    *
-   * @param {object} params The props to spread on a PaginationItem.
+   * @param {PaginationRenderItemParams} params The props to spread on a PaginationItem.
    * @returns {ReactNode}
    */
   renderItem: PropTypes.func,

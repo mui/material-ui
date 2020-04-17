@@ -2,13 +2,20 @@ import * as React from 'react';
 import { StandardProps } from '@material-ui/core';
 import { UsePaginationItem, UsePaginationProps } from './usePagination';
 
+export interface PaginationRenderItemParams extends UsePaginationItem {
+  color: PaginationProps['color'];
+  shape: PaginationProps['shape'];
+  size: PaginationProps['size'];
+  variant: PaginationProps['variant'];
+}
+
 export interface PaginationProps
   extends UsePaginationProps,
     StandardProps<React.HTMLAttributes<HTMLElement>, PaginationClassKey, 'children' | 'onChange'> {
   /**
    * The active color.
    */
-  color?: 'default' | 'primary' | 'secondary';
+  color?: 'primary' | 'secondary' | 'standard';
   /**
    * Accepts a function which returns a string value that provides a user-friendly name for the current page.
    *
@@ -27,10 +34,10 @@ export interface PaginationProps
   /**
    * Render the item.
    *
-   * @param {object} params The props to spread on a PaginationItem.
+   * @param {PaginationRenderItemParams} params The props to spread on a PaginationItem.
    * @returns {ReactNode}
    */
-  renderItem?: (params: object) => React.ReactNode;
+  renderItem?: (params: PaginationRenderItemParams) => React.ReactNode;
   /**
    * The shape of the pagination items.
    */
