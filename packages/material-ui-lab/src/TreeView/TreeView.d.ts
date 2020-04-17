@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StandardProps } from '@material-ui/core';
+import { StandardProps, TypographyProps } from '@material-ui/core';
 
 export interface TreeViewPropsBase
   extends StandardProps<React.HTMLAttributes<HTMLUListElement>, TreeViewClassKey> {
@@ -40,6 +40,11 @@ export interface TreeViewPropsBase
    * @param {array} nodeIds The ids of the expanded nodes.
    */
   onNodeToggle?: (event: React.ChangeEvent<{}>, nodeIds: string[]) => void;
+  /**
+   * Props for every TreeItem Typography label wrapper.
+   * Can be overridden on each TreeItem with TreeItem labelProps prop.
+   */
+  labelProps?: TypographyProps;
 }
 
 export interface MultiSelectTreeViewProps extends TreeViewPropsBase {

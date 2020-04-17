@@ -53,6 +53,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     onNodeSelect,
     onNodeToggle,
     selected: selectedProp,
+    labelProps,
     ...other
   } = props;
   const [tabbable, setTabbable] = React.useState(null);
@@ -513,6 +514,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
         isExpanded,
         isFocused,
         isSelected,
+        labelProps,
         selectNode: disableSelection ? noopSelection : selectNode,
         selectRange: disableSelection ? noopSelection : selectRange,
         selectNextNode: disableSelection ? noopSelection : selectNextNode,
@@ -594,6 +596,11 @@ TreeView.propTypes = {
    * Expanded node ids. (Controlled)
    */
   expanded: PropTypes.arrayOf(PropTypes.string),
+  /**
+   * Props for every TreeItem Typography label wrapper
+   * Can be overridden on each TreeItem with TreeItem labelProps prop.
+   */
+  labelProps: PropTypes.object,
   /**
    * If true `ctrl` and `shift` will trigger multiselect.
    */

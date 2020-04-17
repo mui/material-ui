@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StandardProps } from '@material-ui/core';
+import { StandardProps, TypographyProps } from '@material-ui/core';
 import { TransitionProps } from '@material-ui/core/transitions';
 
 export interface TreeItemProps
@@ -24,6 +24,10 @@ export interface TreeItemProps
    * The tree node label.
    */
   label?: React.ReactNode;
+  /**
+   * Props for the Typography label wrapper.
+   */
+  labelProps?: TypographyProps;
   /**
    * The id of the node.
    */

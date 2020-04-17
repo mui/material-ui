@@ -519,7 +519,7 @@ describe('<TreeItem />', () => {
                 <button
                   data-testid="button"
                   type="button"
-                  onClick={() => setState(value => !value)}
+                  onClick={() => setState((value) => !value)}
                 >
                   Toggle Hide
                 </button>
@@ -1256,5 +1256,103 @@ describe('<TreeItem />', () => {
     });
 
     expect(getByRole('button')).to.have.focus;
+  });
+
+  describe('label props spreading', () => {
+    it('should spread props from context', () => {
+      const contextClick = spy();
+
+      const { getByText } = render(
+        <TreeView labelProps={{ onClick: contextClick }}>
+          <TreeItem nodeId="one" label="one" data-testid="one" />
+        </TreeView>,
+      );
+      fireEvent.click(getByText('one'));
+      expect(contextClick.callCount).to.equal(1);
+    });
+    it('should spread from own props', () => {
+      const contextClick = spy();
+      const propsClick = spy();
+      const { getByText } = render(
+        <TreeView labelProps={{ onClick: contextClick }}>
+          <TreeItem
+            labelProps={{ onClick: propsClick }}
+            nodeId="one"
+            label="one"
+            data-testid="one"
+          />
+        </TreeView>,
+      );
+      fireEvent.click(getByText('one'));
+      expect(contextClick.callCount).to.equal(0);
+      expect(propsClick.callCount).to.equal(1);
+    });
+
+    describe('should permit conditional click expansion', () => {
+      function renderTestComponent(labelClickExpands) {
+        function TestComponent() {
+          const lastLabelClick = React.useRef();
+          const [expanded, setExpanded] = React.useState([]);
+          const onNodeToggle = React.useCallback(
+            (evt, newExpanded) => {
+              setExpanded((oldExpanded) => {
+                if (evt.nativeEvent && evt.nativeEvent.type === 'click') {
+                  const isLabelClick = evt.nativeEvent === lastLabelClick.current;
+                  if (
+                    (isLabelClick && labelClickExpands) ||
+                    (!isLabelClick && !labelClickExpands)
+                  ) {
+                    return newExpanded;
+                  }
+                  return oldExpanded;
+                }
+                return newExpanded;
+              });
+            },
+            [setExpanded],
+          );
+
+          return (
+            <React.Fragment>
+              <TreeView
+                expanded={expanded}
+                onNodeToggle={onNodeToggle}
+                labelProps={{
+                  onClick(evt) {
+                    lastLabelClick.current = evt.nativeEvent;
+                  },
+                }}
+              >
+                <TreeItem
+                  icon={<div data-testid="parenticon" />}
+                  label="parent"
+                  nodeId="parent"
+                  data-testid="parent"
+                >
+                  <TreeItem nodeId="child" data-testid="child" />
+                </TreeItem>
+              </TreeView>
+            </React.Fragment>
+          );
+        }
+
+        return render(<TestComponent />);
+      }
+      it('should permit label click expansion only', () => {
+        const { getByText, queryByTestId, getByTestId } = renderTestComponent(false);
+        fireEvent.click(getByText('parent'));
+        expect(queryByTestId('child')).to.be.null;
+        fireEvent.click(getByTestId('parenticon'));
+        expect(queryByTestId('child')).to.exist;
+      });
+
+      it('should premit icon click expansion only', () => {
+        const { getByText, queryByTestId, getByTestId } = renderTestComponent(true);
+        fireEvent.click(getByTestId('parenticon'));
+        expect(queryByTestId('child')).to.be.null;
+        fireEvent.click(getByText('parent'));
+        expect(queryByTestId('child')).to.exist;
+      });
+    });
   });
 });

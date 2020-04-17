@@ -90,6 +90,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     expandIcon,
     icon: iconProp,
     label,
+    labelProps,
     nodeId,
     onClick,
     onFocus,
@@ -126,6 +127,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     mapFirstChar,
     addNodeToNodeMap,
     removeNodeFromNodeMap,
+    labelProps: contextLabelProps,
   } = React.useContext(TreeViewContext);
 
   const nodeRef = React.useRef(null);
@@ -365,6 +367,8 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     ariaSelected = true;
   }
 
+  const typographyProps = labelProps || contextLabelProps;
+
   return (
     <li
       className={clsx(classes.root, className, {
@@ -387,7 +391,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
         ref={contentRef}
       >
         <div className={classes.iconContainer}>{icon}</div>
-        <Typography component="div" className={classes.label}>
+        <Typography {...typographyProps} component="div" className={classes.label}>
           {label}
         </Typography>
       </div>
@@ -445,6 +449,10 @@ TreeItem.propTypes = {
    * The tree node label.
    */
   label: PropTypes.node,
+  /**
+   * Props for the Typography label wrapper
+   */
+  labelProps: PropTypes.object,
   /**
    * The id of the node.
    */
