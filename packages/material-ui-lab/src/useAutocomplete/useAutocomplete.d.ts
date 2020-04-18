@@ -101,8 +101,11 @@ export interface UseAutocompleteCommonProps<T> {
    */
   getOptionLabel?: (option: T) => string;
   /**
-   * Used to determine if an option is selected.
+   * Used to determine if an option is selected, considering the current value.
    * Uses strict equality by default.
+   * @param {T} option The option to test.
+   * @param {T} value The value to test against.
+   * @return {boolean}
    */
   getOptionSelected?: (option: T, value: T) => boolean;
   /**
