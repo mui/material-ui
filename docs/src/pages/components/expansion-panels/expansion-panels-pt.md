@@ -27,9 +27,9 @@ Aqui está um exemplo de customização do componente. Você pode aprender mais 
 
 {{"demo": "pages/components/expansion-panels/CustomizedExpansionPanels.js"}}
 
-## Additional actions
+## Ações adicionais
 
-In order to put an action such as a `Checkbox` or a button inside of the `ExpansionPanelSummary`, you need to stop the propagation of the focus and click events to prevent the panel from expanding/collapsing when using the action. You should also provide an `aria-label` for the action, otherwise the label of the nested action will be included in the label of the parent button that controls the panel expansion.
+Para colocar uma ação como um `Checkbox` ou um botão dentro do `ExpansionPanelSummary`, você precisa parar a propogação do foco e eventos de clique para previnir o painel de expandir/colapsar quando usar a ação. Você deve fornecer também um `aria-label` para a ação, caso contrário, o rótulo da ação aninhada será incluído no rótulo do botão pai que controla a expansão do painel.
 
 {{"demo": "pages/components/expansion-panels/ActionsInExpansionPanelSummary.js", "bg": true}}
 

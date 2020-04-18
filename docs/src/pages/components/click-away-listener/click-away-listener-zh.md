@@ -8,6 +8,7 @@ components: ClickAwayListener
 <p class="description">用于检测点击事件是否发生在元素之外。 它可以监听文档中某处发生的点击事件。</p>
 
 - 📦 [1.5kB 已压缩的包](/size-snapshot)。
+- ⚛️ Support portals
 
 ## 示例
 
@@ -16,3 +17,9 @@ components: ClickAwayListener
 {{"demo": "pages/components/click-away-listener/ClickAway.js"}}
 
 请注意，该组件仅接受一个子元素。 You can find a more advanced demo on the [Menu documentation section](/components/menus/#menulist-composition).
+
+## Portal
+
+The following demo uses [`Portal`](/components/portal/) to render the dropdown into a new "subtree" outside of current DOM hierarchy.
+
+{{"demo": "pages/components/click-away-listener/PortalClickAway.js"}}

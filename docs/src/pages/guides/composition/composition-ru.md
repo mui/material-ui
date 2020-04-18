@@ -24,7 +24,7 @@ Material-UI allows you to change the root element that will be rendered via a pr
 
 ### How does it work?
 
-Компонент будет отображаться следующим образом:
+The custom component will be rendered by Material-UI like this:
 
 ```js
 return React.createElement(props.component, props)
@@ -55,9 +55,11 @@ import { Link } from 'react-router-dom';
 function ListItemLink(props) {
   const { icon, primary, to } = props;
 
+  const CustomLink = props => <Link to={to} {...props} />;
+
   return (
     <li>
-      <ListItem button component={props => <Link to={to} {...props} />}>
+      <ListItem button component={CustomLink}>
         <ListItemIcon>{icon}</ListItemIcon>
         <ListItemText primary={primary} />
       </ListItem>
@@ -68,7 +70,7 @@ function ListItemLink(props) {
 
 ⚠️ Однако, поскольку мы используем встроенную функцию для изменения отрисованного компонента, React будет демонтировать ссылку каждый раз, когда ` ListItemLink ` отрисован. Не только React сделает ненужное обновление DOM, но и ripple эффект `ListItem` будет работать неправильно.
 
-The solution is simple: **avoid inline functions and pass a static component to the `component` prop** instead. Let's change the `ListItemLink` to the following:
+The solution is simple: **avoid inline functions and pass a static component to the `component` prop** instead. Let's change the `ListItemLink` component so `CustomLink` always reference the same component:
 
 ```jsx
 import { Link } from 'react-router-dom';
@@ -76,7 +78,7 @@ import { Link } from 'react-router-dom';
 function ListItemLink(props) {
   const { icon, primary, to } = props;
 
-  const renderLink = React.useMemo(
+  const CustomLink = React.useMemo(
     () =>
       React.forwardRef((linkProps, ref) => (
         <Link ref={ref} to={to} {...linkProps} />
@@ -86,7 +88,7 @@ function ListItemLink(props) {
 
   return (
     <li>
-      <ListItem button component={renderLink}>
+      <ListItem button component={CustomLink}>
         <ListItemIcon>{icon}</ListItemIcon>
         <ListItemText primary={primary} />
       </ListItem>
@@ -94,8 +96,6 @@ function ListItemLink(props) {
   );
 }
 ```
-
-` renderLink ` теперь всегда будет ссылаться на один и тот же компонент.
 
 ### Caveat with prop forwarding
 
@@ -111,7 +111,7 @@ import { Link } from 'react-router-dom';
 
 ### With TypeScript
 
-Вы можете найти подробности в [ руководстве по TypeScript ](/guides/typescript/#usage-of-component-prop).
+You can find the details in the [TypeScript guide](/guides/typescript/#usage-of-component-prop).
 
 ## Routing libraries
 
@@ -155,14 +155,14 @@ In some instances an additional warning is issued to help with debugging, simila
 Only the two most common use cases are covered. For more information see [this section in the official React docs](https://reactjs.org/docs/forwarding-refs.html).
 
 ```diff
-- const MyButton = props => <div role="button" {...props} />;
-+ const MyButton = React.forwardRef((props, ref) => <div role="button" {...props} ref={ref} />);
+-const MyButton = props => <div role="button" {...props} />;
++const MyButton = React.forwardRef((props, ref) => <div role="button" {...props} ref={ref} />);
 <Button component={MyButton} />;
 ```
 
 ```diff
-- const SomeContent = props => <div {...props}>Hello, World!</div>;
-+ const SomeContent = React.forwardRef((props, ref) => <div {...props} ref={ref}>Hello, World!</div>);
+-const SomeContent = props => <div {...props}>Hello, World!</div>;
++const SomeContent = React.forwardRef((props, ref) => <div {...props} ref={ref}>Hello, World!</div>);
 <Tooltip title="Hello, again."><SomeContent /></Tooltip>;
 ```
 

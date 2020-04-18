@@ -339,7 +339,7 @@ This change is explained in more detail in the [TypeScript guide](/guides/typesc
   +<Tabs variant="scrollable" />
   ```
 
-### Table (tabla)
+### Table (Tabla)
 
 - [TableCell] Remove the deprecated `numeric` property:
   

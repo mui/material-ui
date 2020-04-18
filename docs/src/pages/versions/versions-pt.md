@@ -41,14 +41,14 @@ Em geral, você pode esperar o seguinte ciclo de lançamento:
 | Data                       | Versão | Situação |
 |:-------------------------- |:------ |:-------- |
 | Maio de 2018               | v1.0.0 | Liberada |
-| September 2018             | v3.0.0 | Liberada |
+| Setembro de 2018           | v3.0.0 | Liberada |
 | Maio de 2019               | v4.0.0 | Liberada |
 | Terceiro trimestre de 2020 | v5.0.0 | ⏳        |
 
 
 Você pode seguir os [ milestones ](https://github.com/mui-org/material-ui/milestones) para uma visão geral mais detalhada.
 
-> ⚠️ ** Isenção de responsabilidade **: Operamos em um ambiente dinâmico e as coisas estão sujeitas a alterações. The information provided is intended to outline the general framework direction. It's intended for informational purposes only. We may decide to add/remove new items at any time depending on our capability to deliver while meeting our quality standards. The development, releases and timing of any features or functionality of Material-UI remains at the sole discretion of Material-UI. The roadmap does not represent a commitment, obligation or promise to deliver at any time.
+> ⚠️ ** Isenção de responsabilidade **: Operamos em um ambiente dinâmico e as coisas estão sujeitas a alterações. As informações disponibilizadas destinam-se a traçar a orientação geral do framework. Destina-se apenas a fins informativos. Podemos decidir adicionar/remover itens novos a qualquer momento, com base em nossos recursos de capacidade de entrga ou para manter nossos padrões de qualidade. O desenvolvimento, lançamentos e disponibilidade de recursos ou funcionalidades do Material-UI permanece a critério exclusivo da equipe. O roadmap não representa um compromisso, obrigação ou promessa que será entregue em um determinado momento.
 
 ## Política de suporte
 
@@ -60,12 +60,12 @@ Encontre detalhes nas [versões suportadas](/getting-started/support/#supported-
 
 Para tornar essas transições o mais fácil possível:
 
-- The number of breaking changes is minimized, and migration tools provided when possible.
-- The deprecation policy described below is followed, so that you have time to update your apps to the latest APIs and best practices.
+- O número de alterações recentes é minimizado, e ferramentas de migração são disponibilizadas quando possível.
+- A política de descontinuação descrita abaixo é seguida para que dessa forma, você tenha tempo para atualizar seus aplicativos para as versões mais recentes da API bem como aplicar as melhores práticas.
 
 ### Política de descontinuação
 
-- Deprecated features are announced in the changelog, and when possible, with warnings at runtime.
-- When a deprecation is announced, recommended update path is provided.
-- Existing use of a stable API during the deprecation period is supported, so your code will keep working during that period.
-- Peer dependency updates (React) that require changes to your apps are only made in a major release.
+- Recursos descontinuados são anunciados no log de mudanças, quando possível, com avisos colocados em tempo de execução.
+- Quando uma descontinuação é anunciada, um caminho para efetuar a atualização é fornecido.
+- O uso já existente da API durante o período de descontinuação é suportado, então seu código continuará a funcionar durante esse período.
+- Atualizações de subdependências do framework que exigem alterações nos seus aplicativos só são feitas em uma versão principal.

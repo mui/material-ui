@@ -46,14 +46,15 @@ theme.spacing(2); // = 8
 
 ## Multiple arity
 
-The `theme.spacing()` helper accepts up to 4 arguments. You can use the arguments to reduce the boilerplate. Instead of doing:
+The `theme.spacing()` helper accepts up to 4 arguments. You can use the arguments to reduce the boilerplate.
 
-```js
-padding: `${theme.spacing(1)}px ${theme.spacing(2)}px`, // '8px 16px'
+```diff
+-padding: `${theme.spacing(1)}px ${theme.spacing(2)}px`, // '8px 16px'
++padding: theme.spacing(1, 2), // '8px 16px'
 ```
 
-you can do:
+Mixing string values is also supported:
 
 ```js
-padding: theme.spacing(1, 2), // '8px 16px'
+margin: theme.spacing(1, 'auto'), // '8px auto'
 ```

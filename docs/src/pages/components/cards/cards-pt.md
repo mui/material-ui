@@ -17,9 +17,9 @@ Apesar dos componentes cartões poderem suportar múltiplas ações tais como: c
 
 {{"demo": "pages/components/cards/SimpleCard.js", "bg": true}}
 
-### Outlined Card
+### Cartão Delineado
 
-Set `variant="outlined"` to render an outlined card.
+Defina `variant="outlined"` para renderizar um cartão delineado.
 
 {{"demo": "pages/components/cards/OutlinedCard.js", "bg": true}}
 
@@ -51,4 +51,4 @@ Aqui está um exemplo de um controle de mídia do cartão.
 
 ## Customização
 
-👑 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/components/card).
+👑 Se você está procurando inspiração, você pode verificar [os exemplos de customização de MUI Treasury](https://mui-treasury.com/components/card).

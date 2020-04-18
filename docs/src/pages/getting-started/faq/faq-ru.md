@@ -1,6 +1,6 @@
 # Часто задаваемые вопросы (FAQ)
 
-<p class="description">Застряли на чём-то? Гляньте сперва список типичных граблей в FAQ.</p>
+<p class="description">Застряли на чём-то? Гляньте сперва на список типичных граблей здесь.</p>
 
 И если всё-таки здесь не найдётся вашей проблемы, обратитесь к [странице поддержки](/getting-started/support/).
 
@@ -9,16 +9,16 @@
 Способов поддержать Material-UI много:
 
 - **Говорите о нас**. Продвигайте Material-UI в массы: разместите ссылки на [material-ui.com](https://material-ui.com/) на своём сайте, каждое упоминание имеет значение. Зафолловьте нас в [Твиттере](https://twitter.com/MaterialUI), лайкайте и ретвитьте значимые новости. Или просто расскажите о нас друзьям.
-- **Give us feedback**. Tell us what we're doing well or where we can improve. Please upvote (👍) the issues that you are the most interested in seeing solved.
-- **Help new users**. You can answer questions on [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui).
-- **Make changes happen**. 
-  - Report bugs or missing features by [creating an issue](https://github.com/mui-org/material-ui/issues/new).
-  - Reviewing and commenting on existing [pull requests](https://github.com/mui-org/material-ui/pulls) and [issues](https://github.com/mui-org/material-ui/issues).
-  - Help [translate](https://translate.material-ui.com) the documentation.
-  - Fixing bugs, adding features, and [improving our documentation](https://github.com/mui-org/material-ui/tree/master/docs) by [submitting a pull request](https://github.com/mui-org/material-ui/pulls).
-- **Support us financially on [OpenCollective](https://opencollective.com/material-ui)**. If you use Material-UI in a commercial project and would like to support its continued development by becoming a Sponsor, or in a side or hobby project and would like to become a Backer, you can do so through OpenCollective. All funds donated are managed transparently, and Sponsors receive recognition in the README and on the Material-UI home page.
+- **Делитесь отзывами и предложениями**. Говорите, что у нас получается хорошо, а где можно и получше. Пожалуйста, плюсуйте (👍) тикеты, которые вам хотелось бы поскорее увидеть решёнными.
+- **Помогайте новичкам**. Поотвечайте на вопросы на [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui).
+- **Двигайте проект вперёд**. 
+  - Присылайте багрепорты и фичреквесты [через тикеты](https://github.com/mui-org/material-ui/issues/new).
+  - Смотрите и комментируйте текущие [пулл-реквесты](https://github.com/mui-org/material-ui/pulls) и [тикеты](https://github.com/mui-org/material-ui/issues).
+  - Помогите [перевести документацию](https://translate.material-ui.com).
+  - Правьте баги, вносите фичи и [улучшайте документацию](https://github.com/mui-org/material-ui/tree/master/docs) через [пулл-реквесты](https://github.com/mui-org/material-ui/pulls).
+- **Поддержите нас финансово на [OpenCollective](https://opencollective.com/material-ui)**. Если вы применяете Material-UI в коммерческих разработках и хотите спонсировать его дальнейшую развитие, или если это личный проект, и вы хотите сделать посильный вклад, вы можете воспользоваться OpenCollective. Мы открыто сообщаем, на что уходят пожертвования, а спонсорам достаётся упоминание в README и на главной странице Material-UI.
 
-## Почему мои компоненты не отображаются корректно в продакшн сборках?
+## Почему мои компоненты не отображаются корректно в продакшн-сборках?
 
 Скорее всего проблема возникает из-за конфликта имен классов, когда ваш код находится в продакшн пакете. Чтобы Material-UI работал, значения `className` всех компонентов на странице должны генерироваться одним экземпляром [генератора имен классов](/styles/advanced/#class-names).
 

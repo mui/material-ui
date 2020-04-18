@@ -8,6 +8,7 @@ components: ClickAwayListener
 <p class="description">クリックイベントが要素の外部で発生したかどうかを検出します。 ドキュメント内のどこかで発生したクリックを受信します。</p>
 
 - [1.5 kB gzipped](/size-snapshot).
+- ⚛️ Support portals
 
 ## 例
 
@@ -16,3 +17,9 @@ components: ClickAwayListener
 {{"demo": "pages/components/click-away-listener/ClickAway.js"}}
 
 Notice that the component only accepts one child element. You can find a more advanced demo on the [Menu documentation section](/components/menus/#menulist-composition).
+
+## Portal
+
+The following demo uses [`Portal`](/components/portal/) to render the dropdown into a new "subtree" outside of current DOM hierarchy.
+
+{{"demo": "pages/components/click-away-listener/PortalClickAway.js"}}

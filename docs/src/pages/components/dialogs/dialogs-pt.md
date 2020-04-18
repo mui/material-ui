@@ -114,7 +114,7 @@ Experimente a demonstração abaixo para ver o que queremos dizer:
 
 ## Limitações
 
-Follow the [Modal limitations section](/components/modal/#limitations).
+Siga a seção de [limitações do Modal](/components/modal/#limitations).
 
 ## Acessibilidade
 

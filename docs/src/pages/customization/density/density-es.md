@@ -1,36 +1,36 @@
-# Density
+# Densidad
 
-<p class="description">How to apply density to Material-UI components.</p>
+<p class="description">Cómo aplicar densidad a los componentes de Material-UI.</p>
 
-## Applying density
+## Aplicando densidad
 
-This section explains how to apply density. It doesn't cover potential use cases, or considerations for using density in your application. The Material design guidelines have a [comprehensive guide](https://material.io/design/layout/applying-density.html#typographic-density) covering these topics in more detail.
+Esta sección explica cómo aplicar densidad. No cubre todos los casos de uso posibles, ni consideraciones que debas tomar en cuenta para usar densidad en tu aplicación. Las guias Material Design tienen una [guia extensa](https://material.io/design/layout/applying-density.html#typographic-density) que cubre estos temas con mayor detalle.
 
-## Implementing density
+## Implementando la densidad
 
-Higher density can be applied to some components via props. The component pages have at least one example using the respective component with higher density applied.
+Se puede aplicar una mayor densidad a algunos componentes por medio de propiedades. Las páginas de componentes tienen al menos un ejemplo usando el respectivo componente con una densidad mayor aplicada.
 
-Depending on the component, density is applied either via lower spacing, or simply by reducing the size.
+Dependiendo del componente, la densidad es aplicada usando menos espacio, o simplemente reduciendo su tamaño.
 
-The following components have props applying higher density:
+Los siguientes componentes tienen propiedades para aplicar una mayor densidad:
 
-- [Button (botón)](/api/button/)
-- [Fab](/api/fab/)
-- [FilledInput](/api/filled-input/)
-- [FormControl](/api/form-control/)
-- [FormHelperText](/api/form-helper-text/)
-- [IconButton](/api/icon-button/)
-- [InputBase](/api/input-base/)
-- [InputLabel](/api/input-label/)
-- [ListItem](/api/list-item/)
-- [OutlinedInput](/api/outlined-input/)
-- [Table (tabla)](/api/table/)
+- [Button (Botón)](/api/button/)
+- [Fab (Botón flotante de acción)](/api/fab/)
+- [FilledInput (Campo de entrada relleno)](/api/filled-input/)
+- [FormControl (Control de formulario)](/api/form-control/)
+- [FormHelperText (Texto de ayuda de formulario)](/api/form-helper-text/)
+- [IconButton (Botón de ícono)](/api/icon-button/)
+- [InputBase (Base para los campos de entrada)](/api/input-base/)
+- [InputLabel (Etiqueta de campo de entrada)](/api/input-label/)
+- [ListItem (Elemento de lista)](/api/list-item/)
+- [OutlinedInput (Campo de entrada delineado)](/api/outlined-input/)
+- [Table (Tabla)](/api/table/)
 - [TextField](/api/text-field/)
-- [Toolbar](/api/toolbar/)
+- [Toolbar (Barra de herramientas)](/api/toolbar/)
 
-## Explore theme density
+## Explorar densidad del tema
 
-This tool allows you to apply density via spacing and component props. You can browse around and see how this applies to the overall feel of Material-UI components.
+Esta herramienta permite aplicar la densidad a través de espaciado de componentes y propiedades. Puedes navegar alrededor y ver cómo se aplica ésto a los componentes de Material-UI.
 
 If you enable high density a custom theme is applied to the docs. This theme is only for demonstration purposes. You *should not* apply this theme to your whole application as this might negatively impact user experience. The [Material design guidelines](https://material.io/design/layout/applying-density.html#typographic-density) has examples for when not to apply density.
 

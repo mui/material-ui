@@ -13,6 +13,6 @@ components: Paper
 
 ## 变种
 
-If you need an outlined surface, use the `variant` prop.
+如果你想要一个轮廓曲面，你可以使用` variant `属性。
 
 {{"demo": "pages/components/paper/Variants.js", "bg": "inline"}}

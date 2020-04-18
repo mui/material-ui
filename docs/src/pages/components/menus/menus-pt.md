@@ -59,9 +59,9 @@ Use uma transição diferente.
 
 {{"demo": "pages/components/menus/FadeMenu.js"}}
 
-## Context menu
+## Menu de contexto
 
-Here is an example of a context menu. (Right click to open.)
+Aqui está um exemplo de um menu de contexto. (Clique com o botão direito para abrir.)
 
 {{"demo": "pages/components/menus/ContextMenu.js"}}
 

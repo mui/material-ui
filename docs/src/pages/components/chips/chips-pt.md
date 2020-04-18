@@ -50,4 +50,4 @@ Você pode usar a propriedade `size` para definir um Chip pequeno.
 
 ## Acessibilidade
 
-If the Chip is deletable or clickable then it is a button in tab order. When the Chip is focused (e.g. when tabbing) releasing (`keyup` event) `Backspace` or `Delete` will call the `onDelete` handler while releasing `Escape` will blur the Chip.
+Se o Chip é deletável ou clicável, então é como um botão na ordem da tabulação. Quando o Chip está focado (ex. quando tabulando) pressionando (evento `keyup`) `Backspace` ou `Delete` irá chamar o evento manipulador `onDelete`, enquanto liberando com a tecla `Escape` irá tirar o foco do Chip.

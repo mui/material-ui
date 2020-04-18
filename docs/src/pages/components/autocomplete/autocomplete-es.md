@@ -32,6 +32,15 @@ Choose one of the 248 countries.
 
 {{"demo": "pages/components/autocomplete/CountrySelect.js"}}
 
+### Controllable states
+
+The component has two states that can be controlled:
+
+1. the "value" state with the `value`/`onChange` props combination.
+2. the "input value" state with the `inputValue`/`onInputChange` props combination.
+
+> ⚠️ These two state are isolated, they should be controlled independently.
+
 ## Free solo
 
 Setear `freeSolo` a true, para que el cuadro de texto pueda contener cualquier valor arbitrario. La propiedad está diseñada para cubrir el principal caso de uso de una caja de búsqueda con sugerencias, ej: Google Search.

@@ -32,6 +32,15 @@ Choose one of the 248 countries.
 
 {{"demo": "pages/components/autocomplete/CountrySelect.js"}}
 
+### Controllable states
+
+The component has two states that can be controlled:
+
+1. the "value" state with the `value`/`onChange` props combination.
+2. the "input value" state with the `inputValue`/`onInputChange` props combination.
+
+> ⚠️ These two state are isolated, they should be controlled independently.
+
 ## Произвольное значение
 
 Установите для `freeSolo` значение true, чтобы текстовое поле могло содержать любое произвольное значение. Это свойство предназначено для использования в качестве поискового окна с подсказками, например как поиск Google.

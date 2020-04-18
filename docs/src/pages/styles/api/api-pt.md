@@ -6,18 +6,18 @@
 
 Uma função que retorna [uma função geradora de nome de classe](https://cssinjs.org/jss-api/#generate-your-class-names).
 
-#### Argumentos
+### Argumentos
 
 1. `options` (*Object* [opcional]): 
   - `options.disableGlobal` (*Boolean* [opcional]): Padrão `false`. Desabilita a geração de nomes de classes determinísticas.
   - `options.productionPrefix` (*String* [opcional]): Padrão `'jss'`. A string usada para prefixar os nomes de classes em produção.
   - `options.seed` (*String* [opcional]): Padrão `''`. A string u usada unicamente para identificar o gerador. Ela pode ser usada para evitar colisões de nomes de classes ao usar vários geradores no mesmo documento.
 
-#### Retornos
+### Retornos
 
 `class name generator`: O gerador que deve ser fornecido ao JSS.
 
-#### Exemplos
+### Exemplos
 
 ```jsx
 import React from 'react';
@@ -38,15 +38,15 @@ export default function App() {
 
 Esta função realmente não "faz nada" em tempo de execução, é apenas uma função de identidade. Sua única finalidade é prevenir a ampliação de tipos do **TypeScript**, ao fornecer regras de estilo para `makeStyles`/`withStyles` que são uma função do `Tema`.
 
-#### Argumentos
+### Argumentos
 
 1. `styles` (*Function | Object*): Uma função que gera os estilos ou um objeto de estilos.
 
-#### Retornos
+### Retornos
 
 `styles`: Uma função que gera os estilos ou um objeto de estilos.
 
-#### Exemplos
+### Exemplos
 
 ```jsx
 import { makeStyles, createStyles } from '@material-ui/core/styles';
@@ -67,7 +67,7 @@ export default function MyComponent {
 
 Vincula uma folha de estilo a um componente de função usando o padrão **hook**.
 
-#### Argumentos
+### Argumentos
 
 1. `styles` (*Function | Object*): Uma função que gera os estilos ou um objeto de estilos. Ela será vinculada ao componente. Use a assinatura da função se você precisar ter acesso ao tema. É fornecido como o primeiro argumento.
 2. `options` (*Object* [opcional]): 
@@ -76,11 +76,11 @@ Vincula uma folha de estilo a um componente de função usando o padrão **hook*
   - `options.flip` (*Boolean* [opcional]): Quando definido como `false`, está folha irá cancelar a transformação `rtl`. Quando definido para `true`, os estilos são invertidos. Quando definido para `null`, segue `theme.direction`.
   - As outras chaves são encaminhadas para o argumento de opções do [jss.createStyleSheet ([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet).
 
-#### Retornos
+### Retornos
 
 `hook`: Um hook. Este hook pode ser usado em uma função que retorna o componente. A documentação geralmente chama esse hook retornado de `useStyles`. Aceita um argumento: as propriedades que serão usadas para "interpolação" na folha de estilo.
 
-#### Exemplos
+### Exemplos
 
 ```jsx
 import React from 'react';
@@ -148,7 +148,7 @@ O método é uma alternativa para `.toString()` quando você esta renderizando a
 
 Vincula uma folha de estilos, com uma função de componente, usando o padrão de **componentes estilizados (styled components)**.
 
-#### Argumentos
+### Argumentos
 
 1. `Component`: O componente que será manipulado.
 2. `styles` (*Function | Object*): Uma função que gera os estilos ou um objeto de estilos. Ela será vinculada ao componente. Use a assinatura da função se você precisar ter acesso ao tema. É fornecido como propriedade do primeiro argumento.
@@ -159,11 +159,11 @@ Vincula uma folha de estilos, com uma função de componente, usando o padrão d
   - `options.flip` (*Boolean* [opcional]): Quando definido como `false`, está folha irá cancelar a transformação `rtl`. Quando definido para `true`, os estilos são invertidos. Quando definido para `null`, segue `theme.direction`.
   - As outras chaves são encaminhadas para o argumento de opções do [jss.createStyleSheet ([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet).
 
-#### Retornos
+### Retornos
 
 `Component`: O novo componente criado.
 
-#### Exemplos
+### Exemplos
 
 ```jsx
 import React from 'react';
@@ -194,7 +194,7 @@ Este componente permite que você altere o comportamento da solução de estilo.
 
 Deve preferencialmente ser usado na **raiz da sua árvore de componentes**.
 
-#### Props
+### Props
 
 | Nome              | Tipo   | Padrão | Descrição                                                                                                                                                                                                                                                                                                                                               |
 |:----------------- |:------ |:------ |:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -205,7 +205,7 @@ Deve preferencialmente ser usado na **raiz da sua árvore de componentes**.
 | jss               | object |        | Instância do JSS.                                                                                                                                                                                                                                                                                                                                       |
 
 
-#### Exemplos
+### Exemplos
 
 ```jsx
 import React from 'react';
@@ -225,7 +225,7 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 
 Este componente tem uma propriedade `theme`, e se torna disponível pela árvore React graças ao contexto. Deve preferencialmente ser usado na **raiz da sua árvore de componentes**.
 
-#### Props
+### Props
 
 | Nome            | Tipo                                     | Padrão | Descrição                                                                     |
 |:--------------- |:---------------------------------------- |:------ |:----------------------------------------------------------------------------- |
@@ -233,7 +233,7 @@ Este componente tem uma propriedade `theme`, e se torna disponível pela árvore
 | theme&nbsp;*    | union:&nbsp;object&nbsp;&#124;&nbsp;func |        | Um objeto de tema. Você pode utilizar uma função para receber o tema externo. |
 
 
-#### Exemplos
+### Exemplos
 
 ```jsx
 import React from 'react';
@@ -255,11 +255,11 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 
 Este hook retorna o objeto `theme`, para que possa ser usado dentro de um componente retornado por função.
 
-#### Retornos
+### Retornos
 
 `theme`: O objeto de tema previamente injetado no contexto.
 
-#### Exemplos
+### Exemplos
 
 ```jsx
 import React from 'react';
@@ -283,7 +283,7 @@ Alguns detalhes de implementação que podem ser interessantes para estar ciente
 - A propriedade `innerRef` está descontinuada. Em vez disso, use `ref`.
 - Ele **não** faz copia sobre estáticos. Por exemplo, pode ser usado para definir um método estático (next.js) `getInitialProps()`.
 
-#### Argumentos
+### Argumentos
 
 1. `styles` (*Function | Object*): Uma função que gera os estilos ou um objeto de estilos. Ela será vinculada ao componente. Use a assinatura da função se você precisar ter acesso ao tema. É fornecido como o primeiro argumento.
 2. `options` (*Object* [opcional]): 
@@ -293,11 +293,11 @@ Alguns detalhes de implementação que podem ser interessantes para estar ciente
   - `options.flip` (*Boolean* [opcional]): Quando definido como `false`, está folha irá cancelar a transformação `rtl`. Quando definido para `true`, os estilos são invertidos. Quando definido para `null`, segue `theme.direction`.
   - As outras chaves são encaminhadas para o argumento de opções do [jss.createStyleSheet ([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet).
 
-#### Retornos
+### Retornos
 
 `higher-order component`: Deve ser usado para encapsular o componente.
 
-#### Exemplos
+### Exemplos
 
 ```jsx
 import React from 'react';
@@ -342,15 +342,15 @@ export default MyComponent
 
 Fornece o objeto `theme` como uma propriedade do componente de entrada, para que ele possa ser usado no método de renderização.
 
-#### Argumentos
+### Argumentos
 
 1. `Component`: O componente que será manipulado.
 
-#### Retornos
+### Retornos
 
 `Component`: O novo componente criado. Encaminha refs para o componente interno.
 
-#### Exemplos
+### Exemplos
 
 ```jsx
 import React from 'react';

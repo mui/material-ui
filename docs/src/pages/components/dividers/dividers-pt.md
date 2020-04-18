@@ -31,8 +31,8 @@ Em uma lista, você deve garantir que o `Divisor` seja renderizado como um eleme
 
 {{"demo": "pages/components/dividers/MiddleDividers.js", "bg": true}}
 
-## Vertical Dividers
+## Divisores verticais
 
-You can also render a divider vertically using the `orientation` prop. Note the use of the `flexItem` prop to accommodate for the flex container.
+Você pode renderizar um divisor vertical usando a propriedade `orientation`. Observe o uso da propriedade `flexItem` para acomodar em um contêiner flexível.
 
 {{"demo": "pages/components/dividers/VerticalDividers.js", "bg": true}}

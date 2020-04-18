@@ -5,7 +5,7 @@ components: Portal
 
 # Portal 传送门
 
-<p class="description">Portal 组件将其子节点渲染到当前组件层次结构之外的新 "子树" 中。</p>
+<p class="description">The portal component renders its children into a new "subtree" outside of current DOM hierarchy.</p>
 
 - 📦 [1.3kB 已压缩的包](/size-snapshot)
 

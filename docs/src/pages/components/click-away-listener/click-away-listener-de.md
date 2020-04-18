@@ -8,6 +8,7 @@ components: ClickAwayListener
 <p class="description">Detect if a click event happened outside of an element. Es hört auf Klicks, die irgendwo im Dokument auftreten.</p>
 
 - 📦 [1.5 kB gzipped](/size-snapshot).
+- ⚛️ Support portals
 
 ## Beispiel
 
@@ -16,3 +17,9 @@ Wenn Sie beispielsweise ein Dropdown-Menü ausblenden müssen, wenn Personen auf
 {{"demo": "pages/components/click-away-listener/ClickAway.js"}}
 
 Beachten Sie, dass die Komponente nur ein untergeordnetes Element akzeptiert. You can find a more advanced demo on the [Menu documentation section](/components/menus/#menulist-composition).
+
+## Portal
+
+The following demo uses [`Portal`](/components/portal/) to render the dropdown into a new "subtree" outside of current DOM hierarchy.
+
+{{"demo": "pages/components/click-away-listener/PortalClickAway.js"}}

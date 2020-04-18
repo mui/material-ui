@@ -15,9 +15,9 @@ components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 
 {{"demo": "pages/components/checkboxes/Checkboxes.js"}}
 
-## Checkbox with FormControlLabel
+## 带有表单控制标签的复选框
 
-`Checkbox` can be provided with a label thanks to the `FormControlLabel` component.
+借助`FormControlLabel`组件，复选框`Checkbox`可以和标签一起使用。
 
 {{"demo": "pages/components/checkboxes/CheckboxLabels.js"}}
 
