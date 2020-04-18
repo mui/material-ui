@@ -790,6 +790,10 @@ export default function useAutocomplete(props) {
     setHighlightedIndex(index, 'mouse');
   };
 
+  const handleListboxMouseLeave = () => {
+    changeHighlightedIndex('reset', 'next');
+  };
+
   const handleOptionTouchStart = () => {
     isTouch.current = true;
   };
@@ -863,7 +867,6 @@ export default function useAutocomplete(props) {
 
   let dirty = freeSolo && inputValue.length > 0;
   dirty = dirty || (multiple ? value.length > 0 : value !== null);
-
   let groupedOptions = filteredOptions;
   if (groupBy) {
     // used to keep track of key and indexes in the result array
@@ -955,6 +958,7 @@ export default function useAutocomplete(props) {
         // Prevent blur
         event.preventDefault();
       },
+      onMouseLeave: handleListboxMouseLeave,
     }),
     getOptionProps: ({ index, option }) => {
       const selected = (multiple ? value : [value]).some(
