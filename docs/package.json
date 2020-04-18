@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "next",
+    "dev": "next dev --port 3001",
     "build": "next build",
     "start": "next start",
     "generate-backers": "node scripts/generate-backers.js",
