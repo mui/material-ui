@@ -450,7 +450,7 @@ TreeItem.propTypes = {
    */
   label: PropTypes.node,
   /**
-   * Props for the Typography label wrapper
+   * Props for the Typography label wrapper.
    */
   labelProps: PropTypes.object,
   /**

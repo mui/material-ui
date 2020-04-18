@@ -597,7 +597,7 @@ TreeView.propTypes = {
    */
   expanded: PropTypes.arrayOf(PropTypes.string),
   /**
-   * Props for every TreeItem Typography label wrapper
+   * Props for every TreeItem Typography label wrapper.
    * Can be overridden on each TreeItem with TreeItem labelProps prop.
    */
   labelProps: PropTypes.object,
