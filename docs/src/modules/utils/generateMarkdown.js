@@ -94,6 +94,10 @@ function resolveType(type) {
     return type.elements.map((t) => resolveType(t)).join(' \\| ');
   }
 
+  if (type.type === 'StringLiteralType') {
+    return type.value;
+  }
+
   return type.name;
 }
 
