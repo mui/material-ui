@@ -78,6 +78,7 @@ export default function useAutocomplete(props) {
     autoHighlight = false,
     autoSelect = false,
     blurOnSelect = false,
+    clearOnBlur = !props.freeSolo,
     clearOnEscape = false,
     componentName = 'useAutocomplete',
     debug = false,
@@ -762,7 +763,7 @@ export default function useAutocomplete(props) {
       selectNewValue(event, filteredOptions[highlightedIndexRef.current], 'blur');
     } else if (autoSelect && freeSolo && inputValue !== '') {
       selectNewValue(event, inputValue, 'blur', 'freeSolo');
-    } else {
+    } else if (clearOnBlur) {
       resetInputValue(event, value);
     }
 
