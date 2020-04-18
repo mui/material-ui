@@ -31,7 +31,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 | <span class="prop-name">expandIcon</span> | <span class="prop-type">node</span> |  | The icon used to expand the node. |
 | <span class="prop-name">icon</span> | <span class="prop-type">node</span> |  | The icon to display next to the tree node's label. |
 | <span class="prop-name">label</span> | <span class="prop-type">node</span> |  | The tree node label. |
-| <span class="prop-name">labelProps</span> | <span class="prop-type">object</span> |  | Props for the Typography label wrapper |
+| <span class="prop-name">labelProps</span> | <span class="prop-type">object</span> |  | Props for the Typography label wrapper. |
 | <span class="prop-name required">nodeId&nbsp;*</span> | <span class="prop-type">string</span> |  | The id of the node. |
 | <span class="prop-name">TransitionComponent</span> | <span class="prop-type">elementType</span> | <span class="prop-default">Collapse</span> | The component used for the transition. [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component. |
 | <span class="prop-name">TransitionProps</span> | <span class="prop-type">object</span> |  | Props applied to the [`Transition`](http://reactcommunity.org/react-transition-group/transition#Transition-props) element. |
