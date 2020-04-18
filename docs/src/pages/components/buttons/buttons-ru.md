@@ -21,13 +21,13 @@ components: Button, IconButton, ButtonBase
 
 {{"demo": "pages/components/buttons/ContainedButtons.js"}}
 
-You can remove the elevation with the `disableElevation` prop.
+Вы можете убрать эффект "всплытия" с помощью опции `disableElevation`.
 
 {{"demo": "pages/components/buttons/DisableElevation.js"}}
 
 ## Текстовые кнопки
 
-[Текстовые кнопки](https://material.io/design/components/buttons.html#text-button) обычно используются для менее выраженных действий, в том числе расположенных:
+[Текстовые кнопки](https://material.io/design/components/buttons.html#text-button) обычно используются для менее важных действий, в том числе расположенных:
 
 - В диалогах
 - В карточках - Cards
@@ -64,7 +64,7 @@ Fancy larger or smaller buttons? Use the `size` property.
 
 Кнопки с иконками обычно находятся на панелях навигации и на панелях инструментов.
 
-Значки также подходят для кнопок переключения, которые позволяют выбрать элемент или отменить выбор, например, добавление или удаление звезды для элемента.
+Иконки также подходят для кнопок переключения, которые позволяют выбрать элемент или отменить выбор, например, добавление или удаление звезды для элемента.
 
 {{"demo": "pages/components/buttons/IconButtons.js"}}
 
@@ -74,29 +74,29 @@ Fancy larger or smaller buttons? Use the `size` property.
 
 {{"demo": "pages/components/buttons/CustomizedButtons.js", "defaultCodeOpen": false}}
 
-👑 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/components/button).
+Если вам нужно вдохновение обратитве внимание на библиотеку компонентов [MUI Treasury](https://mui-treasury.com/components/button).
 
 ## Сложные кнопки
 
-Текстовые кнопки, плавающие кнопки действий, блочные кнопки построены на основе одного и того же компонента: `ButtonBase`. Вы можете воспользоваться этим более низкоуровневым компонентом для создания пользовательских взаимодействий.
+Текстовые кнопки, плавающие кнопки действий, блочные кнопки построены на основе одного и того же компонента: `ButtonBase`. Вы можете воспользоваться этим более низкоуровневым компонентом для создания пользовательских кнопок.
 
 {{"demo": "pages/components/buttons/ButtonBase.js"}}
 
 ## Сторонняя библиотека маршрутизации
 
-One common use case is to use the button to trigger navigation to a new page. `ButtonBase` компонент предоставляет свойство для обработки этого варианта использования: `component`. However for certain focus polyfills `ButtonBase` requires the DOM node of the provided component. This is achieved by attaching a ref to the component and expecting that the component forwards this ref to the underlying DOM node. Given that many of the interactive components rely on `ButtonBase`, you should be able to take advantage of it everywhere.
+Одно из обыденных случаев использования кнопки - это навигация на другую страницу. `ButtonBase` компонент предоставляет свойство для обработки этого варианта использования: `component`. However for certain focus polyfills `ButtonBase` requires the DOM node of the provided component. Этого можно достичь, указав ref для данного компонента, ожидая что компонент пересылает этот ref в базовый узел DOM. Учитывая то, что многие наши компоненты используют `ButtonBase`, вы сможете пользоваться ими повсюду в вашем приложении.
 
-Here is an [integration example with react-router](/guides/composition/#button).
+Здесь можно ознакомится [с примером использования с react-router](/guides/composition/#button).
 
 ## Ограничения
 
 ### Cursor not-allowed
 
-The ButtonBase component sets `pointer-events: none;` on disabled buttons, which prevents the appearance of a disabled cursor.
+Компонент ButtonBase устанавливает `pointer-events: none;` на отключенных (disabled) кнопках, что отменяет появление disabled-курсора.
 
-If you wish to use `not-allowed`, you have two options:
+Есть два способа использовать `not-allowed`
 
-1. **CSS only**. You can remove the pointer events style on the disabled state of the `<button>` element:
+1. **CSS only**. Вы можете удалить все стили событий курсора в выключенном(disabled) состоянии в элементе `<button>`:
 
   ```css
   .MuiButtonBase-root:disabled {
@@ -105,12 +105,12 @@ If you wish to use `not-allowed`, you have two options:
   }
   ```
 
-However:
+Однако:
 
-- You should add `pointer-events: none;` back when you need to display [tooltips on disabled elements](/components/tooltips/#disabled-elements).
-- The cursor won't change if you render something other than a button element, for instance, a link `<a>` element.
+- Необходимо вернуть `pointer-events: none;` назад, в момент когда вам нужно будет отобразить [подсказку на отключенном элементе](/components/tooltips/#disabled-elements).
+- Курсор не изменится, в случае если вы отрендерите какой-либо другой элемент, например `<a>`.
 
-2. **DOM change**. You can wrap the button:
+2. **DOM change**. Вы можете обернуть кнопку в дополнительный контейнер:
 
   ```jsx
   <span style={{ cursor: 'not-allowed' }}>
@@ -120,4 +120,4 @@ However:
   </span>
   ```
 
-This has the advantage of supporting any element, for instance, a link `<a>` element.
+Этот способ работает для всех элементов, в том числе и для `<a>`.

@@ -13,11 +13,11 @@ components: Select, NativeSelect
 
 {{"demo": "pages/components/selects/SimpleSelect.js"}}
 
-## Advanced features
+## 高度な機能
 
-The Select component is meant to be interchangeable with a native `<select>` element.
+選択コンポーネントはネイティブの `<select>` 要素に入れ替えられます。
 
-If you are looking for more advanced features, like combobox, multiselect, autocomplete, async or creatable support, head to the [`Autocomplete` component](/components/autocomplete/). It's meant to be an improved version of the "react-select" and "downshift" packages.
+コンボボックス、複数選択、自動補完、非同期、作成可能のサポートといったさらに高度な機能をお探しなら、[`Autocomplete`コンポーネント](/components/autocomplete/)を参照してください。 It's meant to be an improved version of the "react-select" and "downshift" packages.
 
 ## ネイティブを選択
 

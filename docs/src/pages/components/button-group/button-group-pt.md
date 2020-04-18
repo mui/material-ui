@@ -1,21 +1,21 @@
 ---
-title: ButtonGroup React component
+title: Componente React para grupo de botões
 components: Button, ButtonGroup
 ---
 
-# Button group
+# Grupo de botões
 
-<p class="description">The ButtonGroup component can be used to group related buttons.</p>
+<p class="description">O componente ButtonGroup pode ser usado para agrupar botões relacionados.</p>
 
-## Basic button group
+## Grupo de botões básico
 
 {{"demo": "pages/components/button-group/BasicButtonGroup.js"}}
 
-### Group sizes and colors
+### Grupo com tamanhos e cores
 
 {{"demo": "pages/components/button-group/GroupSizesColors.js"}}
 
-### Group orientation
+### Grupo com orientações
 
 {{"demo": "pages/components/button-group/GroupOrientation.js"}}
 

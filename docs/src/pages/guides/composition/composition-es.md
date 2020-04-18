@@ -1,10 +1,10 @@
 # Composición
 
-<p class="description">Material-UI tries to make composition as easy as possible.</p>
+<p class="description">Material-UI intenta hacer que la composición sea lo más fácil como sea posible.</p>
 
-## Wrapping components
+## Envolviendo componentes
 
-In order to provide the maximum flexibility and performance, we need a way to know the nature of the child elements a component receives. To solve this problem we tag some of the components with a `muiName` static property when needed.
+Para proporcionar la máxima flexibilidad y rendimiento, necesitamos una forma de conocer la naturaleza de los elementos secundarios que recibe un componente. Para resolver este problema, etiquetamos algunos de los componentes con una propiedad estática `muiName` cuando es necesario.
 
 You may, however, need to wrap a component in order to enhance it, which can conflict with the `muiName` solution. If you wrap a component, verify if that component has this static property set.
 
@@ -25,7 +25,7 @@ Material-UI allows you to change the root element that will be rendered via a pr
 
 ### How does it work?
 
-The component will render like this:
+The custom component will be rendered by Material-UI like this:
 
 ```js
 return React.createElement(props.component, props)
@@ -56,9 +56,11 @@ import { Link } from 'react-router-dom';
 function ListItemLink(props) {
   const { icon, primary, to } = props;
 
+  const CustomLink = props => <Link to={to} {...props} />;
+
   return (
     <li>
-      <ListItem button component={props => <Link to={to} {...props} />}>
+      <ListItem button component={CustomLink}>
         <ListItemIcon>{icon}</ListItemIcon>
         <ListItemText primary={primary} />
       </ListItem>
@@ -69,7 +71,7 @@ function ListItemLink(props) {
 
 ⚠️ However, since we are using an inline function to change the rendered component, React will unmount the link every time `ListItemLink` is rendered. Not only will React update the DOM unnecessarily, the ripple effect of the `ListItem` will also not work correctly.
 
-The solution is simple: **avoid inline functions and pass a static component to the `component` prop** instead. Let's change the `ListItemLink` to the following:
+The solution is simple: **avoid inline functions and pass a static component to the `component` prop** instead. Let's change the `ListItemLink` component so `CustomLink` always reference the same component:
 
 ```jsx
 import { Link } from 'react-router-dom';
@@ -77,7 +79,7 @@ import { Link } from 'react-router-dom';
 function ListItemLink(props) {
   const { icon, primary, to } = props;
 
-  const renderLink = React.useMemo(
+  const CustomLink = React.useMemo(
     () =>
       React.forwardRef((linkProps, ref) => (
         <Link ref={ref} to={to} {...linkProps} />
@@ -87,7 +89,7 @@ function ListItemLink(props) {
 
   return (
     <li>
-      <ListItem button component={renderLink}>
+      <ListItem button component={CustomLink}>
         <ListItemIcon>{icon}</ListItemIcon>
         <ListItemText primary={primary} />
       </ListItem>
@@ -95,8 +97,6 @@ function ListItemLink(props) {
   );
 }
 ```
-
-`renderLink` will now always reference the same component.
 
 ### Caveat with prop forwarding
 
@@ -118,7 +118,7 @@ You can find the details in the [TypeScript guide](/guides/typescript/#usage-of-
 
 The integration with third-party routing libraries is achieved with the `component` prop. The behavior is identical to the description of the prop above. Here are a few demos with [react-router-dom](https://github.com/ReactTraining/react-router). It covers the Button, Link, and List components, you should be able to apply the same strategy with all the components.
 
-### Button (botón)
+### Button (Botón)
 
 {{"demo": "pages/guides/composition/ButtonRouter.js"}}
 
@@ -156,14 +156,14 @@ In some instances an additional warning is issued to help with debugging, simila
 Only the two most common use cases are covered. For more information see [this section in the official React docs](https://reactjs.org/docs/forwarding-refs.html).
 
 ```diff
-- const MyButton = props => <div role="button" {...props} />;
-+ const MyButton = React.forwardRef((props, ref) => <div role="button" {...props} ref={ref} />);
+-const MyButton = props => <div role="button" {...props} />;
++const MyButton = React.forwardRef((props, ref) => <div role="button" {...props} ref={ref} />);
 <Button component={MyButton} />;
 ```
 
 ```diff
-- const SomeContent = props => <div {...props}>Hello, World!</div>;
-+ const SomeContent = React.forwardRef((props, ref) => <div {...props} ref={ref}>Hello, World!</div>);
+-const SomeContent = props => <div {...props}>Hello, World!</div>;
++const SomeContent = React.forwardRef((props, ref) => <div {...props} ref={ref}>Hello, World!</div>);
 <Tooltip title="Hello, again."><SomeContent /></Tooltip>;
 ```
 

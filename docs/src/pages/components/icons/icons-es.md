@@ -19,7 +19,7 @@ Material Design has standardized over 1,100 official icons, each in five differe
 
 ### Instalación
 
-Install the package in your project directory with:
+Instala el paquete en el directorio de tu proyecto con:
 
 ```sh
 // usando npm

@@ -6,18 +6,18 @@
 
 返回 [ 类名称生成器函数 ](https://cssinjs.org/jss-api/#generate-your-class-names) 的函数。
 
-#### 参数
+### 参数
 
 1. `options` (*Object* [optional]): 
   - `options.disableGlobal` (*Boolean* [optional]): 默认值为`false`。 Disable the generation of deterministic class names.
   - `options.productionPrefix` (*String* [optional])：初始值为`'jss'`. 用于在生产中对类名称进行前缀的字符串。
   - `options.seed` (*String* [optional])：初始值为 `''`. 用于唯一标识生成器的字符串。 It can be used to avoid class name collisions when using multiple generators in the same document.
 
-#### 返回结果
+### 返回结果
 
 `类名生成器`：应该将生成器提供给JSS。
 
-#### 例子
+### 例子
 
 ```jsx
 import React from 'react';
@@ -38,15 +38,15 @@ export default function App() {
 
 这个函数在运行时并没有真正“做任何事”，它只是身份 函数。 Its only purpose is to defeat **TypeScript**'s type widening when providing style rules to `makeStyles`/`withStyles` which are a function of the `Theme`.
 
-#### 参数
+### 参数
 
 1. ` styles `(* Function | Object *): 生成样式或样式对象的函数。
 
-#### 返回结果
+### 返回结果
 
 `styles` ：生成样式或样式对象的函数。
 
-#### 例子
+### 例子
 
 ```jsx
 import { makeStyles, createStyles } from '@material-ui/core/styles';
@@ -67,7 +67,7 @@ export default function MyComponent {
 
 链路的样式表中有一个功能组件的使用**钩**的模式。
 
-#### 参数
+### 参数
 
 1. ` styles `(* Function | Object *): 生成样式或样式对象的函数。 它将链接到组件。 如果需要访问主题, 请使用函数签名。 它作为第一个参数提供。
 2. `options` (*Object* [optional]): 
@@ -76,11 +76,11 @@ export default function MyComponent {
   - `options.flip` (*Boolean* [optional])：当设置为 `false` 时, 此工作表将选择退出 ` rtl ` 转换。 如果设置为 ` true `, 则会反转样式。 当设置为`null`，它跟随`theme.direction`。
   - 其他键被转发到[jss.createStyleSheet([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet)。
 
-#### 返回结果
+### 返回结果
 
 `hook` ： 一个钩子。 该钩子可以用在功能组件中。 The documentation often calls this returned hook `useStyles`. 它接受一个参数：将用于在“内插”的属性 样式表。
 
-#### 例子
+### 例子
 
 ```jsx
 import React from 'react';
@@ -148,7 +148,7 @@ The method is an alternative to `.toString()` when you are rendering the whole p
 
 链路的样式表中有一个功能组件的使用**styled components**的模式。
 
-#### 参数
+### 参数
 
 1. `Component` ：将被包装的组件。
 2. ` styles `(* Function | Object *): 生成样式或样式对象的函数。 它将链接到组件。 如果需要访问主题, 请使用函数签名。 It's provided as property of the first argument.
@@ -159,11 +159,11 @@ The method is an alternative to `.toString()` when you are rendering the whole p
   - `options.flip` (*Boolean* [optional])：当设置为 `false` 时, 此工作表将选择退出 ` rtl ` 转换。 如果设置为 ` true `, 则会反转样式。 当设置为`null`，它跟随`theme.direction`。
   - 其他键被转发到[jss.createStyleSheet([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet)。
 
-#### 返回结果
+### 返回结果
 
 `Component` ：创建新组件。
 
-#### 例子
+### 例子
 
 ```jsx
 import React from 'react';
@@ -194,7 +194,7 @@ export default function StyledComponents() {
 
 它最好应在**组件树的根目录中使用** 。
 
-#### Props
+### Props
 
 | 名称                | 类型     | 默认值   | 描述                                                                                                                                                                                                                                                                                                                                   |
 |:----------------- |:------ |:----- |:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -205,7 +205,7 @@ export default function StyledComponents() {
 | jss               | object |       | JSS's instance.                                                                                                                                                                                                                                                                                                                      |
 
 
-#### 例子
+### 例子
 
 ```jsx
 import React from 'react';
@@ -225,7 +225,7 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 
 This component takes a `theme` property, and makes it available down the React tree thanks to the context. 它最好应在**组件树的根目录中使用** 。
 
-#### Props
+### Props
 
 | 名称              | 类型                                       | 默认值 | 描述                                                                    |
 |:--------------- |:---------------------------------------- |:--- |:--------------------------------------------------------------------- |
@@ -233,7 +233,7 @@ This component takes a `theme` property, and makes it available down the React t
 | theme&nbsp;*    | union:&nbsp;object&nbsp;&#124;&nbsp;func |     | A theme object. You can provide a function to extend the outer theme. |
 
 
-#### 例子
+### 例子
 
 ```jsx
 import React from 'react';
@@ -255,11 +255,11 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 
 该钩子返回`theme`对象因此可以在函数组件中使用。
 
-#### 返回结果
+### 返回结果
 
 `theme`: The theme object previously injected in the context.
 
-#### 例子
+### 例子
 
 ```jsx
 import React from 'react';
@@ -283,7 +283,7 @@ export default function MyComponent() {
 - The `innerRef` prop is deprecated. Use `ref` instead.
 - It does **not** copy over statics. 例如，它可用于定义 ` getInitialProps()` 静态方法 (next.js)。
 
-#### 参数
+### 参数
 
 1. ` styles `(* Function | Object *): 生成样式或样式对象的函数。 它将链接到组件。 如果需要访问主题, 请使用函数签名。 它作为第一个参数提供。
 2. `options` (*Object* [optional]): 
@@ -293,11 +293,11 @@ export default function MyComponent() {
   - `options.flip` (*Boolean* [optional])：当设置为 `false` 时, 此工作表将选择退出 ` rtl ` 转换。 如果设置为 ` true `, 则会反转样式。 当设置为`null`，它跟随`theme.direction`。
   - 其他键被转发到[jss.createStyleSheet([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet)。
 
-#### 返回结果
+### 返回结果
 
 `higher-order component`：应用于包装组件。
 
-#### 例子
+### 例子
 
 ```jsx
 import React from 'react';
@@ -342,15 +342,15 @@ export default MyComponent
 
 提供`theme` object作为输入组件的属性，因此可以在render方法中使用 。
 
-#### 参数
+### 参数
 
 1. `Component` ：将被包装的组件。
 
-#### 返回结果
+### 返回结果
 
 `Component` ：创建新组件。 Does forward refs to the inner component.
 
-#### 例子
+### 例子
 
 ```jsx
 import React from 'react';

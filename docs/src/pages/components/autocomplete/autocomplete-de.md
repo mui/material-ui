@@ -32,6 +32,15 @@ Wählen Sie eines der 248 Länder.
 
 {{"demo": "pages/components/autocomplete/CountrySelect.js"}}
 
+### Controllable states
+
+The component has two states that can be controlled:
+
+1. the "value" state with the `value`/`onChange` props combination.
+2. the "input value" state with the `inputValue`/`onInputChange` props combination.
+
+> ⚠️ These two state are isolated, they should be controlled independently.
+
 ## Free solo
 
 Set `freeSolo` to true so the textbox can contain any arbitrary value. The prop is designed to cover the primary use case of a search box with suggestions, e.g. Google search.

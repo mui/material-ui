@@ -31,24 +31,28 @@ However, you might be progressively migrating a website to Material-UI, using a 
 ```jsx
 import React from 'react';
 import ScopedCssBaseline from '@material-ui/core/ScopedCssBaseline';
+import MyApp from './MyApp';
 
 export default function MyApp() {
   return (
     <ScopedCssBaseline>
       {/* The rest of your application */}
+      <MyApp />
     </ScopedCssBaseline>
   );
 }
 ```
 
-## Approach
+⚠️ Make sure you import `ScopedCssBaseline` first to avoid box-sizing conflicts as in the above example.
+
+## Approche
 
 ### Page
 
 The `<html>` and `<body>` elements are updated to provide better page-wide defaults. More specifically:
 
 - La marge dans tous les navigateurs est supprimée.
-- La couleur d'arrière-plan par défaut de Material Design est appliquée. It's using [`theme.palette.background.default`](/customization/default-theme/?expand-path=$.palette.background) for standard devices and a white background for print devices.
+- La couleur d'arrière-plan par défaut de Material Design est appliquée. Ceci est réalisé à l'aide de [`thème.la palette.arrière-plan.par défaut`](/customization/default-theme/?expand-path=$.palette.background) pour les appareils standard et un fond blanc pour les périphériques d'impression.
 
 ### Disposition
 

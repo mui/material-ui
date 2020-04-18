@@ -87,7 +87,7 @@ function App() {
 
 ## Scrollen
 
-Sie können den Hook `useScrollTrigger ()`, um auf Bildlauf Aktionen zu reagieren.
+Der Hook `useScrollTrigger()` kann verwendet werden, um auf Scrollen des Benutzers zu reagieren.
 
 ### App-Bar verstecken
 

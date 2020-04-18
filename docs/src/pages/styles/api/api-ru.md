@@ -6,18 +6,18 @@
 
 A function which returns [a class name generator function](https://cssinjs.org/jss-api/#generate-your-class-names).
 
-#### Аргументы
+### Аргументы
 
 1. `варианты` (*объекта* [optional]): 
   - `options.disableGlobal` (*Boolean* [optional]): По умолчанию - `false`. Disable the generation of deterministic class names.
   - `options.productionPrefix` (*String* [optional]): Defaults to `'jss'`. The string used to prefix the class names in production.
   - `options.seed` (*String* [optional]): Defaults to `''`. The string used to uniquely identify the generator. It can be used to avoid class name collisions when using multiple generators in the same document.
 
-#### Возвращает
+### Возвращает
 
 `class name generator`: The generator should be provided to JSS.
 
-#### Примеры
+### Примеры
 
 ```jsx
 import React from 'react';
@@ -38,15 +38,15 @@ export default function App() {
 
 This function doesn't really "do anything" at runtime, it's just the identity function. Its only purpose is to defeat **TypeScript**'s type widening when providing style rules to `makeStyles`/`withStyles` which are a function of the `Theme`.
 
-#### Аргументы
+### Аргументы
 
 1. `styles` (*Function | Object*): A function generating the styles or a styles object.
 
-#### Возвращает
+### Возвращает
 
 `styles`: A function generating the styles or a styles object.
 
-#### Примеры
+### Примеры
 
 ```jsx
 import { makeStyles, createStyles } from '@material-ui/core/styles';
@@ -67,7 +67,7 @@ export default function MyComponent {
 
 Link a style sheet with a function component using the **hook** pattern.
 
-#### Аргументы
+### Аргументы
 
 1. `styles` (*Function | Object*): A function generating the styles or a styles object. Это будет связано с компонентом. Use the function signature if you need to have access to the theme. It's provided as the first argument.
 2. `варианты` (*объекта* [optional]): 
@@ -76,11 +76,11 @@ Link a style sheet with a function component using the **hook** pattern.
   - `options.flip` (*Boolean* [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. When set to `true`, the styles are inversed. When set to `null`, it follows `theme.direction`.
   - The other keys are forwarded to the options argument of [jss.createStyleSheet([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet).
 
-#### Возвращает
+### Возвращает
 
 `hook`: A hook. This hook can be used in a function component. The documentation often calls this returned hook `useStyles`. It accepts one argument: the properties that will be used for "interpolation" in the style sheet.
 
-#### Примеры
+### Примеры
 
 ```jsx
 import React from 'react';
@@ -148,7 +148,7 @@ The method is an alternative to `.toString()` when you are rendering the whole p
 
 Link a style sheet with a function component using the **styled components** pattern.
 
-#### Аргументы
+### Аргументы
 
 1. `Component`: The component that will be wrapped.
 2. `styles` (*Function | Object*): A function generating the styles or a styles object. Это будет связано с компонентом. Use the function signature if you need to have access to the theme. It's provided as property of the first argument.
@@ -159,11 +159,11 @@ Link a style sheet with a function component using the **styled components** pat
   - `options.flip` (*Boolean* [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. When set to `true`, the styles are inversed. When set to `null`, it follows `theme.direction`.
   - The other keys are forwarded to the options argument of [jss.createStyleSheet([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet).
 
-#### Возвращает
+### Возвращает
 
 `Component`: The new component created.
 
-#### Примеры
+### Примеры
 
 ```jsx
 import React from 'react';
@@ -194,7 +194,7 @@ This component allows you to change the behavior of the styling solution. It mak
 
 It should preferably be used at **the root of your component tree**.
 
-#### Props
+### Props
 
 | Имя               | Тип    | По-умолчанию | Описание                                                                                                                                                                                                                                                                                                                             |
 |:----------------- |:------ |:------------ |:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -205,7 +205,7 @@ It should preferably be used at **the root of your component tree**.
 | jss               | object |              | JSS's instance.                                                                                                                                                                                                                                                                                                                      |
 
 
-#### Примеры
+### Примеры
 
 ```jsx
 import React from 'react';
@@ -225,7 +225,7 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 
 This component takes a `theme` property, and makes it available down the React tree thanks to the context. It should preferably be used at **the root of your component tree**.
 
-#### Props
+### Props
 
 | Имя             | Тип                                      | По-умолчанию | Описание                                                              |
 |:--------------- |:---------------------------------------- |:------------ |:--------------------------------------------------------------------- |
@@ -233,7 +233,7 @@ This component takes a `theme` property, and makes it available down the React t
 | theme&nbsp;*    | union:&nbsp;object&nbsp;&#124;&nbsp;func |              | A theme object. You can provide a function to extend the outer theme. |
 
 
-#### Примеры
+### Примеры
 
 ```jsx
 import React from 'react';
@@ -255,11 +255,11 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 
 This hook returns the `theme` object so it can be used inside a function component.
 
-#### Возвращает
+### Возвращает
 
 `theme`: The theme object previously injected in the context.
 
-#### Примеры
+### Примеры
 
 ```jsx
 import React from 'react';
@@ -283,7 +283,7 @@ Link a style sheet with a component using the **higher-order component** pattern
 - The `innerRef` prop is deprecated. Use `ref` instead.
 - It does **not** copy over statics. For instance, it can be used to defined a `getInitialProps()` static method (next.js).
 
-#### Аргументы
+### Аргументы
 
 1. `styles` (*Function | Object*): A function generating the styles or a styles object. Это будет связано с компонентом. Use the function signature if you need to have access to the theme. It's provided as the first argument.
 2. `варианты` (*объекта* [optional]): 
@@ -293,11 +293,11 @@ Link a style sheet with a component using the **higher-order component** pattern
   - `options.flip` (*Boolean* [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. When set to `true`, the styles are inversed. When set to `null`, it follows `theme.direction`.
   - The other keys are forwarded to the options argument of [jss.createStyleSheet([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet).
 
-#### Возвращает
+### Возвращает
 
 `компонент высшего порядка`: следует использовать, чтобы обернуть компонент.
 
-#### Примеры
+### Примеры
 
 ```jsx
 import React from 'react';
@@ -342,15 +342,15 @@ export default MyComponent
 
 Provide the `theme` object as a property of the input component so it can be used in the render method.
 
-#### Аргументы
+### Аргументы
 
 1. `Component`: The component that will be wrapped.
 
-#### Возвращает
+### Возвращает
 
 `Component`: The new component created. Does forward refs to the inner component.
 
-#### Примеры
+### Примеры
 
 ```jsx
 import React from 'react';

@@ -7,7 +7,7 @@ components: Badge
 
 <p class="description"><code>Badge</code> gera um pequeno emblema no canto superior direito de seu(s) filho(s).</p>
 
-## Basic badges
+## Emblemas básicos
 
 Exemplos de emblemas contendo texto, usando cores primárias e secundárias. O emblema é aplicado aos seus filhos.
 
@@ -29,13 +29,13 @@ O emblema se esconde automaticamente quando o badgeContent é zero. Você pode s
 
 {{"demo": "pages/components/badges/ShowZeroBadge.js"}}
 
-## Maximum value
+## Valor máximo
 
 Você pode usar a propriedade `max` para limitar o valor do conteúdo do selo.
 
 {{"demo": "pages/components/badges/BadgeMax.js"}}
 
-## Dot badge
+## Emblema como ponto
 
 A propriedade `dot` altera um emblema para um pequeno ponto. Isto pode ser usado como uma notificação de que algo mudou sem fornecer uma contagem.
 
@@ -49,6 +49,6 @@ Você pode usar a propriedade `overlap` para colocar o emblema em relação ao c
 
 ## Alinhamento de emblema
 
-You can use the `anchorOrigin` prop to move the badge to any corner of the wrapped element.
+Você pode usar a propriedade `anchorOrigin` para mover o emblema para qualquer canto do elemento envolvido.
 
 {{"demo": "pages/components/badges/BadgeAlignment.js", "hideToolbar": true}}

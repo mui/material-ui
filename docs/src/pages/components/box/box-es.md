@@ -6,7 +6,7 @@ title: Box React component
 
 <p class="description">El componente Box sirve como una envoltura para la mayoría de las necesidades CSS.</p>
 
-El componente Box empaqua [todas las funciones de estilo](/system/basics/#all-inclusive) que están expuesta en `@material-ui/system`. Es creado usando la función [`styled()`](/styles/api/#styled-style-function-component) de `@material-ui/core/styles`.
+El componente Box recoge [todas las funciones de estilo](/system/basics/#all-inclusive) que están expuesta en `@material-ui/system`. Se crea usando la función [`styled()`](/styles/api/#styled-style-function-component) de `@material-ui/core/styles`.
 
 ## Ejemplo
 

@@ -2,7 +2,7 @@
   "adblock": "もしテクノロジー関連の広告が気にならず、オープンソースを支援したい場合は、Material-UIを広告ブロッカーのホワイトリストに追加してください。",
   "albumDescr": "ヒーローユニットとフッターが付いたレスポンシブ対応のアルバム/ギャラリーページのレイアウト。",
   "albumTitle": "アルバム",
-  "algoliaSearch": "Search",
+  "algoliaSearch": "検索",
   "blogDescr": "洗練されたブログページのレイアウト。マークダウンのサポートはmarkdown-to-jsxによるものですが、差し替えるのは簡単です。",
   "blogTitle": "ブログ",
   "cdn": "または、CDNを使用します。",

@@ -46,14 +46,15 @@ theme.spacing(2); // = 8
 
 ## Multiple arity
 
-Вспомогательная функция ` theme.spacing () ` принимает до 4 аргументов. Вы можете использовать аргументы, чтобы уменьшить шаблон. Instead of doing:
+Вспомогательная функция ` theme.spacing () ` принимает до 4 аргументов. Вы можете использовать аргументы, чтобы уменьшить шаблон.
 
-```js
-padding: `${theme.spacing(1)}px ${theme.spacing(2)}px`, // '8px 16px'
+```diff
+-padding: `${theme.spacing(1)}px ${theme.spacing(2)}px`, // '8px 16px'
++padding: theme.spacing(1, 2), // '8px 16px'
 ```
 
-you can do:
+Mixing string values is also supported:
 
 ```js
-padding: theme.spacing(1, 2), // '8px 16px'
+margin: theme.spacing(1, 'auto'), // '8px auto'
 ```
