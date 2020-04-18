@@ -119,7 +119,7 @@ export interface UseAutocompleteCommonProps<T> {
    * If provided, the options will be grouped under the returned string.
    * The groupBy value is also used as the text for group headings when `renderGroup` is not provided.
    *
-   * @param {T} options The option to group.
+   * @param {T} options The options to group.
    * @returns {string}
    */
   groupBy?: (option: T) => string;
@@ -214,7 +214,7 @@ export interface UseAutocompleteMultipleProps<T> extends UseAutocompleteCommonPr
    * Callback fired when the value changes.
    *
    * @param {object} event The event source of the callback.
-   * @param {T[]} value
+   * @param {T[]} value The new value of the component.
    * @param {string} reason One of "create-option", "select-option", "remove-option", "blur" or "clear".
    */
   onChange?: (
@@ -245,7 +245,7 @@ export interface UseAutocompleteSingleProps<T> extends UseAutocompleteCommonProp
    * Callback fired when the value changes.
    *
    * @param {object} event The event source of the callback.
-   * @param {T} value
+   * @param {T} value The new value of the component.
    * @param {string} reason One of "create-option", "select-option", "remove-option", "blur" or "clear".
    */
   onChange?: (

@@ -158,7 +158,10 @@ function generatePropDescription(prop) {
       })
       .join(', ');
     signature += `) => ${parsedReturns.type.name}\`<br>`;
-    signature += parsedArgs.map((tag) => `*${tag.name}:* ${tag.description}`).join('<br>');
+    signature += parsedArgs
+      .filter((tag) => tag.description)
+      .map((tag) => `*${tag.name}:* ${tag.description}`)
+      .join('<br>');
     if (parsedReturns.description) {
       signature += `<br> *returns* (${parsedReturns.type.name}): ${parsedReturns.description}`;
     }
