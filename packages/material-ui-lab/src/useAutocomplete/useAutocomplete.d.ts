@@ -95,7 +95,7 @@ export interface UseAutocompleteCommonProps<T> {
    * Used to determine the disabled state for a given option.
    *
    * @param {T} option The option to test.
-   * @return {boolean}
+   * @returns {boolean}
    */
   getOptionDisabled?: (option: T) => boolean;
   /**
@@ -103,7 +103,7 @@ export interface UseAutocompleteCommonProps<T> {
    * It's used to fill the input (and the list box options if `renderOption` is not provided).
    *
    * @param {T} option
-   * @return {string}
+   * @returns {string}
    */
   getOptionLabel?: (option: T) => string;
   /**
@@ -112,7 +112,7 @@ export interface UseAutocompleteCommonProps<T> {
    *
    * @param {T} option The option to test.
    * @param {T} value The value to test against.
-   * @return {boolean}
+   * @returns {boolean}
    */
   getOptionSelected?: (option: T, value: T) => boolean;
   /**
