@@ -1,5 +1,56 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.9.11
+###### *Apr 18, 2020*
+
+Big thanks to the 25 contributors who made this release possible.
+
+### `@material-ui/core@v4.9.11`
+
+- [Backdrop] Document Fade inherited component (#20500) @Josh-Weston
+- [Checkbox] Add test showcase for checked checkbox (#20571) @eps1lon
+- [ExpansionPanel] Unify paddings with ListItem and similar components (#20586) @esseswann
+- [l10n] Improve persian (fa-IR) locale (#20543) @ali4heydari
+- [List] Fix ListItemIcon `children` type from element to Node (#20577) @alielkhateeb
+- [Popper] Fix support for TypeScript 3.2 (#20550) @NMinhNguyen
+- [react] Add createMuiStrictModeTheme (#20523) @eps1lon
+- [SwitchBase] Prepare v5 removal of the second argument of onChange (#20541) @samuliasmala
+- [Tabs] Fix the types of the color props (#20595) @sirajalam049
+- [TextareaAutosize] Fix height inconsistency for empty last row (#20575) @benwiley4000
+- [TextField] Fix long label scrollbar (#20535) @Uzwername
+- [theme] Allow palette tonalOffset light and dark values (#20567) @TidyIQ
+
+### `@material-ui/lab@v4.0.0-alpha.50`
+
+- [Autocomplete] Add fullWidth prop (#20538) @Uzwername
+- [Autocomplete] Add test cases for createFilterOptions (#20499) @netochaves
+- [Autocomplete] Fix autoHighlight behavior (#20606) @qkdreyer
+- [Autocomplete] Fix correcy core peer-dependency @oliviertassinari
+- [Autocomplete] Fix missing startAfter type (#20542) @dohomi
+- [Autocomplete] Fix reset input on blur for freeSolo mode too (#20603) @goffioul
+- [Pagination] Fix missing renderItem types (#20592) @ankitasingh170190
+
+### Docs
+
+- [blog] Q1 2020 Update (#20536) @oliviertassinari
+- [docs] Add link for help on creating a custom transition (#20524) @zeckdude
+- [docs] Correct "row" to "col" in Table (#20566) @sdpaulsen
+- [docs] Fix command to start docs server (#20612) @plug-n-play
+- [docs] Fix filerOption typo in autocomplete (#20572) @qkdreyer
+- [docs] Fix punctuation and english grammar (#20596) @samisnotinsane
+- [docs] Fix small typo in Container (#20589) @plug-n-play
+- [docs] Improve a11y of the chip array example (#20294) @m4theushw
+- [docs] Refactor markdown parsing (#20549) @eps1lon
+- [docs] Remove old workarounds (#20587) @eps1lon
+- [docs] Remove unnecessary webpack loaders (#20563) @eps1lon
+- [docs] Sync translations (#20498) @oliviertassinari
+- [docs] Use reactStrictMode over custom switch (#20522) @eps1lon
+
+### Core
+
+- [test] Add StrictMode compat layer test (#20547) @eps1lon
+- [test] Use method calls over property access expressions (#20545) @eps1lon
+
 ## 4.9.10
 ###### *Apr 11, 2020*
 
