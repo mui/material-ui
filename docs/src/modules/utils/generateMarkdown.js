@@ -94,6 +94,10 @@ function resolveType(type) {
     return type.elements.map((t) => resolveType(t)).join(' \\| ');
   }
 
+  if (type.type === 'StringLiteralType') {
+    return type.value;
+  }
+
   return type.name;
 }
 
@@ -263,11 +267,9 @@ function generateProps(reactAPI) {
 
   text = Object.keys(reactAPI.props).reduce((textProps, propRaw) => {
     const prop = getProp(reactAPI.props, propRaw);
-
     if (typeof prop.description === 'undefined') {
       throw new Error(`The "${propRaw}" prop is missing a description`);
     }
-
     const description = generatePropDescription(prop);
 
     if (description === null) {
