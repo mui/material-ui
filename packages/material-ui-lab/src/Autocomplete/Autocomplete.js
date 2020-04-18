@@ -629,11 +629,17 @@ Autocomplete.propTypes = {
   getLimitTagsText: PropTypes.func,
   /**
    * Used to determine the disabled state for a given option.
+   *
+   * @param {T} option The option to test.
+   * @return {boolean}
    */
   getOptionDisabled: PropTypes.func,
   /**
    * Used to determine the string value for a given option.
    * It's used to fill the input (and the list box options if `renderOption` is not provided).
+   *
+   * @param {T} option
+   * @return {string}
    */
   getOptionLabel: PropTypes.func,
   /**
