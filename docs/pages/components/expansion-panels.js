@@ -1,14 +1,25 @@
 import React from 'react';
-import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
+import MarkdownDocsX from 'docs/src/modules/components/MarkdownDocs.new';
+import prepareMarkdown from 'docs/src/modules/utils/prepareMarkdown';
 
-const req = require.context('docs/src/pages/components/expansion-panels', false, /\.(md|js|tsx)$/);
-const reqSource = require.context(
-  '!raw-loader!../../src/pages/components/expansion-panels',
+const pageFilename = 'components/expansion-panels';
+const requireDemo = require.context(
+  'docs/src/pages/components/expansion-panels',
   false,
   /\.(js|tsx)$/,
 );
-const reqPrefix = 'pages/components/expansion-panels';
+const requireRaw = require.context(
+  '!raw-loader!../../src/pages/components/expansion-panels',
+  false,
+  /\.(js|md|tsx)$/,
+);
 
-export default function Page() {
-  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
+// eslint-disable-next-line react/prop-types
+export default function Page({ demos, docs }) {
+  return <MarkdownDocsX demos={demos} docs={docs} requireDemo={requireDemo} />;
 }
+
+Page.getInitialProps = async () => {
+  const { demos, docs } = prepareMarkdown({ pageFilename, requireRaw });
+  return { demos, docs };
+};

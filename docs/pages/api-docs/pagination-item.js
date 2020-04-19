@@ -1,7 +1,25 @@
 import React from 'react';
-import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from './pagination-item.md';
+import MarkdownDocsX from 'docs/src/modules/components/MarkdownDocs.new';
+import prepareMarkdown from 'docs/src/modules/utils/prepareMarkdown';
 
-export default function Page() {
-  return <MarkdownDocs markdown={markdown} />;
+const pageFilename = 'api-docs/pagination-item';
+const requireDemo = require.context(
+  'docs/src/pages/api-docs/pagination-item',
+  false,
+  /\.(js|tsx)$/,
+);
+const requireRaw = require.context(
+  '!raw-loader!../../src/pages/api-docs/pagination-item',
+  false,
+  /\.(js|md|tsx)$/,
+);
+
+// eslint-disable-next-line react/prop-types
+export default function Page({ demos, docs }) {
+  return <MarkdownDocsX demos={demos} docs={docs} requireDemo={requireDemo} />;
 }
+
+Page.getInitialProps = async () => {
+  const { demos, docs } = prepareMarkdown({ pageFilename, requireRaw });
+  return { demos, docs };
+};
