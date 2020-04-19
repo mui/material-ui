@@ -50,7 +50,7 @@ Page.getInitialProps = async () => {
   versions = orderBy(versions, 'version', 'desc');
   versions = sortedUniqBy(versions, 'version');
 
-  const { demos, docs } = prepare({ pageFilename, requireRaw });
+  const { demos, docs } = prepareMarkdown({ pageFilename, requireRaw });
 
   return { demos, docs, versions };
 };
