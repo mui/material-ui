@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import Head from 'docs/src/modules/components/Head';
 import AppFrame from 'docs/src/modules/components/AppFrame';
@@ -26,8 +25,7 @@ const styles = (theme) => ({
 function TopLayoutCompany(props) {
   const { classes, docs } = props;
 
-  const userLanguage = useSelector((state) => state.options.userLanguage);
-  const { description, rendered, title } = docs[userLanguage];
+  const { description, rendered, title } = docs.en;
 
   return (
     <AppFrame>
