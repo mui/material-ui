@@ -5,7 +5,7 @@ import Head from 'docs/src/modules/components/Head';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import AppContainer from 'docs/src/modules/components/AppContainer';
 import AppFooter from 'docs/src/modules/components/AppFooter';
-import MarkdownElement from './MarkdownElement.new';
+import MarkdownElement from './MarkdownElement';
 
 const styles = (theme) => ({
   root: {

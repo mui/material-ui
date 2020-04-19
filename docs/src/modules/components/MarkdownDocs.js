@@ -20,7 +20,7 @@ import { exactProp } from '@material-ui/utils';
 import { SOURCE_CODE_ROOT_URL } from 'docs/src/modules/constants';
 import Demo from 'docs/src/modules/components/Demo';
 import AppTableOfContents from './AppTableOfContents.new';
-import MarkdownElement from './MarkdownElement.new';
+import MarkdownElement from './MarkdownElement';
 
 function flattenPages(pages, current = []) {
   return pages.reduce((items, item) => {

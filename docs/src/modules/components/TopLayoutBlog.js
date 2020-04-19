@@ -7,7 +7,7 @@ import AppContainer from 'docs/src/modules/components/AppContainer';
 import Link from '@material-ui/core/Link';
 import AppFooter from 'docs/src/modules/components/AppFooter';
 import { exactProp } from '@material-ui/utils';
-import MarkdownElement from './MarkdownElement.new';
+import MarkdownElement from './MarkdownElement';
 
 const styles = (theme) => ({
   root: {
