@@ -176,7 +176,7 @@ function MarkdownDocs(props) {
                   raw: demo.raw,
                   js: requireDemo(demo.module).default,
                   rawTS: demo.rawTS,
-                  tsx: requireDemo(demo.moduleTS).default,
+                  tsx: demo.moduleTS ? requireDemo(demo.moduleTS).default : null,
                 }}
                 demoOptions={demoOptions}
                 githubLocation={`${SOURCE_CODE_ROOT_URL}/docs/src/${name}`}
