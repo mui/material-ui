@@ -181,12 +181,9 @@ describe('<Slider />', () => {
     });
 
     it('should support keyboard with marks variant', () => {
-      const { getAllByRole } = render(<Slider
-          defaultValue={30}
-          step={10}
-          marks
-          min={10}
-          max={110} />);
+      const { getAllByRole } = render(
+        <Slider defaultValue={30} step={10} marks min={10} max={110} />,
+      );
       const [thumb] = getAllByRole('slider');
 
       thumb.focus();
