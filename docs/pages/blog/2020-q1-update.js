@@ -1,6 +1,7 @@
 import React from 'react';
 import TopLayoutBlog from 'docs/src/modules/components/TopLayoutBlog';
-import prepareMarkdown from 'docs/src/modules/utils/prepareMarkdown';
+import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
+
 
 const pageFilename = 'blog/2020-q1-update';
 const requireRaw = require.context('!raw-loader!./', false, /2020-q1-update\.md$/);

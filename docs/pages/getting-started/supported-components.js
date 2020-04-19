@@ -1,6 +1,7 @@
 import React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import prepareMarkdown from 'docs/src/modules/utils/prepareMarkdown';
+import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
+
 
 const pageFilename = 'getting-started/supported-components';
 const requireDemo = require.context(

@@ -1,6 +1,7 @@
 import React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import prepareMarkdown from 'docs/src/modules/utils/prepareMarkdown';
+import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
+
 
 const pageFilename = 'api-docs/tab';
 const requireDemo = require.context('docs/src/pages/api-docs/tab', false, /\.(js|tsx)$/);

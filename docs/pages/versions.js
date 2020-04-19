@@ -3,7 +3,7 @@ import orderBy from 'lodash/orderBy';
 import sortedUniqBy from 'lodash/sortedUniqBy';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import fetch from 'cross-fetch';
-import prepareMarkdown from 'docs/src/modules/utils/prepareMarkdown';
+import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
 const pageFilename = 'versions';
 const requireDemo = require.context('docs/src/pages/versions/', false, /\.(js|tsx)$/);
@@ -50,7 +50,7 @@ Page.getInitialProps = async () => {
   versions = orderBy(versions, 'version', 'desc');
   versions = sortedUniqBy(versions, 'version');
 
-  const { demos, docs } = prepareMarkdown({ pageFilename, requireRaw });
+  const { demos, docs } = prepare({ pageFilename, requireRaw });
 
   return { demos, docs, versions };
 };

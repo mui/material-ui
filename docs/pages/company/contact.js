@@ -1,6 +1,7 @@
 import React from 'react';
 import TopLayoutCompany from 'docs/src/modules/components/TopLayoutCompany';
-import prepareMarkdown from 'docs/src/modules/utils/prepareMarkdown';
+import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
+
 
 const pageFilename = 'company/contact';
 const requireDemo = require.context('docs/src/pages/company/contact', false, /\.(js|tsx)$/);
