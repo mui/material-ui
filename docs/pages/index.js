@@ -204,8 +204,8 @@ LandingPage.propTypes = {
   sponsorsProps: PropTypes.object.isRequired,
 };
 
-LandingPage.getInitialProps = async () => {
+LandingPage.getInitialProps = async (ctx) => {
   return {
-    sponsorsProps: await getInitialSponsorsProps(),
+    sponsorsProps: await getInitialSponsorsProps(ctx),
   };
 };

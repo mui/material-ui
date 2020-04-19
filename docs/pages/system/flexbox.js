@@ -8,6 +8,7 @@ const requireRaw = require.context(
   '!raw-loader!../../src/pages/system/flexbox',
   false,
   /\.(js|md|tsx)$/,
+  'lazy',
 );
 
 // eslint-disable-next-line react/prop-types
@@ -15,7 +16,7 @@ export default function Page({ demos, docs }) {
   return <MarkdownDocs demos={demos} docs={docs} requireDemo={requireDemo} />;
 }
 
-Page.getInitialProps = async () => {
-  const { demos, docs } = prepareMarkdown({ pageFilename, requireRaw });
+Page.getInitialProps = async (ctx) => {
+  const { demos, docs } = await prepareMarkdown({ ctx, pageFilename, requireRaw });
   return { demos, docs };
 };

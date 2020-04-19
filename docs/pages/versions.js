@@ -26,7 +26,7 @@ async function getBranches() {
   return branches;
 }
 
-Page.getInitialProps = async () => {
+Page.getInitialProps = async (ctx) => {
   const FILTERED_BRANCHES = ['latest', 'staging', 'l10n', 'next'];
 
   const branches = await getBranches();
@@ -50,7 +50,7 @@ Page.getInitialProps = async () => {
   versions = orderBy(versions, 'version', 'desc');
   versions = sortedUniqBy(versions, 'version');
 
-  const { demos, docs } = prepareMarkdown({ pageFilename, requireRaw });
+  const { demos, docs } = await prepareMarkdown({ ctx, pageFilename, requireRaw });
 
   return { demos, docs, versions };
 };
