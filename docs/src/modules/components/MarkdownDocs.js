@@ -94,7 +94,7 @@ function MarkdownDocs(props) {
   const t = useSelector((state) => state.options.t);
 
   const userLanguage = useSelector((state) => state.options.userLanguage);
-  const { description, location, rendered, title, toc } = docs[userLanguage];
+  const { description, location, rendered, title, toc } = docs[userLanguage] || docs.en;
   if (description === undefined) {
     throw new Error('Missing description in the page');
   }
