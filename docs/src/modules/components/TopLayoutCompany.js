@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import Head from 'docs/src/modules/components/Head';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import AppContainer from 'docs/src/modules/components/AppContainer';
-import useMarkdownDocs from 'docs/src/modules/components/useMarkdownDocs';
-import { getHeaders, getTitle, getDescription } from 'docs/src/modules/utils/parseMarkdown';
 import AppFooter from 'docs/src/modules/components/AppFooter';
+import MarkdownElement from './MarkdownElement.new';
 
 const styles = (theme) => ({
   root: {
@@ -24,33 +24,26 @@ const styles = (theme) => ({
 });
 
 function TopLayoutCompany(props) {
-  const {
-    classes,
-    markdown: markdownProp,
-    markdownLocation: markdownLocationProp,
-    req,
-    reqPrefix,
-    reqSource,
-  } = props;
+  const { classes, docs } = props;
 
-  const markdownDocs = useMarkdownDocs({
-    markdown: markdownProp,
-    markdownLocation: markdownLocationProp,
-    req,
-    reqPrefix,
-    reqSource,
-  });
-
-  const headers = getHeaders(markdownDocs.markdown);
+  const userLanguage = useSelector((state) => state.options.userLanguage);
+  const { description, rendered, title } = docs[userLanguage];
 
   return (
     <AppFrame>
-      <Head
-        title={`${headers.title || getTitle(markdownDocs.markdown)} - Material-UI`}
-        description={headers.description || getDescription(markdownDocs.markdown)}
-      />
+      <Head title={`${title} - Material-UI`} description={description} />
       <div className={classes.root}>
-        <AppContainer className={classes.container}>{markdownDocs.element}</AppContainer>
+        <AppContainer className={classes.container}>
+          {rendered.map((chunk, index) => {
+            return (
+              <MarkdownElement
+                key={index}
+                // eslint-disable-next-line react/no-danger
+                dangerouslySetInnerHTML={{ __html: chunk }}
+              />
+            );
+          })}
+        </AppContainer>
         <AppFooter />
       </div>
     </AppFrame>
@@ -59,13 +52,7 @@ function TopLayoutCompany(props) {
 
 TopLayoutCompany.propTypes = {
   classes: PropTypes.object.isRequired,
-  markdown: PropTypes.string,
-  // You can define the direction location of the markdown file.
-  // Otherwise, we try to determine it with an heuristic.
-  markdownLocation: PropTypes.string,
-  req: PropTypes.func,
-  reqPrefix: PropTypes.string,
-  reqSource: PropTypes.func,
+  docs: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(TopLayoutCompany);
