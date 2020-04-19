@@ -11,7 +11,7 @@ describe('deepmerge', () => {
   });
 
   // https://github.com/mui-org/material-ui/issues/20095
-  it('should not merge DOM elements', () => {
+  it('should not merge HTML elements', () => {
     const element = document.createElement('div');
     const element2 = document.createElement('div');
 

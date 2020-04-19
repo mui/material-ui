@@ -436,8 +436,8 @@ Popover.propTypes = {
    */
   action: refType,
   /**
-   * This is the DOM element, or a function that returns it,
-   * that may be used to set the position of the popover.
+   * A HTML element, or a function that returns it.
+   * It's used to set the position of the popover.
    */
   anchorEl: chainPropTypes(PropTypes.oneOfType([HTMLElementType, PropTypes.func]), (props) => {
     if (props.open && (!props.anchorReference || props.anchorReference === 'anchorEl')) {
@@ -519,15 +519,16 @@ Popover.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * A node, component instance, or function that returns either.
+   * A HTML element, component instance, or function that returns either.
    * The `container` will passed to the Modal component.
+   *
    * By default, it uses the body of the anchorEl's top-level document object,
    * so it's simply `document.body` most of the time.
    */
   container: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.func,
-    PropTypes.instanceOf(React.Component),
     HTMLElementType,
+    PropTypes.instanceOf(React.Component),
+    PropTypes.func,
   ]),
   /**
    * The elevation of the popover.

@@ -24,8 +24,8 @@ export interface PopoverProps
    */
   action?: React.Ref<PopoverActions>;
   /**
-   * This is the DOM element, or a function that returns the DOM element,
-   * that may be used to set the position of the popover.
+   * A HTML element, or a function that returns it.
+   * It's used to set the position of the popover.
    */
   anchorEl?: null | Element | ((element: Element) => Element);
   /**
@@ -55,8 +55,9 @@ export interface PopoverProps
    */
   children?: React.ReactNode;
   /**
-   * A node, component instance, or function that returns either.
+   * A HTML element, component instance, or function that returns either.
    * The `container` will passed to the Modal component.
+   *
    * By default, it uses the body of the anchorEl's top-level document object,
    * so it's simply `document.body` most of the time.
    */

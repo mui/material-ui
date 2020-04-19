@@ -172,7 +172,8 @@ Menu.propTypes = {
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
-   * The DOM element used to set the position of the menu.
+   * A HTML element, or a function that returns it.
+   * It's used to set the position of the menu.
    */
   anchorEl: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     HTMLElementType,
