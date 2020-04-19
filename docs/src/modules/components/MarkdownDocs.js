@@ -130,13 +130,7 @@ function MarkdownDocs(props) {
           {rendered.map((renderedMarkdownOrDemo, index) => {
             if (typeof renderedMarkdownOrDemo === 'string') {
               const renderedMarkdown = renderedMarkdownOrDemo;
-              return (
-                <MarkdownElement
-                  key={index}
-                  // eslint-disable-next-line react/no-danger
-                  dangerouslySetInnerHTML={{ __html: renderedMarkdown }}
-                />
-              );
+              return <MarkdownElement key={index} renderedMarkdown={renderedMarkdown} />;
             }
 
             const demoOptions = renderedMarkdownOrDemo;

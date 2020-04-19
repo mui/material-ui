@@ -187,14 +187,22 @@ const styles = (theme) => ({
 const useStyles = makeStyles(styles, { name: 'MarkdownElement', flip: true });
 
 function MarkdownElement(props) {
-  const { className, ...other } = props;
+  const { className, renderedMarkdown, ...other } = props;
   const classes = useStyles();
 
-  return <div className={clsx(classes.root, 'markdown-body', className)} {...other} />;
+  return (
+    <div
+      className={clsx(classes.root, 'markdown-body', className)}
+      // eslint-disable-next-line react/no-danger
+      dangerouslySetInnerHTML={{ html: renderedMarkdown }}
+      {...other}
+    />
+  );
 }
 
 MarkdownElement.propTypes = {
   className: PropTypes.string,
+  renderedMarkdown: PropTypes.string.isRequired,
 };
 
 export default MarkdownElement;

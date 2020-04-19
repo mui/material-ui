@@ -62,13 +62,7 @@ function TopLayoutBlog(props) {
             {'< Back to blog'}
           </Link>
           {rendered.map((chunk, index) => {
-            return (
-              <MarkdownElement
-                key={index}
-                // eslint-disable-next-line react/no-danger
-                dangerouslySetInnerHTML={{ __html: chunk }}
-              />
-            );
+            return <MarkdownElement key={index} renderedMarkdown={chunk} />;
           })}
         </AppContainer>
         <AppFooter />

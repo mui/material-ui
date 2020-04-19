@@ -33,13 +33,7 @@ function TopLayoutCompany(props) {
       <div className={classes.root}>
         <AppContainer className={classes.container}>
           {rendered.map((chunk, index) => {
-            return (
-              <MarkdownElement
-                key={index}
-                // eslint-disable-next-line react/no-danger
-                dangerouslySetInnerHTML={{ __html: chunk }}
-              />
-            );
+            return <MarkdownElement key={index} renderedMarkdown={chunk} />;
           })}
         </AppContainer>
         <AppFooter />
