@@ -266,7 +266,7 @@ const styles = (theme) => ({
 });
 
 function MarkdownDocs(props) {
-  const { classes, disableAd = false, disableToc = false, demos, docs, req } = props;
+  const { classes, disableAd = false, disableToc = false, demos, docs, requireDemo } = props;
 
   const t = useSelector((state) => state.options.t);
 
@@ -357,9 +357,9 @@ function MarkdownDocs(props) {
                 key={index}
                 demo={{
                   raw: demo.raw,
-                  js: req(demo.module).default,
+                  js: requireDemo(demo.module).default,
                   rawTS: demo.rawTS,
-                  tsx: req(demo.moduleTS).default,
+                  tsx: requireDemo(demo.moduleTS).default,
                 }}
                 demoOptions={demoOptions}
                 githubLocation={`${SOURCE_CODE_ROOT_URL}/docs/src/${name}`}
@@ -416,7 +416,7 @@ MarkdownDocs.propTypes = {
   disableAd: PropTypes.bool,
   disableToc: PropTypes.bool,
   docs: PropTypes.object.isRequired,
-  req: PropTypes.func.isRequired,
+  requireDemo: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(MarkdownDocs);

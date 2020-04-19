@@ -23,18 +23,18 @@ const externs = [
 ];
 
 export default function prepareMarkdown(config) {
-  const { pageFilename, req, reqSource } = config;
+  const { pageFilename, requireRaw } = config;
 
   const demos = {};
   const docs = {};
-  req.keys().forEach((filename) => {
+  requireRaw.keys().forEach((filename) => {
     if (filename.indexOf('.md') !== -1) {
       const match = filename.match(/-([a-z]{2})\.md$/);
 
       const userLanguage =
         match && LANGUAGES_IN_PROGRESS.indexOf(match[1]) !== -1 ? match[1] : 'en';
 
-      const markdown = req(filename);
+      const markdown = requireRaw(filename);
       const contents = getContents(markdown);
       const headers = getHeaders(markdown);
 
@@ -179,7 +179,7 @@ ${headers.components
       demos[demoName] = {
         ...demos[demoName],
         moduleTS: filename,
-        rawTS: reqSource(filename),
+        rawTS: requireRaw(filename),
       };
     } else {
       const demoName = `pages/${pageFilename}/${filename.replace(/\.\//g, '')}`;
@@ -187,7 +187,7 @@ ${headers.components
       demos[demoName] = {
         ...demos[demoName],
         module: filename,
-        raw: reqSource(filename),
+        raw: requireRaw(filename),
       };
     }
   });

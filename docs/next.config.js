@@ -90,10 +90,6 @@ module.exports = {
       module: {
         ...config.module,
         rules: config.module.rules.concat([
-          {
-            test: /\.md$/,
-            loader: 'raw-loader',
-          },
           // transpile 3rd party packages with dependencies in this repository
           {
             test: /\.(js|mjs|jsx)$/,
