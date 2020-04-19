@@ -363,7 +363,9 @@ describe('<Button />', () => {
     // @ts-ignore
     buttonActionsRef.current.focus();
 
-    expect(button.className).to.equal('MuiButtonBase-root MuiButton-root MuiButton-text Mui-focusVisible focusVisible');
+    expect(button.className).to.equal(
+      'MuiButtonBase-root MuiButton-root MuiButton-text Mui-focusVisible focusVisible',
+    );
   });
 
   describe('server-side', () => {
