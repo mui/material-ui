@@ -196,7 +196,7 @@ const styles = (theme) => ({
     },
   },
 });
-const useStyles = makeStyles(styles, { name: 'MarkdownElement', flip: true });
+const useStyles = makeStyles(styles, { name: 'MarkdownElement', flip: false });
 
 function MarkdownElement(props) {
   const { className, renderedMarkdown, ...other } = props;
