@@ -182,7 +182,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
    * Expansion Helpers
    */
 
-  const toggleExpansion = (event, value = focusedNodeId, isLabelClick) => {
+  const toggleExpansion = (event, value = focusedNodeId, clickReason) => {
     let newExpanded;
     if (expanded.indexOf(value) !== -1) {
       newExpanded = expanded.filter((id) => id !== value);
@@ -197,10 +197,8 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
       newExpanded = [value, ...expanded];
     }
 
-    let toggleReason = 'Keyboard';
-    if (isLabelClick !== undefined) {
-      toggleReason = isLabelClick ? 'LabelClick' : 'IconClick';
-    }
+    const toggleReason = clickReason || 'Keyboard';
+
     if (onNodeToggle) {
       onNodeToggle(event, newExpanded, toggleReason);
     }
@@ -617,7 +615,7 @@ TreeView.propTypes = {
    * Callback fired when tree items are expanded/collapsed
    * @param {object} event The event source of the callback.
    * @param {string[]} nodeIds The ids of the expanded nodes.
-   * @param {'Keyboard' | 'IconClick' | 'LabelClick'} reason The reason for the expansion / collapse.
+   * @param {'Keyboard' | 'IconClick' | 'LabelClick' | 'ContentClick'} reason The reason for the expansion / collapse.  ContentClick is when click TreeItem and not label or icon area.
    */
   onNodeToggle: PropTypes.func,
   /**

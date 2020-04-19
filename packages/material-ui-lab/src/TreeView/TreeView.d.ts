@@ -37,12 +37,12 @@ export interface TreeViewPropsBase
    * Callback fired when tree items are expanded/collapsed
    * @param {object} event The event source of the callback.
    * @param {string[]} nodeIds The ids of the expanded nodes.
-   * @param {'Keyboard' | 'IconClick' | 'LabelClick'} reason The reason for the expansion / collapse.
+   * @param {'Keyboard' | 'IconClick' | 'LabelClick' | 'ContentClick'} reason The reason for the expansion / collapse.  ContentClick is when click TreeItem and not label or icon area.
    */
   onNodeToggle?: (
     event: React.ChangeEvent<{}>,
     nodeIds: string[],
-    reason: 'Keyboard' | 'IconClick' | 'LabelClick',
+    reason: 'Keyboard' | 'IconClick' | 'LabelClick' | 'ContentClick',
   ) => void;
 }
 

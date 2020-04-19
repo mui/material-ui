@@ -158,7 +158,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     }
   }
 
-  const handleClick = (event, isLabelClick) => {
+  const handleClick = (event, clickReason) => {
     if (!focused) {
       focus(nodeId);
     }
@@ -167,7 +167,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
 
     // If already expanded and trying to toggle selection don't close
     if (expandable && !(multiple && isExpanded(nodeId))) {
-      toggleExpansion(event, nodeId, isLabelClick);
+      toggleExpansion(event, nodeId, clickReason);
     }
 
     if (multiple) {
@@ -181,16 +181,21 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     }
 
     if (onClick) {
-      onClick(event, isLabelClick);
+      onClick(event, clickReason);
     }
   };
 
+  const handleContentClick = (event) => {
+    if (event.currentTarget === event.target) {
+      handleClick(event, 'ContentClick');
+    }
+  };
   const handleLabelClick = (event) => {
-    handleClick(event, true);
+    handleClick(event, 'LabelClick');
   };
 
   const handleIconClick = (event) => {
-    handleClick(event, false);
+    handleClick(event, 'IconClick');
   };
 
   const handleMouseDown = (event) => {
@@ -388,7 +393,12 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
       tabIndex={tabbable ? 0 : -1}
       {...other}
     >
-      <div className={classes.content} onMouseDown={handleMouseDown} ref={contentRef}>
+      <div
+        onClick={handleContentClick}
+        className={classes.content}
+        onMouseDown={handleMouseDown}
+        ref={contentRef}
+      >
         <div onClick={handleIconClick} className={classes.iconContainer}>
           {icon}
         </div>
@@ -456,7 +466,7 @@ TreeItem.propTypes = {
   nodeId: PropTypes.string.isRequired,
   /**
    * @param {object} event The click event
-   * @param {bool} isLabelClick If originated from the label or the icon
+   * @param {'IconClick' | 'LabelClick' | 'ContentClick'} reason If originated from the label, icon or their container
    */
   onClick: PropTypes.func,
   /**

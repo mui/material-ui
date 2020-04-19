@@ -31,9 +31,9 @@ export interface TreeItemProps
   /**
    *
    * @param {object} event The click event
-   * @param {bool} isLabelClick If originated from the label or the icon
+   * @param {'IconClick' | 'LabelClick' | 'ContentClick'} reason If originated from the label, icon or their container
    */
-  onClick?(event: React.MouseEvent, isLabelClick: boolean): void;
+  onClick?(event: React.MouseEvent, reason: 'IconClick' | 'LabelClick' | 'ContentClick'): void;
   /**
    * The component used for the transition.
    * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.

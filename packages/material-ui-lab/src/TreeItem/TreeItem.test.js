@@ -44,7 +44,7 @@ describe('<TreeItem />', () => {
     fireEvent.click(getByText('test'));
 
     expect(handleClick.callCount).to.equal(1);
-    expect(handleClick.args[0][1]).to.be.true;
+    expect(handleClick.args[0][1]).to.be.equal('LabelClick');
   });
 
   it('should call onClick when icon clicked', () => {
@@ -64,7 +64,27 @@ describe('<TreeItem />', () => {
     fireEvent.click(getByTestId('icon'));
 
     expect(handleClick.callCount).to.equal(1);
-    expect(handleClick.args[0][1]).to.be.false;
+    expect(handleClick.args[0][1]).to.be.equal('IconClick');
+  });
+
+  it('should call onClick when content clicked', () => {
+    const handleClick = spy();
+
+    render(
+      <TreeView>
+        <TreeItem
+          icon={<div data-testid="icon" />}
+          nodeId="test"
+          label="test"
+          onClick={handleClick}
+        />
+      </TreeView>,
+    );
+
+    fireEvent.click(document.getElementsByClassName(classes.content)[0]);
+
+    expect(handleClick.callCount).to.equal(1);
+    expect(handleClick.args[0][1]).to.be.equal('ContentClick');
   });
 
   it('should display the right icons', () => {

@@ -10,6 +10,7 @@ import TreeItem from '../TreeItem';
 
 describe('<TreeView />', () => {
   let classes;
+  let treeItemClasses;
   let mount;
   // StrictModeViolation: test uses TreeItem
   const render = createClientRender({ strict: false });
@@ -17,6 +18,7 @@ describe('<TreeView />', () => {
   before(() => {
     mount = createMount({ strict: true });
     classes = getClasses(<TreeView />);
+    treeItemClasses = getClasses(<TreeItem />);
   });
 
   describeConformance(<TreeView />, () => ({
@@ -233,6 +235,23 @@ describe('<TreeView />', () => {
       expect(handleNodeToggle.callCount).to.equal(1);
       expect(handleNodeToggle.args[0][1]).to.deep.equal(['1']);
       expect(handleNodeToggle.args[0][2]).to.be.equal('IconClick');
+    });
+
+    it('should be called when a parent node content is clicked', () => {
+      const handleNodeToggle = spy();
+
+      render(
+        <TreeView onNodeToggle={handleNodeToggle}>
+          <TreeItem nodeId="1" label="outer">
+            <TreeItem nodeId="2" label="inner" />
+          </TreeItem>
+        </TreeView>,
+      );
+      fireEvent.click(document.getElementsByClassName(treeItemClasses.content)[0]);
+
+      expect(handleNodeToggle.callCount).to.equal(1);
+      expect(handleNodeToggle.args[0][1]).to.deep.equal(['1']);
+      expect(handleNodeToggle.args[0][2]).to.be.equal('ContentClick');
     });
 
     it('should be called when a parent node is expanded with arrow right', () => {
