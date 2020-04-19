@@ -206,7 +206,7 @@ function MarkdownElement(props) {
     <div
       className={clsx(classes.root, 'markdown-body', className)}
       // eslint-disable-next-line react/no-danger
-      dangerouslySetInnerHTML={{ html: renderedMarkdown }}
+      dangerouslySetInnerHTML={{ __html: renderedMarkdown }}
       {...other}
     />
   );
