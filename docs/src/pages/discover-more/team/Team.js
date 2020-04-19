@@ -45,6 +45,13 @@ const activeCore = [
     flag: 'Core focus: pickers',
     city: 'Kharkiv, Ukraine',
   },
+  {
+    name: 'Damien Rassone',
+    github: 'dtassone',
+    twitter: 'madKakoO',
+    flag: 'Enterprise product designer',
+    city: 'Barcelona, Spain',
+  },
 ];
 
 const emeriti = [
@@ -104,6 +111,11 @@ const partners = [
     twitter: 'oleg008',
     flag: 'JSS',
     city: 'Berlin, Germany',
+  },
+  {
+    name: 'Danica Shen',
+    github: 'DDDDDanica',
+    flag: '🇨🇳 Chinese docs',
   },
 ];
 
@@ -211,18 +223,18 @@ some of whom have chosen to be featured below.`}
         {...props}
       />
       <Group
+        title="Community Partners"
+        description={`Some members of the community have so enriched it,
+      that they deserve special mention.`}
+        members={partners}
+        {...props}
+      />
+      <Group
         title="Core Team Emeriti"
         description={`We honor some no-longer-active core team members who have made
 valuable contributions in the past.
 They advise us from time-to-time.`}
         members={emeriti}
-        {...props}
-      />
-      <Group
-        title="Community Partners"
-        description={`Some members of the community have so enriched it,
-that they deserve special mention.`}
-        members={partners}
         {...props}
       />
     </div>
