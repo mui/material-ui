@@ -227,7 +227,7 @@ MarkdownDocs.propTypes = {
   disableAd: PropTypes.bool,
   disableToc: PropTypes.bool,
   docs: PropTypes.object.isRequired,
-  requireDemo: PropTypes.func.isRequired,
+  requireDemo: PropTypes.func,
 };
 
 if (process.env.NODE_ENV !== 'production') {
