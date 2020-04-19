@@ -1,5 +1,5 @@
 import marked from 'marked/lib/marked';
-import { LANGUAGES_IN_PROGRESS } from 'docs/src/modules/constants';
+import { LANGUAGES_SSR, LANGUAGES_IN_PROGRESS } from 'docs/src/modules/constants';
 import kebabCase from 'lodash/kebabCase';
 import { rewriteUrlForNextExport } from 'next/dist/next-server/lib/router/rewrite-url-for-export';
 import textToHash from 'docs/src/modules/utils/textToHash';
@@ -106,16 +106,25 @@ const externs = [
 ];
 
 export function prepareMarkdown(config) {
-  const { pageFilename, requireRaw } = config;
+  const { ctx, pageFilename, requireRaw } = config;
 
+  const userLanguage = ctx.query.userLanguage;
   const demos = {};
   const docs = {};
+
   requireRaw.keys().forEach((filename) => {
     if (filename.indexOf('.md') !== -1) {
       const match = filename.match(/-([a-z]{2})\.md$/);
 
-      const userLanguage =
+      const fileUserLanguage =
         match && LANGUAGES_IN_PROGRESS.indexOf(match[1]) !== -1 ? match[1] : 'en';
+
+      if (
+        (userLanguage === 'en' && LANGUAGES_SSR.indexOf(fileUserLanguage) === -1) ||
+        (userLanguage !== 'en' && userLanguage !== fileUserLanguage)
+      ) {
+        return;
+      }
 
       const markdown = requireRaw(filename);
       const contents = getContents(markdown);
@@ -204,11 +213,11 @@ ${headers.components
             let finalHref = href;
 
             if (
-              userLanguage !== 'en' &&
+              fileUserLanguage !== 'en' &&
               finalHref.indexOf('/') === 0 &&
               finalHref !== '/size-snapshot'
             ) {
-              finalHref = `/${userLanguage}${finalHref}`;
+              finalHref = `/${fileUserLanguage}${finalHref}`;
             }
 
             return `<a href="${finalHref}"${more}>${linkText}</a>`;
@@ -222,11 +231,13 @@ ${headers.components
   </symbol>
 </svg>`);
 
-      const location = headers.filename || `/docs/src/pages/${pageFilename}/${filename}`;
-
-      const localized = { description, location, rendered, toc, title };
-
-      docs[userLanguage] = localized;
+      docs[fileUserLanguage] = {
+        description,
+        location: headers.filename || `/docs/src/pages/${pageFilename}/${filename}`,
+        rendered,
+        toc,
+        title,
+      };
     } else if (filename.indexOf('.tsx') !== -1) {
       const demoName = `pages/${pageFilename}/${filename
         .replace(/\.\//g, '')

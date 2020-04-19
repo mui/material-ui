@@ -342,8 +342,8 @@ export default function Page({ docs }) {
   return <MarkdownDocs docs={docs} />;
 }
 
-Page.getInitialProps = async () => {
-  const { demos, docs } = prepareMarkdown({ pageFilename, requireRaw });
+Page.getInitialProps = async (ctx) => {
+  const { demos, docs } = prepareMarkdown({ ctx, pageFilename, requireRaw });
   return { demos, docs };
 };
 `.replace(/\r?\n/g, reactAPI.EOL),

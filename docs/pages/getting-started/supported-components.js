@@ -19,7 +19,7 @@ export default function Page({ demos, docs }) {
   return <MarkdownDocs demos={demos} docs={docs} requireDemo={requireDemo} />;
 }
 
-Page.getInitialProps = async () => {
-  const { demos, docs } = prepareMarkdown({ pageFilename, requireRaw });
+Page.getInitialProps = async (ctx) => {
+  const { demos, docs } = prepareMarkdown({ ctx, pageFilename, requireRaw });
   return { demos, docs };
 };
