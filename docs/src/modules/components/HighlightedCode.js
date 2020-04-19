@@ -3,7 +3,7 @@ import * as PropTypes from 'prop-types';
 import MarkdownElement from './MarkdownElement';
 import prism from 'docs/src/modules/utils/prism';
 
-function HighlightedCode(props) {
+export default function HighlightedCode(props) {
   const { code, language } = props;
   const renderedCode = React.useMemo(() => {
     return prism(code, language);
@@ -26,5 +26,3 @@ HighlightedCode.propTypes = {
   code: PropTypes.string.isRequired,
   language: PropTypes.string.isRequired,
 };
-
-export default HighlightedCode;
