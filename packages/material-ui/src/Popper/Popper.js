@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import PopperJs from 'popper.js';
-import { chainPropTypes, refType } from '@material-ui/utils';
+import { chainPropTypes, refType, HTMLElementType } from '@material-ui/utils';
 import { useTheme } from '@material-ui/styles';
 import Portal from '../Portal';
 import createChainedFunction from '../utils/createChainedFunction';
@@ -293,7 +293,7 @@ Popper.propTypes = {
   container: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.func,
     PropTypes.instanceOf(React.Component),
-    PropTypes.instanceOf(typeof Element === 'undefined' ? Object : Element),
+    HTMLElementType,
   ]),
   /**
    * Disable the portal behavior.

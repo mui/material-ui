@@ -1,9 +1,14 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import * as ReactDOM from 'react-dom';
+import {
+  chainPropTypes,
+  elementTypeAcceptingRef,
+  refType,
+  HTMLElementType,
+} from '@material-ui/utils';
 import debounce from '../utils/debounce';
 import clsx from 'clsx';
-import { chainPropTypes, elementTypeAcceptingRef, refType } from '@material-ui/utils';
 import ownerDocument from '../utils/ownerDocument';
 import ownerWindow from '../utils/ownerWindow';
 import createChainedFunction from '../utils/createChainedFunction';
@@ -522,7 +527,7 @@ Popover.propTypes = {
   container: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.func,
     PropTypes.instanceOf(React.Component),
-    PropTypes.instanceOf(typeof Element === 'undefined' ? Object : Element),
+    HTMLElementType,
   ]),
   /**
    * The elevation of the popover.

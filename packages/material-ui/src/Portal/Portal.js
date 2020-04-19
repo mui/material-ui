@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import { exactProp } from '@material-ui/utils';
+import { exactProp, HTMLElementType } from '@material-ui/utils';
 import setRef from '../utils/setRef';
 import useForkRef from '../utils/useForkRef';
 
@@ -75,7 +75,7 @@ Portal.propTypes = {
   container: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.func,
     PropTypes.instanceOf(React.Component),
-    PropTypes.instanceOf(typeof Element === 'undefined' ? Object : Element),
+    HTMLElementType,
   ]),
   /**
    * Disable the portal behavior.

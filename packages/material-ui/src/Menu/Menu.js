@@ -2,6 +2,7 @@ import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { HTMLElementType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import Popover from '../Popover';
 import MenuList from '../MenuList';
@@ -175,7 +176,7 @@ Menu.propTypes = {
    */
   anchorEl: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.func,
-    PropTypes.instanceOf(typeof Element === 'undefined' ? Object : Element),
+    HTMLElementType,
   ]),
   /**
    * If `true` (Default) will focus the `[role="menu"]` if no focusable child is found. Disabled
