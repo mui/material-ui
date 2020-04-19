@@ -45,7 +45,7 @@
     "@types/react-text-mask": "^5.4.6",
     "@types/react-virtualized": "^9.21.4",
     "@types/react-window": "^1.7.0",
-    "@types/styled-components": "5.0.1",
+    "@types/styled-components": "5.1.0",
     "accept-language": "^3.0.18",
     "address": "^1.0.3",
     "ast-types": "^0.13.2",
