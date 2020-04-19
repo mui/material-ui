@@ -180,26 +180,11 @@ describe('<Slider />', () => {
       expect(thumb2.getAttribute('aria-valuenow')).to.equal('29');
     });
 
-    it('should support keyboard with marks variant', () => {
-      const { getAllByRole } = render(
-        <Slider defaultValue={30} step={10} marks min={10} max={110} />,
-      );
-      const [thumb] = getAllByRole('slider');
-
-      thumb.focus();
-      fireEvent.keyDown(document.activeElement, {
-        key: 'ArrowRight',
-      });
-      expect(thumb.getAttribute('aria-valuenow')).to.equal('40');
-
-      thumb.focus();
-      fireEvent.keyDown(document.activeElement, {
-        key: 'ArrowLeft',
-      });
-      fireEvent.keyDown(document.activeElement, {
-        key: 'ArrowLeft',
-      });
-      expect(thumb.getAttribute('aria-valuenow')).to.equal('20');
+    it('should focus the slider when dragging', () => {
+      const { getByRole } = render(<Slider defaultValue={30} step={10} marks />);
+      const thumb = getByRole('slider');
+      fireEvent.mouseDown(thumb);
+      expect(document.activeElement).to.equal(thumb);
     });
 
     it('should support mouse events', () => {
