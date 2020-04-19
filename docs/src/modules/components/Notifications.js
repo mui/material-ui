@@ -53,16 +53,18 @@ export default function Notifications() {
   const messages = useSelector((state) => state.notifications.messages);
   const lastSeen = useSelector((state) => state.notifications.lastSeen);
 
-  const messageList = (messages || []).filter((message) => {
-    if (
-      message.userLanguage &&
-      message.userLanguage !== userLanguage &&
-      message.userLanguage !== navigator.language.substring(0, 2)
-    ) {
-      return false;
-    }
-    return true;
-  }).reverse();
+  const messageList = (messages || [])
+    .filter((message) => {
+      if (
+        message.userLanguage &&
+        message.userLanguage !== userLanguage &&
+        message.userLanguage !== navigator.language.substring(0, 2)
+      ) {
+        return false;
+      }
+      return true;
+    })
+    .reverse();
 
   const unseenNotificationsCount = messageList.reduce(
     (count, message) => (message.id > lastSeen ? count + 1 : count),
