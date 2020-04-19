@@ -10,7 +10,7 @@ function mapEventPropToEvent(eventProp) {
   return eventProp.substring(2).toLowerCase();
 }
 
-function hasClickedScrollbar(event) {
+function clickedRootScrollbar(event) {
   return (
     document.documentElement.clientWidth < event.clientX ||
     document.documentElement.clientHeight < event.clientY
@@ -63,7 +63,7 @@ function ClickAwayListener(props) {
     // 1. IE 11 support, which trigger the handleClickAway even after the unbind
     // 2. The child might render null.
     // 3. Behave like a blur listener.
-    if (!mountedRef.current || !nodeRef.current || hasClickedScrollbar(event)) {
+    if (!mountedRef.current || !nodeRef.current || clickedRootScrollbar(event)) {
       return;
     }
 
