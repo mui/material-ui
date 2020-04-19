@@ -7,7 +7,6 @@ import Portal from '../Portal';
 import createChainedFunction from '../utils/createChainedFunction';
 import setRef from '../utils/setRef';
 import useForkRef from '../utils/useForkRef';
-import ownerWindow from '../utils/ownerWindow';
 
 function flipPlacement(placement, theme) {
   const direction = (theme && theme.direction) || 'ltr';
@@ -101,9 +100,7 @@ const Popper = React.forwardRef(function Popper(props, ref) {
     const resolvedAnchorEl = getAnchorEl(anchorEl);
 
     if (process.env.NODE_ENV !== 'production') {
-      const containerWindow = ownerWindow(resolvedAnchorEl);
-
-      if (resolvedAnchorEl instanceof containerWindow.Element) {
+      if (resolvedAnchorEl && resolvedAnchorEl.nodeType === 1) {
         const box = resolvedAnchorEl.getBoundingClientRect();
 
         if (
@@ -243,9 +240,8 @@ Popper.propTypes = {
   anchorEl: chainPropTypes(PropTypes.oneOfType([PropTypes.object, PropTypes.func]), (props) => {
     if (props.open) {
       const resolvedAnchorEl = getAnchorEl(props.anchorEl);
-      const containerWindow = ownerWindow(resolvedAnchorEl);
 
-      if (resolvedAnchorEl instanceof containerWindow.Element) {
+      if (resolvedAnchorEl && resolvedAnchorEl.nodeType === 1) {
         const box = resolvedAnchorEl.getBoundingClientRect();
 
         if (
