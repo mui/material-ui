@@ -17,14 +17,14 @@ const columns = [
     label: 'Population',
     minWidth: 170,
     align: 'right',
-    format: (value) => value.toLocaleString(),
+    format: (value) => value.toLocaleString('en-US'),
   },
   {
     id: 'size',
     label: 'Size\u00a0(km\u00b2)',
     minWidth: 170,
     align: 'right',
-    format: (value) => value.toLocaleString(),
+    format: (value) => value.toLocaleString('en-US'),
   },
   {
     id: 'density',

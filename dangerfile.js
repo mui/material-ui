@@ -241,7 +241,7 @@ async function run() {
       computeBundleLabel: (bundleId) => {
         // a page
         if (bundleId.startsWith('docs:/')) {
-          const host = `https://deploy-preview-${danger.github.pr.number}--material-ui.netlify.com`;
+          const host = `https://deploy-preview-${danger.github.pr.number}--material-ui.netlify.app`;
           const page = bundleId.replace(/^docs:/, '');
           return `[${page}](${host}${page})`;
         }

@@ -5,6 +5,7 @@ const CODE_VARIANTS = {
 
 const ACTION_TYPES = {
   OPTIONS_CHANGE: 'OPTIONS_CHANGE',
+  NOTIFICATIONS_CHANGE: 'NOTIFICATIONS_CHANGE',
 };
 
 // Valid languages to server-side render in production

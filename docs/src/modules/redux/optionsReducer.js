@@ -49,7 +49,7 @@ const mapping = {
   },
 };
 
-function optionsReducer(state = {}, action) {
+export default function optionsReducer(state = {}, action) {
   let newState = { ...state };
 
   if (!newState.codeVariant) {
@@ -67,5 +67,3 @@ function optionsReducer(state = {}, action) {
 
   return newState;
 }
-
-export default optionsReducer;

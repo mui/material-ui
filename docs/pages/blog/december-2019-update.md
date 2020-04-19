@@ -34,7 +34,7 @@ But this summary is just scratching the surface. We have accepted 168 commits fr
 
 *(We'll do our best, no guarantee!)*
 
-- 💄 We will keep working on a new [pagination](https://github.com/mui-org/material-ui/pull/19049) component. You can already [preview it](https://deploy-preview-19049--material-ui.netlify.com/components/pagination/) (lead by [**@mbrookes**](https://github.com/mbrookes)).
+- 💄 We will keep working on a new [pagination](https://github.com/mui-org/material-ui/pull/19049) component. You can already [preview it](https://deploy-preview-19049--material-ui.netlify.app/components/pagination/) (lead by [**@mbrookes**](https://github.com/mbrookes)).
 
   ![Pagination](/static/blog/december-2019-update/pagination.png)
 
@@ -42,7 +42,7 @@ But this summary is just scratching the surface. We have accepted 168 commits fr
 
   ![Date picker](/static/blog/december-2019-update/date-picker.png)
 
-- 🧮 We will keep working on a new [data grid](https://github.com/mui-org/material-ui/pull/18872) component. You can already [preview it](https://deploy-preview-18872--material-ui.netlify.com/components/data-grid/) (lead by [**@oliviertassinari**](https://github.com/oliviertassinari)).
+- 🧮 We will keep working on a new [data grid](https://github.com/mui-org/material-ui/pull/18872) component. You can already [preview it](https://deploy-preview-18872--material-ui.netlify.app/components/data-grid/) (lead by [**@oliviertassinari**](https://github.com/oliviertassinari)).
 
   ![Data grid](/static/blog/december-2019-update/data-grid.png)
 
