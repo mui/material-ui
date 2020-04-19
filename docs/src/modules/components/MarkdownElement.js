@@ -196,6 +196,18 @@ const styles = (theme) => ({
       flexShrink: 0,
       backgroundColor: theme.palette.divider,
     },
+    '& kbd': {
+      // Style taken from GitHub
+      padding: '2px 5px',
+      font: '11px Consolas,Liberation Mono,Menlo,monospace',
+      lineHeight: '10px',
+      color: '#444d56',
+      verticalAlign: 'middle',
+      backgroundColor: '#fafbfc',
+      border: '1px solid #d1d5da',
+      borderRadius: 3,
+      boxShadow: 'inset 0 -1px 0 #d1d5da',
+    },
   },
 });
 

@@ -244,6 +244,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     ChipProps,
     classes,
     className,
+    clearOnBlur = !props.freeSolo,
     clearOnEscape = false,
     clearText = 'Clear',
     closeIcon = <CloseIcon fontSize="small" />,
@@ -541,6 +542,13 @@ Autocomplete.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * If `true`, the input's text will be cleared on blur if no value is selected.
+   *
+   * Set to `true` if you want to help the user enter a new value.
+   * Set to `false` if you want to help the user resume his search.
+   */
+  clearOnBlur: PropTypes.bool,
   /**
    * If `true`, clear all values when the user presses escape and the popup is closed.
    */

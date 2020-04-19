@@ -89,6 +89,8 @@ export default function FreeSoloCreateOptionDialog() {
           }
           return option.title;
         }}
+        selectOnFocus
+        clearOnBlur
         renderOption={(option) => option.title}
         style={{ width: 300 }}
         freeSolo
