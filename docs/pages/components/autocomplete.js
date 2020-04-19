@@ -9,10 +9,6 @@ const reqSource = require.context(
 );
 const reqPrefix = 'pages/components/autocomplete';
 
-// Run styled-components ref logic
-// https://github.com/styled-components/styled-components/pull/2998
-req.keys().map(req);
-
 export default function Page() {
   return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
 }
