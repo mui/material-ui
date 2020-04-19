@@ -1,5 +1,5 @@
 import React from 'react';
-import MarkdownDocsX from 'docs/src/modules/components/MarkdownDocs.new';
+import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import prepareMarkdown from 'docs/src/modules/utils/prepareMarkdown';
 
 const pageFilename = 'discover-more/team';
@@ -12,7 +12,7 @@ const requireRaw = require.context(
 
 // eslint-disable-next-line react/prop-types
 export default function Page({ demos, docs }) {
-  return <MarkdownDocsX demos={demos} docs={docs} requireDemo={requireDemo} />;
+  return <MarkdownDocs demos={demos} docs={docs} requireDemo={requireDemo} />;
 }
 
 Page.getInitialProps = async () => {
