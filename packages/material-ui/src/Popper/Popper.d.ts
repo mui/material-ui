@@ -24,7 +24,7 @@ export interface PopperProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 
    * The return value will passed as the reference object of the Popper
    * instance.
    *
-   * The reference element should be an HTML Element instance or a [referenceObject](https://popper.js.org/docs/v1/#referenceObject).
+   * The reference element should be an HTML element instance or a [referenceObject](https://popper.js.org/docs/v1/#referenceObject).
    */
   anchorEl?: null | ReferenceObject | (() => ReferenceObject);
   /**

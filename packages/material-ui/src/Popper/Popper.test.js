@@ -296,7 +296,7 @@ describe('<Popper />', () => {
       );
 
       assert.strictEqual(consoleErrorMock.callCount(), 1);
-      assert.include(consoleErrorMock.messages()[0], 'It should be an HTML Element instance');
+      assert.include(consoleErrorMock.messages()[0], 'It should be an HTML element instance');
     });
   });
 });

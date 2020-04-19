@@ -235,7 +235,7 @@ Popper.propTypes = {
    * The return value will passed as the reference object of the Popper
    * instance.
    *
-   * The reference element should be an HTML Element instance or a [referenceObject](https://popper.js.org/docs/v1/#referenceObject).
+   * The reference element should be an HTML element instance or a [referenceObject](https://popper.js.org/docs/v1/#referenceObject).
    */
   anchorEl: chainPropTypes(PropTypes.oneOfType([PropTypes.object, PropTypes.func]), (props) => {
     if (props.open) {
@@ -268,7 +268,7 @@ Popper.propTypes = {
         return new Error(
           [
             'Material-UI: the `anchorEl` prop provided to the component is invalid.',
-            'It should be an HTML Element instance or a referenceObject ',
+            'It should be an HTML element instance or a referenceObject ',
             '(https://popper.js.org/docs/v1/#referenceObject).',
           ].join('\n'),
         );
