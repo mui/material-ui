@@ -32,7 +32,7 @@ The `MuiTableCell` name can be used for providing [default props](/customization
 | <span class="prop-name">align</span> | <span class="prop-type">'center'<br>&#124;&nbsp;'inherit'<br>&#124;&nbsp;'justify'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right'</span> | <span class="prop-default">'inherit'</span> | Set the text-align on the table cell content.<br>Monetary or generally number fields **should be right aligned** as that allows you to add them up quickly in your head without having to worry about decimals. |
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The table cell contents. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <span class="prop-name">component</span> | <span class="prop-type">elementType</span> |  | The component used for the root node. Either a string to use a DOM element or a component. |
+| <span class="prop-name">component</span> | <span class="prop-type">elementType</span> |  | The component used for the root node. Either a string to use a HTML element or a component. |
 | <span class="prop-name">padding</span> | <span class="prop-type">'checkbox'<br>&#124;&nbsp;'default'<br>&#124;&nbsp;'none'</span> |  | Sets the padding applied to the cell. By default, the Table parent component set the value (`default`). |
 | <span class="prop-name">scope</span> | <span class="prop-type">string</span> |  | Set scope attribute. |
 | <span class="prop-name">size</span> | <span class="prop-type">'medium'<br>&#124;&nbsp;'small'</span> |  | Specify the size of the cell. By default, the Table parent component set the value (`medium`). |

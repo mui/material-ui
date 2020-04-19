@@ -84,7 +84,7 @@ CardMedia.propTypes = {
   className: PropTypes.string,
   /**
    * Component for rendering image.
-   * Either a string to use a DOM element or a component.
+   * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
   /**

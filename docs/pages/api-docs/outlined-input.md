@@ -38,7 +38,7 @@ The `MuiOutlinedInput` name can be used for providing [default props](/customiza
 | <span class="prop-name">error</span> | <span class="prop-type">bool</span> |  | If `true`, the input will indicate an error. This is normally obtained via context from FormControl. |
 | <span class="prop-name">fullWidth</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the input will take up the full width of its container. |
 | <span class="prop-name">id</span> | <span class="prop-type">string</span> |  | The id of the `input` element. |
-| <span class="prop-name">inputComponent</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'input'</span> | The component used for the `input` element. Either a string to use a DOM element or a component. |
+| <span class="prop-name">inputComponent</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'input'</span> | The component used for the `input` element. Either a string to use a HTML element or a component. |
 | <span class="prop-name">inputProps</span> | <span class="prop-type">object</span> |  | [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element. |
 | <span class="prop-name">inputRef</span> | <span class="prop-type">ref</span> |  | Pass a ref to the `input` element. |
 | <span class="prop-name">label</span> | <span class="prop-type">node</span> |  | The label of the input. It is only used for layout. The actual labelling is handled by `InputLabel`. If specified `labelWidth` is ignored. |

@@ -175,8 +175,8 @@ Menu.propTypes = {
    * The DOM element used to set the position of the menu.
    */
   anchorEl: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.func,
     HTMLElementType,
+    PropTypes.func,
   ]),
   /**
    * If `true` (Default) will focus the `[role="menu"]` if no focusable child is found. Disabled

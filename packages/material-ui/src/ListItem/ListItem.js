@@ -252,7 +252,7 @@ ListItem.propTypes = {
   className: PropTypes.string,
   /**
    * The component used for the root node.
-   * Either a string to use a DOM element or a component.
+   * Either a string to use a HTML element or a component.
    * By default, it's a `li` when `button` is `false` and a `div` when `button` is `true`.
    */
   component: PropTypes.elementType,

@@ -436,10 +436,10 @@ Popover.propTypes = {
    */
   action: refType,
   /**
-   * This is the DOM element, or a function that returns the DOM element,
+   * This is the DOM element, or a function that returns it,
    * that may be used to set the position of the popover.
    */
-  anchorEl: chainPropTypes(PropTypes.oneOfType([PropTypes.object, PropTypes.func]), (props) => {
+  anchorEl: chainPropTypes(PropTypes.oneOfType([HTMLElementType, PropTypes.func]), (props) => {
     if (props.open && (!props.anchorReference || props.anchorReference === 'anchorEl')) {
       const resolvedAnchorEl = getAnchorEl(props.anchorEl);
 

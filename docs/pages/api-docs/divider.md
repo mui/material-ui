@@ -30,7 +30,7 @@ The `MuiDivider` name can be used for providing [default props](/customization/g
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">absolute</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Absolutely position the element. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'hr'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
+| <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'hr'</span> | The component used for the root node. Either a string to use a HTML element or a component. |
 | <span class="prop-name">flexItem</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, a vertical divider will have the correct height when used in flex container. (By default, a vertical divider will have a calculated height of `0px` if it is the child of a flex container.) |
 | <span class="prop-name">light</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the divider will have a lighter color. |
 | <span class="prop-name">orientation</span> | <span class="prop-type">'horizontal'<br>&#124;&nbsp;'vertical'</span> | <span class="prop-default">'horizontal'</span> | The divider orientation. |

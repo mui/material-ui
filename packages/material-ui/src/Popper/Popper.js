@@ -230,7 +230,7 @@ Popper.propTypes = {
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
-   * This is the reference element, or a function that returns the reference element,
+   * This is the reference element, or a function that returns it,
    * that may be used to set the position of the popover.
    * The return value will passed as the reference object of the Popper
    * instance.

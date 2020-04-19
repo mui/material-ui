@@ -14,7 +14,7 @@ export interface CollapseProps extends StandardProps<TransitionProps, CollapseCl
   collapsedHeight?: string | number;
   /**
    * The component used for the root node.
-   * Either a string to use a DOM element or a component.
+   * Either a string to use a HTML element or a component.
    */
   component?: React.ElementType<TransitionProps>;
   /**

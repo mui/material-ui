@@ -67,15 +67,15 @@ Portal.propTypes = {
    */
   children: PropTypes.node,
   /**
-   * A node, component instance, or function that returns either.
+   * A HTML element, component instance, or function that returns either.
    * The `container` will have the portal children appended to it.
    * By default, it uses the body of the top-level document object,
    * so it's simply `document.body` most of the time.
    */
   container: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.func,
-    PropTypes.instanceOf(React.Component),
     HTMLElementType,
+    PropTypes.instanceOf(React.Component),
+    PropTypes.func,
   ]),
   /**
    * Disable the portal behavior.
