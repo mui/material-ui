@@ -212,6 +212,7 @@ function AppFrame(props) {
           <IconButton
             edge="start"
             color="inherit"
+            aria-label={t('openDrawer')}
             onClick={handleDrawerOpen}
             className={navIconClassName}
           >
