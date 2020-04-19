@@ -152,6 +152,8 @@ ToggleButtonGroup.propTypes = {
   /**
    * The currently selected value within the group or an array of selected
    * values when `exclusive` is false.
+   *
+   * The value must have reference equality with the option in order to be selected.
    */
   value: PropTypes.any,
 };
