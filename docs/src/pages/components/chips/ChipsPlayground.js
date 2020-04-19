@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
+import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import Grid from '@material-ui/core/Grid';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
@@ -97,10 +97,8 @@ function ChipsPlayground(props) {
     iconToPlayground = null;
   }
 
-  const code = `
-\`\`\`jsx
+  const jsx = `
 <Chip ${variantToCode}${colorToCode}${sizeToCode}${onDeleteToCode}${avatarToCode}${iconToCode}/>
-\`\`\`
 `;
 
   return (
@@ -201,7 +199,7 @@ function ChipsPlayground(props) {
         </Grid>
       </Grid>
       <Grid item xs={12}>
-        <MarkdownElement text={code} />
+        <HighlightedCode code={jsx} language="jsx" />
       </Grid>
     </Grid>
   );

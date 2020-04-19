@@ -3,7 +3,7 @@ import { LANGUAGES_IN_PROGRESS } from 'docs/src/modules/constants';
 import kebabCase from 'lodash/kebabCase';
 import { rewriteUrlForNextExport } from 'next/dist/next-server/lib/router/rewrite-url-for-export';
 import textToHash from 'docs/src/modules/utils/textToHash';
-import prism from 'docs/src/modules/components/prism';
+import prism from 'docs/src/modules/utils/prism';
 
 const headerRegExp = /---[\r\n]([\s\S]*)[\r\n]---/;
 const titleRegExp = /# (.*)[\r\n]/;
@@ -151,41 +151,7 @@ ${headers.components
         }
 
         return render(content, {
-          highlight(code, language) {
-            let prismLanguage;
-            switch (language) {
-              case 'ts':
-                prismLanguage = prism.languages.tsx;
-                break;
-
-              case 'js':
-              case 'sh':
-                prismLanguage = prism.languages.jsx;
-                break;
-
-              case 'diff':
-                prismLanguage = { ...prism.languages.diff };
-                // original `/^[-<].*$/m` matches lines starting with `<` which matches
-                // <SomeComponent />
-                // we will only use `-` as the deleted marker
-                prismLanguage.deleted = /^[-].*$/m;
-                break;
-
-              default:
-                prismLanguage = prism.languages[language];
-                break;
-            }
-
-            if (!prismLanguage) {
-              if (language) {
-                throw new Error(`unsupported language: "${language}", "${code}"`);
-              } else {
-                prismLanguage = prism.languages.jsx;
-              }
-            }
-
-            return prism.highlight(code, prismLanguage);
-          },
+          highlight: prism,
           heading: (headingText, level) => {
             // Small title. No need for an anchor.
             // It's reducing the risk of duplicated id and it's fewer elements in the DOM.

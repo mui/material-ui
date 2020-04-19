@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 import debounce from 'lodash/debounce';
 import Grid from '@material-ui/core/Grid';
 import Dialog from '@material-ui/core/Dialog';
-import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
+import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -201,10 +201,11 @@ let DialogDetails = (props) => {
           <DialogTitle id="icon-dialog-title" onClick={handleClick}>
             {selectedIcon.key}
           </DialogTitle>
-          <MarkdownElement
+          <HighlightedCode
             className={classes.markdown}
             onClick={handleClick}
-            text={`\`\`\`js\nimport ${selectedIcon.key}Icon from '@material-ui/icons/${selectedIcon.key}';\n\`\`\``}
+            code={`import ${selectedIcon.key}Icon from '@material-ui/icons/${selectedIcon.key}';`}
+            language="js"
           />
           <Link
             className={classes.import}

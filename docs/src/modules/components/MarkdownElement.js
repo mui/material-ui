@@ -206,7 +206,9 @@ function MarkdownElement(props) {
     <div
       className={clsx(classes.root, 'markdown-body', className)}
       // eslint-disable-next-line react/no-danger
-      dangerouslySetInnerHTML={{ __html: renderedMarkdown }}
+      dangerouslySetInnerHTML={
+        typeof renderedMarkdown === 'string' ? { __html: renderedMarkdown } : undefined
+      }
       {...other}
     />
   );
@@ -214,7 +216,7 @@ function MarkdownElement(props) {
 
 MarkdownElement.propTypes = {
   className: PropTypes.string,
-  renderedMarkdown: PropTypes.string.isRequired,
+  renderedMarkdown: PropTypes.string,
 };
 
 export default MarkdownElement;

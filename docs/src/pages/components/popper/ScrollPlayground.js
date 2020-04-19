@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
+import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
@@ -128,8 +128,7 @@ export default function ScrollPlayground() {
 
   const classes = useStyles();
 
-  const code = `
-  \`\`\`jsx
+  const jsx = `
   <Popper
     placement="${placement}"
     disablePortal={${disablePortal}}
@@ -147,7 +146,6 @@ export default function ScrollPlayground() {
       },
     }}
   >
-  \`\`\`
   `;
   const id = open ? 'scroll-playground' : null;
 
@@ -317,7 +315,7 @@ export default function ScrollPlayground() {
           />
         </Grid>
       </Grid>
-      <MarkdownElement text={code} />
+      <HighlightedCode code={jsx} language="jsx" />
     </div>
   );
 }

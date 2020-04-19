@@ -9,7 +9,7 @@ import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import { FileDownload as FileDownloadIcon } from '@material-ui/docs';
 import BuildIcon from '@material-ui/icons/Build';
-import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
+import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import Link from 'docs/src/modules/components/Link';
 
 const InstallationLink = React.forwardRef((buttonProps, ref) => (
@@ -100,13 +100,7 @@ function HomeSteps() {
             <Typography variant="subtitle1" component="div" gutterBottom>
               {t('installDescr')}
             </Typography>
-            <MarkdownElement
-              text={`
-\`\`\`sh
-$ npm install @material-ui/core
-\`\`\`
-                `}
-            />
+            <HighlightedCode code="$ npm install @material-ui/core" language="sh" />
             <Link
               variant="subtitle1"
               color="inherit"
@@ -118,12 +112,9 @@ $ npm install @material-ui/core
             <Typography variant="subtitle1" component="div" gutterBottom>
               {t('loadFont')}
             </Typography>
-            <MarkdownElement
-              text={`
-\`\`\`html
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
-\`\`\`
-                `}
+            <HighlightedCode
+              code={`<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />`}
+              language="html"
             />
           </div>
           <Divider className={classes.divider} />
@@ -140,17 +131,15 @@ $ npm install @material-ui/core
             <Typography variant="subtitle1" component="div" gutterBottom>
               {t('usageDescr')}
             </Typography>
-            <MarkdownElement
-              text={`
-\`\`\`jsx
+            <HighlightedCode
+              code={`
 import React from 'react';
 import { Button } from '@material-ui/core';
 
 function App() {
   return <Button color="primary">Hello World</Button>;
-}
-\`\`\`
-                `}
+}`}
+              language="jsx"
             />
           </div>
           <Divider className={classes.divider} />
