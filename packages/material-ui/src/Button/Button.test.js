@@ -351,6 +351,21 @@ describe('<Button />', () => {
     expect(button.querySelector('.pulsate-focus-visible')).to.equal(null);
   });
 
+  it('should add right className for focused button', () => {
+    const buttonActionsRef = React.createRef();
+    const { getByRole } = render(
+      <Button ref={buttonActionsRef} focusVisibleClassName="focusVisible">
+        Hello
+      </Button>,
+    );
+
+    const button = getByRole('button');
+    // @ts-ignore
+    buttonActionsRef.current.focus();
+
+    expect(button.className).to.equal('MuiButtonBase-root MuiButton-root MuiButton-text Mui-focusVisible focusVisible');
+  });
+
   describe('server-side', () => {
     // Only run the test on node.
     if (!/jsdom/.test(window.navigator.userAgent)) {
