@@ -2,7 +2,6 @@ import React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
-
 const pageFilename = 'api-docs/form-control';
 const requireDemo = require.context('docs/src/pages/api-docs/form-control', false, /\.(js|tsx)$/);
 const requireRaw = require.context(

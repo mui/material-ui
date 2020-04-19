@@ -2,7 +2,6 @@ import React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
-
 const pageFilename = 'api-docs/badge';
 const requireDemo = require.context('docs/src/pages/api-docs/badge', false, /\.(js|tsx)$/);
 const requireRaw = require.context(

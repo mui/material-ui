@@ -2,7 +2,6 @@ import React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
-
 const pageFilename = 'system/display';
 const requireDemo = require.context('docs/src/pages/system/display', false, /\.(js|tsx)$/);
 const requireRaw = require.context(

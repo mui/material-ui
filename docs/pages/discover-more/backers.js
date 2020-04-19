@@ -2,7 +2,6 @@ import React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
-
 const pageFilename = 'discover-more/backers';
 const requireDemo = require.context('docs/src/pages/discover-more/backers', false, /\.(js|tsx)$/);
 const requireRaw = require.context(

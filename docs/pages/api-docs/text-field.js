@@ -2,7 +2,6 @@ import React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
-
 const pageFilename = 'api-docs/text-field';
 const requireDemo = require.context('docs/src/pages/api-docs/text-field', false, /\.(js|tsx)$/);
 const requireRaw = require.context(
