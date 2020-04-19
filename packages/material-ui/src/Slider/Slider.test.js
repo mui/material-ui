@@ -180,6 +180,31 @@ describe('<Slider />', () => {
       expect(thumb2.getAttribute('aria-valuenow')).to.equal('29');
     });
 
+    it('with marks should support keyboard events', () => {
+      const { getAllByRole } = render(<Slider
+          defaultValue={30}
+          step={10}
+          marks
+          min={10}
+          max={110} />);
+      const [thumb] = getAllByRole('slider');
+
+      thumb.focus();
+      fireEvent.keyDown(document.activeElement, {
+        key: 'ArrowRight',
+      });
+      expect(thumb.getAttribute('aria-valuenow')).to.equal('40');
+
+      thumb.focus();
+      fireEvent.keyDown(document.activeElement, {
+        key: 'ArrowLeft',
+      });
+      fireEvent.keyDown(document.activeElement, {
+        key: 'ArrowLeft',
+      });
+      expect(thumb.getAttribute('aria-valuenow')).to.equal('20');
+    });
+
     it('should support mouse events', () => {
       const handleChange = spy();
       const { container } = render(<Slider defaultValue={[20, 30]} onChange={handleChange} />);
