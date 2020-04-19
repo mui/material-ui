@@ -335,16 +335,13 @@ MyApp.propTypes = {
 };
 
 MyApp.getInitialProps = async ({ ctx, Component }) => {
-  let pageProps = {};
+  let pageProps = { userLanguage: ctx.query.userLanguage };
 
   if (Component.getInitialProps) {
     pageProps = await Component.getInitialProps(ctx);
   }
 
   return {
-    pageProps: {
-      userLanguage: ctx.query.userLanguage,
-      ...pageProps,
-    },
+    pageProps,
   };
 };
