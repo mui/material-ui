@@ -90,10 +90,10 @@ module.exports = {
       module: {
         ...config.module,
         rules: config.module.rules.concat([
-          // TODO remove once we switched to MarkdownDocs.new
+          // used in some /getting-started/templates
           {
             test: /\.md$/,
-            use: { loader: 'raw-loader' },
+            loader: 'raw-loader',
           },
           // transpile 3rd party packages with dependencies in this repository
           {
