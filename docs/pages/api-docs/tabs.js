@@ -2,17 +2,12 @@ import React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
-const pageFilename = 'api-docs/tabs';
-const requireDemo = require.context('docs/src/pages/api-docs/tabs', false, /\.(js|tsx)$/);
-const requireRaw = require.context(
-  '!raw-loader!../../src/pages/api-docs/tabs',
-  false,
-  /\.(js|md|tsx)$/,
-);
+const pageFilename = 'api/tabs';
+const requireRaw = require.context('!raw-loader!./', false, /tabs\.md$/);
 
 // eslint-disable-next-line react/prop-types
-export default function Page({ demos, docs }) {
-  return <MarkdownDocs demos={demos} docs={docs} requireDemo={requireDemo} />;
+export default function Page({ docs }) {
+  return <MarkdownDocs docs={docs} />;
 }
 
 Page.getInitialProps = async () => {

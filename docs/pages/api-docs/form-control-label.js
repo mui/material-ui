@@ -2,21 +2,12 @@ import React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
-const pageFilename = 'api-docs/form-control-label';
-const requireDemo = require.context(
-  'docs/src/pages/api-docs/form-control-label',
-  false,
-  /\.(js|tsx)$/,
-);
-const requireRaw = require.context(
-  '!raw-loader!../../src/pages/api-docs/form-control-label',
-  false,
-  /\.(js|md|tsx)$/,
-);
+const pageFilename = 'api/form-control-label';
+const requireRaw = require.context('!raw-loader!./', false, /form-control-label\.md$/);
 
 // eslint-disable-next-line react/prop-types
-export default function Page({ demos, docs }) {
-  return <MarkdownDocs demos={demos} docs={docs} requireDemo={requireDemo} />;
+export default function Page({ docs }) {
+  return <MarkdownDocs docs={docs} />;
 }
 
 Page.getInitialProps = async () => {

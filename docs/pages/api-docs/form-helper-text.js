@@ -2,21 +2,12 @@ import React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
-const pageFilename = 'api-docs/form-helper-text';
-const requireDemo = require.context(
-  'docs/src/pages/api-docs/form-helper-text',
-  false,
-  /\.(js|tsx)$/,
-);
-const requireRaw = require.context(
-  '!raw-loader!../../src/pages/api-docs/form-helper-text',
-  false,
-  /\.(js|md|tsx)$/,
-);
+const pageFilename = 'api/form-helper-text';
+const requireRaw = require.context('!raw-loader!./', false, /form-helper-text\.md$/);
 
 // eslint-disable-next-line react/prop-types
-export default function Page({ demos, docs }) {
-  return <MarkdownDocs demos={demos} docs={docs} requireDemo={requireDemo} />;
+export default function Page({ docs }) {
+  return <MarkdownDocs docs={docs} />;
 }
 
 Page.getInitialProps = async () => {
