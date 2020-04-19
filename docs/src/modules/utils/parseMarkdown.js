@@ -64,11 +64,7 @@ export function getTitle(markdown) {
 export function getDescription(markdown) {
   const matches = markdown.match(descriptionRegExp);
 
-  if (!matches || !matches[1]) {
-    throw new Error('Missing description in the page');
-  }
-
-  return matches[1];
+  return matches?.[1];
 }
 
 /**

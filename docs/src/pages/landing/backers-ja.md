@@ -1,4 +1,4 @@
-<h2 align="center">Material-UIのスポンサー</h2>
+## Material-UIのスポンサー
 
 Material-UI の継続的な開発や保守は、以下の寛大なスポンサーにより可能になりました:
 

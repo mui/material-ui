@@ -1,4 +1,4 @@
-<h2 align="center">Material-UI's sponsors</h2>
+## Material-UI's sponsors
 
 The continued development and maintenance of Material-UI is made possible by these generous sponsors:
 

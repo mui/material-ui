@@ -95,6 +95,9 @@ function MarkdownDocs(props) {
 
   const userLanguage = useSelector((state) => state.options.userLanguage);
   const { description, location, rendered, title, toc } = docs[userLanguage];
+  if (description === undefined) {
+    throw new Error('Missing description in the page');
+  }
 
   const { activePage, pages } = React.useContext(PageContext);
   const pageList = flattenPages(pages);

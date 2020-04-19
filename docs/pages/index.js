@@ -1,4 +1,5 @@
 import React from 'react';
+import * as PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
@@ -7,7 +8,9 @@ import Container from '@material-ui/core/Container';
 import Steps from 'docs/src/pages/landing/Steps';
 import Themes from 'docs/src/pages/landing/Themes';
 import QuickWord from 'docs/src/pages/landing/QuickWord';
-import Sponsors from 'docs/src/pages/landing/Sponsors';
+import Sponsors, {
+  getInitialProps as getInitialSponsorsProps,
+} from 'docs/src/pages/landing/Sponsors';
 import Users from 'docs/src/pages/landing/Users';
 import Quotes from 'docs/src/pages/landing/Quotes';
 import Pro from 'docs/src/pages/landing/Pro';
@@ -101,7 +104,9 @@ const GettingStartedLink = React.forwardRef((props, ref) => {
   return <Link href="/getting-started/installation" naked ref={ref} {...props} />;
 });
 
-export default function LandingPage() {
+export default function LandingPage(props) {
+  const { sponsorsProps } = props;
+
   React.useEffect(() => {
     if (window.location.hash !== '' && window.location.hash !== '#main=content') {
       window.location.replace(`https://v0.material-ui.com/${window.location.hash}`);
@@ -165,7 +170,7 @@ export default function LandingPage() {
           <QuickWord />
           <Steps />
           <Themes />
-          <Sponsors />
+          <Sponsors {...sponsorsProps} />
           <Quotes />
           <Users />
         </main>
@@ -194,3 +199,13 @@ export default function LandingPage() {
     </AppFrame>
   );
 }
+
+LandingPage.propTypes = {
+  sponsorsProps: PropTypes.object.isRequired,
+};
+
+LandingPage.getInitialProps = async () => {
+  return {
+    sponsorsProps: await getInitialSponsorsProps(),
+  };
+};
