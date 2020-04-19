@@ -180,7 +180,7 @@ describe('<Slider />', () => {
       expect(thumb2.getAttribute('aria-valuenow')).to.equal('29');
     });
 
-    it('with marks should support keyboard events', () => {
+    it('should support keyboard with marks variant', () => {
       const { getAllByRole } = render(<Slider
           defaultValue={30}
           step={10}
