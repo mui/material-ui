@@ -33,7 +33,7 @@ The `MuiToggleButtonGroup` name can be used for providing [default props](/custo
 | <span class="prop-name">exclusive</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, only allow one of the child ToggleButton values to be selected. |
 | <span class="prop-name">onChange</span> | <span class="prop-type">func</span> |  | Callback fired when the value changes.<br><br>**Signature:**<br>`function(event: object, value: any) => void`<br>*event:* The event source of the callback.<br>*value:* of the selected buttons. When `exclusive` is true this is a single value; when false an array of selected values. If no value is selected and `exclusive` is true the value is null; when false an empty array. |
 | <span class="prop-name">size</span> | <span class="prop-type">'large'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'small'</span> | <span class="prop-default">'medium'</span> | The size of the buttons. |
-| <span class="prop-name">value</span> | <span class="prop-type">any</span> |  | The currently selected value within the group or an array of selected values when `exclusive` is false. |
+| <span class="prop-name">value</span> | <span class="prop-type">any</span> |  | The currently selected value within the group or an array of selected values when `exclusive` is false.<br>The value must have reference equality with the option in order to be selected. |
 
 The `ref` is forwarded to the root element.
 
