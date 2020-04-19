@@ -27,8 +27,8 @@ https://material-ui.dev/* https://material-ui.com/:splat 301!
 /r/issue-template https://codesandbox.io/s/material-ui-issue-dh2yh
 /r/ts-issue-template https://www.typescriptlang.org/play/#code/JYWwDg9gTgLgBAKjgQwM5wEoFNkGN4BmUEIcA5FDvmQNwBQokscA3nXHAPSdwwAWWOLhKQAdllEx0ATwgBXOHNRYAJnQC+cIiXIABEMhhYowZABsAtHOCdhlMnToE5o-MAii4AESwgIACgBKVnYuHgBNeSghCBUsDSA 302
 
-/store/* https://material-ui-store.netlify.com/:splat 200
-/store-staging/* https://master--material-ui-store.netlify.com/:splat 200
+/store/* https://material-ui-store.netlify.app/:splat 200
+/store-staging/* https://master--material-ui-store.netlify.app/:splat 200
 
 # To remove at some point (2021).
 /css-in-js/* /styles/:splat 301
