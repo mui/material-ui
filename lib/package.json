@@ -95,7 +95,7 @@
     "babel-plugin-react-remove-properties": "^0.3.0",
     "codecov": "^3.6.5",
     "cross-env": "^5.2.0",
-    "cypress-react-unit-test": "^2.4.3",
+    "cypress-react-unit-test": "^3.3.1",
     "date-fns": "^2.0.0-alpha.27",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
