@@ -1,8 +1,8 @@
 export const azAZ = {
   props: {
-    // MuiBreadcrumbs: {
-    //   expandText: 'Show path',
-    // },
+    MuiBreadcrumbs: {
+      expandText: 'Yolu göstər',
+    },
     MuiTablePagination: {
       backIconButtonText: 'Əvvəlki səhifə',
       labelRowsPerPage: 'Səhifəyə düşən sətrlər:',
@@ -20,7 +20,7 @@ export const azAZ = {
 
         return `${value} ${pluralForm}`;
       },
-      // emptyLabelText: 'Empty',
+      emptyLabelText: 'Boş',
     },
     MuiAutocomplete: {
       clearText: 'Silmək',
@@ -32,27 +32,27 @@ export const azAZ = {
     MuiAlert: {
       closeText: 'Bağlamaq',
     },
-    // MuiPagination: {
-    //   'aria-label': 'Pagination navigation',
-    //   getItemAriaLabel: (type, page, selected) => {
-    //     if (type === 'page') {
-    //       return `${selected ? '' : 'Go to '}page ${page}`;
-    //     }
-    //     if (type === 'first') {
-    //       return 'Go to first page';
-    //     }
-    //     if (type === 'last') {
-    //       return 'Go to last page';
-    //     }
-    //     if (type === 'next') {
-    //       return 'Go to next page';
-    //     }
-    //     if (type === 'previous') {
-    //       return 'Go to previous page';
-    //     }
-    //     return undefined;
-    //   },
-    // },
+    MuiPagination: {
+      'aria-label': 'Səhifənin naviqasiyası',
+      getItemAriaLabel: (type, page, selected) => {
+        if (type === 'page') {
+          return `${page} ${selected ? 'səhifə' : 'səhifəyə keç'}`;
+        }
+        if (type === 'first') {
+          return 'Birinci səhifəyə keç';
+        }
+        if (type === 'last') {
+          return 'Sonuncu səhifəyə keç';
+        }
+        if (type === 'next') {
+          return 'Növbəti səhifəyə keç';
+        }
+        if (type === 'previous') {
+          return 'Əvvəlki səhifəyə keç';
+        }
+        return undefined;
+      },
+    },
   },
 };
 
