@@ -14,7 +14,7 @@ export const useStyles = makeStyles(
   theme => ({
     rangeInputsContainer: {
       display: 'flex',
-      alignItems: 'center',
+      alignItems: 'baseline',
       [theme.breakpoints.down('xs')]: {
         flexDirection: 'column',
       },
