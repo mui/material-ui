@@ -204,6 +204,8 @@ export default function MarkdownElement(props) {
   const more = {};
 
   if (typeof renderedMarkdown === 'string') {
+    // workaround for https://github.com/facebook/react/issues/17170
+    // otherwise we could just set `dangerouslySetInnerHTML={undefined}`
     more.dangerouslySetInnerHTML = { __html: renderedMarkdown };
   }
 
