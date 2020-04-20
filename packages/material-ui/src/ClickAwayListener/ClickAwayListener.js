@@ -10,6 +10,13 @@ function mapEventPropToEvent(eventProp) {
   return eventProp.substring(2).toLowerCase();
 }
 
+function clickedRootScrollbar(event) {
+  return (
+    document.documentElement.clientWidth < event.clientX ||
+    document.documentElement.clientHeight < event.clientY
+  );
+}
+
 /**
  * Listen for click events that occur somewhere in the document, outside of the element itself.
  * For instance, if you need to hide a menu when people click anywhere else on your page.
@@ -55,7 +62,8 @@ function ClickAwayListener(props) {
 
     // 1. IE 11 support, which trigger the handleClickAway even after the unbind
     // 2. The child might render null.
-    if (!mountedRef.current || !nodeRef.current) {
+    // 3. Behave like a blur listener.
+    if (!mountedRef.current || !nodeRef.current || clickedRootScrollbar(event)) {
       return;
     }
 
