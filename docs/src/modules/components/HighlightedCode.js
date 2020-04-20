@@ -6,7 +6,7 @@ import prism from 'docs/src/modules/utils/prism';
 export default function HighlightedCode(props) {
   const { code, language } = props;
   const renderedCode = React.useMemo(() => {
-    return prism(code, language);
+    return prism(code.trim(), language);
   }, [code, language]);
 
   return (
