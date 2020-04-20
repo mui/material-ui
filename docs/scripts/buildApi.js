@@ -342,7 +342,7 @@ export default function Page({ docs }) {
   return <MarkdownDocs docs={docs} />;
 }
 
-Page.getInitialProps = async () => {
+Page.getInitialProps = () => {
   const { demos, docs } = prepareMarkdown({ pageFilename, requireRaw });
   return { demos, docs };
 };
