@@ -41,7 +41,6 @@ function DemoFrame(props) {
         insertionPoint: instanceRef.current.contentWindow['demo-frame-jss'],
       }),
       sheetsManager: new Map(),
-      container: instanceRef.current.contentDocument.body,
       window: () => instanceRef.current.contentWindow,
     });
   };
@@ -64,7 +63,6 @@ function DemoFrame(props) {
         {state.ready ? (
           <StylesProvider jss={state.jss} sheetsManager={state.sheetsManager}>
             {React.cloneElement(children, {
-              container: state.container,
               window: state.window,
             })}
           </StylesProvider>
