@@ -39,7 +39,7 @@ describe('until', () => {
     assert.strictEqual(wrapper.contains(<div />), true);
   });
 
-  it('stops shallow rendering when it encounters a DOM element', () => {
+  it('stops shallow rendering when it encounters a HTML element', () => {
     const wrapper = until.call(
       shallow(
         <div>

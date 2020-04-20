@@ -31,7 +31,7 @@ The `MuiIcon` name can be used for providing [default props](/customization/glob
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The name of the icon font ligature. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">color</span> | <span class="prop-type">'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'action'<br>&#124;&nbsp;'error'<br>&#124;&nbsp;'disabled'</span> | <span class="prop-default">'inherit'</span> | The color of the component. It supports those theme colors that make sense for this component. |
-| <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'span'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
+| <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'span'</span> | The component used for the root node. Either a string to use a HTML element or a component. |
 | <span class="prop-name">fontSize</span> | <span class="prop-type">'inherit'<br>&#124;&nbsp;'default'<br>&#124;&nbsp;'small'<br>&#124;&nbsp;'large'</span> | <span class="prop-default">'default'</span> | The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size. |
 
 The `ref` is forwarded to the root element.

@@ -207,7 +207,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
   const inputRef = React.useRef();
   const handleInputRefWarning = React.useCallback((instance) => {
     if (process.env.NODE_ENV !== 'production') {
-      if (instance && !(instance instanceof HTMLInputElement) && !instance.focus) {
+      if (instance && instance.nodeName !== 'INPUT' && !instance.focus) {
         console.error(
           [
             'Material-UI: you have provided a `inputComponent` to the input component',
@@ -531,7 +531,7 @@ InputBase.propTypes = {
   id: PropTypes.string,
   /**
    * The component used for the `input` element.
-   * Either a string to use a DOM element or a component.
+   * Either a string to use a HTML element or a component.
    */
   inputComponent: PropTypes.elementType,
   /**

@@ -8,7 +8,8 @@ import { TransitionHandlerProps, TransitionProps } from '../transitions/transiti
 export interface MenuProps
   extends StandardProps<PopoverProps & Partial<TransitionHandlerProps>, MenuClassKey> {
   /**
-   * The DOM element used to set the position of the menu.
+   * A HTML element, or a function that returns it.
+   * It's used to set the position of the menu.
    * @document
    */
   anchorEl?: PopoverProps['anchorEl'];

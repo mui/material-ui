@@ -153,7 +153,7 @@ Breadcrumbs.propTypes = {
   className: PropTypes.string,
   /**
    * The component used for the root node.
-   * Either a string to use a DOM element or a component.
+   * Either a string to use a HTML element or a component.
    * By default, it maps the variant to a good default headline component.
    */
   component: PropTypes.elementType,

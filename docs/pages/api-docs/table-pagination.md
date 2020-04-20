@@ -28,11 +28,11 @@ The `MuiTablePagination` name can be used for providing [default props](/customi
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">ActionsComponent</span> | <span class="prop-type">elementType</span> | <span class="prop-default">TablePaginationActions</span> | The component used for displaying the actions. Either a string to use a DOM element or a component. |
+| <span class="prop-name">ActionsComponent</span> | <span class="prop-type">elementType</span> | <span class="prop-default">TablePaginationActions</span> | The component used for displaying the actions. Either a string to use a HTML element or a component. |
 | <span class="prop-name">backIconButtonProps</span> | <span class="prop-type">object</span> |  | Props applied to the back arrow [`IconButton`](/api/icon-button/) component. |
 | <span class="prop-name">backIconButtonText</span> | <span class="prop-type">string</span> | <span class="prop-default">'Previous page'</span> | Text label for the back arrow icon button.<br>For localization purposes, you can use the provided [translations](/guides/localization/). |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">TableCell</span> | The component used for the root node. Either a string to use a DOM element or a component. |
+| <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">TableCell</span> | The component used for the root node. Either a string to use a HTML element or a component. |
 | <span class="prop-name required">count&nbsp;*</span> | <span class="prop-type">number</span> |  | The total number of rows.<br>To enable server side pagination for an unknown number of items, provide -1. |
 | <span class="prop-name">labelDisplayedRows</span> | <span class="prop-type">func</span> | <span class="prop-default">({ from, to, count }) =>`${from}-${to === -1 ? count : to} of ${count !== -1 ? count : `more than ${to}`}`</span> | Customize the displayed rows label. Invoked with a `{ from, to, count, page }` object.<br>For localization purposes, you can use the provided [translations](/guides/localization/). |
 | <span class="prop-name">labelRowsPerPage</span> | <span class="prop-type">node</span> | <span class="prop-default">'Rows per page:'</span> | Customize the rows per page label.<br>For localization purposes, you can use the provided [translations](/guides/localization/). |

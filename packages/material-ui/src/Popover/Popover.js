@@ -1,9 +1,14 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import * as ReactDOM from 'react-dom';
+import {
+  chainPropTypes,
+  elementTypeAcceptingRef,
+  refType,
+  HTMLElementType,
+} from '@material-ui/utils';
 import debounce from '../utils/debounce';
 import clsx from 'clsx';
-import { chainPropTypes, elementTypeAcceptingRef, refType } from '@material-ui/utils';
 import ownerDocument from '../utils/ownerDocument';
 import ownerWindow from '../utils/ownerWindow';
 import createChainedFunction from '../utils/createChainedFunction';
@@ -134,11 +139,10 @@ const Popover = React.forwardRef(function Popover(props, ref) {
       }
 
       const resolvedAnchorEl = getAnchorEl(anchorEl);
-      const containerWindow = ownerWindow(resolvedAnchorEl);
 
       // If an anchor element wasn't provided, just use the parent body element of this Popover
       const anchorElement =
-        resolvedAnchorEl instanceof containerWindow.Element
+        resolvedAnchorEl && resolvedAnchorEl.nodeType === 1
           ? resolvedAnchorEl
           : ownerDocument(paperRef.current).body;
       const anchorRect = anchorElement.getBoundingClientRect();
@@ -432,15 +436,14 @@ Popover.propTypes = {
    */
   action: refType,
   /**
-   * This is the DOM element, or a function that returns the DOM element,
-   * that may be used to set the position of the popover.
+   * A HTML element, or a function that returns it.
+   * It's used to set the position of the popover.
    */
-  anchorEl: chainPropTypes(PropTypes.oneOfType([PropTypes.object, PropTypes.func]), (props) => {
+  anchorEl: chainPropTypes(PropTypes.oneOfType([HTMLElementType, PropTypes.func]), (props) => {
     if (props.open && (!props.anchorReference || props.anchorReference === 'anchorEl')) {
       const resolvedAnchorEl = getAnchorEl(props.anchorEl);
-      const containerWindow = ownerWindow(resolvedAnchorEl);
 
-      if (resolvedAnchorEl instanceof containerWindow.Element) {
+      if (resolvedAnchorEl && resolvedAnchorEl.nodeType === 1) {
         const box = resolvedAnchorEl.getBoundingClientRect();
 
         if (
@@ -516,15 +519,16 @@ Popover.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * A node, component instance, or function that returns either.
+   * A HTML element, component instance, or function that returns either.
    * The `container` will passed to the Modal component.
+   *
    * By default, it uses the body of the anchorEl's top-level document object,
    * so it's simply `document.body` most of the time.
    */
   container: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.func,
+    HTMLElementType,
     PropTypes.instanceOf(React.Component),
-    PropTypes.instanceOf(typeof Element === 'undefined' ? Object : Element),
+    PropTypes.func,
   ]),
   /**
    * The elevation of the popover.

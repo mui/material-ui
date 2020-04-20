@@ -117,7 +117,7 @@ export default function styled(Component) {
        */
       className: PropTypes.string,
       /**
-       * If `true`, the component will recycle it's children DOM element.
+       * If `true`, the component will recycle it's children HTML element.
        * It's using `React.cloneElement` internally.
        *
        * This prop will be deprecated and removed in v5
@@ -130,7 +130,7 @@ export default function styled(Component) {
       }),
       /**
        * The component used for the root node.
-       * Either a string to use a DOM element or a component.
+       * Either a string to use a HTML element or a component.
        */
       component: PropTypes.elementType,
       ...propTypes,

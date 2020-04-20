@@ -28,7 +28,7 @@ The `MuiMenu` name can be used for providing [default props](/customization/glob
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">anchorEl</span> | <span class="prop-type">func<br>&#124;&nbsp;Element</span> |  | The DOM element used to set the position of the menu. |
+| <span class="prop-name">anchorEl</span> | <span class="prop-type">HTML element<br>&#124;&nbsp;func</span> |  | A HTML element, or a function that returns it. It's used to set the position of the menu. |
 | <span class="prop-name">autoFocus</span> | <span class="prop-type">bool</span> | <span class="prop-default">true</span> | If `true` (Default) will focus the `[role="menu"]` if no focusable child is found. Disabled children are not focusable. If you set this prop to `false` focus will be placed on the parent modal container. This has severe accessibility implications and should only be considered if you manage focus otherwise. |
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | Menu contents, normally `MenuItem`s. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |

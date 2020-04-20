@@ -1,13 +1,12 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import PopperJs from 'popper.js';
-import { chainPropTypes, refType } from '@material-ui/utils';
+import { chainPropTypes, refType, HTMLElementType } from '@material-ui/utils';
 import { useTheme } from '@material-ui/styles';
 import Portal from '../Portal';
 import createChainedFunction from '../utils/createChainedFunction';
 import setRef from '../utils/setRef';
 import useForkRef from '../utils/useForkRef';
-import ownerWindow from '../utils/ownerWindow';
 
 function flipPlacement(placement, theme) {
   const direction = (theme && theme.direction) || 'ltr';
@@ -101,9 +100,7 @@ const Popper = React.forwardRef(function Popper(props, ref) {
     const resolvedAnchorEl = getAnchorEl(anchorEl);
 
     if (process.env.NODE_ENV !== 'production') {
-      const containerWindow = ownerWindow(resolvedAnchorEl);
-
-      if (resolvedAnchorEl instanceof containerWindow.Element) {
+      if (resolvedAnchorEl && resolvedAnchorEl.nodeType === 1) {
         const box = resolvedAnchorEl.getBoundingClientRect();
 
         if (
@@ -233,54 +230,54 @@ Popper.propTypes = {
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
-   * This is the reference element, or a function that returns the reference element,
-   * that may be used to set the position of the popover.
-   * The return value will passed as the reference object of the Popper
-   * instance.
-   *
-   * The reference element should be an HTML Element instance or a [referenceObject](https://popper.js.org/docs/v1/#referenceObject).
+   * A HTML element, [referenceObject](https://popper.js.org/docs/v1/#referenceObject),
+   * or a function that returns either.
+   * It's used to set the position of the popper.
+   * The return value will passed as the reference object of the Popper instance.
    */
-  anchorEl: chainPropTypes(PropTypes.oneOfType([PropTypes.object, PropTypes.func]), (props) => {
-    if (props.open) {
-      const resolvedAnchorEl = getAnchorEl(props.anchorEl);
-      const containerWindow = ownerWindow(resolvedAnchorEl);
+  anchorEl: chainPropTypes(
+    PropTypes.oneOfType([HTMLElementType, PropTypes.object, PropTypes.func]),
+    (props) => {
+      if (props.open) {
+        const resolvedAnchorEl = getAnchorEl(props.anchorEl);
 
-      if (resolvedAnchorEl instanceof containerWindow.Element) {
-        const box = resolvedAnchorEl.getBoundingClientRect();
+        if (resolvedAnchorEl && resolvedAnchorEl.nodeType === 1) {
+          const box = resolvedAnchorEl.getBoundingClientRect();
 
-        if (
-          process.env.NODE_ENV !== 'test' &&
-          box.top === 0 &&
-          box.left === 0 &&
-          box.right === 0 &&
-          box.bottom === 0
+          if (
+            process.env.NODE_ENV !== 'test' &&
+            box.top === 0 &&
+            box.left === 0 &&
+            box.right === 0 &&
+            box.bottom === 0
+          ) {
+            return new Error(
+              [
+                'Material-UI: the `anchorEl` prop provided to the component is invalid.',
+                'The anchor element should be part of the document layout.',
+                "Make sure the element is present in the document or that it's not display none.",
+              ].join('\n'),
+            );
+          }
+        } else if (
+          !resolvedAnchorEl ||
+          typeof resolvedAnchorEl.clientWidth !== 'number' ||
+          typeof resolvedAnchorEl.clientHeight !== 'number' ||
+          typeof resolvedAnchorEl.getBoundingClientRect !== 'function'
         ) {
           return new Error(
             [
               'Material-UI: the `anchorEl` prop provided to the component is invalid.',
-              'The anchor element should be part of the document layout.',
-              "Make sure the element is present in the document or that it's not display none.",
+              'It should be an HTML element instance or a referenceObject ',
+              '(https://popper.js.org/docs/v1/#referenceObject).',
             ].join('\n'),
           );
         }
-      } else if (
-        !resolvedAnchorEl ||
-        typeof resolvedAnchorEl.clientWidth !== 'number' ||
-        typeof resolvedAnchorEl.clientHeight !== 'number' ||
-        typeof resolvedAnchorEl.getBoundingClientRect !== 'function'
-      ) {
-        return new Error(
-          [
-            'Material-UI: the `anchorEl` prop provided to the component is invalid.',
-            'It should be an HTML Element instance or a referenceObject ',
-            '(https://popper.js.org/docs/v1/#referenceObject).',
-          ].join('\n'),
-        );
       }
-    }
 
-    return null;
-  }),
+      return null;
+    },
+  ),
   /**
    * Popper render function or node.
    */
@@ -289,15 +286,16 @@ Popper.propTypes = {
     PropTypes.func,
   ]).isRequired,
   /**
-   * A node, component instance, or function that returns either.
-   * The `container` will passed to the Modal component.
-   * By default, it uses the body of the anchorEl's top-level document object,
+   * A HTML element, component instance, or function that returns either.
+   * The `container` will have the portal children appended to it.
+   *
+   * By default, it uses the body of the top-level document object,
    * so it's simply `document.body` most of the time.
    */
   container: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.func,
+    HTMLElementType,
     PropTypes.instanceOf(React.Component),
-    PropTypes.instanceOf(typeof Element === 'undefined' ? Object : Element),
+    PropTypes.func,
   ]),
   /**
    * Disable the portal behavior.

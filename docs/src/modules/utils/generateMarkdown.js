@@ -191,6 +191,9 @@ function generatePropType(type) {
       if (isRefType(type)) {
         return `ref`;
       }
+      if (type.raw === 'HTMLElementType') {
+        return `HTML element`;
+      }
 
       const deprecatedInfo = getDeprecatedInfo(type);
       if (deprecatedInfo !== false) {

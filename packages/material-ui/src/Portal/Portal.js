@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import { exactProp } from '@material-ui/utils';
+import { exactProp, HTMLElementType } from '@material-ui/utils';
 import setRef from '../utils/setRef';
 import useForkRef from '../utils/useForkRef';
 
@@ -67,15 +67,16 @@ Portal.propTypes = {
    */
   children: PropTypes.node,
   /**
-   * A node, component instance, or function that returns either.
+   * A HTML element, component instance, or function that returns either.
    * The `container` will have the portal children appended to it.
+   *
    * By default, it uses the body of the top-level document object,
    * so it's simply `document.body` most of the time.
    */
   container: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.func,
+    HTMLElementType,
     PropTypes.instanceOf(React.Component),
-    PropTypes.instanceOf(typeof Element === 'undefined' ? Object : Element),
+    PropTypes.func,
   ]),
   /**
    * Disable the portal behavior.

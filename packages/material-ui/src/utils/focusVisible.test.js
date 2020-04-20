@@ -95,7 +95,7 @@ describe('focus-visible polyfill', () => {
       simulatePointerDevice();
 
       const { current: button } = buttonRef;
-      if (!(button instanceof window.HTMLButtonElement)) {
+      if (button.nodeName !== 'BUTTON') {
         throw new Error('missing button');
       }
 

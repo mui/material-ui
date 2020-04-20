@@ -113,7 +113,7 @@ function describeRef(element, getOptions) {
       testRef(element, mount, (instance, wrapper) => {
         assert.instanceOf(instance, refInstanceof);
 
-        if (inheritComponent && instance instanceof window.Element) {
+        if (inheritComponent && instance.nodeType === 1) {
           const rootHost = findOutermostIntrinsic(wrapper);
           assert.strictEqual(instance, rootHost.instance());
         }

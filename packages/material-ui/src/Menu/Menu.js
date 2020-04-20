@@ -2,6 +2,7 @@ import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { HTMLElementType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import Popover from '../Popover';
 import MenuList from '../MenuList';
@@ -171,11 +172,12 @@ Menu.propTypes = {
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
-   * The DOM element used to set the position of the menu.
+   * A HTML element, or a function that returns it.
+   * It's used to set the position of the menu.
    */
   anchorEl: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    HTMLElementType,
     PropTypes.func,
-    PropTypes.instanceOf(typeof Element === 'undefined' ? Object : Element),
   ]),
   /**
    * If `true` (Default) will focus the `[role="menu"]` if no focusable child is found. Disabled

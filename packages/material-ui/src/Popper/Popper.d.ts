@@ -19,12 +19,10 @@ export type PopperPlacementType =
 
 export interface PopperProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'> {
   /**
-   * This is the reference element, or a function that returns the reference element,
-   * that may be used to set the position of the popover.
-   * The return value will passed as the reference object of the Popper
-   * instance.
-   *
-   * The reference element should be an HTML Element instance or a [referenceObject](https://popper.js.org/docs/v1/#referenceObject).
+   * A HTML element, [referenceObject](https://popper.js.org/docs/v1/#referenceObject),
+   * or a function that returns either.
+   * It's used to set the position of the popper.
+   * The return value will passed as the reference object of the Popper instance.
    */
   anchorEl?: null | ReferenceObject | (() => ReferenceObject);
   /**
@@ -41,9 +39,10 @@ export interface PopperProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 
         };
       }) => React.ReactNode);
   /**
-   * A node, component instance, or function that returns either.
-   * The `container` will passed to the Modal component.
-   * By default, it uses the body of the anchorEl's top-level document object,
+   * A HTML element, component instance, or function that returns either.
+   * The `container` will have the portal children appended to it.
+   *
+   * By default, it uses the body of the top-level document object,
    * so it's simply `document.body` most of the time.
    */
   container?: PortalProps['container'];
