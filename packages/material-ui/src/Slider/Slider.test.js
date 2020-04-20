@@ -180,6 +180,13 @@ describe('<Slider />', () => {
       expect(thumb2.getAttribute('aria-valuenow')).to.equal('29');
     });
 
+    it('should focus the slider when dragging', () => {
+      const { getByRole } = render(<Slider defaultValue={30} step={10} marks />);
+      const thumb = getByRole('slider');
+      fireEvent.mouseDown(thumb);
+      expect(document.activeElement).to.equal(thumb);
+    });
+
     it('should support mouse events', () => {
       const handleChange = spy();
       const { container } = render(<Slider defaultValue={[20, 30]} onChange={handleChange} />);

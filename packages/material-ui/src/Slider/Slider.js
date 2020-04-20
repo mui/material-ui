@@ -100,7 +100,7 @@ function focusThumb({ sliderRef, activeIndex, setActive }) {
     !sliderRef.current.contains(document.activeElement) ||
     Number(document.activeElement.getAttribute('data-index')) !== activeIndex
   ) {
-    sliderRef.current.querySelector(`[data-index="${activeIndex}"]`).focus();
+    sliderRef.current.querySelector(`[role="slider"][data-index="${activeIndex}"]`).focus();
   }
 
   if (setActive) {
