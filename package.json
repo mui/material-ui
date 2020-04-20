@@ -91,7 +91,7 @@
     "dom-accessibility-api": "^0.4.3",
     "dtslint": "^3.2.0",
     "enzyme": "^3.9.0",
-    "enzyme-adapter-react-16": "^1.14.0",
+    "enzyme-adapter-react-16": "npm:@eps1lon/enzyme-adapter-react-next",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.1.0",
     "eslint-config-prettier": "^6.2.0",
@@ -163,7 +163,12 @@
     "**/@babel/runtime": "^7.8.4",
     "**/@babel/types": "^7.8.6",
     "**/hoist-non-react-statics": "^3.3.2",
-    "**/next/terser": "^4.1.2"
+    "**/next/terser": "^4.1.2",
+    "react": "0.0.0-experimental-e5d06e34b",
+    "react-dom": "0.0.0-experimental-e5d06e34b",
+    "react-is": "0.0.0-experimental-e5d06e34b",
+    "react-test-renderer": "0.0.0-experimental-e5d06e34b",
+    "scheduler": "0.0.0-experimental-e5d06e34b"
   },
   "nyc": {
     "include": [
