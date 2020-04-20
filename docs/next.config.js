@@ -16,7 +16,7 @@ const workspaceRoot = path.join(__dirname, '../');
  * concurrent - ReactDOM.createRoot(Element).render(<App />)
  * @type {ReactRenderMode | 'legacy-strict'}
  */
-const reactMode = 'legacy';
+const reactMode = 'legacy-strict';
 // eslint-disable-next-line no-console
 console.log(`Using React '${reactMode}' mode.`);
 

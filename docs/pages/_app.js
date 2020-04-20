@@ -28,6 +28,16 @@ const jss = create({
   insertionPoint: process.browser ? document.querySelector('#insertion-point-jss') : null,
 });
 
+let generateClassName;
+if (process.env.REACT_MODE !== 'legacy') {
+  generateClassName = function generateStrictModeClassName(rule, styleSheet) {
+    const {
+      options: { classNamePrefix, index, link, name = classNamePrefix },
+    } = styleSheet;
+    return `${name}-${rule.key}${index}-${link ? 'd' : 's'}`;
+  };
+}
+
 function useFirstRender() {
   const firstRenderRef = React.useRef(true);
   React.useEffect(() => {
@@ -302,7 +312,11 @@ function AppWrapper(props) {
       </NextHead>
       <ReduxProvider store={redux}>
         <PageContext.Provider value={{ activePage, pages, versions: pageProps.versions }}>
-          <StylesProvider jss={jss}>
+          <StylesProvider
+            generateClassName={generateClassName}
+            serverGenerateClassName={generateClassName}
+            jss={jss}
+          >
             <ThemeProvider>{children}</ThemeProvider>
           </StylesProvider>
         </PageContext.Provider>
