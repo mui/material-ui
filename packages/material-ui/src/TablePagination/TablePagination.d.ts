@@ -7,10 +7,10 @@ import { IconButtonProps } from '../IconButton';
 import { SelectProps } from '../Select';
 
 export interface LabelDisplayedRowsArgs {
-  from: number;
-  to: number;
-  count: number;
-  page: number;
+  from: number | string;
+  to: number | string;
+  count: number | string;
+  page: number | string;
 }
 
 export interface TablePaginationTypeMap<P, D extends React.ElementType> {

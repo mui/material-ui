@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { chainPropTypes } from '@material-ui/utils';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
+import useTheme from '../styles/useTheme';
 import InputBase from '../InputBase';
 import MenuItem from '../MenuItem';
 import Select from '../Select';
@@ -67,7 +68,7 @@ export const styles = (theme) => ({
 });
 
 const defaultLabelDisplayedRows = ({ from, to, count }) =>
-  `${from}-${to === -1 ? count : to} of ${count !== -1 ? count : `more than ${to}`}`;
+  `${from}-${to} of ${count !== -1 ? count : `more than ${to}`}`;
 const defaultRowsPerPageOptions = [10, 25, 50, 100];
 
 /**
@@ -95,7 +96,8 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
     SelectProps = {},
     ...other
   } = props;
-
+  const theme = useTheme();
+  const formatNumber = theme.localization.formatNumber;
   let colSpan;
 
   if (Component === TableCell || Component === 'td') {
@@ -138,10 +140,12 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
         )}
         <Typography color="inherit" variant="body2" className={classes.caption}>
           {labelDisplayedRows({
-            from: count === 0 ? 0 : page * rowsPerPage + 1,
-            to: count !== -1 ? Math.min(count, (page + 1) * rowsPerPage) : (page + 1) * rowsPerPage,
-            count,
-            page,
+            from: formatNumber(count === 0 ? 0 : page * rowsPerPage + 1),
+            to: formatNumber(
+              count !== -1 ? Math.min(count, (page + 1) * rowsPerPage) : (page + 1) * rowsPerPage,
+            ),
+            count: count === -1 ? -1 : formatNumber(count),
+            page: formatNumber(page),
           })}
         </Typography>
         <ActionsComponent

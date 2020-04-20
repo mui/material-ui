@@ -19,12 +19,17 @@ function createMuiTheme(options = {}, ...args) {
     ...other
   } = options;
 
+  const numberFormater = new Intl.NumberFormat('en-US');
+  const localization = {
+    formatNumber: (number) => numberFormater.format(number),
+  };
   const palette = createPalette(paletteInput);
   const breakpoints = createBreakpoints(breakpointsInput);
   const spacing = createSpacing(spacingInput);
 
   let muiTheme = deepmerge(
     {
+      localization,
       breakpoints,
       direction: 'ltr',
       mixins: createMixins(breakpoints, spacing, mixinsInput),
