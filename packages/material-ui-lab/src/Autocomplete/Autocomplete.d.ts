@@ -89,6 +89,10 @@ export interface AutocompleteProps<T>
    */
   fullWidth?: boolean;
   /**
+   * If `true`, the textbox can contain an arbitrary value.
+   */
+  freesolo?: boolean;
+  /**
    * The label to display when the tags are truncated (`limitTags`).
    *
    * @param {number} more The number of truncated tags.
