@@ -21,9 +21,7 @@ const styles = (theme) => ({
 function DemoFrame(props) {
   const { children, classes, ...other } = props;
   const theme = useTheme();
-  const [state, setState] = React.useState({
-    ready: false,
-  });
+  const [state, setState] = React.useState(null);
 
   /**
    * @type {import('react').Ref<Window | null>}
@@ -37,7 +35,6 @@ function DemoFrame(props) {
 
   const onContentDidMount = () => {
     setState({
-      ready: true,
       jss: create({
         plugins: [...jssPreset().plugins, rtl()],
         insertionPoint: jssInsertionPointRef.current,
@@ -62,7 +59,7 @@ function DemoFrame(props) {
         {...other}
       >
         <div ref={jssInsertionPointRef} />
-        {state.ready ? (
+        {state !== null ? (
           <StylesProvider jss={state.jss} sheetsManager={state.sheetsManager}>
             {React.cloneElement(children, {
               window: state.window,
