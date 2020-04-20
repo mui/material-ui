@@ -24,29 +24,31 @@ function DemoFrame(props) {
   const [state, setState] = React.useState({
     ready: false,
   });
-  const instanceRef = React.useRef();
 
-  const handleRef = React.useCallback((ref) => {
-    instanceRef.current = {
-      contentDocument: ref ? ref.node.contentDocument : null,
-      contentWindow: ref ? ref.node.contentWindow : null,
-    };
+  /**
+   * @type {import('react').Ref<Window | null>}
+   */
+  const frameWindowRef = React.useRef(null);
+  const handleRef = React.useCallback((instance) => {
+    frameWindowRef.current = instance !== null ? instance.node.contentWindow : null;
   }, []);
+
+  const jssInsertionPointRef = React.useRef(null);
 
   const onContentDidMount = () => {
     setState({
       ready: true,
       jss: create({
         plugins: [...jssPreset().plugins, rtl()],
-        insertionPoint: instanceRef.current.contentWindow['demo-frame-jss'],
+        insertionPoint: jssInsertionPointRef.current,
       }),
       sheetsManager: new Map(),
-      window: () => instanceRef.current.contentWindow,
+      window: () => frameWindowRef.current,
     });
   };
 
   const onContentDidUpdate = () => {
-    instanceRef.current.contentDocument.body.dir = theme.direction;
+    frameWindowRef.current.document.body.dir = theme.direction;
   };
 
   // NoSsr fixes a strange concurrency issue with iframe and quick React mount/unmount
@@ -59,7 +61,7 @@ function DemoFrame(props) {
         contentDidUpdate={onContentDidUpdate}
         {...other}
       >
-        <div id="demo-frame-jss" />
+        <div ref={jssInsertionPointRef} />
         {state.ready ? (
           <StylesProvider jss={state.jss} sheetsManager={state.sheetsManager}>
             {React.cloneElement(children, {
