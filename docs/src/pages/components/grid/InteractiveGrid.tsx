@@ -7,7 +7,7 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import Radio from '@material-ui/core/Radio';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
+import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -34,15 +34,13 @@ export default function InteractiveGrid() {
   const [justify, setJustify] = React.useState<GridJustification>('center');
   const [alignItems, setAlignItems] = React.useState<GridItemsAlignment>('center');
 
-  const code = `
-\`\`\`jsx
+  const jsx = `
 <Grid
   container
   direction="${direction}"
   justify="${justify}"
   alignItems="${alignItems}"
 >
-\`\`\`
 `;
 
   return (
@@ -143,7 +141,7 @@ export default function InteractiveGrid() {
         </Paper>
       </Grid>
       <Grid item xs={12}>
-        <MarkdownElement text={code} />
+        <HighlightedCode code={jsx} language="jsx" />
       </Grid>
     </Grid>
   );

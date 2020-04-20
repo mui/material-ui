@@ -1,4 +1,4 @@
-<h2 align="center">Patrocinadores do Material-UI</h2>
+## Patrocinadores do Material-UI
 
 O desenvolvimento contínuo e a manutenção do Material-UI só é possível por causa destes generosos patrocinadores:
 

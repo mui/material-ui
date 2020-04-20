@@ -1,4 +1,4 @@
-<h2 align="center">Material UI 的赞助人</h2>
+## Material UI 的赞助人
 
 这些赞助人的慷慨相助使 Material-UI 的持续开发和维护成为可能：
 

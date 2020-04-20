@@ -1,16 +1,21 @@
 import React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
+import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
-const req = require.context('docs/src/pages/discover-more/showcase', false, /\.(md|js|tsx)$/);
-const reqSource = require.context(
+const pageFilename = 'discover-more/showcase';
+const requireDemo = require.context('docs/src/pages/discover-more/showcase', false, /\.(js|tsx)$/);
+const requireRaw = require.context(
   '!raw-loader!../../src/pages/discover-more/showcase',
   false,
-  /\.(js|tsx)$/,
+  /\.(js|md|tsx)$/,
 );
-const reqPrefix = 'pages/discover-more/showcase';
 
-function Page() {
-  return <MarkdownDocs disableToc req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
+// eslint-disable-next-line react/prop-types
+export default function Page({ demos, docs }) {
+  return <MarkdownDocs demos={demos} docs={docs} requireDemo={requireDemo} />;
 }
 
-export default Page;
+Page.getInitialProps = () => {
+  const { demos, docs } = prepareMarkdown({ pageFilename, requireRaw });
+  return { demos, docs };
+};

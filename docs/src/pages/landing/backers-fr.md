@@ -1,4 +1,4 @@
-<h2 align="center">Sponsors de Material-UI</h2>
+## Sponsors de Material-UI
 
 Le développement et la maintenance continus de Material-UI sont rendus possibles par ces généreux sponsors :
 

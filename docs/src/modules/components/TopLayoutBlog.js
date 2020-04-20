@@ -5,10 +5,9 @@ import Head from 'docs/src/modules/components/Head';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import AppContainer from 'docs/src/modules/components/AppContainer';
 import Link from '@material-ui/core/Link';
-import useMarkdownDocs from 'docs/src/modules/components/useMarkdownDocs';
-import { getHeaders, getTitle, getDescription } from 'docs/src/modules/utils/parseMarkdown';
 import AppFooter from 'docs/src/modules/components/AppFooter';
 import { exactProp } from '@material-ui/utils';
+import MarkdownElement from './MarkdownElement';
 
 const styles = (theme) => ({
   root: {
@@ -45,23 +44,13 @@ const styles = (theme) => ({
 });
 
 function TopLayoutBlog(props) {
-  const { classes, markdown: markdownProp, req, reqPrefix, reqSource } = props;
+  const { classes, docs } = props;
 
-  const markdownDocs = useMarkdownDocs({
-    markdown: markdownProp,
-    req,
-    reqPrefix,
-    reqSource,
-  });
-
-  const headers = getHeaders(markdownDocs.markdown);
+  const { description, rendered, title } = docs.en;
 
   return (
     <AppFrame>
-      <Head
-        title={`${headers.title || getTitle(markdownDocs.markdown)} - Material-UI`}
-        description={headers.description || getDescription(markdownDocs.markdown)}
-      />
+      <Head title={`${title} - Material-UI`} description={description} />
       <div className={classes.root}>
         <AppContainer className={classes.container}>
           <Link
@@ -72,7 +61,9 @@ function TopLayoutBlog(props) {
           >
             {'< Back to blog'}
           </Link>
-          {markdownDocs.element}
+          {rendered.map((chunk, index) => {
+            return <MarkdownElement key={index} renderedMarkdown={chunk} />;
+          })}
         </AppContainer>
         <AppFooter />
       </div>
@@ -82,10 +73,7 @@ function TopLayoutBlog(props) {
 
 TopLayoutBlog.propTypes = {
   classes: PropTypes.object.isRequired,
-  markdown: PropTypes.string,
-  req: PropTypes.func,
-  reqPrefix: PropTypes.string,
-  reqSource: PropTypes.func,
+  docs: PropTypes.object.isRequired,
 };
 
 if (process.env.NODE_ENV !== 'production') {

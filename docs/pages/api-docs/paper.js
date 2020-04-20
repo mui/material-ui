@@ -1,7 +1,16 @@
 import React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from './paper.md';
+import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
-export default function Page() {
-  return <MarkdownDocs markdown={markdown} />;
+const pageFilename = 'api/paper';
+const requireRaw = require.context('!raw-loader!./', false, /paper\.md$/);
+
+// eslint-disable-next-line react/prop-types
+export default function Page({ docs }) {
+  return <MarkdownDocs docs={docs} />;
 }
+
+Page.getInitialProps = () => {
+  const { demos, docs } = prepareMarkdown({ pageFilename, requireRaw });
+  return { demos, docs };
+};

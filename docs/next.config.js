@@ -90,6 +90,7 @@ module.exports = {
       module: {
         ...config.module,
         rules: config.module.rules.concat([
+          // used in some /getting-started/templates
           {
             test: /\.md$/,
             loader: 'raw-loader',
@@ -155,7 +156,8 @@ module.exports = {
     }
 
     // We want to speed-up the build of pull requests.
-    if (process.env.PULL_REQUEST === 'true') {
+    // TODO: revert. Only flipped for debugging
+    if (process.env.PULL_REQUEST === 'false') {
       // eslint-disable-next-line no-console
       console.log('Considering only English for SSR');
       traverse(pages, 'en');

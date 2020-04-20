@@ -3,13 +3,15 @@ import orderBy from 'lodash/orderBy';
 import sortedUniqBy from 'lodash/sortedUniqBy';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import fetch from 'cross-fetch';
+import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
-const req = require.context('docs/src/pages/versions', false, /\.(md|js|tsx)$/);
-const reqSource = require.context('!raw-loader!../src/pages/versions', false, /\.(js|tsx)$/);
-const reqPrefix = 'pages/versions';
+const pageFilename = 'versions';
+const requireDemo = require.context('docs/src/pages/versions/', false, /\.(js|tsx)$/);
+const requireRaw = require.context('!raw-loader!../src/pages/versions', false, /\.(js|md|tsx)$/);
 
-export default function Page() {
-  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
+// eslint-disable-next-line react/prop-types
+export default function Page({ demos, docs }) {
+  return <MarkdownDocs demos={demos} docs={docs} requireDemo={requireDemo} />;
 }
 
 async function getBranches() {
@@ -48,5 +50,7 @@ Page.getInitialProps = async () => {
   versions = orderBy(versions, 'version', 'desc');
   versions = sortedUniqBy(versions, 'version');
 
-  return { versions };
+  const { demos, docs } = prepareMarkdown({ pageFilename, requireRaw });
+
+  return { demos, docs, versions };
 };

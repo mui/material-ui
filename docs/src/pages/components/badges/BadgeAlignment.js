@@ -7,7 +7,7 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import { makeStyles } from '@material-ui/core/styles';
 import MailIcon from '@material-ui/icons/Mail';
-import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
+import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,15 +38,13 @@ export default function BadgeAlignment() {
     setVertical(event.target.value);
   };
 
-  const code = `
-\`\`\`jsx
+  const jsx = `
 <Badge
   anchorOrigin={{
     vertical: '${vertical}',
     horizontal: '${horizontal}',
   }}
 >
-\`\`\`
 `;
 
   return (
@@ -126,7 +124,7 @@ export default function BadgeAlignment() {
           <MailIcon />
         </Badge>
       </div>
-      <MarkdownElement text={code} />
+      <HighlightedCode code={jsx} language="jsx" />
     </div>
   );
 }

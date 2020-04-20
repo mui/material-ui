@@ -6,7 +6,7 @@ import FormLabel from '@material-ui/core/FormLabel';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import Radio from '@material-ui/core/Radio';
-import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
+import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import Grid from '@material-ui/core/Grid';
 import { green } from '@material-ui/core/colors';
 import Typography from '@material-ui/core/Typography';
@@ -126,8 +126,7 @@ function AnchorPlayground(props) {
   anchorPosition={{ top: ${positionTop}, left: ${positionLeft} }}`;
   }
 
-  const code = `
-\`\`\`jsx
+  const jsx = `
 <Popover ${mode}
   anchorOrigin={{
     vertical: '${anchorOriginVertical}',
@@ -140,7 +139,6 @@ function AnchorPlayground(props) {
 >
   The content of the Popover.
 </Popover>
-\`\`\`
 `;
 
   const radioAnchorClasses = { root: classes.radioAnchor, checked: classes.checked };
@@ -304,7 +302,7 @@ function AnchorPlayground(props) {
           </FormControl>
         </Grid>
       </Grid>
-      <MarkdownElement text={code} />
+      <HighlightedCode code={jsx} language="jsx" />
     </div>
   );
 }

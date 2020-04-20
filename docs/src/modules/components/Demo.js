@@ -18,7 +18,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Tooltip from '@material-ui/core/Tooltip';
 import RefreshIcon from '@material-ui/icons/Refresh';
-import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
+import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import DemoSandboxed from 'docs/src/modules/components/DemoSandboxed';
 import DemoLanguages from 'docs/src/modules/components/DemoLanguages';
 import getDemoConfig from 'docs/src/modules/utils/getDemoConfig';
@@ -504,10 +504,11 @@ function Demo(props) {
         </div>
       )}
       <Collapse in={openDemoSource} unmountOnExit>
-        <MarkdownElement
+        <HighlightedCode
           className={classes.code}
           id={demoSourceId}
-          text={`\`\`\`${demoData.sourceLanguage}\n${codeOpen ? demoData.raw : jsx}\n\`\`\``}
+          code={codeOpen ? demoData.raw : jsx}
+          language={demoData.sourceLanguage}
         />
       </Collapse>
       <Snackbar

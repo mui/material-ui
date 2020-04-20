@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import * as PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { useSelector } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
@@ -9,17 +9,40 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import Head from 'docs/src/modules/components/Head';
-import useMarkdownDocs from 'docs/src/modules/components/useMarkdownDocs';
 import AppFrame from 'docs/src/modules/components/AppFrame';
-import AppTableOfContents from 'docs/src/modules/components/AppTableOfContents';
 import Ad from 'docs/src/modules/components/Ad';
 import EditPage from 'docs/src/modules/components/EditPage';
 import AppContainer from 'docs/src/modules/components/AppContainer';
 import PageContext from 'docs/src/modules/components/PageContext';
-import { getHeaders, getTitle, getDescription } from 'docs/src/modules/utils/parseMarkdown';
 import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import Link from 'docs/src/modules/components/Link';
 import { exactProp } from '@material-ui/utils';
+import { SOURCE_CODE_ROOT_URL } from 'docs/src/modules/constants';
+import Demo from 'docs/src/modules/components/Demo';
+import AppTableOfContents from './AppTableOfContents';
+import MarkdownElement from './MarkdownElement';
+
+function flattenPages(pages, current = []) {
+  return pages.reduce((items, item) => {
+    if (item.children && item.children.length > 1) {
+      items = flattenPages(item.children, items);
+    } else {
+      items.push(item.children && item.children.length === 1 ? item.children[0] : item);
+    }
+    return items;
+  }, current);
+}
+
+// To replace with .findIndex() once we stop IE 11 support.
+function findIndex(array, comp) {
+  for (let i = 0; i < array.length; i += 1) {
+    if (comp(array[i])) {
+      return i;
+    }
+  }
+
+  return -1;
+}
 
 const styles = (theme) => ({
   root: {
@@ -65,49 +88,16 @@ const styles = (theme) => ({
   },
 });
 
-function flattenPages(pages, current = []) {
-  return pages.reduce((items, item) => {
-    if (item.children && item.children.length > 1) {
-      items = flattenPages(item.children, items);
-    } else {
-      items.push(item.children && item.children.length === 1 ? item.children[0] : item);
-    }
-    return items;
-  }, current);
-}
-
-// To replace with .findIndex() once we stop IE 11 support.
-function findIndex(array, comp) {
-  for (let i = 0; i < array.length; i += 1) {
-    if (comp(array[i])) {
-      return i;
-    }
-  }
-
-  return -1;
-}
-
 function MarkdownDocs(props) {
-  const {
-    classes,
-    disableAd = false,
-    disableToc = false,
-    markdown: markdownProp,
-    req,
-    reqPrefix,
-    reqSource,
-  } = props;
+  const { classes, disableAd = false, disableToc = false, demos, docs, requireDemo } = props;
 
   const t = useSelector((state) => state.options.t);
 
-  const markdownDocs = useMarkdownDocs({
-    markdown: markdownProp,
-    req,
-    reqPrefix,
-    reqSource,
-  });
-
-  const headers = getHeaders(markdownDocs.markdown);
+  const userLanguage = useSelector((state) => state.options.userLanguage);
+  const { description, location, rendered, title, toc } = docs[userLanguage] || docs.en;
+  if (description === undefined) {
+    throw new Error('Missing description in the page');
+  }
 
   const { activePage, pages } = React.useContext(PageContext);
   const pageList = flattenPages(pages);
@@ -118,10 +108,7 @@ function MarkdownDocs(props) {
 
   return (
     <AppFrame>
-      <Head
-        title={`${headers.title || getTitle(markdownDocs.markdown)} - Material-UI`}
-        description={headers.description || getDescription(markdownDocs.markdown)}
-      />
+      <Head title={`${title} - Material-UI`} description={description} />
       {disableAd ? null : (
         <Portal
           container={() => {
@@ -141,9 +128,58 @@ function MarkdownDocs(props) {
       >
         <AppContainer className={classes.container}>
           <div className={classes.actions}>
-            <EditPage markdownLocation={markdownDocs.location} />
+            <EditPage markdownLocation={location} />
           </div>
-          {markdownDocs.element}
+          {rendered.map((renderedMarkdownOrDemo, index) => {
+            if (typeof renderedMarkdownOrDemo === 'string') {
+              const renderedMarkdown = renderedMarkdownOrDemo;
+              return <MarkdownElement key={index} renderedMarkdown={renderedMarkdown} />;
+            }
+
+            const demoOptions = renderedMarkdownOrDemo;
+            const name = demoOptions.demo;
+            const demo = demos?.[name];
+            if (demo === undefined) {
+              const errorMessage = [
+                `Missing demo: ${name}. You can use one of the following:`,
+                Object.keys(demos),
+              ].join('\n');
+
+              if (userLanguage === 'en') {
+                throw new Error(errorMessage);
+              }
+
+              if (process.env.NODE_ENV !== 'production') {
+                console.error(errorMessage);
+              }
+
+              const warnIcon = (
+                <span role="img" aria-label={t('emojiWarning')}>
+                  ⚠️
+                </span>
+              );
+              return (
+                <div key={index}>
+                  {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
+                  {warnIcon} Missing demo `{name}` {warnIcon}
+                </div>
+              );
+            }
+
+            return (
+              <Demo
+                key={index}
+                demo={{
+                  raw: demo.raw,
+                  js: requireDemo(demo.module).default,
+                  rawTS: demo.rawTS,
+                  tsx: demo.moduleTS ? requireDemo(demo.moduleTS).default : null,
+                }}
+                demoOptions={demoOptions}
+                githubLocation={`${SOURCE_CODE_ROOT_URL}/docs/src/${name}`}
+              />
+            );
+          })}
           <footer className={classes.footer}>
             {!currentPage ||
             currentPage.displayNav === false ||
@@ -183,19 +219,18 @@ function MarkdownDocs(props) {
           </footer>
         </AppContainer>
       </div>
-      {disableToc ? null : <AppTableOfContents contents={markdownDocs.contents} />}
+      {disableToc ? null : <AppTableOfContents items={toc} />}
     </AppFrame>
   );
 }
 
 MarkdownDocs.propTypes = {
   classes: PropTypes.object.isRequired,
+  demos: PropTypes.object.isRequired,
   disableAd: PropTypes.bool,
   disableToc: PropTypes.bool,
-  markdown: PropTypes.string,
-  req: PropTypes.func,
-  reqPrefix: PropTypes.string,
-  reqSource: PropTypes.func,
+  docs: PropTypes.object.isRequired,
+  requireDemo: PropTypes.func,
 };
 
 if (process.env.NODE_ENV !== 'production') {
