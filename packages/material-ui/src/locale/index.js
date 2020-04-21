@@ -1093,9 +1093,9 @@ export const ptBR = {
 
 export const ptPT = {
   props: {
-    // MuiBreadcrumbs: {
-    //   expandText: 'Show path',
-    // },
+    MuiBreadcrumbs: {
+      expandText: 'Mostrar caminho',
+    },
     MuiTablePagination: {
       backIconButtonText: 'Página anterior',
       labelRowsPerPage: 'Linhas por página:',
@@ -1104,7 +1104,7 @@ export const ptPT = {
     },
     MuiRating: {
       getLabelText: (value) => `${value} Estrela${value !== 1 ? 's' : ''}`,
-      // emptyLabelText: 'Empty',
+      emptyLabelText: 'Vazio',
     },
     MuiAutocomplete: {
       clearText: 'Limpar',
@@ -1113,27 +1113,30 @@ export const ptPT = {
       noOptionsText: 'Sem opções',
       openText: 'Abrir',
     },
-    // MuiPagination: {
-    //   'aria-label': 'Pagination navigation',
-    //   getItemAriaLabel: (type, page, selected) => {
-    //     if (type === 'page') {
-    //       return `${selected ? '' : 'Go to '}page ${page}`;
-    //     }
-    //     if (type === 'first') {
-    //       return 'Go to first page';
-    //     }
-    //     if (type === 'last') {
-    //       return 'Go to last page';
-    //     }
-    //     if (type === 'next') {
-    //       return 'Go to next page';
-    //     }
-    //     if (type === 'previous') {
-    //       return 'Go to previous page';
-    //     }
-    //     return undefined;
-    //   },
-    // },
+    MuiAlert: {
+      closeText: 'Fechar',
+    },
+    MuiPagination: {
+      'aria-label': 'Navegar por páginas',
+      getItemAriaLabel: (type, page, selected) => {
+        if (type === 'page') {
+          return `${selected ? '' : 'Ir para a '}página ${page}`;
+        }
+        if (type === 'first') {
+          return 'Primeira página';
+        }
+        if (type === 'last') {
+          return 'Última página';
+        }
+        if (type === 'next') {
+          return 'Próxima página';
+        }
+        if (type === 'previous') {
+          return 'Página anterior';
+        }
+        return undefined;
+      },
+    },
   },
 };
 
