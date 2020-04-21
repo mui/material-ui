@@ -1298,7 +1298,7 @@ export const ruRU: Localization = {
       backIconButtonText: 'Предыдущая страница',
       labelRowsPerPage: 'Строк на странице:',
       labelDisplayedRows: ({ from, to, count }) =>
-        `${from}-${to} из ${count !== -1 ? count : `more than ${to}`}`,
+        `${from}-${to} из ${count !== -1 ? count : `более чем ${to}`}`,
       nextIconButtonText: 'Следующая страница',
     },
     MuiRating: {
