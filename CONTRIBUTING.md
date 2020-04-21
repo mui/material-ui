@@ -10,17 +10,17 @@ guidelines.
 
 Please make sure that we are using the `next` branch for active development. So your branches must be created from _next_ and not from ~~master~~. Here is a short step-by-step guide on how to get started:
 
-1. Fork the @material-ui/pickers repository on Github
-2. Clone your fork to your local machine `git clone git@github.com:<yourname>/@material-ui/pickers.git`
+1. Fork the material-ui-pickers repository on Github
+2. Clone your fork to your local machine `git clone git@github.com:<yourname>/material-ui-pickers.git`
 3. Checkout next `git checkout next`
-4. Create a branch `git checkout -b feature/my-topic-branch`
+4. Create a branch `git checkout -b my-topic-branch`
 5. Make your changes, lint, run tests, then push to GitHub with `git push --set-upstream origin my-topic-branch`.
 6. Visit GitHub and make your pull request.
 
 If you have an existing local repository, please update it before you start, to minimise the chance of merge conflicts.
 
 ```sh
-git remote add upstream git@github.com:mui-org/@material-ui/pickers.git
+git remote add upstream git@github.com:mui-org/material-ui-pickers.git
 git checkout next
 git pull upstream next
 git checkout -b my-topic-branch
