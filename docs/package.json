@@ -95,7 +95,6 @@
     "react-dom": "^16.13.0",
     "react-draggable": "^4.0.3",
     "react-final-form": "^6.3.0",
-    "react-frame-component": "^4.1.1",
     "react-is": "^16.13.0",
     "react-number-format": "^4.0.8",
     "react-redux": "^7.1.1",

@@ -1,9 +1,10 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { create } from 'jss';
 import { withStyles, useTheme, jssPreset, StylesProvider } from '@material-ui/core/styles';
+import { exactProp } from '@material-ui/utils';
 import rtl from 'jss-rtl';
-import Frame, { FrameContext } from 'react-frame-component';
 import { useSelector } from 'react-redux';
 import DemoErrorBoundary from 'docs/src/modules/components/DemoErrorBoundary';
 
@@ -18,9 +19,7 @@ const styles = (theme) => ({
 });
 
 function FramedDemo(props) {
-  const { children } = props;
-
-  const { document } = React.useContext(FrameContext);
+  const { children, document } = props;
 
   const theme = useTheme();
   React.useEffect(() => {
@@ -49,22 +48,44 @@ function FramedDemo(props) {
 }
 FramedDemo.propTypes = {
   children: PropTypes.node,
+  document: PropTypes.object.isRequired,
 };
 
 function DemoFrame(props) {
-  const { children, classes, ...other } = props;
+  const { children, classes, title } = props;
+  /**
+   * @type {import('react').Ref<HTMLIFrameElement>}
+   */
+  const frameRef = React.useRef(null);
+
+  const [mounted, setMounted] = React.useState(false);
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const document = frameRef.current?.contentDocument;
 
   return (
-    <Frame className={classes.frame} {...other}>
-      <FramedDemo>{children}</FramedDemo>
-    </Frame>
+    <React.Fragment>
+      <iframe className={classes.frame} ref={frameRef} title={title} />
+      {mounted
+        ? ReactDOM.createPortal(
+            <FramedDemo document={document}>{children}</FramedDemo>,
+            document.body,
+          )
+        : null}
+    </React.Fragment>
   );
 }
 
 DemoFrame.propTypes = {
   children: PropTypes.node.isRequired,
   classes: PropTypes.object.isRequired,
+  title: PropTypes.string.isRequired,
 };
+if (process.env.NODE_ENV !== 'production') {
+  DemoFrame.propTypes = exactProp(DemoFrame.propTypes);
+}
 
 const StyledFrame = withStyles(styles)(DemoFrame);
 
