@@ -26,7 +26,7 @@ export interface DateInputProps<TInputValue = ParsableDate, TDateValue = Materia
    */
   emptyInputText?: string;
   /** Icon displaying for open picker button */
-  keyboardIcon?: React.ReactNode;
+  openPickerIcon?: React.ReactNode;
   /**
    * Custom mask. Can be used to override generate from format. (e.g. __/__/____ __:__)
    */
@@ -102,7 +102,7 @@ export const PureDateInput: React.FC<DateInputProps & DateInputRefs> = ({
   TextFieldComponent = TextField,
   variant,
   emptyInputText: emptyLabel,
-  keyboardIcon,
+  openPickerIcon,
   disableOpenPicker: hideOpenPickerButton,
   ignoreInvalidInputs,
   KeyboardButtonProps,

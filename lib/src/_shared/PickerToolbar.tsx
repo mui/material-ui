@@ -6,7 +6,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Toolbar, { ToolbarProps } from '@material-ui/core/Toolbar';
 import { ExtendMui } from '../typings/helpers';
 import { PenIcon } from '../_shared/icons/PenIcon';
-import { KeyboardIcon } from './icons/KeyboardIcon';
+import { CalendarIcon } from './icons/CalendarIcon';
 import { makeStyles } from '@material-ui/core/styles';
 import { ToolbarComponentProps } from '../Picker/Picker';
 
@@ -101,7 +101,7 @@ const PickerToolbar: React.SFC<PickerToolbarProps> = ({
           aria-label={getMobileKeyboardInputViewButtonText(isMobileKeyboardViewOpen)}
         >
           {isMobileKeyboardViewOpen ? (
-            <KeyboardIcon color="inherit" />
+            <CalendarIcon color="inherit" />
           ) : (
             <PenIcon color="inherit" />
           )}

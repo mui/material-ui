@@ -4,7 +4,7 @@ import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import { Rifm } from 'rifm';
 import { useUtils } from './hooks/useUtils';
-import { KeyboardIcon } from './icons/KeyboardIcon';
+import { CalendarIcon } from './icons/CalendarIcon';
 import { DateInputProps, DateInputRefs } from './PureDateInput';
 import { createDelegatedEventHandler } from '../_helpers/utils';
 import {
@@ -31,7 +31,7 @@ export const KeyboardDateInput: React.FC<DateInputProps & DateInputRefs> = ({
   disabled,
   rifmFormatter,
   TextFieldComponent = TextField,
-  keyboardIcon = <KeyboardIcon />,
+  openPickerIcon = <CalendarIcon />,
   variant,
   emptyInputText: emptyLabel,
   disableOpenPicker: hideOpenPickerButton,
@@ -127,7 +127,7 @@ export const KeyboardDateInput: React.FC<DateInputProps & DateInputRefs> = ({
             {...KeyboardButtonProps}
             onClick={onOpen}
           >
-            {keyboardIcon}
+            {openPickerIcon}
           </IconButton>
         </InputAdornment>
       ),

@@ -25,7 +25,7 @@ function CustomDateTimePicker(props) {
         rightArrowIcon={<SnoozeIcon />}
         leftArrowButtonText="Open previous month"
         rightArrowButtonText="Open next month"
-        keyboardIcon={<ClockIcon />}
+        openPickerIcon={<ClockIcon />}
         minTime={new Date(0, 0, 0, 9)}
         maxTime={new Date(0, 0, 0, 20)}
       />

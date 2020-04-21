@@ -17,7 +17,7 @@ function AdvancedKeyboardExample(props) {
           dateFns: 'yyyy/MM/dd',
         })}
         mask="____/__/__"
-        keyboardIcon={<EventNoteIcon />}
+        openPickerIcon={<EventNoteIcon />}
         value={selectedDate}
         onChange={date => handleDateChange(date)}
       />

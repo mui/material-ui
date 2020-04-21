@@ -858,10 +858,10 @@
         "name": "string"
       }
     },
-    "keyboardIcon": {
+    "openPickerIcon": {
       "defaultValue": null,
       "description": "Icon displaying for open picker button",
-      "name": "keyboardIcon",
+      "name": "openPickerIcon",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/_shared/PureDateInput.tsx",
         "name": "DateInputProps"
@@ -1524,10 +1524,10 @@
         "name": "string"
       }
     },
-    "keyboardIcon": {
+    "openPickerIcon": {
       "defaultValue": null,
       "description": "Icon displaying for open picker button",
-      "name": "keyboardIcon",
+      "name": "openPickerIcon",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/_shared/PureDateInput.tsx",
         "name": "DateInputProps"
@@ -2559,10 +2559,10 @@
         "name": "string"
       }
     },
-    "keyboardIcon": {
+    "openPickerIcon": {
       "defaultValue": null,
       "description": "Icon displaying for open picker button",
-      "name": "keyboardIcon",
+      "name": "openPickerIcon",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/_shared/PureDateInput.tsx",
         "name": "DateInputProps"
@@ -3238,10 +3238,10 @@
         "name": "string"
       }
     },
-    "keyboardIcon": {
+    "openPickerIcon": {
       "defaultValue": null,
       "description": "Icon displaying for open picker button",
-      "name": "keyboardIcon",
+      "name": "openPickerIcon",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/_shared/PureDateInput.tsx",
         "name": "DateInputProps"

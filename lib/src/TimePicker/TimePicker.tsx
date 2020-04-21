@@ -38,7 +38,7 @@ function useDefaultProps({
     acceptRegex: willUseAmPm ? /[\dapAP]/gi : /\d/gi,
     mask: mask || willUseAmPm ? '__:__ _M' : '__:__',
     getOpenDialogAriaText: getTextFieldAriaText,
-    keyboardIcon: <ClockIcon />,
+    openPickerIcon: <ClockIcon />,
     inputFormat: pick12hOr24hFormat(inputFormat, ampm, {
       localized: utils.formats.fullTime,
       '12h': utils.formats.fullTime12h,
