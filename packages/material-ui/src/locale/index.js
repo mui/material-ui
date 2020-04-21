@@ -812,9 +812,9 @@ export const isIS = {
 
 export const itIT = {
   props: {
-    // MuiBreadcrumbs: {
-    //   expandText: 'Show path',
-    // },
+    MuiBreadcrumbs: {
+      expandText: 'Visualizza percorso',
+    },
     MuiTablePagination: {
       backIconButtonText: 'Pagina precedente',
       labelRowsPerPage: 'Righe per pagina:',
@@ -835,27 +835,27 @@ export const itIT = {
     MuiAlert: {
       closeText: 'Chiudi',
     },
-    // MuiPagination: {
-    //   'aria-label': 'Pagination navigation',
-    //   getItemAriaLabel: (type, page, selected) => {
-    //     if (type === 'page') {
-    //       return `${selected ? '' : 'Go to '}page ${page}`;
-    //     }
-    //     if (type === 'first') {
-    //       return 'Go to first page';
-    //     }
-    //     if (type === 'last') {
-    //       return 'Go to last page';
-    //     }
-    //     if (type === 'next') {
-    //       return 'Go to next page';
-    //     }
-    //     if (type === 'previous') {
-    //       return 'Go to previous page';
-    //     }
-    //     return undefined;
-    //   },
-    // },
+    MuiPagination: {
+      'aria-label': 'Navigazione impaginata',
+      getItemAriaLabel: (type, page, selected) => {
+        if (type === 'page') {
+          return `${selected ? '' : 'Vai alla '}pagina ${page}`;
+        }
+        if (type === 'first') {
+          return 'Vai alla prima pagina';
+        }
+        if (type === 'last') {
+          return "Vai all'ultima pagina";
+        }
+        if (type === 'next') {
+          return 'Vai alla pagina successiva';
+        }
+        if (type === 'previous') {
+          return 'Vai alla pagina precedente';
+        }
+        return undefined;
+      },
+    },
   },
 };
 
