@@ -2,9 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { create } from 'jss';
 import { withStyles, useTheme, jssPreset, StylesProvider } from '@material-ui/core/styles';
-import NoSsr from '@material-ui/core/NoSsr';
 import rtl from 'jss-rtl';
-import Frame from 'react-frame-component';
+import Frame, { FrameContext } from 'react-frame-component';
 import { useSelector } from 'react-redux';
 import DemoErrorBoundary from 'docs/src/modules/components/DemoErrorBoundary';
 
@@ -18,56 +17,47 @@ const styles = (theme) => ({
   },
 });
 
-function DemoFrame(props) {
-  const { children, classes, ...other } = props;
+function FramedDemo(props) {
+  const { children } = props;
+
+  const { document } = React.useContext(FrameContext);
+
   const theme = useTheme();
-  const [state, setState] = React.useState(null);
+  React.useEffect(() => {
+    document.body.dir = theme.direction;
+  }, [document, theme.direction]);
 
-  /**
-   * @type {import('react').Ref<Window | null>}
-   */
-  const frameWindowRef = React.useRef(null);
-  const handleRef = React.useCallback((instance) => {
-    frameWindowRef.current = instance !== null ? instance.node.contentWindow : null;
-  }, []);
-
-  const jssInsertionPointRef = React.useRef(null);
-
-  const onContentDidMount = () => {
-    setState({
+  const { jss, sheetsManager } = React.useMemo(() => {
+    return {
       jss: create({
         plugins: [...jssPreset().plugins, rtl()],
-        insertionPoint: jssInsertionPointRef.current,
+        insertionPoint: document.head,
       }),
       sheetsManager: new Map(),
-      window: () => frameWindowRef.current,
-    });
-  };
+    };
+  }, [document]);
 
-  const onContentDidUpdate = () => {
-    frameWindowRef.current.document.body.dir = theme.direction;
-  };
+  const getWindow = React.useCallback(() => document.defaultView, [document]);
 
-  // NoSsr fixes a strange concurrency issue with iframe and quick React mount/unmount
   return (
-    <NoSsr defer>
-      <Frame
-        ref={handleRef}
-        className={classes.frame}
-        contentDidMount={onContentDidMount}
-        contentDidUpdate={onContentDidUpdate}
-        {...other}
-      >
-        <div ref={jssInsertionPointRef} />
-        {state !== null ? (
-          <StylesProvider jss={state.jss} sheetsManager={state.sheetsManager}>
-            {React.cloneElement(children, {
-              window: state.window,
-            })}
-          </StylesProvider>
-        ) : null}
-      </Frame>
-    </NoSsr>
+    <StylesProvider jss={jss} sheetsManager={sheetsManager}>
+      {React.cloneElement(children, {
+        window: getWindow,
+      })}
+    </StylesProvider>
+  );
+}
+FramedDemo.propTypes = {
+  children: PropTypes.node,
+};
+
+function DemoFrame(props) {
+  const { children, classes, ...other } = props;
+
+  return (
+    <Frame className={classes.frame} {...other}>
+      <FramedDemo>{children}</FramedDemo>
+    </Frame>
   );
 }
 
