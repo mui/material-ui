@@ -1142,9 +1142,9 @@ export const ptPT = {
 
 export const roRO = {
   props: {
-    // MuiBreadcrumbs: {
-    //   expandText: 'Show path',
-    // },
+    MuiBreadcrumbs: {
+      expandText: 'Arată calea',
+    },
     MuiTablePagination: {
       backIconButtonText: 'Pagina precedentă',
       labelRowsPerPage: 'Rânduri pe pagină:',
@@ -1153,7 +1153,7 @@ export const roRO = {
     },
     MuiRating: {
       getLabelText: (value) => `${value} St${value !== 1 ? 'ele' : 'ea'}`,
-      // emptyLabelText: 'Empty',
+      emptyLabelText: 'Gol',
     },
     MuiAutocomplete: {
       clearText: 'Șterge',
@@ -1165,27 +1165,27 @@ export const roRO = {
     MuiAlert: {
       closeText: 'Închide',
     },
-    // MuiPagination: {
-    //   'aria-label': 'Pagination navigation',
-    //   getItemAriaLabel: (type, page, selected) => {
-    //     if (type === 'page') {
-    //       return `${selected ? '' : 'Go to '}page ${page}`;
-    //     }
-    //     if (type === 'first') {
-    //       return 'Go to first page';
-    //     }
-    //     if (type === 'last') {
-    //       return 'Go to last page';
-    //     }
-    //     if (type === 'next') {
-    //       return 'Go to next page';
-    //     }
-    //     if (type === 'previous') {
-    //       return 'Go to previous page';
-    //     }
-    //     return undefined;
-    //   },
-    // },
+    MuiPagination: {
+      'aria-label': 'Navigare prin paginare',
+      getItemAriaLabel: (type, page, selected) => {
+        if (type === 'page') {
+          return `${selected ? '' : 'Mergi la '}pagina ${page}`;
+        }
+        if (type === 'first') {
+          return 'Mergi la prima pagină';
+        }
+        if (type === 'last') {
+          return 'Mergi la ultima pagină';
+        }
+        if (type === 'next') {
+          return 'Mergi la pagina următoare';
+        }
+        if (type === 'previous') {
+          return 'Mergi la pagina precedentă';
+        }
+        return undefined;
+      },
+    },
   },
 };
 
