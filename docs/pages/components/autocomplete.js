@@ -10,6 +10,10 @@ const requireRaw = require.context(
   /\.(js|md|tsx)$/,
 );
 
+// Run styled-components ref logic
+// https://github.com/styled-components/styled-components/pull/2998
+requireDemo.keys().map(requireDemo);
+
 // eslint-disable-next-line react/prop-types
 export default function Page({ demos, docs }) {
   return <MarkdownDocs demos={demos} docs={docs} requireDemo={requireDemo} />;
