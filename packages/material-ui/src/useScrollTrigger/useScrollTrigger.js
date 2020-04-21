@@ -1,15 +1,12 @@
 import * as React from 'react';
 
-function getScrollY(ref) {
-  return ref.pageYOffset !== undefined ? ref.pageYOffset : ref.scrollTop;
-}
-
 function defaultTrigger(store, options) {
   const { disableHysteresis = false, threshold = 100, target } = options;
   const previous = store.current;
 
   if (target) {
-    store.current = getScrollY(target);
+    // Get vertical scroll
+    store.current = target.pageYOffset !== undefined ? target.pageYOffset : target.scrollTop;
   }
 
   if (!disableHysteresis && previous !== undefined) {
