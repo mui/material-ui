@@ -259,5 +259,16 @@ describe('useScrollTrigger', () => {
         assert.strictEqual(text(), test.result, `Index: ${index} ${JSON.stringify(test)}`);
       });
     });
+
+    it('should correctly evaluate scroll events on page first load', () => {
+      [
+        { offset: 101, result: 'true' },
+        { offset: 100, result: 'false' },
+      ].forEach((test, index) => {
+        window.pageYOffset = test.offset;
+        mount(<Test threshold={100} />);
+        assert.strictEqual(text(), test.result, `Index: ${index} ${JSON.stringify(test)}`);
+      });
+    });
   });
 });
