@@ -1578,7 +1578,7 @@ export const viVN: Localization = {
       backIconButtonText: 'Trang trước',
       labelRowsPerPage: 'Số hàng mỗi trang:',
       labelDisplayedRows: ({ from, to, count }) =>
-        `${from}-${to} trong ${count !== -1 ? count : `more than ${to}`}`,
+        `${from}-${to} trong ${count !== -1 ? count : `nhiều hơn ${to}`}`,
       nextIconButtonText: 'Trang sau',
     },
     MuiRating: {
