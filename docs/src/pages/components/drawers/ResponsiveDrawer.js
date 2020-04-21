@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Divider from '@material-ui/core/Divider';
@@ -51,7 +52,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ResponsiveDrawer() {
+function ResponsiveDrawer(props) {
+  const { window } = props;
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -84,10 +86,10 @@ export default function ResponsiveDrawer() {
     </div>
   );
 
-  const [container, setContainer] = React.useState(null);
+  const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <div className={classes.root} ref={setContainer}>
+    <div className={classes.root}>
       <CssBaseline />
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
@@ -165,3 +167,13 @@ export default function ResponsiveDrawer() {
     </div>
   );
 }
+
+ResponsiveDrawer.propTypes = {
+  /**
+   * Injected by the documentation to work in an iframe.
+   * You won't need it on your project.
+   */
+  window: PropTypes.func,
+};
+
+export default ResponsiveDrawer;
