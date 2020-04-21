@@ -19,9 +19,8 @@ function createMuiTheme(options = {}, ...args) {
     ...other
   } = options;
 
-  const numberFormater = new Intl.NumberFormat('en-US');
   const localization = {
-    formatNumber: (number) => numberFormater.format(number),
+    formatNumber: (number) => number.toLocalString(),
   };
   const palette = createPalette(paletteInput);
   const breakpoints = createBreakpoints(breakpointsInput);
