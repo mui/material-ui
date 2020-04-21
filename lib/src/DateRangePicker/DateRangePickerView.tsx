@@ -94,11 +94,16 @@ export const DateRangePickerView: React.FC<DateRangePickerViewProps> = ({
   const toShowToolbar = showToolbar ?? wrapperVariant !== 'desktop';
 
   const scrollToDayIfNeeded = (day: MaterialUiPickersDate) => {
+    if (!utils.isValid(day) || isDateDisabled(day)) {
+      return;
+    }
+
     const displayingMonthRange = wrapperVariant === 'mobile' ? 0 : calendars - 1;
     const currentMonthNumber = utils.getMonth(calendarState.currentMonth);
     const requestedMonthNumber = utils.getMonth(day);
 
     if (
+      !utils.isSameYear(calendarState.currentMonth, day) ||
       requestedMonthNumber < currentMonthNumber ||
       requestedMonthNumber > currentMonthNumber + displayingMonthRange
     ) {

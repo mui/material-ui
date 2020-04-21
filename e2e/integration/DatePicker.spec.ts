@@ -65,7 +65,7 @@ describe('DatePicker', () => {
       cy.get(ids.maskedKeyboard)
         .clear()
         .type('01');
-      cy.get(`${ids.maskedKeyboard}-helper-text`).should('have.text', 'Invalid Date Format');
+      cy.get(`${ids.maskedKeyboard}`).should('have.attr', 'aria-invalid', 'true');
 
       cy.get(ids.maskedKeyboard).clear();
     });
@@ -73,13 +73,13 @@ describe('DatePicker', () => {
     it('Should clear mask input when removing all text', () => {
       cy.get(ids.maskedKeyboard).clear();
 
-      cy.get(`${ids.maskedKeyboard}-helper-text`).should('not.be.visible');
+      cy.get(`${ids.maskedKeyboard}`).should('have.attr', 'aria-invalid', 'false');
     });
 
     it('Should clear mask input when removing symbols one by one', () => {
       cy.get(ids.maskedKeyboard).type('1{backspace}');
 
-      cy.get(`${ids.maskedKeyboard}-helper-text`).should('not.be.visible');
+      cy.get(`${ids.maskedKeyboard}`).should('have.attr', 'aria-invalid', 'false');
     });
 
     it('Should accept date entered from keyboard', () => {
@@ -113,11 +113,10 @@ describe('DatePicker', () => {
       cy.get(ids.maskedKeyboard)
         .clear()
         .should('have.value', '');
+      cy.get(`${ids.maskedKeyboard}-helper-text`).should('have.text', 'mm/dd/yyyy');
       cy.get(ids.maskedKeyboard)
         .type('011')
-        .should('have.value', '01/1_/____');
-
-      cy.get(`${ids.maskedKeyboard}-helper-text`).should('have.text', 'Invalid Date Format');
+        .should('have.value', '01/1');
 
       cy.get(ids.maskedKeyboard)
         .type('02019')
@@ -128,7 +127,7 @@ describe('DatePicker', () => {
       cy.get(ids.maskedKeyboard).clear();
       cy.get(ids.maskedKeyboard)
         .invoke('attr', 'placeholder')
-        .should('contain', '01/01/2019');
+        .should('contain', 'mm/dd/yyyy');
     });
 
     it('Allows to enter anything to the not masked input', () => {
@@ -137,7 +136,7 @@ describe('DatePicker', () => {
         .type('any text')
         .should('have.value', 'any text');
 
-      cy.get(`${ids.notMaskedKeyboard}-helper-text`).should('have.text', 'Invalid Date Format');
+      cy.get(ids.notMaskedKeyboard).should('have.attr', 'aria-invalid', 'true');
     });
 
     it('Correctly parses date string in not masked input', () => {
@@ -145,7 +144,7 @@ describe('DatePicker', () => {
         .clear()
         .type('01/10/2019');
 
-      cy.get(`${ids.notMaskedKeyboard}-helper-text`).should('not.be.visible');
+      cy.get(ids.notMaskedKeyboard).should('have.attr', 'aria-invalid', 'false');
     });
   });
 });

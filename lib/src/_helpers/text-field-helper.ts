@@ -151,11 +151,12 @@ export function pick12hOr24hFormat(
   return ampm ? formats['12h'] : formats['24h'];
 }
 
+const MASK_USER_INPUT_SYMBOL = '_';
 export const staticDateWith2DigitTokens = new Date('2019-11-21T22:30:00.000');
 export const staticDateWith1DigitTokens = new Date('2019-01-01T09:00:00.000');
+
 export function checkMaskIsValidForCurrentFormat(
   mask: string,
-  maskChar: string,
   format: string,
   acceptRegex: RegExp,
   utils: MuiPickersAdapter
@@ -164,7 +165,10 @@ export function checkMaskIsValidForCurrentFormat(
     utils.date(staticDateWith1DigitTokens),
     format
   );
-  const inferredFormatPatternWith1Digits = formattedDateWith1Digit.replace(acceptRegex, maskChar);
+  const inferredFormatPatternWith1Digits = formattedDateWith1Digit.replace(
+    acceptRegex,
+    MASK_USER_INPUT_SYMBOL
+  );
 
   const inferredFormatPatternWith2Digits = utils
     .formatByString(utils.date(staticDateWith2DigitTokens), format)
@@ -180,32 +184,32 @@ export function checkMaskIsValidForCurrentFormat(
     );
   }
 
-  return { isMaskValid, placeholder: formattedDateWith1Digit };
+  return isMaskValid;
 }
 
-export const maskedDateFormatter = (mask: string, numberMaskChar: string, accept: RegExp) => (
-  value: string
-) => {
-  let result = '';
-  const parsed = value.match(accept) || [];
+export const maskedDateFormatter = (mask: string, acceptRegexp: RegExp) => (value: string) => {
+  return value
+    .split('')
+    .map((char, i) => {
+      acceptRegexp.lastIndex = 0;
 
-  if (parsed.length === 0) {
-    return '';
-  }
+      if (i > mask.length - 1) {
+        return '';
+      }
 
-  let i = 0;
-  let n = 0;
-  while (i < mask.length) {
-    const maskChar = mask[i];
-    if (maskChar === numberMaskChar && n < parsed.length) {
-      const parsedChar = parsed[n];
-      result += parsedChar;
-      n += 1;
-    } else {
-      result += maskChar;
-    }
-    i += 1;
-  }
+      const maskChar = mask[i];
+      const nextMaskChar = mask[i + 1];
 
-  return result;
+      const acceptedChar = acceptRegexp.test(char) ? char : '';
+      const formattedChar =
+        maskChar === MASK_USER_INPUT_SYMBOL ? acceptedChar : maskChar + acceptedChar;
+
+      if (i === value.length - 1 && nextMaskChar && nextMaskChar !== MASK_USER_INPUT_SYMBOL) {
+        // when cursor at the end of mask part (e.g. month) prerender next symbol "21" -> "21/"
+        return formattedChar ? formattedChar + nextMaskChar : '';
+      } else {
+        return formattedChar;
+      }
+    })
+    .join('');
 };

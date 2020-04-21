@@ -12,7 +12,6 @@ import {
   getDisplayDate,
   checkMaskIsValidForCurrentFormat,
   getTextFieldAriaText,
-  staticDateWith2DigitTokens,
 } from '../_helpers/text-field-helper';
 
 export const KeyboardDateInput: React.FC<DateInputProps & DateInputRefs> = ({
@@ -25,7 +24,6 @@ export const KeyboardDateInput: React.FC<DateInputProps & DateInputRefs> = ({
   onChange,
   InputProps,
   mask,
-  maskChar = '_',
   acceptRegex = /[\d]/gi,
   inputFormat,
   disabled,
@@ -48,42 +46,41 @@ export const KeyboardDateInput: React.FC<DateInputProps & DateInputRefs> = ({
   ...other
 }) => {
   const utils = useUtils();
-  const [isFocused, setIsFocused] = React.useState(false);
+  const isFocusedRef = React.useRef(false);
 
-  const getInputValue = () =>
-    getDisplayDate(rawValue, utils, {
-      inputFormat,
-      emptyInputText: emptyLabel,
-    });
+  const getInputValue = React.useCallback(
+    () =>
+      getDisplayDate(rawValue, utils, {
+        inputFormat,
+        emptyInputText: emptyLabel,
+      }),
+    [emptyLabel, inputFormat, rawValue, utils]
+  );
 
+  const formatHelperText = utils.getFormatHelperText(inputFormat);
   const [innerInputValue, setInnerInputValue] = React.useState<string | null>(getInputValue());
-  const { isMaskValid: shouldUseMaskedInput, placeholder } = React.useMemo(() => {
+  const shouldUseMaskedInput = React.useMemo(() => {
     // formatting of dates is a quite slow thing, so do not make useless .format calls
     if (!mask || disableMaskedInput) {
-      return {
-        isMaskValid: false,
-        placeholder: utils.formatByString(staticDateWith2DigitTokens, inputFormat),
-      };
+      return false;
     }
 
-    return checkMaskIsValidForCurrentFormat(mask, maskChar, inputFormat, acceptRegex, utils);
-  }, [inputFormat, mask]); // eslint-disable-line
+    return checkMaskIsValidForCurrentFormat(mask, inputFormat, acceptRegex, utils);
+  }, [acceptRegex, disableMaskedInput, inputFormat, mask, utils]);
 
-  // prettier-ignore
   const formatter = React.useMemo(
-    () => shouldUseMaskedInput && mask
-       ? maskedDateFormatter(mask, maskChar, acceptRegex)
-       : (st: string) => st,
-    [shouldUseMaskedInput, mask, maskChar, acceptRegex]
+    () =>
+      shouldUseMaskedInput && mask ? maskedDateFormatter(mask, acceptRegex) : (st: string) => st,
+    [shouldUseMaskedInput, mask, acceptRegex]
   );
 
   React.useEffect(() => {
-    // If not using mask don't update input on state change when focused to avoid such weird thing:
-    // When parsing format "yyyy" with input value "2" value parsed and input value updating to "0002"
-    if ((rawValue === null || utils.isValid(rawValue)) && !isFocused) {
+    // We do not need to update the input value on keystroke
+    // Because library formatters can change inputs from 12/12/2 to 12/12/0002
+    if ((rawValue === null || utils.isValid(rawValue)) && !isFocusedRef.current) {
       setInnerInputValue(getInputValue());
     }
-  }, [inputFormat, rawValue]); // eslint-disable-line
+  }, [rawValue, utils, inputFormat, getInputValue]);
 
   const handleChange = (text: string) => {
     const finalString = text === '' || text === mask ? null : text;
@@ -103,16 +100,18 @@ export const KeyboardDateInput: React.FC<DateInputProps & DateInputRefs> = ({
     inputRef: forwardedRef,
     type: shouldUseMaskedInput ? 'tel' : 'text',
     disabled,
-    placeholder,
-    variant: variant as any,
+    placeholder: formatHelperText,
+    variant: variant,
     error: Boolean(validationError),
-    helperText: validationError,
+    helperText: formatHelperText || validationError,
     'data-mui-test': 'keyboard-date-input',
     ...other,
     inputProps: {
       ...inputPropsPassed,
       readOnly,
     },
+    onFocus: createDelegatedEventHandler(() => (isFocusedRef.current = true), onFocus),
+    onBlur: createDelegatedEventHandler(() => (isFocusedRef.current = false), onBlur),
     InputProps: {
       ...InputProps,
       [`${adornmentPosition}Adornment`]: hideOpenPickerButton ? (
@@ -140,8 +139,6 @@ export const KeyboardDateInput: React.FC<DateInputProps & DateInputRefs> = ({
         value={innerInputValue || ''}
         onChange={e => handleChange(e.currentTarget.value)}
         {...inputProps}
-        onFocus={createDelegatedEventHandler(() => setIsFocused(true), onFocus)}
-        onBlur={createDelegatedEventHandler(() => setIsFocused(true), onBlur)}
       />
     );
   }

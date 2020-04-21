@@ -44,10 +44,10 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.8.4",
-    "@date-io/date-fns": "^2.1.0",
-    "@date-io/dayjs": "^2.1.0",
-    "@date-io/luxon": "^2.1.0",
-    "@date-io/moment": "^2.1.0",
+    "@date-io/date-fns": "^2.6.0",
+    "@date-io/dayjs": "^2.6.0",
+    "@date-io/luxon": "^2.6.0",
+    "@date-io/moment": "^2.6.0",
     "clsx": "^1.0.2",
     "prop-types": "^15.7.2",
     "react-transition-group": "^4.0.0",
@@ -117,32 +117,5 @@
     "rollup-plugin-typescript": "^1.0.0",
     "ts-jest": "^25.3.1",
     "typescript": "^3.8.3"
-  },
-  "jest": {
-    "setupFilesAfterEnv": [
-      "<rootDir>/src/__tests__/setup.js"
-    ],
-    "testRegex": "./src/__tests__/.*\\.test\\.(js|tsx|ts)$",
-    "testURL": "http://localhost/",
-    "collectCoverage": true,
-    "transform": {
-      "^.+\\.(ts|tsx)?$": "ts-jest"
-    },
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "jsx",
-      "json",
-      "node"
-    ],
-    "coveragePathIgnorePatterns": [
-      "<rootDir>/src/__tests__/"
-    ],
-    "globals": {
-      "ts-jest": {
-        "tsConfig": "./src/__tests__/tsconfig.json"
-      }
-    }
   }
 }

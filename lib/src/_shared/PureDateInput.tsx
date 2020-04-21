@@ -28,14 +28,9 @@ export interface DateInputProps<TInputValue = ParsableDate, TDateValue = Materia
   /** Icon displaying for open picker button */
   openPickerIcon?: React.ReactNode;
   /**
-   * Custom mask. Can be used to override generate from format. (e.g. __/__/____ __:__)
+   * Custom mask. Can be used to override generate from format. (e.g. __/__/____ __:__ or __/__/____ __:__ _M)
    */
   mask?: string;
-  /**
-   * Char string that will be replaced with number (for "_" mask will be "__/__/____")
-   * @default '_'
-   */
-  maskChar?: string;
   /**
    *Regular expression to detect "accepted" symbols
    * @default /\dap/gi
@@ -95,7 +90,6 @@ export const PureDateInput: React.FC<DateInputProps & DateInputRefs> = ({
   acceptRegex: refuse,
   mask,
   rawValue,
-  maskChar,
   validationError,
   InputProps,
   openPicker: onOpen,

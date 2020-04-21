@@ -1,10 +1,9 @@
+import * as React from 'react';
 import frLocale from 'date-fns/locale/fr';
 import ruLocale from 'date-fns/locale/ru';
 import enLocale from 'date-fns/locale/en-US';
-import MoreIcon from '@material-ui/icons/MoreVert';
-import React, { useState, useCallback } from 'react';
 import DateFnsAdapter from '@material-ui/pickers/adapter/date-fns';
-import { IconButton, Menu, MenuItem } from '@material-ui/core';
+import { Button, ButtonGroup } from '@material-ui/core';
 import { DatePicker, LocalizationProvider } from '@material-ui/pickers';
 
 const localeMap = {
@@ -13,55 +12,31 @@ const localeMap = {
   ru: ruLocale,
 };
 
+const maskMap = {
+  fr: '__/__/____',
+  en: '__/__/____',
+  ru: '__.__.____',
+};
+
 function DateFnsLocalizationExample() {
-  const [locale, setLocale] = useState('ru');
-  const [anchorEl, setAnchorEl] = useState(null);
-  const [selectedDate, handleDateChange] = useState(new Date());
+  const [locale, setLocale] = React.useState('ru');
+  const [selectedDate, handleDateChange] = React.useState(new Date());
 
-  const handleMenuOpen = useCallback(e => {
-    e.stopPropagation();
-    setAnchorEl(e.currentTarget);
-  }, []);
-
-  const selectLocale = useCallback(locale => {
+  const selectLocale = React.useCallback(locale => {
     setLocale(locale);
-    setAnchorEl(null);
   }, []);
 
   return (
     <LocalizationProvider dateAdapter={DateFnsAdapter} locale={localeMap[locale]}>
-      <DatePicker
-        value={selectedDate}
-        onChange={handleDateChange}
-        InputProps={{
-          endAdornment: (
-            <IconButton
-              aria-label="Select locale"
-              onClick={handleMenuOpen}
-              aria-owns={anchorEl ? 'locale-menu' : undefined}
-            >
-              <MoreIcon />
-            </IconButton>
-          ),
-        }}
-      />
+      <DatePicker mask={maskMap[locale]} value={selectedDate} onChange={handleDateChange} />
 
-      <Menu
-        id="locale-menu"
-        anchorEl={anchorEl}
-        open={Boolean(anchorEl)}
-        onClose={() => setAnchorEl(null)}
-      >
+      <ButtonGroup>
         {Object.keys(localeMap).map(localeItem => (
-          <MenuItem
-            key={localeItem}
-            selected={localeItem === locale}
-            onClick={() => selectLocale(localeItem)}
-          >
+          <Button key={localeItem} onClick={() => selectLocale(localeItem)}>
             {localeItem}
-          </MenuItem>
+          </Button>
         ))}
-      </Menu>
+      </ButtonGroup>
     </LocalizationProvider>
   );
 }

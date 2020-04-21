@@ -7,14 +7,26 @@ import {
   checkMaskIsValidForCurrentFormat,
 } from '../../_helpers/text-field-helper';
 
-const refuse = /[\d]/gi;
 describe('test-field-helper', () => {
-  test('maskedDateFormatter', () => {
-    const formatterFn = maskedDateFormatter('__/__/____', '_', refuse);
+  test('maskedDateFormatter for date', () => {
+    const formatterFn = maskedDateFormatter('__/__/____', /[\d]/gi);
 
-    expect(formatterFn('21')).toBe('21/__/____');
-    expect(formatterFn('21-12-21')).toBe('21/12/21__');
+    expect(formatterFn('21')).toBe('21/');
+    expect(formatterFn('21/1')).toBe('21/1');
+    expect(formatterFn('211/')).toBe('21/1');
+    expect(formatterFn('21/12')).toBe('21/12/');
+    expect(formatterFn('21/12/21')).toBe('21/12/21');
+    expect(formatterFn('21/12/2010')).toBe('21/12/2010');
     expect(formatterFn('21-12-2010')).toBe('21/12/2010');
+    expect(formatterFn('2f')).toBe('2');
+  });
+
+  test('maskedDateFormatter for time', () => {
+    const formatterFn = maskedDateFormatter('__:__ _M', /[\dap]/gi);
+
+    expect(formatterFn('10')).toBe('10:');
+    expect(formatterFn('10:00')).toBe('10:00 ');
+    expect(formatterFn('10:00 A')).toBe('10:00 AM');
   });
 
   test('pick12hOr24hFormat', () => {
@@ -54,8 +66,7 @@ describe('test-field-helper', () => {
       }
 
       expect(
-        checkMaskIsValidForCurrentFormat(mask, '_', formatForCurrentLib, /[\dap]/gi, utilsToUse)
-          .isMaskValid
+        checkMaskIsValidForCurrentFormat(mask, formatForCurrentLib, /[\dap]/gi, utilsToUse)
       ).toBe(expected);
     }
   );

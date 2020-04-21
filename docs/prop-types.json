@@ -653,7 +653,7 @@
     },
     "mask": {
       "defaultValue": null,
-      "description": "Custom mask. Can be used to override generate from format. (e.g. __/__/____ __:__)",
+      "description": "Custom mask. Can be used to override generate from format. (e.g. __/__/____ __:__ or __/__/____ __:__ _M)",
       "name": "mask",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/_shared/PureDateInput.tsx",
@@ -869,21 +869,6 @@
       "required": false,
       "type": {
         "name": "ReactNode"
-      }
-    },
-    "maskChar": {
-      "defaultValue": {
-        "value": "'_'"
-      },
-      "description": "Char string that will be replaced with number (for \"_\" mask will be \"__/__/____\")",
-      "name": "maskChar",
-      "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/PureDateInput.tsx",
-        "name": "DateInputProps"
-      },
-      "required": false,
-      "type": {
-        "name": "string"
       }
     },
     "acceptRegex": {
@@ -1470,7 +1455,7 @@
     },
     "mask": {
       "defaultValue": null,
-      "description": "Custom mask. Can be used to override generate from format. (e.g. __/__/____ __:__)",
+      "description": "Custom mask. Can be used to override generate from format. (e.g. __/__/____ __:__ or __/__/____ __:__ _M)",
       "name": "mask",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/_shared/PureDateInput.tsx",
@@ -1535,21 +1520,6 @@
       "required": false,
       "type": {
         "name": "ReactNode"
-      }
-    },
-    "maskChar": {
-      "defaultValue": {
-        "value": "'_'"
-      },
-      "description": "Char string that will be replaced with number (for \"_\" mask will be \"__/__/____\")",
-      "name": "maskChar",
-      "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/PureDateInput.tsx",
-        "name": "DateInputProps"
-      },
-      "required": false,
-      "type": {
-        "name": "string"
       }
     },
     "acceptRegex": {
@@ -2367,7 +2337,7 @@
     },
     "mask": {
       "defaultValue": null,
-      "description": "Custom mask. Can be used to override generate from format. (e.g. __/__/____ __:__)",
+      "description": "Custom mask. Can be used to override generate from format. (e.g. __/__/____ __:__ or __/__/____ __:__ _M)",
       "name": "mask",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/_shared/PureDateInput.tsx",
@@ -2570,21 +2540,6 @@
       "required": false,
       "type": {
         "name": "ReactNode"
-      }
-    },
-    "maskChar": {
-      "defaultValue": {
-        "value": "'_'"
-      },
-      "description": "Char string that will be replaced with number (for \"_\" mask will be \"__/__/____\")",
-      "name": "maskChar",
-      "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/PureDateInput.tsx",
-        "name": "DateInputProps"
-      },
-      "required": false,
-      "type": {
-        "name": "string"
       }
     },
     "acceptRegex": {
@@ -3108,7 +3063,7 @@
   "DateRangePicker": {
     "mask": {
       "defaultValue": null,
-      "description": "Custom mask. Can be used to override generate from format. (e.g. __/__/____ __:__)",
+      "description": "Custom mask. Can be used to override generate from format. (e.g. __/__/____ __:__ or __/__/____ __:__ _M)",
       "name": "mask",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/_shared/PureDateInput.tsx",
@@ -3249,21 +3204,6 @@
       "required": false,
       "type": {
         "name": "ReactNode"
-      }
-    },
-    "maskChar": {
-      "defaultValue": {
-        "value": "'_'"
-      },
-      "description": "Char string that will be replaced with number (for \"_\" mask will be \"__/__/____\")",
-      "name": "maskChar",
-      "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/PureDateInput.tsx",
-        "name": "DateInputProps"
-      },
-      "required": false,
-      "type": {
-        "name": "string"
       }
     },
     "acceptRegex": {

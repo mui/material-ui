@@ -8,7 +8,12 @@ import { makeStyles } from '@material-ui/core/styles';
 import { MaterialUiPickersDate } from '../typings/date';
 import { DateInputProps } from '../_shared/PureDateInput';
 import { CurrentlySelectingRangeEndProps } from './RangeTypes';
-import { mergeRefs, createDelegatedEventHandler, doNothing } from '../_helpers/utils';
+import {
+  mergeRefs,
+  createDelegatedEventHandler,
+  doNothing,
+  executeInTheNextEventLoopTick,
+} from '../_helpers/utils';
 
 export const useStyles = makeStyles(
   theme => ({
@@ -81,15 +86,23 @@ export const DateRangePickerInput: React.FC<DateRangeInputProps> = ({
     }
   }, [currentlySelectingRangeEnd, open]);
 
+  // TODO: rethink this approach. We do not need to wait for calendar to be updated to rerender input (looks like freezing)
+  // TODO: so simply break 1 react's commit phase in 2 (first for input and second for calendars) by executing onChange in the next tick
+  const lazyHandleChangeCallback = React.useCallback(
+    (...args: Parameters<typeof onChange>) =>
+      executeInTheNextEventLoopTick(() => onChange(...args)),
+    []
+  );
+
   const handleStartChange = (date: MaterialUiPickersDate, inputString?: string) => {
     if (date === null || utils.isValid(date)) {
-      onChange([date, end], inputString);
+      lazyHandleChangeCallback([date, end], inputString);
     }
   };
 
   const handleEndChange = (date: MaterialUiPickersDate, inputString?: string) => {
     if (date === null || utils.isValid(date)) {
-      onChange([start, date], inputString);
+      lazyHandleChangeCallback([start, date], inputString);
     }
   };
 
