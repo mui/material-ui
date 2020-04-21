@@ -30,7 +30,7 @@ export default function useScrollTrigger(options = {}) {
 
   React.useEffect(() => {
     const handleScroll = () => {
-      setTrigger(getTrigger(store, { target, ...other}));
+      setTrigger(getTrigger(store, { target, ...other }));
     };
 
     handleScroll(); // Re-evaluate trigger when dependencies change
