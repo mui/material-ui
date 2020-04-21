@@ -58,9 +58,9 @@ export const azAZ = {
 
 export const bgBG = {
   props: {
-    // MuiBreadcrumbs: {
-    //   expandText: 'Show path',
-    // },
+    MuiBreadcrumbs: {
+      expandText: 'Показване на пътя',
+    },
     MuiTablePagination: {
       backIconButtonText: 'Предишна страница',
       labelRowsPerPage: 'Редове на страница:',
@@ -81,27 +81,27 @@ export const bgBG = {
     MuiAlert: {
       closeText: 'Затвори',
     },
-    // MuiPagination: {
-    //   'aria-label': 'Pagination navigation',
-    //   getItemAriaLabel: (type, page, selected) => {
-    //     if (type === 'page') {
-    //       return `${selected ? '' : 'Go to '}page ${page}`;
-    //     }
-    //     if (type === 'first') {
-    //       return 'Go to first page';
-    //     }
-    //     if (type === 'last') {
-    //       return 'Go to last page';
-    //     }
-    //     if (type === 'next') {
-    //       return 'Go to next page';
-    //     }
-    //     if (type === 'previous') {
-    //       return 'Go to previous page';
-    //     }
-    //     return undefined;
-    //   },
-    // },
+    MuiPagination: {
+      'aria-label': 'Пагинация',
+      getItemAriaLabel: (type, page, selected) => {
+        if (type === 'page') {
+          return `${selected ? '' : 'Към '}страница ${page}`;
+        }
+        if (type === 'first') {
+          return 'Отиди на първата страница';
+        }
+        if (type === 'last') {
+          return 'Отиди на последната страница';
+        }
+        if (type === 'next') {
+          return 'Отиди на следващата страница';
+        }
+        if (type === 'previous') {
+          return 'Отиди на предишната страница';
+        }
+        return undefined;
+      },
+    },
   },
 };
 
