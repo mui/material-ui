@@ -213,9 +213,9 @@ export const csCZ = {
 
 export const deDE = {
   props: {
-    // MuiBreadcrumbs: {
-    //   expandText: 'Show path',
-    // },
+    MuiBreadcrumbs: {
+      expandText: 'Pfad anzeigen',
+    },
     MuiTablePagination: {
       backIconButtonText: 'Nächste Seite',
       labelRowsPerPage: 'Zeilen pro Seite:',
@@ -224,7 +224,7 @@ export const deDE = {
     },
     MuiRating: {
       getLabelText: (value) => `${value} ${value !== 1 ? 'Sterne' : 'Stern'}`,
-      emptyLabelText: 'Empty',
+      emptyLabelText: 'Keine Wertung',
     },
     MuiAutocomplete: {
       clearText: 'Leeren',
@@ -236,27 +236,27 @@ export const deDE = {
     MuiAlert: {
       closeText: 'Schließen',
     },
-    // MuiPagination: {
-    //   'aria-label': 'Pagination navigation',
-    //   getItemAriaLabel: (type, page, selected) => {
-    //     if (type === 'page') {
-    //       return `${selected ? '' : 'Go to '}page ${page}`;
-    //     }
-    //     if (type === 'first') {
-    //       return 'Go to first page';
-    //     }
-    //     if (type === 'last') {
-    //       return 'Go to last page';
-    //     }
-    //     if (type === 'next') {
-    //       return 'Go to next page';
-    //     }
-    //     if (type === 'previous') {
-    //       return 'Go to previous page';
-    //     }
-    //     return undefined;
-    //   },
-    // },
+    MuiPagination: {
+      'aria-label': 'Navigation via Seitennummerierung',
+      getItemAriaLabel: (type, page, selected) => {
+        if (type === 'page') {
+          return `${selected ? '' : 'Gehe zu '}Seite ${page}`;
+        }
+        if (type === 'first') {
+          return 'Zur ersten Seite';
+        }
+        if (type === 'last') {
+          return 'Zur letzten Seite';
+        }
+        if (type === 'next') {
+          return 'Zur nächsten Seite';
+        }
+        if (type === 'previous') {
+          return 'Zur vorherigen Seite';
+        }
+        return undefined;
+      },
+    },
   },
 };
 
