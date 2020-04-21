@@ -363,9 +363,9 @@ export const esES = {
 
 export const etEE = {
   props: {
-    // MuiBreadcrumbs: {
-    //   expandText: 'Show path',
-    // },
+    MuiBreadcrumbs: {
+      expandText: 'Näita teed',
+    },
     MuiTablePagination: {
       backIconButtonText: 'Eelmine lehekülg',
       labelRowsPerPage: 'Ridu leheküljel:',
