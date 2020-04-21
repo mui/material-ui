@@ -157,7 +157,7 @@ export const caES = {
 export const csCZ = {
   props: {
     MuiBreadcrumbs: {
-      expandText: 'Ukázat drobečky',
+      expandText: 'Ukázat cestu',
     },
     MuiTablePagination: {
       backIconButtonText: 'Předchozí stránka',
