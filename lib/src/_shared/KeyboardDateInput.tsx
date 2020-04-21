@@ -83,7 +83,7 @@ export const KeyboardDateInput: React.FC<DateInputProps & DateInputRefs> = ({
     if ((rawValue === null || utils.isValid(rawValue)) && !isFocused) {
       setInnerInputValue(getInputValue());
     }
-  }, [rawValue]); // eslint-disable-line
+  }, [inputFormat, rawValue]); // eslint-disable-line
 
   const handleChange = (text: string) => {
     const finalString = text === '' || text === mask ? null : text;
