@@ -837,9 +837,9 @@ export const itIT = {
     },
     MuiPagination: {
       'aria-label': 'Navigazione impaginata',
-       getItemAriaLabel: (type, page, selected) => {
+      getItemAriaLabel: (type, page, selected) => {
         if (type === 'page') {
-           return `${selected ? '' : 'Vai alla '}pagina ${page}`;
+          return `${selected ? '' : 'Vai alla '}pagina ${page}`;
         }
         if (type === 'first') {
           return 'Vai alla prima pagina';
