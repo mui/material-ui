@@ -53,16 +53,16 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-interface ResponsiveDrawerProps {
+interface Props {
   /**
    * Injected by the documentation to work in an iframe.
    * You won't need it on your project.
    */
-  container?: any;
+  window?: () => Window;
 }
 
-export default function ResponsiveDrawer(props: ResponsiveDrawerProps) {
-  const { container } = props;
+export default function ResponsiveDrawer(props: Props) {
+  const { window } = props;
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -94,6 +94,8 @@ export default function ResponsiveDrawer(props: ResponsiveDrawerProps) {
       </List>
     </div>
   );
+
+  const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
     <div className={classes.root}>
