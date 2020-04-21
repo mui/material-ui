@@ -188,7 +188,7 @@ export const csCZ = {
       closeText: 'Zavřít',
     },
     MuiPagination: {
-      'aria-label': 'Navigace stránkovním',
+      'aria-label': 'Navigace stránkováním',
       getItemAriaLabel: (type, page, selected) => {
         if (type === 'page') {
           return `${selected ? '' : 'Jít na '}${page} stránku`;
