@@ -1,26 +1,14 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { create } from 'jss';
-import { withStyles, useTheme, jssPreset, StylesProvider } from '@material-ui/core/styles';
+import { makeStyles, useTheme, jssPreset, StylesProvider } from '@material-ui/core/styles';
 import rtl from 'jss-rtl';
-import Frame, { FrameContext } from 'react-frame-component';
 import { useSelector } from 'react-redux';
 import DemoErrorBoundary from 'docs/src/modules/components/DemoErrorBoundary';
 
-const styles = (theme) => ({
-  frame: {
-    backgroundColor: theme.palette.background.default,
-    flexGrow: 1,
-    height: 400,
-    border: 'none',
-    boxShadow: theme.shadows[1],
-  },
-});
-
 function FramedDemo(props) {
-  const { children } = props;
-
-  const { document } = React.useContext(FrameContext);
+  const { children, document } = props;
 
   const theme = useTheme();
   React.useEffect(() => {
@@ -49,24 +37,54 @@ function FramedDemo(props) {
 }
 FramedDemo.propTypes = {
   children: PropTypes.node,
+  document: PropTypes.object.isRequired,
 };
 
+const useStyles = makeStyles(
+  (theme) => ({
+    frame: {
+      backgroundColor: theme.palette.background.default,
+      flexGrow: 1,
+      height: 400,
+      border: 'none',
+      boxShadow: theme.shadows[1],
+    },
+  }),
+  { name: 'DemoFrame' },
+);
+
 function DemoFrame(props) {
-  const { children, classes, ...other } = props;
+  const { children, title, ...other } = props;
+  const classes = useStyles();
+  /**
+   * @type {import('react').Ref<HTMLIFrameElement>}
+   */
+  const frameRef = React.useRef(null);
+
+  const [mounted, setMounted] = React.useState(false);
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const document = frameRef.current?.contentDocument;
 
   return (
-    <Frame className={classes.frame} {...other}>
-      <FramedDemo>{children}</FramedDemo>
-    </Frame>
+    <React.Fragment>
+      <iframe className={classes.frame} ref={frameRef} title={title} {...other} />
+      {mounted
+        ? ReactDOM.createPortal(
+            <FramedDemo document={document}>{children}</FramedDemo>,
+            document.body,
+          )
+        : null}
+    </React.Fragment>
   );
 }
 
 DemoFrame.propTypes = {
   children: PropTypes.node.isRequired,
-  classes: PropTypes.object.isRequired,
+  title: PropTypes.string.isRequired,
 };
-
-const StyledFrame = withStyles(styles)(DemoFrame);
 
 /**
  * Isolates the demo component as best as possible. Additional props are spread
@@ -74,7 +92,7 @@ const StyledFrame = withStyles(styles)(DemoFrame);
  */
 function DemoSandboxed(props) {
   const { component: Component, iframe, name, onResetDemoClick, ...other } = props;
-  const Sandbox = iframe ? StyledFrame : React.Fragment;
+  const Sandbox = iframe ? DemoFrame : React.Fragment;
   const sandboxProps = iframe ? { title: `${name} demo`, ...other } : {};
 
   const t = useSelector((state) => state.options.t);
