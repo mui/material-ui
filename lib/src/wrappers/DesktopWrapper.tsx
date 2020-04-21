@@ -7,6 +7,7 @@ import { StaticWrapperProps } from './StaticWrapper';
 import { makeStyles } from '@material-ui/core/styles';
 import { InnerMobileWrapperProps } from './MobileWrapper';
 import { WrapperVariantContext } from './WrapperVariantContext';
+import { IS_TOUCH_DEVICE_MEDIA } from '../constants/dimensions';
 import { InnerDesktopPopperWrapperProps } from './DesktopPopperWrapper';
 
 export interface InnerDesktopWrapperProps {
@@ -23,7 +24,7 @@ const useStyles = makeStyles({
   popover: {
     '&:focus': {
       outline: 'auto',
-      '@media (pointer:coarse)': {
+      [IS_TOUCH_DEVICE_MEDIA]: {
         outline: 0,
       },
     },

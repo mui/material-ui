@@ -11,6 +11,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { InnerMobileWrapperProps } from './MobileWrapper';
 import { InnerDesktopWrapperProps } from './DesktopWrapper';
 import { WrapperVariantContext } from './WrapperVariantContext';
+import { IS_TOUCH_DEVICE_MEDIA } from '../constants/dimensions';
 import { KeyboardDateInput } from '../_shared/KeyboardDateInput';
 import { useGlobalKeyDown, keycode } from '../_shared/hooks/useKeyDown';
 import { TransitionProps } from '@material-ui/core/transitions/transition';
@@ -36,7 +37,7 @@ const useStyles = makeStyles(theme => ({
     transformOrigin: 'top center',
     '&:focus': {
       outline: 'auto',
-      '@media (pointer:coarse)': {
+      [IS_TOUCH_DEVICE_MEDIA]: {
         outline: 0,
       },
     },

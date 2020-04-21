@@ -12,7 +12,7 @@ describe('Visual Regression', () => {
     {
       url: '/demo/datepicker',
       name: 'DatePicker demo',
-      hardResponsive: true,
+      withRealTouchDevice: true,
       withDarkTheme: true,
       scenarios: {
         'Opened datepicker': () => {
@@ -26,7 +26,7 @@ describe('Visual Regression', () => {
     {
       url: '/demo/timepicker',
       name: 'TimePicker demo',
-      responsive: true,
+      withRealTouchDevice: true,
       withDarkTheme: true,
       scenarios: {
         'Opened timepicker': () => {
@@ -40,7 +40,7 @@ describe('Visual Regression', () => {
     {
       url: '/demo/datetime-picker',
       name: 'DateTimePicker demo',
-      responsive: true,
+      withRealTouchDevice: true,
       withDarkTheme: true,
       scenarios: {
         'Opened datetimepicker': () => {
@@ -88,7 +88,7 @@ describe('Visual Regression', () => {
       }
 
       if (page.scenarios) {
-        const defaultWidthForScenarios = page.hardResponsive ? [1280] : [1280, 375];
+        const defaultWidthForScenarios = page.withRealTouchDevice ? [1280] : [1280, 375];
 
         Object.entries(page.scenarios).forEach(([name, execute]) => {
           if (!execute || typeof execute !== 'function') {
@@ -101,7 +101,7 @@ describe('Visual Regression', () => {
               cy.percySnapshot(`${page.name}: ${name}`, { widths: defaultWidthForScenarios });
             });
 
-            if (page.hardResponsive) {
+            if (page.withRealTouchDevice) {
               it(`${page.name} scenario: ${name} on mobile`, () => {
                 cy.viewport('iphone-x');
 
@@ -119,7 +119,7 @@ describe('Visual Regression', () => {
               });
             }
 
-            if (page.withDarkTheme && page.hardResponsive) {
+            if (page.withDarkTheme && page.withRealTouchDevice) {
               it(`${page.name} scenario: ${name} on mobile in dark theme`, () => {
                 cy.viewport('iphone-x');
                 cy.toggleTheme();
