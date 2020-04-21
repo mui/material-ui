@@ -1517,7 +1517,7 @@ export const ukUA: Localization = {
       backIconButtonText: 'Попередня сторінка',
       labelRowsPerPage: 'Рядків на сторінці:',
       labelDisplayedRows: ({ from, to, count }) =>
-        `${from}-${to} з ${count !== -1 ? count : `more than ${to}`}`,
+        `${from}-${to} з ${count !== -1 ? count : `понад ${to}`}`,
       nextIconButtonText: 'Наступна сторінка',
     },
     MuiRating: {
