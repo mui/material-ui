@@ -61,17 +61,28 @@ function DemoFrame(props) {
    */
   const frameRef = React.useRef(null);
 
-  const [mounted, setMounted] = React.useState(false);
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
+  // If we portal content into the iframe before the load event then that content
+  // is dropped in firefox.
+  const [iframeLoaded, onLoad] = React.useReducer(() => true, false);
 
   const document = frameRef.current?.contentDocument;
+  React.useEffect(() => {
+    // When we hydarte the iframe then the load event is already dispatched
+    // once the iframe markup is parsed (maybe later but the important part is
+    // that it happens before React can attach event listeners).
+    // We need to check the readyState of the document once the iframe is mounted
+    // and "replay" the missed load event.
+    // See https://github.com/facebook/react/pull/13862 for ongoing effort in React
+    // (though not with iframes in mind).
+    if (document != null && document.readyState === 'complete' && !iframeLoaded) {
+      onLoad();
+    }
+  }, [document, iframeLoaded]);
 
   return (
     <React.Fragment>
-      <iframe className={classes.frame} ref={frameRef} title={title} {...other} />
-      {mounted
+      <iframe className={classes.frame} onLoad={onLoad} ref={frameRef} title={title} {...other} />
+      {iframeLoaded
         ? ReactDOM.createPortal(
             <FramedDemo document={document}>{children}</FramedDemo>,
             document.body,
