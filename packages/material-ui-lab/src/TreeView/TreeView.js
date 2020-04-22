@@ -220,11 +220,11 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     const newExpanded = [...expanded, ...diff];
 
     if (diff.length > 0) {
+      setExpandedState(newExpanded);
+
       if (onNodeToggle) {
         onNodeToggle(event, newExpanded);
       }
-
-      setExpandedState(newExpanded);
     }
   };
 

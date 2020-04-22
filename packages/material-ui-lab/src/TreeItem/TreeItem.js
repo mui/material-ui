@@ -462,7 +462,7 @@ TreeItem.propTypes = {
    */
   onFocus: PropTypes.func,
   /**
-   * onClick handler for the icon container - event.preventDefault() to prevent toggle on parent nodes
+   * `onClick` handler for the icon container. Call `event.preventDefault()` to prevent firing on `onNodeToggle`.
    */
   onIconClick: PropTypes.func,
   /**
@@ -470,7 +470,7 @@ TreeItem.propTypes = {
    */
   onKeyDown: PropTypes.func,
   /**
-   * onClick handler for the label container - event.preventDefault() to prevent toggle on parent nodes
+   * `onClick` handler for the label container. Call `event.preventDefault()` to prevent firing on `onNodeToggle`.
    */
   onLabelClick: PropTypes.func,
   /**

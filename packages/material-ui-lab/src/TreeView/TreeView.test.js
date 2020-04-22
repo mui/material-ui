@@ -218,7 +218,7 @@ describe('<TreeView />', () => {
 
       const { getByText } = render(
         <TreeView onNodeToggle={handleNodeToggle}>
-          <TreeItem onLabelClick={(evt) => evt.preventDefault()} nodeId="1" label="outer">
+          <TreeItem onLabelClick={(event) => event.preventDefault()} nodeId="1" label="outer">
             <TreeItem nodeId="2" label="inner" />
           </TreeItem>
         </TreeView>,
@@ -252,7 +252,7 @@ describe('<TreeView />', () => {
       const { getByTestId } = render(
         <TreeView onNodeToggle={handleNodeToggle}>
           <TreeItem
-            onIconClick={(evt) => evt.preventDefault()}
+            onIconClick={(event) => event.preventDefault()}
             icon={<div data-testid="icon" />}
             nodeId="1"
             label="outer"
