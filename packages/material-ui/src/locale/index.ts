@@ -1,14 +1,13 @@
+import type { ComponentsPropsList } from '../styles/props';
+
 interface Localization {
   props?: {
-    MuiBreadcrumbs?: {
-      expandText?: string;
-    };
-    MuiTablePagination?: {
-      backIconButtonText?: string;
-      labelRowsPerPage?: string;
-      labelDisplayedRows?: (data: { from: number; to: number; count: number }) => string;
-      nextIconButtonText?: string;
-    };
+    MuiBreadcrumbs?: Pick<ComponentsPropsList['MuiBreadcrumbs'], 'expandText'>;
+    MuiTablePagination?: Pick<
+      ComponentsPropsList['MuiTablePagination'],
+      'backIconButtonText' | 'labelRowsPerPage' | 'labelDisplayedRows' | 'nextIconButtonText'
+    >;
+    // @material-ui/lab components need to be inlined
     MuiRating?: {
       emptyLabelText?: string;
       getLabelText?: (value: number) => string;
