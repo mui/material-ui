@@ -67,6 +67,10 @@ function DemoFrame(props) {
 
   const document = frameRef.current?.contentDocument;
   React.useEffect(() => {
+    console.log('mount');
+  }, []);
+  React.useEffect(() => {
+    console.log(document, iframeLoaded, document?.readyState);
     // When we hydarte the iframe then the load event is already dispatched
     // once the iframe markup is parsed (maybe later but the important part is
     // that it happens before React can attach event listeners).
@@ -81,8 +85,17 @@ function DemoFrame(props) {
 
   return (
     <React.Fragment>
-      <iframe className={classes.frame} onLoad={onLoad} ref={frameRef} title={title} {...other} />
-      {iframeLoaded
+      <iframe
+        className={classes.frame}
+        onLoad={() => {
+          console.log('onLoad');
+          onLoad();
+        }}
+        ref={frameRef}
+        title={title}
+        {...other}
+      />
+      {iframeLoaded !== false
         ? ReactDOM.createPortal(
             <FramedDemo document={document}>{children}</FramedDemo>,
             document.body,
