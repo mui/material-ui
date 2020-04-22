@@ -17,14 +17,14 @@ import { CODESANDBOX_EXAMPLE_ID } from '_constants';
 
 ```jsx
 import React, { useState } from 'react';
-import DateFnsUtils from '@material-ui-pickers/adapter/date-fns'; // choose your lib
+import DateFnsAdapter from '@material-ui/pickers/adapter/date-fns'; // choose your lib
 import { DatePicker, TimePicker, DateTimePicker, LocalizationProvider } from '@material-ui/pickers';
 
 function App() {
   const [selectedDate, handleDateChange] = useState(new Date());
 
   return (
-    <LocalizationProvider dateAdapter={DateFnsUtils}>
+    <LocalizationProvider dateAdapter={DateFnsAdapter}>
       <DatePicker value={selectedDate} onChange={date => handleDateChange(date)} />
       <TimePicker value={selectedDate} onChange={date => handleDateChange(date)} />
       <DateTimePicker value={selectedDate} onChange={date => handleDateChange(date)} />
