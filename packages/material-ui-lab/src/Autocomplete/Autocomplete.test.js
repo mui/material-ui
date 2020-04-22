@@ -1564,9 +1564,9 @@ describe('<Autocomplete />', () => {
         />,
       );
       expect(handleChange.callCount).to.equal(1);
-      expect(handleChange.args[0][0]).to.equal(options[0]);
-      expect(handleChange.args[0][1]).to.equal('auto');
-      expect(handleChange.args[0][2]).to.equal(undefined);
+      expect(handleChange.args[0][0]).to.equal(undefined);
+      expect(handleChange.args[0][1]).to.equal(options[0]);
+      expect(handleChange.args[0][2]).to.equal('auto');
     });
 
     it('should support keyboard event', () => {
@@ -1581,15 +1581,15 @@ describe('<Autocomplete />', () => {
         />,
       );
       fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
-      expect(handleChange.callCount).to.equal(1);
-      expect(handleChange.args[0][0]).to.equal(options[0]);
-      expect(handleChange.args[0][1]).to.equal('keyboard');
-      expect(handleChange.args[0][2]).to.not.equal(undefined);
-      fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
       expect(handleChange.callCount).to.equal(2);
-      expect(handleChange.args[1][0]).to.equal(options[1]);
-      expect(handleChange.args[1][1]).to.equal('keyboard');
-      expect(handleChange.args[1][2]).to.not.equal(undefined);
+      expect(handleChange.args[1][0]).to.not.equal(undefined);
+      expect(handleChange.args[1][1]).to.equal(options[0]);
+      expect(handleChange.args[1][2]).to.equal('keyboard');
+      fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+      expect(handleChange.callCount).to.equal(3);
+      expect(handleChange.args[2][0]).to.not.equal(undefined);
+      expect(handleChange.args[2][1]).to.equal(options[1]);
+      expect(handleChange.args[2][2]).to.equal('keyboard');
     });
 
     it('should support mouse event', () => {
@@ -1605,10 +1605,10 @@ describe('<Autocomplete />', () => {
       );
       const firstOption = getAllByRole('option')[0];
       fireEvent.mouseOver(firstOption);
-      expect(handleChange.callCount).to.equal(1);
-      expect(handleChange.args[0][0]).to.equal(options[0]);
-      expect(handleChange.args[0][1]).to.equal('mouse');
-      expect(handleChange.args[0][2]).to.not.equal(undefined);
+      expect(handleChange.callCount).to.equal(2);
+      expect(handleChange.args[1][0]).to.not.equal(undefined);
+      expect(handleChange.args[1][1]).to.equal(options[0]);
+      expect(handleChange.args[1][2]).to.equal('mouse');
     });
   });
 });
