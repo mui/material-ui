@@ -548,7 +548,12 @@ describe('<Modal />', () => {
         clock.restore();
       });
 
-      it('contains the focus if the active element is removed', () => {
+      it('contains the focus if the active element is removed', function test() {
+        if (/jsdom/.test(window.navigator.userAgent)) {
+          // see https://github.com/jsdom/jsdom/issues/2953
+          this.skip();
+        }
+
         function WithRemovableElement({ hideButton = false }) {
           return (
             <Modal open>

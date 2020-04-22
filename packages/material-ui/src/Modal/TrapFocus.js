@@ -67,7 +67,12 @@ function TrapFocus(props) {
     }
 
     const contain = () => {
-      if (disableEnforceFocus || !isEnabled() || ignoreNextEnforceFocus.current) {
+      if (
+        !doc.hasFocus() ||
+        disableEnforceFocus ||
+        !isEnabled() ||
+        ignoreNextEnforceFocus.current
+      ) {
         ignoreNextEnforceFocus.current = false;
         return;
       }
