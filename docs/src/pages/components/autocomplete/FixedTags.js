@@ -21,8 +21,8 @@ export default function FixedTags() {
       }}
       options={top100Films}
       getOptionLabel={(option) => option.title}
-      renderTags={(value, getTagProps) =>
-        value.map((option, index) => (
+      renderTags={(tagValue, getTagProps) =>
+        tagValue.map((option, index) => (
           <Chip
             label={option.title}
             {...getTagProps({ index })}
