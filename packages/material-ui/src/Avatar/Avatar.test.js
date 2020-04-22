@@ -48,8 +48,8 @@ describe('<Avatar />', () => {
       expect(avatar).to.have.attribute('data-my-prop', 'woofAvatar');
       expect(avatar).to.not.have.class(classes.colorDefault);
       expect(img).to.have.class(classes.img);
-      expect(img.alt).to.equal('Hello World!');
-      expect(img.src).to.equal('something.jpg');
+      expect(img).to.have.attribute('alt', 'Hello World!');
+      expect(img).to.have.attribute('src', 'something.jpg');
     });
 
     it('should be able to add more props to the image', () => {
