@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/mouse-events-have-key-events */
 import * as React from 'react';
 import { assert, expect } from 'chai';
 import PropTypes from 'prop-types';

@@ -79,7 +79,6 @@ describe('<Chip />', () => {
     });
 
     it('should apply user value of tabIndex', () => {
-      // eslint-disable-next-line jsx-a11y/tabindex-no-positive
       const { getByRole } = render(<Chip label="My Chip" onClick={() => {}} tabIndex={5} />);
 
       expect(getByRole('button')).to.have.property('tabIndex', 5);
@@ -150,7 +149,6 @@ describe('<Chip />', () => {
           avatar={<Avatar id="avatar">MB</Avatar>}
           label="Text Avatar Chip"
           onDelete={() => {}}
-          // eslint-disable-next-line jsx-a11y/tabindex-no-positive
           tabIndex={5}
         />,
       );
