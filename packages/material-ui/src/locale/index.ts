@@ -1,6 +1,6 @@
 import type { ComponentsPropsList } from '../styles/props';
 
-interface Localization {
+export interface Localization {
   props?: {
     MuiBreadcrumbs?: Pick<ComponentsPropsList['MuiBreadcrumbs'], 'expandText'>;
     MuiTablePagination?: Pick<
