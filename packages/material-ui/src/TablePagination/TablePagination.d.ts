@@ -17,11 +17,13 @@ export interface TablePaginationTypeMap<P, D extends React.ElementType> {
   props: P &
     TablePaginationBaseProps & {
       ActionsComponent?: React.ElementType<TablePaginationActionsProps>;
+      backIconButtonText?: string;
       backIconButtonProps?: Partial<IconButtonProps>;
       count: number;
       labelDisplayedRows?: (paginationInfo: LabelDisplayedRowsArgs) => React.ReactNode;
-      labelRowsPerPage?: React.ReactNode;
+      labelRowsPerPage?: string;
       nextIconButtonProps?: Partial<IconButtonProps>;
+      nextIconButtonText?: string;
       onChangePage: (event: React.MouseEvent<HTMLButtonElement> | null, page: number) => void;
       onChangeRowsPerPage?: React.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>;
       page: number;
