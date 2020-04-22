@@ -121,7 +121,7 @@ export default function useAutocomplete(props) {
   const defaultHighlighted = autoHighlight ? 0 : -1;
   const highlightedIndexRef = React.useRef(defaultHighlighted);
 
-  const setHighlightedIndex = useEventCallback((index, changeReason = 'auto', event = null) => {
+  const setHighlightedIndex = useEventCallback((index, changeReason = 'auto', event) => {
     highlightedIndexRef.current = index;
     // does the index exist?
     if (index === -1) {
@@ -159,7 +159,7 @@ export default function useAutocomplete(props) {
 
     option.setAttribute('data-focus', 'true');
     if (onHighlightChange && index !== -1) {
-      onHighlightChange(event, options[index], changeReason);
+      onHighlightChange(options[index], changeReason, event);
     }
     // Scroll active descendant into view.
     // Logic copied from https://www.w3.org/TR/wai-aria-practices/examples/listbox/js/listbox.js
@@ -336,7 +336,7 @@ export default function useAutocomplete(props) {
   }
 
   const changeHighlightedIndex = useEventCallback(
-    (diff, direction, changeReason = 'auto', event = null) => {
+    (diff, direction, changeReason = 'auto', event) => {
       if (!popupOpen) {
         return;
       }

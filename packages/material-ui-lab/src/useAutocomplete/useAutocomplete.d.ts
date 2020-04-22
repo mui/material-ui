@@ -178,10 +178,9 @@ export interface UseAutocompleteCommonProps<T> {
    * @param {string} reason Can be: `"keyboard"`, `"auto"`, `"mouse"`.
    */
   onHighlightChange?: (
-    event?: React.ChangeEvent<{}>,
-    // @ts-ignore
     option: T,
-    reason: AutocompleteHighlightChangeReason
+    reason: AutocompleteHighlightChangeReason,
+    event?: React.ChangeEvent<{}>
   ) => void;
   /**
    * Control the popup` open state.
