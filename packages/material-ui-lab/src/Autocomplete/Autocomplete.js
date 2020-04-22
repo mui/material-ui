@@ -279,6 +279,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     noOptionsText = 'No options',
     onChange,
     onClose,
+    onHighlightChange,
     onInputChange,
     onOpen,
     open,
@@ -729,6 +730,14 @@ Autocomplete.propTypes = {
    * @param {string} reason Can be: `"toggleInput"`, `"escape"`, `"select-option"`, `"blur"`.
    */
   onClose: PropTypes.func,
+  /**
+   * Callback fired when the highlight option changes.
+   *
+   * @param {object} event The event source of the callback.
+   * @param {T} option The highlighted option.
+   * @param {string} reason Can be: `"keyboard"`, `"auto"`, `"mouse"`.
+   */
+  onHighlightChange: PropTypes.func,
   /**
    * Callback fired when the input value changes.
    *

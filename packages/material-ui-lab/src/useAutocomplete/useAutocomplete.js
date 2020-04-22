@@ -99,6 +99,7 @@ export default function useAutocomplete(props) {
     multiple = false,
     onChange,
     onClose,
+    onHighlightChange,
     onInputChange,
     onOpen,
     open: openProp,
@@ -120,7 +121,7 @@ export default function useAutocomplete(props) {
   const defaultHighlighted = autoHighlight ? 0 : -1;
   const highlightedIndexRef = React.useRef(defaultHighlighted);
 
-  const setHighlightedIndex = useEventCallback((index, mouse = false) => {
+  const setHighlightedIndex = useEventCallback((index, reason = 'auto', event) => {
     highlightedIndexRef.current = index;
     // does the index exist?
     if (index === -1) {
@@ -145,6 +146,10 @@ export default function useAutocomplete(props) {
       return;
     }
 
+    if (onHighlightChange) {
+      onHighlightChange(event, options[index], reason);
+    }
+
     if (index === -1) {
       listboxNode.scrollTop = 0;
       return;
@@ -163,7 +168,7 @@ export default function useAutocomplete(props) {
     //
     // Consider this API instead once it has a better browser support:
     // .scrollIntoView({ scrollMode: 'if-needed', block: 'nearest' });
-    if (listboxNode.scrollHeight > listboxNode.clientHeight && !mouse) {
+    if (listboxNode.scrollHeight > listboxNode.clientHeight && reason !== 'mouse') {
       const element = option;
 
       const scrollBottom = listboxNode.clientHeight + listboxNode.scrollTop;
@@ -332,7 +337,7 @@ export default function useAutocomplete(props) {
     }
   }
 
-  const changeHighlightedIndex = useEventCallback((diff, direction) => {
+  const changeHighlightedIndex = useEventCallback((diff, direction, reason = 'auto', event) => {
     if (!popupOpen) {
       return;
     }
@@ -382,7 +387,7 @@ export default function useAutocomplete(props) {
     };
 
     const nextIndex = validOptionIndex(getNextIndex(), direction);
-    setHighlightedIndex(nextIndex);
+    setHighlightedIndex(nextIndex, reason, event);
 
     if (autoComplete && diff !== 'reset') {
       if (nextIndex === -1) {
@@ -627,38 +632,38 @@ export default function useAutocomplete(props) {
         if (popupOpen) {
           // Prevent scroll of the page
           event.preventDefault();
-          changeHighlightedIndex('start', 'next');
+          changeHighlightedIndex('start', 'next', 'keyboard', event);
         }
         break;
       case 'End':
         if (popupOpen) {
           // Prevent scroll of the page
           event.preventDefault();
-          changeHighlightedIndex('end', 'previous');
+          changeHighlightedIndex('end', 'previous', 'keyboard', event);
         }
         break;
       case 'PageUp':
         // Prevent scroll of the page
         event.preventDefault();
-        changeHighlightedIndex(-pageSize, 'previous');
+        changeHighlightedIndex(-pageSize, 'previous', 'keyboard', event);
         handleOpen(event);
         break;
       case 'PageDown':
         // Prevent scroll of the page
         event.preventDefault();
-        changeHighlightedIndex(pageSize, 'next');
+        changeHighlightedIndex(pageSize, 'next', 'keyboard', event);
         handleOpen(event);
         break;
       case 'ArrowDown':
         // Prevent cursor move
         event.preventDefault();
-        changeHighlightedIndex(1, 'next');
+        changeHighlightedIndex(1, 'next', 'keyboard', event);
         handleOpen(event);
         break;
       case 'ArrowUp':
         // Prevent cursor move
         event.preventDefault();
-        changeHighlightedIndex(-1, 'previous');
+        changeHighlightedIndex(-1, 'previous', 'keyboard', event);
         handleOpen(event);
         break;
       case 'ArrowLeft':
@@ -791,7 +796,7 @@ export default function useAutocomplete(props) {
 
   const handleOptionMouseOver = (event) => {
     const index = Number(event.currentTarget.getAttribute('data-option-index'));
-    setHighlightedIndex(index, 'mouse');
+    setHighlightedIndex(index, 'mouse', event);
   };
 
   const handleOptionTouchStart = () => {

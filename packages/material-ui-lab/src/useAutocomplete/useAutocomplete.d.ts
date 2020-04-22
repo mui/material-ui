@@ -171,6 +171,18 @@ export interface UseAutocompleteCommonProps<T> {
    */
   onOpen?: (event: React.ChangeEvent<{}>) => void;
   /**
+   * Callback fired when the highlight option changes.
+   *
+   * @param {object} event The event source of the callback.
+   * @param {T} option The highlighted option.
+   * @param {string} reason Can be: `"keyboard"`, `"auto"`, `"mouse"`.
+   */
+  onHighlightChange?: (
+    event: React.ChangeEvent<{}>,
+    option: T | null,
+    reason: AutocompleteHighlightChangeReason
+  ) => void;
+  /**
    * Control the popup` open state.
    */
   open?: boolean;
@@ -188,6 +200,8 @@ export interface UseAutocompleteCommonProps<T> {
    */
   selectOnFocus?: boolean;
 }
+
+export type AutocompleteHighlightChangeReason = 'keyboard' | 'mouse' | 'auto';
 
 export type AutocompleteChangeReason =
   | 'create-option'
