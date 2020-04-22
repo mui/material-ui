@@ -833,7 +833,6 @@ describe('<Select />', () => {
     describe('prop: onChange', () => {
       it('should call onChange when clicking an item', () => {
         function ControlledSelectInput(props) {
-          // eslint-disable-next-line react/prop-types
           const { onChange } = props;
           const [values, clickedValue] = React.useReducer((currentValues, valueClicked) => {
             if (currentValues.indexOf(valueClicked) === -1) {

@@ -131,6 +131,9 @@ module.exports = {
 
         // They are accessed to test custom validator implementation with PropTypes.checkPropTypes
         'react/forbid-foreign-prop-types': 'off',
+        // components that are defined in test are isolated enough
+        // that they don't need type-checking
+        'react/prop-types': 'off',
       },
     },
     {
