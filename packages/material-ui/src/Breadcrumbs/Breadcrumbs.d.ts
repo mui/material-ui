@@ -3,6 +3,7 @@ import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
 export interface BreadcrumbsTypeMap<P = {}, D extends React.ElementType = 'nav'> {
   props: P & {
+    expandText?: string;
     itemsAfterCollapse?: number;
     itemsBeforeCollapse?: number;
     maxItems?: number;
