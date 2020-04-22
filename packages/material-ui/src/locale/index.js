@@ -156,9 +156,9 @@ export const caES = {
 
 export const csCZ = {
   props: {
-    // MuiBreadcrumbs: {
-    //   expandText: 'Show path',
-    // },
+    MuiBreadcrumbs: {
+      expandText: 'Ukázat cestu',
+    },
     MuiTablePagination: {
       backIconButtonText: 'Předchozí stránka',
       labelRowsPerPage: 'Řádků na stránce:',
@@ -175,7 +175,7 @@ export const csCZ = {
         }
         return `${value} hvězdiček`;
       },
-      emptyLabelText: 'Empty',
+      emptyLabelText: 'Prázdné',
     },
     MuiAutocomplete: {
       clearText: 'Vymazat',
@@ -187,27 +187,27 @@ export const csCZ = {
     MuiAlert: {
       closeText: 'Zavřít',
     },
-    // MuiPagination: {
-    //   'aria-label': 'Pagination navigation',
-    //   getItemAriaLabel: (type, page, selected) => {
-    //     if (type === 'page') {
-    //       return `${selected ? '' : 'Go to '}page ${page}`;
-    //     }
-    //     if (type === 'first') {
-    //       return 'Go to first page';
-    //     }
-    //     if (type === 'last') {
-    //       return 'Go to last page';
-    //     }
-    //     if (type === 'next') {
-    //       return 'Go to next page';
-    //     }
-    //     if (type === 'previous') {
-    //       return 'Go to previous page';
-    //     }
-    //     return undefined;
-    //   },
-    // },
+    MuiPagination: {
+      'aria-label': 'Navigace stránkováním',
+      getItemAriaLabel: (type, page, selected) => {
+        if (type === 'page') {
+          return `${selected ? '' : 'Jít na '}${page} stránku`;
+        }
+        if (type === 'first') {
+          return 'Jít na první stránku';
+        }
+        if (type === 'last') {
+          return 'Jít na poslední stránku';
+        }
+        if (type === 'next') {
+          return 'Jít na další stránku';
+        }
+        if (type === 'previous') {
+          return 'Jít na předchozí stránku';
+        }
+        return undefined;
+      },
+    },
   },
 };
 
