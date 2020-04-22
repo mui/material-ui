@@ -18,6 +18,7 @@ export type PopperPlacementType =
   | 'top';
 
 export interface PopperProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'> {
+  ref?: React.Ref<HTMLDivElement>;
   /**
    * A HTML element, [referenceObject](https://popper.js.org/docs/v1/#referenceObject),
    * or a function that returns either.
