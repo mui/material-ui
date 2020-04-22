@@ -1,13 +1,13 @@
 import * as React from 'react';
 
-function getScrollY(ref) {
-  return ref.pageYOffset !== undefined ? ref.pageYOffset : ref.scrollTop;
-}
-
-function defaultTrigger(event, store, options) {
-  const { disableHysteresis = false, threshold = 100 } = options;
+function defaultTrigger(store, options) {
+  const { disableHysteresis = false, threshold = 100, target } = options;
   const previous = store.current;
-  store.current = event ? getScrollY(event.currentTarget) : previous;
+
+  if (target) {
+    // Get vertical scroll
+    store.current = target.pageYOffset !== undefined ? target.pageYOffset : target.scrollTop;
+  }
 
   if (!disableHysteresis && previous !== undefined) {
     if (store.current < previous) {
@@ -23,14 +23,14 @@ const defaultTarget = typeof window !== 'undefined' ? window : null;
 export default function useScrollTrigger(options = {}) {
   const { getTrigger = defaultTrigger, target = defaultTarget, ...other } = options;
   const store = React.useRef();
-  const [trigger, setTrigger] = React.useState(() => getTrigger(null, store, other));
+  const [trigger, setTrigger] = React.useState(() => getTrigger(store, other));
 
   React.useEffect(() => {
-    const handleScroll = (event) => {
-      setTrigger(getTrigger(event, store, other));
+    const handleScroll = () => {
+      setTrigger(getTrigger(store, { target, ...other }));
     };
 
-    handleScroll(null); // Re-evaluate trigger when dependencies change
+    handleScroll(); // Re-evaluate trigger when dependencies change
     target.addEventListener('scroll', handleScroll);
     return () => {
       target.removeEventListener('scroll', handleScroll);
