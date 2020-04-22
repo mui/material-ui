@@ -83,6 +83,7 @@ describe('<Avatar />', () => {
     let container;
     let avatar;
     let icon;
+
     before(() => {
       container = render(
         <Avatar className="my-avatar" data-my-prop="woofAvatar">
@@ -114,6 +115,7 @@ describe('<Avatar />', () => {
   describe('svg icon avatar', () => {
     let container;
     let avatar;
+
     before(() => {
       container = render(
         <Avatar className="my-avatar" data-my-prop="woofAvatar">
