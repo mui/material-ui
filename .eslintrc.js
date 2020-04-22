@@ -129,8 +129,21 @@ module.exports = {
         // is cleaned up in `afterEach` if the test causes a crash
         'mocha/no-hooks-for-single-case': 'off',
 
+        // disable eslint-plugin-jsx-a11y
+        // tests are not driven by assistive technology
+        // add `jsx-a11y` rules once you encounter them in tests
+        'jsx-a11y/click-events-have-key-events': 'off',
+        'jsx-a11y/iframe-has-title': 'off',
+        'jsx-a11y/mouse-events-have-key-events': 'off',
+        'jsx-a11y/no-noninteractive-tabindex': 'off',
+        'jsx-a11y/no-static-element-interactions': 'off',
+        'jsx-a11y/tabindex-no-positive': 'off',
+
         // They are accessed to test custom validator implementation with PropTypes.checkPropTypes
         'react/forbid-foreign-prop-types': 'off',
+        // components that are defined in test are isolated enough
+        // that they don't need type-checking
+        'react/prop-types': 'off',
       },
     },
     {

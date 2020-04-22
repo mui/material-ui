@@ -283,7 +283,6 @@ describe('<TreeItem />', () => {
       it('should focus the first node if none of the nodes are selected before the tree receives focus', () => {
         const { getByTestId } = render(
           <React.Fragment>
-            {/* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex */}
             <div data-testid="start" tabIndex={0} />
             <TreeView>
               <TreeItem nodeId="1" label="one" data-testid="one" />
@@ -305,7 +304,6 @@ describe('<TreeItem />', () => {
       it('should focus the selected node if a node is selected before the tree receives focus', () => {
         const { getByTestId, getByText } = render(
           <React.Fragment>
-            {/* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex */}
             <div data-testid="start" tabIndex={0} />
             <TreeView>
               <TreeItem nodeId="1" label="one" data-testid="one" />
@@ -330,7 +328,6 @@ describe('<TreeItem />', () => {
       it('should work with programmatic focus', () => {
         const { getByTestId } = render(
           <React.Fragment>
-            {/* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex */}
             <div data-testid="start" tabIndex={0} />
             <TreeView>
               <TreeItem nodeId="1" label="one" data-testid="one" />

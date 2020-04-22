@@ -5,7 +5,6 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 
 function NestedMenu(props) {
-  // eslint-disable-next-line react/prop-types
   const { firstMenuOpen, secondMenuOpen } = props;
   const [anchorEl, setAnchorEl] = React.useState(null);
   const canBeOpen = Boolean(anchorEl);

@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';

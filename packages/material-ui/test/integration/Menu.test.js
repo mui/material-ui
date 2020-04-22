@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/tabindex-no-positive */
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';

@@ -38,7 +38,6 @@ describe('<SvgIcon />', () => {
               <stop offset="90%" stopColor="#F3F" />
             </linearGradient>
           </defs>
-          {/* eslint-disable-next-line react/prop-types */}
           {props.children}
         </svg>
       ),
