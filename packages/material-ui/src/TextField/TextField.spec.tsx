@@ -68,7 +68,8 @@ function FocusHandlerTest() {
   return null;
 }
 
-{ // https://github.com/mui-org/material-ui/issues/20716
+{
+  // https://github.com/mui-org/material-ui/issues/20716
   const textFieldProps: Partial<TextFieldProps> = {};
 
   const component = <TextField value="" onChange={console.log} {...textFieldProps} />;
