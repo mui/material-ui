@@ -971,4 +971,22 @@ describe('<Select />', () => {
     expect(keyUpSpy.callCount).to.equal(1);
     expect(keyUpSpy.returnValues[0]).to.equal(true);
   });
+
+  describe('prop: onClick', () => {
+    it('should be called if selected element has the current value (value did not change)', () => {
+      const onClickHandler = stub().callsFake((event) => event.target.value);
+      const { getAllByRole, getByRole } = render(
+        <Select onClick={onClickHandler} value="1">
+          <MenuItem value="0" />
+          <MenuItem value="1" />
+          <MenuItem value="2" />
+        </Select>,
+      );
+      fireEvent.mouseDown(getByRole('button'));
+      getAllByRole('option')[1].click();
+
+      expect(onClickHandler.callCount).to.equal(1);
+      expect(onClickHandler.firstCall.returnValue).to.equal('1');
+    });
+  });
 });

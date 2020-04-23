@@ -140,6 +140,8 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       newValue = child.props.value;
     }
 
+    Object.defineProperty(event, 'target', { writable: true, value: { value: newValue, name } });
+
     if (value === newValue) {
       return;
     }
@@ -149,7 +151,6 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     if (onChange) {
       event.persist();
       // Preact support, target is read only property on a native event.
-      Object.defineProperty(event, 'target', { writable: true, value: { value: newValue, name } });
       onChange(event, child);
     }
   };
