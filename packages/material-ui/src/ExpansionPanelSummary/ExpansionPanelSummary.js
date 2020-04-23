@@ -25,10 +25,10 @@ export const styles = (theme) => {
         minHeight: 64,
       },
       '&$focused': {
-        backgroundColor: theme.palette.grey[300],
+        backgroundColor: theme.palette.action.focus,
       },
       '&$disabled': {
-        opacity: 0.38,
+        opacity: theme.palette.action.disabledOpacity,
       },
     },
     /* Pseudo-class applied to the root element, children wrapper element and `IconButton` component if `expanded={true}`. */
