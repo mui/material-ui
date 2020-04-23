@@ -11,6 +11,7 @@ if (process.env.BABEL_ENV === 'es') {
       '@babel/preset-env',
       {
         bugfixes: true,
+        loose: true,
         modules: ['esm', 'production-umd'].includes(process.env.BABEL_ENV) ? false : 'commonjs',
       },
     ],
