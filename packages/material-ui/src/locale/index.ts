@@ -1,4 +1,35 @@
-export const azAZ = {
+import type { ComponentsPropsList } from '../styles/props';
+
+export interface Localization {
+  props?: {
+    MuiBreadcrumbs?: Pick<ComponentsPropsList['MuiBreadcrumbs'], 'expandText'>;
+    MuiTablePagination?: Pick<
+      ComponentsPropsList['MuiTablePagination'],
+      'backIconButtonText' | 'labelRowsPerPage' | 'labelDisplayedRows' | 'nextIconButtonText'
+    >;
+    // @material-ui/lab components need to be inlined
+    MuiRating?: {
+      emptyLabelText?: string;
+      getLabelText?: (value: number) => string;
+    };
+    MuiAutocomplete?: {
+      clearText?: string;
+      closeText?: string;
+      loadingText?: string;
+      noOptionsText?: string;
+      openText?: string;
+    };
+    MuiAlert?: {
+      closeText?: string;
+    };
+    MuiPagination?: {
+      'aria-label'?: string;
+      getItemAriaLabel?: (type: string, page: number, selected: boolean) => string | undefined;
+    };
+  };
+}
+
+export const azAZ: Localization = {
   props: {
     MuiBreadcrumbs: {
       expandText: 'Yolu göstər',
@@ -56,7 +87,7 @@ export const azAZ = {
   },
 };
 
-export const bgBG = {
+export const bgBG: Localization = {
   props: {
     MuiBreadcrumbs: {
       expandText: 'Показване на пътя',
@@ -105,7 +136,7 @@ export const bgBG = {
   },
 };
 
-export const caES = {
+export const caES: Localization = {
   props: {
     // MuiBreadcrumbs: {
     //   expandText: 'Show path',
@@ -154,7 +185,7 @@ export const caES = {
   },
 };
 
-export const csCZ = {
+export const csCZ: Localization = {
   props: {
     MuiBreadcrumbs: {
       expandText: 'Ukázat cestu',
@@ -211,7 +242,7 @@ export const csCZ = {
   },
 };
 
-export const deDE = {
+export const deDE: Localization = {
   props: {
     MuiBreadcrumbs: {
       expandText: 'Pfad anzeigen',
@@ -261,8 +292,8 @@ export const deDE = {
 };
 
 // default
-export const enUS = {
-  /**
+export const enUS: Localization = {
+  /*
   props: {
     MuiBreadcrumbs: {
       expandText: 'Show path',
@@ -312,7 +343,7 @@ export const enUS = {
 */
 };
 
-export const esES = {
+export const esES: Localization = {
   props: {
     // MuiBreadcrumbs: {
     //   expandText: 'Show path',
@@ -361,7 +392,7 @@ export const esES = {
   },
 };
 
-export const etEE = {
+export const etEE: Localization = {
   props: {
     MuiBreadcrumbs: {
       expandText: 'Näita teed',
@@ -410,7 +441,7 @@ export const etEE = {
   },
 };
 
-export const faIR = {
+export const faIR: Localization = {
   props: {
     // MuiBreadcrumbs: {
     //   expandText: 'Show path',
@@ -465,7 +496,7 @@ export const faIR = {
   },
 };
 
-export const fiFI = {
+export const fiFI: Localization = {
   props: {
     // MuiBreadcrumbs: {
     //   expandText: 'Show path',
@@ -514,7 +545,7 @@ export const fiFI = {
   },
 };
 
-export const frFR = {
+export const frFR: Localization = {
   props: {
     MuiBreadcrumbs: {
       expandText: 'Montrer le chemin',
@@ -563,7 +594,7 @@ export const frFR = {
   },
 };
 
-export const heIL = {
+export const heIL: Localization = {
   props: {
     // MuiBreadcrumbs: {
     //   expandText: 'Show path',
@@ -613,7 +644,7 @@ export const heIL = {
   },
 };
 
-export const huHU = {
+export const huHU: Localization = {
   props: {
     MuiBreadcrumbs: {
       expandText: 'Útvonal',
@@ -662,7 +693,7 @@ export const huHU = {
   },
 };
 
-export const hyAM = {
+export const hyAM: Localization = {
   props: {
     // MuiBreadcrumbs: {
     //   expandText: 'Show path',
@@ -711,7 +742,7 @@ export const hyAM = {
   },
 };
 
-export const idID = {
+export const idID: Localization = {
   props: {
     // MuiBreadcrumbs: {
     //   expandText: 'Show path',
@@ -761,7 +792,7 @@ export const idID = {
   },
 };
 
-export const isIS = {
+export const isIS: Localization = {
   props: {
     // MuiBreadcrumbs: {
     //   expandText: 'Show path',
@@ -810,7 +841,7 @@ export const isIS = {
   },
 };
 
-export const itIT = {
+export const itIT: Localization = {
   props: {
     MuiBreadcrumbs: {
       expandText: 'Visualizza percorso',
@@ -859,7 +890,7 @@ export const itIT = {
   },
 };
 
-export const jaJP = {
+export const jaJP: Localization = {
   props: {
     // MuiBreadcrumbs: {
     //   expandText: 'Show path',
@@ -908,7 +939,7 @@ export const jaJP = {
   },
 };
 
-export const koKR = {
+export const koKR: Localization = {
   props: {
     // MuiBreadcrumbs: {
     //   expandText: 'Show path',
@@ -933,7 +964,7 @@ export const koKR = {
   },
 };
 
-export const nlNL = {
+export const nlNL: Localization = {
   props: {
     // MuiBreadcrumbs: {
     //   expandText: 'Show path',
@@ -982,7 +1013,7 @@ export const nlNL = {
   },
 };
 
-export const plPL = {
+export const plPL: Localization = {
   props: {
     MuiBreadcrumbs: {
       expandText: 'Pokaż ścieżkę',
@@ -1042,7 +1073,7 @@ export const plPL = {
   },
 };
 
-export const ptBR = {
+export const ptBR: Localization = {
   props: {
     // MuiBreadcrumbs: {
     //   expandText: 'Show path',
@@ -1091,7 +1122,7 @@ export const ptBR = {
   },
 };
 
-export const ptPT = {
+export const ptPT: Localization = {
   props: {
     MuiBreadcrumbs: {
       expandText: 'Mostrar caminho',
@@ -1140,7 +1171,7 @@ export const ptPT = {
   },
 };
 
-export const roRO = {
+export const roRO: Localization = {
   props: {
     MuiBreadcrumbs: {
       expandText: 'Arată calea',
@@ -1189,7 +1220,7 @@ export const roRO = {
   },
 };
 
-export const ruRU = {
+export const ruRU: Localization = {
   props: {
     // MuiBreadcrumbs: {
     //   expandText: 'Show path',
@@ -1249,7 +1280,7 @@ export const ruRU = {
   },
 };
 
-export const skSK = {
+export const skSK: Localization = {
   props: {
     // MuiBreadcrumbs: {
     //   expandText: 'Show path',
@@ -1306,7 +1337,7 @@ export const skSK = {
   },
 };
 
-export const svSE = {
+export const svSE: Localization = {
   props: {
     // MuiBreadcrumbs: {
     //   expandText: 'Show path',
@@ -1355,7 +1386,7 @@ export const svSE = {
   },
 };
 
-export const trTR = {
+export const trTR: Localization = {
   props: {
     // MuiBreadcrumbs: {
     //   expandText: 'Show path',
@@ -1405,7 +1436,7 @@ export const trTR = {
   },
 };
 
-export const ukUA = {
+export const ukUA: Localization = {
   props: {
     // MuiBreadcrumbs: {
     //   expandText: 'Show path',
@@ -1465,7 +1496,7 @@ export const ukUA = {
   },
 };
 
-export const viVN = {
+export const viVN: Localization = {
   props: {
     // MuiBreadcrumbs: {
     //   expandText: 'Show path',
@@ -1515,7 +1546,7 @@ export const viVN = {
   },
 };
 
-export const zhCN = {
+export const zhCN: Localization = {
   props: {
     // MuiBreadcrumbs: {
     //   expandText: 'Show path',
