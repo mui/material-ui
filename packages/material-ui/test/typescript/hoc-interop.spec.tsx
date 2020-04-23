@@ -9,44 +9,55 @@
  * See https://github.com/Microsoft/TypeScript/issues/28339 for in-depth discussion
  */
 import { Button, withStyles, createStyles } from '@material-ui/core';
-import TextField, { TextFieldProps } from '@material-ui/core/TextField';
+import TextField, { TextFieldVariant, TextFieldProps } from '@material-ui/core/TextField';
 import emotionStyled from '@emotion/styled';
 import * as React from 'react';
 import { RouteComponentProps, withRouter } from 'react-router';
 import styled from 'styled-components';
 
-const filledProps = {
-  InputProps: { classes: { inputAdornedStart: 'adorned' } },
+const outlineProps = {
+  InputProps: { classes: { notchedOutline: 'notchedOutline' } },
 };
 
-// baseline behavvior
-<TextField variant="filled" {...filledProps} />;
+// default behavior for standard variant
+<TextField InputProps={{ classes: { root: 'root' } }} />;
+
+// baseline behavior
+<TextField variant="outlined" {...outlineProps} />;
+
 // $ExpectError
-<TextField {...filledProps} />; // desired to throw
+<TextField variant="filled" {...outlineProps} />; // desired to throw
+// $ExpectError
+<TextField {...outlineProps} />;
 
 // styled
 {
   const StyledTextField = styled(TextField)``;
-  <StyledTextField variant="filled" {...filledProps} />; // desired to pass
-  <StyledTextField {...filledProps} />; // undesired, should throw
+  <StyledTextField variant="outlined" {...outlineProps} />; // desired to pass
+  // $ExpectError
+  <StyledTextField variant="filled" {...outlineProps} />; // undesired, should throw
 }
 
 // @emotion/styled
 {
   const StyledTextField = emotionStyled(TextField)``;
-  <StyledTextField variant="filled" {...filledProps} />;
+  <StyledTextField variant="outlined" {...outlineProps} />;
   // $ExpectError
-  <StyledTextField {...filledProps} />; // desired to throw
+  <StyledTextField variant="filled" {...outlineProps} />; // desired to throw
+  // $ExpectError
+  <StyledTextField {...outlineProps} />; // desired to throw
 }
 
 // react-router
 {
-  type RouterTextFieldProps = TextFieldProps & RouteComponentProps;
+  type RouterTextFieldProps = TextFieldProps<'outlined'> & RouteComponentProps;
   const RouterTextField: React.FunctionComponent<RouterTextFieldProps> = () => null;
   const TextFieldWithRouter = withRouter(RouterTextField);
-  <TextFieldWithRouter variant="filled" {...filledProps} />;
+  <TextFieldWithRouter variant="outlined" {...outlineProps} />;
   // $ExpectError
-  <TextFieldWithRouter {...filledProps} />; // desired
+  <TextFieldWithRouter variant="filled" {...outlineProps} />; // desired
+  // $ExpectError
+  <TextFieldWithRouter {...outlineProps} />; // desired to throw
 }
 
 // https://github.com/mui-org/material-ui/issues/14586

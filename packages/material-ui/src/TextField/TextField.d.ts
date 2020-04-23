@@ -136,10 +136,6 @@ export interface StandardTextFieldProps extends BaseTextFieldProps {
   onChange?: StandardInputProps['onChange'];
   onFocus?: StandardInputProps['onFocus'];
   /**
-   * The variant to use.
-   */
-  variant?: 'standard';
-  /**
    * Props applied to the Input element.
    * It will be a [`FilledInput`](/api/filled-input/),
    * [`OutlinedInput`](/api/outlined-input/) or [`Input`](/api/input/)
@@ -162,10 +158,6 @@ export interface FilledTextFieldProps extends BaseTextFieldProps {
    */
   onChange?: FilledInputProps['onChange'];
   onFocus?: FilledInputProps['onFocus'];
-  /**
-   * The variant to use.
-   */
-  variant?: 'filled';
   /**
    * Props applied to the Input element.
    * It will be a [`FilledInput`](/api/filled-input/),
@@ -190,10 +182,6 @@ export interface OutlinedTextFieldProps extends BaseTextFieldProps {
   onChange?: OutlinedInputProps['onChange'];
   onFocus?: OutlinedInputProps['onFocus'];
   /**
-   * The variant to use.
-   */
-  variant?: 'outlined';
-  /**
    * Props applied to the Input element.
    * It will be a [`FilledInput`](/api/filled-input/),
    * [`OutlinedInput`](/api/outlined-input/) or [`Input`](/api/input/)
@@ -206,7 +194,17 @@ export interface OutlinedTextFieldProps extends BaseTextFieldProps {
   inputProps?: OutlinedInputProps['inputProps'];
 }
 
-export type TextFieldProps = StandardTextFieldProps | FilledTextFieldProps | OutlinedTextFieldProps;
+export type TextFieldVariant = 'outlined' | 'standard' | 'filled';
+export type TextFieldProps<TVariantValue extends TextFieldVariant> = {
+  /**
+   * The variant to use.
+   */
+  variant?: TVariantValue;
+} & (TVariantValue extends 'outlined'
+  ? OutlinedTextFieldProps
+  : TVariantValue extends 'filled'
+  ? FilledTextFieldProps
+  : StandardTextFieldProps);
 
 export type TextFieldClassKey = 'root';
 
@@ -252,4 +250,6 @@ export type TextFieldClassKey = 'root';
  * - [TextField API](https://material-ui.com/api/text-field/)
  * - inherits [FormControl API](https://material-ui.com/api/form-control/)
  */
-export default function TextField(props: TextFieldProps): JSX.Element;
+export default function TextField<T extends TextFieldVariant = 'standard'>(
+  props: TextFieldProps<T>
+): JSX.Element;
