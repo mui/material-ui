@@ -18,6 +18,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Tooltip from '@material-ui/core/Tooltip';
 import RefreshIcon from '@material-ui/icons/Refresh';
+import ResetFocusIcon from '@material-ui/icons/CenterFocusWeak';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import DemoSandboxed from 'docs/src/modules/components/DemoSandboxed';
 import DemoLanguages from 'docs/src/modules/components/DemoLanguages';
@@ -123,6 +124,14 @@ const styles = (theme) => ({
   anchorLink: {
     marginTop: -64, // height of toolbar
     position: 'absolute',
+  },
+  initialFocus: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: theme.spacing(4),
+    height: theme.spacing(4),
+    pointerEvents: 'none',
   },
 });
 
@@ -335,6 +344,11 @@ function Demo(props) {
   const demoSourceId = useUniqueId(`demo-`);
   const openDemoSource = codeOpen || showPreview;
 
+  const initialFocusRef = React.useRef(null);
+  function handleResetFocusClick() {
+    initialFocusRef.current.focusVisible();
+  }
+
   return (
     <div className={classes.root}>
       <div
@@ -344,10 +358,15 @@ function Demo(props) {
           [classes.demoBgTrue]: demoOptions.bg === true,
           [classes.demoBgInline]: demoOptions.bg === 'inline',
         })}
-        tabIndex={-1}
         onMouseEnter={handleDemoHover}
         onMouseLeave={handleDemoHover}
       >
+        <IconButton
+          aria-label={t('initialFocusLabel')}
+          className={classes.initialFocus}
+          action={initialFocusRef}
+          tabIndex={-1}
+        />
         <DemoSandboxed
           key={demoKey}
           style={demoSandboxedStyle}
@@ -424,6 +443,21 @@ function Demo(props) {
                   onClick={handleCopyClick}
                 >
                   <FileCopyIcon fontSize="small" />
+                </IconButton>
+              </Tooltip>
+              <Tooltip
+                classes={{ popper: classes.tooltip }}
+                title={t('resetFocus')}
+                placement="top"
+              >
+                <IconButton
+                  aria-label={t('resetFocus')}
+                  data-ga-event-category="demo"
+                  data-ga-event-label={demoOptions.demo}
+                  data-ga-event-action="reset-focus"
+                  onClick={handleResetFocusClick}
+                >
+                  <ResetFocusIcon fontSize="small" />
                 </IconButton>
               </Tooltip>
               <Tooltip classes={{ popper: classes.tooltip }} title={t('resetDemo')} placement="top">
