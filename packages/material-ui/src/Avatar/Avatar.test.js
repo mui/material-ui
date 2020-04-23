@@ -1,18 +1,19 @@
 import * as React from 'react';
-import { assert } from 'chai';
+import { expect } from 'chai';
+import { createClientRender, fireEvent } from 'test/utils/createClientRender';
+import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { spy } from 'sinon';
 import CancelIcon from '../internal/svg-icons/Cancel';
-import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
 import Avatar from './Avatar';
 
 describe('<Avatar />', () => {
   let mount;
-  let shallow;
   let classes;
+  const render = createClientRender();
 
   before(() => {
     mount = createMount({ strict: true });
-    shallow = createShallow({ dive: true });
     classes = getClasses(<Avatar />);
   });
 
@@ -30,7 +31,7 @@ describe('<Avatar />', () => {
 
   describe('image avatar', () => {
     it('should render a div containing an img', () => {
-      const wrapper = shallow(
+      const { container } = render(
         <Avatar
           className="my-avatar"
           src="something.jpg"
@@ -38,148 +39,164 @@ describe('<Avatar />', () => {
           data-my-prop="woofAvatar"
         />,
       );
-
-      assert.strictEqual(wrapper.name(), 'div');
-      assert.strictEqual(wrapper.childAt(0).name(), 'img');
-      assert.strictEqual(wrapper.hasClass(classes.root), true);
-      assert.strictEqual(wrapper.hasClass('my-avatar'), true);
-      assert.strictEqual(wrapper.props()['data-my-prop'], 'woofAvatar');
-      assert.strictEqual(wrapper.hasClass(classes.colorDefault), false);
-      const img = wrapper.childAt(0);
-      assert.strictEqual(img.hasClass(classes.img), true);
-      assert.strictEqual(img.props().alt, 'Hello World!');
-      assert.strictEqual(img.props().src, 'something.jpg');
+      const avatar = container.firstChild;
+      const img = avatar.firstChild;
+      expect(avatar.tagName).to.equal('DIV');
+      expect(img.tagName).to.equal('IMG');
+      expect(avatar).to.have.class(classes.root);
+      expect(avatar).to.have.class('my-avatar');
+      expect(avatar).to.have.attribute('data-my-prop', 'woofAvatar');
+      expect(avatar).to.not.have.class(classes.colorDefault);
+      expect(img).to.have.class(classes.img);
+      expect(img).to.have.attribute('alt', 'Hello World!');
+      expect(img).to.have.attribute('src', 'something.jpg');
     });
 
     it('should be able to add more props to the image', () => {
-      const onError = () => {};
-      const wrapper = shallow(<Avatar src="something.jpg" imgProps={{ onError }} />);
-      assert.strictEqual(wrapper.childAt(0).props().onError, onError);
+      const onError = spy();
+      const { container } = render(<Avatar src="something.jpg" imgProps={{ onError }} />);
+      const img = container.querySelector('img');
+      fireEvent.error(img);
+      expect(onError.callCount).to.equal(1);
     });
   });
 
   describe('image avatar with unrendered children', () => {
     it('should render a div containing an img, not children', () => {
-      const wrapper = mount(<Avatar src="something.jpg">MB</Avatar>);
-      assert.strictEqual(wrapper.find('img').length, 1);
-      assert.strictEqual(wrapper.text(), '');
+      const { container } = render(<Avatar src="something.jpg">MB</Avatar>);
+      const avatar = container.firstChild;
+      const imgs = container.querySelectorAll('img');
+      expect(imgs.length).to.equal(1);
+      expect(avatar).to.have.text('');
     });
 
     it('should be able to add more props to the image', () => {
-      const onError = () => {};
-      const wrapper = mount(<Avatar src="something.jpg" imgProps={{ onError }} />);
-      assert.strictEqual(wrapper.find('img').props().onError, onError);
+      const onError = spy();
+      const { container } = render(<Avatar src="something.jpg" imgProps={{ onError }} />);
+      const img = container.querySelector('img');
+      fireEvent.error(img);
+      expect(onError.callCount).to.equal(1);
     });
   });
 
   describe('font icon avatar', () => {
-    let wrapper;
+    let container;
+    let avatar;
+    let icon;
 
     before(() => {
-      wrapper = shallow(
+      container = render(
         <Avatar className="my-avatar" data-my-prop="woofAvatar">
           <span className="my-icon-font">icon</span>
         </Avatar>,
-      );
+      ).container;
+      avatar = container.firstChild;
+      icon = avatar.firstChild;
     });
 
     it('should render a div containing an font icon', () => {
-      const icon = wrapper.childAt(0);
-      assert.strictEqual(wrapper.name(), 'div');
-      assert.strictEqual(icon.name(), 'span');
-      assert.strictEqual(icon.hasClass('my-icon-font'), true);
-      assert.strictEqual(icon.text(), 'icon');
+      expect(avatar.tagName).to.equal('DIV');
+      expect(icon.tagName).to.equal('SPAN');
+      expect(icon).to.have.class('my-icon-font');
+      expect(icon).to.have.text('icon');
     });
 
     it('should merge user classes & spread custom props to the root node', () => {
-      assert.strictEqual(wrapper.hasClass(classes.root), true);
-      assert.strictEqual(wrapper.hasClass('my-avatar'), true);
-      assert.strictEqual(wrapper.props()['data-my-prop'], 'woofAvatar');
+      expect(avatar).to.have.class(classes.root);
+      expect(avatar).to.have.class('my-avatar');
+      expect(avatar).to.have.attribute('data-my-prop', 'woofAvatar');
     });
 
     it('should apply the colorDefault class', () => {
-      assert.strictEqual(wrapper.hasClass(classes.colorDefault), true);
+      expect(avatar).to.have.class(classes.colorDefault);
     });
   });
 
   describe('svg icon avatar', () => {
-    let wrapper;
+    let container;
+    let avatar;
 
     before(() => {
-      wrapper = shallow(
+      container = render(
         <Avatar className="my-avatar" data-my-prop="woofAvatar">
           <CancelIcon />
         </Avatar>,
-      );
+      ).container;
+      avatar = container.firstChild;
     });
 
     it('should render a div containing an svg icon', () => {
-      assert.strictEqual(wrapper.name(), 'div');
-      assert.strictEqual(wrapper.childAt(0).type(), CancelIcon);
+      expect(avatar.tagName).to.equal('DIV');
+      const cancelIcon = avatar.firstChild;
+      expect(cancelIcon).to.have.attribute('data-mui-test', 'CancelIcon');
     });
 
     it('should merge user classes & spread custom props to the root node', () => {
-      assert.strictEqual(wrapper.hasClass(classes.root), true);
-      assert.strictEqual(wrapper.hasClass('my-avatar'), true);
-      assert.strictEqual(wrapper.props()['data-my-prop'], 'woofAvatar');
+      expect(avatar).to.have.class(classes.root);
+      expect(avatar).to.have.class('my-avatar');
+      expect(avatar).to.have.attribute('data-my-prop', 'woofAvatar');
     });
 
     it('should apply the colorDefault class', () => {
-      assert.strictEqual(wrapper.hasClass(classes.colorDefault), true);
+      expect(avatar).to.have.class(classes.colorDefault);
     });
   });
 
   describe('text avatar', () => {
-    let wrapper;
+    let container;
+    let avatar;
 
     before(() => {
-      wrapper = shallow(
+      container = render(
         <Avatar className="my-avatar" data-my-prop="woofAvatar">
           OT
         </Avatar>,
-      );
+      ).container;
+      avatar = container.firstChild;
     });
 
     it('should render a div containing a string', () => {
-      assert.strictEqual(wrapper.name(), 'div');
-      assert.strictEqual(wrapper.childAt(0).text(), 'OT');
+      expect(avatar.tagName).to.equal('DIV');
+      expect(avatar.firstChild).to.text('OT');
     });
 
     it('should merge user classes & spread custom props to the root node', () => {
-      assert.strictEqual(wrapper.hasClass(classes.root), true);
-      assert.strictEqual(wrapper.hasClass('my-avatar'), true);
-      assert.strictEqual(wrapper.props()['data-my-prop'], 'woofAvatar');
+      expect(avatar).to.have.class(classes.root);
+      expect(avatar).to.have.class('my-avatar');
+      expect(avatar).to.have.attribute('data-my-prop', 'woofAvatar');
     });
 
     it('should apply the colorDefault class', () => {
-      assert.strictEqual(wrapper.hasClass(classes.colorDefault), true);
+      expect(avatar).to.have.class(classes.colorDefault);
     });
   });
 
   describe('falsey avatar', () => {
-    let wrapper;
+    let container;
+    let avatar;
 
     before(() => {
-      wrapper = shallow(
+      container = render(
         <Avatar className="my-avatar" data-my-prop="woofAvatar">
           {0}
         </Avatar>,
-      );
+      ).container;
+      avatar = container.firstChild;
     });
 
     it('should render with defaultColor class when supplied with a child with falsey value', () => {
-      assert.strictEqual(wrapper.name(), 'div');
-      assert.strictEqual(wrapper.text(), '0');
+      expect(avatar.tagName).to.equal('DIV');
+      expect(avatar.firstChild).to.text('0');
     });
 
     it('should merge user classes & spread custom props to the root node', () => {
-      assert.strictEqual(wrapper.hasClass(classes.root), true);
-      assert.strictEqual(wrapper.hasClass('my-avatar'), true);
-      assert.strictEqual(wrapper.props()['data-my-prop'], 'woofAvatar');
+      expect(avatar).to.have.class(classes.root);
+      expect(avatar).to.have.class('my-avatar');
+      expect(avatar).to.have.attribute('data-my-prop', 'woofAvatar');
     });
 
     it('should apply the colorDefault class', () => {
-      assert.strictEqual(wrapper.hasClass(classes.colorDefault), true);
+      expect(avatar).to.have.class(classes.colorDefault);
     });
   });
 });
