@@ -1,5 +1,5 @@
 import * as React from 'react';
-import TextField from '@material-ui/core/TextField';
+import TextField, { TextFieldProps } from '@material-ui/core/TextField';
 
 {
   // https://github.com/mui-org/material-ui/issues/12999
@@ -67,3 +67,7 @@ function FocusHandlerTest() {
 
   return null;
 }
+
+const textFieldProps: Partial<TextFieldProps> = {};
+
+const component = <TextField value="" onChange={console.log} {...textFieldProps} />;

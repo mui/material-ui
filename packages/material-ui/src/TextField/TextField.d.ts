@@ -165,7 +165,7 @@ export interface FilledTextFieldProps extends BaseTextFieldProps {
   /**
    * The variant to use.
    */
-  variant: 'filled';
+  variant?: 'filled';
   /**
    * Props applied to the Input element.
    * It will be a [`FilledInput`](/api/filled-input/),
@@ -192,7 +192,7 @@ export interface OutlinedTextFieldProps extends BaseTextFieldProps {
   /**
    * The variant to use.
    */
-  variant: 'outlined';
+  variant?: 'outlined';
   /**
    * Props applied to the Input element.
    * It will be a [`FilledInput`](/api/filled-input/),
