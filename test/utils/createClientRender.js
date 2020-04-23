@@ -93,7 +93,7 @@ export function createClientRender(globalOptions = {}) {
 }
 
 const fireEvent = Object.assign(rtlFireEvent, {
-  // polyfill event.key for chrome 49 (supported in Material-UI v4)
+  // polyfill event.key(Code) for chrome 49 and edge 15 (supported in Material-UI v4)
   // for user-interactions react does the polyfilling but manually created
   // events don't have this luxury
   keyDown(element, options = {}) {
@@ -103,6 +103,13 @@ const fireEvent = Object.assign(rtlFireEvent, {
         return options.key || '';
       },
     });
+    if (options.keyCode !== undefined && event.keyCode === 0) {
+      Object.defineProperty(event, 'keyCode', {
+        get() {
+          return options.keyCode;
+        },
+      });
+    }
 
     rtlFireEvent(element, event);
   },
@@ -113,6 +120,13 @@ const fireEvent = Object.assign(rtlFireEvent, {
         return options.key || '';
       },
     });
+    if (options.keyCode !== undefined && event.keyCode === 0) {
+      Object.defineProperty(event, 'keyCode', {
+        get() {
+          return options.keyCode;
+        },
+      });
+    }
 
     rtlFireEvent(element, event);
   },
