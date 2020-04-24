@@ -27,9 +27,6 @@ export const styles = (theme) => ({
     '&:hover': {
       boxShadow: 'none',
     },
-    '&$focusVisible': {
-      boxShadow: 'none',
-    },
     '&:active': {
       boxShadow: 'none',
     },

@@ -168,7 +168,7 @@ describe('<ButtonGroup />', () => {
     );
     const button = wrapper.find('button');
 
-    assert.strictEqual(button.hasClass('.MuiButtonGroup-disableElevation'), true);
+    assert.strictEqual(button.hasClass('MuiButtonGroup-disableElevation'), true);
   });
 
   it('can disable the ripple', () => {
