@@ -22,7 +22,6 @@ function round(value) {
 function arrowGenerator() {
   return {
     '&[x-placement*="bottom"] $arrow': {
-      flip: false,
       top: 0,
       left: 0,
       marginTop: '-0.95em',
@@ -31,13 +30,11 @@ function arrowGenerator() {
       width: '2em',
       height: '1em',
       '&::before': {
-        flip: false,
         borderWidth: '0 1em 1em 1em',
         borderColor: 'transparent transparent currentcolor transparent',
       },
     },
     '&[x-placement*="top"] $arrow': {
-      flip: false,
       bottom: 0,
       left: 0,
       marginBottom: '-0.95em',
@@ -46,13 +43,11 @@ function arrowGenerator() {
       width: '2em',
       height: '1em',
       '&::before': {
-        flip: false,
         borderWidth: '1em 1em 0 1em',
         borderColor: 'currentcolor transparent transparent transparent',
       },
     },
     '&[x-placement*="right"] $arrow': {
-      flip: false,
       left: 0,
       marginLeft: '-0.95em',
       marginTop: 4,
@@ -60,13 +55,11 @@ function arrowGenerator() {
       height: '2em',
       width: '1em',
       '&::before': {
-        flip: false,
         borderWidth: '1em 1em 1em 0',
         borderColor: 'transparent currentcolor transparent transparent',
       },
     },
     '&[x-placement*="left"] $arrow': {
-      flip: false,
       right: 0,
       marginRight: '-0.95em',
       marginTop: 4,
@@ -74,7 +67,6 @@ function arrowGenerator() {
       height: '2em',
       width: '1em',
       '&::before': {
-        flip: false,
         borderWidth: '1em 0 1em 1em',
         borderColor: 'transparent transparent transparent currentcolor',
       },
@@ -87,7 +79,6 @@ export const styles = (theme) => ({
   popper: {
     zIndex: theme.zIndex.tooltip,
     pointerEvents: 'none',
-    flip: false, // disable jss-rtl plugin
   },
   /* Styles applied to the Popper component if `interactive={true}`. */
   popperInteractive: {
