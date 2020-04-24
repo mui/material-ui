@@ -90,14 +90,14 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
   const hasTransition = getHasTransition(props);
 
   const getDoc = () => ownerDocument(mountNodeRef.current);
-  const getModal = () => {
+  const updateAndGetModal = () => {
     modal.current.modalNode = modalRef.current;
     modal.current.mountNode = mountNodeRef.current;
     return modal.current;
   };
 
   const handleMounted = () => {
-    manager.mount(getModal(), { disableScrollLock });
+    manager.mount(updateAndGetModal(), { disableScrollLock });
 
     // Fix a bug on Chrome where the scroll isn't initially 0.
     modalRef.current.scrollTop = 0;
@@ -106,7 +106,7 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
   const handleOpen = useEventCallback(() => {
     const resolvedContainer = getContainer(container) || getDoc().body;
 
-    manager.add(getModal(), resolvedContainer);
+    manager.add(updateAndGetModal(), resolvedContainer);
 
     // The element was already mounted.
     if (modalRef.current) {
@@ -114,7 +114,7 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     }
   });
 
-  const isTopModal = React.useCallback(() => manager.isTopModal(getModal()), [manager]);
+  const isTopModal = React.useCallback(() => manager.isTopModal(updateAndGetModal()), [manager]);
 
   const handlePortalRef = useEventCallback((node) => {
     mountNodeRef.current = node;
@@ -135,7 +135,7 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
   });
 
   const handleClose = React.useCallback(() => {
-    manager.remove(getModal());
+    manager.remove(updateAndGetModal());
   }, [manager]);
 
   React.useEffect(() => {
