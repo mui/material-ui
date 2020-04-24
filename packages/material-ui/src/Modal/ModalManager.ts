@@ -7,7 +7,7 @@ interface ManagedModalProps {
 }
 
 interface Modal {
-  modalRef: HTMLElement;
+  modalNode: HTMLElement;
   mountNode: HTMLElement;
 }
 
@@ -184,12 +184,12 @@ export default class ModalManager {
     this.modals.push(modal);
 
     // If the modal we are adding is already in the DOM.
-    if (modal.modalRef) {
-      ariaHidden(modal.modalRef, false);
+    if (modal.modalNode) {
+      ariaHidden(modal.modalNode, false);
     }
 
     const hiddenSiblingNodes = getHiddenSiblings(container);
-    ariaHiddenSiblings(container, modal.mountNode, modal.modalRef, hiddenSiblingNodes, true);
+    ariaHiddenSiblings(container, modal.mountNode, modal.modalNode, hiddenSiblingNodes, true);
 
     const containerIndex = findIndexOf(this.containers, (item) => item.container === container);
     if (containerIndex !== -1) {
@@ -242,15 +242,15 @@ export default class ModalManager {
         containerInfo.restore();
       }
 
-      if (modal.modalRef) {
+      if (modal.modalNode) {
         // In case the modal wasn't in the DOM yet.
-        ariaHidden(modal.modalRef, true);
+        ariaHidden(modal.modalNode, true);
       }
 
       ariaHiddenSiblings(
         containerInfo.container,
         modal.mountNode,
-        modal.modalRef,
+        modal.modalNode,
         containerInfo.hiddenSiblingNodes,
         false,
       );
@@ -261,8 +261,8 @@ export default class ModalManager {
       // as soon as a modal is adding its modalRef is undefined. it can't set
       // aria-hidden because the dom element doesn't exist either
       // when modal was unmounted before modalRef gets null
-      if (nextTop.modalRef) {
-        ariaHidden(nextTop.modalRef, false);
+      if (nextTop.modalNode) {
+        ariaHidden(nextTop.modalNode, false);
       }
     }
 

@@ -91,7 +91,7 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
 
   const getDoc = () => ownerDocument(mountNodeRef.current);
   const getModal = () => {
-    modal.current.modalRef = modalRef.current;
+    modal.current.modalNode = modalRef.current;
     modal.current.mountNode = mountNodeRef.current;
     return modal.current;
   };
