@@ -22,9 +22,7 @@ describe('<BottomNavigation />', () => {
         <BottomNavigationAction icon={icon} />
       </BottomNavigation>,
     );
-    actionClasses = getClasses(
-        <BottomNavigationAction icon={icon} />
-    );
+    actionClasses = getClasses(<BottomNavigationAction icon={icon} />);
     mount = createMount({ strict: true });
   });
 
@@ -71,11 +69,7 @@ describe('<BottomNavigation />', () => {
     const { getByTestId } = render(
       <BottomNavigation showLabels>
         <BottomNavigationAction icon={icon} data-testid="withLabel" />
-        <BottomNavigationAction
-          icon={icon}
-          showLabel={false}
-          data-testid="withoutLabel"
-        />
+        <BottomNavigationAction icon={icon} showLabel={false} data-testid="withoutLabel" />
       </BottomNavigation>,
     );
     expect(getByTestId('withLabel')).to.not.have.class(actionClasses.iconOnly);
