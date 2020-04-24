@@ -1611,7 +1611,7 @@ describe('<Autocomplete />', () => {
       expect(handleChange.args[1][2]).to.equal('mouse');
     });
 
-    it('should open list box even if there is only one option', () => {
+    it('should open list box even if the input contains an option value', () => {
       const handleChange = spy();
       const { queryByRole, getByRole, getAllByRole } = render(
         <Autocomplete
