@@ -6,6 +6,7 @@ export interface ButtonGroupTypeMap<P = {}, D extends React.ElementType = 'div'>
   props: P & {
     color?: PropTypes.Color;
     disabled?: boolean;
+    disableElevation?: boolean;
     disableFocusRipple?: boolean;
     disableRipple?: boolean;
     fullWidth?: boolean;
@@ -33,6 +34,7 @@ export type ButtonGroupClassKey =
   | 'root'
   | 'contained'
   | 'disabled'
+  | 'disableElevation'
   | 'fullWidth'
   | 'vertical'
   | 'grouped'

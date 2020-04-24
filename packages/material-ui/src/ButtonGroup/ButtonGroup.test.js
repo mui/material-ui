@@ -160,6 +160,17 @@ describe('<ButtonGroup />', () => {
     assert.strictEqual(wrapper.find('.touchRipple').exists(), true);
   });
 
+  it('can disable the elevation', () => {
+    const wrapper = mount(
+      <ButtonGroup disableElevation>
+        <Button>Hello World</Button>
+      </ButtonGroup>,
+    );
+    const button = wrapper.find('button');
+
+    assert.strictEqual(button.hasClass('.MuiButtonGroup-disableElevation'), true);
+  });
+
   it('can disable the ripple', () => {
     const wrapper = mount(
       <ButtonGroup disableRipple>

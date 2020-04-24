@@ -21,6 +21,22 @@ export const styles = (theme) => ({
   contained: {
     boxShadow: theme.shadows[2],
   },
+  /* Styles applied to the root element if `disableElevation={true}`. */
+  disableElevation: {
+    boxShadow: 'none',
+    '&:hover': {
+      boxShadow: 'none',
+    },
+    '&$focusVisible': {
+      boxShadow: 'none',
+    },
+    '&:active': {
+      boxShadow: 'none',
+    },
+    '&$disabled': {
+      boxShadow: 'none',
+    },
+  },
   /* Pseudo-class applied to child elements if `disabled={true}`. */
   disabled: {},
   /* Styles applied to the root element if `fullWidth={true}`. */
@@ -164,6 +180,7 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(props, ref) {
     color = 'default',
     component: Component = 'div',
     disabled = false,
+    disableElevation = false,
     disableFocusRipple = false,
     disableRipple = false,
     fullWidth = false,
@@ -182,6 +199,9 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(props, ref) {
     {
       [classes.disabled]: disabled,
     },
+    {
+      [classes.disableElevation]: disableElevation,
+    },
   );
 
   return (
@@ -193,6 +213,7 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(props, ref) {
           [classes.contained]: variant === 'contained',
           [classes.vertical]: orientation === 'vertical',
           [classes.fullWidth]: fullWidth,
+          [classes.disableElevation]: disableElevation,
         },
         className,
       )}
@@ -257,6 +278,10 @@ ButtonGroup.propTypes = {
    * If `true`, the buttons will be disabled.
    */
   disabled: PropTypes.bool,
+  /**
+   * If `true`, no elevation is used.
+   */
+  disableElevation: PropTypes.bool,
   /**
    * If `true`, the button keyboard focus ripple will be disabled.
    * `disableRipple` must also be true.

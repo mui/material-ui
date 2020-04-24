@@ -24,3 +24,9 @@ components: Button, ButtonGroup
 ButtonGroup can also be used to create a split button. The dropdown can change the button action (as in this example), or be used to immediately trigger a related action.
 
 {{"demo": "pages/components/button-group/SplitButton.js"}}
+
+## Contained Buttons
+
+You can remove the elevation with the `disableElevation` prop.
+
+{{"demo": "pages/components/button-group/DisableElevation.js"}}
