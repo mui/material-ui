@@ -594,6 +594,55 @@ export const frFR: Localization = {
   },
 };
 
+export const glES: Localization = {
+  props: {
+    MuiBreadcrumbs: {
+      expandText: 'Mostrar camiño',
+    },
+    MuiTablePagination: {
+      backIconButtonText: 'Páxina anterior',
+      labelRowsPerPage: 'Filas por páxina:',
+      labelDisplayedRows: ({ from, to, count }) => `${from}-${to === -1 ? count : to} de ${count}`,
+      nextIconButtonText: 'Seguinte páxina',
+    },
+    MuiRating: {
+      getLabelText: (value) => `${value} Estrela${value !== 1 ? 's' : ''}`,
+      emptyLabelText: 'Baleira',
+    },
+    MuiAutocomplete: {
+      clearText: 'Limpar',
+      closeText: 'Pechar',
+      loadingText: 'Cargando…',
+      noOptionsText: 'Sen opcións',
+      openText: 'Aberto',
+    },
+    MuiAlert: {
+      closeText: 'Pechar',
+    },
+    MuiPagination: {
+      'aria-label': 'Paxinador',
+      getItemAriaLabel: (type, page, selected) => {
+        if (type === 'page') {
+          return `${selected ? '' : 'Ir á '}páxina ${page}`;
+        }
+        if (type === 'first') {
+          return 'Ir á primeira páxina';
+        }
+        if (type === 'last') {
+          return 'Ir á última páxina';
+        }
+        if (type === 'next') {
+          return 'Ir á páxina seguinte';
+        }
+        if (type === 'previous') {
+          return 'Ir á páxina anterior';
+        }
+        return undefined;
+      },
+    },
+  },
+};
+
 export const heIL: Localization = {
   props: {
     // MuiBreadcrumbs: {
