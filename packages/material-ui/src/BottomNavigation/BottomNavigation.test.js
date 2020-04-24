@@ -1,20 +1,21 @@
 import * as React from 'react';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createShallow, createMount, getClasses } from '@material-ui/core/test-utils';
+import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { createClientRender, fireEvent } from 'test/utils/createClientRender';
 import describeConformance from '../test-utils/describeConformance';
 import BottomNavigationAction from '../BottomNavigationAction';
 import Icon from '../Icon';
 import BottomNavigation from './BottomNavigation';
 
 describe('<BottomNavigation />', () => {
-  let shallow;
   let mount;
   let classes;
+  const render = createClientRender();
   const icon = <Icon>restore</Icon>;
+  const getBottomNavigation = (container) => container.firstChild;
 
   before(() => {
-    shallow = createShallow({ dive: true });
     classes = getClasses(
       <BottomNavigation showLabels value={0}>
         <BottomNavigationAction icon={icon} />
@@ -41,81 +42,86 @@ describe('<BottomNavigation />', () => {
   );
 
   it('renders with a null child', () => {
-    const wrapper = shallow(
+    const { container } = render(
       <BottomNavigation showLabels value={0}>
         <BottomNavigationAction label="One" />
         {null}
         <BottomNavigationAction label="Three" />
       </BottomNavigation>,
     );
-    assert.strictEqual(wrapper.find(BottomNavigationAction).length, 2);
+    expect(getBottomNavigation(container).childNodes.length).to.equal(2);
   });
 
   it('should pass selected prop to children', () => {
-    const wrapper = shallow(
+    const { container } = render(
       <BottomNavigation showLabels value={1}>
         <BottomNavigationAction icon={icon} />
         <BottomNavigationAction icon={icon} />
       </BottomNavigation>,
     );
-    assert.strictEqual(wrapper.childAt(0).props().selected, false);
-    assert.strictEqual(wrapper.childAt(1).props().selected, true);
+    expect(getBottomNavigation(container).childNodes[0]).to.not.have.class('Mui-selected');
+    expect(getBottomNavigation(container).childNodes[1]).to.have.class('Mui-selected');
   });
 
   it('should overwrite parent showLabel prop', () => {
-    const wrapper = shallow(
+    const bottomNavigationProps = {};
+    const ControlledBottomNavigationAction = (props) => {
+      bottomNavigationProps[props['data-testid']] = props;
+      return <BottomNavigationAction {...props} />;
+    };
+    render(
       <BottomNavigation showLabels value={1}>
-        <BottomNavigationAction icon={icon} />
-        <BottomNavigationAction icon={icon} showLabel={false} />
+        <ControlledBottomNavigationAction icon={icon} data-testid="withLabel" />
+        <ControlledBottomNavigationAction
+          icon={icon}
+          showLabel={false}
+          data-testid="withoutLabel"
+        />
       </BottomNavigation>,
     );
-    assert.strictEqual(wrapper.childAt(0).props().showLabel, true);
-    assert.strictEqual(wrapper.childAt(1).props().showLabel, false);
+    expect(bottomNavigationProps.withLabel.showLabel).to.equal(true);
+    expect(bottomNavigationProps.withoutLabel.showLabel).to.equal(false);
   });
 
   it('should forward the click', () => {
     const handleChange = spy();
-    const wrapper = mount(
+    const { container } = render(
       <BottomNavigation showLabels value={0} onChange={handleChange}>
         <BottomNavigationAction icon={icon} />
         <BottomNavigationAction icon={icon} />
       </BottomNavigation>,
     );
-    wrapper.find(BottomNavigationAction).at(1).simulate('click');
-    assert.strictEqual(handleChange.callCount, 1);
-    assert.strictEqual(handleChange.args[0][1], 1);
+    fireEvent.click(getBottomNavigation(container).childNodes[1]);
+    expect(handleChange.callCount).to.equal(1);
+    expect(handleChange.args[0][1]).to.equal(1);
   });
 
   it('should use custom action values', () => {
     const handleChange = spy();
-    const wrapper = mount(
+    const { container } = render(
       <BottomNavigation showLabels value={'first'} onChange={handleChange}>
         <BottomNavigationAction value="first" icon={icon} />
         <BottomNavigationAction value="second" icon={icon} />
       </BottomNavigation>,
     );
-    wrapper.find(BottomNavigationAction).at(1).simulate('click');
-    assert.strictEqual(
-      handleChange.args[0][1],
-      'second',
-      'should have been called with value second',
-    );
+    fireEvent.click(getBottomNavigation(container).childNodes[1]);
+    expect(handleChange.args[0][1]).to.equal('second', 'should have been called with value second');
   });
 
   it('should handle also empty action value', () => {
     const handleChange = spy();
-    const wrapper = mount(
+    const { container } = render(
       <BottomNavigation showLabels value="val" onChange={handleChange}>
         <BottomNavigationAction value="" icon={icon} />
         <BottomNavigationAction icon={icon} />
         <BottomNavigationAction value={null} icon={icon} />
       </BottomNavigation>,
     );
-    wrapper.find(BottomNavigationAction).at(0).simulate('click');
-    assert.strictEqual(handleChange.args[0][1], '');
-    wrapper.find(BottomNavigationAction).at(1).simulate('click');
-    assert.strictEqual(handleChange.args[1][1], 1);
-    wrapper.find(BottomNavigationAction).at(2).simulate('click');
-    assert.strictEqual(handleChange.args[2][1], null);
+    fireEvent.click(getBottomNavigation(container).childNodes[0]);
+    expect(handleChange.args[0][1], '');
+    fireEvent.click(getBottomNavigation(container).childNodes[1]);
+    expect(handleChange.args[1][1], 1);
+    fireEvent.click(getBottomNavigation(container).childNodes[2]);
+    expect(handleChange.args[2][1], '');
   });
 });
