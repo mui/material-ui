@@ -24,15 +24,6 @@ export const styles = (theme) => ({
   /* Styles applied to the root element if `disableElevation={true}`. */
   disableElevation: {
     boxShadow: 'none',
-    '&:hover': {
-      boxShadow: 'none',
-    },
-    '&:active': {
-      boxShadow: 'none',
-    },
-    '&$disabled': {
-      boxShadow: 'none',
-    },
   },
   /* Pseudo-class applied to child elements if `disabled={true}`. */
   disabled: {},
@@ -196,9 +187,6 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(props, ref) {
     {
       [classes.disabled]: disabled,
     },
-    {
-      [classes.disableElevation]: disableElevation,
-    },
   );
 
   return (
@@ -242,6 +230,7 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(props, ref) {
           fullWidth,
           size: child.props.size || size,
           variant: child.props.variant || variant,
+          disableElevation: child.props.disableElevation || disableElevation,
         });
       })}
     </Component>
