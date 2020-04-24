@@ -1611,7 +1611,7 @@ describe('<Autocomplete />', () => {
       expect(handleChange.args[1][2]).to.equal('mouse');
     });
 
-    it('should open list box even if the input contains an option value', () => {
+    it('should mantain list box open clicking on input when it is not empty', () => {
       const handleChange = spy();
       const { queryByRole, getByRole, getAllByRole } = render(
         <Autocomplete
@@ -1622,12 +1622,33 @@ describe('<Autocomplete />', () => {
       );
       const textbox = getByRole('textbox');
       expect(queryByRole('presentation')).to.equal(null);
-      fireEvent.mouseDown(textbox);
+      fireEvent.mouseDown(textbox); // Open listbox
       expect(queryByRole('presentation')).to.not.equal(null);
       const options = getAllByRole('option');
       fireEvent.click(options[0]);
       expect(queryByRole('presentation')).to.equal(null);
-      fireEvent.mouseDown(textbox);
+      fireEvent.mouseDown(textbox); // Open listbox
+      expect(queryByRole('presentation')).to.not.equal(null);
+      fireEvent.mouseDown(textbox); // Remain open listbox
+      expect(queryByRole('presentation')).to.not.equal(null);
+    });
+
+    it('should toggle list box when input is empty', () => {
+      const handleChange = spy();
+      const { queryByRole, getByRole } = render(
+        <Autocomplete
+          onHighlightChange={handleChange}
+          options={['one']}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+      const textbox = getByRole('textbox');
+      expect(queryByRole('presentation')).to.equal(null);
+      fireEvent.mouseDown(textbox); // Open listbox
+      expect(queryByRole('presentation')).to.not.equal(null);
+      fireEvent.mouseDown(textbox); // close listbox
+      expect(queryByRole('presentation')).to.equal(null);
+      fireEvent.mouseDown(textbox); // open listbox
       expect(queryByRole('presentation')).to.not.equal(null);
     });
   });

@@ -860,7 +860,9 @@ export default function useAutocomplete(props) {
   };
 
   const handleInputMouseDown = (event) => {
-    handlePopupIndicator(event);
+    if (inputValue === '' || !open) {
+      handlePopupIndicator(event);
+    }
   };
 
   let dirty = freeSolo && inputValue.length > 0;
