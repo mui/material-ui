@@ -5,7 +5,6 @@ export interface CreateFilterOptionsConfig<T> {
   ignoreCase?: boolean;
   limit?: number;
   matchFrom?: 'any' | 'start';
-  startAfter?: number;
   stringify?: (option: T) => string;
   trim?: boolean;
 }
