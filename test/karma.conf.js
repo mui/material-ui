@@ -61,7 +61,7 @@ module.exports = function setKarmaConfig(config) {
       module: {
         rules: [
           {
-            test: /\.js$/,
+            test: /\.(js|ts)$/,
             loader: 'babel-loader',
             exclude: /node_modules/,
           },
@@ -86,6 +86,7 @@ module.exports = function setKarmaConfig(config) {
           '@testing-library/react/pure':
             '@testing-library/react/dist/@testing-library/react.pure.esm',
         },
+        extensions: ['.js', '.ts'],
       },
     },
     webpackMiddleware: {

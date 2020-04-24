@@ -2,8 +2,24 @@ import getScrollbarSize from '../utils/getScrollbarSize';
 import ownerDocument from '../utils/ownerDocument';
 import ownerWindow from '../utils/ownerWindow';
 
+interface ManagedModalProps {
+  disableScrollLock?: boolean;
+}
+
+interface Modal {
+  modalRef: HTMLElement;
+  mountNode: HTMLElement;
+}
+
+interface ContainerInfo {
+  container: HTMLElement;
+  hiddenSiblingNodes: Element[];
+  modals: Modal[];
+  restore: (() => void) | null;
+}
+
 // Is a vertical scrollbar displayed?
-function isOverflowing(container) {
+function isOverflowing(container: HTMLElement) {
   const doc = ownerDocument(container);
 
   if (doc.body === container) {
@@ -13,7 +29,7 @@ function isOverflowing(container) {
   return container.scrollHeight > container.clientHeight;
 }
 
-export function ariaHidden(node, show) {
+export function ariaHidden(node: Element, show: boolean) {
   if (show) {
     node.setAttribute('aria-hidden', 'true');
   } else {
@@ -21,15 +37,21 @@ export function ariaHidden(node, show) {
   }
 }
 
-function getPaddingRight(node) {
-  return parseInt(window.getComputedStyle(node)['padding-right'], 10) || 0;
+function getPaddingRight(node: HTMLElement) {
+  return parseInt(window.getComputedStyle(node)['padding-right' as 'paddingRight'], 10) || 0;
 }
 
-function ariaHiddenSiblings(container, mountNode, currentNode, nodesToExclude = [], show) {
+function ariaHiddenSiblings(
+  container: HTMLElement,
+  mountNode: HTMLElement,
+  currentNode: HTMLElement,
+  nodesToExclude: Element[] = [],
+  show: boolean,
+) {
   const blacklist = [mountNode, currentNode, ...nodesToExclude];
   const blacklistTagNames = ['TEMPLATE', 'SCRIPT', 'STYLE'];
 
-  [].forEach.call(container.children, (node) => {
+  [].forEach.call(container.children, (node: HTMLCollection[0]) => {
     if (
       node.nodeType === 1 &&
       blacklist.indexOf(node) === -1 &&
@@ -40,7 +62,10 @@ function ariaHiddenSiblings(container, mountNode, currentNode, nodesToExclude = 
   });
 }
 
-function findIndexOf(containerInfo, callback) {
+function findIndexOf(
+  containerInfo: ContainerInfo[],
+  callback: (container: ContainerInfo) => boolean,
+) {
   let idx = -1;
   containerInfo.some((item, index) => {
     if (callback(item)) {
@@ -52,11 +77,11 @@ function findIndexOf(containerInfo, callback) {
   return idx;
 }
 
-function handleContainer(containerInfo, props) {
-  const restoreStyle = [];
-  const restorePaddings = [];
+function handleContainer(containerInfo: ContainerInfo, props: ManagedModalProps) {
+  const restoreStyle: Array<{ value: string; key: string; el: HTMLElement }> = [];
+  const restorePaddings: string[] = [];
   const container = containerInfo.container;
-  let fixedNodes;
+  let fixedNodes: NodeListOf<HTMLElement>;
 
   if (!props.disableScrollLock) {
     if (isOverflowing(container)) {
@@ -69,11 +94,13 @@ function handleContainer(containerInfo, props) {
         el: container,
       });
       // Use computed style, here to get the real padding to add our scrollbar width.
-      container.style['padding-right'] = `${getPaddingRight(container) + scrollbarSize}px`;
+      container.style['padding-right' as 'paddingRight'] = `${
+        getPaddingRight(container) + scrollbarSize
+      }px`;
 
       // .mui-fixed is a global helper.
       fixedNodes = ownerDocument(container).querySelectorAll('.mui-fixed');
-      [].forEach.call(fixedNodes, (node) => {
+      [].forEach.call(fixedNodes, (node: HTMLElement) => {
         restorePaddings.push(node.style.paddingRight);
         node.style.paddingRight = `${getPaddingRight(node) + scrollbarSize}px`;
       });
@@ -81,9 +108,10 @@ function handleContainer(containerInfo, props) {
 
     // Improve Gatsby support
     // https://css-tricks.com/snippets/css/force-vertical-scrollbar/
-    const parent = container.parentElement;
+    const parent = container.parentElement!;
     const scrollContainer =
-      parent.nodeName === 'HTML' && window.getComputedStyle(parent)['overflow-y'] === 'scroll'
+      parent.nodeName === 'HTML' &&
+      window.getComputedStyle(parent)['overflow-y' as 'overflowY'] === 'scroll'
         ? parent
         : container;
 
@@ -99,7 +127,7 @@ function handleContainer(containerInfo, props) {
 
   const restore = () => {
     if (fixedNodes) {
-      [].forEach.call(fixedNodes, (node, i) => {
+      [].forEach.call(fixedNodes, (node: HTMLElement, i) => {
         if (restorePaddings[i]) {
           node.style.paddingRight = restorePaddings[i];
         } else {
@@ -120,9 +148,9 @@ function handleContainer(containerInfo, props) {
   return restore;
 }
 
-function getHiddenSiblings(container) {
-  const hiddenSiblings = [];
-  [].forEach.call(container.children, (node) => {
+function getHiddenSiblings(container: HTMLElement): Element[] {
+  const hiddenSiblings: Element[] = [];
+  [].forEach.call(container.children, (node: HTMLCollection[0]) => {
     if (node.getAttribute && node.getAttribute('aria-hidden') === 'true') {
       hiddenSiblings.push(node);
     }
@@ -138,18 +166,15 @@ function getHiddenSiblings(container) {
  * Used by the Modal to ensure proper styling of containers.
  */
 export default class ModalManager {
+  modals: Modal[];
+  containers: ContainerInfo[];
+
   constructor() {
-    // this.modals[modalIndex] = modal
     this.modals = [];
-    // this.containers[containerIndex] = {
-    //   modals: [],
-    //   container,
-    //   restore: null,
-    // }
     this.containers = [];
   }
 
-  add(modal, container) {
+  add(modal: Modal, container: HTMLElement) {
     let modalIndex = this.modals.indexOf(modal);
     if (modalIndex !== -1) {
       return modalIndex;
@@ -182,7 +207,7 @@ export default class ModalManager {
     return modalIndex;
   }
 
-  mount(modal, props) {
+  mount(modal: Modal, props: ManagedModalProps) {
     const containerIndex = findIndexOf(
       this.containers,
       (item) => item.modals.indexOf(modal) !== -1,
@@ -194,7 +219,7 @@ export default class ModalManager {
     }
   }
 
-  remove(modal) {
+  remove(modal: Modal) {
     const modalIndex = this.modals.indexOf(modal);
 
     if (modalIndex === -1) {
@@ -244,7 +269,7 @@ export default class ModalManager {
     return modalIndex;
   }
 
-  isTopModal(modal) {
+  isTopModal(modal: Modal) {
     return this.modals.length > 0 && this.modals[this.modals.length - 1] === modal;
   }
 }

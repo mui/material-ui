@@ -89,6 +89,8 @@ module.exports = {
     'react/static-property-placement': 'off',
 
     'import/no-extraneous-dependencies': 'off', // It would be better to enable this rule.
+    // Unclear what we would gain by consistency. It's more important that code works
+    'import/extensions': 'off',
     'import/namespace': ['error', { allowComputed: true }],
     'import/order': [
       'error',
