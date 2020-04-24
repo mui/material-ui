@@ -24,10 +24,22 @@ function App() {
   const [selectedDate, handleDateChange] = useState(new Date());
 
   return (
-    <LocalizationProvider dateAdapter={DateFnsAdapter}>
-      <DatePicker value={selectedDate} onChange={date => handleDateChange(date)} />
-      <TimePicker value={selectedDate} onChange={date => handleDateChange(date)} />
-      <DateTimePicker value={selectedDate} onChange={date => handleDateChange(date)} />
+    <LocalizationProvider dateAdapter={DateFnsUtils}>
+      <DatePicker
+        renderInput={props => <TextField {...props} />}
+        value={selectedDate}
+        onChange={date => handleDateChange(date)}
+      />
+      <TimePicker
+        renderInput={props => <TextField {...props} />}
+        value={selectedDate}
+        onChange={date => handleDateChange(date)}
+      />
+      <DateTimePicker
+        renderInput={props => <TextField {...props} />}
+        value={selectedDate}
+        onChange={date => handleDateChange(date)}
+      />
     </LocalizationProvider>
   );
 }

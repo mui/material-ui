@@ -1,25 +1,32 @@
 import * as React from 'react';
-import TextField, { TextFieldProps } from '@material-ui/core/TextField';
-import { ExtendMui } from '../typings/helpers';
 import { onSpaceOrEnter } from '../_helpers/utils';
 import { ParsableDate } from '../constants/prop-types';
 import { MaterialUiPickersDate } from '../typings/date';
+import { TextFieldProps } from '@material-ui/core/TextField';
 import { IconButtonProps } from '@material-ui/core/IconButton';
 import { useUtils, MuiPickersAdapter } from './hooks/useUtils';
 import { InputAdornmentProps } from '@material-ui/core/InputAdornment';
 import { getDisplayDate, getTextFieldAriaText } from '../_helpers/text-field-helper';
 
-export interface DateInputProps<TInputValue = ParsableDate, TDateValue = MaterialUiPickersDate>
-  extends ExtendMui<TextFieldProps, 'onError' | 'onChange' | 'value'> {
+type MuiTextFieldProps = TextFieldProps | Omit<TextFieldProps, 'variant'>;
+
+export interface DateInputProps<TInputValue = ParsableDate, TDateValue = MaterialUiPickersDate> {
+  open: boolean;
   rawValue: TInputValue;
   parsedDateValue: TDateValue;
   inputFormat: string;
   onChange: (date: TDateValue, keyboardInputValue?: string) => void;
   openPicker: () => void;
   readOnly?: boolean;
+  disabled?: boolean;
   validationError?: React.ReactNode;
+  label?: TextFieldProps['label'];
+  InputProps?: TextFieldProps['InputProps'];
+  TextFieldProps?: Partial<MuiTextFieldProps>;
+  // ?? TODO when it will be possible to display "empty" date in datepicker use it instead of ignoring invalid inputs
+  ignoreInvalidInputs?: boolean;
   /** Override input component */
-  TextFieldComponent?: React.ComponentType<TextFieldProps>;
+  renderInput: (props: MuiTextFieldProps) => React.ReactElement;
   /**
    * Message displaying in read-only text field when null passed
    * @default ' '
@@ -58,11 +65,11 @@ export interface DateInputProps<TInputValue = ParsableDate, TDateValue = Materia
    * @default false
    */
   disableMaskedInput?: boolean;
-  /** Get aria-label text for control that opens datepicker dialog. Aria-label have to include selected date. */
+  /**
+   * Get aria-label text for control that opens picker dialog. Aria-label text must include selected date.
+   * @default (value, utils) => `Choose date, selected date is ${utils.format(utils.date(value), 'fullDate')}`
+   */
   getOpenDialogAriaText?: (value: ParsableDate, utils: MuiPickersAdapter) => string;
-  // ?? TODO when it will be possible to display "empty" date in datepicker use it instead of ignoring invalid inputs
-  ignoreInvalidInputs?: boolean;
-  open: boolean;
 }
 
 export type ExportedDateInputProps<TInputValue, TDateValue> = Omit<
@@ -76,6 +83,7 @@ export type ExportedDateInputProps<TInputValue, TDateValue> = Omit<
   | 'forwardedRef'
   | 'parsedDateValue'
   | 'open'
+  | 'TextFieldProps'
 >;
 
 export interface DateInputRefs {
@@ -84,29 +92,19 @@ export interface DateInputRefs {
 }
 
 export const PureDateInput: React.FC<DateInputProps & DateInputRefs> = ({
-  onChange,
   inputFormat,
-  rifmFormatter,
-  acceptRegex: refuse,
-  mask,
   rawValue,
   validationError,
   InputProps,
   openPicker: onOpen,
-  TextFieldComponent = TextField,
-  variant,
+  renderInput,
   emptyInputText: emptyLabel,
-  openPickerIcon,
-  disableOpenPicker: hideOpenPickerButton,
-  ignoreInvalidInputs,
-  KeyboardButtonProps,
-  disableMaskedInput,
-  parsedDateValue,
   forwardedRef,
   containerRef,
-  open,
   getOpenDialogAriaText = getTextFieldAriaText,
-  ...other
+  disabled,
+  label,
+  TextFieldProps = {},
 }) => {
   const utils = useUtils();
   const PureDateInputProps = React.useMemo(
@@ -122,22 +120,20 @@ export const PureDateInput: React.FC<DateInputProps & DateInputRefs> = ({
     emptyInputText: emptyLabel,
   });
 
-  return (
-    <TextFieldComponent
-      ref={containerRef}
-      inputRef={forwardedRef}
-      variant={variant}
-      error={Boolean(validationError)}
-      helperText={validationError}
-      {...other}
-      aria-label={getOpenDialogAriaText(rawValue, utils)}
-      // do not overridable
-      onClick={onOpen}
-      value={inputValue}
-      InputProps={PureDateInputProps}
-      onKeyDown={onSpaceOrEnter(onOpen)}
-    />
-  );
+  return renderInput({
+    label,
+    disabled,
+    ref: containerRef,
+    inputRef: forwardedRef,
+    error: Boolean(validationError),
+    helperText: validationError,
+    'aria-label': getOpenDialogAriaText(rawValue, utils),
+    onClick: onOpen,
+    value: inputValue,
+    InputProps: PureDateInputProps,
+    onKeyDown: onSpaceOrEnter(onOpen),
+    ...TextFieldProps,
+  });
 };
 
 PureDateInput.displayName = 'PureDateInput';

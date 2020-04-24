@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from 'react';
+import { TextField } from '@material-ui/core';
 import { TimePicker } from '@material-ui/pickers';
 
 function TimeValidation() {
@@ -7,6 +8,7 @@ function TimeValidation() {
   return (
     <Fragment>
       <TimePicker
+        renderInput={props => <TextField {...props} />}
         value={selectedDate}
         onChange={date => handleDateChange(date)}
         minTime={new Date(0, 0, 0, 8)}
@@ -14,6 +16,7 @@ function TimeValidation() {
       />
 
       <TimePicker
+        renderInput={props => <TextField {...props} />}
         ampm={false}
         label="24 hours"
         minTime={new Date(0, 0, 0, 8)}
@@ -23,6 +26,7 @@ function TimeValidation() {
       />
 
       <TimePicker
+        renderInput={props => <TextField {...props} />}
         ampm={false}
         label="Disable odd hours"
         shouldDisableTime={(timeValue, clockType) => {

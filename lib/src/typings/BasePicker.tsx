@@ -50,4 +50,6 @@ export interface BasePickerProps<
   toolbarTitle?: React.ReactNode;
   /** Date format, that is displaying in toolbar */
   toolbarFormat?: string;
+  /** className applied to the root component */
+  className?: string;
 }

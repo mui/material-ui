@@ -3,6 +3,7 @@ import frLocale from 'date-fns/locale/fr';
 import ruLocale from 'date-fns/locale/ru';
 import enLocale from 'date-fns/locale/en-US';
 import DateFnsAdapter from '@material-ui/pickers/adapter/date-fns';
+import { TextField } from '@material-ui/core';
 import { Button, ButtonGroup } from '@material-ui/core';
 import { DatePicker, LocalizationProvider } from '@material-ui/pickers';
 
@@ -28,7 +29,12 @@ function DateFnsLocalizationExample() {
 
   return (
     <LocalizationProvider dateAdapter={DateFnsAdapter} locale={localeMap[locale]}>
-      <DatePicker mask={maskMap[locale]} value={selectedDate} onChange={handleDateChange} />
+      <DatePicker
+        renderInput={props => <TextField {...props} />}
+        mask={maskMap[locale]}
+        value={selectedDate}
+        onChange={handleDateChange}
+      />
 
       <ButtonGroup>
         {Object.keys(localeMap).map(localeItem => (

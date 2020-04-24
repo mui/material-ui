@@ -65,7 +65,6 @@ export function makeRangePicker<TWrapper extends SomeWrapper>(Wrapper: TWrapper)
     value,
     onChange,
     mask = '__/__/____',
-    variant = 'outlined',
     startText = 'Start',
     endText = 'End',
     inputFormat: passedInputFormat,
@@ -101,13 +100,12 @@ export function makeRangePicker<TWrapper extends SomeWrapper>(Wrapper: TWrapper)
       startText,
       endText,
       mask,
-      variant,
     };
 
     return (
       <WrapperComponent
         wrapperProps={wrapperProps}
-        inputProps={DateInputProps}
+        DateInputProps={DateInputProps}
         {...restPropsForTextField}
       >
         <DateRangePickerView
@@ -136,7 +134,7 @@ export function makeRangePicker<TWrapper extends SomeWrapper>(Wrapper: TWrapper)
   return React.forwardRef<
     HTMLDivElement,
     React.ComponentProps<typeof RangePickerWithStateAndWrapper>
-  >((props, ref) => <RangePickerWithStateAndWrapper {...props} forwardedRef={ref} />);
+  >((props, ref) => <RangePickerWithStateAndWrapper {...(props as any)} forwardedRef={ref} />);
 }
 
 // TODO replace with new export type syntax

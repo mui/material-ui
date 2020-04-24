@@ -5,7 +5,7 @@ describe('DateRangePicker', () => {
   });
 
   it('Opens and selecting a range in DateRangePicker', () => {
-    cy.get('#desktop-range-picker input')
+    cy.get('[data-mui-test="desktop-range-picker"]')
       .first()
       .focus();
     cy.get('[aria-label="Jan 1, 2019"]').click();
@@ -15,7 +15,7 @@ describe('DateRangePicker', () => {
   });
 
   it('Opens and selecting a range on the next month', () => {
-    cy.get('#desktop-range-picker input')
+    cy.get('[data-mui-test="desktop-range-picker"]')
       .first()
       .focus();
 
@@ -30,7 +30,7 @@ describe('DateRangePicker', () => {
   });
 
   it.skip('Shows range preview on hover', () => {
-    cy.get('#desktop-range-picker input')
+    cy.get('[data-mui-test="desktop-range-picker"]')
       .first()
       .focus();
 
@@ -38,11 +38,11 @@ describe('DateRangePicker', () => {
   });
 
   it('Properly handles selection when starting from end', () => {
-    cy.get('#desktop-range-picker input')
+    cy.get('[data-mui-test="desktop-range-picker"]')
       .first()
       .clear();
 
-    cy.get('#desktop-range-picker input')
+    cy.get('[data-mui-test="desktop-range-picker"]')
       .eq(1)
       .focus();
 
@@ -60,7 +60,7 @@ describe('DateRangePicker', () => {
   });
 
   it('Allows pure keyboard input control', () => {
-    cy.get('#desktop-range-picker input')
+    cy.get('[data-mui-test="desktop-range-picker"]')
       .eq(0)
       .clear()
       .type('06/06/2019');
@@ -68,7 +68,7 @@ describe('DateRangePicker', () => {
     cy.contains('June 2019');
     cy.contains('July 2019');
 
-    cy.get('#desktop-range-picker input')
+    cy.get('[data-mui-test="desktop-range-picker"]')
       .eq(1)
       .focus()
       .clear()
@@ -81,7 +81,7 @@ describe('DateRangePicker', () => {
   });
 
   it('Scrolls current month to the active selection on focusing appropriate field', () => {
-    cy.get('#desktop-range-picker input')
+    cy.get('[data-mui-test="desktop-range-picker"]')
       .first()
       .click();
 
@@ -92,7 +92,7 @@ describe('DateRangePicker', () => {
       .click()
       .click();
 
-    cy.get('#desktop-range-picker input')
+    cy.get('[data-mui-test="desktop-range-picker"]')
       .first()
       .click();
 
@@ -100,7 +100,7 @@ describe('DateRangePicker', () => {
   });
 
   it('Opens on the current selecting range end', () => {
-    cy.get('#desktop-range-picker input')
+    cy.get('[data-mui-test="desktop-range-picker"]')
       .first()
       .click();
 
@@ -112,7 +112,7 @@ describe('DateRangePicker', () => {
     cy.get('[aria-label="Mar 19, 2019"]').click();
 
     // reopen picker
-    cy.get('#desktop-range-picker input')
+    cy.get('[data-mui-test="desktop-range-picker"]')
       .eq(1)
       .click();
 

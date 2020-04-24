@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
+import { TextField } from '@material-ui/core';
 import { DatePicker } from '@material-ui/pickers';
 import { Button, makeStyles } from '@material-ui/core';
-
 const useStyles = makeStyles({
   container: {
     display: 'flex',
@@ -19,6 +19,7 @@ function ControllingProgrammaticallyExample() {
       <Button onClick={() => setIsOpen(true)}> Open picker </Button>
 
       <DatePicker
+        renderInput={props => <TextField {...props} />}
         open={isOpen}
         onOpen={() => setIsOpen(true)}
         onClose={() => setIsOpen(false)}

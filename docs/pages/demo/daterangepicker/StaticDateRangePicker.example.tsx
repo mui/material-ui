@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { TextField } from '@material-ui/core';
 import { StaticDateRangePicker, DateRange } from '@material-ui/pickers';
 
 function StaticDateRangePickerExample() {
@@ -10,12 +11,14 @@ function StaticDateRangePickerExample() {
         displayStaticWrapperAs="desktop"
         value={selectedDate}
         onChange={date => handleDateChange(date)}
+        renderInput={props => <TextField {...props} />}
       />
 
       <StaticDateRangePicker
         displayStaticWrapperAs="mobile"
         value={selectedDate}
         onChange={date => handleDateChange(date)}
+        renderInput={props => <TextField {...props} />}
       />
     </>
   );

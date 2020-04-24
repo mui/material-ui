@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Badge } from '@material-ui/core';
+import { TextField } from '@material-ui/core';
 import { DatePicker, Day } from '@material-ui/pickers';
 import { makeJSDateObject } from '../../../utils/helpers';
 
@@ -27,6 +28,7 @@ function ServerRequest() {
         value={selectedDate}
         onChange={date => handleDateChange(date)}
         onMonthChange={handleMonthChange}
+        renderInput={props => <TextField {...props} />}
         renderDay={(day, selectedDate, DayComponentProps) => {
           const date = makeJSDateObject(day); // skip this step, it is required to support date libs
           const isSelected =

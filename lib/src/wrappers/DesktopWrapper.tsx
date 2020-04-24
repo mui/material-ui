@@ -33,35 +33,18 @@ const useStyles = makeStyles({
 
 export const DesktopWrapper: React.FC<DesktopWrapperProps> = ({
   open,
-  wider,
   children,
   PopoverProps,
-  PopperProps,
-  TransitionComponent,
-  onClear,
   onDismiss,
-  onSetToday,
-  onAccept,
-  showTabs,
   DateInputProps,
-  okLabel,
-  cancelLabel,
-  clearLabel,
-  todayLabel,
-  showTodayButton,
-  clearable,
-  DialogProps,
-  PureDateInputComponent,
-  displayStaticWrapperAs,
   KeyboardDateInputComponent = KeyboardDateInput,
-  ...other
 }) => {
   const ref = React.useRef<HTMLDivElement>(null);
   const classes = useStyles();
 
   return (
     <WrapperVariantContext.Provider value="desktop">
-      <KeyboardDateInputComponent {...other} {...DateInputProps} containerRef={ref} />
+      <KeyboardDateInputComponent {...DateInputProps} containerRef={ref} />
 
       <Popover
         role="dialog"

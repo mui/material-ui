@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import isWeekend from 'date-fns/isWeekend';
+import { TextField } from '@material-ui/core';
 import { StaticDatePicker } from '@material-ui/pickers';
 import { makeJSDateObject } from '../../../utils/helpers';
 
@@ -15,9 +16,11 @@ const StaticDatePickerExample = () => {
     <>
       <StaticDatePicker
         autoOk
+        displayStaticWrapperAs="desktop"
         openTo="year"
         value={date}
         onChange={date => handleDateChange(date)}
+        renderInput={props => <TextField {...props} />}
       />
 
       <StaticDatePicker
@@ -27,6 +30,7 @@ const StaticDatePickerExample = () => {
         value={date}
         shouldDisableDate={disableWeekends}
         onChange={date => handleDateChange(date)}
+        renderInput={props => <TextField {...props} />}
       />
     </>
   );

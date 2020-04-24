@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { ReactWrapper } from 'enzyme';
 import { clickOKButton } from './commands';
+import { TextField } from '@material-ui/core';
 import { mount, utilsToUse, toHaveBeenCalledExceptMoment } from './test-utils';
 import { MobileDateTimePicker, DateTimePickerProps } from '../DateTimePicker/DateTimePicker';
 
@@ -21,6 +22,7 @@ describe('e2e - DateTimePicker', () => {
         rightArrowIcon="keyboard_arrow_right"
         dateRangeIcon="date_range"
         timeIcon="access_time"
+        renderInput={props => <TextField {...props} />}
       />
     );
   });

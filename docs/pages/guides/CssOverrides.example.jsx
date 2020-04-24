@@ -1,6 +1,7 @@
 // @ts-nocheck
 import React, { useState } from 'react';
 import lightBlue from '@material-ui/core/colors/lightBlue';
+import { TextField } from '@material-ui/core';
 import { DatePicker } from '@material-ui/pickers';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 
@@ -45,6 +46,7 @@ function CssOverrides() {
   return (
     <ThemeProvider theme={materialTheme}>
       <DatePicker
+        renderInput={props => <TextField {...props} />}
         label="Light blue picker"
         value={selectedDate}
         onChange={handleDateChange}

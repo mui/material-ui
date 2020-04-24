@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { TextField } from '@material-ui/core';
 import { DatePicker } from '@material-ui/pickers';
 
 function BasicDatePicker() {
@@ -6,8 +7,8 @@ function BasicDatePicker() {
 
   return (
     <DatePicker
+      renderInput={props => <TextField {...props} />}
       disableMaskedInput
-      placeholder="mm/dd/yyyy"
       label="Accessible"
       value={selectedDate}
       onChange={date => handleDateChange(date)}

@@ -13,9 +13,9 @@ import { InnerDesktopWrapperProps } from './DesktopWrapper';
 import { WrapperVariantContext } from './WrapperVariantContext';
 import { IS_TOUCH_DEVICE_MEDIA } from '../constants/dimensions';
 import { KeyboardDateInput } from '../_shared/KeyboardDateInput';
+import { executeInTheNextEventLoopTick } from '../_helpers/utils';
 import { useGlobalKeyDown, keycode } from '../_shared/hooks/useKeyDown';
 import { TransitionProps } from '@material-ui/core/transitions/transition';
-import { executeInTheNextEventLoopTick, createDelegatedEventHandler } from '../_helpers/utils';
 
 export interface InnerDesktopPopperWrapperProps {
   /** Popper props passed to material-ui [Popper](https://material-ui.com/api/popper/#popper-api) */
@@ -49,28 +49,12 @@ const useStyles = makeStyles(theme => ({
 
 export const DesktopPopperWrapper: React.FC<DesktopPopperWrapperProps> = ({
   open,
-  wider,
   children,
   PopperProps,
-  PopoverProps,
-  onClear,
   onDismiss,
-  onSetToday,
-  onAccept,
-  showTabs,
   DateInputProps,
-  okLabel,
-  cancelLabel,
-  clearLabel,
-  todayLabel,
-  showTodayButton,
-  clearable,
-  DialogProps,
-  PureDateInputComponent,
-  displayStaticWrapperAs,
   TransitionComponent = Grow,
   KeyboardDateInputComponent = KeyboardDateInput,
-  ...other
 }) => {
   const classes = useStyles();
   const inputRef = React.useRef<HTMLDivElement>(null);
@@ -96,10 +80,11 @@ export const DesktopPopperWrapper: React.FC<DesktopPopperWrapperProps> = ({
   return (
     <WrapperVariantContext.Provider value="desktop">
       <KeyboardDateInputComponent
-        {...other}
         {...DateInputProps}
-        onBlur={createDelegatedEventHandler(handleBlur, DateInputProps.onBlur)}
         containerRef={inputRef}
+        TextFieldProps={{
+          onBlur: handleBlur,
+        }}
       />
 
       <Popper

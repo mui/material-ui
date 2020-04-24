@@ -6,17 +6,19 @@ const ids = {
 };
 
 describe('DatePicker', () => {
-  before(() => {
+  beforeEach(() => {
     cy.visit('/regression');
   });
 
   context('Mobile DatePicker', () => {
-    it('Should open date picker on 01-01-2018', () => {
+    beforeEach(() => {
       cy.get(`input${ids.basic}`).should('have.value', '01/01/2019');
 
       cy.get(ids.basic).click({ force: true });
       cy.get('[data-day="21/01/2019"]').click();
+    });
 
+    it('Should open date picker on 01-01-2018', () => {
       cy.get('h4').should('have.text', 'Mon, Jan 21');
     });
 
@@ -77,6 +79,7 @@ describe('DatePicker', () => {
     });
 
     it('Should clear mask input when removing symbols one by one', () => {
+      cy.get(ids.maskedKeyboard).clear();
       cy.get(ids.maskedKeyboard).type('1{backspace}');
 
       cy.get(`${ids.maskedKeyboard}`).should('have.attr', 'aria-invalid', 'false');
@@ -95,9 +98,9 @@ describe('DatePicker', () => {
       cy.get('.keyboard-btn')
         .first()
         .click();
-      cy.get(`[data-day="19/04/2019"]`).click();
+      cy.get(`[data-day="19/01/2019"]`).click();
 
-      cy.get(ids.maskedKeyboard).should('have.value', '04/19/2019');
+      cy.get(ids.maskedKeyboard).should('have.value', '01/19/2019');
     });
 
     it('Should not open disabled and readonly datepickers', () => {

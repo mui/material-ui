@@ -2,6 +2,7 @@ import React from 'react';
 import Code from '../../_shared/Code';
 import { connect } from 'react-redux';
 import { Grid } from '@material-ui/core';
+import { TextField } from '@material-ui/core';
 import { DatePicker } from '@material-ui/pickers';
 import { reducer as formReducer } from 'redux-form';
 import { createStore, combineReducers } from 'redux';
@@ -21,6 +22,7 @@ const DateField = props => {
 
   return (
     <DatePicker
+      renderInput={props => <TextField {...props} />}
       {...inputProps}
       {...others}
       inputFormat="dd/MM/yyyy"

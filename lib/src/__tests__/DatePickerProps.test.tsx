@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { TextField } from '@material-ui/core';
 import { mount, utilsToUse } from './test-utils';
 import { DatePicker, MobileDatePicker } from '../DatePicker/DatePicker';
 
@@ -6,6 +7,7 @@ describe('DatePicker - different props', () => {
   it('Should not render toolbar if onlyCalendar = true', () => {
     const component = mount(
       <DatePicker
+        renderInput={props => <TextField {...props} />}
         open
         showToolbar
         onChange={jest.fn()}
@@ -19,6 +21,7 @@ describe('DatePicker - different props', () => {
   it('toolbarTitle – should render value from prop', () => {
     const component = mount(
       <MobileDatePicker
+        renderInput={props => <TextField {...props} />}
         open
         toolbarTitle="test"
         label="something"
@@ -36,6 +39,7 @@ describe('DatePicker - different props', () => {
         open
         label="Default label"
         onChange={jest.fn()}
+        renderInput={props => <TextField {...props} />}
         value={utilsToUse.date('2018-01-01T00:00:00.000Z')}
       />
     );
@@ -48,6 +52,7 @@ describe('DatePicker - different props', () => {
   it('toolbarFormat – should format toolbar according to passed format', () => {
     const component = mount(
       <MobileDatePicker
+        renderInput={props => <TextField {...props} />}
         open
         onChange={jest.fn()}
         toolbarFormat="MMMM"
@@ -63,6 +68,7 @@ describe('DatePicker - different props', () => {
     const onChangeMock = jest.fn();
     const component = mount(
       <MobileDatePicker
+        renderInput={props => <TextField {...props} />}
         autoOk
         showTodayButton
         cancelLabel="stream"
@@ -94,7 +100,12 @@ describe('DatePicker - different props', () => {
 
       return (
         <>
-          <DatePicker ref={ref} id="focusing-picker" value={null} onChange={jest.fn()} />
+          <DatePicker
+            ref={ref}
+            value={null}
+            onChange={jest.fn()}
+            renderInput={props => <TextField id="focusing-picker" {...props} />}
+          />
 
           <button id="focus-picker" onClick={focusPicker} />
         </>

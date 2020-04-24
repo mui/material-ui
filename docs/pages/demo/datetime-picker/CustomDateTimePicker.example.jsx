@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import AlarmIcon from '@material-ui/icons/Alarm';
 import SnoozeIcon from '@material-ui/icons/Snooze';
 import ClockIcon from '@material-ui/icons/AccessTime';
+import { TextField } from '@material-ui/core';
 import { DateTimePicker, MobileDateTimePicker } from '@material-ui/pickers';
 
 function CustomDateTimePicker(props) {
@@ -20,7 +21,6 @@ function CustomDateTimePicker(props) {
         value={selectedDate}
         onChange={date => handleDateChange(date)}
         minDate={new Date('2018-01-01')}
-        helperText="Hardcoded helper text"
         leftArrowIcon={<AlarmIcon />}
         rightArrowIcon={<SnoozeIcon />}
         leftArrowButtonText="Open previous month"
@@ -28,6 +28,9 @@ function CustomDateTimePicker(props) {
         openPickerIcon={<ClockIcon />}
         minTime={new Date(0, 0, 0, 9)}
         maxTime={new Date(0, 0, 0, 20)}
+        renderInput={props => (
+          <TextField {...props} variant="outlined" helperText="Hardcoded helper text" />
+        )}
       />
 
       <MobileDateTimePicker
@@ -41,13 +44,14 @@ function CustomDateTimePicker(props) {
           dateFns: 'yyyy/MM/dd hh:mm a',
         })}
         mask="___/__/__ __:__ _M"
+        renderInput={props => <TextField variant="outlined" {...props} />}
       />
 
       <DateTimePicker
         clearable
         value={clearedDate}
         onChange={handleClearedDateChange}
-        helperText="Clear Initial State"
+        renderInput={props => <TextField {...props} helperText="Clear Initial State" />}
       />
     </>
   );

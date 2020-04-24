@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "next dev --port 3001",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 3001",
     "generate-backers": "node scripts/generate-backers.js",
     "build:typescript": "tsc -p tsconfig.json && tsc -p tsconfig.js.json"
   },

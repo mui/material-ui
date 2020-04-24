@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from 'react';
+import { TextField } from '@material-ui/core';
 import { TimePicker, MobileTimePicker, DesktopTimePicker } from '@material-ui/pickers';
 
 function TimePickers() {
@@ -7,6 +8,7 @@ function TimePickers() {
   return (
     <Fragment>
       <MobileTimePicker
+        renderInput={props => <TextField {...props} />}
         ampmInClock
         label="For mobile"
         value={selectedDate}
@@ -14,6 +16,7 @@ function TimePickers() {
       />
 
       <DesktopTimePicker
+        renderInput={props => <TextField {...props} />}
         clearable
         ampm={false}
         label="For desktop"
@@ -23,6 +26,7 @@ function TimePickers() {
 
       {/* Alternative way to show am/pm */}
       <TimePicker
+        renderInput={props => <TextField {...props} />}
         ampm
         ampmInClock
         showTodayButton

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { TextField } from '@material-ui/core';
 import { StaticTimePicker } from '@material-ui/pickers';
 
 const StaticTimePickerExample = () => {
@@ -11,6 +12,7 @@ const StaticTimePickerExample = () => {
         openTo="hours"
         value={date}
         onChange={date => handleDateChange(date)}
+        renderInput={props => <TextField {...props} />}
       />
 
       <StaticTimePicker
@@ -19,6 +21,7 @@ const StaticTimePickerExample = () => {
         openTo="minutes"
         value={date}
         onChange={date => handleDateChange(date)}
+        renderInput={props => <TextField {...props} />}
       />
     </>
   );

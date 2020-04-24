@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { ReactWrapper } from 'enzyme';
+import { TextField } from '@material-ui/core';
 import { mount, utilsToUse } from './test-utils';
 import { mount as enzymeDefaultMount } from 'enzyme';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core';
@@ -16,6 +17,7 @@ describe('e2e - DateTimePicker', () => {
   beforeEach(() => {
     component = mount(
       <DateTimePicker
+        renderInput={props => <TextField {...props} />}
         clearable
         inputFormat={format}
         onClose={onCloseMock}
@@ -58,10 +60,10 @@ describe('e2e -- Controlling open state', () => {
   beforeEach(() => {
     component = mount(
       <DateTimePicker
+        renderInput={props => <TextField {...props} />}
         open
         onClose={onCloseMock}
         onChange={jest.fn()}
-        onFocus={jest.fn()}
         value={utilsToUse.date('2018-01-01T00:00:00.000Z')}
       />
     );
@@ -87,6 +89,7 @@ describe('e2e -- Override utils using `dateAdapter`', () => {
     component = enzymeDefaultMount(
       <ThemeProvider theme={createMuiTheme()}>
         <DateTimePicker
+          renderInput={props => <TextField {...props} />}
           value={utilsToUse.date('2018-01-01T00:00:00.000Z')}
           onChange={jest.fn()}
           dateAdapter={utilsToUse}

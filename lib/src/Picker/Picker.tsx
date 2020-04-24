@@ -80,6 +80,8 @@ export const useStyles = makeStyles(
   { name: 'MuiPickersBasePicker' }
 );
 
+const MobileKeyboardTextFieldProps = { fullWidth: true };
+
 const isTimePickerByViews = (views: DateTimePickerView[]) =>
   !views.some(view => view === 'year' || view === 'month' || view === 'date');
 
@@ -96,12 +98,13 @@ export function Picker({
   isMobileKeyboardViewOpen,
   toggleMobileKeyboardView,
   toolbarFormat,
+  className,
   ...other
 }: PickerProps<AnyPickerView>) {
   const classes = useStyles();
   const isLandscape = useIsLandscape(views, orientation);
   const wrapperVariant = React.useContext(WrapperVariantContext);
-  const onChange = React.useCallback(
+  const handleDateChange = React.useCallback(
     (date: MaterialUiPickersDate, isFinish?: boolean | symbol) => {
       onDateChange(date, wrapperVariant, isFinish);
     },
@@ -114,14 +117,14 @@ export function Picker({
   const { openView, nextView, previousView, setOpenView, handleChangeAndOpenNext } = useViews({
     views,
     openTo,
-    onChange,
+    onChange: handleDateChange,
     isMobileKeyboardViewOpen,
     toggleMobileKeyboardView,
   });
 
   return (
     <div
-      className={clsx(classes.container, {
+      className={clsx(classes.container, className, {
         [classes.containerLandscape]: isLandscape,
       })}
     >
@@ -131,7 +134,7 @@ export function Picker({
           views={views}
           isLandscape={isLandscape}
           date={date}
-          onChange={onChange}
+          onChange={handleDateChange}
           setOpenView={setOpenView}
           openView={openView}
           toolbarTitle={toolbarTitle}
@@ -152,7 +155,7 @@ export function Picker({
               {...DateInputProps}
               ignoreInvalidInputs
               disableOpenPicker
-              fullWidth
+              TextFieldProps={MobileKeyboardTextFieldProps}
             />
           </MobileKeyboardInputView>
         ) : (
@@ -174,7 +177,7 @@ export function Picker({
                 {...other}
                 date={date}
                 type={openView as 'hours' | 'minutes' | 'seconds'}
-                onDateChange={onChange}
+                onDateChange={handleDateChange}
                 onChange={handleChangeAndOpenNext}
                 openNextView={() => setOpenView(nextView)}
                 openPreviousView={() => setOpenView(previousView)}

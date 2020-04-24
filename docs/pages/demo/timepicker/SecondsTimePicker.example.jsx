@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from 'react';
+import { TextField } from '@material-ui/core';
 import { TimePicker } from '@material-ui/pickers';
 
 function SecondsTimePicker() {
@@ -7,6 +8,7 @@ function SecondsTimePicker() {
   return (
     <Fragment>
       <TimePicker
+        renderInput={props => <TextField {...props} />}
         ampm={false}
         openTo="hours"
         views={['hours', 'minutes', 'seconds']}
@@ -17,6 +19,7 @@ function SecondsTimePicker() {
       />
 
       <TimePicker
+        renderInput={props => <TextField {...props} />}
         ampmInClock
         openTo="minutes"
         views={['minutes', 'seconds']}

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import TextField from '@material-ui/core/TextField';
 import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import { Rifm } from 'rifm';
@@ -28,22 +27,17 @@ export const KeyboardDateInput: React.FC<DateInputProps & DateInputRefs> = ({
   inputFormat,
   disabled,
   rifmFormatter,
-  TextFieldComponent = TextField,
+  renderInput,
   openPickerIcon = <CalendarIcon />,
-  variant,
   emptyInputText: emptyLabel,
   disableOpenPicker: hideOpenPickerButton,
   ignoreInvalidInputs,
-  onFocus,
-  onBlur,
-  parsedDateValue,
   forwardedRef,
   containerRef,
-  open,
   readOnly,
-  inputProps: inputPropsPassed,
+  TextFieldProps,
+  label,
   getOpenDialogAriaText = getTextFieldAriaText,
-  ...other
 }) => {
   const utils = useUtils();
   const isFocusedRef = React.useRef(false);
@@ -96,22 +90,16 @@ export const KeyboardDateInput: React.FC<DateInputProps & DateInputRefs> = ({
 
   const adornmentPosition = InputAdornmentProps?.position || 'end';
   const inputProps = {
+    label,
+    disabled,
     ref: containerRef,
     inputRef: forwardedRef,
     type: shouldUseMaskedInput ? 'tel' : 'text',
-    disabled,
     placeholder: formatHelperText,
-    variant: variant,
     error: Boolean(validationError),
     helperText: formatHelperText || validationError,
     'data-mui-test': 'keyboard-date-input',
-    ...other,
-    inputProps: {
-      ...inputPropsPassed,
-      readOnly,
-    },
-    onFocus: createDelegatedEventHandler(() => (isFocusedRef.current = true), onFocus),
-    onBlur: createDelegatedEventHandler(() => (isFocusedRef.current = false), onBlur),
+    inputProps: { readOnly },
     InputProps: {
       ...InputProps,
       [`${adornmentPosition}Adornment`]: hideOpenPickerButton ? (
@@ -131,16 +119,23 @@ export const KeyboardDateInput: React.FC<DateInputProps & DateInputRefs> = ({
         </InputAdornment>
       ),
     },
+    ...TextFieldProps,
+    onFocus: createDelegatedEventHandler(
+      () => (isFocusedRef.current = true),
+      TextFieldProps?.onFocus
+    ),
+    onBlur: createDelegatedEventHandler(
+      () => (isFocusedRef.current = false),
+      TextFieldProps?.onBlur
+    ),
   };
 
   if (!shouldUseMaskedInput) {
-    return (
-      <TextFieldComponent
-        value={innerInputValue || ''}
-        onChange={e => handleChange(e.currentTarget.value)}
-        {...inputProps}
-      />
-    );
+    return renderInput({
+      ...inputProps,
+      value: innerInputValue || '',
+      onChange: e => handleChange(e.currentTarget.value),
+    });
   }
 
   return (
@@ -151,15 +146,12 @@ export const KeyboardDateInput: React.FC<DateInputProps & DateInputRefs> = ({
       accept={acceptRegex}
       format={rifmFormatter || formatter}
     >
-      {({ onChange, value }) => (
-        <TextFieldComponent
-          value={value}
-          onChange={onChange}
-          onFocus={onFocus}
-          onBlur={onBlur}
-          {...inputProps}
-        />
-      )}
+      {rifmProps =>
+        renderInput({
+          ...inputProps,
+          ...rifmProps,
+        })
+      }
     </Rifm>
   );
 };

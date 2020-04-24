@@ -1,6 +1,7 @@
 import moment from 'moment';
 import React, { useState } from 'react';
 import HijriAdapter from '@date-io/hijri';
+import { TextField } from '@material-ui/core';
 import { TimePicker, DateTimePicker, DatePicker, LocalizationProvider } from '@material-ui/pickers';
 import 'moment/locale/ar-sa';
 
@@ -10,6 +11,7 @@ function HijriExample() {
   return (
     <LocalizationProvider dateAdapter={HijriAdapter} locale="ar-SA">
       <DatePicker
+        renderInput={props => <TextField {...props} />}
         clearable
         okLabel="موافق"
         cancelLabel="الغاء"
@@ -22,6 +24,7 @@ function HijriExample() {
       />
 
       <TimePicker
+        renderInput={props => <TextField {...props} />}
         clearable
         okLabel="موافق"
         cancelLabel="الغاء"
@@ -32,6 +35,7 @@ function HijriExample() {
       />
 
       <DateTimePicker
+        renderInput={props => <TextField {...props} />}
         okLabel="موافق"
         cancelLabel="الغاء"
         inputFormat="iYYYY/iMM/iDD"

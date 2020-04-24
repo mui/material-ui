@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { TextField } from '@material-ui/core';
 import { MobileDateTimePicker, DesktopDateTimePicker, DateTimePicker } from '@material-ui/pickers';
 
 function DateTimePickerDemo(props) {
@@ -12,6 +13,7 @@ function DateTimePickerDemo(props) {
         value={selectedDate}
         onChange={handleDateChange}
         label="24h clock"
+        renderInput={props => <TextField variant="outlined" {...props} />}
       />
 
       <DesktopDateTimePicker
@@ -20,9 +22,11 @@ function DateTimePickerDemo(props) {
         ampmInClock
         value={selectedDate}
         onChange={handleDateChange}
+        renderInput={props => <TextField variant="outlined" {...props} />}
       />
 
       <DateTimePicker
+        renderInput={props => <TextField {...props} />}
         ampm={false}
         disablePast
         value={selectedDate}

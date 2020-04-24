@@ -1,10 +1,10 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import clsx from 'clsx';
+import ClockPointer from './ClockPointer';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import ClockPointer from './ClockPointer';
 import { useUtils } from '../../_shared/hooks/useUtils';
 import { VIEW_HEIGHT } from '../../constants/dimensions';
 import { ClockViewType } from '../../constants/ClockType';

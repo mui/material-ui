@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { ReactWrapper } from 'enzyme';
+import { TextField } from '@material-ui/core';
 import { mount, utilsToUse } from './test-utils';
 import { DesktopDateTimePicker, DateTimePickerProps } from '../DateTimePicker/DateTimePicker';
 
@@ -16,12 +17,12 @@ describe('e2e - DesktopDateTimePicker', () => {
     component = mount(
       <DesktopDateTimePicker
         autoOk
-        variant="outlined"
         onChange={onChangeMock}
         onClose={onCloseMock}
         onOpen={onOpenMock}
         inputFormat={format}
         KeyboardButtonProps={{ id: 'keyboard-button' }}
+        renderInput={props => <TextField {...props} />}
         value={utilsToUse.date('2018-01-01T00:00:00.000Z')}
       />
     );

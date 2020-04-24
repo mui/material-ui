@@ -110,7 +110,7 @@ jobs:
           command: yarn workspace docs start
           environment:
             VISUAL_TESTING: true
-      - run: npx wait-on http://localhost:3000
+      - run: npx wait-on http://localhost:3001
       - run: yarn percy exec -- cypress run  --record --browser chrome
 
 ####################

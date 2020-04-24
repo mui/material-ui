@@ -63,6 +63,7 @@ export const DateRangePickerView: React.FC<DateRangePickerViewProps> = ({
   showToolbar,
   startText,
   endText,
+  className,
   DateInputProps,
   ...other
 }) => {
@@ -188,7 +189,7 @@ export const DateRangePickerView: React.FC<DateRangePickerViewProps> = ({
   };
 
   return (
-    <>
+    <div className={className}>
       {toShowToolbar && (
         <DateRangePickerToolbar
           date={date}
@@ -216,6 +217,6 @@ export const DateRangePickerView: React.FC<DateRangePickerViewProps> = ({
       ) : (
         renderView()
       )}
-    </>
+    </div>
   );
 };

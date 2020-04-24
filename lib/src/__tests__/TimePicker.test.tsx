@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { ReactWrapper } from 'enzyme';
 import { clickOKButton } from './commands';
+import { TextField } from '@material-ui/core';
 import { mount, utilsToUse, toHaveBeenCalledExceptMoment } from './test-utils';
 import {
   MobileTimePicker,
@@ -25,6 +26,7 @@ describe('e2e - TimePicker', () => {
     jest.clearAllMocks();
     component = mount(
       <MobileTimePicker
+        renderInput={props => <TextField variant="outlined" {...props} />}
         ampm
         open
         value={utilsToUse.date('2018-01-01T00:00:00.000')}
@@ -92,6 +94,7 @@ describe('e2e - TimePicker with seconds', () => {
     jest.clearAllMocks();
     component = mount(
       <TimePicker
+        renderInput={props => <TextField {...props} />}
         open
         views={['hours', 'minutes', 'seconds']}
         value={utilsToUse.date('2018-01-01T00:00:12.000')}
@@ -136,6 +139,7 @@ describe('e2e - Timepicker view navigation', () => {
   beforeEach(() => {
     component = mount(
       <DesktopTimePicker
+        renderInput={props => <TextField variant="outlined" {...props} />}
         views={['hours', 'minutes', 'seconds']}
         onChange={jest.fn()}
         value={utilsToUse.date('2018-01-01T00:00:12.000')}
@@ -194,6 +198,7 @@ describe('e2e - TimePicker time validation', () => {
     jest.clearAllMocks();
     component = mount(
       <TimePicker
+        renderInput={props => <TextField {...props} />}
         open
         ampm={false}
         onChange={onChangeMock}

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { TextField } from '@material-ui/core';
 import { DateTimePicker } from '@material-ui/pickers';
 
 function DateTimePickerValidation() {
@@ -7,6 +8,7 @@ function DateTimePickerValidation() {
   return (
     <>
       <DateTimePicker
+        renderInput={props => <TextField {...props} />}
         label="Ignore date and time"
         value={selectedDate}
         onChange={date => handleDateChange(date)}
@@ -14,6 +16,7 @@ function DateTimePickerValidation() {
       />
 
       <DateTimePicker
+        renderInput={props => <TextField {...props} />}
         label="Ignore time in each day"
         value={selectedDate}
         onChange={date => handleDateChange(date)}

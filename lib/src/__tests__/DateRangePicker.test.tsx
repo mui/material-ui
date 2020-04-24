@@ -1,6 +1,7 @@
 // Note that most of use cases are covered in cypress tests e2e/integration/DateRange.spec.ts
 import * as React from 'react';
 import { isWeekend } from 'date-fns';
+import { TextField } from '@material-ui/core';
 import { mount, utilsToUse } from './test-utils';
 import { DesktopDateRangePicker } from '../DateRangePicker/DateRangePicker';
 
@@ -8,6 +9,7 @@ describe('DateRangePicker', () => {
   test('allows select range', () => {
     const component = mount(
       <DesktopDateRangePicker
+        renderInput={props => <TextField {...props} />}
         open
         onChange={jest.fn()}
         value={[
@@ -23,6 +25,7 @@ describe('DateRangePicker', () => {
   test('allows disabling dates', () => {
     const component = mount(
       <DesktopDateRangePicker
+        renderInput={props => <TextField {...props} />}
         open
         minDate={new Date('2005-01-01')}
         shouldDisableDate={date => isWeekend(utilsToUse.toJsDate(date))}
@@ -41,36 +44,10 @@ describe('DateRangePicker', () => {
     ).toBe(70);
   });
 
-  test('forwardRef', () => {
-    const Component = () => {
-      const ref = React.useRef<HTMLDivElement>(null);
-
-      React.useEffect(() => {
-        expect(ref?.current?.id).toBe('test-ref');
-        expect(ref?.current).toBeInstanceOf(HTMLDivElement);
-      });
-
-      return (
-        <DesktopDateRangePicker
-          open
-          id="test-ref"
-          ref={ref}
-          calendars={3}
-          onChange={jest.fn()}
-          value={[
-            utilsToUse.date('2018-01-01T00:00:00.000'),
-            utilsToUse.date('2018-01-31T00:00:00.000'),
-          ]}
-        />
-      );
-    };
-
-    mount(<Component />);
-  });
-
   test('prop: calendars', () => {
     const component = mount(
       <DesktopDateRangePicker
+        renderInput={props => <TextField {...props} />}
         open
         calendars={3}
         onChange={jest.fn()}

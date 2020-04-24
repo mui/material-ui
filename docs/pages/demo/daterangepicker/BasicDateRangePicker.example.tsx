@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { TextField } from '@material-ui/core';
 import { DateRangePicker, DateRange } from '@material-ui/pickers';
 
 function BasicDateRangePicker() {
@@ -10,6 +11,7 @@ function BasicDateRangePicker() {
       endText="Check-out"
       value={selectedDate}
       onChange={date => handleDateChange(date)}
+      renderInput={props => <TextField {...props} />}
     />
   );
 }

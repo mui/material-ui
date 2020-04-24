@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { TextField } from '@material-ui/core';
 import { DateTimePicker } from '@material-ui/pickers';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
@@ -11,7 +12,12 @@ function CssThemeExample() {
 
   return (
     <ThemeProvider theme={muiTheme}>
-      <DateTimePicker label="2px spacing" value={selectedDate} onChange={handleDateChange} />
+      <DateTimePicker
+        renderInput={props => <TextField {...props} />}
+        label="2px spacing"
+        value={selectedDate}
+        onChange={handleDateChange}
+      />
     </ThemeProvider>
   );
 }

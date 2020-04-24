@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { ReactWrapper } from 'enzyme';
 import { clickOKButton } from './commands';
+import { TextField } from '@material-ui/core';
 import { mount, utilsToUse } from './test-utils';
 import { DatePicker, DatePickerProps } from '../DatePicker';
 
@@ -12,6 +13,7 @@ describe('e2e - DatePicker', () => {
     jest.clearAllMocks();
     component = mount(
       <DatePicker
+        renderInput={props => <TextField {...props} />}
         open
         autoOk
         openTo="date"
@@ -61,6 +63,7 @@ describe('e2e -- DatePicker views year', () => {
   beforeEach(() => {
     component = mount(
       <DatePicker
+        renderInput={props => <TextField {...props} />}
         open
         value={utilsToUse.date('2018-01-01T00:00:00.000Z')}
         onChange={onChangeMock}
@@ -92,6 +95,7 @@ describe('e2e -- DatePicker views year and month', () => {
   beforeEach(() => {
     component = mount(
       <DatePicker
+        renderInput={props => <TextField {...props} />}
         open
         autoOk
         value={utilsToUse.date('2018-01-01T00:00:00.000Z')}
@@ -131,6 +135,7 @@ describe('e2e -- DatePicker views year and month open from year', () => {
   beforeEach(() => {
     component = mount(
       <DatePicker
+        renderInput={props => <TextField {...props} />}
         open
         autoOk
         value={utilsToUse.date('2018-01-01T00:00:00.000Z')}

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { ReactWrapper } from 'enzyme';
 import { Picker } from '../Picker/Picker';
+import { TextField } from '@material-ui/core';
 import { mount, utilsToUse } from './test-utils';
 import {
   DatePicker,
@@ -18,6 +19,7 @@ describe('e2e - DatePicker default year format', () => {
     jest.clearAllMocks();
     component = mount(
       <DatePicker
+        renderInput={props => <TextField {...props} />}
         DialogProps={{}}
         PopoverProps={{}}
         desktopModeMediaQuery="(min-width:720px)"
@@ -40,7 +42,12 @@ describe('e2e - DatePicker default year month format', () => {
 
   beforeEach(() => {
     component = mount(
-      <MobileDatePicker onChange={onChangeMock} value={date} views={['year', 'month']} />
+      <MobileDatePicker
+        renderInput={props => <TextField {...props} />}
+        onChange={onChangeMock}
+        value={date}
+        views={['year', 'month']}
+      />
     );
   });
 
@@ -56,7 +63,12 @@ describe('e2e - DatePicker default year month day format', () => {
 
   beforeEach(() => {
     component = mount(
-      <MobileDatePicker onChange={onChangeMock} value={date} views={['year', 'month', 'date']} />
+      <MobileDatePicker
+        renderInput={props => <TextField {...props} />}
+        onChange={onChangeMock}
+        value={date}
+        views={['year', 'month', 'date']}
+      />
     );
   });
 
@@ -75,6 +87,7 @@ describe.only('e2e - DatePicker inline variant', () => {
     jest.clearAllMocks();
     component = mount(
       <DesktopDatePicker
+        renderInput={props => <TextField {...props} />}
         autoOk
         onChange={onChangeMock}
         onClose={onCloseMock}
@@ -124,6 +137,7 @@ describe('e2e - DatePicker without month change', () => {
   beforeEach(() => {
     component = mount(
       <MobileDatePicker
+        renderInput={props => <TextField {...props} />}
         open
         loadingIndicator={<div data-mui-test="loading" />}
         onChange={onChangeMock}
@@ -151,6 +165,7 @@ describe('e2e - DatePicker month change sync', () => {
   beforeEach(() => {
     component = mount(
       <MobileDatePicker
+        renderInput={props => <TextField {...props} />}
         open
         onChange={onChangeMock}
         onMonthChange={onMonthChangeMock}
@@ -182,6 +197,7 @@ describe('e2e - DatePicker month change async', () => {
   beforeEach(() => {
     component = mount(
       <MobileDatePicker
+        renderInput={props => <TextField {...props} />}
         open
         onChange={onChangeMock}
         onMonthChange={onMonthChangeAsyncMock}
@@ -207,9 +223,9 @@ describe('e2e - DatePicker month change async', () => {
 test('Custom toolbar component', () => {
   const component = mount(
     <MobileDatePicker
+      renderInput={props => <TextField {...props} />}
       open
       disableHighlightToday
-      inputProps={{}}
       value={new Date()}
       onChange={jest.fn()}
       ToolbarComponent={() => <div id="custom-toolbar" />}
@@ -222,6 +238,7 @@ test('Custom toolbar component', () => {
 test('Selected date is disabled', () => {
   const component = mount(
     <MobileDatePicker
+      renderInput={props => <TextField {...props} />}
       open
       value={utilsToUse.date('01-01-2019')}
       maxDate={utilsToUse.date('01-01-2018')}
