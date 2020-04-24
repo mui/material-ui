@@ -6,7 +6,10 @@
 	"files": [
 		"dist"
 	],
-	"repository": "https://github.com/merceyz/typescript-to-proptypes.git",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/merceyz/typescript-to-proptypes.git"
+	},
 	"author": "merceyz <merceyz@users.noreply.github.com>",
 	"license": "MIT",
 	"keywords": [
