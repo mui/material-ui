@@ -11,6 +11,7 @@ import BottomNavigation from './BottomNavigation';
 describe('<BottomNavigation />', () => {
   let mount;
   let classes;
+  let actionClasses;
   const render = createClientRender();
   const icon = <Icon>restore</Icon>;
   const getBottomNavigation = (container) => container.firstChild;
@@ -20,6 +21,9 @@ describe('<BottomNavigation />', () => {
       <BottomNavigation showLabels value={0}>
         <BottomNavigationAction icon={icon} />
       </BottomNavigation>,
+    );
+    actionClasses = getClasses(
+        <BottomNavigationAction icon={icon} />
     );
     mount = createMount({ strict: true });
   });
@@ -59,28 +63,23 @@ describe('<BottomNavigation />', () => {
         <BottomNavigationAction icon={icon} />
       </BottomNavigation>,
     );
-    expect(getBottomNavigation(container).childNodes[0]).to.not.have.class('Mui-selected');
-    expect(getBottomNavigation(container).childNodes[1]).to.have.class('Mui-selected');
+    expect(getBottomNavigation(container).childNodes[0]).to.not.have.class(actionClasses.selected);
+    expect(getBottomNavigation(container).childNodes[1]).to.have.class(actionClasses.selected);
   });
 
-  it('should overwrite parent showLabel prop', () => {
-    const bottomNavigationProps = {};
-    const ControlledBottomNavigationAction = (props) => {
-      bottomNavigationProps[props['data-testid']] = props;
-      return <BottomNavigationAction {...props} />;
-    };
-    render(
-      <BottomNavigation showLabels value={1}>
-        <ControlledBottomNavigationAction icon={icon} data-testid="withLabel" />
-        <ControlledBottomNavigationAction
+  it('should overwrite parent showLabel prop adding class iconOnly', () => {
+    const { getByTestId } = render(
+      <BottomNavigation showLabels>
+        <BottomNavigationAction icon={icon} data-testid="withLabel" />
+        <BottomNavigationAction
           icon={icon}
           showLabel={false}
           data-testid="withoutLabel"
         />
       </BottomNavigation>,
     );
-    expect(bottomNavigationProps.withLabel.showLabel).to.equal(true);
-    expect(bottomNavigationProps.withoutLabel.showLabel).to.equal(false);
+    expect(getByTestId('withLabel')).to.not.have.class(actionClasses.iconOnly);
+    expect(getByTestId('withoutLabel')).to.have.class(actionClasses.iconOnly);
   });
 
   it('should forward the click', () => {
