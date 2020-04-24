@@ -1610,5 +1610,25 @@ describe('<Autocomplete />', () => {
       expect(handleChange.args[1][1]).to.equal(options[0]);
       expect(handleChange.args[1][2]).to.equal('mouse');
     });
+
+    it('should open list box even if there is only one option', () => {
+      const handleChange = spy();
+      const { queryByRole, getByRole, getAllByRole } = render(
+        <Autocomplete
+          onHighlightChange={handleChange}
+          options={['one']}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+      const textbox = getByRole('textbox');
+      expect(queryByRole('presentation')).to.equal(null);
+      fireEvent.mouseDown(textbox);
+      expect(queryByRole('presentation')).to.not.equal(null);
+      const options = getAllByRole('option');
+      fireEvent.click(options[0]);
+      expect(queryByRole('presentation')).to.equal(null);
+      fireEvent.mouseDown(textbox);
+      expect(queryByRole('presentation')).to.not.equal(null);
+    });
   });
 });
