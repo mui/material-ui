@@ -18,6 +18,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Tooltip from '@material-ui/core/Tooltip';
 import RefreshIcon from '@material-ui/icons/Refresh';
+import ResetFocusIcon from '@material-ui/icons/CenterFocusWeak';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import DemoSandboxed from 'docs/src/modules/components/DemoSandboxed';
 import DemoLanguages from 'docs/src/modules/components/DemoLanguages';
@@ -60,6 +61,9 @@ const styles = (theme) => ({
     justifyContent: 'center',
     [theme.breakpoints.up('sm')]: {
       borderRadius: theme.shape.borderRadius,
+    },
+    '&:focus': {
+      outline: `2px dashed ${theme.palette.text.primary}`,
     },
   },
   /* Isolate the demo with an outline. */
@@ -335,18 +339,33 @@ function Demo(props) {
   const demoSourceId = useUniqueId(`demo-`);
   const openDemoSource = codeOpen || showPreview;
 
+  const initialFocusRef = React.useRef(null);
+  function handleResetFocusClick() {
+    initialFocusRef.current.focus();
+  }
+  function handleDemoMouseDown(event) {
+    // Otherwise clicking any non-focusable element in the demo focuses the demo container
+    // which is surprising and not how the code would behave outside of this page
+    event.preventDefault();
+  }
+
   return (
     <div className={classes.root}>
+      {/* We're actually preventing interaction here */}
+      {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
       <div
+        aria-label={t('initialFocusLabel')}
         className={clsx(classes.demo, {
           [classes.demoHiddenToolbar]: demoOptions.hideToolbar,
           [classes.demoBgOutlined]: demoOptions.bg === 'outlined',
           [classes.demoBgTrue]: demoOptions.bg === true,
           [classes.demoBgInline]: demoOptions.bg === 'inline',
         })}
-        tabIndex={-1}
         onMouseEnter={handleDemoHover}
         onMouseLeave={handleDemoHover}
+        onMouseDown={handleDemoMouseDown}
+        ref={initialFocusRef}
+        tabIndex={-1}
       >
         <DemoSandboxed
           key={demoKey}
@@ -424,6 +443,21 @@ function Demo(props) {
                   onClick={handleCopyClick}
                 >
                   <FileCopyIcon fontSize="small" />
+                </IconButton>
+              </Tooltip>
+              <Tooltip
+                classes={{ popper: classes.tooltip }}
+                title={t('resetFocus')}
+                placement="top"
+              >
+                <IconButton
+                  aria-label={t('resetFocus')}
+                  data-ga-event-category="demo"
+                  data-ga-event-label={demoOptions.demo}
+                  data-ga-event-action="reset-focus"
+                  onClick={handleResetFocusClick}
+                >
+                  <ResetFocusIcon fontSize="small" />
                 </IconButton>
               </Tooltip>
               <Tooltip classes={{ popper: classes.tooltip }} title={t('resetDemo')} placement="top">
