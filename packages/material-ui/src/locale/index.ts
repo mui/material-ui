@@ -1075,9 +1075,9 @@ export const plPL: Localization = {
 
 export const ptBR: Localization = {
   props: {
-    // MuiBreadcrumbs: {
-    //   expandText: 'Show path',
-    // },
+    MuiBreadcrumbs: {
+      expandText: 'Mostrar caminho',
+    },
     MuiTablePagination: {
       backIconButtonText: 'Página anterior',
       labelRowsPerPage: 'Linhas por página:',
@@ -1086,7 +1086,7 @@ export const ptBR: Localization = {
     },
     MuiRating: {
       getLabelText: (value) => `${value} Estrela${value !== 1 ? 's' : ''}`,
-      // emptyLabelText: 'Empty',
+      emptyLabelText: 'Vazio',
     },
     MuiAutocomplete: {
       clearText: 'Limpar',
@@ -1098,27 +1098,27 @@ export const ptBR: Localization = {
     MuiAlert: {
       closeText: 'Fechar',
     },
-    // MuiPagination: {
-    //   'aria-label': 'Pagination navigation',
-    //   getItemAriaLabel: (type, page, selected) => {
-    //     if (type === 'page') {
-    //       return `${selected ? '' : 'Go to '}page ${page}`;
-    //     }
-    //     if (type === 'first') {
-    //       return 'Go to first page';
-    //     }
-    //     if (type === 'last') {
-    //       return 'Go to last page';
-    //     }
-    //     if (type === 'next') {
-    //       return 'Go to next page';
-    //     }
-    //     if (type === 'previous') {
-    //       return 'Go to previous page';
-    //     }
-    //     return undefined;
-    //   },
-    // },
+    MuiPagination: {
+      'aria-label': 'Navegar pela paginação',
+      getItemAriaLabel: (type, page, selected) => {
+        if (type === 'page') {
+          return `${selected ? '' : 'Ir para a '}página ${page}`;
+        }
+        if (type === 'first') {
+          return 'Ir para a primeira página';
+        }
+        if (type === 'last') {
+          return 'Ir para a última página';
+        }
+        if (type === 'next') {
+          return 'Ir para a próxima página';
+        }
+        if (type === 'previous') {
+          return 'Ir para a página anterior';
+        }
+        return undefined;
+      },
+    },
   },
 };
 
