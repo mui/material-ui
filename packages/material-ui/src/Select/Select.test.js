@@ -971,4 +971,20 @@ describe('<Select />', () => {
     expect(keyUpSpy.callCount).to.equal(1);
     expect(keyUpSpy.returnValues[0]).to.equal(true);
   });
+
+  it('should pass onClick prop to MenuItem', () => {
+    const onClick = spy();
+    const { getAllByRole } = render(
+      <Select open value="30">
+        <MenuItem onClick={onClick} value={30}>
+          Thirty
+        </MenuItem>
+      </Select>,
+    );
+
+    const options = getAllByRole('option');
+    fireEvent.click(options[0]);
+
+    expect(onClick.callCount).to.equal(1);
+  });
 });

@@ -140,6 +140,10 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       newValue = child.props.value;
     }
 
+    if (child.props.onClick) {
+      child.props.onClick(event);
+    }
+
     if (value === newValue) {
       return;
     }
@@ -252,9 +256,9 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
           // the select to close immediately since we open on space keydown
           event.preventDefault();
         }
-        const { onKeyUp } = child.props;
-        if (typeof onKeyUp === 'function') {
-          onKeyUp(event);
+
+        if (child.props.onKeyUp) {
+          child.props.onKeyUp(event);
         }
       },
       role: 'option',
