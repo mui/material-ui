@@ -1144,10 +1144,11 @@ describe('<Autocomplete />', () => {
       expect(combobox).to.have.attribute('aria-expanded', 'true');
     });
 
-    it('should toggle list box when input is empty', () => {
+    it('should not toggle list box', () => {
       const handleChange = spy();
       const { getByRole } = render(
         <Autocomplete
+          value="one"
           onHighlightChange={handleChange}
           options={['one']}
           renderInput={(params) => <TextField {...params} />}
@@ -1157,11 +1158,9 @@ describe('<Autocomplete />', () => {
       const textbox = getByRole('textbox');
 
       expect(combobox).to.have.attribute('aria-expanded', 'false');
-      fireEvent.mouseDown(textbox); // Open listbox
+      fireEvent.mouseDown(textbox);
       expect(combobox).to.have.attribute('aria-expanded', 'true');
-      fireEvent.mouseDown(textbox); // close listbox
-      expect(combobox).to.have.attribute('aria-expanded', 'false');
-      fireEvent.mouseDown(textbox); // open listbox
+      fireEvent.mouseDown(textbox);
       expect(combobox).to.have.attribute('aria-expanded', 'true');
     });
   });
