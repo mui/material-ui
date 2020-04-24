@@ -83,7 +83,7 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
   } = props;
 
   const [exited, setExited] = React.useState(true);
-  const modal = React.useRef({});
+  const modalInstanceRef = React.useRef({});
   const mountNodeRef = React.useRef(null);
   const modalRef = React.useRef(null);
   const handleRef = useForkRef(modalRef, ref);
@@ -91,9 +91,9 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
 
   const getDoc = () => ownerDocument(mountNodeRef.current);
   const updateAndGetModal = () => {
-    modal.current.modalNode = modalRef.current;
-    modal.current.mountNode = mountNodeRef.current;
-    return modal.current;
+    modalInstanceRef.current.modalNode = modalRef.current;
+    modalInstanceRef.current.mountNode = mountNodeRef.current;
+    return modalInstanceRef.current;
   };
 
   const handleMounted = () => {
