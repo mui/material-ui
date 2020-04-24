@@ -1119,6 +1119,51 @@ describe('<Autocomplete />', () => {
       fireEvent.click(queryByTitle('Open'));
       expect(textbox).toHaveFocus();
     });
+
+    it('should mantain list box open clicking on input when it is not empty', () => {
+      const handleChange = spy();
+      const { getByRole, getAllByRole } = render(
+        <Autocomplete
+          onHighlightChange={handleChange}
+          options={['one']}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+      const combobox = getByRole('combobox');
+      const textbox = getByRole('textbox');
+
+      expect(combobox).to.have.attribute('aria-expanded', 'false');
+      fireEvent.mouseDown(textbox); // Open listbox
+      expect(combobox).to.have.attribute('aria-expanded', 'true');
+      const options = getAllByRole('option');
+      fireEvent.click(options[0]);
+      expect(combobox).to.have.attribute('aria-expanded', 'false');
+      fireEvent.mouseDown(textbox); // Open listbox
+      expect(combobox).to.have.attribute('aria-expanded', 'true');
+      fireEvent.mouseDown(textbox); // Remain open listbox
+      expect(combobox).to.have.attribute('aria-expanded', 'true');
+    });
+
+    it('should toggle list box when input is empty', () => {
+      const handleChange = spy();
+      const { getByRole } = render(
+        <Autocomplete
+          onHighlightChange={handleChange}
+          options={['one']}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+      const combobox = getByRole('combobox');
+      const textbox = getByRole('textbox');
+
+      expect(combobox).to.have.attribute('aria-expanded', 'false');
+      fireEvent.mouseDown(textbox); // Open listbox
+      expect(combobox).to.have.attribute('aria-expanded', 'true');
+      fireEvent.mouseDown(textbox); // close listbox
+      expect(combobox).to.have.attribute('aria-expanded', 'false');
+      fireEvent.mouseDown(textbox); // open listbox
+      expect(combobox).to.have.attribute('aria-expanded', 'true');
+    });
   });
 
   describe('controlled', () => {
@@ -1609,47 +1654,6 @@ describe('<Autocomplete />', () => {
       expect(handleChange.args[1][0]).to.not.equal(undefined);
       expect(handleChange.args[1][1]).to.equal(options[0]);
       expect(handleChange.args[1][2]).to.equal('mouse');
-    });
-
-    it('should mantain list box open clicking on input when it is not empty', () => {
-      const handleChange = spy();
-      const { queryByRole, getByRole, getAllByRole } = render(
-        <Autocomplete
-          onHighlightChange={handleChange}
-          options={['one']}
-          renderInput={(params) => <TextField {...params} />}
-        />,
-      );
-      const textbox = getByRole('textbox');
-      expect(queryByRole('presentation')).to.equal(null);
-      fireEvent.mouseDown(textbox); // Open listbox
-      expect(queryByRole('presentation')).to.not.equal(null);
-      const options = getAllByRole('option');
-      fireEvent.click(options[0]);
-      expect(queryByRole('presentation')).to.equal(null);
-      fireEvent.mouseDown(textbox); // Open listbox
-      expect(queryByRole('presentation')).to.not.equal(null);
-      fireEvent.mouseDown(textbox); // Remain open listbox
-      expect(queryByRole('presentation')).to.not.equal(null);
-    });
-
-    it('should toggle list box when input is empty', () => {
-      const handleChange = spy();
-      const { queryByRole, getByRole } = render(
-        <Autocomplete
-          onHighlightChange={handleChange}
-          options={['one']}
-          renderInput={(params) => <TextField {...params} />}
-        />,
-      );
-      const textbox = getByRole('textbox');
-      expect(queryByRole('presentation')).to.equal(null);
-      fireEvent.mouseDown(textbox); // Open listbox
-      expect(queryByRole('presentation')).to.not.equal(null);
-      fireEvent.mouseDown(textbox); // close listbox
-      expect(queryByRole('presentation')).to.equal(null);
-      fireEvent.mouseDown(textbox); // open listbox
-      expect(queryByRole('presentation')).to.not.equal(null);
     });
   });
 });
