@@ -32,6 +32,7 @@ describe('<FormLabel />', () => {
 
       expect(container.querySelector('label')).to.have.text('name\u2009*');
       expect(container.querySelectorAll(`.${classes.asterisk}`)).to.have.lengthOf(1);
+      expect(container.querySelectorAll(`.${classes.asterisk}`)[0]).toBeAriaHidden();
     });
 
     it('should not show an asterisk by default', () => {
@@ -48,6 +49,7 @@ describe('<FormLabel />', () => {
 
       expect(container.querySelectorAll(`.${classes.asterisk}`)).to.have.lengthOf(1);
       expect(container.querySelector(`.${classes.asterisk}`)).to.have.class(classes.error);
+      expect(container.querySelectorAll(`.${classes.asterisk}`)[0]).toBeAriaHidden();
       expect(container.firstChild).to.have.class(classes.error);
     });
   });
