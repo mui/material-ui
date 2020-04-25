@@ -89,6 +89,7 @@ const FormLabel = React.forwardRef(function FormLabel(props, ref) {
       {children}
       {fcs.required && (
         <span
+          aria-hidden
           className={clsx(classes.asterisk, {
             [classes.error]: fcs.error,
           })}
