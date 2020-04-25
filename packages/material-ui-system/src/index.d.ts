@@ -36,7 +36,7 @@ type DefaultBreakPoints = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
  */
 export function breakpoints<Props, Breakpoints extends string = DefaultBreakPoints>(
   styleFunction: StyleFunction<Props>
-): StyleFunction<Partial<Record<Breakpoints, Props>>>;
+): StyleFunction<Partial<Record<Breakpoints, Props>> & Props>;
 
 // compose.js
 /**
@@ -56,7 +56,7 @@ export function compose<T extends Array<StyleFunction<any>>>(...args: T): Compos
 // css.js
 export function css<Props>(
   styleFunction: StyleFunction<Props>
-): StyleFunction<Props & { css: Omit<Props, 'theme'> }>;
+): StyleFunction<Props & { css?: Omit<Props, 'theme'> }>;
 
 export const display: SimpleStyleFunction<
   'display' | 'displayPrint' | 'overflow' | 'textOverflow' | 'visibility' | 'whiteSpace'
