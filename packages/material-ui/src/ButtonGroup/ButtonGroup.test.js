@@ -1,11 +1,13 @@
 import * as React from 'react';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { createClientRender } from 'test/utils/createClientRender';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import Button from '../Button';
 import ButtonGroup from './ButtonGroup';
 
 describe('<ButtonGroup />', () => {
+  const render = createClientRender();
   let mount;
   let classes;
 
@@ -36,159 +38,128 @@ describe('<ButtonGroup />', () => {
   );
 
   it('should render with the root class but no others', () => {
-    const wrapper = mount(
+    const { container } = render(
       <ButtonGroup>
         <Button>Hello World</Button>
       </ButtonGroup>,
     );
-    const buttonGroup = wrapper.find('div');
-    assert.strictEqual(buttonGroup.hasClass(classes.root), true);
-    assert.strictEqual(buttonGroup.hasClass(classes.contained), false);
-    assert.strictEqual(buttonGroup.hasClass(classes.fullWidth), false);
+    const buttonGroup = container.firstChild;
+    expect(buttonGroup).to.have.class(classes.root);
+    expect(buttonGroup).to.not.have.class(classes.contained);
+    expect(buttonGroup).to.not.have.class(classes.fullWidth);
   });
 
   it('should render an outlined button', () => {
-    const wrapper = mount(
+    const { getByRole } = render(
       <ButtonGroup>
         <Button>Hello World</Button>
       </ButtonGroup>,
     );
-    const button = wrapper.find('button');
-    assert.strictEqual(button.hasClass('MuiButton-outlined'), true);
-    assert.strictEqual(button.hasClass(classes.grouped), true);
-    assert.strictEqual(button.hasClass(classes.groupedOutlined), true);
-    assert.strictEqual(button.hasClass(classes.groupedOutlinedPrimary), false);
-    assert.strictEqual(button.hasClass(classes.groupedOutlinedSecondary), false);
+    const button = getByRole('button');
+    expect(button).to.have.class('MuiButton-outlined');
+    expect(button).to.have.class(classes.grouped);
+    expect(button).to.have.class(classes.groupedOutlined);
+    expect(button).to.not.have.class(classes.groupedOutlinedPrimary);
+    expect(button).to.not.have.class(classes.groupedOutlinedSecondary);
   });
 
   it('can render an outlined primary button', () => {
-    const wrapper = mount(
+    const { getByRole } = render(
       <ButtonGroup color="primary">
         <Button>Hello World</Button>
       </ButtonGroup>,
     );
-    const button = wrapper.find('div').find('button');
-    assert.strictEqual(button.hasClass('MuiButton-outlinedPrimary'), true);
-    assert.strictEqual(button.hasClass(classes.grouped), true);
-    assert.strictEqual(button.hasClass(classes.groupedOutlined), true);
-    assert.strictEqual(button.hasClass(classes.groupedOutlinedPrimary), true);
-    assert.strictEqual(button.hasClass(classes.groupedOutlinedSecondary), false);
-  });
-
-  it('can render an outlined secondary button', () => {
-    const wrapper = mount(
-      <ButtonGroup color="secondary">
-        <Button>Hello World</Button>
-      </ButtonGroup>,
-    );
-    const button = wrapper.find('button');
-    assert.strictEqual(button.hasClass('MuiButton-outlinedSecondary'), true);
-    assert.strictEqual(button.hasClass(classes.grouped), true);
-    assert.strictEqual(button.hasClass(classes.groupedOutlined), true);
-    assert.strictEqual(button.hasClass(classes.groupedOutlinedPrimary), false);
-    assert.strictEqual(button.hasClass(classes.groupedOutlinedSecondary), true);
+    const button = getByRole('button');
+    expect(button).to.have.class('MuiButton-outlinedPrimary');
+    expect(button).to.have.class(classes.grouped);
+    expect(button).to.have.class(classes.groupedOutlined);
+    expect(button).to.have.class(classes.groupedOutlinedPrimary);
+    expect(button).to.not.have.class(classes.groupedOutlinedSecondary);
   });
 
   it('can render a contained button', () => {
-    const wrapper = mount(
+    const { getByRole } = render(
       <ButtonGroup variant="contained">
         <Button>Hello World</Button>
       </ButtonGroup>,
     );
-    const button = wrapper.find('button');
-    assert.strictEqual(button.hasClass('MuiButton-contained'), true);
-    assert.strictEqual(button.hasClass(classes.grouped), true);
-    assert.strictEqual(button.hasClass(classes.groupedContained), true);
-    assert.strictEqual(button.hasClass(classes.groupedContainedPrimary), false);
-    assert.strictEqual(button.hasClass(classes.groupedContainedSecondary), false);
-  });
-
-  it('can render a contained primary button', () => {
-    const wrapper = mount(
-      <ButtonGroup variant="contained" color="primary">
-        <Button>Hello World</Button>
-      </ButtonGroup>,
-    );
-    const button = wrapper.find('button');
-    assert.strictEqual(button.hasClass('MuiButton-containedPrimary'), true);
-    assert.strictEqual(button.hasClass(classes.grouped), true);
-    assert.strictEqual(button.hasClass(classes.groupedContained), true);
-    assert.strictEqual(button.hasClass(classes.groupedContainedPrimary), true);
-    assert.strictEqual(button.hasClass(classes.groupedContainedSecondary), false);
-  });
-
-  it('can render a contained secondary button', () => {
-    const wrapper = mount(
-      <ButtonGroup variant="contained" color="secondary">
-        <Button>Hello World</Button>
-      </ButtonGroup>,
-    );
-    const button = wrapper.find('button');
-    assert.strictEqual(button.hasClass('MuiButton-containedSecondary'), true);
-    assert.strictEqual(button.hasClass(classes.grouped), true);
-    assert.strictEqual(button.hasClass(classes.groupedContained), true);
-    assert.strictEqual(button.hasClass(classes.groupedContainedPrimary), false);
-    assert.strictEqual(button.hasClass(classes.groupedContainedSecondary), true);
+    const button = getByRole('button');
+    expect(button).to.have.class('MuiButton-contained');
+    expect(button).to.have.class(classes.grouped);
+    expect(button).to.have.class(classes.groupedContained);
+    expect(button).to.not.have.class(classes.groupedContainedPrimary);
+    expect(button).to.not.have.class(classes.groupedContainedSecondary);
   });
 
   it('can render a small button', () => {
-    const wrapper = mount(
+    const { getByRole } = render(
       <ButtonGroup size="small">
         <Button>Hello World</Button>
       </ButtonGroup>,
     );
-    const button = wrapper.find('button');
-    assert.strictEqual(button.hasClass('MuiButton-outlinedSizeSmall'), true);
+    const button = getByRole('button');
+    expect(button).to.have.class('MuiButton-outlinedSizeSmall');
   });
 
   it('can render a large button', () => {
-    const wrapper = mount(
+    const { getByRole } = render(
       <ButtonGroup size="large">
         <Button>Hello World</Button>
       </ButtonGroup>,
     );
-    const button = wrapper.find('button');
-    assert.strictEqual(button.hasClass('MuiButton-outlinedSizeLarge'), true);
+    const button = getByRole('button');
+    expect(button).to.have.class('MuiButton-outlinedSizeLarge');
   });
 
   it('should have a ripple by default', () => {
-    const wrapper = mount(
+    const { container } = render(
       <ButtonGroup>
         <Button TouchRippleProps={{ classes: { root: 'touchRipple' } }}>Hello World</Button>
       </ButtonGroup>,
     );
-    assert.strictEqual(wrapper.find('.touchRipple').exists(), true);
+    expect(container.querySelector('.touchRipple')).to.not.equal(null);
+  });
+
+  it('can disable the elevation', () => {
+    const { getByRole } = render(
+      <ButtonGroup disableElevation>
+        <Button>Hello World</Button>
+      </ButtonGroup>,
+    );
+    const button = getByRole('button');
+    expect(button).to.have.class('MuiButton-disableElevation');
   });
 
   it('can disable the ripple', () => {
-    const wrapper = mount(
+    const { container } = render(
       <ButtonGroup disableRipple>
         <Button TouchRippleProps={{ classes: { root: 'touchRipple' } }}>Hello World</Button>
       </ButtonGroup>,
     );
-    assert.strictEqual(wrapper.find('.touchRipple').exists(), false);
+    expect(container.querySelector('.touchRipple')).to.equal(null);
   });
 
   it('should not be fullWidth by default', () => {
-    const wrapper = mount(
+    const { container, getByRole } = render(
       <ButtonGroup>
         <Button>Hello World</Button>
       </ButtonGroup>,
     );
-    const button = wrapper.find('button');
-    assert.strictEqual(wrapper.hasClass(classes.fullWidth), false);
-    assert.strictEqual(button.hasClass('MuiButton-fullWidth'), false);
+    const button = getByRole('button');
+    const buttonGroup = container.firstChild;
+    expect(buttonGroup).to.not.have.class(classes.fullWidth);
+    expect(button).to.not.have.class('MuiButton-fullWidth');
   });
 
   it('can pass fullWidth to Button', () => {
-    const wrapper = mount(
+    const { container, getByRole } = render(
       <ButtonGroup fullWidth>
         <Button>Hello World</Button>
       </ButtonGroup>,
     );
-    const buttonGroup = wrapper.find('div');
-    const button = wrapper.find('button');
-    assert.strictEqual(buttonGroup.hasClass(classes.fullWidth), true);
-    assert.strictEqual(button.hasClass('MuiButton-fullWidth'), true);
+    const buttonGroup = container.firstChild;
+    const button = getByRole('button');
+    expect(buttonGroup).to.have.class(classes.fullWidth);
+    expect(button).to.have.class('MuiButton-fullWidth');
   });
 });
