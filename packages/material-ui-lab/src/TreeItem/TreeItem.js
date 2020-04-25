@@ -78,7 +78,7 @@ export const styles = (theme) => ({
  */
 
 const TreeItem = React.forwardRef(function TreeItem(props, ref) {
-  const { label, nodeId, children, TransitionComponent = Collapse, ...other } = props;
+  const { children, label, nodeId, ...other } = props;
 
   const { registerNode, unregisterNode, getNode } = React.useContext(TreeViewContext);
   const { index, parent } = useDescendant({ parent: nodeId, label });
@@ -88,6 +88,8 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
 
   React.useImperativeHandle(ref, () => nodeRef || null, [nodeRef]);
 
+  const otherString = JSON.stringify(other);
+
   React.useEffect(() => {
     if (registerNode && unregisterNode) {
       registerNode({
@@ -95,7 +97,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
         label,
         parent,
         index: index.current,
-        props: { ...other, TransitionComponent },
+        props: other,
       });
 
       return () => {
@@ -106,16 +108,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     return undefined;
     // See Option 3. https://github.com/facebook/react/issues/14476#issuecomment-471199055
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [
-    nodeId,
-    parent,
-    label,
-    registerNode,
-    unregisterNode,
-    index,
-    JSON.stringify(other),
-    TransitionComponent,
-  ]);
+  }, [nodeId, parent, label, registerNode, unregisterNode, index, otherString]);
 
   return (
     <DescendantProvider nodeId={nodeId} items={itemsRef}>
