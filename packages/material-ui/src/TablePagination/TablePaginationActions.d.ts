@@ -8,6 +8,8 @@ export interface TablePaginationActionsProps extends React.HTMLAttributes<HTMLDi
   onChangePage: (event: React.MouseEvent<HTMLButtonElement> | null, page: number) => void;
   page: number;
   rowsPerPage: number;
+  showFirstButton?: boolean;
+  showLastButton?: boolean;
 }
 
 declare const TablePaginationActions: React.ComponentType<TablePaginationActionsProps>;

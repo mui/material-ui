@@ -4,6 +4,8 @@ import KeyboardArrowLeft from '../internal/svg-icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '../internal/svg-icons/KeyboardArrowRight';
 import useTheme from '../styles/useTheme';
 import IconButton from '../IconButton';
+import LastPageIcon from '@material-ui/icons/LastPage';
+import FirstPageIcon from '@material-ui/icons/FirstPage';
 
 /**
  * @ignore - internal component.
@@ -16,10 +18,16 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
     onChangePage,
     page,
     rowsPerPage,
+    showFirstButton,
+    showLastButton,
     ...other
   } = props;
 
   const theme = useTheme();
+
+  const handleFirstPageButtonClick = (event) => {
+    onChangePage(event, 0);
+  };
 
   const handleBackButtonClick = (event) => {
     onChangePage(event, page - 1);
@@ -29,8 +37,21 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
     onChangePage(event, page + 1);
   };
 
+  const handleLastPageButtonClick = (event) => {
+    onChangePage(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
+  };
+
   return (
     <div ref={ref} {...other}>
+      {showFirstButton && (
+        <IconButton
+          onClick={handleFirstPageButtonClick}
+          disabled={page === 0}
+          aria-label="first page"
+        >
+          {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
+        </IconButton>
+      )}
       <IconButton
         onClick={handleBackButtonClick}
         disabled={page === 0}
@@ -47,6 +68,15 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
       >
         {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
       </IconButton>
+      {showLastButton && (
+        <IconButton
+          onClick={handleLastPageButtonClick}
+          disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+          aria-label="last page"
+        >
+          {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
+        </IconButton>
+      )}
     </div>
   );
 });
@@ -79,6 +109,16 @@ TablePaginationActions.propTypes = {
    * The number of rows per page.
    */
   rowsPerPage: PropTypes.number.isRequired,
+  /**
+   * If `true`, show the first-page button.
+   * @default false
+   */
+  showFirstButton: PropTypes.bool,
+  /**
+   * If `true`, show the last-page button.
+   * @default false
+   */
+  showLastButton: PropTypes.bool,
 };
 
 export default TablePaginationActions;

@@ -94,6 +94,8 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
     rowsPerPage,
     rowsPerPageOptions = defaultRowsPerPageOptions,
     SelectProps = {},
+    showFirstButton = false,
+    showLastButton = false,
     ...other
   } = props;
   let colSpan;
@@ -163,6 +165,8 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
           onChangePage={onChangePage}
           page={page}
           rowsPerPage={rowsPerPage}
+          showFirstButton={showFirstButton}
+          showLastButton={showLastButton}
         />
       </Toolbar>
     </Component>
@@ -277,6 +281,14 @@ TablePagination.propTypes = {
    * Props applied to the rows per page [`Select`](/api/select/) element.
    */
   SelectProps: PropTypes.object,
+  /**
+   * If `true`, show the first-page button.
+   */
+  showFirstButton: PropTypes.bool,
+  /**
+   * If `true`, show the last-page button.
+   */
+  showLastButton: PropTypes.bool,
 };
 
 export default withStyles(styles, { name: 'MuiTablePagination' })(TablePagination);

@@ -44,6 +44,8 @@ The `MuiTablePagination` name can be used for providing [default props](/customi
 | <span class="prop-name required">rowsPerPage<abbr title="required">*</abbr></span> | <span class="prop-type">number</span> |  | The number of rows per page. |
 | <span class="prop-name">rowsPerPageOptions</span> | <span class="prop-type">array</span> | <span class="prop-default">[10, 25, 50, 100]</span> | Customizes the options of the rows per page select field. If less than two options are available, no select field will be displayed. |
 | <span class="prop-name">SelectProps</span> | <span class="prop-type">object</span> | <span class="prop-default">{}</span> | Props applied to the rows per page [`Select`](/api/select/) element. |
+| <span class="prop-name">showFirstButton</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, show the first-page button. |
+| <span class="prop-name">showLastButton</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, show the last-page button. |
 
 The `ref` is forwarded to the root element.
 
