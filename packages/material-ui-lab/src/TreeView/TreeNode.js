@@ -13,6 +13,9 @@ const isPrintableCharacter = (str) => {
   return str && str.length === 1 && str.match(/\S/);
 };
 
+/**
+ * @ignore - internal component.
+ */
 function TreeNode(props) {
   const { nodeId } = props;
   const {

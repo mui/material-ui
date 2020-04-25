@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { fade, withStyles } from '@material-ui/core/styles';
+import Collapse from '@material-ui/core/Collapse';
 import TreeViewContext from '../TreeView/TreeViewContext';
 import { useDescendant, useDescendants, DescendantProvider } from '../TreeView/descendants';
 
@@ -77,7 +78,7 @@ export const styles = (theme) => ({
  */
 
 const TreeItem = React.forwardRef(function TreeItem(props, ref) {
-  const { label, nodeId, children, ...other } = props;
+  const { label, nodeId, children, TransitionComponent = Collapse, ...other } = props;
 
   const { registerNode, unregisterNode, getNode } = React.useContext(TreeViewContext);
   const { index, parent } = useDescendant({ parent: nodeId, label });
@@ -94,7 +95,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
         label,
         parent,
         index: index.current,
-        props: other,
+        props: { ...other, TransitionComponent },
       });
 
       return () => {
@@ -105,7 +106,16 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     return undefined;
     // See Option 3. https://github.com/facebook/react/issues/14476#issuecomment-471199055
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [nodeId, parent, label, registerNode, unregisterNode, index, JSON.stringify(other)]);
+  }, [
+    nodeId,
+    parent,
+    label,
+    registerNode,
+    unregisterNode,
+    index,
+    JSON.stringify(other),
+    TransitionComponent,
+  ]);
 
   return (
     <DescendantProvider nodeId={nodeId} items={itemsRef}>

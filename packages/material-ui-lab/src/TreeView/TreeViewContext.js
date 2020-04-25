@@ -1,3 +1,12 @@
 import * as React from 'react';
 
-export default React.createContext({});
+/**
+ * @ignore - internal component.
+ */
+const TreeViewContext = React.createContext({});
+
+if (process.env.NODE_ENV !== 'production') {
+  TreeViewContext.displayName = 'TreeViewContext';
+}
+
+export default TreeViewContext;

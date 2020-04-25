@@ -39,7 +39,7 @@ The `MuiTreeItem` name can be used for providing [default props](/customization/
 | <span class="prop-name">TransitionComponent</span> | <span class="prop-type">elementType</span> | <span class="prop-default">Collapse</span> | The component used for the transition. [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component. |
 | <span class="prop-name">TransitionProps</span> | <span class="prop-type">object</span> |  | Props applied to the [`Transition`](http://reactcommunity.org/react-transition-group/transition#Transition-props) element. |
 
-The `ref` is forwarded to the root element.
+The component cannot hold a ref.
 
 Any other props supplied will be provided to the root element (native element).
 
