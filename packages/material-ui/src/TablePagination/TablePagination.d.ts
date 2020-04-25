@@ -30,6 +30,10 @@ export interface TablePaginationTypeMap<P, D extends React.ElementType> {
       rowsPerPage: number;
       rowsPerPageOptions?: Array<number | { value: number; label: string }>;
       SelectProps?: Partial<SelectProps>;
+      getItemAriaLabel?: (
+        type: 'page' | 'first' | 'last' | 'next' | 'previous',
+        page: number
+      ) => string;
     };
   defaultComponent: D;
   classKey: TablePaginationClassKey;

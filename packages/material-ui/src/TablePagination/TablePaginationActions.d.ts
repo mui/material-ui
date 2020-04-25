@@ -10,6 +10,7 @@ export interface TablePaginationActionsProps extends React.HTMLAttributes<HTMLDi
   rowsPerPage: number;
   showFirstButton?: boolean;
   showLastButton?: boolean;
+  getAriaLabel?: (type: 'page' | 'first' | 'last' | 'next' | 'previous', page: number) => string;
 }
 
 declare const TablePaginationActions: React.ComponentType<TablePaginationActionsProps>;

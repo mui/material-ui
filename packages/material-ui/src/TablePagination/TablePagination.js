@@ -71,6 +71,8 @@ const defaultLabelDisplayedRows = ({ from, to, count }) =>
   `${from}-${to} of ${count !== -1 ? count : `more than ${to}`}`;
 const defaultRowsPerPageOptions = [10, 25, 50, 100];
 
+const defaultGetAriaLabel = (type) => `Go to ${type} page`;
+
 /**
  * A `TableCell` based component for placing inside `TableFooter` for pagination.
  */
@@ -96,6 +98,7 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
     SelectProps = {},
     showFirstButton = false,
     showLastButton = false,
+    getItemAriaLabel: getAriaLabel = defaultGetAriaLabel,
     ...other
   } = props;
   let colSpan;
@@ -167,6 +170,7 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
           rowsPerPage={rowsPerPage}
           showFirstButton={showFirstButton}
           showLastButton={showLastButton}
+          getAriaLabel={getAriaLabel}
         />
       </Toolbar>
     </Component>
@@ -213,6 +217,16 @@ TablePagination.propTypes = {
    * To enable server side pagination for an unknown number of items, provide -1.
    */
   count: PropTypes.number.isRequired,
+  /**
+   * Accepts a function which returns a string value that provides a user-friendly name for the current page.
+   *
+   * For localization purposes, you can use the provided [translations](/guides/localization/).
+   *
+   * @param {string} type The link or button type to format ('page' | 'first' | 'last' | 'next' | 'previous'). Defaults to 'page'.
+   * @param {number} page The page number to format.
+   * @returns {string}
+   */
+  getItemAriaLabel: PropTypes.func,
   /**
    * Customize the displayed rows label. Invoked with a `{ from, to, count, page }`
    * object.
