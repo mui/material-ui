@@ -9,9 +9,16 @@ const pageFilename = 'versions';
 const requireDemo = require.context('docs/src/pages/versions/', false, /\.(js|tsx)$/);
 const requireRaw = require.context('!raw-loader!../src/pages/versions', false, /\.(js|md|tsx)$/);
 
-// eslint-disable-next-line react/prop-types
 export default function Page({ demos, docs }) {
-  return <MarkdownDocs demos={demos} docs={docs} requireDemo={requireDemo} />;
+  return (
+    <MarkdownDocs
+      demos={demos}
+      docs={docs}
+      pageFilename={pageFilename}
+      requireRaw={requireRaw}
+      requireDemo={requireDemo}
+    />
+  );
 }
 
 async function getBranches() {

@@ -3,9 +3,8 @@ import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
 const pageFilename = 'api/portal';
-const requireRaw = require.context('!raw-loader!./', false, /portal\.md$/);
+const requireRaw = require.context('!raw-loader!./', false, /\/portal\.md$/);
 
-// eslint-disable-next-line react/prop-types
 export default function Page({ docs }) {
   return <MarkdownDocs docs={docs} />;
 }

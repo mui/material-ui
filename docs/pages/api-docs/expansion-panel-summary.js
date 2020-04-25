@@ -3,9 +3,8 @@ import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
 const pageFilename = 'api/expansion-panel-summary';
-const requireRaw = require.context('!raw-loader!./', false, /expansion-panel-summary\.md$/);
+const requireRaw = require.context('!raw-loader!./', false, /\/expansion-panel-summary\.md$/);
 
-// eslint-disable-next-line react/prop-types
 export default function Page({ docs }) {
   return <MarkdownDocs docs={docs} />;
 }

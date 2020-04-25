@@ -3,9 +3,8 @@ import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
 const pageFilename = 'api/no-ssr';
-const requireRaw = require.context('!raw-loader!./', false, /no-ssr\.md$/);
+const requireRaw = require.context('!raw-loader!./', false, /\/no-ssr\.md$/);
 
-// eslint-disable-next-line react/prop-types
 export default function Page({ docs }) {
   return <MarkdownDocs docs={docs} />;
 }

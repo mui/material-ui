@@ -155,5 +155,11 @@ module.exports = {
         ],
       },
     },
+    {
+      files: ['docs/pages/**/*.js'],
+      rules: {
+        'react/prop-types': 'off',
+      },
+    },
   ],
 };

@@ -14,9 +14,16 @@ const requireRaw = require.context(
   /\.(js|md|tsx)$/,
 );
 
-// eslint-disable-next-line react/prop-types
 export default function Page({ demos, docs }) {
-  return <MarkdownDocs demos={demos} docs={docs} requireDemo={requireDemo} />;
+  return (
+    <MarkdownDocs
+      demos={demos}
+      docs={docs}
+      pageFilename={pageFilename}
+      requireRaw={requireRaw}
+      requireDemo={requireDemo}
+    />
+  );
 }
 
 Page.getInitialProps = () => {

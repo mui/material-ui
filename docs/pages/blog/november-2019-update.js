@@ -5,7 +5,6 @@ import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 const pageFilename = 'blog/november-2019-update';
 const requireRaw = require.context('!raw-loader!./', false, /november-2019-update\.md$/);
 
-// eslint-disable-next-line react/prop-types
 export default function Page({ docs }) {
   return <TopLayoutBlog docs={docs} />;
 }
