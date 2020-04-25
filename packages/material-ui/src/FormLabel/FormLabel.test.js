@@ -27,7 +27,7 @@ describe('<FormLabel />', () => {
   }));
 
   describe('prop: required', () => {
-    it('should show an asterisk if required is set', () => {
+    it('should visually show an asterisk but not include it in the a11y tree', () => {
       const { container } = render(<FormLabel required>name</FormLabel>);
 
       expect(container.querySelector('label')).to.have.text('name\u2009*');
