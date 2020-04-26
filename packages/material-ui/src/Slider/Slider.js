@@ -157,7 +157,7 @@ export const styles = (theme) => ({
       },
     },
     '@media print': {
-      WebkitPrintColorAdjust: 'exact',
+      colorAdjust: 'exact',
     },
   },
   /* Styles applied to the root element if `color="primary"`. */

@@ -23,7 +23,7 @@ export const styles = (theme) => ({
     zIndex: 0, // Reset the stacking context.
     verticalAlign: 'middle', // For correct alignment with the text.
     '@media print': {
-      WebkitPrintColorAdjust: 'exact',
+      colorAdjust: 'exact',
     },
   },
   /* Styles applied to the root element if `edge="start"`. */
