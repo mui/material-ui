@@ -688,7 +688,7 @@ describe('<Tabs />', () => {
     });
   });
 
-  describe.only('keyboard navigation when focus is on a tab', () => {
+  describe('keyboard navigation when focus is on a tab', () => {
     [
       ['horizontal', 'ArrowLeft', 'ArrowRight'],
       ['vertical', 'ArrowUp', 'ArrowDown'],
