@@ -5359,15 +5359,10 @@ date-fns@^1.27.2:
   resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-1.30.1.tgz#2e71bf0b119153dbb4cc4e88d9ea5acfb50dc05c"
   integrity sha512-hBSVCvSmWC+QypYObzwGOd9wqdDpOt+0wl0KbU+R+uuZBS1jN8VsD1ss3irQDknRj5NvxiTF6oj/nDRnN/UQNw==
 
-date-fns@^2.0.0:
-  version "2.9.0"
-  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.9.0.tgz#d0b175a5c37ed5f17b97e2272bbc1fa5aec677d2"
-  integrity sha512-khbFLu/MlzLjEzy9Gh8oY1hNt/Dvxw3J6Rbc28cVoYWQaC1S3YI4xwkF9ZWcjDLscbZlY9hISMr66RFzZagLsA==
-
-date-fns@^2.0.0-alpha.27:
-  version "2.8.1"
-  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.8.1.tgz#2109362ccb6c87c3ca011e9e31f702bc09e4123b"
-  integrity sha512-EL/C8IHvYRwAHYgFRse4MGAPSqlJVlOrhVYZ75iQBKrnv+ZedmYsgwH3t+BCDuZDXpoo07+q9j4qgSSOa7irJg==
+date-fns@^2.12.0:
+  version "2.12.0"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.12.0.tgz#01754c8a2f3368fc1119cf4625c3dad8c1845ee6"
+  integrity sha512-qJgn99xxKnFgB1qL4jpxU7Q2t0LOn1p8KMIveef3UZD7kqjT3tpFNNdXJelEHhE+rUgffriXriw/sOSU+cS1Hw==
 
 date-now@^0.1.4:
   version "0.1.4"
