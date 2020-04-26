@@ -9,6 +9,11 @@ function makeUnique(hash, unique, i = 1) {
   return makeUnique(hash, unique, i + 1);
 }
 
+/**
+ * @param {string} text - HTML from e.g. parseMarkdown#render
+ * @param {Record<string, boolean>} [unique] - Ensures that each output is unique in `unique`
+ * @returns {string} that is safe to use in fragment links
+ */
 export default function textToHash(text, unique = {}) {
   return makeUnique(
     encodeURI(
