@@ -58,7 +58,6 @@ export const styles = (theme) => ({
   },
   /* Styles applied to the select component `selectMenu` class. */
   selectMenu: {
-    height: 'auto', // Reset
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
     overflow: 'hidden',
