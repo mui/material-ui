@@ -193,11 +193,11 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
       return;
     }
 
-    // Swallow the event, in case someone is listening for the escape key on the body.
-    event.stopPropagation();
-
     if (onEscapeKeyDown) {
       onEscapeKeyDown(event);
+    } else {
+      // Swallow the event, in case someone is listening for the escape key on the body.
+      event.stopPropagation();
     }
 
     if (!disableEscapeKeyDown && onClose) {
