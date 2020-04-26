@@ -16,6 +16,7 @@ describe('textToHash', () => {
         '@material-ui/core/styles vs @material-ui/styles',
         'material-ui-core-styles-vs-material-ui-styles',
       ],
+      ['Blog 📝', 'blog'],
     ];
     table.forEach((entry, index) => {
       const [markdown, expected] = entry;
