@@ -1,4 +1,4 @@
-import { assert, expect } from 'chai';
+import { expect } from 'chai';
 import { render as renderMarkdown } from './parseMarkdown';
 import textToHash from './textToHash';
 
@@ -29,7 +29,7 @@ describe('textToHash', () => {
 
   it('should generate a unique hash', () => {
     const unique = {};
-    assert.strictEqual(textToHash('Styling solution', unique), 'styling-solution');
-    assert.strictEqual(textToHash('Styling solution', unique), 'styling-solution-2');
+    expect(textToHash('Styling solution', unique)).to.equal('styling-solution');
+    expect(textToHash('Styling solution', unique)).to.equal('styling-solution-2');
   });
 });
