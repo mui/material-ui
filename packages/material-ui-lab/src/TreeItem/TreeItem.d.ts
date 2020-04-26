@@ -21,7 +21,7 @@ export interface TreeItemProps
    */
   icon?: React.ReactNode;
   /**
-   * `onClick` handler for the icon container. Call `event.preventDefault()` to prevent firing on `onNodeToggle`.
+   * `onClick` handler for the icon container. Call `event.preventDefault()` to prevent `onNodeToggle` from being called.
    */
   onIconClick?: React.MouseEventHandler;
   /**
@@ -29,7 +29,7 @@ export interface TreeItemProps
    */
   label?: React.ReactNode;
   /**
-   * `onClick` handler for the label container. Call `event.preventDefault()` to prevent firing on `onNodeToggle`.
+   * `onClick` handler for the label container. Call `event.preventDefault()` to prevent `onNodeToggle` from being called.
    */
   onLabelClick?: React.MouseEventHandler;
   /**
