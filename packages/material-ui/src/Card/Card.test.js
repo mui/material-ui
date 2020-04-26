@@ -6,11 +6,10 @@ import describeConformance from '../test-utils/describeConformance';
 import Card from './Card';
 import Paper from '../Paper';
 
-
 describe('<Card />', () => {
   let mount;
   let classes;
-  const render = createClientRender()
+  const render = createClientRender();
   before(() => {
     mount = createMount({ strict: true });
     classes = getClasses(<Card />);

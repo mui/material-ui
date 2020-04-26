@@ -7,7 +7,6 @@ import CardMedia from './CardMedia';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import PropTypes from 'prop-types';
 
-
 describe('<CardMedia />', () => {
   let mount;
   let classes;
@@ -32,14 +31,14 @@ describe('<CardMedia />', () => {
   it('should have the backgroundImage specified', () => {
     const { container } = render(<CardMedia image="/foo.jpg" />);
     const cardMedia = container.firstChild;
-    expect(cardMedia.style.backgroundImage).to.equal( 'url(/foo.jpg)');
+    expect(cardMedia.style.backgroundImage).to.equal('url(/foo.jpg)');
   });
 
   it('should have backgroundImage specified even though custom styles got passed', () => {
     const { container } = render(<CardMedia image="/foo.jpg" style={{ height: 200 }} />);
     const cardMedia = container.firstChild;
-    expect(cardMedia.style.backgroundImage).to.equal( 'url(/foo.jpg)');
-    expect(cardMedia.style.height).to.equal( "200px");
+    expect(cardMedia.style.backgroundImage).to.equal('url(/foo.jpg)');
+    expect(cardMedia.style.height).to.equal('200px');
   });
 
   it('should be possible to overwrite backgroundImage via custom styles', () => {
@@ -47,14 +46,14 @@ describe('<CardMedia />', () => {
       <CardMedia image="/foo.jpg" style={{ backgroundImage: 'url(/bar.jpg)' }} />,
     );
     const cardMedia = container.firstChild;
-    expect(cardMedia.style.backgroundImage).to.equal( 'url(/bar.jpg)');
+    expect(cardMedia.style.backgroundImage).to.equal('url(/bar.jpg)');
   });
 
   describe('prop: component', () => {
     it('should have `src` prop when media component specified', () => {
       const { container } = render(<CardMedia image="/foo.jpg" component="iframe" />);
       const cardMedia = container.firstChild;
-      expect(cardMedia).to.have.attribute('src','/foo.jpg');
+      expect(cardMedia).to.have.attribute('src', '/foo.jpg');
     });
 
     it('should not have `src` prop when picture media component specified', () => {
@@ -71,7 +70,7 @@ describe('<CardMedia />', () => {
     it('should not have default inline style when media component specified', () => {
       const { container } = render(<CardMedia src="/foo.jpg" component="picture" />);
       const cardMedia = container.firstChild;
-      expect(cardMedia.style.backgroundImage).to.equal( '');
+      expect(cardMedia.style.backgroundImage).to.equal('');
     });
 
     it('should not have `src` prop if not media component specified', () => {
@@ -94,7 +93,9 @@ describe('<CardMedia />', () => {
     it('warns when neither `children`, nor `image`, nor `src`, nor `component` are provided', () => {
       PropTypes.checkPropTypes(CardMedia.Naked.propTypes, { classes: {} }, 'prop', 'MockedName');
       expect(consoleErrorMock.callCount()).to.equal(1);
-      expect(consoleErrorMock.messages()[0]).to.contain('Material-UI: either `children`, `image`, `src` or `component` prop must be specified.');
+      expect(consoleErrorMock.messages()[0]).to.contain(
+        'Material-UI: either `children`, `image`, `src` or `component` prop must be specified.',
+      );
     });
   });
 });
