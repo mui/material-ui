@@ -39,7 +39,7 @@
     "@typescript-eslint/parser": "^1.6.0",
     "cypress": "4.4.0",
     "eslint": "^5.16.0",
-    "eslint-config-prettier": "^6.10.0",
+    "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-pretty-imports": "^1.1.3",
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "^1.6.0",
