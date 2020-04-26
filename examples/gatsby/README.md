@@ -26,5 +26,5 @@ or:
 
 ## gatsby-theme-material-ui
 
-Looking for an example with fewer boilerplate but less freedom?
+Looking for an example with less boilerplate but also less freedom?
 Check [`/examples/gatsby-theme`](https://github.com/mui-org/material-ui/tree/master/examples/gatsby-theme) out.
