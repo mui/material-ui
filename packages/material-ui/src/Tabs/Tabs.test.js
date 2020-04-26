@@ -118,6 +118,21 @@ describe('<Tabs />', () => {
     it('should support empty children', () => {
       render(<Tabs value={1} />);
     });
+
+    it('puts the selected child in tab order', () => {
+      const { getAllByRole, setProps } = render(
+        <Tabs value={1}>
+          <Tab />
+          <Tab />
+        </Tabs>,
+      );
+
+      expect(getAllByRole('tab').map((tab) => tab.tabIndex)).to.have.ordered.members([-1, 0]);
+
+      setProps({ value: 0 });
+
+      expect(getAllByRole('tab').map((tab) => tab.tabIndex)).to.have.ordered.members([0, -1]);
+    });
   });
 
   describe('prop: value', () => {
@@ -670,6 +685,167 @@ describe('<Tabs />', () => {
       );
       const indicator = markup.find(`button > .${classes.indicator}`);
       expect(indicator).to.have.lengthOf(1);
+    });
+  });
+
+  describe.only('keyboard navigation when focus is on a tab', () => {
+    [
+      ['horizontal', 'ArrowLeft', 'ArrowRight'],
+      ['vertical', 'ArrowUp', 'ArrowDown'],
+    ].forEach((entry) => {
+      const [orientation, previousItemKey, nextItemKey] = entry;
+
+      describe(`when focus is on a tab element in a ${orientation} tablist`, () => {
+        describe(previousItemKey, () => {
+          it('moves focus to the last tab without activating it if focus is on the first tab', () => {
+            const handleChange = spy();
+            const handleKeyDown = spy((event) => event.defaultPrevented);
+            const { getAllByRole } = render(
+              <Tabs
+                onChange={handleChange}
+                onKeyDown={handleKeyDown}
+                orientation={orientation}
+                value={1}
+              >
+                <Tab />
+                <Tab />
+                <Tab />
+              </Tabs>,
+            );
+            const [firstTab, , lastTab] = getAllByRole('tab');
+            firstTab.focus();
+
+            fireEvent.keyDown(firstTab, { key: previousItemKey });
+
+            expect(lastTab).toHaveFocus();
+            expect(handleChange.callCount).to.equal(0);
+            expect(handleKeyDown.firstCall.returnValue).to.equal(true);
+          });
+
+          it('moves focus to the previous tab without activating it', () => {
+            const handleChange = spy();
+            const handleKeyDown = spy((event) => event.defaultPrevented);
+            const { getAllByRole } = render(
+              <Tabs
+                onChange={handleChange}
+                onKeyDown={handleKeyDown}
+                orientation={orientation}
+                value={1}
+              >
+                <Tab />
+                <Tab />
+                <Tab />
+              </Tabs>,
+            );
+            const [firstTab, secondTab] = getAllByRole('tab');
+            secondTab.focus();
+
+            fireEvent.keyDown(secondTab, { key: previousItemKey });
+
+            expect(firstTab).toHaveFocus();
+            expect(handleChange.callCount).to.equal(0);
+            expect(handleKeyDown.firstCall.returnValue).to.equal(true);
+          });
+        });
+
+        describe(nextItemKey, () => {
+          it('moves focus to the first tab without activating it if focus is on the last tab', () => {
+            const handleChange = spy();
+            const handleKeyDown = spy((event) => event.defaultPrevented);
+            const { getAllByRole } = render(
+              <Tabs
+                onChange={handleChange}
+                onKeyDown={handleKeyDown}
+                orientation={orientation}
+                value={1}
+              >
+                <Tab />
+                <Tab />
+                <Tab />
+              </Tabs>,
+            );
+            const [firstTab, , lastTab] = getAllByRole('tab');
+            lastTab.focus();
+
+            fireEvent.keyDown(lastTab, { key: nextItemKey });
+
+            expect(firstTab).toHaveFocus();
+            expect(handleChange.callCount).to.equal(0);
+            expect(handleKeyDown.firstCall.returnValue).to.equal(true);
+          });
+
+          it('moves focus to the next tab without activating it it', () => {
+            const handleChange = spy();
+            const handleKeyDown = spy((event) => event.defaultPrevented);
+            const { getAllByRole } = render(
+              <Tabs
+                onChange={handleChange}
+                onKeyDown={handleKeyDown}
+                orientation={orientation}
+                value={1}
+              >
+                <Tab />
+                <Tab />
+                <Tab />
+              </Tabs>,
+            );
+            const [, secondTab, lastTab] = getAllByRole('tab');
+            secondTab.focus();
+
+            fireEvent.keyDown(secondTab, { key: nextItemKey });
+
+            expect(lastTab).toHaveFocus();
+            expect(handleChange.callCount).to.equal(0);
+            expect(handleKeyDown.firstCall.returnValue).to.equal(true);
+          });
+        });
+      });
+    });
+
+    describe('when focus is on a tab regardless of orientation', () => {
+      describe('Home', () => {
+        it('moves focus to the first tab without activating it', () => {
+          const handleChange = spy();
+          const handleKeyDown = spy((event) => event.defaultPrevented);
+          const { getAllByRole } = render(
+            <Tabs onChange={handleChange} onKeyDown={handleKeyDown} value={1}>
+              <Tab />
+              <Tab />
+              <Tab />
+            </Tabs>,
+          );
+          const [firstTab, , lastTab] = getAllByRole('tab');
+          lastTab.focus();
+
+          fireEvent.keyDown(lastTab, { key: 'Home' });
+
+          expect(firstTab).toHaveFocus();
+          expect(handleChange.callCount).to.equal(0);
+          expect(handleKeyDown.firstCall.returnValue).to.equal(true);
+        });
+      });
+
+      describe('End', () => {
+        it('moves focus to the last tab without activating it', () => {
+          const handleChange = spy();
+          const handleKeyDown = spy((event) => event.defaultPrevented);
+          const { getAllByRole } = render(
+            <Tabs onChange={handleChange} onKeyDown={handleKeyDown} value={1}>
+              <Tab />
+              <Tab />
+              <Tab />
+            </Tabs>,
+          );
+          const [firstTab, , lastTab] = getAllByRole('tab');
+          firstTab.focus();
+
+          fireEvent.keyDown(firstTab, { key: 'End' });
+
+          expect(lastTab).toHaveFocus();
+          expect(handleChange.callCount).to.equal(0);
+          expect(handleKeyDown.firstCall.returnValue).to.equal(true);
+        });
+      });
     });
   });
 });

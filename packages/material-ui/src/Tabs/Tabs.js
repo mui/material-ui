@@ -409,6 +409,41 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
     });
   });
 
+  const handleKeyDown = (event) => {
+    const { target } = event;
+    // Keyboard navigation assumes that [role="tab"] are siblings
+    // though we might warn in the future about nested, interactive elements
+    // as a a11y violation
+    const role = target.getAttribute('role');
+    if (role !== 'tab') {
+      return;
+    }
+
+    let newFocusTarget = null;
+    const previousItemKey = orientation === 'horizontal' ? 'ArrowLeft' : 'ArrowUp';
+    const nextItemKey = orientation === 'horizontal' ? 'ArrowRight' : 'ArrowDown';
+    switch (event.key) {
+      case previousItemKey:
+        newFocusTarget = target.previousElementSibling || childrenWrapperRef.current.lastChild;
+        break;
+      case nextItemKey:
+        newFocusTarget = target.nextElementSibling || childrenWrapperRef.current.firstChild;
+        break;
+      case 'Home':
+        newFocusTarget = childrenWrapperRef.current.firstChild;
+        break;
+      case 'End':
+        newFocusTarget = childrenWrapperRef.current.lastChild;
+        break;
+      default:
+        break;
+    }
+    if (newFocusTarget !== null) {
+      newFocusTarget.focus();
+      event.preventDefault();
+    }
+  };
+
   const conditionalElements = getConditionalElements();
 
   return (
@@ -434,11 +469,14 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
         ref={tabsRef}
         onScroll={handleTabsScroll}
       >
+        {/* The tablist isn't interactive but the tabs are */}
+        {/* eslint-disable-next-line jsx-a11y/interactive-supports-focus */}
         <div
           className={clsx(classes.flexContainer, {
             [classes.flexContainerVertical]: vertical,
             [classes.centered]: centered && !scrollable,
           })}
+          onKeyDown={handleKeyDown}
           ref={childrenWrapperRef}
           role="tablist"
         >
