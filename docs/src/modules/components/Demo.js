@@ -128,6 +128,14 @@ const styles = (theme) => ({
     marginTop: -64, // height of toolbar
     position: 'absolute',
   },
+  initialFocus: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: theme.spacing(4),
+    height: theme.spacing(4),
+    pointerEvents: 'none',
+  },
 });
 
 function getDemoName(location) {
@@ -341,20 +349,12 @@ function Demo(props) {
 
   const initialFocusRef = React.useRef(null);
   function handleResetFocusClick() {
-    initialFocusRef.current.focus();
-  }
-  function handleDemoMouseDown(event) {
-    // Otherwise clicking any non-focusable element in the demo focuses the demo container
-    // which is surprising and not how the code would behave outside of this page
-    event.preventDefault();
+    initialFocusRef.current.focusVisible();
   }
 
   return (
     <div className={classes.root}>
-      {/* We're actually preventing interaction here */}
-      {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
       <div
-        aria-label={t('initialFocusLabel')}
         className={clsx(classes.demo, {
           [classes.demoHiddenToolbar]: demoOptions.hideToolbar,
           [classes.demoBgOutlined]: demoOptions.bg === 'outlined',
@@ -363,10 +363,13 @@ function Demo(props) {
         })}
         onMouseEnter={handleDemoHover}
         onMouseLeave={handleDemoHover}
-        onMouseDown={handleDemoMouseDown}
-        ref={initialFocusRef}
-        tabIndex={-1}
       >
+        <IconButton
+          aria-label={t('initialFocusLabel')}
+          className={classes.initialFocus}
+          action={initialFocusRef}
+          tabIndex={-1}
+        />
         <DemoSandboxed
           key={demoKey}
           style={demoSandboxedStyle}
