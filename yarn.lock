@@ -13355,9 +13355,9 @@ punycode@^2.1.0, punycode@^2.1.1:
   integrity sha512-XRsRjdf+j5ml+y/6GKHPZbrF/8p2Yga0JPtdqTIY2Xe5ohJPD9saDJJLPvp9+NSBprVvevdXZybnj2cv8OEd0A==
 
 puppeteer@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/puppeteer/-/puppeteer-3.0.0.tgz#844c714d074c7ea63cfa3744501c1ab6ea60722e"
-  integrity sha512-ArmIS8w+XhL4KGP05kxMousA9SFxmeirMkNNcVe5LjK4iGCbZ8qKnG4byuXMru7Ty7a9QwiMUIf80X+zmJuf2A==
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/puppeteer/-/puppeteer-3.0.1.tgz#dce04a0b742fbf29f81ff423b2164e84647b4379"
+  integrity sha512-DxNnI9n4grVHC+9irUfNK2T6YFuRECJnvG7VzdVolxpVwWC5DQqI5ho9Z0af48K5MQW4sJY5cq3qQ5g6NkAjvw==
   dependencies:
     "@types/mime-types" "^2.1.0"
     debug "^4.1.0"
