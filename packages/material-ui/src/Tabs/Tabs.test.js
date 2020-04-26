@@ -10,6 +10,7 @@ import describeConformance from '../test-utils/describeConformance';
 import Tab from '../Tab';
 import Tabs from './Tabs';
 import TabScrollButton from './TabScrollButton';
+import { createMuiTheme, MuiThemeProvider } from '../styles';
 
 function AccessibleTabScrollButton(props) {
   return <TabScrollButton data-direction={props.direction} {...props} />;
@@ -688,14 +689,21 @@ describe('<Tabs />', () => {
     });
   });
 
-  describe('keyboard navigation when focus is on a tab', () => {
+  describe.only('keyboard navigation when focus is on a tab', () => {
     [
-      ['horizontal', 'ArrowLeft', 'ArrowRight'],
-      ['vertical', 'ArrowUp', 'ArrowDown'],
+      ['horizontal', 'ltr', 'ArrowLeft', 'ArrowRight'],
+      ['horizontal', 'rtl', 'ArrowLeft', 'ArrowRight'],
+      ['vertical', undefined, 'ArrowUp', 'ArrowDown'],
     ].forEach((entry) => {
-      const [orientation, previousItemKey, nextItemKey] = entry;
+      const [orientation, direction, previousItemKey, nextItemKey] = entry;
 
-      describe(`when focus is on a tab element in a ${orientation} tablist`, () => {
+      let wrapper;
+      before(() => {
+        const theme = createMuiTheme({ direction });
+        wrapper = ({ children }) => <MuiThemeProvider theme={theme}>{children}</MuiThemeProvider>;
+      });
+
+      describe(`when focus is on a tab element in a ${orientation} ${direction} tablist`, () => {
         describe(previousItemKey, () => {
           it('moves focus to the last tab without activating it if focus is on the first tab', () => {
             const handleChange = spy();
@@ -711,6 +719,7 @@ describe('<Tabs />', () => {
                 <Tab />
                 <Tab />
               </Tabs>,
+              { wrapper },
             );
             const [firstTab, , lastTab] = getAllByRole('tab');
             firstTab.focus();
@@ -736,6 +745,7 @@ describe('<Tabs />', () => {
                 <Tab />
                 <Tab />
               </Tabs>,
+              { wrapper },
             );
             const [firstTab, secondTab] = getAllByRole('tab');
             secondTab.focus();
@@ -763,6 +773,7 @@ describe('<Tabs />', () => {
                 <Tab />
                 <Tab />
               </Tabs>,
+              { wrapper },
             );
             const [firstTab, , lastTab] = getAllByRole('tab');
             lastTab.focus();
@@ -788,6 +799,7 @@ describe('<Tabs />', () => {
                 <Tab />
                 <Tab />
               </Tabs>,
+              { wrapper },
             );
             const [, secondTab, lastTab] = getAllByRole('tab');
             secondTab.focus();
