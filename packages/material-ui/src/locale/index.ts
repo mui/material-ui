@@ -1388,9 +1388,9 @@ export const svSE: Localization = {
 
 export const trTR: Localization = {
   props: {
-    // MuiBreadcrumbs: {
-    //   expandText: 'Show path',
-    // },
+    MuiBreadcrumbs: {
+      expandText: 'Yolu göster',
+    },
     MuiTablePagination: {
       backIconButtonText: 'Önceki sayfa',
       labelRowsPerPage: 'Sayfa başına satır:',
@@ -1400,7 +1400,7 @@ export const trTR: Localization = {
     },
     MuiRating: {
       getLabelText: (value) => `${value} Yıldız`,
-      // emptyLabelText: 'Empty',
+      emptyLabelText: 'Boş',
     },
     MuiAutocomplete: {
       clearText: 'Temizle',
@@ -1412,27 +1412,27 @@ export const trTR: Localization = {
     MuiAlert: {
       closeText: 'Kapat',
     },
-    // MuiPagination: {
-    //   'aria-label': 'Pagination navigation',
-    //   getItemAriaLabel: (type, page, selected) => {
-    //     if (type === 'page') {
-    //       return `${selected ? '' : 'Go to '}page ${page}`;
-    //     }
-    //     if (type === 'first') {
-    //       return 'Go to first page';
-    //     }
-    //     if (type === 'last') {
-    //       return 'Go to last page';
-    //     }
-    //     if (type === 'next') {
-    //       return 'Go to next page';
-    //     }
-    //     if (type === 'previous') {
-    //       return 'Go to previous page';
-    //     }
-    //     return undefined;
-    //   },
-    // },
+    MuiPagination: {
+      'aria-label': 'Sayfa navigasyonu',
+      getItemAriaLabel: (type, page, selected) => {
+        if (type === 'page') {
+          return `${page}. ${selected ? 'sayfa' : 'sayfaya git'}`;
+        }
+        if (type === 'first') {
+          return 'İlk sayfaya git';
+        }
+        if (type === 'last') {
+          return 'Son sayfaya git';
+        }
+        if (type === 'next') {
+          return 'Sonraki sayfaya git';
+        }
+        if (type === 'previous') {
+          return 'Önceki sayfaya git';
+        }
+        return undefined;
+      },
+    },
   },
 };
 
