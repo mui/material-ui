@@ -11,15 +11,7 @@ const requireRaw = require.context(
 );
 
 export default function Page({ demos, docs }) {
-  return (
-    <MarkdownDocs
-      demos={demos}
-      docs={docs}
-      pageFilename={pageFilename}
-      requireRaw={requireRaw}
-      requireDemo={requireDemo}
-    />
-  );
+  return <MarkdownDocs demos={demos} docs={docs} requireDemo={requireDemo} />;
 }
 
 Page.getInitialProps = () => {

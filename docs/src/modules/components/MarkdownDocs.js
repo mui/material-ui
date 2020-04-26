@@ -19,7 +19,6 @@ import Link from 'docs/src/modules/components/Link';
 import { exactProp } from '@material-ui/utils';
 import { SOURCE_CODE_ROOT_URL } from 'docs/src/modules/constants';
 import Demo from 'docs/src/modules/components/Demo';
-import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 import AppTableOfContents from 'docs/src/modules/components/AppTableOfContents';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 
@@ -90,23 +89,7 @@ const styles = (theme) => ({
 });
 
 function MarkdownDocs(props) {
-  const {
-    classes,
-    disableAd = false,
-    disableToc = false,
-    demos: demosProp,
-    docs: docsProp,
-    requireDemo,
-    pageFilename,
-    requireRaw,
-  } = props;
-
-  let demos = demosProp;
-  let docs = docsProp;
-
-  if (process.env.NODE_ENV !== 'production' && pageFilename && requireRaw) {
-    ({ demos, docs } = prepareMarkdown({ pageFilename, requireRaw }));
-  }
+  const { classes, disableAd = false, disableToc = false, demos, docs, requireDemo } = props;
 
   const t = useSelector((state) => state.options.t);
   const userLanguage = useSelector((state) => state.options.userLanguage);
@@ -246,9 +229,7 @@ MarkdownDocs.propTypes = {
   disableAd: PropTypes.bool,
   disableToc: PropTypes.bool,
   docs: PropTypes.object.isRequired,
-  pageFilename: PropTypes.string,
   requireDemo: PropTypes.func,
-  requireRaw: PropTypes.func,
 };
 
 if (process.env.NODE_ENV !== 'production') {

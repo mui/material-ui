@@ -10,15 +10,7 @@ const requireDemo = require.context('docs/src/pages/versions/', false, /\.(js|ts
 const requireRaw = require.context('!raw-loader!../src/pages/versions', false, /\.(js|md|tsx)$/);
 
 export default function Page({ demos, docs }) {
-  return (
-    <MarkdownDocs
-      demos={demos}
-      docs={docs}
-      pageFilename={pageFilename}
-      requireRaw={requireRaw}
-      requireDemo={requireDemo}
-    />
-  );
+  return <MarkdownDocs demos={demos} docs={docs} requireDemo={requireDemo} />;
 }
 
 async function getBranches() {

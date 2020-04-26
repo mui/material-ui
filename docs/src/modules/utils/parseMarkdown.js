@@ -12,7 +12,7 @@ const headerKeyValueRegExp = /(.*): (.*)/g;
 const emptyRegExp = /^\s*$/;
 
 /**
- * Extract informations from the top of the markdown.
+ * Extract information from the top of the markdown.
  * For instance, the following input:
  *
  * ---
@@ -132,8 +132,9 @@ export function prepareMarkdown(config) {
         match && LANGUAGES_IN_PROGRESS.indexOf(match[1]) !== -1 ? match[1] : 'en';
 
       const markdown = requireRaw(filename);
-      const headers = getHeaders(markdown);
       const contents = getContents(markdown);
+      const headers = getHeaders(markdown);
+
       const title = headers.title || getTitle(markdown);
       const description = headers.description || getDescription(markdown);
 
