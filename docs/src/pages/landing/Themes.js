@@ -63,6 +63,7 @@ export default function Themes() {
             {t('themesDescr')}
           </Typography>
           <Link
+            aria-label={t('themesButton')}
             href="https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=home-store"
             data-ga-event-category="store"
             data-ga-event-action="click"
@@ -73,6 +74,8 @@ export default function Themes() {
               <img
                 className={classes.img}
                 alt={t('themesButton')}
+                // The alt wouldn't be a descriptive label for the image. It's used as a placeholder for the link name.
+                aria-label={t('themesTemplatesLabel')}
                 src={`/static/images/themes-${theme.palette.type}.jpg`}
                 loading="eager"
                 width={500}
