@@ -420,8 +420,14 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
     }
 
     let newFocusTarget = null;
-    const previousItemKey = orientation === 'horizontal' ? 'ArrowLeft' : 'ArrowUp';
-    const nextItemKey = orientation === 'horizontal' ? 'ArrowRight' : 'ArrowDown';
+    let previousItemKey = orientation === 'horizontal' ? 'ArrowLeft' : 'ArrowUp';
+    let nextItemKey = orientation === 'horizontal' ? 'ArrowRight' : 'ArrowDown';
+    if (orientation === 'horizontal' && theme.direction === 'rtl') {
+      // swap previousItemKey with nextItemKey
+      previousItemKey = 'ArrowRight';
+      nextItemKey = 'ArrowLeft';
+    }
+
     switch (event.key) {
       case previousItemKey:
         newFocusTarget = target.previousElementSibling || tabListRef.current.lastChild;

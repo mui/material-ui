@@ -689,10 +689,10 @@ describe('<Tabs />', () => {
     });
   });
 
-  describe.only('keyboard navigation when focus is on a tab', () => {
+  describe('keyboard navigation when focus is on a tab', () => {
     [
       ['horizontal', 'ltr', 'ArrowLeft', 'ArrowRight'],
-      ['horizontal', 'rtl', 'ArrowLeft', 'ArrowRight'],
+      ['horizontal', 'rtl', 'ArrowRight', 'ArrowLeft'],
       ['vertical', undefined, 'ArrowUp', 'ArrowDown'],
     ].forEach((entry) => {
       const [orientation, direction, previousItemKey, nextItemKey] = entry;
