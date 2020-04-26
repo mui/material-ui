@@ -1,6 +1,6 @@
 # Droite à gauche
 
-<p class="description">Pour modifier le sens des composants Materiau-UI, vous devez suivre les étapes suivantes. UIs for languages that are read from right-to-left (RTL), such as Arabic and Hebrew, should be mirrored.</p>
+<p class="description">Right-to-left languages such as Arabic, Persian or Hebrew are supported. Pour modifier le sens des composants Materiau-UI, vous devez suivre les étapes suivantes.</p>
 
 ## Etapes
 

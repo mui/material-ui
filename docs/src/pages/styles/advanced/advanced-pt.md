@@ -1,12 +1,12 @@
 # Avançado
 
-<p class="description">This section covers more advanced usage of @material-ui/core/styles.</p>
+<p class="description">Esta seção aborda o uso mais avançado de @material-ui/core/styles.</p>
 
 ## Temas
 
-Add a `ThemeProvider` to the top level of your app to pass a theme down the React component tree. Então, você pode acessar o objeto de tema em funções de estilo.
+Adicione um `ThemeProvider` para o nível superior de sua aplicação para passar um tema pela árvore de componentes do React. Então, você pode acessar o objeto de tema em funções de estilo.
 
-> This example creates a theme object for custom-built components. If you intend to use some of the Material-UI's components you need to provide a richer theme structure using the `createMuiTheme()` method. Head to the the [theming section](/customization/theming/) to learn how to build your custom Material-UI theme.
+> Este exemplo cria um objeto do tema para componentes customizados. Se você pretende usar alguns dos componentes do Material-UI, você precisa fornecer uma estrutura de tema mais rica usando o método `createMuiTheme()`. Vá até a [seção de temas](/customization/theming/) para aprender como construir seu tema customizado do Material-UI.
 
 ```jsx
 import { ThemeProvider } from '@material-ui/core/styles';
@@ -33,7 +33,7 @@ Você pode precisar acessar as variáveis de tema dentro de seus componentes Rea
 
 #### `useTheme` hook
 
-For use in function components:
+Para uso em componentes de função:
 
 ```jsx
 import { useTheme } from '@material-ui/core/styles';
@@ -48,7 +48,7 @@ function DeepChild() {
 
 #### `withTheme` HOC
 
-For use in class or function components:
+Para uso em classe ou componentes de função:
 
 ```jsx
 import { withTheme } from '@material-ui/core/styles';
@@ -223,7 +223,7 @@ Note que isto não suporta seletores, ou regras aninhadas.
 
 ## Ordem de injeção de CSS
 
-> It's **really important** to understand how the CSS specificity is calculated by the browser, as it's one of the key elements to know when overriding styles. You are encouraged to read this MDN paragraph: [How is specificity calculated?](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity#How_is_specificity_calculated)
+> É **realmente importante** entender como a especificidade do CSS é calculada pelo navegador, como um dos elementos chave para saber quando sobrescrever estilos. Recomendamos que você leia este parágrafo do MDN: [Como a especificidade é calculada?](https://developer.mozilla.org/pt-BR/docs/Web/CSS/Specificity#How_is_specificity_calculated)
 
 Por padrão, os estilos são inseridos **por último** no elemento `<head>` da sua página. Eles ganham mais especificidade do que qualquer outra folha de estilo em sua página, por exemplo, módulos CSS, componentes estilizados (styled components).
 
@@ -235,7 +235,7 @@ O componente `StylesProvider` tem uma propriedade `injectFirst` para injetar as 
 import { StylesProvider } from '@material-ui/core/styles';
 
 <StylesProvider injectFirst>
-  {/* Your component tree.
+  {/* Sua árvore de componentes.
       Componentes com estilo podem sobrescrever os estilos de Material-UI. */}
 </StylesProvider>
 ```
@@ -261,14 +261,14 @@ const useStyles = makeStyles({
 });
 
 export default function MyComponent() {
-  // Order doesn't matter
+  // Ordem não importa
   const classes = useStyles();
   const classesBase = useStylesBase();
 
-  // Order doesn't matter
+  // Ordem não importa
   const className = clsx(classes.root, classesBase.root)
 
-  // color: red 🔴 wins.
+  // color: red 🔴 vence.
   return <div className={className} />;
 }
 ```
@@ -296,7 +296,7 @@ import { StylesProvider, jssPreset } from '@material-ui/core/styles';
 
 const jss = create({
   ...jssPreset(),
-  // Define a custom insertion point that JSS will look for when injecting the styles into the DOM.
+  // Defina um ponto de inserção customizado que o JSS irá procurar para injetar os estilos no DOM.
   insertionPoint: 'jss-insertion-point',
 });
 
@@ -305,7 +305,7 @@ export default function App() {
 }
 ```
 
-#### Other HTML elements
+#### Outros elementos HTML
 
 [Create React App](https://github.com/facebook/create-react-app) remove comentários em HTML ao criar a compilação de produção. Para contornar esse comportamento, você pode fornecer um elemento DOM (diferente de um comentário) como o ponto de inserção do JSS, por exemplo, um elemento `<noscript>`:
 
@@ -322,7 +322,7 @@ import { StylesProvider, jssPreset } from '@material-ui/core/styles';
 
 const jss = create({
   ...jssPreset(),
-  // Define a custom insertion point that JSS will look for when injecting the styles into the DOM.
+  // Defina um ponto de inserção customizado que o JSS irá procurar para injetar os estilos no DOM.
   insertionPoint: document.getElementById('jss-insertion-point'),
 });
 
@@ -344,7 +344,7 @@ document.head.insertBefore(styleNode, document.head.firstChild);
 
 const jss = create({
   ...jssPreset(),
-  // Define a custom insertion point that JSS will look for when injecting the styles into the DOM.
+  // Defina um ponto de inserção customizado que o JSS irá procurar para injetar os estilos no DOM.
   insertionPoint: 'jss-insertion-point',
 });
 
@@ -381,13 +381,13 @@ function render() {
 }
 ```
 
-You can [follow the server side guide](/guides/server-rendering/) for a more detailed example, or read the [`ServerStyleSheets` API documentation](/styles/api/#serverstylesheets).
+Você pode [seguir o guia lado do servidor](/guides/server-rendering/) para um exemplo mais detalhado, ou leia o [`ServerStyleSheets` na documentação da API](/styles/api/#serverstylesheets).
 
 ### Gatsby
 
-There is [an official Gatsby plugin](https://github.com/hupe1980/gatsby-plugin-material-ui) that enables server-side rendering for `@material-ui/styles`. Consulte a página do plugin para obter instruções de configuração e uso.
+Existe [um plugin oficial Gatsby](https://github.com/hupe1980/gatsby-plugin-material-ui) que permite a renderização do lado do servidor para `@material-ui/styles`. Consulte a página do plugin para obter instruções de configuração e uso.
 
-Refer to [this example Gatsby project](https://github.com/mui-org/material-ui/blob/master/examples/gatsby) for an up-to-date usage example.
+Consulte [este exemplo de projeto Gatsby](https://github.com/mui-org/material-ui/blob/master/examples/gatsby) para um exemplo de uso atualizado.
 
 ### Next.js
 
@@ -401,7 +401,7 @@ Os nomes de classes são gerados pelo [gerador de nome de classe](/styles/api/#c
 
 ### Padrão
 
-By default, the class names generated by `@material-ui/core/styles` are **non-deterministic**; you can't rely on them to stay the same. Vejamos a seguinte estilo como um exemplo:
+Por padrão, os nomes de classes gerados por `@material-ui/core/styles` são **não determinísticos**; você não pode confiar que eles irão permanecer os mesmos. Vejamos a seguinte estilo como um exemplo:
 
 ```js
 const useStyles = makeStyles({
@@ -564,9 +564,9 @@ Se você estiver usando renderização do lado do servidor(Server-Side Rendering
 
 Então, você deve passar este nonce para o JSS para que ele possa adicioná-lo às tags `<style>` subsequentes.
 
-The way that you do this is by passing a `<meta property="csp-nonce" content={nonce} />` tag in the `<head>` of your HTML. JSS will then, by convention, look for a `<meta property="csp-nonce"` tag and use the `content` value as the nonce.
+A maneira como você faz isso é passando uma tag `<meta property="csp-nonce" content={nonce} />` no `<head>` do seu HTML. O JSS irá então, por convenção, procurar por uma tag `<meta property="csp-nonce"` e usar o valor do `content` como um nonce.
 
-Você deve incluir esse cabeçalho independentemente de o SSR ser usado ou não. Here is an example of what a fictional header could look like:
+Você deve incluir esse cabeçalho independentemente de o SSR ser usado ou não. Aqui está um exemplo de como um cabeçalho fictício poderia parecer:
 
 ```html
 <head>

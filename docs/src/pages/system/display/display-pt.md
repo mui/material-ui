@@ -4,7 +4,7 @@
 
 ## Exemplos
 
-### Inline
+### Em Linha
 
 {{"demo": "pages/system/display/Inline.js", "defaultCodeOpen": false, "bg": true}}
 
@@ -13,7 +13,7 @@
 <Box component="div" display="inline">inline</Box>
 ```
 
-### Block
+### Bloco
 
 {{"demo": "pages/system/display/Block.js", "defaultCodeOpen": false, "bg": true}}
 

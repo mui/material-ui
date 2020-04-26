@@ -11,7 +11,7 @@ Container können verschachtelt werden, für die meisten Layouts ist dies aber n
 
 ## Flexible Container
 
-Die Breite eines flexiblen Containers wird durch den Wert des `maxWidth`-Attributs begrenzt.
+A fluid container width is bounded by the `maxWidth` property value.
 
 {{"demo": "pages/components/container/SimpleContainer.js", "iframe": true, "defaultCodeOpen": false}}
 

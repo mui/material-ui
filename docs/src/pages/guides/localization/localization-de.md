@@ -1,4 +1,4 @@
-# Localization
+# Lokalisierung
 
 <p class="description">Localization (also referred to as "l10n") is the process of adapting a product or content to a specific locale or market.</p>
 
@@ -61,7 +61,9 @@ const theme = createMuiTheme({
 
 You can [find the source](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/locale/index.js) in the GitHub repository.
 
-To create your own translation, or to customise the English text, copy this file to your project, make any changes needed and import the locale from there. (Please do consider contributing new translations back to Material-UI by opening a pull request.)
+To create your own translation, or to customise the English text, copy this file to your project, make any changes needed and import the locale from there.
+
+Please do consider contributing new translations back to Material-UI by opening a pull request. However, Material-UI aims to support the [100 most popular locales](https://en.wikipedia.org/wiki/List_of_languages_by_number_of_native_speakers), we might not accept contributions for locales that are not frequently used, for instance `gl-ES` that has "only" 2.5 million native speakers.
 
 ### Beispiel
 

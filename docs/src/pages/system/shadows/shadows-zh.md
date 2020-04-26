@@ -4,7 +4,7 @@
 
 ## 示例
 
-The helpers allow you to control relative depth, or distance, between two surfaces along the z-axis. By default, there is 25 elevation levels.
+该工具可以让你控制两平面之间沿z轴方向的相对深度，或者说距离。 默认情况下，高度为25。
 
 {{"demo": "pages/system/shadows/Demo.js", "defaultCodeOpen": false, "bg": true}}
 

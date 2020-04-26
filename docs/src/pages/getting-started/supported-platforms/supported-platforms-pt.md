@@ -15,7 +15,7 @@ Como o Googlebot usa um serviço de renderização da Web (WRS) para indexar o c
 
 ## Servidor
 
-Por suportar renderização no lado do servidor, o Material-UI precisa oferecer suporte as versões mais recentes e estáveis do Node.js. Sempre que possível, as versões [ LTS que estão em manutenção ](https://github.com/nodejs/Release#lts-schedule1) são suportados. We recommend using **node v10.x** or newer. However we still support **node v8.x**. The support of **node v8.x** will be stopped in Material-UI Version 5.
+Por suportar renderização no lado do servidor, o Material-UI precisa oferecer suporte as versões mais recentes e estáveis do Node.js. Sempre que possível, as versões [ LTS que estão em manutenção ](https://github.com/nodejs/Release#lts-schedule1) são suportados. Recomendamos usar o **node v10.x** ou mais recente. No entanto, ainda suportamos **node v8.x**. O suporte do **node v8.x** será interrompido na Versão 5 do Material-UI.
 
 ### Prefixos CSS
 

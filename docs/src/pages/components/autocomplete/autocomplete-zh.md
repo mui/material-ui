@@ -36,22 +36,26 @@ components: TextField, Popper, Autocomplete
 
 此组件有两种可控的状态：
 
-1. 一种状态是“value”，它是 `value`/`onChange` 属性的组合。
-2. 还有一种状态是 “input value”，它则是 `inputValue`/`onInputChange` 这两个属性的组合。
+1. 一种状态是“value”，它是 `value`/`onChange` 属性的组合。 This state represents the value selected by the user, for instance when pressing <kbd>Enter</kbd>.
+2. 还有一种状态是 “input value”，它则是 `inputValue`/`onInputChange` 这两个属性的组合。 This state represents the value displayed in the textbox.
 
 > ⚠️ 以上两种状态互不干涉，它们应该被单独控制着。
 
+{{"demo": "pages/components/autocomplete/ControllableStates.js"}}
+
 ## 免费工具
 
-将 `freeSolo` 设置为true，以便在文本框中输入任意值。 Prop的设计是为了覆盖搜索框的主要用例，并提出建议，例如谷歌搜索。
-
-然而，仍然存在着这种情况。 如果您打算将它用于一个 [组合框](#combo-box) (一个强化的选定元素版本)，我们建议设置 `selectOnFocus` (它帮助用户清除选定的值)。
+将 `freeSolo` 设置为true，以便在文本框中输入任意值。 The prop is designed to cover the primary use case of a **search box** with suggestions, e.g. Google search or react-autowhatever.
 
 {{"demo": "pages/components/autocomplete/FreeSolo.js"}}
 
-### 帮助信息
+### Creatable
 
-有时您想要向用户显示他/她可以添加自己想要的任何值。 以下的演示增加了一个最新的操作方式：`添加“你的搜索”`
+If you intend to use this mode for a [combo box](#combo-box) like experience (an enhanced version of a select element) we recommend setting:
+
+- `selectOnFocus` to helps the user clear the selected value.
+- `clearOnBlur` to helps the user to enter a new value.
+- A last option, for instance `Add "YOUR SEARCH"`.
 
 {{"demo": "pages/components/autocomplete/FreeSoloCreateOption.js"}}
 
@@ -143,7 +147,7 @@ import useAutocomplete from '@material-ui/lab/useAutocomplete';
 
 ## 自定义筛选
 
-此组件提供了一个工厂来构建一个筛选的方法，供给 `filerOption` 属性使用。 用此你可以更改默认的筛选行为。
+此组件提供了一个工厂来构建一个筛选的方法，供给 `filterOptions` 属性使用。 用此你可以更改默认的筛选行为。
 
 ```js
 import { createFilterOptions } from '@material-ui/lab/Autocomplete';
@@ -158,15 +162,14 @@ import { createFilterOptions } from '@material-ui/lab/Autocomplete';
   - `config.ignoreCase` (*Boolean* [optional]): 默认值为` true `。 所有字母都小写。
   - `config.limit` (*Number* [optional]): 默认值为 null。 显示限定数量的建议选项。 譬如，如果 `config.limit` 为 `100`，那么只显示前`100` 个匹配的选项。 如果存在很多选项匹配，并且虚拟化设置还没建立成时，这样的限制是非常有效的。
   - `config.matchFrom` (*'any' | 'start'* [optional]): 默认值为 `'any'`。
-  - `config.startAfter`(*Number* [optional]): 默认值为 `0`。 只在定量的字母之后显示建议选项。
-  - `config.stringify` (*Func* [optional]): Controls how an option is converted into a string so that it can be matched against the input text fragment.
-  - `config.trim` (*Boolean* [optional]): 默认值为`false`。 Remove trailing spaces.
+  - `config.stringify` (*Func* [optional]): 控制如何将一个选项转换成一个字符串，这样，选项就能够和输入文本的片段相匹配。
+  - `config.trim` (*Boolean* [optional]): 默认值为`false`。 删除尾随空格。
 
 #### 返回结果
 
-`filterOptions`: the returned filter method can be provided directly to the `filterOptions` prop of the `Autocomplete` component, or the parameter of the same name for the hook.
+`过滤选项`: 返回的过滤器方法可以直接提供给`自动补全` 组件的 ` filterOptions ` 属性， 或者可以传给 hook 的同名参数。
 
-In the following demo, the options need to start with the query prefix:
+以下的例子中，选项必须有一个查询的前缀：
 
 ```js
 const filterOptions = createFilterOptions({
@@ -179,9 +182,9 @@ const filterOptions = createFilterOptions({
 
 {{"demo": "pages/components/autocomplete/Filter.js", "defaultCodeOpen": false}}
 
-### 高级
+### 高级使用
 
-For richer filtering mechanisms, like fuzzy matching, it's recommended to look at [match-sorter](https://github.com/kentcdodds/match-sorter). 就像这样：
+对于更复杂的过滤机制，譬如模糊匹配（fuzzy matching），我们推荐您看一下 [match-sorter](https://github.com/kentcdodds/match-sorter)。 就像这样：
 
 ```jsx
 import matchSorter from 'match-sorter';
@@ -192,9 +195,9 @@ const filterOptions = (options, { inputValue }) =>
 <Autocomplete filterOptions={filterOptions} />
 ```
 
-## 虚拟滚动
+## 可视化
 
-Search within 10,000 randomly generated options. The list is virtualized thanks to [react-window](https://github.com/bvaughn/react-window).
+在 10000个随机生成的选项中搜索。 多亏了[react-window](https://github.com/bvaughn/react-window)，这个列表得以可视化。
 
 {{"demo": "pages/components/autocomplete/Virtualize.js"}}
 
@@ -202,14 +205,14 @@ Search within 10,000 randomly generated options. The list is virtualized thanks 
 
 ### autocomplete/autofill
 
-The browsers have heuristics to help the users fill the form inputs. However, it can harm the UX of the component.
+浏览器会有启发性的帮助用户填写表格。 然而，这样的功能会削弱的组件用户体验。
 
-By default, the component disable the **autocomplete** feature (remembering what the user has typed for a given field in a previous session) with the `autoComplete="off"` attribute.
+默认情况下，组件通过 `autoComplete="off"` 这个属性，禁用了 **autocomplete** 功能（请注意用户可能在之前已经在给定域输入内容）。
 
-However, in addition to remembering past entered values, the browser might also propose **autofill** suggestions (saved login, address, or payment details). In the event you want the avoid autofill, you can try the following:
+然而，除了记住过去已经输入的值，浏览器可能也会给出 **自动填充（autofill）** 的建议（譬如有保存的登录信息，地址，或者支付方式等）。 若您不需要自动填充，您可以尝试以下的方式：
 
-- Name the input without leaking any information the browser can use. e.g. `id="field1"` instead of `id="country"`. If you leave the id empty, the component uses a random id.
-- Set `autoComplete="new-password"`: 
+- 给输入框一个不同的名字，这样不会泄露任何信息给浏览器使用。 例如：`id="field1"` 而不是 `id="country"`。 若你不填写 id，该组件则会使用一个随机的 id。
+- 设置为 `autoComplete="new-password"`： 
         jsx
         <TextField
         {...params}
@@ -219,20 +222,20 @@ However, in addition to remembering past entered values, the browser might also 
         }}
         />
 
-### iOS VoiceOver
+### iOS VoiceOver 辅助功能
 
-VoiceOver on iOS Safari doesn't support the `aria-owns` attribute very well. You can work around the issue with the `disablePortal` prop.
+iOS Safari 中的 VoiceOver 对 `aria-owns` 属性的支持并不是很到位。 你可以用 `disablePortal` 属性来解决这个问题。
 
 ### TypeScript
 
-To fully take advantage of type inference, you need to set the `multiple` prop to `undefined`, `false` or `true`. See [this discussion](https://github.com/mui-org/material-ui/pull/18854#discussion_r364215153) for more details. TypeScript might solve this bug in the future.
+若想完全利用 type inference，您则需要把 `multiple` 属性设置为 `undefined`，`false` 或者 `true` 之一。 请在[这个讨论区中](https://github.com/mui-org/material-ui/pull/18854#discussion_r364215153)查看更多信息。 TypeScript 可能在将来会解决这个问题。
 
 ### ListboxComponent
 
-If you provide a custom `ListboxComponent` prop, you need to make sure that the intended scroll container has the `role` attribute set to `listbox`. This ensures the correct behavior of the scroll, for example when using the keyboard to navigate.
+若你提供一共自定义的 `ListboxComponent` 属性，请保证需要滚动功能的容器将 `role` 属性设置为 `listbox`。 这能保证滚动功能在一些情况下，例如当用键盘切换的时候，仍然能够正常显示。
 
-## 可访问性
+## 无障碍设计
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#combobox)
 
-We encourage the usage of a label for the textbox. The component implements the WAI-ARIA authoring practices.
+我们鼓励用户在 textbox 中使用标签。 组件带入了 WAI-ARIA 授权的一些标准。

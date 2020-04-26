@@ -19,17 +19,17 @@ Visualizações de árvore também suportam seleção múltipla.
 
 {{"demo": "pages/components/tree-view/MultiSelectTreeView.js"}}
 
-### Controlled tree view
+### Visualização em árvore controlada
 
-The tree view also offers a controlled API.
+A visualização em árvore também oferece uma API controlada.
 
 {{"demo": "pages/components/tree-view/ControlledTreeView.js"}}
 
-## Rich object
+## Objeto rico
 
-While the `TreeView`/`TreeItem` component API maximizes flexibility, an extra step is needed to handle a rich object.
+Enquanto o componente `TreeView`/`TreeItem` maximiza a flexibilidade, um passo extra é necessário para lidar com um objeto rico.
 
-Let's consider a data variable with the following shape, recursion can be used to handle it.
+Vamos considerar uma variável de dados com a seguinte estrutura, a recursão pode ser usada para lidar com este cenário.
 
 ```js
 const data = {
@@ -47,13 +47,13 @@ const data = {
 
 {{"demo": "pages/components/tree-view/RecursiveTreeView.js", "defaultCodeOpen": false}}
 
-## Customized tree view
+## Visualização em árvore customizada
 
-### Custom icons, border and animation
+### Ícones customizados, borda e animação
 
 {{"demo": "pages/components/tree-view/CustomizedTreeView.js"}}
 
-### Gmail clone
+### Clone do Gmail
 
 {{"demo": "pages/components/tree-view/GmailTreeView.js"}}
 
@@ -61,4 +61,4 @@ const data = {
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#TreeView)
 
-The component follows the WAI-ARIA authoring practices.
+O componente segue as práticas de autoria da WAI-ARIA.

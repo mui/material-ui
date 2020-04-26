@@ -22,7 +22,7 @@ O valor deve ser escolhido a partir de um conjunto predefinido de valores permit
 
 ### Área de exemplos
 
-Cada um dos exemplos a seguir demonstra uma funcionalidade do componente Autocomplet.
+Cada um dos exemplos a seguir demonstra uma funcionalidade do componente Autocomplete.
 
 {{"demo": "pages/components/autocomplete/Playground.js"}}
 
@@ -36,22 +36,26 @@ Escolha um dos 248 países.
 
 O componente tem dois estados que podem ser controlados:
 
-1. o estado "value" com a combinação das propriedades `value`/`onChange`.
-2. o estado "input value" com a combinação das propriedades `inputValue`/`onInputChange`.
+1. o estado "value" com a combinação das propriedades `value`/`onChange`. Esse estado representa o valor selecionado pelo usuário, por exemplo, quando é pressionado a tecla <kbd>Enter</kbd>.
+2. o estado "input value" com a combinação das propriedades `inputValue`/`onInputChange`. Esse estado representa o valor exibido na caixa de texto.
 
 > ⚠️ Esses dois estados estão isolados, eles podem ser controlados de forma independente.
 
+{{"demo": "pages/components/autocomplete/ControllableStates.js"}}
+
 ## Free solo
 
-Coloque `freeSolo` como true para que o textbox contenha qualquer valor aleatório. Essa prop é focada em cobrir o principal caso de uso que é seria uma caixa de pesquisas com sugestões, e.g. Google search.
-
-Entretanto, se você gostaria de usá-lo para trazer ao usuário a experiência de um [combo box](#combo-box) (equivalente a um select aprimorado) nós recomendamos passar `selectOnFocus` (isso ajuda o usuário limpando o valor selecionado).
+Coloque `freeSolo` como true para que o textbox contenha qualquer valor aleatório. The prop is designed to cover the primary use case of a **search box** with suggestions, e.g. Google search or react-autowhatever.
 
 {{"demo": "pages/components/autocomplete/FreeSolo.js"}}
 
-### Mensagem de ajuda
+### Creatable
 
-Às vezes você quer tornar explícito ao usuário que ele pode adicionar qualquer valor que ele/ela quiser. O exemplo a seguir adiciona a última opção: `Adicionar "SUA PESQUISA"`.
+If you intend to use this mode for a [combo box](#combo-box) like experience (an enhanced version of a select element) we recommend setting:
+
+- `selectOnFocus` to helps the user clear the selected value.
+- `clearOnBlur` to helps the user to enter a new value.
+- A last option, for instance `Add "YOUR SEARCH"`.
 
 {{"demo": "pages/components/autocomplete/FreeSoloCreateOption.js"}}
 
@@ -75,7 +79,7 @@ Para casos de customização avançada nós expomos o `useAutocomplete()` hook. 
 import useAutocomplete from '@material-ui/lab/useAutocomplete';
 ```
 
-- 📦 [4.5 kB gzipped](/size-snapshot).
+- 📦 [4.5 kB gzipado](/size-snapshot).
 
 {{"demo": "pages/components/autocomplete/UseAutocomplete.js", "defaultCodeOpen": false}}
 
@@ -158,7 +162,6 @@ import { createFilterOptions } from '@material-ui/lab/Autocomplete';
   - `config.ignoreCase` (*Boolean* [opcional]): Padrão `true`. Minúsculas em tudo.
   - `config.limit` (*Number* [opcional]): Padrão null. Limitar o número de opções sugeridas a serem exibidas. Por exemplo, se `config.limit` é `100`, somente as primeiras `100` opções correspondentes são exibidas. Isto pode ser útil se um monte corresponderem e a virtualização não estiver configurada.
   - `config.matchFrom` (*'any' | 'start'* [opcional]): Padrão `'any'`.
-  - `config.startAfter`(*Number* [opcional]): Padrão `0`. Exibe as opções sugeridas somente depois de um certo número de letras.
   - `config.stringify` (*Func* [opcional]): Controla a forma como a opção é convertida em texto, dessa forma pode ser comparada com qualquer fragmento de texto.
   - `config.trim` (*Boolean* [opcional]): Padrão `false`. Remover espaços ao fim.
 

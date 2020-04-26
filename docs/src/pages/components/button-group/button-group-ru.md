@@ -11,16 +11,22 @@ components: Button, ButtonGroup
 
 {{"demo": "pages/components/button-group/BasicButtonGroup.js"}}
 
-### Размеры и цвета групп
+## Sizes and colors
 
 {{"demo": "pages/components/button-group/GroupSizesColors.js"}}
 
-### Ориентация групп
+## Vertical group
 
 {{"demo": "pages/components/button-group/GroupOrientation.js"}}
 
-### Кнопка-разделитель
+## Split button
 
-ButtonGroup также может быть использован для создания кнопки-разделителя. Выпадающий список может изменить действие кнопки (как в этом примере), или использоваться для немедленного вызова действия.
+`ButtonGroup` can also be used to create a split button. Выпадающий список может изменить действие кнопки (как в этом примере), или использоваться для немедленного вызова действия.
 
 {{"demo": "pages/components/button-group/SplitButton.js"}}
+
+## Disabled elevation
+
+Вы можете убрать эффект "всплытия" с помощью опции `disableElevation`.
+
+{{"demo": "pages/components/button-group/DisableElevation.js"}}

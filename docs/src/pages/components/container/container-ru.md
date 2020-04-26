@@ -11,7 +11,7 @@ components: Container
 
 ## Fluid
 
-Ширина Fluid Container ограничена значением его свойства `maxWidth`.
+A fluid container width is bounded by the `maxWidth` property value.
 
 {{"demo": "pages/components/container/SimpleContainer.js", "iframe": true, "defaultCodeOpen": false}}
 

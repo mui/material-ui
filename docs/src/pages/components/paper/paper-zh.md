@@ -3,7 +3,7 @@ title: React Paper 纸张组件
 components: Paper
 ---
 
-# Paper 纸张
+# Paper 纸张组件
 
 <p class="description">在 Material Design 中，我们在屏幕上展现了纸张的物理属性。 </p>
 
@@ -11,8 +11,8 @@ components: Paper
 
 {{"demo": "pages/components/paper/SimplePaper.js", "bg": true}}
 
-## 变种
+## 变体
 
-如果你想要一个轮廓曲面，你可以使用` variant `属性。
+如果你想要一个轮廓的曲面，你可以使用 `variant` 属性。
 
 {{"demo": "pages/components/paper/Variants.js", "bg": "inline"}}

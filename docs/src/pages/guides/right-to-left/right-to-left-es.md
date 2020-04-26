@@ -1,6 +1,6 @@
 # Derecha-a-izquierda
 
-<p class="description">To change the direction of Material-UI components you must follow the following steps. UIs for languages that are read from right-to-left (RTL), such as Arabic and Hebrew, should be mirrored.</p>
+<p class="description">Right-to-left languages such as Arabic, Persian or Hebrew are supported. To change the direction of Material-UI components you must follow the following steps.</p>
 
 ## Steps
 

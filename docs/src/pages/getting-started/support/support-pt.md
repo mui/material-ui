@@ -2,7 +2,7 @@
 
 <p class="description">Desde a ajuda da comunidade até o suporte essencial aos negócios, estamos aqui para ajudar.</p>
 
-## Community help (free)
+## Ajuda da comunidade (grátis)
 
 A comunidade é sua primeira parada para perguntas e conselhos sobre o framework. Bem-vindo à comunidade!
 
@@ -49,7 +49,7 @@ Receba as últimas notícias sobre Material-UI.
 
 O Material-UI CE (Community Edition) é 100% de código aberto (MIT) desde o início, e sempre será. Os desenvolvedores podem garantir que Material-UI seja a escolha certa para seus aplicativos React através da estratégia de manutenção da comunidade do Material-UI. A equipe do Material-UI disponibiliza regularmente novos lançamentos, correções de bugs e é muito receptiva às solicitações da comunidade.
 
-Given the reality of time and resource constraints, as well as the desire to keep innovating, over time it becomes necessary to shift focus to newer versions of the framework ([our release schedule](https://material-ui.com/versions/#release-frequency)), while making the transition to newer versions as smooth as possible, including publishing migration guides such as [this one for v4](/guides/migration-v3/). A comunidade de código aberto é sempre bem-vinda para enviar novos recursos e correções de erros também.
+Dada a realidade das restrições de tempo e recursos, bem como o desejo de continuar inovando, com o tempo, torna-se necessário mudar o foco para as versões mais recentes do framework ([nosso cronograma de lançamento](https://material-ui.com/versions/#release-frequency)), enquanto faz a transição para as versões mais recentes tão suave quanto possível. Incluindo a publicação de guias de migração como [este para a v4](/guides/migration-v3/). A comunidade de código aberto é sempre bem-vinda para enviar novos recursos e correções de erros também.
 
 O status atual de cada versão do Material-UI é o seguinte:
 
@@ -61,36 +61,36 @@ O status atual de cada versão do Material-UI é o seguinte:
 
 Para equipes e organizações que exigem suporte adicional para versões mais antigas, o Material-UI possui [opções disponíveis](#enterprise).
 
-## Professional support (premium)
+## Suporte profissional (premium)
 
 ### Tidelift subscription <img src="/static/images/logos/tidelift.svg" width="24" height="24" alt="Tidelift logo" loading="lazy" />
 
-Material-UI and the maintainers of thousands of other packages are working with Tidelift to deliver one enterprise subscription that covers all of the open-source you use.
+Material-UI e os mantenedores de milhares de outros pacotes estão trabalhando com Tidelift para fornecer uma assinatura corporativa que abranja todo o código aberto que você usa.
 
-If you want the flexibility of open-source and the confidence of commercial-grade software, this is worth looking at.
+Se você quiser a flexibilidade de código aberto e a confiança do software de nível comercial, vale a pena olhar.
 
-The Tidelift Subscription manages your dependencies for you:
+A Tidelift Subscription fornece esses recursos para você:
 
-- Get the tools you need to continuously catalog and understand the open-source software that your application depends on.
-- Your subscription helps pay the open-source community maintainers of the packages you use, to ensure they meet the standards you require.
-- Address issues proactively, with tools that scan for new security, licensing, and maintenance issues, and alert participating open-source maintainers so they can resolve them on your behalf.
-- Tidelift helps measure and improve your open-source dependencies' health – which improves your app's health – and gives a shortlist of high-impact steps your team can take to improve them even more.
-- Get commercial assurances that don't come for free with open-source packages, such as intellectual property indemnification and support under a service level agreement. You expect these guarantees from proprietary software, and you can get them when using open-source as well.
+- Obtenha as ferramentas que você precisa continuamente catalogar e entenda o software de código aberto do qual seu aplicativo depende.
+- Sua assinatura ajuda a pagar os mantenedores da comunidade de código aberto dos pacotes que você usa, para garantir que eles cumpram os padrões que você precisa.
+- Resolve proativamente problemas, com ferramentas que buscam novos problemas de segurança, licenciamento e manutenção, e alerta os mantenedores de código aberto participantes para que possam resolvê-los em seu nome.
+- Tidelift ajuda a medir e melhorar a saúde das suas dependências de código aberto - o que melhora a saúde do seu aplicativo - e fornece uma lista curta de passos de alto impacto que sua equipe pode dar para melhorá-las ainda mais.
+- Receba garantias comerciais que não vem de graça com pacotes de código aberto, como indenização de propriedade intelectual e suporte sob um contrato de nível de serviço. Você espera essas garantias de um software proprietário, e pode obtê-las ao usar o código aberto também.
 
-The end result? All of the capabilities you expect from commercial-grade software, for the full breadth of open-source you use. That means less time grappling with esoteric open-source trivia, and more time building your own applications – and your business.
+O resultado final? Todas as capacidades que você espera de um software de nível comercial, com toda a amplitude de código aberto que você usa. Isso significa menos tempo lutando com trivia esotérica de código aberto, e mais tempo criando seus próprios aplicativos – e seus negócios.
 
-[Get more details](https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise)
+[Obter mais detalhes](https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise)
 
-[Request a demo](https://tidelift.com/subscription/request-a-demo?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise)
+[Solicite uma demonstração](https://tidelift.com/subscription/request-a-demo?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise)
 
-### Custom work 🛠
+### Trabalho customizado 🛠
 
-Tweak Material-UI to meet specific requirements. Give us a summary of your needs; We'll help you if I can. We might:
+Ajuste Material-UI para atender requisitos específicos. Nos dê um resumo das suas necessidades e ajudaremos você se pudermos. Nós poderíamos:
 
-- Give you an estimate of time and price if the work is straightforward
-- Suggest alternatives that might not require Material-UI
-- Decline the work due to timing or relevancy
+- Dar a você uma estimativa de tempo e preço, se o trabalho é simples
+- Sugerir alternativas que podem não exigir Material-UI
+- Recusar o trabalho devido a tempo ou relevância
 
-Note that work must be Material-UI related. We don't accept general React development work. Our contracting price is $200/hour or $1,500/day.
+Note que o trabalho deve estar relacionado ao Material-UI. Não aceitamos trabalhos genéricos de desenvolvimento React. Nosso preço de contratação é de $200/hora ou $1.500/dia.
 
-[Send us an email](mailto:custom-work@material-ui.com)
+[Envie-nos um e-mail](mailto:custom-work@material-ui.com)

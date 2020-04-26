@@ -4,10 +4,10 @@
 
 ## Explorar
 
-Explore the default theme object:
+Explore o objeto de tema padrão:
 
 {{"demo": "pages/customization/default-theme/DefaultTheme.js", "hideToolbar": true, "bg": "inline"}}
 
-> Tip: you can play with the documentation theme object in your browser console, as the `theme` variable is exposed on all the documentation pages. Please note that **the documentation site is using a custom theme**.
+> Dica: você pode visualizar o objeto de tema usado na documentação no console do seu navegador com a variável `theme`, exposta em todas as páginas de documentação. Observe que **o site de documentação está usando um tema personalizado**.
 
 Se você quiser aprender mais sobre como o tema é montado, dê uma olhada em [`material-ui/style/createMuiTheme.js`](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/styles/createMuiTheme.js), e as importações relacionadas que `createMuiTheme` usa.

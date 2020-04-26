@@ -11,7 +11,7 @@ components: Container
 
 ## Fluid 流体布局
 
-您可以通过 `maxWidth` 属性的值来设置一个 fluid 容器的最大宽度。
+A fluid container width is bounded by the `maxWidth` property value.
 
 {{"demo": "pages/components/container/SimpleContainer.js", "iframe": true, "defaultCodeOpen": false}}
 
