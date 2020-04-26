@@ -735,6 +735,36 @@ describe('<TreeItem />', () => {
           fireEvent.keyDown(document.activeElement, { key: 'v', shiftKey: true });
           expect(getByTestId('apple')).toHaveFocus();
         });
+
+        it('should not throw when an item is removed', () => {
+          function TestComponent() {
+            const [hide, setState] = React.useState(false);
+            return (
+              <React.Fragment>
+                <button type="button" onClick={() => setState(true)}>
+                  Hide
+                </button>
+                <TreeView>
+                  {!hide && <TreeItem nodeId="hide" label="ab" />}
+                  <TreeItem nodeId="keyDown" data-testid="keyDown" />
+                  <TreeItem nodeId="navTo" data-testid="navTo" label="ac" />
+                </TreeView>
+              </React.Fragment>
+            );
+          }
+
+          const { getByText, getByTestId } = render(<TestComponent />);
+          fireEvent.click(getByText('Hide'));
+          const navTreeItem = getByTestId('navTo');
+          expect(navTreeItem).not.to.have.focus;
+
+          expect(() => {
+            fireEvent.keyDown(getByTestId('keyDown'), { key: 'a' });
+          }).not.to.throw();
+
+          expect(navTreeItem).to.have.focus;
+          expect(navTreeItem).to.have.attribute('tabindex', '0');
+        });
       });
 
       describe('asterisk key interaction', () => {
