@@ -122,7 +122,7 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
   });
   const valueToIndex = new Map();
   const tabsRef = React.useRef(null);
-  const childrenWrapperRef = React.useRef(null);
+  const tabListRef = React.useRef(null);
 
   const getTabsMeta = () => {
     const tabsNode = tabsRef.current;
@@ -145,7 +145,7 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
 
     let tabMeta;
     if (tabsNode && value !== false) {
-      const children = childrenWrapperRef.current.children;
+      const children = tabListRef.current.children;
 
       if (children.length > 0) {
         const tab = children[valueToIndex.get(value)];
@@ -424,16 +424,16 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
     const nextItemKey = orientation === 'horizontal' ? 'ArrowRight' : 'ArrowDown';
     switch (event.key) {
       case previousItemKey:
-        newFocusTarget = target.previousElementSibling || childrenWrapperRef.current.lastChild;
+        newFocusTarget = target.previousElementSibling || tabListRef.current.lastChild;
         break;
       case nextItemKey:
-        newFocusTarget = target.nextElementSibling || childrenWrapperRef.current.firstChild;
+        newFocusTarget = target.nextElementSibling || tabListRef.current.firstChild;
         break;
       case 'Home':
-        newFocusTarget = childrenWrapperRef.current.firstChild;
+        newFocusTarget = tabListRef.current.firstChild;
         break;
       case 'End':
-        newFocusTarget = childrenWrapperRef.current.lastChild;
+        newFocusTarget = tabListRef.current.lastChild;
         break;
       default:
         break;
@@ -477,7 +477,7 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
             [classes.centered]: centered && !scrollable,
           })}
           onKeyDown={handleKeyDown}
-          ref={childrenWrapperRef}
+          ref={tabListRef}
           role="tablist"
         >
           {children}
