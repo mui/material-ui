@@ -70,18 +70,16 @@ export default function Themes() {
             data-ga-event-label="home"
             className={classes.link}
           >
-            <NoSsr defer>
-              <img
-                className={classes.img}
-                alt={t('themesButton')}
-                // The alt wouldn't be a descriptive label for the image. It's used as a placeholder for the link name.
-                aria-label={t('themesTemplatesLabel')}
-                src={`/static/images/themes-${theme.palette.type}.jpg`}
-                loading="eager"
-                width={500}
-                height={307}
-              />
-            </NoSsr>
+            <img
+              className={classes.img}
+              alt={t('themesButton')}
+              // The alt wouldn't be a descriptive label for the image. It's used as a placeholder for the link name.
+              aria-label={t('themesTemplatesLabel')}
+              src={`/static/images/themes-${theme.palette.type}.jpg`}
+              loading="lazy"
+              width={500}
+              height={307}
+            />
           </Link>
           <Grid container justify="center">
             <Button variant="outlined" component={PremiumThemesLink} className={classes.button}>
