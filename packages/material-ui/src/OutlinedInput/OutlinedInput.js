@@ -10,6 +10,11 @@ export const styles = (theme) => {
   const borderColor =
     theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)';
 
+  const padding = theme.spacing(2, 1.75);
+  const densePadding = {
+    padding: theme.spacing(1, 1.75),
+  };
+
   return {
     /* Styles applied to the root element. */
     root: {
@@ -59,11 +64,8 @@ export const styles = (theme) => {
     marginDense: {},
     /* Styles applied to the root element if `multiline={true}`. */
     multiline: {
-      padding: '18.5px 14px',
-      '&$marginDense': {
-        paddingTop: 10.5,
-        paddingBottom: 10.5,
-      },
+      padding,
+      '&$marginDense': densePadding,
     },
     /* Styles applied to the `NotchedOutline` element. */
     notchedOutline: {
@@ -71,7 +73,7 @@ export const styles = (theme) => {
     },
     /* Styles applied to the `input` element. */
     input: {
-      padding: '18.5px 14px',
+      padding,
       '&:-webkit-autofill': {
         WebkitBoxShadow: theme.palette.type === 'dark' ? '0 0 0 100px #266798 inset' : null,
         WebkitTextFillColor: theme.palette.type === 'dark' ? '#fff' : null,
@@ -80,10 +82,7 @@ export const styles = (theme) => {
       },
     },
     /* Styles applied to the `input` element if `margin="dense"`. */
-    inputMarginDense: {
-      paddingTop: 10.5,
-      paddingBottom: 10.5,
-    },
+    inputMarginDense: densePadding,
     /* Styles applied to the `input` element if `multiline={true}`. */
     inputMultiline: {
       padding: 0,

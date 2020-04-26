@@ -13,8 +13,24 @@ import { isFilled } from './utils';
 
 export const styles = (theme) => {
   const light = theme.palette.type === 'light';
-  const placeholder = {
+
+  const font = {
+    font: 'inherit',
     color: 'currentColor',
+    letterSpacing: 'inherit',
+    lineHeight: 'inherit',
+    textIndent: 'inherit',
+    textRendering: 'inherit',
+    fontSmoothing: 'inherit',
+  };
+
+  const padding = theme.spacing(0.5, 0);
+  const densePadding = {
+    padding: theme.spacing(0, 0, 0.5),
+  };
+
+  const placeholder = {
+    ...font,
     opacity: light ? 0.42 : 0.5,
     transition: theme.transitions.create('opacity', {
       duration: theme.transitions.duration.shorter,
@@ -43,7 +59,7 @@ export const styles = (theme) => {
       // Mimics the default input display property used by browsers for an input.
       ...theme.typography.body1,
       color: theme.palette.text.primary,
-      lineHeight: '1.1876em', // Reset (19px), match the native input line-height
+      // lineHeight: '1.1876em', // Reset (19px), match the native input line-height
       boxSizing: 'border-box', // Prevent padding issue with fullWidth.
       position: 'relative',
       cursor: 'text',
@@ -70,10 +86,8 @@ export const styles = (theme) => {
     marginDense: {},
     /* Styles applied to the root element if `multiline={true}`. */
     multiline: {
-      padding: `${8 - 2}px 0 ${8 - 1}px`,
-      '&$marginDense': {
-        paddingTop: 4 - 1,
-      },
+      padding,
+      '&$marginDense': densePadding,
     },
     /* Styles applied to the root element if the color is secondary. */
     colorSecondary: {},
@@ -83,13 +97,11 @@ export const styles = (theme) => {
     },
     /* Styles applied to the `input` element. */
     input: {
-      font: 'inherit',
-      color: 'currentColor',
-      padding: `${8 - 2}px 0 ${8 - 1}px`,
+      ...font,
+      padding,
       border: 0,
       boxSizing: 'content-box',
       background: 'none',
-      height: '1.1876em', // Reset (19px), match the native input line-height
       margin: 0, // Reset for Safari
       WebkitTapHighlightColor: 'transparent',
       display: 'block',
@@ -132,9 +144,7 @@ export const styles = (theme) => {
       },
     },
     /* Styles applied to the `input` element if `margin="dense"`. */
-    inputMarginDense: {
-      paddingTop: 4 - 1,
-    },
+    inputMarginDense: densePadding,
     /* Styles applied to the `input` element if `multiline={true}`. */
     inputMultiline: {
       height: 'auto',
