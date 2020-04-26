@@ -22,6 +22,9 @@ export const styles = (theme) => ({
     flexShrink: 0,
     zIndex: 0, // Reset the stacking context.
     verticalAlign: 'middle', // For correct alignment with the text.
+    '@media print': {
+      colorAdjust: 'exact',
+    },
   },
   /* Styles applied to the root element if `edge="start"`. */
   edgeStart: {

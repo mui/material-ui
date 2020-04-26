@@ -39,6 +39,9 @@ export const styles = {
       pointerEvents: 'none', // Disable link interactions
       cursor: 'default',
     },
+    '@media print': {
+      colorAdjust: 'exact',
+    },
   },
   /* Pseudo-class applied to the root element if `disabled={true}`. */
   disabled: {},
