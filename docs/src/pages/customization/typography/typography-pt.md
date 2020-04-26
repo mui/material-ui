@@ -6,7 +6,7 @@
 
 Você pode alterar a família de fontes com a propriedade `theme.typography.fontFamily`.
 
-For instance, this demo uses the system font instead of the default Roboto font:
+Por exemplo, esta demonstração usa a fonte do sistema em vez da fonte padrão Roboto:
 
 ```js
 const theme = createMuiTheme({

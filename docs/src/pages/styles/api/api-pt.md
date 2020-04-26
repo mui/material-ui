@@ -1,6 +1,6 @@
 # API
 
-<p class="description">The API reference of @material-ui/core/styles.</p>
+<p class="description">A referência da API do @material-ui/core/styles.</p>
 
 ## `createGenerateClassName([options]) => class name generator`
 
@@ -101,7 +101,7 @@ export default function MyComponent(props) {
 
 ## `ServerStyleSheets`
 
-Esta é uma classe auxiliar para manipular a renderização do lado do servidor. [You can follow this guide for a practical approach](/guides/server-rendering/).
+Esta é uma classe auxiliar para manipular a renderização do lado do servidor. [Você pode seguir este guia para uma abordagem prática](/guides/server-rendering/).
 
 ```jsx
 import ReactDOMServer from 'react-dom/server';
@@ -201,7 +201,7 @@ Deve preferencialmente ser usado na **raiz da sua árvore de componentes**.
 | children&nbsp;*   | node   |        | Sua árvore de componentes.                                                                                                                                                                                                                                                                                                                              |
 | disableGeneration | bool   | false  | Você pode desabilitar a geração dos estilos com esta opção. Pode ser útil ao percorrer a árvore React fora da etapa de renderização de HTML no servidor. Digamos que você esteja usando react-apollo para extrair todas as consultas feitas pela interface do lado do servidor. Você pode acelerar significativamente a varredura com essa propriedade. |
 | generateClassName | func   |        | Gerador de nome de classes do JSS.                                                                                                                                                                                                                                                                                                                      |
-| injectFirst       | bool   | false  | By default, the styles are injected last in the `<head>` element of the page. Como resultado, eles ganham mais especificidade do que qualquer outra folha de estilo. Se você quiser sobrescrever estilos do Material-UI, defina esta propriedade.                                                                                                 |
+| injectFirst       | bool   | false  | Por padrão, os estilos são injetados por último no elemento `<head>` da página. Como resultado, eles ganham mais especificidade do que qualquer outra folha de estilo. Se você quiser sobrescrever estilos do Material-UI, defina esta propriedade.                                                                                               |
 | jss               | object |        | Instância do JSS.                                                                                                                                                                                                                                                                                                                                       |
 
 

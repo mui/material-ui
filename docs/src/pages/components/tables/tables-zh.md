@@ -23,7 +23,7 @@ components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead,
 
 若用户想要选择或操作数据，那则应该咋每一行加入复选框。
 
-考虑到可访问性，表格的第一列应设置为 `<th>` 元素，而此元素附着了一个指定为 `"row"` 的 `scope` 属性。 这样一来，屏幕阅读器就可以通过行和列的名字，来定位到某个单元格的值。
+鉴于无障碍设计的考虑，表格的第一栏应该是一个 `<th>` 元素，它附着了 `"row"` 的 `范围` 。 这样一来，屏幕阅读器就可以通过行和列的名字，来定位到某个单元格的值。
 
 ## 简单的表格
 
@@ -109,7 +109,7 @@ components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead,
 - [mui-datatables](https://github.com/gregnb/mui-datatables)：Material-UI 的响应式数据表格，包括筛选，排序，搜索等功能。
 - [tubular-react](https://github.com/unosquare/tubular-react): 一个带有本地或者远程的数据来源的 Material-UI 表格。 它能够对数据进行筛选、排序、自由搜索、导出为本地 CSV 以及汇总。
 
-## 可访问性
+## 无障碍设计
 
 （WAI 教程：https://www.w3.org/WAI/tutorials/tables/）
 

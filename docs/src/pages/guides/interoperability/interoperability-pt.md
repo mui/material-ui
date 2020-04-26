@@ -1,8 +1,8 @@
 # Interoperabilidade da Biblioteca de Estilo
 
-<p class="description">While you can use the JSS based styling solution provided by Material-UI to style your application, you can also use the one you already know and love (from plain CSS to styled-components).</p>
+<p class="description">Enquanto você pode usar a solução de estilo baseada em JSS fornecida pelo Material-UI para estilizar sua aplicação, você também pode usar o que você já conhece e ama (desde CSS simples a styled-components).</p>
 
-Este guia tem como objetivo documentar as alternativas mais populares, mas você deve descobrir que os princípios aplicados aqui podem ser adaptados para outras bibliotecas. There are examples for the following styling solutions:
+Este guia tem como objetivo documentar as alternativas mais populares, mas você deve descobrir que os princípios aplicados aqui podem ser adaptados para outras bibliotecas. Existem exemplos para as seguintes soluções de estilo:
 
 - [CSS puro](#plain-css)
 - [CSS global](#global-css)
@@ -13,7 +13,7 @@ Este guia tem como objetivo documentar as alternativas mais populares, mas você
 
 ## CSS puro
 
-Nothing fancy, just plain CSS.
+Nada extravagante, apenas CSS.
 
 {{"demo": "pages/guides/interoperability/StyledComponents.js", "hideToolbar": true}}
 
@@ -42,14 +42,14 @@ import Button from '@material-ui/core/Button';
 export default function PlainCssButton() {
   return (
     <div>
-      <Button>Default</Button>
-      <Button className="button">Customized</Button>
+      <Button>Padrão</Button>
+      <Button className="button">Customizado</Button>
     </div>
   );
 }
 ```
 
-### Controlling priority ⚠️
+### Controlando prioridade ⚠️
 
 **Nota:** O JSS injeta seus estilos na parte inferior do `<head>`. Se você não quiser marcar atributos de estilo com **!important**, você precisa alterar [a ordem de injeção do CSS](/styles/advanced/#css-injection-order), como na demonstração:
 
@@ -57,8 +57,8 @@ export default function PlainCssButton() {
 import { StylesProvider } from '@material-ui/core/styles';
 
 <StylesProvider injectFirst>
-  {/* Your component tree.
-      Now, you can override Material-UI's styles. */}
+  {/* Sua árvore de componentes.
+      Agora, você pode sobrescrever os estilos do Material-UI. */}
 </StylesProvider>
 ```
 
@@ -95,9 +95,9 @@ import Button from '@material-ui/core/Button';
 export default function PlainCssButtonDeep() {
   return (
     <div>
-      <Button>Default</Button>
+      <Button>Padrão</Button>
       <Button classes={{ root: 'button', label: 'button-label' }}>
-        Customized
+        Customizado
       </Button>
     </div>
   );
@@ -133,11 +133,11 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 
 export default function GlobalCssButton() {
-  return <Button>Customized</Button>;
+  return <Button>Customizado</Button>;
 }
 ```
 
-### Controlling priority ⚠️
+### Controlar prioridade ⚠️
 
 **Nota:** O JSS injeta seus estilos na parte inferior do `<head>`. Se você não quiser marcar atributos de estilo com **!important**, você precisa alterar [a ordem de injeção do CSS](/styles/advanced/#css-injection-order), como na demonstração:
 
@@ -145,8 +145,8 @@ export default function GlobalCssButton() {
 import { StylesProvider } from '@material-ui/core/styles';
 
 <StylesProvider injectFirst>
-  {/* Your component tree.
-      Now, you can override Material-UI's styles. */}
+  {/* Sua árvore de componentes.
+      Agora, você pode sobrescrever os estilos do Material-UI. */}
 </StylesProvider>
 ```
 
@@ -178,15 +178,15 @@ const StyledButton = styled(Button)`
 export default function StyledComponents() {
   return (
     <div>
-      <Button>Default</Button>
-      <StyledButton>Customized</StyledButton>
+      <Button>Padrão</Button>
+      <StyledButton> Customizado</StyledButton>
     </div>
   );
 }
 
 ```
 
-### Controlling priority ⚠️
+### Controlando prioridade ⚠️
 
 **Nota:** Ambos, styled-components e JSS injetam seus estilos na parte inferior do `<head>`. A melhor abordagem para garantir que os estilos do styled-components sejam carregados por último, é alterar [a ordem de injeção do CSS](/styles/advanced/#css-injection-order), como na demonstração:
 
@@ -194,12 +194,12 @@ export default function StyledComponents() {
 import { StylesProvider } from '@material-ui/core/styles';
 
 <StylesProvider injectFirst>
-  {/* Your component tree.
-      Now, you can override Material-UI's styles. */}
+  {/* Sua árvore de componentes.
+      Agora, você pode sobrescrever os estilos do Material-UI. */}
 </StylesProvider>
 ```
 
-Outra abordagem é usar os caracteres `&&` em styled-components para [aumentar a especificidade](https://www.styled-components.com/docs/advanced#issues-with-specificity) repetindo o nome da classe. Avoid the usage of `!important`.
+Outra abordagem é usar os caracteres `&&` em styled-components para [aumentar a especificidade](https://www.styled-components.com/docs/advanced#issues-with-specificity) repetindo o nome da classe. Evite o uso de `!important`.
 
 ### Elementos mais profundos
 
@@ -229,8 +229,8 @@ const StyledButton = styled(Button)`
 export default function StyledComponentsDeep() {
   return (
     <div>
-      <Button>Default</Button>
-      <StyledButton>Customized</StyledButton>
+      <Button>Padrão</Button>
+      <StyledButton>Customizado</StyledButton>
     </div>
   );
 }
@@ -260,8 +260,8 @@ const StyledButton = styled(({ color, ...other }) => (
 export default function StyledComponentsDeep() {
   return (
     <div>
-      <Button>Default</Button>
-      <StyledButton>Customized</StyledButton>
+      <Button>Padrão</Button>
+      <StyledButton>Customizado</StyledButton>
     </div>
   );
 }
@@ -271,7 +271,7 @@ export default function StyledComponentsDeep() {
 
 Material-UI tem uma estrutura de tema rica, que você pode aproveitar para manipulações de cores, transições, consultas de mídia e muito mais.
 
-We encourage to share the same theme object between Material-UI and your styles.
+Incentivamos a compartilhar o mesmo objeto de tema entre Material-UI e seus estilos.
 
 ```jsx
 const StyledButton = styled(Button)`
@@ -349,21 +349,21 @@ const StyledMenu = styled(({ className, ...props }) => (
 
 ```jsx
 import React from 'react';
-// webpack, parcel or else will inject the CSS into the page
+// webpack, parcel ou qualquer outro irá injetar o CSS na página
 import styles from './CssModulesButton.css';
 import Button from '@material-ui/core/Button';
 
 export default function CssModulesButton() {
   return (
     <div>
-      <Button>Default</Button>
-      <Button className={styles.button}>Customized</Button>
+      <Button>Padrão</Button>
+      <Button className={styles.button}>Customizado</Button>
     </div>
   );
 }
 ```
 
-### Controlling priority ⚠️
+### Controlando prioridade ⚠️
 
 **Nota:** O JSS injeta seus estilos na parte inferior do `<head>`. Se você não quiser marcar atributos de estilo com **!important**, você precisa alterar [a ordem de injeção do CSS](/styles/advanced/#css-injection-order), como na demonstração:
 
@@ -371,8 +371,8 @@ export default function CssModulesButton() {
 import { StylesProvider } from '@material-ui/core/styles';
 
 <StylesProvider injectFirst>
-  {/* Your component tree.
-      Now, you can override Material-UI's styles. */}
+  {/* Sua árvore de componentes.
+      Agora, você pode sobrescrever os estilos do Material-UI. */}
 </StylesProvider>
 ```
 
@@ -404,15 +404,15 @@ O exemplo a seguir sobrescreve o estilo de `label` e `Button`, além dos estilos
 
 ```jsx
 import React from 'react';
-// webpack, parcel or else will inject the CSS into the page
+// webpack, parcel ou qualquer outro irá injetar o CSS na página
 import styles from './CssModulesButtonDeep.css';
 import Button from '@material-ui/core/Button';
 
 export default function CssModulesButtonDeep() {
   return (
     <div>
-      <Button>Default</Button>
-      <Button classes={styles}>Customized</Button>
+      <Button>Padrão</Button>
+      <Button classes={styles}>Customizado</Button>
     </div>
   );
 }
@@ -438,7 +438,7 @@ import Button from '@material-ui/core/Button';
 export default function EmotionCSS() {
   return (
     <div>
-      <Button>Default</Button>
+      <Button>Padrão</Button>
       <Button
         css={css`
           background-color: #6772e5;
@@ -450,14 +450,14 @@ export default function EmotionCSS() {
           }
         `}
       >
-        Customized
+        Customizado
       </Button>
     </div>
   );
 }
 ```
 
-### Controlling priority ⚠️
+### Controlando prioridade ⚠️
 
 **Nota:** O JSS injeta seus estilos na parte inferior do `<head>`. Se você não quiser marcar atributos de estilo com **!important**, você precisa alterar [a ordem de injeção do CSS](/styles/advanced/#css-injection-order), como na demonstração:
 
@@ -465,8 +465,8 @@ export default function EmotionCSS() {
 import { StylesProvider } from '@material-ui/core/styles';
 
 <StylesProvider injectFirst>
-  {/* Your component tree.
-      Now, you can override Material-UI's styles. */}
+  {/* Sua árvore de componentes.
+      Agora, você pode sobrescrever os estilos do Material-UI. */}
 </StylesProvider>
 ```
 
@@ -474,7 +474,7 @@ import { StylesProvider } from '@material-ui/core/styles';
 
 Material-UI tem uma estrutura de tema rica, que você pode aproveitar para manipulações de cores, transições, consultas de mídia e muito mais.
 
-We encourage to share the same theme object between Material-UI and your styles.
+Incentivamos a compartilhar o mesmo objeto de tema entre Material-UI e seus estilos.
 
 ```jsx
 <Button
@@ -493,7 +493,7 @@ We encourage to share the same theme object between Material-UI and your styles.
     }
   `}
 >
-  Customized
+  Customizado
 </Button>
 ```
 

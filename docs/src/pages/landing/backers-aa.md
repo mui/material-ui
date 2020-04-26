@@ -14,7 +14,7 @@ crwdns130992:0crwdne130992:0
 </p>
 
 <p style="display: flex; justify-content: center; flex-wrap: wrap;">
-  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="callemall" href="crwdns131016:0crwdne131016:0" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img src="crwdns131018:0%3crwdnd131018:0%2Fcrwdnd131018:0%2Fcrwdnd131018:0%2Fcrwdne131018:0" alt="crwdns131020:0crwdne131020:0" title="crwdns131022:0crwdne131022:0" width="100" loading="lazy"></a>
+  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="callemall" href="crwdns131016:0crwdne131016:0" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img src="crwdns131738:0%3crwdnd131738:0%2Fcrwdnd131738:0%2Fcrwdnd131738:0%2Fcrwdne131738:0" alt="crwdns131020:0crwdne131020:0" title="crwdns131022:0crwdne131022:0" width="96" loading="lazy"></a>
 </p>
 
 ### crwdns131024:0crwdne131024:0

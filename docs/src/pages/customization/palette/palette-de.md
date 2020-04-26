@@ -88,7 +88,16 @@ As in the example above, if the intention object contains custom colors using an
 - If the "dark" and / or "light" keys are omitted, their value(s) will be calculated from "main", according to the "tonalOffset" value.
 - If "contrastText" is omitted, its value will be calculated to contrast with "main", according to the "contrastThreshold" value.
 
-Both the "tonalOffset" and "contrastThreshold" values may be customized as needed. A higher value for "tonalOffset" will make calculated values for "light" lighter, and "dark" darker. A higher value for "contrastThreshold" increases the point at which a background color is considered light, and given a dark "contrastText".
+Both the "tonalOffset" and "contrastThreshold" values may be customized as needed. The "tonalOffset" value can either be a number between 0 and 1, which will apply to both light and dark variants, or an object with light and dark variants specified by the following TypeScript type:
+
+```ts
+type PaletteTonalOffset = number | {
+  light: number;
+  dark: number;
+};
+```
+
+A higher value for "tonalOffset" will make calculated values for "light" lighter, and "dark" darker. A higher value for "contrastThreshold" increases the point at which a background color is considered light, and given a dark "contrastText".
 
 Note that "contrastThreshold" follows a non-linear curve.
 
@@ -98,7 +107,7 @@ Note that "contrastThreshold" follows a non-linear curve.
 
 ## Farbwerkzeug
 
-Etwas Inspiration gefällig? Das Material-Design-Team hat ein fantastisches [Konfigurationstool](/customization/color/#color-tool) entwickelt, um dir zu helfen.
+Etwas Inspiration gefällig? The Material Design team has built an awesome [palette configuration tool](/customization/color/#color-tool) to help you.
 
 ## Dark mode
 

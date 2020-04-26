@@ -4,7 +4,7 @@
 
 ## Exemplo
 
-The helpers allow you to control relative depth, or distance, between two surfaces along the z-axis. By default, there is 25 elevation levels.
+Os utilitários permitem que você controle a profundidade ou distância relativa entre duas superfícies ao longo do eixo z. Por padrão, há 25 níveis de elevação.
 
 {{"demo": "pages/system/shadows/Demo.js", "defaultCodeOpen": false, "bg": true}}
 

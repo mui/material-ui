@@ -15,7 +15,7 @@ Dependiendo del componente, la densidad es aplicada usando menos espacio, o simp
 Los siguientes componentes tienen propiedades para aplicar una mayor densidad:
 
 - [Button (Botón)](/api/button/)
-- [Fab (Botón flotante de acción)](/api/fab/)
+- [Fab](/api/fab/)
 - [FilledInput (Campo de entrada relleno)](/api/filled-input/)
 - [FormControl (Control de formulario)](/api/form-control/)
 - [FormHelperText (Texto de ayuda de formulario)](/api/form-helper-text/)

@@ -2,7 +2,7 @@
 
 <p class="description">Novo no Material-UI? É fácil de aprender, se você souber por onde começar! Este guia irá ajudá-lo a começar rapidamente.</p>
 
-Developers come to Material-UI from different backgrounds and with different learning styles. Whether you prefer a more theoretical or practical approach, we hope you’ll find this section helpful. Como qualquer tecnologia desconhecida, o Material-UI tem uma curva de aprendizagem. Com prática e paciência, você logo vai pegar o jeito.
+Desenvolvedores chegam ao Material-UI de diferentes culturas e com diferentes estilos de aprendizagem. Caso você prefira uma abordagem mais teórica ou prática, esperamos que você ache esta seção útil. Como qualquer tecnologia desconhecida, o Material-UI tem uma curva de aprendizagem. Com prática e paciência, você logo vai pegar o jeito.
 
 ## Primeiro Exemplo
 
@@ -10,15 +10,15 @@ A [página de uso](/getting-started/usage/#quick-start) contém um pequeno exemp
 
 ## Exemplos de Projetos
 
-There are [some example projects](/getting-started/example-projects/) available, providing the infrastructure needed to develop and deploy websites in React.
+Há [alguns exemplos de projetos](/getting-started/example-projects/) disponíveis, fornecendo a infraestrutura necessária para desenvolver e implantar sites em React.
 
 ## Modelos
 
-This [selection of basic templates](/getting-started/templates/) will help you get started building your app.
+Esta [seleção de modelos básicos](/getting-started/templates/) pode ajudar você a começar a criar o seu aplicativo.
 
 ## Recursos recomendados
 
-Ao começar a aprender o Material-UI, você pode encontrar postagens de blogs de terceiros, livros e cursos em vídeo mais úteis do que a documentação oficial. Here are some recommended resources, some of which are free.
+Ao começar a aprender o Material-UI, você pode encontrar postagens de blogs de terceiros, livros e cursos em vídeo mais úteis do que a documentação oficial. Aqui estão alguns recursos recomendados, alguns dos quais são gratuitos.
 
 ### Grátis
 
@@ -34,14 +34,14 @@ Ao começar a aprender o Material-UI, você pode encontrar postagens de blogs de
 
 ### Pago
 
-- **Apply Google Material Design**: This course teaches the fundamentals of Google Material Design and how to develop an end-to-end flight search and booking application using Material-UI and React.
+- **Apply Google Material Design**: Este curso ensina os fundamentos do Google Material Design e como desenvolver uma pesquisa e aplicação de reserva de voo de ponta a ponta usando Material-UI e React.
   
-  - 📹 [Watch Course Trailer](https://www.youtube.com/watch?v=hhZ6yFvCWho)
-  - 💻 [The Course](https://bonsaiilabs.com/courseDetail/material-ui-with-react)
-- **Implement high fidelity designs**: Bridge the gap between Design & Development. Break down detailed designs and bring them to life with Material-UI and React.
+  - 📹 [Trailer do Curso](https://www.youtube.com/watch?v=hhZ6yFvCWho)
+  - 💻 [O Curso](https://bonsaiilabs.com/courseDetail/material-ui-with-react)
+- **Implement high fidelity designs**: Ponte entre a lacuna de Design & Desenvolvimento. Divida os projetos detalhadamente e os traga a vida com Material-UI e React.
   
-  - 💻 [The Course](https://click.linksynergy.com/deeplink?id=IVuPfk1F/Ow&mid=39197&murl=https%3A%2F%2Fwww.udemy.com%2Fcourse%2Fimplement-high-fidelity-designs-with-material-ui-and-reactjs%2F)
-- **Cookbook**: Build modern-day applications by implementing Material Design principles in React, using Material-UI.
+  - 💻 [O Curso](https://click.linksynergy.com/deeplink?id=IVuPfk1F/Ow&mid=39197&murl=https%3A%2F%2Fwww.udemy.com%2Fcourse%2Fimplement-high-fidelity-designs-with-material-ui-and-reactjs%2F)
+- **Cookbook**: Crie aplicativos modernos, implementando os princípios de Material Design no React, usando Material-UI.
   
   - 📘 [O livro](https://www.amazon.com/gp/product/1789615224/)
 

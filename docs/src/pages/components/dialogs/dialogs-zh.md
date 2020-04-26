@@ -116,6 +116,6 @@ function MyComponent() {
 
 参考[对话框性能部分](/components/modal/#limitations)。
 
-## 可访问性
+## 无障碍设计
 
-参考[模态框可及性的部分](/components/modal/#accessibility)。
+参考[模态框无障碍设计部分](/components/modal/#accessibility)。

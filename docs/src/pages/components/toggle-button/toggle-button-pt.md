@@ -19,9 +19,9 @@ Gosta de botões maiores ou menores? Use a propriedade `size`.
 
 {{"demo": "pages/components/toggle-button/ToggleButtonSizes.js"}}
 
-## Enforce value set
+## Forçar valor definido
 
-If you want to enforce at least one button to be active, you can adapt your handleChange function.
+Se você deseja forçar para pelo menos um botão estar ativo, você pode adaptar sua função handleChange.
 
 ```jsx
 const handleFormat = (event, newFormats) => {
@@ -39,11 +39,11 @@ const handleAlignment = (event, newAlignment) => {
 
 {{"demo": "pages/components/toggle-button/ToggleButtonNotEmpty.js"}}
 
-## Standalone toggle button
+## Botão de alternância independente
 
 {{"demo": "pages/components/toggle-button/StandaloneToggleButton.js"}}
 
-## Customized toggle button
+## Botão de alternância customizado
 
 Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
 
@@ -51,6 +51,6 @@ Aqui está um exemplo de customização do componente. Você pode aprender mais 
 
 ## Acessibilidade
 
-ToggleButtonGroup has `role="group"`. You should provide an accessible label with `aria-label="label"`, `aria-labelledby="id"` or `<label>`.
+ToggleButtonGroup possui `role="group"`. Você deve fornecer um rótulo acessível com `aria-label="label"`, `aria-labelledby="id"` ou `<label>`.
 
-ToggleButton sets `aria-pressed="<bool>"` according to the button state. You should label each button with `aria-label`.
+ToggleButton define `aria-pressed="<bool>"` de acordo com o estado do botão. Você deve rotular cada botão com `aria-label`.

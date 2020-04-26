@@ -94,6 +94,8 @@
   "viewGitHub": "Посмотреть исходник на GitHub",
   "visit": "Посетить веб-сайт",
   "whosUsing": "Кто использует Material-UI?",
+  "initialFocusLabel": "A generic container that is programmatically focused to test keyboard navigation of our components.",
+  "resetFocus": "Reset focus to test keyboard navigation",
   "pages": {
     "/getting-started": "Приступая к работе",
     "/getting-started/installation": "Инструкция по установке",

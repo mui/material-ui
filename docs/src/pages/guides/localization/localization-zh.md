@@ -25,43 +25,45 @@ const theme = createMuiTheme({
 
 ### 支持的语言环境
 
-| 地区                      | BCP 47 语言标签 | 导入名称   |
-|:----------------------- |:----------- |:------ |
-| Armenian                | hy-AM       | `hyAM` |
-| Azerbaijani             | az-AZ       | `azAZ` |
-| Bulgarian               | bg-BG       | `bgBG` |
-| Catalan                 | ca-ES       | `caES` |
-| Chinese (Simplified)    | zh-CN       | `zhCN` |
-| Czech                   | cs-CZ       | `csCZ` |
-| Dutch                   | nl-NL       | `nlNL` |
-| English (United States) | en-US       | `enUS` |
-| Estonian                | et-EE       | `etEE` |
-| Finnish                 | fi-FI       | `fiFI` |
-| French                  | fr-FR       | `frFR` |
-| German                  | de-DE       | `deDE` |
-| Hebrew                  | he-IL       | `heIL` |
-| Hungarian               | hu-HU       | `huHU` |
-| Icelandic               | is-IS       | `isIS` |
-| Indonesian              | id-ID       | `idID` |
-| Italian                 | it-IT       | `itIT` |
-| Japanese                | ja-JP       | `jaJP` |
-| Korean                  | ko-KR       | `koKR` |
-| Persian                 | fa-IR       | `faIR` |
-| Polish                  | pl-PL       | `plPL` |
-| Portuguese (Brazil)     | pt-BR       | `ptBR` |
-| Portuguese              | pt-PT       | `ptPT` |
-| Romanian                | ro-RO       | `roRO` |
-| Russian                 | ru-RU       | `ruRU` |
-| Slovak                  | sk-SK       | `skSK` |
-| Spanish                 | es-ES       | `esES` |
-| Swedish                 | sv-SE       | `svSE` |
-| Turkish                 | tr-TR       | `trTR` |
-| Ukrainian               | uk-UA       | `ukUA` |
-| Vietnamese              | vi-VN       | `viVN` |
+| 地区          | BCP 47 语言标签 | 导入名称   |
+|:----------- |:----------- |:------ |
+| Armenian    | hy-AM       | `hyAM` |
+| Azerbaijani | az-AZ       | `azAZ` |
+| 保加利亚语       | bg-BG       | `bgBG` |
+| 加泰罗尼亚语      | ca-ES       | `caES` |
+| 简体中文        | zh-CN       | `zhCN` |
+| 捷克语         | cs-CZ       | `csCZ` |
+| 荷兰语         | nl-NL       | `nlNL` |
+| 英语（美式）      | en-US       | `enUS` |
+| Estonian    | et-EE       | `etEE` |
+| Finnish     | fi-FI       | `fiFI` |
+| 法语          | fr-FR       | `frFR` |
+| 德语          | de-DE       | `deDE` |
+| Hebrew      | he-IL       | `heIL` |
+| 匈牙利语        | hu-HU       | `huHU` |
+| 冰岛语         | is-IS       | `isIS` |
+| 印度尼西亚语      | id-ID       | `idID` |
+| 意大利语        | it-IT       | `itIT` |
+| 日语          | ja-JP       | `jaJP` |
+| 韩语/朝鲜语      | ko-KR       | `koKR` |
+| 波斯语         | fa-IR       | `faIR` |
+| 波兰语         | pl-PL       | `plPL` |
+| 葡萄牙语(巴西)    | pt-BR       | `ptBR` |
+| 葡萄牙语        | pt-PT       | `ptPT` |
+| 罗马尼亚语       | ro-RO       | `roRO` |
+| 俄罗斯语        | ru-RU       | `ruRU` |
+| 斯洛伐克语       | sk-SK       | `skSK` |
+| 西班牙语        | es-ES       | `esES` |
+| 瑞典语         | sv-SE       | `svSE` |
+| 土耳其语        | tr-TR       | `trTR` |
+| 乌克兰语        | uk-UA       | `ukUA` |
+| 越南语         | vi-VN       | `viVN` |
 
 您可以在GitHub库中找到[源文件](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/locale/index.js)。
 
-要创建自己的翻译，或自定义英文文本，请将此文件复制到您的项目中，进行所需的任何更改并从那里导入语言环境。 （请务必考虑通过开启一个 pull request 为 Material-UI 贡献新的翻译。）
+要创建自己的翻译，或自定义英文文本，请将此文件复制到您的项目中，进行所需的任何更改并从那里导入语言环境。
+
+Please do consider contributing new translations back to Material-UI by opening a pull request. However, Material-UI aims to support the [100 most popular locales](https://en.wikipedia.org/wiki/List_of_languages_by_number_of_native_speakers), we might not accept contributions for locales that are not frequently used, for instance `gl-ES` that has "only" 2.5 million native speakers.
 
 ### 示例
 

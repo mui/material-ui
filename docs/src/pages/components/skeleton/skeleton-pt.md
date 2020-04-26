@@ -21,20 +21,20 @@ O componente é projetado para ser usado **diretamente em seus componentes**. Po
 
 ## Variantes
 
-The component supports 3 shape variants.
+O componente suporta 3 variantes de forma.
 
 {{"demo": "pages/components/skeleton/Variants.js"}}
 
-## Animations
+## Animações
 
-By default, the skeleton pulsate, but you can change the animation for a wave or disable it entirely.
+Por padrão, o skeleton pulsa, mas você pode mudar a animação para uma onda ou desativá-la completamente.
 
 {{"demo": "pages/components/skeleton/Animations.js"}}
 
-## YouTube example
+## Exemplo YouTube
 
 {{"demo": "pages/components/skeleton/YouTube.js", "defaultCodeOpen": false}}
 
-## Facebook example
+## Exemplo Facebook
 
 {{"demo": "pages/components/skeleton/Facebook.js", "defaultCodeOpen": false, "bg": true}}

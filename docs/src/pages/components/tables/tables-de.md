@@ -23,7 +23,7 @@ Eine Daten-Tabelle enthält oben eine Kopfzeile, welche die Spaltennamen auflist
 
 Jede Zeile sollte ein Optionsfeld begleiten, falls die Nutzer die Daten auswählen oder ändern müssen.
 
-Für die Zugänglichkeit, ist die erste Spalte ein `<th>` Element, welches ein `scope` von `"row"` hat. Dies ermöglicht es Lesern, mithilfe von Zeilen- und Spaltenname den Inhalt einer Zelle zu ermitteln.
+For accessibility, the first column is set to be a `<th>` element, with a `scope` of `"col"`. Dies ermöglicht es Lesern, mithilfe von Zeilen- und Spaltenname den Inhalt einer Zelle zu ermitteln.
 
 ## Einfache Tabelle
 

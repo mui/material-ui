@@ -4,7 +4,7 @@
 
 Dê uma olhada no exemplo [Create React App com TypeScript](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-typescript). É necessário estar no mínimo com a versão 2.8 do TypeScript.
 
-In order for types to work, you have to at least have the following options enabled in your `tsconfig.json`:
+Para que os tipos funcionem, você tem que pelo menos ter as seguintes opções habilitadas no seu `tsconfig.json`:
 
 ```json
 {
@@ -17,7 +17,7 @@ In order for types to work, you have to at least have the following options enab
 }
 ```
 
-The strict mode options are the same that are required for every types package published in the `@types/` namespace. Usando uma `tsconfig.json` menos rigorosa ou omitindo algumas das bibliotecas podem causar erros. To get the best type experience with the types we recommend setting `"strict": true`.
+As opções de modo strict são as mesmas que são necessárias para todos os tipos de pacote publicados no namespace `@types/`. Usando uma `tsconfig.json` menos rigorosa ou omitindo algumas das bibliotecas podem causar erros. Para obter a melhor experiência com os tipos, recomendamos configurar `"strict": true`.
 
 ## Uso de `withStyles`
 
@@ -68,7 +68,7 @@ withStyles(({ palette, spacing }) => ({
 
 Isso ocorre pois o TypeScript [amplia o retorno de tipos de expressões de função](https://github.com/Microsoft/TypeScript/issues/241).
 
-Because of this, using the `createStyles` helper function to construct your style rules object is recommended:
+Por causa disso, é recomendado usar a função auxiliar `createStyles` para construir seu objeto de regras de estilo:
 
 ```ts
 // Estilos sem dependência
@@ -262,13 +262,13 @@ const theme = createMyTheme({ appDrawer: { breakpoint: 'md' }});
 
 ## Uso da propriedade `component`
 
-Many Material-UI components allow you to replace their root node via a `component` prop, this will be detailed in the component's API documentation. For example, a Button's root node can be replaced with a React Router's Link, and any additional props that are passed to Button, such as `to`, will be spread to the Link component. For a code example concerning Button and react-router-dom checkout [these demos](/guides/composition/#routing-libraries).
+Muitos componentes do Material-UI permitem que você substitua seu nó raiz através de uma propriedade `component`, isto será detalhado na documentação da API do componente. Por exemplo, o nó raiz de um Button pode ser substituído por um Link do React Router, e quaisquer propriedades adicionais que são passados para o Button, como `to`, serão propagadas para o componente Link. Para um exemplo de código relativo ao Button e o react-router-dom veja [estas demonstrações](/guides/composition/#routing-libraries).
 
-To be able to use props of such a Material-UI component on their own, props should be used with type arguments. Otherwise, the `component` prop will not be present in the props of the Material-UI component.
+Para poder usar propriedades de determinado componente Material-UI no seu componente próprio, as propriedades devem ser usadas com argumentos de tipo. Caso contrário, a propriedade `component` não estará presente nas propriedades do componente Material-UI.
 
-The examples below use `TypographyProps` but the same will work for any component which has props defined with `OverrideProps`.
+Os exemplos abaixo usam `TypographyProps` mas o mesmo funcionará para qualquer componente que tenha propriedades definidas com `OverrideProps`.
 
-The following `CustomComponent` component has the same props as the `Typography` component.
+O componente `CustomComponent` a seguir tem as mesmas propriedades que o componente `Typography`.
 
 ```ts
 function CustomComponent(props: TypographyProps<'a', { component: 'a' }>) {
@@ -276,9 +276,9 @@ function CustomComponent(props: TypographyProps<'a', { component: 'a' }>) {
 }
 ```
 
-Now the `CustomComponent` can be used with a `component` prop which should be set to `'a'`. In addition, the `CustomComponent` will have all props of a `<a>` HTML element. The other props of the `Typography` component will also be present in props of the `CustomComponent`.
+Agora o `CustomComponent` pode ser usado com uma propriedade `component` que deve ser definida para `'a'`. Além disso, o `CustomComponent` terá todas as propriedades de um elemento HTML `<a>`. As outras propriedades do componente `Typography` também estarão presentes nas propriedades do `CustomComponent`.
 
-It is possible to have generic `CustomComponent` which will accept any React component, custom and HTML elements.
+É possível ter um componente genérico `CustomComponent` que aceitará qualquer componente React, customizado e elementos HTML.
 
 ```ts
 function GenericCustomComponent<C extends React.ElementType>(
@@ -288,24 +288,24 @@ function GenericCustomComponent<C extends React.ElementType>(
 }
 ```
 
-Now if the `GenericCustomComponent` will be used with a `component` prop provided, it should also have all props required by the provided component.
+Agora se o `GenericCustomComponent` ser usado com uma propriedade `component`, ele também deve ter todas as propriedades exigidas pelo componente fornecido.
 
 ```ts
 function ThirdPartyComponent({ prop1 } : { prop1: string }) {
   return <div />
 }
 // ...
-<GenericCustomComponent component={ThirdPartyComponent} prop1="some value" />;
+<GenericCustomComponent component={ThirdPartyComponent} prop1="algum valor" />;
 ```
 
-The `prop1` became required for the `GenericCustomComponent` as the `ThirdPartyComponent` has it as a requirement.
+A `prop1` tornou-se necessária para o `GenericCustomComponent` como o `ThirdPartyComponent` tem ela como um requisito.
 
-Not every component fully supports any component type you pass in. If you encounter a component that rejects its `component` props in TypeScript please open an issue. There is an ongoing effort to fix this by making component props generic.
+Nem todos os componentes suportam totalmente qualquer tipo de componente que você passe. Se você encontrar um componente que rejeita sua propriedade `component` no TypeScript por favor abra um issue. Há um esforço contínuo para corrigir isso fazendo com que a propriedade component seja genérica.
 
 ## Manipulando `value` e manipuladores de eventos
 
-Many components concerned with user input offer a `value` prop or event handlers which include the current `value`. In most situations that `value` is only handled within React which allows it be of any type, such as objects or arrays.
+Muitos componentes preocupados com a entrada do usuário oferecem uma propriedade `value` ou manipuladores de eventos que incluem o valor atual em `value`. Na maioria das situações, `value` só é manipulado dentro do React, o que permite que seja de qualquer tipo, como objetos ou matrizes.
 
-However, that type cannot be verified at compile time in situations where it depends on the component's children e.g. for `Select` or `RadioGroup`. This means that the soundest option is to type it as `unknown` and let the developer decide how they want to narrow that type down. We do not offer the possibility to use a generic type in those cases for [the same reasons `event.target` is not generic in React](https://github.com/DefinitelyTyped/DefinitelyTyped/issues/11508#issuecomment-256045682).
+No entanto, esse tipo não pode ser verificado em tempo de compilação em situações em que depende de nós filhos do componente, por exemplo, para `Select` ou `RadioGroup`. Isso significa que a opção mais segura é tipando como `unknown` e deixar que o desenvolvedor decida como deseja restringir esse tipo. Não oferecemos a possibilidade de usar um tipo genérico nesses casos, devido [as mesmas razões que `event.target` não é genérico no React](https://github.com/DefinitelyTyped/DefinitelyTyped/issues/11508#issuecomment-256045682).
 
-The demos include typed variants that use type casting. It is an acceptable tradeoff because the types are all located in a single file and are very basic. You have to decide for yourself if the same tradeoff is acceptable for you. The library types are be strict by default and loose via opt-in.
+As demonstrações incluem variantes tipadas que usam conversão de tipo. É uma troca aceitável porque os tipos estão todos localizados em um único arquivo e são muito básicos. Você tem que decidir por si mesmo se a mesma troca é aceitável para você. A biblioteca de tipos são strict por padrão e loose por meio de opt-in.
