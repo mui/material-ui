@@ -19,8 +19,8 @@ import Link from 'docs/src/modules/components/Link';
 import { exactProp } from '@material-ui/utils';
 import { SOURCE_CODE_ROOT_URL } from 'docs/src/modules/constants';
 import Demo from 'docs/src/modules/components/Demo';
-import AppTableOfContents from './AppTableOfContents';
-import MarkdownElement from './MarkdownElement';
+import AppTableOfContents from 'docs/src/modules/components/AppTableOfContents';
+import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 
 function flattenPages(pages, current = []) {
   return pages.reduce((items, item) => {
@@ -92,7 +92,6 @@ function MarkdownDocs(props) {
   const { classes, disableAd = false, disableToc = false, demos, docs, requireDemo } = props;
 
   const t = useSelector((state) => state.options.t);
-
   const userLanguage = useSelector((state) => state.options.userLanguage);
   const { description, location, rendered, title, toc } = docs[userLanguage] || docs.en;
   if (description === undefined) {
@@ -226,7 +225,7 @@ function MarkdownDocs(props) {
 
 MarkdownDocs.propTypes = {
   classes: PropTypes.object.isRequired,
-  demos: PropTypes.object.isRequired,
+  demos: PropTypes.object,
   disableAd: PropTypes.bool,
   disableToc: PropTypes.bool,
   docs: PropTypes.object.isRequired,
