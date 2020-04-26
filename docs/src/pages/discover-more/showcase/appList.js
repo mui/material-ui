@@ -620,6 +620,15 @@ const appList = [
     stars: 14,
     dateAdded: '2020-03-25',
   },
+  {
+    title: 'SwissDev Jobs',
+    description:
+      'Transparent job board dedicated for Software Developers.',
+    image: 'swissdevjobs.jpg',
+    link: 'https://swissdevjobs.ch/',
+    similarWebVisits: 80,
+    dateAdded: '2020-04-26',
+  },
 ];
 
 export default appList;
