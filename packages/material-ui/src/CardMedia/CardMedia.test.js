@@ -31,13 +31,13 @@ describe('<CardMedia />', () => {
   it('should have the backgroundImage specified', () => {
     const { container } = render(<CardMedia image="/foo.jpg" />);
     const cardMedia = container.firstChild;
-    expect(cardMedia.style.backgroundImage).to.equal('url(/foo.jpg)');
+    expect(cardMedia.style.backgroundImage).to.match(/url\(["]?\/foo\.jpg["]?\)/m);
   });
 
   it('should have backgroundImage specified even though custom styles got passed', () => {
     const { container } = render(<CardMedia image="/foo.jpg" style={{ height: 200 }} />);
     const cardMedia = container.firstChild;
-    expect(cardMedia.style.backgroundImage).to.equal('url(/foo.jpg)');
+    expect(cardMedia.style.backgroundImage).to.match(/url\(["]?\/foo\.jpg["]?\)/m);
     expect(cardMedia.style.height).to.equal('200px');
   });
 
@@ -46,7 +46,7 @@ describe('<CardMedia />', () => {
       <CardMedia image="/foo.jpg" style={{ backgroundImage: 'url(/bar.jpg)' }} />,
     );
     const cardMedia = container.firstChild;
-    expect(cardMedia.style.backgroundImage).to.equal('url(/bar.jpg)');
+    expect(cardMedia.style.backgroundImage).to.match(/url\(["]?\/bar\.jpg["]?\)/m);
   });
 
   describe('prop: component', () => {
