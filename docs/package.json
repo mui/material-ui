@@ -68,7 +68,7 @@
     "react-redux": "^7.2.0",
     "redux": "^4.0.4",
     "redux-form": "^8.3.0",
-    "remark-slug": "^5.1.1",
+    "remark-slug": "^6.0.0",
     "safe-json-stringify": "^1.2.0",
     "sinon": "^7.3.2",
     "styled-jsx": "^3.2.5",
