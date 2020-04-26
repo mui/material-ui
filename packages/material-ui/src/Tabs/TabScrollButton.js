@@ -19,30 +19,25 @@ export const styles = {
       transform: 'rotate(90deg)',
     },
   },
+  disabled: {
+    opacity: 0,
+  },
 };
 
-/**
- * @ignore - internal component.
- */
 const TabScrollButton = React.forwardRef(function TabScrollButton(props, ref) {
   const { classes, className: classNameProp, direction, orientation, visible, ...other } = props;
-
-  const className = clsx(
-    classes.root,
-    {
-      [classes.vertical]: orientation === 'vertical',
-    },
-    classNameProp,
-  );
-
-  if (!visible) {
-    return <div className={className} />;
-  }
 
   return (
     <ButtonBase
       component="div"
-      className={className}
+      className={clsx(
+        classes.root,
+        {
+          [classes.vertical]: orientation === 'vertical',
+          [classes.disabled]: !visible,
+        },
+        classNameProp,
+      )}
       ref={ref}
       role={null}
       tabIndex={null}
@@ -81,4 +76,4 @@ TabScrollButton.propTypes = {
   visible: PropTypes.bool.isRequired,
 };
 
-export default withStyles(styles, { name: 'PrivateTabScrollButton' })(TabScrollButton);
+export default withStyles(styles, { name: 'MuiTabScrollButton' })(TabScrollButton);

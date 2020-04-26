@@ -84,6 +84,7 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
     orientation = 'horizontal',
     ScrollButtonComponent = TabScrollButton,
     scrollButtons = 'auto',
+    scrollButtonProps = {},
     TabIndicatorProps = {},
     textColor = 'inherit',
     value,
@@ -258,6 +259,7 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
         className={clsx(classes.scrollButtons, {
           [classes.scrollButtonsDesktop]: scrollButtons !== 'on',
         })}
+        {...scrollButtonProps}
       />
     ) : null;
 
@@ -270,6 +272,7 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
         className={clsx(classes.scrollButtons, {
           [classes.scrollButtonsDesktop]: scrollButtons !== 'on',
         })}
+        {...scrollButtonProps}
       />
     ) : null;
 
@@ -511,6 +514,7 @@ Tabs.propTypes = {
    * - `on` will always present them.
    * - `off` will never present them.
    */
+  scrollButtonProps: PropTypes.object,
   scrollButtons: PropTypes.oneOf(['auto', 'desktop', 'on', 'off']),
   /**
    * Props applied to the tab indicator element.

@@ -411,6 +411,9 @@ describe('<Tabs />', () => {
     });
 
     describe('scroll button visibility states', () => {
+      beforeEach(() => {
+        classes = { ...classes, ...getClasses(<TabScrollButton />) };
+      });
       it('should set neither left nor right scroll button state', () => {
         const { container, setProps, getByRole } = render(
           <Tabs
@@ -430,8 +433,9 @@ describe('<Tabs />', () => {
         Object.defineProperty(tablistContainer, 'scrollWidth', { value: 200 });
 
         setProps();
-        expect(hasLeftScrollButton(container)).to.equal(false);
-        expect(hasRightScrollButton(container)).to.equal(false);
+
+        expect(findScrollButton(container, 'left')).to.have.class(classes.disabled);
+        expect(findScrollButton(container, 'right')).to.have.class(classes.disabled);
       });
 
       it('should set only left scroll button state', () => {
@@ -455,8 +459,8 @@ describe('<Tabs />', () => {
         tablistContainer.scrollLeft = 96;
 
         setProps();
-        expect(hasLeftScrollButton(container)).to.equal(true);
-        expect(hasRightScrollButton(container)).to.equal(false);
+        expect(findScrollButton(container, 'left')).to.not.have.class(classes.disabled);
+        expect(findScrollButton(container, 'right')).to.have.class(classes.disabled);
       });
 
       it('should set only right scroll button state', () => {
@@ -480,8 +484,8 @@ describe('<Tabs />', () => {
         tablistContainer.scrollLeft = 0;
 
         setProps();
-        expect(hasLeftScrollButton(container)).to.equal(false);
-        expect(hasRightScrollButton(container)).to.equal(true);
+        expect(findScrollButton(container, 'right')).to.not.have.class(classes.disabled);
+        expect(findScrollButton(container, 'left')).to.have.class(classes.disabled);
       });
 
       it('should set both left and right scroll button state', () => {
@@ -504,8 +508,8 @@ describe('<Tabs />', () => {
         tablistContainer.scrollLeft = 5;
 
         setProps();
-        expect(hasLeftScrollButton(container)).to.equal(true);
-        expect(hasRightScrollButton(container)).to.equal(true);
+        expect(findScrollButton(container, 'right')).to.not.have.class(classes.disabled);
+        expect(findScrollButton(container, 'left')).to.not.have.class(classes.disabled);
       });
     });
   });
