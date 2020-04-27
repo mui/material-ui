@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import copy from 'clipboard-copy';
 import { useSelector, useDispatch } from 'react-redux';
-import { withStyles, fade } from '@material-ui/core/styles';
+import { fade, makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { unstable_StrictModeCollapse as Collapse } from '@material-ui/core/Collapse';
@@ -42,102 +42,6 @@ function addHiddenInput(form, name, value) {
   form.appendChild(input);
 }
 
-const styles = (theme) => ({
-  root: {
-    marginBottom: 40,
-    marginLeft: -theme.spacing(2),
-    marginRight: -theme.spacing(2),
-    [theme.breakpoints.up('sm')]: {
-      padding: theme.spacing(0, 1),
-      marginLeft: 0,
-      marginRight: 0,
-    },
-  },
-  demo: {
-    position: 'relative',
-    outline: 0,
-    margin: 'auto',
-    display: 'flex',
-    justifyContent: 'center',
-    [theme.breakpoints.up('sm')]: {
-      borderRadius: theme.shape.borderRadius,
-    },
-    '&:focus': {
-      outline: `2px dashed ${theme.palette.text.primary}`,
-    },
-  },
-  /* Isolate the demo with an outline. */
-  demoBgOutlined: {
-    padding: theme.spacing(3),
-    border: `1px solid ${fade(theme.palette.action.active, 0.12)}`,
-    borderLeftWidth: 0,
-    borderRightWidth: 0,
-    [theme.breakpoints.up('sm')]: {
-      borderLeftWidth: 1,
-      borderRightWidth: 1,
-    },
-  },
-  /* Prepare the background to display an inner elevation. */
-  demoBgTrue: {
-    padding: theme.spacing(3),
-    backgroundColor: theme.palette.background.level2,
-  },
-  /* Make no difference between the demo and the markdown. */
-  demoBgInline: {
-    // Maintain alignment with the markdown text
-    [theme.breakpoints.down('xs')]: {
-      padding: theme.spacing(3),
-    },
-  },
-  demoHiddenToolbar: {
-    paddingTop: theme.spacing(2),
-    [theme.breakpoints.up('sm')]: {
-      paddingTop: theme.spacing(3),
-    },
-  },
-  toolbar: {
-    display: 'none',
-    [theme.breakpoints.up('sm')]: {
-      display: 'flex',
-      flip: false,
-      top: 0,
-      right: theme.spacing(1),
-      height: theme.spacing(6),
-    },
-    justifyContent: 'space-between',
-  },
-  code: {
-    display: 'none',
-    padding: 0,
-    marginBottom: theme.spacing(1),
-    marginRight: 0,
-    [theme.breakpoints.up('sm')]: {
-      display: 'block',
-    },
-    '& pre': {
-      overflow: 'auto',
-      lineHeight: 1.5,
-      margin: '0px !important',
-      maxHeight: 1000,
-    },
-  },
-  tooltip: {
-    zIndex: theme.zIndex.appBar - 1,
-  },
-  anchorLink: {
-    marginTop: -64, // height of toolbar
-    position: 'absolute',
-  },
-  initialFocus: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    width: theme.spacing(4),
-    height: theme.spacing(4),
-    pointerEvents: 'none',
-  },
-});
-
 function getDemoName(location) {
   return location.replace(/(.+?)(\w+)\.\w+$$/, '$2');
 }
@@ -173,8 +77,108 @@ function useUniqueId(prefix) {
   return id ? `${prefix}${id}` : id;
 }
 
+const useStyles = makeStyles(
+  (theme) => ({
+    root: {
+      marginBottom: 40,
+      marginLeft: -theme.spacing(2),
+      marginRight: -theme.spacing(2),
+      [theme.breakpoints.up('sm')]: {
+        padding: theme.spacing(0, 1),
+        marginLeft: 0,
+        marginRight: 0,
+      },
+    },
+    demo: {
+      position: 'relative',
+      outline: 0,
+      margin: 'auto',
+      display: 'flex',
+      justifyContent: 'center',
+      [theme.breakpoints.up('sm')]: {
+        borderRadius: theme.shape.borderRadius,
+      },
+      '&:focus': {
+        outline: `2px dashed ${theme.palette.text.primary}`,
+      },
+    },
+    /* Isolate the demo with an outline. */
+    demoBgOutlined: {
+      padding: theme.spacing(3),
+      border: `1px solid ${fade(theme.palette.action.active, 0.12)}`,
+      borderLeftWidth: 0,
+      borderRightWidth: 0,
+      [theme.breakpoints.up('sm')]: {
+        borderLeftWidth: 1,
+        borderRightWidth: 1,
+      },
+    },
+    /* Prepare the background to display an inner elevation. */
+    demoBgTrue: {
+      padding: theme.spacing(3),
+      backgroundColor: theme.palette.background.level2,
+    },
+    /* Make no difference between the demo and the markdown. */
+    demoBgInline: {
+      // Maintain alignment with the markdown text
+      [theme.breakpoints.down('xs')]: {
+        padding: theme.spacing(3),
+      },
+    },
+    demoHiddenToolbar: {
+      paddingTop: theme.spacing(2),
+      [theme.breakpoints.up('sm')]: {
+        paddingTop: theme.spacing(3),
+      },
+    },
+    toolbar: {
+      display: 'none',
+      [theme.breakpoints.up('sm')]: {
+        display: 'flex',
+        flip: false,
+        top: 0,
+        right: theme.spacing(1),
+        height: theme.spacing(6),
+      },
+      justifyContent: 'space-between',
+    },
+    code: {
+      display: 'none',
+      padding: 0,
+      marginBottom: theme.spacing(1),
+      marginRight: 0,
+      [theme.breakpoints.up('sm')]: {
+        display: 'block',
+      },
+      '& pre': {
+        overflow: 'auto',
+        lineHeight: 1.5,
+        margin: '0px !important',
+        maxHeight: 1000,
+      },
+    },
+    tooltip: {
+      zIndex: theme.zIndex.appBar - 1,
+    },
+    anchorLink: {
+      marginTop: -64, // height of toolbar
+      position: 'absolute',
+    },
+    initialFocus: {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: theme.spacing(4),
+      height: theme.spacing(4),
+      pointerEvents: 'none',
+    },
+  }),
+  { name: 'Demo' },
+);
+
 function Demo(props) {
-  const { classes, demo, demoOptions, githubLocation } = props;
+  const { demo, demoOptions, githubLocation } = props;
+  const classes = useStyles();
   const dispatch = useDispatch();
   const t = useSelector((state) => state.options.t);
   const codeVariant = useSelector((state) => state.options.codeVariant);
@@ -559,10 +563,9 @@ function Demo(props) {
 }
 
 Demo.propTypes = {
-  classes: PropTypes.object.isRequired,
   demo: PropTypes.object.isRequired,
   demoOptions: PropTypes.object.isRequired,
   githubLocation: PropTypes.string.isRequired,
 };
 
-export default withStyles(styles)(Demo);
+export default Demo;
