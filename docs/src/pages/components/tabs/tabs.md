@@ -1,6 +1,6 @@
 ---
 title: Tabs React component
-components: Tabs, Tab
+components: Tabs, Tab, TabScrollButton
 ---
 
 # Tabs

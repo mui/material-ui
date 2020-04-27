@@ -17,9 +17,9 @@ export const styles = (theme) => ({
       cursor: 'default',
     },
   },
-  /* Styles applied to the root element if `orientation="horizontal". */
+  /* Styles applied to the root element if `orientation="horizontal"`. */
   horizontal: {},
-  /* Styles applied to the root element if `orientation="vertical". */
+  /* Styles applied to the root element if `orientation="vertical"`. */
   vertical: {},
   /* Styles applied to the `Typography` component which wraps `children`. */
   label: {

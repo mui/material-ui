@@ -10,7 +10,7 @@ import animate from '../internal/animate';
 import ScrollbarSize from './ScrollbarSize';
 import withStyles from '../styles/withStyles';
 import TabIndicator from './TabIndicator';
-import TabScrollButton from './TabScrollButton';
+import TabScrollButton from '../TabScrollButton';
 import useEventCallback from '../utils/useEventCallback';
 import useTheme from '../styles/useTheme';
 
@@ -85,6 +85,7 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
     ScrollButtonComponent = TabScrollButton,
     scrollButtons = 'auto',
     TabIndicatorProps = {},
+    TabScrollButtonProps,
     textColor = 'inherit',
     value,
     variant = 'standard',
@@ -254,10 +255,11 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
         orientation={orientation}
         direction={isRtl ? 'right' : 'left'}
         onClick={handleStartScrollClick}
-        visible={displayScroll.start}
+        disabled={!displayScroll.start}
         className={clsx(classes.scrollButtons, {
           [classes.scrollButtonsDesktop]: scrollButtons !== 'on',
         })}
+        {...TabScrollButtonProps}
       />
     ) : null;
 
@@ -266,10 +268,11 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
         orientation={orientation}
         direction={isRtl ? 'left' : 'right'}
         onClick={handleEndScrollClick}
-        visible={displayScroll.end}
+        disabled={!displayScroll.end}
         className={clsx(classes.scrollButtons, {
           [classes.scrollButtonsDesktop]: scrollButtons !== 'on',
         })}
+        {...TabScrollButtonProps}
       />
     ) : null;
 
@@ -560,6 +563,10 @@ Tabs.propTypes = {
    * Props applied to the tab indicator element.
    */
   TabIndicatorProps: PropTypes.object,
+  /**
+   * Props applied to the [`TabScrollButton`](/api/tab-scroll-button/) element.
+   */
+  TabScrollButtonProps: PropTypes.object,
   /**
    * Determines the color of the `Tab`.
    */
