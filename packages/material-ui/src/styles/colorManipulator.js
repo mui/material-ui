@@ -121,18 +121,18 @@ export function decomposeColor(color) {
   }
 
   let values = color.substring(marker + 1, color.length - 1);
-  let space;
+  let colorSpace;
 
   if (type === 'color') {
     values = values.split(' ');
-    space = values.shift();
+    colorSpace = values.shift();
     if (values.length === 4 && values[3].charAt(0) === '/') {
       values[3] = values[3].substr(1);
     }
-    if (['srgb', 'display-p3', 'a98-rgb', 'prophoto-rgb', 'rec-2020'].indexOf(space) === -1) {
+    if (['srgb', 'display-p3', 'a98-rgb', 'prophoto-rgb', 'rec-2020'].indexOf(colorSpace) === -1) {
       throw new Error(
         [
-          `Material-UI: unsupported \`${space}\` space.`,
+          `Material-UI: unsupported \`${colorSpace}\` color space.`,
           'We support the following spaces: srgb, display-p3, a98-rgb, prophoto-rgb, rec-2020.',
         ].join('\n'),
       );
@@ -142,7 +142,7 @@ export function decomposeColor(color) {
   }
   values = values.map((value) => parseFloat(value));
 
-  return { type, values, space };
+  return { type, values, colorSpace };
 }
 
 /**
@@ -154,7 +154,7 @@ export function decomposeColor(color) {
  * @returns {string} A CSS color string
  */
 export function recomposeColor(color) {
-  const { type, space } = color;
+  const { type, colorSpace } = color;
   let { values } = color;
 
   if (type.indexOf('rgb') !== -1) {
@@ -165,7 +165,7 @@ export function recomposeColor(color) {
     values[2] = `${values[2]}%`;
   }
   if (type.indexOf('color') !== -1) {
-    values = `${space} ${values.join(' ')}`;
+    values = `${colorSpace} ${values.join(' ')}`;
   } else {
     values = `${values.join(', ')}`;
   }

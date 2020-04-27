@@ -37,7 +37,7 @@ describe('utils/colorManipulator', () => {
       expect(
         recomposeColor({
           type: 'color',
-          space: 'display-p3',
+          colorSpace: 'display-p3',
           values: [0.5, 0.3, 0.2],
         }),
       ).to.equal('color(display-p3 0.5 0.3 0.2)');
@@ -125,21 +125,21 @@ describe('utils/colorManipulator', () => {
       expect(values).to.deep.equal([100, 50, 25, 0.5]);
     });
 
-    it('converts CSS4 color with display-3 space', () => {
-      const { type, values, space } = decomposeColor('color(display-p3 0 1 0)');
+    it('converts CSS4 color with color space display-3', () => {
+      const { type, values, colorSpace } = decomposeColor('color(display-p3 0 1 0)');
       expect(type).to.equal('color');
-      expect(space).to.equal('display-p3');
+      expect(colorSpace).to.equal('display-p3');
       expect(values).to.deep.equal([0, 1, 0]);
     });
 
-    it('converts an alpha CSS4 color with display-3 space', () => {
-      const { type, values, space } = decomposeColor('color(display-p3 0 1 0 /0.4)');
+    it('converts an alpha CSS4 color with color space display-3', () => {
+      const { type, values, colorSpace } = decomposeColor('color(display-p3 0 1 0 /0.4)');
       expect(type).to.equal('color');
-      expect(space).to.equal('display-p3');
+      expect(colorSpace).to.equal('display-p3');
       expect(values).to.deep.equal([0, 1, 0, 0.4]);
     });
 
-    it('should throw error with inexistent color space', () => {
+    it('should throw error with inexistent color color space', () => {
       const decimposeWithError = () => decomposeColor('color(foo 0 1 0)');
       expect(decimposeWithError).to.throw();
     });
