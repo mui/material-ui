@@ -8,6 +8,10 @@ import { fade, makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { unstable_StrictModeCollapse as Collapse } from '@material-ui/core/Collapse';
+import { unstable_StrictModeFade as Fade } from '@material-ui/core/Fade';
+import ToggleButton from '@material-ui/lab/ToggleButton';
+import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
+import { JavaScript as JavaScriptIcon, TypeScript as TypeScriptIcon } from '@material-ui/docs';
 import NoSsr from '@material-ui/core/NoSsr';
 import EditIcon from '@material-ui/icons/Edit';
 import CodeIcon from '@material-ui/icons/Code';
@@ -21,7 +25,6 @@ import RefreshIcon from '@material-ui/icons/Refresh';
 import ResetFocusIcon from '@material-ui/icons/CenterFocusWeak';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import DemoSandboxed from 'docs/src/modules/components/DemoSandboxed';
-import DemoLanguages from 'docs/src/modules/components/DemoLanguages';
 import getDemoConfig from 'docs/src/modules/utils/getDemoConfig';
 import getJsxPreview from 'docs/src/modules/utils/getJsxPreview';
 import { getCookie } from 'docs/src/modules/utils/helpers';
@@ -91,6 +94,12 @@ const useDemoToolbarStyles = makeStyles(
         },
         justifyContent: 'space-between',
       },
+      toggleButtonGroup: {
+        margin: '8px 0',
+      },
+      toggleButton: {
+        height: 32,
+      },
       tooltip: {
         zIndex: theme.zIndex.appBar - 1,
       },
@@ -121,6 +130,14 @@ function DemoToolbar(props) {
 
   const dispatch = useDispatch();
   const t = useSelector((state) => state.options.t);
+
+  const hasTSVariant = demo.rawTS;
+  const renderedCodeVariant = () => {
+    if (codeVariant === CODE_VARIANTS.TS && hasTSVariant) {
+      return CODE_VARIANTS.TS;
+    }
+    return CODE_VARIANTS.JS;
+  };
 
   const handleCodeLanguageClick = (event, clickedCodeVariant) => {
     if (codeVariant !== clickedCodeVariant) {
@@ -251,13 +268,36 @@ function DemoToolbar(props) {
     <React.Fragment>
       <div aria-label={t('demoToolbarLabel')} className={classes.root} role="toolbar">
         <NoSsr defer>
-          <DemoLanguages
-            demo={demo}
-            codeOpen={codeOpen}
-            codeVariant={codeVariant}
-            gaEventLabel={demoOptions.demo}
-            onLanguageClick={handleCodeLanguageClick}
-          />
+          <Fade in={codeOpen}>
+            <ToggleButtonGroup
+              className={classes.toggleButtonGroup}
+              exclusive
+              value={renderedCodeVariant()}
+              onChange={handleCodeLanguageClick}
+            >
+              <ToggleButton
+                className={classes.toggleButton}
+                value={CODE_VARIANTS.JS}
+                aria-label={t('showJSSource')}
+                data-ga-event-category="demo"
+                data-ga-event-action="source-js"
+                data-ga-event-label={demoOptions.demo}
+              >
+                <JavaScriptIcon />
+              </ToggleButton>
+              <ToggleButton
+                className={classes.toggleButton}
+                value={CODE_VARIANTS.TS}
+                disabled={!hasTSVariant}
+                aria-label={t('showTSSource')}
+                data-ga-event-category="demo"
+                data-ga-event-action="source-ts"
+                data-ga-event-label={demoOptions.demo}
+              >
+                <TypeScriptIcon />
+              </ToggleButton>
+            </ToggleButtonGroup>
+          </Fade>
           <div>
             <Tooltip
               classes={{ popper: classes.tooltip }}
