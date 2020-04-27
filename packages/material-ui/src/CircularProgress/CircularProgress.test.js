@@ -86,7 +86,10 @@ describe('<CircularProgress />', () => {
       expect(circularProgress).to.have.class(classes.root);
       const svg = circularProgress.firstChild;
       const circle = svg.firstChild;
-      expect(circle.style.strokeDasharray).to.match(/126\.920?(px)?/gm, 'should have strokeDasharray set');
+      expect(circle.style.strokeDasharray).to.match(
+        /126\.920?(px)?/gm,
+        'should have strokeDasharray set',
+      );
       expect(circle.style.strokeDashoffset).to.equal(
         '38.076px',
         'should have strokeDashoffset set',
@@ -114,7 +117,10 @@ describe('<CircularProgress />', () => {
       expect(circularProgress).to.have.class(classes.root);
       const svg = circularProgress.firstChild;
       const circle = svg.firstChild;
-      expect(circle.style.strokeDasharray).to.match(/126\.920?(px)?/gm, 'should have strokeDasharray set');
+      expect(circle.style.strokeDasharray).to.match(
+        /126\.920?(px)?/gm,
+        'should have strokeDasharray set',
+      );
       expect(circle.style.strokeDashoffset).to.equal(
         '11.423px',
         'should have strokeDashoffset set',
