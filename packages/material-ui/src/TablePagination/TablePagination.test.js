@@ -425,8 +425,8 @@ describe('<TablePagination />', () => {
       </table>,
     );
 
-    const firstButton = wrapper.find(IconButton).at(2);
-    firstButton.simulate('click');
+    const lastButton = wrapper.find(IconButton).at(2);
+    lastButton.simulate('click');
     assert.strictEqual(page, 2);
   });
 });
