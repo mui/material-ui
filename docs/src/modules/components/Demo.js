@@ -105,6 +105,7 @@ function DemoToolbar(props) {
     codeVariant,
     demo,
     demoData,
+    demoId,
     demoHovered,
     demoName,
     demoOptions,
@@ -319,6 +320,7 @@ function DemoToolbar(props) {
             </Tooltip>
             <Tooltip classes={{ popper: classes.tooltip }} title={t('resetDemo')} placement="top">
               <IconButton
+                aria-controls={demoId}
                 aria-label={t('resetDemo')}
                 data-ga-event-category="demo"
                 data-ga-event-label={demoOptions.demo}
@@ -409,6 +411,7 @@ DemoToolbar.propTypes = {
   demo: PropTypes.object.isRequired,
   demoData: PropTypes.object.isRequired,
   demoHovered: PropTypes.bool.isRequired,
+  demoId: PropTypes.string,
   demoName: PropTypes.string.isRequired,
   demoOptions: PropTypes.object.isRequired,
   demoSourceId: PropTypes.string,
@@ -552,7 +555,8 @@ function Demo(props) {
 
   const [demoKey, resetDemo] = React.useReducer((key) => key + 1, 0);
 
-  const demoSourceId = useUniqueId(`demo-`);
+  const demoId = useUniqueId('demo-');
+  const demoSourceId = useUniqueId(`demoSource-`);
   const openDemoSource = codeOpen || showPreview;
 
   const initialFocusRef = React.useRef(null);
@@ -566,6 +570,7 @@ function Demo(props) {
           [classes.demoBgTrue]: demoOptions.bg === true,
           [classes.demoBgInline]: demoOptions.bg === 'inline',
         })}
+        id={demoId}
         onMouseEnter={handleDemoHover}
         onMouseLeave={handleDemoHover}
       >
@@ -593,6 +598,7 @@ function Demo(props) {
           demo={demo}
           demoData={demoData}
           demoHovered={demoHovered}
+          demoId={demoId}
           demoName={demoName}
           demoOptions={demoOptions}
           demoSourceId={demoSourceId}
