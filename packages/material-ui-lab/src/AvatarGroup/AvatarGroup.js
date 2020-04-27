@@ -23,14 +23,13 @@ export const styles = (theme) => ({
 });
 
 const AvatarGroup = React.forwardRef(function AvatarGroup(props, ref) {
-  const {
-    children: childrenProp,
-    classes,
-    className,
-    spacing = 'medium',
-    max = 5,
-    ...other
-  } = props;
+  const { children: childrenProp, classes, className, spacing = 'medium', ...other } = props;
+  let { max = 5 } = props;
+
+  if (max < 2) {
+    max = 2;
+    console.warn('Material-UI: AvatarGroup `max` should be at least 2.');
+  }
 
   const children = React.Children.toArray(childrenProp).filter((child) => {
     if (process.env.NODE_ENV !== 'production') {
@@ -47,7 +46,7 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(props, ref) {
     return React.isValidElement(child);
   });
 
-  const extraAvatars = children.length > max ? children.length - max : 0;
+  const extraAvatars = children.length > max ? children.length - max + 1 : 0;
 
   return (
     <div className={clsx(classes.root, className)} ref={ref} {...other}>
