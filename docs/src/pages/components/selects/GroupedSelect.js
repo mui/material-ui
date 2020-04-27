@@ -38,12 +38,16 @@ export default function GroupedSelect() {
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
-          <ListSubheader>Category 1</ListSubheader>
-          <MenuItem value={1}>Option 1</MenuItem>
-          <MenuItem value={2}>Option 2</MenuItem>
-          <ListSubheader>Category 2</ListSubheader>
-          <MenuItem value={3}>Option 3</MenuItem>
-          <MenuItem value={4}>Option 4</MenuItem>
+          <div>
+            <ListSubheader>Category 1</ListSubheader>
+            <MenuItem value={1}>Option 1</MenuItem>
+            <MenuItem value={2}>Option 2</MenuItem>
+          </div>
+          <div>
+            <ListSubheader>Category 2</ListSubheader>
+            <MenuItem value={3}>Option 3</MenuItem>
+            <MenuItem value={4}>Option 4</MenuItem>
+          </div>
         </Select>
       </FormControl>
     </div>
