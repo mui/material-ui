@@ -40,7 +40,7 @@ export const styles = {
       cursor: 'default',
     },
     '@media print': {
-      colorAdjust: 'exact',
+      '-webkit-print-color-adjust': 'exact',
     },
   },
   /* Pseudo-class applied to the root element if `disabled={true}`. */
