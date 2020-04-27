@@ -332,4 +332,101 @@ describe('<TablePagination />', () => {
       );
     });
   });
+
+  describe('prop: showFirstButton', () => {
+    it('should disable showFirstButton when it is on first page', () => {
+      const wrapper = mount(
+        <table>
+          <TableFooter>
+            <TableRow>
+              <TablePagination
+                count={30}
+                page={0}
+                onChangePage={noop}
+                onChangeRowsPerPage={noop}
+                rowsPerPage={10}
+                showFirstButton
+              />
+            </TableRow>
+          </TableFooter>
+        </table>,
+      );
+
+      const firstButton = wrapper.find(IconButton).at(0);
+      assert.strictEqual(firstButton.props().disabled, true);
+    });
+  });
+  it('should go to first page on click', () => {
+    let page = 2;
+    const wrapper = mount(
+      <table>
+        <TableFooter>
+          <TableRow>
+            <TablePagination
+              count={30}
+              page={page}
+              onChangePage={(event, nextPage) => {
+                page = nextPage;
+              }}
+              onChangeRowsPerPage={noop}
+              rowsPerPage={10}
+              showFirstButton
+            />
+          </TableRow>
+        </TableFooter>
+      </table>,
+    );
+
+    const firstButton = wrapper.find(IconButton).at(0);
+    firstButton.simulate('click');
+    assert.strictEqual(page, 0);
+  });
+  describe('prop: showLastButton', () => {
+    it('should disable showLastButton when it is on last page', () => {
+      const wrapper = mount(
+        <table>
+          <TableFooter>
+            <TableRow>
+              <TablePagination
+                count={30}
+                page={2}
+                onChangePage={noop}
+                onChangeRowsPerPage={noop}
+                rowsPerPage={10}
+                showLastButton
+              />
+            </TableRow>
+          </TableFooter>
+        </table>,
+      );
+
+      const lastButton = wrapper.find(IconButton).at(2);
+      assert.strictEqual(lastButton.props().disabled, true);
+    });
+  });
+  it('should go to last page on click', () => {
+    let page = 0;
+    const wrapper = mount(
+      <table>
+        <TableFooter>
+          <TableRow>
+            <TablePagination
+              count={30}
+              page={page}
+              onChangePage={(event, nextPage) => {
+                page = nextPage;
+              }}
+              onChangeRowsPerPage={noop}
+              rowsPerPage={10}
+              showLastButton
+            />
+          </TableRow>
+        </TableFooter>
+      </table>,
+    );
+
+    const firstButton = wrapper.find(IconButton).at(2);
+    firstButton.simulate('click');
+    assert.strictEqual(page, 2);
+  });
 });
