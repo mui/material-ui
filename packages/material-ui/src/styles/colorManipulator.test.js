@@ -1,4 +1,4 @@
-import { assert, expect } from 'chai';
+import { expect } from 'chai';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import {
   recomposeColor,
