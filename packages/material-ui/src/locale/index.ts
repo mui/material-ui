@@ -345,9 +345,9 @@ export const enUS: Localization = {
 
 export const esES: Localization = {
   props: {
-    // MuiBreadcrumbs: {
-    //   expandText: 'Show path',
-    // },
+    MuiBreadcrumbs: {
+      expandText: 'Mostrar ruta',
+    },
     MuiTablePagination: {
       backIconButtonText: 'Página anterior',
       labelRowsPerPage: 'Filas por página:',
@@ -356,7 +356,7 @@ export const esES: Localization = {
     },
     MuiRating: {
       getLabelText: (value) => `${value} Estrella${value !== 1 ? 's' : ''}`,
-      emptyLabelText: 'Empty',
+      emptyLabelText: 'Vacío',
     },
     MuiAutocomplete: {
       clearText: 'Limpiar',
@@ -368,27 +368,27 @@ export const esES: Localization = {
     MuiAlert: {
       closeText: 'Cerrar',
     },
-    // MuiPagination: {
-    //   'aria-label': 'Pagination navigation',
-    //   getItemAriaLabel: (type, page, selected) => {
-    //     if (type === 'page') {
-    //       return `${selected ? '' : 'Go to '}page ${page}`;
-    //     }
-    //     if (type === 'first') {
-    //       return 'Go to first page';
-    //     }
-    //     if (type === 'last') {
-    //       return 'Go to last page';
-    //     }
-    //     if (type === 'next') {
-    //       return 'Go to next page';
-    //     }
-    //     if (type === 'previous') {
-    //       return 'Go to previous page';
-    //     }
-    //     return undefined;
-    //   },
-    // },
+    MuiPagination: {
+      'aria-label': 'Paginador',
+      getItemAriaLabel: (type, page, selected) => {
+        if (type === 'page') {
+          return `${selected ? '' : 'Ir a la '}página ${page}`;
+        }
+        if (type === 'first') {
+          return 'Ir a la primera página';
+        }
+        if (type === 'last') {
+          return 'Ir a la última página';
+        }
+        if (type === 'next') {
+          return 'Ir a la página siguiente';
+        }
+        if (type === 'previous') {
+          return 'Ir a la página anterior';
+        }
+        return undefined;
+      },
+    },
   },
 };
 

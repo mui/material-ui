@@ -193,15 +193,17 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
       return;
     }
 
-    // Swallow the event, in case someone is listening for the escape key on the body.
-    event.stopPropagation();
-
     if (onEscapeKeyDown) {
       onEscapeKeyDown(event);
     }
 
-    if (!disableEscapeKeyDown && onClose) {
-      onClose(event, 'escapeKeyDown');
+    if (!disableEscapeKeyDown) {
+      // Swallow the event, in case someone is listening for the escape key on the body.
+      event.stopPropagation();
+
+      if (onClose) {
+        onClose(event, 'escapeKeyDown');
+      }
     }
   };
 
@@ -294,7 +296,7 @@ Modal.propTypes = {
    */
   disableAutoFocus: PropTypes.bool,
   /**
-   * If `true`, clicking the backdrop will not fire any callback.
+   * If `true`, clicking the backdrop will not fire `onClose`.
    */
   disableBackdropClick: PropTypes.bool,
   /**
@@ -305,7 +307,7 @@ Modal.propTypes = {
    */
   disableEnforceFocus: PropTypes.bool,
   /**
-   * If `true`, hitting escape will not fire any callback.
+   * If `true`, hitting escape will not fire `onClose`.
    */
   disableEscapeKeyDown: PropTypes.bool,
   /**

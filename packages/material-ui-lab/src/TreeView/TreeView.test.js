@@ -196,7 +196,7 @@ describe('<TreeView />', () => {
   });
 
   describe('onNodeToggle', () => {
-    it('should be called when a parent node is clicked', () => {
+    it('should be called when a parent node label is clicked', () => {
       const handleNodeToggle = spy();
 
       const { getByText } = render(
@@ -211,6 +211,60 @@ describe('<TreeView />', () => {
 
       expect(handleNodeToggle.callCount).to.equal(1);
       expect(handleNodeToggle.args[0][1]).to.deep.equal(['1']);
+    });
+
+    it('should not be called when a parent node label is clicked and onLabelClick preventDefault', () => {
+      const handleNodeToggle = spy();
+
+      const { getByText } = render(
+        <TreeView onNodeToggle={handleNodeToggle}>
+          <TreeItem onLabelClick={(event) => event.preventDefault()} nodeId="1" label="outer">
+            <TreeItem nodeId="2" label="inner" />
+          </TreeItem>
+        </TreeView>,
+      );
+
+      fireEvent.click(getByText('outer'));
+
+      expect(handleNodeToggle.callCount).to.equal(0);
+    });
+
+    it('should be called when a parent node icon is clicked', () => {
+      const handleNodeToggle = spy();
+
+      const { getByTestId } = render(
+        <TreeView onNodeToggle={handleNodeToggle}>
+          <TreeItem icon={<div data-testid="icon" />} nodeId="1" label="outer">
+            <TreeItem nodeId="2" label="inner" />
+          </TreeItem>
+        </TreeView>,
+      );
+
+      fireEvent.click(getByTestId('icon'));
+
+      expect(handleNodeToggle.callCount).to.equal(1);
+      expect(handleNodeToggle.args[0][1]).to.deep.equal(['1']);
+    });
+
+    it('should not be called when a parent node icon is clicked and onIconClick preventDefault', () => {
+      const handleNodeToggle = spy();
+
+      const { getByTestId } = render(
+        <TreeView onNodeToggle={handleNodeToggle}>
+          <TreeItem
+            onIconClick={(event) => event.preventDefault()}
+            icon={<div data-testid="icon" />}
+            nodeId="1"
+            label="outer"
+          >
+            <TreeItem nodeId="2" label="inner" />
+          </TreeItem>
+        </TreeView>,
+      );
+
+      fireEvent.click(getByTestId('icon'));
+
+      expect(handleNodeToggle.callCount).to.equal(0);
     });
   });
 

@@ -830,7 +830,7 @@ describe('<ButtonBase />', () => {
       });
 
       it('does not call onClick if Space was released on a child', () => {
-        const onClickSpy = spy((event) => event.defaultPrevented);
+        const onClickSpy = spy();
         const onKeyUpSpy = spy();
         render(
           <ButtonBase onClick={onClickSpy} onKeyUp={onKeyUpSpy} component="div">

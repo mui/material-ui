@@ -544,7 +544,7 @@ function Demo(props) {
         <HighlightedCode
           className={classes.code}
           id={demoSourceId}
-          code={codeOpen ? demoData.raw : jsx}
+          code={showPreview && !codeOpen ? jsx : demoData.raw}
           language={demoData.sourceLanguage}
         />
       </Collapse>
