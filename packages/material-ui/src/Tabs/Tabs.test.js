@@ -1,27 +1,38 @@
 import * as React from 'react';
 import { expect, assert } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import * as PropTypes from 'prop-types';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import { createClientRender, fireEvent } from 'test/utils/createClientRender';
 import createServerRender from 'test/utils/createServerRender';
 import describeConformance from '../test-utils/describeConformance';
+import capitalize from '../utils/capitalize';
 import Tab from '../Tab';
 import Tabs from './Tabs';
-import TabScrollButton from './TabScrollButton';
 
-function AccessibleTabScrollButton(props) {
-  return <TabScrollButton data-direction={props.direction} {...props} />;
+function findScrollButton(container, direction) {
+  return container.querySelector(`svg[data-mui-test="KeyboardArrow${capitalize(direction)}Icon"]`);
 }
-AccessibleTabScrollButton.propTypes = {
-  direction: PropTypes.string.isRequired,
-};
 
-const findScrollButton = (container, direction) =>
-  container.querySelector(`div[data-direction="${direction}"]`);
-const hasLeftScrollButton = (container) => findScrollButton(container, 'left') != null;
-const hasRightScrollButton = (container) => findScrollButton(container, 'right') != null;
+function hasLeftScrollButton(container) {
+  const scrollButton = findScrollButton(container, 'left');
+
+  if (!scrollButton) {
+    return false;
+  }
+
+  return !scrollButton.parentElement.classList.contains('Mui-disabled');
+}
+
+function hasRightScrollButton(container) {
+  const scrollButton = findScrollButton(container, 'right');
+
+  if (!scrollButton) {
+    return false;
+  }
+
+  return !scrollButton.parentElement.classList.contains('Mui-disabled');
+}
 
 describe('<Tabs />', () => {
   const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
@@ -260,12 +271,7 @@ describe('<Tabs />', () => {
   describe('prop: variant="scrollable"', () => {
     let clock;
     const tabs = (
-      <Tabs
-        value={0}
-        style={{ width: 200 }}
-        variant="scrollable"
-        ScrollButtonComponent={AccessibleTabScrollButton}
-      >
+      <Tabs value={0} style={{ width: 200 }} variant="scrollable">
         <Tab />
         <Tab />
         <Tab />
@@ -373,13 +379,7 @@ describe('<Tabs />', () => {
       }
 
       const { container, setProps, getByRole } = render(
-        <Tabs
-          value={0}
-          variant="scrollable"
-          scrollButtons="on"
-          ScrollButtonComponent={AccessibleTabScrollButton}
-          style={{ width: 200 }}
-        >
+        <Tabs value={0} variant="scrollable" scrollButtons="on" style={{ width: 200 }}>
           <Tab />
           <Tab />
           <Tab />
@@ -411,18 +411,9 @@ describe('<Tabs />', () => {
     });
 
     describe('scroll button visibility states', () => {
-      beforeEach(() => {
-        classes = { ...classes, ...getClasses(<TabScrollButton />) };
-      });
       it('should set neither left nor right scroll button state', () => {
         const { container, setProps, getByRole } = render(
-          <Tabs
-            value={0}
-            variant="scrollable"
-            scrollButtons="on"
-            ScrollButtonComponent={AccessibleTabScrollButton}
-            style={{ width: 200 }}
-          >
+          <Tabs value={0} variant="scrollable" scrollButtons="on" style={{ width: 200 }}>
             <Tab />
             <Tab />
           </Tabs>,
@@ -433,20 +424,13 @@ describe('<Tabs />', () => {
         Object.defineProperty(tablistContainer, 'scrollWidth', { value: 200 });
 
         setProps();
-
-        expect(findScrollButton(container, 'left')).to.have.class(classes.disabled);
-        expect(findScrollButton(container, 'right')).to.have.class(classes.disabled);
+        expect(hasLeftScrollButton(container)).to.equal(false);
+        expect(hasRightScrollButton(container)).to.equal(false);
       });
 
       it('should set only left scroll button state', () => {
         const { container, setProps, getByRole } = render(
-          <Tabs
-            value={0}
-            variant="scrollable"
-            scrollButtons="on"
-            ScrollButtonComponent={AccessibleTabScrollButton}
-            style={{ width: 200 }}
-          >
+          <Tabs value={0} variant="scrollable" scrollButtons="on" style={{ width: 200 }}>
             <Tab />
             <Tab />
             <Tab />
@@ -459,19 +443,13 @@ describe('<Tabs />', () => {
         tablistContainer.scrollLeft = 96;
 
         setProps();
-        expect(findScrollButton(container, 'left')).to.not.have.class(classes.disabled);
-        expect(findScrollButton(container, 'right')).to.have.class(classes.disabled);
+        expect(hasLeftScrollButton(container)).to.equal(true);
+        expect(hasRightScrollButton(container)).to.equal(false);
       });
 
       it('should set only right scroll button state', () => {
         const { container, setProps, getByRole } = render(
-          <Tabs
-            value={0}
-            variant="scrollable"
-            scrollButtons="on"
-            ScrollButtonComponent={AccessibleTabScrollButton}
-            style={{ width: 200 }}
-          >
+          <Tabs value={0} variant="scrollable" scrollButtons="on" style={{ width: 200 }}>
             <Tab />
             <Tab />
             <Tab />
@@ -484,19 +462,13 @@ describe('<Tabs />', () => {
         tablistContainer.scrollLeft = 0;
 
         setProps();
-        expect(findScrollButton(container, 'right')).to.not.have.class(classes.disabled);
-        expect(findScrollButton(container, 'left')).to.have.class(classes.disabled);
+        expect(hasLeftScrollButton(container)).to.equal(false);
+        expect(hasRightScrollButton(container)).to.equal(true);
       });
 
       it('should set both left and right scroll button state', () => {
         const { container, setProps, getByRole } = render(
-          <Tabs
-            value={0}
-            variant="scrollable"
-            scrollButtons="on"
-            ScrollButtonComponent={AccessibleTabScrollButton}
-            style={{ width: 200 }}
-          >
+          <Tabs value={0} variant="scrollable" scrollButtons="on" style={{ width: 200 }}>
             <Tab />
             <Tab />
           </Tabs>,
@@ -508,8 +480,8 @@ describe('<Tabs />', () => {
         tablistContainer.scrollLeft = 5;
 
         setProps();
-        expect(findScrollButton(container, 'right')).to.not.have.class(classes.disabled);
-        expect(findScrollButton(container, 'left')).to.not.have.class(classes.disabled);
+        expect(hasLeftScrollButton(container)).to.equal(true);
+        expect(hasRightScrollButton(container)).to.equal(true);
       });
     });
   });
@@ -527,13 +499,7 @@ describe('<Tabs />', () => {
 
     it('should call moveTabsScroll', () => {
       const { container, setProps, getByRole } = render(
-        <Tabs
-          value={0}
-          variant="scrollable"
-          scrollButtons="on"
-          ScrollButtonComponent={AccessibleTabScrollButton}
-          style={{ width: 200 }}
-        >
+        <Tabs value={0} variant="scrollable" scrollButtons="on" style={{ width: 200 }}>
           <Tab />
           <Tab />
           <Tab />

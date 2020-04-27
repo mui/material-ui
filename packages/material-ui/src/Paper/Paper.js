@@ -23,7 +23,7 @@ export const styles = (theme) => {
     rounded: {
       borderRadius: theme.shape.borderRadius,
     },
-    /* Styles applied to the root element if `variant="outlined"` */
+    /* Styles applied to the root element if `variant="outlined"`. */
     outlined: {
       border: `1px solid ${theme.palette.divider}`,
     },

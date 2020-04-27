@@ -54,7 +54,7 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">.MuiGrid-root</span> | Styles applied to the root element
+| <span class="prop-name">root</span> | <span class="prop-name">.MuiGrid-root</span> | Styles applied to the root element.
 | <span class="prop-name">container</span> | <span class="prop-name">.MuiGrid-container</span> | Styles applied to the root element if `container={true}`.
 | <span class="prop-name">item</span> | <span class="prop-name">.MuiGrid-item</span> | Styles applied to the root element if `item={true}`.
 | <span class="prop-name">zeroMinWidth</span> | <span class="prop-name">.MuiGrid-zeroMinWidth</span> | Styles applied to the root element if `zeroMinWidth={true}`.
