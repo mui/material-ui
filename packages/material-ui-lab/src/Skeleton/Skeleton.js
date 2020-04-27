@@ -57,7 +57,6 @@ export const styles = (theme) => ({
       left: 0,
       right: 0,
       top: 0,
-      zIndex: 1,
     },
   },
   '@keyframes wave': {
