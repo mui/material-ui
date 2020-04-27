@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import copy from 'clipboard-copy';
 import { useSelector, useDispatch } from 'react-redux';
-import { fade, makeStyles } from '@material-ui/core/styles';
+import { fade, makeStyles, useTheme } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { unstable_StrictModeCollapse as Collapse } from '@material-ui/core/Collapse';
@@ -107,6 +107,134 @@ const useDemoToolbarStyles = makeStyles(
   },
   { name: 'DemoToolbar' },
 );
+
+const alwaysTrue = () => true;
+
+/**
+ *
+ * @param {React.Ref<HTMLElement>[]} controlRefs
+ * @param {object} [options]
+ * @param {(index: number) => boolean} [options.isFocusableControl] In case certain controls become unfocusable
+ * @param {number} [options.defaultActiveIndex]
+ */
+function useToolbar(controlRefs, options = {}) {
+  const { defaultActiveIndex = 0, isFocusableControl = alwaysTrue } = options;
+  const [activeControlIndex, setActiveControlIndex] = React.useState(defaultActiveIndex);
+
+  // TODO: do we need to do this during layout practically? It's technically
+  // a bit too late since we allow user interaction between layout and passive effects
+  React.useEffect(() => {
+    setActiveControlIndex((currentActiveControlIndex) => {
+      if (!isFocusableControl(currentActiveControlIndex)) {
+        return defaultActiveIndex;
+      }
+      return currentActiveControlIndex;
+    });
+  }, [defaultActiveIndex, isFocusableControl]);
+
+  // controlRefs.findIndex(controlRef => controlRef.current = element)
+  function findControlIndex(element) {
+    let controlIndex = -1;
+    controlRefs.forEach((controlRef, index) => {
+      if (controlRef.current === element) {
+        controlIndex = index;
+      }
+    });
+    return controlIndex;
+  }
+
+  function handleControlFocus(event) {
+    const nextActiveControlIndex = findControlIndex(event.target);
+    if (nextActiveControlIndex !== -1) {
+      setActiveControlIndex(nextActiveControlIndex);
+    } else {
+      // make sure DCE works
+      // eslint-disable-next-line no-lonely-if
+      if (process.env.NODE_ENV !== 'production') {
+        console.error(
+          'Material-UI: The toolbar contains a focusable element that is not controlled by the toolbar. ' +
+            'Make sure you have attached `getControlProps(index)` to every focusable element within this toolbar.',
+        );
+      }
+    }
+  }
+
+  let handleToolbarFocus;
+  if (process.env.NODE_ENV !== 'production') {
+    handleToolbarFocus = (event) => {
+      if (findControlIndex(event.target) === -1) {
+        console.error(
+          'Material-UI: The toolbar contains a focusable element that is not controlled by the toolbar. ' +
+            'Make sure you have attached `getControlProps(index)` to every focusable element within this toolbar.',
+        );
+      }
+    };
+  }
+
+  const { direction } = useTheme();
+
+  function handleToolbarKeyDown(event) {
+    // We handle toolbars where controls can be hidden temporarily.
+    // When a control is hidden we can't move focus to it and have to exclude
+    // it from the order.
+    let currentFocusableControlIndex = -1;
+    const focusableControls = [];
+    controlRefs.forEach((controlRef, index) => {
+      const { current: control } = controlRef;
+      if (index === activeControlIndex) {
+        currentFocusableControlIndex = focusableControls.length;
+      }
+      if (control !== null && isFocusableControl(index)) {
+        focusableControls.push(control);
+      }
+    });
+
+    const prevControlKey = direction === 'ltr' ? 'ArrowLeft' : 'ArrowRight';
+    const nextControlKey = direction === 'ltr' ? 'ArrowRight' : 'ArrowLeft';
+
+    let nextFocusableIndex = -1;
+    switch (event.key) {
+      case prevControlKey:
+        nextFocusableIndex =
+          (currentFocusableControlIndex - 1 + focusableControls.length) % focusableControls.length;
+        break;
+      case nextControlKey:
+        nextFocusableIndex = (currentFocusableControlIndex + 1) % focusableControls.length;
+        break;
+      case 'Home':
+        nextFocusableIndex = 0;
+        break;
+      case 'End':
+        nextFocusableIndex = focusableControls.length - 1;
+        break;
+      default:
+        break;
+    }
+
+    if (nextFocusableIndex !== -1) {
+      event.preventDefault();
+      focusableControls[nextFocusableIndex].focus();
+    }
+  }
+
+  function getControlProps(index) {
+    return {
+      onFocus: handleControlFocus,
+      ref: controlRefs[index],
+      tabIndex: index === activeControlIndex ? 0 : -1,
+    };
+  }
+
+  return {
+    getControlProps,
+    toolbarProps: {
+      // TODO: good opportunity to warn on missing `aria-label`
+      onFocus: handleToolbarFocus,
+      onKeyDown: handleToolbarKeyDown,
+      role: 'toolbar',
+    },
+  };
+}
 
 function DemoToolbar(props) {
   const {
@@ -264,9 +392,28 @@ function DemoToolbar(props) {
 
   const atLeastMediumViewport = useMediaQuery((theme) => theme.breakpoints.up('sm'));
 
+  const controlRefs = [
+    React.useRef(null),
+    React.useRef(null),
+    React.useRef(null),
+    React.useRef(null),
+    React.useRef(null),
+    React.useRef(null),
+    React.useRef(null),
+    React.useRef(null),
+  ];
+  // if the code is not open we hide the first two language controls
+  const isFocusableControl = React.useCallback((index) => (codeOpen ? true : index >= 2), [
+    codeOpen,
+  ]);
+  const { getControlProps, toolbarProps } = useToolbar(controlRefs, {
+    defaultActiveIndex: 2,
+    isFocusableControl,
+  });
+
   return (
     <React.Fragment>
-      <div aria-label={t('demoToolbarLabel')} className={classes.root} role="toolbar">
+      <div aria-label={t('demoToolbarLabel')} className={classes.root} {...toolbarProps}>
         <NoSsr defer>
           <Fade in={codeOpen}>
             <ToggleButtonGroup
@@ -282,6 +429,7 @@ function DemoToolbar(props) {
                 data-ga-event-category="demo"
                 data-ga-event-action="source-js"
                 data-ga-event-label={demoOptions.demo}
+                {...getControlProps(0)}
               >
                 <JavaScriptIcon />
               </ToggleButton>
@@ -293,6 +441,7 @@ function DemoToolbar(props) {
                 data-ga-event-category="demo"
                 data-ga-event-action="source-ts"
                 data-ga-event-label={demoOptions.demo}
+                {...getControlProps(1)}
               >
                 <TypeScriptIcon />
               </ToggleButton>
@@ -315,6 +464,7 @@ function DemoToolbar(props) {
                 data-ga-event-action="expand"
                 onClick={handleCodeOpenClick}
                 color={demoHovered ? 'primary' : 'default'}
+                {...getControlProps(2)}
               >
                 <CodeIcon fontSize="small" />
               </IconButton>
@@ -331,6 +481,7 @@ function DemoToolbar(props) {
                   data-ga-event-label={demoOptions.demo}
                   data-ga-event-action="codesandbox"
                   onClick={handleCodeSandboxClick}
+                  {...getControlProps(3)}
                 >
                   <EditIcon fontSize="small" />
                 </IconButton>
@@ -343,6 +494,7 @@ function DemoToolbar(props) {
                 data-ga-event-label={demoOptions.demo}
                 data-ga-event-action="copy"
                 onClick={handleCopyClick}
+                {...getControlProps(4)}
               >
                 <FileCopyIcon fontSize="small" />
               </IconButton>
@@ -354,6 +506,7 @@ function DemoToolbar(props) {
                 data-ga-event-label={demoOptions.demo}
                 data-ga-event-action="reset-focus"
                 onClick={handleResetFocusClick}
+                {...getControlProps(5)}
               >
                 <ResetFocusIcon fontSize="small" />
               </IconButton>
@@ -366,6 +519,7 @@ function DemoToolbar(props) {
                 data-ga-event-label={demoOptions.demo}
                 data-ga-event-action="reset"
                 onClick={onResetDemoClick}
+                {...getControlProps(6)}
               >
                 <RefreshIcon fontSize="small" />
               </IconButton>
@@ -375,6 +529,7 @@ function DemoToolbar(props) {
               aria-owns={anchorEl ? 'demo-menu-more' : undefined}
               aria-haspopup="true"
               aria-label={t('seeMore')}
+              {...getControlProps(7)}
             >
               <MoreVertIcon fontSize="small" />
             </IconButton>
