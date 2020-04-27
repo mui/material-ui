@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Collapse from '@material-ui/core/Collapse';
@@ -22,11 +22,6 @@ const useRowStyles = makeStyles({
   },
 });
 
-const history = [
-  { date: '2020-01-05', customerId: '11091700', amount: 3 },
-  { date: '2020-01-02', amount: 1 },
-];
-
 function createData(
   name: string,
   calories: number,
@@ -42,19 +37,23 @@ function createData(
     carbs,
     protein,
     price,
-    history,
+    history: [
+      { date: '2020-01-05', customerId: '11091700', amount: 3 },
+      { date: '2020-01-02', customerId: 'Anonymous', amount: 1 },
+    ],
   };
 }
 
-function Row({ row }: { row: ReturnType<typeof createData> }) {
-  const [open, setOpen] = useState(false);
-  const { root } = useRowStyles();
+function Row(props: { row: ReturnType<typeof createData> }) {
+  const { row } = props;
+  const [open, setOpen] = React.useState(false);
+  const classes = useRowStyles();
 
   return (
-    <>
-      <TableRow className={root}>
+    <React.Fragment>
+      <TableRow className={classes.root}>
         <TableCell>
-          <IconButton size="small" onClick={() => setOpen(!open)}>
+          <IconButton aria-label="expand row" size="small" onClick={() => setOpen(!open)}>
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
@@ -70,7 +69,7 @@ function Row({ row }: { row: ReturnType<typeof createData> }) {
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box margin={1}>
-              <Typography variant="h6" gutterBottom>
+              <Typography variant="h6" gutterBottom component="div">
                 History
               </Typography>
               <Table size="small" aria-label="purchases">
@@ -83,12 +82,12 @@ function Row({ row }: { row: ReturnType<typeof createData> }) {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {row.history.map(historyRow => (
+                  {row.history.map((historyRow) => (
                     <TableRow key={historyRow.date}>
                       <TableCell component="th" scope="row">
                         {historyRow.date}
                       </TableCell>
-                      <TableCell>{historyRow.customerId || 'Anonymous'}</TableCell>
+                      <TableCell>{historyRow.customerId}</TableCell>
                       <TableCell align="right">{historyRow.amount}</TableCell>
                       <TableCell align="right">
                         {Math.round(historyRow.amount * row.price * 100) / 100}
@@ -101,7 +100,7 @@ function Row({ row }: { row: ReturnType<typeof createData> }) {
           </Collapse>
         </TableCell>
       </TableRow>
-    </>
+    </React.Fragment>
   );
 }
 
@@ -113,10 +112,10 @@ const rows = [
   createData('Gingerbread', 356, 16.0, 49, 3.9, 1.5),
 ];
 
-export default function SimpleTable() {
+export default function CollapsibleTable() {
   return (
     <TableContainer component={Paper}>
-      <Table aria-label="simple table">
+      <Table aria-label="collapsible table">
         <TableHead>
           <TableRow>
             <TableCell />
@@ -128,7 +127,7 @@ export default function SimpleTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map(row => (
+          {rows.map((row) => (
             <Row key={row.name} row={row} />
           ))}
         </TableBody>

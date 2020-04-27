@@ -83,10 +83,10 @@ It leverages the `stickyHeader` prop (⚠️ no IE 11 support).
 
 {{"demo": "pages/components/tables/StickyHeadTable.js", "bg": true}}
 
-## Collapsible Table
+## Collapsible table
 
 An example of a table with expandable rows, revealing more information.
-It utilizes the [`Collapse`](/api/collapse) component.
+It utilizes the [`Collapse`](/api/collapse/) component.
 
 {{"demo": "pages/components/tables/CollapsibleTable.js", "bg": true}}
 
