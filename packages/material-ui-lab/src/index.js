@@ -35,6 +35,9 @@ export * from './SpeedDialIcon';
 export { default as TabContext } from './TabContext';
 export * from './TabContext';
 
+export { default as TabList } from './TabList';
+export * from './TabList';
+
 export { default as TabPanel } from './TabPanel';
 export * from './TabPanel';
 
