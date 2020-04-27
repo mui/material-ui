@@ -31,6 +31,9 @@ export * from './SpeedDialAction';
 export { default as SpeedDialIcon } from './SpeedDialIcon';
 export * from './SpeedDialIcon';
 
+export { default as TabPanel } from './TabPanel';
+export * from './TabPanel';
+
 export { default as ToggleButton } from './ToggleButton';
 export * from './ToggleButton';
 

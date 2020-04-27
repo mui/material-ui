@@ -60,7 +60,7 @@ Left and right scroll buttons will be presented regardless of the viewport width
 
 ### Prevent Scroll Buttons
 
-Left and right scroll buttons will never be presented.  All scrolling must be initiated through user agent scrolling mechanisms (e.g. left/right swipe, shift-mousewheel, etc.)
+Left and right scroll buttons will never be presented. All scrolling must be initiated through user agent scrolling mechanisms (e.g. left/right swipe, shift-mousewheel, etc.)
 
 {{"demo": "pages/components/tabs/ScrollableTabsButtonPrevent.js", "bg": true}}
 
@@ -90,3 +90,10 @@ Tab labels may be either all icons or all text.
 {{"demo": "pages/components/tabs/IconTabs.js", "bg": true}}
 
 {{"demo": "pages/components/tabs/IconLabelTabs.js", "bg": true}}
+
+## Experimental Tabs API
+
+`@material-ui/lab` offers utility components that inject props to implement accessible tabs
+following [WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices/#tabpanel).
+
+{{"demo": "pages/components/tabs/LabTabs.js", "bg": true}}
