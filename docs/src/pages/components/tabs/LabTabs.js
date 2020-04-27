@@ -1,16 +1,11 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import TabContext from '@material-ui/lab/TabContext';
+import TabList from '@material-ui/lab/TabList';
 import TabPanel from '@material-ui/lab/TabPanel';
-
-function a11yProps(index) {
-  return {
-    id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
-  };
-}
+import TabPanels from '@material-ui/lab/TabPanels';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,37 +24,20 @@ export default function SimpleTabs() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
-        <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
-          <Tab label="Item One" {...a11yProps(0)} />
-          <Tab label="Item Two" {...a11yProps(1)} />
-          <Tab label="Item Three" {...a11yProps(2)} />
-        </Tabs>
-      </AppBar>
-      <TabPanel
-        activeValue={value}
-        value={0}
-        id={a11yProps(0)['aria-controls']}
-        aria-labelledby={a11yProps(0).id}
-      >
-        Item One
-      </TabPanel>
-      <TabPanel
-        activeValue={value}
-        value={1}
-        id={a11yProps(1)['aria-controls']}
-        aria-labelledby={a11yProps(1).id}
-      >
-        Item Two
-      </TabPanel>
-      <TabPanel
-        activeValue={value}
-        value={2}
-        id={a11yProps(2)['aria-controls']}
-        aria-labelledby={a11yProps(2).id}
-      >
-        Item Three
-      </TabPanel>
+      <TabContext value={value}>
+        <AppBar position="static">
+          <TabList onChange={handleChange} aria-label="simple tabs example">
+            <Tab label="Item One" />
+            <Tab label="Item Two" />
+            <Tab label="Item Three" />
+          </TabList>
+        </AppBar>
+        <TabPanels>
+          <TabPanel>Item One</TabPanel>
+          <TabPanel>Item Two</TabPanel>
+          <TabPanel>Item Three</TabPanel>
+        </TabPanels>
+      </TabContext>
     </div>
   );
 }
