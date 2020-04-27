@@ -270,12 +270,15 @@ describe('<Modal />', () => {
     });
 
     it('should call onEscapeKeyDown and onClose', () => {
+      const handleKeyDown = spy();
       const onEscapeKeyDownSpy = spy();
       const onCloseSpy = spy();
       const { getByTestId } = render(
-        <Modal data-testid="modal" open onEscapeKeyDown={onEscapeKeyDownSpy} onClose={onCloseSpy}>
-          <div />
-        </Modal>,
+        <div onKeyDown={handleKeyDown}>
+          <Modal data-testid="modal" open onEscapeKeyDown={onEscapeKeyDownSpy} onClose={onCloseSpy}>
+            <div />
+          </Modal>
+        </div>,
       );
       getByTestId('modal').focus();
 
@@ -285,21 +288,25 @@ describe('<Modal />', () => {
 
       expect(onEscapeKeyDownSpy).to.have.property('callCount', 1);
       expect(onCloseSpy).to.have.property('callCount', 1);
+      expect(handleKeyDown).to.have.property('callCount', 0);
     });
 
-    it('when disableEscapeKeyDown should call only onEscapeKeyDownSpy', () => {
+    it('should not call onChange when `disableEscapeKeyDown=true`', () => {
+      const handleKeyDown = spy();
       const onEscapeKeyDownSpy = spy();
       const onCloseSpy = spy();
       const { getByTestId } = render(
-        <Modal
-          data-testid="modal"
-          open
-          disableEscapeKeyDown
-          onEscapeKeyDown={onEscapeKeyDownSpy}
-          onClose={onCloseSpy}
-        >
-          <div />
-        </Modal>,
+        <div onKeyDown={handleKeyDown}>
+          <Modal
+            data-testid="modal"
+            open
+            disableEscapeKeyDown
+            onEscapeKeyDown={onEscapeKeyDownSpy}
+            onClose={onCloseSpy}
+          >
+            <div />
+          </Modal>
+        </div>,
       );
       getByTestId('modal').focus();
 
@@ -309,6 +316,7 @@ describe('<Modal />', () => {
 
       expect(onEscapeKeyDownSpy).to.have.property('callCount', 1);
       expect(onCloseSpy).to.have.property('callCount', 0);
+      expect(handleKeyDown).to.have.property('callCount', 1);
     });
   });
 
