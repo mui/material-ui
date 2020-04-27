@@ -1,4 +1,12 @@
-import { compose, css, palette, StyleFunction, spacing, style } from '@material-ui/system';
+import {
+  compose,
+  css,
+  palette,
+  StyleFunction,
+  spacing,
+  style,
+  breakpoints,
+} from '@material-ui/system';
 import * as React from 'react';
 import styled from 'styled-components';
 
@@ -65,4 +73,14 @@ function interopTest() {
     ${mixin}
   `;
   <SystemSpacingBox m={2} />;
+}
+
+function breakpointsTest() {
+  function styleFunction(props: { color?: string }) {
+    return {};
+  }
+
+  const styler = breakpoints(styleFunction);
+  // Allows styleFunction props
+  styler({ color: 'red' });
 }
