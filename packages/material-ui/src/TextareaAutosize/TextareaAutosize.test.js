@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import sinon, { spy, stub, useFakeTimers } from 'sinon';
 import { createMount } from '@material-ui/core/test-utils';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
@@ -72,7 +72,7 @@ describe('<TextareaAutosize />', () => {
 
       it('should handle the resize event', () => {
         const wrapper = mount(<TextareaAutosize />);
-        assert.deepEqual(getStyle(wrapper), {
+        expect(getStyle(wrapper)).to.deep.equal({
           height: 0,
           overflow: 'hidden',
         });
@@ -86,7 +86,7 @@ describe('<TextareaAutosize />', () => {
         window.dispatchEvent(new window.Event('resize', {}));
         clock.tick(166);
         wrapper.update();
-        assert.deepEqual(getStyle(wrapper), {
+        expect(getStyle(wrapper)).to.deep.equal({
           height: 30,
           overflow: 'hidden',
         });
@@ -96,7 +96,7 @@ describe('<TextareaAutosize />', () => {
     it('should update when uncontrolled', () => {
       const handleChange = spy();
       const wrapper = mount(<TextareaAutosize onChange={handleChange} />);
-      assert.deepEqual(getStyle(wrapper), { height: 0, overflow: 'hidden' });
+      expect(getStyle(wrapper)).to.deep.equal({ height: 0, overflow: 'hidden' });
       setLayout(wrapper, {
         getComputedStyle: {
           'box-sizing': 'content-box',
@@ -106,14 +106,14 @@ describe('<TextareaAutosize />', () => {
       });
       wrapper.find('textarea').at(0).simulate('change');
       wrapper.update();
-      assert.deepEqual(getStyle(wrapper), { height: 30, overflow: 'hidden' });
-      assert.strictEqual(handleChange.callCount, 1);
+      expect(getStyle(wrapper)).to.deep.equal({ height: 30, overflow: 'hidden' });
+      expect(handleChange.callCount).to.equal(1);
     });
 
     it('should take the border into account with border-box', () => {
       const border = 5;
       const wrapper = mount(<TextareaAutosize />);
-      assert.deepEqual(getStyle(wrapper), { height: 0, overflow: 'hidden' });
+      expect(getStyle(wrapper)).to.deep.equal({ height: 0, overflow: 'hidden' });
       setLayout(wrapper, {
         getComputedStyle: {
           'box-sizing': 'border-box',
@@ -124,7 +124,7 @@ describe('<TextareaAutosize />', () => {
       });
       wrapper.setProps();
       wrapper.update();
-      assert.deepEqual(getStyle(wrapper), { height: 30 + border, overflow: 'hidden' });
+      expect(getStyle(wrapper)).to.deep.equal({ height: 30 + border, overflow: 'hidden' });
     });
 
     it('should take the padding into account with content-box', () => {
@@ -140,7 +140,7 @@ describe('<TextareaAutosize />', () => {
       });
       wrapper.setProps();
       wrapper.update();
-      assert.deepEqual(getStyle(wrapper), { height: 30 - padding, overflow: 'hidden' });
+      expect(getStyle(wrapper)).to.deep.equal({ height: 30 - padding, overflow: 'hidden' });
     });
 
     it('should have at least height of "rows"', () => {
@@ -156,7 +156,7 @@ describe('<TextareaAutosize />', () => {
       });
       wrapper.setProps();
       wrapper.update();
-      assert.deepEqual(getStyle(wrapper), { height: lineHeight * rows, overflow: null });
+      expect(getStyle(wrapper)).to.deep.equal({ height: lineHeight * rows, overflow: null });
     });
 
     it('should have at max "rowsMax" rows', () => {
@@ -172,7 +172,7 @@ describe('<TextareaAutosize />', () => {
       });
       wrapper.setProps();
       wrapper.update();
-      assert.deepEqual(getStyle(wrapper), { height: lineHeight * rowsMax, overflow: null });
+      expect(getStyle(wrapper)).to.deep.equal({ height: lineHeight * rowsMax, overflow: null });
     });
 
     it('should show scrollbar when having more rows than "rowsMax"', () => {
@@ -188,7 +188,7 @@ describe('<TextareaAutosize />', () => {
       });
       wrapper.setProps();
       wrapper.update();
-      assert.deepEqual(getStyle(wrapper), { height: lineHeight * 2, overflow: 'hidden' });
+      expect(getStyle(wrapper)).to.deep.equal({ height: lineHeight * 2, overflow: 'hidden' });
       setLayout(wrapper, {
         getComputedStyle: {
           'box-sizing': 'border-box',
@@ -198,7 +198,7 @@ describe('<TextareaAutosize />', () => {
       });
       wrapper.setProps();
       wrapper.update();
-      assert.deepEqual(getStyle(wrapper), { height: lineHeight * 3, overflow: 'hidden' });
+      expect(getStyle(wrapper)).to.deep.equal({ height: lineHeight * 3, overflow: 'hidden' });
       setLayout(wrapper, {
         getComputedStyle: {
           'box-sizing': 'border-box',
@@ -208,7 +208,7 @@ describe('<TextareaAutosize />', () => {
       });
       wrapper.setProps();
       wrapper.update();
-      assert.deepEqual(getStyle(wrapper), { height: lineHeight * 3, overflow: null });
+      expect(getStyle(wrapper)).to.deep.equal({ height: lineHeight * 3, overflow: null });
     });
 
     it('should update its height when the "rowsMax" prop changes', () => {
@@ -223,10 +223,10 @@ describe('<TextareaAutosize />', () => {
       });
       wrapper.setProps();
       wrapper.update();
-      assert.deepEqual(getStyle(wrapper), { height: lineHeight * 3, overflow: null });
+      expect(getStyle(wrapper)).to.deep.equal({ height: lineHeight * 3, overflow: null });
       wrapper.setProps({ rowsMax: 2 });
       wrapper.update();
-      assert.deepEqual(getStyle(wrapper), { height: lineHeight * 2, overflow: null });
+      expect(getStyle(wrapper)).to.deep.equal({ height: lineHeight * 2, overflow: null });
     });
 
     describe('warnings', () => {
@@ -254,8 +254,8 @@ describe('<TextareaAutosize />', () => {
         wrapper.setProps();
         wrapper.update();
 
-        assert.strictEqual(consoleErrorMock.callCount(), 3);
-        assert.include(consoleErrorMock.messages()[0], 'Material-UI: too many re-renders.');
+        expect(consoleErrorMock.callCount()).to.equal(3);
+        expect(consoleErrorMock.messages()[0]).to.include('Material-UI: too many re-renders.');
       });
     });
   });

@@ -1,14 +1,14 @@
-import { assert } from 'chai';
+import { expect } from 'chai';
 import capitalize from './capitalize';
 
 describe('capitalize', () => {
   it('should work', () => {
-    assert.strictEqual(capitalize('foo'), 'Foo');
+    expect(capitalize('foo')).to.equal('Foo');
   });
 
   it('should throw when not used correctly', () => {
-    assert.throw(() => {
+    expect(() => {
       capitalize();
-    }, /expects a string argument/);
+    }).to.throw(/expects a string argument/);
   });
 });

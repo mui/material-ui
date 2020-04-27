@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { expect, assert } from 'chai';
+import { expect } from 'chai';
 import PropTypes from 'prop-types';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import { fireEvent, createClientRender } from 'test/utils/createClientRender';
@@ -62,10 +62,10 @@ describe('<TablePagination />', () => {
       let labelDisplayedRowsCalled = false;
       function labelDisplayedRows({ from, to, count, page }) {
         labelDisplayedRowsCalled = true;
-        assert.strictEqual(from, 11);
-        assert.strictEqual(to, 20);
-        assert.strictEqual(count, 42);
-        assert.strictEqual(page, 1);
+        expect(from).to.equal(11);
+        expect(to).to.equal(20);
+        expect(count).to.equal(42);
+        expect(page).to.equal(1);
         return `Page ${page}`;
       }
 
@@ -85,8 +85,8 @@ describe('<TablePagination />', () => {
           </TableFooter>
         </table>,
       );
-      assert.strictEqual(labelDisplayedRowsCalled, true);
-      assert.strictEqual(wrapper.html().includes('Page 1'), true);
+      expect(labelDisplayedRowsCalled).to.equal(true);
+      expect(wrapper.html().includes('Page 1')).to.equal(true);
     });
 
     it('should use labelRowsPerPage', () => {
@@ -106,7 +106,7 @@ describe('<TablePagination />', () => {
           </TableFooter>
         </table>,
       );
-      assert.strictEqual(wrapper.html().includes('Zeilen pro Seite:'), true);
+      expect(wrapper.html().includes('Zeilen pro Seite:')).to.equal(true);
     });
 
     it('should disable the back button on the first page', () => {
@@ -128,8 +128,8 @@ describe('<TablePagination />', () => {
 
       const backButton = wrapper.find(IconButton).at(0);
       const nextButton = wrapper.find(IconButton).at(1);
-      assert.strictEqual(backButton.props().disabled, true);
-      assert.strictEqual(nextButton.props().disabled, false);
+      expect(backButton.props().disabled).to.equal(true);
+      expect(nextButton.props().disabled).to.equal(false);
     });
 
     it('should disable the next button on the last page', () => {
@@ -151,8 +151,8 @@ describe('<TablePagination />', () => {
 
       const backButton = wrapper.find(IconButton).at(0);
       const nextButton = wrapper.find(IconButton).at(1);
-      assert.strictEqual(backButton.props().disabled, false);
-      assert.strictEqual(nextButton.props().disabled, true);
+      expect(backButton.props().disabled).to.equal(false);
+      expect(nextButton.props().disabled).to.equal(true);
     });
 
     it('should handle next button clicks properly', () => {
@@ -177,7 +177,7 @@ describe('<TablePagination />', () => {
 
       const nextButton = wrapper.find(IconButton).at(1);
       nextButton.simulate('click');
-      assert.strictEqual(page, 2);
+      expect(page).to.equal(2);
     });
 
     it('should handle back button clicks properly', () => {
@@ -202,7 +202,7 @@ describe('<TablePagination />', () => {
 
       const nextButton = wrapper.find(IconButton).at(0);
       nextButton.simulate('click');
-      assert.strictEqual(page, 0);
+      expect(page).to.equal(0);
     });
 
     it('should display 0 as start number if the table is empty ', () => {
@@ -221,7 +221,7 @@ describe('<TablePagination />', () => {
           </TableFooter>
         </table>,
       );
-      assert.strictEqual(wrapper.find(Typography).at(1).text(), '0-0 of 0');
+      expect(wrapper.find(Typography).at(1).text()).to.equal('0-0 of 0');
     });
 
     it('should hide the rows per page selector if there are less than two options', () => {
@@ -242,8 +242,8 @@ describe('<TablePagination />', () => {
         </table>,
       );
 
-      assert.strictEqual(wrapper.text().indexOf('Rows per page'), -1);
-      assert.strictEqual(wrapper.find(Select).length, 0);
+      expect(wrapper.text().indexOf('Rows per page')).to.equal(-1);
+      expect(wrapper.find(Select).length).to.equal(0);
     });
   });
 
@@ -302,9 +302,8 @@ describe('<TablePagination />', () => {
         'MockedTablePagination',
       );
 
-      assert.strictEqual(consoleErrorMock.callCount(), 1);
-      assert.include(
-        consoleErrorMock.messages()[0],
+      expect(consoleErrorMock.callCount()).to.equal(1);
+      expect(consoleErrorMock.messages()[0]).to.include(
         'Material-UI: the page prop of a TablePagination is out of range (0 to 1, but page is 2).',
       );
     });

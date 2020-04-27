@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import * as React from 'react';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import { createShallow } from '../../test-utils';
 
 describe('svg-icons', () => {
@@ -38,7 +38,7 @@ describe('svg-icons', () => {
 
         const Icon = fileLoaded.default;
         const wrapper = shallow(<Icon className="foo" />);
-        assert.strictEqual(wrapper.hasClass('foo'), true);
+        expect(wrapper.hasClass('foo')).to.equal(true);
       });
 
       done();

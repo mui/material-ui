@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import { mount } from 'enzyme';
 import { spy, useFakeTimers, stub } from 'sinon';
 import ScrollbarSize from './ScrollbarSize';
@@ -28,14 +28,14 @@ describe('<ScrollbarSize />', () => {
     it('should not call on initial load', () => {
       const onChange = spy();
       wrapper = mount(<ScrollbarSize {...defaultProps} />);
-      assert.strictEqual(onChange.callCount, 0);
+      expect(onChange.callCount).to.equal(0);
     });
 
     it('should call on initial load', () => {
       const onChange = spy();
       wrapper = mount(<ScrollbarSize {...defaultProps} onChange={onChange} />);
-      assert.strictEqual(onChange.callCount, 1);
-      assert.strictEqual(onChange.calledWith(0), true);
+      expect(onChange.callCount).to.equal(1);
+      expect(onChange.calledWith(0)).to.equal(true);
     });
   });
 
@@ -52,18 +52,18 @@ describe('<ScrollbarSize />', () => {
     });
 
     it('should call on first resize event', () => {
-      assert.strictEqual(onChange.callCount, 1);
+      expect(onChange.callCount).to.equal(1);
       window.dispatchEvent(new window.Event('resize', {}));
       clock.tick(166);
-      assert.strictEqual(onChange.callCount, 2);
-      assert.strictEqual(onChange.calledWith(17), true);
+      expect(onChange.callCount).to.equal(2);
+      expect(onChange.calledWith(17)).to.equal(true);
     });
 
     it('should not call on second resize event', () => {
-      assert.strictEqual(onChange.callCount, 1);
+      expect(onChange.callCount).to.equal(1);
       window.dispatchEvent(new window.Event('resize', {}));
       clock.tick(166);
-      assert.strictEqual(onChange.callCount, 2);
+      expect(onChange.callCount).to.equal(2);
     });
   });
 });

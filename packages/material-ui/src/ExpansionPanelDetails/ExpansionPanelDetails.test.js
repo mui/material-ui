@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
 import ExpansionPanelDetails from './ExpansionPanelDetails';
@@ -34,6 +34,6 @@ describe('<ExpansionPanelDetails />', () => {
       </ExpansionPanelDetails>,
     );
     const container = wrapper.childAt(0);
-    assert.strictEqual(container.type(), 'div');
+    expect(container.type()).to.equal('div');
   });
 });

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import { createShallow } from '@material-ui/core/test-utils';
 import Dialog from '../Dialog';
 import withMobileDialog from './withMobileDialog';
@@ -23,7 +23,7 @@ describe('withMobileDialog', () => {
             foo
           </ResponsiveDialog>,
         );
-        assert.strictEqual(wrapper.props().fullScreen, true);
+        expect(wrapper.props().fullScreen).to.equal(true);
       });
     });
   }
@@ -37,7 +37,7 @@ describe('withMobileDialog', () => {
             foo
           </ResponsiveDialog>,
         );
-        assert.strictEqual(wrapper.props().fullScreen, false);
+        expect(wrapper.props().fullScreen).to.equal(false);
       });
     });
   }

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import { createMount } from '@material-ui/core/test-utils';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
@@ -75,13 +75,12 @@ describe('<Fade />', () => {
 
       describe('handleEnter()', () => {
         it('should call handleEnter()', () => {
-          assert.strictEqual(handleEnter.callCount, 1);
-          assert.strictEqual(handleEnter.args[0][0], child.instance());
+          expect(handleEnter.callCount).to.equal(1);
+          expect(handleEnter.args[0][0]).to.equal(child.instance());
         });
 
         it('should set style properties', () => {
-          assert.match(
-            handleEnter.args[0][0].style.transition,
+          expect(handleEnter.args[0][0].style.transition).to.match(
             /opacity 225ms cubic-bezier\(0.4, 0, 0.2, 1\)( 0ms)?/,
           );
         });
@@ -89,16 +88,16 @@ describe('<Fade />', () => {
 
       describe('handleEntering()', () => {
         it('should call handleEntering()', () => {
-          assert.strictEqual(handleEntering.callCount, 1);
-          assert.strictEqual(handleEntering.args[0][0], child.instance());
+          expect(handleEntering.callCount).to.equal(1);
+          expect(handleEntering.args[0][0]).to.equal(child.instance());
         });
       });
 
       describe('handleEntered()', () => {
         it('should call handleEntered()', () => {
           clock.tick(1000);
-          assert.strictEqual(handleEntered.callCount, 1);
-          assert.strictEqual(handleEntered.args[0][0], child.instance());
+          expect(handleEntered.callCount).to.equal(1);
+          expect(handleEntered.args[0][0]).to.equal(child.instance());
         });
       });
     });
@@ -111,13 +110,12 @@ describe('<Fade />', () => {
 
       describe('handleExit()', () => {
         it('should call handleExit()', () => {
-          assert.strictEqual(handleExit.callCount, 1);
-          assert.strictEqual(handleExit.args[0][0], child.instance());
+          expect(handleExit.callCount).to.equal(1);
+          expect(handleExit.args[0][0]).to.equal(child.instance());
         });
 
         it('should set style properties', () => {
-          assert.match(
-            handleExit.args[0][0].style.transition,
+          expect(handleExit.args[0][0].style.transition).to.match(
             /opacity 195ms cubic-bezier\(0.4, 0, 0.2, 1\)( 0ms)?/,
           );
         });
@@ -125,16 +123,16 @@ describe('<Fade />', () => {
 
       describe('handleExiting()', () => {
         it('should call handleExiting()', () => {
-          assert.strictEqual(handleExiting.callCount, 1);
-          assert.strictEqual(handleExiting.args[0][0], child.instance());
+          expect(handleExiting.callCount).to.equal(1);
+          expect(handleExiting.args[0][0]).to.equal(child.instance());
         });
       });
 
       describe('handleExited()', () => {
         it('should call handleExited()', () => {
           clock.tick(1000);
-          assert.strictEqual(handleExited.callCount, 1);
-          assert.strictEqual(handleExited.args[0][0], child.instance());
+          expect(handleExited.callCount).to.equal(1);
+          expect(handleExited.args[0][0]).to.equal(child.instance());
         });
       });
     });
@@ -147,7 +145,7 @@ describe('<Fade />', () => {
           <div>Foo</div>
         </Fade>,
       );
-      assert.deepEqual(wrapper.find('div').props().style, {
+      expect(wrapper.find('div').props().style).to.deep.equal({
         opacity: 0,
         visibility: 'hidden',
       });
@@ -159,7 +157,7 @@ describe('<Fade />', () => {
           <div>Foo</div>
         </Fade>,
       );
-      assert.deepEqual(wrapper.find('div').props().style, {
+      expect(wrapper.find('div').props().style).to.deep.equal({
         opacity: 0,
         visibility: 'hidden',
       });

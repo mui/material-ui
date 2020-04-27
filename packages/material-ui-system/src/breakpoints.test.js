@@ -1,4 +1,4 @@
-import { assert } from 'chai';
+import { expect } from 'chai';
 import breakpoints from './breakpoints';
 import style from './style';
 
@@ -11,8 +11,8 @@ describe('breakpoints', () => {
   it('should work', () => {
     const palette = breakpoints(textColor);
 
-    assert.strictEqual(palette.filterProps.length, 6);
-    assert.deepEqual(
+    expect(palette.filterProps.length).to.equal(6);
+    expect(
       palette({
         theme: {},
         color: 'red',
@@ -20,12 +20,11 @@ describe('breakpoints', () => {
           color: 'blue',
         },
       }),
-      {
-        color: 'red',
-        '@media (min-width:600px)': {
-          color: 'blue',
-        },
+    ).to.deep.equal({
+      color: 'red',
+      '@media (min-width:600px)': {
+        color: 'blue',
       },
-    );
+    });
   });
 });

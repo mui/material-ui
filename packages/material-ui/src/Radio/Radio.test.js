@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { assert, expect } from 'chai';
+import { expect } from 'chai';
 import { getClasses, createMount } from '@material-ui/core/test-utils';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import { createClientRender } from 'test/utils/createClientRender';
@@ -28,23 +28,23 @@ describe('<Radio />', () => {
 
   describe('styleSheet', () => {
     it('should have the classes required for SwitchBase', () => {
-      assert.strictEqual(typeof classes.root, 'string');
-      assert.strictEqual(typeof classes.checked, 'string');
-      assert.strictEqual(typeof classes.disabled, 'string');
+      expect(typeof classes.root).to.equal('string');
+      expect(typeof classes.checked).to.equal('string');
+      expect(typeof classes.disabled).to.equal('string');
     });
   });
 
   describe('prop: unchecked', () => {
     it('should render an unchecked icon', () => {
       const wrapper = mount(<Radio />);
-      assert.strictEqual(wrapper.find('svg[data-mui-test="RadioButtonUncheckedIcon"]').length, 1);
+      expect(wrapper.find('svg[data-mui-test="RadioButtonUncheckedIcon"]').length).to.equal(1);
     });
   });
 
   describe('prop: checked', () => {
     it('should render a checked icon', () => {
       const wrapper = mount(<Radio checked />);
-      assert.strictEqual(wrapper.find('svg[data-mui-test="RadioButtonCheckedIcon"]').length, 1);
+      expect(wrapper.find('svg[data-mui-test="RadioButtonCheckedIcon"]').length).to.equal(1);
     });
   });
 

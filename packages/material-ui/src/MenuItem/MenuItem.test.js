@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createShallow, getClasses, createMount } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
@@ -32,29 +32,29 @@ describe('<MenuItem />', () => {
 
   it('should render a button ListItem with with ripple', () => {
     const wrapper = shallow(<MenuItem />);
-    assert.strictEqual(wrapper.type(), ListItem);
-    assert.strictEqual(wrapper.find(ListItem).props().button, true);
-    assert.strictEqual(wrapper.find(ListItem).props().disableRipple, undefined);
+    expect(wrapper.type()).to.equal(ListItem);
+    expect(wrapper.find(ListItem).props().button).to.equal(true);
+    expect(wrapper.find(ListItem).props().disableRipple).to.equal(undefined);
   });
 
   it('should render with the selected class', () => {
     const wrapper = shallow(<MenuItem selected />);
-    assert.strictEqual(wrapper.hasClass(classes.selected), true);
+    expect(wrapper.hasClass(classes.selected)).to.equal(true);
   });
 
   it('should have a default role of menuitem', () => {
     const wrapper = shallow(<MenuItem />);
-    assert.strictEqual(wrapper.props().role, 'menuitem');
+    expect(wrapper.props().role).to.equal('menuitem');
   });
 
   it('should have a role of option', () => {
     const wrapper = shallow(<MenuItem role="option" aria-selected={false} />);
-    assert.strictEqual(wrapper.props().role, 'option');
+    expect(wrapper.props().role).to.equal('option');
   });
 
   it('should have a tabIndex of -1 by default', () => {
     const wrapper = shallow(<MenuItem />);
-    assert.strictEqual(wrapper.props().tabIndex, -1);
+    expect(wrapper.props().tabIndex).to.equal(-1);
   });
 
   describe('event callbacks', () => {
@@ -82,7 +82,7 @@ describe('<MenuItem />', () => {
       events.forEach((n) => {
         const event = n.charAt(2).toLowerCase() + n.slice(3);
         wrapper.simulate(event, { persist: () => {} });
-        assert.strictEqual(handlers[n].callCount, 1, `should have called the ${n} handler`);
+        expect(handlers[n].callCount).to.equal(1);
       });
     });
   });
@@ -96,7 +96,7 @@ describe('<MenuItem />', () => {
           </ListItemSecondaryAction>
         </MenuItem>,
       );
-      assert.strictEqual(wrapper1.find('li').length, 1);
+      expect(wrapper1.find('li').length).to.equal(1);
       const wrapper2 = mount(
         <MenuItem button={false}>
           <ListItemSecondaryAction>
@@ -104,14 +104,14 @@ describe('<MenuItem />', () => {
           </ListItemSecondaryAction>
         </MenuItem>,
       );
-      assert.strictEqual(wrapper2.find('li').length, 1);
+      expect(wrapper2.find('li').length).to.equal(1);
     });
   });
 
   describe('prop: ListItemClasses', () => {
     it('should be able to change the style of ListItem', () => {
       const wrapper = mount(<MenuItem ListItemClasses={{ disabled: 'bar' }} />);
-      assert.strictEqual(wrapper.find(ListItem).props().classes.disabled, 'bar');
+      expect(wrapper.find(ListItem).props().classes.disabled).to.equal('bar');
     });
   });
 });

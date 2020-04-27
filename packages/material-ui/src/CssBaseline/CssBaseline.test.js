@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import { createMount } from '@material-ui/core/test-utils';
 import CssBaseline from './CssBaseline';
 
@@ -22,6 +22,6 @@ describe('<CssBaseline />', () => {
         <div id="child" />
       </CssBaseline>,
     );
-    assert.strictEqual(wrapper.find('#child').type(), 'div');
+    expect(wrapper.find('#child').type()).to.equal('div');
   });
 });

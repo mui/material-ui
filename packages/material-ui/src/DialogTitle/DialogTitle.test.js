@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
 import DialogTitle from './DialogTitle';
@@ -30,12 +30,12 @@ describe('<DialogTitle />', () => {
   it('should render JSX children', () => {
     const children = <p className="test">Hello</p>;
     const wrapper = shallow(<DialogTitle disableTypography>{children}</DialogTitle>);
-    assert.strictEqual(wrapper.childAt(0).equals(children), true);
+    expect(wrapper.childAt(0).equals(children)).to.equal(true);
   });
 
   it('should render string children as given string', () => {
     const children = 'Hello';
     const wrapper = shallow(<DialogTitle>{children}</DialogTitle>);
-    assert.strictEqual(wrapper.childAt(0).props().children, children);
+    expect(wrapper.childAt(0).props().children).to.equal(children);
   });
 });

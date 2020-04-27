@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { assert, expect } from 'chai';
+import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createMount, getClasses, findOutermostIntrinsic } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
@@ -36,14 +36,14 @@ describe('<ExpansionPanel />', () => {
   it('should render and not be controlled', () => {
     const wrapper = mount(<ExpansionPanel>{minimalChildren}</ExpansionPanel>);
     const root = wrapper.find(`.${classes.root}`).first();
-    assert.strictEqual(root.type(), Paper);
-    assert.strictEqual(root.props().square, false);
-    assert.strictEqual(root.hasClass(classes.expanded), false, 'uncontrolled');
+    expect(root.type()).to.equal(Paper);
+    expect(root.props().square).to.equal(false);
+    expect(root.hasClass(classes.expanded)).to.equal(false);
   });
 
   it('should handle defaultExpanded prop', () => {
     const wrapper = mount(<ExpansionPanel defaultExpanded>{minimalChildren}</ExpansionPanel>);
-    assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.expanded), true);
+    expect(findOutermostIntrinsic(wrapper).hasClass(classes.expanded)).to.equal(true);
   });
 
   it('should render the summary and collapse elements', () => {
@@ -54,16 +54,16 @@ describe('<ExpansionPanel />', () => {
       </ExpansionPanel>,
     );
 
-    assert.strictEqual(wrapper.find('[aria-expanded=false]').hostNodes().text(), 'Summary');
-    assert.strictEqual(wrapper.find(Collapse).find('div#panel-content').text(), 'Hello');
+    expect(wrapper.find('[aria-expanded=false]').hostNodes().text()).to.equal('Summary');
+    expect(wrapper.find(Collapse).find('div#panel-content').text()).to.equal('Hello');
   });
 
   it('should be controlled', () => {
     const wrapper = mount(<ExpansionPanel expanded>{minimalChildren}</ExpansionPanel>);
     const panel = wrapper.find(`.${classes.root}`).first();
-    assert.strictEqual(panel.hasClass(classes.expanded), true);
+    expect(panel.hasClass(classes.expanded)).to.equal(true);
     wrapper.setProps({ expanded: false });
-    assert.strictEqual(wrapper.hasClass(classes.expanded), false);
+    expect(wrapper.hasClass(classes.expanded)).to.equal(false);
   });
 
   it('should call onChange when clicking the summary element', () => {
@@ -72,7 +72,7 @@ describe('<ExpansionPanel />', () => {
       <ExpansionPanel onChange={handleChange}>{minimalChildren}</ExpansionPanel>,
     );
     wrapper.find(ExpansionPanelSummary).simulate('click');
-    assert.strictEqual(handleChange.callCount, 1);
+    expect(handleChange.callCount).to.equal(1);
   });
 
   it('when controlled should call the onChange', () => {
@@ -83,8 +83,8 @@ describe('<ExpansionPanel />', () => {
       </ExpansionPanel>,
     );
     wrapper.find(ExpansionPanelSummary).simulate('click');
-    assert.strictEqual(handleChange.callCount, 1);
-    assert.strictEqual(handleChange.args[0][1], false);
+    expect(handleChange.callCount).to.equal(1);
+    expect(handleChange.args[0][1]).to.equal(false);
   });
 
   it('when undefined onChange and controlled should not call the onChange', () => {
@@ -96,12 +96,12 @@ describe('<ExpansionPanel />', () => {
     );
     wrapper.setProps({ onChange: undefined });
     wrapper.find(ExpansionPanelSummary).simulate('click');
-    assert.strictEqual(handleChange.callCount, 0);
+    expect(handleChange.callCount).to.equal(0);
   });
 
   it('when disabled should have the disabled class', () => {
     const wrapper = mount(<ExpansionPanel disabled>{minimalChildren}</ExpansionPanel>);
-    assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.disabled), true);
+    expect(findOutermostIntrinsic(wrapper).hasClass(classes.disabled)).to.equal(true);
   });
 
   it('should handle the TransitionComponent prop', () => {
@@ -123,14 +123,14 @@ describe('<ExpansionPanel />', () => {
 
     // Collapse is initially shown
     const collapse = wrapper.find(NoTransitionCollapse);
-    assert.strictEqual(collapse.props().in, true);
-    assert.strictEqual(wrapper.find(CustomContent).length, 1);
+    expect(collapse.props().in).to.equal(true);
+    expect(wrapper.find(CustomContent).length).to.equal(1);
 
     // Hide the collapse
     wrapper.setProps({ expanded: false });
     const collapse2 = wrapper.find(NoTransitionCollapse);
-    assert.strictEqual(collapse2.props().in, false);
-    assert.strictEqual(wrapper.find(CustomContent).length, 0);
+    expect(collapse2.props().in).to.equal(false);
+    expect(wrapper.find(CustomContent).length).to.equal(0);
   });
 
   describe('prop: children', () => {
@@ -152,8 +152,8 @@ describe('<ExpansionPanel />', () => {
           'MockedName',
         );
 
-        assert.strictEqual(consoleErrorMock.callCount(), 1);
-        assert.include(consoleErrorMock.messages()[0], 'Material-UI: expected the first child');
+        expect(consoleErrorMock.callCount()).to.equal(1);
+        expect(consoleErrorMock.messages()[0]).to.include('Material-UI: expected the first child');
       });
 
       it('needs a valid element as the first child', () => {
@@ -164,9 +164,8 @@ describe('<ExpansionPanel />', () => {
           'MockedName',
         );
 
-        assert.strictEqual(consoleErrorMock.callCount(), 1);
-        assert.include(
-          consoleErrorMock.messages()[0],
+        expect(consoleErrorMock.callCount()).to.equal(1);
+        expect(consoleErrorMock.messages()[0]).to.include(
           "Material-UI: the ExpansionPanel doesn't accept a Fragment",
         );
       });
@@ -204,8 +203,7 @@ describe('<ExpansionPanel />', () => {
       const wrapper = mount(<ExpansionPanel>{minimalChildren}</ExpansionPanel>);
 
       wrapper.setProps({ expanded: true });
-      assert.include(
-        consoleErrorMock.messages()[0],
+      expect(consoleErrorMock.messages()[0]).to.include(
         'Material-UI: a component is changing the uncontrolled expanded state of ExpansionPanel to be controlled.',
       );
     });

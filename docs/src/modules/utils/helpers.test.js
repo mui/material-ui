@@ -1,4 +1,4 @@
-import { assert } from 'chai';
+import { expect } from 'chai';
 import { getDependencies } from './helpers';
 
 describe('docs getDependencies helpers', () => {
@@ -21,7 +21,7 @@ const styles = theme => ({
 `;
 
   it('should handle @ dependencies', () => {
-    assert.deepEqual(getDependencies(s1), {
+    expect(getDependencies(s1)).to.deep.equal({
       '@foo-bar/bip': 'latest',
       '@material-ui/core': 'latest',
       'prop-types': 'latest',
@@ -45,7 +45,7 @@ import { withStyles } from '@material-ui/core/styles';
 const suggestions = [
 `;
 
-    assert.deepEqual(getDependencies(source), {
+    expect(getDependencies(source)).to.deep.equal({
       '@material-ui/core': 'latest',
       '@unexisting/thing': 'latest',
       'autosuggest-highlight': 'latest',
@@ -57,7 +57,7 @@ const suggestions = [
   });
 
   it('should support next dependencies', () => {
-    assert.deepEqual(getDependencies(s1, { reactVersion: 'next' }), {
+    expect(getDependencies(s1, { reactVersion: 'next' })).to.deep.equal({
       '@foo-bar/bip': 'latest',
       '@material-ui/core': 'latest',
       'prop-types': 'latest',
@@ -77,7 +77,7 @@ import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider, TimePicker, DatePicker } from '@material-ui/pickers';
 `;
 
-    assert.deepEqual(getDependencies(source), {
+    expect(getDependencies(source)).to.deep.equal({
       'date-fns': 'latest',
       '@date-io/date-fns': 'v1',
       '@material-ui/pickers': 'latest',
@@ -89,7 +89,7 @@ import { MuiPickersUtilsProvider, TimePicker, DatePicker } from '@material-ui/pi
   });
 
   it('can collect required @types packages', () => {
-    assert.deepEqual(getDependencies(s1, { codeLanguage: 'TS' }), {
+    expect(getDependencies(s1, { codeLanguage: 'TS' })).to.deep.equal({
       '@foo-bar/bip': 'latest',
       '@material-ui/core': 'latest',
       'prop-types': 'latest',
@@ -114,7 +114,7 @@ import {
 } from '@material-ui/pickers';
     `;
 
-    assert.deepEqual(getDependencies(source), {
+    expect(getDependencies(source)).to.deep.equal({
       'date-fns': 'latest',
       '@material-ui/pickers': 'latest',
       react: 'latest',
@@ -127,7 +127,7 @@ import {
 import lab from '@material-ui/lab';
     `;
 
-    assert.deepEqual(getDependencies(source), {
+    expect(getDependencies(source)).to.deep.equal({
       '@material-ui/core': 'latest',
       '@material-ui/lab': 'latest',
       react: 'latest',

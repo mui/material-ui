@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import TableFooter from '@material-ui/core/TableFooter';
 import TableHead from '@material-ui/core/TableHead';
@@ -26,8 +26,8 @@ describe('<TableRow> integration', () => {
         </TableHead>
       </table>,
     );
-    assert.strictEqual(wrapper.find('tr').hasClass(classes.root), true);
-    assert.strictEqual(wrapper.find('tr').hasClass(classes.head), true);
+    expect(wrapper.find('tr').hasClass(classes.root)).to.equal(true);
+    expect(wrapper.find('tr').hasClass(classes.head)).to.equal(true);
   });
 
   it('should render with the footer class when in the context of a table footer', () => {
@@ -38,7 +38,7 @@ describe('<TableRow> integration', () => {
         </TableFooter>
       </table>,
     );
-    assert.strictEqual(wrapper.find('tr').hasClass(classes.root), true);
-    assert.strictEqual(wrapper.find('tr').hasClass(classes.footer), true);
+    expect(wrapper.find('tr').hasClass(classes.root)).to.equal(true);
+    expect(wrapper.find('tr').hasClass(classes.footer)).to.equal(true);
   });
 });

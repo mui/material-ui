@@ -104,19 +104,19 @@ describe('utils/colorManipulator', () => {
 
     it('converts an rgba color string to an object with `type` and `value` keys', () => {
       const { type, values } = decomposeColor('rgba(255, 255, 255, 0.5)');
-      expect(type).to.equal(type, 'rgba');
+      expect(type).to.equal('rgba');
       expect(values).to.deep.equal([255, 255, 255, 0.5]);
     });
 
     it('converts an hsl color string to an object with `type` and `value` keys', () => {
       const { type, values } = decomposeColor('hsl(100, 50%, 25%)');
-      expect(type).to.equal(type, 'hsl');
+      expect(type).to.equal('hsl');
       expect(values).to.deep.equal([100, 50, 25]);
     });
 
     it('converts an hsla color string to an object with `type` and `value` keys', () => {
       const { type, values } = decomposeColor('hsla(100, 50%, 25%, 0.5)');
-      expect(type).to.equal(type, 'hsla');
+      expect(type).to.equal('hsla');
       expect(values).to.deep.equal([100, 50, 25, 0.5]);
     });
 

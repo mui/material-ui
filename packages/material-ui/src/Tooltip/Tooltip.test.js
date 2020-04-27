@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { assert, expect } from 'chai';
+import { expect } from 'chai';
 import PropTypes from 'prop-types';
 import { spy, useFakeTimers } from 'sinon';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
@@ -75,8 +75,8 @@ describe('<Tooltip />', () => {
   it('should render the correct structure', () => {
     const wrapper = mount(<Tooltip {...defaultProps} />);
     const children = wrapper.childAt(0);
-    assert.strictEqual(children.childAt(1).type(), Popper);
-    assert.strictEqual(children.childAt(1).hasClass(classes.popper), true);
+    expect(children.childAt(1).type()).to.equal(Popper);
+    expect(children.childAt(1).hasClass(classes.popper)).to.equal(true);
   });
 
   describe('prop: disableHoverListener', () => {
@@ -88,19 +88,19 @@ describe('<Tooltip />', () => {
       );
 
       const children = wrapper.find('button');
-      assert.strictEqual(children.props().title, null);
+      expect(children.props().title).to.equal(null);
     });
   });
 
   describe('prop: title', () => {
     it('should display if the title is present', () => {
       const wrapper = mount(<Tooltip {...defaultProps} open />);
-      assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), true);
+      expect(wrapper.find('[role="tooltip"]').exists()).to.equal(true);
     });
 
     it('should not display if the title is an empty string', () => {
       const wrapper = mount(<Tooltip {...defaultProps} title="" open />);
-      assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), false);
+      expect(wrapper.find('[role="tooltip"]').exists()).to.equal(false);
     });
 
     it('should be passed down to the child as a native title', () => {
@@ -111,27 +111,27 @@ describe('<Tooltip />', () => {
       );
 
       const children = wrapper.find('button');
-      assert.strictEqual(children.props().title, 'Hello World');
+      expect(children.props().title).to.equal('Hello World');
     });
   });
 
   describe('prop: placement', () => {
     it('should have top placement', () => {
       const wrapper = mount(<Tooltip {...defaultProps} placement="top" />);
-      assert.strictEqual(wrapper.find(Popper).props().placement, 'top');
+      expect(wrapper.find(Popper).props().placement).to.equal('top');
     });
   });
 
   it('should respond to external events', () => {
     const wrapper = mount(<Tooltip {...defaultProps} />);
     const children = wrapper.find('#testChild');
-    assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), false);
+    expect(wrapper.find('[role="tooltip"]').exists()).to.equal(false);
     children.simulate('mouseOver');
-    assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), true);
+    expect(wrapper.find('[role="tooltip"]').exists()).to.equal(true);
     children.simulate('mouseLeave');
     clock.tick(0);
     wrapper.update();
-    assert.strictEqual(wrapper.find(Popper).props().open, false);
+    expect(wrapper.find(Popper).props().open).to.equal(false);
   });
 
   it('should be controllable', () => {
@@ -142,15 +142,15 @@ describe('<Tooltip />', () => {
       <Tooltip {...defaultProps} open onOpen={handleRequestOpen} onClose={handleClose} />,
     );
     const children = wrapper.find('#testChild');
-    assert.strictEqual(handleRequestOpen.callCount, 0);
-    assert.strictEqual(handleClose.callCount, 0);
+    expect(handleRequestOpen.callCount).to.equal(0);
+    expect(handleClose.callCount).to.equal(0);
     children.simulate('mouseOver');
-    assert.strictEqual(handleRequestOpen.callCount, 1);
-    assert.strictEqual(handleClose.callCount, 0);
+    expect(handleRequestOpen.callCount).to.equal(1);
+    expect(handleClose.callCount).to.equal(0);
     children.simulate('mouseLeave');
     clock.tick(0);
-    assert.strictEqual(handleRequestOpen.callCount, 1);
-    assert.strictEqual(handleClose.callCount, 1);
+    expect(handleRequestOpen.callCount).to.equal(1);
+    expect(handleClose.callCount).to.equal(1);
   });
 
   describe('touch screen', () => {
@@ -159,7 +159,7 @@ describe('<Tooltip />', () => {
       const children = wrapper.find('#testChild');
       children.simulate('touchStart');
       children.simulate('touchEnd');
-      assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), false);
+      expect(wrapper.find('[role="tooltip"]').exists()).to.equal(false);
     });
 
     it('should open on long press', () => {
@@ -168,12 +168,12 @@ describe('<Tooltip />', () => {
       children.simulate('touchStart');
       clock.tick(1000);
       wrapper.update();
-      assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), true);
+      expect(wrapper.find('[role="tooltip"]').exists()).to.equal(true);
       children.simulate('touchEnd');
       children.simulate('blur');
       clock.tick(1500);
       wrapper.update();
-      assert.strictEqual(wrapper.find(Popper).props().open, false);
+      expect(wrapper.find(Popper).props().open).to.equal(false);
     });
   });
 
@@ -198,10 +198,10 @@ describe('<Tooltip />', () => {
 
       const wrapper = mount(<AutoFocus />);
       wrapper.setProps({ open: true });
-      assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), false);
+      expect(wrapper.find('[role="tooltip"]').exists()).to.equal(false);
       clock.tick(0);
       wrapper.update();
-      assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), true);
+      expect(wrapper.find('[role="tooltip"]').exists()).to.equal(true);
     });
   });
 
@@ -211,10 +211,10 @@ describe('<Tooltip />', () => {
       simulatePointerDevice();
       const children = wrapper.find('#testChild');
       focusVisibleLegacy(children);
-      assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), false);
+      expect(wrapper.find('[role="tooltip"]').exists()).to.equal(false);
       clock.tick(111);
       wrapper.update();
-      assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), true);
+      expect(wrapper.find('[role="tooltip"]').exists()).to.equal(true);
     });
 
     it('should use hysteresis with the enterDelay', () => {
@@ -254,12 +254,12 @@ describe('<Tooltip />', () => {
       simulatePointerDevice();
       const children = wrapper.find('#testChild');
       focusVisibleLegacy(children);
-      assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), true);
+      expect(wrapper.find('[role="tooltip"]').exists()).to.equal(true);
       children.simulate('blur');
-      assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), true);
+      expect(wrapper.find('[role="tooltip"]').exists()).to.equal(true);
       clock.tick(111);
       wrapper.update();
-      assert.strictEqual(wrapper.find(Popper).props().open, false);
+      expect(wrapper.find(Popper).props().open).to.equal(false);
     });
   });
 
@@ -286,7 +286,7 @@ describe('<Tooltip />', () => {
         const type = name.slice(2).toLowerCase();
         children.simulate(type);
         clock.tick(0);
-        assert.strictEqual(handler.callCount, 1);
+        expect(handler.callCount).to.equal(1);
       });
     });
 
@@ -321,7 +321,7 @@ describe('<Tooltip />', () => {
           </button>
         </Tooltip>,
       );
-      assert.strictEqual(consoleErrorMock.callCount(), 0, 'should not call console.error');
+      expect(consoleErrorMock.callCount()).to.equal(0);
     });
 
     it('should raise a warning when we are uncontrolled and can not listen to events', () => {
@@ -332,9 +332,8 @@ describe('<Tooltip />', () => {
           </button>
         </Tooltip>,
       );
-      assert.strictEqual(consoleErrorMock.callCount(), 1, 'should call console.error');
-      assert.match(
-        consoleErrorMock.messages()[0],
+      expect(consoleErrorMock.callCount()).to.equal(1);
+      expect(consoleErrorMock.messages()[0]).to.match(
         /Material-UI: you are providing a disabled `button` child to the Tooltip component/,
       );
     });
@@ -347,7 +346,7 @@ describe('<Tooltip />', () => {
           </button>
         </Tooltip>,
       );
-      assert.strictEqual(consoleErrorMock.callCount(), 0);
+      expect(consoleErrorMock.callCount()).to.equal(0);
     });
   });
 
@@ -364,13 +363,13 @@ describe('<Tooltip />', () => {
       const children = wrapper.find('#testChild');
       children.simulate('mouseOver', { type: 'mouseOver' });
       clock.tick(0);
-      assert.strictEqual(wrapper.find(Popper).props().open, true);
+      expect(wrapper.find(Popper).props().open).to.equal(true);
       const popper = wrapper.find(Popper);
       children.simulate('mouseLeave', { type: 'mouseleave' });
-      assert.strictEqual(wrapper.find(Popper).props().open, true);
+      expect(wrapper.find(Popper).props().open).to.equal(true);
       popper.simulate('mouseOver', { type: 'mouseover' });
       clock.tick(111);
-      assert.strictEqual(wrapper.find(Popper).props().open, true);
+      expect(wrapper.find(Popper).props().open).to.equal(true);
     });
 
     it('should not animate twice', () => {
@@ -386,13 +385,13 @@ describe('<Tooltip />', () => {
       children.simulate('mouseOver', { type: 'mouseOver' });
       clock.tick(500);
       wrapper.update();
-      assert.strictEqual(wrapper.find(Popper).props().open, true);
+      expect(wrapper.find(Popper).props().open).to.equal(true);
       const popper = wrapper.find(Popper);
       children.simulate('mouseLeave', { type: 'mouseleave' });
-      assert.strictEqual(wrapper.find(Popper).props().open, true);
+      expect(wrapper.find(Popper).props().open).to.equal(true);
       popper.simulate('mouseOver', { type: 'mouseover' });
       clock.tick(0);
-      assert.strictEqual(wrapper.find(Popper).props().open, true);
+      expect(wrapper.find(Popper).props().open).to.equal(true);
     });
   });
 
@@ -435,7 +434,7 @@ describe('<Tooltip />', () => {
           <h1 className="bar">H1</h1>
         </Tooltip>,
       );
-      assert.strictEqual(wrapper.find('h1').props().className, 'foo bar');
+      expect(wrapper.find('h1').props().className).to.equal('foo bar');
     });
 
     it('should respect the props priority', () => {
@@ -444,7 +443,7 @@ describe('<Tooltip />', () => {
           <h1 hidden={false}>H1</h1>
         </Tooltip>,
       );
-      assert.strictEqual(wrapper.find('h1').props().hidden, false);
+      expect(wrapper.find('h1').props().hidden).to.equal(false);
     });
   });
 
@@ -463,22 +462,22 @@ describe('<Tooltip />', () => {
       const wrapper = mount(<Test />);
       simulatePointerDevice();
 
-      assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), false);
+      expect(wrapper.find('[role="tooltip"]').exists()).to.equal(false);
 
       wrapper.find('#target').simulate('focus');
 
-      assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), false);
+      expect(wrapper.find('[role="tooltip"]').exists()).to.equal(false);
     });
 
     it('opens on focus-visible', () => {
       const wrapper = mount(<Test />);
       simulatePointerDevice();
 
-      assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), false);
+      expect(wrapper.find('[role="tooltip"]').exists()).to.equal(false);
 
       focusVisibleLegacy(wrapper.find('#target'));
 
-      assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), true);
+      expect(wrapper.find('[role="tooltip"]').exists()).to.equal(true);
     });
 
     // https://github.com/mui-org/material-ui/issues/19883

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
 import * as PropTypes from 'prop-types';
 import describeConformance from '../test-utils/describeConformance';
@@ -33,41 +33,29 @@ describe('<Paper />', () => {
   describe('prop: square', () => {
     it('can disable the rounded class', () => {
       const wrapper = mount(<Paper square>Hello World</Paper>);
-      assert.strictEqual(wrapper.find(`.${classes.root}`).some(`.${classes.rounded}`), false);
+      expect(wrapper.find(`.${classes.root}`).some(`.${classes.rounded}`)).to.equal(false);
     });
 
     it('adds a rounded class to the root when omitted', () => {
       const wrapper = mount(<Paper>Hello World</Paper>);
-      assert.strictEqual(wrapper.find(`.${classes.root}`).every(`.${classes.rounded}`), true);
+      expect(wrapper.find(`.${classes.root}`).every(`.${classes.rounded}`)).to.equal(true);
     });
   });
 
   describe('prop: variant', () => {
     it('adds a outlined class', () => {
       const wrapper = mount(<Paper variant="outlined">Hello World</Paper>);
-      assert.strictEqual(wrapper.find(`.${classes.root}`).some(`.${classes.outlined}`), true);
+      expect(wrapper.find(`.${classes.root}`).some(`.${classes.outlined}`)).to.equal(true);
     });
   });
 
   it('should set the elevation elevation class', () => {
     const wrapper = shallow(<Paper elevation={16}>Hello World</Paper>);
-    assert.strictEqual(
-      wrapper.hasClass(classes.elevation16),
-      true,
-      'should have the 16 elevation class',
-    );
+    expect(wrapper.hasClass(classes.elevation16)).to.equal(true);
     wrapper.setProps({ elevation: 24 });
-    assert.strictEqual(
-      wrapper.hasClass(classes.elevation24),
-      true,
-      'should have the 24 elevation class',
-    );
+    expect(wrapper.hasClass(classes.elevation24)).to.equal(true);
     wrapper.setProps({ elevation: 2 });
-    assert.strictEqual(
-      wrapper.hasClass(classes.elevation2),
-      true,
-      'should have the 2 elevation class',
-    );
+    expect(wrapper.hasClass(classes.elevation2)).to.equal(true);
   });
 
   it('allows custom elevations via theme.shadows', () => {
@@ -79,7 +67,7 @@ describe('<Paper />', () => {
       </ThemeProvider>,
     );
 
-    assert.strictEqual(wrapper.find('div[data-testid="paper"]').hasClass('custom-elevation'), true);
+    expect(wrapper.find('div[data-testid="paper"]').hasClass('custom-elevation')).to.equal(true);
   });
 
   describe('warnings', () => {
@@ -100,9 +88,8 @@ describe('<Paper />', () => {
         'MockedPaper',
       );
 
-      assert.strictEqual(consoleErrorMock.callCount(), 1);
-      assert.include(
-        consoleErrorMock.messages()[0],
+      expect(consoleErrorMock.callCount()).to.equal(1);
+      expect(consoleErrorMock.messages()[0]).to.include(
         'Material-UI: this elevation `25` is not implemented.',
       );
     });

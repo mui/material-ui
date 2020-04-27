@@ -1,5 +1,5 @@
 import React from 'react';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import PropTypes from 'prop-types';
 import styled from './styled';
 import { SheetsRegistry } from 'jss';
@@ -40,8 +40,8 @@ describe('styled', () => {
       </StylesProvider>,
     );
 
-    assert.strictEqual(sheetsRegistry.registry.length, 1);
-    assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'button-root-1' });
+    expect(sheetsRegistry.registry.length).to.equal(1);
+    expect(sheetsRegistry.registry[0].classes).to.deep.equal({ root: 'button-root-1' });
   });
 
   describe('prop: clone', () => {
@@ -56,15 +56,15 @@ describe('styled', () => {
     });
 
     it('should be able to pass props to cloned element', () => {
-      assert.strictEqual(wrapper.find('div').props()['data-test'], 'enzyme');
+      expect(wrapper.find('div').props()['data-test']).to.equal('enzyme');
     });
 
     it('should be able to clone the child element', () => {
-      assert.strictEqual(wrapper.getDOMNode().nodeName, 'DIV');
+      expect(wrapper.getDOMNode().nodeName).to.equal('DIV');
       wrapper.setProps({
         clone: false,
       });
-      assert.strictEqual(wrapper.getDOMNode().nodeName, 'BUTTON');
+      expect(wrapper.getDOMNode().nodeName).to.equal('BUTTON');
     });
   });
 
@@ -86,8 +86,8 @@ describe('styled', () => {
         Styled Components
       </StyledDiv>,
     );
-    assert.strictEqual(wrapper.find('div').props().color, undefined);
-    assert.strictEqual(wrapper.find('div').props()['data-test'], 'enzyme');
+    expect(wrapper.find('div').props().color).to.equal(undefined);
+    expect(wrapper.find('div').props()['data-test']).to.equal('enzyme');
   });
 
   describe('warnings', () => {
@@ -108,9 +108,8 @@ describe('styled', () => {
         'StyledButton',
       );
 
-      assert.strictEqual(consoleErrorMock.callCount(), 1);
-      assert.include(
-        consoleErrorMock.messages()[0],
+      expect(consoleErrorMock.callCount()).to.equal(1);
+      expect(consoleErrorMock.messages()[0]).to.include(
         'You can not use the clone and component prop at the same time',
       );
     });
