@@ -77,6 +77,352 @@ function useUniqueId(prefix) {
   return id ? `${prefix}${id}` : id;
 }
 
+const useDemoToolbarStyles = makeStyles(
+  (theme) => {
+    return {
+      root: {
+        display: 'none',
+        [theme.breakpoints.up('sm')]: {
+          display: 'flex',
+          flip: false,
+          top: 0,
+          right: theme.spacing(1),
+          height: theme.spacing(6),
+        },
+        justifyContent: 'space-between',
+      },
+      tooltip: {
+        zIndex: theme.zIndex.appBar - 1,
+      },
+    };
+  },
+  { name: 'DemoToolbar' },
+);
+
+function DemoToolbar(props) {
+  const {
+    codeOpen,
+    codeVariant,
+    demo,
+    demoData,
+    demoHovered,
+    demoName,
+    demoOptions,
+    demoSourceId,
+    initialFocusRef,
+    onCodeOpenChange,
+    onResetDemoClick,
+    openDemoSource,
+    showPreview,
+  } = props;
+
+  const classes = useDemoToolbarStyles();
+
+  const dispatch = useDispatch();
+  const t = useSelector((state) => state.options.t);
+
+  const handleCodeLanguageClick = (event, clickedCodeVariant) => {
+    if (codeVariant !== clickedCodeVariant) {
+      dispatch({
+        type: ACTION_TYPES.OPTIONS_CHANGE,
+        payload: {
+          codeVariant: clickedCodeVariant,
+        },
+      });
+    }
+  };
+
+  const handleCodeSandboxClick = () => {
+    const demoConfig = getDemoConfig(demoData);
+    const parameters = compress({
+      files: {
+        'package.json': {
+          content: {
+            title: demoConfig.title,
+            description: demoConfig.description,
+            dependencies: demoConfig.dependencies,
+            devDependencies: {
+              'react-scripts': 'latest',
+              ...demoConfig.devDependencies,
+            },
+            main: demoConfig.main,
+            scripts: demoConfig.scripts,
+          },
+        },
+        ...Object.keys(demoConfig.files).reduce((files, name) => {
+          files[name] = { content: demoConfig.files[name] };
+          return files;
+        }, {}),
+      },
+    });
+
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.target = '_blank';
+    form.action = 'https://codeSandbox.io/api/v1/sandboxes/define';
+    addHiddenInput(form, 'parameters', parameters);
+    document.body.appendChild(form);
+    form.submit();
+    document.body.removeChild(form);
+  };
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const handleMoreClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleMoreClose = () => {
+    setAnchorEl(null);
+  };
+
+  const [snackbarOpen, setSnackbarOpen] = React.useState(false);
+  const [snackbarMessage, setSnackbarMessage] = React.useState(undefined);
+
+  const handleSnackbarClose = () => {
+    setSnackbarOpen(false);
+  };
+  const handleCopyClick = async () => {
+    try {
+      await copy(demoData.raw);
+      setSnackbarMessage(t('copiedSource'));
+      setSnackbarOpen(true);
+    } finally {
+      handleMoreClose();
+    }
+  };
+
+  const handleStackBlitzClick = () => {
+    const demoConfig = getDemoConfig(demoData);
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.target = '_blank';
+    form.action = 'https://stackblitz.com/run';
+    addHiddenInput(form, 'project[template]', 'javascript');
+    addHiddenInput(form, 'project[title]', demoConfig.title);
+    addHiddenInput(form, 'project[description]', demoConfig.description);
+    addHiddenInput(form, 'project[dependencies]', JSON.stringify(demoConfig.dependencies));
+    addHiddenInput(form, 'project[devDependencies]', JSON.stringify(demoConfig.devDependencies));
+    Object.keys(demoConfig.files).forEach((key) => {
+      const value = demoConfig.files[key];
+      addHiddenInput(form, `project[files][${key}]`, value);
+    });
+    document.body.appendChild(form);
+    form.submit();
+    document.body.removeChild(form);
+    handleMoreClose();
+  };
+
+  const createHandleCodeSourceLink = (anchor) => async () => {
+    try {
+      await copy(`${window.location.href.split('#')[0]}#${anchor}`);
+      setSnackbarMessage(t('copiedSourceLink'));
+      setSnackbarOpen(true);
+    } finally {
+      handleMoreClose();
+    }
+  };
+
+  const [sourceHintSeen, setSourceHintSeen] = React.useState(false);
+  React.useEffect(() => {
+    setSourceHintSeen(getCookie('sourceHintSeen'));
+  }, []);
+  const handleCodeOpenClick = () => {
+    document.cookie = `sourceHintSeen=true;path=/;max-age=31536000`;
+    onCodeOpenChange();
+    setSourceHintSeen(true);
+  };
+
+  function handleResetFocusClick() {
+    initialFocusRef.current.focusVisible();
+  }
+
+  const showSourceHint = demoHovered && !sourceHintSeen;
+
+  let showCodeLabel;
+  if (codeOpen) {
+    showCodeLabel = showPreview ? t('hideFullSource') : t('hideSource');
+  } else {
+    showCodeLabel = showPreview ? t('showFullSource') : t('showSource');
+  }
+
+  const atLeastMediumViewport = useMediaQuery((theme) => theme.breakpoints.up('sm'));
+
+  return (
+    <React.Fragment>
+      <div
+        aria-controls={openDemoSource ? demoSourceId : null}
+        aria-label={t('demoToolbarLabel')}
+        className={classes.root}
+        role="toolbar"
+      >
+        <NoSsr defer>
+          <DemoLanguages
+            demo={demo}
+            codeOpen={codeOpen}
+            codeVariant={codeVariant}
+            gaEventLabel={demoOptions.demo}
+            onLanguageClick={handleCodeLanguageClick}
+          />
+          <div>
+            <Tooltip
+              classes={{ popper: classes.tooltip }}
+              key={showSourceHint}
+              open={showSourceHint && atLeastMediumViewport ? true : undefined}
+              PopperProps={{ disablePortal: true }}
+              title={showCodeLabel}
+              placement="top"
+            >
+              <IconButton
+                aria-label={showCodeLabel}
+                data-ga-event-category="demo"
+                data-ga-event-label={demoOptions.demo}
+                data-ga-event-action="expand"
+                onClick={handleCodeOpenClick}
+                color={demoHovered ? 'primary' : 'default'}
+              >
+                <CodeIcon fontSize="small" />
+              </IconButton>
+            </Tooltip>
+            {demoOptions.hideEditButton ? null : (
+              <Tooltip
+                classes={{ popper: classes.tooltip }}
+                title={t('codesandbox')}
+                placement="top"
+              >
+                <IconButton
+                  aria-label={t('codesandbox')}
+                  data-ga-event-category="demo"
+                  data-ga-event-label={demoOptions.demo}
+                  data-ga-event-action="codesandbox"
+                  onClick={handleCodeSandboxClick}
+                >
+                  <EditIcon fontSize="small" />
+                </IconButton>
+              </Tooltip>
+            )}
+            <Tooltip classes={{ popper: classes.tooltip }} title={t('copySource')} placement="top">
+              <IconButton
+                aria-label={t('copySource')}
+                data-ga-event-category="demo"
+                data-ga-event-label={demoOptions.demo}
+                data-ga-event-action="copy"
+                onClick={handleCopyClick}
+              >
+                <FileCopyIcon fontSize="small" />
+              </IconButton>
+            </Tooltip>
+            <Tooltip classes={{ popper: classes.tooltip }} title={t('resetFocus')} placement="top">
+              <IconButton
+                aria-label={t('resetFocus')}
+                data-ga-event-category="demo"
+                data-ga-event-label={demoOptions.demo}
+                data-ga-event-action="reset-focus"
+                onClick={handleResetFocusClick}
+              >
+                <ResetFocusIcon fontSize="small" />
+              </IconButton>
+            </Tooltip>
+            <Tooltip classes={{ popper: classes.tooltip }} title={t('resetDemo')} placement="top">
+              <IconButton
+                aria-label={t('resetDemo')}
+                data-ga-event-category="demo"
+                data-ga-event-label={demoOptions.demo}
+                data-ga-event-action="reset"
+                onClick={onResetDemoClick}
+              >
+                <RefreshIcon fontSize="small" />
+              </IconButton>
+            </Tooltip>
+            <IconButton
+              onClick={handleMoreClick}
+              aria-owns={anchorEl ? 'demo-menu-more' : undefined}
+              aria-haspopup="true"
+              aria-label={t('seeMore')}
+            >
+              <MoreVertIcon fontSize="small" />
+            </IconButton>
+            <Menu
+              id="demo-menu-more"
+              anchorEl={anchorEl}
+              open={Boolean(anchorEl)}
+              onClose={handleMoreClose}
+              getContentAnchorEl={null}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+            >
+              <MenuItem
+                data-ga-event-category="demo"
+                data-ga-event-label={demoOptions.demo}
+                data-ga-event-action="github"
+                component="a"
+                href={demoData.githubLocation}
+                target="_blank"
+                rel="noopener nofollow"
+                onClick={handleMoreClose}
+              >
+                {t('viewGitHub')}
+              </MenuItem>
+              {demoOptions.hideEditButton ? null : (
+                <MenuItem
+                  data-ga-event-category="demo"
+                  data-ga-event-label={demoOptions.demo}
+                  data-ga-event-action="stackblitz"
+                  onClick={handleStackBlitzClick}
+                >
+                  {t('stackblitz')}
+                </MenuItem>
+              )}
+              <MenuItem
+                data-ga-event-category="demo"
+                data-ga-event-label={demoOptions.demo}
+                data-ga-event-action="copy-js-source-link"
+                onClick={createHandleCodeSourceLink(`${demoName}.js`)}
+              >
+                {t('copySourceLinkJS')}
+              </MenuItem>
+              <MenuItem
+                data-ga-event-category="demo"
+                data-ga-event-label={demoOptions.demo}
+                data-ga-event-action="copy-ts-source-link"
+                onClick={createHandleCodeSourceLink(`${demoName}.tsx`)}
+              >
+                {t('copySourceLinkTS')}
+              </MenuItem>
+            </Menu>
+          </div>
+        </NoSsr>
+      </div>
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={3000}
+        onClose={handleSnackbarClose}
+        message={snackbarMessage}
+      />
+    </React.Fragment>
+  );
+}
+
+DemoToolbar.propTypes = {
+  codeOpen: PropTypes.bool.isRequired,
+  codeVariant: PropTypes.string.isRequired,
+  demo: PropTypes.object.isRequired,
+  demoData: PropTypes.object.isRequired,
+  demoHovered: PropTypes.bool.isRequired,
+  demoName: PropTypes.string.isRequired,
+  demoOptions: PropTypes.object.isRequired,
+  demoSourceId: PropTypes.string,
+  initialFocusRef: PropTypes.shape({ current: PropTypes.object }).isRequired,
+  onCodeOpenChange: PropTypes.func.isRequired,
+  onResetDemoClick: PropTypes.func.isRequired,
+  openDemoSource: PropTypes.bool.isRequired,
+  showPreview: PropTypes.bool.isRequired,
+};
+
 const useStyles = makeStyles(
   (theme) => ({
     root: {
@@ -131,17 +477,6 @@ const useStyles = makeStyles(
         paddingTop: theme.spacing(3),
       },
     },
-    toolbar: {
-      display: 'none',
-      [theme.breakpoints.up('sm')]: {
-        display: 'flex',
-        flip: false,
-        top: 0,
-        right: theme.spacing(1),
-        height: theme.spacing(6),
-      },
-      justifyContent: 'space-between',
-    },
     code: {
       display: 'none',
       padding: 0,
@@ -156,9 +491,6 @@ const useStyles = makeStyles(
         margin: '0px !important',
         maxHeight: 1000,
       },
-    },
-    tooltip: {
-      zIndex: theme.zIndex.appBar - 1,
     },
     anchorLink: {
       marginTop: -64, // height of toolbar
@@ -179,114 +511,15 @@ const useStyles = makeStyles(
 function Demo(props) {
   const { demo, demoOptions, githubLocation } = props;
   const classes = useStyles();
-  const dispatch = useDispatch();
   const t = useSelector((state) => state.options.t);
   const codeVariant = useSelector((state) => state.options.codeVariant);
   const demoData = getDemoData(codeVariant, demo, githubLocation);
-
-  const [sourceHintSeen, setSourceHintSeen] = React.useState(false);
-  React.useEffect(() => {
-    setSourceHintSeen(getCookie('sourceHintSeen'));
-  }, []);
 
   const [demoHovered, setDemoHovered] = React.useState(false);
   const handleDemoHover = (event) => {
     setDemoHovered(event.type === 'mouseenter');
   };
 
-  const [snackbarOpen, setSnackbarOpen] = React.useState(false);
-  const [snackbarMessage, setSnackbarMessage] = React.useState(undefined);
-
-  const handleSnackbarClose = () => {
-    setSnackbarOpen(false);
-  };
-
-  const handleCodeLanguageClick = (event, clickedCodeVariant) => {
-    if (codeVariant !== clickedCodeVariant) {
-      dispatch({
-        type: ACTION_TYPES.OPTIONS_CHANGE,
-        payload: {
-          codeVariant: clickedCodeVariant,
-        },
-      });
-    }
-  };
-
-  const handleCodeSandboxClick = () => {
-    const demoConfig = getDemoConfig(demoData);
-    const parameters = compress({
-      files: {
-        'package.json': {
-          content: {
-            title: demoConfig.title,
-            description: demoConfig.description,
-            dependencies: demoConfig.dependencies,
-            devDependencies: {
-              'react-scripts': 'latest',
-              ...demoConfig.devDependencies,
-            },
-            main: demoConfig.main,
-            scripts: demoConfig.scripts,
-          },
-        },
-        ...Object.keys(demoConfig.files).reduce((files, name) => {
-          files[name] = { content: demoConfig.files[name] };
-          return files;
-        }, {}),
-      },
-    });
-
-    const form = document.createElement('form');
-    form.method = 'POST';
-    form.target = '_blank';
-    form.action = 'https://codeSandbox.io/api/v1/sandboxes/define';
-    addHiddenInput(form, 'parameters', parameters);
-    document.body.appendChild(form);
-    form.submit();
-    document.body.removeChild(form);
-  };
-
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const handleMoreClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleMoreClose = () => {
-    setAnchorEl(null);
-  };
-
-  const handleCopyClick = async () => {
-    try {
-      await copy(demoData.raw);
-      setSnackbarMessage(t('copiedSource'));
-      setSnackbarOpen(true);
-    } finally {
-      handleMoreClose();
-    }
-  };
-
-  const handleStackBlitzClick = () => {
-    const demoConfig = getDemoConfig(demoData);
-    const form = document.createElement('form');
-    form.method = 'POST';
-    form.target = '_blank';
-    form.action = 'https://stackblitz.com/run';
-    addHiddenInput(form, 'project[template]', 'javascript');
-    addHiddenInput(form, 'project[title]', demoConfig.title);
-    addHiddenInput(form, 'project[description]', demoConfig.description);
-    addHiddenInput(form, 'project[dependencies]', JSON.stringify(demoConfig.dependencies));
-    addHiddenInput(form, 'project[devDependencies]', JSON.stringify(demoConfig.devDependencies));
-    Object.keys(demoConfig.files).forEach((key) => {
-      const value = demoConfig.files[key];
-      addHiddenInput(form, `project[files][${key}]`, value);
-    });
-    document.body.appendChild(form);
-    form.submit();
-    document.body.removeChild(form);
-    handleMoreClose();
-  };
-
-  const showSourceHint = demoHovered && !sourceHintSeen;
   const DemoComponent = demoData.Component;
   const demoName = getDemoName(demoData.githubLocation);
   const demoSandboxedStyle = React.useMemo(
@@ -305,16 +538,6 @@ function Demo(props) {
     demoOptions.bg = true;
   }
 
-  const createHandleCodeSourceLink = (anchor) => async () => {
-    try {
-      await copy(`${window.location.href.split('#')[0]}#${anchor}`);
-      setSnackbarMessage(t('copiedSourceLink'));
-      setSnackbarOpen(true);
-    } finally {
-      handleMoreClose();
-    }
-  };
-
   const [codeOpen, setCodeOpen] = React.useState(demoOptions.defaultCodeOpen || false);
 
   React.useEffect(() => {
@@ -324,14 +547,6 @@ function Demo(props) {
     }
   }, [demoName]);
 
-  const handleCodeOpenClick = () => {
-    document.cookie = `sourceHintSeen=true;path=/;max-age=31536000`;
-    setCodeOpen((open) => !open);
-    setSourceHintSeen(setSourceHintSeen(true));
-  };
-
-  const match = useMediaQuery((theme) => theme.breakpoints.up('sm'));
-
   const jsx = getJsxPreview(demoData.raw || '');
   const showPreview =
     !demoOptions.hideToolbar &&
@@ -339,22 +554,12 @@ function Demo(props) {
     jsx !== demoData.raw &&
     jsx.split(/\n/).length <= 17;
 
-  let showCodeLabel;
-  if (codeOpen) {
-    showCodeLabel = showPreview ? t('hideFullSource') : t('hideSource');
-  } else {
-    showCodeLabel = showPreview ? t('showFullSource') : t('showSource');
-  }
-
   const [demoKey, resetDemo] = React.useReducer((key) => key + 1, 0);
 
   const demoSourceId = useUniqueId(`demo-`);
   const openDemoSource = codeOpen || showPreview;
 
   const initialFocusRef = React.useRef(null);
-  function handleResetFocusClick() {
-    initialFocusRef.current.focusVisible();
-  }
 
   return (
     <div className={classes.root}>
@@ -386,163 +591,21 @@ function Demo(props) {
       <div className={classes.anchorLink} id={`${demoName}.js`} />
       <div className={classes.anchorLink} id={`${demoName}.tsx`} />
       {demoOptions.hideToolbar ? null : (
-        <div
-          aria-controls={openDemoSource ? demoSourceId : null}
-          aria-label={t('demoToolbarLabel')}
-          className={classes.toolbar}
-          role="toolbar"
-        >
-          <NoSsr defer>
-            <DemoLanguages
-              demo={demo}
-              codeOpen={codeOpen}
-              codeVariant={codeVariant}
-              gaEventLabel={demoOptions.demo}
-              onLanguageClick={handleCodeLanguageClick}
-            />
-            <div className={classes.toolbarButtons}>
-              <Tooltip
-                classes={{ popper: classes.tooltip }}
-                key={showSourceHint}
-                open={showSourceHint && match ? true : undefined}
-                PopperProps={{ disablePortal: true }}
-                title={showCodeLabel}
-                placement="top"
-              >
-                <IconButton
-                  aria-label={showCodeLabel}
-                  data-ga-event-category="demo"
-                  data-ga-event-label={demoOptions.demo}
-                  data-ga-event-action="expand"
-                  onClick={handleCodeOpenClick}
-                  color={demoHovered ? 'primary' : 'default'}
-                >
-                  <CodeIcon fontSize="small" />
-                </IconButton>
-              </Tooltip>
-              {demoOptions.hideEditButton ? null : (
-                <Tooltip
-                  classes={{ popper: classes.tooltip }}
-                  title={t('codesandbox')}
-                  placement="top"
-                >
-                  <IconButton
-                    aria-label={t('codesandbox')}
-                    data-ga-event-category="demo"
-                    data-ga-event-label={demoOptions.demo}
-                    data-ga-event-action="codesandbox"
-                    onClick={handleCodeSandboxClick}
-                  >
-                    <EditIcon fontSize="small" />
-                  </IconButton>
-                </Tooltip>
-              )}
-              <Tooltip
-                classes={{ popper: classes.tooltip }}
-                title={t('copySource')}
-                placement="top"
-              >
-                <IconButton
-                  aria-label={t('copySource')}
-                  data-ga-event-category="demo"
-                  data-ga-event-label={demoOptions.demo}
-                  data-ga-event-action="copy"
-                  onClick={handleCopyClick}
-                >
-                  <FileCopyIcon fontSize="small" />
-                </IconButton>
-              </Tooltip>
-              <Tooltip
-                classes={{ popper: classes.tooltip }}
-                title={t('resetFocus')}
-                placement="top"
-              >
-                <IconButton
-                  aria-label={t('resetFocus')}
-                  data-ga-event-category="demo"
-                  data-ga-event-label={demoOptions.demo}
-                  data-ga-event-action="reset-focus"
-                  onClick={handleResetFocusClick}
-                >
-                  <ResetFocusIcon fontSize="small" />
-                </IconButton>
-              </Tooltip>
-              <Tooltip classes={{ popper: classes.tooltip }} title={t('resetDemo')} placement="top">
-                <IconButton
-                  aria-label={t('resetDemo')}
-                  data-ga-event-category="demo"
-                  data-ga-event-label={demoOptions.demo}
-                  data-ga-event-action="reset"
-                  onClick={resetDemo}
-                >
-                  <RefreshIcon fontSize="small" />
-                </IconButton>
-              </Tooltip>
-              <IconButton
-                onClick={handleMoreClick}
-                aria-owns={anchorEl ? 'demo-menu-more' : undefined}
-                aria-haspopup="true"
-                aria-label={t('seeMore')}
-              >
-                <MoreVertIcon fontSize="small" />
-              </IconButton>
-              <Menu
-                id="demo-menu-more"
-                anchorEl={anchorEl}
-                open={Boolean(anchorEl)}
-                onClose={handleMoreClose}
-                getContentAnchorEl={null}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-              >
-                <MenuItem
-                  data-ga-event-category="demo"
-                  data-ga-event-label={demoOptions.demo}
-                  data-ga-event-action="github"
-                  component="a"
-                  href={demoData.githubLocation}
-                  target="_blank"
-                  rel="noopener nofollow"
-                  onClick={handleMoreClose}
-                >
-                  {t('viewGitHub')}
-                </MenuItem>
-                {demoOptions.hideEditButton ? null : (
-                  <MenuItem
-                    data-ga-event-category="demo"
-                    data-ga-event-label={demoOptions.demo}
-                    data-ga-event-action="stackblitz"
-                    onClick={handleStackBlitzClick}
-                  >
-                    {t('stackblitz')}
-                  </MenuItem>
-                )}
-                <MenuItem
-                  data-ga-event-category="demo"
-                  data-ga-event-label={demoOptions.demo}
-                  data-ga-event-action="copy-js-source-link"
-                  onClick={createHandleCodeSourceLink(`${demoName}.js`)}
-                >
-                  {t('copySourceLinkJS')}
-                </MenuItem>
-                <MenuItem
-                  data-ga-event-category="demo"
-                  data-ga-event-label={demoOptions.demo}
-                  data-ga-event-action="copy-ts-source-link"
-                  onClick={createHandleCodeSourceLink(`${demoName}.tsx`)}
-                >
-                  {t('copySourceLinkTS')}
-                </MenuItem>
-              </Menu>
-            </div>
-          </NoSsr>
-        </div>
+        <DemoToolbar
+          codeOpen={codeOpen}
+          codeVariant={codeVariant}
+          demo={demo}
+          demoData={demoData}
+          demoHovered={demoHovered}
+          demoName={demoName}
+          demoOptions={demoOptions}
+          demoSourceId={demoSourceId}
+          initialFocusRef={initialFocusRef}
+          onCodeOpenChange={() => setCodeOpen((open) => !open)}
+          onResetDemoClick={resetDemo}
+          openDemoSource={openDemoSource}
+          showPreview={showPreview}
+        />
       )}
       <Collapse in={openDemoSource} unmountOnExit>
         <HighlightedCode
@@ -552,12 +615,6 @@ function Demo(props) {
           language={demoData.sourceLanguage}
         />
       </Collapse>
-      <Snackbar
-        open={snackbarOpen}
-        autoHideDuration={3000}
-        onClose={handleSnackbarClose}
-        message={snackbarMessage}
-      />
     </div>
   );
 }
