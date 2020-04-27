@@ -38,6 +38,9 @@ export * from './TabContext';
 export { default as TabPanel } from './TabPanel';
 export * from './TabPanel';
 
+export { default as TabPanels } from './TabPanels';
+export * from './TabPanels';
+
 export { default as ToggleButton } from './ToggleButton';
 export * from './ToggleButton';
 
