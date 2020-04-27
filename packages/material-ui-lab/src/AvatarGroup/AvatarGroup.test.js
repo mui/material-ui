@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { stub } from 'sinon';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import { createClientRender } from 'test/utils/createClientRender';
@@ -29,38 +28,7 @@ describe('<AvatarGroup />', () => {
     skip: ['componentProp'],
   }));
 
-  it('should display 1 avatar and "+X" if `max` is lower than 2', () => {
-    const consoleWarn = stub(console, 'warn');
-    const { container } = render(
-      <AvatarGroup max={1}>
-        <Avatar src="image-url" />
-        <Avatar src="image-url" />
-        <Avatar src="image-url" />
-        <Avatar src="image-url" />
-      </AvatarGroup>,
-    );
-    expect(consoleWarn.callCount).to.equal(1);
-    expect(container.querySelectorAll('.MuiAvatar-root').length).to.equal(2);
-    expect(container.querySelectorAll('img').length).to.equal(1);
-    expect(container.textContent).to.equal('+3');
-  });
-
-  it('should display first `max` avatars, followed by "+X"', () => {
-    const { container } = render(
-      <AvatarGroup max={3}>
-        <Avatar src="image-url" />
-        <Avatar src="image-url" />
-        <Avatar src="image-url" />
-        <Avatar src="image-url" />
-        <Avatar src="image-url" />
-      </AvatarGroup>,
-    );
-    expect(container.querySelectorAll('.MuiAvatar-root').length).to.equal(3);
-    expect(container.querySelectorAll('img').length).to.equal(2);
-    expect(container.textContent).to.equal('+3');
-  });
-
-  it('should display all avatars instead of `max` avatars followed by "+1"', () => {
+  it('should display all the avatars', () => {
     const { container } = render(
       <AvatarGroup max={3}>
         <Avatar src="image-url" />
@@ -70,6 +38,20 @@ describe('<AvatarGroup />', () => {
     );
     expect(container.querySelectorAll('.MuiAvatar-root').length).to.equal(3);
     expect(container.querySelectorAll('img').length).to.equal(3);
-    expect(container.textContent).to.have.lengthOf(0);
+    expect(container.textContent).to.equal('');
+  });
+
+  it('should display 2 avatars and "+2"', () => {
+    const { container } = render(
+      <AvatarGroup max={3}>
+        <Avatar src="image-url" />
+        <Avatar src="image-url" />
+        <Avatar src="image-url" />
+        <Avatar src="image-url" />
+      </AvatarGroup>,
+    );
+    expect(container.querySelectorAll('.MuiAvatar-root').length).to.equal(3);
+    expect(container.querySelectorAll('img').length).to.equal(2);
+    expect(container.textContent).to.equal('+2');
   });
 });
