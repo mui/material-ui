@@ -291,7 +291,7 @@ describe('<Modal />', () => {
       expect(handleKeyDown).to.have.property('callCount', 0);
     });
 
-    it('when disableEscapeKeyDown should call only onEscapeKeyDownSpy', () => {
+    it('should not call onChange when disableEscapeKeyDown', () => {
       const handleKeyDown = spy();
       const onEscapeKeyDownSpy = spy();
       const onCloseSpy = spy();
