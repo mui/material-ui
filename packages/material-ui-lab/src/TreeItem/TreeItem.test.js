@@ -756,13 +756,13 @@ describe('<TreeItem />', () => {
           const { getByText, getByTestId } = render(<TestComponent />);
           fireEvent.click(getByText('Hide'));
           const navTreeItem = getByTestId('navTo');
-          expect(navTreeItem).not.to.have.focus;
+          expect(navTreeItem).not.toHaveFocus();
 
           expect(() => {
             fireEvent.keyDown(getByTestId('keyDown'), { key: 'a' });
           }).not.to.throw();
 
-          expect(navTreeItem).to.have.focus;
+          expect(navTreeItem).toHaveFocus();
           expect(navTreeItem).to.have.attribute('tabindex', '0');
         });
       });
