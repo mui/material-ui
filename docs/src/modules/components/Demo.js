@@ -248,12 +248,7 @@ function DemoToolbar(props) {
 
   return (
     <React.Fragment>
-      <div
-        aria-controls={openDemoSource ? demoSourceId : null}
-        aria-label={t('demoToolbarLabel')}
-        className={classes.root}
-        role="toolbar"
-      >
+      <div aria-label={t('demoToolbarLabel')} className={classes.root} role="toolbar">
         <NoSsr defer>
           <DemoLanguages
             demo={demo}
@@ -272,6 +267,7 @@ function DemoToolbar(props) {
               placement="top"
             >
               <IconButton
+                aria-controls={openDemoSource ? demoSourceId : null}
                 aria-label={showCodeLabel}
                 data-ga-event-category="demo"
                 data-ga-event-label={demoOptions.demo}
