@@ -232,9 +232,12 @@ export default function useAutocomplete(props) {
     resetInputValue(null, value);
   }, [value, resetInputValue]);
 
-  const { current: isOpenControlled } = React.useRef(openProp != null);
-  const [openState, setOpenState] = React.useState(false);
-  const open = isOpenControlled ? openProp : openState;
+  const [open, setOpenState] = useControlled({
+    controlled: openProp,
+    default: false,
+    name: componentName,
+    state: 'open',
+  });
 
   const inputValueIsSelectedValue =
     !multiple && value != null && inputValue === getOptionLabel(value);
@@ -461,11 +464,10 @@ export default function useAutocomplete(props) {
       return;
     }
 
+    setOpenState(true);
+
     if (onOpen) {
       onOpen(event);
-    }
-    if (!isOpenControlled) {
-      setOpenState(true);
     }
   };
 
@@ -474,11 +476,10 @@ export default function useAutocomplete(props) {
       return;
     }
 
+    setOpenState(false);
+
     if (onClose) {
       onClose(event, reason);
-    }
-    if (!isOpenControlled) {
-      setOpenState(false);
     }
   };
 
