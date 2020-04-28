@@ -34,7 +34,7 @@ The `MuiSelect` name can be used for providing [default props](/customization/gl
 | <span class="prop-name">defaultValue</span> | <span class="prop-type">any</span> |  | The default element value. Use when the component is not controlled. |
 | <span class="prop-name">displayEmpty</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, a value is displayed even if no items are selected.<br>In order to display a meaningful value, a function should be passed to the `renderValue` prop which returns the value to be displayed when no items are selected. You can only use it when the `native` prop is `false` (default). |
 | <span class="prop-name">IconComponent</span> | <span class="prop-type">elementType</span> | <span class="prop-default">ArrowDropDownIcon</span> | The icon that displays the arrow. |
-| <span class="prop-name">id</span> | <span class="prop-type">string</span> |  | The `id` of the wrapper element or the `select` elment when `native`. |
+| <span class="prop-name">id</span> | <span class="prop-type">string</span> |  | The `id` of the wrapper element or the `select` element when `native`. |
 | <span class="prop-name">input</span> | <span class="prop-type">element</span> |  | An `Input` element; does not have to be a material-ui specific `Input`. |
 | <span class="prop-name">inputProps</span> | <span class="prop-type">object</span> |  | [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element. When `native` is `true`, the attributes are applied on the `select` element. |
 | <span class="prop-name">label</span> | <span class="prop-type">node</span> |  | See [OutlinedInput#label](/api/outlined-input/#props) |
