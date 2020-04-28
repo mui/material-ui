@@ -19,7 +19,7 @@ O Material Design padronizou mais de 1.100 ícones oficiais, cada um em cinco "t
 
 ### Instalação
 
-Instale o pacote no diretório do projeto com:
+Instale o pacote no diretório do seu projeto com:
 
 ```sh
 // utilizando o npm

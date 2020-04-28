@@ -23,3 +23,11 @@ components: ClickAwayListener
 The following demo uses [`Portal`](/components/portal/) to render the dropdown into a new "subtree" outside of current DOM hierarchy.
 
 {{"demo": "pages/components/click-away-listener/PortalClickAway.js"}}
+
+## Leading edge
+
+By default, the component responds to the trailing events (click + touch end). However, you can configure it to respond to the leading events (mouse down + touch start).
+
+{{"demo": "pages/components/click-away-listener/LeadingClickAway.js"}}
+
+> ⚠️ In this mode, only interactions on the scrollbar of the document is ignored.

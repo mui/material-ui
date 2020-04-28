@@ -1,12 +1,12 @@
-# Localization
+# Localização
 
-<p class="description">Localization (also referred to as "l10n") is the process of adapting a product or content to a specific locale or market.</p>
+<p class="description">Localização (também referida como "l10n") é o processo de adaptação de um produto ou conteúdo a uma localidade ou mercado específico.</p>
 
-The default locale of Material-UI is English (United States). If you want to use other locales, follow the instructions below.
+A localidade padrão do Material-UI é em inglês (Estados Unidos). Se você quiser usar outras localidades, siga as instruções abaixo.
 
-## Locale text
+## Texto da localidade
 
-Use the theme to configure the locale text globally:
+Use o tema para configurar o texto de configuração global:
 
 ```jsx
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
@@ -23,50 +23,52 @@ const theme = createMuiTheme({
 </ThemeProvider>
 ```
 
-### Supported locales
+### Localidades suportadas
 
-| Locale                  | BCP 47 language tag | Nome da importação |
-|:----------------------- |:------------------- |:------------------ |
-| Armenian                | hy-AM               | `hyAM`             |
-| Azerbaijani             | az-AZ               | `azAZ`             |
-| Bulgarian               | bg-BG               | `bgBG`             |
-| Catalan                 | ca-ES               | `caES`             |
-| Chinese (Simplified)    | zh-CN               | `zhCN`             |
-| Czech                   | cs-CZ               | `csCZ`             |
-| Dutch                   | nl-NL               | `nlNL`             |
-| English (United States) | en-US               | `enUS`             |
-| Estonian                | et-EE               | `etEE`             |
-| Finnish                 | fi-FI               | `fiFI`             |
-| French                  | fr-FR               | `frFR`             |
-| German                  | de-DE               | `deDE`             |
-| Hebrew                  | he-IL               | `heIL`             |
-| Hungarian               | hu-HU               | `huHU`             |
-| Icelandic               | is-IS               | `isIS`             |
-| Indonesian              | id-ID               | `idID`             |
-| Italian                 | it-IT               | `itIT`             |
-| Japanese                | ja-JP               | `jaJP`             |
-| Korean                  | ko-KR               | `koKR`             |
-| Persian                 | fa-IR               | `faIR`             |
-| Polish                  | pl-PL               | `plPL`             |
-| Portuguese (Brazil)     | pt-BR               | `ptBR`             |
-| Portuguese              | pt-PT               | `ptPT`             |
-| Romanian                | ro-RO               | `roRO`             |
-| Russian                 | ru-RU               | `ruRU`             |
-| Slovak                  | sk-SK               | `skSK`             |
-| Spanish                 | es-ES               | `esES`             |
-| Swedish                 | sv-SE               | `svSE`             |
-| Turkish                 | tr-TR               | `trTR`             |
-| Ukrainian               | uk-UA               | `ukUA`             |
-| Vietnamese              | vi-VN               | `viVN`             |
+| Localidade              | Etiqueta do idioma BCP 47 | Nome da importação |
+|:----------------------- |:------------------------- |:------------------ |
+| Armênio                 | hy-AM                     | `hyAM`             |
+| Azerbaijano             | az-AZ                     | `azAZ`             |
+| Búlgaro                 | bg-BG                     | `bgBG`             |
+| Catalão                 | ca-ES                     | `caES`             |
+| Chinês (Simplificado)   | zh-CN                     | `zhCN`             |
+| Tcheco                  | cs-CZ                     | `csCZ`             |
+| Holandês                | nl-NL                     | `nlNL`             |
+| Inglês (Estados Unidos) | en-US                     | `enUS`             |
+| Estoniano               | et-EE                     | `etEE`             |
+| Finlandês               | fi-FI                     | `fiFI`             |
+| Francês                 | fr-FR                     | `frFR`             |
+| Alemão                  | de-DE                     | `deDE`             |
+| Hebraico                | he-IL                     | `heIL`             |
+| Húngaro                 | hu-HU                     | `huHU`             |
+| Islandês                | is-IS                     | `isIS`             |
+| Indonésio               | id-ID                     | `idID`             |
+| Italiano                | it-IT                     | `itIT`             |
+| Japonês                 | ja-JP                     | `jaJP`             |
+| Coreano                 | ko-KR                     | `koKR`             |
+| Persa                   | fa-IR                     | `faIR`             |
+| Polonês                 | pl-PL                     | `plPL`             |
+| Português (Brasil)      | pt-BR                     | `ptBR`             |
+| Português               | pt-PT                     | `ptPT`             |
+| Romeno                  | ro-RO                     | `roRO`             |
+| Russo                   | ru-RU                     | `ruRU`             |
+| Eslovaco                | sk-SK                     | `skSK`             |
+| Espanhol                | es-ES                     | `esES`             |
+| Sueco                   | sv-SE                     | `svSE`             |
+| Turco                   | tr-TR                     | `trTR`             |
+| Ucraniano               | uk-UA                     | `ukUA`             |
+| Vietnamita              | vi-VN                     | `viVN`             |
 
-You can [find the source](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/locale/index.js) in the GitHub repository.
+Você pode [encontrar o fonte](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/locale/index.js) no repositório do GitHub.
 
-To create your own translation, or to customise the English text, copy this file to your project, make any changes needed and import the locale from there. (Please do consider contributing new translations back to Material-UI by opening a pull request.)
+Para criar sua própria tradução, ou para personalizar o texto em Inglês. copie este arquivo para o seu projeto, faça as alterações necessárias e importe a localidade de lá.
+
+Por favor, considere contribuir com novas traduções de volta para o Material-UI abrindo uma pull request. However, Material-UI aims to support the [100 most popular locales](https://en.wikipedia.org/wiki/List_of_languages_by_number_of_native_speakers), we might not accept contributions for locales that are not frequently used, for instance `gl-ES` that has "only" 2.5 million native speakers.
 
 ### Exemplo
 
 {{"demo": "pages/guides/localization/Locales.js", "defaultCodeOpen": false}}
 
-## RTL Support
+## Suporte RTL
 
-Right-to-left languages such as Arabic, Persian or Hebrew are supported. Follow [this guide](/guides/right-to-left/) to use them.
+Idiomas direita-para-esquerda como árabe, persa ou hebraico são suportados. Siga [este guia](/guides/right-to-left/) para usá-los.

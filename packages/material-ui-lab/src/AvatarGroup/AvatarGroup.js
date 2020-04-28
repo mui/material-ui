@@ -4,6 +4,7 @@ import { isFragment } from 'react-is';
 import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
+import { chainPropTypes } from '@material-ui/utils';
 
 const SPACINGS = {
   small: -16,
@@ -27,10 +28,11 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(props, ref) {
     children: childrenProp,
     classes,
     className,
-    spacing = 'medium',
     max = 5,
+    spacing = 'medium',
     ...other
   } = props;
+  const clampedMax = max < 2 ? 2 : max;
 
   const children = React.Children.toArray(childrenProp).filter((child) => {
     if (process.env.NODE_ENV !== 'production') {
@@ -47,7 +49,7 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(props, ref) {
     return React.isValidElement(child);
   });
 
-  const extraAvatars = children.length > max ? children.length - max : 0;
+  const extraAvatars = children.length > clampedMax ? children.length - clampedMax + 1 : 0;
 
   return (
     <div className={clsx(classes.root, className)} ref={ref} {...other}>
@@ -97,7 +99,16 @@ AvatarGroup.propTypes = {
   /**
    * Max avatars to show before +x.
    */
-  max: PropTypes.number,
+  max: chainPropTypes(PropTypes.number, (props) => {
+    if (props.max < 2) {
+      throw new Error(
+        [
+          'Material-UI: the prop `max` should be equal to 2 or above.',
+          'A value below is clamped to 2.',
+        ].join('\n'),
+      );
+    }
+  }),
   /**
    * Spacing between avatars.
    */

@@ -94,6 +94,8 @@
   "viewGitHub": "Den Quellcode auf GitHub anzeigen",
   "visit": "Besuchen sie die Website",
   "whosUsing": "Wer nutzt Material-UI?",
+  "initialFocusLabel": "A generic container that is programmatically focused to test keyboard navigation of our components.",
+  "resetFocus": "Reset focus to test keyboard navigation",
   "pages": {
     "/getting-started": "Erste Schritte",
     "/getting-started/installation": "Installation",

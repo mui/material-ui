@@ -141,6 +141,7 @@ const Tab = React.forwardRef(function Tab(props, ref) {
       aria-selected={selected}
       disabled={disabled}
       onClick={handleChange}
+      tabIndex={selected ? 0 : -1}
       {...other}
     >
       <span className={classes.wrapper}>

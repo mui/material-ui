@@ -2,7 +2,7 @@
 
 <p class="description">An overview of the founding team and core contributors to Material-UI.</p>
 
-Material-UI is maintained by a small group of invaluable core contributors, with the massive support and involvement of the community.
+Material-UI is maintained by a group of invaluable core contributors, with the massive support and involvement of the community.
 
 {{"demo": "pages/discover-more/team/Team.js", "hideToolbar": true, "bg": "inline"}}
 

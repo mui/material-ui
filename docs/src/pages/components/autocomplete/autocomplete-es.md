@@ -36,22 +36,26 @@ Choose one of the 248 countries.
 
 The component has two states that can be controlled:
 
-1. the "value" state with the `value`/`onChange` props combination.
-2. the "input value" state with the `inputValue`/`onInputChange` props combination.
+1. the "value" state with the `value`/`onChange` props combination. This state represents the value selected by the user, for instance when pressing <kbd>Enter</kbd>.
+2. the "input value" state with the `inputValue`/`onInputChange` props combination. This state represents the value displayed in the textbox.
 
 > ⚠️ These two state are isolated, they should be controlled independently.
 
+{{"demo": "pages/components/autocomplete/ControllableStates.js"}}
+
 ## Free solo
 
-Setear `freeSolo` a true, para que el cuadro de texto pueda contener cualquier valor arbitrario. La propiedad está diseñada para cubrir el principal caso de uso de una caja de búsqueda con sugerencias, ej: Google Search.
-
-However, if you intend to use it for a [combo box](#combo-box) like experience (an enhanced version of a select element) we recommend setting `selectOnFocus` (it helps the user clear the selected value).
+Setear `freeSolo` a true, para que el cuadro de texto pueda contener cualquier valor arbitrario. The prop is designed to cover the primary use case of a **search box** with suggestions, e.g. Google search or react-autowhatever.
 
 {{"demo": "pages/components/autocomplete/FreeSolo.js"}}
 
-### Helper message
+### Creatable
 
-Sometimes you want to make explicit to the user that he/she can add whatever value he/she wants. The following demo adds a last option: `Add "YOUR SEARCH"`.
+If you intend to use this mode for a [combo box](#combo-box) like experience (an enhanced version of a select element) we recommend setting:
+
+- `selectOnFocus` to helps the user clear the selected value.
+- `clearOnBlur` to helps the user to enter a new value.
+- A last option, for instance `Add "YOUR SEARCH"`.
 
 {{"demo": "pages/components/autocomplete/FreeSoloCreateOption.js"}}
 
@@ -143,7 +147,7 @@ La siguiente demostración se basa en [autosuggest-highlight](https://github.com
 
 ## Filtro personalizado
 
-The component exposes a factory to create a filter method that can provided to the `filerOption` prop. You can use it to change the default option filter behavior.
+The component exposes a factory to create a filter method that can provided to the `filterOptions` prop. You can use it to change the default option filter behavior.
 
 ```js
 import { createFilterOptions } from '@material-ui/lab/Autocomplete';
@@ -158,7 +162,6 @@ import { createFilterOptions } from '@material-ui/lab/Autocomplete';
   - `config.ignoreCase` (*Boolean* [optional]): Defaults to `true`. Lowercase everything.
   - `config.limit` (*Number* [optional]): Default to null. Limit the number of suggested options to be shown. For example, if `config.limit` is `100`, only the first `100` matching options are shown. It can be useful if a lot of options match and virtualization wasn't set up.
   - `config.matchFrom` (*'any' | 'start'* [optional]): Defaults to `'any'`.
-  - `config.startAfter`(*Number* [optional]): Default to `0`. Show the suggested options only after a certain number of letters
   - `config.stringify` (*Func* [optional]): Controls how an option is converted into a string so that it can be matched against the input text fragment.
   - `config.trim` (*Boolean* [optional]): Default `false`. Remove trailing spaces.
 

@@ -21,6 +21,9 @@ export const styles = (theme) => {
       position: 'relative',
       overflow: 'hidden',
       height: 4,
+      '@media print': {
+        colorAdjust: 'exact',
+      },
     },
     /* Styles applied to the root and bar2 element if `color="primary"`; bar2 if `variant="buffer"`. */
     colorPrimary: {

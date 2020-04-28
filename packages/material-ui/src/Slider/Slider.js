@@ -156,6 +156,9 @@ export const styles = (theme) => ({
         padding: '0 20px',
       },
     },
+    '@media print': {
+      colorAdjust: 'exact',
+    },
   },
   /* Styles applied to the root element if `color="primary"`. */
   colorPrimary: {

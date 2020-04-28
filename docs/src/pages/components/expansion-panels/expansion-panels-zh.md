@@ -3,13 +3,13 @@ title: React Expansion Panel 扩展面板组件
 components: ExpansionPanel, ExpansionPanelActions, ExpansionPanelDetails, ExpansionPanelSummary
 ---
 
-# Expansion Panel 拓展面板
+# Expansion Panel 扩展面板
 
-<p class="description">扩展面板包含了创建流程和轻量地编辑元素。</p>
+<p class="description">扩展面板包含了流程的创建和元素的轻量编辑。</p>
 
 [扩展面板](https://material.io/archive/guidelines/components/expansion-panels.html)是一个轻量级容器，既可以单独使用，也可以和卡片这样更大的平面相结合。
 
-> **注意：** 此版本的文本框将不再记录在 [Material Design 指南中](https://material.io/)，但 Material-UI 将继续支持它。
+> **注意：** 此版本的扩展面板将不再记录在 [Material Design 指南中](https://material.io/)，但 Material-UI 将继续支持它。
 
 ## 简单的扩展面板
 
@@ -49,7 +49,7 @@ In order to put an action such as a `Checkbox` or a button inside of the `Expans
 
 {{"demo": "pages/components/expansion-panels/DetailedExpansionPanel.js", "bg": true}}
 
-## 可访问性
+## 无障碍设计
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#accordion)
 

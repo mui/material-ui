@@ -3,7 +3,7 @@ title: Componente React de Campo de Texto
 components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField
 ---
 
-# Text Field (campo de texto)
+# Campo de Texto
 
 <p class="description">Campos de texto permitem que os usuários digitem e editem texto.</p>
 
@@ -19,19 +19,19 @@ O `TextField` suporta 3 variações: O estilo padrão, com contorno e preenchido
 
 **Observação:** A variante padrão do `TextField` não é mais documentada em [Material Design guidelines](https://material.io/) ([entenda o porque](https://medium.com/google-design/the-evolution-of-material-designs-text-fields-603688b3fe03)).
 
-## Form props
+## Propriedades do formulário
 
 Os atributos são suportados pelo `TextField`, como por exemplo `required`, `disabled`, `type`, etc. assim como o `helperText` que é utilizada para dar contexto sobre um campo de entrada, tais como, a entrada que será usada.
 
 {{"demo": "pages/components/text-fields/FormPropsTextFields.js"}}
 
-## Validation
+## Validação
 
 A propriedade `error` habilita o estado de erro, e, utilizando a propriedade `helperText` será fornecido um "feedback" ao usuário sobre o erro.
 
 {{"demo": "pages/components/text-fields/ValidationTextFields.js"}}
 
-## Multiline
+## Multilinha
 
 A propriedade `multiline` transforma o `textfield` em um `<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea">TextArea</a>.</p>
 
@@ -51,7 +51,7 @@ Há muitas formas de incluir um icone em um `textfield`.
 
 ### Decoração de inputs
 
-A forma principal é utilizando um `InputAdornment`. This can be used to add a prefix, a suffix or an action to an input. Por exemplo, você pode usar um botão com ícone para ocultar ou revelar a senha.
+A forma principal é utilizando um `InputAdornment`. Estes podem ser usados para adicionar um prefixo, sufixo ou uma ação para uma entrada. Por exemplo, você pode usar um botão com ícone para ocultar ou revelar a senha.
 
 {{"demo": "pages/components/text-fields/InputAdornments.js"}}
 
@@ -63,15 +63,15 @@ Gosta mais de campos de texto menores? Use a propriedade `size`.
 
 ## Leiaute
 
-`margin` prop can be used to alter the vertical spacing of inputs. Using `none` (default) will not apply margins to the `FormControl`, whereas `dense` and `normal` will. `dense` and `normal` alter other styles to meet the specification.
+A propriedade `margin` pode ser utilizada para alterar o espaçamento vertical entre os inputs. Usar `none` (padrão) não aplicará margens para o `FormControl`, enquanto `dense` e `normal` irá. As definições de `dense` e `normal` altera outros estilos para atender a especificação.
 
-`fullWidth` can be used to make the input take up the full width of its container.
+A propriedade `fullWidth` pode ser usada para fazer com que o campo ocupe a largura total de seu contêiner.
 
 {{"demo": "pages/components/text-fields/LayoutTextFields.js"}}
 
-## Uncontrolled vs Controlled
+## Não controlado vs Controlado
 
-The component can be controlled or uncontrolled.
+O componente pode ser controlado ou não controlado.
 
 {{"demo": "pages/components/text-fields/StateTextFields.js"}}
 
@@ -89,11 +89,11 @@ Você também pode ter notado que algumas propriedades de entrada nativas do HTM
 
 ## Cor
 
-The `color` prop changes the highlight color of the text field when focused.
+A propriedade `color` altera a cor do destaque do campo de texto quando focado.
 
 {{"demo": "pages/components/text-fields/ColorTextFields.js"}}
 
-## Inputs Costumizados
+## Campos customizados
 
 Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
 
@@ -198,6 +198,6 @@ Para que o campo de texto seja acessível, **a entrada deve estar vinculada ao r
 
 Para usos mais avançados, você pode tirar vantagem com:
 
-- [formik-material-ui](https://github.com/stackworx/formik-material-ui) Bindings for using Material-UI with [formik](https://jaredpalmer.com/formik).
-- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui) Bindings for using Material-UI with [Redux Form](https://redux-form.com/).
-- [mui-rff](https://github.com/lookfirst/mui-rff) Bindings for using Material-UI with [React Final Form](https://final-form.org/react).
+- [formik-material-ui](https://github.com/stackworx/formik-material-ui) Bindings para usar Material-UI com [formik](https://jaredpalmer.com/formik).
+- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui) Bindings para usar Material-UI com [Redux Form](https://redux-form.com/).
+- [mui-rff](https://github.com/lookfirst/mui-rff) Bindings para usar Material-UI com [React Final Form](https://final-form.org/react).

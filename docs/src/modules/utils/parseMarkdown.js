@@ -11,6 +11,20 @@ const descriptionRegExp = /<p class="description">(.*)<\/p>[\r\n]/;
 const headerKeyValueRegExp = /(.*): (.*)/g;
 const emptyRegExp = /^\s*$/;
 
+/**
+ * Extract information from the top of the markdown.
+ * For instance, the following input:
+ *
+ * ---
+ * title: Backdrop React Component
+ * components: Backdrop
+ * ---
+ *
+ * # Backdrop
+ *
+ * should output:
+ * { title: 'Backdrop React Component', components: ['Backdrop'] }
+ */
 export function getHeaders(markdown) {
   let header = markdown.match(headerRegExp);
 

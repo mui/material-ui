@@ -36,7 +36,7 @@ type DefaultBreakPoints = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
  */
 export function breakpoints<Props, Breakpoints extends string = DefaultBreakPoints>(
   styleFunction: StyleFunction<Props>
-): StyleFunction<Partial<Record<Breakpoints, Props>>>;
+): StyleFunction<Partial<Record<Breakpoints, Props>> & Props>;
 
 // compose.js
 /**

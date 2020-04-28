@@ -2,22 +2,22 @@
 
 <p class="description">Este pacote hospeda os componentes da incubadora que ainda não estão prontos para mover para o núcleo (core).</p>
 
-A principal diferença entre o lab e o core (núcleo) é como os componentes são versionados. Tendo um pacote separado para o lab, podemos liberar alterações radicais quando necessário, enquanto o pacote do core segue uma [política de movimentação mais lenta](https://material-ui.com/versions/#release-frequency).
+A principal diferença entre o lab e o core (núcleo) é como os componentes são versionados. Tendo um pacote separado para o lab, podemos liberar alterações críticas quando necessário, enquanto o pacote do core segue uma [política de liberação mais lenta](https://material-ui.com/versions/#release-frequency).
 
-À medida que os desenvolvedores usam, testam os componentes e relatam problemas, os mantenedores aprendem mais sobre as deficiências dos componentes: recursos ausentes, problemas de acessibilidade, bugs, design de API, etc. Quanto mais antigo e mais usado for um componente, menor é a probabilidade de novos problemas serem encontrados e, posteriormente, novas alterações radicais precisarão ser introduzidas.
+À medida que os desenvolvedores usam, testam os componentes e relatam problemas, os mantenedores aprendem mais sobre as deficiências dos componentes: recursos ausentes, problemas de acessibilidade, bugs, design de API, etc. Quanto mais antigo e mais usado for um componente, menor é a probabilidade de novos problemas serem encontrados e, consequentemente, necessidades de alterações críticas serem feitas.
 
 Para que um componente esteja pronto para ir para o core, são considerados os seguintes critérios:
 
-* Ele precisa ser **utilizado**. A equipe do Material-UI usa o Google Analytics e outras métricas para avaliar o uso de cada componente. Um componente do lab com baixo uso significa que ainda não está totalmente funcionando ou que há uma baixa demanda por ele.
-* Ele precisa corresponder à **qualidade de código** dos componentes principais. O componente não precisa ser perfeito para fazer parte do core, mas ele deve ser confiável o suficiente para que os desenvolvedores possam depender dele. 
+* Ele precisa ser **utilizado**. A equipe do Material-UI usa o Google Analytics e outras métricas para avaliar o uso de cada componente. Um componente do lab com baixo uso significa que ainda não está totalmente funcional ou que há uma baixa demanda por ele.
+* Ele precisa atender critérios de **qualidade de código**, semelhante aos componentes do core. O componente não precisa ser perfeito para fazer parte do core, mas ele deve ser confiável o suficiente para que os desenvolvedores possam depender dele. 
     * Cada componente precisa de **definições de tipo**. Atualmente, não é necessário que um componente do lab seja tipado, mas ele precisará ser tipado para passar para o core.
     * Requer boa **cobertura de teste**. Atualmente, alguns dos componentes do lab não têm testes abrangentes.
 * O componente pode ser usado como **alavancagem** para incentivar os usuários a atualizar para a versão mais recente? Quanto menos fragmentada a comunidade, melhor.
-* Ele precisa ter uma baixa probabilidade de **alterações radicais** no curto/médio prazo. Por exemplo, se o componente precisar de um novo recurso que provavelmente precisará de alterações radicais, pode ser preferível adiar sua promoção para o core.
+* Ele precisa ter uma baixa probabilidade de **alterações críticas** no curto/médio prazo. Por exemplo, se o componente precisar de um novo recurso que provavelmente precisará de alterações críticas, pode ser preferível adiar sua promoção para o core.
 
 ## Instalação
 
-Instale o pacote no diretório do projeto com:
+Instale o pacote no diretório do seu projeto com:
 
 ```sh
 // usando npm

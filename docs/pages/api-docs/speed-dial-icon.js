@@ -3,9 +3,8 @@ import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
 const pageFilename = 'api/speed-dial-icon';
-const requireRaw = require.context('!raw-loader!./', false, /speed-dial-icon\.md$/);
+const requireRaw = require.context('!raw-loader!./', false, /\/speed-dial-icon\.md$/);
 
-// eslint-disable-next-line react/prop-types
 export default function Page({ docs }) {
   return <MarkdownDocs docs={docs} />;
 }

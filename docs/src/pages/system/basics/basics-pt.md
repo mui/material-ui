@@ -71,7 +71,7 @@ const theme = {
 export default function App() {
   return (
     <ThemeProvider theme={theme}>
-      {/* children */}
+      {/* componentes filhos */}
     </ThemeProvider>
   )
 }

@@ -8,10 +8,16 @@ import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
 
 export const styles = {
+  /* Styles applied to the root element. */
   root: {
     width: 40,
     flexShrink: 0,
+    opacity: 0.8,
+    '&$disabled': {
+      opacity: 0,
+    },
   },
+  /* Styles applied to the root element if `orientation="vertical"`. */
   vertical: {
     width: '100%',
     height: 40,
@@ -19,30 +25,24 @@ export const styles = {
       transform: 'rotate(90deg)',
     },
   },
+  /* Pseudo-class applied to the root element if `disabled={true}`. */
+  disabled: {},
 };
 
-/**
- * @ignore - internal component.
- */
 const TabScrollButton = React.forwardRef(function TabScrollButton(props, ref) {
-  const { classes, className: classNameProp, direction, orientation, visible, ...other } = props;
-
-  const className = clsx(
-    classes.root,
-    {
-      [classes.vertical]: orientation === 'vertical',
-    },
-    classNameProp,
-  );
-
-  if (!visible) {
-    return <div className={className} />;
-  }
+  const { classes, className: classNameProp, direction, orientation, disabled, ...other } = props;
 
   return (
     <ButtonBase
       component="div"
-      className={className}
+      className={clsx(
+        classes.root,
+        {
+          [classes.vertical]: orientation === 'vertical',
+          [classes.disabled]: disabled,
+        },
+        classNameProp,
+      )}
       ref={ref}
       role={null}
       tabIndex={null}
@@ -58,11 +58,19 @@ const TabScrollButton = React.forwardRef(function TabScrollButton(props, ref) {
 });
 
 TabScrollButton.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
+  /**
+   * The content of the component.
+   */
+  children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -72,13 +80,13 @@ TabScrollButton.propTypes = {
    */
   direction: PropTypes.oneOf(['left', 'right']).isRequired,
   /**
+   * If `true`, the element will be disabled.
+   */
+  disabled: PropTypes.bool,
+  /**
    * The tabs orientation (layout flow direction).
    */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']).isRequired,
-  /**
-   * Should the button be present or just consume space.
-   */
-  visible: PropTypes.bool.isRequired,
 };
 
-export default withStyles(styles, { name: 'PrivateTabScrollButton' })(TabScrollButton);
+export default withStyles(styles, { name: 'MuiTabScrollButton' })(TabScrollButton);

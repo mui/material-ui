@@ -97,7 +97,7 @@ function generateGutter(theme, breakpoint) {
 // flexWrap: 'nowrap',
 // justifyContent: 'flex-start',
 export const styles = (theme) => ({
-  /* Styles applied to the root element */
+  /* Styles applied to the root element. */
   root: {},
   /* Styles applied to the root element if `container={true}`. */
   container: {

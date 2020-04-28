@@ -1,5 +1,6 @@
 import * as React from 'react';
-import ButtonBase from '../ButtonBase/ButtonBase';
+import ButtonBase from '../ButtonBase';
+import { TabScrollButtonProps } from '../TabScrollButton';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
 export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof ButtonBase> {
@@ -13,6 +14,7 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof Button
     ScrollButtonComponent?: React.ElementType;
     scrollButtons?: 'auto' | 'desktop' | 'on' | 'off';
     TabIndicatorProps?: Partial<React.HTMLAttributes<HTMLDivElement>>;
+    TabScrollButtonProps?: Partial<TabScrollButtonProps>;
     textColor?: 'secondary' | 'primary' | 'inherit';
     value: any;
     variant?: 'standard' | 'scrollable' | 'fullWidth';

@@ -4,27 +4,27 @@
 
 ## Tamanho do pacote importa
 
-O tamanho do pacote de Material-UI é levado muito a sério. Size snapshots are taken on every commit for every package and critical parts of those packages ([view the latest snapshot](/size-snapshot)). Combinado com [dangerJS](https://danger.systems/js/) podemos inspecionar [alterações detalhadas no tamanho do pacote](https://github.com/mui-org/material-ui/pull/14638#issuecomment-466658459) em cada solicitação de Pull Request.
+O tamanho do pacote de Material-UI é levado muito a sério. Fotos contendo o tamanho do pacote são feitas em cada commit e partes críticas dos pacotes([veja a última foto](/size-snapshot)). Combinado com [dangerJS](https://danger.systems/js/) podemos inspecionar [alterações detalhadas no tamanho do pacote](https://github.com/mui-org/material-ui/pull/14638#issuecomment-466658459) em cada solicitação de Pull Request.
 
-## When and how to use tree-shaking?
+## Quando e como usar tree-shaking?
 
-Tree-shaking of Material-UI works out of the box in modern frameworks. Material-UI exposes its full API on the top-level `material-ui` import. If you're using ES6 modules and a bundler that supports tree-shaking ([`webpack` >= 2.x](https://webpack.js.org/guides/tree-shaking/), [`parcel` with a flag](https://en.parceljs.org/cli.html#enable-experimental-scope-hoisting/tree-shaking-support)) you can safely use named imports and still get an optimised bundle size automatically:
+Tree-shaking no Material-UI funciona de uma forma moderna. Material-UI expõe sua API completa na importação do nível superior `material-ui`. Se você estiver usando módulos ES6 e um bundler que suporta tree-shaking ([`webpack` >= 2.x](https://webpack.js.org/guides/tree-shaking/), [`parcel` com uma propriedade definida](https://en.parceljs.org/cli.html#enable-experimental-scope-hoisting/tree-shaking-support)) você pode usar com segurança importações nomeadas e ainda assim, obter automaticamente um tamanho otimizado do pacote:
 
 ```js
 import { Button, TextField } from '@material-ui/core';
 ```
 
-⚠️ The following instructions are only needed if you want to optimize your development startup times or if you are using an older bundler that doesn't support tree-shaking.
+⚠️ As instruções a seguir são somente necessárias se você deseja otimizar o tempo de startup em desenvolvimento ou se você esta utilizando um bundler antigo que não suporte tree-shaking.
 
-## Development environment
+## Ambiente de desenvolvimento
 
-Development bundles can contain the full library which can lead to **slower startup times**. This is especially noticeable if you import from `@material-ui/icons`. Startup times can be approximately 6x slower than without named imports from the top-level API.
+Os pacotes de desenvolvimento podem conter a biblioteca completa que pode deixar **o tempo de inicialização mais lento**. Isso é especialmente perceptível se você importar de `@material-ui/icons`. Os tempos de inicialização podem ser aproximadamente 6 vezes mais lentos do que sem utilizar importações nomeadas da API de nível superior.
 
-If this is an issue for you, you have various options:
+Se isso é um problema para você, tem várias opções:
 
 ### Opção 1
 
-You can use path imports to avoid pulling in unused modules. For instance, use:
+Você pode usar as importações de caminho para evitar puxar módulos não utilizados. Por exemplo, use:
 
 ```js
 // 🚀 Rápida
@@ -32,56 +32,56 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 ```
 
-instead of top level imports (without a Babel plugin):
+em vez de importações de nível superior (sem um plugin do Babel):
 
 ```js
 import { Button, TextField } from '@material-ui/core';
 ```
 
-This is the option we document in all the demos, since it requires no configuration. It is encouraged for library authors extending the components. Head to [Option 2](#option-2) for the approach that yields the best DX and UX.
+Esta é a opção que apresentamos em todas as demonstrações, pois não exige qualquer configuração. É o mais recomendável para autores de biblioteca que estendem os componentes. Vá até [Opção 2](#option-2) para uma abordagem que produz uma melhor DX e UX.
 
-While importing directly in this manner doesn't use the exports in [`@material-ui/core/index.js`](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/index.js), this file can serve as a handy reference as to which modules are public.
+Ao importar diretamente dessa maneira, não utiliza as exportações em [`@material-ui/core/index.js`](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/index.js), esse arquivo pode servir como uma referência útil para quais módulos são públicos.
 
-Be aware that we only support first and second level imports. Anything deeper is considered private and can cause issues, such as module duplication in your bundle.
+Esteja ciente de que apenas damos suporte para as importações de primeiro e segundo nível. Qualquer coisa em níveis mais profundos é considerado privado e pode causar problemas, como a duplicação de módulos em seu pacote.
 
 ```js
 // ✅ OK
 import { Add as AddIcon } from '@material-ui/icons';
 import { Tabs } from '@material-ui/core';
-//                                 ^^^^ 1st or top-level
+//                                 ^^^^ 1° ou nível superior
 
 // ✅ OK
 import AddIcon from '@material-ui/icons/Add';
 import Tabs from '@material-ui/core/Tabs';
-//                                  ^^^^ 2nd level
+//                                  ^^^^ 2° nível
 
-// ❌ NOT OK
+// ❌ NÃO OK
 import TabIndicator from '@material-ui/core/Tabs/TabIndicator';
-//                                               ^^^^^^^^^^^^ 3rd level
+//                                               ^^^^^^^^^^^^ 3° nível
 ```
 
 ### Opção 2
 
-This option provides the best User Experience and Developer Experience:
+Esta opção fornece a melhor Experiência do Usuário e Experiência do Desenvolvedor:
 
-- UX: The Babel plugin enables top level tree-shaking even if your bundler doesn't support it.
-- DX: The Babel plugin makes startup time in dev mode as fast as Option 1.
-- DX: This syntax reduces the duplication of code, requiring only a single import for multiple modules. Overall, the code is easier to read, and you are less likely to make a mistake when importing a new module.
+- UX: O plugin Babel permite tree-shaking de nível superior, mesmo se o seu bundler não suporte.
+- DX: O plugin Babel torna o tempo de inicialização no modo de desenvolvimento tão rápido quanto a opção 1.
+- DX: Essa sintaxe reduz a duplicação de código, exigindo apenas uma única importação para vários módulos. Em geral, o código é mais fácil de ser lido, e é menos provável que você cometa um erro ao importar um novo módulo.
 ```js
 import { Button, TextField } from '@material-ui/core';
 ```
 
-However, you need to apply the two following steps correctly.
+No entanto, você precisa aplicar as duas etapas seguintes corretamente.
 
 #### 1. Configure o Babel
 
-Pick one of the following plugins:
+Escolha um dos seguintes plugins:
 
 - [babel-plugin-import](https://github.com/ant-design/babel-plugin-import) com a seguinte configuração:
 
   `yarn add -D babel-plugin-import`
 
-  Create a `.babelrc.js` file in the root directory of your project:
+  Crie um arquivo `.babelrc.js` no diretório raiz do seu projeto:
 
   ```js
   const plugins = [
@@ -89,7 +89,7 @@ Pick one of the following plugins:
       'babel-plugin-import',
       {
         'libraryName': '@material-ui/core',
-        // Use "'libraryDirectory': ''," if your bundler does not support ES modules
+        // Use "'libraryDirectory': ''," se o seu bundler não suportar módulos ES
         'libraryDirectory': 'esm',
         'camel2DashComponentName': false
       },
@@ -99,7 +99,7 @@ Pick one of the following plugins:
       'babel-plugin-import',
       {
         'libraryName': '@material-ui/icons',
-        // Use "'libraryDirectory': ''," if your bundler does not support ES modules
+        // Use "'libraryDirectory': ''," se o seu bundler não suportar módulos ES
         'libraryDirectory': 'esm',
         'camel2DashComponentName': false
       },
@@ -110,11 +110,11 @@ Pick one of the following plugins:
   module.exports = {plugins};
   ```
 
-- [babel-plugin-transform-imports](https://www.npmjs.com/package/babel-plugin-transform-imports) with the following configuration:
+- [babel-plugin-transform-imports](https://www.npmjs.com/package/babel-plugin-transform-imports) com a seguinte configuração:
 
   `yarn add -D babel-plugin-transform-imports`
 
-  Create a `.babelrc.js` file in the root directory of your project:
+  Crie um arquivo `.babelrc.js` no diretório raiz do seu projeto:
 
   ```js
   const plugins = [
@@ -122,12 +122,12 @@ Pick one of the following plugins:
       'babel-plugin-transform-imports',
       {
         '@material-ui/core': {
-          // Use "transform: '@material-ui/core/${member}'," if your bundler does not support ES modules
+          // Use "transform: '@material-ui/core/${member}'," se o seu bundler não suportar módulos ES
           'transform': '@material-ui/core/esm/${member}',
           'preventFullImport': true
         },
         '@material-ui/icons': {
-          // Use "transform: '@material-ui/icons/${member}'," if your bundler does not support ES modules
+          // Use "transform: '@material-ui/icons/${member}'," se o seu bundler não suportar módulos ES
           'transform': '@material-ui/icons/esm/${member}',
           'preventFullImport': true
         }
@@ -138,11 +138,11 @@ Pick one of the following plugins:
   module.exports = {plugins};
   ```
 
-If you are using Create React App, you will need to use a couple of projects that let you use `.babelrc` configuration, without ejecting.
+Se você estiver usando Create React App, você precisará usar alguns projetos que permitem a configuração por `.babelrc`, sem ejetar.
 
   `yarn add -D react-app-rewired customize-cra`
 
-  Create a `config-overrides.js` file in the root directory:
+  Crie um arquivo `config-overrides.js` na pasta raiz:
 
   ```js
   /* config-overrides.js */
@@ -153,9 +153,9 @@ If you are using Create React App, you will need to use a couple of projects tha
   );
   ```
 
-  If you wish, `babel-plugin-import` can be configured through `config-overrides.js` instead of `.babelrc` by using this [configuration](https://github.com/arackaf/customize-cra/blob/master/api.md#fixbabelimportslibraryname-options).
+  Se você desejar, `babel-plugin-import` pode ser configurado através de `config-overrides.js` ao invés de `.babelrc` usando esta [configuração](https://github.com/arackaf/customize-cra/blob/master/api.md#fixbabelimportslibraryname-options).
 
-  Modify your `package.json` start command:
+  Modifique seu comando start no `package.json`:
 
 ```diff
   "scripts": {
@@ -164,29 +164,29 @@ If you are using Create React App, you will need to use a couple of projects tha
   }
 ```
 
-  Note: You may run into errors like these:
+  Nota: Você pode se deparar com erros como estes:
 
-  > Module not found: Can't resolve '@material-ui/core/makeStyles' in '/your/project'
+  > Module not found: Can't resolve '@material-ui/core/makeStyles' in '/seu/projeto'
 
-  This is because `@material-ui/styles` is re-exported through `core`, but the full import is not allowed.
+  Isso acontece porque `@material-ui/styles` é reexportado através do `core`, mas a importação completa não é permitida.
 
-  You have an import like this in your code:
+  Você tem uma importação como essa no seu código:
 
   ```js
   import { makeStyles, createStyles } from '@material-ui/core';
   ```
 
-  The fix is simple, define the import separately:
+  A correção é simples, defina a importação separadamente:
 
   ```js
   import { makeStyles, createStyles } from '@material-ui/core/styles';
   ```
 
-  Enjoy significantly faster start times.
+  Desfrute do tempo de inicialização significativamente mais rápido.
 
-#### 2. Convert all your imports
+#### 2. Converta todas as suas importações
 
-Finally, you can convert your existing codebase to this option with this [top-level-imports](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-codemod/README.md#top-level-imports) codemod. It will perform the following diffs:
+Finalmeny, você pode converter sua base de código existente com esse modificador de código [top-level-imports](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-codemod/README.md#top-level-imports). Ele executará as seguintes alterações:
 
 ```diff
 -import Button from '@material-ui/core/Button';
@@ -196,8 +196,8 @@ Finally, you can convert your existing codebase to this option with this [top-le
 
 ## ECMAScript
 
-The package published on npm is **transpiled**, with [Babel](https://github.com/babel/babel), to take into account the [supported platforms](/getting-started/supported-platforms/).
+O pacote publicado no npm é **transpilado** com [Babel](https://github.com/babel/babel), para levar em consideração as [plataformas suportadas](/getting-started/supported-platforms/).
 
-A second version of the components is also published, which you can find under the [`/es` folder](https://unpkg.com/@material-ui/core/es/). All the non-official syntax is transpiled to the [ECMA-262 standard](https://www.ecma-international.org/publications/standards/Ecma-262.htm), nothing more. This can be used to make separate bundles targeting different browsers. Older browsers will require more JavaScript features to be transpiled, which increases the size of the bundle. No polyfills are included for ES2015 runtime features. IE11+ and evergreen browsers support all the necessary features. If you need support for other browsers, consider using [`@babel/polyfill`](https://www.npmjs.com/package/@babel/polyfill).
+Uma segunda versão dos componentes é também publicada, essa versão pode ser encontrada na [pasta `/es`](https://unpkg.com/@material-ui/core/es/). Toda a sintaxe não oficial é transpilada para o padrão [ECMA-262](https://www.ecma-international.org/publications/standards/Ecma-262.htm), nada demais. Isso pode ser usado para criar pacotes separados visando diferentes navegadores. Os navegadores mais antigos exigem mais recursos JavaScript para serem transpilados, o que aumenta o tamanho do pacote. Nenhum polyfill está incluído para os recursos de tempo de execução do ES2015. IE11+ e navegadores evergreen suportam todos os recursos necessários. Se você precisar de suporte para outros navegadores, considere usar [`@babel/polyfill`](https://www.npmjs.com/package/@babel/polyfill).
 
-⚠️ In order to minimize duplication of code in users' bundles, library authors are **strongly discouraged** from using the `/es` folder.
+⚠️ Para minimizar a duplicação de código nos pacotes de usuários, autores de bibliotecas são **fortemente desencorajados** de usar a pasta `/es`.

@@ -1,6 +1,6 @@
 ---
 title: Fab React component
-components: Fab (Botón flotante de acción)
+components: Fab
 ---
 
 # Floating action button
