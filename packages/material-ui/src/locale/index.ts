@@ -571,7 +571,7 @@ export const frFR: Localization = {
       closeText: 'Fermer',
     },
     MuiPagination: {
-      'aria-label': 'pagination navigation',
+      'aria-label': 'navigation de pagination',
       getItemAriaLabel: (type, page, selected) => {
         if (type === 'page') {
           return `${selected ? '' : 'Aller à la '}page ${page}`;
