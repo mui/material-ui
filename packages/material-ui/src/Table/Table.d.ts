@@ -10,6 +10,7 @@ export interface TableTypeMap<P = {}, D extends React.ElementType = 'table'> {
     padding?: Padding;
     size?: Size;
     stickyHeader?: boolean;
+    hideLastBorder?: boolean;
   };
   defaultComponent: D;
   classKey: TableClassKey;

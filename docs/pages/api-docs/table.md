@@ -34,6 +34,7 @@ The `MuiTable` name can be used for providing [default props](/customization/glo
 | <span class="prop-name">padding</span> | <span class="prop-type">'default'<br>&#124;&nbsp;'checkbox'<br>&#124;&nbsp;'none'</span> | <span class="prop-default">'default'</span> | Allows TableCells to inherit padding of the Table. |
 | <span class="prop-name">size</span> | <span class="prop-type">'small'<br>&#124;&nbsp;'medium'</span> | <span class="prop-default">'medium'</span> | Allows TableCells to inherit size of the Table. |
 | <span class="prop-name">stickyHeader</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Set the header sticky.<br>⚠️ It doesn't work with IE 11. |
+| <span class="prop-name">hideLastBorder</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Hide the border of the last table row |
 
 The `ref` is forwarded to the root element.
 
@@ -45,6 +46,7 @@ Any other props supplied will be provided to the root element (native element).
 |:-----|:-------------|:------------|
 | <span class="prop-name">root</span> | <span class="prop-name">.MuiTable-root</span> | Styles applied to the root element.
 | <span class="prop-name">stickyHeader</span> | <span class="prop-name">.MuiTable-stickyHeader</span> | Styles applied to the root element if `stickyHeader={true}`.
+| <span class="prop-name">hideLastBorder</span> | <span class="prop-name">.MuiTable-hideLastBorder</span> | Styles applied to the root element if `hideLastBorder={true}`.
 
 You can override the style of the component thanks to one of these customization points:
 

@@ -52,6 +52,15 @@ describe('<Table />', () => {
     expect(getByTestId('children')).not.to.equal(null);
   });
 
+  it('should have class hideLastBorder when the property is true', () => {
+    const { container } = render(
+      <Table hideLastBorder component="div">
+        foo
+      </Table>,
+    );
+    expect(container.firstChild).to.have.class(classes.hideLastBorder);
+  });
+
   it('should define table in the child context', () => {
     let context;
 

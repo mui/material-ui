@@ -23,6 +23,12 @@ export const styles = (theme) => ({
   stickyHeader: {
     borderCollapse: 'separate',
   },
+  /* Styles applied to the root element if `hideLastBorder={true}`. */
+  hideLastBorder: {
+    '& tbody tr:last-child th, & tbody tr:last-child td': {
+      border: 0,
+    },
+  },
 });
 
 const defaultComponent = 'table';
@@ -35,6 +41,7 @@ const Table = React.forwardRef(function Table(props, ref) {
     padding = 'default',
     size = 'medium',
     stickyHeader = false,
+    hideLastBorder = false,
     ...other
   } = props;
   const table = React.useMemo(() => ({ padding, size, stickyHeader }), [
@@ -48,7 +55,14 @@ const Table = React.forwardRef(function Table(props, ref) {
       <Component
         role={Component === defaultComponent ? null : 'table'}
         ref={ref}
-        className={clsx(classes.root, { [classes.stickyHeader]: stickyHeader }, className)}
+        className={clsx(
+          classes.root,
+          {
+            [classes.stickyHeader]: stickyHeader,
+            [classes.hideLastBorder]: hideLastBorder,
+          },
+          className,
+        )}
         {...other}
       />
     </TableContext.Provider>
@@ -88,6 +102,11 @@ Table.propTypes = {
    * ⚠️ It doesn't work with IE 11.
    */
   stickyHeader: PropTypes.bool,
+  /**
+   * Hide the border of the last table row
+   *
+   */
+  hideLastBorder: PropTypes.bool,
 };
 
 export default withStyles(styles, { name: 'MuiTable' })(Table);
