@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import { createShallow, getClasses } from '@material-ui/core/test-utils';
 import TabIndicator from './TabIndicator';
 
@@ -20,22 +20,22 @@ describe('<TabIndicator />', () => {
 
   it('should render with the root class', () => {
     const wrapper = shallow(<TabIndicator {...defaultProps} />);
-    assert.strictEqual(wrapper.name(), 'span');
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    expect(wrapper.name()).to.equal('span');
+    expect(wrapper.hasClass(classes.root)).to.equal(true);
   });
 
   describe('prop: style', () => {
     it('should be applied on the root element', () => {
       const wrapper = shallow(<TabIndicator {...defaultProps} style={style} />);
-      assert.strictEqual(wrapper.props().style, style, 'should apply directly the property');
+      expect(wrapper.props().style).to.equal(style);
     });
   });
 
   describe('prop: className', () => {
     it('should append the className on the root element', () => {
       const wrapper = shallow(<TabIndicator {...defaultProps} className="foo" />);
-      assert.strictEqual(wrapper.name(), 'span');
-      assert.strictEqual(wrapper.hasClass('foo'), true);
+      expect(wrapper.name()).to.equal('span');
+      expect(wrapper.hasClass('foo')).to.equal(true);
     });
   });
 });

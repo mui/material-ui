@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { assert, expect } from 'chai';
+import { expect } from 'chai';
 import { spy } from 'sinon';
 import * as PropTypes from 'prop-types';
 import { createMount, findOutermostIntrinsic } from '@material-ui/core/test-utils';
@@ -38,7 +38,7 @@ describe('<RadioGroup />', () => {
 
   it('the root component has the radiogroup role', () => {
     const wrapper = mount(<RadioGroup value="" />);
-    assert.strictEqual(findOutermostIntrinsic(wrapper).props().role, 'radiogroup');
+    expect(findOutermostIntrinsic(wrapper).props().role).to.equal('radiogroup');
   });
 
   it('should fire the onBlur callback', () => {
@@ -47,8 +47,8 @@ describe('<RadioGroup />', () => {
 
     const eventMock = 'something-to-match';
     wrapper.simulate('blur', { eventMock });
-    assert.strictEqual(handleBlur.callCount, 1);
-    assert.strictEqual(handleBlur.calledWithMatch({ eventMock }), true);
+    expect(handleBlur.callCount).to.equal(1);
+    expect(handleBlur.calledWithMatch({ eventMock })).to.equal(true);
   });
 
   it('should fire the onKeyDown callback', () => {
@@ -57,8 +57,8 @@ describe('<RadioGroup />', () => {
 
     const eventMock = 'something-to-match';
     wrapper.simulate('keyDown', { eventMock });
-    assert.strictEqual(handleKeyDown.callCount, 1);
-    assert.strictEqual(handleKeyDown.calledWithMatch({ eventMock }), true);
+    expect(handleKeyDown.callCount).to.equal(1);
+    expect(handleKeyDown.calledWithMatch({ eventMock })).to.equal(true);
   });
 
   it('should support uncontrolled mode', () => {
@@ -69,7 +69,7 @@ describe('<RadioGroup />', () => {
     );
 
     findRadio(wrapper, 'one').simulate('change');
-    assert.strictEqual(findRadio(wrapper, 'one').props().checked, true);
+    expect(findRadio(wrapper, 'one').props().checked).to.equal(true);
   });
 
   it('should support default value in uncontrolled mode', () => {
@@ -80,9 +80,9 @@ describe('<RadioGroup />', () => {
       </RadioGroup>,
     );
 
-    assert.strictEqual(findRadio(wrapper, 'zero').props().checked, true);
+    expect(findRadio(wrapper, 'zero').props().checked).to.equal(true);
     findRadio(wrapper, 'one').simulate('change');
-    assert.strictEqual(findRadio(wrapper, 'one').props().checked, true);
+    expect(findRadio(wrapper, 'one').props().checked).to.equal(true);
   });
 
   it('should have a default name', () => {
@@ -93,8 +93,8 @@ describe('<RadioGroup />', () => {
       </RadioGroup>,
     );
 
-    assert.match(findRadio(wrapper, 'zero').props().name, /^mui-[0-9]+/);
-    assert.match(findRadio(wrapper, 'one').props().name, /^mui-[0-9]+/);
+    expect(findRadio(wrapper, 'zero').props().name).to.match(/^mui-[0-9]+/);
+    expect(findRadio(wrapper, 'one').props().name).to.match(/^mui-[0-9]+/);
   });
 
   describe('imperative focus()', () => {
@@ -111,7 +111,7 @@ describe('<RadioGroup />', () => {
       );
 
       actionsRef.current.focus();
-      assert.strictEqual(oneRadioOnFocus.callCount, 1);
+      expect(oneRadioOnFocus.callCount).to.equal(1);
     });
 
     it('should not focus any radios if all are disabled', () => {
@@ -130,9 +130,9 @@ describe('<RadioGroup />', () => {
 
       actionsRef.current.focus();
 
-      assert.strictEqual(zeroRadioOnFocus.callCount, 0);
-      assert.strictEqual(oneRadioOnFocus.callCount, 0);
-      assert.strictEqual(twoRadioOnFocus.callCount, 0);
+      expect(zeroRadioOnFocus.callCount).to.equal(0);
+      expect(oneRadioOnFocus.callCount).to.equal(0);
+      expect(twoRadioOnFocus.callCount).to.equal(0);
     });
 
     it('should focus the selected radio', () => {
@@ -149,7 +149,7 @@ describe('<RadioGroup />', () => {
       );
 
       actionsRef.current.focus();
-      assert.strictEqual(twoRadioOnFocus.callCount, 1);
+      expect(twoRadioOnFocus.callCount).to.equal(1);
     });
 
     it('should focus the non-disabled radio rather than the disabled selected radio', () => {
@@ -166,7 +166,7 @@ describe('<RadioGroup />', () => {
       );
 
       actionsRef.current.focus();
-      assert.strictEqual(threeRadioOnFocus.callCount, 1);
+      expect(threeRadioOnFocus.callCount).to.equal(1);
     });
 
     it('should be able to focus with no radios', () => {
@@ -198,8 +198,8 @@ describe('<RadioGroup />', () => {
 
       const eventMock = 'something-to-match';
       findRadio(wrapper, 'woofRadioGroup').simulate('change', { eventMock });
-      assert.strictEqual(handleChange.callCount, 1);
-      assert.strictEqual(handleChange.calledWithMatch({ eventMock }), true);
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.calledWithMatch({ eventMock })).to.equal(true);
     });
 
     it('should chain the onChange property', () => {
@@ -213,8 +213,8 @@ describe('<RadioGroup />', () => {
       );
 
       findRadio(wrapper, 'woofRadioGroup').simulate('change');
-      assert.strictEqual(handleChange1.callCount, 1);
-      assert.strictEqual(handleChange2.callCount, 1);
+      expect(handleChange1.callCount).to.equal(1);
+      expect(handleChange2.callCount).to.equal(1);
     });
 
     describe('with non-string values', () => {
@@ -253,15 +253,15 @@ describe('<RadioGroup />', () => {
 
         const wrapper = mount(<Test onChange={handleChange} value={values[1]} values={values} />);
         // on the initial mount it works because we compare to the `value` prop
-        assert.strictEqual(isNthChecked(wrapper, 0), false);
-        assert.strictEqual(isNthChecked(wrapper, 1), true);
+        expect(isNthChecked(wrapper, 0)).to.equal(false);
+        expect(isNthChecked(wrapper, 1)).to.equal(true);
 
         selectNth(wrapper, 0);
         // on updates, however, we compare against event.target.value
         // object information is lost on stringification.
-        assert.strictEqual(isNthChecked(wrapper, 0), false);
-        assert.strictEqual(isNthChecked(wrapper, 1), true);
-        assert.strictEqual(handleChange.firstCall.args[1], '[object Object]');
+        expect(isNthChecked(wrapper, 0)).to.equal(false);
+        expect(isNthChecked(wrapper, 1)).to.equal(true);
+        expect(handleChange.firstCall.args[1]).to.equal('[object Object]');
       });
     });
   });

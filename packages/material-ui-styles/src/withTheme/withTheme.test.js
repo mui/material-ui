@@ -1,5 +1,5 @@
 import React from 'react';
-import { assert } from 'chai';
+import { expect, assert } from 'chai';
 import { createMount } from '@material-ui/core/test-utils';
 import { Input } from '@material-ui/core';
 import { isMuiElement } from '@material-ui/core/utils';
@@ -37,22 +37,22 @@ describe('withTheme', () => {
         <TestWithTheme />
       </ThemeProvider>,
     );
-    assert.strictEqual(text(), 'foo');
+    expect(text()).to.equal('foo');
   });
 
   it('hoist statics', () => {
     const Test = () => null;
     Test.someStatic = 'will not get hoisted';
     const TestWithTheme = withTheme(Test);
-    assert.strictEqual(TestWithTheme.someStatic, Test.someStatic);
+    expect(TestWithTheme.someStatic).to.equal(Test.someStatic);
   });
 
   it('hoists mui internals', () => {
-    assert.strictEqual(isMuiElement(<Input />, ['Input']), true);
+    expect(isMuiElement(<Input />, ['Input'])).to.equal(true);
 
     const ThemedInput = withTheme(Input);
 
-    assert.strictEqual(isMuiElement(<ThemedInput />, ['Input']), true);
+    expect(isMuiElement(<ThemedInput />, ['Input'])).to.equal(true);
   });
 
   describe('refs', () => {
@@ -79,7 +79,7 @@ describe('withTheme', () => {
       const ref = React.createRef();
       mount(<ThemedTarget ref={ref} />);
 
-      assert.strictEqual(ref.current.nodeName, 'DIV');
+      expect(ref.current.nodeName).to.equal('DIV');
     });
 
     describe('innerRef', () => {
@@ -101,9 +101,8 @@ describe('withTheme', () => {
           'ThemedDiv',
         );
 
-        assert.strictEqual(consoleErrorMock.callCount(), 1);
-        assert.include(
-          consoleErrorMock.messages()[0],
+        expect(consoleErrorMock.callCount()).to.equal(1);
+        expect(consoleErrorMock.messages()[0]).to.include(
           'Warning: Failed prop type: Material-UI: the `innerRef` prop is deprecated',
         );
       });
@@ -111,8 +110,7 @@ describe('withTheme', () => {
   });
 
   it('should throw is the import is invalid', () => {
-    assert.throw(
-      () => withTheme(undefined),
+    expect(() => withTheme(undefined)).to.throw(
       'You are calling withTheme(Component) with an undefined component',
     );
   });

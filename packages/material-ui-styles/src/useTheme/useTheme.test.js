@@ -1,5 +1,5 @@
 import React from 'react';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import { createMount } from '@material-ui/core/test-utils';
 import useTheme from './useTheme';
 import ThemeProvider from '../ThemeProvider';
@@ -29,6 +29,6 @@ describe('useTheme', () => {
         <Test />
       </ThemeProvider>,
     );
-    assert.strictEqual(text(), 'foo');
+    expect(text()).to.equal('foo');
   });
 });

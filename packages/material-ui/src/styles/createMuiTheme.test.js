@@ -1,4 +1,4 @@
-import { assert } from 'chai';
+import { expect } from 'chai';
 import createMuiTheme from './createMuiTheme';
 import { deepOrange, green } from '../colors';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
@@ -6,34 +6,33 @@ import consoleErrorMock from 'test/utils/consoleErrorMock';
 describe('createMuiTheme', () => {
   it('should have a palette', () => {
     const muiTheme = createMuiTheme();
-    assert.strictEqual(typeof createMuiTheme, 'function');
-    assert.strictEqual(typeof muiTheme.palette, 'object');
+    expect(typeof createMuiTheme).to.equal('function');
+    expect(typeof muiTheme.palette).to.equal('object');
   });
 
   it('should have the custom palette', () => {
     const muiTheme = createMuiTheme({
       palette: { primary: { main: deepOrange[500] }, secondary: { main: green.A400 } },
     });
-    assert.strictEqual(muiTheme.palette.primary.main, deepOrange[500]);
-    assert.strictEqual(muiTheme.palette.secondary.main, green.A400);
+    expect(muiTheme.palette.primary.main).to.equal(deepOrange[500]);
+    expect(muiTheme.palette.secondary.main).to.equal(green.A400);
   });
 
   it('should allow providing a partial structure', () => {
     const muiTheme = createMuiTheme({ transitions: { duration: { shortest: 150 } } });
-    assert.notStrictEqual(muiTheme.transitions.duration.shorter, undefined);
+    expect(muiTheme.transitions.duration.shorter).to.not.equal(undefined);
   });
 
   it('should use the defined spacing for the gutters mixin', () => {
     const spacing = 100;
     const muiTheme = createMuiTheme({ spacing });
-    assert.strictEqual(muiTheme.mixins.gutters().paddingLeft, spacing * 2);
+    expect(muiTheme.mixins.gutters().paddingLeft).to.equal(spacing * 2);
   });
 
   describe('shadows', () => {
     it('should provide the default array', () => {
       const muiTheme = createMuiTheme();
-      assert.strictEqual(
-        muiTheme.shadows[2],
+      expect(muiTheme.shadows[2]).to.equal(
         '0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12)',
       );
     });
@@ -67,7 +66,7 @@ describe('createMuiTheme', () => {
         11,
       ];
       const muiTheme = createMuiTheme({ shadows });
-      assert.strictEqual(muiTheme.shadows, shadows);
+      expect(muiTheme.shadows).to.equal(shadows);
     });
   });
 
@@ -86,7 +85,7 @@ describe('createMuiTheme', () => {
         },
       };
       const muiTheme = createMuiTheme({ props });
-      assert.deepEqual(muiTheme.props, props);
+      expect(muiTheme.props).to.deep.equal(props);
     });
   });
 
@@ -103,15 +102,14 @@ describe('createMuiTheme', () => {
       let theme;
 
       theme = createMuiTheme({ overrides: { Button: { disabled: { color: 'blue' } } } });
-      assert.strictEqual(Object.keys(theme.overrides.Button.disabled).length, 1);
-      assert.strictEqual(consoleErrorMock.messages().length, 0);
+      expect(Object.keys(theme.overrides.Button.disabled).length).to.equal(1);
+      expect(consoleErrorMock.messages().length).to.equal(0);
       theme = createMuiTheme({ overrides: { MuiButton: { root: { color: 'blue' } } } });
-      assert.strictEqual(consoleErrorMock.messages().length, 0);
+      expect(consoleErrorMock.messages().length).to.equal(0);
       theme = createMuiTheme({ overrides: { MuiButton: { disabled: { color: 'blue' } } } });
-      assert.strictEqual(Object.keys(theme.overrides.MuiButton.disabled).length, 0);
-      assert.strictEqual(consoleErrorMock.messages().length, 1);
-      assert.match(
-        consoleErrorMock.messages()[0],
+      expect(Object.keys(theme.overrides.MuiButton.disabled).length).to.equal(0);
+      expect(consoleErrorMock.messages().length).to.equal(1);
+      expect(consoleErrorMock.messages()[0]).to.match(
         /the `MuiButton` component increases the CSS specificity of the `disabled` internal state./,
       );
     });
@@ -119,8 +117,8 @@ describe('createMuiTheme', () => {
 
   it('shallow merges multiple arguments', () => {
     const muiTheme = createMuiTheme({ foo: 'I am foo' }, { bar: 'I am bar' });
-    assert.strictEqual(muiTheme.foo, 'I am foo');
-    assert.strictEqual(muiTheme.bar, 'I am bar');
+    expect(muiTheme.foo).to.equal('I am foo');
+    expect(muiTheme.bar).to.equal('I am bar');
   });
 
   it('deep merges multiple arguments', () => {
@@ -128,7 +126,7 @@ describe('createMuiTheme', () => {
       { custom: { foo: 'I am foo' } },
       { custom: { bar: 'I am bar' } },
     );
-    assert.strictEqual(muiTheme.custom.foo, 'I am foo');
-    assert.strictEqual(muiTheme.custom.bar, 'I am bar');
+    expect(muiTheme.custom.foo).to.equal('I am foo');
+    expect(muiTheme.custom.bar).to.equal('I am bar');
   });
 });

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { act } from 'react-dom/test-utils';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import { stub } from 'sinon';
 import { createMount, createShallow } from '@material-ui/core/test-utils';
 import mediaQuery from 'css-mediaquery';
@@ -71,60 +71,60 @@ describe('withWidth', () => {
   describe('server-side rendering', () => {
     it('should not render the children as the width is unknown', () => {
       const wrapper = shallow(<EmptyWithWidth />);
-      assert.strictEqual(wrapper.type(), null);
+      expect(wrapper.type()).to.equal(null);
     });
   });
 
   describe('prop: width', () => {
     it('should be able to override it', () => {
       const wrapper = mount(<EmptyWithWidth width="xl" />);
-      assert.strictEqual(wrapper.find(Empty).props().width, 'xl');
+      expect(wrapper.find(Empty).props().width).to.equal('xl');
     });
   });
 
   describe('browser', () => {
     it('should provide the right width to the child element', () => {
       const wrapper = mount(<EmptyWithWidth />);
-      assert.strictEqual(wrapper.find(Empty).props().width, 'md');
+      expect(wrapper.find(Empty).props().width).to.equal('md');
     });
   });
 
   describe('isWidthUp', () => {
     it('should work as default inclusive', () => {
-      assert.strictEqual(isWidthUp('md', 'lg'), true, 'should accept larger size');
-      assert.strictEqual(isWidthUp('md', 'md'), true, 'should be inclusive');
-      assert.strictEqual(isWidthUp('md', 'sm'), false, 'should reject smaller size');
+      expect(isWidthUp('md', 'lg')).to.equal(true);
+      expect(isWidthUp('md', 'md')).to.equal(true);
+      expect(isWidthUp('md', 'sm')).to.equal(false);
     });
     it('should work as exclusive', () => {
-      assert.strictEqual(isWidthUp('md', 'lg', false), true, 'should accept larger size');
-      assert.strictEqual(isWidthUp('md', 'md', false), false, 'should be exclusive');
-      assert.strictEqual(isWidthUp('md', 'sm', false), false, 'should reject smaller size');
+      expect(isWidthUp('md', 'lg', false)).to.equal(true);
+      expect(isWidthUp('md', 'md', false)).to.equal(false);
+      expect(isWidthUp('md', 'sm', false)).to.equal(false);
     });
   });
 
   describe('isWidthDown', () => {
     it('should work as default inclusive', () => {
-      assert.strictEqual(isWidthDown('md', 'lg', true), false, 'should reject larger size');
-      assert.strictEqual(isWidthDown('md', 'md', true), true, 'should be inclusive');
-      assert.strictEqual(isWidthDown('md', 'sm', true), true, 'should accept smaller size');
+      expect(isWidthDown('md', 'lg', true)).to.equal(false);
+      expect(isWidthDown('md', 'md', true)).to.equal(true);
+      expect(isWidthDown('md', 'sm', true)).to.equal(true);
     });
     it('should work as exclusive', () => {
-      assert.strictEqual(isWidthDown('md', 'lg', false), false, 'should reject larger size');
-      assert.strictEqual(isWidthDown('md', 'md', false), false, 'should be exclusive');
-      assert.strictEqual(isWidthDown('md', 'sm', false), true, 'should accept smaller size');
+      expect(isWidthDown('md', 'lg', false)).to.equal(false);
+      expect(isWidthDown('md', 'md', false)).to.equal(false);
+      expect(isWidthDown('md', 'sm', false)).to.equal(true);
     });
   });
 
   it('should observe the media queries', () => {
     const wrapper = mount(<EmptyWithWidth />);
-    assert.strictEqual(wrapper.find(Empty).props().width, 'md');
+    expect(wrapper.find(Empty).props().width).to.equal('md');
     act(() => {
       matchMediaInstances[2].instance.matches = false;
       matchMediaInstances[0].instance.matches = true;
       matchMediaInstances[0].listeners[0]();
     });
     wrapper.update();
-    assert.strictEqual(wrapper.find(Empty).props().width, 'xl');
+    expect(wrapper.find(Empty).props().width).to.equal('xl');
   });
 
   describe('prop: initialWidth', () => {
@@ -133,11 +133,11 @@ describe('withWidth', () => {
 
       // First mount on the server
       const wrapper1 = shallow(element);
-      assert.strictEqual(wrapper1.find(Empty).props().width, 'lg');
+      expect(wrapper1.find(Empty).props().width).to.equal('lg');
 
       // Second mount on the client
       const wrapper2 = mount(element);
-      assert.strictEqual(wrapper2.find(Empty).props().width, 'md');
+      expect(wrapper2.find(Empty).props().width).to.equal('md');
     });
   });
 
@@ -148,11 +148,11 @@ describe('withWidth', () => {
 
       // First mount on the server
       const wrapper1 = shallow(element);
-      assert.strictEqual(wrapper1.find(Empty).props().width, 'lg');
+      expect(wrapper1.find(Empty).props().width).to.equal('lg');
 
       // Second mount on the client
       const wrapper2 = mount(element);
-      assert.strictEqual(wrapper2.find(Empty).props().width, 'md');
+      expect(wrapper2.find(Empty).props().width).to.equal('md');
     });
   });
 
@@ -162,11 +162,11 @@ describe('withWidth', () => {
       const element = <EmptyWithWidth theme={theme} />;
       // First mount on the server
       const wrapper1 = shallow(element);
-      assert.strictEqual(wrapper1.find(Empty).props().width, 'lg');
+      expect(wrapper1.find(Empty).props().width).to.equal('lg');
 
       // Second mount on the client
       const wrapper2 = mount(element);
-      assert.strictEqual(wrapper2.find(Empty).props().width, 'md');
+      expect(wrapper2.find(Empty).props().width).to.equal('md');
     });
   });
 
@@ -174,14 +174,14 @@ describe('withWidth', () => {
     it('should inject the theme', () => {
       const EmptyWithWidth2 = withWidth({ withTheme: true })(Empty);
       const wrapper = mount(<EmptyWithWidth2 />);
-      assert.strictEqual(typeof wrapper.find(Empty).props().theme, 'object');
+      expect(typeof wrapper.find(Empty).props().theme).to.equal('object');
     });
 
     it('should forward the theme', () => {
       const EmptyWithWidth2 = withWidth({ withTheme: true })(Empty);
       const theme = createMuiTheme();
       const wrapper = mount(<EmptyWithWidth2 theme={theme} />);
-      assert.strictEqual(wrapper.find(Empty).props().theme, theme);
+      expect(wrapper.find(Empty).props().theme).to.equal(theme);
     });
   });
 
@@ -189,7 +189,7 @@ describe('withWidth', () => {
     it('should work as expected', () => {
       const EmptyWithWidth2 = withWidth({ noSSR: true })(Empty);
       const wrapper = mount(<EmptyWithWidth2 />);
-      assert.strictEqual(wrapper.find(Empty).props().width, 'md');
+      expect(wrapper.find(Empty).props().width).to.equal('md');
     });
   });
 });

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import { createMount } from '@material-ui/core/test-utils';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
@@ -82,13 +82,12 @@ describe('<Grow />', () => {
 
       describe('handleEnter()', () => {
         it('should call handleEnter()', () => {
-          assert.strictEqual(handleEnter.callCount, 1);
-          assert.strictEqual(handleEnter.args[0][0], child.instance());
+          expect(handleEnter.callCount).to.equal(1);
+          expect(handleEnter.args[0][0]).to.equal(child.instance());
         });
 
         it('should set style properties', () => {
-          assert.match(
-            handleEnter.args[0][0].style.transition,
+          expect(handleEnter.args[0][0].style.transition).to.match(
             /opacity (0ms )?cubic-bezier\(0.4, 0, 0.2, 1\)( 0ms)?,( )?transform (0ms )?cubic-bezier\(0.4, 0, 0.2, 1\)( 0ms)?/,
           );
         });
@@ -96,16 +95,16 @@ describe('<Grow />', () => {
 
       describe('handleEntering()', () => {
         it('should call handleEntering()', () => {
-          assert.strictEqual(handleEntering.callCount, 1);
-          assert.strictEqual(handleEntering.args[0][0], child.instance());
+          expect(handleEntering.callCount).to.equal(1);
+          expect(handleEntering.args[0][0]).to.equal(child.instance());
         });
       });
 
       describe('handleEntered()', () => {
         it('should call handleEntered()', () => {
           clock.tick(1000);
-          assert.strictEqual(handleEntered.callCount, 1);
-          assert.strictEqual(handleEntered.args[0][0], child.instance());
+          expect(handleEntered.callCount).to.equal(1);
+          expect(handleEntered.args[0][0]).to.equal(child.instance());
         });
       });
     });
@@ -118,14 +117,13 @@ describe('<Grow />', () => {
 
       describe('handleExit()', () => {
         it('should call handleExit()', () => {
-          assert.strictEqual(handleExit.callCount, 1);
-          assert.strictEqual(handleExit.args[0][0], child.instance());
+          expect(handleExit.callCount).to.equal(1);
+          expect(handleExit.args[0][0]).to.equal(child.instance());
         });
 
         it('should set style properties', () => {
-          assert.strictEqual(handleExit.args[0][0].style.opacity, '0', 'should be transparent');
-          assert.strictEqual(
-            handleExit.args[0][0].style.transform,
+          expect(handleExit.args[0][0].style.opacity).to.equal('0');
+          expect(handleExit.args[0][0].style.transform).to.equal(
             'scale(0.75, 0.5625)',
             'should have the exit scale',
           );
@@ -134,16 +132,16 @@ describe('<Grow />', () => {
 
       describe('handleExiting()', () => {
         it('should call handleExiting()', () => {
-          assert.strictEqual(handleExiting.callCount, 1);
-          assert.strictEqual(handleExiting.args[0][0], child.instance());
+          expect(handleExiting.callCount).to.equal(1);
+          expect(handleExiting.args[0][0]).to.equal(child.instance());
         });
       });
 
       describe('handleExited()', () => {
         it('should call handleExited()', () => {
           clock.tick(1000);
-          assert.strictEqual(handleExited.callCount, 1);
-          assert.strictEqual(handleExited.args[0][0], child.instance());
+          expect(handleExited.callCount).to.equal(1);
+          expect(handleExited.args[0][0]).to.equal(child.instance());
         });
       });
     });
@@ -176,7 +174,7 @@ describe('<Grow />', () => {
           />,
         );
 
-        assert.match(handleEnter.args[0][0].style.transition, new RegExp(`${enterDuration}ms`));
+        expect(handleEnter.args[0][0].style.transition).to.match(new RegExp(`${enterDuration}ms`));
       });
 
       it('should delay based on height when timeout is auto', () => {
@@ -223,11 +221,11 @@ describe('<Grow />', () => {
         wrapper.setProps({
           in: true,
         });
-        assert.strictEqual(handleEntered.callCount, 0);
+        expect(handleEntered.callCount).to.equal(0);
         clock.tick(0);
-        assert.strictEqual(handleEntered.callCount, 0);
+        expect(handleEntered.callCount).to.equal(0);
         clock.tick(autoTransitionDuration);
-        assert.strictEqual(handleEntered.callCount, 1);
+        expect(handleEntered.callCount).to.equal(1);
 
         const handleEntered2 = spy();
         mount(
@@ -236,20 +234,20 @@ describe('<Grow />', () => {
           </Grow>,
         );
 
-        assert.strictEqual(handleEntered2.callCount, 0);
+        expect(handleEntered2.callCount).to.equal(0);
         clock.tick(0);
-        assert.strictEqual(handleEntered2.callCount, 1);
+        expect(handleEntered2.callCount).to.equal(1);
       });
 
       it('should use timeout as delay when timeout is number', () => {
         const timeout = 10;
         const handleEntered = spy();
         mount(<Grow {...defaultProps} timeout={timeout} onEntered={handleEntered} />);
-        assert.strictEqual(handleEntered.callCount, 0);
+        expect(handleEntered.callCount).to.equal(0);
         clock.tick(0);
-        assert.strictEqual(handleEntered.callCount, 0);
+        expect(handleEntered.callCount).to.equal(0);
         clock.tick(timeout);
-        assert.strictEqual(handleEntered.callCount, 1);
+        expect(handleEntered.callCount).to.equal(1);
       });
     });
 
@@ -268,9 +266,9 @@ describe('<Grow />', () => {
           in: false,
         });
 
-        assert.strictEqual(handleExited.callCount, 0);
+        expect(handleExited.callCount).to.equal(0);
         clock.tick(0);
-        assert.strictEqual(handleExited.callCount, 1);
+        expect(handleExited.callCount).to.equal(1);
       });
 
       it('should use timeout as delay when timeout is number', () => {
@@ -283,11 +281,11 @@ describe('<Grow />', () => {
           in: false,
         });
 
-        assert.strictEqual(handleExited.callCount, 0);
+        expect(handleExited.callCount).to.equal(0);
         clock.tick(0);
-        assert.strictEqual(handleExited.callCount, 0);
+        expect(handleExited.callCount).to.equal(0);
         clock.tick(timeout);
-        assert.strictEqual(handleExited.callCount, 1);
+        expect(handleExited.callCount).to.equal(1);
       });
 
       it('should create proper sharp animation', () => {
@@ -307,7 +305,7 @@ describe('<Grow />', () => {
           in: false,
         });
 
-        assert.match(handleExit.args[0][0].style.transition, new RegExp(`${leaveDuration}ms`));
+        expect(handleExit.args[0][0].style.transition).to.match(new RegExp(`${leaveDuration}ms`));
       });
     });
   });

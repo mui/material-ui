@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import Icon from '@material-ui/core/Icon';
 import Tooltip from '@material-ui/core/Tooltip';
@@ -38,24 +38,24 @@ describe('<SpeedDialAction />', () => {
     const wrapper = mount(
       <SpeedDialAction {...defaultProps} TooltipClasses={{ tooltip: 'bar' }} />,
     );
-    assert.include(wrapper.find(Tooltip).props().classes.tooltip, 'bar');
+    expect(wrapper.find(Tooltip).props().classes.tooltip).to.include('bar');
   });
 
   it('should render a Fab', () => {
     const wrapper = mount(<SpeedDialAction {...defaultProps} />);
-    assert.strictEqual(wrapper.find(Fab).exists(), true);
+    expect(wrapper.find(Fab).exists()).to.equal(true);
   });
 
   it('should render the button with the fab class', () => {
     const wrapper = mount(<SpeedDialAction {...defaultProps} open />);
     const buttonWrapper = wrapper.find('button');
-    assert.strictEqual(buttonWrapper.hasClass(classes.fab), true);
+    expect(buttonWrapper.hasClass(classes.fab)).to.equal(true);
   });
 
   it('should render the button with the fab and fabClosed classes', () => {
     const wrapper = mount(<SpeedDialAction {...defaultProps} />);
     const buttonWrapper = wrapper.find('button');
-    assert.strictEqual(buttonWrapper.hasClass(classes.fab), true);
-    assert.strictEqual(buttonWrapper.hasClass(classes.fabClosed), true);
+    expect(buttonWrapper.hasClass(classes.fab)).to.equal(true);
+    expect(buttonWrapper.hasClass(classes.fabClosed)).to.equal(true);
   });
 });

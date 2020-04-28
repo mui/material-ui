@@ -1,4 +1,4 @@
-import { assert } from 'chai';
+import { expect } from 'chai';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import spacing from './spacing';
 
@@ -9,7 +9,7 @@ describe('spacing', () => {
         theme: {},
         p: 1,
       });
-      assert.deepEqual(output, { padding: 8 });
+      expect(output).to.deep.equal({ padding: 8 });
     });
 
     it('should be able to customize the unit value', () => {
@@ -19,7 +19,7 @@ describe('spacing', () => {
         },
         p: 2,
       });
-      assert.deepEqual(output1, { padding: 4 });
+      expect(output1).to.deep.equal({ padding: 4 });
 
       const output2 = spacing({
         theme: {
@@ -27,7 +27,7 @@ describe('spacing', () => {
         },
         p: 1,
       });
-      assert.deepEqual(output2, { padding: 3 });
+      expect(output2).to.deep.equal({ padding: 3 });
 
       const output3 = spacing({
         theme: {
@@ -35,7 +35,7 @@ describe('spacing', () => {
         },
         p: 2,
       });
-      assert.deepEqual(output3, { padding: 4 });
+      expect(output3).to.deep.equal({ padding: 4 });
     });
   });
 
@@ -55,11 +55,13 @@ describe('spacing', () => {
         },
         p: 3,
       });
-      assert.deepEqual(output, { padding: undefined });
-      assert.strictEqual(consoleErrorMock.callCount(), 1);
-      assert.match(consoleErrorMock.messages()[0], /the value provided \(3\) overflows\./);
-      assert.match(consoleErrorMock.messages()[0], /The supported values are: \[0,3,5\]\./);
-      assert.match(consoleErrorMock.messages()[0], /3 > 2, you need to add the missing values\./);
+      expect(output).to.deep.equal({ padding: undefined });
+      expect(consoleErrorMock.callCount()).to.equal(1);
+      expect(consoleErrorMock.messages()[0]).to.match(/the value provided \(3\) overflows\./);
+      expect(consoleErrorMock.messages()[0]).to.match(/The supported values are: \[0,3,5\]\./);
+      expect(consoleErrorMock.messages()[0]).to.match(
+        /3 > 2, you need to add the missing values\./,
+      );
     });
 
     it('should warn if the theme transformer is invalid', () => {
@@ -69,14 +71,12 @@ describe('spacing', () => {
         },
         p: 3,
       });
-      assert.deepEqual(output, { padding: undefined });
-      assert.strictEqual(consoleErrorMock.callCount(), 1);
-      assert.match(
-        consoleErrorMock.messages()[0],
+      expect(output).to.deep.equal({ padding: undefined });
+      expect(consoleErrorMock.callCount()).to.equal(1);
+      expect(consoleErrorMock.messages()[0]).to.match(
         /the `theme.spacing` value \(\[object Object\]\) is invalid\./,
       );
-      assert.match(
-        consoleErrorMock.messages()[0],
+      expect(consoleErrorMock.messages()[0]).to.match(
         /It should be a number, an array or a function\./,
       );
     });
@@ -87,7 +87,7 @@ describe('spacing', () => {
       theme: {},
       p: -1,
     });
-    assert.deepEqual(output, { padding: -8 });
+    expect(output).to.deep.equal({ padding: -8 });
   });
 
   it('should support composes values', () => {
@@ -95,7 +95,7 @@ describe('spacing', () => {
       theme: {},
       px: 1,
     });
-    assert.deepEqual(output, {
+    expect(output).to.deep.equal({
       paddingLeft: 8,
       paddingRight: 8,
     });
@@ -108,7 +108,7 @@ describe('spacing', () => {
       },
       p: -1,
     });
-    assert.deepEqual(output, { padding: '-2em' });
+    expect(output).to.deep.equal({ padding: '-2em' });
   });
 
   it('should support breakpoints', () => {
@@ -116,7 +116,7 @@ describe('spacing', () => {
       theme: {},
       p: [1, 2],
     });
-    assert.deepEqual(output1, {
+    expect(output1).to.deep.equal({
       '@media (min-width:0px)': {
         padding: 8,
       },
@@ -132,7 +132,7 @@ describe('spacing', () => {
         sm: 2,
       },
     });
-    assert.deepEqual(output2, {
+    expect(output2).to.deep.equal({
       '@media (min-width:0px)': {
         padding: 8,
       },
@@ -161,14 +161,14 @@ describe('spacing', () => {
       theme: {},
       paddingTop: 1,
     });
-    assert.deepEqual(output1, {
+    expect(output1).to.deep.equal({
       paddingTop: 8,
     });
     const output2 = spacing({
       theme: {},
       paddingY: 1,
     });
-    assert.deepEqual(output2, {
+    expect(output2).to.deep.equal({
       paddingBottom: 8,
       paddingTop: 8,
     });
@@ -179,7 +179,7 @@ describe('spacing', () => {
       theme: {},
       pt: '10px',
     });
-    assert.deepEqual(output, {
+    expect(output).to.deep.equal({
       paddingTop: '10px',
     });
   });

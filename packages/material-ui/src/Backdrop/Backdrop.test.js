@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
 import Backdrop from './Backdrop';
@@ -37,6 +37,6 @@ describe('<Backdrop />', () => {
         <h1>Hello World</h1>
       </Backdrop>,
     );
-    assert.strictEqual(wrapper.contains(<h1>Hello World</h1>), true);
+    expect(wrapper.contains(<h1>Hello World</h1>)).to.equal(true);
   });
 });

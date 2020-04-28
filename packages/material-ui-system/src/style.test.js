@@ -1,4 +1,4 @@
-import { assert } from 'chai';
+import { expect } from 'chai';
 import style from './style';
 
 describe('style', () => {
@@ -13,7 +13,7 @@ describe('style', () => {
       theme: {},
       bgcolor: 'blue',
     });
-    assert.deepEqual(output, {
+    expect(output).to.deep.equal({
       backgroundColor: 'blue',
     });
   });
@@ -23,7 +23,7 @@ describe('style', () => {
       theme: {},
       bgcolor: ['blue', 'red'],
     });
-    assert.deepEqual(output1, {
+    expect(output1).to.deep.equal({
       '@media (min-width:0px)': {
         backgroundColor: 'blue',
       },
@@ -39,7 +39,7 @@ describe('style', () => {
         sm: 'red',
       },
     });
-    assert.deepEqual(output2, {
+    expect(output2).to.deep.equal({
       '@media (min-width:0px)': {
         backgroundColor: 'blue',
       },
@@ -76,7 +76,7 @@ describe('style', () => {
       boxShadow: 1,
     });
 
-    assert.deepEqual(output, {
+    expect(output).to.deep.equal({
       boxShadow: '0px 1px 3px 0px rgba(0, 0, 0, 0.2)',
     });
   });
@@ -89,7 +89,7 @@ describe('style', () => {
       boxShadow: '0px 1px 3px 0px rgba(0, 0, 0, 0.2)',
     });
 
-    assert.deepEqual(output, {
+    expect(output).to.deep.equal({
       boxShadow: '0px 1px 3px 0px rgba(0, 0, 0, 0.2)',
     });
   });
@@ -105,7 +105,7 @@ describe('style', () => {
       theme: {},
       border: 1,
     });
-    assert.deepEqual(output1, {
+    expect(output1).to.deep.equal({
       border: '1px solid',
     });
 
@@ -117,7 +117,7 @@ describe('style', () => {
       },
       border: 'small',
     });
-    assert.deepEqual(output2, {
+    expect(output2).to.deep.equal({
       border: '2px solid',
     });
 
@@ -127,7 +127,7 @@ describe('style', () => {
       },
       border: 2,
     });
-    assert.deepEqual(output3, {
+    expect(output3).to.deep.equal({
       border: '4px solid',
     });
   });

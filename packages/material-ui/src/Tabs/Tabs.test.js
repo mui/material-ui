@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { expect, assert } from 'chai';
+import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
@@ -76,8 +76,7 @@ describe('<Tabs />', () => {
 
     it('should warn if the input is invalid', () => {
       render(<Tabs value={0} centered variant="scrollable" />);
-      assert.match(
-        consoleErrorMock.messages()[0],
+      expect(consoleErrorMock.messages()[0]).to.match(
         /Material-UI: you can not use the `centered={true}` and `variant="scrollable"`/,
       );
     });

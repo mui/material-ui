@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { expect, assert } from 'chai';
+import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import { createClientRender } from 'test/utils/createClientRender';
@@ -42,8 +42,8 @@ describe('<Snackbar />', () => {
       const event = new window.Event('click', { view: window, bubbles: true, cancelable: true });
       document.body.dispatchEvent(event);
 
-      assert.strictEqual(handleClose.callCount, 1);
-      assert.deepEqual(handleClose.args[0], [event, 'clickaway']);
+      expect(handleClose.callCount).to.equal(1);
+      expect(handleClose.args[0]).to.deep.equal([event, 'clickaway']);
     });
   });
 
@@ -84,21 +84,21 @@ describe('<Snackbar />', () => {
           transitionDuration={duration / 2}
         />,
       );
-      assert.strictEqual(handleCloseSpy.callCount, 0);
-      assert.strictEqual(handleExitedSpy.callCount, 0);
+      expect(handleCloseSpy.callCount).to.equal(0);
+      expect(handleExitedSpy.callCount).to.equal(0);
       wrapper.setProps({ open: true });
       clock.tick(duration);
-      assert.strictEqual(handleCloseSpy.callCount, 1);
-      assert.strictEqual(handleExitedSpy.callCount, 0);
+      expect(handleCloseSpy.callCount).to.equal(1);
+      expect(handleExitedSpy.callCount).to.equal(0);
       clock.tick(duration / 2);
-      assert.strictEqual(handleCloseSpy.callCount, 1);
-      assert.strictEqual(handleExitedSpy.callCount, 1);
+      expect(handleCloseSpy.callCount).to.equal(1);
+      expect(handleExitedSpy.callCount).to.equal(1);
       clock.tick(duration);
-      assert.strictEqual(handleCloseSpy.callCount, messageCount);
-      assert.strictEqual(handleExitedSpy.callCount, 1);
+      expect(handleCloseSpy.callCount).to.equal(messageCount);
+      expect(handleExitedSpy.callCount).to.equal(1);
       clock.tick(duration / 2);
-      assert.strictEqual(handleCloseSpy.callCount, messageCount);
-      assert.strictEqual(handleExitedSpy.callCount, messageCount);
+      expect(handleCloseSpy.callCount).to.equal(messageCount);
+      expect(handleExitedSpy.callCount).to.equal(messageCount);
     });
   });
 
@@ -126,10 +126,10 @@ describe('<Snackbar />', () => {
       );
 
       wrapper.setProps({ open: true });
-      assert.strictEqual(handleClose.callCount, 0);
+      expect(handleClose.callCount).to.equal(0);
       clock.tick(autoHideDuration);
-      assert.strictEqual(handleClose.callCount, 1);
-      assert.deepEqual(handleClose.args[0], [null, 'timeout']);
+      expect(handleClose.callCount).to.equal(1);
+      expect(handleClose.args[0]).to.deep.equal([null, 'timeout']);
     });
 
     it('calls onClose at timeout even if the prop changes', () => {
@@ -166,11 +166,11 @@ describe('<Snackbar />', () => {
       );
 
       wrapper.setProps({ open: true });
-      assert.strictEqual(handleClose.callCount, 0);
+      expect(handleClose.callCount).to.equal(0);
       clock.tick(autoHideDuration / 2);
       wrapper.setProps({ autoHideDuration: undefined });
       clock.tick(autoHideDuration / 2);
-      assert.strictEqual(handleClose.callCount, 0);
+      expect(handleClose.callCount).to.equal(0);
     });
 
     it('should be able to interrupt the timer', () => {
@@ -189,17 +189,17 @@ describe('<Snackbar />', () => {
         />,
       );
 
-      assert.strictEqual(handleClose.callCount, 0);
+      expect(handleClose.callCount).to.equal(0);
       clock.tick(autoHideDuration / 2);
       wrapper.simulate('mouseEnter');
-      assert.strictEqual(handleMouseEnter.callCount, 1, 'should trigger mouse enter callback');
+      expect(handleMouseEnter.callCount).to.equal(1);
       clock.tick(autoHideDuration / 2);
       wrapper.simulate('mouseLeave');
-      assert.strictEqual(handleMouseLeave.callCount, 1, 'should trigger mouse leave callback');
-      assert.strictEqual(handleClose.callCount, 0);
+      expect(handleMouseLeave.callCount).to.equal(1);
+      expect(handleClose.callCount).to.equal(0);
       clock.tick(2e3);
-      assert.strictEqual(handleClose.callCount, 1);
-      assert.deepEqual(handleClose.args[0], [null, 'timeout']);
+      expect(handleClose.callCount).to.equal(1);
+      expect(handleClose.args[0]).to.deep.equal([null, 'timeout']);
     });
 
     it('should not call onClose if autoHideDuration is undefined', () => {
@@ -207,9 +207,9 @@ describe('<Snackbar />', () => {
       const autoHideDuration = 2e3;
       mount(<Snackbar open onClose={handleClose} message="message" autoHideDuration={undefined} />);
 
-      assert.strictEqual(handleClose.callCount, 0);
+      expect(handleClose.callCount).to.equal(0);
       clock.tick(autoHideDuration);
-      assert.strictEqual(handleClose.callCount, 0);
+      expect(handleClose.callCount).to.equal(0);
     });
 
     it('should not call onClose if autoHideDuration is null', () => {
@@ -217,9 +217,9 @@ describe('<Snackbar />', () => {
       const autoHideDuration = 2e3;
       mount(<Snackbar open onClose={handleClose} message="message" autoHideDuration={null} />);
 
-      assert.strictEqual(handleClose.callCount, 0);
+      expect(handleClose.callCount).to.equal(0);
       clock.tick(autoHideDuration);
-      assert.strictEqual(handleClose.callCount, 0);
+      expect(handleClose.callCount).to.equal(0);
     });
 
     it('should not call onClose when closed', () => {
@@ -234,11 +234,11 @@ describe('<Snackbar />', () => {
         />,
       );
 
-      assert.strictEqual(handleClose.callCount, 0);
+      expect(handleClose.callCount).to.equal(0);
       clock.tick(autoHideDuration / 2);
       wrapper.setProps({ open: false });
       clock.tick(autoHideDuration / 2);
-      assert.strictEqual(handleClose.callCount, 0);
+      expect(handleClose.callCount).to.equal(0);
     });
   });
 
@@ -266,14 +266,14 @@ describe('<Snackbar />', () => {
           resumeHideDuration={resumeHideDuration}
         />,
       );
-      assert.strictEqual(handleClose.callCount, 0);
+      expect(handleClose.callCount).to.equal(0);
       clock.tick(autoHideDuration / 2);
       wrapper.simulate('mouseEnter');
       clock.tick(autoHideDuration / 2);
       wrapper.simulate('mouseLeave');
-      assert.strictEqual(handleClose.callCount, 0);
+      expect(handleClose.callCount).to.equal(0);
       clock.tick(2e3);
-      assert.strictEqual(handleClose.callCount, 0);
+      expect(handleClose.callCount).to.equal(0);
     });
 
     it('should call onClose when timer done after user interaction', () => {
@@ -289,15 +289,15 @@ describe('<Snackbar />', () => {
           resumeHideDuration={resumeHideDuration}
         />,
       );
-      assert.strictEqual(handleClose.callCount, 0);
+      expect(handleClose.callCount).to.equal(0);
       clock.tick(autoHideDuration / 2);
       wrapper.simulate('mouseEnter');
       clock.tick(autoHideDuration / 2);
       wrapper.simulate('mouseLeave');
-      assert.strictEqual(handleClose.callCount, 0);
+      expect(handleClose.callCount).to.equal(0);
       clock.tick(resumeHideDuration);
-      assert.strictEqual(handleClose.callCount, 1);
-      assert.deepEqual(handleClose.args[0], [null, 'timeout']);
+      expect(handleClose.callCount).to.equal(1);
+      expect(handleClose.args[0]).to.deep.equal([null, 'timeout']);
     });
 
     it('should call onClose immediately after user interaction when 0', () => {
@@ -314,13 +314,13 @@ describe('<Snackbar />', () => {
         />,
       );
       wrapper.setProps({ open: true });
-      assert.strictEqual(handleClose.callCount, 0);
+      expect(handleClose.callCount).to.equal(0);
       wrapper.simulate('mouseEnter');
       clock.tick(100);
       wrapper.simulate('mouseLeave');
       clock.tick(resumeHideDuration);
-      assert.strictEqual(handleClose.callCount, 1);
-      assert.deepEqual(handleClose.args[0], [null, 'timeout']);
+      expect(handleClose.callCount).to.equal(1);
+      expect(handleClose.args[0]).to.deep.equal([null, 'timeout']);
     });
   });
 
@@ -351,17 +351,17 @@ describe('<Snackbar />', () => {
       const bEvent = new window.Event('blur', { view: window, bubbles: false, cancelable: false });
       window.dispatchEvent(bEvent);
 
-      assert.strictEqual(handleClose.callCount, 0);
+      expect(handleClose.callCount).to.equal(0);
       clock.tick(autoHideDuration);
-      assert.strictEqual(handleClose.callCount, 0);
+      expect(handleClose.callCount).to.equal(0);
 
       const fEvent = new window.Event('focus', { view: window, bubbles: false, cancelable: false });
       window.dispatchEvent(fEvent);
 
-      assert.strictEqual(handleClose.callCount, 0);
+      expect(handleClose.callCount).to.equal(0);
       clock.tick(autoHideDuration);
-      assert.strictEqual(handleClose.callCount, 1);
-      assert.deepEqual(handleClose.args[0], [null, 'timeout']);
+      expect(handleClose.callCount).to.equal(1);
+      expect(handleClose.args[0]).to.deep.equal([null, 'timeout']);
     });
 
     it('should not pause auto hide when disabled and window lost focus', () => {
@@ -380,24 +380,24 @@ describe('<Snackbar />', () => {
       const event = new window.Event('blur', { view: window, bubbles: false, cancelable: false });
       window.dispatchEvent(event);
 
-      assert.strictEqual(handleClose.callCount, 0);
+      expect(handleClose.callCount).to.equal(0);
       clock.tick(autoHideDuration);
-      assert.strictEqual(handleClose.callCount, 1);
-      assert.deepEqual(handleClose.args[0], [null, 'timeout']);
+      expect(handleClose.callCount).to.equal(1);
+      expect(handleClose.args[0]).to.deep.equal([null, 'timeout']);
     });
   });
 
   describe('prop: open', () => {
     it('should not render anything when closed', () => {
       const wrapper = mount(<Snackbar open={false} message="Hello, World!" />);
-      assert.strictEqual(wrapper.text(), '');
+      expect(wrapper.text()).to.equal('');
     });
 
     it('should be able show it after mounted', () => {
       const wrapper = mount(<Snackbar open={false} message="Hello, World!" />);
-      assert.strictEqual(wrapper.text(), '');
+      expect(wrapper.text()).to.equal('');
       wrapper.setProps({ open: true });
-      assert.strictEqual(wrapper.text(), 'Hello, World!');
+      expect(wrapper.text()).to.equal('Hello, World!');
     });
   });
 
@@ -405,20 +405,20 @@ describe('<Snackbar />', () => {
     it('should render the children', () => {
       const children = <div />;
       const wrapper = mount(<Snackbar open>{children}</Snackbar>);
-      assert.strictEqual(wrapper.containsMatchingElement(children), true);
+      expect(wrapper.containsMatchingElement(children)).to.equal(true);
     });
   });
 
   describe('prop: TransitionComponent', () => {
     it('should use a Grow by default', () => {
       const wrapper = mount(<Snackbar open message="message" />);
-      assert.strictEqual(wrapper.find(Grow).exists(), true);
+      expect(wrapper.find(Grow).exists()).to.equal(true);
     });
 
     it('accepts a different component that handles the transition', () => {
       const Transition = () => <div className="cloned-element-class" />;
       const wrapper = mount(<Snackbar open TransitionComponent={Transition} />);
-      assert.strictEqual(wrapper.find(Transition).exists(), true);
+      expect(wrapper.find(Transition).exists()).to.equal(true);
     });
   });
 });
