@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { spy } from 'sinon';
-import { assert } from 'chai';
+import { expect, assert } from 'chai';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
 import Popover from '../Popover';
@@ -51,10 +51,10 @@ describe('<Menu />', () => {
             onEnter={handleEnter}
             onEntering={handleEntering}
             onEntered={() => {
-              assert.strictEqual(handleEnter.callCount, 1);
-              assert.strictEqual(handleEnter.args[0].length, 2);
-              assert.strictEqual(handleEntering.callCount, 1);
-              assert.strictEqual(handleEntering.args[0].length, 2);
+              expect(handleEnter.callCount).to.equal(1);
+              expect(handleEnter.args[0].length).to.equal(2);
+              expect(handleEntering.callCount).to.equal(1);
+              expect(handleEntering.args[0].length).to.equal(2);
               done();
             }}
             {...defaultProps}
@@ -77,10 +77,10 @@ describe('<Menu />', () => {
             onExit={handleExit}
             onExiting={handleExiting}
             onExited={() => {
-              assert.strictEqual(handleExit.callCount, 1);
-              assert.strictEqual(handleExit.args[0].length, 1);
-              assert.strictEqual(handleExiting.callCount, 1);
-              assert.strictEqual(handleExiting.args[0].length, 1);
+              expect(handleExit.callCount).to.equal(1);
+              expect(handleExit.args[0].length).to.equal(1);
+              expect(handleExiting.callCount).to.equal(1);
+              expect(handleExiting.args[0].length).to.equal(1);
               done();
             }}
             {...defaultProps}
@@ -97,39 +97,39 @@ describe('<Menu />', () => {
 
   it('should pass `classes.paper` to the Popover', () => {
     const wrapper = mount(<Menu {...defaultProps} />);
-    assert.strictEqual(wrapper.find(Popover).props().PaperProps.classes.root, classes.paper);
+    expect(wrapper.find(Popover).props().PaperProps.classes.root).to.equal(classes.paper);
   });
 
   describe('prop: PopoverClasses', () => {
     it('should be able to change the Popover style', () => {
       const wrapper = mount(<Menu {...defaultProps} PopoverClasses={{ paper: 'bar' }} />);
-      assert.strictEqual(wrapper.find(Popover).props().classes.paper, 'bar');
+      expect(wrapper.find(Popover).props().classes.paper).to.equal('bar');
     });
   });
 
   it('should pass the instance function `getContentAnchorEl` to Popover', () => {
     const menuRef = React.createRef();
     const wrapper = mount(<Menu ref={menuRef} {...defaultProps} />);
-    assert.strictEqual(wrapper.find(Popover).props().getContentAnchorEl != null, true);
+    expect(wrapper.find(Popover).props().getContentAnchorEl != null).to.equal(true);
   });
 
   it('should pass onClose prop to Popover', () => {
     const fn = () => {};
     const wrapper = mount(<Menu {...defaultProps} onClose={fn} />);
-    assert.strictEqual(wrapper.find(Popover).props().onClose, fn);
+    expect(wrapper.find(Popover).props().onClose).to.equal(fn);
   });
 
   it('should pass anchorEl prop to Popover', () => {
     const el = document.createElement('div');
     const wrapper = mount(<Menu {...defaultProps} anchorEl={el} />);
-    assert.strictEqual(wrapper.find(Popover).props().anchorEl, el);
+    expect(wrapper.find(Popover).props().anchorEl).to.equal(el);
   });
 
   it('should pass through the `open` prop to Popover', () => {
     const wrapper = mount(<Menu {...defaultProps} />);
-    assert.strictEqual(wrapper.find(Popover).props().open, false);
+    expect(wrapper.find(Popover).props().open).to.equal(false);
     wrapper.setProps({ open: true });
-    assert.strictEqual(wrapper.find(Popover).props().open, true);
+    expect(wrapper.find(Popover).props().open).to.equal(true);
   });
 
   describe('list node', () => {
@@ -140,7 +140,7 @@ describe('<Menu />', () => {
     });
 
     it('should render a MenuList inside the Popover', () => {
-      assert.strictEqual(wrapper.find(Popover).find(MenuList).exists(), true);
+      expect(wrapper.find(Popover).find(MenuList).exists()).to.equal(true);
     });
   });
 
@@ -153,8 +153,8 @@ describe('<Menu />', () => {
       </Menu>,
     );
     const popover = wrapper.find(Popover);
-    assert.strictEqual(popover.props().open, true);
-    assert.strictEqual(wrapper.find('[role="menuitem"]').props().autoFocus, true);
+    expect(popover.props().open).to.equal(true);
+    expect(wrapper.find('[role="menuitem"]').props().autoFocus).to.equal(true);
   });
 
   it('should not focus list if autoFocus=false', () => {
@@ -164,10 +164,10 @@ describe('<Menu />', () => {
       </Menu>,
     );
     const popover = wrapper.find(Popover);
-    assert.strictEqual(popover.props().open, true);
+    expect(popover.props().open).to.equal(true);
     const menuEl = document.querySelector('[data-mui-test="Menu"]');
-    assert.notStrictEqual(document.activeElement, menuEl);
-    assert.strictEqual(false, menuEl.contains(document.activeElement));
+    expect(document.activeElement).to.not.equal(menuEl);
+    expect(false).to.equal(menuEl.contains(document.activeElement));
   });
 
   it('should call props.onEntering with element if exists', () => {
@@ -178,8 +178,8 @@ describe('<Menu />', () => {
     const elementForHandleEnter = { clientHeight: MENU_LIST_HEIGHT };
 
     popover.props().onEntering(elementForHandleEnter);
-    assert.strictEqual(onEnteringSpy.callCount, 1);
-    assert.strictEqual(onEnteringSpy.calledWith(elementForHandleEnter), true);
+    expect(onEnteringSpy.callCount).to.equal(1);
+    expect(onEnteringSpy.calledWith(elementForHandleEnter)).to.equal(true);
   });
 
   it('should call props.onEntering, disableAutoFocusItem', () => {
@@ -192,8 +192,8 @@ describe('<Menu />', () => {
     const elementForHandleEnter = { clientHeight: MENU_LIST_HEIGHT };
 
     popover.props().onEntering(elementForHandleEnter);
-    assert.strictEqual(onEnteringSpy.callCount, 1);
-    assert.strictEqual(onEnteringSpy.calledWith(elementForHandleEnter), true);
+    expect(onEnteringSpy.callCount).to.equal(1);
+    expect(onEnteringSpy.calledWith(elementForHandleEnter)).to.equal(true);
   });
 
   it('should call onClose on tab', () => {
@@ -206,8 +206,8 @@ describe('<Menu />', () => {
     wrapper.find('span').simulate('keyDown', {
       key: 'Tab',
     });
-    assert.strictEqual(onCloseSpy.callCount, 1);
-    assert.strictEqual(onCloseSpy.args[0][1], 'tabKeyDown');
+    expect(onCloseSpy.callCount).to.equal(1);
+    expect(onCloseSpy.args[0][1]).to.equal('tabKeyDown');
   });
 
   it('ignores invalid children', () => {
@@ -241,9 +241,8 @@ describe('<Menu />', () => {
         </Menu>,
       );
 
-      assert.strictEqual(consoleErrorMock.callCount(), 2);
-      assert.include(
-        consoleErrorMock.messages()[0],
+      expect(consoleErrorMock.callCount()).to.equal(2);
+      expect(consoleErrorMock.messages()[0]).to.include(
         "Material-UI: the Menu component doesn't accept a Fragment as a child.",
       );
     });

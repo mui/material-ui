@@ -1,4 +1,4 @@
-import { assert } from 'chai';
+import { expect } from 'chai';
 import exactProp, { specialProperty } from './exactProp';
 
 describe('exactProp()', () => {
@@ -11,8 +11,8 @@ describe('exactProp()', () => {
   });
 
   it('should have the right shape', () => {
-    assert.strictEqual(typeof exactProp, 'function');
-    assert.strictEqual(typeof exactPropTypes, 'object');
+    expect(typeof exactProp).to.equal('function');
+    expect(typeof exactPropTypes).to.equal('object');
   });
 
   describe('exactPropTypes', () => {
@@ -21,7 +21,7 @@ describe('exactProp()', () => {
         bar: false,
       };
       const result = exactPropTypes[specialProperty](props);
-      assert.strictEqual(result, null);
+      expect(result).to.equal(null);
     });
 
     it('should return an error for unsupported props', () => {
@@ -29,8 +29,7 @@ describe('exactProp()', () => {
         foo: true,
       };
       const result = exactPropTypes[specialProperty](props);
-      assert.match(
-        result.message,
+      expect(result.message).to.match(
         /The following props are not supported: `foo`. Please remove them/,
       );
     });

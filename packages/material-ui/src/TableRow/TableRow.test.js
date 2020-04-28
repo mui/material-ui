@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { assert, expect } from 'chai';
+import { expect } from 'chai';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
 import { createClientRender } from 'test/utils/createClientRender';
@@ -38,7 +38,7 @@ describe('<TableRow />', () => {
   it('should render children', () => {
     const children = <td className="test" />;
     const wrapper = mountInTable(<TableRow>{children}</TableRow>);
-    assert.strictEqual(wrapper.contains(children), true);
+    expect(wrapper.contains(children)).to.equal(true);
   });
 
   describe('prop: component', () => {

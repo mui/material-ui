@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import { createShallow, createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
 import StepConnector from './StepConnector';
@@ -30,33 +30,33 @@ describe('<StepConnector />', () => {
   describe('rendering', () => {
     it('renders a div containing a span', () => {
       const wrapper = shallow(<StepConnector orientation="horizontal" />);
-      assert.strictEqual(wrapper.type(), 'div');
-      assert.strictEqual(wrapper.find('span').length, 1);
+      expect(wrapper.type()).to.equal('div');
+      expect(wrapper.find('span').length).to.equal(1);
     });
 
     it('has the class when horizontal', () => {
       const wrapper = shallow(<StepConnector orientation="horizontal" />);
-      assert.include(wrapper.find('span').props().className, classes.lineHorizontal);
+      expect(wrapper.find('span').props().className).to.include(classes.lineHorizontal);
     });
 
     it('has the class when vertical', () => {
       const wrapper = shallow(<StepConnector orientation="vertical" />);
-      assert.include(wrapper.find('span').props().className, classes.lineVertical);
+      expect(wrapper.find('span').props().className).to.include(classes.lineVertical);
     });
 
     it('has the class when active', () => {
       const wrapper = shallow(<StepConnector active />);
-      assert.include(wrapper.props().className, classes.active);
+      expect(wrapper.props().className).to.include(classes.active);
     });
 
     it('has the class when completed', () => {
       const wrapper = shallow(<StepConnector completed />);
-      assert.include(wrapper.props().className, classes.completed);
+      expect(wrapper.props().className).to.include(classes.completed);
     });
 
     it('has the class when disabled', () => {
       const wrapper = shallow(<StepConnector disabled />);
-      assert.include(wrapper.props().className, classes.disabled);
+      expect(wrapper.props().className).to.include(classes.disabled);
     });
   });
 });

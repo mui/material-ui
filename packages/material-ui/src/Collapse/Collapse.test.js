@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
@@ -36,17 +36,17 @@ describe('<Collapse />', () => {
   it('should render a container around the wrapper', () => {
     const wrapper = mount(<Collapse {...defaultProps} classes={{ container: 'woofCollapse1' }} />);
     const child = wrapper.find('Transition').childAt(0);
-    assert.strictEqual(child.name(), 'div');
-    assert.strictEqual(child.hasClass(classes.container), true);
-    assert.strictEqual(child.hasClass('woofCollapse1'), true);
+    expect(child.name()).to.equal('div');
+    expect(child.hasClass(classes.container)).to.equal(true);
+    expect(child.hasClass('woofCollapse1')).to.equal(true);
   });
 
   it('should render a wrapper around the children', () => {
     const children = <h1>Hello</h1>;
     const wrapper = mount(<Collapse {...defaultProps}>{children}</Collapse>);
     const child = wrapper.find('Transition').childAt(0);
-    assert.strictEqual(child.childAt(0).name(), 'div');
-    assert.strictEqual(child.childAt(0).childAt(0).children().type(), 'h1');
+    expect(child.childAt(0).name()).to.equal('div');
+    expect(child.childAt(0).childAt(0).children().type()).to.equal('h1');
   });
 
   describe('transition lifecycle', () => {
@@ -107,36 +107,36 @@ describe('<Collapse />', () => {
 
       describe('handleEnter()', () => {
         it('should set element height to 0 initially', () => {
-          assert.strictEqual(nodeEnterHeightStyle, '0px');
+          expect(nodeEnterHeightStyle).to.equal('0px');
         });
 
         it('should call handleEnter', () => {
-          assert.strictEqual(handleEnter.args[0][0], container.instance());
-          assert.strictEqual(handleEnter.args[0][1], false);
+          expect(handleEnter.args[0][0]).to.equal(container.instance());
+          expect(handleEnter.args[0][1]).to.equal(false);
         });
       });
 
       describe('handleEntering()', () => {
         it('should set height to the wrapper height', () => {
-          assert.strictEqual(nodeEnteringHeightStyle, '666px');
+          expect(nodeEnteringHeightStyle).to.equal('666px');
         });
 
         it('should call handleEntering', () => {
-          assert.strictEqual(handleEntering.callCount, 1);
-          assert.strictEqual(handleEntering.args[0][0], container.instance());
-          assert.strictEqual(handleEntering.args[0][1], false);
+          expect(handleEntering.callCount).to.equal(1);
+          expect(handleEntering.args[0][0]).to.equal(container.instance());
+          expect(handleEntering.args[0][1]).to.equal(false);
         });
       });
 
       describe('handleEntered()', () => {
         it('should set height to auto', () => {
           clock.tick(1000);
-          assert.strictEqual(handleEntered.args[0][0].style.height, 'auto');
-          assert.strictEqual(handleEntered.args[0][1], false);
+          expect(handleEntered.args[0][0].style.height).to.equal('auto');
+          expect(handleEntered.args[0][1]).to.equal(false);
         });
 
         it('should have called onEntered', () => {
-          assert.strictEqual(handleEntered.callCount, 1);
+          expect(handleEntered.callCount).to.equal(1);
         });
       });
     });
@@ -149,31 +149,31 @@ describe('<Collapse />', () => {
 
       describe('handleExit()', () => {
         it('should set height to the wrapper height', () => {
-          assert.strictEqual(nodeExitHeightStyle, '666px');
+          expect(nodeExitHeightStyle).to.equal('666px');
         });
       });
 
       describe('handleExiting()', () => {
         it('should set height to the 0', () => {
-          assert.strictEqual(handleExiting.args[0][0].style.height, '0px');
+          expect(handleExiting.args[0][0].style.height).to.equal('0px');
         });
 
         it('should call onExiting', () => {
-          assert.strictEqual(handleExiting.callCount, 1);
-          assert.strictEqual(handleExiting.args[0][0], container.instance());
+          expect(handleExiting.callCount).to.equal(1);
+          expect(handleExiting.args[0][0]).to.equal(container.instance());
         });
       });
 
       describe('handleExited()', () => {
         it('should set height to the 0', () => {
           clock.tick(1000);
-          assert.strictEqual(handleExited.args[0][0].style.height, '0px');
+          expect(handleExited.args[0][0].style.height).to.equal('0px');
         });
 
         it('should call onExited', () => {
           clock.tick(1000);
-          assert.strictEqual(handleExited.callCount, 1);
-          assert.strictEqual(handleExited.args[0][0], container.instance());
+          expect(handleExited.callCount).to.equal(1);
+          expect(handleExited.args[0][0]).to.equal(container.instance());
         });
       });
     });
@@ -217,11 +217,11 @@ describe('<Collapse />', () => {
       });
 
       const autoTransitionDuration = 10;
-      assert.strictEqual(next1.callCount, 0);
+      expect(next1.callCount).to.equal(0);
       clock.tick(0);
-      assert.strictEqual(next1.callCount, 0);
+      expect(next1.callCount).to.equal(0);
       clock.tick(autoTransitionDuration);
-      assert.strictEqual(next1.callCount, 1);
+      expect(next1.callCount).to.equal(1);
 
       const next2 = spy();
       const wrapper2 = mount(
@@ -231,9 +231,9 @@ describe('<Collapse />', () => {
       );
       wrapper2.setProps({ in: true });
 
-      assert.strictEqual(next2.callCount, 0);
+      expect(next2.callCount).to.equal(0);
       clock.tick(0);
-      assert.strictEqual(next2.callCount, 1);
+      expect(next2.callCount).to.equal(1);
     });
 
     it('should use timeout as delay when timeout is number', () => {
@@ -247,11 +247,11 @@ describe('<Collapse />', () => {
 
       wrapper.setProps({ in: true });
 
-      assert.strictEqual(next.callCount, 0);
+      expect(next.callCount).to.equal(0);
       clock.tick(0);
-      assert.strictEqual(next.callCount, 0);
+      expect(next.callCount).to.equal(0);
       clock.tick(timeout);
-      assert.strictEqual(next.callCount, 1);
+      expect(next.callCount).to.equal(1);
     });
 
     it('should create proper easeOut animation onEntering', () => {
@@ -269,7 +269,7 @@ describe('<Collapse />', () => {
       );
 
       wrapper.setProps({ in: true });
-      assert.strictEqual(handleEntering.args[0][0].style.transitionDuration, '556ms');
+      expect(handleEntering.args[0][0].style.transitionDuration).to.equal('556ms');
     });
 
     it('should create proper sharp animation onExiting', () => {
@@ -288,7 +288,7 @@ describe('<Collapse />', () => {
       wrapper.setProps({
         in: false,
       });
-      assert.strictEqual(handleExiting.args[0][0].style.transitionDuration, '446ms');
+      expect(handleExiting.args[0][0].style.transitionDuration).to.equal('446ms');
     });
   });
 
@@ -298,7 +298,7 @@ describe('<Collapse />', () => {
     it('should work when closed', () => {
       const wrapper = mount(<Collapse {...defaultProps} collapsedHeight={collapsedHeight} />);
       const child = wrapper.find('Transition').childAt(0);
-      assert.strictEqual(child.props().style.minHeight, collapsedHeight);
+      expect(child.props().style.minHeight).to.equal(collapsedHeight);
     });
 
     it('should be taken into account in handleExiting', () => {
@@ -308,7 +308,7 @@ describe('<Collapse />', () => {
       );
       wrapper.setProps({ in: false });
 
-      assert.strictEqual(handleExiting.args[0][0].style.height, collapsedHeight);
+      expect(handleExiting.args[0][0].style.height).to.equal(collapsedHeight);
     });
   });
 });

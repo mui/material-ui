@@ -1,6 +1,6 @@
 /* eslint-disable react/prefer-stateless-function */
 import React from 'react';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import getDisplayName, { getFunctionName } from './getDisplayName';
 
 describe('utils/getDisplayName.js', () => {
@@ -48,24 +48,21 @@ describe('utils/getDisplayName.js', () => {
       const NamedMemoComponent = React.memo((props, ref) => <div {...props} ref={ref} />);
       NamedMemoComponent.displayName = 'Div';
 
-      assert.strictEqual(getDisplayName(SomeComponent), 'SomeComponent');
-      assert.strictEqual(getDisplayName(SomeOtherComponent), 'CustomDisplayName');
-      assert.strictEqual(getDisplayName(YetAnotherComponent), 'YetAnotherComponent');
-      assert.strictEqual(getDisplayName(AndAnotherComponent), 'AndAnotherComponent');
-      assert.strictEqual(
-        getDisplayName(() => <div />),
-        'Component',
-      );
-      assert.strictEqual(getDisplayName('div'), 'div');
-      assert.strictEqual(getDisplayName(AnonymousForwardRefComponent), 'ForwardRef');
-      assert.strictEqual(getDisplayName(ForwardRefComponent), 'ForwardRef(Div)');
-      assert.strictEqual(getDisplayName(NamedForwardRefComponent), 'Div');
-      assert.strictEqual(getDisplayName(AnonymousMemoComponent), 'memo');
-      assert.strictEqual(getDisplayName(MemoComponent), 'memo(Div)');
-      assert.strictEqual(getDisplayName(NamedMemoComponent), 'Div');
-      assert.strictEqual(getDisplayName(), undefined);
-      assert.strictEqual(getDisplayName({}), undefined);
-      assert.strictEqual(getDisplayName(false), undefined);
+      expect(getDisplayName(SomeComponent)).to.equal('SomeComponent');
+      expect(getDisplayName(SomeOtherComponent)).to.equal('CustomDisplayName');
+      expect(getDisplayName(YetAnotherComponent)).to.equal('YetAnotherComponent');
+      expect(getDisplayName(AndAnotherComponent)).to.equal('AndAnotherComponent');
+      expect(getDisplayName(() => <div />)).to.equal('Component');
+      expect(getDisplayName('div')).to.equal('div');
+      expect(getDisplayName(AnonymousForwardRefComponent)).to.equal('ForwardRef');
+      expect(getDisplayName(ForwardRefComponent)).to.equal('ForwardRef(Div)');
+      expect(getDisplayName(NamedForwardRefComponent)).to.equal('Div');
+      expect(getDisplayName(AnonymousMemoComponent)).to.equal('memo');
+      expect(getDisplayName(MemoComponent)).to.equal('memo(Div)');
+      expect(getDisplayName(NamedMemoComponent)).to.equal('Div');
+      expect(getDisplayName()).to.equal(undefined);
+      expect(getDisplayName({})).to.equal(undefined);
+      expect(getDisplayName(false)).to.equal(undefined);
     });
   });
 
@@ -77,8 +74,8 @@ describe('utils/getDisplayName.js', () => {
 
       const SomeOtherFunction = () => <div />;
 
-      assert.strictEqual(getFunctionName(SomeFunction), 'SomeFunction');
-      assert.strictEqual(getFunctionName(SomeOtherFunction), 'SomeOtherFunction');
+      expect(getFunctionName(SomeFunction)).to.equal('SomeFunction');
+      expect(getFunctionName(SomeOtherFunction)).to.equal('SomeOtherFunction');
     });
   });
 });

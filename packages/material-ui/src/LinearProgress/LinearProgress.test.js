@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
@@ -30,141 +30,109 @@ describe('<LinearProgress />', () => {
 
   it('should render indeterminate variant by default', () => {
     const wrapper = shallow(<LinearProgress />);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.indeterminate), true);
-    assert.strictEqual(wrapper.childAt(0).hasClass(classes.barColorPrimary), true);
-    assert.strictEqual(wrapper.childAt(0).hasClass(classes.bar1Indeterminate), true);
-    assert.strictEqual(wrapper.childAt(1).hasClass(classes.barColorPrimary), true);
-    assert.strictEqual(wrapper.childAt(1).hasClass(classes.bar2Indeterminate), true);
+    expect(wrapper.hasClass(classes.root)).to.equal(true);
+    expect(wrapper.hasClass(classes.indeterminate)).to.equal(true);
+    expect(wrapper.childAt(0).hasClass(classes.barColorPrimary)).to.equal(true);
+    expect(wrapper.childAt(0).hasClass(classes.bar1Indeterminate)).to.equal(true);
+    expect(wrapper.childAt(1).hasClass(classes.barColorPrimary)).to.equal(true);
+    expect(wrapper.childAt(1).hasClass(classes.bar2Indeterminate)).to.equal(true);
   });
 
   it('should render for the primary color', () => {
     const wrapper = shallow(<LinearProgress color="primary" />);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.childAt(0).hasClass(classes.barColorPrimary), true);
-    assert.strictEqual(wrapper.childAt(1).hasClass(classes.barColorPrimary), true);
+    expect(wrapper.hasClass(classes.root)).to.equal(true);
+    expect(wrapper.childAt(0).hasClass(classes.barColorPrimary)).to.equal(true);
+    expect(wrapper.childAt(1).hasClass(classes.barColorPrimary)).to.equal(true);
   });
 
   it('should render for the secondary color', () => {
     const wrapper = shallow(<LinearProgress color="secondary" />);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.childAt(0).hasClass(classes.barColorSecondary), true);
-    assert.strictEqual(wrapper.childAt(1).hasClass(classes.barColorSecondary), true);
+    expect(wrapper.hasClass(classes.root)).to.equal(true);
+    expect(wrapper.childAt(0).hasClass(classes.barColorSecondary)).to.equal(true);
+    expect(wrapper.childAt(1).hasClass(classes.barColorSecondary)).to.equal(true);
   });
 
   it('should render with determinate classes for the primary color by default', () => {
     const wrapper = shallow(<LinearProgress value={1} variant="determinate" />);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.determinate), true);
-    assert.strictEqual(wrapper.childAt(0).hasClass(classes.barColorPrimary), true);
-    assert.strictEqual(wrapper.childAt(0).hasClass(classes.bar1Determinate), true);
+    expect(wrapper.hasClass(classes.root)).to.equal(true);
+    expect(wrapper.hasClass(classes.determinate)).to.equal(true);
+    expect(wrapper.childAt(0).hasClass(classes.barColorPrimary)).to.equal(true);
+    expect(wrapper.childAt(0).hasClass(classes.bar1Determinate)).to.equal(true);
   });
 
   it('should render with determinate classes for the primary color', () => {
     const wrapper = shallow(<LinearProgress color="primary" value={1} variant="determinate" />);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.determinate), true);
-    assert.strictEqual(wrapper.childAt(0).hasClass(classes.barColorPrimary), true);
-    assert.strictEqual(wrapper.childAt(0).hasClass(classes.bar1Determinate), true);
+    expect(wrapper.hasClass(classes.root)).to.equal(true);
+    expect(wrapper.hasClass(classes.determinate)).to.equal(true);
+    expect(wrapper.childAt(0).hasClass(classes.barColorPrimary)).to.equal(true);
+    expect(wrapper.childAt(0).hasClass(classes.bar1Determinate)).to.equal(true);
   });
 
   it('should render with determinate classes for the secondary color', () => {
     const wrapper = shallow(<LinearProgress color="secondary" value={1} variant="determinate" />);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.determinate), true);
-    assert.strictEqual(wrapper.childAt(0).hasClass(classes.barColorSecondary), true);
-    assert.strictEqual(wrapper.childAt(0).hasClass(classes.bar1Determinate), true);
+    expect(wrapper.hasClass(classes.root)).to.equal(true);
+    expect(wrapper.hasClass(classes.determinate)).to.equal(true);
+    expect(wrapper.childAt(0).hasClass(classes.barColorSecondary)).to.equal(true);
+    expect(wrapper.childAt(0).hasClass(classes.bar1Determinate)).to.equal(true);
   });
 
   it('should set width of bar1 on determinate variant', () => {
     const wrapper = shallow(<LinearProgress variant="determinate" value={77} />);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.determinate), true);
-    assert.strictEqual(
-      wrapper.childAt(0).props().style.transform,
-      'translateX(-23%)',
-      'should have width set',
-    );
-    assert.strictEqual(wrapper.props()['aria-valuenow'], 77);
+    expect(wrapper.hasClass(classes.root)).to.equal(true);
+    expect(wrapper.hasClass(classes.determinate)).to.equal(true);
+    expect(wrapper.childAt(0).props().style.transform).to.equal('translateX(-23%)');
+    expect(wrapper.props()['aria-valuenow']).to.equal(77);
   });
 
   it('should render with buffer classes for the primary color by default', () => {
     const wrapper = shallow(<LinearProgress value={1} valueBuffer={1} variant="buffer" />);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(
-      wrapper.childAt(0).hasClass(classes.dashedColorPrimary),
-      true,
-      'should have the dashedColorPrimary class',
-    );
-    assert.strictEqual(
-      wrapper.childAt(1).hasClass(classes.barColorPrimary),
-      true,
-      'should have the barColorPrimary class',
-    );
-    assert.strictEqual(
-      wrapper.childAt(1).hasClass(classes.bar1Buffer),
-      true,
-      'should have the bar1Buffer class',
-    );
-    assert.strictEqual(
-      wrapper.childAt(2).hasClass(classes.colorPrimary),
-      true,
-      'should have the colorPrimary class',
-    );
-    assert.strictEqual(
-      wrapper.childAt(2).hasClass(classes.bar2Buffer),
-      true,
-      'should have the bar2Buffer class',
-    );
+    expect(wrapper.hasClass(classes.root)).to.equal(true);
+    expect(wrapper.childAt(0).hasClass(classes.dashedColorPrimary)).to.equal(true);
+    expect(wrapper.childAt(1).hasClass(classes.barColorPrimary)).to.equal(true);
+    expect(wrapper.childAt(1).hasClass(classes.bar1Buffer)).to.equal(true);
+    expect(wrapper.childAt(2).hasClass(classes.colorPrimary)).to.equal(true);
+    expect(wrapper.childAt(2).hasClass(classes.bar2Buffer)).to.equal(true);
   });
 
   it('should render with buffer classes for the primary color', () => {
     const wrapper = shallow(
       <LinearProgress value={1} valueBuffer={1} color="primary" variant="buffer" />,
     );
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.childAt(0).hasClass(classes.dashedColorPrimary), true);
-    assert.strictEqual(wrapper.childAt(1).hasClass(classes.barColorPrimary), true);
-    assert.strictEqual(wrapper.childAt(1).hasClass(classes.bar1Buffer), true);
-    assert.strictEqual(wrapper.childAt(2).hasClass(classes.colorPrimary), true);
-    assert.strictEqual(wrapper.childAt(2).hasClass(classes.bar2Buffer), true);
+    expect(wrapper.hasClass(classes.root)).to.equal(true);
+    expect(wrapper.childAt(0).hasClass(classes.dashedColorPrimary)).to.equal(true);
+    expect(wrapper.childAt(1).hasClass(classes.barColorPrimary)).to.equal(true);
+    expect(wrapper.childAt(1).hasClass(classes.bar1Buffer)).to.equal(true);
+    expect(wrapper.childAt(2).hasClass(classes.colorPrimary)).to.equal(true);
+    expect(wrapper.childAt(2).hasClass(classes.bar2Buffer)).to.equal(true);
   });
 
   it('should render with buffer classes for the secondary color', () => {
     const wrapper = shallow(
       <LinearProgress value={1} valueBuffer={1} color="secondary" variant="buffer" />,
     );
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.childAt(0).hasClass(classes.dashedColorSecondary), true);
-    assert.strictEqual(wrapper.childAt(1).hasClass(classes.barColorSecondary), true);
-    assert.strictEqual(wrapper.childAt(1).hasClass(classes.bar1Buffer), true);
-    assert.strictEqual(wrapper.childAt(2).hasClass(classes.colorSecondary), true);
-    assert.strictEqual(wrapper.childAt(2).hasClass(classes.bar2Buffer), true);
+    expect(wrapper.hasClass(classes.root)).to.equal(true);
+    expect(wrapper.childAt(0).hasClass(classes.dashedColorSecondary)).to.equal(true);
+    expect(wrapper.childAt(1).hasClass(classes.barColorSecondary)).to.equal(true);
+    expect(wrapper.childAt(1).hasClass(classes.bar1Buffer)).to.equal(true);
+    expect(wrapper.childAt(2).hasClass(classes.colorSecondary)).to.equal(true);
+    expect(wrapper.childAt(2).hasClass(classes.bar2Buffer)).to.equal(true);
   });
 
   it('should set width of bar1 and bar2 on buffer variant', () => {
     const wrapper = shallow(<LinearProgress variant="buffer" value={77} valueBuffer={85} />);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(
-      wrapper.childAt(1).props().style.transform,
-      'translateX(-23%)',
-      'should have width set',
-    );
-    assert.strictEqual(
-      wrapper.childAt(2).props().style.transform,
-      'translateX(-15%)',
-      'should have width set',
-    );
+    expect(wrapper.hasClass(classes.root)).to.equal(true);
+    expect(wrapper.childAt(1).props().style.transform).to.equal('translateX(-23%)');
+    expect(wrapper.childAt(2).props().style.transform).to.equal('translateX(-15%)');
   });
 
   it('should render with query classes', () => {
     const wrapper = shallow(<LinearProgress variant="query" />);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.query), true);
-    assert.strictEqual(wrapper.childAt(0).hasClass(classes.barColorPrimary), true);
-    assert.strictEqual(wrapper.childAt(0).hasClass(classes.bar1Indeterminate), true);
-    assert.strictEqual(wrapper.childAt(1).hasClass(classes.barColorPrimary), true);
-    assert.strictEqual(wrapper.childAt(1).hasClass(classes.bar2Indeterminate), true);
+    expect(wrapper.hasClass(classes.root)).to.equal(true);
+    expect(wrapper.hasClass(classes.query)).to.equal(true);
+    expect(wrapper.childAt(0).hasClass(classes.barColorPrimary)).to.equal(true);
+    expect(wrapper.childAt(0).hasClass(classes.bar1Indeterminate)).to.equal(true);
+    expect(wrapper.childAt(1).hasClass(classes.barColorPrimary)).to.equal(true);
+    expect(wrapper.childAt(1).hasClass(classes.bar2Indeterminate)).to.equal(true);
   });
 
   describe('prop: value', () => {
@@ -178,13 +146,16 @@ describe('<LinearProgress />', () => {
 
     it('should warn when not used as expected', () => {
       shallow(<LinearProgress variant="determinate" value={undefined} />);
-      assert.strictEqual(consoleErrorMock.callCount(), 1);
-      assert.match(consoleErrorMock.messages()[0], /Material-UI: you need to provide a value prop/);
+      expect(consoleErrorMock.callCount()).to.equal(1);
+      expect(consoleErrorMock.messages()[0]).to.match(
+        /Material-UI: you need to provide a value prop/,
+      );
       shallow(<LinearProgress variant="buffer" value={undefined} />);
-      assert.strictEqual(consoleErrorMock.callCount(), 3);
-      assert.match(consoleErrorMock.messages()[1], /Material-UI: you need to provide a value prop/);
-      assert.match(
-        consoleErrorMock.messages()[2],
+      expect(consoleErrorMock.callCount()).to.equal(3);
+      expect(consoleErrorMock.messages()[1]).to.match(
+        /Material-UI: you need to provide a value prop/,
+      );
+      expect(consoleErrorMock.messages()[2]).to.match(
         /Material-UI: you need to provide a valueBuffer prop/,
       );
     });

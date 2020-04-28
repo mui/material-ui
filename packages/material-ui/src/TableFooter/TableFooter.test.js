@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { assert, expect } from 'chai';
+import { expect } from 'chai';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
 import { createClientRender } from 'test/utils/createClientRender';
@@ -36,7 +36,7 @@ describe('<TableFooter />', () => {
   it('should render children', () => {
     const children = <tr className="test" />;
     const wrapper = mountInTable(<TableFooter>{children}</TableFooter>);
-    assert.strictEqual(wrapper.contains(children), true);
+    expect(wrapper.contains(children)).to.equal(true);
   });
 
   it('should define table.footer in the child context', () => {
@@ -51,7 +51,7 @@ describe('<TableFooter />', () => {
         </Tablelvl2Context.Consumer>
       </TableFooter>,
     );
-    assert.strictEqual(context.variant, 'footer');
+    expect(context.variant).to.equal('footer');
   });
 
   describe('prop: component', () => {

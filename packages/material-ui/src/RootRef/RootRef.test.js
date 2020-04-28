@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createMount } from '@material-ui/core/test-utils';
 import RootRef from './RootRef';
@@ -26,11 +26,11 @@ describe('<RootRef />', () => {
         <Fn />
       </RootRef>,
     );
-    assert.strictEqual(rootRef.args.length, 1);
-    assert.strictEqual(rootRef.args[0][0] instanceof window.HTMLDivElement, true);
+    expect(rootRef.args.length).to.equal(1);
+    expect(rootRef.args[0][0] instanceof window.HTMLDivElement).to.equal(true);
     wrapper.unmount();
-    assert.strictEqual(rootRef.args.length, 2);
-    assert.strictEqual(rootRef.args[1][0], null);
+    expect(rootRef.args.length).to.equal(2);
+    expect(rootRef.args[1][0]).to.equal(null);
   });
 
   it('set rootRef current field on mount and unmount', () => {
@@ -40,9 +40,9 @@ describe('<RootRef />', () => {
         <Fn />
       </RootRef>,
     );
-    assert.strictEqual(ref.current instanceof window.HTMLDivElement, true);
+    expect(ref.current instanceof window.HTMLDivElement).to.equal(true);
     wrapper.unmount();
-    assert.strictEqual(ref.current, null);
+    expect(ref.current).to.equal(null);
   });
 
   it('should support providing a new rootRef', () => {
@@ -52,17 +52,17 @@ describe('<RootRef />', () => {
         <Fn />
       </RootRef>,
     );
-    assert.strictEqual(results.length, 1);
-    assert.strictEqual(results[0] instanceof window.HTMLDivElement, true);
+    expect(results.length).to.equal(1);
+    expect(results[0] instanceof window.HTMLDivElement).to.equal(true);
     wrapper.setProps({
       rootRef: (ref) => results.push(ref),
     });
-    assert.strictEqual(results.length, 3);
-    assert.strictEqual(results[1], null);
-    assert.strictEqual(results[2] instanceof window.HTMLDivElement, true);
+    expect(results.length).to.equal(3);
+    expect(results[1]).to.equal(null);
+    expect(results[2] instanceof window.HTMLDivElement).to.equal(true);
     wrapper.unmount();
-    assert.strictEqual(results.length, 4);
-    assert.strictEqual(results[3], null);
+    expect(results.length).to.equal(4);
+    expect(results[3]).to.equal(null);
   });
 
   it('should support DOM node updates', () => {
@@ -78,8 +78,8 @@ describe('<RootRef />', () => {
 
     const wrapper = mount(<TestCase on={false} />);
     wrapper.setProps({ on: true });
-    assert.strictEqual(rootRef.callCount, 2);
-    assert.strictEqual(rootRef.args[0][0].nodeName, 'SPAN');
-    assert.strictEqual(rootRef.args[1][0].nodeName, 'DIV');
+    expect(rootRef.callCount).to.equal(2);
+    expect(rootRef.args[0][0].nodeName).to.equal('SPAN');
+    expect(rootRef.args[1][0].nodeName).to.equal('DIV');
   });
 });

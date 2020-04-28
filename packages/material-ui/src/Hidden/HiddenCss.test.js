@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import { createShallow, createMount, getClasses } from '@material-ui/core/test-utils';
 import HiddenCss from './HiddenCss';
 import { createMuiTheme, MuiThemeProvider } from '../styles';
@@ -37,12 +37,12 @@ describe('<HiddenCss />', () => {
         </HiddenCss>,
       );
 
-      assert.strictEqual(wrapper.type(), 'div');
-      assert.strictEqual(wrapper.hasClass(classes.onlySm), true);
+      expect(wrapper.type()).to.equal('div');
+      expect(wrapper.hasClass(classes.onlySm)).to.equal(true);
 
       const div = wrapper.childAt(0);
-      assert.strictEqual(div.type(), 'div');
-      assert.strictEqual(div.props().className, 'foo');
+      expect(div.type()).to.equal('div');
+      expect(div.props().className).to.equal('foo');
     });
 
     it('should be ok with only as an array', () => {
@@ -52,9 +52,9 @@ describe('<HiddenCss />', () => {
         </HiddenCss>,
       );
 
-      assert.strictEqual(wrapper.type(), 'div');
-      assert.strictEqual(wrapper.props().className.split(' ')[0], classes.onlyXs);
-      assert.strictEqual(wrapper.props().className.split(' ')[1], classes.onlySm);
+      expect(wrapper.type()).to.equal('div');
+      expect(wrapper.props().className.split(' ')[0]).to.equal(classes.onlyXs);
+      expect(wrapper.props().className.split(' ')[1]).to.equal(classes.onlySm);
     });
 
     it('should be ok with only as an empty array', () => {
@@ -64,8 +64,8 @@ describe('<HiddenCss />', () => {
         </HiddenCss>,
       );
 
-      assert.strictEqual(wrapper.type(), 'div');
-      assert.strictEqual(wrapper.props().className, '');
+      expect(wrapper.type()).to.equal('div');
+      expect(wrapper.props().className).to.equal('');
     });
 
     it('should be ok with mdDown', () => {
@@ -74,7 +74,7 @@ describe('<HiddenCss />', () => {
           <div className="foo" />
         </HiddenCss>,
       );
-      assert.strictEqual(wrapper.hasClass(classes.mdDown), true);
+      expect(wrapper.hasClass(classes.mdDown)).to.equal(true);
     });
 
     it('should be ok with mdUp', () => {
@@ -83,7 +83,7 @@ describe('<HiddenCss />', () => {
           <div className="foo" />
         </HiddenCss>,
       );
-      assert.strictEqual(wrapper.hasClass(classes.mdUp), true);
+      expect(wrapper.hasClass(classes.mdUp)).to.equal(true);
     });
     it('should handle provided className prop', () => {
       const wrapper = shallow(
@@ -91,7 +91,7 @@ describe('<HiddenCss />', () => {
           <div className="foo" />
         </HiddenCss>,
       );
-      assert.strictEqual(wrapper.hasClass('custom'), true);
+      expect(wrapper.hasClass('custom')).to.equal(true);
     });
 
     it('allows custom breakpoints', () => {
@@ -104,16 +104,16 @@ describe('<HiddenCss />', () => {
         </MuiThemeProvider>,
       );
 
-      assert.strictEqual(wrapper.find('div.testid').hasClass('xxlUp'), true);
+      expect(wrapper.find('div.testid').hasClass('xxlUp')).to.equal(true);
     });
   });
 
   describe('prop: children', () => {
     it('should work when text Node', () => {
       const wrapper = shallow(<HiddenCss mdUp>foo</HiddenCss>);
-      assert.strictEqual(wrapper.type(), 'div');
-      assert.strictEqual(wrapper.hasClass(classes.mdUp), true);
-      assert.strictEqual(wrapper.childAt(0).text(), 'foo');
+      expect(wrapper.type()).to.equal('div');
+      expect(wrapper.hasClass(classes.mdUp)).to.equal(true);
+      expect(wrapper.childAt(0).text()).to.equal('foo');
     });
 
     it('should work when Element', () => {
@@ -122,9 +122,9 @@ describe('<HiddenCss />', () => {
           <Foo />
         </HiddenCss>,
       );
-      assert.strictEqual(wrapper.type(), 'div');
-      assert.strictEqual(wrapper.hasClass(classes.mdUp), true);
-      assert.strictEqual(wrapper.childAt(0).is(Foo), true);
+      expect(wrapper.type()).to.equal('div');
+      expect(wrapper.hasClass(classes.mdUp)).to.equal(true);
+      expect(wrapper.childAt(0).is(Foo)).to.equal(true);
     });
 
     it('should work when mixed ChildrenArray', () => {
@@ -136,11 +136,11 @@ describe('<HiddenCss />', () => {
         </HiddenCss>,
       );
 
-      assert.strictEqual(wrapper.type(), 'div');
-      assert.strictEqual(wrapper.hasClass(classes.mdUp), true);
-      assert.strictEqual(wrapper.childAt(0).is(Foo), true);
-      assert.strictEqual(wrapper.childAt(1).is(Foo), true);
-      assert.strictEqual(wrapper.childAt(2).text(), 'foo');
+      expect(wrapper.type()).to.equal('div');
+      expect(wrapper.hasClass(classes.mdUp)).to.equal(true);
+      expect(wrapper.childAt(0).is(Foo)).to.equal(true);
+      expect(wrapper.childAt(1).is(Foo)).to.equal(true);
+      expect(wrapper.childAt(2).text()).to.equal('foo');
     });
   });
 
@@ -160,9 +160,8 @@ describe('<HiddenCss />', () => {
         </HiddenCss>,
       );
 
-      assert.strictEqual(consoleErrorMock.callCount(), 1);
-      assert.include(
-        consoleErrorMock.messages()[0],
+      expect(consoleErrorMock.callCount()).to.equal(1);
+      expect(consoleErrorMock.messages()[0]).to.include(
         'Material-UI: unsupported props received by `<Hidden implementation="css" />`: xxlUp.',
       );
     });

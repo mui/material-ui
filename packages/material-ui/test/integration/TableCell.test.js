@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { assert, expect } from 'chai';
+import { expect } from 'chai';
 import { createMount, findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
 import { createClientRender } from 'test/utils/createClientRender';
 import TableCell from '@material-ui/core/TableCell';
@@ -34,50 +34,50 @@ describe('<TableRow> integration', () => {
   it('should render a th with the head class when in the context of a table head', () => {
     const wrapper = mountInTable(<TableCell />, TableHead);
     const root = findOutermostIntrinsic(wrapper);
-    assert.strictEqual(root.type(), 'th');
-    assert.strictEqual(root.hasClass(classes.root), true);
-    assert.strictEqual(root.hasClass(classes.head), true);
-    assert.strictEqual(root.props().scope, 'col');
+    expect(root.type()).to.equal('th');
+    expect(root.hasClass(classes.root)).to.equal(true);
+    expect(root.hasClass(classes.head)).to.equal(true);
+    expect(root.props().scope).to.equal('col');
   });
 
   it('should render specified scope attribute even when in the context of a table head', () => {
     const wrapper = mountInTable(<TableCell scope="row" />, TableHead);
-    assert.strictEqual(wrapper.props().scope, 'row');
+    expect(wrapper.props().scope).to.equal('row');
   });
 
   it('should render a th with the footer class when in the context of a table footer', () => {
     const wrapper = mountInTable(<TableCell />, TableFooter);
     const root = findOutermostIntrinsic(wrapper);
-    assert.strictEqual(root.type(), 'td');
-    assert.strictEqual(root.hasClass(classes.root), true);
-    assert.strictEqual(root.hasClass(classes.footer), true);
+    expect(root.type()).to.equal('td');
+    expect(root.hasClass(classes.root)).to.equal(true);
+    expect(root.hasClass(classes.footer)).to.equal(true);
   });
 
   it('should render with the footer class when in the context of a table footer', () => {
     const wrapper = mountInTable(<TableCell />, TableFooter);
-    assert.strictEqual(wrapper.find('td').hasClass(classes.root), true);
-    assert.strictEqual(wrapper.find('td').hasClass(classes.footer), true);
+    expect(wrapper.find('td').hasClass(classes.root)).to.equal(true);
+    expect(wrapper.find('td').hasClass(classes.footer)).to.equal(true);
   });
 
   it('should render with the head class when variant is head, overriding context', () => {
     const wrapper = mountInTable(<TableCell variant="head" />, TableFooter);
-    assert.strictEqual(wrapper.find('td').hasClass(classes.head), true);
-    assert.strictEqual(wrapper.find('td').props().scope, undefined);
+    expect(wrapper.find('td').hasClass(classes.head)).to.equal(true);
+    expect(wrapper.find('td').props().scope).to.equal(undefined);
   });
 
   it('should render without head class when variant is body, overriding context', () => {
     const wrapper = mountInTable(<TableCell variant="body" />, TableFooter);
-    assert.strictEqual(wrapper.find('td').hasClass(classes.head), false);
+    expect(wrapper.find('td').hasClass(classes.head)).to.equal(false);
   });
 
   it('should render without footer class when variant is body, overriding context', () => {
     const wrapper = mountInTable(<TableCell variant="body" />, TableFooter);
-    assert.strictEqual(wrapper.find('td').hasClass(classes.footer), false);
+    expect(wrapper.find('td').hasClass(classes.footer)).to.equal(false);
   });
 
   it('should render with the footer class when variant is footer, overriding context', () => {
     const wrapper = mountInTable(<TableCell variant="footer" />, TableHead);
-    assert.strictEqual(wrapper.find('th').hasClass(classes.footer), true);
+    expect(wrapper.find('th').hasClass(classes.footer)).to.equal(true);
   });
 
   it('sets role="columnheader" when "component" prop is set and used in the context of table head', () => {

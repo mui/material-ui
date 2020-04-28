@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import { createMount } from '@material-ui/core/test-utils';
 import createServerRender from 'test/utils/createServerRender';
 import NoSsr from './NoSsr';
@@ -23,7 +23,7 @@ describe('<NoSsr />', () => {
           <span>Hello</span>
         </NoSsr>,
       );
-      assert.strictEqual(wrapper.text(), '');
+      expect(wrapper.text()).to.equal('');
     });
   });
 
@@ -34,7 +34,7 @@ describe('<NoSsr />', () => {
           <span id="client-only" />
         </NoSsr>,
       );
-      assert.strictEqual(wrapper.find('#client-only').exists(), true);
+      expect(wrapper.find('#client-only').exists()).to.equal(true);
     });
   });
 
@@ -47,7 +47,7 @@ describe('<NoSsr />', () => {
           </NoSsr>
         </div>,
       );
-      assert.strictEqual(wrapper.text(), 'fallback');
+      expect(wrapper.text()).to.equal('fallback');
     });
   });
 
@@ -58,7 +58,7 @@ describe('<NoSsr />', () => {
           <span id="client-only">Hello</span>
         </NoSsr>,
       );
-      assert.strictEqual(wrapper.find('#client-only').exists(), true);
+      expect(wrapper.find('#client-only').exists()).to.equal(true);
     });
   });
 });

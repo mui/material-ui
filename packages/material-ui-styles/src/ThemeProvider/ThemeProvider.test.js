@@ -1,5 +1,5 @@
 import React from 'react';
-import { assert, expect } from 'chai';
+import { expect } from 'chai';
 import { createMount } from '@material-ui/core/test-utils';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import { createClientRender } from 'test/utils/createClientRender';
@@ -33,7 +33,7 @@ describe('ThemeProvider', () => {
         <Test />
       </ThemeProvider>,
     );
-    assert.strictEqual(text(), 'foo');
+    expect(text()).to.equal('foo');
   });
 
   it('should merge the themes', () => {
@@ -57,7 +57,7 @@ describe('ThemeProvider', () => {
         </ThemeProvider>
       </ThemeProvider>,
     );
-    assert.strictEqual(text(), 'foobar');
+    expect(text()).to.equal('foobar');
   });
 
   it('should memoize the merged output', () => {
@@ -94,10 +94,10 @@ describe('ThemeProvider', () => {
     }
 
     const wrapper = mount(<Container />);
-    assert.strictEqual(text(), 'foobar');
+    expect(text()).to.equal('foobar');
     wrapper.setProps({});
-    assert.strictEqual(text(), 'foobar');
-    assert.strictEqual(themes.length, 1);
+    expect(text()).to.equal('foobar');
+    expect(themes.length).to.equal(1);
   });
 
   it('does not allow setting mui.nested manually', () => {
@@ -145,8 +145,8 @@ describe('ThemeProvider', () => {
           <div />
         </ThemeProvider>,
       );
-      assert.strictEqual(consoleErrorMock.callCount(), 2); // twice in strict mode
-      assert.include(consoleErrorMock.messages()[0], 'However, no outer theme is present.');
+      expect(consoleErrorMock.callCount()).to.equal(2); // twice in strict mode
+      expect(consoleErrorMock.messages()[0]).to.include('However, no outer theme is present.');
     });
 
     it('should warn about wrong theme function', () => {
@@ -158,9 +158,8 @@ describe('ThemeProvider', () => {
           ,
         </ThemeProvider>,
       );
-      assert.strictEqual(consoleErrorMock.callCount(), 2);
-      assert.include(
-        consoleErrorMock.messages()[0],
+      expect(consoleErrorMock.callCount()).to.equal(2);
+      expect(consoleErrorMock.messages()[0]).to.include(
         'you should return an object from your theme function',
       );
     });

@@ -1,4 +1,4 @@
-import { assert } from 'chai';
+import { expect, assert } from 'chai';
 import fs from 'fs';
 import path from 'path';
 import temp from 'temp';
@@ -22,16 +22,16 @@ describe('builder', () => {
 
   describe('#getComponentName', () => {
     it('should change capitalize dashes', () => {
-      assert.strictEqual(getComponentName('hi-world'), 'HiWorld', true);
+      expect(getComponentName('hi-world')).to.equal('HiWorld');
     });
 
     it('should capitalize based on environment path.sep', () => {
-      assert.strictEqual(getComponentName(`this${path.sep}dir`), 'ThisDir', true);
+      expect(getComponentName(`this${path.sep}dir`)).to.equal('ThisDir');
     });
   });
 
   it('should have icons to test with', () => {
-    assert.strictEqual(fs.lstatSync(MUI_ICONS_SVG_DIR).isDirectory(), true);
+    expect(fs.lstatSync(MUI_ICONS_SVG_DIR).isDirectory()).to.equal(true);
   });
 
   it('should have main', () => {
@@ -58,8 +58,8 @@ describe('builder', () => {
 
     it('script outputs to directory', async () => {
       await main(options);
-      assert.strictEqual(fs.lstatSync(options.outputDir).isDirectory(), true);
-      assert.strictEqual(fs.lstatSync(path.join(options.outputDir, 'index.js')).isFile(), true);
+      expect(fs.lstatSync(options.outputDir).isDirectory()).to.equal(true);
+      expect(fs.lstatSync(path.join(options.outputDir, 'index.js')).isFile()).to.equal(true);
     });
   });
 
@@ -83,11 +83,8 @@ describe('builder', () => {
 
     it('script outputs to directory', async () => {
       await main(options);
-      assert.strictEqual(fs.lstatSync(options.outputDir).isDirectory(), true);
-      assert.strictEqual(
-        fs.lstatSync(path.join(options.outputDir, 'delapouite')).isDirectory(),
-        true,
-      );
+      expect(fs.lstatSync(options.outputDir).isDirectory()).to.equal(true);
+      expect(fs.lstatSync(path.join(options.outputDir, 'delapouite')).isDirectory()).to.equal(true);
 
       const actualFilePath = path.join(
         options.outputDir,
@@ -98,10 +95,10 @@ describe('builder', () => {
         'transparent',
         'Dice-six-faces-four.js',
       );
-      assert.strictEqual(fs.existsSync(actualFilePath), true);
+      expect(fs.existsSync(actualFilePath)).to.equal(true);
 
       const actualFileData = fs.readFileSync(actualFilePath, { encoding: 'utf8' });
-      assert.include(actualFileData, "import createSvgIcon from './utils/createSvgIcon'");
+      expect(actualFileData).to.include("import createSvgIcon from './utils/createSvgIcon'");
     });
   });
 
@@ -125,7 +122,7 @@ describe('builder', () => {
 
     it('should produce the expected output', async () => {
       await main(options);
-      assert.strictEqual(fs.lstatSync(options.outputDir).isDirectory(), true);
+      expect(fs.lstatSync(options.outputDir).isDirectory()).to.equal(true);
 
       const cases = [
         'Accessibility.js',
@@ -143,7 +140,7 @@ describe('builder', () => {
           encoding: 'utf8',
         });
 
-        assert.include(actual, expected);
+        expect(actual).to.include(expected);
       });
     });
   });

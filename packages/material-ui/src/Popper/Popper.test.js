@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { assert, expect } from 'chai';
+import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import PropTypes from 'prop-types';
 import { createMount } from '@material-ui/core/test-utils';
@@ -57,8 +57,8 @@ describe('<Popper />', () => {
           </Popper>
         </ThemeProvider>,
       );
-      assert.strictEqual(renderSpy.callCount, 2); // 2 for strict mode
-      assert.strictEqual(renderSpy.args[0][0], 'top');
+      expect(renderSpy.callCount).to.equal(2); // 2 for strict mode
+      expect(renderSpy.args[0][0]).to.equal('top');
     });
 
     [
@@ -96,8 +96,8 @@ describe('<Popper />', () => {
             ,
           </ThemeProvider>,
         );
-        assert.strictEqual(renderSpy.callCount, 2);
-        assert.strictEqual(renderSpy.args[0][0], test.out);
+        expect(renderSpy.callCount).to.equal(2);
+        expect(renderSpy.args[0][0]).to.equal(test.out);
       });
     });
 
@@ -126,19 +126,19 @@ describe('<Popper />', () => {
   describe('prop: open', () => {
     it('should open without any issue', () => {
       const wrapper = mount(<Popper {...defaultProps} open={false} />);
-      assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), false);
+      expect(wrapper.find('[role="tooltip"]').exists()).to.equal(false);
       wrapper.setProps({ open: true });
       wrapper.update();
-      assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), true);
-      assert.strictEqual(wrapper.find('[role="tooltip"]').text(), 'Hello World');
+      expect(wrapper.find('[role="tooltip"]').exists()).to.equal(true);
+      expect(wrapper.find('[role="tooltip"]').text()).to.equal('Hello World');
     });
 
     it('should close without any issue', () => {
       const wrapper = mount(<Popper {...defaultProps} />);
-      assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), true);
-      assert.strictEqual(wrapper.find('[role="tooltip"]').text(), 'Hello World');
+      expect(wrapper.find('[role="tooltip"]').exists()).to.equal(true);
+      expect(wrapper.find('[role="tooltip"]').text()).to.equal('Hello World');
       wrapper.setProps({ open: false });
-      assert.strictEqual(wrapper.find('[role="tooltip"]').length, 0);
+      expect(wrapper.find('[role="tooltip"]').length).to.equal(0);
     });
   });
 
@@ -192,9 +192,9 @@ describe('<Popper />', () => {
         }
 
         const wrapper = mount(<OpenClose />);
-        assert.strictEqual(wrapper.contains(children), false);
+        expect(wrapper.contains(children)).to.equal(false);
         wrapper.find('button').simulate('click');
-        assert.strictEqual(wrapper.contains(children), false);
+        expect(wrapper.contains(children)).to.equal(false);
       });
     });
   });
@@ -224,12 +224,12 @@ describe('<Popper />', () => {
           )}
         </Popper>,
       );
-      assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), true);
-      assert.strictEqual(wrapper.find('[role="tooltip"]').text(), 'Hello World');
+      expect(wrapper.find('[role="tooltip"]').exists()).to.equal(true);
+      expect(wrapper.find('[role="tooltip"]').text()).to.equal('Hello World');
       wrapper.setProps({ anchorEl: null, open: false });
       clock.tick(0);
       wrapper.update();
-      assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), false);
+      expect(wrapper.find('[role="tooltip"]').exists()).to.equal(false);
     });
   });
 
@@ -238,12 +238,12 @@ describe('<Popper />', () => {
       const ref1 = React.createRef();
       const ref2 = React.createRef();
       const wrapper = mount(<Popper {...defaultProps} popperRef={ref1} />);
-      assert.strictEqual(ref1.current instanceof PopperJs, true);
+      expect(ref1.current instanceof PopperJs).to.equal(true);
       wrapper.setProps({
         popperRef: ref2,
       });
-      assert.strictEqual(ref1.current, null);
-      assert.strictEqual(ref2.current instanceof PopperJs, true);
+      expect(ref1.current).to.equal(null);
+      expect(ref2.current instanceof PopperJs).to.equal(true);
     });
   });
 
@@ -252,10 +252,9 @@ describe('<Popper />', () => {
       const popperRef = React.createRef();
       const wrapper = mount(<Popper {...defaultProps} disablePortal popperRef={popperRef} />);
       // renders
-      assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), true);
+      expect(wrapper.find('[role="tooltip"]').exists()).to.equal(true);
       // correctly sets modifiers
-      assert.strictEqual(
-        popperRef.current.options.modifiers.preventOverflow.boundariesElement,
+      expect(popperRef.current.options.modifiers.preventOverflow.boundariesElement).to.equal(
         'scrollParent',
       );
     });
@@ -264,10 +263,9 @@ describe('<Popper />', () => {
       const popperRef = React.createRef();
       const wrapper = mount(<Popper {...defaultProps} popperRef={popperRef} />);
       // renders
-      assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), true);
+      expect(wrapper.find('[role="tooltip"]').exists()).to.equal(true);
       // correctly sets modifiers
-      assert.strictEqual(
-        popperRef.current.options.modifiers.preventOverflow.boundariesElement,
+      expect(popperRef.current.options.modifiers.preventOverflow.boundariesElement).to.equal(
         'window',
       );
     });
@@ -295,8 +293,8 @@ describe('<Popper />', () => {
         'MockedPopper',
       );
 
-      assert.strictEqual(consoleErrorMock.callCount(), 1);
-      assert.include(consoleErrorMock.messages()[0], 'It should be an HTML element instance');
+      expect(consoleErrorMock.callCount()).to.equal(1);
+      expect(consoleErrorMock.messages()[0]).to.include('It should be an HTML element instance');
     });
   });
 });

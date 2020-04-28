@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import { createShallow, createMount } from '@material-ui/core/test-utils';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import StepIcon from './StepIcon';
@@ -27,27 +27,27 @@ describe('<StepIcon />', () => {
   it('renders <CheckCircle> when completed', () => {
     const wrapper = mount(<StepIcon icon={1} completed />);
     const checkCircle = wrapper.find('svg[data-mui-test="CheckCircleIcon"]');
-    assert.strictEqual(checkCircle.length, 1, 'should have an <CheckCircle />');
+    expect(checkCircle.length).to.equal(1);
   });
 
   it('renders <Warning> when error occurred', () => {
     const wrapper = mount(<StepIcon icon={1} error />);
     const warning = wrapper.find('svg[data-mui-test="WarningIcon"]');
-    assert.strictEqual(warning.length, 1, 'should have an <Warning />');
+    expect(warning.length).to.equal(1);
   });
 
   it('renders a <SvgIcon>', () => {
     const wrapper = shallow(<StepIcon icon={1} />);
-    assert.strictEqual(wrapper.find(SvgIcon).length, 1);
+    expect(wrapper.find(SvgIcon).length).to.equal(1);
   });
 
   it('contains text "3" when position is "3"', () => {
     const wrapper = shallow(<StepIcon icon={3} />);
-    assert.strictEqual(wrapper.find('text').text(), '3');
+    expect(wrapper.find('text').text()).to.equal('3');
   });
 
   it('renders the custom icon', () => {
     const wrapper = shallow(<StepIcon icon={<span className="my-icon" />} />);
-    assert.strictEqual(wrapper.find('.my-icon').length, 1, 'should have the custom icon');
+    expect(wrapper.find('.my-icon').length).to.equal(1);
   });
 });

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import { spy } from 'sinon';
 import {
   createMount,
@@ -56,7 +56,7 @@ describe('<SpeedDial />', () => {
         <FakeAction />
       </SpeedDial>,
     );
-    assert.strictEqual(findOutermostIntrinsic(wrapper).type(), 'div');
+    expect(findOutermostIntrinsic(wrapper).type()).to.equal('div');
   });
 
   it('should render a Fab', () => {
@@ -66,7 +66,7 @@ describe('<SpeedDial />', () => {
       </SpeedDial>,
     );
     const buttonWrapper = wrapper.find('[aria-expanded]').first();
-    assert.strictEqual(buttonWrapper.type(), Fab);
+    expect(buttonWrapper.type()).to.equal(Fab);
   });
 
   it('should render with a null child', () => {
@@ -77,7 +77,7 @@ describe('<SpeedDial />', () => {
         <SpeedDialAction icon={icon} tooltipTitle="Three" />
       </SpeedDial>,
     );
-    assert.strictEqual(wrapper.find(SpeedDialAction).length, 2);
+    expect(wrapper.find(SpeedDialAction).length).to.equal(2);
   });
 
   it('should pass the open prop to its children', () => {
@@ -89,7 +89,7 @@ describe('<SpeedDial />', () => {
       </SpeedDial>,
     );
     const actions = wrapper.find('[role="menuitem"]').filterWhere(wrapsIntrinsicElement);
-    assert.strictEqual(actions.some('.is-closed'), false);
+    expect(actions.some('.is-closed')).to.equal(false);
   });
 
   describe('prop: onKeyDown', () => {
@@ -106,8 +106,8 @@ describe('<SpeedDial />', () => {
         key: ' ',
         eventMock,
       });
-      assert.strictEqual(handleKeyDown.callCount, 1);
-      assert.strictEqual(handleKeyDown.calledWithMatch({ eventMock }), true);
+      expect(handleKeyDown.callCount).to.equal(1);
+      expect(handleKeyDown.calledWithMatch({ eventMock })).to.equal(true);
     });
   });
 
@@ -120,7 +120,7 @@ describe('<SpeedDial />', () => {
           <SpeedDialAction icon={icon} tooltipTitle="action2" />
         </SpeedDial>,
       );
-      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes[className]), true);
+      expect(findOutermostIntrinsic(wrapper).hasClass(classes[className])).to.equal(true);
     };
 
     it('should place actions in correct position', () => {
@@ -204,20 +204,20 @@ describe('<SpeedDial />', () => {
 
     it('displays the actions on focus gain', () => {
       resetDialToOpen();
-      assert.strictEqual(wrapper.find(SpeedDial).props().open, true);
+      expect(wrapper.find(SpeedDial).props().open).to.equal(true);
     });
 
     describe('first item selection', () => {
       it('considers arrow keys with the same initial orientation', () => {
         resetDialToOpen();
         getDialButton().simulate('keydown', { key: 'left' });
-        assert.strictEqual(isActionFocused(0), true);
+        expect(isActionFocused(0)).to.equal(true);
         getDialButton().simulate('keydown', { key: 'up' });
-        assert.strictEqual(isActionFocused(0), true);
+        expect(isActionFocused(0)).to.equal(true);
         getDialButton().simulate('keydown', { key: 'left' });
-        assert.strictEqual(isActionFocused(1), true);
+        expect(isActionFocused(1)).to.equal(true);
         getDialButton().simulate('keydown', { key: 'right' });
-        assert.strictEqual(isActionFocused(0), true);
+        expect(isActionFocused(0)).to.equal(true);
       });
     });
 
@@ -236,8 +236,7 @@ describe('<SpeedDial />', () => {
         resetDialToOpen(dialDirection);
 
         getDialButton().simulate('keydown', { key: firstKey });
-        assert.strictEqual(
-          isActionFocused(firstFocusedAction),
+        expect(isActionFocused(firstFocusedAction)).to.equal(
           true,
           `focused action initial ${firstKey} should be ${firstFocusedAction}`,
         );
@@ -250,8 +249,7 @@ describe('<SpeedDial />', () => {
           getActionButton(previousFocusedAction).simulate('keydown', {
             key: arrowKey,
           });
-          assert.strictEqual(
-            isActionFocused(expectedFocusedAction),
+          expect(isActionFocused(expectedFocusedAction)).to.equal(
             true,
             `focused action after ${combinationUntilNot.join(
               ',',

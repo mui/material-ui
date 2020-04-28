@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
 import GridListTileBar from './GridListTileBar';
@@ -37,11 +37,7 @@ describe('<GridListTileBar />', () => {
     it('should renders title', () => {
       const wrapper = shallow(<GridListTileBar title={tileData.title} />);
 
-      assert.strictEqual(
-        wrapper.children('div').text(),
-        tileData.title,
-        'should contain the title',
-      );
+      expect(wrapper.children('div').text()).to.equal(tileData.title);
     });
   });
 });

@@ -1,4 +1,4 @@
-import { assert, expect } from 'chai';
+import { expect } from 'chai';
 import getScrollbarSize from '../utils/getScrollbarSize';
 import ModalManager from './ModalManager';
 
@@ -30,7 +30,7 @@ describe('ModalManager', () => {
     const modalManager2 = new ModalManager();
     const idx = modalManager2.add(modal, container1);
     modalManager2.mount(modal, {});
-    assert.strictEqual(modalManager2.add(modal, container1), idx);
+    expect(modalManager2.add(modal, container1)).to.equal(idx);
     modalManager2.remove(modal);
   });
 
@@ -48,58 +48,54 @@ describe('ModalManager', () => {
     it('should add modal1', () => {
       const idx = modalManager.add(modal1, container1);
       modalManager.mount(modal1, {});
-      assert.strictEqual(idx, 0, 'should be the first modal');
-      assert.strictEqual(modalManager.isTopModal(modal1), true);
+      expect(idx).to.equal(0);
+      expect(modalManager.isTopModal(modal1)).to.equal(true);
     });
 
     it('should add modal2', () => {
       const idx = modalManager.add(modal2, container1);
-      assert.strictEqual(idx, 1, 'should be the second modal');
-      assert.strictEqual(modalManager.isTopModal(modal2), true);
+      expect(idx).to.equal(1);
+      expect(modalManager.isTopModal(modal2)).to.equal(true);
     });
 
     it('should add modal3', () => {
       const idx = modalManager.add(modal3, container1);
-      assert.strictEqual(idx, 2, 'should be the third modal');
-      assert.strictEqual(modalManager.isTopModal(modal3), true);
+      expect(idx).to.equal(2);
+      expect(modalManager.isTopModal(modal3)).to.equal(true);
     });
 
     it('should remove modal2', () => {
       const idx = modalManager.remove(modal2);
-      assert.strictEqual(idx, 1, 'should be the second modal');
+      expect(idx).to.equal(1);
     });
 
     it('should add modal2 2', () => {
       const idx = modalManager.add(modal2, container1);
       modalManager.mount(modal2, {});
-      assert.strictEqual(idx, 2, 'should be the "third" modal');
-      assert.strictEqual(modalManager.isTopModal(modal2), true);
-      assert.strictEqual(
-        modalManager.isTopModal(modal3),
-        false,
-        'modal3 should not be the top modal',
-      );
+      expect(idx).to.equal(2);
+      expect(modalManager.isTopModal(modal2)).to.equal(true);
+      expect(modalManager.isTopModal(modal3)).to.equal(false);
     });
 
     it('should remove modal3', () => {
       const idx = modalManager.remove(modal3);
-      assert.strictEqual(idx, 1);
+      expect(idx).to.equal(1);
     });
 
     it('should remove modal2 2', () => {
       const idx = modalManager.remove(modal2);
-      assert.strictEqual(idx, 1);
-      assert.strictEqual(modalManager.isTopModal(modal1), true);
+      expect(idx).to.equal(1);
+      expect(modalManager.isTopModal(modal1)).to.equal(true);
     });
 
     it('should remove modal1', () => {
       const idx = modalManager.remove(modal1);
-      assert.strictEqual(idx, 0);
+      expect(idx).to.equal(0);
     });
 
     it('should not do anything', () => {
       const idx = modalManager.remove({ nonExisting: true });
-      assert.strictEqual(idx, -1);
+      expect(idx).to.equal(-1);
     });
   });
 
@@ -126,13 +122,13 @@ describe('ModalManager', () => {
       const modal = {};
       modalManager.add(modal, container1);
       modalManager.mount(modal, {});
-      assert.strictEqual(container1.style.overflow, 'hidden');
-      assert.strictEqual(container1.style.paddingRight, `${20 + getScrollbarSize()}px`);
-      assert.strictEqual(fixedNode.style.paddingRight, `${14 + getScrollbarSize()}px`);
+      expect(container1.style.overflow).to.equal('hidden');
+      expect(container1.style.paddingRight).to.equal(`${20 + getScrollbarSize()}px`);
+      expect(fixedNode.style.paddingRight).to.equal(`${14 + getScrollbarSize()}px`);
       modalManager.remove(modal);
-      assert.strictEqual(container1.style.overflow, '');
-      assert.strictEqual(container1.style.paddingRight, '20px');
-      assert.strictEqual(fixedNode.style.paddingRight, '14px');
+      expect(container1.style.overflow).to.equal('');
+      expect(container1.style.paddingRight).to.equal('20px');
+      expect(fixedNode.style.paddingRight).to.equal('14px');
     });
 
     it('should disable the scroll even when not overflowing', () => {
@@ -151,9 +147,9 @@ describe('ModalManager', () => {
       const modal = {};
       modalManager.add(modal, container2);
       modalManager.mount(modal, {});
-      assert.strictEqual(container2.style.overflow, 'hidden');
+      expect(container2.style.overflow).to.equal('hidden');
       modalManager.remove(modal);
-      assert.strictEqual(container2.style.overflow, '');
+      expect(container2.style.overflow).to.equal('');
 
       document.body.removeChild(container2);
     });
@@ -162,13 +158,13 @@ describe('ModalManager', () => {
       const modal = {};
       modalManager.add(modal, container1);
       modalManager.mount(modal, {});
-      assert.strictEqual(container1.style.overflow, 'hidden');
-      assert.strictEqual(container1.style.paddingRight, `${20 + getScrollbarSize()}px`);
-      assert.strictEqual(fixedNode.style.paddingRight, `${0 + getScrollbarSize()}px`);
+      expect(container1.style.overflow).to.equal('hidden');
+      expect(container1.style.paddingRight).to.equal(`${20 + getScrollbarSize()}px`);
+      expect(fixedNode.style.paddingRight).to.equal(`${0 + getScrollbarSize()}px`);
       modalManager.remove(modal);
-      assert.strictEqual(container1.style.overflow, '');
-      assert.strictEqual(container1.style.paddingRight, '20px');
-      assert.strictEqual(fixedNode.style.paddingRight, '');
+      expect(container1.style.overflow).to.equal('');
+      expect(container1.style.paddingRight).to.equal('20px');
+      expect(fixedNode.style.paddingRight).to.equal('');
     });
   });
 

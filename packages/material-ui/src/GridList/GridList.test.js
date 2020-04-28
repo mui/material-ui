@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
 import GridList from './GridList';
@@ -63,12 +63,8 @@ describe('<GridList />', () => {
       </GridList>,
     );
 
-    assert.strictEqual(wrapper.find('.grid-tile').length, 2, 'should contain the children');
-    assert.strictEqual(
-      wrapper.children().at(0).props().style.height,
-      cellHeight + 4,
-      'should have height to 254',
-    );
+    expect(wrapper.find('.grid-tile').length).to.equal(2);
+    expect(wrapper.children().at(0).props().style.height).to.equal(cellHeight + 4);
   });
 
   it('renders children by default', () => {
@@ -88,7 +84,7 @@ describe('<GridList />', () => {
       </GridList>,
     );
 
-    assert.strictEqual(wrapper.find('.grid-tile').length, 2, 'should contain the children');
+    expect(wrapper.find('.grid-tile').length).to.equal(2);
   });
 
   it('renders children and change cols', () => {
@@ -107,12 +103,8 @@ describe('<GridList />', () => {
       </GridList>,
     );
 
-    assert.strictEqual(wrapper.find('.grid-tile').length, 2, 'should contain the children');
-    assert.strictEqual(
-      wrapper.children().at(0).props().style.width,
-      '25%',
-      'should have 25% of width',
-    );
+    expect(wrapper.find('.grid-tile').length).to.equal(2);
+    expect(wrapper.children().at(0).props().style.width).to.equal('25%');
   });
 
   it('renders children and change spacing', () => {
@@ -132,12 +124,8 @@ describe('<GridList />', () => {
       </GridList>,
     );
 
-    assert.strictEqual(wrapper.find('.grid-tile').length, 2, 'should contain the children');
-    assert.strictEqual(
-      wrapper.children().at(0).props().style.padding,
-      spacing / 2,
-      'should have 5 of padding',
-    );
+    expect(wrapper.find('.grid-tile').length).to.equal(2);
+    expect(wrapper.children().at(0).props().style.padding).to.equal(spacing / 2);
   });
 
   it('should render children and overwrite style', () => {
@@ -157,8 +145,8 @@ describe('<GridList />', () => {
       </GridList>,
     );
 
-    assert.strictEqual(wrapper.find('.grid-tile').length, 2, 'should contain the children');
-    assert.strictEqual(wrapper.props().style.backgroundColor, style.backgroundColor);
+    expect(wrapper.find('.grid-tile').length).to.equal(2);
+    expect(wrapper.props().style.backgroundColor).to.equal(style.backgroundColor);
   });
 
   describe('prop: cellHeight', () => {
@@ -169,7 +157,7 @@ describe('<GridList />', () => {
         </GridList>,
       );
 
-      assert.strictEqual(wrapper.children().at(0).props().style.height, 'auto');
+      expect(wrapper.children().at(0).props().style.height).to.equal('auto');
     });
   });
 
@@ -189,9 +177,8 @@ describe('<GridList />', () => {
         </GridList>,
       );
 
-      assert.strictEqual(consoleErrorMock.callCount(), 1);
-      assert.include(
-        consoleErrorMock.messages()[0],
+      expect(consoleErrorMock.callCount()).to.equal(1);
+      expect(consoleErrorMock.messages()[0]).to.include(
         "Material-UI: the GridList component doesn't accept a Fragment as a child.",
       );
     });
