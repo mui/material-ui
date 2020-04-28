@@ -24,6 +24,8 @@ export default class MyDocument extends Document {
   }
 }
 
+// Note that this `getInitialProps` belongs to `_document` (instead of `_app`).
+// Hence it works with next.js recommended Static Generation (SSG)
 MyDocument.getInitialProps = async (ctx) => {
   // Resolution order
   //
