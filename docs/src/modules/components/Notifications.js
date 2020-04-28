@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import Tooltip from '@material-ui/core/Tooltip';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import IconButton from '@material-ui/core/IconButton';
 import Badge from '@material-ui/core/Badge';
 import Typography from '@material-ui/core/Typography';
@@ -32,6 +33,11 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
   },
+  loading: {
+    display: 'flex',
+    justifyContent: 'center',
+    margin: theme.spacing(1, 0),
+  },
   divider: {
     margin: theme.spacing(1, 0),
   },
@@ -53,34 +59,34 @@ export default function Notifications() {
   const messages = useSelector((state) => state.notifications.messages);
   const lastSeen = useSelector((state) => state.notifications.lastSeen);
 
-  const messageList = (messages || [])
-    .filter((message) => {
-      if (
-        message.userLanguage &&
-        message.userLanguage !== userLanguage &&
-        message.userLanguage !== navigator.language.substring(0, 2)
-      ) {
-        return false;
-      }
-      return true;
-    })
-    .reverse();
-
-  const unseenNotificationsCount = messageList.reduce(
-    (count, message) => (message.id > lastSeen ? count + 1 : count),
-    0,
-  );
+  const messageList = messages
+    ? messages
+        .filter((message) => {
+          if (
+            message.userLanguage &&
+            message.userLanguage !== userLanguage &&
+            message.userLanguage !== navigator.language.substring(0, 2)
+          ) {
+            return false;
+          }
+          return true;
+        })
+        .reverse()
+    : null;
 
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
     setTooltipOpen(false);
-    dispatch({
-      type: ACTION_TYPES.NOTIFICATIONS_CHANGE,
-      payload: {
-        lastSeen: messageList[0].id,
-      },
-    });
-    document.cookie = `lastSeenNotification=${messageList[0].id};path=/;max-age=31536000`;
+
+    if (messageList) {
+      dispatch({
+        type: ACTION_TYPES.NOTIFICATIONS_CHANGE,
+        payload: {
+          lastSeen: messageList[0].id,
+        },
+      });
+      document.cookie = `lastSeenNotification=${messageList[0].id};path=/;max-age=31536000`;
+    }
   };
 
   React.useEffect(() => {
@@ -142,7 +148,17 @@ export default function Notifications() {
           data-ga-event-category="AppBar"
           data-ga-event-action="toggleNotifications"
         >
-          <Badge color="secondary" badgeContent={unseenNotificationsCount}>
+          <Badge
+            color="secondary"
+            badgeContent={
+              messageList
+                ? messageList.reduce(
+                    (count, message) => (message.id > lastSeen ? count + 1 : count),
+                    0,
+                  )
+                : 0
+            }
+          >
             <NotificationsIcon />
           </Badge>
         </IconButton>
@@ -165,31 +181,37 @@ export default function Notifications() {
             <Grow in={open} {...TransitionProps}>
               <Paper className={classes.paper}>
                 <List className={classes.list}>
-                  {messageList.map((message, index) => (
-                    <React.Fragment key={message.id}>
-                      <ListItem alignItems="flex-start" className={classes.listItem}>
-                        <Typography gutterBottom>{message.title}</Typography>
-                        <Typography gutterBottom variant="body2">
-                          <span
-                            id="notification-message"
-                            dangerouslySetInnerHTML={{ __html: message.text }}
-                          />
-                        </Typography>
-                        {message.date && (
-                          <Typography variant="caption" color="textSecondary">
-                            {new Date(message.date).toLocaleDateString('en-US', {
-                              year: 'numeric',
-                              month: 'long',
-                              day: 'numeric',
-                            })}
+                  {messageList ? (
+                    messageList.map((message, index) => (
+                      <React.Fragment key={message.id}>
+                        <ListItem alignItems="flex-start" className={classes.listItem}>
+                          <Typography gutterBottom>{message.title}</Typography>
+                          <Typography gutterBottom variant="body2">
+                            <span
+                              id="notification-message"
+                              dangerouslySetInnerHTML={{ __html: message.text }}
+                            />
                           </Typography>
-                        )}
-                      </ListItem>
-                      {index < messageList.length - 1 ? (
-                        <Divider className={classes.divider} />
-                      ) : null}
-                    </React.Fragment>
-                  ))}
+                          {message.date && (
+                            <Typography variant="caption" color="textSecondary">
+                              {new Date(message.date).toLocaleDateString('en-US', {
+                                year: 'numeric',
+                                month: 'long',
+                                day: 'numeric',
+                              })}
+                            </Typography>
+                          )}
+                        </ListItem>
+                        {index < messageList.length - 1 ? (
+                          <Divider className={classes.divider} />
+                        ) : null}
+                      </React.Fragment>
+                    ))
+                  ) : (
+                    <div className={classes.loading}>
+                      <CircularProgress size={32} />
+                    </div>
+                  )}
                 </List>
               </Paper>
             </Grow>
