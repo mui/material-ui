@@ -89,6 +89,11 @@ Table.propTypes = {
    */
   component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
   /**
+   * Hide the border of the last table row
+   *
+   */
+  hideLastBorder: PropTypes.bool,
+  /**
    * Allows TableCells to inherit padding of the Table.
    */
   padding: PropTypes.oneOf(['default', 'checkbox', 'none']),
@@ -102,11 +107,6 @@ Table.propTypes = {
    * ⚠️ It doesn't work with IE 11.
    */
   stickyHeader: PropTypes.bool,
-  /**
-   * Hide the border of the last table row
-   *
-   */
-  hideLastBorder: PropTypes.bool,
 };
 
 export default withStyles(styles, { name: 'MuiTable' })(Table);
