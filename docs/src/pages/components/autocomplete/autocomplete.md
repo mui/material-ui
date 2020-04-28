@@ -45,7 +45,11 @@ The component has two states that can be controlled:
 
 ## Free solo
 
-Set `freeSolo` to true so the textbox can contain any arbitrary value. The prop is designed to cover the primary use case of a **search box** with suggestions, e.g. Google search or react-autowhatever.
+Set `freeSolo` to true so the textbox can contain any arbitrary value.
+
+### Search input
+
+The prop is designed to cover the primary use case of a **search input** with suggestions, e.g. Google search or react-autowhatever.
 
 {{"demo": "pages/components/autocomplete/FreeSolo.js"}}
 
