@@ -174,9 +174,12 @@ export function useCalendarState({
   }, []);
 
   const changeFocusedDay = React.useCallback(
-    (newFocusedDate: MaterialUiPickersDate) =>
-      dispatch({ type: 'changeFocusedDay', focusedDay: newFocusedDate }),
-    []
+    (newFocusedDate: MaterialUiPickersDate) => {
+      if (!isDateDisabled(newFocusedDate)) {
+        dispatch({ type: 'changeFocusedDay', focusedDay: newFocusedDate });
+      }
+    },
+    [isDateDisabled]
   );
 
   return {

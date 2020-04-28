@@ -14,7 +14,7 @@ import { Calendar, ExportedCalendarProps } from './Calendar';
 import { PickerOnChangeFn } from '../../_shared/hooks/useViews';
 import { useParsedDate } from '../../_shared/hooks/date-helpers-hooks';
 import { CalendarHeader, CalendarHeaderProps } from './CalendarHeader';
-import { WrapperVariantContext } from '../../wrappers/WrapperVariantContext';
+import { IsStaticVariantContext } from '../../wrappers/WrapperVariantContext';
 
 type PublicCalendarHeaderProps = Pick<
   CalendarHeaderProps,
@@ -86,7 +86,7 @@ export const CalendarView: React.FC<CalendarViewProps> = ({
   reduceAnimations = defaultReduceAnimations,
   loadingIndicator = <CircularProgress data-mui-test="loading-progress" />,
   shouldDisableDate,
-  allowKeyboardControl: allowKeyboardControlProp,
+  allowKeyboardControl: __allowKeyboardControlProp,
   disablePast,
   disableFuture,
   ...other
@@ -95,8 +95,9 @@ export const CalendarView: React.FC<CalendarViewProps> = ({
   const minDate = useParsedDate(unparsedMinDate)!;
   const maxDate = useParsedDate(unparsedMaxDate)!;
 
-  const wrapperVariant = React.useContext(WrapperVariantContext);
-  const allowKeyboardControl = allowKeyboardControlProp ?? wrapperVariant !== 'static';
+  const isStatic = React.useContext(IsStaticVariantContext);
+  console.log(isStatic);
+  const allowKeyboardControl = __allowKeyboardControlProp ?? !isStatic;
 
   const {
     loadingQueue,

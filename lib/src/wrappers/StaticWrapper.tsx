@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { DIALOG_WIDTH } from '../constants/dimensions';
-import { WrapperVariantContext } from './WrapperVariantContext';
+import { WrapperVariantContext, IsStaticVariantContext } from './WrapperVariantContext';
 
 const useStyles = makeStyles(
   theme => ({
@@ -31,8 +31,10 @@ export const StaticWrapper: React.FC<StaticWrapperProps> = ({
   const classes = useStyles();
 
   return (
-    <WrapperVariantContext.Provider value={displayStaticWrapperAs}>
-      <div className={classes.staticWrapperRoot} children={children} />
-    </WrapperVariantContext.Provider>
+    <IsStaticVariantContext.Provider value={true}>
+      <WrapperVariantContext.Provider value={displayStaticWrapperAs}>
+        <div className={classes.staticWrapperRoot} children={children} />
+      </WrapperVariantContext.Provider>
+    </IsStaticVariantContext.Provider>
   );
 };

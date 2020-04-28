@@ -47,12 +47,12 @@ export const YearSelection: React.FC<YearSelectionProps> = ({
   const utils = useUtils();
   const classes = useStyles();
   const currentYear = utils.getYear(date);
-  const [focusedYear, setFocused] = React.useState<number | null>(currentYear);
   const wrapperVariant = React.useContext(WrapperVariantContext);
   const selectedYearRef = React.useRef<HTMLDivElement>(null);
+  const [focusedYear, setFocusedYear] = React.useState<number | null>(currentYear);
 
   React.useEffect(() => {
-    if (selectedYearRef.current && selectedYearRef.current.scrollIntoView) {
+    if (allowKeyboardControl && selectedYearRef.current && selectedYearRef.current.scrollIntoView) {
       try {
         selectedYearRef.current.scrollIntoView({
           block: wrapperVariant === 'static' ? 'nearest' : 'center',
@@ -80,13 +80,22 @@ export const YearSelection: React.FC<YearSelectionProps> = ({
     [date, isDateDisabled, onChange, onYearChange, utils]
   );
 
+  const focusYear = React.useCallback(
+    (year: number) => {
+      if (!isDateDisabled(utils.setYear(date, year))) {
+        setFocusedYear(year);
+      }
+    },
+    [date, isDateDisabled, utils]
+  );
+
   const yearsInRow = wrapperVariant === 'desktop' ? 4 : 3;
   const nowFocusedYear = focusedYear || currentYear;
   useGlobalKeyDown(Boolean(allowKeyboardControl), {
-    [keys.ArrowUp]: () => setFocused(nowFocusedYear - yearsInRow),
-    [keys.ArrowDown]: () => setFocused(nowFocusedYear + yearsInRow),
-    [keys.ArrowLeft]: () => setFocused(nowFocusedYear + (theme.direction === 'ltr' ? -1 : 1)),
-    [keys.ArrowRight]: () => setFocused(nowFocusedYear + (theme.direction === 'ltr' ? 1 : -1)),
+    [keys.ArrowUp]: () => focusYear(nowFocusedYear - yearsInRow),
+    [keys.ArrowDown]: () => focusYear(nowFocusedYear + yearsInRow),
+    [keys.ArrowLeft]: () => focusYear(nowFocusedYear + (theme.direction === 'ltr' ? -1 : 1)),
+    [keys.ArrowRight]: () => focusYear(nowFocusedYear + (theme.direction === 'ltr' ? 1 : -1)),
   });
 
   return (

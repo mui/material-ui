@@ -39,9 +39,8 @@ export const useStyles = makeStyles(
     dayOutsideMonth: {
       color: theme.palette.text.hint,
     },
-    hidden: {
-      opacity: 0,
-      pointerEvents: 'none',
+    hiddenDaySpacingFiller: {
+      visibility: 'hidden',
     },
     today: {
       '&:not($daySelected)': {
@@ -170,27 +169,31 @@ const PureDay: React.FC<DayProps> = ({
     }
   }, onKeyDown);
 
-  const isHidden = !isInCurrentMonth && !showDaysOutsideCurrentMonth;
+  const dayClassName = clsx(
+    classes.day,
+    {
+      [classes.daySelected]: selected,
+      [classes.dayDisabled]: disabled,
+      [classes.dayWithMargin]: !disableMargin,
+      [classes.today]: !disableHighlightToday && isToday,
+      [classes.dayOutsideMonth]: !isInCurrentMonth && showDaysOutsideCurrentMonth,
+    },
+    className
+  );
+
+  if (!isInCurrentMonth && !showDaysOutsideCurrentMonth) {
+    // Do not render button and not attach any listeners for empty days
+    return <div aria-hidden className={clsx(dayClassName, classes.hiddenDaySpacingFiller)} />;
+  }
+
   return (
     <ButtonBase
-      aria-hidden={isHidden}
       ref={ref}
       centerRipple
       data-mui-test="day"
       aria-label={utils.format(day, 'fullDate')}
       tabIndex={focused || focusable ? 0 : -1}
-      className={clsx(
-        classes.day,
-        {
-          [classes.daySelected]: selected,
-          [classes.dayDisabled]: disabled,
-          [classes.dayWithMargin]: !disableMargin,
-          [classes.today]: !disableHighlightToday && isToday,
-          [classes.hidden]: isHidden,
-          [classes.dayOutsideMonth]: !isInCurrentMonth && showDaysOutsideCurrentMonth,
-        },
-        className
-      )}
+      className={dayClassName}
       {...other}
       onFocus={handleFocus}
       onKeyDown={handleKeyDown}

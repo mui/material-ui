@@ -41,7 +41,7 @@ describe('DateRangePicker', () => {
       component
         .find('button[data-mui-test="DateRangeDay"]')
         .filterWhere(wrapper => !wrapper.prop('disabled')).length
-    ).toBe(70);
+    ).toBe(59);
   });
 
   test('prop: calendars', () => {
@@ -59,6 +59,6 @@ describe('DateRangePicker', () => {
     );
 
     expect(component.find('Calendar').length).toBe(3);
-    expect(component.find('button[data-mui-test="DateRangeDay"]').length).toBe(105);
+    expect(component.find('button[data-mui-test="DateRangeDay"]').length).toBe(90);
   });
 });
