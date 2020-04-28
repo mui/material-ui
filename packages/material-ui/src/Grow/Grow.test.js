@@ -123,7 +123,10 @@ describe('<Grow />', () => {
 
         it('should set style properties', () => {
           expect(handleExit.args[0][0].style.opacity).to.equal('0');
-          expect(handleExit.args[0][0].style.transform).to.equal('scale(0.75, 0.5625)');
+          expect(handleExit.args[0][0].style.transform).to.equal(
+            'scale(0.75, 0.5625)',
+            'should have the exit scale',
+          );
         });
       });
 

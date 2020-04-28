@@ -236,7 +236,10 @@ describe('<SpeedDial />', () => {
         resetDialToOpen(dialDirection);
 
         getDialButton().simulate('keydown', { key: firstKey });
-        expect(isActionFocused(firstFocusedAction)).to.equal(true);
+        expect(isActionFocused(firstFocusedAction)).to.equal(
+          true,
+          `focused action initial ${firstKey} should be ${firstFocusedAction}`,
+        );
 
         combination.forEach((arrowKey, i) => {
           const previousFocusedAction = foci[i - 1] || firstFocusedAction;

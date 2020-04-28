@@ -52,7 +52,10 @@ describe('elementAcceptingRef', () => {
         );
       }
 
-      expect(consoleErrorMock.callCount()).to.equal(failsOnMount ? 1 : 0);
+      expect(consoleErrorMock.callCount()).to.equal(
+        failsOnMount ? 1 : 0,
+        `but got '${consoleErrorMock.messages()[0]}'`,
+      );
     }
 
     before(() => {
