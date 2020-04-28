@@ -175,6 +175,13 @@ describe('<Tooltip />', () => {
       wrapper.update();
       assert.strictEqual(wrapper.find(Popper).props().open, false);
     });
+
+    it('should not respond mouseOver event with disableTouchListener', () => {
+      const { baseElement } = render(<Tooltip {...defaultProps} disableTouchListener />);
+      const children = baseElement.querySelector('#testChild');
+      fireEvent.mouseOver(children);
+      expect(baseElement.querySelector('[role="tooltip"]')).to.equal(null);
+    });
   });
 
   describe('mount', () => {

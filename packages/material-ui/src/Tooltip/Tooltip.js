@@ -432,7 +432,9 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
 
   const interactiveWrapperListeners = {};
 
-  if (!disableTouchListener) {
+  if (disableTouchListener) {
+    ignoreNonTouchEvents.current = true;
+  } else {
     childrenProps.onTouchStart = handleTouchStart;
     childrenProps.onTouchEnd = handleTouchEnd;
   }
