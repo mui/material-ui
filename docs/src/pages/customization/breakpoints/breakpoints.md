@@ -106,8 +106,8 @@ In the following demo, we change the rendered DOM element (*em*, <u>u</u>, ~~del
 const styles = theme => ({
   root: {
     backgroundColor: 'blue',
-    // Match [md, ∞[
-    //       [960px, ∞[
+    // Match [md, ∞)
+    //       [960px, ∞)
     [theme.breakpoints.up('md')]: {
       backgroundColor: 'red',
     },
@@ -131,9 +131,9 @@ const styles = theme => ({
 const styles = theme => ({
   root: {
     backgroundColor: 'blue',
-    // Match [0, md + 1[
-    //       [0, lg[
-    //       [0, 1280px[
+    // Match [0, md + 1)
+    //       [0, lg)
+    //       [0, 1280px)
     [theme.breakpoints.down('md')]: {
       backgroundColor: 'red',
     },
@@ -157,9 +157,9 @@ const styles = theme => ({
 const styles = theme => ({
   root: {
     backgroundColor: 'blue',
-    // Match [md, md + 1[
-    //       [md, lg[
-    //       [960px, 1280px[
+    // Match [md, md + 1)
+    //       [md, lg)
+    //       [960px, 1280px)
     [theme.breakpoints.only('md')]: {
       backgroundColor: 'red',
     },
@@ -184,8 +184,8 @@ const styles = theme => ({
 const styles = theme => ({
   root: {
     backgroundColor: 'blue',
-    // Match [sm, md + 1[
-    //       [sm, lg[
+    // Match [sm, md + 1)
+    //       [sm, lg)
     //       [600px, 1280px[
     [theme.breakpoints.between('sm', 'md')]: {
       backgroundColor: 'red',
