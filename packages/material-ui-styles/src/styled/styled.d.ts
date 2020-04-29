@@ -12,7 +12,7 @@ import { DefaultTheme } from '../defaultTheme';
  */
 export type ComponentCreator<Component extends React.ElementType> = <
   Theme = DefaultTheme,
-  Props extends {} = {}
+  Props extends {} = React.ComponentPropsWithoutRef<Component>
 >(
   styles:
     | CreateCSSProperties<Props>
