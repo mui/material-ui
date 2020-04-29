@@ -119,6 +119,12 @@ const externs = [
   'https://ui-kit.co/',
 ];
 
+/**
+ *
+ * @param {object} config
+ * @param {() => string} config.requireRaw - returnvalue of require.context
+ * @param {string} config.pageFilename - filename relative to nextjs pages directory
+ */
 export function prepareMarkdown(config) {
   const { pageFilename, requireRaw } = config;
 
@@ -166,13 +172,20 @@ ${headers.components
 
         return render(content, {
           highlight: prism,
-          heading: (headingText, level) => {
+          heading: (headingHtml, level) => {
             // Small title. No need for an anchor.
             // It's reducing the risk of duplicated id and it's fewer elements in the DOM.
             if (level >= 4) {
-              return `<h${level}>${headingText}</h${level}>`;
+              return `<h${level}>${headingHtml}</h${level}>`;
             }
 
+            const headingText = headingHtml
+              .replace(
+                /([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])\uFE0F?/g,
+                '',
+              ) // remove emojis
+              .replace(/<\/?[^>]+(>|$)/g, '') // remove HTML
+              .trim();
             const hash = textToHash(headingText, headingHashes);
 
             /**
@@ -201,7 +214,7 @@ ${headers.components
             return [
               `<h${level}>`,
               `<a class="anchor-link" id="${hash}"></a>`,
-              headingText,
+              headingHtml,
               `<a class="anchor-link-style" aria-hidden="true" aria-label="anchor" href="#${hash}">`,
               '<svg><use xlink:href="#anchor-link-icon" /></svg>',
               '</a>',
