@@ -91,7 +91,7 @@ function acceptanceTest() {
     <React.Fragment>
       <MyComponent className="test" />
       <StyledMyComponent theme={MyThemeInstance} />
-      <StyledInferedPropsMyComponent defaulted="Hi!" className="test" />
+      <StyledInferedPropsMyComponent defaulted="Hi!" />
     </React.Fragment>
   );
 }
