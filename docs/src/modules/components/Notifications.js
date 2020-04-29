@@ -43,11 +43,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function getLastSeenNotification() {
-  const seen = getCookie('lastSeenNotification');
-  return seen === '' ? 0 : parseInt(seen, 10);
-}
-
 export default function Notifications() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
@@ -78,7 +73,7 @@ export default function Notifications() {
     setOpen((prevOpen) => !prevOpen);
     setTooltipOpen(false);
 
-    if (messageList) {
+    if (messageList && messageList.length > 0) {
       dispatch({
         type: ACTION_TYPES.NOTIFICATIONS_CHANGE,
         payload: {
@@ -110,11 +105,14 @@ export default function Notifications() {
       }
 
       if (active) {
+        const seen = getCookie('lastSeenNotification');
+        const lastSeenNotification = seen === '' ? 0 : parseInt(seen, 10);
+
         dispatch({
           type: ACTION_TYPES.NOTIFICATIONS_CHANGE,
           payload: {
             messages: newMessages || [],
-            lastSeen: getLastSeenNotification(),
+            lastSeen: lastSeenNotification,
           },
         });
       }
