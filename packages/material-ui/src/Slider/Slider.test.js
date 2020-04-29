@@ -391,6 +391,17 @@ describe('<Slider />', () => {
       fireEvent.keyDown(document.activeElement, moveLeftEvent);
       expect(thumb).to.have.attribute('aria-valuenow', '-3e-8');
     });
+
+    it('should handle RTL', () => {
+      const { getByRole } = render(<Slider defaultValue={30} />);
+      const thumb = getByRole('slider');
+      thumb.focus();
+
+      fireEvent.keyDown(document.activeElement, moveLeftEvent);
+      expect(thumb).to.have.attribute('aria-valuenow', '31');
+      fireEvent.keyDown(document.activeElement, moveRightEvent);
+      expect(thumb).to.have.attribute('aria-valuenow', '30');
+    });
   });
 
   describe('prop: valueLabelDisplay', () => {
