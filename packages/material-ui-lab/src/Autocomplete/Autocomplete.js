@@ -350,7 +350,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
 
   if (limitTags > -1 && Array.isArray(startAdornment)) {
     const more = startAdornment.length - limitTags;
-    if (limitTags && !focused && more > 0) {
+    if (!focused && more > 0) {
       startAdornment = startAdornment.splice(0, limitTags);
       startAdornment.push(
         <span className={classes.tag} key={startAdornment.length}>

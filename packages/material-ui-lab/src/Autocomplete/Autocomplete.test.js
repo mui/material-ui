@@ -164,6 +164,29 @@ describe('<Autocomplete />', () => {
       expect(container.textContent).to.equal('onetwothree');
       expect(tags.length).to.be.equal(5);
     });
+
+    it('show 0 item on close when set 0 to limitTags', () => {
+      const { container, getAllByRole, getByRole } = render(
+        <Autocomplete
+          multiple
+          limitTags={0}
+          {...defaultProps}
+          options={['one', 'two', 'three']}
+          defaultValue={['one', 'two', 'three']}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+
+      let tags;
+      tags = getAllByRole('button');
+      expect(container.textContent).to.equal('+3');
+      expect(tags.length).to.be.equal(2);
+
+      getByRole('textbox').focus();
+      tags = getAllByRole('button');
+      expect(container.textContent).to.equal('onetwothree');
+      expect(tags.length).to.be.equal(5);
+    });
   });
 
   describe('prop: filterSelectedOptions', () => {
