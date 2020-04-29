@@ -390,7 +390,7 @@ function DemoToolbar(props) {
     showCodeLabel = showPreview ? t('showFullSource') : t('showSource');
   }
 
-  const atLeastMediumViewport = useMediaQuery((theme) => theme.breakpoints.up('sm'));
+  const atLeastSmallViewport = useMediaQuery((theme) => theme.breakpoints.up('sm'));
 
   const controlRefs = [
     React.useRef(null),
@@ -451,7 +451,7 @@ function DemoToolbar(props) {
             <Tooltip
               classes={{ popper: classes.tooltip }}
               key={showSourceHint}
-              open={showSourceHint && atLeastMediumViewport ? true : undefined}
+              open={showSourceHint && atLeastSmallViewport ? true : undefined}
               PopperProps={{ disablePortal: true }}
               title={showCodeLabel}
               placement="top"
