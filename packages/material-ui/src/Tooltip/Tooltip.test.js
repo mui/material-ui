@@ -175,6 +175,14 @@ describe('<Tooltip />', () => {
       wrapper.update();
       expect(wrapper.find(Popper).props().open).to.equal(false);
     });
+
+    it('should not open if disableTouchListener', () => {
+      const { container } = render(<Tooltip {...defaultProps} disableTouchListener />);
+      const children = container.querySelector('#testChild');
+      fireEvent.touchStart(children);
+      fireEvent.mouseOver(children);
+      expect(document.body.querySelectorAll('[role="tooltip"]').length).to.equal(0);
+    });
   });
 
   describe('mount', () => {

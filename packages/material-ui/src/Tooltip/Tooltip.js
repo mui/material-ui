@@ -367,14 +367,17 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     }, leaveDelay);
   };
 
-  const handleTouchStart = (event) => {
+  const detectTouchStart = (event) => {
     ignoreNonTouchEvents.current = true;
-    const childrenProps = children.props;
 
+    const childrenProps = children.props;
     if (childrenProps.onTouchStart) {
       childrenProps.onTouchStart(event);
     }
+  };
 
+  const handleTouchStart = (event) => {
+    detectTouchStart(event);
     clearTimeout(leaveTimer.current);
     clearTimeout(closeTimer.current);
     clearTimeout(touchTimer.current);
@@ -427,6 +430,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     ...other,
     ...children.props,
     className: clsx(other.className, children.props.className),
+    onTouchStart: detectTouchStart,
     ref: handleRef,
   };
 
