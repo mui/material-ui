@@ -69,6 +69,23 @@ const FormLabel = React.forwardRef(function FormLabel(props, ref) {
     states: ['color', 'required', 'focused', 'disabled', 'error', 'filled'],
   });
 
+  const handleMouseDown = (event) => {
+    const { id } = props;
+
+    if (!id) {
+      return;
+    }
+
+    const select = document.querySelector(`[aria-labelledby^="${id}"]`);
+
+    if (!select) {
+      return;
+    }
+
+    event.preventDefault();
+    select.focus();
+  };
+
   return (
     <Component
       className={clsx(
@@ -84,6 +101,7 @@ const FormLabel = React.forwardRef(function FormLabel(props, ref) {
         className,
       )}
       ref={ref}
+      onMouseDown={handleMouseDown}
       {...other}
     >
       {children}
@@ -140,6 +158,10 @@ FormLabel.propTypes = {
    * If `true`, the input of this label is focused (used by `FormGroup` components).
    */
   focused: PropTypes.bool,
+  /**
+   * The id of the component (`label` by default) element.
+   */
+  id: PropTypes.string,
   /**
    * If `true`, the label will indicate that the input is required.
    */
