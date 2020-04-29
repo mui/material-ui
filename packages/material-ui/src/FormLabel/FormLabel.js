@@ -58,6 +58,7 @@ const FormLabel = React.forwardRef(function FormLabel(props, ref) {
     error,
     filled,
     focused,
+    id,
     required,
     ...other
   } = props;
@@ -69,14 +70,12 @@ const FormLabel = React.forwardRef(function FormLabel(props, ref) {
     states: ['color', 'required', 'focused', 'disabled', 'error', 'filled'],
   });
 
-  const handleMouseDown = (event) => {
-    const { id } = props;
-
+  const handleClick = (event) => {
     if (!id) {
       return;
     }
 
-    const select = document.querySelector(`[aria-labelledby^="${id}"]`);
+    const select = document.querySelector(`[aria-labelledby~="${id}"]`);
 
     if (!select) {
       return;
@@ -100,8 +99,9 @@ const FormLabel = React.forwardRef(function FormLabel(props, ref) {
         },
         className,
       )}
+      id={id}
       ref={ref}
-      onMouseDown={handleMouseDown}
+      onClick={handleClick}
       {...other}
     >
       {children}

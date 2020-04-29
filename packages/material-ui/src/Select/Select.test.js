@@ -200,7 +200,7 @@ describe('<Select />', () => {
       </React.Fragment>,
     );
 
-    fireEvent.mouseDown(getByTestId('label'));
+    fireEvent.click(getByTestId('label'));
 
     expect(getByRole('button')).toHaveFocus();
   });
