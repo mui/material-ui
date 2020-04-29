@@ -6,12 +6,10 @@ import TextField from '@material-ui/core/TextField';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { zhCN } from '@material-ui/core/locale';
 
-const theme = createMuiTheme({}, zhCN);
-
 export default function Locales() {
   return (
     <div>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={(outerTheme) => createMuiTheme(outerTheme, zhCN)}>
         <TablePagination
           count={20}
           rowsPerPage={10}

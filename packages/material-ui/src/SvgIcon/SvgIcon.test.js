@@ -47,7 +47,7 @@ describe('<SvgIcon />', () => {
   it('renders children by default', () => {
     const wrapper = shallow(<SvgIcon>{path}</SvgIcon>);
     expect(wrapper.contains(path)).to.equal(true);
-    expect(wrapper.props()['aria-hidden']).to.equal('true');
+    expect(wrapper.props()['aria-hidden']).to.equal(true);
   });
 
   describe('prop: titleAccess', () => {

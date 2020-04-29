@@ -13,7 +13,7 @@ const styles = (theme) => ({
       position: 'absolute',
     },
     '& pre': {
-      margin: theme.spacing(3, 0),
+      margin: theme.spacing(3, 'auto'),
       padding: theme.spacing(2),
       backgroundColor: '#272c34',
       direction: 'ltr',
