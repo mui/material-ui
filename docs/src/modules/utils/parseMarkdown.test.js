@@ -31,6 +31,7 @@ describe('parseMarkdown', () => {
 ## Community help (free)
 ### GitHub <img src="/static/images/logos/github.svg" width="24" height="24" alt="GitHub logo" loading="lazy" />
 ### Unofficial 👍
+### Warning ⚠️
 `;
       // mock require.context
       function requireRaw() {
@@ -52,6 +53,7 @@ describe('parseMarkdown', () => {
           children: [
             { hash: 'github', level: 3, text: 'GitHub' },
             { hash: 'unofficial', level: 3, text: 'Unofficial' },
+            { hash: 'warning', level: 3, text: 'Warning' },
           ],
           hash: 'community-help-free',
           level: 2,
