@@ -176,11 +176,12 @@ describe('<Tooltip />', () => {
       assert.strictEqual(wrapper.find(Popper).props().open, false);
     });
 
-    it('should not respond mouseOver event with disableTouchListener', () => {
-      const { baseElement } = render(<Tooltip {...defaultProps} disableTouchListener />);
-      const children = baseElement.querySelector('#testChild');
+    it('should not open if disableTouchListener', () => {
+      const { container } = render(<Tooltip {...defaultProps} disableTouchListener />);
+      const children = container.querySelector('#testChild');
+      fireEvent.touchStart(children);
       fireEvent.mouseOver(children);
-      expect(baseElement.querySelector('[role="tooltip"]')).to.equal(null);
+      expect(document.body.querySelectorAll('[role="tooltip"]').length).to.equal(0);
     });
   });
 
