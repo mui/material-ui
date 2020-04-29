@@ -119,6 +119,12 @@ const externs = [
   'https://ui-kit.co/',
 ];
 
+/**
+ *
+ * @param {object} config
+ * @param {() => string} config.requireRaw - returnvalue of require.context
+ * @param {string} config.pageFilename - filename relative to nextjs pages directory
+ */
 export function prepareMarkdown(config) {
   const { pageFilename, requireRaw } = config;
 
