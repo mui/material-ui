@@ -67,7 +67,6 @@ function acceptanceTest() {
   const MyThemeInstance: MyTheme = {
     fontFamily: 'monospace',
   };
-  // tslint:disable-next-line: no-empty-interface
   interface MyComponentProps extends StyledProps {
     defaulted: string;
   }
@@ -83,6 +82,11 @@ function acceptanceTest() {
   const StyledMyComponent = styled<typeof MyComponent>(MyComponent)(
     ({ theme }: { theme: MyTheme }) => ({
       fontFamily: theme.fontFamily,
+    }),
+  );
+  const StyledInferedPropsMyComponent = styled(MyComponent)(
+    ({ defaulted }) => ({
+      content: defaulted,
     }),
   );
   const renderedMyComponent = (
