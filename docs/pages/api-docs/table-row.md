@@ -32,6 +32,7 @@ The `MuiTableRow` name can be used for providing [default props](/customization/
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | Should be valid &lt;tr> children such as `TableCell`. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'tr'</span> | The component used for the root node. Either a string to use a HTML element or a component. |
+| <span class="prop-name">hideBorder</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the table row will not have border. |
 | <span class="prop-name">hover</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the table row will shade on hover. |
 | <span class="prop-name">selected</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the table row will have the selected shading. |
 
@@ -48,6 +49,7 @@ Any other props supplied will be provided to the root element (native element).
 | <span class="prop-name">hover</span> | <span class="prop-name">.MuiTableRow-hover</span> | Pseudo-class applied to the root element if `hover={true}`.
 | <span class="prop-name">head</span> | <span class="prop-name">.MuiTableRow-head</span> | Styles applied to the root element if table variant="head".
 | <span class="prop-name">footer</span> | <span class="prop-name">.MuiTableRow-footer</span> | Styles applied to the root element if table variant="footer".
+| <span class="prop-name">hideBorder</span> | <span class="prop-name">.MuiTableRow-hideBorder</span> | Styles applied to the root element if if `hideBorder={true}`.
 
 You can override the style of the component thanks to one of these customization points:
 

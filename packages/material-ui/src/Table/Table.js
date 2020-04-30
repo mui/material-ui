@@ -23,12 +23,6 @@ export const styles = (theme) => ({
   stickyHeader: {
     borderCollapse: 'separate',
   },
-  /* Styles applied to the root element if `hideLastBorder={true}`. */
-  hideLastBorder: {
-    '& tbody tr:last-child th, & tbody tr:last-child td': {
-      border: 0,
-    },
-  },
 });
 
 const defaultComponent = 'table';
@@ -41,7 +35,6 @@ const Table = React.forwardRef(function Table(props, ref) {
     padding = 'default',
     size = 'medium',
     stickyHeader = false,
-    hideLastBorder = false,
     ...other
   } = props;
   const table = React.useMemo(() => ({ padding, size, stickyHeader }), [
@@ -59,7 +52,6 @@ const Table = React.forwardRef(function Table(props, ref) {
           classes.root,
           {
             [classes.stickyHeader]: stickyHeader,
-            [classes.hideLastBorder]: hideLastBorder,
           },
           className,
         )}
@@ -88,11 +80,6 @@ Table.propTypes = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
-  /**
-   * Hide the border of the last table row
-   *
-   */
-  hideLastBorder: PropTypes.bool,
   /**
    * Allows TableCells to inherit padding of the Table.
    */

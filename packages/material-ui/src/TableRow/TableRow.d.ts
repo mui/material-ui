@@ -5,6 +5,7 @@ export interface TableRowTypeMap<P = {}, D extends React.ElementType = 'tr'> {
   props: P & {
     hover?: boolean;
     selected?: boolean;
+    hideBorder?: boolean;
   };
   defaultComponent: D;
   classKey: TableRowClassKey;

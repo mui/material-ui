@@ -28,6 +28,12 @@ export const styles = (theme) => ({
   head: {},
   /* Styles applied to the root element if table variant="footer". */
   footer: {},
+  /* Styles applied to the root element if if `hideBorder={true}`. */
+  hideBorder: {
+    '& > th, & > td, & > [role="cell"], & > [role="columnheader"]': {
+      borderBottom: 0,
+    },
+  },
 });
 
 const defaultComponent = 'tr';
@@ -42,6 +48,7 @@ const TableRow = React.forwardRef(function TableRow(props, ref) {
     component: Component = defaultComponent,
     hover = false,
     selected = false,
+    hideBorder = false,
     ...other
   } = props;
   const tablelvl2 = React.useContext(Tablelvl2Context);
@@ -56,6 +63,7 @@ const TableRow = React.forwardRef(function TableRow(props, ref) {
           [classes.footer]: tablelvl2 && tablelvl2.variant === 'footer',
           [classes.hover]: hover,
           [classes.selected]: selected,
+          [classes.hideBorder]: hideBorder,
         },
         className,
       )}
@@ -84,6 +92,10 @@ TableRow.propTypes = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
+  /**
+   * If `true`, the table row will not have border.
+   */
+  hideBorder: PropTypes.bool,
   /**
    * If `true`, the table row will shade on hover.
    */
