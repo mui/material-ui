@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { expect, assert } from 'chai';
+import { expect } from 'chai';
 import { createMount, getClasses, findOutermostIntrinsic } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
 import KeyboardArrowLeft from '../internal/svg-icons/KeyboardArrowLeft';
@@ -62,21 +62,21 @@ describe('<MobileStepper />', () => {
 
   it('should render two buttons', () => {
     const wrapper = mount(<MobileStepper {...defaultProps} />);
-    assert.lengthOf(wrapper.find(Button), 2);
+    expect(wrapper.find(Button)).to.have.lengthOf(2);
   });
 
   it('should render the back button', () => {
     const wrapper = mount(<MobileStepper {...defaultProps} />);
     const backButton = wrapper.find('button[aria-label="back"]');
     expect(backButton.exists()).to.equal(true);
-    assert.lengthOf(backButton.find('svg[data-mui-test="KeyboardArrowLeftIcon"]'), 1);
+    expect(backButton.find('svg[data-mui-test="KeyboardArrowLeftIcon"]')).to.have.lengthOf(1);
   });
 
   it('should render next button', () => {
     const wrapper = mount(<MobileStepper {...defaultProps} />);
     const nextButton = wrapper.find('button[aria-label="next"]');
     expect(nextButton.exists()).to.equal(true);
-    assert.lengthOf(nextButton.find('svg[data-mui-test="KeyboardArrowRightIcon"]'), 1);
+    expect(nextButton.find('svg[data-mui-test="KeyboardArrowRightIcon"]')).to.have.lengthOf(1);
   });
 
   it('should render two buttons and text displaying progress when supplied with variant text', () => {
@@ -89,13 +89,13 @@ describe('<MobileStepper />', () => {
   it('should render dots when supplied with variant dots', () => {
     const wrapper = mount(<MobileStepper {...defaultProps} variant="dots" />);
     const outermost = findOutermostIntrinsic(wrapper);
-    assert.lengthOf(outermost.children(), 3);
+    expect(outermost.children()).to.have.lengthOf(3);
     expect(outermost.childAt(1).hasClass(classes.dots)).to.equal(true);
   });
 
   it('should render a dot for each step when using dots variant', () => {
     const wrapper = mount(<MobileStepper {...defaultProps} variant="dots" />);
-    assert.lengthOf(wrapper.find(`.${classes.dot}`), 2);
+    expect(wrapper.find(`.${classes.dot}`)).to.have.lengthOf(2);
   });
 
   it('should render the first dot as active if activeStep is not set', () => {
@@ -114,7 +114,7 @@ describe('<MobileStepper />', () => {
 
   it('should render a <LinearProgress /> when supplied with variant progress', () => {
     const wrapper = mount(<MobileStepper {...defaultProps} variant="progress" />);
-    assert.lengthOf(wrapper.find(LinearProgress), 1);
+    expect(wrapper.find(LinearProgress)).to.have.lengthOf(1);
   });
 
   it('should calculate the <LinearProgress /> value correctly', () => {
