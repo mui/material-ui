@@ -47,10 +47,6 @@ function themeTest() {
   <ComponentWithOptionalThemeStyledWithTheme value={1} theme={{ palette: { primary: '#333' } }} />; // $ExpectError
 }
 
-const StyledInferedPropsMyComponent = styled(MyComponent)(({ defaulted }) => ({
-  content: defaulted,
-}));
-
 type TweakableComponentProps<C extends React.ElementType> = Omit<
   { component?: C } & (undefined extends C ? unknown : React.ComponentProps<C>),
   never
