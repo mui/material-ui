@@ -94,4 +94,6 @@ function acceptanceTest() {
       <StyledInferedPropsMyComponent defaulted="Hi!" />
     </React.Fragment>
   );
+  // Check ExoticComponent
+  console.log(StyledInferedPropsMyComponent.$$typeof);
 }
