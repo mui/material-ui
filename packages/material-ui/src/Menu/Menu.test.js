@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { spy } from 'sinon';
-import { expect, assert } from 'chai';
+import { expect } from 'chai';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
 import Popover from '../Popover';
@@ -222,7 +222,7 @@ describe('<Menu />', () => {
       </Menu>,
     );
 
-    assert.lengthOf(wrapper.find('span[role="menuitem"]'), 1);
+    expect(wrapper.find('span[role="menuitem"]')).to.have.length(1);
   });
 
   describe('warnings', () => {
