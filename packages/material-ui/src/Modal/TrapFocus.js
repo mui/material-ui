@@ -33,7 +33,7 @@ function TrapFocus(props) {
 
   const prevOpenRef = React.useRef();
   React.useEffect(() => {
-    prevOpenRef.current = true;
+    prevOpenRef.current = open;
   }, [open]);
   if (!prevOpenRef.current && open && typeof window !== 'undefined') {
     // WARNING: Potentially unsafe in concurrent mode.
