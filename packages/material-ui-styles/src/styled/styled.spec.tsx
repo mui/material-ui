@@ -47,6 +47,23 @@ function themeTest() {
   <ComponentWithOptionalThemeStyledWithTheme value={1} theme={{ palette: { primary: '#333' } }} />; // $ExpectError
 }
 
+const StyledInferedPropsMyComponent = styled(MyComponent)(({ defaulted }) => ({
+  content: defaulted,
+}));
+
+type TweakableComponentProps<C extends React.ElementType> = Omit<
+  { component?: C } & (undefined extends C ? unknown : React.ComponentProps<C>),
+  never
+>;
+
+function testComponentType<C extends React.ElementType = 'div'>({
+  component,
+  ...rest
+}: TweakableComponentProps<C>): C | undefined {
+  console.log(rest);
+  return component;
+}
+
 function acceptanceTest() {
   const StyledButton = styled('button')({
     background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
@@ -94,6 +111,5 @@ function acceptanceTest() {
       <StyledInferedPropsMyComponent defaulted="Hi!" />
     </React.Fragment>
   );
-  // Check ExoticComponent
-  console.log(StyledInferedPropsMyComponent.$$typeof);
+  testComponentType({ component: StyledInferedPropsMyComponent, defaulted: 'Hi!' });
 }
