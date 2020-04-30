@@ -42,8 +42,8 @@ export default function DenseTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.name}>
+          {rows.map((row, index) => (
+            <TableRow key={row.name} hideBorder={rows.length - 1 === index}>
               <TableCell component="th" scope="row">
                 {row.name}
               </TableCell>

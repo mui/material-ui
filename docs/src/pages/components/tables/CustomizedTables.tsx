@@ -64,8 +64,8 @@ export default function CustomizedTables() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <StyledTableRow key={row.name}>
+          {rows.map((row, index) => (
+            <StyledTableRow key={row.name} hideBorder={rows.length - 1 === index}>
               <StyledTableCell component="th" scope="row">
                 {row.name}
               </StyledTableCell>
