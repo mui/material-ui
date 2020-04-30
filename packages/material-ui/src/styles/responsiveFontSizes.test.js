@@ -1,4 +1,4 @@
-import { assert } from 'chai';
+import { expect } from 'chai';
 import responsiveFontSizes from './responsiveFontSizes';
 import { createMuiTheme } from '@material-ui/core/styles';
 
@@ -18,13 +18,13 @@ describe('responsiveFontSizes', () => {
       },
     });
     const { typography } = responsiveFontSizes(theme);
-    assert.deepEqual(typography.h1, {
+    expect(typography.h1).to.deep.equal({
       ...defaultVariant,
       fontSize: '3.5rem',
       '@media (min-width:600px)': { fontSize: '4.75rem' },
       '@media (min-width:960px)': { fontSize: '5.5rem' },
       '@media (min-width:1280px)': { fontSize: defaultVariant.fontSize },
-    });
+    })
   });
 
   it('should disable vertical alignment', () => {
@@ -45,7 +45,7 @@ describe('responsiveFontSizes', () => {
       disableAlign: true,
     });
 
-    assert.deepEqual(typography.h1, {
+    expect(typography.h1).to.deep.equal({
       ...defaultVariant,
       fontSize: '3.5rem',
       '@media (min-width:600px)': { fontSize: '4.6719rem' },
@@ -63,10 +63,7 @@ describe('responsiveFontSizes', () => {
           },
         },
       });
-
-      assert.throw(() => {
-        responsiveFontSizes(theme);
-      });
+      expect(() => { responsiveFontSizes(theme) }).to.throw();
     });
   });
 });
