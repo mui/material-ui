@@ -393,7 +393,15 @@ describe('<Slider />', () => {
     });
 
     it('should handle RTL', () => {
-      const { getByRole } = render(<Slider defaultValue={30} />);
+      const { getByRole } = render(
+        <ThemeProvider
+          theme={createMuiTheme({
+            direction: 'rtl',
+          })}
+        >
+          <Slider defaultValue={30} />
+        </ThemeProvider>,
+      );
       const thumb = getByRole('slider');
       thumb.focus();
 
