@@ -24,7 +24,7 @@ describe('responsiveFontSizes', () => {
       '@media (min-width:600px)': { fontSize: '4.75rem' },
       '@media (min-width:960px)': { fontSize: '5.5rem' },
       '@media (min-width:1280px)': { fontSize: defaultVariant.fontSize },
-    })
+    });
   });
 
   it('should disable vertical alignment', () => {
@@ -63,7 +63,9 @@ describe('responsiveFontSizes', () => {
           },
         },
       });
-      expect(() => { responsiveFontSizes(theme) }).to.throw();
+      expect(() => {
+        responsiveFontSizes(theme);
+      }).to.throw();
     });
   });
 });

@@ -59,7 +59,7 @@ describe('makeStyles', () => {
       classes: { root: 'h1' },
     });
     const extendedClasses = output.classes;
-    expect(extendedClasses.root).to.equal( `${baseClasses.root} h1`);
+    expect(extendedClasses.root).to.equal(`${baseClasses.root} h1`);
   });
 
   it('should ignore undefined prop', () => {
@@ -91,8 +91,10 @@ describe('makeStyles', () => {
       output.wrapper.setProps({ classes: { bar: 'foo' } });
       const extendedClasses = output.classes;
       expect(extendedClasses).to.deep.equal({ root: baseClasses.root, bar: 'undefined foo' });
-      expect(consoleErrorMock.callCount()).to.equal( 1);
-      expect(consoleErrorMock.messages()[0]).to.include('Material-UI: the key `bar` provided to the classes prop is not implemented');
+      expect(consoleErrorMock.callCount()).to.equal(1);
+      expect(consoleErrorMock.messages()[0]).to.include(
+        'Material-UI: the key `bar` provided to the classes prop is not implemented',
+      );
     });
 
     it('should warn if providing a string', () => {
@@ -100,7 +102,9 @@ describe('makeStyles', () => {
       output.wrapper.setProps({ classes: 'foo' });
       expect(consoleErrorMock.callCount() >= 1).to.equal(true);
       const messages = consoleErrorMock.messages();
-      expect(messages[messages.length - 1]).to.include('You might want to use the className prop instead');
+      expect(messages[messages.length - 1]).to.include(
+        'You might want to use the className prop instead',
+      );
     });
 
     it('should warn if providing a non string', () => {
@@ -110,7 +114,9 @@ describe('makeStyles', () => {
       const extendedClasses = output.classes;
       expect(extendedClasses).to.deep.equal({ root: `${baseClasses.root} [object Object]` });
       expect(consoleErrorMock.callCount()).to.equal(1);
-      expect(consoleErrorMock.messages()[0]).to.include('Material-UI: the key `root` provided to the classes prop is not valid');
+      expect(consoleErrorMock.messages()[0]).to.include(
+        'Material-UI: the key `root` provided to the classes prop is not valid',
+      );
     });
 
     it('should warn if missing theme', () => {
@@ -120,7 +126,9 @@ describe('makeStyles', () => {
         mountWithProps2({});
       }).to.throw();
       expect(consoleErrorMock.callCount()).to.equal(4);
-      expect(consoleErrorMock.messages()[1]).to.include('the `styles` argument provided is invalid');
+      expect(consoleErrorMock.messages()[1]).to.include(
+        'the `styles` argument provided is invalid',
+      );
     });
   });
 
@@ -158,7 +166,7 @@ describe('makeStyles', () => {
       const classes1 = output.classes;
       expect(classes1).to.deep.equal({
         root: `${classes.root} foo`,
-      })
+      });
 
       output.wrapper.setProps({
         classes: { root: 'bar' },
@@ -167,7 +175,7 @@ describe('makeStyles', () => {
       expect(classes1).to.not.equal(classes2);
       expect(classes2).to.deep.equal({
         root: `${classes.root} bar`,
-      })
+      });
     });
   });
 
@@ -197,13 +205,13 @@ describe('makeStyles', () => {
         </ThemeProvider>,
       );
       expect(sheetsRegistry.registry.length).to.equal(1);
-      expect(sheetsRegistry.registry[0].classes).to.deep.equal({ root: 'makeStyles-root-1' })
+      expect(sheetsRegistry.registry[0].classes).to.deep.equal({ root: 'makeStyles-root-1' });
       wrapper.update();
       expect(sheetsRegistry.registry.length).to.equal(1);
-      expect(sheetsRegistry.registry[0].classes).to.deep.equal({ root: 'makeStyles-root-1' })
+      expect(sheetsRegistry.registry[0].classes).to.deep.equal({ root: 'makeStyles-root-1' });
       wrapper.setProps({ theme: createMuiTheme() });
       expect(sheetsRegistry.registry.length).to.equal(1);
-      expect(sheetsRegistry.registry[0].classes).to.deep.equal({ root: 'makeStyles-root-2' })
+      expect(sheetsRegistry.registry[0].classes).to.deep.equal({ root: 'makeStyles-root-2' });
 
       wrapper.unmount();
       expect(sheetsRegistry.registry.length).to.equal(0);
@@ -335,17 +343,16 @@ describe('makeStyles', () => {
       expect(sheetsRegistry.registry.length).to.equal(2);
       expect(sheetsRegistry.registry[0].classes).to.deep.equal({ root: 'makeStyles-root-1' });
       expect(sheetsRegistry.registry[1].classes).to.deep.equal({ root: 'makeStyles-root-2' });
-      expect(sheetsRegistry.registry[1].rules.map.root.style).to.deep.equal( {
+      expect(sheetsRegistry.registry[1].rules.map.root.style).to.deep.equal({
         margin: '8px',
         padding: '8px',
       });
-
 
       wrapper.setProps({ padding: 4 });
       expect(sheetsRegistry.registry.length).to.equal(2);
       expect(sheetsRegistry.registry[0].classes).to.deep.equal({ root: 'makeStyles-root-1' });
       expect(sheetsRegistry.registry[1].classes).to.deep.equal({ root: 'makeStyles-root-2' });
-      expect(sheetsRegistry.registry[1].rules.map.root.style).to.deep.equal( {
+      expect(sheetsRegistry.registry[1].rules.map.root.style).to.deep.equal({
         margin: '8px',
         padding: '4px',
       });
@@ -404,7 +411,6 @@ describe('makeStyles', () => {
       expect(sheetsRegistry.registry[0].rules.raw).to.deep.equal({
         root: { padding: 8 },
       });
-
 
       hmr = true;
       wrapper.setProps({});
@@ -528,15 +534,17 @@ describe('makeStyles', () => {
         </StylesProvider>,
       );
       expect(sheetsRegistry.registry.length).to.equal(2);
-      expect(sheetsRegistry.toString() ).to.equal(`.makeStyles-root-2 {
+      expect(sheetsRegistry.toString()).to.equal(`.makeStyles-root-2 {
   color: white;
   background-color: black;
-}`)
+}`);
 
       act(() => {
         wrapper.find('#color').simulate('change', { target: { value: 'blue' } });
       });
-      expect( sheetsRegistry.toString(),  `.makeStyles-root-4 {
+      expect(
+        sheetsRegistry.toString(),
+        `.makeStyles-root-4 {
   color: blue;
   background-color: black;
 }`,
@@ -544,7 +552,9 @@ describe('makeStyles', () => {
       act(() => {
         wrapper.find('#background-color').simulate('change', { target: { value: 'green' } });
       });
-      expect(sheetsRegistry.toString(),  `.makeStyles-root-4 {
+      expect(
+        sheetsRegistry.toString(),
+        `.makeStyles-root-4 {
   color: blue;
   background-color: green;
 }`,

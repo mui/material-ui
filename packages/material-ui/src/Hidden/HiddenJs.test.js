@@ -55,7 +55,7 @@ describe('<HiddenJs />', () => {
             <div>foo</div>
           </HiddenJs>,
         );
-        expect(wrapper.type()).to.not.equal(null)
+        expect(wrapper.type()).to.not.equal(null);
         expect(wrapper.name()).to.equal('div');
         expect(wrapper.first().text()).to.equal('foo');
       });

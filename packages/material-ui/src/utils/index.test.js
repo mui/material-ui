@@ -107,7 +107,7 @@ describe('utils/index.js', () => {
       const wrapper = mount(<Component />);
 
       expect(wrapper.containsMatchingElement(<div>true</div>)).to.equal(true);
-      expect(consoleErrorMock.callCount()).to.equal( 0);
+      expect(consoleErrorMock.callCount()).to.equal(0);
     });
 
     it('does nothing if none of the forked branches requires a ref', () => {
@@ -129,7 +129,7 @@ describe('utils/index.js', () => {
           <Inner />
         </Outer>,
       );
-      expect(consoleErrorMock.callCount()).to.equal( 0);
+      expect(consoleErrorMock.callCount()).to.equal(0);
     });
 
     describe('changing refs', () => {
@@ -150,12 +150,12 @@ describe('utils/index.js', () => {
       it('handles changing from no ref to some ref', () => {
         const wrapper = mount(<Div id="test" />);
 
-        expect(consoleErrorMock.callCount()).to.equal( 0);
+        expect(consoleErrorMock.callCount()).to.equal(0);
 
         const ref = React.createRef();
         wrapper.setProps({ leftRef: ref });
 
-        expect(ref.current.id).to.equal( 'test');
+        expect(ref.current.id).to.equal('test');
         expect(consoleErrorMock.callCount()).to.equal(0);
       });
 
@@ -166,16 +166,16 @@ describe('utils/index.js', () => {
 
         const wrapper = mount(<Div leftRef={firstLeftRef} rightRef={firstRightRef} id="test" />);
 
-        expect(consoleErrorMock.callCount()).to.equal( 0);
-        expect(firstLeftRef.current.id).to.equal( 'test');
-        expect(firstRightRef.current.id).to.equal( 'test');
-        expect(secondRightRef.current).to.equal( null);
+        expect(consoleErrorMock.callCount()).to.equal(0);
+        expect(firstLeftRef.current.id).to.equal('test');
+        expect(firstRightRef.current.id).to.equal('test');
+        expect(secondRightRef.current).to.equal(null);
 
         wrapper.setProps({ rightRef: secondRightRef });
 
-        expect(firstLeftRef.current.id).to.equal( 'test');
-        expect(firstRightRef.current).to.equal( null);
-        expect(secondRightRef.current.id,).to.equal( 'test');
+        expect(firstLeftRef.current.id).to.equal('test');
+        expect(firstRightRef.current).to.equal(null);
+        expect(secondRightRef.current.id).to.equal('test');
       });
     });
   });
