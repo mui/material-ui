@@ -434,8 +434,8 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     const marksValues = marks.map((mark) => mark.value);
     const marksIndex = marksValues.indexOf(value);
     let newValue;
-    const ArrowRight = isRtl ? 'ArrowLeft' : 'ArrowRight';
-    const ArrowLeft = isRtl ? 'ArrowRight' : 'ArrowLeft';
+    const increaseKey = isRtl ? 'ArrowLeft' : 'ArrowRight';
+    const decreaseKey = isRtl ? 'ArrowRight' : 'ArrowLeft';
 
     switch (event.key) {
       case 'Home':
@@ -454,7 +454,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
           newValue = value - tenPercents;
         }
         break;
-      case ArrowRight:
+      case increaseKey:
       case 'ArrowUp':
         if (step) {
           newValue = value + step;
@@ -462,7 +462,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
           newValue = marksValues[marksIndex + 1] || marksValues[marksValues.length - 1];
         }
         break;
-      case ArrowLeft:
+      case decreaseKey:
       case 'ArrowDown':
         if (step) {
           newValue = value - step;
