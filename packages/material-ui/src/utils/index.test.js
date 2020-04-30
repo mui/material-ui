@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { expect, assert } from 'chai';
+import { expect } from 'chai';
 import { spy } from 'sinon';
 import PropTypes from 'prop-types';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
