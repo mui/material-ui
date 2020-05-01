@@ -4,7 +4,7 @@ import { BasePickerProps } from '../typings/BasePicker';
 import { DateInputProps } from '../_shared/PureDateInput';
 import { ResponsiveWrapperProps } from './ResponsiveWrapper';
 import { DateValidationProps } from '../_helpers/text-field-helper';
-import { OmitInnerWrapperProps, SomeWrapper, WrapperProps } from './Wrapper';
+import { OmitInnerWrapperProps, SomeWrapper, WrapperProps, DateInputPropsLike } from './Wrapper';
 
 interface MakePickerOptions<TInputProps> {
   PureDateInputComponent?: React.FC<TInputProps>;
@@ -19,7 +19,7 @@ interface WithWrapperProps<TInputProps = DateInputProps> {
 
 /** Creates a component that rendering modal/popover/nothing and spreading props down to text field */
 export function makeWrapperComponent<
-  TInputProps extends DateInputProps<TInputValue, TDateValue>,
+  TInputProps extends DateInputPropsLike<TInputValue, TDateValue>,
   TInputValue,
   TDateValue,
   TWrapper extends SomeWrapper = any

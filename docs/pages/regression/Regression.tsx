@@ -3,8 +3,8 @@ import LeftArrowIcon from '@material-ui/icons/KeyboardArrowLeft';
 import RightArrowIcon from '@material-ui/icons/KeyboardArrowRight';
 import { Grid, Typography } from '@material-ui/core';
 import { TextField, TextFieldProps } from '@material-ui/core';
-import { MuiPickersContext, DateRangePicker } from '@material-ui/pickers';
 import { createRegressionDay as createRegressionDayRenderer } from './RegressionDay';
+import { MuiPickersContext, DateRangePicker, DateRangeDelimiter } from '@material-ui/pickers';
 import {
   DateRange,
   MobileDatePicker,
@@ -29,9 +29,6 @@ function Regression() {
     leftArrowIcon: <LeftArrowIcon data-arrow="left" />,
     rightArrowIcon: <RightArrowIcon data-arrow="right" />,
     renderDay: createRegressionDayRenderer(utils!),
-    KeyboardButtonProps: {
-      className: 'keyboard-btn',
-    },
   };
 
   return (
@@ -99,9 +96,15 @@ function Regression() {
       </Typography>
 
       <DateRangePicker
-        {...makeRenderInputProp({ inputProps: { 'data-mui-test': 'desktop-range-picker' } })}
         value={range}
         onChange={changeRange}
+        renderInput={(startProps, endProps) => (
+          <>
+            <TextField {...startProps} inputProps={{ 'data-mui-test': 'desktop-range-picker' }} />
+            <DateRangeDelimiter> to </DateRangeDelimiter>
+            <TextField {...endProps} inputProps={{ 'data-mui-test': 'desktop-range-picker-end' }} />
+          </>
+        )}
       />
     </div>
   );

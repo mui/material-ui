@@ -95,7 +95,7 @@ describe('DatePicker', () => {
     });
 
     it('Should open calendar by the keyboard icon', () => {
-      cy.get('.keyboard-btn')
+      cy.get('[data-mui-test="open-picker-from-keyboard"]')
         .first()
         .click();
       cy.get(`[data-day="19/01/2019"]`).click();

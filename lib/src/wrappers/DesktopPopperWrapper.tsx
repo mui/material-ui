@@ -79,13 +79,7 @@ export const DesktopPopperWrapper: React.FC<DesktopPopperWrapperProps> = ({
 
   return (
     <WrapperVariantContext.Provider value="desktop">
-      <KeyboardDateInputComponent
-        {...DateInputProps}
-        containerRef={inputRef}
-        TextFieldProps={{
-          onBlur: handleBlur,
-        }}
-      />
+      <KeyboardDateInputComponent {...DateInputProps} containerRef={inputRef} onBlur={handleBlur} />
 
       <Popper
         transition

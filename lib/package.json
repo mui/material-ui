@@ -51,7 +51,7 @@
     "clsx": "^1.0.2",
     "prop-types": "^15.7.2",
     "react-transition-group": "^4.0.0",
-    "rifm": "^0.10.1"
+    "rifm": "^0.11.0"
   },
   "scripts": {
     "test": "jest",

@@ -5,8 +5,6 @@ import { MobileWrapper } from '../wrappers/MobileWrapper';
 import { DateRangeInputProps } from './DateRangePickerInput';
 import { parsePickerInputValue } from '../_helpers/date-utils';
 import { usePickerState } from '../_shared/hooks/usePickerState';
-import { AllSharedPickerProps } from '../Picker/SharedPickerProps';
-import { DateRange as DateRangeType, RangeInput } from './RangeTypes';
 import { DesktopPopperWrapper } from '../wrappers/DesktopPopperWrapper';
 import { MuiPickersAdapter, useUtils } from '../_shared/hooks/useUtils';
 import { makeWrapperComponent } from '../wrappers/makeWrapperComponent';
@@ -14,6 +12,11 @@ import { ResponsivePopperWrapper } from '../wrappers/ResponsiveWrapper';
 import { SomeWrapper, ExtendWrapper, StaticWrapper } from '../wrappers/Wrapper';
 import { DateRangePickerView, ExportedDateRangePickerViewProps } from './DateRangePickerView';
 import { DateRangePickerInput, ExportedDateRangePickerInputProps } from './DateRangePickerInput';
+import {
+  DateRange as DateRangeType,
+  RangeInput,
+  AllSharedDateRangePickerProps,
+} from './RangeTypes';
 
 export function parseRangeInputValue(
   now: MaterialUiPickersDate,
@@ -69,7 +72,7 @@ export function makeRangePicker<TWrapper extends SomeWrapper>(Wrapper: TWrapper)
     endText = 'End',
     inputFormat: passedInputFormat,
     ...restPropsForTextField
-  }: DateRangePickerProps & AllSharedPickerProps<RangeInput, DateRange> & ExtendWrapper<TWrapper>) {
+  }: DateRangePickerProps & AllSharedDateRangePickerProps & ExtendWrapper<TWrapper>) {
     const utils = useUtils();
     const [currentlySelectingRangeEnd, setCurrentlySelectingRangeEnd] = React.useState<
       'start' | 'end'
@@ -147,3 +150,5 @@ export const DesktopDateRangePicker = makeRangePicker(DesktopPopperWrapper);
 export const MobileDateRangePicker = makeRangePicker(MobileWrapper);
 
 export const StaticDateRangePicker = makeRangePicker(StaticWrapper);
+
+export { DateRangeDelimiter } from './DateRangeDelimiter';

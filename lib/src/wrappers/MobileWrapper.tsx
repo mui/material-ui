@@ -78,7 +78,7 @@ export const MobileWrapper: React.FC<MobileWrapperProps> = ({
 }) => {
   return (
     <WrapperVariantContext.Provider value="mobile">
-      <PureDateInputComponent readOnly {...other} {...DateInputProps} />
+      <PureDateInputComponent {...other} {...DateInputProps} />
 
       <ModalDialog
         wider={wider}

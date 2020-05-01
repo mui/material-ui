@@ -4,7 +4,6 @@ import { MaterialUiPickersDate } from '../typings/date';
 import { BasePickerProps } from '../typings/BasePicker';
 import { calculateRangeChange } from './date-range-manager';
 import { useUtils, useNow } from '../_shared/hooks/useUtils';
-import { DateRangePickerInput } from './DateRangePickerInput';
 import { SharedPickerProps } from '../Picker/SharedPickerProps';
 import { DateRangePickerToolbar } from './DateRangePickerToolbar';
 import { useParsedDate } from '../_shared/hooks/date-helpers-hooks';
@@ -13,6 +12,7 @@ import { FORCE_FINISH_PICKER } from '../_shared/hooks/usePickerState';
 import { DateRangePickerViewMobile } from './DateRangePickerViewMobile';
 import { WrapperVariantContext } from '../wrappers/WrapperVariantContext';
 import { MobileKeyboardInputView } from '../views/MobileKeyboardInputView';
+import { DateRangePickerInput, DateRangeInputProps } from './DateRangePickerInput';
 import { RangeInput, DateRange, CurrentlySelectingRangeEndProps } from './RangeTypes';
 import { ExportedCalendarViewProps, defaultReduceAnimations } from '../views/Calendar/CalendarView';
 import {
@@ -36,7 +36,7 @@ export interface ExportedDateRangePickerViewProps
 interface DateRangePickerViewProps
   extends ExportedDateRangePickerViewProps,
     CurrentlySelectingRangeEndProps,
-    SharedPickerProps<RangeInput, DateRange> {
+    SharedPickerProps<RangeInput, DateRange, DateRangeInputProps> {
   open: boolean;
   startText: React.ReactNode;
   endText: React.ReactNode;
@@ -204,15 +204,7 @@ export const DateRangePickerView: React.FC<DateRangePickerViewProps> = ({
 
       {isMobileKeyboardViewOpen ? (
         <MobileKeyboardInputView>
-          <DateRangePickerInput
-            disableOpenPicker
-            ignoreInvalidInputs
-            startText={startText}
-            endText={endText}
-            currentlySelectingRangeEnd={currentlySelectingRangeEnd}
-            setCurrentlySelectingRangeEnd={setCurrentlySelectingRangeEnd}
-            {...DateInputProps}
-          />
+          <DateRangePickerInput disableOpenPicker ignoreInvalidInputs {...DateInputProps} />
         </MobileKeyboardInputView>
       ) : (
         renderView()

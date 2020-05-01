@@ -8,7 +8,7 @@ import { useUtils, MuiPickersAdapter } from './hooks/useUtils';
 import { InputAdornmentProps } from '@material-ui/core/InputAdornment';
 import { getDisplayDate, getTextFieldAriaText } from '../_helpers/text-field-helper';
 
-type MuiTextFieldProps = TextFieldProps | Omit<TextFieldProps, 'variant'>;
+export type MuiTextFieldProps = TextFieldProps | Omit<TextFieldProps, 'variant'>;
 
 export interface DateInputProps<TInputValue = ParsableDate, TDateValue = MaterialUiPickersDate> {
   open: boolean;
@@ -23,9 +23,16 @@ export interface DateInputProps<TInputValue = ParsableDate, TDateValue = Materia
   label?: TextFieldProps['label'];
   InputProps?: TextFieldProps['InputProps'];
   TextFieldProps?: Partial<MuiTextFieldProps>;
+  // lib/src/wrappers/DesktopPopperWrapper.tsx:87
+  onBlur?: () => void;
   // ?? TODO when it will be possible to display "empty" date in datepicker use it instead of ignoring invalid inputs
   ignoreInvalidInputs?: boolean;
-  /** Override input component */
+  /**
+   * Render input component. Where `props` – [TextField](https://material-ui.com/api/text-field/#textfield-api) component props
+   * @example ```jsx
+   * renderInput={props => <TextField {...props} />}
+   * ````
+   */
   renderInput: (props: MuiTextFieldProps) => React.ReactElement;
   /**
    * Message displaying in read-only text field when null passed
@@ -52,7 +59,7 @@ export interface DateInputProps<TInputValue = ParsableDate, TDateValue = Materia
    * Props to pass to keyboard adornment button
    * @type {Partial<IconButtonProps>}
    */
-  KeyboardButtonProps?: Partial<IconButtonProps>;
+  OpenPickerButtonProps?: Partial<IconButtonProps>;
   /** Custom formatter to be passed into Rifm component */
   rifmFormatter?: (str: string) => string;
   /**
@@ -84,6 +91,7 @@ export type ExportedDateInputProps<TInputValue, TDateValue> = Omit<
   | 'parsedDateValue'
   | 'open'
   | 'TextFieldProps'
+  | 'onBlur'
 >;
 
 export interface DateInputRefs {

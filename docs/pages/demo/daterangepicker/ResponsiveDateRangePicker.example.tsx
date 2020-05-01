@@ -1,6 +1,11 @@
 import * as React from 'react';
 import { TextField } from '@material-ui/core';
-import { MobileDateRangePicker, DesktopDateRangePicker, DateRange } from '@material-ui/pickers';
+import {
+  MobileDateRangePicker,
+  DateRangeDelimiter,
+  DesktopDateRangePicker,
+  DateRange,
+} from '@material-ui/pickers';
 
 function ResponsiveDateRangePicker() {
   const [selectedDate, handleDateChange] = React.useState<DateRange>([null, null]);
@@ -11,14 +16,26 @@ function ResponsiveDateRangePicker() {
         startText="Mobile start"
         value={selectedDate}
         onChange={date => handleDateChange(date)}
-        renderInput={props => <TextField {...props} />}
+        renderInput={(startProps, endProps) => (
+          <>
+            <TextField {...startProps} />
+            <DateRangeDelimiter> to </DateRangeDelimiter>
+            <TextField {...endProps} />
+          </>
+        )}
       />
 
       <DesktopDateRangePicker
         startText="Desktop start"
         value={selectedDate}
         onChange={date => handleDateChange(date)}
-        renderInput={props => <TextField {...props} />}
+        renderInput={(startProps, endProps) => (
+          <>
+            <TextField {...startProps} />
+            <DateRangeDelimiter> to </DateRangeDelimiter>
+            <TextField {...endProps} />
+          </>
+        )}
       />
     </>
   );

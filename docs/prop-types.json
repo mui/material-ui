@@ -845,7 +845,7 @@
     },
     "renderInput": {
       "defaultValue": null,
-      "description": "Override input component",
+      "description": "Render input component. Where `props` – [TextField](https://material-ui.com/api/text-field/#textfield-api) component props\n@example ```jsx\nrenderInput={props => <TextField {...props} />}\n````",
       "name": "renderInput",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/_shared/PureDateInput.tsx",
@@ -912,10 +912,10 @@
         "name": "Partial<InputAdornmentProps>"
       }
     },
-    "KeyboardButtonProps": {
+    "OpenPickerButtonProps": {
       "defaultValue": null,
       "description": "Props to pass to keyboard adornment button",
-      "name": "KeyboardButtonProps",
+      "name": "OpenPickerButtonProps",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/_shared/PureDateInput.tsx",
         "name": "DateInputProps"
@@ -1621,7 +1621,7 @@
     },
     "renderInput": {
       "defaultValue": null,
-      "description": "Override input component",
+      "description": "Render input component. Where `props` – [TextField](https://material-ui.com/api/text-field/#textfield-api) component props\n@example ```jsx\nrenderInput={props => <TextField {...props} />}\n````",
       "name": "renderInput",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/_shared/PureDateInput.tsx",
@@ -1688,10 +1688,10 @@
         "name": "Partial<InputAdornmentProps>"
       }
     },
-    "KeyboardButtonProps": {
+    "OpenPickerButtonProps": {
       "defaultValue": null,
       "description": "Props to pass to keyboard adornment button",
-      "name": "KeyboardButtonProps",
+      "name": "OpenPickerButtonProps",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/_shared/PureDateInput.tsx",
         "name": "DateInputProps"
@@ -2721,7 +2721,7 @@
     },
     "renderInput": {
       "defaultValue": null,
-      "description": "Override input component",
+      "description": "Render input component. Where `props` – [TextField](https://material-ui.com/api/text-field/#textfield-api) component props\n@example ```jsx\nrenderInput={props => <TextField {...props} />}\n````",
       "name": "renderInput",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/_shared/PureDateInput.tsx",
@@ -2788,10 +2788,10 @@
         "name": "Partial<InputAdornmentProps>"
       }
     },
-    "KeyboardButtonProps": {
+    "OpenPickerButtonProps": {
       "defaultValue": null,
       "description": "Props to pass to keyboard adornment button",
-      "name": "KeyboardButtonProps",
+      "name": "OpenPickerButtonProps",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/_shared/PureDateInput.tsx",
         "name": "DateInputProps"
@@ -3479,58 +3479,6 @@
         "name": "boolean"
       }
     },
-    "onAccept": {
-      "defaultValue": null,
-      "description": "Callback fired when date is accepted",
-      "name": "onAccept",
-      "parent": {
-        "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
-        "name": "BasePickerProps"
-      },
-      "required": false,
-      "type": {
-        "name": "((date: DateIOType) => void) & ((date: DateRange) => void)"
-      }
-    },
-    "className": {
-      "defaultValue": null,
-      "description": "className applied to the root component",
-      "name": "className",
-      "parent": {
-        "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
-        "name": "BasePickerProps"
-      },
-      "required": false,
-      "type": {
-        "name": "string"
-      }
-    },
-    "onError": {
-      "defaultValue": null,
-      "description": "Callback fired when new error should be displayed\n(!! This is a side effect. Be careful if you want to rerender the component)",
-      "name": "onError",
-      "parent": {
-        "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
-        "name": "BasePickerProps"
-      },
-      "required": false,
-      "type": {
-        "name": "((error: ReactNode, value: DateIOType) => void) & ((error: ReactNode, value: RangeInput | DateRange) => void)"
-      }
-    },
-    "onClose": {
-      "defaultValue": null,
-      "description": "On close callback",
-      "name": "onClose",
-      "parent": {
-        "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
-        "name": "BasePickerProps"
-      },
-      "required": false,
-      "type": {
-        "name": "() => void"
-      }
-    },
     "autoOk": {
       "defaultValue": {
         "value": "false"
@@ -3559,10 +3507,49 @@
         "name": "any"
       }
     },
+    "onAccept": {
+      "defaultValue": null,
+      "description": "Callback fired when date is accepted",
+      "name": "onAccept",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": {
+        "name": "((date: DateIOType) => void) & ((date: DateRange) => void)"
+      }
+    },
+    "onError": {
+      "defaultValue": null,
+      "description": "Callback fired when new error should be displayed\n(!! This is a side effect. Be careful if you want to rerender the component)",
+      "name": "onError",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": {
+        "name": "((error: ReactNode, value: DateIOType) => void) & ((error: ReactNode, value: RangeInput | DateRange) => void)"
+      }
+    },
     "onOpen": {
       "defaultValue": null,
       "description": "On open callback",
       "name": "onOpen",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": {
+        "name": "() => void"
+      }
+    },
+    "onClose": {
+      "defaultValue": null,
+      "description": "On close callback",
+      "name": "onClose",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
         "name": "BasePickerProps"
@@ -3639,30 +3626,30 @@
         "name": "string"
       }
     },
-    "value": {
+    "className": {
       "defaultValue": null,
-      "description": "Picker value",
-      "name": "value",
+      "description": "className applied to the root component",
+      "name": "className",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
         "name": "BasePickerProps"
       },
-      "required": true,
+      "required": false,
       "type": {
-        "name": "RangeInput"
+        "name": "string"
       }
     },
-    "onChange": {
+    "renderInput": {
       "defaultValue": null,
-      "description": "onChange callback",
-      "name": "onChange",
+      "description": "Render input component for date range. Where `props` – [TextField](https://material-ui.com/api/text-field/#textfield-api) component props\n@example ```jsx\n<DateRangePicker\nrenderInput={(startProps, endProps) => (\n<>\n<TextField {...startProps} />\n<Typography> to <Typography>\n<TextField {...endProps} />\n</>;\n)}\n/>\n````",
+      "name": "renderInput",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
-        "name": "BasePickerProps"
+        "fileName": "material-ui-pickers/lib/src/DateRangePicker/DateRangePickerInput.tsx",
+        "name": "ExportedDateRangePickerInputProps"
       },
       "required": true,
       "type": {
-        "name": "(date: DateRange, keyboardInputValue?: string) => void"
+        "name": "(props: any) => ReactElement<any, string | ... | (new (props: any) => Component<any, any, any>)> | null) | (new (props: any) => Component<...>"
       }
     },
     "mask": {
@@ -3678,17 +3665,17 @@
         "name": "string"
       }
     },
-    "renderInput": {
+    "onChange": {
       "defaultValue": null,
-      "description": "Override input component",
-      "name": "renderInput",
+      "description": "onChange callback",
+      "name": "onChange",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/PureDateInput.tsx",
-        "name": "DateInputProps"
+        "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
       },
       "required": true,
       "type": {
-        "name": "(props: any) => ReactElement<any, string | ... | (new (props: any) => Component<any, any, any>)> | null) | (new (props: any) => Component<...>"
+        "name": "(date: DateRange, keyboardInputValue?: string) => void"
       }
     },
     "emptyInputText": {
@@ -3747,10 +3734,10 @@
         "name": "Partial<InputAdornmentProps>"
       }
     },
-    "KeyboardButtonProps": {
+    "OpenPickerButtonProps": {
       "defaultValue": null,
       "description": "Props to pass to keyboard adornment button",
-      "name": "KeyboardButtonProps",
+      "name": "OpenPickerButtonProps",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/_shared/PureDateInput.tsx",
         "name": "DateInputProps"
@@ -3816,6 +3803,19 @@
       "required": false,
       "type": {
         "name": "(value: any, utils: MuiPickersAdapter) => string"
+      }
+    },
+    "value": {
+      "defaultValue": null,
+      "description": "Picker value",
+      "name": "value",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": true,
+      "type": {
+        "name": "RangeInput"
       }
     },
     "dateAdapter": {

@@ -5,7 +5,7 @@ import { Moment } from 'moment';
 import { DateTime } from 'luxon';
 import { TextField } from '@material-ui/core';
 import { makeJSDateObject } from '../../../utils/helpers';
-import { DateRangePicker, DateRange } from '@material-ui/pickers';
+import { DateRangePicker, DateRangeDelimiter, DateRange } from '@material-ui/pickers';
 
 function getWeeksAfter(date: Moment | DateTime | Dayjs | Date, amount: number) {
   // TODO: replace with implementation for your date library
@@ -21,7 +21,13 @@ function MinMaxDateRangePicker() {
       value={selectedRange}
       maxDate={getWeeksAfter(selectedRange[0], 4)}
       onChange={date => handleDateChange(date)}
-      renderInput={props => <TextField {...props} />}
+      renderInput={(startProps, endProps) => (
+        <>
+          <TextField {...startProps} />
+          <DateRangeDelimiter> to </DateRangeDelimiter>
+          <TextField {...endProps} />
+        </>
+      )}
     />
   );
 }

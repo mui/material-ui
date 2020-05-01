@@ -5,7 +5,14 @@ import { DesktopWrapper, DesktopWrapperProps } from './DesktopWrapper';
 import { ResponsiveWrapper, ResponsiveWrapperProps } from './ResponsiveWrapper';
 import { DesktopPopperWrapper, DesktopPopperWrapperProps } from './DesktopPopperWrapper';
 
-export interface WrapperProps<TInputProps = DateInputProps<any, any>> {
+export type DateInputPropsLike<TInputValue, TDateValue> = Omit<
+  DateInputProps<TInputValue, TDateValue>,
+  'renderInput'
+> & {
+  renderInput: (...args: any) => JSX.Element;
+};
+
+export interface WrapperProps<TInputProps = DateInputPropsLike<any, any>> {
   open: boolean;
   onAccept: () => void;
   onDismiss: () => void;
