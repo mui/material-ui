@@ -1,8 +1,8 @@
 import {
   ClassNameMap,
-  PropsOfStyles,
   Styles,
   WithStylesOptions,
+  StyledComponentProps,
 } from '@material-ui/styles/withStyles';
 import { Omit } from '@material-ui/types';
 import { DefaultTheme } from '../defaultTheme';
@@ -24,4 +24,4 @@ export default function makeStyles<
 >(
   styles: Styles<Theme, Props, ClassKey>,
   options?: Omit<WithStylesOptions<Theme>, 'withTheme'>
-): (props: Props) => ClassNameMap<ClassKey>;
+): (props: Props & Pick<StyledComponentProps<ClassKey>, 'classes'>) => ClassNameMap<ClassKey>;
