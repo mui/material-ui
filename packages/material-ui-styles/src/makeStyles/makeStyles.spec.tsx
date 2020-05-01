@@ -29,9 +29,9 @@ import { createStyles, makeStyles } from '@material-ui/styles';
     // $ExpectError
     const invalidClasses = useMyStyles({ colourTypo: 'red' });
     const extendedClasses = useMyStyles({ ...props, classes: { root: 'externalClassName' } });
-    // $ExpectError
     const invalidExtendedClasses = useMyStyles({
       ...props,
+      // $ExpectError
       classes: { toot: 'externalClassName' },
     });
     // $ExpectError
