@@ -39,6 +39,8 @@ Nothing fancy, just plain CSS.
 import React from 'react';
 import Button from '@material-ui/core/Button';
 
+import "./PlainCSSButton.css";
+
 export default function PlainCssButton() {
   return (
     <div>
@@ -132,6 +134,8 @@ Explicitly providing the class names to the component is too much effort?
 ```jsx
 import React from 'react';
 import Button from '@material-ui/core/Button';
+
+import './GlobalCssButton.css';
 
 export default function GlobalCssButton() {
   return <Button>Customized</Button>;
