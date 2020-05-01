@@ -7,7 +7,7 @@ import {
 import { Omit } from '@material-ui/types';
 import { DefaultTheme } from '../defaultTheme';
 
-type MakeStylesHook<
+export type MakeStylesHook<
   Props extends {} = any,
   ClassKey extends string = string
 > = undefined extends Props
@@ -23,5 +23,5 @@ export default function makeStyles<
   ClassKey extends string = string
 >(
   styles: Styles<Theme, Props, ClassKey>,
-  options?: Omit<WithStylesOptions<Theme>, 'withTheme'>,
+  options?: Omit<WithStylesOptions<Theme>, 'withTheme'>
 ): MakeStylesHook<Props, ClassKey>;
