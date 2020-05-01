@@ -7,10 +7,10 @@ import {
 import { Omit } from '@material-ui/types';
 import { DefaultTheme } from '../defaultTheme';
 
-export type MakeStylesHook<
-  Props extends {} = any,
-  ClassKey extends string = string
-> = undefined extends Props
+export type MakeStylesHook<Props extends {} = {}, ClassKey extends string = string> = Extract<
+  keyof Props,
+  keyof Props
+> extends never
   ? (props?: Pick<StyledComponentProps<ClassKey>, 'classes'>) => ClassNameMap<ClassKey>
   : (props: Props & Pick<StyledComponentProps<ClassKey>, 'classes'>) => ClassNameMap<ClassKey>;
 
@@ -19,7 +19,7 @@ export type MakeStylesHook<
  */
 export default function makeStyles<
   Theme = DefaultTheme,
-  Props extends {} = any,
+  Props extends {} = {},
   ClassKey extends string = string
 >(
   styles: Styles<Theme, Props, ClassKey>,
