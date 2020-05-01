@@ -71,6 +71,7 @@ import { createStyles, makeStyles } from '@material-ui/styles';
   const NoPropsComponent = () => {
     const classes = useWithoutProps();
     const chartClasses = useChartClasses();
+    // $ExpectError
     const alsoClasses = useWithoutProps(5);
   };
 
