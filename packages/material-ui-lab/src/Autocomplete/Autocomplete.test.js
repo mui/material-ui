@@ -145,24 +145,41 @@ describe('<Autocomplete />', () => {
     it('show all items on focus', () => {
       const { container, getAllByRole, getByRole } = render(
         <Autocomplete
+          {...defaultProps}
           multiple
           limitTags={2}
-          {...defaultProps}
           options={['one', 'two', 'three']}
           defaultValue={['one', 'two', 'three']}
           renderInput={(params) => <TextField {...params} />}
         />,
       );
 
-      let tags;
-      tags = getAllByRole('button');
       expect(container.textContent).to.equal('onetwo+1');
-      expect(tags.length).to.be.equal(4);
+      expect(getAllByRole('button')).to.have.lengthOf(4);
 
       getByRole('textbox').focus();
-      tags = getAllByRole('button');
       expect(container.textContent).to.equal('onetwothree');
-      expect(tags.length).to.be.equal(5);
+      expect(getAllByRole('button')).to.have.lengthOf(5);
+    });
+
+    it('show 0 item on close when set 0 to limitTags', () => {
+      const { container, getAllByRole, getByRole } = render(
+        <Autocomplete
+          {...defaultProps}
+          multiple
+          limitTags={0}
+          options={['one', 'two', 'three']}
+          defaultValue={['one', 'two', 'three']}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+
+      expect(container.textContent).to.equal('+3');
+      expect(getAllByRole('button')).to.have.lengthOf(2);
+
+      getByRole('textbox').focus();
+      expect(container.textContent).to.equal('onetwothree');
+      expect(getAllByRole('button')).to.have.lengthOf(5);
     });
   });
 
