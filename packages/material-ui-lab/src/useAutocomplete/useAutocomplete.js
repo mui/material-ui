@@ -91,7 +91,6 @@ export default function useAutocomplete(props) {
     id: idProp,
     includeInputInList = false,
     inputValue: inputValueProp,
-    loading,
     multiple = false,
     onChange,
     onClose,
@@ -263,8 +262,6 @@ export default function useAutocomplete(props) {
         { inputValue: inputValueIsSelectedValue ? '' : inputValue, getOptionLabel },
       )
     : [];
-
-  popupOpen = freeSolo && filteredOptions.length === 0 && !loading ? false : popupOpen;
 
   if (process.env.NODE_ENV !== 'production') {
     if (value !== null && !freeSolo && options.length > 0) {
