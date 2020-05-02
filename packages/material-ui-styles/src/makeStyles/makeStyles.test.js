@@ -542,8 +542,7 @@ describe('makeStyles', () => {
       act(() => {
         wrapper.find('#color').simulate('change', { target: { value: 'blue' } });
       });
-      expect(
-        sheetsRegistry.toString(),
+      expect(sheetsRegistry.toString()).to.equal(
         `.makeStyles-root-4 {
   color: blue;
   background-color: black;
@@ -552,8 +551,7 @@ describe('makeStyles', () => {
       act(() => {
         wrapper.find('#background-color').simulate('change', { target: { value: 'green' } });
       });
-      expect(
-        sheetsRegistry.toString(),
+      expect(sheetsRegistry.toString()).to.equal(
         `.makeStyles-root-4 {
   color: blue;
   background-color: green;
