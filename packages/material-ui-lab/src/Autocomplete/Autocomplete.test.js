@@ -154,15 +154,12 @@ describe('<Autocomplete />', () => {
         />,
       );
 
-      let tags;
-      tags = getAllByRole('button');
       expect(container.textContent).to.equal('onetwo+1');
-      expect(tags.length).to.be.equal(4);
+      expect(getAllByRole('button')).to.have.lengthOf(4);
 
       getByRole('textbox').focus();
-      tags = getAllByRole('button');
       expect(container.textContent).to.equal('onetwothree');
-      expect(tags.length).to.be.equal(5);
+      expect(getAllByRole('button')).to.have.lengthOf(5);
     });
 
     it('show 0 item on close when set 0 to limitTags', () => {
@@ -177,15 +174,12 @@ describe('<Autocomplete />', () => {
         />,
       );
 
-      let tags;
-      tags = getAllByRole('button');
       expect(container.textContent).to.equal('+3');
-      expect(tags.length).to.be.equal(2);
+      expect(getAllByRole('button')).to.have.lengthOf(2);
 
       getByRole('textbox').focus();
-      tags = getAllByRole('button');
       expect(container.textContent).to.equal('onetwothree');
-      expect(tags.length).to.be.equal(5);
+      expect(getAllByRole('button')).to.have.lengthOf(5);
     });
   });
 
