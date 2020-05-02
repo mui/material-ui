@@ -42,11 +42,11 @@ style rules to `makeStyles`/`withStyles` which are a function of the `Theme`.
 
 ### Arguments
 
-1. `styles` (*Function | Object*): A function generating the styles or a styles object.
+1. `styles` (*Object*): A styles object.
 
 ### Returns
 
-`styles`: A function generating the styles or a styles object.
+`styles`: A styles object.
 
 ### Examples
 
