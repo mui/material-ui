@@ -20,8 +20,8 @@ const StyledTableCell = withStyles((theme) => ({
 
 const StyledTableRow = withStyles((theme) => ({
   root: {
-    '&:nth-child(even)': {
-      backgroundColor: theme.palette.background.default,
+    '&:nth-of-type(odd)': {
+      backgroundColor: theme.palette.action.selected,
     },
   },
 }))(TableRow);
