@@ -129,39 +129,6 @@ describe('<Slider />', () => {
     });
   });
 
-  // TODO: use fireEvent for all the events.
-  // describe.skip('when mouse reenters window', () => {
-  //   it('should update if mouse is still clicked', () => {
-  //     const handleChange = spy();
-  //     const { container } = render(<Slider onChange={handleChange} value={50} />);
-
-  //     fireEvent.mouseDown(container.firstChild);
-  //     document.body.dispatchEvent(new window.MouseEvent('mouseleave'));
-  //     const mouseEnter = new window.Event('mouseenter');
-  //     mouseEnter.buttons = 1;
-  //     document.body.dispatchEvent(mouseEnter);
-  //     expect(handleChange.callCount).to.equal(1);
-
-  //     document.body.dispatchEvent(new window.MouseEvent('mousemove'));
-  //     expect(handleChange.callCount).to.equal(2);
-  //   });
-
-  //   it('should not update if mouse is not clicked', () => {
-  //     const handleChange = spy();
-  //     const { container } = render(<Slider onChange={handleChange} value={50} />);
-
-  //     fireEvent.mouseDown(container.firstChild);
-  //     document.body.dispatchEvent(new window.MouseEvent('mouseleave'));
-  //     const mouseEnter = new window.Event('mouseenter');
-  //     mouseEnter.buttons = 0;
-  //     document.body.dispatchEvent(mouseEnter);
-  //     expect(handleChange.callCount).to.equal(1);
-
-  //     document.body.dispatchEvent(new window.MouseEvent('mousemove'));
-  //     expect(handleChange.callCount).to.equal(1);
-  //   });
-  // });
-
   describe('range', () => {
     it('should support keyboard', () => {
       const { getAllByRole } = render(<Slider defaultValue={[20, 30]} />);
