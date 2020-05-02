@@ -243,7 +243,7 @@ describe('<Menu />', () => {
 
       expect(consoleErrorMock.callCount()).to.equal(2);
       expect(consoleErrorMock.messages()[0]).to.include(
-        "Material-UI: the Menu component doesn't accept a Fragment as a child.",
+        "Material-UI: The Menu component doesn't accept a Fragment as a child.",
       );
     });
   });

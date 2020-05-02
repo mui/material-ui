@@ -45,7 +45,7 @@ const GridList = React.forwardRef(function GridList(props, ref) {
           if (isFragment(child)) {
             console.error(
               [
-                "Material-UI: the GridList component doesn't accept a Fragment as a child.",
+                "Material-UI: The GridList component doesn't accept a Fragment as a child.",
                 'Consider providing an array instead.',
               ].join('\n'),
             );

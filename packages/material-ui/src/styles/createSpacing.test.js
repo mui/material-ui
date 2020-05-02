@@ -71,7 +71,7 @@ describe('createSpacing', () => {
       });
       expect(consoleErrorMock.callCount()).to.equal(1);
       expect(consoleErrorMock.messages()[0]).to.include(
-        'the `theme.spacing` value ([object Object]) is invalid',
+        'Material-UI: The `theme.spacing` value ([object Object]) is invalid',
       );
     });
   });

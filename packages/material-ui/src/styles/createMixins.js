@@ -5,7 +5,7 @@ export default function createMixins(breakpoints, spacing, mixins) {
       //       warning(
       //         false,
       //         [
-      //           'Material-UI: theme.mixins.gutters() is deprecated.',
+      //           'Material-UI: Theme.mixins.gutters() is deprecated.',
       //           'You can use the source of the mixin directly:',
       //           `
       // paddingLeft: theme.spacing(2),

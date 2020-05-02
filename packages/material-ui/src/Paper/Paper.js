@@ -93,7 +93,7 @@ Paper.propTypes = {
       return null;
     }
     if (elevation != null && classes[`elevation${elevation}`] === undefined) {
-      return new Error(`Material-UI: this elevation \`${elevation}\` is not implemented.`);
+      return new Error(`Material-UI: This elevation \`${elevation}\` is not implemented.`);
     }
     return null;
   }),

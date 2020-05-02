@@ -227,7 +227,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
       ) {
         console.error(
           [
-            'Material-UI: you are providing a disabled `button` child to the Tooltip component.',
+            'Material-UI: You are providing a disabled `button` child to the Tooltip component.',
             'A disabled element does not fire events.',
             "Tooltip needs to listen to the child element's events to display the title.",
             '',
@@ -465,7 +465,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     if (children.props.title) {
       console.error(
         [
-          'Material-UI: you have provided a `title` prop to the child of <Tooltip />.',
+          'Material-UI: You have provided a `title` prop to the child of <Tooltip />.',
           `Remove this title prop \`${children.props.title}\` or the Tooltip component.`,
         ].join('\n'),
       );

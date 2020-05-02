@@ -46,7 +46,7 @@ describe('<TreeView />', () => {
 
       setProps({ expanded: undefined });
       expect(consoleErrorMock.messages()[0]).to.include(
-        'Material-UI: a component is changing the controlled expanded state of TreeView to be uncontrolled.',
+        'Material-UI: A component is changing the controlled expanded state of TreeView to be uncontrolled.',
       );
     });
 
@@ -59,7 +59,7 @@ describe('<TreeView />', () => {
 
       setProps({ selected: undefined });
       expect(consoleErrorMock.messages()[0]).to.include(
-        'Material-UI: a component is changing the controlled selected state of TreeView to be uncontrolled.',
+        'Material-UI: A component is changing the controlled selected state of TreeView to be uncontrolled.',
       );
     });
   });

@@ -515,7 +515,7 @@ Rating.propTypes = {
     if (!props.readOnly && !props.name) {
       return new Error(
         [
-          'Material-UI: the prop `name` is required (when `readOnly` is false).',
+          'Material-UI: The prop `name` is required (when `readOnly` is false).',
           'Additionally, the input name should be unique within the parent form.',
         ].join('\n'),
       );
@@ -551,7 +551,7 @@ Rating.propTypes = {
     if (props.precision < 0.1) {
       return new Error(
         [
-          'Material-UI: the prop `precision` should be above 0.1.',
+          'Material-UI: The prop `precision` should be above 0.1.',
           'A value below this limit has an imperceptible impact.',
         ].join('\n'),
       );

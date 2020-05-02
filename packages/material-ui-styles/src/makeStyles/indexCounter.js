@@ -16,7 +16,7 @@ export function increment() {
     if (indexCounter >= 0) {
       console.warn(
         [
-          'Material-UI: you might have a memory leak.',
+          'Material-UI: You might have a memory leak.',
           'The indexCounter is not supposed to grow that much.',
         ].join('\n'),
       );

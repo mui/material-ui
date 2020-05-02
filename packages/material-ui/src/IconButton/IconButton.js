@@ -141,7 +141,7 @@ IconButton.propTypes = {
     if (found) {
       return new Error(
         [
-          'Material-UI: you are providing an onClick event listener ' +
+          'Material-UI: You are providing an onClick event listener ' +
             'to a child of a button element.',
           'Firefox will never trigger the event.',
           'You should move the onClick listener to the parent button element.',

@@ -77,7 +77,7 @@ describe('<Tabs />', () => {
     it('should warn if the input is invalid', () => {
       render(<Tabs value={0} centered variant="scrollable" />);
       expect(consoleErrorMock.messages()[0]).to.match(
-        /Material-UI: you can not use the `centered={true}` and `variant="scrollable"`/,
+        /Material-UI: You can not use the `centered={true}` and `variant="scrollable"`/,
       );
     });
   });

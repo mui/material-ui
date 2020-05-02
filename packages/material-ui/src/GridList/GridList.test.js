@@ -179,7 +179,7 @@ describe('<GridList />', () => {
 
       expect(consoleErrorMock.callCount()).to.equal(1);
       expect(consoleErrorMock.messages()[0]).to.include(
-        "Material-UI: the GridList component doesn't accept a Fragment as a child.",
+        "Material-UI: The GridList component doesn't accept a Fragment as a child.",
       );
     });
   });

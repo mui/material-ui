@@ -210,7 +210,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
       if (instance && instance.nodeName !== 'INPUT' && !instance.focus) {
         console.error(
           [
-            'Material-UI: you have provided a `inputComponent` to the input component',
+            'Material-UI: You have provided a `inputComponent` to the input component',
             'that does not correctly handle the `inputRef` prop.',
             'Make sure the `inputRef` prop is called with a HTMLInputElement.',
           ].join('\n'),

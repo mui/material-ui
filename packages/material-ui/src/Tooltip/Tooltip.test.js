@@ -342,7 +342,7 @@ describe('<Tooltip />', () => {
       );
       expect(consoleErrorMock.callCount()).to.equal(1);
       expect(consoleErrorMock.messages()[0]).to.match(
-        /Material-UI: you are providing a disabled `button` child to the Tooltip component/,
+        /Material-UI: You are providing a disabled `button` child to the Tooltip component/,
       );
     });
 
@@ -529,7 +529,7 @@ describe('<Tooltip />', () => {
 
       wrapper.setProps({ open: true });
       expect(consoleErrorMock.messages()[0]).to.include(
-        'Material-UI: a component is changing the uncontrolled open state of Tooltip to be controlled.',
+        'Material-UI: A component is changing the uncontrolled open state of Tooltip to be controlled.',
       );
     });
   });

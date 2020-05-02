@@ -159,14 +159,14 @@ ExpansionPanel.propTypes = {
     const summary = React.Children.toArray(props.children)[0];
     if (isFragment(summary)) {
       return new Error(
-        "Material-UI: the ExpansionPanel doesn't accept a Fragment as a child. " +
+        "Material-UI: The ExpansionPanel doesn't accept a Fragment as a child. " +
           'Consider providing an array instead.',
       );
     }
 
     if (!React.isValidElement(summary)) {
       return new Error(
-        'Material-UI: expected the first child of ExpansionPanel to be a valid element.',
+        'Material-UI: Expected the first child of ExpansionPanel to be a valid element.',
       );
     }
 

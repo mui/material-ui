@@ -90,7 +90,7 @@ describe('<Paper />', () => {
 
       expect(consoleErrorMock.callCount()).to.equal(1);
       expect(consoleErrorMock.messages()[0]).to.include(
-        'Material-UI: this elevation `25` is not implemented.',
+        'Material-UI: This elevation `25` is not implemented.',
       );
     });
   });

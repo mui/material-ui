@@ -93,7 +93,7 @@ describe('makeStyles', () => {
       expect(extendedClasses).to.deep.equal({ root: baseClasses.root, bar: 'undefined foo' });
       expect(consoleErrorMock.callCount()).to.equal(1);
       expect(consoleErrorMock.messages()[0]).to.include(
-        'Material-UI: the key `bar` provided to the classes prop is not implemented',
+        'Material-UI: The key `bar` provided to the classes prop is not implemented',
       );
     });
 
@@ -115,7 +115,7 @@ describe('makeStyles', () => {
       expect(extendedClasses).to.deep.equal({ root: `${baseClasses.root} [object Object]` });
       expect(consoleErrorMock.callCount()).to.equal(1);
       expect(consoleErrorMock.messages()[0]).to.include(
-        'Material-UI: the key `root` provided to the classes prop is not valid',
+        'Material-UI: The key `root` provided to the classes prop is not valid',
       );
     });
 
@@ -127,7 +127,7 @@ describe('makeStyles', () => {
       }).to.throw();
       expect(consoleErrorMock.callCount()).to.equal(4);
       expect(consoleErrorMock.messages()[1]).to.include(
-        'the `styles` argument provided is invalid',
+        'Material-UI: The `styles` argument provided is invalid',
       );
     });
   });

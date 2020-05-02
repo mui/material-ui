@@ -13,7 +13,7 @@ export default function useMediaQuery(queryInput, options = {}) {
     if (typeof queryInput === 'function' && theme === null) {
       console.error(
         [
-          'Material-UI: the `query` argument provided is invalid.',
+          'Material-UI: The `query` argument provided is invalid.',
           'You are providing a function without a theme in the context.',
           'One of the parent elements needs to use a ThemeProvider.',
         ].join('\n'),

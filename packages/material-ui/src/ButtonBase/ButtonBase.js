@@ -294,7 +294,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
       if (enableTouchRipple && !rippleRef.current) {
         console.error(
           [
-            'Material-UI: the `component` prop provided to ButtonBase is invalid.',
+            'Material-UI: The `component` prop provided to ButtonBase is invalid.',
             'Please make sure the children prop is rendered in this custom component.',
           ].join('\n'),
         );

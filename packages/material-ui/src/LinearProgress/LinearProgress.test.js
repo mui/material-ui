@@ -148,15 +148,15 @@ describe('<LinearProgress />', () => {
       shallow(<LinearProgress variant="determinate" value={undefined} />);
       expect(consoleErrorMock.callCount()).to.equal(1);
       expect(consoleErrorMock.messages()[0]).to.match(
-        /Material-UI: you need to provide a value prop/,
+        /Material-UI: You need to provide a value prop/,
       );
       shallow(<LinearProgress variant="buffer" value={undefined} />);
       expect(consoleErrorMock.callCount()).to.equal(3);
       expect(consoleErrorMock.messages()[1]).to.match(
-        /Material-UI: you need to provide a value prop/,
+        /Material-UI: You need to provide a value prop/,
       );
       expect(consoleErrorMock.messages()[2]).to.match(
-        /Material-UI: you need to provide a valueBuffer prop/,
+        /Material-UI: You need to provide a valueBuffer prop/,
       );
     });
   });
