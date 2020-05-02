@@ -62,7 +62,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   const [value, setValue] = useControlled({
     controlled: valueProp,
     default: defaultValue,
-    name: 'SelectInput',
+    name: 'Select',
   });
 
   const inputRef = React.useRef(null);
