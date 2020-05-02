@@ -145,9 +145,9 @@ describe('<Autocomplete />', () => {
     it('show all items on focus', () => {
       const { container, getAllByRole, getByRole } = render(
         <Autocomplete
+          {...defaultProps}
           multiple
           limitTags={2}
-          {...defaultProps}
           options={['one', 'two', 'three']}
           defaultValue={['one', 'two', 'three']}
           renderInput={(params) => <TextField {...params} />}
@@ -165,9 +165,9 @@ describe('<Autocomplete />', () => {
     it('show 0 item on close when set 0 to limitTags', () => {
       const { container, getAllByRole, getByRole } = render(
         <Autocomplete
+          {...defaultProps}
           multiple
           limitTags={0}
-          {...defaultProps}
           options={['one', 'two', 'three']}
           defaultValue={['one', 'two', 'three']}
           renderInput={(params) => <TextField {...params} />}
