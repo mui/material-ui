@@ -38,7 +38,7 @@ function TrapFocus(props) {
   if (!prevOpenRef.current && open && typeof window !== 'undefined') {
     // WARNING: Potentially unsafe in concurrent mode.
     // The way the read on `nodeToRestore` is setup could make this actually safe.
-    // Say render `open={false}` -> `open={true}` but never commit.
+    // Say we render `open={false}` -> `open={true}` but never commit.
     // We have now written a state that wasn't committed. But no committed effect
     // will read this wrong value. We only read from `nodeToRestore` in effects
     // that were committed on `open={true}`
