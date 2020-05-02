@@ -52,7 +52,7 @@ export default function AdInHouse(props) {
         className={classes.link}
         href={ad.link}
         target="_blank"
-        rel="noopener sponsored"
+        rel="noopener noreferrer sponsored"
         data-ga-event-category="in-house-ad"
         data-ga-event-action="click"
         data-ga-event-label={ad.name}

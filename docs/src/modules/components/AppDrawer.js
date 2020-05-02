@@ -10,7 +10,7 @@ import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import Divider from '@material-ui/core/Divider';
 import Hidden from '@material-ui/core/Hidden';
 import AppDrawerNavItem from 'docs/src/modules/components/AppDrawerNavItem';
-import DiamondSponsors from 'docs/src/modules/components/DiamondSponsors';
+// import DiamondSponsors from 'docs/src/modules/components/DiamondSponsors';
 import Link from 'docs/src/modules/components/Link';
 import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import PageContext from 'docs/src/modules/components/PageContext';
@@ -163,7 +163,7 @@ function AppDrawer(props) {
       </div>
       <Divider />
       <Box mx={3} my={2}>
-        <DiamondSponsors />
+        {/* <DiamondSponsors spot="sidenav" /> */}
       </Box>
       {renderNavItems({ props, pages, activePage, depth: 0, t })}
     </PersistScroll>

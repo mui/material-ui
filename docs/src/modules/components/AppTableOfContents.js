@@ -226,8 +226,8 @@ export default function AppTableOfContents(props) {
           </Typography>
         </React.Fragment>
       ) : null}
-      <Box mt={3} mb={2} mx={1.5}>
-        <DiamondSponsors />
+      <Box mt={4} mb={2} mx={1.5}>
+        <DiamondSponsors spot="tocs" />
       </Box>
     </nav>
   );

@@ -33,20 +33,6 @@ const useStyles = makeStyles(
   { name: 'Themes' },
 );
 
-const PremiumThemesLink = React.forwardRef((props, ref) => {
-  return (
-    <Link
-      data-ga-event-category="store"
-      data-ga-event-action="click"
-      data-ga-event-label="home"
-      href="https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=home-store"
-      naked
-      ref={ref}
-      {...props}
-    />
-  );
-});
-
 export default function Themes() {
   const classes = useStyles();
   const t = useSelector((state) => state.options.t);
@@ -81,7 +67,14 @@ export default function Themes() {
             </NoSsr>
           </Link>
           <Grid container justify="center">
-            <Button variant="outlined" component={PremiumThemesLink} className={classes.button}>
+            <Button
+              variant="outlined"
+              data-ga-event-category="store"
+              data-ga-event-action="click"
+              data-ga-event-label="home"
+              href="https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=home-store"
+              className={classes.button}
+            >
               {t('themesButton')}
             </Button>
           </Grid>
