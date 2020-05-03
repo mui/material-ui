@@ -80,16 +80,6 @@ That `id` needs to match the `labelId` of the `Select` e.g.
 </Select>
 ```
 
-For a [Native select](#native-select), you can mention a label like below by giving the value of the `id` attribute of the select element to the `InputLabel`'s `htmlFor` attribute,
-
-```jsx
-<InputLabel htmlFor="select">Age</InputLabel>
-<Select native id="select">
-  <option value="10">Ten</option>
-  <option value="20">Twenty</option>
-</Select>
-```
-
 Alternatively a `TextField` with an `id` and `label` creates the proper markup and
 ids for you:
 
@@ -98,4 +88,14 @@ ids for you:
   <MenuItem value="10">Ten</MenuItem>
   <MenuItem value="20">Twenty</MenuItem>
 </TextField>
+```
+
+For a [native select](#native-select), you should mention a label by giving the value of the `id` attribute of the select element to the `InputLabel`'s `htmlFor` attribute:
+
+```jsx
+<InputLabel htmlFor="select">Age</InputLabel>
+<NativeSelect id="select">
+  <option value="10">Ten</option>
+  <option value="20">Twenty</option>
+</NativeSelect>
 ```
