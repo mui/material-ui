@@ -21,8 +21,7 @@ const StyledTableCell = withStyles((theme) => ({
 const StyledTableRow = withStyles((theme) => ({
   root: {
     '&:nth-of-type(odd)': {
-      backgroundColor:
-        theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.08)' : 'rgba(255, 255, 255, 0.16)',
+      backgroundColor: theme.palette.action.hover,
     },
   },
 }))(TableRow);
