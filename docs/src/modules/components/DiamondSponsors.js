@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
-import NoSsr from '@material-ui/core/NoSsr';
 import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
@@ -53,16 +52,14 @@ export default function DiamondSponsors(props) {
         target="_blank"
         style={{ marginLeft: 8, width: 125, height: 35 }}
       >
-        <NoSsr>
-          <img
-            width="125"
-            height="35"
-            src="/static/in-house/sencha-125x35.svg"
-            alt="sencha"
-            title="Superior UI Components for Productive Dev Teams"
-            loading="lazy"
-          />
-        </NoSsr>
+        <img
+          width="125"
+          height="35"
+          src="/static/in-house/sencha-125x35.svg"
+          alt="sencha"
+          title="UI Components for Productive Dev Teams"
+          loading="lazy"
+        />
       </a>
       <a
         style={{ marginTop: 8 }}
