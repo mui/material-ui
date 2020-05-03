@@ -1,13 +1,9 @@
-# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
-
-name: Node.js CI
+name: Build, format, and test
 
 on:
   push:
-    branches: [master]
-  pull_request:
-    branches: [master]
+    branches:
+      - '*'
 
 jobs:
   build:
@@ -17,22 +13,24 @@ jobs:
       matrix:
         node-version: [10.x, 12.x]
 
+    env:
+      YARN_ENABLE_MIRROR: 'false'
+      YARN_ENABLE_GLOBAL_CACHE: 'false'
+
     steps:
       - uses: actions/checkout@v2
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Cache dependencies
-        uses: actions/cache@v1
+      - uses: actions/cache@v1
         with:
-          path: ~/.yarn/berry/cache
-          key: yarn2-${{ hashFiles('yarn.lock') }}
+          path: .yarn/cache
+          key: ${{ matrix.node-version }}-yarn2-${{ hashFiles('yarn.lock') }}
 
-      - run: yarn
+      - run: yarn --immutable
       - run: yarn build
       - run: yarn test
       - run: yarn prettier --check .
-        env:
-          CI: true
