@@ -58,8 +58,6 @@ const FormLabel = React.forwardRef(function FormLabel(props, ref) {
     error,
     filled,
     focused,
-    id,
-    onClick,
     required,
     ...other
   } = props;
@@ -70,19 +68,6 @@ const FormLabel = React.forwardRef(function FormLabel(props, ref) {
     muiFormControl,
     states: ['color', 'required', 'focused', 'disabled', 'error', 'filled'],
   });
-
-  const handleClick = (event) => {
-    if (id) {
-      const select = document.querySelector(`[aria-labelledby~="${id}"]`);
-      if (select && getSelection().isCollapsed) {
-        select.focus();
-      }
-    }
-
-    if (onClick) {
-      onClick(event)
-    };
-  };
 
   return (
     <Component
@@ -98,9 +83,7 @@ const FormLabel = React.forwardRef(function FormLabel(props, ref) {
         },
         className,
       )}
-      id={id}
       ref={ref}
-      onClick={handleClick}
       {...other}
     >
       {children}
@@ -157,14 +140,6 @@ FormLabel.propTypes = {
    * If `true`, the input of this label is focused (used by `FormGroup` components).
    */
   focused: PropTypes.bool,
-  /**
-   * @ignore
-   */
-  id: PropTypes.string,
-  /**
-   * @ignore
-   */
-  onClick: PropTypes.func,
   /**
    * If `true`, the label will indicate that the input is required.
    */
