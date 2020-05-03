@@ -38,7 +38,7 @@ Nothing fancy, just plain CSS.
 ```jsx
 import React from 'react';
 import Button from '@material-ui/core/Button';
-import './PlainCSSButton.css';
+import './PlainCssButton.css';
 
 export default function PlainCssButton() {
   return (
