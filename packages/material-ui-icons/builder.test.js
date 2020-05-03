@@ -1,4 +1,4 @@
-import { expect, assert } from 'chai';
+import { expect } from 'chai';
 import fs from 'fs';
 import path from 'path';
 import temp from 'temp';
@@ -35,7 +35,7 @@ describe('builder', () => {
   });
 
   it('should have main', () => {
-    assert.isFunction(main);
+    expect(typeof main).to.equal('function');
   });
 
   describe('--output-dir', () => {

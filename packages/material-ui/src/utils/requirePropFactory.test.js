@@ -1,4 +1,4 @@
-import { expect, assert } from 'chai';
+import { expect } from 'chai';
 import requirePropFactory from './requirePropFactory';
 
 describe('requirePropFactory', () => {
@@ -59,9 +59,9 @@ describe('requirePropFactory', () => {
         });
 
         it('should return Error', () => {
-          assert.property(result, 'name');
+          expect(result).to.have.property('name');
           expect(result.name).to.equal('Error');
-          assert.property(result, 'message');
+          expect(result).to.have.property('message');
           expect(result.message.indexOf(propName) > -1).to.equal(true);
           expect(result.message.indexOf(requiredPropName) > -1).to.equal(true);
           expect(result.message.indexOf(componentNameInError) > -1).to.equal(true);

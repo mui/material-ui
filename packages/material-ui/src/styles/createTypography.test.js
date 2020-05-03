@@ -1,4 +1,4 @@
-import { expect, assert } from 'chai';
+import { expect } from 'chai';
 import createPalette from './createPalette';
 import createTypography from './createTypography';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
@@ -69,8 +69,10 @@ describe('createTypography', () => {
   });
 
   it('only defines letter-spacing if the font-family is not overwritten', () => {
-    assert.isDefined(createTypography(palette, {}).h1.letterSpacing);
-    assert.isUndefined(createTypography(palette, { fontFamily: 'Gotham' }).h1.letterSpacing);
+    expect(createTypography(palette, {}).h1.letterSpacing).to.not.equal(undefined);
+    expect(createTypography(palette, { fontFamily: 'Gotham' }).h1.letterSpacing).to.equal(
+      undefined,
+    );
   });
 
   describe('warnings', () => {

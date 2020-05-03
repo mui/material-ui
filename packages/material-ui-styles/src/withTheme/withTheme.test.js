@@ -1,5 +1,5 @@
 import React from 'react';
-import { expect, assert } from 'chai';
+import { expect } from 'chai';
 import { createMount } from '@material-ui/core/test-utils';
 import { Input } from '@material-ui/core';
 import { isMuiElement } from '@material-ui/core/utils';
@@ -67,8 +67,7 @@ describe('withTheme', () => {
 
       const ref = React.createRef();
       mount(<ThemedTarget ref={ref} />);
-
-      assert.instanceOf(ref.current, TargetComponent);
+      expect(ref.current instanceof TargetComponent).to.equal(true);
     });
 
     it('forwards refs to React.forwardRef types', () => {
