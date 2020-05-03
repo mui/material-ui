@@ -104,7 +104,7 @@ function HomeIcon(props) {
 
 ### Component prop
 
-You can use the `SvgIcon` wrapper even if your icons are saved the `.svg` format.
+You can use the `SvgIcon` wrapper even if your icons are saved in the `.svg` format.
 [svgr](https://github.com/smooth-code/svgr) has loaders to import svg files and use them as React components. For instance, with webpack:
 
 ```jsx
