@@ -13993,9 +13993,9 @@ recast@^0.18.1:
     source-map "~0.6.1"
 
 recast@^0.19.0:
-  version "0.19.0"
-  resolved "https://registry.yarnpkg.com/recast/-/recast-0.19.0.tgz#a6a9f95996f616dcbff60c9a8b9995922c5f4b74"
-  integrity sha512-HymYANYaUFpKoAkOZ2od16SB7A/BwCZbvYIs9Rc8K+wNThQctiCJ0AjLkPbo9eWdy3w5Eemk6I4MeEYbH12PBg==
+  version "0.19.1"
+  resolved "https://registry.yarnpkg.com/recast/-/recast-0.19.1.tgz#555f3612a5a10c9f44b9a923875c51ff775de6c8"
+  integrity sha512-8FCjrBxjeEU2O6I+2hyHyBFH1siJbMBLwIRvVr1T3FD2cL754sOaJDsJ/8h3xYltasbJ8jqWRIhMuDGBSiSbjw==
   dependencies:
     ast-types "0.13.3"
     esprima "~4.0.0"
