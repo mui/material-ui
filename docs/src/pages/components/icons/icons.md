@@ -121,7 +121,7 @@ import StarIcon from './star.svg';
 ```
 
 It's also possible to use it with "url-loader" or "file-loader".
-For instance, it's the approach used by Create React App.
+It's the approach used by Create React App.
 
 ```jsx
 // webpack.config.js
