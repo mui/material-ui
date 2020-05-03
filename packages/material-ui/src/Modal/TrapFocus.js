@@ -117,7 +117,7 @@ function TrapFocus(props) {
     // https://html.spec.whatwg.org/multipage/interaction.html#focus-fixup-rule.
     const interval = setInterval(() => {
       contain();
-    }, 50);
+    }, 250);
 
     return () => {
       clearInterval(interval);

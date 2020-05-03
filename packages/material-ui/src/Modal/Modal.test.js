@@ -585,7 +585,7 @@ describe('<Modal />', () => {
 
         setProps({ hideButton: true });
         expect(dialog).not.toHaveFocus();
-        clock.tick(500); // wait for the interval check to kick in.
+        clock.tick(250); // wait for the interval check to kick in.
         expect(dialog).toHaveFocus();
       });
 
@@ -645,7 +645,7 @@ describe('<Modal />', () => {
 
         getByTestId('foreign-input').focus();
         // wait for the `contain` interval check to kick in.
-        clock.tick(500);
+        clock.tick(250);
 
         expect(getByTestId('foreign-input')).toHaveFocus();
       });
