@@ -147,7 +147,7 @@ function Quote(props) {
             <Grid item>
               <Avatar
                 src={`${avatar}_normal.jpg`}
-                srcSet={`${avatar}_normal.jpg, ${avatar}_reasonably_small.jpg 2x`}
+                srcSet={`${avatar}_normal.jpg, ${avatar}_bigger.jpg 2x`}
                 alt={name}
                 className={classes.avatar}
               />
