@@ -242,7 +242,7 @@ export default function useAutocomplete(props) {
   const inputValueIsSelectedValue =
     !multiple && value != null && inputValue === getOptionLabel(value);
 
-  let popupOpen = open;
+  const popupOpen = open;
 
   const filteredOptions = popupOpen
     ? filterOptions(
@@ -262,8 +262,6 @@ export default function useAutocomplete(props) {
         { inputValue: inputValueIsSelectedValue ? '' : inputValue, getOptionLabel },
       )
     : [];
-
-  popupOpen = freeSolo && filteredOptions.length === 0 ? false : popupOpen;
 
   if (process.env.NODE_ENV !== 'production') {
     if (value !== null && !freeSolo && options.length > 0) {
@@ -405,7 +403,7 @@ export default function useAutocomplete(props) {
   });
 
   React.useEffect(() => {
-    if (!open) {
+    if (!popupOpen) {
       return;
     }
 
@@ -451,7 +449,7 @@ export default function useAutocomplete(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     value,
-    open,
+    popupOpen,
     filterSelectedOptions,
     changeHighlightedIndex,
     setHighlightedIndex,

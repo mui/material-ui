@@ -54,6 +54,21 @@ describe('<Autocomplete />', () => {
     });
   });
 
+  describe('prop: loading', () => {
+    it('should show a loading message when open', () => {
+      render(
+        <Autocomplete
+          {...defaultProps}
+          freeSolo
+          loading
+          renderInput={(params) => <TextField autoFocus {...params} />}
+        />,
+      );
+      fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+      expect(document.querySelector(`.${classes.paper}`).textContent).to.equal('Loading…');
+    });
+  });
+
   describe('prop: autoHighlight', () => {
     it('should set the focus on the first item', () => {
       const options = ['one', 'two'];
