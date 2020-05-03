@@ -31,15 +31,21 @@ function TrapFocus(props) {
   }, []);
   const handleRef = useForkRef(children.ref, handleOwnRef);
 
-  // ⚠️ You may rely on React.useMemo as a performance optimization, not as a semantic guarantee.
-  // https://reactjs.org/docs/hooks-reference.html#usememo
-  React.useMemo(() => {
-    if (!open || typeof window === 'undefined') {
-      return;
-    }
-
+  const prevOpenRef = React.useRef();
+  React.useEffect(() => {
+    prevOpenRef.current = open;
+  }, [open]);
+  if (!prevOpenRef.current && open && typeof window !== 'undefined') {
+    // WARNING: Potentially unsafe in concurrent mode.
+    // The way the read on `nodeToRestore` is setup could make this actually safe.
+    // Say we render `open={false}` -> `open={true}` but never commit.
+    // We have now written a state that wasn't committed. But no committed effect
+    // will read this wrong value. We only read from `nodeToRestore` in effects
+    // that were committed on `open={true}`
+    // WARNING: Prevents the instance from being garbage collected. Should only
+    // hold a weak ref.
     nodeToRestore.current = getDoc().activeElement;
-  }, [open]); // eslint-disable-line react-hooks/exhaustive-deps
+  }
 
   React.useEffect(() => {
     if (!open) {
