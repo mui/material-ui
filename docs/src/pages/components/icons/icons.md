@@ -116,7 +116,7 @@ You can use the `SvgIcon` wrapper even if your icons are saved the `.svg` format
 ```
 
 ```jsx
-import StarIcon from './star.svg';
+import { ReactComponent as StarIcon } from './star.svg';
 
 <SvgIcon component={StarIcon} viewBox="0 0 600 476.6" />
 ```
