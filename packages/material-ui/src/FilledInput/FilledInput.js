@@ -115,6 +115,7 @@ export const styles = (theme) => {
       '&:-webkit-autofill': {
         WebkitBoxShadow: theme.palette.type === 'dark' ? '0 0 0 100px #266798 inset' : null,
         WebkitTextFillColor: theme.palette.type === 'dark' ? '#fff' : null,
+        caretColor: theme.palette.type === 'dark' ? '#fff' : null,
         borderTopLeftRadius: 'inherit',
         borderTopRightRadius: 'inherit',
       },
