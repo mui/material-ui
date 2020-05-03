@@ -59,6 +59,7 @@ const FormLabel = React.forwardRef(function FormLabel(props, ref) {
     filled,
     focused,
     id,
+    onClick,
     required,
     ...other
   } = props;
@@ -71,18 +72,16 @@ const FormLabel = React.forwardRef(function FormLabel(props, ref) {
   });
 
   const handleClick = (event) => {
-    if (!id) {
-      return;
+    if (id) {
+      const select = document.querySelector(`[aria-labelledby~="${id}"]`);
+      if (select && getSelection().isCollapsed) {
+        select.focus();
+      }
     }
 
-    const select = document.querySelector(`[aria-labelledby~="${id}"]`);
-
-    if (!select) {
-      return;
-    }
-
-    event.preventDefault();
-    select.focus();
+    if (onClick) {
+      onClick(event)
+    };
   };
 
   return (
@@ -159,9 +158,13 @@ FormLabel.propTypes = {
    */
   focused: PropTypes.bool,
   /**
-   * The id of the component (`label` by default) element.
+   * @ignore
    */
   id: PropTypes.string,
+  /**
+   * @ignore
+   */
+  onClick: PropTypes.func,
   /**
    * If `true`, the label will indicate that the input is required.
    */
