@@ -4,13 +4,13 @@ import MarkdownElement from './MarkdownElement';
 import prism from 'docs/src/modules/utils/prism';
 
 export default function HighlightedCode(props) {
-  const { code, language } = props;
+  const { code, language, ...other } = props;
   const renderedCode = React.useMemo(() => {
     return prism(code.trim(), language);
   }, [code, language]);
 
   return (
-    <MarkdownElement>
+    <MarkdownElement {...other}>
       <pre>
         <code
           className={`language-${language}`}

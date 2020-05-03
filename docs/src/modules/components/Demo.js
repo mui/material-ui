@@ -4,10 +4,14 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import copy from 'clipboard-copy';
 import { useSelector, useDispatch } from 'react-redux';
-import { withStyles, fade } from '@material-ui/core/styles';
+import { fade, makeStyles, useTheme } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { unstable_StrictModeCollapse as Collapse } from '@material-ui/core/Collapse';
+import { unstable_StrictModeFade as Fade } from '@material-ui/core/Fade';
+import ToggleButton from '@material-ui/lab/ToggleButton';
+import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
+import { JavaScript as JavaScriptIcon, TypeScript as TypeScriptIcon } from '@material-ui/docs';
 import NoSsr from '@material-ui/core/NoSsr';
 import EditIcon from '@material-ui/icons/Edit';
 import CodeIcon from '@material-ui/icons/Code';
@@ -21,7 +25,6 @@ import RefreshIcon from '@material-ui/icons/Refresh';
 import ResetFocusIcon from '@material-ui/icons/CenterFocusWeak';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import DemoSandboxed from 'docs/src/modules/components/DemoSandboxed';
-import DemoLanguages from 'docs/src/modules/components/DemoLanguages';
 import getDemoConfig from 'docs/src/modules/utils/getDemoConfig';
 import getJsxPreview from 'docs/src/modules/utils/getJsxPreview';
 import { getCookie } from 'docs/src/modules/utils/helpers';
@@ -41,102 +44,6 @@ function addHiddenInput(form, name, value) {
   input.value = value;
   form.appendChild(input);
 }
-
-const styles = (theme) => ({
-  root: {
-    marginBottom: 40,
-    marginLeft: -theme.spacing(2),
-    marginRight: -theme.spacing(2),
-    [theme.breakpoints.up('sm')]: {
-      padding: theme.spacing(0, 1),
-      marginLeft: 0,
-      marginRight: 0,
-    },
-  },
-  demo: {
-    position: 'relative',
-    outline: 0,
-    margin: 'auto',
-    display: 'flex',
-    justifyContent: 'center',
-    [theme.breakpoints.up('sm')]: {
-      borderRadius: theme.shape.borderRadius,
-    },
-    '&:focus': {
-      outline: `2px dashed ${theme.palette.text.primary}`,
-    },
-  },
-  /* Isolate the demo with an outline. */
-  demoBgOutlined: {
-    padding: theme.spacing(3),
-    border: `1px solid ${fade(theme.palette.action.active, 0.12)}`,
-    borderLeftWidth: 0,
-    borderRightWidth: 0,
-    [theme.breakpoints.up('sm')]: {
-      borderLeftWidth: 1,
-      borderRightWidth: 1,
-    },
-  },
-  /* Prepare the background to display an inner elevation. */
-  demoBgTrue: {
-    padding: theme.spacing(3),
-    backgroundColor: theme.palette.background.level2,
-  },
-  /* Make no difference between the demo and the markdown. */
-  demoBgInline: {
-    // Maintain alignment with the markdown text
-    [theme.breakpoints.down('xs')]: {
-      padding: theme.spacing(3),
-    },
-  },
-  demoHiddenToolbar: {
-    paddingTop: theme.spacing(2),
-    [theme.breakpoints.up('sm')]: {
-      paddingTop: theme.spacing(3),
-    },
-  },
-  toolbar: {
-    display: 'none',
-    [theme.breakpoints.up('sm')]: {
-      display: 'flex',
-      flip: false,
-      top: 0,
-      right: theme.spacing(1),
-      height: theme.spacing(6),
-    },
-    justifyContent: 'space-between',
-  },
-  code: {
-    display: 'none',
-    padding: 0,
-    marginBottom: theme.spacing(1),
-    marginRight: 0,
-    [theme.breakpoints.up('sm')]: {
-      display: 'block',
-    },
-    '& pre': {
-      overflow: 'auto',
-      lineHeight: 1.5,
-      margin: '0px !important',
-      maxHeight: 1000,
-    },
-  },
-  tooltip: {
-    zIndex: theme.zIndex.appBar - 1,
-  },
-  anchorLink: {
-    marginTop: -64, // height of toolbar
-    position: 'absolute',
-  },
-  initialFocus: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    width: theme.spacing(4),
-    height: theme.spacing(4),
-    pointerEvents: 'none',
-  },
-});
 
 function getDemoName(location) {
   return location.replace(/(.+?)(\w+)\.\w+$$/, '$2');
@@ -173,28 +80,191 @@ function useUniqueId(prefix) {
   return id ? `${prefix}${id}` : id;
 }
 
-function Demo(props) {
-  const { classes, demo, demoOptions, githubLocation } = props;
+const useDemoToolbarStyles = makeStyles(
+  (theme) => {
+    return {
+      root: {
+        display: 'none',
+        [theme.breakpoints.up('sm')]: {
+          display: 'flex',
+          flip: false,
+          top: 0,
+          right: theme.spacing(1),
+          height: theme.spacing(6),
+        },
+        justifyContent: 'space-between',
+      },
+      toggleButtonGroup: {
+        margin: '8px 0',
+      },
+      toggleButton: {
+        height: 32,
+      },
+      tooltip: {
+        zIndex: theme.zIndex.appBar - 1,
+      },
+    };
+  },
+  { name: 'DemoToolbar' },
+);
+
+const alwaysTrue = () => true;
+
+/**
+ *
+ * @param {React.Ref<HTMLElement>[]} controlRefs
+ * @param {object} [options]
+ * @param {(index: number) => boolean} [options.isFocusableControl] In case certain controls become unfocusable
+ * @param {number} [options.defaultActiveIndex]
+ */
+function useToolbar(controlRefs, options = {}) {
+  const { defaultActiveIndex = 0, isFocusableControl = alwaysTrue } = options;
+  const [activeControlIndex, setActiveControlIndex] = React.useState(defaultActiveIndex);
+
+  // TODO: do we need to do this during layout practically? It's technically
+  // a bit too late since we allow user interaction between layout and passive effects
+  React.useEffect(() => {
+    setActiveControlIndex((currentActiveControlIndex) => {
+      if (!isFocusableControl(currentActiveControlIndex)) {
+        return defaultActiveIndex;
+      }
+      return currentActiveControlIndex;
+    });
+  }, [defaultActiveIndex, isFocusableControl]);
+
+  // controlRefs.findIndex(controlRef => controlRef.current = element)
+  function findControlIndex(element) {
+    let controlIndex = -1;
+    controlRefs.forEach((controlRef, index) => {
+      if (controlRef.current === element) {
+        controlIndex = index;
+      }
+    });
+    return controlIndex;
+  }
+
+  function handleControlFocus(event) {
+    const nextActiveControlIndex = findControlIndex(event.target);
+    if (nextActiveControlIndex !== -1) {
+      setActiveControlIndex(nextActiveControlIndex);
+    } else {
+      // make sure DCE works
+      // eslint-disable-next-line no-lonely-if
+      if (process.env.NODE_ENV !== 'production') {
+        console.error(
+          'Material-UI: The toolbar contains a focusable element that is not controlled by the toolbar. ' +
+            'Make sure you have attached `getControlProps(index)` to every focusable element within this toolbar.',
+        );
+      }
+    }
+  }
+
+  let handleToolbarFocus;
+  if (process.env.NODE_ENV !== 'production') {
+    handleToolbarFocus = (event) => {
+      if (findControlIndex(event.target) === -1) {
+        console.error(
+          'Material-UI: The toolbar contains a focusable element that is not controlled by the toolbar. ' +
+            'Make sure you have attached `getControlProps(index)` to every focusable element within this toolbar.',
+        );
+      }
+    };
+  }
+
+  const { direction } = useTheme();
+
+  function handleToolbarKeyDown(event) {
+    // We handle toolbars where controls can be hidden temporarily.
+    // When a control is hidden we can't move focus to it and have to exclude
+    // it from the order.
+    let currentFocusableControlIndex = -1;
+    const focusableControls = [];
+    controlRefs.forEach((controlRef, index) => {
+      const { current: control } = controlRef;
+      if (index === activeControlIndex) {
+        currentFocusableControlIndex = focusableControls.length;
+      }
+      if (control !== null && isFocusableControl(index)) {
+        focusableControls.push(control);
+      }
+    });
+
+    const prevControlKey = direction === 'ltr' ? 'ArrowLeft' : 'ArrowRight';
+    const nextControlKey = direction === 'ltr' ? 'ArrowRight' : 'ArrowLeft';
+
+    let nextFocusableIndex = -1;
+    switch (event.key) {
+      case prevControlKey:
+        nextFocusableIndex =
+          (currentFocusableControlIndex - 1 + focusableControls.length) % focusableControls.length;
+        break;
+      case nextControlKey:
+        nextFocusableIndex = (currentFocusableControlIndex + 1) % focusableControls.length;
+        break;
+      case 'Home':
+        nextFocusableIndex = 0;
+        break;
+      case 'End':
+        nextFocusableIndex = focusableControls.length - 1;
+        break;
+      default:
+        break;
+    }
+
+    if (nextFocusableIndex !== -1) {
+      event.preventDefault();
+      focusableControls[nextFocusableIndex].focus();
+    }
+  }
+
+  function getControlProps(index) {
+    return {
+      onFocus: handleControlFocus,
+      ref: controlRefs[index],
+      tabIndex: index === activeControlIndex ? 0 : -1,
+    };
+  }
+
+  return {
+    getControlProps,
+    toolbarProps: {
+      // TODO: good opportunity to warn on missing `aria-label`
+      onFocus: handleToolbarFocus,
+      onKeyDown: handleToolbarKeyDown,
+      role: 'toolbar',
+    },
+  };
+}
+
+function DemoToolbar(props) {
+  const {
+    codeOpen,
+    codeVariant,
+    demo,
+    demoData,
+    demoId,
+    demoHovered,
+    demoName,
+    demoOptions,
+    demoSourceId,
+    initialFocusRef,
+    onCodeOpenChange,
+    onResetDemoClick,
+    openDemoSource,
+    showPreview,
+  } = props;
+
+  const classes = useDemoToolbarStyles();
+
   const dispatch = useDispatch();
   const t = useSelector((state) => state.options.t);
-  const codeVariant = useSelector((state) => state.options.codeVariant);
-  const demoData = getDemoData(codeVariant, demo, githubLocation);
 
-  const [sourceHintSeen, setSourceHintSeen] = React.useState(false);
-  React.useEffect(() => {
-    setSourceHintSeen(getCookie('sourceHintSeen'));
-  }, []);
-
-  const [demoHovered, setDemoHovered] = React.useState(false);
-  const handleDemoHover = (event) => {
-    setDemoHovered(event.type === 'mouseenter');
-  };
-
-  const [snackbarOpen, setSnackbarOpen] = React.useState(false);
-  const [snackbarMessage, setSnackbarMessage] = React.useState(undefined);
-
-  const handleSnackbarClose = () => {
-    setSnackbarOpen(false);
+  const hasTSVariant = demo.rawTS;
+  const renderedCodeVariant = () => {
+    if (codeVariant === CODE_VARIANTS.TS && hasTSVariant) {
+      return CODE_VARIANTS.TS;
+    }
+    return CODE_VARIANTS.JS;
   };
 
   const handleCodeLanguageClick = (event, clickedCodeVariant) => {
@@ -246,11 +316,16 @@ function Demo(props) {
   const handleMoreClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-
   const handleMoreClose = () => {
     setAnchorEl(null);
   };
 
+  const [snackbarOpen, setSnackbarOpen] = React.useState(false);
+  const [snackbarMessage, setSnackbarMessage] = React.useState(undefined);
+
+  const handleSnackbarClose = () => {
+    setSnackbarOpen(false);
+  };
   const handleCopyClick = async () => {
     try {
       await copy(demoData.raw);
@@ -282,7 +357,363 @@ function Demo(props) {
     handleMoreClose();
   };
 
+  const createHandleCodeSourceLink = (anchor) => async () => {
+    try {
+      await copy(`${window.location.href.split('#')[0]}#${anchor}`);
+      setSnackbarMessage(t('copiedSourceLink'));
+      setSnackbarOpen(true);
+    } finally {
+      handleMoreClose();
+    }
+  };
+
+  const [sourceHintSeen, setSourceHintSeen] = React.useState(false);
+  React.useEffect(() => {
+    setSourceHintSeen(getCookie('sourceHintSeen'));
+  }, []);
+  const handleCodeOpenClick = () => {
+    document.cookie = `sourceHintSeen=true;path=/;max-age=31536000`;
+    onCodeOpenChange();
+    setSourceHintSeen(true);
+  };
+
+  function handleResetFocusClick() {
+    initialFocusRef.current.focusVisible();
+  }
+
   const showSourceHint = demoHovered && !sourceHintSeen;
+
+  let showCodeLabel;
+  if (codeOpen) {
+    showCodeLabel = showPreview ? t('hideFullSource') : t('hideSource');
+  } else {
+    showCodeLabel = showPreview ? t('showFullSource') : t('showSource');
+  }
+
+  const atLeastSmallViewport = useMediaQuery((theme) => theme.breakpoints.up('sm'));
+
+  const controlRefs = [
+    React.useRef(null),
+    React.useRef(null),
+    React.useRef(null),
+    React.useRef(null),
+    React.useRef(null),
+    React.useRef(null),
+    React.useRef(null),
+    React.useRef(null),
+  ];
+  // if the code is not open we hide the first two language controls
+  const isFocusableControl = React.useCallback((index) => (codeOpen ? true : index >= 2), [
+    codeOpen,
+  ]);
+  const { getControlProps, toolbarProps } = useToolbar(controlRefs, {
+    defaultActiveIndex: 2,
+    isFocusableControl,
+  });
+
+  return (
+    <React.Fragment>
+      <div aria-label={t('demoToolbarLabel')} className={classes.root} {...toolbarProps}>
+        <NoSsr defer>
+          <Fade in={codeOpen}>
+            <ToggleButtonGroup
+              className={classes.toggleButtonGroup}
+              exclusive
+              value={renderedCodeVariant()}
+              onChange={handleCodeLanguageClick}
+            >
+              <ToggleButton
+                className={classes.toggleButton}
+                value={CODE_VARIANTS.JS}
+                aria-label={t('showJSSource')}
+                data-ga-event-category="demo"
+                data-ga-event-action="source-js"
+                data-ga-event-label={demoOptions.demo}
+                {...getControlProps(0)}
+              >
+                <JavaScriptIcon />
+              </ToggleButton>
+              <ToggleButton
+                className={classes.toggleButton}
+                value={CODE_VARIANTS.TS}
+                disabled={!hasTSVariant}
+                aria-label={t('showTSSource')}
+                data-ga-event-category="demo"
+                data-ga-event-action="source-ts"
+                data-ga-event-label={demoOptions.demo}
+                {...getControlProps(1)}
+              >
+                <TypeScriptIcon />
+              </ToggleButton>
+            </ToggleButtonGroup>
+          </Fade>
+          <div>
+            <Tooltip
+              classes={{ popper: classes.tooltip }}
+              key={showSourceHint}
+              open={showSourceHint && atLeastSmallViewport ? true : undefined}
+              PopperProps={{ disablePortal: true }}
+              title={showCodeLabel}
+              placement="top"
+            >
+              <IconButton
+                aria-controls={openDemoSource ? demoSourceId : null}
+                aria-label={showCodeLabel}
+                data-ga-event-category="demo"
+                data-ga-event-label={demoOptions.demo}
+                data-ga-event-action="expand"
+                onClick={handleCodeOpenClick}
+                color={demoHovered ? 'primary' : 'default'}
+                {...getControlProps(2)}
+              >
+                <CodeIcon fontSize="small" />
+              </IconButton>
+            </Tooltip>
+            {demoOptions.hideEditButton ? null : (
+              <Tooltip
+                classes={{ popper: classes.tooltip }}
+                title={t('codesandbox')}
+                placement="top"
+              >
+                <IconButton
+                  aria-label={t('codesandbox')}
+                  data-ga-event-category="demo"
+                  data-ga-event-label={demoOptions.demo}
+                  data-ga-event-action="codesandbox"
+                  onClick={handleCodeSandboxClick}
+                  {...getControlProps(3)}
+                >
+                  <EditIcon fontSize="small" />
+                </IconButton>
+              </Tooltip>
+            )}
+            <Tooltip classes={{ popper: classes.tooltip }} title={t('copySource')} placement="top">
+              <IconButton
+                aria-label={t('copySource')}
+                data-ga-event-category="demo"
+                data-ga-event-label={demoOptions.demo}
+                data-ga-event-action="copy"
+                onClick={handleCopyClick}
+                {...getControlProps(4)}
+              >
+                <FileCopyIcon fontSize="small" />
+              </IconButton>
+            </Tooltip>
+            <Tooltip classes={{ popper: classes.tooltip }} title={t('resetFocus')} placement="top">
+              <IconButton
+                aria-label={t('resetFocus')}
+                data-ga-event-category="demo"
+                data-ga-event-label={demoOptions.demo}
+                data-ga-event-action="reset-focus"
+                onClick={handleResetFocusClick}
+                {...getControlProps(5)}
+              >
+                <ResetFocusIcon fontSize="small" />
+              </IconButton>
+            </Tooltip>
+            <Tooltip classes={{ popper: classes.tooltip }} title={t('resetDemo')} placement="top">
+              <IconButton
+                aria-controls={demoId}
+                aria-label={t('resetDemo')}
+                data-ga-event-category="demo"
+                data-ga-event-label={demoOptions.demo}
+                data-ga-event-action="reset"
+                onClick={onResetDemoClick}
+                {...getControlProps(6)}
+              >
+                <RefreshIcon fontSize="small" />
+              </IconButton>
+            </Tooltip>
+            <IconButton
+              onClick={handleMoreClick}
+              aria-owns={anchorEl ? 'demo-menu-more' : undefined}
+              aria-haspopup="true"
+              aria-label={t('seeMore')}
+              {...getControlProps(7)}
+            >
+              <MoreVertIcon fontSize="small" />
+            </IconButton>
+            <Menu
+              id="demo-menu-more"
+              anchorEl={anchorEl}
+              open={Boolean(anchorEl)}
+              onClose={handleMoreClose}
+              getContentAnchorEl={null}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+            >
+              <MenuItem
+                data-ga-event-category="demo"
+                data-ga-event-label={demoOptions.demo}
+                data-ga-event-action="github"
+                component="a"
+                href={demoData.githubLocation}
+                target="_blank"
+                rel="noopener nofollow"
+                onClick={handleMoreClose}
+              >
+                {t('viewGitHub')}
+              </MenuItem>
+              {demoOptions.hideEditButton ? null : (
+                <MenuItem
+                  data-ga-event-category="demo"
+                  data-ga-event-label={demoOptions.demo}
+                  data-ga-event-action="stackblitz"
+                  onClick={handleStackBlitzClick}
+                >
+                  {t('stackblitz')}
+                </MenuItem>
+              )}
+              <MenuItem
+                data-ga-event-category="demo"
+                data-ga-event-label={demoOptions.demo}
+                data-ga-event-action="copy-js-source-link"
+                onClick={createHandleCodeSourceLink(`${demoName}.js`)}
+              >
+                {t('copySourceLinkJS')}
+              </MenuItem>
+              <MenuItem
+                data-ga-event-category="demo"
+                data-ga-event-label={demoOptions.demo}
+                data-ga-event-action="copy-ts-source-link"
+                onClick={createHandleCodeSourceLink(`${demoName}.tsx`)}
+              >
+                {t('copySourceLinkTS')}
+              </MenuItem>
+            </Menu>
+          </div>
+        </NoSsr>
+      </div>
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={3000}
+        onClose={handleSnackbarClose}
+        message={snackbarMessage}
+      />
+    </React.Fragment>
+  );
+}
+
+DemoToolbar.propTypes = {
+  codeOpen: PropTypes.bool.isRequired,
+  codeVariant: PropTypes.string.isRequired,
+  demo: PropTypes.object.isRequired,
+  demoData: PropTypes.object.isRequired,
+  demoHovered: PropTypes.bool.isRequired,
+  demoId: PropTypes.string,
+  demoName: PropTypes.string.isRequired,
+  demoOptions: PropTypes.object.isRequired,
+  demoSourceId: PropTypes.string,
+  initialFocusRef: PropTypes.shape({ current: PropTypes.object }).isRequired,
+  onCodeOpenChange: PropTypes.func.isRequired,
+  onResetDemoClick: PropTypes.func.isRequired,
+  openDemoSource: PropTypes.bool.isRequired,
+  showPreview: PropTypes.bool.isRequired,
+};
+
+const useStyles = makeStyles(
+  (theme) => ({
+    root: {
+      marginBottom: 40,
+      marginLeft: -theme.spacing(2),
+      marginRight: -theme.spacing(2),
+      [theme.breakpoints.up('sm')]: {
+        padding: theme.spacing(0, 1),
+        marginLeft: 0,
+        marginRight: 0,
+      },
+    },
+    demo: {
+      position: 'relative',
+      outline: 0,
+      margin: 'auto',
+      display: 'flex',
+      justifyContent: 'center',
+      [theme.breakpoints.up('sm')]: {
+        borderRadius: theme.shape.borderRadius,
+      },
+      '&:focus': {
+        outline: `2px dashed ${theme.palette.text.primary}`,
+      },
+    },
+    /* Isolate the demo with an outline. */
+    demoBgOutlined: {
+      padding: theme.spacing(3),
+      border: `1px solid ${fade(theme.palette.action.active, 0.12)}`,
+      borderLeftWidth: 0,
+      borderRightWidth: 0,
+      [theme.breakpoints.up('sm')]: {
+        borderLeftWidth: 1,
+        borderRightWidth: 1,
+      },
+    },
+    /* Prepare the background to display an inner elevation. */
+    demoBgTrue: {
+      padding: theme.spacing(3),
+      backgroundColor: theme.palette.background.level2,
+    },
+    /* Make no difference between the demo and the markdown. */
+    demoBgInline: {
+      // Maintain alignment with the markdown text
+      [theme.breakpoints.down('xs')]: {
+        padding: theme.spacing(3),
+      },
+    },
+    demoHiddenToolbar: {
+      paddingTop: theme.spacing(2),
+      [theme.breakpoints.up('sm')]: {
+        paddingTop: theme.spacing(3),
+      },
+    },
+    code: {
+      display: 'none',
+      padding: 0,
+      marginBottom: theme.spacing(1),
+      marginRight: 0,
+      [theme.breakpoints.up('sm')]: {
+        display: 'block',
+      },
+      '& pre': {
+        overflow: 'auto',
+        lineHeight: 1.5,
+        margin: '0px !important',
+        maxHeight: 1000,
+      },
+    },
+    anchorLink: {
+      marginTop: -64, // height of toolbar
+      position: 'absolute',
+    },
+    initialFocus: {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: theme.spacing(4),
+      height: theme.spacing(4),
+      pointerEvents: 'none',
+    },
+  }),
+  { name: 'Demo' },
+);
+
+function Demo(props) {
+  const { demo, demoOptions, githubLocation } = props;
+  const classes = useStyles();
+  const t = useSelector((state) => state.options.t);
+  const codeVariant = useSelector((state) => state.options.codeVariant);
+  const demoData = getDemoData(codeVariant, demo, githubLocation);
+
+  const [demoHovered, setDemoHovered] = React.useState(false);
+  const handleDemoHover = (event) => {
+    setDemoHovered(event.type === 'mouseenter');
+  };
+
   const DemoComponent = demoData.Component;
   const demoName = getDemoName(demoData.githubLocation);
   const demoSandboxedStyle = React.useMemo(
@@ -301,16 +732,6 @@ function Demo(props) {
     demoOptions.bg = true;
   }
 
-  const createHandleCodeSourceLink = (anchor) => async () => {
-    try {
-      await copy(`${window.location.href.split('#')[0]}#${anchor}`);
-      setSnackbarMessage(t('copiedSourceLink'));
-      setSnackbarOpen(true);
-    } finally {
-      handleMoreClose();
-    }
-  };
-
   const [codeOpen, setCodeOpen] = React.useState(demoOptions.defaultCodeOpen || false);
 
   React.useEffect(() => {
@@ -320,14 +741,6 @@ function Demo(props) {
     }
   }, [demoName]);
 
-  const handleCodeOpenClick = () => {
-    document.cookie = `sourceHintSeen=true;path=/;max-age=31536000`;
-    setCodeOpen((open) => !open);
-    setSourceHintSeen(setSourceHintSeen(true));
-  };
-
-  const match = useMediaQuery((theme) => theme.breakpoints.up('sm'));
-
   const jsx = getJsxPreview(demoData.raw || '');
   const showPreview =
     !demoOptions.hideToolbar &&
@@ -335,22 +748,13 @@ function Demo(props) {
     jsx !== demoData.raw &&
     jsx.split(/\n/).length <= 17;
 
-  let showCodeLabel;
-  if (codeOpen) {
-    showCodeLabel = showPreview ? t('hideFullSource') : t('hideSource');
-  } else {
-    showCodeLabel = showPreview ? t('showFullSource') : t('showSource');
-  }
-
   const [demoKey, resetDemo] = React.useReducer((key) => key + 1, 0);
 
-  const demoSourceId = useUniqueId(`demo-`);
+  const demoId = useUniqueId('demo-');
+  const demoSourceId = useUniqueId(`demoSource-`);
   const openDemoSource = codeOpen || showPreview;
 
   const initialFocusRef = React.useRef(null);
-  function handleResetFocusClick() {
-    initialFocusRef.current.focusVisible();
-  }
 
   return (
     <div className={classes.root}>
@@ -361,6 +765,7 @@ function Demo(props) {
           [classes.demoBgTrue]: demoOptions.bg === true,
           [classes.demoBgInline]: demoOptions.bg === 'inline',
         })}
+        id={demoId}
         onMouseEnter={handleDemoHover}
         onMouseLeave={handleDemoHover}
       >
@@ -382,163 +787,22 @@ function Demo(props) {
       <div className={classes.anchorLink} id={`${demoName}.js`} />
       <div className={classes.anchorLink} id={`${demoName}.tsx`} />
       {demoOptions.hideToolbar ? null : (
-        <div
-          aria-controls={openDemoSource ? demoSourceId : null}
-          aria-label={t('demoToolbarLabel')}
-          className={classes.toolbar}
-          role="toolbar"
-        >
-          <NoSsr defer>
-            <DemoLanguages
-              demo={demo}
-              codeOpen={codeOpen}
-              codeVariant={codeVariant}
-              gaEventLabel={demoOptions.demo}
-              onLanguageClick={handleCodeLanguageClick}
-            />
-            <div className={classes.toolbarButtons}>
-              <Tooltip
-                classes={{ popper: classes.tooltip }}
-                key={showSourceHint}
-                open={showSourceHint && match ? true : undefined}
-                PopperProps={{ disablePortal: true }}
-                title={showCodeLabel}
-                placement="top"
-              >
-                <IconButton
-                  aria-label={showCodeLabel}
-                  data-ga-event-category="demo"
-                  data-ga-event-label={demoOptions.demo}
-                  data-ga-event-action="expand"
-                  onClick={handleCodeOpenClick}
-                  color={demoHovered ? 'primary' : 'default'}
-                >
-                  <CodeIcon fontSize="small" />
-                </IconButton>
-              </Tooltip>
-              {demoOptions.hideEditButton ? null : (
-                <Tooltip
-                  classes={{ popper: classes.tooltip }}
-                  title={t('codesandbox')}
-                  placement="top"
-                >
-                  <IconButton
-                    aria-label={t('codesandbox')}
-                    data-ga-event-category="demo"
-                    data-ga-event-label={demoOptions.demo}
-                    data-ga-event-action="codesandbox"
-                    onClick={handleCodeSandboxClick}
-                  >
-                    <EditIcon fontSize="small" />
-                  </IconButton>
-                </Tooltip>
-              )}
-              <Tooltip
-                classes={{ popper: classes.tooltip }}
-                title={t('copySource')}
-                placement="top"
-              >
-                <IconButton
-                  aria-label={t('copySource')}
-                  data-ga-event-category="demo"
-                  data-ga-event-label={demoOptions.demo}
-                  data-ga-event-action="copy"
-                  onClick={handleCopyClick}
-                >
-                  <FileCopyIcon fontSize="small" />
-                </IconButton>
-              </Tooltip>
-              <Tooltip
-                classes={{ popper: classes.tooltip }}
-                title={t('resetFocus')}
-                placement="top"
-              >
-                <IconButton
-                  aria-label={t('resetFocus')}
-                  data-ga-event-category="demo"
-                  data-ga-event-label={demoOptions.demo}
-                  data-ga-event-action="reset-focus"
-                  onClick={handleResetFocusClick}
-                >
-                  <ResetFocusIcon fontSize="small" />
-                </IconButton>
-              </Tooltip>
-              <Tooltip classes={{ popper: classes.tooltip }} title={t('resetDemo')} placement="top">
-                <IconButton
-                  aria-label={t('resetDemo')}
-                  data-ga-event-category="demo"
-                  data-ga-event-label={demoOptions.demo}
-                  data-ga-event-action="reset"
-                  onClick={resetDemo}
-                >
-                  <RefreshIcon fontSize="small" />
-                </IconButton>
-              </Tooltip>
-              <IconButton
-                onClick={handleMoreClick}
-                aria-owns={anchorEl ? 'demo-menu-more' : undefined}
-                aria-haspopup="true"
-                aria-label={t('seeMore')}
-              >
-                <MoreVertIcon fontSize="small" />
-              </IconButton>
-              <Menu
-                id="demo-menu-more"
-                anchorEl={anchorEl}
-                open={Boolean(anchorEl)}
-                onClose={handleMoreClose}
-                getContentAnchorEl={null}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-              >
-                <MenuItem
-                  data-ga-event-category="demo"
-                  data-ga-event-label={demoOptions.demo}
-                  data-ga-event-action="github"
-                  component="a"
-                  href={demoData.githubLocation}
-                  target="_blank"
-                  rel="noopener nofollow"
-                  onClick={handleMoreClose}
-                >
-                  {t('viewGitHub')}
-                </MenuItem>
-                {demoOptions.hideEditButton ? null : (
-                  <MenuItem
-                    data-ga-event-category="demo"
-                    data-ga-event-label={demoOptions.demo}
-                    data-ga-event-action="stackblitz"
-                    onClick={handleStackBlitzClick}
-                  >
-                    {t('stackblitz')}
-                  </MenuItem>
-                )}
-                <MenuItem
-                  data-ga-event-category="demo"
-                  data-ga-event-label={demoOptions.demo}
-                  data-ga-event-action="copy-js-source-link"
-                  onClick={createHandleCodeSourceLink(`${demoName}.js`)}
-                >
-                  {t('copySourceLinkJS')}
-                </MenuItem>
-                <MenuItem
-                  data-ga-event-category="demo"
-                  data-ga-event-label={demoOptions.demo}
-                  data-ga-event-action="copy-ts-source-link"
-                  onClick={createHandleCodeSourceLink(`${demoName}.tsx`)}
-                >
-                  {t('copySourceLinkTS')}
-                </MenuItem>
-              </Menu>
-            </div>
-          </NoSsr>
-        </div>
+        <DemoToolbar
+          codeOpen={codeOpen}
+          codeVariant={codeVariant}
+          demo={demo}
+          demoData={demoData}
+          demoHovered={demoHovered}
+          demoId={demoId}
+          demoName={demoName}
+          demoOptions={demoOptions}
+          demoSourceId={demoSourceId}
+          initialFocusRef={initialFocusRef}
+          onCodeOpenChange={() => setCodeOpen((open) => !open)}
+          onResetDemoClick={resetDemo}
+          openDemoSource={openDemoSource}
+          showPreview={showPreview}
+        />
       )}
       <Collapse in={openDemoSource} unmountOnExit>
         <HighlightedCode
@@ -548,21 +812,14 @@ function Demo(props) {
           language={demoData.sourceLanguage}
         />
       </Collapse>
-      <Snackbar
-        open={snackbarOpen}
-        autoHideDuration={3000}
-        onClose={handleSnackbarClose}
-        message={snackbarMessage}
-      />
     </div>
   );
 }
 
 Demo.propTypes = {
-  classes: PropTypes.object.isRequired,
   demo: PropTypes.object.isRequired,
   demoOptions: PropTypes.object.isRequired,
   githubLocation: PropTypes.string.isRequired,
 };
 
-export default withStyles(styles)(Demo);
+export default Demo;
