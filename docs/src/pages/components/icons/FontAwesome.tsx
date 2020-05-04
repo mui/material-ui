@@ -18,10 +18,14 @@ export default function FontAwesome() {
   const classes = useStyles();
 
   React.useEffect(() => {
-    loadCSS(
+    const node = loadCSS(
       'https://use.fontawesome.com/releases/v5.12.0/css/all.css',
       document.querySelector('#font-awesome-css'),
     );
+
+    return () => {
+      node.parentNode!.removeChild(node);
+    };
   }, []);
 
   return (

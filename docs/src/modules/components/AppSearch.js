@@ -1,7 +1,7 @@
 import React from 'react';
 import url from 'url';
 import { useSelector } from 'react-redux';
-import { loadCSS } from 'fg-loadcss/src/loadCSS';
+import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { fade, useTheme, makeStyles } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
@@ -119,16 +119,7 @@ export default function AppSearch() {
   const userLanguage = useSelector((state) => state.options.userLanguage);
   const t = useSelector((state) => state.options.t);
 
-  React.useEffect(() => {
-    const styleNode = loadCSS(
-      'https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css',
-      document.querySelector('#app-search'),
-    );
-
-    return () => {
-      styleNode.parentElement.removeChild(styleNode);
-    };
-  }, []);
+  useLazyCSS('https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css', '#app-search');
 
   React.useEffect(() => {
     const handleKeyDown = (event) => {
