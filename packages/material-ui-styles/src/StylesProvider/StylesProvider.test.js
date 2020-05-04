@@ -161,7 +161,7 @@ describe('StylesProvider', () => {
       );
       expect(consoleErrorMock.callCount()).to.equal(1);
       expect(consoleErrorMock.messages()[0]).to.include(
-        'you cannot use the jss and injectFirst props at the same time',
+        'Material-UI: You cannot use the jss and injectFirst props at the same time',
       );
     });
   });

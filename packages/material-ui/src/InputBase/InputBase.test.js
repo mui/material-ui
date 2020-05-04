@@ -501,7 +501,7 @@ describe('<InputBase />', () => {
 
         expect(consoleErrorMock.callCount()).to.eq(1);
         expect(consoleErrorMock.messages()[0]).to.include(
-          'Material-UI: there are multiple InputBase components inside a FormControl.',
+          'Material-UI: There are multiple InputBase components inside a FormControl.',
         );
       });
 

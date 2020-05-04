@@ -37,7 +37,7 @@ export default function createGenerateClassName(options = {}) {
       if (ruleCounter >= 1e10) {
         console.warn(
           [
-            'Material-UI: you might have a memory leak.',
+            'Material-UI: You might have a memory leak.',
             'The ruleCounter is not supposed to grow that much.',
           ].join(''),
         );

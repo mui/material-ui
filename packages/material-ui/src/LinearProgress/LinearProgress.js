@@ -191,7 +191,7 @@ const LinearProgress = React.forwardRef(function LinearProgress(props, ref) {
       inlineStyles.bar1.transform = `translateX(${transform}%)`;
     } else if (process.env.NODE_ENV !== 'production') {
       console.error(
-        'Material-UI: you need to provide a value prop ' +
+        'Material-UI: You need to provide a value prop ' +
           'when using the determinate or buffer variant of LinearProgress .',
       );
     }
@@ -205,7 +205,7 @@ const LinearProgress = React.forwardRef(function LinearProgress(props, ref) {
       inlineStyles.bar2.transform = `translateX(${transform}%)`;
     } else if (process.env.NODE_ENV !== 'production') {
       console.error(
-        'Material-UI: you need to provide a valueBuffer prop ' +
+        'Material-UI: You need to provide a valueBuffer prop ' +
           'when using the buffer variant of LinearProgress.',
       );
     }

@@ -214,7 +214,7 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(props, ref) {
           if (isFragment(child)) {
             console.error(
               [
-                "Material-UI: the ButtonGroup component doesn't accept a Fragment as a child.",
+                "Material-UI: The ButtonGroup component doesn't accept a Fragment as a child.",
                 'Consider providing an array instead.',
               ].join('\n'),
             );

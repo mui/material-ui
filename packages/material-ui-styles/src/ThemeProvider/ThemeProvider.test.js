@@ -160,7 +160,7 @@ describe('ThemeProvider', () => {
       );
       expect(consoleErrorMock.callCount()).to.equal(2);
       expect(consoleErrorMock.messages()[0]).to.include(
-        'you should return an object from your theme function',
+        'Material-UI: You should return an object from your theme function',
       );
     });
   });

@@ -145,7 +145,7 @@ export default function createPalette(palette) {
       if (contrast < 3) {
         console.error(
           [
-            `Material-UI: the contrast ratio of ${contrast}:1 for ${contrastText} on ${background}`,
+            `Material-UI: The contrast ratio of ${contrast}:1 for ${contrastText} on ${background}`,
             'falls below the WCAG recommended absolute minimum contrast ratio of 3:1.',
             'https://www.w3.org/TR/2008/REC-WCAG20-20081211/#visual-audio-contrast-contrast',
           ].join('\n'),
@@ -165,7 +165,7 @@ export default function createPalette(palette) {
     if (!color.main) {
       throw new Error(
         [
-          'Material-UI: the color provided to augmentColor(color) is invalid.',
+          'Material-UI: The color provided to augmentColor(color) is invalid.',
           `The color object needs to have a \`main\` property or a \`${mainShade}\` property.`,
         ].join('\n'),
       );
@@ -174,7 +174,7 @@ export default function createPalette(palette) {
     if (typeof color.main !== 'string') {
       throw new Error(
         [
-          'Material-UI: the color provided to augmentColor(color) is invalid.',
+          'Material-UI: The color provided to augmentColor(color) is invalid.',
           `\`color.main\` should be a string, but \`${JSON.stringify(
             color.main,
           )}\` was provided instead.`,
@@ -207,7 +207,7 @@ export default function createPalette(palette) {
 
   if (process.env.NODE_ENV !== 'production') {
     if (!types[type]) {
-      console.error(`Material-UI: the palette type \`${type}\` is not supported.`);
+      console.error(`Material-UI: The palette type \`${type}\` is not supported.`);
     }
   }
 

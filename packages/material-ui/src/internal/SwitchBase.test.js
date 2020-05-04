@@ -377,7 +377,7 @@ describe('<SwitchBase />', () => {
           'Warning: A component is changing an uncontrolled input of type checkbox to be controlled.',
         );
         expect(consoleErrorMock.messages()[1]).to.include(
-          'Material-UI: a component is changing the uncontrolled checked state of SwitchBase to be controlled.',
+          'Material-UI: A component is changing the uncontrolled checked state of SwitchBase to be controlled.',
         );
       }),
     );
@@ -396,7 +396,7 @@ describe('<SwitchBase />', () => {
           'Warning: A component is changing a controlled input of type checkbox to be uncontrolled.',
         );
         expect(consoleErrorMock.messages()[1]).to.include(
-          'Material-UI: a component is changing the controlled checked state of SwitchBase to be uncontrolled.',
+          'Material-UI: A component is changing the controlled checked state of SwitchBase to be uncontrolled.',
         );
       }),
     );

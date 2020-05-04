@@ -81,9 +81,7 @@ export function createUnarySpacing(theme) {
     return (abs) => {
       if (process.env.NODE_ENV !== 'production') {
         if (typeof abs !== 'number') {
-          console.error(
-            `@material-ui/system: expected spacing argument to be a number, got ${abs}.`,
-          );
+          console.error(`Material-UI: Expected spacing argument to be a number, got ${abs}.`);
         }
       }
       return themeSpacing * abs;
@@ -96,7 +94,7 @@ export function createUnarySpacing(theme) {
         if (abs > themeSpacing.length - 1) {
           console.error(
             [
-              `@material-ui/system: the value provided (${abs}) overflows.`,
+              `Material-UI: The value provided (${abs}) overflows.`,
               `The supported values are: ${JSON.stringify(themeSpacing)}.`,
               `${abs} > ${themeSpacing.length - 1}, you need to add the missing values.`,
             ].join('\n'),
@@ -115,7 +113,7 @@ export function createUnarySpacing(theme) {
   if (process.env.NODE_ENV !== 'production') {
     console.error(
       [
-        `@material-ui/system: the \`theme.spacing\` value (${themeSpacing}) is invalid.`,
+        `Material-UI: The \`theme.spacing\` value (${themeSpacing}) is invalid.`,
         'It should be a number, an array or a function.',
       ].join('\n'),
     );

@@ -120,7 +120,7 @@ const ListItem = React.forwardRef(function ListItem(props, ref) {
         listItemRef.current.focus();
       } else if (process.env.NODE_ENV !== 'production') {
         console.error(
-          'Material-UI: unable to set focus to a ListItem whose component has not been rendered.',
+          'Material-UI: Unable to set focus to a ListItem whose component has not been rendered.',
         );
       }
     }
@@ -233,7 +233,7 @@ ListItem.propTypes = {
     //  is ListItemSecondaryAction the last child of ListItem
     if (secondaryActionIndex !== -1 && secondaryActionIndex !== children.length - 1) {
       return new Error(
-        'Material-UI: you used an element after ListItemSecondaryAction. ' +
+        'Material-UI: You used an element after ListItemSecondaryAction. ' +
           'For ListItem to detect that it has a secondary action ' +
           'you must pass it as the last child to ListItem.',
       );

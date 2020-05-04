@@ -148,7 +148,7 @@ describe('createPalette()', () => {
       createPalette({ type: 'foo' });
       expect(consoleErrorMock.callCount()).to.equal(1);
       expect(consoleErrorMock.messages()[0]).to.include(
-        'Material-UI: the palette type `foo` is not supported',
+        'Material-UI: The palette type `foo` is not supported',
       );
     });
 

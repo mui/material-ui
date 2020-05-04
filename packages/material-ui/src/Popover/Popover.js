@@ -130,7 +130,7 @@ const Popover = React.forwardRef(function Popover(props, ref) {
         if (process.env.NODE_ENV !== 'production') {
           if (!anchorPosition) {
             console.error(
-              'Material-UI: you need to provide a `anchorPosition` prop when using ' +
+              'Material-UI: You need to provide a `anchorPosition` prop when using ' +
                 '<Popover anchorReference="anchorPosition" />.',
             );
           }
@@ -159,7 +159,7 @@ const Popover = React.forwardRef(function Popover(props, ref) {
         ) {
           console.warn(
             [
-              'Material-UI: the `anchorEl` prop provided to the component is invalid.',
+              'Material-UI: The `anchorEl` prop provided to the component is invalid.',
               'The anchor element should be part of the document layout.',
               "Make sure the element is present in the document or that it's not display none.",
             ].join('\n'),
@@ -196,7 +196,7 @@ const Popover = React.forwardRef(function Popover(props, ref) {
           if (anchorOrigin.vertical !== 'top') {
             console.error(
               [
-                'Material-UI: you can not change the default `anchorOrigin.vertical` value ',
+                'Material-UI: You can not change the default `anchorOrigin.vertical` value ',
                 'when also providing the `getContentAnchorEl` prop to the popover component.',
                 'Only use one of the two props.',
                 'Set `getContentAnchorEl` to `null | undefined`' +
@@ -275,7 +275,7 @@ const Popover = React.forwardRef(function Popover(props, ref) {
         if (elemRect.height > heightThreshold && elemRect.height && heightThreshold) {
           console.error(
             [
-              'Material-UI: the popover component is too tall.',
+              'Material-UI: The popover component is too tall.',
               `Some part of it can not be seen on the screen (${
                 elemRect.height - heightThreshold
               }px).`,
@@ -455,7 +455,7 @@ Popover.propTypes = {
         ) {
           return new Error(
             [
-              'Material-UI: the `anchorEl` prop provided to the component is invalid.',
+              'Material-UI: The `anchorEl` prop provided to the component is invalid.',
               'The anchor element should be part of the document layout.',
               "Make sure the element is present in the document or that it's not display none.",
             ].join('\n'),
@@ -464,7 +464,7 @@ Popover.propTypes = {
       } else {
         return new Error(
           [
-            'Material-UI: the `anchorEl` prop provided to the component is invalid.',
+            'Material-UI: The `anchorEl` prop provided to the component is invalid.',
             `It should be an Element instance but it's \`${resolvedAnchorEl}\` instead.`,
           ].join('\n'),
         );

@@ -105,7 +105,7 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
   if (process.env.NODE_ENV !== 'production') {
     if (centered && scrollable) {
       console.error(
-        'Material-UI: you can not use the `centered={true}` and `variant="scrollable"` properties ' +
+        'Material-UI: You can not use the `centered={true}` and `variant="scrollable"` properties ' +
           'at the same time on a `Tabs` component.',
       );
     }
@@ -154,7 +154,7 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
           if (!tab) {
             console.error(
               [
-                `Material-UI: the value provided to the Tabs component is invalid.`,
+                `Material-UI: The value provided to the Tabs component is invalid.`,
                 `None of the Tabs' children match with \`${value}\`.`,
                 valueToIndex.keys
                   ? `You can provide one of the following values: ${Array.from(
@@ -390,7 +390,7 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
       if (isFragment(child)) {
         console.error(
           [
-            "Material-UI: the Tabs component doesn't accept a Fragment as a child.",
+            "Material-UI: The Tabs component doesn't accept a Fragment as a child.",
             'Consider providing an array instead.',
           ].join('\n'),
         );

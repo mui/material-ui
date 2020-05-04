@@ -88,13 +88,22 @@ const useStyles = makeStyles(
       alignItems: 'center',
       minHeight: 21,
       boxSizing: 'content-box',
-      '& span': {
-        display: 'flex',
-        marginRight: theme.spacing(1),
-      },
       '& a': {
         color: theme.palette.background.paper,
       },
+    },
+    github: {
+      width: 105,
+      display: 'flex',
+      justifyContent: 'flex-end',
+      marginRight: theme.spacing(1),
+      '& span': {
+        display: 'flex',
+      },
+    },
+    twitter: {
+      width: 160,
+      display: 'flex',
     },
   }),
   { name: 'LandingPage' },
@@ -150,21 +159,25 @@ export default function LandingPage(props) {
             </Container>
           </div>
           <div className={classes.social}>
-            <a
-              className="github-button"
-              href="https://github.com/mui-org/material-ui"
-              data-icon="octicon-star"
-              data-show-count="true"
-            >
-              Star
-            </a>
-            <a
-              className="twitter-follow-button"
-              href="https://twitter.com/@materialui"
-              data-show-screen-name="false"
-            >
-              Follow
-            </a>
+            <div className={classes.github}>
+              <a
+                className="github-button"
+                href="https://github.com/mui-org/material-ui"
+                data-icon="octicon-star"
+                data-show-count="true"
+              >
+                Star
+              </a>
+            </div>
+            <div className={classes.twitter}>
+              <a
+                className="twitter-follow-button"
+                href="https://twitter.com/@materialui"
+                data-show-screen-name="false"
+              >
+                Follow
+              </a>
+            </div>
           </div>
           <Pro />
           <QuickWord />

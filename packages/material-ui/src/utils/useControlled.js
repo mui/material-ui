@@ -11,7 +11,7 @@ export default function useControlled({ controlled, default: defaultProp, name, 
       if (isControlled !== (controlled !== undefined)) {
         console.error(
           [
-            `Material-UI: a component is changing the ${
+            `Material-UI: A component is changing the ${
               isControlled ? '' : 'un'
             }controlled ${state} state of ${name} to be ${isControlled ? 'un' : ''}controlled.`,
             'Elements should not switch from uncontrolled to controlled (or vice versa).',
@@ -30,7 +30,7 @@ export default function useControlled({ controlled, default: defaultProp, name, 
       if (defaultValue !== defaultProp) {
         console.error(
           [
-            `Material-UI: a component is changing the default ${state} state of an uncontrolled ${name} after being initialized. ` +
+            `Material-UI: A component is changing the default ${state} state of an uncontrolled ${name} after being initialized. ` +
               `To suppress this warning opt to use a controlled ${name}.`,
           ].join('\n'),
         );

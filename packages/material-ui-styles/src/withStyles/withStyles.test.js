@@ -92,7 +92,7 @@ describe('withStyles', () => {
     //     assert.strictEqual(consoleErrorMock.callCount(), 1);
     //     assert.include(
     //       consoleErrorMock.messages()[0],
-    //       'Warning: Failed prop type: Material-UI: the `innerRef` prop is deprecated',
+    //       'Warning: Failed prop type: Material-UI: The `innerRef` prop is deprecated',
     //     );
     //   });
     // });

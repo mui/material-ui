@@ -180,7 +180,7 @@ describe('<ListItem />', () => {
 
         expect(consoleErrorMock.callCount()).to.equal(1);
         expect(consoleErrorMock.messages()[0]).to.include(
-          'Warning: Failed prop type: Material-UI: you used an element',
+          'Warning: Failed prop type: Material-UI: You used an element',
         );
       });
 
@@ -189,7 +189,7 @@ describe('<ListItem />', () => {
 
         expect(consoleErrorMock.callCount()).to.equal(1);
         expect(consoleErrorMock.messages()[0]).to.include(
-          'Material-UI: unable to set focus to a ListItem whose component has not been rendered.',
+          'Material-UI: Unable to set focus to a ListItem whose component has not been rendered.',
         );
       });
 

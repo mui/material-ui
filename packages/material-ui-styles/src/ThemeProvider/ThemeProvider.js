@@ -14,7 +14,7 @@ function mergeOuterLocalTheme(outerTheme, localTheme) {
       if (!mergedTheme) {
         console.error(
           [
-            'Material-UI: you should return an object from your theme function, i.e.',
+            'Material-UI: You should return an object from your theme function, i.e.',
             '<ThemeProvider theme={() => ({})} />',
           ].join('\n'),
         );
@@ -40,7 +40,7 @@ function ThemeProvider(props) {
     if (outerTheme === null && typeof localTheme === 'function') {
       console.error(
         [
-          'Material-UI: you are providing a theme function prop to the ThemeProvider component:',
+          'Material-UI: You are providing a theme function prop to the ThemeProvider component:',
           '<ThemeProvider theme={outerTheme => outerTheme} />',
           '',
           'However, no outer theme is present.',

@@ -110,7 +110,7 @@ describe('createMuiTheme', () => {
       expect(Object.keys(theme.overrides.MuiButton.disabled).length).to.equal(0);
       expect(consoleErrorMock.messages().length).to.equal(1);
       expect(consoleErrorMock.messages()[0]).to.match(
-        /the `MuiButton` component increases the CSS specificity of the `disabled` internal state./,
+        /Material-UI: The `MuiButton` component increases the CSS specificity of the `disabled` internal state./,
       );
     });
   });

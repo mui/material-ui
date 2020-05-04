@@ -304,7 +304,7 @@ describe('<TablePagination />', () => {
 
       expect(consoleErrorMock.callCount()).to.equal(1);
       expect(consoleErrorMock.messages()[0]).to.include(
-        'Material-UI: the page prop of a TablePagination is out of range (0 to 1, but page is 2).',
+        'Material-UI: The page prop of a TablePagination is out of range (0 to 1, but page is 2).',
       );
     });
   });

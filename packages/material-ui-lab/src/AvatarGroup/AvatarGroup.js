@@ -39,7 +39,7 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(props, ref) {
       if (isFragment(child)) {
         console.error(
           [
-            "Material-UI: the AvatarGroup component doesn't accept a Fragment as a child.",
+            "Material-UI: The AvatarGroup component doesn't accept a Fragment as a child.",
             'Consider providing an array instead.',
           ].join('\n'),
         );
@@ -103,7 +103,7 @@ AvatarGroup.propTypes = {
     if (props.max < 2) {
       throw new Error(
         [
-          'Material-UI: the prop `max` should be equal to 2 or above.',
+          'Material-UI: The prop `max` should be equal to 2 or above.',
           'A value below is clamped to 2.',
         ].join('\n'),
       );

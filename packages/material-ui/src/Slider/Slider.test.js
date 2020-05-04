@@ -499,7 +499,7 @@ describe('<Slider />', () => {
 
       expect(consoleErrorMock.callCount()).to.equal(1);
       expect(consoleErrorMock.messages()[0]).to.include(
-        'you need to use the `getAriaValueText` prop instead of',
+        'Material-UI: You need to use the `getAriaValueText` prop instead of',
       );
     });
 
@@ -513,7 +513,7 @@ describe('<Slider />', () => {
 
       expect(consoleErrorMock.callCount()).to.equal(1);
       expect(consoleErrorMock.messages()[0]).to.include(
-        'you need to use the `getAriaLabel` prop instead of',
+        'Material-UI: You need to use the `getAriaLabel` prop instead of',
       );
     });
 
@@ -522,7 +522,7 @@ describe('<Slider />', () => {
 
       setProps({ value: undefined });
       expect(consoleErrorMock.messages()[0]).to.include(
-        'Material-UI: a component is changing the controlled value state of Slider to be uncontrolled.',
+        'Material-UI: A component is changing the controlled value state of Slider to be uncontrolled.',
       );
     });
 
@@ -531,7 +531,7 @@ describe('<Slider />', () => {
 
       setProps({ value: [20, 50] });
       expect(consoleErrorMock.messages()[0]).to.include(
-        'Material-UI: a component is changing the uncontrolled value state of Slider to be controlled.',
+        'Material-UI: A component is changing the uncontrolled value state of Slider to be controlled.',
       );
     });
   });

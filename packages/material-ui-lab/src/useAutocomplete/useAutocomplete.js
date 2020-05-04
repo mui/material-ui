@@ -207,7 +207,7 @@ export default function useAutocomplete(props) {
           const erroneousReturn =
             optionLabel === undefined ? 'undefined' : `${typeof optionLabel} (${optionLabel})`;
           console.error(
-            `Material-UI: the \`getOptionLabel\` method of ${componentName} returned ${erroneousReturn} instead of a string for ${JSON.stringify(
+            `Material-UI: The \`getOptionLabel\` method of ${componentName} returned ${erroneousReturn} instead of a string for ${JSON.stringify(
               newValue,
             )}.`,
           );
@@ -272,7 +272,7 @@ export default function useAutocomplete(props) {
       if (missingValue.length > 0) {
         console.warn(
           [
-            `Material-UI: the value provided to ${componentName} is invalid.`,
+            `Material-UI: The value provided to ${componentName} is invalid.`,
             `None of the options match with \`${
               missingValue.length > 1
                 ? JSON.stringify(missingValue)
@@ -508,7 +508,7 @@ export default function useAutocomplete(props) {
         if (matches.length > 1) {
           console.error(
             [
-              `Material-UI: the \`getOptionSelected\` method of ${componentName} do not handle the arguments correctly.`,
+              `Material-UI: The \`getOptionSelected\` method of ${componentName} do not handle the arguments correctly.`,
               `The component expects a single value to match a given option but found ${matches.length} matches.`,
             ].join('\n'),
           );
@@ -882,7 +882,7 @@ export default function useAutocomplete(props) {
         if (process.env.NODE_ENV !== 'production') {
           if (indexBy.get(group) && !warn) {
             console.warn(
-              `Material-UI: the options provided combined with the \`groupBy\` method of ${componentName} returns duplicated headers.`,
+              `Material-UI: The options provided combined with the \`groupBy\` method of ${componentName} returns duplicated headers.`,
               'You can solve the issue by sorting the options with the output of `groupBy`.',
             );
             warn = true;

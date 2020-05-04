@@ -501,7 +501,7 @@ describe('<Modal />', () => {
       );
       expect(consoleErrorMock.callCount()).to.equal(1);
       expect(consoleErrorMock.messages()[0]).to.include(
-        'the modal content node does not accept focus',
+        'Material-UI: The modal content node does not accept focus',
       );
     });
 

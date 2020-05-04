@@ -80,7 +80,7 @@ const Step = React.forwardRef(function Step(props, ref) {
           if (isFragment(child)) {
             console.error(
               [
-                "Material-UI: the Step component doesn't accept a Fragment as a child.",
+                "Material-UI: The Step component doesn't accept a Fragment as a child.",
                 'Consider providing an array instead.',
               ].join('\n'),
             );

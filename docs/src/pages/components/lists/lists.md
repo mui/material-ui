@@ -99,4 +99,4 @@ If this library doesn't cover your use case, you should consider using [react-vi
 
 ## Customization
 
-👑 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/components/menu-list).
+👑 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/list-item).

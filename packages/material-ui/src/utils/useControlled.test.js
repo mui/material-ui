@@ -60,7 +60,7 @@ describe('useControlled', () => {
     setProps({ value: 'foobar' });
     expect(consoleErrorMock.callCount()).to.equal(1);
     expect(consoleErrorMock.messages()[0]).to.include(
-      'Material-UI: a component is changing the uncontrolled value state of TestComponent to be controlled.',
+      'Material-UI: A component is changing the uncontrolled value state of TestComponent to be controlled.',
     );
   });
 
@@ -70,7 +70,7 @@ describe('useControlled', () => {
     setProps({ value: undefined });
     expect(consoleErrorMock.callCount()).to.equal(1);
     expect(consoleErrorMock.messages()[0]).to.include(
-      'Material-UI: a component is changing the controlled value state of TestComponent to be uncontrolled.',
+      'Material-UI: A component is changing the controlled value state of TestComponent to be uncontrolled.',
     );
   });
 
@@ -80,7 +80,7 @@ describe('useControlled', () => {
     setProps({ defaultValue: 1 });
     expect(consoleErrorMock.callCount()).to.equal(1);
     expect(consoleErrorMock.messages()[0]).to.include(
-      'Material-UI: a component is changing the default value state of an uncontrolled TestComponent after being initialized.',
+      'Material-UI: A component is changing the default value state of an uncontrolled TestComponent after being initialized.',
     );
   });
 });

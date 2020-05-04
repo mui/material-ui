@@ -102,7 +102,7 @@ describe('withTheme', () => {
 
         expect(consoleErrorMock.callCount()).to.equal(1);
         expect(consoleErrorMock.messages()[0]).to.include(
-          'Warning: Failed prop type: Material-UI: the `innerRef` prop is deprecated',
+          'Warning: Failed prop type: Material-UI: The `innerRef` prop is deprecated',
         );
       });
     });

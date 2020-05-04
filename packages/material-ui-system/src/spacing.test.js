@@ -57,7 +57,9 @@ describe('spacing', () => {
       });
       expect(output).to.deep.equal({ padding: undefined });
       expect(consoleErrorMock.callCount()).to.equal(1);
-      expect(consoleErrorMock.messages()[0]).to.match(/the value provided \(3\) overflows\./);
+      expect(consoleErrorMock.messages()[0]).to.match(
+        /Material-UI: The value provided \(3\) overflows\./,
+      );
       expect(consoleErrorMock.messages()[0]).to.match(/The supported values are: \[0,3,5\]\./);
       expect(consoleErrorMock.messages()[0]).to.match(
         /3 > 2, you need to add the missing values\./,
@@ -74,7 +76,7 @@ describe('spacing', () => {
       expect(output).to.deep.equal({ padding: undefined });
       expect(consoleErrorMock.callCount()).to.equal(1);
       expect(consoleErrorMock.messages()[0]).to.match(
-        /the `theme.spacing` value \(\[object Object\]\) is invalid\./,
+        /Material-UI: The `theme.spacing` value \(\[object Object\]\) is invalid\./,
       );
       expect(consoleErrorMock.messages()[0]).to.match(
         /It should be a number, an array or a function\./,

@@ -286,8 +286,12 @@ describe('useMediaQuery', () => {
       render(<MyComponent />);
       // logs warning twice in StrictMode
       expect(consoleErrorMock.callCount()).to.equal(2);
-      expect(consoleErrorMock.messages()[0]).to.include('the `query` argument provided is invalid');
-      expect(consoleErrorMock.messages()[1]).to.include('the `query` argument provided is invalid');
+      expect(consoleErrorMock.messages()[0]).to.include(
+        'Material-UI: The `query` argument provided is invalid',
+      );
+      expect(consoleErrorMock.messages()[1]).to.include(
+        'Material-UI: The `query` argument provided is invalid',
+      );
     });
   });
 });

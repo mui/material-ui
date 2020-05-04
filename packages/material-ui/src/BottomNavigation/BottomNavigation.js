@@ -37,7 +37,7 @@ const BottomNavigation = React.forwardRef(function BottomNavigation(props, ref) 
           if (isFragment(child)) {
             console.error(
               [
-                "Material-UI: the BottomNavigation component doesn't accept a Fragment as a child.",
+                "Material-UI: The BottomNavigation component doesn't accept a Fragment as a child.",
                 'Consider providing an array instead.',
               ].join('\n'),
             );
