@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
+import { createClientRender } from 'test/utils/createClientRender';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
 import Collapse from './Collapse';
@@ -14,15 +15,12 @@ describe('<Collapse />', () => {
     in: true,
     children: <div />,
   };
+  const render = createClientRender({ strict: false });
 
   before(() => {
     // StrictModeViolation: uses react-transition-group
     mount = createMount({ strict: false });
     classes = getClasses(<Collapse {...defaultProps} />);
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   describeConformance(<Collapse {...defaultProps} />, () => ({
@@ -31,26 +29,32 @@ describe('<Collapse />', () => {
     mount,
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'span',
+    after: () => mount.cleanUp(),
   }));
 
   it('should render a container around the wrapper', () => {
-    const wrapper = mount(<Collapse {...defaultProps} classes={{ container: 'woofCollapse1' }} />);
-    const child = wrapper.find('Transition').childAt(0);
-    expect(child.name()).to.equal('div');
-    expect(child.hasClass(classes.container)).to.equal(true);
-    expect(child.hasClass('woofCollapse1')).to.equal(true);
+    const { container } = render(
+      <Collapse {...defaultProps} classes={{ container: 'woofCollapse1' }} />,
+    );
+    const collapse = container.firstChild;
+    expect(collapse.tagName).to.equal('DIV');
+    expect(collapse).to.have.class(classes.container);
+    expect(collapse).to.have.class('woofCollapse1');
   });
 
   it('should render a wrapper around the children', () => {
     const children = <h1>Hello</h1>;
-    const wrapper = mount(<Collapse {...defaultProps}>{children}</Collapse>);
-    const child = wrapper.find('Transition').childAt(0);
-    expect(child.childAt(0).name()).to.equal('div');
-    expect(child.childAt(0).childAt(0).children().type()).to.equal('h1');
+    const { container } = render(<Collapse {...defaultProps}>{children}</Collapse>);
+    const collapse = container.firstChild;
+    const wrapper = collapse.firstChild;
+    const innerWrapper = wrapper.firstChild;
+    expect(wrapper.tagName).to.equal('DIV');
+    expect(innerWrapper.firstChild.tagName).to.equal('H1');
   });
 
   describe('transition lifecycle', () => {
-    let wrapper;
+    let setProps;
+    let collapse;
     let container;
     let clock;
     let nodeEnterHeightStyle;
@@ -78,8 +82,9 @@ describe('<Collapse />', () => {
     const handleExiting = spy();
     const handleExited = spy();
 
-    before(() => {
-      wrapper = mount(
+    beforeEach(() => {
+      clock = useFakeTimers();
+      const renderProps = render(
         <Collapse
           onEnter={handleEnterWrapper}
           onEntering={handleEnteringWrapper}
@@ -87,95 +92,48 @@ describe('<Collapse />', () => {
           onExit={handleExitWrapper}
           onExiting={handleExiting}
           onExited={handleExited}
+          timeout={300}
         >
           <div />
         </Collapse>,
       );
-      container = wrapper.find('Transition').childAt(0);
-      stub(container.childAt(0).instance(), 'clientHeight').get(() => 666);
-      clock = useFakeTimers();
+      container = renderProps.container;
+      setProps = renderProps.setProps;
+      collapse = container.firstChild;
+      stub(collapse.firstChild, 'clientHeight').get(() => 666);
     });
 
-    after(() => {
+    afterEach(() => {
       clock.restore();
     });
 
-    describe('in', () => {
-      before(() => {
-        wrapper.setProps({ in: true });
-      });
-
-      describe('handleEnter()', () => {
-        it('should set element height to 0 initially', () => {
-          expect(nodeEnterHeightStyle).to.equal('0px');
-        });
-
-        it('should call handleEnter', () => {
-          expect(handleEnter.args[0][0]).to.equal(container.instance());
-          expect(handleEnter.args[0][1]).to.equal(false);
-        });
-      });
-
-      describe('handleEntering()', () => {
-        it('should set height to the wrapper height', () => {
-          expect(nodeEnteringHeightStyle).to.equal('666px');
-        });
-
-        it('should call handleEntering', () => {
-          expect(handleEntering.callCount).to.equal(1);
-          expect(handleEntering.args[0][0]).to.equal(container.instance());
-          expect(handleEntering.args[0][1]).to.equal(false);
-        });
-      });
-
-      describe('handleEntered()', () => {
-        it('should set height to auto', () => {
-          clock.tick(1000);
-          expect(handleEntered.args[0][0].style.height).to.equal('auto');
-          expect(handleEntered.args[0][1]).to.equal(false);
-        });
-
-        it('should have called onEntered', () => {
-          expect(handleEntered.callCount).to.equal(1);
-        });
-      });
+    it('should run in', () => {
+      setProps({ in: true });
+      expect(nodeEnterHeightStyle).to.equal('0px');
+      expect(handleEnter.args[0][0]).to.equal(collapse);
+      expect(handleEnter.args[0][1]).to.equal(false);
+      expect(nodeEnteringHeightStyle).to.equal('666px');
+      expect(handleEntering.callCount).to.equal(1);
+      expect(handleEntering.args[0][0]).to.equal(collapse);
+      expect(handleEntering.args[0][1]).to.equal(false);
+      clock.tick(300);
+      expect(handleEntered.args[0][0].style.height).to.equal('auto');
+      expect(handleEntered.args[0][1]).to.equal(false);
+      expect(handleEntered.callCount).to.equal(1);
     });
 
-    describe('out', () => {
-      before(() => {
-        wrapper.setProps({ in: true });
-        wrapper.setProps({ in: false });
-      });
-
-      describe('handleExit()', () => {
-        it('should set height to the wrapper height', () => {
-          expect(nodeExitHeightStyle).to.equal('666px');
-        });
-      });
-
-      describe('handleExiting()', () => {
-        it('should set height to the 0', () => {
-          expect(handleExiting.args[0][0].style.height).to.equal('0px');
-        });
-
-        it('should call onExiting', () => {
-          expect(handleExiting.callCount).to.equal(1);
-          expect(handleExiting.args[0][0]).to.equal(container.instance());
-        });
-      });
-
-      describe('handleExited()', () => {
-        it('should set height to the 0', () => {
-          clock.tick(1000);
-          expect(handleExited.args[0][0].style.height).to.equal('0px');
-        });
-
-        it('should call onExited', () => {
-          clock.tick(1000);
-          expect(handleExited.callCount).to.equal(1);
-          expect(handleExited.args[0][0]).to.equal(container.instance());
-        });
-      });
+    it('should run out', () => {
+      setProps({ in: true });
+      setProps({ in: false });
+      expect(nodeExitHeightStyle).to.equal('666px');
+      expect(handleExiting.args[0][0].style.height).to.equal('0px');
+      expect(handleExiting.callCount).to.equal(1);
+      expect(handleExiting.args[0][0]).to.equal(collapse);
+      clock.tick(300);
+      expect(handleExited.args[0][0].style.height).to.equal('0px');
+      clock.tick(300);
+      expect(handleExited.callCount).to.equal(1);
+      expect(handleExited.args[0][0]).to.equal(collapse);
     });
   });
 
@@ -205,14 +163,12 @@ describe('<Collapse />', () => {
           </Collapse>
         </ThemeProvider>
       );
-      const wrapper = mount(<Test />);
-
+      const renderProps1 = render(<Test />);
+      const collapse = renderProps1.container.firstChild;
       // Gets wrapper
-      stub(wrapper.find('Transition').childAt(0).childAt(0).instance(), 'clientHeight').get(
-        () => 10,
-      );
+      stub(collapse.firstChild, 'clientHeight').get(() => 10);
 
-      wrapper.setProps({
+      renderProps1.setProps({
         in: true,
       });
 
@@ -224,12 +180,12 @@ describe('<Collapse />', () => {
       expect(next1.callCount).to.equal(1);
 
       const next2 = spy();
-      const wrapper2 = mount(
+      const renderProps2 = render(
         <Collapse timeout="auto" onEntered={next2}>
           <div />
         </Collapse>,
       );
-      wrapper2.setProps({ in: true });
+      renderProps2.setProps({ in: true });
 
       expect(next2.callCount).to.equal(0);
       clock.tick(0);
@@ -239,13 +195,13 @@ describe('<Collapse />', () => {
     it('should use timeout as delay when timeout is number', () => {
       const timeout = 10;
       const next = spy();
-      const wrapper = mount(
+      const { setProps } = render(
         <Collapse timeout={timeout} onEntered={next}>
           <div />
         </Collapse>,
       );
 
-      wrapper.setProps({ in: true });
+      setProps({ in: true });
 
       expect(next.callCount).to.equal(0);
       clock.tick(0);
@@ -257,7 +213,7 @@ describe('<Collapse />', () => {
     it('should create proper easeOut animation onEntering', () => {
       const handleEntering = spy();
 
-      const wrapper = mount(
+      const { setProps } = render(
         <Collapse
           onEntering={handleEntering}
           timeout={{
@@ -268,14 +224,14 @@ describe('<Collapse />', () => {
         </Collapse>,
       );
 
-      wrapper.setProps({ in: true });
+      setProps({ in: true });
       expect(handleEntering.args[0][0].style.transitionDuration).to.equal('556ms');
     });
 
     it('should create proper sharp animation onExiting', () => {
       const handleExiting = spy();
 
-      const wrapper = mount(
+      const { setProps } = render(
         <Collapse
           {...defaultProps}
           onExiting={handleExiting}
@@ -285,7 +241,7 @@ describe('<Collapse />', () => {
         />,
       );
 
-      wrapper.setProps({
+      setProps({
         in: false,
       });
       expect(handleExiting.args[0][0].style.transitionDuration).to.equal('446ms');
@@ -296,17 +252,19 @@ describe('<Collapse />', () => {
     const collapsedHeight = '10px';
 
     it('should work when closed', () => {
-      const wrapper = mount(<Collapse {...defaultProps} collapsedHeight={collapsedHeight} />);
-      const child = wrapper.find('Transition').childAt(0);
-      expect(child.props().style.minHeight).to.equal(collapsedHeight);
+      const { container } = render(
+        <Collapse {...defaultProps} collapsedHeight={collapsedHeight} />,
+      );
+      const collapse = container.firstChild;
+      expect(collapse.style.minHeight).to.equal(collapsedHeight);
     });
 
     it('should be taken into account in handleExiting', () => {
       const handleExiting = spy();
-      const wrapper = mount(
+      const { setProps } = render(
         <Collapse {...defaultProps} collapsedHeight={collapsedHeight} onExiting={handleExiting} />,
       );
-      wrapper.setProps({ in: false });
+      setProps({ in: false });
 
       expect(handleExiting.args[0][0].style.height).to.equal(collapsedHeight);
     });

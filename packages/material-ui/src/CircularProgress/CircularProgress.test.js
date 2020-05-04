@@ -1,22 +1,18 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
+import { createClientRender } from 'test/utils/createClientRender';
+import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
 import CircularProgress from './CircularProgress';
 
 describe('<CircularProgress />', () => {
   let mount;
-  let shallow;
   let classes;
+  const render = createClientRender();
 
   before(() => {
     mount = createMount({ strict: true });
-    shallow = createShallow({ dive: true });
     classes = getClasses(<CircularProgress />);
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   describeConformance(<CircularProgress />, () => ({
@@ -25,109 +21,143 @@ describe('<CircularProgress />', () => {
     mount,
     refInstanceof: window.HTMLDivElement,
     skip: ['componentProp'],
+    after: () => mount.cleanUp(),
   }));
 
   it('should render with the primary color by default', () => {
-    const wrapper = shallow(<CircularProgress />);
-    expect(wrapper.hasClass(classes.colorPrimary)).to.equal(true);
+    const { container } = render(<CircularProgress />);
+    const circularProgress = container.firstChild;
+    expect(circularProgress).to.have.class(classes.colorPrimary);
   });
 
   it('should render with the primary color', () => {
-    const wrapper = shallow(<CircularProgress color="primary" />);
-    expect(wrapper.hasClass(classes.colorPrimary)).to.equal(true);
+    const { container } = render(<CircularProgress color="primary" />);
+    const circularProgress = container.firstChild;
+    expect(circularProgress).to.have.class(classes.colorPrimary);
   });
 
   it('should render with the secondary color', () => {
-    const wrapper = shallow(<CircularProgress color="secondary" />);
-    expect(wrapper.hasClass(classes.colorSecondary)).to.equal(true);
+    const { container } = render(<CircularProgress color="secondary" />);
+    const circularProgress = container.firstChild;
+    expect(circularProgress).to.have.class(classes.colorSecondary);
   });
 
   it('should contain an SVG with the svg class, and a circle with the circle class', () => {
-    const wrapper = shallow(<CircularProgress />);
-    const svg = wrapper.childAt(0);
-    expect(svg.name()).to.equal('svg');
-    expect(wrapper.hasClass(classes.indeterminate)).to.equal(true);
-    expect(svg.childAt(0).name()).to.equal('circle');
-    expect(svg.childAt(0).hasClass(classes.circle)).to.equal(true);
+    const { container } = render(<CircularProgress />);
+    const circularProgress = container.firstChild;
+    const svg = circularProgress.firstChild;
+    expect(svg.tagName).to.equal('svg');
+    expect(circularProgress).to.have.class(classes.indeterminate);
+    expect(svg.firstChild.tagName).to.equal('circle', 'should be a circle');
+    expect(svg.firstChild).to.have.class(classes.circle, 'should have the circle class');
   });
 
   it('should render intermediate variant by default', () => {
-    const wrapper = shallow(<CircularProgress />);
-    expect(wrapper.hasClass(classes.root)).to.equal(true);
-    const svg = wrapper.childAt(0);
-    expect(svg.childAt(0).hasClass(classes.circleIndeterminate)).to.equal(true);
+    const { container } = render(<CircularProgress />);
+    const circularProgress = container.firstChild;
+    expect(circularProgress).to.have.class(classes.root);
+    const svg = circularProgress.firstChild;
+    expect(svg.firstChild).to.have.class(
+      classes.circleIndeterminate,
+      'should have the circleIndeterminate class',
+    );
   });
 
   it('should render with a different size', () => {
-    const wrapper = shallow(<CircularProgress size={60} />);
-    expect(wrapper.hasClass(classes.root)).to.equal(true);
-    expect(wrapper.props().style.width).to.equal(60);
-    expect(wrapper.props().style.height).to.equal(60);
-    const svg = wrapper.childAt(0);
-    expect(svg.name()).to.equal('svg');
-    expect(svg.childAt(0).name()).to.equal('circle');
-    expect(svg.childAt(0).props().cx).to.equal(44);
-    expect(svg.childAt(0).props().cy).to.equal(44);
+    const { container } = render(<CircularProgress size={60} />);
+    const circularProgress = container.firstChild;
+    expect(circularProgress).to.have.class(classes.root);
+    expect(circularProgress.style.width).to.equal('60px', 'should have width correctly set');
+    expect(circularProgress.style.height).to.equal('60px', 'should have height correctly set');
+    const svg = circularProgress.firstChild;
+    expect(svg.tagName).to.equal('svg');
+    const circle = svg.firstChild;
+    expect(circle.tagName).to.equal('circle');
+    expect(circle).to.have.attribute('cx', '44');
+    expect(circle).to.have.attribute('cy', '44');
   });
 
   describe('prop: variant="static', () => {
     it('should set strokeDasharray of circle', () => {
-      const wrapper = shallow(<CircularProgress variant="static" value={70} />);
-      expect(wrapper.hasClass(classes.root)).to.equal(true);
-      const svg = wrapper.childAt(0);
-      const style = svg.childAt(0).props().style;
-      expect(style.strokeDasharray).to.equal('126.920');
-      expect(style.strokeDashoffset).to.equal('38.076px');
-      expect(wrapper.props()['aria-valuenow']).to.equal(70);
+      const { container } = render(<CircularProgress variant="static" value={70} />);
+      const circularProgress = container.firstChild;
+      expect(circularProgress).to.have.class(classes.root);
+      const svg = circularProgress.firstChild;
+      const circle = svg.firstChild;
+      expect(circle.style.strokeDasharray).to.match(
+        /126\.920?(px)?/gm,
+        'should have strokeDasharray set',
+      );
+      expect(circle.style.strokeDashoffset).to.equal(
+        '38.076px',
+        'should have strokeDashoffset set',
+      );
+      expect(circularProgress).to.have.attribute('aria-valuenow', '70');
     });
   });
 
   describe('prop: variant="determinate"', () => {
     it('should render with determinate classes', () => {
-      const wrapper = shallow(<CircularProgress variant="determinate" />);
-      expect(wrapper.hasClass(classes.root)).to.equal(true);
-      const svg = wrapper.childAt(0);
-      expect(svg.name()).to.equal('svg');
-      expect(svg.hasClass(classes.svgIndeterminate)).to.equal(false);
+      const { container } = render(<CircularProgress variant="determinate" />);
+      const circularProgress = container.firstChild;
+      expect(circularProgress).to.have.class(classes.root);
+      const svg = circularProgress.firstChild;
+      expect(svg.tagName).to.equal('svg');
+      expect(svg).to.not.have.class(
+        classes.svgIndeterminate,
+        'should not have the svgIndeterminate class',
+      );
     });
 
     it('should set strokeDasharray of circle', () => {
-      const wrapper = shallow(<CircularProgress variant="determinate" value={70} />);
-      expect(wrapper.hasClass(classes.root)).to.equal(true);
-      const svg = wrapper.childAt(0);
-      const style = svg.childAt(0).props().style;
-      expect(style.strokeDasharray).to.equal('126.920');
-      expect(style.strokeDashoffset).to.equal('11.423px');
-      expect(wrapper.props()['aria-valuenow']).to.equal(70);
+      const { container } = render(<CircularProgress variant="determinate" value={70} />);
+      const circularProgress = container.firstChild;
+      expect(circularProgress).to.have.class(classes.root);
+      const svg = circularProgress.firstChild;
+      const circle = svg.firstChild;
+      expect(circle.style.strokeDasharray).to.match(
+        /126\.920?(px)?/gm,
+        'should have strokeDasharray set',
+      );
+      expect(circle.style.strokeDashoffset).to.equal(
+        '11.423px',
+        'should have strokeDashoffset set',
+      );
+      expect(circularProgress).to.have.attribute('aria-valuenow', '70');
     });
   });
 
   describe('prop: disableShrink ', () => {
     it('should default to false', () => {
-      const wrapper = shallow(<CircularProgress variant="indeterminate" />);
-      expect(wrapper.hasClass(classes.root)).to.equal(true);
-      const svg = wrapper.childAt(0);
-      const circle = svg.childAt(0);
-      expect(circle.name()).to.equal('circle');
-      expect(circle.hasClass(classes.circleDisableShrink)).to.equal(false);
+      const { container } = render(<CircularProgress variant="indeterminate" />);
+      const circularProgress = container.firstChild;
+      expect(circularProgress).to.have.class(classes.root);
+      const svg = circularProgress.firstChild;
+      const circle = svg.firstChild;
+      expect(circle.tagName).to.equal('circle');
+      expect(circle).to.not.have.class(classes.circleDisableShrink);
     });
 
     it('should render without disableShrink class when set to false', () => {
-      const wrapper = shallow(<CircularProgress variant="indeterminate" disableShrink={false} />);
-      expect(wrapper.hasClass(classes.root)).to.equal(true);
-      const svg = wrapper.childAt(0);
-      const circle = svg.childAt(0);
-      expect(circle.name()).to.equal('circle');
-      expect(circle.hasClass(classes.circleDisableShrink)).to.equal(false);
+      const { container } = render(
+        <CircularProgress variant="indeterminate" disableShrink={false} />,
+      );
+      const circularProgress = container.firstChild;
+      expect(circularProgress).to.have.class(classes.root);
+      const svg = circularProgress.firstChild;
+      const circle = svg.firstChild;
+      expect(circle.tagName).to.equal('circle');
+      expect(circle).to.not.have.class(classes.circleDisableShrink);
     });
 
     it('should render with disableShrink class when set to true', () => {
-      const wrapper = shallow(<CircularProgress variant="indeterminate" disableShrink />);
-      expect(wrapper.hasClass(classes.root)).to.equal(true);
-      const svg = wrapper.childAt(0);
-      const circle = svg.childAt(0);
-      expect(circle.name()).to.equal('circle');
-      expect(circle.hasClass(classes.circleDisableShrink)).to.equal(true);
+      const { container } = render(<CircularProgress variant="indeterminate" disableShrink />);
+      const circularProgress = container.firstChild;
+      expect(circularProgress).to.have.class(classes.root);
+      const svg = circularProgress.firstChild;
+      const circle = svg.firstChild;
+      expect(circle.tagName).to.equal('circle');
+      expect(circle).to.have.class(classes.circleDisableShrink);
     });
   });
 });
