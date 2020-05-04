@@ -98,29 +98,6 @@ const theme = createMuiTheme({
 
 <!-- https://latex.codecogs.com/gif.latex?computed&space;=&space;specification&space;\frac{typography.fontSize}{14}&space;\frac{html&space;font&space;size}{typography.htmlFontSize} -->
 
-### HTMLフォントサイズ
-
-`<html>`要素のデフォルトのフォントサイズを変更することもできます。 たとえば、[ 10pxの単純化を使用する場合](https://www.sitepoint.com/understanding-and-using-rem-units-in-css/) 。 An `htmlFontSize` theme property is provided for this use case, which tells Material-UI what the font-size on the `<html>` element is. This is used to adjust the `rem` value so the calculated font-size always match the specification.
-
-```js
-const theme = createMuiTheme({
-  typography: {
-    // Tell Material-UI what's the font-size on the html element is.
-    htmlFontSize: 10,
-  },
-});
-```
-
-```css
-html {
-  font-size: 62.5%; /* 62.5% of 16px = 10px */
-}
-```
-
-*以下のデモを正しく表示するには、このページのhtml要素に上記のCSSを適用する必要があります*
-
-{{"demo": "pages/customization/typography/FontSizeTheme.js"}}
-
 ### レスポンシブフォントサイズ
 
 Typographyバリアント型プロパティは、生成されたCSSに直接マップされます。 [media queries](/customization/breakpoints/#api) を使用できます：
@@ -159,6 +136,33 @@ theme = responsiveFontSizes(theme);
 ### 滑らかなフォントサイズ
 
 完了予定：[＃15251 ](https://github.com/mui-org/material-ui/issues/15251) 。
+
+### HTMLフォントサイズ
+
+`<html>`要素のデフォルトのフォントサイズを変更することもできます。 たとえば、[ 10pxの単純化を使用する場合](https://www.sitepoint.com/understanding-and-using-rem-units-in-css/) 。
+
+> ⚠️ Changing the font size can harm accessibility ♿️. Most browsers agreed on the default size of 16 pixels, but the user can change it. For instance, someone with an impaired vision could have set their browser’s default font size to something larger.
+
+An `htmlFontSize` theme property is provided for this use case, which tells Material-UI what the font-size on the `<html>` element is. This is used to adjust the `rem` value so the calculated font-size always match the specification.
+
+```js
+const theme = createMuiTheme({
+  typography: {
+    // Tell Material-UI what's the font-size on the html element is.
+    htmlFontSize: 10,
+  },
+});
+```
+
+```css
+html {
+  font-size: 62.5%; /* 62.5% of 16px = 10px */
+}
+```
+
+*以下のデモを正しく表示するには、このページのhtml要素に上記のCSSを適用する必要があります*
+
+{{"demo": "pages/customization/typography/FontSizeTheme.js"}}
 
 ## バリアント
 

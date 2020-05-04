@@ -70,11 +70,11 @@ Outlined buttonは、Contained buttonと比べると強調が弱く、 Text butt
 
 ## カスタムButton
 
-コンポーネントのカスタマイズの例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
+コンポーネントのカスタマイズの例を次に示します。 詳細については、 [overrides documentation page](/customization/components/)を参照してください。
 
 {{"demo": "pages/components/buttons/CustomizedButtons.js", "defaultCodeOpen": false}}
 
-👑 インスピレーションを求めているなら, [MUI Treasury's customization examples](https://mui-treasury.com/components/button)を確認できます。
+👑 インスピレーションを求めているなら, [MUI Treasury's customization examples](https://mui-treasury.com/styles/button)を確認できます。
 
 ## 複雑なButton
 

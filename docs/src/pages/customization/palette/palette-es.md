@@ -1,31 +1,31 @@
 # Paleta
 
-<p class="description">The palette enables you to modify the color of the components to suit your brand.</p>
+<p class="description">La paleta le permite modificar el color de los componentes para adaptarse a su marca.</p>
 
-## Intentions
+## Propósitos
 
-A color intention is a mapping of a palette to a given intention within your application. The theme exposes the following color intentions:
+El propósito de un color es una asignación de una paleta a una determinada intención dentro de la aplicación. El tema expone los siguientes propósitos de colores:
 
-- primary - used to represent primary interface elements for a user.
-- secondary - used to represent secondary interface elements for a user.
-- error - used to represent interface elements that the user should be made aware of.
-- warning - used to represent potentially dangerous actions or important messages.
-- info - used to present information to the user that is neutral and not necessarily important.
-- success - used to indicate the successful completion of an action that user triggered.
+- primary - se usa para representar los elementos de interfaz de usuario primarios.
+- secondary - se usa para representar los elementos de interfaz de usuario secundarios.
+- error - se usa para representar los elementos de interfaz de usuario de los cuales estar alerta.
+- warning - se usa para representar posibles acciones peligrosas o mensajes importantes.
+- info - se utiliza para presentar información al usuario de que es neutral y no necesariamente importante.
+- success - utilizado para indicar la finalización exitosa de una acción que el usuario activó.
 
-The default palette uses the shades prefixed with `A` (`A200`, etc.) for the secondary intention, and the un-prefixed shades for the other intentions.
+La paleta predeterminada utiliza los tonos con prefijo `A` (`A200`, etc.) para los propósitos secundarios, y los tonos sin prefijo para las otras intenciones.
 
-If you want to learn more about color, you can check out [the color section](/customization/color/).
+Si quieres aprender más sobre el color, puedes echar un vistazo a [la sección de color](/customization/color/).
 
 {{"demo": "pages/customization/palette/Intentions.js", "bg": "inline", "hideToolbar": true}}
 
 ### Personalización
 
-You may override the default palette values by including a palette object as part of your theme.
+Puede anular los valores de la paleta por defecto incluyendo un objeto de paleta como parte de su tema.
 
-If any of the [`palette.primary`](/customization/default-theme/?expand-path=$.palette.primary), [`palette.secondary`](/customization/default-theme/?expand-path=$.palette.secondary), [`palette.error`](/customization/default-theme/?expand-path=$.palette.error), [`palette.warning`](/customization/default-theme/?expand-path=$.palette.warning), [`palette.info`](/customization/default-theme/?expand-path=$.palette.info) or [`palette.successs`](/customization/default-theme/?expand-path=$.palette.successs) 'intention' objects are provided, they will replace the defaults.
+Si alguno de los [`palette.primary`](/customization/default-theme/?expand-path=$.palette.primary), [`palette.secondary`](/customization/default-theme/?expand-path=$.palette.secondary), [`palette.error`](/customization/default-theme/?expand-path=$.palette.error), [`palette. arning`](/customization/default-theme/?expand-path=$.palette.warning), [`palette.info`](/customization/default-theme/?expand-path=$.palette.info) o [`palette.successs`](/customization/default-theme/?expand-path=$.palette.successs) objetos 'propósito' son proporcionados, sustituirán los valores predeterminados.
 
-The intention value can either be a [color](/customization/color/) object, or an object with one or more of the keys specified by the following TypeScript interface:
+El valor del propósito de color puede ser un objeto [color](/customization/color/), o un objeto con una o más de las claves especificadas en la siguiente interfaz de TypeScript:
 
 ```ts
 interface PaletteIntention {
@@ -36,9 +36,9 @@ interface PaletteIntention {
 }
 ```
 
-**Using a color object**
+**Utilizando un objeto de color**
 
-The simplest way to customize an intention is to import one or more of the provided colors and apply them to a palette intention:
+La forma más sencilla de personalizar un propósito de color es importar uno o más de los colores proporcionados y aplicarlos a una intención de paleta:
 
 ```js
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -51,9 +51,9 @@ const theme = createMuiTheme({
 });
 ```
 
-**Providing the colors directly**
+**Proporcionando los colores directamente**
 
-If you wish to provide more customized colors, you can either create your own color object, or directly supply colors to some or all of the intention's keys:
+Si desea proporcionar colores más personalizados, puede crear su propio objeto de color, o directamente proporciona colores a algunas o todas las claves del propósito de color:
 
 ```js
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -83,12 +83,12 @@ const theme = createMuiTheme({
 });
 ```
 
-As in the example above, if the intention object contains custom colors using any of the "main", "light", "dark" or "contrastText" keys, these map as follows:
+Como en el ejemplo anterior, si el objeto de propósito de color contiene colores personalizados usando cualquiera de las claves "main", "light", "dark" o "contrastText", se mapean de la siguiente manera:
 
-- If the "dark" and / or "light" keys are omitted, their value(s) will be calculated from "main", according to the "tonalOffset" value.
-- If "contrastText" is omitted, its value will be calculated to contrast with "main", according to the "contrastThreshold" value.
+- Si las claves "dark" y / o "light" son omitidas, su valor/es serán calculados desde "main", de acuerdo al valor de "tonalOffset".
+- Si "contrastText" es omitido, su valor será calculado para contrastar con "main", de acuerdo al valor de "contrastThreshold".
 
-Both the "tonalOffset" and "contrastThreshold" values may be customized as needed. The "tonalOffset" value can either be a number between 0 and 1, which will apply to both light and dark variants, or an object with light and dark variants specified by the following TypeScript type:
+Tanto el valor de "tonalOffset" como el de "contrastThreshold" pueden ser personalizados según sea necesario. The "tonalOffset" value can either be a number between 0 and 1, which will apply to both light and dark variants, or an object with light and dark variants specified by the following TypeScript type:
 
 ```ts
 type PaletteTonalOffset = number | {

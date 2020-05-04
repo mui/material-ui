@@ -38,6 +38,7 @@
 ```jsx
 import React from 'react';
 import Button from '@material-ui/core/Button';
+import './PlainCssButton.css';
 
 export default function PlainCssButton() {
   return (
@@ -91,6 +92,7 @@ import { StylesProvider } from '@material-ui/core/styles';
 ```jsx
 import React from 'react';
 import Button from '@material-ui/core/Button';
+import './PlainCssButtonDeep.css';
 
 export default function PlainCssButtonDeep() {
   return (
@@ -131,6 +133,7 @@ export default function PlainCssButtonDeep() {
 ```jsx
 import React from 'react';
 import Button from '@material-ui/core/Button';
+import './GlobalCssButton.css';
 
 export default function GlobalCssButton() {
   return <Button>Customized</Button>;

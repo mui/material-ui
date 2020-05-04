@@ -85,15 +85,16 @@ crwdns131184:0crwdne131184:0
 
 ### crwdns131186:0crwdne131186:0
 
-crwdns131188:0crwdne131188:0 crwdns131190:0crwdne131190:0 crwdns131192:0crwdne131192:0
-
-**crwdns131194:0crwdne131194:0**
-```js
-crwdns131196:0crwdne131196:0
-```
+crwdns132090:0crwdne132090:0 crwdns132092:0crwdne132092:0 crwdns132094:0crwdne132094:0
 
 ```jsx
-crwdns131198:0{StarIcon}crwdne131198:0
+crwdns132096:0{StarIcon}crwdne132096:0
+```
+
+crwdns132098:0crwdne132098:0 crwdns132100:0crwdne132100:0
+
+```jsx
+crwdns132102:0{ ReactComponent as StarIcon }crwdnd132102:0{StarIcon}crwdne132102:0
 ```
 
 ### crwdns131200:0crwdne131200:0

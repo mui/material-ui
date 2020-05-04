@@ -40,11 +40,11 @@ export default function App() {
 
 ### 参数
 
-1. ` styles `(* Function | Object *): 生成样式或样式对象的函数。
+1. `styles` (*Object*): A styles object.
 
 ### 返回结果
 
-`styles` ：生成样式或样式对象的函数。
+`styles`: A styles object.
 
 ### 例子
 

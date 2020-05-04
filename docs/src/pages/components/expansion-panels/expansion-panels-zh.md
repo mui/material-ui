@@ -17,7 +17,7 @@ components: ExpansionPanel, ExpansionPanelActions, ExpansionPanelDetails, Expans
 
 ## 可控制的折叠面板
 
-使用` ExpansionPanel `组件创建自定义的扩展面板组件
+使用 ` ExpansionPanel` 组件，能够扩展已有的控制面板行为，来创建自定义的扩展面板组。
 
 {{"demo": "pages/components/expansion-panels/ControlledExpansionPanels.js", "bg": true}}
 

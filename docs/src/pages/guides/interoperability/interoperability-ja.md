@@ -38,6 +38,7 @@ Nothing fancy, just plain CSS.
 ```jsx
 import React from 'react';
 import Button from '@material-ui/core/Button';
+import './PlainCssButton.css';
 
 export default function PlainCssButton() {
   return (
@@ -91,6 +92,7 @@ The following example overrides the `label` style of `Button` in addition to the
 ```jsx
 import React from 'react';
 import Button from '@material-ui/core/Button';
+import './PlainCssButtonDeep.css';
 
 export default function PlainCssButtonDeep() {
   return (
@@ -131,6 +133,7 @@ Explicitly providing the class names to the component is too much effort? [You c
 ```jsx
 import React from 'react';
 import Button from '@material-ui/core/Button';
+import './GlobalCssButton.css';
 
 export default function GlobalCssButton() {
   return <Button>Customized</Button>;

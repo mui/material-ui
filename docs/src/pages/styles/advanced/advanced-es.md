@@ -77,7 +77,7 @@ Usted puedes anidar multiples proveedores de tema. This can be really useful whe
 
 {{"demo": "pages/styles/advanced/ThemeNesting.js"}}
 
-El tema interno **sobreescribirá** el tema exterior. Puede ampliar el tema externo proporcionando una función:
+El tema interno **sobrescribirá** el tema exterior. Puede ampliar el tema externo proporcionando una función:
 
 ```jsx
 <ThemeProvider theme={…} >

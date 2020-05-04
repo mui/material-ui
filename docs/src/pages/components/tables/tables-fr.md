@@ -79,6 +79,12 @@ An example of a table with scrollable rows and fixed column headers. It leverage
 
 {{"demo": "pages/components/tables/StickyHeadTable.js", "bg": true}}
 
+## Collapsible table
+
+An example of a table with expandable rows, revealing more information. It utilizes the [`Collapse`](/api/collapse/) component.
+
+{{"demo": "pages/components/tables/CollapsibleTable.js", "bg": true}}
+
 ## Spanning Table
 
 Un exemple simple avec des colonnes couvrant & lignes.

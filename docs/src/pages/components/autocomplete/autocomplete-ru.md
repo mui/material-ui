@@ -45,7 +45,11 @@ The component has two states that can be controlled:
 
 ## Произвольное значение
 
-Установите для `freeSolo` значение true, чтобы текстовое поле могло содержать любое произвольное значение. The prop is designed to cover the primary use case of a **search box** with suggestions, e.g. Google search or react-autowhatever.
+Установите для `freeSolo` значение true, чтобы текстовое поле могло содержать любое произвольное значение.
+
+### Search input
+
+The prop is designed to cover the primary use case of a **search input** with suggestions, e.g. Google search or react-autowhatever.
 
 {{"demo": "pages/components/autocomplete/FreeSolo.js"}}
 

@@ -45,7 +45,11 @@ The component has two states that can be controlled:
 
 ## Free solo
 
-Setear `freeSolo` a true, para que el cuadro de texto pueda contener cualquier valor arbitrario. The prop is designed to cover the primary use case of a **search box** with suggestions, e.g. Google search or react-autowhatever.
+Setear `freeSolo` a true, para que el cuadro de texto pueda contener cualquier valor arbitrario.
+
+### Search input
+
+The prop is designed to cover the primary use case of a **search input** with suggestions, e.g. Google search or react-autowhatever.
 
 {{"demo": "pages/components/autocomplete/FreeSolo.js"}}
 

@@ -22,6 +22,8 @@
 
 ### 免费的资源
 
+- **Introduction to Material-UI**: a series of videos covering all the important Material-UI components. 
+  - 📹 [的视频](https://www.youtube.com/watch?v=pHclLuRolzE&list=PLQg6GaokU5CwiVmsZ0d_9Zsg_DnIP_xwr)
 - **Meet Material-UI — your new favorite user interface library**: a blog post that guides you in building a Todo MVC while covering some important concepts of Material-UI. 
   - 📝 [博文](https://medium.freecodecamp.org/meet-your-material-ui-your-new-favorite-user-interface-library-6349a1c88a8c)
 - **Learn React & Material-UI**：一系列涵盖所有重要的 Material-UI 组件的视频。 

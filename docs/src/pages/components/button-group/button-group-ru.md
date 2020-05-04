@@ -27,6 +27,6 @@ components: Button, ButtonGroup
 
 ## Disabled elevation
 
-Вы можете убрать эффект "всплытия" с помощью опции `disableElevation`.
+Вы можете убрать эффект "всплытия" с помощью пропа `disableElevation`.
 
 {{"demo": "pages/components/button-group/DisableElevation.js"}}

@@ -40,11 +40,11 @@ Diese Funktion "macht zur Laufzeit nicht wirklich etwas", es ist nur die Identit
 
 ### Parameter
 
-1. `styles` (* Function | Object *): Eine Funktion, die die Stile oder ein Stilobjekt generiert.
+1. `styles` (*Object*): A styles object.
 
 ### Rückgabewerte
 
-`styles`: Eine Funktion, die die Stile oder ein Stilobjekt generiert.
+`styles`: A styles object.
 
 ### Beispiele
 

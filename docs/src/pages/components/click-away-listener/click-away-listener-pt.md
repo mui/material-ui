@@ -24,10 +24,10 @@ A demonstração a seguir usa [`Portal`](/components/portal/) para renderizar o 
 
 {{"demo": "pages/components/click-away-listener/PortalClickAway.js"}}
 
-## Leading edge
+## Eventos
 
-By default, the component responds to the trailing events (click + touch end). However, you can configure it to respond to the leading events (mouse down + touch start).
+Por padrão, o componente responde aos eventos de clique e de toque final (click + touch end). No entanto, você pode configurá-lo para responder aos eventos de mouse pressionado e toque inicial (mouse down + touch start).
 
 {{"demo": "pages/components/click-away-listener/LeadingClickAway.js"}}
 
-> ⚠️ In this mode, only interactions on the scrollbar of the document is ignored.
+> ⚠️ Neste modo, apenas as interações na barra de rolagem do documento são ignoradas.
