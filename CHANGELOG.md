@@ -1,5 +1,72 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.9.13
+###### *May 4, 2020*
+
+Big thanks to the 27 contributors who made this release possible.
+
+Here are some highlights ✨:
+
+- 💎 A new diamond sponsor: [Sencha](https://www.creative-tim.com/), thank you!
+- ⚛️ More tests migrated from enzyme to testing-library @marcosvega91.
+- And many more 🐛 bug fixes and 📚 improvements.
+
+### `@material-ui/core@v4.9.13`
+
+- [AvatarGroup] Improve limit display (#20793) @let-aurn
+- [ClickAwayListener] Remove misleading code comment (#20743) @eps1lon
+- [l10n] Improve es-ES locale (#20794) @eloyrubinos
+- [Modal] Should propagate event if disableEscapeKeyDown (#20786) @weslenng
+- [Pagination] Refactor boundaryCount (#20826) @mbrookes
+- [Select] Fix height overflow (#20822) @esseswann
+- [Slider] Fix RTL support (#20851) @weslenng
+- [Tabs] Implement keyboard navigation (#20781) @eps1lon
+- [Tabs] Improve customizability of the scroll buttons (#20783) @netochaves
+- [TextField] Fix caret color in autofill dark theme (#20857) @CarsonF
+- [Tooltip] Fix disableTouchListener behavior (#20807) @weslenng
+- [unstable_TrapFocus] Guard against dropped memo cache (#20848) @eps1lon
+
+### `@material-ui/styles@v4.9.13`
+
+- [styles] Fix wording in indexCounter comment (#20874) @iamclaytonray
+- [styles] Improve component props inference of styled (#20830) @vlazh
+
+### `@material-ui/system@v4.9.13`
+
+- [system] Improve breakpoints types (#20753) @nodeTempest
+
+### `@material-ui/lab@v4.0.0-alpha.52`
+
+- [Autocomplete] Display loading feedback with freeSolo (#20869) @weslenng
+- [Autocomplete] Fix support for limitTags={0} (#20850) @tykdn
+- [Skeleton] Fix z-index elevation issue (#20803) @luminaxster
+- [SpeedDial] Fix direct dependency on react-transition-group (#20847) @squirly
+- [TreeView] Add onIconClick and onLabelClick (#20657) @tonyhallett
+
+### Docs
+
+- [docs] Add collapsible table demo (#19795) @LorenzHenk
+- [docs] Fix "Find the source" link in localization.md (#20791) @ValentinH
+- [docs] Fix emojis/html being included in toc (#20841) @eps1lon
+- [docs] Fix groups name in autocomplete virtualization example (#20898) @Uneetpatel7
+- [docs] Fix header and row shift on pagination click (#20873) @ankitasingh170190
+- [docs] Fix incorrect signature of createStyles (#20866) @eps1lon
+- [docs] Fix table zebra customization demo (#20870) @rkrueger11
+- [docs] Fix typo in Select type definitions (#20817) @qkdreyer
+- [docs] Implement keyboard navigation for demo toolbar (#20798) @eps1lon
+- [docs] Improve svgr documentation (#20893) @tavantzo
+- [docs] Make CSS interoperability examples easier to use (#20860) @weisk
+- [docs] Use mathematical interval notation for breakpoints (#20843) @eps1lon
+- [examples] Add next.js SSG clarification comment (#20810) @sospedra
+
+### Core
+
+- [test] Migrate colorManipulator from assert to expect (#20792) @marcosvega91
+- [test] Migrate from assert to expect (#20799) @oliviertassinari
+- [test] Replace all assert with expect (#20853) @marcosvega91
+- [core] Batch small changes (#20823) @oliviertassinari
+- [core] Batch small changes (#20877) @oliviertassinari
+
 ## 4.9.12
 ###### *Apr 27, 2020*
 
