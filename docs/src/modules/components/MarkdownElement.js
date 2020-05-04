@@ -175,6 +175,10 @@ const styles = (theme) => ({
     '& img, video': {
       maxWidth: '100%',
     },
+    '& img': {
+      // Avoid layout jump
+      display: 'inline-block',
+    },
     '& hr': {
       height: 1,
       margin: theme.spacing(6, 0),

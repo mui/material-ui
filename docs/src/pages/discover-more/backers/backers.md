@@ -8,7 +8,11 @@ The core of Material-UI is a crowd-funded open-source project, licensed under th
 
 ### Diamond 💎
 
-*3/3 slots available*
+<p style="display: flex; justify-content: center;">
+  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="sencha" href="https://www.sencha.com/products/extreact/extreact-for-material-ui/?utm_source=materialui&utm_medium=referral&utm_content=product-200429-extreactmaterialui" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="128" width="128" src="/static/in-house/sencha-256x256.png" alt="sencha" title="UI Components for Productive Dev Teams" loading="lazy" /></a>
+</p>
+
+*2/3 slots available*
 
 Diamond Sponsors are those who have pledged $1,500/month or more to Material-UI.
 Please contact us at diamond@material-ui.com to subscribe to this tier.
@@ -18,14 +22,14 @@ Please contact us at diamond@material-ui.com to subscribe to this tier.
 via [Patreon](https://www.patreon.com/oliviertassinari)
 
 <p style="display: flex; justify-content: center;">
-  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="tidelift" href="https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=backers" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img width="96" src="https://github.com/tidelift.png?size=96" alt="tidelift" title="Enterprise-ready open source software" /></a>
-  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="bitsrc" href="https://bit.dev" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img width="96" src="https://github.com/teambit.png?size=96" alt="bitsrc" title="The fastest way to share code" /></a>
+  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="tidelift" href="https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=homepage" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="96" width="96" src="https://github.com/tidelift.png?size=96" srcset="https://github.com/tidelift.png?size=96, https://github.com/tidelift.png?size=192 2x" alt="tidelift" title="Enterprise-ready open source software" loading="lazy" /></a>
+  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="bitsrc" href="https://bit.dev" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="96" width="96" src="https://github.com/teambit.png?size=96" srcset="https://github.com/teambit.png?size=96, https://github.com/teambit.png?size=192 2x" alt="bitsrc" title="The fastest way to share code" loading="lazy" /></a>
 </p>
 
 via [OpenCollective](https://opencollective.com/material-ui)
 
 <p style="display: flex; justify-content: center; flex-wrap: wrap;">
-  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="callemall" href="https://www.call-em-all.com" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img src="https://images.opencollective.com/proxy/images?src=https%3A%2F%2Fopencollective-production.s3-us-west-1.amazonaws.com%2Ff4053300-e0ea-11e7-acf0-0fa7c0509f4e.png&height=96" alt="call-em-all" title="The easy way to message your group" width="96" loading="lazy" /></a>
+  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="callemall" href="https://www.call-em-all.com" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img src="https://images.opencollective.com/callemall/a6946da/logo/96.png" srcset="https://images.opencollective.com/callemall/a6946da/logo/96.png, https://images.opencollective.com/callemall/a6946da/logo/192.png 2x" alt="call-em-all" title="The easy way to message your group" height="96" width="96" loading="lazy"></a>
 </p>
 
 Gold Sponsors are those who have pledged $500/month or more to Material-UI.
@@ -64,23 +68,23 @@ via [OpenCollective](https://opencollective.com/material-ui)
 
 ## FAQ
 
-#### Why is Material-UI a "crowd-funded open-source project"?
+### Why is Material-UI a "crowd-funded open-source project"?
 
 The core of Material-UI is open-source to give users great freedom in how they use the software, and to enable the community to have influence over how the project progresses to make it appropriate for a wide range of use-cases. To make Material-UI a project that users can rely on for years to come, it needs to be well directed and financially sustainable.
 
 The absolute best way to support Material-UI’s ongoing development efforts is to become a sponsor. Crowd-sourced funding enables us to spend the most time directly working on improving Material-UI core, which you and other Material-UI users then benefit from.
 
-#### How is sponsorship money spent?
+### How is sponsorship money spent?
 
 Sponsorship money is used to fund software development, testing, documentation, and releases of the Material-UI software suite.
 
-#### Is sponsorship required to use Material-UI?
+### Is sponsorship required to use Material-UI?
 
 Users are not legally required to give back to the Material-UI project, but it is in their interest to do so.
 
 By significantly reducing the amount of work needed to achieve business goals and reducing running costs, Material-UI results in huge time and money savings for users. We encourage organizations to contribute a portion of these savings back, enabling the project to advance more rapidly and result in even greater savings for your organization.
 
-#### What's the difference between Patreon and OpenCollective?
+### What's the difference between Patreon and OpenCollective?
 
 Funds received via Patreon or other forms, directly support [Olivier Tassinari](https://github.com/oliviertassinari) and the core team mission.
 The funds go to a for-profit entity that employs some of the core team members.
@@ -91,26 +95,26 @@ Funds donated via OpenCollective are managed transparently and aimed to sustain 
 
 These great services sponsor Material-UI's core infrastructure:
 
-[<img alt="GitHub" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png" width="100">](https://github.com/)
+[<img loading="lazy" alt="GitHub" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png" height="25">](https://github.com/)
 
 GitHub allows us to host the Git repository.
 
-[<img alt="CircleCI" src="https://assets.brandfolder.com/otz6k5-cj8pew-e4rk9u/element.png?v=1501538594" width="120">](https://circleci.com/)
+[<img loading="lazy" alt="CircleCI" src="https://assets.brandfolder.com/otz6k5-cj8pew-e4rk9u/element.png?v=1501538594" height="32">](https://circleci.com/)
 
 CircleCI allows us to run the test suite.
 
-[<img alt="Netlify" src="https://cdn.netlify.com/15ecf59b59c9d04b88097c6b5d2c7e8a7d1302d0/1b6d6/img/press/logos/full-logo-light.svg" width="120">](https://www.netlify.com/)
+[<img loading="lazy" alt="Netlify" src="https://cdn.netlify.com/15ecf59b59c9d04b88097c6b5d2c7e8a7d1302d0/1b6d6/img/press/logos/full-logo-light.svg" height="30">](https://www.netlify.com/)
 
 Netlify allows us to distribute the documentation.
 
-[<img alt="CrowdIn" src="https://support.crowdin.com/assets/logos/crowdin-logo1-small.png" width="120">](https://crowdin.com/)
+[<img loading="lazy" alt="CrowdIn" src="https://support.crowdin.com/assets/logos/crowdin-logo1-small.png" height="30">](https://crowdin.com/)
 
 CrowdIn allows us to translate the documentation.
 
-[<img alt="BrowserStack" src="https://www.browserstack.com/images/mail/browserstack-logo-footer.png" width="120">](https://www.browserstack.com/)
+[<img loading="lazy" alt="BrowserStack" src="https://www.browserstack.com/images/mail/browserstack-logo-footer.png" height="30">](https://www.browserstack.com/)
 
 BrowserStack allows us to test in real browsers.
 
-[<img alt="CodeCov" src="https://raw.githubusercontent.com/codecov/media/master/logos/icon-50.png" height="30">](https://codecov.io/)
+[<img loading="lazy" alt="CodeCov" src="https://github.com/codecov.png?size=70" width="35" height="35">](https://codecov.io/)
 
 CodeCov allows us to monitor the test coverage.
