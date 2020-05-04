@@ -2,32 +2,32 @@
 
 <p class="description">Este paquete almacena componentes en desarrollo, que todavía no están listos para estar en core.</p>
 
-The main difference between the lab and the core is how the components are versioned. Having a separate lab package allows us to release breaking changes when necessary while the core package follows a [slower-moving policy](https://material-ui.com/versions/#release-frequency).
+La principal diferencia entre lab y core es la forma en que los componentes están versionados. Tener un paquete lab (laboratorio) nos permite la liberación de cambios dañinos cuando sea necesario, mientras que el paquete core (núcleo) sigue una [política de movimiento mas lenta](https://material-ui.com/versions/#release-frequency).
 
-As developers use and test the components and report issues, the maintainers learn more about shortcomings of the components: missing features, accessibility issues, bugs, API design, etc. The older and more used a component is, the less likely it is that new issues will be found and subsequently need to introduce breaking changes.
+Mientras los desarrolladores usan y prueban los componentes y reportan problemas, los mantenedores aprendemos más acerca de las deficiencias de los componentes: características faltantes, problemas de accesibilidad, defectos, diseño de la API, etc. Entre más antiguo y utilizado un componente es, menos probable es que encuentren nuevos problemas y, posteriormente, se necesiten introducir cambios dañinos.
 
-For a component to be ready to move to the core, the following criteria are considered:
+Para que un componente esté listo para pasar al core, los siguientes criterios son:
 
-* It needs to be **used**. The Material-UI team uses Google Analytics stats among other metrics to evaluate the usage of each component. A lab component with low usage either means that it isn't fully working yet or that there is a low demand for it.
-* It needs to match the **code quality** of the core components. It doesn't have to be perfect to be a part of the core, but the component should be reliable enough that developers can depend on it. 
-    * Each component needs **type definitions**. It is not currently required that a lab component is typed, but it would need to be typed to move to the core.
-    * Requires good **test coverage**. Some of the lab components don't currently have comprehensive tests.
-* Can it be used as **leverage** to incentivize users to upgrade to the latest major release? The less fragmented the community is, the better.
-* It needs to have a low probability of a **breaking change** in the short/medium future. For instance, if it needs a new feature that will likely require a breaking change, it may be preferable to delay its promotion to the core.
+* Tiene que ser **usado**. El equipo de Materia-UI utiliza estadísticas de Google Analytics, entre otras métricas, para evaluar el uso de cada componente. Un componente lab con bajo uso o bien significa que no está funcionando plenamente todavía, o que tiene una baja demanda.
+* Necesita tener la misma **calidad de código** que los componentes del core. No tiene que ser perfecto para ser una parte del core, pero el componente debe ser lo suficientemente confiable que desarrolladores pueden depender de él. 
+    * Cada componente necesita **definiciones de tipo**. Actualmente no es necesario un componente de lab tenga tipo, pero debe tenerlo para moverse al core.
+    * Requiere buena **cobertura de pruebas**. Algunos de los componentes de lab, actualmente no tienen pruebas exhaustivas.
+* ¿Puede utilizarse como **palanca** para incentivar a los usuarios a actualizar a la última versión mayor? Cuanto menos fragmentada este la comunidad, mejor.
+* Necesita tener una baja probabilidad de **cambio dañinos** en el corto/mediano plazo. Por ejemplo, si se necesita una nueva característica que probablemente va a requerir un cambio dañino, seria preferible retrasar su promoción al core.
 
 ## Instalación
 
 Instala el paquete en el directorio de tu proyecto con:
 
 ```sh
-// con npm
+// usando npm
 npm install @material-ui/lab
 
-// con yarn
+// usando yarn
 yarn add @material-ui/lab
 ```
 
-The lab has a peer dependency on the core components. Si aún no estás usando Material-UI en tu proyecto, puedes instalarlo con:
+Lab tiene como dependencia par a los componentes del core. Si aún no estás usando Material-UI en tu proyecto, puedes instalarlo con:
 
 ```sh
 // usando npm

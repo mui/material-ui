@@ -22,9 +22,11 @@ Material-UIを初めて学ぶときは、公式のドキュメントよりもサ
 
 ### Gratuit
 
+- **Introduction to Material-UI**: a series of videos covering all the important Material-UI components. 
+  - 📹 [動画](https://www.youtube.com/watch?v=pHclLuRolzE&list=PLQg6GaokU5CwiVmsZ0d_9Zsg_DnIP_xwr)
 - **Meet Material-UI—あなたのお気に入りの新しいユーザインタフェースライブラリ**: Material-UIのいくつかの重要な概念をカバーしながら、Todo MVCの構築を案内するブログ投稿。 
   - 📝 [ブログ記事](https://medium.freecodecamp.org/meet-your-material-ui-your-new-favorite-user-interface-library-6349a1c88a8c)
-- **Learn React & Material-UI**: すべての重要なMaterial-UIコンポーネントを網羅した一連のビデオです。 
+- **Learn React & Material-UI**: Material-UIの重要なコンポーネントの全てをカバーするシリーズの動画です。 
   - 📹 [動画](https://www.youtube.com/watch?v=xm4LX5fJKZ8&list=PLcCp4mjO-z98WAu4sd0eVha1g-NMfzHZk)
 - **Getting Started With Material-UI For React**: シンプルなカードのリストの構築の手引きとなるブログ記事です。 
   - 📝 [The blog post](https://medium.com/codingthesmartway-com-blog/getting-started-with-material-ui-for-react-material-design-for-react-364b2688b555)

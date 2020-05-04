@@ -103,7 +103,7 @@ The `color` prop changes the highlight color of the text field when focused.
 
 {{"demo": "pages/components/text-fields/CustomizedInputBase.js", "bg": true}}
 
-👑 インスピレーションを求めているなら, [MUI Treasury's customization examples](https://mui-treasury.com/components/text-field)を確認できます。
+👑 インスピレーションを求めているなら, [MUI Treasury's customization examples](https://mui-treasury.com/styles/text-field)を確認できます。
 
 ## 制限事項
 

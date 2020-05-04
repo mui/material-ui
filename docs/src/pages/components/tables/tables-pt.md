@@ -79,7 +79,13 @@ Um exemplo de uma tabela com linhas roláveis e cabeçalhos de coluna fixos. Ele
 
 {{"demo": "pages/components/tables/StickyHeadTable.js", "bg": true}}
 
-## Tabela de abrangência
+## Collapsible table
+
+An example of a table with expandable rows, revealing more information. It utilizes the [`Collapse`](/api/collapse/) component.
+
+{{"demo": "pages/components/tables/CollapsibleTable.js", "bg": true}}
+
+## Abrangendo Tabela
 
 Um exemplo simples com abrangência de linhas & colunas.
 

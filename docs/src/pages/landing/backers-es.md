@@ -19,4 +19,4 @@ El continuo desarrollo y mantenimiento de Material-UI es posible gracias a estos
 
 ### ¡Y aún hay más!
 
-Ver la lista completa de [nuestros patrocinadores](/discover-more/backers/), y aprende cómo puedes contribuir al futuro de Material-UI.
+Mira la lista completa de [nuestros patrocinadores](/discover-more/backers/), y aprende cómo puedes contribuir al futuro de Material-UI.

@@ -79,6 +79,12 @@ For accessibility, the first column is set to be a `<th>` element, with a `scope
 
 {{"demo": "pages/components/tables/StickyHeadTable.js", "bg": true}}
 
+## Collapsible table
+
+An example of a table with expandable rows, revealing more information. It utilizes the [`Collapse`](/api/collapse/) component.
+
+{{"demo": "pages/components/tables/CollapsibleTable.js", "bg": true}}
+
 ## Объединение таблиц
 
 Простой пример с объединением строк и столбцов.
@@ -87,7 +93,7 @@ For accessibility, the first column is set to be a `<th>` element, with a `scope
 
 ## Виртуализированная таблица
 
-В следующем примере мы демонстрируем, как использовать [react-virtualized](https://github.com/bvaughn/react-virtualized) с компонентом `Table`. Он отображает 200 строк и c легкостью может еще больше. Virtualization helps with performance issues.
+В следующем примере мы покажем, как использовать [react-virtualized](https://github.com/bvaughn/react-virtualized) с компонентом `Table`. Он отображает 200 строк и c легкостью может еще больше. Virtualization helps with performance issues.
 
 {{"demo": "pages/components/tables/ReactVirtualizedTable.js", "bg": true}}
 

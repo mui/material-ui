@@ -100,18 +100,32 @@ function HomeIcon(props) {
 
 ### 组件属性
 
-即使图标以 `.svg` 格式保存，你依然可以使用 `SvgIcon` 来包装它。 通过 [svgr](https://github.com/smooth-code/svgr) 提供的加载装置，您将 svg 图标作为 React 组件导入。 譬如，使用 webpack ：
+You can use the `SvgIcon` wrapper even if your icons are saved in the `.svg` format. [svgr](https://github.com/smooth-code/svgr) has loaders to import SVG files and use them as React components. For example, with webpack:
 
-**webpack.config.js**
-```js
+```jsx
+// webpack.config.js
 {
   test: /\.svg$/,
   use: ['@svgr/webpack'],
 }
+
+// ---
+import StarIcon from './star.svg';
+
+<SvgIcon component={StarIcon} viewBox="0 0 600 476.6" />
 ```
 
+It's also possible to use it with "url-loader" or "file-loader". It's the approach used by Create React App.
+
 ```jsx
-import StarIcon from './star.svg';
+// webpack.config.js
+{
+  test: /\.svg$/,
+  use: ['@svgr/webpack', 'url-loader'],
+}
+
+// ---
+import { ReactComponent as StarIcon } from './star.svg';
 
 <SvgIcon component={StarIcon} viewBox="0 0 600 476.6" />
 ```

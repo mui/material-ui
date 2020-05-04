@@ -1,6 +1,6 @@
 ---
 title: Tabs React component
-components: Tabs, Tab
+components: Tabs, Tab, TabScrollButton
 ---
 
 # Вкладки
@@ -69,7 +69,7 @@ Left and right scroll buttons will never be presented. All scrolling must be ini
 
 {{"demo": "pages/components/tabs/CustomizedTabs.js", "bg": true}}
 
-👑 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/components/tabs).
+Если вам нужно вдохновение обратитве внимание на библиотеку компонентов [MUI Treasury](https://deprecate.mui-treasury.com/components/tabs).
 
 ## Vertical tabs
 

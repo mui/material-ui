@@ -98,29 +98,6 @@ O tamanho da fonte computada pelo navegador segue esta equação matemática:
 
 <!-- https://latex.codecogs.com/gif.latex?computed&space;=&space;specification&space;\frac{typography.fontSize}{14}&space;\frac{html&space;font&space;size}{typography.htmlFontSize} -->
 
-### Tamanho da fonte no HTML
-
-Você pode querer alterar o tamanho da fonte padrão do elemento `<html>`. Por exemplo, quando usando a [simplificação de 10px](https://www.sitepoint.com/understanding-and-using-rem-units-in-css/). Uma propriedade de tema `htmlFontSize` é fornecida para este caso de uso, que informa ao Material-UI qual é o tamanho da fonte no elemento `<html>`. Isso é usado para ajustar o valor `rem`, para que o tamanho da fonte calculado sempre corresponda à especificação.
-
-```js
-const theme = createMuiTheme({
-  typography: {
-    // Diz ao Material-UI qual é o font-size no elemento html.
-    htmlFontSize: 10,
-  },
-});
-```
-
-```css
-html {
-  font-size: 62.5%; /* 62.5% de 16px = 10px */
-}
-```
-
-*Você precisa aplicar o CSS acima no elemento html desta página para ver a demonstração abaixo renderizada corretamente*
-
-{{"demo": "pages/customization/typography/FontSizeTheme.js"}}
-
 ### Tamanhos da fonte responsivo
 
 As propriedades de variações de tipografia são mapeadas diretamente para o CSS gerado. Você pode usar [consultas de mídia](/customization/breakpoints/#api) dentro delas:
@@ -159,6 +136,33 @@ theme = responsiveFontSizes(theme);
 ### Tamanhos da fonte fluido
 
 Para ser feito: [#15251](https://github.com/mui-org/material-ui/issues/15251).
+
+### Tamanho da fonte no HTML
+
+Você pode querer alterar o tamanho da fonte padrão do elemento `<html>`. Por exemplo, quando usando a [simplificação de 10px](https://www.sitepoint.com/understanding-and-using-rem-units-in-css/).
+
+> ⚠️ Alterar o tamanho da fonte pode prejudicar a acessibilidade ♿️. A maioria dos navegadores concordou com o tamanho padrão de 16 pixels, mas o usuário pode alterá-lo. Por exemplo, alguém com necessidades especiais na visão poderia ter definido o tamanho padrão da fonte do seu navegador para algo maior.
+
+Uma propriedade de tema `htmlFontSize` é fornecida para este caso de uso, que informa ao Material-UI qual é o tamanho da fonte no elemento `<html>`. Isso é usado para ajustar o valor `rem`, para que o tamanho da fonte calculado sempre corresponda à especificação.
+
+```js
+const theme = createMuiTheme({
+  typography: {
+    // Diz ao Material-UI qual é o font-size no elemento html.
+    htmlFontSize: 10,
+  },
+});
+```
+
+```css
+html {
+  font-size: 62.5%; /* 62.5% of 16px = 10px */
+}
+```
+
+*Você precisa aplicar o CSS acima no elemento html desta página para ver a demonstração abaixo renderizada corretamente*
+
+{{"demo": "pages/customization/typography/FontSizeTheme.js"}}
 
 ## Variantes
 

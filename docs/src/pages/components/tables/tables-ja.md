@@ -47,7 +47,7 @@ For accessibility, the first column is set to be a `<th>` element, with a `scope
 
 ## Customized tables
 
-コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
+コンポーネントのカスタマイズ例を次に示します。 詳細については、 [overrides documentation page](/customization/components/)を参照してください。
 
 {{"demo": "pages/components/tables/CustomizedTables.js", "bg": true}}
 
@@ -78,6 +78,12 @@ It's possible to customise the options shown in the "Rows per page" select using
 An example of a table with scrollable rows and fixed column headers. It leverages the `stickyHeader` prop (⚠️ no IE 11 support).
 
 {{"demo": "pages/components/tables/StickyHeadTable.js", "bg": true}}
+
+## Collapsible table
+
+An example of a table with expandable rows, revealing more information. It utilizes the [`Collapse`](/api/collapse/) component.
+
+{{"demo": "pages/components/tables/CollapsibleTable.js", "bg": true}}
 
 ## Spanning Table
 

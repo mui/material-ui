@@ -38,6 +38,7 @@ Nothing fancy, just plain CSS.
 ```jsx
 import React from 'react';
 import Button from '@material-ui/core/Button';
+import './PlainCssButton.css';
 
 export default function PlainCssButton() {
   return (
@@ -91,6 +92,7 @@ Im folgenden Beispiel wird der `label` Stil der `Button` Komponente zusätzlich 
 ```jsx
 import React from 'react';
 import Button from '@material-ui/core/Button';
+import './PlainCssButtonDeep.css';
 
 export default function PlainCssButtonDeep() {
   return (
@@ -131,6 +133,7 @@ Ist es zu viel Aufwand, die Klassennamen explizit für die Komponente bereitzust
 ```jsx
 import React from 'react';
 import Button from '@material-ui/core/Button';
+import './GlobalCssButton.css';
 
 export default function GlobalCssButton() {
   return <Button>Customized</Button>;

@@ -70,11 +70,11 @@ components: Button, IconButton, ButtonBase
 
 ## 自定义按钮
 
-以下是自定义组件的一些例子。 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
+以下是自定义组件的一些例子。 您可以在[重写文档页面](/customization/components/)中了解更多有关此内容的信息。
 
 {{"demo": "pages/components/buttons/CustomizedButtons.js", "defaultCodeOpen": false}}
 
-👑如果您还在寻找灵感，您可以查看一下 [MUI Treasury 自定义的例子](https://mui-treasury.com/components/button)。
+👑如果您还在寻找灵感，您可以看看 [MUI Treasury 特别定制的一些例子](https://mui-treasury.com/styles/button)。
 
 ## 复杂按钮
 

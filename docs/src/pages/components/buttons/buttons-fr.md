@@ -74,7 +74,7 @@ Here are some examples of customizing the component. Vous pouvez en savoir plus 
 
 {{"demo": "pages/components/buttons/CustomizedButtons.js", "defaultCodeOpen": false}}
 
-👑 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/components/button).
+👑 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/button).
 
 ## Boutons complexes
 

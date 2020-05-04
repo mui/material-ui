@@ -59,11 +59,11 @@ const theme = createMuiTheme({
 | Ucraniano               | uk-UA                     | `ukUA`             |
 | Vietnamita              | vi-VN                     | `viVN`             |
 
-Você pode [encontrar o fonte](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/locale/index.js) no repositório do GitHub.
+Você pode [encontrar o fonte](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/locale/index.ts) no repositório do GitHub.
 
 Para criar sua própria tradução, ou para personalizar o texto em Inglês. copie este arquivo para o seu projeto, faça as alterações necessárias e importe a localidade de lá.
 
-Por favor, considere contribuir com novas traduções de volta para o Material-UI abrindo uma pull request. However, Material-UI aims to support the [100 most popular locales](https://en.wikipedia.org/wiki/List_of_languages_by_number_of_native_speakers), we might not accept contributions for locales that are not frequently used, for instance `gl-ES` that has "only" 2.5 million native speakers.
+Por favor, considere contribuir com novas traduções de volta para o Material-UI abrindo uma pull request. No entanto, o Material-UI visa suportar as [100 localidades mais populares](https://en.wikipedia.org/wiki/List_of_languages_by_number_of_native_speakers), nós podemos não aceitar contribuições para localidades que não são frequentemente usadas, por exemplo `gl-ES` que tem "apenas" 2. milhões de falantes nativos.
 
 ### Exemplo
 

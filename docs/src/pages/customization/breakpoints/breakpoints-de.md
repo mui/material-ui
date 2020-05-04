@@ -12,7 +12,7 @@ Jeder Haltepunkt (ein Schlüssel) stimmt mit einer *festen* Bildschirmbreite (ei
 - ** lg, ** groß: 1280px
 - ** xl ** extra groß: 1920px
 
-These [breakpoint values](/customization/default-theme/?expand-path=$.breakpoints.values) are used to determine breakpoint ranges. Ein Bereich beginnt mit dem Haltepunktwert einschließlich bis zum nächsten Haltepunktwert:
+Diese [ Haltepunktwerte](/customization/default-theme/?expand-path=$.breakpoints.values) werden zur Bestimmung von Haltepunktbereichen verwendet. Ein Bereich beginnt mit dem Haltepunktwert einschließlich bis zum nächsten Haltepunktwert:
 
 ```js
 Wert          |0px     600px    960px    1280px   1920px
@@ -21,7 +21,7 @@ Breite        |--------|--------|--------|--------|-------->
 Bereich       |   xs   |   sm   |   md   |   lg   |   xl
 ```
 
-Diese Werte können immer angepasst werden. You will find them in the theme, in the [`breakpoints.values`](/customization/default-theme/?expand-path=$.breakpoints.values) object.
+Diese Werte können immer angepasst werden. Sie finden sie im Theme unter dem [`breakpoints.values`](/customization/default-theme/?expand-path=$.breakpoints.values) Schlüssel.
 
 Die Haltepunkte werden intern in verschiedenen Komponenten verwendet, um sie ansprechbar zu machen, Sie können sie jedoch auch benutzten, um das Layout Ihrer Anwendung über das [Grid](/components/grid/) zu steuern und für [Hidden](/components/hidden/) Komponenten.
 
@@ -99,8 +99,8 @@ In der folgenden Demo ändern wir das gerenderte DOM-Element (* em*, <u> u</u>, 
 const styles = theme => ({
   root: {
     backgroundColor: 'blue',
-    // Entspricht [md, ∞[
-    //       [960px, ∞[
+    // Match [md, ∞)
+    //       [960px, ∞)
     [theme.breakpoints.up('md')]: {
       backgroundColor: 'red',
     },
@@ -124,9 +124,9 @@ const styles = theme => ({
 const styles = theme => ({
   root: {
     backgroundColor: 'blue',
-    // Entspricht [0, md + 1[
-    //       [0, lg[
-    //       [0, 1280px[
+    // Match [0, md + 1)
+    //       [0, lg)
+    //       [0, 1280px)
     [theme.breakpoints.down('md')]: {
       backgroundColor: 'red',
     },
@@ -150,9 +150,9 @@ const styles = theme => ({
 const styles = theme => ({
   root: {
     backgroundColor: 'blue',
-    // Entspricht [md, md + 1[
-    //       [md, lg[
-    //       [960px, 1280px[
+    // Match [md, md + 1)
+    //       [md, lg)
+    //       [960px, 1280px)
     [theme.breakpoints.only('md')]: {
       backgroundColor: 'red',
     },
@@ -177,8 +177,8 @@ const styles = theme => ({
 const styles = theme => ({
   root: {
     backgroundColor: 'blue',
-    // Entspricht [sm, md + 1[
-    //       [sm, lg[
+    // Match [sm, md + 1)
+    //       [sm, lg)
     //       [600px, 1280px[
     [theme.breakpoints.between('sm', 'md')]: {
       backgroundColor: 'red',

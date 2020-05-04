@@ -38,12 +38,13 @@ Nada extravagante, apenas CSS.
 ```jsx
 import React from 'react';
 import Button from '@material-ui/core/Button';
+import './PlainCssButton.css';
 
 export default function PlainCssButton() {
   return (
     <div>
-      <Button>Padrão</Button>
-      <Button className="button">Customizado</Button>
+      <Button>Default</Button>
+      <Button className="button">Customized</Button>
     </div>
   );
 }
@@ -91,13 +92,14 @@ O exemplo a seguir sobrescreve o estilo de `label` e `Button`, além dos estilos
 ```jsx
 import React from 'react';
 import Button from '@material-ui/core/Button';
+import './PlainCssButtonDeep.css';
 
 export default function PlainCssButtonDeep() {
   return (
     <div>
-      <Button>Padrão</Button>
+      <Button>Default</Button>
       <Button classes={{ root: 'button', label: 'button-label' }}>
-        Customizado
+        Customized
       </Button>
     </div>
   );
@@ -131,9 +133,10 @@ Fornecer explicitamente os nomes das classes ao componente é um esforço excess
 ```jsx
 import React from 'react';
 import Button from '@material-ui/core/Button';
+import './GlobalCssButton.css';
 
 export default function GlobalCssButton() {
-  return <Button>Customizado</Button>;
+  return <Button>Customized</Button>;
 }
 ```
 

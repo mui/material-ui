@@ -22,10 +22,10 @@ O Material Design padronizou mais de 1.100 ícones oficiais, cada um em cinco "t
 Instale o pacote no diretório do seu projeto com:
 
 ```sh
-// utilizando o npm
+// usando npm
 npm install @material-ui/icons
 
-// utilizando o yarn
+// usando yarn
 yarn add @material-ui/icons
 ```
 
@@ -100,18 +100,32 @@ function HomeIcon(props) {
 
 ### Propriedade Componente
 
-Você pode usar o `SvgIcon` para encapsular seus ícones, mesmo que estes estejam salvos no formato `.svg`. [svgr](https://github.com/smooth-code/svgr) possui loaders para importar arquivos svg e usá-los como componentes React. Por exemplo, com webpack:
+Você pode usar o `SvgIcon` para encapsular seus ícones, mesmo que estes estejam salvos no formato `.svg`. [svgr](https://github.com/smooth-code/svgr) possui loaders para importar arquivos SVG e usá-los como componentes React. Por exemplo, com webpack:
 
-**webpack.config.js**
-```js
+```jsx
+// webpack.config.js
 {
   test: /\.svg$/,
   use: ['@svgr/webpack'],
 }
+
+// ---
+import StarIcon from './star.svg';
+
+<SvgIcon component={StarIcon} viewBox="0 0 600 476.6" />
 ```
 
+It's also possible to use it with "url-loader" or "file-loader". It's the approach used by Create React App.
+
 ```jsx
-import StarIcon from './star.svg';
+// webpack.config.js
+{
+  test: /\.svg$/,
+  use: ['@svgr/webpack', 'url-loader'],
+}
+
+// ---
+import { ReactComponent as StarIcon } from './star.svg';
 
 <SvgIcon component={StarIcon} viewBox="0 0 600 476.6" />
 ```
