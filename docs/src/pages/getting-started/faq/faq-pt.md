@@ -8,15 +8,15 @@ Se mesmo assim você não encontrar o que você está procurando, você pode con
 
 Existem muitas maneiras de apoiar o Material-UI:
 
-- **Espalhe a palavra**. Evangelize Material-UI by [linking to material-ui.com](https://material-ui.com/) on your website, every backlink matters. Follow us on [Twitter](https://twitter.com/MaterialUI), like and retweet the important news. Or just talk about us with your friends.
-- **Give us feedback**. Tell us what we're doing well or where we can improve. Please upvote (👍) the issues that you are the most interested in seeing solved.
-- **Help new users**. You can answer questions on [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui).
-- **Make changes happen**. 
-  - Report bugs or missing features by [creating an issue](https://github.com/mui-org/material-ui/issues/new).
-  - Reviewing and commenting on existing [pull requests](https://github.com/mui-org/material-ui/pulls) and [issues](https://github.com/mui-org/material-ui/issues).
-  - Help [translate](https://translate.material-ui.com) the documentation.
-  - Fixing bugs, adding features, and [improving our documentation](https://github.com/mui-org/material-ui/tree/master/docs) by [submitting a pull request](https://github.com/mui-org/material-ui/pulls).
-- **Support us financially on [OpenCollective](https://opencollective.com/material-ui)**. If you use Material-UI in a commercial project and would like to support its continued development by becoming a Sponsor, or in a side or hobby project and would like to become a Backer, you can do so through OpenCollective. All funds donated are managed transparently, and Sponsors receive recognition in the README and on the Material-UI home page.
+- **Espalhe a palavra**. Evangelize Material-UI [vinculando o material-ui.com](https://material-ui.com/) no seu site, todo backlink conta. Siga-nos no [Twitter](https://twitter.com/MaterialUI) e veja ou retuite as notícias importantes. Ou apenas fale sobre nós com os seus amigos.
+- **Dê-nos sua opinião**. Conte-nos o que estamos fazendo bem ou onde podemos melhorar. Por favor vote (👍) os problemas que você está mais interessado em ver resolvidos.
+- **Ajude novos usuários**. Você pode responder a perguntas em [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui).
+- **Faça as alterações acontecerem**. 
+  - Reporte erros ou recursos faltantes [criando uma issue](https://github.com/mui-org/material-ui/issues/new).
+  - Revisando e comentando em [pull requests](https://github.com/mui-org/material-ui/pulls) e [issues](https://github.com/mui-org/material-ui/issues).
+  - Ajude a [traduzir](https://translate.material-ui.com) a documentação.
+  - Corrigindo bugs, adicionando recursos e [melhorando nossa documentação](https://github.com/mui-org/material-ui/tree/master/docs) nos [enviando um pull request](https://github.com/mui-org/material-ui/pulls).
+- **Apoie-nos financeiramente no [OpenCollective](https://opencollective.com/material-ui)**. Se você usa Material-UI em um projeto comercial e gostaria de apoiar seu desenvolvimento contínuo tornando-se um Patrocinador, ou em um projeto freelancer ou hobby e gostaria de se tornar um Apoiador, você pode se tornar através do OpenCollective. Todos os fundos doados são geridos de forma transparente e os Patrocinadores recebem reconhecimento no README e na página inicial do Material-UI.
 
 ## Por que meus componentes não estão renderizando corretamente em compilações de produção?
 
@@ -36,7 +36,7 @@ No geral, é simples livrar-se desse problema encapsulando cada aplicação Mate
 
 ## Por que os elementos posicionados como fixos se movem quando um modal é aberto?
 
-Scrolling is blocked as soon as a modal is opened. Isso evita a interação com o segundo plano quando o modal deve ser o único conteúdo interativo, no entanto, remover a barra de rolagem pode fazer com que seus **elementos posicionados como fixos** se movam. Nesta situação, você pode aplicar um nome de classe global `.mui-fixed ` para informar ao Material-UI para manipular esses elementos.
+A rolagem é bloqueada assim que um modal é aberto. Isso evita a interação com o segundo plano quando o modal deve ser o único conteúdo interativo, no entanto, remover a barra de rolagem pode fazer com que seus **elementos posicionados como fixos** se movam. Nesta situação, você pode aplicar um nome de classe global `.mui-fixed ` para informar ao Material-UI para manipular esses elementos.
 
 ## Como posso desativar o efeito cascata globalmente?
 
@@ -58,7 +58,7 @@ const theme = createMuiTheme({
 
 ## Como posso desativar as transições globalmente?
 
-Material-UI uses the same theme helper for creating all its transitions. So you can disable all the transitions by overriding the helper in your theme:
+Material-UI usa o mesmo auxiliar de tema para criar todas as transições. Assim, você pode desativar todas as transições substituindo no seu tema:
 
 ```js
 import { createMuiTheme } from '@material-ui/core';
@@ -71,18 +71,18 @@ const theme = createMuiTheme({
 });
 ```
 
-It can be useful to disable transitions during visual testing or to improve performance on low-end devices.
+Pode ser útil desabilitar transições durante testes visuais ou para melhorar o desempenho em dispositivos de baixo custo.
 
-You can go one step further by disabling all the transitions and animations effect:
+Você pode ir mais longe desabilitando todas as transições e animações:
 
 ```js
 import { createMuiTheme } from '@material-ui/core';
 
 const theme = createMuiTheme({
   overrides: {
-    // Name of the component ⚛️
+    // Nome do componente ⚛️
     MuiCssBaseline: {
-      // Name of the rule
+      // Nome da regra
       '@global': {
         '*, *::before, *::after': {
           transition: 'none !important',
@@ -94,7 +94,7 @@ const theme = createMuiTheme({
 });
 ```
 
-Notice that the usage of `CssBaseline` is required for the above approach to work. If you choose not to use it, you can still disable transitions and animations by including these CSS rules:
+Observe que o uso de `CssBaseline` é necessário para que a abordagem acima funcione. Se você optar por não usá-lo, você ainda pode desabilitar transições e animações incluindo estas regras CSS:
 
 ```css
 *, *::before, *::after {
@@ -105,9 +105,9 @@ Notice that the usage of `CssBaseline` is required for the above approach to wor
 
 ## Preciso usar o JSS para estilizar minha aplicação?
 
-Não, não é obrigatório. But this dependency comes built in, so carries no additional bundle size overhead.
+Não, não é obrigatório. Mas essa dependência vem embutida, portanto, não sobrecarrega o tamanho do pacote.
 
-Perhaps, however, you're adding some Material-UI components to an app that already uses another styling solution, or are already familiar with a different API, and don't want to learn a new one? Nesse caso, dirija-se à seção de [interoperabilidade da biblioteca de estilos](/guides/interoperability/), onde mostramos como é simples reestilizar os componentes do Material-UI com bibliotecas de estilos alternativas.
+No entanto, talvez você esteja adicionando os componentes Material-UI para uma aplicação que já usa outra solução de estilos, ou já esta familiarizado com uma API diferente, e não quer aprender uma nova? Nesse caso, dirija-se à seção de [interoperabilidade da biblioteca de estilos](/guides/interoperability/), onde mostramos como é simples reestilizar os componentes do Material-UI com bibliotecas de estilos alternativas.
 
 ## Quando devo usar o estilo em linha vs CSS?
 
@@ -120,7 +120,7 @@ Como regra geral, use apenas o estilo em linha para propriedades de estilo dinâ
 
 ## Como usar react-router?
 
-We detail the [integration with third-party routing libraries](/guides/composition/#routing-libraries) like react-router, Gatsby or Next.js in our guide.
+Detalhamos a [integração com bibliotecas de roteamento de terceiros](/guides/composition/#routing-libraries) como react-router, Gatsby ou Next.js em nosso guia.
 
 ## Como posso acessar o elemento DOM?
 
@@ -145,7 +145,7 @@ indicando que você pode acessar o elemento DOM como uma referência.
 
 Se você está vendo uma mensagem de aviso no console como a abaixo, você provavelmente tem várias instâncias de `@material-ui/styles` inicializadas na página.
 
-> It looks like there are several instances of `@material-ui/styles` initialized in this application. This may cause theme propagation issues, broken class names, specificity issues, and make your application bigger without a good reason.
+> It looks like there are several instances of `@material-ui/styles` initialized in this application. Isso pode causar problemas de propagação de temas, nomes de classes quebrados, problemas de especificidade e tornar sua aplicação maior sem um bom motivo.
 
 ### Possíveis razões
 
@@ -157,7 +157,7 @@ Existem várias razões comuns para isso acontecer:
 
 ### Módulo duplicado em node_modules
 
-If you think that the issue may be in the duplication of the @material-ui/styles module somewhere in your dependencies, there are several ways to check this. Você pode usar os comandos `npm ls @material-ui/styles`, `yarn list @material-ui/styles` ou `find -L ./node_modules | grep /@material-ui/styles/package.json` na pasta da sua aplicação.
+Se você acha que o problema pode estar na duplicação do módulo @material-ui/styles em algum lugar de suas dependências, há várias maneiras de verificar isto. Você pode usar os comandos `npm ls @material-ui/styles`, `yarn list @material-ui/styles` ou `find -L ./node_modules | grep /@material-ui/styles/package.json` na pasta da sua aplicação.
 
 Se nenhum desses comandos identificou a duplicação, tente analisar seu pacote para encontrar instâncias duplicadas do @material-ui/styles. Você pode somente checar em fontes do seu pacote, ou usar uma ferramenta como [source-map-explorer](https://github.com/danvk/source-map-explorer) ou [webpack-bundle-analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer).
 
@@ -177,7 +177,7 @@ Se você estiver usando o webpack, você pode mudar a maneira como ele irá reso
 
 ### Uso com Lerna
 
-One possible fix to get @material-ui/styles to run in a Lerna monorepo across packages is to [hoist](https://github.com/lerna/lerna/blob/master/doc/hoist.md) shared dependencies to the root of your monorepo file. Tente executar a opção de auto inicialização com o parâmetro --hoist.
+Uma possível correção para que o @material-ui/styles seja executado em um monorepo Lerna através de pacotes é fazer [hoist](https://github.com/lerna/lerna/blob/master/doc/hoist.md) das dependências compartilhadas para a raiz do seu arquivo monorepo. Tente executar a opção de auto inicialização com o parâmetro --hoist.
 
 ```sh
 lerna bootstrap --hoist
@@ -227,7 +227,7 @@ Se você tiver várias aplicações em execução em uma página, considere o us
 
 ## Minha aplicaçao não é renderizada corretamente no servidor
 
-Se isso não funcionar, em 99% dos casos é um problema de configuração. A missing property, a wrong call order, or a missing component – server-side rendering is strict about configuration, and the best way to find out what's wrong is to compare your project to an already working setup. Check out the [reference implementations](/guides/server-rendering/#reference-implementations), bit by bit.
+Se isso não funcionar, em 99% dos casos é um problema de configuração. Uma propriedade ausente, uma ordem de chamada errada ou um componente ausente – a renderização do lado do servidor é rigorosa sobre configuração, e a melhor maneira de descobrir o que há de errado é comparar seu projeto com uma configuração já em funcionamento. Confira as [implementações de referência](/guides/server-rendering/#reference-implementations), pouco a pouco.
 
 ### O CSS funciona apenas no primeiro carregamento, em seguida, para de funcionar
 
@@ -235,7 +235,7 @@ O CSS é gerado apenas no primeiro carregamento da página. Em seguida, o CSS n�
 
 #### Ação a tomar
 
-The styling solution relies on a cache, the *sheets manager*, to only inject the CSS once per component type (if you use two buttons, you only need the CSS of the button one time). Você precisa criar **uma nova instância de `sheets` para cada requisição **.
+A solução de estilo depende de um cache, o *sheets manager*, para injetar apenas o CSS uma vez por tipo de componente (se você usar dois botões, você só precisa do CSS do botão uma vez). Você precisa criar **uma nova instância de `sheets` para cada requisição **.
 
 *exemplo de correção:*
 
@@ -339,7 +339,7 @@ function Portal({ children, container }) {
 }
 ```
 
-Com esta simples heurística `Portal` pode renderizar novamente depois de montado porque os refs estão atualizados antes de qualquer efeito ser executado. No entanto, só porque um ref está atualizado não significa que ele aponta para uma instância definida. Se o ref estiver anexado a um componente de encaminhamento de ref não estará claro quando o nó DOM estará disponível. In the example above, the `Portal` would run an effect once, but might not re-render because `ref.current` is still `null`. This is especially apparent for React.lazy components in Suspense. A implementação acima também não poderia explicar uma alteração no nó DOM.
+Com esta simples heurística `Portal` pode renderizar novamente depois de montado porque os refs estão atualizados antes de qualquer efeito ser executado. No entanto, só porque um ref está atualizado não significa que ele aponta para uma instância definida. Se o ref estiver anexado a um componente de encaminhamento de ref não estará claro quando o nó DOM estará disponível. No exemplo acima, o `Portal` executaria o efeito uma vez, mas pode não renderizar novamente porque `ref. urrent` ainda é `null`. Isso é especialmente aparente para componentes React.lazy em Suspense. A implementação acima também não poderia explicar uma alteração no nó DOM.
 
 É por isso que precisamos de uma propriedade com o nó DOM real para que o React possa tomar cuidado ao determinar quando o `Portal` deve renderizar novamente:
 
@@ -361,7 +361,7 @@ function App() {
 
 ## Para que serve a dependência do clsx?
 
-[clsx](https://github.com/lukeed/clsx) is a tiny utility for constructing `className` strings conditionally.
+[clsx](https://github.com/lukeed/clsx) é um pequeno utilitário para construir strings `className` condicionalmente.
 
 Em vez de escrever:
 

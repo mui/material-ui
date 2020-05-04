@@ -67,7 +67,6 @@ function acceptanceTest() {
   const MyThemeInstance: MyTheme = {
     fontFamily: 'monospace',
   };
-  // tslint:disable-next-line: no-empty-interface
   interface MyComponentProps extends StyledProps {
     defaulted: string;
   }
@@ -85,10 +84,14 @@ function acceptanceTest() {
       fontFamily: theme.fontFamily,
     }),
   );
+  const StyledInferedPropsMyComponent = styled(MyComponent)(({ defaulted }) => ({
+    content: defaulted,
+  }));
   const renderedMyComponent = (
     <React.Fragment>
       <MyComponent className="test" />
       <StyledMyComponent theme={MyThemeInstance} />
+      <StyledInferedPropsMyComponent defaulted="Hi!" />
     </React.Fragment>
   );
 }

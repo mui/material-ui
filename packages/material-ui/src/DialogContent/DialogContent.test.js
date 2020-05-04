@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
 import DialogContent from './DialogContent';
@@ -30,6 +30,6 @@ describe('<DialogContent />', () => {
   it('should render children', () => {
     const children = <p />;
     const wrapper = shallow(<DialogContent>{children}</DialogContent>);
-    assert.strictEqual(wrapper.children().equals(children), true);
+    expect(wrapper.children().equals(children)).to.equal(true);
   });
 });

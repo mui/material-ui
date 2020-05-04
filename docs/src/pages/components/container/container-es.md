@@ -11,7 +11,7 @@ Si bien los contenedores pueden anidarse, la mayoria de los layouts no requieren
 
 ## Fluido
 
-El ancho de un container está limitado por el valor de la propiedad `maxWidth`.
+A fluid container width is bounded by the `maxWidth` property value.
 
 {{"demo": "pages/components/container/SimpleContainer.js", "iframe": true, "defaultCodeOpen": false}}
 

@@ -36,7 +36,7 @@ export interface SelectProps
    */
   IconComponent?: React.ElementType;
   /**
-   * The `id` of the wrapper element or the `select` elment when `native`.
+   * The `id` of the wrapper element or the `select` element when `native`.
    */
   id?: string;
   /**

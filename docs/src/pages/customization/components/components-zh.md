@@ -34,9 +34,9 @@ The list of classes for each component is documented in the component API page, 
 
 {{"demo": "pages/customization/components/ClassesNesting.js"}}
 
-### Overriding styles with global class names
+### 使用全局的类名来重写样式
 
-[Follow this section](/styles/advanced/#with-material-ui-core).
+按照这一部分
 
 ### 使用开发工具
 
@@ -144,7 +144,7 @@ const StyledButton = withStyles({
 
 ### 在同一样式表中，使用 `$ruleName` 引用本地规则
 
-The [jss-nested](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-nested) plugin (available by default) can make the process of increasing specificity easier.
+[ jss-nested ](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-nested)插件 (默认情况下可用) 可以使增加特殊性这个过程更容易。
 
 ```js
 const styles = {
@@ -233,9 +233,9 @@ Material-UI尝试实现所有这些变体。 请参阅[支持的组件](/getting
 
 本节的示例介绍了如何更改按钮的字体大小。
 
-### Theme variables
+### 主题变量
 
-You can adjust the [theme configuration variables](/customization/theming/#theme-configuration-variables).
+你可以调整[主题配置中的变量](/customization/theming/#theme-configuration-variables)
 
 ```jsx
 const theme = createMuiTheme({
@@ -251,7 +251,7 @@ const theme = createMuiTheme({
 
 ### 全局CSS覆盖
 
-您还可以使用CSS自定义组件的所有实例。 Components expose [global class names](/styles/advanced/#with-material-ui-core) to enable this. 它与您自定义Bootstrap的方式非常相似。
+您还可以使用CSS自定义组件的所有实例。 您可以使用我们公开的[全局类名](/styles/advanced/#with-material-ui-core)来实现。 它与您自定义Bootstrap的方式非常相似。
 
 ```jsx
 const GlobalCss = withStyles({

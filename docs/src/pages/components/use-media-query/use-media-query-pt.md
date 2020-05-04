@@ -15,11 +15,11 @@ Algumas das principais características:
 
 ## Consulta de mídia simples
 
-Você deve fornecer uma consulta de mídia ao primeiro argumento do hook. The media query string can be any valid CSS media query, e.g. [`'(prefers-color-scheme: dark)'`](/customization/palette/#user-preference).
+Você deve fornecer uma consulta de mídia ao primeiro argumento do hook. A string de consulta de mídia pode ser qualquer consulta de mídia CSS válida, por exemplo [`'(prefers-color-scheme: dark)'`](/customization/palette/#user-preference).
 
 {{"demo": "pages/components/use-media-query/SimpleMediaQuery.js", "defaultCodeOpen": true}}
 
-⚠️ You can't use `'print'` per browsers limitation, e.g. [Firefox](https://bugzilla.mozilla.org/show_bug.cgi?id=774398).
+⚠️ Você não pode usar `'print'` devido a limitação de navegadores, por exemplo, este bug [Firefox](https://bugzilla.mozilla.org/show_bug.cgi?id=774398).
 
 ## Usando helpers de ponto de quebra do Material-UI
 
@@ -102,7 +102,7 @@ Primeiro, você precisa adivinhar as características da solicitação do client
 
 Por fim, você precisa fornecer uma implementação de [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) para o `useMediaQuery` com as características adivinhadas anteriormente. É recomendável usar [css-mediaquery](https://github.com/ericf/css-mediaquery) para emular o matchMedia.
 
-For instance on the server-side:
+Por exemplo, no lado do servidor:
 
 ```js
 import ReactDOMServer from 'react-dom/server';
@@ -114,7 +114,7 @@ function handleRender(req, res) {
   const deviceType = parser(req.headers['user-agent']).device.type || 'desktop';
   const ssrMatchMedia = query => ({
     matches: mediaQuery.match(query, {
-      // The estimated CSS width of the browser.
+      // O CSS estimado pelo navegador.
       width: deviceType === 'mobile' ? '0px' : '1024px',
     }),
   });
@@ -123,7 +123,7 @@ function handleRender(req, res) {
     <ThemeProvider
       theme={{
         props: {
-          // Change the default options of useMediaQuery
+          // Modifica as opções padrão de useMediaQuery
           MuiUseMediaQuery: { ssrMatchMedia },
         },
       }}
@@ -138,7 +138,7 @@ function handleRender(req, res) {
 
 {{"demo": "pages/components/use-media-query/ServerSide.js", "defaultCodeOpen": false}}
 
-Make sure you provide the same custom match media implementation to the client-side to guarantee a hydration match.
+Certifique-se de fornecer a mesma implementação de mídia de correspondência customizada para o lado do cliente para garantir uma correspondência de hidratação.
 
 ## Migrando de `withWidth()`
 
@@ -155,9 +155,9 @@ O componente de ordem superior `withWidth()` injeta a largura da tela da página
 1. `query` (*String* | *Function*): Uma string representando a consulta de mídia a ser manipulada ou uma função de retorno de chamada aceitando o tema (no contexto) que retorna uma string.
 2. `options` (*Object* [opcional]): 
   - `options.defaultMatches` (*Boolean* [opcional]): Como `window.matchMedia()` não esta disponível no servidor, retornamos uma correspondência padrão durante a primeira montagem. O valor padrão é `false`.
-  - `options.matchMedia` (*Function* [opcional]) Você pode fornecer sua própria implementação de *matchMedia*. This can be used for handling an iframe content window.
+  - `options.matchMedia` (*Function* [opcional]) Você pode fornecer sua própria implementação de *matchMedia*. Isso pode ser usado para manipular uma janela de conteúdo do iframe.
   - `options.noSsr` (*Boolean* [opcional]): Padrão é `false`. Para realizar a reconciliação de renderização do lado do servidor, ele precisa renderizar duas vezes. Uma primeira vez sem nada e uma segunda vez com os filhos. Este ciclo de renderização de dupla passagem tem uma desvantagem. É mais lento. Você pode definir esse sinalizador para `true` se você **não estiver fazendo a renderização do lado do servidor**.
-  - `options.ssrMatchMedia` (*Function* [optional]) You can provide your own implementation of *matchMedia* in a [server-side rendering context](#server-side-rendering).
+  - `options.ssrMatchMedia` (*Function* [opcional]) Você pode fornecer sua própria implementação de *matchMedia* em um [contexto de renderização do lado do servidor](#server-side-rendering).
 
 Nota: Você pode alterar as opções padrão usando [`default props`](/customization/globals/#default-props), este recurso pertence ao tema através da chave `MuiUseMediaQuery`.
 

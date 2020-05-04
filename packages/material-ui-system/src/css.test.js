@@ -1,4 +1,4 @@
-import { assert } from 'chai';
+import { expect } from 'chai';
 import css from './css';
 import style from './style';
 
@@ -11,8 +11,8 @@ describe('css', () => {
   it('should work', () => {
     const palette = css(textColor);
 
-    assert.strictEqual(palette.filterProps.length, 2);
-    assert.deepEqual(
+    expect(palette.filterProps.length).to.equal(2);
+    expect(
       palette({
         theme: {},
         css: {
@@ -20,10 +20,9 @@ describe('css', () => {
           padding: 10,
         },
       }),
-      {
-        padding: 10,
-        color: 'red',
-      },
-    );
+    ).to.deep.equal({
+      padding: 10,
+      color: 'red',
+    });
   });
 });

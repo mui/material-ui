@@ -37,7 +37,7 @@ function useFirstRender() {
   return firstRenderRef.current;
 }
 
-acceptLanguage.languages(['en', 'zh']);
+acceptLanguage.languages(['en', 'zh', 'pt']);
 
 function loadCrowdin() {
   window._jipt = [];
@@ -335,13 +335,16 @@ MyApp.propTypes = {
 };
 
 MyApp.getInitialProps = async ({ ctx, Component }) => {
-  let pageProps = { userLanguage: ctx.query.userLanguage };
+  let pageProps = {};
 
   if (Component.getInitialProps) {
     pageProps = await Component.getInitialProps(ctx);
   }
 
   return {
-    pageProps,
+    pageProps: {
+      userLanguage: ctx.query.userLanguage || 'en',
+      ...pageProps,
+    },
   };
 };

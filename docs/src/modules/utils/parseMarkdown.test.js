@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { getContents } from './parseMarkdown';
+import { getContents, prepareMarkdown } from './parseMarkdown';
 
 describe('parseMarkdown', () => {
   describe('getContents', () => {
@@ -21,6 +21,45 @@ describe('parseMarkdown', () => {
           '# SomeGuide\n```jsx\n<Button props={{\nfoo: 1\n}}',
         ]);
       });
+    });
+  });
+
+  describe('prepareMarkdown', () => {
+    it('returns the table of contents with html and emojis stripped', () => {
+      const markdown = `
+# Support
+## Community help (free)
+### GitHub <img src="/static/images/logos/github.svg" width="24" height="24" alt="GitHub logo" loading="lazy" />
+### Unofficial 👍
+### Warning ⚠️
+`;
+      // mock require.context
+      function requireRaw() {
+        return markdown;
+      }
+      requireRaw.keys = () => ['index.md'];
+
+      const {
+        docs: {
+          en: { toc },
+        },
+      } = prepareMarkdown({
+        pageFilename: 'test',
+        requireRaw,
+      });
+
+      expect(toc).to.have.deep.ordered.members([
+        {
+          children: [
+            { hash: 'github', level: 3, text: 'GitHub' },
+            { hash: 'unofficial', level: 3, text: 'Unofficial' },
+            { hash: 'warning', level: 3, text: 'Warning' },
+          ],
+          hash: 'community-help-free',
+          level: 2,
+          text: 'Community help (free)',
+        },
+      ]);
     });
   });
 });

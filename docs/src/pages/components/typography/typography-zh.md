@@ -4,17 +4,17 @@ components: Typography
 
 # Typography 文字铸排
 
-<p class="description">使用活版印刷可以尽可能清晰、高效地呈现您的设计和内容。</p>
+<p class="description">使用文字铸排可以尽可能清晰、高效地展示您的设计和内容。</p>
 
-一次太多的类型大小和样式会破坏任何布局。 [版式比例](https://material.io/design/typography/#type-scale)是一组有限的类型大小, 与布局网格一起工作很好。
+大量字阶和样式会影响任何布局的美观性。 一个带有限量字阶的[文字铸排比例（typographic scale）](https://material.io/design/typography/#type-scale)能够和排版网格搭配工作。
 
-## 常规
+## 概述
 
-*Roboto*字体将**不** 由Material-UI 自动加载。 开发人员负责加载应用程序中使用的所有字体。 Roboto字体有几个简单的方法来开始。 For more advanced configuration, check out [the theme customization section](/customization/typography/).
+Material-UI **不会**自动加载 *Roboto* 字体。 开发人员需要自行加载应用在中使用的所有字体。 有这样几个简单的方法来加载 Roboto 字体。 若想查询更高级的配置，请参阅[主题定制部分](/customization/typography/)。
 
 ## Roboto 字体 CDN
 
-Shown below is a sample link markup used to load the Roboto font from a CDN:
+以下是一个简单 link markup，可以用于从 CDN 加载 Roboto字体：
 
 ```html
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
@@ -22,19 +22,19 @@ Shown below is a sample link markup used to load the Roboto font from a CDN:
 
 ## 通过 npm 安装
 
-通过在终端中键入以下命令, 可以 [安装](https://www.npmjs.com/package/typeface-roboto):
+通过在终端键入以下命令，你可以这样[安装字体](https://www.npmjs.com/package/typeface-roboto)：
 
 `npm install typeface-roboto --save`
 
-然后, 您可以将其导入到您的入口点。
+然后，你可以在开始文件中导入：
 
 ```js
 import 'typeface-roboto';
 ```
 
-有关详细信息, 请查看 [typeface](https://github.com/KyleAMathews/typefaces/tree/master/packages/roboto) 项目。
+欲知更多信息，请查看 [typeface](https://github.com/KyleAMathews/typefaces/tree/master/packages/roboto) 项目。
 
-⚠️使用这种方法时要小心。 确保您的包不急于加载所有字体变体 (100/300/400/500/700/900, 斜体/常规, SVG/woff)。 内联所有字体文件可以显着增加捆绑包的大小。 Material-UI default typography configuration only relies on 300, 400, 500, and 700 font weights.
+⚠️使用这种方法时要格外小心。 确保您的包不会一次性加载所有字体的变体 (100/300/400/500/700/900，italic/regular，SVG/woff)。 当内联所有字体文件的时候，捆绑包的大小会显著增加。 Material-UI 默认的排版配置仅依赖于300，400和500的字重。
 
 ## 组件
 
@@ -42,24 +42,24 @@ import 'typeface-roboto';
 
 ## 主题
 
-在某些情况下，您可能无法使用 `Typography` 组件。 希望您可以利用主题的 [`排版`](/customization/default-theme/?expand-path=$.typography) 键。
+某些情况下，您可能无法使用 `Typography` 组件。 希望您可以利用 theme 里 [`typography `](/customization/default-theme/?expand-path=$.typography) 的一些值。
 
 {{"demo": "pages/components/typography/TypographyTheme.js"}}
 
 ## 改变语义元素
 
-Typography组件使用 `variantMapping` 属性将某一种UI变体与某一种语义元素标签相关联。 有一点需要意识到： 一个Typography的style是独立于其底层语义化标签的
+文字铸排组件通过 `variantMapping` 属性关联了一种 UI 变体和某一种语义元素。 请注意，文字的样式是和最底层的语义元素分开的。
 
-- You can change the underlying element for a one time occasion with the `component` property:
+- 使用 `component` 属性，您可以一次性改变底层元素的样式：
 
 ```jsx
-{/* There is already an h1 in the page, let's not duplicate it. */}
+{/* 在此页面中已经有一个 h1 标签，我们不会再重复。 */}
 <Typography variant="h1" component="h2">
-  h1. Heading
+  h1. 标题
 </Typography>
 ```
 
-- 你也可以通过theme[全局改变](/customization/globals/#default-props)对应关联:
+- 您也可以[使用 theme](/customization/globals/#default-props) 来修改全局字体映射。
 
 ```js
 const theme = createMuiTheme({
@@ -82,10 +82,10 @@ const theme = createMuiTheme({
 });
 ```
 
-## 可访问性
+## 无障碍设计
 
-A few key factors to follow for an accessible typography:
+考虑到文字铸排的无障碍设计，需要遵循以下几个关键点：
 
-- **Color**. Provide enough contrast between text and its background, check out the minimum recommended [WCAG 2.0 color contrast ratio](https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html) (4.5:1).
-- **Font size**. Use [relative units (rem)](/customization/typography/#font-size) to accommodate the user's settings.
-- **Heading hierarchy**. [Don't skip](https://www.w3.org/WAI/tutorials/page-structure/headings/) heading levels. In order to solve this problem, you need to [separate the semantics from the style](#changing-the-semantic-element).
+- **字体颜色**。 在文本颜色和背景颜色间提供足够的对比性，请参考 [WCAG 2.0 颜色对比度](https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html) 的最低标准（4.5:1）。
+- **字体大小（字阶）**。 请使用[相对单位（rem）](/customization/typography/#font-size)来适应用户的设置。
+- **标题等级**。 请不要跳过[标题的等级](https://www.w3.org/WAI/tutorials/page-structure/headings/) 。 你需要将 [ style 从语义元素中分离开来](#changing-the-semantic-element)，这样能够解决这个问题。

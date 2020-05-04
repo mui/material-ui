@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
 import Divider from './Divider';
@@ -29,44 +29,44 @@ describe('<Divider />', () => {
 
   it('should set the absolute class', () => {
     const wrapper = shallow(<Divider absolute />);
-    assert.strictEqual(wrapper.hasClass(classes.absolute), true);
+    expect(wrapper.hasClass(classes.absolute)).to.equal(true);
   });
 
   it('should set the light class', () => {
     const wrapper = shallow(<Divider light />);
-    assert.strictEqual(wrapper.hasClass(classes.light), true);
+    expect(wrapper.hasClass(classes.light)).to.equal(true);
   });
 
   it('should set the flexItem class', () => {
     const wrapper = shallow(<Divider flexItem />);
-    assert.strictEqual(wrapper.hasClass(classes.flexItem), true);
+    expect(wrapper.hasClass(classes.flexItem)).to.equal(true);
   });
 
   describe('prop: variant', () => {
     it('should default to variant="fullWidth"', () => {
       const wrapper = shallow(<Divider />);
-      assert.strictEqual(wrapper.hasClass(classes.inset), false);
-      assert.strictEqual(wrapper.hasClass(classes.middle), false);
+      expect(wrapper.hasClass(classes.inset)).to.equal(false);
+      expect(wrapper.hasClass(classes.middle)).to.equal(false);
     });
 
     describe('prop: variant="fullWidth" ', () => {
       it('should render with the root and default class', () => {
         const wrapper = shallow(<Divider />);
-        assert.strictEqual(wrapper.hasClass(classes.root), true);
+        expect(wrapper.hasClass(classes.root)).to.equal(true);
       });
     });
 
     describe('prop: variant="inset" ', () => {
       it('should set the inset class', () => {
         const wrapper = shallow(<Divider variant="inset" />);
-        assert.strictEqual(wrapper.hasClass(classes.inset), true);
+        expect(wrapper.hasClass(classes.inset)).to.equal(true);
       });
     });
 
     describe('prop: variant="middle"', () => {
       it('should set the middle class', () => {
         const wrapper = shallow(<Divider variant="middle" />);
-        assert.strictEqual(wrapper.hasClass(classes.middle), true);
+        expect(wrapper.hasClass(classes.middle)).to.equal(true);
       });
     });
   });
@@ -74,18 +74,18 @@ describe('<Divider />', () => {
   describe('role', () => {
     it('avoids adding implicit aria semantics', () => {
       const wrapper = mount(<Divider />);
-      assert.strictEqual(wrapper.find('hr').props().role, undefined);
+      expect(wrapper.find('hr').props().role).to.equal(undefined);
     });
 
     it('adds a proper role if none is specified', () => {
       const wrapper = mount(<Divider component="div" />);
-      assert.strictEqual(wrapper.find('div').props().role, 'separator');
+      expect(wrapper.find('div').props().role).to.equal('separator');
     });
 
     it('overrides the computed role with the provided one', () => {
       // presentation is the only valid aria role
       const wrapper = mount(<Divider role="presentation" />);
-      assert.strictEqual(wrapper.find('hr').props().role, 'presentation');
+      expect(wrapper.find('hr').props().role).to.equal('presentation');
     });
   });
 });

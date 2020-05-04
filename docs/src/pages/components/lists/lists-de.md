@@ -95,4 +95,4 @@ The use of [react-window](https://github.com/bvaughn/react-window) when possible
 
 ## Individuelle Anpassung
 
-👑 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/components/menu-list).
+👑 Wenn Sie nach Inspiration suchen, sehen sie sich [MUI Treasury's Anpassungs-Beispiele](https://mui-treasury.com/styles/list-item) an.

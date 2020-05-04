@@ -23,7 +23,7 @@ Una tabla de datos contiene una cabecera en la parte superior con los nombres de
 
 Un checkbox debe acompañar a cada fila por si el usuario necesita seleccionar o manipular datos.
 
-Para facilitar la accesibilidad, la primera columna es un elemento `<th>`, con un `scope` de `"row"`. Esto permite a los lectores de pantalla identificar el valor de una celda por el nombre de su fila y columna.
+For accessibility, the first column is set to be a `<th>` element, with a `scope` of `"col"`. Esto permite a los lectores de pantalla identificar el valor de una celda por el nombre de su fila y columna.
 
 ## Tabla Sencilla
 
@@ -78,6 +78,12 @@ El atributo `Action`del componente `TablePagination` permite implementar accione
 An example of a table with scrollable rows and fixed column headers. It leverages the `stickyHeader` prop (⚠️ no IE 11 support).
 
 {{"demo": "pages/components/tables/StickyHeadTable.js", "bg": true}}
+
+## Collapsible table
+
+An example of a table with expandable rows, revealing more information. It utilizes the [`Collapse`](/api/collapse/) component.
+
+{{"demo": "pages/components/tables/CollapsibleTable.js", "bg": true}}
 
 ## Tabla Expandible
 

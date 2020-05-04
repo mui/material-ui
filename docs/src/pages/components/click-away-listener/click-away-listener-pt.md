@@ -23,3 +23,11 @@ Observe que o componente aceita apenas um elemento filho. Você pode encontrar d
 A demonstração a seguir usa [`Portal`](/components/portal/) para renderizar o menu suspenso em uma nova "subárvore" fora da hierarquia atual do DOM.
 
 {{"demo": "pages/components/click-away-listener/PortalClickAway.js"}}
+
+## Eventos
+
+Por padrão, o componente responde aos eventos de clique e de toque final (click + touch end). No entanto, você pode configurá-lo para responder aos eventos de mouse pressionado e toque inicial (mouse down + touch start).
+
+{{"demo": "pages/components/click-away-listener/LeadingClickAway.js"}}
+
+> ⚠️ Neste modo, apenas as interações na barra de rolagem do documento são ignoradas.

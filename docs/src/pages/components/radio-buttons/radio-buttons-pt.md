@@ -17,21 +17,21 @@ Os botões de opção devem ter a opção mais comumente usada selecionada por p
 
 {{"demo": "pages/components/radio-buttons/RadioButtonsGroup.js"}}
 
-## Standalone radio buttons
+## Botões de opção independentes
 
-`Radio` can also be used standalone, without the RadioGroup wrapper.
+`Radio` também pode ser usado de forma independente, sem o RadioGroup wrapper.
 
 {{"demo": "pages/components/radio-buttons/RadioButtons.js"}}
 
 ## Posicionamento do Rótulo
 
-You can change the placement of the label with the `FormControlLabel` component's `labelPlacement` prop:
+Você pode alterar o posicionamento do rótulo com o componente `FormControlLabel` e a propriedade `labelPlacement`:
 
 {{"demo": "pages/components/radio-buttons/FormControlLabelPlacement.js"}}
 
-## Show error
+## Exibição de erro
 
-In general, radio buttons should have a value selected by default. If this is not the case, you can display an error if no value is selected when the form is submitted:
+Em geral, os botões de opção devem ter um valor selecionado por padrão. Se esse não for o caso, você pode exibir um erro se nenhum valor estiver selecionado quando o formulário for submetido:
 
 {{"demo": "pages/components/radio-buttons/ErrorRadios.js"}}
 

@@ -115,7 +115,7 @@ const OPTIONS = Array.from(new Array(10000))
 
 const renderGroup = (params) => [
   <ListSubheader key={params.key} component="div">
-    {params.key}
+    {params.group}
   </ListSubheader>,
   params.children,
 ];

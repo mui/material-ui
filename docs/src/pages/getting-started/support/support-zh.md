@@ -85,7 +85,7 @@ The end result? All of the capabilities you expect from commercial-grade softwar
 
 ### 定制工作🛠
 
-调整Material-UI以满足特定要求。 给我们您的需求摘要；如果可以的话，我们会帮助您。 我们可能：
+调整Material-UI以满足特定要求。 Give us a summary of your needs and we'll help you if we can. 我们可能：
 
 - 如果工作简单明了，会给您估计时间和价格
 - 建议可能不需要 Material-UI 的替代方法

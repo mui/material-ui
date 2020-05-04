@@ -47,7 +47,7 @@ export default function responsiveFontSizes(themeInput, options = {}) {
     if (!isUnitless(lineHeight) && !disableAlign) {
       throw new Error(
         [
-          `Material-UI: unsupported non-unitless line height with grid alignment.`,
+          'Material-UI: Unsupported non-unitless line height with grid alignment.',
           'Use unitless line heights instead.',
         ].join('\n'),
       );

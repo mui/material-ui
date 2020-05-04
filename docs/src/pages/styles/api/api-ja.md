@@ -40,11 +40,11 @@ This function doesn't really "do anything" at runtime, it's just the identity fu
 
 ### 引数
 
-1. `styles` (*Function | Object*): A function generating the styles or a styles object.
+1. `styles` (*Object*): A styles object.
 
 ### 戻り値
 
-`styles`: A function generating the styles or a styles object.
+`styles`: A styles object.
 
 ### 例
 

@@ -12,7 +12,7 @@
 - **lg,** large: 1280px
 - **xl,** extra-large: 1920px
 
-These [breakpoint values](/customization/default-theme/?expand-path=$.breakpoints.values) are used to determine breakpoint ranges. Диапазон начинается с значения первой точки (включительно) до следующей, но не включая её:
+Эти [ значения контрольных точек](/customization/default-theme/?expand-path=$.breakpoints.values) используются для определения диапазонов. Диапазон начинается с значения первой точки (включительно) до следующей, но не включая её:
 
 ```js
 значение             |0px     600px    960px    1280px   1920px
@@ -21,7 +21,7 @@ These [breakpoint values](/customization/default-theme/?expand-path=$.breakpoint
 диапазон             |   xs   |   m   |   md |   lg   |   xl
 ```
 
-Эти значения всегда можно изменить. You will find them in the theme, in the [`breakpoints.values`](/customization/default-theme/?expand-path=$.breakpoints.values) object.
+Эти значения всегда можно изменить. Вы найдете их в теме, в объекте [`breakpoints.values`](/customization/default-theme/?expand-path=$.breakpoints.values).
 
 The breakpoints are used internally in various components to make them responsive, but you can also take advantage of them for controlling the layout of your application through the [Grid](/components/grid/) and [Hidden](/components/hidden/) components.
 
@@ -99,8 +99,8 @@ In the following demo, we change the rendered DOM element (*em*, <u>u</u>, ~~del
 const styles = theme => ({
   root: {
     backgroundColor: 'blue',
-    // Match [md, ∞[
-    //       [960px, ∞[
+    // Match [md, ∞)
+    //       [960px, ∞)
     [theme.breakpoints.up('md')]: {
       backgroundColor: 'red',
     },
@@ -124,9 +124,9 @@ const styles = theme => ({
 const styles = theme => ({
   root: {
     backgroundColor: 'blue',
-    // Match [0, md + 1[
-    //       [0, lg[
-    //       [0, 1280px[
+    // Match [0, md + 1)
+    //       [0, lg)
+    //       [0, 1280px)
     [theme.breakpoints.down('md')]: {
       backgroundColor: 'red',
     },
@@ -150,9 +150,9 @@ const styles = theme => ({
 const styles = theme => ({
   root: {
     backgroundColor: 'blue',
-    // Match [md, md + 1[
-    //       [md, lg[
-    //       [960px, 1280px[
+    // Match [md, md + 1)
+    //       [md, lg)
+    //       [960px, 1280px)
     [theme.breakpoints.only('md')]: {
       backgroundColor: 'red',
     },
@@ -177,8 +177,8 @@ const styles = theme => ({
 const styles = theme => ({
   root: {
     backgroundColor: 'blue',
-    // Match [sm, md + 1[
-    //       [sm, lg[
+    // Match [sm, md + 1)
+    //       [sm, lg)
     //       [600px, 1280px[
     [theme.breakpoints.between('sm', 'md')]: {
       backgroundColor: 'red',

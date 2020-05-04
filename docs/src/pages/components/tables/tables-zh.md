@@ -23,7 +23,7 @@ components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead,
 
 若用户想要选择或操作数据，那则应该咋每一行加入复选框。
 
-考虑到可访问性，表格的第一列应设置为 `<th>` 元素，而此元素附着了一个指定为 `"row"` 的 `scope` 属性。 这样一来，屏幕阅读器就可以通过行和列的名字，来定位到某个单元格的值。
+鉴于无障碍设计的考虑，表格的第一栏应该是一个 `<th>` 元素，它附着了 `"row"` 的 `范围` 。 这样一来，屏幕阅读器就可以通过行和列的名字，来定位到某个单元格的值。
 
 ## 简单的表格
 
@@ -47,7 +47,7 @@ components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead,
 
 ## 自定义表格
 
-以下是自定义组件的一个示例。 您可以在[重写文档页面](/customization/components/)中了解更多有关此内容的信息。
+以下是自定义此组件的一个示例。 您可以在[重写文档页面](/customization/components/)中了解更多有关此内容的信息。
 
 {{"demo": "pages/components/tables/CustomizedTables.js", "bg": true}}
 
@@ -79,15 +79,21 @@ components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead,
 
 {{"demo": "pages/components/tables/StickyHeadTable.js", "bg": true}}
 
-## 合并的表格
+## Collapsible table
 
-一个简单的合并行 & 列的示例。
+An example of a table with expandable rows, revealing more information. It utilizes the [`Collapse`](/api/collapse/) component.
+
+{{"demo": "pages/components/tables/CollapsibleTable.js", "bg": true}}
+
+## 跨越表格
+
+一个行 & 列跨越的简单例子
 
 {{"demo": "pages/components/tables/SpanningTable.js", "bg": true}}
 
-## 大型列表渲染
+## 大型列表渲染（Virtualized Table）
 
-以下例子展示了将 [react-virtualized](https://github.com/bvaughn/react-virtualized) 与 `表格` 组件一起使用的方法。 它能够渲染 200 行，并且可以轻松处理更多行。 可视化优化了整体的性能。
+以下例子展示了将 [react-virtualized](https://github.com/bvaughn/react-virtualized) 与 `表格` 组件一起使用的方法。 它渲染了200多行，并且可以轻松的延展到更多行。 可视化优化了整体的性能。
 
 {{"demo": "pages/components/tables/ReactVirtualizedTable.js", "bg": true}}
 
@@ -97,9 +103,9 @@ components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead,
 
 ### material-table
 
-![点赞数](https://img.shields.io/github/stars/mbrn/material-table.svg?style=social&label=Stars) ![npm下载](https://img.shields.io/npm/dm/material-table.svg)
+![stars](https://img.shields.io/github/stars/mbrn/material-table.svg?style=social&label=Stars) ![npm下载](https://img.shields.io/npm/dm/material-table.svg)
 
-[material-table](https://github.com/mbrn/material-table) 是一款针对 React 的简洁有效的的数据库，它基于 Material-UI Table 并且添加了一些额外的功能。 而这个库则支持各种各样的使用案例（可编辑的，筛选，分组，排序，选择，国际化，树形数据等等）。 您可以查看以下这个库。
+[material-table](https://github.com/mbrn/material-table) 是一款针对 React 的简洁有效的的数据库，它基于 Material-UI Table 并且添加了一些额外的功能。 它们支持了不同的用户案例（可编辑，筛选，分组，排序，选择，国际化，树形数据等等）。 您应该看一下。
 
 {{"demo": "pages/components/tables/MaterialTableDemo.js", "bg": true}}
 

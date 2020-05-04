@@ -1,4 +1,4 @@
-import { assert } from 'chai';
+import { expect } from 'chai';
 import PropTypes from 'prop-types';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import deprecatedPropType from './deprecatedPropType';
@@ -27,7 +27,7 @@ describe('deprecatedPropType', () => {
       location,
       componentName,
     );
-    assert.strictEqual(consoleErrorMock.callCount(), 0);
+    expect(consoleErrorMock.callCount()).to.equal(0);
   });
 
   it('should warn once', () => {
@@ -43,8 +43,8 @@ describe('deprecatedPropType', () => {
       location,
       componentName,
     );
-    assert.strictEqual(consoleErrorMock.callCount(), 1);
-    assert.match(consoleErrorMock.messages()[0], /give me a reason/);
+    expect(consoleErrorMock.callCount()).to.equal(1);
+    expect(consoleErrorMock.messages()[0]).to.match(/give me a reason/);
     PropTypes.checkPropTypes(
       {
         [propName]: deprecatedPropType(PropTypes.string, 'give me a reason'),
@@ -53,6 +53,6 @@ describe('deprecatedPropType', () => {
       location,
       componentName,
     );
-    assert.strictEqual(consoleErrorMock.callCount(), 1);
+    expect(consoleErrorMock.callCount()).to.equal(1);
   });
 });

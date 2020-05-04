@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
 import ListSubheader from './ListSubheader';
@@ -28,41 +28,37 @@ describe('<ListSubheader />', () => {
 
   it('should display primary color', () => {
     const wrapper = shallow(<ListSubheader color="primary" />);
-    assert.strictEqual(
-      wrapper.hasClass(classes.colorPrimary),
-      true,
-      'should have the primary class',
-    );
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    expect(wrapper.hasClass(classes.colorPrimary)).to.equal(true);
+    expect(wrapper.hasClass(classes.root)).to.equal(true);
   });
 
   it('should display inset class', () => {
     const wrapper = shallow(<ListSubheader inset />);
-    assert.strictEqual(wrapper.hasClass(classes.inset), true);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    expect(wrapper.hasClass(classes.inset)).to.equal(true);
+    expect(wrapper.hasClass(classes.root)).to.equal(true);
   });
 
   describe('prop: disableSticky', () => {
     it('should display sticky class', () => {
       const wrapper = shallow(<ListSubheader />);
-      assert.strictEqual(wrapper.hasClass(classes.sticky), true);
+      expect(wrapper.hasClass(classes.sticky)).to.equal(true);
     });
 
     it('should not display sticky class', () => {
       const wrapper = shallow(<ListSubheader disableSticky />);
-      assert.strictEqual(wrapper.hasClass(classes.sticky), false);
+      expect(wrapper.hasClass(classes.sticky)).to.equal(false);
     });
   });
 
   describe('prop: disableGutters', () => {
     it('should not display gutters class', () => {
       const wrapper = shallow(<ListSubheader disableGutters />);
-      assert.strictEqual(wrapper.hasClass(classes.gutters), false);
+      expect(wrapper.hasClass(classes.gutters)).to.equal(false);
     });
 
     it('should display gutters class', () => {
       const wrapper = shallow(<ListSubheader />);
-      assert.strictEqual(wrapper.hasClass(classes.gutters), true);
+      expect(wrapper.hasClass(classes.gutters)).to.equal(true);
     });
   });
 });

@@ -21,7 +21,7 @@ const defaultBreakpoints = {
 export function handleBreakpoints(props, propValue, styleFromPropValue) {
   if (process.env.NODE_ENV !== 'production') {
     if (!props.theme) {
-      console.error('@material-ui/system: you are calling a style function without a theme value.');
+      console.error('Material-UI: You are calling a style function without a theme value.');
     }
   }
 

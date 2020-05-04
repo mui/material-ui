@@ -40,11 +40,11 @@ This function doesn't really "do anything" at runtime, it's just the identity fu
 
 ### Paramètres
 
-1. `styles` (*Function | Object*): A function generating the styles or a styles object.
+1. `styles` (*Object*): A styles object.
 
 ### Valeur de retour
 
-`styles`: A function generating the styles or a styles object.
+`styles`: A styles object.
 
 ### Exemples
 

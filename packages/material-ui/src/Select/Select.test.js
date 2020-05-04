@@ -331,7 +331,7 @@ describe('<Select />', () => {
         );
         expect(console.warn.callCount).to.equal(1);
         expect(console.warn.args[0][0]).to.include(
-          'Material-UI: you have provided an out-of-range value `20` for the select component.',
+          'Material-UI: You have provided an out-of-range value `20` for the select component.',
         );
       });
     });
@@ -826,7 +826,7 @@ describe('<Select />', () => {
               <MenuItem value="30">Thirty</MenuItem>
             </Select>,
           );
-        }).to.throw(/the `value` prop must be an array/);
+        }).to.throw(/Material-UI: The `value` prop must be an array/);
       });
     });
 

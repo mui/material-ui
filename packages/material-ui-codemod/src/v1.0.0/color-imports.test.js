@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import jscodeshift from 'jscodeshift';
 import transform from './color-imports';
 
@@ -22,12 +22,7 @@ describe('@material-ui/codemod', () => {
         );
 
         const expected = read('./color-imports.test/expected.js');
-
-        assert.strictEqual(
-          trim(actual),
-          trim(expected),
-          'The transformed version should be correct',
-        );
+        expect(trim(actual)).to.equal(trim(expected), 'The transformed version should be correct');
       });
     });
   });

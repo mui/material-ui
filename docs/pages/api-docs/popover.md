@@ -61,7 +61,7 @@ Any other props supplied will be provided to the root element ([Modal](/api/moda
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">.MuiPopover-root</span> | Styles applied to the root element
+| <span class="prop-name">root</span> | <span class="prop-name">.MuiPopover-root</span> | Styles applied to the root element.
 | <span class="prop-name">paper</span> | <span class="prop-name">.MuiPopover-paper</span> | Styles applied to the `Paper` component.
 
 You can override the style of the component thanks to one of these customization points:

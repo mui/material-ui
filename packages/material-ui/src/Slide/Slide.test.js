@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
 import { createMount } from '@material-ui/core/test-utils';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
@@ -51,7 +51,7 @@ describe('<Slide />', () => {
         <div id="with-slide" style={{ color: 'blue' }} />
       </Slide>,
     );
-    assert.deepEqual(wrapper.find('#with-slide').props().style, {
+    expect(wrapper.find('#with-slide').props().style).to.deep.equal({
       backgroundColor: 'yellow',
       color: 'blue',
       visibility: undefined,
@@ -101,26 +101,26 @@ describe('<Slide />', () => {
 
       describe('handleEnter()', () => {
         it('should call handleEnter', () => {
-          assert.strictEqual(handleEntering.callCount, 1);
-          assert.strictEqual(handleEntering.args[0][0], child);
+          expect(handleEntering.callCount).to.equal(1);
+          expect(handleEntering.args[0][0]).to.equal(child);
         });
       });
 
       describe('handleEntering()', () => {
         it('should reset the translate3d', () => {
-          assert.match(handleEntering.args[0][0].style.transform, /none/);
+          expect(handleEntering.args[0][0].style.transform).to.match(/none/);
         });
 
         it('should call handleEntering', () => {
-          assert.strictEqual(handleEntering.callCount, 1);
-          assert.strictEqual(handleEntering.args[0][0], child);
+          expect(handleEntering.callCount).to.equal(1);
+          expect(handleEntering.args[0][0]).to.equal(child);
         });
       });
 
       describe('handleEntered()', () => {
         it('should have called onEntered', () => {
           clock.tick(1000);
-          assert.strictEqual(handleEntered.callCount, 1);
+          expect(handleEntered.callCount).to.equal(1);
         });
       });
     });
@@ -133,23 +133,23 @@ describe('<Slide />', () => {
 
       describe('handleExit()', () => {
         it('should call handleExit', () => {
-          assert.strictEqual(handleExiting.callCount, 1);
-          assert.strictEqual(handleExiting.args[0][0], child);
+          expect(handleExiting.callCount).to.equal(1);
+          expect(handleExiting.args[0][0]).to.equal(child);
         });
       });
 
       describe('handleExiting()', () => {
         it('should call onExiting', () => {
-          assert.strictEqual(handleExiting.callCount, 1);
-          assert.strictEqual(handleExiting.args[0][0], child);
+          expect(handleExiting.callCount).to.equal(1);
+          expect(handleExiting.args[0][0]).to.equal(child);
         });
       });
 
       describe('handleExited()', () => {
         it('should call onExited', () => {
           clock.tick(1000);
-          assert.strictEqual(handleExited.callCount, 1);
-          assert.strictEqual(handleExited.args[0][0], child);
+          expect(handleExited.callCount).to.equal(1);
+          expect(handleExited.args[0][0]).to.equal(child);
         });
       });
     });
@@ -177,16 +177,14 @@ describe('<Slide />', () => {
     });
 
     it('should create proper easeOut animation onEntering', () => {
-      assert.match(
-        handleEntering.args[0][0].style.transition,
+      expect(handleEntering.args[0][0].style.transition).to.match(
         /transform 556ms cubic-bezier\(0(.0)?, 0, 0.2, 1\)( 0ms)?/,
       );
     });
 
     it('should create proper sharp animation onExit', () => {
       wrapper.setProps({ in: false });
-      assert.match(
-        handleExit.args[0][0].style.transition,
+      expect(handleExit.args[0][0].style.transition).to.match(
         /transform 446ms cubic-bezier\(0.4, 0, 0.6, 1\)( 0ms)?/,
       );
     });
@@ -203,7 +201,7 @@ describe('<Slide />', () => {
       });
 
       const transition2 = child.style.transform;
-      assert.notStrictEqual(transition1, transition2);
+      expect(transition1).to.not.equal(transition2);
     });
   });
 
@@ -255,8 +253,7 @@ describe('<Slide />', () => {
       it('should set element transform and transition in the `left` direction', () => {
         wrapper.setProps({ direction: 'left' });
         wrapper.setProps({ in: true });
-        assert.strictEqual(
-          nodeEnterTransformStyle,
+        expect(nodeEnterTransformStyle).to.equal(
           `translateX(${global.innerWidth}px) translateX(-300px)`,
         );
       });
@@ -264,14 +261,13 @@ describe('<Slide />', () => {
       it('should set element transform and transition in the `right` direction', () => {
         wrapper.setProps({ direction: 'right' });
         wrapper.setProps({ in: true });
-        assert.strictEqual(nodeEnterTransformStyle, 'translateX(-800px)');
+        expect(nodeEnterTransformStyle).to.equal('translateX(-800px)');
       });
 
       it('should set element transform and transition in the `up` direction', () => {
         wrapper.setProps({ direction: 'up' });
         wrapper.setProps({ in: true });
-        assert.strictEqual(
-          nodeEnterTransformStyle,
+        expect(nodeEnterTransformStyle).to.equal(
           `translateY(${global.innerHeight}px) translateY(-200px)`,
         );
       });
@@ -279,14 +275,14 @@ describe('<Slide />', () => {
       it('should set element transform and transition in the `down` direction', () => {
         wrapper.setProps({ direction: 'down' });
         wrapper.setProps({ in: true });
-        assert.strictEqual(nodeEnterTransformStyle, 'translateY(-500px)');
+        expect(nodeEnterTransformStyle).to.equal('translateY(-500px)');
       });
 
       it('should reset the previous transition if needed', () => {
         child.style.transform = 'translateX(-800px)';
         wrapper.setProps({ direction: 'right' });
         wrapper.setProps({ in: true });
-        assert.strictEqual(nodeEnterTransformStyle, 'translateX(-800px)');
+        expect(nodeEnterTransformStyle).to.equal('translateX(-800px)');
       });
     });
 
@@ -306,8 +302,7 @@ describe('<Slide />', () => {
       it('should set element transform and transition in the `left` direction', () => {
         wrapper.setProps({ direction: 'left' });
         wrapper.setProps({ in: false });
-        assert.strictEqual(
-          nodeExitingTransformStyle,
+        expect(nodeExitingTransformStyle).to.equal(
           `translateX(${global.innerWidth}px) translateX(-300px)`,
         );
       });
@@ -315,14 +310,13 @@ describe('<Slide />', () => {
       it('should set element transform and transition in the `right` direction', () => {
         wrapper.setProps({ direction: 'right' });
         wrapper.setProps({ in: false });
-        assert.strictEqual(nodeExitingTransformStyle, 'translateX(-800px)');
+        expect(nodeExitingTransformStyle).to.equal('translateX(-800px)');
       });
 
       it('should set element transform and transition in the `up` direction', () => {
         wrapper.setProps({ direction: 'up' });
         wrapper.setProps({ in: false });
-        assert.strictEqual(
-          nodeExitingTransformStyle,
+        expect(nodeExitingTransformStyle).to.equal(
           `translateY(${global.innerHeight}px) translateY(-200px)`,
         );
       });
@@ -330,7 +324,7 @@ describe('<Slide />', () => {
       it('should set element transform and transition in the `down` direction', () => {
         wrapper.setProps({ direction: 'down' });
         wrapper.setProps({ in: false });
-        assert.strictEqual(nodeExitingTransformStyle, 'translateY(-500px)');
+        expect(nodeExitingTransformStyle).to.equal('translateY(-500px)');
       });
     });
   });
@@ -345,8 +339,8 @@ describe('<Slide />', () => {
       );
       const transition = childRef.current;
 
-      assert.strictEqual(transition.style.visibility, 'hidden');
-      assert.notStrictEqual(transition.style.transform, undefined);
+      expect(transition.style.visibility).to.equal('hidden');
+      expect(transition.style.transform).to.not.equal(undefined);
     });
   });
 
@@ -372,7 +366,7 @@ describe('<Slide />', () => {
       clock.tick(166);
       const child = wrapper.find('#testChild').instance();
 
-      assert.notStrictEqual(child.style.transform, undefined);
+      expect(child.style.transform).to.not.equal(undefined);
     });
 
     it('should take existing transform into account', () => {
@@ -389,8 +383,7 @@ describe('<Slide />', () => {
         style: {},
       };
       setTranslateValue('up', element);
-      assert.strictEqual(
-        element.style.transform,
+      expect(element.style.transform).to.equal(
         `translateY(${global.innerHeight}px) translateY(-780px)`,
       );
     });
@@ -409,7 +402,7 @@ describe('<Slide />', () => {
           <div id="with-slide" />
         </Slide>,
       );
-      assert.strictEqual(wrapper.find('#with-slide').props().style.visibility, 'hidden');
+      expect(wrapper.find('#with-slide').props().style.visibility).to.equal('hidden');
     });
   });
 });

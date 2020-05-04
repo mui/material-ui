@@ -23,7 +23,7 @@ export const styles = (theme) => {
     rounded: {
       borderRadius: theme.shape.borderRadius,
     },
-    /* Styles applied to the root element if `variant="outlined"` */
+    /* Styles applied to the root element if `variant="outlined"`. */
     outlined: {
       border: `1px solid ${theme.palette.divider}`,
     },
@@ -93,7 +93,7 @@ Paper.propTypes = {
       return null;
     }
     if (elevation != null && classes[`elevation${elevation}`] === undefined) {
-      return new Error(`Material-UI: this elevation \`${elevation}\` is not implemented.`);
+      return new Error(`Material-UI: This elevation \`${elevation}\` is not implemented.`);
     }
     return null;
   }),

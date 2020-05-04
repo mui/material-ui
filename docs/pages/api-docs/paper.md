@@ -45,7 +45,7 @@ Any other props supplied will be provided to the root element (native element).
 |:-----|:-------------|:------------|
 | <span class="prop-name">root</span> | <span class="prop-name">.MuiPaper-root</span> | Styles applied to the root element.
 | <span class="prop-name">rounded</span> | <span class="prop-name">.MuiPaper-rounded</span> | Styles applied to the root element if `square={false}`.
-| <span class="prop-name">outlined</span> | <span class="prop-name">.MuiPaper-outlined</span> | Styles applied to the root element if `variant="outlined"`
+| <span class="prop-name">outlined</span> | <span class="prop-name">.MuiPaper-outlined</span> | Styles applied to the root element if `variant="outlined"`.
 | <span class="prop-name">elevation0</span> | <span class="prop-name">.MuiPaper-elevation0</span> | 
 | <span class="prop-name">elevation1</span> | <span class="prop-name">.MuiPaper-elevation1</span> | 
 | <span class="prop-name">elevation2</span> | <span class="prop-name">.MuiPaper-elevation2</span> | 

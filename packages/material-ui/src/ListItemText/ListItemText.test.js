@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import { getClasses, createMount, findOutermostIntrinsic } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
 import Typography from '../Typography';
@@ -29,8 +29,8 @@ describe('<ListItemText />', () => {
   it('should render with inset class', () => {
     const wrapper = mount(<ListItemText inset />);
     const listItemText = findOutermostIntrinsic(wrapper);
-    assert.strictEqual(listItemText.hasClass(classes.inset), true);
-    assert.strictEqual(listItemText.hasClass(classes.root), true);
+    expect(listItemText.hasClass(classes.inset)).to.equal(true);
+    expect(listItemText.hasClass(classes.root)).to.equal(true);
   });
 
   it('should render with no children', () => {
@@ -38,7 +38,7 @@ describe('<ListItemText />', () => {
     const listItemText = findOutermostIntrinsic(wrapper);
     // wrapper.find('div > *').exists()
     // https://github.com/airbnb/enzyme/issues/1154
-    assert.strictEqual(listItemText.children().exists(), false);
+    expect(listItemText.children().exists()).to.equal(false);
   });
 
   describe('prop: primary', () => {
@@ -48,27 +48,27 @@ describe('<ListItemText />', () => {
       const wrapper = mount(<ListItemText primary="This is the primary text" ref={ref} />);
       const listItemText = findOutermostIntrinsic(wrapper);
       const typography = listItemText.find(Typography);
-      assert.strictEqual(typography.exists(), true);
-      assert.strictEqual(typography.props().variant, 'body1');
-      assert.strictEqual(text(), 'This is the primary text');
+      expect(typography.exists()).to.equal(true);
+      expect(typography.props().variant).to.equal('body1');
+      expect(text()).to.equal('This is the primary text');
     });
 
     it('should use the primary node', () => {
       const primary = <span />;
       const wrapper = mount(<ListItemText primary={primary} />);
-      assert.strictEqual(wrapper.contains(primary), true);
+      expect(wrapper.contains(primary)).to.equal(true);
     });
 
     it('should use the children prop as primary node', () => {
       const primary = <span />;
       const wrapper = mount(<ListItemText>{primary}</ListItemText>);
-      assert.strictEqual(wrapper.contains(primary), true);
+      expect(wrapper.contains(primary)).to.equal(true);
     });
 
     it('should read 0 as primary', () => {
       const wrapper = mount(<ListItemText primary={0} />);
       const listItemText = findOutermostIntrinsic(wrapper);
-      assert.strictEqual(listItemText.find(Typography).exists(), true);
+      expect(listItemText.find(Typography).exists()).to.equal(true);
     });
   });
 
@@ -77,21 +77,21 @@ describe('<ListItemText />', () => {
       const wrapper = mount(<ListItemText secondary="This is the secondary text" />);
       const listItemText = findOutermostIntrinsic(wrapper);
       const typography = listItemText.find(Typography);
-      assert.strictEqual(typography.exists(), true);
-      assert.strictEqual(typography.props().color, 'textSecondary');
-      assert.strictEqual(listItemText.text(), 'This is the secondary text');
+      expect(typography.exists()).to.equal(true);
+      expect(typography.props().color).to.equal('textSecondary');
+      expect(listItemText.text()).to.equal('This is the secondary text');
     });
 
     it('should use the secondary node', () => {
       const secondary = <span />;
       const wrapper = mount(<ListItemText secondary={secondary} />);
-      assert.strictEqual(wrapper.contains(secondary), true);
+      expect(wrapper.contains(secondary)).to.equal(true);
     });
 
     it('should read 0 as secondary', () => {
       const wrapper = mount(<ListItemText secondary={0} />);
       const listItemText = findOutermostIntrinsic(wrapper);
-      assert.strictEqual(listItemText.find(Typography).exists(), true);
+      expect(listItemText.find(Typography).exists()).to.equal(true);
     });
   });
 
@@ -103,15 +103,15 @@ describe('<ListItemText />', () => {
       const listItemText = findOutermostIntrinsic(wrapper);
 
       const texts = listItemText.find(Typography);
-      assert.strictEqual(texts.length, 2);
+      expect(texts.length).to.equal(2);
 
       const primaryText = texts.first();
-      assert.strictEqual(primaryText.props().variant, 'body1');
-      assert.strictEqual(primaryText.text(), 'This is the primary text');
+      expect(primaryText.props().variant).to.equal('body1');
+      expect(primaryText.text()).to.equal('This is the primary text');
 
       const secondaryText = texts.last();
-      assert.strictEqual(secondaryText.props().color, 'textSecondary');
-      assert.strictEqual(secondaryText.text(), 'This is the secondary text');
+      expect(secondaryText.props().color).to.equal('textSecondary');
+      expect(secondaryText.text()).to.equal('This is the secondary text');
     });
 
     it('should render JSX children', () => {
@@ -121,8 +121,8 @@ describe('<ListItemText />', () => {
         <ListItemText primary={primaryChild} secondary={secondaryChild} disableTypography />,
       );
       const texts = wrapper.find('div > p');
-      assert.strictEqual(texts.first().equals(primaryChild), true);
-      assert.strictEqual(texts.last().equals(secondaryChild), true);
+      expect(texts.first().equals(primaryChild)).to.equal(true);
+      expect(texts.last().equals(secondaryChild)).to.equal(true);
     });
   });
 
@@ -140,8 +140,8 @@ describe('<ListItemText />', () => {
     );
     const texts = wrapper.find(Typography);
 
-    assert.strictEqual(texts.first().props().className.includes('GeneralText'), true);
-    assert.strictEqual(texts.last().props().className.includes('SecondaryText'), true);
+    expect(texts.first().props().className.includes('GeneralText')).to.equal(true);
+    expect(texts.last().props().className.includes('SecondaryText')).to.equal(true);
   });
 
   it('should not re-wrap the <Typography> element', () => {
@@ -149,9 +149,9 @@ describe('<ListItemText />', () => {
     const secondary = <Typography>This is the secondary text</Typography>;
     const wrapper = mount(<ListItemText primary={primary} secondary={secondary} />);
     const texts = findOutermostIntrinsic(wrapper).find(Typography);
-    assert.strictEqual(texts.length, 2);
-    assert.strictEqual(texts.first().props().children, primary.props.children);
-    assert.strictEqual(texts.last().props().children, secondary.props.children);
+    expect(texts.length).to.equal(2);
+    expect(texts.first().props().children).to.equal(primary.props.children);
+    expect(texts.last().props().children).to.equal(secondary.props.children);
   });
 
   it('should pass primaryTypographyProps to primary Typography component', () => {
@@ -162,7 +162,7 @@ describe('<ListItemText />', () => {
       />,
     );
     const listItemText = findOutermostIntrinsic(wrapper);
-    assert.strictEqual(listItemText.find(Typography).props().color, 'inherit');
+    expect(listItemText.find(Typography).props().color).to.equal('inherit');
   });
 
   it('should pass secondaryTypographyProps to secondary Typography component', () => {
@@ -174,6 +174,6 @@ describe('<ListItemText />', () => {
       />,
     );
     const listItemText = findOutermostIntrinsic(wrapper);
-    assert.strictEqual(listItemText.find(Typography).last().props().color, 'inherit');
+    expect(listItemText.find(Typography).last().props().color).to.equal('inherit');
   });
 });

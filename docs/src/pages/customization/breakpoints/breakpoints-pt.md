@@ -12,7 +12,7 @@ Cada ponto de quebra (uma chave) corresponde a uma largura de tela *fixa* (um va
 - **lg,** grande: 1280px
 - **xl,** extra-grande: 1920px
 
-These [breakpoint values](/customization/default-theme/?expand-path=$.breakpoints.values) are used to determine breakpoint ranges. Um intervalo inicia a partir do valor do ponto de quebra, incluindo seu valor inicial, até o próximo valor de ponto de quebra menos um:
+Estes [valores de ponto de quebra](/customization/default-theme/?expand-path=$.breakpoints.values) são usados para determinar intervalos de ponto de quebra. Um intervalo inicia a partir do valor do ponto de quebra, incluindo seu valor inicial, até o próximo valor de ponto de quebra menos um:
 
 ```js
 valor           |0px     600px    960px    1280px   1920px
@@ -21,7 +21,7 @@ largura da tela |--------|--------|--------|--------|-------->
 intervalo       |   xs   |   sm   |   md   |   lg   |   xl
 ```
 
-Esses valores sempre podem ser customizados. You will find them in the theme, in the [`breakpoints.values`](/customization/default-theme/?expand-path=$.breakpoints.values) object.
+Esses valores sempre podem ser customizados. Você os encontrará no tema, no objeto [`breakpoints.values`](/customization/default-theme/?expand-path=$.breakpoints.values).
 
 Os pontos de quebra são usados internamente em vários componentes para torná-los responsivos, mas você também pode tirar proveito deles para controlar o leiaute da sua aplicação através do componente [Grade](/components/grid/) e [Hidden](/components/hidden/).
 
@@ -91,7 +91,7 @@ Na demonstração a seguir, alteramos o elemento DOM renderizado (*em*, <u>u</u>
 
 #### Retornos
 
-`media query`: A media query string ready to be used with most styling solutions, which matches screen widths greater than and including the screen size given by the breakpoint key.
+`media query`: Uma string de consulta de mídia pronta para ser usada com a maioria das soluções de estilo, na qual corresponde à largura da tela maior que, e incluindo o tamanho de tela fornecido pela chave do ponto de quebra.
 
 #### Exemplos
 
@@ -99,8 +99,8 @@ Na demonstração a seguir, alteramos o elemento DOM renderizado (*em*, <u>u</u>
 const styles = theme => ({
   root: {
     backgroundColor: 'blue',
-    // Corresponde [md, ∞[
-    //             [960px, ∞[
+    // Match [md, ∞)
+    //       [960px, ∞)
     [theme.breakpoints.up('md')]: {
       backgroundColor: 'red',
     },
@@ -116,7 +116,7 @@ const styles = theme => ({
 
 #### Retornos
 
-`media query`: A media query string ready to be used with most styling solutions, which matches screen widths less than and including the screen size given by the breakpoint key.
+`media query`: Uma string de consulta de mídia pronta para ser usada com a maioria das soluções de estilo, na qual corresponde à largura da tela menor que, e incluindo o tamanho de tela fornecido pela chave do ponto de quebra.
 
 #### Exemplos
 
@@ -124,9 +124,9 @@ const styles = theme => ({
 const styles = theme => ({
   root: {
     backgroundColor: 'blue',
-    // Corresponde [0, md + 1[
-    //             [0, lg[
-    //             [0, 1280px[
+    // Match [0, md + 1)
+    //       [0, lg)
+    //       [0, 1280px)
     [theme.breakpoints.down('md')]: {
       backgroundColor: 'red',
     },
@@ -142,7 +142,7 @@ const styles = theme => ({
 
 #### Retornos
 
-`media query`: A media query string ready to be used with most styling solutions, which matches screen widths including the screen size given by the breakpoint key.
+`media query`: Uma string de consulta de mídia pronta para ser usada com a maioria das soluções de estilo, na qual corresponde à largura da tela incluindo o tamanho de tela fornecido pela chave do ponto de quebra.
 
 #### Exemplos
 
@@ -150,9 +150,9 @@ const styles = theme => ({
 const styles = theme => ({
   root: {
     backgroundColor: 'blue',
-    // Corresponde [md, md + 1[
-    //             [md, lg[
-    //             [960px, 1280px[
+    // Match [md, md + 1)
+    //       [md, lg)
+    //       [960px, 1280px)
     [theme.breakpoints.only('md')]: {
       backgroundColor: 'red',
     },
@@ -164,12 +164,12 @@ const styles = theme => ({
 
 #### Argumentos
 
-1. `start` (*String*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
-2. `end` (*String*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
+1. `start` (*String*): Uma chave de ponto de quebra (`xs`, `sm`, etc.) ou um número de largura de tela em pixels.
+2. `end` (*String*): Uma chave de ponto de quebra (`xs`, `sm`, etc.) ou um número de largura de tela em pixels.
 
 #### Retornos
 
-`media query`: A media query string ready to be used with most styling solutions, which matches screen widths greater than the screen size given by the breakpoint key in the first argument and less than the the screen size given by the breakpoint key in the second argument.
+`media query`: Uma string de consulta de mídia pronta para ser usada com a maioria das soluções de estilo, na qual corresponde a larguras de telas maiores que o tamanho da tela fornecido na chave de ponto de quebra no primeiro argumento e menor que o tamanho de tela fornecido pela chave de ponto de quebra no segundo argumento.
 
 #### Exemplos
 
@@ -177,9 +177,9 @@ const styles = theme => ({
 const styles = theme => ({
   root: {
     backgroundColor: 'blue',
-    // Corresponde [sm, md + 1[
-    //             [sm, lg[
-    //             [600px, 1280px[
+    // Match [sm, md + 1)
+    //       [sm, lg)
+    //       [600px, 1280px[
     [theme.breakpoints.between('sm', 'md')]: {
       backgroundColor: 'red',
     },
@@ -242,4 +242,4 @@ export default withWidth()(MyComponent);
 
 ## Valores padrão
 
-You can explore the default values of the breakpoints using [the theme explorer](/customization/default-theme/?expand-path=$.breakpoints) or by opening the dev tools console on this page (`window.theme.breakpoints`).
+Você pode explorar os valores padrão dos pontos de quebra usando [o explorador de tema](/customization/default-theme/?expand-path=$.breakpoints) ou abrindo o console das ferramentas de desenvolvimento nesta página (`window.theme.breakpoints`).

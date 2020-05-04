@@ -92,6 +92,8 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     label,
     nodeId,
     onClick,
+    onLabelClick,
+    onIconClick,
     onFocus,
     onKeyDown,
     onMouseDown,
@@ -166,7 +168,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     const multiple = multiSelect && (event.shiftKey || event.ctrlKey || event.metaKey);
 
     // If already expanded and trying to toggle selection don't close
-    if (expandable && !(multiple && isExpanded(nodeId))) {
+    if (expandable && !event.defaultPrevented && !(multiple && isExpanded(nodeId))) {
       toggleExpansion(event, nodeId);
     }
 
@@ -386,8 +388,10 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
         onMouseDown={handleMouseDown}
         ref={contentRef}
       >
-        <div className={classes.iconContainer}>{icon}</div>
-        <Typography component="div" className={classes.label}>
+        <div onClick={onIconClick} className={classes.iconContainer}>
+          {icon}
+        </div>
+        <Typography onClick={onLabelClick} component="div" className={classes.label}>
           {label}
         </Typography>
       </div>
@@ -458,9 +462,17 @@ TreeItem.propTypes = {
    */
   onFocus: PropTypes.func,
   /**
+   * `onClick` handler for the icon container. Call `event.preventDefault()` to prevent `onNodeToggle` from being called.
+   */
+  onIconClick: PropTypes.func,
+  /**
    * @ignore
    */
   onKeyDown: PropTypes.func,
+  /**
+   * `onClick` handler for the label container. Call `event.preventDefault()` to prevent `onNodeToggle` from being called.
+   */
+  onLabelClick: PropTypes.func,
   /**
    * @ignore
    */

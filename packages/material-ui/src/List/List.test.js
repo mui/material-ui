@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import { createMount, findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
 import ListSubheader from '../ListSubheader';
@@ -29,35 +29,35 @@ describe('<List />', () => {
   it('should render with padding classes', () => {
     const wrapper = mount(<List className="woofList" />);
     const root = wrapper.find('ul');
-    assert.strictEqual(root.hasClass(classes.padding), true);
+    expect(root.hasClass(classes.padding)).to.equal(true);
   });
 
   it('can disable the padding', () => {
     const wrapper = mount(<List disablePadding />);
-    assert.strictEqual(wrapper.find('ul').hasClass(classes.padding), false);
+    expect(wrapper.find('ul').hasClass(classes.padding)).to.equal(false);
   });
 
   describe('prop: subheader', () => {
     it('should render with subheader class', () => {
       const wrapper = mount(<List subheader={<ListSubheader>Title</ListSubheader>} />);
-      assert.strictEqual(wrapper.find('ul').hasClass(classes.subheader), true);
+      expect(wrapper.find('ul').hasClass(classes.subheader)).to.equal(true);
     });
 
     it('should render ListSubheader', () => {
       const wrapper = mount(<List subheader={<ListSubheader>Title</ListSubheader>} />);
-      assert.strictEqual(wrapper.find(ListSubheader).length, 1);
+      expect(wrapper.find(ListSubheader).length).to.equal(1);
     });
   });
 
   describe('prop: dense', () => {
     it('is disabled by default', () => {
       const wrapper = mount(<List />);
-      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.dense), false);
+      expect(findOutermostIntrinsic(wrapper).hasClass(classes.dense)).to.equal(false);
     });
 
     it('adds a dense class', () => {
       const wrapper = mount(<List dense />);
-      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.dense), true);
+      expect(findOutermostIntrinsic(wrapper).hasClass(classes.dense)).to.equal(true);
     });
 
     it('sets dense on deep nested ListItem', () => {
@@ -75,7 +75,7 @@ describe('<List />', () => {
       );
 
       const listItemClasses = getClasses(<ListItem />);
-      assert.strictEqual(wrapper.find('li').every(`.${listItemClasses.dense}`), true);
+      expect(wrapper.find('li').every(`.${listItemClasses.dense}`)).to.equal(true);
     });
   });
 });

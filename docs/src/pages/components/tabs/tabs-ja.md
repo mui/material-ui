@@ -1,6 +1,6 @@
 ---
 title: Tabs React component
-components: Tabs, Tab
+components: Tabs, Tab, TabScrollButton
 ---
 
 # Tabs
@@ -65,11 +65,11 @@ components: Tabs, Tab
 
 ## カスタマイズされたタブ
 
-コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
+コンポーネントのカスタマイズ例を次に示します。 詳細については、 [overrides documentation page](/customization/components/)を参照してください。
 
 {{"demo": "pages/components/tabs/CustomizedTabs.js", "bg": true}}
 
-👑 インスピレーションを求めているなら, [MUI Treasury's customization examples](https://mui-treasury.com/components/tabs)を確認できます。
+👑 インスピレーションを求めているなら, [MUI Treasury's customization examples](https://deprecate.mui-treasury.com/components/tabs)を確認できます。
 
 ## 垂直タブ
 

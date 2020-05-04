@@ -25,7 +25,7 @@ Die `AlertTitle`-Komponente kann verwendet werden um einen formatierten Titel ü
 
 Ein Hinweis kann eine Aktion wie zum Beispiel Schließen oder Zurücksetzen haben. Sie wird am Ende des Hinweises, hinter der Nachricht, angezeigt.
 
-If an `onClose` callback is provided and no `action` prop is set, a close icon is displayed. The `action` prop can be used to provide an alternative action, for example using a Button or IconButton.
+Wenn ein `onClose` callback und kein `action` prop gesetzt ist, wird ein Schließ-Icon angezeigt. The `action` prop can be used to provide an alternative action, for example using a Button or IconButton.
 
 {{"demo": "pages/components/alert/ActionAlerts.js"}}
 

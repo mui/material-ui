@@ -89,7 +89,7 @@ function App() {
 
 Você pode usar o hook `useScrollTrigger()` para responder às ações de rolagem do usuário.
 
-### Barra de Aplicativos oculta
+### Barra de aplicativos oculta
 
 A barra de aplicativos sumirá ao descer a página para deixar mais espaço de leitura.
 

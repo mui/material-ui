@@ -207,7 +207,7 @@ export default function useAutocomplete(props) {
           const erroneousReturn =
             optionLabel === undefined ? 'undefined' : `${typeof optionLabel} (${optionLabel})`;
           console.error(
-            `Material-UI: the \`getOptionLabel\` method of ${componentName} returned ${erroneousReturn} instead of a string for ${JSON.stringify(
+            `Material-UI: The \`getOptionLabel\` method of ${componentName} returned ${erroneousReturn} instead of a string for ${JSON.stringify(
               newValue,
             )}.`,
           );
@@ -232,14 +232,17 @@ export default function useAutocomplete(props) {
     resetInputValue(null, value);
   }, [value, resetInputValue]);
 
-  const { current: isOpenControlled } = React.useRef(openProp != null);
-  const [openState, setOpenState] = React.useState(false);
-  const open = isOpenControlled ? openProp : openState;
+  const [open, setOpenState] = useControlled({
+    controlled: openProp,
+    default: false,
+    name: componentName,
+    state: 'open',
+  });
 
   const inputValueIsSelectedValue =
     !multiple && value != null && inputValue === getOptionLabel(value);
 
-  let popupOpen = open;
+  const popupOpen = open;
 
   const filteredOptions = popupOpen
     ? filterOptions(
@@ -260,8 +263,6 @@ export default function useAutocomplete(props) {
       )
     : [];
 
-  popupOpen = freeSolo && filteredOptions.length === 0 ? false : popupOpen;
-
   if (process.env.NODE_ENV !== 'production') {
     if (value !== null && !freeSolo && options.length > 0) {
       const missingValue = (multiple ? value : [value]).filter(
@@ -271,7 +272,7 @@ export default function useAutocomplete(props) {
       if (missingValue.length > 0) {
         console.warn(
           [
-            `Material-UI: the value provided to ${componentName} is invalid.`,
+            `Material-UI: The value provided to ${componentName} is invalid.`,
             `None of the options match with \`${
               missingValue.length > 1
                 ? JSON.stringify(missingValue)
@@ -402,7 +403,7 @@ export default function useAutocomplete(props) {
   });
 
   React.useEffect(() => {
-    if (!open) {
+    if (!popupOpen) {
       return;
     }
 
@@ -448,7 +449,7 @@ export default function useAutocomplete(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     value,
-    open,
+    popupOpen,
     filterSelectedOptions,
     changeHighlightedIndex,
     setHighlightedIndex,
@@ -461,11 +462,10 @@ export default function useAutocomplete(props) {
       return;
     }
 
+    setOpenState(true);
+
     if (onOpen) {
       onOpen(event);
-    }
-    if (!isOpenControlled) {
-      setOpenState(true);
     }
   };
 
@@ -474,11 +474,10 @@ export default function useAutocomplete(props) {
       return;
     }
 
+    setOpenState(false);
+
     if (onClose) {
       onClose(event, reason);
-    }
-    if (!isOpenControlled) {
-      setOpenState(false);
     }
   };
 
@@ -509,7 +508,7 @@ export default function useAutocomplete(props) {
         if (matches.length > 1) {
           console.error(
             [
-              `Material-UI: the \`getOptionSelected\` method of ${componentName} do not handle the arguments correctly.`,
+              `Material-UI: The \`getOptionSelected\` method of ${componentName} do not handle the arguments correctly.`,
               `The component expects a single value to match a given option but found ${matches.length} matches.`,
             ].join('\n'),
           );
@@ -883,7 +882,7 @@ export default function useAutocomplete(props) {
         if (process.env.NODE_ENV !== 'production') {
           if (indexBy.get(group) && !warn) {
             console.warn(
-              `Material-UI: the options provided combined with the \`groupBy\` method of ${componentName} returns duplicated headers.`,
+              `Material-UI: The options provided combined with the \`groupBy\` method of ${componentName} returns duplicated headers.`,
               'You can solve the issue by sorting the options with the output of `groupBy`.',
             );
             warn = true;

@@ -145,7 +145,7 @@ describe('<IconButton />', () => {
 
       expect(consoleErrorMock.callCount()).to.equal(1);
       expect(consoleErrorMock.messages()[0]).to.include(
-        'you are providing an onClick event listener',
+        'Material-UI: You are providing an onClick event listener',
       );
     });
   });

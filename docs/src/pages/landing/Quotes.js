@@ -16,7 +16,7 @@ import Divider from '@material-ui/core/Divider';
 
 const quotes = [
   {
-    avatar: 'https://pbs.twimg.com/profile_images/1134188599170215936/9CUB-yeB_400x400.jpg',
+    avatar: 'https://pbs.twimg.com/profile_images/1134188599170215936/9CUB-yeB',
     name: 'Aumit Leon',
     username: '@aumitleon',
     tweet: 'https://twitter.com/aumitleon/status/1210396946566963200',
@@ -24,7 +24,7 @@ const quotes = [
       'Material-UI continues to blow my mind how easily I can put together really aesthetic and functional components and minimize overhead.',
   },
   {
-    avatar: 'https://pbs.twimg.com/profile_images/1231452795368329216/GhjrxYH2_400x400.jpg',
+    avatar: 'https://pbs.twimg.com/profile_images/1231452795368329216/GhjrxYH2',
     name: 'Derek Shanks',
     username: '@fragileglass',
     tweet: 'https://twitter.com/fragileglass/status/1205256087290753025',
@@ -32,7 +32,7 @@ const quotes = [
       'It’s a game changer with how nicely it works with React. It’s made working with React so much more enjoyable. Everything is configurable and predictable. Bootstrap was killing me. It was hijacking my whole project.',
   },
   {
-    avatar: 'https://pbs.twimg.com/profile_images/1220819548523331584/3T1G8g1q_400x400.jpg',
+    avatar: 'https://pbs.twimg.com/profile_images/1220819548523331584/3T1G8g1q',
     name: 'Mohamed EL AYADI',
     username: '@MohamedELAYAD19',
     tweet: 'https://twitter.com/MohamedELAYAD19/status/1208118580430229504',
@@ -40,7 +40,7 @@ const quotes = [
       "Such a great library. I have used Material-UI for the last two years as the main react ui library in my projects (in more than 4 companies!) and I find that it's really great! A lot of good work and dedication are put in there. Salute to the team!",
   },
   {
-    avatar: 'https://pbs.twimg.com/profile_images/1144184864754851840/WIVBqpWM_400x400.jpg',
+    avatar: 'https://pbs.twimg.com/profile_images/1144184864754851840/WIVBqpWM',
     name: 'Matthias Margot',
     username: '@matthiasmargot',
     tweet: 'https://twitter.com/matthiasmargot/status/1215482285681795072',
@@ -48,7 +48,7 @@ const quotes = [
       'The DX on Material-UI is absolutely insane and that package has shaped my approach to Component API Design / Composition Design & Style System Design. I think those guys got it idiomatically right, wonderful product.',
   },
   {
-    avatar: 'https://pbs.twimg.com/profile_images/849731047625502720/nudIAz2B_400x400.jpg',
+    avatar: 'https://pbs.twimg.com/profile_images/849731047625502720/nudIAz2B',
     name: 'Rodrigo Ciprian',
     username: '@rodrigocipriani',
     tweet: 'https://twitter.com/rodrigocipriani/status/1215578130217340929',
@@ -56,7 +56,7 @@ const quotes = [
       'I always use Material-UI, it is really awesome, and it have a looot of very good and easy to use components.',
   },
   {
-    avatar: 'https://pbs.twimg.com/profile_images/1129370929409056769/Zkwjy9_I_400x400.jpg',
+    avatar: 'https://pbs.twimg.com/profile_images/1129370929409056769/Zkwjy9_I',
     name: 'Samantha Durrant',
     username: '@SamDurrant_',
     tweet: 'https://twitter.com/SamDurrant_/status/1214741763455209473',
@@ -145,7 +145,12 @@ function Quote(props) {
         <CardContent>
           <Grid container spacing={3}>
             <Grid item>
-              <Avatar src={avatar} alt={name} className={classes.avatar} />
+              <Avatar
+                src={`${avatar}_normal.jpg`}
+                srcSet={`${avatar}_normal.jpg, ${avatar}_bigger.jpg 2x`}
+                alt={name}
+                className={classes.avatar}
+              />
             </Grid>
             <Grid item>
               <Typography component="div" variant="h6" color="textPrimary" className={classes.name}>

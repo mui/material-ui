@@ -105,7 +105,7 @@ export default function App() {
 - [spacing](/system/spacing/#api)
 - [typography](/system/typography/#api)
 
-If you are already using `@material-ui/core`, you can use the [Box component](/components/box/) (using JSS internally):
+如果你已经在使用`@material-ui/core`，那么你可以使用[Box 组件](/components/box/)（内部使用了JSS）
 
 ```jsx
 import Box from '@material-ui/core/Box';
@@ -230,7 +230,7 @@ const Box = styled.div`
 
 你可以使用这个函数来创建你自己的样式工具。
 
-Not all CSS properties are supported. 不过如果你想，你可以支持一个新的属性。 改变的主题路径的前缀也是可以的。
+不是所有的CSS的属性都被支持。 不过如果你想，你可以支持一个新的属性。 改变的主题路径的前缀也是可以的。
 
 #### 参数
 
@@ -246,7 +246,7 @@ Not all CSS properties are supported. 不过如果你想，你可以支持一个
 
 #### 例子
 
-You can create a component that supports some CSS grid properties like `grid-gap`. By supplying `spacing` as the `themeKey` you can reuse logic enabling the behavior we see in other spacing properties like `padding`.
+你可以创建一个支持一些CSS的网格属性的组件，如`grid-gap`。 By supplying `spacing` as the `themeKey` you can reuse logic enabling the behavior we see in other spacing properties like `padding`.
 
 ```jsx
 import styled from 'styled-components';
@@ -314,7 +314,7 @@ const palette = compose(textColor, bgcolor);
 
 ## CSS 属性
 
-If you want to support custom CSS values, you can use the `css()` helper. 它可以处理的 `css` 属性。
+如果你想要自定义CSS值，你可以使用`css()`。 它可以处理的 `css` 属性。
 
 {{"demo": "pages/system/basics/CssProp.js", "defaultCodeOpen": true}}
 

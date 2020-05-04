@@ -71,7 +71,7 @@ yarn add @material-ui/styles
 ### Estilos
 
 - ⚠️ Material-UI depende do JSS v10. JSS v10 não é compatível com o v9. Certifique-se de que o JSS v9 não esteja instalado em seu ambiente. (Remover `react-jss` do seu `package.json` pode ajudar). O componente StylesProvider substitui o componente JssProvider.
-- Remova a primeira opção de argumento do `withTheme()`. (The first argument was a placeholder for a potential future option that never arose.)
+- Remova a primeira opção de argumento do `withTheme()`. (O primeiro argumento é um espaço reservado para uma opção futura potencial que nunca existiu.)
   
     Corresponde à [emotion API](https://emotion.sh/docs/introduction) e [styled-components API](https://www.styled-components.com).
 
@@ -80,14 +80,14 @@ yarn add @material-ui/styles
   +const DeepChild = withTheme(DeepChildRaw);
   ```
 
-- Rename `convertHexToRGB` to `hexToRgb`.
+- Renomeie `convertHexToRGB` para `hexToRgb`.
 
   ```diff
   -import { convertHexToRgb } from '@material-ui/core/styles/colorManipulator';
   +import { hexToRgb } from '@material-ui/core/styles';
   ```
 
-- Scope the [keyframes API](https://cssinjs.org/jss-syntax/#keyframes-animation). Você deve aplicar as seguintes alterações na sua base de código.
+- Escopo da [keyframes API](https://cssinjs.org/jss-syntax/#keyframes-animation). Você deve aplicar as seguintes alterações na sua base de código.
   Ele ajuda a isolar a lógica da animação:
 
   ```diff
@@ -173,14 +173,14 @@ Tipo da propriedade `value` normalizado para os componentes de entrada utilizare
 function MySelect({ children }) {
 - const handleChange = (event: any, value: string) => {
 + const handleChange = (event: any, value: unknown) => {
-    // handle value
+    // valor manipulado
   };
 
   return <Select onChange={handleChange}>{children}</Select>
 }
 ```
 
-This change is explained in more detail in the [TypeScript guide](/guides/typescript/#handling-value-and-event-handlers)
+Esta alteração é explicada em mais detalhes no [guia de TypeScript](/guides/typescript/#handling-value-and-event-handlers)
 
 ### Botão
 
@@ -243,17 +243,17 @@ This change is explained in more detail in the [TypeScript guide](/guides/typesc
 ### Painel de expansão
 
 - [ExpansionPanelActions] Renomeie a classe CSS `action` para `spacing`.
-- [ExpansionPanel] Increase the CSS specificity of the `disabled` and `expanded` style rules.
-- [ExpansionPanel] Rename the `CollapseProps` prop to `TransitionProps`.
+- [ExpansionPanel] Aumente a especificidade CSS das regras de estilo `disabled` e `expanded`.
+- [ExpansionPanel] Renomeie a propriedade `CollapseProps` para `TransitionProps`.
 
-### Lista
+### List
 
 - [List] Refaça a lista de componentes para coincidir com a especificação:
   
   - O componente `ListItemAvatar` é necessário ao usar um avatar.
   - O componente `ListItemIcon` é necessário ao usar uma caixa de seleção à esquerda.
   - A propriedade `edge` deve ser definida para botões de ícone.
-- [List] `dense` no longer reduces the top and bottom padding of the `List` element.
+- [List] `dense` não reduz mais o espaçamento superior e inferior do elemento `List`.
 
 - [ListItem] Aumente a especificidade CSS das regras de estilo `disabled` e `focusVisible`.
 
@@ -406,7 +406,7 @@ This change is explained in more detail in the [TypeScript guide](/guides/typesc
   +<Typography variantMapping={variantMapping}>
   ```
 
-- [Typography] Modifique a variante padrão de `body2` para `body1`. Um tamanho de fonte de 16px é um padrão melhor que 14px. Bootstrap, material.io, and even the documentation use 16px as a default font size. 14px como o Ant Design usa, é compreensível, já que os usuários chineses têm um alfabeto diferente. 12px is recommended as the default font size for Japanese.
+- [Typography] Modifique a variante padrão de `body2` para `body1`. Um tamanho de fonte de 16px é um padrão melhor que 14px. Bootstrap, material.io e até a documentação usam 16px como tamanho de fonte padrão. 14px como o Ant Design usa, é compreensível, já que os usuários chineses têm um alfabeto diferente. Recomenda-se 12px como o tamanho de fonte padrão para japonês.
 - [Typography] Remova a cor padrão das variantes de tipografia. A cor deve herdar a maior parte do tempo. É o comportamento padrão da web.
 - [Typography] Renomeie `color="default"` para `color="initial"` seguindo a lógica [desta discussão](https://github.com/mui-org/material-ui/issues/13028). O uso de *default* deve ser evitado, isso perde semântica.
 

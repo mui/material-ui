@@ -76,7 +76,7 @@ yarn add @material-ui/core
 
 如果你想导入一个自定义的 SVG 图标（但是又无法在 Material 图标[默认系列](/components/material-icons/)中找到），你可以使用 `SvgIcon` 来包装你的图标。 此组件是原生 `<svg>` 元素的拓展版：
 
-- 它具备一些内置的可及性。
+- 它具备一些内置的无障碍设计。
 - SVG 元素应缩放为 24x24px 的视图，这样一来其他一些 Material-UI 组件可以将此图标直接使用，或者包含为其子元素。 （使用 `viewBox` 属性，您可以随意自定义）。
 - 默认情况下，此组件会继承当前的颜色。 当然，通过 `color` 这个属性，你可以让图标使用主题里的颜色。
 
@@ -100,18 +100,32 @@ function HomeIcon(props) {
 
 ### 组件属性
 
-即使图标以 `.svg` 格式保存，你依然可以使用 `SvgIcon` 来包装它。 通过 [svgr](https://github.com/smooth-code/svgr) 提供的加载装置，您将 svg 图标作为 React 组件导入。 譬如，使用 webpack ：
+You can use the `SvgIcon` wrapper even if your icons are saved in the `.svg` format. [svgr](https://github.com/smooth-code/svgr) has loaders to import SVG files and use them as React components. For example, with webpack:
 
-**webpack.config.js**
-```js
+```jsx
+// webpack.config.js
 {
   test: /\.svg$/,
   use: ['@svgr/webpack'],
 }
+
+// ---
+import StarIcon from './star.svg';
+
+<SvgIcon component={StarIcon} viewBox="0 0 600 476.6" />
 ```
 
+It's also possible to use it with "url-loader" or "file-loader". It's the approach used by Create React App.
+
 ```jsx
-import StarIcon from './star.svg';
+// webpack.config.js
+{
+  test: /\.svg$/,
+  use: ['@svgr/webpack', 'url-loader'],
+}
+
+// ---
+import { ReactComponent as StarIcon } from './star.svg';
 
 <SvgIcon component={StarIcon} viewBox="0 0 600 476.6" />
 ```
@@ -164,7 +178,7 @@ import Icon from '@material-ui/core/Icon';
 
 若您想了解更多细节，请查看 [ 为什么 GitHub 从字体图标迁移到 SVG 图标](https://github.blog/2016-02-22-delivering-octicons-with-svg/)这篇文章。
 
-## 可访问性
+## 无障碍设计
 
 图标可以传达各种各样有意义的信息，所以将他们传递给尽可能多的受众是至关重要的。 您可能会注意到这两个用例：
 - **装饰性的图标（Decorative Icons）** 只在视觉或者品牌强化中使用。 即使将它们从页面中移除，用户仍然可以理解并能够使用整个界面。
@@ -176,7 +190,7 @@ import Icon from '@material-ui/core/Icon';
 
 ### 语义 SVG 图标
 
-如果您的图标带有语义，您只需要包含 `titleAccess =“含义”` 属性。 当然了，通过加入 `role="img"` 属性和 `<title>` 元素，你的图标也是可访问的。
+如果您的图标带有语义，您只需要包含 `titleAccess =“含义”` 这个属性。 我们添加了 `role="img"` 属性和 `<title>` 元素，这样一来您的图标就满足无障碍设计的需求了。
 
 对于那些可聚焦的交互式元素，譬如与一个图标按钮一起使用时，您可以使用 `aria-label` 属性：
 

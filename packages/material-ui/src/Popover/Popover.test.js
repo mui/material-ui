@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { assert, expect } from 'chai';
+import { expect } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
 import { createMount, findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
 import * as PropTypes from 'prop-types';
@@ -90,8 +90,8 @@ describe('<Popover />', () => {
         </Popover>,
       );
       const root = wrapper.find('ForwardRef(Popover) > [data-root-node]').first();
-      assert.strictEqual(root.type(), Modal);
-      assert.strictEqual(root.props().BackdropProps.invisible, true);
+      expect(root.type()).to.equal(Modal);
+      expect(root.props().BackdropProps.invisible).to.equal(true);
     });
 
     it('should pass open prop to Modal as `open`', () => {
@@ -100,11 +100,11 @@ describe('<Popover />', () => {
           <div />
         </Popover>,
       );
-      assert.strictEqual(wrapper.find(Modal).props().open, false);
+      expect(wrapper.find(Modal).props().open).to.equal(false);
       wrapper.setProps({ open: true });
-      assert.strictEqual(wrapper.find(Modal).props().open, true);
+      expect(wrapper.find(Modal).props().open).to.equal(true);
       wrapper.setProps({ open: false });
-      assert.strictEqual(wrapper.find(Modal).props().open, false);
+      expect(wrapper.find(Modal).props().open).to.equal(false);
     });
 
     describe('getOffsetTop', () => {
@@ -117,25 +117,25 @@ describe('<Popover />', () => {
       it('should return vertical when vertical is a number', () => {
         const vertical = 1;
         const offsetTop = getOffsetTop('', vertical);
-        assert.strictEqual(offsetTop, vertical);
+        expect(offsetTop).to.equal(vertical);
       });
 
       it("should return half of rect.height if vertical is 'center'", () => {
         const vertical = 'center';
         const offsetTop = getOffsetTop(rect, vertical);
-        assert.strictEqual(offsetTop, rect.height / 2);
+        expect(offsetTop).to.equal(rect.height / 2);
       });
 
       it("should return rect.height if vertical is 'bottom'", () => {
         const vertical = 'bottom';
         const offsetTop = getOffsetTop(rect, vertical);
-        assert.strictEqual(offsetTop, rect.height);
+        expect(offsetTop).to.equal(rect.height);
       });
 
       it('should return zero if vertical is something else', () => {
         const vertical = undefined;
         const offsetTop = getOffsetTop(rect, vertical);
-        assert.strictEqual(offsetTop, 0);
+        expect(offsetTop).to.equal(0);
       });
     });
 
@@ -149,25 +149,25 @@ describe('<Popover />', () => {
       it('should return horizontal when horizontal is a number', () => {
         const horizontal = 1;
         const offsetLeft = getOffsetLeft('', horizontal);
-        assert.strictEqual(offsetLeft, horizontal);
+        expect(offsetLeft).to.equal(horizontal);
       });
 
       it("should return half of rect.width if horizontal is 'center'", () => {
         const horizontal = 'center';
         const offsetLeft = getOffsetLeft(rect, horizontal);
-        assert.strictEqual(offsetLeft, rect.width / 2);
+        expect(offsetLeft).to.equal(rect.width / 2);
       });
 
       it("should return rect.width if horizontal is 'right'", () => {
         const horizontal = 'right';
         const offsetLeft = getOffsetLeft(rect, horizontal);
-        assert.strictEqual(offsetLeft, rect.width);
+        expect(offsetLeft).to.equal(rect.width);
       });
 
       it('should return zero if horizontal is something else', () => {
         const horizontal = undefined;
         const offsetLeft = getOffsetLeft(rect, horizontal);
-        assert.strictEqual(offsetLeft, 0);
+        expect(offsetLeft).to.equal(0);
       });
     });
   });
@@ -192,8 +192,8 @@ describe('<Popover />', () => {
       const modal = wrapper.find('[data-mui-test="Modal"]');
       const transition = modal.find(Grow);
 
-      assert.strictEqual(transition.exists(), true);
-      assert.strictEqual(transition.props().appear, true, 'should transition on first appearance');
+      expect(transition.exists()).to.equal(true);
+      expect(transition.props().appear).to.equal(true);
     });
 
     it('should set the transition in/out based on the open prop', () => {
@@ -202,11 +202,11 @@ describe('<Popover />', () => {
           <div />
         </Popover>,
       );
-      assert.strictEqual(wrapper.find(Grow).props().in, false);
+      expect(wrapper.find(Grow).props().in).to.equal(false);
       wrapper.setProps({ open: true });
-      assert.strictEqual(wrapper.find(Grow).props().in, true);
+      expect(wrapper.find(Grow).props().in).to.equal(true);
       wrapper.setProps({ open: false });
-      assert.strictEqual(wrapper.find(Grow).props().in, false);
+      expect(wrapper.find(Grow).props().in).to.equal(false);
     });
 
     it('should fire Popover transition event callbacks', () => {
@@ -229,11 +229,7 @@ describe('<Popover />', () => {
       clock.tick(0);
 
       events.forEach((eventHook) => {
-        assert.strictEqual(
-          handlers[eventHook].callCount,
-          1,
-          `should have called the ${eventHook} handler`,
-        );
+        expect(handlers[eventHook].callCount).to.equal(1);
       });
     });
   });
@@ -246,7 +242,7 @@ describe('<Popover />', () => {
         </Popover>,
       );
 
-      assert.strictEqual(wrapper.find(Grow).find(Paper).exists(), true);
+      expect(wrapper.find(Grow).find(Paper).exists()).to.equal(true);
     });
 
     it('should have the paper class and user classes', () => {
@@ -255,9 +251,9 @@ describe('<Popover />', () => {
           <div />
         </Popover>,
       );
-      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass('test-class'), true);
+      expect(findOutermostIntrinsic(wrapper).hasClass('test-class')).to.equal(true);
       const paper = wrapper.find(Paper);
-      assert.strictEqual(paper.hasClass(classes.paper), true);
+      expect(paper.hasClass(classes.paper)).to.equal(true);
     });
 
     it('should have a elevation prop passed down', () => {
@@ -267,14 +263,10 @@ describe('<Popover />', () => {
         </Popover>,
       );
 
-      assert.strictEqual(
-        wrapper.find(Paper).props().elevation,
-        8,
-        'should be 8 elevation by default',
-      );
+      expect(wrapper.find(Paper).props().elevation).to.equal(8);
 
       wrapper.setProps({ elevation: 16 });
-      assert.strictEqual(wrapper.find(Paper).props().elevation, 16, 'should be 16 elevation');
+      expect(wrapper.find(Paper).props().elevation).to.equal(16);
     });
   });
 
@@ -294,16 +286,8 @@ describe('<Popover />', () => {
 
         const element = handleEntering.args[0][0];
 
-        assert.strictEqual(
-          element.style.top === '16px' && element.style.left === '16px',
-          true,
-          'should offset the element from the top left of the screen by 16px',
-        );
-        assert.match(
-          element.style.transformOrigin,
-          /-16px -16px( 0px)?/,
-          'should have a transformOrigin',
-        );
+        expect(element.style.top === '16px' && element.style.left === '16px').to.equal(true);
+        expect(element.style.transformOrigin).to.match(/-16px -16px( 0px)?/);
       });
     });
   });
@@ -316,7 +300,7 @@ describe('<Popover />', () => {
           <div />
         </Popover>,
       );
-      assert.strictEqual(anchorElSpy.callCount, 1);
+      expect(anchorElSpy.callCount).to.equal(1);
     });
   });
 
@@ -369,17 +353,9 @@ describe('<Popover />', () => {
       };
 
       expectPopover = (top, left) => {
-        assert.strictEqual(
-          popoverEl.style.top,
-          `${top}px`,
-          'should position at the correct top offset',
-        );
+        expect(popoverEl.style.top).to.equal(`${top}px`);
 
-        assert.strictEqual(
-          popoverEl.style.left,
-          `${left}px`,
-          'should position at the correct left offset',
-        );
+        expect(popoverEl.style.left).to.equal(`${left}px`);
         wrapper.unmount();
       };
     });
@@ -445,16 +421,12 @@ describe('<Popover />', () => {
       const container = document.createElement('div');
       const wrapper2 = mount(<Popover anchorEl={anchorEl} container={container} open={false} />);
 
-      assert.strictEqual(wrapper2.find(Modal).props().container, container);
+      expect(wrapper2.find(Modal).props().container).to.equal(container);
     });
 
     it("should use anchorEl's parent body as container if container not provided", async () => {
       await openPopover(undefined);
-      assert.strictEqual(
-        wrapper.find(Modal).props().container,
-        document.body,
-        "should use anchorEl's parent body as Modal container",
-      );
+      expect(wrapper.find(Modal).props().container).to.equal(document.body);
     });
   });
 
@@ -476,8 +448,8 @@ describe('<Popover />', () => {
         'MockedPopover',
       );
 
-      assert.strictEqual(consoleErrorMock.callCount(), 1);
-      assert.include(consoleErrorMock.messages()[0], 'It should be an Element instance');
+      expect(consoleErrorMock.callCount()).to.equal(1);
+      expect(consoleErrorMock.messages()[0]).to.include('It should be an Element instance');
     });
 
     it('warns if a component for the Paper is used that cant hold a ref', () => {
@@ -488,9 +460,8 @@ describe('<Popover />', () => {
         'MockedPopover',
       );
 
-      assert.strictEqual(consoleErrorMock.callCount(), 1);
-      assert.include(
-        consoleErrorMock.messages()[0],
+      expect(consoleErrorMock.callCount()).to.equal(1);
+      expect(consoleErrorMock.messages()[0]).to.include(
         'Warning: Failed prop type: Invalid prop `PaperProps.component` supplied to `MockedPopover`. Expected an element type that can hold a ref.',
       );
     });
@@ -532,17 +503,9 @@ describe('<Popover />', () => {
         });
 
       expectPopover = (top, left) => {
-        assert.strictEqual(
-          popoverEl.style.top,
-          `${top}px`,
-          'should position at the correct top offset',
-        );
+        expect(popoverEl.style.top).to.equal(`${top}px`);
 
-        assert.strictEqual(
-          popoverEl.style.left,
-          `${left}px`,
-          'should position at the correct left offset',
-        );
+        expect(popoverEl.style.left).to.equal(`${left}px`);
         wrapper.unmount();
       };
     });
@@ -590,17 +553,9 @@ describe('<Popover />', () => {
         });
 
       expectPopover = (top, left) => {
-        assert.strictEqual(
-          popoverEl.style.top,
-          `${top}px`,
-          'should position at the correct top offset',
-        );
+        expect(popoverEl.style.top).to.equal(`${top}px`);
 
-        assert.strictEqual(
-          popoverEl.style.left,
-          `${left}px`,
-          'should position at the correct left offset',
-        );
+        expect(popoverEl.style.left).to.equal(`${left}px`);
         wrapper.unmount();
       };
     });
@@ -698,11 +653,7 @@ describe('<Popover />', () => {
         transformOrigin: element.style.transformOrigin,
       };
       window.innerHeight = windowInnerHeight * 2;
-      assert.strictEqual(
-        typeof popoverActions.updatePosition === 'function',
-        true,
-        'Should be a function.',
-      );
+      expect(typeof popoverActions.updatePosition === 'function').to.equal(true);
       popoverActions.updatePosition();
       clock.tick(166);
       const afterStyle = {
@@ -744,15 +695,15 @@ describe('<Popover />', () => {
         });
 
         it('should set top to marginThreshold', () => {
-          assert.strictEqual(positioningStyle.top, `${marginThreshold}px`);
+          expect(positioningStyle.top).to.equal(`${marginThreshold}px`);
         });
 
         it('should set left to marginThreshold', () => {
-          assert.strictEqual(positioningStyle.left, `${marginThreshold}px`);
+          expect(positioningStyle.left).to.equal(`${marginThreshold}px`);
         });
 
         it('should transformOrigin according to marginThreshold', () => {
-          assert.match(positioningStyle.transformOrigin, expectedTransformOrigin);
+          expect(positioningStyle.transformOrigin).to.match(expectedTransformOrigin);
         });
       });
 
@@ -770,15 +721,15 @@ describe('<Popover />', () => {
         });
 
         it('should set top to marginThreshold', () => {
-          assert.strictEqual(positioningStyle.top, `${marginThreshold}px`);
+          expect(positioningStyle.top).to.equal(`${marginThreshold}px`);
         });
 
         it('should set left to marginThreshold', () => {
-          assert.strictEqual(positioningStyle.left, `${marginThreshold}px`);
+          expect(positioningStyle.left).to.equal(`${marginThreshold}px`);
         });
 
         it('should transformOrigin according to marginThreshold', () => {
-          assert.match(positioningStyle.transformOrigin, /0px -1px( 0ms)?/);
+          expect(positioningStyle.transformOrigin).to.match(/0px -1px( 0ms)?/);
         });
       });
 
@@ -803,15 +754,15 @@ describe('<Popover />', () => {
         });
 
         it('should set top to marginThreshold', () => {
-          assert.strictEqual(positioningStyle.top, `${marginThreshold}px`);
+          expect(positioningStyle.top).to.equal(`${marginThreshold}px`);
         });
 
         it('should set left to marginThreshold', () => {
-          assert.strictEqual(positioningStyle.left, `${marginThreshold}px`);
+          expect(positioningStyle.left).to.equal(`${marginThreshold}px`);
         });
 
         it('should transformOrigin according to marginThreshold', () => {
-          assert.match(positioningStyle.transformOrigin, /0px 1px( 0px)?/);
+          expect(positioningStyle.transformOrigin).to.match(/0px 1px( 0px)?/);
         });
       });
 
@@ -829,15 +780,15 @@ describe('<Popover />', () => {
         });
 
         it('should set top to marginThreshold', () => {
-          assert.strictEqual(positioningStyle.top, `${marginThreshold}px`);
+          expect(positioningStyle.top).to.equal(`${marginThreshold}px`);
         });
 
         it('should set left to marginThreshold', () => {
-          assert.strictEqual(positioningStyle.left, `${marginThreshold}px`);
+          expect(positioningStyle.left).to.equal(`${marginThreshold}px`);
         });
 
         it('should transformOrigin according to marginThreshold', () => {
-          assert.match(positioningStyle.transformOrigin, /-1px 0px( 0px)?/);
+          expect(positioningStyle.transformOrigin).to.match(/-1px 0px( 0px)?/);
         });
       });
 
@@ -862,15 +813,15 @@ describe('<Popover />', () => {
         });
 
         it('should set top to marginThreshold', () => {
-          assert.strictEqual(positioningStyle.top, `${marginThreshold}px`);
+          expect(positioningStyle.top).to.equal(`${marginThreshold}px`);
         });
 
         it('should set left to marginThreshold', () => {
-          assert.strictEqual(positioningStyle.left, `${marginThreshold}px`);
+          expect(positioningStyle.left).to.equal(`${marginThreshold}px`);
         });
 
         it('should transformOrigin according to marginThreshold', () => {
-          assert.match(positioningStyle.transformOrigin, /1px 0px( 0px)?/);
+          expect(positioningStyle.transformOrigin).to.match(/1px 0px( 0px)?/);
         });
       });
     });
@@ -901,9 +852,9 @@ describe('<Popover />', () => {
       );
 
       const elementStyle = handleEntering.args[0][0].style;
-      assert.match(elementStyle.transformOrigin, /0px 32px( 0px)?/);
-      assert.strictEqual(elementStyle.top, '157px');
-      assert.strictEqual(elementStyle.left, '160px');
+      expect(elementStyle.transformOrigin).to.match(/0px 32px( 0px)?/);
+      expect(elementStyle.top).to.equal('157px');
+      expect(elementStyle.left).to.equal('160px');
     });
   });
 
@@ -914,7 +865,7 @@ describe('<Popover />', () => {
           <div />
         </Popover>,
       );
-      assert.strictEqual(wrapper.find(Grow).props().timeout, 'auto');
+      expect(wrapper.find(Grow).props().timeout).to.equal('auto');
     });
 
     it('should not apply the auto prop if not supported', () => {
@@ -924,7 +875,7 @@ describe('<Popover />', () => {
           <div />
         </Popover>,
       );
-      assert.strictEqual(wrapper.find(TransitionComponent).props().timeout, undefined);
+      expect(wrapper.find(TransitionComponent).props().timeout).to.equal(undefined);
     });
   });
 
@@ -944,8 +895,8 @@ describe('<Popover />', () => {
         </Popover>,
       );
 
-      assert.strictEqual(apparentHandler.callCount, 1);
-      assert.strictEqual(transitionHandler.callCount, 1);
+      expect(apparentHandler.callCount).to.equal(1);
+      expect(transitionHandler.callCount).to.equal(1);
     });
 
     it('does not chain other transition callbacks with the apparent ones', () => {
@@ -964,8 +915,8 @@ describe('<Popover />', () => {
 
       wrapper.setProps({ open: false });
 
-      assert.strictEqual(apparentHandler.callCount, 0);
-      assert.strictEqual(transitionHandler.callCount, 1);
+      expect(apparentHandler.callCount).to.equal(0);
+      expect(transitionHandler.callCount).to.equal(1);
     });
   });
 });

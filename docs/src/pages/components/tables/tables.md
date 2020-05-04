@@ -62,6 +62,7 @@ You should either provide an array of:
   ```jsx
   <TablePagination rowsPerPageOptions={[10, 50]} />
   ```
+
 - **objects**, the `value` and `label` keys will be used respectively for the value and label of the option (useful for language strings such as 'All').
 
   ```jsx
@@ -81,6 +82,13 @@ An example of a table with scrollable rows and fixed column headers.
 It leverages the `stickyHeader` prop (⚠️ no IE 11 support).
 
 {{"demo": "pages/components/tables/StickyHeadTable.js", "bg": true}}
+
+## Collapsible table
+
+An example of a table with expandable rows, revealing more information.
+It utilizes the [`Collapse`](/api/collapse/) component.
+
+{{"demo": "pages/components/tables/CollapsibleTable.js", "bg": true}}
 
 ## Spanning Table
 

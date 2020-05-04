@@ -1,6 +1,6 @@
 ---
 title: Tabs React component
-components: Tabs, Tab
+components: Tabs, Tab, TabScrollButton
 ---
 
 # Tabs (Onglets)
@@ -69,7 +69,7 @@ Voici un exemple de personnalisation du composant. Vous pouvez en savoir plus da
 
 {{"demo": "pages/components/tabs/CustomizedTabs.js", "bg": true}}
 
-👑 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/components/tabs).
+👑 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://deprecate.mui-treasury.com/components/tabs).
 
 ## Vertical tabs
 

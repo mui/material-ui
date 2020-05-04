@@ -2,7 +2,7 @@
 
 <p class="description">Eine Übersicht über das Gründerteam und die wichtigsten Mitarbeiter der Material-UI.</p>
 
-Material-UI wird von einer kleinen Gruppe unschätzbarer Kernmitarbeiter und der massiven Unterstützung und Engagement der Community gepflegt.
+Material-UI is maintained by a group of invaluable core contributors, with the massive support and involvement of the community.
 
 {{"demo": "pages/discover-more/team/Team.js", "hideToolbar": true, "bg": "inline"}}
 

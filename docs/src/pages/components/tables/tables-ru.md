@@ -23,7 +23,7 @@ components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead,
 
 Флажки должны сопровождать каждую строку, если пользователю необходимо выбрать или манипулировать данными.
 
-Для доступности(accessibility) первый столбец должен быть элементом `<th>` с атрибутом `scope` со значением `"row"`. Это позволяет программам чтения с экрана идентифицировать значение ячейки по имени строки и столбца.
+For accessibility, the first column is set to be a `<th>` element, with a `scope` of `"col"`. Это позволяет программам чтения с экрана идентифицировать значение ячейки по имени строки и столбца.
 
 ## Простая таблица
 
@@ -79,6 +79,12 @@ components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead,
 
 {{"demo": "pages/components/tables/StickyHeadTable.js", "bg": true}}
 
+## Collapsible table
+
+An example of a table with expandable rows, revealing more information. It utilizes the [`Collapse`](/api/collapse/) component.
+
+{{"demo": "pages/components/tables/CollapsibleTable.js", "bg": true}}
+
 ## Объединение таблиц
 
 Простой пример с объединением строк и столбцов.
@@ -87,7 +93,7 @@ components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead,
 
 ## Виртуализированная таблица
 
-В следующем примере мы демонстрируем, как использовать [react-virtualized](https://github.com/bvaughn/react-virtualized) с компонентом `Table`. Он отображает 200 строк и c легкостью может еще больше. Virtualization helps with performance issues.
+В следующем примере мы покажем, как использовать [react-virtualized](https://github.com/bvaughn/react-virtualized) с компонентом `Table`. Он отображает 200 строк и c легкостью может еще больше. Virtualization helps with performance issues.
 
 {{"demo": "pages/components/tables/ReactVirtualizedTable.js", "bg": true}}
 

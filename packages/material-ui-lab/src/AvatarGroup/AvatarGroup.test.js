@@ -28,15 +28,30 @@ describe('<AvatarGroup />', () => {
     skip: ['componentProp'],
   }));
 
-  it('should not display all the avatars', () => {
+  it('should display all the avatars', () => {
     const { container } = render(
-      <AvatarGroup max={1}>
-        <Avatar src="broken-url" />
-        <Avatar src="broken-url" />
-        <Avatar src="broken-url" />
+      <AvatarGroup max={3}>
+        <Avatar src="image-url" />
+        <Avatar src="image-url" />
+        <Avatar src="image-url" />
       </AvatarGroup>,
     );
-    expect(container.querySelectorAll('img').length).to.equal(1);
+    expect(container.querySelectorAll('.MuiAvatar-root').length).to.equal(3);
+    expect(container.querySelectorAll('img').length).to.equal(3);
+    expect(container.textContent).to.equal('');
+  });
+
+  it('should display 2 avatars and "+2"', () => {
+    const { container } = render(
+      <AvatarGroup max={3}>
+        <Avatar src="image-url" />
+        <Avatar src="image-url" />
+        <Avatar src="image-url" />
+        <Avatar src="image-url" />
+      </AvatarGroup>,
+    );
+    expect(container.querySelectorAll('.MuiAvatar-root').length).to.equal(3);
+    expect(container.querySelectorAll('img').length).to.equal(2);
     expect(container.textContent).to.equal('+2');
   });
 });

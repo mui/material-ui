@@ -62,7 +62,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   const [value, setValue] = useControlled({
     controlled: valueProp,
     default: defaultValue,
-    name: 'SelectInput',
+    name: 'Select',
   });
 
   const inputRef = React.useRef(null);
@@ -214,7 +214,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       if (isFragment(child)) {
         console.error(
           [
-            "Material-UI: the Select component doesn't accept a Fragment as a child.",
+            "Material-UI: The Select component doesn't accept a Fragment as a child.",
             'Consider providing an array instead.',
           ].join('\n'),
         );
@@ -226,7 +226,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     if (multiple) {
       if (!Array.isArray(value)) {
         throw new Error(
-          'Material-UI: the `value` prop must be an array ' +
+          'Material-UI: The `value` prop must be an array ' +
             'when using the `Select` component with `multiple`.',
         );
       }
@@ -275,7 +275,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         const values = React.Children.toArray(children).map((child) => child.props.value);
         console.warn(
           [
-            `Material-UI: you have provided an out-of-range value \`${value}\` for the select ${
+            `Material-UI: You have provided an out-of-range value \`${value}\` for the select ${
               name ? `(name="${name}") ` : ''
             }component.`,
             "Consider providing a value that matches one of the available options or ''.",

@@ -103,7 +103,7 @@ Die Anpassung endet nicht bei CSS. Sie können Komposition verwenden, um benutze
 
 {{"demo": "pages/components/text-fields/CustomizedInputBase.js", "bg": true}}
 
-👑 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/components/text-field).
+👑 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/text-field).
 
 ## Einschränkungen
 

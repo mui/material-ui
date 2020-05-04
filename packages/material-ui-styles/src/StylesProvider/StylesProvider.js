@@ -43,7 +43,7 @@ export default function StylesProvider(props) {
   if (process.env.NODE_ENV !== 'production') {
     if (typeof window === 'undefined' && !context.sheetsManager) {
       console.error(
-        'Material-UI: you need to use the ServerStyleSheets API when rendering on the server.',
+        'Material-UI: You need to use the ServerStyleSheets API when rendering on the server.',
       );
     }
   }
@@ -51,14 +51,14 @@ export default function StylesProvider(props) {
   if (process.env.NODE_ENV !== 'production') {
     if (context.jss.options.insertionPoint && injectFirst) {
       console.error(
-        'Material-UI: you cannot use a custom insertionPoint and <StylesContext injectFirst> at the same time.',
+        'Material-UI: You cannot use a custom insertionPoint and <StylesContext injectFirst> at the same time.',
       );
     }
   }
 
   if (process.env.NODE_ENV !== 'production') {
     if (injectFirst && localOptions.jss) {
-      console.error('Material-UI: you cannot use the jss and injectFirst props at the same time.');
+      console.error('Material-UI: You cannot use the jss and injectFirst props at the same time.');
     }
   }
 

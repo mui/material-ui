@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import { getClasses, createMount } from '@material-ui/core/test-utils';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import Input from '../Input';
@@ -39,7 +39,7 @@ describe('<NativeSelect />', () => {
 
   it('should provide the classes to the input component', () => {
     const wrapper = mount(<NativeSelect {...defaultProps} />);
-    assert.deepEqual(wrapper.find(Input).props().inputProps.classes, classes);
+    expect(wrapper.find(Input).props().inputProps.classes).to.deep.equal(classes);
   });
 
   it('should be able to mount the component', () => {
@@ -51,6 +51,6 @@ describe('<NativeSelect />', () => {
         <option value={30}>Thirty</option>
       </NativeSelect>,
     );
-    assert.strictEqual(wrapper.find('select').props().value, 10);
+    expect(wrapper.find('select').props().value).to.equal(10);
   });
 });

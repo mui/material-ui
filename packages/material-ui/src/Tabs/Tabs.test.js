@@ -1,27 +1,39 @@
 import * as React from 'react';
-import { expect, assert } from 'chai';
+import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import * as PropTypes from 'prop-types';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import { createClientRender, fireEvent } from 'test/utils/createClientRender';
 import createServerRender from 'test/utils/createServerRender';
 import describeConformance from '../test-utils/describeConformance';
+import capitalize from '../utils/capitalize';
 import Tab from '../Tab';
 import Tabs from './Tabs';
-import TabScrollButton from './TabScrollButton';
+import { createMuiTheme, ThemeProvider } from '../styles';
 
-function AccessibleTabScrollButton(props) {
-  return <TabScrollButton data-direction={props.direction} {...props} />;
+function findScrollButton(container, direction) {
+  return container.querySelector(`svg[data-mui-test="KeyboardArrow${capitalize(direction)}Icon"]`);
 }
-AccessibleTabScrollButton.propTypes = {
-  direction: PropTypes.string.isRequired,
-};
 
-const findScrollButton = (container, direction) =>
-  container.querySelector(`div[data-direction="${direction}"]`);
-const hasLeftScrollButton = (container) => findScrollButton(container, 'left') != null;
-const hasRightScrollButton = (container) => findScrollButton(container, 'right') != null;
+function hasLeftScrollButton(container) {
+  const scrollButton = findScrollButton(container, 'left');
+
+  if (!scrollButton) {
+    return false;
+  }
+
+  return !scrollButton.parentElement.classList.contains('Mui-disabled');
+}
+
+function hasRightScrollButton(container) {
+  const scrollButton = findScrollButton(container, 'right');
+
+  if (!scrollButton) {
+    return false;
+  }
+
+  return !scrollButton.parentElement.classList.contains('Mui-disabled');
+}
 
 describe('<Tabs />', () => {
   const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
@@ -64,9 +76,8 @@ describe('<Tabs />', () => {
 
     it('should warn if the input is invalid', () => {
       render(<Tabs value={0} centered variant="scrollable" />);
-      assert.match(
-        consoleErrorMock.messages()[0],
-        /Material-UI: you can not use the `centered={true}` and `variant="scrollable"`/,
+      expect(consoleErrorMock.messages()[0]).to.match(
+        /Material-UI: You can not use the `centered={true}` and `variant="scrollable"`/,
       );
     });
   });
@@ -117,6 +128,21 @@ describe('<Tabs />', () => {
 
     it('should support empty children', () => {
       render(<Tabs value={1} />);
+    });
+
+    it('puts the selected child in tab order', () => {
+      const { getAllByRole, setProps } = render(
+        <Tabs value={1}>
+          <Tab />
+          <Tab />
+        </Tabs>,
+      );
+
+      expect(getAllByRole('tab').map((tab) => tab.tabIndex)).to.have.ordered.members([-1, 0]);
+
+      setProps({ value: 0 });
+
+      expect(getAllByRole('tab').map((tab) => tab.tabIndex)).to.have.ordered.members([0, -1]);
     });
   });
 
@@ -260,12 +286,7 @@ describe('<Tabs />', () => {
   describe('prop: variant="scrollable"', () => {
     let clock;
     const tabs = (
-      <Tabs
-        value={0}
-        style={{ width: 200 }}
-        variant="scrollable"
-        ScrollButtonComponent={AccessibleTabScrollButton}
-      >
+      <Tabs value={0} style={{ width: 200 }} variant="scrollable">
         <Tab />
         <Tab />
         <Tab />
@@ -373,13 +394,7 @@ describe('<Tabs />', () => {
       }
 
       const { container, setProps, getByRole } = render(
-        <Tabs
-          value={0}
-          variant="scrollable"
-          scrollButtons="on"
-          ScrollButtonComponent={AccessibleTabScrollButton}
-          style={{ width: 200 }}
-        >
+        <Tabs value={0} variant="scrollable" scrollButtons="on" style={{ width: 200 }}>
           <Tab />
           <Tab />
           <Tab />
@@ -413,13 +428,7 @@ describe('<Tabs />', () => {
     describe('scroll button visibility states', () => {
       it('should set neither left nor right scroll button state', () => {
         const { container, setProps, getByRole } = render(
-          <Tabs
-            value={0}
-            variant="scrollable"
-            scrollButtons="on"
-            ScrollButtonComponent={AccessibleTabScrollButton}
-            style={{ width: 200 }}
-          >
+          <Tabs value={0} variant="scrollable" scrollButtons="on" style={{ width: 200 }}>
             <Tab />
             <Tab />
           </Tabs>,
@@ -436,13 +445,7 @@ describe('<Tabs />', () => {
 
       it('should set only left scroll button state', () => {
         const { container, setProps, getByRole } = render(
-          <Tabs
-            value={0}
-            variant="scrollable"
-            scrollButtons="on"
-            ScrollButtonComponent={AccessibleTabScrollButton}
-            style={{ width: 200 }}
-          >
+          <Tabs value={0} variant="scrollable" scrollButtons="on" style={{ width: 200 }}>
             <Tab />
             <Tab />
             <Tab />
@@ -461,13 +464,7 @@ describe('<Tabs />', () => {
 
       it('should set only right scroll button state', () => {
         const { container, setProps, getByRole } = render(
-          <Tabs
-            value={0}
-            variant="scrollable"
-            scrollButtons="on"
-            ScrollButtonComponent={AccessibleTabScrollButton}
-            style={{ width: 200 }}
-          >
+          <Tabs value={0} variant="scrollable" scrollButtons="on" style={{ width: 200 }}>
             <Tab />
             <Tab />
             <Tab />
@@ -486,13 +483,7 @@ describe('<Tabs />', () => {
 
       it('should set both left and right scroll button state', () => {
         const { container, setProps, getByRole } = render(
-          <Tabs
-            value={0}
-            variant="scrollable"
-            scrollButtons="on"
-            ScrollButtonComponent={AccessibleTabScrollButton}
-            style={{ width: 200 }}
-          >
+          <Tabs value={0} variant="scrollable" scrollButtons="on" style={{ width: 200 }}>
             <Tab />
             <Tab />
           </Tabs>,
@@ -523,13 +514,7 @@ describe('<Tabs />', () => {
 
     it('should call moveTabsScroll', () => {
       const { container, setProps, getByRole } = render(
-        <Tabs
-          value={0}
-          variant="scrollable"
-          scrollButtons="on"
-          ScrollButtonComponent={AccessibleTabScrollButton}
-          style={{ width: 200 }}
-        >
+        <Tabs value={0} variant="scrollable" scrollButtons="on" style={{ width: 200 }}>
           <Tab />
           <Tab />
           <Tab />
@@ -670,6 +655,178 @@ describe('<Tabs />', () => {
       );
       const indicator = markup.find(`button > .${classes.indicator}`);
       expect(indicator).to.have.lengthOf(1);
+    });
+  });
+
+  describe('keyboard navigation when focus is on a tab', () => {
+    [
+      ['horizontal', 'ltr', 'ArrowLeft', 'ArrowRight'],
+      ['horizontal', 'rtl', 'ArrowRight', 'ArrowLeft'],
+      ['vertical', undefined, 'ArrowUp', 'ArrowDown'],
+    ].forEach((entry) => {
+      const [orientation, direction, previousItemKey, nextItemKey] = entry;
+
+      let wrapper;
+      before(() => {
+        const theme = createMuiTheme({ direction });
+        wrapper = ({ children }) => <ThemeProvider theme={theme}>{children}</ThemeProvider>;
+      });
+
+      describe(`when focus is on a tab element in a ${orientation} ${direction} tablist`, () => {
+        describe(previousItemKey, () => {
+          it('moves focus to the last tab without activating it if focus is on the first tab', () => {
+            const handleChange = spy();
+            const handleKeyDown = spy((event) => event.defaultPrevented);
+            const { getAllByRole } = render(
+              <Tabs
+                onChange={handleChange}
+                onKeyDown={handleKeyDown}
+                orientation={orientation}
+                value={1}
+              >
+                <Tab />
+                <Tab />
+                <Tab />
+              </Tabs>,
+              { wrapper },
+            );
+            const [firstTab, , lastTab] = getAllByRole('tab');
+            firstTab.focus();
+
+            fireEvent.keyDown(firstTab, { key: previousItemKey });
+
+            expect(lastTab).toHaveFocus();
+            expect(handleChange.callCount).to.equal(0);
+            expect(handleKeyDown.firstCall.returnValue).to.equal(true);
+          });
+
+          it('moves focus to the previous tab without activating it', () => {
+            const handleChange = spy();
+            const handleKeyDown = spy((event) => event.defaultPrevented);
+            const { getAllByRole } = render(
+              <Tabs
+                onChange={handleChange}
+                onKeyDown={handleKeyDown}
+                orientation={orientation}
+                value={1}
+              >
+                <Tab />
+                <Tab />
+                <Tab />
+              </Tabs>,
+              { wrapper },
+            );
+            const [firstTab, secondTab] = getAllByRole('tab');
+            secondTab.focus();
+
+            fireEvent.keyDown(secondTab, { key: previousItemKey });
+
+            expect(firstTab).toHaveFocus();
+            expect(handleChange.callCount).to.equal(0);
+            expect(handleKeyDown.firstCall.returnValue).to.equal(true);
+          });
+        });
+
+        describe(nextItemKey, () => {
+          it('moves focus to the first tab without activating it if focus is on the last tab', () => {
+            const handleChange = spy();
+            const handleKeyDown = spy((event) => event.defaultPrevented);
+            const { getAllByRole } = render(
+              <Tabs
+                onChange={handleChange}
+                onKeyDown={handleKeyDown}
+                orientation={orientation}
+                value={1}
+              >
+                <Tab />
+                <Tab />
+                <Tab />
+              </Tabs>,
+              { wrapper },
+            );
+            const [firstTab, , lastTab] = getAllByRole('tab');
+            lastTab.focus();
+
+            fireEvent.keyDown(lastTab, { key: nextItemKey });
+
+            expect(firstTab).toHaveFocus();
+            expect(handleChange.callCount).to.equal(0);
+            expect(handleKeyDown.firstCall.returnValue).to.equal(true);
+          });
+
+          it('moves focus to the next tab without activating it it', () => {
+            const handleChange = spy();
+            const handleKeyDown = spy((event) => event.defaultPrevented);
+            const { getAllByRole } = render(
+              <Tabs
+                onChange={handleChange}
+                onKeyDown={handleKeyDown}
+                orientation={orientation}
+                value={1}
+              >
+                <Tab />
+                <Tab />
+                <Tab />
+              </Tabs>,
+              { wrapper },
+            );
+            const [, secondTab, lastTab] = getAllByRole('tab');
+            secondTab.focus();
+
+            fireEvent.keyDown(secondTab, { key: nextItemKey });
+
+            expect(lastTab).toHaveFocus();
+            expect(handleChange.callCount).to.equal(0);
+            expect(handleKeyDown.firstCall.returnValue).to.equal(true);
+          });
+        });
+      });
+    });
+
+    describe('when focus is on a tab regardless of orientation', () => {
+      describe('Home', () => {
+        it('moves focus to the first tab without activating it', () => {
+          const handleChange = spy();
+          const handleKeyDown = spy((event) => event.defaultPrevented);
+          const { getAllByRole } = render(
+            <Tabs onChange={handleChange} onKeyDown={handleKeyDown} value={1}>
+              <Tab />
+              <Tab />
+              <Tab />
+            </Tabs>,
+          );
+          const [firstTab, , lastTab] = getAllByRole('tab');
+          lastTab.focus();
+
+          fireEvent.keyDown(lastTab, { key: 'Home' });
+
+          expect(firstTab).toHaveFocus();
+          expect(handleChange.callCount).to.equal(0);
+          expect(handleKeyDown.firstCall.returnValue).to.equal(true);
+        });
+      });
+
+      describe('End', () => {
+        it('moves focus to the last tab without activating it', () => {
+          const handleChange = spy();
+          const handleKeyDown = spy((event) => event.defaultPrevented);
+          const { getAllByRole } = render(
+            <Tabs onChange={handleChange} onKeyDown={handleKeyDown} value={1}>
+              <Tab />
+              <Tab />
+              <Tab />
+            </Tabs>,
+          );
+          const [firstTab, , lastTab] = getAllByRole('tab');
+          firstTab.focus();
+
+          fireEvent.keyDown(firstTab, { key: 'End' });
+
+          expect(lastTab).toHaveFocus();
+          expect(handleChange.callCount).to.equal(0);
+          expect(handleKeyDown.firstCall.returnValue).to.equal(true);
+        });
+      });
     });
   });
 });

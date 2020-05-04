@@ -23,7 +23,7 @@ Se você quiser aprender mais sobre cor, você pode conferir [a seção de cores
 
 Você pode sobrescrever os valores padrão da paleta incluindo um objeto palette como parte do seu tema.
 
-If any of the [`palette.primary`](/customization/default-theme/?expand-path=$.palette.primary), [`palette.secondary`](/customization/default-theme/?expand-path=$.palette.secondary), [`palette.error`](/customization/default-theme/?expand-path=$.palette.error), [`palette.warning`](/customization/default-theme/?expand-path=$.palette.warning), [`palette.info`](/customization/default-theme/?expand-path=$.palette.info) or [`palette.successs`](/customization/default-theme/?expand-path=$.palette.successs) 'intention' objects are provided, they will replace the defaults.
+Se algum dos objetos [`palette.primary`](/customization/default-theme/?expand-path=$.palette.primary), [`palette.secondary`](/customization/default-theme/?expand-path=$.palette.secondary), [`palette.error`](/customization/default-theme/?expand-path=$.palette.error), [`palette.warning`](/customization/default-theme/?expand-path=$.palette.warning), [`palette.info`](/customization/default-theme/?expand-path=$.palette.info) ou [`palette.successs`](/customization/default-theme/?expand-path=$.palette.successs) 'intenção' são fornecidos, eles substituirão os padrões.
 
 O valor da intenção pode ser um objeto [cor](/customization/color/), ou um objeto com uma ou mais das chaves especificadas pela seguinte interface TypeScript:
 
@@ -61,36 +61,45 @@ import { createMuiTheme } from '@material-ui/core/styles';
 const theme = createMuiTheme({
   palette: {
     primary: {
-      // light: will be calculated from palette.primary.main,
+      // light: será calculada com base em palette.primary.main,
       main: '#ff4400',
-      // dark: will be calculated from palette.primary.main,
-      // contrastText: will be calculated to contrast with palette.primary.main
+      // dark: será calculada com base em palette.primary.main,
+      // contrastText: será calculada para contrastar com palette.primary.main
     },
     secondary: {
       light: '#0066ff',
       main: '#0044ff',
-      // dark: will be calculated from palette.secondary.main,
+      // dark: será calculada com base palette.secondary.main,
       contrastText: '#ffcc00',
     },
-    // Used by `getContrastText()` to maximize the contrast between
-    // the background and the text.
+    // Usado por `getContrastText()` para maximizar o contraste entre
+    // o plano de fundo e o texto.
     contrastThreshold: 3,
-    // Used by the functions below to shift a color's luminance by approximately
-    // two indexes within its tonal palette.
+    // Usado pelas funções abaixo para mudança de uma cor de luminância por aproximadamente
+    // dois índices dentro de sua paleta tonal.
     // Por exemplo, mude de Red 500 para Red 300 ou Red 700.
     tonalOffset: 0.2,
   },
 });
 ```
 
-As in the example above, if the intention object contains custom colors using any of the "main", "light", "dark" or "contrastText" keys, these map as follows:
+Como no exemplo acima, se o objeto de intenção contém cores customizadas usando qualquer uma das chaves "main", "light", "dark" ou "contrastText", esses mapas são os seguintes:
 
-- If the "dark" and / or "light" keys are omitted, their value(s) will be calculated from "main", according to the "tonalOffset" value.
-- If "contrastText" is omitted, its value will be calculated to contrast with "main", according to the "contrastThreshold" value.
+- Se as chaves "dark" e / ou "light" são omitidas, seus valores serão calculados de "main", de acordo com o valor "tonalOffset".
+- Se "contrastText" é omitido, seu valor será calculado para contrastar com "main", de acordo com o valor de "contrastThreshold".
 
-Both the "tonalOffset" and "contrastThreshold" values may be customized as needed. A higher value for "tonalOffset" will make calculated values for "light" lighter, and "dark" darker. A higher value for "contrastThreshold" increases the point at which a background color is considered light, and given a dark "contrastText".
+Tanto os valores de "tonalOffset" e "contrastThreshold" poderão ser customizados conforme o necessário. O "tonalOffset" pode ser um valor numérico entre 0 e 1, que será aplicada a ambos variantes claros e escuros, ou um objeto com as variantes clara e escuras especificado a seguir pelo tipo TypeScript:
 
-Note that "contrastThreshold" follows a non-linear curve.
+```ts
+type PaletteTonalOffset = number | {
+  light: number;
+  dark: number;
+};
+```
+
+Um valor mais alto para "tonalOffset" fará valores calculados para "light" mais claro e "dark" mais escuro. Um valor mais alto para "contrastThreshold" aumenta o ponto no qual uma cor de fundo é considerada clara, e recebe um "contrastText" escuro.
+
+Observe que "contrastThreshold" segue uma curva não linear.
 
 ### Exemplo
 
@@ -100,9 +109,9 @@ Note that "contrastThreshold" follows a non-linear curve.
 
 Precisa de inspiração? A equipe do Material Design construiu uma incrível [ferramenta de configuração de paleta](/customization/color/#color-tool) para te ajudar.
 
-## Dark mode
+## Modo escuro
 
-Material-UI comes with two palette types, light (the default) and dark. You can make the theme dark by setting `type: 'dark'`. While it's only a single property value change, internally it modifies several palette values.
+O Material-UI vem com dois tipos de paletas, luz (o padrão) e escuro. Você pode deixar o tema escuro definindo `type: 'dark'`. Embora seja apenas uma alteração no valor de uma propriedade única, internamente ela modifica vários valores da paleta.
 
 ```js
 const darkTheme = createMuiTheme({
@@ -112,17 +121,17 @@ const darkTheme = createMuiTheme({
 });
 ```
 
-The colors modified by the palette type are the following:
+As cores modificadas pelo tipo da paleta são as seguintes:
 
 {{"demo": "pages/customization/palette/DarkTheme.js", "bg": "inline", "hideToolbar": true}}
 
-### User preference
+### Preferência do usuário
 
-Users might have specified a preference for a light or dark theme. The method by which the user expresses their preference can vary. It might be a system-wide setting exposed by the Operating System, or a setting controlled by the User Agent.
+Usuários podem especificar uma preferência por um tema claro ou escuro. O método pelo qual o usuário expressa a sua preferência pode variar. Pode ser uma configuração de sistema exposta pelo Sistema Operacional, ou uma configuração controlada pelo Agente de Usuário.
 
-You can leverage this preference dynamically with the [useMediaQuery](/components/use-media-query/) hook and the [prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme) media query.
+Você pode utilizar essa preferência dinamicamente com o hook [useMediaQuery](/components/use-media-query/) e a consulta de mídia [prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme).
 
-For instance, you can enable the dark mode automatically:
+Por exemplo, você pode ativar o modo escuro automaticamente:
 
 ```jsx
 import React from 'react';
@@ -152,4 +161,4 @@ function App() {
 
 ## Valores padrão
 
-You can explore the default values of the palette using [the theme explorer](/customization/default-theme/?expand-path=$.palette) or by opening the dev tools console on this page (`window.theme.palette`).
+Você pode explorar os valores padrão da paleta usando [o explorador de tema](/customization/default-theme/?expand-path=$.palette) ou abrindo o console das ferramentas de desenvolvimento nesta página (`window.theme.palette`).

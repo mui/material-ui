@@ -1,17 +1,17 @@
-import { assert } from 'chai';
+import { expect } from 'chai';
 import { hasValue, isFilled } from './utils';
 
 describe('Input/utils.js', () => {
   describe('hasValue', () => {
     ['', 0].forEach((value) => {
       it(`is true for ${value}`, () => {
-        assert.strictEqual(hasValue(value), true);
+        expect(hasValue(value)).to.equal(true);
       });
     });
 
     [null, undefined].forEach((value) => {
       it(`is false for ${value}`, () => {
-        assert.strictEqual(hasValue(value), false);
+        expect(hasValue(value)).to.equal(false);
       });
     });
   });
@@ -19,20 +19,20 @@ describe('Input/utils.js', () => {
   describe('isFilled', () => {
     [' ', 0].forEach((value) => {
       it(`is true for value ${value}`, () => {
-        assert.strictEqual(isFilled({ value }), true);
+        expect(isFilled({ value })).to.equal(true);
       });
 
       it(`is true for SSR defaultValue ${value}`, () => {
-        assert.strictEqual(isFilled({ defaultValue: value }, true), true);
+        expect(isFilled({ defaultValue: value }, true)).to.equal(true);
       });
     });
     [null, undefined, ''].forEach((value) => {
       it(`is false for value ${value}`, () => {
-        assert.strictEqual(isFilled({ value }), false);
+        expect(isFilled({ value })).to.equal(false);
       });
 
       it(`is false for SSR defaultValue ${value}`, () => {
-        assert.strictEqual(isFilled({ defaultValue: value }, true), false);
+        expect(isFilled({ defaultValue: value }, true)).to.equal(false);
       });
     });
   });

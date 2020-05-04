@@ -23,13 +23,13 @@ Algumas características importantes do componente `Popper`:
 
 ## Transições
 
-The open/close state of the popper can be animated with a render prop child and a transition component. Este componente deve respeitar as seguintes condições:
+O estado de aberto/fechado do popper pode ser animado com uma propriedade de renderização do elemento filho e um componente de transição. Este componente deve respeitar as seguintes condições:
 
-- Be a direct child descendent of the popper.
+- Ser um elemento filho descendente direto de popper.
 - Chamar a propriedade de callback `onEnter` quando a transição de entrada iniciar.
-- Chamar a propriedade de callback `onExited` quando a transição de saída for concluída. These two callbacks allow the popper to unmount the child content when closed and fully transitioned.
+- Chamar a propriedade de callback `onExited` quando a transição de saída for concluída. Esses dois callbacks permitem que o popper desmonte o conteúdo filho quando fechado e seja totalmente transitado.
 
-Popper has built-in support for [react-transition-group](https://github.com/reactjs/react-transition-group).
+Popper possui suporte interno para [react-transition-group](https://github.com/reactjs/react-transition-group).
 
 {{"demo": "pages/components/popper/TransitionsPopper.js"}}
 

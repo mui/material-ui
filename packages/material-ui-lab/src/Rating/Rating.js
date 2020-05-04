@@ -7,6 +7,7 @@ import {
   capitalize,
   useForkRef,
   useIsFocusVisible,
+  useControlled,
   unstable_useId as useId,
 } from '@material-ui/core/utils';
 import Star from '../internal/svg-icons/Star';
@@ -167,28 +168,11 @@ const Rating = React.forwardRef(function Rating(props, ref) {
 
   const name = useId(nameProp);
 
-  const { current: isControlled } = React.useRef(valueProp !== undefined);
-  const [valueState, setValueState] = React.useState(defaultValue);
-  const valueDerived = isControlled ? valueProp : valueState;
-
-  if (process.env.NODE_ENV !== 'production') {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    React.useEffect(() => {
-      if (isControlled !== (valueProp !== undefined)) {
-        console.error(
-          [
-            `Material-UI: A component is changing ${
-              isControlled ? 'a ' : 'an un'
-            }controlled Rating to be ${isControlled ? 'un' : ''}controlled.`,
-            'Elements should not switch from uncontrolled to controlled (or vice versa).',
-            'Decide between using a controlled or uncontrolled Rating ' +
-              'element for the lifetime of the component.',
-            'More info: https://fb.me/react-controlled-components',
-          ].join('\n'),
-        );
-      }
-    }, [valueProp, isControlled]);
-  }
+  const [valueDerived, setValueState] = useControlled({
+    controlled: valueProp,
+    default: defaultValue,
+    name: 'Rating',
+  });
 
   const valueRounded = roundValueToPrecision(valueDerived, precision);
   const theme = useTheme();
@@ -266,9 +250,7 @@ const Rating = React.forwardRef(function Rating(props, ref) {
   const handleChange = (event) => {
     const newValue = parseFloat(event.target.value);
 
-    if (!isControlled) {
-      setValueState(newValue);
-    }
+    setValueState(newValue);
 
     if (onChange) {
       onChange(event, newValue);
@@ -287,9 +269,7 @@ const Rating = React.forwardRef(function Rating(props, ref) {
       focus: -1,
     });
 
-    if (!isControlled) {
-      setValueState(null);
-    }
+    setValueState(null);
 
     if (onChange && parseFloat(event.target.value) === valueRounded) {
       onChange(event, null);
@@ -535,7 +515,7 @@ Rating.propTypes = {
     if (!props.readOnly && !props.name) {
       return new Error(
         [
-          'Material-UI: the prop `name` is required (when `readOnly` is false).',
+          'Material-UI: The prop `name` is required (when `readOnly` is false).',
           'Additionally, the input name should be unique within the parent form.',
         ].join('\n'),
       );
@@ -571,7 +551,7 @@ Rating.propTypes = {
     if (props.precision < 0.1) {
       return new Error(
         [
-          'Material-UI: the prop `precision` should be above 0.1.',
+          'Material-UI: The prop `precision` should be above 0.1.',
           'A value below this limit has an imperceptible impact.',
         ].join('\n'),
       );

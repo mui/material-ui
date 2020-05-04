@@ -3,7 +3,7 @@ title: Componente React Stepper
 components: MobileStepper, Step, StepButton, StepConnector, StepContent, StepIcon, StepLabel, Stepper
 ---
 
-# Stepper (Assistente)
+# Assistente
 
 <p class="description">Assistentes transmitem progresso através de etapas numeradas. Ele fornece um fluxo de trabalho com etapas.</p>
 
@@ -46,13 +46,13 @@ O uso do `StepButton` aqui, demonstra rótulos de etapas clicáveis, além de de
 
 {{"demo": "pages/components/steppers/HorizontalNonLinearStepper.js", "bg": true}}
 
-### Non-linear - Alternative Label
+### Não Linear - Rótulo Alternativo
 
 Os rótulos podem ser colocados abaixo do ícone da etapa, definindo a propriedade `alternativeLabel` no componente `Stepper`.
 
 {{"demo": "pages/components/steppers/HorizontalNonLinearAlternativeLabelStepper.js", "bg": true}}
 
-### Non-linear - Error Step
+### Não Linear - Etapa de Erro
 
 {{"demo": "pages/components/steppers/HorizontalNonLinearStepperWithError.js", "bg": true}}
 

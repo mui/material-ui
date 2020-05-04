@@ -1,18 +1,18 @@
 import * as React from 'react';
-import { assert } from 'chai';
-import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
+import { expect } from 'chai';
+import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { createClientRender } from 'test/utils/createClientRender';
 import describeConformance from '../test-utils/describeConformance';
 import CardHeader from './CardHeader';
 import Typography from '../Typography';
 
 describe('<CardHeader />', () => {
   let mount;
-  let shallow;
   let classes;
-
+  const render = createClientRender();
+  const typographyClasses = getClasses(<Typography />);
   before(() => {
     mount = createMount({ strict: true });
-    shallow = createShallow({ untilSelector: 'div' });
     classes = getClasses(<CardHeader />);
   });
 
@@ -29,72 +29,66 @@ describe('<CardHeader />', () => {
   }));
 
   describe('without an avatar', () => {
-    let wrapper;
-
-    beforeEach(() => {
-      wrapper = shallow(<CardHeader title="Title" subheader="Subheader" />).childAt(0);
-    });
-
     it('should render the title as headline text', () => {
-      const title = wrapper.childAt(0);
-      assert.strictEqual(title.type(), Typography);
-      assert.strictEqual(title.props().variant, 'h5');
+      const cardHeader = render(<CardHeader title="Title" subheader="Subheader" />).container
+        .firstChild;
+      const wrapper = cardHeader.firstChild;
+      const title = wrapper.childNodes[0];
+      expect(title).to.have.class(typographyClasses.root);
+      expect(title).to.have.class(typographyClasses.h5);
     });
 
     it('should render the subheader as body1 secondary text', () => {
-      const subheader = wrapper.childAt(1);
-      assert.strictEqual(subheader.type(), Typography);
-      assert.strictEqual(subheader.props().variant, 'body1');
-      assert.strictEqual(subheader.props().color, 'textSecondary');
+      const cardHeader = render(<CardHeader title="Title" subheader="Subheader" />).container
+        .firstChild;
+      const wrapper = cardHeader.firstChild;
+      const subheader = wrapper.childNodes[1];
+      expect(subheader).to.have.class(typographyClasses.root);
+      expect(subheader).to.have.class(typographyClasses.body1);
+      expect(subheader).to.have.class(typographyClasses.colorTextSecondary);
     });
 
     it('should not render the subheader if none is given', () => {
-      const title = wrapper.childAt(0);
-      assert.strictEqual(title.type(), Typography);
-      assert.strictEqual(wrapper.length, 1);
+      const cardHeader = render(<CardHeader title="Title" />).container.firstChild;
+      const wrapper = cardHeader.firstChild;
+      const title = wrapper.childNodes[0];
+      expect(title).to.have.class(typographyClasses.root);
+      expect(wrapper.childNodes.length).to.equal(1);
     });
   });
 
   describe('with an avatar', () => {
-    let wrapper;
     let avatar;
+    let cardHeader;
 
     beforeEach(() => {
       avatar = <span />;
-      wrapper = shallow(<CardHeader avatar={avatar} title="Title" subheader="Subhead" />);
+      cardHeader = render(<CardHeader avatar={avatar} title="Title" subheader="Subhead" />)
+        .container.firstChild;
     });
 
     it('should render the avatar inside the first child', () => {
-      const container = wrapper.childAt(0);
-
-      assert.strictEqual(container.name(), 'div');
-      assert.strictEqual(container.hasClass(classes.avatar), true);
-      assert.strictEqual(container.childAt(0).equals(avatar), true);
+      const avatarWrapper = cardHeader.childNodes[0];
+      expect(avatarWrapper.tagName).to.equal('DIV');
+      expect(avatarWrapper).to.have.class(classes.avatar);
+      expect(avatarWrapper.firstChild.tagName).to.equal('SPAN');
     });
 
     it('should render the title text inside the second child', () => {
-      const container = wrapper.childAt(1);
-      assert.strictEqual(
-        container.hasClass(classes.content),
-        true,
-        'should have the content class',
-      );
-      const title = container.childAt(0);
-      assert.strictEqual(title.type(), Typography);
-      assert.strictEqual(title.props().variant, 'body2');
+      const titleWrapper = cardHeader.childNodes[1];
+      expect(titleWrapper).to.have.class(classes.content, 'should have the content class');
+      const title = titleWrapper.childNodes[0];
+      expect(title).to.have.class(typographyClasses.root);
+      expect(title).to.have.class(typographyClasses.body2);
     });
 
     it('should render the subheader as body2 secondary text inside the second child', () => {
-      const container = wrapper.childAt(1);
-      assert.strictEqual(
-        container.hasClass(classes.content),
-        true,
-        'should have the content class',
-      );
-      const subheader = container.childAt(1);
-      assert.strictEqual(subheader.type(), Typography);
-      assert.strictEqual(subheader.props().variant, 'body2');
-      assert.strictEqual(subheader.props().color, 'textSecondary');
+      const titleWrapper = cardHeader.childNodes[1];
+      expect(titleWrapper).to.have.class(classes.content, 'should have the content class');
+      const subHeader = titleWrapper.childNodes[1];
+      expect(subHeader).to.have.class(typographyClasses.root);
+      expect(subHeader).to.have.class(typographyClasses.body2);
+      expect(subHeader).to.have.class(typographyClasses.colorTextSecondary);
     });
   });
 });

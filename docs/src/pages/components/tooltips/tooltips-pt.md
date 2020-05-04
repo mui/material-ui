@@ -3,7 +3,7 @@ title: Componente React para Dicas
 components: Tooltip
 ---
 
-# Tooltip (dica)
+# Dica
 
 <p class="description">Dicas exibem texto informativo quando os usuários passam o mouse, focalizam ou tocam em um elemento.</p>
 
@@ -25,9 +25,9 @@ Aqui estão alguns exemplos de customização do componente. Você pode aprender
 
 {{"demo": "pages/components/tooltips/CustomizedTooltips.js"}}
 
-## Arrow Tooltips
+## Dicas de seta
 
-You can use the `arrow` prop to give your tooltip an arrow indicating which element it refers to.
+Você pode usar a propriedade `arrow` para dar à sua dica uma seta indicando a qual elemento se refere.
 
 {{"demo": "pages/components/tooltips/ArrowTooltips.js"}}
 
@@ -37,7 +37,7 @@ A dica precisa aplicar ouvintes de evento DOM ao seu elemento filho. Se o filho 
 
 ```jsx
 const MyComponent = React.forwardRef(function MyComponent(props, ref) {
-  //  Spread the props to the underlying DOM element.
+  //  Distribua as propriedades para o elemento DOM subjacente.
   return <div {...props} ref={ref}>Bin</div>
 });
 
@@ -74,11 +74,11 @@ Uma dica pode ser interativa. Ela não será fechada quando o usuário passar po
 
 {{"demo": "pages/components/tooltips/InteractiveTooltips.js"}}
 
-## Elementos Desativados
+## Elementos Desabilitados
 
-Por padrão os elementos desativados como `<button>` não disparam interações do usuário, então uma `Tooltip` não será ativada em eventos normais, omo passar o mouse. To accommodate disabled elements, add a simple wrapper element, such as a `span`.
+Por padrão os elementos desativados como `<button>` não disparam interações do usuário, então uma `Tooltip` não será ativada em eventos normais, omo passar o mouse. Para acomodar elementos desativados, adicione um elemento encapsulador simples, como um `span`.
 
-> ⚠️ In order to work with Safari, you need at least one display block or flex item below the tooltip wrapper.
+> ⚠️ Para trabalhar com o Safari, você precisa de pelo menos um display block ou flex item abaixo do elemento que encapsula a dica.
 
 {{"demo": "pages/components/tooltips/DisabledTooltips.js"}}
 

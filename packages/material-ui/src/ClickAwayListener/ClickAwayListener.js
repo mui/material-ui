@@ -79,14 +79,10 @@ function ClickAwayListener(props) {
     if (event.composedPath) {
       insideDOM = event.composedPath().indexOf(nodeRef.current) > -1;
     } else {
-      const doc = ownerDocument(nodeRef.current);
       // TODO v6 remove dead logic https://caniuse.com/#search=composedPath.
-      // `doc.contains` works in modern browsers but isn't supported in IE 11:
-      // https://github.com/timmywil/panzoom/issues/450
-      // https://github.com/videojs/video.js/pull/5872
+      const doc = ownerDocument(nodeRef.current);
       insideDOM =
-        !(doc.documentElement && doc.documentElement.contains(event.target)) ||
-        nodeRef.current.contains(event.target);
+        !doc.documentElement.contains(event.target) || nodeRef.current.contains(event.target);
     }
 
     if (!insideDOM && (disableReactTree || !insideReactTree)) {

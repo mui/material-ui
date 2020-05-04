@@ -1,4 +1,4 @@
-import { Omit } from '@material-ui/types';
+import { Omit, Overwrite } from '@material-ui/types';
 import {
   CreateCSSProperties,
   StyledComponentProps,
@@ -12,7 +12,7 @@ import { DefaultTheme } from '../defaultTheme';
  */
 export type ComponentCreator<Component extends React.ElementType> = <
   Theme = DefaultTheme,
-  Props extends {} = {}
+  Props extends {} = React.ComponentPropsWithoutRef<Component>
 >(
   styles:
     | CreateCSSProperties<Props>
@@ -23,9 +23,8 @@ export type ComponentCreator<Component extends React.ElementType> = <
     JSX.LibraryManagedAttributes<Component, React.ComponentProps<Component>>,
     'classes' | 'className'
   > &
-    StyledComponentProps<'root'> & { className?: string } & (Props extends { theme: Theme }
-      ? Omit<Props, 'theme'> & { theme?: Theme }
-      : Props)
+    StyledComponentProps<'root'> &
+    Overwrite<Props, { className?: string; theme?: Theme }>
 >;
 
 export interface StyledProps {

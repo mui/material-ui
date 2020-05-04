@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createShallow, createMount } from '@material-ui/core/test-utils';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
@@ -48,7 +48,7 @@ describe('<NativeSelectInput />', () => {
         <option value={30}>Thirty</option>
       </NativeSelectInput>,
     );
-    assert.strictEqual(wrapper.find('select').props().value, 10);
+    expect(wrapper.find('select').props().value).to.equal(10);
   });
 
   it('should respond to update event', () => {
@@ -62,8 +62,8 @@ describe('<NativeSelectInput />', () => {
     );
 
     wrapper.find('select').simulate('change', { target: { value: 20 } });
-    assert.strictEqual(handleChange.callCount, 1);
-    assert.strictEqual(handleChange.args[0][0].target.value, 20);
+    expect(handleChange.callCount).to.equal(1);
+    expect(handleChange.args[0][0].target.value).to.equal(20);
   });
 
   it('should apply outlined class', () => {
@@ -76,7 +76,7 @@ describe('<NativeSelectInput />', () => {
       />,
     );
 
-    assert.strictEqual(wrapper.find(`.${defaultProps.classes.select}`).hasClass(outlined), true);
+    expect(wrapper.find(`.${defaultProps.classes.select}`).hasClass(outlined)).to.equal(true);
   });
 
   it('should apply filled class', () => {
@@ -89,6 +89,6 @@ describe('<NativeSelectInput />', () => {
       />,
     );
 
-    assert.strictEqual(wrapper.find(`.${defaultProps.classes.select}`).hasClass(filled), true);
+    expect(wrapper.find(`.${defaultProps.classes.select}`).hasClass(filled)).to.equal(true);
   });
 });

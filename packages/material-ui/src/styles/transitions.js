@@ -55,25 +55,25 @@ export default {
       const isString = (value) => typeof value === 'string';
       const isNumber = (value) => !isNaN(parseFloat(value));
       if (!isString(props) && !Array.isArray(props)) {
-        console.error('Material-UI: argument "props" must be a string or Array.');
+        console.error('Material-UI: Argument "props" must be a string or Array.');
       }
 
       if (!isNumber(durationOption) && !isString(durationOption)) {
         console.error(
-          `Material-UI: argument "duration" must be a number or a string but found ${durationOption}.`,
+          `Material-UI: Argument "duration" must be a number or a string but found ${durationOption}.`,
         );
       }
 
       if (!isString(easingOption)) {
-        console.error('Material-UI: argument "easing" must be a string.');
+        console.error('Material-UI: Argument "easing" must be a string.');
       }
 
       if (!isNumber(delay) && !isString(delay)) {
-        console.error('Material-UI: argument "delay" must be a number or a string.');
+        console.error('Material-UI: Argument "delay" must be a number or a string.');
       }
 
       if (Object.keys(other).length !== 0) {
-        console.error(`Material-UI: unrecognized argument(s) [${Object.keys(other).join(',')}]`);
+        console.error(`Material-UI: Unrecognized argument(s) [${Object.keys(other).join(',')}].`);
       }
     }
 

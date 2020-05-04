@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import { spy } from 'sinon';
 import PropTypes from 'prop-types';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
@@ -13,10 +13,10 @@ describe('utils/index.js', () => {
       const Component = () => null;
       Component.muiName = 'Component';
 
-      assert.strictEqual(isMuiElement(<Component />, ['Component']), true);
-      assert.strictEqual(isMuiElement(<div />, ['Input']), false);
-      assert.strictEqual(isMuiElement(null, ['SvgIcon']), false);
-      assert.strictEqual(isMuiElement('TextNode', ['SvgIcon']), false);
+      expect(isMuiElement(<Component />, ['Component'])).to.equal(true);
+      expect(isMuiElement(<div />, ['Input'])).to.equal(false);
+      expect(isMuiElement(null, ['SvgIcon'])).to.equal(false);
+      expect(isMuiElement('TextNode', ['SvgIcon'])).to.equal(false);
     });
 
     it('should be truthy for matching components', () => {
@@ -25,7 +25,7 @@ describe('utils/index.js', () => {
         [ListItemSecondaryAction, 'ListItemSecondaryAction'],
         [SvgIcon, 'SvgIcon'],
       ].forEach(([Component, muiName]) => {
-        assert.strictEqual(isMuiElement(<Component />, [muiName]), true);
+        expect(isMuiElement(<Component />, [muiName])).to.equal(true);
       });
     });
   });
@@ -37,8 +37,8 @@ describe('utils/index.js', () => {
 
       setRef(ref, instance);
 
-      assert.strictEqual(ref.called, true);
-      assert.strictEqual(ref.firstCall.args[0], instance);
+      expect(ref.called).to.equal(true);
+      expect(ref.firstCall.args[0]).to.equal(instance);
     });
 
     it('can handle ref objects', () => {
@@ -47,7 +47,7 @@ describe('utils/index.js', () => {
 
       setRef(ref, instance);
 
-      assert.strictEqual(ref.current, instance);
+      expect(ref.current).to.equal(instance);
     });
 
     it('ignores falsy refs without errors', () => {
@@ -59,7 +59,7 @@ describe('utils/index.js', () => {
     });
 
     it('throws on legacy string refs', () => {
-      assert.throws(() => setRef('stringRef1', 'proxy'));
+      expect(() => setRef('stringRef1', 'proxy')).to.throw();
     });
   });
 
@@ -91,8 +91,8 @@ describe('utils/index.js', () => {
       const outerRef = React.createRef();
       mount(<Component innerRef={outerRef} />);
 
-      assert.strictEqual(outerRef.current.textContent, 'has a ref');
-      assert.strictEqual(consoleErrorMock.callCount(), 0);
+      expect(outerRef.current.textContent).to.equal('has a ref');
+      expect(consoleErrorMock.callCount()).to.equal(0);
     });
 
     it('forks if only one of the branches requires a ref', () => {
@@ -106,8 +106,8 @@ describe('utils/index.js', () => {
 
       const wrapper = mount(<Component />);
 
-      assert.strictEqual(wrapper.containsMatchingElement(<div>true</div>), true);
-      assert.strictEqual(consoleErrorMock.callCount(), 0);
+      expect(wrapper.containsMatchingElement(<div>true</div>)).to.equal(true);
+      expect(consoleErrorMock.callCount()).to.equal(0);
     });
 
     it('does nothing if none of the forked branches requires a ref', () => {
@@ -129,7 +129,7 @@ describe('utils/index.js', () => {
           <Inner />
         </Outer>,
       );
-      assert.strictEqual(consoleErrorMock.callCount(), 0);
+      expect(consoleErrorMock.callCount()).to.equal(0);
     });
 
     describe('changing refs', () => {
@@ -150,13 +150,13 @@ describe('utils/index.js', () => {
       it('handles changing from no ref to some ref', () => {
         const wrapper = mount(<Div id="test" />);
 
-        assert.strictEqual(consoleErrorMock.callCount(), 0);
+        expect(consoleErrorMock.callCount()).to.equal(0);
 
         const ref = React.createRef();
         wrapper.setProps({ leftRef: ref });
 
-        assert.strictEqual(ref.current.id, 'test');
-        assert.strictEqual(consoleErrorMock.callCount(), 0);
+        expect(ref.current.id).to.equal('test');
+        expect(consoleErrorMock.callCount()).to.equal(0);
       });
 
       it('cleans up detached refs', () => {
@@ -166,16 +166,16 @@ describe('utils/index.js', () => {
 
         const wrapper = mount(<Div leftRef={firstLeftRef} rightRef={firstRightRef} id="test" />);
 
-        assert.strictEqual(consoleErrorMock.callCount(), 0);
-        assert.strictEqual(firstLeftRef.current.id, 'test');
-        assert.strictEqual(firstRightRef.current.id, 'test');
-        assert.strictEqual(secondRightRef.current, null);
+        expect(consoleErrorMock.callCount()).to.equal(0);
+        expect(firstLeftRef.current.id).to.equal('test');
+        expect(firstRightRef.current.id).to.equal('test');
+        expect(secondRightRef.current).to.equal(null);
 
         wrapper.setProps({ rightRef: secondRightRef });
 
-        assert.strictEqual(firstLeftRef.current.id, 'test');
-        assert.strictEqual(firstRightRef.current, null);
-        assert.strictEqual(secondRightRef.current.id, 'test');
+        expect(firstLeftRef.current.id).to.equal('test');
+        expect(firstRightRef.current).to.equal(null);
+        expect(secondRightRef.current.id).to.equal('test');
       });
     });
   });

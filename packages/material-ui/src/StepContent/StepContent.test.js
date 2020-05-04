@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import { createShallow, createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
 import Collapse from '../Collapse';
@@ -42,9 +42,9 @@ describe('<StepContent />', () => {
       </StepContent>,
     );
     const props = wrapper.props();
-    assert.strictEqual(props.style.paddingRight, 200);
-    assert.strictEqual(props.style.color, 'purple');
-    assert.strictEqual(props.style.border, '1px solid tomato');
+    expect(props.style.paddingRight).to.equal(200);
+    expect(props.style.color).to.equal('purple');
+    expect(props.style.border).to.equal('1px solid tomato');
   });
 
   it('renders children inside an Collapse component', () => {
@@ -54,10 +54,10 @@ describe('<StepContent />', () => {
       </StepContent>,
     );
     const collapse = wrapper.find(Collapse);
-    assert.strictEqual(collapse.length, 1);
+    expect(collapse.length).to.equal(1);
     const content = collapse.find('.test-content');
-    assert.strictEqual(content.length, 1);
-    assert.strictEqual(content.props().children, 'This is my content!');
+    expect(content.length).to.equal(1);
+    expect(content.props().children).to.equal('This is my content!');
   });
 
   describe('prop: transitionDuration', () => {
@@ -67,7 +67,7 @@ describe('<StepContent />', () => {
           <div />
         </StepContent>,
       );
-      assert.strictEqual(wrapper.find(Collapse).props().timeout, 'auto');
+      expect(wrapper.find(Collapse).props().timeout).to.equal('auto');
     });
 
     it('should not apply the auto prop if not supported', () => {
@@ -77,7 +77,7 @@ describe('<StepContent />', () => {
           <div />
         </StepContent>,
       );
-      assert.strictEqual(wrapper.find(TransitionComponent).props().timeout, undefined);
+      expect(wrapper.find(TransitionComponent).props().timeout).to.equal(undefined);
     });
   });
 });

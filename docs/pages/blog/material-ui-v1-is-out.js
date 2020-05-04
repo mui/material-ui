@@ -5,7 +5,6 @@ import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 const pageFilename = 'blog/material-ui-v1-is-out';
 const requireRaw = require.context('!raw-loader!./', false, /material-ui-v1-is-out\.md$/);
 
-// eslint-disable-next-line react/prop-types
 export default function Page({ docs }) {
   return <TopLayoutBlog docs={docs} />;
 }

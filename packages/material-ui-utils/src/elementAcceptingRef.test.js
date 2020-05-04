@@ -1,5 +1,5 @@
 /* eslint-disable react/prefer-stateless-function */
-import { assert } from 'chai';
+import { expect } from 'chai';
 import * as PropTypes from 'prop-types';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -52,8 +52,7 @@ describe('elementAcceptingRef', () => {
         );
       }
 
-      assert.strictEqual(
-        consoleErrorMock.callCount(),
+      expect(consoleErrorMock.callCount()).to.equal(
         failsOnMount ? 1 : 0,
         `but got '${consoleErrorMock.messages()[0]}'`,
       );
@@ -132,9 +131,8 @@ describe('elementAcceptingRef', () => {
     function assertFail(Component, hint) {
       checkPropType(Component);
 
-      assert.strictEqual(consoleErrorMock.callCount(), 1);
-      assert.include(
-        consoleErrorMock.messages()[0],
+      expect(consoleErrorMock.callCount()).to.equal(1);
+      expect(consoleErrorMock.messages()[0]).to.include(
         'Invalid props `children` supplied to `DummyComponent`. ' +
           `Expected an element that can hold a ref. ${hint}`,
       );
@@ -142,14 +140,14 @@ describe('elementAcceptingRef', () => {
 
     it('rejects undefined values when required', () => {
       checkPropType(undefined, true);
-      assert.strictEqual(consoleErrorMock.callCount(), 1);
-      assert.include(consoleErrorMock.messages()[0], 'marked as required');
+      expect(consoleErrorMock.callCount()).to.equal(1);
+      expect(consoleErrorMock.messages()[0]).to.include('marked as required');
     });
 
     it('rejects null values when required', () => {
       checkPropType(null, true);
-      assert.strictEqual(consoleErrorMock.callCount(), 1);
-      assert.include(consoleErrorMock.messages()[0], 'marked as required');
+      expect(consoleErrorMock.callCount()).to.equal(1);
+      expect(consoleErrorMock.messages()[0]).to.include('marked as required');
     });
 
     it('rejects function components', () => {

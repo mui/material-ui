@@ -11,7 +11,7 @@ components: Container
 
 ## Fluid(可変)
 
-可変コンテナの幅は、その `maxWidth` プロパティ値によって制限されます。
+A fluid container width is bounded by the `maxWidth` property value.
 
 {{"demo": "pages/components/container/SimpleContainer.js", "iframe": true, "defaultCodeOpen": false}}
 

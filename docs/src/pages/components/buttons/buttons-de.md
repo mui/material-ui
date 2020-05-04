@@ -74,7 +74,7 @@ Hier sind einige Beispiele, wie man die Komponente anpassen kann. Mehr dazu erfa
 
 {{"demo": "pages/components/buttons/CustomizedButtons.js", "defaultCodeOpen": false}}
 
-👑 Wenn Sie nach Inspiration suchen, sehen sie sich [MUI Treasury's Anpassungs-Beispiele](https://mui-treasury.com/components/button) an.
+👑 Wenn Sie nach Inspiration suchen, sehen sie sich [MUI Treasury's Anpassungs-Beispiele](https://mui-treasury.com/styles/button) an.
 
 ## Komplexe Buttons
 

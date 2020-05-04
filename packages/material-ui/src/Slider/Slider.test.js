@@ -129,39 +129,6 @@ describe('<Slider />', () => {
     });
   });
 
-  // TODO: use fireEvent for all the events.
-  // describe.skip('when mouse reenters window', () => {
-  //   it('should update if mouse is still clicked', () => {
-  //     const handleChange = spy();
-  //     const { container } = render(<Slider onChange={handleChange} value={50} />);
-
-  //     fireEvent.mouseDown(container.firstChild);
-  //     document.body.dispatchEvent(new window.MouseEvent('mouseleave'));
-  //     const mouseEnter = new window.Event('mouseenter');
-  //     mouseEnter.buttons = 1;
-  //     document.body.dispatchEvent(mouseEnter);
-  //     expect(handleChange.callCount).to.equal(1);
-
-  //     document.body.dispatchEvent(new window.MouseEvent('mousemove'));
-  //     expect(handleChange.callCount).to.equal(2);
-  //   });
-
-  //   it('should not update if mouse is not clicked', () => {
-  //     const handleChange = spy();
-  //     const { container } = render(<Slider onChange={handleChange} value={50} />);
-
-  //     fireEvent.mouseDown(container.firstChild);
-  //     document.body.dispatchEvent(new window.MouseEvent('mouseleave'));
-  //     const mouseEnter = new window.Event('mouseenter');
-  //     mouseEnter.buttons = 0;
-  //     document.body.dispatchEvent(mouseEnter);
-  //     expect(handleChange.callCount).to.equal(1);
-
-  //     document.body.dispatchEvent(new window.MouseEvent('mousemove'));
-  //     expect(handleChange.callCount).to.equal(1);
-  //   });
-  // });
-
   describe('range', () => {
     it('should support keyboard', () => {
       const { getAllByRole } = render(<Slider defaultValue={[20, 30]} />);
@@ -391,6 +358,25 @@ describe('<Slider />', () => {
       fireEvent.keyDown(document.activeElement, moveLeftEvent);
       expect(thumb).to.have.attribute('aria-valuenow', '-3e-8');
     });
+
+    it('should handle RTL', () => {
+      const { getByRole } = render(
+        <ThemeProvider
+          theme={createMuiTheme({
+            direction: 'rtl',
+          })}
+        >
+          <Slider defaultValue={30} />
+        </ThemeProvider>,
+      );
+      const thumb = getByRole('slider');
+      thumb.focus();
+
+      fireEvent.keyDown(document.activeElement, moveLeftEvent);
+      expect(thumb).to.have.attribute('aria-valuenow', '31');
+      fireEvent.keyDown(document.activeElement, moveRightEvent);
+      expect(thumb).to.have.attribute('aria-valuenow', '30');
+    });
   });
 
   describe('prop: valueLabelDisplay', () => {
@@ -513,7 +499,7 @@ describe('<Slider />', () => {
 
       expect(consoleErrorMock.callCount()).to.equal(1);
       expect(consoleErrorMock.messages()[0]).to.include(
-        'you need to use the `getAriaValueText` prop instead of',
+        'Material-UI: You need to use the `getAriaValueText` prop instead of',
       );
     });
 
@@ -527,7 +513,7 @@ describe('<Slider />', () => {
 
       expect(consoleErrorMock.callCount()).to.equal(1);
       expect(consoleErrorMock.messages()[0]).to.include(
-        'you need to use the `getAriaLabel` prop instead of',
+        'Material-UI: You need to use the `getAriaLabel` prop instead of',
       );
     });
 
@@ -536,7 +522,7 @@ describe('<Slider />', () => {
 
       setProps({ value: undefined });
       expect(consoleErrorMock.messages()[0]).to.include(
-        'Material-UI: a component is changing the controlled value state of Slider to be uncontrolled.',
+        'Material-UI: A component is changing the controlled value state of Slider to be uncontrolled.',
       );
     });
 
@@ -545,7 +531,7 @@ describe('<Slider />', () => {
 
       setProps({ value: [20, 50] });
       expect(consoleErrorMock.messages()[0]).to.include(
-        'Material-UI: a component is changing the uncontrolled value state of Slider to be controlled.',
+        'Material-UI: A component is changing the uncontrolled value state of Slider to be controlled.',
       );
     });
   });

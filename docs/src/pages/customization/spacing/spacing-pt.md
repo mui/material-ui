@@ -53,7 +53,7 @@ O auxiliar ` theme.spacing()` aceita até 4 argumentos. Você pode usar os argum
 +padding: theme.spacing(1, 2), // '8px 16px'
 ```
 
-Mixing string values is also supported:
+A mistura com valores texto também é suportada:
 
 ```js
 margin: theme.spacing(1, 'auto'), // '8px auto'

@@ -1,5 +1,164 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.9.13
+###### *May 4, 2020*
+
+Big thanks to the 27 contributors who made this release possible.
+
+Here are some highlights ✨:
+
+- 💎 A new diamond sponsor: [Sencha](https://www.creative-tim.com/), thank you!
+- ⚛️ More tests migrated from enzyme to testing-library @marcosvega91.
+- And many more 🐛 bug fixes and 📚 improvements.
+
+### `@material-ui/core@v4.9.13`
+
+- [AvatarGroup] Improve limit display (#20793) @let-aurn
+- [ClickAwayListener] Remove misleading code comment (#20743) @eps1lon
+- [l10n] Improve es-ES locale (#20794) @eloyrubinos
+- [Modal] Should propagate event if disableEscapeKeyDown (#20786) @weslenng
+- [Pagination] Refactor boundaryCount (#20826) @mbrookes
+- [Select] Fix height overflow (#20822) @esseswann
+- [Slider] Fix RTL support (#20851) @weslenng
+- [Tabs] Implement keyboard navigation (#20781) @eps1lon
+- [Tabs] Improve customizability of the scroll buttons (#20783) @netochaves
+- [TextField] Fix caret color in autofill dark theme (#20857) @CarsonF
+- [Tooltip] Fix disableTouchListener behavior (#20807) @weslenng
+- [unstable_TrapFocus] Guard against dropped memo cache (#20848) @eps1lon
+
+### `@material-ui/styles@v4.9.13`
+
+- [styles] Fix wording in indexCounter comment (#20874) @iamclaytonray
+- [styles] Improve component props inference of styled (#20830) @vlazh
+
+### `@material-ui/system@v4.9.13`
+
+- [system] Improve breakpoints types (#20753) @nodeTempest
+
+### `@material-ui/lab@v4.0.0-alpha.52`
+
+- [Autocomplete] Display loading feedback with freeSolo (#20869) @weslenng
+- [Autocomplete] Fix support for limitTags={0} (#20850) @tykdn
+- [Skeleton] Fix z-index elevation issue (#20803) @luminaxster
+- [SpeedDial] Fix direct dependency on react-transition-group (#20847) @squirly
+- [TreeView] Add onIconClick and onLabelClick (#20657) @tonyhallett
+
+### Docs
+
+- [docs] Add collapsible table demo (#19795) @LorenzHenk
+- [docs] Fix "Find the source" link in localization.md (#20791) @ValentinH
+- [docs] Fix emojis/html being included in toc (#20841) @eps1lon
+- [docs] Fix groups name in autocomplete virtualization example (#20898) @Uneetpatel7
+- [docs] Fix header and row shift on pagination click (#20873) @ankitasingh170190
+- [docs] Fix incorrect signature of createStyles (#20866) @eps1lon
+- [docs] Fix table zebra customization demo (#20870) @rkrueger11
+- [docs] Fix typo in Select type definitions (#20817) @qkdreyer
+- [docs] Implement keyboard navigation for demo toolbar (#20798) @eps1lon
+- [docs] Improve svgr documentation (#20893) @tavantzo
+- [docs] Make CSS interoperability examples easier to use (#20860) @weisk
+- [docs] Use mathematical interval notation for breakpoints (#20843) @eps1lon
+- [examples] Add next.js SSG clarification comment (#20810) @sospedra
+
+### Core
+
+- [test] Migrate colorManipulator from assert to expect (#20792) @marcosvega91
+- [test] Migrate from assert to expect (#20799) @oliviertassinari
+- [test] Replace all assert with expect (#20853) @marcosvega91
+- [core] Batch small changes (#20823) @oliviertassinari
+- [core] Batch small changes (#20877) @oliviertassinari
+
+## 4.9.12
+###### *Apr 27, 2020*
+
+Big thanks to the 32 contributors who made this release possible.
+
+Here are some highlights ✨:
+
+- ⚛️ A first module written in TypeScript (#20685) @eps1lon.
+- 🇧🇷 A documentation fully translated in Brazilian (@jaironalves).
+- And many more 🐛 bug fixes and 📚 improvements.
+
+### `@material-ui/core@v4.9.12`
+
+- [ButtonBase] Fix ripple size when clientX or clientY is 0 (#20654) @jin60641
+- [ButtonGroup] Add disableElevation prop (#20747) @Andrew5569
+- [ClickAwayListener] Fix support of leading edge (#20647) @oliviertassinari
+- [ExpansionPanel] Increase contrast for focus state (#20720) @petermikitsh
+- [l10n] Document how far Material-UI should go (#20737) @eloyrubinos
+- [l10n] Improve az-AZ locale (#20659) @rommelmamedov
+- [l10n] Improve bg-BG locale (#20668) @panayotoff
+- [l10n] Improve cs-CZ locale (#20670) @char0n
+- [l10n] Improve de-DE locale (#20684) @eps1lon
+- [l10n] Improve et-EE locale (#20682) @villuv
+- [l10n] Improve hu-HU locale (#20658) @vgaborabs
+- [l10n] Improve it-IT locale  (#20674) @Angelk90
+- [l10n] Improve pl-PL locale (#20672) @eXtreme
+- [l10n] Improve pt-BR locale (#20734) @jaironalves
+- [l10n] Improve pt-PT locale (#20673) @hrafaelveloso
+- [l10n] Improve ro-RO locale (#20681) @raduchiriac
+- [l10n] Improve tr-TR locale (#20754) @yunusemredilber
+- [l10n] Port locale to TypeScript (#20685) @eps1lon
+- [Modal] Prevent focus steal from other windows (#20694) @eps1lon
+- [Popper] Add ref type definition (#20688) @takakobem
+- [Select] Fix height inconsistency between input and select (#20780) @esseswann
+- [Select] Pass onClick to menuItem (#20739) @marcosvega91
+- [Slider] Fix focus after click (#20651) @davidcalhoun
+- [Snackbar] Improve consecutive demos (#20721) @calbatr0ss
+- [Tabs] Use a native element for the tabpanel role (#20648) @oliviertassinari
+- [TextField] Fix required outlined label space with no asterisk (#20715) @eps1lon
+- [TextField] Use aria-hidden on required asterisk (#20742) @alorek
+- [Tooltip] Fix flip invalid CSS property error (#20745) @j-mendez
+- [useScrollTrigger] Fix out of sync trigger (#20678, #20680) @ohlr @marcosvega91.
+
+### `@material-ui/lab@v4.0.0-alpha.51`
+
+#### Breaking changes
+
+- [Autocomplete] Remove startAfter props (#20729) @marcosvega91
+
+#### Change
+
+- [Autocomplete] Add new onHighlightChange callback (#20691) @marcosvega91
+- [Autocomplete] Fix "fixed tags" demo (#20687) @kthyer
+- [Autocomplete] Fix popup open logic when non empty (#20732) @marcosvega91
+- [Autocomplete] Remove dead code (#20663) @oliviertassinari
+- [TreeView] Update firstCharMap when a TreeItem is removed (#20085) @tonyhallett
+
+### `@material-ui/utils@v4.9.12`
+
+- [core] Avoid test with instanceof HTMLElement (#20646) @oliviertassinari
+
+### Docs
+
+- [docs] Add "Persian" to the list of RTL languages (#20679) @mirismaili
+- [docs] Add "reset focus" control to demo tools (#20724) @eps1lon
+- [docs] Allow default actions of nested elements (#20777) @eps1lon
+- [docs] Batch small changes (#20644) @oliviertassinari
+- [docs] English fix: fewer boilerplate -> less boilerplate (#20775) @dandv
+- [docs] Fix dropped iframe content in firefox (#20686) @eps1lon
+- [docs] Fix typo in vision.md (#20649) @Flavyoo
+- [docs] Fix warning and crash in dev mode (#20623) @oliviertassinari
+- [docs] Improve infrastructure (#20751) @oliviertassinari
+- [docs] Modernize DemoFrame (#20664) @eps1lon
+- [docs] Never transition preview if not shown (#20784) @eps1lon
+- [docs] Parse markdown on mount (#20601) @eps1lon
+- [docs] Replace react-frame-component with concurrent safe impl (#20677) @eps1lon
+- [docs] Sync translations (#20779) @oliviertassinari
+- [material-ui-docs] Fix missing/extraneous dependencies (#20771) @eps1lon
+
+### Core
+
+- [AppBar] Migrate to testing-library (#20693) @marcosvega91
+- [Avatar] Migrate to testing-library (#20697) @marcosvega91
+- [Badge] Migrate to testing-library (#20710) @marcosvega91
+- [BottomNavigation] Migrate to testing-library (#20728) @marcosvega91
+- [Box] Migrate to testing-library (#20736) @marcosvega91
+- [Card] Migrate to testing-library (#20773) @marcosvega91
+- [core] Bump `@material-ui/react-transition-group` (#20699) @eps1lon
+- [core] Force visibility on a few components in ink save print mode (#20749) @coktopus
+- [test] Improve textToHash test (#20770) @eps1lon
+- [test] Relax lint rules in test (#20702) @eps1lon
+
 ## 4.9.11
 ###### *Apr 18, 2020*
 
@@ -1346,7 +1505,7 @@ Here are some highlights ✨:
 - [Select] Document how values are compared (#17912) @DustinRobison
 - [Slider] Apply the disabled pseudo class on the thumb too (#18011) @hoop71
 - [Slider] Format value passed to ValueLabelComponent (#17985) @hoop71
-- [SnackbarContent] Convert unit tests to @testing-library/react (#17942) @emilyuhde
+- [SnackbarContent] Convert unit tests to testing-library (#17942) @emilyuhde
 - [Snackbar] Change default role from 'alertdialog' to 'alert' (#17897) @emilyuhde
 - [SwipeableDrawer] Change close swipe behavior and fix touch bug (#17941) @leMaik
 - [Switch] Fix hover style on mobile (#18034) @SarthakC

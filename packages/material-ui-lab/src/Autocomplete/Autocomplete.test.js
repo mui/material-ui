@@ -54,6 +54,21 @@ describe('<Autocomplete />', () => {
     });
   });
 
+  describe('prop: loading', () => {
+    it('should show a loading message when open', () => {
+      render(
+        <Autocomplete
+          {...defaultProps}
+          freeSolo
+          loading
+          renderInput={(params) => <TextField autoFocus {...params} />}
+        />,
+      );
+      fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+      expect(document.querySelector(`.${classes.paper}`).textContent).to.equal('Loading…');
+    });
+  });
+
   describe('prop: autoHighlight', () => {
     it('should set the focus on the first item', () => {
       const options = ['one', 'two'];
@@ -145,24 +160,41 @@ describe('<Autocomplete />', () => {
     it('show all items on focus', () => {
       const { container, getAllByRole, getByRole } = render(
         <Autocomplete
+          {...defaultProps}
           multiple
           limitTags={2}
-          {...defaultProps}
           options={['one', 'two', 'three']}
           defaultValue={['one', 'two', 'three']}
           renderInput={(params) => <TextField {...params} />}
         />,
       );
 
-      let tags;
-      tags = getAllByRole('button');
       expect(container.textContent).to.equal('onetwo+1');
-      expect(tags.length).to.be.equal(4);
+      expect(getAllByRole('button')).to.have.lengthOf(4);
 
       getByRole('textbox').focus();
-      tags = getAllByRole('button');
       expect(container.textContent).to.equal('onetwothree');
-      expect(tags.length).to.be.equal(5);
+      expect(getAllByRole('button')).to.have.lengthOf(5);
+    });
+
+    it('show 0 item on close when set 0 to limitTags', () => {
+      const { container, getAllByRole, getByRole } = render(
+        <Autocomplete
+          {...defaultProps}
+          multiple
+          limitTags={0}
+          options={['one', 'two', 'three']}
+          defaultValue={['one', 'two', 'three']}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+
+      expect(container.textContent).to.equal('+3');
+      expect(getAllByRole('button')).to.have.lengthOf(2);
+
+      getByRole('textbox').focus();
+      expect(container.textContent).to.equal('onetwothree');
+      expect(getAllByRole('button')).to.have.lengthOf(5);
     });
   });
 
@@ -872,7 +904,7 @@ describe('<Autocomplete />', () => {
       expect(handleChange.args[0][1]).to.equal('a');
       expect(consoleErrorMock.callCount()).to.equal(2); // strict mode renders twice
       expect(consoleErrorMock.messages()[0]).to.include(
-        'the `getOptionLabel` method of Autocomplete returned undefined instead of a string',
+        'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
       );
     });
 
