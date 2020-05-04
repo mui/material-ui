@@ -23,16 +23,13 @@ describe('<Collapse />', () => {
     classes = getClasses(<Collapse {...defaultProps} />);
   });
 
-  after(() => {
-    mount.cleanUp();
-  });
-
   describeConformance(<Collapse {...defaultProps} />, () => ({
     classes,
     inheritComponent: Transition,
     mount,
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'span',
+    after: () => mount.cleanUp(),
   }));
 
   it('should render a container around the wrapper', () => {
@@ -85,7 +82,7 @@ describe('<Collapse />', () => {
     const handleExiting = spy();
     const handleExited = spy();
 
-    before(() => {
+    beforeEach(() => {
       clock = useFakeTimers();
       const renderProps = render(
         <Collapse
@@ -95,6 +92,7 @@ describe('<Collapse />', () => {
           onExit={handleExitWrapper}
           onExiting={handleExiting}
           onExited={handleExited}
+          timeout={300}
         >
           <div />
         </Collapse>,
@@ -105,74 +103,37 @@ describe('<Collapse />', () => {
       stub(collapse.firstChild, 'clientHeight').get(() => 666);
     });
 
-    after(() => {
+    afterEach(() => {
       clock.restore();
     });
 
-    describe('in', () => {
-      before(() => {
-        setProps({ in: true });
-      });
-
-      describe('handleEnter()', () => {
-        it('should set element height to 0 initially', () => {
-          expect(nodeEnterHeightStyle).to.equal('0px');
-          expect(handleEnter.args[0][0]).to.equal(collapse);
-          expect(handleEnter.args[0][1]).to.equal(false);
-        });
-      });
-
-      describe('handleEntering()', () => {
-        it('should set height to the wrapper height', () => {
-          expect(nodeEnteringHeightStyle).to.equal('666px');
-          expect(handleEntering.callCount).to.equal(1);
-          expect(handleEntering.args[0][0]).to.equal(collapse);
-          expect(handleEntering.args[0][1]).to.equal(false);
-        });
-      });
-
-      describe('handleEntered()', () => {
-        it('should set height to auto', () => {
-          clock.tick(1000);
-          expect(handleEntered.args[0][0].style.height).to.equal('auto');
-          expect(handleEntered.args[0][1]).to.equal(false);
-          expect(handleEntered.callCount).to.equal(1);
-        });
-      });
+    it('should run in', () => {
+      setProps({ in: true });
+      expect(nodeEnterHeightStyle).to.equal('0px');
+      expect(handleEnter.args[0][0]).to.equal(collapse);
+      expect(handleEnter.args[0][1]).to.equal(false);
+      expect(nodeEnteringHeightStyle).to.equal('666px');
+      expect(handleEntering.callCount).to.equal(1);
+      expect(handleEntering.args[0][0]).to.equal(collapse);
+      expect(handleEntering.args[0][1]).to.equal(false);
+      clock.tick(300);
+      expect(handleEntered.args[0][0].style.height).to.equal('auto');
+      expect(handleEntered.args[0][1]).to.equal(false);
+      expect(handleEntered.callCount).to.equal(1);
     });
 
-    describe('out', () => {
-      before(() => {
-        setProps({ in: true });
-        setProps({ in: false });
-      });
-
-      describe('handleExit()', () => {
-        it('should set height to the wrapper height', () => {
-          expect(nodeExitHeightStyle).to.equal('666px');
-        });
-      });
-
-      describe('handleExiting()', () => {
-        it('should set height to the 0', () => {
-          expect(handleExiting.args[0][0].style.height).to.equal('0px');
-          expect(handleExiting.callCount).to.equal(1);
-          expect(handleExiting.args[0][0]).to.equal(collapse);
-        });
-      });
-
-      describe('handleExited()', () => {
-        it('should set height to the 0', () => {
-          clock.tick(1000);
-          expect(handleExited.args[0][0].style.height).to.equal('0px');
-        });
-
-        it('should call onExited', () => {
-          clock.tick(1000);
-          expect(handleExited.callCount).to.equal(1);
-          expect(handleExited.args[0][0]).to.equal(collapse);
-        });
-      });
+    it('should run out', () => {
+      setProps({ in: true });
+      setProps({ in: false });
+      expect(nodeExitHeightStyle).to.equal('666px');
+      expect(handleExiting.args[0][0].style.height).to.equal('0px');
+      expect(handleExiting.callCount).to.equal(1);
+      expect(handleExiting.args[0][0]).to.equal(collapse);
+      clock.tick(300);
+      expect(handleExited.args[0][0].style.height).to.equal('0px');
+      clock.tick(300);
+      expect(handleExited.callCount).to.equal(1);
+      expect(handleExited.args[0][0]).to.equal(collapse);
     });
   });
 

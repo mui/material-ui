@@ -9,13 +9,10 @@ describe('<CircularProgress />', () => {
   let mount;
   let classes;
   const render = createClientRender();
+
   before(() => {
     mount = createMount({ strict: true });
     classes = getClasses(<CircularProgress />);
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   describeConformance(<CircularProgress />, () => ({
@@ -24,6 +21,7 @@ describe('<CircularProgress />', () => {
     mount,
     refInstanceof: window.HTMLDivElement,
     skip: ['componentProp'],
+    after: () => mount.cleanUp(),
   }));
 
   it('should render with the primary color by default', () => {
