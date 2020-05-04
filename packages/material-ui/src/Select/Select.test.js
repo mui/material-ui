@@ -6,6 +6,7 @@ import { act, createClientRender, fireEvent } from 'test/utils/createClientRende
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import MenuItem from '../MenuItem';
 import Input from '../Input';
+import InputLabel from '../InputLabel';
 import Select from './Select';
 import { spy, stub, useFakeTimers } from 'sinon';
 
@@ -189,6 +190,19 @@ describe('<Select />', () => {
     });
 
     expect(handleClose.callCount).to.equal(1);
+  });
+
+  it('should focus select when its label is clicked', () => {
+    const { getByRole, getByTestId } = render(
+      <React.Fragment>
+        <InputLabel id="label" data-testid="label" />
+        <Select value="" labelId="label" />
+      </React.Fragment>,
+    );
+
+    fireEvent.click(getByTestId('label'));
+
+    expect(getByRole('button')).toHaveFocus();
   });
 
   it('should focus list if no selection', () => {

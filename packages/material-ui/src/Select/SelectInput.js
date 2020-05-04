@@ -2,6 +2,7 @@ import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import ownerDocument from '../utils/ownerDocument';
 import capitalize from '../utils/capitalize';
 import { refType } from '@material-ui/utils';
 import Menu from '../Menu/Menu';
@@ -89,6 +90,25 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       displayNode.focus();
     }
   }, [autoFocus, displayNode]);
+
+  React.useEffect(() => {
+    if (displayNode) {
+      const label = ownerDocument(displayNode).querySelector(`#${labelId}`);
+      if (label) {
+        const handler = () => {
+          if (getSelection().isCollapsed) {
+            displayNode.focus();
+          }
+        };
+        label.addEventListener('click', handler);
+        return () => {
+          label.removeEventListener('click', handler);
+        };
+      }
+    }
+
+    return undefined;
+  }, [labelId, displayNode]);
 
   const update = (open, event) => {
     if (open) {
