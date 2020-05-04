@@ -24,7 +24,7 @@ function arrowGenerator() {
     '&[x-placement*="bottom"] $arrow': {
       top: 0,
       left: 0,
-      marginTop: '-0.95em',
+      marginTop: '-1em',
       marginLeft: 4,
       marginRight: 4,
       width: '2em',
@@ -37,7 +37,7 @@ function arrowGenerator() {
     '&[x-placement*="top"] $arrow': {
       bottom: 0,
       left: 0,
-      marginBottom: '-0.95em',
+      marginBottom: '-1em',
       marginLeft: 4,
       marginRight: 4,
       width: '2em',
@@ -49,7 +49,7 @@ function arrowGenerator() {
     },
     '&[x-placement*="right"] $arrow': {
       left: 0,
-      marginLeft: '-0.95em',
+      marginLeft: '-1em',
       marginTop: 4,
       marginBottom: 4,
       height: '2em',
@@ -61,7 +61,7 @@ function arrowGenerator() {
     },
     '&[x-placement*="left"] $arrow': {
       right: 0,
-      marginRight: '-0.95em',
+      marginRight: '-1em',
       marginTop: 4,
       marginBottom: 4,
       height: '2em',
