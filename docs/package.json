@@ -47,7 +47,7 @@
     "isomorphic-fetch": "^2.2.1",
     "jss": "^10.0.0",
     "jss-rtl": "^0.3.0",
-    "luxon": "^1.11.2",
+    "luxon": "^1.23.0",
     "material-ui-search-bar": "^1.0.0-beta.13",
     "moment": "^2.24.0",
     "moment-hijri": "^2.1.2",
