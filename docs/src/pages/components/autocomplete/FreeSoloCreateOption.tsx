@@ -37,6 +37,7 @@ export default function FreeSoloCreateOption() {
       }}
       selectOnFocus
       clearOnBlur
+      handleHomeEndKeys
       id="free-solo-with-text-demo"
       options={top100Films as FilmOptionType[]}
       getOptionLabel={(option) => {

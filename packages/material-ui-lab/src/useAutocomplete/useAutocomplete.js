@@ -88,7 +88,7 @@ export default function useAutocomplete(props) {
     getOptionLabel = (x) => x,
     getOptionSelected = (option, value) => option === value,
     groupBy,
-    handleHomeEndKeys = true,
+    handleHomeEndKeys = !props.freeSolo,
     id: idProp,
     includeInputInList = false,
     inputValue: inputValueProp,

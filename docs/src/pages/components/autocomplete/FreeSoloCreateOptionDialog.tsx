@@ -91,6 +91,7 @@ export default function FreeSoloCreateOptionDialog() {
         }}
         selectOnFocus
         clearOnBlur
+        handleHomeEndKeys
         renderOption={(option) => option.title}
         style={{ width: 300 }}
         freeSolo

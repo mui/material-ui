@@ -130,6 +130,11 @@ export interface UseAutocompleteCommonProps<T> {
    */
   groupBy?: (option: T) => string;
   /**
+   * If `true`, the component handles the "Home" and "End" keys when the popup is open.
+   * It should move focus to the first option and last option, respectively.
+   */
+  handleHomeEndKeys?: boolean;
+  /**
    * This prop is used to help implement the accessibility logic.
    * If you don't provide this prop. It falls back to a randomly generated id.
    */
