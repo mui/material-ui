@@ -117,10 +117,6 @@ export default function LandingPage(props) {
   const { sponsorsProps } = props;
 
   React.useEffect(() => {
-    if (window.location.hash !== '' && window.location.hash !== '#main=content') {
-      window.location.replace(`https://v0.material-ui.com/${window.location.hash}`);
-    }
-
     loadDependencies();
   }, []);
   const t = useSelector((state) => state.options.t);
