@@ -7,7 +7,6 @@ import Box from '@material-ui/core/Box';
 import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import DiamondSponsors from 'docs/src/modules/components/DiamondSponsors';
 import Link from 'docs/src/modules/components/Link';
 import PageContext from 'docs/src/modules/components/PageContext';
 
@@ -226,9 +225,6 @@ export default function AppTableOfContents(props) {
           </Typography>
         </React.Fragment>
       ) : null}
-      <Box mt={4} mb={2} mx={1.5}>
-        <DiamondSponsors spot="tocs" />
-      </Box>
     </nav>
   );
 }
