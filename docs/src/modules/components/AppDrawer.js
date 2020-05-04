@@ -5,12 +5,10 @@ import { useSelector } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import Drawer from '@material-ui/core/Drawer';
-import Box from '@material-ui/core/Box';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import Divider from '@material-ui/core/Divider';
 import Hidden from '@material-ui/core/Hidden';
 import AppDrawerNavItem from 'docs/src/modules/components/AppDrawerNavItem';
-// import DiamondSponsors from 'docs/src/modules/components/DiamondSponsors';
 import Link from 'docs/src/modules/components/Link';
 import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import PageContext from 'docs/src/modules/components/PageContext';
@@ -162,9 +160,6 @@ function AppDrawer(props) {
         </div>
       </div>
       <Divider />
-      <Box mx={3} my={2}>
-        {/* <DiamondSponsors spot="sidenav" /> */}
-      </Box>
       {renderNavItems({ props, pages, activePage, depth: 0, t })}
     </PersistScroll>
   );
