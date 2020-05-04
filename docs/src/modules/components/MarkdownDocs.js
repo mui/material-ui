@@ -21,6 +21,7 @@ import { SOURCE_CODE_ROOT_URL } from 'docs/src/modules/constants';
 import Demo from 'docs/src/modules/components/Demo';
 import AppTableOfContents from 'docs/src/modules/components/AppTableOfContents';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
+import { Context } from './AppFrameLayout';
 
 function flattenPages(pages, current = []) {
   return pages.reduce((items, item) => {
@@ -105,8 +106,10 @@ function MarkdownDocs(props) {
   const prevPage = pageList[currentPageNum - 1];
   const nextPage = pageList[currentPageNum + 1];
 
+  const Layout = React.useContext(Context) ? React.Fragment : AppFrame;
+
   return (
-    <AppFrame>
+    <Layout>
       <Head title={`${title} - Material-UI`} description={description} />
       {disableAd ? null : (
         <Portal
@@ -219,7 +222,7 @@ function MarkdownDocs(props) {
         </AppContainer>
       </div>
       {disableToc ? null : <AppTableOfContents items={toc} />}
-    </AppFrame>
+    </Layout>
   );
 }
 

@@ -322,9 +322,13 @@ AppWrapper.propTypes = {
 export default function MyApp(props) {
   const { Component, pageProps } = props;
 
+  const { Layout = React.Fragment } = Component;
+
   return (
     <AppWrapper pageProps={pageProps}>
-      <Component {...pageProps} />
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
     </AppWrapper>
   );
 }

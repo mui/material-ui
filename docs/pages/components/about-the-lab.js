@@ -1,4 +1,5 @@
 import React from 'react';
+import AppFrame from 'docs/src/modules/components/AppFrameLayout';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
@@ -17,6 +18,8 @@ const requireRaw = require.context(
 export default function Page({ demos, docs }) {
   return <MarkdownDocs demos={demos} docs={docs} requireDemo={requireDemo} />;
 }
+
+Page.Layout = AppFrame;
 
 Page.getInitialProps = () => {
   const { demos, docs } = prepareMarkdown({ pageFilename, requireRaw });
