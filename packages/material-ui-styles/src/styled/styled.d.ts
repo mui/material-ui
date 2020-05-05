@@ -7,6 +7,9 @@ import {
 import * as React from 'react';
 import { DefaultTheme } from '../defaultTheme';
 
+// We don't want a union type here (like React.ComponentType) in order to support mapped types.
+export type StyledComponent<P extends {}> = (props: P) => React.ReactElement<P, any> | null;
+
 /**
  * @internal
  */
@@ -18,7 +21,7 @@ export type ComponentCreator<Component extends React.ElementType> = <
     | CreateCSSProperties<Props>
     | ((props: { theme: Theme } & Props) => CreateCSSProperties<Props>),
   options?: WithStylesOptions<Theme>
-) => React.ComponentType<
+) => StyledComponent<
   Omit<
     JSX.LibraryManagedAttributes<Component, React.ComponentProps<Component>>,
     'classes' | 'className'
