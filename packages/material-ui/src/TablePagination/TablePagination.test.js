@@ -123,8 +123,8 @@ describe('<TablePagination />', () => {
 
       const backButton = getByLabelText('Previous page');
       const nextButton = getByLabelText('Next page');
-      expect(backButton.disabled).to.equal(true);
-      expect(nextButton.disabled).to.equal(false);
+      expect(backButton).to.have.property('disabled', true);
+      expect(nextButton).to.have.property('disabled', false);
     });
 
     it('should disable the next button on the last page', () => {
@@ -146,8 +146,8 @@ describe('<TablePagination />', () => {
 
       const backButton = getByLabelText('Previous page');
       const nextButton = getByLabelText('Next page');
-      expect(backButton.disabled).to.equal(false);
-      expect(nextButton.disabled).to.equal(true);
+      expect(backButton).to.have.property('disabled', false);
+      expect(nextButton).to.have.property('disabled', true);
     });
 
     it('should handle next button clicks properly', () => {
