@@ -105,7 +105,7 @@ describe('<TablePagination />', () => {
     });
 
     it('should disable the back button on the first page', () => {
-      const { getByLabelText } = render(
+      const { getByRole } = render(
         <table>
           <TableFooter>
             <TableRow>
@@ -120,15 +120,14 @@ describe('<TablePagination />', () => {
           </TableFooter>
         </table>,
       );
-
-      const backButton = getByLabelText('Previous page');
-      const nextButton = getByLabelText('Next page');
+      const backButton = getByRole('button', { name: 'Previous page' });
+      const nextButton = getByRole('button', { name: 'Next page' });
       expect(backButton).to.have.property('disabled', true);
       expect(nextButton).to.have.property('disabled', false);
     });
 
     it('should disable the next button on the last page', () => {
-      const { getByLabelText } = render(
+      const { getByRole } = render(
         <table>
           <TableFooter>
             <TableRow>
@@ -144,15 +143,15 @@ describe('<TablePagination />', () => {
         </table>,
       );
 
-      const backButton = getByLabelText('Previous page');
-      const nextButton = getByLabelText('Next page');
+      const backButton = getByRole('button', { name: 'Previous page' });
+      const nextButton = getByRole('button', { name: 'Next page' });
       expect(backButton).to.have.property('disabled', false);
       expect(nextButton).to.have.property('disabled', true);
     });
 
     it('should handle next button clicks properly', () => {
       let page = 1;
-      const { getByLabelText } = render(
+      const { getByRole } = render(
         <table>
           <TableFooter>
             <TableRow>
@@ -170,14 +169,14 @@ describe('<TablePagination />', () => {
         </table>,
       );
 
-      const nextButton = getByLabelText('Next page');
+      const nextButton = getByRole('button', { name: 'Next page' });
       fireEvent.click(nextButton);
       expect(page).to.equal(2);
     });
 
     it('should handle back button clicks properly', () => {
       let page = 1;
-      const { getByLabelText } = render(
+      const { getByRole } = render(
         <table>
           <TableFooter>
             <TableRow>
@@ -195,7 +194,7 @@ describe('<TablePagination />', () => {
         </table>,
       );
 
-      const backButton = getByLabelText('Previous page');
+      const backButton = getByRole('button', { name: 'Previous page' });
       fireEvent.click(backButton);
       expect(page).to.equal(0);
     });
@@ -264,10 +263,10 @@ describe('<TablePagination />', () => {
         );
       };
 
-      const { container, getByLabelText } = render(<Test />);
+      const { container, getByRole } = render(<Test />);
 
       expect(container).to.have.text('Rows per page:101-10 of more than 10');
-      fireEvent.click(getByLabelText('Next page'));
+      fireEvent.click(getByRole('button', { name: 'Next page' }));
       expect(container).to.have.text('Rows per page:1011-20 of more than 20');
     });
   });
