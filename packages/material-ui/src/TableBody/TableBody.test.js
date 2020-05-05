@@ -12,8 +12,11 @@ describe('<TableBody />', () => {
   const render = createClientRender();
 
   function mountInTable(node) {
-    const wrapper = mount(<table>{node}</table>);
-    return wrapper.find('table').childAt(0);
+    const utils = render(<table>{node}</table>);
+    return {
+      table: utils.container.firstChild,
+      ...utils,
+    };
   }
 
   before(() => {
@@ -29,16 +32,19 @@ describe('<TableBody />', () => {
   describeConformance(<TableBody />, () => ({
     classes,
     inheritComponent: 'tbody',
-    mount: mountInTable,
+    mount: (node) => {
+      const wrapper = mount(<table>{node}</table>);
+      return wrapper.find('table').childAt(0);
+    },
     refInstanceof: window.HTMLTableSectionElement,
     // can't test with custom `component` with `mountInTable`
     testComponentPropWith: 'tbody',
   }));
 
   it('should render children', () => {
-    const children = <tr className="test" />;
-    const wrapper = mountInTable(<TableBody>{children}</TableBody>);
-    expect(wrapper.contains(children)).to.equal(true);
+    const children = <tr data-testid="test" className="test" />;
+    const { queryByTestId } = mountInTable(<TableBody>{children}</TableBody>);
+    expect(queryByTestId('test')).to.not.equal(null);
   });
 
   it('should define table.body in the child context', () => {
