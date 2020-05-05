@@ -87,8 +87,7 @@ describe('<TableCell />', () => {
   });
 
   it('should have class hideBorder when the property is true', () => {
-    const { container } = render(<TableCell hideBorder />);
-    expect(container.firstChild).to.have.class(classes.hideBorder);
-    expect(container.firstChild)
+    const wrapper = mountInTable(<TableCell hideBorder />);
+    expect(wrapper.find('td').hasClass(classes.hideBorder)).to.equal(true);
   });
 });
