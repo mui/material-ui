@@ -20,6 +20,7 @@ describe('<TableCell />', () => {
     );
   }
 
+  
   before(() => {
     classes = getClasses(<TableCell />);
   });
