@@ -9,13 +9,17 @@ describe('<TableRow />', () => {
   let mount;
   let classes;
   const render = createClientRender();
+
   function mountInTable(node) {
-    const wrapper = mount(
+    const utils = render(
       <table>
         <tbody>{node}</tbody>
       </table>,
     );
-    return wrapper.find('tbody').childAt(0);
+    return {
+      table: utils.container.querySelector('tbody'),
+      ...utils,
+    };
   }
 
   before(() => {
@@ -30,15 +34,22 @@ describe('<TableRow />', () => {
   describeConformance(<TableRow />, () => ({
     classes,
     inheritComponent: 'tr',
-    mount: mountInTable,
+    mount: (node) => {
+      const wrapper = mount(
+        <table>
+          <tbody>{node}</tbody>
+        </table>,
+      );
+      return wrapper.find('tbody').childAt(0);
+    },
     refInstanceof: window.HTMLTableRowElement,
     testComponentPropWith: 'tr',
   }));
 
   it('should render children', () => {
-    const children = <td className="test" />;
-    const wrapper = mountInTable(<TableRow>{children}</TableRow>);
-    expect(wrapper.contains(children)).to.equal(true);
+    const children = <td data-testid="test" className="test" />;
+    const { queryByTestId } = mountInTable(<TableRow>{children}</TableRow>);
+    expect(queryByTestId('test')).to.not.equal(null);
   });
 
   describe('prop: component', () => {
