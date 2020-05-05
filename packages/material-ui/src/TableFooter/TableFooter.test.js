@@ -12,11 +12,7 @@ describe('<TableFooter />', () => {
   const render = createClientRender();
 
   function renderInTable(node) {
-    const utils = render(<table>{node}</table>);
-    return {
-      table: utils.container.firstChild,
-      ...utils,
-    };
+    return render(<table>{node}</table>);
   }
 
   before(() => {

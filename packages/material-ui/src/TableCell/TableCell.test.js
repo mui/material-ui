@@ -10,17 +10,13 @@ describe('<TableCell />', () => {
   let classes;
   const render = createClientRender();
   function renderInTable(node) {
-    const utils = render(
+    return render(
       <table>
         <tbody>
           <tr>{node}</tr>
         </tbody>
       </table>,
     );
-    return {
-      cell: utils.container.querySelector('tr').firstChild,
-      ...utils,
-    };
   }
 
   before(() => {
@@ -52,24 +48,26 @@ describe('<TableCell />', () => {
 
   describe('prop: padding', () => {
     it('doesn not have a class for padding by default', () => {
-      const { cell } = renderInTable(<TableCell padding="default" />);
-      expect(cell).to.not.have.class(classes.paddingDefault);
+      const { container } = renderInTable(<TableCell padding="default" />);
+      expect(container.querySelector('td')).to.not.have.class(classes.paddingDefault);
     });
 
     it('has a class when `none`', () => {
-      const { cell } = renderInTable(<TableCell className="woofTableCell" padding="none" />);
-      expect(cell).to.have.class(classes.paddingNone);
+      const { container } = renderInTable(<TableCell className="woofTableCell" padding="none" />);
+      expect(container.querySelector('td')).to.have.class(classes.paddingNone);
     });
 
     it('has a class when `checkbox`', () => {
-      const { cell } = renderInTable(<TableCell className="woofTableCell" padding="checkbox" />);
-      expect(cell).to.have.class(classes.paddingCheckbox);
+      const { container } = renderInTable(
+        <TableCell className="woofTableCell" padding="checkbox" />,
+      );
+      expect(container.querySelector('td')).to.have.class(classes.paddingCheckbox);
     });
   });
 
   it('has a class when `size="small"`', () => {
-    const { cell } = renderInTable(<TableCell className="woofTableCell" size="small" />);
-    expect(cell).to.have.class(classes.sizeSmall);
+    const { container } = renderInTable(<TableCell className="woofTableCell" size="small" />);
+    expect(container.querySelector('td')).to.have.class(classes.sizeSmall);
   });
 
   it('should render children', () => {
@@ -83,17 +81,17 @@ describe('<TableCell />', () => {
   });
 
   it('should render aria-sort="ascending" when prop sortDirection="asc" provided', () => {
-    const { cell } = renderInTable(<TableCell sortDirection="asc" />);
-    expect(cell).to.have.attribute('aria-sort', 'ascending');
+    const { container } = renderInTable(<TableCell sortDirection="asc" />);
+    expect(container.querySelector('td')).to.have.attribute('aria-sort', 'ascending');
   });
 
   it('should render aria-sort="descending" when prop sortDirection="desc" provided', () => {
-    const { cell } = renderInTable(<TableCell sortDirection="desc" />);
-    expect(cell).to.have.attribute('aria-sort', 'descending');
+    const { container } = renderInTable(<TableCell sortDirection="desc" />);
+    expect(container.querySelector('td')).to.have.attribute('aria-sort', 'descending');
   });
 
   it('should center content', () => {
-    const { cell } = renderInTable(<TableCell align="center" />);
-    expect(cell).to.have.class(classes.alignCenter);
+    const { container } = renderInTable(<TableCell align="center" />);
+    expect(container.querySelector('td')).to.have.class(classes.alignCenter);
   });
 });

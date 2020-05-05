@@ -11,15 +11,11 @@ describe('<TableRow />', () => {
   const render = createClientRender();
 
   function renderInTable(node) {
-    const utils = render(
+    return render(
       <table>
         <tbody>{node}</tbody>
       </table>,
     );
-    return {
-      tbody: utils.container.querySelector('tbody'),
-      ...utils,
-    };
   }
 
   before(() => {
