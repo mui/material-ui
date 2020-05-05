@@ -38,8 +38,9 @@ const theme = createMuiTheme({
 | Estonian | et-EE | `etEE` |
 | Finnish | fi-FI | `fiFI` |
 | French | fr-FR | `frFR` |
-| German | de-DE |  `deDE` |
+| German | de-DE | `deDE` |
 | Hebrew | he-IL | `heIL` |
+| Hindi | hi-IN | `hiIN` |
 | Hungarian | hu-HU | `huHU` |
 | Icelandic | is-IS | `isIS` |
 | Indonesian | id-ID | `idID` |
