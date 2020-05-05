@@ -7,6 +7,8 @@ import {
 import * as React from 'react';
 import { DefaultTheme } from '../defaultTheme';
 
+export type StyledComponent<P extends {}> = (props: P) => React.ReactElement<P, any> | null;
+
 /**
  * @internal
  */
@@ -17,8 +19,8 @@ export type ComponentCreator<Component extends React.ElementType> = <
   styles:
     | CreateCSSProperties<Props>
     | ((props: { theme: Theme } & Props) => CreateCSSProperties<Props>),
-  options?: WithStylesOptions<Theme>
-) => React.ForwardRefExoticComponent<
+  options?: WithStylesOptions<Theme>,
+) => StyledComponent<
   Omit<
     JSX.LibraryManagedAttributes<Component, React.ComponentProps<Component>>,
     'classes' | 'className'
