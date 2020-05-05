@@ -61,8 +61,8 @@ type GenerateStringUnion<T> = Extract<
     [Key in keyof T]: T[Key] extends never
       ? never
       : Exclude<T[Key], true> extends never
-        ? Key
-        : never;
+      ? Key
+      : never;
   }[keyof T],
   string
 >;
