@@ -19,7 +19,7 @@ describe('<TableCell />', () => {
     );
     return {
       cell: utils.container.querySelector('tr').firstChild,
-      getByTestId: utils.getByTestId,
+      ...utils,
     };
   }
 
