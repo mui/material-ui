@@ -11,8 +11,11 @@ describe('<TableHead />', () => {
   let classes;
   const render = createClientRender();
   function mountInTable(node) {
-    const wrapper = mount(<table>{node}</table>);
-    return wrapper.find('table').childAt(0);
+    const utils = render(<table>{node}</table>);
+    return {
+      table: utils.container.firstChild,
+      ...utils,
+    };
   }
 
   before(() => {
@@ -27,15 +30,18 @@ describe('<TableHead />', () => {
   describeConformance(<TableHead />, () => ({
     classes,
     inheritComponent: 'thead',
-    mount: mountInTable,
+    mount: (node) => {
+      const wrapper = mount(<table>{node}</table>);
+      return wrapper.find('table').childAt(0);
+    },
     refInstanceof: window.HTMLTableSectionElement,
     testComponentPropWith: 'tbody',
   }));
 
   it('should render children', () => {
-    const children = <tr className="test" />;
-    const wrapper = mountInTable(<TableHead>{children}</TableHead>);
-    expect(wrapper.contains(children)).to.equal(true);
+    const children = <tr data-testid="test" className="test" />;
+    const { queryByTestId } = mountInTable(<TableHead>{children}</TableHead>);
+    expect(queryByTestId('test')).to.not.equal(null);
   });
 
   it('should define table.head in the child context', () => {
