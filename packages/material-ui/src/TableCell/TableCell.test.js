@@ -9,7 +9,7 @@ describe('<TableCell />', () => {
   let mount;
   let classes;
   const render = createClientRender();
-  function mountInTable(node) {
+  function renderInTable(node) {
     const utils = render(
       <table>
         <tbody>
@@ -52,23 +52,23 @@ describe('<TableCell />', () => {
 
   describe('prop: padding', () => {
     it('doesn not have a class for padding by default', () => {
-      const { cell } = mountInTable(<TableCell padding="default" />);
+      const { cell } = renderInTable(<TableCell padding="default" />);
       expect(cell).to.not.have.class(classes.paddingDefault);
     });
 
     it('has a class when `none`', () => {
-      const { cell } = mountInTable(<TableCell className="woofTableCell" padding="none" />);
+      const { cell } = renderInTable(<TableCell className="woofTableCell" padding="none" />);
       expect(cell).to.have.class(classes.paddingNone);
     });
 
     it('has a class when `checkbox`', () => {
-      const { cell } = mountInTable(<TableCell className="woofTableCell" padding="checkbox" />);
+      const { cell } = renderInTable(<TableCell className="woofTableCell" padding="checkbox" />);
       expect(cell).to.have.class(classes.paddingCheckbox);
     });
   });
 
   it('has a class when `size="small"`', () => {
-    const { cell } = mountInTable(<TableCell className="woofTableCell" size="small" />);
+    const { cell } = renderInTable(<TableCell className="woofTableCell" size="small" />);
     expect(cell).to.have.class(classes.sizeSmall);
   });
 
@@ -78,22 +78,22 @@ describe('<TableCell />', () => {
         Hello
       </p>
     );
-    const { getByTestId } = mountInTable(<TableCell>{children}</TableCell>);
+    const { getByTestId } = renderInTable(<TableCell>{children}</TableCell>);
     expect(getByTestId('hello')).to.not.equal(null);
   });
 
   it('should render aria-sort="ascending" when prop sortDirection="asc" provided', () => {
-    const { cell } = mountInTable(<TableCell sortDirection="asc" />);
+    const { cell } = renderInTable(<TableCell sortDirection="asc" />);
     expect(cell).to.have.attribute('aria-sort', 'ascending');
   });
 
   it('should render aria-sort="descending" when prop sortDirection="desc" provided', () => {
-    const { cell } = mountInTable(<TableCell sortDirection="desc" />);
+    const { cell } = renderInTable(<TableCell sortDirection="desc" />);
     expect(cell).to.have.attribute('aria-sort', 'descending');
   });
 
   it('should center content', () => {
-    const { cell } = mountInTable(<TableCell align="center" />);
+    const { cell } = renderInTable(<TableCell align="center" />);
     expect(cell).to.have.class(classes.alignCenter);
   });
 });

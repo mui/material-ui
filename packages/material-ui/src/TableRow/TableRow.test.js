@@ -10,7 +10,7 @@ describe('<TableRow />', () => {
   let classes;
   const render = createClientRender();
 
-  function mountInTable(node) {
+  function renderInTable(node) {
     const utils = render(
       <table>
         <tbody>{node}</tbody>
@@ -48,7 +48,7 @@ describe('<TableRow />', () => {
 
   it('should render children', () => {
     const children = <td data-testid="test" className="test" />;
-    const { queryByTestId } = mountInTable(<TableRow>{children}</TableRow>);
+    const { queryByTestId } = renderInTable(<TableRow>{children}</TableRow>);
     expect(queryByTestId('test')).to.not.equal(null);
   });
 

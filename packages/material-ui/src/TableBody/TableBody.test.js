@@ -11,7 +11,7 @@ describe('<TableBody />', () => {
   let classes;
   const render = createClientRender();
 
-  function mountInTable(node) {
+  function renderInTable(node) {
     const utils = render(<table>{node}</table>);
     return {
       table: utils.container.firstChild,
@@ -37,20 +37,20 @@ describe('<TableBody />', () => {
       return wrapper.find('table').childAt(0);
     },
     refInstanceof: window.HTMLTableSectionElement,
-    // can't test with custom `component` with `mountInTable`
+    // can't test with custom `component` with `renderInTable`
     testComponentPropWith: 'tbody',
   }));
 
   it('should render children', () => {
     const children = <tr data-testid="test" className="test" />;
-    const { queryByTestId } = mountInTable(<TableBody>{children}</TableBody>);
+    const { queryByTestId } = renderInTable(<TableBody>{children}</TableBody>);
     expect(queryByTestId('test')).to.not.equal(null);
   });
 
   it('should define table.body in the child context', () => {
     let context;
     // TODO test integration with TableCell
-    mountInTable(
+    renderInTable(
       <TableBody>
         <Tablelvl2Context.Consumer>
           {(value) => {

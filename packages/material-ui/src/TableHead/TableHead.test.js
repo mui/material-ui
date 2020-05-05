@@ -10,7 +10,7 @@ describe('<TableHead />', () => {
   let mount;
   let classes;
   const render = createClientRender();
-  function mountInTable(node) {
+  function renderInTable(node) {
     const utils = render(<table>{node}</table>);
     return {
       table: utils.container.firstChild,
@@ -40,14 +40,14 @@ describe('<TableHead />', () => {
 
   it('should render children', () => {
     const children = <tr data-testid="test" className="test" />;
-    const { queryByTestId } = mountInTable(<TableHead>{children}</TableHead>);
+    const { queryByTestId } = renderInTable(<TableHead>{children}</TableHead>);
     expect(queryByTestId('test')).to.not.equal(null);
   });
 
   it('should define table.head in the child context', () => {
     let context;
     // TODO: test integration with TableCell
-    mountInTable(
+    renderInTable(
       <TableHead>
         <Tablelvl2Context.Consumer>
           {(value) => {

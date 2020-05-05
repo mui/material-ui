@@ -11,7 +11,7 @@ describe('<TableFooter />', () => {
   let classes;
   const render = createClientRender();
 
-  function mountInTable(node) {
+  function renderInTable(node) {
     const utils = render(<table>{node}</table>);
     return {
       table: utils.container.firstChild,
@@ -41,14 +41,14 @@ describe('<TableFooter />', () => {
 
   it('should render children', () => {
     const children = <tr data-testid="test" className="test" />;
-    const { queryByTestId } = mountInTable(<TableFooter>{children}</TableFooter>);
+    const { queryByTestId } = renderInTable(<TableFooter>{children}</TableFooter>);
     expect(queryByTestId('test')).to.not.equal(null);
   });
 
   it('should define table.footer in the child context', () => {
     let context;
     // TODO test integration with TableCell
-    mountInTable(
+    renderInTable(
       <TableFooter>
         <Tablelvl2Context.Consumer>
           {(value) => {
