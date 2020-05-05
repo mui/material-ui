@@ -17,7 +17,7 @@ describe('<TableRow />', () => {
       </table>,
     );
     return {
-      table: utils.container.querySelector('tbody'),
+      tbody: utils.container.querySelector('tbody'),
       ...utils,
     };
   }
