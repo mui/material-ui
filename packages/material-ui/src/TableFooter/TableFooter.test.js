@@ -36,7 +36,7 @@ describe('<TableFooter />', () => {
   }));
 
   it('should render children', () => {
-    const children = <tr data-testid="test" className="test" />;
+    const children = <tr data-testid="test" />;
     const { queryByTestId } = renderInTable(<TableFooter>{children}</TableFooter>);
     expect(queryByTestId('test')).to.not.equal(null);
   });

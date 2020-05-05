@@ -53,29 +53,23 @@ describe('<TableCell />', () => {
     });
 
     it('has a class when `none`', () => {
-      const { container } = renderInTable(<TableCell className="woofTableCell" padding="none" />);
+      const { container } = renderInTable(<TableCell padding="none" />);
       expect(container.querySelector('td')).to.have.class(classes.paddingNone);
     });
 
     it('has a class when `checkbox`', () => {
-      const { container } = renderInTable(
-        <TableCell className="woofTableCell" padding="checkbox" />,
-      );
+      const { container } = renderInTable(<TableCell padding="checkbox" />);
       expect(container.querySelector('td')).to.have.class(classes.paddingCheckbox);
     });
   });
 
   it('has a class when `size="small"`', () => {
-    const { container } = renderInTable(<TableCell className="woofTableCell" size="small" />);
+    const { container } = renderInTable(<TableCell size="small" />);
     expect(container.querySelector('td')).to.have.class(classes.sizeSmall);
   });
 
   it('should render children', () => {
-    const children = (
-      <p data-testid="hello" className="test">
-        Hello
-      </p>
-    );
+    const children = <p data-testid="hello">Hello</p>;
     const { getByTestId } = renderInTable(<TableCell>{children}</TableCell>);
     expect(getByTestId('hello')).to.not.equal(null);
   });

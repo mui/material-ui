@@ -43,7 +43,7 @@ describe('<TableRow />', () => {
   }));
 
   it('should render children', () => {
-    const children = <td data-testid="test" className="test" />;
+    const children = <td data-testid="test" />;
     const { queryByTestId } = renderInTable(<TableRow>{children}</TableRow>);
     expect(queryByTestId('test')).to.not.equal(null);
   });
