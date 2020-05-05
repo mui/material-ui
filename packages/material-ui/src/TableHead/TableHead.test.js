@@ -36,8 +36,8 @@ describe('<TableHead />', () => {
 
   it('should render children', () => {
     const children = <tr data-testid="test" />;
-    const { queryByTestId } = renderInTable(<TableHead>{children}</TableHead>);
-    expect(queryByTestId('test')).to.not.equal(null);
+    const { getByTestId } = renderInTable(<TableHead>{children}</TableHead>);
+    getByTestId('test');
   });
 
   it('should define table.head in the child context', () => {

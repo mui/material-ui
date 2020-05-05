@@ -39,8 +39,8 @@ describe('<TableBody />', () => {
 
   it('should render children', () => {
     const children = <tr data-testid="test" />;
-    const { queryByTestId } = renderInTable(<TableBody>{children}</TableBody>);
-    expect(queryByTestId('test')).to.not.equal(null);
+    const { getByTestId } = renderInTable(<TableBody>{children}</TableBody>);
+    getByTestId('test');
   });
 
   it('should define table.body in the child context', () => {
