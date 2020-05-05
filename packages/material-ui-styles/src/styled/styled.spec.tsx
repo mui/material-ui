@@ -47,26 +47,6 @@ function themeTest() {
   <ComponentWithOptionalThemeStyledWithTheme value={1} theme={{ palette: { primary: '#333' } }} />; // $ExpectError
 }
 
-// Infering props from another component to correct type checking.
-// Use `Omit` just for make type objectable to avoid `Rest types may only be created from object types.ts(2700)` error
-// in `ComponentWrapper`.
-// If you remove Omit or something else many things will not work with TS.
-type ComponentWrapperProps<C extends React.ElementType = any> = Omit<
-  { component?: C } & (undefined extends C ? unknown : React.ComponentProps<C>),
-  never
->;
-
-// Component that accept another component in order to do some manipulations with that component.
-// Same technique uses in MUI AFAIK
-function ComponentWrapper<C extends React.ElementType = 'div'>({
-  component = 'div' as C,
-  ...rest
-}: ComponentWrapperProps<C>): JSX.Element {
-  console.log(rest);
-  // some logic
-  return React.createElement(component);
-}
-
 function acceptanceTest() {
   const StyledButton = styled('button')({
     background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
@@ -112,7 +92,6 @@ function acceptanceTest() {
       <MyComponent className="test" />
       <StyledMyComponent theme={MyThemeInstance} />
       <StyledInferedPropsMyComponent defaulted="Hi!" />
-      <ComponentWrapper component={StyledInferedPropsMyComponent} defaulted="def" />
     </React.Fragment>
   );
 }
