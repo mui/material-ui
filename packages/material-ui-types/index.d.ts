@@ -58,9 +58,7 @@ export type Overwrite<T, U> = Omit<T, keyof U> & U;
 
 type GenerateStringUnion<T> = Extract<
   {
-    [Key in keyof T]: T[Key] extends never
-      ? never
-      : Exclude<T[Key], true> extends never
+    [Key in keyof T]: true extends T[Key]
       ? Key
       : never;
   }[keyof T],
