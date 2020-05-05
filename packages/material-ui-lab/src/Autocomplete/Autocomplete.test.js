@@ -1686,5 +1686,23 @@ describe('<Autocomplete />', () => {
       expect(handleChange.args[1][1]).to.equal(options[0]);
       expect(handleChange.args[1][2]).to.equal('mouse');
     });
+
+    it('should pass to onHighlightChange the correct value after filtering', () => {
+      const handleChange = spy();
+      const options = ['one', 'three', 'onetwo'];
+      const { queryAllByRole } = render(
+        <Autocomplete
+          {...defaultProps}
+          onHighlightChange={handleChange}
+          options={options}
+          renderInput={(params) => <TextField autoFocus {...params} />}
+        />,
+      );
+      fireEvent.change(document.activeElement, { target: { value: 'one' } });
+      expect(queryAllByRole('option').length).to.equal(2);
+      fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+      fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+      expect(handleChange.args[handleChange.args.length - 1][1]).to.equal(options[2]);
+    });
   });
 });

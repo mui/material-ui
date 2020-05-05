@@ -117,69 +117,6 @@ export default function useAutocomplete(props) {
   const defaultHighlighted = autoHighlight ? 0 : -1;
   const highlightedIndexRef = React.useRef(defaultHighlighted);
 
-  const setHighlightedIndex = useEventCallback((index, reason = 'auto', event) => {
-    highlightedIndexRef.current = index;
-    // does the index exist?
-    if (index === -1) {
-      inputRef.current.removeAttribute('aria-activedescendant');
-    } else {
-      inputRef.current.setAttribute('aria-activedescendant', `${id}-option-${index}`);
-    }
-
-    if (!listboxRef.current) {
-      return;
-    }
-
-    const prev = listboxRef.current.querySelector('[data-focus]');
-    if (prev) {
-      prev.removeAttribute('data-focus');
-    }
-
-    const listboxNode = listboxRef.current.parentElement.querySelector('[role="listbox"]');
-
-    // "No results"
-    if (!listboxNode) {
-      return;
-    }
-
-    if (onHighlightChange) {
-      onHighlightChange(event, options[index], reason);
-    }
-
-    if (index === -1) {
-      listboxNode.scrollTop = 0;
-      return;
-    }
-
-    const option = listboxRef.current.querySelector(`[data-option-index="${index}"]`);
-
-    if (!option) {
-      return;
-    }
-
-    option.setAttribute('data-focus', 'true');
-
-    // Scroll active descendant into view.
-    // Logic copied from https://www.w3.org/TR/wai-aria-practices/examples/listbox/js/listbox.js
-    //
-    // Consider this API instead once it has a better browser support:
-    // .scrollIntoView({ scrollMode: 'if-needed', block: 'nearest' });
-    if (listboxNode.scrollHeight > listboxNode.clientHeight && reason !== 'mouse') {
-      const element = option;
-
-      const scrollBottom = listboxNode.clientHeight + listboxNode.scrollTop;
-      const elementBottom = element.offsetTop + element.offsetHeight;
-      if (elementBottom > scrollBottom) {
-        listboxNode.scrollTop = elementBottom - listboxNode.clientHeight;
-      } else if (
-        element.offsetTop - element.offsetHeight * (groupBy ? 1.3 : 0) <
-        listboxNode.scrollTop
-      ) {
-        listboxNode.scrollTop = element.offsetTop - element.offsetHeight * (groupBy ? 1.3 : 0);
-      }
-    }
-  });
-
   const [value, setValue] = useControlled({
     controlled: valueProp,
     default: defaultValue,
@@ -333,6 +270,68 @@ export default function useAutocomplete(props) {
       }
     }
   }
+  const setHighlightedIndex = useEventCallback((index, reason = 'auto', event) => {
+    highlightedIndexRef.current = index;
+    // does the index exist?
+    if (index === -1) {
+      inputRef.current.removeAttribute('aria-activedescendant');
+    } else {
+      inputRef.current.setAttribute('aria-activedescendant', `${id}-option-${index}`);
+    }
+
+    if (!listboxRef.current) {
+      return;
+    }
+
+    const prev = listboxRef.current.querySelector('[data-focus]');
+    if (prev) {
+      prev.removeAttribute('data-focus');
+    }
+
+    const listboxNode = listboxRef.current.parentElement.querySelector('[role="listbox"]');
+
+    // "No results"
+    if (!listboxNode) {
+      return;
+    }
+
+    if (onHighlightChange) {
+      onHighlightChange(event, filteredOptions[index], reason);
+    }
+
+    if (index === -1) {
+      listboxNode.scrollTop = 0;
+      return;
+    }
+
+    const option = listboxRef.current.querySelector(`[data-option-index="${index}"]`);
+
+    if (!option) {
+      return;
+    }
+
+    option.setAttribute('data-focus', 'true');
+
+    // Scroll active descendant into view.
+    // Logic copied from https://www.w3.org/TR/wai-aria-practices/examples/listbox/js/listbox.js
+    //
+    // Consider this API instead once it has a better browser support:
+    // .scrollIntoView({ scrollMode: 'if-needed', block: 'nearest' });
+    if (listboxNode.scrollHeight > listboxNode.clientHeight && reason !== 'mouse') {
+      const element = option;
+
+      const scrollBottom = listboxNode.clientHeight + listboxNode.scrollTop;
+      const elementBottom = element.offsetTop + element.offsetHeight;
+      if (elementBottom > scrollBottom) {
+        listboxNode.scrollTop = elementBottom - listboxNode.clientHeight;
+      } else if (
+        element.offsetTop - element.offsetHeight * (groupBy ? 1.3 : 0) <
+        listboxNode.scrollTop
+      ) {
+        listboxNode.scrollTop = element.offsetTop - element.offsetHeight * (groupBy ? 1.3 : 0);
+      }
+    }
+  });
 
   const changeHighlightedIndex = useEventCallback((diff, direction, reason = 'auto', event) => {
     if (!popupOpen) {
