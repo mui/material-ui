@@ -47,17 +47,24 @@ function themeTest() {
   <ComponentWithOptionalThemeStyledWithTheme value={1} theme={{ palette: { primary: '#333' } }} />; // $ExpectError
 }
 
-type TweakableComponentProps<C extends React.ElementType> = Omit<
+// Infering props from another component to correct type checking.
+// Use `Omit` just for make type objectable to avoid `Rest types may only be created from object types.ts(2700)` error
+// in `ComponentWrapper`.
+// If you remove Omit or something else many things will not work with TS.
+type ComponentWrapperProps<C extends React.ElementType = any> = Omit<
   { component?: C } & (undefined extends C ? unknown : React.ComponentProps<C>),
   never
 >;
 
-function testComponentType<C extends React.ElementType = 'div'>({
-  component,
+// Component that accept another component in order to do some manipulations with that component.
+// Same technique uses in MUI AFAIK
+function ComponentWrapper<C extends React.ElementType = 'div'>({
+  component = 'div' as C,
   ...rest
-}: TweakableComponentProps<C>): C | undefined {
+}: ComponentWrapperProps<C>): JSX.Element {
   console.log(rest);
-  return component;
+  // some logic
+  return React.createElement(component);
 }
 
 function acceptanceTest() {
@@ -105,7 +112,7 @@ function acceptanceTest() {
       <MyComponent className="test" />
       <StyledMyComponent theme={MyThemeInstance} />
       <StyledInferedPropsMyComponent defaulted="Hi!" />
+      <ComponentWrapper component={StyledInferedPropsMyComponent} defaulted="def" />
     </React.Fragment>
   );
-  testComponentType({ component: StyledInferedPropsMyComponent, defaulted: 'Hi!' });
 }
