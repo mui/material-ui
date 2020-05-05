@@ -31,6 +31,11 @@ export interface TableCellProps
    */
   component?: React.ElementType<TableCellBaseProps>;
   /**
+   * Hide the border of the cell.
+   * By default the border is shown
+   */
+  hideBorder?: boolean;
+  /**
    * Sets the padding applied to the cell.
    * By default, the Table parent component set the value (`default`).
    */

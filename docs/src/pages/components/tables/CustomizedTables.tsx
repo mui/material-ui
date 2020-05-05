@@ -65,14 +65,22 @@ export default function CustomizedTables() {
         </TableHead>
         <TableBody>
           {rows.map((row, index) => (
-            <StyledTableRow key={row.name} hideBorder={rows.length - 1 === index}>
-              <StyledTableCell component="th" scope="row">
+            <StyledTableRow key={row.name}>
+              <StyledTableCell component="th" scope="row" hideBorder={rows.length - 1 === index}>
                 {row.name}
               </StyledTableCell>
-              <StyledTableCell align="right">{row.calories}</StyledTableCell>
-              <StyledTableCell align="right">{row.fat}</StyledTableCell>
-              <StyledTableCell align="right">{row.carbs}</StyledTableCell>
-              <StyledTableCell align="right">{row.protein}</StyledTableCell>
+              <StyledTableCell align="right" hideBorder={rows.length - 1 === index}>
+                {row.calories}
+              </StyledTableCell>
+              <StyledTableCell align="right" hideBorder={rows.length - 1 === index}>
+                {row.fat}
+              </StyledTableCell>
+              <StyledTableCell align="right" hideBorder={rows.length - 1 === index}>
+                {row.carbs}
+              </StyledTableCell>
+              <StyledTableCell align="right" hideBorder={rows.length - 1 === index}>
+                {row.protein}
+              </StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>

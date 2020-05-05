@@ -85,4 +85,10 @@ describe('<TableCell />', () => {
     const { container } = renderInTable(<TableCell align="center" />);
     expect(container.querySelector('td')).to.have.class(classes.alignCenter);
   });
+
+  it('should have class hideBorder when the property is true', () => {
+    const { container } = render(<TableCell hideBorder />);
+    expect(container.firstChild).to.have.class(classes.hideBorder);
+    expect(container.firstChild)
+  });
 });

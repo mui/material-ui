@@ -74,7 +74,7 @@ export default function SpanningTable() {
           ))}
 
           <TableRow>
-            <TableCell rowSpan={3} />
+            <TableCell rowSpan={3} hideBorder />
             <TableCell colSpan={2}>Subtotal</TableCell>
             <TableCell align="right">{ccyFormat(invoiceSubtotal)}</TableCell>
           </TableRow>
@@ -83,9 +83,13 @@ export default function SpanningTable() {
             <TableCell align="right">{`${(TAX_RATE * 100).toFixed(0)} %`}</TableCell>
             <TableCell align="right">{ccyFormat(invoiceTaxes)}</TableCell>
           </TableRow>
-          <TableRow hideBorder>
-            <TableCell colSpan={2}>Total</TableCell>
-            <TableCell align="right">{ccyFormat(invoiceTotal)}</TableCell>
+          <TableRow>
+            <TableCell colSpan={2} hideBorder>
+              Total
+            </TableCell>
+            <TableCell align="right" hideBorder>
+              {ccyFormat(invoiceTotal)}
+            </TableCell>
           </TableRow>
         </TableBody>
       </Table>

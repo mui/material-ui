@@ -45,11 +45,6 @@ describe('<TableRow />', () => {
     getByTestId('test');
   });
 
-  it('should have class hideBorder when the property is true', () => {
-    const { container } = render(<TableRow hideBorder component="div" />);
-    expect(container.firstChild).to.have.class(classes.hideBorder);
-  });
-
   describe('prop: component', () => {
     it('can render a different component', () => {
       const { container } = render(<TableRow component="div" />);

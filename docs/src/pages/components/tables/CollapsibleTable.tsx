@@ -51,22 +51,30 @@ function Row(props: { row: ReturnType<typeof createData>; hideBorder: boolean })
 
   return (
     <React.Fragment>
-      <TableRow className={classes.root} hideBorder={hideBorder}>
-        <TableCell>
+      <TableRow className={classes.root}>
+        <TableCell hideBorder={hideBorder}>
           <IconButton aria-label="expand row" size="small" onClick={() => setOpen(!open)}>
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
-        <TableCell component="th" scope="row">
+        <TableCell component="th" scope="row" hideBorder={hideBorder}>
           {row.name}
         </TableCell>
-        <TableCell align="right">{row.calories}</TableCell>
-        <TableCell align="right">{row.fat}</TableCell>
-        <TableCell align="right">{row.carbs}</TableCell>
-        <TableCell align="right">{row.protein}</TableCell>
+        <TableCell align="right" hideBorder={hideBorder}>
+          {row.calories}
+        </TableCell>
+        <TableCell align="right" hideBorder={hideBorder}>
+          {row.fat}
+        </TableCell>
+        <TableCell align="right" hideBorder={hideBorder}>
+          {row.carbs}
+        </TableCell>
+        <TableCell align="right" hideBorder={hideBorder}>
+          {row.protein}
+        </TableCell>
       </TableRow>
-      <TableRow hideBorder={hideBorder}>
-        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+      <TableRow>
+        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6} hideBorder={hideBorder}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box margin={1}>
               <Typography variant="h6" gutterBottom component="div">
@@ -83,13 +91,13 @@ function Row(props: { row: ReturnType<typeof createData>; hideBorder: boolean })
                 </TableHead>
                 <TableBody>
                   {row.history.map((historyRow, index) => (
-                    <TableRow key={historyRow.date} hideBorder={row.history.length - 1 === index}>
-                      <TableCell component="th" scope="row">
+                    <TableRow key={historyRow.date}>
+                      <TableCell component="th" scope="row" hideBorder={row.history.length - 1 === index}>
                         {historyRow.date}
                       </TableCell>
-                      <TableCell>{historyRow.customerId}</TableCell>
-                      <TableCell align="right">{historyRow.amount}</TableCell>
-                      <TableCell align="right">
+                      <TableCell hideBorder={row.history.length - 1 === index}>{historyRow.customerId}</TableCell>
+                      <TableCell align="right" hideBorder={row.history.length - 1 === index}>{historyRow.amount}</TableCell>
+                      <TableCell align="right" hideBorder={row.history.length - 1 === index}>
                         {Math.round(historyRow.amount * row.price * 100) / 100}
                       </TableCell>
                     </TableRow>

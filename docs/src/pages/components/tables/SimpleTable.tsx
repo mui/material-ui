@@ -43,14 +43,22 @@ export default function SimpleTable() {
         </TableHead>
         <TableBody>
           {rows.map((row, index) => (
-            <TableRow key={row.name} hideBorder={rows.length - 1 === index}>
-              <TableCell component="th" scope="row">
+            <TableRow key={row.name}>
+              <TableCell component="th" scope="row" hideBorder={rows.length - 1 === index}>
                 {row.name}
               </TableCell>
-              <TableCell align="right">{row.calories}</TableCell>
-              <TableCell align="right">{row.fat}</TableCell>
-              <TableCell align="right">{row.carbs}</TableCell>
-              <TableCell align="right">{row.protein}</TableCell>
+              <TableCell align="right" hideBorder={rows.length - 1 === index}>
+                {row.calories}
+              </TableCell>
+              <TableCell align="right" hideBorder={rows.length - 1 === index}>
+                {row.fat}
+              </TableCell>
+              <TableCell align="right" hideBorder={rows.length - 1 === index}>
+                {row.carbs}
+              </TableCell>
+              <TableCell align="right" hideBorder={rows.length - 1 === index}>
+                {row.protein}
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
