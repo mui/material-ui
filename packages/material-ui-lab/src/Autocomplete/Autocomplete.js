@@ -267,6 +267,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     getOptionLabel = (x) => x,
     getOptionSelected,
     groupBy,
+    handleHomeEndKeys = !props.freeSolo,
     id: idProp,
     includeInputInList = false,
     inputValue: inputValueProp,
@@ -668,6 +669,11 @@ Autocomplete.propTypes = {
    * @returns {string}
    */
   groupBy: PropTypes.func,
+  /**
+   * If `true`, the component handles the "Home" and "End" keys when the popup is open.
+   * It should move focus to the first option and last option, respectively.
+   */
+  handleHomeEndKeys: PropTypes.bool,
   /**
    * This prop is used to help implement the accessibility logic.
    * If you don't provide this prop. It falls back to a randomly generated id.

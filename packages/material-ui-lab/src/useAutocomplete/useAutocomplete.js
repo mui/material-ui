@@ -88,6 +88,7 @@ export default function useAutocomplete(props) {
     getOptionLabel = (x) => x,
     getOptionSelected = (option, value) => option === value,
     groupBy,
+    handleHomeEndKeys = !props.freeSolo,
     id: idProp,
     includeInputInList = false,
     inputValue: inputValueProp,
@@ -623,14 +624,14 @@ export default function useAutocomplete(props) {
 
     switch (event.key) {
       case 'Home':
-        if (popupOpen) {
+        if (popupOpen && handleHomeEndKeys) {
           // Prevent scroll of the page
           event.preventDefault();
           changeHighlightedIndex('start', 'next', 'keyboard', event);
         }
         break;
       case 'End':
-        if (popupOpen) {
+        if (popupOpen && handleHomeEndKeys) {
           // Prevent scroll of the page
           event.preventDefault();
           changeHighlightedIndex('end', 'previous', 'keyboard', event);
