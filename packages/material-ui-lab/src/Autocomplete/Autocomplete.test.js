@@ -1702,7 +1702,7 @@ describe('<Autocomplete />', () => {
       expect(queryAllByRole('option').length).to.equal(2);
       fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
       fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
-      expect(handleChange.args[1][1]).to.equal(options[2]);
+      expect(handleChange.args[handleChange.args.length - 1][1]).to.equal(options[2]);
     });
   });
 });
