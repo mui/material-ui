@@ -20,7 +20,6 @@ describe('<TableCell />', () => {
     );
   }
 
-  
   before(() => {
     classes = getClasses(<TableCell />);
   });
@@ -88,7 +87,7 @@ describe('<TableCell />', () => {
   });
 
   it('should have class hideBorder when the property is true', () => {
-    const wrapper = mountInTable(<TableCell hideBorder />);
-    expect(wrapper.find('td').hasClass(classes.hideBorder)).to.equal(true);
+    const container = renderInTable(<TableCell hideBorder />);
+    expect(container.querySelector('td')).to.have.class(classes.hideBorder);
   });
 });
