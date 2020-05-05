@@ -19,7 +19,7 @@ export type ComponentCreator<Component extends React.ElementType> = <
   styles:
     | CreateCSSProperties<Props>
     | ((props: { theme: Theme } & Props) => CreateCSSProperties<Props>),
-  options?: WithStylesOptions<Theme>,
+  options?: WithStylesOptions<Theme>
 ) => StyledComponent<
   Omit<
     JSX.LibraryManagedAttributes<Component, React.ComponentProps<Component>>,
