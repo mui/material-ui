@@ -12,8 +12,11 @@ describe('<TableFooter />', () => {
   const render = createClientRender();
 
   function mountInTable(node) {
-    const wrapper = mount(<table>{node}</table>);
-    return wrapper.find('table').childAt(0);
+    const utils = render(<table>{node}</table>);
+    return {
+      table: utils.container.firstChild,
+      ...utils,
+    };
   }
 
   before(() => {
@@ -28,15 +31,18 @@ describe('<TableFooter />', () => {
   describeConformance(<TableFooter />, () => ({
     classes,
     inheritComponent: 'tfoot',
-    mount: mountInTable,
+    mount: (node) => {
+      const wrapper = mount(<table>{node}</table>);
+      return wrapper.find('table').childAt(0);
+    },
     refInstanceof: window.HTMLTableSectionElement,
     testComponentPropWith: 'thead',
   }));
 
   it('should render children', () => {
-    const children = <tr className="test" />;
-    const wrapper = mountInTable(<TableFooter>{children}</TableFooter>);
-    expect(wrapper.contains(children)).to.equal(true);
+    const children = <tr data-testid="test" className="test" />;
+    const { queryByTestId } = mountInTable(<TableFooter>{children}</TableFooter>);
+    expect(queryByTestId('test')).to.not.equal(null);
   });
 
   it('should define table.footer in the child context', () => {
