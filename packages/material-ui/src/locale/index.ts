@@ -657,7 +657,7 @@ export const hiIN: Localization = {
       nextIconButtonText: 'अगला पृष्ठ',
     },
     MuiRating: {
-      getLabelText: (value) => `${value} तार${value !== 1 ? 'े' : ' ा'}`,
+      getLabelText: (value) => `${value} तार${value !== 1 ? 'े' : 'ा'}`,
       emptyLabelText: 'रिक्त',
     },
     MuiAutocomplete: {
