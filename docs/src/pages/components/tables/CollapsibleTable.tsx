@@ -92,11 +92,19 @@ function Row(props: { row: ReturnType<typeof createData>; hideBorder: boolean })
                 <TableBody>
                   {row.history.map((historyRow, index) => (
                     <TableRow key={historyRow.date}>
-                      <TableCell component="th" scope="row" hideBorder={row.history.length - 1 === index}>
+                      <TableCell
+                        component="th"
+                        scope="row"
+                        hideBorder={row.history.length - 1 === index}
+                      >
                         {historyRow.date}
                       </TableCell>
-                      <TableCell hideBorder={row.history.length - 1 === index}>{historyRow.customerId}</TableCell>
-                      <TableCell align="right" hideBorder={row.history.length - 1 === index}>{historyRow.amount}</TableCell>
+                      <TableCell hideBorder={row.history.length - 1 === index}>
+                        {historyRow.customerId}
+                      </TableCell>
+                      <TableCell align="right" hideBorder={row.history.length - 1 === index}>
+                        {historyRow.amount}
+                      </TableCell>
                       <TableCell align="right" hideBorder={row.history.length - 1 === index}>
                         {Math.round(historyRow.amount * row.price * 100) / 100}
                       </TableCell>
