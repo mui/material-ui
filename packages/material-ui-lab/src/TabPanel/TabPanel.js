@@ -30,18 +30,32 @@ const TabPanel = React.forwardRef(function TabPanel(props, ref) {
 });
 
 TabPanel.propTypes = {
-  activeValue: PropTypes.any.isRequired,
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
+  /**
+   * The currently active value. Must be the same value that is passed to `Tabs`.
+   */
+  activeValue: PropTypes.any,
+  /**
+   * The content of the component.
+   */
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
   className: PropTypes.string,
-  value: PropTypes.any.isRequired,
+  /**
+   * The `value` of the corresponding `Tab`. Must use the index of the `Tab` when
+   * no `value` was passed to `Tab`.
+   */
+  value: PropTypes.any,
 };
 
 export default withStyles(styles, { name: 'MuiTabPanel' })(TabPanel);

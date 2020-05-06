@@ -11,7 +11,7 @@ export interface TabPanelProps extends StandardProps<BoxProps, TabPanelClassKey>
   activeValue?: unknown;
   /**
    * The `value` of the corresponding `Tab`. Must use the index of the `Tab` when
-   * no `value` was passed to `Tab`
+   * no `value` was passed to `Tab`.
    */
   value?: unknown;
 }
@@ -22,4 +22,4 @@ export interface TabPanelProps extends StandardProps<BoxProps, TabPanelClassKey>
  *
  * - [TabPanel API](https://material-ui.com/api/tab-panel/)
  */
-export default function Rating(props: TabPanelProps): JSX.Element;
+export default function TabPanel(props: TabPanelProps): JSX.Element;
