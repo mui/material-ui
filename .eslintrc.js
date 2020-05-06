@@ -137,6 +137,7 @@ module.exports = {
         // tests are not driven by assistive technology
         // add `jsx-a11y` rules once you encounter them in tests
         'jsx-a11y/click-events-have-key-events': 'off',
+        'jsx-a11y/control-has-associated-label': 'off',
         'jsx-a11y/iframe-has-title': 'off',
         'jsx-a11y/mouse-events-have-key-events': 'off',
         'jsx-a11y/no-noninteractive-tabindex': 'off',
