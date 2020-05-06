@@ -42,7 +42,7 @@ function DatePickerField({
             break;
 
           case 'minDate':
-            form.setFieldError(name, `Date should not be after ${format(maxDate, 'P')}`);
+            form.setFieldError(name, `Date should not be before ${format(minDate, 'P')}`);
             break;
 
           case 'shouldDisableDate':
