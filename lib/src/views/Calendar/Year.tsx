@@ -13,12 +13,16 @@ export interface YearProps {
   focused: boolean;
   value: any;
   allowKeyboardControl?: boolean;
-  forwardedRef?: React.Ref<HTMLDivElement>;
+  forwardedRef?: React.Ref<HTMLButtonElement>;
 }
 
 export const useStyles = makeStyles(
   theme => ({
     yearButtonContainer: {
+      color: 'unset',
+      backgroundColor: 'transparent',
+      border: 'none',
+      outline: 0,
       flexBasis: '33.3%',
       display: 'flex',
       justifyContent: 'center',
@@ -77,9 +81,10 @@ export const Year: React.FC<YearProps> = ({
   }, [allowKeyboardControl, disabled, focused]);
 
   return (
-    <div
-      role="button"
+    <button
       ref={forwardedRef}
+      disabled={disabled}
+      data-mui-test="year"
       onClick={() => onSelect(value)}
       className={clsx(classes.yearButtonContainer, {
         [classes.yearButtonContainerDesktop]: wrapperVariant === 'desktop',
@@ -88,22 +93,22 @@ export const Year: React.FC<YearProps> = ({
       <Typography
         ref={ref}
         variant="subtitle1"
+        data-mui-test={`year-${children}`}
         tabIndex={selected ? 0 : -1}
         color={selected ? 'primary' : undefined}
-        children={children}
         onKeyDown={onSpaceOrEnter(() => onSelect(value))}
         className={clsx(classes.yearButton, {
           [classes.yearSelected]: selected,
           [classes.yearDisabled]: disabled,
         })}
         {...other}
-      />
-    </div>
+      >
+        {children}
+      </Typography>
+    </button>
   );
 };
 
-Year.displayName = 'Year';
-
-export default React.forwardRef<HTMLDivElement, YearProps>((props, ref) => (
+export default React.forwardRef<HTMLButtonElement, YearProps>((props, ref) => (
   <Year {...props} forwardedRef={ref} />
 ));

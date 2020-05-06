@@ -37,7 +37,12 @@ export const ToolbarButton: React.FunctionComponent<ToolbarButtonProps> = ({
   const classes = useStyles();
 
   return (
-    <Button variant="text" className={clsx(classes.toolbarBtn, className)} {...other}>
+    <Button
+      data-mui-test="toolbar-button"
+      variant="text"
+      className={clsx(classes.toolbarBtn, className)}
+      {...other}
+    >
       <ToolbarText
         align={align}
         className={typographyClassName}

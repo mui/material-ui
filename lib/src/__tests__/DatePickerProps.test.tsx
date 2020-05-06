@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { TextField } from '@material-ui/core';
 import { mount, utilsToUse } from './test-utils';
-import { DatePicker, MobileDatePicker } from '../DatePicker/DatePicker';
+import { StaticDatePicker, DatePicker, MobileDatePicker } from '../DatePicker/DatePicker';
 
 describe('DatePicker - different props', () => {
   it('Should not render toolbar if onlyCalendar = true', () => {
@@ -114,5 +114,25 @@ describe('DatePicker - different props', () => {
 
     const component = mount(<Component />);
     component.find('#focus-picker').simulate('click');
+  });
+
+  it('shouldDisableYear – disables years dynamically', () => {
+    const onChangeMock = jest.fn();
+    const component = mount(
+      <StaticDatePicker
+        renderInput={props => <TextField {...props} />}
+        openTo="year"
+        onChange={onChangeMock}
+        value={utilsToUse.date('2018-01-01T00:00:00.000Z')}
+        shouldDisableYear={year => utilsToUse.getYear(year) === 2030}
+      />
+    );
+
+    const getYearButton = (year: number) =>
+      component.find(`[data-mui-test='year'] > [data-mui-test='year-${year}']`).parent();
+
+    expect(getYearButton(2029).prop('disabled')).toBeFalsy();
+    expect(getYearButton(2030).prop('disabled')).toBeTruthy();
+    expect(getYearButton(2031).prop('disabled')).toBeFalsy();
   });
 });

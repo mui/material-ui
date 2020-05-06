@@ -83,11 +83,17 @@ describe('Keyboard navigation', () => {
       cy.get('[aria-label="calendar view is open, switch to year view"]').click();
       cy.get('body').type('{downarrow}{downarrow}');
 
-      cy.contains('2098').should('be.focused');
+      cy.contains('2098')
+        .find('h6')
+        .should('be.focused');
       cy.get('body').type('{leftarrow}');
-      cy.contains('2097').should('be.focused');
+      cy.contains('2097')
+        .find('h6')
+        .should('be.focused');
       cy.get('body').type('{rightarrow}');
-      cy.contains('2098').should('be.focused');
+      cy.contains('2098')
+        .find('h6')
+        .should('be.focused');
     });
 
     it("Doesn't allow to select disabled year from keyboard", () => {
@@ -101,11 +107,15 @@ describe('Keyboard navigation', () => {
       cy.get('[aria-label="calendar view is open, switch to year view"]').click();
       cy.get('body').type('{downarrow}{downarrow}');
 
-      cy.contains('2098').should('be.focused');
+      cy.contains('2098')
+        .find('h6')
+        .should('be.focused');
       cy.get('body').type('{downarrow}{downarrow}');
 
       // it doesn't focus days outside the range
-      cy.contains('2098').should('be.focused');
+      cy.contains('2098')
+        .find('h6')
+        .should('be.focused');
     });
   });
 

@@ -37,9 +37,9 @@ describe('e2e - DateTimePicker', () => {
       .first()
       .simulate('click');
 
-    expect(component.find('Year').length).toBe(201);
+    expect(component.find('[data-mui-test="year"]').length).toBe(201);
     component
-      .find('Year')
+      .find('[data-mui-test="year"]')
       .at(1)
       .simulate('click');
 

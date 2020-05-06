@@ -1,12 +1,19 @@
 import * as React from 'react';
 import Year from './Year';
-import { useUtils } from '../../_shared/hooks/useUtils';
 import { MaterialUiPickersDate } from '../../typings/date';
+import { useUtils, useNow } from '../../_shared/hooks/useUtils';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { WrapperVariantContext } from '../../wrappers/WrapperVariantContext';
 import { useGlobalKeyDown, keycode as keys } from '../../_shared/hooks/useKeyDown';
 
-export interface YearSelectionProps {
+export interface ExportedYearSelectionProps {
+  /** Callback firing on year change @DateIOType */
+  onYearChange?: (date: MaterialUiPickersDate) => void;
+  /** Disable specific years dynamically. Works like `shouldDisableDate` but for year selection view. @DateIOType */
+  shouldDisableYear?: (day: MaterialUiPickersDate) => boolean;
+}
+
+export interface YearSelectionProps extends ExportedYearSelectionProps {
   date: MaterialUiPickersDate;
   minDate: MaterialUiPickersDate;
   maxDate: MaterialUiPickersDate;
@@ -15,7 +22,6 @@ export interface YearSelectionProps {
   disableFuture?: boolean | null | undefined;
   allowKeyboardControl?: boolean;
   isDateDisabled: (day: MaterialUiPickersDate) => boolean;
-  onYearChange?: (date: MaterialUiPickersDate) => void;
 }
 
 export const useStyles = makeStyles(
@@ -40,14 +46,16 @@ export const YearSelection: React.FC<YearSelectionProps> = ({
   disablePast,
   disableFuture,
   isDateDisabled,
+  shouldDisableYear,
   allowKeyboardControl,
 }) => {
+  const now = useNow();
   const theme = useTheme();
   const utils = useUtils();
   const classes = useStyles();
   const currentYear = utils.getYear(date);
   const wrapperVariant = React.useContext(WrapperVariantContext);
-  const selectedYearRef = React.useRef<HTMLDivElement>(null);
+  const selectedYearRef = React.useRef<HTMLButtonElement>(null);
   const [focusedYear, setFocusedYear] = React.useState<number | null>(currentYear);
 
   React.useEffect(() => {
@@ -114,8 +122,9 @@ export const YearSelection: React.FC<YearSelectionProps> = ({
               focused={yearNumber === focusedYear}
               ref={selected ? selectedYearRef : undefined}
               disabled={Boolean(
-                (disablePast && utils.isBeforeYear(year, utils.date())) ||
-                  (disableFuture && utils.isAfterYear(year, utils.date()))
+                (disablePast && utils.isBeforeYear(year, now)) ||
+                  (disableFuture && utils.isAfterYear(year, now)) ||
+                  (shouldDisableYear && shouldDisableYear(year))
               )}
             >
               {utils.format(year, 'year')}

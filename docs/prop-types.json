@@ -551,19 +551,6 @@
         "name": "(date: DateIOType) => void | Promise<void>"
       }
     },
-    "onYearChange": {
-      "defaultValue": null,
-      "description": "Callback firing on year change",
-      "name": "onYearChange",
-      "parent": {
-        "fileName": "material-ui-pickers/lib/src/views/Calendar/CalendarView.tsx",
-        "name": "CalendarViewProps"
-      },
-      "required": false,
-      "type": {
-        "name": "(date: DateIOType) => void"
-      }
-    },
     "renderDay": {
       "defaultValue": null,
       "description": "Custom renderer for day. Check [DayComponentProps api](https://material-ui-pickers.dev/api/Day)",
@@ -603,6 +590,32 @@
       "required": false,
       "type": {
         "name": "Element"
+      }
+    },
+    "onYearChange": {
+      "defaultValue": null,
+      "description": "Callback firing on year change",
+      "name": "onYearChange",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Calendar/YearSelection.tsx",
+        "name": "ExportedYearSelectionProps"
+      },
+      "required": false,
+      "type": {
+        "name": "(date: DateIOType) => void"
+      }
+    },
+    "shouldDisableYear": {
+      "defaultValue": null,
+      "description": "Disable specific years dynamically. Works like `shouldDisableDate` but for year selection view.",
+      "name": "shouldDisableYear",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Calendar/YearSelection.tsx",
+        "name": "ExportedYearSelectionProps"
+      },
+      "required": false,
+      "type": {
+        "name": "(day: DateIOType) => boolean"
       }
     },
     "value": {
@@ -2305,19 +2318,6 @@
         "name": "(date: DateIOType) => void | Promise<void>"
       }
     },
-    "onYearChange": {
-      "defaultValue": null,
-      "description": "Callback firing on year change",
-      "name": "onYearChange",
-      "parent": {
-        "fileName": "material-ui-pickers/lib/src/views/Calendar/CalendarView.tsx",
-        "name": "CalendarViewProps"
-      },
-      "required": false,
-      "type": {
-        "name": "(date: DateIOType) => void"
-      }
-    },
     "renderDay": {
       "defaultValue": null,
       "description": "Custom renderer for day. Check [DayComponentProps api](https://material-ui-pickers.dev/api/Day)",
@@ -2342,6 +2342,32 @@
       "required": false,
       "type": {
         "name": "Element"
+      }
+    },
+    "onYearChange": {
+      "defaultValue": null,
+      "description": "Callback firing on year change",
+      "name": "onYearChange",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Calendar/YearSelection.tsx",
+        "name": "ExportedYearSelectionProps"
+      },
+      "required": false,
+      "type": {
+        "name": "(date: DateIOType) => void"
+      }
+    },
+    "shouldDisableYear": {
+      "defaultValue": null,
+      "description": "Disable specific years dynamically. Works like `shouldDisableDate` but for year selection view.",
+      "name": "shouldDisableYear",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Calendar/YearSelection.tsx",
+        "name": "ExportedYearSelectionProps"
+      },
+      "required": false,
+      "type": {
+        "name": "(day: DateIOType) => boolean"
       }
     },
     "value": {
@@ -3185,6 +3211,19 @@
       "required": false,
       "type": {
         "name": "Element"
+      }
+    },
+    "shouldDisableYear": {
+      "defaultValue": null,
+      "description": "Disable specific years dynamically. Works like `shouldDisableDate` but for year selection view.",
+      "name": "shouldDisableYear",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Calendar/YearSelection.tsx",
+        "name": "ExportedYearSelectionProps"
+      },
+      "required": false,
+      "type": {
+        "name": "(day: DateIOType) => boolean"
       }
     },
     "calendars": {

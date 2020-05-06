@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Grid from '@material-ui/core/Grid';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { YearSelection } from './YearSelection';
 import { MonthSelection } from './MonthSelection';
 import { DatePickerView } from '../../DatePicker';
 import { useCalendarState } from './useCalendarState';
@@ -14,6 +13,7 @@ import { Calendar, ExportedCalendarProps } from './Calendar';
 import { DateValidationProps } from '../../_helpers/date-utils';
 import { PickerOnChangeFn } from '../../_shared/hooks/useViews';
 import { CalendarHeader, CalendarHeaderProps } from './CalendarHeader';
+import { YearSelection, ExportedYearSelectionProps } from './YearSelection';
 import { defaultMinDate, defaultMaxDate } from '../../constants/prop-types';
 import { IsStaticVariantContext } from '../../wrappers/WrapperVariantContext';
 
@@ -31,6 +31,7 @@ type PublicCalendarHeaderProps = Pick<
 export interface CalendarViewProps
   extends DateValidationProps,
     ExportedCalendarProps,
+    ExportedYearSelectionProps,
     PublicCalendarHeaderProps {
   date: MaterialUiPickersDate;
   view: DatePickerView;
@@ -41,8 +42,6 @@ export interface CalendarViewProps
   reduceAnimations?: boolean;
   /** Callback firing on month change. Return promise to render spinner till it will not be resolved @DateIOType */
   onMonthChange?: (date: MaterialUiPickersDate) => void | Promise<void>;
-  /** Callback firing on year change @DateIOType */
-  onYearChange?: (date: MaterialUiPickersDate) => void;
 }
 
 export type ExportedCalendarViewProps = Omit<
@@ -81,6 +80,7 @@ export const CalendarView: React.FC<CalendarViewProps> = ({
   allowKeyboardControl: __allowKeyboardControlProp,
   disablePast,
   disableFuture,
+  shouldDisableYear,
   ...other
 }) => {
   const utils = useUtils();
@@ -148,8 +148,11 @@ export const CalendarView: React.FC<CalendarViewProps> = ({
               onChange={onChange}
               minDate={minDate}
               maxDate={maxDate}
+              disableFuture={disableFuture}
+              disablePast={disablePast}
               isDateDisabled={isDateDisabled}
               allowKeyboardControl={allowKeyboardControl}
+              shouldDisableYear={shouldDisableYear}
             />
           )}
 
