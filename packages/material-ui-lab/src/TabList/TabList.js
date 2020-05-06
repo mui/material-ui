@@ -3,7 +3,7 @@ import * as PropTypes from 'prop-types';
 import Tabs from '@material-ui/core/Tabs';
 import { useTabContext } from '../TabContext';
 
-function TabList(props) {
+const TabList = React.forwardRef(function TabList(props, ref) {
   const { children: childrenProp, ...other } = props;
   const context = useTabContext();
 
@@ -19,11 +19,11 @@ function TabList(props) {
   }
 
   return (
-    <Tabs {...other} value={context?.value}>
+    <Tabs {...other} ref={ref} value={context?.value}>
       {children}
     </Tabs>
   );
-}
+});
 
 TabList.propTypes = {
   children: PropTypes.arrayOf(PropTypes.element),
