@@ -1,25 +1,24 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import Tabs from '@material-ui/core/Tabs';
-import { useTabContext } from '../TabContext';
+import { useTabContext, getTabId, getPanelId } from '../TabContext';
 
 const TabList = React.forwardRef(function TabList(props, ref) {
   const { children: childrenProp, ...other } = props;
   const context = useTabContext();
-
-  let children = childrenProp;
-  if (context !== null) {
-    const { panelPrefix, tabPrefix } = context;
-    children = React.Children.map(children, (child, index) => {
-      return React.cloneElement(child, {
-        'aria-controls': `${panelPrefix}-${index}`,
-        id: `${tabPrefix}-${index}`,
-      });
-    });
+  if (context === null) {
+    throw new TypeError('No TabContext provided');
   }
+  const children = React.Children.map(childrenProp, (child) => {
+    return React.cloneElement(child, {
+      // SOMEDAY: `Tabs` will set those themselves
+      'aria-controls': getPanelId(context, child.props.value),
+      id: getTabId(context, child.props.value),
+    });
+  });
 
   return (
-    <Tabs {...other} ref={ref} value={context?.value}>
+    <Tabs {...other} ref={ref} value={context.value}>
       {children}
     </Tabs>
   );

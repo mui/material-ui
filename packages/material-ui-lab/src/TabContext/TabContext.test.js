@@ -2,7 +2,7 @@ import * as React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { expect } from 'chai';
 import { createClientRender } from 'test/utils/createClientRender';
-import TabContext, { useTabContext } from './TabContext';
+import TabContext, { getPanelId, getTabId, useTabContext } from './TabContext';
 
 describe('<TabContext />', () => {
   const render = createClientRender();
@@ -19,21 +19,21 @@ describe('<TabContext />', () => {
     expect(value).to.equal(null);
   });
 
-  it('provides tab and panel prefixes for IDREFs and the active value', () => {
-    function Tabs() {
-      const { panelPrefix, tabPrefix, value } = useTabContext();
+  it('provides an id prefix for IDREFs and the active value', () => {
+    function Tabs({ value }) {
+      const context = useTabContext();
       return (
         <React.Fragment>
-          <div data-testid="active-value" data-value={value} />
-          <div role="tab" id={tabPrefix} />
-          <div role="tabpanel" id={panelPrefix} />
+          <div data-testid="active-value" data-value={context.value} />
+          <div role="tab" id={getTabId(context, value)} />
+          <div role="tabpanel" id={getPanelId(context, value)} />
         </React.Fragment>
       );
     }
 
     const { getByRole, getByTestId } = render(
-      <TabContext value={0}>
-        <Tabs />
+      <TabContext value="0">
+        <Tabs value="0" />
       </TabContext>,
     );
 
@@ -46,20 +46,20 @@ describe('<TabContext />', () => {
   });
 
   it('provides undefined tab and panel prefixes and the active value when ssr', () => {
-    function Tabs() {
-      const { panelPrefix, tabPrefix, value } = useTabContext();
+    function Tabs({ value }) {
+      const context = useTabContext();
       return (
         <React.Fragment>
-          <div data-testid="active-value" data-value={value} />
-          <div role="tab" id={tabPrefix} />
-          <div role="tabpanel" id={panelPrefix} />
+          <div data-testid="active-value" data-value={context.value} />
+          <div role="tab" id={getTabId(context, value)} />
+          <div role="tabpanel" id={getPanelId(context, value)} />
         </React.Fragment>
       );
     }
 
     const markup = ReactDOMServer.renderToStaticMarkup(
-      <TabContext value={0}>
-        <Tabs />
+      <TabContext value="0">
+        <Tabs value="0" />
       </TabContext>,
     );
 
@@ -69,18 +69,18 @@ describe('<TabContext />', () => {
   });
 
   it('hydrates tab and tabpanel prefixes', () => {
-    function Tabs() {
-      const { panelPrefix, tabPrefix } = useTabContext();
+    function Tabs({ value }) {
+      const context = useTabContext();
       return (
         <React.Fragment>
-          <div role="tab" id={tabPrefix} />
-          <div role="tabpanel" id={panelPrefix} />
+          <div role="tab" id={getTabId(context, value)} />
+          <div role="tabpanel" id={getPanelId(context, value)} />
         </React.Fragment>
       );
     }
     const reactElement = (
-      <TabContext value={0}>
-        <Tabs />
+      <TabContext value="0">
+        <Tabs value="0" />
       </TabContext>
     );
     const markup = ReactDOMServer.renderToString(reactElement);

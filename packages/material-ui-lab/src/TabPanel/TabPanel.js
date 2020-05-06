@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
+import { getPanelId, getTabId, useTabContext } from '../TabContext';
 
 export const styles = (theme) => {
   return {
@@ -14,17 +15,25 @@ export const styles = (theme) => {
 };
 
 const TabPanel = React.forwardRef(function TabPanel(props, ref) {
-  const { activeValue, children, className, classes, value, ...other } = props;
+  const { children, className, classes, value, ...other } = props;
+  const context = useTabContext();
+  if (context === null) {
+    throw new TypeError('No TabContext provided');
+  }
+  const id = getPanelId(context, value);
+  const tabId = getTabId(context, value);
 
   return (
     <div
+      aria-labelledby={tabId}
       className={clsx(classes.root, className)}
-      hidden={value !== activeValue}
+      hidden={value !== context.value}
+      id={id}
       ref={ref}
       role="tabpanel"
       {...other}
     >
-      {value === activeValue && <Typography>{children}</Typography>}
+      {value === context.value && <Typography>{children}</Typography>}
     </div>
   );
 });
@@ -34,10 +43,6 @@ TabPanel.propTypes = {
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
-  /**
-   * The currently active value. Must be the same value that is passed to `Tabs`.
-   */
-  activeValue: PropTypes.any,
   /**
    * The content of the component.
    */
@@ -55,7 +60,7 @@ TabPanel.propTypes = {
    * The `value` of the corresponding `Tab`. Must use the index of the `Tab` when
    * no `value` was passed to `Tab`.
    */
-  value: PropTypes.any,
+  value: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles, { name: 'MuiTabPanel' })(TabPanel);

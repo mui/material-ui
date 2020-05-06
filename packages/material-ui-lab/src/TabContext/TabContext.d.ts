@@ -1,18 +1,16 @@
 import * as React from 'react';
 
 export interface TabContextValue {
-  panelPrefix: string;
-  tabPrefix: string;
-  value: unknown;
+  idPrefix: string;
+  value: string;
 }
 
 export interface TabContextProps {
   children?: React.ReactNode;
   /**
    * The value of the currently selected `Tab`.
-   * If you don't want any selected `Tab`, you can set this property to `false`.
    */
-  value: unknown;
+  value: string;
 }
 /**
  *
@@ -22,3 +20,5 @@ export interface TabContextProps {
  */
 export default function TabContext(props: TabContextProps): JSX.Element;
 export function useTabContext(): TabContextValue | null;
+export function getPanelId(context: TabContextValue, tabValue: string): string;
+export function getTabId(context: TabContextValue, tabValue: string): string;

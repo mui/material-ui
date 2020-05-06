@@ -5,7 +5,6 @@ import Tab from '@material-ui/core/Tab';
 import TabContext from '@material-ui/lab/TabContext';
 import TabList from '@material-ui/lab/TabList';
 import TabPanel from '@material-ui/lab/TabPanel';
-import TabPanels from '@material-ui/lab/TabPanels';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -16,9 +15,9 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 export default function LabTabs() {
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState('1');
 
-  const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
+  const handleChange = (event: React.ChangeEvent<{}>, newValue: string) => {
     setValue(newValue);
   };
 
@@ -27,16 +26,14 @@ export default function LabTabs() {
       <TabContext value={value}>
         <AppBar position="static">
           <TabList onChange={handleChange} aria-label="simple tabs example">
-            <Tab label="Item One" />
-            <Tab label="Item Two" />
-            <Tab label="Item Three" />
+            <Tab label="Item One" value="1" />
+            <Tab label="Item Two" value="2" />
+            <Tab label="Item Three" value="3" />
           </TabList>
         </AppBar>
-        <TabPanels>
-          <TabPanel>Item One</TabPanel>
-          <TabPanel>Item Two</TabPanel>
-          <TabPanel>Item Three</TabPanel>
-        </TabPanels>
+        <TabPanel value="1">Item One</TabPanel>
+        <TabPanel value="2">Item Two</TabPanel>
+        <TabPanel value="3">Item Three</TabPanel>
       </TabContext>
     </div>
   );

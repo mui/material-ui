@@ -27,7 +27,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The content of the component. |
-| <span class="prop-name required">value&nbsp;*</span> | <span class="prop-type">any</span> |  | The value of the currently selected `Tab`. If you don't want any selected `Tab`, you can set this property to `false`. |
+| <span class="prop-name required">value&nbsp;*</span> | <span class="prop-type">string</span> |  | The value of the currently selected `Tab`. |
 
 The component cannot hold a ref.
 

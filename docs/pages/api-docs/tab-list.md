@@ -28,7 +28,12 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">children</span> | <span class="prop-type">Array&lt;element&gt;</span> |  |  |
 
-The component cannot hold a ref.
+The `ref` is forwarded to the root element.
 
-Any other props supplied will be provided to the root element (native element).
+Any other props supplied will be provided to the root element ([Tabs](/api/tabs/)).
+
+## Inheritance
+
+The props of the [Tabs](/api/tabs/) component are also available.
+You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 

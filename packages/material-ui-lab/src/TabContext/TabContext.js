@@ -1,6 +1,9 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 
+/**
+ * @type {React.Context<{ idPrefix: string; value: string } | null>}
+ */
 const Context = React.createContext(null);
 if (process.env.NODE_ENV !== 'production') {
   Context.displayName = 'TabContext';
@@ -9,19 +12,18 @@ if (process.env.NODE_ENV !== 'production') {
 function useUniquePrefix() {
   const [id, setId] = React.useState(null);
   React.useEffect(() => {
-    setId(`mui-${Math.round(Math.random() * 1e5)}`);
+    setId(`mui-p-${Math.round(Math.random() * 1e5)}`);
   }, []);
   return id;
 }
 
 export default function TabContext(props) {
   const { children, value } = props;
-  const panelPrefix = useUniquePrefix();
-  const tabPrefix = useUniquePrefix();
+  const idPrefix = useUniquePrefix();
 
   const context = React.useMemo(() => {
-    return { tabPrefix, panelPrefix, value };
-  }, [panelPrefix, tabPrefix, value]);
+    return { idPrefix, value };
+  }, [idPrefix, value]);
 
   return <Context.Provider value={context}>{children}</Context.Provider>;
 }
@@ -37,11 +39,29 @@ TabContext.propTypes = {
   children: PropTypes.node,
   /**
    * The value of the currently selected `Tab`.
-   * If you don't want any selected `Tab`, you can set this property to `false`.
    */
-  value: PropTypes.any.isRequired,
+  value: PropTypes.string.isRequired,
 };
 
+/**
+ * @returns {unknown}
+ */
 export function useTabContext() {
   return React.useContext(Context);
+}
+
+export function getPanelId(context, value) {
+  const { idPrefix } = context;
+  if (idPrefix === null) {
+    return null;
+  }
+  return `${context.idPrefix}-P-${value}`;
+}
+
+export function getTabId(context, value) {
+  const { idPrefix } = context;
+  if (idPrefix === null) {
+    return null;
+  }
+  return `${context.idPrefix}-T-${value}`;
 }
