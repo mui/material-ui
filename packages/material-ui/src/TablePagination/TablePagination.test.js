@@ -27,10 +27,6 @@ describe('<TablePagination />', () => {
     mount = createMount({ strict: false });
   });
 
-  afterEach(() => {
-    mount.cleanUp();
-  });
-
   describeConformance(
     <TablePagination count={1} onChangePage={() => {}} page={0} rowsPerPage={10} />,
     () => ({
@@ -46,13 +42,14 @@ describe('<TablePagination />', () => {
         );
         return wrapper.find('tr').childAt(0);
       },
+      after: () => mount.cleanUp(),
       refInstanceof: window.HTMLTableCellElement,
       // can only use `td` in a tr so we just fake a different component
       testComponentPropWith: (props) => <td {...props} />,
     }),
   );
 
-  describe('mount', () => {
+  describe('render', () => {
     it('should use the labelDisplayedRows callback', () => {
       let labelDisplayedRowsCalled = false;
       function labelDisplayedRows({ from, to, count, page }) {

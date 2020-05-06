@@ -20,10 +20,6 @@ describe('<TableFooter />', () => {
     classes = getClasses(<TableFooter />);
   });
 
-  after(() => {
-    mount.cleanUp();
-  });
-
   describeConformance(<TableFooter />, () => ({
     classes,
     inheritComponent: 'tfoot',
@@ -31,6 +27,7 @@ describe('<TableFooter />', () => {
       const wrapper = mount(<table>{node}</table>);
       return wrapper.find('table').childAt(0);
     },
+    after: () => mount.cleanUp(),
     refInstanceof: window.HTMLTableSectionElement,
     testComponentPropWith: 'thead',
   }));

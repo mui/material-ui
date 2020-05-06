@@ -24,10 +24,6 @@ describe('<TableCell />', () => {
     classes = getClasses(<TableCell />);
   });
 
-  after(() => {
-    mount.cleanUp();
-  });
-
   describeConformance(<TableCell />, () => ({
     classes,
     inheritComponent: 'td',
@@ -41,6 +37,7 @@ describe('<TableCell />', () => {
       );
       return wrapper.find('tr').childAt(0);
     },
+    after: () => mount.cleanUp(),
     refInstanceof: window.HTMLTableCellElement,
     // invalid nesting otherwise
     testComponentPropWith: 'td',

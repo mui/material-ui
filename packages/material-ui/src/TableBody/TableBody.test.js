@@ -21,10 +21,6 @@ describe('<TableBody />', () => {
     classes = getClasses(<TableBody />);
   });
 
-  after(() => {
-    mount.cleanUp();
-  });
-
   describeConformance(<TableBody />, () => ({
     classes,
     inheritComponent: 'tbody',
@@ -32,6 +28,7 @@ describe('<TableBody />', () => {
       const wrapper = mount(<table>{node}</table>);
       return wrapper.find('table').childAt(0);
     },
+    after: () => mount.cleanUp(),
     refInstanceof: window.HTMLTableSectionElement,
     // can't test with custom `component` with `renderInTable`
     testComponentPropWith: 'tbody',

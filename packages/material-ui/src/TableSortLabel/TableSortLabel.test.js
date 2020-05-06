@@ -17,14 +17,11 @@ describe('<TableSortLabel />', () => {
     classes = getClasses(<TableSortLabel />);
   });
 
-  after(() => {
-    mount.cleanUp();
-  });
-
   describeConformance(<TableSortLabel />, () => ({
     classes,
     inheritComponent: ButtonBase,
     mount,
+    after: () => mount.cleanUp(),
     refInstanceof: window.HTMLSpanElement,
     skip: ['componentProp'],
   }));

@@ -19,10 +19,6 @@ describe('<TableHead />', () => {
     classes = getClasses(<TableHead>foo</TableHead>);
   });
 
-  after(() => {
-    mount.cleanUp();
-  });
-
   describeConformance(<TableHead />, () => ({
     classes,
     inheritComponent: 'thead',
@@ -30,6 +26,7 @@ describe('<TableHead />', () => {
       const wrapper = mount(<table>{node}</table>);
       return wrapper.find('table').childAt(0);
     },
+    after: () => mount.cleanUp(),
     refInstanceof: window.HTMLTableSectionElement,
     testComponentPropWith: 'tbody',
   }));

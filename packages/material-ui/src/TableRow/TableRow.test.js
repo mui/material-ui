@@ -23,10 +23,6 @@ describe('<TableRow />', () => {
     classes = getClasses(<TableRow />);
   });
 
-  after(() => {
-    mount.cleanUp();
-  });
-
   describeConformance(<TableRow />, () => ({
     classes,
     inheritComponent: 'tr',
@@ -38,6 +34,7 @@ describe('<TableRow />', () => {
       );
       return wrapper.find('tbody').childAt(0);
     },
+    after: () => mount.cleanUp(),
     refInstanceof: window.HTMLTableRowElement,
     testComponentPropWith: 'tr',
   }));
