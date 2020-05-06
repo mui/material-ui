@@ -1,29 +1,31 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 
-export const styles = {
-  /* Styles applied to the root element. */
-  root: {},
+export const styles = (theme) => {
+  return {
+    /* Styles applied to the root element. */
+    root: {
+      padding: theme.spacing(3),
+    },
+  };
 };
 
 const TabPanel = React.forwardRef(function TabPanel(props, ref) {
   const { activeValue, children, className, classes, value, ...other } = props;
 
   return (
-    <Box
+    <div
       className={clsx(classes.root, className)}
       hidden={value !== activeValue}
-      p={3}
       ref={ref}
       role="tabpanel"
       {...other}
     >
       {value === activeValue && <Typography>{children}</Typography>}
-    </Box>
+    </div>
   );
 });
 
