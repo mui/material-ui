@@ -1,9 +1,4 @@
-import {
-  ClassNameMap,
-  Styles,
-  WithStylesOptions,
-  StyledComponentProps,
-} from '@material-ui/styles/withStyles';
+import { ClassNameMap, Styles, WithStylesOptions } from '@material-ui/styles/withStyles';
 import { Omit } from '@material-ui/types';
 import { DefaultTheme } from '../defaultTheme';
 
@@ -11,8 +6,8 @@ export type MakeStylesHook<
   Props extends {} = {},
   ClassKey extends string = string
 > = keyof Props extends never
-  ? (props?: Pick<StyledComponentProps<ClassKey>, 'classes'>) => ClassNameMap<ClassKey>
-  : (props: Props & Pick<StyledComponentProps<ClassKey>, 'classes'>) => ClassNameMap<ClassKey>;
+  ? (props?: { classes?: Partial<ClassNameMap<ClassKey>> }) => ClassNameMap<ClassKey>
+  : (props: Props & { classes?: Partial<ClassNameMap<ClassKey>> }) => ClassNameMap<ClassKey>;
 
 /**
  * `makeStyles` where the passed `styles` can depend on props
