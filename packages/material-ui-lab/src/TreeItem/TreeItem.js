@@ -189,6 +189,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
 
   const handleMouseDown = (event) => {
     if (event.shiftKey || event.ctrlKey || event.metaKey) {
+      // Prevent text selection
       event.preventDefault();
     }
 
@@ -363,7 +364,12 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
   if (multiSelect) {
     ariaSelected = selected;
   } else if (selected) {
-    // single-selection trees unset aria-selected
+    /* single-selection trees unset aria-selected on un-selected items.
+     *
+     * If the tree does not support multiple selection, aria-selected
+     * is set to true for the selected node and it is not present on any other node in the tree.
+     * Source: https://www.w3.org/TR/wai-aria-practices/#TreeView
+     */
     ariaSelected = true;
   }
 
