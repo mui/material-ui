@@ -13,6 +13,7 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof Button
     orientation?: 'horizontal' | 'vertical';
     ScrollButtonComponent?: React.ElementType;
     scrollButtons?: 'auto' | 'desktop' | 'on' | 'off';
+    selectionFollowsFocus?: boolean;
     TabIndicatorProps?: Partial<React.HTMLAttributes<HTMLDivElement>>;
     TabScrollButtonProps?: Partial<TabScrollButtonProps>;
     textColor?: 'secondary' | 'primary' | 'inherit';

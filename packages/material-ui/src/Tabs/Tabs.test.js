@@ -281,6 +281,37 @@ describe('<Tabs />', () => {
       expect(handleChange.callCount).to.equal(1);
       expect(handleChange.args[0][1]).to.equal(1);
     });
+
+    it('when `selectionFollowsFocus` should call if an unselected tab gets focused', () => {
+      const handleChange = spy((event, value) => value);
+      const { getAllByRole } = render(
+        <Tabs value={0} onChange={handleChange} selectionFollowsFocus>
+          <Tab />
+          <Tab />
+        </Tabs>,
+      );
+      const [, lastTab] = getAllByRole('tab');
+
+      lastTab.focus();
+
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.firstCall.returnValue).to.equal(1);
+    });
+
+    it('when `selectionFollowsFocus` should not call if an selected tab gets focused', () => {
+      const handleChange = spy();
+      const { getAllByRole } = render(
+        <Tabs value={0} onChange={handleChange} selectionFollowsFocus>
+          <Tab />
+          <Tab />
+        </Tabs>,
+      );
+      const [firstTab] = getAllByRole('tab');
+
+      firstTab.focus();
+
+      expect(handleChange.callCount).to.equal(0);
+    });
   });
 
   describe('prop: variant="scrollable"', () => {
@@ -700,6 +731,34 @@ describe('<Tabs />', () => {
             expect(handleKeyDown.firstCall.returnValue).to.equal(true);
           });
 
+          it('when `selectionFollowsFocus` moves focus to the last tab while activating it if focus is on the first tab', () => {
+            const handleChange = spy((event, value) => value);
+            const handleKeyDown = spy((event) => event.defaultPrevented);
+            const { getAllByRole } = render(
+              <Tabs
+                onChange={handleChange}
+                onKeyDown={handleKeyDown}
+                orientation={orientation}
+                selectionFollowsFocus
+                value={0}
+              >
+                <Tab />
+                <Tab />
+                <Tab />
+              </Tabs>,
+              { wrapper },
+            );
+            const [firstTab, , lastTab] = getAllByRole('tab');
+            firstTab.focus();
+
+            fireEvent.keyDown(firstTab, { key: previousItemKey });
+
+            expect(lastTab).toHaveFocus();
+            expect(handleChange.callCount).to.equal(1);
+            expect(handleChange.firstCall.returnValue).to.equal(2);
+            expect(handleKeyDown.firstCall.returnValue).to.equal(true);
+          });
+
           it('moves focus to the previous tab without activating it', () => {
             const handleChange = spy();
             const handleKeyDown = spy((event) => event.defaultPrevented);
@@ -723,6 +782,34 @@ describe('<Tabs />', () => {
 
             expect(firstTab).toHaveFocus();
             expect(handleChange.callCount).to.equal(0);
+            expect(handleKeyDown.firstCall.returnValue).to.equal(true);
+          });
+
+          it('when `selectionFollowsFocus` moves focus to the previous tab while activating it', () => {
+            const handleChange = spy((event, value) => value);
+            const handleKeyDown = spy((event) => event.defaultPrevented);
+            const { getAllByRole } = render(
+              <Tabs
+                onChange={handleChange}
+                onKeyDown={handleKeyDown}
+                orientation={orientation}
+                selectionFollowsFocus
+                value={1}
+              >
+                <Tab />
+                <Tab />
+                <Tab />
+              </Tabs>,
+              { wrapper },
+            );
+            const [firstTab, secondTab] = getAllByRole('tab');
+            secondTab.focus();
+
+            fireEvent.keyDown(secondTab, { key: previousItemKey });
+
+            expect(firstTab).toHaveFocus();
+            expect(handleChange.callCount).to.equal(1);
+            expect(handleChange.firstCall.returnValue).to.equal(0);
             expect(handleKeyDown.firstCall.returnValue).to.equal(true);
           });
         });
@@ -754,6 +841,34 @@ describe('<Tabs />', () => {
             expect(handleKeyDown.firstCall.returnValue).to.equal(true);
           });
 
+          it('when `selectionFollowsFocus` moves focus to the first tab while activating it if focus is on the last tab', () => {
+            const handleChange = spy((event, value) => value);
+            const handleKeyDown = spy((event) => event.defaultPrevented);
+            const { getAllByRole } = render(
+              <Tabs
+                onChange={handleChange}
+                onKeyDown={handleKeyDown}
+                orientation={orientation}
+                selectionFollowsFocus
+                value={2}
+              >
+                <Tab />
+                <Tab />
+                <Tab />
+              </Tabs>,
+              { wrapper },
+            );
+            const [firstTab, , lastTab] = getAllByRole('tab');
+            lastTab.focus();
+
+            fireEvent.keyDown(lastTab, { key: nextItemKey });
+
+            expect(firstTab).toHaveFocus();
+            expect(handleChange.callCount).to.equal(1);
+            expect(handleChange.firstCall.returnValue).to.equal(0);
+            expect(handleKeyDown.firstCall.returnValue).to.equal(true);
+          });
+
           it('moves focus to the next tab without activating it it', () => {
             const handleChange = spy();
             const handleKeyDown = spy((event) => event.defaultPrevented);
@@ -777,6 +892,34 @@ describe('<Tabs />', () => {
 
             expect(lastTab).toHaveFocus();
             expect(handleChange.callCount).to.equal(0);
+            expect(handleKeyDown.firstCall.returnValue).to.equal(true);
+          });
+
+          it('when `selectionFollowsFocus` moves focus to the next tab while activating it it', () => {
+            const handleChange = spy((event, value) => value);
+            const handleKeyDown = spy((event) => event.defaultPrevented);
+            const { getAllByRole } = render(
+              <Tabs
+                onChange={handleChange}
+                onKeyDown={handleKeyDown}
+                orientation={orientation}
+                selectionFollowsFocus
+                value={1}
+              >
+                <Tab />
+                <Tab />
+                <Tab />
+              </Tabs>,
+              { wrapper },
+            );
+            const [, secondTab, lastTab] = getAllByRole('tab');
+            secondTab.focus();
+
+            fireEvent.keyDown(secondTab, { key: nextItemKey });
+
+            expect(lastTab).toHaveFocus();
+            expect(handleChange.callCount).to.equal(1);
+            expect(handleChange.firstCall.returnValue).to.equal(2);
             expect(handleKeyDown.firstCall.returnValue).to.equal(true);
           });
         });
@@ -804,6 +947,27 @@ describe('<Tabs />', () => {
           expect(handleChange.callCount).to.equal(0);
           expect(handleKeyDown.firstCall.returnValue).to.equal(true);
         });
+
+        it('when `selectionFollowsFocus` moves focus to the first tab without activating it', () => {
+          const handleChange = spy((event, value) => value);
+          const handleKeyDown = spy((event) => event.defaultPrevented);
+          const { getAllByRole } = render(
+            <Tabs onChange={handleChange} onKeyDown={handleKeyDown} selectionFollowsFocus value={2}>
+              <Tab />
+              <Tab />
+              <Tab />
+            </Tabs>,
+          );
+          const [firstTab, , lastTab] = getAllByRole('tab');
+          lastTab.focus();
+
+          fireEvent.keyDown(lastTab, { key: 'Home' });
+
+          expect(firstTab).toHaveFocus();
+          expect(handleChange.callCount).to.equal(1);
+          expect(handleChange.firstCall.returnValue).to.equal(0);
+          expect(handleKeyDown.firstCall.returnValue).to.equal(true);
+        });
       });
 
       describe('End', () => {
@@ -824,6 +988,27 @@ describe('<Tabs />', () => {
 
           expect(lastTab).toHaveFocus();
           expect(handleChange.callCount).to.equal(0);
+          expect(handleKeyDown.firstCall.returnValue).to.equal(true);
+        });
+
+        it('when `selectionFollowsFocus` moves focus to the last tab without activating it', () => {
+          const handleChange = spy((event, value) => value);
+          const handleKeyDown = spy((event) => event.defaultPrevented);
+          const { getAllByRole } = render(
+            <Tabs onChange={handleChange} onKeyDown={handleKeyDown} selectionFollowsFocus value={0}>
+              <Tab />
+              <Tab />
+              <Tab />
+            </Tabs>,
+          );
+          const [firstTab, , lastTab] = getAllByRole('tab');
+          firstTab.focus();
+
+          fireEvent.keyDown(firstTab, { key: 'End' });
+
+          expect(lastTab).toHaveFocus();
+          expect(handleChange.callCount).to.equal(1);
+          expect(handleChange.firstCall.returnValue).to.equal(2);
           expect(handleKeyDown.firstCall.returnValue).to.equal(true);
         });
       });
