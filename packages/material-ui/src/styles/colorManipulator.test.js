@@ -125,6 +125,14 @@ describe('utils/colorManipulator', () => {
       const output2 = decomposeColor(output1);
       expect(output1).to.deep.equal(output2);
     });
+
+    it('converts rgba hex', () => {
+      const decomposed = decomposeColor('#111111f8');
+      expect(decomposed).to.deep.equal({
+        type: 'rgba',
+        values: [17, 17, 17, 0.972],
+      });
+    });
   });
 
   describe('getContrastRatio', () => {
