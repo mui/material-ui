@@ -4,16 +4,18 @@ import Clock from './Clock';
 import { pipe } from '../../_helpers/utils';
 import { makeStyles } from '@material-ui/core/styles';
 import { useUtils } from '../../_shared/hooks/useUtils';
-import { ParsableDate } from '../../constants/prop-types';
 import { MaterialUiPickersDate } from '../../typings/date';
 import { PickerOnChangeFn } from '../../_shared/hooks/useViews';
 import { getHourNumbers, getMinutesNumbers } from './ClockNumbers';
 import { useMeridiemMode } from '../../TimePicker/TimePickerToolbar';
-import { useParsedDate } from '../../_shared/hooks/date-helpers-hooks';
 import { ArrowSwitcher, ExportedArrowSwitcherProps } from '../../_shared/ArrowSwitcher';
-import { convertValueToMeridiem, createIsAfterIgnoreDatePart } from '../../_helpers/time-utils';
+import {
+  convertValueToMeridiem,
+  createIsAfterIgnoreDatePart,
+  TimeValidationProps,
+} from '../../_helpers/time-utils';
 
-export interface ExportedClockViewProps {
+export interface ExportedClockViewProps extends TimeValidationProps {
   /**
    * 12h/24h view for hour selection clock
    * @default true
@@ -34,14 +36,6 @@ export interface ExportedClockViewProps {
    * @default currentWrapper !== 'static'
    */
   allowKeyboardControl?: boolean;
-  /** Min time, date part by default, will be ignored */
-  minTime?: ParsableDate;
-  /** Max time, date part by default, will be ignored */
-  maxTime?: ParsableDate;
-  /** Dynamically check if time is disabled or not */
-  shouldDisableTime?: (timeValue: number, clockType: 'hours' | 'minutes' | 'seconds') => boolean;
-  /** Do not ignore date part when validating min/max time */
-  disableTimeValidationIgnoreDatePart?: boolean;
 }
 
 export interface ClockViewProps extends ExportedClockViewProps, ExportedArrowSwitcherProps {
@@ -89,8 +83,8 @@ export const ClockView: React.FC<ClockViewProps> = ({
   date,
   minutesStep = 1,
   ampmInClock,
-  minTime: unparsedMinTime,
-  maxTime: unparsedMaxTime,
+  minTime,
+  maxTime,
   allowKeyboardControl,
   shouldDisableTime,
   getHoursClockNumberText = getHoursAriaText,
@@ -111,8 +105,6 @@ export const ClockView: React.FC<ClockViewProps> = ({
 }) => {
   const utils = useUtils();
   const classes = useStyles();
-  const minTime = useParsedDate(unparsedMinTime);
-  const maxTime = useParsedDate(unparsedMaxTime);
   const { meridiemMode, handleMeridiemChange } = useMeridiemMode(date, ampm, onDateChange);
 
   const isTimeDisabled = React.useCallback(
@@ -120,9 +112,10 @@ export const ClockView: React.FC<ClockViewProps> = ({
       const validateTimeValue = (
         getRequestedTimePoint: (when: 'start' | 'end') => MaterialUiPickersDate
       ) => {
-        const isAfterComparingFn = disableTimeValidationIgnoreDatePart
-          ? utils.isAfter
-          : createIsAfterIgnoreDatePart(utils);
+        const isAfterComparingFn = createIsAfterIgnoreDatePart(
+          Boolean(disableTimeValidationIgnoreDatePart),
+          utils
+        );
 
         // prettier-ignore
         return Boolean(

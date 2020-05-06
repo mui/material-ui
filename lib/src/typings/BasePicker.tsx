@@ -25,10 +25,7 @@ export interface BasePickerProps<
   defaultHighlight?: ParsableDate;
   /** Callback fired when date is accepted @DateIOType */
   onAccept?: (date: TDateValue) => void;
-  /** Callback fired when new error should be displayed
-   * (!! This is a side effect. Be careful if you want to rerender the component) @DateIOType
-   */
-  onError?: (error: React.ReactNode, value: TInputValue | TDateValue) => void;
+
   /** On open callback */
   onOpen?: () => void;
   /** On close callback */

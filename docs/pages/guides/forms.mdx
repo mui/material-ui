@@ -1,0 +1,44 @@
+import Ad from '_shared/Ad';
+import Example from '_shared/Example';
+import PageMeta from '_shared/PageMeta';
+import * as FormikOurValidationExample from './FormikOurValidation.example';
+import * as FormikValidationSchema from './FormikValidationSchema.example';
+
+<PageMeta title="Form integration" />
+
+## Integration into forms
+
+Pickers are quite complex controls, where date can be submitted from different places, so we can't provide events as arguments in
+an `onChange` callback. So you need to set up form field manually, based on the `onChange` param.
+
+Also we are providing prop `onError` that is ready-to-use for validation. This callback fires once
+the selected value by user is becomes invalid based on the passed validation props.
+It returns you a reason why error was occured so it is possible to render custom error message.
+
+#### Validation props
+
+There are different validation props for each component. The `reason` prop returned by `onError`
+will basically return you a name of prop that match an error (e.g. `minDate` or `shouldDisableDate`)
+
+For reference, here is the list of validation props for [DatePicker](/api/DatePicker) in the order of applying:
+
+- `shouldDisableDate`
+- `disableFuture`
+- `disablePast`
+- `minDate`
+- `maxDate`
+
+<Ad />
+
+#### Formik
+
+Here is an example how to use `onError` callback in integration with [formik](https://jaredpalmer.com/formik)
+
+<Example source={FormikOurValidationExample} />
+
+#### Formik with validation schema
+
+This example shows how to use formik and custom validation schema. When using this approach please make sure that
+your validation schema logic covers all the [validation props](#validation-props) that are passed to the `DatePicker`.
+
+<Example source={FormikValidationSchema} />

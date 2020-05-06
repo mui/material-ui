@@ -1,15 +1,15 @@
 import * as React from 'react';
-import { MaterialUiPickersDate } from '../typings/date';
-import { BasePickerProps } from '../typings/BasePicker';
+import { useUtils } from '../_shared/hooks/useUtils';
 import { MobileWrapper } from '../wrappers/MobileWrapper';
 import { DateRangeInputProps } from './DateRangePickerInput';
-import { parsePickerInputValue } from '../_helpers/date-utils';
 import { usePickerState } from '../_shared/hooks/usePickerState';
+import { useParsedDate } from '../_shared/hooks/date-helpers-hooks';
 import { DesktopPopperWrapper } from '../wrappers/DesktopPopperWrapper';
-import { MuiPickersAdapter, useUtils } from '../_shared/hooks/useUtils';
 import { makeWrapperComponent } from '../wrappers/makeWrapperComponent';
 import { ResponsivePopperWrapper } from '../wrappers/ResponsiveWrapper';
+import { defaultMinDate, defaultMaxDate } from '../constants/prop-types';
 import { SomeWrapper, ExtendWrapper, StaticWrapper } from '../wrappers/Wrapper';
+import { makeValidationHook, ValidationProps } from '../_shared/hooks/useValidation';
 import { DateRangePickerView, ExportedDateRangePickerViewProps } from './DateRangePickerView';
 import { DateRangePickerInput, ExportedDateRangePickerInputProps } from './DateRangePickerInput';
 import {
@@ -17,21 +17,15 @@ import {
   RangeInput,
   AllSharedDateRangePickerProps,
 } from './RangeTypes';
-
-export function parseRangeInputValue(
-  now: MaterialUiPickersDate,
-  utils: MuiPickersAdapter,
-  { value = [null, null], defaultHighlight }: BasePickerProps<RangeInput, DateRange>
-) {
-  return value.map(date =>
-    date === null
-      ? null
-      : utils.startOfDay(parsePickerInputValue(now, utils, { value: date, defaultHighlight }))
-  ) as DateRangeType;
-}
+import {
+  parseRangeInputValue,
+  validateDateRange,
+  DateRangeValidationError,
+} from '../_helpers/date-utils';
 
 export interface DateRangePickerProps
   extends ExportedDateRangePickerViewProps,
+    ValidationProps<DateRangeValidationError, RangeInput>,
     ExportedDateRangePickerInputProps {
   /**
    * Text for start input label and toolbar placeholder
@@ -45,6 +39,15 @@ export interface DateRangePickerProps
   endText?: React.ReactNode;
 }
 
+export const useDateRangeValidation = makeValidationHook<
+  DateRangeValidationError,
+  RangeInput,
+  DateRangePickerProps
+>(validateDateRange, {
+  defaultValidationError: [null, null],
+  isSameError: (a, b) => a[1] === b[1] && a[0] === b[0],
+});
+
 export function makeRangePicker<TWrapper extends SomeWrapper>(Wrapper: TWrapper) {
   const WrapperComponent = makeWrapperComponent<DateRangeInputProps, RangeInput, DateRange>(
     Wrapper,
@@ -56,33 +59,34 @@ export function makeRangePicker<TWrapper extends SomeWrapper>(Wrapper: TWrapper)
 
   function RangePickerWithStateAndWrapper({
     calendars,
-    minDate,
-    maxDate,
-    disablePast,
-    disableFuture,
-    shouldDisableDate,
-    showDaysOutsideCurrentMonth,
-    onMonthChange,
-    disableHighlightToday,
-    reduceAnimations,
     value,
     onChange,
     mask = '__/__/____',
     startText = 'Start',
     endText = 'End',
     inputFormat: passedInputFormat,
-    ...restPropsForTextField
+    minDate: __minDate = defaultMinDate,
+    maxDate: __maxDate = defaultMaxDate,
+    ...other
   }: DateRangePickerProps & AllSharedDateRangePickerProps & ExtendWrapper<TWrapper>) {
     const utils = useUtils();
+    const minDate = useParsedDate(__minDate);
+    const maxDate = useParsedDate(__maxDate);
     const [currentlySelectingRangeEnd, setCurrentlySelectingRangeEnd] = React.useState<
       'start' | 'end'
     >('start');
 
     const pickerStateProps = {
-      ...restPropsForTextField,
+      ...other,
       value,
       onChange,
       inputFormat: passedInputFormat || utils.formats.keyboardDate,
+    };
+
+    const restProps = {
+      ...other,
+      minDate,
+      maxDate,
     };
 
     const { pickerProps, inputProps, wrapperProps } = usePickerState<RangeInput, DateRange>(
@@ -90,45 +94,35 @@ export function makeRangePicker<TWrapper extends SomeWrapper>(Wrapper: TWrapper)
       {
         parseInput: parseRangeInputValue,
         areValuesEqual: (a, b) => utils.isEqual(a[0], b[0]) && utils.isEqual(a[1], b[1]),
-        validateInput: () => undefined,
         emptyValue: [null, null],
       }
     );
 
+    const validationError = useDateRangeValidation(value, restProps);
+
     const DateInputProps = {
       ...inputProps,
-      ...restPropsForTextField,
+      ...restProps,
       currentlySelectingRangeEnd,
       setCurrentlySelectingRangeEnd,
       startText,
       endText,
       mask,
+      validationError,
     };
 
     return (
-      <WrapperComponent
-        wrapperProps={wrapperProps}
-        DateInputProps={DateInputProps}
-        {...restPropsForTextField}
-      >
+      <WrapperComponent wrapperProps={wrapperProps} DateInputProps={DateInputProps} {...restProps}>
         <DateRangePickerView
           open={wrapperProps.open}
           DateInputProps={DateInputProps}
           calendars={calendars}
-          minDate={minDate}
-          maxDate={maxDate}
-          disablePast={disablePast}
-          disableFuture={disableFuture}
-          shouldDisableDate={shouldDisableDate}
-          showDaysOutsideCurrentMonth={showDaysOutsideCurrentMonth}
-          onMonthChange={onMonthChange}
-          disableHighlightToday={disableHighlightToday}
-          reduceAnimations={reduceAnimations}
           currentlySelectingRangeEnd={currentlySelectingRangeEnd}
           setCurrentlySelectingRangeEnd={setCurrentlySelectingRangeEnd}
           startText={startText}
           endText={endText}
           {...pickerProps}
+          {...restProps}
         />
       </WrapperComponent>
     );

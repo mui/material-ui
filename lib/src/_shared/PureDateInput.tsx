@@ -19,7 +19,7 @@ export interface DateInputProps<TInputValue = ParsableDate, TDateValue = Materia
   openPicker: () => void;
   readOnly?: boolean;
   disabled?: boolean;
-  validationError?: React.ReactNode;
+  validationError?: boolean;
   label?: TextFieldProps['label'];
   InputProps?: TextFieldProps['InputProps'];
   TextFieldProps?: Partial<MuiTextFieldProps>;
@@ -34,11 +34,6 @@ export interface DateInputProps<TInputValue = ParsableDate, TDateValue = Materia
    * ````
    */
   renderInput: (props: MuiTextFieldProps) => React.ReactElement;
-  /**
-   * Message displaying in read-only text field when null passed
-   * @default ' '
-   */
-  emptyInputText?: string;
   /** Icon displaying for open picker button */
   openPickerIcon?: React.ReactNode;
   /**
@@ -106,7 +101,6 @@ export const PureDateInput: React.FC<DateInputProps & DateInputRefs> = ({
   InputProps,
   openPicker: onOpen,
   renderInput,
-  emptyInputText: emptyLabel,
   forwardedRef,
   containerRef,
   getOpenDialogAriaText = getTextFieldAriaText,
@@ -123,18 +117,14 @@ export const PureDateInput: React.FC<DateInputProps & DateInputRefs> = ({
     [InputProps]
   );
 
-  const inputValue = getDisplayDate(rawValue, utils, {
-    inputFormat,
-    emptyInputText: emptyLabel,
-  });
+  const inputValue = getDisplayDate(utils, rawValue, inputFormat);
 
   return renderInput({
     label,
     disabled,
     ref: containerRef,
     inputRef: forwardedRef,
-    error: Boolean(validationError),
-    helperText: validationError,
+    error: validationError,
     'aria-label': getOpenDialogAriaText(rawValue, utils),
     onClick: onOpen,
     value: inputValue,

@@ -4,13 +4,13 @@ import clsx from 'clsx';
 import Fade from '@material-ui/core/Fade';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import { CalendarProps } from './Calendar';
 import { DatePickerView } from '../../DatePicker';
 import { SlideDirection } from './SlideTransition';
 import { makeStyles } from '@material-ui/core/styles';
 import { useUtils } from '../../_shared/hooks/useUtils';
 import { MaterialUiPickersDate } from '../../typings/date';
 import { FadeTransitionGroup } from './FadeTransitionGroup';
+import { DateValidationProps } from '../../_helpers/date-utils';
 import { ArrowDropDownIcon } from '../../_shared/icons/ArrowDropDownIcon';
 import { ArrowSwitcher, ExportedArrowSwitcherProps } from '../../_shared/ArrowSwitcher';
 import {
@@ -20,7 +20,7 @@ import {
 
 export interface CalendarHeaderProps
   extends ExportedArrowSwitcherProps,
-    Pick<CalendarProps, 'minDate' | 'maxDate' | 'disablePast' | 'disableFuture'> {
+    Omit<DateValidationProps, 'shouldDisableDate'> {
   view: DatePickerView;
   views: DatePickerView[];
   currentMonth: MaterialUiPickersDate;

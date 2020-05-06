@@ -1,3 +1,4 @@
+/* eslint-disable pretty-imports/sorted*/
 import prism from 'prismjs';
 import { ThemeType } from '../layout/PageWithContext';
 

@@ -21,6 +21,7 @@ type MaskedInputProps = Omit<
   | 'disableOpenPicker'
   | 'getOpenDialogAriaText'
   | 'OpenPickerButtonProps'
+  | 'parsedDateValue'
 >;
 
 export function useMaskedInput({
@@ -33,7 +34,6 @@ export function useMaskedInput({
   inputFormat,
   disabled,
   rifmFormatter,
-  emptyInputText: emptyLabel,
   ignoreInvalidInputs,
   readOnly,
   TextFieldProps,
@@ -42,14 +42,11 @@ export function useMaskedInput({
   const utils = useUtils();
   const isFocusedRef = React.useRef(false);
 
-  const getInputValue = React.useCallback(
-    () =>
-      getDisplayDate(rawValue, utils, {
-        inputFormat,
-        emptyInputText: emptyLabel,
-      }),
-    [emptyLabel, inputFormat, rawValue, utils]
-  );
+  const getInputValue = React.useCallback(() => getDisplayDate(utils, rawValue, inputFormat), [
+    inputFormat,
+    rawValue,
+    utils,
+  ]);
 
   const formatHelperText = utils.getFormatHelperText(inputFormat);
   const [innerInputValue, setInnerInputValue] = React.useState<string>(getInputValue());
@@ -108,8 +105,8 @@ export function useMaskedInput({
     disabled,
     type: shouldUseMaskedInput ? 'tel' : 'text',
     placeholder: formatHelperText,
-    error: Boolean(validationError),
-    helperText: formatHelperText || validationError,
+    error: validationError,
+    helperText: formatHelperText,
     // @ts-ignore ??? fix typings for textfield finally
     'data-mui-test': 'keyboard-date-input',
     inputProps: { readOnly },

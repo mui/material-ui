@@ -7,24 +7,14 @@ import { useUtils, useNow } from '../../_shared/hooks/useUtils';
 import { PickerOnChangeFn } from '../../_shared/hooks/useViews';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { DAY_SIZE, DAY_MARGIN } from '../../constants/dimensions';
-import { findClosestEnabledDate } from '../../_helpers/date-utils';
 import { useGlobalKeyDown, keycode } from '../../_shared/hooks/useKeyDown';
+import { findClosestEnabledDate, DateValidationProps } from '../../_helpers/date-utils';
 import { SlideTransition, SlideDirection, SlideTransitionProps } from './SlideTransition';
 
 export interface ExportedCalendarProps
   extends Pick<DayProps, 'disableHighlightToday' | 'showDaysOutsideCurrentMonth'> {
   /** Calendar onChange */
   onChange: PickerOnChangeFn;
-  /**
-   * Disable past dates
-   * @default false
-   */
-  disablePast?: boolean;
-  /**
-   * Disable future dates
-   * @default false
-   */
-  disableFuture?: boolean;
   /** Custom renderer for day. Check [DayComponentProps api](https://material-ui-pickers.dev/api/Day) @DateIOType */
   renderDay?: (
     day: MaterialUiPickersDate,
@@ -40,7 +30,7 @@ export interface ExportedCalendarProps
   loadingIndicator?: JSX.Element;
 }
 
-export interface CalendarProps extends ExportedCalendarProps {
+export interface CalendarProps extends ExportedCalendarProps, DateValidationProps {
   date: MaterialUiPickersDate | MaterialUiPickersDate[];
   minDate: MaterialUiPickersDate;
   maxDate: MaterialUiPickersDate;

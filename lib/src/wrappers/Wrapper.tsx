@@ -7,9 +7,10 @@ import { DesktopPopperWrapper, DesktopPopperWrapperProps } from './DesktopPopper
 
 export type DateInputPropsLike<TInputValue, TDateValue> = Omit<
   DateInputProps<TInputValue, TDateValue>,
-  'renderInput'
+  'renderInput' | 'validationError'
 > & {
   renderInput: (...args: any) => JSX.Element;
+  validationError?: any;
 };
 
 export interface WrapperProps<TInputProps = DateInputPropsLike<any, any>> {

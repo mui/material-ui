@@ -1,4 +1,5 @@
 import { IUtils } from '@date-io/core/IUtils';
+import { ParsableDate } from '../constants/prop-types';
 import { MaterialUiPickersDate } from '../typings/date';
 import { MuiPickersAdapter } from '../_shared/hooks/useUtils';
 
@@ -90,9 +91,61 @@ export function getSecondsInDay(date: MaterialUiPickersDate, utils: MuiPickersAd
   return utils.getHours(date) * 3600 + utils.getMinutes(date) * 60 + utils.getSeconds(date);
 }
 
-export const createIsAfterIgnoreDatePart = (utils: MuiPickersAdapter) => (
-  dateLeft: MaterialUiPickersDate,
-  dateRight: MaterialUiPickersDate
-) => {
+export const createIsAfterIgnoreDatePart = (
+  disableTimeValidationIgnoreDatePart: boolean,
+  utils: MuiPickersAdapter
+) => (dateLeft: MaterialUiPickersDate, dateRight: MaterialUiPickersDate) => {
+  if (disableTimeValidationIgnoreDatePart) {
+    return utils.isAfter;
+  }
+
   return getSecondsInDay(dateLeft, utils) > getSecondsInDay(dateRight, utils);
 };
+
+export interface TimeValidationProps {
+  /** Min time, date part by default, will be ignored */
+  minTime?: MaterialUiPickersDate;
+  /** Max time, date part by default, will be ignored */
+  maxTime?: MaterialUiPickersDate;
+  /** Dynamically check if time is disabled or not */
+  shouldDisableTime?: (timeValue: number, clockType: 'hours' | 'minutes' | 'seconds') => boolean;
+  /** Do not ignore date part when validating min/max time */
+  disableTimeValidationIgnoreDatePart?: boolean;
+}
+
+export const validateTime = (
+  utils: MuiPickersAdapter,
+  value: MaterialUiPickersDate | ParsableDate,
+  { minTime, maxTime, shouldDisableTime, disableTimeValidationIgnoreDatePart }: TimeValidationProps
+) => {
+  const date = utils.date(value);
+  const isAfterComparingFn = createIsAfterIgnoreDatePart(
+    Boolean(disableTimeValidationIgnoreDatePart),
+    utils
+  );
+
+  switch (true) {
+    case !utils.isValid(value):
+      return 'invalidDate';
+
+    case Boolean(minTime && isAfterComparingFn(minTime, date)):
+      return 'minTime';
+
+    case Boolean(maxTime && isAfterComparingFn(date, maxTime)):
+      return 'maxTime';
+
+    case Boolean(shouldDisableTime && shouldDisableTime(utils.getHours(date), 'hours')):
+      return 'shouldDisableTime-hours';
+
+    case Boolean(shouldDisableTime && shouldDisableTime(utils.getMinutes(date), 'minutes')):
+      return 'shouldDisableTime-minutes';
+
+    case Boolean(shouldDisableTime && shouldDisableTime(utils.getSeconds(date), 'seconds')):
+      return 'shouldDisableTime-seconds';
+
+    default:
+      return null;
+  }
+};
+
+export type TimeValidationError = ReturnType<typeof validateTime>;

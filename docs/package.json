@@ -32,8 +32,8 @@
     "@types/prismjs": "^1.9.1",
     "@types/react": "^16.8.13",
     "@types/react-kawaii": "^0.11.0",
-    "@types/react-redux": "^7.1.7",
     "@types/sinon": "^7.0.13",
+    "@types/yup": "^0.28.0",
     "@zeit/next-bundle-analyzer": "^0.1.2",
     "@zeit/next-css": "^1.0.1",
     "@zeit/next-mdx": "^1.2.0",
@@ -65,15 +65,13 @@
     "react-jss": "^8.6.1",
     "react-kawaii": "^0.16.0",
     "react-markdown": "^4.2.2",
-    "react-redux": "^7.2.0",
-    "redux": "^4.0.5",
-    "redux-form": "^8.3.0",
     "remark-slug": "^6.0.0",
     "safe-json-stringify": "^1.2.0",
     "sinon": "^9.0.2",
     "styled-jsx": "^3.2.5",
     "ts-loader": "^6.0.2",
-    "typescript": "^3.8.3"
+    "typescript": "^3.8.3",
+    "yup": "^0.28.5"
   },
   "devDependencies": {
     "dotenv": "^8.2.0",

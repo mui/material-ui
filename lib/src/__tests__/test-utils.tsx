@@ -3,8 +3,10 @@ import * as enzyme from 'enzyme';
 import LuxonUtils from '@date-io/luxon';
 import MomentUtils from '@date-io/moment';
 import DateFnsUtils from '@date-io/date-fns';
+import TextField from '@material-ui/core/TextField';
 import LocalizationProvider from '../LocalizationProvider';
 import { IUtils } from '@date-io/core/IUtils';
+import { DatePickerProps } from '../DatePicker';
 import { MaterialUiPickersDate } from '../typings/date';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
@@ -40,6 +42,23 @@ export const mount = <P extends WithUtilsProps>(element: React.ReactElement<P>) 
       <LocalizationProvider dateAdapter={UtilClassToUse}>{element}</LocalizationProvider>
     </ThemeProvider>
   );
+
+export const mountPickerWithState = (
+  defaultValue: MaterialUiPickersDate,
+  render: (props: Pick<DatePickerProps, 'onChange' | 'value' | 'renderInput'>) => React.ReactElement
+) => {
+  const PickerMountComponent = () => {
+    const [value, setDate] = React.useState(defaultValue);
+
+    return render({
+      value,
+      onChange: date => setDate(date),
+      renderInput: props => <TextField {...props} />,
+    });
+  };
+
+  return mount(<PickerMountComponent />);
+};
 
 export const shallowRender = (render: (props: any) => React.ReactElement<any>) => {
   return enzyme.shallow(render({ utils: utilsToUse, classes: {} as any, theme: {} as any }));

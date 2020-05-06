@@ -3,7 +3,7 @@ import { TextField } from '@material-ui/core';
 import { TimePicker } from '@material-ui/pickers';
 
 function TimeValidation() {
-  const [selectedDate, handleDateChange] = useState(new Date());
+  const [selectedDate, handleDateChange] = useState(new Date('2020-01-01 12:00'));
 
   return (
     <Fragment>

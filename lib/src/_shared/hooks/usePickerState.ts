@@ -15,16 +15,11 @@ export function usePickerState<TInput, TDateValue>(
       utils: MuiPickersAdapter,
       props: BasePickerProps<TInput, TDateValue>
     ) => TDateValue;
-    validateInput: (
-      value: TInput,
-      utils: MuiPickersAdapter,
-      props: BasePickerProps<TInput, TDateValue>
-    ) => React.ReactNode | undefined;
     emptyValue: TDateValue;
     areValuesEqual: (valueLeft: TDateValue, valueRight: TDateValue) => boolean;
   }
 ) {
-  const { autoOk, inputFormat, disabled, readOnly, onAccept, onChange, onError, value } = props;
+  const { autoOk, inputFormat, disabled, readOnly, onAccept, onChange, value } = props;
 
   if (!inputFormat) {
     throw new Error('inputFormat prop is required');
@@ -117,34 +112,16 @@ export function usePickerState<TInput, TDateValue>(
     [acceptDate, autoOk, isMobileKeyboardViewOpen, pickerDate]
   );
 
-  const validationError = valueManager.validateInput(value, utils, props);
-  useEffect(() => {
-    if (onError) {
-      onError(validationError, value);
-    }
-  }, [onError, validationError, value]);
-
   const inputProps = useMemo(
     () => ({
       onChange,
       inputFormat,
       open: isOpen,
       rawValue: value,
-      validationError,
       parsedDateValue: pickerDate,
       openPicker: () => !readOnly && !disabled && setIsOpen(true),
     }),
-    [
-      onChange,
-      inputFormat,
-      isOpen,
-      value,
-      validationError,
-      pickerDate,
-      readOnly,
-      disabled,
-      setIsOpen,
-    ]
+    [onChange, inputFormat, isOpen, value, pickerDate, readOnly, disabled, setIsOpen]
   );
 
   const pickerState = { pickerProps, inputProps, wrapperProps };

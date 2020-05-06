@@ -1,6 +1,4 @@
 import { ParsableDate } from '../constants/prop-types';
-import { MaterialUiPickersDate } from '../typings/date';
-import { DateInputProps } from '../_shared/PureDateInput';
 import { MuiPickersAdapter } from '../_shared/hooks/useUtils';
 
 export function getTextFieldAriaText(rawValue: ParsableDate, utils: MuiPickersAdapter) {
@@ -10,129 +8,18 @@ export function getTextFieldAriaText(rawValue: ParsableDate, utils: MuiPickersAd
 }
 
 export const getDisplayDate = (
-  value: ParsableDate,
   utils: MuiPickersAdapter,
-  { inputFormat, emptyInputText }: Pick<DateInputProps, 'inputFormat' | 'emptyInputText'>
+  value: ParsableDate,
+  inputFormat: string
 ) => {
   const date = utils.date(value);
   const isEmpty = value === null;
 
   if (isEmpty) {
-    return emptyInputText || '';
+    return '';
   }
 
   return utils.isValid(date) ? utils.formatByString(date, inputFormat) : '';
-};
-
-export interface BaseValidationProps {
-  /**
-   * Message, appearing when date cannot be parsed
-   * @default 'Invalid Date Format'
-   */
-  invalidDateMessage?: React.ReactNode;
-}
-
-export interface DateValidationProps extends BaseValidationProps {
-  /**
-   * Error message, shown if date is less then minimal date
-   * @default 'Date should not be before minimal date'
-   */
-  minDateMessage?: React.ReactNode;
-  /**
-   * Error message, shown if date is more then maximal date
-   * @default 'Date should not be after maximal date'
-   */
-  maxDateMessage?: React.ReactNode;
-  /**
-   * Compare dates by the exact timestamp, instead of start/end of date
-   * @default false
-   */
-  strictCompareDates?: boolean;
-}
-
-const getComparisonMaxDate = (
-  utils: MuiPickersAdapter,
-  strictCompareDates: boolean,
-  date: MaterialUiPickersDate
-) => {
-  if (strictCompareDates) {
-    return date;
-  }
-
-  return utils.endOfDay(date);
-};
-
-const getComparisonMinDate = (
-  utils: MuiPickersAdapter,
-  strictCompareDates: boolean,
-  date: MaterialUiPickersDate
-) => {
-  if (strictCompareDates) {
-    return date;
-  }
-
-  return utils.startOfDay(date);
-};
-
-export const validateDateValue = (
-  value: ParsableDate,
-  utils: MuiPickersAdapter,
-  {
-    maxDate,
-    minDate,
-    disablePast,
-    disableFuture,
-    maxDateMessage,
-    minDateMessage,
-    invalidDateMessage,
-    strictCompareDates,
-  }: any // TODO change the typings when doing hard update of validation system
-): React.ReactNode => {
-  const parsedValue = utils.date(value);
-
-  // if null - do not show error
-  if (value === null) {
-    return undefined;
-  }
-
-  if (!utils.isValid(value)) {
-    return invalidDateMessage;
-  }
-
-  if (
-    maxDate &&
-    utils.isAfter(
-      parsedValue,
-      getComparisonMaxDate(utils, !!strictCompareDates, utils.date(maxDate))
-    )
-  ) {
-    return maxDateMessage;
-  }
-
-  if (
-    disableFuture &&
-    utils.isAfter(parsedValue, getComparisonMaxDate(utils, !!strictCompareDates, utils.date()))
-  ) {
-    return maxDateMessage;
-  }
-
-  if (
-    minDate &&
-    utils.isBefore(
-      parsedValue,
-      getComparisonMinDate(utils, !!strictCompareDates, utils.date(minDate))
-    )
-  ) {
-    return minDateMessage;
-  }
-  if (
-    disablePast &&
-    utils.isBefore(parsedValue, getComparisonMinDate(utils, !!strictCompareDates, utils.date()))
-  ) {
-    return minDateMessage;
-  }
-
-  return undefined;
 };
 
 export function pick12hOr24hFormat(

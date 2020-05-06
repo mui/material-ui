@@ -3,7 +3,6 @@ import { StaticWrapperProps } from './StaticWrapper';
 import { BasePickerProps } from '../typings/BasePicker';
 import { DateInputProps } from '../_shared/PureDateInput';
 import { ResponsiveWrapperProps } from './ResponsiveWrapper';
-import { DateValidationProps } from '../_helpers/text-field-helper';
 import { OmitInnerWrapperProps, SomeWrapper, WrapperProps, DateInputPropsLike } from './Wrapper';
 
 interface MakePickerOptions<TInputProps> {
@@ -29,7 +28,6 @@ export function makeWrapperComponent<
 ) {
   function WrapperComponent(
     props: Partial<BasePickerProps<TInputValue, TDateValue>> &
-      DateValidationProps &
       WithWrapperProps<TInputProps> &
       Partial<OmitInnerWrapperProps<ResponsiveWrapperProps> & StaticWrapperProps>
   ) {
@@ -38,9 +36,6 @@ export function makeWrapperComponent<
       value,
       autoOk,
       inputFormat,
-      minDateMessage,
-      maxDateMessage,
-      invalidDateMessage,
       defaultHighlight,
       onChange,
       children,
@@ -58,9 +53,7 @@ export function makeWrapperComponent<
       onAccept,
       onClose,
       onOpen,
-      onError,
       displayStaticWrapperAs,
-      strictCompareDates,
       ...restPropsForTextField
     } = props;
 

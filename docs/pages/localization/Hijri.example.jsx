@@ -1,9 +1,9 @@
+import 'moment/locale/ar-sa';
 import moment from 'moment';
 import React, { useState } from 'react';
 import HijriAdapter from '@date-io/hijri';
 import { TextField } from '@material-ui/core';
 import { TimePicker, DateTimePicker, DatePicker, LocalizationProvider } from '@material-ui/pickers';
-import 'moment/locale/ar-sa';
 
 function HijriExample() {
   const [selectedDate, handleDateChange] = useState(moment());

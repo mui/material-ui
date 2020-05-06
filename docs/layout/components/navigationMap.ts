@@ -40,7 +40,7 @@ export const navItems = [
     title: 'Guides',
     children: [
       { title: 'Accessibility', href: '/guides/accessibility' },
-      { title: 'Form integration', href: '/guides/form-integration' },
+      { title: 'Form integration', href: '/guides/forms' },
       { title: 'CSS overrides', href: '/guides/css-overrides' },
       { title: 'Passing date adapter', href: '/guides/date-adapter-passing' },
       { title: 'Date management customization', href: '/guides/date-io-customization' },

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useUtils } from './useUtils';
 import { MaterialUiPickersDate } from '../../typings/date';
 
-export function useParsedDate(possiblyUnparsedValue: any) {
+export function useParsedDate(possiblyUnparsedValue: any): MaterialUiPickersDate | undefined {
   const utils = useUtils();
   return React.useMemo(
     () =>

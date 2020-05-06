@@ -24,8 +24,6 @@ export { Picker } from './Picker/Picker';
 
 export { makePickerWithStateAndWrapper as makePickerWithState } from './Picker/makePickerWithState';
 
-export { validateDateValue as validate } from './_helpers/text-field-helper';
-
 export { useUtils } from './_shared/hooks/useUtils';
 
 export { usePickerState } from './_shared/hooks/usePickerState';

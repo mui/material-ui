@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { CalendarViewProps } from './CalendarView';
 import { SlideDirection } from './SlideTransition';
+import { validateDate } from '../../_helpers/date-utils';
 import { MaterialUiPickersDate } from '../../typings/date';
-import { MuiPickersAdapter, useUtils, useNow } from '../../_shared/hooks/useUtils';
+import { MuiPickersAdapter, useUtils } from '../../_shared/hooks/useUtils';
 
 interface State {
   isMonthSwitchingAnimating: boolean;
@@ -102,11 +103,11 @@ export function useCalendarState({
   shouldDisableDate,
   disableSwitchToMonthOnDayFocus = false,
 }: CalendarStateInput) {
-  const now = useNow();
   const utils = useUtils();
   const reducerFn = React.useRef(
     createCalendarStateReducer(Boolean(reduceAnimations), disableSwitchToMonthOnDayFocus, utils)
   );
+
   const [{ loadingQueue, ...calendarState }, dispatch] = React.useReducer(reducerFn.current, {
     isMonthSwitchingAnimating: false,
     loadingQueue: 0,
@@ -150,23 +151,19 @@ export function useCalendarState({
     [calendarState.currentMonth, handleChangeMonth, utils]
   );
 
-  const validateMinMaxDate = React.useCallback(
-    (day: MaterialUiPickersDate) => {
-      return Boolean(
-        (disableFuture && utils.isAfterDay(day, now)) ||
-          (disablePast && utils.isBeforeDay(day, now)) ||
-          (minDate && utils.isBeforeDay(day, minDate)) ||
-          (maxDate && utils.isAfterDay(day, maxDate))
-      );
-    },
-    [disableFuture, disablePast, maxDate, minDate, now, utils]
-  );
-
   const isDateDisabled = React.useCallback(
     (day: MaterialUiPickersDate) => {
-      return validateMinMaxDate(day) || Boolean(shouldDisableDate && shouldDisableDate(day));
+      return (
+        validateDate(utils, day, {
+          disablePast,
+          disableFuture,
+          minDate,
+          maxDate,
+          shouldDisableDate,
+        }) !== null
+      );
     },
-    [shouldDisableDate, validateMinMaxDate]
+    [disableFuture, disablePast, maxDate, minDate, shouldDisableDate, utils]
   );
 
   const onMonthSwitchingAnimationEnd = React.useCallback(() => {

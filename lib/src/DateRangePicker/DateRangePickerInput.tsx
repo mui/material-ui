@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { RangeInput, DateRange } from './RangeTypes';
-import { useUtils } from '../_shared/hooks/useUtils';
 import { makeStyles } from '@material-ui/core/styles';
 import { MaterialUiPickersDate } from '../typings/date';
 import { CurrentlySelectingRangeEndProps } from './RangeTypes';
 import { useMaskedInput } from '../_shared/hooks/useMaskedInput';
+import { DateRangeValidationError } from '../_helpers/date-utils';
 import { WrapperVariantContext } from '../wrappers/WrapperVariantContext';
 import { DateInputProps, MuiTextFieldProps } from '../_shared/PureDateInput';
 import { mergeRefs, executeInTheNextEventLoopTick } from '../_helpers/utils';
@@ -50,17 +50,22 @@ export interface ExportedDateRangePickerInputProps {
 export interface DateRangeInputProps
   extends ExportedDateRangePickerInputProps,
     CurrentlySelectingRangeEndProps,
-    Omit<DateInputProps<RangeInput, DateRange>, 'renderInput' | 'forwardedRef'> {
+    Omit<
+      DateInputProps<RangeInput, DateRange>,
+      'validationError' | 'renderInput' | 'forwardedRef'
+    > {
   startText: React.ReactNode;
   endText: React.ReactNode;
   forwardedRef?: React.Ref<HTMLDivElement>;
   containerRef?: React.Ref<HTMLDivElement>;
+  validationError: DateRangeValidationError;
 }
 
 export const DateRangePickerInput: React.FC<DateRangeInputProps> = ({
   rawValue,
   onChange,
-  parsedDateValue: [start, end],
+  rawValue: [start, end],
+  parsedDateValue: [parsedStart, parsedEnd],
   open,
   containerRef,
   forwardedRef,
@@ -74,9 +79,9 @@ export const DateRangePickerInput: React.FC<DateRangeInputProps> = ({
   renderInput,
   TextFieldProps,
   onBlur,
+  validationError: [startValidationError, endValidationError],
   ...other
 }) => {
-  const utils = useUtils();
   const classes = useStyles();
   const startRef = React.useRef<HTMLInputElement>(null);
   const endRef = React.useRef<HTMLInputElement>(null);
@@ -103,15 +108,11 @@ export const DateRangePickerInput: React.FC<DateRangeInputProps> = ({
   );
 
   const handleStartChange = (date: MaterialUiPickersDate, inputString?: string) => {
-    if (date === null || utils.isValid(date)) {
-      lazyHandleChangeCallback([date, end], inputString);
-    }
+    lazyHandleChangeCallback([date, parsedEnd], inputString);
   };
 
   const handleEndChange = (date: MaterialUiPickersDate, inputString?: string) => {
-    if (date === null || utils.isValid(date)) {
-      lazyHandleChangeCallback([start, date], inputString);
-    }
+    lazyHandleChangeCallback([parsedStart, date], inputString);
   };
 
   const openRangeStartSelection = () => {
@@ -137,9 +138,9 @@ export const DateRangePickerInput: React.FC<DateRangeInputProps> = ({
     ...other,
     readOnly,
     rawValue: start,
-    parsedDateValue: start,
     onChange: handleStartChange,
     label: startText,
+    validationError: startValidationError !== null,
     TextFieldProps: {
       ...TextFieldProps,
       ref: startRef,
@@ -155,8 +156,8 @@ export const DateRangePickerInput: React.FC<DateRangeInputProps> = ({
     readOnly,
     label: endText,
     rawValue: end,
-    parsedDateValue: end,
     onChange: handleEndChange,
+    validationError: endValidationError !== null,
     TextFieldProps: {
       ...TextFieldProps,
       ref: endRef,
