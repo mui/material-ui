@@ -17,14 +17,10 @@ describe('<TablePagination />', () => {
   const render = createClientRender();
 
   before(() => {
+    mount = createMount({ strict: true });
     classes = getClasses(
       <TablePagination count={1} onChangePage={() => {}} page={0} rowsPerPage={10} />,
     );
-  });
-
-  beforeEach(() => {
-    // StrictModeViolation: test uses #html()()
-    mount = createMount({ strict: false });
   });
 
   describeConformance(
