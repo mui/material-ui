@@ -103,13 +103,12 @@ export function useMaskedInput({
     ...inputStateArgs,
     label,
     disabled,
-    type: shouldUseMaskedInput ? 'tel' : 'text',
     placeholder: formatHelperText,
     error: validationError,
     helperText: formatHelperText,
     // @ts-ignore ??? fix typings for textfield finally
     'data-mui-test': 'keyboard-date-input',
-    inputProps: { readOnly },
+    inputProps: { readOnly, type: shouldUseMaskedInput ? 'tel' : 'text' },
     ...TextFieldProps,
     onFocus: createDelegatedEventHandler(
       () => (isFocusedRef.current = true),

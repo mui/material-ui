@@ -1,4 +1,4 @@
-export const CODESANDBOX_EXAMPLE_ID = 'o7oojxx1pq';
+export const CODESANDBOX_EXAMPLE_ID = 'material-ui-pickers-v4-jfm6g';
 
 export const DOMAIN = 'material-ui-pickers.dev';
 
