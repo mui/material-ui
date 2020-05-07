@@ -116,6 +116,8 @@ module.exports = {
         // does not work with wildcard imports. Mistakes will throw at runtime anyway
         'import/named': 'off',
 
+        'material-ui/disallow-active-element-as-key-event-target': 'error',
+
         // upgraded level from recommended
         'mocha/no-exclusive-tests': 'error',
         'mocha/no-skipped-tests': 'error',
