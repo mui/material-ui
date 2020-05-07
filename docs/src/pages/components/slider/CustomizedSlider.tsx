@@ -72,7 +72,7 @@ const IOSSlider = withStyles({
   },
   active: {},
   valueLabel: {
-    left: 'calc(-50% + 11px)',
+    left: 'calc(-50% + 12px)',
     top: -22,
     '& *': {
       background: 'transparent',
@@ -156,9 +156,6 @@ const AirbnbSlider = withStyles({
     },
   },
   active: {},
-  valueLabel: {
-    left: 'calc(-50% + 4px)',
-  },
   track: {
     height: 3,
   },
