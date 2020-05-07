@@ -37,9 +37,7 @@ export function hexToRgb(color) {
   return colors
     ? `rgb${colors.length === 4 ? 'a' : ''}(${colors
         .map((n, index) => {
-          return index < 3
-            ? parseInt(n, 16)
-            : parseFloat(parseInt((parseInt(n, 16) / 255) * 1000, 10) / 1000);
+          return index < 3 ? parseInt(n, 16) : Math.round((parseInt(n, 16) / 255) * 1000) / 1000;
         })
         .join(', ')})`
     : '';
