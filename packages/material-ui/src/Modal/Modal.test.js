@@ -255,8 +255,8 @@ describe('<Modal />', () => {
       const onEscapeKeyDownSpy = spy();
       const onCloseSpy = spy();
       const { getByTestId } = render(
-        <Modal data-testid="modal" open onEscapeKeyDown={onEscapeKeyDownSpy} onClose={onCloseSpy}>
-          <div />
+        <Modal open onEscapeKeyDown={onEscapeKeyDownSpy} onClose={onCloseSpy}>
+          <div data-testid="modal" tabIndex={-1} />
         </Modal>,
       );
       getByTestId('modal').focus();
@@ -275,8 +275,8 @@ describe('<Modal />', () => {
       const onCloseSpy = spy();
       const { getByTestId } = render(
         <div onKeyDown={handleKeyDown}>
-          <Modal data-testid="modal" open onEscapeKeyDown={onEscapeKeyDownSpy} onClose={onCloseSpy}>
-            <div />
+          <Modal open onEscapeKeyDown={onEscapeKeyDownSpy} onClose={onCloseSpy}>
+            <div data-testid="modal" tabIndex={-1} />
           </Modal>
         </div>,
       );
@@ -298,13 +298,12 @@ describe('<Modal />', () => {
       const { getByTestId } = render(
         <div onKeyDown={handleKeyDown}>
           <Modal
-            data-testid="modal"
             open
             disableEscapeKeyDown
             onEscapeKeyDown={onEscapeKeyDownSpy}
             onClose={onCloseSpy}
           >
-            <div />
+            <div data-testid="modal" tabIndex={-1} />
           </Modal>
         </div>,
       );

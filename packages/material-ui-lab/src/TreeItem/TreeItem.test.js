@@ -759,6 +759,7 @@ describe('<TreeItem />', () => {
           expect(navTreeItem).not.toHaveFocus();
 
           expect(() => {
+            getByTestId('keyDown').focus();
             fireEvent.keyDown(getByTestId('keyDown'), { key: 'a' });
           }).not.to.throw();
 
