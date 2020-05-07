@@ -845,7 +845,6 @@ describe('<TreeItem />', () => {
           expect(getByTestId('one')).to.not.have.attribute('aria-selected');
           fireEvent.keyDown(document.activeElement, { key: ' ' });
           expect(getByTestId('one')).to.have.attribute('aria-selected', 'true');
-          expect(getByTestId('one')).to.have.class('Mui-selected');
         });
 
         it('should not select a node when space is pressed and disableSelection', () => {

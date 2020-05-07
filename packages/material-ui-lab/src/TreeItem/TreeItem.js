@@ -2,13 +2,13 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import Typography from '@material-ui/core/Typography';
 import Collapse from '@material-ui/core/Collapse';
-import { fade, withStyles, useTheme } from '@material-ui/core/styles';
+import { withStyles, useTheme } from '@material-ui/core/styles';
 import { useForkRef } from '@material-ui/core/utils';
 import TreeViewContext from '../TreeView/TreeViewContext';
+import TreeItemContent from './TreeItemContent';
 
-export const styles = (theme) => ({
+export const styles = {
   /* Styles applied to the root element. */
   root: {
     listStyle: 'none',
@@ -23,60 +23,11 @@ export const styles = (theme) => ({
     marginLeft: 17,
   },
   /* Styles applied to the tree node content. */
-  content: {
-    width: '100%',
-    display: 'flex',
-    alignItems: 'center',
-    cursor: 'pointer',
-    WebkitTapHighlightColor: 'transparent',
-    '&:hover': {
-      backgroundColor: theme.palette.action.hover,
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        backgroundColor: 'transparent',
-      },
-    },
-    '&$focused': {
-      backgroundColor: theme.palette.action.hover,
-    },
-    '&$selected': {
-      backgroundColor: fade(theme.palette.primary.main, theme.palette.action.selectedOpacity),
-    },
-    '&$selected:hover, &$selected$focused': {
-      backgroundColor: fade(
-        theme.palette.primary.main,
-        theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
-      ),
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        backgroundColor: 'transparent',
-      },
-    },
-  },
-  /* Pseudo-class applied to the content element when expanded. */
-  expanded: {},
-  /* Pseudo-class applied to the content element when selected. */
-  selected: {},
-  /* Pseudo-class applied to the content element when focused. */
-  focused: {},
-  /* Styles applied to the tree node icon and collapse/expand icon. */
-  iconContainer: {
-    marginRight: 4,
-    width: 15,
-    display: 'flex',
-    flexShrink: 0,
-    justifyContent: 'center',
-    '& svg': {
-      fontSize: 18,
-    },
-  },
-  /* Styles applied to the label element. */
-  label: {
-    width: '100%',
-    paddingLeft: 4,
-    position: 'relative',
-  },
-});
+  content: {},
+  /* Styles applied to the TreeItemIcon */
+  iconContainer: {},
+  label: {},
+};
 
 const isPrintableCharacter = (str) => {
   return str && str.length === 1 && str.match(/\S/);
@@ -387,23 +338,23 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
       tabIndex={tabbable ? 0 : -1}
       {...other}
     >
-      <div
-        className={clsx(classes.content, {
-          [classes.expanded]: expanded,
-          [classes.selected]: selected,
-          [classes.focused]: focused,
-        })}
+      <TreeItemContent
+        classes={{
+          root: classes.content,
+          iconContainer: classes.iconContainer,
+          label: classes.label,
+        }}
         onClick={handleClick}
+        onLabelClick={onLabelClick}
+        onIconClick={onIconClick}
         onMouseDown={handleMouseDown}
+        label={label}
+        expanded={expanded}
+        selected={selected}
+        focused={focused}
+        icon={icon}
         ref={contentRef}
-      >
-        <div onClick={onIconClick} className={classes.iconContainer}>
-          {icon}
-        </div>
-        <Typography onClick={onLabelClick} component="div" className={classes.label}>
-          {label}
-        </Typography>
-      </div>
+      />
       {children && (
         <TransitionComponent
           unmountOnExit
