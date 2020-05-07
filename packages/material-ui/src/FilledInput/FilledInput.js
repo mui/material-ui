@@ -10,11 +10,6 @@ export const styles = (theme) => {
   const bottomLineColor = light ? 'rgba(0, 0, 0, 0.42)' : 'rgba(255, 255, 255, 0.7)';
   const backgroundColor = light ? 'rgba(0, 0, 0, 0.09)' : 'rgba(255, 255, 255, 0.09)';
 
-  const padding = theme.spacing(3, 1.5, 1);
-  const densePadding = {
-    padding: theme.spacing(2.5, 1.5, 0.5),
-  };
-
   return {
     /* Styles applied to the root element. */
     root: {
@@ -108,12 +103,15 @@ export const styles = (theme) => {
     marginDense: {},
     /* Styles applied to the root element if `multiline={true}`. */
     multiline: {
-      padding,
-      '&$marginDense': densePadding,
+      padding: '27px 12px 10px',
+      '&$marginDense': {
+        paddingTop: 23,
+        paddingBottom: 6,
+      },
     },
     /* Styles applied to the `input` element. */
     input: {
-      padding,
+      padding: '27px 12px 10px',
       '&:-webkit-autofill': {
         WebkitBoxShadow: theme.palette.type === 'dark' ? '0 0 0 100px #266798 inset' : null,
         WebkitTextFillColor: theme.palette.type === 'dark' ? '#fff' : null,
@@ -123,12 +121,17 @@ export const styles = (theme) => {
       },
     },
     /* Styles applied to the `input` element if `margin="dense"`. */
-    inputMarginDense: densePadding,
+    inputMarginDense: {
+      paddingTop: 23,
+      paddingBottom: 6,
+    },
     /* Styles applied to the `input` if in `<FormControl hiddenLabel />`. */
     inputHiddenLabel: {
-      padding: theme.spacing(2, 1.5),
+      paddingTop: 18,
+      paddingBottom: 19,
       '&$inputMarginDense': {
-        padding: theme.spacing(1, 1.5),
+        paddingTop: 10,
+        paddingBottom: 11,
       },
     },
     /* Styles applied to the `input` element if `multiline={true}`. */

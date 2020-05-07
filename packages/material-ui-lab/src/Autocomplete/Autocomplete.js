@@ -28,19 +28,13 @@ export const styles = (theme) => ({
   focused: {},
   /* Styles applied to the tag elements, e.g. the chips. */
   tag: {
-    margin: '4px 4px 4px 0',
+    margin: 3,
     maxWidth: 'calc(100% - 6px)',
-    '& + .MuiAutocomplete-input': {
-      paddingLeft: '4px !important',
-    },
   },
   /* Styles applied to the tag elements, e.g. the chips if `size="small"`. */
   tagSizeSmall: {
-    margin: '2px 2px 2px 0',
+    margin: 2,
     maxWidth: 'calc(100% - 4px)',
-    '& + .MuiAutocomplete-input': {
-      paddingLeft: '4px !important',
-    },
   },
   /* Styles applied when the popup icon is rendered. */
   hasPopupIcon: {},
@@ -60,21 +54,24 @@ export const styles = (theme) => ({
       minWidth: 30,
     },
     '&[class*="MuiInput-root"]': {
-      padding: theme.spacing(0.5, 0),
+      paddingBottom: 1,
       '& $input': {
-        padding: 0,
+        padding: 4,
+      },
+      '& $input:first-child': {
+        padding: '6px 0',
       },
     },
-    '&[class*="MuiInput-root"][class*="MuiInputBase-marginDense"]': {
-      paddingTop: 0,
-      paddingBottom: 2,
-      marginTop: '14px',
+    '&[class*="MuiInput-root"][class*="MuiInput-marginDense"]': {
       '& $input': {
-        padding: '2px 0',
+        padding: '4px 4px 5px',
+      },
+      '& $input:first-child': {
+        padding: '3px 0 6px',
       },
     },
     '&[class*="MuiOutlinedInput-root"]': {
-      padding: theme.spacing(1, 1.75),
+      padding: 9,
       '$hasPopupIcon &, $hasClearIcon &': {
         paddingRight: 26 + 4 + 9,
       },
@@ -82,20 +79,24 @@ export const styles = (theme) => ({
         paddingRight: 52 + 4 + 9,
       },
       '& $input': {
-        padding: theme.spacing(1, 1, 1, 0),
+        padding: '9.5px 4px',
+      },
+      '& $input:first-child': {
+        paddingLeft: 6,
       },
       '& $endAdornment': {
         right: 9,
       },
     },
     '&[class*="MuiOutlinedInput-root"][class*="MuiOutlinedInput-marginDense"]': {
-      padding: '6px',
+      padding: 6,
       '& $input': {
-        padding: '2px 8px',
+        padding: '4.5px 4px',
       },
     },
     '&[class*="MuiFilledInput-root"]': {
-      padding: theme.spacing(2, 2, 0, 1),
+      paddingTop: 19,
+      paddingLeft: 8,
       '$hasPopupIcon &, $hasClearIcon &': {
         paddingRight: 26 + 4 + 9,
       },
@@ -103,17 +104,16 @@ export const styles = (theme) => ({
         paddingRight: 52 + 4 + 9,
       },
       '& $input': {
-        padding: theme.spacing(1, 0.5),
+        padding: '9px 4px',
       },
       '& $endAdornment': {
         right: 9,
       },
     },
     '&[class*="MuiFilledInput-root"][class*="MuiFilledInput-marginDense"]': {
-      paddingTop: '19px',
-      paddingBottom: '1px',
+      paddingBottom: 1,
       '& $input': {
-        padding: '2px 4px',
+        padding: '4.5px 4px',
       },
     },
   },
