@@ -104,20 +104,32 @@ const Tab = React.forwardRef(function Tab(props, ref) {
     label,
     onChange,
     onClick,
+    onFocus,
     selected,
+    selectionFollowsFocus,
     textColor = 'inherit',
     value,
     wrapped = false,
     ...other
   } = props;
 
-  const handleChange = (event) => {
+  const handleClick = (event) => {
     if (onChange) {
       onChange(event, value);
     }
 
     if (onClick) {
       onClick(event);
+    }
+  };
+
+  const handleFocus = (event) => {
+    if (selectionFollowsFocus && !selected && onChange) {
+      onChange(event, value);
+    }
+
+    if (onFocus) {
+      onFocus(event);
     }
   };
 
@@ -140,7 +152,8 @@ const Tab = React.forwardRef(function Tab(props, ref) {
       role="tab"
       aria-selected={selected}
       disabled={disabled}
-      onClick={handleChange}
+      onClick={handleClick}
+      onFocus={handleFocus}
       tabIndex={selected ? 0 : -1}
       {...other}
     >
@@ -210,7 +223,15 @@ Tab.propTypes = {
   /**
    * @ignore
    */
+  onFocus: PropTypes.func,
+  /**
+   * @ignore
+   */
   selected: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  selectionFollowsFocus: PropTypes.bool,
   /**
    * @ignore
    */

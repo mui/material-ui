@@ -84,6 +84,7 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
     orientation = 'horizontal',
     ScrollButtonComponent = TabScrollButton,
     scrollButtons = 'auto',
+    selectionFollowsFocus,
     TabIndicatorProps = {},
     TabScrollButtonProps,
     textColor = 'inherit',
@@ -406,6 +407,7 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
       fullWidth: variant === 'fullWidth',
       indicator: selected && !mounted && indicator,
       selected,
+      selectionFollowsFocus,
       onChange,
       textColor,
       value: childValue,
@@ -559,6 +561,11 @@ Tabs.propTypes = {
    * - `off` will never present them.
    */
   scrollButtons: PropTypes.oneOf(['auto', 'desktop', 'on', 'off']),
+  /**
+   * If `true` the selected tab changes on focus. Otherwise it only
+   * changes on activation.
+   */
+  selectionFollowsFocus: PropTypes.bool,
   /**
    * Props applied to the tab indicator element.
    */
