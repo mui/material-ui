@@ -189,8 +189,20 @@ const Popper = React.forwardRef(function Popper(props, ref) {
     }
   }, [open, transition]);
 
-  if (!keepMounted && !open && (!transition || exited)) {
-    return null;
+  const defaultStyle = {
+    // Prevents scroll issue, waiting for Popper.js to add this style once initiated.
+    position: 'fixed',
+    // Fix Popper.js display issue
+    top: 0,
+    left: 0,
+  };
+
+  if (!open) {
+    if (keepMounted) {
+      defaultStyle.display = 'none';
+    } else if (!transition || exited) {
+      return null;
+    }
   }
 
   const childProps = { placement };
@@ -210,11 +222,7 @@ const Popper = React.forwardRef(function Popper(props, ref) {
         role="tooltip"
         {...other}
         style={{
-          // Prevents scroll issue, waiting for Popper.js to add this style once initiated.
-          position: 'fixed',
-          // Fix Popper.js display issue
-          top: 0,
-          left: 0,
+          ...defaultStyle,
           ...style,
         }}
       >
