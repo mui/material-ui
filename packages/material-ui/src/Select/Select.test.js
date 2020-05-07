@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { getClasses, createMount } from '@material-ui/core/test-utils';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
-import { act, createClientRender, fireEvent } from 'test/utils/createClientRender';
+import { act, createClientRender, fireEvent, screen } from 'test/utils/createClientRender';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import MenuItem from '../MenuItem';
 import Input from '../Input';
@@ -141,18 +141,19 @@ describe('<Select />', () => {
 
   [' ', 'ArrowUp', 'ArrowDown', 'Enter'].forEach((key) => {
     it(`should open menu when pressed ${key} key on select`, () => {
-      const { getByRole } = render(
+      render(
         <Select value="">
           <MenuItem value="">none</MenuItem>
         </Select>,
       );
-      getByRole('button').focus();
+      const trigger = screen.getByRole('button');
+      trigger.focus();
 
-      fireEvent.keyDown(document.activeElement, { key });
-      expect(getByRole('listbox', { hidden: false })).not.to.equal(null);
+      fireEvent.keyDown(trigger, { key });
+      expect(screen.getByRole('listbox', { hidden: false })).not.to.equal(null);
 
-      fireEvent.keyUp(document.activeElement, { key });
-      expect(getByRole('listbox', { hidden: false })).not.to.equal(null);
+      fireEvent.keyUp(screen.getAllByRole('option')[0], { key });
+      expect(screen.getByRole('listbox', { hidden: false })).not.to.equal(null);
     });
   });
 
@@ -518,20 +519,21 @@ describe('<Select />', () => {
 
   describe('prop: readOnly', () => {
     it('should not trigger any event with readOnly', () => {
-      const { getByRole, queryByRole } = render(
+      render(
         <Select readOnly value="10">
           <MenuItem value={10}>Ten</MenuItem>
           <MenuItem value={20}>Twenty</MenuItem>
         </Select>,
         { baseElement: document.body },
       );
-      getByRole('button').focus();
+      const trigger = screen.getByRole('button');
+      trigger.focus();
 
-      fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
-      expect(queryByRole('listbox')).to.equal(null);
+      fireEvent.keyDown(trigger, { key: 'ArrowDown' });
+      expect(screen.queryByRole('listbox')).to.equal(null);
 
-      fireEvent.keyUp(document.activeElement, { key: 'ArrowDown' });
-      expect(queryByRole('listbox')).to.equal(null);
+      fireEvent.keyUp(trigger, { key: 'ArrowDown' });
+      expect(screen.queryByRole('listbox')).to.equal(null);
     });
   });
 
@@ -980,7 +982,7 @@ describe('<Select />', () => {
       </Select>,
     );
 
-    fireEvent.keyUp(document.activeElement, { key: ' ' });
+    fireEvent.keyUp(screen.getAllByRole('option')[0], { key: ' ' });
 
     expect(keyUpSpy.callCount).to.equal(1);
     expect(keyUpSpy.returnValues[0]).to.equal(true);

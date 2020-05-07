@@ -52,6 +52,7 @@ describe('<Slider />', () => {
     const { container, getByRole } = render(
       <Slider onChange={handleChange} onChangeCommitted={handleChangeCommitted} value={0} />,
     );
+    const slider = getByRole('slider');
 
     fireEvent.mouseDown(container.firstChild);
     fireEvent.mouseUp(document.body);
@@ -59,8 +60,8 @@ describe('<Slider />', () => {
     expect(handleChange.callCount).to.equal(1);
     expect(handleChangeCommitted.callCount).to.equal(1);
 
-    getByRole('slider').focus();
-    fireEvent.keyDown(document.activeElement, {
+    slider.focus();
+    fireEvent.keyDown(slider, {
       key: 'Home',
     });
     expect(handleChange.callCount).to.equal(2);
@@ -135,13 +136,13 @@ describe('<Slider />', () => {
       const [thumb1, thumb2] = getAllByRole('slider');
 
       thumb1.focus();
-      fireEvent.keyDown(document.activeElement, {
+      fireEvent.keyDown(thumb1, {
         key: 'ArrowRight',
       });
       expect(thumb1.getAttribute('aria-valuenow')).to.equal('21');
 
       thumb2.focus();
-      fireEvent.keyDown(document.activeElement, {
+      fireEvent.keyDown(thumb2, {
         key: 'ArrowLeft',
       });
       expect(thumb2.getAttribute('aria-valuenow')).to.equal('29');
@@ -209,12 +210,12 @@ describe('<Slider />', () => {
       expect(thumb).to.have.attribute('aria-valuenow', '20');
 
       thumb.focus();
-      fireEvent.keyDown(document.activeElement, {
+      fireEvent.keyDown(thumb, {
         key: 'ArrowUp',
       });
       expect(thumb).to.have.attribute('aria-valuenow', '30');
 
-      fireEvent.keyDown(document.activeElement, {
+      fireEvent.keyDown(thumb, {
         key: 'ArrowDown',
       });
       expect(thumb).to.have.attribute('aria-valuenow', '20');
@@ -247,27 +248,27 @@ describe('<Slider />', () => {
       const thumb = getByRole('slider');
       thumb.focus();
 
-      fireEvent.keyDown(document.activeElement, {
+      fireEvent.keyDown(thumb, {
         key: 'Home',
       });
       expect(thumb).to.have.attribute('aria-valuenow', '0');
 
-      fireEvent.keyDown(document.activeElement, {
+      fireEvent.keyDown(thumb, {
         key: 'End',
       });
       expect(thumb).to.have.attribute('aria-valuenow', '100');
 
-      fireEvent.keyDown(document.activeElement, {
+      fireEvent.keyDown(thumb, {
         key: 'PageDown',
       });
       expect(thumb).to.have.attribute('aria-valuenow', '90');
 
-      fireEvent.keyDown(document.activeElement, {
+      fireEvent.keyDown(thumb, {
         key: 'Escape',
       });
       expect(thumb).to.have.attribute('aria-valuenow', '90');
 
-      fireEvent.keyDown(document.activeElement, {
+      fireEvent.keyDown(thumb, {
         key: 'PageUp',
       });
       expect(thumb).to.have.attribute('aria-valuenow', '100');
@@ -285,10 +286,10 @@ describe('<Slider />', () => {
       const thumb = getByRole('slider');
       thumb.focus();
 
-      fireEvent.keyDown(document.activeElement, moveRightEvent);
+      fireEvent.keyDown(thumb, moveRightEvent);
       expect(thumb).to.have.attribute('aria-valuenow', '250');
 
-      fireEvent.keyDown(document.activeElement, moveLeftEvent);
+      fireEvent.keyDown(thumb, moveLeftEvent);
       expect(thumb).to.have.attribute('aria-valuenow', '150');
     });
 
@@ -297,19 +298,19 @@ describe('<Slider />', () => {
       const thumb = getByRole('slider');
       thumb.focus();
 
-      fireEvent.keyDown(document.activeElement, moveRightEvent);
+      fireEvent.keyDown(thumb, moveRightEvent);
       expect(thumb).to.have.attribute('aria-valuenow', '96');
 
-      fireEvent.keyDown(document.activeElement, moveRightEvent);
+      fireEvent.keyDown(thumb, moveRightEvent);
       expect(thumb).to.have.attribute('aria-valuenow', '106');
 
-      fireEvent.keyDown(document.activeElement, moveRightEvent);
+      fireEvent.keyDown(thumb, moveRightEvent);
       expect(thumb).to.have.attribute('aria-valuenow', '108');
 
-      fireEvent.keyDown(document.activeElement, moveLeftEvent);
+      fireEvent.keyDown(thumb, moveLeftEvent);
       expect(thumb).to.have.attribute('aria-valuenow', '96');
 
-      fireEvent.keyDown(document.activeElement, moveLeftEvent);
+      fireEvent.keyDown(thumb, moveLeftEvent);
       expect(thumb).to.have.attribute('aria-valuenow', '86');
     });
 
@@ -318,13 +319,13 @@ describe('<Slider />', () => {
       const thumb = getByRole('slider');
       thumb.focus();
 
-      fireEvent.keyDown(document.activeElement, moveLeftEvent);
+      fireEvent.keyDown(thumb, moveLeftEvent);
       expect(thumb).to.have.attribute('aria-valuenow', '6');
 
-      fireEvent.keyDown(document.activeElement, moveRightEvent);
+      fireEvent.keyDown(thumb, moveRightEvent);
       expect(thumb).to.have.attribute('aria-valuenow', '16');
 
-      fireEvent.keyDown(document.activeElement, moveRightEvent);
+      fireEvent.keyDown(thumb, moveRightEvent);
       expect(thumb).to.have.attribute('aria-valuenow', '26');
     });
 
@@ -333,7 +334,7 @@ describe('<Slider />', () => {
       const thumb = getByRole('slider');
       thumb.focus();
 
-      fireEvent.keyDown(document.activeElement, moveRightEvent);
+      fireEvent.keyDown(thumb, moveRightEvent);
       expect(thumb).to.have.attribute('aria-valuenow', '0.3');
     });
 
@@ -344,7 +345,7 @@ describe('<Slider />', () => {
       const thumb = getByRole('slider');
       thumb.focus();
 
-      fireEvent.keyDown(document.activeElement, moveRightEvent);
+      fireEvent.keyDown(thumb, moveRightEvent);
       expect(thumb).to.have.attribute('aria-valuenow', '3e-8');
     });
 
@@ -355,7 +356,7 @@ describe('<Slider />', () => {
       const thumb = getByRole('slider');
       thumb.focus();
 
-      fireEvent.keyDown(document.activeElement, moveLeftEvent);
+      fireEvent.keyDown(thumb, moveLeftEvent);
       expect(thumb).to.have.attribute('aria-valuenow', '-3e-8');
     });
 
@@ -372,9 +373,9 @@ describe('<Slider />', () => {
       const thumb = getByRole('slider');
       thumb.focus();
 
-      fireEvent.keyDown(document.activeElement, moveLeftEvent);
+      fireEvent.keyDown(thumb, moveLeftEvent);
       expect(thumb).to.have.attribute('aria-valuenow', '31');
-      fireEvent.keyDown(document.activeElement, moveRightEvent);
+      fireEvent.keyDown(thumb, moveRightEvent);
       expect(thumb).to.have.attribute('aria-valuenow', '30');
     });
   });

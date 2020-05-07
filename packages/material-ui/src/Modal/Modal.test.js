@@ -4,7 +4,7 @@ import { expect } from 'chai';
 import { useFakeTimers, spy } from 'sinon';
 import PropTypes from 'prop-types';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
-import { createClientRender, fireEvent, within } from 'test/utils/createClientRender';
+import { createClientRender, fireEvent, screen, within } from 'test/utils/createClientRender';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { createMount } from '@material-ui/core/test-utils';
 import { ThemeProvider } from '@material-ui/styles';
@@ -526,17 +526,17 @@ describe('<Modal />', () => {
         </Modal>,
       );
 
-      fireEvent.keyDown(document.activeElement, {
+      fireEvent.keyDown(screen.getByTestId('modal'), {
         keyCode: 13, // Enter
       });
-      fireEvent.keyDown(document.activeElement, {
+      fireEvent.keyDown(screen.getByTestId('modal'), {
         keyCode: 9, // Tab
       });
 
       expect(document.querySelector('[data-test="sentinelStart"]')).toHaveFocus();
 
       initialFocus.focus();
-      fireEvent.keyDown(document.activeElement, {
+      fireEvent.keyDown(screen.getByTestId('modal'), {
         keyCode: 9, // Tab
         shiftKey: true,
       });

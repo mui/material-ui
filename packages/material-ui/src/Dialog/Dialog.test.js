@@ -100,7 +100,7 @@ describe('<Dialog />', () => {
     expect(dialog).not.to.equal(null);
 
     dialog.click();
-    fireEvent.keyDown(document.activeElement, { key: 'Esc' });
+    fireEvent.keyDown(document.querySelector('[data-mui-test="FakeBackdrop"]'), { key: 'Esc' });
     expect(onEscapeKeyDown.calledOnce).to.equal(true);
     expect(onClose.calledOnce).to.equal(true);
 
@@ -125,7 +125,7 @@ describe('<Dialog />', () => {
     expect(dialog).not.to.equal(null);
 
     dialog.click();
-    fireEvent.keyDown(document.activeElement, { key: 'Esc' });
+    fireEvent.keyDown(document.querySelector('[data-mui-test="FakeBackdrop"]'), { key: 'Esc' });
     expect(onClose.callCount).to.equal(0);
 
     clickBackdrop(document.body);

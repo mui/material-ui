@@ -127,7 +127,7 @@ describe('<Select> integration', () => {
 
       const trigger = getByRole('button');
       trigger.focus();
-      fireEvent.keyDown(document.activeElement, { key: 'Enter' });
+      fireEvent.keyDown(trigger, { key: 'Enter' });
 
       expect(getByTestId('label')).to.have.class('focused-label');
     });
@@ -147,16 +147,17 @@ describe('<Select> integration', () => {
           </Select>
         </FormControl>,
       );
+      const trigger = getByRole('button');
 
-      getByRole('button').focus();
-
-      expect(container.querySelector('[for="age-simple"]')).to.have.class('focused-label');
-
-      fireEvent.keyDown(document.activeElement, { key: 'Enter' });
+      trigger.focus();
 
       expect(container.querySelector('[for="age-simple"]')).to.have.class('focused-label');
 
-      getByRole('button').blur();
+      fireEvent.keyDown(trigger, { key: 'Enter' });
+
+      expect(container.querySelector('[for="age-simple"]')).to.have.class('focused-label');
+
+      trigger.blur();
 
       expect(container.querySelector('[for="age-simple"]')).not.to.have.class('focused-label');
     });

@@ -698,7 +698,11 @@ describe('<ButtonBase />', () => {
     describe('prop: onKeyDown', () => {
       it('call it when keydown events are dispatched', () => {
         const onKeyDownSpy = spy();
-        const { getByText } = render(<ButtonBase autoFocus onKeyDown={onKeyDownSpy}>Hello</ButtonBase>);
+        const { getByText } = render(
+          <ButtonBase autoFocus onKeyDown={onKeyDownSpy}>
+            Hello
+          </ButtonBase>,
+        );
 
         fireEvent.keyDown(getByText('Hello'));
 
@@ -834,7 +838,7 @@ describe('<ButtonBase />', () => {
           </ButtonBase>,
         );
 
-        fireEvent.keyDown(document.activeElement, {
+        fireEvent.keyDown(document.querySelector('input'), {
           key: 'Enter',
         });
 
@@ -851,7 +855,7 @@ describe('<ButtonBase />', () => {
           </ButtonBase>,
         );
 
-        fireEvent.keyUp(document.activeElement, {
+        fireEvent.keyUp(document.querySelector('input'), {
           key: ' ',
         });
 

@@ -48,7 +48,7 @@ describe('<Tab />', () => {
     fireEvent.pointerDown(document.body);
 
     act(() => {
-      fireEvent.keyDown(document.activeElement, { key: 'Tab' });
+      fireEvent.keyDown(document.body, { key: 'Tab' });
       // jsdom doesn't actually support tab focus, we need to do it manually
       getByRole('tab').focus();
     });
@@ -64,7 +64,7 @@ describe('<Tab />', () => {
     fireEvent.pointerDown(document.body);
 
     act(() => {
-      fireEvent.keyDown(document.activeElement, { key: 'Tab' });
+      fireEvent.keyDown(document.body, { key: 'Tab' });
       // jsdom doesn't actually support tab focus, we need to do it manually
       getByRole('tab').focus();
     });
