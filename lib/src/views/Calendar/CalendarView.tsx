@@ -10,12 +10,12 @@ import { VIEW_HEIGHT } from '../../constants/dimensions';
 import { MaterialUiPickersDate } from '../../typings/date';
 import { FadeTransitionGroup } from './FadeTransitionGroup';
 import { Calendar, ExportedCalendarProps } from './Calendar';
-import { DateValidationProps } from '../../_helpers/date-utils';
 import { PickerOnChangeFn } from '../../_shared/hooks/useViews';
 import { CalendarHeader, CalendarHeaderProps } from './CalendarHeader';
 import { YearSelection, ExportedYearSelectionProps } from './YearSelection';
 import { defaultMinDate, defaultMaxDate } from '../../constants/prop-types';
 import { IsStaticVariantContext } from '../../wrappers/WrapperVariantContext';
+import { DateValidationProps, findClosestEnabledDate } from '../../_helpers/date-utils';
 
 type PublicCalendarHeaderProps = Pick<
   CalendarHeaderProps,
@@ -111,6 +111,24 @@ export const CalendarView: React.FC<CalendarViewProps> = ({
   });
 
   React.useEffect(() => {
+    if (date && isDateDisabled(date)) {
+      const closestEnabledDate = findClosestEnabledDate({
+        utils,
+        date,
+        minDate: utils.date(minDate),
+        maxDate: utils.date(maxDate),
+        disablePast: Boolean(disablePast),
+        disableFuture: Boolean(disableFuture),
+        shouldDisableDate: isDateDisabled,
+      });
+
+      onChange(closestEnabledDate, false);
+    }
+    // This call is too expensive to run it on each prop change.
+    // So just ensure that we are not rendering disabled as selected on mount.
+  }, []); // eslint-disable-line
+
+  React.useEffect(() => {
     changeMonth(date);
   }, [date]); // eslint-disable-line
 
@@ -186,8 +204,6 @@ export const CalendarView: React.FC<CalendarViewProps> = ({
                 reduceAnimations={reduceAnimations}
                 date={date}
                 onChange={onChange}
-                minDate={minDate}
-                maxDate={maxDate}
                 isDateDisabled={isDateDisabled}
                 allowKeyboardControl={allowKeyboardControl}
               />

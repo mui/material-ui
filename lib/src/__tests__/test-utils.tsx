@@ -8,6 +8,7 @@ import LocalizationProvider from '../LocalizationProvider';
 import { IUtils } from '@date-io/core/IUtils';
 import { DatePickerProps } from '../DatePicker';
 import { MaterialUiPickersDate } from '../typings/date';
+import { BasePickerProps } from '../typings/BasePicker';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
 interface WithUtilsProps {
@@ -43,10 +44,14 @@ export const mount = <P extends WithUtilsProps>(element: React.ReactElement<P>) 
     </ThemeProvider>
   );
 
-export const mountPickerWithState = (
-  defaultValue: MaterialUiPickersDate,
-  render: (props: Pick<DatePickerProps, 'onChange' | 'value' | 'renderInput'>) => React.ReactElement
-) => {
+export function mountPickerWithState<TValue>(
+  defaultValue: TValue,
+  render: (
+    props: Pick<BasePickerProps<TValue, TValue>, 'onChange' | 'value'> & {
+      renderInput: DatePickerProps['renderInput'];
+    }
+  ) => React.ReactElement
+) {
   const PickerMountComponent = () => {
     const [value, setDate] = React.useState(defaultValue);
 
@@ -58,7 +63,7 @@ export const mountPickerWithState = (
   };
 
   return mount(<PickerMountComponent />);
-};
+}
 
 export const shallowRender = (render: (props: any) => React.ReactElement<any>) => {
   return enzyme.shallow(render({ utils: utilsToUse, classes: {} as any, theme: {} as any }));

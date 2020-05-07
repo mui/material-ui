@@ -115,7 +115,7 @@ export function parseRangeInputValue(
   { value = [null, null] }: BasePickerProps<RangeInput, DateRange>
 ) {
   return value.map(date =>
-    date === null ? null : utils.startOfDay(utils.date(date))
+    !utils.isValid(date) || date === null ? null : utils.startOfDay(utils.date(date))
   ) as DateRange;
 }
 

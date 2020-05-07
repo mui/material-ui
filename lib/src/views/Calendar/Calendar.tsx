@@ -8,7 +8,6 @@ import { PickerOnChangeFn } from '../../_shared/hooks/useViews';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { DAY_SIZE, DAY_MARGIN } from '../../constants/dimensions';
 import { useGlobalKeyDown, keycode } from '../../_shared/hooks/useKeyDown';
-import { findClosestEnabledDate, DateValidationProps } from '../../_helpers/date-utils';
 import { SlideTransition, SlideDirection, SlideTransitionProps } from './SlideTransition';
 
 export interface ExportedCalendarProps
@@ -30,10 +29,8 @@ export interface ExportedCalendarProps
   loadingIndicator?: JSX.Element;
 }
 
-export interface CalendarProps extends ExportedCalendarProps, DateValidationProps {
+export interface CalendarProps extends ExportedCalendarProps {
   date: MaterialUiPickersDate | MaterialUiPickersDate[];
-  minDate: MaterialUiPickersDate;
-  maxDate: MaterialUiPickersDate;
   isDateDisabled: (day: MaterialUiPickersDate) => boolean;
   slideDirection: SlideDirection;
   currentMonth: MaterialUiPickersDate;
@@ -59,6 +56,9 @@ export const useStyles = makeStyles(theme => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  weekContainer: {
+    overflow: 'hidden',
   },
   week: {
     margin: `${DAY_MARGIN}px 0`,
@@ -96,11 +96,7 @@ export const Calendar: React.FC<CalendarProps> = ({
   focusedDay,
   changeFocusedDay,
   onChange,
-  minDate,
-  maxDate,
   slideDirection,
-  disableFuture,
-  disablePast,
   currentMonth,
   renderDay,
   reduceAnimations,
@@ -124,21 +120,6 @@ export const Calendar: React.FC<CalendarProps> = ({
   );
 
   const initialDate = Array.isArray(date) ? date[0] : date;
-  React.useEffect(() => {
-    if (initialDate && isDateDisabled(initialDate)) {
-      const closestEnabledDate = findClosestEnabledDate({
-        utils,
-        date: initialDate,
-        minDate: utils.date(minDate),
-        maxDate: utils.date(maxDate),
-        disablePast: Boolean(disablePast),
-        disableFuture: Boolean(disableFuture),
-        shouldDisableDate: isDateDisabled,
-      });
-
-      handleDaySelect(closestEnabledDate, false);
-    }
-  }, []); // eslint-disable-line
 
   const nowFocusedDay = focusedDay || initialDate;
   useGlobalKeyDown(Boolean(allowKeyboardControl), {
@@ -181,9 +162,9 @@ export const Calendar: React.FC<CalendarProps> = ({
         className={clsx(classes.transitionContainer, className)}
         {...TransitionProps}
       >
-        <div role="grid" style={{ overflow: 'hidden' }}>
+        <div role="grid" className={classes.weekContainer}>
           {utils.getWeekArray(currentMonth).map(week => (
-            <div role="row" key={`week-${(week[0] as any)!.toString()}`} className={classes.week}>
+            <div role="row" key={`week-${week[0]}`} className={classes.week}>
               {week.map(day => {
                 const disabled = isDateDisabled(day);
                 const isDayInCurrentMonth = utils.getMonth(day) === currentMonthNumber;

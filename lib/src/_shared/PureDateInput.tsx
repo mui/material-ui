@@ -13,7 +13,6 @@ export type MuiTextFieldProps = TextFieldProps | Omit<TextFieldProps, 'variant'>
 export interface DateInputProps<TInputValue = ParsableDate, TDateValue = MaterialUiPickersDate> {
   open: boolean;
   rawValue: TInputValue;
-  parsedDateValue: TDateValue;
   inputFormat: string;
   onChange: (date: TDateValue, keyboardInputValue?: string) => void;
   openPicker: () => void;
@@ -83,7 +82,6 @@ export type ExportedDateInputProps<TInputValue, TDateValue> = Omit<
   | 'validationError'
   | 'rawValue'
   | 'forwardedRef'
-  | 'parsedDateValue'
   | 'open'
   | 'TextFieldProps'
   | 'onBlur'

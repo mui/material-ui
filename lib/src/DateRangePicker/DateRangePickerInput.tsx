@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { RangeInput, DateRange } from './RangeTypes';
+import { useUtils } from '../_shared/hooks/useUtils';
 import { makeStyles } from '@material-ui/core/styles';
 import { MaterialUiPickersDate } from '../typings/date';
 import { CurrentlySelectingRangeEndProps } from './RangeTypes';
@@ -62,26 +63,26 @@ export interface DateRangeInputProps
 }
 
 export const DateRangePickerInput: React.FC<DateRangeInputProps> = ({
-  rawValue,
-  onChange,
-  rawValue: [start, end],
-  parsedDateValue: [parsedStart, parsedEnd],
-  open,
   containerRef,
-  forwardedRef,
   currentlySelectingRangeEnd,
-  setCurrentlySelectingRangeEnd,
-  openPicker,
   disableOpenPicker,
-  startText,
   endText,
+  forwardedRef,
+  onBlur,
+  onChange,
+  open,
+  openPicker,
+  rawValue,
   readOnly,
   renderInput,
+  setCurrentlySelectingRangeEnd,
+  startText,
   TextFieldProps,
-  onBlur,
+  rawValue: [start, end],
   validationError: [startValidationError, endValidationError],
   ...other
 }) => {
+  const utils = useUtils();
   const classes = useStyles();
   const startRef = React.useRef<HTMLInputElement>(null);
   const endRef = React.useRef<HTMLInputElement>(null);
@@ -108,11 +109,11 @@ export const DateRangePickerInput: React.FC<DateRangeInputProps> = ({
   );
 
   const handleStartChange = (date: MaterialUiPickersDate, inputString?: string) => {
-    lazyHandleChangeCallback([date, parsedEnd], inputString);
+    lazyHandleChangeCallback([date, utils.date(end)], inputString);
   };
 
   const handleEndChange = (date: MaterialUiPickersDate, inputString?: string) => {
-    lazyHandleChangeCallback([parsedStart, date], inputString);
+    lazyHandleChangeCallback([utils.date(start), date], inputString);
   };
 
   const openRangeStartSelection = () => {

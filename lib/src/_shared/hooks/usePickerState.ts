@@ -118,10 +118,9 @@ export function usePickerState<TInput, TDateValue>(
       inputFormat,
       open: isOpen,
       rawValue: value,
-      parsedDateValue: pickerDate,
       openPicker: () => !readOnly && !disabled && setIsOpen(true),
     }),
-    [onChange, inputFormat, isOpen, value, pickerDate, readOnly, disabled, setIsOpen]
+    [onChange, inputFormat, isOpen, value, readOnly, disabled, setIsOpen]
   );
 
   const pickerState = { pickerProps, inputProps, wrapperProps };

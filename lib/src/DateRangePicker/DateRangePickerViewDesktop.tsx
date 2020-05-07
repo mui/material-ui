@@ -6,12 +6,18 @@ import { makeStyles } from '@material-ui/core/styles';
 import { MaterialUiPickersDate } from '../typings/date';
 import { calculateRangePreview } from './date-range-manager';
 import { Calendar, CalendarProps } from '../views/Calendar/Calendar';
-import { isWithinRange, isStartOfRange, isEndOfRange } from '../_helpers/date-utils';
+import { defaultMinDate, defaultMaxDate } from '../constants/prop-types';
 import { ArrowSwitcher, ExportedArrowSwitcherProps } from '../_shared/ArrowSwitcher';
 import {
   usePreviousMonthDisabled,
   useNextMonthDisabled,
 } from '../_shared/hooks/date-helpers-hooks';
+import {
+  isWithinRange,
+  isStartOfRange,
+  isEndOfRange,
+  DateValidationProps,
+} from '../_helpers/date-utils';
 
 export interface ExportedDesktopDateRangeCalendarProps {
   /**
@@ -24,6 +30,7 @@ export interface ExportedDesktopDateRangeCalendarProps {
 interface DesktopDateRangeCalendarProps
   extends ExportedDesktopDateRangeCalendarProps,
     CalendarProps,
+    DateValidationProps,
     ExportedArrowSwitcherProps {
   date: DateRange;
   changeMonth: (date: MaterialUiPickersDate) => void;
@@ -82,14 +89,17 @@ export const DateRangePickerViewDesktop: React.FC<DesktopDateRangeCalendarProps>
   onChange,
   disableFuture,
   disablePast,
-  minDate,
-  maxDate,
+  minDate: __minDate,
+  maxDate: __maxDate,
   currentlySelectingRangeEnd,
   currentMonth,
   ...other
 }) => {
   const utils = useUtils();
   const classes = useStyles();
+  const minDate = __minDate || utils.date(defaultMinDate);
+  const maxDate = __maxDate || utils.date(defaultMaxDate);
+
   const [rangePreviewDay, setRangePreviewDay] = React.useState<MaterialUiPickersDate>(null);
 
   const isNextMonthDisabled = useNextMonthDisabled(currentMonth, { disableFuture, maxDate });
@@ -161,10 +171,6 @@ export const DateRangePickerViewDesktop: React.FC<DesktopDateRangeCalendarProps>
               {...other}
               key={index}
               date={date}
-              minDate={minDate}
-              maxDate={maxDate}
-              disablePast={disablePast}
-              disableFuture={disableFuture}
               className={classes.calendar}
               onChange={handleDayChange}
               currentMonth={monthOnIteration}
