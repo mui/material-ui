@@ -708,7 +708,7 @@ describe('<Autocomplete />', () => {
       );
     });
 
-    describe('prop: inlcudeInputInList', () => {
+    describe('prop: includeInputInList', () => {
       it('considers the textbox the predessor of the first option when pressing Up', () => {
         render(
           <Autocomplete
