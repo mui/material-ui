@@ -11,7 +11,7 @@ import PopperJs from 'popper.js';
 import Grow from '../Grow';
 import Popper from './Popper';
 
-describe.only('<Popper />', () => {
+describe('<Popper />', () => {
   let mount;
   let rtlTheme;
   const render = createClientRender();
@@ -122,8 +122,10 @@ describe.only('<Popper />', () => {
 
   describe('prop: open', () => {
     it('should open without any issue', () => {
-      const { queryByRole, getByRole, setProps } = render(<Popper {...defaultProps} open={false} />);
-      expect(queryByRole('tooltip')).to.equal(null)
+      const { queryByRole, getByRole, setProps } = render(
+        <Popper {...defaultProps} open={false} />,
+      );
+      expect(queryByRole('tooltip')).to.equal(null);
       setProps({ open: true });
       expect(getByRole('tooltip')).to.have.text('Hello World');
     });
@@ -132,7 +134,7 @@ describe.only('<Popper />', () => {
       const { queryByRole, getByRole, setProps } = render(<Popper {...defaultProps} />);
       expect(getByRole('tooltip')).to.have.text('Hello World');
       setProps({ open: false });
-      expect(queryByRole('tooltip')).to.equal(null)
+      expect(queryByRole('tooltip')).to.equal(null);
     });
   });
 
@@ -151,6 +153,13 @@ describe.only('<Popper />', () => {
   });
 
   describe('prop: keepMounted', () => {
+    it('should keep the children mounted in the DOM', () => {
+      const { getByRole } = render(<Popper {...defaultProps} keepMounted open={false} />);
+      const tooltip = getByRole('tooltip');
+      expect(tooltip).to.have.text('Hello World');
+      expect(tooltip.style.display).to.equal('none');
+    });
+
     describe('by default', () => {
       // Test case for https://github.com/mui-org/material-ui/issues/15180
       it('should remove the transition children in the DOM when closed whilst transition status is entering', () => {
@@ -240,7 +249,9 @@ describe.only('<Popper />', () => {
   describe('prop: disablePortal', () => {
     it('should work', () => {
       const popperRef = React.createRef();
-      const { getByRole } = render(<Popper {...defaultProps} disablePortal popperRef={popperRef} />);
+      const { getByRole } = render(
+        <Popper {...defaultProps} disablePortal popperRef={popperRef} />,
+      );
       // renders
       expect(getByRole('tooltip')).to.not.equal(null);
       // correctly sets modifiers
