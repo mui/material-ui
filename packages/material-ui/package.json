@@ -60,7 +60,7 @@
     "popper.js": "^1.16.1-lts",
     "prop-types": "^15.7.2",
     "react-is": "^16.8.0",
-    "react-transition-group": "^4.3.0"
+    "react-transition-group": "^4.4.0"
   },
   "devDependencies": {},
   "sideEffects": false,

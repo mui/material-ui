@@ -3,6 +3,10 @@ import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import { createMount } from '@material-ui/core/test-utils';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
+import {
+  unstable_createMuiStrictModeTheme as createMuiStrictModeTheme,
+  ThemeProvider,
+} from '../styles';
 import { Transition } from 'react-transition-group';
 import Zoom from './Zoom';
 
@@ -162,5 +166,28 @@ describe('<Zoom />', () => {
         visibility: 'hidden',
       });
     });
+  });
+
+  it('has no StrictMode warnings in a StrictMode theme', () => {
+    mount(
+      <React.StrictMode>
+        <ThemeProvider theme={createMuiStrictModeTheme()}>
+          <Zoom appear in>
+            <div />
+          </Zoom>
+        </ThemeProvider>
+      </React.StrictMode>,
+    );
+  });
+
+  it('can fallback to findDOMNode in a StrictMode theme', () => {
+    const Div = () => <div />;
+    mount(
+      <ThemeProvider theme={createMuiStrictModeTheme()}>
+        <Zoom appear in disableStrictModeCompat>
+          <Div />
+        </Zoom>
+      </ThemeProvider>,
+    );
   });
 });
