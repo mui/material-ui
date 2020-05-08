@@ -9,6 +9,7 @@ import {
   fireEvent as rtlFireEvent,
   queries,
   render as testingLibraryRender,
+  prettyDOM,
 } from '@testing-library/react/pure';
 
 // holes are *All* selectors which aren't necessary for id selectors
@@ -97,6 +98,26 @@ const fireEvent = Object.assign(rtlFireEvent, {
   // for user-interactions react does the polyfilling but manually created
   // events don't have this luxury
   keyDown(element, options = {}) {
+    // `element` shouldn't be `document` but we catch this later anyway
+    const document = element.ownerDocument || element;
+    const target = document.activeElement || document.body || document.documentElement;
+    if (target !== element) {
+      // see https://www.w3.org/TR/uievents/#keydown
+      const error = new Error(
+        `\`keydown\` events can only be targeted at the active element which is ${prettyDOM(
+          target,
+          undefined,
+          { maxDepth: 1 },
+        )}`,
+      );
+      // We're only interested in the callsite of fireEvent.keyDown
+      error.stack = error.stack
+        .split('\n')
+        .filter((line) => !/at Function.key/.test(line))
+        .join('\n');
+      throw error;
+    }
+
     const event = createEvent.keyDown(element, options);
     Object.defineProperty(event, 'key', {
       get() {
@@ -114,6 +135,25 @@ const fireEvent = Object.assign(rtlFireEvent, {
     rtlFireEvent(element, event);
   },
   keyUp(element, options = {}) {
+    // `element` shouldn't be `document` but we catch this later anyway
+    const document = element.ownerDocument || element;
+    const target = document.activeElement || document.body || document.documentElement;
+    if (target !== element) {
+      // see https://www.w3.org/TR/uievents/#keyup
+      const error = new Error(
+        `\`keyup\` events can only be targeted at the active element which is ${prettyDOM(
+          target,
+          undefined,
+          { maxDepth: 1 },
+        )}`,
+      );
+      // We're only interested in the callsite of fireEvent.keyUp
+      error.stack = error.stack
+        .split('\n')
+        .filter((line) => !/at Function.key/.test(line))
+        .join('\n');
+      throw error;
+    }
     const event = createEvent.keyUp(element, options);
     Object.defineProperty(event, 'key', {
       get() {

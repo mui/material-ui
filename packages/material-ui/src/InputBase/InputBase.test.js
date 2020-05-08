@@ -129,13 +129,13 @@ describe('<InputBase />', () => {
     });
     expect(handleFocus.callCount).to.equal(1);
 
-    fireEvent.keyDown(document.activeElement, { key: 'a' });
+    fireEvent.keyDown(input, { key: 'a' });
     expect(handleKeyDown.callCount).to.equal(1);
 
     fireEvent.change(input, { target: { value: 'a' } });
     expect(handleChange.callCount).to.equal(1);
 
-    fireEvent.keyUp(document.activeElement, { key: 'a' });
+    fireEvent.keyUp(input, { key: 'a' });
     expect(handleKeyUp.callCount).to.equal(1);
 
     act(() => {

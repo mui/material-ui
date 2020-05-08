@@ -4,9 +4,16 @@ Custom eslint rules for Material-UI.
 
 ## List of supported rules
 
+- `disallow-active-element-as-key-event-target`
 - `docgen-ignore-before-comment`
 - `no-hardcoded-labels`
 - `restricted-path-imports`
+
+### disallow-active-element-as-key-event-target
+
+Prevent `fireEvent.keyDown(document.activeElement)`. The implementation
+we use already verifies that the passed target can be the target of a
+`keydown` event. Passing the target explicitly (e.g. `fireEvent.keyDown(getByRole('tab', { selected: true }))`) makes the test more readable.
 
 ### docgen-ignore-before-comment
 

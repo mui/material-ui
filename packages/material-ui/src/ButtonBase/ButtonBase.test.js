@@ -122,31 +122,28 @@ describe('<ButtonBase />', () => {
 
   describe('event callbacks', () => {
     it('should fire event callbacks', () => {
-      const eventHandlerNames = [
-        'onClick',
-        'onFocus',
-        'onBlur',
-        'onKeyUp',
-        'onKeyDown',
-        'onMouseDown',
-        'onMouseLeave',
-        'onMouseUp',
-      ];
-
-      /**
-       * @type {Record<string, import('sinon').SinonSpy>}
-       */
-      const handlers = {};
-      eventHandlerNames.forEach((handlerName) => {
-        handlers[handlerName] = spy();
-      });
+      const onClick = spy();
+      const onBlur = spy();
+      const onFocus = spy();
+      const onKeyUp = spy();
+      const onKeyDown = spy();
+      const onMouseDown = spy();
+      const onMouseLeave = spy();
+      const onMouseUp = spy();
       const onDragEnd = spy();
       const onTouchStart = spy();
       const onTouchEnd = spy();
 
       const { getByText } = render(
         <ButtonBase
-          {...handlers}
+          onClick={onClick}
+          onBlur={onBlur}
+          onFocus={onFocus}
+          onKeyUp={onKeyUp}
+          onKeyDown={onKeyDown}
+          onMouseDown={onMouseDown}
+          onMouseLeave={onMouseLeave}
+          onMouseUp={onMouseUp}
           onDragEnd={onDragEnd}
           onTouchEnd={onTouchEnd}
           onTouchStart={onTouchStart}
@@ -172,13 +169,29 @@ describe('<ButtonBase />', () => {
         expect(onDragEnd.callCount).to.equal(1);
       }
 
-      eventHandlerNames.forEach((n) => {
-        // onKeyDown -> keyDown
-        const eventType = n.charAt(2).toLowerCase() + n.slice(3);
-        // @ts-ignore eventType isn't a literal here, need const expression
-        fireEvent[eventType](button);
-        expect(handlers[n].callCount, `should have called the ${n} handler`).to.equal(1);
-      });
+      fireEvent.mouseDown(button);
+      expect(onMouseDown.callCount).to.equal(1);
+
+      fireEvent.mouseUp(button);
+      expect(onMouseUp.callCount).to.equal(1);
+
+      fireEvent.click(button);
+      expect(onClick.callCount).to.equal(1);
+
+      button.focus();
+      expect(onFocus.callCount).to.equal(1);
+
+      fireEvent.keyDown(button);
+      expect(onKeyDown.callCount).to.equal(1);
+
+      fireEvent.keyUp(button);
+      expect(onKeyUp.callCount).to.equal(1);
+
+      button.blur();
+      expect(onBlur.callCount).to.equal(1);
+
+      fireEvent.mouseLeave(button);
+      expect(onMouseLeave.callCount).to.equal(1);
     });
   });
 
@@ -685,7 +698,11 @@ describe('<ButtonBase />', () => {
     describe('prop: onKeyDown', () => {
       it('call it when keydown events are dispatched', () => {
         const onKeyDownSpy = spy();
-        const { getByText } = render(<ButtonBase onKeyDown={onKeyDownSpy}>Hello</ButtonBase>);
+        const { getByText } = render(
+          <ButtonBase autoFocus onKeyDown={onKeyDownSpy}>
+            Hello
+          </ButtonBase>,
+        );
 
         fireEvent.keyDown(getByText('Hello'));
 
@@ -821,7 +838,7 @@ describe('<ButtonBase />', () => {
           </ButtonBase>,
         );
 
-        fireEvent.keyDown(document.activeElement, {
+        fireEvent.keyDown(document.querySelector('input'), {
           key: 'Enter',
         });
 
@@ -838,7 +855,7 @@ describe('<ButtonBase />', () => {
           </ButtonBase>,
         );
 
-        fireEvent.keyUp(document.activeElement, {
+        fireEvent.keyUp(document.querySelector('input'), {
           key: ' ',
         });
 

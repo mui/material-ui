@@ -74,7 +74,7 @@ describe('<ExpansionPanelSummary />', () => {
     fireEvent.mouseDown(document.body); // pointer device
     const button = getByRole('button');
 
-    fireEvent.keyDown(document.activeElement, { key: 'Tab' }); // not actually focusing (yet)
+    fireEvent.keyDown(document.body, { key: 'Tab' }); // not actually focusing (yet)
     button.focus();
 
     expect(button).toHaveFocus();
@@ -84,7 +84,7 @@ describe('<ExpansionPanelSummary />', () => {
   it('blur should unset focused state', () => {
     const { getByRole } = render(<ExpansionPanelSummary />);
     fireEvent.mouseDown(document.body); // pointer device
-    fireEvent.keyDown(document.activeElement, { key: 'Tab' }); // not actually focusing (yet)
+    fireEvent.keyDown(document.body, { key: 'Tab' }); // not actually focusing (yet)
     const button = getByRole('button');
     button.focus();
 
