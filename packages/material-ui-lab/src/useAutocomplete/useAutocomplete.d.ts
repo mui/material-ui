@@ -18,7 +18,11 @@ export function createFilterOptions<T>(
   config?: CreateFilterOptionsConfig<T>
 ): (options: T[], state: FilterOptionsState<T>) => T[];
 
-export interface UseAutocompleteCommonProps<T> {
+export type TValue<T, TMultiple> = TMultiple extends (undefined | false) ? T | null : T[];
+
+export type TMultipleConstraint = boolean | undefined;
+
+export interface UseAutocompleteProps<T, TMultiple extends TMultipleConstraint> {
   /**
    * If `true`, the portion of the selected suggestion that has not been typed by the user,
    * known as the completion string, appears inline after the input cursor in the textbox.
@@ -203,6 +207,34 @@ export interface UseAutocompleteCommonProps<T> {
    * It helps the user clear the selected value.
    */
   selectOnFocus?: boolean;
+  /**
+   * If `true`, `value` must be an array and the menu will support multiple selections.
+   */
+  multiple?: TMultiple;
+  /**
+   * The value of the autocomplete.
+   *
+   * The value must have reference equality with the option in order to be selected.
+   * You can customize the equality behavior with the `getOptionSelected` prop.
+   */
+  value?: TValue<T, TMultiple>;
+  /**
+   * The default input value. Use when the component is not controlled.
+   */
+  defaultValue?: TValue<T, TMultiple>;
+  /**
+   * Callback fired when the value changes.
+   *
+   * @param {object} event The event source of the callback.
+   * @param {T[]} value
+   * @param {string} reason One of "create-option", "select-option", "remove-option", "blur" or "clear".
+   */
+  onChange?: (
+    event: React.ChangeEvent<{}>,
+    value: TValue<T, TMultiple>,
+    reason: AutocompleteChangeReason,
+    details?: AutocompleteChangeDetails<T>,
+  ) => void;
 }
 
 export type AutocompleteHighlightChangeReason = 'keyboard' | 'mouse' | 'auto';
@@ -219,74 +251,8 @@ export interface AutocompleteChangeDetails<T = string> {
 export type AutocompleteCloseReason = 'toggleInput' | 'escape' | 'select-option' | 'blur';
 export type AutocompleteInputChangeReason = 'input' | 'reset' | 'clear';
 
-export interface UseAutocompleteMultipleProps<T> extends UseAutocompleteCommonProps<T> {
-  /**
-   * The default input value. Use when the component is not controlled.
-   */
-  defaultValue?: T[];
-  /**
-   * If `true`, `value` must be an array and the menu will support multiple selections.
-   */
-  multiple: true;
-  /**
-   * The value of the autocomplete.
-   *
-   * The value must have reference equality with the option in order to be selected.
-   * You can customize the equality behavior with the `getOptionSelected` prop.
-   */
-  value?: T[];
-  /**
-   * Callback fired when the value changes.
-   *
-   * @param {object} event The event source of the callback.
-   * @param {T[]} value The new value of the component.
-   * @param {string} reason One of "create-option", "select-option", "remove-option", "blur" or "clear".
-   */
-  onChange?: (
-    event: React.ChangeEvent<{}>,
-    value: T[],
-    reason: AutocompleteChangeReason,
-    details?: AutocompleteChangeDetails<T>
-  ) => void;
-}
-
-export interface UseAutocompleteSingleProps<T> extends UseAutocompleteCommonProps<T> {
-  /**
-   * The default input value. Use when the component is not controlled.
-   */
-  defaultValue?: T;
-  /**
-   * If `true`, `value` must be an array and the menu will support multiple selections.
-   */
-  multiple?: false;
-  /**
-   * The value of the autocomplete.
-   *
-   * The value must have reference equality with the option in order to be selected.
-   * You can customize the equality behavior with the `getOptionSelected` prop.
-   */
-  value?: T | null;
-  /**
-   * Callback fired when the value changes.
-   *
-   * @param {object} event The event source of the callback.
-   * @param {T} value The new value of the component.
-   * @param {string} reason One of "create-option", "select-option", "remove-option", "blur" or "clear".
-   */
-  onChange?: (
-    event: React.ChangeEvent<{}>,
-    value: T | null,
-    reason: AutocompleteChangeReason,
-    details?: AutocompleteChangeDetails<T>
-  ) => void;
-}
-
-export type UseAutocompleteProps<T> =
-  | UseAutocompleteSingleProps<T>
-  | UseAutocompleteMultipleProps<T>;
-
-export default function useAutocomplete<T>(
-  props: UseAutocompleteProps<T>
+export default function useAutocomplete<T, TMultiple extends TMultipleConstraint = undefined>(
+  props: UseAutocompleteProps<T, TMultiple>
 ): {
   getRootProps: () => {};
   getInputProps: () => {};
@@ -298,9 +264,7 @@ export default function useAutocomplete<T>(
   getOptionProps: ({ option, index }: { option: T; index: number }) => {};
   id: string;
   inputValue: string;
-  // TODO: infer the right type when the issue is resolved
-  // https://github.com/microsoft/TypeScript/issues/13995
-  value: any; // or T | T[]
+  value: TValue<T, TMultiple>;
   dirty: boolean;
   popupOpen: boolean;
   focused: boolean;
