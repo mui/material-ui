@@ -154,8 +154,8 @@ describe('<Popper />', () => {
 
   describe('prop: keepMounted', () => {
     it('should keep the children mounted in the DOM', () => {
-      const { getByRole } = render(<Popper {...defaultProps} keepMounted open={false} />);
-      const tooltip = getByRole('tooltip');
+      render(<Popper {...defaultProps} keepMounted open={false} />);
+      const tooltip = document.querySelector('[role="tooltip"]');
       expect(tooltip).to.have.text('Hello World');
       expect(tooltip.style.display).to.equal('none');
     });
