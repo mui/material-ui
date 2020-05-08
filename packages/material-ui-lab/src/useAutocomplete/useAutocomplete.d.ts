@@ -18,7 +18,7 @@ export function createFilterOptions<T>(
   config?: CreateFilterOptionsConfig<T>
 ): (options: T[], state: FilterOptionsState<T>) => T[];
 
-export type TValue<T, TMultiple> = TMultiple extends (undefined | false) ? T | null : T[];
+export type TValue<T, TMultiple> = TMultiple extends undefined | false ? T | null : T[];
 
 export type TMultipleConstraint = boolean | undefined;
 
@@ -233,7 +233,7 @@ export interface UseAutocompleteProps<T, TMultiple extends TMultipleConstraint> 
     event: React.ChangeEvent<{}>,
     value: TValue<T, TMultiple>,
     reason: AutocompleteChangeReason,
-    details?: AutocompleteChangeDetails<T>,
+    details?: AutocompleteChangeDetails<T>
   ) => void;
 }
 
