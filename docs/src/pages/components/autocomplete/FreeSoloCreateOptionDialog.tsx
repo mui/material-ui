@@ -41,7 +41,7 @@ export default function FreeSoloCreateOptionDialog() {
     <React.Fragment>
       <Autocomplete
         value={value}
-        onChange={(_event, newValue) => {
+        onChange={(event, newValue) => {
           if (typeof newValue === 'string') {
             // timeout to avoid instant validation of the dialog's form.
             setTimeout(() => {

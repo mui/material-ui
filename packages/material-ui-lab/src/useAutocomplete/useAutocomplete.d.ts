@@ -226,7 +226,7 @@ export interface UseAutocompleteProps<T, TMultiple extends TMultipleConstraint> 
    * Callback fired when the value changes.
    *
    * @param {object} event The event source of the callback.
-   * @param {T[]} value
+   * @param {TValue<T, TMultiple>} value The new value of the component.
    * @param {string} reason One of "create-option", "select-option", "remove-option", "blur" or "clear".
    */
   onChange?: (
