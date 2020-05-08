@@ -724,7 +724,7 @@ Autocomplete.propTypes = {
    * Callback fired when the value changes.
    *
    * @param {object} event The event source of the callback.
-   * @param {TValue<T, TMultiple>} value The new value of the component.
+   * @param {T|T[]} value The new value of the component.
    * @param {string} reason One of "create-option", "select-option", "remove-option", "blur" or "clear".
    */
   onChange: PropTypes.func,
