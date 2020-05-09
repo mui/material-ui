@@ -28,14 +28,3 @@ function MyAutocomplete<
   renderInput={() => null}
   multiple
 />;
-
-// free solo
-<Autocomplete
-  options={[true, false]}
-  onChange={(event, value) => {
-    // $ExpectType boolean | null
-    value;
-  }}
-  renderInput={() => null}
-  freeSolo
-/>;

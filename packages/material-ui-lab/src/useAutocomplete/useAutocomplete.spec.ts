@@ -119,28 +119,31 @@ useAutocomplete({
 });
 
 // Free solo
-useAutocomplete<Person, undefined, undefined, true>({
+useAutocomplete({
   options: persons,
   onChange(event, value) {
     // $ExpectType string | Person | null
     value;
   },
+  freeSolo: true,
 });
 
-useAutocomplete<Person, undefined, true, true>({
+useAutocomplete({
   options: persons,
   disableClearable: true,
   onChange(event, value) {
     // $ExpectType string | Person
     value;
   },
+  freeSolo: true,
 });
 
-useAutocomplete<Person, true, undefined, true>({
+useAutocomplete({
   options: persons,
   multiple: true,
   onChange(event, value) {
     // $ExpectType (string | Person)[]
     value;
   },
+  freeSolo: true,
 });

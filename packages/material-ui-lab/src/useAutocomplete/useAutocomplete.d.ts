@@ -111,7 +111,7 @@ export interface UseAutocompleteProps<
   /**
    * If `true`, the Autocomplete is free solo, meaning that the user input is not bound to provided options.
    */
-  freeSolo?: boolean;
+  freeSolo?: TFreeSolo;
   /**
    * Used to determine the disabled state for a given option.
    *
