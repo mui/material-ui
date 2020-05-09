@@ -129,7 +129,7 @@ theme = responsiveFontSizes(theme);
 
 **WARNING**: Do not use this method in production.
 
-Generates a theme that reduces the amount of warnings inside [`React.StrictMode`](https://reactjs.org/docs/strict-mode.html) like `Warning: findDOMNode is deprecated in StrictMode.`.
+Generates a theme that reduces the amount of warnings inside [`React.StrictMode`](https://reactjs.org/docs/strict-mode.html) like `Warning: findDOMNode is deprecated in StrictMode`.
 
 #### Requirements
 
@@ -142,7 +142,7 @@ The component used in the `component` prop of the following components need to f
 - [`Collapse`](/api/Collapse/)
 
 Otherwise you'll encounter `Error: Function component cannot be given refs`.
-See also: [Composition: Caveat with refs](/guides/composition/#caveat-with-refs)
+See also: [Composition: Caveat with refs](/guides/composition/#caveat-with-refs).
 
 ##### `children` prop
 
@@ -172,7 +172,7 @@ If you still see `Error: Function component cannot be given refs` then you're pr
 You can fix this by applying `disableStrictModeCompat`. You'll see deprecation warnings again but these are only warnings while
 `Function component cannot be given refs` actually breaks the documented behavior of our components.
 
-````diff
+```diff
 import { unstable_createMuiStrictModeTheme } from '@material-ui/core/styles';
 
 function ThirdPartyTabPanel(props) {
@@ -193,6 +193,7 @@ function Fade() {
     </React.StrictMode>,
   );
 }
+```
 
 #### Arguments
 
