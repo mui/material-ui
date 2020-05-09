@@ -11,9 +11,8 @@ describe('<TableFooter />', () => {
   let classes;
   const render = createClientRender();
 
-  function mountInTable(node) {
-    const wrapper = mount(<table>{node}</table>);
-    return wrapper.find('table').childAt(0);
+  function renderInTable(node) {
+    return render(<table>{node}</table>);
   }
 
   before(() => {
@@ -21,28 +20,28 @@ describe('<TableFooter />', () => {
     classes = getClasses(<TableFooter />);
   });
 
-  after(() => {
-    mount.cleanUp();
-  });
-
   describeConformance(<TableFooter />, () => ({
     classes,
     inheritComponent: 'tfoot',
-    mount: mountInTable,
+    mount: (node) => {
+      const wrapper = mount(<table>{node}</table>);
+      return wrapper.find('table').childAt(0);
+    },
+    after: () => mount.cleanUp(),
     refInstanceof: window.HTMLTableSectionElement,
     testComponentPropWith: 'thead',
   }));
 
   it('should render children', () => {
-    const children = <tr className="test" />;
-    const wrapper = mountInTable(<TableFooter>{children}</TableFooter>);
-    expect(wrapper.contains(children)).to.equal(true);
+    const children = <tr data-testid="test" />;
+    const { getByTestId } = renderInTable(<TableFooter>{children}</TableFooter>);
+    getByTestId('test');
   });
 
   it('should define table.footer in the child context', () => {
     let context;
     // TODO test integration with TableCell
-    mountInTable(
+    renderInTable(
       <TableFooter>
         <Tablelvl2Context.Consumer>
           {(value) => {

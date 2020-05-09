@@ -10,9 +10,8 @@ describe('<TableHead />', () => {
   let mount;
   let classes;
   const render = createClientRender();
-  function mountInTable(node) {
-    const wrapper = mount(<table>{node}</table>);
-    return wrapper.find('table').childAt(0);
+  function renderInTable(node) {
+    return render(<table>{node}</table>);
   }
 
   before(() => {
@@ -20,28 +19,28 @@ describe('<TableHead />', () => {
     classes = getClasses(<TableHead>foo</TableHead>);
   });
 
-  after(() => {
-    mount.cleanUp();
-  });
-
   describeConformance(<TableHead />, () => ({
     classes,
     inheritComponent: 'thead',
-    mount: mountInTable,
+    mount: (node) => {
+      const wrapper = mount(<table>{node}</table>);
+      return wrapper.find('table').childAt(0);
+    },
+    after: () => mount.cleanUp(),
     refInstanceof: window.HTMLTableSectionElement,
     testComponentPropWith: 'tbody',
   }));
 
   it('should render children', () => {
-    const children = <tr className="test" />;
-    const wrapper = mountInTable(<TableHead>{children}</TableHead>);
-    expect(wrapper.contains(children)).to.equal(true);
+    const children = <tr data-testid="test" />;
+    const { getByTestId } = renderInTable(<TableHead>{children}</TableHead>);
+    getByTestId('test');
   });
 
   it('should define table.head in the child context', () => {
     let context;
     // TODO: test integration with TableCell
-    mountInTable(
+    renderInTable(
       <TableHead>
         <Tablelvl2Context.Consumer>
           {(value) => {

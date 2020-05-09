@@ -5,11 +5,8 @@ import { createMount, getClasses } from '@material-ui/core/test-utils';
 import { fireEvent, createClientRender } from 'test/utils/createClientRender';
 import describeConformance from '../test-utils/describeConformance';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
-import Select from '../Select';
-import IconButton from '../IconButton';
 import TableFooter from '../TableFooter';
 import TableCell from '../TableCell';
-import Typography from '../Typography';
 import TableRow from '../TableRow';
 import TablePagination from './TablePagination';
 
@@ -19,30 +16,11 @@ describe('<TablePagination />', () => {
   let mount;
   const render = createClientRender();
 
-  function mountInTable(node) {
-    const wrapper = mount(
-      <table>
-        <tbody>
-          <tr>{node}</tr>
-        </tbody>
-      </table>,
-    );
-    return wrapper.find('tr').childAt(0);
-  }
-
   before(() => {
+    mount = createMount({ strict: true });
     classes = getClasses(
       <TablePagination count={1} onChangePage={() => {}} page={0} rowsPerPage={10} />,
     );
-  });
-
-  beforeEach(() => {
-    // StrictModeViolation: test uses #html()()
-    mount = createMount({ strict: false });
-  });
-
-  afterEach(() => {
-    mount.cleanUp();
   });
 
   describeConformance(
@@ -50,14 +28,24 @@ describe('<TablePagination />', () => {
     () => ({
       classes,
       inheritComponent: TableCell,
-      mount: mountInTable,
+      mount: (node) => {
+        const wrapper = mount(
+          <table>
+            <tbody>
+              <tr>{node}</tr>
+            </tbody>
+          </table>,
+        );
+        return wrapper.find('tr').childAt(0);
+      },
+      after: () => mount.cleanUp(),
       refInstanceof: window.HTMLTableCellElement,
       // can only use `td` in a tr so we just fake a different component
       testComponentPropWith: (props) => <td {...props} />,
     }),
   );
 
-  describe('mount', () => {
+  describe('render', () => {
     it('should use the labelDisplayedRows callback', () => {
       let labelDisplayedRowsCalled = false;
       function labelDisplayedRows({ from, to, count, page }) {
@@ -69,7 +57,7 @@ describe('<TablePagination />', () => {
         return `Page ${page}`;
       }
 
-      const wrapper = mount(
+      const { container } = render(
         <table>
           <TableFooter>
             <TableRow>
@@ -86,11 +74,11 @@ describe('<TablePagination />', () => {
         </table>,
       );
       expect(labelDisplayedRowsCalled).to.equal(true);
-      expect(wrapper.html().includes('Page 1')).to.equal(true);
+      expect(container.innerHTML.includes('Page 1')).to.equal(true);
     });
 
     it('should use labelRowsPerPage', () => {
-      const wrapper = mount(
+      const { container } = render(
         <table>
           <TableFooter>
             <TableRow>
@@ -106,11 +94,11 @@ describe('<TablePagination />', () => {
           </TableFooter>
         </table>,
       );
-      expect(wrapper.html().includes('Zeilen pro Seite:')).to.equal(true);
+      expect(container.innerHTML.includes('Zeilen pro Seite:')).to.equal(true);
     });
 
     it('should disable the back button on the first page', () => {
-      const wrapper = mount(
+      const { getByRole } = render(
         <table>
           <TableFooter>
             <TableRow>
@@ -125,15 +113,14 @@ describe('<TablePagination />', () => {
           </TableFooter>
         </table>,
       );
-
-      const backButton = wrapper.find(IconButton).at(0);
-      const nextButton = wrapper.find(IconButton).at(1);
-      expect(backButton.props().disabled).to.equal(true);
-      expect(nextButton.props().disabled).to.equal(false);
+      const backButton = getByRole('button', { name: 'Previous page' });
+      const nextButton = getByRole('button', { name: 'Next page' });
+      expect(backButton).to.have.property('disabled', true);
+      expect(nextButton).to.have.property('disabled', false);
     });
 
     it('should disable the next button on the last page', () => {
-      const wrapper = mount(
+      const { getByRole } = render(
         <table>
           <TableFooter>
             <TableRow>
@@ -149,15 +136,15 @@ describe('<TablePagination />', () => {
         </table>,
       );
 
-      const backButton = wrapper.find(IconButton).at(0);
-      const nextButton = wrapper.find(IconButton).at(1);
-      expect(backButton.props().disabled).to.equal(false);
-      expect(nextButton.props().disabled).to.equal(true);
+      const backButton = getByRole('button', { name: 'Previous page' });
+      const nextButton = getByRole('button', { name: 'Next page' });
+      expect(backButton).to.have.property('disabled', false);
+      expect(nextButton).to.have.property('disabled', true);
     });
 
     it('should handle next button clicks properly', () => {
       let page = 1;
-      const wrapper = mount(
+      const { getByRole } = render(
         <table>
           <TableFooter>
             <TableRow>
@@ -175,14 +162,14 @@ describe('<TablePagination />', () => {
         </table>,
       );
 
-      const nextButton = wrapper.find(IconButton).at(1);
-      nextButton.simulate('click');
+      const nextButton = getByRole('button', { name: 'Next page' });
+      fireEvent.click(nextButton);
       expect(page).to.equal(2);
     });
 
     it('should handle back button clicks properly', () => {
       let page = 1;
-      const wrapper = mount(
+      const { getByRole } = render(
         <table>
           <TableFooter>
             <TableRow>
@@ -200,13 +187,13 @@ describe('<TablePagination />', () => {
         </table>,
       );
 
-      const nextButton = wrapper.find(IconButton).at(0);
-      nextButton.simulate('click');
+      const backButton = getByRole('button', { name: 'Previous page' });
+      fireEvent.click(backButton);
       expect(page).to.equal(0);
     });
 
     it('should display 0 as start number if the table is empty ', () => {
-      const wrapper = mount(
+      const { container } = render(
         <table>
           <TableFooter>
             <TableRow>
@@ -221,11 +208,11 @@ describe('<TablePagination />', () => {
           </TableFooter>
         </table>,
       );
-      expect(wrapper.find(Typography).at(1).text()).to.equal('0-0 of 0');
+      expect(container.querySelectorAll('p')[1]).to.have.text('0-0 of 0');
     });
 
     it('should hide the rows per page selector if there are less than two options', () => {
-      const wrapper = mount(
+      const { container, queryByRole } = render(
         <table>
           <TableFooter>
             <TableRow>
@@ -242,8 +229,8 @@ describe('<TablePagination />', () => {
         </table>,
       );
 
-      expect(wrapper.text().indexOf('Rows per page')).to.equal(-1);
-      expect(wrapper.find(Select).length).to.equal(0);
+      expect(container).to.not.include.text('Rows per page');
+      expect(queryByRole('listbox')).to.equal(null);
     });
   });
 
@@ -269,10 +256,10 @@ describe('<TablePagination />', () => {
         );
       };
 
-      const { container, getByLabelText } = render(<Test />);
+      const { container, getByRole } = render(<Test />);
 
       expect(container).to.have.text('Rows per page:101-10 of more than 10');
-      fireEvent.click(getByLabelText('Next page'));
+      fireEvent.click(getByRole('button', { name: 'Next page' }));
       expect(container).to.have.text('Rows per page:1011-20 of more than 20');
     });
   });

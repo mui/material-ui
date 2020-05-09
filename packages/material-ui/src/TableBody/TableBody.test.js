@@ -11,9 +11,8 @@ describe('<TableBody />', () => {
   let classes;
   const render = createClientRender();
 
-  function mountInTable(node) {
-    const wrapper = mount(<table>{node}</table>);
-    return wrapper.find('table').childAt(0);
+  function renderInTable(node) {
+    return render(<table>{node}</table>);
   }
 
   before(() => {
@@ -22,29 +21,29 @@ describe('<TableBody />', () => {
     classes = getClasses(<TableBody />);
   });
 
-  after(() => {
-    mount.cleanUp();
-  });
-
   describeConformance(<TableBody />, () => ({
     classes,
     inheritComponent: 'tbody',
-    mount: mountInTable,
+    mount: (node) => {
+      const wrapper = mount(<table>{node}</table>);
+      return wrapper.find('table').childAt(0);
+    },
+    after: () => mount.cleanUp(),
     refInstanceof: window.HTMLTableSectionElement,
-    // can't test with custom `component` with `mountInTable`
+    // can't test with custom `component` with `renderInTable`
     testComponentPropWith: 'tbody',
   }));
 
   it('should render children', () => {
-    const children = <tr className="test" />;
-    const wrapper = mountInTable(<TableBody>{children}</TableBody>);
-    expect(wrapper.contains(children)).to.equal(true);
+    const children = <tr data-testid="test" />;
+    const { getByTestId } = renderInTable(<TableBody>{children}</TableBody>);
+    getByTestId('test');
   });
 
   it('should define table.body in the child context', () => {
     let context;
     // TODO test integration with TableCell
-    mountInTable(
+    renderInTable(
       <TableBody>
         <Tablelvl2Context.Consumer>
           {(value) => {
