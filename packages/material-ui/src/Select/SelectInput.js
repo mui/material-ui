@@ -345,7 +345,6 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
           className,
         )}
         ref={setDisplayNode}
-        data-mui-test="SelectDisplay"
         tabIndex={tabIndex}
         role="button"
         aria-disabled={disabled ? 'true' : undefined}
