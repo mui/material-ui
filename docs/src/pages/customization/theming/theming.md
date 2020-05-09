@@ -124,3 +124,74 @@ import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
 let theme = createMuiTheme();
 theme = responsiveFontSizes(theme);
 ```
+
+### `unstable_createMuiStrictModeTheme(options, ...args) => theme`
+
+**WARNING**: Do not use this method in production.
+
+Generates a theme that reduces the amount of warnings inside [`React.StrictMode`](https://reactjs.org/docs/strict-mode.html).
+
+#### Requirements
+
+Using `unstable_createMuiStrictModeTheme` restricts the usage of some of our components.
+
+##### `component` prop
+
+The component used in the `component` prop of the following components need to forward their ref:
+
+- [`Collapse`](/api/Collapse/)
+
+See also: [Composition: Caveat with refs](/guides/composition/#caveat-with-refs)
+
+##### `children` prop
+
+The `children` of the following components need to forward their ref:
+
+- [`Fade`](/api/Fade/)
+- [`Grow`](/api/Grow/)
+- [`Zoom`](/api/Zoom/)
+
+```diff
+-function TabPanel(props) {
++const TabPanel = React.forwardRef(function TabPanel(props, ref) {
+  return <div role="tabpanel" {...props} ref={ref} />;
+-}
++});
+
+function Tabs() {
+  return <Fade><TabPanel>...</TabPanel></Fade>;
+}
+```
+
+Otherwise the component will not animate properly and you'll encounter the warning that "Function components cannot be given refs".
+
+#### Disable StrictMode compatibility partially
+
+If you cannot apply the changes from previous sections (e.g. because it's a third party library) you can pass the `disableStrictModeCompat` prop to the components listed previously.
+
+#### Arguments
+
+1. `options` (_Object_): Takes an incomplete theme object and adds the missing parts.
+2. `...args` (_Array_): Deep merge the arguments with the about to be returned theme.
+
+#### Returns
+
+`theme` (_Object_): A complete, ready to use theme object.
+
+#### Examples
+
+```js
+import { unstable_createMuiStrictModeTheme } from '@material-ui/core/styles';
+
+function App() {
+  const theme = unstable_createMuiStrictModeTheme();
+
+  return (
+    <React.StrictMode>
+      <ThemeProvider theme={unstable_createMuiStrictModeTheme()}>
+        <LandingPage />
+      </ThemeProvider>
+    </React.StrictMode>,
+  );
+}
+````
