@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
   },
   contents: {
     marginTop: theme.spacing(2),
-    paddingLeft: theme.spacing(1.5),
+    paddingLeft: theme.spacing(1),
   },
   ul: {
     padding: 0,
@@ -36,16 +36,17 @@ const useStyles = makeStyles((theme) => ({
   },
   item: {
     fontSize: 13,
-    padding: theme.spacing(0.5, 0, 0.5, 1),
-    borderLeft: '4px solid transparent',
-    boxSizing: 'content-box',
+    // paddingLeft: theme.spacing(1) where `border` is used as the "active" marker
+    paddingLeft: theme.spacing(0.5),
+    borderLeft: `${theme.spacing(0.5)}px solid transparent`,
+    boxSizing: 'border-box',
     '&:hover': {
-      borderLeft: `4px solid ${
+      borderLeft: `${theme.spacing(0.5)}px solid ${
         theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[900]
       }`,
     },
     '&$active,&:active': {
-      borderLeft: `4px solid ${
+      borderLeft: `${theme.spacing(0.5)}px solid ${
         theme.palette.type === 'light' ? theme.palette.grey[300] : theme.palette.grey[800]
       }`,
     },
