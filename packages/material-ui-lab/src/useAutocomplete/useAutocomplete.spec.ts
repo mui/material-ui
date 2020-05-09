@@ -58,12 +58,16 @@ useAutocomplete({
     // $ExpectType string | null
     value;
   },
-  filterOptions(options) {
+  filterOptions(options, state) {
+    // $ExpectType FilterOptionsState<string>
+    state;
     // $ExpectType string[]
+    options;
     return options;
   },
   getOptionLabel(option) {
     // $ExpectType string
+    option;
     return option;
   },
   value: null,
