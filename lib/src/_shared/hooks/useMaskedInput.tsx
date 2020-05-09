@@ -21,7 +21,7 @@ type MaskedInputProps = Omit<
   | 'disableOpenPicker'
   | 'getOpenDialogAriaText'
   | 'OpenPickerButtonProps'
->;
+> & { inputProps?: Partial<React.HTMLProps<HTMLInputElement>> };
 
 export function useMaskedInput({
   disableMaskedInput,
@@ -37,6 +37,7 @@ export function useMaskedInput({
   readOnly,
   TextFieldProps,
   label,
+  inputProps,
 }: MaskedInputProps): MuiTextFieldProps {
   const utils = useUtils();
   const isFocusedRef = React.useRef(false);
@@ -99,23 +100,23 @@ export function useMaskedInput({
       };
 
   return {
-    ...inputStateArgs,
     label,
     disabled,
-    placeholder: formatHelperText,
     error: validationError,
     helperText: formatHelperText,
-    // @ts-ignore ??? fix typings for textfield finally
-    'data-mui-test': 'keyboard-date-input',
-    inputProps: { readOnly, type: shouldUseMaskedInput ? 'tel' : 'text' },
+    inputProps: {
+      ...inputStateArgs,
+      disabled, // make spreading in custom input easier
+      placeholder: formatHelperText,
+      readOnly,
+      type: shouldUseMaskedInput ? 'tel' : 'text',
+      ...inputProps,
+      onFocus: createDelegatedEventHandler(
+        () => (isFocusedRef.current = true),
+        inputProps?.onFocus
+      ),
+      onBlur: createDelegatedEventHandler(() => (isFocusedRef.current = false), inputProps?.onBlur),
+    },
     ...TextFieldProps,
-    onFocus: createDelegatedEventHandler(
-      () => (isFocusedRef.current = true),
-      TextFieldProps?.onFocus
-    ),
-    onBlur: createDelegatedEventHandler(
-      () => (isFocusedRef.current = false),
-      TextFieldProps?.onBlur
-    ),
   };
 }

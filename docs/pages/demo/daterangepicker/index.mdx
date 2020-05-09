@@ -9,6 +9,7 @@ import * as ResponsiveDateRangePicker from './ResponsiveDateRangePicker.example'
 import * as MinMaxDateRangePicker from './MinMaxDateRangePicker.example';
 import * as CalendarsDateRangePicker from './CalendarsDateRangePicker.example';
 import * as StaticDateRangePicker from './StaticDateRangePicker.example';
+import * as CustomRangeInputs from './CustomRangeInputs.example';
 
 <PageMeta component="DateRangePicker" />
 
@@ -42,6 +43,13 @@ Make sure that `calendars` prop is working only for desktop mode.
 Disabling dates performs just like in simple `DatePicker`
 
 <Example source={MinMaxDateRangePicker} />
+
+#### Custom input component
+
+You can customize rendering input by `renderInput` prop. For `DateRangePicker` it takes **2** parameters – for start and end input respectively.
+So if you need to render custom input make sure you will spread `ref` and `inputProps` correctly to the input components.
+
+<Example source={CustomRangeInputs} />
 
 #### Static mode
 

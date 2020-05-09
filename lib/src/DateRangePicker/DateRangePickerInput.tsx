@@ -7,8 +7,8 @@ import { CurrentlySelectingRangeEndProps } from './RangeTypes';
 import { useMaskedInput } from '../_shared/hooks/useMaskedInput';
 import { DateRangeValidationError } from '../_helpers/date-utils';
 import { WrapperVariantContext } from '../wrappers/WrapperVariantContext';
-import { DateInputProps, MuiTextFieldProps } from '../_shared/PureDateInput';
 import { mergeRefs, executeInTheNextEventLoopTick } from '../_helpers/utils';
+import { DateInputProps, MuiTextFieldProps } from '../_shared/PureDateInput';
 
 export const useStyles = makeStyles(
   theme => ({
@@ -147,6 +147,8 @@ export const DateRangePickerInput: React.FC<DateRangeInputProps> = ({
       ref: startRef,
       variant: 'outlined',
       focused: open && currentlySelectingRangeEnd === 'start',
+    },
+    inputProps: {
       onClick: !openOnFocus ? openRangeStartSelection : undefined,
       onFocus: openOnFocus ? openRangeStartSelection : undefined,
     },
@@ -164,6 +166,8 @@ export const DateRangePickerInput: React.FC<DateRangeInputProps> = ({
       ref: endRef,
       variant: 'outlined',
       focused: open && currentlySelectingRangeEnd === 'end',
+    },
+    inputProps: {
       onClick: !openOnFocus ? openRangeEndSelection : undefined,
       onFocus: openOnFocus ? openRangeEndSelection : undefined,
     },

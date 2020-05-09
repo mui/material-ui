@@ -10,7 +10,7 @@ import * as ViewsDatePicker from './ViewsDatePicker.example';
 import * as BasicDatePicker from './BasicDatePicker.example';
 import * as StaticDatePicker from './StaticDatePicker.example';
 import * as DatePickers from './DatePickers.example';
-import * as AdvancedKeyboard from './AdvancedKeyboard.example';
+import * as CustomInput from './CustomInput.example';
 
 <PageMeta component="DatePicker" />
 
@@ -53,11 +53,11 @@ For that use `StaticDatePicker`.
   <Example paddingBottom source={StaticDatePicker} />
 </Hidden>
 
-#### Advanced keyboard input
+#### Custom input component
 
-We are providing default localized formats, but you can change this behaviour with `format` and `mask` props.
+You can customize rendering input by `renderInput` prop. But make sure you will spread `ref` and `inputProps` correctly to the custom input component.
 
-<Example source={AdvancedKeyboard} />
+<Example source={CustomInput} />
 
 #### Customization
 

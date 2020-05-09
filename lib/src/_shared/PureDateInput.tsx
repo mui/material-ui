@@ -123,11 +123,15 @@ export const PureDateInput: React.FC<DateInputProps & DateInputRefs> = ({
     ref: containerRef,
     inputRef: forwardedRef,
     error: validationError,
-    'aria-label': getOpenDialogAriaText(rawValue, utils),
-    onClick: onOpen,
-    value: inputValue,
     InputProps: PureDateInputProps,
-    onKeyDown: onSpaceOrEnter(onOpen),
+    inputProps: {
+      disabled,
+      'aria-readonly': true,
+      'aria-label': getOpenDialogAriaText(rawValue, utils),
+      value: inputValue,
+      onClick: onOpen,
+      onKeyDown: onSpaceOrEnter(onOpen),
+    },
     ...TextFieldProps,
   });
 };

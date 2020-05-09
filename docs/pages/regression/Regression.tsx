@@ -100,9 +100,15 @@ function Regression() {
         onChange={changeRange}
         renderInput={(startProps, endProps) => (
           <>
-            <TextField {...startProps} inputProps={{ 'data-mui-test': 'desktop-range-picker' }} />
+            <TextField
+              {...startProps}
+              inputProps={{ ...startProps.inputProps, 'data-mui-test': 'desktop-range-picker' }}
+            />
             <DateRangeDelimiter> to </DateRangeDelimiter>
-            <TextField {...endProps} inputProps={{ 'data-mui-test': 'desktop-range-picker-end' }} />
+            <TextField
+              {...endProps}
+              inputProps={{ ...endProps.inputProps, 'data-mui-test': 'desktop-range-picker-end' }}
+            />
           </>
         )}
       />
