@@ -11,7 +11,7 @@ export default function FreeSoloCreateOption() {
   return (
     <Autocomplete
       value={value}
-      onChange={(event: any, newValue) => {
+      onChange={(event, newValue) => {
         if (newValue === null) {
           setValue(newValue);
           return;
