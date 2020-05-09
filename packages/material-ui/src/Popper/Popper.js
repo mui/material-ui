@@ -215,6 +215,7 @@ const Popper = React.forwardRef(function Popper(props, ref) {
           // Fix Popper.js display issue
           top: 0,
           left: 0,
+          display: !open && keepMounted && !transition ? 'none' : null,
           ...style,
         }}
       >
