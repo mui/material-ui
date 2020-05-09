@@ -6,6 +6,7 @@ import withStyles from '../styles/withStyles';
 import { duration } from '../styles/transitions';
 import { getTransitionProps } from '../transitions/utils';
 import useTheme from '../styles/useTheme';
+import { useForkRef } from '../utils';
 
 export const styles = (theme) => ({
   /* Styles applied to the container element. */
@@ -46,11 +47,13 @@ const Collapse = React.forwardRef(function Collapse(props, ref) {
     className,
     collapsedHeight: collapsedHeightProp = '0px',
     component: Component = 'div',
+    disableStrictModeCompat = false,
     in: inProp,
     onEnter,
     onEntered,
     onEntering,
     onExit,
+    onExited,
     onExiting,
     style,
     timeout = duration.standard,
@@ -71,15 +74,28 @@ const Collapse = React.forwardRef(function Collapse(props, ref) {
     };
   }, []);
 
-  const handleEnter = (node, isAppearing) => {
+  const enableStrictModeCompat = theme.unstable_strictMode && !disableStrictModeCompat;
+  const nodeRef = React.useRef(null);
+  const handleRef = useForkRef(ref, enableStrictModeCompat ? nodeRef : undefined);
+
+  const normalizedTransitionCallback = (callback) => (nodeOrAppearing, maybeAppearing) => {
+    if (callback) {
+      const [node, isAppearing] = enableStrictModeCompat
+        ? [nodeRef.current, nodeOrAppearing]
+        : [nodeOrAppearing, maybeAppearing];
+      callback(node, isAppearing);
+    }
+  };
+
+  const handleEnter = normalizedTransitionCallback((node, isAppearing) => {
     node.style.height = collapsedHeight;
 
     if (onEnter) {
       onEnter(node, isAppearing);
     }
-  };
+  });
 
-  const handleEntering = (node, isAppearing) => {
+  const handleEntering = normalizedTransitionCallback((node, isAppearing) => {
     const wrapperHeight = wrapperRef.current ? wrapperRef.current.clientHeight : 0;
 
     const { duration: transitionDuration } = getTransitionProps(
@@ -103,26 +119,28 @@ const Collapse = React.forwardRef(function Collapse(props, ref) {
     if (onEntering) {
       onEntering(node, isAppearing);
     }
-  };
+  });
 
-  const handleEntered = (node, isAppearing) => {
+  const handleEntered = normalizedTransitionCallback((node, isAppearing) => {
     node.style.height = 'auto';
 
     if (onEntered) {
       onEntered(node, isAppearing);
     }
-  };
+  });
 
-  const handleExit = (node) => {
+  const handleExit = normalizedTransitionCallback((node) => {
     const wrapperHeight = wrapperRef.current ? wrapperRef.current.clientHeight : 0;
     node.style.height = `${wrapperHeight}px`;
 
     if (onExit) {
       onExit(node);
     }
-  };
+  });
 
-  const handleExiting = (node) => {
+  const handleExited = normalizedTransitionCallback(onExited);
+
+  const handleExiting = normalizedTransitionCallback((node) => {
     const wrapperHeight = wrapperRef.current ? wrapperRef.current.clientHeight : 0;
 
     const { duration: transitionDuration } = getTransitionProps(
@@ -146,9 +164,10 @@ const Collapse = React.forwardRef(function Collapse(props, ref) {
     if (onExiting) {
       onExiting(node);
     }
-  };
+  });
 
-  const addEndListener = (_, next) => {
+  const addEndListener = (nodeOrNext, maybeNext) => {
+    const next = enableStrictModeCompat ? nodeOrNext : maybeNext;
     if (timeout === 'auto') {
       timer.current = setTimeout(next, autoTransitionDuration.current || 0);
     }
@@ -161,8 +180,10 @@ const Collapse = React.forwardRef(function Collapse(props, ref) {
       onEntered={handleEntered}
       onEntering={handleEntering}
       onExit={handleExit}
+      onExited={handleExited}
       onExiting={handleExiting}
       addEndListener={addEndListener}
+      nodeRef={enableStrictModeCompat ? nodeRef : undefined}
       timeout={timeout === 'auto' ? null : timeout}
       {...other}
     >
@@ -180,7 +201,7 @@ const Collapse = React.forwardRef(function Collapse(props, ref) {
             minHeight: collapsedHeight,
             ...style,
           }}
-          ref={ref}
+          ref={handleRef}
           {...childProps}
         >
           <div className={classes.wrapper} ref={wrapperRef}>
@@ -220,6 +241,12 @@ Collapse.propTypes = {
    */
   component: PropTypes.elementType,
   /**
+   * Enable this prop if you encounter 'Function components cannot be given refs',
+   * use `unstable_createStrictModeTheme`,
+   * and can't forward the ref in the passed `Component`.
+   */
+  disableStrictModeCompat: PropTypes.bool,
+  /**
    * If `true`, the component will transition in.
    */
   in: PropTypes.bool,
@@ -239,6 +266,10 @@ Collapse.propTypes = {
    * @ignore
    */
   onExit: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onExited: PropTypes.func,
   /**
    * @ignore
    */

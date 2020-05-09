@@ -4,7 +4,11 @@ import { spy, stub, useFakeTimers } from 'sinon';
 import { createMount } from '@material-ui/core/test-utils';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import Slide, { setTranslateValue } from './Slide';
-import createMuiTheme from '../styles/createMuiTheme';
+import {
+  createMuiTheme,
+  ThemeProvider,
+  unstable_createMuiStrictModeTheme as createMuiStrictModeTheme,
+} from '@material-ui/core/styles';
 import { Transition } from 'react-transition-group';
 
 describe('<Slide />', () => {
@@ -16,8 +20,7 @@ describe('<Slide />', () => {
   };
 
   before(() => {
-    // StrictModeViolation: uses react-transition-group
-    mount = createMount({ strict: false });
+    mount = createMount({ strict: true });
   });
 
   after(() => {
@@ -404,5 +407,17 @@ describe('<Slide />', () => {
       );
       expect(wrapper.find('#with-slide').props().style.visibility).to.equal('hidden');
     });
+  });
+
+  it('has no StrictMode warnings in a StrictMode theme', () => {
+    mount(
+      <React.StrictMode>
+        <ThemeProvider theme={createMuiStrictModeTheme()}>
+          <Slide appear in>
+            <div />
+          </Slide>
+        </ThemeProvider>
+      </React.StrictMode>,
+    );
   });
 });

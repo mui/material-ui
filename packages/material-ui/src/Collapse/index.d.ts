@@ -1,2 +1,2 @@
-export { default, default as unstable_StrictModeCollapse } from './Collapse';
+export { default } from './Collapse';
 export * from './Collapse';

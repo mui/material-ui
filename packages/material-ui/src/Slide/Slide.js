@@ -75,9 +75,11 @@ const Slide = React.forwardRef(function Slide(props, ref) {
     direction = 'down',
     in: inProp,
     onEnter,
+    onEntered,
     onEntering,
     onExit,
     onExited,
+    onExiting,
     style,
     timeout = defaultTimeout,
     // eslint-disable-next-line react/prop-types
@@ -97,18 +99,22 @@ const Slide = React.forwardRef(function Slide(props, ref) {
   const handleRefIntermediary = useForkRef(children.ref, handleOwnRef);
   const handleRef = useForkRef(handleRefIntermediary, ref);
 
-  const handleEnter = (_, isAppearing) => {
-    const node = childrenRef.current;
+  const normalizedTransitionCallback = (callback) => (isAppearing) => {
+    if (callback) {
+      callback(childrenRef.current, isAppearing);
+    }
+  };
+
+  const handleEnter = normalizedTransitionCallback((node, isAppearing) => {
     setTranslateValue(direction, node);
     reflow(node);
 
     if (onEnter) {
       onEnter(node, isAppearing);
     }
-  };
+  });
 
-  const handleEntering = (_, isAppearing) => {
-    const node = childrenRef.current;
+  const handleEntering = normalizedTransitionCallback((node, isAppearing) => {
     const transitionProps = getTransitionProps(
       { timeout, style },
       {
@@ -131,10 +137,12 @@ const Slide = React.forwardRef(function Slide(props, ref) {
     if (onEntering) {
       onEntering(node, isAppearing);
     }
-  };
+  });
 
-  const handleExit = () => {
-    const node = childrenRef.current;
+  const handleEntered = normalizedTransitionCallback(onEntered);
+  const handleExiting = normalizedTransitionCallback(onExiting);
+
+  const handleExit = normalizedTransitionCallback((node) => {
     const transitionProps = getTransitionProps(
       { timeout, style },
       {
@@ -157,10 +165,9 @@ const Slide = React.forwardRef(function Slide(props, ref) {
     if (onExit) {
       onExit(node);
     }
-  };
+  });
 
-  const handleExited = () => {
-    const node = childrenRef.current;
+  const handleExited = normalizedTransitionCallback((node) => {
     // No need for transitions when the component is hidden
     node.style.webkitTransition = '';
     node.style.transition = '';
@@ -168,7 +175,7 @@ const Slide = React.forwardRef(function Slide(props, ref) {
     if (onExited) {
       onExited(node);
     }
-  };
+  });
 
   const updatePosition = React.useCallback(() => {
     if (childrenRef.current) {
@@ -205,10 +212,13 @@ const Slide = React.forwardRef(function Slide(props, ref) {
 
   return (
     <TransitionComponent
+      nodeRef={childrenRef}
       onEnter={handleEnter}
+      onEntered={handleEntered}
       onEntering={handleEntering}
       onExit={handleExit}
       onExited={handleExited}
+      onExiting={handleExiting}
       appear
       in={inProp}
       timeout={timeout}
@@ -253,6 +263,10 @@ Slide.propTypes = {
   /**
    * @ignore
    */
+  onEntered: PropTypes.func,
+  /**
+   * @ignore
+   */
   onEntering: PropTypes.func,
   /**
    * @ignore
@@ -262,6 +276,10 @@ Slide.propTypes = {
    * @ignore
    */
   onExited: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onExiting: PropTypes.func,
   /**
    * @ignore
    */

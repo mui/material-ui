@@ -28,9 +28,14 @@ const defaultTimeout = {
 const Zoom = React.forwardRef(function Zoom(props, ref) {
   const {
     children,
+    disableStrictModeCompat = false,
     in: inProp,
     onEnter,
+    onEntered,
+    onEntering,
     onExit,
+    onExited,
+    onExiting,
     style,
     timeout = defaultTimeout,
     // eslint-disable-next-line react/prop-types
@@ -39,9 +44,24 @@ const Zoom = React.forwardRef(function Zoom(props, ref) {
   } = props;
 
   const theme = useTheme();
-  const handleRef = useForkRef(children.ref, ref);
 
-  const handleEnter = (node, isAppearing) => {
+  const enableStrictModeCompat = theme.unstable_strictMode && !disableStrictModeCompat;
+  const nodeRef = React.useRef(null);
+  const foreignRef = useForkRef(children.ref, ref);
+  const handleRef = useForkRef(enableStrictModeCompat ? nodeRef : undefined, foreignRef);
+
+  const normalizedTransitionCallback = (callback) => (nodeOrAppearing, maybeAppearing) => {
+    if (callback) {
+      const [node, isAppearing] = enableStrictModeCompat
+        ? [nodeRef.current, nodeOrAppearing]
+        : [nodeOrAppearing, maybeAppearing];
+      callback(node, isAppearing);
+    }
+  };
+
+  const handleEntering = normalizedTransitionCallback(onEntering);
+
+  const handleEnter = normalizedTransitionCallback((node, isAppearing) => {
     reflow(node); // So the animation always start from the start.
 
     const transitionProps = getTransitionProps(
@@ -57,9 +77,13 @@ const Zoom = React.forwardRef(function Zoom(props, ref) {
     if (onEnter) {
       onEnter(node, isAppearing);
     }
-  };
+  });
 
-  const handleExit = (node) => {
+  const handleEntered = normalizedTransitionCallback(onEntered);
+
+  const handleExiting = normalizedTransitionCallback(onExiting);
+
+  const handleExit = normalizedTransitionCallback((node) => {
     const transitionProps = getTransitionProps(
       { style, timeout },
       {
@@ -73,14 +97,21 @@ const Zoom = React.forwardRef(function Zoom(props, ref) {
     if (onExit) {
       onExit(node);
     }
-  };
+  });
+
+  const handleExited = normalizedTransitionCallback(onExited);
 
   return (
     <TransitionComponent
       appear
       in={inProp}
+      nodeRef={enableStrictModeCompat ? nodeRef : undefined}
       onEnter={handleEnter}
+      onEntered={handleEntered}
+      onEntering={handleEntering}
       onExit={handleExit}
+      onExited={handleExited}
+      onExiting={handleExiting}
       timeout={timeout}
       {...other}
     >
@@ -111,6 +142,12 @@ Zoom.propTypes = {
    */
   children: PropTypes.element,
   /**
+   * Enable this prop if you encounter 'Function components cannot be given refs',
+   * use `unstable_createStrictModeTheme`,
+   * and can't forward the ref in the child component.
+   */
+  disableStrictModeCompat: PropTypes.bool,
+  /**
    * If `true`, the component will transition in.
    */
   in: PropTypes.bool,
@@ -121,7 +158,23 @@ Zoom.propTypes = {
   /**
    * @ignore
    */
+  onEntered: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onEntering: PropTypes.func,
+  /**
+   * @ignore
+   */
   onExit: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onExited: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onExiting: PropTypes.func,
   /**
    * @ignore
    */

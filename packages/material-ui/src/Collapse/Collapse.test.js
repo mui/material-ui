@@ -5,7 +5,11 @@ import { createClientRender } from 'test/utils/createClientRender';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
 import Collapse from './Collapse';
-import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import {
+  ThemeProvider,
+  createMuiTheme,
+  unstable_createMuiStrictModeTheme as createMuiStrictModeTheme,
+} from '@material-ui/core/styles';
 import { Transition } from 'react-transition-group';
 
 describe('<Collapse />', () => {
@@ -268,5 +272,28 @@ describe('<Collapse />', () => {
 
       expect(handleExiting.args[0][0].style.height).to.equal(collapsedHeight);
     });
+  });
+
+  it('has no StrictMode warnings in a StrictMode theme', () => {
+    mount(
+      <React.StrictMode>
+        <ThemeProvider theme={createMuiStrictModeTheme()}>
+          <Collapse appear in>
+            Hello, Dave!
+          </Collapse>
+        </ThemeProvider>
+      </React.StrictMode>,
+    );
+  });
+
+  it('can fallback to findDOMNode in a StrictMode theme', () => {
+    const Div = () => <div />;
+    mount(
+      <ThemeProvider theme={createMuiStrictModeTheme()}>
+        <Collapse appear component={Div} in disableStrictModeCompat>
+          Hello, Dave!
+        </Collapse>
+      </ThemeProvider>,
+    );
   });
 });

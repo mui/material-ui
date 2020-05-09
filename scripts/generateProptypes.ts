@@ -75,6 +75,14 @@ const useExternalDocumentation: Record<string, string[]> = {
     'value',
   ],
 };
+const transitionCallbacks = [
+  'onEnter',
+  'onEntered',
+  'onEntering',
+  'onExit',
+  'onExiting',
+  'onExited',
+];
 /**
  * These are components that use props implemented by external components.
  * Those props have their own JSDOC which we don't want to emit in our docs
@@ -83,13 +91,13 @@ const useExternalDocumentation: Record<string, string[]> = {
  * since they will be fetched dynamically.
  */
 const ignoreExternalDocumentation: Record<string, string[]> = {
-  Collapse: ['onEnter', 'onEntered', 'onEntering', 'onExit', 'onExiting'],
-  Fade: ['onEnter', 'onExit'],
-  Grow: ['onEnter', 'onExit'],
+  Collapse: transitionCallbacks,
+  Fade: transitionCallbacks,
+  Grow: transitionCallbacks,
   InputBase: ['aria-describedby'],
   Menu: ['PaperProps'],
-  Slide: ['onEnter', 'onEntering', 'onExit', 'onExited'],
-  Zoom: ['onEnter', 'onExit'],
+  Slide: transitionCallbacks,
+  Zoom: transitionCallbacks,
 };
 
 const tsconfig = ttp.loadConfig(path.resolve(__dirname, '../tsconfig.json'));
