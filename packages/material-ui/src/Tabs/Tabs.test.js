@@ -43,7 +43,7 @@ describe('<Tabs />', () => {
   // The test fails on Safari with just:
   //
   // container.scrollLeft = 200;
-  // assert.strictEqual(container.scrollLeft, 200); 💥
+  // expect(container.scrollLeft).to.equal(200); 💥
   if (isSafari) {
     return;
   }

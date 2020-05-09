@@ -57,7 +57,7 @@ describe('until', () => {
     ).to.equal(true);
   });
 
-  it('throws when assert.strictEqual called on an empty wrapper', () => {
+  it('throws when until called on an empty wrapper', () => {
     expect(() => {
       until.call(shallow(<Div />).find('Foo'), 'div');
     }).to.throw(Error);

@@ -47,20 +47,6 @@ describe('style', () => {
         backgroundColor: 'red',
       },
     });
-
-    // const output3 = bgcolor({
-    //   theme: {},
-    //   bgcolor: 'blue',
-    //   sm: {
-    //     bgcolor: 'red',
-    //   },
-    // });
-    // assert.deepEqual(output3, {
-    //   backgroundColor: 'blue',
-    //   '@media (min-width:600px)': {
-    //     backgroundColor: 'red',
-    //   },
-    // });
   });
 
   const boxShadow = style({

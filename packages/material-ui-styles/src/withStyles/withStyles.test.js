@@ -57,7 +57,7 @@ describe('withStyles', () => {
 
       const ref = React.createRef();
       mount(<StyledTarget ref={ref} />);
-      assert.instanceOf(ref.current, TargetComponent);
+      expect(ref.current instanceof TargetComponent).to.equal(true);
     });
 
     it('forwards refs to React.forwardRef types', () => {
@@ -69,33 +69,6 @@ describe('withStyles', () => {
       mount(<StyledTarget ref={ref} />);
       expect(ref.current.nodeName).to.equal('DIV');
     });
-
-    // describe('innerRef', () => {
-    //   beforeEach(() => {
-    //     consoleErrorMock.spy();
-    //     PropTypes.resetWarningCache();
-    //   });
-
-    //   afterEach(() => {
-    //     consoleErrorMock.reset();
-    //   });
-
-    //   it('is deprecated', () => {
-    //     const ThemedDiv = withStyles({})('div');
-
-    //     mount(
-    //       <React.Fragment>
-    //         <ThemedDiv innerRef={React.createRef()} />
-    //       </React.Fragment>,
-    //     );
-
-    //     assert.strictEqual(consoleErrorMock.callCount(), 1);
-    //     assert.include(
-    //       consoleErrorMock.messages()[0],
-    //       'Warning: Failed prop type: Material-UI: The `innerRef` prop is deprecated',
-    //     );
-    //   });
-    // });
   });
 
   it('should forward the props', () => {
