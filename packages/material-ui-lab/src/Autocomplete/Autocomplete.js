@@ -584,7 +584,7 @@ Autocomplete.propTypes = {
   /**
    * If `true`, the input can't be cleared.
    */
-  disableClearable: PropTypes.bool,
+  disableClearable: PropTypes.any,
   /**
    * If `true`, the popup won't close when a value is selected.
    */
@@ -625,7 +625,7 @@ Autocomplete.propTypes = {
   /**
    * If `true`, the Autocomplete is free solo, meaning that the user input is not bound to provided options.
    */
-  freeSolo: PropTypes.bool,
+  freeSolo: PropTypes.any,
   /**
    * If `true`, the input will take up the full width of its container.
    */
