@@ -91,6 +91,29 @@ Tab labels may be either all icons or all text.
 
 {{"demo": "pages/components/tabs/IconLabelTabs.js", "bg": true}}
 
+## Accessibility
+
+(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#tabpanel)
+
+This section lists necessary steps to provide necessary information for assistive technology:
+
+1. label `Tabs` via `aria-label` or `aria-labelledby`
+2. `Tab`s need to be connected to their
+corresponding `[role="tabpanel"]` by setting the correct `id`, `aria-controls` and `aria-labelledby`
+
+An example for the current implementation can be found in the demos on this page. We've also published an experimental API in `@material-ui/lab` that does not require
+extra work.
+
+### Keyboard navigation
+
+The components implement keyboard navigation using the "manual activation" behavior. If you want to switch to the
+"selection automatically follows focus" behavior you have pass `selectionFollowsFocus` to the `Tabs` component. The WAI-ARIA authoring practices have a detailed guide on [how to decide then to make selection automatically follow focus](https://www.w3.org/TR/wai-aria-practices/#kbd_selection_follows_focus).
+
+### Demo
+
+{{"demo": "pages/components/tabs/AccessibleTabs.js", "bg": true}}
+
+
 ## Experimental Tabs API
 
 `@material-ui/lab` offers utility components that inject props to implement accessible tabs
