@@ -35,18 +35,19 @@ const useStyles = makeStyles((theme) => ({
     listStyle: 'none',
   },
   item: {
-    fontSize: 13,
+    fontSize: '.8125rem',
+    lineHeight: 2,
     // paddingLeft: theme.spacing(1) where `border` is used as the "active" marker
-    paddingLeft: theme.spacing(0.5),
-    borderLeft: `${theme.spacing(0.5)}px solid transparent`,
+    paddingLeft: Math.max(0, theme.spacing(1) - 4),
+    borderLeft: `4px solid transparent`,
     boxSizing: 'border-box',
     '&:hover': {
-      borderLeft: `${theme.spacing(0.5)}px solid ${
+      borderLeft: `4px solid ${
         theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[900]
       }`,
     },
     '&$active,&:active': {
-      borderLeft: `${theme.spacing(0.5)}px solid ${
+      borderLeft: `4px solid ${
         theme.palette.type === 'light' ? theme.palette.grey[300] : theme.palette.grey[800]
       }`,
     },
