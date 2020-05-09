@@ -638,9 +638,6 @@ const useStyles = makeStyles(
       [theme.breakpoints.up('sm')]: {
         borderRadius: theme.shape.borderRadius,
       },
-      '&:focus': {
-        outline: `2px dashed ${theme.palette.text.primary}`,
-      },
     },
     /* Isolate the demo with an outline. */
     demoBgOutlined: {
