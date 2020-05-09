@@ -141,6 +141,7 @@ The component used in the `component` prop of the following components need to f
 
 - [`Collapse`](/api/Collapse/)
 
+Otherwise you'll encounter `Error: Function component cannot be given refs`.
 See also: [Composition: Caveat with refs](/guides/composition/#caveat-with-refs)
 
 ##### `children` prop
@@ -163,11 +164,35 @@ function Tabs() {
 }
 ```
 
-Otherwise the component will not animate properly and you'll encounter the warning that "Function components cannot be given refs".
+Otherwise the component will not animate properly and you'll encounter the warning that `Function components cannot be given refs`.
 
 #### Disable StrictMode compatibility partially
 
-If you cannot apply the changes from previous sections (e.g. because it's a third party library) you can pass the `disableStrictModeCompat` prop to the components listed previously.
+If you still see `Error: Function component cannot be given refs` then you're probably using a third-party component for which the previously mentioned fixes aren't applicable.
+You can fix this by applying `disableStrictModeCompat`. You'll see deprecation warnings again but these are only warnings while
+`Function component cannot be given refs` actually breaks the documented behavior of our components.
+
+````diff
+import { unstable_createMuiStrictModeTheme } from '@material-ui/core/styles';
+
+function ThirdPartyTabPanel(props) {
+  return <div {...props} role="tabpanel">
+}
+
+function Fade() {
+  const theme = unstable_createMuiStrictModeTheme();
+
+  return (
+    <React.StrictMode>
+      <ThemeProvider theme={unstable_createMuiStrictModeTheme()}>
+-        <Fade>
++        <Fade disableStrictModeCompat>
+          <ThirdPartyTabPanel />
+        </Fade>
+      </ThemeProvider>
+    </React.StrictMode>,
+  );
+}
 
 #### Arguments
 
