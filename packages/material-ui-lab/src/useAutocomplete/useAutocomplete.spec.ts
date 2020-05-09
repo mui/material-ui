@@ -51,6 +51,24 @@ useAutocomplete({
   },
 });
 
+// value type is inferred correctly when value is set
+useAutocomplete({
+  options: ['1', '2', '3'],
+  onChange(event, value) {
+    // $ExpectType string | null
+    value;
+  },
+  filterOptions(options) {
+    // $ExpectType string[]
+    return options;
+  },
+  getOptionLabel(option) {
+    // $ExpectType string
+    return option;
+  },
+  value: null,
+});
+
 // Multiple selection mode
 
 // value type is inferred correctly for simple type
