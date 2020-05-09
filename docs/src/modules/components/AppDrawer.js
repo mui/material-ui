@@ -163,7 +163,7 @@ function AppDrawer(props) {
       </div>
       <Divider />
       <Box mx={3} my={2}>
-        <DiamondSponsors />
+        <DiamondSponsors spot="drawer" />
       </Box>
       {renderNavItems({ props, pages, activePage, depth: 0, t })}
     </PersistScroll>
