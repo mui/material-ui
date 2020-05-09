@@ -18,9 +18,9 @@ export interface CollapseProps extends StandardProps<TransitionProps, CollapseCl
    */
   component?: React.ElementType<TransitionProps>;
   /**
-   * Enable this if you're using if you see 'Function components cannot be given refs',
+   * Enable this prop if you encounter 'Function components cannot be given refs',
    * use `unstable_createStrictModeTheme`,
-   * and can't forward the ref in your child component.
+   * and can't forward the ref in the passed `Component`.
    */
   disableStrictModeCompat?: boolean;
   /**
