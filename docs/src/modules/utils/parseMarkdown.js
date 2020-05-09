@@ -188,13 +188,18 @@ ${headers.components
               .trim();
             const hash = textToHash(headingText, headingHashes);
 
+            // enable splitting of long words from function name + first arg name
+            // Closing parens are less interesting since this would only allow breaking one character earlier.
+            // Applying the same mechanism would also allow breaking of non-function signatures like "Community help (free)".
+            // To detect that we enabled breaking of open/closing parens we'd need a context-sensitive parser.
+            const displayText = headingText.replace(/([^\s]\()/g, '$1&#8203;');
             /**
              * create a nested structure with 2 levels starting with level 2 e.g.
              * [{...level2, children: [level3, level3, level3]}, level2]
              */
             if (level === 2) {
               toc.push({
-                text: headingText,
+                text: displayText,
                 level,
                 hash,
                 children: [],
@@ -205,7 +210,7 @@ ${headers.components
               }
 
               toc[toc.length - 1].children.push({
-                text: headingText,
+                text: displayText,
                 level,
                 hash,
               });

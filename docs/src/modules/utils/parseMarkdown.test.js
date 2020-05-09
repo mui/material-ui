@@ -61,5 +61,48 @@ describe('parseMarkdown', () => {
         },
       ]);
     });
+
+    it('enables word-break for function signatures', () => {
+      const markdown = `
+# Theming
+## API
+### responsiveFontSizes(theme, options) => theme
+### createMuiTheme(options, ...args) => theme
+`;
+      // mock require.context
+      function requireRaw() {
+        return markdown;
+      }
+      requireRaw.keys = () => ['index.md'];
+
+      const {
+        docs: {
+          en: { toc },
+        },
+      } = prepareMarkdown({
+        pageFilename: 'test',
+        requireRaw,
+      });
+
+      expect(toc).to.have.deep.ordered.members([
+        {
+          children: [
+            {
+              hash: 'responsivefontsizes-theme-options-theme',
+              level: 3,
+              text: 'responsiveFontSizes(&#8203;theme, options) =&gt; theme',
+            },
+            {
+              hash: 'createmuitheme-options-args-theme',
+              level: 3,
+              text: 'createMuiTheme(&#8203;options, ...args) =&gt; theme',
+            },
+          ],
+          hash: 'api',
+          level: 2,
+          text: 'API',
+        },
+      ]);
+    });
   });
 });
