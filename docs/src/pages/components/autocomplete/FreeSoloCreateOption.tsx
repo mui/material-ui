@@ -11,7 +11,19 @@ export default function FreeSoloCreateOption() {
   return (
     <Autocomplete
       value={value}
-      onChange={(event: any, newValue: FilmOptionType | null) => {
+      onChange={(event: any, newValue) => {
+        if (newValue === null) {
+          setValue(newValue);
+          return;
+        }
+
+        if (typeof newValue === 'string') {
+          setValue({
+            title: newValue,
+          });
+          return;
+        }
+
         // Create a new value from the user input
         if (newValue && newValue.inputValue) {
           setValue({
@@ -19,11 +31,9 @@ export default function FreeSoloCreateOption() {
           });
           return;
         }
-
-        setValue(newValue);
       }}
       filterOptions={(options, params) => {
-        const filtered = filter(options, params) as FilmOptionType[];
+        const filtered = filter(options, params);
 
         // Suggest the creation of a new value
         if (params.inputValue !== '') {
@@ -39,7 +49,7 @@ export default function FreeSoloCreateOption() {
       clearOnBlur
       handleHomeEndKeys
       id="free-solo-with-text-demo"
-      options={top100Films as FilmOptionType[]}
+      options={top100Films}
       getOptionLabel={(option) => {
         // Value selected with enter, right from the input
         if (typeof option === 'string') {
@@ -69,7 +79,7 @@ interface FilmOptionType {
 }
 
 // Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
-const top100Films = [
+const top100Films: FilmOptionType[] = [
   { title: 'The Shawshank Redemption', year: 1994 },
   { title: 'The Godfather', year: 1972 },
   { title: 'The Godfather: Part II', year: 1974 },

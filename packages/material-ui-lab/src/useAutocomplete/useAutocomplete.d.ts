@@ -22,7 +22,7 @@ export type FreeSoloValueMapping<T> = T extends true ? string : never;
 
 export type TValue<T, TMultiple, TDisableClearable, TFreeSolo> = TMultiple extends undefined | false
   ? TDisableClearable extends true
-    ? T | FreeSoloValueMapping<TFreeSolo>
+    ? NonNullable<T | FreeSoloValueMapping<TFreeSolo>>
     : T | null | FreeSoloValueMapping<TFreeSolo>
   : Array<T | FreeSoloValueMapping<TFreeSolo>>;
 
