@@ -29,7 +29,6 @@ export default function FreeSoloCreateOption() {
           setValue({
             title: newValue.inputValue,
           });
-          return;
         }
       }}
       filterOptions={(options, params) => {
