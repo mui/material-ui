@@ -179,12 +179,12 @@ function ThirdPartyTabPanel(props) {
   return <div {...props} role="tabpanel">
 }
 
-function Fade() {
-  const theme = unstable_createMuiStrictModeTheme();
+const theme = unstable_createMuiStrictModeTheme();
 
+function Fade() {
   return (
     <React.StrictMode>
-      <ThemeProvider theme={unstable_createMuiStrictModeTheme()}>
+      <ThemeProvider theme={theme}>
 -        <Fade>
 +        <Fade disableStrictModeCompat>
           <ThirdPartyTabPanel />
@@ -209,12 +209,12 @@ function Fade() {
 ```js
 import { unstable_createMuiStrictModeTheme } from '@material-ui/core/styles';
 
-function App() {
-  const theme = unstable_createMuiStrictModeTheme();
+const theme = unstable_createMuiStrictModeTheme();
 
+function App() {
   return (
     <React.StrictMode>
-      <ThemeProvider theme={unstable_createMuiStrictModeTheme()}>
+      <ThemeProvider theme={theme}>
         <LandingPage />
       </ThemeProvider>
     </React.StrictMode>,
