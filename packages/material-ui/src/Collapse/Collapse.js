@@ -40,7 +40,7 @@ export const styles = (theme) => ({
  * [Vertical Stepper](/components/steppers/#vertical-stepper) StepContent component.
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
-const Collapse = React.forwardRef(function Collapse(props, forwardedRef) {
+const Collapse = React.forwardRef(function Collapse(props, ref) {
   const {
     children,
     classes,
@@ -76,7 +76,7 @@ const Collapse = React.forwardRef(function Collapse(props, forwardedRef) {
 
   const enableStrictModeCompat = theme.unstable_strictMode && !disableStrictModeCompat;
   const nodeRef = React.useRef(null);
-  const ref = useForkRef(forwardedRef, enableStrictModeCompat ? nodeRef : undefined);
+  const handleRef = useForkRef(ref, enableStrictModeCompat ? nodeRef : undefined);
 
   const normalizedTransitionCallback = (callback) => (nodeOrAppearing, maybeAppearing) => {
     if (callback) {
@@ -201,7 +201,7 @@ const Collapse = React.forwardRef(function Collapse(props, forwardedRef) {
             minHeight: collapsedHeight,
             ...style,
           }}
-          ref={ref}
+          ref={handleRef}
           {...childProps}
         >
           <div className={classes.wrapper} ref={wrapperRef}>
