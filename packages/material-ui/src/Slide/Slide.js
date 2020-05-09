@@ -261,9 +261,7 @@ Slide.propTypes = {
    */
   onEnter: PropTypes.func,
   /**
-   * Callback fired after the "entered" status is applied. An extra parameter
-   * isAppearing is supplied to indicate if the enter stage is occurring on
-   * the initial mount
+   * @ignore
    */
   onEntered: PropTypes.func,
   /**
@@ -279,7 +277,7 @@ Slide.propTypes = {
    */
   onExited: PropTypes.func,
   /**
-   * Callback fired after the "exiting" status is applied.
+   * @ignore
    */
   onExiting: PropTypes.func,
   /**

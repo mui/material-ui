@@ -30,8 +30,6 @@ It uses [react-transition-group](https://github.com/reactjs/react-transition-gro
 | <span class="prop-name">children</span> | <span class="prop-type">element</span> |  | A single child content element.<br>⚠️ [Needs to be able to hold a ref](/guides/composition/#caveat-with-refs). |
 | <span class="prop-name">direction</span> | <span class="prop-type">'down'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right'<br>&#124;&nbsp;'up'</span> | <span class="prop-default">'down'</span> | Direction the child node will enter from. |
 | <span class="prop-name">in</span> | <span class="prop-type">bool</span> |  | If `true`, show the component; triggers the enter or exit animation. |
-| <span class="prop-name">onEntered</span> | <span class="prop-type">func</span> |  | Callback fired after the "entered" status is applied. An extra parameter isAppearing is supplied to indicate if the enter stage is occurring on the initial mount |
-| <span class="prop-name">onExiting</span> | <span class="prop-type">func</span> |  | Callback fired after the "exiting" status is applied. |
 | <span class="prop-name">timeout</span> | <span class="prop-type">number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }</span> | <span class="prop-default">{  enter: duration.enteringScreen,  exit: duration.leavingScreen,}</span> | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object. |
 
 The `ref` is forwarded to the root element.

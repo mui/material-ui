@@ -267,7 +267,7 @@ Collapse.propTypes = {
    */
   onExit: PropTypes.func,
   /**
-   * Callback fired after the "exited" status is applied.
+   * @ignore
    */
   onExited: PropTypes.func,
   /**
