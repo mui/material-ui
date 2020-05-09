@@ -89,3 +89,58 @@ useAutocomplete({
   multiple: true,
   onChange(event, value: Person[]) {},
 });
+
+// Disable clearable
+
+useAutocomplete({
+  options: ['1', '2', '3'],
+  disableClearable: true,
+  onChange(event, value) {
+    // $ExpectType string
+    value;
+  },
+});
+
+useAutocomplete({
+  options: ['1', '2', '3'],
+  disableClearable: false,
+  onChange(event, value) {
+    // $ExpectType string | null
+    value;
+  },
+});
+
+useAutocomplete({
+  options: ['1', '2', '3'],
+  onChange(event, value) {
+    // $ExpectType string | null
+    value;
+  },
+});
+
+// Free solo
+useAutocomplete<Person, undefined, undefined, true>({
+  options: persons,
+  onChange(event, value) {
+    // $ExpectType string | Person | null
+    value;
+  },
+});
+
+useAutocomplete<Person, undefined, true, true>({
+  options: persons,
+  disableClearable: true,
+  onChange(event, value) {
+    // $ExpectType string | Person
+    value;
+  },
+});
+
+useAutocomplete<Person, true, undefined, true>({
+  options: persons,
+  multiple: true,
+  onChange(event, value) {
+    // $ExpectType (string | Person)[]
+    value;
+  },
+});

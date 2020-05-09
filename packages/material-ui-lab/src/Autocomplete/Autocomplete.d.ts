@@ -8,7 +8,7 @@ import {
   AutocompleteInputChangeReason,
   createFilterOptions,
   UseAutocompleteProps,
-  TMultipleConstraint,
+  TBooleanConstraint,
 } from '../useAutocomplete';
 export {
   AutocompleteChangeDetails,
@@ -44,8 +44,13 @@ export interface RenderInputParams {
   inputProps: object;
 }
 
-export interface AutocompleteProps<T, TMultiple extends TMultipleConstraint>
-  extends UseAutocompleteProps<T, TMultiple>,
+export interface AutocompleteProps<
+  T,
+  TMultiple extends TBooleanConstraint,
+  TDisableClearable extends TBooleanConstraint,
+  TFreeSolo extends TBooleanConstraint
+>
+  extends UseAutocompleteProps<T, TMultiple, TDisableClearable, TFreeSolo>,
     StandardProps<
       React.HTMLAttributes<HTMLDivElement>,
       AutocompleteClassKey,
@@ -211,6 +216,9 @@ export type AutocompleteClassKey =
  *
  * - [Autocomplete API](https://material-ui.com/api/autocomplete/)
  */
-export default function Autocomplete<T, TMultiple extends TMultipleConstraint = undefined>(
-  props: AutocompleteProps<T, TMultiple>
-): JSX.Element;
+export default function Autocomplete<
+  T,
+  TMultiple extends TBooleanConstraint = undefined,
+  TDisableClearable extends TBooleanConstraint = undefined,
+  TFreeSolo extends TBooleanConstraint = undefined
+>(props: AutocompleteProps<T, TMultiple, TDisableClearable, TFreeSolo>): JSX.Element;

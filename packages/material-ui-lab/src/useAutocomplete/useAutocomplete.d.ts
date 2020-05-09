@@ -18,11 +18,22 @@ export function createFilterOptions<T>(
   config?: CreateFilterOptionsConfig<T>
 ): (options: T[], state: FilterOptionsState<T>) => T[];
 
-export type TValue<T, TMultiple> = TMultiple extends undefined | false ? T | null : T[];
+export type FreeSoloValueMapping<T> = T extends true ? string : never;
 
-export type TMultipleConstraint = boolean | undefined;
+export type TValue<T, TMultiple, TDisableClearable, TFreeSolo> = TMultiple extends undefined | false
+  ? TDisableClearable extends true
+    ? T | FreeSoloValueMapping<TFreeSolo>
+    : T | null | FreeSoloValueMapping<TFreeSolo>
+  : Array<T | FreeSoloValueMapping<TFreeSolo>>;
 
-export interface UseAutocompleteProps<T, TMultiple extends TMultipleConstraint> {
+export type TBooleanConstraint = boolean | undefined;
+
+export interface UseAutocompleteProps<
+  T,
+  TMultiple extends TBooleanConstraint,
+  TDisableClearable extends TBooleanConstraint,
+  TFreeSolo extends TBooleanConstraint
+> {
   /**
    * If `true`, the portion of the selected suggestion that has not been typed by the user,
    * known as the completion string, appears inline after the input cursor in the textbox.
@@ -72,7 +83,7 @@ export interface UseAutocompleteProps<T, TMultiple extends TMultipleConstraint> 
   /**
    * If `true`, the input can't be cleared.
    */
-  disableClearable?: boolean;
+  disableClearable?: TDisableClearable;
   /**
    * If `true`, the popup won't close when a value is selected.
    */
@@ -217,11 +228,11 @@ export interface UseAutocompleteProps<T, TMultiple extends TMultipleConstraint> 
    * The value must have reference equality with the option in order to be selected.
    * You can customize the equality behavior with the `getOptionSelected` prop.
    */
-  value?: TValue<T, TMultiple>;
+  value?: TValue<T, TMultiple, TDisableClearable, TFreeSolo>;
   /**
    * The default input value. Use when the component is not controlled.
    */
-  defaultValue?: TValue<T, TMultiple>;
+  defaultValue?: TValue<T, TMultiple, TDisableClearable, TFreeSolo>;
   /**
    * Callback fired when the value changes.
    *
@@ -231,7 +242,7 @@ export interface UseAutocompleteProps<T, TMultiple extends TMultipleConstraint> 
    */
   onChange?: (
     event: React.ChangeEvent<{}>,
-    value: TValue<T, TMultiple>,
+    value: TValue<T, TMultiple, TDisableClearable, TFreeSolo>,
     reason: AutocompleteChangeReason,
     details?: AutocompleteChangeDetails<T>
   ) => void;
@@ -251,8 +262,13 @@ export interface AutocompleteChangeDetails<T = string> {
 export type AutocompleteCloseReason = 'toggleInput' | 'escape' | 'select-option' | 'blur';
 export type AutocompleteInputChangeReason = 'input' | 'reset' | 'clear';
 
-export default function useAutocomplete<T, TMultiple extends TMultipleConstraint = undefined>(
-  props: UseAutocompleteProps<T, TMultiple>
+export default function useAutocomplete<
+  T,
+  TMultiple extends TBooleanConstraint = undefined,
+  TDisableClearable extends TBooleanConstraint = undefined,
+  TFreeSolo extends TBooleanConstraint = undefined
+>(
+  props: UseAutocompleteProps<T, TMultiple, TDisableClearable, TFreeSolo>
 ): {
   getRootProps: () => {};
   getInputProps: () => {};
@@ -264,7 +280,7 @@ export default function useAutocomplete<T, TMultiple extends TMultipleConstraint
   getOptionProps: ({ option, index }: { option: T; index: number }) => {};
   id: string;
   inputValue: string;
-  value: TValue<T, TMultiple>;
+  value: TValue<T, TMultiple, TDisableClearable, TFreeSolo>;
   dirty: boolean;
   popupOpen: boolean;
   focused: boolean;
