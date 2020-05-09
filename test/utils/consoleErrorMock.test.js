@@ -12,8 +12,7 @@ describe('consoleErrorMock()', () => {
 
   describe('args', () => {
     it('was removed but throws a descriptive error', () => {
-      expect(
-        () => consoleErrorMock.args()).to.throw(
+      expect(() => consoleErrorMock.args()).to.throw(
         'args() was removed in favor of messages(). Use messages() to match against the actual error message that will be displayed in the console.',
       );
     });

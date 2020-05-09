@@ -1,4 +1,4 @@
-import { expect, assert } from 'chai';
+import { expect } from 'chai';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { stub } from 'sinon';

@@ -149,7 +149,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     let newValue;
 
     if (multiple) {
-      newValue = Array.isArray(value) ? [...value] : [];
+      newValue = Array.isArray(value) ? value.slice() : [];
       const itemIndex = value.indexOf(child.props.value);
       if (itemIndex === -1) {
         newValue.push(child.props.value);

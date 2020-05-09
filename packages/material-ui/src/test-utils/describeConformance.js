@@ -47,9 +47,7 @@ function testClassName(element, getOptions) {
 
     const wrapper = mount(React.cloneElement(element, { className }));
 
-    expect(
-      findOutermostIntrinsic(wrapper).hasClass(className)
-    ).to.equal(
+    expect(findOutermostIntrinsic(wrapper).hasClass(className)).to.equal(
       true,
       'does have a custom `className`',
     );
