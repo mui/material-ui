@@ -38,7 +38,7 @@
     "@zeit/next-css": "^1.0.1",
     "@zeit/next-mdx": "^1.2.0",
     "@zeit/next-typescript": "^1.1.1",
-    "babel-plugin-module-resolver": "^3.2.0",
+    "babel-plugin-module-resolver": "^4.0.0",
     "clsx": "^1.0.2",
     "date-fns": "^2.12.0",
     "dayjs": "^1.8.22",
