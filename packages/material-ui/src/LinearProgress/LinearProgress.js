@@ -57,13 +57,13 @@ export const styles = (theme) => {
     dashedColorPrimary: {
       backgroundImage: `radial-gradient(${backgroundPrimary} 0%, ${backgroundPrimary} 16%, transparent 42%)`,
       backgroundSize: '10px 10px',
-      backgroundPosition: '0px -23px',
+      backgroundPosition: '0 -23px',
     },
     /* Styles applied to the additional bar element if `variant="buffer"` and `color="secondary"`. */
     dashedColorSecondary: {
       backgroundImage: `radial-gradient(${backgroundSecondary} 0%, ${backgroundSecondary} 16%, transparent 42%)`,
       backgroundSize: '10px 10px',
-      backgroundPosition: '0px -23px',
+      backgroundPosition: '0 -23px',
     },
     /* Styles applied to the layered bar1 and bar2 elements. */
     bar: {
@@ -145,11 +145,11 @@ export const styles = (theme) => {
     '@keyframes buffer': {
       '0%': {
         opacity: 1,
-        backgroundPosition: '0px -23px',
+        backgroundPosition: '0 -23px',
       },
       '50%': {
         opacity: 0,
-        backgroundPosition: '0px -23px',
+        backgroundPosition: '0 -23px',
       },
       '100%': {
         opacity: 1,

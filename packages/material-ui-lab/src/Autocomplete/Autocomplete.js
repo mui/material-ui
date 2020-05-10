@@ -169,7 +169,7 @@ export const styles = (theme) => ({
   listbox: {
     listStyle: 'none',
     margin: 0,
-    padding: '8px 0px',
+    padding: '8px 0',
     maxHeight: '40vh',
     overflow: 'auto',
   },

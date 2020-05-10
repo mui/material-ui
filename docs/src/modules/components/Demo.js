@@ -679,7 +679,7 @@ const useStyles = makeStyles(
       '& pre': {
         overflow: 'auto',
         lineHeight: 1.5,
-        margin: '0px !important',
+        margin: '0 !important',
         maxHeight: 1000,
       },
     },
