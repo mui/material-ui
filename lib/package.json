@@ -50,7 +50,7 @@
     "@date-io/moment": "^2.6.0",
     "clsx": "^1.0.2",
     "prop-types": "^15.7.2",
-    "react-transition-group": "^4.0.0",
+    "react-transition-group": "^4.4.1",
     "rifm": "^0.11.0"
   },
   "scripts": {
