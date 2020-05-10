@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
   },
   contents: {
     marginTop: theme.spacing(2),
-    paddingLeft: theme.spacing(1),
+    paddingLeft: 8,
   },
   ul: {
     padding: 0,
@@ -36,20 +36,16 @@ const useStyles = makeStyles((theme) => ({
   },
   item: {
     fontSize: '.8125rem',
-    lineHeight: 2,
-    // paddingLeft: theme.spacing(1) where `border` is used as the "active" marker
-    paddingLeft: Math.max(0, theme.spacing(1) - 4),
-    borderLeft: `4px solid transparent`,
+    padding: `4px 0 4px 5px`,
+    borderLeft: `3px solid transparent`,
     boxSizing: 'border-box',
     '&:hover': {
-      borderLeft: `4px solid ${
-        theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[900]
-      }`,
+      borderLeftColor:
+        theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[900],
     },
     '&$active,&:active': {
-      borderLeft: `4px solid ${
-        theme.palette.type === 'light' ? theme.palette.grey[300] : theme.palette.grey[800]
-      }`,
+      borderLeftColor:
+        theme.palette.type === 'light' ? theme.palette.grey[300] : theme.palette.grey[800],
     },
   },
   secondaryItem: {
