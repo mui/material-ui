@@ -9,7 +9,11 @@ export interface TreeItemProps
    */
   collapseIcon?: React.ReactNode;
   /**
-   * The icon displayed next to a end node.
+   * Props to pass to TreeItemContent
+   */
+  contentProps?: object;
+  /**
+   * The icon displayed next to an end node.
    */
   endIcon?: React.ReactNode;
   /**
@@ -21,21 +25,17 @@ export interface TreeItemProps
    */
   icon?: React.ReactNode;
   /**
-   * `onClick` handler for the icon container. Call `event.preventDefault()` to prevent `onNodeToggle` from being called.
-   */
-  onIconClick?: React.MouseEventHandler;
-  /**
    * The tree node label.
    */
   label?: React.ReactNode;
   /**
-   * `onClick` handler for the label container. Call `event.preventDefault()` to prevent `onNodeToggle` from being called.
-   */
-  onLabelClick?: React.MouseEventHandler;
-  /**
    * The id of the node.
    */
   nodeId: string;
+  /**
+   * The icon displayed next to a parent node.
+   */
+  parentIcon?: React.ReactNode;
   /**
    * The component used for the transition.
    * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.

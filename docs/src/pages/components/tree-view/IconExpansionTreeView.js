@@ -1,9 +1,20 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import TreeItemIcon from './TreeItemIcon';
+import PropTypes from 'prop-types';
+import { makeStyles, withStyles, fade } from '@material-ui/core/styles';
+import TreeView from '@material-ui/lab/TreeView';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import TreeItem, { TreeItemIcon } from '@material-ui/lab/TreeItem';
 import Typography from '@material-ui/core/Typography';
-import { fade, withStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles({
+  root: {
+    height: 240,
+    flexGrow: 1,
+    maxWidth: 400,
+  },
+});
 
 const styles = (theme) => ({
   root: {
@@ -61,22 +72,12 @@ const TreeItemContent = React.forwardRef(function TreeItemContent(props, ref) {
     focused,
     handleExpansion,
     handleSelection,
-    onClick,
     onMouseDown,
     expansionIcon,
     displayIcon,
     icon: iconProp,
     ...rest
   } = props;
-
-  const handleClick = (event) => {
-    handleSelection(event);
-    handleExpansion(event);
-
-    if (onClick) {
-      onClick(event);
-    }
-  };
 
   const icon = iconProp || expansionIcon || displayIcon;
 
@@ -93,13 +94,16 @@ const TreeItemContent = React.forwardRef(function TreeItemContent(props, ref) {
         },
         className,
       )}
-      onClick={handleClick}
       onMouseDown={onMouseDown}
       ref={ref}
       {...rest}
     >
-      <TreeItemIcon className={classes.iconContainer} icon={icon} />
-      <Typography component="div" className={classes.label}>
+      <TreeItemIcon
+        onClick={icon ? handleExpansion : handleSelection}
+        className={classes.iconContainer}
+        icon={icon}
+      />
+      <Typography onClick={handleSelection} component="div" className={classes.label}>
         {label}
       </Typography>
     </div>
@@ -122,4 +126,35 @@ TreeItemContent.propTypes = {
   selected: PropTypes.bool,
 };
 
-export default withStyles(styles, { name: 'MuiTreeItemContent' })(TreeItemContent);
+const CustomTreeItemContent = withStyles(styles)(TreeItemContent);
+
+const CustomTreeItem = (props) => (
+  <TreeItem TreeItemContentComponent={CustomTreeItemContent} {...props} />
+);
+
+export default function IconExpansionTreeView() {
+  const classes = useStyles();
+
+  return (
+    <TreeView
+      className={classes.root}
+      defaultCollapseIcon={<ExpandMoreIcon />}
+      defaultExpandIcon={<ChevronRightIcon />}
+    >
+      <CustomTreeItem nodeId="1" label="Applications">
+        <CustomTreeItem nodeId="2" label="Calendar" />
+        <CustomTreeItem nodeId="3" label="Chrome" />
+        <CustomTreeItem nodeId="4" label="Webstorm" />
+      </CustomTreeItem>
+      <CustomTreeItem nodeId="5" label="Documents">
+        <CustomTreeItem nodeId="10" label="OSS" />
+        <CustomTreeItem nodeId="6" label="Material-UI">
+          <CustomTreeItem nodeId="7" label="src">
+            <CustomTreeItem nodeId="8" label="index.js" />
+            <CustomTreeItem nodeId="9" label="tree-view.js" />
+          </CustomTreeItem>
+        </CustomTreeItem>
+      </CustomTreeItem>
+    </TreeView>
+  );
+}

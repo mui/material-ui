@@ -8,6 +8,7 @@ const styles = {
   root: {
     marginRight: 4,
     width: 15,
+    height: 15,
     display: 'flex',
     flexShrink: 0,
     justifyContent: 'center',

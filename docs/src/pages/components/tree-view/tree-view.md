@@ -47,6 +47,15 @@ const data = {
 
 {{"demo": "pages/components/tree-view/RecursiveTreeView.js", "defaultCodeOpen": false}}
 
+## TreeItemContent
+
+You can use the TreeItemContent to further customize the behaviour of the TreeItem
+e.g. limiting expansion to clicking the icon
+
+{{"demo": "pages/components/tree-view/IconExpansionTreeView.js", "defaultCodeOpen": false}}
+
+{{"demo": "pages/components/tree-view/BarTreeView.js", "defaultCodeOpen": false}}
+
 ## Customized tree view
 
 ### Custom icons, border and animation

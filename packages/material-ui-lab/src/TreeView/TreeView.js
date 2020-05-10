@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import TreeViewContext from './TreeViewContext';
 import { withStyles } from '@material-ui/core/styles';
 import { useControlled } from '@material-ui/core/utils';
+import { useDescendants, DescendantProvider } from './descendants';
 
 export const styles = {
   /* Styles applied to the root element. */
@@ -13,16 +14,6 @@ export const styles = {
     listStyle: 'none',
   },
 };
-
-function arrayDiff(arr1, arr2) {
-  if (arr1.length !== arr2.length) return true;
-
-  for (let i = 0; i < arr1.length; i += 1) {
-    if (arr1[i] !== arr2[i]) return true;
-  }
-
-  return false;
-}
 
 const findNextFirstChar = (firstChars, startIndex, char) => {
   for (let i = startIndex; i < firstChars.length; i += 1) {
@@ -35,6 +26,13 @@ const findNextFirstChar = (firstChars, startIndex, char) => {
 
 const defaultExpandedDefault = [];
 const defaultSelectedDefault = [];
+
+const getChildren = (id, map) =>
+  Object.keys(map)
+    .map((k) => map[k])
+    .filter((n) => n.parent === id)
+    .sort((a, b) => a.index - b.index)
+    .map((c) => c.id);
 
 const TreeView = React.forwardRef(function TreeView(props, ref) {
   const {
@@ -115,7 +113,6 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
 
   const getLastNode = () => visibleNodes.current[visibleNodes.current.length - 1];
   const getFirstNode = () => visibleNodes.current[0];
-  const getParent = (id) => nodeMap.current[id].parent;
 
   const getNodesInRange = (a, b) => {
     const aIndex = visibleNodes.current.indexOf(a);
@@ -190,7 +187,9 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
       newExpanded = expanded.filter((id) => id !== value);
       setTabbable((oldTabbable) => {
         const map = nodeMap.current[oldTabbable];
-        if (oldTabbable && (map && map.parent ? map.parent.id : null) === value) {
+        const parentMap = map ? nodeMap.current[map.parent] : {};
+        // If parent node was collapsed move tabbable to parent
+        if (oldTabbable && parentMap && parentMap.id === value) {
           return value;
         }
         return oldTabbable;
@@ -208,18 +207,18 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
 
   const expandAllSiblings = (event, id) => {
     const map = nodeMap.current[id];
-    const parent = nodeMap.current[map.parent];
+    const siblings = getChildren(map.parent, nodeMap.current);
 
     let diff;
-    if (parent) {
-      diff = parent.children.filter((child) => !isExpanded(child));
+    if (siblings) {
+      diff = siblings.filter((child) => !isExpanded(child));
     } else {
-      const topLevelNodes = nodeMap.current[-1].children;
+      const topLevelNodes = getChildren(null, map);
       diff = topLevelNodes.filter((node) => !isExpanded(node));
     }
-    const newExpanded = [...expanded, ...diff];
 
     if (diff.length > 0) {
+      const newExpanded = [...expanded, ...diff];
       setExpandedState(newExpanded);
 
       if (onNodeToggle) {
@@ -395,24 +394,23 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
    * Mapping Helpers
    */
 
-  const addNodeToNodeMap = (id, childrenIds) => {
-    const currentMap = nodeMap.current[id];
-    nodeMap.current[id] = { ...currentMap, children: childrenIds, id };
+  const registerNode = React.useCallback((node) => {
+    const { id, parent, label, index } = node;
 
-    childrenIds.forEach((childId) => {
-      const currentChildMap = nodeMap.current[childId];
-      nodeMap.current[childId] = { ...currentChildMap, parent: id, id: childId };
-    });
-  };
+    if (id) {
+      nodeMap.current[id] = { id, parent, label, index };
+    }
+  }, []);
 
   const getNodesToRemove = React.useCallback((id) => {
     const map = nodeMap.current[id];
     const nodes = [];
     if (map) {
       nodes.push(id);
-      if (map.children) {
-        nodes.push(...map.children);
-        map.children.forEach((node) => {
+      const childNodes = getChildren(id, nodeMap.current);
+      if (childNodes.length > 0) {
+        nodes.push(...childNodes);
+        childNodes.forEach((node) => {
           nodes.push(...getNodesToRemove(node));
         });
       }
@@ -430,25 +428,14 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     firstCharMap.current = newMap;
   }, []);
 
-  const removeNodeFromNodeMap = React.useCallback(
+  const unregisterNode = React.useCallback(
     (id) => {
       const nodes = getNodesToRemove(id);
       cleanUpFirstCharMap(nodes);
       const newMap = { ...nodeMap.current };
 
       nodes.forEach((node) => {
-        const map = newMap[node];
-        if (map) {
-          if (map.parent) {
-            const parentMap = newMap[map.parent];
-            if (parentMap && parentMap.children) {
-              const parentChildren = parentMap.children.filter((c) => c !== node);
-              newMap[map.parent] = { ...parentMap, children: parentChildren };
-            }
-          }
-
-          delete newMap[node];
-        }
+        delete newMap[node];
       });
       nodeMap.current = newMap;
 
@@ -466,37 +453,13 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     firstCharMap.current[id] = firstChar;
   };
 
-  const prevChildIds = React.useRef([]);
-  const [childrenCalculated, setChildrenCalculated] = React.useState(false);
-  React.useEffect(() => {
-    const childIds = [];
-
-    React.Children.forEach(children, (child) => {
-      if (React.isValidElement(child) && child.props.nodeId) {
-        childIds.push(child.props.nodeId);
-      }
-    });
-    if (arrayDiff(prevChildIds.current, childIds)) {
-      nodeMap.current[-1] = { parent: null, children: childIds };
-
-      childIds.forEach((id, index) => {
-        if (index === 0) {
-          setTabbable(id);
-        }
-      });
-      visibleNodes.current = nodeMap.current[-1].children;
-      prevChildIds.current = childIds;
-      setChildrenCalculated(true);
-    }
-  }, [children]);
-
   React.useEffect(() => {
     const buildVisible = (nodes) => {
       let list = [];
       for (let i = 0; i < nodes.length; i += 1) {
         const item = nodes[i];
         list.push(item);
-        const childs = nodeMap.current[item].children;
+        const childs = getChildren(item, nodeMap.current);
         if (isExpanded(item) && childs) {
           list = list.concat(buildVisible(childs));
         }
@@ -504,10 +467,20 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
       return list;
     };
 
-    if (childrenCalculated) {
-      visibleNodes.current = buildVisible(nodeMap.current[-1].children);
-    }
-  }, [expanded, childrenCalculated, isExpanded, children]);
+    visibleNodes.current = buildVisible(getChildren(null, nodeMap.current));
+  }, [isExpanded]);
+
+  const itemsRef = useDescendants();
+  const topLevelNodes = getChildren(null, nodeMap.current);
+
+  React.useEffect(() => {
+    setTabbable((old) => {
+      if (!old) {
+        return topLevelNodes[0];
+      }
+      return old;
+    });
+  }, [topLevelNodes]);
 
   const noopSelection = () => {
     return false;
@@ -537,21 +510,22 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
         selectAllNodes: disableSelection ? noopSelection : selectAllNodes,
         isTabbable,
         multiSelect,
-        getParent,
         mapFirstChar,
-        addNodeToNodeMap,
-        removeNodeFromNodeMap,
+        registerNode,
+        unregisterNode,
       }}
     >
-      <ul
-        role="tree"
-        aria-multiselectable={multiSelect}
-        className={clsx(classes.root, className)}
-        ref={ref}
-        {...other}
-      >
-        {children}
-      </ul>
+      <DescendantProvider items={itemsRef} nodeId={null}>
+        <ul
+          role="tree"
+          aria-multiselectable={multiSelect}
+          className={clsx(classes.root, className)}
+          ref={ref}
+          {...other}
+        >
+          {children}
+        </ul>
+      </DescendantProvider>
     </TreeViewContext.Provider>
   );
 });

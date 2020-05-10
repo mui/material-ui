@@ -1,9 +1,18 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import TreeItemIcon from './TreeItemIcon';
+import PropTypes from 'prop-types';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
+import TreeView from '@material-ui/lab/TreeView';
+import TreeItem, { TreeItemIcon } from '@material-ui/lab/TreeItem';
 import Typography from '@material-ui/core/Typography';
-import { fade, withStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles({
+  root: {
+    height: 240,
+    flexGrow: 1,
+    maxWidth: 400,
+  },
+});
 
 const styles = (theme) => ({
   root: {
@@ -12,28 +21,18 @@ const styles = (theme) => ({
     alignItems: 'center',
     cursor: 'pointer',
     WebkitTapHighlightColor: 'transparent',
-    '&:hover': {
+    '&:hover $bar': {
       backgroundColor: theme.palette.action.hover,
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         backgroundColor: 'transparent',
       },
     },
-    '&$focused': {
+    '&$focused $bar': {
       backgroundColor: theme.palette.action.hover,
     },
-    '&$selected': {
-      backgroundColor: fade(theme.palette.primary.main, theme.palette.action.selectedOpacity),
-    },
-    '&$selected:hover, &$selected$focused': {
-      backgroundColor: fade(
-        theme.palette.primary.main,
-        theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
-      ),
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        backgroundColor: 'transparent',
-      },
+    '&$selected $bar': {
+      borderLeft: '2px solid orange',
     },
   },
   /* Pseudo-class applied to the content element when expanded. */
@@ -49,6 +48,12 @@ const styles = (theme) => ({
     position: 'relative',
   },
   iconContainer: {},
+  bar: {
+    position: 'absolute',
+    width: '100%',
+    height: 24,
+    left: 0,
+  },
 });
 
 const TreeItemContent = React.forwardRef(function TreeItemContent(props, ref) {
@@ -69,6 +74,8 @@ const TreeItemContent = React.forwardRef(function TreeItemContent(props, ref) {
     ...rest
   } = props;
 
+  const icon = iconProp || expansionIcon || displayIcon;
+
   const handleClick = (event) => {
     handleSelection(event);
     handleExpansion(event);
@@ -77,8 +84,6 @@ const TreeItemContent = React.forwardRef(function TreeItemContent(props, ref) {
       onClick(event);
     }
   };
-
-  const icon = iconProp || expansionIcon || displayIcon;
 
   return (
     // Key events handled on li
@@ -98,6 +103,7 @@ const TreeItemContent = React.forwardRef(function TreeItemContent(props, ref) {
       ref={ref}
       {...rest}
     >
+      <div className={classes.bar} />
       <TreeItemIcon className={classes.iconContainer} icon={icon} />
       <Typography component="div" className={classes.label}>
         {label}
@@ -122,4 +128,33 @@ TreeItemContent.propTypes = {
   selected: PropTypes.bool,
 };
 
-export default withStyles(styles, { name: 'MuiTreeItemContent' })(TreeItemContent);
+const CustomTreeItemContent = withStyles(styles)(TreeItemContent);
+
+const CustomTreeItem = (props) => (
+  <TreeItem TreeItemContentComponent={CustomTreeItemContent} {...props} />
+);
+
+export default function IconExpansionTreeView() {
+  const classes = useStyles();
+
+  return (
+    <div style={{ position: 'relative', width: 400 }}>
+      <TreeView className={classes.root}>
+        <CustomTreeItem nodeId="1" label="Applications">
+          <CustomTreeItem nodeId="2" label="Calendar" />
+          <CustomTreeItem nodeId="3" label="Chrome" />
+          <CustomTreeItem nodeId="4" label="Webstorm" />
+        </CustomTreeItem>
+        <CustomTreeItem nodeId="5" label="Documents">
+          <CustomTreeItem nodeId="10" label="OSS" />
+          <CustomTreeItem nodeId="6" label="Material-UI">
+            <CustomTreeItem nodeId="7" label="src">
+              <CustomTreeItem nodeId="8" label="index.js" />
+              <CustomTreeItem nodeId="9" label="tree-view.js" />
+            </CustomTreeItem>
+          </CustomTreeItem>
+        </CustomTreeItem>
+      </TreeView>
+    </div>
+  );
+}

@@ -7,6 +7,7 @@ import { withStyles, useTheme } from '@material-ui/core/styles';
 import { useForkRef } from '@material-ui/core/utils';
 import TreeViewContext from '../TreeView/TreeViewContext';
 import TreeItemContent from './TreeItemContent';
+import { useDescendant, useDescendants, DescendantProvider } from '../TreeView/descendants';
 
 export const styles = {
   /* Styles applied to the root element. */
@@ -27,6 +28,9 @@ export const styles = {
   /* Styles applied to the TreeItemIcon */
   iconContainer: {},
   label: {},
+  selected: {},
+  expanded: {},
+  focused: {},
 };
 
 const isPrintableCharacter = (str) => {
@@ -39,19 +43,20 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     classes,
     className,
     collapseIcon,
+    contentProps,
     endIcon,
     expandIcon,
-    icon: iconProp,
+    parentIcon,
+    icon,
     label,
     nodeId,
     onClick,
-    onLabelClick,
-    onIconClick,
     onFocus,
     onKeyDown,
     onMouseDown,
     TransitionComponent = Collapse,
     TransitionProps,
+    TreeItemContentComponent = TreeItemContent,
     ...other
   } = props;
 
@@ -77,53 +82,60 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     isSelected,
     isTabbable,
     multiSelect,
-    getParent,
     mapFirstChar,
-    addNodeToNodeMap,
-    removeNodeFromNodeMap,
+    registerNode,
+    unregisterNode,
   } = React.useContext(TreeViewContext);
 
   const nodeRef = React.useRef(null);
   const contentRef = React.useRef(null);
   const handleRef = useForkRef(nodeRef, ref);
 
-  let icon = iconProp;
+  const { index, parent } = useDescendant({ parent: nodeId, label });
+  const itemsRef = useDescendants();
 
   const expandable = Boolean(Array.isArray(children) ? children.length : children);
   const expanded = isExpanded ? isExpanded(nodeId) : false;
   const focused = isFocused ? isFocused(nodeId) : false;
   const tabbable = isTabbable ? isTabbable(nodeId) : false;
   const selected = isSelected ? isSelected(nodeId) : false;
-  const icons = contextIcons || {};
   const theme = useTheme();
 
-  if (!icon) {
-    if (expandable) {
-      if (!expanded) {
-        icon = expandIcon || icons.defaultExpandIcon;
-      } else {
-        icon = collapseIcon || icons.defaultCollapseIcon;
-      }
+  const icons = contextIcons || {};
 
-      if (!icon) {
-        icon = icons.defaultParentIcon;
-      }
+  let expansionIcon = null;
+
+  if (expandable) {
+    if (!expanded) {
+      expansionIcon = expandIcon || icons.defaultExpandIcon;
     } else {
-      icon = endIcon || icons.defaultEndIcon;
+      expansionIcon = collapseIcon || icons.defaultCollapseIcon;
     }
   }
 
-  const handleClick = (event) => {
+  let displayIcon = null;
+
+  if (expandable) {
+    displayIcon = parentIcon || icons.defaultParentIcon;
+  } else {
+    displayIcon = endIcon || icons.defaultEndIcon;
+  }
+
+  const handleExpansion = (event) => {
+    const multiple = multiSelect && (event.shiftKey || event.ctrlKey || event.metaKey);
+
+    // If already expanded and trying to toggle selection don't close
+    if (expandable && !(multiple && isExpanded(nodeId))) {
+      toggleExpansion(event, nodeId);
+    }
+  };
+
+  const handleSelection = (event) => {
     if (!focused) {
       focus(nodeId);
     }
 
     const multiple = multiSelect && (event.shiftKey || event.ctrlKey || event.metaKey);
-
-    // If already expanded and trying to toggle selection don't close
-    if (expandable && !event.defaultPrevented && !(multiple && isExpanded(nodeId))) {
-      toggleExpansion(event, nodeId);
-    }
 
     if (multiple) {
       if (event.shiftKey) {
@@ -133,10 +145,6 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
       }
     } else {
       selectNode(event, nodeId);
-    }
-
-    if (onClick) {
-      onClick(event);
     }
   };
 
@@ -168,7 +176,6 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
       return true;
     }
 
-    const parent = getParent(nodeId);
     if (parent) {
       focus(parent);
       return true;
@@ -281,25 +288,21 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
   };
 
   React.useEffect(() => {
-    if (addNodeToNodeMap) {
-      const childIds = [];
-      React.Children.forEach(children, (child) => {
-        if (React.isValidElement(child) && child.props.nodeId) {
-          childIds.push(child.props.nodeId);
-        }
+    if (registerNode && unregisterNode) {
+      registerNode({
+        id: nodeId,
+        label,
+        parent,
+        index: index.current,
       });
-      addNodeToNodeMap(nodeId, childIds);
-    }
-  }, [children, nodeId, addNodeToNodeMap]);
 
-  React.useEffect(() => {
-    if (removeNodeFromNodeMap) {
       return () => {
-        removeNodeFromNodeMap(nodeId);
+        unregisterNode(nodeId);
       };
     }
+
     return undefined;
-  }, [nodeId, removeNodeFromNodeMap]);
+  }, [nodeId, parent, label, registerNode, unregisterNode, index]);
 
   React.useEffect(() => {
     if (mapFirstChar && label) {
@@ -327,47 +330,55 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
   }
 
   return (
-    <li
-      className={clsx(classes.root, className)}
-      role="treeitem"
-      onKeyDown={handleKeyDown}
-      onFocus={handleFocus}
-      aria-expanded={expandable ? expanded : null}
-      aria-selected={ariaSelected}
-      ref={handleRef}
-      tabIndex={tabbable ? 0 : -1}
-      {...other}
-    >
-      <TreeItemContent
-        classes={{
-          root: classes.content,
-          iconContainer: classes.iconContainer,
-          label: classes.label,
-        }}
-        onClick={handleClick}
-        onLabelClick={onLabelClick}
-        onIconClick={onIconClick}
-        onMouseDown={handleMouseDown}
-        label={label}
-        expanded={expanded}
-        selected={selected}
-        focused={focused}
-        icon={icon}
-        ref={contentRef}
-      />
-      {children && (
-        <TransitionComponent
-          unmountOnExit
-          className={classes.group}
-          in={expanded}
-          component="ul"
-          role="group"
-          {...TransitionProps}
-        >
-          {children}
-        </TransitionComponent>
-      )}
-    </li>
+    <DescendantProvider nodeId={nodeId} items={itemsRef}>
+      <li
+        className={clsx(classes.root, className)}
+        role="treeitem"
+        onKeyDown={handleKeyDown}
+        onFocus={handleFocus}
+        aria-expanded={expandable ? expanded : null}
+        aria-selected={ariaSelected}
+        ref={handleRef}
+        tabIndex={tabbable ? 0 : -1}
+        {...other}
+      >
+        <TreeItemContentComponent
+          classes={{
+            root: classes.content,
+            iconContainer: classes.iconContainer,
+            label: classes.label,
+            selected: classes.selected,
+            expanded: classes.expanded,
+            focused: classes.focused,
+          }}
+          onMouseDown={handleMouseDown}
+          label={label}
+          expanded={expanded}
+          selected={selected}
+          focused={focused}
+          handleExpansion={handleExpansion}
+          handleSelection={handleSelection}
+          icon={icon}
+          expansionIcon={expansionIcon}
+          displayIcon={displayIcon}
+          ref={contentRef}
+          onClick={onClick}
+          {...contentProps}
+        />
+        {children && (
+          <TransitionComponent
+            unmountOnExit
+            className={classes.group}
+            in={expanded}
+            component="ul"
+            role="group"
+            {...TransitionProps}
+          >
+            {children}
+          </TransitionComponent>
+        )}
+      </li>
+    </DescendantProvider>
   );
 });
 
@@ -394,7 +405,11 @@ TreeItem.propTypes = {
    */
   collapseIcon: PropTypes.node,
   /**
-   * The icon displayed next to a end node.
+   * Props applied to TreeItemContent
+   */
+  contentProps: PropTypes.object,
+  /**
+   * The icon displayed next to an end node.
    */
   endIcon: PropTypes.node,
   /**
@@ -422,21 +437,17 @@ TreeItem.propTypes = {
    */
   onFocus: PropTypes.func,
   /**
-   * `onClick` handler for the icon container. Call `event.preventDefault()` to prevent `onNodeToggle` from being called.
-   */
-  onIconClick: PropTypes.func,
-  /**
    * @ignore
    */
   onKeyDown: PropTypes.func,
   /**
-   * `onClick` handler for the label container. Call `event.preventDefault()` to prevent `onNodeToggle` from being called.
-   */
-  onLabelClick: PropTypes.func,
-  /**
    * @ignore
    */
   onMouseDown: PropTypes.func,
+  /**
+   * The icon displayed next to a parent node.
+   */
+  parentIcon: PropTypes.node,
   /**
    * The component used for the transition.
    * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
