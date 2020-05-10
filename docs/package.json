@@ -56,7 +56,7 @@
     "next-cookies": "2.0.3",
     "next-images": "^1.4.0",
     "next-transpile-modules": "^2.0.0",
-    "notistack": "^0.9.4",
+    "notistack": "^0.9.11",
     "prismjs": "^1.20.0",
     "raw-loader": "^1.0.0",
     "react": "^16.13.0",
