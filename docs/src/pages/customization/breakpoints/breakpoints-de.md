@@ -4,6 +4,10 @@
 
 Für eine optimale Benutzererfahrung müssen Materialdesign-Schnittstellen in der Lage sein, ihr Layout an verschiedenen Haltepunkten anzupassen. Material-UI verwendet eine **vereinfachte** Implementierung der ursprünglichen [Spezifikation](https://material.io/design/layout/responsive-layout-grid.html#breakpoints).
 
+Die Haltepunkte werden intern in verschiedenen Komponenten verwendet, um sie ansprechbar zu machen, Sie können sie jedoch auch benutzten, um das Layout Ihrer Anwendung über das [Grid](/components/grid/) zu steuern und für [Hidden](/components/hidden/) Komponenten.
+
+## Default breakpoints
+
 Jeder Haltepunkt (ein Schlüssel) stimmt mit einer *festen* Bildschirmbreite (ein Wert) überein:
 
 - ** xs, ** extraklein: 0px
@@ -12,7 +16,7 @@ Jeder Haltepunkt (ein Schlüssel) stimmt mit einer *festen* Bildschirmbreite (ei
 - ** lg, ** groß: 1280px
 - ** xl ** extra groß: 1920px
 
-Diese [ Haltepunktwerte](/customization/default-theme/?expand-path=$.breakpoints.values) werden zur Bestimmung von Haltepunktbereichen verwendet. Ein Bereich beginnt mit dem Haltepunktwert einschließlich bis zum nächsten Haltepunktwert:
+These breakpoint values are used to determine breakpoint ranges. Ein Bereich beginnt mit dem Haltepunktwert einschließlich bis zum nächsten Haltepunktwert:
 
 ```js
 Wert          |0px     600px    960px    1280px   1920px
@@ -21,9 +25,7 @@ Breite        |--------|--------|--------|--------|-------->
 Bereich       |   xs   |   sm   |   md   |   lg   |   xl
 ```
 
-Diese Werte können immer angepasst werden. Sie finden sie im Theme unter dem [`breakpoints.values`](/customization/default-theme/?expand-path=$.breakpoints.values) Schlüssel.
-
-Die Haltepunkte werden intern in verschiedenen Komponenten verwendet, um sie ansprechbar zu machen, Sie können sie jedoch auch benutzten, um das Layout Ihrer Anwendung über das [Grid](/components/grid/) zu steuern und für [Hidden](/components/hidden/) Komponenten.
+These values can be [customized](#custom-breakpoints).
 
 ## CSS-Medienabfragen
 
@@ -80,6 +82,59 @@ export default withWidth()(MyComponent);
 In der folgenden Demo ändern wir das gerenderte DOM-Element (* em*, <u> u</u>, ~~ del ~~ & span) basierend auf der Bildschirmbreite.
 
 {{"demo": "pages/customization/breakpoints/WithWidth.js"}}
+
+## Custom breakpoints
+
+You define your project's breakpoints in the `theme.breakpoints` section of your theme.
+
+- [`theme.breakpoints.values`](/customization/default-theme/?expand-path=$.breakpoints.values): Default to the [above values](#default-breakpoints). The keys are your screen names, and the values are the min-width where that breakpoint should start.
+- `theme.breakpoints.unit`: Default to `px`. The unit used for the breakpoint's values.
+- `theme.breakpoints.step`: Default to 5 (`0.05px`). The increment used to implement exclusive breakpoints.
+
+If you change the default breakpoints's values, you need to provide them all:
+
+```jsx
+const theme = createMuiTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 960,
+      lg: 1280,
+      xl: 1920,
+    },
+  },
+})
+```
+
+Feel free to have as few or as many breakpoints as you want, naming them in whatever way you'd prefer for your project.
+
+```tsx
+const theme = createMuiTheme({
+  breakpoints: {
+    values: {
+      tablet: 640,
+      laptop: 1024,
+      desktop: 1280,
+    },
+  },
+});
+
+declare module "@material-ui/core/styles/createBreakpoints"
+{
+  interface BreakpointOverrides
+  {
+    xs: false; // removes the `xs` breakpoint
+    sm: false;
+    md: false;
+    lg: false;
+    xl: false;
+    tablet: true; // adds the `tablet` breakpoint
+    laptop: true;
+    desktop: true;
+  }
+}
+```
 
 ## API
 

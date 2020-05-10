@@ -40,6 +40,7 @@ const theme = createMuiTheme({
 | Francês                 | fr-FR                     | `frFR`             |
 | Alemão                  | de-DE                     | `deDE`             |
 | Hebraico                | he-IL                     | `heIL`             |
+| Hindi                   | hi-IN                     | `hiIN`             |
 | Húngaro                 | hu-HU                     | `huHU`             |
 | Islandês                | is-IS                     | `isIS`             |
 | Indonésio               | id-ID                     | `idID`             |

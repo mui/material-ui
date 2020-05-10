@@ -9,13 +9,13 @@
 有很多方法可以支持 Material-UI：
 
 - **口口相传**。 通过[链接到material-ui.com来传播Material-UI ](https://material-ui.com/)在您的网站上，每个反向链接都很重要。 在[ Twitter上关注我们](https://twitter.com/MaterialUI) ，点赞并转发重要新闻。 或者只是与您的朋友谈论我们。
-- **给我们反馈** 。 告诉我们我们做得好还是可以改进的地方。 请投票（👍）您最想解决的问题。
-- **帮助新用户** 。 You can answer questions on [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui).
+- **给我们反馈** 。 告诉我们我们做得好或可以改进的地方。 请投票（👍）您最想解决的问题。
+- **帮助新用户** 。 您可以在 [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui) 中回答问题
 - **Make changes happen**. 
   - 通过[创建问题](https://github.com/mui-org/material-ui/issues/new)来报告错误或缺少的功能 。
   - Reviewing and commenting on existing [pull requests](https://github.com/mui-org/material-ui/pulls) and [issues](https://github.com/mui-org/material-ui/issues).
-  - Help [translate](https://translate.material-ui.com) the documentation.
-  - Fixing bugs, adding features, and [improving our documentation](https://github.com/mui-org/material-ui/tree/master/docs) by [submitting a pull request](https://github.com/mui-org/material-ui/pulls).
+  - 帮忙[翻译文档](https://translate.material-ui.com)
+  - 修复bug，添加功能，通过[提交拉取请求](https://github.com/mui-org/material-ui/pulls)，以及[改进我们的文档](https://github.com/mui-org/material-ui/tree/master/docs)。
 - **在[OpenCollective](https://opencollective.com/material-ui)**上资助我们。 如果您在商业项目中使用了Material-UI，并希望通过成为我们的赞助商</0 >来支持我们的持续发展，或者您一个业余项目或者爱好项目，并想成为我们的支持者， 您都可以通过OpenCollective实现。 筹集的所有资金都是透明管理的，赞助商在README和Material-UI主页上获得认可。
 
 ## 为什么我的组件在生产版本中没有正确地渲染？
@@ -36,7 +36,7 @@
 
 ## 为什么当打开Modal（模态框）时，fixed positioned（位置固定的）元素会移动？
 
-Scrolling is blocked as soon as a modal is opened. 而模态框是应该是唯一的交互式内容时，这可以防止与背景交互，但是，删除滚动条可以恢复**fixed positioned(固定位置的)元素**的移动。 在这种情况下，您可以应用全局`.mui-fixed`类名称来告知 Material-UI 来处理这些元素。
+当Modal（模态框）打开时，滚动会被禁止。 当模态框是唯一可交互的内容时，会阻止与背景交互，然而，移除滚动条可以恢复**fixed positioned(固定位置的) 元素**的移动。 在这种情况下，您可以应用全局`.mui-fixed`类名称来告知 Material-UI 来处理这些元素。
 
 ## 如何在全局禁用 ripple effect（涟漪效果）？
 

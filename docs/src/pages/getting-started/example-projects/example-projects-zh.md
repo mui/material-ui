@@ -20,14 +20,14 @@ Create React App 是一个很棒的学习 React 的项目。 请看一下这些[
 
 ## 进阶示例项目
 
-If you want to start with a more complete and real-world example, you could take a look at the [premium themes & templates](https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=example-projects-store) or:
+如果你想以一个更完整、实际的示例开始，你可以看看 [高级主题 & 模板](https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=example-projects-store) 或者：
 
 ### 免费的资源
 
 - [React 最常用到的](https://github.com/TarikHuber/react-most-wanted)：
     
   - 使用 Create React App 创建
-  - Custom Create React App script to start a new project with just a single CLI command
+  - 仅需一行命令使用定制化 Create React App 脚本来开始一个新项目
   - 使用官方的 Firebase Web Auth UI 进行 Firebase 的构建，包括身份验证
   - 使用 React Router 进行路由，包括错误处理（404）和延迟加载
   - All PWA features included (SW, Notifications, deferred installation prompt and more)

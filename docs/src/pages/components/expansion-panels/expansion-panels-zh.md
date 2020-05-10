@@ -29,13 +29,13 @@ components: ExpansionPanel, ExpansionPanelActions, ExpansionPanelDetails, Expans
 
 ## 其他操作
 
-In order to put an action such as a `Checkbox` or a button inside of the `ExpansionPanelSummary`, you need to stop the propagation of the focus and click events to prevent the panel from expanding/collapsing when using the action. You should also provide an `aria-label` for the action, otherwise the label of the nested action will be included in the label of the parent button that controls the panel expansion.
+当你把 `Checkbox` 或者一个按钮这样的操作事件放进`ExpansionPanelSummary`，当在打开和收缩控制面板时使用这个操作，你则需要阻止 focus 和 click 事件的传播。 您则需要把 `aria-label` 传给操作，否则控制面板扩展的父级按钮会把嵌套着的操作的标签包含进去。
 
 {{"demo": "pages/components/expansion-panels/ActionsInExpansionPanelSummary.js", "bg": true}}
 
 ## 性能
 
-默认情况下，即使在面板没被展开的情况下，扩展面板的内容也会被注入到页面中。 这样的默认情况是是考虑到了 server-side rendering（服务端渲染）和 SEO（搜索引擎优化）。 If you render expensive component trees inside your panels or simply render many panels it might be a good idea to change this default behavior by enabling the `unmountOnExit` in `TransitionProps`:
+默认情况下，即使在面板没被展开的情况下，扩展面板的内容也会被注入到页面中。 这样的默认情况是是考虑到了服务端渲染（server-side rendering）和搜索引擎优化（SEO）。 但如果你您要在扩展面板中渲染开销很大的树组件，或者只是单纯想要渲染很多扩展面板，我们建议变更这个默认的行为：需要启用 `TransitionProps` 中的 `unmountOnExit` 属性。
 
 ```jsx
 <ExpansionPanel TransitionProps={{ unmountOnExit: true }} />
@@ -45,7 +45,7 @@ In order to put an action such as a `Checkbox` or a button inside of the `Expans
 
 ## 次要标题和列
 
-可以使用多列来构造内容，并且可以将辅助文本添加到面板以帮助用户。
+您也可以使用多列来构造内容，而且将辅助文本添加到面板能够以辅助用户。
 
 {{"demo": "pages/components/expansion-panels/DetailedExpansionPanel.js", "bg": true}}
 
@@ -53,4 +53,4 @@ In order to put an action such as a `Checkbox` or a button inside of the `Expans
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#accordion)
 
-如果想要得到最佳辅助，我们建议您在 `ExpansionPanelSummary` 中配置 `id` 和 `aria-controls` 。 `ExpansionPanel` 将为面板的内容区域导出必要的 `aria-labelledby` 和 `id`。
+如果想要取得较好的无障碍设计，我们建议您在 `ExpansionPanelSummary` 中配置 `id` 和 `aria-controls` 。 `ExpansionPanel` 将为面板的内容区域导出必要的 `aria-labelledby` 和 `id`。

@@ -27,7 +27,7 @@ Você pode remover a sombra com a propriedade `disableElevation`.
 
 ## Botões de Texto
 
-[Botões de texto](https://material.io/design/components/buttons.html#text-button) são utilizados tipicamente para ações menos-pronunciadas, incluindo aquelas localizadas em:
+[Botões de texto](https://material.io/design/components/buttons.html#text-button) são utilizados tipicamente para ações menos significativas, incluindo aquelas localizadas em:
 
 - Caixas de diálogo
 - Cartões
@@ -115,7 +115,7 @@ No entanto:
   ```jsx
   <span style={{ cursor: 'not-allowed' }}>
     <Button component={Link} disabled>
-      desabilitado
+      disabled
     </Button>
   </span>
   ```

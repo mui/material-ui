@@ -4,7 +4,7 @@
 
 请查看一下 [Create React App with TypeScript](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-typescript) 的例子。 我们要求 TypeScript 版本必须大于 2.8。
 
-In order for types to work, you have to at least have the following options enabled in your `tsconfig.json`:
+为了让类型检查起作用，你必须在 `tsconfig.json` 里启用以下选项：
 
 ```json
 {
@@ -17,7 +17,7 @@ In order for types to work, you have to at least have the following options enab
 }
 ```
 
-The strict mode options are the same that are required for every types package published in the `@types/` namespace. 使用不太严格的 `tsconfig.json` 或省略某些库可能会带来一些错误。 To get the best type experience with the types we recommend setting `"strict": true`.
+对每个发布在 `@types/` 命名空间下的类型声明包，同样需要启用严格模式（strict mode）。 使用不太严格的 `tsconfig.json` 或省略某些库可能会带来一些错误。 为了最好的类型检查体验，我们建议设置 `"strict": true` 。
 
 ## `withStyles` 的使用
 
@@ -68,7 +68,7 @@ withStyles(({ palette, spacing }) => ({
 
 这是因为 TypeScript [扩展了函数表达式](https://github.com/Microsoft/TypeScript/issues/241)的返回类型。
 
-Because of this, using the `createStyles` helper function to construct your style rules object is recommended:
+因此，我们建议使用我们的 `createStyles` 帮助函数来构造样式规则对象：
 
 ```ts
 // 不依赖于主题的样式
@@ -260,9 +260,9 @@ import createMyTheme from './styles/createMyTheme';
 const theme = createMyTheme({ appDrawer: { breakpoint: 'md' }});
 ```
 
-## Usage of `component` prop
+## `component` 属性用法
 
-Many Material-UI components allow you to replace their root node via a `component` prop, this will be detailed in the component's API documentation. For example, a Button's root node can be replaced with a React Router's Link, and any additional props that are passed to Button, such as `to`, will be spread to the Link component. For a code example concerning Button and react-router-dom checkout [these demos](/guides/composition/#routing-libraries).
+Material-UI 的许多组件允许你通过 `component` 属性替换它们的根节点，这将在组件的 API 文档中详细说明。 例如，一个按钮（Button）的根节点可以被替换成一个 React Router 的链接（Link），并且传入按钮（Button）的任何额外的属性，例如 `to` ，会被传递到链接（Link）组件。 关于按钮和 react-router-dom 的代码示例查看[这些示例](/guides/composition/#routing-libraries)。
 
 To be able to use props of such a Material-UI component on their own, props should be used with type arguments. Otherwise, the `component` prop will not be present in the props of the Material-UI component.
 
@@ -300,12 +300,12 @@ function ThirdPartyComponent({ prop1 } : { prop1: string }) {
 
 The `prop1` became required for the `GenericCustomComponent` as the `ThirdPartyComponent` has it as a requirement.
 
-但是，并不是每个组件都完全支持您传入的任何组件类型。 If you encounter a component that rejects its `component` props in TypeScript please open an issue. 通过使组件道具具有通用性，一直在努力解决这个问题。
+但是，并不是每个组件都完全支持您传入的任何组件类型。 如果您在 TypeScript 中遇到一个不接受其 `component` 属性的组件，请提起一个 issue。 通过使组件道具具有通用性，一直在努力解决这个问题。
 
 ## 处理`值`和事件处理器
 
-很多与用户输入有关的组件会提供一个 `value` 属性或者包含当前`值`的事件处理器。 大多数情况下`值`只在 React 内被处理，这样的话它能够是任何类型，譬如 objects 或者 arrays。
+很多与用户输入有关的组件会提供一个 `value` 属性或者包含当前 `value` 的事件处理器。 大多数情况下`value`只在 React 内被处理，这样的话它能够是任何类型，譬如 objects 或者 arrays。
 
-然而，如果是它依赖于组件子项的情况，此类型无法在编译时被验证，例如对于 `Select` 或者 `RadioGroup` 来说。 这意味着留给我们的最合适的选项是将其输入为 `unknown` 并让开发者自行决定如何来缩小该类型。 与 [`event.target` 在 React 中并不通用的原因](https://github.com/DefinitelyTyped/DefinitelyTyped/issues/11508#issuecomment-256045682)相同，我们并不推荐您在这些案例中尝试使用一个通用的类型。
+然而，如果它依赖于组件的子组件，则类型无法在编译时被验证，例如对于 `Select` 或者 `RadioGroup` 组件来说。 这意味着留给我们的最合适的选项是将其输入为 `unknown` 并让开发者自行决定如何来缩小该类型。 与 [`event.target` 在 React 中并不通用的原因](https://github.com/DefinitelyTyped/DefinitelyTyped/issues/11508#issuecomment-256045682)相同，我们并不推荐您在这些案例中尝试使用一个通用的类型。
 
 The demos include typed variants that use type casting. 鉴于所有的类型都位于一个文件中，并且都是非常基本的，这样的折衷可以接受。 您必须自行决定是否能够接受同样的折衷。 The library types are be strict by default and loose via opt-in.

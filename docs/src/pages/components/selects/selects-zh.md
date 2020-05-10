@@ -31,7 +31,7 @@ Select 组件的设计原理是和一个原生的 `<select>` 元素能够互相�
 
 ## 自定义选择器
 
-你可以参考以下一些例子来自定义组件。 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
+你可以参考以下一些例子来自定义组件。 您可以在[重写文档页面](/customization/components/)中了解更多有关此内容的信息。
 
 首先，需要设置 `InputBase` 组件的样式。 一旦设置好了样式，您就可以直接将其用作文本字段，也可以将其作为一个 `select` 字段提供给 select 组件的 `input` 属性。
 
@@ -80,4 +80,14 @@ Select 组件的设计原理是和一个原生的 `<select>` 元素能够互相�
   <MenuItem value="10">Ten</MenuItem>
   <MenuItem value="20">Twenty</MenuItem>
 </TextField>
+```
+
+For a [native select](#native-select), you should mention a label by giving the value of the `id` attribute of the select element to the `InputLabel`'s `htmlFor` attribute:
+
+```jsx
+<InputLabel htmlFor="select">Age</InputLabel>
+<NativeSelect id="select">
+  <option value="10">Ten</option>
+  <option value="20">Twenty</option>
+</NativeSelect>
 ```

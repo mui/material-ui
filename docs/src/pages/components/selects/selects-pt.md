@@ -81,3 +81,13 @@ Alternativamente, um `TextField` com `id` e `label` cria a marcação adequada e
   <MenuItem value="20">Twenty</MenuItem>
 </TextField>
 ```
+
+Para uma [seleção nativa](#native-select), você deve utilizar um rótulo fornecendo o atributo `id` do elemento de seleção para o atributo `htmlFor` do `InputLabel`:
+
+```jsx
+<InputLabel htmlFor="select">Age</InputLabel>
+<NativeSelect id="select">
+  <option value="10">Ten</option>
+  <option value="20">Twenty</option>
+</NativeSelect>
+```

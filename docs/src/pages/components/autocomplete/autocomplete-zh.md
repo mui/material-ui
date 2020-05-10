@@ -36,8 +36,8 @@ components: TextField, Popper, Autocomplete
 
 此组件有两种可控的状态：
 
-1. 一种状态是“value”，它是 `value`/`onChange` 属性的组合。 This state represents the value selected by the user, for instance when pressing <kbd>Enter</kbd>.
-2. 还有一种状态是 “input value”，它则是 `inputValue`/`onInputChange` 这两个属性的组合。 This state represents the value displayed in the textbox.
+1. “value” 状态，使用 `value`/`onChange` 属性组合。 这个状态表示用户选择的值，例如，当按 <kbd>Enter</kbd> 键时.
+2. “input value” 状态，使用 `inputValue`/`onInputChange` 属性组合。 这个状态表示展示在文本框中的值。
 
 > ⚠️ 以上两种状态互不干涉，它们应该被单独控制着。
 
@@ -59,6 +59,7 @@ If you intend to use this mode for a [combo box](#combo-box) like experience (an
 
 - `selectOnFocus` to helps the user clear the selected value.
 - `clearOnBlur` to helps the user to enter a new value.
+- `handleHomeEndKeys` to move focus inside the popup with the <kbd>Home</kbd> and <kbd>End</kbd> keys.
 - A last option, for instance `Add "YOUR SEARCH"`.
 
 {{"demo": "pages/components/autocomplete/FreeSoloCreateOption.js"}}

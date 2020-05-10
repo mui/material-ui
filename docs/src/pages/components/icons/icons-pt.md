@@ -72,7 +72,7 @@ Cada ícone também tem um "tema": Filled (padrão), Outlined, Rounded, Two tone
 
 {{"demo": "pages/components/icons/SvgMaterialIcons.js"}}
 
-## Ícones SVG
+## SvgIcon
 
 Se você precisa customizar o ícone SVG (não disponivel no [conjunto padrão](/components/material-icons/) de Material Icons) você pode encapsular em um `SvgIcon`. Este componente estende o elemento `<svg>`:
 
@@ -115,7 +115,7 @@ import StarIcon from './star.svg';
 <SvgIcon component={StarIcon} viewBox="0 0 600 476.6" />
 ```
 
-It's also possible to use it with "url-loader" or "file-loader". It's the approach used by Create React App.
+Também é possível usá-lo com "url-loader" ou "file-loader". É a abordagem usada pelo Create React App.
 
 ```jsx
 // webpack.config.js

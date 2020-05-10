@@ -6,13 +6,13 @@
 
 社区是您对框架提问或给出建议的第一站。 欢迎来到社区！
 
-### StackOverflow <img src="/static/images/logos/stackoverflow.svg" width="24" height="24" alt="StackOverflow logo" loading="lazy" />
+### StackOverflow <img src="/static/images/logos/stackoverflow.svg" width="24" height="24" alt="StackOverflow " loading="lazy" />
 
 对于来自社区Material-UI开发专家，对于众包的技术问题。 以及Material-UI核心团队回答的常见问题。
 
 [提交一个问题](https://stackoverflow.com/questions/tagged/material-ui)
 
-### GitHub <img src="/static/images/logos/github.svg" width="24" height="24" alt="GitHub logo" loading="lazy" />
+### GitHub <img src="/static/images/logos/github.svg" width="24" height="24" alt="GitHub" loading="lazy" />
 
 我们用GitHub issues作为唯一的记录BUG或特性需求的跟踪方式。 如果你认为发现了BUG，或有一个新特性的想法，请在开始前先确保它没有被[报告过或解决过](https://github.com/mui-org/material-ui/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aclosed)。 您可以在现存的Issues或Pull Requests中搜索，以了解是否有人报告过类似的问题。
 
@@ -29,9 +29,9 @@
 
 ### 博客 📝
 
-Stay up to date with the development of the library by following the blog.
+订阅博客以随时了解 Material-UI 开发的最新情况。
 
-[Read the latest posts](https://medium.com/material-ui/)
+[阅读最新的博文](https://medium.com/material-ui/)
 
 ### 资源📖
 
@@ -39,11 +39,11 @@ Stay up to date with the development of the library by following the blog.
 
 [学习使用 Material-UI](/getting-started/learn/)
 
-### Twitter <img src="/static/images/logos/twitter.svg" width="24" height="24" alt="Twitter logo" loading="lazy" />
+### Twitter <img src="/static/images/logos/twitter.svg" width="24" height="24" alt="Twitter" loading="lazy" />
 
-Receive the latest news on Material-UI.
+接收 Material-UI 的最新消息。
 
-[Follow us](https://twitter.com/MaterialUI)
+[关注我们](https://twitter.com/MaterialUI)
 
 ### 支持的版本
 
@@ -63,7 +63,7 @@ For teams and organizations that require additional support for older versions, 
 
 ## Professional support (premium)
 
-### Tidelift subscription <img src="/static/images/logos/tidelift.svg" width="24" height="24" alt="Tidelift logo" loading="lazy" />
+### Tidelift subscription <img src="/static/images/logos/tidelift.svg" width="24" height="24" alt="Tidelift" loading="lazy" />
 
 Material-UI and the maintainers of thousands of other packages are working with Tidelift to deliver one enterprise subscription that covers all of the open-source you use.
 
@@ -79,13 +79,19 @@ The Tidelift Subscription manages your dependencies for you:
 
 The end result? All of the capabilities you expect from commercial-grade software, for the full breadth of open-source you use. That means less time grappling with esoteric open-source trivia, and more time building your own applications – and your business.
 
-[Get more details](https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise)
+<a
+  data-ga-event-category="support"
+  data-ga-event-action="tidelift"
+  href="https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise"> Get more details </a>
 
-[Request a demo](https://tidelift.com/subscription/request-a-demo?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise)
+<a
+  data-ga-event-category="support"
+  data-ga-event-action="tidelift"
+  href="https://tidelift.com/subscription/request-a-demo?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise"> Request a demo </a>
 
 ### 定制工作🛠
 
-调整Material-UI以满足特定要求。 Give us a summary of your needs and we'll help you if we can. 我们可能：
+调整Material-UI以满足特定要求。 给我们您的需求摘要；如果可以的话，我们会帮助您。 我们可能：
 
 - 如果工作简单明了，会给您估计时间和价格
 - 建议可能不需要 Material-UI 的替代方法

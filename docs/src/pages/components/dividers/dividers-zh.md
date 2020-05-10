@@ -17,7 +17,7 @@ components: Divider
 
 ## HTML5 规范
 
-In a list, you should ensure the `Divider` is rendered as an `<li>` to match the HTML5 specification. 该示例演示了实现此目的的两种方法。
+在列表中，你需要确保 `Divider` 被渲染成 `<li>` 以遵循 HTML5 规范。 下面的例子展示了两种方式实现方式。
 
 ## 内嵌分隔线
 
@@ -31,8 +31,8 @@ In a list, you should ensure the `Divider` is rendered as an `<li>` to match the
 
 {{"demo": "pages/components/dividers/MiddleDividers.js", "bg": true}}
 
-## Vertical Dividers
+## 垂直分割线
 
-You can also render a divider vertically using the `orientation` prop. Note the use of the `flexItem` prop to accommodate for the flex container.
+你也可以通过 `orientation` 属性让分割线渲染成垂直状态。 注意其中使用了 `flexItem` 属性来适应 flex 容器
 
 {{"demo": "pages/components/dividers/VerticalDividers.js", "bg": true}}

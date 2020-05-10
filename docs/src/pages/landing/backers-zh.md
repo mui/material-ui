@@ -1,22 +1,26 @@
-## Material UI 的赞助人
+## Material-UI 的赞助商
 
-这些赞助人的慷慨相助使 Material-UI 的持续开发和维护成为可能：
+这些赞助商的慷慨相助使 Material-UI 的持续开发和维护成为可能：
 
 ### 钻石级💎
 
-*3/3  可用*
+<p style="display: flex; justify-content: center;">
+  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="sencha" href="https://www.sencha.com/products/extreact/extreact-for-material-ui/?utm_source=materialui&utm_medium=referral&utm_content=product-200429-extreactmaterialui" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="128" width="128" src="/static/in-house/sencha-256x256.png" alt="sencha" title="UI Components for Productive Dev Teams" loading="lazy" /></a>
+</p>
+
+*2/3 个位置可用*
 
 ### 黄金级 🏆
 
 <p style="display: flex; justify-content: center;">
-  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="tidelift" href="https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=homepage" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img width="96" src="https://github.com/tidelift.png?size=96" alt="tidelift" title="企业级开放源码软件" /></a>
-  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="bitsrc" href="https://bit.dev" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img width="96" src="https://github.com/teambit.png?size=96" alt="bitsrc" title="分享代码的最快方式" /></a>
+  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="tidelift" href="https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=homepage" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="96" width="96" src="https://github.com/tidelift.png?size=96" srcset="https://github.com/tidelift.png?size=96, https://github.com/tidelift.png?size=192 2x" alt="tidelift" title="企业级开源软件" loading="lazy" /></a>
+  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="bitsrc" href="https://bit.dev" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="96" width="96" src="https://github.com/teambit.png?size=96" srcset="https://github.com/teambit.png?size=96, https://github.com/teambit.png?size=192 2x" alt="bitsrc" title="分享代码最快捷的方式" loading="lazy" /></a>
 </p>
 
 <p style="display: flex; justify-content: center; flex-wrap: wrap;">
-  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="callemall" href="https://www.call-em-all.com" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img src="https://images.opencollective.com/proxy/images?src=https%3A%2F%2Fopencollective-production.s3-us-west-1.amazonaws.com%2Ff4053300-e0ea-11e7-acf0-0fa7c0509f4e.png&height=96" alt="call-em-all" title="发送您的群组信息的简单方式" width="96" loading="lazy"></a>
+  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="callemall" href="https://www.call-em-all.com" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img src="https://images.opencollective.com/callemall/a6946da/logo/96.png" srcset="https://images.opencollective.com/callemall/a6946da/logo/96.png, https://images.opencollective.com/callemall/a6946da/logo/192.png 2x" alt="call-em-all" title="轻松群发消息" height="96" width="96" loading="lazy"></a>
 </p>
 
-### 这里还有更多！
+### 更多赞助者！
 
-查看[我们赞助人的完整列表](/discover-more/backers/)，了解您如何为 Material-UI 的未来做出贡献。
+查看[我们赞助者](/discover-more/backers/)的完整列表，了解您如何为 Material-UI 的未来做贡献。
