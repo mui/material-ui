@@ -223,14 +223,14 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(props, ref) {
 
         return React.cloneElement(child, {
           className: clsx(buttonClassName, child.props.className),
-          disabled: child.props.disabled || disabled,
           color: child.props.color || color,
+          disabled: child.props.disabled || disabled,
+          disableElevation: child.props.disableElevation || disableElevation,
           disableFocusRipple,
           disableRipple,
           fullWidth,
           size: child.props.size || size,
           variant: child.props.variant || variant,
-          disableElevation: child.props.disableElevation || disableElevation,
         });
       })}
     </Component>

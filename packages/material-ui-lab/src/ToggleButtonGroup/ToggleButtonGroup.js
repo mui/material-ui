@@ -4,18 +4,15 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import isValueSelected from './isValueSelected';
 import { withStyles } from '@material-ui/core/styles';
-import { capitalize } from '@material-ui/core/utils';
 
 export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
-    backgroundColor: theme.palette.background.paper,
-    borderRadius: theme.shape.borderRadius,
     display: 'inline-flex',
+    borderRadius: theme.shape.borderRadius,
   },
   /* Styles applied to the children. */
   grouped: {
-    padding: '0px 11px 0px 12px',
     '&:not(:first-child)': {
       marginLeft: -1,
       borderLeft: '1px solid transparent',
@@ -26,14 +23,6 @@ export const styles = (theme) => ({
       borderTopRightRadius: 0,
       borderBottomRightRadius: 0,
     },
-  },
-  /* Styles applied to the children if `size="small"`. */
-  groupedSizeSmall: {
-    padding: '0px 7px 0px 8px',
-  },
-  /* Styles applied to the children if `size="large"`. */
-  groupedSizeLarge: {
-    padding: '0px 15px 0px 16px',
   },
 });
 
@@ -76,7 +65,7 @@ const ToggleButtonGroup = React.forwardRef(function ToggleButton(props, ref) {
   };
 
   return (
-    <div className={clsx(classes.root, className)} ref={ref} role="group" {...other}>
+    <div role="group" className={clsx(classes.root, className)} ref={ref} {...other}>
       {React.Children.map(children, (child) => {
         if (!React.isValidElement(child)) {
           return null;
@@ -93,21 +82,14 @@ const ToggleButtonGroup = React.forwardRef(function ToggleButton(props, ref) {
           }
         }
 
-        const { selected: buttonSelected, value: buttonValue } = child.props;
-        const selected =
-          buttonSelected === undefined ? isValueSelected(buttonValue, value) : buttonSelected;
-
         return React.cloneElement(child, {
-          className: clsx(
-            classes.grouped,
-            {
-              [classes[`groupedSize${capitalize(size)}`]]: size !== 'medium',
-            },
-            child.props.className,
-          ),
-          selected,
+          className: clsx(classes.grouped, child.props.className),
           onChange: exclusive ? handleExclusiveChange : handleChange,
-          size,
+          selected:
+            child.props.selected === undefined
+              ? isValueSelected(child.props.value, value)
+              : child.props.selected,
+          size: child.props.size || size,
         });
       })}
     </div>
