@@ -18,13 +18,13 @@ export function createFilterOptions<T>(
   config?: CreateFilterOptionsConfig<T>
 ): (options: T[], state: FilterOptionsState<T>) => T[];
 
-export type FreeSoloValueMapping<T> = T extends true ? string : never;
+export type AutocompleteFreeSoloValueMapping<T> = T extends true ? string : never;
 
 export type TValue<T, TMultiple, TDisableClearable, TFreeSolo> = TMultiple extends undefined | false
   ? TDisableClearable extends true
-    ? NonNullable<T | FreeSoloValueMapping<TFreeSolo>>
-    : T | null | FreeSoloValueMapping<TFreeSolo>
-  : Array<T | FreeSoloValueMapping<TFreeSolo>>;
+    ? NonNullable<T | AutocompleteFreeSoloValueMapping<TFreeSolo>>
+    : T | null | AutocompleteFreeSoloValueMapping<TFreeSolo>
+  : Array<T | AutocompleteFreeSoloValueMapping<TFreeSolo>>;
 
 export type TBooleanConstraint = boolean | undefined;
 

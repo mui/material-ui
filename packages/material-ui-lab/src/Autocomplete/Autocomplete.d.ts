@@ -18,22 +18,24 @@ export {
   createFilterOptions,
 };
 
-export interface RenderOptionState {
+export interface AutocompleteRenderOptionState {
   inputValue: string;
   selected: boolean;
 }
 
-export type GetTagProps = ({ index }: { index: number }) => {};
+export type AutocompleteGetTagProps = ({ index }: { index: number }) => {};
 
-export interface RenderGroupParams {
+export interface AutocompleteRenderGroupParams {
   key: string;
   group: string;
   children: React.ReactNode;
 }
 
-export interface RenderInputParams {
+export interface AutocompleteRenderInputParams {
   id: string;
   disabled: boolean;
+  fullWidth: boolean;
+  size: 'small' | undefined;
   InputLabelProps: object;
   InputProps: {
     ref: React.Ref<any>;
@@ -153,14 +155,14 @@ export interface AutocompleteProps<
    * @param {any} option The group to render.
    * @returns {ReactNode}
    */
-  renderGroup?: (params: RenderGroupParams) => React.ReactNode;
+  renderGroup?: (params: AutocompleteRenderGroupParams) => React.ReactNode;
   /**
    * Render the input.
    *
    * @param {object} params
    * @returns {ReactNode}
    */
-  renderInput: (params: RenderInputParams) => React.ReactNode;
+  renderInput: (params: AutocompleteRenderInputParams) => React.ReactNode;
   /**
    * Render the option, use `getOptionLabel` by default.
    *
@@ -168,7 +170,7 @@ export interface AutocompleteProps<
    * @param {object} state The state of the component.
    * @returns {ReactNode}
    */
-  renderOption?: (option: T, state: RenderOptionState) => React.ReactNode;
+  renderOption?: (option: T, state: AutocompleteRenderOptionState) => React.ReactNode;
   /**
    * Render the selected value.
    *
@@ -176,7 +178,7 @@ export interface AutocompleteProps<
    * @param {function} getTagProps A tag props getter.
    * @returns {ReactNode}
    */
-  renderTags?: (value: T[], getTagProps: GetTagProps) => React.ReactNode;
+  renderTags?: (value: T[], getTagProps: AutocompleteGetTagProps) => React.ReactNode;
   /**
    * The size of the autocomplete.
    */
