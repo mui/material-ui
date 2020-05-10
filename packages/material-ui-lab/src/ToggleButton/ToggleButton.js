@@ -13,8 +13,7 @@ export const styles = (theme) => ({
     ...theme.typography.button,
     boxSizing: 'border-box',
     borderRadius: theme.shape.borderRadius,
-    height: 48,
-    padding: '0px 12px',
+    padding: '6px 16px',
     border: `1px solid ${fade(theme.palette.action.active, 0.12)}`,
     color: fade(theme.palette.action.active, 0.38),
     '&$selected': {
