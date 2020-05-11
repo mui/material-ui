@@ -57,7 +57,7 @@ describe('withStyles', () => {
 
       const ref = React.createRef();
       mount(<StyledTarget ref={ref} />);
-      expect(ref.current instanceof TargetComponent).to.equal(true);
+      expect(ref.current).to.be.instanceof(TargetComponent);
     });
 
     it('forwards refs to React.forwardRef types', () => {
