@@ -1,7 +1,7 @@
 import { deepmerge } from '@material-ui/utils';
 import createMuiTheme from './createMuiTheme';
 
-export default function createMuiStrictModeTheme(options) {
+export default function createMuiStrictModeTheme(options, ...args) {
   return createMuiTheme(
     deepmerge(
       {
@@ -9,5 +9,6 @@ export default function createMuiStrictModeTheme(options) {
       },
       options,
     ),
+    ...args,
   );
 }
