@@ -3,19 +3,27 @@
 ## 4.9.14
 ###### *May 11, 2020*
 
+Big thanks to the 19 contributors who made this release possible.
+
+Here are some highlights ✨:
+
+- 🗂 An experimental extension of the Tab API (#20806) @eps1lon.
+- ⚛️ An improved version of unstable strict mode support (#20952, #20985) @eps1lon @DrewVartanian.
+- And many more 🐛 bug fixes and 📚 improvements.
+
 ### `@material-ui/core@v4.9.14`
 
 - [l10n] Add Hindi (hi-IN) locale (#20916) @chandan-singh
 - [Popper] Fix keepMounted visibility (#20937) @weslenng
 - [Select] Focus labelled element on click (#20833) @qkdreyer
-- [Slider] Center Slider label horizontally in IE11 (#20942) @Uneetpatel7
+- [Slider] Fix center label in IE 11 (#20942) @Uneetpatel7
 - [Tabs] Add `selectionFollowsFocus` (#20936) @eps1lon
 - [Tabs] Forward aria-label* attributes to tablist (#20986) @eps1lon
 - [TextField] Fix typography inheritance issue (#20908) @esseswann
-- [theme] Add missing args to createMuiStrictModeTheme (#20985) @DrewVartanian
+- [theme] Fix missing args to createMuiStrictModeTheme (#20985) @DrewVartanian
 - [theme] Add support #rrggbbaa pattern in hexToRgb function (#20931) @dellink
-- [theme] Add support to override breakpoints (#20901) @JasonHK
-- [Tooltip] Fix Arrow placement overlap (#20900) @esseswann
+- [theme] Fix override breakpoints (#20901) @JasonHK
+- [Tooltip] Fix arrow placement overlap (#20900) @esseswann
 
 ### `@material-ui/styles@v4.9.14`
 
