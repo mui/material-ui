@@ -34,12 +34,11 @@ function TabPanel(props: TabPanelProps) {
   );
 }
 
-const useStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles({
   root: {
     flexGrow: 1,
-    backgroundColor: theme.palette.background.paper,
   },
-}));
+});
 
 export default function AccessibleTabs() {
   const classes = useStyles();
