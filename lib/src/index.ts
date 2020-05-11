@@ -2,11 +2,19 @@ import { DayProps as DayPropsType } from './views/Calendar/Day';
 
 export * from './DatePicker';
 
+export { DatePickerToolbar } from './DatePicker/DatePickerToolbar';
+
 export * from './TimePicker';
+
+export { TimePickerToolbar } from './TimePicker/TimePickerToolbar';
 
 export * from './DateTimePicker';
 
+export { DateTimePickerToolbar } from './DateTimePicker/DateTimePickerToolbar';
+
 export * from './DateRangePicker/DateRangePicker';
+
+export { DateRangePickerToolbar } from './DateRangePicker/DateRangePickerToolbar';
 
 export { Calendar } from './views/Calendar/Calendar';
 
