@@ -73,6 +73,8 @@ export const styles = (theme) => ({
 
 const Tabs = React.forwardRef(function Tabs(props, ref) {
   const {
+    'aria-label': ariaLabel,
+    'aria-labelledby': ariaLabelledBy,
     action,
     centered = false,
     children: childrenProp,
@@ -483,6 +485,8 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
         {/* The tablist isn't interactive but the tabs are */}
         {/* eslint-disable-next-line jsx-a11y/interactive-supports-focus */}
         <div
+          aria-label={ariaLabel}
+          aria-labelledby={ariaLabelledBy}
           className={clsx(classes.flexContainer, {
             [classes.flexContainerVertical]: vertical,
             [classes.centered]: centered && !scrollable,
@@ -510,6 +514,14 @@ Tabs.propTypes = {
    * that can be triggered programmatically.
    */
   action: refType,
+  /**
+   * The label for the Tabs as a string.
+   */
+  'aria-label': PropTypes.string,
+  /**
+   * An id or list of ids separated by a space that label the Tabs.
+   */
+  'aria-labelledby': PropTypes.string,
   /**
    * If `true`, the tabs will be centered.
    * This property is intended for large views.
