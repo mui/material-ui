@@ -1,6 +1,5 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import KeyboardDateInput from '../_shared/KeyboardDateInput';
 import Popover, { PopoverProps } from '@material-ui/core/Popover';
 import { WrapperProps } from './Wrapper';
 import { StaticWrapperProps } from './StaticWrapper';
@@ -8,6 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { InnerMobileWrapperProps } from './MobileWrapper';
 import { WrapperVariantContext } from './WrapperVariantContext';
 import { IS_TOUCH_DEVICE_MEDIA } from '../constants/dimensions';
+import { KeyboardDateInput } from '../_shared/KeyboardDateInput';
 import { InnerDesktopPopperWrapperProps } from './DesktopPopperWrapper';
 
 export interface InnerDesktopWrapperProps {

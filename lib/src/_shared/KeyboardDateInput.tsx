@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as PropTypes from 'prop-types';
 import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import { useUtils } from './hooks/useUtils';
@@ -50,4 +51,12 @@ export const KeyboardDateInput: React.FC<DateInputProps & DateInputRefs> = ({
   });
 };
 
-export default KeyboardDateInput;
+KeyboardDateInput.propTypes = {
+  renderInput: PropTypes.func.isRequired,
+  mask: PropTypes.string,
+  rifmFormatter: PropTypes.func,
+  openPickerIcon: PropTypes.node,
+  OpenPickerButtonProps: PropTypes.object,
+  acceptRegex: PropTypes.instanceOf(RegExp),
+  getOpenDialogAriaText: PropTypes.func,
+};

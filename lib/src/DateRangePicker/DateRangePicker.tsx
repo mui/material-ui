@@ -1,4 +1,6 @@
 import * as React from 'react';
+import * as PropTypes from 'prop-types';
+import { date } from '../constants/prop-types';
 import { useUtils } from '../_shared/hooks/useUtils';
 import { MobileWrapper } from '../wrappers/MobileWrapper';
 import { DateRangeInputProps } from './DateRangePickerInput';
@@ -127,6 +129,13 @@ export function makeRangePicker<TWrapper extends SomeWrapper>(Wrapper: TWrapper)
       </WrapperComponent>
     );
   }
+
+  RangePickerWithStateAndWrapper.propTypes = {
+    value: PropTypes.arrayOf(date).isRequired,
+    onChange: PropTypes.func.isRequired,
+    startText: PropTypes.node,
+    endText: PropTypes.node,
+  };
 
   return React.forwardRef<
     HTMLDivElement,

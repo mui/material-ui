@@ -1,7 +1,7 @@
 import * as PropTypes from 'prop-types';
 import { MaterialUiPickersDate } from '../typings/date';
 
-const date = PropTypes.oneOfType([
+export const date = PropTypes.oneOfType([
   PropTypes.object,
   PropTypes.string,
   PropTypes.number,

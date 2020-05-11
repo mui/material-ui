@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as PropTypes from 'prop-types';
 import { isRangeValid } from '../_helpers/date-utils';
 import { MaterialUiPickersDate } from '../typings/date';
 import { BasePickerProps } from '../typings/BasePicker';
@@ -211,4 +212,9 @@ export const DateRangePickerView: React.FC<DateRangePickerViewProps> = ({
       )}
     </div>
   );
+};
+
+DateRangePickerView.propTypes = {
+  disableAutoMonthSwitching: PropTypes.bool,
+  calendars: PropTypes.oneOf([1, 2, 3]),
 };

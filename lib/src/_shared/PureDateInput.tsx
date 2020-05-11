@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as PropTypes from 'prop-types';
 import { onSpaceOrEnter } from '../_helpers/utils';
 import { ParsableDate } from '../constants/prop-types';
 import { MaterialUiPickersDate } from '../typings/date';
@@ -27,7 +28,9 @@ export interface DateInputProps<TInputValue = ParsableDate, TDateValue = Materia
   // ?? TODO when it will be possible to display "empty" date in datepicker use it instead of ignoring invalid inputs
   ignoreInvalidInputs?: boolean;
   /**
-   * Render input component. Where `props` – [TextField](https://material-ui.com/api/text-field/#textfield-api) component props
+   * The `renderInput` prop allows you to customize the rendered input.
+   * The `props` argument of this render prop contains props of [TextField](https://material-ui.com/api/text-field/#textfield-api) that you need to forward.
+   * Pay specific attention to the `ref` and `inputProps` keys.
    * @example ```jsx
    * renderInput={props => <TextField {...props} />}
    * ````
@@ -136,4 +139,12 @@ export const PureDateInput: React.FC<DateInputProps & DateInputRefs> = ({
   });
 };
 
-PureDateInput.displayName = 'PureDateInput';
+PureDateInput.propTypes = {
+  acceptRegex: PropTypes.instanceOf(RegExp),
+  getOpenDialogAriaText: PropTypes.func,
+  mask: PropTypes.string,
+  OpenPickerButtonProps: PropTypes.object,
+  openPickerIcon: PropTypes.node,
+  renderInput: PropTypes.func.isRequired,
+  rifmFormatter: PropTypes.func,
+};

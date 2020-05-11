@@ -858,7 +858,7 @@
     },
     "renderInput": {
       "defaultValue": null,
-      "description": "Render input component. Where `props` – [TextField](https://material-ui.com/api/text-field/#textfield-api) component props\n@example ```jsx\nrenderInput={props => <TextField {...props} />}\n````",
+      "description": "The `renderInput` prop allows you to customize the rendered input.\nThe `props` argument of this render prop contains props of [TextField](https://material-ui.com/api/text-field/#textfield-api) that you need to forward.\nPay specific attention to the `ref` and `inputProps` keys.\n@example ```jsx\nrenderInput={props => <TextField {...props} />}\n````",
       "name": "renderInput",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/_shared/PureDateInput.tsx",
@@ -1559,7 +1559,7 @@
     },
     "renderInput": {
       "defaultValue": null,
-      "description": "Render input component. Where `props` – [TextField](https://material-ui.com/api/text-field/#textfield-api) component props\n@example ```jsx\nrenderInput={props => <TextField {...props} />}\n````",
+      "description": "The `renderInput` prop allows you to customize the rendered input.\nThe `props` argument of this render prop contains props of [TextField](https://material-ui.com/api/text-field/#textfield-api) that you need to forward.\nPay specific attention to the `ref` and `inputProps` keys.\n@example ```jsx\nrenderInput={props => <TextField {...props} />}\n````",
       "name": "renderInput",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/_shared/PureDateInput.tsx",
@@ -2597,7 +2597,7 @@
     },
     "renderInput": {
       "defaultValue": null,
-      "description": "Render input component. Where `props` – [TextField](https://material-ui.com/api/text-field/#textfield-api) component props\n@example ```jsx\nrenderInput={props => <TextField {...props} />}\n````",
+      "description": "The `renderInput` prop allows you to customize the rendered input.\nThe `props` argument of this render prop contains props of [TextField](https://material-ui.com/api/text-field/#textfield-api) that you need to forward.\nPay specific attention to the `ref` and `inputProps` keys.\n@example ```jsx\nrenderInput={props => <TextField {...props} />}\n````",
       "name": "renderInput",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/_shared/PureDateInput.tsx",
@@ -3455,7 +3455,7 @@
     },
     "renderInput": {
       "defaultValue": null,
-      "description": "Render input component for date range. Where `props` – [TextField](https://material-ui.com/api/text-field/#textfield-api) component props\n@example ```jsx\n<DateRangePicker\nrenderInput={(startProps, endProps) => (\n<>\n<TextField {...startProps} />\n<Typography> to <Typography>\n<TextField {...endProps} />\n</>;\n)}\n/>\n````",
+      "description": "The `renderInput` prop allows you to customize the rendered input.\nThe `startProps` and `endProps` arguments of this render prop contains props of [TextField](https://material-ui.com/api/text-field/#textfield-api),\nthat you need to forward to the range start/end inputs respectively.\nPay specific attention to the `ref` and `inputProps` keys.\n@example ```jsx\n<DateRangePicker\nrenderInput={(startProps, endProps) => (\n  <>\n    <TextField {...startProps} />\n    <Typography> to <Typography>\n    <TextField {...endProps} />\n  </>;\n)}\n/>\n````",
       "name": "renderInput",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/DateRangePicker/DateRangePickerInput.tsx",
