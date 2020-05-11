@@ -1,5 +1,62 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.9.14
+###### *May 11, 2020*
+
+### `@material-ui/core@v4.9.14`
+
+- [l10n] Add Hindi (hi-IN) locale (#20916) @chandan-singh
+- [Popper] Fix keepMounted visibility (#20937) @weslenng
+- [Select] Focus labelled element on click (#20833) @qkdreyer
+- [Slider] Center Slider label horizontally in IE11 (#20942) @Uneetpatel7
+- [Tabs] Add `selectionFollowsFocus` (#20936) @eps1lon
+- [Tabs] Forward aria-label* attributes to tablist (#20986) @eps1lon
+- [TextField] Fix typography inheritance issue (#20908) @esseswann
+- [theme] Add missing args to createMuiStrictModeTheme (#20985) @DrewVartanian
+- [theme] Add support #rrggbbaa pattern in hexToRgb function (#20931) @dellink
+- [theme] Add support to override breakpoints (#20901) @JasonHK
+- [Tooltip] Fix Arrow placement overlap (#20900) @esseswann
+
+### `@material-ui/styles@v4.9.14`
+
+- [styles] Return simpler type from ComponentCreator (#20854) @vlazh
+
+### `@material-ui/system@v4.9.14`
+
+- [system] Add csstype as dependency to material-ui-system (#20922) @govizlora
+
+### `@material-ui/lab@v4.0.0-alpha.53`
+
+- [Autocomplete] Add new handleHomeEndKeys prop (#20910) @p00000001
+- [Autocomplete] Fix Google Map demo warnings (#20983) @oliviertassinari
+- [Autocomplete] Fix onHighlightChange when filtering (#20923) @marcosvega91
+- [Tabs] Add new experimental Tabs API (#20806) @eps1lon
+- [ToggleButton] Reduce gap with ButtonGroup (#20967) @rehanmohiuddin
+
+### `@material-ui/types@v5.1.0`
+
+- [types] Add OverridableStringUnion helper (#20901) @JasonHK
+
+### Docs
+
+- [docs] Add missing spot do DiamondSponsors (#20958) @eps1lon
+- [docs] Fix leaking lazy stylesheets (#20903) @eps1lon
+- [docs] Label accessibility for native select (#20876) @mkesavan13
+- [docs] Reduce likelyhood of overflow in ToC (#20961) @eps1lon
+- [docs] Remove redirection to v0 (#17637) (#20902) @dellink
+- [docs] Sychronize translations (#20982) @oliviertassinari
+
+### Core
+
+- [test] Improve assertion mismatch messages (#20964) @eps1lon
+- [test] Migrate all Table components to testing-library (#20914) @marcosvega91
+- [test] Migrate CircularProgress and Collapse to testing-library (#20789) @marcosvega91
+- [test] Prepare patch for `react@next` (#20966) @eps1lon
+- [test] Use actual element over document.activeElement (#20945) @eps1lon
+- [core] Remove unstable_StrictMode transition components (#20952) @eps1lon
+- [core] Fix typo in internal ScrollbarSize (#20934) @liujiajun
+- [core] Fix typo in test description (#20943) @kunal-mandalia
+
 ## 4.9.13
 ###### *May 4, 2020*
 
@@ -45,6 +102,7 @@ Here are some highlights ✨:
 
 ### Docs
 
+- [sponsors] Add diamond Sencha (#20875) @oliviertassinari
 - [docs] Add collapsible table demo (#19795) @LorenzHenk
 - [docs] Fix "Find the source" link in localization.md (#20791) @ValentinH
 - [docs] Fix emojis/html being included in toc (#20841) @eps1lon
