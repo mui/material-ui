@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Switch from '@material-ui/core/Switch';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
@@ -31,8 +29,34 @@ function TabPanel(props) {
 
 TabPanel.propTypes = {
   children: PropTypes.node,
-  index: PropTypes.any.isRequired,
-  value: PropTypes.any.isRequired,
+  index: PropTypes.number.isRequired,
+  value: PropTypes.number.isRequired,
+};
+
+function DemoTabs(props) {
+  const { labelId, onChange, selectionFollowsFocus, value } = props;
+
+  return (
+    <AppBar position="static">
+      <Tabs
+        aria-labelledby={labelId}
+        onChange={onChange}
+        selectionFollowsFocus={selectionFollowsFocus}
+        value={value}
+      >
+        <Tab label="Item One" aria-controls="simple-tabpanel-0" id="simple-tab-0" />
+        <Tab label="Item Two" aria-controls="simple-tabpanel-1" id="simple-tab-1" />
+        <Tab label="Item Three" aria-controls="simple-tabpanel-2" id="simple-tab-2" />
+      </Tabs>
+    </AppBar>
+  );
+}
+
+DemoTabs.propTypes = {
+  labelId: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  selectionFollowsFocus: PropTypes.bool,
+  value: PropTypes.number.isRequired,
 };
 
 const useStyles = makeStyles({
@@ -49,35 +73,21 @@ export default function AccessibleTabs() {
     setValue(newValue);
   };
 
-  const [selectionFollowsFocus, toggleSelectionFollowsFocus] = React.useReducer(
-    (flag) => !flag,
-    true,
-  );
-
   return (
     <div className={classes.root}>
-      <FormControlLabel
-        control={
-          <Switch
-            checked={selectionFollowsFocus}
-            onChange={toggleSelectionFollowsFocus}
-            color="secondary"
-          />
-        }
-        label="Selection follows focus"
+      <Typography id="demo-a11y-tabs-automatic-label">
+        Tabs where selection follows focus
+      </Typography>
+      <DemoTabs
+        labelId="demo-a11y-tabs-automatic-label"
+        selectionFollowsFocus
+        onChange={handleChange}
+        value={value}
       />
-      <AppBar position="static">
-        <Tabs
-          selectionFollowsFocus={selectionFollowsFocus}
-          value={value}
-          onChange={handleChange}
-          aria-label="simple tabs example"
-        >
-          <Tab label="Item One" aria-controls="simple-tabpanel-0" id="simple-tab-0" />
-          <Tab label="Item Two" aria-controls="simple-tabpanel-1" id="simple-tab-1" />
-          <Tab label="Item Three" aria-controls="simple-tabpanel-2" id="simple-tab-2" />
-        </Tabs>
-      </AppBar>
+      <Typography id="demo-a11y-tabs-manual-label">
+        Tabs where each tab needs to be selected manually
+      </Typography>
+      <DemoTabs labelId="demo-a11y-tabs-manual-label" onChange={handleChange} value={value} />
       <TabPanel value={value} index={0}>
         Item One
       </TabPanel>
