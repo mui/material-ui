@@ -142,20 +142,6 @@ describe('spacing', () => {
         padding: 16,
       },
     });
-
-    // const output3 = spacing({
-    //   theme: {},
-    //   p: 1,
-    //   sm: {
-    //     p: 2,
-    //   },
-    // });
-    // assert.deepEqual(output3, {
-    //   padding: 8,
-    //   '@media (min-width:600px)': {
-    //     padding: 16,
-    //   },
-    // });
   });
 
   it('should support full version', () => {

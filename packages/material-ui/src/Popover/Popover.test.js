@@ -465,12 +465,6 @@ describe('<Popover />', () => {
         'Warning: Failed prop type: Invalid prop `PaperProps.component` supplied to `MockedPopover`. Expected an element type that can hold a ref.',
       );
     });
-
-    // it('should warn if anchorEl is not visible', () => {
-    //   mount(<Popover open anchorEl={document.createElement('div')} />);
-    //   assert.strictEqual(consoleErrorMock.callCount(), 1);
-    //   assert.include(consoleErrorMock.messages()[0], 'The node element should be visible');
-    // });
   });
 
   describe('prop anchorReference="anchorPosition"', () => {

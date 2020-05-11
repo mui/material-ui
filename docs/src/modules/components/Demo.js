@@ -638,9 +638,6 @@ const useStyles = makeStyles(
       [theme.breakpoints.up('sm')]: {
         borderRadius: theme.shape.borderRadius,
       },
-      '&:focus': {
-        outline: `2px dashed ${theme.palette.text.primary}`,
-      },
     },
     /* Isolate the demo with an outline. */
     demoBgOutlined: {
@@ -682,7 +679,7 @@ const useStyles = makeStyles(
       '& pre': {
         overflow: 'auto',
         lineHeight: 1.5,
-        margin: '0px !important',
+        margin: '0 !important',
         maxHeight: 1000,
       },
     },

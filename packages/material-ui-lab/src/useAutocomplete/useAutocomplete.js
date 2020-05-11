@@ -500,7 +500,7 @@ export default function useAutocomplete(props) {
     let newValue = option;
 
     if (multiple) {
-      newValue = Array.isArray(value) ? [...value] : [];
+      newValue = Array.isArray(value) ? value.slice() : [];
 
       if (process.env.NODE_ENV !== 'production') {
         const matches = newValue.filter((val) => getOptionSelected(option, val));
@@ -716,7 +716,7 @@ export default function useAutocomplete(props) {
       case 'Backspace':
         if (multiple && inputValue === '' && value.length > 0) {
           const index = focusedTag === -1 ? value.length - 1 : focusedTag;
-          const newValue = [...value];
+          const newValue = value.slice();
           newValue.splice(index, 1);
           handleValue(event, newValue, 'remove-option', {
             option: value[index],
@@ -805,7 +805,7 @@ export default function useAutocomplete(props) {
   };
 
   const handleTagDelete = (index) => (event) => {
-    const newValue = [...value];
+    const newValue = value.slice();
     newValue.splice(index, 1);
     handleValue(event, newValue, 'remove-option', {
       option: value[index],

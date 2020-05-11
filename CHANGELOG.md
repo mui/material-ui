@@ -72,7 +72,7 @@ Big thanks to the 27 contributors who made this release possible.
 
 Here are some highlights ✨:
 
-- 💎 A new diamond sponsor: [Sencha](https://www.creative-tim.com/), thank you!
+- 💎 A new diamond sponsor: [Sencha](https://sencha.com/), thank you!
 - ⚛️ More tests migrated from enzyme to testing-library @marcosvega91.
 - And many more 🐛 bug fixes and 📚 improvements.
 

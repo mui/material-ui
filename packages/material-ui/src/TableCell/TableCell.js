@@ -48,7 +48,7 @@ export const styles = (theme) => ({
     },
     '&$paddingCheckbox': {
       width: 24, // prevent the checkbox column from growing
-      padding: '0px 12px 0 16px',
+      padding: '0 12px 0 16px',
       '&:last-child': {
         paddingLeft: 12,
         paddingRight: 16,

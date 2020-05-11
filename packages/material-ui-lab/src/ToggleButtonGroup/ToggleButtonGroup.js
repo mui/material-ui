@@ -47,10 +47,10 @@ const ToggleButtonGroup = React.forwardRef(function ToggleButton(props, ref) {
     let newValue;
 
     if (value && index >= 0) {
-      newValue = [...value];
+      newValue = value.slice();
       newValue.splice(index, 1);
     } else {
-      newValue = value ? [...value, buttonValue] : [buttonValue];
+      newValue = value ? value.concat(buttonValue) : [buttonValue];
     }
 
     onChange(event, newValue);
