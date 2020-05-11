@@ -220,44 +220,46 @@ describe('<ClickAwayListener />', () => {
     expect(handleClickAway.callCount).to.equal(0);
   });
 
-  it('triggers onClickAway if an outside target is removed', () => {
-    const handleClickAway = spy();
-    function Test() {
-      const [buttonShown, hideButton] = React.useReducer(() => false, true);
+  ['onClick', 'onClickCapture'].forEach((eventName) => {
+    it(`${eventName} triggers onClickAway if an outside target is removed`, () => {
+      const handleClickAway = spy();
+      function Test() {
+        const [buttonShown, hideButton] = React.useReducer(() => false, true);
 
-      return (
-        <React.Fragment>
-          {buttonShown && <button onClick={hideButton} type="button" />}
-          <ClickAwayListener onClickAway={handleClickAway}>
-            <div />
-          </ClickAwayListener>
-        </React.Fragment>
-      );
-    }
-    render(<Test />);
+        return (
+          <React.Fragment>
+            {buttonShown && <button {...{ [eventName]: hideButton }} type="button" />}
+            <ClickAwayListener onClickAway={handleClickAway}>
+              <div />
+            </ClickAwayListener>
+          </React.Fragment>
+        );
+      }
+      render(<Test />);
 
-    screen.getByRole('button').click();
+      screen.getByRole('button').click();
 
-    expect(handleClickAway.callCount).to.equal(1);
-  });
+      expect(handleClickAway.callCount).to.equal(1);
+    });
 
-  it('does not trigger onClickAway if an inside target is removed', () => {
-    const handleClickAway = spy();
-    function Test() {
-      const [buttonShown, hideButton] = React.useReducer(() => false, true);
+    it(`${eventName} does not trigger onClickAway if an inside target is removed`, () => {
+      const handleClickAway = spy();
+      function Test() {
+        const [buttonShown, hideButton] = React.useReducer(() => false, true);
 
-      return (
-        <React.Fragment>
-          <ClickAwayListener onClickAway={handleClickAway}>
-            <div>{buttonShown && <button onClick={hideButton} type="button" />}</div>
-          </ClickAwayListener>
-        </React.Fragment>
-      );
-    }
-    render(<Test />);
+        return (
+          <React.Fragment>
+            <ClickAwayListener onClickAway={handleClickAway}>
+              <div>{buttonShown && <button {...{ [eventName]: hideButton }} type="button" />}</div>
+            </ClickAwayListener>
+          </React.Fragment>
+        );
+      }
+      render(<Test />);
 
-    screen.getByRole('button').click();
+      screen.getByRole('button').click();
 
-    expect(handleClickAway.callCount).to.equal(0);
+      expect(handleClickAway.callCount).to.equal(0);
+    });
   });
 });
