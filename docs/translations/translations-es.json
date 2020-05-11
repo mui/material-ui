@@ -236,7 +236,7 @@
     "/components/button-group": "Grupo de botones",
     "/components/floating-action-button": "Floating Action Button",
     "/components/backdrop": "Backdrop",
-    "/components/alert": "Alert",
+    "/components/alert": "Alerta",
     "/components/pagination": "Pagination"
   }
 }

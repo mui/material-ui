@@ -1,69 +1,69 @@
 ---
-title: Componente Alert React
+title: Componente React Alerta (Alert)
 components: Alert, AlertTitle
 ---
 
-# Alert
+# Alerta
 
-<p class="description">Un Alert muestra un breve mensaje importante de una forma que atrae la atención del usuario sin necesidad de interrumpir el trabajo al usuario.</p>
+<p class="description">Una Alerta (alert) muestra un mensaje corto e importante de una manera que atrae la atención del usuario sin interrumpir la tarea del usuario.</p>
 
-**Nota:** Este componente no está documentado en la pautas [Material Design](https://material.io/), pero Material-UI lo soporta.
+**Nota:** Este componente no está documentado en las [ pautas de Material Design](https://material.io/), pero Material-UI lo soporta.
 
-## Alert simples
+## Alertas simples
 
-El componente Alert ofrece cuatro niveles de gravedad que establecen un icono y un color distintivos.
+La alerta ofrece cuatro niveles de severidad que distintivamente establecen un icono y un color.
 
 {{"demo": "pages/components/alert/SimpleAlerts.js"}}
 
 ## Descripción
 
-Puede utilizar el componente `AlertTitle` para mostrar un título formateado por encima del contenido.
+Puedes utilizar el componente `AlertTitle` para mostrar un título formateado encima del contenido.
 
 {{"demo": "pages/components/alert/DescriptionAlerts.js"}}
 
 ## Acciones
 
-El componente Alert puede tener una acción, como un botón cerrar o deshacer. Es rendereado después del mensaje, al final del Alert.
+Una alerta puede tener una acción, como un botón para cerrar o deshacer. Es renderizado después del mensaje, al final de la alerta.
 
-Si se proporciona una devolución de llamada `onClose` y no se establece ningún accesorio de `action`, se muestra un icono de cierre. El accesorio de `action` se puede usar para proporcionar una acción alternativa, por ejemplo, usando un Button o un IconButton.
+Si se proporciona un callback `onClose` y no se establece una propiedad `action`, se muestra un icono de cierre. La propiedad `action` puede ser usada para proveer una acción alternativa, por ejemplo, usando un Button o un IconButton.
 
 {{"demo": "pages/components/alert/ActionAlerts.js"}}
 
 ### Transición
 
-Puede utilizar el componente de [ transition ](/components/transitions/) como `Colapse` para la transición del componente Alert.
+Puedes utilizar un [ componente de transition ](/components/transitions/) como `Collapse` para transicionar la apariencia de una alerta.
 
 {{"demo": "pages/components/alert/TransitionAlerts.js"}}
 
 ## Iconos
 
-El `icon` prop permite añadir un icono para el inicio del componente Alert. Esto anulará el icono por defecto para la gravedad especificada.
+La propiedad `icon` te permite añadir un icono al inicio del componente alerta. Esto anulará el icono por defecto para la severidad especificada.
 
-Puede cambiar el ícono de la gravedad por defecto mediante la propidad  `iconMapping`. Esta puede ser definida de forma global usando  [Tema personalizado](/customization/globals/#default-props).
+Puedes cambiar el mapeo por defecto de severidad a ícono con la propiedad  `iconMapping`. Esto puede ser definido globalmente usando [la personalización del tema](/customization/globals/#default-props).
 
-Al establecer la propiedad `icon` en false, el ícono no se mostrará.
+Al establecer la propiedad `icono` a falso, el icono se removerá completamente.
 
 {{"demo": "pages/components/alert/IconAlerts.js"}}
 
 ## Variants
 
-Están disponibles dos variantes adicionales - outlined y filled:
+Dos variantes adicionales están disponibles – delineada y rellena:
 
-### Contorno
+### Delineada
 
 {{"demo": "pages/components/alert/OutlinedAlerts.js"}}
 
-### Relleno
+### Rellenada
 
 {{"demo": "pages/components/alert/FilledAlerts.js"}}
 
 ## Mensaje emergente
 
-You can use the Snackbar to [display a toast](/components/snackbars/#customized-snackbars) with the Alert.
+Puedes usar el Snackbar para [mostrar un mensaje emergente](/components/snackbars/#customized-snackbars) con la alerta.
 
 ## Color
 
-The `color` prop will override the default color for the specified severity.
+La propiedad `color` anulará el color por defecto para la severidad especificada.
 
 {{"demo": "pages/components/alert/ColorAlerts.js"}}
 
@@ -71,8 +71,8 @@ The `color` prop will override the default color for the specified severity.
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#alert)
 
-When the component is dynamically displayed, the content is automatically announced by most screen readers. At this time, screen readers do not inform users of alerts that are present when the page loads.
+Cuando el componente se muestra dinámicamente, el contenido es anunciado automáticamente por la mayoría de los lectores de pantalla. En este momento, los lectores de pantallas no informan a los usuarios de las alertas que están presentes cuando la página carga.
 
-Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies such as screen readers. Ensure that information denoted by the color is either obvious from the content itself (for example the visible text), or is included through alternative means, such as additional hidden text.
+El uso del color para agregar significado sólo proporciona una indicación visual, que no será transmitida a los usuarios de tecnologías de asistencia como lectores de pantalla. Asegurate que la información denotada por el color es u obvia por el contenido en sí mismo (por ejemplo, el texto visible), o es incluida a través de medios alternativos, tales como un texto oculto adicional.
 
-Actions must have a tab index of 0 so that they can be reached by keyboard-only users.
+Las acciones deben tener un índice de pestañas de 0 para que puedan ser alcanzadas por usuarios con sólo teclado.

@@ -7,7 +7,7 @@ components: Badge
 
 <p class="description">徽章会在其子项的右上角生成一个小徽章。</p>
 
-## Basic badges
+## 基本徽章
 
 这个示例是个包含了文本的徽章，同时使用了主色和副色。 徽章会对其子元素生效。
 
@@ -29,13 +29,13 @@ components: Badge
 
 {{"demo": "pages/components/badges/ShowZeroBadge.js"}}
 
-## Maximum value
+## 最大值
 
 您可以使用 `max` 属性来限制徽章内容的最大值。
 
 {{"demo": "pages/components/badges/BadgeMax.js"}}
 
-## Dot badge
+## 圆点徽章
 
 `dot` 属性会使得徽章渲染为一个小点。 这样的组件可以作为一个提示的工具，来说明有些值已经改变，但是不需要计数。
 
@@ -49,6 +49,6 @@ components: Badge
 
 ## 徽章组件的校准
 
-You can use the `anchorOrigin` prop to move the badge to any corner of the wrapped element.
+你可以使用 `anchorOrigin` 属性来移动徽章到包裹元素的任何角落。
 
 {{"demo": "pages/components/badges/BadgeAlignment.js", "hideToolbar": true}}

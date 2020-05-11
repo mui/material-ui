@@ -3,7 +3,7 @@ title: Componente React para Cartão
 components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedia, Collapse, Paper
 ---
 
-# Card (cartão)
+# Cartão
 
 <p class="description">Cartões contêm conteúdo e ações sobre um único assunto.</p>
 

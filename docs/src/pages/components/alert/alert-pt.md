@@ -1,9 +1,9 @@
 ---
-title: Componente do React Alert
+title: Componente React para Alerta
 components: Alert, AlertTitle
 ---
 
-# Alert
+# Alerta
 
 <p class="description">Um alerta exibe uma mensagem curta e importante de uma forma que atrai a atenção do usuário sem interromper o que ele estiver fazendo.</p>
 
@@ -11,7 +11,7 @@ components: Alert, AlertTitle
 
 ## Alerta simples
 
-Este alerta oferece quatro níveis de severidade que definem diferentes ícones e cores.
+O alerta oferece quatro níveis de severidade que se distinguem em diferentes ícones e cores.
 
 {{"demo": "pages/components/alert/SimpleAlerts.js"}}
 

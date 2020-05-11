@@ -9,50 +9,50 @@ components: Avatar, AvatarGroup, Badge
 
 ## 图片头像
 
-Image avatars can be created by passing standard `img` props `src` or `srcSet` to the component.
+可以通过向组件传递标准的`img` 属性、`src` 或`srcSet`来创建图片头像。
 
 {{"demo": "pages/components/avatars/ImageAvatars.js"}}
 
 ## 字母头像
 
-Avatars containing simple characters can be created by passing a string as `children`.
+可以通过向`children`传递字符串的方式来创建字符头像。
 
-{{"demo": "pages/components/avatars/LetterAvatars.js"}}
+{{"demo": "pages/components/avatars/LetterAvatars.js"}} 
 
 ## 尺寸
 
-You can change the size of the avatar with the `height` and `width` CSS properties.
+你可以通过改变`height` 以及`width` 的CSS属性来改变头像的尺寸。
 
-{{"demo": "pages/components/avatars/SizeAvatars.js"}}
+{{"demo": "pages/components/avatars/SizeAvatars.js"}} 
 
 ## 图标头像
 
 通过将图标作为` children `传递来创建图标头像。
 
-{{"demo": "pages/components/avatars/IconAvatars.js"}}
+{{"demo": "pages/components/avatars/IconAvatars.js"}} 
 
 ## 变种
 
-If you need square or rounded avatars, use the `variant` prop.
+如果你需要矩形或圆角头像，请使用 `variant`属性。
 
-{{"demo": "pages/components/avatars/VariantAvatars.js"}}
+{{"demo": "pages/components/avatars/VariantAvatars.js"}} 
 
 ## Fallbacks
 
-If there is an error loading the avatar image, the component falls back to an alternative in the following order:
+如果在加载头像图片时发生错误，组件将切换到以下备选方案：
 
-- the provided children
-- the first letter of the `alt` text
-- a generic avatar icon
+- 提供的children子元素
+- `alt`属性的首字母
+- 通用头像图标
 
-{{"demo": "pages/components/avatars/FallbackAvatars.js"}}
+{{"demo": "pages/components/avatars/FallbackAvatars.js"}} 
 
 ## 分组
 
-`AvatarGroup` renders its children as a stack.
+`AvatarGroup` 通过堆栈的方式渲染其子元素。
 
-{{"demo": "pages/components/avatars/GroupAvatars.js"}}
+{{"demo": "pages/components/avatars/GroupAvatars.js"}} 
 
-## With badge
+## 徽章
 
 {{"demo": "pages/components/avatars/BadgeAvatars.js"}}

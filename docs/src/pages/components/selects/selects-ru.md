@@ -81,3 +81,13 @@ components: Select, NativeSelect
   <MenuItem value="20">Twenty</MenuItem>
 </TextField>
 ```
+
+For a [native select](#native-select), you should mention a label by giving the value of the `id` attribute of the select element to the `InputLabel`'s `htmlFor` attribute:
+
+```jsx
+<InputLabel htmlFor="select">Age</InputLabel>
+<NativeSelect id="select">
+  <option value="10">Ten</option>
+  <option value="20">Twenty</option>
+</NativeSelect>
+```
