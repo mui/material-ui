@@ -14,36 +14,54 @@ export default function ToggleButtonSizes() {
     setAlignment(newAlignment);
   };
 
-  const children = [
-    <ToggleButton key={1} value="left">
-      <FormatAlignLeftIcon />
-    </ToggleButton>,
-    <ToggleButton key={2} value="center">
-      <FormatAlignCenterIcon />
-    </ToggleButton>,
-    <ToggleButton key={3} value="right">
-      <FormatAlignRightIcon />
-    </ToggleButton>,
-    <ToggleButton key={4} value="justify" disabled>
-      <FormatAlignJustifyIcon />
-    </ToggleButton>,
-  ];
-
   return (
     <Grid container spacing={2} direction="column" alignItems="center">
       <Grid item>
         <ToggleButtonGroup size="small" value={alignment} exclusive onChange={handleChange}>
-          {children}
+          <ToggleButton value="left">
+            <FormatAlignLeftIcon fontSize="small" />
+          </ToggleButton>
+          <ToggleButton value="center">
+            <FormatAlignCenterIcon fontSize="small" />
+          </ToggleButton>
+          <ToggleButton value="right">
+            <FormatAlignRightIcon fontSize="small" />
+          </ToggleButton>
+          <ToggleButton value="justify">
+            <FormatAlignJustifyIcon fontSize="small" />
+          </ToggleButton>
         </ToggleButtonGroup>
       </Grid>
       <Grid item>
         <ToggleButtonGroup size="medium" value={alignment} exclusive onChange={handleChange}>
-          {children}
+          <ToggleButton value="left">
+            <FormatAlignLeftIcon />
+          </ToggleButton>
+          <ToggleButton value="center">
+            <FormatAlignCenterIcon />
+          </ToggleButton>
+          <ToggleButton value="right">
+            <FormatAlignRightIcon />
+          </ToggleButton>
+          <ToggleButton value="justify">
+            <FormatAlignJustifyIcon />
+          </ToggleButton>
         </ToggleButtonGroup>
       </Grid>
       <Grid item>
         <ToggleButtonGroup size="large" value={alignment} exclusive onChange={handleChange}>
-          {children}
+          <ToggleButton value="left">
+            <FormatAlignLeftIcon />
+          </ToggleButton>
+          <ToggleButton value="center">
+            <FormatAlignCenterIcon />
+          </ToggleButton>
+          <ToggleButton value="right">
+            <FormatAlignRightIcon />
+          </ToggleButton>
+          <ToggleButton value="justify">
+            <FormatAlignJustifyIcon />
+          </ToggleButton>
         </ToggleButtonGroup>
       </Grid>
     </Grid>
