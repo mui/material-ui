@@ -110,7 +110,7 @@ function describeRef(element, getOptions) {
       const { inheritComponent, mount, refInstanceof } = getOptions();
 
       testRef(element, mount, (instance, wrapper) => {
-        expect(instance instanceof refInstanceof).to.equal(true);
+        expect(instance).to.be.instanceof(refInstanceof);
 
         if (inheritComponent && instance.nodeType === 1) {
           const rootHost = findOutermostIntrinsic(wrapper);
