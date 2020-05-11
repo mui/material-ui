@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createClientRender, fireEvent } from 'test/utils/createClientRender';
+import { createClientRender, fireEvent, screen } from 'test/utils/createClientRender';
 import Portal from '../Portal';
 import ClickAwayListener from './ClickAwayListener';
 
@@ -217,6 +217,47 @@ describe('<ClickAwayListener />', () => {
       </ClickAwayListener>,
     );
     fireEvent.click(document.body);
+    expect(handleClickAway.callCount).to.equal(0);
+  });
+
+  it('triggers onClickAway if an outside target is removed', () => {
+    const handleClickAway = spy();
+    function Test() {
+      const [buttonShown, hideButton] = React.useReducer(() => false, true);
+
+      return (
+        <React.Fragment>
+          {buttonShown && <button onClick={hideButton} type="button" />}
+          <ClickAwayListener onClickAway={handleClickAway}>
+            <div />
+          </ClickAwayListener>
+        </React.Fragment>
+      );
+    }
+    render(<Test />);
+
+    screen.getByRole('button').click();
+
+    expect(handleClickAway.callCount).to.equal(1);
+  });
+
+  it('does not trigger onClickAway if an inside target is removed', () => {
+    const handleClickAway = spy();
+    function Test() {
+      const [buttonShown, hideButton] = React.useReducer(() => false, true);
+
+      return (
+        <React.Fragment>
+          <ClickAwayListener onClickAway={handleClickAway}>
+            <div>{buttonShown && <button onClick={hideButton} type="button" />}</div>
+          </ClickAwayListener>
+        </React.Fragment>
+      );
+    }
+    render(<Test />);
+
+    screen.getByRole('button').click();
+
     expect(handleClickAway.callCount).to.equal(0);
   });
 });

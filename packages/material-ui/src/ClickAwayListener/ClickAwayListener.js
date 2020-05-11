@@ -73,19 +73,7 @@ function ClickAwayListener(props) {
       return;
     }
 
-    let insideDOM;
-
-    // If not enough, can use https://github.com/DieterHolvoet/event-propagation-path/blob/master/propagationPath.js
-    if (event.composedPath) {
-      insideDOM = event.composedPath().indexOf(nodeRef.current) > -1;
-    } else {
-      // TODO v6 remove dead logic https://caniuse.com/#search=composedPath.
-      const doc = ownerDocument(nodeRef.current);
-      insideDOM =
-        !doc.documentElement.contains(event.target) || nodeRef.current.contains(event.target);
-    }
-
-    if (!insideDOM && (disableReactTree || !insideReactTree)) {
+    if (!nodeRef.current.contains(event.target) && (disableReactTree || !insideReactTree)) {
       onClickAway(event);
     }
   });
