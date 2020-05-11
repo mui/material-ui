@@ -159,7 +159,7 @@ ClickAwayListener.propTypes = {
    */
   children: elementAcceptingRef.isRequired,
   /**
-   * The mouse event to listen to. You can disable the listener by providing `false`.
+   * If `true`, the React tree is ignored and only the DOM tree is considered. This prop changes how portaled elements are handled.
    */
   disableReactTree: PropTypes.bool,
   /**
