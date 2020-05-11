@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
   },
   contents: {
     marginTop: theme.spacing(2),
-    paddingLeft: 8,
+    paddingLeft: theme.spacing(1),
   },
   ul: {
     padding: 0,
@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
   },
   item: {
     fontSize: '.8125rem',
-    padding: `4px 0 4px 5px`,
+    padding: theme.spacing(0.5, 0, 0.5, `${Math.max(0, theme.spacing(1) - 3)}px`),
     borderLeft: `3px solid transparent`,
     boxSizing: 'border-box',
     '&:hover': {
