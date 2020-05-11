@@ -248,11 +248,9 @@ describe('<ClickAwayListener />', () => {
         const [buttonShown, hideButton] = React.useReducer(() => false, true);
 
         return (
-          <React.Fragment>
-            <ClickAwayListener onClickAway={handleClickAway}>
-              <div>{buttonShown && <button {...{ [eventName]: hideButton }} type="button" />}</div>
-            </ClickAwayListener>
-          </React.Fragment>
+          <ClickAwayListener onClickAway={handleClickAway}>
+            <div>{buttonShown && <button {...{ [eventName]: hideButton }} type="button" />}</div>
+          </ClickAwayListener>
         );
       }
       render(<Test />);
