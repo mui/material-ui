@@ -111,6 +111,7 @@ async function generateProptypes(
       }
       return undefined;
     },
+    checkDeclarations: true,
   });
 
   if (proptypes.body.length === 0) {
