@@ -25,7 +25,6 @@ export type ButtonTypeMap<
     disableElevation?: boolean;
     /**
      * If `true`, the  keyboard focus ripple will be disabled.
-     * `disableRipple` must also be true.
      */
     disableFocusRipple?: boolean;
     /**

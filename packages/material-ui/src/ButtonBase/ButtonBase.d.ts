@@ -22,6 +22,10 @@ export interface ButtonBaseTypeMap<P = {}, D extends React.ElementType = 'button
      */
     centerRipple?: boolean;
     /**
+     * The content of the component.
+     */
+    children?: React.ReactNode;
+    /**
      * If `true`, the base button will be disabled.
      */
     disabled?: boolean;
@@ -38,7 +42,6 @@ export interface ButtonBaseTypeMap<P = {}, D extends React.ElementType = 'button
     disableTouchRipple?: boolean;
     /**
      * If `true`, the base button will have a keyboard focus ripple.
-     * `disableRipple` must also be `false`.
      */
     focusRipple?: boolean;
     /**

@@ -28,9 +28,9 @@ The `MuiBreadcrumbs` name can be used for providing [default props](/customizati
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name required">children&nbsp;*</span> | <span class="prop-type">node</span> |  | The breadcrumb children. |
+| <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The breadcrumb children. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'nav'</span> | The component used for the root node. Either a string to use a HTML element or a component. By default, it maps the variant to a good default headline component. |
+| <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'nav'</span> | The component used for the root node. Either a string to use a HTML element or a component. |
 | <span class="prop-name">expandText</span> | <span class="prop-type">string</span> | <span class="prop-default">'Show path'</span> | Override the default label for the expand button.<br>For localization purposes, you can use the provided [translations](/guides/localization/). |
 | <span class="prop-name">itemsAfterCollapse</span> | <span class="prop-type">number</span> | <span class="prop-default">1</span> | If max items is exceeded, the number of items to show after the ellipsis. |
 | <span class="prop-name">itemsBeforeCollapse</span> | <span class="prop-type">number</span> | <span class="prop-default">1</span> | If max items is exceeded, the number of items to show before the ellipsis. |

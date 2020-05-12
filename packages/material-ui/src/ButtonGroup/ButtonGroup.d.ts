@@ -22,7 +22,6 @@ export interface ButtonGroupTypeMap<P = {}, D extends React.ElementType = 'div'>
     disableElevation?: boolean;
     /**
      * If `true`, the button keyboard focus ripple will be disabled.
-     * `disableRipple` must also be true.
      */
     disableFocusRipple?: boolean;
     /**
@@ -34,7 +33,7 @@ export interface ButtonGroupTypeMap<P = {}, D extends React.ElementType = 'div'>
      */
     fullWidth?: boolean;
     /**
-     * The group orientation.
+     * The group orientation (layout flow direction).
      */
     orientation?: 'vertical' | 'horizontal';
     /**

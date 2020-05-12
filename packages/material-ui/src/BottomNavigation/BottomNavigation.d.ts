@@ -4,6 +4,10 @@ import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 export interface BottomNavigationTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
     /**
+     * The content of the component.
+     */
+    children?: React.ReactNode;
+    /**
      * Callback fired when the value changes.
      *
      * @param {object} event The event source of the callback.
