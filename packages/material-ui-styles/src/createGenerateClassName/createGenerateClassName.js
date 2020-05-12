@@ -31,7 +31,7 @@ export default function createGenerateClassName(options = {}) {
   const seedPrefix = seed === '' ? '' : `${seed}-`;
   let ruleCounter = 0;
 
-  return (rule, styleSheet) => {
+  const getNextCounterId = () => {
     ruleCounter += 1;
     if (process.env.NODE_ENV !== 'production') {
       if (ruleCounter >= 1e10) {
@@ -43,7 +43,10 @@ export default function createGenerateClassName(options = {}) {
         );
       }
     }
+    return ruleCounter;
+  };
 
+  return (rule, styleSheet) => {
     const name = styleSheet.options.name;
 
     // Is a global static MUI style?
@@ -59,14 +62,14 @@ export default function createGenerateClassName(options = {}) {
         return prefix;
       }
 
-      return `${prefix}-${ruleCounter}`;
+      return `${prefix}-${getNextCounterId()}`;
     }
 
     if (process.env.NODE_ENV === 'production') {
-      return `${seedPrefix}${productionPrefix}${ruleCounter}`;
+      return `${seedPrefix}${productionPrefix}${getNextCounterId()}`;
     }
 
-    const suffix = `${rule.key}-${ruleCounter}`;
+    const suffix = `${rule.key}-${getNextCounterId()}`;
 
     // Help with debuggability.
     if (styleSheet.options.classNamePrefix) {

@@ -86,7 +86,7 @@ describe('createGenerateClassName', () => {
           },
         },
       ),
-    ).to.equal('MuiButton-root-2');
+    ).to.equal('MuiButton-root-1');
     expect(
       generateClassName(
         { key: 'disabled' },
