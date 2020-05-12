@@ -358,7 +358,7 @@ Button.propTypes = {
    */
   component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
   /**
-   * If `true`, the base button will be disabled.
+   * If `true`, the button will be disabled.
    */
   disabled: PropTypes.bool,
   /**
