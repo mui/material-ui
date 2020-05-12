@@ -52,11 +52,11 @@ function FacebookProgress(props: CircularProgressProps) {
     <div className={classes.root}>
       <CircularProgress
         variant="determinate"
-        value={100}
         className={classes.top}
         size={24}
         thickness={4}
         {...props}
+        value={100}
       />
       <CircularProgress
         variant="indeterminate"
