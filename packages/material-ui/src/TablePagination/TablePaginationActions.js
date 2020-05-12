@@ -14,13 +14,13 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
   const {
     backIconButtonProps,
     count,
+    getItemAriaLabel,
     nextIconButtonProps,
     onChangePage,
     page,
     rowsPerPage,
     showFirstButton,
     showLastButton,
-    getAriaLabel,
     ...other
   } = props;
 
@@ -48,7 +48,8 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
         <IconButton
           onClick={handleFirstPageButtonClick}
           disabled={page === 0}
-          aria-label={getAriaLabel('first', page)}
+          aria-label={getItemAriaLabel('first', page)}
+          title={getItemAriaLabel('first', page)}
         >
           {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
         </IconButton>
@@ -57,7 +58,8 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
         onClick={handleBackButtonClick}
         disabled={page === 0}
         color="inherit"
-        aria-label={getAriaLabel('previous', page)}
+        aria-label={getItemAriaLabel('previous', page)}
+        title={getItemAriaLabel('previous', page)}
         {...backIconButtonProps}
       >
         {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
@@ -66,7 +68,8 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
         onClick={handleNextButtonClick}
         disabled={count !== -1 ? page >= Math.ceil(count / rowsPerPage) - 1 : false}
         color="inherit"
-        aria-label={getAriaLabel('next', page)}
+        aria-label={getItemAriaLabel('next', page)}
+        title={getItemAriaLabel('next', page)}
         {...nextIconButtonProps}
       >
         {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
@@ -75,7 +78,8 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
         <IconButton
           onClick={handleLastPageButtonClick}
           disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-          aria-label={getAriaLabel('last', page)}
+          aria-label={getItemAriaLabel('last', page)}
+          title={getItemAriaLabel('last', page)}
         >
           {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
         </IconButton>
@@ -102,7 +106,7 @@ TablePaginationActions.propTypes = {
    * @param {number} page The page number to format.
    * @returns {string}
    */
-  getAriaLabel: PropTypes.func,
+  getItemAriaLabel: PropTypes.func.isRequired,
   /**
    * Props applied to the next arrow [`IconButton`](/api/icon-button/) element.
    */
@@ -124,14 +128,12 @@ TablePaginationActions.propTypes = {
   rowsPerPage: PropTypes.number.isRequired,
   /**
    * If `true`, show the first-page button.
-   * @default false
    */
-  showFirstButton: PropTypes.bool,
+  showFirstButton: PropTypes.bool.isRequired,
   /**
    * If `true`, show the last-page button.
-   * @default false
    */
-  showLastButton: PropTypes.bool,
+  showLastButton: PropTypes.bool.isRequired,
 };
 
 export default TablePaginationActions;

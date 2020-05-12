@@ -67,11 +67,13 @@ export const styles = (theme) => ({
   },
 });
 
-const defaultLabelDisplayedRows = ({ from, to, count }) =>
-  `${from}-${to} of ${count !== -1 ? count : `more than ${to}`}`;
-const defaultRowsPerPageOptions = [10, 25, 50, 100];
+function defaultLabelDisplayedRows({ from, to, count }) {
+  return `${from}-${to} of ${count !== -1 ? count : `more than ${to}`}`;
+}
 
-const defaultGetAriaLabel = (type) => `Go to ${type} page`;
+function defaultGetAriaLabel(type) {
+  return `Go to ${type} page`;
+}
 
 /**
  * A `TableCell` based component for placing inside `TableFooter` for pagination.
@@ -80,25 +82,23 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
   const {
     ActionsComponent = TablePaginationActions,
     backIconButtonProps,
-    backIconButtonText = 'Previous page',
     classes,
     className,
     colSpan: colSpanProp,
     component: Component = TableCell,
     count,
+    getItemAriaLabel = defaultGetAriaLabel,
     labelDisplayedRows = defaultLabelDisplayedRows,
     labelRowsPerPage = 'Rows per page:',
     nextIconButtonProps,
-    nextIconButtonText = 'Next page',
     onChangePage,
     onChangeRowsPerPage,
     page,
     rowsPerPage,
-    rowsPerPageOptions = defaultRowsPerPageOptions,
+    rowsPerPageOptions = [10, 25, 50, 100],
     SelectProps = {},
     showFirstButton = false,
     showLastButton = false,
-    getItemAriaLabel: getAriaLabel = defaultGetAriaLabel,
     ...other
   } = props;
   let colSpan;
@@ -154,23 +154,15 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
         </Typography>
         <ActionsComponent
           className={classes.actions}
-          backIconButtonProps={{
-            title: backIconButtonText,
-            'aria-label': backIconButtonText,
-            ...backIconButtonProps,
-          }}
+          backIconButtonProps={backIconButtonProps}
           count={count}
-          nextIconButtonProps={{
-            title: nextIconButtonText,
-            'aria-label': nextIconButtonText,
-            ...nextIconButtonProps,
-          }}
+          nextIconButtonProps={nextIconButtonProps}
           onChangePage={onChangePage}
           page={page}
           rowsPerPage={rowsPerPage}
           showFirstButton={showFirstButton}
           showLastButton={showLastButton}
-          getAriaLabel={getAriaLabel}
+          getItemAriaLabel={getItemAriaLabel}
         />
       </Toolbar>
     </Component>
@@ -187,12 +179,6 @@ TablePagination.propTypes = {
    * Props applied to the back arrow [`IconButton`](/api/icon-button/) component.
    */
   backIconButtonProps: PropTypes.object,
-  /**
-   * Text label for the back arrow icon button.
-   *
-   * For localization purposes, you can use the provided [translations](/guides/localization/).
-   */
-  backIconButtonText: PropTypes.string,
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
@@ -222,8 +208,7 @@ TablePagination.propTypes = {
    *
    * For localization purposes, you can use the provided [translations](/guides/localization/).
    *
-   * @param {string} type The link or button type to format ('page' | 'first' | 'last' | 'next' | 'previous'). Defaults to 'page'.
-   * @param {number} page The page number to format.
+   * @param {string} type The link or button type to format ('first' | 'last' | 'next' | 'previous').
    * @returns {string}
    */
   getItemAriaLabel: PropTypes.func,
@@ -244,12 +229,6 @@ TablePagination.propTypes = {
    * Props applied to the next arrow [`IconButton`](/api/icon-button/) element.
    */
   nextIconButtonProps: PropTypes.object,
-  /**
-   * Text label for the next arrow icon button.
-   *
-   * For localization purposes, you can use the provided [translations](/guides/localization/).
-   */
-  nextIconButtonText: PropTypes.string,
   /**
    * Callback fired when the page is changed.
    *
