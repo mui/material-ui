@@ -1,9 +1,6 @@
 name: Build, format, and test
 
-on:
-  push:
-    branches:
-      - '*'
+on: [push, pull_request]
 
 jobs:
   build:
