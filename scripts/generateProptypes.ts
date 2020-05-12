@@ -25,14 +25,6 @@ const todoComponents = [
   'TabList',
   'ToggleButton',
   // core
-  'Avatar',
-  'Badge',
-  'BottomNavigation',
-  'BottomNavigationAction',
-  'Breadcrumbs',
-  'Button',
-  'ButtonBase',
-  'ButtonGroup',
   'CardActionArea',
   'CardContent',
   'CardHeader',
@@ -145,6 +137,7 @@ const transitionCallbacks = [
  * since they will be fetched dynamically.
  */
 const ignoreExternalDocumentation: Record<string, string[]> = {
+  Button: ['focusVisibleClassName', 'type'],
   Collapse: transitionCallbacks,
   Fade: transitionCallbacks,
   Grow: transitionCallbacks,

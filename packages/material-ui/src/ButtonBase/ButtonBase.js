@@ -340,6 +340,10 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
 });
 
 ButtonBase.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * A ref for imperative actions.
    * It currently only supports `focusVisible()` action.
@@ -365,7 +369,7 @@ ButtonBase.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -403,6 +407,10 @@ ButtonBase.propTypes = {
    * if needed.
    */
   focusVisibleClassName: PropTypes.string,
+  /**
+   * @ignore
+   */
+  href: PropTypes.string.isRequired,
   /**
    * @ignore
    */
@@ -459,10 +467,6 @@ ButtonBase.propTypes = {
   /**
    * @ignore
    */
-  role: PropTypes.string,
-  /**
-   * @ignore
-   */
   tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * Props applied to the `TouchRipple` element.
@@ -472,7 +476,7 @@ ButtonBase.propTypes = {
    * Used to control the button's purpose.
    * This prop passes the value to the `type` attribute of the native button component.
    */
-  type: PropTypes.oneOf(['submit', 'reset', 'button']),
+  type: PropTypes.oneOf(['button', 'reset', 'submit']),
 };
 
 export default withStyles(styles, { name: 'MuiButtonBase' })(ButtonBase);
