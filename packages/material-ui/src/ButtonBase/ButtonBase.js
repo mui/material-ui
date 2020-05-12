@@ -473,10 +473,9 @@ ButtonBase.propTypes = {
    */
   TouchRippleProps: PropTypes.object,
   /**
-   * Used to control the button's purpose.
-   * This prop passes the value to the `type` attribute of the native button component.
+   * @ignore
    */
-  type: PropTypes.oneOf(['button', 'reset', 'submit']),
+  type: PropTypes.oneOfType([PropTypes.oneOf(['button', 'reset', 'submit']), PropTypes.string]),
 };
 
 export default withStyles(styles, { name: 'MuiButtonBase' })(ButtonBase);

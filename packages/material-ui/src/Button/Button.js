@@ -405,7 +405,7 @@ Button.propTypes = {
   /**
    * @ignore
    */
-  type: PropTypes.oneOf(['button', 'reset', 'submit']),
+  type: PropTypes.oneOfType([PropTypes.oneOf(['button', 'reset', 'submit']), PropTypes.string]),
   /**
    * The variant to use.
    */
