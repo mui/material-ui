@@ -51,7 +51,7 @@ function FacebookProgress(props: CircularProgressProps) {
   return (
     <div className={classes.root}>
       <CircularProgress
-        variant="determinate"        
+        variant="determinate"
         className={classes.top}
         size={24}
         thickness={4}
