@@ -48,11 +48,11 @@ export interface AutocompleteRenderInputParams {
 
 export interface AutocompleteProps<
   T,
-  TMultiple extends TBooleanConstraint,
-  TDisableClearable extends TBooleanConstraint,
-  TFreeSolo extends TBooleanConstraint
+  Multiple extends TBooleanConstraint,
+  DisableClearable extends TBooleanConstraint,
+  FreeSolo extends TBooleanConstraint
 >
-  extends UseAutocompleteProps<T, TMultiple, TDisableClearable, TFreeSolo>,
+  extends UseAutocompleteProps<T, Multiple, DisableClearable, FreeSolo>,
     StandardProps<
       React.HTMLAttributes<HTMLDivElement>,
       AutocompleteClassKey,
@@ -220,7 +220,7 @@ export type AutocompleteClassKey =
  */
 export default function Autocomplete<
   T,
-  TMultiple extends TBooleanConstraint = undefined,
-  TDisableClearable extends TBooleanConstraint = undefined,
-  TFreeSolo extends TBooleanConstraint = undefined
->(props: AutocompleteProps<T, TMultiple, TDisableClearable, TFreeSolo>): JSX.Element;
+  Multiple extends TBooleanConstraint = undefined,
+  DisableClearable extends TBooleanConstraint = undefined,
+  FreeSolo extends TBooleanConstraint = undefined
+>(props: AutocompleteProps<T, Multiple, DisableClearable, FreeSolo>): JSX.Element;
