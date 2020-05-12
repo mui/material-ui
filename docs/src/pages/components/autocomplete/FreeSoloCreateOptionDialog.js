@@ -53,20 +53,15 @@ export default function FreeSoloCreateOptionDialog() {
                 year: '',
               });
             });
-            return;
-          }
-
-          if (newValue && newValue.inputValue) {
+          } else if (newValue && newValue.inputValue) {
             toggleOpen(true);
             setDialogValue({
               title: newValue.inputValue,
               year: '',
             });
-
-            return;
+          } else {
+            setValue(newValue);
           }
-
-          setValue(newValue);
         }}
         filterOptions={(options, params) => {
           const filtered = filter(options, params);
