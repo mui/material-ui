@@ -15,7 +15,68 @@ enum GenerateResult {
   Skipped,
   NoComponent,
   Failed,
+  TODO,
 }
+
+const todoComponents = [
+  // lab
+  'PaginationItem',
+  'Skeleton',
+  'TabList',
+  'ToggleButton',
+  // core
+  'Avatar',
+  'Badge',
+  'BottomNavigation',
+  'BottomNavigationAction',
+  'Breadcrumbs',
+  'Button',
+  'ButtonBase',
+  'ButtonGroup',
+  'CardActionArea',
+  'CardContent',
+  'CardHeader',
+  'CardMedia',
+  'Chip',
+  'Container',
+  'DialogContentText',
+  'Divider',
+  'ExpansionPanelSummary',
+  'Fab',
+  'FormControl',
+  'FormHelperText',
+  'FormLabel',
+  // requires https://github.com/merceyz/typescript-to-proptypes/pull/21
+  'Grid',
+  'GridList',
+  'GridListTile',
+  'Hidden',
+  'Icon',
+  'IconButton',
+  'InputAdornment',
+  'Link',
+  'List',
+  'ListItem',
+  'ListSubheader',
+  'MenuItem',
+  'Modal',
+  'RootRef',
+  'Slider',
+  'StepButton',
+  'SvgIcon',
+  'SwipeableDrawer',
+  'Tab',
+  'Table',
+  'TableBody',
+  'TableContainer',
+  'TableFooter',
+  'TableHead',
+  'TablePagination',
+  'TableRow',
+  'TableSortLabel',
+  'Toolbar',
+  'Typography',
+];
 
 const useExternalPropsFromInputBase = [
   'autoComplete',
@@ -245,6 +306,10 @@ async function run(argv: HandlerArgv) {
     if (!ignoreCache && (await fse.stat(jsFile)).mtimeMs > (await fse.stat(tsFile)).mtimeMs) {
       // Javascript version is newer, skip file
       return GenerateResult.Skipped;
+    }
+
+    if (todoComponents.includes(path.basename(jsFile, '.js'))) {
+      return GenerateResult.TODO;
     }
 
     return generateProptypes(tsFile, jsFile, program);
