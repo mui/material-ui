@@ -28,13 +28,6 @@ export type ButtonTypeMap<
      */
     disableFocusRipple?: boolean;
     /**
-     * If `true`, the ripple effect will be disabled.
-     *
-     * ⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure
-     * to highlight the element by applying separate styles with the `focusVisibleClassName`.
-     */
-    disableRipple?: boolean;
-    /**
      * Element placed after the children.
      */
     endIcon?: React.ReactNode;

@@ -103,6 +103,7 @@ const useExternalPropsFromInputBase = [
  * TODO: typecheck values
  */
 const useExternalDocumentation: Record<string, string[]> = {
+  Button: ['disableRipple'],
   FilledInput: useExternalPropsFromInputBase,
   Input: useExternalPropsFromInputBase,
   OutlinedInput: useExternalPropsFromInputBase,
