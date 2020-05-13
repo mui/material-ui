@@ -16519,9 +16519,9 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-"typescript-to-proptypes@https://pkg.csb.dev/eps1lon/typescript-to-proptypes/commit/19faf6dd/typescript-to-proptypes":
+"typescript-to-proptypes@https://pkg.csb.dev/eps1lon/typescript-to-proptypes/commit/e09c261a/typescript-to-proptypes":
   version "1.5.0"
-  resolved "https://pkg.csb.dev/eps1lon/typescript-to-proptypes/commit/19faf6dd/typescript-to-proptypes#ea3dd692753b474e2b1d457f2fe60591fa35b04f"
+  resolved "https://pkg.csb.dev/eps1lon/typescript-to-proptypes/commit/e09c261a/typescript-to-proptypes#c699f026c3dc5573225340999b0996c3632f137d"
   dependencies:
     "@babel/core" "^7.5.4"
     "@babel/plugin-syntax-class-properties" "^7.2.0"

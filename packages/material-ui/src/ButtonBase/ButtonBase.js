@@ -410,7 +410,7 @@ ButtonBase.propTypes = {
   /**
    * @ignore
    */
-  href: PropTypes.string.isRequired,
+  href: PropTypes.string,
   /**
    * @ignore
    */
