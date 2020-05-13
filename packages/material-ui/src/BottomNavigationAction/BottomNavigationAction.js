@@ -129,7 +129,7 @@ BottomNavigationAction.propTypes = {
   /**
    * The icon element.
    */
-  icon: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
+  icon: PropTypes.node,
   /**
    * The label element.
    */

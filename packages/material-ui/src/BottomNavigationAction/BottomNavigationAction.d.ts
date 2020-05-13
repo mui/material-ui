@@ -16,7 +16,7 @@ export type BottomNavigationActionTypeMap<
     /**
      * The icon element.
      */
-    icon?: string | React.ReactElement;
+    icon?: React.ReactNode;
     /**
      * The label element.
      */
