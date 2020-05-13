@@ -9,6 +9,10 @@ export interface BackdropProps
     BackdropClassKey
   > {
   /**
+   * The content of the component.
+   */
+  children?: React.ReactNode;
+  /**
    * If `true`, the backdrop is invisible.
    * It can be used when rendering a popover or a custom select component.
    */

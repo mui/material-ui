@@ -4,6 +4,10 @@ import { StandardProps } from '..';
 export interface DialogContentProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, DialogContentClassKey> {
   /**
+   * The content of the component.
+   */
+  children?: React.ReactNode;
+  /**
    * Display the top and bottom dividers.
    */
   dividers?: boolean;

@@ -1,10 +1,14 @@
 import * as React from 'react';
 import { StandardProps } from '@material-ui/core';
-import { BoxProps } from '@material-ui/core/Box';
 
 export type TabPanelClassKey = 'root';
 
-export interface TabPanelProps extends StandardProps<BoxProps, TabPanelClassKey> {
+export interface TabPanelProps
+  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, TabPanelClassKey> {
+  /**
+   * The content of the component.
+   */
+  children?: React.ReactNode;
   /**
    * The `value` of the corresponding `Tab`. Must use the index of the `Tab` when
    * no `value` was passed to `Tab`.

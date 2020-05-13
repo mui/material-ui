@@ -6,6 +6,9 @@ export interface TabContextValue {
 }
 
 export interface TabContextProps {
+  /**
+   * The content of the component.
+   */
   children?: React.ReactNode;
   /**
    * The value of the currently selected `Tab`.
