@@ -11,7 +11,7 @@ export type BottomNavigationActionTypeMap<
      * This prop isn't supported.
      * Use the `component` prop if you need to change the children structure.
      */
-    children?: never;
+    children?: React.ReactNode;
     /**
      * The icon element.
      */
