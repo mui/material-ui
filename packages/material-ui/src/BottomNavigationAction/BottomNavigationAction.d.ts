@@ -7,12 +7,11 @@ export type BottomNavigationActionTypeMap<
   D extends React.ElementType
 > = ExtendButtonBaseTypeMap<{
   props: P & {
-    // TODO: never
     /**
      * This prop isn't supported.
      * Use the `component` prop if you need to change the children structure.
      */
-    children?: React.ReactNode;
+    children?: never;
     /**
      * The icon element.
      */
