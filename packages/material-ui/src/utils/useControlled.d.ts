@@ -1,16 +1,21 @@
-export interface UseControlledProps {
+export interface UseControlledProps<T = any> {
   /**
    * This prop contains the component value when it's controlled.
    */
-  controlled: any;
+  controlled: T | undefined;
   /**
-   * The default value.
+   * The default value when uncontrolled.
    */
-  default: any;
+  default: T | undefined;
   /**
    * The component name displayed in warnings.
    */
   name: string;
+
+  /**
+   * The name of the state variable displayed in warnings.
+   */
+  state?: string;
 }
 
-export default function useControlled(props: UseControlledProps): [any, () => void];
+export default function useControlled<T = any>(props: UseControlledProps<T>): [T, (newValue: T) => void];
