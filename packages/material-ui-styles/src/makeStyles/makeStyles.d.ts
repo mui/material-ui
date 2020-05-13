@@ -10,7 +10,7 @@ export type MakeStylesHook<
   : (props: Props & { classes?: Partial<ClassNameMap<ClassKey>> }) => ClassNameMap<ClassKey>;
 
 /**
- * `makeStyles` where the passed `styles` can depend on props
+ * `makeStyles` where the passed `styles` do depend on props
  */
 export default function makeStyles<
   Theme = DefaultTheme,
@@ -20,3 +20,11 @@ export default function makeStyles<
   styles: Styles<Theme, Props, ClassKey>,
   options?: Omit<WithStylesOptions<Theme>, 'withTheme'>
 ): MakeStylesHook<Props, ClassKey>;
+
+/**
+ * `makeStyles` where the passed `styles` do not depend on props
+ */
+export default function makeStyles<Theme = DefaultTheme, ClassKey extends string = string>(
+  styles: Styles<Theme, {}, ClassKey>,
+  options?: Omit<WithStylesOptions<Theme>, 'withTheme'>
+): MakeStylesHook<{}, ClassKey>;
