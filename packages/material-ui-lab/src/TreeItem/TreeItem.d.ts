@@ -5,6 +5,10 @@ import { TransitionProps } from '@material-ui/core/transitions';
 export interface TreeItemProps
   extends StandardProps<React.HTMLAttributes<HTMLLIElement>, TreeItemClassKey> {
   /**
+   * The content of the component.
+   */
+  children?: React.ReactNode;
+  /**
    * The icon used to collapse the node.
    */
   collapseIcon?: React.ReactNode;

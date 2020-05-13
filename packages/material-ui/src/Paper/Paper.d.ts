@@ -4,6 +4,10 @@ import { StandardProps } from '..';
 export interface PaperProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, PaperClassKey> {
   /**
+   * The content of the component.
+   */
+  children?: React.ReactNode;
+  /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */

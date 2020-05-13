@@ -4,7 +4,12 @@ import { StandardProps } from '..';
 export type ScopedCssBaselineClassKey = 'root';
 
 export interface ScopedCssBaselineProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, ScopedCssBaselineClassKey> {}
+  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, ScopedCssBaselineClassKey> {
+  /**
+   * The content of the component.
+   */
+  children?: React.ReactNode;
+}
 
 /**
  *

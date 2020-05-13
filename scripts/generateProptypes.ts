@@ -42,13 +42,6 @@ const useExternalPropsFromInputBase = [
 ];
 
 /**
- * TODO: RESOLVE_BEFORE_MERGE
- * Stop special casing `children`. They have to be implemented by each
- * component individually and need a sensible description. There's no such thing
- * as a default implementation for `children`.
- */
-
-/**
  * A map of components and their props that should be documented
  * but are not used directly in their implementation.
  *
@@ -128,8 +121,6 @@ async function generateProptypes(
     component.types.forEach((prop) => {
       if (prop.name === 'classes' && prop.jsDoc) {
         prop.jsDoc += '\nSee [CSS API](#css) below for more details.';
-      } else if (prop.name === 'children' && !prop.jsDoc) {
-        prop.jsDoc = 'The content of the component.';
       } else if (
         !prop.jsDoc ||
         (ignoreExternalDocumentation[component.name] &&
