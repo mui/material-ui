@@ -106,10 +106,6 @@ const prettierConfig = prettier.resolveConfig.sync(process.cwd(), {
   config: path.join(__dirname, '../prettier.config.js'),
 });
 
-function isExternalProp(prop: ttp.PropTypeNode, component: ttp.ComponentNode): boolean {
-  return Array.from(prop.filenames).some((filename) => filename !== component.propsFilename);
-}
-
 async function generateProptypes(
   tsFile: string,
   jsFile: string,
