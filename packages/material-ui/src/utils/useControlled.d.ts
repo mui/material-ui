@@ -1,4 +1,4 @@
-export interface UseControlledProps<T = any> {
+export interface UseControlledProps<T = unknown> {
   /**
    * This prop contains the component value when it's controlled.
    */
