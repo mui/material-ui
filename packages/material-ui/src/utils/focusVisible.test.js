@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { createMount } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import useIsFocusVisible, { teardown as teardownFocusVisible } from './useIsFocusVisible';
 import useForkRef from './useForkRef';
 
@@ -49,16 +49,11 @@ const SimpleButton = React.forwardRef(function SimpleButton(props, ref) {
 });
 
 describe('focus-visible polyfill', () => {
-  let mount;
+  const mount = createMount();
 
   before(() => {
     // isolate test from previous component test that use the polyfill in the document scope
     teardownFocusVisible(document);
-    mount = createMount({ strict: true });
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   describe('focus inside shadowRoot', () => {

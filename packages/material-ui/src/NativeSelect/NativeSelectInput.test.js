@@ -1,13 +1,14 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createShallow, createMount } from '@material-ui/core/test-utils';
+import { createShallow } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import NativeSelectInput from './NativeSelectInput';
 
 describe('<NativeSelectInput />', () => {
   let shallow;
-  let mount;
+  const mount = createMount();
   const defaultProps = {
     classes: { select: 'select' },
     value: 10,
@@ -27,11 +28,6 @@ describe('<NativeSelectInput />', () => {
 
   before(() => {
     shallow = createShallow();
-    mount = createMount({ strict: true });
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   describeConformance(<NativeSelectInput {...defaultProps} onChange={() => {}} />, () => ({

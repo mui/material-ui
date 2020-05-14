@@ -1,25 +1,21 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import { createClientRender } from 'test/utils/createClientRender';
 import describeConformance from '../test-utils/describeConformance';
 import Snackbar from './Snackbar';
 import Grow from '../Grow';
 
 describe('<Snackbar />', () => {
-  let mount;
+  // StrictModeViolation: uses Slide
+  const mount = createMount({ strict: false });
   let classes;
   const render = createClientRender({ strict: false });
 
   before(() => {
     classes = getClasses(<Snackbar open />);
-    // StrictModeViolation: uses Slide
-    mount = createMount({ strict: false });
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   describeConformance(<Snackbar open message="message" />, () => ({

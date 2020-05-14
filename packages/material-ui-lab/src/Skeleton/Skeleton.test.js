@@ -1,22 +1,18 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import { createClientRender } from 'test/utils/createClientRender';
 import Skeleton from './Skeleton';
 
 describe('<Skeleton />', () => {
-  let mount;
+  const mount = createMount();
   const render = createClientRender();
   let classes;
 
   before(() => {
-    mount = createMount({ strict: true });
     classes = getClasses(<Skeleton />);
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   describeConformance(<Skeleton />, () => ({

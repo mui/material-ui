@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
 import { createClientRender } from 'test/utils/createClientRender';
 import TableRow from './TableRow';
 
 describe('<TableRow />', () => {
-  let mount;
+  const mount = createMount();
   let classes;
   const render = createClientRender();
 
@@ -19,7 +20,6 @@ describe('<TableRow />', () => {
   }
 
   before(() => {
-    mount = createMount({ strict: true });
     classes = getClasses(<TableRow />);
   });
 
@@ -34,7 +34,7 @@ describe('<TableRow />', () => {
       );
       return wrapper.find('tbody').childAt(0);
     },
-    after: () => mount.cleanUp(),
+
     refInstanceof: window.HTMLTableRowElement,
     testComponentPropWith: 'tr',
   }));

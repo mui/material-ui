@@ -1,18 +1,18 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
 import Breadcrumbs from './Breadcrumbs';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import { createClientRender } from 'test/utils/createClientRender';
 
 describe('<Breadcrumbs />', () => {
-  let mount;
+  const mount = createMount();
   let classes;
   const render = createClientRender();
 
   before(() => {
-    mount = createMount({ strict: true });
     classes = getClasses(
       <Breadcrumbs>
         <span>Hello World</span>
@@ -26,7 +26,6 @@ describe('<Breadcrumbs />', () => {
     mount,
     refInstanceof: window.HTMLElement,
     testComponentPropWith: 'div',
-    after: () => mount.cleanUp(),
   }));
 
   it('should render inaccessible seperators between each listitem', () => {

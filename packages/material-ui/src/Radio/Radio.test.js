@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createMount } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import { createClientRender } from 'test/utils/createClientRender';
 import FormControl from '../FormControl';
@@ -10,11 +11,10 @@ import Radio from './Radio';
 describe('<Radio />', () => {
   const render = createClientRender();
   let classes;
-  let mount;
+  const mount = createMount();
 
   before(() => {
     classes = getClasses(<Radio />);
-    mount = createMount({ strict: true });
   });
 
   describeConformance(<Radio />, () => ({
@@ -23,7 +23,6 @@ describe('<Radio />', () => {
     mount,
     refInstanceof: window.HTMLSpanElement,
     skip: ['componentProp'],
-    after: () => mount.cleanUp(),
   }));
 
   describe('styleSheet', () => {

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import PropTypes from 'prop-types';
-import { createMount } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import { createClientRender, fireEvent } from 'test/utils/createClientRender';
@@ -12,7 +12,7 @@ import Grow from '../Grow';
 import Popper from './Popper';
 
 describe('<Popper />', () => {
-  let mount;
+  const mount = createMount();
   let rtlTheme;
   const render = createClientRender();
   const defaultProps = {
@@ -22,7 +22,6 @@ describe('<Popper />', () => {
   };
 
   before(() => {
-    mount = createMount({ strict: true });
     rtlTheme = createMuiTheme({
       direction: 'rtl',
     });
@@ -38,7 +37,6 @@ describe('<Popper />', () => {
       // https://github.com/facebook/react/issues/11565
       'reactTestRenderer',
     ],
-    after: () => mount.cleanUp(),
   }));
 
   describe('prop: placement', () => {

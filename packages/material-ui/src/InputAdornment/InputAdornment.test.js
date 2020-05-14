@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import { createClientRender } from 'test/utils/createClientRender';
@@ -11,12 +12,11 @@ import FormControl from '../FormControl';
 import Input from '../Input';
 
 describe('<InputAdornment />', () => {
-  let mount;
+  const mount = createMount();
   const render = createClientRender();
   let classes;
 
   before(() => {
-    mount = createMount({ strict: true });
     classes = getClasses(<InputAdornment position="start">foo</InputAdornment>);
   });
 
@@ -26,7 +26,6 @@ describe('<InputAdornment />', () => {
     mount,
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'span',
-    after: () => mount.cleanUp(),
   }));
 
   it('should wrap text children in a Typography', () => {

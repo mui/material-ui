@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { stub } from 'sinon';
-import { createMount } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import { createClientRender } from 'test/utils/createClientRender';
 import MenuList from './MenuList';
@@ -19,12 +19,8 @@ function setStyleWidthForJsdomOrBrowser(style, width) {
 }
 
 describe('<MenuList />', () => {
-  let mount;
+  const mount = createMount();
   const render = createClientRender();
-
-  before(() => {
-    mount = createMount({ strict: true });
-  });
 
   describeConformance(<MenuList />, () => ({
     classes: {},
@@ -32,7 +28,6 @@ describe('<MenuList />', () => {
     mount,
     refInstanceof: window.HTMLUListElement,
     skip: ['componentProp'],
-    after: () => mount.cleanUp(),
   }));
 
   describe('prop: children', () => {

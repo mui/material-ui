@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import sinon, { spy, stub, useFakeTimers } from 'sinon';
-import { createMount } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import TextareaAutosize from './TextareaAutosize';
@@ -11,15 +11,7 @@ function getStyle(wrapper) {
 }
 
 describe('<TextareaAutosize />', () => {
-  let mount;
-
-  before(() => {
-    mount = createMount({ strict: true });
-  });
-
-  after(() => {
-    mount.cleanUp();
-  });
+  const mount = createMount();
 
   describeConformance(<TextareaAutosize />, () => ({
     inheritComponent: 'textarea',

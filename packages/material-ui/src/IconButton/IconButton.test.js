@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import { createClientRender } from 'test/utils/createClientRender';
@@ -11,11 +12,10 @@ import IconButton from './IconButton';
 
 describe('<IconButton />', () => {
   let classes;
-  let mount;
+  const mount = createMount();
   const render = createClientRender({ strict: false });
 
   before(() => {
-    mount = createMount({ strict: true });
     classes = getClasses(<IconButton />);
   });
 
@@ -25,7 +25,6 @@ describe('<IconButton />', () => {
     mount,
     refInstanceof: window.HTMLButtonElement,
     skip: ['componentProp'],
-    after: () => mount.cleanUp(),
   }));
 
   it('should render an inner label span (bloody safari)', () => {

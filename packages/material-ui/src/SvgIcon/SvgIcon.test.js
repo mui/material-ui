@@ -1,24 +1,20 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createShallow, createMount, getClasses } from '@material-ui/core/test-utils';
+import { createShallow, getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
 import SvgIcon from './SvgIcon';
 
 describe('<SvgIcon />', () => {
   let shallow;
-  let mount;
+  const mount = createMount();
   let classes;
   let path;
 
   before(() => {
     shallow = createShallow({ dive: true });
-    mount = createMount({ strict: true });
     classes = getClasses(<SvgIcon>foo</SvgIcon>);
     path = <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />;
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   describeConformance(

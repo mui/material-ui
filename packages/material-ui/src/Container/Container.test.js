@@ -1,23 +1,19 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createMount, findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
+import { findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
 import Container from './Container';
 
 describe('<Container />', () => {
-  let mount;
+  const mount = createMount();
   let classes;
   const defaultProps = {
     children: <div />,
   };
 
   before(() => {
-    mount = createMount({ strict: true });
     classes = getClasses(<Container {...defaultProps} />);
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   describeConformance(<Container {...defaultProps} />, () => ({

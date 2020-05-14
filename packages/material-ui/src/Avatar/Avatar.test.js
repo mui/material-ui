@@ -1,24 +1,20 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createClientRender, fireEvent } from 'test/utils/createClientRender';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import { spy } from 'sinon';
 import CancelIcon from '../internal/svg-icons/Cancel';
 import describeConformance from '../test-utils/describeConformance';
 import Avatar from './Avatar';
 
 describe('<Avatar />', () => {
-  let mount;
+  const mount = createMount();
   let classes;
   const render = createClientRender();
 
   before(() => {
-    mount = createMount({ strict: true });
     classes = getClasses(<Avatar />);
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   describeConformance(<Avatar />, () => ({

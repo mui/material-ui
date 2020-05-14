@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import {
   act,
@@ -15,12 +16,11 @@ import TreeView from '../TreeView';
 
 describe('<TreeItem />', () => {
   let classes;
-  let mount;
+  // StrictModeViolation: uses Collapse
+  const mount = createMount({ strict: false });
   const render = createClientRender({ strict: false });
 
   before(() => {
-    // StrictModeViolation: uses Collapse
-    mount = createMount({ strict: false });
     classes = getClasses(<TreeItem nodeId="one" label="one" />);
   });
 
@@ -30,7 +30,6 @@ describe('<TreeItem />', () => {
     mount,
     refInstanceof: window.HTMLLIElement,
     skip: ['componentProp'],
-    after: () => mount.cleanUp(),
   }));
 
   it('should call onClick when clicked', () => {

@@ -1,19 +1,19 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createClientRender } from 'test/utils/createClientRender';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
 import TableSortLabel from './TableSortLabel';
 import ButtonBase from '../ButtonBase';
 import Sort from '@material-ui/icons/Sort';
 
 describe('<TableSortLabel />', () => {
-  let mount;
+  const mount = createMount();
   let classes;
   const render = createClientRender();
 
   before(() => {
-    mount = createMount({ strict: true });
     classes = getClasses(<TableSortLabel />);
   });
 
@@ -21,7 +21,7 @@ describe('<TableSortLabel />', () => {
     classes,
     inheritComponent: ButtonBase,
     mount,
-    after: () => mount.cleanUp(),
+
     refInstanceof: window.HTMLSpanElement,
     skip: ['componentProp'],
   }));

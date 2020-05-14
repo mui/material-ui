@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createShallow, getClasses, createMount } from '@material-ui/core/test-utils';
+import { createShallow, getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
 import ListItem from '../ListItem';
 import ListItemSecondaryAction from '../ListItemSecondaryAction';
@@ -10,16 +11,11 @@ import MenuItem from './MenuItem';
 describe('<MenuItem />', () => {
   let shallow;
   let classes;
-  let mount;
+  const mount = createMount();
 
   before(() => {
     shallow = createShallow({ dive: true });
     classes = getClasses(<MenuItem />);
-    mount = createMount({ strict: true });
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   describeConformance(<MenuItem />, () => ({

@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { expect } from 'chai';
 import { create, SheetsRegistry } from 'jss';
-import { createMount } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import StylesProvider, { StylesContext } from './StylesProvider';
 import makeStyles from '../makeStyles';
 import createGenerateClassName from '../createGenerateClassName';
@@ -18,19 +18,11 @@ function getOptions(wrapper) {
 }
 
 describe('StylesProvider', () => {
-  let mount;
+  const mount = createMount();
   let generateClassName;
-
-  before(() => {
-    mount = createMount({ strict: true });
-  });
 
   beforeEach(() => {
     generateClassName = createGenerateClassName();
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   it('should provide the options', () => {

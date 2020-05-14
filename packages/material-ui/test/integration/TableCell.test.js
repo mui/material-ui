@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createMount, findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
+import { findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import { createClientRender } from 'test/utils/createClientRender';
 import TableCell from '@material-ui/core/TableCell';
 import TableFooter from '@material-ui/core/TableFooter';
@@ -9,7 +10,7 @@ import TableBody from '@material-ui/core/TableBody';
 
 describe('<TableRow> integration', () => {
   let classes;
-  let mount;
+  const mount = createMount();
   const render = createClientRender();
   function mountInTable(node, Variant) {
     const wrapper = mount(
@@ -24,11 +25,6 @@ describe('<TableRow> integration', () => {
 
   before(() => {
     classes = getClasses(<TableCell />);
-    mount = createMount({ strict: true });
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   it('should render a th with the head class when in the context of a table head', () => {

@@ -1,7 +1,8 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import { expect } from 'chai';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
 import { createClientRender, within } from 'test/utils/createClientRender';
 import Step from './Step';
@@ -56,13 +57,12 @@ StepChildDiv.propTypes = {
 
 describe('<Step />', () => {
   let classes;
-  let mount;
+  const mount = createMount();
 
   const render = createClientRender();
 
   before(() => {
     classes = getClasses(<Step />);
-    mount = createMount({ strict: true });
   });
 
   describeConformance(<Step />, () => ({
@@ -71,7 +71,6 @@ describe('<Step />', () => {
     mount,
     refInstanceof: window.HTMLDivElement,
     skip: ['componentProp'],
-    after: () => mount.cleanUp(),
   }));
 
   it('merges styles and other props into the root node', () => {

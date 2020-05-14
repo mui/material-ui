@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createMount } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import PropTypes, { checkPropTypes } from 'prop-types';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
@@ -88,16 +88,8 @@ const NullPaper = React.forwardRef(function NullPaper(props, ref) {
 });
 
 describe('<SwipeableDrawer />', () => {
-  let mount;
-
-  before(() => {
-    // test are mostly asserting on implementation details
-    mount = createMount({ strict: undefined });
-  });
-
-  after(() => {
-    mount.cleanUp();
-  });
+  // test are mostly asserting on implementation details
+  const mount = createMount({ strict: null });
 
   describeConformance(<SwipeableDrawer onOpen={() => {}} onClose={() => {}} open />, () => ({
     classes: {},

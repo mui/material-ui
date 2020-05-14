@@ -1,19 +1,19 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
 import { createClientRender } from 'test/utils/createClientRender';
 import FormLabel from './FormLabel';
 import FormControl, { useFormControl } from '../FormControl';
 
 describe('<FormLabel />', () => {
-  let mount;
+  const mount = createMount();
   const render = createClientRender();
   let classes;
 
   before(() => {
-    mount = createMount({ strict: true });
     classes = getClasses(<FormLabel />);
   });
 
@@ -23,7 +23,6 @@ describe('<FormLabel />', () => {
     mount,
     refInstanceof: window.HTMLLabelElement,
     testComponentPropWith: 'div',
-    after: () => mount.cleanUp(),
   }));
 
   describe('prop: required', () => {

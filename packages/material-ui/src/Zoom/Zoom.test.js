@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import { createMount } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import {
   unstable_createMuiStrictModeTheme as createMuiStrictModeTheme,
@@ -11,16 +11,8 @@ import { Transition } from 'react-transition-group';
 import Zoom from './Zoom';
 
 describe('<Zoom />', () => {
-  let mount;
-
-  before(() => {
-    // StrictModeViolation: uses react-transition-group
-    mount = createMount({ strict: false });
-  });
-
-  after(() => {
-    mount.cleanUp();
-  });
+  // StrictModeViolation: uses react-transition-group
+  const mount = createMount({ strict: false });
 
   describeConformance(
     <Zoom in>

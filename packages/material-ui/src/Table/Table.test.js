@@ -1,18 +1,18 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
 import { createClientRender } from 'test/utils/createClientRender';
 import Table from './Table';
 import TableContext from './TableContext';
 
 describe('<Table />', () => {
-  let mount;
+  const mount = createMount();
   const render = createClientRender();
   let classes;
 
   before(() => {
-    mount = createMount({ strict: true });
     classes = getClasses(<Table>foo</Table>);
   });
 
@@ -27,7 +27,6 @@ describe('<Table />', () => {
       refInstanceof: window.HTMLTableElement,
       // can't test another component with tbody as a child
       testComponentPropWith: 'table',
-      after: () => mount.cleanUp(),
     }),
   );
 

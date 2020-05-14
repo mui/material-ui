@@ -2,7 +2,8 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createMount, getClasses, findOutermostIntrinsic } from '@material-ui/core/test-utils';
+import { getClasses, findOutermostIntrinsic } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import Paper from '../Paper';
@@ -11,18 +12,13 @@ import ExpansionPanelSummary from '../ExpansionPanelSummary';
 import Collapse from '../Collapse';
 
 describe('<ExpansionPanel />', () => {
-  let mount;
+  // StrictModeViolation: uses Collapse
+  const mount = createMount({ strict: false });
   let classes;
   const minimalChildren = [<ExpansionPanelSummary key="header" />];
 
   before(() => {
-    // StrictModeViolation: uses Collapse
-    mount = createMount({ strict: false });
     classes = getClasses(<ExpansionPanel>{minimalChildren}</ExpansionPanel>);
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   describeConformance(<ExpansionPanel>{minimalChildren}</ExpansionPanel>, () => ({

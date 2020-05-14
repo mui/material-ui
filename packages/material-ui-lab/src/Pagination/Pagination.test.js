@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import { createClientRender } from 'test/utils/createClientRender';
 import Pagination from './Pagination';
@@ -9,11 +10,10 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
 describe('<Pagination />', () => {
   let classes;
-  let mount;
+  const mount = createMount();
   const render = createClientRender();
 
   before(() => {
-    mount = createMount({ strict: true });
     classes = getClasses(<Pagination />);
   });
 
@@ -22,7 +22,7 @@ describe('<Pagination />', () => {
     inheritComponent: 'nav',
     mount,
     refInstanceof: window.HTMLElement,
-    after: () => mount.cleanUp(),
+
     skip: ['componentProp'],
   }));
 

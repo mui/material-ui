@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
-import { getClasses, createMount } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import { act, createClientRender, fireEvent, queries } from 'test/utils/createClientRender';
@@ -15,13 +16,12 @@ const NoContent = React.forwardRef(() => {
 });
 
 describe('<ListItem />', () => {
-  let mount;
+  const mount = createMount();
   const render = createClientRender();
   let classes;
 
   before(() => {
     classes = getClasses(<ListItem />);
-    mount = createMount({ strict: true });
   });
 
   describeConformance(<ListItem />, () => ({
@@ -29,7 +29,6 @@ describe('<ListItem />', () => {
     inheritComponent: 'li',
     mount,
     refInstanceof: window.HTMLLIElement,
-    after: () => mount.cleanUp(),
   }));
 
   it('should render with gutters classes', () => {

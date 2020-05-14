@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createClientRender } from 'test/utils/createClientRender';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
@@ -9,13 +10,12 @@ import TabList from './TabList';
 import TabContext from '../TabContext';
 
 describe('<TabList />', () => {
-  let mount;
+  const mount = createMount();
   let classes;
   const render = createClientRender();
 
   before(() => {
     classes = getClasses(<Tabs />);
-    mount = createMount({ strict: true });
   });
 
   function mountInContext(node) {
@@ -30,7 +30,6 @@ describe('<TabList />', () => {
     refInstanceof: window.HTMLDivElement,
     // TODO: no idea why reactTestRenderer fails
     skip: ['reactTestRenderer'],
-    after: () => mount.cleanUp(),
   }));
 
   // outside of TabContext pass every test in Tabs

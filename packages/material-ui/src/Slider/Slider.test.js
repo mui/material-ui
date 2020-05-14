@@ -2,7 +2,8 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { spy, stub } from 'sinon';
 import { expect } from 'chai';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { createClientRender, fireEvent } from 'test/utils/createClientRender';
@@ -27,13 +28,12 @@ describe('<Slider />', () => {
     return;
   }
 
-  let mount;
+  const mount = createMount();
   let classes;
   const render = createClientRender();
 
   before(() => {
     classes = getClasses(<Slider value={0} />);
-    mount = createMount({ strict: true });
   });
 
   describeConformance(<Slider value={0} />, () => ({
@@ -42,7 +42,6 @@ describe('<Slider />', () => {
     mount,
     refInstanceof: window.HTMLSpanElement,
     testComponentPropWith: 'span',
-    after: () => mount.cleanUp(),
   }));
 
   it('should call handlers', () => {

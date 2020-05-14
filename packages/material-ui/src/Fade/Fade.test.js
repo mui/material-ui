@@ -5,27 +5,19 @@ import {
   ThemeProvider,
   unstable_createMuiStrictModeTheme as createMuiStrictModeTheme,
 } from '@material-ui/core/styles';
-import { createMount } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import Fade from './Fade';
 import { Transition } from 'react-transition-group';
 
 describe('<Fade />', () => {
-  let mount;
+  // StrictModeViolation: uses react-transition-group
+  const mount = createMount({ strict: false });
 
   const defaultProps = {
     in: true,
     children: <div />,
   };
-
-  before(() => {
-    // StrictModeViolation: uses react-transition-group
-    mount = createMount({ strict: false });
-  });
-
-  after(() => {
-    mount.cleanUp();
-  });
 
   describeConformance(<Fade {...defaultProps} />, () => ({
     classes: {},

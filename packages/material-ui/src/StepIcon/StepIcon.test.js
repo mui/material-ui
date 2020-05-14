@@ -1,21 +1,17 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createShallow, createMount } from '@material-ui/core/test-utils';
+import { createShallow } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import StepIcon from './StepIcon';
 import SvgIcon from '../SvgIcon';
 
 describe('<StepIcon />', () => {
   let shallow;
-  let mount;
+  const mount = createMount();
 
   before(() => {
     shallow = createShallow({ dive: true });
-    mount = createMount({ strict: true });
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   describeConformance(<StepIcon icon={1} />, () => ({

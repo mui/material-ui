@@ -1,22 +1,18 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import { createClientRender } from 'test/utils/createClientRender';
 import describeConformance from '../test-utils/describeConformance';
 import Card from './Card';
 import Paper from '../Paper';
 
 describe('<Card />', () => {
-  let mount;
+  const mount = createMount();
   let classes;
   const render = createClientRender();
   before(() => {
-    mount = createMount({ strict: true });
     classes = getClasses(<Card />);
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   describeConformance(<Card />, () => ({

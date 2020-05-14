@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import { createClientRender, fireEvent, screen, within } from 'test/utils/createClientRender';
 import { createMuiTheme } from '@material-ui/core/styles';
-import { createMount } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import { ThemeProvider } from '@material-ui/styles';
 import describeConformance from '../test-utils/describeConformance';
 import Fade from '../Fade';
@@ -14,7 +14,8 @@ import Backdrop from '../Backdrop';
 import Modal from './Modal';
 
 describe('<Modal />', () => {
-  let mount;
+  // StrictModeViolation: uses Backdrop
+  const mount = createMount({ strict: false });
   const render = createClientRender({ strict: false });
   let savedBodyStyle;
 
@@ -23,13 +24,7 @@ describe('<Modal />', () => {
   });
 
   beforeEach(() => {
-    // StrictModeViolation: uses Backdrop
-    mount = createMount({ strict: false });
     document.body.setAttribute('style', savedBodyStyle);
-  });
-
-  afterEach(() => {
-    mount.cleanUp();
   });
 
   describeConformance(

@@ -1,23 +1,19 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import { createClientRender } from 'test/utils/createClientRender';
 import AvatarGroup from './AvatarGroup';
 import { Avatar } from '@material-ui/core';
 
 describe('<AvatarGroup />', () => {
-  let mount;
+  const mount = createMount();
   let classes;
   const render = createClientRender();
 
   before(() => {
-    mount = createMount({ strict: true });
     classes = getClasses(<AvatarGroup />);
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   describeConformance(<AvatarGroup />, () => ({

@@ -115,6 +115,20 @@ module.exports = {
       rules: {
         // does not work with wildcard imports. Mistakes will throw at runtime anyway
         'import/named': 'off',
+        //
+        'no-restricted-imports': [
+          'error',
+          {
+            paths: [
+              {
+                name: '@material-ui/core/test-utils',
+                importNames: ['createMount'],
+                message:
+                  "Please use `import createMount from 'test/utils/createMount'` instead. `createMount` from /core has cleanup issues that require breaking changes.",
+              },
+            ],
+          },
+        ],
 
         'material-ui/disallow-active-element-as-key-event-target': 'error',
 
