@@ -1,4 +1,4 @@
-/* eslint-disable material-ui/restricted-path-imports */
+/* eslint-disable no-restricted-imports */
 import React from 'react';
 import { convertLength } from '@material-ui/core/styles/cssUtils';
 import { makeStyles, createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
