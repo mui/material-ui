@@ -2,7 +2,8 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
 import { createClientRender } from 'test/utils/createClientRender';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
 import Collapse from './Collapse';
 import {
@@ -13,7 +14,8 @@ import {
 import { Transition } from 'react-transition-group';
 
 describe('<Collapse />', () => {
-  let mount;
+  // StrictModeViolation: uses react-transition-group
+  const mount = createMount({ strict: false });
   let classes;
   const defaultProps = {
     in: true,
@@ -22,8 +24,6 @@ describe('<Collapse />', () => {
   const render = createClientRender({ strict: false });
 
   before(() => {
-    // StrictModeViolation: uses react-transition-group
-    mount = createMount({ strict: false });
     classes = getClasses(<Collapse {...defaultProps} />);
   });
 
@@ -33,7 +33,6 @@ describe('<Collapse />', () => {
     mount,
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'span',
-    after: () => mount.cleanUp(),
   }));
 
   it('should render a container around the wrapper', () => {

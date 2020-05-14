@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
-import { createMount } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import Slide, { setTranslateValue } from './Slide';
 import {
@@ -13,20 +13,12 @@ import { Transition } from 'react-transition-group';
 import { useForkRef } from '../utils';
 
 describe('<Slide />', () => {
-  let mount;
+  const mount = createMount();
   const defaultProps = {
     in: true,
     children: <div id="testChild" />,
     direction: 'down',
   };
-
-  before(() => {
-    mount = createMount({ strict: true });
-  });
-
-  after(() => {
-    mount.cleanUp();
-  });
 
   describeConformance(
     <Slide in>
