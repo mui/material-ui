@@ -3,13 +3,10 @@ import { expect } from 'chai';
 import * as PropTypes from 'prop-types';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createMount } from '@material-ui/core/test-utils';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import elementAcceptingRef from './elementAcceptingRef';
 
 describe('elementAcceptingRef', () => {
-  let mount;
-
   function checkPropType(element, required = false) {
     PropTypes.checkPropTypes(
       { children: required ? elementAcceptingRef.isRequired : elementAcceptingRef },
@@ -18,14 +15,6 @@ describe('elementAcceptingRef', () => {
       'DummyComponent',
     );
   }
-
-  before(() => {
-    mount = createMount({ strict: true });
-  });
-
-  after(() => {
-    mount.cleanUp();
-  });
 
   beforeEach(() => {
     consoleErrorMock.spy();

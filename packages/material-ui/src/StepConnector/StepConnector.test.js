@@ -1,22 +1,18 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createShallow, createMount, getClasses } from '@material-ui/core/test-utils';
+import { createShallow, getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
 import StepConnector from './StepConnector';
 
 describe('<StepConnector />', () => {
   let shallow;
   let classes;
-  let mount;
+  const mount = createMount();
 
   before(() => {
     shallow = createShallow({ dive: true });
     classes = getClasses(<StepConnector />);
-    mount = createMount({ strict: true });
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   describeConformance(<StepConnector />, () => ({

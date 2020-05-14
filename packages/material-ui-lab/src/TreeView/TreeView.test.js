@@ -3,19 +3,19 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createClientRender, fireEvent } from 'test/utils/createClientRender';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import TreeView from './TreeView';
 import TreeItem from '../TreeItem';
 
 describe('<TreeView />', () => {
   let classes;
-  let mount;
+  const mount = createMount();
   // StrictModeViolation: test uses TreeItem
   const render = createClientRender({ strict: false });
 
   before(() => {
-    mount = createMount({ strict: true });
     classes = getClasses(<TreeView />);
   });
 
@@ -25,7 +25,6 @@ describe('<TreeView />', () => {
     mount,
     refInstanceof: window.HTMLUListElement,
     skip: ['componentProp'],
-    after: () => mount.cleanUp(),
   }));
 
   describe('warnings', () => {

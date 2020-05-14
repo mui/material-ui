@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { stub } from 'sinon';
 import { SheetsRegistry } from 'jss';
 import { Input } from '@material-ui/core';
-import { createMount } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import { isMuiElement } from '@material-ui/core/utils';
 import { createMuiTheme } from '@material-ui/core/styles';
 // import consoleErrorMock from 'test/utils/consoleErrorMock';
@@ -14,20 +14,12 @@ import ThemeProvider from '../ThemeProvider';
 import withStyles from './withStyles';
 
 describe('withStyles', () => {
-  let mount;
+  // StrictModeViolation: uses makeStyles
+  const mount = createMount({ strict: false });
   let generateClassName;
-
-  before(() => {
-    // StrictModeViolation: uses makeStyles
-    mount = createMount({ strict: false });
-  });
 
   beforeEach(() => {
     generateClassName = createGenerateClassName();
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   it('hoist statics', () => {

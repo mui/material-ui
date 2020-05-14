@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import CheckCircle from '../internal/svg-icons/CheckCircle';
-import { createShallow, createMount, getClasses } from '@material-ui/core/test-utils';
+import { createShallow, getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
 import Paper from '../Paper';
 import Step from '../Step';
@@ -13,17 +14,12 @@ import Stepper from './Stepper';
 describe('<Stepper />', () => {
   let classes;
   let shallow;
-  let mount;
+  // StrictModeViolation: test uses StepContent
+  const mount = createMount({ strict: false });
 
   before(() => {
     classes = getClasses(<Stepper />);
     shallow = createShallow({ dive: true });
-    // StrictModeViolation: test uses StepContent
-    mount = createMount({ strict: false });
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   describeConformance(

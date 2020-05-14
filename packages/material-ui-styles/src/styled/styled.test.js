@@ -3,18 +3,17 @@ import { expect } from 'chai';
 import PropTypes from 'prop-types';
 import styled from './styled';
 import { SheetsRegistry } from 'jss';
-import { createMount } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import { createGenerateClassName } from '@material-ui/styles';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import StylesProvider from '../StylesProvider';
 
 describe('styled', () => {
-  let mount;
+  // StrictModeViolation: uses makeStyles
+  const mount = createMount({ strict: false });
   let StyledButton;
 
   before(() => {
-    // StrictModeViolation: uses makeStyles
-    mount = createMount({ strict: false });
     StyledButton = styled('button')({
       background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
       borderRadius: 3,
@@ -24,10 +23,6 @@ describe('styled', () => {
       padding: '0 30px',
       boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
     });
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   it('should work as expected', () => {
@@ -47,7 +42,7 @@ describe('styled', () => {
   describe('prop: clone', () => {
     let wrapper;
 
-    before(() => {
+    beforeEach(() => {
       wrapper = mount(
         <StyledButton clone data-test="enzyme">
           <div>Styled Components</div>

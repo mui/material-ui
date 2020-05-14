@@ -2,7 +2,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
 import TouchRipple from './TouchRipple';
 import ButtonBase from './ButtonBase';
@@ -32,7 +33,7 @@ describe('<ButtonBase />', () => {
   /**
    * @type {ReturnType<typeof createMount>}
    */
-  let mount;
+  const mount = createMount();
   /**
    * @type {Record<string, string>}
    */
@@ -41,7 +42,6 @@ describe('<ButtonBase />', () => {
   let canFireDragEvents = true;
 
   before(() => {
-    mount = createMount({ strict: true });
     classes = getClasses(<ButtonBase />);
     // browser testing config
     try {
@@ -59,7 +59,6 @@ describe('<ButtonBase />', () => {
     mount,
     refInstanceof: window.HTMLButtonElement,
     testComponentPropWith: 'a',
-    after: () => mount.cleanUp(),
   }));
 
   describe('root node', () => {

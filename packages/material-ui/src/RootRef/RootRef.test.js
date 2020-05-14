@@ -2,22 +2,14 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createMount } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import RootRef from './RootRef';
 
 const Fn = () => <div />;
 
 describe('<RootRef />', () => {
-  let mount;
-
-  before(() => {
-    // StrictModeViolation: uses findDOMNode
-    mount = createMount({ strict: false });
-  });
-
-  after(() => {
-    mount.cleanUp();
-  });
+  // StrictModeViolation: uses findDOMNode
+  const mount = createMount({ strict: false });
 
   it('call rootRef function on mount and unmount', () => {
     const rootRef = spy();

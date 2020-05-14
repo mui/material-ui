@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import { createClientRender } from 'test/utils/createClientRender';
 import describeConformance from '../test-utils/describeConformance';
 import Badge from './Badge';
@@ -10,7 +11,7 @@ function findBadge(container) {
 }
 
 describe('<Badge />', () => {
-  let mount;
+  const mount = createMount();
   let classes;
   const render = createClientRender();
   const defaultProps = {
@@ -23,12 +24,7 @@ describe('<Badge />', () => {
   };
 
   before(() => {
-    mount = createMount({ strict: true });
     classes = getClasses(<Badge {...defaultProps} />);
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   describeConformance(

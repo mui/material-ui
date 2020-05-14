@@ -1,21 +1,17 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createMount, findOutermostIntrinsic } from '@material-ui/core/test-utils';
+import { getClasses, findOutermostIntrinsic } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
 import Typography from '../Typography';
 import ListItemText from './ListItemText';
 
 describe('<ListItemText />', () => {
-  let mount;
+  const mount = createMount();
   let classes;
 
   before(() => {
-    mount = createMount({ strict: true });
     classes = getClasses(<ListItemText />);
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   describeConformance(<ListItemText />, () => ({

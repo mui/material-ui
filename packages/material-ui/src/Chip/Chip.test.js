@@ -2,7 +2,8 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
 import CheckBox from '../internal/svg-icons/CheckBox';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
 import { createClientRender, fireEvent } from 'test/utils/createClientRender';
 import Avatar from '../Avatar';
@@ -10,12 +11,11 @@ import Chip from './Chip';
 
 describe('<Chip />', () => {
   let classes;
-  let mount;
+  const mount = createMount();
   const render = createClientRender();
 
   before(() => {
     classes = getClasses(<Chip />);
-    mount = createMount({ strict: true });
   });
 
   describeConformance(<Chip />, () => ({
@@ -24,7 +24,6 @@ describe('<Chip />', () => {
     mount,
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'span',
-    after: () => mount.cleanUp(),
   }));
 
   describe('text only', () => {

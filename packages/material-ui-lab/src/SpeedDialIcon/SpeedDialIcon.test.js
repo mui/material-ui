@@ -1,22 +1,18 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createMount, getClasses, findOutermostIntrinsic } from '@material-ui/core/test-utils';
+import { getClasses, findOutermostIntrinsic } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import Icon from '@material-ui/core/Icon';
 import SpeedDialIcon from './SpeedDialIcon';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 
 describe('<SpeedDialIcon />', () => {
-  let mount;
+  const mount = createMount();
   let classes;
   const icon = <Icon>font_icon</Icon>;
 
   before(() => {
-    mount = createMount({ strict: true });
     classes = getClasses(<SpeedDialIcon />);
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   describeConformance(<SpeedDialIcon />, () => ({

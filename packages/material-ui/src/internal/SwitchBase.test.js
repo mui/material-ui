@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import { createClientRender } from 'test/utils/createClientRender';
@@ -20,11 +21,10 @@ const shouldSuccessOnce = (name) => (func) => () => {
 
 describe('<SwitchBase />', () => {
   const render = createClientRender();
-  let mount;
+  const mount = createMount();
   let classes;
 
   before(() => {
-    mount = createMount({ strict: true });
     classes = getClasses(<SwitchBase icon="unchecked" checkedIcon="checked" type="checkbox" />);
   });
 
@@ -36,7 +36,6 @@ describe('<SwitchBase />', () => {
       mount,
       refInstanceof: window.HTMLSpanElement,
       testComponentPropWith: 'div',
-      after: () => mount.cleanUp(),
     }),
   );
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { expect } from 'chai';
-import { createMount } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import { createClientRender } from 'test/utils/createClientRender';
 import makeStyles from '../makeStyles';
@@ -8,16 +8,8 @@ import useTheme from '../useTheme';
 import ThemeProvider from './ThemeProvider';
 
 describe('ThemeProvider', () => {
-  let mount;
+  const mount = createMount();
   const render = createClientRender();
-
-  before(() => {
-    mount = createMount({ strict: true });
-  });
-
-  after(() => {
-    mount.cleanUp();
-  });
 
   it('should provide the theme', () => {
     const ref = React.createRef();

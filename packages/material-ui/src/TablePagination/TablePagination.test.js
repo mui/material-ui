@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import { fireEvent, createClientRender } from 'test/utils/createClientRender';
 import describeConformance from '../test-utils/describeConformance';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
@@ -13,11 +14,10 @@ import TablePagination from './TablePagination';
 describe('<TablePagination />', () => {
   const noop = () => {};
   let classes;
-  let mount;
+  const mount = createMount();
   const render = createClientRender();
 
   before(() => {
-    mount = createMount({ strict: true });
     classes = getClasses(
       <TablePagination count={1} onChangePage={() => {}} page={0} rowsPerPage={10} />,
     );
@@ -38,7 +38,7 @@ describe('<TablePagination />', () => {
         );
         return wrapper.find('tr').childAt(0);
       },
-      after: () => mount.cleanUp(),
+
       refInstanceof: window.HTMLTableCellElement,
       // can only use `td` in a tr so we just fake a different component
       testComponentPropWith: (props) => <td {...props} />,

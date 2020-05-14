@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createShallow, createMount, getClasses } from '@material-ui/core/test-utils';
+import { createShallow, getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
 import Typography from '../Typography';
 import StepIcon from '../StepIcon';
@@ -9,16 +10,11 @@ import StepLabel from './StepLabel';
 describe('<StepLabel />', () => {
   let shallow;
   let classes;
-  let mount;
+  const mount = createMount();
 
   before(() => {
     shallow = createShallow({ dive: true });
     classes = getClasses(<StepLabel />);
-    mount = createMount({ strict: true });
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   describeConformance(<StepLabel />, () => ({

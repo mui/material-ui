@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
 import { act, createClientRender, fireEvent } from 'test/utils/createClientRender';
 import createServerRender from 'test/utils/createServerRender';
@@ -8,12 +9,11 @@ import Button from './Button';
 import ButtonBase from '../ButtonBase';
 
 describe('<Button />', () => {
-  let mount;
+  const mount = createMount();
   const render = createClientRender();
   let classes;
 
   before(() => {
-    mount = createMount({ strict: true });
     classes = getClasses(<Button>Hello World</Button>);
   });
 
@@ -23,7 +23,6 @@ describe('<Button />', () => {
     mount,
     refInstanceof: window.HTMLButtonElement,
     skip: ['componentProp'],
-    after: () => mount.cleanUp(),
   }));
 
   it('should render with the root & text classes but no others', () => {

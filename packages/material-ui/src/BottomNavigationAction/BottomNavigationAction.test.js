@@ -1,19 +1,19 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
 import { createClientRender, within } from 'test/utils/createClientRender';
 import ButtonBase from '../ButtonBase';
 import BottomNavigationAction from './BottomNavigationAction';
 
 describe('<BottomNavigationAction />', () => {
-  let mount;
+  const mount = createMount();
   let classes;
   const render = createClientRender();
 
   before(() => {
-    mount = createMount({ strict: true });
     classes = getClasses(<BottomNavigationAction />);
   });
 
@@ -23,7 +23,6 @@ describe('<BottomNavigationAction />', () => {
     mount,
     refInstanceof: window.HTMLButtonElement,
     skip: ['componentProp'],
-    after: () => mount.cleanUp(),
   }));
 
   it('adds a `selected` class when selected', () => {

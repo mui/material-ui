@@ -1,6 +1,6 @@
 import React from 'react';
 import { expect } from 'chai';
-import { createMount } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import { Input } from '@material-ui/core';
 import { isMuiElement } from '@material-ui/core/utils';
 import PropTypes from 'prop-types';
@@ -9,15 +9,7 @@ import withTheme from './withTheme';
 import ThemeProvider from '../ThemeProvider';
 
 describe('withTheme', () => {
-  let mount;
-
-  before(() => {
-    mount = createMount({ strict: true });
-  });
-
-  after(() => {
-    mount.cleanUp();
-  });
+  const mount = createMount();
 
   it('should inject the theme', () => {
     const ref = React.createRef();

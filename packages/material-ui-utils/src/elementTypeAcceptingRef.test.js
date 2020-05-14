@@ -3,13 +3,10 @@ import { expect } from 'chai';
 import * as PropTypes from 'prop-types';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createMount } from '@material-ui/core/test-utils';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import elementTypeAcceptingRef from './elementTypeAcceptingRef';
 
 describe('elementTypeAcceptingRef', () => {
-  let mount;
-
   function checkPropType(elementType) {
     PropTypes.checkPropTypes(
       { component: elementTypeAcceptingRef },
@@ -18,14 +15,6 @@ describe('elementTypeAcceptingRef', () => {
       'DummyComponent',
     );
   }
-
-  before(() => {
-    mount = createMount({ strict: true });
-  });
-
-  after(() => {
-    mount.cleanUp();
-  });
 
   beforeEach(() => {
     consoleErrorMock.spy();

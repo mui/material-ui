@@ -1,23 +1,19 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
+import { createShallow, getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import { createMuiTheme } from '@material-ui/core/styles';
 import describeConformance from '../test-utils/describeConformance';
 import Grid, { styles } from './Grid';
 
 describe('<Grid />', () => {
-  let mount;
+  const mount = createMount();
   let shallow;
   let classes;
 
   before(() => {
-    mount = createMount({ strict: true });
     shallow = createShallow({ dive: true });
     classes = getClasses(<Grid />);
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   describeConformance(<Grid />, () => ({

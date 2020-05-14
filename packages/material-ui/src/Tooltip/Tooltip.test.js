@@ -3,7 +3,8 @@ import { expect } from 'chai';
 import PropTypes from 'prop-types';
 import { spy, useFakeTimers } from 'sinon';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import { act, createClientRender, fireEvent } from 'test/utils/createClientRender';
 import describeConformance from '../test-utils/describeConformance';
 import Popper from '../Popper';
@@ -30,7 +31,8 @@ function simulatePointerDevice() {
 }
 
 describe('<Tooltip />', () => {
-  let mount;
+  // StrictModeViolation: uses Grow and tests a lot of impl details
+  const mount = createMount({ strict: null });
   let classes;
   const render = createClientRender({ strict: false });
   let clock;
@@ -51,13 +53,10 @@ describe('<Tooltip />', () => {
   beforeEach(() => {
     testReset();
     clock = useFakeTimers();
-    // StrictModeViolation: uses Grow and tests a lot of impl details
-    mount = createMount({ strict: undefined });
   });
 
   afterEach(() => {
     clock.restore();
-    mount.cleanUp();
   });
 
   describeConformance(<Tooltip {...defaultProps} />, () => ({

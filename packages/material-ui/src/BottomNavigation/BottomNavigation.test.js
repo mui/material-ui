@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import { createClientRender, fireEvent } from 'test/utils/createClientRender';
 import describeConformance from '../test-utils/describeConformance';
 import BottomNavigationAction from '../BottomNavigationAction';
@@ -9,7 +10,7 @@ import Icon from '../Icon';
 import BottomNavigation from './BottomNavigation';
 
 describe('<BottomNavigation />', () => {
-  let mount;
+  const mount = createMount();
   let classes;
   let actionClasses;
   const render = createClientRender();
@@ -23,11 +24,6 @@ describe('<BottomNavigation />', () => {
       </BottomNavigation>,
     );
     actionClasses = getClasses(<BottomNavigationAction icon={icon} />);
-    mount = createMount({ strict: true });
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   describeConformance(

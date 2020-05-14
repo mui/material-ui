@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
 import { createClientRender } from 'test/utils/createClientRender';
 import FormControl from '../FormControl';
@@ -11,12 +12,11 @@ import MenuItem from '../MenuItem';
 
 describe('<TextField />', () => {
   let classes;
-  let mount;
+  const mount = createMount();
   const render = createClientRender();
 
   before(() => {
     classes = getClasses(<TextField />);
-    mount = createMount({ strict: true });
   });
 
   describeConformance(<TextField />, () => ({
@@ -25,7 +25,6 @@ describe('<TextField />', () => {
     mount,
     refInstanceof: window.HTMLDivElement,
     skip: ['componentProp'],
-    after: () => mount.cleanUp(),
   }));
 
   describe('structure', () => {

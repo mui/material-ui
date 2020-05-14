@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import { createClientRender } from 'test/utils/createClientRender';
 import describeConformance from '../test-utils/describeConformance';
 import CardMedia from './CardMedia';
@@ -8,16 +9,11 @@ import consoleErrorMock from 'test/utils/consoleErrorMock';
 import PropTypes from 'prop-types';
 
 describe('<CardMedia />', () => {
-  let mount;
+  const mount = createMount();
   let classes;
   const render = createClientRender();
   before(() => {
-    mount = createMount({ strict: true });
     classes = getClasses(<CardMedia image="/foo.jpg" />);
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   describeConformance(<CardMedia image="/foo.jpg" />, () => ({

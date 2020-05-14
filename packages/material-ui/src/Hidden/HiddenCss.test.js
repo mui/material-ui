@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createShallow, createMount, getClasses } from '@material-ui/core/test-utils';
+import { createShallow, getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import HiddenCss from './HiddenCss';
 import { createMuiTheme, MuiThemeProvider } from '../styles';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
@@ -11,22 +12,17 @@ describe('<HiddenCss />', () => {
   /**
    * @type {ReturnType<typeof createMount>}
    */
-  let mount;
+  const mount = createMount();
   let shallow;
   let classes;
 
   before(() => {
-    mount = createMount({ strict: true });
     shallow = createShallow({ untilSelector: 'div' });
     classes = getClasses(
       <HiddenCss>
         <div />
       </HiddenCss>,
     );
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   describe('the generated class names', () => {

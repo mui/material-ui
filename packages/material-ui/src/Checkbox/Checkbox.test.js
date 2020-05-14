@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { getClasses, createMount } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
 import { createClientRender } from 'test/utils/createClientRender';
 import Checkbox from './Checkbox';
@@ -11,11 +12,10 @@ import IconButton from '../IconButton';
 describe('<Checkbox />', () => {
   const render = createClientRender();
   let classes;
-  let mount;
+  const mount = createMount();
 
   before(() => {
     classes = getClasses(<Checkbox />);
-    mount = createMount({ strict: true });
   });
 
   describeConformance(<Checkbox checked />, () => ({
@@ -24,7 +24,6 @@ describe('<Checkbox />', () => {
     mount,
     refInstanceof: window.HTMLSpanElement,
     skip: ['componentProp'],
-    after: () => mount.cleanUp(),
   }));
 
   it('should have the classes required for Checkbox', () => {

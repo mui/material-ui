@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import Icon from '@material-ui/core/Icon';
 import Tooltip from '@material-ui/core/Tooltip';
 import Fab from '@material-ui/core/Fab';
@@ -8,7 +9,8 @@ import SpeedDialAction from './SpeedDialAction';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 
 describe('<SpeedDialAction />', () => {
-  let mount;
+  // StrictModeViolation: uses Tooltip
+  const mount = createMount({ strict: false });
   let classes;
   const icon = <Icon>add</Icon>;
   const defaultProps = {
@@ -17,13 +19,7 @@ describe('<SpeedDialAction />', () => {
   };
 
   before(() => {
-    // StrictModeViolation: uses Tooltip
-    mount = createMount({ strict: false });
     classes = getClasses(<SpeedDialAction {...defaultProps} />);
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   describeConformance(<SpeedDialAction {...defaultProps} />, () => ({

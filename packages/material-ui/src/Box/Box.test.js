@@ -1,20 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createClientRender } from 'test/utils/createClientRender';
-import { createMount } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import Box from './Box';
 
 describe('<Box />', () => {
-  let mount;
+  const mount = createMount();
   const render = createClientRender();
-  before(() => {
-    mount = createMount({ strict: true });
-  });
-
-  after(() => {
-    mount.cleanUp();
-  });
 
   describeConformance(<Box />, () => ({
     mount,

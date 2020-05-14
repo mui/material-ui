@@ -1,23 +1,19 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import { createClientRender } from 'test/utils/createClientRender';
 import describeConformance from '../test-utils/describeConformance';
 import CardHeader from './CardHeader';
 import Typography from '../Typography';
 
 describe('<CardHeader />', () => {
-  let mount;
+  const mount = createMount();
   let classes;
   const render = createClientRender();
   const typographyClasses = getClasses(<Typography />);
   before(() => {
-    mount = createMount({ strict: true });
     classes = getClasses(<CardHeader />);
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   describeConformance(<CardHeader />, () => ({

@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createClientRender } from 'test/utils/createClientRender';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
 import TableCell from './TableCell';
 
 describe('<TableCell />', () => {
-  let mount;
+  const mount = createMount();
   let classes;
   const render = createClientRender();
   function renderInTable(node) {
@@ -20,7 +21,6 @@ describe('<TableCell />', () => {
   }
 
   before(() => {
-    mount = createMount({ strict: true });
     classes = getClasses(<TableCell />);
   });
 
@@ -37,7 +37,7 @@ describe('<TableCell />', () => {
       );
       return wrapper.find('tr').childAt(0);
     },
-    after: () => mount.cleanUp(),
+
     refInstanceof: window.HTMLTableCellElement,
     // invalid nesting otherwise
     testComponentPropWith: 'td',

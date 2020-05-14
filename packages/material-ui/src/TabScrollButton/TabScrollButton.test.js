@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createMount } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import { createClientRender } from 'test/utils/createClientRender';
 import TabScrollButton from './TabScrollButton';
 import describeConformance from '../test-utils/describeConformance';
@@ -12,10 +13,9 @@ describe('<TabScrollButton />', () => {
   };
   const render = createClientRender();
   let classes;
-  let mount;
+  const mount = createMount();
 
   before(() => {
-    mount = createMount({ strict: true });
     classes = getClasses(<TabScrollButton {...defaultProps} />);
   });
 
@@ -24,7 +24,6 @@ describe('<TabScrollButton />', () => {
     inheritComponent: 'div',
     mount,
     refInstanceof: window.HTMLDivElement,
-    after: () => mount.cleanUp(),
   }));
 
   it('should render as a button with the root class', () => {

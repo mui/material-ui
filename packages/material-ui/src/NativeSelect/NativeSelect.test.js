@@ -1,13 +1,14 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createMount } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import Input from '../Input';
 import NativeSelect from './NativeSelect';
 
 describe('<NativeSelect />', () => {
   let classes;
-  let mount;
+  const mount = createMount();
   const defaultProps = {
     input: <Input />,
     children: [
@@ -22,11 +23,6 @@ describe('<NativeSelect />', () => {
 
   before(() => {
     classes = getClasses(<NativeSelect {...defaultProps} />);
-    mount = createMount({ strict: true });
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   describeConformance(<NativeSelect {...defaultProps} />, () => ({

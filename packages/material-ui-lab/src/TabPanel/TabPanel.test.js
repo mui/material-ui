@@ -1,19 +1,19 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import { createClientRender } from 'test/utils/createClientRender';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import TabPanel from './TabPanel';
 import TabContext from '../TabContext';
 
 describe('<TabPanel />', () => {
-  let mount;
+  const mount = createMount();
   let classes;
   const render = createClientRender();
 
   before(() => {
     classes = getClasses(<TabPanel value={0} />);
-    mount = createMount({ strict: true });
   });
 
   describeConformance(<TabPanel value="0" />, () => ({
@@ -22,7 +22,6 @@ describe('<TabPanel />', () => {
     mount: (element) => mount(<TabContext value="0">{element}</TabContext>),
     refInstanceof: window.HTMLDivElement,
     skip: ['componentProp', 'reactTestRenderer'],
-    after: () => mount.cleanUp(),
   }));
 
   it('renders a [role="tabpanel"]', () => {

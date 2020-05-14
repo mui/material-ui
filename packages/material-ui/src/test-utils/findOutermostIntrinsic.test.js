@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import createMount from './createMount';
+import createMount from 'test/utils/createMount';
 import findOutermostIntrinsic from './findOutermostIntrinsic';
 
 describe('findOutermostIntrinsic', () => {
-  let mount;
+  const mount = createMount({ strict: null });
   const expectIntrinsic = (node, expected) => {
     const wrapper = mount(node);
     const outermostIntrinsic = findOutermostIntrinsic(wrapper);
@@ -19,14 +19,6 @@ describe('findOutermostIntrinsic', () => {
     }
   };
   const Headless = ({ children }) => children;
-
-  before(() => {
-    mount = createMount({ strict: undefined });
-  });
-
-  after(() => {
-    mount.cleanUp();
-  });
 
   it('returns immediate DOM nodes', () => {
     expectIntrinsic(<div>Hello, World!</div>, 'div');

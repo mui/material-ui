@@ -1,14 +1,14 @@
 import * as React from 'react';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
 import TableContainer from './TableContainer';
 
 describe('<TableContainer />', () => {
-  let mount;
+  const mount = createMount();
   let classes;
 
   before(() => {
-    mount = createMount({ strict: true });
     classes = getClasses(<TableContainer />);
   });
 
@@ -18,6 +18,5 @@ describe('<TableContainer />', () => {
     mount,
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'span',
-    after: () => mount.cleanUp(),
   }));
 });

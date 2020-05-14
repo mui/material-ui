@@ -1,17 +1,17 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import { createClientRender } from 'test/utils/createClientRender';
 import PaginationItem from './PaginationItem';
 
 describe('<PaginationItem />', () => {
   let classes;
-  let mount;
+  const mount = createMount();
   const render = createClientRender();
 
   before(() => {
-    mount = createMount({ strict: true });
     classes = getClasses(<PaginationItem />);
   });
 
@@ -20,7 +20,6 @@ describe('<PaginationItem />', () => {
     inheritComponent: 'button',
     mount,
     refInstanceof: window.HTMLButtonElement,
-    after: () => mount.cleanUp(),
   }));
 
   it('should render', () => {

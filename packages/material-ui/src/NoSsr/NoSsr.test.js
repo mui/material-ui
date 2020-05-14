@@ -1,20 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createMount } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import createServerRender from 'test/utils/createServerRender';
 import NoSsr from './NoSsr';
 
 describe('<NoSsr />', () => {
-  let mount;
+  const mount = createMount();
   const serverRender = createServerRender();
-
-  before(() => {
-    mount = createMount({ strict: true });
-  });
-
-  after(() => {
-    mount.cleanUp();
-  });
 
   describe('server-side rendering', () => {
     it('should not render the children as the width is unknown', () => {

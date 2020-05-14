@@ -1,20 +1,20 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createMount, getClasses } from '../test-utils';
-import describeConformance from '../test-utils/describeConformance';
+import { getClasses } from '@material-ui/core/test-utils';
+import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import { createClientRender } from 'test/utils/createClientRender';
+import createMount from 'test/utils/createMount';
 import createServerRender from 'test/utils/createServerRender';
 import Fab from './Fab';
 import ButtonBase from '../ButtonBase';
 import Icon from '../Icon';
 
 describe('<Fab />', () => {
-  let mount;
+  const mount = createMount();
   const render = createClientRender({ strict: false });
   let classes;
 
   before(() => {
-    mount = createMount({ strict: true });
     classes = getClasses(<Fab>Fab</Fab>);
   });
 
@@ -24,7 +24,6 @@ describe('<Fab />', () => {
     mount,
     refInstanceof: window.HTMLButtonElement,
     skip: ['componentProp'],
-    after: () => mount.cleanUp(),
   }));
 
   it('should render with the root class but no others', () => {

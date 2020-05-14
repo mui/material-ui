@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createMount } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import { act, createClientRender, fireEvent, screen } from 'test/utils/createClientRender';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
@@ -12,13 +13,12 @@ import { spy, stub, useFakeTimers } from 'sinon';
 
 describe('<Select />', () => {
   let classes;
-  let mount;
+  // StrictModeViolation: uses Menu
+  const mount = createMount({ strict: false });
   const render = createClientRender({ strict: false });
 
   before(() => {
     classes = getClasses(<Select />);
-    // StrictModeViolation: uses Menu
-    mount = createMount({ strict: false });
   });
 
   describeConformance(<Select value="" />, () => ({
@@ -27,7 +27,6 @@ describe('<Select />', () => {
     mount,
     refInstanceof: window.HTMLDivElement,
     skip: ['componentProp', 'rootClass'],
-    after: () => mount.cleanUp(),
   }));
 
   describe('prop: inputProps', () => {

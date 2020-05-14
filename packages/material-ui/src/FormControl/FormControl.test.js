@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
 import { act, createClientRender } from 'test/utils/createClientRender';
 import Input from '../Input';
@@ -10,7 +11,7 @@ import FormControl from './FormControl';
 import useFormControl from './useFormControl';
 
 describe('<FormControl />', () => {
-  let mount;
+  const mount = createMount();
   const render = createClientRender();
   let classes;
 
@@ -23,12 +24,7 @@ describe('<FormControl />', () => {
   }
 
   before(() => {
-    mount = createMount({ strict: true });
     classes = getClasses(<FormControl />);
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   describeConformance(<FormControl />, () => ({

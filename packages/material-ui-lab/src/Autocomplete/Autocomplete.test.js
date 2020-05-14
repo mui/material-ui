@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import consoleErrorMock, { consoleWarnMock } from 'test/utils/consoleErrorMock';
 import { spy } from 'sinon';
@@ -10,7 +11,7 @@ import Autocomplete from './Autocomplete';
 import TextField from '@material-ui/core/TextField';
 
 describe('<Autocomplete />', () => {
-  let mount;
+  const mount = createMount();
   let classes;
   const render = createClientRender();
   const defaultProps = {
@@ -20,7 +21,6 @@ describe('<Autocomplete />', () => {
 
   before(() => {
     classes = getClasses(<Autocomplete {...defaultProps} renderInput={() => null} />);
-    mount = createMount({ strict: true });
   });
 
   describeConformance(<Autocomplete {...defaultProps} renderInput={() => null} />, () => ({
@@ -29,7 +29,6 @@ describe('<Autocomplete />', () => {
     mount,
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'div',
-    after: () => mount.cleanUp(),
   }));
 
   describe('combobox', () => {

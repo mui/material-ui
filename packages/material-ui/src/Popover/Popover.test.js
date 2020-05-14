@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
-import { createMount, findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
+import { findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import * as PropTypes from 'prop-types';
 import describeConformance from '../test-utils/describeConformance';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
@@ -49,7 +50,8 @@ const FakePaper = React.forwardRef(function FakeWidthPaper(props, ref) {
 });
 
 describe('<Popover />', () => {
-  let mount;
+  // StrictModeViolation: uses Grow
+  const mount = createMount({ strict: false });
   let classes;
   const defaultProps = {
     open: false,
@@ -57,17 +59,11 @@ describe('<Popover />', () => {
   };
 
   before(() => {
-    // StrictModeViolation: uses Grow
-    mount = createMount({ strict: false });
     classes = getClasses(
       <Popover {...defaultProps}>
         <div />
       </Popover>,
     );
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   describeConformance(<Popover {...defaultProps} open />, () => ({
@@ -677,144 +673,96 @@ describe('<Popover />', () => {
         return handleEntering.args[0][0].style;
       }
 
-      describe('when no movement is needed', () => {
-        let positioningStyle;
+      specify('when no movement is needed', () => {
         const negative = marginThreshold === 0 ? '' : '-';
-        const expectedTransformOrigin = new RegExp(
-          `${negative}${marginThreshold}px ${negative}${marginThreshold}px( 0px)?`,
+        const positioningStyle = generateElementStyle();
+
+        expect(positioningStyle.top).to.equal(`${marginThreshold}px`);
+        expect(positioningStyle.left).to.equal(`${marginThreshold}px`);
+        expect(positioningStyle.transformOrigin).to.match(
+          new RegExp(`${negative}${marginThreshold}px ${negative}${marginThreshold}px( 0px)?`),
         );
-
-        before(() => {
-          positioningStyle = generateElementStyle();
-        });
-
-        it('should set top to marginThreshold', () => {
-          expect(positioningStyle.top).to.equal(`${marginThreshold}px`);
-        });
-
-        it('should set left to marginThreshold', () => {
-          expect(positioningStyle.left).to.equal(`${marginThreshold}px`);
-        });
-
-        it('should transformOrigin according to marginThreshold', () => {
-          expect(positioningStyle.transformOrigin).to.match(expectedTransformOrigin);
-        });
       });
 
-      describe('top < marginThreshold', () => {
-        let positioningStyle;
+      specify('top < marginThreshold', () => {
+        const mockedAnchor = document.createElement('div');
+        stub(mockedAnchor, 'getBoundingClientRect').callsFake(() => ({
+          left: marginThreshold,
+          top: marginThreshold - 1,
+        }));
+        const positioningStyle = generateElementStyle(mockedAnchor);
 
-        before(() => {
-          const mockedAnchor = document.createElement('div');
-          stub(mockedAnchor, 'getBoundingClientRect').callsFake(() => ({
-            left: marginThreshold,
-            top: marginThreshold - 1,
-          }));
-
-          positioningStyle = generateElementStyle(mockedAnchor);
-        });
-
-        it('should set top to marginThreshold', () => {
-          expect(positioningStyle.top).to.equal(`${marginThreshold}px`);
-        });
-
-        it('should set left to marginThreshold', () => {
-          expect(positioningStyle.left).to.equal(`${marginThreshold}px`);
-        });
-
-        it('should transformOrigin according to marginThreshold', () => {
-          expect(positioningStyle.transformOrigin).to.match(/0px -1px( 0ms)?/);
-        });
+        expect(positioningStyle.top).to.equal(`${marginThreshold}px`);
+        expect(positioningStyle.left).to.equal(`${marginThreshold}px`);
+        expect(positioningStyle.transformOrigin).to.match(/0px -1px( 0ms)?/);
       });
 
       describe('bottom > heightThreshold', () => {
-        let positioningStyle;
         let windowInnerHeight;
 
         before(() => {
           windowInnerHeight = window.innerHeight;
           window.innerHeight = marginThreshold * 2;
-          const mockedAnchor = document.createElement('div');
-          stub(mockedAnchor, 'getBoundingClientRect').callsFake(() => ({
-            left: marginThreshold,
-            top: marginThreshold + 1,
-          }));
-
-          positioningStyle = generateElementStyle(mockedAnchor);
         });
 
         after(() => {
           window.innerHeight = windowInnerHeight;
         });
 
-        it('should set top to marginThreshold', () => {
+        specify('test', () => {
+          const mockedAnchor = document.createElement('div');
+          stub(mockedAnchor, 'getBoundingClientRect').callsFake(() => ({
+            left: marginThreshold,
+            top: marginThreshold + 1,
+          }));
+
+          const positioningStyle = generateElementStyle(mockedAnchor);
+
           expect(positioningStyle.top).to.equal(`${marginThreshold}px`);
-        });
-
-        it('should set left to marginThreshold', () => {
           expect(positioningStyle.left).to.equal(`${marginThreshold}px`);
-        });
-
-        it('should transformOrigin according to marginThreshold', () => {
           expect(positioningStyle.transformOrigin).to.match(/0px 1px( 0px)?/);
         });
       });
 
-      describe('left < marginThreshold', () => {
-        let positioningStyle;
+      specify('left < marginThreshold', () => {
+        const mockedAnchor = document.createElement('div');
+        stub(mockedAnchor, 'getBoundingClientRect').callsFake(() => ({
+          left: marginThreshold - 1,
+          top: marginThreshold,
+        }));
 
-        before(() => {
-          const mockedAnchor = document.createElement('div');
-          stub(mockedAnchor, 'getBoundingClientRect').callsFake(() => ({
-            left: marginThreshold - 1,
-            top: marginThreshold,
-          }));
+        const positioningStyle = generateElementStyle(mockedAnchor);
 
-          positioningStyle = generateElementStyle(mockedAnchor);
-        });
+        expect(positioningStyle.top).to.equal(`${marginThreshold}px`);
 
-        it('should set top to marginThreshold', () => {
-          expect(positioningStyle.top).to.equal(`${marginThreshold}px`);
-        });
+        expect(positioningStyle.left).to.equal(`${marginThreshold}px`);
 
-        it('should set left to marginThreshold', () => {
-          expect(positioningStyle.left).to.equal(`${marginThreshold}px`);
-        });
-
-        it('should transformOrigin according to marginThreshold', () => {
-          expect(positioningStyle.transformOrigin).to.match(/-1px 0px( 0px)?/);
-        });
+        expect(positioningStyle.transformOrigin).to.match(/-1px 0px( 0px)?/);
       });
 
       describe('right > widthThreshold', () => {
-        let positioningStyle;
         let innerWidthContainer;
 
         before(() => {
           innerWidthContainer = window.innerWidth;
           window.innerWidth = marginThreshold * 2;
-          const mockedAnchor = document.createElement('div');
-          stub(mockedAnchor, 'getBoundingClientRect').callsFake(() => ({
-            left: marginThreshold + 1,
-            top: marginThreshold,
-          }));
-
-          positioningStyle = generateElementStyle(mockedAnchor);
         });
 
         after(() => {
           window.innerWidth = innerWidthContainer;
         });
 
-        it('should set top to marginThreshold', () => {
+        specify('test', () => {
+          const mockedAnchor = document.createElement('div');
+          stub(mockedAnchor, 'getBoundingClientRect').callsFake(() => ({
+            left: marginThreshold + 1,
+            top: marginThreshold,
+          }));
+
+          const positioningStyle = generateElementStyle(mockedAnchor);
+
           expect(positioningStyle.top).to.equal(`${marginThreshold}px`);
-        });
-
-        it('should set left to marginThreshold', () => {
           expect(positioningStyle.left).to.equal(`${marginThreshold}px`);
-        });
-
-        it('should transformOrigin according to marginThreshold', () => {
           expect(positioningStyle.transformOrigin).to.match(/1px 0px( 0px)?/);
         });
       });
