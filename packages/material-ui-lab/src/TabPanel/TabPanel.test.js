@@ -57,4 +57,15 @@ describe('<TabPanel />', () => {
 
     expect(getByTestId('tabpanel')).not.toBeInaccessible();
   });
+
+  it('allows flow content', () => {
+    render(
+      <TabContext value="0">
+        <TabPanel value="0">
+          <h2>Panel 0</h2>
+          <p>The content of panel 0</p>
+        </TabPanel>
+      </TabContext>,
+    );
+  });
 });
