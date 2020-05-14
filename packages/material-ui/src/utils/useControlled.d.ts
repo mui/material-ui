@@ -18,6 +18,6 @@ export interface UseControlledProps<T = unknown> {
   state?: string;
 }
 
-export default function useControlled<T = any>(
+export default function useControlled<T = unknown>(
   props: UseControlledProps<T>
 ): [T, (newValue: T) => void];
