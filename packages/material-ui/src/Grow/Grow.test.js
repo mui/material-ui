@@ -47,19 +47,23 @@ describe('<Grow />', () => {
 
   describe('transition lifecycle', () => {
     let clock;
-    let wrapper;
-    let child;
-
-    const handleEnter = spy();
-    const handleEntering = spy();
-    const handleEntered = spy();
-    const handleExit = spy();
-    const handleExiting = spy();
-    const handleExited = spy();
 
     before(() => {
       clock = useFakeTimers();
-      wrapper = mount(
+    });
+
+    after(() => {
+      clock.restore();
+    });
+
+    it('calls the appropriate callbacks for each transition', () => {
+      const handleEnter = spy();
+      const handleEntering = spy();
+      const handleEntered = spy();
+      const handleExit = spy();
+      const handleExiting = spy();
+      const handleExited = spy();
+      const wrapper = mount(
         <Grow
           onEnter={handleEnter}
           onEntering={handleEntering}
@@ -71,82 +75,44 @@ describe('<Grow />', () => {
           <div id="test" />
         </Grow>,
       );
-      child = wrapper.find('#test');
-    });
+      const child = wrapper.find('#test');
 
-    after(() => {
-      clock.restore();
-    });
+      wrapper.setProps({ in: true });
 
-    describe('in', () => {
-      before(() => {
-        wrapper.setProps({ in: true });
-      });
+      expect(handleEnter.callCount).to.equal(1);
+      expect(handleEnter.args[0][0]).to.equal(child.instance());
 
-      describe('handleEnter()', () => {
-        it('should call handleEnter()', () => {
-          expect(handleEnter.callCount).to.equal(1);
-          expect(handleEnter.args[0][0]).to.equal(child.instance());
-        });
+      expect(handleEnter.args[0][0].style.transition).to.match(
+        /opacity (0ms )?cubic-bezier\(0.4, 0, 0.2, 1\)( 0ms)?,( )?transform (0ms )?cubic-bezier\(0.4, 0, 0.2, 1\)( 0ms)?/,
+      );
 
-        it('should set style properties', () => {
-          expect(handleEnter.args[0][0].style.transition).to.match(
-            /opacity (0ms )?cubic-bezier\(0.4, 0, 0.2, 1\)( 0ms)?,( )?transform (0ms )?cubic-bezier\(0.4, 0, 0.2, 1\)( 0ms)?/,
-          );
-        });
-      });
+      expect(handleEntering.callCount).to.equal(1);
+      expect(handleEntering.args[0][0]).to.equal(child.instance());
 
-      describe('handleEntering()', () => {
-        it('should call handleEntering()', () => {
-          expect(handleEntering.callCount).to.equal(1);
-          expect(handleEntering.args[0][0]).to.equal(child.instance());
-        });
-      });
+      clock.tick(1000);
+      expect(handleEntered.callCount).to.equal(1);
+      expect(handleEntered.args[0][0]).to.equal(child.instance());
 
-      describe('handleEntered()', () => {
-        it('should call handleEntered()', () => {
-          clock.tick(1000);
-          expect(handleEntered.callCount).to.equal(1);
-          expect(handleEntered.args[0][0]).to.equal(child.instance());
-        });
-      });
-    });
+      wrapper.setProps({ in: false });
 
-    describe('out', () => {
-      before(() => {
-        wrapper.setProps({ in: true });
-        wrapper.setProps({ in: false });
-      });
+      expect(handleExit.callCount).to.equal(1);
+      expect(handleExit.args[0][0]).to.equal(child.instance());
 
-      describe('handleExit()', () => {
-        it('should call handleExit()', () => {
-          expect(handleExit.callCount).to.equal(1);
-          expect(handleExit.args[0][0]).to.equal(child.instance());
-        });
+      expect(handleExit.args[0][0].style.opacity).to.equal('0');
+      expect(handleExit.args[0][0].style.transform).to.equal(
+        'scale(0.75, 0.5625)',
+        'should have the exit scale',
+      );
 
-        it('should set style properties', () => {
-          expect(handleExit.args[0][0].style.opacity).to.equal('0');
-          expect(handleExit.args[0][0].style.transform).to.equal(
-            'scale(0.75, 0.5625)',
-            'should have the exit scale',
-          );
-        });
-      });
+      expect(handleExiting.callCount).to.equal(1);
+      expect(handleExiting.args[0][0]).to.equal(child.instance());
 
-      describe('handleExiting()', () => {
-        it('should call handleExiting()', () => {
-          expect(handleExiting.callCount).to.equal(1);
-          expect(handleExiting.args[0][0]).to.equal(child.instance());
-        });
-      });
+      expect(handleExiting.callCount).to.equal(1);
+      expect(handleExiting.args[0][0]).to.equal(child.instance());
 
-      describe('handleExited()', () => {
-        it('should call handleExited()', () => {
-          clock.tick(1000);
-          expect(handleExited.callCount).to.equal(1);
-          expect(handleExited.args[0][0]).to.equal(child.instance());
-        });
-      });
+      clock.tick(1000);
+      expect(handleExited.callCount).to.equal(1);
+      expect(handleExited.args[0][0]).to.equal(child.instance());
     });
   });
 
