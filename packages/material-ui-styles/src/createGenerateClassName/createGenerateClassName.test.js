@@ -86,6 +86,19 @@ describe('createGenerateClassName', () => {
           },
         },
       ),
+    ).to.equal('MuiButton-root-1');
+    expect(
+      generateClassName(
+        { key: 'root' },
+        {
+          options: {
+            name: 'MuiButton',
+            theme: {
+              [nested]: true,
+            },
+          },
+        },
+      ),
     ).to.equal('MuiButton-root-2');
     expect(
       generateClassName(
