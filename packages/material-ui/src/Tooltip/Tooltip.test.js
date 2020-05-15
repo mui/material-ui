@@ -125,7 +125,7 @@ describe('<Tooltip />', () => {
     });
   });
 
-  it('should respond to external events', async () => {
+  it('should respond to external events', () => {
     const { queryByRole, getByRole } = render(<Tooltip {...defaultProps} />);
     expect(queryByRole('tooltip')).to.equal(null);
     fireEvent.mouseOver(getByRole('button'));
@@ -136,7 +136,7 @@ describe('<Tooltip />', () => {
     expect(queryByRole('tooltip')).to.equal(null);
   });
 
-  it('should be controllable', async () => {
+  it('should be controllable', () => {
     const handleRequestOpen = spy();
     const handleClose = spy();
 
@@ -164,7 +164,7 @@ describe('<Tooltip />', () => {
       expect(queryByRole('tooltip')).to.equal(null);
     });
 
-    it('should open on long press', async () => {
+    it('should open on long press', () => {
       const { getByRole, queryByRole } = render(<Tooltip {...defaultProps} />);
       fireEvent.touchStart(getByRole('button'));
       clock.tick(DEFAULT_ENTER_TOUCH_DELAY);
@@ -223,7 +223,7 @@ describe('<Tooltip />', () => {
       expect(queryByRole('tooltip')).toBeVisible();
     });
 
-    it('should use hysteresis with the enterDelay', async () => {
+    it('should use hysteresis with the enterDelay', () => {
       const { queryByRole, getByRole } = render(
         <Tooltip
           {...defaultProps}
@@ -250,7 +250,7 @@ describe('<Tooltip />', () => {
       expect(queryByRole('tooltip')).toBeVisible();
     });
 
-    it('should take the leaveDelay into account', async () => {
+    it('should take the leaveDelay into account', () => {
       const { getByRole, queryByRole } = render(
         <Tooltip {...defaultProps} leaveDelay={111} enterDelay={0} title="tooltip" />,
       );
@@ -261,7 +261,7 @@ describe('<Tooltip />', () => {
       expect(queryByRole('tooltip')).toBeVisible();
       getByRole('button').blur();
       expect(queryByRole('tooltip')).toBeVisible();
-      clock.tick(111);
+      clock.tick(111 + LEAVE_CONSTANT);
       expect(queryByRole('tooltip')).to.equal(null);
     });
   });
@@ -352,7 +352,7 @@ describe('<Tooltip />', () => {
   });
 
   describe('prop: interactive', () => {
-    it('should keep the overlay open if the popper element is hovered', async () => {
+    it('should keep the overlay open if the popper element is hovered', () => {
       const { getByRole } = render(
         <Tooltip {...defaultProps} title="Hello World" interactive leaveDelay={111}>
           <button id="testChild" type="submit">
@@ -371,7 +371,7 @@ describe('<Tooltip />', () => {
       expect(getByRole('tooltip')).toBeVisible();
     });
 
-    it('should not animate twice', async () => {
+    it('should not animate twice', () => {
       const { getByRole } = render(
         <Tooltip title="Hello World" interactive enterDelay={500}>
           <button id="testChild" type="submit">
