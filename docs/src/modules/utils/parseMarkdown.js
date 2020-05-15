@@ -10,6 +10,7 @@ const titleRegExp = /# (.*)[\r\n]/;
 const descriptionRegExp = /<p class="description">(.*)<\/p>[\r\n]/;
 const headerKeyValueRegExp = /(.*): (.*)/g;
 const emptyRegExp = /^\s*$/;
+const notEnglishMarkdownRegExp = /-([a-z]{2})\.md$/;
 
 /**
  * Extract information from the top of the markdown.
@@ -130,12 +131,15 @@ export function prepareMarkdown(config) {
 
   const demos = {};
   const docs = {};
-  requireRaw.keys().forEach((filename) => {
+  const headingHashes = {};
+  const headingHashesFallbackTranslated = {};
+
+  requireRaw.keys().sort(file => file.match(notEnglishMarkdownRegExp) ? 0 : -1).forEach((filename) => {
     if (filename.indexOf('.md') !== -1) {
-      const match = filename.match(/-([a-z]{2})\.md$/);
+      const matchNotEnglishMarkdown = filename.match(notEnglishMarkdownRegExp);
 
       const userLanguage =
-        match && LANGUAGES_IN_PROGRESS.indexOf(match[1]) !== -1 ? match[1] : 'en';
+        matchNotEnglishMarkdown && LANGUAGES_IN_PROGRESS.indexOf(matchNotEnglishMarkdown[1]) !== -1 ? matchNotEnglishMarkdown[1] : 'en';
 
       const markdown = requireRaw(filename);
       const contents = getContents(markdown);
@@ -157,8 +161,8 @@ ${headers.components
   `);
       }
 
-      const headingHashes = {};
       const toc = [];
+      let englishHashIndex =-1;
       const rendered = contents.map((content) => {
         if (demos && demoRegexp.test(content)) {
           try {
@@ -186,7 +190,16 @@ ${headers.components
               ) // remove emojis
               .replace(/<\/?[^>]+(>|$)/g, '') // remove HTML
               .trim();
-            const hash = textToHash(headingText, headingHashes);
+
+            // Standardizes the hash from the default location (en) to different locations
+            // Need english.md file parsed first
+            let hash;
+            if(matchNotEnglishMarkdown) {
+              englishHashIndex += 1;
+              hash = Object.keys(headingHashes)[englishHashIndex]
+              if (!hash) hash = textToHash(headingText, headingHashesFallbackTranslated)
+            }
+            else hash = textToHash(headingText, headingHashes)
 
             // enable splitting of long words from function name + first arg name
             // Closing parens are less interesting since this would only allow breaking one character earlier.
