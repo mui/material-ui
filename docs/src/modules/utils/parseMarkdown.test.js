@@ -229,7 +229,7 @@ describe('parseMarkdown', () => {
 
       // mock require.context
       function requireRaw(filename) {
-        return filename === 'localization-pt.md' ? markdownPt : markdownEn
+        return filename === 'localization-pt.md' ? markdownPt : markdownEn;
       }
       requireRaw.keys = () => ['localization-pt.md', 'localization.md'];
 
