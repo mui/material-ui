@@ -93,7 +93,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
   React.useEffect(() => {
     if (displayNode) {
-      const label = ownerDocument(displayNode).querySelector(`#${labelId}`);
+      const label = ownerDocument(displayNode).getElementById(labelId);
       if (label) {
         const handler = () => {
           if (getSelection().isCollapsed) {
