@@ -25,30 +25,19 @@ function simulatePointerDevice() {
   document.dispatchEvent(new window.Event('pointerdown'));
 }
 
-const DEFAULT_ENTER_DELAY = 100;
-// Even though the default is 0, an additional 800 is hardcoded
-// in the `handleLeave` function inside Tooltip.
-const DEFAULT_LEAVE_DELAY = 800;
-const DEFAULT_ENTER_TOUCH_DELAY = 700 + DEFAULT_ENTER_DELAY;
-const DEFAULT_LEAVE_TOUCH_DELAY = 1500 + DEFAULT_LEAVE_DELAY;
-
 describe('<Tooltip />', () => {
   // StrictModeViolation: uses Grow and tests a lot of impl details
   const mount = createMount({ strict: null });
   let classes;
   const render = createClientRender({ strict: false });
   let clock;
-  const defaultProps = {
-    children: (
-      <button id="testChild" type="submit">
-        Hello World
-      </button>
-    ),
-    title: 'Hello World',
-  };
 
   before(() => {
-    classes = getClasses(<Tooltip {...defaultProps} />);
+    classes = getClasses(
+      <Tooltip title="Hello World">
+        <button type="submit">Hello World</button>
+      </Tooltip>,
+    );
   });
 
   beforeEach(() => {
@@ -60,27 +49,36 @@ describe('<Tooltip />', () => {
     clock.restore();
   });
 
-  describeConformance(<Tooltip {...defaultProps} />, () => ({
-    classes,
-    inheritComponent: 'button',
-    mount,
-    refInstanceof: window.HTMLButtonElement,
-    skip: [
-      'componentProp',
-      // react-transition-group issue
-      'reactTestRenderer',
-    ],
-  }));
+  describeConformance(
+    <Tooltip title="Hello World">
+      <button type="submit">Hello World</button>
+    </Tooltip>,
+    () => ({
+      classes,
+      inheritComponent: 'button',
+      mount,
+      refInstanceof: window.HTMLButtonElement,
+      skip: [
+        'componentProp',
+        // react-transition-group issue
+        'reactTestRenderer',
+      ],
+    }),
+  );
 
   it('should render a popper', () => {
-    const { getByRole } = render(<Tooltip open {...defaultProps} />);
+    const { getByRole } = render(
+      <Tooltip title="Hello World" open>
+        <button type="submit">Hello World</button>
+      </Tooltip>,
+    );
     expect(getByRole('tooltip')).to.have.class(classes.popper);
   });
 
   describe('prop: disableHoverListener', () => {
     it('should hide the native title', () => {
       const { getByRole } = render(
-        <Tooltip {...defaultProps} title="Hello World" disableHoverListener>
+        <Tooltip title="Hello World" disableHoverListener>
           <button type="submit">Hello World</button>
         </Tooltip>,
       );
@@ -91,19 +89,33 @@ describe('<Tooltip />', () => {
 
   describe('prop: title', () => {
     it('should display if the title is present', () => {
-      const { getByRole } = render(<Tooltip {...defaultProps} open />);
+      const { getByRole } = render(
+        <Tooltip title="Hello World" open>
+          <button id="testChild" type="submit">
+            Hello World
+          </button>
+        </Tooltip>,
+      );
       expect(getByRole('tooltip')).toBeVisible();
     });
 
     it('should not display if the title is an empty string', () => {
-      const { queryByRole } = render(<Tooltip {...defaultProps} title="" open />);
+      const { queryByRole } = render(
+        <Tooltip title="" open>
+          <button id="testChild" type="submit">
+            Hello World
+          </button>
+        </Tooltip>,
+      );
       expect(queryByRole('tooltip')).to.equal(null);
     });
 
     it('should be passed down to the child as a native title', () => {
       const { getByRole } = render(
-        <Tooltip {...defaultProps} title="Hello World">
-          <button type="submit">Hello World</button>
+        <Tooltip title="Hello World">
+          <button id="testChild" type="submit">
+            Hello World
+          </button>
         </Tooltip>,
       );
 
@@ -119,19 +131,31 @@ describe('<Tooltip />', () => {
         return null;
       }
 
-      render(<Tooltip {...defaultProps} PopperComponent={PopperSpy} placement="top" />);
+      render(
+        <Tooltip title="Hello World" PopperComponent={PopperSpy} placement="top">
+          <button id="testChild" type="submit">
+            Hello World
+          </button>
+        </Tooltip>,
+      );
       expect(renderSpy.args[0][0]).to.equal('top');
     });
   });
 
   it('should respond to external events', () => {
-    const { queryByRole, getByRole } = render(<Tooltip {...defaultProps} />);
+    const { queryByRole, getByRole } = render(
+      <Tooltip title="Hello World">
+        <button id="testChild" type="submit">
+          Hello World
+        </button>
+      </Tooltip>,
+    );
     expect(queryByRole('tooltip')).to.equal(null);
     fireEvent.mouseOver(getByRole('button'));
-    clock.tick(DEFAULT_ENTER_DELAY);
+    clock.tick(100);
     expect(getByRole('tooltip')).toBeVisible();
     fireEvent.mouseLeave(getByRole('button'));
-    clock.tick(DEFAULT_LEAVE_DELAY);
+    clock.tick(800);
     expect(queryByRole('tooltip')).to.equal(null);
   });
 
@@ -140,44 +164,66 @@ describe('<Tooltip />', () => {
     const handleClose = spy();
 
     const { getByRole } = render(
-      <Tooltip {...defaultProps} open onOpen={handleRequestOpen} onClose={handleClose} />,
+      <Tooltip title="Hello World" onOpen={handleRequestOpen} onClose={handleClose} open>
+        <button id="testChild" type="submit">
+          Hello World
+        </button>
+      </Tooltip>,
     );
 
     expect(handleRequestOpen.callCount).to.equal(0);
     expect(handleClose.callCount).to.equal(0);
     fireEvent.mouseOver(getByRole('button'));
-    clock.tick(DEFAULT_ENTER_DELAY);
+    clock.tick(100);
     expect(handleRequestOpen.callCount).to.equal(1);
     expect(handleClose.callCount).to.equal(0);
     fireEvent.mouseLeave(getByRole('button'));
-    clock.tick(DEFAULT_LEAVE_DELAY);
+    clock.tick(800);
     expect(handleRequestOpen.callCount).to.equal(1);
     expect(handleClose.callCount).to.equal(1);
   });
 
   describe('touch screen', () => {
     it('should not respond to quick events', () => {
-      const { getByRole, queryByRole } = render(<Tooltip {...defaultProps} />);
+      const { getByRole, queryByRole } = render(
+        <Tooltip title="Hello World">
+          <button id="testChild" type="submit">
+            Hello World
+          </button>
+        </Tooltip>,
+      );
       fireEvent.touchStart(getByRole('button'));
       fireEvent.touchEnd(getByRole('button'));
       expect(queryByRole('tooltip')).to.equal(null);
     });
 
     it('should open on long press', () => {
-      const { getByRole, queryByRole } = render(<Tooltip {...defaultProps} />);
+      const { getByRole, queryByRole } = render(
+        <Tooltip title="Hello World">
+          <button id="testChild" type="submit">
+            Hello World
+          </button>
+        </Tooltip>,
+      );
       fireEvent.touchStart(getByRole('button'));
-      clock.tick(DEFAULT_ENTER_TOUCH_DELAY);
+      clock.tick(800);
       expect(getByRole('tooltip')).toBeVisible();
 
       fireEvent.touchEnd(getByRole('button'));
       getByRole('button').blur();
-      clock.tick(DEFAULT_LEAVE_TOUCH_DELAY);
+      clock.tick(2300);
 
       expect(queryByRole('tooltip')).to.equal(null);
     });
 
     it('should not open if disableTouchListener', () => {
-      const { getByRole, queryByRole } = render(<Tooltip {...defaultProps} disableTouchListener />);
+      const { getByRole, queryByRole } = render(
+        <Tooltip title="Hello World" disableTouchListener>
+          <button id="testChild" type="submit">
+            Hello World
+          </button>
+        </Tooltip>,
+      );
 
       fireEvent.touchStart(getByRole('button'));
       fireEvent.mouseOver(getByRole('button'));
@@ -187,14 +233,20 @@ describe('<Tooltip />', () => {
 
   describe('mount', () => {
     it('should mount without any issue', () => {
-      render(<Tooltip {...defaultProps} open />);
+      render(
+        <Tooltip title="Hello World" open>
+          <button id="testChild" type="submit">
+            Hello World
+          </button>
+        </Tooltip>,
+      );
     });
 
     it('should handle autoFocus + onFocus forwarding', () => {
       const AutoFocus = (props) => (
         <div>
           {props.open ? (
-            <Tooltip {...defaultProps} title="Title">
+            <Tooltip title="Title">
               <Input value="value" autoFocus />
             </Tooltip>
           ) : null}
@@ -206,14 +258,20 @@ describe('<Tooltip />', () => {
 
       const { setProps, queryByRole } = render(<AutoFocus />);
       setProps({ open: true });
-      clock.tick(DEFAULT_ENTER_DELAY);
+      clock.tick(100);
       expect(queryByRole('tooltip')).toBeVisible();
     });
   });
 
   describe('prop: delay', () => {
     it('should take the enterDelay into account', () => {
-      const { queryByRole, getByRole } = render(<Tooltip {...defaultProps} enterDelay={111} />);
+      const { queryByRole, getByRole } = render(
+        <Tooltip title="Hello World" enterDelay={111}>
+          <button id="testChild" type="submit">
+            Hello World
+          </button>
+        </Tooltip>,
+      );
       simulatePointerDevice();
 
       focusVisible(getByRole('button'));
@@ -225,12 +283,16 @@ describe('<Tooltip />', () => {
     it('should use hysteresis with the enterDelay', () => {
       const { queryByRole, getByRole } = render(
         <Tooltip
-          {...defaultProps}
+          title="Hello World"
           enterDelay={111}
           enterNextDelay={30}
           leaveDelay={5}
           TransitionProps={{ timeout: 6 }}
-        />,
+        >
+          <button id="testChild" type="submit">
+            Hello World
+          </button>
+        </Tooltip>,
       );
       const children = getByRole('button');
       focusVisible(children);
@@ -251,7 +313,11 @@ describe('<Tooltip />', () => {
 
     it('should take the leaveDelay into account', () => {
       const { getByRole, queryByRole } = render(
-        <Tooltip {...defaultProps} leaveDelay={111} enterDelay={0} title="tooltip" />,
+        <Tooltip leaveDelay={111} enterDelay={0} title="tooltip">
+          <button id="testChild" type="submit">
+            Hello World
+          </button>
+        </Tooltip>,
       );
       simulatePointerDevice();
 
@@ -260,8 +326,7 @@ describe('<Tooltip />', () => {
       expect(queryByRole('tooltip')).toBeVisible();
       getByRole('button').blur();
       expect(queryByRole('tooltip')).toBeVisible();
-      // See DEFAULT_LEAVE_DELAY above for the explanation for the extra 800
-      clock.tick(111 + 800);
+      clock.tick(911);
       expect(queryByRole('tooltip')).to.equal(null);
     });
   });
@@ -279,7 +344,7 @@ describe('<Tooltip />', () => {
       it(`should be transparent for the ${name} event`, () => {
         const handler = spy();
         const { getByRole } = render(
-          <Tooltip {...defaultProps} title="Hello World">
+          <Tooltip title="Hello World">
             <button id="testChild" type="submit" {...{ [name]: handler }}>
               Hello World
             </button>
@@ -294,7 +359,7 @@ describe('<Tooltip />', () => {
     it('should ignore event from the tooltip', () => {
       const handleMouseOver = spy();
       const { getByRole } = render(
-        <Tooltip {...defaultProps} open interactive>
+        <Tooltip title="Hello World" open interactive>
           <button type="submit" onMouseOver={handleMouseOver}>
             Hello World
           </button>
@@ -354,7 +419,7 @@ describe('<Tooltip />', () => {
   describe('prop: interactive', () => {
     it('should keep the overlay open if the popper element is hovered', () => {
       const { getByRole } = render(
-        <Tooltip {...defaultProps} title="Hello World" interactive leaveDelay={111}>
+        <Tooltip title="Hello World" interactive leaveDelay={111}>
           <button id="testChild" type="submit">
             Hello World
           </button>
@@ -362,7 +427,7 @@ describe('<Tooltip />', () => {
       );
 
       fireEvent.mouseOver(getByRole('button'));
-      clock.tick(DEFAULT_ENTER_DELAY);
+      clock.tick(100);
       expect(getByRole('tooltip')).toBeVisible();
       fireEvent.mouseLeave(getByRole('button'));
       expect(getByRole('tooltip')).toBeVisible();
@@ -394,7 +459,11 @@ describe('<Tooltip />', () => {
   describe('prop: PopperProps', () => {
     it('should pass PopperProps to Popper Component', () => {
       const { getByTestId } = render(
-        <Tooltip {...defaultProps} open PopperProps={{ 'data-testid': 'popper' }} />,
+        <Tooltip title="Hello World" open PopperProps={{ 'data-testid': 'popper' }}>
+          <button id="testChild" type="submit">
+            Hello World
+          </button>
+        </Tooltip>,
       );
 
       expect(getByTestId('popper')).not.to.equal(null);
@@ -404,7 +473,7 @@ describe('<Tooltip />', () => {
       const popperRef = React.createRef();
       render(
         <Tooltip
-          {...defaultProps}
+          title="Hello World"
           open
           arrow
           PopperProps={{
@@ -417,7 +486,11 @@ describe('<Tooltip />', () => {
               },
             },
           }}
-        />,
+        >
+          <button id="testChild" type="submit">
+            Hello World
+          </button>
+        </Tooltip>,
       );
       expect(popperRef.current.modifiers.find((x) => x.name === 'arrow').foo).to.equal('bar');
     });
@@ -426,7 +499,7 @@ describe('<Tooltip />', () => {
   describe('prop forwarding', () => {
     it('should forward props to the child element', () => {
       const { getByText } = render(
-        <Tooltip {...defaultProps} className="foo">
+        <Tooltip title="Hello World" className="foo">
           <h1 className="bar">H1</h1>
         </Tooltip>,
       );
@@ -436,7 +509,7 @@ describe('<Tooltip />', () => {
 
     it('should respect the props priority', () => {
       const { getByText } = render(
-        <Tooltip {...defaultProps} name="tooltip">
+        <Tooltip title="Hello World" name="tooltip">
           <h1 name="heading">H1</h1>
         </Tooltip>,
       );
@@ -514,9 +587,15 @@ describe('<Tooltip />', () => {
     });
 
     it('should warn when switching between uncontrolled to controlled', () => {
-      const { rerender } = render(<Tooltip {...defaultProps} />);
+      const { setProps } = render(
+        <Tooltip title="Hello World">
+          <button id="testChild" type="submit">
+            Hello World
+          </button>
+        </Tooltip>,
+      );
 
-      rerender(<Tooltip {...defaultProps} open />);
+      setProps({ open: true });
       expect(consoleErrorMock.messages()[0]).to.include(
         'Material-UI: A component is changing the uncontrolled open state of Tooltip to be controlled.',
       );
@@ -527,12 +606,16 @@ describe('<Tooltip />', () => {
     const popperRef = React.createRef();
     const { forceUpdate } = render(
       <Tooltip
-        {...defaultProps}
+        title="Hello World"
         open
         PopperProps={{
           popperRef,
         }}
-      />,
+      >
+        <button id="testChild" type="submit">
+          Hello World
+        </button>
+      </Tooltip>,
     );
     const firstPopperInstance = popperRef.current;
     forceUpdate();
@@ -543,7 +626,11 @@ describe('<Tooltip />', () => {
     it('can render a different component', () => {
       const CustomPopper = () => <div data-testid="CustomPopper" />;
       const { getByTestId } = render(
-        <Tooltip {...defaultProps} open PopperComponent={CustomPopper} />,
+        <Tooltip title="Hello World" open PopperComponent={CustomPopper}>
+          <button id="testChild" type="submit">
+            Hello World
+          </button>
+        </Tooltip>,
       );
       expect(getByTestId('CustomPopper')).toBeVisible();
     });
