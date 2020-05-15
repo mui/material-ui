@@ -195,8 +195,8 @@ describe('<Select />', () => {
   it('should focus select when its label is clicked', () => {
     const { getByRole, getByTestId } = render(
       <React.Fragment>
-        <InputLabel id="label" data-testid="label" />
-        <Select value="" labelId="label" />
+        <InputLabel id="my$label" data-testid="label" />
+        <Select value="" labelId="my$label" />
       </React.Fragment>,
     );
 
