@@ -25,13 +25,12 @@ function simulatePointerDevice() {
   document.dispatchEvent(new window.Event('pointerdown'));
 }
 
-// See handleClose in Tooltip
-const LEAVE_CONSTANT = 800;
-
 const DEFAULT_ENTER_DELAY = 100;
-const DEFAULT_LEAVE_DELAY = 0 + LEAVE_CONSTANT;
+// Even though the default is 0, an additional 800 is hardcoded
+// in the `handleLeave` function inside Tooltip.
+const DEFAULT_LEAVE_DELAY = 800;
 const DEFAULT_ENTER_TOUCH_DELAY = 700 + DEFAULT_ENTER_DELAY;
-const DEFAULT_LEAVE_TOUCH_DELAY = 1500 + LEAVE_CONSTANT;
+const DEFAULT_LEAVE_TOUCH_DELAY = 1500 + DEFAULT_LEAVE_DELAY;
 
 describe('<Tooltip />', () => {
   // StrictModeViolation: uses Grow and tests a lot of impl details
@@ -261,7 +260,8 @@ describe('<Tooltip />', () => {
       expect(queryByRole('tooltip')).toBeVisible();
       getByRole('button').blur();
       expect(queryByRole('tooltip')).toBeVisible();
-      clock.tick(111 + LEAVE_CONSTANT);
+      // See DEFAULT_LEAVE_DELAY above for the explanation for the extra 800
+      clock.tick(111 + 800);
       expect(queryByRole('tooltip')).to.equal(null);
     });
   });
