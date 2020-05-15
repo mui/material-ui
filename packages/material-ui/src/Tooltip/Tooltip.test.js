@@ -326,7 +326,8 @@ describe('<Tooltip />', () => {
       expect(queryByRole('tooltip')).toBeVisible();
       getByRole('button').blur();
       expect(queryByRole('tooltip')).toBeVisible();
-      clock.tick(911);
+      // A base 800 delay is applied to the leaveDelay
+      clock.tick(111 + 800);
       expect(queryByRole('tooltip')).to.equal(null);
     });
   });
