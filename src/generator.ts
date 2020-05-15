@@ -214,7 +214,23 @@ export function generate(node: t.Node | t.PropTypeNode[], options: GenerateOptio
 	if (t.isUnionNode(node)) {
 		let [literals, rest] = _.partition(t.uniqueUnionTypes(node).types, t.isLiteralNode);
 
-		literals = literals.sort((a, b) => a.value.localeCompare(b.value));
+		literals = literals.sort((a, b) => {
+			const { value: valueA } = a;
+			const { value: valueB } = b;
+			// numbers ascending
+			if (typeof valueA === 'number' && typeof valueB === 'number') {
+				return valueA - valueB;
+			}
+			// numbers last
+			if (typeof valueA === 'number') {
+				return 1;
+			}
+			if (typeof valueB === 'number') {
+				return -1;
+			}
+			// sort anything else by their stringified value
+			return String(valueA).localeCompare(String(valueB));
+		});
 
 		const nodeToStringName = (obj: t.Node): string => {
 			if (t.isInstanceOfNode(obj)) {

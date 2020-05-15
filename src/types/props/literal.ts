@@ -3,11 +3,11 @@ import { Node } from '../nodes/baseNodes';
 const typeString = 'LiteralNode';
 
 export interface LiteralNode extends Node {
-	value: any;
+	value: unknown;
 	jsDoc?: string;
 }
 
-export function literalNode(value: any, jsDoc?: string): LiteralNode {
+export function literalNode(value: unknown, jsDoc?: string): LiteralNode {
 	return {
 		type: typeString,
 		value,
