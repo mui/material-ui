@@ -7,7 +7,7 @@ Custom eslint rules for Material-UI.
 - `disallow-active-element-as-key-event-target`
 - `docgen-ignore-before-comment`
 - `no-hardcoded-labels`
-- `restricted-path-imports`
+- ~~`restricted-path-imports`~~
 
 ### disallow-active-element-as-key-event-target
 
@@ -26,4 +26,17 @@ The docs are translated via crowdin, we prefer to use `t` from the redux store.
 
 ### restricted-path-imports
 
-Prevent the import of modules at a level depth strictly over 1.
+Removed in favor of [`no-restricted-imports`](https://eslint.org/docs/rules/no-restricted-imports) using the following configuration:
+
+```json
+{
+  "rules": {
+    "no-restricted-imports": [
+      "error",
+      {
+        "patterns": ["@material-ui/*/*/*", "!@material-ui/core/test-utils/*"]
+      }
+    ]
+  }
+}
+```

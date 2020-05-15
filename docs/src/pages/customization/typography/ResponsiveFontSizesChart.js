@@ -1,5 +1,7 @@
-/* eslint-disable material-ui/restricted-path-imports */
 import React from 'react';
+// import of a small, pure module in a private demo
+// bundle size and module duplication is negligible
+/* eslint-disable-next-line no-restricted-imports */
 import { convertLength } from '@material-ui/core/styles/cssUtils';
 import { makeStyles, createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
 import {
