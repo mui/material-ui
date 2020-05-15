@@ -90,7 +90,7 @@ export interface TooltipProps
     | 'top-start'
     | 'top';
   /**
-   * The component used to position the popup.
+   * The component used for the popper.
    */
   PopperComponent?: React.ComponentType<PopperProps>;
   /**
