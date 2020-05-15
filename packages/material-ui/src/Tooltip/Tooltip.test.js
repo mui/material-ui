@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import PropTypes from 'prop-types';
 import { spy, useFakeTimers } from 'sinon';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import { getClasses } from '@material-ui/core/test-utils';
@@ -46,6 +45,7 @@ describe('<Tooltip />', () => {
   });
 
   afterEach(() => {
+    clock.tick(800); // cleanup the hystersis timer
     clock.restore();
   });
 
@@ -144,7 +144,7 @@ describe('<Tooltip />', () => {
 
   it('should respond to external events', () => {
     const { queryByRole, getByRole } = render(
-      <Tooltip title="Hello World">
+      <Tooltip enterDelay={100} title="Hello World" TransitionProps={{ timeout: 10 }}>
         <button id="testChild" type="submit">
           Hello World
         </button>
@@ -155,7 +155,7 @@ describe('<Tooltip />', () => {
     clock.tick(100);
     expect(getByRole('tooltip')).toBeVisible();
     fireEvent.mouseLeave(getByRole('button'));
-    clock.tick(800);
+    clock.tick(10);
     expect(queryByRole('tooltip')).to.equal(null);
   });
 
@@ -164,7 +164,13 @@ describe('<Tooltip />', () => {
     const handleClose = spy();
 
     const { getByRole } = render(
-      <Tooltip title="Hello World" onOpen={handleRequestOpen} onClose={handleClose} open>
+      <Tooltip
+        enterDelay={100}
+        title="Hello World"
+        onOpen={handleRequestOpen}
+        onClose={handleClose}
+        open
+      >
         <button id="testChild" type="submit">
           Hello World
         </button>
@@ -178,7 +184,7 @@ describe('<Tooltip />', () => {
     expect(handleRequestOpen.callCount).to.equal(1);
     expect(handleClose.callCount).to.equal(0);
     fireEvent.mouseLeave(getByRole('button'));
-    clock.tick(800);
+    clock.tick(10);
     expect(handleRequestOpen.callCount).to.equal(1);
     expect(handleClose.callCount).to.equal(1);
   });
@@ -199,19 +205,25 @@ describe('<Tooltip />', () => {
 
     it('should open on long press', () => {
       const { getByRole, queryByRole } = render(
-        <Tooltip title="Hello World">
+        <Tooltip
+          enterTouchDelay={700}
+          enterDelay={100}
+          leaveTouchDelay={1500}
+          title="Hello World"
+          TransitionProps={{ timeout: 10 }}
+        >
           <button id="testChild" type="submit">
             Hello World
           </button>
         </Tooltip>,
       );
       fireEvent.touchStart(getByRole('button'));
-      clock.tick(800);
+      clock.tick(700 + 100);
       expect(getByRole('tooltip')).toBeVisible();
 
       fireEvent.touchEnd(getByRole('button'));
       getByRole('button').blur();
-      clock.tick(2300);
+      clock.tick(1500 + 10);
 
       expect(queryByRole('tooltip')).to.equal(null);
     });
@@ -246,20 +258,17 @@ describe('<Tooltip />', () => {
       const AutoFocus = (props) => (
         <div>
           {props.open ? (
-            <Tooltip title="Title">
+            <Tooltip enterDelay={100} title="Title">
               <Input value="value" autoFocus />
             </Tooltip>
           ) : null}
         </div>
       );
-      AutoFocus.propTypes = {
-        open: PropTypes.bool,
-      };
 
-      const { setProps, queryByRole } = render(<AutoFocus />);
+      const { setProps, getByRole } = render(<AutoFocus />);
       setProps({ open: true });
       clock.tick(100);
-      expect(queryByRole('tooltip')).toBeVisible();
+      expect(getByRole('tooltip')).toBeVisible();
     });
   });
 
@@ -277,7 +286,7 @@ describe('<Tooltip />', () => {
       focusVisible(getByRole('button'));
       expect(queryByRole('tooltip')).to.equal(null);
       clock.tick(111);
-      expect(queryByRole('tooltip')).toBeVisible();
+      expect(getByRole('tooltip')).toBeVisible();
     });
 
     it('should use hysteresis with the enterDelay', () => {
@@ -298,7 +307,7 @@ describe('<Tooltip />', () => {
       focusVisible(children);
       expect(queryByRole('tooltip')).to.equal(null);
       clock.tick(111);
-      expect(queryByRole('tooltip')).toBeVisible();
+      expect(getByRole('tooltip')).toBeVisible();
       document.activeElement.blur();
       clock.tick(5);
       clock.tick(6);
@@ -308,12 +317,12 @@ describe('<Tooltip />', () => {
       // Bypass `enterDelay` wait, use `enterNextDelay`.
       expect(queryByRole('tooltip')).to.equal(null);
       clock.tick(30);
-      expect(queryByRole('tooltip')).toBeVisible();
+      expect(getByRole('tooltip')).toBeVisible();
     });
 
     it('should take the leaveDelay into account', () => {
       const { getByRole, queryByRole } = render(
-        <Tooltip leaveDelay={111} enterDelay={0} title="tooltip">
+        <Tooltip leaveDelay={111} enterDelay={0} title="tooltip" TransitionProps={{ timeout: 10 }}>
           <button id="testChild" type="submit">
             Hello World
           </button>
@@ -323,11 +332,10 @@ describe('<Tooltip />', () => {
 
       focusVisible(getByRole('button'));
       clock.tick(0);
-      expect(queryByRole('tooltip')).toBeVisible();
+      expect(getByRole('tooltip')).toBeVisible();
       getByRole('button').blur();
-      expect(queryByRole('tooltip')).toBeVisible();
-      // A base 800 delay is applied to the leaveDelay
-      clock.tick(111 + 800);
+      expect(getByRole('tooltip')).toBeVisible();
+      clock.tick(111 + 10);
       expect(queryByRole('tooltip')).to.equal(null);
     });
   });
@@ -420,7 +428,13 @@ describe('<Tooltip />', () => {
   describe('prop: interactive', () => {
     it('should keep the overlay open if the popper element is hovered', () => {
       const { getByRole } = render(
-        <Tooltip title="Hello World" interactive leaveDelay={111}>
+        <Tooltip
+          title="Hello World"
+          enterDelay={100}
+          interactive
+          leaveDelay={111}
+          TransitionProps={{ timeout: 10 }}
+        >
           <button id="testChild" type="submit">
             Hello World
           </button>
@@ -433,13 +447,13 @@ describe('<Tooltip />', () => {
       fireEvent.mouseLeave(getByRole('button'));
       expect(getByRole('tooltip')).toBeVisible();
       fireEvent.mouseOver(getByRole('tooltip'));
-      clock.tick(111);
+      clock.tick(111 + 10);
       expect(getByRole('tooltip')).toBeVisible();
     });
 
     it('should not animate twice', () => {
       const { getByRole } = render(
-        <Tooltip title="Hello World" interactive enterDelay={500}>
+        <Tooltip title="Hello World" interactive enterDelay={500} TransitionProps={{ timeout: 10 }}>
           <button id="testChild" type="submit">
             Hello World
           </button>
@@ -452,7 +466,7 @@ describe('<Tooltip />', () => {
       fireEvent.mouseLeave(getByRole('button'));
       expect(getByRole('tooltip')).toBeVisible();
       fireEvent.mouseOver(getByRole('tooltip'));
-      clock.tick(0);
+      clock.tick(10);
       expect(getByRole('tooltip')).toBeVisible();
     });
   });
@@ -548,7 +562,7 @@ describe('<Tooltip />', () => {
 
       focusVisible(getByRole('button'));
 
-      expect(queryByRole('tooltip')).toBeVisible();
+      expect(getByRole('tooltip')).toBeVisible();
     });
 
     // https://github.com/mui-org/material-ui/issues/19883
