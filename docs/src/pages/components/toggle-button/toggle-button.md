@@ -30,6 +30,10 @@ Fancy larger or smaller buttons? Use the `size` prop.
 
 {{"demo": "pages/components/toggle-button/ToggleButtonSizes.js"}}
 
+## Orientations
+
+{{"demo": "pages/components/toggle-button/ToggleButtonsOrientations.js"}}
+
 ## Enforce value set
 
 If you want to enforce at least one button to be active, you can adapt your handleChange

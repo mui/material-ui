@@ -35,6 +35,16 @@ describe('<ToggleButtonGroup />', () => {
     expect(getByLabelText('my group')).to.have.attribute('role', 'group');
   });
 
+  it('can render group orientation vertically', () => {
+    const { getByRole } = render(
+      <ToggleButtonGroup orientation="vertical">
+        <ToggleButton value="one">1</ToggleButton>
+      </ToggleButtonGroup>,
+    );
+    expect(getByRole('group')).to.have.class('MuiToggleButtonGroup-vertical');
+    expect(getByRole('button')).to.have.class('MuiToggleButtonGroup-groupedVertical');
+  });
+
   describe('exclusive', () => {
     it('should render a selected ToggleButton if value is selected', () => {
       const { getByRole } = render(
