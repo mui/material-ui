@@ -385,7 +385,6 @@ const Slider = React.forwardRef(function Slider(props, ref) {
   });
 
   const range = Array.isArray(valueDerived);
-  const instanceRef = React.useRef();
   let values = range ? valueDerived.slice().sort(asc) : [valueDerived];
   values = values.map((value) => clamp(value, min, max));
   const marks =
@@ -394,10 +393,6 @@ const Slider = React.forwardRef(function Slider(props, ref) {
           value: min + step * index,
         }))
       : marksProp || [];
-
-  instanceRef.current = {
-    source: valueDerived, // Keep track of the input value to leverage immutable state comparison.
-  };
 
   const { isFocusVisible, onBlurVisible, ref: focusVisibleRef } = useIsFocusVisible();
   const [focusVisible, setFocusVisible] = React.useState(-1);
