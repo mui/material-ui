@@ -31,7 +31,7 @@ Alternatively, you can always have a look at the [implementation](https://github
 
 ## Global CSS
 
-In the event you are using the [CssBasline](/components/css-baseline/) component to apply global resets, you can reuse the infrastructure to apply global styles. For instance:
+If you are using the [CssBaseline](/components/css-baseline/) component to apply global resets, it can also be used to apply global styles. For instance:
 
 ```jsx
 const theme = createMuiTheme({
