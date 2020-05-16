@@ -98,7 +98,7 @@ const useDemoToolbarStyles = makeStyles(
         margin: '8px 0',
       },
       toggleButton: {
-        height: 32,
+        padding: '4px 9px',
       },
       tooltip: {
         zIndex: theme.zIndex.appBar - 1,
