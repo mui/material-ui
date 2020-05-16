@@ -131,3 +131,8 @@ If used within `column` or `column-reverse` containers, these properties may hav
 Material-UI doesn't provide any CSS Grid functionality itself, but as seen below you can easily use CSS Grid to layout your pages.
 
 {{"demo": "pages/components/grid/CSSGrid.js", "bg": true}}
+
+---
+
+🎨 If you are looking for more grid styles, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/grid).
+
