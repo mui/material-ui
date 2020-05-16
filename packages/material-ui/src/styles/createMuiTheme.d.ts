@@ -9,18 +9,10 @@ import { Transitions, TransitionsOptions } from './transitions';
 import { ZIndex, ZIndexOptions } from './zIndex';
 import { Overrides } from './overrides';
 import { ComponentsProps } from './props';
-import { string } from 'prop-types';
 
 export type Direction = 'ltr' | 'rtl';
 
-export interface Localization {
-  formatNumber: (number: number) => string;
-}
-
-export interface LocalizationOptions extends Partial<Localization> {}
-
 export interface ThemeOptions {
-  localization?: LocalizationOptions;
   shape?: ShapeOptions;
   breakpoints?: BreakpointsOptions;
   direction?: Direction;
@@ -37,7 +29,6 @@ export interface ThemeOptions {
 }
 
 export interface Theme {
-  localization: Localization;
   shape: Shape;
   breakpoints: Breakpoints;
   direction: Direction;

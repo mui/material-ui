@@ -209,7 +209,6 @@ const PaginationItem = React.forwardRef(function PaginationItem(props, ref) {
   } = props;
 
   const theme = useTheme();
-  const formatNumber = theme.localization.formatNumber;
 
   const normalizedIcons =
     theme.direction === 'rtl'
@@ -258,7 +257,7 @@ const PaginationItem = React.forwardRef(function PaginationItem(props, ref) {
       )}
       {...other}
     >
-      {type === 'page' && formatNumber(page)}
+      {type === 'page' && page}
       {Icon ? <Icon className={classes.icon} /> : null}
     </ButtonBase>
   );

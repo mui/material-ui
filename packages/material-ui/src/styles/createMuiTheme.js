@@ -19,16 +19,12 @@ function createMuiTheme(options = {}, ...args) {
     ...other
   } = options;
 
-  const localization = {
-    formatNumber: (number) => number.toLocalString(),
-  };
   const palette = createPalette(paletteInput);
   const breakpoints = createBreakpoints(breakpointsInput);
   const spacing = createSpacing(spacingInput);
 
   let muiTheme = deepmerge(
     {
-      localization,
       breakpoints,
       direction: 'ltr',
       mixins: createMixins(breakpoints, spacing, mixinsInput),

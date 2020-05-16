@@ -50,10 +50,10 @@ describe('<TablePagination />', () => {
       let labelDisplayedRowsCalled = false;
       function labelDisplayedRows({ from, to, count, page }) {
         labelDisplayedRowsCalled = true;
-        expect(from).to.equal('11');
-        expect(to).to.equal('20');
-        expect(count).to.equal('42');
-        expect(page).to.equal('1');
+        expect(from).to.equal(11);
+        expect(to).to.equal(20);
+        expect(count).to.equal(42);
+        expect(page).to.equal(1);
         return `Page ${page}`;
       }
 

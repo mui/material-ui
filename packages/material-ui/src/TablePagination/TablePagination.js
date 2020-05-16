@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { chainPropTypes } from '@material-ui/utils';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
-import useTheme from '../styles/useTheme';
 import InputBase from '../InputBase';
 import MenuItem from '../MenuItem';
 import Select from '../Select';
@@ -96,8 +95,6 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
     SelectProps = {},
     ...other
   } = props;
-  const theme = useTheme();
-  const formatNumber = theme.localization.formatNumber;
   let colSpan;
 
   if (Component === TableCell || Component === 'td') {
@@ -140,12 +137,10 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
         )}
         <Typography color="inherit" variant="body2" className={classes.caption}>
           {labelDisplayedRows({
-            from: formatNumber(count === 0 ? 0 : page * rowsPerPage + 1),
-            to: formatNumber(
-              count !== -1 ? Math.min(count, (page + 1) * rowsPerPage) : (page + 1) * rowsPerPage,
-            ),
-            count: count === -1 ? -1 : formatNumber(count),
-            page: formatNumber(page),
+            from: count === 0 ? 0 : page * rowsPerPage + 1,
+            to: count !== -1 ? Math.min(count, (page + 1) * rowsPerPage) : (page + 1) * rowsPerPage,
+            count: count === -1 ? -1 : count,
+            page,
           })}
         </Typography>
         <ActionsComponent
