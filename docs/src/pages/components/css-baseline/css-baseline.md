@@ -68,4 +68,8 @@ which ensures that the declared width of the element is never exceeded due to pa
 You can learn more about the implications of changing the `<html>` default font size in [the theme documentation](/customization/typography/#typography-html-font-size) page.
 - Set the `theme.typography.body2` style on the `<body>` element.
 - Set the font-weight to `theme.typography.fontWeightBold` for the `<b>` and `<strong>` elements.
-- Font antialiasing is enabled for better display of the Roboto font.
+- Custom font-smoothing is enabled for better display of the Roboto font.
+
+## Customization
+
+Head to the [global customization](/customization/globals/#global-css) section of the documentation to change the output of these components.
