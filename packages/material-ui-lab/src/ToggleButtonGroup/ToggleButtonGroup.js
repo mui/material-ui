@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import isValueSelected from './isValueSelected';
 import { withStyles } from '@material-ui/core/styles';
+import { capitalize } from '@material-ui/core/utils';
 
 export const styles = (theme) => ({
   /* Styles applied to the root element. */
@@ -11,8 +12,14 @@ export const styles = (theme) => ({
     display: 'inline-flex',
     borderRadius: theme.shape.borderRadius,
   },
+  /* Styles applied to the root element if `orientation="vertical"`. */
+  vertical: {
+    flexDirection: 'column',
+  },
   /* Styles applied to the children. */
-  grouped: {
+  grouped: {},
+  /* Styles applied to the children if `orientation="horizontal"`. */
+  groupedHorizontal: {
     '&:not(:first-child)': {
       marginLeft: -1,
       borderLeft: '1px solid transparent',
@@ -21,6 +28,19 @@ export const styles = (theme) => ({
     },
     '&:not(:last-child)': {
       borderTopRightRadius: 0,
+      borderBottomRightRadius: 0,
+    },
+  },
+  /* Styles applied to the children if `orientation="vertical"`. */
+  groupedVertical: {
+    '&:not(:first-child)': {
+      marginTop: -1,
+      borderTop: '1px solid transparent',
+      borderTopLeftRadius: 0,
+      borderTopRightRadius: 0,
+    },
+    '&:not(:last-child)': {
+      borderBottomLeftRadius: 0,
       borderBottomRightRadius: 0,
     },
   },
@@ -33,6 +53,7 @@ const ToggleButtonGroup = React.forwardRef(function ToggleButton(props, ref) {
     className,
     exclusive = false,
     onChange,
+    orientation = 'horizontal',
     size = 'medium',
     value,
     ...other
@@ -65,7 +86,18 @@ const ToggleButtonGroup = React.forwardRef(function ToggleButton(props, ref) {
   };
 
   return (
-    <div role="group" className={clsx(classes.root, className)} ref={ref} {...other}>
+    <div
+      role="group"
+      className={clsx(
+        classes.root,
+        {
+          [classes.vertical]: orientation === 'vertical',
+        },
+        className,
+      )}
+      ref={ref}
+      {...other}
+    >
       {React.Children.map(children, (child) => {
         if (!React.isValidElement(child)) {
           return null;
@@ -83,7 +115,11 @@ const ToggleButtonGroup = React.forwardRef(function ToggleButton(props, ref) {
         }
 
         return React.cloneElement(child, {
-          className: clsx(classes.grouped, child.props.className),
+          className: clsx(
+            classes.grouped,
+            classes[`grouped${capitalize(orientation)}`],
+            child.props.className,
+          ),
           onChange: exclusive ? handleExclusiveChange : handleChange,
           selected:
             child.props.selected === undefined
@@ -127,6 +163,10 @@ ToggleButtonGroup.propTypes = {
    * is selected and `exclusive` is true the value is null; when false an empty array.
    */
   onChange: PropTypes.func,
+  /**
+   * The group orientation (layout flow direction).
+   */
+  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   /**
    * The size of the buttons.
    */
