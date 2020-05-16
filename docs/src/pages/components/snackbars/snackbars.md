@@ -32,7 +32,7 @@ Here are some examples of customizing the component. You can learn more about th
 ## Positioned snackbars
 
 There may be circumstances when the placement of the snackbar needs to be more flexible.
-You can control the origin of the anchor by specifying the `anchorOrigin` prop, with the following interface:
+You can control the position of the snackbar by specifying the `anchorOrigin` prop, with the following interface:
 
 ```tsx
 interface SnackbarOrigin {
