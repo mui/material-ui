@@ -51,7 +51,7 @@ const StyledTabs = withStyles({
     display: 'flex',
     justifyContent: 'center',
     backgroundColor: 'transparent',
-    '& > div': {
+    '& > span': {
       maxWidth: 40,
       width: '100%',
       backgroundColor: '#635ee7',
