@@ -20,8 +20,8 @@ describe('<ScrollbarSize />', () => {
     it('should call on initial load', () => {
       const onChange = spy();
       render(<ScrollbarSize onChange={onChange} />);
+
       expect(onChange.callCount).to.equal(1);
-      expect(onChange.args[0][0]).to.equal(0);
     });
   });
 
@@ -29,20 +29,20 @@ describe('<ScrollbarSize />', () => {
     it('should call on first resize event', () => {
       const onChange = spy();
       const { container } = render(<ScrollbarSize onChange={onChange} />);
-      stub(container.firstChild, 'offsetHeight').get(() => 17);
+      stub(container.firstChild, 'offsetHeight').get(() => 20);
       stub(container.firstChild, 'clientHeight').get(() => 0);
 
       expect(onChange.callCount).to.equal(1);
       window.dispatchEvent(new window.Event('resize', {}));
       clock.tick(166);
       expect(onChange.callCount).to.equal(2);
-      expect(onChange.args[1][0]).to.equal(17);
+      expect(onChange.args[1][0]).to.equal(20);
     });
 
     it('should not call if height has not changed from previous resize', () => {
       const onChange = spy();
       const { container } = render(<ScrollbarSize onChange={onChange} />);
-      stub(container.firstChild, 'offsetHeight').get(() => 17);
+      stub(container.firstChild, 'offsetHeight').get(() => 20);
       stub(container.firstChild, 'clientHeight').get(() => 0);
 
       expect(onChange.callCount).to.equal(1);
@@ -51,7 +51,7 @@ describe('<ScrollbarSize />', () => {
       window.dispatchEvent(new window.Event('resize', {}));
       clock.tick(166);
       expect(onChange.callCount).to.equal(2);
-      expect(onChange.args[1][0]).to.equal(17);
+      expect(onChange.args[1][0]).to.equal(20);
     });
   });
 });
