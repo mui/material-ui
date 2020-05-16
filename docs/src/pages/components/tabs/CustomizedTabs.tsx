@@ -64,7 +64,7 @@ const StyledTabs = withStyles({
       backgroundColor: '#635ee7',
     },
   },
-})((props: StyledTabsProps) => <Tabs {...props} TabIndicatorProps={{ children: <div /> }} />);
+})((props: StyledTabsProps) => <Tabs {...props} TabIndicatorProps={{ children: <span /> }} />);
 
 interface StyledTabProps {
   label: string;
