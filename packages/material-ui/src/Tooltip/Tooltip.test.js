@@ -184,7 +184,7 @@ describe('<Tooltip />', () => {
     expect(handleRequestOpen.callCount).to.equal(1);
     expect(handleClose.callCount).to.equal(0);
     fireEvent.mouseLeave(getByRole('button'));
-    clock.tick(10);
+    clock.tick(0);
     expect(handleRequestOpen.callCount).to.equal(1);
     expect(handleClose.callCount).to.equal(1);
   });
