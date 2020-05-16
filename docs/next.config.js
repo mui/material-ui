@@ -156,8 +156,7 @@ module.exports = {
     }
 
     // We want to speed-up the build of pull requests.
-    // TODO: REVERT BEFORE MERGE
-    if (process.env.PULL_REQUEST === 'false') {
+    if (process.env.PULL_REQUEST === 'true') {
       // eslint-disable-next-line no-console
       console.log('Considering only English for SSR');
       traverse(pages, 'en');
