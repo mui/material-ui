@@ -33,6 +33,8 @@ Here are some examples of customizing the component. You can learn more about th
 
 There may be circumstances when the placement of the snackbar needs to be more flexible.
 
+You can control the origin of the anchor by specifying via `anchorOrigin` the `vertical` and `horizontal` properties, with values `'top'` and `'bottom'`, and `'left'`, `'center'` and `'right'`, respectively.
+
 {{"demo": "pages/components/snackbars/PositionedSnackbar.js"}}
 
 ## Message Length
