@@ -37,7 +37,7 @@ The `MuiButtonGroup` name can be used for providing [default props](/customizati
 | <span class="prop-name">disableFocusRipple</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the button keyboard focus ripple will be disabled. `disableRipple` must also be true. |
 | <span class="prop-name">disableRipple</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the button ripple effect will be disabled. |
 | <span class="prop-name">fullWidth</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the buttons will take up the full width of its container. |
-| <span class="prop-name">orientation</span> | <span class="prop-type">'vertical'<br>&#124;&nbsp;'horizontal'</span> | <span class="prop-default">'horizontal'</span> | The group orientation. |
+| <span class="prop-name">orientation</span> | <span class="prop-type">'vertical'<br>&#124;&nbsp;'horizontal'</span> | <span class="prop-default">'horizontal'</span> | The group orientation (layout flow direction). |
 | <span class="prop-name">size</span> | <span class="prop-type">'small'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'large'</span> | <span class="prop-default">'medium'</span> | The size of the button. `small` is equivalent to the dense button styling. |
 | <span class="prop-name">variant</span> | <span class="prop-type">'text'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'contained'</span> | <span class="prop-default">'outlined'</span> | The variant to use. |
 

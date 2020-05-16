@@ -30,9 +30,9 @@ Fancy larger or smaller buttons? Use the `size` prop.
 
 {{"demo": "pages/components/toggle-button/ToggleButtonSizes.js"}}
 
-## Orientations
+## Vertical buttons
 
-{{"demo": "pages/components/toggle-button/ToggleButtonsOrientations.js"}}
+{{"demo": "pages/components/toggle-button/VerticalToggleButtons.js"}}
 
 ## Enforce value set
 

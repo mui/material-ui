@@ -282,7 +282,7 @@ ButtonGroup.propTypes = {
    */
   fullWidth: PropTypes.bool,
   /**
-   * The group orientation.
+   * The group orientation (layout flow direction).
    */
   orientation: PropTypes.oneOf(['vertical', 'horizontal']),
   /**
