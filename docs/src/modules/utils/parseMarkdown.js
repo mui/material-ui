@@ -10,6 +10,7 @@ const titleRegExp = /# (.*)[\r\n]/;
 const descriptionRegExp = /<p class="description">(.*)<\/p>[\r\n]/;
 const headerKeyValueRegExp = /(.*): (.*)/g;
 const emptyRegExp = /^\s*$/;
+const notEnglishMarkdownRegExp = /-([a-z]{2})\.md$/;
 
 /**
  * Extract information from the top of the markdown.
@@ -130,19 +131,32 @@ export function prepareMarkdown(config) {
 
   const demos = {};
   const docs = {};
+  const headingHashes = {};
+
+  // Process the English markdown before the other locales.
+  let filenames = [];
   requireRaw.keys().forEach((filename) => {
+    if (filename.match(notEnglishMarkdownRegExp)) {
+      filenames.push(filename);
+    } else {
+      filenames = [filename].concat(filenames);
+    }
+  });
+
+  filenames.forEach((filename) => {
     if (filename.indexOf('.md') !== -1) {
-      const match = filename.match(/-([a-z]{2})\.md$/);
+      const matchNotEnglishMarkdown = filename.match(notEnglishMarkdownRegExp);
 
       const userLanguage =
-        match && LANGUAGES_IN_PROGRESS.indexOf(match[1]) !== -1 ? match[1] : 'en';
+        matchNotEnglishMarkdown && LANGUAGES_IN_PROGRESS.indexOf(matchNotEnglishMarkdown[1]) !== -1
+          ? matchNotEnglishMarkdown[1]
+          : 'en';
 
       const markdown = requireRaw(filename);
-      const contents = getContents(markdown);
       const headers = getHeaders(markdown);
-
       const title = headers.title || getTitle(markdown);
       const description = headers.description || getDescription(markdown);
+      const contents = getContents(markdown);
 
       if (headers.components.length > 0) {
         contents.push(`
@@ -157,8 +171,10 @@ ${headers.components
   `);
       }
 
-      const headingHashes = {};
       const toc = [];
+      const headingHashesFallbackTranslated = {};
+      let headingIndex = -1;
+
       const rendered = contents.map((content) => {
         if (demos && demoRegexp.test(content)) {
           try {
@@ -186,17 +202,28 @@ ${headers.components
               ) // remove emojis
               .replace(/<\/?[^>]+(>|$)/g, '') // remove HTML
               .trim();
-            const hash = textToHash(headingText, headingHashes);
+
+            // Standardizes the hash from the default location (en) to different locations
+            // Need english.md file parsed first
+            let hash;
+            if (userLanguage === 'en') {
+              hash = textToHash(headingText, headingHashes);
+            } else {
+              headingIndex += 1;
+              hash = Object.keys(headingHashes)[headingIndex];
+              if (!hash) {
+                hash = textToHash(headingText, headingHashesFallbackTranslated);
+              }
+            }
 
             // enable splitting of long words from function name + first arg name
             // Closing parens are less interesting since this would only allow breaking one character earlier.
             // Applying the same mechanism would also allow breaking of non-function signatures like "Community help (free)".
             // To detect that we enabled breaking of open/closing parens we'd need a context-sensitive parser.
             const displayText = headingText.replace(/([^\s]\()/g, '$1&#8203;');
-            /**
-             * create a nested structure with 2 levels starting with level 2 e.g.
-             * [{...level2, children: [level3, level3, level3]}, level2]
-             */
+
+            // create a nested structure with 2 levels starting with level 2 e.g.
+            // [{...level2, children: [level3, level3, level3]}, level2]
             if (level === 2) {
               toc.push({
                 text: displayText,
@@ -247,6 +274,7 @@ ${headers.components
           },
         });
       });
+
       // fragment link symbol
       rendered.unshift(`<svg style="display: none;" xmlns="http://www.w3.org/2000/svg">
   <symbol id="anchor-link-icon" viewBox="0 0 16 16">
@@ -254,11 +282,13 @@ ${headers.components
   </symbol>
 </svg>`);
 
-      const location = headers.filename || `/docs/src/pages/${pageFilename}/${filename}`;
-
-      const localized = { description, location, rendered, toc, title };
-
-      docs[userLanguage] = localized;
+      docs[userLanguage] = {
+        description,
+        location: headers.filename || `/docs/src/pages/${pageFilename}/${filename}`,
+        rendered,
+        toc,
+        title,
+      };
     } else if (filename.indexOf('.tsx') !== -1) {
       const demoName = `pages/${pageFilename}/${filename
         .replace(/\.\//g, '')
