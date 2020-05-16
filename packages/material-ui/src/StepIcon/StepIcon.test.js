@@ -17,12 +17,12 @@ describe('<StepIcon />', () => {
 
   it('renders <CheckCircle> when completed', () => {
     const { container } = render(<StepIcon icon={1} completed />);
-    expect(container.querySelectorAll('svg[data-mui-test="CheckCircleIcon"]').length).to.equal(1);
+    expect(container.querySelectorAll('svg[data-mui-test="CheckCircleIcon"]')).to.have.length(1);
   });
 
   it('renders <Warning> when error occurred', () => {
     const { container } = render(<StepIcon icon={1} error />);
-    expect(container.querySelectorAll('svg[data-mui-test="WarningIcon"]').length).to.equal(1);
+    expect(container.querySelectorAll('svg[data-mui-test="WarningIcon"]')).to.have.length(1);
   });
 
   it('contains text "3" when position is "3"', () => {
@@ -32,6 +32,6 @@ describe('<StepIcon />', () => {
 
   it('renders the custom icon', () => {
     const { container } = render(<StepIcon icon={<span className="my-icon" />} />);
-    expect(container.querySelectorAll('.my-icon').length).to.equal(1);
+    expect(container.querySelectorAll('.my-icon')).to.have.length(1);
   });
 });

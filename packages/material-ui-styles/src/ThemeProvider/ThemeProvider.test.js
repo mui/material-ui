@@ -87,7 +87,7 @@ describe('ThemeProvider', () => {
     expect(text()).to.equal('foobar');
     setProps({});
     expect(text()).to.equal('foobar');
-    expect(themes.length).to.equal(1);
+    expect(themes).to.have.length(1);
   });
 
   it('does not allow setting mui.nested manually', () => {
