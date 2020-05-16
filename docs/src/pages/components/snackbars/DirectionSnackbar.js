@@ -43,6 +43,7 @@ export default function DirectionSnackbar() {
         onClose={handleClose}
         TransitionComponent={transition}
         message="I love snacks"
+        key={transition ? transition.name : ''}
       />
     </div>
   );

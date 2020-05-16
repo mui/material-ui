@@ -49,6 +49,7 @@ export default function TransitionsSnackbar() {
         onClose={handleClose}
         TransitionComponent={state.Transition}
         message="I love snacks"
+        key={state.Transition.name}
       />
     </div>
   );
