@@ -32,6 +32,14 @@ const quotes = [
       'It’s a game changer with how nicely it works with React. It’s made working with React so much more enjoyable. Everything is configurable and predictable. Bootstrap was killing me. It was hijacking my whole project.',
   },
   {
+    avatar: 'https://pbs.twimg.com/profile_images/1214337550791299072/ybsFasgV',
+    name: 'Andréa',
+    username: '@azza_314',
+    tweet: 'https://twitter.com/azza_314/status/1247384522238259205',
+    quote:
+      "Started using @MaterialUI for #ReactJS & I'm ridiculously impressed. They put a ton of work into their documentation and their library is incredibly user friendly. Was able to add a sidebar, header, & modal  quickly!",
+  },
+  {
     avatar: 'https://pbs.twimg.com/profile_images/1220819548523331584/3T1G8g1q',
     name: 'Mohamed EL AYADI',
     username: '@MohamedELAYAD19',
@@ -48,6 +56,14 @@ const quotes = [
       'The DX on Material-UI is absolutely insane and that package has shaped my approach to Component API Design / Composition Design & Style System Design. I think those guys got it idiomatically right, wonderful product.',
   },
   {
+    avatar: 'https://pbs.twimg.com/profile_images/1129370929409056769/Zkwjy9_I',
+    name: 'Samantha Durrant',
+    username: '@SamDurrant_',
+    tweet: 'https://twitter.com/SamDurrant_/status/1214741763455209473',
+    quote:
+      'Began coding out the front end of my app today. Used MaterialUI for the first time and love how easy it is to make things look nice. It’s also really cool to see all the hard work building out the backend of my app come to life in the front end!',
+  },
+  {
     avatar: 'https://pbs.twimg.com/profile_images/849731047625502720/nudIAz2B',
     name: 'Rodrigo Ciprian',
     username: '@rodrigocipriani',
@@ -56,12 +72,20 @@ const quotes = [
       'I always use Material-UI, it is really awesome, and it have a looot of very good and easy to use components.',
   },
   {
-    avatar: 'https://pbs.twimg.com/profile_images/1129370929409056769/Zkwjy9_I',
-    name: 'Samantha Durrant',
-    username: '@SamDurrant_',
-    tweet: 'https://twitter.com/SamDurrant_/status/1214741763455209473',
+    avatar: 'https://pbs.twimg.com/profile_images/1231452795368329216/GhjrxYH2',
+    name: 'Derek Shanks',
+    username: '@fragileglass',
+    tweet: 'https://twitter.com/fragileglass/status/1255170173226680320',
     quote:
-      'Began coding out the front end of my app today. Used MaterialUI for the first time and love how easy it is to make things look nice. It’s also really cool to see all the hard work building out the backend of my app come to life in the front end!',
+      'Sometimes a library is so incredibly awesome. You don’t want to use anything else. I absolutely love that I can have the Material look or completely customize @MaterialUI to any look I desire.',
+  },
+  {
+    avatar: 'https://pbs.twimg.com/profile_images/1214337550791299072/ybsFasgV',
+    name: 'Andréa',
+    username: '@azza_314',
+    tweet: 'https://twitter.com/azza_314/status/1250595347543371776',
+    quote:
+      "Becoming more obsessed with @MaterialUI for #React. Along with #TypeScript support, they have phenomenal documentation, and an impressive design section with customizable themes and case studies. This is the best front-end library I've ever worked with!",
   },
 ];
 
