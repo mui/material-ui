@@ -26,13 +26,11 @@ export type Value<T, Multiple, DisableClearable, FreeSolo> = Multiple extends un
     : T | null | AutocompleteFreeSoloValueMapping<FreeSolo>
   : Array<T | AutocompleteFreeSoloValueMapping<FreeSolo>>;
 
-export type TBooleanConstraint = boolean | undefined;
-
 export interface UseAutocompleteProps<
   T,
-  Multiple extends TBooleanConstraint,
-  DisableClearable extends TBooleanConstraint,
-  FreeSolo extends TBooleanConstraint
+  Multiple extends boolean | undefined,
+  DisableClearable extends boolean | undefined,
+  FreeSolo extends boolean | undefined
 > {
   /**
    * If `true`, the portion of the selected suggestion that has not been typed by the user,
@@ -264,9 +262,9 @@ export type AutocompleteInputChangeReason = 'input' | 'reset' | 'clear';
 
 export default function useAutocomplete<
   T,
-  Multiple extends TBooleanConstraint = undefined,
-  DisableClearable extends TBooleanConstraint = undefined,
-  FreeSolo extends TBooleanConstraint = undefined
+  Multiple extends boolean | undefined = undefined,
+  DisableClearable extends boolean | undefined = undefined,
+  FreeSolo extends boolean | undefined = undefined
 >(
   props: UseAutocompleteProps<T, Multiple, DisableClearable, FreeSolo>
 ): {

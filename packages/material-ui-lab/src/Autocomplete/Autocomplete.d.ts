@@ -8,7 +8,6 @@ import {
   AutocompleteInputChangeReason,
   createFilterOptions,
   UseAutocompleteProps,
-  TBooleanConstraint,
 } from '../useAutocomplete';
 export {
   AutocompleteChangeDetails,
@@ -48,9 +47,9 @@ export interface AutocompleteRenderInputParams {
 
 export interface AutocompleteProps<
   T,
-  Multiple extends TBooleanConstraint,
-  DisableClearable extends TBooleanConstraint,
-  FreeSolo extends TBooleanConstraint
+  Multiple extends boolean | undefined,
+  DisableClearable extends boolean | undefined,
+  FreeSolo extends boolean | undefined
 >
   extends UseAutocompleteProps<T, Multiple, DisableClearable, FreeSolo>,
     StandardProps<
@@ -220,7 +219,7 @@ export type AutocompleteClassKey =
  */
 export default function Autocomplete<
   T,
-  Multiple extends TBooleanConstraint = undefined,
-  DisableClearable extends TBooleanConstraint = undefined,
-  FreeSolo extends TBooleanConstraint = undefined
+  Multiple extends boolean | undefined = undefined,
+  DisableClearable extends boolean | undefined = undefined,
+  FreeSolo extends boolean | undefined = undefined
 >(props: AutocompleteProps<T, Multiple, DisableClearable, FreeSolo>): JSX.Element;

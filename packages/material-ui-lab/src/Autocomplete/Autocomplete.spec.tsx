@@ -1,19 +1,19 @@
-import { Autocomplete, AutocompleteProps, TBooleanConstraint } from '@material-ui/lab';
+import { Autocomplete, AutocompleteProps } from '@material-ui/lab';
 
 interface MyAutocomplete<
   T,
-  Multiple extends TBooleanConstraint,
-  DisableClearable extends TBooleanConstraint,
-  FreeSolo extends TBooleanConstraint
+  Multiple extends boolean | undefined,
+  DisableClearable extends boolean | undefined,
+  FreeSolo extends boolean | undefined
 > extends AutocompleteProps<T, Multiple, DisableClearable, FreeSolo> {
   myProp?: string;
 }
 
 function MyAutocomplete<
   T,
-  Multiple extends TBooleanConstraint,
-  DisableClearable extends TBooleanConstraint,
-  FreeSolo extends TBooleanConstraint
+  Multiple extends boolean | undefined,
+  DisableClearable extends boolean | undefined,
+  FreeSolo extends boolean | undefined
 >(props: MyAutocomplete<T, Multiple, DisableClearable, FreeSolo>) {
   return <Autocomplete {...props} />;
 }
