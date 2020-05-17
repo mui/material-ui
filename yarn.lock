@@ -11644,9 +11644,9 @@ normalize-url@^4.1.0:
   integrity sha512-rjH3yRt0Ssx19mUwS0hrDUOdG9VI+oRLpLHJ7tXRdjcuQ7v7wo6qPvOZppHRrqfslTKr0L2yBhjj4UXd7c3cQg==
 
 notistack@^0.9.3:
-  version "0.9.11"
-  resolved "https://registry.yarnpkg.com/notistack/-/notistack-0.9.11.tgz#8ad61e5fc5bf29da3455fe3f2f809c1c421713e7"
-  integrity sha512-652+nnce7MC7eAgl6B4vPmo1wNOiFM9QBpIkH+b36rz0iMSjN/RTc9OL2xlRW4z/bzduLo5n9tnmXqD7MkAEJw==
+  version "0.9.14"
+  resolved "https://registry.yarnpkg.com/notistack/-/notistack-0.9.14.tgz#7a2818cdb6119a4001e53f87fc03ebbba54ea9fc"
+  integrity sha512-vnYApi5ABpauFbv7vnCCob8f6E1vrLEK1Nsehxwl2PVBvZCO6z7cIkCs3XCCS+zDgSnbijNQVc8DWluq+seGVw==
   dependencies:
     clsx "^1.1.0"
     hoist-non-react-statics "^3.3.0"
