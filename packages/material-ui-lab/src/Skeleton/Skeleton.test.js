@@ -27,4 +27,14 @@ describe('<Skeleton />', () => {
 
     expect(container.firstChild).to.have.class(classes.root);
   });
+
+  it('should get withChildren class when passed children', () => {
+    const { container } = render(
+      <Skeleton>
+        <span />
+      </Skeleton>,
+    );
+
+    expect(container.firstChild).to.have.class(classes.withChildren);
+  });
 });

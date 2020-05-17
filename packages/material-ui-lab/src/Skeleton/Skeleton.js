@@ -71,6 +71,14 @@ export const styles = (theme) => ({
       transform: 'translateX(100%)',
     },
   },
+  /* Styles applied when the component is passed children. */
+  withChildren: {
+    height: 'auto',
+    maxWidth: 'fit-content',
+    '& > *': {
+      visibility: 'hidden',
+    },
+  },
 });
 
 const Skeleton = React.forwardRef(function Skeleton(props, ref) {
@@ -93,6 +101,7 @@ const Skeleton = React.forwardRef(function Skeleton(props, ref) {
         classes[variant],
         {
           [classes[animation]]: animation !== false,
+          [classes.withChildren]: !!other.children,
         },
         className,
       )}
@@ -112,6 +121,10 @@ Skeleton.propTypes = {
    * If `false` the animation effect is disabled.
    */
   animation: PropTypes.oneOf(['pulse', 'wave', false]),
+  /**
+   * Optional children to infer width and height from.
+   */
+  children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
