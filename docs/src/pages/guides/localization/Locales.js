@@ -13,13 +13,6 @@ export default function Locales() {
   return (
     <div>
       <ThemeProvider theme={(outerTheme) => createMuiTheme(outerTheme, locales[locale])}>
-        <TablePagination
-          count={20}
-          rowsPerPage={10}
-          page={1}
-          component="div"
-          onChangePage={() => {}}
-        />
         <Autocomplete
           options={Object.keys(locales)}
           getOptionLabel={(key) => `${key.substring(0, 2)}-${key.substring(2, 4)}`}
