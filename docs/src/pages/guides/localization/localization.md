@@ -23,6 +23,10 @@ const theme = createMuiTheme({
 </ThemeProvider>
 ```
 
+### Example
+
+{{"demo": "pages/guides/localization/Locales.js", "defaultCodeOpen": false}}
+
 ### Supported locales
 
 | Locale | BCP 47 language tag | Import name
@@ -66,10 +70,6 @@ To create your own translation, or to customise the English text, copy this file
 
 Please do consider contributing new translations back to Material-UI by opening a pull request.
 However, Material-UI aims to support the [100 most popular locales](https://en.wikipedia.org/wiki/List_of_languages_by_number_of_native_speakers), we might not accept contributions for locales that are not frequently used, for instance `gl-ES` that has "only" 2.5 million native speakers.
-
-### Example
-
-{{"demo": "pages/guides/localization/Locales.js", "defaultCodeOpen": false}}
 
 ## RTL Support
 
