@@ -41,7 +41,7 @@
     "babel-plugin-module-resolver": "^4.0.0",
     "clsx": "^1.0.2",
     "date-fns": "^2.12.0",
-    "dayjs": "^1.8.22",
+    "dayjs": "^1.8.27",
     "formik": "^2.1.4",
     "fuzzy-search": "^3.0.1",
     "isomorphic-fetch": "^2.2.1",
