@@ -33,7 +33,7 @@ describe('<ListItemText />', () => {
 
   it('should render with no children', () => {
     const { container } = render(<ListItemText />);
-    expect(container.querySelector('div').querySelectorAll('*').length).to.equal(0);
+    expect(container.querySelector('div').querySelectorAll('*')).to.have.length(0);
   });
 
   describe('prop: primary', () => {
@@ -41,7 +41,7 @@ describe('<ListItemText />', () => {
       const ref = React.createRef();
       const text = () => ref.current.textContent;
       const { container } = render(<ListItemText primary="This is the primary text" ref={ref} />);
-      expect(container.querySelectorAll('span.MuiTypography-root').length).to.equal(1);
+      expect(container.querySelectorAll('span.MuiTypography-root')).to.have.length(1);
       expect(container.querySelector('span.MuiTypography-root')).to.have.class(
         typographyClasses.body1,
       );
@@ -75,7 +75,7 @@ describe('<ListItemText />', () => {
       const { container } = render(
         <ListItemText secondary="This is the secondary text" ref={ref} />,
       );
-      expect(container.querySelectorAll('p.MuiTypography-root').length).to.equal(1);
+      expect(container.querySelectorAll('p.MuiTypography-root')).to.have.length(1);
       expect(container.querySelector('p.MuiTypography-root')).to.have.class(
         typographyClasses.colorTextSecondary,
       );
@@ -102,7 +102,7 @@ describe('<ListItemText />', () => {
       );
 
       const texts = container.querySelectorAll('.MuiTypography-root');
-      expect(texts.length).to.equal(2);
+      expect(texts).to.have.length(2);
 
       const primaryText = texts[0];
       expect(primaryText).to.have.class(typographyClasses.body1);
@@ -158,7 +158,7 @@ describe('<ListItemText />', () => {
     const secondary = <Typography>This is the secondary text</Typography>;
     const { container } = render(<ListItemText primary={primary} secondary={secondary} />);
     const texts = container.querySelectorAll('.MuiTypography-root');
-    expect(texts.length).to.equal(2);
+    expect(texts).to.have.length(2);
     expect(texts[0].innerHTML).to.equal('This is the primary text');
     expect(texts[1].innerHTML).to.equal('This is the secondary text');
   });
