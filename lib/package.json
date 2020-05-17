@@ -108,7 +108,7 @@
     "moment": "2.22.2",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
-    "rollup": "^1.21.2",
+    "rollup": "^2.10.2",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-node-resolve": "^5.2.0",
