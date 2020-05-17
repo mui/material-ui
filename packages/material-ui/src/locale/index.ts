@@ -504,9 +504,9 @@ export const faIR: Localization = {
 
 export const fiFI: Localization = {
   props: {
-    // MuiBreadcrumbs: {
-    //   expandText: 'Show path',
-    // },
+    MuiBreadcrumbs: {
+      expandText: 'Näytä reitti',
+    },
     MuiTablePagination: {
       backIconButtonText: 'Edellinen sivu',
       labelRowsPerPage: 'Rivejä per sivu:',
@@ -528,27 +528,27 @@ export const fiFI: Localization = {
     MuiAlert: {
       closeText: 'Sulje',
     },
-    // MuiPagination: {
-    //   'aria-label': 'Pagination navigation',
-    //   getItemAriaLabel: (type, page, selected) => {
-    //     if (type === 'page') {
-    //       return `${selected ? '' : 'Go to '}page ${page}`;
-    //     }
-    //     if (type === 'first') {
-    //       return 'Go to first page';
-    //     }
-    //     if (type === 'last') {
-    //       return 'Go to last page';
-    //     }
-    //     if (type === 'next') {
-    //       return 'Go to next page';
-    //     }
-    //     if (type === 'previous') {
-    //       return 'Go to previous page';
-    //     }
-    //     return undefined;
-    //   },
-    // },
+    MuiPagination: {
+      'aria-label': 'Sivutus navigaatio',
+      getItemAriaLabel: (type, page, selected) => {
+        if (type === 'page') {
+          return `${selected ? 'sivu' : 'Mene sivulle'} ${page}`;
+        }
+        if (type === 'first') {
+          return 'Mene ensimmäiselle sivulle';
+        }
+        if (type === 'last') {
+          return 'Mene viimeiselle sivulle';
+        }
+        if (type === 'next') {
+          return 'Mene seuraavalle sivulle';
+        }
+        if (type === 'previous') {
+          return 'Mene edelliselle sivulle';
+        }
+        return undefined;
+      },
+    },
   },
 };
 
