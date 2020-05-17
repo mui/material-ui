@@ -93,7 +93,7 @@ export const styles = (theme) => ({
     overflow: 'hidden',
     position: 'absolute',
     width: '1em',
-    height: '0.71em',
+    height: '0.71em' /* = width / sqrt(2) = (length of the hypotenuse) */,
     color: fade(theme.palette.grey[700], 0.9),
     '&::before': {
       content: '""',
