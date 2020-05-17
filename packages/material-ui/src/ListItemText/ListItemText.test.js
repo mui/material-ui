@@ -159,8 +159,8 @@ describe('<ListItemText />', () => {
     const { container } = render(<ListItemText primary={primary} secondary={secondary} />);
     const texts = container.querySelectorAll('.MuiTypography-root');
     expect(texts).to.have.length(2);
-    expect(texts[0].innerHTML).to.equal('This is the primary text');
-    expect(texts[1].innerHTML).to.equal('This is the secondary text');
+    expect(texts[0]).to.have.text('This is the primary text');
+    expect(texts[1]).have.text('This is the secondary text');
   });
 
   it('should pass primaryTypographyProps to primary Typography component', () => {
