@@ -32,7 +32,7 @@
     "email": "dmtr.kovalenko@outlook.com"
   },
   "peerDependencies": {
-    "@material-ui/core": "^4.9.13",
+    "@material-ui/core": "^4.9.14",
     "@types/react": "^16.8.6",
     "react": "^16.8.4",
     "react-dom": "^16.8.4"
@@ -77,7 +77,7 @@
     "@babel/preset-env": "^7.6.0",
     "@babel/preset-react": "^7.0.0",
     "@cypress/webpack-preprocessor": "^4.1.1",
-    "@material-ui/core": "^4.9.13",
+    "@material-ui/core": "^4.9.14",
     "@material-ui/icons": "^4.9.1",
     "@types/enzyme": "^3.10.5",
     "@types/enzyme-adapter-react-16": "^1.0.3",
