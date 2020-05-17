@@ -2,7 +2,13 @@ import * as React from 'react';
 import { ReactWrapper } from 'enzyme';
 import { clickOKButton } from './commands';
 import { TextField } from '@material-ui/core';
-import { mount, utilsToUse, toHaveBeenCalledExceptMoment } from './test-utils';
+import { MaterialUiPickersDate } from '../typings/date';
+import {
+  mount,
+  utilsToUse,
+  toHaveBeenCalledExceptMoment,
+  mountPickerWithState,
+} from './test-utils';
 import {
   MobileTimePicker,
   DesktopTimePicker,
@@ -40,8 +46,8 @@ describe('e2e - TimePicker', () => {
   });
 
   it('Should submit onChange on moving', () => {
-    component.find('Clock div[role="menu"]').simulate('mouseMove', fakeTouchEvent);
-    component.find('Clock div[role="menu"]').simulate('mouseUp', fakeTouchEvent);
+    component.find('div[role="menu"]').simulate('mouseMove', fakeTouchEvent);
+    component.find('div[role="menu"]').simulate('mouseUp', fakeTouchEvent);
 
     expect(
       component
@@ -57,7 +63,7 @@ describe('e2e - TimePicker', () => {
       .at(1)
       .simulate('click');
 
-    component.find('Clock div[role="menu"]').simulate('touchMove', {
+    component.find('div[role="menu"]').simulate('touchMove', {
       buttons: 1,
       changedTouches: [
         {
@@ -118,7 +124,7 @@ describe('e2e - TimePicker with seconds', () => {
       .at(2)
       .simulate('click');
 
-    component.find('Clock div[role="menu"]').simulate('touchMove', {
+    component.find('div[role="menu"]').simulate('touchMove', {
       buttons: 1,
       changedTouches: [
         {
@@ -250,4 +256,26 @@ describe('e2e - TimePicker time validation', () => {
 
     expect(component.find('button[data-mui-test="seconds"] h3').text()).toBe('10');
   });
+});
+
+test('e2e - TimePicker empty date', () => {
+  const component = mountPickerWithState(null as MaterialUiPickersDate, props => (
+    <TimePicker open {...props} />
+  ));
+
+  expect(component.find('button[data-mui-test="hours"]').text()).toBe('--');
+  expect(component.find('button[data-mui-test="minutes"]').text()).toBe('--');
+
+  component.find('div[role="menu"]').simulate('touchMove', {
+    buttons: 1,
+    changedTouches: [
+      {
+        clientX: 20,
+        clientY: 15,
+      },
+    ],
+  });
+
+  expect(component.find('button[data-mui-test="hours"]').text()).not.toBe('--');
+  expect(component.find('button[data-mui-test="minutes"]').text()).not.toBe('--');
 });

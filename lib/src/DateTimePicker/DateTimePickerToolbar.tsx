@@ -6,6 +6,7 @@ import DateTimePickerTabs from './DateTimePickerTabs';
 import { useUtils } from '../_shared/hooks/useUtils';
 import { DateTimePickerView } from './DateTimePicker';
 import { makeStyles } from '@material-ui/core/styles';
+import { MaterialUiPickersDate } from '../typings/date';
 import { ToolbarComponentProps } from '../Picker/Picker';
 
 export const useStyles = makeStyles(
@@ -46,6 +47,7 @@ export const DateTimePickerToolbar: React.FC<ToolbarComponentProps> = ({
   dateRangeIcon,
   timeIcon,
   toolbarFormat,
+  toolbarPlaceholder = '––',
   isMobileKeyboardViewOpen,
   toggleMobileKeyboardView,
   toolbarTitle = 'SELECT DATE & TIME',
@@ -53,6 +55,21 @@ export const DateTimePickerToolbar: React.FC<ToolbarComponentProps> = ({
   const utils = useUtils();
   const classes = useStyles();
   const showTabs = !hideTabs && typeof window !== 'undefined' && window.innerHeight > 667;
+
+  const formatHours = (time: MaterialUiPickersDate) =>
+    ampm ? utils.format(time, 'hours12h') : utils.format(time, 'hours24h');
+
+  const dateText = React.useMemo(() => {
+    if (!date) {
+      return toolbarPlaceholder;
+    }
+
+    if (toolbarFormat) {
+      return utils.formatByString(date, toolbarFormat);
+    }
+
+    return utils.format(date, 'shortDate');
+  }, [date, toolbarFormat, toolbarPlaceholder, utils]);
 
   return (
     <>
@@ -70,7 +87,7 @@ export const DateTimePickerToolbar: React.FC<ToolbarComponentProps> = ({
             variant="subtitle1"
             onClick={() => setOpenView('year')}
             selected={openView === 'year'}
-            value={utils.format(date, 'year')}
+            value={date ? utils.format(date, 'year') : '–'}
           />
 
           <ToolbarButton
@@ -79,11 +96,7 @@ export const DateTimePickerToolbar: React.FC<ToolbarComponentProps> = ({
             data-mui-test="datetimepicker-toolbar-date"
             onClick={() => setOpenView('date')}
             selected={openView === 'date'}
-            value={
-              toolbarFormat
-                ? utils.formatByString(date, toolbarFormat)
-                : utils.format(date, 'shortDate')
-            }
+            value={dateText}
           />
         </div>
 
@@ -91,9 +104,10 @@ export const DateTimePickerToolbar: React.FC<ToolbarComponentProps> = ({
           <ToolbarButton
             tabIndex={-1}
             variant="h3"
+            data-mui-test="hours"
             onClick={() => setOpenView('hours')}
             selected={openView === 'hours'}
-            value={ampm ? utils.format(date, 'hours12h') : utils.format(date, 'hours24h')}
+            value={date ? formatHours(date) : '--'}
             typographyClassName={classes.timeTypography}
           />
 
@@ -102,9 +116,10 @@ export const DateTimePickerToolbar: React.FC<ToolbarComponentProps> = ({
           <ToolbarButton
             tabIndex={-1}
             variant="h3"
+            data-mui-test="minutes"
             onClick={() => setOpenView('minutes')}
             selected={openView === 'minutes'}
-            value={utils.format(date, 'minutes')}
+            value={date ? utils.format(date, 'minutes') : '--'}
             typographyClassName={classes.timeTypography}
           />
         </div>

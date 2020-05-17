@@ -36,7 +36,6 @@ export function makeWrapperComponent<
       value,
       autoOk,
       inputFormat,
-      defaultHighlight,
       onChange,
       children,
       clearable,

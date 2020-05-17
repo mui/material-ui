@@ -3,6 +3,15 @@ import ClockNumber from './ClockNumber';
 import { IUtils } from '@date-io/core/IUtils';
 import { MaterialUiPickersDate } from '../../typings/date';
 
+interface GetHourNumbersOptions {
+  ampm: boolean;
+  utils: IUtils<MaterialUiPickersDate>;
+  date: MaterialUiPickersDate;
+  onChange: (value: number, isFinish?: boolean) => void;
+  getClockNumberText: (hour: string) => string;
+  isDisabled: (value: number) => boolean;
+}
+
 export const getHourNumbers = ({
   ampm,
   date,
@@ -10,21 +19,18 @@ export const getHourNumbers = ({
   onChange,
   isDisabled,
   getClockNumberText,
-}: {
-  ampm: boolean;
-  utils: IUtils<MaterialUiPickersDate>;
-  date: MaterialUiPickersDate;
-  onChange: (value: number, isFinish?: boolean) => void;
-  getClockNumberText: (hour: string) => string;
-  isDisabled: (value: number) => boolean;
-}) => {
-  const currentHours = utils.getHours(date);
+}: GetHourNumbersOptions) => {
+  const currentHours = date ? utils.getHours(date) : null;
 
   const hourNumbers: JSX.Element[] = [];
   const startHour = ampm ? 1 : 0;
   const endHour = ampm ? 12 : 23;
 
   const isSelected = (hour: number) => {
+    if (currentHours === null) {
+      return false;
+    }
+
     if (ampm) {
       if (hour === 12) {
         return currentHours === 12 || currentHours === 0;

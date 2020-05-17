@@ -3,14 +3,20 @@ import { ParsableDate } from '../constants/prop-types';
 import { MaterialUiPickersDate } from '../typings/date';
 import { MuiPickersAdapter } from '../_shared/hooks/useUtils';
 
+type Meridiem = 'am' | 'pm' | null;
+
 export const getMeridiem = (
   date: MaterialUiPickersDate,
   utils: IUtils<MaterialUiPickersDate>
-): 'am' | 'pm' => {
+): Meridiem => {
+  if (!date) {
+    return null;
+  }
+
   return utils.getHours(date) >= 12 ? 'pm' : 'am';
 };
 
-export const convertValueToMeridiem = (value: number, meridiem: 'am' | 'pm', ampm: boolean) => {
+export const convertValueToMeridiem = (value: number, meridiem: Meridiem, ampm: boolean) => {
   if (ampm) {
     const currentMeridiem = value >= 12 ? 'pm' : 'am';
     if (currentMeridiem !== meridiem) {
@@ -103,13 +109,15 @@ export const createIsAfterIgnoreDatePart = (
 };
 
 export interface TimeValidationProps {
-  /** Min time, date part by default, will be ignored */
+  /** Min time acceptable time. For input validation date part of passed object will be ignored if `disableTimeValidationIgnoreDatePart` not specified. */
   minTime?: MaterialUiPickersDate;
-  /** Max time, date part by default, will be ignored */
+  /** Max time acceptable time. For input validation date part of passed object will be ignored if `disableTimeValidationIgnoreDatePart` not specified. */
   maxTime?: MaterialUiPickersDate;
-  /** Dynamically check if time is disabled or not */
+  /** Dynamically check if time is disabled or not. If returns `false` appropriate time point will ot be acceptable. */
   shouldDisableTime?: (timeValue: number, clockType: 'hours' | 'minutes' | 'seconds') => boolean;
-  /** Do not ignore date part when validating min/max time */
+  /** Do not ignore date part when validating min/max time
+   * @default false
+   */
   disableTimeValidationIgnoreDatePart?: boolean;
 }
 
@@ -123,6 +131,10 @@ export const validateTime = (
     Boolean(disableTimeValidationIgnoreDatePart),
     utils
   );
+
+  if (value === null) {
+    return null;
+  }
 
   switch (true) {
     case !utils.isValid(value):

@@ -28,6 +28,7 @@ export type ToolbarComponentProps<
   setOpenView: (view: TView) => void;
   onChange: (date: TDate, isFinish?: boolean) => void;
   toolbarTitle?: React.ReactNode;
+  toolbarPlaceholder?: React.ReactNode;
   toolbarFormat?: string;
   // TODO move out, cause it is DateTimePickerOnly
   hideTabs?: boolean;
@@ -99,6 +100,7 @@ export function Picker({
   toggleMobileKeyboardView,
   toolbarFormat,
   className,
+  toolbarPlaceholder,
   ...other
 }: PickerProps<AnyPickerView>) {
   const classes = useStyles();
@@ -139,6 +141,7 @@ export function Picker({
           openView={openView}
           toolbarTitle={toolbarTitle}
           toolbarFormat={toolbarFormat}
+          toolbarPlaceholder={toolbarPlaceholder}
           isMobileKeyboardViewOpen={isMobileKeyboardViewOpen}
           toggleMobileKeyboardView={toggleMobileKeyboardView}
         />

@@ -1,5 +1,13 @@
 {
-  "cSpell.words": ["Formik", "Notistack", "Sourcable", "Unparsed", "ampm", "patreon"],
+  "cSpell.words": [
+    "Formik",
+    "Notistack",
+    "Sourcable",
+    "Unparsed",
+    "ampm",
+    "datetimepicker",
+    "patreon"
+  ],
   "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
   "typescript.tsdk": "node_modules/typescript/lib",
   "javascript.implicitProjectConfig.checkJs": true

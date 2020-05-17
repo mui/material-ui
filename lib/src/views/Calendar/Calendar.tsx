@@ -114,14 +114,14 @@ export const Calendar: React.FC<CalendarProps> = ({
 
   const handleDaySelect = React.useCallback(
     (day: MaterialUiPickersDate, isFinish: boolean | symbol = true) => {
-      onChange(Array.isArray(date) ? day : utils.mergeDateAndTime(day, date), isFinish);
+      onChange(Array.isArray(date) ? day : utils.mergeDateAndTime(day, date || now), isFinish);
     },
-    [date, onChange, utils]
+    [date, now, onChange, utils]
   );
 
   const initialDate = Array.isArray(date) ? date[0] : date;
 
-  const nowFocusedDay = focusedDay || initialDate;
+  const nowFocusedDay = focusedDay || initialDate || now;
   useGlobalKeyDown(Boolean(allowKeyboardControl), {
     [keycode.ArrowUp]: () => changeFocusedDay(utils.addDays(nowFocusedDay, -7)),
     [keycode.ArrowDown]: () => changeFocusedDay(utils.addDays(nowFocusedDay, 7)),

@@ -2,12 +2,14 @@ import * as React from 'react';
 import { ReactWrapper } from 'enzyme';
 import { Picker } from '../Picker/Picker';
 import { TextField } from '@material-ui/core';
-import { mount, utilsToUse } from './test-utils';
+import { MaterialUiPickersDate } from '../typings/date';
+import { mount, utilsToUse, mountPickerWithState } from './test-utils';
 import {
   DatePicker,
   MobileDatePicker,
   DesktopDatePicker,
   DatePickerProps,
+  StaticDatePicker,
 } from '../DatePicker/DatePicker';
 
 describe('e2e - DatePicker default year format', () => {
@@ -77,7 +79,7 @@ describe('e2e - DatePicker default year month day format', () => {
   });
 });
 
-describe.only('e2e - DatePicker inline variant', () => {
+describe('e2e - DatePicker inline variant', () => {
   let component: ReactWrapper<DatePickerProps>;
   const onChangeMock = jest.fn();
   const onCloseMock = jest.fn();
@@ -258,4 +260,21 @@ test('Selected date is disabled', () => {
       .first()
       .text()
   ).toBe('January');
+});
+
+test('Should not add to loading queue when synchronous', () => {
+  const component = mountPickerWithState(null as MaterialUiPickersDate, props => (
+    <StaticDatePicker toolbarPlaceholder="Enter Date" {...props} />
+  ));
+
+  expect(component.find('h4[data-mui-test="datepicker-toolbar-date"]').text()).toBe('Enter Date');
+
+  component
+    .find('button[data-mui-test="day"]')
+    .at(0)
+    .simulate('click');
+
+  expect(component.find('h4[data-mui-test="datepicker-toolbar-date"]').text()).not.toBe(
+    'Enter Date'
+  );
 });

@@ -1,23 +1,24 @@
+import * as React from 'react';
 import { useOpenState } from './useOpenState';
 import { WrapperVariant } from '../../wrappers/Wrapper';
 import { BasePickerProps } from '../../typings/BasePicker';
-import { MaterialUiPickersDate } from '../../typings/date';
 import { useUtils, useNow, MuiPickersAdapter } from './useUtils';
-import { useCallback, useDebugValue, useEffect, useMemo, useState } from 'react';
 
 export const FORCE_FINISH_PICKER = Symbol('Force closing picker, useful for accessibility');
 
+export interface PickerStateValueManager<TInput, TDateValue> {
+  parseInput: (utils: MuiPickersAdapter, props: BasePickerProps<TInput, TDateValue>) => TDateValue;
+  emptyValue: TDateValue;
+  areValuesEqual: (
+    utils: MuiPickersAdapter,
+    valueLeft: TDateValue,
+    valueRight: TDateValue
+  ) => boolean;
+}
+
 export function usePickerState<TInput, TDateValue>(
   props: BasePickerProps<TInput, TDateValue>,
-  valueManager: {
-    parseInput: (
-      now: MaterialUiPickersDate,
-      utils: MuiPickersAdapter,
-      props: BasePickerProps<TInput, TDateValue>
-    ) => TDateValue;
-    emptyValue: TDateValue;
-    areValuesEqual: (valueLeft: TDateValue, valueRight: TDateValue) => boolean;
-  }
+  valueManager: PickerStateValueManager<TInput, TDateValue>
 ) {
   const { autoOk, inputFormat, disabled, readOnly, onAccept, onChange, value } = props;
 
@@ -27,18 +28,18 @@ export function usePickerState<TInput, TDateValue>(
 
   const now = useNow();
   const utils = useUtils();
-  const date = valueManager.parseInput(now, utils, props);
-  const [pickerDate, setPickerDate] = useState(date);
+  const { isOpen, setIsOpen } = useOpenState(props);
+  const [pickerDate, setPickerDate] = React.useState(valueManager.parseInput(utils, props));
 
   // Mobile keyboard view is a special case.
   // When it's open picker should work like closed, cause we are just showing text field
-  const [isMobileKeyboardViewOpen, setMobileKeyboardViewOpen] = useState(false);
-  const { isOpen, setIsOpen } = useOpenState(props);
+  const [isMobileKeyboardViewOpen, setMobileKeyboardViewOpen] = React.useState(false);
 
-  useEffect(() => {
+  React.useEffect(() => {
+    const parsedDateValue = valueManager.parseInput(utils, props);
     setPickerDate(currentPickerDate => {
-      if (!valueManager.areValuesEqual(currentPickerDate, date)) {
-        return date;
+      if (!valueManager.areValuesEqual(utils, currentPickerDate, parsedDateValue)) {
+        return parsedDateValue;
       }
 
       return currentPickerDate;
@@ -46,7 +47,7 @@ export function usePickerState<TInput, TDateValue>(
     // We need to react only on value change, because `date` could potentially return new Date() on each render
   }, [value, utils]); // eslint-disable-line
 
-  const acceptDate = useCallback(
+  const acceptDate = React.useCallback(
     (acceptedDate: TDateValue, needClosePicker: boolean) => {
       onChange(acceptedDate);
 
@@ -61,7 +62,7 @@ export function usePickerState<TInput, TDateValue>(
     [onAccept, onChange, setIsOpen]
   );
 
-  const wrapperProps = useMemo(
+  const wrapperProps = React.useMemo(
     () => ({
       open: isOpen,
       onClear: () => acceptDate(valueManager.emptyValue, true),
@@ -76,13 +77,13 @@ export function usePickerState<TInput, TDateValue>(
     [acceptDate, autoOk, isOpen, now, pickerDate, setIsOpen, valueManager.emptyValue]
   );
 
-  const pickerProps = useMemo(
+  const pickerProps = React.useMemo(
     () => ({
       date: pickerDate,
       isMobileKeyboardViewOpen,
       toggleMobileKeyboardView: () => {
         if (!isMobileKeyboardViewOpen) {
-          // accept any partial input done by user
+          // accept any partial input done by React.user
           setPickerDate(pickerDate);
         }
 
@@ -112,7 +113,7 @@ export function usePickerState<TInput, TDateValue>(
     [acceptDate, autoOk, isMobileKeyboardViewOpen, pickerDate]
   );
 
-  const inputProps = useMemo(
+  const inputProps = React.useMemo(
     () => ({
       onChange,
       inputFormat,
@@ -124,10 +125,9 @@ export function usePickerState<TInput, TDateValue>(
   );
 
   const pickerState = { pickerProps, inputProps, wrapperProps };
-  useDebugValue(pickerState, () => ({
+  React.useDebugValue(pickerState, () => ({
     MuiPickerState: {
       pickerDate,
-      parsedDate: date,
       other: pickerState,
     },
   }));

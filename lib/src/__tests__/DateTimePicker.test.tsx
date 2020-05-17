@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { ReactWrapper } from 'enzyme';
 import { TextField } from '@material-ui/core';
-import { mount, utilsToUse } from './test-utils';
 import { mount as enzymeDefaultMount } from 'enzyme';
+import { MaterialUiPickersDate } from '../typings/date';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core';
+import { mount, utilsToUse, mountPickerWithState } from './test-utils';
 import { DateTimePicker, DateTimePickerProps } from '../DateTimePicker/DateTimePicker';
 
 const format = process.env.UTILS === 'moment' ? 'MM/DD/YYYY HH:mm' : 'MM/dd/yyyy hh:mm';
@@ -102,4 +103,29 @@ describe('e2e -- Override utils using `dateAdapter`', () => {
     component.find('input').simulate('click');
     expect(component.find('[data-mui-test="datetimepicker-toolbar-date"] h4').text()).toBe('Jan 1');
   });
+});
+
+test('e2e - DateTimePicker empty date', () => {
+  const component = mountPickerWithState(null as MaterialUiPickersDate, props => (
+    <DateTimePicker open toolbarPlaceholder="Enter Date" {...props} />
+  ));
+
+  expect(component.find('button[data-mui-test="datetimepicker-toolbar-date"]').text()).toBe(
+    'Enter Date'
+  );
+
+  expect(component.find('button[data-mui-test="hours"]').text()).toBe('--');
+  expect(component.find('button[data-mui-test="minutes"]').text()).toBe('--');
+
+  component
+    .find('button[data-mui-test="day"]')
+    .at(0)
+    .simulate('click');
+
+  expect(component.find('button[data-mui-test="datetimepicker-toolbar-date"]').text()).not.toBe(
+    'Enter Date'
+  );
+
+  expect(component.find('button[data-mui-test="hours"]').text()).not.toBe('--');
+  expect(component.find('button[data-mui-test="minutes"]').text()).not.toBe('--');
 });

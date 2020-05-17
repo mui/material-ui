@@ -209,14 +209,16 @@ export const Clock: React.FC<ClockProps> = ({
           <>
             <div className={classes.pin} />
 
-            <ClockPointer
-              type={type}
-              value={value}
-              isInner={isPointerInner}
-              hasSelected={hasSelected}
-              aria-live="polite"
-              aria-label={`Selected time ${utils.format(date, 'fullTime')}`}
-            />
+            {date && (
+              <ClockPointer
+                type={type}
+                value={value}
+                isInner={isPointerInner}
+                hasSelected={hasSelected}
+                aria-live="polite"
+                aria-label={`Selected time ${utils.format(date, 'fullTime')}`}
+              />
+            )}
           </>
         )}
 
@@ -228,6 +230,7 @@ export const Clock: React.FC<ClockProps> = ({
           <IconButton
             data-mui-test="in-clock-am-btn"
             onClick={() => handleMeridiemChange('am')}
+            disabled={meridiemMode === null}
             className={clsx(classes.amButton, {
               [classes.meridiemButtonSelected]: meridiemMode === 'am',
             })}
@@ -235,6 +238,7 @@ export const Clock: React.FC<ClockProps> = ({
             <Typography variant="caption">AM</Typography>
           </IconButton>
           <IconButton
+            disabled={meridiemMode === null}
             data-mui-test="in-clock-pm-btn"
             onClick={() => handleMeridiemChange('pm')}
             className={clsx(classes.pmButton, {

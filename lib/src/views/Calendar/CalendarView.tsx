@@ -132,12 +132,6 @@ export const CalendarView: React.FC<CalendarViewProps> = ({
     changeMonth(date);
   }, [date]); // eslint-disable-line
 
-  React.useEffect(() => {
-    if (view === 'date') {
-      changeFocusedDay(date);
-    }
-  }, [view]); // eslint-disable-line
-
   return (
     <>
       <CalendarHeader
@@ -171,6 +165,7 @@ export const CalendarView: React.FC<CalendarViewProps> = ({
               isDateDisabled={isDateDisabled}
               allowKeyboardControl={allowKeyboardControl}
               shouldDisableYear={shouldDisableYear}
+              changeFocusedDay={changeFocusedDay}
             />
           )}
 

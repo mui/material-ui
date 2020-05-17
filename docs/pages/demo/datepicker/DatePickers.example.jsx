@@ -8,34 +8,35 @@ function DatePickersVariants(props) {
   return (
     <Fragment>
       <MobileDatePicker
-        renderInput={props => <TextField {...props} />}
         clearable
         label="For mobile"
-        value={selectedDate}
-        onChange={date => handleDateChange(date)}
         inputFormat={props.__willBeReplacedGetFormatString({
           moment: 'MM/DD/YYYY',
           dateFns: 'MM/dd/yyyy',
         })}
+        toolbarPlaceholder="Enter Date"
+        value={selectedDate}
+        onChange={date => handleDateChange(date)}
+        renderInput={props => <TextField {...props} />}
       />
 
       <DesktopDatePicker
         autoOk
         label="For desktop"
-        renderInput={props => <TextField {...props} />}
         minDate={new Date('2017-01-01')}
         value={selectedDate}
         onChange={date => handleDateChange(date)}
+        renderInput={props => <TextField {...props} />}
       />
 
       <DatePicker
         disableFuture
-        renderInput={props => <TextField {...props} />}
         label="Responsive"
         openTo="year"
         views={['year', 'month', 'date']}
         value={selectedDate}
         onChange={date => handleDateChange(date)}
+        renderInput={props => <TextField {...props} />}
       />
     </Fragment>
   );

@@ -21,11 +21,8 @@ export interface BasePickerProps<
   disabled?: boolean;
   /** Make picker read only */
   readOnly?: boolean;
-  /** Date that will be initially highlighted if null was passed */
-  defaultHighlight?: ParsableDate;
   /** Callback fired when date is accepted @DateIOType */
   onAccept?: (date: TDateValue) => void;
-
   /** On open callback */
   onOpen?: () => void;
   /** On close callback */
@@ -45,6 +42,11 @@ export interface BasePickerProps<
    * @default "SELECT DATE"
    */
   toolbarTitle?: React.ReactNode;
+  /**
+   * Mobile picker date value placeholder, displaying if `value` === `null`
+   * @default "–"
+   */
+  toolbarPlaceholder?: React.ReactNode;
   /** Date format, that is displaying in toolbar */
   toolbarFormat?: string;
   /** className applied to the root component */

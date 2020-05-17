@@ -100,17 +100,15 @@ export const getFormatByViews = (
 };
 
 export function parsePickerInputValue(
-  now: MaterialUiPickersDate,
   utils: MuiPickersAdapter,
-  { value, defaultHighlight }: Pick<BasePickerProps, 'value' | 'defaultHighlight'>
+  { value }: BasePickerProps
 ): MaterialUiPickersDate | null {
-  const parsedValue = utils.date(value || defaultHighlight || now);
+  const parsedValue = utils.date(value);
 
-  return parsedValue && utils.isValid(parsedValue) ? parsedValue : now;
+  return utils.isValid(parsedValue) ? parsedValue : null;
 }
 
 export function parseRangeInputValue(
-  now: MaterialUiPickersDate,
   utils: MuiPickersAdapter,
   { value = [null, null] }: BasePickerProps<RangeInput, DateRange>
 ) {

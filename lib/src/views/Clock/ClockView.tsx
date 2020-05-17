@@ -3,8 +3,8 @@ import * as PropTypes from 'prop-types';
 import Clock from './Clock';
 import { pipe } from '../../_helpers/utils';
 import { makeStyles } from '@material-ui/core/styles';
-import { useUtils } from '../../_shared/hooks/useUtils';
 import { MaterialUiPickersDate } from '../../typings/date';
+import { useUtils, useNow } from '../../_shared/hooks/useUtils';
 import { PickerOnChangeFn } from '../../_shared/hooks/useViews';
 import { getHourNumbers, getMinutesNumbers } from './ClockNumbers';
 import { useMeridiemMode } from '../../TimePicker/TimePickerToolbar';
@@ -103,6 +103,7 @@ export const ClockView: React.FC<ClockViewProps> = ({
   previousViewAvailable,
   disableTimeValidationIgnoreDatePart,
 }) => {
+  const now = useNow();
   const utils = useUtils();
   const classes = useStyles();
   const { meridiemMode, handleMeridiemChange } = useMeridiemMode(date, ampm, onDateChange);
@@ -158,17 +159,18 @@ export const ClockView: React.FC<ClockViewProps> = ({
     ]
   );
 
+  const dateOrNow = date || now;
   const viewProps = React.useMemo(() => {
     switch (type) {
       case 'hours':
         const handleHoursChange = (value: number, isFinish?: boolean | symbol) => {
           const valueWithMeridiem = convertValueToMeridiem(value, meridiemMode, Boolean(ampm));
-          onChange(utils.setHours(date, valueWithMeridiem), isFinish);
+          onChange(utils.setHours(dateOrNow, valueWithMeridiem), isFinish);
         };
 
         return {
           onChange: handleHoursChange,
-          value: utils.getHours(date),
+          value: utils.getHours(dateOrNow),
           children: getHourNumbers({
             date,
             utils,
@@ -180,9 +182,9 @@ export const ClockView: React.FC<ClockViewProps> = ({
         };
 
       case 'minutes':
-        const minutesValue = utils.getMinutes(date);
+        const minutesValue = utils.getMinutes(dateOrNow);
         const handleMinutesChange = (value: number, isFinish?: boolean | symbol) => {
-          onChange(utils.setMinutes(date, value), isFinish);
+          onChange(utils.setMinutes(dateOrNow, value), isFinish);
         };
 
         return {
@@ -198,9 +200,9 @@ export const ClockView: React.FC<ClockViewProps> = ({
         };
 
       case 'seconds':
-        const secondsValue = utils.getSeconds(date);
+        const secondsValue = utils.getSeconds(dateOrNow);
         const handleSecondsChange = (value: number, isFinish?: boolean | symbol) => {
-          onChange(utils.setSeconds(date, value), isFinish);
+          onChange(utils.setSeconds(dateOrNow, value), isFinish);
         };
 
         return {
@@ -228,6 +230,7 @@ export const ClockView: React.FC<ClockViewProps> = ({
     getSecondsClockNumberText,
     meridiemMode,
     onChange,
+    dateOrNow,
     isTimeDisabled,
   ]);
 
@@ -267,7 +270,7 @@ export const ClockView: React.FC<ClockViewProps> = ({
 };
 
 ClockView.propTypes = {
-  date: PropTypes.object.isRequired,
+  date: PropTypes.object,
   onChange: PropTypes.func.isRequired,
   ampm: PropTypes.bool,
   minutesStep: PropTypes.number,

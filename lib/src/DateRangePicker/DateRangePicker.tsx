@@ -4,7 +4,6 @@ import { date } from '../constants/prop-types';
 import { useUtils } from '../_shared/hooks/useUtils';
 import { MobileWrapper } from '../wrappers/MobileWrapper';
 import { DateRangeInputProps } from './DateRangePickerInput';
-import { usePickerState } from '../_shared/hooks/usePickerState';
 import { useParsedDate } from '../_shared/hooks/date-helpers-hooks';
 import { DesktopPopperWrapper } from '../wrappers/DesktopPopperWrapper';
 import { makeWrapperComponent } from '../wrappers/makeWrapperComponent';
@@ -12,6 +11,7 @@ import { ResponsivePopperWrapper } from '../wrappers/ResponsiveWrapper';
 import { defaultMinDate, defaultMaxDate } from '../constants/prop-types';
 import { SomeWrapper, ExtendWrapper, StaticWrapper } from '../wrappers/Wrapper';
 import { makeValidationHook, ValidationProps } from '../_shared/hooks/useValidation';
+import { usePickerState, PickerStateValueManager } from '../_shared/hooks/usePickerState';
 import { DateRangePickerView, ExportedDateRangePickerViewProps } from './DateRangePickerView';
 import { DateRangePickerInput, ExportedDateRangePickerInputProps } from './DateRangePickerInput';
 import {
@@ -59,6 +59,12 @@ export function makeRangePicker<TWrapper extends SomeWrapper>(Wrapper: TWrapper)
     }
   );
 
+  const rangePickerValueManager: PickerStateValueManager<RangeInput, DateRange> = {
+    emptyValue: [null, null],
+    parseInput: parseRangeInputValue,
+    areValuesEqual: (utils, a, b) => utils.isEqual(a[0], b[0]) && utils.isEqual(a[1], b[1]),
+  };
+
   function RangePickerWithStateAndWrapper({
     calendars,
     value,
@@ -93,11 +99,7 @@ export function makeRangePicker<TWrapper extends SomeWrapper>(Wrapper: TWrapper)
 
     const { pickerProps, inputProps, wrapperProps } = usePickerState<RangeInput, DateRange>(
       pickerStateProps,
-      {
-        parseInput: parseRangeInputValue,
-        areValuesEqual: (a, b) => utils.isEqual(a[0], b[0]) && utils.isEqual(a[1], b[1]),
-        emptyValue: [null, null],
-      }
+      rangePickerValueManager
     );
 
     const validationError = useDateRangeValidation(value, restProps);

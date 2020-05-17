@@ -3,9 +3,9 @@ import { CalendarViewProps } from './CalendarView';
 import { SlideDirection } from './SlideTransition';
 import { validateDate } from '../../_helpers/date-utils';
 import { MaterialUiPickersDate } from '../../typings/date';
-import { MuiPickersAdapter, useUtils } from '../../_shared/hooks/useUtils';
+import { MuiPickersAdapter, useUtils, useNow } from '../../_shared/hooks/useUtils';
 
-interface State {
+interface CalendarState {
   isMonthSwitchingAnimating: boolean;
   loadingQueue: number;
   currentMonth: MaterialUiPickersDate;
@@ -25,14 +25,14 @@ export const createCalendarStateReducer = (
   disableSwitchToMonthOnDayFocus: boolean,
   utils: MuiPickersAdapter
 ) => (
-  state: State,
+  state: CalendarState,
   action:
     | ReducerAction<'popLoadingQueue'>
     | ReducerAction<'finishMonthSwitchingAnimation'>
     | ReducerAction<'changeMonth', ChangeMonthPayload>
     | ReducerAction<'changeMonthLoading', ChangeMonthPayload>
     | ReducerAction<'changeFocusedDay', { focusedDay: MaterialUiPickersDate }>
-): State => {
+): CalendarState => {
   switch (action.type) {
     case 'changeMonthLoading': {
       return {
@@ -65,8 +65,10 @@ export const createCalendarStateReducer = (
     }
     case 'changeFocusedDay': {
       const needMonthSwitch =
+        Boolean(action.focusedDay) &&
         !disableSwitchToMonthOnDayFocus &&
         !utils.isSameMonth(state.currentMonth, action.focusedDay);
+
       return {
         ...state,
         focusedDay: action.focusedDay,
@@ -103,16 +105,18 @@ export function useCalendarState({
   shouldDisableDate,
   disableSwitchToMonthOnDayFocus = false,
 }: CalendarStateInput) {
+  const now = useNow();
   const utils = useUtils();
+  const dateForMonth = date || now;
   const reducerFn = React.useRef(
     createCalendarStateReducer(Boolean(reduceAnimations), disableSwitchToMonthOnDayFocus, utils)
-  );
+  ).current;
 
-  const [{ loadingQueue, ...calendarState }, dispatch] = React.useReducer(reducerFn.current, {
+  const [{ loadingQueue, ...calendarState }, dispatch] = React.useReducer(reducerFn, {
     isMonthSwitchingAnimating: false,
     loadingQueue: 0,
     focusedDay: date,
-    currentMonth: utils.startOfMonth(date),
+    currentMonth: utils.startOfMonth(dateForMonth),
     slideDirection: 'left',
   });
 
@@ -138,31 +142,31 @@ export function useCalendarState({
   );
 
   const changeMonth = React.useCallback(
-    (date: MaterialUiPickersDate) => {
-      if (utils.isSameMonth(date, calendarState.currentMonth)) {
+    (newDate: MaterialUiPickersDate) => {
+      const newDateRequested = newDate ?? now;
+      if (utils.isSameMonth(newDateRequested, calendarState.currentMonth)) {
         return;
       }
 
       handleChangeMonth({
-        newMonth: utils.startOfMonth(date),
-        direction: utils.isAfterDay(date, calendarState.currentMonth) ? 'left' : 'right',
+        newMonth: utils.startOfMonth(newDateRequested),
+        direction: utils.isAfterDay(newDateRequested, calendarState.currentMonth)
+          ? 'left'
+          : 'right',
       });
     },
-    [calendarState.currentMonth, handleChangeMonth, utils]
+    [calendarState.currentMonth, handleChangeMonth, now, utils]
   );
 
   const isDateDisabled = React.useCallback(
-    (day: MaterialUiPickersDate) => {
-      return (
-        validateDate(utils, day, {
-          disablePast,
-          disableFuture,
-          minDate,
-          maxDate,
-          shouldDisableDate,
-        }) !== null
-      );
-    },
+    (day: MaterialUiPickersDate) =>
+      validateDate(utils, day, {
+        disablePast,
+        disableFuture,
+        minDate,
+        maxDate,
+        shouldDisableDate,
+      }) !== null,
     [disableFuture, disablePast, maxDate, minDate, shouldDisableDate, utils]
   );
 

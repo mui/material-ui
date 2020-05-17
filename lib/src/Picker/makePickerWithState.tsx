@@ -1,16 +1,16 @@
 import * as React from 'react';
-import { useUtils } from '../_shared/hooks/useUtils';
 import { ParsableDate } from '../constants/prop-types';
 import { MaterialUiPickersDate } from '../typings/date';
+import { MuiPickersAdapter } from '../_shared/hooks/useUtils';
 import { parsePickerInputValue } from '../_helpers/date-utils';
 import { KeyboardDateInput } from '../_shared/KeyboardDateInput';
-import { usePickerState } from '../_shared/hooks/usePickerState';
 import { ResponsiveWrapper } from '../wrappers/ResponsiveWrapper';
 import { withDateAdapterProp } from '../_shared/withDateAdapterProp';
 import { makeWrapperComponent } from '../wrappers/makeWrapperComponent';
 import { PureDateInput, DateInputProps } from '../_shared/PureDateInput';
 import { AnyPickerView, AllSharedPickerProps } from './SharedPickerProps';
 import { SomeWrapper, ExtendWrapper, WrapperProps } from '../wrappers/Wrapper';
+import { usePickerState, PickerStateValueManager } from '../_shared/hooks/usePickerState';
 import { Picker, ToolbarComponentProps, ExportedPickerProps, PickerProps } from './Picker';
 
 type AllAvailableForOverrideProps = ExportedPickerProps<AnyPickerView>;
@@ -26,6 +26,13 @@ export interface MakePickerOptions<T extends unknown> {
   useInterceptProps: (props: AllPickerProps<T>) => AllPickerProps<T> & { inputFormat: string };
   DefaultToolbarComponent: React.ComponentType<ToolbarComponentProps>;
 }
+
+const valueManager: PickerStateValueManager<ParsableDate, MaterialUiPickersDate> = {
+  emptyValue: null,
+  parseInput: parsePickerInputValue,
+  areValuesEqual: (utils: MuiPickersAdapter, a: MaterialUiPickersDate, b: MaterialUiPickersDate) =>
+    utils.isEqual(a, b),
+};
 
 export function makePickerWithStateAndWrapper<
   T extends AllAvailableForOverrideProps,
@@ -43,18 +50,13 @@ export function makePickerWithStateAndWrapper<
   );
 
   function PickerWithState(__props: T & AllSharedPickerProps & ExtendWrapper<TWrapper>) {
-    const utils = useUtils();
     const allProps = useInterceptProps(__props) as AllPickerProps<T, TWrapper>;
 
     const validationError = useValidation(allProps.value, allProps) !== null;
     const { pickerProps, inputProps, wrapperProps } = usePickerState<
       ParsableDate,
       MaterialUiPickersDate
-    >(allProps, {
-      emptyValue: null,
-      parseInput: parsePickerInputValue,
-      areValuesEqual: (a, b) => utils.isEqual(a, b),
-    });
+    >(allProps, valueManager);
 
     // Note that we are passing down all the value without spread.
     // It saves us >1kb gzip and make any prop available automatically on any level down.
