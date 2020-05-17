@@ -37,4 +37,10 @@ describe('<Skeleton />', () => {
 
     expect(container.firstChild).to.have.class(classes.withChildren);
   });
+
+  it('should get fullWidth class when passed fullWidth', () => {
+    const { container } = render(<Skeleton fullWidth />);
+
+    expect(container.firstChild).to.have.class(classes.fullWidth);
+  });
 });

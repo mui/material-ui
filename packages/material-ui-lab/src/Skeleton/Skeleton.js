@@ -79,6 +79,11 @@ export const styles = (theme) => ({
       visibility: 'hidden',
     },
   },
+  /* Helpful when passing children and you want the width to be 100%. */
+  fullWidth: {
+    width: '100%',
+    maxWidth: '100%',
+  },
 });
 
 const Skeleton = React.forwardRef(function Skeleton(props, ref) {
@@ -90,6 +95,7 @@ const Skeleton = React.forwardRef(function Skeleton(props, ref) {
     height,
     variant = 'text',
     width,
+    fullWidth,
     ...other
   } = props;
 
@@ -102,6 +108,7 @@ const Skeleton = React.forwardRef(function Skeleton(props, ref) {
         {
           [classes[animation]]: animation !== false,
           [classes.withChildren]: !!other.children,
+          [classes.fullWidth]: fullWidth,
         },
         className,
       )}
@@ -139,6 +146,10 @@ Skeleton.propTypes = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * Helpful when passing children and you want the width to be 100%.
+   */
+  fullWidth: PropTypes.bool,
   /**
    * Height of the skeleton.
    * Useful when you don't want to adapt the skeleton to a text element but for instance a card.
