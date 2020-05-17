@@ -43,7 +43,7 @@
     "date-fns": "^2.12.0",
     "dayjs": "^1.8.27",
     "formik": "^2.1.4",
-    "fuzzy-search": "^3.0.1",
+    "fuzzy-search": "^3.2.1",
     "isomorphic-fetch": "^2.2.1",
     "jss": "^10.0.0",
     "jss-rtl": "^0.3.0",
