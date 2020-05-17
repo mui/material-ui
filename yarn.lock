@@ -2489,9 +2489,9 @@
   integrity sha512-E7R0ye2fY4HGbBDwopzJzMrwPY3gFxy2dCrE1uVnyS7UEjLggfSilM3lPWYTbqf0nqJbHE87K9pIvP+V3flslA==
 
 "@types/lodash@^4.14.138":
-  version "4.14.150"
-  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.150.tgz#649fe44684c3f1fcb6164d943c5a61977e8cf0bd"
-  integrity sha512-kMNLM5JBcasgYscD9x/Gvr6lTAv2NVgsKtet/hm93qMyf/D1pt+7jeEZklKJKxMVmXjxbRVQQGfqDSfipYCO6w==
+  version "4.14.151"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.151.tgz#7d58cac32bedb0ec37cb7f99094a167d6176c9d5"
+  integrity sha512-Zst90IcBX5wnwSu7CAS0vvJkTjTELY4ssKbHiTnGcJgi170uiS8yQDdc3v6S77bRqYQIN1App5a1Pc2lceE5/g==
 
 "@types/minimatch@*":
   version "3.0.3"
