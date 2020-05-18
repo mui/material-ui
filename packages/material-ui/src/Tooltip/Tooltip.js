@@ -25,6 +25,8 @@ function arrowGenerator() {
       top: 0,
       left: 0,
       marginTop: '-0.71em',
+      marginLeft: 4,
+      marginRight: 4,
       '&::before': {
         transformOrigin: '0 100%',
       },
@@ -33,6 +35,8 @@ function arrowGenerator() {
       bottom: 0,
       left: 0,
       marginBottom: '-0.71em',
+      marginLeft: 4,
+      marginRight: 4,
       '&::before': {
         transformOrigin: '100% 0',
       },
@@ -42,6 +46,8 @@ function arrowGenerator() {
       marginLeft: '-0.71em',
       height: '1em',
       width: '0.71em',
+      marginTop: 4,
+      marginBottom: 4,
       '&::before': {
         transformOrigin: '100% 100%',
       },
@@ -51,6 +57,8 @@ function arrowGenerator() {
       marginRight: '-0.71em',
       height: '1em',
       width: '0.71em',
+      marginTop: 4,
+      marginBottom: 4,
       '&::before': {
         transformOrigin: '0 0',
       },
