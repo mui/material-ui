@@ -8,11 +8,13 @@ export default function SimpleTablePagination() {
   const [page, setPage] = React.useState(2);
   const [rowsPerPage, setRowsPerPage] = React.useState(2);
 
-  const handleChangePage = (event, newPage) => {
+  const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
     setPage(newPage);
   };
 
-  const handleChangeRowsPerPage = event => {
+  const handleChangeRowsPerPage = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
