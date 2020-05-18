@@ -31,7 +31,7 @@ function SkeletonChildrenDemo(props) {
         </Box>
         <Box width="100%">
           {loading ? (
-            <Skeleton fullWidth>
+            <Skeleton width="100%">
               <Typography>.</Typography>
             </Skeleton>
           ) : (
@@ -40,7 +40,7 @@ function SkeletonChildrenDemo(props) {
         </Box>
       </Box>
       {loading ? (
-        <Skeleton variant="rect" fullWidth>
+        <Skeleton variant="rect" width="100%">
           <img
             className={classes.image}
             src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAJCAQAAACRI2S5AAAAEklEQVR42mNk+M+AFzCOKgADALyGCQGyq8YeAAAAAElFTkSuQmCC"

@@ -73,16 +73,17 @@ export const styles = (theme) => ({
   },
   /* Styles applied when the component is passed children. */
   withChildren: {
-    height: 'auto',
-    maxWidth: 'fit-content',
     '& > *': {
       visibility: 'hidden',
     },
   },
-  /* Helpful when passing children and you want the width to be 100%. */
-  fullWidth: {
-    width: '100%',
-    maxWidth: '100%',
+  /* Styles applied when the component is passed children and no width. */
+  fitContent: {
+    maxWidth: 'fit-content',
+  },
+  /* Styles applied when the component is passed children and no height. */
+  heightAuto: {
+    height: 'auto',
   },
 });
 
@@ -95,9 +96,10 @@ const Skeleton = React.forwardRef(function Skeleton(props, ref) {
     height,
     variant = 'text',
     width,
-    fullWidth,
     ...other
   } = props;
+
+  const hasChildren = !!other.children;
 
   return (
     <Component
@@ -107,8 +109,9 @@ const Skeleton = React.forwardRef(function Skeleton(props, ref) {
         classes[variant],
         {
           [classes[animation]]: animation !== false,
-          [classes.withChildren]: !!other.children,
-          [classes.fullWidth]: fullWidth,
+          [classes.withChildren]: hasChildren,
+          [classes.fitContent]: hasChildren && !width,
+          [classes.heightAuto]: hasChildren && !height,
         },
         className,
       )}
@@ -146,10 +149,6 @@ Skeleton.propTypes = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
-  /**
-   * Helpful when passing children and you want the width to be 100%.
-   */
-  fullWidth: PropTypes.bool,
   /**
    * Height of the skeleton.
    * Useful when you don't want to adapt the skeleton to a text element but for instance a card.

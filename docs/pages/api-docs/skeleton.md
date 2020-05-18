@@ -32,7 +32,6 @@ The `MuiSkeleton` name can be used for providing [default props](/customization/
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | Optional children to infer width and height from. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'span'</span> | The component used for the root node. Either a string to use a HTML element or a component. |
-| <span class="prop-name">fullWidth</span> | <span class="prop-type">bool</span> |  | Helpful when passing children and you want the width to be 100%. |
 | <span class="prop-name">height</span> | <span class="prop-type">number<br>&#124;&nbsp;string</span> |  | Height of the skeleton. Useful when you don't want to adapt the skeleton to a text element but for instance a card. |
 | <span class="prop-name">variant</span> | <span class="prop-type">'text'<br>&#124;&nbsp;'rect'<br>&#124;&nbsp;'circle'</span> | <span class="prop-default">'text'</span> | The type of content that will be rendered. |
 | <span class="prop-name">width</span> | <span class="prop-type">number<br>&#124;&nbsp;string</span> |  | Width of the skeleton. Useful when the skeleton is inside an inline element with no width of its own. |
@@ -52,7 +51,8 @@ Any other props supplied will be provided to the root element (native element).
 | <span class="prop-name">pulse</span> | <span class="prop-name">.MuiSkeleton-pulse</span> | Styles applied to the root element if `animation="pulse"`.
 | <span class="prop-name">wave</span> | <span class="prop-name">.MuiSkeleton-wave</span> | Styles applied to the root element if `animation="wave"`.
 | <span class="prop-name">withChildren</span> | <span class="prop-name">.MuiSkeleton-withChildren</span> | Styles applied when the component is passed children.
-| <span class="prop-name">fullWidth</span> | <span class="prop-name">.MuiSkeleton-fullWidth</span> | Helpful when passing children and you want the width to be 100%.
+| <span class="prop-name">fitContent</span> | <span class="prop-name">.MuiSkeleton-fitContent</span> | Styles applied when the component is passed children and no width.
+| <span class="prop-name">heightAuto</span> | <span class="prop-name">.MuiSkeleton-heightAuto</span> | Styles applied when the component is passed children and no height.
 
 You can override the style of the component thanks to one of these customization points:
 

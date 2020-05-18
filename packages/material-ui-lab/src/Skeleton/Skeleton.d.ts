@@ -5,7 +5,6 @@ export interface SkeletonTypeMap<P = {}, D extends React.ElementType = 'span'> {
   props: P & {
     animation?: 'pulse' | 'wave' | false;
     children?: React.ReactNode;
-    fullWidth?: boolean;
     height?: number | string;
     variant?: 'text' | 'rect' | 'circle';
     width?: number | string;
