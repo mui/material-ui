@@ -43,24 +43,26 @@ export default function DiamondSponsors(props) {
       <Typography variant="caption" color="textSecondary" display="block" gutterBottom>
         {t('diamondSponsors')}
       </Typography>
-      <a
-        data-ga-event-category="sponsor"
-        data-ga-event-action={spot}
-        data-ga-event-label="sencha"
-        href="https://www.sencha.com/products/extreact/extreact-for-material-ui/?utm_source=materialui&utm_medium=referral&utm_content=product-200429-extreactmaterialui"
-        rel="noopener noreferrer sponsored"
-        target="_blank"
-        style={{ marginLeft: 8, width: 125, height: 35 }}
-      >
-        <img
-          width="125"
-          height="35"
-          src="/static/in-house/sencha-125x35.svg"
-          alt="sencha"
-          title="UI Components for Productive Dev Teams"
-          loading="lazy"
-        />
-      </a>
+      {t && !t ? (
+        <a
+          data-ga-event-category="sponsor"
+          data-ga-event-action={spot}
+          data-ga-event-label="sencha"
+          href="https://www.sencha.com/products/extreact/extreact-for-material-ui/?utm_source=materialui&utm_medium=referral&utm_content=product-200429-extreactmaterialui"
+          rel="noopener noreferrer sponsored"
+          target="_blank"
+          style={{ marginLeft: 8, width: 125, height: 35 }}
+        >
+          <img
+            width="125"
+            height="35"
+            src="/static/in-house/sencha-125x35.svg"
+            alt="sencha"
+            title="UI Components for Productive Dev Teams"
+            loading="lazy"
+          />
+        </a>
+      ) : null}
       <a
         style={{ marginTop: 8 }}
         aria-label={t('diamondSponsors')}

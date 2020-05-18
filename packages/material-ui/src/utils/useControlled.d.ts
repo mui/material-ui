@@ -11,7 +11,6 @@ export interface UseControlledProps<T = unknown> {
    * The component name displayed in warnings.
    */
   name: string;
-
   /**
    * The name of the state variable displayed in warnings.
    */

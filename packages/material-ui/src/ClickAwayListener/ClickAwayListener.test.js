@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createClientRender, fireEvent } from 'test/utils/createClientRender';
+import { createClientRender, fireEvent, screen } from 'test/utils/createClientRender';
 import Portal from '../Portal';
 import ClickAwayListener from './ClickAwayListener';
 
@@ -218,5 +218,60 @@ describe('<ClickAwayListener />', () => {
     );
     fireEvent.click(document.body);
     expect(handleClickAway.callCount).to.equal(0);
+  });
+
+  [
+    ['onClick', false],
+    ['onClick', true],
+    ['onClickCapture', false],
+    ['onClickCapture', true],
+  ].forEach(([eventName, disableReactTree]) => {
+    it(`when 'disableRectTree=${disableReactTree}' ${eventName} triggers onClickAway if an outside target is removed`, function test() {
+      if (!new Event('click').composedPath) {
+        this.skip();
+      }
+
+      const handleClickAway = spy();
+      function Test() {
+        const [buttonShown, hideButton] = React.useReducer(() => false, true);
+
+        return (
+          <React.Fragment>
+            {buttonShown && <button {...{ [eventName]: hideButton }} type="button" />}
+            <ClickAwayListener onClickAway={handleClickAway} disableReactTree={disableReactTree}>
+              <div />
+            </ClickAwayListener>
+          </React.Fragment>
+        );
+      }
+      render(<Test />);
+
+      screen.getByRole('button').click();
+
+      expect(handleClickAway.callCount).to.equal(1);
+    });
+
+    it(`when 'disableRectTree=${disableReactTree}' ${eventName} does not trigger onClickAway if an inside target is removed`, function test() {
+      if (!new Event('click').composedPath) {
+        this.skip();
+      }
+
+      const handleClickAway = spy();
+
+      function Test() {
+        const [buttonShown, hideButton] = React.useReducer(() => false, true);
+
+        return (
+          <ClickAwayListener onClickAway={handleClickAway} disableReactTree={disableReactTree}>
+            <div>{buttonShown && <button {...{ [eventName]: hideButton }} type="button" />}</div>
+          </ClickAwayListener>
+        );
+      }
+      render(<Test />);
+
+      screen.getByRole('button').click();
+
+      expect(handleClickAway.callCount).to.equal(0);
+    });
   });
 });

@@ -58,13 +58,13 @@ const StyledTabs = withStyles({
     display: 'flex',
     justifyContent: 'center',
     backgroundColor: 'transparent',
-    '& > div': {
+    '& > span': {
       maxWidth: 40,
       width: '100%',
       backgroundColor: '#635ee7',
     },
   },
-})((props: StyledTabsProps) => <Tabs {...props} TabIndicatorProps={{ children: <div /> }} />);
+})((props: StyledTabsProps) => <Tabs {...props} TabIndicatorProps={{ children: <span /> }} />);
 
 interface StyledTabProps {
   label: string;

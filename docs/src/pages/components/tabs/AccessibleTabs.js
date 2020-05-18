@@ -14,8 +14,8 @@ function TabPanel(props) {
     <div
       role="tabpanel"
       hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
+      id={`a11y-tabpanel-${index}`}
+      aria-labelledby={`a11y-tab-${index}`}
       {...other}
     >
       {value === index && (
@@ -44,9 +44,9 @@ function DemoTabs(props) {
         selectionFollowsFocus={selectionFollowsFocus}
         value={value}
       >
-        <Tab label="Item One" aria-controls="simple-tabpanel-0" id="simple-tab-0" />
-        <Tab label="Item Two" aria-controls="simple-tabpanel-1" id="simple-tab-1" />
-        <Tab label="Item Three" aria-controls="simple-tabpanel-2" id="simple-tab-2" />
+        <Tab label="Item One" aria-controls="a11y-tabpanel-0" id="a11y-tab-0" />
+        <Tab label="Item Two" aria-controls="a11y-tabpanel-1" id="a11y-tab-1" />
+        <Tab label="Item Three" aria-controls="a11y-tabpanel-2" id="a11y-tab-2" />
       </Tabs>
     </AppBar>
   );

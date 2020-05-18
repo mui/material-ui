@@ -35,7 +35,7 @@ const Pagination = React.forwardRef(function Pagination(props, ref) {
     count,
     defaultPage,
     disabled,
-    getItemAriaLabel: getAriaLabel = defaultGetAriaLabel,
+    getItemAriaLabel = defaultGetAriaLabel,
     hideNextButton,
     hidePrevButton,
     onChange,
@@ -65,7 +65,7 @@ const Pagination = React.forwardRef(function Pagination(props, ref) {
             {renderItem({
               ...item,
               color,
-              'aria-label': getAriaLabel(item.type, item.page, item.selected),
+              'aria-label': getItemAriaLabel(item.type, item.page, item.selected),
               shape,
               size,
               variant,
