@@ -67,7 +67,6 @@ For the pagination of a large set of tabular data, you will find a different com
 
 You can learn more about this use case in the [table section](https://material-ui.com/components/tables/#custom-pagination-options) of the documentation.
 
-
 ## Accessibility
 
 ### ARIA
