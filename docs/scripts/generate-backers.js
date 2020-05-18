@@ -23,7 +23,9 @@ function processPatreonPledges(rawJson) {
 async function main() {
   if (!process.argv[2]) {
     throw new Error(
-      'Please provide creator access token as argument. Example: yarn generate-backers {your token here}'
+      `Please provide creator access token as argument.\n
+Find creator access token at https://www.patreon.com/portal/registration/register-clients\n
+Then pass token like: yarn generate-backers {your token here}`
     );
   }
 
