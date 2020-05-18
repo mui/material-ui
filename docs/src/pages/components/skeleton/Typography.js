@@ -23,7 +23,7 @@ function TypographyDemo(props) {
 
   return (
     <div>
-      {variants.map(variant => {
+      {variants.map((variant) => {
         return (
           <Typography key={variant} variant={variant}>
             {loading ? <Skeleton /> : variant}
