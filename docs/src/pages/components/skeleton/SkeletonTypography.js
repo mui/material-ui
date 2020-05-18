@@ -4,32 +4,18 @@ import Typography from '@material-ui/core/Typography';
 import Skeleton from '@material-ui/lab/Skeleton';
 import Grid from '@material-ui/core/Grid';
 
+const variants = ['h1', 'h3', 'body1', 'caption'];
+
 function TypographyDemo(props) {
   const { loading = false } = props;
 
-  const variants = [
-    'h1',
-    'h2',
-    'h3',
-    'h4',
-    'h5',
-    'h6',
-    'subtitle1',
-    'subtitle2',
-    'body1',
-    'body2',
-    'caption',
-  ];
-
   return (
     <div>
-      {variants.map((variant) => {
-        return (
-          <Typography key={variant} variant={variant}>
-            {loading ? <Skeleton /> : variant}
-          </Typography>
-        );
-      })}
+      {variants.map((variant) => (
+        <Typography key={variant} variant={variant}>
+          {loading ? <Skeleton /> : variant}
+        </Typography>
+      ))}
     </div>
   );
 }

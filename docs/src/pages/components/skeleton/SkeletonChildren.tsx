@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
@@ -13,7 +12,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-function SkeletonChildrenDemo(props) {
+function SkeletonChildrenDemo(props: { loading?: boolean }) {
   const { loading = false } = props;
   const classes = useStyles();
 
@@ -26,7 +25,7 @@ function SkeletonChildrenDemo(props) {
               <Avatar />
             </Skeleton>
           ) : (
-            <Avatar>A</Avatar>
+            <Avatar src="https://pbs.twimg.com/profile_images/877631054525472768/Xp5FAPD5_reasonably_small.jpg" />
           )}
         </Box>
         <Box width="100%">
@@ -57,10 +56,6 @@ function SkeletonChildrenDemo(props) {
     </div>
   );
 }
-
-SkeletonChildrenDemo.propTypes = {
-  loading: PropTypes.bool,
-};
 
 export default function SkeletonChildren() {
   return (
