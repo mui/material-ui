@@ -56,6 +56,18 @@ import { usePagination } from '@material-ui/lab/Pagination';
 
 {{"demo": "pages/components/pagination/UsePagination.js"}}
 
+## Table pagination
+
+The `Pagination` component was designed to paginate a list of arbitrary items when infinite loading isn't used.
+It's preferred in contexts where SEO is important, for instance, a blog.
+
+For the pagination of a large set of tabular data, you will find a different component: the `TablePagination`.
+
+*a new demo with TablePagination and only*
+
+You can learn more about this use case in the [table section](https://material-ui.com/components/tables/#custom-pagination-options) of the documentation.
+
+
 ## Accessibility
 
 ### ARIA
