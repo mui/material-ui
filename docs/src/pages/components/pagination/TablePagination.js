@@ -33,7 +33,7 @@ const rows = [
 export default function SimpleTable() {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(1);
+  const [rowsPerPage, setRowsPerPage] = React.useState(2);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
