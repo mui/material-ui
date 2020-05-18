@@ -1,6 +1,5 @@
 import React from 'react';
 import { expect } from 'chai';
-import createMount from 'test/utils/createMount';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import { createClientRender } from 'test/utils/createClientRender';
 import makeStyles from '../makeStyles';
@@ -8,7 +7,6 @@ import useTheme from '../useTheme';
 import ThemeProvider from './ThemeProvider';
 
 describe('ThemeProvider', () => {
-  const mount = createMount();
   const render = createClientRender();
 
   it('should provide the theme', () => {
@@ -20,7 +18,7 @@ describe('ThemeProvider', () => {
       return <span ref={ref}>{theme.foo}</span>;
     }
 
-    mount(
+    render(
       <ThemeProvider theme={{ foo: 'foo' }}>
         <Test />
       </ThemeProvider>,
@@ -42,7 +40,7 @@ describe('ThemeProvider', () => {
       );
     }
 
-    mount(
+    render(
       <ThemeProvider theme={{ bar: 'bar' }}>
         <ThemeProvider theme={{ foo: 'foo' }}>
           <Test />
@@ -85,11 +83,11 @@ describe('ThemeProvider', () => {
       );
     }
 
-    const wrapper = mount(<Container />);
+    const { setProps } = render(<Container />);
     expect(text()).to.equal('foobar');
-    wrapper.setProps({});
+    setProps({});
     expect(text()).to.equal('foobar');
-    expect(themes.length).to.equal(1);
+    expect(themes).to.have.length(1);
   });
 
   it('does not allow setting mui.nested manually', () => {
@@ -132,7 +130,7 @@ describe('ThemeProvider', () => {
     });
 
     it('should warn about missing provider', () => {
-      mount(
+      render(
         <ThemeProvider theme={(theme) => theme}>
           <div />
         </ThemeProvider>,
@@ -142,7 +140,7 @@ describe('ThemeProvider', () => {
     });
 
     it('should warn about wrong theme function', () => {
-      mount(
+      render(
         <ThemeProvider theme={{ bar: 'bar' }}>
           <ThemeProvider theme={() => {}}>
             <div />

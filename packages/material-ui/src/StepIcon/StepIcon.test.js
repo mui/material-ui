@@ -1,18 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createShallow } from '@material-ui/core/test-utils';
 import createMount from 'test/utils/createMount';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
+import { createClientRender } from 'test/utils/createClientRender';
 import StepIcon from './StepIcon';
-import SvgIcon from '../SvgIcon';
 
 describe('<StepIcon />', () => {
-  let shallow;
+  const render = createClientRender();
   const mount = createMount();
-
-  before(() => {
-    shallow = createShallow({ dive: true });
-  });
 
   describeConformance(<StepIcon icon={1} />, () => ({
     mount,
@@ -21,29 +16,22 @@ describe('<StepIcon />', () => {
   }));
 
   it('renders <CheckCircle> when completed', () => {
-    const wrapper = mount(<StepIcon icon={1} completed />);
-    const checkCircle = wrapper.find('svg[data-mui-test="CheckCircleIcon"]');
-    expect(checkCircle.length).to.equal(1);
+    const { container } = render(<StepIcon icon={1} completed />);
+    expect(container.querySelectorAll('svg[data-mui-test="CheckCircleIcon"]')).to.have.length(1);
   });
 
   it('renders <Warning> when error occurred', () => {
-    const wrapper = mount(<StepIcon icon={1} error />);
-    const warning = wrapper.find('svg[data-mui-test="WarningIcon"]');
-    expect(warning.length).to.equal(1);
-  });
-
-  it('renders a <SvgIcon>', () => {
-    const wrapper = shallow(<StepIcon icon={1} />);
-    expect(wrapper.find(SvgIcon).length).to.equal(1);
+    const { container } = render(<StepIcon icon={1} error />);
+    expect(container.querySelectorAll('svg[data-mui-test="WarningIcon"]')).to.have.length(1);
   });
 
   it('contains text "3" when position is "3"', () => {
-    const wrapper = shallow(<StepIcon icon={3} />);
-    expect(wrapper.find('text').text()).to.equal('3');
+    const { queryByText } = render(<StepIcon icon={3} />);
+    expect(queryByText('3')).not.to.equal(null);
   });
 
   it('renders the custom icon', () => {
-    const wrapper = shallow(<StepIcon icon={<span className="my-icon" />} />);
-    expect(wrapper.find('.my-icon').length).to.equal(1);
+    const { container } = render(<StepIcon icon={<span className="my-icon" />} />);
+    expect(container.querySelectorAll('.my-icon')).to.have.length(1);
   });
 });

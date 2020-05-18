@@ -35,15 +35,19 @@ describe('<Radio />', () => {
 
   describe('prop: unchecked', () => {
     it('should render an unchecked icon', () => {
-      const wrapper = mount(<Radio />);
-      expect(wrapper.find('svg[data-mui-test="RadioButtonUncheckedIcon"]').length).to.equal(1);
+      const { container } = render(<Radio />);
+      expect(
+        container.querySelectorAll('svg[data-mui-test="RadioButtonUncheckedIcon"]').length,
+      ).to.equal(1);
     });
   });
 
   describe('prop: checked', () => {
     it('should render a checked icon', () => {
-      const wrapper = mount(<Radio checked />);
-      expect(wrapper.find('svg[data-mui-test="RadioButtonCheckedIcon"]').length).to.equal(1);
+      const { container } = render(<Radio checked />);
+      expect(
+        container.querySelectorAll('svg[data-mui-test="RadioButtonCheckedIcon"]').length,
+      ).to.equal(1);
     });
   });
 
