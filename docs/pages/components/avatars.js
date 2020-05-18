@@ -10,6 +10,9 @@ const requireRaw = require.context(
   /\.(js|md|tsx)$/,
 );
 
+// warm-up
+requireDemo.keys().map(requireDemo);
+
 export default function Page({ demos, docs }) {
   return <MarkdownDocs demos={demos} docs={docs} requireDemo={requireDemo} />;
 }

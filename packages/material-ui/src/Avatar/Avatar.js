@@ -1,60 +1,24 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import withStyles from '../styles/withStyles';
+import styled from 'styled-components';
+import themed from '../styles/themed';
 import Person from '../internal/svg-icons/Person';
 
-export const styles = (theme) => ({
+export const styles = {
   /* Styles applied to the root element. */
-  root: {
-    position: 'relative',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexShrink: 0,
-    width: 40,
-    height: 40,
-    fontFamily: theme.typography.fontFamily,
-    fontSize: theme.typography.pxToRem(20),
-    lineHeight: 1,
-    borderRadius: '50%',
-    overflow: 'hidden',
-    userSelect: 'none',
-  },
+  root: {},
   /* Styles applied to the root element if not `src` or `srcSet`. */
-  colorDefault: {
-    color: theme.palette.background.default,
-    backgroundColor:
-      theme.palette.type === 'light' ? theme.palette.grey[400] : theme.palette.grey[600],
-  },
+  colorDefault: {},
   /* Styles applied to the root element if `variant="circle"`. */
   circle: {},
   /* Styles applied to the root element if `variant="rounded"`. */
-  rounded: {
-    borderRadius: theme.shape.borderRadius,
-  },
+  rounded: {},
   /* Styles applied to the root element if `variant="square"`. */
-  square: {
-    borderRadius: 0,
-  },
-  /* Styles applied to the img element if either `src` or `srcSet` is defined. */
-  img: {
-    width: '100%',
-    height: '100%',
-    textAlign: 'center',
-    // Handle non-square image. The property isn't supported by IE 11.
-    objectFit: 'cover',
-    // Hide alt text.
-    color: 'transparent',
-    // Hide the image broken icon, only works on Chrome.
-    textIndent: 10000,
-  },
+  square: {},
   /* Styles applied to the fallback icon */
-  fallback: {
-    width: '75%',
-    height: '75%',
-  },
-});
+  fallback: {},
+};
 
 function useLoaded({ src, srcSet }) {
   const [loaded, setLoaded] = React.useState(false);
@@ -91,17 +55,60 @@ function useLoaded({ src, srcSet }) {
   return loaded;
 }
 
+const StyledComponent = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  font-family: ${({ theme }) => theme.typography.fontFamily};
+  font-size: ${({ theme }) => theme.typography.pxToRem(20)};
+  line-height: 1;
+  border-radius: ${({ theme, variant }) => {
+    switch (variant) {
+      case 'rounded':
+        return `${theme.shape.borderRadius}px`;
+      case 'square':
+        return '0px';
+      default:
+        return '50%';
+    }
+  }};
+  overflow: hidden;
+  user-select: none;
+`;
+
+const AvatarImage = styled.img`
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  /* Handle non-square image. The property isn't supported by IE 11. */
+  object-fit: cover;
+  /* Hide alt text. */
+  color: transparent;
+  /* Hide the image broken icon, only works on Chrome. */
+  text-indent: 10000px;
+`;
+
+const Fallback = styled(Person)`
+  width: 75%;
+  height: 75%;
+`;
+
 const Avatar = React.forwardRef(function Avatar(props, ref) {
   const {
     alt,
     children: childrenProp,
-    classes,
+    classes = {},
     className,
-    component: Component = 'div',
+    component = 'div',
     imgProps,
     sizes,
     src,
     srcSet,
+    theme,
     variant = 'circle',
     ...other
   } = props;
@@ -115,12 +122,13 @@ const Avatar = React.forwardRef(function Avatar(props, ref) {
 
   if (hasImgNotFailing) {
     children = (
-      <img
+      <AvatarImage
         alt={alt}
         src={src}
         srcSet={srcSet}
         sizes={sizes}
         className={classes.img}
+        theme={theme}
         {...imgProps}
       />
     );
@@ -129,11 +137,12 @@ const Avatar = React.forwardRef(function Avatar(props, ref) {
   } else if (hasImg && alt) {
     children = alt[0];
   } else {
-    children = <Person className={classes.fallback} />;
+    children = <Fallback className={classes.fallback} theme={theme} />;
   }
 
   return (
-    <Component
+    <StyledComponent
+      as={component}
       className={clsx(
         classes.root,
         classes.system,
@@ -143,11 +152,13 @@ const Avatar = React.forwardRef(function Avatar(props, ref) {
         },
         className,
       )}
+      hasImgNotFailing={hasImgNotFailing}
       ref={ref}
+      theme={theme}
       {...other}
     >
       {children}
-    </Component>
+    </StyledComponent>
   );
 });
 
@@ -166,7 +177,7 @@ Avatar.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -194,10 +205,11 @@ Avatar.propTypes = {
    * Use this attribute for responsive image display.
    */
   srcSet: PropTypes.string,
+  theme: PropTypes.any.isRequired,
   /**
    * The shape of the avatar.
    */
   variant: PropTypes.oneOf(['circle', 'rounded', 'square']),
 };
 
-export default withStyles(styles, { name: 'MuiAvatar' })(Avatar);
+export default themed({ component: Avatar, name: 'MuiAvatar' });

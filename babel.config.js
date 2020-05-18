@@ -27,7 +27,13 @@ const defaultAlias = {
   '@material-ui/utils': './packages/material-ui-utils/src',
 };
 
+const styledComponentsPlugin = [
+  'babel-plugin-styled-components',
+  { displayName: true, pure: true },
+];
+
 const productionPlugins = [
+  styledComponentsPlugin,
   '@babel/plugin-transform-react-constant-elements',
   'babel-plugin-transform-dev-warning',
   ['babel-plugin-react-remove-properties', { properties: ['data-mui-test'] }],
@@ -42,6 +48,7 @@ const productionPlugins = [
 module.exports = {
   presets: defaultPresets.concat(['@babel/preset-react', '@babel/preset-typescript']),
   plugins: [
+    styledComponentsPlugin,
     'babel-plugin-optimize-clsx',
     ['@babel/plugin-proposal-class-properties', { loose: true }],
     ['@babel/plugin-proposal-object-rest-spread', { loose: true }],
@@ -57,6 +64,7 @@ module.exports = {
     },
     coverage: {
       plugins: [
+        styledComponentsPlugin,
         'babel-plugin-istanbul',
         [
           'babel-plugin-module-resolver',
@@ -69,6 +77,7 @@ module.exports = {
     },
     development: {
       plugins: [
+        styledComponentsPlugin,
         [
           'babel-plugin-module-resolver',
           {
@@ -95,6 +104,7 @@ module.exports = {
       sourceMaps: 'both',
       plugins: [
         [
+          styledComponentsPlugin,
           'babel-plugin-module-resolver',
           {
             root: ['./'],
