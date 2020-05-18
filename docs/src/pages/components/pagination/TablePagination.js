@@ -30,7 +30,7 @@ const rows = [
   createData('Sky Blue', '135, 206, 235', '#87CEEB'),
 ];
 
-export default function SimpleTable() {
+export default function TablePagination() {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(2);
