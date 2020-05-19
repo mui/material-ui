@@ -99,7 +99,7 @@ const Skeleton = React.forwardRef(function Skeleton(props, ref) {
     ...other
   } = props;
 
-  const hasChildren = !!other.children;
+  const hasChildren = Boolean(other.children);
 
   return (
     <Component
