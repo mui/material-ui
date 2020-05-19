@@ -77,22 +77,6 @@ describe('findClosestEnabledDate', () => {
     expect(utilsToUse.isBefore(result, utilsToUse.addDays(today, 31))).toBe(true);
   });
 
-  it('Should return past Saturday if disableFuture', () => {
-    const today = utilsToUse.startOfDay(utilsToUse.date());
-    const result = findClosestEnabledDate({
-      date: utilsToUse.date('2099-01-01'),
-      minDate: utilsToUse.date('1900-01-01'),
-      maxDate: utilsToUse.date('2100-01-01'),
-      utils: utilsToUse,
-      shouldDisableDate: only18th,
-      disableFuture: true,
-      disablePast: false,
-    });
-
-    expect(utilsToUse.isBeforeDay(result, today)).toBe(true);
-    expect(utilsToUse.isBefore(result, utilsToUse.addDays(today, -31))).toBe(false);
-  });
-
   it('Should return now if disablePast+disableFuture and now is valid', () => {
     const today = utilsToUse.startOfDay(utilsToUse.date());
     const result = findClosestEnabledDate({

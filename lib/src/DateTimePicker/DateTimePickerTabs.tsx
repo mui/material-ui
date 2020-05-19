@@ -1,4 +1,5 @@
 import * as React from 'react';
+import clsx from 'clsx';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import Paper from '@material-ui/core/Paper';
@@ -6,6 +7,7 @@ import { TimeIcon } from '../_shared/icons/TimeIcon';
 import { DateTimePickerView } from './DateTimePicker';
 import { DateRangeIcon } from '../_shared/icons/DateRangeIcon';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { WrapperVariantContext } from '../wrappers/WrapperVariantContext';
 
 const viewToTabIndex = (openView: DateTimePickerView) => {
   if (openView === 'date' || openView === 'year') {
@@ -38,6 +40,9 @@ export const useStyles = makeStyles(
     : theme.palette.background.default;
 
     return {
+      container: {
+        order: 1,
+      },
       tabs: {
         color: theme.palette.getContrastText(tabsBackground),
         backgroundColor: tabsBackground,
@@ -50,12 +55,14 @@ export const useStyles = makeStyles(
 export const DateTimePickerTabs: React.FC<DateTimePickerTabsProps> = ({
   view,
   onChange,
-  dateRangeIcon,
-  timeIcon,
+  timeIcon = <TimeIcon />,
+  dateRangeIcon = <DateRangeIcon />,
 }) => {
   const classes = useStyles();
   const theme = useTheme();
+  const wrapperVariant = React.useContext(WrapperVariantContext);
   const indicatorColor = theme.palette.type === 'light' ? 'secondary' : 'primary';
+
   const handleChange = (e: React.ChangeEvent<{}>, value: DateTimePickerView) => {
     if (value !== viewToTabIndex(view)) {
       onChange(tabIndexToView(value));
@@ -63,7 +70,7 @@ export const DateTimePickerTabs: React.FC<DateTimePickerTabsProps> = ({
   };
 
   return (
-    <Paper>
+    <Paper className={clsx({ [classes.container]: wrapperVariant === 'desktop' })}>
       <Tabs
         variant="fullWidth"
         value={viewToTabIndex(view)}
@@ -76,11 +83,6 @@ export const DateTimePickerTabs: React.FC<DateTimePickerTabsProps> = ({
       </Tabs>
     </Paper>
   );
-};
-
-DateTimePickerTabs.defaultProps = {
-  dateRangeIcon: <DateRangeIcon />,
-  timeIcon: <TimeIcon />,
 };
 
 export default DateTimePickerTabs;

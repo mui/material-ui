@@ -273,7 +273,6 @@ test('Should not add to loading queue when synchronous', () => {
     .find('button[data-mui-test="day"]')
     .at(0)
     .simulate('click');
-
   expect(component.find('h4[data-mui-test="datepicker-toolbar-date"]').text()).not.toBe(
     'Enter Date'
   );
