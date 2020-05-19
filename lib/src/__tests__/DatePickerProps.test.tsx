@@ -63,7 +63,7 @@ describe('DatePicker - different props', () => {
     expect(component.find('h4[data-mui-test="datepicker-toolbar-date"]').text()).toBe('January');
   });
 
-  it('showTodayLabel – accept current date when "today" button is clicked', () => {
+  it('showTodayButton – accept current date when "today" button is clicked', () => {
     const onCloseMock = jest.fn();
     const onChangeMock = jest.fn();
     const component = mount(
@@ -71,7 +71,7 @@ describe('DatePicker - different props', () => {
         renderInput={props => <TextField {...props} />}
         autoOk
         showTodayButton
-        cancelLabel="stream"
+        cancelText="stream"
         onClose={onCloseMock}
         onChange={onChangeMock}
         value={utilsToUse.date('2018-01-01T00:00:00.000Z')}

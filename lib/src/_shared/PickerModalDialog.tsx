@@ -7,19 +7,46 @@ import Dialog, { DialogProps } from '@material-ui/core/Dialog';
 import { makeStyles } from '@material-ui/core/styles';
 import { DIALOG_WIDTH, DIALOG_WIDTH_WIDER } from '../constants/dimensions';
 
-export interface ModalDialogProps extends DialogProps {
+export interface ExportedPickerModalProps {
+  /**
+   * "OK" button text.
+   * @default "OK"
+   */
+  okText?: React.ReactNode;
+  /**
+   * "CANCEL" Text message
+   * @default "CANCEL"
+   */
+  cancelText?: React.ReactNode;
+  /**
+   * "CLEAR" Text message
+   * @default "CLEAR"
+   */
+  clearText?: React.ReactNode;
+  /**
+   * "TODAY" Text message
+   * @default "TODAY"
+   */
+  todayText?: React.ReactNode;
+  /**
+   * If `true`, it shows the clear action in the picker dialog.
+   * @default false
+   */
+  clearable?: boolean;
+  /**
+   * If `true`, the today button will be displayed. **Note** that `showClearButton` has a higher priority.
+   * @default false
+   */
+  showTodayButton?: boolean;
+  showTabs?: boolean;
+  wider?: boolean;
+}
+
+export interface PickerModalDialogProps extends ExportedPickerModalProps, DialogProps {
   onAccept: () => void;
   onDismiss: () => void;
   onClear: () => void;
   onSetToday: () => void;
-  okLabel?: React.ReactNode;
-  cancelLabel?: React.ReactNode;
-  clearLabel?: React.ReactNode;
-  todayLabel?: React.ReactNode;
-  clearable?: boolean;
-  showTodayButton?: boolean;
-  showTabs?: boolean;
-  wider?: boolean;
 }
 
 export const useStyles = makeStyles(
@@ -53,23 +80,24 @@ export const useStyles = makeStyles(
       },
     },
   },
-  { name: 'MuiPickersModal' }
+  { name: 'MuiPickersModalDialog' }
 );
 
-export const ModalDialog: React.FC<ModalDialogProps> = ({
+export const PickerModalDialog: React.FC<PickerModalDialogProps> = ({
   children,
   onAccept,
   onDismiss,
   onClear,
   onSetToday,
-  okLabel,
-  cancelLabel,
-  clearLabel,
-  todayLabel,
-  clearable,
-  showTodayButton,
+  okText = 'OK',
+  cancelText = 'Cancel',
+  clearText = 'Clear',
+  todayText = 'Today',
+  clearable = false,
+  showTodayButton = false,
   showTabs,
   wider,
+  classes: MuiDialogClasses,
   ...other
 }) => {
   const classes = useStyles();
@@ -81,6 +109,7 @@ export const ModalDialog: React.FC<ModalDialogProps> = ({
         paper: clsx(classes.dialogRoot, {
           [classes.dialogRootWider]: wider,
         }),
+        ...MuiDialogClasses,
       }}
       {...other}
     >
@@ -93,32 +122,28 @@ export const ModalDialog: React.FC<ModalDialogProps> = ({
       >
         {clearable && (
           <Button data-mui-test="clear-action-button" color="primary" onClick={onClear}>
-            {clearLabel}
+            {clearText}
           </Button>
         )}
 
         {showTodayButton && (
           <Button data-mui-test="today-action-button" color="primary" onClick={onSetToday}>
-            {todayLabel}
+            {todayText}
           </Button>
         )}
 
-        {cancelLabel && (
+        {cancelText && (
           <Button color="primary" onClick={onDismiss}>
-            {cancelLabel}
+            {cancelText}
           </Button>
         )}
 
-        {okLabel && (
+        {okText && (
           <Button color="primary" onClick={onAccept}>
-            {okLabel}
+            {okText}
           </Button>
         )}
       </DialogActions>
     </Dialog>
   );
 };
-
-ModalDialog.displayName = 'ModalDialog';
-
-export default ModalDialog;

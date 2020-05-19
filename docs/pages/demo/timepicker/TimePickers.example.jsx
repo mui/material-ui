@@ -30,7 +30,7 @@ function TimePickers() {
         ampm
         ampmInClock
         showTodayButton
-        todayLabel="now"
+        todayText="now"
         label="Responsive, with step = 5"
         value={selectedDate}
         minutesStep={5}

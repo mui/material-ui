@@ -39,12 +39,12 @@ export function makeWrapperComponent<
       onChange,
       children,
       clearable,
-      clearLabel,
+      clearText,
       DialogProps,
       PopoverProps,
-      okLabel,
-      cancelLabel,
-      todayLabel,
+      okText,
+      cancelText,
+      todayText,
       DateInputProps,
       wrapperProps,
       wider,
@@ -61,11 +61,11 @@ export function makeWrapperComponent<
     return (
       <WrapperComponent
         clearable={clearable}
-        clearLabel={clearLabel}
+        clearText={clearText}
         DialogProps={DialogProps}
-        okLabel={okLabel}
-        todayLabel={todayLabel}
-        cancelLabel={cancelLabel}
+        okText={okText}
+        todayText={todayText}
+        cancelText={cancelText}
         DateInputProps={DateInputProps}
         // @ts-ignore
         KeyboardDateInputComponent={KeyboardDateInputComponent}

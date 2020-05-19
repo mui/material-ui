@@ -16,7 +16,7 @@ function CustomDateTimePicker(props) {
         disableFuture
         hideTabs
         showTodayButton
-        todayLabel="now"
+        todayText="now"
         openTo="hours"
         value={selectedDate}
         onChange={date => handleDateChange(date)}

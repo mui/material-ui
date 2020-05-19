@@ -19,8 +19,8 @@ function DateFnsLocalizationExample() {
         clearable
         value={selectedDate}
         onChange={date => handleDateChange(date)}
-        clearLabel="vider"
-        cancelLabel="annuler"
+        clearText="vider"
+        cancelText="annuler"
         renderInput={props => <TextField helperText="Localization done right" {...props} />}
       />
     </LocalizationProvider>

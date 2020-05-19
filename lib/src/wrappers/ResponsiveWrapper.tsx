@@ -22,10 +22,10 @@ export const makeResponsiveWrapper = (
 ) => {
   const ResponsiveWrapper: React.FC<ResponsiveWrapperProps> = ({
     desktopModeMediaQuery = IS_TOUCH_DEVICE_MEDIA,
-    okLabel,
-    cancelLabel,
-    clearLabel,
-    todayLabel,
+    okText,
+    cancelText,
+    clearText,
+    todayText,
     showTodayButton,
     clearable,
     DialogProps,
@@ -46,10 +46,10 @@ export const makeResponsiveWrapper = (
       />
     ) : (
       <MobileWrapperComponent
-        okLabel={okLabel}
-        cancelLabel={cancelLabel}
-        clearLabel={clearLabel}
-        todayLabel={todayLabel}
+        okText={okText}
+        cancelText={cancelText}
+        clearText={clearText}
+        todayText={todayText}
         showTodayButton={showTodayButton}
         clearable={clearable}
         DialogProps={DialogProps}

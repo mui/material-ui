@@ -1,7 +1,6 @@
 import { useStyles as DayStyles } from '../views/Calendar/Day';
 import { useStyles as ClockStyles } from '../views/Clock/Clock';
 import { useStyles as MuiBasePickerStyles } from '../Picker/Picker';
-import { useStyles as ModalDialogStyles } from '../_shared/ModalDialog';
 import { useStyles as CalendarStyles } from '../views/Calendar/Calendar';
 import { useStyles as MuiPickersYearStyles } from '../views/Calendar/Year';
 import { styles as ClockPointerStyles } from '../views/Clock/ClockPointer';
@@ -54,7 +53,6 @@ export interface MuiPickersOverrides {
   MuiPickersClock?: Classes<typeof ClockStyles>;
   MuiPickersClockNumber?: Classes<typeof ClockNumberStyles>;
   MuiPickersClockPointer?: Classes<typeof ClockPointerStyles>;
-  MuiPickersModal?: Classes<typeof ModalDialogStyles>;
   MuiPickersToolbar?: Classes<typeof PickerToolbarStyles>;
   MuiPickersToolbarButton?: Classes<typeof ToolbarButtonStyles>;
   MuiPickersToolbarText?: Classes<typeof MuiPickersToolbarTextStyles>;
@@ -69,4 +67,5 @@ export interface MuiPickersOverrides {
   MuiPickersDateRangePickerInput?: Classes<
     typeof import('../DateRangePicker/DateRangePickerInput').useStyles
   >;
+  MuiPickersModalDialog?: Classes<typeof import('../_shared/PickerModalDialog').useStyles>;
 }

@@ -15,9 +15,9 @@ function PersianExample() {
       <DatePicker
         renderInput={props => <TextField {...props} />}
         clearable
-        okLabel="تأیید"
-        cancelLabel="لغو"
-        clearLabel="پاک کردن"
+        okText="تأیید"
+        cancelText="لغو"
+        clearText="پاک کردن"
         inputFormat="jYYYY/iMM/iDD"
         value={selectedDate}
         onChange={date => handleDateChange(date)}
@@ -26,9 +26,9 @@ function PersianExample() {
       <TimePicker
         renderInput={props => <TextField {...props} />}
         clearable
-        okLabel="تأیید"
-        cancelLabel="لغو"
-        clearLabel="پاک کردن"
+        okText="تأیید"
+        cancelText="لغو"
+        clearText="پاک کردن"
         inputFormat="hh:mm A"
         value={selectedDate}
         onChange={date => handleDateChange(date)}
@@ -36,8 +36,8 @@ function PersianExample() {
 
       <DateTimePicker
         renderInput={props => <TextField {...props} />}
-        okLabel="تأیید"
-        cancelLabel="لغو"
+        okText="تأیید"
+        cancelText="لغو"
         inputFormat="jYYYY/iMM/iDD"
         value={selectedDate}
         onChange={date => handleDateChange(date)}

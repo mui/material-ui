@@ -77,7 +77,7 @@ export const useStyles = makeStyles(theme => ({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  dayLabel: {
+  weekDayLabel: {
     width: 36,
     height: 40,
     margin: '0 2px',
@@ -148,7 +148,7 @@ export const Calendar: React.FC<CalendarProps> = ({
             aria-hidden
             key={day + i.toString()}
             variant="caption"
-            className={classes.dayLabel}
+            className={classes.weekDayLabel}
             children={day.charAt(0).toUpperCase()}
           />
         ))}
