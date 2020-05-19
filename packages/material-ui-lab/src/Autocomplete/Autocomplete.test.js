@@ -112,6 +112,28 @@ describe('<Autocomplete />', () => {
       checkHighlightIs('two');
     });
 
+    it('should set the focus on the first item when possible', () => {
+      const options = ['one', 'two'];
+      const { getByRole, setProps } = render(
+        <Autocomplete
+          {...defaultProps}
+          options={[]}
+          autoHighlight
+          loading
+          renderInput={(params) => <TextField autoFocus {...params} />}
+        />,
+      );
+
+      const textbox = getByRole('textbox');
+      expect(textbox).not.to.have.attribute('aria-activedescendant');
+
+      setProps({ options, loading: false });
+      expect(textbox).to.have.attribute(
+        'aria-activedescendant',
+        screen.getAllByRole('option')[0].getAttribute('id'),
+      );
+    });
+
     it('should set the highlight on selected item when dropdown is expanded', () => {
       const { getByRole, setProps } = render(
         <Autocomplete
@@ -1051,10 +1073,6 @@ describe('<Autocomplete />', () => {
       // three option is added and autocomplete re-renders, two should still be highlighted
       setProps({ options: ['one', 'two', 'three'] });
       checkHighlightIs('two');
-
-      // user presses down, three should be highlighted
-      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-      checkHighlightIs('three');
     });
 
     it('should not select undefined ', () => {
