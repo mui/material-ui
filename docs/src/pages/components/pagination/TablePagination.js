@@ -4,7 +4,7 @@ import Paper from '@material-ui/core/Paper';
 
 const rows = new Array(8).fill('');
 
-export default function SimpleTablePagination() {
+export default function TablePaginationDemo() {
   const [page, setPage] = React.useState(2);
   const [rowsPerPage, setRowsPerPage] = React.useState(2);
 
@@ -12,7 +12,7 @@ export default function SimpleTablePagination() {
     setPage(newPage);
   };
 
-  const handleChangeRowsPerPage = event => {
+  const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
