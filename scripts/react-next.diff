@@ -1,8 +1,8 @@
 diff --git a/packages/material-ui-lab/src/Autocomplete/Autocomplete.test.js b/packages/material-ui-lab/src/Autocomplete/Autocomplete.test.js
-index 0bfa7e1be..94ea402c2 100644
+index 5e83281c0..3c995f97c 100644
 --- a/packages/material-ui-lab/src/Autocomplete/Autocomplete.test.js
 +++ b/packages/material-ui-lab/src/Autocomplete/Autocomplete.test.js
-@@ -994,7 +994,7 @@ describe('<Autocomplete />', () => {
+@@ -993,7 +993,7 @@ describe('<Autocomplete />', () => {
          />,
        );
  
@@ -11,7 +11,7 @@ index 0bfa7e1be..94ea402c2 100644
        expect(consoleWarnMock.messages()[0]).to.include(
          'None of the options match with `"not a good value"`',
        );
-@@ -1023,7 +1023,7 @@ describe('<Autocomplete />', () => {
+@@ -1022,7 +1022,7 @@ describe('<Autocomplete />', () => {
        const options = getAllByRole('option').map((el) => el.textContent);
        expect(options).to.have.length(7);
        expect(options).to.deep.equal(['A', 'D', 'E', 'B', 'G', 'F', 'C']);
@@ -21,10 +21,10 @@ index 0bfa7e1be..94ea402c2 100644
      });
    });
 diff --git a/packages/material-ui-styles/src/ThemeProvider/ThemeProvider.test.js b/packages/material-ui-styles/src/ThemeProvider/ThemeProvider.test.js
-index 973ae7024..73b52cdfe 100644
+index 5c9d0be26..7f0862466 100644
 --- a/packages/material-ui-styles/src/ThemeProvider/ThemeProvider.test.js
 +++ b/packages/material-ui-styles/src/ThemeProvider/ThemeProvider.test.js
-@@ -145,7 +145,7 @@ describe('ThemeProvider', () => {
+@@ -135,7 +135,7 @@ describe('ThemeProvider', () => {
            <div />
          </ThemeProvider>,
        );
@@ -33,7 +33,7 @@ index 973ae7024..73b52cdfe 100644
        expect(consoleErrorMock.messages()[0]).to.include('However, no outer theme is present.');
      });
  
-@@ -158,7 +158,7 @@ describe('ThemeProvider', () => {
+@@ -148,7 +148,7 @@ describe('ThemeProvider', () => {
            ,
          </ThemeProvider>,
        );
@@ -43,10 +43,10 @@ index 973ae7024..73b52cdfe 100644
          'Material-UI: You should return an object from your theme function',
        );
 diff --git a/packages/material-ui/src/Breadcrumbs/Breadcrumbs.test.js b/packages/material-ui/src/Breadcrumbs/Breadcrumbs.test.js
-index a8a9544a3..a43b6033c 100644
+index ed0e37f21..49d8ea9b0 100644
 --- a/packages/material-ui/src/Breadcrumbs/Breadcrumbs.test.js
 +++ b/packages/material-ui/src/Breadcrumbs/Breadcrumbs.test.js
-@@ -103,7 +103,7 @@ describe('<Breadcrumbs />', () => {
+@@ -102,7 +102,7 @@ describe('<Breadcrumbs />', () => {
        );
        expect(getAllByRole('listitem', { hidden: false })).to.have.length(4);
        expect(getByRole('list')).to.have.text('first/second/third/fourth');
@@ -56,12 +56,12 @@ index a8a9544a3..a43b6033c 100644
          'Material-UI: You have provided an invalid combination of props to the Breadcrumbs.\nitemsAfterCollapse={2} + itemsBeforeCollapse={2} >= maxItems={3}',
        );
 diff --git a/packages/material-ui/src/TextareaAutosize/TextareaAutosize.test.js b/packages/material-ui/src/TextareaAutosize/TextareaAutosize.test.js
-index 9f4873a08..d1b6e6aeb 100644
+index cea126a0d..1eaf80628 100644
 --- a/packages/material-ui/src/TextareaAutosize/TextareaAutosize.test.js
 +++ b/packages/material-ui/src/TextareaAutosize/TextareaAutosize.test.js
-@@ -254,7 +254,7 @@ describe('<TextareaAutosize />', () => {
-         wrapper.setProps();
-         wrapper.update();
+@@ -261,7 +261,7 @@ describe('<TextareaAutosize />', () => {
+         });
+         forceUpdate();
  
 -        expect(consoleErrorMock.callCount()).to.equal(3);
 +        expect(consoleErrorMock.callCount()).to.equal(1);
@@ -69,10 +69,10 @@ index 9f4873a08..d1b6e6aeb 100644
        });
      });
 diff --git a/packages/material-ui/src/internal/SwitchBase.test.js b/packages/material-ui/src/internal/SwitchBase.test.js
-index c925204ac..2fccd80fe 100644
+index 41a38bc07..c9397fd13 100644
 --- a/packages/material-ui/src/internal/SwitchBase.test.js
 +++ b/packages/material-ui/src/internal/SwitchBase.test.js
-@@ -374,7 +374,7 @@ describe('<SwitchBase />', () => {
+@@ -373,7 +373,7 @@ describe('<SwitchBase />', () => {
          wrapper.setProps({ checked: true });
          expect(consoleErrorMock.callCount()).to.equal(2);
          expect(consoleErrorMock.messages()[0]).to.include(
@@ -81,7 +81,7 @@ index c925204ac..2fccd80fe 100644
          );
          expect(consoleErrorMock.messages()[1]).to.include(
            'Material-UI: A component is changing the uncontrolled checked state of SwitchBase to be controlled.',
-@@ -393,7 +393,7 @@ describe('<SwitchBase />', () => {
+@@ -392,7 +392,7 @@ describe('<SwitchBase />', () => {
          setProps({ checked: undefined });
          expect(consoleErrorMock.callCount()).to.equal(2);
          expect(consoleErrorMock.messages()[0]).to.include(
