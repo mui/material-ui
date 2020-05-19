@@ -18,7 +18,20 @@ export function createFilterOptions<T>(
   config?: CreateFilterOptionsConfig<T>
 ): (options: T[], state: FilterOptionsState<T>) => T[];
 
-export interface UseAutocompleteCommonProps<T> {
+export type AutocompleteFreeSoloValueMapping<FreeSolo> = FreeSolo extends true ? string : never;
+
+export type Value<T, Multiple, DisableClearable, FreeSolo> = Multiple extends undefined | false
+  ? DisableClearable extends true
+    ? NonNullable<T | AutocompleteFreeSoloValueMapping<FreeSolo>>
+    : T | null | AutocompleteFreeSoloValueMapping<FreeSolo>
+  : Array<T | AutocompleteFreeSoloValueMapping<FreeSolo>>;
+
+export interface UseAutocompleteProps<
+  T,
+  Multiple extends boolean | undefined,
+  DisableClearable extends boolean | undefined,
+  FreeSolo extends boolean | undefined
+> {
   /**
    * If `true`, the portion of the selected suggestion that has not been typed by the user,
    * known as the completion string, appears inline after the input cursor in the textbox.
@@ -68,7 +81,7 @@ export interface UseAutocompleteCommonProps<T> {
   /**
    * If `true`, the input can't be cleared.
    */
-  disableClearable?: boolean;
+  disableClearable?: DisableClearable;
   /**
    * If `true`, the popup won't close when a value is selected.
    */
@@ -96,7 +109,7 @@ export interface UseAutocompleteCommonProps<T> {
   /**
    * If `true`, the Autocomplete is free solo, meaning that the user input is not bound to provided options.
    */
-  freeSolo?: boolean;
+  freeSolo?: FreeSolo;
   /**
    * Used to determine the disabled state for a given option.
    *
@@ -203,6 +216,34 @@ export interface UseAutocompleteCommonProps<T> {
    * It helps the user clear the selected value.
    */
   selectOnFocus?: boolean;
+  /**
+   * If `true`, `value` must be an array and the menu will support multiple selections.
+   */
+  multiple?: Multiple;
+  /**
+   * The value of the autocomplete.
+   *
+   * The value must have reference equality with the option in order to be selected.
+   * You can customize the equality behavior with the `getOptionSelected` prop.
+   */
+  value?: Value<T, Multiple, DisableClearable, FreeSolo>;
+  /**
+   * The default input value. Use when the component is not controlled.
+   */
+  defaultValue?: Value<T, Multiple, DisableClearable, FreeSolo>;
+  /**
+   * Callback fired when the value changes.
+   *
+   * @param {object} event The event source of the callback.
+   * @param {T|T[]} value The new value of the component.
+   * @param {string} reason One of "create-option", "select-option", "remove-option", "blur" or "clear".
+   */
+  onChange?: (
+    event: React.ChangeEvent<{}>,
+    value: Value<T, Multiple, DisableClearable, FreeSolo>,
+    reason: AutocompleteChangeReason,
+    details?: AutocompleteChangeDetails<T>
+  ) => void;
 }
 
 export type AutocompleteHighlightChangeReason = 'keyboard' | 'mouse' | 'auto';
@@ -219,74 +260,13 @@ export interface AutocompleteChangeDetails<T = string> {
 export type AutocompleteCloseReason = 'toggleInput' | 'escape' | 'select-option' | 'blur';
 export type AutocompleteInputChangeReason = 'input' | 'reset' | 'clear';
 
-export interface UseAutocompleteMultipleProps<T> extends UseAutocompleteCommonProps<T> {
-  /**
-   * The default input value. Use when the component is not controlled.
-   */
-  defaultValue?: T[];
-  /**
-   * If `true`, `value` must be an array and the menu will support multiple selections.
-   */
-  multiple: true;
-  /**
-   * The value of the autocomplete.
-   *
-   * The value must have reference equality with the option in order to be selected.
-   * You can customize the equality behavior with the `getOptionSelected` prop.
-   */
-  value?: T[];
-  /**
-   * Callback fired when the value changes.
-   *
-   * @param {object} event The event source of the callback.
-   * @param {T[]} value The new value of the component.
-   * @param {string} reason One of "create-option", "select-option", "remove-option", "blur" or "clear".
-   */
-  onChange?: (
-    event: React.ChangeEvent<{}>,
-    value: T[],
-    reason: AutocompleteChangeReason,
-    details?: AutocompleteChangeDetails<T>
-  ) => void;
-}
-
-export interface UseAutocompleteSingleProps<T> extends UseAutocompleteCommonProps<T> {
-  /**
-   * The default input value. Use when the component is not controlled.
-   */
-  defaultValue?: T;
-  /**
-   * If `true`, `value` must be an array and the menu will support multiple selections.
-   */
-  multiple?: false;
-  /**
-   * The value of the autocomplete.
-   *
-   * The value must have reference equality with the option in order to be selected.
-   * You can customize the equality behavior with the `getOptionSelected` prop.
-   */
-  value?: T | null;
-  /**
-   * Callback fired when the value changes.
-   *
-   * @param {object} event The event source of the callback.
-   * @param {T} value The new value of the component.
-   * @param {string} reason One of "create-option", "select-option", "remove-option", "blur" or "clear".
-   */
-  onChange?: (
-    event: React.ChangeEvent<{}>,
-    value: T | null,
-    reason: AutocompleteChangeReason,
-    details?: AutocompleteChangeDetails<T>
-  ) => void;
-}
-
-export type UseAutocompleteProps<T> =
-  | UseAutocompleteSingleProps<T>
-  | UseAutocompleteMultipleProps<T>;
-
-export default function useAutocomplete<T>(
-  props: UseAutocompleteProps<T>
+export default function useAutocomplete<
+  T,
+  Multiple extends boolean | undefined = undefined,
+  DisableClearable extends boolean | undefined = undefined,
+  FreeSolo extends boolean | undefined = undefined
+>(
+  props: UseAutocompleteProps<T, Multiple, DisableClearable, FreeSolo>
 ): {
   getRootProps: () => {};
   getInputProps: () => {};
@@ -298,9 +278,7 @@ export default function useAutocomplete<T>(
   getOptionProps: ({ option, index }: { option: T; index: number }) => {};
   id: string;
   inputValue: string;
-  // TODO: infer the right type when the issue is resolved
-  // https://github.com/microsoft/TypeScript/issues/13995
-  value: any; // or T | T[]
+  value: Value<T, Multiple, DisableClearable, FreeSolo>;
   dirty: boolean;
   popupOpen: boolean;
   focused: boolean;

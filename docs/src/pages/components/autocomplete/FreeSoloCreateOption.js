@@ -12,16 +12,18 @@ export default function FreeSoloCreateOption() {
     <Autocomplete
       value={value}
       onChange={(event, newValue) => {
-        // Create a new value from the user input
-        if (newValue && newValue.inputValue) {
+        if (typeof newValue === 'string') {
+          setValue({
+            title: newValue,
+          });
+        } else if (newValue && newValue.inputValue) {
+          // Create a new value from the user input
           setValue({
             title: newValue.inputValue,
           });
-
-          return;
+        } else {
+          setValue(newValue);
         }
-
-        setValue(newValue);
       }}
       filterOptions={(options, params) => {
         const filtered = filter(options, params);

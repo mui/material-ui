@@ -1,6 +1,6 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
-import Autocomplete, { RenderGroupParams } from '@material-ui/lab/Autocomplete';
+import Autocomplete, { AutocompleteRenderGroupParams } from '@material-ui/lab/Autocomplete';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import { useTheme, makeStyles } from '@material-ui/core/styles';
@@ -108,7 +108,7 @@ const OPTIONS = Array.from(new Array(10000))
   .map(() => random(10 + Math.ceil(Math.random() * 20)))
   .sort((a: string, b: string) => a.toUpperCase().localeCompare(b.toUpperCase()));
 
-const renderGroup = (params: RenderGroupParams) => [
+const renderGroup = (params: AutocompleteRenderGroupParams) => [
   <ListSubheader key={params.key} component="div">
     {params.group}
   </ListSubheader>,

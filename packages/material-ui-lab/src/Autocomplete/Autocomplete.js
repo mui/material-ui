@@ -586,11 +586,11 @@ Autocomplete.propTypes = {
   /**
    * The default input value. Use when the component is not controlled.
    */
-  defaultValue: PropTypes.oneOfType([PropTypes.any, PropTypes.array]),
+  defaultValue: PropTypes.any,
   /**
    * If `true`, the input can't be cleared.
    */
-  disableClearable: PropTypes.bool,
+  disableClearable: PropTypes /* @typescript-to-proptypes-ignore */.bool,
   /**
    * If `true`, the popup won't close when a value is selected.
    */
@@ -631,7 +631,7 @@ Autocomplete.propTypes = {
   /**
    * If `true`, the Autocomplete is free solo, meaning that the user input is not bound to provided options.
    */
-  freeSolo: PropTypes.bool,
+  freeSolo: PropTypes /* @typescript-to-proptypes-ignore */.bool,
   /**
    * If `true`, the input will take up the full width of its container.
    */
@@ -719,7 +719,7 @@ Autocomplete.propTypes = {
   /**
    * If `true`, `value` must be an array and the menu will support multiple selections.
    */
-  multiple: PropTypes.bool,
+  multiple: PropTypes /* @typescript-to-proptypes-ignore */.bool,
   /**
    * Text to display when there are no options.
    *
@@ -730,7 +730,7 @@ Autocomplete.propTypes = {
    * Callback fired when the value changes.
    *
    * @param {object} event The event source of the callback.
-   * @param {T} value The new value of the component.
+   * @param {T|T[]} value The new value of the component.
    * @param {string} reason One of "create-option", "select-option", "remove-option", "blur" or "clear".
    */
   onChange: PropTypes.func,
@@ -840,7 +840,7 @@ Autocomplete.propTypes = {
    * The value must have reference equality with the option in order to be selected.
    * You can customize the equality behavior with the `getOptionSelected` prop.
    */
-  value: PropTypes.oneOfType([PropTypes.any, PropTypes.array]),
+  value: PropTypes.any,
 };
 
 export default withStyles(styles, { name: 'MuiAutocomplete' })(Autocomplete);

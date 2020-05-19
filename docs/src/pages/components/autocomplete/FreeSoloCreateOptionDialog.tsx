@@ -41,7 +41,7 @@ export default function FreeSoloCreateOptionDialog() {
     <React.Fragment>
       <Autocomplete
         value={value}
-        onChange={(event: any, newValue: FilmOptionType | null) => {
+        onChange={(event, newValue) => {
           if (typeof newValue === 'string') {
             // timeout to avoid instant validation of the dialog's form.
             setTimeout(() => {
@@ -51,19 +51,15 @@ export default function FreeSoloCreateOptionDialog() {
                 year: '',
               });
             });
-            return;
-          }
-
-          if (newValue && newValue.inputValue) {
+          } else if (newValue && newValue.inputValue) {
             toggleOpen(true);
             setDialogValue({
               title: newValue.inputValue,
               year: '',
             });
-            return;
+          } else {
+            setValue(newValue);
           }
-
-          setValue(newValue);
         }}
         filterOptions={(options, params) => {
           const filtered = filter(options, params) as FilmOptionType[];
@@ -145,7 +141,7 @@ interface FilmOptionType {
 }
 
 // Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
-const top100Films = [
+const top100Films: FilmOptionType[] = [
   { title: 'The Shawshank Redemption', year: 1994 },
   { title: 'The Godfather', year: 1972 },
   { title: 'The Godfather: Part II', year: 1974 },
