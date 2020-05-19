@@ -185,6 +185,7 @@ describe('<Slide />', () => {
               right: 800,
               top: 200,
               bottom: 500,
+              ...props.rect,
             }));
           } catch (error) {
             // already stubbed
@@ -290,6 +291,48 @@ describe('<Slide />', () => {
         wrapper.setProps({ in: true });
 
         expect(nodeEnterTransformStyle).to.equal('translateX(-800px)');
+      });
+
+      it('should set element transform in the `up` direction when element is offscreen', () => {
+        const childRef = React.createRef();
+        let nodeEnterTransformStyle;
+        const wrapper = mount(
+          <Slide
+            direction="up"
+            onEnter={(node) => {
+              nodeEnterTransformStyle = node.style.transform;
+            }}
+          >
+            <FakeDiv rect={{ top: -100 }} ref={childRef} />
+          </Slide>,
+        );
+
+        wrapper.setProps({ in: true });
+
+        expect(nodeEnterTransformStyle).to.equal(
+          `translateY(${global.innerHeight}px) translateY(100px)`,
+        );
+      });
+
+      it('should set element transform in the `left` direction when element is offscreen', () => {
+        const childRef = React.createRef();
+        let nodeEnterTransformStyle;
+        const wrapper = mount(
+          <Slide
+            direction="left"
+            onEnter={(node) => {
+              nodeEnterTransformStyle = node.style.transform;
+            }}
+          >
+            <FakeDiv rect={{ left: -100 }} ref={childRef} />
+          </Slide>,
+        );
+
+        wrapper.setProps({ in: true });
+
+        expect(nodeEnterTransformStyle).to.equal(
+          `translateX(${global.innerWidth}px) translateX(100px)`,
+        );
       });
     });
 
