@@ -80,13 +80,6 @@ const inHouseAds = [
       '<b>Material-UI for enterprise</b><br />Save time and reduce risk. Managed open source — backed by maintainers.',
   },
   {
-    name: 'bonsaiilabs',
-    link: 'https://bonsaiilabs.com/courseDetail/material-ui-with-react',
-    img: '/static/in-house/bonsaiilabs.png',
-    description:
-      '<b>Learn Material‑UI</b><br />A course to learn Material-UI while developing a flight search/booking app.',
-  },
-  {
     name: 'sketch',
     link:
       'https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=in-house-sketch',
