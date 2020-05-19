@@ -172,11 +172,6 @@ const Popper = React.forwardRef(function Popper(props, ref) {
   };
 
   React.useEffect(() => {
-    // Let's update the popper position.
-    handleOpen();
-  }, [handleOpen]);
-
-  React.useEffect(() => {
     return () => {
       handleClose();
     };
