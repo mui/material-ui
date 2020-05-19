@@ -36,7 +36,7 @@ function getTranslateValue(direction, node) {
   }
 
   if (direction === 'left') {
-    return `translateX(${window.innerWidth}px) translateX(-${rect.left - offsetX}px)`;
+    return `translateX(${window.innerWidth}px) translateX(${offsetX - rect.left}px)`;
   }
 
   if (direction === 'right') {
@@ -44,7 +44,7 @@ function getTranslateValue(direction, node) {
   }
 
   if (direction === 'up') {
-    return `translateY(${window.innerHeight}px) translateY(-${rect.top - offsetY}px)`;
+    return `translateY(${window.innerHeight}px) translateY(${offsetY - rect.top}px)`;
   }
 
   // direction === 'down'
