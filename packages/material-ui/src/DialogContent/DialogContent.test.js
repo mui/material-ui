@@ -1,22 +1,18 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
+import { createShallow, getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
 import DialogContent from './DialogContent';
 
 describe('<DialogContent />', () => {
-  let mount;
+  const mount = createMount();
   let shallow;
   let classes;
 
   before(() => {
-    mount = createMount({ strict: true });
     shallow = createShallow({ dive: true });
     classes = getClasses(<DialogContent />);
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   describeConformance(<DialogContent />, () => ({

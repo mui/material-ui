@@ -4,6 +4,10 @@
 
 For optimal user experience, material design interfaces need to be able to adapt their layout at various breakpoints. Material-UI uses a **simplified** implementation of the original [specification](https://material.io/design/layout/responsive-layout-grid.html#breakpoints).
 
+The breakpoints are used internally in various components to make them responsive, but you can also take advantage of them for controlling the layout of your application through the [Grid](/components/grid/) and [Hidden](/components/hidden/) components.
+
+## Default breakpoints
+
 Each breakpoint (a key) matches with a *fixed* screen width (a value):
 
 - **xs,** extra-small: 0px
@@ -12,7 +16,7 @@ Each breakpoint (a key) matches with a *fixed* screen width (a value):
 - **lg,** large: 1280px
 - **xl,** extra-large: 1920px
 
-These [breakpoint values](/customization/default-theme/?expand-path=$.breakpoints.values) are used to determine breakpoint ranges. A range starts from the breakpoint value inclusive, to the next breakpoint value exclusive:
+These breakpoint values are used to determine breakpoint ranges. A range starts from the breakpoint value inclusive, to the next breakpoint value exclusive:
 
 ```js
 value         |0px     600px    960px    1280px   1920px
@@ -21,9 +25,7 @@ screen width  |--------|--------|--------|--------|-------->
 range         |   xs   |   sm   |   md   |   lg   |   xl
 ```
 
-Ces valeurs peuvent être personnalisées. You will find them in the theme, in the [`breakpoints.values`](/customization/default-theme/?expand-path=$.breakpoints.values) object.
-
-The breakpoints are used internally in various components to make them responsive, but you can also take advantage of them for controlling the layout of your application through the [Grid](/components/grid/) and [Hidden](/components/hidden/) components.
+These values can be [customized](#custom-breakpoints).
 
 ## CSS Media Queries
 
@@ -80,6 +82,59 @@ export default withWidth()(MyComponent);
 In the following demo, we change the rendered DOM element (*em*, <u>u</u>, ~~del~~ & span) based on the screen width.
 
 {{"demo": "pages/customization/breakpoints/WithWidth.js"}}
+
+## Custom breakpoints
+
+You define your project's breakpoints in the `theme.breakpoints` section of your theme.
+
+- [`theme.breakpoints.values`](/customization/default-theme/?expand-path=$.breakpoints.values): Default to the [above values](#default-breakpoints). The keys are your screen names, and the values are the min-width where that breakpoint should start.
+- `theme.breakpoints.unit`: Default to `px`. The unit used for the breakpoint's values.
+- `theme.breakpoints.step`: Default to 5 (`0.05px`). The increment used to implement exclusive breakpoints.
+
+If you change the default breakpoints's values, you need to provide them all:
+
+```jsx
+const theme = createMuiTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 960,
+      lg: 1280,
+      xl: 1920,
+    },
+  },
+})
+```
+
+Feel free to have as few or as many breakpoints as you want, naming them in whatever way you'd prefer for your project.
+
+```tsx
+const theme = createMuiTheme({
+  breakpoints: {
+    values: {
+      tablet: 640,
+      laptop: 1024,
+      desktop: 1280,
+    },
+  },
+});
+
+declare module "@material-ui/core/styles/createBreakpoints"
+{
+  interface BreakpointOverrides
+  {
+    xs: false; // removes the `xs` breakpoint
+    sm: false;
+    md: false;
+    lg: false;
+    xl: false;
+    tablet: true; // adds the `tablet` breakpoint
+    laptop: true;
+    desktop: true;
+  }
+}
+```
 
 ## API
 

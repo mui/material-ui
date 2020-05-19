@@ -11,7 +11,7 @@ describe('animate', () => {
       // The test fails on Safari with just:
       //
       // container.scrollLeft = 200;
-      // assert.strictEqual(container.scrollLeft, 200); 💥
+      // expect(container.scrollLeft).to.equal(200); 💥
 
       // in JSDOM the test prevents mocha from exiting
       this.skip();

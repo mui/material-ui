@@ -94,8 +94,8 @@
   "viewGitHub": "在 GitHub 中查看源代码",
   "visit": "访问网站",
   "whosUsing": "谁在使用 Material-UI 呢？",
-  "initialFocusLabel": "A generic container that is programmatically focused to test keyboard navigation of our components.",
-  "resetFocus": "Reset focus to test keyboard navigation",
+  "initialFocusLabel": "一个旨在测试我们的组件的键盘导航功能的程序化的通用容器",
+  "resetFocus": "重置焦点以测试键盘导航",
   "pages": {
     "/getting-started": "快速上手",
     "/getting-started/installation": "安装",

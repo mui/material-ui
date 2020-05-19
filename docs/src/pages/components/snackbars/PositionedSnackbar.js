@@ -19,8 +19,8 @@ export default function PositionedSnackbar() {
     setState({ ...state, open: false });
   };
 
-  return (
-    <div>
+  const buttons = (
+    <React.Fragment>
       <Button onClick={handleClick({ vertical: 'top', horizontal: 'center' })}>Top-Center</Button>
       <Button onClick={handleClick({ vertical: 'top', horizontal: 'right' })}>Top-Right</Button>
       <Button onClick={handleClick({ vertical: 'bottom', horizontal: 'right' })}>
@@ -31,12 +31,18 @@ export default function PositionedSnackbar() {
       </Button>
       <Button onClick={handleClick({ vertical: 'bottom', horizontal: 'left' })}>Bottom-Left</Button>
       <Button onClick={handleClick({ vertical: 'top', horizontal: 'left' })}>Top-Left</Button>
+    </React.Fragment>
+  );
+
+  return (
+    <div>
+      {buttons}
       <Snackbar
         anchorOrigin={{ vertical, horizontal }}
-        key={`${vertical},${horizontal}`}
         open={open}
         onClose={handleClose}
         message="I love snacks"
+        key={vertical + horizontal}
       />
     </div>
   );

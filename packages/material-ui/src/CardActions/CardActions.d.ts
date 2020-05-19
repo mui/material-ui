@@ -4,6 +4,10 @@ import { StandardProps } from '..';
 export interface CardActionsProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, CardActionsClassKey> {
   /**
+   * The content of the component.
+   */
+  children?: React.ReactNode;
+  /**
    * If `true`, the actions do not have additional margin.
    */
   disableSpacing?: boolean;

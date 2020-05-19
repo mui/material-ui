@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
   },
   contents: {
     marginTop: theme.spacing(2),
-    paddingLeft: theme.spacing(1.5),
+    paddingLeft: theme.spacing(1),
   },
   ul: {
     padding: 0,
@@ -35,19 +35,17 @@ const useStyles = makeStyles((theme) => ({
     listStyle: 'none',
   },
   item: {
-    fontSize: 13,
-    padding: theme.spacing(0.5, 0, 0.5, 1),
-    borderLeft: '4px solid transparent',
-    boxSizing: 'content-box',
+    fontSize: '.8125rem',
+    padding: theme.spacing(0.5, 0, 0.5, `${Math.max(0, theme.spacing(1) - 3)}px`),
+    borderLeft: `3px solid transparent`,
+    boxSizing: 'border-box',
     '&:hover': {
-      borderLeft: `4px solid ${
-        theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[900]
-      }`,
+      borderLeftColor:
+        theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[900],
     },
     '&$active,&:active': {
-      borderLeft: `4px solid ${
-        theme.palette.type === 'light' ? theme.palette.grey[300] : theme.palette.grey[800]
-      }`,
+      borderLeftColor:
+        theme.palette.type === 'light' ? theme.palette.grey[300] : theme.palette.grey[800],
     },
   },
   secondaryItem: {

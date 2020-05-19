@@ -1,47 +1,46 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
 import { createClientRender } from 'test/utils/createClientRender';
 import TableHead from './TableHead';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
 
 describe('<TableHead />', () => {
-  let mount;
+  const mount = createMount();
   let classes;
   const render = createClientRender();
-  function mountInTable(node) {
-    const wrapper = mount(<table>{node}</table>);
-    return wrapper.find('table').childAt(0);
+  function renderInTable(node) {
+    return render(<table>{node}</table>);
   }
 
   before(() => {
-    mount = createMount({ strict: true });
     classes = getClasses(<TableHead>foo</TableHead>);
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   describeConformance(<TableHead />, () => ({
     classes,
     inheritComponent: 'thead',
-    mount: mountInTable,
+    mount: (node) => {
+      const wrapper = mount(<table>{node}</table>);
+      return wrapper.find('table').childAt(0);
+    },
+
     refInstanceof: window.HTMLTableSectionElement,
     testComponentPropWith: 'tbody',
   }));
 
   it('should render children', () => {
-    const children = <tr className="test" />;
-    const wrapper = mountInTable(<TableHead>{children}</TableHead>);
-    expect(wrapper.contains(children)).to.equal(true);
+    const children = <tr data-testid="test" />;
+    const { getByTestId } = renderInTable(<TableHead>{children}</TableHead>);
+    getByTestId('test');
   });
 
   it('should define table.head in the child context', () => {
     let context;
     // TODO: test integration with TableCell
-    mountInTable(
+    renderInTable(
       <TableHead>
         <Tablelvl2Context.Consumer>
           {(value) => {

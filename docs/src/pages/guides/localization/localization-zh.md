@@ -40,6 +40,7 @@ const theme = createMuiTheme({
 | 法语          | fr-FR       | `frFR` |
 | 德语          | de-DE       | `deDE` |
 | Hebrew      | he-IL       | `heIL` |
+| Hindi       | hi-IN       | `hiIN` |
 | 匈牙利语        | hu-HU       | `huHU` |
 | 冰岛语         | is-IS       | `isIS` |
 | 印度尼西亚语      | id-ID       | `idID` |

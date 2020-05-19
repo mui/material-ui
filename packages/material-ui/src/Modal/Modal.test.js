@@ -4,9 +4,9 @@ import { expect } from 'chai';
 import { useFakeTimers, spy } from 'sinon';
 import PropTypes from 'prop-types';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
-import { createClientRender, fireEvent, within } from 'test/utils/createClientRender';
+import { createClientRender, fireEvent, screen, within } from 'test/utils/createClientRender';
 import { createMuiTheme } from '@material-ui/core/styles';
-import { createMount } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import { ThemeProvider } from '@material-ui/styles';
 import describeConformance from '../test-utils/describeConformance';
 import Fade from '../Fade';
@@ -14,7 +14,8 @@ import Backdrop from '../Backdrop';
 import Modal from './Modal';
 
 describe('<Modal />', () => {
-  let mount;
+  // StrictModeViolation: uses Backdrop
+  const mount = createMount({ strict: false });
   const render = createClientRender({ strict: false });
   let savedBodyStyle;
 
@@ -23,13 +24,7 @@ describe('<Modal />', () => {
   });
 
   beforeEach(() => {
-    // StrictModeViolation: uses Backdrop
-    mount = createMount({ strict: false });
     document.body.setAttribute('style', savedBodyStyle);
-  });
-
-  afterEach(() => {
-    mount.cleanUp();
   });
 
   describeConformance(
@@ -255,8 +250,8 @@ describe('<Modal />', () => {
       const onEscapeKeyDownSpy = spy();
       const onCloseSpy = spy();
       const { getByTestId } = render(
-        <Modal data-testid="modal" open onEscapeKeyDown={onEscapeKeyDownSpy} onClose={onCloseSpy}>
-          <div />
+        <Modal open onEscapeKeyDown={onEscapeKeyDownSpy} onClose={onCloseSpy}>
+          <div data-testid="modal" tabIndex={-1} />
         </Modal>,
       );
       getByTestId('modal').focus();
@@ -275,8 +270,8 @@ describe('<Modal />', () => {
       const onCloseSpy = spy();
       const { getByTestId } = render(
         <div onKeyDown={handleKeyDown}>
-          <Modal data-testid="modal" open onEscapeKeyDown={onEscapeKeyDownSpy} onClose={onCloseSpy}>
-            <div />
+          <Modal open onEscapeKeyDown={onEscapeKeyDownSpy} onClose={onCloseSpy}>
+            <div data-testid="modal" tabIndex={-1} />
           </Modal>
         </div>,
       );
@@ -298,13 +293,12 @@ describe('<Modal />', () => {
       const { getByTestId } = render(
         <div onKeyDown={handleKeyDown}>
           <Modal
-            data-testid="modal"
             open
             disableEscapeKeyDown
             onEscapeKeyDown={onEscapeKeyDownSpy}
             onClose={onCloseSpy}
           >
-            <div />
+            <div data-testid="modal" tabIndex={-1} />
           </Modal>
         </div>,
       );
@@ -527,17 +521,17 @@ describe('<Modal />', () => {
         </Modal>,
       );
 
-      fireEvent.keyDown(document.activeElement, {
+      fireEvent.keyDown(screen.getByTestId('modal'), {
         keyCode: 13, // Enter
       });
-      fireEvent.keyDown(document.activeElement, {
+      fireEvent.keyDown(screen.getByTestId('modal'), {
         keyCode: 9, // Tab
       });
 
       expect(document.querySelector('[data-test="sentinelStart"]')).toHaveFocus();
 
       initialFocus.focus();
-      fireEvent.keyDown(document.activeElement, {
+      fireEvent.keyDown(screen.getByTestId('modal'), {
         keyCode: 9, // Tab
         shiftKey: true,
       });

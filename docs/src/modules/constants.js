@@ -15,7 +15,7 @@ const LANGUAGES = ['en', 'zh', 'ru', 'pt', 'es', 'fr', 'de', 'ja', 'aa'];
 const LANGUAGES_SSR = ['en', 'zh', 'ru', 'pt', 'es'];
 
 // Work in progress
-const LANGUAGES_IN_PROGRESS = [...LANGUAGES];
+const LANGUAGES_IN_PROGRESS = LANGUAGES.slice();
 
 // Valid languages to use in production
 const LANGUAGES_LABEL = [

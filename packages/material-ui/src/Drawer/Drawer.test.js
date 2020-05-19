@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createMount, findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
+import { findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import describeConformance from '../test-utils/describeConformance';
 import Slide from '../Slide';
@@ -10,22 +11,17 @@ import Drawer, { getAnchor, isHorizontal } from './Drawer';
 import { createClientRender } from 'test/utils/createClientRender';
 
 describe('<Drawer />', () => {
-  let mount;
+  // StrictModeViolation: uses Slide
+  const mount = createMount({ strict: false });
   let classes;
   const render = createClientRender({ strict: false });
 
   before(() => {
-    // StrictModeViolation: uses Slide
-    mount = createMount({ strict: false });
     classes = getClasses(
       <Drawer>
         <div />
       </Drawer>,
     );
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   describeConformance(

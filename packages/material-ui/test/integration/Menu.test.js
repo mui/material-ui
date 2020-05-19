@@ -5,7 +5,7 @@ import { useFakeTimers } from 'sinon';
 import Button from '@material-ui/core/Button';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import { createClientRender, fireEvent } from 'test/utils/createClientRender';
+import { createClientRender, fireEvent, screen } from 'test/utils/createClientRender';
 
 const options = [
   'Show some love to Material-UI',
@@ -114,22 +114,22 @@ describe('<Menu /> integration', () => {
     button.click();
     const menuitems = getAllByRole('menuitem');
 
-    fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+    fireEvent.keyDown(menuitems[0], { key: 'ArrowDown' });
     expect(menuitems[1]).toHaveFocus();
 
-    fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
+    fireEvent.keyDown(menuitems[1], { key: 'ArrowUp' });
     expect(menuitems[0]).toHaveFocus();
 
-    fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
+    fireEvent.keyDown(menuitems[0], { key: 'ArrowUp' });
     expect(menuitems[2]).toHaveFocus();
 
-    fireEvent.keyDown(document.activeElement, { key: 'Home' });
+    fireEvent.keyDown(menuitems[2], { key: 'Home' });
     expect(menuitems[0]).toHaveFocus();
 
-    fireEvent.keyDown(document.activeElement, { key: 'End' });
+    fireEvent.keyDown(menuitems[0], { key: 'End' });
     expect(menuitems[2]).toHaveFocus();
 
-    fireEvent.keyDown(document.activeElement, { key: 'ArrowRight' });
+    fireEvent.keyDown(menuitems[2], { key: 'ArrowRight' });
     expect(menuitems[2], 'no change on unassociated keys').toHaveFocus();
   });
 
@@ -314,16 +314,17 @@ describe('<Menu /> integration', () => {
   });
 
   it('closes the menu when Tabbing while the list is active', () => {
-    const { getByRole } = render(<ButtonMenu />);
+    render(<ButtonMenu />);
 
-    getByRole('button').focus();
-    getByRole('button').click();
+    const trigger = screen.getByRole('button');
+    trigger.focus();
+    trigger.click();
 
-    fireEvent.keyDown(document.activeElement, { key: 'Tab' });
+    fireEvent.keyDown(screen.getAllByRole('menuitem')[0], { key: 'Tab' });
     // react-transition-group uses one commit per state transition so we need to wait a bit
     clock.tick(0);
 
-    expect(getByRole('menu', { hidden: true })).toBeInaccessible();
+    expect(screen.getByRole('menu', { hidden: true })).toBeInaccessible();
   });
 
   it('closes the menu when the backdrop is clicked', () => {

@@ -1,29 +1,24 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import { createMount } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import Grow from './Grow';
-import { createMuiTheme } from '@material-ui/core/styles';
-import { ThemeProvider } from '@material-ui/styles';
+import {
+  createMuiTheme,
+  ThemeProvider,
+  unstable_createMuiStrictModeTheme as createMuiStrictModeTheme,
+} from '@material-ui/core/styles';
 import { Transition } from 'react-transition-group';
 import useForkRef from '../utils/useForkRef';
 
 describe('<Grow />', () => {
-  let mount;
+  // StrictModeViolation: uses react-transition-group
+  const mount = createMount({ strict: false });
   const defaultProps = {
     in: true,
     children: <div />,
   };
-
-  before(() => {
-    // StrictModeViolation: uses react-transition-group
-    mount = createMount({ strict: false });
-  });
-
-  after(() => {
-    mount.cleanUp();
-  });
 
   describeConformance(
     <Grow in>
@@ -42,21 +37,25 @@ describe('<Grow />', () => {
     }),
   );
 
-  describe('transition lifecycle', () => {
+  describe('calls the appropriate callbacks for each transition', () => {
     let clock;
-    let wrapper;
-    let child;
-
-    const handleEnter = spy();
-    const handleEntering = spy();
-    const handleEntered = spy();
-    const handleExit = spy();
-    const handleExiting = spy();
-    const handleExited = spy();
 
     before(() => {
       clock = useFakeTimers();
-      wrapper = mount(
+    });
+
+    after(() => {
+      clock.restore();
+    });
+
+    it('calls the appropriate callbacks for each transition', () => {
+      const handleEnter = spy();
+      const handleEntering = spy();
+      const handleEntered = spy();
+      const handleExit = spy();
+      const handleExiting = spy();
+      const handleExited = spy();
+      const wrapper = mount(
         <Grow
           onEnter={handleEnter}
           onEntering={handleEntering}
@@ -68,82 +67,44 @@ describe('<Grow />', () => {
           <div id="test" />
         </Grow>,
       );
-      child = wrapper.find('#test');
-    });
+      const child = wrapper.find('#test');
 
-    after(() => {
-      clock.restore();
-    });
+      wrapper.setProps({ in: true });
 
-    describe('in', () => {
-      before(() => {
-        wrapper.setProps({ in: true });
-      });
+      expect(handleEnter.callCount).to.equal(1);
+      expect(handleEnter.args[0][0]).to.equal(child.instance());
 
-      describe('handleEnter()', () => {
-        it('should call handleEnter()', () => {
-          expect(handleEnter.callCount).to.equal(1);
-          expect(handleEnter.args[0][0]).to.equal(child.instance());
-        });
+      expect(handleEnter.args[0][0].style.transition).to.match(
+        /opacity (0ms )?cubic-bezier\(0.4, 0, 0.2, 1\)( 0ms)?,( )?transform (0ms )?cubic-bezier\(0.4, 0, 0.2, 1\)( 0ms)?/,
+      );
 
-        it('should set style properties', () => {
-          expect(handleEnter.args[0][0].style.transition).to.match(
-            /opacity (0ms )?cubic-bezier\(0.4, 0, 0.2, 1\)( 0ms)?,( )?transform (0ms )?cubic-bezier\(0.4, 0, 0.2, 1\)( 0ms)?/,
-          );
-        });
-      });
+      expect(handleEntering.callCount).to.equal(1);
+      expect(handleEntering.args[0][0]).to.equal(child.instance());
 
-      describe('handleEntering()', () => {
-        it('should call handleEntering()', () => {
-          expect(handleEntering.callCount).to.equal(1);
-          expect(handleEntering.args[0][0]).to.equal(child.instance());
-        });
-      });
+      clock.tick(1000);
+      expect(handleEntered.callCount).to.equal(1);
+      expect(handleEntered.args[0][0]).to.equal(child.instance());
 
-      describe('handleEntered()', () => {
-        it('should call handleEntered()', () => {
-          clock.tick(1000);
-          expect(handleEntered.callCount).to.equal(1);
-          expect(handleEntered.args[0][0]).to.equal(child.instance());
-        });
-      });
-    });
+      wrapper.setProps({ in: false });
 
-    describe('out', () => {
-      before(() => {
-        wrapper.setProps({ in: true });
-        wrapper.setProps({ in: false });
-      });
+      expect(handleExit.callCount).to.equal(1);
+      expect(handleExit.args[0][0]).to.equal(child.instance());
 
-      describe('handleExit()', () => {
-        it('should call handleExit()', () => {
-          expect(handleExit.callCount).to.equal(1);
-          expect(handleExit.args[0][0]).to.equal(child.instance());
-        });
+      expect(handleExit.args[0][0].style.opacity).to.equal('0');
+      expect(handleExit.args[0][0].style.transform).to.equal(
+        'scale(0.75, 0.5625)',
+        'should have the exit scale',
+      );
 
-        it('should set style properties', () => {
-          expect(handleExit.args[0][0].style.opacity).to.equal('0');
-          expect(handleExit.args[0][0].style.transform).to.equal(
-            'scale(0.75, 0.5625)',
-            'should have the exit scale',
-          );
-        });
-      });
+      expect(handleExiting.callCount).to.equal(1);
+      expect(handleExiting.args[0][0]).to.equal(child.instance());
 
-      describe('handleExiting()', () => {
-        it('should call handleExiting()', () => {
-          expect(handleExiting.callCount).to.equal(1);
-          expect(handleExiting.args[0][0]).to.equal(child.instance());
-        });
-      });
+      expect(handleExiting.callCount).to.equal(1);
+      expect(handleExiting.args[0][0]).to.equal(child.instance());
 
-      describe('handleExited()', () => {
-        it('should call handleExited()', () => {
-          clock.tick(1000);
-          expect(handleExited.callCount).to.equal(1);
-          expect(handleExited.args[0][0]).to.equal(child.instance());
-        });
-      });
+      clock.tick(1000);
+      expect(handleExited.callCount).to.equal(1);
+      expect(handleExited.args[0][0]).to.equal(child.instance());
     });
   });
 
@@ -308,5 +269,28 @@ describe('<Grow />', () => {
         expect(handleExit.args[0][0].style.transition).to.match(new RegExp(`${leaveDuration}ms`));
       });
     });
+  });
+
+  it('has no StrictMode warnings in a StrictMode theme', () => {
+    mount(
+      <React.StrictMode>
+        <ThemeProvider theme={createMuiStrictModeTheme()}>
+          <Grow appear in>
+            <div />
+          </Grow>
+        </ThemeProvider>
+      </React.StrictMode>,
+    );
+  });
+
+  it('can fallback to findDOMNode in a StrictMode theme', () => {
+    const Div = () => <div />;
+    mount(
+      <ThemeProvider theme={createMuiStrictModeTheme()}>
+        <Grow appear in disableStrictModeCompat>
+          <Div />
+        </Grow>
+      </ThemeProvider>,
+    );
   });
 });

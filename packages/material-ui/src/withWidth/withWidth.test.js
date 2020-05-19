@@ -2,7 +2,8 @@ import * as React from 'react';
 import { act } from 'react-dom/test-utils';
 import { expect } from 'chai';
 import { stub } from 'sinon';
-import { createMount, createShallow } from '@material-ui/core/test-utils';
+import { createShallow } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import mediaQuery from 'css-mediaquery';
 import withWidth, { isWidthDown, isWidthUp } from './withWidth';
 import createMuiTheme from '../styles/createMuiTheme';
@@ -38,11 +39,10 @@ const EmptyWithWidth = withWidth()(Empty);
 describe('withWidth', () => {
   let matchMediaInstances;
   let shallow;
-  let mount;
+  const mount = createMount();
 
   before(() => {
     shallow = createShallow({ disableLifecycleMethods: true });
-    mount = createMount({ strict: true });
   });
 
   beforeEach(() => {
@@ -62,10 +62,6 @@ describe('withWidth', () => {
 
   afterEach(() => {
     window.matchMedia.restore();
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   describe('server-side rendering', () => {

@@ -7,8 +7,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { fade, makeStyles, useTheme } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { unstable_StrictModeCollapse as Collapse } from '@material-ui/core/Collapse';
-import { unstable_StrictModeFade as Fade } from '@material-ui/core/Fade';
+import Collapse from '@material-ui/core/Collapse';
+import Fade from '@material-ui/core/Fade';
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import { JavaScript as JavaScriptIcon, TypeScript as TypeScriptIcon } from '@material-ui/docs';
@@ -98,7 +98,7 @@ const useDemoToolbarStyles = makeStyles(
         margin: '8px 0',
       },
       toggleButton: {
-        height: 32,
+        padding: '4px 9px',
       },
       tooltip: {
         zIndex: theme.zIndex.appBar - 1,
@@ -638,9 +638,6 @@ const useStyles = makeStyles(
       [theme.breakpoints.up('sm')]: {
         borderRadius: theme.shape.borderRadius,
       },
-      '&:focus': {
-        outline: `2px dashed ${theme.palette.text.primary}`,
-      },
     },
     /* Isolate the demo with an outline. */
     demoBgOutlined: {
@@ -682,7 +679,7 @@ const useStyles = makeStyles(
       '& pre': {
         overflow: 'auto',
         lineHeight: 1.5,
-        margin: '0px !important',
+        margin: '0 !important',
         maxHeight: 1000,
       },
     },

@@ -1,2 +1,2 @@
-export { default, default as unstable_StrictModeZoom } from './Zoom';
+export { default } from './Zoom';
 export * from './Zoom';

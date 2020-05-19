@@ -141,9 +141,9 @@ const AirbnbSlider = withStyles({
     border: '1px solid currentColor',
     marginTop: -12,
     marginLeft: -13,
-    boxShadow: '#ebebeb 0px 2px 2px',
+    boxShadow: '#ebebeb 0 2px 2px',
     '&:focus, &:hover, &$active': {
-      boxShadow: '#ccc 0px 2px 3px 1px',
+      boxShadow: '#ccc 0 2px 3px 1px',
     },
     '& .bar': {
       // display: inline-block !important;

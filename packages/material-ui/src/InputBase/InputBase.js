@@ -84,6 +84,7 @@ export const styles = (theme) => {
     /* Styles applied to the `input` element. */
     input: {
       font: 'inherit',
+      letterSpacing: 'inherit',
       color: 'currentColor',
       padding: `${8 - 2}px 0 ${8 - 1}px`,
       border: 0,

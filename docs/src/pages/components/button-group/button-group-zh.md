@@ -11,21 +11,21 @@ components: Button, ButtonGroup
 
 {{"demo": "pages/components/button-group/BasicButtonGroup.js"}}
 
-## Sizes and colors
+## 大小和颜色
 
 {{"demo": "pages/components/button-group/GroupSizesColors.js"}}
 
-## Vertical group
+## 垂直组
 
 {{"demo": "pages/components/button-group/GroupOrientation.js"}}
 
 ## Split button
 
-`ButtonGroup` can also be used to create a split button. 下拉列表可以用于更改按钮相关的操作（如本例所示），或者用于立即出发一个相关的操作。
+`ButtonGroup` 也可用于创建 split button。 下拉列表可以用于更改按钮相关的操作（如本例所示），或者用于立即出发一个相关的操作。
 
 {{"demo": "pages/components/button-group/SplitButton.js"}}
 
-## Disabled elevation
+## 禁用 elevation
 
 你也可以使用属性 `disableElevation` 属性来消除实心按钮的立体效果。
 

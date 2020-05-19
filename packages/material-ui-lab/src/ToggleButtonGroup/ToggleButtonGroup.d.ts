@@ -26,6 +26,10 @@ export interface ToggleButtonGroupProps
    */
   onChange?: (event: React.MouseEvent<HTMLElement>, value: any) => void;
   /**
+   * The group orientation (layout flow direction).
+   */
+  orientation?: 'horizontal' | 'vertical';
+  /**
    * The size of the buttons.
    */
   size?: 'small' | 'medium' | 'large';
@@ -40,9 +44,10 @@ export interface ToggleButtonGroupProps
 
 export type ToggleButtonGroupClassKey =
   | 'root'
+  | 'vertical'
   | 'grouped'
-  | 'groupedSizeSmall'
-  | 'groupedSizeLarge';
+  | 'groupedHorizontal'
+  | 'groupedVertical';
 
 /**
  *

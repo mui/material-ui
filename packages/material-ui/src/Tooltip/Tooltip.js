@@ -186,6 +186,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     onOpen,
     open: openProp,
     placement = 'bottom',
+    PopperComponent = Popper,
     PopperProps,
     title,
     TransitionComponent = Grow,
@@ -491,7 +492,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
   return (
     <React.Fragment>
       {React.cloneElement(children, childrenProps)}
-      <Popper
+      <PopperComponent
         className={clsx(classes.popper, {
           [classes.popperInteractive]: interactive,
           [classes.popperArrow]: arrow,
@@ -525,7 +526,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
             </div>
           </TransitionComponent>
         )}
-      </Popper>
+      </PopperComponent>
     </React.Fragment>
   );
 });
@@ -629,6 +630,10 @@ Tooltip.propTypes = {
     'top-start',
     'top',
   ]),
+  /**
+   * The component used for the popper.
+   */
+  PopperComponent: PropTypes.elementType,
   /**
    * Props applied to the [`Popper`](/api/popper/) element.
    */

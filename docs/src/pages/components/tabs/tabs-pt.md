@@ -88,3 +88,9 @@ O rótulo das guias podem ser compostos apenas por ícones ou apenas por texto.
 {{"demo": "pages/components/tabs/IconTabs.js", "bg": true}}
 
 {{"demo": "pages/components/tabs/IconLabelTabs.js", "bg": true}}
+
+## Experimental Tabs API
+
+`@material-ui/lab` offers utility components that inject props to implement accessible tabs following [WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices/#tabpanel).
+
+{{"demo": "pages/components/tabs/LabTabs.js", "bg": true}}

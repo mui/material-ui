@@ -1,9 +1,9 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import TreeViewContext from './TreeViewContext';
 import { withStyles } from '@material-ui/core/styles';
 import { useControlled } from '@material-ui/core/utils';
+import TreeViewContext from './TreeViewContext';
 
 export const styles = {
   /* Styles applied to the root element. */
@@ -196,7 +196,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
         return oldTabbable;
       });
     } else {
-      newExpanded = [value, ...expanded];
+      newExpanded = [value].concat(expanded);
     }
 
     if (onNodeToggle) {
@@ -217,7 +217,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
       const topLevelNodes = nodeMap.current[-1].children;
       diff = topLevelNodes.filter((node) => !isExpanded(node));
     }
-    const newExpanded = [...expanded, ...diff];
+    const newExpanded = expanded.concat(diff);
 
     if (diff.length > 0) {
       setExpandedState(newExpanded);
@@ -295,7 +295,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     if (selected.indexOf(value) !== -1) {
       newSelected = selected.filter((id) => id !== value);
     } else {
-      newSelected = [value, ...selected];
+      newSelected = [value].concat(selected);
     }
 
     if (onNodeSelect) {
@@ -411,9 +411,9 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     if (map) {
       nodes.push(id);
       if (map.children) {
-        nodes.push(...map.children);
+        nodes.concat(map.children);
         map.children.forEach((node) => {
-          nodes.push(...getNodesToRemove(node));
+          nodes.concat(getNodesToRemove(node));
         });
       }
     }

@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { SheetsRegistry } from 'jss';
 import { act } from 'react-dom/test-utils';
-import { createMount } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import { createMuiTheme } from '@material-ui/core/styles';
 import createGenerateClassName from '../createGenerateClassName';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
@@ -13,7 +13,7 @@ import StylesProvider from '../StylesProvider';
 import ThemeProvider from '../ThemeProvider';
 
 describe('makeStyles', () => {
-  let mount;
+  const mount = createMount({ strict: null });
 
   /**
    * returns a function that given the props for the styles object will return
@@ -38,16 +38,8 @@ describe('makeStyles', () => {
 
   let generateClassName;
 
-  before(() => {
-    mount = createMount({ strict: undefined });
-  });
-
   beforeEach(() => {
     generateClassName = createGenerateClassName();
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   it('should accept a classes prop', () => {

@@ -1,18 +1,18 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
 import { createClientRender } from 'test/utils/createClientRender';
 import FormHelperText from './FormHelperText';
 import FormControl from '../FormControl';
 
 describe('<FormHelperText />', () => {
-  let mount;
+  const mount = createMount();
   const render = createClientRender();
   let classes;
 
   before(() => {
-    mount = createMount({ strict: true });
     classes = getClasses(<FormHelperText />);
   });
 
@@ -22,7 +22,6 @@ describe('<FormHelperText />', () => {
     mount,
     refInstanceof: window.HTMLParagraphElement,
     testComponentPropWith: 'div',
-    after: () => mount.cleanUp(),
   }));
 
   describe('prop: error', () => {

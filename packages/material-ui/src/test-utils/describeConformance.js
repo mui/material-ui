@@ -1,4 +1,4 @@
-import { assert } from 'chai';
+import { expect } from 'chai';
 import * as React from 'react';
 import findOutermostIntrinsic from './findOutermostIntrinsic';
 import ReactTestRenderer from 'react-test-renderer';
@@ -47,8 +47,7 @@ function testClassName(element, getOptions) {
 
     const wrapper = mount(React.cloneElement(element, { className }));
 
-    assert.strictEqual(
-      findOutermostIntrinsic(wrapper).hasClass(className),
+    expect(findOutermostIntrinsic(wrapper).hasClass(className)).to.equal(
       true,
       'does have a custom `className`',
     );
@@ -69,7 +68,7 @@ function testComponentProp(element, getOptions) {
 
       const wrapper = mount(React.cloneElement(element, { component }));
 
-      assert.strictEqual(findRootComponent(wrapper, { classes, component }).exists(), true);
+      expect(findRootComponent(wrapper, { classes, component }).exists()).to.equal(true);
     });
   });
 }
@@ -91,7 +90,7 @@ function testPropsSpread(element, getOptions) {
     const wrapper = mount(React.cloneElement(element, { [testProp]: value }));
     const root = findRootComponent(wrapper, { classes, component: inheritComponent });
 
-    assert.strictEqual(root.props()[testProp], value);
+    expect(root.props()[testProp]).to.equal(value);
   });
 }
 
@@ -111,11 +110,11 @@ function describeRef(element, getOptions) {
       const { inheritComponent, mount, refInstanceof } = getOptions();
 
       testRef(element, mount, (instance, wrapper) => {
-        assert.instanceOf(instance, refInstanceof);
+        expect(instance).to.be.instanceof(refInstanceof);
 
         if (inheritComponent && instance.nodeType === 1) {
           const rootHost = findOutermostIntrinsic(wrapper);
-          assert.strictEqual(instance, rootHost.instance());
+          expect(instance).to.equal(rootHost.instance());
         }
       });
     });
@@ -142,8 +141,8 @@ function testRootClass(element, getOptions) {
     // jump to the host component because some components pass the `root` class
     // to the `classes` prop of the root component.
     // https://github.com/mui-org/material-ui/blob/f9896bcd129a1209153106296b3d2487547ba205/packages/material-ui/src/OutlinedInput/OutlinedInput.js#L101
-    assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.root), true);
-    assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(className), true);
+    expect(findOutermostIntrinsic(wrapper).hasClass(classes.root)).to.equal(true);
+    expect(findOutermostIntrinsic(wrapper).hasClass(className)).to.equal(true);
   });
 }
 

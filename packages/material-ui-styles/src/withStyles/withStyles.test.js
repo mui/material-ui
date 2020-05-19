@@ -1,10 +1,10 @@
-import { expect, assert } from 'chai';
+import { expect } from 'chai';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { stub } from 'sinon';
 import { SheetsRegistry } from 'jss';
 import { Input } from '@material-ui/core';
-import { createMount } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import { isMuiElement } from '@material-ui/core/utils';
 import { createMuiTheme } from '@material-ui/core/styles';
 // import consoleErrorMock from 'test/utils/consoleErrorMock';
@@ -14,20 +14,12 @@ import ThemeProvider from '../ThemeProvider';
 import withStyles from './withStyles';
 
 describe('withStyles', () => {
-  let mount;
+  // StrictModeViolation: uses makeStyles
+  const mount = createMount({ strict: false });
   let generateClassName;
-
-  before(() => {
-    // StrictModeViolation: uses makeStyles
-    mount = createMount({ strict: false });
-  });
 
   beforeEach(() => {
     generateClassName = createGenerateClassName();
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   it('hoist statics', () => {
@@ -57,7 +49,7 @@ describe('withStyles', () => {
 
       const ref = React.createRef();
       mount(<StyledTarget ref={ref} />);
-      assert.instanceOf(ref.current, TargetComponent);
+      expect(ref.current).to.be.instanceof(TargetComponent);
     });
 
     it('forwards refs to React.forwardRef types', () => {
@@ -69,33 +61,6 @@ describe('withStyles', () => {
       mount(<StyledTarget ref={ref} />);
       expect(ref.current.nodeName).to.equal('DIV');
     });
-
-    // describe('innerRef', () => {
-    //   beforeEach(() => {
-    //     consoleErrorMock.spy();
-    //     PropTypes.resetWarningCache();
-    //   });
-
-    //   afterEach(() => {
-    //     consoleErrorMock.reset();
-    //   });
-
-    //   it('is deprecated', () => {
-    //     const ThemedDiv = withStyles({})('div');
-
-    //     mount(
-    //       <React.Fragment>
-    //         <ThemedDiv innerRef={React.createRef()} />
-    //       </React.Fragment>,
-    //     );
-
-    //     assert.strictEqual(consoleErrorMock.callCount(), 1);
-    //     assert.include(
-    //       consoleErrorMock.messages()[0],
-    //       'Warning: Failed prop type: Material-UI: The `innerRef` prop is deprecated',
-    //     );
-    //   });
-    // });
   });
 
   it('should forward the props', () => {

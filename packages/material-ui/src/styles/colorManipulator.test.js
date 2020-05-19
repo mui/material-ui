@@ -69,6 +69,10 @@ describe('utils/colorManipulator', () => {
     it('converts a long hex color to an rgb color` ', () => {
       expect(hexToRgb('#a94fd3')).to.equal('rgb(169, 79, 211)');
     });
+
+    it('converts a long alpha hex color to an argb color` ', () => {
+      expect(hexToRgb('#111111f8')).to.equal('rgba(17, 17, 17, 0.973)');
+    });
   });
 
   describe('rgbToHex', () => {
@@ -124,6 +128,14 @@ describe('utils/colorManipulator', () => {
       const output1 = decomposeColor('hsla(100, 50%, 25%, 0.5)');
       const output2 = decomposeColor(output1);
       expect(output1).to.deep.equal(output2);
+    });
+
+    it('converts rgba hex', () => {
+      const decomposed = decomposeColor('#111111f8');
+      expect(decomposed).to.deep.equal({
+        type: 'rgba',
+        values: [17, 17, 17, 0.973],
+      });
     });
   });
 

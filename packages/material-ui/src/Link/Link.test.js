@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
+import { createShallow, getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
 import Link from './Link';
 import Typography from '../Typography';
@@ -13,18 +14,13 @@ function focusVisible(element) {
 }
 
 describe('<Link />', () => {
-  let mount;
+  const mount = createMount();
   let shallow;
   let classes;
 
   before(() => {
-    mount = createMount({ strict: true });
     shallow = createShallow({ dive: true });
     classes = getClasses(<Link href="/">Home</Link>);
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   describeConformance(<Link href="/">Home</Link>, () => ({

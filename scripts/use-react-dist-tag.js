@@ -50,6 +50,15 @@ async function main(distTag) {
 
   // add newline for clean diff
   fs.writeFileSync(packageJsonPath, `${JSON.stringify(packageJson, null, 2)}${os.EOL}`);
+
+  try {
+    await exec(`git apply ${path.resolve(__dirname, `./react-${distTag}.diff`)}`);
+  } catch (error) {
+    // ignore if the patch doesn't exist
+    if (error.code !== 128) {
+      throw error;
+    }
+  }
 }
 
 main(process.env.REACT_DIST_TAG).catch((error) => {

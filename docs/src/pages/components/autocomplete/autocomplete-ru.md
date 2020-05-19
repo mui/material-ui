@@ -59,6 +59,7 @@ If you intend to use this mode for a [combo box](#combo-box) like experience (an
 
 - `selectOnFocus` to helps the user clear the selected value.
 - `clearOnBlur` to helps the user to enter a new value.
+- `handleHomeEndKeys` to move focus inside the popup with the <kbd>Home</kbd> and <kbd>End</kbd> keys.
 - A last option, for instance `Add "YOUR SEARCH"`.
 
 {{"demo": "pages/components/autocomplete/FreeSoloCreateOption.js"}}

@@ -2,11 +2,11 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import {
-  createMount,
   findOutermostIntrinsic,
   getClasses,
   wrapsIntrinsicElement,
 } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import Icon from '@material-ui/core/Icon';
 import Fab from '@material-ui/core/Fab';
@@ -14,7 +14,8 @@ import SpeedDial from './SpeedDial';
 import SpeedDialAction from '../SpeedDialAction';
 
 describe('<SpeedDial />', () => {
-  let mount;
+  // StrictModeViolation: uses Zoom
+  const mount = createMount({ strict: false });
   let classes;
 
   const icon = <Icon>font_icon</Icon>;
@@ -26,17 +27,11 @@ describe('<SpeedDial />', () => {
   };
 
   before(() => {
-    // StrictModeViolation: uses Zoom
-    mount = createMount({ strict: false });
     classes = getClasses(
       <SpeedDial {...defaultProps}>
         <div />
       </SpeedDial>,
     );
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   describeConformance(<SpeedDial {...defaultProps} />, () => ({
@@ -112,22 +107,21 @@ describe('<SpeedDial />', () => {
   });
 
   describe('prop: direction', () => {
-    const testDirection = (direction) => {
-      const className = `direction${direction}`;
-      const wrapper = mount(
-        <SpeedDial {...defaultProps} direction={direction.toLowerCase()}>
-          <SpeedDialAction icon={icon} tooltipTitle="action1" />
-          <SpeedDialAction icon={icon} tooltipTitle="action2" />
-        </SpeedDial>,
-      );
-      expect(findOutermostIntrinsic(wrapper).hasClass(classes[className])).to.equal(true);
-    };
-
-    it('should place actions in correct position', () => {
-      testDirection('Up');
-      testDirection('Down');
-      testDirection('Left');
-      testDirection('Right');
+    [
+      ['up', 'directionUp'],
+      ['down', 'directionDown'],
+      ['left', 'directionLeft'],
+      ['right', 'directionRight'],
+    ].forEach(([direction, className]) => {
+      it(`should place actions in the correct position when direction=${direction}`, () => {
+        const wrapper = mount(
+          <SpeedDial {...defaultProps} direction={direction.toLowerCase()}>
+            <SpeedDialAction icon={icon} tooltipTitle="action1" />
+            <SpeedDialAction icon={icon} tooltipTitle="action2" />
+          </SpeedDial>,
+        );
+        expect(findOutermostIntrinsic(wrapper).hasClass(classes[className])).to.equal(true);
+      });
     });
   });
 

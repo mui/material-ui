@@ -1,2 +1,2 @@
-export { default, default as unstable_StrictModeSlide } from './Slide';
+export { default } from './Slide';
 export * from './Slide';

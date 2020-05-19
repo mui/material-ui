@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
+import { createShallow, getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
 import GridList from './GridList';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
@@ -20,17 +21,12 @@ const tilesData = [
 
 describe('<GridList />', () => {
   let classes;
-  let mount;
+  const mount = createMount();
   let shallow;
 
   before(() => {
     classes = getClasses(<GridList />);
-    mount = createMount({ strict: true });
     shallow = createShallow({ dive: true });
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   describeConformance(

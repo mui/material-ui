@@ -2,7 +2,8 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
 import CheckBox from '../internal/svg-icons/CheckBox';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
 import { createClientRender, fireEvent } from 'test/utils/createClientRender';
 import Avatar from '../Avatar';
@@ -10,12 +11,11 @@ import Chip from './Chip';
 
 describe('<Chip />', () => {
   let classes;
-  let mount;
+  const mount = createMount();
   const render = createClientRender();
 
   before(() => {
     classes = getClasses(<Chip />);
-    mount = createMount({ strict: true });
   });
 
   describeConformance(<Chip />, () => ({
@@ -24,7 +24,6 @@ describe('<Chip />', () => {
     mount,
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'span',
-    after: () => mount.cleanUp(),
   }));
 
   describe('text only', () => {
@@ -313,7 +312,7 @@ describe('<Chip />', () => {
       const chip = getByRole('button');
       chip.focus();
 
-      fireEvent.keyDown(document.activeElement, { key: 'p' });
+      fireEvent.keyDown(chip, { key: 'p' });
 
       expect(handleKeydown.callCount).to.equal(1);
       expect(handleKeydown.firstCall.returnValue).to.equal('p');
@@ -328,7 +327,7 @@ describe('<Chip />', () => {
       const chip = getByRole('button');
       chip.focus();
 
-      fireEvent.keyUp(document.activeElement, { key: 'Escape' });
+      fireEvent.keyUp(chip, { key: 'Escape' });
 
       expect(handleBlur.callCount).to.equal(1);
       expect(chip).not.toHaveFocus();
@@ -340,7 +339,7 @@ describe('<Chip />', () => {
       const chip = getByRole('button');
       chip.focus();
 
-      fireEvent.keyUp(document.activeElement, { key: ' ' });
+      fireEvent.keyUp(chip, { key: ' ' });
 
       expect(handleClick.callCount).to.equal(1);
     });
@@ -351,7 +350,7 @@ describe('<Chip />', () => {
       const chip = getByRole('button');
       chip.focus();
 
-      fireEvent.keyDown(document.activeElement, { key: 'Enter' });
+      fireEvent.keyDown(chip, { key: 'Enter' });
 
       expect(handleClick.callCount).to.equal(1);
     });
@@ -367,13 +366,13 @@ describe('<Chip />', () => {
           const chip = getAllByRole('button')[0];
           chip.focus();
 
-          fireEvent.keyDown(document.activeElement, { key });
+          fireEvent.keyDown(chip, { key });
 
           // defaultPrevented?
           expect(handleKeyDown.returnValues[0]).to.equal(true);
           expect(handleDelete.callCount).to.equal(0);
 
-          fireEvent.keyUp(document.activeElement, { key });
+          fireEvent.keyUp(chip, { key });
 
           expect(handleDelete.callCount).to.equal(1);
         });
@@ -384,7 +383,7 @@ describe('<Chip />', () => {
         const { container } = render(<Chip label={<input />} onKeyDown={handleKeyDown} />);
         const input = container.querySelector('input');
         input.focus();
-        fireEvent.keyDown(document.activeElement, { key: 'Backspace' });
+        fireEvent.keyDown(input, { key: 'Backspace' });
 
         // defaultPrevented?
         expect(handleKeyDown.returnValues[0]).to.equal(false);
@@ -403,7 +402,8 @@ describe('<Chip />', () => {
             />,
           );
 
-          fireEvent.keyUp(document.activeElement, { key });
+          fireEvent.keyUp(document.querySelector('input'), { key });
+
           expect(handleKeyUp.callCount).to.equal(1);
           expect(handleDelete.callCount).to.equal(0);
         });
@@ -419,7 +419,7 @@ describe('<Chip />', () => {
           />,
         );
 
-        fireEvent.keyUp(document.activeElement, { key: ' ' });
+        fireEvent.keyUp(document.querySelector('input'), { key: ' ' });
         expect(handleKeyUp.callCount).to.equal(1);
         expect(handleClick.callCount).to.equal(0);
       });
@@ -434,7 +434,7 @@ describe('<Chip />', () => {
           />,
         );
 
-        fireEvent.keyDown(document.activeElement, { key: 'Enter' });
+        fireEvent.keyDown(document.querySelector('input'), { key: 'Enter' });
         expect(handleKeyDown.callCount).to.equal(1);
         expect(handleClick.callCount).to.equal(0);
       });
@@ -449,7 +449,7 @@ describe('<Chip />', () => {
           />,
         );
 
-        fireEvent.keyUp(document.activeElement, { key: ' ' });
+        fireEvent.keyUp(document.querySelector('input'), { key: ' ' });
 
         expect(handleClick.callCount).to.equal(0);
         expect(handleKeyUp.callCount).to.equal(1);
@@ -465,7 +465,7 @@ describe('<Chip />', () => {
           />,
         );
 
-        fireEvent.keyDown(document.activeElement, { key: 'Enter' });
+        fireEvent.keyDown(document.querySelector('input'), { key: 'Enter' });
 
         expect(handleClick.callCount).to.equal(0);
         expect(handleKeyDown.callCount).to.equal(1);

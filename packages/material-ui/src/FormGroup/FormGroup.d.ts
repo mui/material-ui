@@ -4,6 +4,10 @@ import { StandardProps } from '..';
 export interface FormGroupProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, FormGroupClassKey> {
   /**
+   * The content of the component.
+   */
+  children?: React.ReactNode;
+  /**
    * Display group of elements in a compact row.
    */
   row?: boolean;

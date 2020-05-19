@@ -1,7 +1,8 @@
 // @ts-check
 import * as React from 'react';
 import { expect } from 'chai';
-import { createShallow, createMount, getClasses } from '@material-ui/core/test-utils';
+import { createShallow, getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
 import Typography from './Typography';
 
@@ -9,7 +10,7 @@ describe('<Typography />', () => {
   /**
    * @type {ReturnType<typeof createMount>}
    */
-  let mount;
+  const mount = createMount();
   /**
    * @type {ReturnType<typeof createShallow>}
    */
@@ -22,13 +23,8 @@ describe('<Typography />', () => {
   let classes;
 
   before(() => {
-    mount = createMount({ strict: true });
     shallow = createShallow({ dive: true });
     classes = getClasses(<Typography />);
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   describeConformance(<Typography />, () => ({

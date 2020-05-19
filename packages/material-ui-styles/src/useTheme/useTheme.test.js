@@ -1,19 +1,11 @@
 import React from 'react';
 import { expect } from 'chai';
-import { createMount } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import useTheme from './useTheme';
 import ThemeProvider from '../ThemeProvider';
 
 describe('useTheme', () => {
-  let mount;
-
-  before(() => {
-    mount = createMount({ strict: true });
-  });
-
-  after(() => {
-    mount.cleanUp();
-  });
+  const mount = createMount();
 
   it('should use the theme', () => {
     const ref = React.createRef();

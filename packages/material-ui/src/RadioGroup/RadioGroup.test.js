@@ -2,7 +2,8 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import * as PropTypes from 'prop-types';
-import { createMount, findOutermostIntrinsic } from '@material-ui/core/test-utils';
+import { findOutermostIntrinsic } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
 import { createClientRender } from 'test/utils/createClientRender';
 import FormGroup from '../FormGroup';
@@ -12,17 +13,9 @@ import consoleErrorMock from 'test/utils/consoleErrorMock';
 import useRadioGroup from './useRadioGroup';
 
 describe('<RadioGroup />', () => {
-  let mount;
+  // StrictModeViolation: test uses #simulate
+  const mount = createMount({ strict: false });
   const render = createClientRender({ strict: true });
-
-  before(() => {
-    // StrictModeViolation: test uses #simulate
-    mount = createMount({ strict: false });
-  });
-
-  after(() => {
-    mount.cleanUp();
-  });
 
   function findRadio(wrapper, value) {
     return wrapper.find(`input[value="${value}"]`).first();

@@ -4,6 +4,10 @@ import { StandardProps } from '..';
 export interface ExpansionPanelActionsProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, ExpansionPanelActionsClassKey> {
   /**
+   * The content of the component.
+   */
+  children?: React.ReactNode;
+  /**
    * If `true`, the actions do not have additional margin.
    */
   disableSpacing?: boolean;

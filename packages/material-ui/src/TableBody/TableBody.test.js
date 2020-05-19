@@ -1,50 +1,48 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
 import { createClientRender } from 'test/utils/createClientRender';
 import TableBody from './TableBody';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
 
 describe('<TableBody />', () => {
-  let mount;
+  const mount = createMount();
   let classes;
   const render = createClientRender();
 
-  function mountInTable(node) {
-    const wrapper = mount(<table>{node}</table>);
-    return wrapper.find('table').childAt(0);
+  function renderInTable(node) {
+    return render(<table>{node}</table>);
   }
 
   before(() => {
-    mount = createMount({ strict: true });
-
     classes = getClasses(<TableBody />);
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   describeConformance(<TableBody />, () => ({
     classes,
     inheritComponent: 'tbody',
-    mount: mountInTable,
+    mount: (node) => {
+      const wrapper = mount(<table>{node}</table>);
+      return wrapper.find('table').childAt(0);
+    },
+
     refInstanceof: window.HTMLTableSectionElement,
-    // can't test with custom `component` with `mountInTable`
+    // can't test with custom `component` with `renderInTable`
     testComponentPropWith: 'tbody',
   }));
 
   it('should render children', () => {
-    const children = <tr className="test" />;
-    const wrapper = mountInTable(<TableBody>{children}</TableBody>);
-    expect(wrapper.contains(children)).to.equal(true);
+    const children = <tr data-testid="test" />;
+    const { getByTestId } = renderInTable(<TableBody>{children}</TableBody>);
+    getByTestId('test');
   });
 
   it('should define table.body in the child context', () => {
     let context;
     // TODO test integration with TableCell
-    mountInTable(
+    renderInTable(
       <TableBody>
         <Tablelvl2Context.Consumer>
           {(value) => {

@@ -67,7 +67,7 @@ export const styles = (theme) => ({
 });
 
 const defaultLabelDisplayedRows = ({ from, to, count }) =>
-  `${from}-${to === -1 ? count : to} of ${count !== -1 ? count : `more than ${to}`}`;
+  `${from}-${to} of ${count !== -1 ? count : `more than ${to}`}`;
 const defaultRowsPerPageOptions = [10, 25, 50, 100];
 
 /**
@@ -95,7 +95,6 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
     SelectProps = {},
     ...other
   } = props;
-
   let colSpan;
 
   if (Component === TableCell || Component === 'td') {
@@ -140,7 +139,7 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
           {labelDisplayedRows({
             from: count === 0 ? 0 : page * rowsPerPage + 1,
             to: count !== -1 ? Math.min(count, (page + 1) * rowsPerPage) : (page + 1) * rowsPerPage,
-            count,
+            count: count === -1 ? -1 : count,
             page,
           })}
         </Typography>

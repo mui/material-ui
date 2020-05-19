@@ -4,6 +4,10 @@ import { StandardProps } from '@material-ui/core';
 export interface TabScrollButtonProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, TabScrollButtonClassKey> {
   /**
+   * The content of the component.
+   */
+  children?: React.ReactNode;
+  /**
    * Which direction should the button indicate?
    */
   direction: 'left' | 'right';

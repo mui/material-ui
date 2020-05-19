@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
 import { createClientRender, fireEvent } from 'test/utils/createClientRender';
 import Modal from '../Modal';
@@ -32,13 +33,12 @@ function clickBackdrop(container) {
 
 describe('<Dialog />', () => {
   let clock;
-  let mount;
+  // StrictModeViolation: uses Fade
+  const mount = createMount({ strict: false });
   let classes;
   const render = createClientRender({ strict: false });
 
   before(() => {
-    // StrictModeViolation: uses Fade
-    mount = createMount({ strict: false });
     classes = getClasses(<Dialog>foo</Dialog>);
   });
 
@@ -60,7 +60,6 @@ describe('<Dialog />', () => {
       // react-transition-group issue
       'reactTestRenderer',
     ],
-    after: () => mount.cleanUp(),
   }));
 
   it('should render with a TransitionComponent', () => {
@@ -100,7 +99,7 @@ describe('<Dialog />', () => {
     expect(dialog).not.to.equal(null);
 
     dialog.click();
-    fireEvent.keyDown(document.activeElement, { key: 'Esc' });
+    fireEvent.keyDown(document.querySelector('[data-mui-test="FakeBackdrop"]'), { key: 'Esc' });
     expect(onEscapeKeyDown.calledOnce).to.equal(true);
     expect(onClose.calledOnce).to.equal(true);
 
@@ -125,7 +124,7 @@ describe('<Dialog />', () => {
     expect(dialog).not.to.equal(null);
 
     dialog.click();
-    fireEvent.keyDown(document.activeElement, { key: 'Esc' });
+    fireEvent.keyDown(document.querySelector('[data-mui-test="FakeBackdrop"]'), { key: 'Esc' });
     expect(onClose.callCount).to.equal(0);
 
     clickBackdrop(document.body);

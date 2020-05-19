@@ -42,13 +42,6 @@ const useExternalPropsFromInputBase = [
 ];
 
 /**
- * TODO: RESOLVE_BEFORE_MERGE
- * Stop special casing `children`. They have to be implemented by each
- * component individually and need a sensible description. There's no such thing
- * as a default implementation for `children`.
- */
-
-/**
  * A map of components and their props that should be documented
  * but are not used directly in their implementation.
  *
@@ -75,6 +68,14 @@ const useExternalDocumentation: Record<string, string[]> = {
     'value',
   ],
 };
+const transitionCallbacks = [
+  'onEnter',
+  'onEntered',
+  'onEntering',
+  'onExit',
+  'onExiting',
+  'onExited',
+];
 /**
  * These are components that use props implemented by external components.
  * Those props have their own JSDOC which we don't want to emit in our docs
@@ -83,13 +84,13 @@ const useExternalDocumentation: Record<string, string[]> = {
  * since they will be fetched dynamically.
  */
 const ignoreExternalDocumentation: Record<string, string[]> = {
-  Collapse: ['onEnter', 'onEntered', 'onEntering', 'onExit', 'onExiting'],
-  Fade: ['onEnter', 'onExit'],
-  Grow: ['onEnter', 'onExit'],
+  Collapse: transitionCallbacks,
+  Fade: transitionCallbacks,
+  Grow: transitionCallbacks,
   InputBase: ['aria-describedby'],
   Menu: ['PaperProps'],
-  Slide: ['onEnter', 'onEntering', 'onExit', 'onExited'],
-  Zoom: ['onEnter', 'onExit'],
+  Slide: transitionCallbacks,
+  Zoom: transitionCallbacks,
 };
 
 const tsconfig = ttp.loadConfig(path.resolve(__dirname, '../tsconfig.json'));
@@ -97,10 +98,6 @@ const tsconfig = ttp.loadConfig(path.resolve(__dirname, '../tsconfig.json'));
 const prettierConfig = prettier.resolveConfig.sync(process.cwd(), {
   config: path.join(__dirname, '../prettier.config.js'),
 });
-
-function isExternalProp(prop: ttp.PropTypeNode, component: ttp.ComponentNode): boolean {
-  return Array.from(prop.filenames).some((filename) => filename !== component.propsFilename);
-}
 
 async function generateProptypes(
   tsFile: string,
@@ -124,8 +121,6 @@ async function generateProptypes(
     component.types.forEach((prop) => {
       if (prop.name === 'classes' && prop.jsDoc) {
         prop.jsDoc += '\nSee [CSS API](#css) below for more details.';
-      } else if (prop.name === 'children' && !prop.jsDoc) {
-        prop.jsDoc = 'The content of the component.';
       } else if (
         !prop.jsDoc ||
         (ignoreExternalDocumentation[component.name] &&

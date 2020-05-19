@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
 import { createClientRender, fireEvent } from 'test/utils/createClientRender';
 import ExpansionPanel from '../ExpansionPanel';
@@ -9,13 +10,12 @@ import ExpansionPanelSummary from './ExpansionPanelSummary';
 import ButtonBase from '../ButtonBase';
 
 describe('<ExpansionPanelSummary />', () => {
-  let mount;
+  const mount = createMount();
   let classes;
   const render = createClientRender();
 
   before(() => {
     // requires mocking the TransitionComponent of `ExpansionPanel`
-    mount = createMount({ strict: true });
     classes = getClasses(<ExpansionPanelSummary />);
   });
 
@@ -25,7 +25,6 @@ describe('<ExpansionPanelSummary />', () => {
     mount,
     refInstanceof: window.HTMLDivElement,
     skip: ['componentProp'],
-    after: () => mount.cleanUp(),
   }));
 
   it('renders the children inside the .content element', () => {
@@ -74,7 +73,7 @@ describe('<ExpansionPanelSummary />', () => {
     fireEvent.mouseDown(document.body); // pointer device
     const button = getByRole('button');
 
-    fireEvent.keyDown(document.activeElement, { key: 'Tab' }); // not actually focusing (yet)
+    fireEvent.keyDown(document.body, { key: 'Tab' }); // not actually focusing (yet)
     button.focus();
 
     expect(button).toHaveFocus();
@@ -84,7 +83,7 @@ describe('<ExpansionPanelSummary />', () => {
   it('blur should unset focused state', () => {
     const { getByRole } = render(<ExpansionPanelSummary />);
     fireEvent.mouseDown(document.body); // pointer device
-    fireEvent.keyDown(document.activeElement, { key: 'Tab' }); // not actually focusing (yet)
+    fireEvent.keyDown(document.body, { key: 'Tab' }); // not actually focusing (yet)
     const button = getByRole('button');
     button.focus();
 

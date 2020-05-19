@@ -22,16 +22,16 @@
 
 ### 免费的资源
 
-- **Introduction to Material-UI**: a series of videos covering all the important Material-UI components. 
+- **Introduction to Material-UI**：一系列涵盖所有重要的 Material-UI 组件的视频。 
   - 📹 [的视频](https://www.youtube.com/watch?v=pHclLuRolzE&list=PLQg6GaokU5CwiVmsZ0d_9Zsg_DnIP_xwr)
-- **Meet Material-UI — your new favorite user interface library**: a blog post that guides you in building a Todo MVC while covering some important concepts of Material-UI. 
+- **Meet Material-UI — your new favorite user interface library**: 一篇博客文章，指导您构建Todo MVC, 同时涵盖 Material-UI 的一些重要概念。 
   - 📝 [博文](https://medium.freecodecamp.org/meet-your-material-ui-your-new-favorite-user-interface-library-6349a1c88a8c)
 - **Learn React & Material-UI**：一系列涵盖所有重要的 Material-UI 组件的视频。 
   - 📹 [视频](https://www.youtube.com/watch?v=xm4LX5fJKZ8&list=PLcCp4mjO-z98WAu4sd0eVha1g-NMfzHZk)
 - **Getting Started With Material-UI For React**：一篇指导您构建简单的卡片列表的博文。 
   - 📝 [博文](https://medium.com/codingthesmartway-com-blog/getting-started-with-material-ui-for-react-material-design-for-react-364b2688b555)
   - 📹 [视频](https://www.youtube.com/watch?v=PWadEeOuv5o)
-- **Elegant UX in React with Material-UI**: a blog post covering some important Material-UI concepts. 
+- **Elegant UX in React with Material-UI**：一篇涵盖某些重要的 Material-UI 概念的博客文章 
   - 📝 [博文](https://alligator.io/react/material-ui/)
 
 ### 付费的资源
@@ -47,7 +47,7 @@
   
   - 📘 [书](https://www.amazon.com/gp/product/1789615224/)
 
-[![cookbook](/static/blog/material-ui-v4-is-out/cookbook.png)](https://www.amazon.com/gp/product/1789615224/)
+[![参考手册](/static/blog/material-ui-v4-is-out/cookbook.png)](https://www.amazon.com/gp/product/1789615224/)
 
 - **Builder Book**：学习如何使用 Modern JavaScript 堆栈和 Material-UI 来从头开始创建一个全栈 JavaScript Web 应用程序。 
   - 📘 [Builder Book](https://builderbook.org/book)

@@ -41,7 +41,7 @@
   "increaseSpacing": "aumentar o espaçamento",
   "installation": "Instalação",
   "installButton": "Ler instruções de instalação",
-  "installDescr": "Instale o Material-UI via npm. Nós cuidamos de injetar o CSS necessário.",
+  "installDescr": "Instale o Material-UI via npm. Nós cuidaremos de injetar o CSS necessário.",
   "joinThese": "Junte-se a estas e outras grandes organizações!",
   "letUsKnow": "Nos conte!",
   "license": "Licença MIT",
@@ -80,7 +80,7 @@
   "thanks": "Obrigado!",
   "themes": "Temas premium",
   "themesButton": "Explorar temas",
-  "themesDescr": "Take your project to the next level with premium themes from our official marketplace – all built on Material-UI.",
+  "themesDescr": "Leve seu projeto para um nível superior com os temas premium da nossa loja - todos construídos em Material-UI.",
   "toggleNotifications": "Alternar Painel de notificações",
   "toggleRTL": "Alternar da direita para a esquerda/esquerda para a direita",
   "toggleTheme": "Alternar tema claro/escuro",
@@ -236,7 +236,7 @@
     "/components/button-group": "Grupo de botões",
     "/components/floating-action-button": "Botão de ação flutuante",
     "/components/backdrop": "Backdrop",
-    "/components/alert": "Alert",
+    "/components/alert": "Alerta",
     "/components/pagination": "Paginação"
   }
 }

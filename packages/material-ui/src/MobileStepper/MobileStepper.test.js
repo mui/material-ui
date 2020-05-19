@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createMount, getClasses, findOutermostIntrinsic } from '@material-ui/core/test-utils';
+import { getClasses, findOutermostIntrinsic } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
 import KeyboardArrowLeft from '../internal/svg-icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '../internal/svg-icons/KeyboardArrowRight';
@@ -10,7 +11,7 @@ import LinearProgress from '../LinearProgress';
 import MobileStepper from './MobileStepper';
 
 describe('<MobileStepper />', () => {
-  let mount;
+  const mount = createMount();
   let classes;
   const defaultProps = {
     steps: 2,
@@ -29,12 +30,7 @@ describe('<MobileStepper />', () => {
   };
 
   before(() => {
-    mount = createMount({ strict: true });
     classes = getClasses(<MobileStepper {...defaultProps} />);
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   describeConformance(<MobileStepper {...defaultProps} />, () => ({

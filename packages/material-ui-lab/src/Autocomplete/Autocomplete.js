@@ -16,8 +16,14 @@ export { createFilterOptions };
 export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
-    '&:hover $clearIndicatorDirty, &$focused $clearIndicatorDirty': {
+    '&$focused $clearIndicatorDirty': {
       visibility: 'visible',
+    },
+    /* Avoid double tap issue on iOS */
+    '@media (pointer: fine)': {
+      '&:hover $clearIndicatorDirty': {
+        visibility: 'visible',
+      },
     },
   },
   /* Styles applied to the root element if `fullWidth={true}`. */
@@ -169,7 +175,7 @@ export const styles = (theme) => ({
   listbox: {
     listStyle: 'none',
     margin: 0,
-    padding: '8px 0px',
+    padding: '8px 0',
     maxHeight: '40vh',
     overflow: 'auto',
   },

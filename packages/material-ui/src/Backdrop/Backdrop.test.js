@@ -1,22 +1,18 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
 import Backdrop from './Backdrop';
 import Fade from '../Fade';
 
 describe('<Backdrop />', () => {
-  let mount;
+  // StrictModeViolation: uses Fade
+  const mount = createMount({ strict: false });
   let classes;
 
   before(() => {
-    // StrictModeViolation: uses Fade
-    mount = createMount({ strict: false });
     classes = getClasses(<Backdrop open />);
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   describeConformance(<Backdrop open />, () => ({

@@ -13,8 +13,7 @@ export const styles = (theme) => ({
     ...theme.typography.button,
     boxSizing: 'border-box',
     borderRadius: theme.shape.borderRadius,
-    height: 48,
-    padding: '0px 12px',
+    padding: 11,
     border: `1px solid ${fade(theme.palette.action.active, 0.12)}`,
     color: fade(theme.palette.action.active, 0.38),
     '&$selected': {
@@ -56,14 +55,12 @@ export const styles = (theme) => ({
   },
   /* Styles applied to the root element if `size="small"`. */
   sizeSmall: {
-    height: 40,
-    padding: '0px 8px',
+    padding: 7,
     fontSize: theme.typography.pxToRem(13),
   },
   /* Styles applied to the root element if `size="large"`. */
   sizeLarge: {
-    height: 56,
-    padding: '0px 16px',
+    padding: 15,
     fontSize: theme.typography.pxToRem(15),
   },
 });

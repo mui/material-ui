@@ -41,6 +41,12 @@ module.exports = {
     // Airbnb use error
     'no-param-reassign': 'off',
     'no-prototype-builtins': 'off',
+    'no-restricted-imports': [
+      'error',
+      {
+        patterns: ['@material-ui/*/*/*', '!@material-ui/core/test-utils/*'],
+      },
+    ],
     'nonblock-statement-body-position': 'error',
     // Airbnb restricts isNaN and isFinite which are necessary for IE 11
     // we have to be disciplined about the usage and ensure the Number type for its
@@ -55,7 +61,6 @@ module.exports = {
     'jsx-a11y/no-autofocus': 'off', // We are a library, people do what they want.
 
     'material-ui/docgen-ignore-before-comment': 'error',
-    'material-ui/restricted-path-imports': 'error',
 
     // This rule is great for raising people awareness of what a key is and how it works.
     'react/no-array-index-key': 'off',
@@ -115,6 +120,22 @@ module.exports = {
       rules: {
         // does not work with wildcard imports. Mistakes will throw at runtime anyway
         'import/named': 'off',
+        //
+        'no-restricted-imports': [
+          'error',
+          {
+            paths: [
+              {
+                name: '@material-ui/core/test-utils',
+                importNames: ['createMount'],
+                message:
+                  "Please use `import createMount from 'test/utils/createMount'` instead. `createMount` from /core has cleanup issues that require breaking changes.",
+              },
+            ],
+          },
+        ],
+
+        'material-ui/disallow-active-element-as-key-event-target': 'error',
 
         // upgraded level from recommended
         'mocha/no-exclusive-tests': 'error',

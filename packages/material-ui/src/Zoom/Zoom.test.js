@@ -1,22 +1,18 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import { createMount } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
+import {
+  unstable_createMuiStrictModeTheme as createMuiStrictModeTheme,
+  ThemeProvider,
+} from '../styles';
 import { Transition } from 'react-transition-group';
 import Zoom from './Zoom';
 
 describe('<Zoom />', () => {
-  let mount;
-
-  before(() => {
-    // StrictModeViolation: uses react-transition-group
-    mount = createMount({ strict: false });
-  });
-
-  after(() => {
-    mount.cleanUp();
-  });
+  // StrictModeViolation: uses react-transition-group
+  const mount = createMount({ strict: false });
 
   describeConformance(
     <Zoom in>
@@ -37,19 +33,23 @@ describe('<Zoom />', () => {
 
   describe('transition lifecycle', () => {
     let clock;
-    let wrapper;
-    let child;
-
-    const handleEnter = spy();
-    const handleEntering = spy();
-    const handleEntered = spy();
-    const handleExit = spy();
-    const handleExiting = spy();
-    const handleExited = spy();
 
     before(() => {
       clock = useFakeTimers();
-      wrapper = mount(
+    });
+
+    after(() => {
+      clock.restore();
+    });
+
+    it('tests', () => {
+      const handleEnter = spy();
+      const handleEntering = spy();
+      const handleEntered = spy();
+      const handleExit = spy();
+      const handleExiting = spy();
+      const handleExited = spy();
+      const wrapper = mount(
         <Zoom
           onEnter={handleEnter}
           onEntering={handleEntering}
@@ -61,80 +61,39 @@ describe('<Zoom />', () => {
           <div id="test" />
         </Zoom>,
       );
-      child = wrapper.find('#test');
-    });
+      const child = wrapper.find('#test');
 
-    after(() => {
-      clock.restore();
-    });
+      wrapper.setProps({ in: true });
 
-    describe('in', () => {
-      before(() => {
-        wrapper.setProps({ in: true });
-      });
+      expect(handleEnter.callCount).to.equal(1);
+      expect(handleEnter.args[0][0]).to.equal(child.instance());
 
-      describe('handleEnter()', () => {
-        it('should call handleEnter()', () => {
-          expect(handleEnter.callCount).to.equal(1);
-          expect(handleEnter.args[0][0]).to.equal(child.instance());
-        });
+      expect(handleEnter.args[0][0].style.transition).to.match(
+        /transform 225ms cubic-bezier\(0.4, 0, 0.2, 1\)( 0ms)?/,
+      );
 
-        it('should set style properties', () => {
-          expect(handleEnter.args[0][0].style.transition).to.match(
-            /transform 225ms cubic-bezier\(0.4, 0, 0.2, 1\)( 0ms)?/,
-          );
-        });
-      });
+      expect(handleEntering.callCount).to.equal(1);
+      expect(handleEntering.args[0][0]).to.equal(child.instance());
 
-      describe('handleEntering()', () => {
-        it('should call handleEntering()', () => {
-          expect(handleEntering.callCount).to.equal(1);
-          expect(handleEntering.args[0][0]).to.equal(child.instance());
-        });
-      });
+      clock.tick(1000);
+      expect(handleEntered.callCount).to.equal(1);
+      expect(handleEntered.args[0][0]).to.equal(child.instance());
 
-      describe('handleEntered()', () => {
-        it('should call handleEntered()', () => {
-          clock.tick(1000);
-          expect(handleEntered.callCount).to.equal(1);
-          expect(handleEntered.args[0][0]).to.equal(child.instance());
-        });
-      });
-    });
+      wrapper.setProps({ in: false });
 
-    describe('out', () => {
-      before(() => {
-        wrapper.setProps({ in: true });
-        wrapper.setProps({ in: false });
-      });
+      expect(handleExit.callCount).to.equal(1);
+      expect(handleExit.args[0][0]).to.equal(child.instance());
 
-      describe('handleExit()', () => {
-        it('should call handleExit()', () => {
-          expect(handleExit.callCount).to.equal(1);
-          expect(handleExit.args[0][0]).to.equal(child.instance());
-        });
+      expect(handleExit.args[0][0].style.transition).to.match(
+        /transform 195ms cubic-bezier\(0.4, 0, 0.2, 1\)( 0ms)?/,
+      );
 
-        it('should set style properties', () => {
-          expect(handleExit.args[0][0].style.transition).to.match(
-            /transform 195ms cubic-bezier\(0.4, 0, 0.2, 1\)( 0ms)?/,
-          );
-        });
-      });
+      expect(handleExiting.callCount).to.equal(1);
+      expect(handleExiting.args[0][0]).to.equal(child.instance());
 
-      describe('handleExiting()', () => {
-        it('should call handleExiting()', () => {
-          expect(handleExiting.callCount).to.equal(1);
-          expect(handleExiting.args[0][0]).to.equal(child.instance());
-        });
-      });
-
-      describe('handleExited()', () => {
-        it('should call handleExited()', () => {
-          clock.tick(1000);
-          expect(handleExited.callCount).to.equal(1);
-          expect(handleExited.args[0][0]).to.equal(child.instance());
-        });
-      });
+      clock.tick(1000);
+      expect(handleExited.callCount).to.equal(1);
+      expect(handleExited.args[0][0]).to.equal(child.instance());
     });
   });
 
@@ -162,5 +121,28 @@ describe('<Zoom />', () => {
         visibility: 'hidden',
       });
     });
+  });
+
+  it('has no StrictMode warnings in a StrictMode theme', () => {
+    mount(
+      <React.StrictMode>
+        <ThemeProvider theme={createMuiStrictModeTheme()}>
+          <Zoom appear in>
+            <div />
+          </Zoom>
+        </ThemeProvider>
+      </React.StrictMode>,
+    );
+  });
+
+  it('can fallback to findDOMNode in a StrictMode theme', () => {
+    const Div = () => <div />;
+    mount(
+      <ThemeProvider theme={createMuiStrictModeTheme()}>
+        <Zoom appear in disableStrictModeCompat>
+          <Div />
+        </Zoom>
+      </ThemeProvider>,
+    );
   });
 });

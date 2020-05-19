@@ -1,23 +1,19 @@
 import * as React from 'react';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import ListItemAvatar from './ListItemAvatar';
 
 describe('<ListItemAvatar />', () => {
-  let mount;
+  const mount = createMount();
   let classes;
 
   before(() => {
-    mount = createMount({ strict: true });
     classes = getClasses(
       <ListItemAvatar>
         <div />
       </ListItemAvatar>,
     );
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   describeConformance(

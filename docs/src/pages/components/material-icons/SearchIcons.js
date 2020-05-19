@@ -144,7 +144,7 @@ const useDialogStyles = makeStyles((theme) => ({
     color: theme.palette.primary.dark,
     backgroundSize: '30px 30px',
     backgroundColor: '#fff',
-    backgroundPosition: '0 0, 0 15px, 15px -15px, -15px 0px',
+    backgroundPosition: '0 0, 0 15px, 15px -15px, -15px 0',
     backgroundImage:
       'linear-gradient(45deg, #f4f4f4 25%, transparent 25%), linear-gradient(-45deg, #f4f4f4 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #f4f4f4 75%), linear-gradient(-45deg, transparent 75%, #f4f4f4 75%)',
   },

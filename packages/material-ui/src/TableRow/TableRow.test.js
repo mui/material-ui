@@ -1,44 +1,48 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
 import { createClientRender } from 'test/utils/createClientRender';
 import TableRow from './TableRow';
 
 describe('<TableRow />', () => {
-  let mount;
+  const mount = createMount();
   let classes;
   const render = createClientRender();
-  function mountInTable(node) {
-    const wrapper = mount(
+
+  function renderInTable(node) {
+    return render(
       <table>
         <tbody>{node}</tbody>
       </table>,
     );
-    return wrapper.find('tbody').childAt(0);
   }
 
   before(() => {
-    mount = createMount({ strict: true });
     classes = getClasses(<TableRow />);
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   describeConformance(<TableRow />, () => ({
     classes,
     inheritComponent: 'tr',
-    mount: mountInTable,
+    mount: (node) => {
+      const wrapper = mount(
+        <table>
+          <tbody>{node}</tbody>
+        </table>,
+      );
+      return wrapper.find('tbody').childAt(0);
+    },
+
     refInstanceof: window.HTMLTableRowElement,
     testComponentPropWith: 'tr',
   }));
 
   it('should render children', () => {
-    const children = <td className="test" />;
-    const wrapper = mountInTable(<TableRow>{children}</TableRow>);
-    expect(wrapper.contains(children)).to.equal(true);
+    const children = <td data-testid="test" />;
+    const { getByTestId } = renderInTable(<TableRow>{children}</TableRow>);
+    getByTestId('test');
   });
 
   describe('prop: component', () => {

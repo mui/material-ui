@@ -22,8 +22,6 @@ const useStyles = makeStyles((theme: Theme) =>
       flexWrap: 'wrap',
     },
     divider: {
-      alignSelf: 'stretch',
-      height: 'auto',
       margin: theme.spacing(1, 0.5),
     },
   }),
@@ -33,7 +31,6 @@ const StyledToggleButtonGroup = withStyles((theme) => ({
   grouped: {
     margin: theme.spacing(0.5),
     border: 'none',
-    padding: theme.spacing(0, 1),
     '&:not(:first-child)': {
       borderRadius: theme.shape.borderRadius,
     },
@@ -80,7 +77,7 @@ export default function CustomizedDividers() {
             <FormatAlignJustifyIcon />
           </ToggleButton>
         </StyledToggleButtonGroup>
-        <Divider orientation="vertical" className={classes.divider} />
+        <Divider flexItem orientation="vertical" className={classes.divider} />
         <StyledToggleButtonGroup
           size="small"
           value={formats}

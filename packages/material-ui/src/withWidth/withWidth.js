@@ -51,7 +51,7 @@ const withWidth = (options = {}) => (Component) => {
      *            |-------|-------|-------|-------|------>
      * width      |  xs   |  sm   |  md   |  lg   |  xl
      */
-    const keys = [...theme.breakpoints.keys].reverse();
+    const keys = theme.breakpoints.keys.slice().reverse();
     const widthComputed = keys.reduce((output, key) => {
       // eslint-disable-next-line react-hooks/rules-of-hooks
       const matches = useMediaQuery(theme.breakpoints.up(key));

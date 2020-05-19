@@ -2,7 +2,8 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
 import { act, createClientRender, fireEvent } from 'test/utils/createClientRender';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
@@ -15,11 +16,10 @@ import Select from '../Select';
 
 describe('<InputBase />', () => {
   let classes;
-  let mount;
+  const mount = createMount();
   const render = createClientRender();
 
   before(() => {
-    mount = createMount({ strict: true });
     classes = getClasses(<InputBase />);
   });
 
@@ -29,7 +29,6 @@ describe('<InputBase />', () => {
     mount,
     refInstanceof: window.HTMLDivElement,
     skip: ['componentProp'],
-    after: () => mount.cleanUp(),
   }));
 
   it('should render an <input /> inside the div', () => {
@@ -129,13 +128,13 @@ describe('<InputBase />', () => {
     });
     expect(handleFocus.callCount).to.equal(1);
 
-    fireEvent.keyDown(document.activeElement, { key: 'a' });
+    fireEvent.keyDown(input, { key: 'a' });
     expect(handleKeyDown.callCount).to.equal(1);
 
     fireEvent.change(input, { target: { value: 'a' } });
     expect(handleChange.callCount).to.equal(1);
 
-    fireEvent.keyUp(document.activeElement, { key: 'a' });
+    fireEvent.keyUp(input, { key: 'a' });
     expect(handleKeyUp.callCount).to.equal(1);
 
     act(() => {

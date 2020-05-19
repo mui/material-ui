@@ -79,9 +79,15 @@ A Tidelift Subscription fornece esses recursos para você:
 
 O resultado final? Todas as capacidades que você espera de um software de nível comercial, com toda a amplitude de código aberto que você usa. Isso significa menos tempo lutando com trivia esotérica de código aberto, e mais tempo criando seus próprios aplicativos – e seus negócios.
 
-[Obter mais detalhes](https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise)
+<a
+  data-ga-event-category="support"
+  data-ga-event-action="tidelift"
+  href="https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise"> Obter mais detalhes </a>
 
-[Solicite uma demonstração](https://tidelift.com/subscription/request-a-demo?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise)
+<a
+  data-ga-event-category="support"
+  data-ga-event-action="tidelift"
+  href="https://tidelift.com/subscription/request-a-demo?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise"> Solicite uma demonstração </a>
 
 ### Trabalho customizado 🛠
 

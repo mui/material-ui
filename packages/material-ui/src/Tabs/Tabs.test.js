@@ -2,8 +2,9 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
-import { createClientRender, fireEvent } from 'test/utils/createClientRender';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
+import { createClientRender, fireEvent, screen } from 'test/utils/createClientRender';
 import createServerRender from 'test/utils/createServerRender';
 import describeConformance from '../test-utils/describeConformance';
 import capitalize from '../utils/capitalize';
@@ -43,18 +44,17 @@ describe('<Tabs />', () => {
   // The test fails on Safari with just:
   //
   // container.scrollLeft = 200;
-  // assert.strictEqual(container.scrollLeft, 200); 💥
+  // expect(container.scrollLeft).to.equal(200); 💥
   if (isSafari) {
     return;
   }
 
-  let mount;
+  const mount = createMount();
   let classes;
   const render = createClientRender();
 
   before(() => {
     classes = getClasses(<Tabs value={0} />);
-    mount = createMount({ strict: true });
   });
 
   describeConformance(<Tabs value={0} />, () => ({
@@ -62,8 +62,24 @@ describe('<Tabs />', () => {
     inheritComponent: 'div',
     mount,
     refInstanceof: window.HTMLDivElement,
-    after: () => mount.cleanUp(),
   }));
+
+  it('can be named via `aria-label`', () => {
+    render(<Tabs aria-label="string label" />);
+
+    expect(screen.getByRole('tablist')).toHaveAccessibleName('string label');
+  });
+
+  it('can be named via `aria-labelledby`', () => {
+    render(
+      <React.Fragment>
+        <h3 id="label-id">complex name</h3>
+        <Tabs aria-labelledby="label-id" />
+      </React.Fragment>,
+    );
+
+    expect(screen.getByRole('tablist')).toHaveAccessibleName('complex name');
+  });
 
   describe('warnings', () => {
     before(() => {

@@ -2,17 +2,17 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import PropTypes from 'prop-types';
-import { createMount } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
-import { createClientRender } from 'test/utils/createClientRender';
+import { createClientRender, fireEvent } from 'test/utils/createClientRender';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import PopperJs from 'popper.js';
 import Grow from '../Grow';
 import Popper from './Popper';
 
 describe('<Popper />', () => {
-  let mount;
+  const mount = createMount();
   let rtlTheme;
   const render = createClientRender();
   const defaultProps = {
@@ -22,14 +22,9 @@ describe('<Popper />', () => {
   };
 
   before(() => {
-    mount = createMount({ strict: true });
     rtlTheme = createMuiTheme({
       direction: 'rtl',
     });
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   describeConformance(<Popper {...defaultProps} />, () => ({
@@ -47,7 +42,7 @@ describe('<Popper />', () => {
   describe('prop: placement', () => {
     it('should have top placement', () => {
       const renderSpy = spy();
-      mount(
+      render(
         <ThemeProvider theme={rtlTheme}>
           <Popper {...defaultProps} placement="top">
             {({ placement }) => {
@@ -85,7 +80,7 @@ describe('<Popper />', () => {
     ].forEach((test) => {
       it(`should flip ${test.in} when direction=rtl is used`, () => {
         const renderSpy = spy();
-        mount(
+        render(
           <ThemeProvider theme={rtlTheme}>
             <Popper {...defaultProps} placement={test.in}>
               {({ placement }) => {
@@ -125,20 +120,19 @@ describe('<Popper />', () => {
 
   describe('prop: open', () => {
     it('should open without any issue', () => {
-      const wrapper = mount(<Popper {...defaultProps} open={false} />);
-      expect(wrapper.find('[role="tooltip"]').exists()).to.equal(false);
-      wrapper.setProps({ open: true });
-      wrapper.update();
-      expect(wrapper.find('[role="tooltip"]').exists()).to.equal(true);
-      expect(wrapper.find('[role="tooltip"]').text()).to.equal('Hello World');
+      const { queryByRole, getByRole, setProps } = render(
+        <Popper {...defaultProps} open={false} />,
+      );
+      expect(queryByRole('tooltip')).to.equal(null);
+      setProps({ open: true });
+      expect(getByRole('tooltip')).to.have.text('Hello World');
     });
 
     it('should close without any issue', () => {
-      const wrapper = mount(<Popper {...defaultProps} />);
-      expect(wrapper.find('[role="tooltip"]').exists()).to.equal(true);
-      expect(wrapper.find('[role="tooltip"]').text()).to.equal('Hello World');
-      wrapper.setProps({ open: false });
-      expect(wrapper.find('[role="tooltip"]').length).to.equal(0);
+      const { queryByRole, getByRole, setProps } = render(<Popper {...defaultProps} />);
+      expect(getByRole('tooltip')).to.have.text('Hello World');
+      setProps({ open: false });
+      expect(queryByRole('tooltip')).to.equal(null);
     });
   });
 
@@ -152,11 +146,18 @@ describe('<Popper />', () => {
           done();
         },
       };
-      mount(<Popper {...defaultProps} popperOptions={popperOptions} placement="top" open />);
+      render(<Popper {...defaultProps} popperOptions={popperOptions} placement="top" open />);
     });
   });
 
   describe('prop: keepMounted', () => {
+    it('should keep the children mounted in the DOM', () => {
+      render(<Popper {...defaultProps} keepMounted open={false} />);
+      const tooltip = document.querySelector('[role="tooltip"]');
+      expect(tooltip).to.have.text('Hello World');
+      expect(tooltip.style.display).to.equal('none');
+    });
+
     describe('by default', () => {
       // Test case for https://github.com/mui-org/material-ui/issues/15180
       it('should remove the transition children in the DOM when closed whilst transition status is entering', () => {
@@ -191,31 +192,29 @@ describe('<Popper />', () => {
           }
         }
 
-        const wrapper = mount(<OpenClose />);
-        expect(wrapper.contains(children)).to.equal(false);
-        wrapper.find('button').simulate('click');
-        expect(wrapper.contains(children)).to.equal(false);
+        const { getByRole } = render(<OpenClose />);
+        expect(document.querySelector('p')).to.equal(null);
+        fireEvent.click(getByRole('button'));
+        expect(document.querySelector('p')).to.equal(null);
       });
     });
   });
 
   describe('prop: transition', () => {
     let clock;
-    let looseMount;
+    const looseRender = createClientRender({ strict: false });
 
     before(() => {
       clock = useFakeTimers();
       // StrictModeViolation: uses Grow
-      looseMount = createMount({ strict: false });
     });
 
     after(() => {
       clock.restore();
-      looseMount.cleanUp();
     });
 
     it('should work', () => {
-      const wrapper = looseMount(
+      const { queryByRole, getByRole, setProps } = looseRender(
         <Popper {...defaultProps} transition>
           {({ TransitionProps }) => (
             <Grow {...TransitionProps}>
@@ -224,12 +223,10 @@ describe('<Popper />', () => {
           )}
         </Popper>,
       );
-      expect(wrapper.find('[role="tooltip"]').exists()).to.equal(true);
-      expect(wrapper.find('[role="tooltip"]').text()).to.equal('Hello World');
-      wrapper.setProps({ anchorEl: null, open: false });
+      expect(getByRole('tooltip')).to.have.text('Hello World');
+      setProps({ anchorEl: null, open: false });
       clock.tick(0);
-      wrapper.update();
-      expect(wrapper.find('[role="tooltip"]').exists()).to.equal(false);
+      expect(queryByRole('tooltip')).to.equal(null);
     });
   });
 
@@ -237,9 +234,9 @@ describe('<Popper />', () => {
     it('should return a ref', () => {
       const ref1 = React.createRef();
       const ref2 = React.createRef();
-      const wrapper = mount(<Popper {...defaultProps} popperRef={ref1} />);
+      const { setProps } = render(<Popper {...defaultProps} popperRef={ref1} />);
       expect(ref1.current instanceof PopperJs).to.equal(true);
-      wrapper.setProps({
+      setProps({
         popperRef: ref2,
       });
       expect(ref1.current).to.equal(null);
@@ -250,9 +247,11 @@ describe('<Popper />', () => {
   describe('prop: disablePortal', () => {
     it('should work', () => {
       const popperRef = React.createRef();
-      const wrapper = mount(<Popper {...defaultProps} disablePortal popperRef={popperRef} />);
+      const { getByRole } = render(
+        <Popper {...defaultProps} disablePortal popperRef={popperRef} />,
+      );
       // renders
-      expect(wrapper.find('[role="tooltip"]').exists()).to.equal(true);
+      expect(getByRole('tooltip')).to.not.equal(null);
       // correctly sets modifiers
       expect(popperRef.current.options.modifiers.preventOverflow.boundariesElement).to.equal(
         'scrollParent',
@@ -261,9 +260,9 @@ describe('<Popper />', () => {
 
     it('sets preventOverflow to window when disablePortal is false', () => {
       const popperRef = React.createRef();
-      const wrapper = mount(<Popper {...defaultProps} popperRef={popperRef} />);
+      const { getByRole } = render(<Popper {...defaultProps} popperRef={popperRef} />);
       // renders
-      expect(wrapper.find('[role="tooltip"]').exists()).to.equal(true);
+      expect(getByRole('tooltip')).to.not.equal(null);
       // correctly sets modifiers
       expect(popperRef.current.options.modifiers.preventOverflow.boundariesElement).to.equal(
         'window',

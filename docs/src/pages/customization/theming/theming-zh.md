@@ -113,3 +113,88 @@ import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
 let theme = createMuiTheme();
 theme = responsiveFontSizes(theme);
 ```
+
+### `unstable_createMuiStrictModeTheme(options, ...args) => theme`
+
+**WARNING**: Do not use this method in production.
+
+Generates a theme that reduces the amount of warnings inside [`React.StrictMode`](https://reactjs.org/docs/strict-mode.html) like `Warning: findDOMNode is deprecated in StrictMode`.
+
+#### Requirements
+
+Using `unstable_createMuiStrictModeTheme` restricts the usage of some of our components.
+
+##### `component` prop
+
+The component used in the `component` prop of the following components need to forward their ref:
+
+- [`Collapse 折叠`](/api/Collapse/)
+
+Otherwise you'll encounter `Error: Function component cannot be given refs`. See also: [Composition: Caveat with refs](/guides/composition/#caveat-with-refs).
+
+##### `children` prop
+
+The `children` of the following components need to forward their ref:
+
+- [`Fade 淡入淡出`](/api/Fade/)
+- [`Grow 扩展`](/api/Grow/)
+- [`Zoom 放大`](/api/Zoom/)
+
+```diff
+-function TabPanel(props) {
++const TabPanel = React.forwardRef(function TabPanel(props, ref) {
+  return <div role="tabpanel" {...props} ref={ref} />;
+-}
++});
+
+function Tabs() {
+  return <Fade><TabPanel>...</TabPanel></Fade>;
+}
+```
+
+Otherwise the component will not animate properly and you'll encounter the warning that `Function components cannot be given refs`.
+
+#### Disable StrictMode compatibility partially
+
+If you still see `Error: Function component cannot be given refs` then you're probably using a third-party component for which the previously mentioned fixes aren't applicable. You can fix this by applying `disableStrictModeCompat`. You'll see deprecation warnings again but these are only warnings while `Function component cannot be given refs` actually breaks the documented behavior of our components.
+
+```diff
+import { unstable_createMuiStrictModeTheme } from '@material-ui/core/styles';
+
+function ThirdPartyTabPanel(props) {
+  return <div {...props} role="tabpanel">
+}
+
+const theme = unstable_createMuiStrictModeTheme();
+
+function Fade() {
+  return (
+    <React.StrictMode>
+      <ThemeProvider theme={theme}>
+
+-        <Fade>
++        <Fade disableStrictModeCompat>
+          <ThirdPartyTabPanel />
+        </Fade>
+      </ThemeProvider>
+    </React.StrictMode>,
+  );
+}
+```
+
+#### 参数
+
+1. `options` （*Object*）：采用不完整的主题对象并添加缺少的部分。
+2. `...args` (*Array*): Deep merge the arguments with the about to be returned theme.
+
+#### 返回结果
+
+`theme` （*Object*）：一个完整的，随时可用的主题对象。
+
+#### 例子
+
+```js import { unstable_createMuiStrictModeTheme } from '@material-ui/core/styles';
+
+const theme = unstable_createMuiStrictModeTheme();
+
+function App() { return ( <React.StrictMode> <ThemeProvider theme={theme}> <LandingPage /> </ThemeProvider> </React.StrictMode>, ); } ````
