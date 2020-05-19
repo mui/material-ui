@@ -1,12 +1,9 @@
 import React from 'react';
 import TablePagination from '@material-ui/core/TablePagination';
-import Paper from '@material-ui/core/Paper';
-
-const rows = new Array(8).fill('');
 
 export default function TablePaginationDemo() {
   const [page, setPage] = React.useState(2);
-  const [rowsPerPage, setRowsPerPage] = React.useState(2);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
   const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
     setPage(newPage);
@@ -20,16 +17,13 @@ export default function TablePaginationDemo() {
   };
 
   return (
-    <Paper>
-      <TablePagination
-        rowsPerPageOptions={[2, 4, rows.length]}
-        component="div"
-        count={rows.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onChangePage={handleChangePage}
-        onChangeRowsPerPage={handleChangeRowsPerPage}
-      />
-    </Paper>
+    <TablePagination
+      component="div"
+      count={100}
+      page={page}
+      onChangePage={handleChangePage}
+      rowsPerPage={rowsPerPage}
+      onChangeRowsPerPage={handleChangeRowsPerPage}
+    />
   );
 }
