@@ -18,7 +18,7 @@ export function createFilterOptions<T>(
   config?: CreateFilterOptionsConfig<T>
 ): (options: T[], state: FilterOptionsState<T>) => T[];
 
-export type AutocompleteFreeSoloValueMapping<T> = T extends true ? string : never;
+export type AutocompleteFreeSoloValueMapping<FreeSolo> = FreeSolo extends true ? string : never;
 
 export type Value<T, Multiple, DisableClearable, FreeSolo> = Multiple extends undefined | false
   ? DisableClearable extends true
