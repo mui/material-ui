@@ -29,6 +29,7 @@ The `MuiSkeleton` name can be used for providing [default props](/customization/
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">animation</span> | <span class="prop-type">'pulse'<br>&#124;&nbsp;'wave'<br>&#124;&nbsp;false</span> | <span class="prop-default">'pulse'</span> | The animation. If `false` the animation effect is disabled. |
+| <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | Optional children to infer width and height from. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'span'</span> | The component used for the root node. Either a string to use a HTML element or a component. |
 | <span class="prop-name">height</span> | <span class="prop-type">number<br>&#124;&nbsp;string</span> |  | Height of the skeleton. Useful when you don't want to adapt the skeleton to a text element but for instance a card. |
@@ -49,6 +50,9 @@ Any other props supplied will be provided to the root element (native element).
 | <span class="prop-name">circle</span> | <span class="prop-name">.MuiSkeleton-circle</span> | Styles applied to the root element if `variant="circle"`.
 | <span class="prop-name">pulse</span> | <span class="prop-name">.MuiSkeleton-pulse</span> | Styles applied to the root element if `animation="pulse"`.
 | <span class="prop-name">wave</span> | <span class="prop-name">.MuiSkeleton-wave</span> | Styles applied to the root element if `animation="wave"`.
+| <span class="prop-name">withChildren</span> | <span class="prop-name">.MuiSkeleton-withChildren</span> | Styles applied when the component is passed children.
+| <span class="prop-name">fitContent</span> | <span class="prop-name">.MuiSkeleton-fitContent</span> | Styles applied when the component is passed children and no width.
+| <span class="prop-name">heightAuto</span> | <span class="prop-name">.MuiSkeleton-heightAuto</span> | Styles applied when the component is passed children and no height.
 
 You can override the style of the component thanks to one of these customization points:
 

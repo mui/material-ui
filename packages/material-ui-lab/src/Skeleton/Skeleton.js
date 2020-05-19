@@ -71,6 +71,20 @@ export const styles = (theme) => ({
       transform: 'translateX(100%)',
     },
   },
+  /* Styles applied when the component is passed children. */
+  withChildren: {
+    '& > *': {
+      visibility: 'hidden',
+    },
+  },
+  /* Styles applied when the component is passed children and no width. */
+  fitContent: {
+    maxWidth: 'fit-content',
+  },
+  /* Styles applied when the component is passed children and no height. */
+  heightAuto: {
+    height: 'auto',
+  },
 });
 
 const Skeleton = React.forwardRef(function Skeleton(props, ref) {
@@ -85,6 +99,8 @@ const Skeleton = React.forwardRef(function Skeleton(props, ref) {
     ...other
   } = props;
 
+  const hasChildren = Boolean(other.children);
+
   return (
     <Component
       ref={ref}
@@ -93,6 +109,9 @@ const Skeleton = React.forwardRef(function Skeleton(props, ref) {
         classes[variant],
         {
           [classes[animation]]: animation !== false,
+          [classes.withChildren]: hasChildren,
+          [classes.fitContent]: hasChildren && !width,
+          [classes.heightAuto]: hasChildren && !height,
         },
         className,
       )}
@@ -112,6 +131,10 @@ Skeleton.propTypes = {
    * If `false` the animation effect is disabled.
    */
   animation: PropTypes.oneOf(['pulse', 'wave', false]),
+  /**
+   * Optional children to infer width and height from.
+   */
+  children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
