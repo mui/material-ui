@@ -56,17 +56,17 @@ const inHouseAds = [
     description: '<b>Scaffold</b><br />Automate building your full-stack Material-UI web-app.',
   },
   {
-    name: 'themes-2',
+    name: 'templates',
     link:
-      'https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=in-house-2',
+      'https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=in-house-templates',
     img: '/static/in-house/themes-2.jpg',
     description:
-      '<b>Premium Templates</b><br />Start your project with the best themes for admins, dashboards and more.',
+      '<b>Premium Templates</b><br />Start your project with the best templates for admins, dashboards and more.',
   },
   {
     name: 'themes',
     link:
-      'https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=in-house',
+      'https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=in-house-themes',
     img: '/static/in-house/themes.png',
     description:
       '<b>Premium Themes</b><br />Kickstart your application development with a ready-made theme.',
