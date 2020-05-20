@@ -34,7 +34,7 @@ const styles = (theme) => ({
       color: theme.palette.text.primary,
       backgroundColor:
         theme.palette.type === 'light' ? 'rgba(255, 229, 100, 0.2)' : 'rgba(255, 229, 100, 0.2)',
-      fontSize: 14,
+      fontSize: '.85em',
       borderRadius: 2,
     },
     '& code[class*="language-"]': {
@@ -42,9 +42,6 @@ const styles = (theme) => ({
       color: '#fff',
       // Avoid layout jump after hydration (style injected by prism)
       lineHeight: 1.5,
-    },
-    '& p code, & ul code, & pre code': {
-      fontSize: 14,
     },
     '& .token.operator': {
       background: 'transparent',
