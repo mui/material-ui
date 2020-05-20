@@ -25,6 +25,7 @@ const styles = (theme) => ({
         maxWidth: 'calc(100vw - 32px - 16px)',
       },
     },
+    // inline code
     '& code': {
       lineHeight: 1.4,
       display: 'inline-block',
@@ -42,6 +43,10 @@ const styles = (theme) => ({
       color: '#fff',
       // Avoid layout jump after hydration (style injected by prism)
       lineHeight: 1.5,
+    },
+    // code blocks
+    '& pre code': {
+      fontSize: '.9em',
     },
     '& .token.operator': {
       background: 'transparent',
@@ -116,19 +121,16 @@ const styles = (theme) => ({
       borderSpacing: 0,
       overflow: 'hidden',
       '& .prop-name': {
-        fontSize: 13,
         fontFamily: 'Consolas, "Liberation Mono", Menlo, monospace',
       },
       '& .required': {
         color: theme.palette.type === 'light' ? '#006500' : '#a5ffa5',
       },
       '& .prop-type': {
-        fontSize: 13,
         fontFamily: 'Consolas, "Liberation Mono", Menlo, monospace',
         color: theme.palette.type === 'light' ? '#932981' : '#ffb6ec',
       },
       '& .prop-default': {
-        fontSize: 13,
         fontFamily: 'Consolas, "Liberation Mono", Menlo, monospace',
         borderBottom: `1px dotted ${theme.palette.divider}`,
       },
@@ -140,11 +142,9 @@ const styles = (theme) => ({
       color: theme.palette.text.primary,
     },
     '& td code': {
-      fontSize: 13,
       lineHeight: 1.6,
     },
     '& th': {
-      fontSize: 14,
       lineHeight: theme.typography.pxToRem(24),
       fontWeight: theme.typography.fontWeightMedium,
       color: theme.palette.text.primary,
