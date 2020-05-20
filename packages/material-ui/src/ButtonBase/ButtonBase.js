@@ -392,7 +392,6 @@ ButtonBase.propTypes = {
   disableTouchRipple: PropTypes.bool,
   /**
    * If `true`, the base button will have a keyboard focus ripple.
-   * `disableRipple` must also be `false`.
    */
   focusRipple: PropTypes.bool,
   /**
