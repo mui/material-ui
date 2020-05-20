@@ -448,6 +448,8 @@ export default function useAutocomplete(props) {
     // Ignore filterOptions => options, getOptionSelected, getOptionLabel)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    filteredOptions.length === 0,
     value,
     popupOpen,
     filterSelectedOptions,
