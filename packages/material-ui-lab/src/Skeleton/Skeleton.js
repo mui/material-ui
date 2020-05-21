@@ -7,7 +7,7 @@ export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     display: 'block',
-    // create a "on paper" color with sufficient contrast
+    // Create a "on paper" color with sufficient contrast.
     backgroundColor: fade(theme.palette.text.primary, 0.16),
     height: '1.2em',
   },
