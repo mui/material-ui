@@ -5,12 +5,10 @@ import SvgIcon from '../SvgIcon';
  * Private module reserved for @material-ui/x packages.
  */
 export default function createSvgIcon(path, displayName) {
-  const Component = React.memo(
-    React.forwardRef((props, ref) => (
-      <SvgIcon data-mui-test={`${displayName}Icon`} ref={ref} {...props}>
-        {path}
-      </SvgIcon>
-    )),
+  const Component = (props, ref) => (
+    <SvgIcon data-mui-test={`${displayName}Icon`} ref={ref} {...props}>
+      {path}
+    </SvgIcon>
   );
 
   if (process.env.NODE_ENV !== 'production') {
@@ -19,5 +17,5 @@ export default function createSvgIcon(path, displayName) {
 
   Component.muiName = SvgIcon.muiName;
 
-  return Component;
+  return React.memo(React.forwardRef(Component));
 }
