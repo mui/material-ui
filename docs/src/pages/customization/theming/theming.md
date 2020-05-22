@@ -13,8 +13,7 @@ To promote greater consistency between apps, light and dark theme types are avai
 If you wish to customize the theme, you need to use the `ThemeProvider` component in order to inject a theme into your application.
 However, this is optional; Material-UI components come with a default theme.
 
-`ThemeProvider` relies on the context feature of React to pass the theme down to the components,
-so you need to make sure that `ThemeProvider` is a parent of the components you are trying to customize.
+`ThemeProvider` relies on the [context feature of React](https://reactjs.org/docs/context.html) to pass the theme down to the components, so you need to make sure that `ThemeProvider` is a parent of the components you are trying to customize.
 You can learn more about this in [the API section](/styles/api/#themeprovider).
 
 ## Theme configuration variables
@@ -33,8 +32,7 @@ You can check out the [default theme section](/customization/default-theme/) to 
 
 ### Custom variables
 
-When using Material-UI's theme with the [styling solution](/styles/basics/) or [any others](/guides/interoperability/#themeprovider).
-It can be convenient to add additional variables to the theme so you can use them everywhere.
+When using Material-UI's theme with the [styling solution](/styles/basics/) or [any others](/guides/interoperability/#themeprovider), it can be convenient to add additional variables to the theme so you can use them everywhere.
 For instance:
 
 {{"demo": "pages/customization/theming/CustomStyles.js"}}
