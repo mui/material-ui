@@ -20,6 +20,9 @@ export const styles = (theme) => ({
   avatar: {
     border: `2px solid ${theme.palette.background.default}`,
     marginLeft: -8,
+    '&:first-child': {
+      marginLeft: 0,
+    },
   },
 });
 
@@ -51,6 +54,8 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(props, ref) {
 
   const extraAvatars = children.length > clampedMax ? children.length - clampedMax + 1 : 0;
 
+  const marginLeft = spacing && SPACINGS[spacing] !== undefined ? SPACINGS[spacing] : -spacing;
+
   return (
     <div className={clsx(classes.root, className)} ref={ref} {...other}>
       {children.slice(0, children.length - extraAvatars).map((child, index) => {
@@ -58,7 +63,7 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(props, ref) {
           className: clsx(child.props.className, classes.avatar),
           style: {
             zIndex: children.length - index,
-            marginLeft: spacing && SPACINGS[spacing] !== undefined ? SPACINGS[spacing] : -spacing,
+            marginLeft: index === 0 ? undefined : marginLeft,
             ...child.props.style,
           },
         });
@@ -68,7 +73,7 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(props, ref) {
           className={classes.avatar}
           style={{
             zIndex: 0,
-            marginLeft: spacing && SPACINGS[spacing] !== undefined ? SPACINGS[spacing] : -spacing,
+            marginLeft,
           }}
         >
           +{extraAvatars}
