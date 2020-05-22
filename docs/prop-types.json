@@ -17,7 +17,7 @@
       "defaultValue": {
         "value": "\"OK\""
       },
-      "description": "\"OK\" button text",
+      "description": "\"OK\" button text.",
       "name": "okText",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/_shared/PickerModalDialog.tsx",
@@ -77,7 +77,7 @@
       "defaultValue": {
         "value": "false"
       },
-      "description": "Show clear action in picker dialog",
+      "description": "If `true`, it shows the clear action in the picker dialog.",
       "name": "clearable",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/_shared/PickerModalDialog.tsx",
@@ -92,7 +92,7 @@
       "defaultValue": {
         "value": "false"
       },
-      "description": "If `true` today button will be displayed. **Note** that `showClearButton` has higher priority",
+      "description": "If `true`, the today button will be displayed. **Note** that `showClearButton` has a higher priority.",
       "name": "showTodayButton",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/_shared/PickerModalDialog.tsx",
@@ -163,7 +163,7 @@
       "defaultValue": {
         "value": "\"OK\""
       },
-      "description": "\"OK\" button text",
+      "description": "\"OK\" button text.",
       "name": "okText",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/_shared/PickerModalDialog.tsx",
@@ -223,7 +223,7 @@
       "defaultValue": {
         "value": "false"
       },
-      "description": "Show clear action in picker dialog",
+      "description": "If `true`, it shows the clear action in the picker dialog.",
       "name": "clearable",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/_shared/PickerModalDialog.tsx",
@@ -238,7 +238,7 @@
       "defaultValue": {
         "value": "false"
       },
-      "description": "If `true` today button will be displayed. **Note** that `showClearButton` has higher priority",
+      "description": "If `true`, the today button will be displayed. **Note** that `showClearButton` has a higher priority.",
       "name": "showTodayButton",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/_shared/PickerModalDialog.tsx",
@@ -1013,7 +1013,7 @@
       "defaultValue": {
         "value": "\"OK\""
       },
-      "description": "\"OK\" button text",
+      "description": "\"OK\" button text.",
       "name": "okText",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/_shared/PickerModalDialog.tsx",
@@ -1073,7 +1073,7 @@
       "defaultValue": {
         "value": "false"
       },
-      "description": "Show clear action in picker dialog",
+      "description": "If `true`, it shows the clear action in the picker dialog.",
       "name": "clearable",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/_shared/PickerModalDialog.tsx",
@@ -1088,7 +1088,7 @@
       "defaultValue": {
         "value": "false"
       },
-      "description": "If `true` today button will be displayed. **Note** that `showClearButton` has higher priority",
+      "description": "If `true`, the today button will be displayed. **Note** that `showClearButton` has a higher priority.",
       "name": "showTodayButton",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/_shared/PickerModalDialog.tsx",
@@ -1718,7 +1718,7 @@
       "defaultValue": {
         "value": "\"OK\""
       },
-      "description": "\"OK\" button text",
+      "description": "\"OK\" button text.",
       "name": "okText",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/_shared/PickerModalDialog.tsx",
@@ -1778,7 +1778,7 @@
       "defaultValue": {
         "value": "false"
       },
-      "description": "Show clear action in picker dialog",
+      "description": "If `true`, it shows the clear action in the picker dialog.",
       "name": "clearable",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/_shared/PickerModalDialog.tsx",
@@ -1793,7 +1793,7 @@
       "defaultValue": {
         "value": "false"
       },
-      "description": "If `true` today button will be displayed. **Note** that `showClearButton` has higher priority",
+      "description": "If `true`, the today button will be displayed. **Note** that `showClearButton` has a higher priority.",
       "name": "showTodayButton",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/_shared/PickerModalDialog.tsx",
@@ -2760,7 +2760,7 @@
       "defaultValue": {
         "value": "\"OK\""
       },
-      "description": "\"OK\" button text",
+      "description": "\"OK\" button text.",
       "name": "okText",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/_shared/PickerModalDialog.tsx",
@@ -2820,7 +2820,7 @@
       "defaultValue": {
         "value": "false"
       },
-      "description": "Show clear action in picker dialog",
+      "description": "If `true`, it shows the clear action in the picker dialog.",
       "name": "clearable",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/_shared/PickerModalDialog.tsx",
@@ -2835,7 +2835,7 @@
       "defaultValue": {
         "value": "false"
       },
-      "description": "If `true` today button will be displayed. **Note** that `showClearButton` has higher priority",
+      "description": "If `true`, the today button will be displayed. **Note** that `showClearButton` has a higher priority.",
       "name": "showTodayButton",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/_shared/PickerModalDialog.tsx",
@@ -3659,7 +3659,7 @@
       "defaultValue": {
         "value": "\"OK\""
       },
-      "description": "\"OK\" button text",
+      "description": "\"OK\" button text.",
       "name": "okText",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/_shared/PickerModalDialog.tsx",
@@ -3719,7 +3719,7 @@
       "defaultValue": {
         "value": "false"
       },
-      "description": "Show clear action in picker dialog",
+      "description": "If `true`, it shows the clear action in the picker dialog.",
       "name": "clearable",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/_shared/PickerModalDialog.tsx",
@@ -3734,7 +3734,7 @@
       "defaultValue": {
         "value": "false"
       },
-      "description": "If `true` today button will be displayed. **Note** that `showClearButton` has higher priority",
+      "description": "If `true`, the today button will be displayed. **Note** that `showClearButton` has a higher priority.",
       "name": "showTodayButton",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/_shared/PickerModalDialog.tsx",
