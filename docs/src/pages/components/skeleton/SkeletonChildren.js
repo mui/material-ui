@@ -41,11 +41,7 @@ function SkeletonChildrenDemo(props) {
       </Box>
       {loading ? (
         <Skeleton variant="rect" width="100%">
-          <img
-            className={classes.image}
-            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAJCAQAAACRI2S5AAAAEklEQVR42mNk+M+AFzCOKgADALyGCQGyq8YeAAAAAElFTkSuQmCC"
-            alt=""
-          />
+          <div style={{ paddingTop: '57%' }} />
         </Skeleton>
       ) : (
         <img
