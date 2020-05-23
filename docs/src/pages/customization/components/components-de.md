@@ -144,7 +144,7 @@ Instead of providing values to the `classes` prop API, you can rely on [the glob
 
 ### Verwenden Sie `$ruleName` um eine lokale Regel innerhalb desselben Stylesheets referenzieren
 
-The [jss-nested](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-nested) plugin (available by default) can make the process of increasing specificity easier.
+Das [jss-nested](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-nested) Plugin (standardmäßig verfügbar) macht es einfach, die Spezifität verbessern.
 
 ```js
 const styles = {
@@ -187,7 +187,7 @@ Sie müssen sich keine Gedanken über die CSS-Spezifität machen, da der Inline-
 
 {{"demo": "pages/customization/components/InlineStyle.js"}}
 
-[Wann sollte ich Inline-Styles und wann Klassen verwenden?](/getting-started/faq/#when-should-i-use-inline-style-vs-classes)
+[Wann sollte ich Inline-Styles und wann Klassen verwenden?](/getting-started/faq/#when-should-i-use-inline-style-vs-css)
 
 ## 2. Dynamische Variation für eine einmalige Situation
 

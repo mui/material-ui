@@ -63,4 +63,8 @@ The `<html>` and `<body>` elements are updated to provide better page-wide defau
 - No se declara ningún tamaño de fuente de base en el elemento `<html>`, pero se asume 16px (el valor predeterminado del navegador). Puedes aprender más acerca de las implicaciones de cambiar el tamaño de fuente predeterminado de `<html>`, en la página [de documentación del tema](/customization/typography/#typography-html-font-size).
 - Set the `theme.typography.body2` style on the `<body>` element.
 - Set the font-weight to `theme.typography.fontWeightBold` for the `<b>` and `<strong>` elements.
-- El antialiasing de fuentes está habilitado para una mejor visualización de la fuente Roboto.
+- Custom font-smoothing is enabled for better display of the Roboto font.
+
+## Personalización
+
+Head to the [global customization](/customization/globals/#global-css) section of the documentation to change the output of these components.

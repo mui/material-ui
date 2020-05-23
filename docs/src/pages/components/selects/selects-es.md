@@ -37,6 +37,8 @@ The first step is to style the `InputBase` component. Once it's styled, you can 
 
 {{"demo": "pages/components/selects/CustomizedSelects.js"}}
 
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/select).
+
 ## Multiple Select
 
 The `Select` component can handle multiple selections. It's enabled with the `multiple` property.

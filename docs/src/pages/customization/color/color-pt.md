@@ -1,8 +1,8 @@
 # Cor
 
-<p class="description">Transmitir significado através da cor. De forma criativa, você obtém acesso a todas as cores da especificação do Material Design.</p>
+<p class="description">Transmita significado através da cor. De forma criativa, você obtém acesso a todas as cores da especificação do Material Design.</p>
 
-O [sistema de cor](https://material.io/design/color/) do Material Design pode ser usado para criar tema de cores que refletem sua marca ou estilo.
+O [sistema de cores](https://material.io/design/color/) do Material Design pode ser usado para criar um tema que reflete sua marca ou estilo.
 
 ## Sistema de cor
 

@@ -74,7 +74,7 @@ Fancy larger or smaller buttons? Use the `size` property.
 
 {{"demo": "pages/components/buttons/CustomizedButtons.js", "defaultCodeOpen": false}}
 
-Если вам нужно вдохновение обратитве внимание на библиотеку компонентов [MUI Treasury](https://mui-treasury.com/styles/button).
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/button).
 
 ## Сложные кнопки
 

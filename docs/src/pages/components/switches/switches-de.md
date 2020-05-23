@@ -31,6 +31,8 @@ Hier einige Beispiele zum Anpassen der Komponente. Mehr dazu erfahren Sie auf de
 
 {{"demo": "pages/components/switches/CustomizedSwitches.js"}}
 
+🎨 Wenn Sie nach Inspiration suchen, sehen sie sich [MUI Treasury's Anpassungs-Beispiele](https://mui-treasury.com/styles/switch) an.
+
 ## Größen
 
 Fancy smaller switches? Verwende die Eigenschaft `size`.

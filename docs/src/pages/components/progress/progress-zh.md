@@ -5,7 +5,7 @@ components: CircularProgress, LinearProgress
 
 # Progress 进度条
 
-<p class="description">Progress indicators commonly known as spinners, express an unspecified wait time or display the length of a process. The animation works with CSS, not JavaScript.</p>
+<p class="description">Progress indicators（进度指示器）通常称为微调器 (spinners) 。它能够表示一个不明确的等待时间，或者显示处理过程的时间长短。 动画使用 CSS 实现，而不是 JavaScript。</p>
 
 [进度指示器](https://material.io/design/components/progress-indicators.html)能够将当前处理过程的状态通知用户，例如加载一个应用，提交一个表单或保存一些更新。 它们与应用程序状态进行通信并指示可用的操作，例如用户是否可从当前页面离开。
 

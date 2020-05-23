@@ -144,7 +144,7 @@ const StyledButton = withStyles({
 
 ### 同じスタイルシート内のローカルルールを参照するには、`$ruleName`を使用します
 
-The [jss-nested](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-nested) plugin (available by default) can make the process of increasing specificity easier.
+[jss-nested](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-nested)プラグイン(デフォルトで使用可能) は、特異性を高めるプロセスを容易にします。
 
 ```js
 const styles = {
@@ -187,7 +187,7 @@ const styles = {
 
 {{"demo": "pages/customization/components/InlineStyle.js"}}
 
-[inline-styleもしくはclassesどちらを使うべきですか？](/getting-started/faq/#when-should-i-use-inline-style-vs-classes)
+[inline-styleもしくはclassesどちらを使うべきですか？](/getting-started/faq/#when-should-i-use-inline-style-vs-css)
 
 ## 2. 1回の状況に対する動的変化
 

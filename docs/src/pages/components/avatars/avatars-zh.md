@@ -17,25 +17,25 @@ components: Avatar, AvatarGroup, Badge
 
 可以通过向`children`传递字符串的方式来创建字符头像。
 
-{{"demo": "pages/components/avatars/LetterAvatars.js"}} 
+{{"demo": "pages/components/avatars/LetterAvatars.js"}}
 
 ## 尺寸
 
 你可以通过改变`height` 以及`width` 的CSS属性来改变头像的尺寸。
 
-{{"demo": "pages/components/avatars/SizeAvatars.js"}} 
+{{"demo": "pages/components/avatars/SizeAvatars.js"}}
 
 ## 图标头像
 
 通过将图标作为` children `传递来创建图标头像。
 
-{{"demo": "pages/components/avatars/IconAvatars.js"}} 
+{{"demo": "pages/components/avatars/IconAvatars.js"}}
 
 ## 变种
 
 如果你需要矩形或圆角头像，请使用 `variant`属性。
 
-{{"demo": "pages/components/avatars/VariantAvatars.js"}} 
+{{"demo": "pages/components/avatars/VariantAvatars.js"}}
 
 ## Fallbacks
 
@@ -45,13 +45,13 @@ components: Avatar, AvatarGroup, Badge
 - `alt`属性的首字母
 - 通用头像图标
 
-{{"demo": "pages/components/avatars/FallbackAvatars.js"}} 
+{{"demo": "pages/components/avatars/FallbackAvatars.js"}}
 
 ## 分组
 
 `AvatarGroup` 通过堆栈的方式渲染其子元素。
 
-{{"demo": "pages/components/avatars/GroupAvatars.js"}} 
+{{"demo": "pages/components/avatars/GroupAvatars.js"}}
 
 ## 徽章
 

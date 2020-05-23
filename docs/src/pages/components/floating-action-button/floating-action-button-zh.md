@@ -3,13 +3,13 @@ title: Fab React component
 components: Fab
 ---
 
-# Floating Action Button 悬浮操作按钮
+# Floating action button 提升动作按钮
 
-<p class="description">A floating action button (FAB) performs the primary, or most common, action on a screen.</p>
+<p class="description">提升动作按钮 (FAB) 通常用于在屏幕上执行一些主要的或是最为常见的操作。</p>
 
 ## Floating Action Button
 
-A [floating action button](https://material.io/design/components/buttons-floating-action-button.html) appears in front of all screen content, typically as a circular shape with an icon in its center. FAB有两种类型：常规的和扩展的。
+A [floating action button](https://material.io/design/components/buttons-floating-action-button.html) appears in front of all screen content, 通常为圆形，且中间有一个图标。 FAB有两种类型：常规的和扩展的。
 
 只使用FAB是最适合呈现屏幕主要操作的方法。
 
@@ -19,11 +19,11 @@ A [floating action button](https://material.io/design/components/buttons-floatin
 
 ## Size 大小
 
-Use the `size` prop for larger or smaller floating action buttons.
+使用 `size` prop 属性来控制 FAB 的大小。
 
 {{"demo": "pages/components/floating-action-button/FloatingActionButtonSize.js"}}
 
-## Animation
+## Animation 动画
 
 默认情况下，浮动操作按钮会以展开的动画出现在屏幕上。
 

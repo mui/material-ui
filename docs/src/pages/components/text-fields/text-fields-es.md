@@ -103,7 +103,7 @@ La personalización no se limita a usar CSS, también puedes usar una composici�
 
 {{"demo": "pages/components/text-fields/CustomizedInputBase.js", "bg": true}}
 
-👑 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/text-field).
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/text-field).
 
 ## Limitaciones
 

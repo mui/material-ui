@@ -63,4 +63,8 @@ export default function MyApp() {
 - `<html>`には基本フォントサイズは宣言されていませんが、16pxが想定されています（ブラウザのデフォルト）。 デフォルトのフォントサイズの`<html>`を変更した場合の影響については、ここをクリックしてください。[the theme documentation](/customization/typography/#typography-html-font-size)
 - `<body>` 要素に `theme.typography.body2` スタイルを設定します。
 - Set the font-weight to `theme.typography.fontWeightBold` for the `<b>` and `<strong>` elements.
-- Robotoフォントを見やすくするために、フォントのアンチエイリアスが有効になります。
+- Custom font-smoothing is enabled for better display of the Roboto font.
+
+## カスタマイズ
+
+Head to the [global customization](/customization/globals/#global-css) section of the documentation to change the output of these components.

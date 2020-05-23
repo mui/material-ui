@@ -12,7 +12,7 @@ Um die Konsistenz zwischen Apps zu erhöhen, stehen helle und dunkle Themenarten
 
 Wenn Sie das Design anpassen möchten, müssen Sie die `ThemeProvider` Komponente verwenden, um ein Theme in Ihre Anwendung einzufügen. Dies ist jedoch optional. Material-UI-Komponenten werden mit einem Standarddesign geliefert.
 
-`ThemeProvider` stützt sich auf die Kontext - Funktion von React um das Theme an die Komponenten zu übergeben. Deswegen müssen Sie den `ThemeProvider` als ein übergeordnetes Element der Komponenten, die Sie anpassen möchten, setzen. Mehr darüber erfahren Sie im [API](/styles/api/#themeprovider) Abschnitt.
+`ThemeProvider` relies on the [context feature of React](https://reactjs.org/docs/context.html) to pass the theme down to the components, so you need to make sure that `ThemeProvider` is a parent of the components you are trying to customize. Mehr darüber erfahren Sie im [API](/styles/api/#themeprovider) Abschnitt.
 
 ## Theme-Konfigurationsvariablen
 
@@ -29,7 +29,7 @@ Sie können den [Standard-Themenbereich](/customization/default-theme/) auscheck
 
 ### Benutzerdefinierte Variablen
 
-When using Material-UI's theme with the [styling solution](/styles/basics/) or [any others](/guides/interoperability/#themeprovider). kann praktisch sein, dem Theme weitere Variablen hinzuzufügen, damit Sie sie überall verwenden können. Zum Beispiel:
+When using Material-UI's theme with the [styling solution](/styles/basics/) or [any others](/guides/interoperability/#themeprovider), it can be convenient to add additional variables to the theme so you can use them everywhere. Zum Beispiel:
 
 {{"demo": "pages/customization/theming/CustomStyles.js"}}
 
@@ -193,8 +193,18 @@ function Fade() {
 
 #### Beispiele
 
-```js import { unstable_createMuiStrictModeTheme } from '@material-ui/core/styles';
+```js
+import { unstable_createMuiStrictModeTheme } from '@material-ui/core/styles';
 
 const theme = unstable_createMuiStrictModeTheme();
 
-function App() { return ( <React.StrictMode> <ThemeProvider theme={theme}> <LandingPage /> </ThemeProvider> </React.StrictMode>, ); } ````
+function App() {
+  return (
+    <React.StrictMode>
+      <ThemeProvider theme={theme}>
+        <LandingPage />
+      </ThemeProvider>
+    </React.StrictMode>,
+  );
+}
+```

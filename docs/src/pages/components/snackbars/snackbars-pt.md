@@ -29,7 +29,7 @@ Aqui estão alguns exemplos de customização do componente. Você pode aprender
 
 ## Snackbars posicionados
 
-Pode haver circunstâncias em que vão ser necessárias maior flexibilidade na colocação da snackbar.
+Em leiautes amplos, os snackbars podem ser alinhados para a esquerda ou alinhados ao centro se forem colocados consistentemente no mesmo lugar na parte inferior da tela, no entanto, pode haver circunstâncias em que a posição do snackbar tenha de ser mais flexível. Você pode controlar a posição do snackbar especificando a propriedade `anchorOrigin`.
 
 {{"demo": "pages/components/snackbars/PositionedSnackbar.js"}}
 

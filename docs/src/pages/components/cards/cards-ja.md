@@ -51,4 +51,4 @@ Card内の補足的なアクションは、通常はカードの下部に配置�
 
 ## カスタマイズ
 
-👑 インスピレーションを求めているなら, [MUI Treasury's customization examples](https://deprecate.mui-treasury.com/components/card)を確認できます。
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/components/card).

@@ -26,7 +26,7 @@ components: Link
 
 ## Third-party routing library（第三方路由库）
 
-One common use case is to perform navigation on the client only, without an HTTP round-trip to the server. 为解决此用例 `组件`，`Link` 组件提供了一个属性：
+一种常见的用例是仅在客户端上执行导航，而无需通过 HTTP 往返服务器。 为解决此用例 `组件`，`Link` 组件提供了一个属性：
 
 这有一个[与 react-router 交互的例子](/guides/composition/#link)。
 

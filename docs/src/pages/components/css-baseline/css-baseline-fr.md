@@ -63,4 +63,8 @@ The `<html>` and `<body>` elements are updated to provide better page-wide defau
 - Aucune taille de police de base n’est déclarée sur le `<html>`, mais 16px est utilisée (valeur par défaut du navigateur). Vous pouvez en apprendre davantage sur les implications de l' évolution du `<html>` taille de la police par défaut dans [la documentation abordant les thèmes](/customization/typography/#typography-html-font-size) page.
 - Set the `theme.typography.body2` style on the `<body>` element.
 - Set the font-weight to `theme.typography.fontWeightBold` for the `<b>` and `<strong>` elements.
-- L'anticrénelage des polices est activé pour un meilleur affichage de la police Roboto.
+- Custom font-smoothing is enabled for better display of the Roboto font.
+
+## Personnalisation
+
+Head to the [global customization](/customization/globals/#global-css) section of the documentation to change the output of these components.

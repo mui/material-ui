@@ -12,31 +12,32 @@ Material-UIをサポートする方法はたくさんあります。
 - **Give us feedback**. Tell us what we're doing well or where we can improve. Please upvote (👍) the issues that you are the most interested in seeing solved.
 - **Help new users**. You can answer questions on [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui).
 - **Make changes happen**. 
+  - Edit the documentation. Every page has an "EDIT THIS PAGE" link in the top right.
   - Report bugs or missing features by [creating an issue](https://github.com/mui-org/material-ui/issues/new).
-  - Reviewing and commenting on existing [pull requests](https://github.com/mui-org/material-ui/pulls) and [issues](https://github.com/mui-org/material-ui/issues).
+  - Review and comment on existing [pull requests](https://github.com/mui-org/material-ui/pulls) and [issues](https://github.com/mui-org/material-ui/issues).
   - Help [translate](https://translate.material-ui.com) the documentation.
-  - Fixing bugs, adding features, and [improving our documentation](https://github.com/mui-org/material-ui/tree/master/docs) by [submitting a pull request](https://github.com/mui-org/material-ui/pulls).
+  - [Improve our documentation](https://github.com/mui-org/material-ui/tree/master/docs), fix bugs, or add features by [submitting a pull request](https://github.com/mui-org/material-ui/pulls).
 - **Support us financially on [OpenCollective](https://opencollective.com/material-ui)**. If you use Material-UI in a commercial project and would like to support its continued development by becoming a Sponsor, or in a side or hobby project and would like to become a Backer, you can do so through OpenCollective. All funds donated are managed transparently, and Sponsors receive recognition in the README and on the Material-UI home page.
 
 ## productionビルドでコンポーネントが正しくレンダリングされないのはなぜですか？
 
-これは、コードがproduction bundleに入った後にクラス名が競合するために発生する可能性があるn°1の問題です。 Material-UIが機能するためには、`className`ページ上のすべてのコンポーネントの値は、[クラス名ジェネレータ](/styles/advanced/#class-names)の単一インスタンスによって生成される必要があります。
+The #1 reason this likely happens is due to class name conflicts once your code is in a production bundle. Material-UIが機能するためには、`className`ページ上のすべてのコンポーネントの値は、[クラス名ジェネレータ](/styles/advanced/#class-names)の単一インスタンスによって生成される必要があります。
 
-この問題を解決するには、ページ上のすべてのコンポーネントを初期化して、それらの間の**クラス名ジェネレータが1つだけ**存在するようにする必要があります。
+To correct this issue, all components on the page need to be initialized such that there is only ever **one class name generator** among them.
 
 さまざまなシナリオで、誤って2つのクラス名ジェネレータを使用することになる事例
 
 - 誤ってMaterial-UIの2つのバージョンを**bundle**してしまっている場合、 依存関係がMaterial-UIを対の依存関係として正しく設定されていない可能性があります
-- Reactツリーの**サブセット**に`StylesProvider`を使用している場合
+- You are using `StylesProvider` for a **subset** of your React tree.
 - バンドラーを使用していて、それが原因で複数のクラス名ジェネレータインスタンスが作成されるようにコードを分割している場合。
 
 > Webパックで[SplitChunksPlugin](https://webpack.js.org/plugins/split-chunks-plugin/)を使用している場合は、[`最適化`で`runtimeChunk`](https://webpack.js.org/configuration/optimization/#optimization-runtimechunk)設定を構成してみてください。
 
-全体として、各Material-UIアプリケーションをコンポーネントツリーの最上部にある[`StylesProvider`](/styles/api/#stylesprovider)コンポーネントでWrapし、**コンポーネントツリー間で共有される単一のクラス名ジェネレータを使用することで**、この問題を簡単に解決できます。
+Overall, it's simple to recover from this problem by wrapping each Material-UI application with [`StylesProvider`](/styles/api/#stylesprovider) components at the top of their component trees **and using a single class name generator shared among them**.
 
 ## モーダルを開くと、fixed positionされたDOMが移動するのはなぜですか？
 
-Scrolling is blocked as soon as a modal is opened. モーダルが唯一のインタラクティブなコンテンツであるべき場合、backgroundとの連動を防ぎます。しかし、スクロールバーを取り除くことで**fixed positionされたDOM**を動かすことができます。 この場合、Material-UIにこれらのDOMを処理するように伝えるために、グローバルな `.mui-fixed`クラス名を適用することができます。
+Scrolling is blocked as soon as a modal is opened. This prevents interacting with the background when the modal should be the only interactive content. However, removing the scrollbar can make your **fixed positioned elements** move. この場合、Material-UIにこれらのDOMを処理するように伝えるために、グローバルな `.mui-fixed`クラス名を適用することができます。
 
 ## 波紋アニメーションをグローバルに無効にする方法は？
 
@@ -58,7 +59,7 @@ const theme = createMuiTheme({
 
 ## 移行をグローバルに無効にするにはどうすればよいですか？
 
-Material-UI uses the same theme helper for creating all its transitions. So you can disable all the transitions by overriding the helper in your theme:
+Material-UI uses the same theme helper for creating all its transitions. Therefore you can disable all transitions by overriding the helper in your theme:
 
 ```js
 import { createMuiTheme } from '@material-ui/core';
@@ -73,7 +74,7 @@ const theme = createMuiTheme({
 
 It can be useful to disable transitions during visual testing or to improve performance on low-end devices.
 
-You can go one step further by disabling all the transitions and animations effect:
+You can go one step further by disabling all transitions and animations effects:
 
 ```js
 import { createMuiTheme } from '@material-ui/core';
@@ -361,11 +362,13 @@ function App() {
 
 ## Clsxの依存関係は何ですか？
 
-[clsx](https://github.com/lukeed/clsx)は、条件付きで`className`文字列を構築するための小さなユーティリティです。
+[clsx](https://github.com/lukeed/clsx) is a tiny utility for constructing `className` strings conditionally, out of an object with keys being the class strings, and values being booleans.
 
 Instead of writing:
 
 ```jsx
+// let disabled = false, selected = true;
+
 return (
   <div
     className={`MuiButton-root ${disabled ? 'Mui-disabled' : ''} ${selected ? 'Mui-selected' : ''}`}

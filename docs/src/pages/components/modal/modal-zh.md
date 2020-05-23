@@ -7,16 +7,16 @@ components: Modal
 
 <p class="description">模态框组件可以用来快速创建对话框、弹出窗口，灯箱等任何你所需的组件。</p>
 
-组件会在背景组件前渲染其`children`节点。 The `Modal` offers important features:
+组件会在背景组件前渲染其`children`节点。 `Modal` 提供了一些重要的功能：
 
 - 💄 Manages modal stacking when one-at-a-time just isn't enough.
-- 🔐 Creates a backdrop, for disabling interaction below the modal.
-- 🔐 It disables scrolling of the page content while open.
+- 🔐 创建一个 backdrop 来禁用在模态框外的交互。
+- 🔐 在模态框打开时禁用页面内容的滚动。
 - ♿️它妥善管理焦点;移动到模态内容， 并保持它直到模态关闭。
 - ♿️自动添加适当的ARIA角色。
 - 📦 [5kB 已压缩的包](/size-snapshot)。
 
-> **术语注释**。 “模态框”（Modal）这个词有时也被用来指代“对话框”，但是这种用法属于误用。 A modal window describes parts of a UI. 如果一个元素[阻挡了用户与应用的其它部分的互动](https://en.wikipedia.org/wiki/Modal_window)，这个元素就是模态的。
+> **术语注释**。 “模态框”（Modal）这个词有时也被用来指代“对话框”，但是这种用法属于误用。 模态框的窗口可以描述为 UI 的一部分。 如果一个元素[阻挡了用户与应用的其它部分的互动](https://en.wikipedia.org/wiki/Modal_window)，这个元素就是模态的。
 
 当你创建一个模态对话框时，使用[对话框（Dialog）](/components/dialogs/)组件比直接使用模态框更佳。 以下的组件将将模态框作为一个低级别的组件运用：
 
@@ -29,28 +29,28 @@ components: Modal
 
 {{"demo": "pages/components/modal/SimpleModal.js"}}
 
-Notice that you can disable the outline (often blue or gold) with the `outline: 0` CSS property.
+请注意，您可以使用 `outline: 0` 属性来禁用模态框的 outline (通常为蓝色或金色)。
 
 ## 过渡动画
 
-The open/close state of the modal can be animated with a transition component. This component should respect the following conditions:
+模态框的 打开/关闭 可以使用一个过渡组件进行动画化处理。 此组件应遵守以下条件：
 
-- Be a direct child descendent of the modal.
-- Have an `in` prop. This corresponds to the open / close state.
-- Call the `onEnter` callback prop when the enter transition starts.
-- Call the `onExited` callback prop when the exit transition is completed. These two callbacks allow the modal to unmount the child content when closed and fully transitioned.
+- 成为模态框的直接子组件。
+- 在 prop 中应该有一个 `in` 属性。 这对应于 打开/关闭 状态。
+- 在进入过渡开始时调用 prop 中的 `onEnter` 回调。
+- 在退出过渡完成后调用 prop 中的 `onExited` 回调。 这两个回调允许模态框在关闭并完全过渡 (when closed and fully transitioned) 时卸载子内容。
 
-Modal has built-in support for [react-transition-group](https://github.com/reactjs/react-transition-group).
+模态框已经内嵌支持 [react-transition-group](https://github.com/reactjs/react-transition-group)。
 
 {{"demo": "pages/components/modal/TransitionsModal.js"}}
 
-Alternatively, you can use [react-spring](https://github.com/react-spring/react-spring).
+或者，您可以使用 [react-spring](https://github.com/react-spring/react-spring)。
 
 {{"demo": "pages/components/modal/SpringModal.js"}}
 
-## Server-side modal
+## 模态框 SSR
 
-React [doesn't support](https://github.com/facebook/react/issues/13097) the [`createPortal()`](https://reactjs.org/docs/portals.html) API on the server. In order to display the modal, you need to disable the portal feature with the `disablePortal` prop:
+React API [不支持](https://github.com/facebook/react/issues/13097) 在服务器上的 [`createPortal()`](https://reactjs.org/docs/portals.html)。 为了显示模态框，您需要使用 prop 上的 `disablePortal` 来禁用 protal 功能：
 
 {{"demo": "pages/components/modal/ServerModal.js"}}
 
@@ -58,19 +58,19 @@ React [doesn't support](https://github.com/facebook/react/issues/13097) the [`cr
 
 ### Focus trap
 
-The modal moves the focus back to the body of the component if the focus tries to escape it.
+如果失去焦点，则模态框会将焦点移回到组件的主体 (body of the component)。
 
-This is done for accessibility purposes, however, it might create issues. In the event the users need to interact with another part of the page, e.g. with a chatbot window, you can disable the behavior:
+这样做是为了可访问性，但可能会造成问题。 如果用户需要与页面的另一部分进行交互，例如使用聊天窗口，您可以禁用该行为：
 
 ```jsx
 <Modal disableEnforceFocus />
 ```
 
-## 可访问性
+## 无障碍设计
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#dialog_modal)
 
-- 记得用 `aria-labelledby="id..."` 属性来指向`Modal` 的标题. Additionally, you may give a description of your modal with the `aria-describedby="id..."` prop on the `Modal`.
+- 记得用 `aria-labelledby="id..."` 属性来指向`Modal` 的标题. 另外, 你还可以使用 prop 上的 `aria-describedby="id..."` 属性来为 `Modal` 增加一段描述。
     
     ```jsx
     <Modal
@@ -86,5 +86,5 @@ This is done for accessibility purposes, however, it might create issues. In the
     </Modal>
     ```
 
-- The [WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/dialog.html) can help you set the initial focus on the most relevant element, based on your modal content.
-- A modal window overlys on either the primary window or another modal window. Windows under a modal are **inert**. That is, users cannot interact with content outside an active modal window.
+- 这篇 [WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/dialog.html) 里的方法可以根据你的模态窗口里的内容, 为最合适的元素设置初始焦点.
+- Keep in mind that a "modal window" overlays on either the primary window or another modal window. 模态框层下的所有层级都是 **inert** 的。 也就是说，用户不能与活跃的模态框外的内容交互。 This might create [conflicting behaviors](#focus-trap).

@@ -231,10 +231,6 @@ const filterOptions = (options, { inputValue }) =>
 
 iOS Safari 中的 VoiceOver 对 `aria-owns` 属性的支持并不是很到位。 你可以用 `disablePortal` 属性来解决这个问题。
 
-### TypeScript
-
-若想完全利用 type inference，您则需要把 `multiple` 属性设置为 `undefined`，`false` 或者 `true` 之一。 请在[这个讨论区中](https://github.com/mui-org/material-ui/pull/18854#discussion_r364215153)查看更多信息。 TypeScript 可能在将来会解决这个问题。
-
 ### ListboxComponent
 
 若你提供一共自定义的 `ListboxComponent` 属性，请保证需要滚动功能的容器将 `role` 属性设置为 `listbox`。 这能保证滚动功能在一些情况下，例如当用键盘切换的时候，仍然能够正常显示。

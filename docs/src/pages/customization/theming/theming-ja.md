@@ -12,7 +12,7 @@
 
 テーマをカスタマイズする場合は、`ThemeProvider`コンポーネントを使用して、アプリケーションにテーマを挿入する必要があります。 ただし、これはオプションです。 Material-UIコンポーネントにはデフォルトのテーマが付属しています。
 
-`ThemeProvider`はReactのコンテキスト機能に依存して, テーマをコンポーネントに渡します。 そのため、`ThemeProvider`が、カスタマイズしようとしているコンポーネントの親であることを確認する必要があります。 詳細については、[ APIセクション](/styles/api/#themeprovider) をご覧ください。
+`ThemeProvider` relies on the [context feature of React](https://reactjs.org/docs/context.html) to pass the theme down to the components, so you need to make sure that `ThemeProvider` is a parent of the components you are trying to customize. 詳細については、[ APIセクション](/styles/api/#themeprovider) をご覧ください。
 
 ## テーマ構成変数(Theme configuration variables)
 
@@ -29,7 +29,7 @@
 
 ### カスタム変数
 
-When using Material-UI's theme with the [styling solution](/styles/basics/) or [any others](/guides/interoperability/#themeprovider). テーマに変数を追加すると、どこでも使用できるので便利です。 例えば：
+When using Material-UI's theme with the [styling solution](/styles/basics/) or [any others](/guides/interoperability/#themeprovider), it can be convenient to add additional variables to the theme so you can use them everywhere. 例えば：
 
 {{"demo": "pages/customization/theming/CustomStyles.js"}}
 
@@ -193,8 +193,18 @@ function Fade() {
 
 #### 例
 
-```js import { unstable_createMuiStrictModeTheme } from '@material-ui/core/styles';
+```js
+import { unstable_createMuiStrictModeTheme } from '@material-ui/core/styles';
 
 const theme = unstable_createMuiStrictModeTheme();
 
-function App() { return ( <React.StrictMode> <ThemeProvider theme={theme}> <LandingPage /> </ThemeProvider> </React.StrictMode>, ); } ````
+function App() {
+  return (
+    <React.StrictMode>
+      <ThemeProvider theme={theme}>
+        <LandingPage />
+      </ThemeProvider>
+    </React.StrictMode>,
+  );
+}
+```

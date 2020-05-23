@@ -1,5 +1,5 @@
 ---
-title: Rating React component
+title: 评分 React 组件
 components: Rating
 ---
 
@@ -23,9 +23,9 @@ components: Rating
 
 {{"demo": "pages/components/rating/HoverRating.js"}}
 
-## Half ratings
+## 半个评分
 
-这种评分组件可以展示任何浮点数字。此功能可通过 `value` 属性实现。 您可以使用 `precision` 属性定义最小步进值。
+这种评分组件可以展示任何浮点数。此功能可通过 `value` 属性实现。 您可以使用 `precision` 属性定义最小步进值。
 
 {{"demo": "pages/components/rating/HalfRating.js"}}
 
@@ -41,5 +41,5 @@ components: Rating
 
 这个组件的可访问性依赖于：
 
-- A radio group is used with its fields visually hidden. It contains six radio buttons, one for each star and another for 0 stars, which is checked by default. Make sure you are providing a `name` prop that is unique to the parent form.
+- 使用 radio group 时，其字段在视觉上是隐藏的。 它包含六个单选按钮，其中五个用于每个评分等级，另一个用于"显示" 0 个评分，其默认情况下处于选中状态。 确保您提供的 `name` prop 在父表单中唯一。
 - 单选按钮的标签需要包含确切的文本（“一星”，“两星”，…）。当页面的语言不是英文时，请使用 `getLabelText` 这一属性。

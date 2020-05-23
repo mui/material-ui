@@ -1,4 +1,4 @@
-# Alterações
+# Histórico de Mudanças
 
 <p class="description">Material-UI segue a Semântica de controle de versão 2.0.0.</p>
 

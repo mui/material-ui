@@ -187,7 +187,7 @@ You don't have to worry about CSS specificity as the inline-style takes preceden
 
 {{"demo": "pages/customization/components/InlineStyle.js"}}
 
-[When should I use inline-style vs classes?](/getting-started/faq/#when-should-i-use-inline-style-vs-classes)
+[When should I use inline-style vs classes?](/getting-started/faq/#when-should-i-use-inline-style-vs-css)
 
 ## 2. Variación dinámica para una situación única
 

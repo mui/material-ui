@@ -37,6 +37,8 @@ Select 组件的设计原理是和一个原生的 `<select>` 元素能够互相�
 
 {{"demo": "pages/components/selects/CustomizedSelects.js"}}
 
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/select).
+
 ## 多重选择
 
 `Select` 组件也支持多项选择。 使用 `multiple` 属性，就能启用多选功能。
@@ -51,7 +53,7 @@ Select 组件的设计原理是和一个原生的 `<select>` 元素能够互相�
 
 ## 与对话框组件（Dialog）一起使用
 
-尽管 Material Design 的不鼓励这样使用，您仍然可以在对话框组件内使用一个选择器。
+虽然Material Design的规范不鼓励，但您可以在对话框组件中使用选择。
 
 {{"demo": "pages/components/selects/DialogSelect.js"}}
 

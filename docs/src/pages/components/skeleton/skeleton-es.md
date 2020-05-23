@@ -3,7 +3,7 @@ title: Skeleton React component
 components: Skeleton
 ---
 
-# Skeleton
+# Esqueleto
 
 <p class="description">Display a placeholder preview of your content before the data gets loaded to reduce load-time frustration.</p>
 
@@ -38,3 +38,27 @@ By default, the skeleton pulsate, but you can change the animation for a wave or
 ## Facebook example
 
 {{"demo": "pages/components/skeleton/Facebook.js", "defaultCodeOpen": false, "bg": true}}
+
+## Inferring dimensions
+
+In addition to accepting `width` and `height` props, the component can also infer the dimensions.
+
+It works well when it comes to typography as its height is set using `em` units.
+
+```jsx
+<Typography variant="h1">
+  {loading ? <Skeleton /> : 'h1'}
+</Typography>
+```
+
+{{"demo": "pages/components/skeleton/SkeletonTypography.js", "defaultCodeOpen": false}}
+
+But when it comes to other components, you may not want to repeat the width and height. In these instances, you can pass `children` and it will infer its width and height from them.
+
+```jsx
+loading
+  ? <Skeleton><Avatar /></Skeleton>
+  : <Avatar src={data.avatar} />
+```
+
+{{"demo": "pages/components/skeleton/SkeletonChildren.js", "defaultCodeOpen": false}}

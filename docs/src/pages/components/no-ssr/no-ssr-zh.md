@@ -1,28 +1,28 @@
 ---
-title: 没有SSR React组件
+title: 非SSR React组件
 components: NoSsr
 ---
 
-# No SSR 没有
+# No SSR 非SSR
 
-<p class="description">NoSsr故意从服务器端渲染（SSR）主题中删除组件。</p>
+<p class="description">NoSsr 故意在服务器端渲染（SSR）模式中删除组件。</p>
 
 该组件可用于各种情况：
 
-- 逃避破坏依赖性的孵化不支持SSR。
+- 对于不支持SSR的依赖项进行语义填充。
 - 通过仅在首屏上呈现来改善客户端上的首次绘制时间。
 - 减少服务器上的渲染时间。
 - 在过重的服务器负载下，您可以打开服务降级。
-- 仅通过渲染重要内容（使用 `defer` 属性）来改善交互时间。
+- 通过仅渲染重要内容（使用 `defer` 属性）来改善交互时间。
 
-## 客户方推迟
+## 客户端推迟
 
 {{"demo": "pages/components/no-ssr/SimpleNoSsr.js"}}
 
 ## 帧推迟
 
-In it's core, the NoSsr component purpose is to **defer rendering**. As it's illustrated in the previous demo, you can use it to defer the rendering from the server to the client.
+在其核心中，NoSr 组件的目的是 **推迟渲染**。 正如在前一个演示中所展示的那样，您可以使用它来将渲染从服务器推迟到客户端。
 
-But you can also use it to defer the rendering within the client itself. You can **wait a screen frame** with the `defer` property to render the children. React does [2 commits](https://reactjs.org/docs/strict-mode.html#detecting-unexpected-side-effects) instead of 1.
+但你也可以使用它来推迟客户端的渲染。 您可以使用 `defer` 属性来 **等待一个屏幕帧** 后渲染子组件。 React 会做 [2 次提交](https://reactjs.org/docs/strict-mode.html#detecting-unexpected-side-effects) 而不是 1 次。
 
 {{"demo": "pages/components/no-ssr/FrameDeferring.js"}}

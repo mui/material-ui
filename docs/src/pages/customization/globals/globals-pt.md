@@ -25,6 +25,32 @@ const theme = createMuiTheme({
 
 A lista desses pontos de customização de cada componente está documentada na seção **API do componente**. Por exemplo, você pode dar uma olhada no [Botão](/api/button/#css). Alternativamente, você pode sempre dar uma olhada na [implementação](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Button/Button.js).
 
+## CSS global
+
+Se você estiver usando o componente [CssBaseline](/components/css-baseline/) para aplicar o reset global, ele pode também ser usado para aplicação de estilos globais. Por exemplo:
+
+```jsx
+const theme = createMuiTheme({
+  overrides: {
+    MuiCssBaseline: {
+      '@global': {
+        html: {
+          WebkitFontSmoothing: 'auto',
+        },
+      },
+    },
+  },
+});
+
+// ...
+return (
+  <ThemeProvider theme={theme}>
+    <CssBaseline />
+    {children}
+  </ThemeProvider>
+);
+```
+
 ## Propriedades padrão
 
 Você pode alterar as propriedades padrão de todos os componentes de Material-UI. A chave `props` é exposta no `theme` para este caso de uso.

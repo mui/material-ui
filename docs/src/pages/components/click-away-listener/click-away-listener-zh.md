@@ -16,18 +16,18 @@ components: ClickAwayListener
 
 {{"demo": "pages/components/click-away-listener/ClickAway.js"}}
 
-请注意，该组件仅接受一个子元素。 You can find a more advanced demo on the [Menu documentation section](/components/menus/#menulist-composition).
+请注意，该组件仅接受一个子元素。 你可以在 [Menu 的文档部分](/components/menus/#menulist-composition) 找到更高级的样例。
 
 ## Portal
 
-The following demo uses [`Portal`](/components/portal/) to render the dropdown into a new "subtree" outside of current DOM hierarchy.
+下面的演示使用 [`Portal`](/components/portal/) 将下拉菜单渲染到当前DOM层次之外的新的“子树”。
 
 {{"demo": "pages/components/click-away-listener/PortalClickAway.js"}}
 
 ## Leading edge
 
-By default, the component responds to the trailing events (click + touch end). However, you can configure it to respond to the leading events (mouse down + touch start).
+默认情况下，组件响应尾随事件 (trailing events) (点击 + 触摸结束)。 然而，您可以配置它来应对主要事件(leading events) (鼠标按下 + 触摸开始)。
 
 {{"demo": "pages/components/click-away-listener/LeadingClickAway.js"}}
 
-> ⚠️ In this mode, only interactions on the scrollbar of the document is ignored.
+> ⚠️ 在此模式下，仅有文档对象的滚动条上 (the scrollbar of the document) 的交互被忽略。

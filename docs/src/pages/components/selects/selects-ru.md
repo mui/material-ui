@@ -37,6 +37,8 @@ components: Select, NativeSelect
 
 {{"demo": "pages/components/selects/CustomizedSelects.js"}}
 
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/select).
+
 ## Список с множественным выбором
 
 Компонент `Select` поддерживает множественный выбор. Он управляется свойством `multiple`.

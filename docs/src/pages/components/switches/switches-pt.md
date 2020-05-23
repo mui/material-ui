@@ -3,7 +3,7 @@ title: Componente React para Interruptores
 components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel
 ---
 
-# Switch (Interruptor)
+# Interruptor
 
 <p class="description">Interruptores alternam o estado de uma única configuração ligado ou desligado.</p>
 
@@ -31,6 +31,8 @@ Aqui esta um exemplo de customização do componente. Você pode aprender mais s
 
 {{"demo": "pages/components/switches/CustomizedSwitches.js"}}
 
+🎨 Se você está procurando inspiração, você pode verificar [os exemplos de customização de MUI Treasury](https://mui-treasury.com/styles/switch).
+
 ## Tamanhos
 
 Gosta de interruptores menores? Use a propriedade `size`.
@@ -50,7 +52,7 @@ Você pode alterar o posicionamento do rótulo:
 ## Acessibilidade
 
 - Ele irá renderizar um elemento com a regra de `checkbox` não `switch` pois esta regra não é amplamente suportada ainda. Por favor, teste primeiro se a tecnologia assistiva do seu público-alvo suporta essa regra corretamente. Em seguida, você pode alterar a regra com `<Switch inputProps={{ role: 'switch' }}>`
-- Todos os controles de formulário devem ter rótulos, e isso inclui os botões de opção, caixas de seleção e seletores. Na maioria dos casos, isso é feito usando o elemento `<label>` ([FormControlLabel](/api/form-control-label/)).
+- Todos os controles de formulário devem ter rótulos, e isso inclui os botões de opção, caixas de seleção e interruptores. Na maioria dos casos, isso é feito usando o elemento `<label>` ([FormControlLabel](/api/form-control-label/)).
 - Quando um rótulo não pode ser usado, é necessário adicionar um atributo diretamente no componente de entrada. Nesse caso você pode aplicar um atributo adicional (e.g.`aria-label`,`aria-labelledby`, `title`) através da propriedade `inputProps`.
 
 ```jsx

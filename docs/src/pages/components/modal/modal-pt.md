@@ -87,4 +87,4 @@ No entanto, isso é feito para fins de acessibilidade, e pode criar problemas. N
     ```
 
 - O [WAI-ARIA authoring practices ](https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/dialog.html) pode ajudá-lo a definir o foco inicial no elemento mais relevante, com base no seu conteúdo modal.
-- Uma janela modal sobrepõe a janela principal ou outra janela modal. As janelas sob um modal são **inertes**. Ou seja, os usuários não podem interagir com o conteúdo fora de uma janela modal ativa.
+- Esteja ciente que uma "janela modal" sobrepõe a janela primária ou qualquer outra janela modal. As janelas sob um modal são **inertes**. Ou seja, os usuários não podem interagir com o conteúdo fora de uma janela modal ativa. Isso pode criar [comportamentos conflitantes](#focus-trap).

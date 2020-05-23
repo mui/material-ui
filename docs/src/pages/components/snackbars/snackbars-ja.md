@@ -29,7 +29,7 @@ Google Keepのスナックバーの動作を再現することを目的とした
 
 ## 配置されたスナックバー
 
-スナックバーの配置をより柔軟にする必要がある場合があります。
+In wide layouts, snackbars can be left-aligned or center-aligned if they are consistently placed on the same spot at the bottom of the screen, however there may be circumstances where the placement of the snackbar needs to be more flexible. You can control the position of the snackbar by specifying the `anchorOrigin` prop.
 
 {{"demo": "pages/components/snackbars/PositionedSnackbar.js"}}
 

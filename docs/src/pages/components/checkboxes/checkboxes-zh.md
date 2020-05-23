@@ -35,9 +35,11 @@ components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 
 ## 自定义的多选框
 
-以下是自定义此组件的一个示例。 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
+以下是自定义此组件的一个示例。 您可以在[重写文档页面](/customization/components/)中了解更多有关此内容的信息。
 
 {{"demo": "pages/components/checkboxes/CustomizedCheckbox.js", "defaultCodeOpen": false}}
+
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/checkbox).
 
 ## 什么时候使用
 

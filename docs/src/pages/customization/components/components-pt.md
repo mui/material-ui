@@ -187,7 +187,7 @@ Você não precisa se preocupar com a especificidade do CSS, pois o estilo em li
 
 {{"demo": "pages/customization/components/InlineStyle.js"}}
 
-[Quando devo usar o estilo inline vs classes?](/getting-started/faq/#when-should-i-use-inline-style-vs-classes)
+[Quando devo usar o estilo inline vs classes?](/getting-started/faq/#when-should-i-use-inline-style-vs-css)
 
 ## 2. Variação dinâmica para uma situação única
 

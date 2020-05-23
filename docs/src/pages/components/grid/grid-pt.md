@@ -11,7 +11,7 @@ Uma [grade](https://material.io/design/layout/responsive-layout-grid.html) cria 
 
 ## Como funciona
 
-O sistema de grid é implementado com o componente `Grid`:
+O sistema de grade é implementado com o componente `Grid`:
 
 - Ele usa [CSS’s Flexible Box](https://www.w3.org/TR/css-flexbox-1/) para alta flexibilidade.
 - Existem dois tipos de leiautes: *contêineres* e *itens*.
@@ -29,7 +29,7 @@ Esta função de transformação de saída pode ser customizada [usando o tema](
 
 {{"demo": "pages/components/grid/SpacingGrid.js", "bg": true}}
 
-## Grades Fluídas
+## Grades fluídas
 
 As grades fluídas usam colunas que dimensionam e redimensionam o conteúdo. O leiaute de uma grade fluída pode usar pontos de quebra para determinar se o leiaute precisa mudar drasticamente.
 
@@ -39,7 +39,7 @@ As larguras de coluna se aplicam-se a todos os pontos de quebra (breakpoints) (i
 
 {{"demo": "pages/components/grid/CenteredGrid.js", "bg": true}}
 
-### Grade com pontos de interrupção (breakpoints)
+### Grade com pontos de quebra
 
 Algumas colunas têm várias larguras definidas, fazendo com que o leiaute seja alterado no ponto de interrupção definido.
 

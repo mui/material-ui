@@ -12,31 +12,32 @@
 - **Делитесь отзывами и предложениями**. Говорите, что у нас получается хорошо, а где можно и получше. Пожалуйста, плюсуйте (👍) тикеты, которые вам хотелось бы поскорее увидеть решёнными.
 - **Помогайте новичкам**. Поотвечайте на вопросы на [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui).
 - **Двигайте проект вперёд**. 
+  - Edit the documentation. Every page has an "EDIT THIS PAGE" link in the top right.
   - Присылайте багрепорты и фичреквесты [через тикеты](https://github.com/mui-org/material-ui/issues/new).
-  - Смотрите и комментируйте текущие [пулл-реквесты](https://github.com/mui-org/material-ui/pulls) и [тикеты](https://github.com/mui-org/material-ui/issues).
+  - Review and comment on existing [pull requests](https://github.com/mui-org/material-ui/pulls) and [issues](https://github.com/mui-org/material-ui/issues).
   - Помогите [перевести документацию](https://translate.material-ui.com).
-  - Правьте баги, вносите фичи и [улучшайте документацию](https://github.com/mui-org/material-ui/tree/master/docs) через [пулл-реквесты](https://github.com/mui-org/material-ui/pulls).
+  - [Improve our documentation](https://github.com/mui-org/material-ui/tree/master/docs), fix bugs, or add features by [submitting a pull request](https://github.com/mui-org/material-ui/pulls).
 - **Поддержите нас финансово на [OpenCollective](https://opencollective.com/material-ui)**. Если вы применяете Material-UI в коммерческих разработках и хотите спонсировать его дальнейшую развитие, или если это личный проект, и вы хотите сделать посильный вклад, вы можете воспользоваться OpenCollective. Мы открыто сообщаем, на что уходят пожертвования, а спонсорам достаётся упоминание в README и на главной странице Material-UI.
 
 ## Почему мои компоненты не отображаются корректно в продакшн-сборках?
 
-Скорее всего проблема возникает из-за конфликта имен классов, когда ваш код находится в продакшн пакете. Чтобы Material-UI работал, значения `className` всех компонентов на странице должны генерироваться одним экземпляром [генератора имен классов](/styles/advanced/#class-names).
+The #1 reason this likely happens is due to class name conflicts once your code is in a production bundle. Чтобы Material-UI работал, значения `className` всех компонентов на странице должны генерироваться одним экземпляром [генератора имен классов](/styles/advanced/#class-names).
 
-Чтобы исправить эту проблему, все компоненты на странице должны быть инициализированы так, чтобы между ними был только **один генератор имен классов**.
+To correct this issue, all components on the page need to be initialized such that there is only ever **one class name generator** among them.
 
 Два генератора имен классов вы можете получить в различных сценариях:
 
 - Вы случайно используете две версии Material-UI в **пакете**. Возможно, у вас есть зависимость, неправильно устанавливающая Material-UI в качестве одноранговой зависимости.
-- Вы используете `StylesProvider` для **подмножества** вашего Реактивного Дерева.
+- You are using `StylesProvider` for a **subset** of your React tree.
 - Вы используете сборщик, и он разбивает код таким образом, что создает несколько экземпляров генератора имен классов.
 
 > Если вы используете webpack с [SplitChunksPlugin](https://webpack.js.org/plugins/split-chunks-plugin/), попробуйте настроить [`runtimeChunk` в секции `optimizations`](https://webpack.js.org/configuration/optimization/#optimization-runtimechunk).
 
-В целом, можно легко справиться с этой проблемой, обернув каждое приложение Material-UI компонентом [`StylesProvider`](/styles/api/#stylesprovider) в корне их дерева компонентов **и используя один генератор имен классов, который совместно используется между ними**.
+Overall, it's simple to recover from this problem by wrapping each Material-UI application with [`StylesProvider`](/styles/api/#stylesprovider) components at the top of their component trees **and using a single class name generator shared among them**.
 
 ## Why do the fixed positioned elements move when a modal is opened?
 
-Scrolling is blocked as soon as a modal is opened. This prevents interacting with the background when the modal should be the only interactive content, however, removing the scrollbar can make your **fixed positioned elements** move. In this situation, you can apply a global `.mui-fixed` class name to tell Material-UI to handle those elements.
+Scrolling is blocked as soon as a modal is opened. This prevents interacting with the background when the modal should be the only interactive content. However, removing the scrollbar can make your **fixed positioned elements** move. In this situation, you can apply a global `.mui-fixed` class name to tell Material-UI to handle those elements.
 
 ## How can I disable the ripple effect globally?
 
@@ -58,7 +59,7 @@ const theme = createMuiTheme({
 
 ## Как я могу отключить transitions глобально?
 
-Material-UI uses the same theme helper for creating all its transitions. So you can disable all the transitions by overriding the helper in your theme:
+Material-UI uses the same theme helper for creating all its transitions. Therefore you can disable all transitions by overriding the helper in your theme:
 
 ```js
 import { createMuiTheme } from '@material-ui/core';
@@ -73,7 +74,7 @@ const theme = createMuiTheme({
 
 It can be useful to disable transitions during visual testing or to improve performance on low-end devices.
 
-You can go one step further by disabling all the transitions and animations effect:
+You can go one step further by disabling all transitions and animations effects:
 
 ```js
 import { createMuiTheme } from '@material-ui/core';
@@ -361,11 +362,13 @@ function App() {
 
 ## What's the clsx dependency for?
 
-[clsx](https://github.com/lukeed/clsx) is a tiny utility for constructing `className` strings conditionally.
+[clsx](https://github.com/lukeed/clsx) is a tiny utility for constructing `className` strings conditionally, out of an object with keys being the class strings, and values being booleans.
 
 Instead of writing:
 
 ```jsx
+// let disabled = false, selected = true;
+
 return (
   <div
     className={`MuiButton-root ${disabled ? 'Mui-disabled' : ''} ${selected ? 'Mui-selected' : ''}`}

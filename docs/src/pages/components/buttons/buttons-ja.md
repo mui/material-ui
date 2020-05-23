@@ -74,7 +74,7 @@ Outlined buttonは、Contained buttonと比べると強調が弱く、 Text butt
 
 {{"demo": "pages/components/buttons/CustomizedButtons.js", "defaultCodeOpen": false}}
 
-👑 インスピレーションを求めているなら, [MUI Treasury's customization examples](https://mui-treasury.com/styles/button)を確認できます。
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/button).
 
 ## 複雑なButton
 

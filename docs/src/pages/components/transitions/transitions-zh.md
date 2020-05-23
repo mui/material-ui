@@ -33,7 +33,7 @@ export default Main() {
 
 ## Collapse 折叠
 
-Expand vertically from the top of the child element. The `collapsedHeight` property can be used to set the minimum height when not expanded.
+从子元素顶部垂直扩展。 `collapsedHeight` 属性可以用于设置未扩展时的最小高度值。
 
 {{"demo": "pages/components/transitions/SimpleCollapse.js", "bg": true}}
 
@@ -53,9 +53,9 @@ Expand vertically from the top of the child element. The `collapsedHeight` prope
 
 ## Slide 滑动
 
-Slide in from the edge of the screen. The `direction` property controls which edge of the screen the transition starts from.
+从屏幕边缘滑入。 `direction` 属性控制从屏幕的哪一个边缘开始。
 
-The Transition component's `mountOnEnter` property prevents the child component from being mounted until `in` is `true`. 这可以保证相对上定位好的组件不会从屏幕外面的位置滚动到视图中。 同样的， 在组件从屏幕中过渡完后，`unmountOnExit` 属性将次组件从 DOM 中移除。
+过渡组件的 `mountOnEnter` 属性使子组件无法被挂载，直到 `in` 为 `true`。 这可以保证相对上定位好的组件不会从屏幕外面的位置滚动到视图中。 同样的， 在组件从屏幕中过渡完后，`unmountOnExit` 属性将次组件从 DOM 中移除。
 
 {{"demo": "pages/components/transitions/SimpleSlide.js", "bg": true}}
 
@@ -69,10 +69,10 @@ The Transition component's `mountOnEnter` property prevents the child component 
 
 ## TransitionComponent prop
 
-The components accept a `TransitionComponent` prop to customize the default transitions. You can use any of the above components or your own. It should respect the following conditions:
+这些组件接收 `TransitionComponent` prop 以自定义默认的过渡。 您可以使用上述的任何组件或者是您自己的组件。 它应遵守以下条件：
 
-- Accepts an `in` prop. This corresponds to the open/close state.
-- Call the `onEnter` callback prop when the enter transition starts.
-- Call the `onExited` callback prop when the exit transition is completed. These two callbacks allow to unmount the children when in a closed state and fully transitioned.
+- 在 prop 中应该有一个 `in` 属性。 这对应于 打开/关闭 状态。
+- 在进入过渡开始时调用 prop 中的 `onEnter` 回调。
+- 在退出过渡完成后调用 prop 中的 `onExited` 回调。 这两个回调允许在关闭并完全过渡 (when closed and fully transitioned) 时卸载子内容。
 
-For more information on creating a custom transition, visit the [React Transition Group Transition docs](http://reactcommunity.org/react-transition-group/transition).
+欲了解更多关于创建自定义过渡的信息，请访问 [React Transition Group Transition docs](http://reactcommunity.org/react-transition-group/transition)。

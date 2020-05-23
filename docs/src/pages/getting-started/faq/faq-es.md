@@ -12,31 +12,32 @@ There are many ways to support Material-UI:
 - **Give us feedback**. Tell us what we're doing well or where we can improve. Please upvote (👍) the issues that you are the most interested in seeing solved.
 - **Help new users**. You can answer questions on [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui).
 - **Make changes happen**. 
+  - Edit the documentation. Every page has an "EDIT THIS PAGE" link in the top right.
   - Report bugs or missing features by [creating an issue](https://github.com/mui-org/material-ui/issues/new).
-  - Reviewing and commenting on existing [pull requests](https://github.com/mui-org/material-ui/pulls) and [issues](https://github.com/mui-org/material-ui/issues).
+  - Review and comment on existing [pull requests](https://github.com/mui-org/material-ui/pulls) and [issues](https://github.com/mui-org/material-ui/issues).
   - Help [translate](https://translate.material-ui.com) the documentation.
-  - Fixing bugs, adding features, and [improving our documentation](https://github.com/mui-org/material-ui/tree/master/docs) by [submitting a pull request](https://github.com/mui-org/material-ui/pulls).
+  - [Improve our documentation](https://github.com/mui-org/material-ui/tree/master/docs), fix bugs, or add features by [submitting a pull request](https://github.com/mui-org/material-ui/pulls).
 - **Support us financially on [OpenCollective](https://opencollective.com/material-ui)**. If you use Material-UI in a commercial project and would like to support its continued development by becoming a Sponsor, or in a side or hobby project and would like to become a Backer, you can do so through OpenCollective. All funds donated are managed transparently, and Sponsors receive recognition in the README and on the Material-UI home page.
 
 ## ¿Por qué mis componentes no se están renderizando correctamente en las compilaciones de producción?
 
-Esto es probablemente un problema n°1 que ocurre debido a conflictos de nombre de clase una vez que su código está en un paquete de producción. Para que Material-UI funcione, los valores de `className` de todos los componentes en una página deben ser generados por una sola instancia del [generador de nombre de clase](/styles/advanced/#class-names).
+The #1 reason this likely happens is due to class name conflicts once your code is in a production bundle. Para que Material-UI funcione, los valores de `className` de todos los componentes en una página deben ser generados por una sola instancia del [generador de nombre de clase](/styles/advanced/#class-names).
 
-Para corregir este problema, todos los componentes en la página necesitan ser inicializado tal que solo hay **un generador de nombre de clase** entre ellos.
+To correct this issue, all components on the page need to be initialized such that there is only ever **one class name generator** among them.
 
 Usted podría terminar usando accidentalmente dos generadores de nombre de clase en una variedad de escenarios:
 
 - Usted accidentalmente **ata** dos versiones de Material-UI. Es posible que usted tenga una dependencia que no establece correctamente Material-UI como una dependencia en par.
-- Usted está usando `StylesProvider` para un **subconjunto** de su Árbol de React.
+- You are using `StylesProvider` for a **subset** of your React tree.
 - Usted está utilizando un agrupador que está dividiendo el código en una manera que crea múltiples instancias de generador de nombre de clase.
 
 > If you are using webpack with the [SplitChunksPlugin](https://webpack.js.org/plugins/split-chunks-plugin/), try configuring the [`runtimeChunk` setting under `optimizations`](https://webpack.js.org/configuration/optimization/#optimization-runtimechunk).
 
-Overall, it's simple to recover from this problem by wrapping each Material-UI application with [`StylesProvider`](/styles/api/#stylesprovider) components at the top of their component trees **and using a single class name generator shared between them**.
+Overall, it's simple to recover from this problem by wrapping each Material-UI application with [`StylesProvider`](/styles/api/#stylesprovider) components at the top of their component trees **and using a single class name generator shared among them**.
 
 ## ¿Por qué los elementos de posición fija se mueven cuando se abre un modal?
 
-Scrolling is blocked as soon as a modal is opened. This prevents interacting with the background when the modal should be the only interactive content, however, removing the scrollbar can make your **fixed positioned elements** move. In this situation, you can apply a global `.mui-fixed` class name to tell Material-UI to handle those elements.
+Scrolling is blocked as soon as a modal is opened. This prevents interacting with the background when the modal should be the only interactive content. However, removing the scrollbar can make your **fixed positioned elements** move. In this situation, you can apply a global `.mui-fixed` class name to tell Material-UI to handle those elements.
 
 ## How can I disable the ripple effect globally?
 
@@ -58,7 +59,7 @@ const theme = createMuiTheme({
 
 ## How can I disable transitions globally?
 
-Material-UI uses the same theme helper for creating all its transitions. So you can disable all the transitions by overriding the helper in your theme:
+Material-UI uses the same theme helper for creating all its transitions. Therefore you can disable all transitions by overriding the helper in your theme:
 
 ```js
 import { createMuiTheme } from '@material-ui/core';
@@ -73,7 +74,7 @@ const theme = createMuiTheme({
 
 It can be useful to disable transitions during visual testing or to improve performance on low-end devices.
 
-You can go one step further by disabling all the transitions and animations effect:
+You can go one step further by disabling all transitions and animations effects:
 
 ```js
 import { createMuiTheme } from '@material-ui/core';
@@ -361,11 +362,13 @@ function App() {
 
 ## What's the clsx dependency for?
 
-[clsx](https://github.com/lukeed/clsx) is a tiny utility for constructing `className` strings conditionally.
+[clsx](https://github.com/lukeed/clsx) is a tiny utility for constructing `className` strings conditionally, out of an object with keys being the class strings, and values being booleans.
 
 Instead of writing:
 
 ```jsx
+// let disabled = false, selected = true;
+
 return (
   <div
     className={`MuiButton-root ${disabled ? 'Mui-disabled' : ''} ${selected ? 'Mui-selected' : ''}`}
