@@ -51,7 +51,7 @@ export default function MyApp() {
 
 Os elementos `<html>` e `<body>` são atualizados para fornecer melhores padrões para toda a página. Mais especificamente:
 
-- The margin in all browsers is removed.
+- A margem é removida em todos navegadores.
 - A cor de fundo padrão do material design é aplicada. Isto usando [`theme.palette.background.default`](/customization/default-theme/?expand-path=$.palette.background) para dispositivos padrão e um fundo branco para dispositivos de impressão.
 
 ### Leiaute
@@ -63,4 +63,8 @@ Os elementos `<html>` e `<body>` são atualizados para fornecer melhores padrõe
 - Nenhum tamanho de fonte base é declarado no `<html>`, mas 16px é assumido (o padrão do navegador). Você pode aprender mais sobre as implicações da mudança do padrão de tamanho de fonte do `<html>` na página de [documentação de tema](/customization/typography/#typography-html-font-size).
 - Define o estilo `theme.typography.body2` no elemento `<body>`.
 - Define o font-weight no `theme.typography.fontWeightBold` para elementos `<b>` e `<strong>`.
-- O antialiasing de fonte é habilitado para melhorar a exibição da fonte Roboto.
+- Uma customização da suavização da fonte (font-smoothing) é ativada para melhor exibição da fonte Roboto.
+
+## Customização
+
+Vá até a seção de [customização global](/customization/globals/#global-css) da documentação para alterar o comportamento desses componentes.

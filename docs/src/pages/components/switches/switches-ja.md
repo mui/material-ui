@@ -31,6 +31,8 @@ components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel
 
 {{"demo": "pages/components/switches/CustomizedSwitches.js"}}
 
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/switch).
+
 ## サイズ
 
 小型のスイッチが好きですか？ `size`プロパティを使用します。

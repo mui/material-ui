@@ -51,4 +51,4 @@ Aqui está um exemplo de um controle de mídia do cartão.
 
 ## Customização
 
-👑 Se você está procurando inspiração, você pode verificar [os exemplos de customização de MUI Treasury](https://deprecate.mui-treasury.com/components/card).
+🎨 Se você está procurando inspiração, você pode verificar [os exemplos de customização de MUI Treasury](https://mui-treasury.com/components/card).

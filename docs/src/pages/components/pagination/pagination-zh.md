@@ -53,12 +53,22 @@ import { usePagination } from '@material-ui/lab/Pagination';
 
 {{"demo": "pages/components/pagination/UsePagination.js"}}
 
+## Table pagination
+
+The `Pagination` component was designed to paginate a list of arbitrary items when infinite loading isn't used. It's preferred in contexts where SEO is important, for instance, a blog.
+
+For the pagination of a large set of tabular data, you should use the `TablePagination` component.
+
+{{"demo": "pages/components/pagination/TablePagination.js"}}
+
+You can learn more about this use case in the [table section](/components/tables/#custom-pagination-options) of the documentation.
+
 ## 可访问性
 
 ### ARIA
 
-默认情况下，根节点具有“导航”和aria-label“分页导航”的作用。 页面项目均具有aria-label，用于标识项目的用途（“转至首页”、“转至上一页”、“转到第1页”等）。 可以使用`getItemAriaLabel`属性改写这些值。
+默认情况下，根节点具有“导航”和aria-label“分页导航”的作用。 页面项目具有一个aria-label，用于标识项目的用途（“转到第一页”，“转到上一页”，“转到页面1”等）。 你可以使用 `getItemAriaLabel`属性来覆盖它们。
 
 ### 键盘
 
-分页项目按Tab键次序排列，tabindex为“0”。
+分页项目按标签顺序排列，标签索引为“0”。

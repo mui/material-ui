@@ -1,5 +1,5 @@
 ---
-title: Skeleton React component
+title: 骨架屏 React 组件
 components: Skeleton
 ---
 
@@ -7,7 +7,7 @@ components: Skeleton
 
 <p class="description">骨架屏可以在获取到数据之前显示一个预览占位符，从而减轻由加载时间造成的困扰。</p>
 
-当组件需要的数据或许无法立即获取时， 你就可以使用骨架屏来提升用户观感上的表现。 就好像能够感觉到事情马上就要发生了，然后信息再逐步的显示在屏幕上(Cf. [Avoid The Spinner](https://www.lukew.com/ff/entry.asp?1797))。
+当组件需要的数据或许无法立即获取时， 你就可以使用骨架屏来提升用户观感上的表现。 就好像能够感觉到事情马上就要发生了，然后信息在逐步的显示在屏幕上(Cf. [Avoid The Spinner](https://www.lukew.com/ff/entry.asp?1797))。
 
 这个组件可以**直接在你的组件中**使用。 就像这样：
 
@@ -21,13 +21,13 @@ components: Skeleton
 
 ## 变种
 
-The component supports 3 shape variants.
+该组件支持 3 个形状变体 (shape variants)。
 
 {{"demo": "pages/components/skeleton/Variants.js"}}
 
-## Animations
+## 动画
 
-By default, the skeleton pulsate, but you can change the animation for a wave or disable it entirely.
+默认情况下，骨骼使用 "pulsate"，但是您可以更改为 "wave" 动画或完全禁用它。
 
 {{"demo": "pages/components/skeleton/Animations.js"}}
 
@@ -38,3 +38,27 @@ By default, the skeleton pulsate, but you can change the animation for a wave or
 ## Facebook 示例
 
 {{"demo": "pages/components/skeleton/Facebook.js", "defaultCodeOpen": false, "bg": true}}
+
+## Inferring dimensions
+
+In addition to accepting `width` and `height` props, the component can also infer the dimensions.
+
+It works well when it comes to typography as its height is set using `em` units.
+
+```jsx
+<Typography variant="h1">
+  {loading ? <Skeleton /> : 'h1'}
+</Typography>
+```
+
+{{"demo": "pages/components/skeleton/SkeletonTypography.js", "defaultCodeOpen": false}}
+
+But when it comes to other components, you may not want to repeat the width and height. In these instances, you can pass `children` and it will infer its width and height from them.
+
+```jsx
+loading
+  ? <Skeleton><Avatar /></Skeleton>
+  : <Avatar src={data.avatar} />
+```
+
+{{"demo": "pages/components/skeleton/SkeletonChildren.js", "defaultCodeOpen": false}}

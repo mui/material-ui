@@ -12,31 +12,32 @@
 - **给我们反馈** 。 告诉我们我们做得好或可以改进的地方。 请投票（👍）您最想解决的问题。
 - **帮助新用户** 。 您可以在 [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui) 中回答问题
 - **Make changes happen**. 
+  - Edit the documentation. Every page has an "EDIT THIS PAGE" link in the top right.
   - 通过[创建问题](https://github.com/mui-org/material-ui/issues/new)来报告错误或缺少的功能 。
-  - Reviewing and commenting on existing [pull requests](https://github.com/mui-org/material-ui/pulls) and [issues](https://github.com/mui-org/material-ui/issues).
+  - Review and comment on existing [pull requests](https://github.com/mui-org/material-ui/pulls) and [issues](https://github.com/mui-org/material-ui/issues).
   - 帮忙[翻译文档](https://translate.material-ui.com)
-  - 修复bug，添加功能，通过[提交拉取请求](https://github.com/mui-org/material-ui/pulls)，以及[改进我们的文档](https://github.com/mui-org/material-ui/tree/master/docs)。
+  - [Improve our documentation](https://github.com/mui-org/material-ui/tree/master/docs), fix bugs, or add features by [submitting a pull request](https://github.com/mui-org/material-ui/pulls).
 - **在[OpenCollective](https://opencollective.com/material-ui)**上资助我们。 如果您在商业项目中使用了Material-UI，并希望通过成为我们的赞助商</0 >来支持我们的持续发展，或者您一个业余项目或者爱好项目，并想成为我们的支持者， 您都可以通过OpenCollective实现。 筹集的所有资金都是透明管理的，赞助商在README和Material-UI主页上获得认可。
 
 ## 为什么我的组件在生产版本中没有正确地渲染？
 
-这样一个n°1问题很可能是当你的代码在生产模式下 bundle （打包）后，有一些class name（类名称）会产生冲突。 如果想要 Material-UI 正常工作, 页面上所有组件的 `classname` 值必须由 [类名称生成器](/styles/advanced/#class-names) 的单个实例生成。
+The #1 reason this likely happens is due to class name conflicts once your code is in a production bundle. 如果想要 Material-UI 正常工作, 页面上所有组件的 `classname` 值必须由 [类名称生成器](/styles/advanced/#class-names) 的单个实例生成。
 
-若要更正此问题, 需要初始化页面上的所有组件, 以便它们之间只有 **1个类名称生成器 **。
+To correct this issue, all components on the page need to be initialized such that there is only ever **one class name generator** among them.
 
 在很多情况下，您可能最终会意外地使用两个类名生成器：
 
 - 比如你一不小心 **打包**了 两个版本的 Material-UI。 你可能错误地将一个依赖和 material-ui 设置为同版本依赖了。
-- 对于你的React Tree（React树控件）而言，你在使用`StylesProvider`构建**subset（分支）**。
+- You are using `StylesProvider` for a **subset** of your React tree.
 - 您正在使用打包的代码分割功能，这会生成多个 class 名字
 
 > 如果你正使用带有[SplitChunksPlugin](https://webpack.js.org/plugins/split-chunks-plugin/) 的webpack，请尝试在[`优化项(optimizations)`下配置 `runtimeChunk`](https://webpack.js.org/configuration/optimization/#optimization-runtimechunk) 。
 
-总的来说，通过在其组件树顶部的[`StylesProvider`](/styles/api/#stylesprovider)来包装每个 Material-UI 应用程序，**并且在他们之间使用单个类名称生成器**，能够简单地解决这个问题。
+Overall, it's simple to recover from this problem by wrapping each Material-UI application with [`StylesProvider`](/styles/api/#stylesprovider) components at the top of their component trees **and using a single class name generator shared among them**.
 
 ## 为什么当打开Modal（模态框）时，fixed positioned（位置固定的）元素会移动？
 
-当Modal（模态框）打开时，滚动会被禁止。 当模态框是唯一可交互的内容时，会阻止与背景交互，然而，移除滚动条可以恢复**fixed positioned(固定位置的) 元素**的移动。 在这种情况下，您可以应用全局`.mui-fixed`类名称来告知 Material-UI 来处理这些元素。
+当Modal（模态框）打开时，滚动会被禁止。 This prevents interacting with the background when the modal should be the only interactive content. However, removing the scrollbar can make your **fixed positioned elements** move. 在这种情况下，您可以应用全局`.mui-fixed`类名称来告知 Material-UI 来处理这些元素。
 
 ## 如何在全局禁用 ripple effect（涟漪效果）？
 
@@ -58,7 +59,7 @@ const theme = createMuiTheme({
 
 ## 如何禁用全局transition
 
-Material-UI uses the same theme helper for creating all its transitions. So you can disable all the transitions by overriding the helper in your theme:
+Material-UI uses the same theme helper for creating all its transitions. Therefore you can disable all transitions by overriding the helper in your theme:
 
 ```js
 import { createMuiTheme } from '@material-ui/core';
@@ -73,7 +74,7 @@ const theme = createMuiTheme({
 
 It can be useful to disable transitions during visual testing or to improve performance on low-end devices.
 
-You can go one step further by disabling all the transitions and animations effect:
+You can go one step further by disabling all transitions and animations effects:
 
 ```js
 import { createMuiTheme } from '@material-ui/core';
@@ -361,11 +362,13 @@ function App() {
 
 ## clsx 依赖什么？
 
-[clsx](https://github.com/lukeed/clsx) is a tiny utility for constructing `className` strings conditionally.
+[clsx](https://github.com/lukeed/clsx) is a tiny utility for constructing `className` strings conditionally, out of an object with keys being the class strings, and values being booleans.
 
 Instead of writing:
 
 ```jsx
+// let disabled = false, selected = true;
+
 return (
   <div
     className={`MuiButton-root ${disabled ? 'Mui-disabled' : ''} ${selected ? 'Mui-selected' : ''}`}

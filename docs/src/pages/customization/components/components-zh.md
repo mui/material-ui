@@ -187,7 +187,7 @@ const styles = {
 
 {{"demo": "pages/customization/components/InlineStyle.js"}}
 
-[我什么时候应该使用内联式vs类？](/getting-started/faq/#when-should-i-use-inline-style-vs-classes)
+[我什么时候应该使用内联式vs类？](/getting-started/faq/#when-should-i-use-inline-style-vs-css)
 
 ## 2。 一次性使用的动态变体
 

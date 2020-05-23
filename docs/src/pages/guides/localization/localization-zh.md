@@ -23,6 +23,10 @@ const theme = createMuiTheme({
 </ThemeProvider>
 ```
 
+### 示例
+
+{{"demo": "pages/guides/localization/Locales.js", "defaultCodeOpen": false}}
+
 ### 支持的语言环境
 
 | 地区          | BCP 47 语言标签 | 导入名称   |
@@ -65,10 +69,6 @@ const theme = createMuiTheme({
 要创建自己的翻译，或自定义英文文本，请将此文件复制到您的项目中，进行所需的任何更改并从那里导入语言环境。
 
 Please do consider contributing new translations back to Material-UI by opening a pull request. However, Material-UI aims to support the [100 most popular locales](https://en.wikipedia.org/wiki/List_of_languages_by_number_of_native_speakers), we might not accept contributions for locales that are not frequently used, for instance `gl-ES` that has "only" 2.5 million native speakers.
-
-### 示例
-
-{{"demo": "pages/guides/localization/Locales.js", "defaultCodeOpen": false}}
 
 ## RTL 支持
 

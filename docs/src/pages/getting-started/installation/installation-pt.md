@@ -1,6 +1,6 @@
 # Instalação
 
-<p class="description">Instale o Material-UI, o framework React UI mais popular do mundo.</p>
+<p class="description">Instale o Material-UI, a biblioteca de componentes React UI mais popular do mundo.</p>
 
 O Material-UI está disponível como um [pacote do npm](https://www.npmjs.com/package/@material-ui/core).
 
@@ -20,7 +20,7 @@ Note que o pacote possui 2 dependências obrigatórias: [react](https://www.npmj
 
 ## Fonte Roboto
 
-O Material-UI foi desenvolvido com base na fonte [Roboto](https://fonts.google.com/specimen/Roboto). Portanto, certifique-se de seguir as [estas instruções](/components/typography/#general) para obtê-la. Por exemplo, instale-a através do Google Web Fonts:
+O Material-UI foi desenvolvido com base na fonte [Roboto](https://fonts.google.com/specimen/Roboto). Portanto, certifique-se de seguir [estas instruções](/components/typography/#general) para carregá-la. Como alternativa, carregue através do Google Web Fonts:
 
 ```html
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
@@ -28,7 +28,7 @@ O Material-UI foi desenvolvido com base na fonte [Roboto](https://fonts.google.c
 
 ## Ícones
 
-Para utilizar o componente de fonte `Icon`, você deve primeiro adicionar o pacote da fonte [Material icons](https://material.io/tools/icons/). Aqui estão [ algumas instruções ](/components/icons/#font-icons) sobre como fazer isso. Por exemplo, instale-a através do Google Web Fonts:
+Para utilizar o componente de fonte `Icon`, você deve primeiro adicionar a fonte [Material icons](https://material.io/tools/icons/). Aqui estão [ algumas instruções ](/components/icons/#font-icons) sobre como fazer isso. Como alternativa, carregue através do Google Web Fonts:
 
 ```html
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />

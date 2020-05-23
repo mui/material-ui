@@ -51,4 +51,4 @@ Hier ist ein Beispiel für eine Mediensteuerungskarte.
 
 ## Individuelle Anpassung
 
-👑 Wenn Sie nach Inspiration suchen, sehen sie sich [MUI Treasury's Anpassungs-Beispiele](https://deprecate.mui-treasury.com/components/card) an.
+🎨 Wenn Sie nach Inspiration suchen, sehen sie sich [MUI Treasury's Anpassungs-Beispiele](https://mui-treasury.com/components/card) an.

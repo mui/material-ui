@@ -37,6 +37,8 @@ components: Select, NativeSelect
 
 {{"demo": "pages/components/selects/CustomizedSelects.js"}}
 
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/select).
+
 ## 複数選択
 
 `Select` コンポーネントは、複数の選択を処理できます。 `multiple` プロパティで有効になります。

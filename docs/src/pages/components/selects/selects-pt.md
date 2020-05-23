@@ -37,6 +37,8 @@ O primeiro passo é modelar o componente `InputBase`. Uma vez estilizado, você 
 
 {{"demo": "pages/components/selects/CustomizedSelects.js"}}
 
+🎨 Se você está procurando inspiração, você pode verificar [os exemplos de customização de MUI Treasury](https://mui-treasury.com/styles/select).
+
 ## Seleção Múltipla
 
 O componente `Select` pode lidar com várias seleções. É ativado com a propriedade `multiple`.

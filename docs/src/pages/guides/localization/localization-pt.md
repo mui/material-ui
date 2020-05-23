@@ -1,6 +1,6 @@
 # Localização
 
-<p class="description">Localização (também referida como "l10n") é o processo de adaptação de um produto ou conteúdo a uma localidade ou mercado específico.</p>
+<p class="description">Localização (também referida como "l10n") é o processo de adaptação de um produto ou conteúdo a um idioma ou mercado específico (localidade).</p>
 
 A localidade padrão do Material-UI é em inglês (Estados Unidos). Se você quiser usar outras localidades, siga as instruções abaixo.
 
@@ -22,6 +22,10 @@ const theme = createMuiTheme({
   <App />
 </ThemeProvider>
 ```
+
+### Exemplo
+
+{{"demo": "pages/guides/localization/Locales.js", "defaultCodeOpen": false}}
 
 ### Localidades suportadas
 
@@ -65,10 +69,6 @@ Você pode [encontrar o fonte](https://github.com/mui-org/material-ui/blob/maste
 Para criar sua própria tradução, ou para personalizar o texto em Inglês. copie este arquivo para o seu projeto, faça as alterações necessárias e importe a localidade de lá.
 
 Por favor, considere contribuir com novas traduções de volta para o Material-UI abrindo uma pull request. No entanto, o Material-UI visa suportar as [100 localidades mais populares](https://en.wikipedia.org/wiki/List_of_languages_by_number_of_native_speakers), nós podemos não aceitar contribuições para localidades que não são frequentemente usadas, por exemplo `gl-ES` que tem "apenas" 2. milhões de falantes nativos.
-
-### Exemplo
-
-{{"demo": "pages/guides/localization/Locales.js", "defaultCodeOpen": false}}
 
 ## Suporte RTL
 

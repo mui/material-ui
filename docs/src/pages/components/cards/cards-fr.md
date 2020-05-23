@@ -51,4 +51,4 @@ Voici un exemple de carte de contrôle multimédia.
 
 ## Personnalisation
 
-👑 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://deprecate.mui-treasury.com/components/card).
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/components/card).

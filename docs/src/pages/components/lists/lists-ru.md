@@ -95,4 +95,4 @@ The use of [react-window](https://github.com/bvaughn/react-window) when possible
 
 ## Кастомизация
 
-Если вам нужно вдохновение обратитве внимание на библиотеку компонентов [MUI Treasury](https://mui-treasury.com/styles/list-item).
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/list-item).

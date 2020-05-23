@@ -59,7 +59,7 @@ Se você pretende usar este modo para uma [caixa de combo](#combo-box), por expe
 
 - `selectOnFocus` para ajudar o usuário a limpar o valor selecionado.
 - `clearOnBlur` para ajudar o usuário a digitar um novo valor.
-- `handleHomeEndKeys` to move focus inside the popup with the <kbd>Home</kbd> and <kbd>End</kbd> keys.
+- `handleHomeEndKeys` para mover o foco dentro do popup com as teclas <kbd>Home</kbd> e <kbd>End</kbd>.
 - Adicione uma última opção para indicar a possibilidade de adição, por exemplo `Adicionar "SUA PESQUISA"`.
 
 {{"demo": "pages/components/autocomplete/FreeSoloCreateOption.js"}}
@@ -230,10 +230,6 @@ No entanto, além de relembrar valores fornecidos anteriormente, o navegador tam
 ### iOS VoiceOver
 
 VoiceOver no Safari do iOS não suporta o atributo `aria-owns` muito bem. Você pode contornar o problema com a propriedade `disablePortal`.
-
-### TypeScript
-
-Para tirar o máximo de proveito da inferência de tipos, você precisa definir a propriedade `multiple` para `undefined`, `false` ou `true`. Veja [esta discussão](https://github.com/mui-org/material-ui/pull/18854#discussion_r364215153) para maiores detalhes. TypeScript poderá resolver este problema no futuro.
 
 ### ListboxComponent
 

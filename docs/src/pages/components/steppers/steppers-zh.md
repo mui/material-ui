@@ -42,7 +42,7 @@ components: MobileStepper, Step, StepButton, StepConnector, StepContent, StepIco
 
 此示例类似于常规的水平步进器，但步骤不再基于` activeStep `属性自动设置` disabled = {true} `。
 
-The use of the `StepButton` here demonstrates clickable step labels, as well as setting the `completed` flag. However because steps can be accessed in a non-linear fashion, it's up to your own implementation to determine when all steps are completed (or even if they need to be completed).
+在这里使用 `StepButton` 演示了一个可单击的步进器标签，并且设置了 `completed` 标志。 但是，由于可以以非线性方式访问每个步骤，因此需要由您自己的实现来确定何时完成所有步骤（甚至是是否需要完成）。
 
 {{"demo": "pages/components/steppers/HorizontalNonLinearStepper.js", "bg": true}}
 
@@ -66,7 +66,7 @@ The use of the `StepButton` here demonstrates clickable step labels, as well as 
 
 ### Text
 
-This is essentially a back/next button positioned correctly. You must implement the textual description yourself, however, an example is provided below for reference.
+本质上，这是一个被正确定位的 back/next 按钮。 您必须自己实现文本描述，但是，下面提供了一个参考示例。
 
 {{"demo": "pages/components/steppers/TextMobileStepper.js", "bg": true}}
 

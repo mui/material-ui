@@ -1,12 +1,12 @@
 # Tipografía
 
-<p class="description">The theme provides a set of type sizes that work well together, and also with the layout grid.</p>
+<p class="description">El tema provee un conjunto de tipados que funcionan bien juntos y tambien con la capa de grid.</p>
 
-## Font family
+## Familia de fuente
 
-You can change the font family with the `theme.typography.fontFamily` property.
+Puedes Cambiar la familia de fuente con la propiedad `theme.typography.fontFamily`.
 
-For instance, this demo uses the system font instead of the default Roboto font:
+Para instanciar, este demo usa el sistema de fuente en vez de la fuente por defecto Roboto:
 
 ```js
 const theme = createMuiTheme({
@@ -27,11 +27,11 @@ const theme = createMuiTheme({
 });
 ```
 
-### Self-hosted fonts
+### Fuentes auto hospedadas en local
 
-To self-host fonts, download the font files in `ttf`, `woff`, and/or `woff2` formats and import them into your code.
+Para fuentes auto-hospedadas, descargue los archivos de fuente en `ttf`, `woff`, and/or `woff2` añada el formato e importelo dentro de su código.
 
-⚠️ This requires that you have a plugin or loader in your build process that can handle loading `ttf`, `woff`, and `woff2` files. Fonts will *not* be embedded within your bundle. They will be loaded from your webserver instead of a CDN.
+⚠️ This requires that you have a plugin or loader in your build process that can handle loading `ttf`, `woff`, and `woff2` files. Las fuentes no podran ser empotradas dentro de su bundle. Estas se podrán cargar desde su servidor en vez de servirlas desde un CDN.
 
 ```js
 import RalewayWoff2 from './fonts/Raleway-Regular.woff2';
@@ -51,7 +51,7 @@ const raleway = {
 };
 ```
 
-Next, you need to change the theme to use this new font. In order to globally define Raleway as a font face, the [`CssBaseline`](/components/css-baseline/) component can be used (or any other CSS solution of your choice).
+Luego, usted podrá lo necesario en el cambiar el tema para usar la nueva fuente. En aras de definir de forma global como una cara de fuente, el componente [`CssBaseline`](/components/css-baseline/) podra ser usado (o cualquier otra solucion CSS de su eleccion).
 
 ```jsx
 const theme = createMuiTheme({
@@ -78,9 +78,9 @@ return (
 
 ## Font size
 
-Material-UI uses `rem` units for the font size. The browser `<html>` element default font size is `16px`, but browsers have an option to change this value, so `rem` units allow us to accommodate the user's settings, resulting in a better accessibility support. Users change font size settings for all kinds of reasons, from poor eyesight to choosing optimum settings for devices that can be vastly different in size and viewing distance.
+Material-UI usa unidades `rem` para el tamaño de fuente. El navegador `<html>` element default font size is `16px`, pero navegadores tienen la opcion de cambiar este valor, asi que las unidades `rem` nos permitiran acomodar la configuracion del usuario, esto resultara en un mejor soporte de accesibilidad. Los Usuarios cambian el tamaño de fuente por diversas razones, desde la vista hasta elegir el tamaño optimo para dispositivos que pueden tener muchas diferencias entre la distancia de visión y el tamaño.
 
-To change the font-size of Material-UI you can provide a `fontSize` property. The default value is `14px`.
+Para cambiar el tamaño de fuente de Material-UI Puedes proveer una propiedad llamada `fontSize` . The default value is `14px`.
 
 ```js
 const theme = createMuiTheme({
@@ -98,9 +98,9 @@ The computed font size by the browser follows this mathematical equation:
 
 <!-- https://latex.codecogs.com/gif.latex?computed&space;=&space;specification&space;\frac{typography.fontSize}{14}&space;\frac{html&space;font&space;size}{typography.htmlFontSize} -->
 
-### Responsive font sizes
+### Tamaños de fuente responsivos
 
-The typography variants properties map directly to the generated CSS. You can use [media queries](/customization/breakpoints/#api) inside them:
+Las propeidades tipograficas variantes mapean dierctamente hacia el CSS generado. puedes usar [media queries](/customization/breakpoints/#api) dentro de ellos:
 
 ```js
 const theme = createMuiTheme();
@@ -118,11 +118,11 @@ theme.typography.h3 = {
 
 {{"demo": "pages/customization/typography/CustomResponsiveFontSizes.js"}}
 
-To automate this setup, you can use the [`responsiveFontSizes()`](/customization/theming/#responsivefontsizes-theme-options-theme) helper to make Typography font sizes in the theme responsive.
+Para automatizar el setup, puedes usar el ayudante [`responsiveFontSizes()`](/customization/theming/#responsivefontsizes-theme-options-theme) para convertir los tamaños de fuentes Tipográficas responsivas en el tema.
 
 {{"demo": "pages/customization/typography/ResponsiveFontSizesChart.js", "hideToolbar": true}}
 
-You can see this in action in the example below. adjust your browser's window size, and notice how the font size changes as the width crosses the different [breakpoints](/customization/breakpoints/):
+Puedes ver esto en acción en ejemplo debajo. adjust your browser's window size, and notice how the font size changes as the width crosses the different [breakpoints](/customization/breakpoints/):
 
 ```js
 import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';

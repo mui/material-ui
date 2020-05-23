@@ -63,4 +63,8 @@ The `<html>` and `<body>` elements are updated to provide better page-wide defau
 - Für das `<html>`-Element wird keine Basisschriftgröße deklariert, es wird jedoch von 16px ausgegangen (Standardeinstellung des Browsers). Sie können mehr über die Auswirkungen lernen von den sich ändernden `<html>` Standard - Schriftgröße auf [der Theme Dokumentation](/customization/typography/#typography-html-font-size) Seite.
 - Set the `theme.typography.body2` style on the `<body>` element.
 - Set the font-weight to `theme.typography.fontWeightBold` for the `<b>` and `<strong>` elements.
-- Das Antialiasing von Schriftarten ist aktiviert, um die Roboto-Schrift besser anzuzeigen.
+- Custom font-smoothing is enabled for better display of the Roboto font.
+
+## Individuelle Anpassung
+
+Head to the [global customization](/customization/globals/#global-css) section of the documentation to change the output of these components.
