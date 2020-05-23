@@ -24,7 +24,9 @@ export interface CalendarHeaderProps
   view: DatePickerView;
   views: DatePickerView[];
   currentMonth: MaterialUiPickersDate;
-  /** Get aria-label text for switching between views button */
+  /**
+   * Get aria-label text for switching between views button.
+   */
   getViewSwitchingButtonText?: (currentView: DatePickerView) => string;
   reduceAnimations: boolean;
   changeView: (view: DatePickerView) => void;

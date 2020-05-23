@@ -13,7 +13,7 @@ const defaultRangeRenderInput = (startProps: TextFieldProps, endProps: TextField
 );
 
 describe('DateRangePicker', () => {
-  test('allows select range', () => {
+  it('allows select range', () => {
     const component = mount(
       <DesktopDateRangePicker
         open
@@ -29,7 +29,7 @@ describe('DateRangePicker', () => {
     expect(component.find('[data-mui-test="DateRangeHighlight"]').length).toBe(31);
   });
 
-  test('allows disabling dates', () => {
+  it('allows disabling dates', () => {
     const component = mount(
       <DesktopDateRangePicker
         open
@@ -51,7 +51,7 @@ describe('DateRangePicker', () => {
     ).toBe(59);
   });
 
-  test('prop: calendars', () => {
+  it('prop: calendars', () => {
     const component = mount(
       <DesktopDateRangePicker
         open
@@ -69,7 +69,7 @@ describe('DateRangePicker', () => {
     expect(component.find('button[data-mui-test="DateRangeDay"]').length).toBe(90);
   });
 
-  test(`doesn't crashes if opening picker with invalid date input`, () => {
+  it(`doesn't crashes if opening picker with invalid date input`, () => {
     const component = mount(
       <DesktopDateRangePicker
         open

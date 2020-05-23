@@ -39,19 +39,33 @@ export interface ExportedClockViewProps extends TimeValidationProps {
 }
 
 export interface ClockViewProps extends ExportedClockViewProps, ExportedArrowSwitcherProps {
-  /** Selected date @DateIOType */
+  /**
+   * Selected date @DateIOType.
+   */
   date: MaterialUiPickersDate;
-  /** Clock type */
+  /**
+   * Clock type.
+   */
   type: 'hours' | 'minutes' | 'seconds';
-  /** On change date without moving between views @DateIOType */
+  /**
+   * On change date without moving between views @DateIOType.
+   */
   onDateChange: PickerOnChangeFn;
-  /** On change callback @DateIOType */
+  /**
+   * On change callback @DateIOType.
+   */
   onChange: PickerOnChangeFn;
-  /** Get clock number aria-text for hours */
+  /**
+   * Get clock number aria-text for hours.
+   */
   getHoursClockNumberText?: (hoursText: string) => string;
-  /** Get clock number aria-text for minutes */
+  /**
+   * Get clock number aria-text for minutes.
+   */
   getMinutesClockNumberText?: (minutesText: string) => string;
-  /** Get clock number aria-text for seconds */
+  /**
+   * Get clock number aria-text for seconds.
+   */
   getSecondsClockNumberText?: (secondsText: string) => string;
   openNextView: () => void;
   openPreviousView: () => void;
@@ -270,10 +284,10 @@ export const ClockView: React.FC<ClockViewProps> = ({
 };
 
 ClockView.propTypes = {
-  date: PropTypes.object,
-  onChange: PropTypes.func.isRequired,
   ampm: PropTypes.bool,
+  date: PropTypes.object,
   minutesStep: PropTypes.number,
+  onChange: PropTypes.func.isRequired,
   type: PropTypes.oneOf(['minutes', 'hours', 'seconds']).isRequired,
 } as any;
 

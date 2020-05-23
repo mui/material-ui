@@ -33,9 +33,11 @@ export interface SharedPickerProps<
 
 export interface WithViewsProps<T extends AnyPickerView> {
   /**
-   * Array of views to show
+   * Array of views to show.
    */
   views?: T[];
-  /** First view to show */
+  /**
+   * First view to show.
+   */
   openTo?: T;
 }

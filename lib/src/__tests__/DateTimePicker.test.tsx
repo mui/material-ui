@@ -102,7 +102,7 @@ describe('e2e -- Override utils using `dateAdapter`', () => {
   });
 });
 
-test('e2e - DateTimePicker empty date', () => {
+it('e2e - DateTimePicker empty date', () => {
   const component = mountPickerWithState(null as MaterialUiPickersDate, props => (
     <DateTimePicker open toolbarPlaceholder="Enter Date" {...props} />
   ));

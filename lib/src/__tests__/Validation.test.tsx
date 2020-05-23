@@ -42,7 +42,7 @@ describe('DatePicker validation', () => {
     expect(onErrorMock).toBeCalledWith(expectedError, expect.anything());
   });
 
-  test('It should properly annulate the error', () => {
+  it('It should properly annulate the error', () => {
     if (process.env.UTILS === 'luxon') {
       return;
     }

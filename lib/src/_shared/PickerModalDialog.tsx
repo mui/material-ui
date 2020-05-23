@@ -44,8 +44,8 @@ export interface ExportedPickerModalProps {
 
 export interface PickerModalDialogProps extends ExportedPickerModalProps, DialogProps {
   onAccept: () => void;
-  onDismiss: () => void;
   onClear: () => void;
+  onDismiss: () => void;
   onSetToday: () => void;
 }
 
@@ -84,20 +84,20 @@ export const useStyles = makeStyles(
 );
 
 export const PickerModalDialog: React.FC<PickerModalDialogProps> = ({
-  children,
-  onAccept,
-  onDismiss,
-  onClear,
-  onSetToday,
-  okText = 'OK',
   cancelText = 'Cancel',
-  clearText = 'Clear',
-  todayText = 'Today',
-  clearable = false,
-  showTodayButton = false,
-  showTabs,
-  wider,
+  children,
   classes: MuiDialogClasses,
+  clearable = false,
+  clearText = 'Clear',
+  okText = 'OK',
+  onAccept,
+  onClear,
+  onDismiss,
+  onSetToday,
+  showTabs,
+  showTodayButton = false,
+  todayText = 'Today',
+  wider,
   ...other
 }) => {
   const classes = useStyles();

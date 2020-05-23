@@ -34,7 +34,7 @@ export const useStyles = makeStyles(
       },
     },
     dayWithMargin: {
-      margin: `0px ${DAY_MARGIN}px`,
+      margin: `0 ${DAY_MARGIN}px`,
     },
     dayOutsideMonth: {
       color: theme.palette.text.hint,
@@ -71,32 +71,53 @@ export const useStyles = makeStyles(
 );
 
 export interface DayProps extends ExtendMui<ButtonBaseProps> {
-  /** The date to show */
+  /**
+   * The date to show.
+   */
   day: MaterialUiPickersDate;
-  /** Is focused by keyboard navigation */
+  /**
+   * Is focused by keyboard navigation.
+   */
   focused?: boolean;
-  /** Can be focused by tabbing in */
+  /**
+   * Can be focused by tabbing in.
+   */
   focusable?: boolean;
-  /** Is day in current month */
+  /**
+   * Is day in current month.
+   */
   inCurrentMonth: boolean;
-  /** Is switching month animation going on right now */
+  /**
+   * Is switching month animation going on right now.
+   */
   isAnimating?: boolean;
-  /** Is today? */
+  /**
+   * Is today?
+   */
   today?: boolean;
-  /** Disabled? */
+  /**
+   * Disabled?.
+   */
   disabled?: boolean;
-  /** Selected? */
+  /**
+   * Selected?
+   */
   selected?: boolean;
-  /** Is keyboard control and focus management enabled */
+  /**
+   * Is keyboard control and focus management enabled.
+   */
   allowKeyboardControl?: boolean;
-  /** Disable margin between days, useful for displaying range of days */
+  /**
+   * Disable margin between days, useful for displaying range of days.
+   */
   disableMargin?: boolean;
   /**
-   * Display disabled dates outside the current month
+   * Display disabled dates outside the current month.
    * @default false
    */
   showDaysOutsideCurrentMonth?: boolean;
-  /** Disable highlighting today date with a circle
+  /**
+   * Disable highlighting today date with a circle.
    * @default false
    */
   disableHighlightToday?: boolean;

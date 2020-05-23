@@ -30,9 +30,9 @@ export const useStyles = makeStyles(
 );
 
 const ToolbarText: React.FC<ToolbarTextProps> = ({
+  className,
   selected,
   value: label,
-  className = null,
   ...other
 }) => {
   const classes = useStyles();

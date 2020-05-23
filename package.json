@@ -1,13 +1,12 @@
 {
-  "name": "@material-ui/pickers",
-  "version": "2.0.0",
+  "version": "4.0.0",
+  "private": true,
   "description": "Material-ui pickers root package",
   "main": "index.js",
   "directories": {
     "doc": "docs",
     "lib": "lib"
   },
-  "private": true,
   "workspaces": [
     "lib",
     "docs"

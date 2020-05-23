@@ -36,36 +36,40 @@ export interface DateInputProps<TInputValue = ParsableDate, TDateValue = Materia
    * ````
    */
   renderInput: (props: MuiTextFieldProps) => React.ReactElement;
-  /** Icon displaying for open picker button */
+  /**
+   * Icon displaying for open picker button.
+   * */
   openPickerIcon?: React.ReactNode;
   /**
    * Custom mask. Can be used to override generate from format. (e.g. __/__/____ __:__ or __/__/____ __:__ _M)
    */
   mask?: string;
   /**
-   *Regular expression to detect "accepted" symbols
+   *Regular expression to detect "accepted" symbols.
    * @default /\dap/gi
    */
   acceptRegex?: RegExp;
   /**
-   * Props to pass to keyboard input adornment
+   * Props to pass to keyboard input adornment.
    * @type {Partial<InputAdornmentProps>}
    */
   InputAdornmentProps?: Partial<InputAdornmentProps>;
   /**
-   * Props to pass to keyboard adornment button
+   * Props to pass to keyboard adornment button.
    * @type {Partial<IconButtonProps>}
    */
   OpenPickerButtonProps?: Partial<IconButtonProps>;
-  /** Custom formatter to be passed into Rifm component */
+  /**
+   * Custom formatter to be passed into Rifm component.
+   */
   rifmFormatter?: (str: string) => string;
   /**
-   * Do not render open picker button (renders only text field with validation)
+   * Do not render open picker button (renders only text field with validation).
    * @default false
    */
   disableOpenPicker?: boolean;
   /**
-   * Disable mask on the keyboard, this should be used rarely. Consider passing proper mask for your format
+   * Disable mask on the keyboard, this should be used rarely. Consider passing proper mask for your format.
    * @default false
    */
   disableMaskedInput?: boolean;
@@ -96,18 +100,18 @@ export interface DateInputRefs {
 }
 
 export const PureDateInput: React.FC<DateInputProps & DateInputRefs> = ({
-  inputFormat,
-  rawValue,
-  validationError,
-  InputProps,
-  openPicker: onOpen,
-  renderInput,
-  forwardedRef,
   containerRef,
-  getOpenDialogAriaText = getTextFieldAriaText,
   disabled,
+  forwardedRef,
+  getOpenDialogAriaText = getTextFieldAriaText,
+  inputFormat,
+  InputProps,
   label,
+  openPicker: onOpen,
+  rawValue,
+  renderInput,
   TextFieldProps = {},
+  validationError,
 }) => {
   const utils = useUtils();
   const PureDateInputProps = React.useMemo(

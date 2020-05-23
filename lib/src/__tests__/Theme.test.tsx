@@ -12,7 +12,7 @@ const theme = createMuiTheme({
   },
 });
 
-test('Should renders without crash in dark theme', () => {
+it('Should renders without crash in dark theme', () => {
   const component = mount(
     <ThemeProvider theme={theme}>
       <DateTimePicker
@@ -28,7 +28,7 @@ test('Should renders without crash in dark theme', () => {
   expect(component).toBeTruthy();
 });
 
-test('Should render component with different orientation', () => {
+it('Should render component with different orientation', () => {
   const component = mount(
     <DatePicker
       renderInput={props => <TextField {...props} />}

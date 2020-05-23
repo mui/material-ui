@@ -12,20 +12,26 @@ import { SlideTransition, SlideDirection, SlideTransitionProps } from './SlideTr
 
 export interface ExportedCalendarProps
   extends Pick<DayProps, 'disableHighlightToday' | 'showDaysOutsideCurrentMonth'> {
-  /** Calendar onChange */
+  /**
+   * Calendar onChange.
+   */
   onChange: PickerOnChangeFn;
-  /** Custom renderer for day. Check [DayComponentProps api](https://material-ui-pickers.dev/api/Day) @DateIOType */
+  /**
+   * Custom renderer for day. Check [DayComponentProps api](https://material-ui-pickers.dev/api/Day) @DateIOType.
+   */
   renderDay?: (
     day: MaterialUiPickersDate,
     selectedDates: MaterialUiPickersDate[],
     DayComponentProps: DayProps
   ) => JSX.Element;
   /**
-   * Enables keyboard listener for moving between days in calendar
+   * Enables keyboard listener for moving between days in calendar.
    * @default currentWrapper !== 'static'
    */
   allowKeyboardControl?: boolean;
-  /** Custom loading indicator  */
+  /**
+   * Custom loading indicator.
+   */
   loadingIndicator?: JSX.Element;
 }
 

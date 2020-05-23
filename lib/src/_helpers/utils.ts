@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-/** Use it instead of .includes method for IE support */
+/* Use it instead of .includes method for IE support */
 export function arrayIncludes<T>(array: T[] | readonly T[], itemOrItems: T | T[]) {
   if (Array.isArray(itemOrItems)) {
     return itemOrItems.every(item => array.indexOf(item) !== -1);
@@ -26,7 +26,7 @@ export const onSpaceOrEnter = (
   }
 };
 
-/** Quick untyped helper to improve function composition readability */
+/* Quick untyped helper to improve function composition readability */
 export const pipe = (...fns: ((...args: any[]) => any)[]) =>
   fns.reduceRight(
     (prevFn, nextFn) => (...args) => nextFn(prevFn(...args)),
@@ -38,14 +38,14 @@ export const executeInTheNextEventLoopTick = (fn: () => void) => {
 };
 
 export function createDelegatedEventHandler<TEvent>(
-  fn: (e: TEvent) => void,
-  onEvent?: (e: TEvent) => void
+  fn: (event: TEvent) => void,
+  onEvent?: (event: TEvent) => void
 ) {
-  return (e: TEvent) => {
-    fn(e);
+  return (event: TEvent) => {
+    fn(event);
 
     if (onEvent) {
-      onEvent(e);
+      onEvent(event);
     }
   };
 }
@@ -62,5 +62,3 @@ export function mergeRefs<T>(refs: (React.Ref<T | null> | undefined)[]) {
     });
   };
 }
-
-export const doNothing = () => {};

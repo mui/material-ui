@@ -18,9 +18,13 @@ import { useGlobalKeyDown, keycode } from '../_shared/hooks/useKeyDown';
 import { TransitionProps } from '@material-ui/core/transitions/transition';
 
 export interface InnerDesktopPopperWrapperProps {
-  /** Popper props passed to material-ui [Popper](https://material-ui.com/api/popper/#popper-api) */
+  /**
+   * Popper props passed to material-ui [Popper](https://material-ui.com/api/popper/#popper-api).
+   */
   PopperProps?: Partial<PopperProps>;
-  /** Custom component for [transition](https://material-ui.com/components/transitions/#transitioncomponent-prop)  */
+  /**
+   * Custom component for [transition](https://material-ui.com/components/transitions/#transitioncomponent-prop).
+   */
   TransitionComponent?: React.ComponentType<TransitionProps>;
 }
 

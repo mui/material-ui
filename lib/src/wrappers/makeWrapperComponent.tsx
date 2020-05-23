@@ -16,7 +16,7 @@ interface WithWrapperProps<TInputProps = DateInputProps> {
   wrapperProps: Omit<WrapperProps, 'DateInputProps'>;
 }
 
-/** Creates a component that rendering modal/popover/nothing and spreading props down to text field */
+/* Creates a component that rendering modal/popover/nothing and spreading props down to text field */
 export function makeWrapperComponent<
   TInputProps extends DateInputPropsLike<TInputValue, TDateValue>,
   TInputValue,

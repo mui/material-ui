@@ -20,9 +20,13 @@ export type AllPickerProps<T, TWrapper extends SomeWrapper = SomeWrapper> = T &
   ExtendWrapper<TWrapper>;
 
 export interface MakePickerOptions<T extends unknown> {
-  /** Hook that running validation for the `value` and input */
+  /**
+   * Hook that running validation for the `value` and input.
+   */
   useValidation: (value: ParsableDate, props: T) => string | null;
-  /** Intercept props to override or inject default props specifically for picker */
+  /**
+   * Intercept props to override or inject default props specifically for picker.
+   */
   useInterceptProps: (props: AllPickerProps<T>) => AllPickerProps<T> & { inputFormat: string };
   DefaultToolbarComponent: React.ComponentType<ToolbarComponentProps>;
 }

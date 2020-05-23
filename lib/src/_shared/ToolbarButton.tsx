@@ -7,11 +7,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import { TypographyProps } from '@material-ui/core/Typography';
 
 export interface ToolbarButtonProps extends ExtendMui<ButtonProps, 'value' | 'variant'> {
-  variant: TypographyProps['variant'];
-  selected: boolean;
-  value: React.ReactNode;
   align?: TypographyProps['align'];
+  selected: boolean;
   typographyClassName?: string;
+  value: React.ReactNode;
+  variant: TypographyProps['variant'];
 }
 
 export const useStyles = makeStyles(
@@ -26,12 +26,12 @@ export const useStyles = makeStyles(
 );
 
 export const ToolbarButton: React.FunctionComponent<ToolbarButtonProps> = ({
-  className = null,
-  value: label,
-  selected,
-  variant,
   align,
+  className,
+  selected,
   typographyClassName,
+  value,
+  variant,
   ...other
 }) => {
   const classes = useStyles();
@@ -47,7 +47,7 @@ export const ToolbarButton: React.FunctionComponent<ToolbarButtonProps> = ({
         align={align}
         className={typographyClassName}
         variant={variant}
-        value={label}
+        value={value}
         selected={selected}
       />
     </Button>

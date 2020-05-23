@@ -11,7 +11,9 @@ import { KeyboardDateInput } from '../_shared/KeyboardDateInput';
 import { InnerDesktopPopperWrapperProps } from './DesktopPopperWrapper';
 
 export interface InnerDesktopWrapperProps {
-  /** Popover props passed to material-ui Popover */
+  /**
+   * Popover props passed to material-ui Popover.
+   */
   PopoverProps?: Partial<PopoverProps>;
 }
 

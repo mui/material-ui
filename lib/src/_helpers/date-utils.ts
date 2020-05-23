@@ -150,24 +150,26 @@ export const isEndOfRange = (
 
 export interface DateValidationProps {
   /**
-   * Min selectable date
+   * Min selectable date.
    * @default Date(1900-01-01)
    */
   minDate?: MaterialUiPickersDate;
   /**
-   * Max selectable date
+   * Max selectable date.
    * @default Date(2100-01-01)
    */
   maxDate?: MaterialUiPickersDate;
-  /** Disable specific date @DateIOType */
+  /**
+   * Disable specific date @DateIOType.
+   */
   shouldDisableDate?: (day: MaterialUiPickersDate) => boolean;
   /**
-   * Disable past dates
+   * Disable past dates.
    * @default false
    */
   disablePast?: boolean;
   /**
-   * Disable future dates
+   * Disable future dates.
    * @default false
    */
   disableFuture?: boolean;

@@ -38,9 +38,14 @@ export interface CalendarViewProps
   views: DatePickerView[];
   changeView: (view: DatePickerView) => void;
   onChange: PickerOnChangeFn;
-  /** Disable heavy animations @default /(android)/i.test(window.navigator.userAgent) */
+  /**
+   * Disable heavy animations.
+   * @default /(android)/i.test(window.navigator.userAgent).
+   */
   reduceAnimations?: boolean;
-  /** Callback firing on month change. Return promise to render spinner till it will not be resolved @DateIOType */
+  /**
+   * Callback firing on month change. Return promise to render spinner till it will not be resolved @DateIOType.
+   */
   onMonthChange?: (date: MaterialUiPickersDate) => void | Promise<void>;
 }
 

@@ -22,23 +22,23 @@ export type ToolbarComponentProps<
   TDate = MaterialUiPickersDate,
   TView extends AnyPickerView = AnyPickerView
 > = CalendarAndClockProps & {
-  views: TView[];
-  openView: TView;
+  ampmInClock?: boolean;
   date: TDate;
-  setOpenView: (view: TView) => void;
-  onChange: (date: TDate, isFinish?: boolean) => void;
-  toolbarTitle?: React.ReactNode;
-  toolbarPlaceholder?: React.ReactNode;
-  toolbarFormat?: string;
+  dateRangeIcon?: React.ReactNode;
+  getMobileKeyboardInputViewButtonText?: () => string;
   // TODO move out, cause it is DateTimePickerOnly
   hideTabs?: boolean;
-  dateRangeIcon?: React.ReactNode;
-  timeIcon?: React.ReactNode;
   isLandscape: boolean;
-  ampmInClock?: boolean;
   isMobileKeyboardViewOpen: boolean;
+  onChange: (date: TDate, isFinish?: boolean) => void;
+  openView: TView;
+  setOpenView: (view: TView) => void;
+  timeIcon?: React.ReactNode;
   toggleMobileKeyboardView: () => void;
-  getMobileKeyboardInputViewButtonText?: () => string;
+  toolbarFormat?: string;
+  toolbarPlaceholder?: React.ReactNode;
+  toolbarTitle?: React.ReactNode;
+  views: TView[];
 };
 
 export interface ExportedPickerProps<TView extends AnyPickerView>

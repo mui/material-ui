@@ -19,17 +19,29 @@ export interface DateTimePickerProps
     ValidationProps<DateAndTimeValidationError, ParsableDate>,
     ExportedClockViewProps,
     ExportedCalendarViewProps {
-  /** To show tabs */
+  /**
+   * To show tabs.
+   */
   hideTabs?: boolean;
-  /** Date tab icon */
+  /**
+   * Date tab icon.
+   */
   dateRangeIcon?: React.ReactNode;
-  /** Time tab icon */
+  /**
+   * Time tab icon.
+   */
   timeIcon?: React.ReactNode;
-  /** Minimal selectable moment of time with binding to date, to set min time in each day use `minTime` */
+  /**
+   * Minimal selectable moment of time with binding to date, to set min time in each day use `minTime`.
+   */
   minDateTime?: ParsableDate;
-  /** Minimal selectable moment of time with binding to date, to set max time in each day use `maxTime` */
+  /**
+   * Minimal selectable moment of time with binding to date, to set max time in each day use `maxTime`.
+   */
   maxDateTime?: ParsableDate;
-  /** Date format, that is displaying in toolbar */
+  /**
+   * Date format, that is displaying in toolbar.
+   */
   toolbarFormat?: string;
 }
 

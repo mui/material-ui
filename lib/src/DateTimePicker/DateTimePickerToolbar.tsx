@@ -11,7 +11,7 @@ import { ToolbarComponentProps } from '../Picker/Picker';
 import { WrapperVariantContext } from '../wrappers/WrapperVariantContext';
 
 export const useStyles = makeStyles(
-  _ => ({
+  {
     toolbar: {
       paddingLeft: 16,
       paddingRight: 16,
@@ -35,7 +35,7 @@ export const useStyles = makeStyles(
       top: 8,
       right: 8,
     },
-  }),
+  },
   { name: 'MuiPickerDTToolbar' }
 );
 

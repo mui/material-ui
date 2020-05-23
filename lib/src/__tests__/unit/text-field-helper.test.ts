@@ -8,7 +8,7 @@ import {
 } from '../../_helpers/text-field-helper';
 
 describe('test-field-helper', () => {
-  test('maskedDateFormatter for date', () => {
+  it('maskedDateFormatter for date', () => {
     const formatterFn = maskedDateFormatter('__/__/____', /[\d]/gi);
 
     expect(formatterFn('21')).toBe('21/');
@@ -21,7 +21,7 @@ describe('test-field-helper', () => {
     expect(formatterFn('2f')).toBe('2');
   });
 
-  test('maskedDateFormatter for time', () => {
+  it('maskedDateFormatter for time', () => {
     const formatterFn = maskedDateFormatter('__:__ _M', /[\dap]/gi);
 
     expect(formatterFn('10')).toBe('10:');
@@ -29,7 +29,7 @@ describe('test-field-helper', () => {
     expect(formatterFn('10:00 A')).toBe('10:00 AM');
   });
 
-  test('pick12hOr24hFormat', () => {
+  it('pick12hOr24hFormat', () => {
     expect(
       pick12hOr24hFormat(undefined, true, { localized: 'T', '12h': 'hh:mm a', '24h': 'HH:mm' })
     ).toBe('hh:mm a');

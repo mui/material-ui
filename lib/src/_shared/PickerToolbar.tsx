@@ -64,14 +64,14 @@ function defaultGetKeyboardInputSwitchingButtonText(isKeyboardInputOpen: boolean
 
 const PickerToolbar: React.SFC<PickerToolbarProps> = ({
   children,
+  className,
+  getMobileKeyboardInputViewButtonText = defaultGetKeyboardInputSwitchingButtonText,
   isLandscape,
-  toolbarTitle,
+  isMobileKeyboardViewOpen,
   landscapeDirection = 'column',
-  className = null,
   penIconClassName,
   toggleMobileKeyboardView,
-  isMobileKeyboardViewOpen,
-  getMobileKeyboardInputViewButtonText = defaultGetKeyboardInputSwitchingButtonText,
+  toolbarTitle,
   ...other
 }) => {
   const classes = useStyles();

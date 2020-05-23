@@ -7,9 +7,14 @@ import { WrapperVariantContext } from '../../wrappers/WrapperVariantContext';
 import { useGlobalKeyDown, keycode as keys } from '../../_shared/hooks/useKeyDown';
 
 export interface ExportedYearSelectionProps {
-  /** Callback firing on year change @DateIOType */
+  /**
+   * Callback firing on year change @DateIOType.
+   */
   onYearChange?: (date: MaterialUiPickersDate) => void;
-  /** Disable specific years dynamically. Works like `shouldDisableDate` but for year selection view. @DateIOType */
+  /**
+   * Disable specific years dynamically.
+   * Works like `shouldDisableDate` but for year selection view. @DateIOType.
+   */
   shouldDisableYear?: (day: MaterialUiPickersDate) => boolean;
 }
 

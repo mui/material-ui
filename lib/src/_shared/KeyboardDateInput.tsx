@@ -9,16 +9,16 @@ import { DateInputProps, DateInputRefs } from './PureDateInput';
 import { getTextFieldAriaText } from '../_helpers/text-field-helper';
 
 export const KeyboardDateInput: React.FC<DateInputProps & DateInputRefs> = ({
-  renderInput,
-  openPicker: onOpen,
-  InputProps,
-  InputAdornmentProps,
-  openPickerIcon = <CalendarIcon />,
-  OpenPickerButtonProps,
-  disableOpenPicker: hideOpenPickerButton,
-  getOpenDialogAriaText = getTextFieldAriaText,
   containerRef,
+  disableOpenPicker: hideOpenPickerButton,
   forwardedRef,
+  getOpenDialogAriaText = getTextFieldAriaText,
+  InputAdornmentProps,
+  InputProps,
+  openPicker: onOpen,
+  OpenPickerButtonProps,
+  openPickerIcon = <CalendarIcon />,
+  renderInput,
   ...other
 }) => {
   const utils = useUtils();
@@ -52,11 +52,11 @@ export const KeyboardDateInput: React.FC<DateInputProps & DateInputRefs> = ({
 };
 
 KeyboardDateInput.propTypes = {
-  renderInput: PropTypes.func.isRequired,
-  mask: PropTypes.string,
-  rifmFormatter: PropTypes.func,
-  openPickerIcon: PropTypes.node,
-  OpenPickerButtonProps: PropTypes.object,
   acceptRegex: PropTypes.instanceOf(RegExp),
   getOpenDialogAriaText: PropTypes.func,
+  mask: PropTypes.string,
+  OpenPickerButtonProps: PropTypes.object,
+  openPickerIcon: PropTypes.node,
+  renderInput: PropTypes.func.isRequired,
+  rifmFormatter: PropTypes.func,
 };

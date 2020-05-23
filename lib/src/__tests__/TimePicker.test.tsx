@@ -258,7 +258,7 @@ describe('e2e - TimePicker time validation', () => {
   });
 });
 
-test('e2e - TimePicker empty date', () => {
+it('e2e - TimePicker empty date', () => {
   const component = mountPickerWithState(null as MaterialUiPickersDate, props => (
     <TimePicker open {...props} />
   ));

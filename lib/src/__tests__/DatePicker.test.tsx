@@ -222,7 +222,7 @@ describe('e2e - DatePicker month change async', () => {
   });
 });
 
-test('Custom toolbar component', () => {
+it('Custom toolbar component', () => {
   const component = mount(
     <MobileDatePicker
       renderInput={props => <TextField {...props} />}
@@ -237,7 +237,7 @@ test('Custom toolbar component', () => {
   expect(component.find('#custom-toolbar').length).toBe(1);
 });
 
-test('Selected date is disabled', () => {
+it('Selected date is disabled', () => {
   const component = mount(
     <MobileDatePicker
       renderInput={props => <TextField {...props} />}
@@ -262,7 +262,7 @@ test('Selected date is disabled', () => {
   ).toBe('January');
 });
 
-test('Should not add to loading queue when synchronous', () => {
+it('Should not add to loading queue when synchronous', () => {
   const component = mountPickerWithState(null as MaterialUiPickersDate, props => (
     <StaticDatePicker toolbarPlaceholder="Enter Date" {...props} />
   ));

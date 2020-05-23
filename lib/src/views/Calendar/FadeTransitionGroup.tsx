@@ -44,9 +44,9 @@ export const useStyles = makeStyles(
 
 export const FadeTransitionGroup: React.FC<FadeTransitionProps> = ({
   children,
-  transKey,
+  className,
   reduceAnimations,
-  className = null,
+  transKey,
 }) => {
   const classes = useStyles();
   if (reduceAnimations) {
