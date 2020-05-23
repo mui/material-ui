@@ -8,13 +8,11 @@ Feel free to submit a pull request to add another project; it will be accepted i
 
 ## Design resources
 
-- **Sketch**: [Sketch for Material-UI](https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-sketch) — A large UI kit with over 1,500 handcrafted Material-UI's symbols 💎.
-- **Figma**:
-  - https://material.5ly.co/ for Material-UI made by Fively Team.
-  - https://ui-kit.co/ a starter kit for your Material Design 2 project.
-- **Framer**: [Framer X Kit](https://packages.framer.com/package/material-ui/material-ui) for Material-UI.
+- **Sketch**: [Sketch for Material-UI](https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-sketch) — A large UI kit with over 600 handcrafted Material-UI's symbols 💎.
+- **Figma**: [Figma for Material-UI](https://material-ui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-sketch) — A large UI kit with over 600 handcrafted Material-UI's components 🎨.
+- **Framer**: [Framer for Material-UI](https://packages.framer.com/package/material-ui/material-ui) — A small MIT UI kit preview of handcrafted Material-UI's component.
 
-You didn't find the design assets your team is looking for? Let us know!
+You didn't find the design assets your team is looking for? [Let us know!](mailto:design@material-ui.com)
 
 ## Images and illustrations
 
