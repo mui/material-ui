@@ -1,3 +1,4 @@
+import * as React from 'react';
 import type { ComponentsPropsList } from '../styles/props';
 
 export interface Localization {
@@ -7,7 +8,7 @@ export interface Localization {
       ComponentsPropsList['MuiTablePagination'],
       'backIconButtonText' | 'labelRowsPerPage' | 'labelDisplayedRows' | 'nextIconButtonText'
     >;
-    // @material-ui/lab components need to be inlined
+    // @material-ui/lab components need to be inlined, prefer ComponentsPropsList when possible
     MuiRating?: {
       emptyLabelText?: string;
       getLabelText?: (value: number) => string;
@@ -15,8 +16,8 @@ export interface Localization {
     MuiAutocomplete?: {
       clearText?: string;
       closeText?: string;
-      loadingText?: string;
-      noOptionsText?: string;
+      loadingText?: React.ReactNode;
+      noOptionsText?: React.ReactNode;
       openText?: string;
     };
     MuiAlert?: {
