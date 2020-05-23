@@ -83,8 +83,9 @@ const Collapse = React.forwardRef(function Collapse(props, ref) {
       const [node, isAppearing] = enableStrictModeCompat
         ? [nodeRef.current, nodeOrAppearing]
         : [nodeOrAppearing, maybeAppearing];
-      const isExitCallback = isAppearing === undefined;
-      if (isExitCallback) {
+
+      // onEnterXxx and onExitXxx callbacks have a different arguments.length value.
+      if (isAppearing === undefined) {
         callback(node);
       } else {
         callback(node, isAppearing);
