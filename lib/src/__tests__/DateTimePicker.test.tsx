@@ -3,7 +3,6 @@ import { ReactWrapper } from 'enzyme';
 import { TextField } from '@material-ui/core';
 import { mount as enzymeDefaultMount } from 'enzyme';
 import { MaterialUiPickersDate } from '../typings/date';
-import { ThemeProvider, createMuiTheme } from '@material-ui/core';
 import { mount, utilsToUse, mountPickerWithState } from './test-utils';
 import { DateTimePicker, DateTimePickerProps } from '../DateTimePicker/DateTimePicker';
 
@@ -88,14 +87,12 @@ describe('e2e -- Override utils using `dateAdapter`', () => {
 
   beforeEach(() => {
     component = enzymeDefaultMount(
-      <ThemeProvider theme={createMuiTheme()}>
-        <DateTimePicker
-          renderInput={props => <TextField {...props} />}
-          value={utilsToUse.date('2018-01-01T00:00:00.000Z')}
-          onChange={jest.fn()}
-          dateAdapter={utilsToUse}
-        />
-      </ThemeProvider>
+      <DateTimePicker
+        renderInput={props => <TextField {...props} />}
+        value={utilsToUse.date('2018-01-01T00:00:00.000Z')}
+        onChange={jest.fn()}
+        dateAdapter={utilsToUse}
+      />
     );
   });
 

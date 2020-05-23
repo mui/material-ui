@@ -9,7 +9,6 @@ import { IUtils } from '@date-io/core/IUtils';
 import { DatePickerProps } from '../DatePicker';
 import { MaterialUiPickersDate } from '../typings/date';
 import { BasePickerProps } from '../typings/BasePicker';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
 interface WithUtilsProps {
   utils: IUtils<MaterialUiPickersDate>;
@@ -38,11 +37,7 @@ export const shallow = <P extends WithUtilsProps>(element: React.ReactElement<P>
   enzyme.shallow(getComponentWithUtils(element));
 
 export const mount = <P extends WithUtilsProps>(element: React.ReactElement<P>) =>
-  enzyme.mount(
-    <ThemeProvider theme={createMuiTheme()}>
-      <LocalizationProvider dateAdapter={UtilClassToUse}>{element}</LocalizationProvider>
-    </ThemeProvider>
-  );
+  enzyme.mount(<LocalizationProvider dateAdapter={UtilClassToUse}>{element}</LocalizationProvider>);
 
 export function mountPickerWithState<TValue>(
   defaultValue: TValue,
