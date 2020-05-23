@@ -217,7 +217,7 @@ You don't have to worry about CSS specificity as the inline-style takes preceden
 
 You have learned how to override the style of a Material-UI component in the previous section.
 Now, let's see how we can make these overrides dynamic.
-Here are five alternatives; each has it's pros and cons.
+Here are five alternatives; each has its pros and cons.
 
 ### Dynamic CSS
 
