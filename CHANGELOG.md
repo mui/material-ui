@@ -1,5 +1,90 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.10.0
+###### *May 23, 2020*
+
+Big thanks to the 30 contributors who made this release possible.
+
+Here are some highlights ✨:
+
+- 🦴 Allow Skeleton to infer its dimensions from the children (#21097) @mikew.
+  In the following example, the skeleton will take the size of the avatar.
+  ```jsx
+  <Skeleton><Avatar /></Skeleton>
+  ```
+  Follow [the docs to learn more](http://material-ui.com/components/skeleton/#inferring-dimensions).
+- ♿️ Add tabs accessibility docs section (#20965) @eps1lon.
+  The behavior of the [keyboard navigation](http://material-ui.com/components/tabs/#keyboard-navigation) can be customized with the `selectionFollowsFocus` prop.
+- ℹ Improve tooltip arrow customizability (#21095) @sakulstra.
+  The arrow background color and border can now be customized independently.
+  <img src="https://user-images.githubusercontent.com/3165635/82205669-328acf00-9907-11ea-8fa0-f9784ad2b718.png" width="90" />
+- 🔘 Add vertical support to the ToggleButton component (#21051) @xiaomaini
+- And many more 🐛 bug fixes and 📚 improvements.
+
+### `@material-ui/core@v4.10.0`
+
+- [AppBar] Fix z-index issue on Firefox (#21063) @pedrooa
+- [Avatar] Fix group positioning (#21141) @CarsonF
+- [Button] Fix disableFocusRipple prop description (#21116) @umairfarooq44
+- [CircularProgress] Improve custom bar demo (#21005) @id0Sch
+- [l10n] Add new keys to Finnish (fi-FI) locale (#21087) @SampsaKaskela
+- [l10n] Prepare iteration on number formatting (#20656) @oliviertassinari
+- [Popper] Remove duplicate handleOpen call from effect (#21106) @inomdzhon
+- [Select] Fix possible crash when clicking on the label (#21047) @eps1lon
+- [Slide] Fix double negation in CSS translate (#21115) @scristall
+- [Snackbar] Explain how to place the snackbar (#21052) @dandv
+- [Snackbar] Fix double click issue on demos (#21059) @joshwooding
+- [Tabs] Add a11y docs section (#20965) @eps1lon
+- [theme] Fix types, reject undefined coefficient in darken, lighten (#21006) @dellink
+- [Tooltip] Add PopperComponent prop (#21039) @joshwooding
+- [Tooltip] Improve arrow customizability (#21095) @sakulstra
+
+### `@material-ui/styles@v4.10.0`
+
+- [styles] Increase counter only for non global styles (#21003) @jantimon
+
+### `@material-ui/lab@v4.0.0-alpha.54`
+
+- [Autocomplete] Improve value type inference (#20949) @kanoshin
+- [Autocomplete] Fix autoHighlight for dynamic options (#21090) @mstykow
+- [Autocomplete] Fix iOS double tap (#21060) @kaplantm
+- [Pagination] Document difference with TablePagination (#21107) @hoop71
+- [Skeleton] Allow children to influence width and height (#21097) @mikew
+- [Skeleton] Reduce SkeletonChildren test flakyness (#21121) @eps1lon
+- [TabPanel] Allow flow content (#21017) @eps1lon
+- [ToggleButton] Add orientation prop (#21051) @xiaomaini
+- [TreeView] Add test for undesired behavior (#21043) @eps1lon
+
+### Docs
+
+- [docs] Add CssBaseline to auto dark mode example (#21094) @fantasyui-com
+- [docs] Add new twitter quotes to the homepage (#21061) @mbrookes
+- [docs] Fix anchor link to using inline vs. classes (#21151) @dandv
+- [docs] Fix autocomplete attributes (#21138) @socsieng
+- [docs] Fix typo in Modal accessibility description (#21062) @arthur-melo
+- [docs] Improve mui-treasury integration (#21054) @siriwatknp
+- [docs] Improve text based sizing for larger font scales (#21131) @eps1lon
+- [docs] Keep the same header between locales (#21041) @jaironalves
+- [docs] Minor fixes in theming, link to Context (#21149) @dandv
+- [docs] Recommend no-restricted-imports to catch treeshake issues (#21035) @eps1lon
+- [docs] Reduce confusion around higher order component (#21056) @ravshansbox
+- [docs] Show font smoothing override (#21057) @mattstobbs
+- [docs] Sort ways to support MUI; clarify clsx (#21150) @dandv
+- [docs] Sync translations (#21155) @oliviertassinari
+
+### Core
+
+- [core] Add issue template for material design issues (#21120) @eps1lon
+- [core] Batch small changes (#20980) @oliviertassinari
+- [core] Explicitly declare children (#21014) @eps1lon
+- [core] Narrow type definition for useControlled hook (#21027) @EdwardSalter
+- [core] Small changes (#21064) @oliviertassinari
+- [Security] Bump handlebars from 4.5.3 to 4.7.6 (#21033) @dependabot-preview
+- [test] Fix react next patch (#21109) @eps1lon
+- [test] Improve isolation of tests using mount() (#21034) @eps1lon
+- [test] Isolate transition tests (#21032) @eps1lon
+- [test] Migrate some tests to testing-library (#21058) @joshwooding
+
 ## 4.9.14
 ###### *May 11, 2020*
 
