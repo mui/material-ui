@@ -25,7 +25,7 @@ Aside from the above composition trade-off, we enforce the following rules:
 
 ### Spread
 
-Properties supplied to a component which are not explictly documented, are spread to the root element;
+Props supplied to a component which are not explictly documented, are spread to the root element;
 for instance, the `className` property is applied to the root.
 
 Now, let's say you want to disable the ripples on the `MenuItem`.
