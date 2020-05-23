@@ -101,7 +101,12 @@ const Slide = React.forwardRef(function Slide(props, ref) {
 
   const normalizedTransitionCallback = (callback) => (isAppearing) => {
     if (callback) {
-      callback(childrenRef.current, isAppearing);
+      const isExitCallback = isAppearing === undefined;
+      if (isExitCallback) {
+        callback(childrenRef.current);
+      } else {
+        callback(childrenRef.current, isAppearing);
+      }
     }
   };
 

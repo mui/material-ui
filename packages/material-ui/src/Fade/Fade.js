@@ -53,7 +53,12 @@ const Fade = React.forwardRef(function Fade(props, ref) {
       const [node, isAppearing] = enableStrictModeCompat
         ? [nodeRef.current, nodeOrAppearing]
         : [nodeOrAppearing, maybeAppearing];
-      callback(node, isAppearing);
+      const isExitCallback = isAppearing === undefined;
+      if (isExitCallback) {
+        callback(node);
+      } else {
+        callback(node, isAppearing);
+      }
     }
   };
 
