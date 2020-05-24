@@ -1,13 +1,14 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { fade, withStyles } from '@material-ui/core/styles';
 
 export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     display: 'block',
-    backgroundColor: theme.palette.action.hover,
+    // Create a "on paper" color with sufficient contrast.
+    backgroundColor: fade(theme.palette.text.primary, 0.16),
     height: '1.2em',
   },
   /* Styles applied to the root element if `variant="text"`. */
