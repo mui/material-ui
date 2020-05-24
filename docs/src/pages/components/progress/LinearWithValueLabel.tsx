@@ -17,12 +17,13 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 const LinearProgressWithValueLabel = (props: LinearProgressProps) => {
+  const { variant, value, color } = props;
   const classes = useStyles();
 
   return (
     <Box display="flex" alignItems="center">
       <Box width="100%" mr={1}>
-        <LinearProgress variant={props.variant} color={props.color} value={props.value} />
+        <LinearProgress variant={variant} color={color} value={value} />
       </Box>
       <Typography
         className={classes.valueLabel}
@@ -57,11 +58,7 @@ export default function LinearDeterminate() {
   return (
     <div className={classes.root}>
       <LinearProgressWithValueLabel variant="determinate" value={Math.floor(completed / 10) * 10} />
-      <LinearProgressWithValueLabel
-        variant="determinate"
-        value={completed}
-        color="secondary"
-      />
+      <LinearProgressWithValueLabel variant="determinate" value={completed} color="secondary" />
     </div>
   );
 }

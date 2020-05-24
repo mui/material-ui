@@ -14,9 +14,11 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 const CircularProgressWithValueLabel = (props: CircularProgressProps) => {
+  const { variant, value, color } = props;
+
   return (
     <Box position="relative" display="inline-block">
-      <CircularProgress variant={props.variant} value={props.value} color={props.color} />
+      <CircularProgress variant={variant} value={value} color={color} />
       <Box
         top={-3}
         left={0}

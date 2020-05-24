@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import { CircularProgress, Typography, Box } from '@material-ui/core';
 
@@ -12,9 +13,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const CircularProgressWithValueLabel = (props) => {
+  const { variant, value, color } = props;
+
   return (
     <Box position="relative" display="inline-block">
-      <CircularProgress variant={props.variant} value={props.value} color={props.color} />
+      <CircularProgress variant={variant} value={value} color={color} />
       <Box
         top={-3}
         left={0}
@@ -31,6 +34,23 @@ const CircularProgressWithValueLabel = (props) => {
       </Box>
     </Box>
   );
+};
+
+CircularProgressWithValueLabel.propTypes = {
+  /**
+   * The color of the component. It supports those theme colors that make sense for this component.
+   */
+  color: PropTypes.oneOf(['inherit', 'primary', 'secondary']),
+  /**
+   * The value of the progress indicator for the determinate and static variants.
+   * Value between 0 and 100.
+   */
+  value: PropTypes.number,
+  /**
+   * The variant to use.
+   * Use indeterminate when there is no progress value.
+   */
+  variant: PropTypes.oneOf(['determinate', 'indeterminate', 'static']),
 };
 
 export default function CircularStatic() {
