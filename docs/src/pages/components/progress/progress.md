@@ -40,6 +40,10 @@ When displaying progress for a sequence of processes, indicate overall progress 
 
 {{"demo": "pages/components/progress/CircularStatic.js"}}
 
+### Circular with Value Label
+
+{{"demo": "pages/components/progress/CircularWithValueLabel.js"}}
+
 ## Linear
 
 [Linear progress](https://material.io/design/components/progress-indicators.html#linear-progress-indicators) indicators.
