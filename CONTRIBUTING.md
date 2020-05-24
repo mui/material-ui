@@ -34,9 +34,9 @@ When in doubt, keep your Pull Requests small. To give a Pull Request the best ch
 2. Clone the fork to your local machine and add upstream remote:
 
 ```sh
-git clone git@github.com:<yourname>/material-ui.git
+git clone https://github.com/<your username>/material-ui.git
 cd material-ui
-git remote add upstream git@github.com:mui-org/material-ui.git
+git remote add upstream https://github.com/mui-org/material-ui.git
 ```
 
 3. Synchronize your local `master` branch with the upstream one:
@@ -61,6 +61,7 @@ git checkout -b my-topic-branch
 6. Make changes, commit and push to your fork:
 
 ```sh
+git push --set-upstream origin my-topic-branch
 git push -u
 ```
 
