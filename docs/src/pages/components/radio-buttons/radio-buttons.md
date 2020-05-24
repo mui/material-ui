@@ -18,7 +18,7 @@ Radio buttons should have the most commonly used option selected by default.
 
 {{"demo": "pages/components/radio-buttons/RadioButtonsGroup.js"}}
 
-To lay out the buttons horizontally, set the `row` prop: `<RadioGroup row>`/
+To lay out the buttons horizontally, set the `row` prop: `<RadioGroup row />`.
 
 ## Standalone radio buttons
 
