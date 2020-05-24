@@ -64,6 +64,10 @@ When displaying progress for a sequence of processes, indicate overall progress 
 
 {{"demo": "pages/components/progress/LinearQuery.js"}}
 
+### Linear with Value Label
+
+{{"demo": "pages/components/progress/LinearWithValueLabel.js"}}
+
 ## Non-standard ranges
 
 The progress components accept a value in the range 0 - 100. This simplifies things for screen-reader users, where these are the default min / max values. Sometimes, however, you might be working with a data source where the values fall outside this range. Here's how you can easily transform a value in any range to a scale of 0 - 100:
