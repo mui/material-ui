@@ -61,6 +61,7 @@ git checkout -b my-topic-branch
 6. Make changes, commit and push to your fork:
 
 ```sh
+git push --set-upstream origin my-topic-branch
 git push -u
 ```
 
