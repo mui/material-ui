@@ -80,7 +80,7 @@ Nested components inside a component have:
   for instance, exposing the `inputProps` and `InputProps` properties on components that use `Input` internally.
 - their own `xxxComponent` property for performing component injection.
 - their own `xxxRef` property when users might need to perform imperative actions,
-  for instance, exposing a `inputRef` property to access the native `input` on the `Input` component.
+  for instance, exposing an `inputRef` prop to access the native `input` on the `Input` component.
   This helps answer the  question ["How can I access the DOM element?"](/getting-started/faq/#how-can-i-access-the-dom-element)
 
 ### Property naming
