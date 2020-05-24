@@ -78,14 +78,14 @@ describe('<Select />', () => {
     );
   });
 
-  it('should have an input with [type="hidden"] by default', () => {
+  it('should have an input with [aria-hidden] by default', () => {
     const { container } = render(
       <Select value="10">
         <MenuItem value="10">Ten</MenuItem>
       </Select>,
     );
 
-    expect(container.querySelector('input')).to.have.property('type', 'hidden');
+    expect(container.querySelector('input')).to.have.attribute('aria-hidden', 'true');
   });
 
   it('should ignore onBlur when the menu opens', () => {
@@ -343,7 +343,7 @@ describe('<Select />', () => {
             <MenuItem value={30}>Thirty</MenuItem>
           </Select>,
         );
-        expect(console.warn.callCount).to.equal(1);
+        expect(console.warn.callCount).to.equal(2);
         expect(console.warn.args[0][0]).to.include(
           'Material-UI: You have provided an out-of-range value `20` for the select component.',
         );

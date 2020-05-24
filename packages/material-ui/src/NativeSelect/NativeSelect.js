@@ -91,6 +91,15 @@ export const styles = (theme) => ({
   iconOutlined: {
     right: 7,
   },
+  /* Styles applied to the shadow input component. */
+  shadowInput: {
+    bottom: 0,
+    left: 0,
+    position: 'absolute',
+    opacity: 0,
+    pointerEvents: 'none',
+    width: '100%',
+  },
 });
 
 const defaultInput = <Input />;
