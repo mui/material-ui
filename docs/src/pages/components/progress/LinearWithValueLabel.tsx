@@ -56,10 +56,10 @@ export default function LinearDeterminate() {
 
   return (
     <div className={classes.root}>
-      <LinearProgressWithValueLabel variant="determinate" value={completed} />
+      <LinearProgressWithValueLabel variant="determinate" value={Math.floor(completed / 10) * 10} />
       <LinearProgressWithValueLabel
         variant="determinate"
-        value={Math.floor(completed / 10) * 10}
+        value={completed}
         color="secondary"
       />
     </div>
