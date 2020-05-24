@@ -8,7 +8,8 @@ export interface Localization {
       ComponentsPropsList['MuiTablePagination'],
       'backIconButtonText' | 'labelRowsPerPage' | 'labelDisplayedRows' | 'nextIconButtonText'
     >;
-    // @material-ui/lab components need to be inlined, prefer ComponentsPropsList when possible
+    // The core package has no dependencies on the @material-ui/lab components.
+    // We can't use ComponentsPropsList, we have to duplicate and inline the definitions.
     MuiRating?: {
       emptyLabelText?: string;
       getLabelText?: (value: number) => string;
