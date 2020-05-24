@@ -75,7 +75,7 @@ const styles = {
 
 Nested components inside a component have:
 - their own flattened properties when these are key to the top level component abstraction,
-  for instance an `id` property for the `Input` component.
+  for instance an `id` prop for the `Input` component.
 - their own `xxxProps` property when users might need to tweak the internal render method's sub-components,
   for instance, exposing the `inputProps` and `InputProps` properties on components that use `Input` internally.
 - their own `xxxComponent` property for performing component injection.
