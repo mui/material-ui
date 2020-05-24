@@ -6520,27 +6520,28 @@ dot-prop@^5.0.0:
   dependencies:
     is-obj "^2.0.0"
 
-dts-critic@^3.2.1:
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/dts-critic/-/dts-critic-3.2.1.tgz#611f5f724772661b86d2951ca58380baddae79b0"
-  integrity sha512-jNCWcrOduMsEUDXTZd+qWN7Nig52OgPVPL2IRJ7QQTx0MdYASEwqkoBdPrcEY/ClkKZ+rSjZi/xjBiNmRObuRg==
+dts-critic@^3.2.3:
+  version "3.2.3"
+  resolved "https://registry.yarnpkg.com/dts-critic/-/dts-critic-3.2.3.tgz#892c9a02fd620a1d30449b26b314cd4820d9ba9c"
+  integrity sha512-CErYGgQiloLH0PZ/vrLH5+WgpPbHiOj77qFF+6pGuGtlQzb43oFUSS9Qetr4y9fAg2ZOG9ZvGp7h+jhh0kkbAg==
   dependencies:
     "@definitelytyped/header-parser" "0.0.34"
     command-exists "^1.2.8"
     rimraf "^3.0.2"
     semver "^6.2.0"
-    typescript "^3.7.5"
+    tmp "^0.2.1"
+    typescript "^3.9.2"
     yargs "^12.0.5"
 
 dtslint@^3.2.0:
-  version "3.6.2"
-  resolved "https://registry.yarnpkg.com/dtslint/-/dtslint-3.6.2.tgz#c131de5f87f8edc2ef3eeb86820f4f3d2c1bb567"
-  integrity sha512-U+1EcZpnzBsPqIqTVNEk12/K5oHnbUppvws4rLYoy9rmUjSkDVJqaMqEWJXTXPuqWy1Rp/Ky2rI53XRcMFJaeQ==
+  version "3.6.4"
+  resolved "https://registry.yarnpkg.com/dtslint/-/dtslint-3.6.4.tgz#f7439e0306c6c1b58e04d68fb6679d2f9549721f"
+  integrity sha512-D9qwC0N945ge+CENZ1Dtm6I72fc8dAgQpyAde1XoiChR+mk8dC9uzToJNORe7SI0P3dSSULofwjsg7rzQ/iplw==
   dependencies:
     "@definitelytyped/header-parser" "0.0.34"
     "@definitelytyped/typescript-versions" "0.0.34"
     "@definitelytyped/utils" "0.0.34"
-    dts-critic "^3.2.1"
+    dts-critic "^3.2.3"
     fs-extra "^6.0.1"
     json-stable-stringify "^1.0.1"
     strip-json-comments "^2.0.1"
@@ -16114,7 +16115,7 @@ tmp@0.0.30:
   dependencies:
     os-tmpdir "~1.0.1"
 
-tmp@0.2.1:
+tmp@0.2.1, tmp@^0.2.1:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/tmp/-/tmp-0.2.1.tgz#8457fc3037dcf4719c251367a1af6500ee1ccf14"
   integrity sha512-76SUhtfqR2Ijn+xllcI5P1oyannHNHByD80W1q447gU3mp9G9PSpGdWmjUOHRDPiHYacIk66W7ubDTuPF3BEtQ==
@@ -16431,10 +16432,10 @@ typescript@3.5.2:
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.5.2.tgz#a09e1dc69bc9551cadf17dba10ee42cf55e5d56c"
   integrity sha512-7KxJovlYhTX5RaRbUdkAXN1KUZ8PwWlTzQdHV6xNqvuFOs7+WBo10TQUqT19Q/Jz2hk5v9TQDIhyLhhJY4p5AA==
 
-typescript@^3.7.5, typescript@^3.8.2:
-  version "3.9.2"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.9.2.tgz#64e9c8e9be6ea583c54607677dd4680a1cf35db9"
-  integrity sha512-q2ktq4n/uLuNNShyayit+DTobV2ApPEo/6so68JaD5ojvc/6GClBipedB9zNWYxRSAlZXAe405Rlijzl6qDiSw==
+typescript@^3.8.2, typescript@^3.9.2:
+  version "3.9.3"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.9.3.tgz#d3ac8883a97c26139e42df5e93eeece33d610b8a"
+  integrity sha512-D/wqnB2xzNFIcoBG9FG8cXRDjiqSTbG2wd8DMZeQyJlP1vfTkIxH4GKveWaEBYySKIg+USu+E+EDIR47SqnaMQ==
 
 typescript@next:
   version "3.8.3"
