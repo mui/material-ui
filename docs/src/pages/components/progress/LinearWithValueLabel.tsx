@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const LinearProgressWithValueLabel = (props: LinearProgressProps) => {
+const LinearProgressWithValueLabel = (props: LinearProgressProps & { value: number }) => {
   const { variant, value, color } = props;
   const classes = useStyles();
 
@@ -29,7 +29,7 @@ const LinearProgressWithValueLabel = (props: LinearProgressProps) => {
         className={classes.valueLabel}
         variant="body2"
         color="textSecondary"
-      >{`${Math.round(props.value as number)}%`}</Typography>
+      >{`${Math.round(value)}%`}</Typography>
     </Box>
   );
 };

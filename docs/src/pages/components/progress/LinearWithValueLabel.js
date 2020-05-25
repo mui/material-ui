@@ -25,7 +25,7 @@ const LinearProgressWithValueLabel = (props) => {
         <LinearProgress variant={variant} color={color} value={value} />
       </Box>
       <Typography className={classes.valueLabel} variant="body2" color="textSecondary">
-        {`${Math.round(props.value)}%`}
+        {`${Math.round(value)}%`}
       </Typography>
     </Box>
   );
@@ -40,7 +40,7 @@ LinearProgressWithValueLabel.propTypes = {
    * The value of the progress indicator for the determinate and buffer variants.
    * Value between 0 and 100.
    */
-  value: PropTypes.number,
+  value: PropTypes.number.isRequired,
   /**
    * The variant to use.
    * Use indeterminate or query when there is no progress value.
