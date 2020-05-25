@@ -29,6 +29,8 @@ function TimeValidation() {
         renderInput={props => <TextField {...props} />}
         ampm={false}
         label="Disable odd hours"
+        value={selectedDate}
+        onChange={date => handleDateChange(date)}
         shouldDisableTime={(timeValue, clockType) => {
           if (clockType === 'hours' && timeValue % 2) {
             return true;
@@ -36,8 +38,6 @@ function TimeValidation() {
 
           return false;
         }}
-        value={selectedDate}
-        onChange={date => handleDateChange(date)}
       />
     </Fragment>
   );

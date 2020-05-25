@@ -9,11 +9,11 @@ import { useParsedDate } from '../_shared/hooks/date-helpers-hooks';
 import { useUtils, MuiPickersAdapter } from '../_shared/hooks/useUtils';
 import { validateTime, TimeValidationError } from '../_helpers/time-utils';
 import { makePickerWithStateAndWrapper } from '../Picker/makePickerWithState';
-import { ModalWrapper, InlineWrapper, StaticWrapper } from '../wrappers/Wrapper';
+import { MobileWrapper, DesktopWrapper, StaticWrapper } from '../wrappers/Wrapper';
 import { WithViewsProps, AllSharedPickerProps } from '../Picker/SharedPickerProps';
 import { ValidationProps, makeValidationHook } from '../_shared/hooks/useValidation';
 
-export interface TimePickerProps
+export interface BaseTimePickerProps
   extends ExportedClockViewProps,
     ValidationProps<TimeValidationError, ParsableDate>,
     WithViewsProps<'hours' | 'minutes' | 'seconds'> {}
@@ -33,7 +33,7 @@ function useInterceptProps({
   openTo = 'hours',
   views = ['hours', 'minutes'],
   ...other
-}: TimePickerProps & AllSharedPickerProps) {
+}: BaseTimePickerProps & AllSharedPickerProps) {
   const utils = useUtils();
 
   const minTime = useParsedDate(__minTime);
@@ -61,28 +61,39 @@ function useInterceptProps({
 
 const timePickerConfig = {
   useInterceptProps,
-  useValidation: makeValidationHook<TimeValidationError, ParsableDate, TimePickerProps>(
+  useValidation: makeValidationHook<TimeValidationError, ParsableDate, BaseTimePickerProps>(
     validateTime
   ),
   DefaultToolbarComponent: TimePickerToolbar,
 };
 
-export const TimePicker = makePickerWithStateAndWrapper<TimePickerProps>(
-  ResponsiveWrapper,
-  timePickerConfig
+export const TimePicker = makePickerWithStateAndWrapper<BaseTimePickerProps>(ResponsiveWrapper, {
+  name: 'MuiPickersTimePicker',
+  ...timePickerConfig,
+});
+
+export type TimePickerProps = React.ComponentProps<typeof TimePicker>;
+
+export const DesktopTimePicker = makePickerWithStateAndWrapper<BaseTimePickerProps>(
+  DesktopWrapper,
+  {
+    name: 'MuiPickersDesktopTimePicker',
+    ...timePickerConfig,
+  }
 );
 
-export const DesktopTimePicker = makePickerWithStateAndWrapper<TimePickerProps>(
-  InlineWrapper,
-  timePickerConfig
-);
+export type DesktopTimePickerProps = React.ComponentProps<typeof DesktopTimePicker>;
 
-export const MobileTimePicker = makePickerWithStateAndWrapper<TimePickerProps>(
-  ModalWrapper,
-  timePickerConfig
-);
+export const MobileTimePicker = makePickerWithStateAndWrapper<BaseTimePickerProps>(MobileWrapper, {
+  name: 'MuiPickersMobileTimePicker',
+  ...timePickerConfig,
+});
 
-export const StaticTimePicker = makePickerWithStateAndWrapper<TimePickerProps>(
-  StaticWrapper,
-  timePickerConfig
-);
+export type MobileTimePickerProps = React.ComponentProps<typeof MobileTimePicker>;
+
+export const StaticTimePicker = makePickerWithStateAndWrapper<BaseTimePickerProps>(StaticWrapper, {
+  name: 'MuiPickersStaticTimePicker',
+  ...timePickerConfig,
+});
+
+export type StaticTimePickerProps = React.ComponentProps<typeof StaticTimePicker>;

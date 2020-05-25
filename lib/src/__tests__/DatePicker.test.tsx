@@ -1,6 +1,6 @@
 import * as React from 'react';
+import Picker from '../Picker/Picker';
 import { ReactWrapper } from 'enzyme';
-import { Picker } from '../Picker/Picker';
 import { TextField } from '@material-ui/core';
 import { MaterialUiPickersDate } from '../typings/date';
 import { mount, utilsToUse, mountPickerWithState } from './test-utils';

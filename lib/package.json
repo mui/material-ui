@@ -43,7 +43,6 @@
     }
   },
   "dependencies": {
-    "@babel/runtime": "^7.8.4",
     "@date-io/date-fns": "^2.6.0",
     "@date-io/dayjs": "^2.6.0",
     "@date-io/luxon": "^2.6.0",
@@ -55,6 +54,7 @@
   },
   "scripts": {
     "test": "jest",
+    "test:typescript": "tsc -p src/__tests__/tsconfig.json",
     "test:date-fns": "UTILS=date-fns yarn test",
     "test:luxon": "UTILS=luxon yarn test",
     "test:moment": "UTILS=moment yarn test",
@@ -68,17 +68,19 @@
     "release": "yarn test && yarn version && yarn build && yarn publish --non-interactive --tag next build"
   },
   "devDependencies": {
-    "@babel/core": "^7.6.0",
-    "@babel/node": "^7.6.1",
-    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/core": "^7.9.6",
+    "@babel/node": "^7.8.7",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
     "@babel/plugin-transform-object-assign": "^7.8.3",
     "@babel/plugin-transform-react-constant-elements": "^7.7.4",
     "@babel/plugin-transform-runtime": "~7.6.0",
-    "@babel/preset-env": "^7.6.0",
-    "@babel/preset-react": "^7.0.0",
+    "@babel/preset-env": "^7.9.6",
+    "@babel/preset-react": "^7.9.4",
+    "@babel/runtime": "^7.9.6",
     "@cypress/webpack-preprocessor": "^4.1.1",
     "@material-ui/core": "^4.9.14",
     "@material-ui/icons": "^4.9.1",
+    "@rollup/plugin-babel": "^5.0.2",
     "@types/enzyme": "^3.10.5",
     "@types/enzyme-adapter-react-16": "^1.0.3",
     "@types/fs-extra": "^8.1.0",
@@ -109,7 +111,6 @@
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "rollup": "^2.10.2",
-    "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-size-snapshot": "^0.10.0",

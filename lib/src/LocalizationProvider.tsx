@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import { DateIOFormats } from '@date-io/core/IUtils';
 import { MuiPickersAdapter } from './_shared/hooks/useUtils';
+import { withDefaultProps } from './_shared/withDefaultProps';
 
 export const MuiPickersAdapterContext = React.createContext<MuiPickersAdapter | null>(null);
 
@@ -13,7 +14,7 @@ export interface LocalizationProviderProps {
   dateFormats?: Partial<DateIOFormats>;
 }
 
-export const LocalizationProvider: React.FC<LocalizationProviderProps> = ({
+const LocalizationProvider: React.FC<LocalizationProviderProps> = ({
   dateAdapter: Utils,
   children,
   locale,
@@ -37,4 +38,4 @@ LocalizationProvider.propTypes = {
   children: PropTypes.node.isRequired,
 } as any;
 
-export default LocalizationProvider;
+export default withDefaultProps({ name: 'MuiPickersLocalizationProvider' }, LocalizationProvider);

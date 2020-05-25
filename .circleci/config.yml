@@ -66,6 +66,9 @@ jobs:
           name: Typescript
           command: yarn workspaces run build:typescript
       - run:
+          name: Run typescript tests
+          command: yarn workspace @material-ui/pickers run test:typescript
+      - run:
           name: Build and analyze bundlesize
           command: yarn workspace @material-ui/pickers build:analyze
 

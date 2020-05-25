@@ -19,6 +19,7 @@ function MinMaxDateRangePicker() {
     <DateRangePicker
       disablePast
       value={selectedRange}
+      // @ts-ignore
       maxDate={getWeeksAfter(selectedRange[0], 4)}
       onChange={date => handleDateChange(date)}
       renderInput={(startProps, endProps) => (

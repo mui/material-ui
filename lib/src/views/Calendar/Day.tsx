@@ -8,7 +8,10 @@ import { useUtils } from '../../_shared/hooks/useUtils';
 import { MaterialUiPickersDate } from '../../typings/date';
 import { makeStyles, fade } from '@material-ui/core/styles';
 import { DAY_SIZE, DAY_MARGIN } from '../../constants/dimensions';
+import { withDefaultProps } from '../../_shared/withDefaultProps';
 import { FORCE_FINISH_PICKER } from '../../_shared/hooks/usePickerState';
+
+const muiComponentConfig = { name: 'MuiPickersDay' };
 
 export const useStyles = makeStyles(
   theme => ({
@@ -67,7 +70,7 @@ export const useStyles = makeStyles(
       // need for overrides
     },
   }),
-  { name: 'MuiPickersDay' }
+  muiComponentConfig
 );
 
 export interface DayProps extends ExtendMui<ButtonBaseProps> {
@@ -243,7 +246,7 @@ export const areDayPropsEqual = (prevProps: DayProps, nextProps: DayProps) => {
   );
 };
 
-export const Day = React.memo(PureDay, areDayPropsEqual);
+export const Day = withDefaultProps(muiComponentConfig, React.memo(PureDay, areDayPropsEqual));
 
 PureDay.displayName = 'Day';
 

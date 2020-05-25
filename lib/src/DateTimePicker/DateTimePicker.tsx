@@ -6,7 +6,7 @@ import { pick12hOr24hFormat } from '../_helpers/text-field-helper';
 import { useParsedDate } from '../_shared/hooks/date-helpers-hooks';
 import { ExportedCalendarViewProps } from '../views/Calendar/CalendarView';
 import { makePickerWithStateAndWrapper } from '../Picker/makePickerWithState';
-import { InlineWrapper, ModalWrapper, StaticWrapper } from '../wrappers/Wrapper';
+import { DesktopWrapper, MobileWrapper, StaticWrapper } from '../wrappers/Wrapper';
 import { WithViewsProps, AllSharedPickerProps } from '../Picker/SharedPickerProps';
 import { DateAndTimeValidationError, validateDateAndTime } from './date-time-utils';
 import { makeValidationHook, ValidationProps } from '../_shared/hooks/useValidation';
@@ -14,7 +14,7 @@ import { ParsableDate, defaultMinDate, defaultMaxDate } from '../constants/prop-
 
 export type DateTimePickerView = 'year' | 'date' | 'month' | 'hours' | 'minutes' | 'seconds';
 
-export interface DateTimePickerProps
+export interface BaseDateTimePickerProps
   extends WithViewsProps<'year' | 'date' | 'month' | 'hours' | 'minutes'>,
     ValidationProps<DateAndTimeValidationError, ParsableDate>,
     ExportedClockViewProps,
@@ -59,7 +59,7 @@ function useInterceptProps({
   openTo = 'date',
   views = ['year', 'date', 'hours', 'minutes'],
   ...other
-}: DateTimePickerProps & AllSharedPickerProps) {
+}: BaseDateTimePickerProps & AllSharedPickerProps) {
   const utils = useUtils();
   const minTime = useParsedDate(__minTime);
   const maxTime = useParsedDate(__maxTime);
@@ -100,7 +100,7 @@ function useInterceptProps({
 const useValidation = makeValidationHook<
   DateAndTimeValidationError,
   ParsableDate,
-  DateTimePickerProps
+  BaseDateTimePickerProps
 >(validateDateAndTime);
 
 const dateTimePickerConfig = {
@@ -109,22 +109,42 @@ const dateTimePickerConfig = {
   DefaultToolbarComponent: DateTimePickerToolbar,
 };
 
-export const DateTimePicker = makePickerWithStateAndWrapper<DateTimePickerProps>(
+export const DateTimePicker = makePickerWithStateAndWrapper<BaseDateTimePickerProps>(
   ResponsiveWrapper,
-  dateTimePickerConfig
+  {
+    name: 'MuiPickersDateTimePicker',
+    ...dateTimePickerConfig,
+  }
 );
 
-export const DesktopDateTimePicker = makePickerWithStateAndWrapper<DateTimePickerProps>(
-  InlineWrapper,
-  dateTimePickerConfig
+export type DateTimePickerProps = React.ComponentProps<typeof DateTimePicker>;
+
+export const DesktopDateTimePicker = makePickerWithStateAndWrapper<BaseDateTimePickerProps>(
+  DesktopWrapper,
+  {
+    name: 'MuiPickersDesktopDateTimePicker',
+    ...dateTimePickerConfig,
+  }
 );
 
-export const MobileDateTimePicker = makePickerWithStateAndWrapper<DateTimePickerProps>(
-  ModalWrapper,
-  dateTimePickerConfig
+export type DesktopDateTimePickerProps = React.ComponentProps<typeof DesktopDateTimePicker>;
+
+export const MobileDateTimePicker = makePickerWithStateAndWrapper<BaseDateTimePickerProps>(
+  MobileWrapper,
+  {
+    name: 'MuiPickersMobileDateTimePicker',
+    ...dateTimePickerConfig,
+  }
 );
 
-export const StaticDateTimePicker = makePickerWithStateAndWrapper<DateTimePickerProps>(
+export type MobileDateTimePickerProps = React.ComponentProps<typeof MobileDateTimePicker>;
+
+export const StaticDateTimePicker = makePickerWithStateAndWrapper<BaseDateTimePickerProps>(
   StaticWrapper,
-  dateTimePickerConfig
+  {
+    name: 'MuiPickersStaticDateTimePicker',
+    ...dateTimePickerConfig,
+  }
 );
+
+export type StaticDateTimePickerProps = React.ComponentProps<typeof StaticDateTimePicker>;

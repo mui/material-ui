@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from 'react';
 import { date, object } from 'yup';
 import { Grid } from '@material-ui/core';

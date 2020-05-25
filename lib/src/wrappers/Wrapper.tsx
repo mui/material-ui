@@ -61,4 +61,4 @@ export function getWrapperVariant(wrapper: SomeWrapper) {
 
 export type WrapperVariant = ReturnType<typeof getWrapperVariant>;
 
-export { StaticWrapper, MobileWrapper as ModalWrapper, DesktopWrapper as InlineWrapper };
+export { StaticWrapper, MobileWrapper, DesktopWrapper };

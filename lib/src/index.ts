@@ -1,5 +1,3 @@
-import { DayProps as DayPropsType } from './views/Calendar/Day';
-
 export * from './DatePicker';
 
 export { DatePickerToolbar } from './DatePicker/DatePickerToolbar';
@@ -18,25 +16,34 @@ export { DateRangePickerToolbar } from './DateRangePicker/DateRangePickerToolbar
 
 export { Calendar } from './views/Calendar/Calendar';
 
-export * from './views/Calendar/CalendarView';
+export { CalendarView } from './views/Calendar/CalendarView';
 
 export { Day } from './views/Calendar/Day';
 
-export type DayProps = DayPropsType;
+export { ClockView } from './views/Clock/ClockView';
 
-export { default as TimePickerView, ClockView } from './views/Clock/ClockView';
+export { Clock } from './views/Clock/Clock';
 
-export { default as Clock } from './views/Clock/Clock';
-
-export { Picker } from './Picker/Picker';
-
-export { makePickerWithStateAndWrapper as makePickerWithState } from './Picker/makePickerWithState';
+export { default as Picker } from './Picker/Picker';
 
 export { useUtils } from './_shared/hooks/useUtils';
 
 export { usePickerState } from './_shared/hooks/usePickerState';
 
+export * from './typings/date';
+
 export {
-  LocalizationProvider,
+  default as LocalizationProvider,
   MuiPickersAdapterContext as MuiPickersContext,
 } from './LocalizationProvider';
+
+// TODO replace the following syntax with new ts export type { } syntax when will be supported by rollup
+
+export type CalendarProps = import('./views/Calendar/Calendar').CalendarProps;
+export type CalendarViewProps = import('./views/Calendar/CalendarView').CalendarViewProps;
+export type DayProps = import('./views/Calendar/Day').DayProps;
+export type ClockViewProps = import('./views/Clock/ClockView').ClockViewProps;
+export type ClockProps = import('./views/Clock/Clock').ClockProps;
+export type ToolbarComponentProps = import('./Picker/Picker').ToolbarComponentProps;
+export type DateRangeDelimiterProps = import('./DateRangePicker/DateRangeDelimiter').DateRangeDelimiterProps;
+export type LocalizationProviderProps = import('./LocalizationProvider').LocalizationProviderProps;

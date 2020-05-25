@@ -4,7 +4,7 @@ import { WithViewsProps } from '../Picker/SharedPickerProps';
 import { ResponsiveWrapper } from '../wrappers/ResponsiveWrapper';
 import { useParsedDate } from '../_shared/hooks/date-helpers-hooks';
 import { ExportedCalendarViewProps } from '../views/Calendar/CalendarView';
-import { ModalWrapper, InlineWrapper, StaticWrapper } from '../wrappers/Wrapper';
+import { MobileWrapper, DesktopWrapper, StaticWrapper } from '../wrappers/Wrapper';
 import { makeValidationHook, ValidationProps } from '../_shared/hooks/useValidation';
 import { ParsableDate, defaultMinDate, defaultMaxDate } from '../constants/prop-types';
 import { getFormatByViews, validateDate, DateValidationError } from '../_helpers/date-utils';
@@ -45,30 +45,33 @@ const datePickerConfig = {
   },
 };
 
-export const DatePicker = makePickerWithStateAndWrapper<BaseDatePickerProps>(
-  ResponsiveWrapper,
-  datePickerConfig
-);
+export const DatePicker = makePickerWithStateAndWrapper<BaseDatePickerProps>(ResponsiveWrapper, {
+  name: 'MuiPickersDatePicker',
+  ...datePickerConfig,
+});
 
 export type DatePickerProps = React.ComponentProps<typeof DatePicker>;
 
-export const MobileDatePicker = makePickerWithStateAndWrapper<BaseDatePickerProps>(
-  ModalWrapper,
-  datePickerConfig
-);
+export const MobileDatePicker = makePickerWithStateAndWrapper<BaseDatePickerProps>(MobileWrapper, {
+  name: 'MuiPickersMobileDatePicker',
+  ...datePickerConfig,
+});
 
 export type MobileDatePickerProps = React.ComponentProps<typeof MobileDatePicker>;
 
 export const DesktopDatePicker = makePickerWithStateAndWrapper<BaseDatePickerProps>(
-  InlineWrapper,
-  datePickerConfig
+  DesktopWrapper,
+  {
+    name: 'MuiPickersDesktopDatePicker',
+    ...datePickerConfig,
+  }
 );
 
 export type DesktopDatePickerProps = React.ComponentProps<typeof DesktopDatePicker>;
 
-export const StaticDatePicker = makePickerWithStateAndWrapper<BaseDatePickerProps>(
-  StaticWrapper,
-  datePickerConfig
-);
+export const StaticDatePicker = makePickerWithStateAndWrapper<BaseDatePickerProps>(StaticWrapper, {
+  name: 'MuiPickersStaticDatePicker',
+  ...datePickerConfig,
+});
 
 export type StaticDatePickerProps = React.ComponentProps<typeof StaticDatePicker>;

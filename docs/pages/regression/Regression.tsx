@@ -6,7 +6,6 @@ import { TextField, TextFieldProps } from '@material-ui/core';
 import { createRegressionDay as createRegressionDayRenderer } from './RegressionDay';
 import { MuiPickersContext, DateRangePicker, DateRangeDelimiter } from '@material-ui/pickers';
 import {
-  DateRange,
   MobileDatePicker,
   DesktopDatePicker,
   MobileTimePicker,
@@ -19,8 +18,8 @@ const makeRenderInputProp = (overrideProps: Omit<Partial<TextFieldProps>, 'varia
 
 function Regression() {
   const utils = useContext(MuiPickersContext);
-  const [range, changeRange] = useState<DateRange>([new Date('2019-01-01T00:00:00.000'), null]);
-  const [date, changeDate] = useState<Date | null>(new Date('2019-01-01T00:00:00.000'));
+  const [range, changeRange] = useState<any>([new Date('2019-01-01T00:00:00.000'), null]);
+  const [date, changeDate] = useState<any>(new Date('2019-01-01T00:00:00.000'));
 
   const sharedProps = {
     value: date,
@@ -60,18 +59,8 @@ function Regression() {
           {...sharedProps}
           mask="__"
         />
-        <MobileDatePicker
-          renderInput={props => <TextField {...props} />}
-          disabled
-          {...makeRenderInputProp({ id: 'disabled' })}
-          {...sharedProps}
-        />
-        <MobileDatePicker
-          renderInput={props => <TextField {...props} />}
-          readOnly
-          {...makeRenderInputProp({ id: 'readonly' })}
-          {...sharedProps}
-        />
+        <MobileDatePicker disabled {...makeRenderInputProp({ id: 'disabled' })} {...sharedProps} />
+        <MobileDatePicker readOnly {...makeRenderInputProp({ id: 'readonly' })} {...sharedProps} />
       </Grid>
 
       <Typography align="center" variant="h4" component="span" gutterBottom>

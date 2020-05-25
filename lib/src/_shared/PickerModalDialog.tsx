@@ -70,6 +70,9 @@ export const useStyles = makeStyles(
         padding: 0,
       },
     },
+    dialogAction: {
+      // requested for overrides
+    },
     withAdditionalAction: {
       // set justifyContent to default value to fix IE11 layout bug
       // see https://github.com/mui-org/material-ui-pickers/pull/267
@@ -116,7 +119,7 @@ export const PickerModalDialog: React.FC<PickerModalDialogProps> = ({
       <DialogContent children={children} className={classes.dialog} />
 
       <DialogActions
-        className={clsx({
+        className={clsx(classes.dialogAction, {
           [classes.withAdditionalAction]: clearable || showTodayButton,
         })}
       >

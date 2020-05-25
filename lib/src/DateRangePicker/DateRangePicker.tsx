@@ -4,7 +4,9 @@ import { date } from '../constants/prop-types';
 import { useUtils } from '../_shared/hooks/useUtils';
 import { MobileWrapper } from '../wrappers/MobileWrapper';
 import { DateRangeInputProps } from './DateRangePickerInput';
+import { withDefaultProps } from '../_shared/withDefaultProps';
 import { useParsedDate } from '../_shared/hooks/date-helpers-hooks';
+import { withDateAdapterProp } from '../_shared/withDateAdapterProp';
 import { DesktopPopperWrapper } from '../wrappers/DesktopPopperWrapper';
 import { makeWrapperComponent } from '../wrappers/makeWrapperComponent';
 import { ResponsivePopperWrapper } from '../wrappers/ResponsiveWrapper';
@@ -25,7 +27,7 @@ import {
   DateRangeValidationError,
 } from '../_helpers/date-utils';
 
-export interface DateRangePickerProps
+export interface BaseDateRangePickerProps
   extends ExportedDateRangePickerViewProps,
     ValidationProps<DateRangeValidationError, RangeInput>,
     ExportedDateRangePickerInputProps {
@@ -44,13 +46,13 @@ export interface DateRangePickerProps
 export const useDateRangeValidation = makeValidationHook<
   DateRangeValidationError,
   RangeInput,
-  DateRangePickerProps
+  BaseDateRangePickerProps
 >(validateDateRange, {
   defaultValidationError: [null, null],
   isSameError: (a, b) => a[1] === b[1] && a[0] === b[0],
 });
 
-export function makeRangePicker<TWrapper extends SomeWrapper>(Wrapper: TWrapper) {
+export function makeRangePicker<TWrapper extends SomeWrapper>(name: string, Wrapper: TWrapper) {
   const WrapperComponent = makeWrapperComponent<DateRangeInputProps, RangeInput, DateRange>(
     Wrapper,
     {
@@ -76,7 +78,7 @@ export function makeRangePicker<TWrapper extends SomeWrapper>(Wrapper: TWrapper)
     minDate: __minDate = defaultMinDate,
     maxDate: __maxDate = defaultMaxDate,
     ...other
-  }: DateRangePickerProps & AllSharedDateRangePickerProps & ExtendWrapper<TWrapper>) {
+  }: BaseDateRangePickerProps & AllSharedDateRangePickerProps & ExtendWrapper<TWrapper>) {
     const utils = useUtils();
     const minDate = useParsedDate(__minDate);
     const maxDate = useParsedDate(__maxDate);
@@ -137,23 +139,48 @@ export function makeRangePicker<TWrapper extends SomeWrapper>(Wrapper: TWrapper)
     onChange: PropTypes.func.isRequired,
     startText: PropTypes.node,
     endText: PropTypes.node,
-  };
+  } as any;
+
+  const FinalPickerComponent = withDefaultProps(
+    { name },
+    withDateAdapterProp(RangePickerWithStateAndWrapper)
+  );
 
   return React.forwardRef<
     HTMLDivElement,
     React.ComponentProps<typeof RangePickerWithStateAndWrapper>
-  >((props, ref) => <RangePickerWithStateAndWrapper {...(props as any)} forwardedRef={ref} />);
+  >((props, ref) => <FinalPickerComponent {...(props as any)} forwardedRef={ref} />);
 }
 
 // TODO replace with new export type syntax
 export type DateRange = DateRangeType;
 
-export const DateRangePicker = makeRangePicker(ResponsivePopperWrapper);
+export const DateRangePicker = makeRangePicker(
+  'MuiPickersDateRangePicker',
+  ResponsivePopperWrapper
+);
 
-export const DesktopDateRangePicker = makeRangePicker(DesktopPopperWrapper);
+export type DateRangePickerProps = React.ComponentProps<typeof DateRangePicker>;
 
-export const MobileDateRangePicker = makeRangePicker(MobileWrapper);
+export const DesktopDateRangePicker = makeRangePicker(
+  'MuiPickersDesktopDateRangePicker',
+  DesktopPopperWrapper
+);
 
-export const StaticDateRangePicker = makeRangePicker(StaticWrapper);
+export type DesktopDateRangePickerProps = React.ComponentProps<typeof DesktopDateRangePicker>;
+
+export const MobileDateRangePicker = makeRangePicker(
+  'MuiPickersMobileDateRangePicker',
+  MobileWrapper
+);
+
+export type MobileDateRangePickerProps = React.ComponentProps<typeof MobileDateRangePicker>;
+
+export const StaticDateRangePicker = makeRangePicker(
+  'MuiPickersStaticDateRangePicker',
+  StaticWrapper
+);
+
+export type StaticDateRangePickerProps = React.ComponentProps<typeof StaticDateRangePicker>;
 
 export { DateRangeDelimiter } from './DateRangeDelimiter';

@@ -23,21 +23,17 @@ import { useStyles as MuiPickerDTToolbarStyles } from '../DateTimePicker/DateTim
 
 type StylesHook<C extends string> = (props?: any) => Record<C, string>;
 
-type Classes<T> = Partial<
-  StyleRules<
-    T extends string
-      ? T
-      : T extends StylesHook<infer C>
-      ? C
-      : T extends StyleRulesCallback<any, any, infer K>
-      ? K
-      : T extends StyleRules<infer D>
-      ? D
-      : never
-  >
->;
+type Classes<T> = T extends string
+  ? T
+  : T extends StylesHook<infer C>
+  ? C
+  : T extends StyleRulesCallback<any, any, infer K>
+  ? K
+  : T extends StyleRules<infer D>
+  ? D
+  : never;
 
-export interface MuiPickersOverrides {
+export interface MuiPickersComponentsToClassName {
   MuiPickersDay?: Classes<typeof DayStyles>;
   MuiPickerDTHeader?: Classes<typeof DTHeaderStyles>;
   MuiPickerDTTabs?: Classes<typeof DTTabsStyles>;

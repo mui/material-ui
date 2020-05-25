@@ -7,6 +7,7 @@ import { ParsableDate } from '../constants/prop-types';
 import { BasePickerProps } from '../typings/BasePicker';
 import { MaterialUiPickersDate } from '../typings/date';
 import { DatePickerView } from '../DatePicker/DatePicker';
+import { withDefaultProps } from '../_shared/withDefaultProps';
 import { KeyboardDateInput } from '../_shared/KeyboardDateInput';
 import { useIsLandscape } from '../_shared/hooks/useIsLandscape';
 import { DIALOG_WIDTH, VIEW_HEIGHT } from '../constants/dimensions';
@@ -57,6 +58,8 @@ export type PickerProps<
   TDateValue = MaterialUiPickersDate
 > = ExportedPickerProps<TView> & SharedPickerProps<TInputValue, TDateValue>;
 
+const muiComponentConfig = { name: 'MuiPickersBasePicker' };
+
 export const useStyles = makeStyles(
   {
     container: {
@@ -78,7 +81,7 @@ export const useStyles = makeStyles(
       padding: '0 8px',
     },
   },
-  { name: 'MuiPickersBasePicker' }
+  muiComponentConfig
 );
 
 const MobileKeyboardTextFieldProps = { fullWidth: true };
@@ -86,7 +89,7 @@ const MobileKeyboardTextFieldProps = { fullWidth: true };
 const isTimePickerByViews = (views: DateTimePickerView[]) =>
   !views.some(view => view === 'year' || view === 'month' || view === 'date');
 
-export function Picker({
+function Picker({
   date,
   openTo = 'date',
   views = ['year', 'month', 'date', 'hours', 'minutes', 'seconds'],
@@ -196,4 +199,4 @@ export function Picker({
   );
 }
 
-Picker.displayName = 'Picker';
+export default withDefaultProps(muiComponentConfig, Picker);

@@ -5,8 +5,10 @@ import { useUtils } from '../_shared/hooks/useUtils';
 import { makeStyles } from '@material-ui/core/styles';
 import { ToolbarComponentProps } from '../Picker/Picker';
 import { ToolbarButton } from '../_shared/ToolbarButton';
+import { withDefaultProps } from '../_shared/withDefaultProps';
 import { DateRange, CurrentlySelectingRangeEndProps } from './RangeTypes';
 
+const muiComponentConfig = { name: 'MuiPickersDateRangePickerToolbarProps' };
 export const useStyles = makeStyles(
   {
     penIcon: {
@@ -17,7 +19,7 @@ export const useStyles = makeStyles(
       display: 'flex',
     },
   },
-  { name: 'MuiPickersDatePickerRoot' }
+  muiComponentConfig
 );
 
 interface DateRangePickerToolbarProps
@@ -33,51 +35,54 @@ interface DateRangePickerToolbarProps
   setCurrentlySelectingRangeEnd: (newSelectingEnd: 'start' | 'end') => void;
 }
 
-export const DateRangePickerToolbar: React.FC<DateRangePickerToolbarProps> = ({
-  date: [start, end],
-  toolbarFormat,
-  isMobileKeyboardViewOpen,
-  toggleMobileKeyboardView,
-  currentlySelectingRangeEnd,
-  setCurrentlySelectingRangeEnd,
-  startText,
-  endText,
-  toolbarTitle = 'SELECT DATE RANGE',
-}) => {
-  const utils = useUtils();
-  const classes = useStyles();
+export const DateRangePickerToolbar: React.FC<DateRangePickerToolbarProps> = withDefaultProps(
+  muiComponentConfig,
+  ({
+    date: [start, end],
+    toolbarFormat,
+    isMobileKeyboardViewOpen,
+    toggleMobileKeyboardView,
+    currentlySelectingRangeEnd,
+    setCurrentlySelectingRangeEnd,
+    startText,
+    endText,
+    toolbarTitle = 'SELECT DATE RANGE',
+  }) => {
+    const utils = useUtils();
+    const classes = useStyles();
 
-  const startDateValue = start
-    ? utils.formatByString(start, toolbarFormat || utils.formats.shortDate)
-    : startText;
+    const startDateValue = start
+      ? utils.formatByString(start, toolbarFormat || utils.formats.shortDate)
+      : startText;
 
-  const endDateValue = end
-    ? utils.formatByString(end, toolbarFormat || utils.formats.shortDate)
-    : endText;
+    const endDateValue = end
+      ? utils.formatByString(end, toolbarFormat || utils.formats.shortDate)
+      : endText;
 
-  return (
-    <PickerToolbar
-      toolbarTitle={toolbarTitle}
-      isMobileKeyboardViewOpen={isMobileKeyboardViewOpen}
-      toggleMobileKeyboardView={toggleMobileKeyboardView}
-      isLandscape={false}
-      penIconClassName={classes.penIcon}
-    >
-      <div className={classes.dateTextContainer}>
-        <ToolbarButton
-          variant={Boolean(start) ? 'h5' : 'h6'}
-          value={startDateValue}
-          selected={currentlySelectingRangeEnd === 'start'}
-          onClick={() => setCurrentlySelectingRangeEnd('start')}
-        />
-        <Typography variant="h5">&nbsp;{'–'}&nbsp;</Typography>
-        <ToolbarButton
-          variant={Boolean(end) ? 'h5' : 'h6'}
-          value={endDateValue}
-          selected={currentlySelectingRangeEnd === 'end'}
-          onClick={() => setCurrentlySelectingRangeEnd('end')}
-        />
-      </div>
-    </PickerToolbar>
-  );
-};
+    return (
+      <PickerToolbar
+        toolbarTitle={toolbarTitle}
+        isMobileKeyboardViewOpen={isMobileKeyboardViewOpen}
+        toggleMobileKeyboardView={toggleMobileKeyboardView}
+        isLandscape={false}
+        penIconClassName={classes.penIcon}
+      >
+        <div className={classes.dateTextContainer}>
+          <ToolbarButton
+            variant={Boolean(start) ? 'h5' : 'h6'}
+            value={startDateValue}
+            selected={currentlySelectingRangeEnd === 'start'}
+            onClick={() => setCurrentlySelectingRangeEnd('start')}
+          />
+          <Typography variant="h5">&nbsp;{'–'}&nbsp;</Typography>
+          <ToolbarButton
+            variant={Boolean(end) ? 'h5' : 'h6'}
+            value={endDateValue}
+            selected={currentlySelectingRangeEnd === 'end'}
+            onClick={() => setCurrentlySelectingRangeEnd('end')}
+          />
+        </div>
+      </PickerToolbar>
+    );
+  }
+);

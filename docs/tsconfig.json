@@ -15,9 +15,10 @@
     "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
+    "esModuleInterop": true,
     "rootDir": ".",
     "target": "esnext",
     "resolveJsonModule": true
   },
-  "include": ["../docs/**/*.ts*", "./typings.d.ts", "../lib/typings.d.ts"]
+  "include": ["./typings.d.ts", "../docs/**/*.ts*"]
 }

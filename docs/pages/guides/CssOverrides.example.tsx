@@ -1,9 +1,8 @@
-// @ts-nocheck
 import React, { useState } from 'react';
 import lightBlue from '@material-ui/core/colors/lightBlue';
 import { TextField } from '@material-ui/core';
-import { DatePicker } from '@material-ui/pickers';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
+import { DatePicker, DatePickerProps } from '@material-ui/pickers';
 
 const materialTheme = createMuiTheme({
   overrides: {
@@ -28,11 +27,11 @@ const materialTheme = createMuiTheme({
       dayDisabled: {
         color: lightBlue['100'],
       },
-      current: {
+      today: {
         color: lightBlue['900'],
       },
     },
-    MuiPickersModal: {
+    MuiPickersModalDialog: {
       dialogAction: {
         color: lightBlue['400'],
       },
@@ -41,7 +40,7 @@ const materialTheme = createMuiTheme({
 });
 
 function CssOverrides() {
-  const [selectedDate, handleDateChange] = useState(new Date());
+  const [selectedDate, handleDateChange] = useState<DatePickerProps['value']>(new Date());
 
   return (
     <ThemeProvider theme={materialTheme}>
@@ -49,8 +48,9 @@ function CssOverrides() {
         renderInput={props => <TextField {...props} />}
         label="Light blue picker"
         value={selectedDate}
-        onChange={handleDateChange}
-        shouldDisableDate={day => day.getDay() === 0}
+        onChange={date => handleDateChange(date)}
+        // @ts-ignore
+        shouldDisableDate={day => day && day.getDay() === 0}
       />
     </ThemeProvider>
   );

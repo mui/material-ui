@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "next start -p 3001",
     "generate-backers": "node scripts/generate-backers.js",
-    "build:typescript": "tsc -p tsconfig.json && tsc -p tsconfig.js.json"
+    "build:typescript": "tsc"
   },
   "keywords": [],
   "author": "",

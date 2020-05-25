@@ -14,6 +14,6 @@ export type ParsableDate = string | number | Date | null | undefined | MaterialU
 
 export const DomainPropTypes = { date, datePickerView };
 
-export const defaultMinDate = new Date('1900-01-01');
+export const defaultMinDate = new Date('1900-01-01') as any;
 
-export const defaultMaxDate = new Date('2100-01-01');
+export const defaultMaxDate = new Date('2100-01-01') as any;

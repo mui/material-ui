@@ -1883,7 +1883,7 @@
       "name": "hideTabs",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/DateTimePicker/DateTimePicker.tsx",
-        "name": "DateTimePickerProps"
+        "name": "BaseDateTimePickerProps"
       },
       "required": false,
       "type": {
@@ -1896,7 +1896,7 @@
       "name": "dateRangeIcon",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/DateTimePicker/DateTimePicker.tsx",
-        "name": "DateTimePickerProps"
+        "name": "BaseDateTimePickerProps"
       },
       "required": false,
       "type": {
@@ -1909,7 +1909,7 @@
       "name": "timeIcon",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/DateTimePicker/DateTimePicker.tsx",
-        "name": "DateTimePickerProps"
+        "name": "BaseDateTimePickerProps"
       },
       "required": false,
       "type": {
@@ -1922,7 +1922,7 @@
       "name": "minDateTime",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/DateTimePicker/DateTimePicker.tsx",
-        "name": "DateTimePickerProps"
+        "name": "BaseDateTimePickerProps"
       },
       "required": false,
       "type": {
@@ -1935,7 +1935,7 @@
       "name": "maxDateTime",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/DateTimePicker/DateTimePicker.tsx",
-        "name": "DateTimePickerProps"
+        "name": "BaseDateTimePickerProps"
       },
       "required": false,
       "type": {
@@ -1948,7 +1948,7 @@
       "name": "toolbarFormat",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/DateTimePicker/DateTimePicker.tsx",
-        "name": "DateTimePickerProps"
+        "name": "BaseDateTimePickerProps"
       },
       "required": false,
       "type": {
@@ -2929,7 +2929,7 @@
       "name": "startText",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/DateRangePicker/DateRangePicker.tsx",
-        "name": "DateRangePickerProps"
+        "name": "BaseDateRangePickerProps"
       },
       "required": false,
       "type": {
@@ -2944,7 +2944,7 @@
       "name": "endText",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/DateRangePicker/DateRangePicker.tsx",
-        "name": "DateRangePickerProps"
+        "name": "BaseDateRangePickerProps"
       },
       "required": false,
       "type": {
@@ -3334,7 +3334,7 @@
       },
       "required": false,
       "type": {
-        "name": "((date: DateIOType) => void) & ((date: DateRange) => void)"
+        "name": "(date: DateIOType) => void) | ((date: DateRange) => void"
       }
     },
     "onOpen": {
@@ -3821,6 +3821,21 @@
       }
     }
   },
+  "DateRangeDelimiter": {
+    "classes": {
+      "defaultValue": null,
+      "description": "Override or extend the styles applied to the component.",
+      "name": "classes",
+      "parent": {
+        "fileName": "material-ui-pickers/node_modules/@material-ui/styles/withStyles/withStyles.d.ts",
+        "name": "StyledComponentProps"
+      },
+      "required": false,
+      "type": {
+        "name": "Partial<Record<\"root\", string>>"
+      }
+    }
+  },
   "Calendar": {
     "onChange": {
       "defaultValue": null,
@@ -4135,9 +4150,7 @@
       }
     },
     "getHoursClockNumberText": {
-      "defaultValue": {
-        "value": null
-      },
+      "defaultValue": null,
       "description": "Get clock number aria-text for hours.",
       "name": "getHoursClockNumberText",
       "parent": {
@@ -4150,9 +4163,7 @@
       }
     },
     "getMinutesClockNumberText": {
-      "defaultValue": {
-        "value": null
-      },
+      "defaultValue": null,
       "description": "Get clock number aria-text for minutes.",
       "name": "getMinutesClockNumberText",
       "parent": {
@@ -4165,9 +4176,7 @@
       }
     },
     "getSecondsClockNumberText": {
-      "defaultValue": {
-        "value": null
-      },
+      "defaultValue": null,
       "description": "Get clock number aria-text for seconds.",
       "name": "getSecondsClockNumberText",
       "parent": {
@@ -4196,7 +4205,7 @@
     },
     "minutesStep": {
       "defaultValue": {
-        "value": 1
+        "value": "1"
       },
       "description": "Step over minutes",
       "name": "minutesStep",
@@ -4320,9 +4329,7 @@
       }
     },
     "leftArrowButtonText": {
-      "defaultValue": {
-        "value": "open previous view"
-      },
+      "defaultValue": null,
       "description": "Left arrow icon aria-label text",
       "name": "leftArrowButtonText",
       "parent": {
@@ -4335,9 +4342,7 @@
       }
     },
     "rightArrowButtonText": {
-      "defaultValue": {
-        "value": "open next view"
-      },
+      "defaultValue": null,
       "description": "Right arrow icon aria-label text",
       "name": "rightArrowButtonText",
       "parent": {

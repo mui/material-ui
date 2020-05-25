@@ -11,6 +11,7 @@ import { MaterialUiPickersDate } from '../../typings/date';
 import { FadeTransitionGroup } from './FadeTransitionGroup';
 import { Calendar, ExportedCalendarProps } from './Calendar';
 import { PickerOnChangeFn } from '../../_shared/hooks/useViews';
+import { withDefaultProps } from '../../_shared/withDefaultProps';
 import { CalendarHeader, CalendarHeaderProps } from './CalendarHeader';
 import { YearSelection, ExportedYearSelectionProps } from './YearSelection';
 import { defaultMinDate, defaultMaxDate } from '../../constants/prop-types';
@@ -54,6 +55,8 @@ export type ExportedCalendarViewProps = Omit<
   'date' | 'view' | 'views' | 'onChange' | 'changeView' | 'slideDirection' | 'currentMonth'
 >;
 
+const muiComponentConfig = { name: 'MuiPickersCalendarView' };
+
 export const useStyles = makeStyles(
   {
     viewTransitionContainer: {
@@ -65,151 +68,154 @@ export const useStyles = makeStyles(
       height: '100%',
     },
   },
-  { name: 'MuiPickersCalendarView' }
+  muiComponentConfig
 );
 
 export const defaultReduceAnimations =
   typeof navigator !== 'undefined' && /(android)/i.test(navigator.userAgent);
 
-export const CalendarView: React.FC<CalendarViewProps> = ({
-  date,
-  view,
-  onChange,
-  changeView,
-  onMonthChange,
-  minDate: __minDate,
-  maxDate: __maxDate,
-  reduceAnimations = defaultReduceAnimations,
-  loadingIndicator = <CircularProgress data-mui-test="loading-progress" />,
-  shouldDisableDate,
-  allowKeyboardControl: __allowKeyboardControlProp,
-  disablePast,
-  disableFuture,
-  shouldDisableYear,
-  ...other
-}) => {
-  const utils = useUtils();
-  const classes = useStyles();
-  const isStatic = React.useContext(IsStaticVariantContext);
-  const allowKeyboardControl = __allowKeyboardControlProp ?? !isStatic;
-
-  const minDate = __minDate || utils.date(defaultMinDate);
-  const maxDate = __maxDate || utils.date(defaultMaxDate);
-
-  const {
-    loadingQueue,
-    calendarState,
-    changeFocusedDay,
-    changeMonth,
-    isDateDisabled,
-    handleChangeMonth,
-    onMonthSwitchingAnimationEnd,
-  } = useCalendarState({
+export const CalendarView: React.FC<CalendarViewProps> = withDefaultProps(
+  muiComponentConfig,
+  ({
     date,
-    reduceAnimations,
+    view,
+    onChange,
+    changeView,
     onMonthChange,
-    minDate,
-    maxDate,
+    minDate: __minDate,
+    maxDate: __maxDate,
+    reduceAnimations = defaultReduceAnimations,
+    loadingIndicator = <CircularProgress data-mui-test="loading-progress" />,
     shouldDisableDate,
+    allowKeyboardControl: __allowKeyboardControlProp,
     disablePast,
     disableFuture,
-  });
+    shouldDisableYear,
+    ...other
+  }) => {
+    const utils = useUtils();
+    const classes = useStyles();
+    const isStatic = React.useContext(IsStaticVariantContext);
+    const allowKeyboardControl = __allowKeyboardControlProp ?? !isStatic;
 
-  React.useEffect(() => {
-    if (date && isDateDisabled(date)) {
-      const closestEnabledDate = findClosestEnabledDate({
-        utils,
-        date,
-        minDate: utils.date(minDate),
-        maxDate: utils.date(maxDate),
-        disablePast: Boolean(disablePast),
-        disableFuture: Boolean(disableFuture),
-        shouldDisableDate: isDateDisabled,
-      });
+    const minDate = __minDate || utils.date(defaultMinDate);
+    const maxDate = __maxDate || utils.date(defaultMaxDate);
 
-      onChange(closestEnabledDate, false);
-    }
-    // This call is too expensive to run it on each prop change.
-    // So just ensure that we are not rendering disabled as selected on mount.
-  }, []); // eslint-disable-line
+    const {
+      loadingQueue,
+      calendarState,
+      changeFocusedDay,
+      changeMonth,
+      isDateDisabled,
+      handleChangeMonth,
+      onMonthSwitchingAnimationEnd,
+    } = useCalendarState({
+      date,
+      reduceAnimations,
+      onMonthChange,
+      minDate,
+      maxDate,
+      shouldDisableDate,
+      disablePast,
+      disableFuture,
+    });
 
-  React.useEffect(() => {
-    changeMonth(date);
-  }, [date]); // eslint-disable-line
+    React.useEffect(() => {
+      if (date && isDateDisabled(date)) {
+        const closestEnabledDate = findClosestEnabledDate({
+          utils,
+          date,
+          minDate: utils.date(minDate),
+          maxDate: utils.date(maxDate),
+          disablePast: Boolean(disablePast),
+          disableFuture: Boolean(disableFuture),
+          shouldDisableDate: isDateDisabled,
+        });
 
-  return (
-    <>
-      <CalendarHeader
-        {...other}
-        view={view}
-        currentMonth={calendarState.currentMonth}
-        changeView={changeView}
-        onMonthChange={(newMonth, direction) => handleChangeMonth({ newMonth, direction })}
-        minDate={minDate}
-        maxDate={maxDate}
-        disablePast={disablePast}
-        disableFuture={disableFuture}
-        reduceAnimations={reduceAnimations}
-      />
+        onChange(closestEnabledDate, false);
+      }
+      // This call is too expensive to run it on each prop change.
+      // So just ensure that we are not rendering disabled as selected on mount.
+    }, []); // eslint-disable-line
 
-      <FadeTransitionGroup
-        reduceAnimations={reduceAnimations}
-        className={classes.viewTransitionContainer}
-        transKey={view}
-      >
-        <div>
-          {view === 'year' && (
-            <YearSelection
-              {...other}
-              date={date}
-              onChange={onChange}
-              minDate={minDate}
-              maxDate={maxDate}
-              disableFuture={disableFuture}
-              disablePast={disablePast}
-              isDateDisabled={isDateDisabled}
-              allowKeyboardControl={allowKeyboardControl}
-              shouldDisableYear={shouldDisableYear}
-              changeFocusedDay={changeFocusedDay}
-            />
-          )}
+    React.useEffect(() => {
+      changeMonth(date);
+    }, [date]); // eslint-disable-line
 
-          {view === 'month' && (
-            <MonthSelection
-              {...other}
-              date={date}
-              onChange={onChange}
-              minDate={minDate}
-              maxDate={maxDate}
-              onMonthChange={onMonthChange}
-            />
-          )}
+    return (
+      <>
+        <CalendarHeader
+          {...other}
+          view={view}
+          currentMonth={calendarState.currentMonth}
+          changeView={changeView}
+          onMonthChange={(newMonth, direction) => handleChangeMonth({ newMonth, direction })}
+          minDate={minDate}
+          maxDate={maxDate}
+          disablePast={disablePast}
+          disableFuture={disableFuture}
+          reduceAnimations={reduceAnimations}
+        />
 
-          {view === 'date' &&
-            (loadingQueue > 0 ? (
-              <Grid
-                className={classes.gridFullHeight}
-                container
-                alignItems="center"
-                justify="center"
-              >
-                {loadingIndicator}
-              </Grid>
-            ) : (
-              <Calendar
+        <FadeTransitionGroup
+          reduceAnimations={reduceAnimations}
+          className={classes.viewTransitionContainer}
+          transKey={view}
+        >
+          <div>
+            {view === 'year' && (
+              <YearSelection
                 {...other}
-                {...calendarState}
-                onMonthSwitchingAnimationEnd={onMonthSwitchingAnimationEnd}
-                changeFocusedDay={changeFocusedDay}
-                reduceAnimations={reduceAnimations}
                 date={date}
                 onChange={onChange}
+                minDate={minDate}
+                maxDate={maxDate}
+                disableFuture={disableFuture}
+                disablePast={disablePast}
                 isDateDisabled={isDateDisabled}
                 allowKeyboardControl={allowKeyboardControl}
+                shouldDisableYear={shouldDisableYear}
+                changeFocusedDay={changeFocusedDay}
               />
-            ))}
-        </div>
-      </FadeTransitionGroup>
-    </>
-  );
-};
+            )}
+
+            {view === 'month' && (
+              <MonthSelection
+                {...other}
+                date={date}
+                onChange={onChange}
+                minDate={minDate}
+                maxDate={maxDate}
+                onMonthChange={onMonthChange}
+              />
+            )}
+
+            {view === 'date' &&
+              (loadingQueue > 0 ? (
+                <Grid
+                  className={classes.gridFullHeight}
+                  container
+                  alignItems="center"
+                  justify="center"
+                >
+                  {loadingIndicator}
+                </Grid>
+              ) : (
+                <Calendar
+                  {...other}
+                  {...calendarState}
+                  onMonthSwitchingAnimationEnd={onMonthSwitchingAnimationEnd}
+                  changeFocusedDay={changeFocusedDay}
+                  reduceAnimations={reduceAnimations}
+                  date={date}
+                  onChange={onChange}
+                  isDateDisabled={isDateDisabled}
+                  allowKeyboardControl={allowKeyboardControl}
+                />
+              ))}
+          </div>
+        </FadeTransitionGroup>
+      </>
+    );
+  }
+);
