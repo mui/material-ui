@@ -61,8 +61,7 @@ git checkout -b my-topic-branch
 6. Make changes, commit and push to your fork:
 
 ```sh
-git push --set-upstream origin my-topic-branch
-git push -u
+git push -u origin HEAD
 ```
 
 7. Go to [the repository](https://github.com/mui-org/material-ui) and make a Pull Request.
