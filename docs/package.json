@@ -60,7 +60,7 @@
     "prismjs": "^1.20.0",
     "raw-loader": "^1.0.0",
     "react": "^16.13.0",
-    "react-docgen-typescript": "^1.16.3",
+    "react-docgen-typescript": "^1.16.5",
     "react-dom": "^16.13.0",
     "react-jss": "^8.6.1",
     "react-kawaii": "^0.16.0",
