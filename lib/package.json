@@ -86,7 +86,7 @@
     "@types/luxon": "^1.11.0",
     "@types/prop-types": "^15.5.8",
     "@types/react": "^16.8.2",
-    "@types/react-dom": "^16.9.6",
+    "@types/react-dom": "^16.9.8",
     "@types/react-transition-group": "^4.2.4",
     "@typescript-eslint/eslint-plugin": "^1.6.0",
     "@typescript-eslint/parser": "^1.6.0",
