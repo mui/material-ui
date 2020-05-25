@@ -82,7 +82,6 @@ describe('<LinearProgress />', () => {
     const progressbar = screen.getByRole('progressbar');
 
     expect(progressbar.children[0]).to.have.nested.property('style.transform', 'translateX(-23%)');
-    expect(progressbar).to.have.attribute('aria-valuenow', '77');
   });
 
   it('should render with buffer classes for the primary color by default', () => {
@@ -140,6 +139,13 @@ describe('<LinearProgress />', () => {
     expect(progressbar.children[0]).to.have.class(classes.barColorPrimary);
     expect(progressbar.children[1]).to.have.class(classes.barColorPrimary);
     expect(progressbar.children[1]).to.have.class(classes.bar2Indeterminate);
+  });
+
+  it('exposes the current value to screen readers when determinate', () => {
+    render(<LinearProgress variant="determinate" value={77} />);
+    const progressbar = screen.getByRole('progressbar');
+
+    expect(progressbar).to.have.attribute('aria-valuenow', '77');
   });
 
   describe('prop: value', () => {
