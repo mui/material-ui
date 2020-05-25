@@ -1,26 +1,14 @@
 import React from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import { CircularProgress, Typography, Box, CircularProgressProps } from '@material-ui/core';
+import CircularProgress, { CircularProgressProps } from '@material-ui/core/CircularProgress';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      display: 'flex',
-      '& > * + *': {
-        marginLeft: theme.spacing(2),
-      },
-    },
-  }),
-);
-
-const CircularProgressWithValueLabel = (props: CircularProgressProps & { value: number }) => {
-  const { variant, value, color } = props;
-
+function CircularProgressLabel(props: CircularProgressProps & { value: number }) {
   return (
-    <Box position="relative" display="inline-block">
-      <CircularProgress variant={variant} value={value} color={color} />
+    <Box position="relative" display="inline-flex">
+      <CircularProgress variant="static" {...props} />
       <Box
-        top={-3}
+        top={0}
         left={0}
         bottom={0}
         right={0}
@@ -30,36 +18,24 @@ const CircularProgressWithValueLabel = (props: CircularProgressProps & { value: 
         justifyContent="center"
       >
         <Typography variant="caption" component="div" color="textSecondary">{`${Math.round(
-          value,
+          props.value,
         )}%`}</Typography>
       </Box>
     </Box>
   );
-};
+}
 
 export default function CircularStatic() {
-  const classes = useStyles();
-  const [completed, setCompleted] = React.useState(0);
+  const [progress, setProgress] = React.useState(10);
 
   React.useEffect(() => {
-    function progress() {
-      setCompleted((prevCompleted) => (prevCompleted >= 100 ? 0 : prevCompleted + 1));
-    }
-
-    const timer = setInterval(progress, 50);
+    const timer = setInterval(() => {
+      setProgress((prevProgress) => (prevProgress >= 100 ? 10 : prevProgress + 10));
+    }, 800);
     return () => {
       clearInterval(timer);
     };
   }, []);
 
-  return (
-    <div className={classes.root}>
-      <CircularProgressWithValueLabel
-        variant="static"
-        value={Math.floor(completed / 10) * 10}
-        color={'primary'}
-      />
-      <CircularProgressWithValueLabel variant="determinate" value={completed} color={'secondary'} />
-    </div>
-  );
+  return <CircularProgressLabel value={progress} />;
 }

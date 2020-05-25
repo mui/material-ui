@@ -1,55 +1,38 @@
 import React from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import { LinearProgress, Typography, Box, LinearProgressProps } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import LinearProgress, { LinearProgressProps } from '@material-ui/core/LinearProgress';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      width: '100%',
-      '& > * + *': {
-        marginTop: theme.spacing(2),
-      },
-    },
-    valueLabel: {
-      minWidth: theme.spacing(4),
-    },
-  }),
-);
-
-const LinearProgressWithValueLabel = (props: LinearProgressProps & { value: number }) => {
-  const { variant, value, color } = props;
-  const classes = useStyles();
-
+function LinearProgressLabel(props: LinearProgressProps & { value: number }) {
   return (
     <Box display="flex" alignItems="center">
       <Box width="100%" mr={1}>
-        <LinearProgress variant={variant} color={color} value={value} />
+        <LinearProgress variant="determinate" {...props} />
       </Box>
-      <Typography
-        className={classes.valueLabel}
-        variant="body2"
-        color="textSecondary"
-      >{`${Math.round(value)}%`}</Typography>
+      <Box minWidth={35}>
+        <Typography variant="body2" color="textSecondary">{`${Math.round(
+          props.value,
+        )}%`}</Typography>
+      </Box>
     </Box>
   );
-};
+}
 
-export default function LinearDeterminate() {
+const useStyles = makeStyles({
+  root: {
+    width: '100%',
+  },
+});
+
+export default function LinearWithValueLabel() {
   const classes = useStyles();
-  const [completed, setCompleted] = React.useState(0);
+  const [progress, setProgress] = React.useState(10);
 
   React.useEffect(() => {
-    function progress() {
-      setCompleted((oldCompleted) => {
-        if (oldCompleted === 100) {
-          return 0;
-        }
-        const diff = Math.random() * 10;
-        return Math.min(oldCompleted + diff, 100);
-      });
-    }
-
-    const timer = setInterval(progress, 500);
+    const timer = setInterval(() => {
+      setProgress((prevProgress) => (prevProgress >= 100 ? 10 : prevProgress + 10));
+    }, 800);
     return () => {
       clearInterval(timer);
     };
@@ -57,8 +40,7 @@ export default function LinearDeterminate() {
 
   return (
     <div className={classes.root}>
-      <LinearProgressWithValueLabel variant="determinate" value={Math.floor(completed / 10) * 10} />
-      <LinearProgressWithValueLabel variant="determinate" value={completed} color="secondary" />
+      <LinearProgressLabel value={progress} />
     </div>
   );
 }

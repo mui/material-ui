@@ -40,7 +40,7 @@ When displaying progress for a sequence of processes, indicate overall progress 
 
 {{"demo": "pages/components/progress/CircularStatic.js"}}
 
-### Circular with Value Label
+### Circular with label
 
 {{"demo": "pages/components/progress/CircularWithValueLabel.js"}}
 
@@ -64,7 +64,7 @@ When displaying progress for a sequence of processes, indicate overall progress 
 
 {{"demo": "pages/components/progress/LinearQuery.js"}}
 
-### Linear with Value Label
+### Linear with label
 
 {{"demo": "pages/components/progress/LinearWithValueLabel.js"}}
 
