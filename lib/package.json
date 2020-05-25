@@ -81,6 +81,8 @@
     "@material-ui/core": "^4.9.14",
     "@material-ui/icons": "^4.9.1",
     "@rollup/plugin-babel": "^5.0.2",
+    "@rollup/plugin-commonjs": "^12.0.0",
+    "@rollup/plugin-node-resolve": "^8.0.0",
     "@types/enzyme": "^3.10.5",
     "@types/enzyme-adapter-react-16": "^1.0.3",
     "@types/fs-extra": "^8.1.0",
@@ -111,11 +113,9 @@
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "rollup": "^2.10.2",
-    "rollup-plugin-commonjs": "^10.1.0",
-    "rollup-plugin-node-resolve": "^5.2.0",
-    "rollup-plugin-size-snapshot": "^0.10.0",
+    "rollup-plugin-replace": "^2.2.0",
+    "rollup-plugin-size-snapshot": "^0.12.0",
     "rollup-plugin-terser": "^5.1.1",
-    "rollup-plugin-typescript": "^1.0.0",
     "ts-jest": "^25.5.1",
     "typescript": "^3.8.3"
   }
