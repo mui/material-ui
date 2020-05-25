@@ -1,6 +1,11 @@
 import React from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import { CircularProgress, Typography, Box, CircularProgressProps } from '@material-ui/core';
+import {
+  CircularProgress,
+  Typography,
+  Box,
+  CircularProgressProps
+} from '@material-ui/core';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -13,7 +18,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const CircularProgressWithValueLabel = (props: CircularProgressProps) => {
+const CircularProgressWithValueLabel = (props: CircularProgressProps & { value: number }) => {
   const { variant, value, color } = props;
 
   return (
@@ -33,7 +38,7 @@ const CircularProgressWithValueLabel = (props: CircularProgressProps) => {
           variant="caption"
           component="div"
           color="textSecondary"
-        >{`${props.value}%`}</Typography>
+        >{`${Math.round(value)}%`}</Typography>
       </Box>
     </Box>
   );

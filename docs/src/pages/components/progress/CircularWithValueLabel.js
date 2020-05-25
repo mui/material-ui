@@ -29,7 +29,7 @@ const CircularProgressWithValueLabel = (props) => {
         justifyContent="center"
       >
         <Typography variant="caption" component="div" color="textSecondary">
-          {`${props.value}%`}
+          {`${Math.round(value)}%`}
         </Typography>
       </Box>
     </Box>
