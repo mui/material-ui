@@ -85,9 +85,9 @@ describe('useControlled', () => {
   });
 
   it('should not raise a warning if changing the defaultValue when controlled', () => {
-    const { setProps } = render(<TestComponent value={[]} defaultValue={[]}>{() => null}</TestComponent>);
+    const { setProps } = render(<TestComponent value={1} defaultValue={0}>{() => null}</TestComponent>);
     expect(consoleErrorMock.callCount()).to.equal(0);
-    setProps({ value: null, defaultValue: null });
+    setProps({ defaultValue: 1 });
     expect(consoleErrorMock.callCount()).to.equal(0);
   });
 });
