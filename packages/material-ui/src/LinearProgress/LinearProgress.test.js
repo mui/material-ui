@@ -141,11 +141,13 @@ describe('<LinearProgress />', () => {
     expect(progressbar.children[1]).to.have.class(classes.bar2Indeterminate);
   });
 
-  it('exposes the current value to screen readers when determinate', () => {
+  it('exposes the current, min and max value to screen readers when determinate', () => {
     render(<LinearProgress variant="determinate" value={77} />);
     const progressbar = screen.getByRole('progressbar');
 
     expect(progressbar).to.have.attribute('aria-valuenow', '77');
+    expect(progressbar).to.have.attribute('aria-valuemin', '0');
+    expect(progressbar).to.have.attribute('aria-valuemax', '100');
   });
 
   describe('prop: value', () => {
