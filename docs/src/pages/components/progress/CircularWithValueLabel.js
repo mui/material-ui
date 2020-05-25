@@ -1,10 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
-function CircularProgressLabel(props) {
+function CircularProgressWithLabel(props) {
   return (
     <Box position="relative" display="inline-flex">
       <CircularProgress variant="static" {...props} />
@@ -26,14 +25,6 @@ function CircularProgressLabel(props) {
   );
 }
 
-CircularProgressLabel.propTypes = {
-  /**
-   * The value of the progress indicator for the determinate and static variants.
-   * Value between 0 and 100.
-   */
-  value: PropTypes.number.isRequired,
-};
-
 export default function CircularStatic() {
   const [progress, setProgress] = React.useState(10);
 
@@ -46,5 +37,5 @@ export default function CircularStatic() {
     };
   }, []);
 
-  return <CircularProgressLabel value={progress} />;
+  return <CircularProgressWithLabel value={progress} />;
 }

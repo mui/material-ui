@@ -3,7 +3,7 @@ import CircularProgress, { CircularProgressProps } from '@material-ui/core/Circu
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
-function CircularProgressLabel(props: CircularProgressProps & { value: number }) {
+function CircularProgressWithLabel(props: CircularProgressProps & { value: number }) {
   return (
     <Box position="relative" display="inline-flex">
       <CircularProgress variant="static" {...props} />
@@ -37,5 +37,5 @@ export default function CircularStatic() {
     };
   }, []);
 
-  return <CircularProgressLabel value={progress} />;
+  return <CircularProgressWithLabel value={progress} />;
 }

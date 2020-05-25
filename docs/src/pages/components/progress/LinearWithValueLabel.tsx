@@ -4,7 +4,7 @@ import LinearProgress, { LinearProgressProps } from '@material-ui/core/LinearPro
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
-function LinearProgressLabel(props: LinearProgressProps & { value: number }) {
+function LinearProgressWithLabel(props: LinearProgressProps & { value: number }) {
   return (
     <Box display="flex" alignItems="center">
       <Box width="100%" mr={1}>
@@ -40,7 +40,7 @@ export default function LinearWithValueLabel() {
 
   return (
     <div className={classes.root}>
-      <LinearProgressLabel value={progress} />
+      <LinearProgressWithLabel value={progress} />
     </div>
   );
 }
