@@ -26,7 +26,7 @@ function CircularProgressWithLabel(props) {
   );
 }
 
-CircularProgressLabel.propTypes = {
+CircularProgressWithLabel.propTypes = {
   /**
    * The value of the progress indicator for the determinate and static variants.
    * Value between 0 and 100.
