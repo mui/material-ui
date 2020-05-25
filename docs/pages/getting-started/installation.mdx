@@ -7,7 +7,7 @@ import PageMeta from '../../_shared/PageMeta';
 
 ## Installation
 
-Available as an [npm package](https://www.npmjs.com/package/@material-ui/pickers)
+Material UI Pickers is available as an [npm package](https://www.npmjs.com/package/@material-ui/pickers):
 
 ```
 npm i @material-ui/pickers
@@ -17,8 +17,8 @@ yarn add @material-ui/pickers
 
 #### Peer Library
 
-@material-ui/pickers was designed to use the date management library of your choice.
-We are providing interfaces for [moment](https://momentjs.com/), [date-fns 2](https://date-fns.org/), [luxon](https://moment.github.io/luxon/) and [dayjs](https://github.com/iamkun/dayjs).
+`@material-ui/pickers` was designed to use the date management library of your choice.
+We are providing interfaces for [date-fns 2](https://date-fns.org/), [luxon](https://moment.github.io/luxon/), [dayjs](https://github.com/iamkun/dayjs) and [moment](https://momentjs.com/).
 
 ```
 npm i date-fns
@@ -53,5 +53,5 @@ function App() {
 ReactDOM.render(<App />, document.querySelector('#app'));
 ```
 
-Also it is possible to pass [date adapter directly to picker](/guides/date-adapter-passing) and avoid using context,
-but please use this possibility widely.
+It is also possible to pass the [date adapter directly to the picker](/guides/date-adapter-passing) and avoid using context,
+but please use this possibility wisely.
