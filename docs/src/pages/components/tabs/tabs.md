@@ -109,6 +109,8 @@ extra work.
 The components implement keyboard navigation using the "manual activation" behavior. If you want to switch to the
 "selection automatically follows focus" behavior you have pass `selectionFollowsFocus` to the `Tabs` component. The WAI-ARIA authoring practices have a detailed guide on [how to decide when to make selection automatically follow focus](https://www.w3.org/TR/wai-aria-practices/#kbd_selection_follows_focus).
 
+#### Demo
+
 The following two demos only differ in their keyboard navigation behavior.
 Focus a tab and navigate with arrow keys to notice the difference.
 
