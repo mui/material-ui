@@ -1,5 +1,6 @@
 const { createMacro, MacroError } = require('babel-plugin-macros');
 const helperModuleImports = require('@babel/helper-module-imports');
+const fs = require('fs');
 const evaluateStringAST = require('./evaluateStringAST');
 
 function invertObject(object) {
@@ -15,8 +16,10 @@ function invertObject(object) {
  * @param {import('babel-plugin-macros').MacroParams} param0
  */
 function muiError({ references, babel, config }) {
-  const { errorCodes = {}, missingError = 'annotate' } = config;
+  const { errorCodesPath = {}, missingError = 'annotate' } = config;
+  const errorCodes = JSON.parse(fs.readFileSync(errorCodesPath, { encoding: 'utf8' }));
   const errorCodesLookup = invertObject(errorCodes);
+  let updatedErrorCodes = false;
 
   let handleMissingErrorCode;
   switch (missingError) {
@@ -41,9 +44,18 @@ function muiError({ references, babel, config }) {
         );
       };
       break;
+    case 'write':
+      handleMissingErrorCode = ({ errorMessageLiteral }) => {
+        updatedErrorCodes = true;
+        // error codes are 1-based
+        const newErrorCode = Object.keys(errorCodesLookup).length + 1;
+        errorCodesLookup[errorMessageLiteral] = newErrorCode;
+        return newErrorCode;
+      };
+      break;
     default:
       throw new MacroError(
-        `Unknown missing error behavior '${missingError}'. Can only handle 'annotate' and 'throw'.`,
+        `Unknown missing error behavior '${missingError}'. Can only handle 'annotate', 'throw' and 'write'.`,
       );
   }
 
@@ -81,8 +93,10 @@ function muiError({ references, babel, config }) {
 
     let errorCode = errorCodesLookup[errorMessageLiteral];
     if (errorCode === undefined) {
-      handleMissingErrorCode({ devMessage, errorMessageLiteral, newExpressionPath });
-      return;
+      errorCode = handleMissingErrorCode({ devMessage, errorMessageLiteral, newExpressionPath });
+      if (errorCode === undefined) {
+        return;
+      }
     }
     errorCode = parseInt(errorCode, 10);
 
@@ -126,6 +140,10 @@ function muiError({ references, babel, config }) {
       ]),
     );
   });
+
+  if (missingError === 'write' && updatedErrorCodes) {
+    fs.writeFileSync(errorCodesPath, JSON.stringify(invertObject(errorCodesLookup), null, 2));
+  }
 
   return { keepImports: false };
 }
