@@ -33,7 +33,11 @@ const styles = (theme) => ({
       '& .cf-powered-by.cf-powered-by': {
         ...theme.typography.caption,
         color: theme.palette.text.secondary,
+        marginTop: theme.spacing(0.5),
         display: 'block',
+        '& em': {
+          display: 'none',
+        },
       },
     },
   },

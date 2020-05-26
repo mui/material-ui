@@ -33,6 +33,7 @@ const styles = (theme) => ({
       '& .carbon-poweredby': {
         ...theme.typography.caption,
         color: theme.palette.text.secondary,
+        marginTop: theme.spacing(0.5),
         display: 'block',
       },
     },
