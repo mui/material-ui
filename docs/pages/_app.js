@@ -128,6 +128,11 @@ function usePersistCodeVariant() {
   return codeVariant;
 }
 
+/**
+ * basically just a `useAnalytics` hook.
+ * However, it needs the redux store which is created
+ * in the same component this "hook" is used.
+ */
 function Analytics() {
   React.useEffect(() => {
     loadScript('https://www.google-analytics.com/analytics.js', document.querySelector('head'));
@@ -170,6 +175,8 @@ function Analytics() {
       matchMedia = null;
     };
   }, []);
+
+  return null;
 }
 
 // Inspired by
