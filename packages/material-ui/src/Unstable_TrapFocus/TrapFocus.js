@@ -4,6 +4,7 @@ import * as ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import ownerDocument from '../utils/ownerDocument';
 import useForkRef from '../utils/useForkRef';
+import { exactProp } from '@material-ui/utils';
 
 /**
  * Utility component that locks focus inside the component.
@@ -190,6 +191,11 @@ TrapFocus.propTypes = {
    */
   open: PropTypes.bool.isRequired,
 };
+
+if (process.env.NODE_ENV !== 'production') {
+   // eslint-disable-next-line
+   TrapFocus['propTypes' + ''] = exactProp(TrapFocus.propTypes);
+}
 
 /*
 
