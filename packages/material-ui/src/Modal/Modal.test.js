@@ -4,7 +4,7 @@ import { expect } from 'chai';
 import { useFakeTimers, spy } from 'sinon';
 import PropTypes from 'prop-types';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
-import { createClientRender, fireEvent, screen, within } from 'test/utils/createClientRender';
+import { createClientRender, fireEvent, within } from 'test/utils/createClientRender';
 import { createMuiTheme } from '@material-ui/core/styles';
 import createMount from 'test/utils/createMount';
 import { ThemeProvider } from '@material-ui/styles';
@@ -451,92 +451,6 @@ describe('<Modal />', () => {
       );
 
       expect(initialFocus).toHaveFocus();
-    });
-
-    it('should return focus to the modal', () => {
-      const { getByTestId } = render(
-        <Modal open>
-          <div data-testid="modal">
-            <input autoFocus data-testid="auto-focus" />
-          </div>
-        </Modal>,
-      );
-
-      expect(getByTestId('auto-focus')).toHaveFocus();
-
-      initialFocus.focus();
-
-      expect(getByTestId('modal')).toHaveFocus();
-    });
-
-    it('should not return focus to the modal when disableEnforceFocus is true', () => {
-      const { getByTestId } = render(
-        <Modal open disableEnforceFocus>
-          <div>
-            <input autoFocus data-testid="auto-focus" />
-          </div>
-        </Modal>,
-      );
-
-      expect(getByTestId('auto-focus')).toHaveFocus();
-
-      initialFocus.focus();
-
-      expect(initialFocus).toHaveFocus();
-    });
-
-    it('should warn if the modal content is not focusable', () => {
-      const UnfocusableDialog = React.forwardRef((_, ref) => <div ref={ref} />);
-
-      render(
-        <Modal open>
-          <UnfocusableDialog />
-        </Modal>,
-      );
-      expect(consoleErrorMock.callCount()).to.equal(1);
-      expect(consoleErrorMock.messages()[0]).to.include(
-        'Material-UI: The modal content node does not accept focus',
-      );
-    });
-
-    it('should not attempt to focus nonexistent children', () => {
-      const EmptyDialog = () => null;
-
-      render(
-        <Modal open>
-          <EmptyDialog />
-        </Modal>,
-      );
-    });
-
-    it('should loop the tab key', () => {
-      render(
-        <Modal open>
-          <div data-testid="modal">
-            <div>Title</div>
-            <button type="button">x</button>
-            <button type="button">cancel</button>
-            <button type="button">ok</button>
-          </div>
-        </Modal>,
-      );
-
-      fireEvent.keyDown(screen.getByTestId('modal'), {
-        keyCode: 13, // Enter
-      });
-      fireEvent.keyDown(screen.getByTestId('modal'), {
-        keyCode: 9, // Tab
-      });
-
-      expect(document.querySelector('[data-test="sentinelStart"]')).toHaveFocus();
-
-      initialFocus.focus();
-      fireEvent.keyDown(screen.getByTestId('modal'), {
-        keyCode: 9, // Tab
-        shiftKey: true,
-      });
-
-      expect(document.querySelector('[data-test="sentinelEnd"]')).toHaveFocus();
     });
 
     describe('', () => {
