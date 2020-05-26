@@ -28,6 +28,10 @@ When displaying progress for a sequence of processes, indicate overall progress 
 
 {{"demo": "pages/components/progress/CircularIntegration.js"}}
 
+### Circular with label
+
+{{"demo": "pages/components/progress/CircularWithValueLabel.js"}}
+
 ## Linear
 
 ### Linear indeterminate
@@ -41,6 +45,10 @@ When displaying progress for a sequence of processes, indicate overall progress 
 ### Linear buffer
 
 {{"demo": "pages/components/progress/LinearBuffer.js"}}
+
+### Linear with label
+
+{{"demo": "pages/components/progress/LinearWithValueLabel.js"}}
 
 ## Non-standard ranges
 
