@@ -6,6 +6,37 @@ import ownerDocument from '../utils/ownerDocument';
 import useForkRef from '../utils/useForkRef';
 import { exactProp } from '@material-ui/utils';
 
+/*
+In the future, we should be able to replace TrapFocus with:
+https://github.com/facebook/react/blob/master/packages/react-events/docs/FocusScope.md
+
+```jsx
+import FocusScope from 'react-dom/FocusScope';
+
+function TrapFocus(props) {
+  const {
+    children
+    disableAutoFocus = false,
+    disableEnforceFocus = false,
+    disableRestoreFocus = false,
+    open,
+  } = props;
+  if (!open) {
+    return children;
+  }
+  return (
+    <FocusScope
+      autoFocus={!disableAutoFocus}
+      contain={!disableEnforceFocus}
+      restoreFocus={!disableRestoreFocus}
+    >
+      {children}
+    </FocusScope>
+  );
+}
+```
+*/
+
 /**
  * Utility component that locks focus inside the component.
  */
@@ -200,40 +231,5 @@ if (process.env.NODE_ENV !== 'production') {
   // eslint-disable-next-line
   Unstable_TrapFocus['propTypes' + ''] = exactProp(Unstable_TrapFocus.propTypes);
 }
-
-/*
-  
-  In the future, we should be able to replace TrapFocus with:
-  https://github.com/facebook/react/blob/master/packages/react-events/docs/FocusScope.md
-  
-  ```jsx
-  import FocusScope from 'react-dom/FocusScope';
-  
-  function TrapFocus(props) {
-    const {
-      children
-      disableAutoFocus = false,
-      disableEnforceFocus = false,
-      disableRestoreFocus = false,
-      open,
-    } = props;
-  
-    if (!open) {
-      return children;
-    }
-  
-    return (
-      <FocusScope
-        autoFocus={!disableAutoFocus}
-        contain={!disableEnforceFocus}
-        restoreFocus={!disableRestoreFocus}
-      >
-        {children}
-      </FocusScope>
-    );
-  }
-  ```
-  
-  */
 
 export default Unstable_TrapFocus;
