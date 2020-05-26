@@ -14,6 +14,10 @@ export interface TooltipProps
    */
   children: React.ReactElement<any, any>;
   /**
+   * If `true`, do not show the tooltip.
+   */
+  disabled?: boolean;
+  /**
    * Do not respond to focus events.
    */
   disableFocusListener?: boolean;

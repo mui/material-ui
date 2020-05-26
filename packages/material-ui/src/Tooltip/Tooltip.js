@@ -168,6 +168,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     arrow = false,
     children,
     classes,
+    disabled = false,
     disableFocusListener = false,
     disableHoverListener = false,
     disableTouchListener = false,
@@ -246,7 +247,13 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     };
   }, []);
 
+  React.useEffect(() => {
+    if (disabled) setOpenState(false);
+  }, [disabled, setOpenState]);
+
   const handleOpen = (event) => {
+    if (disabled) return;
+
     clearTimeout(hystersisTimer);
     hystersisOpen = true;
 
@@ -549,6 +556,10 @@ Tooltip.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * If `true`, do not show the tooltip.
+   */
+  disabled: PropTypes.bool,
   /**
    * Do not respond to focus events.
    */

@@ -340,6 +340,21 @@ describe('<Tooltip />', () => {
     });
   });
 
+  describe('prop: disabled', () => {
+    it('should not render tooltip when disabled is true', () => {
+      const { getByRole, queryByRole } = render(
+        <Tooltip enterDelay={100} title="Hello World" disabled>
+          <button id="button" type="button">
+            Hello World
+          </button>
+        </Tooltip>,
+      );
+      fireEvent.mouseOver(getByRole('button'));
+      clock.tick(100);
+      expect(queryByRole('tooltip')).to.equal(null);
+    });
+  });
+
   describe('prop: overrides', () => {
     [
       'onTouchStart',
