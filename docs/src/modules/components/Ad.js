@@ -94,6 +94,8 @@ function Ad(props) {
 
   const timerAdblock = React.useRef();
   const { current: randomSplit } = React.useRef(Math.random());
+  const { current: randomInHouse } = React.useRef(Math.random());
+  const { current: randomAdblock } = React.useRef(Math.random());
   const [adblock, setAdblock] = React.useState(null);
   const [carbonOut, setCarbonOut] = React.useState(null);
   const [codeFundOut, setCodeFundOut] = React.useState(null);
@@ -165,16 +167,16 @@ function Ad(props) {
   if (!children && adblock) {
     minHeight = 'auto';
 
-    if (Math.random() < 0.2) {
+    if (randomAdblock < 0.2) {
       children = <Adblock className={classes.paper} />;
     } else {
-      children = <AdInHouse ad={inHouseAds[Math.floor(inHouseAds.length * Math.random())]} />;
+      children = <AdInHouse ad={inHouseAds[Math.floor(inHouseAds.length * randomInHouse)]} />;
     }
   }
 
   if (!children) {
     if (carbonOut || codeFundOut) {
-      children = <AdInHouse ad={inHouseAds[Math.floor(inHouseAds.length * Math.random())]} />;
+      children = <AdInHouse ad={inHouseAds[Math.floor(inHouseAds.length * randomInHouse)]} />;
       minHeight = 'auto';
     } else if (randomSplit < 0.5) {
       children = <AdCodeFund />;
