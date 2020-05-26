@@ -143,6 +143,33 @@ function Analytics() {
   React.useEffect(() => {
     window.ga('set', 'dimension2', options.userLanguage);
   }, [options.userLanguage]);
+
+  React.useEffect(() => {
+    /**
+     * @type {null | MediaQueryList}
+     */
+    let matchMedia = null;
+
+    /**
+     * Based on https://developer.mozilla.org/en-US/docs/Web/API/Window/devicePixelRatio#Monitoring_screen_resolution_or_zoom_level_changes
+     * Adjusted to track 3 or more different ratios
+     */
+    function trackDevicePixelRation() {
+      window.ga('set', 'dimension3', window.devicePixelRatio);
+
+      matchMedia = window.matchMedia(`(resolution: ${window.devicePixelRatio}dppx)`);
+      // Need to setup again.
+      // Otherwise we track only changes from the initial ratio to another.
+      // It would not track 3 or more different monitors/zoom stages
+      matchMedia.addListener(trackDevicePixelRation);
+    }
+
+    trackDevicePixelRation();
+
+    return () => {
+      matchMedia = null;
+    };
+  }, []);
 }
 
 // Inspired by
@@ -293,7 +320,6 @@ function AppWrapper(props) {
       'https://fonts.googleapis.com/css?family=Roboto+Condensed:700|Work+Sans:300,400&display=swap',
     ];
   }
-
 
   return (
     <React.Fragment>
