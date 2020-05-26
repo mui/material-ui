@@ -44,7 +44,11 @@ module.exports = {
     'no-restricted-imports': [
       'error',
       {
-        patterns: ['@material-ui/*/*/*', '!@material-ui/core/test-utils/*'],
+        patterns: [
+          '@material-ui/*/*/*',
+          '!@material-ui/core/test-utils/*',
+          '!@material-ui/utils/macros/*.macro',
+        ],
       },
     ],
     'nonblock-statement-body-position': 'error',

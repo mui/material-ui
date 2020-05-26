@@ -1,5 +1,6 @@
 const { createMacro, MacroError } = require('babel-plugin-macros');
 const helperModuleImports = require('@babel/helper-module-imports');
+const evaluateStringAST = require('./evaluateStringAST');
 
 function invertObject(object) {
   const inverted = {};
@@ -51,18 +52,13 @@ function muiError({ references, babel, config }) {
    * @param {import('@babel/core').types.Node} node
    */
   function evaluateMessage(node) {
-    if (babel.types.isBinaryExpression(node)) {
-      if (node.operator !== '+') {
-        throw new MacroError(`Unsupported binary operator ${node.operator}`);
-      }
-      return `${evaluateMessage(node.left)}${evaluateMessage(node.right)}`;
+    try {
+      return evaluateStringAST(node, babel);
+    } catch (error) {
+      const macroError = new MacroError(error.message);
+      macroError.stack = error.stack;
+      throw macroError;
     }
-    if (babel.types.isStringLiteral(node)) {
-      return node.value;
-    }
-    throw new MacroError(
-      'Can only evaluate strings that are concatenated with `+` or string literals.',
-    );
   }
 
   references.default.forEach((babelPath) => {
