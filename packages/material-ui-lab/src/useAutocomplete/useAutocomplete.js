@@ -85,7 +85,7 @@ export default function useAutocomplete(props) {
     filterSelectedOptions = false,
     freeSolo = false,
     getOptionDisabled,
-    getOptionLabel = (x) => x,
+    getOptionLabel: getOptionLabelProp = (option) => option,
     getOptionSelected = (option, value) => option === value,
     groupBy,
     handleHomeEndKeys = !props.freeSolo,
@@ -106,6 +106,24 @@ export default function useAutocomplete(props) {
   } = props;
 
   const id = useId(idProp);
+
+  let getOptionLabel = getOptionLabelProp;
+
+  if (process.env.NODE_ENV !== 'production') {
+    getOptionLabel = (option) => {
+      const optionLabel = getOptionLabelProp(option);
+      if (typeof optionLabel !== 'string') {
+        const erroneousReturn =
+          optionLabel === undefined ? 'undefined' : `${typeof optionLabel} (${optionLabel})`;
+        console.error(
+          `Material-UI: The \`getOptionLabel\` method of ${componentName} returned ${erroneousReturn} instead of a string for ${JSON.stringify(
+            option,
+          )}.`,
+        );
+      }
+      return optionLabel;
+    };
+  }
 
   const ignoreFocus = React.useRef(false);
   const firstFocus = React.useRef(true);
@@ -139,19 +157,6 @@ export default function useAutocomplete(props) {
       newInputValue = '';
     } else {
       const optionLabel = getOptionLabel(newValue);
-
-      if (process.env.NODE_ENV !== 'production') {
-        if (typeof optionLabel !== 'string') {
-          const erroneousReturn =
-            optionLabel === undefined ? 'undefined' : `${typeof optionLabel} (${optionLabel})`;
-          console.error(
-            `Material-UI: The \`getOptionLabel\` method of ${componentName} returned ${erroneousReturn} instead of a string for ${JSON.stringify(
-              newValue,
-            )}.`,
-          );
-        }
-      }
-
       newInputValue = typeof optionLabel === 'string' ? optionLabel : '';
     }
 

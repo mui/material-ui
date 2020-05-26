@@ -184,6 +184,8 @@ const LinearProgress = React.forwardRef(function LinearProgress(props, ref) {
   if (variant === 'determinate' || variant === 'buffer') {
     if (value !== undefined) {
       rootProps['aria-valuenow'] = Math.round(value);
+      rootProps['aria-valuemin'] = 0;
+      rootProps['aria-valuemax'] = 100;
       let transform = value - 100;
       if (theme.direction === 'rtl') {
         transform = -transform;

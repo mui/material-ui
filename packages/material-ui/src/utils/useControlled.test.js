@@ -83,4 +83,15 @@ describe('useControlled', () => {
       'Material-UI: A component is changing the default value state of an uncontrolled TestComponent after being initialized.',
     );
   });
+
+  it('should not raise a warning if changing the defaultValue when controlled', () => {
+    const { setProps } = render(
+      <TestComponent value={1} defaultValue={0}>
+        {() => null}
+      </TestComponent>,
+    );
+    expect(consoleErrorMock.callCount()).to.equal(0);
+    setProps({ defaultValue: 1 });
+    expect(consoleErrorMock.callCount()).to.equal(0);
+  });
 });

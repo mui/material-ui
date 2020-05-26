@@ -2,31 +2,27 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import LinearProgress from '@material-ui/core/LinearProgress';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles({
   root: {
     width: '100%',
-    '& > * + *': {
-      marginTop: theme.spacing(2),
-    },
   },
-}));
+});
 
 export default function LinearDeterminate() {
   const classes = useStyles();
-  const [completed, setCompleted] = React.useState(0);
+  const [progress, setProgress] = React.useState(0);
 
   React.useEffect(() => {
-    function progress() {
-      setCompleted((oldCompleted) => {
-        if (oldCompleted === 100) {
+    const timer = setInterval(() => {
+      setProgress((oldProgress) => {
+        if (oldProgress === 100) {
           return 0;
         }
         const diff = Math.random() * 10;
-        return Math.min(oldCompleted + diff, 100);
+        return Math.min(oldProgress + diff, 100);
       });
-    }
+    }, 500);
 
-    const timer = setInterval(progress, 500);
     return () => {
       clearInterval(timer);
     };
@@ -34,8 +30,7 @@ export default function LinearDeterminate() {
 
   return (
     <div className={classes.root}>
-      <LinearProgress variant="determinate" value={completed} />
-      <LinearProgress variant="determinate" value={completed} color="secondary" />
+      <LinearProgress variant="determinate" value={progress} />
     </div>
   );
 }

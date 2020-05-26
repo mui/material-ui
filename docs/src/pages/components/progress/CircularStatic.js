@@ -13,14 +13,13 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CircularStatic() {
   const classes = useStyles();
-  const [completed, setCompleted] = React.useState(0);
+  const [progress, setProgress] = React.useState(0);
 
   React.useEffect(() => {
-    function progress() {
-      setCompleted((prevCompleted) => (prevCompleted >= 100 ? 0 : prevCompleted + 10));
-    }
+    const timer = setInterval(() => {
+      setProgress((prevProgress) => (prevProgress >= 100 ? 0 : prevProgress + 10));
+    }, 800);
 
-    const timer = setInterval(progress, 1000);
     return () => {
       clearInterval(timer);
     };
@@ -28,12 +27,11 @@ export default function CircularStatic() {
 
   return (
     <div className={classes.root}>
-      <CircularProgress variant="static" value={5} />
       <CircularProgress variant="static" value={25} />
       <CircularProgress variant="static" value={50} />
       <CircularProgress variant="static" value={75} />
       <CircularProgress variant="static" value={100} />
-      <CircularProgress variant="static" value={completed} />
+      <CircularProgress variant="static" value={progress} />
     </div>
   );
 }

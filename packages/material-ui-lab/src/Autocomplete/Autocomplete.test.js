@@ -963,7 +963,7 @@ describe('<Autocomplete />', () => {
       fireEvent.keyDown(textbox, { key: 'Enter' });
       expect(handleChange.callCount).to.equal(1);
       expect(handleChange.args[0][1]).to.equal('a');
-      expect(consoleErrorMock.callCount()).to.equal(2); // strict mode renders twice
+      expect(consoleErrorMock.callCount()).to.equal(4); // strict mode renders twice
       expect(consoleErrorMock.messages()[0]).to.include(
         'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
       );

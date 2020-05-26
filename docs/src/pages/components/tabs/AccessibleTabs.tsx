@@ -38,6 +38,7 @@ interface DemoTabsProps {
   selectionFollowsFocus?: boolean;
   value: number;
 }
+
 function DemoTabs(props: DemoTabsProps) {
   const { labelId, onChange, selectionFollowsFocus, value } = props;
 
