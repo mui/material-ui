@@ -464,39 +464,6 @@ describe('<Modal />', () => {
         clock.restore();
       });
 
-      it('contains the focus if the active element is removed', function test() {
-        if (/jsdom/.test(window.navigator.userAgent)) {
-          // see https://github.com/jsdom/jsdom/issues/2953
-          this.skip();
-        }
-
-        function WithRemovableElement({ hideButton = false }) {
-          return (
-            <Modal open>
-              <div role="dialog">
-                {!hideButton && <button type="button">I am going to disappear</button>}
-              </div>
-            </Modal>
-          );
-        }
-        WithRemovableElement.propTypes = {
-          hideButton: PropTypes.bool,
-        };
-
-        const { getByRole, setProps } = render(<WithRemovableElement />);
-        const dialog = getByRole('dialog');
-        const toggleButton = getByRole('button', { name: 'I am going to disappear' });
-        expect(dialog).toHaveFocus();
-
-        toggleButton.focus();
-        expect(toggleButton).toHaveFocus();
-
-        setProps({ hideButton: true });
-        expect(dialog).not.toHaveFocus();
-        clock.tick(500); // wait for the interval check to kick in.
-        expect(dialog).toHaveFocus();
-      });
-
       it('does not steal focus from other frames', function test() {
         if (/jsdom/.test(window.navigator.userAgent)) {
           // TODO: Unclear why this fails. Not important

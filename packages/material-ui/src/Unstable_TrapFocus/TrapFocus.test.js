@@ -133,7 +133,7 @@ describe('<TrapFocus />', () => {
 
       function WithRemovableElement({ hideButton = false }) {
         return (
-          <TrapFocus open>
+          <TrapFocus open {...sharedProps}>
             <div tabIndex={-1} role="dialog">
               {!hideButton && <button type="button">I am going to disappear</button>}
             </div>
