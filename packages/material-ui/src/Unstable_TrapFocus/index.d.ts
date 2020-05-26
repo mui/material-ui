@@ -1,2 +1,2 @@
-export { default } from './TrapFocus';
-export * from './TrapFocus';
+export { default } from './Unstable_TrapFocus';
+export * from './Unstable_TrapFocus';

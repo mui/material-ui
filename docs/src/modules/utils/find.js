@@ -45,7 +45,7 @@ function findPagesMarkdown(
   return pagesMarkdown;
 }
 
-const componentRegex = /^([A-Z][a-z]+)+\.js/;
+const componentRegex = /^(Unstable_)?([A-Z][a-z]+)+\.js/;
 
 // Returns the component source in a flat array.
 function findComponents(directory, components = []) {
