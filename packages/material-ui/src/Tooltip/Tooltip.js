@@ -102,6 +102,7 @@ export const styles = (theme) => ({
     position: 'absolute',
     width: '1em',
     height: '0.71em' /* = width / sqrt(2) = (length of the hypotenuse) */,
+    boxSizing: 'border-box',
     color: fade(theme.palette.grey[700], 0.9),
     '&::before': {
       content: '""',
