@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import { useSelector } from 'react-redux';
-import { makeStyles } from '@material-ui/core/styles';
+import { useTheme, makeStyles } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
 
 const useStyles = makeStyles((theme) => ({
@@ -33,17 +33,26 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+// Persisted for the whole session
+const random = Math.random();
+
 export default function DiamondSponsors(props) {
   const classes = useStyles();
   const { spot } = props;
+  const theme = useTheme();
   const t = useSelector((state) => state.options.t);
+  const [randomSession, setRandomSession] = React.useState(1);
+
+  React.useEffect(() => {
+    setRandomSession(random);
+  }, []);
 
   return (
     <div className={classes.root}>
       <Typography variant="caption" color="textSecondary" display="block" gutterBottom>
         {t('diamondSponsors')}
       </Typography>
-      {t && !t ? (
+      {randomSession < 0.05 ? (
         <a
           data-ga-event-category="sponsor"
           data-ga-event-action={spot}
@@ -56,7 +65,7 @@ export default function DiamondSponsors(props) {
           <img
             width="125"
             height="35"
-            src="/static/in-house/sencha-125x35.svg"
+            src={`/static/in-house/sencha-125x35-${theme.palette.type}.svg`}
             alt="sencha"
             title="UI Components for Productive Dev Teams"
             loading="lazy"
