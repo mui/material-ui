@@ -32,6 +32,7 @@
     "build:umd": "cross-env BABEL_ENV=production-umd rollup -c scripts/rollup.config.js",
     "build:copy-files": "node ../../scripts/copy-files.js",
     "build:types": "tsc -p tsconfig.build.json",
+    "extract-error-codes": "cross-env MUI_EXTRACT_ERROR_CODES=true yarn build:esm",
     "prebuild": "rimraf build",
     "release": "yarn build && npm publish build --tag latest",
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/material-ui/**/*.test.js' --exclude '**/node_modules/**'",

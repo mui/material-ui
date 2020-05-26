@@ -21,6 +21,7 @@
     "docs:typescript:check": "yarn workspace docs typescript",
     "docs:typescript:formatted": "yarn workspace docs typescript:transpile",
     "docs:mdicons:synonyms": "babel-node --config-file ./babel.config.js ./docs/scripts/updateIconSynonyms",
+    "extract-error-codes": "lerna run --parallel extract-error-codes",
     "framer:build": "yarn workspace framer build",
     "jsonlint": "node scripts/jsonlint.js",
     "lint": "eslint . --cache --report-unused-disable-directives",

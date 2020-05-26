@@ -125,6 +125,11 @@ jobs:
           name: Lint
           command: yarn lint:ci
       - run:
+          name: '`yarn extract-error-codes` changes committed?'
+          command: |
+            yarn extract-error-codes
+            git diff --exit-code
+      - run:
           name: Lint JSON
           command: yarn --silent jsonlint
   test_types:
