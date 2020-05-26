@@ -121,6 +121,7 @@ export default function useAutocomplete(props) {
           )}.`,
         );
       }
+      return optionLabel;
     };
   }
 
