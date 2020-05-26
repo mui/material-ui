@@ -41,7 +41,7 @@ function StableVersions(props) {
                 </Link>
               </TableCell>
               <TableCell>
-                {doc.version.length === 6 ? (
+                {doc.version.length >= 6 ? (
                   <Link
                     variant="body2"
                     color="secondary"

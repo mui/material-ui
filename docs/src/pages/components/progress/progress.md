@@ -9,56 +9,38 @@ components: CircularProgress, LinearProgress
 
 [Progress indicators](https://material.io/design/components/progress-indicators.html) inform users about the status of ongoing processes, such as loading an app, submitting a form, or saving updates. They communicate an app’s state and indicate available actions, such as whether users can navigate away from the current screen.
 
-**Determinate** indicators display how long an operation will take.
-
-**Indeterminate** indicators visualize an unspecified wait time.
-
-#### Progress as a group
+- **Determinate** indicators display how long an operation will take.
+- **Indeterminate** indicators visualize an unspecified wait time.
 
 When displaying progress for a sequence of processes, indicate overall progress rather than the progress of each activity.
 
 ## Circular
 
-[Circular progress](https://material.io/design/components/progress-indicators.html#circular-progress-indicators) support both determinate and indeterminate processes.
-
-- **Determinate** circular indicators fill the invisible, circular track with color, as the indicator moves from 0 to 360 degrees.
-- **Indeterminate** circular indicators grow and shrink in size while moving along the invisible track.
-
-### Circular Indeterminate
+### Circular indeterminate
 
 {{"demo": "pages/components/progress/CircularIndeterminate.js"}}
 
-### Interactive Integration
-
-{{"demo": "pages/components/progress/CircularIntegration.js"}}
-
-### Circular Determinate
-
-{{"demo": "pages/components/progress/CircularDeterminate.js"}}
-
-### Circular Static
+### Circular determinate
 
 {{"demo": "pages/components/progress/CircularStatic.js"}}
 
+### Interactive integration
+
+{{"demo": "pages/components/progress/CircularIntegration.js"}}
+
 ## Linear
 
-[Linear progress](https://material.io/design/components/progress-indicators.html#linear-progress-indicators) indicators.
-
-### Linear Indeterminate
+### Linear indeterminate
 
 {{"demo": "pages/components/progress/LinearIndeterminate.js"}}
 
-### Linear Determinate
+### Linear determinate
 
 {{"demo": "pages/components/progress/LinearDeterminate.js"}}
 
-### Linear Buffer
+### Linear buffer
 
 {{"demo": "pages/components/progress/LinearBuffer.js"}}
-
-### Linear Query
-
-{{"demo": "pages/components/progress/LinearQuery.js"}}
 
 ## Non-standard ranges
 
@@ -81,7 +63,7 @@ function Progress(props) {
 }
 ```
 
-## Customized progress bars
+## Customized progress
 
 Here are some examples of customizing the component. You can learn more about this in the
 [overrides documentation page](/customization/components/).

@@ -314,6 +314,12 @@ const Button = React.forwardRef(function Button(props, ref) {
       type={type}
       {...other}
     >
+      {/*
+        The inner <span> is required to vertically align the children.
+        Browsers don't support `display: flex` on a <button> element.
+        https://github.com/philipwalton/flexbugs/blob/master/README.md#flexbug-9
+        TODO v5: evaluate if still required for the supported browsers.
+      */}
       <span className={classes.label}>
         {startIcon}
         {children}
