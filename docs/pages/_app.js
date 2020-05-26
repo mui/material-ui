@@ -77,11 +77,15 @@ function LanguageNegotiation() {
 
 /**
  * Priority: on first render: navigated value, persisted value; otherwise initial value, 'JS'
- * @param {string} initialCodeVariant
- * @param {(nextCodeVariant: string) => void} codeVariantChanged
+ *
  * @returns {string} - The persisted variant if the initial value is undefined
  */
-function usePersistCodeVariant(initialCodeVariant = CODE_VARIANTS.JS, codeVariantChanged) {
+function usePersistCodeVariant() {
+  const dispatch = useDispatch();
+  const { codeVariant: initialCodeVariant = CODE_VARIANTS.JS } = useSelector(
+    (state) => state.options,
+  );
+
   const isFirstRender = useFirstRender();
 
   const navigatedCodeVariant = React.useMemo(() => {
@@ -113,7 +117,7 @@ function usePersistCodeVariant(initialCodeVariant = CODE_VARIANTS.JS, codeVarian
 
   React.useEffect(() => {
     if (codeVariant !== initialCodeVariant) {
-      codeVariantChanged(codeVariant);
+      dispatch({ type: ACTION_TYPES.OPTIONS_CHANGE, payload: { codeVariant } });
     }
   });
 
@@ -124,14 +128,14 @@ function usePersistCodeVariant(initialCodeVariant = CODE_VARIANTS.JS, codeVarian
   return codeVariant;
 }
 
-function PersistState() {
-  const dispatch = useDispatch();
+function Analytics() {
+  React.useEffect(() => {
+    loadScript('https://www.google-analytics.com/analytics.js', document.querySelector('head'));
+  }, []);
+
   const options = useSelector((state) => state.options);
 
-  const codeVariant = usePersistCodeVariant(options.codeVariant, (nextCodeVariant) =>
-    dispatch({ type: ACTION_TYPES.OPTIONS_CHANGE, payload: { codeVariant: nextCodeVariant } }),
-  );
-
+  const codeVariant = usePersistCodeVariant();
   React.useEffect(() => {
     window.ga('set', 'dimension1', codeVariant);
   }, [codeVariant]);
@@ -139,8 +143,6 @@ function PersistState() {
   React.useEffect(() => {
     window.ga('set', 'dimension2', options.userLanguage);
   }, [options.userLanguage]);
-
-  return null;
 }
 
 // Inspired by
@@ -211,7 +213,6 @@ function loadDependencies() {
     'https://fonts.googleapis.com/icon?family=Material+Icons',
     document.querySelector('#material-icon-font'),
   );
-  loadScript('https://www.google-analytics.com/analytics.js', document.querySelector('head'));
 }
 
 if (process.browser && process.env.NODE_ENV === 'production') {
@@ -293,6 +294,7 @@ function AppWrapper(props) {
     ];
   }
 
+
   return (
     <React.Fragment>
       <NextHead>
@@ -306,8 +308,8 @@ function AppWrapper(props) {
             <ThemeProvider>{children}</ThemeProvider>
           </StylesProvider>
         </PageContext.Provider>
-        <PersistState />
         <LanguageNegotiation />
+        <Analytics />
       </ReduxProvider>
       <GoogleAnalytics key={router.route} />
     </React.Fragment>
