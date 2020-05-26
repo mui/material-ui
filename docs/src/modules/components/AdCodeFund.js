@@ -58,7 +58,7 @@ function AdCodeFund() {
   return (
     <React.Fragment>
       <span id="code-fund-script-slot" />
-      <span id="codefund" />
+      <span id="codefund" data-ga-event-category="ad" data-ga-event-action="click" />
     </React.Fragment>
   );
 }
