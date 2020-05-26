@@ -1,4 +1,4 @@
-import pluginTester from 'babel-plugin-tester/pure';
+import pluginTester from 'babel-plugin-tester';
 import * as path from 'path';
 import plugin from 'babel-plugin-macros';
 
