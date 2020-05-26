@@ -202,38 +202,38 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 /*
-
-In the future, we should be able to replace TrapFocus with:
-https://github.com/facebook/react/blob/master/packages/react-events/docs/FocusScope.md
-
-```jsx
-import FocusScope from 'react-dom/FocusScope';
-
-function TrapFocus(props) {
-  const {
-    children
-    disableAutoFocus = false,
-    disableEnforceFocus = false,
-    disableRestoreFocus = false,
-    open,
-  } = props;
-
-  if (!open) {
-    return children;
+  
+  In the future, we should be able to replace TrapFocus with:
+  https://github.com/facebook/react/blob/master/packages/react-events/docs/FocusScope.md
+  
+  ```jsx
+  import FocusScope from 'react-dom/FocusScope';
+  
+  function TrapFocus(props) {
+    const {
+      children
+      disableAutoFocus = false,
+      disableEnforceFocus = false,
+      disableRestoreFocus = false,
+      open,
+    } = props;
+  
+    if (!open) {
+      return children;
+    }
+  
+    return (
+      <FocusScope
+        autoFocus={!disableAutoFocus}
+        contain={!disableEnforceFocus}
+        restoreFocus={!disableRestoreFocus}
+      >
+        {children}
+      </FocusScope>
+    );
   }
-
-  return (
-    <FocusScope
-      autoFocus={!disableAutoFocus}
-      contain={!disableEnforceFocus}
-      restoreFocus={!disableRestoreFocus}
-    >
-      {children}
-    </FocusScope>
-  );
-}
-```
-
-*/
+  ```
+  
+  */
 
 export default Unstable_TrapFocus;
