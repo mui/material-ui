@@ -1,0 +1,7 @@
+{
+  "muiError": {
+    "errorCodes": {
+      "1": "Material-UI: Expected valid input target.\nDid you use inputComponent"
+    }
+  }
+}

@@ -7,3 +7,7 @@ export { default as getDisplayName } from './getDisplayName';
 export { default as HTMLElementType } from './HTMLElementType';
 export { default as ponyfillGlobal } from './ponyfillGlobal';
 export { default as refType } from './refType';
+
+export function formatMuiErrorMessage(code) {
+  return `Error #${code}`;
+}
