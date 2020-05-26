@@ -6,7 +6,7 @@ import ownerDocument from '../utils/ownerDocument';
 import useForkRef from '../utils/useForkRef';
 
 /**
- * TrapFocus - utility component that locks focus inside the component
+ * Utility component that locks focus inside the component.
  */
 function TrapFocus(props) {
   const {
