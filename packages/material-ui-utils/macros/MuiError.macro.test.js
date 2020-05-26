@@ -16,7 +16,7 @@ pluginTester({
       code: `
         import MuiError from '@material-ui/utils/macros/MuiError.macro';
 
-        throw new MuiError('Material-UI: Expected valid input target.\\n' + 'Did you use inputComponent');
+        throw new MuiError('Material-UI: Expected valid input target.\\n' + 'Did you use \`inputComponent\`');
       `,
       pluginOptions: { muiError: { errorCodesPath } },
       output: `
@@ -24,7 +24,7 @@ pluginTester({
         throw new Error(
           process.env.NODE_ENV !== 'production'
             ? \`Material-UI: Expected valid input target.
-        Did you use inputComponent\`
+        Did you use \\\`inputComponent\\\`\`
             : _formatMuiErrorMessage(1),
         );
       `,
@@ -32,7 +32,7 @@ pluginTester({
         fs.writeFileSync(
           errorCodesPath,
           JSON.stringify({
-            '1': 'Material-UI: Expected valid input target.\nDid you use inputComponent',
+            '1': 'Material-UI: Expected valid input target.\nDid you use `inputComponent`',
           }),
         );
 
