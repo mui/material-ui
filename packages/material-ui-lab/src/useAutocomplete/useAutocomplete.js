@@ -106,15 +106,15 @@ export default function useAutocomplete(props) {
   } = props;
 
   const id = useId(idProp);
-  
+
   let getOptionLabel = getOptionLabelProp;
-  
+
   if (process.env.NODE_ENV !== 'production') {
     getOptionLabel = (option) => {
       const optionLabel = getOptionLabelProp(option);
       if (typeof optionLabel !== 'string') {
         const erroneousReturn =
-        optionLabel === undefined ? 'undefined' : `${typeof optionLabel} (${optionLabel})`;
+          optionLabel === undefined ? 'undefined' : `${typeof optionLabel} (${optionLabel})`;
         console.error(
           `Material-UI: The \`getOptionLabel\` method of ${componentName} returned ${erroneousReturn} instead of a string for ${JSON.stringify(
             option,
