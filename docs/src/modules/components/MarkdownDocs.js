@@ -89,7 +89,7 @@ const styles = (theme) => ({
 });
 
 function MarkdownDocs(props) {
-  const { classes, disableAd = false, disableToc = false, demos, docs, requireDemo } = props;
+  const { classes, disableAd = false, disableToc = false, demos = {}, docs, requireDemo } = props;
 
   const t = useSelector((state) => state.options.t);
   const userLanguage = useSelector((state) => state.options.userLanguage);

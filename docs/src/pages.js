@@ -130,6 +130,11 @@ const pages = [
   },
   { title: 'Component API', ...findPages[0] },
   {
+    title: 'Error Decoder',
+    pathname: '/error-decoder',
+    children: [{ pathname: '/error-decoder/[code]' }],
+  },
+  {
     pathname: '/styles',
     children: [
       { pathname: '/styles/basics' },
