@@ -10,7 +10,6 @@ import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import Head from 'docs/src/modules/components/Head';
 import AppFrame from 'docs/src/modules/components/AppFrame';
-import Ad from 'docs/src/modules/components/Ad';
 import EditPage from 'docs/src/modules/components/EditPage';
 import AppContainer from 'docs/src/modules/components/AppContainer';
 import PageContext from 'docs/src/modules/components/PageContext';
@@ -21,6 +20,7 @@ import { SOURCE_CODE_ROOT_URL } from 'docs/src/modules/constants';
 import Demo from 'docs/src/modules/components/Demo';
 import AppTableOfContents from 'docs/src/modules/components/AppTableOfContents';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
+import Ad from 'docs/src/modules/components/Ad';
 
 function flattenPages(pages, current = []) {
   return pages.reduce((items, item) => {
