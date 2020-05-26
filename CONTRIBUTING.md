@@ -197,7 +197,7 @@ Tests can be run with `yarn test`.
 
 ### Updating the component API documentation
 
-To update the component API documentation (auto-generated from component PropTypes comments), run:
+To update the component API documentation (auto-generated from component PropTypes), run:
 
 ```sh
 yarn docs:api

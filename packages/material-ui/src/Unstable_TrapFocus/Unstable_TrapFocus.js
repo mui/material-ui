@@ -1,4 +1,4 @@
-/* eslint-disable consistent-return, jsx-a11y/no-noninteractive-tabindex */
+/* eslint-disable consistent-return, jsx-a11y/no-noninteractive-tabindex, camelcase */
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
@@ -9,7 +9,7 @@ import { exactProp } from '@material-ui/utils';
 /**
  * Utility component that locks focus inside the component.
  */
-function TrapFocus(props) {
+function Unstable_TrapFocus(props) {
   const {
     children,
     disableAutoFocus = false,
@@ -150,19 +150,55 @@ function TrapFocus(props) {
   );
 }
 
-TrapFocus.propTypes = {
-  children: PropTypes.element.isRequired,
+Unstable_TrapFocus.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
+  /**
+   * A single child content element.
+   */
+  children: PropTypes.node,
+  /**
+   * If `true`, the trap focus will not automatically shift focus to itself when it opens, and
+   * replace it to the last focused element when it closes.
+   * This also works correctly with any trap focus children that have the `disableAutoFocus` prop.
+   *
+   * Generally this should never be set to `true` as it makes the trap focus less
+   * accessible to assistive technologies, like screen readers.
+   */
   disableAutoFocus: PropTypes.bool,
+  /**
+   * If `true`, the trap focus will not prevent focus from leaving the trap focus while open.
+   *
+   * Generally this should never be set to `true` as it makes the trap focus less
+   * accessible to assistive technologies, like screen readers.
+   */
   disableEnforceFocus: PropTypes.bool,
+  /**
+   * If `true`, the trap focus will not restore focus to previously focused element once
+   * trap focus is hidden.
+   */
   disableRestoreFocus: PropTypes.bool,
+  /**
+   * Return the document to consider.
+   * We use it to implement the restore focus between different browser documents.
+   */
   getDoc: PropTypes.func.isRequired,
+  /**
+   * Do we still want to enforce the focus?
+   * This prop helps nesting TrapFocus elements.
+   */
   isEnabled: PropTypes.func.isRequired,
+  /**
+   * If `true`, focus will be locked.
+   */
   open: PropTypes.bool.isRequired,
 };
 
 if (process.env.NODE_ENV !== 'production') {
-   // eslint-disable-next-line
-   TrapFocus['propTypes' + ''] = exactProp(TrapFocus.propTypes);
+  // eslint-disable-next-line
+  Unstable_TrapFocus['propTypes' + ''] = exactProp(Unstable_TrapFocus.propTypes);
 }
 
 /*
@@ -200,4 +236,4 @@ function TrapFocus(props) {
 
 */
 
-export default TrapFocus;
+export default Unstable_TrapFocus;

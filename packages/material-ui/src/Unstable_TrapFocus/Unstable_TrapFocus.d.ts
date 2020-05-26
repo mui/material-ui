@@ -48,6 +48,4 @@ export interface TrapFocusProps {
  *
  * - [Unstable_TrapFocus API](https://material-ui.com/api/unstable-trap-focus/)
  */
-declare const TrapFocus: React.ComponentType<TrapFocusProps>;
-
-export default TrapFocus;
+export default function Unstable_TrapFocus(props: TrapFocusProps): JSX.Element;
