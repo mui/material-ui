@@ -352,6 +352,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     disabled = false,
     getAriaLabel,
     getAriaValueText,
+    inverted = false,
     marks: marksProp = false,
     max = 100,
     min = 0,
@@ -745,6 +746,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
             key={index}
             valueLabelFormat={valueLabelFormat}
             valueLabelDisplay={valueLabelDisplay}
+            inverted={inverted}
             className={classes.valueLabel}
             value={
               typeof valueLabelFormat === 'function'
@@ -861,6 +863,10 @@ Slider.propTypes = {
    * @returns {string}
    */
   getAriaValueText: PropTypes.func,
+  /**
+   * If `true`, invert the label.
+   */
+  inverted: PropTypes.bool,
   /**
    * Marks indicate predetermined values to which the user can move the slider.
    * If `true` the marks will be spaced according the value of the `step` prop.

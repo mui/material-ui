@@ -22,6 +22,7 @@ export interface SliderTypeMap<P = {}, D extends React.ElementType = 'span'> {
     disabled?: boolean;
     getAriaLabel?: (index: number) => string;
     getAriaValueText?: (value: number, index: number) => string;
+    inverted?: boolean;
     marks?: boolean | Mark[];
     max?: number;
     min?: number;

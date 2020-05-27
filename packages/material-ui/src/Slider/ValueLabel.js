@@ -38,13 +38,19 @@ const styles = (theme) => ({
     color: theme.palette.primary.contrastText,
     transform: 'rotate(45deg)',
   },
+  inverted: {
+    transform: 'scale(1) translateY(0) rotate(180deg)',
+    '& $label': {
+      transform: 'rotate(-135deg)',
+    },
+  },
 });
 
 /**
  * @ignore - internal component.
  */
 function ValueLabel(props) {
-  const { children, classes, className, open, value, valueLabelDisplay } = props;
+  const { children, classes, className, open, value, valueLabelDisplay, inverted } = props;
 
   if (valueLabelDisplay === 'off') {
     return children;
@@ -57,6 +63,7 @@ function ValueLabel(props) {
         children.props.className,
         {
           [classes.open]: open || valueLabelDisplay === 'on',
+          [classes.inverted]: inverted,
         },
         classes.thumb,
       ),
