@@ -219,7 +219,7 @@ TablePagination.propTypes = {
    *
    * For localization purposes, you can use the provided [translations](/guides/localization/).
    */
-  labelRowsPerPage: PropTypes.string,
+  labelRowsPerPage: PropTypes.node,
   /**
    * Props applied to the next arrow [`IconButton`](/api/icon-button/) element.
    */
