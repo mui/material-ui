@@ -33,7 +33,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-// Persisted for the whole session
+// Persisted for the whole session.
+// The state is used to avoid layout jumps during the session (navigation between different pages).
 const random = Math.random();
 
 export default function DiamondSponsors(props) {
