@@ -66,7 +66,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     name: 'Select',
   });
 
-  const inputRef = React.useRef(null);
+  const [inputRef, setInputRef] = React.useState(null);
   const [displayNode, setDisplayNode] = React.useState(null);
   const { current: isOpenControlled } = React.useRef(openProp != null);
   const [menuMinWidthState, setMenuMinWidthState] = React.useState();
@@ -79,11 +79,20 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       focus: () => {
         displayNode.focus();
       },
-      node: inputRef.current,
+      node: inputRef,
       value,
     }),
-    [displayNode, value],
+    [inputRef, displayNode, value],
   );
+
+  React.useLayoutEffect(() => {
+    if (inputRef) {
+      // Ensure that libraries attempting to focus the hidden input focus the displayNode instead
+      inputRef.focus = function focus() {
+        displayNode.focus();
+      };
+    }
+  }, [inputRef, displayNode]);
 
   React.useEffect(() => {
     if (autoFocus && displayNode) {
@@ -371,7 +380,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       <input
         value={Array.isArray(value) ? value.join(',') : value}
         name={name}
-        ref={inputRef}
+        ref={setInputRef}
         type="hidden"
         autoFocus={autoFocus}
         {...other}

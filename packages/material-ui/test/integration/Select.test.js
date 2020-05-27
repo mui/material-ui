@@ -162,4 +162,24 @@ describe('<Select> integration', () => {
       expect(container.querySelector('[for="age-simple"]')).not.to.have.class('focused-label');
     });
   });
+
+  describe('hidden input', () => {
+    it('focuses the display node when a 3rd party library attempts to focus the hidden input', () => {
+      const { container, getByRole } = render(
+        <FormControl>
+          <InputLabel id="label">Age</InputLabel>
+          <Select id="input" labelId="label" value="10">
+            <MenuItem value="">none</MenuItem>
+            <MenuItem value="10">Ten</MenuItem>
+          </Select>
+        </FormControl>,
+      );
+
+      // Some 3rd party libraries attemt to call .focus() on the hidden input even though
+      // This won't actually result in a focus event so we test the .focus() method itself
+      container.querySelector('input').focus();
+
+      expect(getByRole('button')).toHaveFocus();
+    });
+  });
 });
