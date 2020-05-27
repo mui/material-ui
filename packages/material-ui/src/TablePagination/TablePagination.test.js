@@ -45,7 +45,7 @@ describe('<TablePagination />', () => {
     }),
   );
 
-  describe('render', () => {
+  describe('prop: labelDisplayedRows', () => {
     it('should use the labelDisplayedRows callback', () => {
       let labelDisplayedRowsCalled = false;
       function labelDisplayedRows({ from, to, count, page }) {
@@ -76,9 +76,11 @@ describe('<TablePagination />', () => {
       expect(labelDisplayedRowsCalled).to.equal(true);
       expect(container.innerHTML.includes('Page 1')).to.equal(true);
     });
+  });
 
+  describe('prop: labelRowsPerPage', () => {
     it('should use labelRowsPerPage', () => {
-      const { container } = render(
+      const { container, getByRole } = render(
         <table>
           <TableFooter>
             <TableRow>
@@ -94,9 +96,13 @@ describe('<TablePagination />', () => {
           </TableFooter>
         </table>,
       );
+
+      expect(getByRole('button', { name: 'Zeilen pro Seite:' })).to.have.text('10');
       expect(container.innerHTML.includes('Zeilen pro Seite:')).to.equal(true);
     });
+  });
 
+  describe('prop: page', () => {
     it('should disable the back button on the first page', () => {
       const { getByRole } = render(
         <table>
@@ -141,7 +147,9 @@ describe('<TablePagination />', () => {
       expect(backButton).to.have.property('disabled', false);
       expect(nextButton).to.have.property('disabled', true);
     });
+  });
 
+  describe('prop: onChangePage', () => {
     it('should handle next button clicks properly', () => {
       let page = 1;
       const { getByRole } = render(
@@ -191,7 +199,9 @@ describe('<TablePagination />', () => {
       fireEvent.click(backButton);
       expect(page).to.equal(0);
     });
+  });
 
+  describe('label', () => {
     it('should display 0 as start number if the table is empty ', () => {
       const { container } = render(
         <table>
