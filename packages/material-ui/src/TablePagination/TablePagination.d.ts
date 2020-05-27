@@ -21,7 +21,7 @@ export interface TablePaginationTypeMap<P, D extends React.ElementType> {
       backIconButtonProps?: Partial<IconButtonProps>;
       count: number;
       labelDisplayedRows?: (paginationInfo: LabelDisplayedRowsArgs) => React.ReactNode;
-      labelRowsPerPage?: string;
+      labelRowsPerPage?: React.ReactNode;
       nextIconButtonProps?: Partial<IconButtonProps>;
       nextIconButtonText?: string;
       onChangePage: (event: React.MouseEvent<HTMLButtonElement> | null, page: number) => void;
