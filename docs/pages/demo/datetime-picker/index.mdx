@@ -32,9 +32,10 @@ DateTimePicker is a complex control, so you may consider using `MobileDateTimePi
 
 #### Date & Time validation
 
-It is possible to restrict date and time selection in couple of different ways. If you need to restrict time selection
-you could use `minDateTime` to restrict selecting date and time before particular moment of time.
-Or you can use `minTime` to disable a part of time in each day.
+It is possible to restrict date and time selection in two ways:
+
+- using `minDateTime`/`maxDateTime`, you can restrict time selection before or after a particular moment in time
+- using `minTime`/`maxTime`, you can disable selecting times before or after a certain time each day respectively
 
 <Example source={DateTimeValidation} />
 
@@ -44,6 +45,6 @@ Here are some examples of heavily customized date & time pickers
 
 <Example source={CustomDateTimePicker} />
 
-#### Components API
+#### API
 
-<LinkedComponents components={['DateTimePicker', 'KeyboardDateTimePicker']} />
+<LinkedComponents components={['DateTimePicker']} />
