@@ -79,8 +79,8 @@ describe('<TablePagination />', () => {
   });
 
   describe('prop: labelRowsPerPage', () => {
-    it('should use labelRowsPerPage', () => {
-      const { container, getByRole } = render(
+    it('labels the select for the current page', () => {
+      const { getAllByRole } = render(
         <table>
           <TableFooter>
             <TableRow>
@@ -97,8 +97,36 @@ describe('<TablePagination />', () => {
         </table>,
       );
 
-      expect(getByRole('button', { name: 'Zeilen pro Seite:' })).to.have.text('10');
-      expect(container.innerHTML.includes('Zeilen pro Seite:')).to.equal(true);
+      // will be `getByRole('combobox')` in aria 1.2
+      const [combobox] = getAllByRole('button');
+      expect(combobox).toHaveAccessibleName('Zeilen pro Seite:');
+    });
+
+    it('accepts React nodes', () => {
+      const { getAllByRole } = render(
+        <table>
+          <TableFooter>
+            <TableRow>
+              <TablePagination
+                count={1}
+                page={0}
+                onChangePage={noop}
+                onChangeRowsPerPage={noop}
+                rowsPerPage={10}
+                labelRowsPerPage={
+                  <React.Fragment>
+                    <em>Zeilen</em> pro Seite:
+                  </React.Fragment>
+                }
+              />
+            </TableRow>
+          </TableFooter>
+        </table>,
+      );
+
+      // will be `getByRole('combobox')` in aria 1.2
+      const [combobox] = getAllByRole('button');
+      expect(combobox).toHaveAccessibleName('Zeilen pro Seite:');
     });
   });
 
