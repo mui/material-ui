@@ -35,17 +35,17 @@ const useStyles = makeStyles((theme) => ({
 
 // Persisted for the whole session.
 // The state is used to avoid layout jumps during the session (navigation between different pages).
-const random = Math.random();
+const randomSession = Math.random();
 
 export default function DiamondSponsors(props) {
   const classes = useStyles();
   const { spot } = props;
   const theme = useTheme();
   const t = useSelector((state) => state.options.t);
-  const [randomSession, setRandomSession] = React.useState(1);
+  const [randomSencha, setRandomSencha] = React.useState(1);
 
   React.useEffect(() => {
-    setRandomSession(random);
+    setRandomSencha(randomSession);
   }, []);
 
   return (
@@ -53,7 +53,7 @@ export default function DiamondSponsors(props) {
       <Typography variant="caption" color="textSecondary" display="block" gutterBottom>
         {t('diamondSponsors')}
       </Typography>
-      {randomSession < 0.05 ? (
+      {randomSencha < 0.05 ? (
         <a
           data-ga-event-category="sponsor"
           data-ga-event-action={spot}
