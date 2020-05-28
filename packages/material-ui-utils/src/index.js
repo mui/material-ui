@@ -13,9 +13,5 @@ export function formatMuiErrorMessage(code, ...args) {
   args.forEach((arg) => {
     url += `args[]=${encodeURIComponent(arg)}&`;
   });
-  return (
-    `Minified Material-UI error #${code}; visit ${url} for the full message or ` +
-    'use the non-minified dev environment for full errors and additional ' +
-    'helpful warnings.'
-  );
+  return `Minified Material-UI error #${code}; visit ${url} for the full message.`;
 }
