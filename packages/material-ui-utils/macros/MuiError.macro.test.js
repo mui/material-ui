@@ -5,7 +5,8 @@ import * as os from 'os';
 import plugin from 'babel-plugin-macros';
 import { expect } from 'chai';
 
-const errorCodesPath = path.join(os.tmpdir(), 'error-codes.json');
+const temporaryErrorCodesPath = path.join(os.tmpdir(), 'error-codes.json');
+const fixturePath = path.resolve(__dirname, './__fixtures__');
 
 pluginTester({
   plugin,
@@ -13,116 +14,67 @@ pluginTester({
   tests: [
     {
       title: 'literal',
-      code: `
-        import MuiError from '@material-ui/utils/macros/MuiError.macro';
-
-        throw new MuiError('Material-UI: Expected valid input target.\\n' + 'Did you use \`inputComponent\`');
-      `,
-      pluginOptions: { muiError: { errorCodesPath } },
-      output: `
-        import { formatMuiErrorMessage as _formatMuiErrorMessage } from '@material-ui/utils';
-        throw new Error(
-          process.env.NODE_ENV !== 'production'
-            ? \`Material-UI: Expected valid input target.
-        Did you use \\\`inputComponent\\\`\`
-            : _formatMuiErrorMessage(1),
-        );
-      `,
-      setup() {
-        fs.writeFileSync(
-          errorCodesPath,
-          JSON.stringify({
-            '1': 'Material-UI: Expected valid input target.\nDid you use `inputComponent`',
-          }),
-        );
-
-        return function teardown() {
-          fs.unlinkSync(errorCodesPath);
-        };
+      pluginOptions: {
+        muiError: { errorCodesPath: path.join(fixturePath, 'literal', 'error-codes.json') },
       },
+      fixture: path.join(fixturePath, 'literal', 'input.js'),
+      outputFixture: path.join(fixturePath, 'literal', 'output.js'),
     },
     {
-      title: 'no-error-code',
-      code: `
-        import MuiError from '@material-ui/utils/macros/MuiError.macro';
-
-        throw new MuiError('Material-UI: Expected valid input target.\\n' + 'Did you use inputComponent');
-      `,
-      output: `
-        throw (
-          /* FIXME (minify-errors-in-prod): Unminified error message in production build! */
-          new Error(\`Material-UI: Expected valid input target.
-        Did you use inputComponent\`)
-        );
-      `,
-      pluginOptions: { muiError: { errorCodesPath } },
-      setup() {
-        fs.writeFileSync(errorCodesPath, JSON.stringify({}));
-
-        return function teardown() {
-          fs.unlinkSync(errorCodesPath);
-        };
+      title: 'annotates missing error codes',
+      pluginOptions: {
+        muiError: {
+          errorCodesPath: path.join(fixturePath, 'no-error-code-annotation', 'error-codes.json'),
+        },
       },
+      fixture: path.join(fixturePath, 'no-error-code-annotation', 'input.js'),
+      outputFixture: path.join(fixturePath, 'no-error-code-annotation', 'output.js'),
     },
     {
       title: 'can throw on missing error codes',
-      error: /unknown: Missing error code for message 'missing'. Did you forget to run `yarn extract-errors` first?/,
-      code: `
-        import MuiError from '@material-ui/utils/macros/MuiError.macro';
-
-        throw new MuiError('missing');`,
+      // babel prefixes with filename.
+      // We're only interested in the message.
+      error: /: Missing error code for message 'missing'. Did you forget to run `yarn extract-errors` first?/,
+      fixture: path.join(fixturePath, 'no-error-code-throw', 'input.js'),
       pluginOptions: {
         muiError: {
-          errorCodesPath,
+          errorCodesPath: path.join(fixturePath, 'no-error-code-throw', 'error-codes.json'),
           missingError: 'throw',
         },
-      },
-      setup() {
-        fs.writeFileSync(errorCodesPath, JSON.stringify({}));
-
-        return function teardown() {
-          fs.unlinkSync(errorCodesPath);
-        };
       },
     },
     {
       title: 'can extract errors',
-      code: `
-        import MuiError from '@material-ui/utils/macros/MuiError.macro';
 
-        throw new MuiError('exists');
-        throw new MuiError('will be created');`,
+      fixture: path.join(fixturePath, 'error-code-extraction', 'input.js'),
       pluginOptions: {
         muiError: {
-          errorCodesPath,
+          errorCodesPath: temporaryErrorCodesPath,
           missingError: 'write',
         },
       },
-      output: `
-      import { formatMuiErrorMessage as _formatMuiErrorMessage2 } from '@material-ui/utils';
-      import { formatMuiErrorMessage as _formatMuiErrorMessage } from '@material-ui/utils';
-      throw new Error(process.env.NODE_ENV !== 'production' ? \`exists\` : _formatMuiErrorMessage(1));
-      throw new Error(
-        process.env.NODE_ENV !== 'production' ? \`will be created\` : _formatMuiErrorMessage2(2),
-      );
-      `,
+      outputFixture: path.join(fixturePath, 'error-code-extraction', 'output.js'),
       setup() {
-        const initialErrorCodes = {
-          '1': 'exists',
-        };
-        fs.writeFileSync(errorCodesPath, JSON.stringify(initialErrorCodes));
+        fs.copyFileSync(
+          path.join(fixturePath, 'error-code-extraction', 'error-codes.before.json'),
+          temporaryErrorCodesPath,
+        );
 
         return function teardown() {
-          const extractedErrorCodes = JSON.parse(
-            fs.readFileSync(errorCodesPath, { encoding: 'utf8' }),
-          );
+          try {
+            const actualErrorCodes = JSON.parse(
+              fs.readFileSync(temporaryErrorCodesPath, { encoding: 'utf8' }),
+            );
+            const expectedErrorCodes = JSON.parse(
+              fs.readFileSync(
+                path.join(fixturePath, 'error-code-extraction', 'error-codes.after.json'),
+              ),
+            );
 
-          expect(extractedErrorCodes).to.deep.equal({
-            '1': 'exists',
-            '2': 'will be created',
-          });
-
-          fs.unlinkSync(errorCodesPath);
+            expect(actualErrorCodes).to.deep.equal(expectedErrorCodes);
+          } finally {
+            fs.unlinkSync(temporaryErrorCodesPath);
+          }
         };
       },
     },

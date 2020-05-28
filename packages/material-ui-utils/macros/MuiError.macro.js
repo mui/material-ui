@@ -87,6 +87,11 @@ function muiError({ references, babel, config }) {
       .split('%s')
       // Providing `cooked` here is important.
       // Otherwise babel will generate "" with NODE_ENV=test
+      //
+      // Original code used `cooked: String.raw({ raw: cooked })`
+      // Thought it's unclear what for.
+      // 'One line\nNext line' will end up as `One line
+      // Next line` which is what you'd want from that literal.
       .map((cooked) => babel.types.templateElement({ raw: cooked.replace(/`/g, '\\`'), cooked }));
 
     // Outputs:
