@@ -10,7 +10,7 @@ import useForkRef from '../utils/useForkRef';
 import useEventCallback from '../utils/useEventCallback';
 import zIndex from '../styles/zIndex';
 import ModalManager, { ariaHidden } from './ModalManager';
-import TrapFocus from './TrapFocus';
+import TrapFocus from '../Unstable_TrapFocus';
 import SimpleBackdrop from './SimpleBackdrop';
 
 function getContainer(container) {

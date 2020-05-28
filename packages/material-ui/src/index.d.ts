@@ -391,6 +391,9 @@ export * from './Tooltip';
 export { default as Typography } from './Typography';
 export * from './Typography';
 
+export { default as Unstable_TrapFocus } from './Unstable_TrapFocus';
+export * from './Unstable_TrapFocus';
+
 export { default as useMediaQuery } from './useMediaQuery';
 export * from './useMediaQuery';
 

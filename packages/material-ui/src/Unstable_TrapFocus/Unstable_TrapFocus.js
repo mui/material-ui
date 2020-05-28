@@ -1,14 +1,15 @@
-/* eslint-disable consistent-return, jsx-a11y/no-noninteractive-tabindex */
+/* eslint-disable consistent-return, jsx-a11y/no-noninteractive-tabindex, camelcase */
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import ownerDocument from '../utils/ownerDocument';
 import useForkRef from '../utils/useForkRef';
+import { exactProp } from '@material-ui/utils';
 
 /**
- * @ignore - internal component.
+ * Utility component that locks focus inside the component.
  */
-function TrapFocus(props) {
+function Unstable_TrapFocus(props) {
   const {
     children,
     disableAutoFocus = false,
@@ -149,30 +150,34 @@ function TrapFocus(props) {
   );
 }
 
-TrapFocus.propTypes = {
+Unstable_TrapFocus.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * A single child content element.
    */
-  children: PropTypes.element.isRequired,
+  children: PropTypes.node,
   /**
-   * If `true`, the modal will not automatically shift focus to itself when it opens, and
+   * If `true`, the trap focus will not automatically shift focus to itself when it opens, and
    * replace it to the last focused element when it closes.
-   * This also works correctly with any modal children that have the `disableAutoFocus` prop.
+   * This also works correctly with any trap focus children that have the `disableAutoFocus` prop.
    *
-   * Generally this should never be set to `true` as it makes the modal less
+   * Generally this should never be set to `true` as it makes the trap focus less
    * accessible to assistive technologies, like screen readers.
    */
   disableAutoFocus: PropTypes.bool,
   /**
-   * If `true`, the modal will not prevent focus from leaving the modal while open.
+   * If `true`, the trap focus will not prevent focus from leaving the trap focus while open.
    *
-   * Generally this should never be set to `true` as it makes the modal less
+   * Generally this should never be set to `true` as it makes the trap focus less
    * accessible to assistive technologies, like screen readers.
    */
   disableEnforceFocus: PropTypes.bool,
   /**
-   * If `true`, the modal will not restore focus to previously focused element once
-   * modal is hidden.
+   * If `true`, the trap focus will not restore focus to previously focused element once
+   * trap focus is hidden.
    */
   disableRestoreFocus: PropTypes.bool,
   /**
@@ -186,44 +191,14 @@ TrapFocus.propTypes = {
    */
   isEnabled: PropTypes.func.isRequired,
   /**
-   * If `true`, the modal is open.
+   * If `true`, focus will be locked.
    */
   open: PropTypes.bool.isRequired,
 };
 
-/*
-
-In the future, we should be able to replace TrapFocus with:
-https://github.com/facebook/react/blob/master/packages/react-events/docs/FocusScope.md
-
-```jsx
-import FocusScope from 'react-dom/FocusScope';
-
-function TrapFocus(props) {
-  const {
-    children
-    disableAutoFocus = false,
-    disableEnforceFocus = false,
-    disableRestoreFocus = false,
-    open,
-  } = props;
-
-  if (!open) {
-    return children;
-  }
-
-  return (
-    <FocusScope
-      autoFocus={!disableAutoFocus}
-      contain={!disableEnforceFocus}
-      restoreFocus={!disableRestoreFocus}
-    >
-      {children}
-    </FocusScope>
-  );
+if (process.env.NODE_ENV !== 'production') {
+  // eslint-disable-next-line
+  Unstable_TrapFocus['propTypes' + ''] = exactProp(Unstable_TrapFocus.propTypes);
 }
-```
 
-*/
-
-export default TrapFocus;
+export default Unstable_TrapFocus;
