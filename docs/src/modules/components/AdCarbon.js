@@ -33,6 +33,7 @@ const styles = (theme) => ({
       '& .carbon-poweredby': {
         ...theme.typography.caption,
         color: theme.palette.text.secondary,
+        marginTop: theme.spacing(0.5),
         display: 'block',
       },
     },
@@ -55,7 +56,7 @@ function AdCarbon() {
     script.id = '_carbonads_js';
   }, []);
 
-  return <span id="carbon-ad" />;
+  return <span id="carbon-ad" data-ga-event-category="ad" data-ga-event-action="click" />;
 }
 
 export default withStyles(styles)(AdCarbon);

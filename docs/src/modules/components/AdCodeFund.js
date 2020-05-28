@@ -33,7 +33,11 @@ const styles = (theme) => ({
       '& .cf-powered-by.cf-powered-by': {
         ...theme.typography.caption,
         color: theme.palette.text.secondary,
+        marginTop: theme.spacing(0.5),
         display: 'block',
+        '& em': {
+          display: 'none',
+        },
       },
     },
   },
@@ -54,7 +58,7 @@ function AdCodeFund() {
   return (
     <React.Fragment>
       <span id="code-fund-script-slot" />
-      <span id="codefund" />
+      <span id="codefund" data-ga-event-category="ad" data-ga-event-action="click" />
     </React.Fragment>
   );
 }
