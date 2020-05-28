@@ -6,8 +6,10 @@ import clsx from 'clsx';
 import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+import NoSsr from '@material-ui/core/NoSsr';
 import Link from 'docs/src/modules/components/Link';
 import PageContext from 'docs/src/modules/components/PageContext';
+import Ad from 'docs/src/modules/components/Ad';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -201,6 +203,9 @@ export default function AppTableOfContents(props) {
 
   return (
     <nav className={classes.root} aria-label={t('pageTOC')}>
+      <NoSsr>
+        <Ad placement="tocs-top" />
+      </NoSsr>
       {items.length > 0 ? (
         <React.Fragment>
           <Typography gutterBottom className={classes.contents}>
@@ -222,6 +227,9 @@ export default function AppTableOfContents(props) {
           </Typography>
         </React.Fragment>
       ) : null}
+      <NoSsr>
+        <Ad placement="tocs-bottom" />
+      </NoSsr>
     </nav>
   );
 }

@@ -1,45 +1,22 @@
 /* eslint react/jsx-no-target-blank: ["error", { allowReferrer: true }] */
 import React from 'react';
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
+import adStyles from 'docs/src/modules/components/ad.styles';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'block',
-    overflow: 'hidden',
-    backgroundColor: theme.palette.background.level2,
-    padding: `${theme.spacing(1.5)}px ${theme.spacing(1.5)}px ${theme.spacing(1.5)}px ${
-      theme.spacing(1.5) + 130
-    }px`,
-    borderRadius: theme.shape.borderRadius,
-    '& $imageWrapper': {
-      float: 'left',
-      marginLeft: -130,
-      width: 130,
-      height: 100,
-      marginRight: theme.spacing(1.5),
+const useStyles = makeStyles((theme) => {
+  const styles = adStyles(theme);
+  return {
+    root: {
+      ...styles.root,
+      '& img': styles.img,
+      '& a, & a:hover': styles.a,
     },
-    '& img': {
-      verticalAlign: 'middle',
-    },
-    '& a, & a:hover': {
-      color: theme.palette.text.primary,
-      textDecoration: 'none',
-    },
-    '& $description': {
-      ...theme.typography.body2,
-      display: 'block',
-    },
-    '& $poweredby': {
-      ...theme.typography.caption,
-      color: theme.palette.text.secondary,
-      display: 'block',
-    },
-  },
-  imageWrapper: {},
-  description: {},
-  poweredby: {},
-}));
+    imageWrapper: styles.imgWrapper,
+    description: styles.description,
+    poweredby: styles.poweredby,
+  };
+});
 
 export default function AdInHouse(props) {
   const { ad } = props;
@@ -65,14 +42,12 @@ export default function AdInHouse(props) {
           dangerouslySetInnerHTML={{ __html: ad.description }}
         />
       </a>
-      <a href="/" className={classes.poweredby}>
-        ad by Material-UI
-      </a>
+      <span className={classes.poweredby}>ad by Material-UI</span>
     </span>
   );
   /* eslint-enable material-ui/no-hardcoded-labels, react/no-danger */
 }
 
 AdInHouse.propTypes = {
-  ad: propTypes.object.isRequired,
+  ad: PropTypes.object.isRequired,
 };
