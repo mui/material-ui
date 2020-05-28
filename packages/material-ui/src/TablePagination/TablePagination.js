@@ -10,6 +10,7 @@ import TableCell from '../TableCell';
 import Toolbar from '../Toolbar';
 import Typography from '../Typography';
 import TablePaginationActions from './TablePaginationActions';
+import useId from '../utils/unstable_useId';
 
 export const styles = (theme) => ({
   /* Styles applied to the root element. */
@@ -101,6 +102,8 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
     colSpan = colSpanProp || 1000; // col-span over everything
   }
 
+  const selectId = useId();
+  const labelId = useId();
   const MenuItemComponent = SelectProps.native ? 'option' : MenuItem;
 
   return (
@@ -108,7 +111,7 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
       <Toolbar className={classes.toolbar}>
         <div className={classes.spacer} />
         {rowsPerPageOptions.length > 1 && (
-          <Typography color="inherit" variant="body2" className={classes.caption}>
+          <Typography color="inherit" variant="body2" className={classes.caption} id={labelId}>
             {labelRowsPerPage}
           </Typography>
         )}
@@ -121,7 +124,8 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
             input={<InputBase className={clsx(classes.input, classes.selectRoot)} />}
             value={rowsPerPage}
             onChange={onChangeRowsPerPage}
-            inputProps={{ 'aria-label': labelRowsPerPage }}
+            id={selectId}
+            labelId={labelId}
             {...SelectProps}
           >
             {rowsPerPageOptions.map((rowsPerPageOption) => (
@@ -217,7 +221,7 @@ TablePagination.propTypes = {
    *
    * For localization purposes, you can use the provided [translations](/guides/localization/).
    */
-  labelRowsPerPage: PropTypes.string,
+  labelRowsPerPage: PropTypes.node,
   /**
    * Props applied to the next arrow [`IconButton`](/api/icon-button/) element.
    */
