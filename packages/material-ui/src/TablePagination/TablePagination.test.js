@@ -99,7 +99,7 @@ describe('<TablePagination />', () => {
 
       // will be `getByRole('combobox')` in aria 1.2
       const [combobox] = getAllByRole('button');
-      expect(combobox).toHaveAccessibleName('Zeilen pro Seite:');
+      expect(combobox).toHaveAccessibleName('Zeilen pro Seite: 10');
     });
 
     it('accepts React nodes', () => {
@@ -126,7 +126,7 @@ describe('<TablePagination />', () => {
 
       // will be `getByRole('combobox')` in aria 1.2
       const [combobox] = getAllByRole('button');
-      expect(combobox).toHaveAccessibleName('Zeilen pro Seite:');
+      expect(combobox).toHaveAccessibleName('Zeilen pro Seite: 10');
     });
   });
 
