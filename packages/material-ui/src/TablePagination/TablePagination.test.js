@@ -90,7 +90,7 @@ describe('<TablePagination />', () => {
                 onChangePage={noop}
                 onChangeRowsPerPage={noop}
                 rowsPerPage={10}
-                labelRowsPerPage="Zeilen pro Seite:"
+                labelRowsPerPage="lines per page:"
               />
             </TableRow>
           </TableFooter>
@@ -99,7 +99,7 @@ describe('<TablePagination />', () => {
 
       // will be `getByRole('combobox')` in aria 1.2
       const [combobox] = getAllByRole('button');
-      expect(combobox).toHaveAccessibleName('Zeilen pro Seite: 10');
+      expect(combobox).toHaveAccessibleName('lines per page: 10');
     });
 
     it('accepts React nodes', () => {
@@ -115,7 +115,7 @@ describe('<TablePagination />', () => {
                 rowsPerPage={10}
                 labelRowsPerPage={
                   <React.Fragment>
-                    <em>Zeilen</em> pro Seite:
+                    <em>lines</em> per page:
                   </React.Fragment>
                 }
               />
@@ -126,7 +126,7 @@ describe('<TablePagination />', () => {
 
       // will be `getByRole('combobox')` in aria 1.2
       const [combobox] = getAllByRole('button');
-      expect(combobox).toHaveAccessibleName('Zeilen pro Seite: 10');
+      expect(combobox).toHaveAccessibleName('lines per page: 10');
     });
   });
 
