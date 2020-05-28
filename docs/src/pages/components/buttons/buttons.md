@@ -75,6 +75,12 @@ deselected, such as adding or removing a star to an item.
 
 {{"demo": "pages/components/buttons/IconButtons.js"}}
 
+## Click handlers for buttons
+
+All buttons accept an `onClick` handler that is ultimately passed to the `ButtonBase`. You are able to access the event or pass your own value(s).
+
+{{"demo": "pages/components/buttons/ButtonsOnClickHandler.js"}}
+
 ## Customized buttons
 
 Here are some examples of customizing the component. You can learn more about this in the
@@ -113,26 +119,26 @@ If you wish to use `not-allowed`, you have two options:
 
 1. **CSS only**. You can remove the pointer events style on the disabled state of the `<button>` element:
 
-  ```css
-  .MuiButtonBase-root:disabled {
-    cursor: not-allowed;
-    pointer-events: auto;
-  }
-  ```
+```css
+.MuiButtonBase-root:disabled {
+  cursor: not-allowed;
+  pointer-events: auto;
+}
+```
 
-  However:
+However:
 
-  - You should add `pointer-events: none;` back when you need to display [tooltips on disabled elements](/components/tooltips/#disabled-elements).
-  - The cursor won't change if you render something other than a button element, for instance, a link `<a>` element.
+- You should add `pointer-events: none;` back when you need to display [tooltips on disabled elements](/components/tooltips/#disabled-elements).
+- The cursor won't change if you render something other than a button element, for instance, a link `<a>` element.
 
 2. **DOM change**. You can wrap the button:
 
-  ```jsx
-  <span style={{ cursor: 'not-allowed' }}>
-    <Button component={Link} disabled>
-      disabled
-    </Button>
-  </span>
-  ```
+```jsx
+<span style={{ cursor: 'not-allowed' }}>
+  <Button component={Link} disabled>
+    disabled
+  </Button>
+</span>
+```
 
-  This has the advantage of supporting any element, for instance, a link `<a>` element.
+This has the advantage of supporting any element, for instance, a link `<a>` element.

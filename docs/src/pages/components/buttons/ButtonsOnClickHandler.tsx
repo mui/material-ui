@@ -1,0 +1,46 @@
+import React from 'react';
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
+import Button from '@material-ui/core/Button';
+import { makeStyles, Theme } from '@material-ui/core/styles';
+
+function Alert(props: AlertProps) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    '& > *': {
+      margin: theme.spacing(1),
+    },
+  },
+}));
+
+export default function TextButtons() {
+  const classes = useStyles();
+  const [{ open, displayText }, setOpen] = React.useState<{
+    open: boolean;
+    displayText: string;
+  }>({
+    open: false,
+    displayText: '',
+  });
+
+  const handleOnClick = (event: React.BaseSyntheticEvent<MouseEvent>) =>
+    setOpen({ open: true, displayText: event.target.textContent || '' });
+
+  const handlePassedValue = (value: string) => setOpen({ open: true, displayText: value });
+
+  const handleOnClose = () => setOpen({ open: false, displayText: '' });
+
+  return (
+    <div className={classes.root}>
+      <Button onClick={handleOnClick}>Use Button Text</Button>
+      <Button onClick={() => handlePassedValue('I am a passed Value')}>Pass My Own Value</Button>
+      <Snackbar open={open} autoHideDuration={6000} onClose={handleOnClose}>
+        <Alert onClose={handleOnClose} severity="success">
+          {displayText}
+        </Alert>
+      </Snackbar>
+    </div>
+  );
+}
