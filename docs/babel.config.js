@@ -7,6 +7,9 @@ module.exports = {
       'babel-plugin-module-resolver',
       {
         root: ['./'],
+        alias: {
+          '@material-ui/pickers/CalendarSkeleton': '@material-ui/pickers/src/CalendarSkeleton',
+        },
       },
     ],
   ],

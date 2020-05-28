@@ -2379,6 +2379,17 @@
   dependencies:
     "@babel/runtime" "^7.4.4"
 
+"@material-ui/lab@^4.0.0-alpha.54":
+  version "4.0.0-alpha.54"
+  resolved "https://registry.yarnpkg.com/@material-ui/lab/-/lab-4.0.0-alpha.54.tgz#f359fac05667549353e5e21e631ae22cb2c22996"
+  integrity sha512-BK/z+8xGPQoMtG6gWKyagCdYO1/2DzkBchvvXs2bbTVh3sbi/QQLIqWV6UA1KtMVydYVt22NwV3xltgPkaPKLg==
+  dependencies:
+    "@babel/runtime" "^7.4.4"
+    "@material-ui/utils" "^4.9.6"
+    clsx "^1.0.4"
+    prop-types "^15.7.2"
+    react-is "^16.8.0"
+
 "@material-ui/styles@^4.9.14":
   version "4.9.14"
   resolved "https://registry.yarnpkg.com/@material-ui/styles/-/styles-4.9.14.tgz#0a9e93a2bf24e8daa0811411a6f3dabdafbe9a07"
@@ -2477,6 +2488,13 @@
   dependencies:
     "@nodelib/fs.scandir" "2.1.2"
     fastq "^1.6.0"
+
+"@now/node@^1.6.1":
+  version "1.6.1"
+  resolved "https://registry.yarnpkg.com/@now/node/-/node-1.6.1.tgz#d478bfbc98af05d3eae7b5b01b26d1a1c638819b"
+  integrity sha512-EdSdOS4HSJRexibxIbrKCLZZ1sc0+oaD0P7kvhf26CbXSNlrZP0Iycpb+fbO4Qc2EcmGR2am90DhoX548B5a7g==
+  dependencies:
+    "@types/node" "*"
 
 "@oclif/color@^0.0.0":
   version "0.0.0"
@@ -10236,10 +10254,10 @@ notistack@^0.9.11:
     hoist-non-react-statics "^3.3.0"
     react-is "^16.8.6"
 
-now@^18.0.0:
-  version "18.0.0"
-  resolved "https://registry.yarnpkg.com/now/-/now-18.0.0.tgz#e6689205346e354f822b1f5feb2c0d7d570c172f"
-  integrity sha512-MVskFV3xH1hMkpTewPCb3p0SQ17hL7EI1Zb+Ij2wYiRV3X0a6G91GdE2vvFlhsK6rhRHKHZnDQkZ0AnkpnfzHA==
+now@^19.0.1:
+  version "19.0.1"
+  resolved "https://registry.yarnpkg.com/now/-/now-19.0.1.tgz#a4575adfed17ea049d9207c145f3ce7f60c818cf"
+  integrity sha512-Q/dUlRBPzoy6lHw9P9qnzGmXw3aBU5ypQ1JjrKwoQJoEVhU5hCa9dJCEtIiSIG5cModcirU0xJPemg54dvWPnA==
 
 npm-bundled@^1.0.1:
   version "1.0.6"

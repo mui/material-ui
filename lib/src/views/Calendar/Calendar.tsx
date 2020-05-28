@@ -31,9 +31,16 @@ export interface ExportedCalendarProps
    */
   allowKeyboardControl?: boolean;
   /**
-   * Custom loading indicator.
+   * If `true` renders `LoadingComponent` in calendar instead of calendar view.
+   * Can be used to preload information and show it in calendar.
+   * @default false
    */
-  loadingIndicator?: JSX.Element;
+  loading?: boolean;
+  /**
+   * Component displaying when passed `loading` true.
+   * @default () => "..."
+   */
+  renderLoading?: () => React.ReactNode;
 }
 
 export interface CalendarProps extends ExportedCalendarProps {
@@ -51,20 +58,17 @@ export interface CalendarProps extends ExportedCalendarProps {
 }
 
 const muiComponentConfig = { name: 'MuiPickersCalendar' };
-export const useStyles = makeStyles(
-  theme => ({
-    transitionContainer: {
-      minHeight: (DAY_SIZE + DAY_MARGIN * 4) * 6,
+export const useStyles = makeStyles(theme => {
+  const weeksContainerHeight = (DAY_SIZE + DAY_MARGIN * 4) * 6;
+  return {
+    calendarContainer: {
+      minHeight: weeksContainerHeight,
     },
-    transitionContainerOverflowAllowed: {
-      overflowX: 'visible',
-    },
-    progressContainer: {
-      width: '100%',
-      height: '100%',
+    loadingContainer: {
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
+      minHeight: weeksContainerHeight,
     },
     weekContainer: {
       overflow: 'hidden',
@@ -96,9 +100,8 @@ export const useStyles = makeStyles(
       alignItems: 'center',
       color: theme.palette.text.hint,
     },
-  }),
-  muiComponentConfig
-);
+  };
+}, muiComponentConfig);
 
 export const Calendar: React.FC<CalendarProps> = withDefaultProps(
   muiComponentConfig,
@@ -118,6 +121,8 @@ export const Calendar: React.FC<CalendarProps> = withDefaultProps(
     disableHighlightToday,
     showDaysOutsideCurrentMonth,
     className,
+    loading,
+    renderLoading = () => <span data-mui-test="loading-progress">...</span>,
     TransitionProps,
   }) => {
     const now = useNow();
@@ -167,57 +172,61 @@ export const Calendar: React.FC<CalendarProps> = withDefaultProps(
           ))}
         </div>
 
-        <SlideTransition
-          transKey={currentMonthNumber}
-          onExited={onMonthSwitchingAnimationEnd}
-          reduceAnimations={reduceAnimations}
-          slideDirection={slideDirection}
-          className={clsx(classes.transitionContainer, className)}
-          {...TransitionProps}
-        >
-          <div role="grid" className={classes.weekContainer}>
-            {utils.getWeekArray(currentMonth).map(week => (
-              <div role="row" key={`week-${week[0]}`} className={classes.week}>
-                {week.map(day => {
-                  const disabled = isDateDisabled(day);
-                  const isDayInCurrentMonth = utils.getMonth(day) === currentMonthNumber;
+        {loading ? (
+          <div className={classes.loadingContainer}>{renderLoading()}</div>
+        ) : (
+          <SlideTransition
+            transKey={currentMonthNumber}
+            onExited={onMonthSwitchingAnimationEnd}
+            reduceAnimations={reduceAnimations}
+            slideDirection={slideDirection}
+            className={clsx(classes.calendarContainer, className)}
+            {...TransitionProps}
+          >
+            <div role="grid" className={classes.weekContainer}>
+              {utils.getWeekArray(currentMonth).map(week => (
+                <div role="row" key={`week-${week[0]}`} className={classes.week}>
+                  {week.map(day => {
+                    const disabled = isDateDisabled(day);
+                    const isDayInCurrentMonth = utils.getMonth(day) === currentMonthNumber;
 
-                  const dayProps: DayProps = {
-                    key: (day as any)?.toString(),
-                    day: day,
-                    role: 'cell',
-                    isAnimating: isMonthSwitchingAnimating,
-                    disabled: disabled,
-                    allowKeyboardControl: allowKeyboardControl,
-                    focused:
-                      allowKeyboardControl &&
-                      Boolean(focusedDay) &&
-                      utils.isSameDay(day, focusedDay),
-                    today: utils.isSameDay(day, now),
-                    inCurrentMonth: isDayInCurrentMonth,
-                    selected: selectedDates.some(selectedDate =>
-                      utils.isSameDay(selectedDate, day)
-                    ),
-                    disableHighlightToday,
-                    showDaysOutsideCurrentMonth,
-                    focusable:
-                      allowKeyboardControl &&
-                      Boolean(nowFocusedDay) &&
-                      utils.toJsDate(nowFocusedDay).getDate() === utils.toJsDate(day).getDate(),
-                    onDayFocus: changeFocusedDay,
-                    onDaySelect: handleDaySelect,
-                  };
+                    const dayProps: DayProps = {
+                      key: (day as any)?.toString(),
+                      day: day,
+                      role: 'cell',
+                      isAnimating: isMonthSwitchingAnimating,
+                      disabled: disabled,
+                      allowKeyboardControl: allowKeyboardControl,
+                      focused:
+                        allowKeyboardControl &&
+                        Boolean(focusedDay) &&
+                        utils.isSameDay(day, focusedDay),
+                      today: utils.isSameDay(day, now),
+                      inCurrentMonth: isDayInCurrentMonth,
+                      selected: selectedDates.some(selectedDate =>
+                        utils.isSameDay(selectedDate, day)
+                      ),
+                      disableHighlightToday,
+                      showDaysOutsideCurrentMonth,
+                      focusable:
+                        allowKeyboardControl &&
+                        Boolean(nowFocusedDay) &&
+                        utils.toJsDate(nowFocusedDay).getDate() === utils.toJsDate(day).getDate(),
+                      onDayFocus: changeFocusedDay,
+                      onDaySelect: handleDaySelect,
+                    };
 
-                  return renderDay ? (
-                    renderDay(day, selectedDates, dayProps)
-                  ) : (
-                    <Day {...dayProps} />
-                  );
-                })}
-              </div>
-            ))}
-          </div>
-        </SlideTransition>
+                    return renderDay ? (
+                      renderDay(day, selectedDates, dayProps)
+                    ) : (
+                      <Day {...dayProps} />
+                    );
+                  })}
+                </div>
+              ))}
+            </div>
+          </SlideTransition>
+        )}
       </>
     );
   }

@@ -36,3 +36,5 @@ coverage
 # editors
 .vs
 .DS_Store
+
+.vercel

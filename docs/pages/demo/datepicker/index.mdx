@@ -68,9 +68,10 @@ You can leverage our internal [Day](/api/Day) component, and render it in defaul
 
 #### Dynamic data
 
-Sometimes it's required to display additional info right in the calendar.
-For this just return `Promise` in `onMonthChange`.
+Sometimes it's required to display additional info right in the calendar. Here is an example of prefetching
+and displaying server side data using `onMonthChange`, `loading` and `renderDay` props.
 
+<!-- In order to make this example functional, make sure you are running docs using `yarn now dev` from root -->
 <Example source={ServerRequest} />
 
 #### API

@@ -5,8 +5,18 @@
       "IS_NOW": "true"
     }
   },
-  "builds": [{ "src": "docs/next.config.js", "use": "@now/next" }],
+  "builds": [
+    { "src": "docs/next.config.js", "use": "@now/next" },
+    {
+      "src": "docs/fakeApi/*",
+      "use": "@now/node"
+    }
+  ],
   "routes": [
+    {
+      "src": "/fakeApi/(.*)$",
+      "dest": "/docs/fakeApi/$1.ts"
+    },
     { "src": "/api/(?<name>[^/]+)$", "dest": "docs/api/props?component=$name" },
     { "src": "/(.*)", "dest": "docs/$1" }
   ]

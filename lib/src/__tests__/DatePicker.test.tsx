@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Picker from '../Picker/Picker';
+import CalendarSkeleton from '../CalendarSkeleton';
 import { ReactWrapper } from 'enzyme';
 import { TextField } from '@material-ui/core';
 import { MaterialUiPickersDate } from '../typings/date';
@@ -94,7 +95,6 @@ describe('e2e - DatePicker inline variant', () => {
         onChange={onChangeMock}
         onClose={onCloseMock}
         onOpen={onOpenMock}
-        loadingIndicator={<div data-mui-test="loading" />}
         value={utilsToUse.date('2018-01-01T00:00:00.000Z')}
       />
     );
@@ -131,34 +131,7 @@ describe('e2e - DatePicker inline variant', () => {
   });
 });
 
-describe('e2e - DatePicker without month change', () => {
-  let component: ReactWrapper<DatePickerProps>;
-  const onChangeMock = jest.fn();
-  const date = utilsToUse.date('2018-01-01T00:00:00.000Z');
-
-  beforeEach(() => {
-    component = mount(
-      <MobileDatePicker
-        renderInput={props => <TextField {...props} />}
-        open
-        loadingIndicator={<div data-mui-test="loading" />}
-        onChange={onChangeMock}
-        value={date}
-      />
-    );
-  });
-
-  it('Should not add to loading queue if callback is undefined', () => {
-    component
-      .find('CalendarHeader button')
-      .first()
-      .simulate('click');
-
-    expect(component.find('[data-mui-test="loading"]').length).toEqual(0);
-  });
-});
-
-describe('e2e - DatePicker month change sync', () => {
+describe('e2e - DatePicker onMonthChange', () => {
   let component: ReactWrapper<DatePickerProps>;
   const onChangeMock = jest.fn();
   const onMonthChangeMock = jest.fn();
@@ -176,49 +149,46 @@ describe('e2e - DatePicker month change sync', () => {
     );
   });
 
-  it('Should not add to loading queue when synchronous', () => {
+  it('Should dispatch onMonthChange on month switches', () => {
     component
       .find('button[data-mui-test="previous-arrow-button"]')
       .first()
       .simulate('click');
 
-    expect(component.find('[data-mui-test="loading-progress"]').length).toBe(0);
+    expect(onMonthChangeMock).toBeCalled();
   });
 });
 
-describe('e2e - DatePicker month change async', () => {
-  jest.useFakeTimers();
-  let component: ReactWrapper<DatePickerProps>;
-  const onChangeMock = jest.fn();
-
-  const sleep = (ms: number) => new Promise<void>(resolve => setTimeout(resolve, ms));
-  const onMonthChangeAsyncMock = jest.fn(() => sleep(10));
-
-  const date = utilsToUse.date('2018-01-01T00:00:00.000Z');
-
-  beforeEach(() => {
-    component = mount(
+describe('e2e - DatePicker loading prop', () => {
+  it('Should display loading indicator instead of calendar when `loading` passed', () => {
+    const component = mount(
       <MobileDatePicker
-        renderInput={props => <TextField {...props} />}
         open
-        onChange={onChangeMock}
-        onMonthChange={onMonthChangeAsyncMock}
-        value={date}
+        loading
+        renderInput={props => <TextField {...props} />}
+        onChange={jest.fn()}
+        value={utilsToUse.date('2018-01-01T00:00:00.000Z')}
       />
     );
+
+    expect(component.find('[data-mui-test="day"]').length).toBe(0);
+    expect(component.find('[data-mui-test="loading-progress"]').length).toBe(1);
   });
 
-  it('Should add to loading queue when loading asynchronous data', () => {
-    component.find('button[data-mui-test="previous-arrow-button"]').simulate('click');
-
-    expect(component.find('[data-mui-test="loading-progress"]').length).toBeGreaterThan(1);
-  });
-
-  it.skip('Should empty loading queue after loading asynchronous data', async () => {
-    component.find('button[data-mui-test="previous-arrow-button"]').simulate('click');
-    jest.runTimersToTime(10);
+  it('Should display custom LoadingComponent when `loading` passed', () => {
+    const component = mount(
+      <MobileDatePicker
+        open
+        loading
+        renderInput={props => <TextField {...props} />}
+        onChange={jest.fn()}
+        renderLoading={() => <CalendarSkeleton data-mui-test="custom-loading" />}
+        value={utilsToUse.date('2018-01-01T00:00:00.000Z')}
+      />
+    );
 
     expect(component.find('[data-mui-test="loading-progress"]').length).toBe(0);
+    expect(component.find('div[data-mui-test="custom-loading"]').length).toBe(1);
   });
 });
 
@@ -273,6 +243,7 @@ it('Should not add to loading queue when synchronous', () => {
     .find('button[data-mui-test="day"]')
     .at(0)
     .simulate('click');
+
   expect(component.find('h4[data-mui-test="datepicker-toolbar-date"]').text()).not.toBe(
     'Enter Date'
   );

@@ -525,6 +525,36 @@
         "name": "boolean"
       }
     },
+    "loading": {
+      "defaultValue": {
+        "value": "false"
+      },
+      "description": "If `true` renders `LoadingComponent` in calendar instead of calendar view.\nCan be used to preload information and show it in calendar.",
+      "name": "loading",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Calendar/CalendarView.tsx",
+        "name": "CalendarViewProps"
+      },
+      "required": false,
+      "type": {
+        "name": "boolean"
+      }
+    },
+    "renderLoading": {
+      "defaultValue": {
+        "value": "() => \"...\""
+      },
+      "description": "Component displaying when passed `loading` true.",
+      "name": "renderLoading",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Calendar/CalendarView.tsx",
+        "name": "CalendarViewProps"
+      },
+      "required": false,
+      "type": {
+        "name": "ComponentClass<{}, any> | FunctionComponent<{}>"
+      }
+    },
     "reduceAnimations": {
       "defaultValue": {
         "value": "/(android)/i.test(window.navigator.userAgent)."
@@ -542,7 +572,7 @@
     },
     "onMonthChange": {
       "defaultValue": null,
-      "description": "Callback firing on month change. Return promise to render spinner till it will not be resolved.",
+      "description": "Callback firing on month change.",
       "name": "onMonthChange",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/views/Calendar/CalendarView.tsx",
@@ -550,7 +580,7 @@
       },
       "required": false,
       "type": {
-        "name": "(date: DateIOType) => void | Promise<void>"
+        "name": "(date: any) => void"
       }
     },
     "renderDay": {
@@ -579,19 +609,6 @@
       "required": false,
       "type": {
         "name": "boolean"
-      }
-    },
-    "loadingIndicator": {
-      "defaultValue": null,
-      "description": "Custom loading indicator.",
-      "name": "loadingIndicator",
-      "parent": {
-        "fileName": "material-ui-pickers/lib/src/views/Calendar/Calendar.tsx",
-        "name": "ExportedCalendarProps"
-      },
-      "required": false,
-      "type": {
-        "name": "Element"
       }
     },
     "onYearChange": {
@@ -2302,6 +2319,36 @@
         "name": "boolean"
       }
     },
+    "loading": {
+      "defaultValue": {
+        "value": "false"
+      },
+      "description": "If `true` renders `LoadingComponent` in calendar instead of calendar view.\nCan be used to preload information and show it in calendar.",
+      "name": "loading",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Calendar/CalendarView.tsx",
+        "name": "CalendarViewProps"
+      },
+      "required": false,
+      "type": {
+        "name": "boolean"
+      }
+    },
+    "renderLoading": {
+      "defaultValue": {
+        "value": "() => \"...\""
+      },
+      "description": "Component displaying when passed `loading` true.",
+      "name": "renderLoading",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Calendar/CalendarView.tsx",
+        "name": "CalendarViewProps"
+      },
+      "required": false,
+      "type": {
+        "name": "ComponentClass<{}, any> | FunctionComponent<{}>"
+      }
+    },
     "reduceAnimations": {
       "defaultValue": {
         "value": "/(android)/i.test(window.navigator.userAgent)."
@@ -2319,7 +2366,7 @@
     },
     "onMonthChange": {
       "defaultValue": null,
-      "description": "Callback firing on month change. Return promise to render spinner till it will not be resolved.",
+      "description": "Callback firing on month change.",
       "name": "onMonthChange",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/views/Calendar/CalendarView.tsx",
@@ -2327,7 +2374,7 @@
       },
       "required": false,
       "type": {
-        "name": "(date: DateIOType) => void | Promise<void>"
+        "name": "(date: any) => void"
       }
     },
     "renderDay": {
@@ -2341,19 +2388,6 @@
       "required": false,
       "type": {
         "name": "(day: DateIOType, selectedDates: DateIOType[], DayComponentProps: DayProps) => Element"
-      }
-    },
-    "loadingIndicator": {
-      "defaultValue": null,
-      "description": "Custom loading indicator.",
-      "name": "loadingIndicator",
-      "parent": {
-        "fileName": "material-ui-pickers/lib/src/views/Calendar/Calendar.tsx",
-        "name": "ExportedCalendarProps"
-      },
-      "required": false,
-      "type": {
-        "name": "Element"
       }
     },
     "onYearChange": {
@@ -3160,6 +3194,36 @@
         "name": "boolean"
       }
     },
+    "loading": {
+      "defaultValue": {
+        "value": "false"
+      },
+      "description": "If `true` renders `LoadingComponent` in calendar instead of calendar view.\nCan be used to preload information and show it in calendar.",
+      "name": "loading",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Calendar/CalendarView.tsx",
+        "name": "CalendarViewProps"
+      },
+      "required": false,
+      "type": {
+        "name": "boolean"
+      }
+    },
+    "renderLoading": {
+      "defaultValue": {
+        "value": "() => \"...\""
+      },
+      "description": "Component displaying when passed `loading` true.",
+      "name": "renderLoading",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Calendar/CalendarView.tsx",
+        "name": "CalendarViewProps"
+      },
+      "required": false,
+      "type": {
+        "name": "ComponentClass<{}, any> | FunctionComponent<{}>"
+      }
+    },
     "reduceAnimations": {
       "defaultValue": {
         "value": "/(android)/i.test(window.navigator.userAgent)."
@@ -3177,7 +3241,7 @@
     },
     "onMonthChange": {
       "defaultValue": null,
-      "description": "Callback firing on month change. Return promise to render spinner till it will not be resolved.",
+      "description": "Callback firing on month change.",
       "name": "onMonthChange",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/views/Calendar/CalendarView.tsx",
@@ -3185,7 +3249,7 @@
       },
       "required": false,
       "type": {
-        "name": "(date: DateIOType) => void | Promise<void>"
+        "name": "(date: any) => void"
       }
     },
     "renderDay": {
@@ -3214,19 +3278,6 @@
       "required": false,
       "type": {
         "name": "boolean"
-      }
-    },
-    "loadingIndicator": {
-      "defaultValue": null,
-      "description": "Custom loading indicator.",
-      "name": "loadingIndicator",
-      "parent": {
-        "fileName": "material-ui-pickers/lib/src/views/Calendar/Calendar.tsx",
-        "name": "ExportedCalendarProps"
-      },
-      "required": false,
-      "type": {
-        "name": "Element"
       }
     },
     "shouldDisableYear": {
@@ -3876,19 +3927,6 @@
       "required": false,
       "type": {
         "name": "boolean"
-      }
-    },
-    "loadingIndicator": {
-      "defaultValue": null,
-      "description": "Custom loading indicator.",
-      "name": "loadingIndicator",
-      "parent": {
-        "fileName": "material-ui-pickers/lib/src/views/Calendar/Calendar.tsx",
-        "name": "ExportedCalendarProps"
-      },
-      "required": false,
-      "type": {
-        "name": "Element"
       }
     },
     "disableHighlightToday": {

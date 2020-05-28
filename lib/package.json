@@ -33,12 +33,16 @@
   },
   "peerDependencies": {
     "@material-ui/core": "^4.9.14",
+    "@material-ui/lab": "^4.0.0-alpha.54",
     "@types/react": "^16.8.6",
     "react": "^16.8.4",
     "react-dom": "^16.8.4"
   },
   "peerDependenciesMeta": {
     "@types/react": {
+      "optional": true
+    },
+    "@material-ui/lab": {
       "optional": true
     }
   },

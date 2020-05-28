@@ -64,4 +64,5 @@ export interface MuiPickersComponentsToClassName {
     typeof import('../DateRangePicker/DateRangePickerInput').useStyles
   >;
   MuiPickersModalDialog?: Classes<typeof import('../_shared/PickerModalDialog').useStyles>;
+  MuiPickersCalendarSkeleton?: Classes<typeof import('../CalendarSkeleton').useStyles>;
 }

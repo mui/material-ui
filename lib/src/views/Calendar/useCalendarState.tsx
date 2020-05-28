@@ -7,7 +7,6 @@ import { MuiPickersAdapter, useUtils, useNow } from '../../_shared/hooks/useUtil
 
 interface CalendarState {
   isMonthSwitchingAnimating: boolean;
-  loadingQueue: number;
   currentMonth: MaterialUiPickersDate;
   focusedDay: MaterialUiPickersDate | null;
   slideDirection: SlideDirection;
@@ -27,34 +26,17 @@ export const createCalendarStateReducer = (
 ) => (
   state: CalendarState,
   action:
-    | ReducerAction<'popLoadingQueue'>
     | ReducerAction<'finishMonthSwitchingAnimation'>
     | ReducerAction<'changeMonth', ChangeMonthPayload>
-    | ReducerAction<'changeMonthLoading', ChangeMonthPayload>
     | ReducerAction<'changeFocusedDay', { focusedDay: MaterialUiPickersDate }>
 ): CalendarState => {
   switch (action.type) {
-    case 'changeMonthLoading': {
-      return {
-        ...state,
-        loadingQueue: state.loadingQueue + 1,
-        slideDirection: action.direction,
-        currentMonth: action.newMonth,
-        isMonthSwitchingAnimating: !reduceAnimations,
-      };
-    }
     case 'changeMonth': {
       return {
         ...state,
         slideDirection: action.direction,
         currentMonth: action.newMonth,
         isMonthSwitchingAnimating: !reduceAnimations,
-      };
-    }
-    case 'popLoadingQueue': {
-      return {
-        ...state,
-        loadingQueue: state.loadingQueue <= 0 ? 0 : state.loadingQueue - 1,
       };
     }
     case 'finishMonthSwitchingAnimation': {
@@ -113,9 +95,8 @@ export function useCalendarState({
     createCalendarStateReducer(Boolean(reduceAnimations), disableSwitchToMonthOnDayFocus, utils)
   ).current;
 
-  const [{ loadingQueue, ...calendarState }, dispatch] = React.useReducer(reducerFn, {
+  const [calendarState, dispatch] = React.useReducer(reducerFn, {
     isMonthSwitchingAnimating: false,
-    loadingQueue: 0,
     focusedDay: date,
     currentMonth: utils.startOfMonth(dateForMonth),
     slideDirection: 'left',
@@ -123,20 +104,13 @@ export function useCalendarState({
 
   const handleChangeMonth = React.useCallback(
     (payload: ChangeMonthPayload) => {
-      const returnedPromise = onMonthChange && onMonthChange(payload.newMonth);
+      dispatch({
+        type: 'changeMonth',
+        ...payload,
+      });
 
-      if (returnedPromise) {
-        dispatch({
-          type: 'changeMonthLoading',
-          ...payload,
-        });
-
-        returnedPromise.then(() => dispatch({ type: 'popLoadingQueue' }));
-      } else {
-        dispatch({
-          type: 'changeMonth',
-          ...payload,
-        });
+      if (onMonthChange) {
+        onMonthChange(payload.newMonth);
       }
     },
     [onMonthChange]
@@ -185,7 +159,6 @@ export function useCalendarState({
   );
 
   return {
-    loadingQueue,
     calendarState,
     changeMonth,
     changeFocusedDay,

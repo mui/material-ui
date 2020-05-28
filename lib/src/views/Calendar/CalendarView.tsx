@@ -1,17 +1,15 @@
 import * as React from 'react';
-import Grid from '@material-ui/core/Grid';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import { MonthSelection } from './MonthSelection';
 import { DatePickerView } from '../../DatePicker';
 import { useCalendarState } from './useCalendarState';
 import { makeStyles } from '@material-ui/core/styles';
 import { useUtils } from '../../_shared/hooks/useUtils';
-import { VIEW_HEIGHT } from '../../constants/dimensions';
 import { MaterialUiPickersDate } from '../../typings/date';
 import { FadeTransitionGroup } from './FadeTransitionGroup';
 import { Calendar, ExportedCalendarProps } from './Calendar';
 import { PickerOnChangeFn } from '../../_shared/hooks/useViews';
 import { withDefaultProps } from '../../_shared/withDefaultProps';
+import { DAY_SIZE, DAY_MARGIN } from '../../constants/dimensions';
 import { CalendarHeader, CalendarHeaderProps } from './CalendarHeader';
 import { YearSelection, ExportedYearSelectionProps } from './YearSelection';
 import { defaultMinDate, defaultMaxDate } from '../../constants/prop-types';
@@ -45,9 +43,9 @@ export interface CalendarViewProps
    */
   reduceAnimations?: boolean;
   /**
-   * Callback firing on month change. Return promise to render spinner till it will not be resolved @DateIOType.
+   * Callback firing on month change.
    */
-  onMonthChange?: (date: MaterialUiPickersDate) => void | Promise<void>;
+  onMonthChange?: (date: MaterialUiPickersDate) => void;
 }
 
 export type ExportedCalendarViewProps = Omit<
@@ -62,9 +60,12 @@ export const useStyles = makeStyles(
     viewTransitionContainer: {
       overflowY: 'auto',
     },
-    gridFullHeight: {
+    fullHeightContainer: {
       flex: 1,
-      minHeight: VIEW_HEIGHT - 60,
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      minHeight: (DAY_SIZE + DAY_MARGIN * 4) * 7,
       height: '100%',
     },
   },
@@ -85,12 +86,13 @@ export const CalendarView: React.FC<CalendarViewProps> = withDefaultProps(
     minDate: __minDate,
     maxDate: __maxDate,
     reduceAnimations = defaultReduceAnimations,
-    loadingIndicator = <CircularProgress data-mui-test="loading-progress" />,
     shouldDisableDate,
     allowKeyboardControl: __allowKeyboardControlProp,
     disablePast,
     disableFuture,
     shouldDisableYear,
+    loading,
+    renderLoading,
     ...other
   }) => {
     const utils = useUtils();
@@ -102,7 +104,6 @@ export const CalendarView: React.FC<CalendarViewProps> = withDefaultProps(
     const maxDate = __maxDate || utils.date(defaultMaxDate);
 
     const {
-      loadingQueue,
       calendarState,
       changeFocusedDay,
       changeMonth,
@@ -190,29 +191,21 @@ export const CalendarView: React.FC<CalendarViewProps> = withDefaultProps(
               />
             )}
 
-            {view === 'date' &&
-              (loadingQueue > 0 ? (
-                <Grid
-                  className={classes.gridFullHeight}
-                  container
-                  alignItems="center"
-                  justify="center"
-                >
-                  {loadingIndicator}
-                </Grid>
-              ) : (
-                <Calendar
-                  {...other}
-                  {...calendarState}
-                  onMonthSwitchingAnimationEnd={onMonthSwitchingAnimationEnd}
-                  changeFocusedDay={changeFocusedDay}
-                  reduceAnimations={reduceAnimations}
-                  date={date}
-                  onChange={onChange}
-                  isDateDisabled={isDateDisabled}
-                  allowKeyboardControl={allowKeyboardControl}
-                />
-              ))}
+            {view === 'date' && (
+              <Calendar
+                {...other}
+                {...calendarState}
+                onMonthSwitchingAnimationEnd={onMonthSwitchingAnimationEnd}
+                changeFocusedDay={changeFocusedDay}
+                reduceAnimations={reduceAnimations}
+                date={date}
+                onChange={onChange}
+                isDateDisabled={isDateDisabled}
+                allowKeyboardControl={allowKeyboardControl}
+                loading={loading}
+                renderLoading={renderLoading}
+              />
+            )}
           </div>
         </FadeTransitionGroup>
       </>
