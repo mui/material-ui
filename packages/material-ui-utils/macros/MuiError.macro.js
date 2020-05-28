@@ -85,7 +85,9 @@ function muiError({ references, babel, config }) {
     const errorMessageExpressions = newExpressionPath.node.arguments.slice(1);
     const errorMessageQuasis = errorMessageLiteral
       .split('%s')
-      .map((raw) => babel.types.templateElement({ raw: raw.replace(/`/g, '\\`') }));
+      // Providing `cooked` here is important.
+      // Otherwise babel will generate "" with NODE_ENV=test
+      .map((cooked) => babel.types.templateElement({ raw: cooked.replace(/`/g, '\\`'), cooked }));
 
     // Outputs:
     //   `A ${adj} message that contains ${noun}`;
