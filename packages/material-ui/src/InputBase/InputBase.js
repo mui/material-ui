@@ -31,12 +31,8 @@ export const styles = (theme) => {
 
   return {
     '@global': {
-      '@keyframes mui-auto-fill': {
-        from: {},
-      },
-      '@keyframes mui-auto-fill-cancel': {
-        from: {},
-      },
+      '@keyframes mui-auto-fill': {},
+      '@keyframes mui-auto-fill-cancel': {},
     },
     /* Styles applied to the root element. */
     root: {
@@ -98,6 +94,7 @@ export const styles = (theme) => {
       minWidth: 0,
       width: '100%', // Fix IE 11 width issue
       animationName: 'mui-auto-fill-cancel',
+      animationDuration: '10ms',
       '&::-webkit-input-placeholder': placeholder,
       '&::-moz-placeholder': placeholder, // Firefox 19+
       '&:-ms-input-placeholder': placeholder, // IE 11
