@@ -77,7 +77,7 @@ deselected, such as adding or removing a star to an item.
 
 ## Click handlers for buttons
 
-All buttons accept an `onClick` handler that is ultimately passed to the `ButtonBase`. You are able to access the event or pass your own value(s).
+All buttons accept an `onClick` handler that is ultimately passed to `ButtonBase` and subesquently through to the DOM. You are able to access the event or pass your own value(s).
 
 {{"demo": "pages/components/buttons/ButtonsOnClickHandler.js"}}
 
