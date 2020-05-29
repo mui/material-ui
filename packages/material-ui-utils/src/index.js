@@ -8,10 +8,12 @@ export { default as HTMLElementType } from './HTMLElementType';
 export { default as ponyfillGlobal } from './ponyfillGlobal';
 export { default as refType } from './refType';
 
-export function formatMuiErrorMessage(code, ...args) {
+export function formatMuiErrorMessage(code) {
   let url = `https://material-ui.com/error-decoder/${code}/?`;
-  args.forEach((arg) => {
-    url += `args[]=${encodeURIComponent(arg)}&`;
-  });
+  for (let i = 1; i < arguments.length; i += 1) {
+    // rest params over-transpile for this case
+    // eslint-disable-next-line prefer-rest-params
+    url += `args[]=${encodeURIComponent(arguments[i])}&`;
+  }
   return `Minified Material-UI error #${code}; visit ${url} for the full message.`;
 }
