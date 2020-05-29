@@ -30,7 +30,7 @@ If any of the [`palette.primary`](/customization/default-theme/?expand-path=$.pa
 [`palette.error`](/customization/default-theme/?expand-path=$.palette.error),
 [`palette.warning`](/customization/default-theme/?expand-path=$.palette.warning),
 [`palette.info`](/customization/default-theme/?expand-path=$.palette.info) or
-[`palette.successs`](/customization/default-theme/?expand-path=$.palette.successs)
+[`palette.success`](/customization/default-theme/?expand-path=$.palette.success)
 'intention' objects are provided, they will replace the defaults.
 
 The intention value can either be a [color](/customization/color/) object, or an object with one or more of the keys specified by the following TypeScript interface:
