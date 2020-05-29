@@ -104,6 +104,7 @@ const blacklist = [
   'docs-discover-more-languages', // No public components
   'docs-discover-more-showcase', // No public components
   'docs-discover-more-team', // No public components
+  'docs-error-decoder/ErrorDecoder.png', // requires next router context
   'docs-getting-started-templates', // No public components
   'docs-getting-started-templates-album/Album.png', // Flaky image loading
   'docs-getting-started-templates-blog', // Flaky random images
