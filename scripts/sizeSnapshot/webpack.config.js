@@ -87,6 +87,11 @@ async function getSizeLimitBundles() {
       webpack: true,
       path: 'packages/material-ui/build/esm/useScrollTrigger/index.js',
     },
+    {
+      name: '@material-ui/utils',
+      webpack: true,
+      path: 'packages/material-ui-utils/build/esm/index.js',
+    },
   ];
 }
 
