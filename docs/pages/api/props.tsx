@@ -44,20 +44,6 @@ const Docs: React.FC<WithRouterProps> = ({ router }) => {
       <h4> Import </h4>
       <Code language="jsx">{`import { ${componentName} } from '@material-ui/pickers'`}</Code>
 
-      <h4> Inheritance </h4>
-      <Typography gutterBottom>
-        Any prop not recognized by the pickers and their sub-components are passed down to
-        material-ui{' '}
-        <a
-          target="_blank"
-          rel="noopener noreferer"
-          href="https://material-ui.com/api/text-field/#props"
-        >
-          TextField
-        </a>{' '}
-        component.
-      </Typography>
-
       <Typography gutterBottom>
         <code>DateIOType</code> — date object type of your linked date-io adapter (Moment, DayJS,
         etc.)
