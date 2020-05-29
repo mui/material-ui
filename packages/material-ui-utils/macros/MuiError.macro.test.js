@@ -78,5 +78,15 @@ pluginTester({
         };
       },
     },
+    {
+      title: 'throws if not called as a constructor',
+      error: /: Encountered `MuiError` outside of a "new expression" i\.e\. `new MuiError\(\)`\. Use `throw new MuiError\(message\)` over `throw MuiError\(message\)`\./,
+      fixture: path.join(fixturePath, 'factory-call', 'input.js'),
+      pluginOptions: {
+        muiError: {
+          errorCodesPath: path.join(fixturePath, 'factory-call', 'error-codes.json'),
+        },
+      },
+    },
   ],
 });
