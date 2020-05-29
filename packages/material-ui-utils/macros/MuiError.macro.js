@@ -73,6 +73,16 @@ function muiError({ references, babel, config }) {
     }
   }
 
+  /**
+   * The identifier for the callee in `formatMuiErrorMessage()`
+   * Creating an identifier per MuiError reference would create duplicate imports.
+   * It's not obvious that these will be deduplicated by bundlers.
+   * We can already do this at transpile-time
+   *
+   * @type {import('@babel/core').NodePath | null}
+   */
+  let formatMuiErrorMessageIdentifier = null;
+
   references.default.forEach((babelPath) => {
     const newExpressionPath = babelPath.parentPath;
     if (!newExpressionPath.isNewExpression()) {
@@ -107,13 +117,16 @@ function muiError({ references, babel, config }) {
     }
     errorCode = parseInt(errorCode, 10);
 
-    // Outputs:
-    // import { formatMuiErrorMessage } from '@material-ui/utils';
-    const formatMuiErrorMessageIdentifier = helperModuleImports.addNamed(
-      babelPath,
-      'formatMuiErrorMessage',
-      '@material-ui/utils',
-    );
+    if (formatMuiErrorMessageIdentifier === null) {
+      // Outputs:
+      // import { formatMuiErrorMessage } from '@material-ui/utils';
+      formatMuiErrorMessageIdentifier = helperModuleImports.addNamed(
+        babelPath,
+        'formatMuiErrorMessage',
+        '@material-ui/utils',
+      );
+    }
+
     // Outputs:
     // formatMuiErrorMessage(ERROR_CODE, adj, noun)
     const prodMessage = babel.types.callExpression(formatMuiErrorMessageIdentifier, [
