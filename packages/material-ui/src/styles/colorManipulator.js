@@ -1,3 +1,4 @@
+import MuiError from '@material-ui/utils/macros/MuiError.macro';
 /* eslint-disable no-use-before-define */
 
 /**
@@ -112,11 +113,10 @@ export function decomposeColor(color) {
   const type = color.substring(0, marker);
 
   if (['rgb', 'rgba', 'hsl', 'hsla'].indexOf(type) === -1) {
-    throw new Error(
-      [
-        `Material-UI: Unsupported \`${color}\` color.`,
+    throw new MuiError(
+      'Material-UI: Unsupported `%s` color.\n' +
         'We support the following formats: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla().',
-      ].join('\n'),
+      color,
     );
   }
 

@@ -1,4 +1,5 @@
 import { deepmerge } from '@material-ui/utils';
+import MuiError from '@material-ui/utils/macros/MuiError.macro';
 import common from '../colors/common';
 import grey from '../colors/grey';
 import indigo from '../colors/indigo';
@@ -163,34 +164,26 @@ export default function createPalette(palette) {
     }
 
     if (!color.main) {
-      throw new Error(
-        [
-          'Material-UI: The color provided to augmentColor(color) is invalid.',
-          `The color object needs to have a \`main\` property or a \`${mainShade}\` property.`,
-        ].join('\n'),
+      throw new MuiError(
+        'Material-UI: The color provided to augmentColor(color) is invalid.\n' +
+          'The color object needs to have a `main` property or a `%s` property.',
+        mainShade,
       );
     }
 
     if (typeof color.main !== 'string') {
-      throw new Error(
-        [
-          'Material-UI: The color provided to augmentColor(color) is invalid.',
-          `\`color.main\` should be a string, but \`${JSON.stringify(
-            color.main,
-          )}\` was provided instead.`,
-          '',
-          'Did you intend to use one of the following approaches?',
-          '',
-          'import { green } from "@material-ui/core/colors";',
-          '',
-          'const theme1 = createMuiTheme({ palette: {',
-          '  primary: green,',
+      throw new MuiError(
+        'Material-UI: The color provided to augmentColor(color) is invalid.\n' +
+          '`color.main` should be a string, but `%s` was provided instead.\n\n' +
+          'Did you intend to use one of the following approaches?\n\n' +
+          'import { green } from "@material-ui/core/colors";\n\n' +
+          'const theme1 = createMuiTheme({ palette: {\n' +
+          '  primary: green,\n' +
+          '} });\n\n' +
+          'const theme2 = createMuiTheme({ palette: {\n' +
+          '  primary: { main: green[500] },\n' +
           '} });',
-          '',
-          'const theme2 = createMuiTheme({ palette: {',
-          '  primary: { main: green[500] },',
-          '} });',
-        ].join('\n'),
+        JSON.stringify(color.main),
       );
     }
 
