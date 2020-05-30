@@ -32,11 +32,11 @@ By default, the skeleton pulsate, but you can change the animation for a wave or
 
 {{"demo": "pages/components/skeleton/Animations.js"}}
 
-## YouTube example
+### Pulsate example
 
 {{"demo": "pages/components/skeleton/YouTube.js", "defaultCodeOpen": false}}
 
-## Facebook example
+### Wave example
 
 {{"demo": "pages/components/skeleton/Facebook.js", "defaultCodeOpen": false, "bg": true}}
 
