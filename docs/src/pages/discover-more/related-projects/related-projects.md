@@ -80,7 +80,7 @@ This is a collection of third-party projects that extend Material-UI.
 
 ### Color picker
 
-- [material-ui-color-components](https://github.com/mikbry/material-ui-color-components): Collections of color components for material-ui. No dependencies, small, highly customizable and theming support!
+- [material-ui-color](https://github.com/mikbry/material-ui-color): Collections of color components for material-ui. No dependencies, small, highly customizable and theming support!
 
 ## Blocks
 
