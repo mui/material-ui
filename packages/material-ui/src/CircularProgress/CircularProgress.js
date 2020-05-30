@@ -65,6 +65,10 @@ export const styles = (theme) => ({
     strokeDashoffset: '0px', // Add the unit to fix a Edge 16 and below bug.
   },
   '@keyframes circular-rotate': {
+    '0%': {
+      // Fix IE 11 wobbly
+      transformOrigin: '50% 50%',
+    },
     '100%': {
       transform: 'rotate(360deg)',
     },
