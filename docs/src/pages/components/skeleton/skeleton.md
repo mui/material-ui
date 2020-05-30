@@ -65,3 +65,6 @@ loading
 ```
 
 {{"demo": "pages/components/skeleton/SkeletonChildren.js", "defaultCodeOpen": false}}
+
+### Accessibility
+
