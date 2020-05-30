@@ -2,10 +2,10 @@ import React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
-const pageFilename = 'error-decoder/[code]';
-const requireDemo = require.context('docs/src/pages/error-decoder', false, /\.js$/);
+const pageFilename = 'production-error/[code]';
+const requireDemo = require.context('docs/src/pages/production-error', false, /\.js$/);
 const requireRaw = require.context(
-  '!raw-loader!../../src/pages/error-decoder',
+  '!raw-loader!../../src/pages/production-error',
   false,
   /\.(js|md)$/,
 );

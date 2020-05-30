@@ -104,7 +104,6 @@ const blacklist = [
   'docs-discover-more-languages', // No public components
   'docs-discover-more-showcase', // No public components
   'docs-discover-more-team', // No public components
-  'docs-error-decoder/ErrorDecoder.png', // requires next router context
   'docs-getting-started-templates', // No public components
   'docs-getting-started-templates-album/Album.png', // Flaky image loading
   'docs-getting-started-templates-blog', // Flaky random images
@@ -119,6 +118,7 @@ const blacklist = [
   'docs-getting-started-usage/Usage.png', // No public components
   /^docs-guides-.*/, // No public components
   'docs-landing', // Mostly images, redundant
+  'docs-production-error/ErrorDecoder.png', // requires next router context
   'docs-styles-advanced', // Redudant
   'docs-system-borders', // Unit tests are enough
   'docs-system-display', // Unit tests are enough
