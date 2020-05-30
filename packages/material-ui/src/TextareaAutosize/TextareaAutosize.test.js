@@ -261,7 +261,7 @@ describe('<TextareaAutosize />', () => {
         });
         forceUpdate();
 
-        expect(consoleErrorMock.callCount()).to.equal(3);
+        expect(consoleErrorMock.callCount()).to.equal(3); // strict mode renders twice
         expect(consoleErrorMock.messages()[0]).to.include('Material-UI: Too many re-renders.');
       });
     });

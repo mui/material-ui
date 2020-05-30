@@ -996,7 +996,7 @@ describe('<Autocomplete />', () => {
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       fireEvent.keyDown(textbox, { key: 'Enter' });
 
-      expect(consoleErrorMock.callCount()).to.equal(1); // strict mode renders twice
+      expect(consoleErrorMock.callCount()).to.equal(1);
       expect(consoleErrorMock.messages()[0]).to.include(
         'The component expects a single value to match a given option but found 2 matches.',
       );
@@ -1015,7 +1015,7 @@ describe('<Autocomplete />', () => {
         />,
       );
 
-      expect(consoleWarnMock.callCount()).to.equal(4);
+      expect(consoleWarnMock.callCount()).to.equal(4); // strict mode renders twice
       expect(consoleWarnMock.messages()[0]).to.include(
         'None of the options match with `"not a good value"`',
       );
@@ -1044,7 +1044,7 @@ describe('<Autocomplete />', () => {
       const options = getAllByRole('option').map((el) => el.textContent);
       expect(options).to.have.length(7);
       expect(options).to.deep.equal(['A', 'D', 'E', 'B', 'G', 'F', 'C']);
-      expect(consoleWarnMock.callCount()).to.equal(2);
+      expect(consoleWarnMock.callCount()).to.equal(2); // strict mode renders twice
       expect(consoleWarnMock.messages()[0]).to.include('returns duplicated headers');
     });
   });
