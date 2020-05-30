@@ -50,6 +50,16 @@ or a higher emphasis alternative to text buttons.
 
 {{"demo": "pages/components/buttons/OutlinedButtons.js"}}
 
+## Handling clicks
+
+All components accept an `onClick` handler that is applied to the root DOM element.
+
+```jsx
+<Button onClick={() => { alert('clicked') }}>Click me</Button>
+```
+
+Note that the documentation [avoids](/guides/api/#native-properties) mentioning native props (there are a lot) in the API section of the components.
+
 ## Upload button
 
 {{"demo": "pages/components/buttons/UploadButtons.js"}}
@@ -74,12 +84,6 @@ Icons are also appropriate for toggle buttons that allow a single choice to be s
 deselected, such as adding or removing a star to an item.
 
 {{"demo": "pages/components/buttons/IconButtons.js"}}
-
-## Click handlers for buttons
-
-All buttons accept an `onClick` handler that is ultimately passed to `ButtonBase` and subesquently through to the DOM. You are able to access the event or pass your own value(s).
-
-{{"demo": "pages/components/buttons/ButtonsOnClickHandler.js"}}
 
 ## Customized buttons
 
