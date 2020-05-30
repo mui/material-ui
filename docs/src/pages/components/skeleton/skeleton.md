@@ -66,5 +66,9 @@ loading
 
 {{"demo": "pages/components/skeleton/SkeletonChildren.js", "defaultCodeOpen": false}}
 
-### Accessibility
+## Accessibility
 
+Skeleton screens provide an alternative to the traditional spinner methods.
+Rather than showing an abstract widget, skeleton screens create anticipation of what is to come and reduce cognitive load.
+
+The background color of the skeleton uses the least amount of luminance to be visible in good conditions (good ambient light, good screen, no visual impairments).
