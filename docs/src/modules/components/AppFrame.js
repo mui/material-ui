@@ -188,7 +188,7 @@ function AppFrame(props) {
   let navIconClassName = '';
   let appBarClassName = classes.appBar;
 
-  if (!activePage || activePage.disableDrawer === true) {
+  if (activePage?.disableDrawer === true) {
     disablePermanent = true;
     appBarClassName += ` ${classes.appBarHome}`;
   } else {

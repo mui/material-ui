@@ -130,11 +130,6 @@ const pages = [
   },
   { title: 'Component API', ...findPages[0] },
   {
-    title: 'Production Error',
-    pathname: '/production-error',
-    children: [{ pathname: '/production-error/[code]' }],
-  },
-  {
     pathname: '/styles',
     children: [
       { pathname: '/styles/basics' },
