@@ -1095,17 +1095,31 @@
     "@types/parsimmon" "^1.10.1"
     parsimmon "^1.13.0"
 
-"@definitelytyped/typescript-versions@0.0.34", "@definitelytyped/typescript-versions@^0.0.34":
+"@definitelytyped/header-parser@latest":
+  version "0.0.36"
+  resolved "https://registry.yarnpkg.com/@definitelytyped/header-parser/-/header-parser-0.0.36.tgz#cb25a3114e5a97d8db32eb0409906cecd88cc13b"
+  integrity sha512-rzlKeKfNLa+uAvEn64bhSc/ULbOUFepxcpV8WcobVH00Jiknu3gPOTOSnT9CgCLNtKYrcOCUTWmXkt0nV02t7g==
+  dependencies:
+    "@definitelytyped/typescript-versions" "^0.0.36"
+    "@types/parsimmon" "^1.10.1"
+    parsimmon "^1.13.0"
+
+"@definitelytyped/typescript-versions@^0.0.34":
   version "0.0.34"
   resolved "https://registry.yarnpkg.com/@definitelytyped/typescript-versions/-/typescript-versions-0.0.34.tgz#6167363d378670ad7ef9485b7cff7d198106dcdf"
   integrity sha512-7IqWcbHKYbfY8Lt7AigXDa29cbz3gynzBHMjwMUCeLnex8D682M6OW8uBLouvVHCr+YENL58tQB3dn0Zos8mFQ==
 
-"@definitelytyped/utils@0.0.34":
-  version "0.0.34"
-  resolved "https://registry.yarnpkg.com/@definitelytyped/utils/-/utils-0.0.34.tgz#7d34d4b411b68c95c1b3460071cee3efa4fc5b8b"
-  integrity sha512-C1mlA9ixRfv7PPmO99hJZ8Ii2roKY+7GoIwBPh5uYSF6WfABoVlzyWX3LsF6fy1MwpZbempC+r81iDm2QeYTsw==
+"@definitelytyped/typescript-versions@^0.0.36", "@definitelytyped/typescript-versions@latest":
+  version "0.0.36"
+  resolved "https://registry.yarnpkg.com/@definitelytyped/typescript-versions/-/typescript-versions-0.0.36.tgz#580e30b90a5fb43cc6fa3bc60037dacb2227dc03"
+  integrity sha512-ci+468ddCIOaAUGVJvVQ6RdHRC6qfkvQgZ4CuITyZJx0n6qrUU+iEqXIuoIb9Nq9yuhHu6UwK9kg5OXCfahFog==
+
+"@definitelytyped/utils@latest":
+  version "0.0.36"
+  resolved "https://registry.yarnpkg.com/@definitelytyped/utils/-/utils-0.0.36.tgz#e7776288d3058b143c342d076575a7e28711afdd"
+  integrity sha512-gBmPS02uONxbQw1uV5TE4O+HmRNrQSLSjKPAYfsRn2Mnan4mCZAXrdfp3Zburj0xQyEtCt0SEDe2Px3txZJOKQ==
   dependencies:
-    "@definitelytyped/typescript-versions" "^0.0.34"
+    "@definitelytyped/typescript-versions" "^0.0.36"
     "@types/node" "^12.12.29"
     charm "^1.0.2"
     fs-extra "^8.1.0"
@@ -6570,28 +6584,27 @@ dot-prop@^5.0.0:
   dependencies:
     is-obj "^2.0.0"
 
-dts-critic@^3.2.3:
-  version "3.2.3"
-  resolved "https://registry.yarnpkg.com/dts-critic/-/dts-critic-3.2.3.tgz#892c9a02fd620a1d30449b26b314cd4820d9ba9c"
-  integrity sha512-CErYGgQiloLH0PZ/vrLH5+WgpPbHiOj77qFF+6pGuGtlQzb43oFUSS9Qetr4y9fAg2ZOG9ZvGp7h+jhh0kkbAg==
+dts-critic@latest:
+  version "3.2.4"
+  resolved "https://registry.yarnpkg.com/dts-critic/-/dts-critic-3.2.4.tgz#88e0473d3db7eb07e14c08b9e84e7dc23ea3e2df"
+  integrity sha512-KdW/qVKydHF8HkFBe3hNqXRIDUwSqioTOxVAUS7tbo0++vlRNq7wluCfTgi5J26bS1L4ybJvN22BBVRR5Cp2wQ==
   dependencies:
     "@definitelytyped/header-parser" "0.0.34"
     command-exists "^1.2.8"
     rimraf "^3.0.2"
     semver "^6.2.0"
     tmp "^0.2.1"
-    typescript "^3.9.2"
     yargs "^12.0.5"
 
 dtslint@^3.2.0:
-  version "3.6.4"
-  resolved "https://registry.yarnpkg.com/dtslint/-/dtslint-3.6.4.tgz#f7439e0306c6c1b58e04d68fb6679d2f9549721f"
-  integrity sha512-D9qwC0N945ge+CENZ1Dtm6I72fc8dAgQpyAde1XoiChR+mk8dC9uzToJNORe7SI0P3dSSULofwjsg7rzQ/iplw==
+  version "3.6.9"
+  resolved "https://registry.yarnpkg.com/dtslint/-/dtslint-3.6.9.tgz#dd5299fc524267c75305ea66a6a481c1c04ba568"
+  integrity sha512-m3inh2igjzQnoJX6cf7DcGaejUwAca4ok7mWTDV5dhFvdCGsHkFabdwdm6vGyhq0Xzo/lV4G1RFdU5tRAsHggQ==
   dependencies:
-    "@definitelytyped/header-parser" "0.0.34"
-    "@definitelytyped/typescript-versions" "0.0.34"
-    "@definitelytyped/utils" "0.0.34"
-    dts-critic "^3.2.3"
+    "@definitelytyped/header-parser" latest
+    "@definitelytyped/typescript-versions" latest
+    "@definitelytyped/utils" latest
+    dts-critic latest
     fs-extra "^6.0.1"
     json-stable-stringify "^1.0.1"
     strip-json-comments "^2.0.1"
@@ -16506,7 +16519,7 @@ typescript@3.5.2:
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.5.2.tgz#a09e1dc69bc9551cadf17dba10ee42cf55e5d56c"
   integrity sha512-7KxJovlYhTX5RaRbUdkAXN1KUZ8PwWlTzQdHV6xNqvuFOs7+WBo10TQUqT19Q/Jz2hk5v9TQDIhyLhhJY4p5AA==
 
-typescript@^3.8.2, typescript@^3.9.2:
+typescript@^3.8.2:
   version "3.9.3"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.9.3.tgz#d3ac8883a97c26139e42df5e93eeece33d610b8a"
   integrity sha512-D/wqnB2xzNFIcoBG9FG8cXRDjiqSTbG2wd8DMZeQyJlP1vfTkIxH4GKveWaEBYySKIg+USu+E+EDIR47SqnaMQ==
