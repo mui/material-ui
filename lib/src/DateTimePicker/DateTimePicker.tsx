@@ -85,7 +85,7 @@ function useInterceptProps({
     minTime: minDateTime || minTime,
     maxDate: maxDateTime || maxDate,
     maxTime: maxDateTime || maxTime,
-    disableTimeValidationIgnoreDatePart: Boolean(minDateTime || maxDateTime),
+    disableIgnoringDatePartForTimeValidation: Boolean(minDateTime || maxDateTime),
     acceptRegex: willUseAmPm ? /[\dap]/gi : /\d/gi,
     mask: mask || (willUseAmPm ? '__/__/____ __:__ _M' : '__/__/____ __:__'),
     inputFormat: pick12hOr24hFormat(inputFormat, ampm, {

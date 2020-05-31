@@ -113,6 +113,7 @@ export const ClockNumber: React.FC<ClockNumberProps> = ({
       focusRipple
       centerRipple
       ref={ref}
+      aria-disabled={disabled}
       tabIndex={disabled ? -1 : 0}
       component="span"
       className={className}

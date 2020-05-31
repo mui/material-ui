@@ -1,48 +1,14 @@
 import * as React from 'react';
-import DateFnsUtils from '@date-io/date-fns';
-import DateFnsLocaleDe from 'date-fns/locale/de';
-import LocalizationProvider from '../LocalizationProvider';
 import { ReactWrapper } from 'enzyme';
 import { TextField } from '@material-ui/core';
 import { mount as enzymeDefaultMount } from 'enzyme';
 import { MaterialUiPickersDate } from '../typings/date';
-import { createClientRender, fireEvent } from './createClientRender';
 import { mount, utilsToUse, mountPickerWithState } from './test-utils';
-import {
-  DesktopDateTimePicker,
-  DateTimePicker,
-  DateTimePickerProps,
-} from '../DateTimePicker/DateTimePicker';
+import { DateTimePicker, DateTimePickerProps } from '../DateTimePicker/DateTimePicker';
 
 const format = process.env.UTILS === 'moment' ? 'MM/DD/YYYY HH:mm' : 'MM/dd/yyyy hh:mm';
 
 describe('DateTimePicker', () => {
-  const render = createClientRender();
-
-  describe('prop: mask', () => {
-    it('should take the mask prop into account', () => {
-      const { getByRole } = render(
-        <LocalizationProvider dateAdapter={DateFnsUtils} locale={DateFnsLocaleDe}>
-          <DesktopDateTimePicker
-            renderInput={props => <TextField autoFocus {...props} />}
-            mask="__.__.____ __:__"
-            onChange={() => {}}
-            value={null}
-          />
-        </LocalizationProvider>
-      );
-      const textbox = getByRole('textbox');
-      fireEvent.change(textbox, {
-        target: {
-          value: '12',
-        },
-      });
-      expect(textbox.value).toBe('12.');
-    });
-  });
-});
-
-describe('e2e - DateTimePicker', () => {
   let component: ReactWrapper<DateTimePickerProps>;
 
   const onCloseMock = jest.fn();
@@ -83,7 +49,6 @@ describe('e2e - DateTimePicker', () => {
         .at(0)
         .text()
     ).toBe('2018');
-    // expect(component.find('ToolbarButton').at(1).text()).toBe('Jan 3');
   });
 });
 

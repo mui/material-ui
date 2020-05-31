@@ -120,7 +120,7 @@ export const ClockView: React.FC<ClockViewProps> = withDefaultProps(
     nextViewAvailable,
     showViewSwitcher,
     previousViewAvailable,
-    disableTimeValidationIgnoreDatePart,
+    disableIgnoringDatePartForTimeValidation,
   }) => {
     const now = useNow();
     const utils = useUtils();
@@ -133,7 +133,7 @@ export const ClockView: React.FC<ClockViewProps> = withDefaultProps(
           getRequestedTimePoint: (when: 'start' | 'end') => MaterialUiPickersDate
         ) => {
           const isAfterComparingFn = createIsAfterIgnoreDatePart(
-            Boolean(disableTimeValidationIgnoreDatePart),
+            Boolean(disableIgnoringDatePartForTimeValidation),
             utils
           );
 
@@ -169,7 +169,7 @@ export const ClockView: React.FC<ClockViewProps> = withDefaultProps(
       [
         ampm,
         date,
-        disableTimeValidationIgnoreDatePart,
+        disableIgnoringDatePartForTimeValidation,
         maxTime,
         meridiemMode,
         minTime,

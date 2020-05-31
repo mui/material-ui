@@ -52,7 +52,7 @@ export class ClockPointer extends React.Component<ClockPointerProps> {
   };
 
   public render() {
-    const { classes, hasSelected, isInner, type, ...other } = this.props;
+    const { classes, hasSelected, isInner, type, value, ...other } = this.props;
 
     return (
       <div

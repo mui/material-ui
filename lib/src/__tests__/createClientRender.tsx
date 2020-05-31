@@ -3,6 +3,8 @@
  */
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import { UtilClassToUse } from './test-utils';
+import { LocalizationProvider } from '../LocalizationProvider';
 import {
   act,
   buildQueries,
@@ -59,24 +61,7 @@ function clientRender(
     baseElement,
     queries: { ...queries, ...customQueries },
     wrapper: Wrapper,
-  }) as any;
-
-  /**
-   * convenience helper. Better than repeating all props.
-   */
-  result.setProps = function setProps(props: any) {
-    result.rerender(React.cloneElement(element, props));
-    return result;
-  };
-
-  result.forceUpdate = function forceUpdate() {
-    result.rerender(
-      React.cloneElement(element, {
-        'data-force-update': String(Math.random()),
-      })
-    );
-    return result;
-  };
+  });
 
   return result;
 }
@@ -94,7 +79,13 @@ export function createClientRender(globalOptions: { strict?: boolean } = {}) {
   return function configuredClientRender(element: any, options: { strict?: boolean } = {}) {
     const { strict = globalStrict, ...localOptions } = options;
 
-    return clientRender(element, { ...localOptions, strict });
+    return clientRender(
+      <LocalizationProvider dateAdapter={UtilClassToUse}>{element}</LocalizationProvider>,
+      {
+        ...localOptions,
+        strict,
+      }
+    );
   };
 }
 

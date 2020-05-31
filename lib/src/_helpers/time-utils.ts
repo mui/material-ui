@@ -98,11 +98,11 @@ export function getSecondsInDay(date: MaterialUiPickersDate, utils: MuiPickersAd
 }
 
 export const createIsAfterIgnoreDatePart = (
-  disableTimeValidationIgnoreDatePart: boolean,
+  disableIgnoringDatePartForTimeValidation: boolean,
   utils: MuiPickersAdapter
 ) => (dateLeft: MaterialUiPickersDate, dateRight: MaterialUiPickersDate) => {
-  if (disableTimeValidationIgnoreDatePart) {
-    return utils.isAfter;
+  if (disableIgnoringDatePartForTimeValidation) {
+    return utils.isAfter(dateLeft, dateRight);
   }
 
   return getSecondsInDay(dateLeft, utils) > getSecondsInDay(dateRight, utils);
@@ -111,12 +111,12 @@ export const createIsAfterIgnoreDatePart = (
 export interface TimeValidationProps {
   /**
    * Min time acceptable time.
-   * For input validation date part of passed object will be ignored if `disableTimeValidationIgnoreDatePart` not specified.
+   * For input validation date part of passed object will be ignored if `disableIgnoringDatePartForTimeValidation` not specified.
    */
   minTime?: MaterialUiPickersDate;
   /**
    * Max time acceptable time.
-   * For input validation date part of passed object will be ignored if `disableTimeValidationIgnoreDatePart` not specified.
+   * For input validation date part of passed object will be ignored if `disableIgnoringDatePartForTimeValidation` not specified.
    */
   maxTime?: MaterialUiPickersDate;
   /**
@@ -128,17 +128,17 @@ export interface TimeValidationProps {
    * Do not ignore date part when validating min/max time
    * @default false
    */
-  disableTimeValidationIgnoreDatePart?: boolean;
+  disableIgnoringDatePartForTimeValidation?: boolean;
 }
 
 export const validateTime = (
   utils: MuiPickersAdapter,
   value: MaterialUiPickersDate | ParsableDate,
-  { minTime, maxTime, shouldDisableTime, disableTimeValidationIgnoreDatePart }: TimeValidationProps
+  { minTime, maxTime, shouldDisableTime, disableIgnoringDatePartForTimeValidation }: TimeValidationProps
 ) => {
   const date = utils.date(value);
   const isAfterComparingFn = createIsAfterIgnoreDatePart(
-    Boolean(disableTimeValidationIgnoreDatePart),
+    Boolean(disableIgnoringDatePartForTimeValidation),
     utils
   );
 

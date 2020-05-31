@@ -1251,7 +1251,7 @@
     },
     "minTime": {
       "defaultValue": null,
-      "description": "Min time acceptable time.\nFor input validation date part of passed object will be ignored if `disableTimeValidationIgnoreDatePart` not specified.",
+      "description": "Min time acceptable time.\nFor input validation date part of passed object will be ignored if `disableIgnoringDatePartForTimeValidation` not specified.",
       "name": "minTime",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/_helpers/time-utils.ts",
@@ -1264,7 +1264,7 @@
     },
     "maxTime": {
       "defaultValue": null,
-      "description": "Max time acceptable time.\nFor input validation date part of passed object will be ignored if `disableTimeValidationIgnoreDatePart` not specified.",
+      "description": "Max time acceptable time.\nFor input validation date part of passed object will be ignored if `disableIgnoringDatePartForTimeValidation` not specified.",
       "name": "maxTime",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/_helpers/time-utils.ts",
@@ -1288,12 +1288,12 @@
         "name": "(timeValue: number, clockType: \"hours\" | \"minutes\" | \"seconds\") => boolean"
       }
     },
-    "disableTimeValidationIgnoreDatePart": {
+    "disableIgnoringDatePartForTimeValidation": {
       "defaultValue": {
         "value": "false"
       },
       "description": "Do not ignore date part when validating min/max time",
-      "name": "disableTimeValidationIgnoreDatePart",
+      "name": "disableIgnoringDatePartForTimeValidation",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/_helpers/time-utils.ts",
         "name": "TimeValidationProps"
@@ -2073,7 +2073,7 @@
     },
     "minTime": {
       "defaultValue": null,
-      "description": "Min time acceptable time.\nFor input validation date part of passed object will be ignored if `disableTimeValidationIgnoreDatePart` not specified.",
+      "description": "Min time acceptable time.\nFor input validation date part of passed object will be ignored if `disableIgnoringDatePartForTimeValidation` not specified.",
       "name": "minTime",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/_helpers/time-utils.ts",
@@ -2086,7 +2086,7 @@
     },
     "maxTime": {
       "defaultValue": null,
-      "description": "Max time acceptable time.\nFor input validation date part of passed object will be ignored if `disableTimeValidationIgnoreDatePart` not specified.",
+      "description": "Max time acceptable time.\nFor input validation date part of passed object will be ignored if `disableIgnoringDatePartForTimeValidation` not specified.",
       "name": "maxTime",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/_helpers/time-utils.ts",
@@ -2110,12 +2110,12 @@
         "name": "(timeValue: number, clockType: \"hours\" | \"minutes\" | \"seconds\") => boolean"
       }
     },
-    "disableTimeValidationIgnoreDatePart": {
+    "disableIgnoringDatePartForTimeValidation": {
       "defaultValue": {
         "value": "false"
       },
       "description": "Do not ignore date part when validating min/max time",
-      "name": "disableTimeValidationIgnoreDatePart",
+      "name": "disableIgnoringDatePartForTimeValidation",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/_helpers/time-utils.ts",
         "name": "TimeValidationProps"
@@ -4288,7 +4288,7 @@
     },
     "minTime": {
       "defaultValue": null,
-      "description": "Min time acceptable time.\nFor input validation date part of passed object will be ignored if `disableTimeValidationIgnoreDatePart` not specified.",
+      "description": "Min time acceptable time.\nFor input validation date part of passed object will be ignored if `disableIgnoringDatePartForTimeValidation` not specified.",
       "name": "minTime",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/_helpers/time-utils.ts",
@@ -4301,7 +4301,7 @@
     },
     "maxTime": {
       "defaultValue": null,
-      "description": "Max time acceptable time.\nFor input validation date part of passed object will be ignored if `disableTimeValidationIgnoreDatePart` not specified.",
+      "description": "Max time acceptable time.\nFor input validation date part of passed object will be ignored if `disableIgnoringDatePartForTimeValidation` not specified.",
       "name": "maxTime",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/_helpers/time-utils.ts",
@@ -4325,12 +4325,12 @@
         "name": "(timeValue: number, clockType: \"hours\" | \"minutes\" | \"seconds\") => boolean"
       }
     },
-    "disableTimeValidationIgnoreDatePart": {
+    "disableIgnoringDatePartForTimeValidation": {
       "defaultValue": {
         "value": "false"
       },
       "description": "Do not ignore date part when validating min/max time",
-      "name": "disableTimeValidationIgnoreDatePart",
+      "name": "disableIgnoringDatePartForTimeValidation",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/_helpers/time-utils.ts",
         "name": "TimeValidationProps"

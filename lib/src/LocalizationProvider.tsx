@@ -14,7 +14,7 @@ export interface LocalizationProviderProps {
   dateFormats?: Partial<DateIOFormats>;
 }
 
-const LocalizationProvider: React.FC<LocalizationProviderProps> = ({
+export const LocalizationProvider: React.FC<LocalizationProviderProps> = ({
   dateAdapter: Utils,
   children,
   locale,
