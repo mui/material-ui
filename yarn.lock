@@ -828,12 +828,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/uuid@npm:^3.4.5":
-  version: 3.4.5
-  resolution: "@types/uuid@npm:3.4.5"
-  dependencies:
-    "@types/node": "*"
-  checksum: 2/d4ecc8717bd8e6232c15a41fc92186d2d1a4a129be73d2dc227c064503f749f79b995acf4960a49fa8230cb5fbf981dbce0f55c6f263f4d0c4f2b23095cfa840
+"@types/uuid@npm:^8.0.0":
+  version: 8.0.0
+  resolution: "@types/uuid@npm:8.0.0"
+  checksum: 2/a1d953039620278f03198b2ad7574ba884d73338756fe1ce2628f44518140f1e1fc3ee676251713e212b9a5d2cbd5bd081e67afa439c8988619540076b627a86
   languageName: node
   linkType: hard
 
@@ -6326,7 +6324,7 @@ resolve@1.1.7:
     "@types/node": ^12.6.2
     "@types/prettier": ^1.19.1
     "@types/react": ^16.8.23
-    "@types/uuid": ^3.4.5
+    "@types/uuid": ^8.0.0
     doctrine: ^3.0.0
     glob: ^7.1.6
     husky: ^4.2.3
@@ -6339,7 +6337,7 @@ resolve@1.1.7:
     ts-jest: ^25.3.1
     tslib: ^1.13.0
     typescript: 3.5.2
-    uuid: ^3.3.2
+    uuid: ^8.1.0
   dependenciesMeta:
     core-js:
       built: false
@@ -6436,6 +6434,15 @@ typescript@3.5.2:
   bin:
     uuid: ./bin/uuid
   checksum: 2/f407d974ca30b20bfbd32ae9cc05d20e18df5fd9e5fa088d91db04a6597125dcc8d09eeeb7237782724daba36418e24f557e0245e6ce7b8e4ad25d6436f1cde1
+  languageName: node
+  linkType: hard
+
+"uuid@npm:^8.1.0":
+  version: 8.1.0
+  resolution: "uuid@npm:8.1.0"
+  bin:
+    uuid: dist/bin/uuid
+  checksum: 2/e212e1e9dcf38baf070b6a892653e3504cf6ec2baf9d830d844ba4e4411af28b0937e94c631fb093fa1d72dd85166856f0fb5e4bd79bbcfeca021b80fa18e9a8
   languageName: node
   linkType: hard
 

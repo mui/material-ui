@@ -35,7 +35,7 @@
 		"@types/node": "^12.6.2",
 		"@types/prettier": "^1.19.1",
 		"@types/react": "^16.8.23",
-		"@types/uuid": "^3.4.5",
+		"@types/uuid": "^8.0.0",
 		"glob": "^7.1.6",
 		"husky": "^4.2.3",
 		"jest": "^25.2.7",
@@ -54,7 +54,7 @@
 		"lodash": "^4.17.14",
 		"tslib": "^1.13.0",
 		"typescript": "3.5.2",
-		"uuid": "^3.3.2"
+		"uuid": "^8.1.0"
 	},
 	"dependenciesMeta": {
 		"core-js": {
