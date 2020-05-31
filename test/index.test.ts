@@ -44,10 +44,19 @@ for (const testCase of testCases) {
 		} else {
 			fs.writeFileSync(
 				astPath,
-				prettier.format(JSON.stringify(newAST), {
-					...prettierConfig,
-					filepath: astPath,
-				})
+				prettier.format(
+					JSON.stringify(newAST, (key, value) => {
+						// These are TypeScript internals that change depending on the number of symbols created during test
+						if (key === '$$id') {
+							return undefined;
+						}
+						return value;
+					}),
+					{
+						...prettierConfig,
+						filepath: astPath,
+					}
+				)
 			);
 		}
 		//#endregion

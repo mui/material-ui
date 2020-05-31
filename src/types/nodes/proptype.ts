@@ -7,13 +7,18 @@ export interface PropTypeNode extends Node {
 	jsDoc?: string;
 	propType: Node;
 	filenames: Set<string>;
+	/**
+	 * @internal
+	 */
+	$$id: number | undefined;
 }
 
 export function propTypeNode(
 	name: string,
 	jsDoc: string | undefined,
 	propType: Node,
-	filenames: Set<string>
+	filenames: Set<string>,
+	id: number | undefined
 ): PropTypeNode {
 	return {
 		type: typeString,
@@ -21,6 +26,7 @@ export function propTypeNode(
 		jsDoc,
 		propType,
 		filenames,
+		$$id: id,
 	};
 }
 

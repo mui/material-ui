@@ -170,6 +170,8 @@ export function parseFromProgram(
 								type.aliasTypeArguments[0],
 								node.getSourceFile()
 							);
+						} else if (checkDeclarations) {
+							parseFunctionComponent(variableNode);
 						}
 					} else if (
 						(ts.isArrowFunction(variableNode.initializer) ||
@@ -246,21 +248,76 @@ export function parseFromProgram(
 		if (!symbol) {
 			return;
 		}
+		const componentName = node.name.getText();
 
-		const signature = checker
-			.getTypeOfSymbolAtLocation(symbol, symbol.valueDeclaration)
-			.getCallSignatures()[0];
+		const type = checker.getTypeOfSymbolAtLocation(symbol, symbol.valueDeclaration);
+		type.getCallSignatures().forEach((signature) => {
+			if (!isTypeJSXElementLike(signature.getReturnType())) {
+				return;
+			}
 
-		if (!isTypeJSXElementLike(signature.getReturnType())) {
-			return;
-		}
+			const propsType = checker.getTypeOfSymbolAtLocation(
+				signature.parameters[0],
+				signature.parameters[0].valueDeclaration
+			);
 
-		const type = checker.getTypeOfSymbolAtLocation(
-			signature.parameters[0],
-			signature.parameters[0].valueDeclaration
+			parsePropsType(componentName, propsType, node.getSourceFile());
+		});
+
+		// squash props
+		// { variant: 'a', href: string } & { variant: 'b' }
+		// to
+		// { variant: 'a' | 'b', href?: string }
+		const props: Record<string, t.PropTypeNode> = {};
+		const usedPropsPerSignature: Set<String>[] = [];
+		programNode.body = programNode.body.filter((node) => {
+			if (node.name === componentName) {
+				const usedProps: Set<string> = new Set();
+				// squash props
+				node.types.forEach((typeNode) => {
+					usedProps.add(typeNode.name);
+
+					let { [typeNode.name]: currentTypeNode } = props;
+					if (currentTypeNode === undefined) {
+						currentTypeNode = typeNode;
+					} else if (currentTypeNode.$$id !== typeNode.$$id) {
+						currentTypeNode = t.propTypeNode(
+							currentTypeNode.name,
+							currentTypeNode.jsDoc,
+							t.unionNode([currentTypeNode.propType, typeNode.propType]),
+							new Set(Array.from(currentTypeNode.filenames).concat(Array.from(typeNode.filenames))),
+							undefined
+						);
+					}
+
+					props[typeNode.name] = currentTypeNode;
+				});
+
+				usedPropsPerSignature.push(usedProps);
+
+				// delete each signature, we'll add it later unionized
+				return false;
+			}
+			return true;
+		});
+
+		programNode.body.push(
+			t.componentNode(
+				componentName,
+				Object.entries(props).map(([name, propType]) => {
+					const onlyUsedInSomeSignatures = usedPropsPerSignature.some((props) => !props.has(name));
+					if (onlyUsedInSomeSignatures) {
+						// mark as optional
+						return {
+							...propType,
+							propType: t.unionNode([propType.propType, t.undefinedNode()]),
+						};
+					}
+					return propType;
+				}),
+				node.getSourceFile().fileName
+			)
 		);
-
-		parsePropsType(node.name.getText(), type, node.getSourceFile());
 	}
 
 	function parsePropsType(name: string, type: ts.Type, sourceFile: ts.SourceFile | undefined) {
@@ -313,17 +370,21 @@ export function parseFromProgram(
 					symbol.getName(),
 					getDocumentation(symbol),
 					declaration.questionToken ? t.unionNode([t.undefinedNode(), elementNode]) : elementNode,
-					symbolFilenames
+					symbolFilenames,
+					(symbol as any).id
 				);
 			}
 		}
 
-		const type = declaration
+		let type = declaration
 			? // The proptypes aren't detailed enough that we need all the different combinations
 			  // so we just pick the first and ignore the rest
-			  checker.getTypeOfSymbolAtLocation(symbol, declaration)
+			  checker.getTypeAtLocation(declaration)
 			: // The properties of Record<..., ...> don't have a declaration, but the symbol has a type property
 			  ((symbol as any).type as ts.Type);
+		// get `React.ElementType` from `C extends React.ElementType`
+		const baseConstraintOfType = checker.getBaseConstraintOfType(type);
+		type = baseConstraintOfType === undefined ? type : baseConstraintOfType;
 
 		if (!type) {
 			throw new Error('No types found');
@@ -345,7 +406,13 @@ export function parseFromProgram(
 			parsedType = checkType(type, typeStack, symbol.getName());
 		}
 
-		return t.propTypeNode(symbol.getName(), getDocumentation(symbol), parsedType, symbolFilenames);
+		return t.propTypeNode(
+			symbol.getName(),
+			getDocumentation(symbol),
+			parsedType,
+			symbolFilenames,
+			(symbol as any).id
+		);
 	}
 
 	function checkType(type: ts.Type, typeStack: number[], name: string): t.Node {
