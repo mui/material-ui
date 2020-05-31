@@ -5,7 +5,7 @@ export interface ListItemIconProps
   children: React.ReactElement;
 }
 
-export type ListItemIconClassKey = 'root';
+export type ListItemIconClassKey = 'root' | 'alignItemsFlexStart';
 
 declare const ListItemIcon: React.ComponentType<ListItemIconProps>;
 
