@@ -152,6 +152,7 @@ Pay specific attention to the `ref` and `inputProps` keys.
 ##GitHub's picker
 
 This demo reproduces the GitHub's label picker:
+
 {{"demo": "pages/components/autocomplete/GitHubLabel.js"}}
 
 Head to the [Customized hook](#customized-hook) section for a customization example with the `useAutocomplete` hook instead of the component.
