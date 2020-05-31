@@ -32,7 +32,7 @@
     "@types/luxon": "^1.11.0",
     "@types/next": "^8.0.1",
     "@types/prismjs": "^1.9.1",
-    "@types/react": "^16.8.13",
+    "@types/react": "^16.9.35",
     "@types/react-kawaii": "^0.11.0",
     "@types/sinon": "^9.0.4",
     "@types/yup": "^0.28.0",
