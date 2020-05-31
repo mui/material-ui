@@ -79,7 +79,7 @@
   "devDependencies": {
     "dotenv": "^8.2.0",
     "eslint-plugin-react": "^7.19.0",
-    "fs-extra": "^8.1.0",
+    "fs-extra": "^9.0.0",
     "now": "^18.0.0",
     "patreon": "^0.4.1"
   }
