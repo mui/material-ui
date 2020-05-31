@@ -5,6 +5,7 @@ import { ExportedDateRangePickerInputProps } from './DateRangePickerInput';
 
 export type RangeInput = [ParsableDate, ParsableDate];
 export type DateRange = [MaterialUiPickersDate, MaterialUiPickersDate];
+
 export type AllSharedDateRangePickerProps = Omit<
   AllSharedPickerProps<RangeInput, DateRange>,
   'renderInput'
