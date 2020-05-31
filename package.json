@@ -42,7 +42,7 @@
 		"prettier": "^2.0.1",
 		"pretty-quick": "^2.0.1",
 		"react": "^16.8.6",
-		"standard-version": "7.1.0",
+		"standard-version": "^8.0.0",
 		"ts-jest": "^26.1.0"
 	},
 	"dependencies": {
