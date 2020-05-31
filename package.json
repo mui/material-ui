@@ -38,12 +38,12 @@
 		"@types/uuid": "^8.0.0",
 		"glob": "^7.1.6",
 		"husky": "^4.2.3",
-		"jest": "^25.2.7",
+		"jest": "^26.0.1",
 		"prettier": "^2.0.1",
 		"pretty-quick": "^2.0.1",
 		"react": "^16.8.6",
 		"standard-version": "7.1.0",
-		"ts-jest": "^25.3.1"
+		"ts-jest": "^26.1.0"
 	},
 	"dependencies": {
 		"@babel/core": "^7.5.4",
