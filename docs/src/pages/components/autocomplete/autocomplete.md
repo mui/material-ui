@@ -149,7 +149,7 @@ Pay specific attention to the `ref` and `inputProps` keys.
 
 {{"demo": "pages/components/autocomplete/CustomInputAutocomplete.js"}}
 
-##GitHub's picker
+### GitHub's picker
 
 This demo reproduces the GitHub's label picker:
 
