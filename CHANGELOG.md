@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/merceyz/typescript-to-proptypes/compare/v1.5.0...v2.0.0) (2020-05-31)
+
+### ⚠ BREAKING CHANGES
+
+- Support for Node versions less than 10.3.0 has been dropped
+
+### Features
+
+- consider squashed call signatures of function components ([#20](https://github.com/merceyz/typescript-to-proptypes/issues/20)) ([514d8ed](https://github.com/merceyz/typescript-to-proptypes/commit/514d8ed55375406a70640d64c4a166aa52e24ae2))
+
+### Bug Fixes
+
+- allow non-string literals ([#21](https://github.com/merceyz/typescript-to-proptypes/issues/21)) ([546e7ad](https://github.com/merceyz/typescript-to-proptypes/commit/546e7addc86198e641d3bfd3dd08ecb55c970600))
+
+### Build System
+
+- drop support for node versions less than 10.3.0 ([2fbca64](https://github.com/merceyz/typescript-to-proptypes/commit/2fbca64e0964509e1a74d29f564be41a78e9fa29))
+
 ## [1.5.0](https://github.com/merceyz/typescript-to-proptypes/compare/v1.4.2...v1.5.0) (2020-04-06)
 
 ### Features
