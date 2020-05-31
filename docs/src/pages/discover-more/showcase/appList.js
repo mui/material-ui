@@ -327,7 +327,7 @@ const appList = [
     image: 'builderbook.jpg',
     link: 'https://builderbook.org/',
     source: 'https://github.com/builderbook/builderbook',
-    stars: 1576,
+    stars: 1837,
     dateAdded: '2018-01-05',
   },
   {
