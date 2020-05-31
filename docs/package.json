@@ -72,7 +72,7 @@
     "safe-json-stringify": "^1.2.0",
     "sinon": "^9.0.2",
     "styled-jsx": "^3.3.0",
-    "ts-loader": "^6.0.2",
+    "ts-loader": "^7.0.5",
     "typescript": "^3.8.3",
     "yup": "^0.28.5"
   },
