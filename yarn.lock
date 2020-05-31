@@ -6248,6 +6248,13 @@ resolve@1.1.7:
   languageName: node
   linkType: hard
 
+"tslib@npm:^1.13.0":
+  version: 1.13.0
+  resolution: "tslib@npm:1.13.0"
+  checksum: 2/5dc3bdaea3b67c76ef4a14c28fcb2171da7bcf292fd9c59a260098729626b1ce766c52b588f08e324ed9a0c52ea8a93a815920f980d75981abc9d850fbf310fb
+  languageName: node
+  linkType: hard
+
 "tunnel-agent@npm:^0.6.0":
   version: 0.6.0
   resolution: "tunnel-agent@npm:0.6.0"
@@ -6330,6 +6337,7 @@ resolve@1.1.7:
     react: ^16.8.6
     standard-version: 7.1.0
     ts-jest: ^25.3.1
+    tslib: ^1.13.0
     typescript: 3.5.2
     uuid: ^3.3.2
   dependenciesMeta:

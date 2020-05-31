@@ -3,6 +3,9 @@
 	"version": "1.5.0",
 	"description": "Generate proptypes from typescript declarations",
 	"main": "dist/index.js",
+	"engines": {
+		"node": ">=10.3.0"
+	},
 	"files": [
 		"dist"
 	],
@@ -49,6 +52,7 @@
 		"@babel/types": "^7.5.0",
 		"doctrine": "^3.0.0",
 		"lodash": "^4.17.14",
+		"tslib": "^1.13.0",
 		"typescript": "3.5.2",
 		"uuid": "^3.3.2"
 	},

@@ -2,14 +2,16 @@
 	"compilerOptions": {
 		"module": "commonjs",
 		"esModuleInterop": true,
-		"target": "es5",
+		"target": "ES2018",
+		"lib": ["ES2018"],
 		"noImplicitAny": true,
 		"strict": true,
 		"moduleResolution": "node",
 		"sourceMap": true,
 		"declaration": true,
 		"outDir": "dist",
-		"jsx": "preserve"
+		"jsx": "preserve",
+		"importHelpers": true
 	},
 	"include": ["src"]
 }
