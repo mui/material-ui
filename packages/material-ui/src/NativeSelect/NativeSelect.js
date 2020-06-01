@@ -91,8 +91,8 @@ export const styles = (theme) => ({
   iconOutlined: {
     right: 7,
   },
-  /* Styles applied to the shadow input component. */
-  shadowInput: {
+  /* Styles applied to the underlying native input component. */
+  nativeInput: {
     bottom: 0,
     left: 0,
     position: 'absolute',

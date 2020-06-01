@@ -145,8 +145,16 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   // Support autofill.
   const handleChange = (event) => {
     const index = childrenArray.map((child) => child.props.value).indexOf(event.target.value);
-    if (index !== -1) {
-      onChange(event, childrenArray[index]);
+
+    if (index === -1) {
+      return;
+    }
+
+    const child = childrenArray[index];
+    setValue(child.props.value);
+
+    if (onChange) {
+      onChange(event, child);
     }
   };
 
@@ -384,7 +392,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         aria-hidden
         onChange={handleChange}
         tabIndex={-1}
-        className={classes.shadowInput}
+        className={classes.nativeInput}
         autoFocus={autoFocus}
         {...other}
       />
