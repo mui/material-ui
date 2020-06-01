@@ -16,6 +16,7 @@ const muiComponentConfig = { name: 'MuiPickersDay' };
 export const useStyles = makeStyles(
   theme => ({
     day: {
+      ...theme.typography.caption,
       width: DAY_SIZE,
       height: DAY_SIZE,
       borderRadius: '50%',
@@ -23,8 +24,6 @@ export const useStyles = makeStyles(
       // background required here to prevent collides with the other days when animating with transition group
       backgroundColor: theme.palette.background.paper,
       color: theme.palette.text.primary,
-      fontSize: theme.typography.caption.fontSize,
-      fontWeight: theme.typography.fontWeightMedium,
       '&:hover': {
         backgroundColor: fade(theme.palette.action.active, theme.palette.action.hoverOpacity),
       },
