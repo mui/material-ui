@@ -94,7 +94,7 @@ function HomeIcon(props) {
 
 {{"demo": "pages/components/icons/SvgIconsColor.js"}}
 
-### Size
+### Tamaño
 
 {{"demo": "pages/components/icons/SvgIconsSize.js"}}
 

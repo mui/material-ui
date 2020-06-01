@@ -37,7 +37,7 @@ Select 组件的设计原理是和一个原生的 `<select>` 元素能够互相�
 
 {{"demo": "pages/components/selects/CustomizedSelects.js"}}
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/select).
+🎨如果你是在寻找灵感，你可以查看 [MUI Treasury's customization examples](https://mui-treasury.com/styles/select)。
 
 ## 多重选择
 
@@ -84,7 +84,7 @@ Select 组件的设计原理是和一个原生的 `<select>` 元素能够互相�
 </TextField>
 ```
 
-For a [native select](#native-select), you should mention a label by giving the value of the `id` attribute of the select element to the `InputLabel`'s `htmlFor` attribute:
+对于一个 [原生选择](#native-select)，你应该通过将选择元素的 `id` 属性的值赋给 `InputLabel` 的 `htmlFor` 属性来提及标签。
 
 ```jsx
 <InputLabel htmlFor="select">Age</InputLabel>

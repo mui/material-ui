@@ -2,7 +2,7 @@
 
 <p class="description">While you can use the JSS based styling solution provided by Material-UI to style your application, you can also use the one you already know and love (from plain CSS to styled-components).</p>
 
-In diesem Handbuch sollen die beliebtesten Alternativen dokumentiert werden, aber Sie sollten sich merken, dass die hier vorgestellten Anwendungen an andere Bibliotheken angepasst werden können. There are examples for the following styling solutions:
+This guide aims to document the most popular alternatives, but you should find that the principles applied here can be adapted to other libraries. There are examples for the following styling solutions:
 
 - [Einfaches CSS](#plain-css)
 - [Globales CSS](#global-css)

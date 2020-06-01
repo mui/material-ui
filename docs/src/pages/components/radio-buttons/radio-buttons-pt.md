@@ -1,5 +1,5 @@
 ---
-title: Componente React para Botões de Opção
+title: Componente React para Botões de opção
 components: Radio, RadioGroup, FormControl, FormLabel, FormControlLabel
 ---
 
@@ -9,23 +9,25 @@ components: Radio, RadioGroup, FormControl, FormLabel, FormControlLabel
 
 Use [botões de opção](https://material.io/design/components/selection-controls.html#radio-buttons) quando um usuário precisar ver todas as opções disponíveis. Se várias opções podem ser suprimidas da visualização, considere usar um menu suspenso (dropdown), pois ele utiliza menos espaço.
 
-Os botões de opção devem ter a opção mais comumente usada selecionada por padrão.
+Os botões de opção devem ter a opção comum e mais usada selecionada por padrão.
 
 ## RadioGroup
 
-`RadioGroup` é um wrapper útil usado para agrupar componentes `Radio` fornecendo uma API mais fácil, e adequá a acessibilidade pelo teclado para o grupo.
+O componente `RadioGroup` é um wrapper utilizado para agrupar componentes `Radio`, fornece uma API mais simples e adequada para a acessibilidade por teclado.
 
 {{"demo": "pages/components/radio-buttons/RadioButtonsGroup.js"}}
 
+Para demonstrar os botões horizontalmente, defina a propriedade `row`: `<RadioGroup row />`.
+
 ## Botões de opção independentes
 
-`Radio` também pode ser usado de forma independente, sem o RadioGroup wrapper.
+O componente `Radio` também pode ser usado de forma independente, sem o wrapper RadioGroup.
 
 {{"demo": "pages/components/radio-buttons/RadioButtons.js"}}
 
-## Posicionamento do Rótulo
+## Posicionamento do rótulo
 
-Você pode alterar o posicionamento do rótulo com o componente `FormControlLabel` e a propriedade `labelPlacement`:
+Você pode alterar o posicionamento do rótulo com o componente `FormControlLabel` na propriedade `labelPlacement`:
 
 {{"demo": "pages/components/radio-buttons/FormControlLabelPlacement.js"}}
 
@@ -43,7 +45,7 @@ Aqui está um exemplo de customização do componente. Você pode aprender mais 
 
 ## Quando usar
 
-- [Caixas de Seleção vs. Botões de Opção](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
+- [Caixas de seleção vs. Botões de opção](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
 
 ## Acessibilidade
 

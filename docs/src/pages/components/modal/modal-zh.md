@@ -25,7 +25,7 @@ components: Modal
 - [Menu](/components/menus/)
 - [Popover](/components/popover/)
 
-## 简单的模态
+## 简单的模态框
 
 {{"demo": "pages/components/modal/SimpleModal.js"}}
 
@@ -56,7 +56,7 @@ React API [不支持](https://github.com/facebook/react/issues/13097) 在服务�
 
 ## 局限性
 
-### Focus trap
+### 焦点陷阱
 
 如果失去焦点，则模态框会将焦点移回到组件的主体 (body of the component)。
 
@@ -87,4 +87,4 @@ React API [不支持](https://github.com/facebook/react/issues/13097) 在服务�
     ```
 
 - 这篇 [WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/dialog.html) 里的方法可以根据你的模态窗口里的内容, 为最合适的元素设置初始焦点.
-- Keep in mind that a "modal window" overlays on either the primary window or another modal window. 模态框层下的所有层级都是 **inert** 的。 也就是说，用户不能与活跃的模态框外的内容交互。 This might create [conflicting behaviors](#focus-trap).
+- 请记住，“模态窗口” 叠加在主窗口或另一个模态窗口上。 模态框层下的所有层级都是 **inert** 的。 也就是说，用户不能与活跃的模态框外的内容交互。 这可能会产生 [冲突行为](#focus-trap)。

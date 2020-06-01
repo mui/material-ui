@@ -22,19 +22,19 @@ Shown below is a sample link markup used to load the Roboto font from a CDN:
 
 ## Install with npm
 
-You can [install it](https://www.npmjs.com/package/typeface-roboto) by typing the below command in your terminal:
+You can [install it](https://www.npmjs.com/package/fontsource-roboto) by typing the below command in your terminal:
 
-`npm install typeface-roboto --save`
+`npm install fontsource-roboto`
 
 Then, you can import it in your entry-point.
 
 ```js
-import 'typeface-roboto';
+import 'fontsource-roboto';
 ```
 
-For more info check out the [typeface](https://github.com/KyleAMathews/typefaces/tree/master/packages/roboto) project.
+For more info check out [Fontsource](https://github.com/DecliningLotus/fontsource/blob/master/packages/roboto/README.md).
 
-⚠️ Be careful when using this approach. Make sure your bundler doesn't eager load all the font variations (100/300/400/500/700/900, italic/regular, SVG/woff). Inlining all the font files can significantly increase the size of your bundle. Material-UI default typography configuration only relies on 300, 400, 500, and 700 font weights.
+⚠️ Be careful when using this approach. Make sure your bundler doesn't eager load all the font variations (100/300/400/500/700/900, italic/regular, SVG/woff). Fontsource can be configured to load specific subsets, weights and styles. Inlining all the font files can significantly increase the size of your bundle. Material-UI default typography configuration only relies on 300, 400, 500, and 700 font weights.
 
 ## Component
 

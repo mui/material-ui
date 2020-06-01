@@ -88,7 +88,7 @@ import { Button, TextField } from '@material-ui/core';
 
 However, you need to apply the two following steps correctly.
 
-#### 1。 Configure Babel
+#### 1、 Configure Babel
 
 请在以下插件中选择一个：
 

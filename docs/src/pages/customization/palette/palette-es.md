@@ -23,7 +23,7 @@ Si quieres aprender más sobre el color, puedes echar un vistazo a [la sección 
 
 Puede anular los valores de la paleta por defecto incluyendo un objeto de paleta como parte de su tema.
 
-Si alguno de los [`palette.primary`](/customization/default-theme/?expand-path=$.palette.primary), [`palette.secondary`](/customization/default-theme/?expand-path=$.palette.secondary), [`palette.error`](/customization/default-theme/?expand-path=$.palette.error), [`palette. arning`](/customization/default-theme/?expand-path=$.palette.warning), [`palette.info`](/customization/default-theme/?expand-path=$.palette.info) o [`palette.successs`](/customization/default-theme/?expand-path=$.palette.successs) objetos 'propósito' son proporcionados, sustituirán los valores predeterminados.
+If any of the [`palette.primary`](/customization/default-theme/?expand-path=$.palette.primary), [`palette.secondary`](/customization/default-theme/?expand-path=$.palette.secondary), [`palette.error`](/customization/default-theme/?expand-path=$.palette.error), [`palette.warning`](/customization/default-theme/?expand-path=$.palette.warning), [`palette.info`](/customization/default-theme/?expand-path=$.palette.info) or [`palette.success`](/customization/default-theme/?expand-path=$.palette.success) 'intention' objects are provided, they will replace the defaults.
 
 El valor del propósito de color puede ser un objeto [color](/customization/color/), o un objeto con una o más de las claves especificadas en la siguiente interfaz de TypeScript:
 

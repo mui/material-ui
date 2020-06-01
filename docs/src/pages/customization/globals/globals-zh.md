@@ -27,7 +27,7 @@ const theme = createMuiTheme({
 
 ## 全局 CSS
 
-If you are using the [CssBaseline](/components/css-baseline/) component to apply global resets, it can also be used to apply global styles. 就像这样：
+如果你使用 [CssBaseline](/components/css-baseline/) 组件来应用全局重置(global resets)，那么也可以用它来应用全局样式。 就像这样：
 
 ```jsx
 const theme = createMuiTheme({
@@ -53,7 +53,7 @@ return (
 
 ## 默认属性
 
-您可以更改所有Material-UI组件的默认属性。 A `props` key is exposed in the `theme` for this use case.
+您可以更改所有Material-UI组件的默认属性。 该用例展示了在 `主题` 中的一个 `props` 建。 
 
 ```js
 const theme = createMuiTheme({

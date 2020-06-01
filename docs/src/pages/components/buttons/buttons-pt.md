@@ -44,6 +44,16 @@ Botões delineados são uma alternativa de menor ênfase comparado com botões c
 
 {{"demo": "pages/components/buttons/OutlinedButtons.js"}}
 
+## Handling clicks
+
+All components accept an `onClick` handler that is applied to the root DOM element.
+
+```jsx
+<Button onClick={() => { alert('clicked') }}>Click me</Button>
+```
+
+Note that the documentation [avoids](/guides/api/#native-properties) mentioning native props (there are a lot) in the API section of the components.
+
 ## Botão de Upload
 
 {{"demo": "pages/components/buttons/UploadButtons.js"}}
@@ -54,13 +64,13 @@ Gosta de botões maiores ou menores? Use a propriedade `size`.
 
 {{"demo": "pages/components/buttons/ButtonSizes.js"}}
 
-## Botões com ícones e rótulo
+## Botões com ícones e "Label"
 
 Às vezes você pode querer ter ícones para determinados botão para melhorar o UX do aplicativo como reconhecemos logotipos mais facilmente do que o texto sem formatação. Por exemplo, se você tem um botão com a açõo de "deletar" você pode rotulá-lo com um ícone do caixote de lixo.
 
 {{"demo": "pages/components/buttons/IconLabelButtons.js"}}
 
-## Botões de Ícone
+## Botões de Icone
 
 Botões de ícones são comumente encontrados em barras de aplicativos e barras de ferramentas.
 
@@ -76,7 +86,7 @@ Aqui estão alguns exemplos de customização do componente. Você pode aprender
 
 🎨 Se você está procurando inspiração, você pode verificar [os exemplos de customização de MUI Treasury](https://mui-treasury.com/styles/button).
 
-## Botões Complexos
+## Botões complexos
 
 O botões de texto, botões contidos, botões de ação flutuante e ícone botões são construídos em cima do mesmo componente: O componente `ButtonBase `. Você pode tirar vantagem deste componente de nível mais abastrato para construir interações personalizadas.
 
@@ -92,9 +102,9 @@ Aqui está um [exemplo de integração com react-router](/guides/composition/#bu
 
 ### Propriedade CSS Cursor not-allowed
 
-O componente ButtonBase define a propriedade CSS `pointer-events: none;` por padrão em botões desabilitados, o que conflita com a exibição de um cursor desabilitado.
+O componente ButtonBase define `pointer-events: none;` ao desabilitar os botões, o que previne que o cursor desabilitado seja exibido.
 
-Se você deseja usar a o cursor como `not-allowed`, você tem duas opções:
+Se você deseja usar `not-allowed`, você tem duas opções:
 
 1. **Apenas com CSS**. Você pode modificar os estilos aplicados no seletor de estado disabled do elemento `<button>`:
 
@@ -105,7 +115,7 @@ Se você deseja usar a o cursor como `not-allowed`, você tem duas opções:
   }
   ```
 
-No entanto:
+Então:
 
 - Você deve adicionar `pointer-events: none;` de volta quando você precisar exibir [dicas em elementos desabilitados](/components/tooltips/#disabled-elements).
 - O cursor não irá mudar se você renderizar algum outro elemento que não seja um botão, por exemplo, um elemento link `<a>`.

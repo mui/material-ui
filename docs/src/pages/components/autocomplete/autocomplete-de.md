@@ -136,7 +136,15 @@ Fancy smaller inputs? Verwenden Sie die `size` Prop.
 
 {{"demo": "pages/components/autocomplete/Sizes.js"}}
 
-## Angepasste Autovervollständigung
+## Customizations
+
+### Custom input
+
+The `renderInput` prop allows you to customize the rendered input. The first argument of this render prop contains props that you need to forward. Pay specific attention to the `ref` and `inputProps` keys.
+
+{{"demo": "pages/components/autocomplete/CustomInputAutocomplete.js"}}
+
+### GitHub's picker
 
 Diese Demo reproduziert die Label-Auswahl von GitHub:
 

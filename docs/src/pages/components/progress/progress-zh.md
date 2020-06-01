@@ -1,5 +1,5 @@
 ---
-title: Circular, Linear progress React components
+title: React Circular 进度环, React Linear progress 进度条组件
 components: CircularProgress, LinearProgress
 ---
 
@@ -99,6 +99,6 @@ function Progress(props) {
 
 ![高负载](/static/images/progress/heavy-load.gif)
 
-When it's not possible, you can leverage the `disableShrink` property to mitigate the issue. See [this issue](https://github.com/mui-org/material-ui/issues/10327).
+当它不可用时，您可以利用 `disableShrink` 属性来缓解这个问题。 查看 [这个问题](https://github.com/mui-org/material-ui/issues/10327).
 
 {{"demo": "pages/components/progress/CircularUnderLoad.js"}}

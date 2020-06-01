@@ -13,7 +13,7 @@ components: Popper
 - 💄 这是 react-popper 的一个替代性组件。 它旨在简化。
 - 📦 [10 kB gzipped](/size-snapshot) ([7 kB](https://bundlephobia.com/result?p=popper.js) 来自 Popper.js).
 - 子组件以 [`Portal`](/components/portal/) 形式呈现在 DOM 中，以避免渲染问题。 您可以使用 `disablePortal` 禁用此行为。
-- 不同于 [`Popover`](/components/popover/) 组件，滚动行为是可被允许的。 The placement of the popper updates with the available area in the viewport.
+- 不同于 [`Popover`](/components/popover/) 组件，滚动行为是可被允许的。 弹出提示的位置会随着视口中的可用面积而更新。
 - 点击不会隐藏 `Popper` 组件。 如果你确实需要这一行为，则可以使用 [`ClickAwayListener`](/components/click-away-listener/) - 见 [menu documentation section](/components/menus/#menulist-composition) 中的样例。
 - ` anchorEl ` 作为创建新 `Poper.js` 实例的参考对象所传递。
 
@@ -47,7 +47,7 @@ components: Popper
 
 ## 占位的参考对象
 
-The `anchorEl` property can be a reference to a fake DOM element. 您只需要创建一个类似于 [`ReferenceObject`](https://github.com/FezVrasta/popper.js/blob/0642ce0ddeffe3c7c033a412d4d60ce7ec8193c3/packages/popper/index.d.ts#L118-L123) 的对象。
+`anchorEl` 属性可以是对占位 DOM 元素的引用。 您只需要创建一个类似于 [`ReferenceObject`](https://github.com/FezVrasta/popper.js/blob/0642ce0ddeffe3c7c033a412d4d60ce7ec8193c3/packages/popper/index.d.ts#L118-L123) 的对象。
 
 选中部分文本以看到气泡卡片：
 

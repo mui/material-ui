@@ -39,7 +39,7 @@ Gosta de interruptores menores? Use a propriedade `size`.
 
 {{"demo": "pages/components/switches/SwitchesSize.js"}}
 
-## Posicionamento do Rótulo
+## Label placement
 
 Você pode alterar o posicionamento do rótulo:
 

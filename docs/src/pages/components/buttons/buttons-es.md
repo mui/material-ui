@@ -44,6 +44,16 @@ Los botones delineados también son una alternativa de menos énfasis que los bo
 
 {{"demo": "pages/components/buttons/OutlinedButtons.js"}}
 
+## Handling clicks
+
+All components accept an `onClick` handler that is applied to the root DOM element.
+
+```jsx
+<Button onClick={() => { alert('clicked') }}>Click me</Button>
+```
+
+Note that the documentation [avoids](/guides/api/#native-properties) mentioning native props (there are a lot) in the API section of the components.
+
 ## Botón de subida
 
 {{"demo": "pages/components/buttons/UploadButtons.js"}}

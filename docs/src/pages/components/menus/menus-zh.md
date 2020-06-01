@@ -41,7 +41,7 @@ components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper
 
 `MenuItem` 的原理是用额外的样式包装了 `ListItem` 组件。 你可以将同样的列表合成功能来装饰 `MenuItem` 组件：
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/menu).
+🎨如果你是在寻找灵感，你可以查看 [MUI Treasury's customization examples](https://mui-treasury.com/styles/menu)。
 
 ## 限高菜单
 

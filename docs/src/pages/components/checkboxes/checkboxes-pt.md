@@ -27,7 +27,7 @@ O componente `Checkbox` pode ser fornecido com um rótulo graças ao componente 
 
 {{"demo": "pages/components/checkboxes/CheckboxesGroup.js"}}
 
-## Posicionamento do Rótulo
+## Label placement
 
 Você pode alterar o posicionamento do rótulo:
 

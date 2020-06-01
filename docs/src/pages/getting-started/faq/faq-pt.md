@@ -12,32 +12,32 @@ Existem muitas maneiras de apoiar o Material-UI:
 - **Dê-nos sua opinião**. Conte-nos o que estamos fazendo bem ou onde podemos melhorar. Por favor vote (👍) os problemas que você está mais interessado em ver resolvidos.
 - **Ajude novos usuários**. Você pode responder a perguntas em [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui).
 - **Faça as alterações acontecerem**. 
-  - Edit the documentation. Every page has an "EDIT THIS PAGE" link in the top right.
+  - Edite a documentação. Cada página da versão em inglês tem um link "EDIT THIS PAGE" no canto superior direito.
   - Reporte erros ou recursos faltantes [criando uma issue](https://github.com/mui-org/material-ui/issues/new).
-  - Review and comment on existing [pull requests](https://github.com/mui-org/material-ui/pulls) and [issues](https://github.com/mui-org/material-ui/issues).
+  - Revise e comente em [pull requests](https://github.com/mui-org/material-ui/pulls) e [issues](https://github.com/mui-org/material-ui/issues) existentes.
   - Ajude a [traduzir](https://translate.material-ui.com) a documentação.
-  - [Improve our documentation](https://github.com/mui-org/material-ui/tree/master/docs), fix bugs, or add features by [submitting a pull request](https://github.com/mui-org/material-ui/pulls).
+  - [Aprimore nossa documentação](https://github.com/mui-org/material-ui/tree/master/docs), corrija bugs, ou adicione recursos [enviando um pull request](https://github.com/mui-org/material-ui/pulls).
 - **Apoie-nos financeiramente no [OpenCollective](https://opencollective.com/material-ui)**. Se você usa Material-UI em um projeto comercial e gostaria de apoiar seu desenvolvimento contínuo tornando-se um Patrocinador, ou em um projeto freelancer ou hobby e gostaria de se tornar um Apoiador, você pode se tornar através do OpenCollective. Todos os fundos doados são geridos de forma transparente e os Patrocinadores recebem reconhecimento no README e na página inicial do Material-UI.
 
 ## Por que meus componentes não estão renderizando corretamente em compilações de produção?
 
-The #1 reason this likely happens is due to class name conflicts once your code is in a production bundle. Para que o Material-UI funcione, os valores do `className` de todos os componentes de uma página, devem ser gerados por uma única instância do [gerador de nome de classes](/styles/advanced/#class-names).
+O motivo número #1 pelo qual isto provavelmente acontecerá é devido a conflitos de nome de classe quando seu código estiver em um pacote de produção. Para que o Material-UI funcione, os valores do `className` de todos os componentes de uma página, devem ser gerados por uma única instância do [gerador de nome de classes](/styles/advanced/#class-names).
 
-To correct this issue, all components on the page need to be initialized such that there is only ever **one class name generator** among them.
+Para corrigir este problema, todos os componentes da página precisam ser inicializados, de modo que haja somente **um gerador de nome de classe** entre eles.
 
 Você pode acabar usando acidentalmente dois geradores de nome de classe em vários cenários:
 
 - Você acidentalmente **empacota** duas versões do Material-UI. Você pode ter nesse caso, uma dependência que não esta configurando corretamente o Material-UI.
-- You are using `StylesProvider` for a **subset** of your React tree.
+- Você esta usando `StylesProvider` para um **subconjunto** da sua árvore de componentes React.
 - Você está usando um empacotador (bundler) e está dividindo o código de uma maneira que faz com que várias instâncias do gerador de nome de classe sejam criadas.
 
 > Se você estiver usando webpack com [SplitChunksPlugin](https://webpack.js.org/plugins/split-chunks-plugin/), tente configurar o [`runtimeChunk` disponível em `optimizations`](https://webpack.js.org/configuration/optimization/#optimization-runtimechunk).
 
-Overall, it's simple to recover from this problem by wrapping each Material-UI application with [`StylesProvider`](/styles/api/#stylesprovider) components at the top of their component trees **and using a single class name generator shared among them**.
+No geral, é simples livrar-se desse problema encapsulando cada aplicação Material-UI com componentes [`StylesProvider`](/styles/api/#stylesprovider), no topo de suas árvores de componentes** e usando um único gerador de nome de classe compartilhado entre eles**.
 
 ## Por que os elementos posicionados como fixos se movem quando um modal é aberto?
 
-A rolagem é bloqueada assim que um modal é aberto. This prevents interacting with the background when the modal should be the only interactive content. However, removing the scrollbar can make your **fixed positioned elements** move. Nesta situação, você pode aplicar um nome de classe global `.mui-fixed ` para informar ao Material-UI para manipular esses elementos.
+A rolagem é bloqueada assim que um modal é aberto. Isto impede a interação com o segundo plano, pois o modal deve ser o único conteúdo interativo. No entanto, removendo a barra de rolagem pode fazer com que seus **elementos fixos posicionados** se movam. Nesta situação, você pode aplicar um nome de classe global `.mui-fixed ` para informar ao Material-UI para manipular esses elementos.
 
 ## Como posso desativar o efeito cascata globalmente?
 
@@ -59,7 +59,7 @@ const theme = createMuiTheme({
 
 ## Como posso desativar as transições globalmente?
 
-Material-UI usa o mesmo auxiliar de tema para criar todas as transições. Therefore you can disable all transitions by overriding the helper in your theme:
+Material-UI usa o mesmo auxiliar de tema para criar todas as transições. Portanto, você pode desativar todas as transições substituindo o auxiliar no seu tema:
 
 ```js
 import { createMuiTheme } from '@material-ui/core';
@@ -74,7 +74,7 @@ const theme = createMuiTheme({
 
 Pode ser útil desabilitar transições durante testes visuais ou para melhorar o desempenho em dispositivos de baixo custo.
 
-You can go one step further by disabling all transitions and animations effects:
+Você pode ir além, desabilitando todas as transições e efeitos de animações:
 
 ```js
 import { createMuiTheme } from '@material-ui/core';
@@ -362,7 +362,7 @@ function App() {
 
 ## Para que serve a dependência do clsx?
 
-[clsx](https://github.com/lukeed/clsx) is a tiny utility for constructing `className` strings conditionally, out of an object with keys being the class strings, and values being booleans.
+[clsx](https://github.com/lukeed/clsx) é um pequeno utilitário para construir sequências de strings de `className` condicionalmente, sendo um objeto onde as chaves são as strings de classe e valores sendo booleanos.
 
 Em vez de escrever:
 

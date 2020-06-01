@@ -136,7 +136,15 @@ Fancy smaller inputs? `size`propを使用します。
 
 {{"demo": "pages/components/autocomplete/Sizes.js"}}
 
-## Customized Autocomplete
+## Customizations
+
+### Custom input
+
+The `renderInput` prop allows you to customize the rendered input. The first argument of this render prop contains props that you need to forward. Pay specific attention to the `ref` and `inputProps` keys.
+
+{{"demo": "pages/components/autocomplete/CustomInputAutocomplete.js"}}
+
+### GitHub's picker
 
 This demo reproduces the GitHub's label picker:
 
@@ -231,12 +239,12 @@ However, in addition to remembering past entered values, the browser might also 
 
 VoiceOver on iOS Safari doesn't support the `aria-owns` attribute very well. You can work around the issue with the `disablePortal` prop.
 
-### ListboxComponent
+### ListBox コンポーネント
 
-If you provide a custom `ListboxComponent` prop, you need to make sure that the intended scroll container has the `role` attribute set to `listbox`. This ensures the correct behavior of the scroll, for example when using the keyboard to navigate.
+`Listbox コンポーネント` のカスタムプロパティを提供する場合、意図するスクロールコンテナの `role` 属性として `listbox` が設定されていることを確認する必要があります。 これにより、例えばキーボードを使用して移動する場合など、スクロールの正しい動作が保証されます。
 
 ## アクセシビリティ
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#combobox)
 
-We encourage the usage of a label for the textbox. The component implements the WAI-ARIA authoring practices.
+テキストボックスに対して、ラベルの使用を奨励しています。 コンポーネントは WAI-ARIA オーサリングを実装しています。

@@ -44,6 +44,16 @@ components: Button, IconButton, ButtonBase
 
 {{"demo": "pages/components/buttons/OutlinedButtons.js"}}
 
+## Handling clicks
+
+All components accept an `onClick` handler that is applied to the root DOM element.
+
+```jsx
+<Button onClick={() => { alert('clicked') }}>Click me</Button>
+```
+
+Note that the documentation [avoids](/guides/api/#native-properties) mentioning native props (there are a lot) in the API section of the components.
+
 ## 一个上传按钮
 
 {{"demo": "pages/components/buttons/UploadButtons.js"}}
@@ -54,39 +64,39 @@ components: Button, IconButton, ButtonBase
 
 {{"demo": "pages/components/buttons/ButtonSizes.js"}}
 
-## 带有 icons 图标和 label 标签的按钮
+## 带有icons（图标）和 label（标签）的按钮
 
-有时您可能想在特定一个按钮上添加图标以增强应用程序的用户体验，因为大多数情况下我们觉得图标比纯文本更有辨识度。 例如，如果您有删除按钮，则可以使用垃圾箱图标对其进行标记。
+有时您可能希望为某个按钮添加图标以增强应用程序的用户体验，因为我们识别徽标比纯文本更容易。 例如，如果您有删除按钮，则可以使用垃圾箱图标对其进行标记。
 
 {{"demo": "pages/components/buttons/IconLabelButtons.js"}}
 
-## Icon Buttons 图标按钮
+## Icon Buttons（图标按钮）
 
-图标按钮通常运用于应用栏和工具栏。
+图标按钮通常位于应用栏和工具栏中。
 
-图标也适用于实现单个选项的选择和或取消选择的切换按钮，例如向一个元素添加或删除星标。
+图标也适用于允许选择单个选项的切换按钮或 取消选择，例如向项目添加或删除星标。
 
 {{"demo": "pages/components/buttons/IconButtons.js"}}
 
-## 自定义按钮
+## Customized Buttons（自定义按钮）
 
-以下是自定义组件的一些例子。 您可以在[重写文档页面](/customization/components/)中了解更多有关此内容的信息。
+以下是自定义组件的一些例子。 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
 
 {{"demo": "pages/components/buttons/CustomizedButtons.js", "defaultCodeOpen": false}}
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/button).
+🎨如果你是在寻找灵感，你可以查看 [MUI Treasury's customization examples](https://mui-treasury.com/styles/button)。
 
-## 复杂按钮
+## Complex Buttons（复杂按钮）
 
-文本按钮，包含按钮，浮动操作按钮和图标按钮都基于同一个组件：`ButtonBase`。 利用此较底层的组件，您可以创建一些自定义的交互操作。
+文本按钮，包含按钮，浮动操作按钮和图标按钮构建在同一组件之上：`ButtonBase`。 您可以利用此较底层的组件来构建自定义交互。
 
 {{"demo": "pages/components/buttons/ButtonBase.js"}}
 
-## Third-party routing library 第三方路由库
+## Third-party routing library（第三方路由库）
 
-我们发现的一个常用案例，是用按钮来导航用户到新的页面。 你可以用 `ButtonBase` 的 `component` 属性来处理这样的事件。 然而，一些针对 `ButtonBase` 的特定 polyfills 补丁则要求该组件的 DOM 节点。 您可以尝试在组件上附加一个 ref，并且预期此组件能够将这个 ref 传递到下层 DOM 节点，通过这样的方法可以实现。 鉴于许多我们的交互式组件都基于 `ButtonBase`，您可以在很多情况下受益。
+一个常见的用例是使用按钮触发导航到新页面的操作。 `ButtonBase` 组件提供了一个处理此用例的属性：`component`。 然而，一些特定 `ButtonBase` 的代码需要所给组件的 DOM 节点。 在组件上附加一个 ref，并且预期此组件能够将这个 ref 传递到下层 DOM 节点，通过这样的方法可以实现。 鉴于我们的许多交互式组件都依赖于 `ButtonBase`，您可以在任何情况都能受益于它。
 
-这就有一个[与 react-router 交互的例子](/guides/composition/#button)。
+这有一个[与 react-router 交互的例子](/guides/composition/#button)。
 
 ## 局限性
 
@@ -120,4 +130,4 @@ components: Button, IconButton, ButtonBase
   </span>
   ```
 
-这样一来就可以支持任何元素，例如，一个 `<a>` 元素。
+这个方法能支持任何元素，例如，一个 `<a>` 元素。

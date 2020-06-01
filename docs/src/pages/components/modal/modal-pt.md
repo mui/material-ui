@@ -50,7 +50,7 @@ Como alternativa, você pode usar [react-spring](https://github.com/react-spring
 
 ## Modal do lado do servidor
 
-React [não suporta](https://github.com/facebook/react/issues/13097) a API [`createPortal()`](https://reactjs.org/docs/portals.html) no servidor. Para exibir o modal, você precisa desativar o recurso portal com a propriedade `disablePortal`:
+React [não suporta](https://github.com/facebook/react/issues/13097) a API [`createPortal()`](https://pt-br.reactjs.org/docs/portals.html) no servidor. Para exibir o modal, você precisa desativar o recurso portal com a propriedade `disablePortal`:
 
 {{"demo": "pages/components/modal/ServerModal.js"}}
 

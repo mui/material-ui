@@ -22,19 +22,19 @@ Temos abaixo um exemplo de markup de link usado para carregar a fonte Roboto de 
 
 ## Instalar via npm
 
-Você pode [instalá-la](https://www.npmjs.com/package/typeface-roboto) digitando o comando a seguir em um terminal:
+Você pode [instalá-la](https://www.npmjs.com/package/fontsource-roboto) digitando o comando a seguir em um terminal:
 
-`npm install typeface-roboto --save`
+`npm install fontsource-roboto`
 
 Então, você pode importá-la no seu ponto de entrada (entry-point).
 
 ```js
-import 'typeface-roboto';
+import 'fontsource-roboto';
 ```
 
-Para mais informações confira o projeto [typeface](https://github.com/KyleAMathews/typefaces/tree/master/packages/roboto).
+For more info check out [Fontsource](https://github.com/DecliningLotus/fontsource/blob/master/packages/roboto/README.md).
 
-⚠️ Tome cuidado ao usar essa abordagem. Certifique-se de que seu bundler não carregue ansiosamente todas as variações da fonte (100/300/400/500/700/900, itálico/regular, SVG/woff). Colocar todos os arquivos de fonte em linha pode aumentar o tamanho do seu pacote significativamente. A configuração de tipografia padrão do Material-UI depende apenas dos pesos de fonte de 300, 400, 500 e 700.
+⚠️ Tome cuidado ao usar essa abordagem. Certifique-se de que seu bundler não carregue ansiosamente todas as variações da fonte (100/300/400/500/700/900, itálico/regular, SVG/woff). Fontsource can be configured to load specific subsets, weights and styles. Colocar todos os arquivos de fonte em linha pode aumentar o tamanho do seu pacote significativamente. A configuração de tipografia padrão do Material-UI depende apenas dos pesos de fonte de 300, 400, 500 e 700.
 
 ## Componente
 

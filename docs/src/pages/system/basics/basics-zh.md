@@ -1,6 +1,6 @@
 # @material-ui/system
 
-<p class="description">Styled system & style functions for building powerful design systems.</p>
+<p class="description">风格化系统 & 风格化功能，构建强大的设计系统。</p>
 
 ## 开始使用
 
@@ -188,7 +188,7 @@ const theme = {
 
 ### Collocation
 
-If you want to group the breakpoint values, you can use the `breakpoints()` helper.
+如果你想对断点值进行分组，可以使用 `breakpoints()` 助手。
 
 ```jsx
 import { compose, spacing, palette, breakpoints } from '@material-ui/system';
@@ -246,7 +246,7 @@ const Box = styled.div`
 
 #### 例子
 
-你可以创建一个支持一些CSS的网格属性的组件，如`grid-gap`。 By supplying `spacing` as the `themeKey` you can reuse logic enabling the behavior we see in other spacing properties like `padding`.
+你可以创建一个支持一些CSS的网格属性的组件，如`grid-gap`。 将 `spacing` 作为 `themeKey`，你可以重用该逻辑，从而实现我们在其他间隔属性（如 `padding`）中看到的行为。
 
 ```jsx
 import styled from 'styled-components';
@@ -262,7 +262,7 @@ const Grid = styled(Box)`${gridGap}`;
 const example = <Grid display="grid" gridGap={[2, 3]}>...</Grid>;
 ```
 
-You can also customize the prop name by adding both a `prop` and `cssProperty` and transform the value by adding a `transform` function.
+你还可以添加 `prop` 和 `cssProperty` 来自定义 prop 名称，并使用 `transform` 函数来转换值(value)。
 
 ```jsx
 import styled from 'styled-components';
@@ -334,9 +334,9 @@ styled-system在[解释它如何工作](https://github.com/jxnblk/styled-system/
 
 - [Tachyons](https://tachyons.io/) (2014年) 是第一个促进了 [原子 CSS 模式(Atomic CSS pattern)](https://css-tricks.com/lets-define-exactly-atomic-css/) 发展的CSS库。
 - TachyTachyons (2017年) 跟随了 [Tailwind CSS](https://tailwindcss.com/) 的脚步 他们让原子CSS更受欢迎。
-- [Twitter Bootstrap](https://getbootstrap.com/docs/4.1/utilities/borders/) 在v2，v3, 和v4中一步步介绍了原子类名 The way they group their "Helper classes" was used as inspiration.
+- [Twitter Bootstrap](https://getbootstrap.com/docs/4.1/utilities/borders/) 在v2，v3, 和v4中一步步介绍了原子类名 这种对 “助手类” 分组方式让他们得到启发。
 - 在 React 世界中， [Styled System](https://github.com/jxnblk/styled-system) (2017年) 是第一个推动样式函数的。 它可以做出一个通用的 Box 组件来已经衍生其他组件，这种方式可以替换原子CSS之中的辅助原子类的做法。
-- Large companies such as Pinterest, GitHub, and Segment.io are using the same approach in different flavours: 
+- Pinterest、GitHub 和 Segment.io 等大公司都在使用不同风格的相同方法： 
   - [Evergreen Box](https://evergreen.segment.com/components/layout-primitives/)
   - [Gestalt Box](https://pinterest.github.io/gestalt/#/Box)
   - [Primer Box](https://primer.style/components/docs/Box)
