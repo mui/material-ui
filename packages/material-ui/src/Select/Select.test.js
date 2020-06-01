@@ -1030,7 +1030,10 @@ describe('<Select />', () => {
       this.skip();
     }
 
-    const handleSubmit = spy();
+    const handleSubmit = spy((event) => {
+      // avoid karma reload.
+      event.preventDefault();
+    });
     const Form = (props) => (
       <form onSubmit={handleSubmit}>
         <Select required name="country" {...props}>
