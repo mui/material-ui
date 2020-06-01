@@ -135,7 +135,7 @@ describe('ThemeProvider', () => {
           <div />
         </ThemeProvider>,
       );
-      expect(consoleErrorMock.callCount()).to.equal(2); // twice in strict mode
+      expect(consoleErrorMock.callCount()).to.equal(2); // strict mode renders twice
       expect(consoleErrorMock.messages()[0]).to.include('However, no outer theme is present.');
     });
 
@@ -148,7 +148,7 @@ describe('ThemeProvider', () => {
           ,
         </ThemeProvider>,
       );
-      expect(consoleErrorMock.callCount()).to.equal(2);
+      expect(consoleErrorMock.callCount()).to.equal(2); // strict mode renders twice
       expect(consoleErrorMock.messages()[0]).to.include(
         'Material-UI: You should return an object from your theme function',
       );

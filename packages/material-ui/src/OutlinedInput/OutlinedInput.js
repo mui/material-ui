@@ -73,9 +73,9 @@ export const styles = (theme) => {
     input: {
       padding: '18.5px 14px',
       '&:-webkit-autofill': {
-        WebkitBoxShadow: theme.palette.type === 'dark' ? '0 0 0 100px #266798 inset' : null,
-        WebkitTextFillColor: theme.palette.type === 'dark' ? '#fff' : null,
-        caretColor: theme.palette.type === 'dark' ? '#fff' : null,
+        WebkitBoxShadow: theme.palette.type === 'light' ? null : '0 0 0 100px #266798 inset',
+        WebkitTextFillColor: theme.palette.type === 'light' ? null : '#fff',
+        caretColor: theme.palette.type === 'light' ? null : '#fff',
         borderRadius: 'inherit',
       },
     },
