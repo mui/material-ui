@@ -1,5 +1,56 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.10.1
+###### *June 1, 2020*
+
+Big thanks to the 21 contributors who made this release possible.
+
+### `@material-ui/core@v4.10.1`
+
+- [CircularProgress] Fix IE 11 wobbling (#21248) @AmirAhrari
+- [l10n] Improve Ukrainian translation (#21239) @goodwin64
+- [LinearProgress] Set aria-valuemin and aria-valuemax (#21195) @eps1lon
+- [List] Add ‘alignItemsFlexStart’ to ListItemIconClassKey #21256) @YoonjiJang
+- [Slider] Fix missing type definitions (#21244) @konekoya
+- [Stepper] Add focus ripple to StepButton (#21223) @mnajdova
+- [SvgIcon] Add displayName in react-devtools (#21134) @gndplayground
+- [Table] Add React node support to TablePagination.labelRowsPerPage (#21226) @oliviertassinari
+- [TextField] Fix missing autofill events (#21237) @maksimgm
+- [Tooltip] Improve arrow customization (#21203) @mnajdova
+- [Transition] Prevent passing undefined argument to callbacks (#21158) @iamhosseindhv
+
+### `@material-ui/lab@v4.0.0-alpha.55`
+
+- [Autocomplete] Document how to use a 3rd party input (#21257) @maksimgm
+- [Autocomplete] Fix dynamic changes of multiple={boolean} (#21194) @weizhi9958
+- [Autocomplete] Improve getOptionLabel usage warning (#21207) @rhuanbarreto
+- [Skeleton] Improve component (#21255) @oliviertassinari
+- [Skeleton] Improve contrast on light themes (#21122) @eps1lon
+- [Pagination] Fix selected item style (#21252) @svikhristyuk
+
+### Docs
+
+- [docs] Adapt CONTRIBUTING.md for https instead of SSH git clone (#21187) @cjoecker
+- [docs] Add Progress value label examples (#21190) @cjoecker
+- [docs] Document the onClick handler on Button (#21234) @hoop71
+- [docs] English improvements in api.md (#21159) @dandv
+- [docs] Fix typo in default palette value (#21243) @dbgb
+- [docs] Fix typo, principals -> principles (#21160) @dandv
+- [docs] Improve ad display (#21219) @oliviertassinari
+- [docs] Mention laying out radio buttons horizontally (#21186) @dandv
+- [docs] Replace typefaces with fontsource (#21153) @DecliningLotus
+- [docs] Simplify CONTRIBUTING.md (#21196) @NMinhNguyen
+- [docs] Small grammar fix (#21161) @dandv
+- [docs] Sync translations (#21275) @oliviertassinari
+- [docs] Track pixel ratio (#21209) @eps1lon
+
+### Core
+
+- [TrapFocus] Make an unstable version public (#21201) @dmtrKovalenko
+- [test] Track size of `@material-ui/utils` (#21240) @eps1lon
+- [core] Batch small changes (#21156) @oliviertassinari
+- [core] Batch small changes (#21249) @oliviertassinari
+
 ## 4.10.0
 ###### *May 23, 2020*
 
