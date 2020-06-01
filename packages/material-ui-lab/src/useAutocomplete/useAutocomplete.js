@@ -304,11 +304,6 @@ export default function useAutocomplete(props) {
       onHighlightChange(event, filteredOptions[index], reason);
     }
 
-    if (index === -1) {
-      listboxNode.scrollTop = 0;
-      return;
-    }
-
     const option = listboxRef.current.querySelector(`[data-option-index="${index}"]`);
 
     if (!option) {
@@ -787,6 +782,10 @@ export default function useAutocomplete(props) {
     }
 
     if (newValue === '') {
+      const listboxNode = listboxRef.current.parentElement.querySelector('[role="listbox"]');
+
+      listboxNode.scrollTop = 0;
+
       if (!disableClearable && !multiple) {
         handleValue(event, null, 'clear');
       }
