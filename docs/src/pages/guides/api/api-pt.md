@@ -22,7 +22,7 @@ Além do trade-off da composição acima, aplicamos as seguintes regras:
 
 ### Propagar
 
-Propriedades não documentadas fornecidas são propagadas no elemento raiz; por exemplo, a propriedade `className` é aplicada à raiz.
+Propriedades fornecidas para um componente que não estão explicitamente documentadas, são propagadas para o elemento raiz; por exemplo, a propriedade `className` é aplicada no elemento raiz.
 
 Agora, digamos que você queira desabilitar o efeito cascata do `MenuItem`. Você pode aproveitar o comportamento de propagação:
 
@@ -38,7 +38,7 @@ Evitamos documentar propriedades nativas suportadas pelo DOM como [`className`](
 
 ### Classes CSS
 
-Todos os componentes aceitam propriedades [`classes`](/customization/components/#overriding-styles-with-classes) para customizar os estilos. O design de classes responde a duas restrições: para tornar a estrutura das classes o mais simples possível, enquanto suficiente, implementa a especificação de Material Design.
+Todos os componentes aceitam uma propriedade [`classes`](/customization/components/#overriding-styles-with-classes) para customizar os estilos. O design de classes responde a duas restrições: para tornar a estrutura das classes o mais simples possível, enquanto suficiente, implementa a especificação de Material Design.
 
 - A classe aplicada ao elemento raiz é sempre chamada de `root`.
 - Todos os estilos padrão são agrupados em uma única classe.
@@ -64,10 +64,10 @@ const styles = {
 
 Os componentes aninhados dentro de um componente possuem:
 
-- suas próprias propriedades niveladas quando estas são chaves para a abstração do componente de nível superior, por exemplo a propriedade `id` para o componente `input`.
+- their own flattened properties when these are key to the top level component abstraction, for instance an `id` prop for the `Input` component.
 - suas próprias propriedades `xxxProps`, quando os usuários podem precisar ajustar os subcomponentes do método de renderização interno, por exemplo, expondo as propriedades `inputProps` e `InputProps` em componentes que usam `Input` internamente.
 - suas próprias propriedades `xxxComponent` para executar a injeção de componentes.
-- suas próprias propriedades `xxxRef`, quando o usuário precisar executar ações imperativas, por exemplo, expondo uma propriedade `inputRef` para acessar nativamente a `entrada` no componente `Input`. Isso ajuda a responder a pergunta ["Como posso acessar o elemento DOM?"](/getting-started/faq/#how-can-i-access-the-dom-element)
+- their own `xxxRef` prop when you might need to perform imperative actions, for instance, exposing an `inputRef` prop to access the native `input` on the `Input` component. Isso ajuda a responder a pergunta ["Como posso acessar o elemento DOM?"](/getting-started/faq/#how-can-i-access-the-dom-element)
 
 ### Nomeando propriedades
 
@@ -111,14 +111,14 @@ Existem duas opções para projetar a API para as variações de um componente: 
 
 Os componentes de Material-UI usam uma combinação das duas abordagens de acordo com as seguintes regras:
 
-- Um *boolean* é usado quando **2** opções de configuração são necessárias.
-- Um *enum* é usado quando **> 2** opções de configuração são necessárias, ou se houver a possibilidade de futuramente, ser necessários a adição de mais opções.
+- A *boolean* is used when **2** possible values are required.
+- An *enum* is used when **> 2** possible values are required, or if there is the possibility that additional possible values may be required in the future.
 
-Voltando ao exemplo do botão anterior; ele requer 3 opções de configuração, nesse caso, usamos um *enum*.
+Going back to the previous button example; since it requires 3 possible values, we use an *enum*.
 
 ### Ref
 
-O `ref` é encaminhado para o elemento raiz. Isso significa que, sem alterar o elemento raiz renderizado através da propriedade `component`, ele é encaminhado para o elemento DOM mais externo para que o componente renderize. Se você passar um componente diferente através da propriedade `component` o ref será anexado para esse componente.
+O `ref` é encaminhado para o elemento raiz. This means that, without changing the rendered root element via the `component` prop, it is forwarded to the outermost DOM element which the component renders. If you pass a different component via the `component` prop, the ref will be attached to that component instead.
 
 ## Glossário
 

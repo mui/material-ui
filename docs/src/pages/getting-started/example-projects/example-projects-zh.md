@@ -34,32 +34,32 @@ Create React App 是一个很棒的学习 React 的项目。 请看一下这些[
   - 优化和可扩展的性能（在 Lighthouse 总共有大约100分）
 - [RMUIF](https://github.com/phoqe/rmuif):
     
-  - Bootstrapped with Create React App, the same tooling works from the get-go
-  - Built on top of Firebase with all their products for the web included
-  - Robust routing with React Router including protected routes and error handling
-  - 全面的移动支持，带有全屏对话框和选项卡的可轻扫视图
-  - Cross-platform application monitoring with a focus on error reporting with Sentry
+  - 使用 Create React App 创建，也是可以开箱即用
+  - 基于 Firebase 建成，并包括它所有网站上的产品
+  - 使用 React Router 进行可靠的路由，包括了保护的路由和错误处理
+  - 全面的移动支持，带有全屏对话框和 react-swipeable-views 的选项卡
+  - 跨平台应用程序的的监测工作，主要是使用 Sentry 生成的错误报告
 - [Material Sense](https://github.com/alexanmtz/material-sense):
     
   - 使用 recharts 的图表
-  - 在导航示例中涵盖了 React Router
-  - 一个具有用于生产环境创造的 Nginx 服务器的 Docker container(Docker 容器)。
+  - 运用 React Router 的一个导航示例
+  - 一个在生产环境下使用的带有 Nginx 服务器的 docker container（docker 容器)。
   - 使用 Create React App 创建
-- [React SaaS Template](https://github.com/dunky11/react-saas-template):
+- [React SaaS 模板](https://github.com/dunky11/react-saas-template)：
     
   - 使用 Create React App 创建
-  - Features a landing page, a blog, an area to login/register and an admin-dashboard
-  - Fully routed using react-router
-  - Lazy loads components to boost performance
-  - Components for statistics, text with emoji support, image upload and much more...
+  - 特征是一个登录页面，博客，一个登录和注册的区块，以及一个管理员控制界面
+  - 完全使用 react-router 来路由
+  - 延迟加载组件以提高性能
+  - 一些显示统计数据、带有表情支持的文本、图片上传和更多内容的组件。。。
 
 ### 付费的资源
 
 - [ScaffoldHub](https://scaffoldhub.io/?partner=1):
     
-  - Build your complete application with this online tool
-  - Choose your framework and library (React & Material-UI!)
-  - Choose your database (SQL, MongoDB or Firestore)
-  - Model your database and application with the intuitive GUI
-  - Generate your application, including a complete scaffolded backend
-  - Preview your application online, and download the generated code
+  - 使用此在线工具构建您的完整应用程序
+  - 选择您的框架和库（React & Material UI!）
+  - 选择您的数据库（SQL，MongoDB 或 Firestree）
+  - 用直观的 GUI 模拟你的数据库和应用程序
+  - 生成您的应用程序，包括一个完整的 scaffolded 后台
+  - 在线预览您的应用程序，并下载生成的代码

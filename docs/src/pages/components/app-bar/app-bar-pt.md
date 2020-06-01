@@ -5,7 +5,7 @@ components: AppBar, Toolbar, Menu
 
 # Barra de Aplicativos
 
-<p class="description">A Barra de aplicativos exibe informações e ações relacionadas à tela atual.</p>
+<p class="description">A barra de aplicativos exibe informações e ações relacionadas à tela atual.</p>
 
 A [barra de aplicativos superior](https://material.io/design/components/app-bars-top.html) provê conteúdo e ações relacionados à tela atual. Ela é utilizada para a identidade visual, títulos de tela, navegação, e ações.
 
@@ -21,11 +21,11 @@ Um campo de busca principal.
 
 {{"demo": "pages/components/app-bar/PrimarySearchAppBar.js", "bg": true}}
 
-## App Bar com menu
+## Barra de Aplicativos com menu
 
 {{"demo": "pages/components/app-bar/MenuAppBar.js", "bg": true}}
 
-## App Bar com campo de busca
+## Barra de Aplicativos com campo de busca
 
 Uma barra de pesquisa na lateral.
 

@@ -1,5 +1,5 @@
 ---
-title: 分页React组件
+title: React Pagination 分页组件
 components: Pagination, PaginationItem
 ---
 
@@ -53,21 +53,21 @@ import { usePagination } from '@material-ui/lab/Pagination';
 
 {{"demo": "pages/components/pagination/UsePagination.js"}}
 
-## Table pagination
+## 表格分页
 
-The `Pagination` component was designed to paginate a list of arbitrary items when infinite loading isn't used. It's preferred in contexts where SEO is important, for instance, a blog.
+`Pagination` 组件的设计是为了在不使用无限加载的情况下，将任意项目列表分页。 在重视 SEO 的环境下，比如说博客，它是首选。
 
-For the pagination of a large set of tabular data, you should use the `TablePagination` component.
+对于大型表格数据的分页，应该使用 `TablePagination` 组件。
 
 {{"demo": "pages/components/pagination/TablePagination.js"}}
 
-You can learn more about this use case in the [table section](/components/tables/#custom-pagination-options) of the documentation.
+您可以在文档的 [表格部分](/components/tables/#custom-pagination-options) 中了解更多关于此用例的信息。
 
 ## 可访问性
 
 ### ARIA
 
-默认情况下，根节点具有“导航”和aria-label“分页导航”的作用。 页面项目具有一个aria-label，用于标识项目的用途（“转到第一页”，“转到上一页”，“转到页面1”等）。 你可以使用 `getItemAriaLabel`属性来覆盖它们。
+默认情况下，根节点具有 "navigation" 和 aria-label “分页导航” 的作用。 页面项目具有一个aria-label，用于标识项目的用途（“转到第一页”，“转到上一页”，“转到页面1”等）。 你可以使用 `getItemAriaLabel`属性来覆盖它们。
 
 ### 键盘
 

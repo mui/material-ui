@@ -22,7 +22,7 @@
 
 ### 传播
 
-提供的未记录的属性传播到根元素; 例如，` className `属性应用于根。
+Props supplied to a component which are not explictly documented, are spread to the root element; for instance, the `className` property is applied to the root.
 
 现在，假设您要禁用` MenuItem `上的涟漪。 您可以利用传播行为：
 
@@ -38,7 +38,7 @@
 
 ### CSS classes
 
-所有组件都接受[`classes`](/customization/components/#overriding-styles-with-classes)属性来自定义样式。 类设计回答了两个约束： 使类结构尽可能简单，同时足以实现Material Design规范。
+All components accept a [`classes`](/customization/components/#overriding-styles-with-classes) prop to customize the styles. 类设计回答了两个约束： 使类结构尽可能简单，同时足以实现Material Design规范。
 
 - 应用于根元素的类始终称为` root `。
 - 所有默认样式都分组在一个类中。
@@ -64,10 +64,10 @@ const styles = {
 
 组件内的嵌套组件具有:
 
-- 当它们是顶级组件抽象的关键时，它们自己的扁平属性， 例如，`input`组件的` id `属性。
+- their own flattened properties when these are key to the top level component abstraction, for instance an `id` prop for the `Input` component.
 - 当用户可能需要调整内部render方法的子组件时，他们自己的` xxxProps `属性，例如，在内部使用`input`的组件上公开` inputProps `和` InputProps `属性。
 - 他们自己的` xxxComponent `属性，用于执行组件注入。
-- 当用户可能需要执行命令性操作时，他们自己的` xxxRef `属性， 例如，公开` inputRef `属性以访问`input`组件上的native `input`。 这有助于回答问题[“我如何访问DOM元素？”](/getting-started/faq/#how-can-i-access-the-dom-element)
+- their own `xxxRef` prop when you might need to perform imperative actions, for instance, exposing an `inputRef` prop to access the native `input` on the `Input` component. 这有助于回答问题[“我如何访问DOM元素？”](/getting-started/faq/#how-can-i-access-the-dom-element)
 
 ### 属性名称
 
@@ -95,7 +95,7 @@ const styles = {
     };
     ```
     
-    此 API 启用了简写表示法: `<Button>`、` <Button contained /> `、` <Button fab /> `。
+    This API enables the shorthand notation: `<Button>`, `<Button contained />`, `<Button fab />`.
 
 - 选项2 *枚举(enum)*
     
@@ -111,14 +111,14 @@ const styles = {
 
 Material-UI组件根据以下规则使用两种方法的组合：
 
-- 当需要**2**自由度时，使用*布尔*。
-- 当需要**>2**自由度时，或者如果将来可能需要额外的自由度，则使用*枚举*。
+- A *boolean* is used when **2** possible values are required.
+- An *enum* is used when **> 2** possible values are required, or if there is the possibility that additional possible values may be required in the future.
 
-回到上一个按钮示例; 因为它需要3个自由度，所以我们使用* enum *。
+Going back to the previous button example; since it requires 3 possible values, we use an *enum*.
 
 ### Ref
 
-The `ref` is forwarded to the root element. This means that, without changing the rendered root element via the `component` prop, it is forwarded to the outermost DOM element that which component renders. If you pass a different component via the `component` prop the ref will be attached to that component instead.
+The `ref` is forwarded to the root element. This means that, without changing the rendered root element via the `component` prop, it is forwarded to the outermost DOM element which the component renders. If you pass a different component via the `component` prop, the ref will be attached to that component instead.
 
 ## Glossary
 

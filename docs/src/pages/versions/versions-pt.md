@@ -23,7 +23,7 @@ Este documento contém as práticas que são seguidas para fornecer uma bibliote
 Material-UI segue o [Controle de Versão Semântico 2.0.0](https://semver.org/). Os números da versão do Material-UI têm três partes: ` principal.menor.patch`. O número da versão é incrementado com base no nível de alteração incluído na nova versão.
 
 - **Versões principais** contém novos recursos significativos, porém, é esperado um efeito colateral mínimo para o desenvolvedor durante a atualização. Ao atualizar para uma nova versão principal, talvez seja necessário executar scripts de atualização, refatorar códigos, executar testes adicionais e aprender sobre as novas APIs.
-- **Versões menores** contém novos recursos importantes. Versões menores são totalmente compatíveis com versões anteriores; nenhuma assistência do desenvolvedor é esperada durante a atualização, mas você pode opcionalmente modificar seus aplicativos e bibliotecas para começar a usar novas APIs, recursos e recursos que foram adicionados na versão.
+- **Versões menores** contém novos recursos importantes. Versões menores são totalmente compatíveis com versões anteriores; nenhuma assistência do desenvolvedor é esperada durante a atualização, mas você pode opcionalmente modificar seus aplicativos e bibliotecas para começar a usar novas APIs, recursos e capacidades que foram adicionados na versão.
 - **Versões de patch** são de baixo risco, contêm correções de bugs e pequenos novos recursos. Nenhuma assistência do desenvolvedor é esperado durante a atualização.
 
 ## Frequência de lançamento
@@ -46,7 +46,7 @@ Em geral, você pode esperar o seguinte ciclo de lançamento:
 | Terceiro trimestre de 2020 | v5.0.0 | ⏳        |
 
 
-Você pode seguir os [ milestones ](https://github.com/mui-org/material-ui/milestones) para uma visão geral mais detalhada.
+Você pode seguir os [milestones](https://github.com/mui-org/material-ui/milestones) para uma visão geral mais detalhada.
 
 > ⚠️ ** Isenção de responsabilidade **: Operamos em um ambiente dinâmico e as coisas estão sujeitas a alterações. As informações disponibilizadas destinam-se a traçar a orientação geral do framework. Destina-se apenas a fins informativos. Podemos decidir adicionar/remover itens novos a qualquer momento, com base em nossos recursos de capacidade de entrga ou para manter nossos padrões de qualidade. O desenvolvimento, lançamentos e disponibilidade de recursos ou funcionalidades do Material-UI permanece a critério exclusivo da equipe. O roadmap não representa um compromisso, obrigação ou promessa que será entregue em um determinado momento.
 
@@ -68,4 +68,4 @@ Para tornar essas transições o mais fácil possível:
 - Recursos descontinuados são anunciados no log de mudanças, quando possível, com avisos colocados em tempo de execução.
 - Quando uma descontinuação é anunciada, um caminho para efetuar a atualização é fornecido.
 - O uso já existente da API durante o período de descontinuação é suportado, então seu código continuará a funcionar durante esse período.
-- Atualizações de subdependências do framework que exigem alterações nos seus aplicativos só são feitas em uma versão principal.
+- Atualizações de subdependências do framework (React) que exigem alterações nos seus aplicativos só são feitas em uma versão principal.

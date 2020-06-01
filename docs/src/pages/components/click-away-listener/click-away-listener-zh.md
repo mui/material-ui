@@ -8,7 +8,7 @@ components: ClickAwayListener
 <p class="description">用于检测点击事件是否发生在元素之外。 它可以监听文档中某处发生的点击事件。</p>
 
 - 📦 [1.5kB 已压缩的包](/size-snapshot)。
-- ⚛️ Support portals
+- ⚛️ 支持门户网站
 
 ## 示例
 
@@ -24,7 +24,7 @@ components: ClickAwayListener
 
 {{"demo": "pages/components/click-away-listener/PortalClickAway.js"}}
 
-## Leading edge
+## 前缘 Leading edge
 
 默认情况下，组件响应尾随事件 (trailing events) (点击 + 触摸结束)。 然而，您可以配置它来应对主要事件(leading events) (鼠标按下 + 触摸开始)。
 

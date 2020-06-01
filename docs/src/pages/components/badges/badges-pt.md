@@ -3,9 +3,9 @@ title: Componente React para Emblemas
 components: Badge
 ---
 
-# Badge (Emblema)
+# Emblema
 
-<p class="description"><code>Badge</code> gera um pequeno emblema no canto superior direito de seu(s) filho(s).</p>
+<p class="description">O componente <code>Badge</code> gera um pequeno emblema no canto superior direito de seu(s) filho(s).</p>
 
 ## Emblemas básicos
 
@@ -13,7 +13,7 @@ Exemplos de emblemas contendo texto, usando cores primárias e secundárias. O e
 
 {{"demo": "pages/components/badges/SimpleBadge.js"}}
 
-## Emblemas Customizados
+## Emblemas customizados
 
 Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
 
@@ -31,7 +31,7 @@ O emblema se esconde automaticamente quando o badgeContent é zero. Você pode s
 
 ## Valor máximo
 
-Você pode usar a propriedade `max` para limitar o valor do conteúdo do selo.
+Você pode usar a propriedade `max` para limitar o valor do conteúdo do emblema.
 
 {{"demo": "pages/components/badges/BadgeMax.js"}}
 
@@ -41,13 +41,13 @@ A propriedade `dot` altera um emblema para um pequeno ponto. Isto pode ser usado
 
 {{"demo": "pages/components/badges/DotBadge.js"}}
 
-## Sobreposição de emblema
+## Alinhamento do emblema
 
 Você pode usar a propriedade `overlap` para colocar o emblema em relação ao canto do elemento envolvido.
 
 {{"demo": "pages/components/badges/BadgeOverlap.js"}}
 
-## Alinhamento de emblema
+## Alinhamento do emblema
 
 Você pode usar a propriedade `anchorOrigin` para mover o emblema para qualquer canto do elemento envolvido.
 

@@ -44,6 +44,16 @@ components: Button, IconButton, ButtonBase
 
 {{"demo": "pages/components/buttons/OutlinedButtons.js"}}
 
+## Handling clicks
+
+All components accept an `onClick` handler that is applied to the root DOM element.
+
+```jsx
+<Button onClick={() => { alert('clicked') }}>Click me</Button>
+```
+
+Note that the documentation [avoids](/guides/api/#native-properties) mentioning native props (there are a lot) in the API section of the components.
+
 ## Кнопка загрузки файла
 
 {{"demo": "pages/components/buttons/UploadButtons.js"}}
@@ -64,7 +74,7 @@ Fancy larger or smaller buttons? Use the `size` property.
 
 Кнопки с иконками обычно находятся на панелях навигации и на панелях инструментов.
 
-Иконки также подходят для кнопок переключения, которые позволяют выбрать элемент или отменить выбор, например, добавление или удаление звезды для элемента.
+Значки также подходят для кнопок переключения, которые позволяют выбрать элемент или отменить выбор, например, добавление или удаление звезды для элемента.
 
 {{"demo": "pages/components/buttons/IconButtons.js"}}
 
@@ -78,7 +88,7 @@ Fancy larger or smaller buttons? Use the `size` property.
 
 ## Сложные кнопки
 
-Текстовые кнопки, плавающие кнопки действий, блочные кнопки построены на основе одного и того же компонента: `ButtonBase`. Вы можете воспользоваться этим более низкоуровневым компонентом для создания пользовательских кнопок.
+Текстовые кнопки, плавающие кнопки действий, блочные кнопки построены на основе одного и того же компонента: `ButtonBase`. Вы можете воспользоваться этим более низкоуровневым компонентом для создания пользовательских взаимодействий.
 
 {{"demo": "pages/components/buttons/ButtonBase.js"}}
 

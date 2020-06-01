@@ -1,37 +1,37 @@
 ---
-title: Componente React para Breadcrumbs
+title: Componente React para Navegação estrutural
 components: Breadcrumbs, Link, Typography
 ---
 
-# Breadcrumbs
+# Navegação estrutural
 
-<p class="description">Breadcrumbs permitem aos usuários fazer seleções em uma gama de valores.</p>
+<p class="description">Navegação estrutural permite aos usuários fazer seleções em um intervalo de caminhos.</p>
 
-## Breadcrumbs simples
+## Navegação estrutural simples
 
 {{"demo": "pages/components/breadcrumbs/SimpleBreadcrumbs.js"}}
 
-## Último breadcrumb ativo
+## Último caminho ativo
 
-Mantenha o último caminho de navegação interativo.
+Mantendo o último caminho de navegação interativo.
 
 {{"demo": "pages/components/breadcrumbs/ActiveLastBreadcrumb.js"}}
 
-## Separador personalizado
+## Separador customizado
 
 No exemplo a seguir, nós usamos duas strings separadoras, e um ícone SVG.
 
 {{"demo": "pages/components/breadcrumbs/CustomSeparator.js"}}
 
-## Breadcrumbs com ícones
+## Navegação estrutural com ícones
 
 {{"demo": "pages/components/breadcrumbs/IconBreadcrumbs.js"}}
 
-## Breadcrumbs colapsado
+## Navegação estrutural retraída
 
 {{"demo": "pages/components/breadcrumbs/CollapsedBreadcrumbs.js"}}
 
-## Breadcrumbs personalizado
+## Navegação estrutural customizada
 
 Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
 
@@ -51,4 +51,4 @@ A acessibilidade neste componente conta com:
 
 - O conjunto de links são estruturados usando uma lista ordenada (elemento `<ol>`).
 - Para prevenir que os leitores de tela pronunciem os separadores visuais entre os links, eles são escondidos com `aria-hidden`.
-- Um elemento `nav` rotulado com `aria-label` identifica a estrutura como uma trilha breadcrumb e faz uma marcação na navegação para facilitar a localização.
+- Um elemento `nav` rotulado com `aria-label` identifica a estrutura como uma trilha de navegação estrutural e faz uma marcação na navegação para facilitar a localização.

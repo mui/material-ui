@@ -17,6 +17,8 @@ Généralement, les cases d'option doivent avoir l'option la plus utilisée sél
 
 {{"demo": "pages/components/radio-buttons/RadioButtonsGroup.js"}}
 
+To lay out the buttons horizontally, set the `row` prop: `<RadioGroup row />`.
+
 ## Standalone radio buttons
 
 `Radio` can also be used standalone, without the RadioGroup wrapper.

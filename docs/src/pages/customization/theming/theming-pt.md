@@ -12,7 +12,7 @@ Para promover uma maior consistência entre os aplicativos, os temas claro e esc
 
 Se você deseja personalizar o tema, você precisa usar o ` ThemeProvider ` componente para injetar um tema em sua aplicação. No entanto, isso é opcional; Material-UI componentes vêm com um tema padrão.
 
-`ThemeProvider` relies on the [context feature of React](https://reactjs.org/docs/context.html) to pass the theme down to the components, so you need to make sure that `ThemeProvider` is a parent of the components you are trying to customize. Você pode aprender mais sobre isso lendo a [sessão da API](/styles/api/#themeprovider).
+O `ThemeProvider` depende do [ recurso de contexto do React](https://pt-br.reactjs.org/docs/context.html) afim de passar o tema para baixo na árvore de componentes, então você precisa ter certeza de que o `ThemeProvider` é um pai dos componentes que você está tentando customizar. Você pode aprender mais sobre isso lendo a [sessão da API](/styles/api/#themeprovider).
 
 ## Variáveis de configuração do tema
 
@@ -29,7 +29,7 @@ Você pode conferir a [seção de tema padrão](/customization/default-theme/) p
 
 ### Variáveis customizáveis
 
-When using Material-UI's theme with the [styling solution](/styles/basics/) or [any others](/guides/interoperability/#themeprovider), it can be convenient to add additional variables to the theme so you can use them everywhere. Por exemplo:
+Ao usar o tema do Material-UI com a [solução de estilo](/styles/basics/) ou [quaisquer outros](/guides/interoperability/#themeprovider), pode ser conveniente adicionar variáveis adicionais ao tema, para que você possa usá-las em qualquer lugar. Por exemplo:
 
 {{"demo": "pages/customization/theming/CustomStyles.js"}}
 
@@ -96,10 +96,10 @@ Gera configurações de tipografia responsivas com base nas opções recebidas.
 1. `theme` (*Object*): O objeto de tema a ser aplicado as alterações.
 2. `options` (*Object* [opcional]):
 
-- `breakpoints` (*Array\String* [opcional]): Padrão `['sm', 'md', 'lg']`. Array de [pontos de quebra](/customization/breakpoints/) (identificadores).
+- `breakpoints` (*Array\<String\>* [opcional]): Padrão `['sm', 'md', 'lg']`. Array de [pontos de quebra](/customization/breakpoints/) (identificadores).
 - `disableAlign` (*Boolean* [opcional]): Padrão `false`. Se os tamanhos de fonte mudam pouco, as alturas da linha são preservadas e alinhadas à altura da linha da grade em 4px do Material Design. Isso requer uma altura de linha sem unidade nos estilos do tema.
 - `factor` (*Number* [opcional]): Padrão `2`. Este valor determina o fator de redimensionamento do tamanho da fonte. Quanto maior o valor, menor a diferença entre tamanhos de fonte em telas pequenas. Quanto menor o valor, maiores os tamanhos de fonte para telas pequenas. O valor deve ser maior que 1.
-- `variants` (*Array\String* [opcional]): Padrão todos. As variantes de tipografia para manipular.
+- `variants` (*Array\<String\>* [opcional]): Padrão todos. As variantes de tipografia para manipular.
 
 #### Retornos
 
@@ -128,7 +128,7 @@ Usando `unstable_createMuiStrictModeTheme` restringe o uso de alguns de nossos c
 
 O componente usado na propriedade `component` dos seguintes componentes precisa encaminhar seu ref:
 
-- [`Collapse`](/api/Collapse/)
+- [`Collapse`](/api/collapse/)
 
 Caso contrário, você irá se deparar com `Error: Function component cannot be given refs`. Veja também: [Composição: Advertência com refs](/guides/composition/#caveat-with-refs).
 
@@ -136,9 +136,9 @@ Caso contrário, você irá se deparar com `Error: Function component cannot be 
 
 O `children` dos seguintes componentes precisam encaminhar seu ref:
 
-- [`Fade`](/api/Fade/)
-- [`Grow`](/api/Grow/)
-- [`Zoom`](/api/Zoom/)
+- [`Fade`](/api/fade/)
+- [`Grow`](/api/grow/)
+- [`Zoom`](/api/zoom/)
 
 ```diff
 -function TabPanel(props) {
