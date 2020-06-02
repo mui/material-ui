@@ -19,7 +19,7 @@ const Timeline = React.forwardRef(function Timeline(props, ref) {
     children,
     classes,
     className,
-    component: Component = 'div',
+    component: Component = 'ul',
     variant = 'standard',
     ...other
   } = props;

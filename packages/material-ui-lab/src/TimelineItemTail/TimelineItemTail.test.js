@@ -2,21 +2,21 @@ import * as React from 'react';
 import { getClasses } from '@material-ui/core/test-utils';
 import createMount from 'test/utils/createMount';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
-import TimelineItem from './TimelineItem';
+import TimelineItemTail from './TimelineItemTail';
 
-describe('<TimelineItem />', () => {
+describe('<TimelineItemTail />', () => {
   const mount = createMount();
   let classes;
 
   before(() => {
-    classes = getClasses(<TimelineItem />);
+    classes = getClasses(<TimelineItemTail />);
   });
 
-  describeConformance(<TimelineItem />, () => ({
+  describeConformance(<TimelineItemTail />, () => ({
     classes,
-    inheritComponent: 'li',
+    inheritComponent: 'span',
     mount,
     refInstanceof: window.HTMLDivElement,
-    testComponentPropWith: 'span',
+    testComponentPropWith: 'div',
   }));
 });

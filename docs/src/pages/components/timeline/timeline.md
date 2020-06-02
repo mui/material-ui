@@ -1,6 +1,6 @@
 ---
 title: Timeline React component
-components: Timeline
+components: Timeline, TimelineItem, TimelineItemTail, TimelineItemContent
 ---
 
 # Timeline

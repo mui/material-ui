@@ -6,19 +6,20 @@ import { withStyles } from '@material-ui/core/styles';
 export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: 'transparent',
-    listStyle: 'none',
-    display: 'flex',
+    borderLeftStyle: 'solid',
+    borderLeftWidth: '2px',
+    borderLeftColor: theme.palette.primary.main,
+    height: 'inherit',
+    boxSizing: 'border-box',
   },
 });
 
-const TimelineItem = React.forwardRef(function TimelineItem(props, ref) {
+const TimelineItemTail = React.forwardRef(function TimelineItemTail(props, ref) {
   const {
     children,
     classes,
     className,
-    component: Component = 'li',
+    component: Component = 'span',
     variant = 'standard',
     ...other
   } = props;
@@ -30,7 +31,7 @@ const TimelineItem = React.forwardRef(function TimelineItem(props, ref) {
   );
 });
 
-TimelineItem.propTypes = {
+TimelineItemTail.propTypes = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -59,4 +60,4 @@ TimelineItem.propTypes = {
   variant: PropTypes.oneOf(['outlined', 'standard']),
 };
 
-export default withStyles(styles, { name: 'MuiTimelineItem' })(TimelineItem);
+export default withStyles(styles, { name: 'MuiTimelineItemTail' })(TimelineItemTail);

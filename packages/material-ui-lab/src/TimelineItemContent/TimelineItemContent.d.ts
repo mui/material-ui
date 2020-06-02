@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StandardProps } from '@material-ui/core';
 
-export interface TimelineItemProps extends StandardProps<{}, TimelineItemClassKey> {
+export interface TimelineItemContentProps extends StandardProps<{}, TimelineItemContentClassKey> {
   /**
    * The content of the component.
    */
@@ -19,17 +19,13 @@ export interface TimelineItemProps extends StandardProps<{}, TimelineItemClassKe
   variant?: 'standard' | 'outlined';
 }
 
-export type TimelineItemClassKey =
+export type TimelineItemContentClassKey =
   | 'root';
 
 /**
  *
- * Demos:
- *
- * - [Timeline](https://material-ui.com/components/timeline/)
- *
  * API:
  *
- * - [TimelineItem API](https://material-ui.com/api/timeline-item/)
+ * - [TimelineItemContent API](https://material-ui.com/api/timeline-item-content/)
  */
-export default function TimelineItem(props: TimelineItemProps): JSX.Element;
+export default function TimelineItemContent(props: TimelineItemContentProps): JSX.Element;
