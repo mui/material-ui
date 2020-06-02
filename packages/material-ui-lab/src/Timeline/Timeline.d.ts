@@ -1,0 +1,29 @@
+import * as React from 'react';
+import { StandardProps } from '@material-ui/core';
+
+export interface TimelineProps extends StandardProps<{}, TimelineClassKey> {
+  /**
+   * The content of the component.
+   */
+  children?: React.ReactNode;
+
+  /**
+   * The variant to use.
+   */
+  variant?: 'standard' | 'outlined';
+}
+
+export type TimelineClassKey =
+  | 'root'
+
+/**
+ *
+ * Demos:
+ *
+ * - [Timeline](https://material-ui.com/components/timeline/)
+ *
+ * API:
+ *
+ * - [Timeline API](https://material-ui.com/api/timeline/)
+ */
+export default function Timeline(props: TimelineProps): JSX.Element;
