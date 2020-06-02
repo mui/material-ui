@@ -3,6 +3,9 @@
   "exclude": [],
   "include": ["../../typings.d.ts", "./typings.d.ts", "./**/*.tsx", "./**/*.ts", "./typescript/*"],
   "compilerOptions": {
-    // "baseUrl": ".",
+    "emitDeclarationOnly": false,
+    "noEmit": false,
+    "outDir": "./dist",
+    "sourceMap": true
   }
 }

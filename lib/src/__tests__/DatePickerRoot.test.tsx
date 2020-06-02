@@ -42,7 +42,7 @@ describe('e2e - DatePicker', () => {
   it('Should render year selection', () => {
     component.find('button[data-mui-test="calendar-view-switcher"]').simulate('click');
 
-    expect(component.find('[data-mui-test="year"]').length).toBe(201);
+    expect(component.find('[data-mui-test="year"]').length).toBe(200);
 
     component
       .find('[data-mui-test="year"]')
@@ -74,7 +74,7 @@ describe('e2e -- DatePicker views year', () => {
   });
 
   it('Should render year selection and select year', () => {
-    expect(component.find('[data-mui-test="year"]').length).toBe(201);
+    expect(component.find('[data-mui-test="year"]').length).toBe(200);
 
     component
       .find('[data-mui-test="year"]')
@@ -121,7 +121,7 @@ describe('e2e -- DatePicker views year and month', () => {
     component.find('button[data-mui-test="calendar-view-switcher"]').simulate('click');
 
     const year = component.find('[data-mui-test="year"]');
-    expect(component.find('[data-mui-test="year"]').length).toBe(201);
+    expect(component.find('[data-mui-test="year"]').length).toBe(200);
 
     year.first().simulate('click');
     expect(component.find('Month').length).toBe(12);
@@ -147,6 +147,6 @@ describe('e2e -- DatePicker views year and month open from year', () => {
   });
 
   it('Should render year selection', () => {
-    expect(component.find('[data-mui-test="year"]').length).toBe(201);
+    expect(component.find('[data-mui-test="year"]').length).toBe(200);
   });
 });

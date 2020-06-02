@@ -13,7 +13,7 @@ interface DatePickerFieldProps extends FieldProps, BaseDatePickerProps {
 function DatePickerField({
   field,
   form,
-  maxDate = new Date('2100-01-01'),
+  maxDate = new Date('2099-12-31'),
   minDate = new Date('1900-01-01'),
   getShouldDisableDateError,
   ...other

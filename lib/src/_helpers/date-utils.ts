@@ -156,7 +156,7 @@ export interface DateValidationProps {
   minDate?: MaterialUiPickersDate;
   /**
    * Max selectable date.
-   * @default Date(2100-01-01)
+   * @default Date(2099-31-12)
    */
   maxDate?: MaterialUiPickersDate;
   /**

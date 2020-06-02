@@ -9,7 +9,15 @@
       "request": "launch",
       "name": "Jest Current File",
       "program": "${workspaceFolder}/lib/node_modules/.bin/jest",
-      "args": ["--config", "${workspaceFolder}/lib/jest.config.js", "${fileBasenameNoExtension}"],
+      "args": [
+        "--runInBand",
+        "--config",
+        "${workspaceFolder}/lib/jest.config.js",
+        "${fileBasenameNoExtension}"
+      ],
+      "sourceMaps": true,
+      "preLaunchTask": "npm: test:typescript - lib",
+      "outFiles": [ "${workspaceFolder}/lib/src/__tests__/dist/**/*.js"],
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",
       "disableOptimisticBPs": true,

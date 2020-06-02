@@ -10,8 +10,6 @@ defaults: &js_defaults
   working_directory: ~/material-ui-pickers
 
 version: 2.1
-orbs:
-  cypress: cypress-io/cypress@1
 
 ####################
 # Custom jobs
@@ -92,7 +90,12 @@ jobs:
 
   cypress_tests:
     description: Run cypress tests
-    executor: cypress/browsers-chrome78-ff70
+    docker:
+      - image: cypress/browsers:node12.8.1-chrome80-ff72
+        environment:
+          ## this enables colors in the output
+          TERM: xterm
+    working_directory: ~/material-ui-pickers
     steps:
       - attach_workspace:
           at: .
@@ -120,13 +123,14 @@ jobs:
 # Workflow
 ####################
 workflows:
+  version: 2.1
   build_and_test:
     jobs:
       - checkout_code
       - install_deps:
           name: 'Install deps'
           requires:
-            - checkout_code
+            - 'checkout_code'
       - build:
           name: 'Build and analyze bundlesize'
           requires:

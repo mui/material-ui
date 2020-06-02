@@ -11,6 +11,7 @@ import { useParsedDate } from '../_shared/hooks/date-helpers-hooks';
 import { useCalendarState } from '../views/Calendar/useCalendarState';
 import { FORCE_FINISH_PICKER } from '../_shared/hooks/usePickerState';
 import { DateRangePickerViewMobile } from './DateRangePickerViewMobile';
+import { defaultMaxDate, defaultMinDate } from '../constants/prop-types';
 import { WrapperVariantContext } from '../wrappers/WrapperVariantContext';
 import { MobileKeyboardInputView } from '../views/MobileKeyboardInputView';
 import { DateRangePickerInput, DateRangeInputProps } from './DateRangePickerInput';
@@ -52,8 +53,8 @@ export const DateRangePickerView: React.FC<DateRangePickerViewProps> = ({
   disableFuture,
   disableHighlightToday,
   disablePast,
-  maxDate: unparsedMaxDate = new Date('2100-01-01'),
-  minDate: unparsedMinDate = new Date('1900-01-01'),
+  maxDate: unparsedMaxDate = defaultMaxDate,
+  minDate: unparsedMinDate = defaultMinDate,
   onDateChange,
   onMonthChange,
   reduceAnimations = defaultReduceAnimations,

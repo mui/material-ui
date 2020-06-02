@@ -1,3 +1,5 @@
+import '@testing-library/jest-dom';
+
 const Enzyme = require('enzyme');
 const EnzymeAdapter = require('enzyme-adapter-react-16');
 
@@ -18,8 +20,8 @@ document.createRange = () => ({
 
 // Convert any console error into a thrown error
 const error = console.error;
-console.error = (...args) => {
-  error.apply(console, args);
+console.error = (...args: any[]) => {
+  error.apply(console, args as any);
   if (args[0] instanceof Error) {
     throw args[0];
   } else {

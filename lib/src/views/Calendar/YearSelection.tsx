@@ -44,13 +44,11 @@ export const useStyles = makeStyles(
 );
 
 export const YearSelection: React.FC<YearSelectionProps> = ({
-  date,
+  date: __dateOrNull,
   onChange,
   onYearChange,
   minDate,
   maxDate,
-  disablePast,
-  disableFuture,
   isDateDisabled,
   shouldDisableYear,
   changeFocusedDay,
@@ -60,7 +58,9 @@ export const YearSelection: React.FC<YearSelectionProps> = ({
   const theme = useTheme();
   const utils = useUtils();
   const classes = useStyles();
-  const currentYear = utils.getYear(date);
+
+  const selectedDate = __dateOrNull || now;
+  const currentYear = utils.getYear(selectedDate);
   const wrapperVariant = React.useContext(WrapperVariantContext);
   const selectedYearRef = React.useRef<HTMLButtonElement>(null);
   const [focusedYear, setFocusedYear] = React.useState<number | null>(currentYear);
@@ -80,7 +80,7 @@ export const YearSelection: React.FC<YearSelectionProps> = ({
 
   const handleYearSelection = React.useCallback(
     (year: number, isFinish = true) => {
-      const newDate = utils.setYear(date || now, year);
+      const newDate = utils.setYear(selectedDate, year);
       if (isDateDisabled(newDate)) {
         return;
       }
@@ -92,16 +92,16 @@ export const YearSelection: React.FC<YearSelectionProps> = ({
       onChange(newDate, isFinish);
       changeFocusedDay(newDate);
     },
-    [changeFocusedDay, date, isDateDisabled, now, onChange, onYearChange, utils]
+    [changeFocusedDay, selectedDate, isDateDisabled, onChange, onYearChange, utils]
   );
 
   const focusYear = React.useCallback(
     (year: number) => {
-      if (!isDateDisabled(utils.setYear(date, year))) {
+      if (!isDateDisabled(utils.setYear(selectedDate, year))) {
         setFocusedYear(year);
       }
     },
-    [date, isDateDisabled, utils]
+    [selectedDate, isDateDisabled, utils]
   );
 
   const yearsInRow = wrapperVariant === 'desktop' ? 4 : 3;
@@ -129,11 +129,11 @@ export const YearSelection: React.FC<YearSelectionProps> = ({
               allowKeyboardControl={allowKeyboardControl}
               focused={yearNumber === focusedYear}
               ref={selected ? selectedYearRef : undefined}
-              disabled={Boolean(
-                (disablePast && utils.isBeforeYear(year, now)) ||
-                  (disableFuture && utils.isAfterYear(year, now)) ||
-                  (shouldDisableYear && shouldDisableYear(year))
-              )}
+              disabled={
+                // Make sure that final date (with month and day included) will be enabled
+                isDateDisabled(utils.setYear(selectedDate, yearNumber)) ||
+                (shouldDisableYear && shouldDisableYear(year))
+              }
             >
               {utils.format(year, 'year')}
             </Year>

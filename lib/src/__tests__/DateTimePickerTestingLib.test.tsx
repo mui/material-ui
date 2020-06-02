@@ -5,7 +5,7 @@ import { DesktopDateTimePicker } from '../DateTimePicker';
 import { createClientRender } from './createClientRender';
 import { fireEvent, screen } from '@testing-library/react';
 
-describe('DateTimePicker testing lib', () => {
+describe('<DateTimePicker />', () => {
   const render = createClientRender({ strict: false });
 
   it('prop: mask – should take the mask prop into account', () => {
@@ -46,7 +46,6 @@ describe('DateTimePicker testing lib', () => {
   });
 
   it('prop: minDateTime – hours is disabled by date part', () => {
-    screen.debug();
     render(
       <DesktopDateTimePicker
         open

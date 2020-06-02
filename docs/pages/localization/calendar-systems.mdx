@@ -44,7 +44,7 @@ To use it with Arabic locale, make sure to import `moment/locale/ar-sa`
 import 'moment/locale/ar-sa';
 ```
 
-By default, the `DatePicker` uses `1900-01-01` for minDate and `2100-01-01` for maxDate.
+By default, the `DatePicker` uses `1900-01-01` for minDate and `2099-31-12` for maxDate.
 `moment-hijri` only supports dates from `1356-01-01` H (1937-03-14) to `1499-12-29` H (2076-11-26)
 so you will need to set `minDate` and `maxDate` on your `DatePicker` component otherwise your component will not work properly.
 

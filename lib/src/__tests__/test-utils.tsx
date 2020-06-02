@@ -9,6 +9,38 @@ import { IUtils } from '@date-io/core/IUtils';
 import { DatePickerProps } from '../DatePicker';
 import { MaterialUiPickersDate } from '../typings/date';
 import { BasePickerProps } from '../typings/BasePicker';
+import { createClientRender } from './createClientRender';
+import { queryHelpers, Matcher, MatcherOptions } from '@testing-library/react/pure';
+
+export const queryByMuiTest = queryHelpers.queryByAttribute.bind(null, 'data-mui-test');
+export const queryAllByMuiTest = queryHelpers.queryAllByAttribute.bind(null, 'data-mui-test');
+
+export function getAllByMuiTest(
+  id: Matcher,
+  container: HTMLElement = document.body,
+  options?: MatcherOptions
+): Element[] {
+  const els = queryAllByMuiTest(container, id, options);
+  if (!els.length) {
+    throw queryHelpers.getElementError(
+      `Unable to find an element by: [data-mui-test="${id}"]`,
+      container
+    );
+  }
+  return els;
+}
+
+export function getByMuiTest(...args: Parameters<typeof getAllByMuiTest>): Element {
+  const result = getAllByMuiTest(...args);
+  if (result.length > 0) {
+    return result[0];
+  }
+
+  throw queryHelpers.getElementError(
+    `Unable to find an element by: [data-mui-test="${args[0]}"]`,
+    document.body
+  );
+}
 
 interface WithUtilsProps {
   utils: IUtils<MaterialUiPickersDate>;
@@ -39,25 +71,40 @@ export const shallow = <P extends WithUtilsProps>(element: React.ReactElement<P>
 export const mount = <P extends WithUtilsProps>(element: React.ReactElement<P>) =>
   enzyme.mount(<LocalizationProvider dateAdapter={UtilClassToUse}>{element}</LocalizationProvider>);
 
-export function mountPickerWithState<TValue>(
-  defaultValue: TValue,
-  render: (
-    props: Pick<BasePickerProps<TValue, TValue>, 'onChange' | 'value'> & {
-      renderInput: DatePickerProps['renderInput'];
-    }
-  ) => React.ReactElement
-) {
-  const PickerMountComponent = () => {
+type RenderPicker<TValue> = (
+  props: Pick<BasePickerProps<TValue, TValue>, 'onChange' | 'value'> & {
+    renderInput: DatePickerProps['renderInput'];
+  }
+) => React.ReactElement;
+
+function createPickerWithState<TValue>(defaultValue: TValue, renderFn: RenderPicker<TValue>) {
+  const PickerWithState = () => {
     const [value, setDate] = React.useState(defaultValue);
 
-    return render({
+    return renderFn({
       value,
       onChange: date => setDate(date),
       renderInput: props => <TextField {...props} />,
     });
   };
 
-  return mount(<PickerMountComponent />);
+  return <PickerWithState />;
+}
+
+export function mountPickerWithState<TValue>(
+  defaultValue: TValue,
+  renderPicker: RenderPicker<TValue>
+) {
+  return mount(createPickerWithState(defaultValue, renderPicker));
+}
+
+export function renderPickerWithState<TValue>(
+  defaultValue: TValue,
+  renderPicker: RenderPicker<TValue>,
+  clientRenderOptions?: { strict?: boolean }
+) {
+  const render = createClientRender(clientRenderOptions);
+  return render(createPickerWithState(defaultValue, renderPicker));
 }
 
 export const shallowRender = (render: (props: any) => React.ReactElement<any>) => {

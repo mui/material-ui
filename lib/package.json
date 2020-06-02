@@ -58,7 +58,7 @@
   },
   "scripts": {
     "test": "jest",
-    "test:typescript": "tsc -p src/__tests__/tsconfig.json",
+    "test:typescript": "rimraf src/__tests__/dist && tsc -p src/__tests__/tsconfig.json",
     "test:date-fns": "UTILS=date-fns yarn test",
     "test:luxon": "UTILS=luxon yarn test",
     "test:moment": "UTILS=moment yarn test",
@@ -87,6 +87,7 @@
     "@rollup/plugin-babel": "^5.0.2",
     "@rollup/plugin-commonjs": "^12.0.0",
     "@rollup/plugin-node-resolve": "^8.0.0",
+    "@testing-library/jest-dom": "^5.9.0",
     "@types/enzyme": "^3.10.5",
     "@types/enzyme-adapter-react-16": "^1.0.3",
     "@types/fs-extra": "^8.1.0",
