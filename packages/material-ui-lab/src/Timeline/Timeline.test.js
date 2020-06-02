@@ -19,5 +19,4 @@ describe('<Timeline />', () => {
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'span',
   }));
-
 });

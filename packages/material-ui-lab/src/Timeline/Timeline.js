@@ -25,11 +25,7 @@ const Timeline = React.forwardRef(function Timeline(props, ref) {
   } = props;
 
   return (
-    <Component
-      className={clsx(classes.root, classes[variant], className)}
-      ref={ref}
-      {...other}
-    >
+    <Component className={clsx(classes.root, classes[variant], className)} ref={ref} {...other}>
       {children}
     </Component>
   );
@@ -53,6 +49,11 @@ Timeline.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
   /**
    * The variant to use.
    */
