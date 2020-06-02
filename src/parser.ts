@@ -376,15 +376,21 @@ export function parseFromProgram(
 			}
 		}
 
-		let type = declaration
+		const symbolType = declaration
 			? // The proptypes aren't detailed enough that we need all the different combinations
 			  // so we just pick the first and ignore the rest
-			  checker.getTypeAtLocation(declaration)
+			  checker.getTypeOfSymbolAtLocation(symbol, declaration)
 			: // The properties of Record<..., ...> don't have a declaration, but the symbol has a type property
 			  ((symbol as any).type as ts.Type);
 		// get `React.ElementType` from `C extends React.ElementType`
-		const baseConstraintOfType = checker.getBaseConstraintOfType(type);
-		type = baseConstraintOfType === undefined ? type : baseConstraintOfType;
+		const declaredType =
+			declaration !== undefined ? checker.getTypeAtLocation(declaration) : undefined;
+		const baseConstraintOfType =
+			declaredType !== undefined ? checker.getBaseConstraintOfType(declaredType) : undefined;
+		const type =
+			baseConstraintOfType !== undefined && baseConstraintOfType !== declaredType
+				? baseConstraintOfType
+				: symbolType;
 
 		if (!type) {
 			throw new Error('No types found');
