@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.1](https://github.com/merceyz/typescript-to-proptypes/compare/v2.0.0...v2.0.1) (2020-06-02)
+
+### Bug Fixes
+
+- Use symbol type when there's no baseconstraint ([#23](https://github.com/merceyz/typescript-to-proptypes/issues/23)) ([0b170af](https://github.com/merceyz/typescript-to-proptypes/commit/0b170afb02a2edd1ea0b80406f1a86375c3a13f3))
+
 ## [2.0.0](https://github.com/merceyz/typescript-to-proptypes/compare/v1.5.0...v2.0.0) (2020-05-31)
 
 ### ⚠ BREAKING CHANGES
