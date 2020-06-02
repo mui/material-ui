@@ -16,7 +16,7 @@ describe('<TimelineItem />', () => {
     classes,
     inheritComponent: 'li',
     mount,
-    refInstanceof: window.HTMLDivElement,
+    refInstanceof: window.HTMLLIElement,
     testComponentPropWith: 'span',
   }));
 });

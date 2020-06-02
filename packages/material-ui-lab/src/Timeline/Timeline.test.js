@@ -14,9 +14,9 @@ describe('<Timeline />', () => {
 
   describeConformance(<Timeline />, () => ({
     classes,
-    inheritComponent: 'div',
+    inheritComponent: 'ul',
     mount,
-    refInstanceof: window.HTMLDivElement,
-    testComponentPropWith: 'span',
+    refInstanceof: window.HTMLUListElement,
+    testComponentPropWith: 'div',
   }));
 });

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
 
-export const styles = (theme) => ({
+export const styles = () => ({
   /* Styles applied to the root element. */
   root: {
     padding: '6px 16px',
@@ -15,7 +15,7 @@ const TimelineItemContent = React.forwardRef(function TimelineItemContent(props,
     children,
     classes,
     className,
-    component: Component = 'span',
+    component: Component = 'div',
     variant = 'standard',
     ...other
   } = props;

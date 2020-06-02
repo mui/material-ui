@@ -16,7 +16,7 @@ describe('<TimelineItemTail />', () => {
     classes,
     inheritComponent: 'span',
     mount,
-    refInstanceof: window.HTMLDivElement,
+    refInstanceof: window.HTMLSpanElement,
     testComponentPropWith: 'div',
   }));
 });
