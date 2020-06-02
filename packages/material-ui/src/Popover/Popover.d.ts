@@ -138,7 +138,7 @@ export interface PopoverProps
   TransitionProps?: TransitionProps;
 }
 
-export type PopoverClassKey = 'root' | 'paper' | 'transition';
+export type PopoverClassKey = 'root' | 'paper';
 
 export interface PopoverActions {
   updatePosition(): void;

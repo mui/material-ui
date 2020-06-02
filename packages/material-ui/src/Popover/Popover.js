@@ -70,8 +70,8 @@ function getAnchorEl(anchorEl) {
 export const styles = {
   /* Styles applied to the root element. */
   root: {},
-  /* Styles applied to the `TransitionComponent` */
-  transition: {
+  /* Styles applied to the `Paper` component. */
+  paper: {
     position: 'absolute',
     overflowX: 'hidden',
     // So we see the popover when it's empty.
@@ -81,8 +81,6 @@ export const styles = {
     // We disable the focus ring for mouse, touch and keyboard users.
     outline: 0,
   },
-  /* Styles applied to the `Paper` component. */
-  paper: {},
 };
 
 const Popover = React.forwardRef(function Popover(props, ref) {
@@ -410,14 +408,9 @@ const Popover = React.forwardRef(function Popover(props, ref) {
         {...TransitionProps}
         onEntering={createChainedFunction(handleEntering, TransitionProps.onEntering)}
         ref={handlePaperRef}
-        className={clsx(classes.transition, TransitionProps.className)}
+        className={clsx(classes.paper, PaperProps.className, TransitionProps.className)}
       >
-        <Paper
-          data-mui-test="Popover"
-          elevation={elevation}
-          {...PaperProps}
-          className={clsx(classes.paper, PaperProps.className)}
-        >
+        <Paper data-mui-test="Popover" elevation={elevation} {...PaperProps}>
           {children}
         </Paper>
       </TransitionComponent>
