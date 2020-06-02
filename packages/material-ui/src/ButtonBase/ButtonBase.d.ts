@@ -17,10 +17,6 @@ export interface ButtonBaseTypeMap<P = {}, D extends React.ElementType = 'button
      */
     buttonRef?: React.Ref<unknown>;
     /**
-     * The content of the component.
-     */
-    children?: React.ReactNode;
-    /**
      * If `true`, the ripples will be centered.
      * They won't start at the cursor interaction position.
      */
