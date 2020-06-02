@@ -8,13 +8,11 @@ export const styles = (theme) => ({
   root: {
     borderRadius: theme.shape.borderRadius,
     backgroundColor: 'transparent',
-    display: 'flex',
-    flexDirection: 'column',
     padding: '6px 16px',
   },
 });
 
-const Timeline = React.forwardRef(function Timeline(props, ref) {
+const TimelineItem = React.forwardRef(function TimelineItem(props, ref) {
   const {
     children,
     classes,
@@ -35,7 +33,7 @@ const Timeline = React.forwardRef(function Timeline(props, ref) {
   );
 });
 
-Timeline.propTypes = {
+TimelineItem.propTypes = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -59,4 +57,4 @@ Timeline.propTypes = {
   variant: PropTypes.oneOf(['outlined', 'standard']),
 };
 
-export default withStyles(styles, { name: 'MuiTimeline' })(Timeline);
+export default withStyles(styles, { name: 'MuiTimelineItem' })(TimelineItem);

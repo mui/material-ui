@@ -1,19 +1,19 @@
 ---
-filename: /packages/material-ui-lab/src/Timeline/Timeline.js
+filename: /packages/material-ui-lab/src/TimelineItem/TimelineItem.js
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
-# Timeline API
+# TimelineItem API
 
-<p class="description">The API documentation of the Timeline React component. Learn more about the props and the CSS customization points.</p>
+<p class="description">The API documentation of the TimelineItem React component. Learn more about the props and the CSS customization points.</p>
 
 ## Import
 
 ```js
-import Timeline from '@material-ui/lab/Timeline';
+import TimelineItem from '@material-ui/lab/TimelineItem';
 // or
-import { Timeline } from '@material-ui/lab';
+import { TimelineItem } from '@material-ui/lab';
 ```
 
 You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).
@@ -22,7 +22,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 
 ## Component name
 
-The `MuiTimeline` name can be used for providing [default props](/customization/globals/#default-props) or [style overrides](/customization/globals/#css) at the theme level.
+The `MuiTimelineItem` name can be used for providing [default props](/customization/globals/#default-props) or [style overrides](/customization/globals/#css) at the theme level.
 
 ## Props
 
@@ -40,7 +40,7 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">.MuiTimeline-root</span> | Styles applied to the root element.
+| <span class="prop-name">root</span> | <span class="prop-name">.MuiTimelineItem-root</span> | Styles applied to the root element.
 
 You can override the style of the component thanks to one of these customization points:
 
@@ -48,9 +48,5 @@ You can override the style of the component thanks to one of these customization
 - With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
 - With a theme and an [`overrides` property](/customization/globals/#css).
 
-If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-lab/src/Timeline/Timeline.js) for more detail.
-
-## Demos
-
-- [Timeline](/components/timeline/)
+If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-lab/src/TimelineItem/TimelineItem.js) for more detail.
 
