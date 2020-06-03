@@ -1,5 +1,8 @@
 const bpmr = require('babel-plugin-module-resolver');
 const fse = require('fs-extra');
+const path = require('path');
+
+const errorCodesPath = path.resolve(__dirname, './public/static/error-codes.json');
 
 function resolvePath(sourcePath, currentFile, opts) {
   if (sourcePath === 'markdown') {
@@ -33,6 +36,14 @@ module.exports = {
     ['next/babel', { 'transform-runtime': { corejs: 2, version: transformRuntimeVersion } }],
   ],
   plugins: [
+    [
+      'babel-plugin-macros',
+      {
+        muiError: {
+          errorCodesPath,
+        },
+      },
+    ],
     'babel-plugin-optimize-clsx',
     // for IE 11 support
     '@babel/plugin-transform-object-assign',

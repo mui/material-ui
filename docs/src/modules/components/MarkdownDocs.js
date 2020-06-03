@@ -89,7 +89,7 @@ const styles = (theme) => ({
 });
 
 function MarkdownDocs(props) {
-  const { classes, disableAd = false, disableToc = false, demos, docs, requireDemo } = props;
+  const { classes, disableAd = false, disableToc = false, demos = {}, docs, requireDemo } = props;
 
   const t = useSelector((state) => state.options.t);
   const userLanguage = useSelector((state) => state.options.userLanguage);
@@ -100,7 +100,7 @@ function MarkdownDocs(props) {
 
   const { activePage, pages } = React.useContext(PageContext);
   const pageList = flattenPages(pages);
-  const currentPageNum = findIndex(pageList, (page) => page.pathname === activePage.pathname);
+  const currentPageNum = findIndex(pageList, (page) => page.pathname === activePage?.pathname);
   const currentPage = pageList[currentPageNum];
   const prevPage = pageList[currentPageNum - 1];
   const nextPage = pageList[currentPageNum + 1];

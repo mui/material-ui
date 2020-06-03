@@ -2,6 +2,7 @@ import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import MuiError from '@material-ui/utils/macros/MuiError.macro';
 import ownerDocument from '../utils/ownerDocument';
 import capitalize from '../utils/capitalize';
 import { refType } from '@material-ui/utils';
@@ -262,7 +263,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
     if (multiple) {
       if (!Array.isArray(value)) {
-        throw new Error(
+        throw new MuiError(
           'Material-UI: The `value` prop must be an array ' +
             'when using the `Select` component with `multiple`.',
         );

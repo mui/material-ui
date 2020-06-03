@@ -1,3 +1,4 @@
+import MuiError from '@material-ui/utils/macros/MuiError.macro';
 import { isUnitless, convertLength, responsiveProperty, alignProperty, fontGrid } from './cssUtils';
 
 export default function responsiveFontSizes(themeInput, options = {}) {
@@ -45,11 +46,9 @@ export default function responsiveFontSizes(themeInput, options = {}) {
     let { lineHeight } = style;
 
     if (!isUnitless(lineHeight) && !disableAlign) {
-      throw new Error(
-        [
-          'Material-UI: Unsupported non-unitless line height with grid alignment.',
+      throw new MuiError(
+        'Material-UI: Unsupported non-unitless line height with grid alignment.\n' +
           'Use unitless line heights instead.',
-        ].join('\n'),
       );
     }
 

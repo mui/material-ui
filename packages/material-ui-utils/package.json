@@ -41,7 +41,12 @@
     "prop-types": "^15.7.2",
     "react-is": "^16.8.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@babel/helper-module-imports": "^7.8.3",
+    "@types/babel-plugin-macros": "^2.8.1",
+    "babel-plugin-macros": "^2.8.0",
+    "babel-plugin-tester": "^9.0.0"
+  },
   "sideEffects": false,
   "publishConfig": {
     "access": "public"

@@ -3,6 +3,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { refType } from '@material-ui/utils';
+import MuiError from '@material-ui/utils/macros/MuiError.macro';
 import formControlState from '../FormControl/formControlState';
 import FormControlContext, { useFormControl } from '../FormControl/FormControlContext';
 import withStyles from '../styles/withStyles';
@@ -316,7 +317,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
     if (!isControlled) {
       const element = event.target || inputRef.current;
       if (element == null) {
-        throw new TypeError(
+        throw new MuiError(
           'Material-UI: Expected valid input target. ' +
             'Did you use a custom `inputComponent` and forget to forward refs? ' +
             'See https://material-ui.com/r/input-component-ref-interface for more info.',
