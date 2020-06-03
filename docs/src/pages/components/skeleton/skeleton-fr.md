@@ -31,11 +31,11 @@ By default, the skeleton pulsate, but you can change the animation for a wave or
 
 {{"demo": "pages/components/skeleton/Animations.js"}}
 
-## YouTube example
+### Pulsate example
 
 {{"demo": "pages/components/skeleton/YouTube.js", "defaultCodeOpen": false}}
 
-## Facebook example
+### Wave example
 
 {{"demo": "pages/components/skeleton/Facebook.js", "defaultCodeOpen": false, "bg": true}}
 
@@ -62,3 +62,9 @@ loading
 ```
 
 {{"demo": "pages/components/skeleton/SkeletonChildren.js", "defaultCodeOpen": false}}
+
+## Accessibilité
+
+Skeleton screens provide an alternative to the traditional spinner methods. Rather than showing an abstract widget, skeleton screens create anticipation of what is to come and reduce cognitive load.
+
+The background color of the skeleton uses the least amount of luminance to be visible in good conditions (good ambient light, good screen, no visual impairments).

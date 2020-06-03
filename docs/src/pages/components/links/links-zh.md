@@ -35,7 +35,7 @@ components: Link
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#link)
 
 - 当提供链接对应的内容时，避免使用泛泛的描述，比如“点击这里”或“跳转”之类的词语 相反的，请使用 [具体详细的描述](https://developers.google.com/web/tools/lighthouse/audits/descriptive-link-text)说明.
-- For the best user experience, links should stand out from the text on the page.
+- 为了获得最佳的用户体验，链接应该从页面上的文字中脱颖而出。
 - 如果一个链接没有赋予一个有意义的href值, [它应该用一个 `<按钮>` 元素](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/anchor-is-valid.md)表示
 
 {{"demo": "pages/components/links/ButtonLink.js"}}

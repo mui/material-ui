@@ -29,7 +29,7 @@ Snackbars 包含一行直接与所执行操作相关的文本。 它们可能包
 
 ## 定位的消息条
 
-In wide layouts, snackbars can be left-aligned or center-aligned if they are consistently placed on the same spot at the bottom of the screen, however there may be circumstances where the placement of the snackbar needs to be more flexible. You can control the position of the snackbar by specifying the `anchorOrigin` prop.
+在宽大的布局中，如果消息条始终放在屏幕底部的同一位置，那么可以左对齐或中间对齐，但在某些情况下，消息条的位置可能需要更加灵活。 你可以通过指定 `anchorOrigin` prop 来控制消息条的位置。
 
 {{"demo": "pages/components/snackbars/PositionedSnackbar.js"}}
 
@@ -73,7 +73,7 @@ In wide layouts, snackbars can be left-aligned or center-aligned if they are con
 
 ![评星](https://img.shields.io/github/stars/iamhosseindhv/notistack.svg?style=social&label=Stars) ![npm下载](https://img.shields.io/npm/dm/notistack.svg)
 
-以下例子演示了如何使用 [notistack](https://github.com/iamhosseindhv/notistack)。 notistack has an **imperative API** 可以轻松地显示一串消息条，而无需处理其打开/关闭状态。 It also enables you to **stack** them on top of one another (尽管 Material Design 规范并不鼓励这样做).
+以下例子演示了如何使用 [notistack](https://github.com/iamhosseindhv/notistack)。 notistack 有一个 **imperative API** 可以轻松地显示一串消息条，且无需处理其打开/关闭状态。 它还可以让你把它们 **堆叠** 在一起（尽管 Material Design 规范不鼓励这样做）。
 
 {{"demo": "pages/components/snackbars/IntegrationNotistack.js", "defaultCodeOpen": false}}
 
@@ -81,4 +81,4 @@ In wide layouts, snackbars can be left-aligned or center-aligned if they are con
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-1.1/#alert)
 
-- By default, the snackbar won't auto-hide. However, if you decide to use the `autoHideDuration` prop, it's recommended to give the user [sufficient time](https://www.w3.org/TR/UNDERSTANDING-WCAG20/time-limits.html) to respond.
+- 默认情况下，消息条不会自动隐藏。 但是，如果您决定使用 `autoHideDuration` prop，建议给用户 [足够的时间](https://www.w3.org/TR/UNDERSTANDING-WCAG20/time-limits.html) 来响应。

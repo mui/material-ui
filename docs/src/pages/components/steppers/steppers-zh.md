@@ -24,7 +24,7 @@ components: MobileStepper, Step, StepButton, StepConnector, StepContent, StepIco
 
 {{"demo": "pages/components/steppers/HorizontalLinearStepper.js", "bg": true}}
 
-### Linear - Alternative Label
+### 线性步骤条 - 备选标签
 
 您可以将标签放置在节点图标之下。请在 `Stepper` 组件中设置 `alternativeLabel` 这一属性。
 
@@ -46,17 +46,17 @@ components: MobileStepper, Step, StepButton, StepConnector, StepContent, StepIco
 
 {{"demo": "pages/components/steppers/HorizontalNonLinearStepper.js", "bg": true}}
 
-### Non-linear - Alternative Label
+### 非线性步骤条 - 备选标签
 
 您可以将标签放置在节点图标之下。请在 `Stepper` 组件中设置 `alternativeLabel` 这一属性。
 
 {{"demo": "pages/components/steppers/HorizontalNonLinearAlternativeLabelStepper.js", "bg": true}}
 
-### Non-linear - Error Step
+### 非线性步骤条 - 错误步骤
 
 {{"demo": "pages/components/steppers/HorizontalNonLinearStepperWithError.js", "bg": true}}
 
-## 垂直步进器
+## 垂直步骤条
 
 {{"demo": "pages/components/steppers/VerticalLinearStepper.js", "bg": true}}
 
@@ -64,19 +64,19 @@ components: MobileStepper, Step, StepButton, StepConnector, StepContent, StepIco
 
 该组件实现了适用于移动设备的紧凑型步进器。 有关其详情, 请参阅 [移动步骤](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steps)。
 
-### Text
+### 文本
 
 本质上，这是一个被正确定位的 back/next 按钮。 您必须自己实现文本描述，但是，下面提供了一个参考示例。
 
 {{"demo": "pages/components/steppers/TextMobileStepper.js", "bg": true}}
 
-### Text with Carousel effect
+### 文本与幻灯片效果
 
 这个实例与之前的非常相似，不同之处在于使用[ react-swipeable-views ](https://github.com/oliviertassinari/react-swipeable-views)以进行步骤转换。
 
 {{"demo": "pages/components/steppers/SwipeableTextMobileStepper.js", "bg": true}}
 
-### Dots
+### 点状
 
 当步骤的数字不是特别明显时使用点状标记。
 

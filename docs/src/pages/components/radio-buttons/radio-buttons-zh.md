@@ -17,7 +17,9 @@ components: Radio, RadioGroup, FormControl, FormLabel, FormControlLabel
 
 {{"demo": "pages/components/radio-buttons/RadioButtonsGroup.js"}}
 
-## Standalone radio buttons
+要横向布置按钮，请设置 `row`prop: `<RadioGroup row />`.
+
+## Standalone radio buttons 独立的单选框按钮 
 
 `Radio` 也可以单独使用，无需额外的包装。
 
@@ -25,9 +27,9 @@ components: Radio, RadioGroup, FormControl, FormLabel, FormControlLabel
 
 ## 标签放置
 
-You can change the placement of the label with the `FormControlLabel` component's `labelPlacement` prop:
+你可以用 `FormControlLabel` 组件的 `labelPlacement` prop 来改变标签的位置。
 
-{{"demo": "pages/components/radio-buttons/FormControlLabelPlacement.js"}}
+{{"demo": "pages/components/radio-buttons/FormControlLabelPlacement.js"}} 
 
 ## Show error 显示错误
 
@@ -45,7 +47,7 @@ You can change the placement of the label with the `FormControlLabel` component'
 
 - [复选框 对比 单选按钮](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
 
-## 可访问性
+## 可及性
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#radiobutton)
 

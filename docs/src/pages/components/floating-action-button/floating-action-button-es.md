@@ -1,34 +1,34 @@
 ---
-title: Fab React component
+title: Componente de React Fab
 components: Fab
 ---
 
-# Floating action button
+# Botón de acción flotante
 
-<p class="description">A floating action button (FAB) performs the primary, or most common, action on a screen.</p>
+<p class="description">Un botón de acción flotante (FAB) realiza la acción principal, o la más común, en una pantalla.</p>
 
-## Floating Action Button
+## Botón de acción flotante
 
-A [floating action button](https://material.io/design/components/buttons-floating-action-button.html) appears in front of all screen content, typically as a circular shape with an icon in its center. Los BAF existen en dos formas: regular, y extendido.
+Un [botón de acción flotante](https://material.io/design/components/buttons-floating-action-button.html)aparece delante de todo el contenido de la pantalla, típicamente como una forma circular con un icono en su centro. Los FABs vienen en dos tipos: regulares y extendidos.
 
-Sólo se recomienda usar un BAF si es la manera más apta para presentar la acción primaria de una pantalla.
+Sólo usa un FAB si es la forma más adecuada de presentar la acción principal de una pantalla.
 
-Se recomienda solo un botón flotante por pantalla para representar la acción más común.
+Se recomienda un solo botón de acción flotante por pantalla para representar la acción más común.
 
 {{"demo": "pages/components/floating-action-button/FloatingActionButtons.js"}}
 
-## Size
+## Tamaño
 
-Use the `size` prop for larger or smaller floating action buttons.
+Usa el `tamaño` para botones de acción flotante más grandes o más pequeños.
 
 {{"demo": "pages/components/floating-action-button/FloatingActionButtonSize.js"}}
 
-## Animation
+## Animación
 
-El botón de acción flotante aparece en la página animado como un pedazo de material en expansión, por defecto.
+El botón de acción flotante se anima en la pantalla como una pieza de material en expansión, por defecto.
 
-Un botón de acción flotante que aparece en varias páginas laterales (como páginas en pestañas) debe desaparecer por un momento, y luego aparecer de nuevo si su acción cambia.
+Un botón de acción flotante que abarca múltiples pantallas laterales (como las pantallas con pestañas) debería desaparecer brevemente, para luego reaparecer si su acción cambia.
 
-La transición Zoom se puede usar para lograr esto. Ten en cuenta que ya que las animaciones de salida y de entrada son desencadenados al mismo tiempo, usamos `enterDelay` para permitir que termine la animación del Botón de Acción Flotante saliente antes de que entre el nuevo.
+La transición Zoom se puede utilizar para lograr esto. Tenga en cuenta que como las animaciones de salida y de entrada se disparan al mismo tiempo, usamos `enterDelay` para permitir que la animación del Botón de Acción Flotante saliente termine antes de que el nuevo entre.
 
 {{"demo": "pages/components/floating-action-button/FloatingActionButtonZoom.js", "bg": true}}

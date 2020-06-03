@@ -17,6 +17,8 @@ Use [radio buttons](https://material.io/design/components/selection-controls.htm
 
 {{"demo": "pages/components/radio-buttons/RadioButtonsGroup.js"}}
 
+To lay out the buttons horizontally, set the `row` prop: `<RadioGroup row />`.
+
 ## Standalone radio buttons
 
 `Radio` can also be used standalone, without the RadioGroup wrapper.

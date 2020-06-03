@@ -7,9 +7,9 @@ components: Chip
 
 <p class="description">Chips são elementos compactos que representam uma entrada, atributo ou ação.</p>
 
-[Chips](https://material.io/design/components/chips.html) permitirá que usuários insiram informações, façam seleções, filtrem conteúdo ou acionem gatilhos.
+[Chips](https://material.io/design/components/chips.html) permitirão que usuários insiram informações, façam seleções, filtrem conteúdo ou acionem gatilhos.
 
-Embora incluído aqui como um componente independente, o uso mais comum será em alguma forma de entrada, portanto, alguns dos comportamentos demonstrados aqui não são mostrados no contexto.
+Embora incluído aqui como um componente independente, o uso mais comum será em alguma forma de entrada, portanto, alguns dos comportamentos demonstrados aqui não são mostrados considerando um contexto.
 
 ## Chip
 

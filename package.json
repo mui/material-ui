@@ -1,5 +1,5 @@
 {
-  "version": "4.10.0",
+  "version": "4.10.1",
   "private": true,
   "scripts": {
     "proptypes": "ts-node --skip-project ./scripts/generateProptypes.ts",
@@ -136,13 +136,13 @@
     "rollup-plugin-node-globals": "^1.4.0",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-size-snapshot": "^0.12.0",
-    "rollup-plugin-terser": "^5.1.1",
+    "rollup-plugin-terser": "^6.1.0",
     "sinon": "^9.0.0",
     "size-limit": "^0.21.0",
     "ts-node": "^8.3.0",
     "tslint": "5.14.0",
     "typescript": "^3.8.2",
-    "typescript-to-proptypes": "^1.5.0",
+    "typescript-to-proptypes": "^2.0.1",
     "unist-util-visit": "^2.0.2",
     "vrtest-mui": "^0.3.3",
     "webpack": "^4.41.0",

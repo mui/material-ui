@@ -79,9 +79,9 @@ components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead,
 
 {{"demo": "pages/components/tables/StickyHeadTable.js", "bg": true}}
 
-## Collapsible table
+## 可折叠表格
 
-An example of a table with expandable rows, revealing more information. It utilizes the [`Collapse`](/api/collapse/) component.
+以可扩展行的表格为例，揭示更多信息。 它利用了 [`Collapse`](/api/collapse/) 组件。
 
 {{"demo": "pages/components/tables/CollapsibleTable.js", "bg": true}}
 

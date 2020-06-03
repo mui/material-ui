@@ -196,7 +196,7 @@ TableCell.propTypes = {
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
-  component: PropTypes.elementType,
+  component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
   /**
    * Sets the padding applied to the cell.
    * By default, the Table parent component set the value (`default`).

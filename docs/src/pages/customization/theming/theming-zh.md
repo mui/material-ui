@@ -128,7 +128,7 @@ Using `unstable_createMuiStrictModeTheme` restricts the usage of some of our com
 
 The component used in the `component` prop of the following components need to forward their ref:
 
-- [`Collapse 折叠`](/api/Collapse/)
+- [`Collapse 折叠`](/api/collapse/)
 
 Otherwise you'll encounter `Error: Function component cannot be given refs`. See also: [Composition: Caveat with refs](/guides/composition/#caveat-with-refs).
 
@@ -136,9 +136,9 @@ Otherwise you'll encounter `Error: Function component cannot be given refs`. See
 
 The `children` of the following components need to forward their ref:
 
-- [`Fade 淡入淡出`](/api/Fade/)
-- [`Grow 扩展`](/api/Grow/)
-- [`Zoom 放大`](/api/Zoom/)
+- [`Fade 淡入淡出`](/api/fade/)
+- [`Grow 扩展`](/api/grow/)
+- [`Zoom 放大`](/api/zoom/)
 
 ```diff
 -function TabPanel(props) {

@@ -78,14 +78,14 @@ describe('<Select />', () => {
     );
   });
 
-  it('should have an input with [type="hidden"] by default', () => {
+  it('should have an input with [aria-hidden] by default', () => {
     const { container } = render(
       <Select value="10">
         <MenuItem value="10">Ten</MenuItem>
       </Select>,
     );
 
-    expect(container.querySelector('input')).to.have.property('type', 'hidden');
+    expect(container.querySelector('input')).to.have.attribute('aria-hidden', 'true');
   });
 
   it('should ignore onBlur when the menu opens', () => {
@@ -343,7 +343,7 @@ describe('<Select />', () => {
             <MenuItem value={30}>Thirty</MenuItem>
           </Select>,
         );
-        expect(console.warn.callCount).to.equal(1);
+        expect(console.warn.callCount).to.equal(2); // strict mode renders twice
         expect(console.warn.args[0][0]).to.include(
           'Material-UI: You have provided an out-of-range value `20` for the select component.',
         );
@@ -1001,5 +1001,57 @@ describe('<Select />', () => {
     fireEvent.click(options[0]);
 
     expect(onClick.callCount).to.equal(1);
+  });
+
+  // https://github.com/testing-library/react-testing-library/issues/322
+  // https://twitter.com/devongovett/status/1248306411508916224
+  it('should handle the browser autofill event and simple testing-library API', () => {
+    const onChangeHandler = spy();
+    const { container, getByRole } = render(
+      <Select onChange={onChangeHandler} defaultValue="germany" name="country">
+        <MenuItem value="france">France</MenuItem>
+        <MenuItem value="germany">Germany</MenuItem>
+        <MenuItem value="china">China</MenuItem>
+      </Select>,
+    );
+    fireEvent.change(container.querySelector('input[name="country"]'), {
+      target: {
+        value: 'france',
+      },
+    });
+
+    expect(onChangeHandler.calledOnce).to.equal(true);
+    expect(getByRole('button')).to.have.text('France');
+  });
+
+  it('should support native from validation', function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      // see https://github.com/jsdom/jsdom/issues/123
+      this.skip();
+    }
+
+    const handleSubmit = spy((event) => {
+      // avoid karma reload.
+      event.preventDefault();
+    });
+    const Form = (props) => (
+      <form onSubmit={handleSubmit}>
+        <Select required name="country" {...props}>
+          <MenuItem value="" />
+          <MenuItem value="france">France</MenuItem>
+          <MenuItem value="germany">Germany</MenuItem>
+          <MenuItem value="china">China</MenuItem>
+        </Select>
+        <button type="submit" />
+      </form>
+    );
+    const { container, setProps } = render(<Form value="" />);
+
+    fireEvent.click(container.querySelector('button[type=submit]'));
+    expect(handleSubmit.callCount).to.equal(0, 'the select is empty it should disallow submit');
+
+    setProps({ value: 'france' });
+    fireEvent.click(container.querySelector('button[type=submit]'));
+    expect(handleSubmit.callCount).to.equal(1);
   });
 });

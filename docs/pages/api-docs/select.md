@@ -70,6 +70,7 @@ Any other props supplied will be provided to the root element ([Input](/api/inpu
 | <span class="prop-name">iconOpen</span> | <span class="prop-name">.MuiSelect-iconOpen</span> | Styles applied to the icon component if the popup is open.
 | <span class="prop-name">iconFilled</span> | <span class="prop-name">.MuiSelect-iconFilled</span> | Styles applied to the icon component if `variant="filled"`.
 | <span class="prop-name">iconOutlined</span> | <span class="prop-name">.MuiSelect-iconOutlined</span> | Styles applied to the icon component if `variant="outlined"`.
+| <span class="prop-name">nativeInput</span> | <span class="prop-name">.MuiSelect-nativeInput</span> | Styles applied to the underlying native input component.
 
 You can override the style of the component thanks to one of these customization points:
 

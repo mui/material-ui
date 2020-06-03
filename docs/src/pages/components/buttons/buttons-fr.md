@@ -44,6 +44,16 @@ Les boutons surbrillance sont également une alternative moins importante que le
 
 {{"demo": "pages/components/buttons/OutlinedButtons.js"}}
 
+## Handling clicks
+
+All components accept an `onClick` handler that is applied to the root DOM element.
+
+```jsx
+<Button onClick={() => { alert('clicked') }}>Click me</Button>
+```
+
+Note that the documentation [avoids](/guides/api/#native-properties) mentioning native props (there are a lot) in the API section of the components.
+
 ## Upload button
 
 {{"demo": "pages/components/buttons/UploadButtons.js"}}

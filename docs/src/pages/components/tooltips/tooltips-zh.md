@@ -15,7 +15,7 @@ components: Tooltip
 
 ## 文字提示的定位
 
-`Tooltip` 有12个**位置**选项。 They don’t have directional arrows; instead, they rely on motion emanating from the source to convey direction.
+`Tooltip` 有12个**位置**选项。 它们没有方向箭头，而是依靠编写的代码来移动位置。
 
 {{"demo": "pages/components/tooltips/PositionedTooltips.js"}}
 

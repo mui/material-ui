@@ -47,7 +47,7 @@ If there is an error loading the avatar image, the component falls back to an al
 
 {{"demo": "pages/components/avatars/FallbackAvatars.js"}}
 
-## Grouped
+## Agrupado
 
 `AvatarGroup` renders its children as a stack.
 

@@ -22,7 +22,7 @@ Api設計が難しいのは、単純に見えるようにしても実際には�
 
 ### スプレッド
 
-提供されたドキュメント化されていないプロパティはルート要素に広がります; たとえば、`className`プロパティはルートに適用されます。
+Props supplied to a component which are not explictly documented, are spread to the root element; for instance, the `className` property is applied to the root.
 
 ここで、`MenuItem`のリプルを無効にするとします。 スプレッド動作を利用できます。
 
@@ -38,7 +38,7 @@ Api設計が難しいのは、単純に見えるようにしても実際には�
 
 ### CSS クラス
 
-すべてのコンポーネントで、[`クラス`](/customization/components/#overriding-styles-with-classes)プロパティを使用してスタイルをカスタマイズできます。 クラス設計は、次の2つの制約に答えます: Material Design仕様を実装するのに十分なだけで、可能な限りクラス構造を単純にします。
+All components accept a [`classes`](/customization/components/#overriding-styles-with-classes) prop to customize the styles. クラス設計は、次の2つの制約に答えます: Material Design仕様を実装するのに十分なだけで、可能な限りクラス構造を単純にします。
 
 - ルート要素に適用されるクラスは、常に`root`と呼ばれます。
 - 既定のスタイルはすべて1つのクラスにグループ化されます。
@@ -64,10 +64,10 @@ const styles = {
 
 コンポーネント内のネストされたコンポーネントには、次のものがあります。
 
-- 最上位レベルのコンポーネント抽象化の鍵となる独自のフラット化されたプロパティー たとえば、`Input`コンポーネントの場合は`id`プロパティです。
+- their own flattened properties when these are key to the top level component abstraction, for instance an `id` prop for the `Input` component.
 - ユーザが内部レンダリングメソッドのサブコンポーネントを微調整する必要がある場合は、独自の`xxxProps`プロパティを使用します。 たとえば、`Input`を内部的に使用するコンポーネントの`inputProps`プロパティと`InputProps`プロパティを公開します。
 - 独自の` xxxComponent `コンポーネントインジェクションを実行するためのプロパティ。
-- ユーザーが命令型アクションを実行する必要がある場合は、独自の`xxxRef`プロパティ たとえば、`inputRef`プロパティを公開して、`Input`コンポーネントのネイティブ`入力`にアクセスします。 これは、[「DOM要素にアクセスするにはどうすればいいですか。」](/getting-started/faq/#how-can-i-access-the-dom-element)という質問に答えるのに役立ちます。
+- their own `xxxRef` prop when you might need to perform imperative actions, for instance, exposing an `inputRef` prop to access the native `input` on the `Input` component. これは、[「DOM要素にアクセスするにはどうすればいいですか。」](/getting-started/faq/#how-can-i-access-the-dom-element)という質問に答えるのに役立ちます。
 
 ### プロパティの命名
 
@@ -95,7 +95,7 @@ const styles = {
     };
     ```
     
-    このAPIは、簡略表記法を有効にしました： `<Button>`、` <2 /> ` 、` <3 /> ` 。
+    This API enables the shorthand notation: `<Button>`, `<Button contained />`, `<Button fab />`.
 
 - Option 2 *enum*:
     
@@ -111,14 +111,14 @@ const styles = {
 
 Material-UIコンポーネントは、次の規則に従って2つのアプローチの組み合わせを使用します。
 
-- *ブーリアン*は、 **2**つの自由度が必要な場合に使用します。
-- *enum*は、**2以上** の自由度が必要な場合、または将来さらに自由度が必要になる可能性がある場合に使用します。
+- A *boolean* is used when **2** possible values are required.
+- An *enum* is used when **> 2** possible values are required, or if there is the possibility that additional possible values may be required in the future.
 
-前のボタンの例に戻ります。 3自由度が必要なので、* enumを使用します* 。
+Going back to the previous button example; since it requires 3 possible values, we use an *enum*.
 
 ### Ref
 
-` ref `はルート要素に転送されます。 つまり、レンダリングされたルート要素を変更せずに、 `component`<0>コンポーネント</0>プロパティを介して、コンポーネントがレンダリングする最も外側のDOM要素に転送されます。 `コンポーネント`プロパティを介して別のコンポーネントを渡すと、代わりに参照がそのコンポーネントにアタッチされます。
+` ref `はルート要素に転送されます。 This means that, without changing the rendered root element via the `component` prop, it is forwarded to the outermost DOM element which the component renders. If you pass a different component via the `component` prop, the ref will be attached to that component instead.
 
 ## 用語集
 

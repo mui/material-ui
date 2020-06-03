@@ -255,7 +255,7 @@ ListItem.propTypes = {
    * Either a string to use a HTML element or a component.
    * By default, it's a `li` when `button` is `false` and a `div` when `button` is `true`.
    */
-  component: PropTypes.elementType,
+  component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
   /**
    * The container component used when a `ListItemSecondaryAction` is the last child.
    */

@@ -1,10 +1,10 @@
-# density 间距
+# Density 间距
 
 <p class="description">如何自定义间距(density)</p>
 
 ## 使用 `Density`
 
-This section explains how to apply density. It doesn't cover potential use cases, or considerations for using density in your application. <https://material.io/design/layout/applying-density. html#typographic-density>使用案例</>
+This section explains how to apply density. It doesn't cover potential use cases, or considerations for using density in your application. The Material design guidelines have a [comprehensive guide](https://material.io/design/layout/applying-density.html#typographic-density) covering these topics in more detail.
 
 ## Implementing density
 

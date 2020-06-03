@@ -22,7 +22,7 @@ Abgesehen von den oben genannten Kompensationsregeln setzen wir die folgenden Re
 
 ### Verteilt
 
-Nicht dokumentierte Eigenschaften werden auf das Stammelement verteilt. zum Beispiel wird die `className`Eigenschaft auf die Wurzel angewendet.
+Props supplied to a component which are not explictly documented, are spread to the root element; for instance, the `className` property is applied to the root.
 
 Angenommen, Sie möchten die Wellen im `Menüelement` deaktivieren. Sie können das Ausbreitungsverhalten nutzen:
 
@@ -38,7 +38,7 @@ Wir vermeiden, die vom DOM unterstützten nativen Eigenschaften wie [`className`
 
 ### CSS-Klassen
 
-Alle Komponenten akzeptieren die [`classes`](/customization/components/#overriding-styles-with-classes) Eigenschaft zum Anpassen der Stile. Das Design der classes beantwortet zwei Bedingungen: Die Klassenstruktur so einfach wie möglich zu gestalten, aber trotzdem ausreichend, um die Material Design-Spezifikation zu implementieren.
+All components accept a [`classes`](/customization/components/#overriding-styles-with-classes) prop to customize the styles. Das Design der classes beantwortet zwei Bedingungen: Die Klassenstruktur so einfach wie möglich zu gestalten, aber trotzdem ausreichend, um die Material Design-Spezifikation zu implementieren.
 
 - Die auf das Wurzelelement angewendete Klasse wird immer als `root` bezeichnet.
 - Alle Standardstile sind in einer einzigen Klasse zusammengefasst.
@@ -64,10 +64,10 @@ const styles = {
 
 Verschachtelte Komponenten in einer Komponente haben:
 
-- ihre eigenen abgeflachten Eigenschaften, wenn diese der Schlüssel für die Abstraktion der Komponenten der obersten Ebene sind, eine Instanz und eine `id` Eigenschaft für die `Input` Komponente.
+- their own flattened properties when these are key to the top level component abstraction, for instance an `id` prop for the `Input` component.
 - ihre eigenen `xxxProps ` Eigenschaft, falls Benutzer möglicherweise die Unterkomponenten der internen Render-Methode anpassen müssen, z. B. die `inputProps` und `InputProps` Eigenschaften für Komponenten, die `Input` intern verwenden.
 - ihre eigene `xxxComponent` Eigenschaft zum Durchführen der Komponenteninjektion.
-- ihre eigene `xxxRef` Eigenschaft, falls der Benutzer möglicherweise zwingende Aktionen ausführen muss, z. B. eine `inputRef` Eigenschaft verfügbar machen, um auf ein natives `input` Element der `Input` Komponente zuzugreifen. Dies hilft bei der Beantwortung der Frage ["Wie kann ich auf das DOM-Element zugreifen?"](/getting-started/faq/#how-can-i-access-the-dom-element)
+- their own `xxxRef` prop when you might need to perform imperative actions, for instance, exposing an `inputRef` prop to access the native `input` on the `Input` component. Dies hilft bei der Beantwortung der Frage ["Wie kann ich auf das DOM-Element zugreifen?"](/getting-started/faq/#how-can-i-access-the-dom-element)
 
 ### Benennung der Eigenschaften
 
@@ -95,7 +95,7 @@ Es gibt zwei Möglichkeiten, die API für die Variationen einer Komponente zu en
     };
     ```
     
-    Diese API hat die Kurzschreibweise aktiviert: `<Button>`, `<Button contained />`, `<Button fab />`.
+    This API enables the shorthand notation: `<Button>`, `<Button contained />`, `<Button fab />`.
 
 - Option 2 *enum*:
     
@@ -111,14 +111,14 @@ Es gibt zwei Möglichkeiten, die API für die Variationen einer Komponente zu en
 
 Die Komponenten der Material-UI verwenden eine Kombination der beiden Ansätze gemäß den folgenden Regeln:
 
-- Ein *boolean* wird verwendet, wenn **2** Freiheitsgrade erforderlich sind.
-- Eine *Aufzählung* wird verwendet, wenn **> 2** Freiheitsgrade erforderlich sind, oder wenn die Möglichkeit besteht, dass in Zukunft zusätzliche Freiheitsgrade erforderlich sind.
+- A *boolean* is used when **2** possible values are required.
+- An *enum* is used when **> 2** possible values are required, or if there is the possibility that additional possible values may be required in the future.
 
-Zurück zum vorherigen Beispiel des Buttons; Da 3 Freiheitsgrade erforderlich sind, verwenden wir eine *Aufzählung*.
+Going back to the previous button example; since it requires 3 possible values, we use an *enum*.
 
 ### Ref
 
-Das `ref` Element wird an das Wurzelelement weitergeleitet. Das bedeutet, ohne das gerenderte Wurzelelement über die `component` Eigenschaft zu ändern, wird an das äußerste DOM-Element weitergeleitet, welche Komponente rendert. Wenn Sie eine andere Komponente über die `compnent` Eigenschaft wird der Ref stattdessen an diese Komponente angehängt.
+Das `ref` Element wird an das Wurzelelement weitergeleitet. This means that, without changing the rendered root element via the `component` prop, it is forwarded to the outermost DOM element which the component renders. If you pass a different component via the `component` prop, the ref will be attached to that component instead.
 
 ## Glossar
 

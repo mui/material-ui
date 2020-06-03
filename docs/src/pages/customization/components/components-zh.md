@@ -1,60 +1,60 @@
-# 自定义组件
+# 自定义的组件
 
 <p class="description">您可以轻松地自定义一个 Material-UI 组件的外观。</p>
 
-有多种方法可以实现在不同的上下文环境中使用组件。 从最狭窄的用例到最广泛的用例，这些是：
+由于组件可以在不同的上下文环境中使用，因此有几种方法。 从最狭窄到最广泛的用例，这些是：
 
 1. [一次性使用的特定变体](#1-specific-variation-for-a-one-time-situation)
 2. [一次性使用的动态变体](#2-dynamic-variation-for-a-one-time-situation)
-3. [在不同环境中使用组件的](#3-specific-variation-of-a-component) 特定变体
-4. [材料设计变体](#4-material-design-variations) 例如按钮组件
+3. 在不同环境中重复使用的[特定组件的变体](#3-specific-variation-of-a-component) 
+4. [Material Design 的变体](#4-material-design-variations)，例如按钮组件
 5. [全局化主题变体](#5-global-theme-variation)
 
-## 1。 一次性使用的特定变体
+## 1、 一次性使用的特定变体
 
-您可能需要为特定实现更改组件的样式，您可以使用以下解决方案：
+您可能需要为实现特定的组件而更改样式，以下有几种解决方案：
 
-### 用类名覆盖样式
+### 用类名（class names）覆盖样式
 
-覆盖组件样式的第一种方法是使用**类名** 。 每个组件都提供` className `，它是一个始终应用于根元素的属性。
+覆盖组件样式的第一种方法是使用**类名（class names）** 。 每个组件都提供一个` className `属性，它通常作用于 root 元素。
 
-此示例使用[` withStyles() `](/styles/basics/#higher-order-component-api)高阶组件将自定义样式注入DOM，并通过它的` classes `属性将class名称传递给 `ClassNames` 组件。 您可以选择[任何其他的样式解决方案](/guides/interoperability/)或甚至简单的CSS创建的样式，但一定要 考虑[ CSS注入顺序](/styles/advanced/#css-injection-order) ，当通过Material-UI将CSS注入DOM对组件进行样式化， 这些CSS将具有最高的优先级，因为`<link>`被注入到` <head />` 的底部以确保组件始终能被正确地渲染。
+此示例使用一个高阶组件[` withStyles() `](/styles/basics/#higher-order-component-api)将自定义样式注入 DOM 之中，并通过它的` classes `属性将类名传递给 `ClassNames` 组件。 您可以选择[任何其他的样式解决方案](/guides/interoperability/)，或使用纯 CSS 来创建样式，但一定要 考虑[ CSS 的注入顺序](/styles/advanced/#css-injection-order) ，当通过 Material-UI 将 CSS 注入 DOM 中而来实现组件的样式时，这些 CSS 将具有最高的优先级，因为`<link>`被注入到` <head />` 的底部，这样的话始终正确地渲染组件。
 
 {{"demo": "pages/customization/components/ClassNames.js"}}
 
-### 用类覆盖样式
+### 用类（classes）覆盖样式
 
-当` className时`属性不够用，你需要访问更深层的元素，你可以利用`classes` 对象属性，来自定义该组件中所有由Material-UI注入的CSS。
+当 `className` 属性不足够时，你需要访问更深层的元素，这时则可使用`classes` 对象属性，这样就能够自定义该组件中所有由 Material-UI 注入的 CSS。
 
-The list of classes for each component is documented in the component API page, you should refer to the **CSS section** and **rule name column**. 例如，您可以查看[ Button CSS API ](/api/button/#css) 。 或者，您可以使用[浏览器中的 devtools](#using-the-dev-tools) 。
+每一个组件的类列表已记录在组件 API 页面中， 请参阅 **CSS 部分**以及**规则名称栏**来获取更多信息。 例如，您可以查看 [Button CSS API](/api/button/#css)。 或者，您也可以使用[浏览器的 dev tools](#using-the-dev-tools)。
 
-这个例子也使用了 `withStyles()` （见上文），但在这里， `ClassesNesting` 使用 `Button` 的 `classes` 属性来接收一个对象，该对象将 **要覆盖的classes子项名** （样式规则）映射到 **对应的CSS属性名称** （值）。 组件的现有类将继续被注入，因此只需要提供你想要添加或覆盖的特定样式。
+这个例子也使用了 `withStyles()` （见上文），但在这里， `ClassesNesting` 使用 `Button` 的 `classes` 属性来提供一个对象，该对象将 **要覆盖的 classes 子项名** （样式规则）映射到 **对应的CSS属性名称** （值）当中。 组件的现有类将继续被注入，因此只需要提供你想要添加或覆盖的特定样式。
 
 请注意，除按钮样式外，按钮标签的大小写也已更改：
 
 {{"demo": "pages/customization/components/ClassesNesting.js"}}
 
-### 使用全局的类名来重写样式
+### 使用全局的类名（ global class names）覆盖样式
 
-按照这一部分
+[请参考这个章节](/styles/advanced/#with-material-ui-core)。
 
-### 使用开发工具
+### 使用开发工具（dev tools）
 
-使用浏览器中的devtools可以为您节省大量时间。 在开发环境中：Material-UI的class名称[遵循一个简单的模式](/styles/advanced/#class-names)： ` Mui [组件名称] - [样式规则名称] -[UUID]` 。
+使用浏览器中的 dev tools，您可以节省大量的时间。 在开发环境中：Material-UI 的 class 名称[遵循一个简单的模式](/styles/advanced/#class-names)：`Mui[组件名称]-[样式规则名称]-[UUID]` 。
 
-让我们回到上面的演示。 你是如何能覆盖按钮标签的？
+让我们回到上面的演示。 你是如何能覆盖按钮标签的样式？
 
 ![dev-tools](/static/images/customization/dev-tools.png)
 
-使用开发工具，您知道需要定位 `按钮` 组件和 `标签` 样式规则：
+使用开发工具，您则知道您需要定位到`按钮`组件以及其`标签`样式规则：
 
 ```jsx
 <Button classes={{ label: 'my-class-name' }} />
 ```
 
-### Shorthand
+### 简而言之
 
-上面的代码示例可以通过使用**相同的CSS API**作为子组件被固定。 在此示例中， `withStyles()` 高阶分量正在注入由 [`Button` 组件](/api/button/#css)使用的 `classes` 属性。
+上面的代码示例可以通过使用**相同的 CSS API** 作为子组件被固定。 在此示例中， `withStyles()` 高阶组件正在注入一个 `classes` 属性，而此属性在 [`Button` 组件](/api/button/#css)用到 。
 
 ```jsx
 const StyledButton = withStyles({
@@ -75,7 +75,7 @@ const StyledButton = withStyles({
 
 {{"demo": "pages/customization/components/ClassesShorthand.js"}}
 
-### 伪类
+### CSS 伪类（Pseudo-classes）
 
 组件特殊状态，如* hover * ，* focus * ，* disabled *和* selected * ，具有更高的CSS特异性。 [特异性是一种重量](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity)这适用于给定的CSS声明。
 
@@ -187,11 +187,11 @@ const styles = {
 
 {{"demo": "pages/customization/components/InlineStyle.js"}}
 
-[我什么时候应该使用内联式vs类？](/getting-started/faq/#when-should-i-use-inline-style-vs-css)
+[和 classes 比起来，我什么时候应该使用内嵌样式？](/getting-started/faq/#when-should-i-use-inline-style-vs-css)
 
 ## 2。 一次性使用的动态变体
 
-您在上一节中，已经学习了如何覆盖Material-UI组件的样式。 现在，让我们看看我们如何使这些覆盖动态化。 这有五种选择，每种都有它的优点和缺点。
+您在上一节中，已经学习了如何覆盖Material-UI组件的样式。 现在，让我们看看我们如何使这些覆盖动态化。 以下是五种选择，各有利弊。
 
 ### 动态CSS
 
@@ -209,7 +209,7 @@ const styles = {
 
 {{"demo": "pages/customization/components/DynamicInlineStyle.js"}}
 
-### Theme nesting
+### 覆盖主题
 
 {{"demo": "pages/customization/components/DynamicThemeNesting.js"}}
 

@@ -53,4 +53,4 @@ Várias colunas podem ser usadas para estruturar o conteúdo, e um texto auxilia
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#accordion)
 
-Para melhor acessibilidade recomendamos a definição de `id` e `aria-controles` no `ExpansionPanelSummary`. O `ExpansionPanel` irá derivar os valores de `aria-labelledby` e `id` para a região de conteúdo do painel.
+Para melhor acessibilidade recomendamos a definição do `id` e `aria-controls` no `ExpansionPanelSummary`. O `ExpansionPanel` irá derivar os valores de `aria-labelledby` e `id` para a região de conteúdo do painel.

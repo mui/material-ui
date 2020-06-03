@@ -9,7 +9,7 @@ export interface ListItemIconProps
   children?: React.ReactNode;
 }
 
-export type ListItemIconClassKey = 'root';
+export type ListItemIconClassKey = 'root' | 'alignItemsFlexStart';
 
 /**
  * A simple wrapper to apply `List` styles to an `Icon` or `SvgIcon`.

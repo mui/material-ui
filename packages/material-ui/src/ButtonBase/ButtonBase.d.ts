@@ -4,18 +4,65 @@ import { OverrideProps, OverridableComponent, OverridableTypeMap } from '../Over
 
 export interface ButtonBaseTypeMap<P = {}, D extends React.ElementType = 'button'> {
   props: P & {
+    /**
+     * A ref for imperative actions.
+     * It currently only supports `focusVisible()` action.
+     */
     action?: React.Ref<ButtonBaseActions>;
     /**
-     * Prefer `ref` instead.
+     * @ignore
+     *
+     * Use that prop to pass a ref to the native button component.
+     * @deprecated Use `ref` instead.
      */
     buttonRef?: React.Ref<unknown>;
+    /**
+     * If `true`, the ripples will be centered.
+     * They won't start at the cursor interaction position.
+     */
     centerRipple?: boolean;
+    /**
+     * The content of the component.
+     */
+    children?: React.ReactNode;
+    /**
+     * If `true`, the base button will be disabled.
+     */
     disabled?: boolean;
+    /**
+     * If `true`, the ripple effect will be disabled.
+     *
+     * ⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure
+     * to highlight the element by applying separate styles with the `focusVisibleClassName`.
+     */
     disableRipple?: boolean;
+    /**
+     * If `true`, the touch ripple effect will be disabled.
+     */
     disableTouchRipple?: boolean;
+    /**
+     * If `true`, the base button will have a keyboard focus ripple.
+     */
     focusRipple?: boolean;
+    /**
+     * This prop can help a person know which element has the keyboard focus.
+     * The class name will be applied when the element gain the focus through a keyboard interaction.
+     * It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo).
+     * The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md).
+     * A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components
+     * if needed.
+     */
     focusVisibleClassName?: string;
+    /**
+     * Callback fired when the component is focused with a keyboard.
+     * We trigger a `onFocus` callback too.
+     */
     onFocusVisible?: React.FocusEventHandler<any>;
+    // @types/react is stricter
+    tabIndex?: string | number;
+    /**
+     * Props applied to the `TouchRipple` element.
+     */
     TouchRippleProps?: Partial<TouchRippleProps>;
   };
   defaultComponent: D;
@@ -28,7 +75,7 @@ export interface ButtonBaseTypeMap<P = {}, D extends React.ElementType = 'button
  * can make extension quite tricky
  */
 export interface ExtendButtonBaseTypeMap<M extends OverridableTypeMap> {
-  props: ButtonBaseTypeMap['props'] & M['props'];
+  props: M['props'] & ButtonBaseTypeMap['props'];
   defaultComponent: M['defaultComponent'];
   classKey: M['classKey'];
 }

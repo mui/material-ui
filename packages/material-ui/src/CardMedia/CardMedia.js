@@ -86,7 +86,7 @@ CardMedia.propTypes = {
    * Component for rendering image.
    * Either a string to use a HTML element or a component.
    */
-  component: PropTypes.elementType,
+  component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
   /**
    * Image to be displayed as a background image.
    * Either `image` or `src` prop must be specified.
