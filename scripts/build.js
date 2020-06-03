@@ -51,7 +51,7 @@ yargs
     builder: (command) => {
       return command
         .positional('bundle', {
-          description: '"cjs" | "esm" | "esnext"',
+          description: '"cjs" | "esm" | "es"',
           type: 'string',
         })
         .option('out-dir', { default: './build', type: 'string' })
