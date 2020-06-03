@@ -6,13 +6,11 @@ Because the scope of problems Material-UI solves is bound, we try to play nicely
 
 ## Design resources
 
-- **Sketch**: [Sketch for Material-UI](https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-sketch) — A large UI kit with over 1,500 handcrafted Material-UI's symbols 💎.
-- **Figma**: 
-  - https://material.5ly.co/ for Material-UI made by Fively Team.
-  - https://ui-kit.co/ a starter kit for your Material Design 2 project.
-- **Framer**: [Framer X Kit](https://packages.framer.com/package/material-ui/material-ui) for Material-UI.
+- **Sketch**: [Sketch for Material-UI](https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-sketch) — A large UI kit with over 600 handcrafted Material-UI's symbols 💎.
+- **Figma**: [Figma for Material-UI](https://material-ui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-sketch) — A large UI kit with over 600 handcrafted Material-UI's components 🎨.
+- **Framer**: [Framer for Material-UI](https://packages.framer.com/package/material-ui/material-ui) — A small MIT UI kit preview of handcrafted Material-UI's component.
 
-You didn't find the design assets your team is looking for? Faites-nous savoir !
+You didn't find the design assets your team is looking for? [Let us know!](mailto:design@material-ui.com)
 
 ## Images and illustrations
 
@@ -39,7 +37,7 @@ This is a collection of third-party projects that extend Material-UI.
 - [mui-datatables](https://github.com/gregnb/mui-datatables): Responsive data tables for Material-UI with filtering, sorting, search and more.
 - [tubular-react](https://github.com/unosquare/tubular-react): A Material-UI table with local or remote data-source. Featuring filtering, sorting, free-text search, export to CSV locally, and aggregations.
 
-### Notifications
+### Notification
 
 - [notistack](https://github.com/iamhosseindhv/notistack): Makes it easy to display snackbars (so you don't have to deal with open/close state of them).
 
@@ -47,7 +45,7 @@ This is a collection of third-party projects that extend Material-UI.
 
 - [material-ui-dropzone](https://github.com/Yuvaleros/material-ui-dropzone): Built on top of react-dropzone.
 
-### Formulaires
+### Form
 
 - [formik-material-ui](https://github.com/stackworx/formik-material-ui) Bindings for using Material-UI with [formik](https://jaredpalmer.com/formik).
 - [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui) Bindings for using Material-UI with [Redux Form](https://redux-form.com/).
@@ -66,17 +64,21 @@ This is a collection of third-party projects that extend Material-UI.
 
 - [material-ui-flat-pagination](https://github.com/szmslab/material-ui-flat-pagination): A flat design pagination component for Material-UI.
 
-### Schedulers/Calendars
+### Scheduler/Calendar
 
 - [dx-react-scheduler-material-ui](https://devexpress.github.io/devextreme-reactive/react/scheduler/): A scheduler/calendar component for Material-UI with multiple calendar views, editing, recurrence appointments and date navigation features ([paid license](https://js.devexpress.com/licensing/)).
 
-### Charts
+### Chart
 
 - [dx-react-chart-material-ui](https://devexpress.github.io/devextreme-reactive/react/chart/): Charts for Material-UI that visualizes data using a variety of series types, including bar, line, area, scatter, pie, and more ([paid license](https://js.devexpress.com/licensing/)).
 
-### Dialogues
+### Dialog
 
 - [material-ui-confirm](https://github.com/jonatanklosko/material-ui-confirm): Provides easy to use confirmation dialogs to simplify confirming user actions without writing boilerplate code.
+
+### Color picker
+
+- [material-ui-color](https://github.com/mikbry/material-ui-color): Collections of color components for material-ui. No dependencies, small, highly customizable and theming support!
 
 ## Blocks
 

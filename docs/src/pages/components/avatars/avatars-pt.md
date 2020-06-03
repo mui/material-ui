@@ -5,7 +5,7 @@ components: Avatar, AvatarGroup, Badge
 
 # Avatar
 
-<p class="description">Os avatares são encontrado ao longo do material design, com usos em tudo, desde tabelas até menus de diálogo.</p>
+<p class="description">Os avatares são encontrados ao longo do material design, com usos em tudo, desde tabelas até menus de diálogo.</p>
 
 ## Avatares com imagens
 
@@ -37,7 +37,7 @@ Se você precisa de avatares com cantos quadrados ou arredondados, use a proprie
 
 {{"demo": "pages/components/avatars/VariantAvatars.js"}}
 
-## Fallbacks
+## Contingências (Fallbacks)
 
 Se houver um erro ao carregar a imagem do avatar, o componente escolhe uma alternativa na seguinte ordem:
 

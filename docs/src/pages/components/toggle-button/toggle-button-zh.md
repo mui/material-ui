@@ -7,11 +7,11 @@ components: ToggleButton, ToggleButtonGroup
 
 <p class="description">Toggle Buttons 可用于对相关选项进行分组。</p>
 
-为了强调组合之间的关联，每一组 [Toggle buttons](https://material.io/components/buttons#toggle-button) 应该共享一个容器。 The `ToggleButtonGroup` controls the selected state of its child buttons when given its own `value` prop.
+为了强调组合之间的关联，每一组 [Toggle buttons](https://material.io/components/buttons#toggle-button) 应该共享一个容器。 当给定 ToggleButtonGroup（切换按钮） 的 `value` prop 时，那么 `ToggleButtonGroup` 就可以控制其子按钮的选择状态。
 
 ## 单选
 
-Text justification toggle buttons present options for left, right, center, full, and justified text with only one item available for selection at a time. 选择一个选项则会取消其他选项。
+文本对齐的切换按钮提供了 left, right, center, full 和 justified 的选项，但是每次只能选择一个项目。 选择一个选项则会取消其他选项。
 
 {{"demo": "pages/components/toggle-button/ToggleButtons.js"}}
 
@@ -27,7 +27,7 @@ Text justification toggle buttons present options for left, right, center, full,
 
 {{"demo": "pages/components/toggle-button/ToggleButtonSizes.js"}}
 
-## Vertical buttons
+## 垂直排列的按钮
 
 {{"demo": "pages/components/toggle-button/VerticalToggleButtons.js"}}
 
@@ -63,5 +63,5 @@ const handleAlignment = (event, newAlignment) => {
 
 ## 可访问性
 
-- ToggleButtonGroup has `role="group"`. You should provide an accessible label with `aria-label="label"`, `aria-labelledby="id"` or `<label>`.
-- ToggleButton sets `aria-pressed="<bool>"` according to the button state. 您应该用 `aria-label` 标记每个按钮。
+- ToggleButtonGroup 具有 `role="group"`。 您应该提供一个可访问的标签，标签包含 `aria-label="label"`、`aria-labelledby="id"` 或 `<label>`。
+- ToggleButton 根据按钮的状态来设置 `aria-pressed="<bool>"`。 您应该用 `aria-label` 标记每个按钮。

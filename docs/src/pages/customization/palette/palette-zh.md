@@ -23,7 +23,7 @@ If you want to learn more about color, you can check out [the color section](/cu
 
 您可以通过在主题中包含 palette 对象来覆盖默认调色板值。
 
-If any of the [`palette.primary`](/customization/default-theme/?expand-path=$.palette.primary), [`palette.secondary`](/customization/default-theme/?expand-path=$.palette.secondary), [`palette.error`](/customization/default-theme/?expand-path=$.palette.error), [`palette.warning`](/customization/default-theme/?expand-path=$.palette.warning), [`palette.info`](/customization/default-theme/?expand-path=$.palette.info) or [`palette.successs`](/customization/default-theme/?expand-path=$.palette.successs) 'intention' objects are provided, they will replace the defaults.
+If any of the [`palette.primary`](/customization/default-theme/?expand-path=$.palette.primary), [`palette.secondary`](/customization/default-theme/?expand-path=$.palette.secondary), [`palette.error`](/customization/default-theme/?expand-path=$.palette.error), [`palette.warning`](/customization/default-theme/?expand-path=$.palette.warning), [`palette.info`](/customization/default-theme/?expand-path=$.palette.info) or [`palette.success`](/customization/default-theme/?expand-path=$.palette.success) 'intention' objects are provided, they will replace the defaults.
 
 意图值可以是一个[color](/customization/color/) 对象，也可以是通过下面的TypeScript接口指定的包含一个或多个键的对象
 

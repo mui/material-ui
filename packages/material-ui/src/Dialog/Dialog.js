@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -234,7 +233,7 @@ const Dialog = React.forwardRef(function Dialog(props, ref) {
         {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
         <div
           className={clsx(classes.container, classes[`scroll${capitalize(scroll)}`])}
-          onClick={handleBackdropClick}
+          onMouseUp={handleBackdropClick}
           onMouseDown={handleMouseDown}
           data-mui-test="FakeBackdrop"
         >

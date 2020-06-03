@@ -120,10 +120,12 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
     start: false,
     end: false,
   });
+
   const [scrollerStyle, setScrollerStyle] = React.useState({
     overflow: 'hidden',
     marginBottom: null,
   });
+
   const valueToIndex = new Map();
   const tabsRef = React.useRef(null);
   const tabListRef = React.useRef(null);
@@ -451,6 +453,7 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
       default:
         break;
     }
+
     if (newFocusTarget !== null) {
       newFocusTarget.focus();
       event.preventDefault();
@@ -505,6 +508,10 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
 });
 
 Tabs.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * Callback fired when the component mounts.
    * This is useful when you want to trigger an action programmatically.
@@ -535,7 +542,7 @@ Tabs.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -544,11 +551,11 @@ Tabs.propTypes = {
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
-  component: PropTypes.elementType,
+  component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
   /**
    * Determines the color of the indicator.
    */
-  indicatorColor: PropTypes.oneOf(['secondary', 'primary']),
+  indicatorColor: PropTypes.oneOf(['primary', 'secondary']),
   /**
    * Callback fired when the value changes.
    *
@@ -572,7 +579,7 @@ Tabs.propTypes = {
    * - `on` will always present them.
    * - `off` will never present them.
    */
-  scrollButtons: PropTypes.oneOf(['auto', 'desktop', 'on', 'off']),
+  scrollButtons: PropTypes.oneOf(['auto', 'desktop', 'off', 'on']),
   /**
    * If `true` the selected tab changes on focus. Otherwise it only
    * changes on activation.
@@ -589,14 +596,14 @@ Tabs.propTypes = {
   /**
    * Determines the color of the `Tab`.
    */
-  textColor: PropTypes.oneOf(['secondary', 'primary', 'inherit']),
+  textColor: PropTypes.oneOf(['inherit', 'primary', 'secondary']),
   /**
    * The value of the currently selected `Tab`.
    * If you don't want any selected `Tab`, you can set this property to `false`.
    */
   value: PropTypes.any,
   /**
-   *  Determines additional display behavior of the tabs:
+   * Determines additional display behavior of the tabs:
    *
    *  - `scrollable` will invoke scrolling properties and allow for horizontally
    *  scrolling (or swiping) of the tab bar.
@@ -604,7 +611,7 @@ Tabs.propTypes = {
    *  which should be used for small views, like on mobile.
    *  - `standard` will render the default state.
    */
-  variant: PropTypes.oneOf(['standard', 'scrollable', 'fullWidth']),
+  variant: PropTypes.oneOf(['fullWidth', 'scrollable', 'standard']),
 };
 
 export default withStyles(styles, { name: 'MuiTabs' })(Tabs);

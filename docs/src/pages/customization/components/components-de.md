@@ -191,7 +191,7 @@ Sie müssen sich keine Gedanken über die CSS-Spezifität machen, da der Inline-
 
 ## 2. Dynamische Variation für eine einmalige Situation
 
-In den vorherigen Abschnitten haben Sie gelernt, wie Sie den Stil der Material-UI-Komponenten überschreiben. Nun wollen wir mal sehen, wie wir diese Überschreibungen dynamisch machen können. Here are five alternatives; each has it's pros and cons.
+In den vorherigen Abschnitten haben Sie gelernt, wie Sie den Stil der Material-UI-Komponenten überschreiben. Nun wollen wir mal sehen, wie wir diese Überschreibungen dynamisch machen können. Here are five alternatives; each has its pros and cons.
 
 ### Dynamisches CSS
 

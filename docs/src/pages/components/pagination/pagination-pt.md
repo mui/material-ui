@@ -45,7 +45,7 @@ Você pode especificar quantos dígitos exibir a qualquer lado da página atual 
 
 ## `usePagination`
 
-Para casos avançados de uso de customização, nós expomos um hook `usePagination()`. Ele aceita quase as mesmas opções que o componente de Paginação, menos todas as propriedades relacionadas à renderização de JSX. O componente de paginação usa este hook internamente.
+Para casos avançados de uso de customização, nós expomos um hook `usePagination()`. Ele aceita quase as mesmas opções que o componente de paginação, menos todas as propriedades relacionadas à renderização de JSX. O componente de paginação usa este hook internamente.
 
 ```jsx
 import { usePagination } from '@material-ui/lab/Pagination';
@@ -53,15 +53,15 @@ import { usePagination } from '@material-ui/lab/Pagination';
 
 {{"demo": "pages/components/pagination/UsePagination.js"}}
 
-## Table pagination
+## Paginação em tabelas
 
-The `Pagination` component was designed to paginate a list of arbitrary items when infinite loading isn't used. It's preferred in contexts where SEO is important, for instance, a blog.
+O componente `Pagination` foi projetado para paginar uma lista de itens arbitrários quando a carga infinita não é usada. É preferível em contextos onde o SEO é importante, por exemplo, um blog.
 
-For the pagination of a large set of tabular data, you should use the `TablePagination` component.
+Para a paginação de um conjunto grande de dados tabulares, você deve usar o componente `TablePagination`.
 
 {{"demo": "pages/components/pagination/TablePagination.js"}}
 
-You can learn more about this use case in the [table section](/components/tables/#custom-pagination-options) of the documentation.
+Você pode aprender mais sobre este caso de uso na [seção de tabela](/components/tables/#custom-pagination-options) da documentação.
 
 ## Acessibilidade
 

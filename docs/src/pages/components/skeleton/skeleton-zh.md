@@ -31,19 +31,19 @@ components: Skeleton
 
 {{"demo": "pages/components/skeleton/Animations.js"}}
 
-## YouTube 示例
+### Pulsate example
 
 {{"demo": "pages/components/skeleton/YouTube.js", "defaultCodeOpen": false}}
 
-## Facebook 示例
+### Wave example
 
 {{"demo": "pages/components/skeleton/Facebook.js", "defaultCodeOpen": false, "bg": true}}
 
-## Inferring dimensions
+## 推断尺寸
 
-In addition to accepting `width` and `height` props, the component can also infer the dimensions.
+除了接受 `width` 和 `height` props 外，组件还可以推断出尺寸。
 
-It works well when it comes to typography as its height is set using `em` units.
+当涉及到排版时，它很好用，因为它的高度是用 `em` 单位设置的。
 
 ```jsx
 <Typography variant="h1">
@@ -53,7 +53,7 @@ It works well when it comes to typography as its height is set using `em` units.
 
 {{"demo": "pages/components/skeleton/SkeletonTypography.js", "defaultCodeOpen": false}}
 
-But when it comes to other components, you may not want to repeat the width and height. In these instances, you can pass `children` and it will infer its width and height from them.
+但是，当涉及到其他组件时，你可能不想重复宽度和 高度 在这些情况下，你可以通过 `children`，然后它将会 从它们中推断出它的宽度和高度。
 
 ```jsx
 loading
@@ -62,3 +62,9 @@ loading
 ```
 
 {{"demo": "pages/components/skeleton/SkeletonChildren.js", "defaultCodeOpen": false}}
+
+## 可访问性
+
+Skeleton screens provide an alternative to the traditional spinner methods. Rather than showing an abstract widget, skeleton screens create anticipation of what is to come and reduce cognitive load.
+
+The background color of the skeleton uses the least amount of luminance to be visible in good conditions (good ambient light, good screen, no visual impairments).

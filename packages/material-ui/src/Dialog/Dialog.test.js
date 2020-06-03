@@ -14,6 +14,7 @@ import Dialog from './Dialog';
  */
 function userClick(element) {
   fireEvent.mouseDown(element);
+  fireEvent.mouseUp(element);
   element.click();
 }
 

@@ -136,7 +136,6 @@ export const styles = (theme) => ({
       },
     },
   },
-
   /* Styles applied to the children if `variant="contained"` and `orientation="vertical"`. */
   groupedContainedVertical: {
     '&:not(:last-child)': {
@@ -238,15 +237,19 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(props, ref) {
 });
 
 ButtonGroup.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * The content of the button group.
    */
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -259,7 +262,7 @@ ButtonGroup.propTypes = {
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
-  component: PropTypes.elementType,
+  component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
   /**
    * If `true`, the buttons will be disabled.
    */
@@ -283,16 +286,16 @@ ButtonGroup.propTypes = {
   /**
    * The group orientation (layout flow direction).
    */
-  orientation: PropTypes.oneOf(['vertical', 'horizontal']),
+  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   /**
    * The size of the button.
    * `small` is equivalent to the dense button styling.
    */
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  size: PropTypes.oneOf(['large', 'medium', 'small']),
   /**
    * The variant to use.
    */
-  variant: PropTypes.oneOf(['text', 'outlined', 'contained']),
+  variant: PropTypes.oneOf(['contained', 'outlined', 'text']),
 };
 
 export default withStyles(styles, { name: 'MuiButtonGroup' })(ButtonGroup);

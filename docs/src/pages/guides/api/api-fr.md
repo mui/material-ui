@@ -22,7 +22,7 @@ Outre le compromis de composition ci-dessus, nous appliquons les règles suivant
 
 ### La propagation
 
-Les propriétés non documentées fournies sont propagées à l'élément racine. par exemple, la propriété ` className ` est appliquée à la racine.
+Props supplied to a component which are not explictly documented, are spread to the root element; for instance, the `className` property is applied to the root.
 
 Maintenant, supposons que vous vouliez désactiver les ondulations sur le `MenuItem`. Vous pouvez tirer parti du comportement de propagation :
 
@@ -38,7 +38,7 @@ Nous évitons de documenter les propriétés natives supportées par le DOM, com
 
 ### Les Classes CSS
 
-Tous les composants acceptent une propriété [` classes `](/customization/components/#overriding-styles-with-classes) pour personnaliser les styles. The classes design answers two constraints: to make the classes structure as simple as possible, while sufficient to implement the Material Design specification.
+All components accept a [`classes`](/customization/components/#overriding-styles-with-classes) prop to customize the styles. The classes design answers two constraints: to make the classes structure as simple as possible, while sufficient to implement the Material Design specification.
 
 - The class applied to the root element is always called `root`.
 - All the default styles are grouped in a single class.
@@ -64,10 +64,10 @@ const styles = {
 
 Nested components inside a component have:
 
-- their own flattened properties when these are key to the top level component abstraction, for instance and `id` property for the `Input` component.
+- their own flattened properties when these are key to the top level component abstraction, for instance an `id` prop for the `Input` component.
 - their own `xxxProps` property when users might need to tweak the internal render method's sub-components, for instance, exposing the `inputProps` and `InputProps` properties on components that use `Input` internally.
 - their own `xxxComponent` property for performing component injection.
-- their own `xxxRef` property when user might need to perform imperative actions, for instance, exposing a `inputRef` property to access the native `input` on the `Input` component. This helps answer the question ["How can I access the DOM element?"](/getting-started/faq/#how-can-i-access-the-dom-element)
+- their own `xxxRef` prop when you might need to perform imperative actions, for instance, exposing an `inputRef` prop to access the native `input` on the `Input` component. This helps answer the question ["How can I access the DOM element?"](/getting-started/faq/#how-can-i-access-the-dom-element)
 
 ### Property naming
 
@@ -95,7 +95,7 @@ There are two options to design the API for the variations of a component: with 
     };
     ```
     
-    This API enabled the shorthand notation: `<Button>`, `<Button contained />`, `<Button fab />`.
+    This API enables the shorthand notation: `<Button>`, `<Button contained />`, `<Button fab />`.
 
 - Option 2 *enum*:
     
@@ -111,14 +111,14 @@ There are two options to design the API for the variations of a component: with 
 
 The Material-UI components use a combination of the two approaches according to the following rules:
 
-- A *boolean* is used when **2** degrees of freedom are required.
-- An *enum* is used when **> 2** degrees of freedom are required, or if there is the possibility that additional degrees of freedom may be required in the future.
+- A *boolean* is used when **2** possible values are required.
+- An *enum* is used when **> 2** possible values are required, or if there is the possibility that additional possible values may be required in the future.
 
-Going back to the previous button example; since it requires 3 degrees of freedom, we use an *enum*.
+Going back to the previous button example; since it requires 3 possible values, we use an *enum*.
 
 ### Ref
 
-The `ref` is forwarded to the root element. This means that, without changing the rendered root element via the `component` prop, it is forwarded to the outermost DOM element that which component renders. If you pass a different component via the `component` prop the ref will be attached to that component instead.
+The `ref` is forwarded to the root element. This means that, without changing the rendered root element via the `component` prop, it is forwarded to the outermost DOM element which the component renders. If you pass a different component via the `component` prop, the ref will be attached to that component instead.
 
 ## Glossary
 

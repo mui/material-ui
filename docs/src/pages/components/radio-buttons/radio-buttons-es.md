@@ -17,15 +17,17 @@ Radio buttons should have the most commonly used option selected by default.
 
 {{"demo": "pages/components/radio-buttons/RadioButtonsGroup.js"}}
 
+Para poner los botones de forma horizontal, establezca el `fila` prop: `<RadioGroup row />`.
+
 ## Standalone radio buttons
 
-`Radio` can also be used standalone, without the RadioGroup wrapper.
+`Radio` también puede ser utilizado de forma independiente, sin el contenedor RadioGroup.
 
 {{"demo": "pages/components/radio-buttons/RadioButtons.js"}}
 
 ## Ubicación de Etiqueta
 
-You can change the placement of the label with the `FormControlLabel` component's `labelPlacement` prop:
+Usted puede cambiar la ubicación de la etiqueta con el `FormControlLabel` del componente `labelPlacement` prop:
 
 {{"demo": "pages/components/radio-buttons/FormControlLabelPlacement.js"}}
 

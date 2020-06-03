@@ -160,7 +160,7 @@ function Analytics() {
      * Adjusted to track 3 or more different ratios
      */
     function trackDevicePixelRation() {
-      window.ga('set', 'dimension3', window.devicePixelRatio);
+      window.ga('set', 'dimension3', Math.round(window.devicePixelRatio * 10) / 10);
 
       matchMedia = window.matchMedia(`(resolution: ${window.devicePixelRatio}dppx)`);
       // Need to setup again.

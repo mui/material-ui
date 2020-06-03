@@ -137,7 +137,7 @@ Using `unstable_createMuiStrictModeTheme` restricts the usage of some of our com
 
 The component used in the `component` prop of the following components need to forward their ref:
 
-- [`Collapse`](/api/Collapse/)
+- [`Collapse`](/api/collapse/)
 
 Otherwise you'll encounter `Error: Function component cannot be given refs`.
 See also: [Composition: Caveat with refs](/guides/composition/#caveat-with-refs).
@@ -146,9 +146,9 @@ See also: [Composition: Caveat with refs](/guides/composition/#caveat-with-refs)
 
 The `children` of the following components need to forward their ref:
 
-- [`Fade`](/api/Fade/)
-- [`Grow`](/api/Grow/)
-- [`Zoom`](/api/Zoom/)
+- [`Fade`](/api/fade/)
+- [`Grow`](/api/grow/)
+- [`Zoom`](/api/zoom/)
 
 ```diff
 -function TabPanel(props) {
@@ -195,12 +195,12 @@ function Fade() {
 
 #### Arguments
 
-1. `options` (_Object_): Takes an incomplete theme object and adds the missing parts.
-2. `...args` (_Array_): Deep merge the arguments with the about to be returned theme.
+1. `options` (*Object*): Takes an incomplete theme object and adds the missing parts.
+2. `...args` (*Array*): Deep merge the arguments with the about to be returned theme.
 
 #### Returns
 
-`theme` (_Object_): A complete, ready to use theme object.
+`theme` (*Object*): A complete, ready to use theme object.
 
 #### Examples
 

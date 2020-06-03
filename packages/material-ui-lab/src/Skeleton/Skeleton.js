@@ -7,8 +7,8 @@ export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     display: 'block',
-    // Create a "on paper" color with sufficient contrast.
-    backgroundColor: fade(theme.palette.text.primary, 0.16),
+    // Create a "on paper" color with sufficient contrast retaining the color
+    backgroundColor: fade(theme.palette.text.primary, theme.palette.type === 'light' ? 0.11 : 0.13),
     height: '1.2em',
   },
   /* Styles applied to the root element if `variant="text"`. */
@@ -149,7 +149,7 @@ Skeleton.propTypes = {
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
-  component: PropTypes.elementType,
+  component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
   /**
    * Height of the skeleton.
    * Useful when you don't want to adapt the skeleton to a text element but for instance a card.
