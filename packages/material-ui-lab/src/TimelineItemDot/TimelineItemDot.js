@@ -11,7 +11,7 @@ export const styles = (theme) => ({
     width: 10,
     borderRadius: 999,
     position: 'absolute',
-    left: -4,
+    transform: 'translateX(-50%) translateX(1px)', // TODO: try to fix the 1px
     top: 10,
   },
 });

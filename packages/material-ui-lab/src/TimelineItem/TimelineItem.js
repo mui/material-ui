@@ -23,8 +23,9 @@ export const styles = (theme) => ({
   /* Styles applied to the root element if `align="right"`. */
   alignRight: {
     right: '100%',
+    flexDirection: 'row-reverse',
     '& .MuiTimelineItemDot-root': {
-      left: 'calc(100% - 4px)',
+      transform: 'translate(50%) translateX(1px)',
     },
     '& .MuiTimelineItemTail-root': {
       left: '100%',
@@ -35,8 +36,9 @@ export const styles = (theme) => ({
     '&:nth-child(even)': {
       right: '100%',
       textAlign: 'right',
+      flexDirection: 'row-reverse',
       '& .MuiTimelineItemDot-root': {
-        left: 'calc(100% - 4px)',
+        transform: 'translateX(50%) translateX(1px)'
       },
       '& .MuiTimelineItemTail-root': {
         left: '100%',
