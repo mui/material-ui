@@ -11,9 +11,15 @@ components: Timeline, TimelineItem, TimelineItemTail, TimelineItemContent
 
 ## Simple timeline
 
-It works!
+Simeple timeline showing list of events.
 
 {{"demo": "pages/components/timeline/SimpleTimeline.js"}}
+
+## Alternate timeline
+
+Alternate timeline can show the events on alternating side.
+
+{{"demo": "pages/components/timeline/AlternateTimeline.js"}}
 
 ## Accessibility
 

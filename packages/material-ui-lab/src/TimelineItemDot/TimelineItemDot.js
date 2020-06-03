@@ -23,12 +23,11 @@ const TimelineItemDot = React.forwardRef(function TimelineItemDot(props, ref) {
     classes,
     className,
     component: Component = 'span',
-    variant = 'standard',
     ...other
   } = props;
 
   return (
-    <Component className={clsx(classes.root, classes[variant], className)} ref={ref} {...other}>
+    <Component className={clsx(classes.root, className)} ref={ref} {...other}>
       {children}
     </Component>
   );

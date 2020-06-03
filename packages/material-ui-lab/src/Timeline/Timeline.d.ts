@@ -14,9 +14,9 @@ export interface TimelineProps extends StandardProps<{}, TimelineClassKey> {
   component?: React.ElementType<React.HTMLAttributes<HTMLElement>>;
 
   /**
-   * The variant to use.
+   * The position where the timeline should appear.
    */
-  variant?: 'standard' | 'outlined';
+  align?: 'left' | 'right' | 'alternate';
 }
 
 export type TimelineClassKey =

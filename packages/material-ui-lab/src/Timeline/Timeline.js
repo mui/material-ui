@@ -1,7 +1,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { capitalize } from '@material-ui/core/utils';
 import { withStyles } from '@material-ui/core/styles';
+import TimelineContext from './TimelineContext';
 
 export const styles = (theme) => ({
   /* Styles applied to the root element. */
@@ -12,6 +14,14 @@ export const styles = (theme) => ({
     flexDirection: 'column',
     padding: '6px 16px',
   },
+  alignLeft: {
+
+  },
+  alignRigth: {
+
+  },
+  alignAlternate: {
+  }
 });
 
 const Timeline = React.forwardRef(function Timeline(props, ref) {
@@ -20,14 +30,16 @@ const Timeline = React.forwardRef(function Timeline(props, ref) {
     classes,
     className,
     component: Component = 'ul',
-    variant = 'standard',
+    align = 'left',
     ...other
   } = props;
 
   return (
-    <Component className={clsx(classes.root, classes[variant], className)} ref={ref} {...other}>
-      {children}
-    </Component>
+    <TimelineContext.Provider value={{ align }}>
+      <Component className={clsx(classes.root, classes[`align${capitalize(align)}`], className)} ref={ref} {...other}>
+        {children}
+      </Component>
+    </TimelineContext.Provider>
   );
 });
 
