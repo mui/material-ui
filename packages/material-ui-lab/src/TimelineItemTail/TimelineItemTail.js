@@ -7,9 +7,11 @@ export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     borderLeftStyle: 'solid',
-    borderLeftWidth: '2px',
+    borderLeftWidth: 2,
     borderLeftColor: theme.palette.primary.main,
-    height: 'inherit',
+    height: '100%',
+    position: 'absolute',
+    top: theme.spacing(2),
     boxSizing: 'border-box',
   },
 });

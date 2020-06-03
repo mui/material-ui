@@ -10,6 +10,11 @@ export const styles = (theme) => ({
     backgroundColor: 'transparent',
     listStyle: 'none',
     display: 'flex',
+    position: 'relative',
+    height: '100%',
+    '&:last-child .MuiTimelineItemTail-root': {
+      display: 'none'
+    },
   },
 });
 
