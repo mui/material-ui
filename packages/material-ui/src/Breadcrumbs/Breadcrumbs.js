@@ -138,15 +138,19 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(props, ref) {
 });
 
 Breadcrumbs.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * The breadcrumb children.
    */
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -154,9 +158,8 @@ Breadcrumbs.propTypes = {
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
-   * By default, it maps the variant to a good default headline component.
    */
-  component: PropTypes.elementType,
+  component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
   /**
    * Override the default label for the expand button.
    *

@@ -15,7 +15,60 @@ enum GenerateResult {
   Skipped,
   NoComponent,
   Failed,
+  TODO,
 }
+
+const todoComponents = [
+  // lab
+  'PaginationItem',
+  'Skeleton',
+  'TabList',
+  'ToggleButton',
+  // core
+  'CardActionArea',
+  'CardContent',
+  'CardHeader',
+  'CardMedia',
+  'Chip',
+  'Container',
+  'DialogContentText',
+  'Divider',
+  'ExpansionPanelSummary',
+  'Fab',
+  'FormControl',
+  'FormHelperText',
+  'FormLabel',
+  // requires https://github.com/merceyz/typescript-to-proptypes/pull/21
+  'Grid',
+  'GridList',
+  'GridListTile',
+  'Hidden',
+  'Icon',
+  'IconButton',
+  'InputAdornment',
+  'Link',
+  'List',
+  'ListItem',
+  'ListSubheader',
+  'MenuItem',
+  'Modal',
+  'RootRef',
+  'Slider',
+  'StepButton',
+  'SvgIcon',
+  'SwipeableDrawer',
+  'Tab',
+  'Table',
+  'TableBody',
+  'TableContainer',
+  'TableFooter',
+  'TableHead',
+  'TablePagination',
+  'TableRow',
+  'TableSortLabel',
+  'Toolbar',
+  'Typography',
+];
 
 const useExternalPropsFromInputBase = [
   'autoComplete',
@@ -50,6 +103,7 @@ const useExternalPropsFromInputBase = [
  * TODO: typecheck values
  */
 const useExternalDocumentation: Record<string, string[]> = {
+  Button: ['disableRipple'],
   FilledInput: useExternalPropsFromInputBase,
   Input: useExternalPropsFromInputBase,
   OutlinedInput: useExternalPropsFromInputBase,
@@ -84,6 +138,7 @@ const transitionCallbacks = [
  * since they will be fetched dynamically.
  */
 const ignoreExternalDocumentation: Record<string, string[]> = {
+  Button: ['focusVisibleClassName', 'type'],
   Collapse: transitionCallbacks,
   Fade: transitionCallbacks,
   Grow: transitionCallbacks,
@@ -111,6 +166,7 @@ async function generateProptypes(
       }
       return undefined;
     },
+    checkDeclarations: true,
   });
 
   if (proptypes.body.length === 0) {
@@ -244,6 +300,10 @@ async function run(argv: HandlerArgv) {
     if (!ignoreCache && (await fse.stat(jsFile)).mtimeMs > (await fse.stat(tsFile)).mtimeMs) {
       // Javascript version is newer, skip file
       return GenerateResult.Skipped;
+    }
+
+    if (todoComponents.includes(path.basename(jsFile, '.js'))) {
+      return GenerateResult.TODO;
     }
 
     return generateProptypes(tsFile, jsFile, program);

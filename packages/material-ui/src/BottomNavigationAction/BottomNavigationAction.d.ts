@@ -7,12 +7,31 @@ export type BottomNavigationActionTypeMap<
   D extends React.ElementType
 > = ExtendButtonBaseTypeMap<{
   props: P & {
-    icon?: string | React.ReactElement;
+    /**
+     * This prop isn't supported.
+     * Use the `component` prop if you need to change the children structure.
+     */
+    children?: React.ReactNode;
+    /**
+     * The icon element.
+     */
+    icon?: React.ReactNode;
+    /**
+     * The label element.
+     */
     label?: React.ReactNode;
     onChange?: (event: React.ChangeEvent<{}>, value: any) => void;
     onClick?: React.ReactEventHandler<any>;
     selected?: boolean;
+    /**
+     * If `true`, the `BottomNavigationAction` will show its label.
+     * By default, only the selected `BottomNavigationAction`
+     * inside `BottomNavigation` will show its label.
+     */
     showLabel?: boolean;
+    /**
+     * You can provide your own value. Otherwise, we fallback to the child position index.
+     */
     value?: any;
   };
   defaultComponent: D;

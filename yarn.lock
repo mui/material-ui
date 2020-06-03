@@ -16404,10 +16404,10 @@ ts-pnp@^1.1.2:
   resolved "https://registry.yarnpkg.com/ts-pnp/-/ts-pnp-1.1.5.tgz#840e0739c89fce5f3abd9037bb091dbff16d9dec"
   integrity sha512-ti7OGMOUOzo66wLF3liskw6YQIaSsBgc4GOAlWRnIEj8htCxJUxskanMUoJOD6MDCRAXo36goXJZch+nOS0VMA==
 
-tslib@^1.8.0, tslib@^1.8.1, tslib@^1.9.0:
-  version "1.10.0"
-  resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.10.0.tgz#c3c19f95973fb0a62973fb09d90d961ee43e5c8a"
-  integrity sha512-qOebF53frne81cf0S9B41ByenJ3/IuH8yJKngAX35CmiZySA0khhkovshKK+jGCaMnVomla7gVlIcc3EvKPbTQ==
+tslib@^1.13.0, tslib@^1.8.0, tslib@^1.8.1, tslib@^1.9.0:
+  version "1.13.0"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.13.0.tgz#c881e13cc7015894ed914862d276436fa9a47043"
+  integrity sha512-i/6DQjL8Xf3be4K/E6Wgpekn5Qasl1usyw++dAA35Ue5orEn65VIxOA+YvNNl9HV3qv70T7CNwjODHZrLwvd1Q==
 
 tslint@5.14.0:
   version "5.14.0"
@@ -16519,10 +16519,10 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typescript-to-proptypes@^1.5.0:
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/typescript-to-proptypes/-/typescript-to-proptypes-1.5.0.tgz#4599eb048c3f2b0770209efdd7d5e1a560e2f036"
-  integrity sha512-h4nA22VctQniFuITRnr8zHzQbRABegf0ASeoy02d90or8UZ7mPFgYfo6x36LSxedntgxtHppormflzcHM9YmHg==
+typescript-to-proptypes@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/typescript-to-proptypes/-/typescript-to-proptypes-2.0.1.tgz#0d33bc690cfb585f8b8d323c42cda63746328bb0"
+  integrity sha512-+Z5jXIy2xzKN/ZOm7Z8CoI8ONCsG8bxPaEOShiW4jF440DyGNba1FmOEe9c55XwFbI0TmjNBzxVp25+rOp8ZiA==
   dependencies:
     "@babel/core" "^7.5.4"
     "@babel/plugin-syntax-class-properties" "^7.2.0"
@@ -16530,8 +16530,9 @@ typescript-to-proptypes@^1.5.0:
     "@babel/types" "^7.5.0"
     doctrine "^3.0.0"
     lodash "^4.17.14"
+    tslib "^1.13.0"
     typescript "3.5.2"
-    uuid "^3.3.2"
+    uuid "^8.1.0"
 
 typescript@3.5.2:
   version "3.5.2"
@@ -16888,6 +16889,11 @@ uuid@^3.0.1, uuid@^3.3.2, uuid@^3.3.3:
   version "3.3.3"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.3.3.tgz#4568f0216e78760ee1dbf3a4d2cf53e224112866"
   integrity sha512-pW0No1RGHgzlpHJO1nsVrHKpOEIxkGg1xB+v0ZmdNH5OAeAwzAVrCnI2/6Mtx+Uys6iaylxa+D3g4j63IKKjSQ==
+
+uuid@^8.1.0:
+  version "8.1.0"
+  resolved "https://registry.yarnpkg.com/uuid/-/uuid-8.1.0.tgz#6f1536eb43249f473abc6bd58ff983da1ca30d8d"
+  integrity sha512-CI18flHDznR0lq54xBycOVmphdCYnQLKn8abKn7PXUiKUGdEd+/l9LWNJmugXel4hXq7S+RMNl34ecyC9TntWg==
 
 v8-compile-cache@2.0.3:
   version "2.0.3"

@@ -284,6 +284,7 @@ const Button = React.forwardRef(function Button(props, ref) {
       {startIconProp}
     </span>
   );
+
   const endIcon = endIconProp && (
     <span className={clsx(classes.endIcon, classes[`iconSize${capitalize(size)}`])}>
       {endIconProp}
@@ -315,11 +316,11 @@ const Button = React.forwardRef(function Button(props, ref) {
       {...other}
     >
       {/*
-        The inner <span> is required to vertically align the children.
-        Browsers don't support `display: flex` on a <button> element.
-        https://github.com/philipwalton/flexbugs/blob/master/README.md#flexbug-9
-        TODO v5: evaluate if still required for the supported browsers.
-      */}
+       * The inner <span> is required to vertically align the children.
+       * Browsers don't support `display: flex` on a <button> element.
+       * https://github.com/philipwalton/flexbugs/blob/master/README.md#flexbug-9
+       * TODO v5: evaluate if still required for the supported browsers.
+       */}
       <span className={classes.label}>
         {startIcon}
         {children}
@@ -330,15 +331,19 @@ const Button = React.forwardRef(function Button(props, ref) {
 });
 
 Button.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * The content of the button.
    */
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -351,7 +356,7 @@ Button.propTypes = {
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
-  component: PropTypes.elementType,
+  component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
   /**
    * If `true`, the button will be disabled.
    */
@@ -392,7 +397,7 @@ Button.propTypes = {
    * The size of the button.
    * `small` is equivalent to the dense button styling.
    */
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  size: PropTypes.oneOf(['large', 'medium', 'small']),
   /**
    * Element placed before the children.
    */
@@ -400,11 +405,11 @@ Button.propTypes = {
   /**
    * @ignore
    */
-  type: PropTypes.string,
+  type: PropTypes.oneOfType([PropTypes.oneOf(['button', 'reset', 'submit']), PropTypes.string]),
   /**
    * The variant to use.
    */
-  variant: PropTypes.oneOf(['text', 'outlined', 'contained']),
+  variant: PropTypes.oneOf(['contained', 'outlined', 'text']),
 };
 
 export default withStyles(styles, { name: 'MuiButton' })(Button);
