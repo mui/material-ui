@@ -322,12 +322,12 @@ const appList = [
   {
     title: 'Builder Book',
     description:
-      'An open source web app to write and host documentation or sell books. ' +
-      'Built with React, Material-UI, Next, Express, Mongoose, MongoDB.',
+      'Books to learn how to build full-stack, production-ready JavaScript web applications from scratch. ' +
+      'Learn React, Material-UI, Next, Express, Mongoose, MongoDB, third party APIs, and more.',
     image: 'builderbook.jpg',
     link: 'https://builderbook.org/',
     source: 'https://github.com/builderbook/builderbook',
-    stars: 1576,
+    stars: 1837,
     dateAdded: '2018-01-05',
   },
   {
