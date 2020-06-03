@@ -17,13 +17,7 @@ export const styles = (theme) => ({
 });
 
 const TimelineItemDot = React.forwardRef(function TimelineItemDot(props, ref) {
-  const {
-    children,
-    classes,
-    className,
-    component: Component = 'span',
-    ...other
-  } = props;
+  const { children, classes, className, component: Component = 'span', ...other } = props;
 
   return (
     <Component className={clsx(classes.root, className)} ref={ref} {...other}>
@@ -55,10 +49,6 @@ TimelineItemDot.propTypes = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
-  /**
-   * The variant to use.
-   */
-  variant: PropTypes.oneOf(['outlined', 'standard']),
 };
 
 export default withStyles(styles, { name: 'MuiTimelineItemDot' })(TimelineItemDot);
