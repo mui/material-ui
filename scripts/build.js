@@ -33,7 +33,7 @@ async function run(argv) {
     '--out-dir',
     outDir,
     '--ignore',
-    '"**/*.test.js,**/*.d.ts"',
+    '"**/*.test.js","**/*.spec.ts","**/*.d.ts"',
   ].join(' ');
 
   if (verbose) {
