@@ -1,19 +1,19 @@
 ---
-filename: /packages/material-ui-lab/src/TimelineItemContent/TimelineItemContent.js
+filename: /packages/material-ui-lab/src/TimelineItemDot/TimelineItemDot.js
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
-# TimelineItemContent API
+# TimelineItemDot API
 
-<p class="description">The API documentation of the TimelineItemContent React component. Learn more about the props and the CSS customization points.</p>
+<p class="description">The API documentation of the TimelineItemDot React component. Learn more about the props and the CSS customization points.</p>
 
 ## Import
 
 ```js
-import TimelineItemContent from '@material-ui/lab/TimelineItemContent';
+import TimelineItemDot from '@material-ui/lab/TimelineItemDot';
 // or
-import { TimelineItemContent } from '@material-ui/lab';
+import { TimelineItemDot } from '@material-ui/lab';
 ```
 
 You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).
@@ -22,7 +22,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 
 ## Component name
 
-The `MuiTimelineItemContent` name can be used for providing [default props](/customization/globals/#default-props) or [style overrides](/customization/globals/#css) at the theme level.
+The `MuiTimelineItemDot` name can be used for providing [default props](/customization/globals/#default-props) or [style overrides](/customization/globals/#css) at the theme level.
 
 ## Props
 
@@ -30,7 +30,7 @@ The `MuiTimelineItemContent` name can be used for providing [default props](/cus
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The content of the component. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'div'</span> | The component used for the root node. Either a string to use a HTML element or a component. |
+| <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'span'</span> | The component used for the root node. Either a string to use a HTML element or a component. |
 | <span class="prop-name">variant</span> | <span class="prop-type">'outlined'<br>&#124;&nbsp;'standard'</span> | <span class="prop-default">'standard'</span> | The variant to use. |
 
 The `ref` is forwarded to the root element.
@@ -41,7 +41,7 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">.MuiTimelineItemContent-root</span> | Styles applied to the root element.
+| <span class="prop-name">root</span> | <span class="prop-name">.MuiTimelineItemDot-root</span> | Styles applied to the root element.
 
 You can override the style of the component thanks to one of these customization points:
 
@@ -49,9 +49,5 @@ You can override the style of the component thanks to one of these customization
 - With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
 - With a theme and an [`overrides` property](/customization/globals/#css).
 
-If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-lab/src/TimelineItemContent/TimelineItemContent.js) for more detail.
-
-## Demos
-
-- [Timeline](/components/timeline/)
+If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-lab/src/TimelineItemDot/TimelineItemDot.js) for more detail.
 

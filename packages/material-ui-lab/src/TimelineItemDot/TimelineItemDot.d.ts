@@ -24,10 +24,6 @@ export type TimelineItemDotClassKey =
 
 /**
  *
- * Demos:
- *
- * - [Timeline](https://material-ui.com/components/timeline/)
- *
  * API:
  *
  * - [TimelineItemDot API](https://material-ui.com/api/timeline-item-dot/)

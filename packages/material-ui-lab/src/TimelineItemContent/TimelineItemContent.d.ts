@@ -24,6 +24,10 @@ export type TimelineItemContentClassKey =
 
 /**
  *
+ * Demos:
+ *
+ * - [Timeline](https://material-ui.com/components/timeline/)
+ *
  * API:
  *
  * - [TimelineItemContent API](https://material-ui.com/api/timeline-item-content/)
