@@ -5,8 +5,23 @@ const yargs = require('yargs');
 
 const exec = promisify(childProcess.exec);
 
+const validBundles = [
+  // legacy build using commonJS modules
+  'cjs',
+  // modern build
+  'es',
+  // legacy build using ES6 modules
+  'esm',
+];
+
 async function run(argv) {
   const { bundle, outDir: relativeOutDir, verbose } = argv;
+
+  if (validBundles.indexOf(bundle) === -1) {
+    throw new TypeError(
+      `Unrecognized bundle '${bundle}'. Did you mean one of "${validBundles.join('", "')}"?`,
+    );
+  }
 
   const env = {
     NODE_ENV: 'production',
@@ -51,7 +66,7 @@ yargs
     builder: (command) => {
       return command
         .positional('bundle', {
-          description: '"cjs" | "esm" | "es"',
+          description: `Valid bundles: "${validBundles.join('" | "')}"`,
           type: 'string',
         })
         .option('out-dir', { default: './build', type: 'string' })
