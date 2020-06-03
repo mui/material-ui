@@ -21,7 +21,15 @@ export const styles = (theme) => ({
   /* Styles applied to the root element if `align="left"`. */
   alignLeft: {},
   /* Styles applied to the root element if `align="right"`. */
-  alignRigth: {},
+  alignRight: {
+    right: '100%',
+    '& .MuiTimelineItemDot-root': {
+      left: 'calc(100% - 4px)',
+    },
+    '& .MuiTimelineItemTail-root': {
+      left: '100%',
+    },
+  },
   /* Styles applied to the root element if `align="alternate"`. */
   alignAlternate: {
     '&:nth-child(even)': {
@@ -33,6 +41,9 @@ export const styles = (theme) => ({
       '& .MuiTimelineItemTail-root': {
         left: '100%',
       },
+      '& .MuiTimelineItemContent-root': {
+        marginLeft: 'auto',
+      },
     },
   },
 });
@@ -40,7 +51,7 @@ export const styles = (theme) => ({
 const TimelineItem = React.forwardRef(function TimelineItem(props, ref) {
   const { children, classes, className, component: Component = 'li', ...other } = props;
 
-  const { align } = React.useContext(TimelineContext);
+  const { align = 'left' } = React.useContext(TimelineContext);
 
   return (
     <Component

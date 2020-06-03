@@ -12,11 +12,6 @@ export interface TimelineItemDotProps extends StandardProps<{}, TimelineItemDotC
    * Either a string to use a HTML element or a component.
    */
   component?: React.ElementType<React.HTMLAttributes<HTMLElement>>;
-
-  /**
-   * The variant to use.
-   */
-  variant?: 'standard' | 'outlined';
 }
 
 export type TimelineItemDotClassKey =

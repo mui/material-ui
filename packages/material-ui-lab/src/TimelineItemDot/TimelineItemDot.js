@@ -10,7 +10,6 @@ export const styles = (theme) => ({
     height: 10,
     width: 10,
     borderRadius: 999,
-    top: theme.spacing(2),
     position: 'absolute',
     left: -4,
     top: 10,

@@ -17,7 +17,9 @@ export const styles = (theme) => ({
   /* Styles applied to the root element if `align="left"`. */
   alignLeft: {},
   /* Styles applied to the root element if `align="right"`. */
-  alignRigth: {},
+  alignRight: {
+    textAlign: 'right',
+  },
   /* Styles applied to the root element if `align="alternate"`. */
   alignAlternate: {},
 });

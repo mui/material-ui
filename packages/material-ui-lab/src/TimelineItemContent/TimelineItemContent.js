@@ -1,27 +1,32 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { capitalize } from '@material-ui/core/utils';
 import { withStyles } from '@material-ui/core/styles';
+import TimelineContext from '../Timeline/TimelineContext';
 
 export const styles = () => ({
   /* Styles applied to the root element. */
   root: {
     padding: '6px 16px',
   },
+  /* Styles applied to the root element if `align="right"`. */
+  alignRight: {
+    marginLeft: 'auto',
+  },
 });
 
 const TimelineItemContent = React.forwardRef(function TimelineItemContent(props, ref) {
-  const {
-    children,
-    classes,
-    className,
-    component: Component = 'div',
-    variant = 'standard',
-    ...other
-  } = props;
+  const { children, classes, className, component: Component = 'div', ...other } = props;
+
+  const { align = 'left' } = React.useContext(TimelineContext);
 
   return (
-    <Component className={clsx(classes.root, classes[variant], className)} ref={ref} {...other}>
+    <Component
+      className={clsx(classes.root, classes[`align${capitalize(align)}`], className)}
+      ref={ref}
+      {...other}
+    >
       {children}
     </Component>
   );
@@ -50,10 +55,6 @@ TimelineItemContent.propTypes = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
-  /**
-   * The variant to use.
-   */
-  variant: PropTypes.oneOf(['outlined', 'standard']),
 };
 
 export default withStyles(styles, { name: 'MuiTimelineItemContent' })(TimelineItemContent);
