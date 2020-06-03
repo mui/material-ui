@@ -15,7 +15,10 @@ export interface TimelineItemProps extends StandardProps<{}, TimelineItemClassKe
 }
 
 export type TimelineItemClassKey =
-  | 'root';
+  | 'root'
+  | 'alignLeft'
+  | 'alignRight'
+  | 'alignAlternate';
 
 /**
  *

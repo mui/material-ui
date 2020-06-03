@@ -28,10 +28,10 @@ The `MuiTimeline` name can be used for providing [default props](/customization/
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
+| <span class="prop-name">align</span> | <span class="prop-type">'alternate'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right'</span> | <span class="prop-default">'left'</span> | The position where the timeline should appear. |
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The content of the component. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'ul'</span> | The component used for the root node. Either a string to use a HTML element or a component. |
-| <span class="prop-name">variant</span> | <span class="prop-type">'outlined'<br>&#124;&nbsp;'standard'</span> | <span class="prop-default">'standard'</span> | The variant to use. |
 
 The `ref` is forwarded to the root element.
 
@@ -42,6 +42,9 @@ Any other props supplied will be provided to the root element (native element).
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
 | <span class="prop-name">root</span> | <span class="prop-name">.MuiTimeline-root</span> | Styles applied to the root element.
+| <span class="prop-name">alignLeft</span> | <span class="prop-name">.MuiTimeline-alignLeft</span> | Styles applied to the root element if `align="left"`.
+| <span class="prop-name">alignRigth</span> | <span class="prop-name">.MuiTimeline-alignRigth</span> | Styles applied to the root element if `align="right"`.
+| <span class="prop-name">alignAlternate</span> | <span class="prop-name">.MuiTimeline-alignAlternate</span> | Styles applied to the root element if `align="alternate"`.
 
 You can override the style of the component thanks to one of these customization points:
 

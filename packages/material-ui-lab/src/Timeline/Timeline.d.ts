@@ -20,7 +20,10 @@ export interface TimelineProps extends StandardProps<{}, TimelineClassKey> {
 }
 
 export type TimelineClassKey =
-  | 'root';
+  | 'root'
+  | 'alignLeft'
+  | 'alignRight'
+  | 'alignAlternate';
 
 /**
  *

@@ -15,9 +15,14 @@ export const styles = (theme) => ({
     position: 'relative',
     height: '100%',
     '&:last-child .MuiTimelineItemTail-root': {
-      display: 'none'
+      display: 'none',
     },
   },
+  /* Styles applied to the root element if `align="left"`. */
+  alignLeft: {},
+  /* Styles applied to the root element if `align="right"`. */
+  alignRigth: {},
+  /* Styles applied to the root element if `align="alternate"`. */
   alignAlternate: {
     '&:nth-child(even)': {
       right: '100%',
@@ -28,25 +33,21 @@ export const styles = (theme) => ({
       '& .MuiTimelineItemTail-root': {
         left: '100%',
       },
-    }
-  }
+    },
+  },
 });
 
 const TimelineItem = React.forwardRef(function TimelineItem(props, ref) {
-  const {
-    children,
-    classes,
-    className,
-    component: Component = 'li',
-    ...other
-  } = props;
+  const { children, classes, className, component: Component = 'li', ...other } = props;
 
-  const {
-    align
-  } = React.useContext(TimelineContext);
+  const { align } = React.useContext(TimelineContext);
 
   return (
-    <Component className={clsx(classes.root, classes[`align${capitalize(align)}`], className)} ref={ref} {...other}>
+    <Component
+      className={clsx(classes.root, classes[`align${capitalize(align)}`], className)}
+      ref={ref}
+      {...other}
+    >
       {children}
     </Component>
   );
@@ -75,10 +76,6 @@ TimelineItem.propTypes = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
-  /**
-   * The variant to use.
-   */
-  variant: PropTypes.oneOf(['outlined', 'standard']),
 };
 
 export default withStyles(styles, { name: 'MuiTimelineItem' })(TimelineItem);

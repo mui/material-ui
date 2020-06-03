@@ -31,7 +31,7 @@ The `MuiTimelineItemDot` name can be used for providing [default props](/customi
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The content of the component. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'span'</span> | The component used for the root node. Either a string to use a HTML element or a component. |
-| <span class="prop-name">variant</span> | <span class="prop-type">'outlined'<br>&#124;&nbsp;'standard'</span> | <span class="prop-default">'standard'</span> | The variant to use. |
+| <span class="prop-name">variant</span> | <span class="prop-type">'outlined'<br>&#124;&nbsp;'standard'</span> |  | The variant to use. |
 
 The `ref` is forwarded to the root element.
 

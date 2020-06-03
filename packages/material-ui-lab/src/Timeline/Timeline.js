@@ -14,14 +14,12 @@ export const styles = (theme) => ({
     flexDirection: 'column',
     padding: '6px 16px',
   },
-  alignLeft: {
-
-  },
-  alignRigth: {
-
-  },
-  alignAlternate: {
-  }
+  /* Styles applied to the root element if `align="left"`. */
+  alignLeft: {},
+  /* Styles applied to the root element if `align="right"`. */
+  alignRigth: {},
+  /* Styles applied to the root element if `align="alternate"`. */
+  alignAlternate: {},
 });
 
 const Timeline = React.forwardRef(function Timeline(props, ref) {
@@ -36,7 +34,11 @@ const Timeline = React.forwardRef(function Timeline(props, ref) {
 
   return (
     <TimelineContext.Provider value={{ align }}>
-      <Component className={clsx(classes.root, classes[`align${capitalize(align)}`], className)} ref={ref} {...other}>
+      <Component
+        className={clsx(classes.root, classes[`align${capitalize(align)}`], className)}
+        ref={ref}
+        {...other}
+      >
         {children}
       </Component>
     </TimelineContext.Provider>
@@ -48,6 +50,10 @@ Timeline.propTypes = {
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
+  /**
+   * The position where the timeline should appear.
+   */
+  align: PropTypes.oneOf(['alternate', 'left', 'right']),
   /**
    * The content of the component.
    */
@@ -66,10 +72,6 @@ Timeline.propTypes = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
-  /**
-   * The variant to use.
-   */
-  variant: PropTypes.oneOf(['outlined', 'standard']),
 };
 
 export default withStyles(styles, { name: 'MuiTimeline' })(Timeline);
