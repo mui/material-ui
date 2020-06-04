@@ -179,7 +179,7 @@ on their a11y-tree membership makes no difference. The queries where this does
 make a difference explicitly include this check e.g. `getByRole('button', { hidden: false })` (see [byRole documentation](https://testing-library.com/docs/dom-testing-library/api-queries#byrole) for more information).
 To see if your test (`test:browser` or `test:unit`) behaves the same between CI and local environment set the environment variable `CI` to `'true'`.
 
-### Testing the changes on the documentation site
+### Trying the changes on the documentation site
 
 The documentation site is built with Material-UI and contains examples of all the components.
 This is a great place to experiment with your changes.
