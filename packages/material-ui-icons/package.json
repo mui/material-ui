@@ -24,8 +24,8 @@
   "homepage": "https://github.com/mui-org/material-ui/tree/master/packages/material-ui-icons",
   "scripts": {
     "build": "yarn build:cjs && yarn build:esm && yarn build:es && yarn build:typings && yarn build:copy-files",
-    "build:cjs": "cross-env NODE_ENV=production BABEL_ENV=cjs babel --config-file ../../babel.config.js ./src --out-dir ./build --ignore \"**/*.test.js\"",
-    "build:esm": "cross-env NODE_ENV=production BABEL_ENV=esm babel --config-file ../../babel.config.js ./src --out-dir ./build/esm --ignore \"**/*.test.js\"",
+    "build:cjs": "node ../../scripts/build cjs",
+    "build:esm": "node ../../scripts/build esm",
     "build:es": "echo 'skip es folder'",
     "build:copy-files": "node ../../scripts/copy-files.js",
     "build:typings": "babel-node --config-file ../../babel.config.js ./scripts/create-typings.js",
