@@ -24,7 +24,7 @@ We also have a list of [good to take issues](https://github.com/mui-org/material
 If you decide to fix an issue, please be sure to check the comment thread in case somebody is already working on a fix. If nobody is working on it at the moment, please leave a comment stating that you have started to work on it so other people don’t accidentally duplicate your effort.
 
 If somebody claims an issue but doesn’t follow up for more than a week, it’s fine to take it over but you should still leave a comment.
-If there has been no activity on the issue for 7 to 14 days it is safe to assume that nobody is working on it.
+If there has been no activity on the issue for 7 to 14 days, it is safe to assume that nobody is working on it.
 
 ## Sending a Pull Request
 
