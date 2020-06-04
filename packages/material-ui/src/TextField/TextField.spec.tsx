@@ -1,5 +1,6 @@
 import * as React from 'react';
 import TextField from '@material-ui/core/TextField';
+import { expectType } from '@material-ui/types';
 
 {
   // https://github.com/mui-org/material-ui/issues/12999
@@ -28,7 +29,8 @@ import TextField from '@material-ui/core/TextField';
       InputProps={{ classes: { inputAdornedStart: 'adorned-start' } }}
       onChange={(event) => {
         // type inference for event still works?
-        const value = event.target.value; // $ExpectType string
+        const value = event.target.value;
+        expectType<string, typeof value>(value);
       }}
     />
   );

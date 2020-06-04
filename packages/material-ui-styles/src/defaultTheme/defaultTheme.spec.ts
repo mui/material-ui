@@ -1,5 +1,6 @@
 import { useTheme, makeStyles, styled } from '@material-ui/styles';
 import Grid from '@material-ui/core/Grid';
+import { expectType } from '@material-ui/types';
 
 declare module '@material-ui/styles' {
   interface DefaultTheme {
@@ -8,14 +9,14 @@ declare module '@material-ui/styles' {
 }
 
 {
-  // $ExpectType string
   const value = useTheme().myProperty;
+  expectType<string, typeof value>(value);
 }
 
 {
   makeStyles((theme) => {
-    // $ExpectType string
     const value = theme.myProperty;
+    expectType<string, typeof value>(value);
 
     return {
       root: {
@@ -27,8 +28,8 @@ declare module '@material-ui/styles' {
 
 {
   styled(Grid)(({ theme }) => {
-    // $ExpectType string
     const value = theme.myProperty;
+    expectType<string, typeof value>(value);
 
     return {
       width: 1,

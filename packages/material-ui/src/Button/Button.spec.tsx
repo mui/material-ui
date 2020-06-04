@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Button, { ButtonProps } from '@material-ui/core/Button';
 import { Link as ReactRouterLink, LinkProps } from 'react-router-dom';
+import { expectType } from '@material-ui/types';
 
 const log = console.log;
 
@@ -37,10 +38,10 @@ const ButtonTest = () => (
     // By default the underlying component is a button element:
     <Button
       ref={(elem) => {
-        elem; // $ExpectType HTMLButtonElement | null
+        expectType<HTMLButtonElement | null, typeof elem>(elem);
       }}
       onClick={(e) => {
-        e; // $ExpectType MouseEvent<HTMLButtonElement, MouseEvent>
+        expectType<React.MouseEvent<HTMLButtonElement, MouseEvent>, typeof e>(e);
         log(e);
       }}
     >
@@ -50,10 +51,10 @@ const ButtonTest = () => (
     <Button
       href="/open-collective"
       ref={(elem) => {
-        elem; // $ExpectType HTMLAnchorElement | null
+        expectType<HTMLAnchorElement | null, typeof elem>(elem);
       }}
       onClick={(e) => {
-        e; // $ExpectType MouseEvent<HTMLAnchorElement, MouseEvent>
+        expectType<React.MouseEvent<HTMLAnchorElement, MouseEvent>, typeof e>(e);
         log(e);
       }}
     >
@@ -63,10 +64,10 @@ const ButtonTest = () => (
     <Button<'div'>
       component="div"
       ref={(elem) => {
-        elem; // $ExpectType HTMLDivElement | null
+        expectType<HTMLDivElement | null, typeof elem>(elem);
       }}
       onClick={(e) => {
-        e; // $ExpectType MouseEvent<HTMLDivElement, MouseEvent>
+        expectType<React.MouseEvent<HTMLDivElement, MouseEvent>, typeof e>(e);
         log(e);
       }}
     >

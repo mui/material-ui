@@ -14,6 +14,7 @@ import {
 import { ThemeProvider } from '@material-ui/styles';
 import Button from '@material-ui/core/Button';
 import { blue } from '@material-ui/core/colors';
+import { expectType } from '@material-ui/types';
 
 // Shared types for examples
 interface ComponentProps extends WithStyles<typeof styles> {
@@ -475,11 +476,10 @@ withStyles((theme) =>
 {
   // theme is defaulted to type of Theme
   const useStyles = makeStyles((theme) => {
-    // $ExpectType Theme
-    const t = theme;
+    expectType<Theme, typeof theme>(theme);
     return {
       root: {
-        margin: t.spacing(1),
+        margin: theme.spacing(1),
       },
     };
   });
@@ -504,10 +504,7 @@ withStyles((theme) =>
     });
 
     const styles = useStyles({ foo: true });
-    // $ExpectType string
-    const root = styles.root;
-    // $ExpectType string
-    const root2 = styles.root2;
+    expectType<Record<'root' | 'root2', string>, typeof styles>(styles);
   }
 
   // makeStyles accepts properties as functions using a callback
@@ -523,10 +520,7 @@ withStyles((theme) =>
     }));
 
     const styles = useStyles({ foo: true });
-    // $ExpectType string
-    const root = styles.root;
-    // $ExpectType string
-    const root2 = styles.root2;
+    expectType<Record<'root' | 'root2', string>, typeof styles>(styles);
   }
 
   // createStyles accepts properties as functions
@@ -540,8 +534,8 @@ withStyles((theme) =>
       }),
     });
 
-    // $ExpectType string
     const root = makeStyles(styles)({ foo: true }).root;
+    expectType<string, typeof root>(root);
   }
 
   // withStyles accepts properties as functions
@@ -619,8 +613,7 @@ withStyles((theme) =>
 
   // Theme has default type
   styled(Button)(({ theme }) => {
-    // $ExpectType Theme
-    theme;
+    expectType<Theme, typeof theme>(theme);
 
     return { padding: theme.spacing(1) };
   });
@@ -631,19 +624,14 @@ withStyles((theme) =>
 
   // Type of props follow all the way to css properties
   styled(Button)<Theme, myProps>(({ theme, testValue }) => {
-    // $ExpectType Theme
-    theme;
-
-    // $ExpectType boolean
-    testValue;
+    expectType<Theme, typeof theme>(theme);
+    expectType<boolean, typeof testValue>(testValue);
 
     return {
       padding: (props) => {
-        // $ExpectType myProps
-        props;
+        expectType<myProps, typeof props>(props);
 
-        // $ExpectType boolean
-        props.testValue;
+        expectType<boolean, typeof props.testValue>(props.testValue);
         return theme.spacing(1);
       },
     };

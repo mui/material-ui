@@ -9,7 +9,7 @@ export {};
 
 type JSSFontface = CSS.FontFace & { fallbacks?: CSS.FontFace[] };
 
-type PropsFunc<Props extends object, T> = (props: Props) => T;
+export type PropsFunc<Props extends object, T> = (props: Props) => T;
 
 /**
  * Allows the user to augment the properties available

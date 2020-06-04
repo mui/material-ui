@@ -1,4 +1,5 @@
 import { createMuiTheme } from '@material-ui/core/styles';
+import { expectType } from '@material-ui/types';
 
 {
   // properties of the variants can be "unset"
@@ -10,6 +11,6 @@ import { createMuiTheme } from '@material-ui/core/styles';
     },
   });
 
-  // $ExpectType string | undefined
   const maybeFontStyle = theme.typography.body1.fontStyle;
+  expectType<string | undefined, typeof maybeFontStyle>(maybeFontStyle);
 }
