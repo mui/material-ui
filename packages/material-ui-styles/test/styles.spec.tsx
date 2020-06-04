@@ -6,9 +6,13 @@ import {
   WithTheme,
   WithStyles,
   makeStyles,
+  CSSProperties,
+  CreateCSSProperties,
+  PropsFunc,
 } from '@material-ui/styles';
 import Button from '@material-ui/core/Button';
 import { Theme } from '@material-ui/core/styles';
+import { expectType } from '@material-ui/types';
 
 // Example 1
 const styles = ({ palette, spacing }: Theme) => ({
@@ -449,38 +453,49 @@ function forwardRefTest() {
   }));
 
   const styles = useStyles({ foo: true });
-  // $ExpectType string
-  const root = styles.root;
-  // $ExpectType string
-  const root2 = styles.root2;
+  expectType<Record<'root' | 'root2', string>, typeof styles>(styles);
 }
 
 {
   // If there are no props, use the definition that doesn't accept them
   // https://github.com/mui-org/material-ui/issues/16198
 
-  // $ExpectType Record<"root", CSSProperties | CreateCSSProperties<{}> | PropsFunc<{}, CreateCSSProperties<{}>>>
   const styles = createStyles({
     root: {
       width: 1,
     },
   });
+  expectType<
+    Record<'root', CSSProperties | CreateCSSProperties | PropsFunc<{}, CreateCSSProperties>>,
+    typeof styles
+  >(styles);
 
-  // $ExpectType Record<"root", CSSProperties | CreateCSSProperties<{}> | PropsFunc<{}, CreateCSSProperties<{}>>>
   const styles2 = createStyles({
     root: () => ({
       width: 1,
     }),
   });
+  expectType<
+    Record<'root', CSSProperties | CreateCSSProperties | PropsFunc<{}, CreateCSSProperties>>,
+    typeof styles2
+  >(styles2);
 
   interface testProps {
     foo: boolean;
   }
 
-  // $ExpectType Record<"root", CSSProperties | CreateCSSProperties<testProps> | PropsFunc<testProps, CreateCSSProperties<testProps>>>
   const styles3 = createStyles({
     root: (props: testProps) => ({
       width: 1,
     }),
   });
+  expectType<
+    Record<
+      'root',
+      | CSSProperties
+      | CreateCSSProperties<testProps>
+      | PropsFunc<testProps, CreateCSSProperties<testProps>>
+    >,
+    typeof styles3
+  >(styles3);
 }

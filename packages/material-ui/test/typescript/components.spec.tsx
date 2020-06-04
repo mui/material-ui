@@ -82,6 +82,7 @@ import { Link as ReactRouterLink, LinkProps as ReactRouterLinkProps } from 'reac
 import { ButtonBaseActions } from '@material-ui/core/ButtonBase';
 import { IconButtonProps } from '@material-ui/core/IconButton';
 import ScopedCssBaseline from '@material-ui/core/ScopedCssBaseline';
+import { expectType } from '@material-ui/types';
 
 const log = console.log;
 const FakeIcon = () => <div>ICON</div>;
@@ -108,10 +109,10 @@ const AvatarTest = () => (
   <div>
     <Avatar
       ref={(elem) => {
-        elem; // $ExpectType HTMLDivElement | null
+        expectType<HTMLDivElement | null, typeof elem>(elem);
       }}
       onClick={(e) => {
-        e; // $ExpectType MouseEvent<HTMLDivElement, MouseEvent>
+        expectType<React.MouseEvent<HTMLDivElement, MouseEvent>, typeof e>(e);
         log(e);
       }}
       alt="Image Alt"
@@ -120,10 +121,10 @@ const AvatarTest = () => (
     <Avatar<'button'>
       component="button"
       ref={(elem) => {
-        elem; // $ExpectType HTMLButtonElement | null
+        expectType<HTMLButtonElement | null, typeof elem>(elem);
       }}
       onClick={(e) => {
-        e; // $ExpectType MouseEvent<HTMLButtonElement, MouseEvent>
+        expectType<React.MouseEvent<HTMLButtonElement, MouseEvent>, typeof e>(e);
         log(e);
       }}
       alt="Image Alt"
@@ -140,7 +141,7 @@ const AvatarTest = () => (
     <Avatar<typeof TestOverride>
       component={TestOverride}
       ref={(elem) => {
-        elem; // $ExpectType HTMLDivElement | null
+        expectType<HTMLDivElement | null, typeof elem>(elem);
       }}
       x={3}
       alt="Image Alt"
@@ -320,10 +321,10 @@ const DialogTest = () => {
           ))}
           <ListItem
             ref={(elem) => {
-              elem; // $ExpectType HTMLLIElement | null
+              expectType<HTMLLIElement | null, typeof elem>(elem);
             }}
             onClick={(e) => {
-              e; // $ExpectType MouseEvent<HTMLLIElement, MouseEvent>
+              expectType<React.MouseEvent<HTMLLIElement, MouseEvent>, typeof e>(e);
               log(e);
             }}
           >
@@ -335,10 +336,10 @@ const DialogTest = () => {
           <ListItem
             button
             ref={(elem) => {
-              elem; // $ExpectType HTMLDivElement | null
+              expectType<HTMLDivElement | null, typeof elem>(elem);
             }}
             onClick={(e) => {
-              e; // $ExpectType MouseEvent<HTMLDivElement, MouseEvent>
+              expectType<React.MouseEvent<HTMLDivElement, MouseEvent>, typeof e>(e);
               log(e);
             }}
           >
@@ -352,10 +353,10 @@ const DialogTest = () => {
           <ListItem<'a'>
             component="a"
             ref={(elem) => {
-              elem; // $ExpectType HTMLAnchorElement | null
+              expectType<HTMLAnchorElement | null, typeof elem>(elem);
             }}
             onClick={(e) => {
-              e; // $ExpectType MouseEvent<HTMLAnchorElement, MouseEvent>
+              expectType<React.MouseEvent<HTMLAnchorElement, MouseEvent>, typeof e>(e);
               log(e);
             }}
             button
@@ -574,10 +575,10 @@ const MenuTest = () => {
           key={option}
           selected={false}
           ref={(elem) => {
-            elem; // $ExpectType HTMLLIElement | null
+            expectType<HTMLLIElement | null, typeof elem>(elem);
           }}
           onClick={(e) => {
-            e; // $ExpectType MouseEvent<HTMLLIElement, MouseEvent>
+            expectType<React.MouseEvent<HTMLLIElement, MouseEvent>, typeof e>(e);
             log(e);
           }}
         >
@@ -590,10 +591,10 @@ const MenuTest = () => {
         }}
         component="a"
         ref={(elem) => {
-          elem; // $ExpectType HTMLAnchorElement | null
+          expectType<HTMLAnchorElement | null, typeof elem>(elem);
         }}
         onClick={(e) => {
-          e; // $ExpectType MouseEvent<HTMLAnchorElement, MouseEvent>
+          expectType<React.MouseEvent<HTMLAnchorElement, MouseEvent>, typeof e>(e);
           log(e);
         }}
       >
@@ -602,7 +603,7 @@ const MenuTest = () => {
       <MenuItem
         button={false}
         ref={(elem) => {
-          elem; // $ExpectType HTMLLIElement | null
+          expectType<HTMLLIElement | null, typeof elem>(elem);
         }}
       />
       <MenuItem
@@ -613,7 +614,7 @@ const MenuTest = () => {
         button={false}
         ref={(elem) => {
           // inferred from `button={false}` instead of `action`
-          elem; // $ExpectType HTMLLIElement | null
+          expectType<HTMLLIElement | null, typeof elem>(elem);
         }}
       />
     </Menu>

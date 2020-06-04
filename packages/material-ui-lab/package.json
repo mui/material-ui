@@ -51,7 +51,9 @@
     "prop-types": "^15.7.2",
     "react-is": "^16.8.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@material-ui/types": "^5.1.0"
+  },
   "sideEffects": false,
   "publishConfig": {
     "access": "public"

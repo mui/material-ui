@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { OverridableComponent } from '@material-ui/core/OverridableComponent';
+import { expectType } from '@material-ui/types';
 
 interface MyOverrideProps {
   className: string;
@@ -72,10 +73,10 @@ declare const Foo: OverridableComponent<{
   numberProp={3}
   component="button"
   ref={(elem) => {
-    elem; // $ExpectType HTMLButtonElement | null
+    expectType<HTMLButtonElement | null, typeof elem>(elem);
   }}
   onClick={(e) => {
-    e; // $ExpectType MouseEvent<HTMLButtonElement, MouseEvent>
+    expectType<React.MouseEvent<HTMLButtonElement, MouseEvent>, typeof e>(e);
     e.currentTarget.checkValidity();
   }}
 />;
@@ -85,7 +86,7 @@ declare const Foo: OverridableComponent<{
   numberProp={3}
   component={MyOverrideClassComponent}
   ref={(elem) => {
-    elem; // $ExpectType MyOverrideClassComponent | null
+    expectType<MyOverrideClassComponent | null, typeof elem>(elem);
   }}
 />;
 
@@ -94,7 +95,7 @@ declare const Foo: OverridableComponent<{
   numberProp={42}
   component={MyOverrideRefForwardingComponent}
   ref={(elem) => {
-    elem; // $ExpectType HTMLLegendElement | null
+    expectType<HTMLLegendElement | null, typeof elem>(elem);
   }}
 />;
 
@@ -127,7 +128,7 @@ declare const Foo: OverridableComponent<{
   // @ts-expect-error
   myString={4} // should be a string
   myCallback={(n) => {
-    n; // $ExpectType number
+    expectType<number, typeof n>(n);
   }}
   numberProp={3}
 />;

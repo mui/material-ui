@@ -1,4 +1,5 @@
-import { useAutocomplete } from '@material-ui/lab';
+import { useAutocomplete, FilterOptionsState } from '@material-ui/lab';
+import { expectType } from '@material-ui/types';
 
 interface Person {
   id: string;
@@ -18,8 +19,7 @@ const persons: Person[] = [
 useAutocomplete({
   options: ['1', '2', '3'],
   onChange(event, value) {
-    // $ExpectType string | null
-    value;
+    expectType<string | null, typeof value>(value);
   },
 });
 
@@ -28,8 +28,7 @@ useAutocomplete({
   options: ['1', '2', '3'],
   multiple: false,
   onChange(event, value) {
-    // $ExpectType string | null
-    value;
+    expectType<string | null, typeof value>(value);
   },
 });
 
@@ -37,8 +36,7 @@ useAutocomplete({
 useAutocomplete({
   options: ['1', '2', '3', 4, true],
   onChange(event, value) {
-    // $ExpectType string | number | boolean | null
-    value;
+    expectType<string | number | boolean | null, typeof value>(value);
   },
 });
 
@@ -46,8 +44,7 @@ useAutocomplete({
 useAutocomplete({
   options: persons,
   onChange(event, value) {
-    // $ExpectType Person | null
-    value;
+    expectType<Person | null, typeof value>(value);
   },
 });
 
@@ -55,19 +52,16 @@ useAutocomplete({
 useAutocomplete({
   options: ['1', '2', '3'],
   onChange(event, value) {
-    // $ExpectType string | null
+    expectType<string | null, typeof value>(value);
     value;
   },
   filterOptions(options, state) {
-    // $ExpectType FilterOptionsState<string>
-    state;
-    // $ExpectType string[]
-    options;
+    expectType<FilterOptionsState<string>, typeof state>(state);
+    expectType<string[], typeof options>(options);
     return options;
   },
   getOptionLabel(option) {
-    // $ExpectType string
-    option;
+    expectType<string, typeof option>(option);
     return option;
   },
   value: null,
@@ -80,7 +74,7 @@ useAutocomplete({
   options: ['1', '2', '3'],
   multiple: true,
   onChange(event, value) {
-    // $ExpectType string[]
+    expectType<string[], typeof value>(value);
     value;
   },
 });
@@ -90,8 +84,7 @@ useAutocomplete({
   options: ['1', '2', '3', 4, true],
   multiple: true,
   onChange(event, value) {
-    // $ExpectType (string | number | boolean)[]
-    value;
+    expectType<Array<string | number | boolean>, typeof value>(value);
   },
 });
 
@@ -100,7 +93,7 @@ useAutocomplete({
   options: persons,
   multiple: true,
   onChange(event, value) {
-    // $ExpectType Person[]
+    expectType<Person[], typeof value>(value);
     value;
   },
 });
@@ -118,8 +111,7 @@ useAutocomplete({
   options: ['1', '2', '3'],
   disableClearable: true,
   onChange(event, value) {
-    // $ExpectType string
-    value;
+    expectType<string, typeof value>(value);
   },
 });
 
@@ -127,16 +119,14 @@ useAutocomplete({
   options: ['1', '2', '3'],
   disableClearable: false,
   onChange(event, value) {
-    // $ExpectType string | null
-    value;
+    expectType<string | null, typeof value>(value);
   },
 });
 
 useAutocomplete({
   options: ['1', '2', '3'],
   onChange(event, value) {
-    // $ExpectType string | null
-    value;
+    expectType<string | null, typeof value>(value);
   },
 });
 
@@ -144,8 +134,7 @@ useAutocomplete({
 useAutocomplete({
   options: persons,
   onChange(event, value) {
-    // $ExpectType string | Person | null
-    value;
+    expectType<string | Person | null, typeof value>(value);
   },
   freeSolo: true,
 });
@@ -154,8 +143,7 @@ useAutocomplete({
   options: persons,
   disableClearable: true,
   onChange(event, value) {
-    // $ExpectType string | Person
-    value;
+    expectType<string | Person, typeof value>(value);
   },
   freeSolo: true,
 });
@@ -164,8 +152,7 @@ useAutocomplete({
   options: persons,
   multiple: true,
   onChange(event, value) {
-    // $ExpectType (string | Person)[]
-    value;
+    expectType<Array<string | Person>, typeof value>(value);
   },
   freeSolo: true,
 });

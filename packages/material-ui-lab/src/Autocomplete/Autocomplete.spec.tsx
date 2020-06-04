@@ -1,4 +1,5 @@
 import { Autocomplete, AutocompleteProps } from '@material-ui/lab';
+import { expectType } from '@material-ui/types';
 
 interface MyAutocomplete<
   T,
@@ -22,8 +23,7 @@ function MyAutocomplete<
 <MyAutocomplete
   options={['1', '2', '3']}
   onChange={(event, value) => {
-    // $ExpectType string[]
-    value;
+    expectType<string[], typeof value>(value);
   }}
   renderInput={() => null}
   multiple
