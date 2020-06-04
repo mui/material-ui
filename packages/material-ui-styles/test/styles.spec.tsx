@@ -82,8 +82,8 @@ const StyledComponent = withStyles(styles)(({ theme, classes }: AllTheProps) => 
   <div className={classes.root}>{theme.palette.text.primary}</div>
 ));
 
-// missing prop theme
-<StyledComponent />; // $ExpectError
+// @ts-expect-error missing prop theme
+<StyledComponent />;
 
 const AllTheComposition = withTheme<Theme, typeof StyledComponent>(StyledComponent);
 
@@ -166,7 +166,7 @@ withStyles((theme) =>
     },
     '@media (min-width: 960px)': {
       content: {
-        // $ExpectError
+        // @ts-expect-error
         display: 'flex',
       },
     },
@@ -302,15 +302,18 @@ withStyles((theme) =>
   }
 
   class Component extends React.Component<Props & WithStyles<typeof styles>> {}
-  // $ExpectError
+  // @ts-expect-error
   const StyledComponent = withStyles(styles)(Component);
 
-  // implicit FunctionComponent
-  withStyles(styles)((props: Props) => null); // $ExpectError
-  withStyles(styles)((props: Props & WithStyles<typeof styles>) => null); // $ExpectError
-  withStyles(styles)((props: Props & { children?: React.ReactNode }) => null); // $ExpectError
+  // @ts-expect-error implicit FunctionComponent
+  withStyles(styles)((props: Props) => null);
+  // @ts-expect-error
+  withStyles(styles)((props: Props & WithStyles<typeof styles>) => null);
+  // @ts-expect-error
+  withStyles(styles)((props: Props & { children?: React.ReactNode }) => null);
   withStyles(styles)(
-    (props: Props & WithStyles<typeof styles> & { children?: React.ReactNode }) => null, // $ExpectError
+    // @ts-expect-error
+    (props: Props & WithStyles<typeof styles> & { children?: React.ReactNode }) => null,
   );
 
   // explicit not but with "Property 'children' is missing in type 'ValidationMap<Props>'".
@@ -319,8 +322,10 @@ withStyles((theme) =>
   const StatelessComponentWithStyles: React.FunctionComponent<Props & WithStyles<typeof styles>> = (
     props,
   ) => null;
-  withStyles(styles)(StatelessComponent); // $ExpectError
-  withStyles(styles)(StatelessComponentWithStyles); // $ExpectError
+  // @ts-expect-error
+  withStyles(styles)(StatelessComponent);
+  // @ts-expect-error
+  withStyles(styles)(StatelessComponentWithStyles);
 }
 
 {
@@ -355,8 +360,8 @@ withStyles((theme) =>
   const StyledMyButton = withStyles(styles)(MyButton);
 
   const CorrectUsage = () => <StyledMyButton nonDefaulted="2" />;
-  // Property 'nonDefaulted' is missing in type '{}'
-  const MissingPropUsage = () => <StyledMyButton />; // $ExpectError
+  // @ts-expect-error Property 'nonDefaulted' is missing in type '{}'
+  const MissingPropUsage = () => <StyledMyButton />;
 }
 
 {
@@ -387,8 +392,7 @@ withStyles((theme) =>
   const StyledMyComponent = withStyles(styles)(MyComponent);
   const renderedStyledMyComponent = <StyledMyComponent message="Hi" />;
 
-  //  number is not assignable to 'blue' | 'red'
-  // $ExpectError
+  // @ts-expect-error number is not assignable to 'blue' | 'red'
   interface InconsistentProps extends WithStyles<typeof styles> {
     color: number;
   }
@@ -407,8 +411,8 @@ function forwardRefTest() {
 
   const anchorRef = React.useRef<HTMLAnchorElement>(null);
   // forwarded to function components which can't hold refs
-  // property 'ref' does not exists
-  <StyledAnchor ref={anchorRef} />; // $ExpectError
+  // @ts-expect-error property 'ref' does not exists
+  <StyledAnchor ref={anchorRef} />;
   <StyledAnchor innerRef={anchorRef} />;
 
   const RefableAnchor = React.forwardRef<HTMLAnchorElement, WithStyles<typeof styles>>(
@@ -421,8 +425,8 @@ function forwardRefTest() {
 
   <StyledRefableAnchor ref={anchorRef} />;
   const buttonRef = React.createRef<HTMLButtonElement>();
-  // HTMLButtonElement is missing properties
-  <StyledRefableAnchor ref={buttonRef} />; // $ExpectError
+  // @ts-expect-error HTMLButtonElement is missing properties
+  <StyledRefableAnchor ref={buttonRef} />;
   // undesired: `innerRef` is currently typed as any but for backwards compat we're keeping it
   // especially since `innerRef` will be removed in v5 and is equivalent to `ref`
   <StyledRefableAnchor innerRef={buttonRef} />;

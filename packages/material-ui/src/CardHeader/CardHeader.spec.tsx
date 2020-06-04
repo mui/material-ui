@@ -18,7 +18,7 @@ function createElementBasePropMixedTest() {
   React.createElement<CardHeaderProps<DefaultComponent, ComponentProp>>(CardHeader, {
     component: CustomComponent,
   });
-  // $ExpectError
+  // @ts-expect-error
   React.createElement<CardHeaderProps<DefaultComponent, ComponentProp>>(CardHeader, {
     // This test shouldn't fail but does; stringProp & numberProp are required props of CustomComponent
     component: CustomComponent,
@@ -28,19 +28,19 @@ function createElementBasePropMixedTest() {
   React.createElement<CardHeaderProps>(CardHeader, {
     disableTypography: true,
   });
-  // $ExpectError
+  // @ts-expect-error
   React.createElement<CardHeaderProps<DefaultComponent, {}, React.ElementType>>(CardHeader, {
     unknownProp: 'shouldNotWork',
   });
-  // $ExpectError
+  // @ts-expect-error
   React.createElement<CardHeaderProps>(CardHeader, {
     disableTypography: 'hello',
   });
-  // $ExpectError
+  // @ts-expect-error
   React.createElement<CardHeaderProps>(CardHeader, {
     disableTypography: 1,
   });
-  // $ExpectError
+  // @ts-expect-error
   React.createElement<CardHeaderProps<any, ComponentProp>>(CardHeader, {
     component: 'incorrectElement',
   });
@@ -52,7 +52,7 @@ function createElementTypographyTest() {
       align: 'center',
     },
   });
-  // $ExpectError
+  // @ts-expect-error
   React.createElement<CardHeaderProps>(CardHeader, {
     titleTypographyProps: {
       align: 'incorrectAlign',
@@ -63,7 +63,7 @@ function createElementTypographyTest() {
       variant: 'body1',
     },
   });
-  // $ExpectError
+  // @ts-expect-error
   React.createElement<CardHeaderProps>(CardHeader, {
     titleTypographyProps: {
       variant: 123,
@@ -102,13 +102,13 @@ function createElementTypographyTest() {
       unknownProp: 'shouldNotWork',
     },
   });
-  // $ExpectError
+  // @ts-expect-error
   React.createElement<CardHeaderProps<DefaultComponent, {}, React.ElementType>>(CardHeader, {
     titleTypographyProps: {
       component: 'incorrectComponent',
     },
   });
-  // $ExpectError
+  // @ts-expect-error
   React.createElement<CardHeaderProps>(CardHeader, {
     titleTypographyProps: true,
   });
@@ -117,9 +117,9 @@ function createElementTypographyTest() {
 function componentPropTest() {
   <CardHeader component="div" />;
   <CardHeader component={CustomComponent} stringProp="string" numberProp={1} />;
-  // $ExpectError
+  // @ts-expect-error
   <CardHeader component="incorrectComponent" />;
-  // $ExpectError
+  // @ts-expect-error
   <CardHeader component={CustomComponent} />;
 }
 
@@ -143,15 +143,15 @@ function mixedCardHeaderComponentAndTypographyTest() {
       numberProp: 2,
     }}
   />;
-  // $ExpectError
+  // @ts-expect-error
   <CardHeader component="incorrectComponent" />;
-  // $ExpectError
+  // @ts-expect-error
   <CardHeader component={CustomComponent} />;
   <CardHeader
     component={CustomComponent}
     stringProp="string"
     numberProp={1}
-    // $ExpectError
+    // @ts-expect-error
     titleTypographyProps={{ component: CustomComponent, stringProp: 'stringProp' }}
     subheaderTypographyProps={{
       component: CustomComponent,
@@ -159,7 +159,7 @@ function mixedCardHeaderComponentAndTypographyTest() {
       numberProp: 2,
     }}
   />;
-  // $ExpectError
+  // @ts-expect-error
   <CardHeader
     component={CustomComponent}
     stringProp="string"
@@ -168,7 +168,7 @@ function mixedCardHeaderComponentAndTypographyTest() {
     subheaderTypographyProps={{ component: CustomComponent, stringProp: 'stringProp' }}
   />;
   <CardHeader
-    // $ExpectError
+    // @ts-expect-error
     component="incorrectComponent"
     stringProp="string"
     numberProp={1}
@@ -182,7 +182,7 @@ function mixedCardHeaderComponentAndTypographyTest() {
 }
 
 function titleTypographyPropsTest() {
-  // $ExpectError
+  // @ts-expect-error
   <CardHeader titleTypographyProps={{ component: 'incorrectComponent' }} />;
   <CardHeader titleTypographyProps={{ component: 'a', href: 'href' }} />;
   <CardHeader
@@ -199,7 +199,7 @@ function titleTypographyPropsTest() {
       variantMapping: { h1: 'h1' },
     }}
   />;
-  // $ExpectError
+  // @ts-expect-error
   <CardHeader
     titleTypographyProps={{
       component: CustomComponent,
@@ -207,7 +207,7 @@ function titleTypographyPropsTest() {
       numberProp: '',
     }}
   />;
-  // $ExpectError
+  // @ts-expect-error
   <CardHeader titleTypographyProps={{ component: CustomComponent, numberProp: 2 }} />;
   <CardHeader
     titleTypographyProps={{
@@ -245,9 +245,9 @@ function subheaderTypographyPropsTest() {
       propThatDoesntExist: 'shouldNotWork',
     }}
   />;
-  // $ExpectError
+  // @ts-expect-error
   <CardHeader subheaderTypographyProps={{ component: 'incorrectComponent' }} />;
-  // $ExpectError
+  // @ts-expect-error
   <CardHeader subheaderTypographyProps={{ component: CustomComponent, numberProp: 2 }} />;
 }
 
@@ -264,7 +264,7 @@ function mixedTypographyPropsTest() {
       numberProp: 2,
     }}
   />;
-  // $ExpectError
+  // @ts-expect-error
   <CardHeader
     titleTypographyProps={{ component: 'incorrectComponent' }}
     subheaderTypographyProps={{ component: 'incorrectComponent' }}
@@ -281,19 +281,19 @@ function mixedTypographyPropsTest() {
       propThatDoesntExist: 'shouldNotWork',
     }}
   />;
-  // $ExpectError
+  // @ts-expect-error
   <CardHeader
     titleTypographyProps={{ component: CustomComponent, numberProp: 2 }}
     subheaderTypographyProps={{ component: CustomComponent, numberProp: 2 }}
   />;
   <CardHeader
-    // $ExpectError
+    // @ts-expect-error
     titleTypographyProps={{ component: CustomComponent, numberProp: 2 }}
     subheaderTypographyProps={{ component: CustomComponent, numberProp: 2, stringProp: 'yada' }}
   />;
   <CardHeader
     titleTypographyProps={{ component: CustomComponent, numberProp: 2, stringProp: 'yada' }}
-    // $ExpectError
+    // @ts-expect-error
     subheaderTypographyProps={{ component: CustomComponent, numberProp: 2 }}
   />;
 }

@@ -7,7 +7,7 @@ const DialogContentTextTest = () => {
     <div>
       <DialogContentText />
       <DialogContentText classes={{ root: 'rootClass' }} />
-      // $ExpectError
+      {/* @ts-expect-error */}
       <DialogContentText classes={{ body1: 'body1Class' }} />
       <DialogContentText align="inherit" color="inherit" display="block" />
       <DialogContentText align="left" color="initial" display="inline" />
@@ -16,26 +16,26 @@ const DialogContentTextTest = () => {
       <DialogContentText align="inherit" color="textPrimary" />
       <DialogContentText align="inherit" color="textSecondary" />
       <DialogContentText align="inherit" color="error" />
-      // $ExpectError
+      {/* @ts-expect-error */}
       <DialogContentText display="incorrectValue" />
       <DialogContentText component="a" href="url" display="block" />
       <DialogContentText component="label" htmlFor="html" display="block" />
-      // $ExpectError
+      {/* @ts-expect-error */}
       <DialogContentText component="a" href="url" display="incorrectValue" />
-      // $ExpectError
+      {/* @ts-expect-error */}
       <DialogContentText component="a" incorrectAttribute="url" />
-      // $ExpectError
+      {/* @ts-expect-error */}
       <DialogContentText component="incorrectComponent" href="url" />
-      // $ExpectError
+      {/* @ts-expect-error */}
       <DialogContentText component="div" href="url" />
-      // $ExpectError
+      {/* @ts-expect-error */}
       <DialogContentText href="url" />
       <DialogContentText component={CustomComponent} prop1="1" prop2={12} />
-      // $ExpectError
+      {/* @ts-expect-error */}
       <DialogContentText component={CustomComponent} prop1="1" prop2={12} id="1" />
-      // $ExpectError
+      {/* @ts-expect-error */}
       <DialogContentText component={CustomComponent} prop1="1" />
-      // $ExpectError
+      {/* @ts-expect-error */}
       <DialogContentText component={CustomComponent} prop1="1" prop2="12" />
     </div>
   );

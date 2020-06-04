@@ -4,20 +4,20 @@ import { ListItemText } from '@material-ui/core';
 const CustomComponent: React.FC<{ prop1: string; prop2: number }> = () => <div />;
 
 function typographyPropsTest() {
-  // $ExpectError
+  // @ts-expect-error
   <ListItemText primaryTypographyProps={{ component: 'incorrectComponent' }} />;
   <ListItemText primaryTypographyProps={{ component: 'a', href: 'href' }} />;
   <ListItemText
     primaryTypographyProps={{
       component: 'a',
-      // $ExpectError
+      // @ts-expect-error
       htmlFor: 'not-existance-attribute',
     }}
   />;
   <ListItemText
     primaryTypographyProps={{ component: CustomComponent, prop1: 'prop1', prop2: 2 }}
   />;
-  // $ExpectError
+  // @ts-expect-error
   <ListItemText primaryTypographyProps={{ component: CustomComponent, prop2: 2 }} />;
   <ListItemText primaryTypographyProps={{ variant: 'h1' }} />;
   <ListItemText primaryTypographyProps={{ align: 'left' }} />;
@@ -33,20 +33,20 @@ function typographyPropsTest() {
 }
 
 function secondaryTypographyPropsTest() {
-  // $ExpectError
+  // @ts-expect-error
   <ListItemText secondaryTypographyProps={{ component: 'incorrectComponent' }} />;
   <ListItemText secondaryTypographyProps={{ component: 'a', href: 'href' }} />;
   <ListItemText
     secondaryTypographyProps={{
       component: 'a',
-      // $ExpectError
+      // @ts-expect-error
       htmlFor: 'not-existance-attribute',
     }}
   />;
   <ListItemText
     secondaryTypographyProps={{ component: CustomComponent, prop1: 'prop1', prop2: 2 }}
   />;
-  // $ExpectError
+  // @ts-expect-error
   <ListItemText secondaryTypographyProps={{ component: CustomComponent, prop2: 2 }} />;
   <ListItemText secondaryTypographyProps={{ variant: 'h1' }} />;
   <ListItemText secondaryTypographyProps={{ align: 'left' }} />;
@@ -63,9 +63,9 @@ function secondaryTypographyPropsTest() {
 
 function mixedTypographyPropsTest() {
   <ListItemText
-    // $ExpectError
+    // @ts-expect-error
     primaryTypographyProps={{ component: 'incorrectComponent' }}
-    // $ExpectError
+    // @ts-expect-error
     secondaryTypographyProps={{ component: 'incorrectComponent' }}
   />;
   <ListItemText
@@ -75,12 +75,12 @@ function mixedTypographyPropsTest() {
   <ListItemText
     primaryTypographyProps={{
       component: 'a',
-      // $ExpectError
+      // @ts-expect-error
       htmlFor: 'not-existance-attribute',
     }}
     secondaryTypographyProps={{
       component: 'a',
-      // $ExpectError
+      // @ts-expect-error
       htmlFor: 'not-existance-attribute',
     }}
   />;
@@ -89,9 +89,9 @@ function mixedTypographyPropsTest() {
     secondaryTypographyProps={{ component: CustomComponent, prop1: 'prop1', prop2: 2 }}
   />;
   <ListItemText
-    // $ExpectError
+    // @ts-expect-error
     primaryTypographyProps={{ component: CustomComponent, prop2: 2 }}
-    // $ExpectError
+    // @ts-expect-error
     secondaryTypographyProps={{ component: CustomComponent, prop2: 2 }}
   />;
 }

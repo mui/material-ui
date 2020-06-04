@@ -146,8 +146,7 @@ const AvatarTest = () => (
       alt="Image Alt"
       src="example.jpg"
     />
-    // onClick isn't allowed since we're overriding with a component that // doesn't have that prop:
-    // $ExpectError
+    {/* @ts-expect-error onClick isn't allowed since we're overriding with a component that doesn't have that prop: */}
     <Avatar component={TestOverride} onClick={log} />
   </div>
 );
@@ -610,8 +609,8 @@ const MenuTest = () => {
         action={(action) => {
           buttonActionRef.current = action;
         }}
-        // 'false' is not assignable to true | undefined
-        button={false} // $ExpectError
+        // @ts-expect-error 'false' is not assignable to true | undefined
+        button={false}
         ref={(elem) => {
           // inferred from `button={false}` instead of `action`
           elem; // $ExpectType HTMLLIElement | null
@@ -1079,8 +1078,7 @@ const refTest = () => {
       const j: number = (ref as HTMLInputElement).valueAsNumber;
       // unsafe casts, unsound usage, no runtime overhead
       const k: number = (ref as any).valueAsNumber;
-      // tslint:disable-next-line ban-ts-ignore
-      // @ts-ignore unsound usage, no runtime overhead, least syntax
+      // @ts-expect-error unsound usage, no runtime overhead, least syntax
       const n: number = ref.valueAsNumber;
     }}
   />;

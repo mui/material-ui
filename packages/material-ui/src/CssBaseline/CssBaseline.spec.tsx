@@ -18,7 +18,7 @@ import { createMuiTheme } from '@material-ui/core';
     overrides: {
       MuiCssBaseline: {
         '@global': {
-          // $ExpectError
+          // @ts-expect-error
           fontWeight: 'bold',
         },
       },

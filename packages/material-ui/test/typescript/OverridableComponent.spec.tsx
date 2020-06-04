@@ -99,16 +99,16 @@ declare const Foo: OverridableComponent<{
 />;
 
 // ... but for an arbitrary ComponentType
-// $ExpectError
+// @ts-expect-error
 <Foo<typeof MyOverrideComponent> component={MyOverrideComponent} ref={() => {}} />;
 
-// $ExpectError
+// @ts-expect-error
 <Foo
   numberProp={3}
   bad="hi" // invalid prop
 />;
 
-// $ExpectError
+// @ts-expect-error
 <Foo
   component={MyOverrideComponent}
   myString={4} // should be a string
@@ -117,14 +117,14 @@ declare const Foo: OverridableComponent<{
 
 <Foo
   component={MyOverrideComponent}
-  // $ExpectError
+  // @ts-expect-error
   myCallback={(n) => console.log(n)} // n has type any
   numberProp={3}
 />;
 
 <Foo<typeof MyOverrideComponent>
   component={MyOverrideComponent}
-  // $ExpectError
+  // @ts-expect-error
   myString={4} // should be a string
   myCallback={(n) => {
     n; // $ExpectType number
@@ -132,7 +132,7 @@ declare const Foo: OverridableComponent<{
   numberProp={3}
 />;
 
-// $ExpectError
+// @ts-expect-error
 <Foo
   component={MyIncompatibleComponent1} // inconsistent typing of base vs override prop
   numberProp={3}
@@ -143,6 +143,6 @@ declare const Foo: OverridableComponent<{
   component="div"
   numberProp={3}
   // event type doesn't match component type
-  // $ExpectError
+  // @ts-expect-error
   onClick={(e: React.MouseEvent<HTMLButtonElement>) => e.currentTarget.checkValidity()}
 />;
