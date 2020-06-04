@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "rootDir": "src",
     "module": "commonjs",
     "outDir": "build",
     "declaration": true,
@@ -18,6 +19,6 @@
     "suppressImplicitAnyIndexErrors": true,
     "resolveJsonModule": true
   },
-  "include": ["src/**/*.ts*", "adapter/**/*.ts*", "./typings.d.ts"],
+  "include": ["src/**/*.ts*", "./typings.d.ts"],
   "exclude": ["./src/__tests__/**/*", "./rollup.config.js", "build", "cypress/**/*.ts*"]
 }
