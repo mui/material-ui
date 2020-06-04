@@ -182,7 +182,7 @@ To see if your test (`test:browser` or `test:unit`) behaves the same between CI 
 ### Testing the changes on the documentation site
 
 The documentation site is built with Material-UI and contains examples of all the components.
-This is the best place to test your changes.
+This is a great place to experiment with your changes.
 
 To get started:
 
