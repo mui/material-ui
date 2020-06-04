@@ -32,7 +32,7 @@
     "email": "dmtr.kovalenko@outlook.com"
   },
   "peerDependencies": {
-    "@material-ui/core": "^4.9.14",
+    "@material-ui/core": "^4.10.1",
     "@material-ui/lab": "^4.0.0-alpha.54",
     "@types/react": "^16.8.6",
     "react": "^16.8.4",

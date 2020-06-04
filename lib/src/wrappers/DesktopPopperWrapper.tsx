@@ -2,8 +2,7 @@ import * as React from 'react';
 import clsx from 'clsx';
 import Grow from '@material-ui/core/Grow';
 import Paper from '@material-ui/core/Paper';
-// @ts-ignore TODO make definitions
-import TrapFocus from '@material-ui/core/Modal/TrapFocus';
+import TrapFocus from '@material-ui/core/Unstable_TrapFocus';
 import Popper, { PopperProps } from '@material-ui/core/Popper';
 import { WrapperProps } from './Wrapper';
 import { StaticWrapperProps } from './StaticWrapper';
