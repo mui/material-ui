@@ -21,7 +21,7 @@ const filledProps = {
 
 // baseline behavvior
 <TextField variant="filled" {...filledProps} />;
-// $ExpectError
+// @ts-expect-error
 <TextField {...filledProps} />; // desired to throw
 
 // styled
@@ -35,7 +35,7 @@ const filledProps = {
 {
   const StyledTextField = emotionStyled(TextField)``;
   <StyledTextField variant="filled" {...filledProps} />;
-  // $ExpectError
+  // @ts-expect-error
   <StyledTextField {...filledProps} />; // desired to throw
 }
 
@@ -45,7 +45,7 @@ const filledProps = {
   const RouterTextField: React.FunctionComponent<RouterTextFieldProps> = () => null;
   const TextFieldWithRouter = withRouter(RouterTextField);
   <TextFieldWithRouter variant="filled" {...filledProps} />;
-  // $ExpectError
+  // @ts-expect-error
   <TextFieldWithRouter {...filledProps} />; // desired
 }
 
@@ -59,8 +59,8 @@ const filledProps = {
 
   const StyledButton = withStyles(styles)(Button);
 
-  // undesired; caused by https://github.com/Microsoft/TypeScript/issues/26591
-  <StyledButton component="a" />; // $ExpectError
+  // @ts-expect-error undesired; caused by https://github.com/Microsoft/TypeScript/issues/26591
+  <StyledButton component="a" />;
 
   // workaround
   const UnsafeStyledButton = withStyles({ root: { color: 'ref' } })(Button) as typeof Button;

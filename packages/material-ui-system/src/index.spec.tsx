@@ -20,10 +20,10 @@ function composeTest() {
   }
 
   const styler = compose(first, second);
-  // missing `spacing`
-  styler({ color: 'test' }); // $ExpectError
-  // missing `color`
-  styler({ spacing: 1 }); // $ExpectError
+  // @ts-expect-error missing `spacing`
+  styler({ color: 'test' });
+  // @ts-expect-error missing `color`
+  styler({ spacing: 1 });
   styler({ color: 'test', spacing: 1 });
 }
 
@@ -56,9 +56,11 @@ function cssRequiredTest() {
   const style = css(styleRequiredFunction);
   style({
     color: 'red',
-    css: {}, // $ExpectError
+    // @ts-expect-error
+    css: {},
   });
-  style({ css: { color: 'red' } }); // $ExpectError
+  // @ts-expect-error
+  style({ css: { color: 'red' } });
   style({ color: 'blue', css: { color: 'red' } });
 }
 

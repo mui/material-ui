@@ -7,8 +7,8 @@ function BooleanButtonTest() {
 
   function EditableItemFail(props: { editable: boolean }) {
     const { editable } = props;
-    // 'boolean' is not assignable to type 'true'
-    return <ListItem button={editable}>Editable? {editable}</ListItem>; // $ExpectError
+    // @ts-expect-error 'boolean' is not assignable to type 'true'
+    return <ListItem button={editable}>Editable? {editable}</ListItem>;
   }
 
   function EditableItemValid(props: { editable: boolean }) {
@@ -26,7 +26,7 @@ function MouseEnterTest() {
   <ListItem onMouseEnter={handleMouseEnter} />;
 
   function handleMouseEnterButton(event: React.MouseEvent<HTMLDivElement>) {}
-  // $ExpectError
+  // @ts-expect-error
   <ListItem onMouseEnter={handleMouseEnterButton} />; // desired: missing property button
   <ListItem button onMouseEnter={handleMouseEnterButton} />;
 }

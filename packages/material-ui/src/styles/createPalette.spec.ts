@@ -18,9 +18,11 @@ import {
   palette.augmentColor(color, 400, 200, 600);
   palette.augmentColor(color, 400, undefined, 600);
   palette.augmentColor(option);
-  palette.augmentColor(option, 400); // $ExpectError
+  // @ts-expect-error
+  palette.augmentColor(option, 400);
   palette.augmentColor(colorOrOption);
-  palette.augmentColor(colorOrOption, 400); // $ExpectError
+  // @ts-expect-error
+  palette.augmentColor(colorOrOption, 400);
   const augmentedColor = palette.augmentColor(colorOrOption);
 }
 

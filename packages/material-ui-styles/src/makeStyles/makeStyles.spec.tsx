@@ -23,12 +23,12 @@ import { createStyles, makeStyles } from '@material-ui/styles';
 
   const MyComponent = (props: MyComponentProps) => {
     const { color, message } = props;
-    // Expected 1 argument, but got 0
-    const emptyClasses = useMyStyles(); // $ExpectError
+    // @ts-expect-error Expected 1 argument, but got 0
+    const emptyClasses = useMyStyles();
     const classes = useMyStyles(props);
-    // $ExpectError
+    // @ts-expect-error
     const invalidClasses = useMyStyles({ colourTypo: 'red' });
-    // $ExpectError
+    // @ts-expect-error
     const undefinedClassName = classes.toot;
 
     return (
@@ -108,7 +108,7 @@ import { createStyles, makeStyles } from '@material-ui/styles';
   });
 
   makeStyles(style, {
-    // $ExpectError
+    // @ts-expect-error
     defaultTheme: invalidCustomTheme,
   });
 
