@@ -128,7 +128,7 @@ export default function useAutocomplete(props) {
   const ignoreFocus = React.useRef(false);
   const firstFocus = React.useRef(true);
   const inputRef = React.useRef(null);
-  const [listboxRef, setListboxRef] = React.useState(null);
+  const listboxRef = React.useRef(null);
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const [focusedTag, setFocusedTag] = React.useState(-1);
@@ -245,7 +245,7 @@ export default function useAutocomplete(props) {
   }, [value, multiple, focusedTag, focusTag]);
 
   function validOptionIndex(index, direction) {
-    if (!listboxRef || index === -1) {
+    if (!listboxRef.current || index === -1) {
       return -1;
     }
 
@@ -260,7 +260,7 @@ export default function useAutocomplete(props) {
         return -1;
       }
 
-      const option = listboxRef.querySelector(`[data-option-index="${nextFocus}"]`);
+      const option = listboxRef.current.querySelector(`[data-option-index="${nextFocus}"]`);
 
       // Same logic as MenuList.js
       const nextFocusDisabled = disabledItemsFocusable
@@ -290,16 +290,16 @@ export default function useAutocomplete(props) {
       onHighlightChange(event, index === -1 ? null : filteredOptions[index], reason);
     }
 
-    if (!listboxRef || !listboxRef.parentElement) {
+    if (!listboxRef.current) {
       return;
     }
 
-    const prev = listboxRef.querySelector('[data-focus]');
+    const prev = listboxRef.current.querySelector('[data-focus]');
     if (prev) {
       prev.removeAttribute('data-focus');
     }
 
-    const listboxNode = listboxRef.parentElement.querySelector('[role="listbox"]');
+    const listboxNode = listboxRef.current.parentElement.querySelector('[role="listbox"]');
 
     // "No results"
     if (!listboxNode) {
@@ -311,7 +311,7 @@ export default function useAutocomplete(props) {
       return;
     }
 
-    const option = listboxRef.querySelector(`[data-option-index="${index}"]`);
+    const option = listboxRef.current.querySelector(`[data-option-index="${index}"]`);
 
     if (!option) {
       return;
@@ -412,8 +412,8 @@ export default function useAutocomplete(props) {
     },
   );
 
-  React.useEffect(() => {
-    if (!listboxRef) {
+  const syncHighlightedIndex = React.useCallback(() => {
+    if (!popupOpen) {
       return;
     }
 
@@ -422,6 +422,10 @@ export default function useAutocomplete(props) {
     // The popup is empty, reset
     if (filteredOptions.length === 0 || valueItem == null) {
       changeHighlightedIndex({ diff: 'reset' });
+      return;
+    }
+
+    if (!listboxRef.current) {
       return;
     }
 
@@ -441,7 +445,6 @@ export default function useAutocomplete(props) {
       const itemIndex = findIndex(filteredOptions, (optionItem) =>
         getOptionSelected(optionItem, valueItem),
       );
-
       if (itemIndex === -1) {
         changeHighlightedIndex({ diff: 'reset' });
       } else {
@@ -453,27 +456,41 @@ export default function useAutocomplete(props) {
     // Prevent the highlighted index to leak outside the boundaries.
     if (highlightedIndexRef.current >= filteredOptions.length - 1) {
       setHighlightedIndex({ index: filteredOptions.length - 1 });
+      return;
     }
 
     // Restore the focus to the previous index.
-    setHighlightedIndex({ index: highlightedIndexRef.current});
-
+    setHighlightedIndex({ index: highlightedIndexRef.current });
     // Ignore filteredOptions (and options, getOptionSelected, getOptionLabel) not to break the scroll position
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     // Only sync the highlighted index when the option switch between empty and not
     // eslint-disable-next-line react-hooks/exhaustive-deps
     filteredOptions.length === 0,
-    listboxRef,
     // Don't sync the highlighted index with the value when multiple
     // eslint-disable-next-line react-hooks/exhaustive-deps
     multiple ? false : value,
     filterSelectedOptions,
     changeHighlightedIndex,
     setHighlightedIndex,
+    popupOpen,
     inputValue,
     multiple,
   ]);
+
+  const handleListboxRef = useEventCallback((node) => {
+    setRef(listboxRef, node);
+
+    if (!node) {
+      return;
+    }
+
+    syncHighlightedIndex();
+  });
+
+  React.useEffect(() => {
+    syncHighlightedIndex();
+  }, [syncHighlightedIndex]);
 
   const handleOpen = (event) => {
     if (open) {
@@ -765,8 +782,8 @@ export default function useAutocomplete(props) {
   const handleBlur = (event) => {
     // Ignore the event when using the scrollbar with IE 11
     if (
-      listboxRef !== null &&
-      document.activeElement === listboxRef.parentElement
+      listboxRef.current !== null &&
+      document.activeElement === listboxRef.current.parentElement
     ) {
       inputRef.current.focus();
       return;
@@ -935,7 +952,7 @@ export default function useAutocomplete(props) {
       onMouseDown: handleInputMouseDown,
       // if open then this is handled imperativeley so don't let react override
       // only have an opinion about this when closed
-      'aria-activedescendant': popupOpen && listboxRef ? '' : null,
+      'aria-activedescendant': popupOpen ? '' : null,
       'aria-autocomplete': autoComplete ? 'both' : 'list',
       'aria-controls': popupOpen ? `${id}-popup` : null,
       // Disable browser's suggestion that might overlap with the popup.
@@ -963,7 +980,7 @@ export default function useAutocomplete(props) {
       role: 'listbox',
       id: `${id}-popup`,
       'aria-labelledby': `${id}-label`,
-      ref: setListboxRef,
+      ref: handleListboxRef,
       onMouseDown: (event) => {
         // Prevent blur
         event.preventDefault();

@@ -177,6 +177,30 @@ describe('<Autocomplete />', () => {
     });
   });
 
+  describe('highlight synchronisation', () => {
+    it('should not update the highlight when multiple open and value change', () => {
+      const { setProps, getByRole } = render(
+        <Autocomplete
+          {...defaultProps}
+          value={['two']}
+          multiple
+          options={['one', 'two', 'three']}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      function checkHighlightIs(expected) {
+        expect(getByRole('listbox').querySelector('li[data-focus]')).to.have.text(expected);
+      }
+
+      checkHighlightIs('two');
+      setProps({
+        value: [],
+      });
+      checkHighlightIs('two');
+    });
+  });
+
   describe('prop: limitTags', () => {
     it('show all items on focus', () => {
       const { container, getAllByRole, getByRole } = render(
@@ -243,30 +267,6 @@ describe('<Autocomplete />', () => {
         input.blur();
         input.focus(); // opens the listbox again
       });
-      checkHighlightIs('two');
-    });
-  });
-
-  describe('highlight synchronisation', () => {
-    it('should not update the highlight when multiple open and value change', () => {
-      const { setProps, getByRole } = render(
-        <Autocomplete
-          {...defaultProps}
-          value={['two']}
-          multiple
-          options={['one', 'two', 'three']}
-          renderInput={(params) => <TextField {...params} autoFocus />}
-        />,
-      );
-
-      function checkHighlightIs(expected) {
-        expect(getByRole('listbox').querySelector('li[data-focus]')).to.have.text(expected);
-      }
-
-      checkHighlightIs('two');
-      setProps({
-        value: []
-      })
       checkHighlightIs('two');
     });
   });
@@ -1056,7 +1056,7 @@ describe('<Autocomplete />', () => {
       const options = getAllByRole('option').map((el) => el.textContent);
       expect(options).to.have.length(7);
       expect(options).to.deep.equal(['A', 'D', 'E', 'B', 'G', 'F', 'C']);
-      expect(consoleWarnMock.callCount()).to.equal(4); // strict mode renders twice
+      expect(consoleWarnMock.callCount()).to.equal(2); // strict mode renders twice
       expect(consoleWarnMock.messages()[0]).to.include('returns duplicated headers');
     });
   });
@@ -1776,16 +1776,16 @@ describe('<Autocomplete />', () => {
       const textbox = screen.getByRole('textbox');
 
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-      expect(handleHighlightChange.callCount).to.equal(2);
-      expect(handleHighlightChange.args[1][0]).to.not.equal(undefined);
-      expect(handleHighlightChange.args[1][1]).to.equal(options[0]);
-      expect(handleHighlightChange.args[1][2]).to.equal('keyboard');
-
-      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       expect(handleHighlightChange.callCount).to.equal(3);
       expect(handleHighlightChange.args[2][0]).to.not.equal(undefined);
-      expect(handleHighlightChange.args[2][1]).to.equal(options[1]);
+      expect(handleHighlightChange.args[2][1]).to.equal(options[0]);
       expect(handleHighlightChange.args[2][2]).to.equal('keyboard');
+
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      expect(handleHighlightChange.callCount).to.equal(4);
+      expect(handleHighlightChange.args[3][0]).to.not.equal(undefined);
+      expect(handleHighlightChange.args[3][1]).to.equal(options[1]);
+      expect(handleHighlightChange.args[3][2]).to.equal('keyboard');
     });
 
     it('should support mouse event', () => {
@@ -1801,10 +1801,10 @@ describe('<Autocomplete />', () => {
       );
       const firstOption = getAllByRole('option')[0];
       fireEvent.mouseOver(firstOption);
-      expect(handleHighlightChange.callCount).to.equal(2);
-      expect(handleHighlightChange.args[1][0]).to.not.equal(undefined);
-      expect(handleHighlightChange.args[1][1]).to.equal(options[0]);
-      expect(handleHighlightChange.args[1][2]).to.equal('mouse');
+      expect(handleHighlightChange.callCount).to.equal(3);
+      expect(handleHighlightChange.args[2][0]).to.not.equal(undefined);
+      expect(handleHighlightChange.args[2][1]).to.equal(options[0]);
+      expect(handleHighlightChange.args[2][2]).to.equal('mouse');
     });
 
     it('should pass to onHighlightChange the correct value after filtering', () => {
