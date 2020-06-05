@@ -140,9 +140,9 @@ const StepLabel = React.forwardRef(function StepLabel(props, ref) {
           display="block"
         >
           {children}
-        </Typography>}
+        </Typography>
         {optional}
-      </span>
+      </span>}
     </span>
   );
 });
