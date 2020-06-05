@@ -6,21 +6,30 @@ import { withStyles } from '@material-ui/core/styles';
 export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
-    backgroundColor: theme.palette.primary.main,
-    height: 10,
-    width: 10,
+    display: 'flex',
+    alignSelf: 'baseline',
+    borderStyle: 'solid',
+    borderWidth: 2,
+    borderColor: theme.palette.primary.main,
+    background: 'white',
+    padding: 4,
     borderRadius: 999,
-    position: 'absolute',
     transform: 'translateX(-50%) translateX(1px)', // TODO: try to fix the 1px
-    top: 10,
+    top: 8,
+    position: 'relative',
   },
+  /* Styles applied when the component is passed children. */
+  withChildren: {
+    marginTop: -8,
+  }
 });
 
 const TimelineItemDot = React.forwardRef(function TimelineItemDot(props, ref) {
   const { children, classes, className, component: Component = 'span', ...other } = props;
-
+  const hasChildren = Boolean(children);
+  
   return (
-    <Component className={clsx(classes.root, className)} ref={ref} {...other}>
+    <Component className={clsx(classes.root, { [classes.withChildren]: hasChildren }, className)} ref={ref} {...other}>
       {children}
     </Component>
   );

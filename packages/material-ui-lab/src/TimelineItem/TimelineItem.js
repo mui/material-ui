@@ -17,6 +17,7 @@ export const styles = (theme) => ({
     '&:last-child .MuiTimelineItemTail-root': {
       display: 'none',
     },
+    minHeight: 70,
   },
   /* Styles applied to the root element if `align="left"`. */
   alignLeft: {},

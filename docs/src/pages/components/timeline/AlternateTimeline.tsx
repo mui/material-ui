@@ -5,7 +5,7 @@ import TimelineItemTail from '@material-ui/lab/TimelineItemTail';
 import TimelineItemContent from '@material-ui/lab/TimelineItemContent';
 import TimelineItemDot from '@material-ui/lab/TimelineItemDot'
 
-export default function SimpleTimeline() {
+export default function AlternateTimeline() {
   return (
     <Timeline align="alternate">
       <TimelineItem>

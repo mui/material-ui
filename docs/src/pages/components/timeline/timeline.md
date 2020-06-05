@@ -23,9 +23,15 @@ Alternate timeline can show the events on alternating side.
 
 ## Right aligned timeline
 
-Alternate timeline can show the timeline on the right side of the events.
+Right aligned timeline can show the timeline on the right side of the events.
 
 {{"demo": "pages/components/timeline/RightAlinedTimeline.js"}}
+
+## Custom icons in timeline
+
+Timeline can contain icons inside the dots.
+
+{{"demo": "pages/components/timeline/CustomizedDotTimeline.js"}}
 
 
 ## Accessibility
