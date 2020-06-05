@@ -73,8 +73,22 @@ Generar un tema en base a las opciones recibidas.
 
 ```js
 import { createMuiTheme } from '@material-ui/core/styles';
+import { Theme } from '@material-ui/core/styles/createMuiTheme';
 import purple from '@material-ui/core/colors/purple';
 import green from '@material-ui/core/colors/green';
+
+declare module '@material-ui/core/styles/createMuiTheme' {
+  interface Theme {
+    status: {
+      danger: React.CSSProperties['color'],
+    }
+  }
+  interface ThemeOptions {
+    status?: {
+      danger?: React.CSSProperties['color']
+    }
+  }
+}
 
 const theme = createMuiTheme({
   palette: {
