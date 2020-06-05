@@ -17,11 +17,14 @@ Working on your first Pull Request? You can learn how from this free video serie
 
 [How to Contribute to an Open Source Project on GitHub](https://egghead.io/courses/how-to-contribute-to-an-open-source-project-on-github)
 
-To help you get your feet wet and get you familiar with our contribution process, we have a list of [good first issues](https://github.com/mui-org/material-ui/issues?q=is:open+is:issue+label:"good+first+issue") that contain changes that have a relatively limited scope. This is a great place to get started.
+To help you get your feet wet and get you familiar with our contribution process, we have a list of [good first issues](https://github.com/mui-org/material-ui/issues?q=is:open+is:issue+label:"good+first+issue") that contain changes that have a relatively limited scope. This label means that there is already a working solution to the issue in the discussion section. Therefore, it is a great place to get started.
+
+We also have a list of [good to take issues](https://github.com/mui-org/material-ui/issues?q=is:open+is:issue+label:"good+to+take"). This label is set when there has been already some discussion about the solution and it is clear in which direction to go. These issues are good for developers that want to reduce the chance of going down a rabbit hole.
 
 If you decide to fix an issue, please be sure to check the comment thread in case somebody is already working on a fix. If nobody is working on it at the moment, please leave a comment stating that you have started to work on it so other people don’t accidentally duplicate your effort.
 
 If somebody claims an issue but doesn’t follow up for more than a week, it’s fine to take it over but you should still leave a comment.
+If there has been no activity on the issue for 7 to 14 days, it is safe to assume that nobody is working on it.
 
 ## Sending a Pull Request
 
@@ -176,9 +179,10 @@ on their a11y-tree membership makes no difference. The queries where this does
 make a difference explicitly include this check e.g. `getByRole('button', { hidden: false })` (see [byRole documentation](https://testing-library.com/docs/dom-testing-library/api-queries#byrole) for more information).
 To see if your test (`test:browser` or `test:unit`) behaves the same between CI and local environment set the environment variable `CI` to `'true'`.
 
-### Testing the documentation site
+### Trying the changes on the documentation site
 
 The documentation site is built with Material-UI and contains examples of all the components.
+This is a great place to experiment with your changes.
 
 To get started:
 
