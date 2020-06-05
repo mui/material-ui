@@ -127,7 +127,7 @@ const StepLabel = React.forwardRef(function StepLabel(props, ref) {
           />
         </span>
       ) : null}
-      <span className={classes.labelContainer}>
+      {children && <span className={classes.labelContainer}>
         <Typography
           variant="body2"
           component="span"
@@ -140,7 +140,7 @@ const StepLabel = React.forwardRef(function StepLabel(props, ref) {
           display="block"
         >
           {children}
-        </Typography>
+        </Typography>}
         {optional}
       </span>
     </span>
