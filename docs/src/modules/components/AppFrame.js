@@ -286,7 +286,7 @@ function AppFrame(props) {
               aria-label={t('editWebsiteColors')}
               component={Link}
               naked
-              href="/customization/color/#color-tool"
+              href="/customization/color/#playground"
               data-ga-event-category="header"
               data-ga-event-action="colors"
             >
