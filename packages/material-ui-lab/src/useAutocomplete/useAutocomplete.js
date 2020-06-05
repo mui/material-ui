@@ -128,7 +128,7 @@ export default function useAutocomplete(props) {
   const ignoreFocus = React.useRef(false);
   const firstFocus = React.useRef(true);
   const inputRef = React.useRef(null);
-  const listboxRef = React.useRef(null);
+  const [listboxRef, setListboxRef] = React.useState(null);
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const [focusedTag, setFocusedTag] = React.useState(-1);
@@ -245,7 +245,7 @@ export default function useAutocomplete(props) {
   }, [value, multiple, focusedTag, focusTag]);
 
   function validOptionIndex(index, direction) {
-    if (!listboxRef.current || index === -1) {
+    if (!listboxRef || index === -1) {
       return -1;
     }
 
@@ -260,7 +260,7 @@ export default function useAutocomplete(props) {
         return -1;
       }
 
-      const option = listboxRef.current.querySelector(`[data-option-index="${nextFocus}"]`);
+      const option = listboxRef.querySelector(`[data-option-index="${nextFocus}"]`);
 
       // Same logic as MenuList.js
       const nextFocusDisabled = disabledItemsFocusable
@@ -275,8 +275,10 @@ export default function useAutocomplete(props) {
       }
     }
   }
-  const setHighlightedIndex = useEventCallback((index, reason = 'auto', event) => {
+
+  const setHighlightedIndex = useEventCallback(({ event, index, reason = 'auto' }) => {
     highlightedIndexRef.current = index;
+
     // does the index exist?
     if (index === -1) {
       inputRef.current.removeAttribute('aria-activedescendant');
@@ -284,27 +286,32 @@ export default function useAutocomplete(props) {
       inputRef.current.setAttribute('aria-activedescendant', `${id}-option-${index}`);
     }
 
-    if (!listboxRef.current) {
+    if (onHighlightChange) {
+      onHighlightChange(event, index === -1 ? null : filteredOptions[index], reason);
+    }
+
+    if (!listboxRef || !listboxRef.parentElement) {
       return;
     }
 
-    const prev = listboxRef.current.querySelector('[data-focus]');
+    const prev = listboxRef.querySelector('[data-focus]');
     if (prev) {
       prev.removeAttribute('data-focus');
     }
 
-    const listboxNode = listboxRef.current.parentElement.querySelector('[role="listbox"]');
+    const listboxNode = listboxRef.parentElement.querySelector('[role="listbox"]');
 
     // "No results"
     if (!listboxNode) {
       return;
     }
 
-    if (onHighlightChange) {
-      onHighlightChange(event, filteredOptions[index], reason);
+    if (index === -1) {
+      listboxNode.scrollTop = 0;
+      return;
     }
 
-    const option = listboxRef.current.querySelector(`[data-option-index="${index}"]`);
+    const option = listboxRef.querySelector(`[data-option-index="${index}"]`);
 
     if (!option) {
       return;
@@ -333,85 +340,88 @@ export default function useAutocomplete(props) {
     }
   });
 
-  const changeHighlightedIndex = useEventCallback((diff, direction, reason = 'auto', event) => {
-    if (!popupOpen) {
-      return;
-    }
-
-    const getNextIndex = () => {
-      const maxIndex = filteredOptions.length - 1;
-
-      if (diff === 'reset') {
-        return defaultHighlighted;
+  const changeHighlightedIndex = useEventCallback(
+    ({ event, diff, direction = 'next', reason = 'auto' }) => {
+      if (!popupOpen) {
+        return;
       }
 
-      if (diff === 'start') {
-        return 0;
-      }
+      const getNextIndex = () => {
+        const maxIndex = filteredOptions.length - 1;
 
-      if (diff === 'end') {
-        return maxIndex;
-      }
-
-      const newIndex = highlightedIndexRef.current + diff;
-
-      if (newIndex < 0) {
-        if (newIndex === -1 && includeInputInList) {
-          return -1;
+        if (diff === 'reset') {
+          return defaultHighlighted;
         }
 
-        if ((disableListWrap && highlightedIndexRef.current !== -1) || Math.abs(diff) > 1) {
+        if (diff === 'start') {
           return 0;
         }
 
-        return maxIndex;
-      }
-
-      if (newIndex > maxIndex) {
-        if (newIndex === maxIndex + 1 && includeInputInList) {
-          return -1;
-        }
-
-        if (disableListWrap || Math.abs(diff) > 1) {
+        if (diff === 'end') {
           return maxIndex;
         }
 
-        return 0;
-      }
+        const newIndex = highlightedIndexRef.current + diff;
 
-      return newIndex;
-    };
+        if (newIndex < 0) {
+          if (newIndex === -1 && includeInputInList) {
+            return -1;
+          }
 
-    const nextIndex = validOptionIndex(getNextIndex(), direction);
-    setHighlightedIndex(nextIndex, reason, event);
+          if ((disableListWrap && highlightedIndexRef.current !== -1) || Math.abs(diff) > 1) {
+            return 0;
+          }
 
-    if (autoComplete && diff !== 'reset') {
-      if (nextIndex === -1) {
-        inputRef.current.value = inputValue;
-      } else {
-        const option = getOptionLabel(filteredOptions[nextIndex]);
-        inputRef.current.value = option;
+          return maxIndex;
+        }
 
-        // The portion of the selected suggestion that has not been typed by the user,
-        // a completion string, appears inline after the input cursor in the textbox.
-        const index = option.toLowerCase().indexOf(inputValue.toLowerCase());
-        if (index === 0 && inputValue.length > 0) {
-          inputRef.current.setSelectionRange(inputValue.length, option.length);
+        if (newIndex > maxIndex) {
+          if (newIndex === maxIndex + 1 && includeInputInList) {
+            return -1;
+          }
+
+          if (disableListWrap || Math.abs(diff) > 1) {
+            return maxIndex;
+          }
+
+          return 0;
+        }
+
+        return newIndex;
+      };
+
+      const nextIndex = validOptionIndex(getNextIndex(), direction);
+      setHighlightedIndex({ index: nextIndex, reason, event });
+
+      // Sync the content of the input with the highlighted option.
+      if (autoComplete && diff !== 'reset') {
+        if (nextIndex === -1) {
+          inputRef.current.value = inputValue;
+        } else {
+          const option = getOptionLabel(filteredOptions[nextIndex]);
+          inputRef.current.value = option;
+
+          // The portion of the selected suggestion that has not been typed by the user,
+          // a completion string, appears inline after the input cursor in the textbox.
+          const index = option.toLowerCase().indexOf(inputValue.toLowerCase());
+          if (index === 0 && inputValue.length > 0) {
+            inputRef.current.setSelectionRange(inputValue.length, option.length);
+          }
         }
       }
-    }
-  });
+    },
+  );
 
   React.useEffect(() => {
-    if (!popupOpen) {
+    if (!listboxRef) {
       return;
     }
 
     const valueItem = multiple ? value[0] : value;
 
-    // The popup is empty
+    // The popup is empty, reset
     if (filteredOptions.length === 0 || valueItem == null) {
-      changeHighlightedIndex('reset', 'next');
+      changeHighlightedIndex({ diff: 'reset' });
       return;
     }
 
@@ -433,25 +443,31 @@ export default function useAutocomplete(props) {
       );
 
       if (itemIndex === -1) {
-        changeHighlightedIndex('reset', 'next');
+        changeHighlightedIndex({ diff: 'reset' });
       } else {
-        setHighlightedIndex(itemIndex);
+        setHighlightedIndex({ index: itemIndex });
       }
       return;
     }
 
-    // Keep the index in the boundaries
+    // Prevent the highlighted index to leak outside the boundaries.
     if (highlightedIndexRef.current >= filteredOptions.length - 1) {
-      setHighlightedIndex(filteredOptions.length - 1);
+      setHighlightedIndex({ index: filteredOptions.length - 1 });
     }
 
-    // Ignore filterOptions => options, getOptionSelected, getOptionLabel)
+    // Restore the focus to the previous index.
+    setHighlightedIndex({ index: highlightedIndexRef.current});
+
+    // Ignore filteredOptions (and options, getOptionSelected, getOptionLabel) not to break the scroll position
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
+    // Only sync the highlighted index when the option switch between empty and not
     // eslint-disable-next-line react-hooks/exhaustive-deps
     filteredOptions.length === 0,
-    value,
-    popupOpen,
+    listboxRef,
+    // Don't sync the highlighted index with the value when multiple
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    multiple ? false : value,
     filterSelectedOptions,
     changeHighlightedIndex,
     setHighlightedIndex,
@@ -628,38 +644,43 @@ export default function useAutocomplete(props) {
         if (popupOpen && handleHomeEndKeys) {
           // Prevent scroll of the page
           event.preventDefault();
-          changeHighlightedIndex('start', 'next', 'keyboard', event);
+          changeHighlightedIndex({ diff: 'start', direction: 'next', reason: 'keyboard', event });
         }
         break;
       case 'End':
         if (popupOpen && handleHomeEndKeys) {
           // Prevent scroll of the page
           event.preventDefault();
-          changeHighlightedIndex('end', 'previous', 'keyboard', event);
+          changeHighlightedIndex({ diff: 'end', direction: 'previous', reason: 'keyboard', event });
         }
         break;
       case 'PageUp':
         // Prevent scroll of the page
         event.preventDefault();
-        changeHighlightedIndex(-pageSize, 'previous', 'keyboard', event);
+        changeHighlightedIndex({
+          diff: -pageSize,
+          direction: 'previous',
+          reason: 'keyboard',
+          event,
+        });
         handleOpen(event);
         break;
       case 'PageDown':
         // Prevent scroll of the page
         event.preventDefault();
-        changeHighlightedIndex(pageSize, 'next', 'keyboard', event);
+        changeHighlightedIndex({ diff: pageSize, direction: 'next', reason: 'keyboard', event });
         handleOpen(event);
         break;
       case 'ArrowDown':
         // Prevent cursor move
         event.preventDefault();
-        changeHighlightedIndex(1, 'next', 'keyboard', event);
+        changeHighlightedIndex({ diff: 1, direction: 'next', reason: 'keyboard', event });
         handleOpen(event);
         break;
       case 'ArrowUp':
         // Prevent cursor move
         event.preventDefault();
-        changeHighlightedIndex(-1, 'previous', 'keyboard', event);
+        changeHighlightedIndex({ diff: -1, direction: 'previous', reason: 'keyboard', event });
         handleOpen(event);
         break;
       case 'ArrowLeft':
@@ -744,8 +765,8 @@ export default function useAutocomplete(props) {
   const handleBlur = (event) => {
     // Ignore the event when using the scrollbar with IE 11
     if (
-      listboxRef.current !== null &&
-      document.activeElement === listboxRef.current.parentElement
+      listboxRef !== null &&
+      document.activeElement === listboxRef.parentElement
     ) {
       inputRef.current.focus();
       return;
@@ -782,10 +803,6 @@ export default function useAutocomplete(props) {
     }
 
     if (newValue === '') {
-      const listboxNode = listboxRef.current.parentElement.querySelector('[role="listbox"]');
-
-      listboxNode.scrollTop = 0;
-
       if (!disableClearable && !multiple) {
         handleValue(event, null, 'clear');
       }
@@ -795,8 +812,11 @@ export default function useAutocomplete(props) {
   };
 
   const handleOptionMouseOver = (event) => {
-    const index = Number(event.currentTarget.getAttribute('data-option-index'));
-    setHighlightedIndex(index, 'mouse', event);
+    setHighlightedIndex({
+      event,
+      index: Number(event.currentTarget.getAttribute('data-option-index')),
+      reason: 'mouse',
+    });
   };
 
   const handleOptionTouchStart = () => {
@@ -817,22 +837,6 @@ export default function useAutocomplete(props) {
       option: value[index],
     });
   };
-
-  const handleListboxRef = useEventCallback((node) => {
-    setRef(listboxRef, node);
-
-    if (!node) {
-      return;
-    }
-
-    // Automatically select the first option as the listbox become visible.
-    if (highlightedIndexRef.current === -1 && autoHighlight) {
-      changeHighlightedIndex('reset', 'next');
-    } else {
-      // Restore the focus to the correct option.
-      setHighlightedIndex(highlightedIndexRef.current);
-    }
-  });
 
   const handlePopupIndicator = (event) => {
     if (open) {
@@ -931,7 +935,7 @@ export default function useAutocomplete(props) {
       onMouseDown: handleInputMouseDown,
       // if open then this is handled imperativeley so don't let react override
       // only have an opinion about this when closed
-      'aria-activedescendant': popupOpen ? '' : null,
+      'aria-activedescendant': popupOpen && listboxRef ? '' : null,
       'aria-autocomplete': autoComplete ? 'both' : 'list',
       'aria-controls': popupOpen ? `${id}-popup` : null,
       // Disable browser's suggestion that might overlap with the popup.
@@ -959,7 +963,7 @@ export default function useAutocomplete(props) {
       role: 'listbox',
       id: `${id}-popup`,
       'aria-labelledby': `${id}-label`,
-      ref: handleListboxRef,
+      ref: setListboxRef,
       onMouseDown: (event) => {
         // Prevent blur
         event.preventDefault();
