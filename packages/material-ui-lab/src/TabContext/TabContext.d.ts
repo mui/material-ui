@@ -17,6 +17,10 @@ export interface TabContextProps {
 }
 /**
  *
+ * Demos:
+ *
+ * - [Tabs](https://material-ui.com/components/tabs/)
+ *
  * API:
  *
  * - [TabContext API](https://material-ui.com/api/tab-context/)

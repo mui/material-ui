@@ -13,6 +13,10 @@ export interface TabListTypeMap<
 }
 /**
  *
+ * Demos:
+ *
+ * - [Tabs](https://material-ui.com/components/tabs/)
+ *
  * API:
  *
  * - [TabList API](https://material-ui.com/api/tab-list/)
