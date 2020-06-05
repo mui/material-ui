@@ -21,7 +21,7 @@ export const styles = (theme) => ({
   /* Styles applied when the component is passed children. */
   withChildren: {
     marginTop: -8,
-  }
+  },
 });
 
 const TimelineItemDot = React.forwardRef(function TimelineItemDot(props, ref) {
@@ -29,7 +29,11 @@ const TimelineItemDot = React.forwardRef(function TimelineItemDot(props, ref) {
   const hasChildren = Boolean(children);
 
   return (
-    <Component className={clsx(classes.root, { [classes.withChildren]: hasChildren }, className)} ref={ref} {...other}>
+    <Component
+      className={clsx(classes.root, { [classes.withChildren]: hasChildren }, className)}
+      ref={ref}
+      {...other}
+    >
       {children}
     </Component>
   );

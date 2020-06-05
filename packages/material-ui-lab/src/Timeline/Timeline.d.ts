@@ -19,11 +19,7 @@ export interface TimelineProps extends StandardProps<{}, TimelineClassKey> {
   align?: 'left' | 'right' | 'alternate';
 }
 
-export type TimelineClassKey =
-  | 'root'
-  | 'alignLeft'
-  | 'alignRight'
-  | 'alignAlternate';
+export type TimelineClassKey = 'root' | 'alignLeft' | 'alignRight' | 'alignAlternate';
 
 /**
  *

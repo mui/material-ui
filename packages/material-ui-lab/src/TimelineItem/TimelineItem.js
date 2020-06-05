@@ -39,7 +39,7 @@ export const styles = (theme) => ({
       textAlign: 'right',
       flexDirection: 'row-reverse',
       '& .MuiTimelineItemDot-root': {
-        transform: 'translateX(50%)'
+        transform: 'translateX(50%)',
       },
       '& .MuiTimelineItemTail-root': {
         left: '100%',

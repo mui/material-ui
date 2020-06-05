@@ -19,8 +19,7 @@ export interface TimelineItemTailProps extends StandardProps<{}, TimelineItemTai
   variant?: 'standard' | 'outlined';
 }
 
-export type TimelineItemTailClassKey =
-  | 'root';
+export type TimelineItemTailClassKey = 'root';
 
 /**
  *

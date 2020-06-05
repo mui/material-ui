@@ -14,8 +14,7 @@ export interface TimelineItemContentProps extends StandardProps<{}, TimelineItem
   component?: React.ElementType<React.HTMLAttributes<HTMLElement>>;
 }
 
-export type TimelineItemContentClassKey =
-  | 'root';
+export type TimelineItemContentClassKey = 'root';
 
 /**
  *

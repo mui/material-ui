@@ -3,7 +3,7 @@ import Timeline from '@material-ui/lab/Timeline';
 import TimelineItem from '@material-ui/lab/TimelineItem';
 import TimelineItemTail from '@material-ui/lab/TimelineItemTail';
 import TimelineItemContent from '@material-ui/lab/TimelineItemContent';
-import TimelineItemDot from '@material-ui/lab/TimelineItemDot'
+import TimelineItemDot from '@material-ui/lab/TimelineItemDot';
 
 export default function RightAlignedTimeline() {
   return (

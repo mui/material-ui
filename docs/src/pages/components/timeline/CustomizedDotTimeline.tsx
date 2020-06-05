@@ -14,22 +14,30 @@ export default function CustomizedDotTimeline() {
     <Timeline align="alternate">
       <TimelineItem>
         <TimelineItemTail />
-        <TimelineItemDot><FastfoodIcon /></TimelineItemDot>
+        <TimelineItemDot>
+          <FastfoodIcon />
+        </TimelineItemDot>
         <TimelineItemContent>Eat</TimelineItemContent>
       </TimelineItem>
       <TimelineItem>
         <TimelineItemTail />
-        <TimelineItemDot><LaptopMacIcon /></TimelineItemDot>
+        <TimelineItemDot>
+          <LaptopMacIcon />
+        </TimelineItemDot>
         <TimelineItemContent>Code</TimelineItemContent>
       </TimelineItem>
       <TimelineItem>
         <TimelineItemTail />
-        <TimelineItemDot><HotelIcon /></TimelineItemDot>
+        <TimelineItemDot>
+          <HotelIcon />
+        </TimelineItemDot>
         <TimelineItemContent>Sleep</TimelineItemContent>
       </TimelineItem>
       <TimelineItem>
         <TimelineItemTail />
-        <TimelineItemDot><RepeatIcon /></TimelineItemDot>
+        <TimelineItemDot>
+          <RepeatIcon />
+        </TimelineItemDot>
         <TimelineItemContent>Repeat</TimelineItemContent>
       </TimelineItem>
     </Timeline>
