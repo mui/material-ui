@@ -37,3 +37,7 @@ Any other props supplied will be provided to the root element ([Tabs](/api/tabs/
 The props of the [Tabs](/api/tabs/) component are also available.
 You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
+## Demos
+
+- [Tabs](/components/tabs/)
+

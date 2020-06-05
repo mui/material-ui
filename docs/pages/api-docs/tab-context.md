@@ -33,3 +33,7 @@ The component cannot hold a ref.
 
 Any other props supplied will be provided to the root element (native element).
 
+## Demos
+
+- [Tabs](/components/tabs/)
+

@@ -18,6 +18,10 @@ export interface TabPanelProps
 
 /**
  *
+ * Demos:
+ *
+ * - [Tabs](https://material-ui.com/components/tabs/)
+ *
  * API:
  *
  * - [TabPanel API](https://material-ui.com/api/tab-panel/)
