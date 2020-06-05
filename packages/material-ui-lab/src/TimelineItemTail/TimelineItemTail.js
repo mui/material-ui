@@ -6,9 +6,9 @@ import { withStyles } from '@material-ui/core/styles';
 export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
-    borderLeftStyle: 'solid',
-    borderLeftWidth: 2,
-    borderLeftColor: theme.palette.primary.main,
+    width: 2,
+    background: theme.palette.primary.main,
+    transform: 'translate(-50%)',
     height: '100%',
     position: 'absolute',
     top: theme.spacing(2),

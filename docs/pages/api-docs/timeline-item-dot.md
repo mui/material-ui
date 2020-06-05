@@ -41,6 +41,7 @@ Any other props supplied will be provided to the root element (native element).
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
 | <span class="prop-name">root</span> | <span class="prop-name">.MuiTimelineItemDot-root</span> | Styles applied to the root element.
+| <span class="prop-name">withChildren</span> | <span class="prop-name">.MuiTimelineItemDot-withChildren</span> | Styles applied when the component is passed children.
 
 You can override the style of the component thanks to one of these customization points:
 

@@ -14,7 +14,7 @@ export const styles = (theme) => ({
     background: 'white',
     padding: 4,
     borderRadius: 999,
-    transform: 'translateX(-50%) translateX(1px)', // TODO: try to fix the 1px
+    transform: 'translateX(-50%)',
     top: 8,
     position: 'relative',
   },
@@ -27,7 +27,7 @@ export const styles = (theme) => ({
 const TimelineItemDot = React.forwardRef(function TimelineItemDot(props, ref) {
   const { children, classes, className, component: Component = 'span', ...other } = props;
   const hasChildren = Boolean(children);
-  
+
   return (
     <Component className={clsx(classes.root, { [classes.withChildren]: hasChildren }, className)} ref={ref} {...other}>
       {children}
