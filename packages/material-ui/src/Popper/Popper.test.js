@@ -52,7 +52,7 @@ describe('<Popper />', () => {
           </Popper>
         </ThemeProvider>,
       );
-      expect(renderSpy.callCount).to.equal(2); // 2 for strict mode
+      expect(renderSpy.callCount).to.equal(2); // strict mode renders twice
       expect(renderSpy.args[0][0]).to.equal('top');
     });
 
