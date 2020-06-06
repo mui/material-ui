@@ -19,11 +19,11 @@ const usePaperStyles = makeStyles({
   },
 });
 
-const useTailSecondaryStyles = makeStyles({
+const useTailSecondaryStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.secondary.main, 
   }
-})
+}));
 
 export default function CustomizedDotTimeline() {
   const paperClasses = usePaperStyles();

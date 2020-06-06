@@ -23,7 +23,6 @@ export const styles = () => ({
   alignAlternate: {
     '&:nth-child(even)': {
       flexDirection: 'row-reverse',
-      // TODO: try not to use them, counting children?
       '& .MuiTimelineItemContent-root': {
         textAlign: 'right',
       },
