@@ -173,7 +173,6 @@ function MarkdownDocs(props) {
                     demoOptions={demoOptions}
                     githubLocation={`${SOURCE_CODE_ROOT_URL}/docs/src/${name}`}
                   />
-                  {index % 16 === 0 ? <div data-ad="slot" style={{ height: 130 }} /> : null}
                 </React.Fragment>
               );
             })}

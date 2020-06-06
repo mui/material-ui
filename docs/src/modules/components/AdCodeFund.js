@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => {
         '& .cf-powered-by.cf-powered-by': {
           ...styles.poweredby,
           '& em': {
-            display: 'none',
+            fontStyle: 'normal',
           },
         },
       },

@@ -139,7 +139,7 @@ function Ad(props) {
     if (carbonOut || codeFundOut) {
       children = <AdInHouse ad={inHouseAds[Math.floor(inHouseAds.length * randomInHouse)]} />;
       minHeight = 'auto';
-    } else if (randomSplit < 0.5) {
+    } else if (randomSplit < 0.4) {
       children = <AdCodeFund />;
     } else {
       children = <AdCarbon />;
