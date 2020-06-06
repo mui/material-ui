@@ -68,7 +68,7 @@ const theme = createMuiTheme({
 
 要创建自己的翻译，或自定义英文文本，请将此文件复制到您的项目中，进行所需的任何更改并从那里导入语言环境。
 
-Please do consider contributing new translations back to Material-UI by opening a pull request. However, Material-UI aims to support the [100 most popular locales](https://en.wikipedia.org/wiki/List_of_languages_by_number_of_native_speakers), we might not accept contributions for locales that are not frequently used, for instance `gl-ES` that has "only" 2.5 million native speakers.
+请考虑创建一个 拉取请求(pull request) 来向 Material-UI 贡献新的译文。 但是，Material-UI 的目标是支持 [100个最流行的语言地区](https://en.wikipedia.org/wiki/List_of_languages_by_number_of_native_speakers)，对于那些不太流行的地区，我们可能不会接受贡献，例如  `gl-ES`  “只有” 250万的母语使用者。
 
 ## RTL 支持
 

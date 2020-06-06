@@ -72,12 +72,7 @@ crwdns93962:0crwdne93962:0
 #### crwdns93964:0crwdne93964:0
 
 ```js
-crwdns93966:0{ createMuiTheme }crwdnd93966:0{
-    primary: purple,
-    secondary: green,
-  }crwdnd93966:0{
-    danger: 'orange',
-  }crwdne93966:0
+crwdns133520:0{ createMuiTheme }crwdnd133520:0[500]crwdnd133520:0[500]crwdne133520:0
 ```
 
 ### `crwdns93968:0crwdne93968:0`

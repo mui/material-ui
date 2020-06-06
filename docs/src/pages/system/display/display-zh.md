@@ -1,10 +1,10 @@
 # 显示
 
-<p class="description">Quickly and responsively toggle the display value of components and more with the display utilities. 包括对一些更常见值的支持，以及一些用于在打印时控制显示的附加功能。</p>
+<p class="description">使用 显示(display) 工具集来快速、灵敏地切换组件的 显示(display) 状态等。 包括对一些更常见值的支持，以及一些用于在打印时控制显示的附加功能。</p>
 
 ## 例子
 
-### Inline
+### Inline（内嵌元素）
 
 {{"demo": "pages/system/display/Inline.js", "defaultCodeOpen": false, "bg": true}}
 
@@ -13,7 +13,7 @@
 <Box component="div" display="inline">inline</Box>
 ```
 
-### Block
+### Block（块级元素）
 
 {{"demo": "pages/system/display/Block.js", "defaultCodeOpen": false, "bg": true}}
 
@@ -65,7 +65,7 @@
 </Box>
 ```
 
-## Overflow
+## Overflow（溢出）
 
 {{"demo": "pages/system/display/Overflow.js", "defaultCodeOpen": false}}
 
@@ -78,7 +78,7 @@
 </Box>
 ```
 
-## Text Overflow
+## Text Overflow（文本溢出）
 
 {{"demo": "pages/system/display/TextOverflow.js", "defaultCodeOpen": false}}
 
@@ -91,7 +91,7 @@
 </Box>
 ```
 
-## Visibility
+## Visibility（可见性）
 
 {{"demo": "pages/system/display/Visibility.js", "defaultCodeOpen": false}}
 
@@ -104,7 +104,7 @@
 </Box>
 ```
 
-## White Space
+## White Space（空格）
 
 {{"demo": "pages/system/display/WhiteSpace.js", "defaultCodeOpen": false}}
 
@@ -123,11 +123,15 @@
 import { display } from '@material-ui/system';
 ```
 
-| 导入名称           | Prop           | CSS 属性          | Theme key |
-|:-------------- |:-------------- |:--------------- |:--------- |
-| `displayPrint` | `displayPrint` | `display`       | none      |
-| `displayRaw`   | `display`      | `display`       | none      |
-| `overflow`     | `overflow`     | `overflow`      | none      |
-| `textOverflow` | `textOverflow` | `text-overflow` | none      |
-| `visibility`   | `visibility`   | `visibility`    | none      |
-| `whiteSpace`   | `whiteSpace`   | `white-space`   | none      |
+| 导入名称            | Prop            | CSS 属性           | Theme key |
+|:--------------- |:--------------- |:---------------- |:--------- |
+| `displayPrint`  | `displayPrint`  | `display`        | none      |
+| `displayRaw`    | `display`       | `display`        | none      |
+| `overflow`      | `overflow`      | `overflow`       | none      |
+| `textOverflow
+` | `textOverflow
+` | `text-overflow
+` | none      |
+| `visibility`    | `visibility`    | `visibility`     | none      |
+| `whiteSpace`    | `whiteSpace`    | `white-space
+`   | none      |

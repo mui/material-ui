@@ -1,6 +1,6 @@
 ---
 title: Componente React para Abas
-components: Tabs, Tab, TabScrollButton
+components: Tabs, Tab, TabScrollButton, TabContext, TabList, TabPanel
 ---
 
 # Abas
@@ -104,9 +104,16 @@ Um exemplo para a implementação atual pode ser encontrado nas demonstrações 
 
 Os componentes implementam a navegação do teclado usando o comportamento de "ativação manual". Se você quiser mudar para o comportamento "seleção segue automaticamente o foco" você deve definir `selectionFollowsFocus` no componente `Tabs`. As práticas de autoria da WAI-ARIA têm um guia detalhado sobre [how to decide when to make selection automatically follow focus](https://www.w3.org/TR/wai-aria-practices/#kbd_selection_follows_focus).
 
-#### Demonstração `selectionFollowsFocus`
+#### Demonstração
 
 As duas demonstrações seguintes diferem apenas no seu comportamento de navegação por teclado. Foque em uma aba e navegue com as teclas de seta para notar a diferença.
+
+```jsx
+/* Tabs where selection follows focus */
+<Tabs selectionFollowsFocus />
+/* Tabs where each tab needs to be selected manually */
+<Tabs />
+```
 
 {{"demo": "pages/components/tabs/AccessibleTabs.js", "bg": true}}
 

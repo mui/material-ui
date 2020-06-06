@@ -109,7 +109,7 @@ const theme = createMuiTheme({
 
 Sinta-se à vontade para ter quantos pontos de quebra você quiser, nomeando-os da maneira que preferir para o seu projeto.
 
-```tsx
+```js
 const theme = createMuiTheme({
   breakpoints: {
     values: {
@@ -119,17 +119,19 @@ const theme = createMuiTheme({
     },
   },
 });
+```
 
-declare module "@material-ui/core/styles/createBreakpoints"
-{
-  interface BreakpointOverrides
-  {
-    xs: false; // remove o ponto de quebra `xs`
+If you are using TypeScript, you would also need to use [module augmentation](/guides/typescript/#customization-of-theme) for the theme to accept the above values.
+
+```ts
+declare module "@material-ui/core/styles/createBreakpoints" {
+  interface BreakpointOverrides {
+    xs: false; // removes the `xs` breakpoint
     sm: false;
     md: false;
     lg: false;
     xl: false;
-    tablet: true; // adiciona o ponto de quebra `tablet`
+    tablet: true; // adds the `tablet` breakpoint
     laptop: true;
     desktop: true;
   }

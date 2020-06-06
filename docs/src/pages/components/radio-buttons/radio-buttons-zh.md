@@ -27,7 +27,7 @@ components: Radio, RadioGroup, FormControl, FormLabel, FormControlLabel
 
 ## 标签放置
 
-你可以用 `FormControlLabel` 组件的 `labelPlacement` prop 来改变标签的位置。
+你可以用 `FormControlLabel` 组件的 `labelPlacement` 属性来改变标签的位置。
 
 {{"demo": "pages/components/radio-buttons/FormControlLabelPlacement.js"}} 
 

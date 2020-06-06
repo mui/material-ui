@@ -1,6 +1,6 @@
 ---
 title: React Tabs 选项卡组件
-components: Tabs, Tab, TabScrollButton
+components: Tabs, Tab, TabScrollButton, TabContext, TabList, TabPanel
 ---
 
 # Tabs 选项卡
@@ -69,7 +69,7 @@ components: Tabs, Tab, TabScrollButton
 
 {{"demo": "pages/components/tabs/CustomizedTabs.js", "bg": true}}
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/tabs/).
+🎨如果你是在寻找灵感，你可以查看 [MUI Treasury's customization examples](https://mui-treasury.com/styles/tabs/)。
 
 ## 垂直的选项卡
 
@@ -93,25 +93,32 @@ components: Tabs, Tab, TabScrollButton
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#tabpanel)
 
-The following steps are needed in order to provide necessary information for assistive technologies:
+需要采取以下步骤，以便为无障碍技术提供必要的信息：
 
-1. Label `Tabs` via `aria-label` or `aria-labelledby`.
-2. `Tab`s need to be connected to their corresponding `[role="tabpanel"]` by setting the correct `id`, `aria-controls` and `aria-labelledby`.
+1. 在 `Tabs` 上应用 `aria-label` 或 `aria-labelledby` 标签。
+2. `Tab` 需要连接到其 相应的 `id`、`aria-controls` 和 `aria-labelledby` 中对应的 `[role="tabpanel"]`。
 
-An example for the current implementation can be found in the demos on this page. We've also published [an experimental API](#experimental-api) in `@material-ui/lab` that does not require extra work.
+当前实现的例子可以在本页面的演示中找到。 我们还在 `@material-ui/lab` 中发布了不需要额外工作就能使用的 [实验性 API](#experimental-api)
 
-### Keyboard navigation
+### 键盘导航
 
-The components implement keyboard navigation using the "manual activation" behavior. If you want to switch to the "selection automatically follows focus" behavior you have pass `selectionFollowsFocus` to the `Tabs` component. The WAI-ARIA authoring practices have a detailed guide on [how to decide when to make selection automatically follow focus](https://www.w3.org/TR/wai-aria-practices/#kbd_selection_follows_focus).
+该组件使用 “手动激活” 的行为来实现键盘导航。 如果你想切换到 “选择自动跟随焦点(selection automatically follows focus)”的行为，你必须将 `selectionFollowsFocus` 传递给 `Tabs` 组件。 WAI-ARIA 项目实践中有一个详细的指南 [如何决定什么时候选择自动跟随焦点](https://www.w3.org/TR/wai-aria-practices/#kbd_selection_follows_focus)。
 
-#### `selectionFollowsFocus` Demo
+#### 演示
 
-The following two demos only differ in their keyboard navigation behavior. Focus a tab and navigate with arrow keys to notice the difference.
+下面的两个演示只是在键盘导航行为上有所区别。 聚焦到其中一个选项卡，然后用方向键导航你就可以注意到其中的差异。
+
+```jsx
+/* Tabs where selection follows focus */
+<Tabs selectionFollowsFocus />
+/* Tabs where each tab needs to be selected manually */
+<Tabs />
+```
 
 {{"demo": "pages/components/tabs/AccessibleTabs.js", "bg": true}}
 
-## Experimental API
+## 实验性 API
 
-`@material-ui/lab` offers utility components that inject props to implement accessible tabs following [WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices/#tabpanel).
+遵循 [WAI-ARIA 项目实践](https://www.w3.org/TR/wai-aria-practices/#tabpanel)，`@material-ui/lab` 提供了工具集组件，该组件通过注入属性的方式来实现具有可访问性(accessible) 功能的选项卡。
 
 {{"demo": "pages/components/tabs/LabTabs.js", "bg": true}}

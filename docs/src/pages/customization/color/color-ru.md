@@ -4,82 +4,22 @@
 
 [Система цветов](https://material.io/design/color/) Material Design может быть использована для создания цветовой темы, которая отражает ваш бренд или стиль.
 
-## Цветовая система
-
-### Важные термины
-
-#### "Палитра"
-
-Палитра - это набор цветов, то есть тонов и их оттенков. Материал-UI предоставляет все цвета из руководящих принципов Material Design. [This color palette](#color-palette) has been designed with colors that work harmoniously with each other.
-
-#### "Оттенок" и "Тень"
-
-Отдельно взятый цвет в палитре состоит из цветового тона, например «красный», и оттенка, например «500». «red 50» - самый светлый оттенок красного (* розовый! *), а «red 900» самый темный. Кроме того, большинство тонов имеют «акцентные» оттенки с префиксом `A`.
-
-### Примеры
-
-Цветовая палитра Material Design включает в себя основные и акцентные цвета, которые можно использовать для иллюстрации или для разработки цвета вашего бренда. Они создавались таким образом, чтобы гармонировать друг с другом.
-
-Вы можете обратиться к дополнительным первичным и акцентным цветам (таким как «red 500» & «purple A200»), например:
-
-```js
-import purple from '@material-ui/core/colors/purple';
-import red from '@material-ui/core/colors/red';
-
-const primary = red[500]; // #F44336
-const accent = purple['A200']; // #E040FB
-const accent = purple.A200; // #E040FB (alternative method)
-```
-
-### Цветовая палитра
-
-Зная тон *HUE* (red, pink и т. д.) и оттенок *SHADE* (500, 600 и т. д.), можно импортировать цвет следующим образом:
-
-```jsx
-import HUE from '@material-ui/core/colors/HUE';
-
-const color = HUE[SHADE];
-```
-
-{{"demo": "pages/customization/color/Color.js", "hideToolbar": true, "bg": "inline"}}
-
-## Инструменты для работы с цветом
-
-Используйте палитру и слайдеры, расположенные ниже, чтобы опробовать цветовую схему [material.io/design/color](https://material.io/design/color/) на документации Material-UI. Либо можете ввести шестнадцатеричные значения в текстовые поля Primary и Secondary.
-
-{{"demo": "pages/customization/color/ColorTool.js", "hideToolbar": true, "bg": true}}
-
-The output shown in the color sample can be pasted directly into a [`createMuiTheme()`](/customization/theming/#createmuitheme-options-theme) function (to be used with [`ThemeProvider`](/customization/theming/#theme-provider)):
-
-```jsx
-import { createMuiTheme } from '@material-ui/core/styles';
-import purple from '@material-ui/core/colors/purple';
-
-const theme = createMuiTheme({
-  palette: {
-    primary: purple,
-    secondary: {
-      main: '#f44336',
-    },
-  },
-});
-```
-
-Only the `main` shades need be provided (unless you wish to further customize `light`, `dark` or `contrastText`), as the other colors will be calculated by `createMuiTheme()`, as described in the [Theme customization](/customization/palette/) section.
-
-If you are using the default primary and / or secondary shades then by providing the color object, `createMuiTheme()` will use the appropriate shades from the material color for main, light and dark.
+## Picking colors
 
 ### Официальный инструмент для работы с цветом
 
-The Material Design team has also built an awesome palette configuration tool: [material.io/tools/color](https://material.io/tools/color/). This can help you create a color palette for your UI, as well as measure the accessibility level of any color combination.
+The Material Design team has also built an awesome palette configuration tool: [material.io/resources/color/](https://material.io/resources/color/). This can help you create a color palette for your UI, as well as measure the accessibility level of any color combination.
 
-<a href="https://material.io/tools/color/#!/?view.left=0&view.right=0&primary.color=3F51B5&secondary.color=F44336" target="_blank" rel="noopener nofollow">
+<a href="https://material.io/resources/color/#!/?view.left=0&view.right=0&primary.color=3F51B5&secondary.color=F44336" target="_blank" rel="noopener nofollow">
   <img src="/static/images/color/colorTool.png" alt="Официальный инструмент для работы с цветом" style="width: 574px" />
 </a>
+  
+  
+
 
 The output can be fed into `createMuiTheme()` function:
 
-```jsx
+```js
 import { createMuiTheme } from '@material-ui/core/styles';
 
 const theme = createMuiTheme({
@@ -100,8 +40,70 @@ const theme = createMuiTheme({
 });
 ```
 
+### Песочница
+
+To test a [material.io/design/color](https://material.io/design/color/) color scheme with the Material-UI documentation, simply select colors using the palette and sliders below. Либо можете ввести шестнадцатеричные значения в текстовые поля Primary и Secondary.
+
+{{"demo": "pages/customization/color/ColorTool.js", "hideToolbar": true, "bg": true}}
+
+The output shown in the color sample can be pasted directly into a [`createMuiTheme()`](/customization/theming/#createmuitheme-options-theme) function (to be used with [`ThemeProvider`](/customization/theming/#theme-provider)):
+
+```jsx
+import { createMuiTheme } from '@material-ui/core/styles';
+import purple from '@material-ui/core/colors/purple';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: purple[500],
+    },
+    secondary: {
+      main: '#f44336',
+    },
+  },
+});
+```
+
+Only the `main` shades need be provided (unless you wish to further customize `light`, `dark` or `contrastText`), as the other colors will be calculated by `createMuiTheme()`, as described in the [Theme customization](/customization/palette/) section.
+
+If you are using the default primary and / or secondary shades then by providing the color object, `createMuiTheme()` will use the appropriate shades from the material color for main, light and dark.
+
 ### Инструменты, созданные сообществом
 
 - [create-mui-theme](https://react-theming.github.io/create-mui-theme/): Is an online tool for creating Material-UI themes via Material Design Color Tool.
 - [material-ui-theme-editor](https://in-your-saas.github.io/material-ui-theme-editor/): A tool to generate themes for your Material-UI applications by just selecting the colors and having a live preview.
 - [Material palette generator](https://material.io/inline-tools/color/): Этот инструмент можно использовать для создания палитры на основе любого выбранного цвета.
+
+## 2014 Material Design color palettes
+
+These color palettes, originally created by Material Design in 2014, are comprised of colors designed to work together harmoniously, and can be used to develop your brand palette. To generate your own harmonious palettes, use the palette generation tool.
+
+### Важные термины
+
+- **Palette**: A palette is a collection of colors, i.e. hues and their shades. Материал-UI предоставляет все цвета из руководящих принципов Material Design. [This color palette](#color-palette) has been designed with colors that work harmoniously with each other.
+- **Hue" & "Shade**: A single color within the palette is made up of a hue such as "red", and shade, such as "500". «red 50» - самый светлый оттенок красного (* розовый! *), а «red 900» самый темный. Кроме того, большинство тонов имеют «акцентные» оттенки с префиксом `A`.
+
+### Цветовая палитра
+
+Зная тон *HUE* (red, pink и т. д.) и оттенок *SHADE* (500, 600 и т. д.), можно импортировать цвет следующим образом:
+
+```jsx
+import HUE from '@material-ui/core/colors/HUE';
+
+const color = HUE[SHADE];
+```
+
+{{"demo": "pages/customization/color/Color.js", "hideToolbar": true, "bg": "inline"}}
+
+### Примеры
+
+For instance, you can refer to complementary primary and accent colors, "red 500" and "purple A200" like so:
+
+```js
+import purple from '@material-ui/core/colors/purple';
+import red from '@material-ui/core/colors/red';
+
+const primary = red[500]; // #f44336
+const accent = purple['A200']; // #e040fb
+const accent = purple.A200; // #e040fb (alternative method)
+```

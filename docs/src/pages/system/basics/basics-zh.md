@@ -262,7 +262,7 @@ const Grid = styled(Box)`${gridGap}`;
 const example = <Grid display="grid" gridGap={[2, 3]}>...</Grid>;
 ```
 
-你还可以添加 `prop` 和 `cssProperty` 来自定义 prop 名称，并使用 `transform` 函数来转换值(value)。
+你还可以添加 `prop` 和 `cssProperty` 来自定义属性名称，并使用 `transform` 函数来转换值(value)。
 
 ```jsx
 import styled from 'styled-components';

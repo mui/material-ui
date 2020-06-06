@@ -7,7 +7,7 @@
 [这些值](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/styles/zIndex.js)从任意数字开始，足够大和特别来避免冲突。
 
 - mobile stepper（移动设备起步）: 1000
-- speed dial: 1050
+- speed dial（快速拨号）: 1050 
 - app bar（应用栏）：1100
 - drawer（抽屉）：1200
 - modal（浮层）：1300

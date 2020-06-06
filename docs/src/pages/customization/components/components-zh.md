@@ -22,7 +22,7 @@
 
 {{"demo": "pages/customization/components/ClassNames.js"}}
 
-### 用类（classes）覆盖样式
+### 用类覆盖样式
 
 当 `className` 属性不足够时，你需要访问更深层的元素，这时则可使用`classes` 对象属性，这样就能够自定义该组件中所有由 Material-UI 注入的 CSS。
 
@@ -77,9 +77,9 @@ const StyledButton = withStyles({
 
 ### CSS 伪类（Pseudo-classes）
 
-组件特殊状态，如* hover * ，* focus * ，* disabled *和* selected * ，具有更高的CSS特异性。 [特异性是一种重量](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity)这适用于给定的CSS声明。
+组件会有一些特殊的状态，如 *hover* ，*focus* ，*disabled* 和 *selected* ，它们被一些更高的 CSS 特异性所装饰。 [特异性是一种加权](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity)，它适用于给定的 CSS 声明。
 
-为了覆盖组件的特殊状态，**需要提高特异性** 。 下面是一个示例，其中 *disabled* 状态，按钮组件使用 **伪类** （`disabled`）：
+为了覆盖组件的特殊状态，**你会需要提高特殊性** 。 下面是一个示例，它展示了 *disabled* 状态，以及一个使用**伪类**的按钮组件（`disabled`）：
 
 ```css
 .Button {
@@ -94,7 +94,7 @@ const StyledButton = withStyles({
 <Button disabled className="Button">
 ```
 
-有时，您不能使用**伪类**，因为该平台中不存在该状态。 我们以菜单项组件和 *selected* 状态为例。 除了访问嵌套元素之外，还有`classes` 属性可用于自定义Material-UI组件的特殊状态：
+有些时候，鉴于平台中不存在该状态，您不能使用**伪类**。 我们以菜单项（menu item）组件和 *selected* 状态为例。 除了访问嵌套元素之外，还有`classes` 属性可用于自定义 Material-UI 组件的特殊状态：
 
 ```css
 .MenuItem {
@@ -109,15 +109,15 @@ const StyledButton = withStyles({
 <MenuItem selected classes={{ root: 'MenuItem', selected: 'selected' }}>
 ```
 
-#### 为什么我需要增加特异性以覆盖一个组件状态？
+#### 为什么我需要增加特殊性来覆盖一个组件的状态呢？
 
-通过设计，CSS规范使伪类增加了特异性。 为了保持一致性，Material-UI增加了其自定义伪类的特异性。 这有一个重要的优点，它允许您挑选您想要自定义的状态。
+通过一些设计，CSS 的一些特殊要求让伪类增加了特异性。 为了保持一致性，通过一些其自定义的伪类，Material-UI 提高了特殊性。 这有一个重要的优点，您可以自由挑选那些想要自定义状态。
 
-#### 我可以使用不同API吗？这样会需要更少样板。
+#### 我可以使用那些需要更少样板的不同 API 吗？
 
-您可以基于由Material-UI生成的[全局类名](/styles/advanced/#with-material-ui-core)，而不是为`classes`提供 prop API的值。 它实现了所有这些自定义伪类：
+您可以使用 Material-UI 生成的[全局类名](/styles/advanced/#with-material-ui-core)，而不是向 `classes` props API 传达值。 它实现了所有这些自定义伪类：
 
-| classes键     | 全局类名             |
+| classes 键    | 全局类名             |
 |:------------ |:---------------- |
 | checked      | Mui-checked      |
 | disabled     | Mui-disabled     |
@@ -142,9 +142,9 @@ const StyledButton = withStyles({
 <MenuItem selected className="MenuItem">
 ```
 
-### 在同一样式表中，使用 `$ruleName` 引用本地规则
+### 在同一样式表中，可以使用 `$ruleName` 来引用当前的规则
 
-[ jss-nested ](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-nested)插件 (默认情况下可用) 可以使增加特殊性这个过程更容易。
+[jss-nested](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-nested) 插件 (默认情况下可用) 简化了增加特异性的过程。
 
 ```js
 const styles = {
@@ -157,7 +157,7 @@ const styles = {
 };
 ```
 
-会编译为：
+编译成：
 
 ```css
 .root-x.disable-x {
@@ -165,7 +165,7 @@ const styles = {
 }
 ```
 
-⚠️您需要将两个生成的类名称（`root` & `disabled`）应用于DOM以使其工作。
+⚠️您需要将两个生成的类名称（`root` & `disabled`）应用于 DOM，这样才能达到预期效果。
 
 ```jsx
 <Button
@@ -179,11 +179,11 @@ const styles = {
 
 {{"demo": "pages/customization/components/ClassesState.js"}}
 
-### 覆盖内联样式
+### 覆盖内联样式表
 
-覆盖组件样式的第二种方法是使用 **inline-style** 方法。 每个组件都提供`style`属性。 这些属性始终应用于根元素。
+第二种覆盖组件样式的方法是使用 **inline-style**。 每个组件都会提供一个 `style` 属性。 这些属性始终应用于根元素。
 
-您不必担心CSS特异性，因为内联样式优先于常规CSS。
+您不必担心 CSS 特殊性，因为内联样式将优先于常规 CSS。
 
 {{"demo": "pages/customization/components/InlineStyle.js"}}
 
@@ -191,9 +191,9 @@ const styles = {
 
 ## 2。 一次性使用的动态变体
 
-您在上一节中，已经学习了如何覆盖Material-UI组件的样式。 现在，让我们看看我们如何使这些覆盖动态化。 以下是五种选择，各有利弊。
+您在上一节中，已经学习了如何覆盖 Material-UI 组件的样式。 现在，让我们看看我们如何使动态地应用这个覆盖。 以下是五种选择，各有利弊。
 
-### 动态CSS
+### 动态 CSS
 
 {{"demo": "pages/customization/components/DynamicCSS.js"}}
 
@@ -201,7 +201,7 @@ const styles = {
 
 {{"demo": "pages/customization/components/DynamicClassName.js"}}
 
-### CSS变量
+### CSS 变量
 
 {{"demo": "pages/customization/components/DynamicCSSVariables.js"}}
 
@@ -215,27 +215,27 @@ const styles = {
 
 ## 3。 在不同环境中使用组件的特定变体
 
-您可能需要创建组件的变体并在不同的上下文中使用它，例如产品页面上的彩色按钮，但是您可能希望保持代码[* DRY *](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) 。
+您可能需要创建组件的变体，并且在不同的上下文中使用它，例如您想在产品页面上展示一个彩色按钮，但您希望尽可能保持代码 [*DRY*](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) 。
 
-最好的方法是遵循选项1，然后通过导出自定义组件来利用React的组合功能，以便在任何需要的地方使用。
+最好的方法是遵循选项1，然后利用 React 的组合功能，导出自定义的组件来，以便在任何需要的地方使用。
 
 {{"demo": "pages/customization/components/Component.js", "hideEditButton": true}}
 
 ## 4、 Material Design 变体
 
-Material Design规范记录了某些组件的不同变体，例如按钮的形状如何不同：[text](https://material.io/design/components/buttons.html#text-button) (以前称为“flat”)，[contained](https://material.io/design/components/buttons.html#contained-button) (以前称为“raised”)，[ FAB ](https://material.io/design/components/buttons-floating-action-button.html)或者更多。
+Material Design 规范记录了某些组件的不同变体，例如按钮的形状如何不同：[text](https://material.io/design/components/buttons.html#text-button) (以前称为“flat”)，[contained](https://material.io/design/components/buttons.html#contained-button) (以前称为“raised”)，[ FAB ](https://material.io/design/components/buttons-floating-action-button.html)等等。
 
-Material-UI尝试实现所有这些变体。 请参阅[支持的组件](/getting-started/supported-components/)文档，找出您想要的所有支持的Material Design组件的当前状态。
+Material-UI 会尝试实现所有这些变体。 请参阅[支持的组件](/getting-started/supported-components/)文档，找出您想要的所有支持的 Material Design 组件的当前状态。
 
 ## 5、 全局化主题变体
 
-为了提高组件之间的一致性，并整体化管理用户界面外观，Material-UI提供了一种应用全局更改的机制。
+为了提高组件之间的一致性，并整体化管理用户界面外观，Material-UI 提供了一种能够应用全局变更的机制。
 
 本节的示例介绍了如何更改按钮的字体大小。
 
 ### 主题变量
 
-你可以调整[主题配置中的变量](/customization/theming/#theme-configuration-variables)
+你可以调整[主题配置中的变量](/customization/theming/#theme-configuration-variables)。
 
 ```jsx
 const theme = createMuiTheme({
@@ -249,15 +249,15 @@ const theme = createMuiTheme({
 
 {{"demo": "pages/customization/components/ThemeVariables.js"}}
 
-### 全局CSS覆盖
+### 全局 CSS 覆盖
 
-您还可以使用CSS自定义组件的所有实例。 您可以使用我们公开的[全局类名](/styles/advanced/#with-material-ui-core)来实现。 它与您自定义Bootstrap的方式非常相似。
+您也可以自定义带有 CSS 的所有组件的实例。 组件会公开[全局类名称](/styles/advanced/#with-material-ui-core)以启用此功能。 它与您自定义的 Bootstrap 的方式非常相似。
 
 ```jsx
 const GlobalCss = withStyles({
-  // @global由jss-plugin-global处理。
+  // @global 由 jss-plugin-global 处理。
   '@global': {
-    //如果嵌套主题，则应该定位[class * =“MuiButton-root”]。
+    // 如果想嵌套主题，您应该针对 [class * =“MuiButton-root”]。
     '.MuiButton-root': {
       fontSize: '1rem',
     },
@@ -273,7 +273,7 @@ const GlobalCss = withStyles({
 
 ### 全局主题覆盖
 
-您可以利用`可被覆盖`的`主题`的键，这样可以改变由Material-UI注入的每个单独样式。 在[主题部分](/customization/globals/#css)可以了解有关它的更多信息。
+利用`可被覆盖`的`主题`的键，您很有可能改变由 Material-UI 注入 DOM 的每个单独样式。 在[主题部分](/customization/globals/#css)可以了解有关它的更多信息。
 
 ```jsx
 const theme = createMuiTheme({

@@ -1,5 +1,5 @@
 ---
-title: 骨架屏 React 组件
+title: React Skeleton 骨架屏组件
 components: Skeleton
 ---
 
@@ -31,11 +31,11 @@ components: Skeleton
 
 {{"demo": "pages/components/skeleton/Animations.js"}}
 
-### Pulsate example
+### 脉动动画例子
 
 {{"demo": "pages/components/skeleton/YouTube.js", "defaultCodeOpen": false}}
 
-### Wave example
+### 波浪动画例子
 
 {{"demo": "pages/components/skeleton/Facebook.js", "defaultCodeOpen": false, "bg": true}}
 
@@ -65,6 +65,6 @@ loading
 
 ## 可访问性
 
-Skeleton screens provide an alternative to the traditional spinner methods. Rather than showing an abstract widget, skeleton screens create anticipation of what is to come and reduce cognitive load.
+骨架屏提供了一个可替代传统 进度条(spinner) 的解决方案。 骨架屏不是一个抽象的小部件，而是提供一个对未来事件的预期，来减少人们的认知负荷。
 
-The background color of the skeleton uses the least amount of luminance to be visible in good conditions (good ambient light, good screen, no visual impairments).
+骨架屏使用的背景色是在良好条件下可见的最小亮度（良好的环境光、良好的屏幕、无视觉障碍）。

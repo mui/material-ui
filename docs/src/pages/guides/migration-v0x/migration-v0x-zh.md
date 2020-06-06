@@ -43,7 +43,7 @@ Material-UI 这个项目是从[4年前](https://github.com/mui-org/material-ui/c
   import Button from '@material-ui/core/Button'; // v1.x
   ```
 
-2. Run [the migration helper](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod) on your project.
+2. 在你的项目上运行 [迁移助手](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod) 
 3。 `MuiThemeProvider` is optional for v1.x., but if you have a custom theme, you are free to use v0.x and v1.x versions of the component at the same time, like this:
 
   ```jsx
@@ -81,11 +81,11 @@ Material-UI 这个项目是从[4年前](https://github.com/mui-org/material-ui/c
 Material-UI doesn't provide a high-level API for solving this problem.
 You're encouraged you to explore [the solutions the React community has built](/components/autocomplete/).
 
-In the future, we will look into providing a simple component to solve the simple use cases: [#9997](https://github.com/mui-org/material-ui/issues/9997).
+未来，我们打算提供一个简单的组件来解决这个用例：[#9997](https://github.com/mui-org/material-ui/issues/9997)。
 
-### Svg Icon
+### Svg 图标
 
-Run [the migration helper](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod) on your project.
+在你的项目上运行 [迁移助手](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod) 
 
 This will apply a change such as the following:
 
@@ -187,4 +187,4 @@ This will apply a change such as the following:
 
 ### 未完待续...
 
-您是否已成功迁移您的应用，并助社区一臂之力？ There is an open issue in order to finish this migration guide [#7195](https://github.com/mui-org/material-ui/issues/7195). 我们欢迎任何 pull request。
+您是否已成功迁移您的应用，并助社区一臂之力？ 要完成本迁移指南 [#7195](https://github.com/mui-org/material-ui/issues/7195)，还存在一个未决问题。 我们欢迎任何 pull request。

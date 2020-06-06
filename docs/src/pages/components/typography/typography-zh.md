@@ -1,5 +1,5 @@
 ---
-components: 文字排版
+components: Typography
 ---
 
 # Typography 文字铸排
@@ -32,9 +32,9 @@ Material-UI **不会**自动加载 *Roboto* 字体。 开发人员需要自行�
 import 'fontsource-roboto';
 ```
 
-For more info check out [Fontsource](https://github.com/DecliningLotus/fontsource/blob/master/packages/roboto/README.md).
+有关更多信息请查看 [Fontsource](https://github.com/DecliningLotus/fontsource/blob/master/packages/roboto/README.md)。
 
-⚠️使用这种方法时要格外小心。 确保您的包不会一次性加载所有字体的变体 (100/300/400/500/700/900，italic/regular，SVG/woff)。 Fontsource can be configured to load specific subsets, weights and styles. 当内联所有字体文件的时候，捆绑包的大小会显著增加。 Material-UI 默认的排版配置仅依赖于300，400和500的字重。
+⚠️使用这种方法时要格外小心。 确保您的包不会一次性加载所有字体的变体 (100/300/400/500/700/900，italic/regular，SVG/woff)。 Fontsource 可以配置为加载特定的 子集(subsets)、字体粗细(weights) 和 样式(styles)。 当内联所有字体文件的时候，捆绑包的大小会显著增加。 Material-UI 默认的排版配置仅依赖于300，400和500的字重。
 
 ## 组件
 

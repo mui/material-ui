@@ -11,7 +11,7 @@ Material-UI支持所有主流浏览器和平台的最新稳定版本。 我们�
 | 11 | >= 14 | >= 52   | >= 49  | >= 10  | ✅         |
 
 
-因为 Googlebot 使用了Web rendering service - WRS （网络渲染服务）对页面进行索引，所以Material-UI能提供对它的支持非常重要。 [WRS regularly updates the rendering engine it uses](https://webmasters.googleblog.com/2019/05/the-new-evergreen-googlebot.html). 在没有重大问题的情况下，您可以指望能够渲染Material-UI的组件。
+因为 Googlebot 使用了Web rendering service - WRS （网络渲染服务）对页面进行索引，所以Material-UI能提供对它的支持非常重要。 [WRS 定期更新它使用的渲染引擎](https://webmasters.googleblog.com/2019/05/the-new-evergreen-googlebot.html)。 在没有重大问题的情况下，您可以指望能够渲染Material-UI的组件。
 
 ## 服务器
 
@@ -26,3 +26,7 @@ Material-UI支持所有主流浏览器和平台的最新稳定版本。 我们�
 ## React
 
 Material-UI支持最新版本的React，从16.8.0开始(带有hook的版本)。 我们同时提供了向后兼容的[版本](https://material-ui.com/versions/)。
+
+## TypeScript
+
+Material-UI requires a minimum version of TypeScript 3.2.
