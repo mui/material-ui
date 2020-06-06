@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ControlledExpansionPanels() {
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
+  const [expanded, setExpanded] = React.useState('');
 
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
