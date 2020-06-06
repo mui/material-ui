@@ -5,7 +5,7 @@ import { capitalize } from '@material-ui/core/utils';
 import { withStyles } from '@material-ui/core/styles';
 import TimelineContext from '../Timeline/TimelineContext';
 
-export const styles = (theme) => ({
+export const styles = () => ({
   /* Styles applied to the root element. */
   root: {
     listStyle: 'none',
@@ -27,7 +27,7 @@ export const styles = (theme) => ({
   alignAlternate: {
     '&:nth-child(even)': {
       flexDirection: 'row-reverse',
-      // TODO: try not to use them, counting children? 
+      // TODO: try not to use them, counting children?
       '& .MuiTimelineItemContent-root': {
         textAlign: 'right',
       },
@@ -36,13 +36,14 @@ export const styles = (theme) => ({
       },
     },
   },
+  /* Styles applied to the root element if no there isn't TimelineItemOppositeContent provided. */
   missingOppositeContent: {
-    "&:before": {
+    '&:before': {
       content: "''",
       flex: 1,
       padding: '6px 16px',
-    }
-  }
+    },
+  },
 });
 
 const TimelineItem = React.forwardRef(function TimelineItem(props, ref) {
@@ -54,9 +55,14 @@ const TimelineItem = React.forwardRef(function TimelineItem(props, ref) {
 
   return (
     <Component
-      className={clsx(classes.root, classes[`align${capitalize(align)}`], {
-        [classes['missingOppositeContent']]: missingOppositeContent,
-      }, className)}
+      className={clsx(
+        classes.root,
+        classes[`align${capitalize(align)}`],
+        {
+          [classes.missingOppositeContent]: missingOppositeContent,
+        },
+        className,
+      )}
       ref={ref}
       {...other}
     />

@@ -14,7 +14,7 @@ export interface TimelineItemProps extends StandardProps<{}, TimelineItemClassKe
   component?: React.ElementType<React.HTMLAttributes<HTMLElement>>;
 }
 
-export type TimelineItemClassKey = 'root' | 'alignLeft' | 'alignRight' | 'alignAlternate';
+export type TimelineItemClassKey = 'root' | 'alignLeft' | 'alignRight' | 'alignAlternate' | 'missingOppositeContent';
 
 /**
  *

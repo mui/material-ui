@@ -5,7 +5,7 @@ import { capitalize } from '@material-ui/core/utils';
 import { withStyles } from '@material-ui/core/styles';
 import TimelineContext from './TimelineContext';
 
-export const styles = (theme) => ({
+export const styles = () => ({
   /* Styles applied to the root element. */
   root: {
     display: 'flex',

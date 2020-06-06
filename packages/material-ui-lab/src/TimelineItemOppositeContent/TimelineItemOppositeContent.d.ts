@@ -14,7 +14,7 @@ export interface TimelineItemOppositeContentProps extends StandardProps<{}, Time
   component?: React.ElementType<React.HTMLAttributes<HTMLElement>>;
 }
 
-export type TimelineItemOppositeContentClassKey = 'root';
+export type TimelineItemOppositeContentClassKey = 'root' | 'alignRight';
 
 /**
  *

@@ -20,12 +20,12 @@ export const styles = (theme) => ({
     position: 'relative',
     boxShadow: theme.shadows[2],
   },
-  /* Styles applied to the root element if `color="default"` and `variant="default"`. */  
+  /* Styles applied to the root element if `color="default"` and `variant="default"`. */
   defaultDefault: {
     borderColor: theme.palette.grey[300],
     backgroundColor: theme.palette.grey[300],
   },
-  /* Styles applied to the root element if `color="default"` and `variant="outlined"`. */  
+  /* Styles applied to the root element if `color="default"` and `variant="outlined"`. */
   outlinedDefalut: {
     borderColor: theme.palette.grey[300],
     backgroundColor: 'white', // TODO: fix color white
@@ -55,20 +55,30 @@ export const styles = (theme) => ({
   outlinedSecondary: {
     backgroundColor: 'white',
     borderColor: theme.palette.secondary.main,
-  }  
+  },
 });
 
 const TimelineItemDot = React.forwardRef(function TimelineItemDot(props, ref) {
-  const { classes, className, component: Component = 'span', color = 'default', variant = 'default', ...other } = props;
+  const {
+    classes,
+    className,
+    component: Component = 'span',
+    color = 'default',
+    variant = 'default',
+    ...other
+  } = props;
   const hasChildren = Boolean(props.children);
 
   return (
     <Component
-      className={clsx(classes.root, { 
+      className={clsx(
+        classes.root,
+        {
           [classes.withChildren]: hasChildren,
           [classes[`${variant}${capitalize(color)}`]]: color !== 'inherit',
-        }, 
-        className)}
+        },
+        className,
+      )}
       ref={ref}
       {...other}
     />
@@ -94,10 +104,18 @@ TimelineItemDot.propTypes = {
    */
   className: PropTypes.string,
   /**
+   * The dot can have a different colors.
+   */
+  color: PropTypes.oneOf(['default', 'inherit', 'primary', 'secondary']),
+  /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * The dot can appear filled or outlined.
+   */
+  variant: PropTypes.oneOf(['default', 'outlined']),
 };
 
 export default withStyles(styles, { name: 'MuiTimelineItemDot' })(TimelineItemDot);
