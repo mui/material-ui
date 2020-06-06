@@ -215,16 +215,6 @@ describe('<Select />', () => {
   });
 
   describe('prop: onChange', () => {
-    let clock;
-
-    before(() => {
-      clock = useFakeTimers();
-    });
-
-    after(() => {
-      clock.restore();
-    });
-
     it('should get selected element from arguments', () => {
       const onChangeHandler = spy();
       const { getAllByRole, getByRole } = render(
