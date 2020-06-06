@@ -8,16 +8,17 @@ import TimelineContext from '../Timeline/TimelineContext';
 export const styles = () => ({
   /* Styles applied to the root element. */
   root: {
+    flex: 1,
     padding: '6px 16px',
   },
   /* Styles applied to the root element if `align="right"`. */
   alignRight: {
-    marginLeft: 'auto',
+    textAlign: 'right',
   },
 });
 
 const TimelineItemContent = React.forwardRef(function TimelineItemContent(props, ref) {
-  const { children, classes, className, component: Component = 'div', ...other } = props;
+  const { classes, className, component: Component = 'div', ...other } = props;
 
   const { align = 'left' } = React.useContext(TimelineContext);
 
@@ -26,9 +27,7 @@ const TimelineItemContent = React.forwardRef(function TimelineItemContent(props,
       className={clsx(classes.root, classes[`align${capitalize(align)}`], className)}
       ref={ref}
       {...other}
-    >
-      {children}
-    </Component>
+    />
   );
 });
 

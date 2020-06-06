@@ -7,12 +7,13 @@ export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     width: 2,
-    background: theme.palette.primary.main,
+    background: theme.palette.grey[300],
     transform: 'translate(-50%)',
     height: '100%',
     position: 'absolute',
     top: theme.spacing(2),
     boxSizing: 'border-box',
+    left: '50%',
   },
 });
 

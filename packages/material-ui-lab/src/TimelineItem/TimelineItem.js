@@ -8,8 +8,6 @@ import TimelineContext from '../Timeline/TimelineContext';
 export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: 'transparent',
     listStyle: 'none',
     display: 'flex',
     position: 'relative',
@@ -23,47 +21,45 @@ export const styles = (theme) => ({
   alignLeft: {},
   /* Styles applied to the root element if `align="right"`. */
   alignRight: {
-    right: '100%',
     flexDirection: 'row-reverse',
-    '& .MuiTimelineItemDot-root': {
-      transform: 'translate(50%)',
-    },
-    '& .MuiTimelineItemTail-root': {
-      left: '100%',
-    },
   },
   /* Styles applied to the root element if `align="alternate"`. */
   alignAlternate: {
     '&:nth-child(even)': {
-      right: '100%',
-      textAlign: 'right',
       flexDirection: 'row-reverse',
-      '& .MuiTimelineItemDot-root': {
-        transform: 'translateX(50%)',
-      },
-      '& .MuiTimelineItemTail-root': {
-        left: '100%',
-      },
+      // TODO: try not to use them, counting children? 
       '& .MuiTimelineItemContent-root': {
-        marginLeft: 'auto',
+        textAlign: 'right',
+      },
+      '& .MuiTimelineItemOppositeContent-root': {
+        textAlign: 'left',
       },
     },
   },
+  missingOppositeContent: {
+    "&:before": {
+      content: "''",
+      flex: 1,
+      padding: '6px 16px',
+    }
+  }
 });
 
 const TimelineItem = React.forwardRef(function TimelineItem(props, ref) {
-  const { children, classes, className, component: Component = 'li', ...other } = props;
+  const { classes, className, component: Component = 'li', ...other } = props;
 
   const { align = 'left' } = React.useContext(TimelineContext);
 
+  const missingOppositeContent = React.Children.count(props.children) - 2 < 2;
+
   return (
     <Component
-      className={clsx(classes.root, classes[`align${capitalize(align)}`], className)}
+      className={clsx(classes.root, classes[`align${capitalize(align)}`], {
+        [classes['missingOppositeContent']]: missingOppositeContent,
+      }, className)}
       ref={ref}
       {...other}
-    >
-      {children}
-    </Component>
+    />
   );
 });
 

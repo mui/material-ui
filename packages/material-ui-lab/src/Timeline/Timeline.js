@@ -8,17 +8,15 @@ import TimelineContext from './TimelineContext';
 export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: 'transparent',
     display: 'flex',
     flexDirection: 'column',
     padding: '6px 16px',
+    flexGrow: 1,
   },
   /* Styles applied to the root element if `align="left"`. */
   alignLeft: {},
   /* Styles applied to the root element if `align="right"`. */
   alignRight: {
-    textAlign: 'right',
   },
   /* Styles applied to the root element if `align="alternate"`. */
   alignAlternate: {},
