@@ -27,13 +27,9 @@ Right aligned timeline can show the timeline on the right side of the events.
 
 {{"demo": "pages/components/timeline/RightAlinedTimeline.js"}}
 
-## Custom icons in timeline
+## Customized timeline icons in timeline
 
-Timeline can contain icons inside the dots.
+Here is an example of customizing the component. You can learn more about this in the
+[overrides documentation page](/customization/components/).
 
-{{"demo": "pages/components/timeline/CustomizedDotTimeline.js"}}
-
-
-## Accessibility
-
-TBD
+{{"demo": "pages/components/timeline/CustomizedTimeline.js"}}

@@ -52,7 +52,6 @@ const TimelineItem = React.forwardRef(function TimelineItem(props, ref) {
   React.Children.forEach(props.children, (child) => {
     if (isMuiElement(child, ['TimelineItemOppositeContent'])) {
       hasOppositeContent = true;
-      return;
     }
   });
 
