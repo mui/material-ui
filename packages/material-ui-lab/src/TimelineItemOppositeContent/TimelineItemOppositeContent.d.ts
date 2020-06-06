@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { StandardProps } from '@material-ui/core';
 
-export interface TimelineItemOppositeContentProps extends StandardProps<{}, TimelineItemOppositeContentClassKey> {
+export interface TimelineItemOppositeContentProps
+  extends StandardProps<{}, TimelineItemOppositeContentClassKey> {
   /**
    * The content of the component.
    */
@@ -22,4 +23,6 @@ export type TimelineItemOppositeContentClassKey = 'root' | 'alignRight';
  *
  * - [TimelineItemOppositeContent API](https://material-ui.com/api/timeline-item-opposite-content/)
  */
-export default function TimelineItemOppositeContent(props: TimelineItemOppositeContentProps): JSX.Element;
+export default function TimelineItemOppositeContent(
+  props: TimelineItemOppositeContentProps
+): JSX.Element;

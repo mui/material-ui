@@ -16,8 +16,7 @@ export const styles = () => ({
   /* Styles applied to the root element if `align="left"`. */
   alignLeft: {},
   /* Styles applied to the root element if `align="right"`. */
-  alignRight: {
-  },
+  alignRight: {},
   /* Styles applied to the root element if `align="alternate"`. */
   alignAlternate: {},
 });

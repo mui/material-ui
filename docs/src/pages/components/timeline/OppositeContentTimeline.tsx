@@ -8,49 +8,66 @@ import TimelineItemOppositeContent from '@material-ui/lab/TimelineItemOppositeCo
 import Typography from '@material-ui/core/Typography';
 
 export default function OppositeContentTimeline() {
-  const timelineItems = [{
-    activity: 'Eat',
-    time: '09:30AM',
-  }, {
-    activity: 'Code',
-    time: '10:00AM',
-  }, {
-    activity: 'Sleep',
-    time: '00:00AM',
-  }, {
-    activity: 'Repeat',
-    time: '9:00AM'
-  }];
+  const timelineItems = [
+    {
+      activity: 'Eat',
+      time: '09:30AM',
+    },
+    {
+      activity: 'Code',
+      time: '10:00AM',
+    },
+    {
+      activity: 'Sleep',
+      time: '00:00AM',
+    },
+    {
+      activity: 'Repeat',
+      time: '9:00AM',
+    },
+  ];
 
   return (
     <React.Fragment>
       <Timeline>
         {timelineItems.map(({ activity, time }) => (
           <TimelineItem key={activity}>
-            <TimelineItemOppositeContent><Typography color="textSecondary">{time}</Typography></TimelineItemOppositeContent>
+            <TimelineItemOppositeContent>
+              <Typography color="textSecondary">{time}</Typography>
+            </TimelineItemOppositeContent>
             <TimelineItemTail />
             <TimelineItemDot />
-            <TimelineItemContent><Typography>{activity}</Typography></TimelineItemContent>
+            <TimelineItemContent>
+              <Typography>{activity}</Typography>
+            </TimelineItemContent>
           </TimelineItem>
         ))}
       </Timeline>
       <Timeline align="right">
         {timelineItems.map(({ activity, time }) => (
           <TimelineItem key={activity}>
-            <TimelineItemOppositeContent><Typography color="textSecondary">{time}</Typography></TimelineItemOppositeContent>
+            <TimelineItemOppositeContent>
+              <Typography color="textSecondary">{time}</Typography>
+            </TimelineItemOppositeContent>
             <TimelineItemTail />
             <TimelineItemDot />
-            <TimelineItemContent><Typography>{activity}</Typography></TimelineItemContent>
+            <TimelineItemContent>
+              <Typography>{activity}</Typography>
+            </TimelineItemContent>
           </TimelineItem>
         ))}
       </Timeline>
       <Timeline align="alternate">
         {timelineItems.map(({ activity, time }) => (
           <TimelineItem key={activity}>
-            <TimelineItemOppositeContent><Typography color="textSecondary">{time}</Typography></TimelineItemOppositeContent>
+            <TimelineItemOppositeContent>
+              <Typography color="textSecondary">{time}</Typography>
+            </TimelineItemOppositeContent>
             <TimelineItemTail />
             <TimelineItemDot />
-            <TimelineItemContent><Typography>{activity}</Typography></TimelineItemContent>
+            <TimelineItemContent>
+              <Typography>{activity}</Typography>
+            </TimelineItemContent>
           </TimelineItem>
         ))}
       </Timeline>

@@ -21,8 +21,8 @@ const usePaperStyles = makeStyles({
 
 const useTailSecondaryStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: theme.palette.secondary.main, 
-  }
+    backgroundColor: theme.palette.secondary.main,
+  },
 }));
 
 export default function CustomizedDotTimeline() {
@@ -33,7 +33,9 @@ export default function CustomizedDotTimeline() {
     <Timeline align="alternate">
       <TimelineItem>
         <TimelineItemOppositeContent>
-          <Typography variant="body2" color="textSecondary">9:30AM</Typography>
+          <Typography variant="body2" color="textSecondary">
+            9:30AM
+          </Typography>
         </TimelineItemOppositeContent>
         <TimelineItemTail />
         <TimelineItemDot>
@@ -41,14 +43,18 @@ export default function CustomizedDotTimeline() {
         </TimelineItemDot>
         <TimelineItemContent>
           <Paper elevation={3} className={paperClasses.root}>
-            <Typography variant="h6" component="h1">Eat</Typography>
-            <Typography>Because you need strenght...</Typography>            
-          </Paper>          
+            <Typography variant="h6" component="h1">
+              Eat
+            </Typography>
+            <Typography>Because you need strenght...</Typography>
+          </Paper>
         </TimelineItemContent>
       </TimelineItem>
       <TimelineItem>
-      <TimelineItemOppositeContent>
-          <Typography variant="body2" color="textSecondary">10:00AM</Typography>
+        <TimelineItemOppositeContent>
+          <Typography variant="body2" color="textSecondary">
+            10:00AM
+          </Typography>
         </TimelineItemOppositeContent>
         <TimelineItemTail />
         <TimelineItemDot color="primary">
@@ -56,21 +62,25 @@ export default function CustomizedDotTimeline() {
         </TimelineItemDot>
         <TimelineItemContent>
           <Paper elevation={3} className={paperClasses.root}>
-            <Typography variant="h6" component="h1">Code</Typography>
-            <Typography>Because it is awesome...</Typography>            
-          </Paper>          
+            <Typography variant="h6" component="h1">
+              Code
+            </Typography>
+            <Typography>Because it is awesome...</Typography>
+          </Paper>
         </TimelineItemContent>
       </TimelineItem>
       <TimelineItem>
-        <TimelineItemTail className={secondaryTailClasses.root}/>
+        <TimelineItemTail className={secondaryTailClasses.root} />
         <TimelineItemDot color="primary" variant="outlined">
           <HotelIcon />
         </TimelineItemDot>
         <TimelineItemContent>
           <Paper elevation={3} className={paperClasses.root}>
-            <Typography variant="h6" component="h1">Sleep</Typography>
+            <Typography variant="h6" component="h1">
+              Sleep
+            </Typography>
             <Typography>Because you need rest</Typography>
-          </Paper>          
+          </Paper>
         </TimelineItemContent>
       </TimelineItem>
       <TimelineItem>
@@ -79,7 +89,9 @@ export default function CustomizedDotTimeline() {
         </TimelineItemDot>
         <TimelineItemContent>
           <Paper elevation={3} className={paperClasses.root}>
-            <Typography variant="h6" component="h1">Repeat</Typography>
+            <Typography variant="h6" component="h1">
+              Repeat
+            </Typography>
             <Typography>Because that is your life</Typography>
           </Paper>
         </TimelineItemContent>
