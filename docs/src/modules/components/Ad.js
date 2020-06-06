@@ -3,29 +3,32 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
-import { capitalize } from '@material-ui/core/utils';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import AdCodeFund from 'docs/src/modules/components/AdCodeFund';
 import AdCarbon from 'docs/src/modules/components/AdCarbon';
 import AdInHouse from 'docs/src/modules/components/AdInHouse';
-import { AdContext, adPlacement } from 'docs/src/modules/components/AdManager';
+import { AdContext, adPlacement, adShape } from 'docs/src/modules/components/AdManager';
 
 const styles = (theme) => ({
   root: {
     position: 'relative',
     display: 'block',
   },
-  placementBody: {
-    fontSize: theme.typography.body1.fontSize,
-    maxWidth: '56ch',
+  'placement-body-image': {
     margin: theme.spacing(4, 1, 3),
     minHeight: 126,
   },
-  'placementTocs-top': {
+  'placement-body-inline': {
+    margin: theme.spacing(4, 0, 3),
+    minHeight: 126,
+    display: 'flex',
+    alignItems: 'flex-end',
+  },
+  'placement-tocs-top-image': {
     minHeight: 240,
   },
-  'placementTocs-bottom': {
+  'placement-tocs-bottom-image': {
     minHeight: 240,
   },
   paper: {
@@ -170,7 +173,7 @@ function Ad(props) {
 
   const ad = React.useContext(AdContext);
   const eventLabel = getEventLabel();
-  const eventValue = adPlacement === 'body' ? ad.portal.placement : adPlacement;
+  const eventValue = `${adPlacement === 'body' ? ad.portal.placement : adPlacement}-${adShape}`;
 
   const timerAdblock = React.useRef();
 
@@ -284,11 +287,13 @@ function Ad(props) {
 
   return (
     <span
-      className={clsx(classes.root, classes[`placement${capitalize(adPlacement)}`])}
+      className={clsx(classes.root, classes[`placement-${adPlacement}-${adShape}`])}
       style={{ minHeight: adPlacement === 'body' ? minHeight : null }}
       data-ga-event-category="ad"
       data-ga-event-action="click"
+      /* advertiser network */
       data-ga-event-label={eventLabel}
+      /* docs placement */
       data-ga-event-value={eventValue}
     >
       {React.cloneElement(children, { key })}

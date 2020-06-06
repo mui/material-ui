@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import loadScript from 'docs/src/modules/utils/loadScript';
 import adStyles from 'docs/src/modules/components/ad.styles';
+import { adShape } from 'docs/src/modules/components/AdManager';
 
 const useStyles = makeStyles((theme) => {
   const styles = adStyles(theme);
@@ -20,6 +21,7 @@ const useStyles = makeStyles((theme) => {
             fontStyle: 'normal',
           },
         },
+        '& .cf-cta': styles.link,
       },
     },
   };
@@ -30,7 +32,12 @@ export default function AdCodeFund() {
   const ref = React.useRef(null);
 
   React.useEffect(() => {
-    loadScript('https://codefund.io/properties/137/funder.js?theme=unstyled', ref.current);
+    loadScript(
+      `https://codefund.io/properties/137/funder.js?theme=unstyled${
+        adShape === 'inline' ? '&template=horizontal' : ''
+      }`,
+      ref.current,
+    );
   }, []);
 
   return (

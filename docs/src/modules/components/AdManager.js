@@ -10,14 +10,18 @@ export const AdContext = React.createContext();
 
 // Persisted for the whole session.
 // The state is used to use different ad placements.
-const randomSession = Math.random();
+const randomSession1 = Math.random();
+const randomSession2 = Math.random();
 
 // Distribution profile:
-// 50% body
-// 30% tocs-bottom
-// 20% tocs-top
+// 25% body-image
+// 25% body-inline
+// 25% tocs-bottom-image
+// 25% tocs-top-image
 export const adPlacement =
-  randomSession < 0.5 ? `tocs-${randomSession < 0.2 ? 'top' : 'bottom'}` : 'body';
+  randomSession1 < 0.5 ? 'body' : `tocs-${randomSession1 < 0.75 ? 'top' : 'bottom'}`;
+
+export const adShape = randomSession1 < 0.5 && randomSession2 < 0.5 ? 'inline' : 'image';
 
 export default function AdManager(props) {
   const [portal, setPortal] = React.useState({});
@@ -49,7 +53,7 @@ export default function AdManager(props) {
         return true;
       }
 
-      if (node.offsetTop - lastPosition > window.innerHeight * 4.5) {
+      if (node.offsetTop - lastPosition > window.innerHeight * 4) {
         lastPosition = node.offsetTop;
         return true;
       }
@@ -70,7 +74,7 @@ export default function AdManager(props) {
         let placement;
         if (index === 0) {
           placement = 'body-top';
-        } else if (placement === selectedNodes.length - 1) {
+        } else if (index === selectedNodes.length - 1) {
           placement = 'body-bottom';
         } else {
           placement = `body-${index}`;

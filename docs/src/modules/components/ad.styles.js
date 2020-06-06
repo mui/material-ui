@@ -1,7 +1,7 @@
 import { fade } from '@material-ui/core/styles';
-import { adPlacement } from 'docs/src/modules/components/AdManager';
+import { adPlacement, adShape } from 'docs/src/modules/components/AdManager';
 
-const adBodyStyles = (theme) => ({
+const adBodyImageStyles = (theme) => ({
   root: {
     display: 'block',
     overflow: 'hidden',
@@ -38,7 +38,48 @@ const adBodyStyles = (theme) => ({
   },
 });
 
-const adTocsTopStyles = (theme) => ({
+const adBodyInlineStyles = (theme) => {
+  const baseline = adBodyImageStyles(theme);
+
+  return {
+    ...baseline,
+    root: {},
+    imgWrapper: {
+      display: 'none',
+    },
+    description: {
+      ...baseline.description,
+      marginLeft: 0,
+      '&:before': {
+        backgroundColor: '#4caf50',
+        color: '#fff',
+        marginRight: 4,
+        padding: '2px 6px',
+        borderRadius: 3,
+        content: '"Ad"',
+        fontSize: theme.typography.pxToRem(14),
+      },
+      '&:after': {
+        marginLeft: 4,
+        content: '"Get started"',
+        // Style taken from the Link component
+        color: theme.palette.secondary.main,
+        '&:hover': {
+          textDecoration: 'underline',
+        },
+      },
+    },
+    poweredby: {
+      ...baseline.poweredby,
+      marginLeft: 0,
+    },
+    link: {
+      display: 'none',
+    },
+  };
+};
+
+const adTocsTopImageStyles = (theme) => ({
   root: {
     display: 'flex',
     borderBottom: `1px solid ${fade(theme.palette.action.active, 0.12)}`,
@@ -72,8 +113,8 @@ const adTocsTopStyles = (theme) => ({
   },
 });
 
-const adTocsBottomStyles = (theme) => ({
-  ...adTocsTopStyles(theme),
+const adTocsBottomImageStyles = (theme) => ({
+  ...adTocsTopImageStyles(theme),
   root: {
     display: 'flex',
     borderTop: `1px solid ${fade(theme.palette.action.active, 0.12)}`,
@@ -85,7 +126,8 @@ const adTocsBottomStyles = (theme) => ({
 });
 
 export default {
-  body: adBodyStyles,
-  'tocs-top': adTocsTopStyles,
-  'tocs-bottom': adTocsBottomStyles,
-}[adPlacement];
+  'body-image': adBodyImageStyles,
+  'body-inline': adBodyInlineStyles,
+  'tocs-top-image': adTocsTopImageStyles,
+  'tocs-bottom-image': adTocsBottomImageStyles,
+}[`${adPlacement}-${adShape}`];
