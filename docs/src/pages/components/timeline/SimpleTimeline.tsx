@@ -4,13 +4,11 @@ import TimelineItem from '@material-ui/lab/TimelineItem';
 import TimelineItemTail from '@material-ui/lab/TimelineItemTail';
 import TimelineItemContent from '@material-ui/lab/TimelineItemContent';
 import TimelineItemDot from '@material-ui/lab/TimelineItemDot';
-import TimelineItemOppositeContent from '@material-ui/lab/TimelineItemOppositeContent';
 
 export default function SimpleTimeline() {
   return (
     <Timeline>
       <TimelineItem>
-        <TimelineItemOppositeContent>09:30AM</TimelineItemOppositeContent>
         <TimelineItemTail />
         <TimelineItemDot />
         <TimelineItemContent>Eat</TimelineItemContent>
@@ -21,7 +19,6 @@ export default function SimpleTimeline() {
         <TimelineItemContent>Code</TimelineItemContent>
       </TimelineItem>
       <TimelineItem>
-        <TimelineItemOppositeContent>00:00AM</TimelineItemOppositeContent>
         <TimelineItemTail />
         <TimelineItemDot />
         <TimelineItemContent>Sleep</TimelineItemContent>

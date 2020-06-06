@@ -27,6 +27,12 @@ Right aligned timeline can show the timeline on the right side of the events.
 
 {{"demo": "pages/components/timeline/RightAlinedTimeline.js"}}
 
+## Opposite content
+
+Timeline can contain an element opposite of the content.
+
+{{"demo": "pages/components/timeline/OppositeContentTimeline.js"}}
+
 ## Customized timeline icons in timeline
 
 Here is an example of customizing the component. You can learn more about this in the

@@ -4,13 +4,11 @@ import TimelineItem from '@material-ui/lab/TimelineItem';
 import TimelineItemTail from '@material-ui/lab/TimelineItemTail';
 import TimelineItemContent from '@material-ui/lab/TimelineItemContent';
 import TimelineItemDot from '@material-ui/lab/TimelineItemDot';
-import TimelineItemOppositeContent from '@material-ui/lab/TimelineItemOppositeContent';
 
 export default function RightAlignedTimeline() {
   return (
     <Timeline align="right">
       <TimelineItem>
-        <TimelineItemOppositeContent>09:30AM</TimelineItemOppositeContent>
         <TimelineItemTail />
         <TimelineItemDot />
         <TimelineItemContent>Eat</TimelineItemContent>
@@ -26,7 +24,6 @@ export default function RightAlignedTimeline() {
         <TimelineItemContent>Sleep</TimelineItemContent>
       </TimelineItem>
       <TimelineItem>
-        <TimelineItemOppositeContent>09:00AM</TimelineItemOppositeContent>
         <TimelineItemDot />
         <TimelineItemContent>Repeat</TimelineItemContent>
       </TimelineItem>
