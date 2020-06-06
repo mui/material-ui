@@ -44,6 +44,7 @@ Any other props supplied will be provided to the root element (native element).
 | <span class="prop-name">alignLeft</span> | <span class="prop-name">.MuiTimelineItem-alignLeft</span> | Styles applied to the root element if `align="left"`.
 | <span class="prop-name">alignRight</span> | <span class="prop-name">.MuiTimelineItem-alignRight</span> | Styles applied to the root element if `align="right"`.
 | <span class="prop-name">alignAlternate</span> | <span class="prop-name">.MuiTimelineItem-alignAlternate</span> | Styles applied to the root element if `align="alternate"`.
+| <span class="prop-name">missingOppositeContent</span> | <span class="prop-name">.MuiTimelineItem-missingOppositeContent</span> | Styles applied to the root element if no there isn't TimelineItemOppositeContent provided.
 
 You can override the style of the component thanks to one of these customization points:
 

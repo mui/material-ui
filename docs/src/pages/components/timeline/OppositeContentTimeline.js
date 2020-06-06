@@ -26,7 +26,7 @@ export default function OppositeContentTimeline() {
     <React.Fragment>
       <Timeline>
         {timelineItems.map(({ activity, time }) => (
-          <TimelineItem>
+          <TimelineItem key={activity}>
             <TimelineItemOppositeContent><Typography color="textSecondary">{time}</Typography></TimelineItemOppositeContent>
             <TimelineItemTail />
             <TimelineItemDot />
@@ -36,7 +36,7 @@ export default function OppositeContentTimeline() {
       </Timeline>
       <Timeline align="right">
         {timelineItems.map(({ activity, time }) => (
-          <TimelineItem>
+          <TimelineItem key={activity}>
             <TimelineItemOppositeContent><Typography color="textSecondary">{time}</Typography></TimelineItemOppositeContent>
             <TimelineItemTail />
             <TimelineItemDot />
@@ -46,7 +46,7 @@ export default function OppositeContentTimeline() {
       </Timeline>
       <Timeline align="alternate">
         {timelineItems.map(({ activity, time }) => (
-          <TimelineItem>
+          <TimelineItem key={activity}>
             <TimelineItemOppositeContent><Typography color="textSecondary">{time}</Typography></TimelineItemOppositeContent>
             <TimelineItemTail />
             <TimelineItemDot />

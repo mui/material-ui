@@ -18,10 +18,6 @@ export type TimelineItemOppositeContentClassKey = 'root' | 'alignRight';
 
 /**
  *
- * Demos:
- *
- * - [Timeline](https://material-ui.com/components/timeline/)
- *
  * API:
  *
  * - [TimelineItemOppositeContent API](https://material-ui.com/api/timeline-item-opposite-content/)
