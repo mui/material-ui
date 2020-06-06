@@ -1024,7 +1024,7 @@ describe('<Select />', () => {
     expect(getByRole('button')).to.have.text('France');
   });
 
-  it('should support native from validation', function test() {
+  it('should support native form validation', function test() {
     if (/jsdom/.test(window.navigator.userAgent)) {
       // see https://github.com/jsdom/jsdom/issues/123
       this.skip();
