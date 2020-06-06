@@ -29,7 +29,6 @@ export default function RightAlignedTimeline() {
       </TimelineItem>
       <TimelineItem>
         <TimelineItemOppositeContent>09:00AM</TimelineItemOppositeContent>
-        <TimelineItemTail />
         <TimelineItemDot />
         <TimelineItemContent>Repeat</TimelineItemContent>
       </TimelineItem>

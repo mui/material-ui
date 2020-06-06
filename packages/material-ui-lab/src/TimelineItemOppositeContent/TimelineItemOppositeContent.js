@@ -61,6 +61,8 @@ TimelineItemOppositeContent.propTypes = {
   component: PropTypes.elementType,
 };
 
+TimelineItemOppositeContent.muiName = 'TimelineItemOppositeContent';
+
 export default withStyles(styles, { name: 'MuiTimelineItemOppositeContent' })(
   TimelineItemOppositeContent,
 );

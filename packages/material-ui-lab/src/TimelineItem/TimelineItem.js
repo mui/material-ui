@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { capitalize } from '@material-ui/core/utils';
+import { capitalize, isMuiElement } from '@material-ui/core/utils';
 import { withStyles } from '@material-ui/core/styles';
 import TimelineContext from '../Timeline/TimelineContext';
 
@@ -12,9 +12,6 @@ export const styles = () => ({
     display: 'flex',
     position: 'relative',
     height: '100%',
-    '&:last-child .MuiTimelineItemTail-root': {
-      display: 'none',
-    },
     minHeight: 70,
   },
   /* Styles applied to the root element if `align="left"`. */
@@ -48,10 +45,16 @@ export const styles = () => ({
 
 const TimelineItem = React.forwardRef(function TimelineItem(props, ref) {
   const { classes, className, component: Component = 'li', ...other } = props;
-
   const { align = 'left' } = React.useContext(TimelineContext);
 
-  const missingOppositeContent = React.Children.count(props.children) - 2 < 2;
+  let hasOppositeContent = false;
+
+  React.Children.forEach(props.children, (child) => {
+    if (isMuiElement(child, ['TimelineItemOppositeContent'])) {
+      hasOppositeContent = true;
+      return;
+    }
+  });
 
   return (
     <Component
@@ -59,7 +62,7 @@ const TimelineItem = React.forwardRef(function TimelineItem(props, ref) {
         classes.root,
         classes[`align${capitalize(align)}`],
         {
-          [classes.missingOppositeContent]: missingOppositeContent,
+          [classes.missingOppositeContent]: !hasOppositeContent,
         },
         className,
       )}

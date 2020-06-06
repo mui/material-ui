@@ -1,44 +1,79 @@
 import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import Timeline from '@material-ui/lab/Timeline';
 import TimelineItem from '@material-ui/lab/TimelineItem';
 import TimelineItemTail from '@material-ui/lab/TimelineItemTail';
 import TimelineItemContent from '@material-ui/lab/TimelineItemContent';
+import TimelineItemOppositeContent from '@material-ui/lab/TimelineItemOppositeContent';
 import TimelineItemDot from '@material-ui/lab/TimelineItemDot';
 import FastfoodIcon from '@material-ui/icons/Fastfood';
 import LaptopMacIcon from '@material-ui/icons/LaptopMac';
 import HotelIcon from '@material-ui/icons/Hotel';
 import RepeatIcon from '@material-ui/icons/Repeat';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
+
+const usePaperStyles = makeStyles({
+  root: {
+    padding: 10,
+  },
+});
+
 
 export default function CustomizedDotTimeline() {
+  const paperClasses = usePaperStyles();
+
   return (
     <Timeline align="alternate">
       <TimelineItem>
+        <TimelineItemOppositeContent>
+          <Typography variant="body2" color="textSecondary">9:30AM</Typography>
+        </TimelineItemOppositeContent>
         <TimelineItemTail />
         <TimelineItemDot>
           <FastfoodIcon />
         </TimelineItemDot>
-        <TimelineItemContent>Eat</TimelineItemContent>
+        <TimelineItemContent>
+          <Paper elevation={3} className={paperClasses.root}>
+            <Typography variant="h6" component="h1">Eat</Typography>
+            <Typography>Because you need strenght...</Typography>            
+          </Paper>          
+        </TimelineItemContent>
       </TimelineItem>
       <TimelineItem>
         <TimelineItemTail />
-        <TimelineItemDot>
+        <TimelineItemDot color="primary">
           <LaptopMacIcon />
         </TimelineItemDot>
-        <TimelineItemContent>Code</TimelineItemContent>
+        <TimelineItemContent>
+          <Paper elevation={3} className={paperClasses.root}>
+            <Typography variant="h6" component="h1">Code</Typography>
+            <Typography>Because it's awesome...</Typography>            
+          </Paper>          
+        </TimelineItemContent>
       </TimelineItem>
       <TimelineItem>
         <TimelineItemTail />
-        <TimelineItemDot>
+        <TimelineItemDot color="primary" variant="outlined">
           <HotelIcon />
         </TimelineItemDot>
-        <TimelineItemContent>Sleep</TimelineItemContent>
+        <TimelineItemContent>
+          <Paper elevation={3} className={paperClasses.root}>
+            <Typography variant="h6" component="h1">Sleep</Typography>
+            <Typography>Because you need rest</Typography>
+          </Paper>          
+        </TimelineItemContent>
       </TimelineItem>
       <TimelineItem>
-        <TimelineItemTail />
-        <TimelineItemDot>
+        <TimelineItemDot color="secondary">
           <RepeatIcon />
         </TimelineItemDot>
-        <TimelineItemContent>Repeat</TimelineItemContent>
+        <TimelineItemContent>
+          <Paper elevation={3} className={paperClasses.root}>
+            <Typography variant="h6" component="h1">Repeat</Typography>
+            <Typography>Because that's your life</Typography>
+          </Paper>
+        </TimelineItemContent>
       </TimelineItem>
     </Timeline>
   );
