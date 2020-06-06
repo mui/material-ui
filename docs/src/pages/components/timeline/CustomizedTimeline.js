@@ -19,8 +19,15 @@ const usePaperStyles = makeStyles({
   },
 });
 
+const useTailSecondaryStyles = makeStyles({
+  root: {
+    backgroundColor: theme.palette.secondary.main, 
+  }
+})
+
 export default function CustomizedDotTimeline() {
   const paperClasses = usePaperStyles();
+  const secondaryTailClasses = useTailSecondaryStyles();
 
   return (
     <Timeline align="alternate">
@@ -55,7 +62,7 @@ export default function CustomizedDotTimeline() {
         </TimelineItemContent>
       </TimelineItem>
       <TimelineItem>
-        <TimelineItemTail />
+        <TimelineItemTail className={secondaryTailClasses.root}/>
         <TimelineItemDot color="primary" variant="outlined">
           <HotelIcon />
         </TimelineItemDot>

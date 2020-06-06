@@ -7,7 +7,7 @@ export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     width: 2,
-    background: theme.palette.grey[300],
+    backgroundColor: theme.palette.grey[300],
     transform: 'translate(-50%)',
     height: '100%',
     position: 'absolute',

@@ -11,7 +11,6 @@ export const styles = () => ({
     listStyle: 'none',
     display: 'flex',
     position: 'relative',
-    height: '100%',
     minHeight: 70,
   },
   /* Styles applied to the root element if `align="left"`. */

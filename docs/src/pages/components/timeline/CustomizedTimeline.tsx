@@ -15,13 +15,19 @@ import Typography from '@material-ui/core/Typography';
 
 const usePaperStyles = makeStyles({
   root: {
-    padding: 10,
+    padding: '6px 16px',
   },
 });
 
+const useTailSecondaryStyles = makeStyles({
+  root: {
+    backgroundColor: theme.palette.secondary.main, 
+  }
+})
 
 export default function CustomizedDotTimeline() {
   const paperClasses = usePaperStyles();
+  const secondaryTailClasses = useTailSecondaryStyles();
 
   return (
     <Timeline align="alternate">
@@ -41,6 +47,9 @@ export default function CustomizedDotTimeline() {
         </TimelineItemContent>
       </TimelineItem>
       <TimelineItem>
+      <TimelineItemOppositeContent>
+          <Typography variant="body2" color="textSecondary">10:00AM</Typography>
+        </TimelineItemOppositeContent>
         <TimelineItemTail />
         <TimelineItemDot color="primary">
           <LaptopMacIcon />
@@ -48,12 +57,12 @@ export default function CustomizedDotTimeline() {
         <TimelineItemContent>
           <Paper elevation={3} className={paperClasses.root}>
             <Typography variant="h6" component="h1">Code</Typography>
-            <Typography>Because it's awesome...</Typography>            
+            <Typography>Because it is awesome...</Typography>            
           </Paper>          
         </TimelineItemContent>
       </TimelineItem>
       <TimelineItem>
-        <TimelineItemTail />
+        <TimelineItemTail className={secondaryTailClasses.root}/>
         <TimelineItemDot color="primary" variant="outlined">
           <HotelIcon />
         </TimelineItemDot>
@@ -71,7 +80,7 @@ export default function CustomizedDotTimeline() {
         <TimelineItemContent>
           <Paper elevation={3} className={paperClasses.root}>
             <Typography variant="h6" component="h1">Repeat</Typography>
-            <Typography>Because that's your life</Typography>
+            <Typography>Because that is your life</Typography>
           </Paper>
         </TimelineItemContent>
       </TimelineItem>
