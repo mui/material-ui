@@ -16,13 +16,11 @@ export default function RightAlignedTimeline() {
         <TimelineItemContent>Eat</TimelineItemContent>
       </TimelineItem>
       <TimelineItem>
-        <TimelineItemOppositeContent>10:00AM</TimelineItemOppositeContent>
         <TimelineItemTail />
         <TimelineItemDot />
         <TimelineItemContent>Code</TimelineItemContent>
       </TimelineItem>
       <TimelineItem>
-        <TimelineItemOppositeContent>00:00AM</TimelineItemOppositeContent>
         <TimelineItemTail />
         <TimelineItemDot />
         <TimelineItemContent>Sleep</TimelineItemContent>

@@ -16,7 +16,6 @@ export default function SimpleTimeline() {
         <TimelineItemContent>Eat</TimelineItemContent>
       </TimelineItem>
       <TimelineItem>
-        <TimelineItemOppositeContent>10:00AM</TimelineItemOppositeContent>
         <TimelineItemTail />
         <TimelineItemDot />
         <TimelineItemContent>Code</TimelineItemContent>
@@ -28,7 +27,6 @@ export default function SimpleTimeline() {
         <TimelineItemContent>Sleep</TimelineItemContent>
       </TimelineItem>
       <TimelineItem>
-        <TimelineItemOppositeContent>09:00AM</TimelineItemOppositeContent>
         <TimelineItemDot />
         <TimelineItemContent>Repeat</TimelineItemContent>
       </TimelineItem>

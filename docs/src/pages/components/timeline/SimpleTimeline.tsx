@@ -10,13 +10,12 @@ export default function SimpleTimeline() {
   return (
     <Timeline>
       <TimelineItem>
-        <TimelineItemOppositeContent>09:30AM Monday morning</TimelineItemOppositeContent>
+        <TimelineItemOppositeContent>09:30AM</TimelineItemOppositeContent>
         <TimelineItemTail />
         <TimelineItemDot />
         <TimelineItemContent>Eat</TimelineItemContent>
       </TimelineItem>
       <TimelineItem>
-        <TimelineItemOppositeContent>10:00AM</TimelineItemOppositeContent>
         <TimelineItemTail />
         <TimelineItemDot />
         <TimelineItemContent>Code</TimelineItemContent>
@@ -28,7 +27,6 @@ export default function SimpleTimeline() {
         <TimelineItemContent>Sleep</TimelineItemContent>
       </TimelineItem>
       <TimelineItem>
-        <TimelineItemOppositeContent>09:00AM</TimelineItemOppositeContent>
         <TimelineItemDot />
         <TimelineItemContent>Repeat</TimelineItemContent>
       </TimelineItem>
