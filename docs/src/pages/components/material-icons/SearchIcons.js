@@ -107,6 +107,9 @@ let Icons = (props) => {
               onClick={handleClickOpen}
               title={icon.key}
               className={classes.iconSvg}
+              data-ga-event-category="material-icons"
+              data-ga-event-action="click"
+              data-ga-event-label={icon.key}
             />
             {/* eslint-disable jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/click-events-have-key-events */}
             <p onClick={handleClick}>{icon.key}</p>
@@ -421,8 +424,8 @@ export default function SearchIcons() {
               window.ga('send', {
                 hitType: 'event',
                 eventCategory: 'material-icons',
-                eventAction: value,
-                eventLabel: 'no results',
+                eventAction: 'no-results',
+                eventLabel: value,
               });
             }
           });
