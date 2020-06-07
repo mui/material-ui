@@ -54,6 +54,7 @@ export const styles = (theme) => ({
     boxShadow: theme.shadows[1],
     color: theme.palette.text.secondary,
     padding: '4px 16px',
+    wordBreak: 'keep-all',
   },
   /* Styles applied to the root if `tooltipOpen={true}` and `tooltipPlacement="left"`` */
   tooltipPlacementLeft: {
