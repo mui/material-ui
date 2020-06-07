@@ -136,15 +136,15 @@ Gosta mais de campos de texto menores? Use a propriedade `size`.
 
 {{"demo": "pages/components/autocomplete/Sizes.js"}}
 
-## Customizations
+## Customizações
 
-### Custom input
+### Input customizado
 
-The `renderInput` prop allows you to customize the rendered input. The first argument of this render prop contains props that you need to forward. Pay specific attention to the `ref` and `inputProps` keys.
+A propriedade `renderInput` permite que você customize o input renderizado. O primeiro argumento desta propriedade de render, contém propriedades que você precisa repassar. Preste atenção específicamente nas chaves `ref` e `inputProps`.
 
 {{"demo": "pages/components/autocomplete/CustomInputAutocomplete.js"}}
 
-### GitHub's picker
+### Seletor do GitHub
 
 Esta demonstração reproduz o rótulo de selecão do GitHub's:
 

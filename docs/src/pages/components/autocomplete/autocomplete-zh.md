@@ -49,13 +49,13 @@ components: TextField, Popper, Autocomplete
 
 ### 搜索输入栏
 
-该 prop 是皆在涵盖带有搜索建议的 **输入栏** 的主要用例，例如 Google 搜索 或 react-autowhatever。
+该属性的主要使用方式是创建一个带有搜索建议的 **输入栏**，例如 Google 搜索 或 react-autowhatever。
 
 {{"demo": "pages/components/autocomplete/FreeSolo.js"}}
 
-### 可创建的
+### Creatable （可创造性）
 
-如果您打算将此模式用于类似 [组合框](#combo-box) 的体验（选择控件元素的增强版），我们建议设置：
+如果您打算将此模块用于类似 [组合框](#combo-box) 的体验（选择控件元素的增强版），我们建议设置：
 
 - `selectOnFocus` 帮助用户清除所选值。
 - `clearOnBlur` 帮助用户输入一个新的值。
@@ -136,15 +136,15 @@ import useAutocomplete from '@material-ui/lab/useAutocomplete';
 
 {{"demo": "pages/components/autocomplete/Sizes.js"}}
 
-## Customizations
+## 自定义设置
 
-### Custom input
+### 自定义输入
 
-The `renderInput` prop allows you to customize the rendered input. The first argument of this render prop contains props that you need to forward. Pay specific attention to the `ref` and `inputProps` keys.
+`renderInput` 属性允许你对输入内容进行自定义渲染 The first argument of this render prop contains props that you need to forward. 请特别注意 `ref` 和 `inputProps` 键(key)。
 
 {{"demo": "pages/components/autocomplete/CustomInputAutocomplete.js"}}
 
-### GitHub's picker
+### GitHub 标签选择器 
 
 该演示再现了GitHub的标签选择器：
 

@@ -2,33 +2,44 @@
 
 <p class="description">The palette enables you to modify the color of the components to suit your brand.</p>
 
-## Intentions
+## Palette colors
 
-A color intention is a mapping of a palette to a given intention within your application. The theme exposes the following color intentions:
+A color intention is a mapping of a palette color to a given intention within your application. The theme exposes the following palette colors (accessible under `theme.palette.`):
 
-- primary - used to represent primary interface elements for a user.
-- secondary - used to represent secondary interface elements for a user.
-- error - used to represent interface elements that the user should be made aware of.
-- warning - used to represent potentially dangerous actions or important messages.
-- info - used to present information to the user that is neutral and not necessarily important.
-- success - used to indicate the successful completion of an action that user triggered.
-
-The default palette uses the shades prefixed with `A` (`A200`, etc.) for the secondary intention, and the un-prefixed shades for the other intentions.
+- *primary* - used to represent primary interface elements for a user. It's the color displayed most frequently across your app's screens and components.
+- *secondary* - used to represent secondary interface elements for a user. It provides more ways to accent and distinguish your product. Having it is optional.
+- *error* - used to represent interface elements that the user should be made aware of.
+- *warning* - used to represent potentially dangerous actions or important messages.
+- *info* - used to present information to the user that is neutral and not necessarily important.
+- *success* - used to indicate the successful completion of an action that user triggered.
 
 If you want to learn more about color, you can check out [the color section](/customization/color/).
 
+## Default values
+
+You can explore the default values of the palette using [the theme explorer](/customization/default-theme/?expand-path=$.palette) or by opening the dev tools console on this page (`window.theme.palette`).
+
 {{"demo": "pages/customization/palette/Intentions.js", "bg": "inline", "hideToolbar": true}}
 
-### Personnalisation
+The default palette uses the shades prefixed with `A` (`A200`, etc.) for the secondary intention, and the un-prefixed shades for the other intentions.
 
-You may override the default palette values by including a palette object as part of your theme.
+## Personnalisation
 
-If any of the [`palette.primary`](/customization/default-theme/?expand-path=$.palette.primary), [`palette.secondary`](/customization/default-theme/?expand-path=$.palette.secondary), [`palette.error`](/customization/default-theme/?expand-path=$.palette.error), [`palette.warning`](/customization/default-theme/?expand-path=$.palette.warning), [`palette.info`](/customization/default-theme/?expand-path=$.palette.info) or [`palette.success`](/customization/default-theme/?expand-path=$.palette.success) 'intention' objects are provided, they will replace the defaults.
+You may override the default palette values by including a palette object as part of your theme. If any of the:
 
-The intention value can either be a [color](/customization/color/) object, or an object with one or more of the keys specified by the following TypeScript interface:
+- [`palette.primary`](/customization/default-theme/?expand-path=$.palette.primary)
+- [`palette.secondary`](/customization/default-theme/?expand-path=$.palette.secondary)
+- [`palette.error`](/customization/default-theme/?expand-path=$.palette.error)
+- [`palette.warning`](/customization/default-theme/?expand-path=$.palette.warning)
+- [`palette.info`](/customization/default-theme/?expand-path=$.palette.info)
+- [`palette.success`](/customization/default-theme/?expand-path=$.palette.success)
+
+palette color objects are provided, they will replace the defaults.
+
+The palette color value can either be a [color](/customization/color/#2014-material-design-color-palettes) object, or an object with one or more of the keys specified by the following TypeScript interface:
 
 ```ts
-interface PaletteIntention {
+interface PaletteColor {
   light?: string;
   main: string;
   dark?: string;
@@ -36,7 +47,7 @@ interface PaletteIntention {
 }
 ```
 
-**Using a color object**
+### Using a color object
 
 The simplest way to customize an intention is to import one or more of the provided colors and apply them to a palette intention:
 
@@ -51,7 +62,7 @@ const theme = createMuiTheme({
 });
 ```
 
-**Providing the colors directly**
+### Providing the colors directly
 
 If you wish to provide more customized colors, you can either create your own color object, or directly supply colors to some or all of the intention's keys:
 
@@ -103,11 +114,56 @@ Note that "contrastThreshold" follows a non-linear curve.
 
 ### Exemple
 
-{{"demo": "pages/customization/palette/Palette.js"}}
+{{"demo": "pages/customization/palette/Palette.js", "defaultCodeOpen": true}}
 
-## Color tool
+### Adding new colors
 
-Need inspiration? The Material Design team has built an awesome [palette configuration tool](/customization/color/#color-tool) to help you.
+You can add new colors inside and outside the palette of the theme as follow:
+
+```js
+import { createMuiTheme } from '@material-ui/core/styles';
+
+const theme = createMuiTheme({
+  status: {
+    danger: '#e53e3e',
+  },
+  palette: {
+    neutral: {
+      main: '#5c6ac4',
+    },
+  },
+});
+```
+
+If you are using TypeScript, you would also need to use [module augmentation](/guides/typescript/#customization-of-theme) for the theme to accept the above values.
+
+```ts
+declare module '@material-ui/core/styles/createMuiTheme' {
+  interface Theme {
+    status: {
+      danger: React.CSSProperties['color'],
+    }
+  }
+  interface ThemeOptions {
+    status: {
+      danger: React.CSSProperties['color']
+    }
+  }
+}
+
+declare module "@material-ui/core/styles/createPalette" {
+  interface Palette {
+    neutral: Palette['primary'];
+  }
+  interface PaletteOptions {
+    neutral: PaletteOptions['primary'];
+  }
+}
+```
+
+## Picking colors
+
+Need inspiration? The Material Design team has built an [palette configuration tool](/customization/color/#picking-colors) to help you.
 
 ## Dark mode
 
@@ -160,7 +216,3 @@ function App() {
   );
 }
 ```
-
-## Default values
-
-You can explore the default values of the palette using [the theme explorer](/customization/default-theme/?expand-path=$.palette) or by opening the dev tools console on this page (`window.theme.palette`).

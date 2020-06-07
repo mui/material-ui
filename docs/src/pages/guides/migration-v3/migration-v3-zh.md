@@ -71,7 +71,7 @@ yarn add @material-ui/styles
 ### Styles（样式表单）
 
 - ⚠️ Material-UI 依赖于 JSS v10版本。 JSS v10版本与v9版本不向后兼容。 请保证您的开发环境中未安装 JSS v9版本。 (Removing `react-jss` from your `package.json` can help). StylesProvider 组件替代了 JssProvider 组件。
-- 请移除 `withTheme()` 中的第一个可选的参数。 (The first argument was a placeholder for a potential future option that never arose.)
+- 请移除 `withTheme()` 中的第一个可选的参数。 （第一个参数是从未出现的可能会是未来选项的占位符。）
   
     它与[emotion 的 API](https://emotion.sh/docs/introduction) 以及 [styled-components 的 API ](https://www.styled-components.com) 相匹配。
 
@@ -165,7 +165,7 @@ function MySelect({ children }) {
 }
 ```
 
-This change is explained in more detail in the [TypeScript guide](/guides/typescript/#handling-value-and-event-handlers)
+[TypeScript 指南](/guides/typescript/#handling-value-and-event-handlers) 中对此更改进行了更详细的说明
 
 ### Buttons（按钮）
 
@@ -238,7 +238,7 @@ This change is explained in more detail in the [TypeScript guide](/guides/typesc
   - 当使用头像时，您必须要使用 `ListItemAvatar` 组件。
   - 当使用左边的复选框时，您必须使用 `ListItemIcon` 组件。
   - 您必须要在图标按钮上设置 `edge` 属性。
-- [List] `dense` no longer reduces the top and bottom padding of the `List` element.
+- [List] `dense` 不再减少 `List` 元素的上下边距。
 
 - [ListItem] 加强 `disabled` 和 `focusVisible` 样式规则的 CSS 特性。
 

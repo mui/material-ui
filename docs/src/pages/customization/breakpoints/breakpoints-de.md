@@ -109,7 +109,7 @@ const theme = createMuiTheme({
 
 Feel free to have as few or as many breakpoints as you want, naming them in whatever way you'd prefer for your project.
 
-```tsx
+```js
 const theme = createMuiTheme({
   breakpoints: {
     values: {
@@ -119,11 +119,13 @@ const theme = createMuiTheme({
     },
   },
 });
+```
 
-declare module "@material-ui/core/styles/createBreakpoints"
-{
-  interface BreakpointOverrides
-  {
+If you are using TypeScript, you would also need to use [module augmentation](/guides/typescript/#customization-of-theme) for the theme to accept the above values.
+
+```ts
+declare module "@material-ui/core/styles/createBreakpoints" {
+  interface BreakpointOverrides {
     xs: false; // removes the `xs` breakpoint
     sm: false;
     md: false;

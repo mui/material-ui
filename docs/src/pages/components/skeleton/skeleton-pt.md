@@ -31,11 +31,11 @@ Por padrão, o skeleton pulsa, mas você pode mudar a animação para uma onda o
 
 {{"demo": "pages/components/skeleton/Animations.js"}}
 
-### Pulsate example
+### Exemplo com efeito de pulsação
 
 {{"demo": "pages/components/skeleton/YouTube.js", "defaultCodeOpen": false}}
 
-### Wave example
+### Exemplo com efeito de ondas
 
 {{"demo": "pages/components/skeleton/Facebook.js", "defaultCodeOpen": false, "bg": true}}
 
@@ -65,6 +65,6 @@ loading
 
 ## Acessibilidade
 
-Skeleton screens provide an alternative to the traditional spinner methods. Rather than showing an abstract widget, skeleton screens create anticipation of what is to come and reduce cognitive load.
+Telas com Skeleton fornecem uma alternativa aos métodos tradicionais de feedback. Em vez de mostrar um resumo abstrato na tela, telas com skeleton criam uma expectativa do que está por vir, reduzindo a sensação cognitiva do processo de carregamento.
 
-The background color of the skeleton uses the least amount of luminance to be visible in good conditions (good ambient light, good screen, no visual impairments).
+A cor de fundo do skeleton usa uma quantidade menor de luminância para ser visível em boas condições (boa luz ambiente, boa tela, sem deficiência visual).

@@ -2,7 +2,9 @@
 
 <p class="description">Vous pouvez ajouter du typage statique à JavaScript pour améliorer la productivité des développeurs et la qualité du code grâce à TypeScript.</p>
 
-Have a look at the [Create React App with TypeScript](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-typescript) example. Une version minimale de TypeScript 2.8 est requise.
+Material-UI requires a minimum version of TypeScript 3.2.
+
+Have a look at the [Create React App with TypeScript](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-typescript) example.
 
 In order for types to work, you have to at least have the following options enabled in your `tsconfig.json`:
 

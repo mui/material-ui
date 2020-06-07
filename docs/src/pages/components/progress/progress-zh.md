@@ -1,11 +1,11 @@
 ---
-title: React Circular 进度环, React Linear progress 进度条组件
+title: React Circular progress（进度环组件），React Linear progress （进度条组件）
 components: CircularProgress, LinearProgress
 ---
 
-# Progress 进度条
+# Progress 进度条组件
 
-<p class="description">Progress indicators（进度指示器）通常称为微调器 (spinners) 。它能够表示一个不明确的等待时间，或者显示处理过程的时间长短。 动画使用 CSS 实现，而不是 JavaScript。</p>
+<p class="description">Progress indicators（进度指示器）也称为微调器 (spinners) ，它表示了一个不明确的等待时间，或者显示处理过程的时间长短。 动画效果通过 CSS 实现，而不是 JavaScript。</p>
 
 [进度指示器](https://material.io/design/components/progress-indicators.html)能够将当前处理过程的状态通知用户，例如加载一个应用，提交一个表单或保存一些更新。 它们与应用程序状态进行通信并指示可用的操作，例如用户是否可从当前页面离开。
 
@@ -99,6 +99,6 @@ function Progress(props) {
 
 ![高负载](/static/images/progress/heavy-load.gif)
 
-当它不可用时，您可以利用 `disableShrink` 属性来缓解这个问题。 查看 [这个问题](https://github.com/mui-org/material-ui/issues/10327).
+当这个方法不可行的时候，您可以利用 `disableShrink` 属性来缓解这个问题。 请查看 [这个问题](https://github.com/mui-org/material-ui/issues/10327)。
 
 {{"demo": "pages/components/progress/CircularUnderLoad.js"}}

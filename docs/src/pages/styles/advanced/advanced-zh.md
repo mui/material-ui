@@ -77,7 +77,7 @@ const DeepChild = withTheme(DeepChildRaw);
 
 {{"demo": "pages/styles/advanced/ThemeNesting.js"}}
 
-内部主题将 **覆盖** 外部主题。 You can extend the outer theme by providing a function:
+内部主题将 **覆盖** 外部主题。 你可以提供一个函数来扩展外部主题：
 
 ```jsx
 <ThemeProvider theme={…} >

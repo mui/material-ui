@@ -44,15 +44,15 @@ Botões delineados são uma alternativa de menor ênfase comparado com botões c
 
 {{"demo": "pages/components/buttons/OutlinedButtons.js"}}
 
-## Handling clicks
+## Manipulando cliques
 
-All components accept an `onClick` handler that is applied to the root DOM element.
+Todos os componentes aceitam um método manipulador `onClick` que é aplicado ao elemento DOM raiz.
 
 ```jsx
-<Button onClick={() => { alert('clicked') }}>Click me</Button>
+<Button onClick={() => { alert('clicado') }}>Clique aqui</Button>
 ```
 
-Note that the documentation [avoids](/guides/api/#native-properties) mentioning native props (there are a lot) in the API section of the components.
+Note que a documentação [evita](/guides/api/#native-properties) mencionar as propriedades nativas (existem várias) na seção de API dos componentes.
 
 ## Botão de Upload
 

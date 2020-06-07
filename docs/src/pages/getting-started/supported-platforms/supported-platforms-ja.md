@@ -26,3 +26,7 @@ Be aware that some CSS features [require](https://github.com/cssinjs/jss/issues/
 ## React
 
 Material-UIは、^16.8. 0(フックのついた方) 以降のReactの最新バージョンをサポートします。 Have a look at the older [versions](https://material-ui.com/versions/) for backward compatibility.
+
+## TypeScript
+
+Material-UI requires a minimum version of TypeScript 3.2.

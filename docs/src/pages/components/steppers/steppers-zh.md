@@ -3,34 +3,34 @@ title: React Stepper 步骤条组件
 components: MobileStepper, Step, StepButton, StepConnector, StepContent, StepIcon, StepLabel, Stepper
 ---
 
-# Stepper 步进器 
+# Stepper 步骤条组件
 
-<p class="description">步进器通过数字编号表示进度。 使用步进器可以提供类似于安装向导的用户流。</p>
+<p class="description">步骤条组件通过数字的步骤来表示进度。 它提供了一个类似于安装向导的用户流。</p>
 
-[步骤条](https://material.io/archive/guidelines/components/steppers.html) 通过一系列逻辑和编号的步骤来显示当前操作的进度。 它们也可用于导航。 在保存一个步骤后，步骤条可能会显示短暂的反馈信息。
+[步骤条](https://material.io/archive/guidelines/components/steppers.html)通过一系列逻辑和编号的步骤来显示当前操作的进度。 它们也可用于导航。 在保存一个步骤后，步骤条可能会显示短暂的反馈信息。
 
-- **节点类型**：可编辑节点，不可编辑节点，移动节点，非强制节点
-- **步进器类型**：横向步进器，竖向步进器，线性步进器，非线性步进器
+- **步骤的类型**：可编辑的，不可编辑的，移动端的，可选择的
+- **步骤条的类型**：横向的，竖向的，线性的，非线性的
 
-> **注意：**步进器不再出现在 [Material Design 指南](https://material.io/) 中, 但 Material-UI 会继续支持步进器。
+> **请注意：**步骤条不再出现在 [Material Design 指南](https://material.io/)中, 但 Material-UI 会继续支持此组件。
 
-## 横向步进器
+## 横向的步骤条
 
 ### 线性的步骤条
 
-您可以在 `activeStep` 属性中传入一个初始值为0的当前步骤值来控制 `步骤条`。 您也可以借助 `orientation` 属性来设置 `步骤条` 的方向。
+您可以在 `activeStep` 属性中传入一个初始值为0的当前步骤值来控制`步骤条`。 您也可以借助 `orientation` 属性来设置 `步骤条` 的方向。
 
 这个例子把`optional` 属性放在第二个 `步骤` 的组件上，它展示了如何使用一个可选的步骤条。 请注意，您可以自行选择管理跳过一个可选的步骤。 一旦决定将一个特定步骤设置为可选的，您就必须配置这个属性 `completed={false}` 以表示即使激活的步骤索引超出了可选的步骤，步骤条并没有完成。
 
 {{"demo": "pages/components/steppers/HorizontalLinearStepper.js", "bg": true}}
 
-### 线性步骤条 - 备选标签
+### 线性步骤条 — 备选的标签
 
-您可以将标签放置在节点图标之下。请在 `Stepper` 组件中设置 `alternativeLabel` 这一属性。
+您可以将标签置于步骤的图标之下，通过设置 `Stepper` 组件的 `alternativeLabel` 属性可以实现。
 
 {{"demo": "pages/components/steppers/HorizontalLinearAlternativeLabelStepper.js", "bg": true}}
 
-### 定制步进器
+### 定制的步骤器
 
 以下是自定义组件的一个示例。 您可以在[样式重写文档页](/customization/components/)中了解有关此内容的更多信息。
 
@@ -46,23 +46,23 @@ components: MobileStepper, Step, StepButton, StepConnector, StepContent, StepIco
 
 {{"demo": "pages/components/steppers/HorizontalNonLinearStepper.js", "bg": true}}
 
-### 非线性步骤条 - 备选标签
+### 非线性的步骤条 — 备选的标签
 
-您可以将标签放置在节点图标之下。请在 `Stepper` 组件中设置 `alternativeLabel` 这一属性。
+您可以将标签置于步骤的图标之下，通过设置 `Stepper` 组件的 `alternativeLabel` 属性可以实现。
 
 {{"demo": "pages/components/steppers/HorizontalNonLinearAlternativeLabelStepper.js", "bg": true}}
 
-### 非线性步骤条 - 错误步骤
+### 非线性的步骤条 — 错误的步骤
 
 {{"demo": "pages/components/steppers/HorizontalNonLinearStepperWithError.js", "bg": true}}
 
-## 垂直步骤条
+## 垂直的步骤条
 
 {{"demo": "pages/components/steppers/VerticalLinearStepper.js", "bg": true}}
 
-## 移动设备上的步进器
+## 移动设备上的步骤条
 
-该组件实现了适用于移动设备的紧凑型步进器。 有关其详情, 请参阅 [移动步骤](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steps)。
+该组件实现了适用于移动设备上的紧凑型步骤条。 有关这方面的详细介绍，请参阅 [移动设备上的步骤条](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steps)。
 
 ### 文本
 
@@ -78,7 +78,7 @@ components: MobileStepper, Step, StepButton, StepConnector, StepContent, StepIco
 
 ### 点状
 
-当步骤的数字不是特别明显时使用点状标记。
+当步骤数并不是很多的时候，用点标记。
 
 {{"demo": "pages/components/steppers/DotsMobileStepper.js", "bg": true}}
 

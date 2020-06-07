@@ -53,7 +53,7 @@ return (
 
 ## 默认属性
 
-您可以更改所有Material-UI组件的默认属性。 该用例展示了在 `主题` 中的一个 `props` 建。 
+您可以更改所有Material-UI组件的默认属性。 该用例展示了在 `主题` 中的一个 `props` 键(key)。 
 
 ```js
 const theme = createMuiTheme({

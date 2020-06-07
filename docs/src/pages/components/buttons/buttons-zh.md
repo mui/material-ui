@@ -44,17 +44,17 @@ components: Button, IconButton, ButtonBase
 
 {{"demo": "pages/components/buttons/OutlinedButtons.js"}}
 
-## Handling clicks
+## Handling clicks 处理点击
 
-All components accept an `onClick` handler that is applied to the root DOM element.
+所有组件都接受 `onClick` 处理程序，该处理程序被应用到 根(root) DOM 元素。
 
 ```jsx
 <Button onClick={() => { alert('clicked') }}>Click me</Button>
 ```
 
-Note that the documentation [avoids](/guides/api/#native-properties) mentioning native props (there are a lot) in the API section of the components.
+请注意，文档里组件的 api 部分 [避免](/guides/api/#native-properties) 提到大量的 原生(native) 属性。
 
-## 一个上传按钮
+## Upload button 上传按钮
 
 {{"demo": "pages/components/buttons/UploadButtons.js"}}
 
