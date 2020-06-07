@@ -20,7 +20,7 @@ export default function OppositeContentTimeline() {
     },
     {
       activity: 'Sleep',
-      time: '00:00 am',
+      time: '12:00 am',
     },
     {
       activity: 'Repeat',
