@@ -62,14 +62,14 @@ const Stepper = React.forwardRef(function Stepper(props, ref) {
     }
 
     return React.cloneElement(step, {
-        alternativeLabel,
-        connector,
-        last: index + 1 === childrenArray.length,
-        orientation,
-        ...state,
-        ...step.props,
-      });
+      alternativeLabel,
+      connector,
+      last: index + 1 === childrenArray.length,
+      orientation,
+      ...state,
+      ...step.props,
     });
+  });
 
   return (
     <Paper

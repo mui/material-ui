@@ -103,14 +103,14 @@ const Step = React.forwardRef(function Step(props, ref) {
     </div>
   );
 
-   if (connector && !alternativeLabel && index !== 0) {
-       return (
-         <React.Fragment>
-           {connector}
-           {newChildren}
-         </React.Fragment>
-       );
-    }
+  if (connector && !alternativeLabel && index !== 0) {
+    return (
+      <React.Fragment>
+        {connector}
+        {newChildren}
+      </React.Fragment>
+    );
+  }
   return newChildren;
 });
 
