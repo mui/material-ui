@@ -20,7 +20,7 @@ const usePaperStyles = makeStyles({
   },
 });
 
-const useConnectorSecondaryStyles = makeStyles((theme) => ({
+const useTailSecondaryStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.secondary.main,
   },
@@ -28,7 +28,7 @@ const useConnectorSecondaryStyles = makeStyles((theme) => ({
 
 export default function CustomizedDotTimeline() {
   const paperClasses = usePaperStyles();
-  const secondaryConnectorClasses = useConnectorSecondaryStyles();
+  const secondaryTailClasses = useTailSecondaryStyles();
 
   return (
     <Timeline align="alternate">
@@ -79,7 +79,7 @@ export default function CustomizedDotTimeline() {
           <TimelineDot color="primary" variant="outlined">
             <HotelIcon />
           </TimelineDot>
-          <TimelineConnector className={secondaryConnectorClasses.root} />
+          <TimelineConnector className={secondaryTailClasses.root} />
         </TimelineSeparator>
         <TimelineContent>
           <Paper elevation={3} className={paperClasses.root}>

@@ -12,19 +12,21 @@ export const styles = (theme) => ({
     borderStyle: 'solid',
     borderWidth: 2,
     padding: 4,
-    borderRadius: 999,
+    borderRadius: '50%',
     boxShadow: theme.shadows[2],
     marginTop: 8,
     marginBottom: 8,
   },
-  /* Styles applied to the root element if `color="default"` and `variant="default"`. */
-  defaultDefault: {
-    borderColor: theme.palette.grey[300],
-    backgroundColor: theme.palette.grey[300],
+  /* Styles applied to the root element if `color="grey"` and `variant="default"`. */
+  defaultGrey: {
+    color: theme.palette.grey[50],
+    borderColor: theme.palette.grey[400],
+    backgroundColor: theme.palette.grey[400],
   },
-  /* Styles applied to the root element if `color="default"` and `variant="outlined"`. */
-  outlinedDefalut: {
-    borderColor: theme.palette.grey[300],
+  /* Styles applied to the root element if `color="grey"` and `variant="outlined"`. */
+  outlinedGrey: {
+    color: theme.palette.grey.contrastText,
+    borderColor: theme.palette.grey[400],
     backgroundColor: 'transparent',
   },
   /* Styles applied to the root element if `color="primary"` and `variant="default"`. */
@@ -56,7 +58,7 @@ const TimelineDot = React.forwardRef(function TimelineDot(props, ref) {
     classes,
     className,
     component: Component = 'span',
-    color = 'default',
+    color = 'grey',
     variant = 'default',
     ...other
   } = props;
@@ -97,7 +99,7 @@ TimelineDot.propTypes = {
   /**
    * The dot can have a different colors.
    */
-  color: PropTypes.oneOf(['default', 'inherit', 'primary', 'secondary']),
+  color: PropTypes.oneOf(['grey', 'inherit', 'primary', 'secondary']),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.

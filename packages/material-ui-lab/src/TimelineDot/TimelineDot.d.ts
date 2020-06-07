@@ -18,7 +18,7 @@ export interface TimelineDotProps extends StandardProps<{}, TimelineDotClassKey>
   /**
    * The dot can have a different colors.
    */
-  color?: 'inherit' | 'primary' | 'secondary' | 'default';
+  color?: 'inherit' | 'primary' | 'secondary' | 'grey';
 }
 
 export type TimelineDotClassKey =

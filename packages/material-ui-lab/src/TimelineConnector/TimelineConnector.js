@@ -7,7 +7,7 @@ export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     width: 2,
-    backgroundColor: theme.palette.grey[300],
+    backgroundColor: theme.palette.grey[400],
     flexGrow: 1,
   },
 });
