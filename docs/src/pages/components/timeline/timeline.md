@@ -15,17 +15,27 @@ Simeple timeline showing list of events.
 
 {{"demo": "pages/components/timeline/SimpleTimeline.js"}}
 
+## Right aligned timeline
+
+Right aligned timeline can show the timeline on the right side of the events.
+
+{{"demo": "pages/components/timeline/RightAlinedTimeline.js"}}
+
 ## Alternatin timeline
 
 The timeline can display the events on alternating sides.
 
 {{"demo": "pages/components/timeline/AlternateTimeline.js"}}
 
-## Right aligned timeline
+## Color
 
-Right aligned timeline can show the timeline on the right side of the events.
+The `TimelineDot` can appear in different colors.
 
-{{"demo": "pages/components/timeline/RightAlinedTimeline.js"}}
+{{"demo": "pages/components/timeline/ColorsTimeline.js"}}
+
+### Outlined
+
+{{"demo": "pages/components/timeline/OutlinedTimeline.js"}}
 
 ## Opposite content
 
