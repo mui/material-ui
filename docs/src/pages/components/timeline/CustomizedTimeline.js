@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Timeline from '@material-ui/lab/Timeline';
 import TimelineItem from '@material-ui/lab/TimelineItem';
+import TimelineItemSeparator from '@material-ui/lab/TimelineItemSeparator';
 import TimelineItemTail from '@material-ui/lab/TimelineItemTail';
 import TimelineItemContent from '@material-ui/lab/TimelineItemContent';
 import TimelineItemOppositeContent from '@material-ui/lab/TimelineItemOppositeContent';
@@ -37,10 +38,12 @@ export default function CustomizedDotTimeline() {
             9:30AM
           </Typography>
         </TimelineItemOppositeContent>
-        <TimelineItemTail />
-        <TimelineItemDot>
-          <FastfoodIcon />
-        </TimelineItemDot>
+        <TimelineItemSeparator>
+          <TimelineItemDot>
+            <FastfoodIcon />
+          </TimelineItemDot>
+          <TimelineItemTail />
+        </TimelineItemSeparator>
         <TimelineItemContent>
           <Paper elevation={3} className={paperClasses.root}>
             <Typography variant="h6" component="h1">
@@ -56,10 +59,12 @@ export default function CustomizedDotTimeline() {
             10:00AM
           </Typography>
         </TimelineItemOppositeContent>
-        <TimelineItemTail />
-        <TimelineItemDot color="primary">
-          <LaptopMacIcon />
-        </TimelineItemDot>
+        <TimelineItemSeparator>
+          <TimelineItemDot color="primary">
+            <LaptopMacIcon />
+          </TimelineItemDot>
+          <TimelineItemTail />
+        </TimelineItemSeparator>
         <TimelineItemContent>
           <Paper elevation={3} className={paperClasses.root}>
             <Typography variant="h6" component="h1">
@@ -70,10 +75,12 @@ export default function CustomizedDotTimeline() {
         </TimelineItemContent>
       </TimelineItem>
       <TimelineItem>
-        <TimelineItemTail className={secondaryTailClasses.root} />
-        <TimelineItemDot color="primary" variant="outlined">
-          <HotelIcon />
-        </TimelineItemDot>
+        <TimelineItemSeparator>
+          <TimelineItemDot color="primary" variant="outlined">
+            <HotelIcon />
+          </TimelineItemDot>
+          <TimelineItemTail className={secondaryTailClasses.root} />
+        </TimelineItemSeparator>
         <TimelineItemContent>
           <Paper elevation={3} className={paperClasses.root}>
             <Typography variant="h6" component="h1">
@@ -84,9 +91,11 @@ export default function CustomizedDotTimeline() {
         </TimelineItemContent>
       </TimelineItem>
       <TimelineItem>
-        <TimelineItemDot color="secondary">
-          <RepeatIcon />
-        </TimelineItemDot>
+        <TimelineItemSeparator>
+          <TimelineItemDot color="secondary">
+            <RepeatIcon />
+          </TimelineItemDot>
+        </TimelineItemSeparator>
         <TimelineItemContent>
           <Paper elevation={3} className={paperClasses.root}>
             <Typography variant="h6" component="h1">

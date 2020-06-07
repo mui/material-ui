@@ -8,12 +8,7 @@ export const styles = (theme) => ({
   root: {
     width: 2,
     backgroundColor: theme.palette.grey[300],
-    transform: 'translate(-50%)',
-    height: '100%',
-    position: 'absolute',
-    top: theme.spacing(2),
-    boxSizing: 'border-box',
-    left: '50%',
+    flexGrow: 1,
   },
 });
 

@@ -11,14 +11,11 @@ export const styles = (theme) => ({
     alignSelf: 'baseline',
     borderStyle: 'solid',
     borderWidth: 2,
-    flex: 0,
     padding: 4,
     borderRadius: 999,
-    // marginRight: 'auto',
-    // marginLeft: 'auto',
-    top: 8,
-    position: 'relative',
     boxShadow: theme.shadows[2],
+    marginTop: 8,
+    marginBottom: 8,
   },
   /* Styles applied to the root element if `color="default"` and `variant="default"`. */
   defaultDefault: {
@@ -28,11 +25,7 @@ export const styles = (theme) => ({
   /* Styles applied to the root element if `color="default"` and `variant="outlined"`. */
   outlinedDefalut: {
     borderColor: theme.palette.grey[300],
-    backgroundColor: 'white', // TODO: fix color white
-  },
-  /* Styles applied when the component is passed children. */
-  withChildren: {
-    marginTop: -8,
+    backgroundColor: 'transparent',
   },
   /* Styles applied to the root element if `color="primary"` and `variant="default"`. */
   defaultPrimary: {
@@ -42,7 +35,7 @@ export const styles = (theme) => ({
   },
   /* Styles applied to the root element if `color="primary"` and `variant="outlined"`. */
   outlinedPrimary: {
-    backgroundColor: 'white',
+    backgroundColor: 'transparent',
     borderColor: theme.palette.primary.main,
   },
   /* Styles applied to the root element if `color="secondary"` and `variant="default"`. */
@@ -53,7 +46,7 @@ export const styles = (theme) => ({
   },
   /* Styles applied to the root element if `color="secondary"` and `variant="outlined"`. */
   outlinedSecondary: {
-    backgroundColor: 'white',
+    backgroundColor: 'transparent',
     borderColor: theme.palette.secondary.main,
   },
 });
@@ -67,14 +60,12 @@ const TimelineItemDot = React.forwardRef(function TimelineItemDot(props, ref) {
     variant = 'default',
     ...other
   } = props;
-  const hasChildren = Boolean(props.children);
 
   return (
     <Component
       className={clsx(
         classes.root,
         {
-          [classes.withChildren]: hasChildren,
           [classes[`${variant}${capitalize(color)}`]]: color !== 'inherit',
         },
         className,
