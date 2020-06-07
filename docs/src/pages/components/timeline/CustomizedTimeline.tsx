@@ -49,7 +49,7 @@ export default function CustomizedDotTimeline() {
             <Typography variant="h6" component="h1">
               Eat
             </Typography>
-            <Typography>Because you need strenght</Typography>
+            <Typography>Because you need strength</Typography>
           </Paper>
         </TimelineContent>
       </TimelineItem>
