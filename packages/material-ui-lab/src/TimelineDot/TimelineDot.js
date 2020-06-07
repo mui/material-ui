@@ -19,35 +19,38 @@ export const styles = (theme) => ({
   },
   /* Styles applied to the root element if `color="grey"` and `variant="default"`. */
   defaultGrey: {
+    borderColor: 'transparent',
     color: theme.palette.grey[50],
-    borderColor: theme.palette.grey[400],
     backgroundColor: theme.palette.grey[400],
   },
   /* Styles applied to the root element if `color="grey"` and `variant="outlined"`. */
   outlinedGrey: {
+    boxShadow: 'none',
     color: theme.palette.grey.contrastText,
     borderColor: theme.palette.grey[400],
     backgroundColor: 'transparent',
   },
   /* Styles applied to the root element if `color="primary"` and `variant="default"`. */
   defaultPrimary: {
+    borderColor: 'transparent',
     color: theme.palette.primary.contrastText,
     backgroundColor: theme.palette.primary.main,
-    borderColor: theme.palette.primary.main,
   },
   /* Styles applied to the root element if `color="primary"` and `variant="outlined"`. */
   outlinedPrimary: {
+    boxShadow: 'none',
     backgroundColor: 'transparent',
     borderColor: theme.palette.primary.main,
   },
   /* Styles applied to the root element if `color="secondary"` and `variant="default"`. */
   defaultSecondary: {
+    borderColor: 'transparent',
     color: theme.palette.secondary.contrastText,
     backgroundColor: theme.palette.secondary.main,
-    borderColor: theme.palette.secondary.main,
   },
   /* Styles applied to the root element if `color="secondary"` and `variant="outlined"`. */
   outlinedSecondary: {
+    boxShadow: 'none',
     backgroundColor: 'transparent',
     borderColor: theme.palette.secondary.main,
   },
