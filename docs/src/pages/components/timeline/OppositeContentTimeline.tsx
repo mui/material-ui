@@ -12,19 +12,19 @@ export default function OppositeContentTimeline() {
   const timelineItems = [
     {
       activity: 'Eat',
-      time: '09:30AM',
+      time: '09:30 am',
     },
     {
       activity: 'Code',
-      time: '10:00AM',
+      time: '10:00 am',
     },
     {
       activity: 'Sleep',
-      time: '00:00AM',
+      time: '00:00 am',
     },
     {
       activity: 'Repeat',
-      time: '9:00AM',
+      time: '9:00 am',
     },
   ];
 

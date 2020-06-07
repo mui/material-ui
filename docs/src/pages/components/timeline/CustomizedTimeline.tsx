@@ -35,7 +35,7 @@ export default function CustomizedDotTimeline() {
       <TimelineItem>
         <TimelineOppositeContent>
           <Typography variant="body2" color="textSecondary">
-            9:30AM
+            9:30 am
           </Typography>
         </TimelineOppositeContent>
         <TimelineSeparator>
@@ -49,14 +49,14 @@ export default function CustomizedDotTimeline() {
             <Typography variant="h6" component="h1">
               Eat
             </Typography>
-            <Typography>Because you need strenght...</Typography>
+            <Typography>Because you need strenght</Typography>
           </Paper>
         </TimelineContent>
       </TimelineItem>
       <TimelineItem>
         <TimelineOppositeContent>
           <Typography variant="body2" color="textSecondary">
-            10:00AM
+            10:00 am
           </Typography>
         </TimelineOppositeContent>
         <TimelineSeparator>
@@ -70,7 +70,7 @@ export default function CustomizedDotTimeline() {
             <Typography variant="h6" component="h1">
               Code
             </Typography>
-            <Typography>Because it is awesome...</Typography>
+            <Typography>Because it&apos;s awesome!</Typography>
           </Paper>
         </TimelineContent>
       </TimelineItem>
@@ -101,7 +101,7 @@ export default function CustomizedDotTimeline() {
             <Typography variant="h6" component="h1">
               Repeat
             </Typography>
-            <Typography>Because that is your life</Typography>
+            <Typography>Because this is the life you love!</Typography>
           </Paper>
         </TimelineContent>
       </TimelineItem>
