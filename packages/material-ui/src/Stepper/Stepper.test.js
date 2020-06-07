@@ -178,17 +178,17 @@ describe('<Stepper />', () => {
     });
 
     it('should pass correct active and completed props to the StepConnector using nonLinear=true and alternativeLabel=false', () => {
-      const steps = ['Step1', 'Step2' , 'Step3']
+      const steps = ['Step1', 'Step2', 'Step3'];
 
       const wrapper = mount(
-        <Stepper orientation="horizontal" nonLinear alternativeLabel connector={StepConnector}>
+        <Stepper orientation="horizontal" nonLinear alternativeLabel connector={<StepConnector />}>
           {steps.map((label, index) => (
-            <Step key={label} active completed={index===2}>
+            <Step key={label} active completed={index === 2}>
               <StepLabel>{label}</StepLabel>
             </Step>
           ))}
-        </Stepper>
-      )
+        </Stepper>,
+      );
 
       expect(wrapper.find(StepConnector).at(0).props().active).to.equal(true);
       expect(wrapper.find(StepConnector).at(1).props().active).to.equal(true);
