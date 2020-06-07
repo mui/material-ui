@@ -20,8 +20,6 @@ export type TimelineOppositeContentClassKey = 'root' | 'alignRight';
  *
  * API:
  *
- * - [TimelineOppositeContent API](https://material-ui.com/api/timeline-item-opposite-content/)
+ * - [TimelineOppositeContent API](https://material-ui.com/api/timeline-opposite-content/)
  */
-export default function TimelineOppositeContent(
-  props: TimelineOppositeContentProps
-): JSX.Element;
+export default function TimelineOppositeContent(props: TimelineOppositeContentProps): JSX.Element;

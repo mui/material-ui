@@ -14,9 +14,9 @@ describe('<TimelineDot />', () => {
 
   describeConformance(<TimelineDot />, () => ({
     classes,
-    inheritComponent: 'div',
+    inheritComponent: 'span',
     mount,
     refInstanceof: window.HTMLSpanElement,
-    testComponentPropWith: 'span',
+    testComponentPropWith: 'div',
   }));
 });

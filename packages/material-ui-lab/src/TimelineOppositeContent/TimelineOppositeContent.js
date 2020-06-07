@@ -19,10 +19,7 @@ export const styles = () => ({
   },
 });
 
-const TimelineOppositeContent = React.forwardRef(function TimelineOppositeContent(
-  props,
-  ref,
-) {
+const TimelineOppositeContent = React.forwardRef(function TimelineOppositeContent(props, ref) {
   const { classes, className, component: Component = 'div', ...other } = props;
 
   const { align = 'left' } = React.useContext(TimelineContext);
@@ -63,6 +60,4 @@ TimelineOppositeContent.propTypes = {
 
 TimelineOppositeContent.muiName = 'TimelineOppositeContent';
 
-export default withStyles(styles, { name: 'MuiTimelineOppositeContent' })(
-  TimelineOppositeContent,
-);
+export default withStyles(styles, { name: 'MuiTimelineOppositeContent' })(TimelineOppositeContent);

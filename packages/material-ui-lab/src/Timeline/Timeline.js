@@ -22,13 +22,7 @@ export const styles = () => ({
 });
 
 const Timeline = React.forwardRef(function Timeline(props, ref) {
-  const {
-    align = 'left',
-    classes,
-    className,
-    component: Component = 'ul',
-    ...other
-  } = props;
+  const { align = 'left', classes, className, component: Component = 'ul', ...other } = props;
 
   return (
     <TimelineContext.Provider value={{ align }}>

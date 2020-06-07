@@ -23,6 +23,6 @@ export type TimelineConnectorClassKey = 'root';
  *
  * API:
  *
- * - [TimelineConnector API](https://material-ui.com/api/timeline-item-connector/)
+ * - [TimelineConnector API](https://material-ui.com/api/timeline-connector/)
  */
 export default function TimelineConnector(props: TimelineConnectorProps): JSX.Element;

@@ -32,8 +32,12 @@ export type TimelineDotClassKey =
 
 /**
  *
+ * Demos:
+ *
+ * - [Timeline](https://material-ui.com/components/timeline/)
+ *
  * API:
  *
- * - [TimelineDot API](https://material-ui.com/api/timeline-item-dot/)
+ * - [TimelineDot API](https://material-ui.com/api/timeline-dot/)
  */
 export default function TimelineDot(props: TimelineDotProps): JSX.Element;
