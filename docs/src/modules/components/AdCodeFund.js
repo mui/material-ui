@@ -1,66 +1,49 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import loadScript from 'docs/src/modules/utils/loadScript';
+import adStyles from 'docs/src/modules/components/ad.styles';
+import { adShape } from 'docs/src/modules/components/AdManager';
 
-const styles = (theme) => ({
-  '@global': {
-    '#cf': {
-      display: 'block',
-      overflow: 'hidden',
-      backgroundColor: theme.palette.background.level2,
-      padding: `${theme.spacing(1.5)}px ${theme.spacing(1.5)}px ${theme.spacing(1.5)}px ${
-        theme.spacing(1.5) + 130
-      }px`,
-      borderRadius: theme.shape.borderRadius,
-      '& .cf-img-wrapper.cf-img-wrapper': {
-        float: 'left',
-        marginLeft: -130,
-        width: 130,
-        height: 100,
-        marginRight: theme.spacing(1.5),
-      },
-      '& img': {
-        verticalAlign: 'middle',
-      },
-      '& a, & a:hover': {
-        color: theme.palette.text.primary,
-        textDecoration: 'none',
-      },
-      '& .cf-text.cf-text': {
-        ...theme.typography.body2,
-        display: 'block',
-      },
-      '& .cf-powered-by.cf-powered-by': {
-        ...theme.typography.caption,
-        color: theme.palette.text.secondary,
-        marginTop: theme.spacing(0.5),
-        display: 'block',
-        '& em': {
-          display: 'none',
+const useStyles = makeStyles((theme) => {
+  const styles = adStyles(theme);
+
+  return {
+    '@global': {
+      '#cf': {
+        ...styles.root,
+        '& .cf-img-wrapper.cf-img-wrapper': styles.imgWrapper,
+        '& img': styles.img,
+        '& a, & a:hover': styles.a,
+        '& .cf-text.cf-text': styles.description,
+        '& .cf-powered-by.cf-powered-by': {
+          ...styles.poweredby,
+          '& em': {
+            fontStyle: 'normal',
+          },
         },
+        '& .cf-cta': styles.link,
       },
     },
-  },
+  };
 });
 
-function AdCodeFund() {
+export default function AdCodeFund() {
+  useStyles();
+  const ref = React.useRef(null);
+
   React.useEffect(() => {
-    const scriptSlot = document.querySelector('#code-fund-script-slot');
-
-    // Concurrence issues
-    if (!scriptSlot) {
-      return;
-    }
-
-    loadScript('https://codefund.io/properties/137/funder.js?theme=unstyled', scriptSlot);
+    loadScript(
+      `https://codefund.io/properties/137/funder.js?theme=unstyled${
+        adShape === 'inline' ? '&template=horizontal' : ''
+      }`,
+      ref.current,
+    );
   }, []);
 
   return (
     <React.Fragment>
-      <span id="code-fund-script-slot" />
-      <span id="codefund" data-ga-event-category="ad" data-ga-event-action="click" />
+      <span ref={ref} />
+      <span id="codefund" />
     </React.Fragment>
   );
 }
-
-export default withStyles(styles)(AdCodeFund);

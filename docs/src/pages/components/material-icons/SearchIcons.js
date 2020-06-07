@@ -289,6 +289,9 @@ DialogDetails.propTypes = {
 DialogDetails = React.memo(DialogDetails);
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    minHeight: 500,
+  },
   form: {
     margin: theme.spacing(2, 0),
   },
@@ -443,7 +446,7 @@ export default function SearchIcons() {
   );
 
   return (
-    <Grid container>
+    <Grid container className={classes.root}>
       <Grid item xs={12} sm={3}>
         <form className={classes.form}>
           <RadioGroup>
