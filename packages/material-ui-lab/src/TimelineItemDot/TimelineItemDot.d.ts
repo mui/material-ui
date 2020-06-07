@@ -6,18 +6,15 @@ export interface TimelineItemDotProps extends StandardProps<{}, TimelineItemDotC
    * The content of the component.
    */
   children?: React.ReactNode;
-
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
   component?: React.ElementType<React.HTMLAttributes<HTMLElement>>;
-
   /**
    * The dot can appear filled or outlined.
    */
   variant?: 'default' | 'outlined';
-
   /**
    * The dot can have a different colors.
    */

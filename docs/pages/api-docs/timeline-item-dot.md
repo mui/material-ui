@@ -45,7 +45,6 @@ Any other props supplied will be provided to the root element (native element).
 | <span class="prop-name">root</span> | <span class="prop-name">.MuiTimelineItemDot-root</span> | Styles applied to the root element.
 | <span class="prop-name">defaultDefault</span> | <span class="prop-name">.MuiTimelineItemDot-defaultDefault</span> | Styles applied to the root element if `color="default"` and `variant="default"`.
 | <span class="prop-name">outlinedDefalut</span> | <span class="prop-name">.MuiTimelineItemDot-outlinedDefalut</span> | Styles applied to the root element if `color="default"` and `variant="outlined"`.
-| <span class="prop-name">withChildren</span> | <span class="prop-name">.MuiTimelineItemDot-withChildren</span> | Styles applied when the component is passed children.
 | <span class="prop-name">defaultPrimary</span> | <span class="prop-name">.MuiTimelineItemDot-defaultPrimary</span> | Styles applied to the root element if `color="primary"` and `variant="default"`.
 | <span class="prop-name">outlinedPrimary</span> | <span class="prop-name">.MuiTimelineItemDot-outlinedPrimary</span> | Styles applied to the root element if `color="primary"` and `variant="outlined"`.
 | <span class="prop-name">defaultSecondary</span> | <span class="prop-name">.MuiTimelineItemDot-defaultSecondary</span> | Styles applied to the root element if `color="secondary"` and `variant="default"`.

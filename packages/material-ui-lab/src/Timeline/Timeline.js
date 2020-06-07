@@ -23,7 +23,6 @@ export const styles = () => ({
 
 const Timeline = React.forwardRef(function Timeline(props, ref) {
   const {
-    children,
     classes,
     className,
     component: Component = 'ul',
@@ -37,9 +36,7 @@ const Timeline = React.forwardRef(function Timeline(props, ref) {
         className={clsx(classes.root, classes[`align${capitalize(align)}`], className)}
         ref={ref}
         {...other}
-      >
-        {children}
-      </Component>
+      />
     </TimelineContext.Provider>
   );
 });

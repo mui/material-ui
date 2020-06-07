@@ -1,19 +1,19 @@
 ---
-filename: /packages/material-ui-lab/src/TimelineItemTail/TimelineItemTail.js
+filename: /packages/material-ui-lab/src/TimelineItemSeparator/TimelineItemSeparator.js
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
-# TimelineItemTail API
+# TimelineItemSeparator API
 
-<p class="description">The API documentation of the TimelineItemTail React component. Learn more about the props and the CSS customization points.</p>
+<p class="description">The API documentation of the TimelineItemSeparator React component. Learn more about the props and the CSS customization points.</p>
 
 ## Import
 
 ```js
-import TimelineItemTail from '@material-ui/lab/TimelineItemTail';
+import TimelineItemSeparator from '@material-ui/lab/TimelineItemSeparator';
 // or
-import { TimelineItemTail } from '@material-ui/lab';
+import { TimelineItemSeparator } from '@material-ui/lab';
 ```
 
 You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).
@@ -22,7 +22,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 
 ## Component name
 
-The `MuiTimelineItemTail` name can be used for providing [default props](/customization/globals/#default-props) or [style overrides](/customization/globals/#css) at the theme level.
+The `MuiTimelineItemSeparator` name can be used for providing [default props](/customization/globals/#default-props) or [style overrides](/customization/globals/#css) at the theme level.
 
 ## Props
 
@@ -30,7 +30,7 @@ The `MuiTimelineItemTail` name can be used for providing [default props](/custom
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The content of the component. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'span'</span> | The component used for the root node. Either a string to use a HTML element or a component. |
+| <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'div'</span> | The component used for the root node. Either a string to use a HTML element or a component. |
 
 The `ref` is forwarded to the root element.
 
@@ -40,7 +40,7 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">.MuiTimelineItemTail-root</span> | Styles applied to the root element.
+| <span class="prop-name">root</span> | <span class="prop-name">.MuiTimelineItemSeparator-root</span> | Styles applied to the root element.
 
 You can override the style of the component thanks to one of these customization points:
 
@@ -48,9 +48,5 @@ You can override the style of the component thanks to one of these customization
 - With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
 - With a theme and an [`overrides` property](/customization/globals/#css).
 
-If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-lab/src/TimelineItemTail/TimelineItemTail.js) for more detail.
-
-## Demos
-
-- [Timeline](/components/timeline/)
+If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-lab/src/TimelineItemSeparator/TimelineItemSeparator.js) for more detail.
 

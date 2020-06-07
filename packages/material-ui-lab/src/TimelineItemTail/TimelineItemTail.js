@@ -13,20 +13,9 @@ export const styles = (theme) => ({
 });
 
 const TimelineItemTail = React.forwardRef(function TimelineItemTail(props, ref) {
-  const {
-    children,
-    classes,
-    className,
-    component: Component = 'span',
-    variant = 'standard',
-    ...other
-  } = props;
+  const { classes, className, component: Component = 'span', ...other } = props;
 
-  return (
-    <Component className={clsx(classes.root, classes[variant], className)} ref={ref} {...other}>
-      {children}
-    </Component>
-  );
+  return <Component className={clsx(classes.root, className)} ref={ref} {...other} />;
 });
 
 TimelineItemTail.propTypes = {
@@ -52,10 +41,6 @@ TimelineItemTail.propTypes = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
-  /**
-   * The variant to use.
-   */
-  variant: PropTypes.oneOf(['outlined', 'standard']),
 };
 
 export default withStyles(styles, { name: 'MuiTimelineItemTail' })(TimelineItemTail);
