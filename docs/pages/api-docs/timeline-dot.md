@@ -30,7 +30,7 @@ The `MuiTimelineDot` name can be used for providing [default props](/customizati
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The content of the component. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <span class="prop-name">color</span> | <span class="prop-type">'default'<br>&#124;&nbsp;'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'</span> | <span class="prop-default">'default'</span> | The dot can have a different colors. |
+| <span class="prop-name">color</span> | <span class="prop-type">'grey'<br>&#124;&nbsp;'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'</span> | <span class="prop-default">'grey'</span> | The dot can have a different colors. |
 | <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'span'</span> | The component used for the root node. Either a string to use a HTML element or a component. |
 | <span class="prop-name">variant</span> | <span class="prop-type">'default'<br>&#124;&nbsp;'outlined'</span> | <span class="prop-default">'default'</span> | The dot can appear filled or outlined. |
 
@@ -43,8 +43,8 @@ Any other props supplied will be provided to the root element (native element).
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
 | <span class="prop-name">root</span> | <span class="prop-name">.MuiTimelineDot-root</span> | Styles applied to the root element.
-| <span class="prop-name">defaultDefault</span> | <span class="prop-name">.MuiTimelineDot-defaultDefault</span> | Styles applied to the root element if `color="default"` and `variant="default"`.
-| <span class="prop-name">outlinedDefalut</span> | <span class="prop-name">.MuiTimelineDot-outlinedDefalut</span> | Styles applied to the root element if `color="default"` and `variant="outlined"`.
+| <span class="prop-name">defaultGrey</span> | <span class="prop-name">.MuiTimelineDot-defaultGrey</span> | Styles applied to the root element if `color="grey"` and `variant="default"`.
+| <span class="prop-name">outlinedGrey</span> | <span class="prop-name">.MuiTimelineDot-outlinedGrey</span> | Styles applied to the root element if `color="grey"` and `variant="outlined"`.
 | <span class="prop-name">defaultPrimary</span> | <span class="prop-name">.MuiTimelineDot-defaultPrimary</span> | Styles applied to the root element if `color="primary"` and `variant="default"`.
 | <span class="prop-name">outlinedPrimary</span> | <span class="prop-name">.MuiTimelineDot-outlinedPrimary</span> | Styles applied to the root element if `color="primary"` and `variant="outlined"`.
 | <span class="prop-name">defaultSecondary</span> | <span class="prop-name">.MuiTimelineDot-defaultSecondary</span> | Styles applied to the root element if `color="secondary"` and `variant="default"`.
