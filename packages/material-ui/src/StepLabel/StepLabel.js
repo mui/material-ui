@@ -128,19 +128,21 @@ const StepLabel = React.forwardRef(function StepLabel(props, ref) {
         </span>
       ) : null}
       <span className={classes.labelContainer}>
-        <Typography
-          variant="body2"
-          component="span"
-          className={clsx(classes.label, {
-            [classes.alternativeLabel]: alternativeLabel,
-            [classes.completed]: completed,
-            [classes.active]: active,
-            [classes.error]: error,
-          })}
-          display="block"
-        >
-          {children}
-        </Typography>
+        {children ? (
+          <Typography
+            variant="body2"
+            component="span"
+            display="block"
+            className={clsx(classes.label, {
+              [classes.alternativeLabel]: alternativeLabel,
+              [classes.completed]: completed,
+              [classes.active]: active,
+              [classes.error]: error,
+            })}
+          >
+            {children}
+          </Typography>
+        ) : null}
         {optional}
       </span>
     </span>
