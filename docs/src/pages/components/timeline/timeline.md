@@ -1,6 +1,6 @@
 ---
 title: Timeline React component
-components: Timeline, TimelineItem, TimelineSeparator, TimelineDot, TimelineConnector, TimelineContent
+components: Timeline, TimelineItem, TimelineSeparator, TimelineDot, TimelineConnector, TimelineContent, TimelineOppositeContent
 ---
 
 # Timeline
