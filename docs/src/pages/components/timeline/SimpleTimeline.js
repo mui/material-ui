@@ -26,7 +26,6 @@ export default function SimpleTimeline() {
       <TimelineItem>
         <TimelineSeparator>
           <TimelineDot />
-          <TimelineConnector />
         </TimelineSeparator>
         <TimelineContent>Sleep</TimelineContent>
       </TimelineItem>
