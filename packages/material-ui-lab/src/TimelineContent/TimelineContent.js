@@ -3,53 +3,39 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { capitalize } from '@material-ui/core/utils';
 import { withStyles } from '@material-ui/core/styles';
-import TimelineContext from './TimelineContext';
+import TimelineContext from '../Timeline/TimelineContext';
 
 export const styles = () => ({
   /* Styles applied to the root element. */
   root: {
-    display: 'flex',
-    flexDirection: 'column',
+    flex: 1,
     padding: '6px 16px',
-    flexGrow: 1,
   },
-  /* Styles applied to the root element if `align="left"`. */
-  alignLeft: {},
   /* Styles applied to the root element if `align="right"`. */
-  alignRight: {},
-  /* Styles applied to the root element if `align="alternate"`. */
-  alignAlternate: {},
+  alignRight: {
+    textAlign: 'right',
+  },
 });
 
-const Timeline = React.forwardRef(function Timeline(props, ref) {
-  const {
-    align = 'left',
-    classes,
-    className,
-    component: Component = 'ul',
-    ...other
-  } = props;
+const TimelineContent = React.forwardRef(function TimelineContent(props, ref) {
+  const { classes, className, component: Component = 'div', ...other } = props;
+
+  const { align = 'left' } = React.useContext(TimelineContext);
 
   return (
-    <TimelineContext.Provider value={{ align }}>
-      <Component
-        className={clsx(classes.root, classes[`align${capitalize(align)}`], className)}
-        ref={ref}
-        {...other}
-      />
-    </TimelineContext.Provider>
+    <Component
+      className={clsx(classes.root, classes[`align${capitalize(align)}`], className)}
+      ref={ref}
+      {...other}
+    />
   );
 });
 
-Timeline.propTypes = {
+TimelineContent.propTypes = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
-  /**
-   * The position where the timeline should appear.
-   */
-  align: PropTypes.oneOf(['alternate', 'left', 'right']),
   /**
    * The content of the component.
    */
@@ -70,4 +56,4 @@ Timeline.propTypes = {
   component: PropTypes.elementType,
 };
 
-export default withStyles(styles, { name: 'MuiTimeline' })(Timeline);
+export default withStyles(styles, { name: 'MuiTimelineContent' })(TimelineContent);

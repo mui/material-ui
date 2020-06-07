@@ -1,40 +1,34 @@
 import React from 'react';
 import Timeline from '@material-ui/lab/Timeline';
 import TimelineItem from '@material-ui/lab/TimelineItem';
-import TimelineItemSeparator from '@material-ui/lab/TimelineItemSeparator';
-import TimelineItemTail from '@material-ui/lab/TimelineItemTail';
-import TimelineItemContent from '@material-ui/lab/TimelineItemContent';
-import TimelineItemDot from '@material-ui/lab/TimelineItemDot';
+import TimelineSeparator from '@material-ui/lab/TimelineSeparator';
+import TimelineConnector from '@material-ui/lab/TimelineConnector';
+import TimelineContent from '@material-ui/lab/TimelineContent';
+import TimelineDot from '@material-ui/lab/TimelineDot';
 
 export default function SimpleTimeline() {
   return (
     <Timeline>
       <TimelineItem>
-        <TimelineItemSeparator>
-          <TimelineItemDot />
-          <TimelineItemTail />
-        </TimelineItemSeparator>
-        <TimelineItemContent>Eat</TimelineItemContent>
+        <TimelineSeparator>
+          <TimelineDot />
+          <TimelineConnector />
+        </TimelineSeparator>
+        <TimelineContent>Eat</TimelineContent>
       </TimelineItem>
       <TimelineItem>
-        <TimelineItemSeparator>
-          <TimelineItemDot />
-          <TimelineItemTail />
-        </TimelineItemSeparator>
-        <TimelineItemContent>Code</TimelineItemContent>
+        <TimelineSeparator>
+          <TimelineDot />
+          <TimelineConnector />
+        </TimelineSeparator>
+        <TimelineContent>Code</TimelineContent>
       </TimelineItem>
       <TimelineItem>
-        <TimelineItemSeparator>
-          <TimelineItemDot />
-          <TimelineItemTail />
-        </TimelineItemSeparator>
-        <TimelineItemContent>Sleep</TimelineItemContent>
-      </TimelineItem>
-      <TimelineItem>
-        <TimelineItemSeparator>
-          <TimelineItemDot />
-        </TimelineItemSeparator>
-        <TimelineItemContent>Repeat</TimelineItemContent>
+        <TimelineSeparator>
+          <TimelineDot />
+          <TimelineConnector />
+        </TimelineSeparator>
+        <TimelineContent>Sleep</TimelineContent>
       </TimelineItem>
     </Timeline>
   );

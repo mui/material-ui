@@ -1,11 +1,11 @@
 import React from 'react';
 import Timeline from '@material-ui/lab/Timeline';
 import TimelineItem from '@material-ui/lab/TimelineItem';
-import TimelineItemSeparator from '@material-ui/lab/TimelineItemSeparator';
-import TimelineItemTail from '@material-ui/lab/TimelineItemTail';
-import TimelineItemContent from '@material-ui/lab/TimelineItemContent';
-import TimelineItemDot from '@material-ui/lab/TimelineItemDot';
-import TimelineItemOppositeContent from '@material-ui/lab/TimelineItemOppositeContent';
+import TimelineSeparator from '@material-ui/lab/TimelineSeparator';
+import TimelineConnector from '@material-ui/lab/TimelineConnector';
+import TimelineContent from '@material-ui/lab/TimelineContent';
+import TimelineDot from '@material-ui/lab/TimelineDot';
+import TimelineOppositeContent from '@material-ui/lab/TimelineOppositeContent';
 import Typography from '@material-ui/core/Typography';
 
 export default function OppositeContentTimeline() {
@@ -33,48 +33,48 @@ export default function OppositeContentTimeline() {
       <Timeline>
         {timelineItems.map(({ activity, time }) => (
           <TimelineItem key={activity}>
-            <TimelineItemOppositeContent>
+            <TimelineOppositeContent>
               <Typography color="textSecondary">{time}</Typography>
-            </TimelineItemOppositeContent>
-            <TimelineItemSeparator>
-              <TimelineItemDot />
-              <TimelineItemTail />
-            </TimelineItemSeparator>
-            <TimelineItemContent>
+            </TimelineOppositeContent>
+            <TimelineSeparator>
+              <TimelineDot />
+              <TimelineConnector />
+            </TimelineSeparator>
+            <TimelineContent>
               <Typography>{activity}</Typography>
-            </TimelineItemContent>
+            </TimelineContent>
           </TimelineItem>
         ))}
       </Timeline>
       <Timeline align="right">
         {timelineItems.map(({ activity, time }) => (
           <TimelineItem key={activity}>
-            <TimelineItemOppositeContent>
+            <TimelineOppositeContent>
               <Typography color="textSecondary">{time}</Typography>
-            </TimelineItemOppositeContent>
-            <TimelineItemSeparator>
-              <TimelineItemDot />
-              <TimelineItemTail />
-            </TimelineItemSeparator>
-            <TimelineItemContent>
+            </TimelineOppositeContent>
+            <TimelineSeparator>
+              <TimelineDot />
+              <TimelineConnector />
+            </TimelineSeparator>
+            <TimelineContent>
               <Typography>{activity}</Typography>
-            </TimelineItemContent>
+            </TimelineContent>
           </TimelineItem>
         ))}
       </Timeline>
       <Timeline align="alternate">
         {timelineItems.map(({ activity, time }) => (
           <TimelineItem key={activity}>
-            <TimelineItemOppositeContent>
+            <TimelineOppositeContent>
               <Typography color="textSecondary">{time}</Typography>
-            </TimelineItemOppositeContent>
-            <TimelineItemSeparator>
-              <TimelineItemDot />
-              <TimelineItemTail />
-            </TimelineItemSeparator>
-            <TimelineItemContent>
+            </TimelineOppositeContent>
+            <TimelineSeparator>
+              <TimelineDot />
+              <TimelineConnector />
+            </TimelineSeparator>
+            <TimelineContent>
               <Typography>{activity}</Typography>
-            </TimelineItemContent>
+            </TimelineContent>
           </TimelineItem>
         ))}
       </Timeline>

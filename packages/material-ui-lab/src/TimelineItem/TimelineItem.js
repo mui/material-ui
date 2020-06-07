@@ -23,18 +23,18 @@ export const styles = () => ({
   alignAlternate: {
     '&:nth-child(even)': {
       flexDirection: 'row-reverse',
-      '& .MuiTimelineItemContent-root': {
+      '& .MuiTimelineContent-root': {
         textAlign: 'right',
       },
-      '& .MuiTimelineItemOppositeContent-root': {
+      '& .MuiTimelineOppositeContent-root': {
         textAlign: 'left',
       },
     },
   },
-  /* Styles applied to the root element if no there isn't TimelineItemOppositeContent provided. */
+  /* Styles applied to the root element if no there isn't TimelineOppositeContent provided. */
   missingOppositeContent: {
     '&:before': {
-      content: "''",
+      content: '""',
       flex: 1,
       padding: '6px 16px',
     },
@@ -48,7 +48,7 @@ const TimelineItem = React.forwardRef(function TimelineItem(props, ref) {
   let hasOppositeContent = false;
 
   React.Children.forEach(props.children, (child) => {
-    if (isMuiElement(child, ['TimelineItemOppositeContent'])) {
+    if (isMuiElement(child, ['TimelineOppositeContent'])) {
       hasOppositeContent = true;
     }
   });
