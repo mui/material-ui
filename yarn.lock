@@ -6619,9 +6619,9 @@ dts-critic@latest:
     yargs "^12.0.5"
 
 dtslint@^3.2.0:
-  version "3.6.9"
-  resolved "https://registry.yarnpkg.com/dtslint/-/dtslint-3.6.9.tgz#dd5299fc524267c75305ea66a6a481c1c04ba568"
-  integrity sha512-m3inh2igjzQnoJX6cf7DcGaejUwAca4ok7mWTDV5dhFvdCGsHkFabdwdm6vGyhq0Xzo/lV4G1RFdU5tRAsHggQ==
+  version "3.6.10"
+  resolved "https://registry.yarnpkg.com/dtslint/-/dtslint-3.6.10.tgz#bee2dee4c9ee6b103614fdf577f3c38e5be50f43"
+  integrity sha512-QGSX0nNBLWnw3N9MJKJ8OtmU/r439bwS53RF+vnM4Vt62vCDGQa2yKEBMWpnTS2Few38i7y+UgrfL2OAPepkUw==
   dependencies:
     "@definitelytyped/header-parser" latest
     "@definitelytyped/typescript-versions" latest
@@ -6631,7 +6631,6 @@ dtslint@^3.2.0:
     json-stable-stringify "^1.0.1"
     strip-json-comments "^2.0.1"
     tslint "5.14.0"
-    typescript next
     yargs "^15.1.0"
 
 duplexer2@^0.1.2, duplexer2@~0.1.4:
@@ -16572,11 +16571,6 @@ typescript@^3.8.2:
   version "3.9.3"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.9.3.tgz#d3ac8883a97c26139e42df5e93eeece33d610b8a"
   integrity sha512-D/wqnB2xzNFIcoBG9FG8cXRDjiqSTbG2wd8DMZeQyJlP1vfTkIxH4GKveWaEBYySKIg+USu+E+EDIR47SqnaMQ==
-
-typescript@next:
-  version "3.8.3"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.8.3.tgz#409eb8544ea0335711205869ec458ab109ee1061"
-  integrity sha512-MYlEfn5VrLNsgudQTVJeNaQFUAI7DkhnOjdpAp4T+ku1TfQClewlbSuTVHiA+8skNBgaf02TL/kLOvig4y3G8w==
 
 ua-parser-js@0.7.21:
   version "0.7.21"
