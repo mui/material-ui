@@ -59,7 +59,9 @@ const TimelineItem = React.forwardRef(function TimelineItem(props, ref) {
   });
 
   return (
-    <TimelineItemContext.Provider value={{ classes: { content: classes.content, oppositeContent: classes.oppositeContent }}}>
+    <TimelineItemContext.Provider
+      value={{ classes: { content: classes.content, oppositeContent: classes.oppositeContent } }}
+    >
       <Component
         className={clsx(
           classes.root,

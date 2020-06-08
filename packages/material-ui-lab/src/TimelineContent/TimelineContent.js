@@ -26,7 +26,12 @@ const TimelineContent = React.forwardRef(function TimelineContent(props, ref) {
 
   return (
     <Component
-      className={clsx(classes.root, contextClasses.content, classes[`align${capitalize(align)}`], className)}
+      className={clsx(
+        classes.root,
+        contextClasses.content,
+        classes[`align${capitalize(align)}`],
+        className,
+      )}
       ref={ref}
       {...other}
     />

@@ -14,21 +14,17 @@ import RepeatIcon from '@material-ui/icons/Repeat';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 
-const usePaperStyles = makeStyles({
-  root: {
+const useStyles = makeStyles((theme) => ({
+  paper: {
     padding: '6px 16px',
   },
-});
-
-const useTailSecondaryStyles = makeStyles((theme) => ({
-  root: {
+  secondaryTail: {
     backgroundColor: theme.palette.secondary.main,
   },
 }));
 
 export default function CustomizedTimeline() {
-  const paperClasses = usePaperStyles();
-  const secondaryTailClasses = useTailSecondaryStyles();
+  const classes = useStyles();
 
   return (
     <Timeline align="alternate">
@@ -45,7 +41,7 @@ export default function CustomizedTimeline() {
           <TimelineConnector />
         </TimelineSeparator>
         <TimelineContent>
-          <Paper elevation={3} className={paperClasses.root}>
+          <Paper elevation={3} className={classes.paper}>
             <Typography variant="h6" component="h1">
               Eat
             </Typography>
@@ -66,7 +62,7 @@ export default function CustomizedTimeline() {
           <TimelineConnector />
         </TimelineSeparator>
         <TimelineContent>
-          <Paper elevation={3} className={paperClasses.root}>
+          <Paper elevation={3} className={classes.paper}>
             <Typography variant="h6" component="h1">
               Code
             </Typography>
@@ -79,10 +75,10 @@ export default function CustomizedTimeline() {
           <TimelineDot color="primary" variant="outlined">
             <HotelIcon />
           </TimelineDot>
-          <TimelineConnector className={secondaryTailClasses.root} />
+          <TimelineConnector className={classes.secondaryTail} />
         </TimelineSeparator>
         <TimelineContent>
-          <Paper elevation={3} className={paperClasses.root}>
+          <Paper elevation={3} className={classes.paper}>
             <Typography variant="h6" component="h1">
               Sleep
             </Typography>
@@ -97,7 +93,7 @@ export default function CustomizedTimeline() {
           </TimelineDot>
         </TimelineSeparator>
         <TimelineContent>
-          <Paper elevation={3} className={paperClasses.root}>
+          <Paper elevation={3} className={classes.paper}>
             <Typography variant="h6" component="h1">
               Repeat
             </Typography>

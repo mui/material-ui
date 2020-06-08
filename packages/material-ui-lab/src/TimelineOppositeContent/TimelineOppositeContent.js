@@ -28,7 +28,12 @@ const TimelineOppositeContent = React.forwardRef(function TimelineOppositeConten
 
   return (
     <Component
-      className={clsx(classes.root, contextClasses.oppositeContent, classes[`align${capitalize(align)}`], className)}
+      className={clsx(
+        classes.root,
+        contextClasses.oppositeContent,
+        classes[`align${capitalize(align)}`],
+        className,
+      )}
       ref={ref}
       {...other}
     />
