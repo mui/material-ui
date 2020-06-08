@@ -33,7 +33,7 @@ The `TimelineDot` can appear in different colors.
 
 {{"demo": "pages/components/timeline/ColorsTimeline.js"}}
 
-### Outlined
+## Outlined
 
 {{"demo": "pages/components/timeline/OutlinedTimeline.js"}}
 
