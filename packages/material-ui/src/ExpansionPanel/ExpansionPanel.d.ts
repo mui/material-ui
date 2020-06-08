@@ -8,7 +8,7 @@ export interface ExpansionPanelProps
   /**
    * The content of the expansion panel.
    */
-  children: Exclude<React.ReactNode, null | undefined>;
+  children: NonNullable<React.ReactNode>;
   /**
    * If `true`, expands the panel by default.
    */
