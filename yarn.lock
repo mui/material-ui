@@ -2385,9 +2385,9 @@
   integrity sha512-rJWvrDFKf2NkB3CkeJPcnX3oD0XAQriJOhYC5DUwiK6X/KTM96e1rW+1/PgI0U4tL6GQ2K7dvoiYFhMnAaNLUw==
 
 "@types/babel-plugin-macros@^2.8.1":
-  version "2.8.1"
-  resolved "https://registry.yarnpkg.com/@types/babel-plugin-macros/-/babel-plugin-macros-2.8.1.tgz#fe7e732fa6ea13a0576a0fb4c306a2e75808f431"
-  integrity sha512-o3JJsLb79dS/eql7xgbYRhGraw8EoEjt0rY5xr0xd3zmT11ojMtw9JuV0GwLxA2njb4J8sMMVXsTveqPibepHg==
+  version "2.8.2"
+  resolved "https://registry.yarnpkg.com/@types/babel-plugin-macros/-/babel-plugin-macros-2.8.2.tgz#4c56035db90b3117bc22b02412b83ed264dc0874"
+  integrity sha512-71QJGL4k1PnJ4qcTb86Axjbs9yyGD0vQHjZY5/HDcqUvwZDL3JYjF7Agh/E7xJQvQGZ7cW+xtr1XpTyKUR7aRw==
   dependencies:
     "@types/babel__core" "*"
 
