@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import { capitalize } from '@material-ui/core/utils';
 import { withStyles } from '@material-ui/core/styles';
 import TimelineContext from '../Timeline/TimelineContext';
+import TimelineItemContext from '../TimelineItem/TimelineItemContext';
 
 export const styles = () => ({
   /* Styles applied to the root element. */
@@ -21,10 +22,11 @@ const TimelineContent = React.forwardRef(function TimelineContent(props, ref) {
   const { classes, className, component: Component = 'div', ...other } = props;
 
   const { align = 'left' } = React.useContext(TimelineContext);
+  const { classes: contextClasses = {} } = React.useContext(TimelineItemContext);
 
   return (
     <Component
-      className={clsx(classes.root, classes[`align${capitalize(align)}`], className)}
+      className={clsx(classes.root, contextClasses.content, classes[`align${capitalize(align)}`], className)}
       ref={ref}
       {...other}
     />
