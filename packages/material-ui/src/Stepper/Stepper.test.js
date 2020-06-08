@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import CheckCircle from '../internal/svg-icons/CheckCircle';
 import { createShallow, getClasses } from '@material-ui/core/test-utils';
 import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
@@ -45,20 +44,17 @@ describe('<Stepper />', () => {
   });
 
   describe('rendering children', () => {
-    it('renders 3 children with connectors as separators', () => {
-      const wrapper = shallow(
+    it('renders 3 Step and 2 StepConnector components', () => {
+      const wrapper = mount(
         <Stepper>
-          <div />
-          <div />
-          <div />
+          <Step />
+          <Step />
+          <Step />
         </Stepper>,
       );
 
-      const children = wrapper.children();
-
-      expect(children.length).to.equal(5);
-      expect(wrapper.childAt(1).find(StepConnector).length).to.equal(1);
-      expect(wrapper.childAt(3).find(StepConnector).length).to.equal(1);
+      expect(wrapper.find(StepConnector).length).to.equal(2);
+      expect(wrapper.find(Step).length).to.equal(3);
     });
   });
 
@@ -122,7 +118,7 @@ describe('<Stepper />', () => {
 
   describe('step connector', () => {
     it('should have a default step connector', () => {
-      const wrapper = shallow(
+      const wrapper = mount(
         <Stepper>
           <Step />
           <Step />
@@ -133,14 +129,15 @@ describe('<Stepper />', () => {
     });
 
     it('should allow the developer to specify a custom step connector', () => {
-      const wrapper = shallow(
-        <Stepper connector={<CheckCircle />}>
+      const CustomConnector = () => null;
+      const wrapper = mount(
+        <Stepper connector={<CustomConnector />}>
           <Step />
           <Step />
         </Stepper>,
       );
 
-      expect(wrapper.find(CheckCircle).length).to.equal(1);
+      expect(wrapper.find(CustomConnector).length).to.equal(1);
       expect(wrapper.find(StepConnector).length).to.equal(0);
     });
 
@@ -156,7 +153,7 @@ describe('<Stepper />', () => {
     });
 
     it('should pass active prop to connector when second step is active', () => {
-      const wrapper = shallow(
+      const wrapper = mount(
         <Stepper activeStep={1}>
           <Step />
           <Step />
@@ -167,7 +164,7 @@ describe('<Stepper />', () => {
     });
 
     it('should pass completed prop to connector when second step is completed', () => {
-      const wrapper = shallow(
+      const wrapper = mount(
         <Stepper activeStep={2}>
           <Step />
           <Step />
