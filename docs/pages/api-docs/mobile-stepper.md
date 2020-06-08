@@ -34,7 +34,7 @@ The `MuiMobileStepper` name can be used for providing [default props](/customiza
 | <span class="prop-name">LinearProgressProps</span> | <span class="prop-type">object</span> |  | Props applied to the `LinearProgress` element. |
 | <span class="prop-name">nextButton</span> | <span class="prop-type">node</span> |  | A next button element. For instance, it can be a `Button` or an `IconButton`. |
 | <span class="prop-name">position</span> | <span class="prop-type">'bottom'<br>&#124;&nbsp;'static'<br>&#124;&nbsp;'top'</span> | <span class="prop-default">'bottom'</span> | Set the positioning type. |
-| <span class="prop-name required">steps&nbsp;*</span> | <span class="prop-type">number</span> |  | The total steps. |
+| <span class="prop-name required">steps<abbr title="required">*</abbr></span> | <span class="prop-type">number</span> |  | The total steps. |
 | <span class="prop-name">variant</span> | <span class="prop-type">'dots'<br>&#124;&nbsp;'progress'<br>&#124;&nbsp;'text'</span> | <span class="prop-default">'dots'</span> | The variant to use. |
 
 The `ref` is forwarded to the root element.

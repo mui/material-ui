@@ -30,9 +30,9 @@ The `MuiTabScrollButton` name can be used for providing [default props](/customi
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The content of the component. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <span class="prop-name required">direction&nbsp;*</span> | <span class="prop-type">'left'<br>&#124;&nbsp;'right'</span> |  | Which direction should the button indicate? |
+| <span class="prop-name required">direction<abbr title="required">*</abbr></span> | <span class="prop-type">'left'<br>&#124;&nbsp;'right'</span> |  | Which direction should the button indicate? |
 | <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> |  | If `true`, the element will be disabled. |
-| <span class="prop-name required">orientation&nbsp;*</span> | <span class="prop-type">'horizontal'<br>&#124;&nbsp;'vertical'</span> |  | The tabs orientation (layout flow direction). |
+| <span class="prop-name required">orientation<abbr title="required">*</abbr></span> | <span class="prop-type">'horizontal'<br>&#124;&nbsp;'vertical'</span> |  | The tabs orientation (layout flow direction). |
 
 The `ref` is forwarded to the root element.
 
