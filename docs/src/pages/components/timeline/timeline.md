@@ -21,7 +21,7 @@ Right aligned timeline can show the timeline on the right side of the events.
 
 {{"demo": "pages/components/timeline/RightAlinedTimeline.js"}}
 
-## Alternatin timeline
+## Alternating timeline
 
 The timeline can display the events on alternating sides.
 
