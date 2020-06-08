@@ -26,7 +26,7 @@ const useTailSecondaryStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function CustomizedDotTimeline() {
+export default function CustomizedTimeline() {
   const paperClasses = usePaperStyles();
   const secondaryTailClasses = useTailSecondaryStyles();
 
