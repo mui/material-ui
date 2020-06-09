@@ -28,13 +28,13 @@ The `MuiToggleButton` name can be used for providing [default props](/customizat
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name required">children&nbsp;*</span> | <span class="prop-type">node</span> |  | The content of the button. |
+| <span class="prop-name required">children<abbr title="required">*</abbr></span> | <span class="prop-type">node</span> |  | The content of the button. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the button will be disabled. |
 | <span class="prop-name">disableFocusRipple</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the  keyboard focus ripple will be disabled. |
 | <span class="prop-name">disableRipple</span> | <span class="prop-type">bool</span> |  | If `true`, the ripple effect will be disabled. |
 | <span class="prop-name">selected</span> | <span class="prop-type">bool</span> |  | If `true`, the button will be rendered in an active state. |
-| <span class="prop-name required">value&nbsp;*</span> | <span class="prop-type">any</span> |  | The value to associate with the button when selected in a ToggleButtonGroup. |
+| <span class="prop-name required">value<abbr title="required">*</abbr></span> | <span class="prop-type">any</span> |  | The value to associate with the button when selected in a ToggleButtonGroup. |
 
 The `ref` is forwarded to the root element.
 

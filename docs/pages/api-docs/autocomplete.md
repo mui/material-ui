@@ -76,12 +76,12 @@ The `MuiAutocomplete` name can be used for providing [default props](/customizat
 | <span class="prop-name">open</span> | <span class="prop-type">bool</span> |  | Control the popup` open state. |
 | <span class="prop-name">openOnFocus</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the popup will open on input focus. |
 | <span class="prop-name">openText</span> | <span class="prop-type">string</span> | <span class="prop-default">'Open'</span> | Override the default text for the *open popup* icon button.<br>For localization purposes, you can use the provided [translations](/guides/localization/). |
-| <span class="prop-name required">options&nbsp;*</span> | <span class="prop-type">array</span> |  | Array of options. |
+| <span class="prop-name required">options<abbr title="required">*</abbr></span> | <span class="prop-type">array</span> |  | Array of options. |
 | <span class="prop-name">PaperComponent</span> | <span class="prop-type">elementType</span> | <span class="prop-default">Paper</span> | The component used to render the body of the popup. |
 | <span class="prop-name">PopperComponent</span> | <span class="prop-type">elementType</span> | <span class="prop-default">Popper</span> | The component used to position the popup. |
 | <span class="prop-name">popupIcon</span> | <span class="prop-type">node</span> | <span class="prop-default">&lt;ArrowDropDownIcon /></span> | The icon to display in place of the default popup icon. |
 | <span class="prop-name">renderGroup</span> | <span class="prop-type">func</span> |  | Render the group.<br><br>**Signature:**<br>`function(option: any) => ReactNode`<br>*option:* The group to render. |
-| <span class="prop-name required">renderInput&nbsp;*</span> | <span class="prop-type">func</span> |  | Render the input.<br><br>**Signature:**<br>`function(params: object) => ReactNode`<br> |
+| <span class="prop-name required">renderInput<abbr title="required">*</abbr></span> | <span class="prop-type">func</span> |  | Render the input.<br><br>**Signature:**<br>`function(params: object) => ReactNode`<br> |
 | <span class="prop-name">renderOption</span> | <span class="prop-type">func</span> |  | Render the option, use `getOptionLabel` by default.<br><br>**Signature:**<br>`function(option: T, state: object) => ReactNode`<br>*option:* The option to render.<br>*state:* The state of the component. |
 | <span class="prop-name">renderTags</span> | <span class="prop-type">func</span> |  | Render the selected value.<br><br>**Signature:**<br>`function(value: T[], getTagProps: function) => ReactNode`<br>*value:* The `value` provided to the component.<br>*getTagProps:* A tag props getter. |
 | <span class="prop-name">selectOnFocus</span> | <span class="prop-type">bool</span> | <span class="prop-default">!props.freeSolo</span> | If `true`, the input's text will be selected on focus. It helps the user clear the selected value. |
