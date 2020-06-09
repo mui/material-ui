@@ -45,7 +45,7 @@
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "^1.6.0",
     "husky": "^4.2.5",
-    "lint-staged": "^10.2.7",
+    "lint-staged": "^10.2.9",
     "prettier": "^1.14.3",
     "ts-loader": "^7.0.5",
     "wait-on": "^4.0.0"
