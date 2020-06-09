@@ -95,6 +95,10 @@ export interface UseAutocompleteProps<
    */
   disableListWrap?: boolean;
   /**
+   * If `true`, the input value will not be reset after an option is toggled.
+   */
+  disableResetInputOnSelect?: boolean;
+  /**
    * A filter function that determines the options that are eligible.
    *
    * @param {T[]} options The options to render.

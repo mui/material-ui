@@ -81,6 +81,7 @@ export default function useAutocomplete(props) {
     disableCloseOnSelect = false,
     disabledItemsFocusable = false,
     disableListWrap = false,
+    disableResetInputOnSelect = false,
     filterOptions = defaultFilterOptions,
     filterSelectedOptions = false,
     freeSolo = false,
@@ -560,7 +561,9 @@ export default function useAutocomplete(props) {
       }
     }
 
-    resetInputValue(event, newValue);
+    if (!disableResetInputOnSelect) {
+      resetInputValue(event, newValue);
+    }
 
     handleValue(event, newValue, reason, { option });
     if (!disableCloseOnSelect) {
