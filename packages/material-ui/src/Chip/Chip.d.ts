@@ -24,7 +24,7 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
     /**
      * The color of the component. It supports those theme colors that make sense for this component.
      */
-    color?: PropTypes.Color;
+    color?: Exclude<PropTypes.Color, 'inherit'>;
     /**
      * Override the default delete icon element. Shown only if `onDelete` is set.
      */

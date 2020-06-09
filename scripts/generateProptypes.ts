@@ -25,13 +25,6 @@ const todoComponents = [
   'TabList',
   'ToggleButton',
   // core
-  // 'DialogContentText',
-  // 'Divider',
-  // 'ExpansionPanelSummary',
-  // 'Fab',
-  // 'FormControl',
-  // 'FormHelperText',
-  // 'FormLabel',
   // requires https://github.com/merceyz/typescript-to-proptypes/pull/21
   'Grid',
   'GridList',
