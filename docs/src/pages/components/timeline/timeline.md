@@ -11,7 +11,7 @@ components: Timeline, TimelineItem, TimelineSeparator, TimelineDot, TimelineConn
 
 ## Simple timeline
 
-Simeple timeline showing list of events.
+Simple timeline showing list of events.
 
 {{"demo": "pages/components/timeline/SimpleTimeline.js"}}
 
