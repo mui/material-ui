@@ -39,7 +39,7 @@ The `TimelineDot` can appear in different colors.
 
 ## Opposite content
 
-Timeline can contain an element opposite of the content.
+The timeline can contain an element opposite of the content.
 
 {{"demo": "pages/components/timeline/OppositeContentTimeline.js"}}
 
