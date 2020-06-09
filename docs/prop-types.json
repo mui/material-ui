@@ -482,7 +482,7 @@
     },
     "maxDate": {
       "defaultValue": {
-        "value": "Date(2100-01-01)"
+        "value": "Date(2099-31-12)"
       },
       "description": "Max selectable date.",
       "name": "maxDate",
@@ -523,36 +523,6 @@
       "required": false,
       "type": {
         "name": "boolean"
-      }
-    },
-    "loading": {
-      "defaultValue": {
-        "value": "false"
-      },
-      "description": "If `true` renders `LoadingComponent` in calendar instead of calendar view.\nCan be used to preload information and show it in calendar.",
-      "name": "loading",
-      "parent": {
-        "fileName": "material-ui-pickers/lib/src/views/Calendar/CalendarView.tsx",
-        "name": "CalendarViewProps"
-      },
-      "required": false,
-      "type": {
-        "name": "boolean"
-      }
-    },
-    "renderLoading": {
-      "defaultValue": {
-        "value": "() => \"...\""
-      },
-      "description": "Component displaying when passed `loading` true.",
-      "name": "renderLoading",
-      "parent": {
-        "fileName": "material-ui-pickers/lib/src/views/Calendar/CalendarView.tsx",
-        "name": "CalendarViewProps"
-      },
-      "required": false,
-      "type": {
-        "name": "ComponentClass<{}, any> | FunctionComponent<{}>"
       }
     },
     "reduceAnimations": {
@@ -609,6 +579,36 @@
       "required": false,
       "type": {
         "name": "boolean"
+      }
+    },
+    "loading": {
+      "defaultValue": {
+        "value": "false"
+      },
+      "description": "If `true` renders `LoadingComponent` in calendar instead of calendar view.\nCan be used to preload information and show it in calendar.",
+      "name": "loading",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Calendar/Calendar.tsx",
+        "name": "ExportedCalendarProps"
+      },
+      "required": false,
+      "type": {
+        "name": "boolean"
+      }
+    },
+    "renderLoading": {
+      "defaultValue": {
+        "value": "() => \"...\""
+      },
+      "description": "Component displaying when passed `loading` true.",
+      "name": "renderLoading",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Calendar/Calendar.tsx",
+        "name": "ExportedCalendarProps"
+      },
+      "required": false,
+      "type": {
+        "name": "() => ReactNode"
       }
     },
     "onYearChange": {
@@ -2276,7 +2276,7 @@
     },
     "maxDate": {
       "defaultValue": {
-        "value": "Date(2100-01-01)"
+        "value": "Date(2099-31-12)"
       },
       "description": "Max selectable date.",
       "name": "maxDate",
@@ -2319,36 +2319,6 @@
         "name": "boolean"
       }
     },
-    "loading": {
-      "defaultValue": {
-        "value": "false"
-      },
-      "description": "If `true` renders `LoadingComponent` in calendar instead of calendar view.\nCan be used to preload information and show it in calendar.",
-      "name": "loading",
-      "parent": {
-        "fileName": "material-ui-pickers/lib/src/views/Calendar/CalendarView.tsx",
-        "name": "CalendarViewProps"
-      },
-      "required": false,
-      "type": {
-        "name": "boolean"
-      }
-    },
-    "renderLoading": {
-      "defaultValue": {
-        "value": "() => \"...\""
-      },
-      "description": "Component displaying when passed `loading` true.",
-      "name": "renderLoading",
-      "parent": {
-        "fileName": "material-ui-pickers/lib/src/views/Calendar/CalendarView.tsx",
-        "name": "CalendarViewProps"
-      },
-      "required": false,
-      "type": {
-        "name": "ComponentClass<{}, any> | FunctionComponent<{}>"
-      }
-    },
     "reduceAnimations": {
       "defaultValue": {
         "value": "/(android)/i.test(window.navigator.userAgent)."
@@ -2388,6 +2358,36 @@
       "required": false,
       "type": {
         "name": "(day: DateIOType, selectedDates: DateIOType[], DayComponentProps: DayProps) => Element"
+      }
+    },
+    "loading": {
+      "defaultValue": {
+        "value": "false"
+      },
+      "description": "If `true` renders `LoadingComponent` in calendar instead of calendar view.\nCan be used to preload information and show it in calendar.",
+      "name": "loading",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Calendar/Calendar.tsx",
+        "name": "ExportedCalendarProps"
+      },
+      "required": false,
+      "type": {
+        "name": "boolean"
+      }
+    },
+    "renderLoading": {
+      "defaultValue": {
+        "value": "() => \"...\""
+      },
+      "description": "Component displaying when passed `loading` true.",
+      "name": "renderLoading",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Calendar/Calendar.tsx",
+        "name": "ExportedCalendarProps"
+      },
+      "required": false,
+      "type": {
+        "name": "() => ReactNode"
       }
     },
     "onYearChange": {
@@ -3151,7 +3151,7 @@
     },
     "maxDate": {
       "defaultValue": {
-        "value": "Date(2100-01-01)"
+        "value": "Date(2099-31-12)"
       },
       "description": "Max selectable date.",
       "name": "maxDate",
@@ -3192,36 +3192,6 @@
       "required": false,
       "type": {
         "name": "boolean"
-      }
-    },
-    "loading": {
-      "defaultValue": {
-        "value": "false"
-      },
-      "description": "If `true` renders `LoadingComponent` in calendar instead of calendar view.\nCan be used to preload information and show it in calendar.",
-      "name": "loading",
-      "parent": {
-        "fileName": "material-ui-pickers/lib/src/views/Calendar/CalendarView.tsx",
-        "name": "CalendarViewProps"
-      },
-      "required": false,
-      "type": {
-        "name": "boolean"
-      }
-    },
-    "renderLoading": {
-      "defaultValue": {
-        "value": "() => \"...\""
-      },
-      "description": "Component displaying when passed `loading` true.",
-      "name": "renderLoading",
-      "parent": {
-        "fileName": "material-ui-pickers/lib/src/views/Calendar/CalendarView.tsx",
-        "name": "CalendarViewProps"
-      },
-      "required": false,
-      "type": {
-        "name": "ComponentClass<{}, any> | FunctionComponent<{}>"
       }
     },
     "reduceAnimations": {
@@ -3278,6 +3248,36 @@
       "required": false,
       "type": {
         "name": "boolean"
+      }
+    },
+    "loading": {
+      "defaultValue": {
+        "value": "false"
+      },
+      "description": "If `true` renders `LoadingComponent` in calendar instead of calendar view.\nCan be used to preload information and show it in calendar.",
+      "name": "loading",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Calendar/Calendar.tsx",
+        "name": "ExportedCalendarProps"
+      },
+      "required": false,
+      "type": {
+        "name": "boolean"
+      }
+    },
+    "renderLoading": {
+      "defaultValue": {
+        "value": "() => \"...\""
+      },
+      "description": "Component displaying when passed `loading` true.",
+      "name": "renderLoading",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Calendar/Calendar.tsx",
+        "name": "ExportedCalendarProps"
+      },
+      "required": false,
+      "type": {
+        "name": "() => ReactNode"
       }
     },
     "shouldDisableYear": {
@@ -3927,6 +3927,36 @@
       "required": false,
       "type": {
         "name": "boolean"
+      }
+    },
+    "loading": {
+      "defaultValue": {
+        "value": "false"
+      },
+      "description": "If `true` renders `LoadingComponent` in calendar instead of calendar view.\nCan be used to preload information and show it in calendar.",
+      "name": "loading",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Calendar/Calendar.tsx",
+        "name": "ExportedCalendarProps"
+      },
+      "required": false,
+      "type": {
+        "name": "boolean"
+      }
+    },
+    "renderLoading": {
+      "defaultValue": {
+        "value": "() => \"...\""
+      },
+      "description": "Component displaying when passed `loading` true.",
+      "name": "renderLoading",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Calendar/Calendar.tsx",
+        "name": "ExportedCalendarProps"
+      },
+      "required": false,
+      "type": {
+        "name": "() => ReactNode"
       }
     },
     "disableHighlightToday": {
