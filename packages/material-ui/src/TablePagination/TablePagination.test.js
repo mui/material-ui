@@ -132,7 +132,7 @@ describe('<TablePagination />', () => {
 
   describe('prop: page', () => {
     it('should disable the back button on the first page', () => {
-      const { getByRole } = render(
+      const { getAllByRole } = render(
         <table>
           <TableFooter>
             <TableRow>
@@ -147,14 +147,14 @@ describe('<TablePagination />', () => {
           </TableFooter>
         </table>,
       );
-      const backButton = getByRole('button', { name: 'Previous page' });
-      const nextButton = getByRole('button', { name: 'Next page' });
+
+      const [, backButton, nextButton] = getAllByRole('button');
       expect(backButton).to.have.property('disabled', true);
       expect(nextButton).to.have.property('disabled', false);
     });
 
     it('should disable the next button on the last page', () => {
-      const { getByRole } = render(
+      const { getAllByRole } = render(
         <table>
           <TableFooter>
             <TableRow>
@@ -170,8 +170,7 @@ describe('<TablePagination />', () => {
         </table>,
       );
 
-      const backButton = getByRole('button', { name: 'Previous page' });
-      const nextButton = getByRole('button', { name: 'Next page' });
+      const [, backButton, nextButton] = getAllByRole('button');
       expect(backButton).to.have.property('disabled', false);
       expect(nextButton).to.have.property('disabled', true);
     });
