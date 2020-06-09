@@ -2,10 +2,26 @@ import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
 export interface DividerTypeMap<P = {}, D extends React.ElementType = 'hr'> {
   props: P & {
+    /**
+     * Absolutely position the element.
+     */
     absolute?: boolean;
+    /**
+     * If `true`, a vertical divider will have the correct height when used in flex container.
+     * (By default, a vertical divider will have a calculated height of `0px` if it is the child of a flex container.)
+     */
     flexItem?: boolean;
+    /**
+     * If `true`, the divider will have a lighter color.
+     */
     light?: boolean;
+    /**
+     * The divider orientation.
+     */
     orientation?: 'horizontal' | 'vertical';
+    /**
+     * The variant to use.
+     */
     variant?: 'fullWidth' | 'inset' | 'middle';
   };
   defaultComponent: D;

@@ -8,6 +8,10 @@ type Variant = ThemeVariant | 'srOnly';
 export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'> {
   props: P & {
     align?: PropTypes.Alignment;
+    /**
+     * The content of the component.
+     */
+    children?: React.ReactNode;
     color?:
       | 'initial'
       | 'inherit'

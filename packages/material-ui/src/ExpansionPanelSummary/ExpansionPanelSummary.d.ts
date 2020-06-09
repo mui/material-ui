@@ -8,7 +8,17 @@ export type ExpansionPanelSummaryTypeMap<
   D extends React.ElementType = 'div'
 > = ExtendButtonBaseTypeMap<{
   props: P & {
+    /**
+     * The content of the expansion panel summary.
+     */
+    children?: React.ReactNode;
+    /**
+     * The icon to display as the expand indicator.
+     */
     expandIcon?: React.ReactNode;
+    /**
+     * Props applied to the `IconButton` element wrapping the expand icon.
+     */
     IconButtonProps?: Partial<IconButtonProps>;
   };
   defaultComponent: D;

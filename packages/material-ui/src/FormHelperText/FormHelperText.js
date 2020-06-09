@@ -93,6 +93,10 @@ const FormHelperText = React.forwardRef(function FormHelperText(props, ref) {
 });
 
 FormHelperText.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * The content of the component.
    *
@@ -103,7 +107,7 @@ FormHelperText.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -141,7 +145,7 @@ FormHelperText.propTypes = {
   /**
    * The variant to use.
    */
-  variant: PropTypes.oneOf(['standard', 'outlined', 'filled']),
+  variant: PropTypes.oneOf(['filled', 'outlined', 'standard']),
 };
 
 export default withStyles(styles, { name: 'MuiFormHelperText' })(FormHelperText);

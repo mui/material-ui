@@ -5,13 +5,32 @@ export interface FormLabelTypeMap<P = {}, D extends React.ElementType = 'label'>
   props: P &
     FormLabelBaseProps & {
       /**
+       * The content of the component.
+       */
+      children?: React.ReactNode;
+      /**
        * The color of the component. It supports those theme colors that make sense for this component.
        */
       color?: 'primary' | 'secondary';
+      /**
+       * If `true`, the label should be displayed in a disabled state.
+       */
       disabled?: boolean;
+      /**
+       * If `true`, the label should be displayed in an error state.
+       */
       error?: boolean;
+      /**
+       * If `true`, the label should use filled classes key.
+       */
       filled?: boolean;
+      /**
+       * If `true`, the input of this label is focused (used by `FormGroup` components).
+       */
       focused?: boolean;
+      /**
+       * If `true`, the label will indicate that the input is required.
+       */
       required?: boolean;
     };
   defaultComponent: D;
