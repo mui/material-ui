@@ -25,12 +25,6 @@ const todoComponents = [
   'TabList',
   'ToggleButton',
   // core
-  'CardActionArea',
-  'CardContent',
-  'CardHeader',
-  'CardMedia',
-  'Chip',
-  'Container',
   'DialogContentText',
   'Divider',
   'ExpansionPanelSummary',
@@ -140,6 +134,7 @@ const transitionCallbacks = [
 const ignoreExternalDocumentation: Record<string, string[]> = {
   Button: ['focusVisibleClassName', 'type'],
   Collapse: transitionCallbacks,
+  CardActionArea: ['focusVisibleClassName'],
   Fade: transitionCallbacks,
   Grow: transitionCallbacks,
   InputBase: ['aria-describedby'],
@@ -191,6 +186,9 @@ async function generateProptypes(
 
   const result = ttp.inject(proptypes, jsContent, {
     removeExistingPropTypes: true,
+    babelOptions: {
+      filename: jsFile,
+    },
     comment: [
       '----------------------------- Warning --------------------------------',
       '| These PropTypes are generated from the TypeScript type definitions |',

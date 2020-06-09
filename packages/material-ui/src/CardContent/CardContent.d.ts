@@ -2,7 +2,12 @@ import * as React from 'react';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
 export interface CardContentTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P;
+  props: P & {
+    /**
+     * The content of the component.
+     */
+    children?: React.ReactNode;
+  };
   defaultComponent: D;
   classKey: CardContentClassKey;
 }

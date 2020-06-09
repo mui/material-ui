@@ -92,6 +92,10 @@ const CardHeader = React.forwardRef(function CardHeader(props, ref) {
 });
 
 CardHeader.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * The action to display in the card header.
    */
@@ -101,10 +105,14 @@ CardHeader.propTypes = {
    */
   avatar: PropTypes.node,
   /**
+   * @ignore
+   */
+  children: PropTypes.node,
+  /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
