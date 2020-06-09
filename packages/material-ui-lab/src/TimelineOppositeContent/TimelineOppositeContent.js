@@ -21,13 +21,13 @@ export const styles = () => ({
 });
 
 const TimelineOppositeContent = React.forwardRef(function TimelineOppositeContent(props, ref) {
-  const { classes, className, component: Component = 'div', ...other } = props;
+  const { classes, className, ...other } = props;
 
   const { align = 'left' } = React.useContext(TimelineContext);
   const { classes: contextClasses = {} } = React.useContext(TimelineItemContext);
 
   return (
-    <Component
+    <div
       className={clsx(
         classes.root,
         contextClasses.oppositeContent,
@@ -58,11 +58,6 @@ TimelineOppositeContent.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
 };
 
 TimelineOppositeContent.muiName = 'TimelineOppositeContent';

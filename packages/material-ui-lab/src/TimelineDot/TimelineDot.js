@@ -57,17 +57,10 @@ export const styles = (theme) => ({
 });
 
 const TimelineDot = React.forwardRef(function TimelineDot(props, ref) {
-  const {
-    classes,
-    className,
-    component: Component = 'span',
-    color = 'grey',
-    variant = 'default',
-    ...other
-  } = props;
+  const { classes, className, color = 'grey', variant = 'default', ...other } = props;
 
   return (
-    <Component
+    <span
       className={clsx(
         classes.root,
         {
@@ -103,11 +96,6 @@ TimelineDot.propTypes = {
    * The dot can have a different colors.
    */
   color: PropTypes.oneOf(['grey', 'inherit', 'primary', 'secondary']),
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
   /**
    * The dot can appear filled or outlined.
    */

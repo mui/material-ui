@@ -17,6 +17,6 @@ describe('<Timeline />', () => {
     inheritComponent: 'ul',
     mount,
     refInstanceof: window.HTMLUListElement,
-    testComponentPropWith: 'div',
+    skip: ['componentProp'],
   }));
 });

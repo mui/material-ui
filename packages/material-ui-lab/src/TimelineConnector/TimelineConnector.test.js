@@ -17,6 +17,6 @@ describe('<TimelineConnector />', () => {
     inheritComponent: 'span',
     mount,
     refInstanceof: window.HTMLSpanElement,
-    testComponentPropWith: 'div',
+    skip: ['componentProp'],
   }));
 });

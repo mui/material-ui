@@ -7,11 +7,6 @@ export interface TimelineProps extends StandardProps<{}, TimelineClassKey> {
    */
   children?: React.ReactNode;
   /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component?: React.ElementType<React.HTMLAttributes<HTMLElement>>;
-  /**
    * The position where the timeline should appear.
    */
   align?: 'left' | 'right' | 'alternate';

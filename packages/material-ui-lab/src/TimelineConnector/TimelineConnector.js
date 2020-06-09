@@ -13,9 +13,9 @@ export const styles = (theme) => ({
 });
 
 const TimelineConnector = React.forwardRef(function TimelineConnector(props, ref) {
-  const { classes, className, component: Component = 'span', ...other } = props;
+  const { classes, className, ...other } = props;
 
-  return <Component className={clsx(classes.root, className)} ref={ref} {...other} />;
+  return <span className={clsx(classes.root, className)} ref={ref} {...other} />;
 });
 
 TimelineConnector.propTypes = {
@@ -36,11 +36,6 @@ TimelineConnector.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
 };
 
 export default withStyles(styles, { name: 'MuiTimelineConnector' })(TimelineConnector);

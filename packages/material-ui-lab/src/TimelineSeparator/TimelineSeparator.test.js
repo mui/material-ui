@@ -17,6 +17,6 @@ describe('<TimelineSeparator />', () => {
     inheritComponent: 'div',
     mount,
     refInstanceof: window.HTMLDivElement,
-    testComponentPropWith: 'span',
+    skip: ['componentProp'],
   }));
 });

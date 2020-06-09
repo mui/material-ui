@@ -14,9 +14,9 @@ export const styles = () => ({
 });
 
 const TimelineSeparator = React.forwardRef(function TimelineSeparator(props, ref) {
-  const { classes, className, component: Component = 'div', ...other } = props;
+  const { classes, className, ...other } = props;
 
-  return <Component className={clsx(classes.root, className)} ref={ref} {...other} />;
+  return <div className={clsx(classes.root, className)} ref={ref} {...other} />;
 });
 
 TimelineSeparator.propTypes = {
@@ -37,11 +37,6 @@ TimelineSeparator.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
 };
 
 export default withStyles(styles, { name: 'MuiTimelineSeparator' })(TimelineSeparator);

@@ -31,7 +31,6 @@ The `MuiTimelineDot` name can be used for providing [default props](/customizati
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The content of the component. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">color</span> | <span class="prop-type">'grey'<br>&#124;&nbsp;'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'</span> | <span class="prop-default">'grey'</span> | The dot can have a different colors. |
-| <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'span'</span> | The component used for the root node. Either a string to use a HTML element or a component. |
 | <span class="prop-name">variant</span> | <span class="prop-type">'default'<br>&#124;&nbsp;'outlined'</span> | <span class="prop-default">'default'</span> | The dot can appear filled or outlined. |
 
 The `ref` is forwarded to the root element.

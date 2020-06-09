@@ -47,7 +47,7 @@ export const styles = () => ({
 });
 
 const TimelineItem = React.forwardRef(function TimelineItem(props, ref) {
-  const { classes, className, component: Component = 'li', ...other } = props;
+  const { classes, className, ...other } = props;
   const { align = 'left' } = React.useContext(TimelineContext);
 
   let hasOppositeContent = false;
@@ -62,7 +62,7 @@ const TimelineItem = React.forwardRef(function TimelineItem(props, ref) {
     <TimelineItemContext.Provider
       value={{ classes: { content: classes.content, oppositeContent: classes.oppositeContent } }}
     >
-      <Component
+      <li
         className={clsx(
           classes.root,
           classes[`align${capitalize(align)}`],
@@ -96,11 +96,6 @@ TimelineItem.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
 };
 
 export default withStyles(styles, { name: 'MuiTimelineItem' })(TimelineItem);

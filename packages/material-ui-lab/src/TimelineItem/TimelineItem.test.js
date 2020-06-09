@@ -17,6 +17,6 @@ describe('<TimelineItem />', () => {
     inheritComponent: 'li',
     mount,
     refInstanceof: window.HTMLLIElement,
-    testComponentPropWith: 'span',
+    skip: ['componentProp'],
   }));
 });

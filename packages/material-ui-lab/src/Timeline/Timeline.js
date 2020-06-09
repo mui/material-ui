@@ -22,11 +22,11 @@ export const styles = () => ({
 });
 
 const Timeline = React.forwardRef(function Timeline(props, ref) {
-  const { align = 'left', classes, className, component: Component = 'ul', ...other } = props;
+  const { align = 'left', classes, className, ...other } = props;
 
   return (
     <TimelineContext.Provider value={{ align }}>
-      <Component
+      <ul
         className={clsx(classes.root, classes[`align${capitalize(align)}`], className)}
         ref={ref}
         {...other}
@@ -57,11 +57,6 @@ Timeline.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
 };
 
 export default withStyles(styles, { name: 'MuiTimeline' })(Timeline);
