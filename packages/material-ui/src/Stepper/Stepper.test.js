@@ -3,6 +3,7 @@ import { expect } from 'chai';
 import { createShallow, getClasses } from '@material-ui/core/test-utils';
 import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
+import { createClientRender } from 'test/utils/createClientRender';
 import Paper from '../Paper';
 import Step from '../Step';
 import StepLabel from '../StepLabel';
@@ -15,6 +16,7 @@ describe('<Stepper />', () => {
   let shallow;
   // StrictModeViolation: test uses StepContent
   const mount = createMount({ strict: false });
+  const render = createClientRender({ strict: false });
 
   before(() => {
     classes = getClasses(<Stepper />);
@@ -177,7 +179,7 @@ describe('<Stepper />', () => {
     it('should pass correct active and completed props to the StepConnector with nonLinear prop', () => {
       const steps = ['Step1', 'Step2', 'Step3'];
 
-      const wrapper = mount(
+      const { container } = render(
         <Stepper orientation="horizontal" nonLinear connector={<StepConnector />}>
           {steps.map((label, index) => (
             <Step key={label} active completed={index === 2}>
@@ -187,10 +189,14 @@ describe('<Stepper />', () => {
         </Stepper>,
       );
 
-      expect(wrapper.find(StepConnector).at(0).props().active).to.equal(true);
-      expect(wrapper.find(StepConnector).at(1).props().active).to.equal(true);
-      expect(wrapper.find(StepConnector).at(0).props().completed).to.equal(false);
-      expect(wrapper.find(StepConnector).at(1).props().completed).to.equal(true);
+      const connectors = container.querySelectorAll('.MuiStepConnector-root');
+
+      expect(connectors).to.have.length(2);
+      expect(connectors[0]).to.have.class('MuiStepConnector-active');
+      expect(connectors[0]).to.not.have.class('MuiStepConnector-completed');
+
+      expect(connectors[1]).to.have.class('MuiStepConnector-active');
+      expect(connectors[1]).to.have.class('MuiStepConnector-completed');
     });
   });
 
