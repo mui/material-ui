@@ -88,7 +88,7 @@ export default function ResponsiveFontSizes() {
           </XAxis>
           <YAxis dataKey="fontSize" type="number">
             <Label position="top" offset={20}>
-              font-size (px)
+              font-size (rem)
             </Label>
           </YAxis>
           <Tooltip />
