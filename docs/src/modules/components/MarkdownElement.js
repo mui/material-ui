@@ -27,6 +27,7 @@ const styles = (theme) => ({
     },
     // inline code
     '& code': {
+      direction: 'ltr',
       lineHeight: 1.4,
       display: 'inline-block',
       fontFamily: 'Consolas, "Liberation Mono", Menlo, Courier, monospace',
