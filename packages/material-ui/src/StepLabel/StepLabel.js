@@ -10,6 +10,7 @@ export const styles = (theme) => ({
   root: {
     display: 'flex',
     alignItems: 'center',
+    textAlign: 'left',
     '&$alternativeLabel': {
       flexDirection: 'column',
     },
@@ -23,7 +24,6 @@ export const styles = (theme) => ({
   vertical: {},
   /* Styles applied to the `Typography` component which wraps `children`. */
   label: {
-    color: theme.palette.text.secondary,
     '&$active': {
       color: theme.palette.text.primary,
       fontWeight: 500,
@@ -62,6 +62,7 @@ export const styles = (theme) => ({
   /* Styles applied to the container element which wraps `Typography` and `optional`. */
   labelContainer: {
     width: '100%',
+    color: theme.palette.text.secondary,
   },
 });
 

@@ -3,15 +3,14 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
-import StepContent from '@material-ui/core/StepContent';
 import Button from '@material-ui/core/Button';
-import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       width: '100%',
+      height: '325px',
     },
     button: {
       marginTop: theme.spacing(1),
@@ -51,58 +50,101 @@ function getStepContent(step: number) {
 export default function VerticalLinearStepper() {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
+  const [skipped, setSkipped] = React.useState(new Set<number>());
   const steps = getSteps();
-
-  const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-  };
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
+  const isStepOptional = (step: number) => {
+    return step === 1;
+  };
+
+  const handleNext = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    if (isStepOptional(activeStep) && skipped.has(activeStep)) {
+      setSkipped((prevSkipped) => {
+        const newSkipped = new Set(prevSkipped.values());
+        newSkipped.delete(activeStep);
+        return newSkipped;
+      });
+    }
+  };
+
+  const handleSkip = () => {
+    if (!isStepOptional(activeStep)) {
+      throw new Error("You can't skip a step that isn't optional.");
+    }
+
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    setSkipped((prevSkipped) => {
+      const newSkipped = new Set(prevSkipped.values());
+      newSkipped.add(activeStep);
+      return newSkipped;
+    });
+  };
+
   const handleReset = () => {
     setActiveStep(0);
+    setSkipped(new Set());
+  };
+
+  const isStepSkipped = (step: number) => {
+    return skipped.has(step);
   };
 
   return (
     <div className={classes.root}>
       <Stepper activeStep={activeStep} orientation="vertical">
-        {steps.map((label, index) => (
-          <Step key={label}>
-            <StepLabel>{label}</StepLabel>
-            <StepContent>
-              <Typography>{getStepContent(index)}</Typography>
-              <div className={classes.actionsContainer}>
-                <div>
-                  <Button
-                    disabled={activeStep === 0}
-                    onClick={handleBack}
-                    className={classes.button}
-                  >
-                    Back
-                  </Button>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={handleNext}
-                    className={classes.button}
-                  >
-                    {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-                  </Button>
-                </div>
-              </div>
-            </StepContent>
-          </Step>
-        ))}
+        {steps.map((label, index) => {
+          const stepProps: { completed?: boolean } = {};
+          const stepLabelProps: { optional?: React.ReactNode } = {};
+          if (isStepSkipped(index)) {
+            stepProps.completed = false;
+          }
+          if (isStepOptional(index)) {
+            stepLabelProps.optional = <Typography variant="caption">Optional</Typography>;
+          }
+          return (
+            <Step key={label} {...stepProps}>
+              <StepLabel {...stepLabelProps}>{label}</StepLabel>
+            </Step>
+          );
+        })}
       </Stepper>
-      {activeStep === steps.length && (
-        <Paper square elevation={0} className={classes.resetContainer}>
+      {activeStep === steps.length ? (
+        <div>
           <Typography>All steps completed - you&apos;re finished</Typography>
           <Button onClick={handleReset} className={classes.button}>
             Reset
           </Button>
-        </Paper>
+        </div>
+      ) : (
+        <div>
+          <Typography>{getStepContent(activeStep)}</Typography>
+          <Button disabled={activeStep === 0} onClick={handleBack} className={classes.button}>
+            Back
+          </Button>
+          {isStepOptional(activeStep) && (
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handleSkip}
+              className={classes.button}
+            >
+              Skip
+            </Button>
+          )}
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleNext}
+            className={classes.button}
+          >
+            {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+          </Button>
+        </div>
       )}
     </div>
   );
