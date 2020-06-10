@@ -1,7 +1,6 @@
 import * as React from 'react';
-import { StandardProps } from '..';
 import { TypographyTypeMap } from '../Typography';
-import { OverrideProps, OverridableTypeMap, OverridableComponent } from '../OverridableComponent';
+import { OverrideProps, OverridableComponent } from '../OverridableComponent';
 
 export interface DialogContentTextTypeMap<
   P = {},

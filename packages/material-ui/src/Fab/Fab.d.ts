@@ -4,10 +4,39 @@ import { OverrideProps } from '../OverridableComponent';
 
 export type FabTypeMap<P = {}, D extends React.ElementType = 'button'> = ExtendButtonBaseTypeMap<{
   props: P & {
+    /**
+     * The content of the button.
+     */
+    children: NonNullable<React.ReactNode>;
+    /**
+     * The color of the component. It supports those theme colors that make sense for this component.
+     */
     color?: PropTypes.Color;
+    /**
+     * If `true`, the button will be disabled.
+     */
+    disabled?: boolean;
+    /**
+     * If `true`, the  keyboard focus ripple will be disabled.
+     */
     disableFocusRipple?: boolean;
+    /**
+     * If `true`, the ripple effect will be disabled.
+     */
+    disableRipple?: boolean;
+    /**
+     * The URL to link to when the button is clicked.
+     * If defined, an `a` element will be used as the root node.
+     */
     href?: string;
+    /**
+     * The size of the button.
+     * `small` is equivalent to the dense button styling.
+     */
     size?: 'small' | 'medium' | 'large';
+    /**
+     * The variant to use.
+     */
     variant?: 'round' | 'extended';
   };
   defaultComponent: D;
