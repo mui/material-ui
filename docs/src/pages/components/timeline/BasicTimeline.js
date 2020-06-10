@@ -6,7 +6,7 @@ import TimelineConnector from '@material-ui/lab/TimelineConnector';
 import TimelineContent from '@material-ui/lab/TimelineContent';
 import TimelineDot from '@material-ui/lab/TimelineDot';
 
-export default function SimpleTimeline() {
+export default function BasicTimeline() {
   return (
     <Timeline>
       <TimelineItem>

@@ -9,11 +9,11 @@ components: Timeline, TimelineItem, TimelineSeparator, TimelineDot, TimelineConn
 
 **Note:** This component is not documented in the [Material Design guidelines](https://material.io/), but Material-UI supports it.
 
-## Simple timeline
+## Basic timeline
 
-Simple timeline showing list of events.
+A basic timeline showing list of events.
 
-{{"demo": "pages/components/timeline/SimpleTimeline.js"}}
+{{"demo": "pages/components/timeline/BasicTimeline.js"}}
 
 ## Right aligned timeline
 
