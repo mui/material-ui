@@ -82,7 +82,7 @@ Hidden.propTypes = {
    * For instance, you could be using the user-agent or the client-hints.
    * https://caniuse.com/#search=client%20hint
    */
-  initialWidth: PropTypes.oneOf(['lg', 'md', 'sm', 'xl', 'xs']),
+  initialWidth: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
   /**
    * If `true`, screens this size and down will be hidden.
    */
@@ -103,8 +103,8 @@ Hidden.propTypes = {
    * Hide the given breakpoint(s).
    */
   only: PropTypes.oneOfType([
-    PropTypes.oneOf(['lg', 'md', 'sm', 'xl', 'xs']),
-    PropTypes.arrayOf(PropTypes.oneOf(['lg', 'md', 'sm', 'xl', 'xs'])),
+    PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
+    PropTypes.arrayOf(PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl'])),
   ]),
   /**
    * If `true`, screens this size and down will be hidden.

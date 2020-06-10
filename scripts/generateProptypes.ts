@@ -144,6 +144,22 @@ const ignoreExternalDocumentation: Record<string, string[]> = {
   Zoom: transitionCallbacks,
 };
 
+function sortBreakpointsLiteralByViewportAscending(a: ttp.LiteralNode, b: ttp.LiteralNode) {
+  // default breakpoints ordered by their size ascending
+  const breakpointOrder: unknown[] = ['"xs"', '"sm"', '"md"', '"lg"', '"xl"'];
+
+  return breakpointOrder.indexOf(a.value) - breakpointOrder.indexOf(b.value);
+}
+// Custom order of literal unions by component
+const getSortLiteralUnions: ttp.InjectOptions['getSortLiteralUnions'] = (component, propType) => {
+  if (
+    component.name === 'Hidden' &&
+    (propType.name === 'initialWidth' || propType.name === 'only')
+  ) {
+    return sortBreakpointsLiteralByViewportAscending;
+  }
+};
+
 const tsconfig = ttp.loadConfig(path.resolve(__dirname, '../tsconfig.json'));
 
 const prettierConfig = prettier.resolveConfig.sync(process.cwd(), {
@@ -196,6 +212,7 @@ async function generateProptypes(
       '|     To update them edit the d.ts file and run "yarn proptypes"     |',
       '----------------------------------------------------------------------',
     ].join('\n'),
+    getSortLiteralUnions,
     reconcilePropTypes: (prop, previous, generated) => {
       const usedCustomValidator = previous !== undefined && !previous.startsWith('PropTypes');
       const ignoreGenerated =
