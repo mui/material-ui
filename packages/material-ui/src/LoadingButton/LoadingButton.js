@@ -36,11 +36,12 @@ const LoadingButton = React.forwardRef(function LoadingButton(props, ref) {
       )}
       startIcon={loading && loadingIndicatorPosition === 'start' ? loadingIndicator : startIcon}
       endIcon={loading && loadingIndicatorPosition === 'end' ? loadingIndicator : endIcon}
-      children={loading && loadingIndicatorPosition === 'center' ? loadingIndicator : children}
       disabled={disabled || loading}
       ref={ref}
       {...other}
-    />
+    >
+      {loading && loadingIndicatorPosition === 'center' ? loadingIndicator : children}
+    </Button>
   );
 });
 
