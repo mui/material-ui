@@ -39,6 +39,9 @@ export * from './ButtonBase';
 export { default as ButtonGroup } from './ButtonGroup';
 export * from './ButtonGroup';
 
+export { default as BusyButton } from './BusyButton';
+export * from './BusyButton';
+
 export { default as Card } from './Card';
 export * from './Card';
 
