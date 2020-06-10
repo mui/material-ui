@@ -25,14 +25,6 @@ const todoComponents = [
   'TabList',
   'ToggleButton',
   // core
-  // requires https://github.com/merceyz/typescript-to-proptypes/pull/21
-  // 'Grid',
-  // 'GridList',
-  // 'GridListTile',
-  // 'Hidden',
-  // 'Icon',
-  // 'IconButton',
-  // 'InputAdornment',
   'Link',
   'List',
   'ListItem',
