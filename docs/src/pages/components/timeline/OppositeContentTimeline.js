@@ -9,58 +9,56 @@ import TimelineOppositeContent from '@material-ui/lab/TimelineOppositeContent';
 import Typography from '@material-ui/core/Typography';
 
 export default function OppositeContentTimeline() {
-  const timelineItems = [
-    {
-      activity: 'Eat',
-      time: '09:30 am',
-    },
-    {
-      activity: 'Code',
-      time: '10:00 am',
-    },
-    {
-      activity: 'Sleep',
-      time: '12:00 am',
-    },
-    {
-      activity: 'Repeat',
-      time: '9:00 am',
-    },
-  ];
-
   return (
     <React.Fragment>
-      <Timeline>
-        {timelineItems.map(({ activity, time }) => (
-          <TimelineItem key={activity}>
+      <Timeline align="alternate">
+        <TimelineItem>
             <TimelineOppositeContent>
-              <Typography color="textSecondary">{time}</Typography>
+              <Typography color="textSecondary">09:30 am</Typography>
             </TimelineOppositeContent>
             <TimelineSeparator>
               <TimelineDot />
               <TimelineConnector />
             </TimelineSeparator>
             <TimelineContent>
-              <Typography>{activity}</Typography>
+              <Typography>Eat</Typography>
             </TimelineContent>
           </TimelineItem>
-        ))}
-      </Timeline>
-      <Timeline align="right">
-        {timelineItems.map(({ activity, time }) => (
-          <TimelineItem key={activity}>
+          <TimelineItem>
             <TimelineOppositeContent>
-              <Typography color="textSecondary">{time}</Typography>
+              <Typography color="textSecondary">10:00 am</Typography>
             </TimelineOppositeContent>
             <TimelineSeparator>
               <TimelineDot />
               <TimelineConnector />
             </TimelineSeparator>
             <TimelineContent>
-              <Typography>{activity}</Typography>
+              <Typography>Code</Typography>
             </TimelineContent>
           </TimelineItem>
-        ))}
+          <TimelineItem>
+            <TimelineOppositeContent>
+              <Typography color="textSecondary">12:00 am</Typography>
+            </TimelineOppositeContent>
+            <TimelineSeparator>
+              <TimelineDot />
+              <TimelineConnector />
+            </TimelineSeparator>
+            <TimelineContent>
+              <Typography>Sleep</Typography>
+            </TimelineContent>
+          </TimelineItem>
+          <TimelineItem>
+            <TimelineOppositeContent>
+              <Typography color="textSecondary">9:00 am</Typography>
+            </TimelineOppositeContent>
+            <TimelineSeparator>
+              <TimelineDot />
+            </TimelineSeparator>
+            <TimelineContent>
+              <Typography>Repeat</Typography>
+            </TimelineContent>
+          </TimelineItem>
       </Timeline>
     </React.Fragment>
   );
