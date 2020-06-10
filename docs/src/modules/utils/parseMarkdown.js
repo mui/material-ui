@@ -165,7 +165,7 @@ export function prepareMarkdown(config) {
 ${headers.components
   .map(
     (component) =>
-      `- [&lt;${component} /&gt;](${rewriteUrlForNextExport(`/api/${kebabCase(component)}`)})`,
+      `- [\`<${component} />\`](${rewriteUrlForNextExport(`/api/${kebabCase(component)}`)})`,
   )
   .join('\n')}
   `);
