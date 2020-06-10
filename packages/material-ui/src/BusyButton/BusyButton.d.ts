@@ -14,6 +14,10 @@ export type BusyButtonTypeMap<
      * Element placed before the children if the button is in loading state.
      */
     loadingIndicator?: React.ReactNode;
+    /**
+     * The loading indicator can be positioned on the start, end or the centre of the Button.
+     */
+    loadingIndicatorPosition?: 'start' | 'end' | 'centre';
   };
   defaultComponent: D;
   classKey: BusyButtonClassKey;
@@ -38,8 +42,6 @@ export type BusyButtonProps<
   P = {}
 > = OverrideProps<BusyButtonTypeMap<P, D>, D>;
 
-export type BusyButtonClassKey =
-  | 'root'
-  | 'loading'
-  
+export type BusyButtonClassKey = 'root' | 'loading';
+
 export default BusyButton;

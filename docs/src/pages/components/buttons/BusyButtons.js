@@ -3,8 +3,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import BusyButton from '@material-ui/core/BusyButton';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
 import SaveIcon from '@material-ui/icons/Save';
+import SendIcon from '@material-ui/icons/Send';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     '& button': {
       margin: theme.spacing(1),
@@ -18,16 +19,20 @@ export default function BusyButtons() {
 
   return (
     <div className={classes.root}>
-      <BusyButton variant="outlined" loading>
-        Loading…
+      <BusyButton variant="outlined" loading={loading} loadingIndicatorPosition="center">
+        Fetch data
       </BusyButton>
       <BusyButton
         variant="contained"
         color="primary"
-        loading
-        startIcon={<FileCopyIcon />}
+        loading={loading}
+        loadingIndicatorPosition="end"
+        onClick={() => {
+          setLoading(true);
+        }}
+        endIcon={<SendIcon />}
       >
-        Duplicate
+        Send
       </BusyButton>
       <BusyButton
         variant="contained"

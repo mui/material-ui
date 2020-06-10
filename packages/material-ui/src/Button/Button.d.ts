@@ -74,7 +74,6 @@ export type ExtendButton<M extends OverridableTypeMap> = ((
 ) => JSX.Element) &
   OverridableComponent<ExtendButtonBaseTypeMap<M>>;
 
-
 /**
  *
  * Demos:

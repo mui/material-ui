@@ -17,7 +17,10 @@ const BusyButton = React.forwardRef(function BusyButton(props, ref) {
     className,
     disabled = false,
     loading = false,
+    loadingIndicatorPosition = 'start',
     startIcon,
+    endIcon,
+    children,
     loadingIndicator = <CircularProgress color="inherit" size={16} />,
     ...other
   } = props;
@@ -31,7 +34,9 @@ const BusyButton = React.forwardRef(function BusyButton(props, ref) {
         },
         className,
       )}
-      startIcon={loading ? loadingIndicator : startIcon}
+      startIcon={loading && loadingIndicatorPosition === 'start' ? loadingIndicator : startIcon}
+      endIcon={loading && loadingIndicatorPosition === 'end' ? loadingIndicator : endIcon}
+      children={loading && loadingIndicatorPosition === 'center' ? loadingIndicator : children}
       disabled={disabled || loading}
       ref={ref}
       {...other}
