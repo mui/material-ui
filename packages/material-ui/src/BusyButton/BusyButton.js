@@ -4,7 +4,7 @@ import withStyles from '../styles/withStyles';
 import Button from '../Button';
 import CircularProgress from '../CircularProgress';
 
-export const styles = (theme) => ({
+export const styles = () => ({
   /* Styles applied to the root element. */
   root: {},
   /* Styles applied to the root element if `loading={true}`. */
