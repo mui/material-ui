@@ -11,7 +11,7 @@ export const styles = () => ({
   loading: {},
 });
 
-const BusyButton = React.forwardRef(function BusyButton(props, ref) {
+const LoadingButton = React.forwardRef(function LoadingButton(props, ref) {
   const {
     classes,
     className,
@@ -44,4 +44,4 @@ const BusyButton = React.forwardRef(function BusyButton(props, ref) {
   );
 });
 
-export default withStyles(styles, { name: 'MuiBusyButton' })(BusyButton);
+export default withStyles(styles, { name: 'MuiLoadingButton' })(LoadingButton);

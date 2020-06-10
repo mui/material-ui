@@ -1,7 +1,7 @@
 import { ExtendButton, ExtendButtonTypeMap } from '../Button';
 import { OverrideProps } from '../OverridableComponent';
 
-export type BusyButtonTypeMap<
+export type LoadingButtonTypeMap<
   P = {},
   D extends React.ElementType = 'button'
 > = ExtendButtonTypeMap<{
@@ -15,12 +15,12 @@ export type BusyButtonTypeMap<
      */
     loadingIndicator?: React.ReactNode;
     /**
-     * The loading indicator can be positioned on the start, end or the centre of the Button.
+     * The loading indicator can be positioned on the start, end or the center of the Button.
      */
-    loadingIndicatorPosition?: 'start' | 'end' | 'centre';
+    loadingIndicatorPosition?: 'start' | 'end' | 'center';
   };
   defaultComponent: D;
-  classKey: BusyButtonClassKey;
+  classKey: LoadingButtonClassKey;
 }>;
 
 /**
@@ -32,16 +32,16 @@ export type BusyButtonTypeMap<
  *
  * API:
  *
- * - [BusyButton API](https://material-ui.com/api/busy-button/)
+ * - [LoadingButton API](https://material-ui.com/api/loading-button/)
  * - inherits [Button API](https://material-ui.com/api/button/)
  */
-declare const BusyButton: ExtendButton<BusyButtonTypeMap>;
+declare const LoadingButton: ExtendButton<LoadingButtonTypeMap>;
 
-export type BusyButtonProps<
-  D extends React.ElementType = BusyButtonTypeMap['defaultComponent'],
+export type LoadingButtonProps<
+  D extends React.ElementType = LoadingButtonTypeMap['defaultComponent'],
   P = {}
-> = OverrideProps<BusyButtonTypeMap<P, D>, D>;
+> = OverrideProps<LoadingButtonTypeMap<P, D>, D>;
 
-export type BusyButtonClassKey = 'root' | 'loading';
+export type LoadingButtonClassKey = 'root' | 'loading';
 
-export default BusyButton;
+export default LoadingButton;
