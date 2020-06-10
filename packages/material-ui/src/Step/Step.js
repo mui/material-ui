@@ -33,7 +33,7 @@ const Step = React.forwardRef(function Step(props, ref) {
     className,
     completed = false,
     // eslint-disable-next-line react/prop-types
-    connector,
+    connector: connectorProp,
     disabled = false,
     expanded = false,
     // eslint-disable-next-line react/prop-types
@@ -45,7 +45,18 @@ const Step = React.forwardRef(function Step(props, ref) {
     ...other
   } = props;
 
-  return (
+  const connector = connectorProp
+    ? React.cloneElement(connectorProp, {
+        orientation,
+        alternativeLabel,
+        index,
+        active,
+        completed,
+        disabled,
+      })
+    : null;
+
+  const newChildren = (
     <div
       className={clsx(
         classes.root,
@@ -59,17 +70,7 @@ const Step = React.forwardRef(function Step(props, ref) {
       ref={ref}
       {...other}
     >
-      {connector &&
-        alternativeLabel &&
-        index !== 0 &&
-        React.cloneElement(connector, {
-          orientation,
-          alternativeLabel,
-          index,
-          active,
-          completed,
-          disabled,
-        })}
+      {connector && alternativeLabel && index !== 0 ? connector : null}
 
       {React.Children.map(children, (child) => {
         if (!React.isValidElement(child)) {
@@ -101,6 +102,16 @@ const Step = React.forwardRef(function Step(props, ref) {
       })}
     </div>
   );
+
+  if (connector && !alternativeLabel && index !== 0) {
+    return (
+      <React.Fragment>
+        {connector}
+        {newChildren}
+      </React.Fragment>
+    );
+  }
+  return newChildren;
 });
 
 Step.propTypes = {
