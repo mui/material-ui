@@ -19,7 +19,7 @@ export interface InputAdornmentTypeMap<P = {}, D extends React.ElementType = 'di
     /**
      * The position this adornment should appear relative to the `Input`.
      */
-    position: 'start' | 'end';
+    position?: 'start' | 'end';
     /**
      * The variant to use.
      * Note: If you are using the `TextField` component or the `FormControl` component
