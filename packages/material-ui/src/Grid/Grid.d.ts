@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { Breakpoint } from '../styles/createBreakpoints';
-import { OverridableComponent, SimplifiedPropsOf, OverrideProps } from '../OverridableComponent';
+import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
 export type GridItemsAlignment = 'flex-start' | 'center' | 'flex-end' | 'stretch' | 'baseline';
 
@@ -78,18 +77,82 @@ export type GridClassKey =
   | 'grid-xs-12';
 
 export interface GridTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P &
-    Partial<Record<Breakpoint, boolean | GridSize>> & {
-      alignContent?: GridContentAlignment;
-      alignItems?: GridItemsAlignment;
-      container?: boolean;
-      direction?: GridDirection;
-      item?: boolean;
-      justify?: GridJustification;
-      spacing?: GridSpacing;
-      wrap?: GridWrap;
-      zeroMinWidth?: boolean;
-    };
+  props: P & {
+    /**
+     * Defines the `align-content` style property.
+     * It's applied for all screen sizes.
+     */
+    alignContent?: GridContentAlignment;
+    /**
+     * Defines the `align-items` style property.
+     * It's applied for all screen sizes.
+     */
+    alignItems?: GridItemsAlignment;
+    /**
+     * The content of the component.
+     */
+    children?: React.ReactNode;
+    /**
+     * If `true`, the component will have the flex *container* behavior.
+     * You should be wrapping *items* with a *container*.
+     */
+    container?: boolean;
+    /**
+     * Defines the `flex-direction` style property.
+     * It is applied for all screen sizes.
+     */
+    direction?: GridDirection;
+    /**
+     * If `true`, the component will have the flex *item* behavior.
+     * You should be wrapping *items* with a *container*.
+     */
+    item?: boolean;
+    /**
+     * Defines the `justify-content` style property.
+     * It is applied for all screen sizes.
+     */
+    justify?: GridJustification;
+    /**
+     * Defines the number of grids the component is going to use.
+     * It's applied for the `lg` breakpoint and wider screens if not overridden.
+     */
+    lg?: boolean | GridSize;
+    /**
+     * Defines the number of grids the component is going to use.
+     * It's applied for the `md` breakpoint and wider screens if not overridden.
+     */
+    md?: boolean | GridSize;
+    /**
+     * Defines the number of grids the component is going to use.
+     * It's applied for the `sm` breakpoint and wider screens if not overridden.
+     */
+    sm?: boolean | GridSize;
+    /**
+     * Defines the space between the type `item` component.
+     * It can only be used on a type `container` component.
+     */
+    spacing?: GridSpacing;
+    /**
+     * Defines the `flex-wrap` style property.
+     * It's applied for all screen sizes.
+     */
+    wrap?: GridWrap;
+    /**
+     * Defines the number of grids the component is going to use.
+     * It's applied for the `xl` breakpoint and wider screens.
+     */
+    xl?: boolean | GridSize;
+    /**
+     * Defines the number of grids the component is going to use.
+     * It's applied for all the screen sizes with the lowest priority.
+     */
+    xs?: boolean | GridSize;
+    /**
+     * If `true`, it sets `min-width: 0` on the item.
+     * Refer to the limitations section of the documentation to better understand the use case.
+     */
+    zeroMinWidth?: boolean;
+  };
   defaultComponent: D;
   classKey: GridClassKey;
 }

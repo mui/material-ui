@@ -3,6 +3,10 @@ import { Breakpoint } from '../styles/createBreakpoints';
 
 export interface HiddenProps {
   /**
+   * The content of the component.
+   */
+  children?: React.ReactNode;
+  /**
    * Specify which implementation to use.  'js' is the default, 'css' works better for
    * server-side rendering.
    */

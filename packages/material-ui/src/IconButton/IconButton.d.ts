@@ -7,7 +7,21 @@ export type IconButtonTypeMap<
   D extends React.ElementType = 'button'
 > = ExtendButtonBaseTypeMap<{
   props: P & {
+    /**
+     * The icon element.
+     */
+    children?: React.ReactNode;
+    /**
+     * The color of the component. It supports those theme colors that make sense for this component.
+     */
     color?: PropTypes.Color;
+    /**
+     * If `true`, the button will be disabled.
+     */
+    disabled?: boolean;
+    /**
+     * If `true`, the  keyboard focus ripple will be disabled.
+     */
     disableFocusRipple?: boolean;
     /**
      * If given, uses a negative margin to counteract the padding on one
@@ -16,6 +30,10 @@ export type IconButtonTypeMap<
      * size and shape).
      */
     edge?: 'start' | 'end' | false;
+    /**
+     * The size of the button.
+     * `small` is equivalent to the dense button styling.
+     */
     size?: 'small' | 'medium';
   };
   defaultComponent: D;

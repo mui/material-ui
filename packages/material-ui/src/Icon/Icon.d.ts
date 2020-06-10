@@ -4,7 +4,17 @@ import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
 export interface IconTypeMap<P = {}, D extends React.ElementType = 'span'> {
   props: P & {
-    color?: PropTypes.Color | 'action' | 'disabled' | 'error';
+    /**
+     * The name of the icon font ligature.
+     */
+    children?: React.ReactNode;
+    /**
+     * The color of the component. It supports those theme colors that make sense for this component.
+     */
+    color?: Exclude<PropTypes.Color, 'default'> | 'action' | 'disabled' | 'error';
+    /**
+     * The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size.
+     */
     fontSize?: 'inherit' | 'default' | 'small' | 'large';
   };
   defaultComponent: D;

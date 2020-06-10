@@ -31,6 +31,7 @@ function generateGrid(globalStyles, theme, breakpoint) {
         flexGrow: 1,
         maxWidth: '100%',
       };
+
       return;
     }
 
@@ -40,6 +41,7 @@ function generateGrid(globalStyles, theme, breakpoint) {
         flexGrow: 0,
         maxWidth: 'none',
       };
+
       return;
     }
 
@@ -246,23 +248,27 @@ const Grid = React.forwardRef(function Grid(props, ref) {
 });
 
 Grid.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * Defines the `align-content` style property.
    * It's applied for all screen sizes.
    */
   alignContent: PropTypes.oneOf([
-    'stretch',
     'center',
-    'flex-start',
     'flex-end',
-    'space-between',
+    'flex-start',
     'space-around',
+    'space-between',
+    'stretch',
   ]),
   /**
    * Defines the `align-items` style property.
    * It's applied for all screen sizes.
    */
-  alignItems: PropTypes.oneOf(['flex-start', 'center', 'flex-end', 'stretch', 'baseline']),
+  alignItems: PropTypes.oneOf(['baseline', 'center', 'flex-end', 'flex-start', 'stretch']),
   /**
    * The content of the component.
    */
@@ -271,7 +277,7 @@ Grid.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -290,7 +296,7 @@ Grid.propTypes = {
    * Defines the `flex-direction` style property.
    * It is applied for all screen sizes.
    */
-  direction: PropTypes.oneOf(['row', 'row-reverse', 'column', 'column-reverse']),
+  direction: PropTypes.oneOf(['column-reverse', 'column', 'row-reverse', 'row']),
   /**
    * If `true`, the component will have the flex *item* behavior.
    * You should be wrapping *items* with a *container*.
@@ -301,48 +307,63 @@ Grid.propTypes = {
    * It is applied for all screen sizes.
    */
   justify: PropTypes.oneOf([
-    'flex-start',
     'center',
     'flex-end',
-    'space-between',
+    'flex-start',
     'space-around',
+    'space-between',
     'space-evenly',
   ]),
   /**
    * Defines the number of grids the component is going to use.
    * It's applied for the `lg` breakpoint and wider screens if not overridden.
    */
-  lg: PropTypes.oneOf([false, 'auto', true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+  lg: PropTypes.oneOfType([
+    PropTypes.oneOf(['auto', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+    PropTypes.bool,
+  ]),
   /**
    * Defines the number of grids the component is going to use.
    * It's applied for the `md` breakpoint and wider screens if not overridden.
    */
-  md: PropTypes.oneOf([false, 'auto', true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+  md: PropTypes.oneOfType([
+    PropTypes.oneOf(['auto', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+    PropTypes.bool,
+  ]),
   /**
    * Defines the number of grids the component is going to use.
    * It's applied for the `sm` breakpoint and wider screens if not overridden.
    */
-  sm: PropTypes.oneOf([false, 'auto', true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+  sm: PropTypes.oneOfType([
+    PropTypes.oneOf(['auto', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+    PropTypes.bool,
+  ]),
   /**
    * Defines the space between the type `item` component.
    * It can only be used on a type `container` component.
    */
-  spacing: PropTypes.oneOf(SPACINGS),
+  spacing: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
   /**
    * Defines the `flex-wrap` style property.
    * It's applied for all screen sizes.
    */
-  wrap: PropTypes.oneOf(['nowrap', 'wrap', 'wrap-reverse']),
+  wrap: PropTypes.oneOf(['nowrap', 'wrap-reverse', 'wrap']),
   /**
    * Defines the number of grids the component is going to use.
    * It's applied for the `xl` breakpoint and wider screens.
    */
-  xl: PropTypes.oneOf([false, 'auto', true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+  xl: PropTypes.oneOfType([
+    PropTypes.oneOf(['auto', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+    PropTypes.bool,
+  ]),
   /**
    * Defines the number of grids the component is going to use.
    * It's applied for all the screen sizes with the lowest priority.
    */
-  xs: PropTypes.oneOf([false, 'auto', true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+  xs: PropTypes.oneOfType([
+    PropTypes.oneOf(['auto', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+    PropTypes.bool,
+  ]),
   /**
    * If `true`, it sets `min-width: 0` on the item.
    * Refer to the limitations section of the documentation to better understand the use case.

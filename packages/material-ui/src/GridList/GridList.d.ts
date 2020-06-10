@@ -3,8 +3,22 @@ import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
 export interface GridListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
   props: P & {
+    /**
+     * Number of px for one cell height.
+     * You can set `'auto'` if you want to let the children determine the height.
+     */
     cellHeight?: number | 'auto';
+    /**
+     * Grid Tiles that will be in Grid List.
+     */
+    children: NonNullable<React.ReactNode>;
+    /**
+     * Number of columns.
+     */
     cols?: number;
+    /**
+     * Number of px for the spacing between tiles.
+     */
     spacing?: number;
   };
   defaultComponent: D;

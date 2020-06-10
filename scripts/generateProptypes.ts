@@ -26,13 +26,13 @@ const todoComponents = [
   'ToggleButton',
   // core
   // requires https://github.com/merceyz/typescript-to-proptypes/pull/21
-  'Grid',
-  'GridList',
-  'GridListTile',
-  'Hidden',
-  'Icon',
-  'IconButton',
-  'InputAdornment',
+  // 'Grid',
+  // 'GridList',
+  // 'GridListTile',
+  // 'Hidden',
+  // 'Icon',
+  // 'IconButton',
+  // 'InputAdornment',
   'Link',
   'List',
   'ListItem',
@@ -96,6 +96,7 @@ const useExternalDocumentation: Record<string, string[]> = {
   // Therefore it's considered "unused" in the actual component but we still want to document it.
   DialogContentText: ['classes'],
   FilledInput: useExternalPropsFromInputBase,
+  IconButton: ['disableRipple'],
   Input: useExternalPropsFromInputBase,
   OutlinedInput: useExternalPropsFromInputBase,
   Radio: ['disableRipple', 'id', 'inputProps', 'inputRef', 'required'],

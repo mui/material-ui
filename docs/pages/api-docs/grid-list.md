@@ -28,7 +28,7 @@ The `MuiGridList` name can be used for providing [default props](/customization/
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">cellHeight</span> | <span class="prop-type">number<br>&#124;&nbsp;'auto'</span> | <span class="prop-default">180</span> | Number of px for one cell height. You can set `'auto'` if you want to let the children determine the height. |
+| <span class="prop-name">cellHeight</span> | <span class="prop-type">'auto'<br>&#124;&nbsp;number</span> | <span class="prop-default">180</span> | Number of px for one cell height. You can set `'auto'` if you want to let the children determine the height. |
 | <span class="prop-name required">children<abbr title="required">*</abbr></span> | <span class="prop-type">node</span> |  | Grid Tiles that will be in Grid List. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">cols</span> | <span class="prop-type">number</span> | <span class="prop-default">2</span> | Number of columns. |
