@@ -19,7 +19,7 @@ export const styles = (theme) => ({
   iconOpen: {
     transform: 'rotate(45deg)',
   },
-  /* Styles applied to the icon when and `openIcon` is provided and if `open={true}`. */
+  /* Styles applied to the icon when an `openIcon` is provided and if `open={true}`. */
   iconWithOpenIconOpen: {
     opacity: 0,
   },
