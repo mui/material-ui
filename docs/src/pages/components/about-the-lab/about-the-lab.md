@@ -48,7 +48,7 @@ const theme = createMuiTheme({
   overrides: {
     MuiTimeline: {
       root: {
-        backgroundColot: 'red',
+        backgroundColor: 'red',
       },
     },
   },
