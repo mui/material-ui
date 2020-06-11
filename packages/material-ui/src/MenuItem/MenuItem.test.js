@@ -121,7 +121,9 @@ describe('<MenuItem />', () => {
     });
   });
 
-  // TODO what is this testing? The generated markup does not make sense.
+  // Regression test for #10452.
+  // Kept for backwards compatibility.
+  // In the future we should have a better pattern for this UI.
   it('should not fail with a li > li error message', () => {
     const { rerender } = render(
       <MenuItem>
