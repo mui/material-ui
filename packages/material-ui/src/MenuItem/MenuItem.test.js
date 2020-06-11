@@ -114,8 +114,6 @@ describe('<MenuItem />', () => {
       render(<MenuItem onTouchStart={handleTouchStart} />);
       const menuitem = screen.getByRole('menuitem');
 
-      // jsdom throws without a touch
-      // TODO: actually a JSDOM issue or should testing-lib do this?
       const touch = new Touch({ identifier: 0, target: menuitem, clientX: 0, clientY: 0 });
       fireEvent.touchStart(menuitem, { touches: [touch] });
 
