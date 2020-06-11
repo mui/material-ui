@@ -122,6 +122,7 @@ const pages = [
           { pathname: '/components/rating' },
           { pathname: '/components/skeleton' },
           { pathname: '/components/speed-dial' },
+          { pathname: '/components/timeline' },
           { pathname: '/components/toggle-button' },
           { pathname: '/components/tree-view' },
         ],
