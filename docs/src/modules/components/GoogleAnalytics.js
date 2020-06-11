@@ -22,7 +22,6 @@ function handleClick(event) {
         eventCategory: category,
         eventAction: element.getAttribute('data-ga-event-action'),
         eventLabel: element.getAttribute('data-ga-event-label'),
-        eventValue: element.getAttribute('data-ga-event-value'),
       });
       break;
     }

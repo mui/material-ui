@@ -85,7 +85,7 @@ Premium components:
 
 ## Benefits for you
 
-- Competitive compensation of up to \$120k/year, depending on the profile. Could go higher in the case of an extraordinary match.
+- Competitive compensation of up to \$140k/year, depending on the profile. Could go higher in the case of an extraordinary match.
 - Flexible workplace & hours.
 
 ## Apply
