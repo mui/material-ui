@@ -19,12 +19,12 @@ describe('<TablePagination />', () => {
 
   before(() => {
     classes = getClasses(
-      <TablePagination count={1} onChangePage={() => {}} page={0} rowsPerPage={10} />,
+      <TablePagination count={1} onChangePage={noop} page={0} rowsPerPage={10} />,
     );
   });
 
   describeConformance(
-    <TablePagination count={1} onChangePage={() => {}} page={0} rowsPerPage={10} />,
+    <TablePagination count={1} onChangePage={noop} page={0} rowsPerPage={10} />,
     () => ({
       classes,
       inheritComponent: TableCell,
