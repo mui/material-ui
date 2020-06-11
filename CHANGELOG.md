@@ -3,9 +3,11 @@
 ## 4.10.2
 ###### *June 11, 2020*
 
-This release marks the end of the development on the `v4.x` branch. We are moving all ongoing efforts to v5 (`next` branch).
-This means a feature freeze on v4. We will only accept critical bug fixes and security patches.
-You can follow our progress on the [v5 milestone](https://github.com/mui-org/material-ui/milestone/35). We will make the documentation of the v5 alpha releases available under https://next.material-ui.com/.
+⚠️ This release marks the end of the active development on the v4.x versions, after 18 months of development.
+We are moving all ongoing efforts to v5 (`next` branch) ✨.
+This means a feature freeze on v4. The development of this version will be limited to important bug fixes, security patches, and easing the upgrade path to v5.
+
+You can follow our progress on the [v5 milestone](https://github.com/mui-org/material-ui/milestone/35). We will make the documentation of the v5 alpha releases available under https://next.material-ui.com/, starting next week (weekly releases, as usual).
 
 Big thanks to the 19 contributors who made this release possible. Here are some highlights ✨:
 
@@ -35,7 +37,7 @@ Big thanks to the 19 contributors who made this release possible. Here are some 
 
 - Minify error messages in production (#21214) @eps1lon.
 
-  Using the [React error decoder](https://reactjs.org/docs/error-decoder.html/) as inspiration, the exception thrown by Material-UI in production are no minified.
+  Using the [React error decoder](https://reactjs.org/docs/error-decoder.html/) as inspiration, the exceptions thrown by Material-UI in production are now minified.
   You will be redirected to the documentation to [decode the error](https://material-ui.com/production-error/?code=4&args%5B%5D=500).
 
 ### `@material-ui/core@v4.10.2`
