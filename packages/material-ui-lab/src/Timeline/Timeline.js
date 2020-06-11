@@ -41,7 +41,7 @@ Timeline.propTypes = {
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
-   * The position where the timeline should appear.
+   * The position where the timeline's content should appear.
    */
   align: PropTypes.oneOf(['alternate', 'left', 'right']),
   /**

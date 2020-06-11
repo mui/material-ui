@@ -28,7 +28,7 @@ The `MuiTimeline` name can be used for providing [default props](/customization/
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">align</span> | <span class="prop-type">'alternate'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right'</span> | <span class="prop-default">'left'</span> | The position where the timeline should appear. |
+| <span class="prop-name">align</span> | <span class="prop-type">'alternate'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right'</span> | <span class="prop-default">'left'</span> | The position where the timeline's content should appear. |
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The content of the component. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 

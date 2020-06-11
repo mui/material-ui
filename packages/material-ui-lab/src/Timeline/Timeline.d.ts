@@ -7,7 +7,7 @@ export interface TimelineProps extends StandardProps<{}, TimelineClassKey> {
    */
   children?: React.ReactNode;
   /**
-   * The position where the timeline should appear.
+   * The position where the timeline's content should appear.
    */
   align?: 'left' | 'right' | 'alternate';
 }
