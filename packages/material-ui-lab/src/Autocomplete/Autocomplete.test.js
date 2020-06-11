@@ -446,6 +446,49 @@ describe('<Autocomplete />', () => {
     expect(handleSubmit.callCount).to.equal(4);
   });
 
+  describe('prop: getOptionDisabled', () => {
+    it('should disable the option but allow focus with disabledItemsFocusable', () => {
+      const handleSubmit = spy();
+      const handleChange = spy();
+      const { getAllByRole } = render(
+        <Autocomplete
+          {...defaultProps}
+          options={['one', 'two', 'three']}
+          disabledItemsFocusable
+          getOptionDisabled={(option) => option === 'two'}
+          onKeyDown={(event) => {
+            if (!event.defaultPrevented && event.key === 'Enter') {
+              handleSubmit();
+            }
+          }}
+          onChange={handleChange}
+          renderInput={(props2) => <TextField {...props2} autoFocus />}
+        />,
+      );
+
+      let options;
+      const textbox = screen.getByRole('textbox');
+
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      options = getAllByRole('option');
+      expect(textbox).to.have.attribute('aria-activedescendant', options[1].getAttribute('id'));
+
+      fireEvent.keyDown(textbox, { key: 'Enter' });
+      expect(handleSubmit.callCount).to.equal(0);
+      expect(handleChange.callCount).to.equal(0);
+
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      options = getAllByRole('option');
+      expect(textbox).to.have.attribute('aria-activedescendant', options[0].getAttribute('id'));
+
+      fireEvent.keyDown(textbox, { key: 'Enter' });
+      expect(handleSubmit.callCount).to.equal(0);
+      expect(handleChange.callCount).to.equal(1);
+    });
+  });
+
   describe('WAI-ARIA conforming markup', () => {
     specify('when closed', () => {
       const { getAllByRole, getByRole, queryByRole } = render(
