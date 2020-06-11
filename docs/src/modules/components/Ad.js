@@ -8,7 +8,7 @@ import Paper from '@material-ui/core/Paper';
 import AdCodeFund from 'docs/src/modules/components/AdCodeFund';
 import AdCarbon from 'docs/src/modules/components/AdCarbon';
 import AdInHouse from 'docs/src/modules/components/AdInHouse';
-import { AdContext, adPlacement, adShape } from 'docs/src/modules/components/AdManager';
+import { AdContext, adShape } from 'docs/src/modules/components/AdManager';
 
 const styles = (theme) => ({
   root: {
@@ -25,11 +25,11 @@ const styles = (theme) => ({
     display: 'flex',
     alignItems: 'flex-end',
   },
-  'placement-tocs-top-image': {
-    minHeight: 240,
-  },
-  'placement-tocs-bottom-image': {
-    minHeight: 240,
+  'placement-body-inline2': {
+    margin: theme.spacing(4, 0, 3),
+    minHeight: 126,
+    display: 'flex',
+    alignItems: 'flex-end',
   },
   paper: {
     padding: theme.spacing(1.5),
@@ -109,7 +109,7 @@ const inHouseAds = [
 ];
 
 function Ad(props) {
-  const { placement, classes } = props;
+  const { classes } = props;
 
   const [adblock, setAdblock] = React.useState(null);
   const [carbonOut, setCarbonOut] = React.useState(null);
@@ -124,11 +124,8 @@ function Ad(props) {
 
   const { current: randomAdblock } = React.useRef(Math.random());
   const { current: randomInHouse } = React.useRef(Math.random());
-  let minHeight;
 
   if (!children && adblock) {
-    minHeight = 'auto';
-
     if (randomAdblock < 0.2) {
       children = <PleaseDisableAdblock className={classes.paper} />;
     } else {
@@ -141,7 +138,6 @@ function Ad(props) {
   if (!children) {
     if (carbonOut || codeFundOut) {
       children = <AdInHouse ad={inHouseAds[Math.floor(inHouseAds.length * randomInHouse)]} />;
-      minHeight = 'auto';
     } else if (randomSplit < 0.4) {
       children = <AdCodeFund />;
     } else {
@@ -149,7 +145,7 @@ function Ad(props) {
     }
   }
 
-  const getEventLabel = () => {
+  const getNetwork = () => {
     let label;
 
     if (children.type === AdCodeFund) {
@@ -172,8 +168,7 @@ function Ad(props) {
   };
 
   const ad = React.useContext(AdContext);
-  const eventLabel = getEventLabel();
-  const eventValue = `${adPlacement === 'body' ? ad.portal.placement : adPlacement}-${adShape}`;
+  const eventLabel = `${getNetwork()}-${ad.portal.placement}-${adShape}`;
 
   const timerAdblock = React.useRef();
 
@@ -249,7 +244,6 @@ function Ad(props) {
         eventCategory: 'ad',
         eventAction: 'display',
         eventLabel,
-        eventValue,
       });
 
       if (eventLabel.indexOf('in-house') === 0) {
@@ -258,7 +252,6 @@ function Ad(props) {
           eventCategory: 'in-house-ad',
           eventAction: 'display',
           eventLabel: children.props.ad.name,
-          eventValue,
         });
       }
     }, 2500);
@@ -266,35 +259,16 @@ function Ad(props) {
     return () => {
       clearTimeout(delay);
     };
-  }, [eventLabel, children.props.ad, eventValue]);
+  }, [eventLabel, children.props.ad]);
 
-  // Refresh the ad after 1m30.
-  // An approximation to trigger when coming back to the window tab "after a while".
-  const [key, setKey] = React.useState(0);
-  React.useEffect(() => {
-    const interval = setInterval(() => {
-      setKey((currentKey) => currentKey + 1);
-    }, 90000);
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
-
-  if (adPlacement !== placement) {
-    return null;
-  }
+  const key = 0;
 
   return (
     <span
-      className={clsx(classes.root, classes[`placement-${adPlacement}-${adShape}`])}
-      style={{ minHeight: adPlacement === 'body' ? minHeight : null }}
+      className={clsx(classes.root, classes[`placement-body-${adShape}`])}
       data-ga-event-category="ad"
       data-ga-event-action="click"
-      /* advertiser network */
       data-ga-event-label={eventLabel}
-      /* docs placement */
-      data-ga-event-value={eventValue}
     >
       {React.cloneElement(children, { key })}
     </span>
@@ -303,7 +277,6 @@ function Ad(props) {
 
 Ad.propTypes = {
   classes: PropTypes.object.isRequired,
-  placement: PropTypes.oneOf(['body', 'tocs-top', 'tocs-bottom']).isRequired,
 };
 
 export default React.memo(withStyles(styles)(Ad));
