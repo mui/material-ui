@@ -17,7 +17,7 @@ export type BusyButtonTypeMap<
     /**
      * The pending indicator can be positioned on the start, end or the center of the Button.
      */
-    pendingIndicatorPosition?: 'start' | 'end' | 'center';
+    pendingPosition?: 'start' | 'end' | 'center';
   };
   defaultComponent: D;
   classKey: BusyButtonClassKey;
