@@ -13,12 +13,16 @@ import Stepper from './Stepper';
 
 describe('<Stepper />', () => {
   let classes;
+  let stepClasses;
+  let stepConnectorClasses
   // StrictModeViolation: test uses StepContent
   const mount = createMount({ strict: false });
   const render = createClientRender({ strict: false });
 
-  before(() => {
+  before(() => {    
     classes = getClasses(<Stepper />);
+    stepClasses = getClasses(<Step />)
+    stepConnectorClasses = getClasses(<StepConnector />)
   });
 
   describeConformance(
@@ -41,7 +45,9 @@ describe('<Stepper />', () => {
       </Stepper>,
     );
 
-    const paper = container.querySelector('.MuiPaper-elevation0');
+    const paperClasses = getClasses(<Paper />)
+
+    const paper = container.querySelector(`.${paperClasses.elevation0}`);
 
     expect(paper).not.equal(null);
   });
@@ -56,8 +62,8 @@ describe('<Stepper />', () => {
         </Stepper>,
       );
 
-      const connectors = container.querySelectorAll('.MuiStepConnector-root');
-      const steps = container.querySelectorAll('.MuiStep-root');
+      const connectors = container.querySelectorAll(`.${stepConnectorClasses.root}`);
+      const steps = container.querySelectorAll(`.${stepClasses.root}`);
 
       expect(connectors).to.have.length(2);
       expect(steps).to.have.length(3);
@@ -74,23 +80,23 @@ describe('<Stepper />', () => {
         </Stepper>,
       );
 
-      const steps = container.querySelectorAll('.MuiStep-root');
-      const connectors = container.querySelectorAll('.MuiStepConnector-root');
-
-      expect(steps[0]).to.not.have.class('MuiStep-completed');
-      expect(steps[1]).to.not.have.class('MuiStep-completed');
-      expect(steps[2]).to.not.have.class('MuiStep-completed');
-      expect(connectors[0]).to.have.class('Mui-disabled');
-      expect(connectors[1]).to.have.class('Mui-disabled');
+      const steps = container.querySelectorAll(`.${stepClasses.root}`);
+      const connectors = container.querySelectorAll(`.${stepConnectorClasses.root}`);
+      
+      expect(steps[0]).to.not.have.class(stepClasses.completed);
+      expect(steps[1]).to.not.have.class(stepClasses.completed);
+      expect(steps[2]).to.not.have.class(stepClasses.completed);
+      expect(connectors[0]).to.have.class(stepConnectorClasses.disabled);
+      expect(connectors[1]).to.have.class(stepConnectorClasses.disabled);
 
       setProps({ activeStep: 1 });
 
-      expect(steps[0]).to.have.class('MuiStep-completed');
-      expect(steps[1]).to.not.have.class('MuiStep-completed');
-      expect(steps[2]).to.not.have.class('MuiStep-completed');
-      expect(connectors[0]).to.not.have.class('Mui-disabled');
-      expect(connectors[0]).to.have.class('MuiStepConnector-active');
-      expect(connectors[1]).to.have.class('Mui-disabled');
+      expect(steps[0]).to.have.class(stepClasses.completed);
+      expect(steps[1]).to.not.have.class(stepClasses.completed);
+      expect(steps[2]).to.not.have.class(stepClasses.completed);
+      expect(connectors[0]).to.not.have.class(stepConnectorClasses.disabled);
+      expect(connectors[0]).to.have.class(stepConnectorClasses.active);
+      expect(connectors[1]).to.have.class(stepConnectorClasses.disabled);
     });
 
     it('controls children non-linearly based on the activeStep prop', () => {
@@ -102,32 +108,32 @@ describe('<Stepper />', () => {
         </Stepper>,
       );
 
-      const steps = container.querySelectorAll('.MuiStep-root');
-      const connectors = container.querySelectorAll('.MuiStepConnector-root');
+      const steps = container.querySelectorAll(`.${stepClasses.root}`);
+      const connectors = container.querySelectorAll(`.${stepConnectorClasses.root}`);
 
-      expect(steps[0]).to.not.have.class('MuiStep-completed');
-      expect(steps[1]).to.not.have.class('MuiStep-completed');
-      expect(steps[2]).to.not.have.class('MuiStep-completed');
+      expect(steps[0]).to.not.have.class(stepClasses.completed);
+      expect(steps[1]).to.not.have.class(stepClasses.completed);
+      expect(steps[2]).to.not.have.class(stepClasses.completed);
       expect(connectors[0]).not.to.have.class('Mui-disabled');
       expect(connectors[1]).not.to.have.class('Mui-disabled');
 
       setProps({ activeStep: 1 });
 
-      expect(steps[0]).to.not.have.class('MuiStep-completed');
-      expect(steps[1]).to.not.have.class('MuiStep-completed');
-      expect(steps[2]).to.not.have.class('MuiStep-completed');
-      expect(connectors[0]).to.not.have.class('Mui-disabled');
-      expect(connectors[0]).to.have.class('MuiStepConnector-active');
-      expect(connectors[1]).not.to.have.class('Mui-disabled');
+      expect(steps[0]).to.not.have.class(stepClasses.completed);
+      expect(steps[1]).to.not.have.class(stepClasses.completed);
+      expect(steps[2]).to.not.have.class(stepClasses.completed);
+      expect(connectors[0]).to.not.have.class(stepConnectorClasses.disabled);
+      expect(connectors[0]).to.have.class(stepConnectorClasses.active);
+      expect(connectors[1]).not.to.have.class(stepConnectorClasses.disabled);
 
       setProps({ activeStep: 2 });
 
-      expect(steps[0]).to.not.have.class('MuiStep-completed');
-      expect(steps[1]).to.not.have.class('MuiStep-completed');
-      expect(steps[2]).to.not.have.class('MuiStep-completed');
-      expect(connectors[0]).to.not.have.class('Mui-disabled');
-      expect(connectors[1]).to.not.have.class('Mui-disabled');
-      expect(connectors[1]).to.have.class('MuiStepConnector-active');
+      expect(steps[0]).to.not.have.class(stepClasses.completed);
+      expect(steps[1]).to.not.have.class(stepClasses.completed);
+      expect(steps[2]).to.not.have.class(stepClasses.completed);
+      expect(connectors[0]).to.not.have.class(stepConnectorClasses.disabled);
+      expect(connectors[1]).to.not.have.class(stepConnectorClasses.disabled);
+      expect(connectors[1]).to.have.class(stepConnectorClasses.active);
     });
 
     it('passes index down correctly when rendering children containing arrays', () => {
@@ -157,7 +163,7 @@ describe('<Stepper />', () => {
         </Stepper>,
       );
 
-      const connectors = container.querySelectorAll('.MuiStepConnector-root');
+      const connectors = container.querySelectorAll(`.${stepConnectorClasses.root}`);
 
       expect(connectors).to.have.length(1);
     });
@@ -171,7 +177,7 @@ describe('<Stepper />', () => {
         </Stepper>,
       );
 
-      const defaultConnectors = container.querySelectorAll('.MuiStepConnector-root');
+      const defaultConnectors = container.querySelectorAll(`.${stepConnectorClasses.root}`);
       const customConnectors = container.querySelectorAll('.CustomConnector');
 
       expect(defaultConnectors).to.have.length(0);
@@ -186,7 +192,7 @@ describe('<Stepper />', () => {
         </Stepper>,
       );
 
-      const connectors = container.querySelectorAll('.MuiStepConnector-root');
+      const connectors = container.querySelectorAll(`.${stepConnectorClasses.root}`);
 
       expect(connectors).to.have.length(0);
     });
@@ -199,9 +205,9 @@ describe('<Stepper />', () => {
         </Stepper>,
       );
 
-      const connector = container.querySelector('.MuiStepConnector-root');
+      const connector = container.querySelector(`.${stepConnectorClasses.root}`);
 
-      expect(connector).to.have.class('MuiStepConnector-active');
+      expect(connector).to.have.class(stepConnectorClasses.active);
     });
 
     it('should pass completed prop to connector when second step is completed', () => {
@@ -212,9 +218,9 @@ describe('<Stepper />', () => {
         </Stepper>,
       );
 
-      const connector = container.querySelector('.MuiStepConnector-root');
+      const connector = container.querySelector(`.${stepConnectorClasses.root}`);
 
-      expect(connector).to.have.class('MuiStepConnector-completed');
+      expect(connector).to.have.class(stepConnectorClasses.completed);
     });
 
     it('should pass correct active and completed props to the StepConnector with nonLinear prop', () => {
@@ -230,19 +236,18 @@ describe('<Stepper />', () => {
         </Stepper>,
       );
 
-      const connectors = container.querySelectorAll('.MuiStepConnector-root');
+      const connectors = container.querySelectorAll(`.${stepConnectorClasses.root}`);
 
       expect(connectors).to.have.length(2);
-      expect(connectors[0]).to.have.class('MuiStepConnector-active');
-      expect(connectors[0]).to.not.have.class('MuiStepConnector-completed');
+      expect(connectors[0]).to.have.class(stepConnectorClasses.active);
+      expect(connectors[0]).to.not.have.class(stepConnectorClasses.completed);
 
-      expect(connectors[1]).to.have.class('MuiStepConnector-active');
-      expect(connectors[1]).to.have.class('MuiStepConnector-completed');
+      expect(connectors[1]).to.have.class(stepConnectorClasses.active);
+      expect(connectors[1]).to.have.class(stepConnectorClasses.completed);
     });
   });
 
   it('renders with a null child', () => {
-    // I'm not sure if this test brings any value
     const { container } = render(
       <Stepper>
         <Step />
@@ -250,7 +255,7 @@ describe('<Stepper />', () => {
       </Stepper>,
     );
 
-    const steps = container.querySelectorAll('.MuiStep-root');
+    const steps = container.querySelectorAll(`.${stepClasses.root}`);
 
     expect(steps).to.have.length(1);
   });
@@ -264,11 +269,11 @@ describe('<Stepper />', () => {
       </Stepper>,
     );
 
-    const steps = container.querySelectorAll('.MuiStep-root');
+    const steps = container.querySelectorAll(`.${stepClasses.root}`);
 
-    expect(steps[0]).to.not.have.class('MuiStep-active');
-    expect(steps[1]).to.not.have.class('MuiStep-active');
-    expect(steps[2]).to.not.have.class('MuiStep-active');
+    expect(steps[0]).to.not.have.class(stepClasses.active);
+    expect(steps[1]).to.not.have.class(stepClasses.active);
+    expect(steps[2]).to.not.have.class(stepClasses.active);
   });
 
   it('should hide the last connector', () => {
@@ -285,9 +290,11 @@ describe('<Stepper />', () => {
       </Stepper>,
     );
 
-    const stepContent = container.querySelectorAll('.MuiStepContent-root');
+    const stepContentClasses = getClasses(<StepContent />)
 
-    expect(stepContent[0]).to.not.have.class('MuiStepContent-last');
-    expect(stepContent[1]).to.have.class('MuiStepContent-last');
+    const stepContent = container.querySelectorAll(`.${stepContentClasses.root}`);
+
+    expect(stepContent[0]).to.not.have.class(stepContentClasses.last);
+    expect(stepContent[1]).to.have.class(stepContentClasses.last);
   });
 });
