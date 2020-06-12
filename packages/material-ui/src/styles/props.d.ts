@@ -5,6 +5,7 @@ import { BadgeProps } from '../Badge';
 import { BottomNavigationActionProps } from '../BottomNavigationAction';
 import { BottomNavigationProps } from '../BottomNavigation';
 import { BreadcrumbsProps } from '../Breadcrumbs';
+import { BusyButtonProps } from '../BusyButton';
 import { ButtonBaseProps } from '../ButtonBase';
 import { ButtonGroupProps } from '../ButtonGroup';
 import { ButtonProps } from '../Button';

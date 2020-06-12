@@ -17,10 +17,10 @@ export default function BusyButtons() {
   return (
     <div className={classes.root}>
       <BusyButton variant="outlined" pending>
-        Fetch data
+        Submit
       </BusyButton>
       <BusyButton variant="outlined" pending pendingIndicator="Loading...">
-        Submit
+        Fetch data
       </BusyButton>
       <BusyButton variant="outlined" pending pendingPosition="start" startIcon={<SaveIcon />}>
         Save
