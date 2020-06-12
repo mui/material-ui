@@ -33,7 +33,7 @@ export default function BusyButtons() {
           />
         }
         className={classes.switch}
-        label="Loading"
+        label="Pending"
       />
       <BusyButton variant="outlined" pending={pending}>
         Fetch data

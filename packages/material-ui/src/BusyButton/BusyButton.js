@@ -43,15 +43,17 @@ export const styles = () => ({
   },
 });
 
+const PendingIndicator = <CircularProgress color="inherit" size={16} />
+
 const BusyButton = React.forwardRef(function BusyButton(props, ref) {
-  const {
+  const { 
     classes,
     className,
     disabled = false,
     pending = false,
     pendingPosition = 'center',
     children,
-    pendingIndicator = <CircularProgress color="inherit" size={16} />,
+    pendingIndicator = PendingIndicator,
     ...other
   } = props;
 
