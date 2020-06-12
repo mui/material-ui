@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { StandardProps } from '@material-ui/core';
+import { StandardProps, TypographyProps } from '@material-ui/core';
 
 export interface TimelineOppositeContentProps
-  extends StandardProps<{}, TimelineOppositeContentClassKey> {
+  extends StandardProps<TypographyProps, TimelineOppositeContentClassKey> {
   /**
    * The content of the component.
    */
@@ -20,5 +20,6 @@ export type TimelineOppositeContentClassKey = 'root' | 'alignRight';
  * API:
  *
  * - [TimelineOppositeContent API](https://material-ui.com/api/timeline-opposite-content/)
+ * - inherits [Typography API](https://material-ui.com/api/typography/)
  */
 export default function TimelineOppositeContent(props: TimelineOppositeContentProps): JSX.Element;

@@ -9,7 +9,7 @@ export interface TimelineDotProps extends StandardProps<{}, TimelineDotClassKey>
   /**
    * The dot can appear filled or outlined.
    */
-  variant?: 'default' | 'outlined';
+  variant?: 'filled' | 'outlined';
   /**
    * The dot can have a different colors.
    */
