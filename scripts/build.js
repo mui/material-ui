@@ -24,9 +24,9 @@ async function run(argv) {
   }
 
   const env = {
+    ...process.env,
     NODE_ENV: 'production',
     BABEL_ENV: bundle,
-    PATH: process.env.PATH,
   };
   const babelConfigPath = path.resolve(__dirname, '../babel.config.js');
   const srcDir = path.resolve('./src');
