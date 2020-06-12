@@ -13,11 +13,11 @@ export const styles = (theme) => ({
     borderWidth: 2,
     padding: 4,
     borderRadius: '50%',
-    boxShadow: theme.shadows[2],
-    margin: '12px 0',
+    boxShadow: theme.shadows[1],
+    margin: '11.5px 0',
   },
-  /* Styles applied to the root element if `color="grey"` and `variant="default"`. */
-  defaultGrey: {
+  /* Styles applied to the root element if `color="grey"` and `variant="filled"`. */
+  filledGrey: {
     borderColor: 'transparent',
     color: theme.palette.grey[50],
     backgroundColor: theme.palette.grey[400],
@@ -29,8 +29,8 @@ export const styles = (theme) => ({
     borderColor: theme.palette.grey[400],
     backgroundColor: 'transparent',
   },
-  /* Styles applied to the root element if `color="primary"` and `variant="default"`. */
-  defaultPrimary: {
+  /* Styles applied to the root element if `color="primary"` and `variant="filled"`. */
+  filledPrimary: {
     borderColor: 'transparent',
     color: theme.palette.primary.contrastText,
     backgroundColor: theme.palette.primary.main,
@@ -41,8 +41,8 @@ export const styles = (theme) => ({
     backgroundColor: 'transparent',
     borderColor: theme.palette.primary.main,
   },
-  /* Styles applied to the root element if `color="secondary"` and `variant="default"`. */
-  defaultSecondary: {
+  /* Styles applied to the root element if `color="secondary"` and `variant="filled"`. */
+  filledSecondary: {
     borderColor: 'transparent',
     color: theme.palette.secondary.contrastText,
     backgroundColor: theme.palette.secondary.main,
@@ -56,7 +56,7 @@ export const styles = (theme) => ({
 });
 
 const TimelineDot = React.forwardRef(function TimelineDot(props, ref) {
-  const { classes, className, color = 'grey', variant = 'default', ...other } = props;
+  const { classes, className, color = 'grey', variant = 'filled', ...other } = props;
 
   return (
     <span
@@ -98,7 +98,7 @@ TimelineDot.propTypes = {
   /**
    * The dot can appear filled or outlined.
    */
-  variant: PropTypes.oneOf(['default', 'outlined']),
+  variant: PropTypes.oneOf(['filled', 'outlined']),
 };
 
 export default withStyles(styles, { name: 'MuiTimelineDot' })(TimelineDot);
