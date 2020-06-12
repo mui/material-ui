@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import LoadingButton from '@material-ui/core/LoadingButton';
+import BusyButton from '@material-ui/core/BusyButton';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import SaveIcon from '@material-ui/icons/Save';
@@ -17,52 +17,47 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function LoadingButtons() {
+export default function BusyButtons() {
   const classes = useStyles();
-  const [loading, setLoading] = React.useState(false);
+  const [pending, setPending] = React.useState(false);
 
   return (
     <div className={classes.root}>
       <FormControlLabel
         control={
           <Switch
-            checked={loading}
-            onChange={() => setLoading(!loading)}
-            name="loading"
+            checked={pending}
+            onChange={() => setPending(!pending)}
+            name="pending"
             color="primary"
           />
         }
         className={classes.switch}
         label="Loading"
       />
-      <LoadingButton variant="outlined" loading={loading} loadingIndicatorPosition="center">
+      <BusyButton variant="outlined" pending={pending} pendingIndicatorPosition="center">
         Fetch data
-      </LoadingButton>
-      <LoadingButton
+      </BusyButton>
+      <BusyButton
         variant="outlined"
-        loading={loading}
-        loadingIndicator="Loading..."
-        loadingIndicatorPosition="center"
+        pending={pending}
+        pendingIndicator="Loading..."
+        pendingIndicatorPosition="center"
       >
         Submit
-      </LoadingButton>
-      <LoadingButton
+      </BusyButton>
+      <BusyButton
         variant="contained"
         color="primary"
-        loading={loading}
-        loadingIndicatorPosition="end"
+        pending={pending}
+        pendingIndicatorPosition="end"
         endIcon={<SendIcon />}
       >
         Send
-      </LoadingButton>
-      <LoadingButton
-        variant="contained"
-        color="secondary"
-        loading={loading}
-        startIcon={<SaveIcon />}
-      >
+      </BusyButton>
+      <BusyButton variant="contained" color="secondary" pending={pending} startIcon={<SaveIcon />}>
         Save
-      </LoadingButton>
+      </BusyButton>
     </div>
   );
 }
