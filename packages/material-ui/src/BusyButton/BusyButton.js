@@ -45,10 +45,10 @@ export const styles = () => ({
   },
 });
 
-const PendingIndicator = <CircularProgress color="inherit" size={16} />
+const PendingIndicator = <CircularProgress color="inherit" size={16} />;
 
 const BusyButton = React.forwardRef(function BusyButton(props, ref) {
-  const { 
+  const {
     classes,
     className,
     disabled = false,
@@ -164,10 +164,14 @@ BusyButton.propTypes = {
    */
   pendingPosition: chainPropTypes(PropTypes.oneOf(['start', 'end', 'center']), (props) => {
     if (props.pendingPosition === 'start' && !props.startIcon) {
-      return new Error(`Material-UI: The pendingPosition="start" should be used in combinatino with startIcon.`);
+      return new Error(
+        `Material-UI: The pendingPosition="start" should be used in combination with startIcon.`,
+      );
     }
     if (props.pendingPosition === 'end' && !props.endIcon) {
-      return new Error(`Material-UI: The pendingPosition="end" should be used in combinatino with endIcon.`);
+      return new Error(
+        `Material-UI: The pendingPosition="end" should be used in combination with endIcon.`,
+      );
     }
     return null;
   }),
@@ -189,7 +193,5 @@ BusyButton.propTypes = {
    */
   variant: PropTypes.oneOf(['contained', 'outlined', 'text']),
 };
-
-<BusyButton pendingPosition="start" />
 
 export default withStyles(styles, { name: 'MuiBusyButton' })(BusyButton);

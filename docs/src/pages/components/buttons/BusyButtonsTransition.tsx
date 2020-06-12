@@ -38,11 +38,7 @@ export default function BusyButtons() {
       <BusyButton variant="outlined" pending={pending}>
         Fetch data
       </BusyButton>
-      <BusyButton
-        variant="outlined"
-        pending={pending}
-        pendingIndicator="Loading..."
-      >
+      <BusyButton variant="outlined" pending={pending} pendingIndicator="Loading...">
         Submit
       </BusyButton>
       <BusyButton

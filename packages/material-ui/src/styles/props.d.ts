@@ -113,6 +113,7 @@ export interface ComponentsPropsList {
   MuiBottomNavigation: BottomNavigationProps;
   MuiBottomNavigationAction: BottomNavigationActionProps;
   MuiBreadcrumbs: BreadcrumbsProps;
+  MuiBusyButton: BusyButtonProps;
   MuiButton: ButtonProps;
   MuiButtonBase: ButtonBaseProps;
   MuiButtonGroup: ButtonGroupProps;
