@@ -100,6 +100,10 @@ The busy buttons can show pending state and disable interactions.
 
 {{"demo": "pages/components/buttons/BusyButtons.js"}}
 
+Toggle the switch to see the transition between the different states.
+
+{{"demo": "pages/components/buttons/BusyButtonsTransition.js"}}
+
 ## Complex Buttons
 
 The Text Buttons, Contained Buttons, Floating Action Buttons and Icon Buttons are built on top of the same component: the `ButtonBase`.

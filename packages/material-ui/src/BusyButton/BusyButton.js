@@ -16,28 +16,28 @@ export const styles = () => ({
     visibility: 'visible',
     display: 'flex',
   },
-  /* Styles applied to the pendingIndicator element if `pendingIndicatorPosition="center"`. */
+  /* Styles applied to the pendingIndicator element if `pendingPosition="center"`. */
   pendingIndicatorCenter: {
     left: '50%',
     transform: 'translate(-50%)',
   },
-  /* Styles applied to the pendingIndicator element if `pendingIndicatorPosition="start"`. */
+  /* Styles applied to the pendingIndicator element if `pendingPosition="start"`. */
   pendingIndicatorStart: {
     left: 10,
   },
-  /* Styles applied to the pendingIndicator element if `pendingIndicatorPosition="end"`. */
+  /* Styles applied to the pendingIndicator element if `pendingPosition="end"`. */
   pendingIndicatorEnd: {
     right: 10,
   },
-  /* Styles applied to the endIcon element if `pending={true}` and `pendingIndicatorPosition="end"`. */
+  /* Styles applied to the endIcon element if `pending={true}` and `pendingPosition="end"`. */
   endIconLoadingEnd: {
-    visibility: 'hidden'
+    visibility: 'hidden',
   },
-  /* Styles applied to the startIcon element if `pending={true}` and `pendingIndicatorPosition="start"`. */
+  /* Styles applied to the startIcon element if `pending={true}` and `pendingPosition="start"`. */
   startIconLoadingStart: {
-    visibility: 'hidden'
+    visibility: 'hidden',
   },
-  /* Styles applied to the label element if `pending={true}` and `pendingIndicatorPosition="center"`. */
+  /* Styles applied to the label element if `pending={true}` and `pendingPosition="center"`. */
   labelLoadingCenter: {
     visibility: 'hidden',
   },
@@ -49,7 +49,7 @@ const BusyButton = React.forwardRef(function BusyButton(props, ref) {
     className,
     disabled = false,
     pending = false,
-    pendingIndicatorPosition = 'center',
+    pendingPosition = 'center',
     children,
     pendingIndicator = <CircularProgress color="inherit" size={16} />,
     ...other
@@ -67,13 +67,22 @@ const BusyButton = React.forwardRef(function BusyButton(props, ref) {
       disabled={disabled || pending}
       ref={ref}
       classes={{
-        startIcon: classes[`startIcon${pending ? 'Loading' : ''}${capitalize(pendingIndicatorPosition)}`],
-        endIcon: classes[`endIcon${pending ? 'Loading' : ''}${capitalize(pendingIndicatorPosition)}`],
-        label: classes[`label${pending ? 'Loading' : ''}${capitalize(pendingIndicatorPosition)}`]
+        startIcon: classes[`startIcon${pending ? 'Loading' : ''}${capitalize(pendingPosition)}`],
+        endIcon: classes[`endIcon${pending ? 'Loading' : ''}${capitalize(pendingPosition)}`],
+        label: classes[`label${pending ? 'Loading' : ''}${capitalize(pendingPosition)}`],
       }}
       {...other}
     >
-      {pending && <div className={clsx(classes.pendingIndicator, classes[`pendingIndicator${capitalize(pendingIndicatorPosition)}`])}>{pendingIndicator}</div>}
+      {pending && (
+        <div
+          className={clsx(
+            classes.pendingIndicator,
+            classes[`pendingIndicator${capitalize(pendingPosition)}`],
+          )}
+        >
+          {pendingIndicator}
+        </div>
+      )}
       {children}
     </Button>
   );
