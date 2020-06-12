@@ -23,11 +23,11 @@ export const styles = () => ({
   },
   /* Styles applied to the pendingIndicator element if `pendingPosition="start"`. */
   pendingIndicatorStart: {
-    left: 10,
+    left: 16,
   },
   /* Styles applied to the pendingIndicator element if `pendingPosition="end"`. */
   pendingIndicatorEnd: {
-    right: 10,
+    right: 16,
   },
   /* Styles applied to the endIcon element if `pending={true}` and `pendingPosition="end"`. */
   endIconLoadingEnd: {
