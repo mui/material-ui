@@ -14,15 +14,15 @@ import Stepper from './Stepper';
 describe('<Stepper />', () => {
   let classes;
   let stepClasses;
-  let stepConnectorClasses
+  let stepConnectorClasses;
   // StrictModeViolation: test uses StepContent
   const mount = createMount({ strict: false });
   const render = createClientRender({ strict: false });
 
-  before(() => {    
+  before(() => {
     classes = getClasses(<Stepper />);
-    stepClasses = getClasses(<Step />)
-    stepConnectorClasses = getClasses(<StepConnector />)
+    stepClasses = getClasses(<Step />);
+    stepConnectorClasses = getClasses(<StepConnector />);
   });
 
   describeConformance(
@@ -45,7 +45,7 @@ describe('<Stepper />', () => {
       </Stepper>,
     );
 
-    const paperClasses = getClasses(<Paper />)
+    const paperClasses = getClasses(<Paper />);
 
     const paper = container.querySelector(`.${paperClasses.elevation0}`);
 
@@ -82,7 +82,7 @@ describe('<Stepper />', () => {
 
       const steps = container.querySelectorAll(`.${stepClasses.root}`);
       const connectors = container.querySelectorAll(`.${stepConnectorClasses.root}`);
-      
+
       expect(steps[0]).to.not.have.class(stepClasses.completed);
       expect(steps[1]).to.not.have.class(stepClasses.completed);
       expect(steps[2]).to.not.have.class(stepClasses.completed);
@@ -290,7 +290,7 @@ describe('<Stepper />', () => {
       </Stepper>,
     );
 
-    const stepContentClasses = getClasses(<StepContent />)
+    const stepContentClasses = getClasses(<StepContent />);
 
     const stepContent = container.querySelectorAll(`.${stepContentClasses.root}`);
 
