@@ -29,7 +29,7 @@ const TimelineOppositeContent = React.forwardRef(function TimelineOppositeConten
 
   return (
     <Typography
-      component='div'
+      component="div"
       className={clsx(
         classes.root,
         contextClasses.oppositeContent,

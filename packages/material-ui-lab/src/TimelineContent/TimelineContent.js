@@ -27,7 +27,7 @@ const TimelineContent = React.forwardRef(function TimelineContent(props, ref) {
 
   return (
     <Typography
-      component='div'
+      component="div"
       className={clsx(
         classes.root,
         contextClasses.content,
