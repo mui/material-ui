@@ -114,8 +114,8 @@ describe('<Stepper />', () => {
       expect(steps[0]).to.not.have.class(stepClasses.completed);
       expect(steps[1]).to.not.have.class(stepClasses.completed);
       expect(steps[2]).to.not.have.class(stepClasses.completed);
-      expect(connectors[0]).not.to.have.class('Mui-disabled');
-      expect(connectors[1]).not.to.have.class('Mui-disabled');
+      expect(connectors[0]).not.to.have.class(stepConnectorClasses.disabled);
+      expect(connectors[1]).not.to.have.class(stepConnectorClasses.disabled);
 
       setProps({ activeStep: 1 });
 
