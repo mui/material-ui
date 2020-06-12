@@ -2424,10 +2424,10 @@
   dependencies:
     "@types/yargs-parser" "*"
 
-"@types/yup@^0.28.0":
-  version "0.28.0"
-  resolved "https://registry.yarnpkg.com/@types/yup/-/yup-0.28.0.tgz#bddd4c7bc3cb23109d87b77d4607f983a9595768"
-  integrity sha512-M11FLKWuwvJo1HjL6oXXl7lXEjpvkW1vK+OA9qFQu1SGDY7Sh36FmvxFd2PoYkrUamKbluWQ+1ZMd+tbgQmwmg==
+"@types/yup@^0.29.2":
+  version "0.29.2"
+  resolved "https://registry.yarnpkg.com/@types/yup/-/yup-0.29.2.tgz#88475225c515a523c6def5d102cc89aa3508cdf4"
+  integrity sha512-+xWGnndRDsBxa5Ep5Of/XoiKdcUWVurh48N4zOqk1Zpqn09gjncY+VDctoBdSQ4ubmIDWA32FB7HN0y5vNhL4A==
 
 "@typescript-eslint/eslint-plugin@^1.6.0":
   version "1.13.0"
