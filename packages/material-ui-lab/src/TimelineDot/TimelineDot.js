@@ -14,8 +14,7 @@ export const styles = (theme) => ({
     padding: 4,
     borderRadius: '50%',
     boxShadow: theme.shadows[2],
-    marginTop: 8,
-    marginBottom: 8,
+    margin: '12px 0',
   },
   /* Styles applied to the root element if `color="grey"` and `variant="default"`. */
   defaultGrey: {

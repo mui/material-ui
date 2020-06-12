@@ -5,6 +5,7 @@ import TimelineSeparator from '@material-ui/lab/TimelineSeparator';
 import TimelineConnector from '@material-ui/lab/TimelineConnector';
 import TimelineContent from '@material-ui/lab/TimelineContent';
 import TimelineDot from '@material-ui/lab/TimelineDot';
+import Typography from '@material-ui/core/Typography';
 
 export default function AlternateTimeline() {
   return (
@@ -14,27 +15,35 @@ export default function AlternateTimeline() {
           <TimelineDot />
           <TimelineConnector />
         </TimelineSeparator>
-        <TimelineContent>Eat</TimelineContent>
+        <TimelineContent>
+          <Typography>Eat</Typography>
+        </TimelineContent>
       </TimelineItem>
       <TimelineItem>
         <TimelineSeparator>
           <TimelineDot />
           <TimelineConnector />
         </TimelineSeparator>
-        <TimelineContent>Code</TimelineContent>
+        <TimelineContent>
+          <Typography>Code</Typography>
+        </TimelineContent>
       </TimelineItem>
       <TimelineItem>
         <TimelineSeparator>
           <TimelineDot />
           <TimelineConnector />
         </TimelineSeparator>
-        <TimelineContent>Sleep</TimelineContent>
+        <TimelineContent>
+          <Typography>Sleep</Typography>
+        </TimelineContent>
       </TimelineItem>
       <TimelineItem>
         <TimelineSeparator>
           <TimelineDot />
         </TimelineSeparator>
-        <TimelineContent>Repeat</TimelineContent>
+        <TimelineContent>
+          <Typography>Repeat</Typography>
+        </TimelineContent>
       </TimelineItem>
     </Timeline>
   );

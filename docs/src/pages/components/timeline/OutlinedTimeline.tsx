@@ -5,6 +5,7 @@ import TimelineSeparator from '@material-ui/lab/TimelineSeparator';
 import TimelineConnector from '@material-ui/lab/TimelineConnector';
 import TimelineContent from '@material-ui/lab/TimelineContent';
 import TimelineDot from '@material-ui/lab/TimelineDot';
+import Typography from '@material-ui/core/Typography';
 
 export default function OutlinedTimeline() {
   return (
@@ -14,27 +15,35 @@ export default function OutlinedTimeline() {
           <TimelineDot variant="outlined" />
           <TimelineConnector />
         </TimelineSeparator>
-        <TimelineContent>Eat</TimelineContent>
+        <TimelineContent>
+          <Typography>Eat</Typography>
+        </TimelineContent>
       </TimelineItem>
       <TimelineItem>
         <TimelineSeparator>
           <TimelineDot variant="outlined" color="primary" />
           <TimelineConnector />
         </TimelineSeparator>
-        <TimelineContent>Code</TimelineContent>
+        <TimelineContent>
+          <Typography>Code</Typography>
+        </TimelineContent>
       </TimelineItem>
       <TimelineItem>
         <TimelineSeparator>
           <TimelineDot variant="outlined" color="secondary" />
           <TimelineConnector />
         </TimelineSeparator>
-        <TimelineContent>Sleep</TimelineContent>
+        <TimelineContent>
+          <Typography>Sleep</Typography>
+        </TimelineContent>
       </TimelineItem>
       <TimelineItem>
         <TimelineSeparator>
           <TimelineDot variant="outlined" />
         </TimelineSeparator>
-        <TimelineContent>Repeat</TimelineContent>
+        <TimelineContent>
+          <Typography>Repeat</Typography>
+        </TimelineContent>
       </TimelineItem>
     </Timeline>
   );
