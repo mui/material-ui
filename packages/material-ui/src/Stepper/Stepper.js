@@ -46,13 +46,6 @@ const Stepper = React.forwardRef(function Stepper(props, ref) {
     : null;
   const childrenArray = React.Children.toArray(children);
   const steps = childrenArray.map((step, index) => {
-    const controlProps = {
-      alternativeLabel,
-      connector: connectorProp,
-      last: index + 1 === childrenArray.length,
-      orientation,
-    };
-
     const state = {
       index,
       active: false,
@@ -68,16 +61,14 @@ const Stepper = React.forwardRef(function Stepper(props, ref) {
       state.disabled = true;
     }
 
-    return [
-      !alternativeLabel &&
-        connector &&
-        index !== 0 &&
-        React.cloneElement(connector, {
-          key: index,
-          ...state,
-        }),
-      React.cloneElement(step, { ...controlProps, ...state, ...step.props }),
-    ];
+    return React.cloneElement(step, {
+      alternativeLabel,
+      connector,
+      last: index + 1 === childrenArray.length,
+      orientation,
+      ...state,
+      ...step.props,
+    });
   });
 
   return (

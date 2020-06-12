@@ -25,19 +25,6 @@ const todoComponents = [
   'TabList',
   'ToggleButton',
   // core
-  'CardActionArea',
-  'CardContent',
-  'CardHeader',
-  'CardMedia',
-  'Chip',
-  'Container',
-  'DialogContentText',
-  'Divider',
-  'ExpansionPanelSummary',
-  'Fab',
-  'FormControl',
-  'FormHelperText',
-  'FormLabel',
   // requires https://github.com/merceyz/typescript-to-proptypes/pull/21
   'Grid',
   'GridList',
@@ -104,6 +91,10 @@ const useExternalPropsFromInputBase = [
  */
 const useExternalDocumentation: Record<string, string[]> = {
   Button: ['disableRipple'],
+  // `classes` is always external since it is applied from a HOC
+  // In DialogContentText we pass it through
+  // Therefore it's considered "unused" in the actual component but we still want to document it.
+  DialogContentText: ['classes'],
   FilledInput: useExternalPropsFromInputBase,
   Input: useExternalPropsFromInputBase,
   OutlinedInput: useExternalPropsFromInputBase,
@@ -140,11 +131,15 @@ const transitionCallbacks = [
 const ignoreExternalDocumentation: Record<string, string[]> = {
   Button: ['focusVisibleClassName', 'type'],
   Collapse: transitionCallbacks,
+  CardActionArea: ['focusVisibleClassName'],
+  ExpansionPanelSummary: ['onFocusVisible'],
+  Fab: ['focusVisibleClassName'],
   Fade: transitionCallbacks,
   Grow: transitionCallbacks,
   InputBase: ['aria-describedby'],
   Menu: ['PaperProps'],
   Slide: transitionCallbacks,
+  TextField: ['hiddenLabel'],
   Zoom: transitionCallbacks,
 };
 
@@ -191,6 +186,9 @@ async function generateProptypes(
 
   const result = ttp.inject(proptypes, jsContent, {
     removeExistingPropTypes: true,
+    babelOptions: {
+      filename: jsFile,
+    },
     comment: [
       '----------------------------- Warning --------------------------------',
       '| These PropTypes are generated from the TypeScript type definitions |',

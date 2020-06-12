@@ -29,7 +29,7 @@ The `MuiTooltip` name can be used for providing [default props](/customization/g
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">arrow</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, adds an arrow to the tooltip. |
-| <span class="prop-name required">children&nbsp;*</span> | <span class="prop-type">element</span> |  | Tooltip reference element.<br>⚠️ [Needs to be able to hold a ref](/guides/composition/#caveat-with-refs). |
+| <span class="prop-name required">children<abbr title="required">*</abbr></span> | <span class="prop-type">element</span> |  | Tooltip reference element.<br>⚠️ [Needs to be able to hold a ref](/guides/composition/#caveat-with-refs). |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">disableFocusListener</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Do not respond to focus events. |
 | <span class="prop-name">disableHoverListener</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Do not respond to hover events. |
@@ -47,7 +47,7 @@ The `MuiTooltip` name can be used for providing [default props](/customization/g
 | <span class="prop-name">placement</span> | <span class="prop-type">'bottom-end'<br>&#124;&nbsp;'bottom-start'<br>&#124;&nbsp;'bottom'<br>&#124;&nbsp;'left-end'<br>&#124;&nbsp;'left-start'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right-end'<br>&#124;&nbsp;'right-start'<br>&#124;&nbsp;'right'<br>&#124;&nbsp;'top-end'<br>&#124;&nbsp;'top-start'<br>&#124;&nbsp;'top'</span> | <span class="prop-default">'bottom'</span> | Tooltip placement. |
 | <span class="prop-name">PopperComponent</span> | <span class="prop-type">elementType</span> | <span class="prop-default">Popper</span> | The component used for the popper. |
 | <span class="prop-name">PopperProps</span> | <span class="prop-type">object</span> |  | Props applied to the [`Popper`](/api/popper/) element. |
-| <span class="prop-name required">title&nbsp;*</span> | <span class="prop-type">node</span> |  | Tooltip title. Zero-length titles string are never displayed. |
+| <span class="prop-name required">title<abbr title="required">*</abbr></span> | <span class="prop-type">node</span> |  | Tooltip title. Zero-length titles string are never displayed. |
 | <span class="prop-name">TransitionComponent</span> | <span class="prop-type">elementType</span> | <span class="prop-default">Grow</span> | The component used for the transition. [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component. |
 | <span class="prop-name">TransitionProps</span> | <span class="prop-type">object</span> |  | Props applied to the [`Transition`](http://reactcommunity.org/react-transition-group/transition#Transition-props) element. |
 

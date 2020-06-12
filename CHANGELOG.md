@@ -1,5 +1,91 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.10.2
+###### *June 11, 2020*
+
+This release marks the end of the development on the `v4.x` branch. We are moving all ongoing efforts to v5 (`next` branch).
+This means a feature freeze on v4. We will only accept critical bug fixes and security patches.
+You can follow our progress on the [v5 milestone](https://github.com/mui-org/material-ui/milestone/35). We will make the documentation of the v5 alpha releases available under https://next.material-ui.com/.
+
+Big thanks to the 19 contributors who made this release possible. Here are some highlights ✨:
+
+- Introduce a new Timeline component (#21331) @mnajdova.
+  <img width="244" alt="timeline" src="https://user-images.githubusercontent.com/3165635/84400961-ff381900-ac02-11ea-8e5e-beb6c0840fe0.png">
+  You can find the component in the [lab](http://material-ui.com/components/timeline/).
+
+- Simplify the theme overrides with TypeScript for the components in the lab (#21279) @CarsonF.
+
+  In order to benefit from the [CSS overrides](/customization/globals/#css) with the theme and the lab components, TypeScript users need to import the following types. Internally, it uses [module augmentation](/guides/typescript/#customization-of-theme) to extend the default theme structure with the extension components available in the lab.
+
+  ```tsx
+  // 1. augment the theme
+  import type '@material-ui/lab/themeAugmentation';
+
+  // 2. override
+  const theme = createMuiTheme({
+    overrides: {
+      MuiTimeline: {
+        root: {
+          backgroundColor: 'red',
+        },
+      },
+    },
+  });
+  ```
+
+- Minify error messages in production (#21214) @eps1lon.
+
+  Using the [React error decoder](https://reactjs.org/docs/error-decoder.html/) as inspiration, the exception thrown by Material-UI in production are no minified.
+  You will be redirected to the documentation to [decode the error](https://material-ui.com/production-error/?code=4&args%5B%5D=500).
+
+### `@material-ui/core@v4.10.2`
+
+- [Checkbox] Fix custom icon fontSize prop support (#21362) @kn1ves
+- [Dialog] Fix dialog children being announced as clickable (#21285) @eps1lon
+- [Select] Improve native validation, autofill, and testability (#21192) @netochaves
+- [Stepper] Always pass state props to connector (#21370) @baterson
+- [Stepper] Only render label container if a label exists (#21322) @Floriferous
+
+### `@material-ui/lab@v4.0.0-alpha.56`
+
+- [Autocomplete] Fix scroll reset after unselect the only option (#21280) @svikhristyuk
+- [Autocomplete] Prevent default event for disabled options (#21390) @GregoryAndrievskiy
+- [SpeedDial] Improve tooltip work break (#21359) @SugiKent
+- [Timeline] Introduce new component (#21331) @mnajdova
+- [TypeScript] Allow lab components to have overrides in theme (#21279) @CarsonF
+
+### `@material-ui/utils@v4.10.2`
+
+- [core] Minify error messages in production (#21214) @eps1lon
+
+### Docs
+
+- [docs] Add palette TypeScript override example (#21319) @WillSquire
+- [docs] Always consider code as left-to-right (#21386) @eps1lon
+- [docs] Correct the name of a prop in the Table docs (#21384) @fedde-s
+- [docs] Improve CONTRIBUTING.md (#21303) @pedrooa
+- [docs] Improve ad display (#21246) @oliviertassinari
+- [docs] Improve legibility of required star (#21369) @eps1lon
+- [docs] List all the Tab components under the API section (#21241) @emretapci
+- [docs] Move more prop docs into IntelliSense (#21002) @eps1lon
+- [docs] Move more prop docs into IntelliSense (#21368) @eps1lon
+- [docs] Move more prop docs into IntelliSense (#21375) @eps1lon
+- [docs] Sync translations (#21336) @oliviertassinari
+- [docs] Update builderbook.org image in showcase (#21360) @klyburke
+- [docs] Update builderbook.org showcase (#21274) @klyburke
+- [docs] Update minimum TypeScript version to 3.2 (#21197) @NMinhNguyen
+- [docs] Use rem in responsive font sizes chart (#21373) @thewidgetsmith
+
+### Core
+
+- [test] Speed up slow TablePagination tests (#21374) @eps1lon
+- [test] Type-test event handlers on ListItem (#21298) @eps1lon
+- [core] Batch small changes (#21335) @oliviertassinari
+- [core] Don't ship type tests (#21300) @eps1lon
+- [core] Minify error messages in production (#21214) @eps1lon
+- [core] Switch from `$ExpectError` to `@ts-expect-error` (#21308) @eps1lon
+- [core] Use custom $ExpectType assertion (#21309) @eps1lon
+
 ## 4.10.1
 ###### *June 1, 2020*
 

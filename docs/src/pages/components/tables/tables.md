@@ -71,7 +71,7 @@ You should either provide an array of:
 
 ### Custom pagination actions
 
-The `Action` property of the `TablePagination` component allows the implementation of
+The `ActionsComponent` prop of the `TablePagination` component allows the implementation of
 custom actions.
 
 {{"demo": "pages/components/tables/CustomPaginationActionsTable.js", "bg": true}}

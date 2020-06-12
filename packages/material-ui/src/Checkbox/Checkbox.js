@@ -64,13 +64,16 @@ const Checkbox = React.forwardRef(function Checkbox(props, ref) {
     checkedIcon = defaultCheckedIcon,
     classes,
     color = 'secondary',
-    icon = defaultIcon,
+    icon: iconProp = defaultIcon,
     indeterminate = false,
-    indeterminateIcon = defaultIndeterminateIcon,
+    indeterminateIcon: indeterminateIconProp = defaultIndeterminateIcon,
     inputProps,
     size = 'medium',
     ...other
   } = props;
+
+  const icon = indeterminate ? indeterminateIconProp : iconProp;
+  const indeterminateIcon = indeterminate ? indeterminateIconProp : checkedIcon;
 
   return (
     <SwitchBase
@@ -87,11 +90,15 @@ const Checkbox = React.forwardRef(function Checkbox(props, ref) {
         'data-indeterminate': indeterminate,
         ...inputProps,
       }}
-      icon={React.cloneElement(indeterminate ? indeterminateIcon : icon, {
-        fontSize: size === 'small' ? 'small' : 'default',
+      icon={React.cloneElement(icon, {
+        fontSize:
+          icon.props.fontSize === undefined && size !== 'medium' ? size : icon.props.fontSize,
       })}
-      checkedIcon={React.cloneElement(indeterminate ? indeterminateIcon : checkedIcon, {
-        fontSize: size === 'small' ? 'small' : 'default',
+      checkedIcon={React.cloneElement(indeterminateIcon, {
+        fontSize:
+          indeterminateIcon.props.fontSize === undefined && size !== 'medium'
+            ? size
+            : indeterminateIcon.props.fontSize,
       })}
       ref={ref}
       {...other}

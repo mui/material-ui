@@ -46,7 +46,7 @@ The `MuiDialog` name can be used for providing [default props](/customization/gl
 | <span class="prop-name">onExit</span> | <span class="prop-type">func</span> |  | Callback fired before the dialog exits. |
 | <span class="prop-name">onExited</span> | <span class="prop-type">func</span> |  | Callback fired when the dialog has exited. |
 | <span class="prop-name">onExiting</span> | <span class="prop-type">func</span> |  | Callback fired when the dialog is exiting. |
-| <span class="prop-name required">open&nbsp;*</span> | <span class="prop-type">bool</span> |  | If `true`, the Dialog is open. |
+| <span class="prop-name required">open<abbr title="required">*</abbr></span> | <span class="prop-type">bool</span> |  | If `true`, the Dialog is open. |
 | <span class="prop-name">PaperComponent</span> | <span class="prop-type">elementType</span> | <span class="prop-default">Paper</span> | The component used to render the body of the dialog. |
 | <span class="prop-name">PaperProps</span> | <span class="prop-type">object</span> | <span class="prop-default">{}</span> | Props applied to the [`Paper`](/api/paper/) element. |
 | <span class="prop-name">scroll</span> | <span class="prop-type">'body'<br>&#124;&nbsp;'paper'</span> | <span class="prop-default">'paper'</span> | Determine the container for scrolling the dialog. |

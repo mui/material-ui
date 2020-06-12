@@ -319,7 +319,7 @@ function generateProps(reactAPI) {
       /\.isRequired/.test(prop.type.raw) ||
       (chainedPropType !== false && chainedPropType.required)
     ) {
-      propRaw = `<span class="prop-name required">${propRaw}&nbsp;*</span>`;
+      propRaw = `<span class="prop-name required">${propRaw}<abbr title="required">*</abbr></span>`;
     } else {
       propRaw = `<span class="prop-name">${propRaw}</span>`;
     }

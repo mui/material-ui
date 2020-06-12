@@ -115,4 +115,20 @@ describe('<Checkbox />', () => {
       });
     });
   });
+
+  it('should allow custom icon font sizes', () => {
+    const fontSizeSpy = spy();
+    const MyIcon = (props) => {
+      const { fontSize, ...other } = props;
+
+      React.useEffect(() => {
+        fontSizeSpy(fontSize);
+      });
+
+      return <div {...other} />;
+    };
+    render(<Checkbox icon={<MyIcon fontSize="foo" />} />);
+
+    expect(fontSizeSpy.args[0][0]).to.equal('foo');
+  });
 });

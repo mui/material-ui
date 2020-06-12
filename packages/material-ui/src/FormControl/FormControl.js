@@ -201,6 +201,10 @@ const FormControl = React.forwardRef(function FormControl(props, ref) {
 });
 
 FormControl.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * The contents of the form control.
    */
@@ -209,7 +213,7 @@ FormControl.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -248,7 +252,7 @@ FormControl.propTypes = {
   /**
    * If `dense` or `normal`, will adjust vertical spacing of this and contained components.
    */
-  margin: PropTypes.oneOf(['none', 'dense', 'normal']),
+  margin: PropTypes.oneOf(['dense', 'none', 'normal']),
   /**
    * If `true`, the label will indicate that the input is required.
    */
@@ -256,11 +260,11 @@ FormControl.propTypes = {
   /**
    * The size of the text field.
    */
-  size: PropTypes.oneOf(['small', 'medium']),
+  size: PropTypes.oneOf(['medium', 'small']),
   /**
    * The variant to use.
    */
-  variant: PropTypes.oneOf(['standard', 'outlined', 'filled']),
+  variant: PropTypes.oneOf(['filled', 'outlined', 'standard']),
 };
 
 export default withStyles(styles, { name: 'MuiFormControl' })(FormControl);

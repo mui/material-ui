@@ -9,15 +9,41 @@ export interface CardHeaderTypeMap<
   SubheaderTypographyComponent extends React.ElementType = 'span'
 > {
   props: Props & {
+    /**
+     * The action to display in the card header.
+     */
     action?: React.ReactNode;
+    /**
+     * The Avatar for the Card Header.
+     */
     avatar?: React.ReactNode;
+    /**
+     * If `true`, `subheader` and `title` won't be wrapped by a Typography component.
+     * This can be useful to render an alternative Typography variant by wrapping
+     * the `title` text, and optional `subheader` text
+     * with the Typography component.
+     */
     disableTypography?: boolean;
+    /**
+     * The content of the component.
+     */
     subheader?: React.ReactNode;
+    /**
+     * These props will be forwarded to the subheader
+     * (as long as disableTypography is not `true`).
+     */
     subheaderTypographyProps?: TypographyProps<
       SubheaderTypographyComponent,
       { component?: SubheaderTypographyComponent }
     >;
+    /**
+     * The content of the Card Title.
+     */
     title?: React.ReactNode;
+    /**
+     * These props will be forwarded to the title
+     * (as long as disableTypography is not `true`).
+     */
     titleTypographyProps?: TypographyProps<
       TitleTypographyComponent,
       { component?: TitleTypographyComponent }
@@ -76,7 +102,13 @@ export type CardHeaderPropsWithComponent<
   Props = {},
   TitleTypographyComponent extends React.ElementType = 'span',
   SubheaderTypographyComponent extends React.ElementType = 'span'
-> = { component?: DefaultComponent } & CardHeaderProps<
+> = {
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component?: DefaultComponent;
+} & CardHeaderProps<
   DefaultComponent,
   Props,
   TitleTypographyComponent,

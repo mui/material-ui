@@ -28,7 +28,7 @@ The `MuiLink` name can be used for providing [default props](/customization/glob
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name required">children&nbsp;*</span> | <span class="prop-type">node</span> |  | The content of the link. |
+| <span class="prop-name required">children<abbr title="required">*</abbr></span> | <span class="prop-type">node</span> |  | The content of the link. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">color</span> | <span class="prop-type">'initial'<br>&#124;&nbsp;'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'textPrimary'<br>&#124;&nbsp;'textSecondary'<br>&#124;&nbsp;'error'</span> | <span class="prop-default">'primary'</span> | The color of the link. |
 | <span class="prop-name">component</span> | <span class="prop-type">element type</span> | <span class="prop-default">'a'</span> | The component used for the root node. Either a string to use a HTML element or a component.<br>⚠️ [Needs to be able to hold a ref](/guides/composition/#caveat-with-refs). |

@@ -40,6 +40,27 @@ export * from './TabList';
 export { default as TabPanel } from './TabPanel';
 export * from './TabPanel';
 
+export { default as Timeline } from './Timeline';
+export * from './Timeline';
+
+export { default as TimelineConnector } from './TimelineConnector';
+export * from './TimelineConnector';
+
+export { default as TimelineContent } from './TimelineContent';
+export * from './TimelineContent';
+
+export { default as TimelineDot } from './TimelineDot';
+export * from './TimelineDot';
+
+export { default as TimelineItem } from './TimelineItem';
+export * from './TimelineItem';
+
+export { default as TimelineOppositeContent } from './TimelineOppositeContent';
+export * from './TimelineOppositeContent';
+
+export { default as TimelineSeparator } from './TimelineSeparator';
+export * from './TimelineSeparator';
+
 export { default as ToggleButton } from './ToggleButton';
 export * from './ToggleButton';
 
