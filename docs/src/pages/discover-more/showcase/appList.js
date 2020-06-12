@@ -620,6 +620,15 @@ const appList = [
     stars: 14,
     dateAdded: '2020-03-25',
   },
+  {
+    title: 'EasyResume',
+    description:
+      'EasyResume is a FREE tool to create and download your professional resume as a PDF.',
+    image: 'easy-resume.png',
+    link: 'https://easy-resu.me/',
+    similarWebVisits: 267,
+    dateAdded: '2020-06-12',
+  },
 ];
 
 export default appList;
