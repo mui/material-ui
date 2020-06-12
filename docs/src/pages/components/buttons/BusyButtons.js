@@ -44,7 +44,7 @@ export default function BusyButtons() {
         pendingIndicator="Loading..."
         pendingIndicatorPosition="center"
       >
-        Submit
+        Fetch data
       </BusyButton>
       <BusyButton
         variant="contained"
