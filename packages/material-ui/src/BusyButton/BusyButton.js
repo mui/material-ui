@@ -49,7 +49,7 @@ const BusyButton = React.forwardRef(function BusyButton(props, ref) {
     className,
     disabled = false,
     pending = false,
-    pendingIndicatorPosition = 'start',
+    pendingIndicatorPosition = 'center',
     children,
     pendingIndicator = <CircularProgress color="inherit" size={16} />,
     ...other
