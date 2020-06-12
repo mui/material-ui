@@ -120,7 +120,7 @@
     "rollup": "^2.10.2",
     "rollup-plugin-replace": "^2.2.0",
     "rollup-plugin-size-snapshot": "^0.12.0",
-    "rollup-plugin-terser": "^5.1.1",
+    "rollup-plugin-terser": "^6.1.0",
     "ts-jest": "^25.5.1",
     "typescript": "^3.8.3"
   }
