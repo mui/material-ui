@@ -131,18 +131,20 @@ describe('<Stepper />', () => {
     });
 
     it('passes index down correctly when rendering children containing arrays', () => {
-      // I don't see how to test it using react-testing-library
-      // Also, this test has questionable value, I'd delete it
-      // const wrapper = shallow(
-      //   <Stepper linear={false}>
-      //     <div />
-      //     {[<div key={1} />, <div key={2} />]}
-      //   </Stepper>,
-      // );
-      // const steps = wrapper.children().find('div');
-      // expect(steps.at(0).props().index).to.equal(0);
-      // expect(steps.at(1).props().index).to.equal(1);
-      // expect(steps.at(2).props().index).to.equal(2);
+      const CustomStep = ({ index }) => <div data-index={index} data-testid="step" />;
+
+      const { getAllByTestId } = render(
+        <Stepper nonLinear>
+          <CustomStep />
+          {[<CustomStep key={1} />, <CustomStep key={2} />]}
+        </Stepper>,
+      );
+
+      const steps = getAllByTestId('step');
+
+      expect(steps[0]).to.have.attribute('data-index', '0');
+      expect(steps[1]).to.have.attribute('data-index', '1');
+      expect(steps[2]).to.have.attribute('data-index', '2');
     });
   });
 
