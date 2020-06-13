@@ -14,7 +14,7 @@ export const styles = () => ({
     padding: 0,
     position: 'absolute',
     whiteSpace: 'nowrap',
-    width: '1px',
+    width: 1,
   },
 });
 
