@@ -1,5 +1,5 @@
 import * as CSS from 'csstype';
-
+import { CSSProperties } from '@material-ui/styles'
 // disable automatic export
 export {};
 
@@ -201,6 +201,8 @@ export const typography: SimpleStyleFunction<
   | 'textAlign'
 >;
 export type TypographyProps = PropsFor<typeof typography>;
+
+export const visuallyHidden: CSSProperties;
 
 // utils
 type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;

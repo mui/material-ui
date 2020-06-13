@@ -10,8 +10,8 @@ import {
   useControlled,
   unstable_useId as useId,
 } from '@material-ui/core/utils';
+import { visuallyHidden } from '@material-ui/system';
 import Star from '../internal/svg-icons/Star';
-import { visuallyHidden } from '../VisuallyHidden';
 
 function clamp(value, min, max) {
   if (value < min) {
