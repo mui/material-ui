@@ -89,7 +89,7 @@ After 1.0 second, you can display a loader to keep user's flow of thought uninte
 
 ## Limitations
 
-### High CPU Load
+### High CPU load
 
 Under heavy load, you might lose the stroke dash animation or see random `CircularProgress` ring widths.
 You should run processor intensive operations in a web worker or by batch in order not to block the main rendering thread.
@@ -104,8 +104,8 @@ See [this issue](https://github.com/mui-org/material-ui/issues/10327).
 ### High frequency updates
 
 The `LinearProgress` uses a transition on the CSS transform property to provide a smooth update between different values.
-In the event a parent component updates the `value` prop too quickly (>30 fps), you might experience a delay.
-If the update frequency is higher than the frame rate (>60 fps), you might not see any update at all.
+In the event a parent component updates the `value` prop too quickly (>30 Hz), you might experience a delay.
+If the update frequency is higher than the frame rate (>60 Hz), you might not see any update at all.
 
 In these cases, we recommend disabling the transition:
 
