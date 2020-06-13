@@ -125,6 +125,7 @@ const pages = [
           { pathname: '/components/timeline' },
           { pathname: '/components/toggle-button' },
           { pathname: '/components/tree-view' },
+          { pathname: '/components/visually-hidden' },
         ],
       },
     ],
