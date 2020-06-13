@@ -202,7 +202,7 @@ export const typography: SimpleStyleFunction<
 >;
 export type TypographyProps = PropsFor<typeof typography>;
 
-export const visuallyHidden: CSS.Properties;
+export const visuallyHidden: CSSProperties;
 
 // utils
 type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;
