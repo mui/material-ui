@@ -217,15 +217,12 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 
 ```jsx
 import Icon from '@material-ui/core/Icon';
-import { visuallyHidden } from '@material-ui/system';
-import { makeStyles } from '@material-ui/core/styles';
-
-const classes = makeStyles({ visuallyHidden })();
+import Typography from '@material-ui/core/Typography';
 
 // ...
 
 <Icon>add_circle</Icon>
-<span className={classes.visuallyHidden}>创建一个用户</span>
+<Typography variant="srOnly">创建一个用户</Typography>
 ```
 
 ### 参考

@@ -217,15 +217,12 @@ If your icons are purely decorative, you’re already done! The `aria-hidden=tru
 
 ```jsx
 import Icon from '@material-ui/core/Icon';
-import { visuallyHidden } from '@material-ui/system';
-import { makeStyles } from '@material-ui/core/styles';
-
-const classes = makeStyles({ visuallyHidden })();
+import Typography from '@material-ui/core/Typography';
 
 // ...
 
 <Icon>add_circle</Icon>
-<span className={classes.visuallyHidden}>Создать пользователя</span>
+<Typography variant="srOnly">Создать пользователя</Typography>
 ```
 
 ### Справка
