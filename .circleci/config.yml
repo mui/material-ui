@@ -111,7 +111,7 @@ jobs:
           command: yarn prettier check-changed
       - run:
           name: Generate PropTypes
-          command: yarn proptypes --disable-cache
+          command: yarn proptypes
       - run:
           name: '`yarn proptypes` changes committed?'
           command: git diff --exit-code
