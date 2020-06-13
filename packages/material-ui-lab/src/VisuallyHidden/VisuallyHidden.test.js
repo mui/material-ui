@@ -16,7 +16,7 @@ describe('<VisuallyHidden />', () => {
     classes,
     inheritComponent: 'span',
     mount,
-    refInstanceof: window.HTMLUListElement,
+    refInstanceof: window.HTMLSpanElement,
     skip: ['componentProp'],
   }));
 });
