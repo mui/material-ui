@@ -15,7 +15,7 @@ export type BusyButtonTypeMap<
      */
     pendingIndicator?: React.ReactNode;
     /**
-     * The pending indicator can be positioned on the start, end or the center of the Button.
+     * The pending indicator can be positioned on the start, end, or the center of the button.
      */
     pendingPosition?: 'start' | 'end' | 'center';
   };
