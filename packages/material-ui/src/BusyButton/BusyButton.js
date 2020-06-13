@@ -87,6 +87,7 @@ const BusyButton = React.forwardRef(function BusyButton(props, ref) {
           {pendingIndicator}
         </div>
       )}
+
       {children}
     </Button>
   );
@@ -111,50 +112,9 @@ BusyButton.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * The color of the component. It supports those theme colors that make sense for this component.
-   */
-  color: PropTypes.oneOf(['default', 'inherit', 'primary', 'secondary']),
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
-  /**
    * If `true`, the button will be disabled.
    */
   disabled: PropTypes.bool,
-  /**
-   * If `true`, no elevation is used.
-   */
-  disableElevation: PropTypes.bool,
-  /**
-   * If `true`, the  keyboard focus ripple will be disabled.
-   */
-  disableFocusRipple: PropTypes.bool,
-  /**
-   * If `true`, the ripple effect will be disabled.
-   *
-   * ⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure
-   * to highlight the element by applying separate styles with the `focusVisibleClassName`.
-   */
-  disableRipple: PropTypes.bool,
-  /**
-   * Element placed after the children.
-   */
-  endIcon: PropTypes.node,
-  /**
-   * @ignore
-   */
-  focusVisibleClassName: PropTypes.string,
-  /**
-   * If `true`, the button will take up the full width of its container.
-   */
-  fullWidth: PropTypes.bool,
-  /**
-   * The URL to link to when the button is clicked.
-   * If defined, an `a` element will be used as the root node.
-   */
-  href: PropTypes.string,
   /**
    * The content of the button.
    */
@@ -179,23 +139,6 @@ BusyButton.propTypes = {
     }
     return null;
   }),
-  /**
-   * The size of the button.
-   * `small` is equivalent to the dense button styling.
-   */
-  size: PropTypes.oneOf(['large', 'medium', 'small']),
-  /**
-   * Element placed before the children.
-   */
-  startIcon: PropTypes.node,
-  /**
-   * @ignore
-   */
-  type: PropTypes.oneOfType([PropTypes.oneOf(['button', 'reset', 'submit']), PropTypes.string]),
-  /**
-   * The variant to use.
-   */
-  variant: PropTypes.oneOf(['contained', 'outlined', 'text']),
 };
 
 export default withStyles(styles, { name: 'MuiBusyButton' })(BusyButton);
