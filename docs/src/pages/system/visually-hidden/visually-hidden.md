@@ -4,6 +4,6 @@
 
 ## Usage
 
-The text in the example will not be shown visually, but will be read by screen readers.
+The inputs and the icons in the example are accompined with text which is available only to the screen readers.
 
 {{"demo": "pages/system/visually-hidden/VisuallyHiddenUsage.js"}}
