@@ -186,6 +186,7 @@ const pages = [
       { pathname: '/guides/composition' },
       { pathname: '/guides/server-rendering' },
       { pathname: '/guides/responsive-ui', title: 'Responsive UI' },
+      { pathname: '/guides/migration-v4', title: 'Migration From v4' },
       { pathname: '/guides/migration-v3', title: 'Migration From v3' },
       { pathname: '/guides/migration-v0x', title: 'Migration From v0.x' },
       { pathname: '/guides/testing' },
