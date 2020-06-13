@@ -93,7 +93,7 @@ export type RatingClassKey =
   | 'readOnly'
   | 'disabled'
   | 'focusVisible'
-  | 'visuallyhidden'
+  | 'visuallyHidden'
   | 'pristine'
   | 'label'
   | 'icon'

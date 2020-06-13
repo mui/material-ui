@@ -72,7 +72,7 @@ export const styles = (theme) => ({
   /* Pseudo-class applied to the root element if keyboard focused. */
   focusVisible: {},
   /* Visually hide an element. */
-  visuallyhidden: visuallyHidden,
+  visuallyHidden,
   /* Styles applied to the pristine label. */
   pristine: {
     'input:focus + &': {
@@ -332,7 +332,7 @@ const Rating = React.forwardRef(function Rating(props, ref) {
       <React.Fragment key={state.value}>
         <label className={classes.label} htmlFor={id} {...labelProps}>
           {container}
-          <span className={classes.visuallyhidden}>{getLabelText(state.value)}</span>
+          <span className={classes.visuallyHidden}>{getLabelText(state.value)}</span>
         </label>
         <input
           onFocus={handleFocus}
@@ -345,7 +345,7 @@ const Rating = React.forwardRef(function Rating(props, ref) {
           type="radio"
           name={name}
           checked={state.checked}
-          className={classes.visuallyhidden}
+          className={classes.visuallyHidden}
         />
       </React.Fragment>
     );
@@ -434,10 +434,10 @@ const Rating = React.forwardRef(function Rating(props, ref) {
             type="radio"
             name={name}
             defaultChecked
-            className={classes.visuallyhidden}
+            className={classes.visuallyHidden}
           />
           <label className={classes.pristine} htmlFor={`${name}-empty`}>
-            <span className={classes.visuallyhidden}>{emptyLabelText}</span>
+            <span className={classes.visuallyHidden}>{emptyLabelText}</span>
           </label>
         </React.Fragment>
       )}
