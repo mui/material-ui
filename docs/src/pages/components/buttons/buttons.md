@@ -94,7 +94,7 @@ Here are some examples of customizing the component. You can learn more about th
 
 🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/button).
 
-## Busy Buttons
+## Busy buttons
 
 The busy buttons can show pending state and disable interactions.
 
