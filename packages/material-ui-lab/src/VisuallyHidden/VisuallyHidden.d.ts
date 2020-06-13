@@ -14,7 +14,7 @@ export type VisuallyHiddenClassKey = 'root';
  *
  * Demos:
  *
- * - [VisuallyHidden](https://material-ui.com/components/visually-hidden/)
+ * - [Visually Hidden](https://material-ui.com/components/visually-hidden/)
  *
  * API:
  *
