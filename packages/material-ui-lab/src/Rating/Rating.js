@@ -11,6 +11,7 @@ import {
   unstable_useId as useId,
 } from '@material-ui/core/utils';
 import Star from '../internal/svg-icons/Star';
+import { visuallyHidden } from '../VisuallyHidden';
 
 function clamp(value, min, max) {
   if (value < min) {
@@ -71,18 +72,7 @@ export const styles = (theme) => ({
   /* Pseudo-class applied to the root element if keyboard focused. */
   focusVisible: {},
   /* Visually hide an element. */
-  visuallyhidden: {
-    border: 0,
-    clip: 'rect(0 0 0 0)',
-    height: 1,
-    margin: -1,
-    color: '#000',
-    overflow: 'hidden',
-    padding: 0,
-    position: 'absolute',
-    top: 20,
-    width: 1,
-  },
+  visuallyhidden: visuallyHidden,
   /* Styles applied to the pristine label. */
   pristine: {
     'input:focus + &': {

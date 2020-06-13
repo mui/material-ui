@@ -3,19 +3,21 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
 
+export const visuallyHidden = {
+  border: 0,
+  clip: 'rect(0 0 0 0)',
+  height: 1,
+  margin: -1,
+  overflow: 'hidden',
+  padding: 0,
+  position: 'absolute',
+  whiteSpace: 'nowrap',
+  width: 1,
+};
+
 export const styles = () => ({
   /* Styles applied to the root element. */
-  root: {
-    border: 0,
-    clip: 'rect(0 0 0 0)',
-    height: 1,
-    margin: -1,
-    overflow: 'hidden',
-    padding: 0,
-    position: 'absolute',
-    whiteSpace: 'nowrap',
-    width: 1,
-  },
+  root: visuallyHidden,
 });
 
 const VisuallyHidden = React.forwardRef(function VisuallyHidden(props, ref) {

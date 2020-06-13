@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { StandardProps } from '@material-ui/core';
+import { CSSProperties } from '@material-ui/styles';
 
 export interface VisuallyHiddenProps extends StandardProps<{}, VisuallyHiddenClassKey> {
   /**
@@ -9,6 +10,8 @@ export interface VisuallyHiddenProps extends StandardProps<{}, VisuallyHiddenCla
 }
 
 export type VisuallyHiddenClassKey = 'root';
+
+export const visuallyHidden: CSSProperties;
 
 /**
  *
