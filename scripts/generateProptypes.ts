@@ -251,12 +251,11 @@ async function generateProptypes(
 }
 
 interface HandlerArgv {
-  'disable-cache': boolean;
   pattern: string;
   verbose: boolean;
 }
 async function run(argv: HandlerArgv) {
-  const { 'disable-cache': ignoreCache, pattern, verbose } = argv;
+  const { pattern, verbose } = argv;
 
   const filePattern = new RegExp(pattern);
   if (pattern.length > 0) {
@@ -295,11 +294,6 @@ async function run(argv: HandlerArgv) {
   const promises = files.map<Promise<GenerateResult>>(async (tsFile) => {
     const jsFile = tsFile.replace('.d.ts', '.js');
 
-    if (!ignoreCache && (await fse.stat(jsFile)).mtimeMs > (await fse.stat(tsFile)).mtimeMs) {
-      // Javascript version is newer, skip file
-      return GenerateResult.Skipped;
-    }
-
     if (todoComponents.includes(path.basename(jsFile, '.js'))) {
       return GenerateResult.TODO;
     }
@@ -331,11 +325,6 @@ yargs
     describe: 'Generates Component.propTypes from TypeScript declarations',
     builder: (command) => {
       return command
-        .option('disable-cache', {
-          default: false,
-          describe: 'Considers all files on every run',
-          type: 'boolean',
-        })
         .option('verbose', {
           default: false,
           describe: 'Logs result for each file',
