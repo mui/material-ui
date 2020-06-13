@@ -36,10 +36,10 @@ export default function BusyButtonsTransition() {
         label="Pending"
       />
       <BusyButton variant="outlined" pending={pending}>
-        Fetch data
+        Submit
       </BusyButton>
       <BusyButton variant="outlined" pending={pending} pendingIndicator="Loading...">
-        Submit
+        Fetch data
       </BusyButton>
       <BusyButton
         variant="contained"
