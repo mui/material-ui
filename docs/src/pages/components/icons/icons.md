@@ -236,12 +236,15 @@ If your icons have semantic meaning, you need to provide a text alternative only
 
 ```jsx
 import Icon from '@material-ui/core/Icon';
-import Typography from '@material-ui/core/Typography';
+import { visuallyHidden } from '@material-ui/system';
+import { makeStyles } from '@material-ui/core/styles';
+
+const classes = makeStyles({ visuallyHidden })();
 
 // ...
 
 <Icon>add_circle</Icon>
-<Typography variant="srOnly">Create a user</Typography>
+<span className={classes.visuallyHidden}>Create a user</span>
 ```
 
 ### Reference

@@ -217,12 +217,15 @@ Wenn Ihre Symbole eine semantische Bedeutung haben, müssen Sie eine Textalterna
 
 ```jsx
 import Icon from '@material-ui/core/Icon';
-import Typography from '@material-ui/core/Typography';
+import { visuallyHidden } from '@material-ui/system';
+import { makeStyles } from '@material-ui/core/styles';
+
+const classes = makeStyles({ visuallyHidden })();
 
 // ...
 
 <Icon>add_circle</Icon>
-<Typography variant="srOnly">Erstellen Sie einen Benutzer</Typography>
+<span className={classes.visuallyHidden}>Erstellen Sie einen Benutzer</span>
 ```
 
 ### Referenz

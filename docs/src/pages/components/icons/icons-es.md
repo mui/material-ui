@@ -217,12 +217,15 @@ Si los iconos tienen significado semántico, se necesita proporcionar una altern
 
 ```jsx
 import Icon from '@material-ui/core/Icon';
-import Typography from '@material-ui/core/Typography';
+import { visuallyHidden } from '@material-ui/system';
+import { makeStyles } from '@material-ui/core/styles';
+
+const classes = makeStyles({ visuallyHidden })();
 
 // ...
 
 <Icon>add_circle</Icon>
-<Typography variant="srOnly">Crear ususario</Typography>
+<span className={classes.visuallyHidden}>Crear ususario</span>
 ```
 
 ### Referencia

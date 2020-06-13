@@ -35,13 +35,6 @@ export const styles = (theme) => ({
   subtitle2: theme.typography.subtitle2,
   /* Styles applied to the root element if `variant="overline"`. */
   overline: theme.typography.overline,
-  /* Styles applied to the root element if `variant="srOnly"`. Only accessible to screen readers. */
-  srOnly: {
-    position: 'absolute',
-    height: 1,
-    width: 1,
-    overflow: 'hidden',
-  },
   /* Styles applied to the root element if `align="left"`. */
   alignLeft: {
     textAlign: 'left',
@@ -233,7 +226,6 @@ Typography.propTypes = {
     'caption',
     'button',
     'overline',
-    'srOnly',
     'inherit',
   ]),
   /**
