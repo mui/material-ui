@@ -6,8 +6,10 @@ import AccessibilityIcon from '@material-ui/icons/Accessibility';
 export default function IconButtonWithVisuallyHiddenText() {
   return (
     <IconButton>
-      <VisuallyHidden>This text will not be visible, but will be read by screen readers.</VisuallyHidden>
-      <AccessibilityIcon />  
+      <VisuallyHidden>
+        This text will not be visible, but will be read by screen readers.
+      </VisuallyHidden>
+      <AccessibilityIcon />
     </IconButton>
   );
 }
