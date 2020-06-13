@@ -3,7 +3,7 @@ import VisuallyHidden from '@material-ui/lab/VisuallyHidden';
 import IconButton from '@material-ui/core/IconButton';
 import AccessibilityIcon from '@material-ui/icons/Accessibility';
 
-export default function IconButtonWithVisuallyHiddenText() {
+export default function VisuallyHiddenUsage() {
   return (
     <IconButton>
       <VisuallyHidden>
