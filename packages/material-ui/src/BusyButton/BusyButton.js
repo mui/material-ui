@@ -160,7 +160,7 @@ BusyButton.propTypes = {
    */
   pendingIndicator: PropTypes.node,
   /**
-   * The pending indicator can be positioned on the start, end or the center of the Button.
+   * The pending indicator can be positioned on the start, end, or the center of the button.
    */
   pendingPosition: chainPropTypes(PropTypes.oneOf(['start', 'end', 'center']), (props) => {
     if (props.pendingPosition === 'start' && !props.startIcon) {
