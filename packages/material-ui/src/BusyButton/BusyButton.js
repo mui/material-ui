@@ -25,7 +25,7 @@ export const styles = () => ({
   },
   /* Styles applied to the pendingIndicator element if `pendingPosition="start"`. */
   pendingIndicatorStart: {
-    left: 16,
+    left: 14,
   },
   /* Styles applied to the pendingIndicator element if `pendingPosition="end"`. */
   pendingIndicatorEnd: {
