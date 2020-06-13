@@ -33,6 +33,11 @@ export const styles = (theme) => ({
     marginLeft: theme.spacing(2),
     marginRight: theme.spacing(2),
   },
+  /* Styles applied to the root element if `variant="verticalMiddle"`. */
+  verticalMiddle: {
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(1),
+  },
   /* Styles applied to the root element if `orientation="vertical"`. */
   vertical: {
     height: '100%',
@@ -126,7 +131,7 @@ Divider.propTypes = {
   /**
    * The variant to use.
    */
-  variant: PropTypes.oneOf(['fullWidth', 'inset', 'middle']),
+  variant: PropTypes.oneOf(['fullWidth', 'inset', 'middle', 'verticalMiddle']),
 };
 
 export default withStyles(styles, { name: 'MuiDivider' })(Divider);

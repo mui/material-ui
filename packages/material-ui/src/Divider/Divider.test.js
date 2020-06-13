@@ -65,6 +65,13 @@ describe('<Divider />', () => {
         expect(wrapper.hasClass(classes.middle)).to.equal(true);
       });
     });
+
+    describe('prop: variant="verticalMiddle"', () => {
+      it('should set the verticalMiddle class', () => {
+        const wrapper = shallow(<Divider variant="verticalMiddle" />);
+        expect(wrapper.hasClass(classes.verticalMiddle)).to.equal(true);
+      });
+    });
   });
 
   describe('role', () => {

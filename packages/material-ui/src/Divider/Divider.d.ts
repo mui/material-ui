@@ -22,7 +22,7 @@ export interface DividerTypeMap<P = {}, D extends React.ElementType = 'hr'> {
     /**
      * The variant to use.
      */
-    variant?: 'fullWidth' | 'inset' | 'middle';
+    variant?: 'fullWidth' | 'inset' | 'middle' | 'verticalMiddle';
   };
   defaultComponent: D;
   classKey: DividerClassKey;
@@ -41,7 +41,14 @@ export interface DividerTypeMap<P = {}, D extends React.ElementType = 'hr'> {
  */
 declare const Divider: OverridableComponent<DividerTypeMap>;
 
-export type DividerClassKey = 'root' | 'absolute' | 'inset' | 'light' | 'middle' | 'vertical';
+export type DividerClassKey =
+  | 'root'
+  | 'absolute'
+  | 'inset'
+  | 'light'
+  | 'middle'
+  | 'vertical'
+  | 'verticalMiddle';
 
 export type DividerProps<
   D extends React.ElementType = DividerTypeMap['defaultComponent'],

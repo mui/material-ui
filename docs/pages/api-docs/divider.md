@@ -34,7 +34,7 @@ The `MuiDivider` name can be used for providing [default props](/customization/g
 | <span class="prop-name">flexItem</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, a vertical divider will have the correct height when used in flex container. (By default, a vertical divider will have a calculated height of `0px` if it is the child of a flex container.) |
 | <span class="prop-name">light</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the divider will have a lighter color. |
 | <span class="prop-name">orientation</span> | <span class="prop-type">'horizontal'<br>&#124;&nbsp;'vertical'</span> | <span class="prop-default">'horizontal'</span> | The divider orientation. |
-| <span class="prop-name">variant</span> | <span class="prop-type">'fullWidth'<br>&#124;&nbsp;'inset'<br>&#124;&nbsp;'middle'</span> | <span class="prop-default">'fullWidth'</span> | The variant to use. |
+| <span class="prop-name">variant</span> | <span class="prop-type">'fullWidth'<br>&#124;&nbsp;'inset'<br>&#124;&nbsp;'middle'<br>&#124;&nbsp;'verticalMiddle'</span> | <span class="prop-default">'fullWidth'</span> | The variant to use. |
 
 The `ref` is forwarded to the root element.
 
@@ -49,6 +49,7 @@ Any other props supplied will be provided to the root element (native element).
 | <span class="prop-name">inset</span> | <span class="prop-name">.MuiDivider-inset</span> | Styles applied to the root element if `variant="inset"`.
 | <span class="prop-name">light</span> | <span class="prop-name">.MuiDivider-light</span> | Styles applied to the root element if `light={true}`.
 | <span class="prop-name">middle</span> | <span class="prop-name">.MuiDivider-middle</span> | Styles applied to the root element if `variant="middle"`.
+| <span class="prop-name">verticalMiddle</span> | <span class="prop-name">.MuiDivider-verticalMiddle</span> | Styles applied to the root element if `variant="verticalMiddle"`.
 | <span class="prop-name">vertical</span> | <span class="prop-name">.MuiDivider-vertical</span> | Styles applied to the root element if `orientation="vertical"`.
 | <span class="prop-name">flexItem</span> | <span class="prop-name">.MuiDivider-flexItem</span> | Styles applied to the root element if `flexItem={true}`.
 
