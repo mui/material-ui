@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
   root: { 
     border: 'none',
     color: 'grey',
-    '& label': { marginRight: 10 }
+    '& label': { marginRight: 10, cursor: 'pointer' }
   },
   selected: {
     color: theme.palette.primary.main,
