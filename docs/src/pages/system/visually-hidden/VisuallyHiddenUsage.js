@@ -6,10 +6,10 @@ import EmojiEmotionsIcon from '@material-ui/icons/EmojiEmotions';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 
 const useStyles = makeStyles((theme) => ({
-  root: { 
+  root: {
     border: 'none',
     color: 'grey',
-    '& label': { marginRight: 10, cursor: 'pointer' }
+    '& label': { marginRight: 10 },
   },
   selected: {
     color: theme.palette.primary.main,
@@ -19,25 +19,40 @@ const useStyles = makeStyles((theme) => ({
 
 export default function VisuallyHiddenUsage() {
   const classes = useStyles();
-  const [ selected, setSelected ] = React.useState('like');
-  
+  const [selected, setSelected] = React.useState('like');
+
   return (
     <fieldset className={classes.root}>
       <label className={selected === 'like' ? classes.selected : ''}>
-        <ThumbUpIcon onClick={() => setSelected('like')}/>
+        <ThumbUpIcon onClick={() => setSelected('like')} />
         <span className={classes.visuallyHidden}>Like</span>
       </label>
-      <input type="radio" value="like" className={classes.visuallyHidden} checked={selected === 'like'} />
+      <input
+        type="radio"
+        value="like"
+        className={classes.visuallyHidden}
+        checked={selected === 'like'}
+      />
       <label className={selected === 'smile' ? classes.selected : ''}>
         <EmojiEmotionsIcon onClick={() => setSelected('smile')} />
         <span className={classes.visuallyHidden}>Like</span>
       </label>
-      <input type="radio" value="smile" className={classes.visuallyHidden} checked={selected === 'smile'} />
+      <input
+        type="radio"
+        value="smile"
+        className={classes.visuallyHidden}
+        checked={selected === 'smile'}
+      />
       <label className={selected === 'love' ? classes.selected : ''}>
         <FavoriteIcon onClick={() => setSelected('love')} />
         <span className={classes.visuallyHidden}>Like</span>
       </label>
-      <input type="radio" value="love" className={classes.visuallyHidden} checked={selected === 'love'} />
+      <input
+        type="radio"
+        value="love"
+        className={classes.visuallyHidden}
+        checked={selected === 'love'}
+      />
     </fieldset>
   );
 }

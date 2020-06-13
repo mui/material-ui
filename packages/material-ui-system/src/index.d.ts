@@ -1,5 +1,5 @@
 import * as CSS from 'csstype';
-import { CSSProperties } from '@material-ui/styles'
+import { CSSProperties } from '@material-ui/styles';
 // disable automatic export
 export {};
 
@@ -202,7 +202,7 @@ export const typography: SimpleStyleFunction<
 >;
 export type TypographyProps = PropsFor<typeof typography>;
 
-export const visuallyHidden: CSSProperties;
+export const visuallyHidden: CSS.Properties;
 
 // utils
 type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;
