@@ -29,7 +29,7 @@ export const styles = () => ({
   },
   /* Styles applied to the pendingIndicator element if `pendingPosition="end"`. */
   pendingIndicatorEnd: {
-    right: 16,
+    right: 14,
   },
   /* Styles applied to the endIcon element if `pending={true}` and `pendingPosition="end"`. */
   endIconLoadingEnd: {
