@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function BusyButtons() {
+export default function BusyButtonsTransition() {
   const classes = useStyles();
   const [pending, setPending] = React.useState(false);
 
