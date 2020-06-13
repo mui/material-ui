@@ -32,7 +32,6 @@ export interface TableCellProps
   component?: React.ElementType<TableCellBaseProps>;
   /**
    * Hide the border of the cell.
-   * By default the border is shown
    */
   hideBorder?: boolean;
   /**

@@ -87,7 +87,7 @@ describe('<TableCell />', () => {
   });
 
   it('should have class hideBorder when the property is true', () => {
-    const container = renderInTable(<TableCell hideBorder />);
+    const { container } = renderInTable(<TableCell hideBorder />);
     expect(container.querySelector('td')).to.have.class(classes.hideBorder);
   });
 });

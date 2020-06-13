@@ -205,7 +205,6 @@ TableCell.propTypes = {
   component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
   /**
    * Hide the border of the cell.
-   * By default the border is shown
    */
   hideBorder: PropTypes.bool,
   /**

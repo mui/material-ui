@@ -48,13 +48,7 @@ const Table = React.forwardRef(function Table(props, ref) {
       <Component
         role={Component === defaultComponent ? null : 'table'}
         ref={ref}
-        className={clsx(
-          classes.root,
-          {
-            [classes.stickyHeader]: stickyHeader,
-          },
-          className,
-        )}
+        className={clsx(classes.root, { [classes.stickyHeader]: stickyHeader }, className)}
         {...other}
       />
     </TableContext.Provider>
