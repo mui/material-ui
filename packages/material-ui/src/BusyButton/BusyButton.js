@@ -96,7 +96,7 @@ BusyButton.propTypes = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------  
+  // ----------------------------------------------------------------------
   /**
    * The content of the button.
    */

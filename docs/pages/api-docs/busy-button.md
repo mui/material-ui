@@ -1,0 +1,83 @@
+---
+filename: /packages/material-ui/src/BusyButton/BusyButton.js
+---
+
+<!--- This documentation is automatically generated, do not try to edit it. -->
+
+# BusyButton API
+
+<p class="description">The API documentation of the BusyButton React component. Learn more about the props and the CSS customization points.</p>
+
+## Import
+
+```js
+import BusyButton from '@material-ui/core/BusyButton';
+// or
+import { BusyButton } from '@material-ui/core';
+```
+
+You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).
+
+
+
+## Component name
+
+The `MuiBusyButton` name can be used for providing [default props](/customization/globals/#default-props) or [style overrides](/customization/globals/#css) at the theme level.
+
+## Props
+
+| Name | Type | Default | Description |
+|:-----|:-----|:--------|:------------|
+| <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The content of the button. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <span class="prop-name">color</span> | <span class="prop-type">'default'<br>&#124;&nbsp;'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'</span> |  | The color of the component. It supports those theme colors that make sense for this component. |
+| <span class="prop-name">component</span> | <span class="prop-type">elementType</span> |  | The component used for the root node. Either a string to use a HTML element or a component. |
+| <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the button will be disabled. |
+| <span class="prop-name">disableElevation</span> | <span class="prop-type">bool</span> |  | If `true`, no elevation is used. |
+| <span class="prop-name">disableFocusRipple</span> | <span class="prop-type">bool</span> |  | If `true`, the  keyboard focus ripple will be disabled. |
+| <span class="prop-name">disableRipple</span> | <span class="prop-type">bool</span> |  | If `true`, the ripple effect will be disabled.<br>⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure to highlight the element by applying separate styles with the `focusVisibleClassName`. |
+| <span class="prop-name">endIcon</span> | <span class="prop-type">node</span> |  | Element placed after the children. |
+| <span class="prop-name">fullWidth</span> | <span class="prop-type">bool</span> |  | If `true`, the button will take up the full width of its container. |
+| <span class="prop-name">href</span> | <span class="prop-type">string</span> |  | The URL to link to when the button is clicked. If defined, an `a` element will be used as the root node. |
+| <span class="prop-name">pending</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | The content of the button. |
+| <span class="prop-name">pendingIndicator</span> | <span class="prop-type">node</span> | <span class="prop-default">&lt;CircularProgress color="inherit" size={16} /></span> | Element placed before the children if the button is in pending state. |
+| <span class="prop-name">pendingPosition</span> | <span class="prop-type">'start'<br>&#124;&nbsp;'end'<br>&#124;&nbsp;'center'</span> | <span class="prop-default">'center'</span> | The pending indicator can be positioned on the start, end, or the center of the button. |
+| <span class="prop-name">size</span> | <span class="prop-type">'large'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'small'</span> |  | The size of the button. `small` is equivalent to the dense button styling. |
+| <span class="prop-name">startIcon</span> | <span class="prop-type">node</span> |  | Element placed before the children. |
+| <span class="prop-name">variant</span> | <span class="prop-type">'contained'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'text'</span> |  | The variant to use. |
+
+The `ref` is forwarded to the root element.
+
+Any other props supplied will be provided to the root element ([Button](/api/button/)).
+
+## CSS
+
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span class="prop-name">root</span> | <span class="prop-name">.MuiBusyButton-root</span> | Styles applied to the root element.
+| <span class="prop-name">pending</span> | <span class="prop-name">.MuiBusyButton-pending</span> | Styles applied to the root element if `pending={true}`.
+| <span class="prop-name">pendingIndicator</span> | <span class="prop-name">.MuiBusyButton-pendingIndicator</span> | Styles applied to the pendingIndicator element.
+| <span class="prop-name">pendingIndicatorCenter</span> | <span class="prop-name">.MuiBusyButton-pendingIndicatorCenter</span> | Styles applied to the pendingIndicator element if `pendingPosition="center"`.
+| <span class="prop-name">pendingIndicatorStart</span> | <span class="prop-name">.MuiBusyButton-pendingIndicatorStart</span> | Styles applied to the pendingIndicator element if `pendingPosition="start"`.
+| <span class="prop-name">pendingIndicatorEnd</span> | <span class="prop-name">.MuiBusyButton-pendingIndicatorEnd</span> | Styles applied to the pendingIndicator element if `pendingPosition="end"`.
+| <span class="prop-name">endIconLoadingEnd</span> | <span class="prop-name">.MuiBusyButton-endIconLoadingEnd</span> | Styles applied to the endIcon element if `pending={true}` and `pendingPosition="end"`.
+| <span class="prop-name">startIconLoadingStart</span> | <span class="prop-name">.MuiBusyButton-startIconLoadingStart</span> | Styles applied to the startIcon element if `pending={true}` and `pendingPosition="start"`.
+| <span class="prop-name">labelLoadingCenter</span> | <span class="prop-name">.MuiBusyButton-labelLoadingCenter</span> | Styles applied to the label element if `pending={true}` and `pendingPosition="center"`.
+
+You can override the style of the component thanks to one of these customization points:
+
+- With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
+- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
+- With a theme and an [`overrides` property](/customization/globals/#css).
+
+If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/BusyButton/BusyButton.js) for more detail.
+
+## Inheritance
+
+The props of the [Button](/api/button/) component are also available.
+You can take advantage of this behavior to [target nested components](/guides/api/#spread).
+
+## Demos
+
+- [Buttons](/components/buttons/)
+

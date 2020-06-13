@@ -27,12 +27,11 @@ export type BusyButtonTypeMap<
  *
  * Demos:
  *
- * - [Button Group](https://material-ui.com/components/button-group/)
  * - [Buttons](https://material-ui.com/components/buttons/)
  *
  * API:
  *
- * - [BusyButton API](https://material-ui.com/api/pending-button/)
+ * - [BusyButton API](https://material-ui.com/api/busy-button/)
  * - inherits [Button API](https://material-ui.com/api/button/)
  */
 declare const BusyButton: ExtendButton<BusyButtonTypeMap>;
