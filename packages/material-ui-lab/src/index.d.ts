@@ -75,6 +75,3 @@ export * from './TreeView';
 
 export { default as useAutocomplete } from './useAutocomplete';
 export * from './useAutocomplete';
-
-export { default as VisuallyHidden } from './VisuallyHidden';
-export * from './VisuallyHidden';
