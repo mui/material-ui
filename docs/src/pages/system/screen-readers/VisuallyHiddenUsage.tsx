@@ -15,6 +15,7 @@ const useStyles = makeStyles((theme) => ({
   selected: {
     color: theme.palette.primary.main,
   },
+  // TODO fix #20379.
   span: visuallyHidden as CSSProperties,
   input: visuallyHidden as CSSProperties,
 }));
@@ -29,17 +30,35 @@ export default function VisuallyHiddenUsage() {
         <ThumbUpIcon onClick={() => setSelected('like')} />
         <span className={classes.span}>Like</span>
       </label>
-      <input className={classes.input} type="radio" id="like" value="like" checked={selected === 'like'} />
+      <input
+        className={classes.input}
+        type="radio"
+        id="like"
+        value="like"
+        checked={selected === 'like'}
+      />
       <label className={selected === 'smile' ? classes.selected : ''} htmlFor="smile">
         <EmojiEmotionsIcon onClick={() => setSelected('smile')} />
         <span className={classes.span}>Smile</span>
       </label>
-      <input className={classes.input} type="radio" id="smile" value="smile" checked={selected === 'smile'} />
+      <input
+        className={classes.input}
+        type="radio"
+        id="smile"
+        value="smile"
+        checked={selected === 'smile'}
+      />
       <label className={selected === 'love' ? classes.selected : ''} htmlFor="love">
         <FavoriteIcon onClick={() => setSelected('love')} />
         <span className={classes.span}>Love</span>
       </label>
-      <input className={classes.input} type="radio" id="love" value="love" checked={selected === 'love'} />
+      <input
+        className={classes.input}
+        type="radio"
+        id="love"
+        value="love"
+        checked={selected === 'love'}
+      />
     </fieldset>
   );
 }

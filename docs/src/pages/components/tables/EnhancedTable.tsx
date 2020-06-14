@@ -229,6 +229,7 @@ const useStyles = makeStyles((theme: Theme) =>
     table: {
       minWidth: 750,
     },
+    // TODO fix #20379.
     sortSpan: visuallyHidden as CSSProperties,
   }),
 );

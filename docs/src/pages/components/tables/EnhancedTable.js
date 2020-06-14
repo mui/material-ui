@@ -201,6 +201,7 @@ const useStyles = makeStyles((theme) => ({
   table: {
     minWidth: 750,
   },
+  // TODO fix #20379.
   sortSpan: visuallyHidden,
 }));
 
