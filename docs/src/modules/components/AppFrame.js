@@ -144,7 +144,7 @@ const styles = (theme) => ({
 });
 
 function AppFrame(props) {
-  const { children, classes } = props;
+  const { children, classes, disableDrawer = false } = props;
   const theme = useTheme();
   const t = useSelector((state) => state.options.t);
   const userLanguage = useSelector((state) => state.options.userLanguage);
@@ -188,7 +188,7 @@ function AppFrame(props) {
   let navIconClassName = '';
   let appBarClassName = classes.appBar;
 
-  if (activePage?.disableDrawer === true) {
+  if (activePage?.disableDrawer === true || disableDrawer === true) {
     disablePermanent = true;
     appBarClassName += ` ${classes.appBarHome}`;
   } else {
@@ -349,6 +349,7 @@ function AppFrame(props) {
 AppFrame.propTypes = {
   children: PropTypes.node.isRequired,
   classes: PropTypes.object.isRequired,
+  disableDrawer: PropTypes.node,
 };
 
 export default withStyles(styles)(AppFrame);
