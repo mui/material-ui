@@ -17,4 +17,4 @@ Portal 组件的子节点将被添加到指定的 `container` 中。 该组件�
 
 ## 服务器端
 
-React API [不支持](https://github.com/facebook/react/issues/13097) 在服务器上的 [`createPortal()`](https://reactjs.org/docs/portals.html)。 你必须等到客户端协调完成才能见到子节点。
+React [不支持](https://github.com/facebook/react/issues/13097)服务端渲染的 [`createPortal()`](https://reactjs.org/docs/portals.html) API。 你必须等到客户端协调完成才能见到子节点。

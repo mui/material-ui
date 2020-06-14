@@ -69,7 +69,7 @@ components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead,
 
 ### 自定义表格分页操作
 
-通过 `TablePagination` 组件的 `Action` 属性，可以实现自定义操作。
+The `ActionsComponent` prop of the `TablePagination` component allows the implementation of custom actions.
 
 {{"demo": "pages/components/tables/CustomPaginationActionsTable.js", "bg": true}}
 

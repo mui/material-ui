@@ -15,8 +15,8 @@ components: Chip
 
 以下是纸片组件的一个例子，它使用了图片，SVG 图标，“字母” 和（带有字符串的）头像。
 
-- 定义了`onClick` 属性的纸片组件会在获得焦点、鼠标悬浮、单击时有外观的变化。
-- 定义了`onDelete` 属性的纸片组件将显示一个删除图标，并在鼠标悬浮时有外观的变化。
+- 定义了 `onClick` 属性的纸片组件会在获得焦点、鼠标悬浮、单击时有外观的变化。
+- 定义了 `onDelete` 属性的纸片组件将显示一个删除图标，并在鼠标悬浮时有外观的变化。
 
 {{"demo": "pages/components/chips/Chips.js"}}
 
@@ -48,6 +48,6 @@ components: Chip
 
 {{"demo": "pages/components/chips/ChipsPlayground.js", "hideToolbar": true}}
 
-## 可访问性
+## 无障碍设计
 
-如果Chip可删除或可点击，它应该作为一个按钮而被 tab 所顺序访问。 当纸片被聚焦时（例如在制表符时），释放（`keyup` 事件） `Backspace` 或 `Delete` 将调用 `onDelete` 处理程序，而释放 `Escape` 将模糊纸片。
+如果 Chip 是可删除或可点击的，它则应该是一个安装标签顺序排列的按钮。 当纸片被聚焦时（例如在制表符时），释放（`keyup` 事件） `Backspace` 或 `Delete` 将调用 `onDelete` 处理程序，从而通过释放 `Escape` 来模糊纸片组件。

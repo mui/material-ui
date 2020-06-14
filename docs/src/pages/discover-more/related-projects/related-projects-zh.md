@@ -84,7 +84,7 @@ This is a collection of third-party projects that extend Material-UI.
 
 - [components-extra](https://github.com/alexandre-lelain/components-extra): Provides a set of "molecule" components built on top of Material-UI like a Footer, a CookiesBanner, a BackToTop button and other complex elements highly customizable to help devs build the macro parts of their UI very quickly. Those components are often duplicated across sites - this library solves this exact problem.
 
-## 主题
+## Theming 主题
 
 - [create-mui-theme](https://react-theming.github.io/create-mui-theme/): An online tool for creating Material-UI themes via Material Design Color Tool.
 - [material-ui-theme-editor](https://in-your-saas.github.io/material-ui-theme-editor/)：只需要选择颜色即可为你的 Material-UI 应用生成主题的工具，同时还支持在线预览。

@@ -1,12 +1,12 @@
-# 高级
+# Advanced 进阶
 
-<p class="description">本节包含了更多 @material-ui/core/styles 的进阶用法。</p>
+<p class="description">本节包含了 @material-ui/core/styles 的一些更多的进阶用法。</p>
 
 ## 主题
 
-添加` ThemeProvider `到应用程序的顶层，将主题传递到React组件树。 然后，您可以在样式函数中访问主题对象。
+若您想将主题传递到 React 组件树，请将添加 `ThemeProvider` 包装到应用程序的顶层。 然后，您可以在样式函数中访问主题对象。
 
-> This example creates a theme object for custom-built components. If you intend to use some of the Material-UI's components you need to provide a richer theme structure using the `createMuiTheme()` method. Head to the the [theming section](/customization/theming/) to learn how to build your custom Material-UI theme.
+> 此示例为自定义组件创建了一个主题对象（theme object）。 如果你想要使用 Material-UI 的部分组件，那么则需要通过使用 `createMuiTheme()` 方法来提供一个更丰富的主题结构。 有关如何自定义 Material-UI 主题的信息，请参见 [主题部分](/customization/theming/)。
 
 ```jsx
 import { ThemeProvider } from '@material-ui/core/styles';
@@ -27,13 +27,13 @@ function Theming() {
 
 {{"demo": "pages/styles/advanced/Theming.js"}}
 
-### 访问组件中的主题
+### 访问一个组件中的主题
 
-在组件中访问 @material-ui/styles 主题。
+您可能需要访问 React 组件中的主题变量。
 
 #### `useTheme` hook
 
-用于函数组件：
+在函数组件（function components）中的使用：
 
 ```jsx
 import { useTheme } from '@material-ui/core/styles';
@@ -48,7 +48,7 @@ function DeepChild() {
 
 #### `withTheme` HOC
 
-For use in class or function components:
+在类（class）或函数（function）组件中的使用：
 
 ```jsx
 import { withTheme } from '@material-ui/core/styles';
@@ -64,7 +64,7 @@ const DeepChild = withTheme(DeepChildRaw);
 
 ### 主题嵌套
 
-您可以嵌套多个主题提供者。 在应用程序的不同区域需要应用不同外观时，这非常有用。
+您可以嵌套多个主题提供者。 当您在处理应用程序的不同区域时，若需要应用的不同外观，这个功能会让您得心应手。
 
 ```jsx
 <ThemeProvider theme={outerTheme}>
@@ -77,7 +77,7 @@ const DeepChild = withTheme(DeepChildRaw);
 
 {{"demo": "pages/styles/advanced/ThemeNesting.js"}}
 
-内部主题将 **覆盖** 外部主题。 你可以提供一个函数来扩展外部主题：
+内部主题将 **覆盖** 外部主题。 你可以提供一个函数来扩展外层主题：
 
 ```jsx
 <ThemeProvider theme={…} >
@@ -88,15 +88,15 @@ const DeepChild = withTheme(DeepChildRaw);
 </ThemeProvider>
 ```
 
-## Overriding styles - `classes` prop
+## 覆盖样式 — `classes` 属性
 
-` makeStyles ` (hook generator) 和` withStyles ` (HOC) API允许为每个样式表创建多个样式规则。 每个样式规则都有自己的类名。 类名通过` classes `变量传入组件。 在为组件中的嵌套元素设置样式时，这尤其有用。
+通过 `makeStyles` (hook generator) 和 `withStyles` (HOC) 这两个 API， 用户可以为每个样式表创建多种样式规则。 每个样式规则都有自己的类名。 组件的 `classes` 变量会提供类名（class names）。 这在设置组件中嵌套元素的样式时特别有用。
 
 ```jsx
-// A style sheet
+// 一个样式内联表
 const useStyles = makeStyles({
-  root: {}, // a style rule
-  label: {}, // a nested style rule
+  root: {}, // 一个样式规则
+  label: {}, // 一个嵌套的样式规则
 });
 
 function Nested(props) {
@@ -104,7 +104,7 @@ function Nested(props) {
   return (
     <button className={classes.root}> // 'jss1'
       <span className={classes.label}> // 'jss2'
-        nested
+        嵌套的
       </span>
     </button>
   );
@@ -115,20 +115,20 @@ function Parent() {
 }
 ```
 
-但是，类名通常是不确定的。 父组件如何覆盖嵌套元素的样式？
+然而，这些类名称往往不是决定性的。 父级组件如何覆盖嵌套元素的样式呢？
 
 ### `withStyles`
 
-这是最简单的情况。 包装组件接受` classes ` 属性， 它简单地合并了样式表提供的类名。
+这是最简单的一种情况。 包装组件接受 `classes` 属性，它简单地合并了样式表提供的类名。
 
 ```jsx
 const Nested = withStyles({
-  root: {}, // a style rule
-  label: {}, // a nested style rule
+  root: {}, // 一个样式规则
+  label: {}, // 一个嵌套的样式规则
 })(({ classes }) => (
   <button className={classes.root}>
     <span className={classes.label}> // 'jss2 my-label'
-      Nested
+      嵌套的
     </span>
   </button>
 ));
@@ -140,12 +140,12 @@ function Parent() {
 
 ### `makeStyles`
 
-Hook API需要多写一点模版代码。 您需要转发父级组件的属性到hook作为第一个参数。
+想使用 hook API 的话需要一些额外的工作。 你必须把父级属性作为第一个参数传递给 hook。
 
 ```jsx
 const useStyles = makeStyles({
-  root: {}, // a style rule
-  label: {}, // a nested style rule
+  root: {}, // 一个样式规则
+  label: {}, // 一个嵌套的样式规则
 });
 
 function Nested(props) {
@@ -153,7 +153,7 @@ function Nested(props) {
   return (
     <button className={classes.root}>
       <span className={classes.label}> // 'jss2 my-label'
-        nested
+        嵌套的
       </span>
     </button>
   );
@@ -164,11 +164,11 @@ function Parent() {
 }
 ```
 
-## JSS plugins
+## JSS 插件
 
-JSS使用插件来扩展其核心，允许您挑选所需的功能， 并且只为您正在使用的内容支付性能开销。
+JSS 使用插件来扩展其核心，您可以挑选所需的功能，并且只需承担您正在使用的内容性能的开销。
 
-默认情况下，Material-UI不会启用所有插件。 以下（它是 [ jss-preset-default的子集](https://cssinjs.org/jss-preset-default/) ） 被包含在内：
+默认情况下，不是所有 Material-UI 的插件都可以使用。 以下（一个 [jss-preset-default 的子集](https://cssinjs.org/jss-preset-default/)） 被包含在内：
 
 - [jss-plugin-rule-value-function](https://cssinjs.org/jss-plugin-rule-value-function/)
 - [jss-plugin-global](https://cssinjs.org/jss-plugin-global/)
@@ -178,7 +178,7 @@ JSS使用插件来扩展其核心，允许您挑选所需的功能， 并且只�
 - [jss-plugin-vendor-prefixer](https://cssinjs.org/jss-plugin-vendor-prefixer/)
 - [jss-plugin-props-sort](https://cssinjs.org/jss-plugin-props-sort/)
 
-当然，你可以自由的添加新插件。 我们有一个[](https://github.com/alitaheri/jss-rtl)jss-rtl插件的例子。
+当然，你也可以随意使用额外的插件。 我们有一个使用 [jss-rtl](https://github.com/alitaheri/jss-rtl) 插件的例子。
 
 ```jsx
 import { create } from 'jss';
@@ -200,7 +200,7 @@ export default function App() {
 
 ## 字符串模板
 
-如果您更喜欢CSS语法而不是JSS，则可以使用[ jss-plugin-template ](https://cssinjs.org/jss-plugin-template/)插入。
+如果相比 JSS 您更喜欢 CSS 的语法，则可以使用 [jss-plugin-template](https://cssinjs.org/jss-plugin-template/) 插件。
 
 ```jsx
 const useStyles = makeStyles({
@@ -217,32 +217,32 @@ const useStyles = makeStyles({
 });
 ```
 
-请注意，这不支持选择器或嵌套规则。
+请注意，此插件不支持选择器或嵌套规则。
 
 {{"demo": "pages/styles/advanced/StringTemplates.js"}}
 
 ## CSS 注入顺序
 
-> It's **really important** to understand how the CSS specificity is calculated by the browser, as it's one of the key elements to know when overriding styles. You are encouraged to read this MDN paragraph: [How is specificity calculated?](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity#How_is_specificity_calculated)
+> 了解浏览器如何计算 CSS 优先级是**非常重要的**，因为它是您在覆盖样式时需要了解的重点之一。 我们推荐您阅读 MDN 上的这段内容：[如何计算优先级？](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity#How_is_specificity_calculated)
 
-默认情况下，注入的style标签会被插入到页面`<head>`元素的最后。 它们比页面上任何其他样式标签更具特异性，例如CSS模块， styled components。
+默认情况下，注入的 style 标签会被注入到页面`<head>`元素的最后。 它们的优先级高于您页面上的任何其他样式标签，如 CSS 模块、styled components。
 
 ### injectFirst
 
-`StylesProvider`组件的属性 `injectFirst` 会把style标签注入到head的**前部**(意味着更低的权重)。
+`StylesProvider` 组件有一个 `injectFirst` 属性，用于将样式标签**首先**从页头（优先级较低）注入：
 
 ```jsx
 import { StylesProvider } from '@material-ui/core/styles';
 
 <StylesProvider injectFirst>
-  {/* Your component tree.
+  {/* 你的组件树。
       样式化组件可以覆盖 Material-UI 的样式。 */}
 </StylesProvider>
 ```
 
 ### `makeStyles` / `withStyles` / `styled`
 
-使用 `makeStyles` / `withStyles` / `styled` 的注入顺序于调用顺序**相同**。 例如，在这种情况下，红色胜出：
+样式标签的注入顺序与 `makeStyles` / `withStyles` / `styled` 的调用顺序**相同**。 例如，在这种情况下，字体最终是红色：
 
 ```jsx
 import clsx from 'clsx';
@@ -273,15 +273,15 @@ export default function MyComponent() {
 }
 ```
 
-Hook 调用顺序和类名顺序**不影响**注入属性权重 。
+Hook 的调用顺序和类名连接顺序都**不会影响**注入顺序的权重。
 
 ### insertionPoint
 
-JSS [提供了一种机制](https://github.com/cssinjs/jss/blob/master/docs/setup.md#specify-the-dom-insertion-point)控制这种情况。 通过添加`insertionPoint`到HTML中，你可以[控制](https://cssinjs.org/jss-api#attach-style-sheets-in-a-specific-order)组件中CSS的插入位置。
+JSS [提供了一种机制](https://github.com/cssinjs/jss/blob/master/docs/setup.md#specify-the-dom-insertion-point)来控制这种情况。 通过在 HTML 中添加 `insertionPoint`，您就可以[控制](https://cssinjs.org/jss-api#attach-style-sheets-in-a-specific-order) CSS 规则应用到组件中的顺序。
 
 #### HTML 注释
 
-The simplest approach is to add an HTML comment to the `<head>` that determines where JSS will inject the styles:
+最简单的方法是在 `<head>` 中添加一个 HTML 注释，来决定 JSS 注入样式的位置：
 
 ```html
 <head>
@@ -296,7 +296,7 @@ import { StylesProvider, jssPreset } from '@material-ui/core/styles';
 
 const jss = create({
   ...jssPreset(),
-  // Define a custom insertion point that JSS will look for when injecting the styles into the DOM.
+  // 当将样式注入到 DOM 中时，定义了一个自定义插入点以供 JSS 查询。 
   insertionPoint: 'jss-insertion-point',
 });
 
@@ -305,9 +305,9 @@ export default function App() {
 }
 ```
 
-#### Other HTML elements
+#### 其他 HTML 元素
 
-创建生产环境时, [Create React App](https://github.com/facebook/create-react-app) 会剥离 HTML 注释。 To get around this issue, you can provide a DOM element (other than a comment) as the JSS insertion point, for example, a `<noscript>` element:
+在构建生产环境时，[Create React App](https://github.com/facebook/create-react-app) 会移除 HTML 注释。 为了解决这个问题，您可以提供一个 DOM 元素（而不是一条注释）作为 JSS 插入点 ，譬如一个 `<noscript>` 元素。
 
 ```jsx
 <head>
@@ -322,7 +322,7 @@ import { StylesProvider, jssPreset } from '@material-ui/core/styles';
 
 const jss = create({
   ...jssPreset(),
-  // Define a custom insertion point that JSS will look for when injecting the styles into the DOM.
+  // 当将样式注入到 DOM 中时，定义了一个自定义插入点以供 JSS 查询。 
   insertionPoint: document.getElementById('jss-insertion-point'),
 });
 
@@ -333,7 +333,7 @@ export default function App() {
 
 #### JS createComment
 
-codesandbox.io prevents access to the `<head>` element. To get around this issue, you can use the JavaScript `document.createComment()` API:
+codesandbox.io 阻止访问 `<head>` 元素。 要解决这个问题，您可以使用 JavaScript 中的 `document.createComment()` API。
 
 ```jsx
 import { create } from 'jss';
@@ -344,7 +344,7 @@ document.head.insertBefore(styleNode, document.head.firstChild);
 
 const jss = create({
   ...jssPreset(),
-  // Define a custom insertion point that JSS will look for when injecting the styles into the DOM.
+  // 我们定义了一个自定义插入点，JSS在DOM中注入样式时会查找该插入点。
   insertionPoint: 'jss-insertion-point',
 });
 
@@ -353,9 +353,9 @@ export default function App() {
 }
 ```
 
-## 服务器端呈现
+## 服务端渲染
 
-This example returns a string of HTML and inlines the critical CSS required, right before it’s used:
+这个例子将会返回 HTML 字符串，并在使用之前就内嵌好了所需的 CSS。
 
 ```jsx
 import ReactDOMServer from 'react-dom/server';
@@ -381,27 +381,27 @@ function render() {
 }
 ```
 
-You can [follow the server side guide](/guides/server-rendering/) for a more detailed example, or read the [`ServerStyleSheets` API documentation](/styles/api/#serverstylesheets).
+您可以[根据这篇服务端渲染指南](/guides/server-rendering/)来获取更多详细的例子，或者您也可以阅读 [`ServerStyleSheets` 的 API 文档](/styles/api/#serverstylesheets)。
 
 ### Gatsby
 
-There is [an official Gatsby plugin](https://github.com/hupe1980/gatsby-plugin-material-ui) that enables server-side rendering for `@material-ui/styles`. Refer to the plugin's page for setup and usage instructions.
+这个[一个官方的 Gatsby 插件](https://github.com/hupe1980/gatsby-plugin-material-ui)，可以利用它来实现 `@material-ui/style` 的服务器端渲染。 请参考插件页面的设置和使用说明。
 
-Refer to [this example Gatsby project](https://github.com/mui-org/material-ui/blob/master/examples/gatsby) for an up-to-date usage example.
+请参考 [Gatsby 项目案例](https://github.com/mui-org/material-ui/blob/master/examples/gatsby)以了解最新的使用方法。
 
 ### Next.js
 
-You need to have a custom `pages/_document.js`, then copy [this logic](https://github.com/mui-org/material-ui/blob/master/examples/nextjs/pages/_document.js) to inject the server-side rendered styles into the `<head>` element.
+您需要有一个自定义的 `pages/_document.js`，然后复制[此逻辑](https://github.com/mui-org/material-ui/blob/master/examples/nextjs/pages/_document.js)以注入服务器侧渲染的样式到 `<head>` 元素中。
 
-Refer to [this example project](https://github.com/mui-org/material-ui/blob/master/examples/nextjs) for an up-to-date usage example.
+请参考[示例项目](https://github.com/mui-org/material-ui/blob/master/examples/nextjs)以获取最新的使用方法。
 
-## Class names
+## 类名（Class names）
 
-The class names are generated by [the class name generator](/styles/api/#creategenerateclassname-options-class-name-generator).
+类名（class names）由[类名生成器](/styles/api/#creategenerateclassname-options-class-name-generator)生成。
 
 ### 默认值
 
-By default, the class names generated by `@material-ui/core/styles` are **non-deterministic**; you can't rely on them to stay the same. Let's take the following style as an example:
+默认情况下，`@material-ui/core/styles` 生成的类名是**不是固定值**； 所以您不能指望它们保持不变。 让我们以下面的样式（style）作为示例：
 
 ```js
 const useStyles = makeStyles({
@@ -411,11 +411,11 @@ const useStyles = makeStyles({
 });
 ```
 
-This will generate a class name such as `makeStyles-root-123`.
+上述例子将生成一个类似于 `makeStyles-root-123` 这样的类名。
 
-You have to use the `classes` prop of a component to override the styles. The non-deterministic nature of the class names enables style isolation.
+您必须使用组件的 `classes` 属性来覆盖样式。 类名的不确定性使样式隔离成为可能。
 
-- In **development**, the class name is: `.makeStyles-root-123`, following this logic:
+- 在**开发环境中**，类名为：`.makeStyles-root-123`，它遵循以下逻辑：
 
 ```js
 const sheetName = 'makeStyles';
@@ -425,7 +425,7 @@ const identifier = 123;
 const className = `${sheetName}-${ruleName}-${identifier}`;
 ```
 
-- In **production**, the class name is: `.jss123`, following this logic:
+- 在**生产环境中**，类名为：`.jss123`，它遵循以下逻辑：
 
 ```js
 const productionPrefix = 'jss';
@@ -434,15 +434,15 @@ const identifier = 123;
 const className = `${productionPrefix}-${identifier}`;
 ```
 
-### With `@material-ui/core`
+### 与 `@material-ui/core` 一起使用
 
-The generated class names of the `@material-ui/core` components behave differently. When the following conditions are met, the class names are **deterministic**:
+`@material-ui/core` 组件生成的类名表现大相径庭。 当满足以下条件时，类名是**确定的**：
 
-- Only one theme provider is used (**No theme nesting**)
-- The style sheet has a name that starts with `Mui` (all Material-UI components).
-- The `disableGlobal` option of the [class name generator](/styles/api/#creategenerateclassname-options-class-name-generator) is `false` (the default).
+- 仅使用一个主题提供程序（**无主题嵌套**）。
+- 样式表的名称以 `Mui` 开头（包含所有 Material-UI 组件）。
+- [类名生成器](/styles/api/#creategenerateclassname-options-class-name-generator)的 `disableGlobal` 选项为 `false`（默认值）。
 
-These conditions are met with the most common use cases of `@material-ui/core`. For instance, this style sheet:
+`@material-ui/core` 最常见的用例可以满足这些条件。 例如，在这个样式表中：
 
 ```jsx
 const useStyles = makeStyles({
@@ -460,7 +460,7 @@ const useStyles = makeStyles({
 }, { name: 'MuiButton' });
 ```
 
-generates the following class names that you can override:
+这将生成以下您可以进行覆盖操作的类名：
 
 ```css
 .MuiButton-root { /* … */ }
@@ -471,9 +471,9 @@ generates the following class names that you can override:
 .MuiButton-outlinedPrimary:hover { /* … */ }
 ```
 
-*This is a simplification of the `@material-ui/core/Button` component's style sheet.*
+*这是对 `@material-ui/core/Button` 组件样式表的简化。*
 
-Customization of the TextField can be cumbersome with the [`classes` API](#overriding-styles-classes-prop), where you have to define the the classes prop. It's easier to use the default values, as described above. For example:
+通过 [`class` API](#overriding-styles-classes-prop) 实现 TextField 的自定义可能很麻烦，您必须在那里定义 classes 属性。 如上文所述，使用默认值会比较容易。 例如:
 
 ```jsx
 import styled from 'styled-components';
@@ -499,29 +499,29 @@ const StyledTextField = styled(TextField)`
 
 {{"demo": "pages/styles/advanced/GlobalClassName.js"}}
 
-## 全局CSS
+## 全局 CSS
 
 ### `jss-plugin-global`
 
-The [`jss-plugin-global`](#jss-plugins) plugin is installed in the default preset. You can use it to define global class names.
+[`jss-plugin-global`](#jss-plugins) 插件安装在默认的预设中。 您可以使用它来定义全局类名称。
 
 {{"demo": "pages/styles/advanced/GlobalCss.js"}}
 
-### Hybrid
+### 混合
 
-You can also combine JSS generated class names with global ones.
+您也可以将 JSS 生成的类名称与全局名称结合起来。
 
 {{"demo": "pages/styles/advanced/HybridGlobalCss.js"}}
 
-## CSS prefixes
+## CSS 前缀（prefixes）
 
-JSS uses feature detection to apply the correct prefixes. [Don't be surprised](https://github.com/mui-org/material-ui/issues/9293) if you can't see a specific prefix in the latest version of Chrome. Your browser probably doesn't need it.
+JSS 使用特征探测来应用正确的前缀。 如果您看不到最新版本 Chrome 中显示一个特定前缀，[请不要感到惊讶](https://github.com/mui-org/material-ui/issues/9293)。 您的浏览器可能不需要它。
 
-## 内容安全政策（CSP）
+## 内容安全策略（CSP）
 
-### 什么是CSP，为什么它有用？
+### 什么是 CSP，为什么它有用？
 
-基本上，CSP通过要求开发人员将其资产从中检索的源列入白名单来缓解跨站点脚本（XSS）攻击。 此列表作为服务器的标头返回。 例如，假设您有一个托管在` https://example.com`的网站 CSP头`default-src：'self';`将允许位于`https://example.com/*`的所有资产并否认所有其他人。 如果您的网站的某个部分容易受到XSS的影响而未显示未转义的用户输入，则攻击者可以输入以下内容：
+基本上，CSP 通过要求开发人员将其资产从中检索的源列入白名单来削弱跨站点脚本（XSS）的攻击。 此列表作为服务器的头部（heade）返回。 例如，假设您有一个托管在 `https://example.com` 的网站 CSP 头部 `default-src：'self';` 将仅加载 `https://example.com/*` 的所有资源，并否认所有其他人。 如果您的网站的某个部分容易受到 XSS 的影响而未显示未转义的用户输入，则攻击者可以输入以下内容：
 
 ```html
 <script>
@@ -529,15 +529,15 @@ JSS uses feature detection to apply the correct prefixes. [Don't be surprised](h
 </script>
 ```
 
-此漏洞允许攻击者执行任何操作。 但是，使用安全的CSP标头，浏览器将不会加载此脚本。
+此漏洞允许攻击者执行任何操作。 但是，若使用安全的 CSP 头部，浏览器将不会加载此脚本。
 
-You can read more about CSP on the [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP).
+您可以在 [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP) 阅读有关 CSP 的更多信息。
 
 ### 如何实现CSP？
 
-为了将CSP与Material-UI（和JSS）一起使用，您需要使用nonce。 A nonce is a randomly generated string that is only used once, therefore you need to add server middleware to generate one on each request. JSS 有一个关于如何使用 Express 和 React Helmet 实现这一目标的[很棒的教程](https://github.com/cssinjs/jss/blob/master/docs/csp.md)。 对于基本纲要，请继续阅读。
+为了将 CSP 与 Material-UI（和JSS）一起使用，您需要使用一个随机数（nonce）。 随机数是一个随机生成的字符串，只使用一次，因此您需要添加服务器中间件以在每个请求上生成一个。 关于如何使用 Express 和 React Helmet 来实现，JSS 有一个[很棒的教程](https://github.com/cssinjs/jss/blob/master/docs/csp.md)。 关于一些基本的纲要，请继续阅读。
 
-CSP nonce是Base 64编码的字符串。 你可以这样生成一个：
+CSP nonce 是一个 Base 64 编码的字符串。 你可以生成这样一个：
 
 ```js
 import uuidv4 from 'uuid/v4';
@@ -545,14 +545,14 @@ import uuidv4 from 'uuid/v4';
 const nonce = new Buffer(uuidv4()).toString('base64');
 ```
 
-It is very important that you use UUID version 4, as it generates an **unpredictable** string. 然后，将此随机数应用于CSP标头。 应用了随机数时，CSP标头可能如下所示：
+使用 UUID 版本 4 非常重要，因为它会生成一个**不可预测的**字符串。 接下来您可以将此随机数应用于 CSP 头部。 应用了随机数时，CSP 头部可能看起来像这样：
 
 ```js
 header('Content-Security-Policy')
   .set(`default-src 'self'; style-src: 'self' 'nonce-${nonce}';`);
 ```
 
-If you are using Server-Side Rendering (SSR), you should pass the nonce in the `<style>` tag on the server.
+如果使用服务器端渲染（SSR），则应在服务器上的随机数传递给 `<style>` 标签。
 
 ```jsx
 <style
@@ -562,11 +562,11 @@ If you are using Server-Side Rendering (SSR), you should pass the nonce in the `
 />
 ```
 
-然后，您必须将此随机数传递给JSS，以便将其添加到后续`<style>`标记中。
+然后，您必须将此随机数传递给 JSS ，以便将其添加到后续 `<style>` 标记中。
 
-The way that you do this is by passing a `<meta property="csp-nonce" content={nonce} />` tag in the `<head>` of your HTML. JSS will then, by convention, look for a `<meta property="csp-nonce"` tag and use the `content` value as the nonce.
+这样的原理是通过将 `<meta property="csp-nonce" content={nonce} />` 标签传递到 HTML 的 `<head>` 中。 然后，通常情况下，JSS 寻找一个 `<meta property="csp-unce"` 标签，并使用 `content` 的值作为随机数。
 
-无论是否使用SSR，都必须包含此标头。 Here is an example of what a fictional header could look like:
+无论您是否使用 SSR，都必须包含此标头。 下面是一个虚拟的头部（header）可以看起来的示例：
 
 ```html
 <head>

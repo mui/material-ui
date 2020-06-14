@@ -5,7 +5,7 @@ components: Tabs, Tab, TabScrollButton, TabContext, TabList, TabPanel
 
 # Tabs
 
-<p class="description">タブを使用すると、さまざまなビューを簡単に探索して切り替えることができます。</p>
+<p class="description">タブでは、様々なビューの探索を切り替えを簡単に行うことができます。</p>
 
 [タブ](https://material.io/design/components/tabs.html) は、関連し、同じ階層レベルにあるコンテンツのグループ間のナビゲーションを整理し、許可します。
 

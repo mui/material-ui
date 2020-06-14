@@ -72,7 +72,7 @@ export default Main() {
 这些组件接收 `TransitionComponent` prop 以自定义默认的过渡。 您可以使用上述的任何组件或者是您自己的组件。 它应遵守以下条件：
 
 - 在 prop 中应该有一个 `in` 属性。 这对应于 打开/关闭 状态。
-- 在进入过渡开始时调用 prop 中的 `onEnter` 回调。
-- 在退出过渡完成后调用 prop 中的 `onExited` 回调。 这两个回调允许在关闭并完全过渡 (when closed and fully transitioned) 时卸载子内容。
+- 当进入过渡时调用 `onEnter` 回调属性。
+- 当退出过渡完成后应该调用 `onExited` 回调属性。 这两个回调允许在关闭并完全过渡 (when closed and fully transitioned) 时卸载子内容。
 
 欲了解更多关于创建自定义过渡的信息，请访问 [React Transition Group Transition docs](http://reactcommunity.org/react-transition-group/transition)。

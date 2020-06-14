@@ -195,7 +195,7 @@ const filterOptions = createFilterOptions({
 
 {{"demo": "pages/components/autocomplete/Filter.js", "defaultCodeOpen": false}}
 
-### 高级
+### Advanced 进阶
 
 对于更复杂的过滤机制，譬如模糊匹配（fuzzy matching），我们推荐您看一下 [match-sorter](https://github.com/kentcdodds/match-sorter)。 就像这样：
 

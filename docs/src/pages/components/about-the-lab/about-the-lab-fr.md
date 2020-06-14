@@ -17,7 +17,7 @@ For a component to be ready to move to the core, the following criteria are cons
 
 ## Installation
 
-Install the package in your project directory with:
+Installez le package dans votre répertoire de projet avec:
 
 ```sh
 // avec npm
@@ -27,7 +27,7 @@ npm install @material-ui/lab
 yarn add @material-ui/lab
 ```
 
-The lab has a peer dependency on the core components. If you are not already using Material-UI in your project, you can install it with:
+Le laboratoire dépend des composants du package principal. Si vous n'utilisez pas encore Material-UI dans votre projet, vous pouvez l'installer avec:
 
 ```sh
 // avec npm
@@ -35,4 +35,22 @@ npm install @material-ui/core
 
 // avec yarn
 yarn add @material-ui/core
+```
+
+## TypeScript
+
+In order to benefit from the [CSS overrides](/customization/globals/#css) and [default prop customization](/customization/globals/#default-props) with the theme, TypeScript users need to import the following types. Internally, it uses [module augmentation](/guides/typescript/#customization-of-theme) to extend the default theme structure with the extension components available in the lab.
+
+```tsx
+import type '@material-ui/lab/themeAugmentation';
+
+const theme = createMuiTheme({
+  overrides: {
+    MuiTimeline: {
+      root: {
+        backgroundColor: 'red',
+      },
+    },
+  },
+});
 ```

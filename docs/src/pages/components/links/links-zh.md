@@ -1,41 +1,41 @@
 ---
-components: Link
+components: Link 链接组件
 ---
 
-# Link 链接
+# Links 链接
 
-<p class="description">链接（Links）组件允许您使用主题颜色和版面设计轻松自定义锚定元素。</p>
+<p class="description">您可以通过链接（Links）组件，轻松的使用主题颜色和字体铸排的样式来自定义锚定元素。</p>
 
 ## 简单的链接
 
-链接（Links）组件构建在 [版面设计（Typography）](/api/typography/) 组件之上。 您可以利用其属性。
+链接组件是基于 [文字铸排（Typography）](/api/typography/)组件而开发的。 您可以利用它的一些属性。
 
 {{"demo": "pages/components/links/Links.js"}}
 
-然而，链接（Link）组件有着不同于版面设计（Typography ）组件的默认属性
+然而，链接组件有一些不同于文字铸排组件的默认属性：
 
-- 当链接需要突出显示，使用 `color="primary"`
-- 链接在多数的情况下，将被用于作为版面设计（Typograpy）的子组件，这种情况使用`variant="inherit"`
+- 当链接需要突出显示时，设置 `color="primary"`。
+- 在多数的情况下，当链接需要作为文字铸排的子组件使用，则设置 `variant="inherit"`。
 
-## 安全提示
+## 安全性
 
-当你在使用Link组件下的 `target="_blank"`时 ，并同时在关联第三方内容的情况下， [推荐](https://developers.google.com/web/tools/lighthouse/audits/noopener) 始终配置 `rel ="noopener"` 或 `的rel ="noreferrer"` 。
+当你将 `target="_blank"`和链接组件一起使用时，若想和第三方的内容相连，我们[推荐](https://developers.google.com/web/tools/lighthouse/audits/noopener)始终配置 `rel="noopener"` 或者 `rel="noreferrer"`。
 
-- `rel="noopener"` 阻止新页面访问 `window.opener` 属性并确保它分开在不同的进程中运行。 若不如此，目标页面有潜在可能性将你的页面重定向至一个恶意网址
-- `rel ="noreferrer"` 具有相同的效果，但也阻止将 *Referer* 标头发送到新页面。 ⚠️ 去除referrer header会影响分析统计
+- `rel="noopener"` 会阻止新页面访问 `window.opener` 属性，并确保它在单独的进程运行。 若不如此，目标页面有极大可能将你的页面重定向至一个恶意网址。
+- `rel ="noreferrer"` 具有相同的效果，但也阻止将 *Referer* 页头发送到新的页面。 ⚠️ 去除 referrer header 会影响分析。
 
 ## Third-party routing library（第三方路由库）
 
-一种常见的用例是仅在客户端上执行导航，而无需通过 HTTP 往返服务器。 为解决此用例 `组件`，`Link` 组件提供了一个属性：
+一种常见的用例是仅在客户端上执行导航，而无需通过 HTTP 往返服务器。 `Link` 组件提供了一个属性来处理这样的情况：那就是`component`。
 
 这有一个[与 react-router 交互的例子](/guides/composition/#link)。
 
-## 可访问性
+## 无障碍设计
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#link)
 
-- 当提供链接对应的内容时，避免使用泛泛的描述，比如“点击这里”或“跳转”之类的词语 相反的，请使用 [具体详细的描述](https://developers.google.com/web/tools/lighthouse/audits/descriptive-link-text)说明.
+- 当提供链接对应的内容时，避免使用泛泛的描述，比如“点击这里”或“跳转”之类。 相反的，请使用 [具体详细的描述](https://developers.google.com/web/tools/lighthouse/audits/descriptive-link-text)说明。
 - 为了获得最佳的用户体验，链接应该从页面上的文字中脱颖而出。
-- 如果一个链接没有赋予一个有意义的href值, [它应该用一个 `<按钮>` 元素](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/anchor-is-valid.md)表示
+- 如果一个链接没有赋予一个有意义的 href 值，[它应该加载成一个`<按钮>`元素](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/anchor-is-valid.md)。
 
 {{"demo": "pages/components/links/ButtonLink.js"}}

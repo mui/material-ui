@@ -69,7 +69,7 @@ It's possible to customise the options shown in the "Rows per page" select using
 
 ### Custom pagination actions
 
-Die Eigenschaft `Action` der Komponente `TablePagination` ermöglicht die Implementierung von benutzerdefinierten Aktionen.
+The `ActionsComponent` prop of the `TablePagination` component allows the implementation of custom actions.
 
 {{"demo": "pages/components/tables/CustomPaginationActionsTable.js", "bg": true}}
 
