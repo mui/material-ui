@@ -25,21 +25,21 @@ export default function VisuallyHiddenUsage() {
 
   return (
     <fieldset className={classes.root}>
-      <label className={selected === 'like' ? classes.selected : ''}>
+      <label className={selected === 'like' ? classes.selected : ''} htmlFor="like">
         <ThumbUpIcon onClick={() => setSelected('like')} />
         <span className={classes.span}>Like</span>
       </label>
-      <input className={classes.input} type="radio" value="like" checked={selected === 'like'} />
-      <label className={selected === 'smile' ? classes.selected : ''}>
+      <input className={classes.input} type="radio" id="like" value="like" checked={selected === 'like'} />
+      <label className={selected === 'smile' ? classes.selected : ''} htmlFor="smile">
         <EmojiEmotionsIcon onClick={() => setSelected('smile')} />
         <span className={classes.span}>Smile</span>
       </label>
-      <input className={classes.input} type="radio" value="smile" checked={selected === 'smile'} />
-      <label className={selected === 'love' ? classes.selected : ''}>
+      <input className={classes.input} type="radio" id="smile" value="smile" checked={selected === 'smile'} />
+      <label className={selected === 'love' ? classes.selected : ''} htmlFor="love">
         <FavoriteIcon onClick={() => setSelected('love')} />
         <span className={classes.span}>Love</span>
       </label>
-      <input className={classes.input} type="radio" value="love" checked={selected === 'love'} />
+      <input className={classes.input} type="radio" id="love" value="love" checked={selected === 'love'} />
     </fieldset>
   );
 }
