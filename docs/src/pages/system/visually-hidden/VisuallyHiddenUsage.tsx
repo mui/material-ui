@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import EmojiEmotionsIcon from '@material-ui/icons/EmojiEmotions';
 import FavoriteIcon from '@material-ui/icons/Favorite';
+import { CSSProperties } from '@material-ui/styles';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -14,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
   selected: {
     color: theme.palette.primary.main,
   },
-  visuallyHidden,
+  visuallyHidden: visuallyHidden as CSSProperties,
 }));
 
 export default function VisuallyHiddenUsage() {
