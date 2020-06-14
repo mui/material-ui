@@ -104,12 +104,10 @@ See [this issue](https://github.com/mui-org/material-ui/issues/10327).
 ### High frequency updates
 
 The `LinearProgress` uses a transition on the CSS transform property to provide a smooth update between different values.
-In the event a parent component updates the `value` prop too quickly, you might experience a delay or event not see any update at all.
+The default transition duration is 200ms.
+In the event a parent component updates the `value` prop too quickly, you will experience at least a 200ms delay between the update and the progress bar fully updating.
 
-- At 30 re-renders per second, and with a default transition duration of 200ms, the transition only has time to reach 17% of the expected value before being updated, it lags.
-- Above 60 re-renders per second, the frequency is higher than the frame rate the browser can handle, you might not see any update at all.
-
-In these cases, we recommend disabling the transition:
+If you need to perform 30 re-renders per second or more, we recommend disabling the transition:
 
 ```css
 .MuiLinearProgress-bar {
