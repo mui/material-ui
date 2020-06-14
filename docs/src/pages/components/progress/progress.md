@@ -105,7 +105,7 @@ See [this issue](https://github.com/mui-org/material-ui/issues/10327).
 
 The `LinearProgress` uses a transition on the CSS transform property to provide a smooth update between different values.
 The default transition duration is 200ms.
-In the event a parent component updates the `value` prop too quickly, you will experience at least a 200ms delay between the update and the progress bar fully updating.
+In the event a parent component updates the `value` prop too quickly, you will at least experience a 200ms delay between the re-render and the progress bar fully updated.
 
 If you need to perform 30 re-renders per second or more, we recommend disabling the transition:
 
