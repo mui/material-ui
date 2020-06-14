@@ -8,6 +8,6 @@ The visually hidden style utility provides a common mechanism for hidings elemen
 
 ### Usage
 
-The inputs and the icons in the example are accompined with text which is available only to the screen readers.
+The visually hiddel style utility can help provide context to read more links.
 
 {{"demo": "pages/system/screen-readers/VisuallyHiddenUsage.js"}}
