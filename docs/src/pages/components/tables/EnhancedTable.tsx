@@ -143,7 +143,7 @@ function EnhancedTableHead(props: EnhancedTableProps) {
             >
               {headCell.label}
               {orderBy === headCell.id ? (
-                <span className={classes.visuallyHidden}>
+                <span className={classes.sortSpan}>
                   {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
                 </span>
               ) : null}
@@ -229,7 +229,7 @@ const useStyles = makeStyles((theme: Theme) =>
     table: {
       minWidth: 750,
     },
-    visuallyHidden: visuallyHidden as CSSProperties,
+    sortSpan: visuallyHidden as CSSProperties,
   }),
 );
 
