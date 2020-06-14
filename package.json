@@ -119,7 +119,7 @@
     "karma-webpack": "^4.0.2",
     "lerna": "^3.16.4",
     "lodash": "^4.17.15",
-    "mocha": "^7.0.0",
+    "mocha": "^8.0.1",
     "node-fetch": "^ 2.6.0",
     "nyc": "^15.0.0",
     "prettier": "^2.0.1",
