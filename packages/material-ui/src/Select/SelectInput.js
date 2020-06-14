@@ -67,7 +67,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   });
 
   const inputRef = React.useRef(null);
-  const [displayNode, setDisplayNode] = React.useState(null);
+  const displayNodeRef = React.useRef(null);
   const { current: isOpenControlled } = React.useRef(openProp != null);
   const [menuMinWidthState, setMenuMinWidthState] = React.useState();
   const [openState, setOpenState] = React.useState(false);
@@ -77,22 +77,24 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     handleRef,
     () => ({
       focus: () => {
-        displayNode.focus();
+        displayNodeRef.current.focus();
       },
       node: inputRef.current,
       value,
     }),
-    [displayNode, value],
+    [value],
   );
 
   React.useEffect(() => {
-    if (autoFocus && displayNode) {
+    const { current: displayNode } = displayNodeRef;
+    if (autoFocus && displayNode !== null) {
       displayNode.focus();
     }
-  }, [autoFocus, displayNode]);
+  }, [autoFocus]);
 
   React.useEffect(() => {
-    if (displayNode) {
+    const { current: displayNode } = displayNodeRef;
+    if (displayNode !== null) {
       const label = ownerDocument(displayNode).getElementById(labelId);
       if (label) {
         const handler = () => {
@@ -108,7 +110,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     }
 
     return undefined;
-  }, [labelId, displayNode]);
+  }, [labelId]);
 
   const update = (open, event) => {
     if (open) {
@@ -120,7 +122,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     }
 
     if (!isOpenControlled) {
-      setMenuMinWidthState(autoWidth ? null : displayNode.clientWidth);
+      setMenuMinWidthState(autoWidth ? null : displayNodeRef.current.clientWidth);
       setOpenState(open);
     }
   };
@@ -132,7 +134,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     }
     // Hijack the default focus behavior.
     event.preventDefault();
-    displayNode.focus();
+    displayNodeRef.current.focus();
 
     update(true, event);
   };
@@ -214,7 +216,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     }
   };
 
-  const open = displayNode !== null && (isOpenControlled ? openProp : openState);
+  const open = isOpenControlled ? openProp : openState;
 
   const handleBlur = (event) => {
     // if open event.stopImmediatePropagation
@@ -336,7 +338,8 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   // Avoid performing a layout computation in the render method.
   let menuMinWidth = menuMinWidthState;
 
-  if (!autoWidth && isOpenControlled && displayNode) {
+  const { current: displayNode } = displayNodeRef;
+  if (!autoWidth && isOpenControlled && displayNode !== null) {
     menuMinWidth = displayNode.clientWidth;
   }
 
@@ -348,6 +351,8 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   }
 
   const buttonId = SelectDisplayProps.id || (name ? `mui-component-select-${name}` : undefined);
+
+  const anchorEl = React.useCallback(() => displayNodeRef.current, []);
 
   return (
     <React.Fragment>
@@ -362,7 +367,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
           },
           className,
         )}
-        ref={setDisplayNode}
+        ref={displayNodeRef}
         tabIndex={tabIndex}
         role="button"
         aria-disabled={disabled ? 'true' : undefined}
@@ -389,7 +394,9 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       <input
         value={Array.isArray(value) ? value.join(',') : value}
         name={name}
-        ref={inputRef}
+        ref={(instance) => {
+          inputRef.current = instance;
+        }}
         aria-hidden
         onChange={handleChange}
         tabIndex={-1}
@@ -405,7 +412,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       />
       <Menu
         id={`menu-${name || ''}`}
-        anchorEl={displayNode}
+        anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
         {...MenuProps}
