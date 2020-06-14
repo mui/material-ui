@@ -29,10 +29,8 @@ export default function CustomizedTimeline() {
   return (
     <Timeline align="alternate">
       <TimelineItem>
-        <TimelineOppositeContent>
-          <Typography variant="body2" color="textSecondary">
-            9:30 am
-          </Typography>
+        <TimelineOppositeContent variant="body2" color="textSecondary">
+          9:30 am
         </TimelineOppositeContent>
         <TimelineSeparator>
           <TimelineDot>
@@ -50,10 +48,8 @@ export default function CustomizedTimeline() {
         </TimelineContent>
       </TimelineItem>
       <TimelineItem>
-        <TimelineOppositeContent>
-          <Typography variant="body2" color="textSecondary">
-            10:00 am
-          </Typography>
+        <TimelineOppositeContent variant="body2" color="textSecondary">
+          10:00 am
         </TimelineOppositeContent>
         <TimelineSeparator>
           <TimelineDot color="primary">

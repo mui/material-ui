@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { StandardProps } from '@material-ui/core';
+import { StandardProps, TypographyProps } from '@material-ui/core';
 
-export interface TimelineContentProps extends StandardProps<{}, TimelineContentClassKey> {
+export interface TimelineContentProps
+  extends StandardProps<TypographyProps, TimelineContentClassKey> {
   /**
    * The content of the component.
    */
@@ -19,5 +20,6 @@ export type TimelineContentClassKey = 'root';
  * API:
  *
  * - [TimelineContent API](https://material-ui.com/api/timeline-content/)
+ * - inherits [Typography API](https://material-ui.com/api/typography/)
  */
 export default function TimelineContent(props: TimelineContentProps): JSX.Element;

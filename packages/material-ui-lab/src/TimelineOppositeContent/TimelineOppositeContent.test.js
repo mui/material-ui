@@ -2,6 +2,7 @@ import * as React from 'react';
 import { getClasses } from '@material-ui/core/test-utils';
 import createMount from 'test/utils/createMount';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
+import Typography from '@material-ui/core/Typography';
 import TimelineOppositeContent from './TimelineOppositeContent';
 
 describe('<TimelineOppositeContent />', () => {
@@ -14,7 +15,7 @@ describe('<TimelineOppositeContent />', () => {
 
   describeConformance(<TimelineOppositeContent />, () => ({
     classes,
-    inheritComponent: 'div',
+    inheritComponent: Typography,
     mount,
     refInstanceof: window.HTMLDivElement,
     skip: ['componentProp'],

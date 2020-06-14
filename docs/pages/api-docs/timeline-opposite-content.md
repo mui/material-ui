@@ -33,7 +33,7 @@ The `MuiTimelineOppositeContent` name can be used for providing [default props](
 
 The `ref` is forwarded to the root element.
 
-Any other props supplied will be provided to the root element (native element).
+Any other props supplied will be provided to the root element ([Typography](/api/typography/)).
 
 ## CSS
 
@@ -49,6 +49,11 @@ You can override the style of the component thanks to one of these customization
 - With a theme and an [`overrides` property](/customization/globals/#css).
 
 If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-lab/src/TimelineOppositeContent/TimelineOppositeContent.js) for more detail.
+
+## Inheritance
+
+The props of the [Typography](/api/typography/) component are also available.
+You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
 ## Demos
 

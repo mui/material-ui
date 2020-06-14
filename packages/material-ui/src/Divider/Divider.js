@@ -7,11 +7,12 @@ import { fade } from '../styles/colorManipulator';
 export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
-    height: 1,
     margin: 0, // Reset browser default style.
-    border: 'none',
     flexShrink: 0,
-    backgroundColor: theme.palette.divider,
+    borderWidth: 0,
+    borderStyle: 'solid',
+    borderColor: theme.palette.divider,
+    borderBottomWidth: 'thin',
   },
   /* Styles applied to the root element if `absolute={true}`. */
   absolute: {
@@ -26,7 +27,7 @@ export const styles = (theme) => ({
   },
   /* Styles applied to the root element if `light={true}`. */
   light: {
-    backgroundColor: fade(theme.palette.divider, 0.08),
+    borderColor: fade(theme.palette.divider, 0.08),
   },
   /* Styles applied to the root element if `variant="middle"`. */
   middle: {
@@ -36,7 +37,8 @@ export const styles = (theme) => ({
   /* Styles applied to the root element if `orientation="vertical"`. */
   vertical: {
     height: '100%',
-    width: 1,
+    borderBottomWidth: 0,
+    borderRightWidth: 'thin',
   },
   /* Styles applied to the root element if `flexItem={true}`. */
   flexItem: {

@@ -43,7 +43,7 @@ Any other props supplied will be provided to the root element (native element).
 | <span class="prop-name">root</span> | <span class="prop-name">.MuiSpeedDialIcon-root</span> | Styles applied to the root element.
 | <span class="prop-name">icon</span> | <span class="prop-name">.MuiSpeedDialIcon-icon</span> | Styles applied to the icon component.
 | <span class="prop-name">iconOpen</span> | <span class="prop-name">.MuiSpeedDialIcon-iconOpen</span> | Styles applied to the icon component if `open={true}`.
-| <span class="prop-name">iconWithOpenIconOpen</span> | <span class="prop-name">.MuiSpeedDialIcon-iconWithOpenIconOpen</span> | Styles applied to the icon when and `openIcon` is provided and if `open={true}`.
+| <span class="prop-name">iconWithOpenIconOpen</span> | <span class="prop-name">.MuiSpeedDialIcon-iconWithOpenIconOpen</span> | Styles applied to the icon when an `openIcon` is provided and if `open={true}`.
 | <span class="prop-name">openIcon</span> | <span class="prop-name">.MuiSpeedDialIcon-openIcon</span> | Styles applied to the `openIcon` if provided.
 | <span class="prop-name">openIconOpen</span> | <span class="prop-name">.MuiSpeedDialIcon-openIconOpen</span> | Styles applied to the `openIcon` if provided and if `open={true}`.
 

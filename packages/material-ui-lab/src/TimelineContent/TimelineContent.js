@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { capitalize } from '@material-ui/core/utils';
 import { withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
 import TimelineContext from '../Timeline/TimelineContext';
 import TimelineItemContext from '../TimelineItem/TimelineItemContext';
 
@@ -25,7 +26,8 @@ const TimelineContent = React.forwardRef(function TimelineContent(props, ref) {
   const { classes: contextClasses = {} } = React.useContext(TimelineItemContext);
 
   return (
-    <div
+    <Typography
+      component="div"
       className={clsx(
         classes.root,
         contextClasses.content,
