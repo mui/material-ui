@@ -1,6 +1,6 @@
 # Migration from v4 to v5
 
-<p class="description">Yeah, v4 has been released!</p>
+<p class="description">Yeah, v5 has been released!</p>
 
 Looking for the v4 docs? [Find them here](https://material-ui.com/versions/).
 
