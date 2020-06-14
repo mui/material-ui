@@ -10,6 +10,9 @@ export * from './Autocomplete';
 export { default as AvatarGroup } from './AvatarGroup';
 export * from './AvatarGroup';
 
+export { default as BusyButton } from './BusyButton';
+export * from './BusyButton';
+
 export { default as Pagination } from './Pagination';
 export * from './Pagination';
 

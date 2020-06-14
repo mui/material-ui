@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import BusyButton from '@material-ui/core/BusyButton';
+import BusyButton from '@material-ui/lab/BusyButton';
 import SaveIcon from '@material-ui/icons/Save';
 
 const useStyles = makeStyles((theme) => ({

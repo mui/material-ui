@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import BusyButton from '@material-ui/core/BusyButton';
+import BusyButton from '@material-ui/lab/BusyButton';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import SaveIcon from '@material-ui/icons/Save';

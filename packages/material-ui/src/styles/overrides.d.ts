@@ -6,7 +6,6 @@ import { BadgeClassKey } from '../Badge';
 import { BottomNavigationActionClassKey } from '../BottomNavigationAction';
 import { BottomNavigationClassKey } from '../BottomNavigation';
 import { BreadcrumbsClassKey } from '../Breadcrumbs';
-import { BusyButtonClassKey } from '../BusyButton';
 import { ButtonBaseClassKey } from '../ButtonBase';
 import { ButtonClassKey } from '../Button';
 import { ButtonGroupClassKey } from '../ButtonGroup';
@@ -115,7 +114,6 @@ export interface ComponentNameToClassKey {
   MuiBottomNavigation: BottomNavigationClassKey;
   MuiBottomNavigationAction: BottomNavigationActionClassKey;
   MuiBreadcrumbs: BreadcrumbsClassKey;
-  MuiBusyButton: BusyButtonClassKey;
   MuiButton: ButtonClassKey;
   MuiButtonBase: ButtonBaseClassKey;
   MuiButtonGroup: ButtonGroupClassKey;

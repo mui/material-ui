@@ -1,5 +1,5 @@
-import { ExtendButton, ExtendButtonTypeMap } from '../Button';
-import { OverrideProps } from '../OverridableComponent';
+import { ExtendButton, ExtendButtonTypeMap } from '@material-ui/core/Button';
+import { OverrideProps } from '@material-ui/core/OverridableComponent';
 
 export type BusyButtonTypeMap<
   P = {},

@@ -2,10 +2,10 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes } from '@material-ui/utils';
-import withStyles from '../styles/withStyles';
-import capitalize from '../utils/capitalize';
-import Button from '../Button';
-import CircularProgress from '../CircularProgress';
+import { capitalize } from '@material-ui/core/utils';
+import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 export const styles = () => ({
   /* Styles applied to the root element. */
