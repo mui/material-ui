@@ -77,15 +77,15 @@ const StyledButton = withStyles({
 
 ### CSS 伪类（Pseudo-classes）
 
-组件会有一些特殊的状态，如 *hover* ，*focus* ，*disabled* 和 *selected* ，它们被一些更高的 CSS 特异性所装饰。 [特异性是一种加权](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity)，它适用于给定的 CSS 声明。
+组件会有一些特殊的状态，如 *hover* ，*focus* ，*disabled* 和 *selected* ，它们被一些更高的 CSS 优先级所装饰。 [优先级是一种加权](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity)，它适用于给定的 CSS 声明。
 
-为了覆盖组件的特殊状态，**你会需要提高特殊性** 。 下面是一个示例，它展示了 *disabled* 状态，以及一个使用**伪类**的按钮组件（`disabled`）：
+为了覆盖组件的特殊状态，**你需要提高优先级** 。 下面是一个示例，它展示了 *disabled* 状态，以及一个使用**伪类**的按钮组件（`disabled`）：
 
 ```css
 .Button {
   color: black;
 }
-.Button:disabled { /* Increase the specificity */
+.Button:disabled { /* 提高优先级 */
   color: white;
 }
 ```
@@ -100,7 +100,7 @@ const StyledButton = withStyles({
 .MenuItem {
   color: black;
 }
-.MenuItem.selected { /* Increase the specificity */
+.MenuItem.selected { /* 提高优先级 */
   color: blue;
 }
 ```
@@ -109,9 +109,9 @@ const StyledButton = withStyles({
 <MenuItem selected classes={{ root: 'MenuItem', selected: 'selected' }}>
 ```
 
-#### 为什么我需要增加特殊性来覆盖一个组件的状态呢？
+#### 为什么我需要增加优先级来覆盖一个组件的状态呢？
 
-通过一些设计，CSS 的一些特殊要求让伪类增加了特异性。 为了保持一致性，通过一些其自定义的伪类，Material-UI 提高了特殊性。 这有一个重要的优点，您可以自由挑选那些想要自定义状态。
+通过一些设计，CSS 的一些特殊要求让伪类提高了优先级。 为了保持一致性，通过一些其自定义的伪类，Material-UI 提高了优先级。 这有一个重要的优点，您可以自由挑选那些想要自定义状态。
 
 #### 我可以使用那些需要更少样板的不同 API 吗？
 
@@ -133,7 +133,7 @@ const StyledButton = withStyles({
 .MenuItem {
   color: black;
 }
-.MenuItem.Mui-selected { /* Increase the specificity */
+.MenuItem.Mui-selected { /* 提高优先级 */
   color: blue;
 }
 ```
@@ -144,7 +144,7 @@ const StyledButton = withStyles({
 
 ### 在同一样式表中，可以使用 `$ruleName` 来引用当前的规则
 
-[jss-nested](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-nested) 插件 (默认情况下可用) 简化了增加特异性的过程。
+[jss-nested](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-nested) 插件 (默认情况下可用) 简化了提高优先级的过程。
 
 ```js
 const styles = {
@@ -183,7 +183,7 @@ const styles = {
 
 第二种覆盖组件样式的方法是使用 **inline-style**。 每个组件都会提供一个 `style` 属性。 这些属性始终应用于根元素。
 
-您不必担心 CSS 特殊性，因为内联样式将优先于常规 CSS。
+您不必担心 CSS 优先级，因为内联样式将优先于常规 CSS。
 
 {{"demo": "pages/customization/components/InlineStyle.js"}}
 

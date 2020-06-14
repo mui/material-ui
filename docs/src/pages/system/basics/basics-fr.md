@@ -312,7 +312,7 @@ The `style()` helper can also be used to maps properties to style objects in a t
 
 {{"demo": "pages/system/basics/Variant.js", "defaultCodeOpen": true}}
 
-## CSS property
+## Propriété CSS
 
 If you want to support custom CSS values, you can use the `css()` helper. It will process the `css` property.
 

@@ -69,7 +69,7 @@ Aqui está um exemplo de customização do componente. Você pode aprender mais 
 
 ### Ações de paginação customizada
 
-A propriedade `Action` do componente `TablePagination` permite a implementação de ações customizadas.
+A propriedade `ActionsComponent` do componente `TablePagination` permite a implementação de ações customizadas.
 
 {{"demo": "pages/components/tables/CustomPaginationActionsTable.js", "bg": true}}
 

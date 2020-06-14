@@ -42,7 +42,7 @@ components: MobileStepper, Step, StepButton, StepConnector, StepContent, StepIco
 
 此示例类似于常规的水平步进器，但步骤不再基于` activeStep `属性自动设置` disabled = {true} `。
 
-在这里使用 `StepButton` 演示了一个可单击的步进器标签，并且设置了 `completed` 标志。 但是，由于可以以非线性方式访问每个步骤，因此需要由您自己的实现来确定何时完成所有步骤（甚至是是否需要完成）。
+在这里使用 `StepButton` 演示了一个可单击的步骤器标签，并且设置了 `completed` 标志。 但是，由于可以以非线性方式访问每个步骤，因此需要由您自己的实现来确定何时完成所有步骤（甚至是是否需要完成）。
 
 {{"demo": "pages/components/steppers/HorizontalNonLinearStepper.js", "bg": true}}
 
@@ -62,17 +62,17 @@ components: MobileStepper, Step, StepButton, StepConnector, StepContent, StepIco
 
 ## 移动设备上的步骤条
 
-该组件实现了适用于移动设备上的紧凑型步骤条。 有关这方面的详细介绍，请参阅 [移动设备上的步骤条](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steps)。
+该组件实现了适用于移动设备上的紧凑型步骤条。 如果你还在寻找灵感，请参阅 [移动设备上的步骤条](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steps)。
 
 ### 文本
 
-本质上，这是一个被正确定位的 back/next 按钮。 您必须自己实现文本描述，但是，下面提供了一个参考示例。
+本质上，这是一个被正确定位的 back/next 按钮。 您必须自己实现文本描述，但以下的示例也可供参考。
 
 {{"demo": "pages/components/steppers/TextMobileStepper.js", "bg": true}}
 
-### 文本与幻灯片效果
+### 带有幻灯片效果的文本
 
-这个实例与之前的非常相似，不同之处在于使用[ react-swipeable-views ](https://github.com/oliviertassinari/react-swipeable-views)以进行步骤转换。
+这个实例与之前的非常相似，不同之处在于使用 [react-swipeable-views](https://github.com/oliviertassinari/react-swipeable-views) 以进行步骤的过渡动画。
 
 {{"demo": "pages/components/steppers/SwipeableTextMobileStepper.js", "bg": true}}
 

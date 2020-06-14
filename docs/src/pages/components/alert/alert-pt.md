@@ -41,7 +41,7 @@ A propriedade `icon` permite que você adicione um ícone no início do componen
 
 Você pode alterar a severidade padrão e o mapeamento do ícone com a propriedade `iconMapping`. Isso pode ser definido globalmente utilizando [customização do tema](/customization/globals/#default-props).
 
-Definir a propriedade ícone como falso removerá o ícone completamente.
+Definir a propriedade `icon` como falso removerá o ícone completamente.
 
 {{"demo": "pages/components/alert/IconAlerts.js"}}
 
@@ -57,13 +57,13 @@ Duas variantes adicionais estão disponíveis – delineado e preenchido:
 
 {{"demo": "pages/components/alert/FilledAlerts.js"}}
 
-## Aviso na tela
+## Toast
 
-Você pode usar o componente SnackBar para [exibir um aviso na tela](/components/snackbars/#customized-snackbars) com o componente Alert.
+Você pode usar o componente Snackbar para [exibir um toast](/components/snackbars/#customized-snackbars) com o componente Alert.
 
 ## Cor
 
-A propriedade `color` irá sobrescrever a cor padrão para a gravidade especificada.
+A propriedade `color` irá sobrescrever a cor padrão para a severidade especificada.
 
 {{"demo": "pages/components/alert/ColorAlerts.js"}}
 
@@ -75,4 +75,4 @@ Quando o componente é exibido de forma dinâmica, o conteúdo é automaticament
 
 O uso de cores para adicionar significado apenas fornece uma indicação visual, que não vai ser transmitida para usuários de tecnologias assistivas, como leitores de tela. Certifique-se de que a informação indicada pela cor seja clara a partir do próprio conteúdo (por exemplo, o texto visível), ou esteja incluída através de meios alternativos, como um texto oculto adicional.
 
-As ações devem ter um índice de tabulação igual a 0 para que possam ser acessíveis por usuários que usam apenas o teclado.
+As ações devem ter um índice de tabulação de 0 para que possam ser acessíveis por usuários que usam apenas o teclado.

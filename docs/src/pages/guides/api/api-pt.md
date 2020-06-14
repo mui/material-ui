@@ -112,7 +112,7 @@ Existem duas opções para projetar a API para as variações de um componente: 
 Os componentes de Material-UI usam uma combinação das duas abordagens de acordo com as seguintes regras:
 
 - Um *boleano* é usado quando **2** valores possíveis são necessários.
-- Um *enumerador* é usado quando **2** valores possíveis são necessários, ou se houver a possibilidade de que valores possíveis adicionais possam ser necessários no futuro.
+- Um *enumerador* é usado quando **>2** valores possíveis são necessários, ou se houver a possibilidade de que valores possíveis adicionais possam ser necessários no futuro.
 
 Voltando ao exemplo do botão anterior; ele requer 3 valores possíveis, usamos um *enumerador*.
 

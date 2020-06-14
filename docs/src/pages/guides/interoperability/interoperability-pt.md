@@ -6,9 +6,9 @@ Este guia tem como objetivo documentar as alternativas mais populares, mas você
 
 - [CSS puro](#plain-css)
 - [CSS global](#global-css)
-- [Styled Components](#global-css)
-- [Módulos CSS](#styled-components)
-- [Emotion](#css-modules)
+- [Styled Components](#styled-components)
+- [Módulos CSS](#css-modules)
+- [Emotion](#emotion)
 - [React JSS](#react-jss)
 
 ## CSS puro

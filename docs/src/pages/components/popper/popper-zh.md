@@ -26,8 +26,8 @@ components: Popper
 气泡卡片的 打开/关闭 可以使用一个过渡组件进行动画化处理。 此组件应遵守以下条件：
 
 - 成为气泡卡片的直接子组件。
-- 在进入过渡开始时调用 prop 中的 `onEnter` 回调。
-- 在退出过渡完成后调用 prop 中的 `onExited` 回调。 这两个回调允许气泡卡片在关闭并完全过渡 (when closed and fully transitioned) 时卸载子内容。
+- 当进入过渡时调用 `onEnter` 回调属性。
+- 当退出过渡完成后应该调用 `onExited` 回调属性。 这两个回调允许气泡卡片在关闭并完全过渡 (when closed and fully transitioned) 时卸载子内容。
 
 弹出组件Popper已经内嵌支持 [react-transition-group](https://github.com/reactjs/react-transition-group)。
 

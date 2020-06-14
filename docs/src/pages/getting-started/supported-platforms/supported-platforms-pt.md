@@ -29,4 +29,4 @@ Material-UI suporta as versões mais recentes do React, começando com ^16.8.0 (
 
 ## TypeScript
 
-Material-UI requires a minimum version of TypeScript 3.2.
+Material-UI requer como versão mínima o TypeScript 3.2.

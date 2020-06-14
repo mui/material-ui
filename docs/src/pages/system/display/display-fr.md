@@ -123,11 +123,11 @@ For faster mobile-friendly development, use responsive display classes for showi
 import { display } from '@material-ui/system';
 ```
 
-| Import name    | Prop           | CSS property    | Theme key |
-|:-------------- |:-------------- |:--------------- |:--------- |
-| `displayPrint` | `displayPrint` | `display`       | none      |
-| `displayRaw`   | `display`      | `display`       | none      |
-| `overflow`     | `overflow`     | `overflow`      | none      |
-| `textOverflow` | `textOverflow` | `text-overflow` | none      |
-| `visibility`   | `visibility`   | `visibility`    | none      |
-| `whiteSpace`   | `whiteSpace`   | `white-space`   | none      |
+| Import name    | Prop           | Propriété CSS   | Clé du thème |
+|:-------------- |:-------------- |:--------------- |:------------ |
+| `displayPrint` | `displayPrint` | `display`       | none         |
+| `displayRaw`   | `display`      | `display`       | none         |
+| `overflow`     | `overflow`     | `overflow`      | none         |
+| `textOverflow` | `textOverflow` | `text-overflow` | none         |
+| `visibility`   | `visibility`   | `visibility`    | none         |
+| `whiteSpace`   | `whiteSpace`   | `white-space`   | none         |
