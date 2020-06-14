@@ -3,8 +3,9 @@ import { expect } from 'chai';
 import { getClasses } from '@material-ui/core/test-utils';
 import createMount from 'test/utils/createMount';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
-import { act, createClientRender, fireEvent, screen } from 'test/utils/createClientRender';
+import { act, createClientRender, fireEvent, screen, within } from 'test/utils/createClientRender';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
+import { IFrame, useDocument } from 'test/utils/components';
 import MenuItem from '../MenuItem';
 import Input from '../Input';
 import InputLabel from '../InputLabel';
@@ -1060,5 +1061,41 @@ describe('<Select />', () => {
     );
 
     expect(screen.getByRole('button')).toHaveFocus();
+  });
+
+  it('hides siblings in an iframe', function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      // IFrame is not supported in JSDOM
+      this.skip();
+    }
+
+    let iframeDocument = null;
+    function OwnerDocumentSpy() {
+      iframeDocument = useDocument();
+      return null;
+    }
+    render(
+      <React.Fragment>
+        <div data-testid="unrelated-element" />
+        <IFrame>
+          <OwnerDocumentSpy />
+          <div data-testid="select-sibling" />
+          <Select
+            inputRef={(instance) => {
+              if (instance !== null) {
+                instance.focus();
+              }
+            }}
+            open
+            value="1"
+          >
+            <MenuItem value="1" />
+          </Select>
+        </IFrame>
+      </React.Fragment>,
+    );
+
+    expect(screen.getByTestId('unrelated-element')).not.toBeInaccessible();
+    expect(within(iframeDocument).getByTestId('select-sibling')).toBeInaccessible();
   });
 });

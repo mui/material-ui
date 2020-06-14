@@ -58,12 +58,16 @@ export default function createMount(options = {}) {
     return titles.filter(Boolean).reverse().join(' -> ');
   }
 
+  // must be called in describe()
+  // eslint-disable-next-line mocha/no-top-level-hooks
   beforeEach(function beforeEachMountTest() {
     container = document.createElement('div');
     container.setAttribute('data-test', computeTestName(this.currentTest));
     document.body.insertBefore(container, document.body.firstChild);
   });
 
+  // must be called in describe()
+  // eslint-disable-next-line mocha/no-top-level-hooks
   afterEach(() => {
     ReactDOM.unmountComponentAtNode(container);
     container.parentElement.removeChild(container);

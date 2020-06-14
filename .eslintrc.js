@@ -114,6 +114,7 @@ module.exports = {
     {
       files: [
         '**/test-utils/**/*.js',
+        '**/test/utils/**/*.js',
         // matching the pattern of the test runner
         '*.test.js',
       ],

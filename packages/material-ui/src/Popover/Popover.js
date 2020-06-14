@@ -387,9 +387,10 @@ const Popover = React.forwardRef(function Popover(props, ref) {
   // If the container prop is provided, use that
   // If the anchorEl prop is provided, use its parent body element as the container
   // If neither are provided let the Modal take care of choosing the container
-  const resolvedAnchorEl = getAnchorEl(anchorEl);
-  const container =
-    containerProp || (resolvedAnchorEl ? ownerDocument(resolvedAnchorEl).body : undefined);
+  const container = React.useCallback(() => {
+    const resolvedAnchorEl = getAnchorEl(anchorEl);
+    return containerProp || resolvedAnchorEl ? ownerDocument(resolvedAnchorEl).body : undefined;
+  }, [containerProp, anchorEl]);
 
   return (
     <Modal

@@ -79,6 +79,8 @@ function clientRender(element, options = {}) {
 export function createClientRender(globalOptions = {}) {
   const { strict: globalStrict } = globalOptions;
 
+  // must be called in describe()
+  // eslint-disable-next-line mocha/no-top-level-hooks
   afterEach(async () => {
     // If this issues an act() warning you probably didn't
     // wait for an async event in your test (or didn't wrap it in act() at all).

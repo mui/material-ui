@@ -10,6 +10,8 @@ import { stub } from 'sinon';
 export default function createServerRender(options = {}) {
   const { expectUseLayoutEffectWarning = false } = options;
 
+  // must be called in describe()
+  // eslint-disable-next-line mocha/no-top-level-hooks
   beforeEach(() => {
     stub(console, 'error').callsFake((message, ...args) => {
       const isUseLayoutEffectWarning = /Warning: useLayoutEffect does nothing on the server/.test(
@@ -25,6 +27,8 @@ export default function createServerRender(options = {}) {
     });
   });
 
+  // must be called in describe()
+  // eslint-disable-next-line mocha/no-top-level-hooks
   afterEach(() => {
     console.error.restore();
   });
