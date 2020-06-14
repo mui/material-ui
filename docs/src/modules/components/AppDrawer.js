@@ -140,6 +140,8 @@ const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 function AppDrawer(props) {
   const { classes, className, disablePermanent, mobileOpen, onClose, onOpen } = props;
   const { activePage, pages } = React.useContext(PageContext);
+  const userLanguage = useSelector((state) => state.options.userLanguage);
+  const languagePrefix = userLanguage === 'en' ? '' : `/${userLanguage}`;
   const t = useSelector((state) => state.options.t);
 
   const drawer = (
@@ -153,7 +155,7 @@ function AppDrawer(props) {
             <Link
               color="textSecondary"
               variant="caption"
-              href="https://material-ui.com/versions/"
+              href={`https://material-ui.com${languagePrefix}/versions/`}
               onClick={onClose}
             >
               {`v${process.env.LIB_VERSION}`}
