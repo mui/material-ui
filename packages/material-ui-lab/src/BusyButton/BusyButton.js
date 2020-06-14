@@ -116,7 +116,7 @@ BusyButton.propTypes = {
    */
   disabled: PropTypes.bool,
   /**
-   * The content of the button.
+   * If `true`, the pending indicator will be shown.
    */
   pending: PropTypes.bool,
   /**

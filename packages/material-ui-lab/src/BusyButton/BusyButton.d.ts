@@ -7,7 +7,7 @@ export type BusyButtonTypeMap<
 > = ExtendButtonTypeMap<{
   props: P & {
     /**
-     * The content of the button.
+     * If `true`, the pending indicator will be shown.
      */
     pending?: boolean;
     /**
