@@ -10,7 +10,6 @@ export const styles = (theme) => ({
   root: {
     display: 'flex',
     alignItems: 'center',
-    textAlign: 'left',
     '&$alternativeLabel': {
       flexDirection: 'column',
     },
@@ -21,7 +20,9 @@ export const styles = (theme) => ({
   /* Styles applied to the root element if `orientation="horizontal"`. */
   horizontal: {},
   /* Styles applied to the root element if `orientation="vertical"`. */
-  vertical: {},
+  vertical: {
+    textAlign: 'left',
+  },
   /* Styles applied to the `Typography` component which wraps `children`. */
   label: {
     '&$active': {
