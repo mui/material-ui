@@ -333,7 +333,7 @@ describe('<Select />', () => {
             <MenuItem value={30}>Thirty</MenuItem>
           </Select>,
         );
-        expect(console.warn.callCount).to.equal(2); // strict mode renders twice
+        expect(console.warn.callCount).to.equal(1); // StrictMode was not responsible for double render
         expect(console.warn.args[0][0]).to.include(
           'Material-UI: You have provided an out-of-range value `20` for the select component.',
         );
@@ -1043,5 +1043,22 @@ describe('<Select />', () => {
     setProps({ value: 'france' });
     fireEvent.click(container.querySelector('button[type=submit]'));
     expect(handleSubmit.callCount).to.equal(1);
+  });
+
+  it('can focus in ref phase', () => {
+    render(
+      <Select
+        inputRef={(instance) => {
+          if (instance !== null) {
+            instance.focus();
+          }
+        }}
+        value="1"
+      >
+        <MenuItem value="1" />
+      </Select>,
+    );
+
+    expect(screen.getByRole('button')).toHaveFocus();
   });
 });
