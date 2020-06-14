@@ -2373,9 +2373,9 @@
     defer-to-connect "^1.0.1"
 
 "@testing-library/dom@^7.0.3", "@testing-library/dom@^7.9.0":
-  version "7.10.1"
-  resolved "https://registry.yarnpkg.com/@testing-library/dom/-/dom-7.10.1.tgz#dc2cac517b5956020d28a027c58b24b393a44320"
-  integrity sha512-shB6yx0eqoKya8V6zqV152MioYe6R4iIorT9LdGhGMZwvqny0GYMBqzKbAcxbTMlBmG0M0xaqO8AnzVEMuUamA==
+  version "7.14.2"
+  resolved "https://registry.yarnpkg.com/@testing-library/dom/-/dom-7.14.2.tgz#e539b2342c5a67e2dfd285bba02308abeb237195"
+  integrity sha512-MZjve+Qn0bPFAJ8w0SIkuplCMd52Bh2JyNAvS0xh/RSZVAsux1HGL24yhTf6fT+HtHMqG1F0vZFU8ncZmmAK1Q==
   dependencies:
     "@babel/runtime" "^7.10.2"
     aria-query "^4.0.2"
