@@ -20,6 +20,7 @@ import Switch from '@material-ui/core/Switch';
 import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import { visuallyHidden } from '@material-ui/system';
+import { CSSProperties } from '@material-ui/styles';
 
 interface Data {
   calories: number;
@@ -228,7 +229,7 @@ const useStyles = makeStyles((theme: Theme) =>
     table: {
       minWidth: 750,
     },
-    visuallyHidden,
+    visuallyHidden: visuallyHidden as CSSProperties,
   }),
 );
 

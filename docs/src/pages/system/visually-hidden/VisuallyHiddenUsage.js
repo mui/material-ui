@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
   selected: {
     color: theme.palette.primary.main,
   },
-  visuallyHidden: visuallyHidden,
+  visuallyHidden,
 }));
 
 export default function VisuallyHiddenUsage() {
