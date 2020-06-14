@@ -45,11 +45,10 @@ const styles = (theme) => ({
 
 function TopLayoutBlog(props) {
   const { classes, docs } = props;
-
   const { description, rendered, title } = docs.en;
 
   return (
-    <AppFrame>
+    <AppFrame disableDrawer>
       <Head title={`${title} - Material-UI`} description={description} />
       <div className={classes.root}>
         <AppContainer className={classes.container}>

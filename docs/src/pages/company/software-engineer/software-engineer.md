@@ -1,6 +1,6 @@
 # Senior Software Engineer
 
-<p class="description">We are looking for a software engineer to help support our open source team, assist the Material-UI community and grow our premium products. Join us in our mission to make React application development fun by making it simple.</p>
+<p class="description">We are looking for a software engineer to help support our open source team, assist the Material-UI community and grow our premium products. Join us in our mission to make React application development fun and simple.</p>
 
 ## About Us
 
@@ -21,7 +21,7 @@ Material-UI started back in 2014 to unify React and Material Design. Today, Mate
 
 ## Why we’re hiring
 
-Both our open source products and community, and our premium products are [growing fast](https://www.rank2traffic.com/material-ui.com) and we need talented engineers to keep that going!
+Both our open source products and community, and our premium products are [growing fast](https://www.similarweb.com/website/material-ui.com) and we need talented engineers to keep that going!
 
 We need help to continue to improve the health of Material-UI open source: make the library easier to use, make it support more use cases, improve performance, make it more accessible, and make it easier to customize to support [in-house design systems](https://medium.com/google-design/state-of-design-systems-2019-ff5f26ada71). We also need help keeping up with the community, guiding developers to answers, and just generally being a positive presence in the open source community.
 
