@@ -123,15 +123,11 @@
 import { display } from '@material-ui/system';
 ```
 
-| 导入名称            | Prop            | CSS 属性           | Theme key |
-|:--------------- |:--------------- |:---------------- |:--------- |
-| `displayPrint`  | `displayPrint`  | `display`        | none      |
-| `displayRaw`    | `display`       | `display`        | none      |
-| `overflow`      | `overflow`      | `overflow`       | none      |
-| `textOverflow
-` | `textOverflow
-` | `text-overflow
-` | none      |
-| `visibility`    | `visibility`    | `visibility`     | none      |
-| `whiteSpace`    | `whiteSpace`    | `white-space
-`   | none      |
+| 导入名称           | Prop           | CSS 属性          | Theme key |
+|:-------------- |:-------------- |:--------------- |:--------- |
+| `displayPrint` | `displayPrint` | `display`       | none      |
+| `displayRaw`   | `display`      | `display`       | none      |
+| `overflow`     | `overflow`     | `overflow`      | none      |
+| `textOverflow` | `textOverflow` | `text-overflow` | none      |
+| `visibility`   | `visibility`   | `visibility`    | none      |
+| `whiteSpace`   | `whiteSpace`   | `white-space`   | none      |

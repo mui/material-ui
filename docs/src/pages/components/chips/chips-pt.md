@@ -44,7 +44,7 @@ Você pode usar a propriedade `size` para definir um Chip pequeno.
 
 {{"demo": "pages/components/chips/SmallOutlinedChips.js"}}
 
-## Chip - Live Demo
+## Chip - Exemplo interativo
 
 {{"demo": "pages/components/chips/ChipsPlayground.js", "hideToolbar": true}}
 

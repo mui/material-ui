@@ -58,7 +58,7 @@ export default function PlainCssButton() {
 import { StylesProvider } from '@material-ui/core/styles';
 
 <StylesProvider injectFirst>
-  {/* Your component tree.
+  {/* 你的组件树。
       Now, you can override Material-UI's styles. */}
 </StylesProvider>
 ```
@@ -148,7 +148,7 @@ export default function GlobalCssButton() {
 import { StylesProvider } from '@material-ui/core/styles';
 
 <StylesProvider injectFirst>
-  {/* Your component tree.
+  {/* 你的组件树。
       Now, you can override Material-UI's styles. */}
 </StylesProvider>
 ```
@@ -197,7 +197,7 @@ export default function StyledComponents() {
 import { StylesProvider } from '@material-ui/core/styles';
 
 <StylesProvider injectFirst>
-  {/* Your component tree.
+  {/* 你的组件树。
       Now, you can override Material-UI's styles. */}
 </StylesProvider>
 ```
@@ -374,7 +374,7 @@ export default function CssModulesButton() {
 import { StylesProvider } from '@material-ui/core/styles';
 
 <StylesProvider injectFirst>
-  {/* Your component tree.
+  {/* 你的组件树。
       Now, you can override Material-UI's styles. */}
 </StylesProvider>
 ```
@@ -468,7 +468,7 @@ export default function EmotionCSS() {
 import { StylesProvider } from '@material-ui/core/styles';
 
 <StylesProvider injectFirst>
-  {/* Your component tree.
+  {/* 你的组件树。
       Now, you can override Material-UI's styles. */}
 </StylesProvider>
 ```

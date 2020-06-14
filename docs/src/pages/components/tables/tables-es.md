@@ -69,7 +69,7 @@ Es posible personalizar las opciones en el item "Filas por página" usando la pr
 
 ### Custom pagination actions
 
-El atributo `Action`del componente `TablePagination` permite implementar acciones personalizadas.
+The `ActionsComponent` prop of the `TablePagination` component allows the implementation of custom actions.
 
 {{"demo": "pages/components/tables/CustomPaginationActionsTable.js", "bg": true}}
 

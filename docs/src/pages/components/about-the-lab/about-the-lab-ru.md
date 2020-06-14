@@ -27,7 +27,7 @@ npm install @material-ui/lab
 yarn add @material-ui/lab
 ```
 
-The lab has a peer dependency on the core components. If you are not already using Material-UI in your project, you can install it with:
+Пакет lab зависит напрямую от пакета основных компонентов. Если Material-UI ещё не использовался вашем проекте, вы можете установить его командой:
 
 ```sh
 // with npm
@@ -35,4 +35,22 @@ npm install @material-ui/core
 
 // with yarn
 yarn add @material-ui/core
+```
+
+## TypeScript
+
+In order to benefit from the [CSS overrides](/customization/globals/#css) and [default prop customization](/customization/globals/#default-props) with the theme, TypeScript users need to import the following types. Internally, it uses [module augmentation](/guides/typescript/#customization-of-theme) to extend the default theme structure with the extension components available in the lab.
+
+```tsx
+import type '@material-ui/lab/themeAugmentation';
+
+const theme = createMuiTheme({
+  overrides: {
+    MuiTimeline: {
+      root: {
+        backgroundColor: 'red',
+      },
+    },
+  },
+});
 ```

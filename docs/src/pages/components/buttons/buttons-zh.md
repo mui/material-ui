@@ -46,13 +46,13 @@ components: Button, IconButton, ButtonBase
 
 ## Handling clicks 处理点击
 
-所有组件都接受 `onClick` 处理程序，该处理程序被应用到 根(root) DOM 元素。
+所有组件都接受 `onClick` 处理程序，该处理程序被应用到根 DOM 元素中。
 
 ```jsx
-<Button onClick={() => { alert('clicked') }}>Click me</Button>
+<Button onClick={() => { alert('clicked') }}>请点击我</Button>
 ```
 
-请注意，文档里组件的 api 部分 [避免](/guides/api/#native-properties) 提到大量的 原生(native) 属性。
+请注意，文档里组件的 API 部分[避免](/guides/api/#native-properties)提到原生的属性（还是有很多）。
 
 ## Upload button 上传按钮
 
@@ -74,7 +74,7 @@ components: Button, IconButton, ButtonBase
 
 图标按钮通常位于应用栏和工具栏中。
 
-图标也适用于允许选择单个选项的切换按钮或 取消选择，例如向项目添加或删除星标。
+图标也适用于允许选择单个选项的切换按钮或取消选择，例如向项目添加或删除星标。
 
 {{"demo": "pages/components/buttons/IconButtons.js"}}
 
@@ -84,7 +84,7 @@ components: Button, IconButton, ButtonBase
 
 {{"demo": "pages/components/buttons/CustomizedButtons.js", "defaultCodeOpen": false}}
 
-🎨如果你是在寻找灵感，你可以查看 [MUI Treasury's customization examples](https://mui-treasury.com/styles/button)。
+👑 如果您还在寻找灵感，您可以看看 [MUI Treasury 特别定制的一些例子](https://mui-treasury.com/styles/button)。
 
 ## Complex Buttons（复杂按钮）
 

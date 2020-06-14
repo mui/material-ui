@@ -5,7 +5,7 @@ components: Badge
 
 # Badge 徽章
 
-<p class="description">徽章会在其子项的右上角生成一个小徽章。</p>
+<p class="description">徽章组件会在其子项（们）的右上角生成一个小徽章。</p>
 
 ## 基本徽章
 
@@ -31,24 +31,24 @@ components: Badge
 
 ## 最大值
 
-您可以使用 `max` 属性来限制徽章内容的最大值。
+您可以使用 `max` 属性来限制徽章组件内容的最大值。
 
 {{"demo": "pages/components/badges/BadgeMax.js"}}
 
 ## 圆点徽章
 
-`dot` 属性会使得徽章渲染为一个小点。 这样的组件可以作为一个提示的工具，来说明有些值已经改变，但是不需要计数。
+通过 `dot` 属性，一个徽章会渲染为一个小小的点。 这样的话，可以在不给出具体计数的情况下，组件能够提示一下变化。
 
 {{"demo": "pages/components/badges/DotBadge.js"}}
 
-## 徽章组件的覆盖
+## 徽章组件的 overlap 属性
 
-您可以使用 `overlap` 这个属性，在封装的元素相对的一角来显示徽章组件。
+你可以使用 `overlap` 属性来将徽章组件放置到到封装的元素一个相对位置的角落。
 
 {{"demo": "pages/components/badges/BadgeOverlap.js"}}
 
 ## 徽章组件的校准
 
-你可以使用 `anchorOrigin` 属性来移动徽章到包裹元素的任何角落。
+你可以使用 `anchorOrigin` 属性移把徽章组件移动到封装的元素的任何角落。
 
 {{"demo": "pages/components/badges/BadgeAlignment.js", "hideToolbar": true}}

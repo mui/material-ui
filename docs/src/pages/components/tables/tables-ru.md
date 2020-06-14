@@ -69,7 +69,7 @@ For accessibility, the first column is set to be a `<th>` element, with a `scope
 
 ### Пользовательские действия разбивки на страницы
 
-Свойство `Action` компонента `TablePagination` позволяет реализовать собственную обработку пользовательский событий.
+The `ActionsComponent` prop of the `TablePagination` component allows the implementation of custom actions.
 
 {{"demo": "pages/components/tables/CustomPaginationActionsTable.js", "bg": true}}
 
