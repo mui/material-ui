@@ -1,13 +1,10 @@
 import React from 'react';
 import { visuallyHidden } from '@material-ui/system';
 import { makeStyles } from '@material-ui/core/styles';
-import styled, { CSSObject } from 'styled-components';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import EmojiEmotionsIcon from '@material-ui/icons/EmojiEmotions';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-
-const Span = styled.span(visuallyHidden as CSSObject);
-const Input = styled.input(visuallyHidden as CSSObject);
+import { CSSProperties } from '@material-ui/styles';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,6 +15,8 @@ const useStyles = makeStyles((theme) => ({
   selected: {
     color: theme.palette.primary.main,
   },
+  span: visuallyHidden as CSSProperties,
+  input: visuallyHidden as CSSProperties,
 }));
 
 export default function VisuallyHiddenUsage() {
@@ -28,19 +27,19 @@ export default function VisuallyHiddenUsage() {
     <fieldset className={classes.root}>
       <label className={selected === 'like' ? classes.selected : ''}>
         <ThumbUpIcon onClick={() => setSelected('like')} />
-        <Span>Like</Span>
+        <span className={classes.span}>Like</span>
       </label>
-      <Input type="radio" value="like" checked={selected === 'like'} />
+      <input className={classes.input} type="radio" value="like" checked={selected === 'like'} />
       <label className={selected === 'smile' ? classes.selected : ''}>
         <EmojiEmotionsIcon onClick={() => setSelected('smile')} />
-        <Span>Smile</Span>
+        <span className={classes.span}>Smile</span>
       </label>
-      <Input type="radio" value="smile" checked={selected === 'smile'} />
+      <input className={classes.input} type="radio" value="smile" checked={selected === 'smile'} />
       <label className={selected === 'love' ? classes.selected : ''}>
         <FavoriteIcon onClick={() => setSelected('love')} />
-        <Span>Love</Span>
+        <span className={classes.span}>Love</span>
       </label>
-      <Input type="radio" value="love" checked={selected === 'love'} />
+      <input className={classes.input} type="radio" value="love" checked={selected === 'love'} />
     </fieldset>
   );
 }
