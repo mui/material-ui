@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import vrtest from 'vrtest-mui/client';
-import webfontloader from 'webfontloader';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import TestViewer from './TestViewer';
 
 // Get all the tests specifically written for preventing regressions.
@@ -137,8 +136,6 @@ const unusedBlacklistPatterns = new Set(blacklist);
 
 function excludeTest(suite, name) {
   if (/^docs-premium-themes(.*)/.test(suite)) {
-    // eslint-disable-next-line no-console
-    console.log('ignoring premium themes pages');
     return true;
   }
 
@@ -146,14 +143,12 @@ function excludeTest(suite, name) {
     if (typeof pattern === 'string') {
       if (pattern === suite) {
         unusedBlacklistPatterns.delete(pattern);
-        // eslint-disable-next-line no-console
-        console.log(`suite exact match: ignoring '${suite}/${name}'`);
+
         return true;
       }
       if (pattern === `${suite}/${name}.png`) {
         unusedBlacklistPatterns.delete(pattern);
-        // eslint-disable-next-line no-console
-        console.log(`suite+name exact match: ignoring '${suite}/${name}'`);
+
         return true;
       }
 
@@ -163,8 +158,6 @@ function excludeTest(suite, name) {
     // assume regex
     if (pattern.test(suite)) {
       unusedBlacklistPatterns.delete(pattern);
-      // eslint-disable-next-line no-console
-      console.log(`suite matches pattern '${pattern}': ignoring '${suite}/${name}'`);
       return true;
     }
     return false;
@@ -180,8 +173,6 @@ const demos = requireDemos.keys().reduce((res, path) => {
   if (excludeTest(suite, name)) {
     return res;
   }
-  // eslint-disable-next-line no-console
-  console.log(`testing ${suite}/${name}`);
 
   res.push({
     path,
@@ -193,57 +184,7 @@ const demos = requireDemos.keys().reduce((res, path) => {
   return res;
 }, []);
 
-const rootEl = document.createElement('div');
-rootEl.style.display = 'inline-block';
-
-vrtest.before(() => {
-  if (document && document.body) {
-    document.body.appendChild(rootEl);
-  }
-
-  return new Promise((resolve, reject) => {
-    webfontloader.load({
-      google: {
-        families: ['Roboto:300,400,500,700', 'Material+Icons'],
-      },
-      custom: {
-        families: ['Font Awesome 5 Free:n9'],
-        urls: ['https://use.fontawesome.com/releases/v5.1.0/css/all.css'],
-      },
-      timeout: 20000,
-      active: () => {
-        resolve('webfontloader: active');
-      },
-      inactive: () => {
-        reject(new Error('webfontloader: inactive'));
-      },
-    });
-  });
-});
-
-let suite;
-
 const tests = regressions.concat(demos);
-tests.forEach((test) => {
-  if (!suite || suite.name !== test.suite) {
-    suite = vrtest.createSuite(test.suite);
-  }
-
-  const TestCase = test.case;
-
-  if (!TestCase) {
-    return;
-  }
-
-  suite.createTest(test.name, () => {
-    ReactDOM.render(
-      <TestViewer>
-        <TestCase />
-      </TestViewer>,
-      rootEl,
-    );
-  });
-});
 
 if (unusedBlacklistPatterns.size > 0) {
   console.warn(
@@ -252,3 +193,74 @@ if (unusedBlacklistPatterns.size > 0) {
       .join('\n')}`,
   );
 }
+
+function App() {
+  const [isDev, setDev] = React.useState(
+    window.location.hash === '#dev' || process.env.NODE_ENV === 'development',
+  );
+  React.useEffect(() => {
+    function handleHashChange() {
+      if (window.location.hash === '#dev') {
+        setDev(true);
+      } else if (window.location.hash === '#no-dev') {
+        setDev(false);
+      }
+    }
+    window.addEventListener('hashchange', handleHashChange);
+
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange);
+    };
+  }, []);
+
+  function computePath(test) {
+    return `/${test.suite}/${test.name}`;
+  }
+
+  return (
+    <Router>
+      <TestViewer>
+        <Switch>
+          {tests.map((test) => {
+            const path = computePath(test);
+            const TestCase = test.case;
+            if (TestCase === undefined) {
+              console.warn('Missing test.case for ', test);
+              return null;
+            }
+
+            return (
+              <Route key={path} exact path={path}>
+                <TestCase />
+              </Route>
+            );
+          })}
+        </Switch>
+      </TestViewer>
+      <div hidden={!isDev}>
+        <p>
+          Devtools can be enabled by appending <code>#dev</code> in the addressbar or disabled by
+          appending <code>#no-dev</code>.
+        </p>
+        <a href="#no-dev">Hide devtools</a>
+        <details>
+          <summary id="my-test-summary">nav for all tests</summary>
+          <nav id="tests">
+            <ol>
+              {tests.map((test) => {
+                const path = computePath(test);
+                return (
+                  <li key={path}>
+                    <Link to={path}>{path}</Link>
+                  </li>
+                );
+              })}
+            </ol>
+          </nav>
+        </details>
+      </div>
+    </Router>
+  );
+}
+
+ReactDOM.render(<App />, document.getElementById('react-root'));
