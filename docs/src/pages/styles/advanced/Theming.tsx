@@ -1,7 +1,7 @@
 import React from 'react';
-import { ThemeProvider, makeStyles } from '@material-ui/core/styles';
+import { ThemeProvider, makeStyles, createMuiTheme, ThemeOptions } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme: typeof themeInstance) => ({
+const useStyles = makeStyles((theme: CustomThemeOptions) => ({
   root: {
     background: theme.background,
     border: 0,
@@ -24,9 +24,15 @@ function DeepChild() {
   );
 }
 
-const themeInstance = {
+type CustomThemeOptions = ThemeOptions & {
+  background: string;
+};
+
+const themeOptions: CustomThemeOptions = {
   background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
 };
+
+const themeInstance = createMuiTheme(themeOptions);
 
 export default function Theming() {
   return (
