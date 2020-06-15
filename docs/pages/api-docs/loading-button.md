@@ -49,9 +49,9 @@ Any other props supplied will be provided to the root element ([Button](/api/but
 | <span class="prop-name">pendingIndicatorCenter</span> | <span class="prop-name">.MuiLoadingButton-pendingIndicatorCenter</span> | Styles applied to the pendingIndicator element if `pendingPosition="center"`.
 | <span class="prop-name">pendingIndicatorStart</span> | <span class="prop-name">.MuiLoadingButton-pendingIndicatorStart</span> | Styles applied to the pendingIndicator element if `pendingPosition="start"`.
 | <span class="prop-name">pendingIndicatorEnd</span> | <span class="prop-name">.MuiLoadingButton-pendingIndicatorEnd</span> | Styles applied to the pendingIndicator element if `pendingPosition="end"`.
-| <span class="prop-name">endIconLoadingEnd</span> | <span class="prop-name">.MuiLoadingButton-endIconLoadingEnd</span> | Styles applied to the endIcon element if `pending={true}` and `pendingPosition="end"`.
-| <span class="prop-name">startIconLoadingStart</span> | <span class="prop-name">.MuiLoadingButton-startIconLoadingStart</span> | Styles applied to the startIcon element if `pending={true}` and `pendingPosition="start"`.
-| <span class="prop-name">labelLoadingCenter</span> | <span class="prop-name">.MuiLoadingButton-labelLoadingCenter</span> | Styles applied to the label element if `pending={true}` and `pendingPosition="center"`.
+| <span class="prop-name">endIconPendingEnd</span> | <span class="prop-name">.MuiLoadingButton-endIconPendingEnd</span> | Styles applied to the endIcon element if `pending={true}` and `pendingPosition="end"`.
+| <span class="prop-name">startIconPendingStart</span> | <span class="prop-name">.MuiLoadingButton-startIconPendingStart</span> | Styles applied to the startIcon element if `pending={true}` and `pendingPosition="start"`.
+| <span class="prop-name">labelPendingCenter</span> | <span class="prop-name">.MuiLoadingButton-labelPendingCenter</span> | Styles applied to the label element if `pending={true}` and `pendingPosition="center"`.
 
 You can override the style of the component thanks to one of these customization points:
 

@@ -41,6 +41,15 @@ export type LoadingButtonProps<
   P = {}
 > = OverrideProps<LoadingButtonTypeMap<P, D>, D>;
 
-export type LoadingButtonClassKey = 'root' | 'pending';
+export type LoadingButtonClassKey =
+  | 'root'
+  | 'pending'
+  | 'pendingIndicator'
+  | 'pendingIndicatorCenter'
+  | 'pendingIndicatorStart'
+  | 'pendingIndicatorEnd'
+  | 'endIconPendingEnd'
+  | 'startIconPendingStart'
+  | 'labelPendingCenter';
 
 export default LoadingButton;

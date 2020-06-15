@@ -32,15 +32,15 @@ export const styles = () => ({
     right: 14,
   },
   /* Styles applied to the endIcon element if `pending={true}` and `pendingPosition="end"`. */
-  endIconLoadingEnd: {
+  endIconPendingEnd: {
     visibility: 'hidden',
   },
   /* Styles applied to the startIcon element if `pending={true}` and `pendingPosition="start"`. */
-  startIconLoadingStart: {
+  startIconPendingStart: {
     visibility: 'hidden',
   },
   /* Styles applied to the label element if `pending={true}` and `pendingPosition="center"`. */
-  labelLoadingCenter: {
+  labelPendingCenter: {
     visibility: 'hidden',
   },
 });
@@ -71,9 +71,9 @@ const LoadingButton = React.forwardRef(function LoadingButton(props, ref) {
       disabled={disabled || pending}
       ref={ref}
       classes={{
-        startIcon: classes[`startIcon${pending ? 'Loading' : ''}${capitalize(pendingPosition)}`],
-        endIcon: classes[`endIcon${pending ? 'Loading' : ''}${capitalize(pendingPosition)}`],
-        label: classes[`label${pending ? 'Loading' : ''}${capitalize(pendingPosition)}`],
+        startIcon: classes[`startIcon${pending ? 'Pending' : ''}${capitalize(pendingPosition)}`],
+        endIcon: classes[`endIcon${pending ? 'Pending' : ''}${capitalize(pendingPosition)}`],
+        label: classes[`label${pending ? 'Pending' : ''}${capitalize(pendingPosition)}`],
       }}
       {...other}
     >
