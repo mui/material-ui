@@ -1,6 +1,6 @@
 import { PropTypes } from '..';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
-import { OverrideProps } from '../OverridableComponent';
+import { OverrideProps, OverridableComponent, OverridableTypeMap } from '../OverridableComponent';
 
 export type ButtonTypeMap<
   P = {},
@@ -57,6 +57,22 @@ export type ButtonTypeMap<
   defaultComponent: D;
   classKey: ButtonClassKey;
 }>;
+
+/**
+ * utility to create component types that inherit props from ButtonBase.
+ * This component has an additional overload if the `href` prop is set which
+ * can make extension quite tricky
+ */
+export interface ExtendButtonTypeMap<M extends OverridableTypeMap> {
+  props: M['props'] & ButtonTypeMap['props'];
+  defaultComponent: M['defaultComponent'];
+  classKey: M['classKey'];
+}
+
+export type ExtendButton<M extends OverridableTypeMap> = ((
+  props: { href: string } & OverrideProps<ExtendButtonBaseTypeMap<M>, 'a'>
+) => JSX.Element) &
+  OverridableComponent<ExtendButtonBaseTypeMap<M>>;
 
 /**
  *
