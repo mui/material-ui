@@ -31,3 +31,20 @@ const theme = createMuiTheme({
   },
 });
 ```
+
+## API
+
+### `theme.transitions.create(props, options) => transition`
+
+#### Arguments
+
+1. `props` (*String* | *String[]*): Defaults to `[all]`. Provides a css property, or a list of css properties that should be transitioned.
+2.  `options` (*Object* [optional]):
+  - `options.duration` (*String* | *Number* [optional]): Defaults to `theme.transitions.duration.standard`. Provides the duration of the transition.
+  - `options.easing` (*String* [optional]): Defaults to `theme.transitions.easing.easeInOut`. Provides the easing for the transition.
+  - `options.delay` (*String* | *Number* [optional]): Defaults to `0`. Provides the delay for the transition.
+
+#### Returns
+
+`transition`: A transition css value, which composes all properties which should be transitioned, together with the defined duration, easing and duration.
+
