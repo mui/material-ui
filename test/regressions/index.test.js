@@ -6,7 +6,7 @@ async function main() {
   const baseUrl = 'http://localhost:5000';
   const screenshotDir = path.resolve(__dirname, './screenshots/chrome');
 
-  const browser = await playwright.chromium.launch();
+  const browser = await playwright.chromium.launch({ args: ['--no-sandbox'] });
 
   const page = await browser.newPage();
 
