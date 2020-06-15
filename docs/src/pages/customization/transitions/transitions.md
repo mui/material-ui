@@ -2,7 +2,7 @@
 
 <p class="description">Use the <code>theme.transitions.create()</code> helper to create consistent transitions on the elements of your UI.</p>
 
-```jsx
+```js
 theme.transitions.create(['background-color', 'transform']);
 ```
 
