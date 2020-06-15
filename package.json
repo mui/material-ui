@@ -38,6 +38,7 @@
     "test:karma": "cross-env NODE_ENV=test karma start test/karma.conf.js",
     "test:regressions": "cross-env NODE_ENV=production yarn test:regressions:build && concurrently --success first --kill-others \"yarn test:regressions:run\" \"yarn test:regressions:server\"",
     "test:regressions:build": "webpack --config test/regressions/webpack.config.js",
+    "test:regressions:dev": "concurrently \"yarn test:regressions:build --watch\" \"yarn test:regressions:server\"",
     "test:regressions:run": "mocha --config test/regressions/.mocharc.js --delay 'test/regressions/**/*.test.js'",
     "test:regressions:server": "serve test/regressions",
     "test:umd": "node packages/material-ui/test/umd/run.js",
