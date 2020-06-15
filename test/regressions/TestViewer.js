@@ -23,6 +23,7 @@ const styles = (theme) => ({
   },
   root: {
     backgroundColor: theme.palette.background.default,
+    display: 'inline-block',
     padding: theme.spacing(1),
   },
 });
