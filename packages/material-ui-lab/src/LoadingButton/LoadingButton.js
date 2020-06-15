@@ -47,7 +47,7 @@ export const styles = () => ({
 
 const PendingIndicator = <CircularProgress color="inherit" size={16} />;
 
-const BusyButton = React.forwardRef(function BusyButton(props, ref) {
+const LoadingButton = React.forwardRef(function LoadingButton(props, ref) {
   const {
     children,
     classes,
@@ -93,7 +93,7 @@ const BusyButton = React.forwardRef(function BusyButton(props, ref) {
   );
 });
 
-BusyButton.propTypes = {
+LoadingButton.propTypes = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -141,4 +141,4 @@ BusyButton.propTypes = {
   }),
 };
 
-export default withStyles(styles, { name: 'MuiBusyButton' })(BusyButton);
+export default withStyles(styles, { name: 'MuiLoadingButton' })(LoadingButton);

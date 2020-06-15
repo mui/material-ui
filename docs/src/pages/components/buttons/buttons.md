@@ -1,6 +1,6 @@
 ---
 title: Button React component
-components: Button, IconButton, ButtonBase, BusyButton
+components: Button, IconButton, ButtonBase, LoadingButton
 ---
 
 # Button
@@ -94,15 +94,15 @@ Here are some examples of customizing the component. You can learn more about th
 
 🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/button).
 
-## Busy buttons
+## Loading buttons
 
-The busy buttons can show pending state and disable interactions.
+The loading buttons can show pending state and disable interactions.
 
-{{"demo": "pages/components/buttons/BusyButtons.js"}}
+{{"demo": "pages/components/buttons/LoadingButtons.js"}}
 
 Toggle the switch to see the transition between the different states.
 
-{{"demo": "pages/components/buttons/BusyButtonsTransition.js"}}
+{{"demo": "pages/components/buttons/LoadingButtonsTransition.js"}}
 
 ## Complex Buttons
 

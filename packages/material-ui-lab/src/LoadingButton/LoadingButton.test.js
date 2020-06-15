@@ -2,18 +2,18 @@ import * as React from 'react';
 import { getClasses } from '@material-ui/core/test-utils';
 import createMount from 'test/utils/createMount';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
-import BusyButton from './BusyButton';
+import LoadingButton from './LoadingButton';
 import Button from '@material-ui/core/Button';
 
-describe('<BusyButton />', () => {
+describe('<LoadingButton />', () => {
   const mount = createMount();
   let classes;
 
   before(() => {
-    classes = getClasses(<BusyButton>Hello World</BusyButton>);
+    classes = getClasses(<LoadingButton>Hello World</LoadingButton>);
   });
 
-  describeConformance(<BusyButton>Conformance?</BusyButton>, () => ({
+  describeConformance(<LoadingButton>Conformance?</LoadingButton>, () => ({
     classes,
     inheritComponent: Button,
     mount,

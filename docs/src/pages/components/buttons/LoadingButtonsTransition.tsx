@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import BusyButton from '@material-ui/lab/BusyButton';
+import LoadingButton from '@material-ui/lab/LoadingButton';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import SaveIcon from '@material-ui/icons/Save';
@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function BusyButtonsTransition() {
+export default function LoadingButtonsTransition() {
   const classes = useStyles();
   const [pending, setPending] = React.useState(false);
 
@@ -35,13 +35,13 @@ export default function BusyButtonsTransition() {
         className={classes.switch}
         label="Pending"
       />
-      <BusyButton variant="outlined" pending={pending}>
+      <LoadingButton variant="outlined" pending={pending}>
         Submit
-      </BusyButton>
-      <BusyButton variant="outlined" pending={pending} pendingIndicator="Loading...">
+      </LoadingButton>
+      <LoadingButton variant="outlined" pending={pending} pendingIndicator="Loading...">
         Fetch data
-      </BusyButton>
-      <BusyButton
+      </LoadingButton>
+      <LoadingButton
         variant="contained"
         color="primary"
         pending={pending}
@@ -49,8 +49,8 @@ export default function BusyButtonsTransition() {
         endIcon={<SendIcon />}
       >
         Send
-      </BusyButton>
-      <BusyButton
+      </LoadingButton>
+      <LoadingButton
         variant="contained"
         color="secondary"
         pending={pending}
@@ -58,7 +58,7 @@ export default function BusyButtonsTransition() {
         startIcon={<SaveIcon />}
       >
         Save
-      </BusyButton>
+      </LoadingButton>
     </div>
   );
 }
