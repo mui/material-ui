@@ -78,7 +78,7 @@ export const styles = (theme) => {
         }),
         pointerEvents: 'none', // Transparent to the hover style.
       },
-      '&:hover:before': {
+      '&:hover:not($disabled):before': {
         borderBottom: `1px solid ${theme.palette.text.primary}`,
       },
       '&$disabled:before': {
