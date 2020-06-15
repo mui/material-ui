@@ -6,7 +6,7 @@ const browserStack = {
   build: `material-ui-${new Date().toISOString()}`,
 };
 
-process.env.CHROME_BIN = require('puppeteer').executablePath();
+process.env.CHROME_BIN = require('playwright').chromium.executablePath();
 
 // Karma configuration
 module.exports = function setKarmaConfig(config) {
