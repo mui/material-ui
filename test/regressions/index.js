@@ -107,13 +107,14 @@ const blacklist = [
   'docs-getting-started-templates', // No public components
   'docs-getting-started-templates-album/Album.png', // Flaky image loading
   'docs-getting-started-templates-blog', // Flaky random images
-  'docs-getting-started-templates-checkout/AddressForm.png', // Already tested once assembled
-  'docs-getting-started-templates-checkout/PaymentForm.png', // Already tested once assembled
-  'docs-getting-started-templates-checkout/Review.png', // Already tested once assembled
-  'docs-getting-started-templates-dashboard/Chart.png', // Already tested once assembled
-  'docs-getting-started-templates-dashboard/Deposits.png', // Already tested once assembled
-  'docs-getting-started-templates-dashboard/Orders.png', // Already tested once assembled
-  'docs-getting-started-templates-dashboard/Title.png', // Already tested once assembled
+  'docs-getting-started-templates-checkout/AddressForm.png', // Already tested in docs-getting-started-templates-checkout/Checkout
+  'docs-getting-started-templates-checkout/PaymentForm.png', // Already tested in docs-getting-started-templates-checkout/Checkout
+  'docs-getting-started-templates-checkout/Review.png', // Already tested in docs-getting-started-templates-checkout/Checkout
+  'docs-getting-started-templates-dashboard/Chart.png', // Already tested in docs-getting-started-templates-dashboard/Dashboard
+  'docs-getting-started-templates-dashboard/Deposits.png', // Already tested in docs-getting-started-templates-dashboard/Dashboard
+  'docs-getting-started-templates-dashboard/listItems.png', // nothing to test
+  'docs-getting-started-templates-dashboard/Orders.png', // Already tested in docs-getting-started-templates-dashboard/Dashboard
+  'docs-getting-started-templates-dashboard/Title.png', // Already tested in docs-getting-started-templates-dashboard/Dashboard
   'docs-getting-started-templates-sign-in-side/SignInSide.png', // Flaky
   'docs-getting-started-usage/Usage.png', // No public components
   /^docs-guides-.*/, // No public components
