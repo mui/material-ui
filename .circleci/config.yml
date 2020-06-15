@@ -192,6 +192,9 @@ jobs:
   test_regressions:
     <<: *defaults
     docker:
+      # playwright image doesn't have yarn
+      # playwright docker image uses node12 as well
+      - image: circleci/node:12
       - image: aslushnikov/playwright:bionic
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
