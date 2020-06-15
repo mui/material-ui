@@ -50,4 +50,4 @@ const theme = createMuiTheme({
 
 #### Returns
 
-`transition`: A transition css value, which composes all properties which should be transitioned, together with the defined duration, easing and duration.
+`transition`: A transition CSS value, which composes all properties which should be transitioned, together with the defined duration, easing and duration.
