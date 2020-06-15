@@ -27,6 +27,7 @@ The following sections cover the most important theme variables:
 - [Breakpoints](/customization/breakpoints/)
 - [z-index](/customization/z-index/)
 - [Globals](/customization/globals/)
+- [Transitions](/customization/transitions/)
 
 You can check out the [default theme section](/customization/default-theme/) to view the default theme in full.
 

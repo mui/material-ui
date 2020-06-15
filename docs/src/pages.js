@@ -169,6 +169,7 @@ const pages = [
           { pathname: '/customization/density' },
           { pathname: '/customization/z-index', title: 'z-index' },
           { pathname: '/customization/globals' },
+          { pathname: '/customization/transitions' },
         ],
       },
       { pathname: '/customization/components' },
