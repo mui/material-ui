@@ -192,8 +192,9 @@ export default function GitHubLabel() {
               event.type === 'keydown' &&
               (event as React.KeyboardEvent).key === 'Backspace' &&
               reason === 'remove-option'
-            )
+            ) {
               return;
+            }
             setPendingValue(newValue);
           }}
           disableCloseOnSelect
