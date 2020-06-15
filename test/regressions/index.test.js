@@ -20,7 +20,7 @@ async function main() {
 
   // Wait for all requests to finish.
   // This should load shared ressources such as fonts.
-  await page.goto(baseUrl, { waitUntil: 'networkidle0' });
+  await page.goto(`${baseUrl}#no-dev`, { waitUntil: 'networkidle0' });
   await page.waitForSelector('[data-webfontloader="active"]', { state: 'attached' });
 
   const routes = await page.$$eval('#tests a', (links) => {

@@ -196,16 +196,19 @@ if (unusedBlacklistPatterns.size > 0) {
 }
 
 function App() {
-  const [isDev, setDev] = React.useState(
-    window.location.hash === '#dev' || process.env.NODE_ENV === 'development',
-  );
+  function computeIsDev() {
+    if (window.location.hash === '#dev') {
+      return true;
+    }
+    if (window.location.hash === '#no-dev') {
+      return false;
+    }
+    return process.env.NODE_ENV === 'development';
+  }
+  const [isDev, setDev] = React.useState(computeIsDev);
   React.useEffect(() => {
     function handleHashChange() {
-      if (window.location.hash === '#dev') {
-        setDev(true);
-      } else if (window.location.hash === '#no-dev') {
-        setDev(false);
-      }
+      setDev(computeIsDev());
     }
     window.addEventListener('hashchange', handleHashChange);
 
