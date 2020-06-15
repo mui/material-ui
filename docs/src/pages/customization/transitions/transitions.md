@@ -2,7 +2,7 @@
 
 <p class="description">Use the <code>theme.transitions.create()</code> helper to create consistent transitions on the elements of your UI.</p>
 
-{{"demo": "pages/customization/transitions/TransitionHover.js"}}
+{{"demo": "pages/customization/transitions/TransitionHover.js", "defaultCodeOpen": false}}
 
 ## Custom duration
 
