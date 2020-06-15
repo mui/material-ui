@@ -191,16 +191,16 @@ jobs:
           command: yarn test:umd
   test_regressions:
     <<: *defaults
-    docker:
-      # playwright image doesn't have yarn
-      # playwright docker image uses node12 as well
-      - image: circleci/node:12
-      - image: aslushnikov/playwright:bionic
-        environment:
-          NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
       - checkout
       - install_js
+      - run:
+          name: Install Chromium dependencies
+          command: |
+            sudo apt-get install -y libnss3 \
+                                    libxss1 \
+                                    libasound2 \
+                                    fonts-noto-color-emoji
       - run:
           name: Visual regression tests
           command: |
