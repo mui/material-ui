@@ -199,8 +199,7 @@ jobs:
           command: |
             sudo apt-get install -y libnss3 \
                                     libxss1 \
-                                    libasound2 \
-                                    fonts-noto-color-emoji
+                                    libasound2
       - run:
           name: Visual regression tests
           command: |
