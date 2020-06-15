@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import webfontloader from 'webfontloader';
 import TestViewer from './TestViewer';
 
 // Get all the tests specifically written for preventing regressions.
@@ -213,6 +214,27 @@ function App() {
     };
   }, []);
 
+  // Using <link rel="stylesheet" /> does not apply the google Roboto font in chromium headless/headfull.
+  const [fontState, setFontState] = React.useState('pending');
+  React.useEffect(() => {
+    webfontloader.load({
+      google: {
+        families: ['Roboto:300,400,500,700', 'Material+Icons'],
+      },
+      custom: {
+        families: ['Font Awesome 5 Free:n9'],
+        urls: ['https://use.fontawesome.com/releases/v5.1.0/css/all.css'],
+      },
+      timeout: 20000,
+      active: () => {
+        setFontState('active');
+      },
+      inactive: () => {
+        setFontState('inactive');
+      },
+    });
+  }, []);
+
   function computePath(test) {
     return `/${test.suite}/${test.name}`;
   }
@@ -238,6 +260,7 @@ function App() {
         </Switch>
       </TestViewer>
       <div hidden={!isDev}>
+        <div data-webfontloader={fontState}>webfontloader: {fontState}</div>
         <p>
           Devtools can be enabled by appending <code>#dev</code> in the addressbar or disabled by
           appending <code>#no-dev</code>.

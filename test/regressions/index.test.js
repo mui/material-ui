@@ -6,8 +6,10 @@ async function main() {
   const baseUrl = 'http://localhost:5000';
   const screenshotDir = path.resolve(__dirname, './screenshots/chrome');
 
-  const browser = await playwright.chromium.launch({ args: ['--no-sandbox'] });
-
+  const browser = await playwright.chromium.launch({
+    // otherwise the loaded google Roboto font isn't applied
+    headless: false,
+  });
   // reuse viewport from `vrtest`
   // https://github.com/nathanmarks/vrtest/blob/1185b852a6c1813cedf5d81f6d6843d9a241c1ce/src/server/runner.js#L44
   const page = await browser.newPage({ viewport: { width: 1000, height: 700 } });
@@ -18,6 +20,8 @@ async function main() {
   // Wait for all requests to finish.
   // This should load shared ressources such as fonts.
   await page.goto(baseUrl, { waitUntil: 'networkidle0' });
+  await page.waitForSelector('[data-webfontloader="active"]', { state: 'attached' });
+
   const routes = await page.$$eval('#tests a', (links) => {
     return links.map((link) => {
       return link.href;
