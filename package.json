@@ -33,7 +33,7 @@
     "@babel/plugin-proposal-nullish-coalescing-operator": "^7.8.3",
     "@babel/runtime": "^7.8.4",
     "@cypress/webpack-preprocessor": "^4.1.0",
-    "@percy/cypress": "^2.3.0",
+    "@percy/cypress": "^2.3.1",
     "@testing-library/dom": "^7.5.7",
     "@testing-library/react": "^10.0.4",
     "@typescript-eslint/eslint-plugin": "^1.6.0",
