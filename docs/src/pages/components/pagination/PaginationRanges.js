@@ -19,8 +19,6 @@ export default function PaginationRanges() {
       <Pagination count={11} defaultPage={6} /> {/* Default ranges */}
       <Pagination count={11} defaultPage={6} siblingCount={0} boundaryCount={2} />
       <Pagination count={11} defaultPage={6} boundaryCount={2} />
-      <Pagination count={11} defaultPage={6} siblingCount={1} boundaryCount={0} />
-      <Pagination count={11} defaultPage={6} siblingCount={0} boundaryCount={0} />
     </div>
   );
 }
