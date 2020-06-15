@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function LetterAvatars() {
+export default function TransitionHover() {
   const classes = useStyles();
 
   return <Avatar className={classes.avatar}>OP</Avatar>;
