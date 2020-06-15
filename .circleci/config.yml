@@ -194,12 +194,7 @@ jobs:
     steps:
       - checkout
       - install_js
-      - run:
-          name: Install Chromium dependencies
-          command: |
-            sudo apt-get install -y libnss3 \
-                                    libxss1 \
-                                    libasound2
+      - prepare_chrome_headless
       - run:
           name: Visual regression tests
           command: |
