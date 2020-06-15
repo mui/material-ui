@@ -206,30 +206,7 @@ workflows:
   version: 2
   pipeline:
     jobs:
-      - checkout:
-          filters:
-            branches:
-              ignore:
-                - l10n
-                - /dependabot\//
-      - test_unit:
-          requires:
-            - checkout
-      - test_static:
-          requires:
-            - checkout
-      - test_types:
-          requires:
-            - checkout
-      - test_browser:
-          requires:
-            - checkout
-      - test_regressions:
-          requires:
-            - test_unit
-            - test_static
-            - test_types
-            - test_browser
+      - test_regressions
   react-next:
     triggers:
       - schedule:
