@@ -265,7 +265,7 @@ export default function useAutocomplete(props) {
       // Same logic as MenuList.js
       const nextFocusDisabled = disabledItemsFocusable
         ? false
-        : option && (option.disabled || option.getAttribute('aria-disabled') === 'true');
+        : !option || option.disabled || option.getAttribute('aria-disabled') === 'true';
 
       if ((option && !option.hasAttribute('tabindex')) || nextFocusDisabled) {
         // Move to the next element.
@@ -596,10 +596,10 @@ export default function useAutocomplete(props) {
 
       // Same logic as MenuList.js
       if (
-        option &&
-        (!option.hasAttribute('tabindex') ||
-          option.disabled ||
-          option.getAttribute('aria-disabled') === 'true')
+        !option ||
+        !option.hasAttribute('tabindex') ||
+        option.disabled ||
+        option.getAttribute('aria-disabled') === 'true'
       ) {
         nextFocus += direction === 'next' ? 1 : -1;
       } else {
