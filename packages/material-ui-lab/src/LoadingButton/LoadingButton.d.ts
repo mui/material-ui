@@ -25,6 +25,10 @@ export type LoadingButtonTypeMap<
 
 /**
  *
+ * Demos:
+ *
+ * - [Buttons](https://material-ui.com/components/buttons/)
+ *
  * API:
  *
  * - [LoadingButton API](https://material-ui.com/api/loading-button/)

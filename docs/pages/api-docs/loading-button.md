@@ -66,3 +66,7 @@ If that's not sufficient, you can check the [implementation of the component](ht
 The props of the [Button](/api/button/) component are also available.
 You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
+## Demos
+
+- [Buttons](/components/buttons/)
+
