@@ -1,9 +1,7 @@
 import * as React from 'react';
 import { StandardProps, PropTypes } from '..';
 import { OverrideProps, OverridableTypeMap, OverridableComponent } from '../OverridableComponent';
-import { Variant as ThemeVariant } from '../styles/createTypography';
-
-type Variant = ThemeVariant | 'srOnly';
+import { Variant } from '../styles/createTypography';
 
 export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'> {
   props: P & {
@@ -64,7 +62,6 @@ export type TypographyClassKey =
   | 'caption'
   | 'button'
   | 'overline'
-  | 'srOnly'
   | 'alignLeft'
   | 'alignCenter'
   | 'alignRight'

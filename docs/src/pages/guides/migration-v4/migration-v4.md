@@ -1,6 +1,6 @@
-# Migration from v3 to v4
+# Migration from v4 to v5
 
-<p class="description">Yeah, v4 has been released!</p>
+<p class="description">Yeah, v5 has been released!</p>
 
 Looking for the v4 docs? [Find them here](https://material-ui.com/versions/).
 
@@ -54,4 +54,19 @@ yarn add @material-ui/core
   - background-color: #f00;
   + border-color: #f00;
   }
+  ```
+
+### Typography
+
+- [Typography] Replace `srOnly` prop support with a style util:
+
+  ```diff
+  -import Typography from '@material-ui/core/Typography';
+  +import { visuallyHidden } from '@material-ui/system';
+  +import styled from 'styled-component';
+
+  +const Span = styled('span')(visuallyHidden);
+
+  -<Typography variant="srOnly">Create a user</Typography>
+  +<Span>Create a user</Span>
   ```

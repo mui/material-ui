@@ -59,7 +59,7 @@ Any other props supplied will be provided to the root element (native element).
 | <span class="prop-name">readOnly</span> | <span class="prop-name">.MuiRating-readOnly</span> | Styles applied to the root element if `readOnly={true}`.
 | <span class="prop-name">disabled</span> | <span class="prop-name">.Mui-disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
 | <span class="prop-name">focusVisible</span> | <span class="prop-name">.Mui-focusVisible</span> | Pseudo-class applied to the root element if keyboard focused.
-| <span class="prop-name">visuallyhidden</span> | <span class="prop-name">.MuiRating-visuallyhidden</span> | Visually hide an element.
+| <span class="prop-name">visuallyHidden</span> | <span class="prop-name">.MuiRating-visuallyHidden</span> | Visually hide an element.
 | <span class="prop-name">pristine</span> | <span class="prop-name">.MuiRating-pristine</span> | Styles applied to the pristine label.
 | <span class="prop-name">label</span> | <span class="prop-name">.MuiRating-label</span> | Styles applied to the label elements.
 | <span class="prop-name">icon</span> | <span class="prop-name">.MuiRating-icon</span> | Styles applied to the icon wrapping elements.

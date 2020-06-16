@@ -29,7 +29,6 @@ interface Props {
     | 'caption'
     | 'button'
     | 'overline'
-    | 'srOnly'
     | 'inherit';
   label?: string;
   width?: number;
@@ -93,7 +92,6 @@ addPropertyControls(Typography, {
       'caption',
       'button',
       'overline',
-      'srOnly',
       'inherit',
     ],
   },

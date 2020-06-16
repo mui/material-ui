@@ -1,5 +1,4 @@
 import * as CSS from 'csstype';
-
 // disable automatic export
 export {};
 
@@ -201,6 +200,8 @@ export const typography: SimpleStyleFunction<
   | 'textAlign'
 >;
 export type TypographyProps = PropsFor<typeof typography>;
+
+export const visuallyHidden: CSS.Properties;
 
 // utils
 type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;

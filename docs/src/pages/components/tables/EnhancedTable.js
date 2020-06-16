@@ -20,6 +20,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
+import { visuallyHidden } from '@material-ui/system';
 
 function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
@@ -106,7 +107,7 @@ function EnhancedTableHead(props) {
             >
               {headCell.label}
               {orderBy === headCell.id ? (
-                <span className={classes.visuallyHidden}>
+                <span className={classes.sortSpan}>
                   {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
                 </span>
               ) : null}
@@ -200,17 +201,8 @@ const useStyles = makeStyles((theme) => ({
   table: {
     minWidth: 750,
   },
-  visuallyHidden: {
-    border: 0,
-    clip: 'rect(0 0 0 0)',
-    height: 1,
-    margin: -1,
-    overflow: 'hidden',
-    padding: 0,
-    position: 'absolute',
-    top: 20,
-    width: 1,
-  },
+  // TODO fix #20379.
+  sortSpan: visuallyHidden,
 }));
 
 export default function EnhancedTable() {
