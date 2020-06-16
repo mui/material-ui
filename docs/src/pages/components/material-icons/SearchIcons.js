@@ -129,6 +129,7 @@ Icons.propTypes = {
   classes: PropTypes.object.isRequired,
   handleClickOpen: PropTypes.func.isRequired,
   icons: PropTypes.array.isRequired,
+  rotate: PropTypes.oneOf([90, 180, 270]),
 };
 Icons = React.memo(Icons);
 
