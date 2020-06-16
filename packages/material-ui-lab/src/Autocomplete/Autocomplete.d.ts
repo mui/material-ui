@@ -82,6 +82,10 @@ export interface AutocompleteProps<
    */
   disabled?: boolean;
   /**
+   * If `true`, the label will be displayed in an error state.
+   */
+  error?: boolean;
+  /**
    * Disable the portal behavior.
    * The children stay within it's parent DOM hierarchy.
    */

@@ -256,6 +256,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     closeIcon = <CloseIcon fontSize="small" />,
     closeText = 'Close',
     debug = false,
+    error = false,
     defaultValue = props.multiple ? [] : null,
     disableClearable = false,
     disableCloseOnSelect = false,
@@ -414,6 +415,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
         {renderInput({
           id,
           disabled,
+          error,
           fullWidth: true,
           size: size === 'small' ? 'small' : undefined,
           InputLabelProps: getInputLabelProps(),
@@ -612,6 +614,10 @@ Autocomplete.propTypes = {
    * The children stay within it's parent DOM hierarchy.
    */
   disablePortal: PropTypes.bool,
+  /**
+   * If `true`, the label will be displayed in an error state.
+   */
+  error: PropTypes.bool,
   /**
    * A filter function that determines the options that are eligible.
    *
