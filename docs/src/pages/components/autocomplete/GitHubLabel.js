@@ -185,7 +185,14 @@ export default function GitHubLabel() {
             popperDisablePortal: classes.popperDisablePortal,
           }}
           value={pendingValue}
-          onChange={(event, newValue) => {
+          onChange={(event, newValue, reason) => {
+            if (
+              event.type === 'keydown' &&
+              event.key === 'Backspace' &&
+              reason === 'remove-option'
+            ) {
+              return;
+            }
             setPendingValue(newValue);
           }}
           disableCloseOnSelect
