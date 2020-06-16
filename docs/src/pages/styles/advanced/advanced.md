@@ -108,11 +108,9 @@ function Nested(props) {
   const classes = useStyles();
   return (
     <button className={classes.root}>
-      {' '}
-      // 'jss1'
+      {/* 'jss1' */}
       <span className={classes.label}>
-        {' '}
-        // 'jss2' nested
+        {/* 'jss2' nested */}
       </span>
     </button>
   );
@@ -137,8 +135,7 @@ const Nested = withStyles({
 })(({ classes }) => (
   <button className={classes.root}>
     <span className={classes.label}>
-      {' '}
-      // 'jss2 my-label' Nested
+      {/* 'jss2 my-label' Nested*/}
     </span>
   </button>
 ));
@@ -163,8 +160,7 @@ function Nested(props) {
   return (
     <button className={classes.root}>
       <span className={classes.label}>
-        {' '}
-        // 'jss2 my-label' nested
+        {/* 'jss2 my-label' nested */}
       </span>
     </button>
   );
