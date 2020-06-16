@@ -5,8 +5,8 @@
 Looking for the v4 docs? [Find them here](https://material-ui.com/versions/).
 
 > This document is a work in progress.
-Have you upgraded your site and run into something that's not covered here?
-[Add your changes on GitHub](https://github.com/mui-org/material-ui/blob/master/docs/src/pages/guides/migration-v3/migration-v3.md).
+> Have you upgraded your site and run into something that's not covered here?
+> [Add your changes on GitHub](https://github.com/mui-org/material-ui/blob/master/docs/src/pages/guides/migration-v3/migration-v3.md).
 
 ## Introduction
 
@@ -16,8 +16,8 @@ We'll do our best to keep things easy to follow, and as sequential as possible s
 
 ## Why you should migrate
 
-This documentation page covers the *how* of migrating from v4 to v5.
-The *why* is covered in the [release blog post on Medium](https://medium.com/material-ui/material-ui-v4-is-out-4b7587d1e701).
+This documentation page covers the _how_ of migrating from v4 to v5.
+The _why_ is covered in the [release blog post on Medium](https://medium.com/material-ui/material-ui-v4-is-out-4b7587d1e701).
 
 ## Updating your dependencies
 
@@ -47,7 +47,7 @@ yarn add @material-ui/core
 
 ### Divider
 
-- [Divider] Use border instead of background color. It prevents inconsistent height on scaled screens. For people customizing the color of the border, the change requires changing the override CSS property:
+- Use border instead of background color. It prevents inconsistent height on scaled screens. For people customizing the color of the border, the change requires changing the override CSS property:
 
   ```diff
   .MuiDivider-root {
@@ -56,9 +56,22 @@ yarn add @material-ui/core
   }
   ```
 
+### Rating
+
+- Rename `visuallyhidden` to `visuallyHidden`
+
+```diff
+<Rating
+  classes={{
+-    visuallyhidden: 'custom-visually-hidden-classname',
++    visuallyHidden: 'custom-visually-hidden-classname',
+  }}
+/>
+```
+
 ### Typography
 
-- [Typography] Replace `srOnly` prop support with a style util:
+- Replace `srOnly` prop support with a style util:
 
   ```diff
   -import Typography from '@material-ui/core/Typography';
