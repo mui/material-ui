@@ -9,6 +9,7 @@ import { act, createClientRender, fireEvent, screen } from 'test/utils/createCli
 import { createFilterOptions } from '../useAutocomplete/useAutocomplete';
 import Autocomplete from './Autocomplete';
 import TextField from '@material-ui/core/TextField';
+import Chip from '@material-ui/core/Chip';
 
 describe('<Autocomplete />', () => {
   const mount = createMount();
@@ -397,6 +398,36 @@ describe('<Autocomplete />', () => {
       fireEvent.keyDown(firstSelectedValue, { key: 'Backspace' });
       expect(handleChange.callCount).to.equal(1);
       expect(handleChange.args[0][1]).to.deep.equal([options[1]]);
+      expect(textbox).toHaveFocus();
+    });
+
+    it('should not crash if a tag is missing', () => {
+      const handleChange = spy();
+      const options = ['one', 'two'];
+      render(
+        <Autocomplete
+          {...defaultProps}
+          defaultValue={options}
+          options={options}
+          value={options}
+          renderTags={(value, getTagProps) =>
+            value
+              .filter((x, index) => index === 1)
+              .map((option, index) => <Chip label={option.title} {...getTagProps({ index })} />)
+          }
+          onChange={handleChange}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+          multiple
+        />,
+      );
+      const textbox = screen.getByRole('textbox');
+      const [firstSelectedValue] = screen.getAllByRole('button');
+
+      fireEvent.keyDown(textbox, { key: 'ArrowLeft' });
+      // skip value "two"
+      expect(firstSelectedValue).toHaveFocus();
+
+      fireEvent.keyDown(firstSelectedValue, { key: 'ArrowRight' });
       expect(textbox).toHaveFocus();
     });
   });
