@@ -50,6 +50,18 @@ export const styles = (theme) => ({
   fontSizeLarge: {
     fontSize: theme.typography.pxToRem(35),
   },
+  /* Styles applied to the root element if `rotate={90}`. */
+  rotate90deg: {
+    transform: `rotate(90deg)`,
+  },
+  /* Styles applied to the root element if `rotate={180}`. */
+  rotate180deg: {
+    transform: `rotate(180deg)`,
+  },
+  /* Styles applied to the root element if `rotate={270}`. */
+  rotate270deg: {
+    transform: `rotate(270deg)`,
+  },
 });
 
 const SvgIcon = React.forwardRef(function SvgIcon(props, ref) {
@@ -61,6 +73,7 @@ const SvgIcon = React.forwardRef(function SvgIcon(props, ref) {
     component: Component = 'svg',
     fontSize = 'default',
     htmlColor,
+    rotate,
     titleAccess,
     viewBox = '0 0 24 24',
     ...other
@@ -73,6 +86,7 @@ const SvgIcon = React.forwardRef(function SvgIcon(props, ref) {
         {
           [classes[`color${capitalize(color)}`]]: color !== 'inherit',
           [classes[`fontSize${capitalize(fontSize)}`]]: fontSize !== 'default',
+          [classes[`rotate${rotate}deg`]]: !!rotate,
         },
         className,
       )}

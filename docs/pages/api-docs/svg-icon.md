@@ -55,6 +55,9 @@ Any other props supplied will be provided to the root element (native element).
 | <span class="prop-name">fontSizeInherit</span> | <span class="prop-name">.MuiSvgIcon-fontSizeInherit</span> | Styles applied to the root element if `fontSize="inherit"`.
 | <span class="prop-name">fontSizeSmall</span> | <span class="prop-name">.MuiSvgIcon-fontSizeSmall</span> | Styles applied to the root element if `fontSize="small"`.
 | <span class="prop-name">fontSizeLarge</span> | <span class="prop-name">.MuiSvgIcon-fontSizeLarge</span> | Styles applied to the root element if `fontSize="large"`.
+| <span class="prop-name">rotate90deg</span> | <span class="prop-name">.MuiSvgIcon-rotate90deg</span> | Styles applied to the root element if `rotate={90}`.
+| <span class="prop-name">rotate180deg</span> | <span class="prop-name">.MuiSvgIcon-rotate180deg</span> | Styles applied to the root element if `rotate={180}`.
+| <span class="prop-name">rotate270deg</span> | <span class="prop-name">.MuiSvgIcon-rotate270deg</span> | Styles applied to the root element if `rotate={270}`.
 
 You can override the style of the component thanks to one of these customization points:
 

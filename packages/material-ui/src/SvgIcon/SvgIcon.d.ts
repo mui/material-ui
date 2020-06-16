@@ -21,6 +21,10 @@ export interface SvgIconTypeMap<P = {}, D extends React.ElementType = 'svg'> {
      */
     htmlColor?: string;
     /**
+     * Applies a rotation to the icon.
+     */
+    rotate?: 90 | 180 | 270;
+    /**
      * The shape-rendering attribute. The behavior of the different options is described on the
      * [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/shape-rendering).
      * If you are having issues with blurry icons you should investigate this prop.
