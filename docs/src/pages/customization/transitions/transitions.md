@@ -34,7 +34,7 @@ const theme = createMuiTheme({
 
 ## Custom easing
 
-You can change some of the easing values by providing a custom <code>transition-timing-function</code> value.
+You can change some or all of the easing values, or provide your own, by providing a custom CSS <code>transition-timing-function</code> value.
 
 ```js
 const theme = createMuiTheme({
