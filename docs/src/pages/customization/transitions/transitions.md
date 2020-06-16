@@ -1,14 +1,8 @@
 # Transitions
 
-<p class="description">Use the <code>theme.transitions.create()</code> helper to create consistent transitions on the elements of your UI.</p>
+<p class="description">The transitions inside the theme, enable you to customze durations and easings of the varios transitions used across the components, and offer utility for creating custom transitions.</p>
 
-```js
-theme.transitions.create(['background-color', 'transform']);
-```
-
-{{"demo": "pages/customization/transitions/TransitionHover.js", "defaultCodeOpen": false}}
-
-## Custom duration
+## Durations
 
 You can change some or all of the duration values, or provide your own (for use in the `create()` helper). This example uses the default values which are in milliseconds. You only need to provide the keys you wish to change or add a value for.
 
@@ -32,7 +26,7 @@ const theme = createMuiTheme({
 });
 ```
 
-## Custom easing
+## Easings
 
 You can change some or all of the easing values, or provide your own, by providing a custom CSS <code>transition-timing-function</code> value.
 
@@ -54,6 +48,36 @@ const theme = createMuiTheme({
 });
 ```
 
+## `getAutoHeightDuration`
+
+You can customize the default function for calculating the duration based on the height of the elments (useful for collapsing/expanding) components.
+
+```js
+const theme = createMuiTheme({
+  transitions: {
+    getAutoHeightDuration: (height) => {
+      if (!height) {
+        return 0;
+      }
+
+      const constant = height / 36;
+
+      return Math.round((4 + 15 * constant ** 0.25 + constant / 5) * 10);
+    },
+  },
+})
+```
+
+## `create`
+
+Use the <code>theme.transitions.create()</code> helper to create consistent transitions on the elements of your UI.</p>
+
+```js
+theme.transitions.create(['background-color', 'transform']);
+```
+
+{{"demo": "pages/customization/transitions/TransitionHover.js", "defaultCodeOpen": false}}
+
 ## API
 
 ### `theme.transitions.create(props, options) => transition`
@@ -69,3 +93,16 @@ const theme = createMuiTheme({
 #### Returns
 
 `transition`: A transition CSS value, which composes all properties which should be transitioned, together with the defined duration, easing and duration.
+
+### `theme.transitions.getAutoHeightDuration(height) => duration`
+
+#### Arguments
+
+1. `height` (*Number*): The height of the component.
+
+#### Returns
+
+`duration`: The calculated duration based on the height.
+
+## References
+Visit the [Transitions](/components/transitions/) page for exploring the different transitions which are already available as part of Material-UI.
