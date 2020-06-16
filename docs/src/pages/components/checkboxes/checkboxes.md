@@ -58,5 +58,8 @@ Here is an example of customizing the component. You can learn more about this i
   In this case, you can apply the additional attribute (e.g. `aria-label`, `aria-labelledby`, `title`) via the `inputProps` property.
 
 ```jsx
-<Checkbox value="checkedA" inputProps={{ 'aria-label': 'Checkbox A' }} />
+<Checkbox
+  value="checkedA"
+  inputProps={{ 'aria-label': 'Checkbox A' }}
+/>
 ```

@@ -34,7 +34,9 @@ function MyComponent() {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('sm'));
 
-  return <span>{`theme.breakpoints.up('sm') matches: ${matches}`}</span>;
+  return (
+    <span>{`theme.breakpoints.up('sm') matches: ${matches}`}</span>
+  );
 }
 ```
 
@@ -46,9 +48,13 @@ Alternatively, you can use a callback function, accepting the theme as a first a
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 function MyComponent() {
-  const matches = useMediaQuery((theme) => theme.breakpoints.up('sm'));
+  const matches = useMediaQuery((theme) =>
+    theme.breakpoints.up('sm'),
+  );
 
-  return <span>{`theme.breakpoints.up('sm') matches: ${matches}`}</span>;
+  return (
+    <span>{`theme.breakpoints.up('sm') matches: ${matches}`}</span>
+  );
 }
 ```
 
@@ -117,7 +123,9 @@ import mediaQuery from 'css-mediaquery';
 import { ThemeProvider } from '@material-ui/core/styles';
 
 function handleRender(req, res) {
-  const deviceType = parser(req.headers['user-agent']).device.type || 'desktop';
+  const deviceType =
+    parser(req.headers['user-agent']).device.type ||
+    'desktop';
   const ssrMatchMedia = (query) => ({
     matches: mediaQuery.match(query, {
       // The estimated CSS width of the browser.
@@ -188,6 +196,8 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 export default function SimpleMediaQuery() {
   const matches = useMediaQuery('(min-width:600px)');
 
-  return <span>{`(min-width:600px) matches: ${matches}`}</span>;
+  return (
+    <span>{`(min-width:600px) matches: ${matches}`}</span>
+  );
 }
 ```

@@ -92,7 +92,10 @@ function ListItemLink(props) {
   const { icon, primary, to } = props;
 
   const CustomLink = React.useMemo(
-    () => React.forwardRef((linkProps, ref) => <Link ref={ref} to={to} {...linkProps} />),
+    () =>
+      React.forwardRef((linkProps, ref) => (
+        <Link ref={ref} to={to} {...linkProps} />
+      )),
     [to],
   );
 

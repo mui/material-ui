@@ -66,7 +66,11 @@ describe('<MyComponent />', () => {
   let mount;
 
   function MySuccessButton({ children }) {
-    return <ThemeProvider theme={{ success: { main: '#fff' } }}>{children}</ThemeProvider>;
+    return (
+      <ThemeProvider theme={{ success: { main: '#fff' } }}>
+        {children}
+      </ThemeProvider>
+    );
   }
 
   before(() => {

@@ -76,7 +76,11 @@ const theme = {
 };
 
 export default function App() {
-  return <ThemeProvider theme={theme}>{/* children */}</ThemeProvider>;
+  return (
+    <ThemeProvider theme={theme}>
+      {/* children */}
+    </ThemeProvider>
+  );
 }
 ```
 
@@ -195,7 +199,12 @@ const theme = {
 If you want to group the breakpoint values, you can use the `breakpoints()` helper.
 
 ```jsx
-import { compose, spacing, palette, breakpoints } from '@material-ui/system';
+import {
+  compose,
+  spacing,
+  palette,
+  breakpoints,
+} from '@material-ui/system';
 import styled from 'styled-components';
 
 const Box = styled.div`

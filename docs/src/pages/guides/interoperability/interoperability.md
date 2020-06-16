@@ -27,7 +27,8 @@ Nothing fancy, just plain CSS.
 .button {
   background-color: #6772e5;
   color: #fff;
-  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px
+      rgba(0, 0, 0, 0.08);
   padding: 7px 14px;
 }
 .button:hover {
@@ -79,7 +80,8 @@ The following example overrides the `label` style of `Button` in addition to the
 ```css
 .button {
   background-color: #6772e5;
-  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px
+      rgba(0, 0, 0, 0.08);
   padding: 7px 14px;
 }
 .button:hover {
@@ -101,7 +103,11 @@ export default function PlainCssButtonDeep() {
   return (
     <div>
       <Button>Default</Button>
-      <Button classes={{ root: 'button', label: 'button-label' }}>Customized</Button>
+      <Button
+        classes={{ root: 'button', label: 'button-label' }}
+      >
+        Customized
+      </Button>
     </div>
   );
 }
@@ -119,7 +125,8 @@ Explicitly providing the class names to the component is too much effort?
 ```css
 .MuiButton-root {
   background-color: #6772e5;
-  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px
+      rgba(0, 0, 0, 0.08);
   padding: 7px 14px;
 }
 .MuiButton-root:hover {
@@ -172,7 +179,8 @@ import Button from '@material-ui/core/Button';
 const StyledButton = styled(Button)`
   background-color: #6772e5;
   color: #fff;
-  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px
+      rgba(0, 0, 0, 0.08);
   padding: 7px 14px;
   &:hover {
     background-color: #5469d4;
@@ -222,7 +230,8 @@ import Button from '@material-ui/core/Button';
 
 const StyledButton = styled(Button)`
   background-color: #6772e5;
-  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px
+      rgba(0, 0, 0, 0.08);
   padding: 7px 14px;
   &:hover {
     background-color: #5469d4;
@@ -253,7 +262,8 @@ const StyledButton = styled(({ color, ...other }) => (
   <Button classes={{ label: 'label' }} {...other} />
 ))`
   background-color: #6772e5;
-  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px
+      rgba(0, 0, 0, 0.08);
   padding: 7px 14px;
   &:hover {
     background-color: #5469d4;
@@ -289,7 +299,10 @@ const StyledButton = styled(Button)`
   padding: 4px 10px;
   font-size: 13px;
   &:hover {
-    background-color: ${darken(theme.palette.primary.main, 0.2)};
+    background-color: ${darken(
+      theme.palette.primary.main,
+      0.2,
+    )};
   }
   ${theme.breakpoints.up('sm')} {
     font-size: 14px;
@@ -348,7 +361,8 @@ bundling solution people are using.
 .button {
   background-color: #6772e5;
   color: #fff;
-  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px
+      rgba(0, 0, 0, 0.08);
   padding: 7px 14px;
 }
 .button:hover {
@@ -401,7 +415,8 @@ The following example overrides the `label` style of `Button` in addition to the
 ```css
 .root {
   background-color: #6772e5;
-  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px
+      rgba(0, 0, 0, 0.08);
   padding: 7px 14px;
 }
 .root:hover {
@@ -456,7 +471,8 @@ export default function EmotionCSS() {
         css={css`
           background-color: #6772e5;
           color: #fff;
-          box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+          box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0
+              1px 3px rgba(0, 0, 0, 0.08);
           padding: 7px 14px;
           &:hover {
             background-color: #5469d4;
@@ -493,11 +509,15 @@ We encourage to share the same theme object between Material-UI and your styles.
   css={(theme) => css`
     background-color: ${theme.palette.primary.main};
     color: #fff;
-    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px
+        rgba(0, 0, 0, 0.08);
     padding: 4px 10px;
     font-size: 13px;
     &:hover {
-      background-color: ${darken(theme.palette.primary.main, 0.2)};
+      background-color: ${darken(
+        theme.palette.primary.main,
+        0.2,
+      )};
     }
     ${theme.breakpoints.up('sm')} {
       font-size: 14px;

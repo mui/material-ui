@@ -55,7 +55,10 @@ Import icons using one of these two options:
 - Option 2:
 
   ```jsx
-  import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
+  import {
+    AccessAlarm,
+    ThreeDRotation,
+  } from '@material-ui/icons';
   ```
 
 The safest is Option 1 but Option 2 can yield the best developer experience.
@@ -156,7 +159,10 @@ As a prerequisite, you must include one, such as the
 [Material icon font](https://google.github.io/material-design-icons/#icon-font-for-the-web) in your project, for instance, via Google Web Fonts:
 
 ```html
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/icon?family=Material+Icons"
+/>
 ```
 
 `Icon` will set the correct class name for the Material icon font. For other fonts, you must supply the
