@@ -342,6 +342,7 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
     debounce(() => {
       updateScrollButtonState();
     }),
+    [],
   );
 
   React.useEffect(() => {
