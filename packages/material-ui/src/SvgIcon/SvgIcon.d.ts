@@ -69,7 +69,10 @@ export type SvgIconClassKey =
   | 'colorPrimary'
   | 'fontSizeInherit'
   | 'fontSizeSmall'
-  | 'fontSizeLarge';
+  | 'fontSizeLarge'
+  | 'rotate90deg'
+  | 'rotate180deg'
+  | 'rotate270deg';
 
 export type SvgIconProps<
   D extends React.ElementType = SvgIconTypeMap['defaultComponent'],
