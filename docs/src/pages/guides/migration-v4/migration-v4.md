@@ -56,6 +56,19 @@ yarn add @material-ui/core
   }
   ```
 
+### Rating
+
+- [Rating] Rename `visuallyhidden` to `visuallyHidden`
+
+```diff
+<Rating
+  classes={{
+-    visuallyhidden: 'custom-visually-hidden-classname',
++    visuallyHidden: 'custom-visually-hidden-classname',
+  }}
+/>
+```
+
 ### Typography
 
 - [Typography] Replace `srOnly` prop support with a style util:
