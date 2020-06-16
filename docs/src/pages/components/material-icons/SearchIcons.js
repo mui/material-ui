@@ -21,7 +21,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
-import MenuItem  from '@material-ui/core/MenuItem';
+import MenuItem from '@material-ui/core/MenuItem';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import Radio from '@material-ui/core/Radio';
 import Link from 'docs/src/modules/components/Link';
@@ -356,7 +356,7 @@ const useStyles = makeStyles((theme) => ({
   rotate: {
     minWidth: 100,
     float: 'right',
-  }
+  },
 }));
 
 const searchIndex = FlexSearch.create({
@@ -494,7 +494,7 @@ export default function SearchIcons() {
           <InputLabel htmlFor="rotate">Rotation</InputLabel>
           <Select
             value={rotate}
-            onChange={e => setRotate(e.target.value)}
+            onChange={(e) => setRotate(e.target.value)}
             inputProps={{
               name: 'rotate',
               id: 'rotate',
@@ -503,9 +503,9 @@ export default function SearchIcons() {
             <MenuItem value="">
               <em>None</em>
             </MenuItem>
-            <MenuItem value={90}>90</MenuItem >
-            <MenuItem value={180}>180</MenuItem >
-            <MenuItem value={270}>270</MenuItem >
+            <MenuItem value={90}>90</MenuItem>
+            <MenuItem value={180}>180</MenuItem>
+            <MenuItem value={270}>270</MenuItem>
           </Select>
         </FormControl>
         <Icons icons={icons} classes={classes} rotate={rotate} handleClickOpen={handleClickOpen} />
