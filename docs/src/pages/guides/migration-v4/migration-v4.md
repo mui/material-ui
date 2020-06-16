@@ -47,7 +47,7 @@ yarn add @material-ui/core
 
 ### Divider
 
-- [Divider] Use border instead of background color. It prevents inconsistent height on scaled screens. For people customizing the color of the border, the change requires changing the override CSS property:
+- Use border instead of background color. It prevents inconsistent height on scaled screens. For people customizing the color of the border, the change requires changing the override CSS property:
 
   ```diff
   .MuiDivider-root {
@@ -58,7 +58,7 @@ yarn add @material-ui/core
 
 ### Rating
 
-- [Rating] Rename `visuallyhidden` to `visuallyHidden`
+- Rename `visuallyhidden` to `visuallyHidden`
 
 ```diff
 <Rating
@@ -71,7 +71,7 @@ yarn add @material-ui/core
 
 ### Typography
 
-- [Typography] Replace `srOnly` prop support with a style util:
+- Replace `srOnly` prop support with a style util:
 
   ```diff
   -import Typography from '@material-ui/core/Typography';
