@@ -24,31 +24,64 @@ export default function CustomSeparator() {
   return (
     <div className={classes.root}>
       <Breadcrumbs separator="›" aria-label="breadcrumb">
-        <Link color="inherit" href="/" onClick={handleClick}>
+        <Link
+          color="inherit"
+          href="/"
+          onClick={handleClick}
+        >
           Material-UI
         </Link>
-        <Link color="inherit" href="/getting-started/installation/" onClick={handleClick}>
+        <Link
+          color="inherit"
+          href="/getting-started/installation/"
+          onClick={handleClick}
+        >
           Core
         </Link>
-        <Typography color="textPrimary">Breadcrumb</Typography>
+        <Typography color="textPrimary">
+          Breadcrumb
+        </Typography>
       </Breadcrumbs>
       <Breadcrumbs separator="-" aria-label="breadcrumb">
-        <Link color="inherit" href="/" onClick={handleClick}>
+        <Link
+          color="inherit"
+          href="/"
+          onClick={handleClick}
+        >
           Material-UI
         </Link>
-        <Link color="inherit" href="/getting-started/installation/" onClick={handleClick}>
+        <Link
+          color="inherit"
+          href="/getting-started/installation/"
+          onClick={handleClick}
+        >
           Core
         </Link>
-        <Typography color="textPrimary">Breadcrumb</Typography>
+        <Typography color="textPrimary">
+          Breadcrumb
+        </Typography>
       </Breadcrumbs>
-      <Breadcrumbs separator={<NavigateNextIcon fontSize="small" />} aria-label="breadcrumb">
-        <Link color="inherit" href="/" onClick={handleClick}>
+      <Breadcrumbs
+        separator={<NavigateNextIcon fontSize="small" />}
+        aria-label="breadcrumb"
+      >
+        <Link
+          color="inherit"
+          href="/"
+          onClick={handleClick}
+        >
           Material-UI
         </Link>
-        <Link color="inherit" href="/getting-started/installation/" onClick={handleClick}>
+        <Link
+          color="inherit"
+          href="/getting-started/installation/"
+          onClick={handleClick}
+        >
           Core
         </Link>
-        <Typography color="textPrimary">Breadcrumb</Typography>
+        <Typography color="textPrimary">
+          Breadcrumb
+        </Typography>
       </Breadcrumbs>
     </div>
   );

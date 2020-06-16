@@ -51,7 +51,10 @@ export default function TrackFalseSlider() {
         marks={marks}
       />
       <div className={classes.margin} />
-      <Typography id="track-false-range-slider" gutterBottom>
+      <Typography
+        id="track-false-range-slider"
+        gutterBottom
+      >
         Removed track range slider
       </Typography>
       <Slider

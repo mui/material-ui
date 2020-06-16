@@ -1,5 +1,9 @@
 import React from 'react';
-import { ThemeProvider, WithTheme as WithThemeProps, withTheme } from '@material-ui/styles';
+import {
+  ThemeProvider,
+  WithTheme as WithThemeProps,
+  withTheme,
+} from '@material-ui/styles';
 
 interface Theme {
   spacing: string;
@@ -11,7 +15,9 @@ function DeepChildRaw(props: Props) {
   return <span>{`spacing ${props.theme.spacing}`}</span>;
 }
 
-const DeepChild = withTheme<Theme, typeof DeepChildRaw>(DeepChildRaw);
+const DeepChild = withTheme<Theme, typeof DeepChildRaw>(
+  DeepChildRaw,
+);
 
 function WithTheme() {
   return (

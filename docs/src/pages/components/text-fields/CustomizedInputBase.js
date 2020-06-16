@@ -33,7 +33,10 @@ export default function CustomizedInputBase() {
 
   return (
     <Paper component="form" className={classes.root}>
-      <IconButton className={classes.iconButton} aria-label="menu">
+      <IconButton
+        className={classes.iconButton}
+        aria-label="menu"
+      >
         <MenuIcon />
       </IconButton>
       <InputBase
@@ -41,11 +44,22 @@ export default function CustomizedInputBase() {
         placeholder="Search Google Maps"
         inputProps={{ 'aria-label': 'search google maps' }}
       />
-      <IconButton type="submit" className={classes.iconButton} aria-label="search">
+      <IconButton
+        type="submit"
+        className={classes.iconButton}
+        aria-label="search"
+      >
         <SearchIcon />
       </IconButton>
-      <Divider className={classes.divider} orientation="vertical" />
-      <IconButton color="primary" className={classes.iconButton} aria-label="directions">
+      <Divider
+        className={classes.divider}
+        orientation="vertical"
+      />
+      <IconButton
+        color="primary"
+        className={classes.iconButton}
+        aria-label="directions"
+      >
         <DirectionsIcon />
       </IconButton>
     </Paper>

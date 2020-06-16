@@ -1,5 +1,10 @@
 import React from 'react';
-import { makeStyles, withStyles, Theme, createStyles } from '@material-ui/core/styles';
+import {
+  makeStyles,
+  withStyles,
+  Theme,
+  createStyles,
+} from '@material-ui/core/styles';
 import FormatAlignLeftIcon from '@material-ui/icons/FormatAlignLeft';
 import FormatAlignCenterIcon from '@material-ui/icons/FormatAlignCenter';
 import FormatAlignRightIcon from '@material-ui/icons/FormatAlignRight';
@@ -42,13 +47,21 @@ const StyledToggleButtonGroup = withStyles((theme) => ({
 
 export default function CustomizedDividers() {
   const [alignment, setAlignment] = React.useState('left');
-  const [formats, setFormats] = React.useState(() => ['italic']);
+  const [formats, setFormats] = React.useState(() => [
+    'italic',
+  ]);
 
-  const handleFormat = (event: React.MouseEvent<HTMLElement>, newFormats: string[]) => {
+  const handleFormat = (
+    event: React.MouseEvent<HTMLElement>,
+    newFormats: string[],
+  ) => {
     setFormats(newFormats);
   };
 
-  const handleAlignment = (event: React.MouseEvent<HTMLElement>, newAlignment: string) => {
+  const handleAlignment = (
+    event: React.MouseEvent<HTMLElement>,
+    newAlignment: string,
+  ) => {
     setAlignment(newAlignment);
   };
 
@@ -64,20 +77,37 @@ export default function CustomizedDividers() {
           onChange={handleAlignment}
           aria-label="text alignment"
         >
-          <ToggleButton value="left" aria-label="left aligned">
+          <ToggleButton
+            value="left"
+            aria-label="left aligned"
+          >
             <FormatAlignLeftIcon />
           </ToggleButton>
-          <ToggleButton value="center" aria-label="centered">
+          <ToggleButton
+            value="center"
+            aria-label="centered"
+          >
             <FormatAlignCenterIcon />
           </ToggleButton>
-          <ToggleButton value="right" aria-label="right aligned">
+          <ToggleButton
+            value="right"
+            aria-label="right aligned"
+          >
             <FormatAlignRightIcon />
           </ToggleButton>
-          <ToggleButton value="justify" aria-label="justified" disabled>
+          <ToggleButton
+            value="justify"
+            aria-label="justified"
+            disabled
+          >
             <FormatAlignJustifyIcon />
           </ToggleButton>
         </StyledToggleButtonGroup>
-        <Divider flexItem orientation="vertical" className={classes.divider} />
+        <Divider
+          flexItem
+          orientation="vertical"
+          className={classes.divider}
+        />
         <StyledToggleButtonGroup
           size="small"
           value={formats}
@@ -90,10 +120,17 @@ export default function CustomizedDividers() {
           <ToggleButton value="italic" aria-label="italic">
             <FormatItalicIcon />
           </ToggleButton>
-          <ToggleButton value="underlined" aria-label="underlined">
+          <ToggleButton
+            value="underlined"
+            aria-label="underlined"
+          >
             <FormatUnderlinedIcon />
           </ToggleButton>
-          <ToggleButton value="color" aria-label="color" disabled>
+          <ToggleButton
+            value="color"
+            aria-label="color"
+            disabled
+          >
             <FormatColorFillIcon />
             <ArrowDropDownIcon />
           </ToggleButton>

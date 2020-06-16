@@ -1,5 +1,10 @@
 import React from 'react';
-import { createMuiTheme, withStyles, makeStyles, ThemeProvider } from '@material-ui/core/styles';
+import {
+  createMuiTheme,
+  withStyles,
+  makeStyles,
+  ThemeProvider,
+} from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { green, purple } from '@material-ui/core/colors';
 
@@ -68,15 +73,28 @@ export default function CustomizedButtons() {
 
   return (
     <div>
-      <ColorButton variant="contained" color="primary" className={classes.margin}>
+      <ColorButton
+        variant="contained"
+        color="primary"
+        className={classes.margin}
+      >
         Custom CSS
       </ColorButton>
       <ThemeProvider theme={theme}>
-        <Button variant="contained" color="primary" className={classes.margin}>
+        <Button
+          variant="contained"
+          color="primary"
+          className={classes.margin}
+        >
           Theme Provider
         </Button>
       </ThemeProvider>
-      <BootstrapButton variant="contained" color="primary" disableRipple className={classes.margin}>
+      <BootstrapButton
+        variant="contained"
+        color="primary"
+        disableRipple
+        className={classes.margin}
+      >
         Bootstrap
       </BootstrapButton>
     </div>

@@ -1,5 +1,9 @@
 import React from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import {
+  makeStyles,
+  Theme,
+  createStyles,
+} from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
@@ -24,7 +28,9 @@ export default function ControlledOpenSelect() {
   const [age, setAge] = React.useState<string | number>('');
   const [open, setOpen] = React.useState(false);
 
-  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+  const handleChange = (
+    event: React.ChangeEvent<{ value: unknown }>,
+  ) => {
     setAge(event.target.value as number);
   };
 
@@ -38,11 +44,16 @@ export default function ControlledOpenSelect() {
 
   return (
     <div>
-      <Button className={classes.button} onClick={handleOpen}>
+      <Button
+        className={classes.button}
+        onClick={handleOpen}
+      >
         Open the select
       </Button>
       <FormControl className={classes.formControl}>
-        <InputLabel id="demo-controlled-open-select-label">Age</InputLabel>
+        <InputLabel id="demo-controlled-open-select-label">
+          Age
+        </InputLabel>
         <Select
           labelId="demo-controlled-open-select-label"
           id="demo-controlled-open-select"

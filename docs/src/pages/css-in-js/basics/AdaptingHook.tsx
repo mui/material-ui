@@ -1,6 +1,8 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Button, { ButtonProps as MuiButtonProps } from '@material-ui/core/Button';
+import Button, {
+  ButtonProps as MuiButtonProps,
+} from '@material-ui/core/Button';
 import { Omit } from '@material-ui/types';
 
 interface Props {
@@ -26,7 +28,9 @@ const useStyles = makeStyles({
   },
 });
 
-function MyButton(props: Props & Omit<MuiButtonProps, keyof Props>) {
+function MyButton(
+  props: Props & Omit<MuiButtonProps, keyof Props>,
+) {
   const { color, ...other } = props;
   const classes = useStyles(props);
   return <Button className={classes.root} {...other} />;

@@ -24,7 +24,10 @@ const StyledButton = styled(Button)`
   padding: 4px 10px;
   font-size: 13px;
   &:hover {
-    background-color: ${darken(theme.palette.primary.main, 0.2)};
+    background-color: ${darken(
+      theme.palette.primary.main,
+      0.2,
+    )};
   }
   ${theme.breakpoints.up('sm')} {
     font-size: 14px;

@@ -18,7 +18,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SelectedListItem() {
   const classes = useStyles();
-  const [selectedIndex, setSelectedIndex] = React.useState(1);
+  const [selectedIndex, setSelectedIndex] = React.useState(
+    1,
+  );
 
   const handleListItemClick = (event, index) => {
     setSelectedIndex(index);
@@ -26,7 +28,10 @@ export default function SelectedListItem() {
 
   return (
     <div className={classes.root}>
-      <List component="nav" aria-label="main mailbox folders">
+      <List
+        component="nav"
+        aria-label="main mailbox folders"
+      >
         <ListItem
           button
           selected={selectedIndex === 0}
@@ -49,7 +54,10 @@ export default function SelectedListItem() {
         </ListItem>
       </List>
       <Divider />
-      <List component="nav" aria-label="secondary mailbox folder">
+      <List
+        component="nav"
+        aria-label="secondary mailbox folder"
+      >
         <ListItem
           button
           selected={selectedIndex === 2}

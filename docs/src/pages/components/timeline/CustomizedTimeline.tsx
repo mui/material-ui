@@ -29,7 +29,10 @@ export default function CustomizedTimeline() {
   return (
     <Timeline align="alternate">
       <TimelineItem>
-        <TimelineOppositeContent variant="body2" color="textSecondary">
+        <TimelineOppositeContent
+          variant="body2"
+          color="textSecondary"
+        >
           9:30 am
         </TimelineOppositeContent>
         <TimelineSeparator>
@@ -43,12 +46,17 @@ export default function CustomizedTimeline() {
             <Typography variant="h6" component="h1">
               Eat
             </Typography>
-            <Typography>Because you need strength</Typography>
+            <Typography>
+              Because you need strength
+            </Typography>
           </Paper>
         </TimelineContent>
       </TimelineItem>
       <TimelineItem>
-        <TimelineOppositeContent variant="body2" color="textSecondary">
+        <TimelineOppositeContent
+          variant="body2"
+          color="textSecondary"
+        >
           10:00 am
         </TimelineOppositeContent>
         <TimelineSeparator>
@@ -62,7 +70,9 @@ export default function CustomizedTimeline() {
             <Typography variant="h6" component="h1">
               Code
             </Typography>
-            <Typography>Because it&apos;s awesome!</Typography>
+            <Typography>
+              Because it&apos;s awesome!
+            </Typography>
           </Paper>
         </TimelineContent>
       </TimelineItem>
@@ -71,7 +81,9 @@ export default function CustomizedTimeline() {
           <TimelineDot color="primary" variant="outlined">
             <HotelIcon />
           </TimelineDot>
-          <TimelineConnector className={classes.secondaryTail} />
+          <TimelineConnector
+            className={classes.secondaryTail}
+          />
         </TimelineSeparator>
         <TimelineContent>
           <Paper elevation={3} className={classes.paper}>
@@ -93,7 +105,9 @@ export default function CustomizedTimeline() {
             <Typography variant="h6" component="h1">
               Repeat
             </Typography>
-            <Typography>Because this is the life you love!</Typography>
+            <Typography>
+              Because this is the life you love!
+            </Typography>
           </Paper>
         </TimelineContent>
       </TimelineItem>

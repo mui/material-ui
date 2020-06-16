@@ -36,7 +36,8 @@ export default function ActionsInExpansionPanelSummary() {
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Typography color="textSecondary">
-            The click event of the nested action will propagate up and expand the panel unless you
+            The click event of the nested action will
+            propagate up and expand the panel unless you
             explicitly stop it.
           </Typography>
         </ExpansionPanelDetails>
@@ -58,8 +59,9 @@ export default function ActionsInExpansionPanelSummary() {
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Typography color="textSecondary">
-            The focus event of the nested action will propagate up and also focus the expansion
-            panel unless you explicitly stop it.
+            The focus event of the nested action will
+            propagate up and also focus the expansion panel
+            unless you explicitly stop it.
           </Typography>
         </ExpansionPanelDetails>
       </ExpansionPanel>
@@ -80,8 +82,10 @@ export default function ActionsInExpansionPanelSummary() {
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Typography color="textSecondary">
-            If you forget to put an aria-label on the nested action, the label of the action will
-            also be included in the label of the parent button that controls the panel expansion.
+            If you forget to put an aria-label on the nested
+            action, the label of the action will also be
+            included in the label of the parent button that
+            controls the panel expansion.
           </Typography>
         </ExpansionPanelDetails>
       </ExpansionPanel>

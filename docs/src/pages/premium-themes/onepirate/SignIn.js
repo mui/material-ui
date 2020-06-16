@@ -52,19 +52,36 @@ function SignIn() {
       <AppAppBar />
       <AppForm>
         <React.Fragment>
-          <Typography variant="h3" gutterBottom marked="center" align="center">
+          <Typography
+            variant="h3"
+            gutterBottom
+            marked="center"
+            align="center"
+          >
             Sign In
           </Typography>
           <Typography variant="body2" align="center">
             {'Not a member yet? '}
-            <Link href="/premium-themes/onepirate/sign-up/" align="center" underline="always">
+            <Link
+              href="/premium-themes/onepirate/sign-up/"
+              align="center"
+              underline="always"
+            >
               Sign Up here
             </Link>
           </Typography>
         </React.Fragment>
-        <Form onSubmit={handleSubmit} subscription={{ submitting: true }} validate={validate}>
+        <Form
+          onSubmit={handleSubmit}
+          subscription={{ submitting: true }}
+          validate={validate}
+        >
           {({ handleSubmit2, submitting }) => (
-            <form onSubmit={handleSubmit2} className={classes.form} noValidate>
+            <form
+              onSubmit={handleSubmit2}
+              className={classes.form}
+              noValidate
+            >
               <Field
                 autoComplete="email"
                 autoFocus
@@ -92,7 +109,10 @@ function SignIn() {
               <FormSpy subscription={{ submitError: true }}>
                 {({ submitError }) =>
                   submitError ? (
-                    <FormFeedback className={classes.feedback} error>
+                    <FormFeedback
+                      className={classes.feedback}
+                      error
+                    >
                       {submitError}
                     </FormFeedback>
                   ) : null
@@ -105,13 +125,18 @@ function SignIn() {
                 color="secondary"
                 fullWidth
               >
-                {submitting || sent ? 'In progress…' : 'Sign In'}
+                {submitting || sent
+                  ? 'In progress…'
+                  : 'Sign In'}
               </FormButton>
             </form>
           )}
         </Form>
         <Typography align="center">
-          <Link underline="always" href="/premium-themes/onepirate/forgot-password/">
+          <Link
+            underline="always"
+            href="/premium-themes/onepirate/forgot-password/"
+          >
             Forgot password?
           </Link>
         </Typography>

@@ -51,7 +51,10 @@ export default function GoogleMaps() {
   const fetch = React.useMemo(
     () =>
       throttle((request, callback) => {
-        autocompleteService.current.getPlacePredictions(request, callback);
+        autocompleteService.current.getPlacePredictions(
+          request,
+          callback,
+        );
       }, 200),
     [],
   );
@@ -96,7 +99,11 @@ export default function GoogleMaps() {
     <Autocomplete
       id="google-map-demo"
       style={{ width: 300 }}
-      getOptionLabel={(option) => (typeof option === 'string' ? option : option.description)}
+      getOptionLabel={(option) =>
+        typeof option === 'string'
+          ? option
+          : option.description
+      }
       filterOptions={(x) => x}
       options={options}
       autoComplete
@@ -104,20 +111,32 @@ export default function GoogleMaps() {
       filterSelectedOptions
       value={value}
       onChange={(event, newValue) => {
-        setOptions(newValue ? [newValue, ...options] : options);
+        setOptions(
+          newValue ? [newValue, ...options] : options,
+        );
         setValue(newValue);
       }}
       onInputChange={(event, newInputValue) => {
         setInputValue(newInputValue);
       }}
       renderInput={(params) => (
-        <TextField {...params} label="Add a location" variant="outlined" fullWidth />
+        <TextField
+          {...params}
+          label="Add a location"
+          variant="outlined"
+          fullWidth
+        />
       )}
       renderOption={(option) => {
-        const matches = option.structured_formatting.main_text_matched_substrings;
+        const matches =
+          option.structured_formatting
+            .main_text_matched_substrings;
         const parts = parse(
           option.structured_formatting.main_text,
-          matches.map((match) => [match.offset, match.offset + match.length]),
+          matches.map((match) => [
+            match.offset,
+            match.offset + match.length,
+          ]),
         );
 
         return (
@@ -127,13 +146,24 @@ export default function GoogleMaps() {
             </Grid>
             <Grid item xs>
               {parts.map((part, index) => (
-                <span key={index} style={{ fontWeight: part.highlight ? 700 : 400 }}>
+                <span
+                  key={index}
+                  style={{
+                    fontWeight: part.highlight ? 700 : 400,
+                  }}
+                >
                   {part.text}
                 </span>
               ))}
 
-              <Typography variant="body2" color="textSecondary">
-                {option.structured_formatting.secondary_text}
+              <Typography
+                variant="body2"
+                color="textSecondary"
+              >
+                {
+                  option.structured_formatting
+                    .secondary_text
+                }
               </Typography>
             </Grid>
           </Grid>

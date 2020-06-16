@@ -51,7 +51,9 @@ export default function OpenIconSpeedDial() {
 
   return (
     <div className={classes.root}>
-      <Button onClick={handleVisibility}>Toggle Speed Dial</Button>
+      <Button onClick={handleVisibility}>
+        Toggle Speed Dial
+      </Button>
       <SpeedDial
         ariaLabel="SpeedDial openIcon example"
         className={classes.speedDial}

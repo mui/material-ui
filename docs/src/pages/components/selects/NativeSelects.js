@@ -34,7 +34,9 @@ export default function NativeSelects() {
   return (
     <div>
       <FormControl className={classes.formControl}>
-        <InputLabel htmlFor="age-native-simple">Age</InputLabel>
+        <InputLabel htmlFor="age-native-simple">
+          Age
+        </InputLabel>
         <Select
           native
           value={state.age}
@@ -51,7 +53,9 @@ export default function NativeSelects() {
         </Select>
       </FormControl>
       <FormControl className={classes.formControl}>
-        <InputLabel htmlFor="age-native-helper">Age</InputLabel>
+        <InputLabel htmlFor="age-native-helper">
+          Age
+        </InputLabel>
         <NativeSelect
           value={state.age}
           onChange={handleChange}
@@ -65,7 +69,9 @@ export default function NativeSelects() {
           <option value={20}>Twenty</option>
           <option value={30}>Thirty</option>
         </NativeSelect>
-        <FormHelperText>Some important helper text</FormHelperText>
+        <FormHelperText>
+          Some important helper text
+        </FormHelperText>
       </FormControl>
       <FormControl className={classes.formControl}>
         <NativeSelect
@@ -80,10 +86,15 @@ export default function NativeSelects() {
           <option value={20}>Twenty</option>
           <option value={30}>Thirty</option>
         </NativeSelect>
-        <FormHelperText>With visually hidden label</FormHelperText>
+        <FormHelperText>
+          With visually hidden label
+        </FormHelperText>
       </FormControl>
       <FormControl className={classes.formControl}>
-        <InputLabel shrink htmlFor="age-native-label-placeholder">
+        <InputLabel
+          shrink
+          htmlFor="age-native-label-placeholder"
+        >
           Age
         </InputLabel>
         <NativeSelect
@@ -102,7 +113,9 @@ export default function NativeSelects() {
         <FormHelperText>Label + placeholder</FormHelperText>
       </FormControl>
       <FormControl className={classes.formControl} disabled>
-        <InputLabel htmlFor="name-native-disabled">Name</InputLabel>
+        <InputLabel htmlFor="name-native-disabled">
+          Name
+        </InputLabel>
         <NativeSelect
           value={state.name}
           onChange={handleChange}
@@ -123,7 +136,9 @@ export default function NativeSelects() {
         <FormHelperText>Disabled</FormHelperText>
       </FormControl>
       <FormControl className={classes.formControl} error>
-        <InputLabel htmlFor="name-native-error">Name</InputLabel>
+        <InputLabel htmlFor="name-native-error">
+          Name
+        </InputLabel>
         <NativeSelect
           value={state.name}
           onChange={handleChange}
@@ -143,7 +158,9 @@ export default function NativeSelects() {
         <FormHelperText>Error</FormHelperText>
       </FormControl>
       <FormControl className={classes.formControl}>
-        <InputLabel htmlFor="uncontrolled-native">Name</InputLabel>
+        <InputLabel htmlFor="uncontrolled-native">
+          Name
+        </InputLabel>
         <NativeSelect
           defaultValue={30}
           inputProps={{
@@ -175,7 +192,9 @@ export default function NativeSelects() {
         <FormHelperText>Placeholder</FormHelperText>
       </FormControl>
       <FormControl required className={classes.formControl}>
-        <InputLabel htmlFor="age-native-required">Age</InputLabel>
+        <InputLabel htmlFor="age-native-required">
+          Age
+        </InputLabel>
         <Select
           native
           value={state.age}
@@ -192,8 +211,13 @@ export default function NativeSelects() {
         </Select>
         <FormHelperText>Required</FormHelperText>
       </FormControl>
-      <FormControl variant="outlined" className={classes.formControl}>
-        <InputLabel htmlFor="outlined-age-native-simple">Age</InputLabel>
+      <FormControl
+        variant="outlined"
+        className={classes.formControl}
+      >
+        <InputLabel htmlFor="outlined-age-native-simple">
+          Age
+        </InputLabel>
         <Select
           native
           value={state.age}
@@ -210,8 +234,13 @@ export default function NativeSelects() {
           <option value={30}>Thirty</option>
         </Select>
       </FormControl>
-      <FormControl variant="filled" className={classes.formControl}>
-        <InputLabel htmlFor="filled-age-native-simple">Age</InputLabel>
+      <FormControl
+        variant="filled"
+        className={classes.formControl}
+      >
+        <InputLabel htmlFor="filled-age-native-simple">
+          Age
+        </InputLabel>
         <Select
           native
           value={state.age}

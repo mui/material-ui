@@ -1,5 +1,9 @@
 import React from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import {
+  makeStyles,
+  Theme,
+  createStyles,
+} from '@material-ui/core/styles';
 import FormLabel from '@material-ui/core/FormLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormGroup from '@material-ui/core/FormGroup';
@@ -26,50 +30,104 @@ export default function CheckboxesGroup() {
     antoine: false,
   });
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
+  const handleChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    setState({
+      ...state,
+      [event.target.name]: event.target.checked,
+    });
   };
 
   const { gilad, jason, antoine } = state;
-  const error = [gilad, jason, antoine].filter((v) => v).length !== 2;
+  const error =
+    [gilad, jason, antoine].filter((v) => v).length !== 2;
 
   return (
     <div className={classes.root}>
-      <FormControl component="fieldset" className={classes.formControl}>
-        <FormLabel component="legend">Assign responsibility</FormLabel>
+      <FormControl
+        component="fieldset"
+        className={classes.formControl}
+      >
+        <FormLabel component="legend">
+          Assign responsibility
+        </FormLabel>
         <FormGroup>
           <FormControlLabel
-            control={<Checkbox checked={gilad} onChange={handleChange} name="gilad" />}
+            control={
+              <Checkbox
+                checked={gilad}
+                onChange={handleChange}
+                name="gilad"
+              />
+            }
             label="Gilad Gray"
           />
           <FormControlLabel
-            control={<Checkbox checked={jason} onChange={handleChange} name="jason" />}
+            control={
+              <Checkbox
+                checked={jason}
+                onChange={handleChange}
+                name="jason"
+              />
+            }
             label="Jason Killian"
           />
           <FormControlLabel
-            control={<Checkbox checked={antoine} onChange={handleChange} name="antoine" />}
+            control={
+              <Checkbox
+                checked={antoine}
+                onChange={handleChange}
+                name="antoine"
+              />
+            }
             label="Antoine Llorca"
           />
         </FormGroup>
         <FormHelperText>Be careful</FormHelperText>
       </FormControl>
-      <FormControl required error={error} component="fieldset" className={classes.formControl}>
+      <FormControl
+        required
+        error={error}
+        component="fieldset"
+        className={classes.formControl}
+      >
         <FormLabel component="legend">Pick two</FormLabel>
         <FormGroup>
           <FormControlLabel
-            control={<Checkbox checked={gilad} onChange={handleChange} name="gilad" />}
+            control={
+              <Checkbox
+                checked={gilad}
+                onChange={handleChange}
+                name="gilad"
+              />
+            }
             label="Gilad Gray"
           />
           <FormControlLabel
-            control={<Checkbox checked={jason} onChange={handleChange} name="jason" />}
+            control={
+              <Checkbox
+                checked={jason}
+                onChange={handleChange}
+                name="jason"
+              />
+            }
             label="Jason Killian"
           />
           <FormControlLabel
-            control={<Checkbox checked={antoine} onChange={handleChange} name="antoine" />}
+            control={
+              <Checkbox
+                checked={antoine}
+                onChange={handleChange}
+                name="antoine"
+              />
+            }
             label="Antoine Llorca"
           />
         </FormGroup>
-        <FormHelperText>You can display an error</FormHelperText>
+        <FormHelperText>
+          You can display an error
+        </FormHelperText>
       </FormControl>
     </div>
   );

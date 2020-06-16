@@ -27,7 +27,9 @@ export default function DirectionSnackbar() {
     React.ComponentType<TransitionProps> | undefined
   >(undefined);
 
-  const handleClick = (Transition: React.ComponentType<TransitionProps>) => () => {
+  const handleClick = (
+    Transition: React.ComponentType<TransitionProps>,
+  ) => () => {
     setTransition(() => Transition);
     setOpen(true);
   };
@@ -38,10 +40,18 @@ export default function DirectionSnackbar() {
 
   return (
     <div>
-      <Button onClick={handleClick(TransitionLeft)}>Right</Button>
-      <Button onClick={handleClick(TransitionUp)}>Up</Button>
-      <Button onClick={handleClick(TransitionRight)}>Left</Button>
-      <Button onClick={handleClick(TransitionDown)}>Down</Button>
+      <Button onClick={handleClick(TransitionLeft)}>
+        Right
+      </Button>
+      <Button onClick={handleClick(TransitionUp)}>
+        Up
+      </Button>
+      <Button onClick={handleClick(TransitionRight)}>
+        Left
+      </Button>
+      <Button onClick={handleClick(TransitionDown)}>
+        Down
+      </Button>
       <Snackbar
         open={open}
         onClose={handleClose}

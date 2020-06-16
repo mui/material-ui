@@ -14,23 +14,46 @@ export default function SwitchesGroup() {
   });
 
   const handleChange = (event) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
+    setState({
+      ...state,
+      [event.target.name]: event.target.checked,
+    });
   };
 
   return (
     <FormControl component="fieldset">
-      <FormLabel component="legend">Assign responsibility</FormLabel>
+      <FormLabel component="legend">
+        Assign responsibility
+      </FormLabel>
       <FormGroup>
         <FormControlLabel
-          control={<Switch checked={state.gilad} onChange={handleChange} name="gilad" />}
+          control={
+            <Switch
+              checked={state.gilad}
+              onChange={handleChange}
+              name="gilad"
+            />
+          }
           label="Gilad Gray"
         />
         <FormControlLabel
-          control={<Switch checked={state.jason} onChange={handleChange} name="jason" />}
+          control={
+            <Switch
+              checked={state.jason}
+              onChange={handleChange}
+              name="jason"
+            />
+          }
           label="Jason Killian"
         />
         <FormControlLabel
-          control={<Switch checked={state.antoine} onChange={handleChange} name="antoine" />}
+          control={
+            <Switch
+              checked={state.antoine}
+              onChange={handleChange}
+              name="antoine"
+            />
+          }
           label="Antoine Llorca"
         />
       </FormGroup>

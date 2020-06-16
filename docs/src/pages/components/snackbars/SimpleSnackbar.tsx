@@ -11,7 +11,10 @@ export default function SimpleSnackbar() {
     setOpen(true);
   };
 
-  const handleClose = (event: React.SyntheticEvent | React.MouseEvent, reason?: string) => {
+  const handleClose = (
+    event: React.SyntheticEvent | React.MouseEvent,
+    reason?: string,
+  ) => {
     if (reason === 'clickaway') {
       return;
     }
@@ -21,7 +24,9 @@ export default function SimpleSnackbar() {
 
   return (
     <div>
-      <Button onClick={handleClick}>Open simple snackbar</Button>
+      <Button onClick={handleClick}>
+        Open simple snackbar
+      </Button>
       <Snackbar
         anchorOrigin={{
           vertical: 'bottom',
@@ -33,10 +38,19 @@ export default function SimpleSnackbar() {
         message="Note archived"
         action={
           <React.Fragment>
-            <Button color="secondary" size="small" onClick={handleClose}>
+            <Button
+              color="secondary"
+              size="small"
+              onClick={handleClose}
+            >
               UNDO
             </Button>
-            <IconButton size="small" aria-label="close" color="inherit" onClick={handleClose}>
+            <IconButton
+              size="small"
+              aria-label="close"
+              color="inherit"
+              onClick={handleClose}
+            >
               <CloseIcon fontSize="small" />
             </IconButton>
           </React.Fragment>

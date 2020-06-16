@@ -9,14 +9,25 @@ export default function SwitchLabels() {
     checkedB: true,
   });
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
+  const handleChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    setState({
+      ...state,
+      [event.target.name]: event.target.checked,
+    });
   };
 
   return (
     <FormGroup row>
       <FormControlLabel
-        control={<Switch checked={state.checkedA} onChange={handleChange} name="checkedA" />}
+        control={
+          <Switch
+            checked={state.checkedA}
+            onChange={handleChange}
+            name="checkedA"
+          />
+        }
         label="Secondary"
       />
       <FormControlLabel
@@ -30,9 +41,20 @@ export default function SwitchLabels() {
         }
         label="Primary"
       />
-      <FormControlLabel control={<Switch />} label="Uncontrolled" />
-      <FormControlLabel disabled control={<Switch />} label="Disabled" />
-      <FormControlLabel disabled control={<Switch checked />} label="Disabled" />
+      <FormControlLabel
+        control={<Switch />}
+        label="Uncontrolled"
+      />
+      <FormControlLabel
+        disabled
+        control={<Switch />}
+        label="Disabled"
+      />
+      <FormControlLabel
+        disabled
+        control={<Switch checked />}
+        label="Disabled"
+      />
     </FormGroup>
   );
 }

@@ -40,7 +40,12 @@ export default function SmallOutlinedChips() {
       <Chip
         variant="outlined"
         size="small"
-        avatar={<Avatar alt="Natacha" src="/static/images/avatar/1.jpg" />}
+        avatar={
+          <Avatar
+            alt="Natacha"
+            src="/static/images/avatar/1.jpg"
+          />
+        }
         label="Deletable"
         onDelete={handleDelete}
       />

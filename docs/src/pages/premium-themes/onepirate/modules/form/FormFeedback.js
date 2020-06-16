@@ -23,11 +23,16 @@ function FormFeedback(props) {
     <div
       className={clsx(
         props.classes.root,
-        { [props.classes.error]: props.error, [props.classes.success]: props.success },
+        {
+          [props.classes.error]: props.error,
+          [props.classes.success]: props.success,
+        },
         props.className,
       )}
     >
-      <Typography color="inherit">{props.children}</Typography>
+      <Typography color="inherit">
+        {props.children}
+      </Typography>
     </div>
   );
 }

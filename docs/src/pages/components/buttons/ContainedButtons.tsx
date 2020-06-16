@@ -1,5 +1,9 @@
 import React from 'react';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import {
+  makeStyles,
+  createStyles,
+  Theme,
+} from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -27,7 +31,11 @@ export default function ContainedButtons() {
       <Button variant="contained" disabled>
         Disabled
       </Button>
-      <Button variant="contained" color="primary" href="#contained-buttons">
+      <Button
+        variant="contained"
+        color="primary"
+        href="#contained-buttons"
+      >
         Link
       </Button>
     </div>

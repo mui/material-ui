@@ -29,7 +29,9 @@ function BreakpointDown(props) {
 
   return (
     <div className={classes.root}>
-      <Typography variant="subtitle1">Current width: {width}</Typography>
+      <Typography variant="subtitle1">
+        Current width: {width}
+      </Typography>
       <div className={classes.container}>
         <Hidden xsDown>
           <Paper className={classes.paper}>xsDown</Paper>
@@ -52,7 +54,8 @@ function BreakpointDown(props) {
 }
 
 BreakpointDown.propTypes = {
-  width: PropTypes.oneOf(['lg', 'md', 'sm', 'xl', 'xs']).isRequired,
+  width: PropTypes.oneOf(['lg', 'md', 'sm', 'xl', 'xs'])
+    .isRequired,
 };
 
 export default withWidth()(BreakpointDown);

@@ -16,7 +16,10 @@ For instance:
 {
   item ? (
     <img
-      style={{ width: 210, height: 118 }}
+      style={{
+        width: 210,
+        height: 118,
+      }}
       alt={item.title}
       src={item.src}
     />

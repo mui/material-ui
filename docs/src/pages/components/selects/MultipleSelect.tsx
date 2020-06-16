@@ -1,6 +1,11 @@
 import React from 'react';
 import clsx from 'clsx';
-import { createStyles, makeStyles, useTheme, Theme } from '@material-ui/core/styles';
+import {
+  createStyles,
+  makeStyles,
+  useTheme,
+  Theme,
+} from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -54,7 +59,11 @@ const names = [
   'Kelly Snyder',
 ];
 
-function getStyles(name: string, personName: string[], theme: Theme) {
+function getStyles(
+  name: string,
+  personName: string[],
+  theme: Theme,
+) {
   return {
     fontWeight:
       personName.indexOf(name) === -1
@@ -66,13 +75,19 @@ function getStyles(name: string, personName: string[], theme: Theme) {
 export default function MultipleSelect() {
   const classes = useStyles();
   const theme = useTheme();
-  const [personName, setPersonName] = React.useState<string[]>([]);
+  const [personName, setPersonName] = React.useState<
+    string[]
+  >([]);
 
-  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+  const handleChange = (
+    event: React.ChangeEvent<{ value: unknown }>,
+  ) => {
     setPersonName(event.target.value as string[]);
   };
 
-  const handleChangeMultiple = (event: React.ChangeEvent<{ value: unknown }>) => {
+  const handleChangeMultiple = (
+    event: React.ChangeEvent<{ value: unknown }>,
+  ) => {
     const { options } = event.target as HTMLSelectElement;
     const value: string[] = [];
     for (let i = 0, l = options.length; i < l; i += 1) {
@@ -86,7 +101,9 @@ export default function MultipleSelect() {
   return (
     <div>
       <FormControl className={classes.formControl}>
-        <InputLabel id="demo-mutiple-name-label">Name</InputLabel>
+        <InputLabel id="demo-mutiple-name-label">
+          Name
+        </InputLabel>
         <Select
           labelId="demo-mutiple-name-label"
           id="demo-mutiple-name"
@@ -97,14 +114,20 @@ export default function MultipleSelect() {
           MenuProps={MenuProps}
         >
           {names.map((name) => (
-            <MenuItem key={name} value={name} style={getStyles(name, personName, theme)}>
+            <MenuItem
+              key={name}
+              value={name}
+              style={getStyles(name, personName, theme)}
+            >
               {name}
             </MenuItem>
           ))}
         </Select>
       </FormControl>
       <FormControl className={classes.formControl}>
-        <InputLabel id="demo-mutiple-checkbox-label">Tag</InputLabel>
+        <InputLabel id="demo-mutiple-checkbox-label">
+          Tag
+        </InputLabel>
         <Select
           labelId="demo-mutiple-checkbox-label"
           id="demo-mutiple-checkbox"
@@ -112,19 +135,25 @@ export default function MultipleSelect() {
           value={personName}
           onChange={handleChange}
           input={<Input />}
-          renderValue={(selected) => (selected as string[]).join(', ')}
+          renderValue={(selected) =>
+            (selected as string[]).join(', ')
+          }
           MenuProps={MenuProps}
         >
           {names.map((name) => (
             <MenuItem key={name} value={name}>
-              <Checkbox checked={personName.indexOf(name) > -1} />
+              <Checkbox
+                checked={personName.indexOf(name) > -1}
+              />
               <ListItemText primary={name} />
             </MenuItem>
           ))}
         </Select>
       </FormControl>
       <FormControl className={classes.formControl}>
-        <InputLabel id="demo-mutiple-chip-label">Chip</InputLabel>
+        <InputLabel id="demo-mutiple-chip-label">
+          Chip
+        </InputLabel>
         <Select
           labelId="demo-mutiple-chip-label"
           id="demo-mutiple-chip"
@@ -135,20 +164,33 @@ export default function MultipleSelect() {
           renderValue={(selected) => (
             <div className={classes.chips}>
               {(selected as string[]).map((value) => (
-                <Chip key={value} label={value} className={classes.chip} />
+                <Chip
+                  key={value}
+                  label={value}
+                  className={classes.chip}
+                />
               ))}
             </div>
           )}
           MenuProps={MenuProps}
         >
           {names.map((name) => (
-            <MenuItem key={name} value={name} style={getStyles(name, personName, theme)}>
+            <MenuItem
+              key={name}
+              value={name}
+              style={getStyles(name, personName, theme)}
+            >
               {name}
             </MenuItem>
           ))}
         </Select>
       </FormControl>
-      <FormControl className={clsx(classes.formControl, classes.noLabel)}>
+      <FormControl
+        className={clsx(
+          classes.formControl,
+          classes.noLabel,
+        )}
+      >
         <Select
           multiple
           displayEmpty
@@ -169,7 +211,11 @@ export default function MultipleSelect() {
             <em>Placeholder</em>
           </MenuItem>
           {names.map((name) => (
-            <MenuItem key={name} value={name} style={getStyles(name, personName, theme)}>
+            <MenuItem
+              key={name}
+              value={name}
+              style={getStyles(name, personName, theme)}
+            >
               {name}
             </MenuItem>
           ))}

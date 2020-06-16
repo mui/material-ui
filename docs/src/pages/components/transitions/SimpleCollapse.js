@@ -37,21 +37,32 @@ export default function SimpleCollapse() {
   return (
     <div className={classes.root}>
       <FormControlLabel
-        control={<Switch checked={checked} onChange={handleChange} />}
+        control={
+          <Switch
+            checked={checked}
+            onChange={handleChange}
+          />
+        }
         label="Show"
       />
       <div className={classes.container}>
         <Collapse in={checked}>
           <Paper elevation={4} className={classes.paper}>
             <svg className={classes.svg}>
-              <polygon points="0,100 50,00, 100,100" className={classes.polygon} />
+              <polygon
+                points="0,100 50,00, 100,100"
+                className={classes.polygon}
+              />
             </svg>
           </Paper>
         </Collapse>
         <Collapse in={checked} collapsedHeight={40}>
           <Paper elevation={4} className={classes.paper}>
             <svg className={classes.svg}>
-              <polygon points="0,100 50,00, 100,100" className={classes.polygon} />
+              <polygon
+                points="0,100 50,00, 100,100"
+                className={classes.polygon}
+              />
             </svg>
           </Paper>
         </Collapse>

@@ -3,7 +3,11 @@ import Switch from '@material-ui/core/Switch';
 import Paper from '@material-ui/core/Paper';
 import Zoom from '@material-ui/core/Zoom';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import {
+  makeStyles,
+  createStyles,
+  Theme,
+} from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -39,21 +43,37 @@ export default function SimpleZoom() {
   return (
     <div className={classes.root}>
       <FormControlLabel
-        control={<Switch checked={checked} onChange={handleChange} />}
+        control={
+          <Switch
+            checked={checked}
+            onChange={handleChange}
+          />
+        }
         label="Show"
       />
       <div className={classes.container}>
         <Zoom in={checked}>
           <Paper elevation={4} className={classes.paper}>
             <svg className={classes.svg}>
-              <polygon points="0,100 50,00, 100,100" className={classes.polygon} />
+              <polygon
+                points="0,100 50,00, 100,100"
+                className={classes.polygon}
+              />
             </svg>
           </Paper>
         </Zoom>
-        <Zoom in={checked} style={{ transitionDelay: checked ? '500ms' : '0ms' }}>
+        <Zoom
+          in={checked}
+          style={{
+            transitionDelay: checked ? '500ms' : '0ms',
+          }}
+        >
           <Paper elevation={4} className={classes.paper}>
             <svg className={classes.svg}>
-              <polygon points="0,100 50,00, 100,100" className={classes.polygon} />
+              <polygon
+                points="0,100 50,00, 100,100"
+                className={classes.polygon}
+              />
             </svg>
           </Paper>
         </Zoom>

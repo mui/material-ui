@@ -56,12 +56,19 @@ function ProductValues(props) {
                 src="/static/themes/onepirate/productValues1.svg"
                 alt="suitcase"
               />
-              <Typography variant="h6" className={classes.title}>
+              <Typography
+                variant="h6"
+                className={classes.title}
+              >
                 The best luxury hotels
               </Typography>
               <Typography variant="h5">
-                {'From the latest trendy boutique hotel to the iconic palace with XXL pool'}
-                {', go for a mini-vacation just a few subway stops away from your home.'}
+                {
+                  'From the latest trendy boutique hotel to the iconic palace with XXL pool'
+                }
+                {
+                  ', go for a mini-vacation just a few subway stops away from your home.'
+                }
               </Typography>
             </div>
           </Grid>
@@ -72,11 +79,16 @@ function ProductValues(props) {
                 src="/static/themes/onepirate/productValues2.svg"
                 alt="graph"
               />
-              <Typography variant="h6" className={classes.title}>
+              <Typography
+                variant="h6"
+                className={classes.title}
+              >
                 New experiences
               </Typography>
               <Typography variant="h5">
-                {'Privatize a pool, take a Japanese bath or wake up in 900m2 of garden… '}
+                {
+                  'Privatize a pool, take a Japanese bath or wake up in 900m2 of garden… '
+                }
                 {'your Sundays will not be alike.'}
               </Typography>
             </div>
@@ -88,11 +100,16 @@ function ProductValues(props) {
                 src="/static/themes/onepirate/productValues3.svg"
                 alt="clock"
               />
-              <Typography variant="h6" className={classes.title}>
+              <Typography
+                variant="h6"
+                className={classes.title}
+              >
                 Exclusive rates
               </Typography>
               <Typography variant="h5">
-                {'By registering, you will access specially negotiated rates '}
+                {
+                  'By registering, you will access specially negotiated rates '
+                }
                 {'that you will not find anywhere else.'}
               </Typography>
             </div>

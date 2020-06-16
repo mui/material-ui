@@ -34,7 +34,12 @@ export default function VirtualizedList() {
 
   return (
     <div className={classes.root}>
-      <FixedSizeList height={400} width={300} itemSize={46} itemCount={200}>
+      <FixedSizeList
+        height={400}
+        width={300}
+        itemSize={46}
+        itemCount={200}
+      >
         {renderRow}
       </FixedSizeList>
     </div>

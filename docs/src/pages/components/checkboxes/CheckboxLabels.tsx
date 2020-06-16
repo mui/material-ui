@@ -3,7 +3,9 @@ import { withStyles } from '@material-ui/core/styles';
 import { green } from '@material-ui/core/colors';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox, { CheckboxProps } from '@material-ui/core/Checkbox';
+import Checkbox, {
+  CheckboxProps,
+} from '@material-ui/core/Checkbox';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import Favorite from '@material-ui/icons/Favorite';
@@ -17,7 +19,9 @@ const GreenCheckbox = withStyles({
     },
   },
   checked: {},
-})((props: CheckboxProps) => <Checkbox color="default" {...props} />);
+})((props: CheckboxProps) => (
+  <Checkbox color="default" {...props} />
+));
 
 export default function CheckboxLabels() {
   const [state, setState] = React.useState({
@@ -27,14 +31,25 @@ export default function CheckboxLabels() {
     checkedG: true,
   });
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
+  const handleChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    setState({
+      ...state,
+      [event.target.name]: event.target.checked,
+    });
   };
 
   return (
     <FormGroup row>
       <FormControlLabel
-        control={<Checkbox checked={state.checkedA} onChange={handleChange} name="checkedA" />}
+        control={
+          <Checkbox
+            checked={state.checkedA}
+            onChange={handleChange}
+            name="checkedA"
+          />
+        }
         label="Secondary"
       />
       <FormControlLabel
@@ -48,9 +63,20 @@ export default function CheckboxLabels() {
         }
         label="Primary"
       />
-      <FormControlLabel control={<Checkbox name="checkedC" />} label="Uncontrolled" />
-      <FormControlLabel disabled control={<Checkbox name="checkedD" />} label="Disabled" />
-      <FormControlLabel disabled control={<Checkbox checked name="checkedE" />} label="Disabled" />
+      <FormControlLabel
+        control={<Checkbox name="checkedC" />}
+        label="Uncontrolled"
+      />
+      <FormControlLabel
+        disabled
+        control={<Checkbox name="checkedD" />}
+        label="Disabled"
+      />
+      <FormControlLabel
+        disabled
+        control={<Checkbox checked name="checkedE" />}
+        label="Disabled"
+      />
       <FormControlLabel
         control={
           <Checkbox
@@ -63,17 +89,31 @@ export default function CheckboxLabels() {
         label="Indeterminate"
       />
       <FormControlLabel
-        control={<GreenCheckbox checked={state.checkedG} onChange={handleChange} name="checkedG" />}
+        control={
+          <GreenCheckbox
+            checked={state.checkedG}
+            onChange={handleChange}
+            name="checkedG"
+          />
+        }
         label="Custom color"
       />
       <FormControlLabel
-        control={<Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite />} name="checkedH" />}
+        control={
+          <Checkbox
+            icon={<FavoriteBorder />}
+            checkedIcon={<Favorite />}
+            name="checkedH"
+          />
+        }
         label="Custom icon"
       />
       <FormControlLabel
         control={
           <Checkbox
-            icon={<CheckBoxOutlineBlankIcon fontSize="small" />}
+            icon={
+              <CheckBoxOutlineBlankIcon fontSize="small" />
+            }
             checkedIcon={<CheckBoxIcon fontSize="small" />}
             name="checkedI"
           />

@@ -1,6 +1,12 @@
 import React from 'react';
-import { withStyles, createStyles, WithStyles } from '@material-ui/core/styles';
-import Button, { ButtonProps } from '@material-ui/core/Button';
+import {
+  withStyles,
+  createStyles,
+  WithStyles,
+} from '@material-ui/core/styles';
+import Button, {
+  ButtonProps,
+} from '@material-ui/core/Button';
 import { Omit } from '@material-ui/types';
 
 const styles = createStyles({
@@ -27,7 +33,9 @@ interface MyButtonRawProps {
 }
 
 function MyButtonRaw(
-  props: WithStyles<typeof styles> & Omit<ButtonProps, keyof MyButtonRawProps> & MyButtonRawProps,
+  props: WithStyles<typeof styles> &
+    Omit<ButtonProps, keyof MyButtonRawProps> &
+    MyButtonRawProps,
 ) {
   const { classes, color, ...other } = props;
   return <Button className={classes.root} {...other} />;

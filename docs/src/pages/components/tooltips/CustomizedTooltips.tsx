@@ -1,7 +1,13 @@
 import React from 'react';
-import { withStyles, Theme, makeStyles } from '@material-ui/core/styles';
+import {
+  withStyles,
+  Theme,
+  makeStyles,
+} from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import Tooltip, { TooltipProps } from '@material-ui/core/Tooltip';
+import Tooltip, {
+  TooltipProps,
+} from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 
 const LightTooltip = withStyles((theme: Theme) => ({
@@ -50,8 +56,11 @@ export default function CustomizedTooltips() {
       <HtmlTooltip
         title={
           <React.Fragment>
-            <Typography color="inherit">Tooltip with HTML</Typography>
-            <em>{"And here's"}</em> <b>{'some'}</b> <u>{'amazing content'}</u>.{' '}
+            <Typography color="inherit">
+              Tooltip with HTML
+            </Typography>
+            <em>{"And here's"}</em> <b>{'some'}</b>{' '}
+            <u>{'amazing content'}</u>.{' '}
             {"It's very engaging. Right?"}
           </React.Fragment>
         }

@@ -1,5 +1,9 @@
 import React from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import {
+  makeStyles,
+  Theme,
+  createStyles,
+} from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -20,7 +24,9 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function SelectedListItem() {
   const classes = useStyles();
-  const [selectedIndex, setSelectedIndex] = React.useState(1);
+  const [selectedIndex, setSelectedIndex] = React.useState(
+    1,
+  );
 
   const handleListItemClick = (
     event: React.MouseEvent<HTMLDivElement, MouseEvent>,
@@ -31,7 +37,10 @@ export default function SelectedListItem() {
 
   return (
     <div className={classes.root}>
-      <List component="nav" aria-label="main mailbox folders">
+      <List
+        component="nav"
+        aria-label="main mailbox folders"
+      >
         <ListItem
           button
           selected={selectedIndex === 0}
@@ -54,7 +63,10 @@ export default function SelectedListItem() {
         </ListItem>
       </List>
       <Divider />
-      <List component="nav" aria-label="secondary mailbox folder">
+      <List
+        component="nav"
+        aria-label="secondary mailbox folder"
+      >
         <ListItem
           button
           selected={selectedIndex === 2}

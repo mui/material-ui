@@ -116,7 +116,8 @@ const appList = [
   },
   {
     title: 'Hijup',
-    description: 'A pioneering Muslim Fashion e-commerce site.',
+    description:
+      'A pioneering Muslim Fashion e-commerce site.',
     image: 'hijup.jpg',
     link: 'https://www.hijup.com/',
     similarWebVisits: 328,
@@ -142,7 +143,8 @@ const appList = [
   },
   {
     title: 'EQ3',
-    description: 'Modern Furniture & Accessories, designed in Canada, for everyday living.',
+    description:
+      'Modern Furniture & Accessories, designed in Canada, for everyday living.',
     image: 'eq3.jpg',
     link: 'https://www.eq3.com/ca/en/',
     similarWebVisits: 256,
@@ -223,7 +225,8 @@ const appList = [
   },
   {
     title: 'Numerai',
-    description: ' Earn cryptocurrency in weekly data science competitions.',
+    description:
+      ' Earn cryptocurrency in weekly data science competitions.',
     image: 'numerai.jpg',
     link: 'https://numer.ai/homepage',
     similarWebVisits: 65,
@@ -240,7 +243,8 @@ const appList = [
   },
   {
     title: 'LessWrong',
-    description: 'LessWrong is a community blog devoted to the art of human rationality.',
+    description:
+      'LessWrong is a community blog devoted to the art of human rationality.',
     image: 'lesswrong.jpg',
     link: 'https://www.lesswrong.com/',
     similarWebVisits: 774,
@@ -332,7 +336,8 @@ const appList = [
   },
   {
     title: 'Commit Swimming',
-    description: 'The #1 workout journal for coaches and swimmers.',
+    description:
+      'The #1 workout journal for coaches and swimmers.',
     image: 'commitswimming.jpg',
     link: 'https://www.commitswimming.com/',
     dateAdded: '2019-01-01',
@@ -347,7 +352,8 @@ const appList = [
     dateAdded: '2019-01-01',
   },
   {
-    title: 'Cryptoverview: A friendly Dashboard for your cryptocurrency portfolio',
+    title:
+      'Cryptoverview: A friendly Dashboard for your cryptocurrency portfolio',
     description:
       "Cryptoverview is a responsive webapp that displays a user's Bittrex portfolio, " +
       'trending currencies and market caps. It provides some fancy charts, ' +
@@ -374,14 +380,16 @@ const appList = [
   },
   {
     title: 'Rare Bits',
-    description: 'Rare Bits is a marketplace where users can buy, sell and discover crypto assets.',
+    description:
+      'Rare Bits is a marketplace where users can buy, sell and discover crypto assets.',
     image: 'rarebits.jpg',
     link: 'https://rarebits.io/',
     dateAdded: '2019-01-01',
   },
   {
     title: 'Roast',
-    description: 'Roast.io makes web hosting HTML and JS single-page apps fast, secure, and easy.',
+    description:
+      'Roast.io makes web hosting HTML and JS single-page apps fast, secure, and easy.',
     image: 'roast.jpg',
     link: 'https://www.roast.io/',
     dateAdded: '2019-01-01',
@@ -397,7 +405,8 @@ const appList = [
   },
   {
     title: 'Pilcro',
-    description: 'A free brand management software for the Google Suite.',
+    description:
+      'A free brand management software for the Google Suite.',
     image: 'pilcro.jpg',
     link: 'https://www.pilcro.com/',
     dateAdded: '2018-01-17',
@@ -421,7 +430,8 @@ const appList = [
   },
   {
     title: 'Arkopharma',
-    description: 'Arkopharma Laboritories customer loyalty site. 🇫🇷',
+    description:
+      'Arkopharma Laboritories customer loyalty site. 🇫🇷',
     image: 'arkoclub.jpg',
     link: 'https://www.arkoclub.com/',
     dateAdded: '2019-01-01',
@@ -436,7 +446,8 @@ const appList = [
   },
   {
     title: 'Johnny Metrics',
-    description: 'Upload your trades, and analyze your crypto portfolio.',
+    description:
+      'Upload your trades, and analyze your crypto portfolio.',
     link: 'https://app.johnnymetrics.com/demo',
     image: 'johnnymetrics.jpg',
     dateAdded: '2018-01-14',
@@ -452,7 +463,8 @@ const appList = [
   },
   {
     title: 'SlidesUp',
-    description: 'SlidesUp is a platform to help conference organizers plan their events.',
+    description:
+      'SlidesUp is a platform to help conference organizers plan their events.',
     image: 'slidesup.jpg',
     link: 'https://slidesup.com/',
     dateAdded: '2018-01-03',
@@ -483,7 +495,8 @@ const appList = [
   },
   {
     title: 'Typekev',
-    description: 'The personal site of Kevin Gonzalez, featuring his witty chatbot.',
+    description:
+      'The personal site of Kevin Gonzalez, featuring his witty chatbot.',
     image: 'typekev.jpg',
     link: 'https://typekev.com/',
     source: 'https://github.com/typekev/typekev-site',
@@ -512,7 +525,8 @@ const appList = [
   },
   {
     title: 'Swimmy',
-    description: 'An open source forum PWA. 🇯🇵 (Github docs are in English)',
+    description:
+      'An open source forum PWA. 🇯🇵 (Github docs are in English)',
     image: 'swimmy.jpg',
     link: 'https://swimmy.io/',
     source: 'https://github.com/swimmy/swimmy.io',
@@ -534,8 +548,10 @@ const appList = [
       'An open source web app that lets you search the npm registry ' +
       'and browse packages details.',
     image: 'npm-registry-browser.jpg',
-    link: 'https://topheman.github.io/npm-registry-browser/',
-    source: 'https://github.com/topheman/npm-registry-browser',
+    link:
+      'https://topheman.github.io/npm-registry-browser/',
+    source:
+      'https://github.com/topheman/npm-registry-browser',
     stars: 90,
     dateAdded: '2018-01-15',
   },
@@ -545,7 +561,8 @@ const appList = [
       'An open source Chrome extension allowing you to import and execute JavaScript code ' +
       'snippets from GitHub.',
     image: 'snippets.jpg',
-    link: 'https://chrome.google.com/webstore/detail/snippets/dcibnkkafifbanoclgjbkmkbogijndin',
+    link:
+      'https://chrome.google.com/webstore/detail/snippets/dcibnkkafifbanoclgjbkmkbogijndin',
     source: 'https://github.com/richardscarrott/snippets',
     stars: 42,
     dateAdded: '2018-01-19',
@@ -568,7 +585,8 @@ const appList = [
       'The protocol is used in many IoT and home automation scenarios, ' +
       'making integrating new services dead easy.',
     link: 'https://mqtt-explorer.com/',
-    source: 'https://github.com/thomasnordquist/MQTT-Explorer',
+    source:
+      'https://github.com/thomasnordquist/MQTT-Explorer',
     image: 'mqtt-explorer.png',
     stars: 510,
     dateAdded: '2019-03-25',
@@ -586,14 +604,16 @@ const appList = [
   },
   {
     title: 'HiFiveWork',
-    description: 'HiFiveWork, the cool tool for leave management',
+    description:
+      'HiFiveWork, the cool tool for leave management',
     image: 'hifivework.png',
     link: 'https://www.hifivework.com/#/',
     dateAdded: '2020-01-08',
   },
   {
     title: 'TradeNBA',
-    description: 'NBA trade machine and social analysis tools for the basketball community.',
+    description:
+      'NBA trade machine and social analysis tools for the basketball community.',
     image: 'tradenba.jpg',
     link: 'https://tradenba.com/',
     similarWebVisits: 160,
@@ -601,7 +621,8 @@ const appList = [
   },
   {
     title: 'CinemaPlus',
-    description: 'Cinema Plus is an online Movie Ticket Booking web app with MERN Stack.',
+    description:
+      'Cinema Plus is an online Movie Ticket Booking web app with MERN Stack.',
     image: 'cinemaplus.jpg',
     link: 'https://elcinema.herokuapp.com/',
     similarWebVisits: 100,

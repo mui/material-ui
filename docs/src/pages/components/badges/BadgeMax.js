@@ -23,7 +23,11 @@ export default function BadgeMax() {
     <div className={classes.root}>
       <Badge badgeContent={99} {...defaultProps} />
       <Badge badgeContent={100} {...defaultProps} />
-      <Badge badgeContent={1000} max={999} {...defaultProps} />
+      <Badge
+        badgeContent={1000}
+        max={999}
+        {...defaultProps}
+      />
     </div>
   );
 }

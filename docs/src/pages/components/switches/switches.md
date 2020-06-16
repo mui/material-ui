@@ -64,5 +64,8 @@ You can change the placement of the label:
   In this case, you can apply the additional attribute (e.g. `aria-label`, `aria-labelledby`, `title`) via the `inputProps` property.
 
 ```jsx
-<Switch value="checkedA" inputProps={{ 'aria-label': 'Switch A' }} />
+<Switch
+  value="checkedA"
+  inputProps={{ 'aria-label': 'Switch A' }}
+/>
 ```

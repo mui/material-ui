@@ -15,8 +15,16 @@ export default function ColorTextFields() {
   const classes = useStyles();
 
   return (
-    <form className={classes.root} noValidate autoComplete="off">
-      <TextField id="standard-secondary" label="Standard secondary" color="secondary" />
+    <form
+      className={classes.root}
+      noValidate
+      autoComplete="off"
+    >
+      <TextField
+        id="standard-secondary"
+        label="Standard secondary"
+        color="secondary"
+      />
       <TextField
         id="filled-secondary"
         label="Filled secondary"

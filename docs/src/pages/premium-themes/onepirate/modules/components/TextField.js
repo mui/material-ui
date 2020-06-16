@@ -71,7 +71,10 @@ function TextField(props) {
   } = props;
 
   const {
-    classes: { input: InputPropsClassesInput, ...InputPropsClassesOther } = {},
+    classes: {
+      input: InputPropsClassesInput,
+      ...InputPropsClassesOther
+    } = {},
     ...InputPropsOther
   } = InputProps;
 
@@ -117,7 +120,12 @@ TextField.propTypes = {
   InputProps: PropTypes.object,
   noBorder: PropTypes.bool,
   SelectProps: PropTypes.object,
-  size: PropTypes.oneOf(['small', 'medium', 'large', 'xlarge']),
+  size: PropTypes.oneOf([
+    'small',
+    'medium',
+    'large',
+    'xlarge',
+  ]),
 };
 
 export default withStyles(styles)(TextField);

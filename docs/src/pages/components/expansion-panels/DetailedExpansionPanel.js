@@ -58,10 +58,16 @@ export default function DetailedExpansionPanel() {
           id="panel1c-header"
         >
           <div className={classes.column}>
-            <Typography className={classes.heading}>Location</Typography>
+            <Typography className={classes.heading}>
+              Location
+            </Typography>
           </div>
           <div className={classes.column}>
-            <Typography className={classes.secondaryHeading}>Select trip destination</Typography>
+            <Typography
+              className={classes.secondaryHeading}
+            >
+              Select trip destination
+            </Typography>
           </div>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails className={classes.details}>
@@ -69,11 +75,16 @@ export default function DetailedExpansionPanel() {
           <div className={classes.column}>
             <Chip label="Barbados" onDelete={() => {}} />
           </div>
-          <div className={clsx(classes.column, classes.helper)}>
+          <div
+            className={clsx(classes.column, classes.helper)}
+          >
             <Typography variant="caption">
               Select your destination of choice
               <br />
-              <a href="#secondary-heading-and-columns" className={classes.link}>
+              <a
+                href="#secondary-heading-and-columns"
+                className={classes.link}
+              >
                 Learn more
               </a>
             </Typography>

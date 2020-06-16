@@ -15,9 +15,19 @@ export default function ToggleButtonSizes() {
   };
 
   return (
-    <Grid container spacing={2} direction="column" alignItems="center">
+    <Grid
+      container
+      spacing={2}
+      direction="column"
+      alignItems="center"
+    >
       <Grid item>
-        <ToggleButtonGroup size="small" value={alignment} exclusive onChange={handleChange}>
+        <ToggleButtonGroup
+          size="small"
+          value={alignment}
+          exclusive
+          onChange={handleChange}
+        >
           <ToggleButton value="left">
             <FormatAlignLeftIcon fontSize="small" />
           </ToggleButton>
@@ -33,7 +43,12 @@ export default function ToggleButtonSizes() {
         </ToggleButtonGroup>
       </Grid>
       <Grid item>
-        <ToggleButtonGroup size="medium" value={alignment} exclusive onChange={handleChange}>
+        <ToggleButtonGroup
+          size="medium"
+          value={alignment}
+          exclusive
+          onChange={handleChange}
+        >
           <ToggleButton value="left">
             <FormatAlignLeftIcon />
           </ToggleButton>
@@ -49,7 +64,12 @@ export default function ToggleButtonSizes() {
         </ToggleButtonGroup>
       </Grid>
       <Grid item>
-        <ToggleButtonGroup size="large" value={alignment} exclusive onChange={handleChange}>
+        <ToggleButtonGroup
+          size="large"
+          value={alignment}
+          exclusive
+          onChange={handleChange}
+        >
           <ToggleButton value="left">
             <FormatAlignLeftIcon />
           </ToggleButton>

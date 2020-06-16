@@ -1,8 +1,15 @@
 import React from 'react';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import {
+  createStyles,
+  makeStyles,
+  Theme,
+} from '@material-ui/core/styles';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import { FixedSizeList, ListChildComponentProps } from 'react-window';
+import {
+  FixedSizeList,
+  ListChildComponentProps,
+} from 'react-window';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -30,7 +37,12 @@ export default function VirtualizedList() {
 
   return (
     <div className={classes.root}>
-      <FixedSizeList height={400} width={300} itemSize={46} itemCount={200}>
+      <FixedSizeList
+        height={400}
+        width={300}
+        itemSize={46}
+        itemCount={200}
+      >
         {renderRow}
       </FixedSizeList>
     </div>

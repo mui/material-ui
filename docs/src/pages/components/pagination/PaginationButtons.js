@@ -15,8 +15,16 @@ export default function PaginationButtons() {
 
   return (
     <div className={classes.root}>
-      <Pagination count={10} showFirstButton showLastButton />
-      <Pagination count={10} hidePrevButton hideNextButton />
+      <Pagination
+        count={10}
+        showFirstButton
+        showLastButton
+      />
+      <Pagination
+        count={10}
+        hidePrevButton
+        hideNextButton
+      />
     </div>
   );
 }

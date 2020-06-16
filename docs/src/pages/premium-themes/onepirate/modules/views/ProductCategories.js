@@ -70,7 +70,9 @@ const styles = (theme) => ({
   },
   imageTitle: {
     position: 'relative',
-    padding: `${theme.spacing(2)}px ${theme.spacing(4)}px 14px`,
+    padding: `${theme.spacing(2)}px ${theme.spacing(
+      4,
+    )}px 14px`,
   },
   imageMarked: {
     height: 3,
@@ -145,7 +147,12 @@ function ProductCategories(props) {
 
   return (
     <Container className={classes.root} component="section">
-      <Typography variant="h4" marked="center" align="center" component="h2">
+      <Typography
+        variant="h4"
+        marked="center"
+        align="center"
+        component="h2"
+      >
         For all tastes and all desires
       </Typography>
       <div className={classes.images}>

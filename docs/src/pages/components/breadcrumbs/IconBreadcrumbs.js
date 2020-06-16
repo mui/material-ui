@@ -28,7 +28,12 @@ export default function IconBreadcrumbs() {
 
   return (
     <Breadcrumbs aria-label="breadcrumb">
-      <Link color="inherit" href="/" onClick={handleClick} className={classes.link}>
+      <Link
+        color="inherit"
+        href="/"
+        onClick={handleClick}
+        className={classes.link}
+      >
         <HomeIcon className={classes.icon} />
         Material-UI
       </Link>
@@ -41,7 +46,10 @@ export default function IconBreadcrumbs() {
         <WhatshotIcon className={classes.icon} />
         Core
       </Link>
-      <Typography color="textPrimary" className={classes.link}>
+      <Typography
+        color="textPrimary"
+        className={classes.link}
+      >
         <GrainIcon className={classes.icon} />
         Breadcrumb
       </Typography>

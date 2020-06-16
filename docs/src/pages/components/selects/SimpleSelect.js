@@ -27,7 +27,9 @@ export default function SimpleSelect() {
   return (
     <div>
       <FormControl className={classes.formControl}>
-        <InputLabel id="demo-simple-select-label">Age</InputLabel>
+        <InputLabel id="demo-simple-select-label">
+          Age
+        </InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
@@ -40,7 +42,9 @@ export default function SimpleSelect() {
         </Select>
       </FormControl>
       <FormControl className={classes.formControl}>
-        <InputLabel id="demo-simple-select-helper-label">Age</InputLabel>
+        <InputLabel id="demo-simple-select-helper-label">
+          Age
+        </InputLabel>
         <Select
           labelId="demo-simple-select-helper-label"
           id="demo-simple-select-helper"
@@ -54,7 +58,9 @@ export default function SimpleSelect() {
           <MenuItem value={20}>Twenty</MenuItem>
           <MenuItem value={30}>Thirty</MenuItem>
         </Select>
-        <FormHelperText>Some important helper text</FormHelperText>
+        <FormHelperText>
+          Some important helper text
+        </FormHelperText>
       </FormControl>
       <FormControl className={classes.formControl}>
         <Select
@@ -74,7 +80,10 @@ export default function SimpleSelect() {
         <FormHelperText>Without label</FormHelperText>
       </FormControl>
       <FormControl className={classes.formControl}>
-        <InputLabel shrink id="demo-simple-select-placeholder-label-label">
+        <InputLabel
+          shrink
+          id="demo-simple-select-placeholder-label-label"
+        >
           Age
         </InputLabel>
         <Select
@@ -95,7 +104,9 @@ export default function SimpleSelect() {
         <FormHelperText>Label + placeholder</FormHelperText>
       </FormControl>
       <FormControl className={classes.formControl} disabled>
-        <InputLabel id="demo-simple-select-disabled-label">Name</InputLabel>
+        <InputLabel id="demo-simple-select-disabled-label">
+          Name
+        </InputLabel>
         <Select
           labelId="demo-simple-select-disabled-label"
           id="demo-simple-select-disabled"
@@ -112,7 +123,9 @@ export default function SimpleSelect() {
         <FormHelperText>Disabled</FormHelperText>
       </FormControl>
       <FormControl className={classes.formControl} error>
-        <InputLabel id="demo-simple-select-error-label">Name</InputLabel>
+        <InputLabel id="demo-simple-select-error-label">
+          Name
+        </InputLabel>
         <Select
           labelId="demo-simple-select-error-label"
           id="demo-simple-select-error"
@@ -130,7 +143,9 @@ export default function SimpleSelect() {
         <FormHelperText>Error</FormHelperText>
       </FormControl>
       <FormControl className={classes.formControl}>
-        <InputLabel id="demo-simple-select-readonly-label">Name</InputLabel>
+        <InputLabel id="demo-simple-select-readonly-label">
+          Name
+        </InputLabel>
         <Select
           labelId="demo-simple-select-readonly-label"
           id="demo-simple-select-readonly"
@@ -148,7 +163,9 @@ export default function SimpleSelect() {
         <FormHelperText>Read only</FormHelperText>
       </FormControl>
       <FormControl className={classes.formControl}>
-        <InputLabel id="demo-simple-select-autowidth-label">Age</InputLabel>
+        <InputLabel id="demo-simple-select-autowidth-label">
+          Age
+        </InputLabel>
         <Select
           labelId="demo-simple-select-autowidth-label"
           id="demo-simple-select-autowidth"
@@ -183,7 +200,9 @@ export default function SimpleSelect() {
         <FormHelperText>Placeholder</FormHelperText>
       </FormControl>
       <FormControl required className={classes.formControl}>
-        <InputLabel id="demo-simple-select-required-label">Age</InputLabel>
+        <InputLabel id="demo-simple-select-required-label">
+          Age
+        </InputLabel>
         <Select
           labelId="demo-simple-select-required-label"
           id="demo-simple-select-required"
@@ -200,8 +219,13 @@ export default function SimpleSelect() {
         </Select>
         <FormHelperText>Required</FormHelperText>
       </FormControl>
-      <FormControl variant="outlined" className={classes.formControl}>
-        <InputLabel id="demo-simple-select-outlined-label">Age</InputLabel>
+      <FormControl
+        variant="outlined"
+        className={classes.formControl}
+      >
+        <InputLabel id="demo-simple-select-outlined-label">
+          Age
+        </InputLabel>
         <Select
           labelId="demo-simple-select-outlined-label"
           id="demo-simple-select-outlined"
@@ -217,8 +241,13 @@ export default function SimpleSelect() {
           <MenuItem value={30}>Thirty</MenuItem>
         </Select>
       </FormControl>
-      <FormControl variant="filled" className={classes.formControl}>
-        <InputLabel id="demo-simple-select-filled-label">Age</InputLabel>
+      <FormControl
+        variant="filled"
+        className={classes.formControl}
+      >
+        <InputLabel id="demo-simple-select-filled-label">
+          Age
+        </InputLabel>
         <Select
           labelId="demo-simple-select-filled-label"
           id="demo-simple-select-filled"

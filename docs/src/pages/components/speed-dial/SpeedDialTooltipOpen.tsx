@@ -1,5 +1,9 @@
 import React from 'react';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import {
+  makeStyles,
+  createStyles,
+  Theme,
+} from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Backdrop from '@material-ui/core/Backdrop';
 import SpeedDial from '@material-ui/lab/SpeedDial';
@@ -53,7 +57,9 @@ export default function SpeedDialTooltipOpen() {
 
   return (
     <div className={classes.root}>
-      <Button onClick={handleVisibility}>Toggle Speed Dial</Button>
+      <Button onClick={handleVisibility}>
+        Toggle Speed Dial
+      </Button>
       <Backdrop open={open} />
       <SpeedDial
         ariaLabel="SpeedDial tooltip example"

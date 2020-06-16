@@ -29,7 +29,10 @@ export default function SubheaderDividers() {
   return (
     <List className={classes.root}>
       <ListItem>
-        <ListItemText primary="Photos" secondary="Jan 9, 2014" />
+        <ListItemText
+          primary="Photos"
+          secondary="Jan 9, 2014"
+        />
       </ListItem>
       <Divider component="li" />
       <li>
@@ -43,7 +46,10 @@ export default function SubheaderDividers() {
         </Typography>
       </li>
       <ListItem>
-        <ListItemText primary="Work" secondary="Jan 7, 2014" />
+        <ListItemText
+          primary="Work"
+          secondary="Jan 7, 2014"
+        />
       </ListItem>
       <Divider component="li" variant="inset" />
       <li>
@@ -62,7 +68,10 @@ export default function SubheaderDividers() {
             <BeachAccessIcon />
           </Avatar>
         </ListItemAvatar>
-        <ListItemText primary="Vacation" secondary="July 20, 2014" />
+        <ListItemText
+          primary="Vacation"
+          secondary="July 20, 2014"
+        />
       </ListItem>
     </List>
   );

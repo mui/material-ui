@@ -10,7 +10,9 @@ export default function ControllableStates() {
 
   return (
     <div>
-      <div>{`value: ${value !== null ? `'${value}'` : 'null'}`}</div>
+      <div>{`value: ${
+        value !== null ? `'${value}'` : 'null'
+      }`}</div>
       <div>{`inputValue: '${inputValue}'`}</div>
       <br />
       <Autocomplete
@@ -25,7 +27,13 @@ export default function ControllableStates() {
         id="controllable-states-demo"
         options={options}
         style={{ width: 300 }}
-        renderInput={(params) => <TextField {...params} label="Controllable" variant="outlined" />}
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            label="Controllable"
+            variant="outlined"
+          />
+        )}
       />
     </div>
   );

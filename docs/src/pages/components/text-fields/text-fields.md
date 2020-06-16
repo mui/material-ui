@@ -192,7 +192,9 @@ function MyInputComponent(props) {
 <TextField
   InputProps={{
     inputComponent: MyInputComponent,
-    inputProps: { component: SomeThirdPartyComponent },
+    inputProps: {
+      component: SomeThirdPartyComponent,
+    },
   }}
 />;
 ```

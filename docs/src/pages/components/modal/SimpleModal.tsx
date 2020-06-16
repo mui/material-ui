@@ -1,5 +1,9 @@
 import React from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import {
+  makeStyles,
+  Theme,
+  createStyles,
+} from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 
 function rand() {
@@ -48,7 +52,8 @@ export default function SimpleModal() {
     <div style={modalStyle} className={classes.paper}>
       <h2 id="simple-modal-title">Text in a modal</h2>
       <p id="simple-modal-description">
-        Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+        Duis mollis, est non commodo luctus, nisi erat
+        porttitor ligula.
       </p>
       <SimpleModal />
     </div>

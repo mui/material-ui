@@ -9,5 +9,7 @@ export default function JavaScriptMedia() {
     }),
   );
 
-  return <span>{`{ minWidth: 600 } matches: ${matches}`}</span>;
+  return (
+    <span>{`{ minWidth: 600 } matches: ${matches}`}</span>
+  );
 }

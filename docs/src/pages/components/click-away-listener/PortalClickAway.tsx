@@ -1,5 +1,9 @@
 import React from 'react';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import {
+  makeStyles,
+  createStyles,
+  Theme,
+} from '@material-ui/core/styles';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Portal from '@material-ui/core/Portal';
 
@@ -39,7 +43,8 @@ export default function PortalClickAway() {
         {open ? (
           <Portal>
             <div className={classes.dropdown}>
-              Click me, I will stay visible until you click outside.
+              Click me, I will stay visible until you click
+              outside.
             </div>
           </Portal>
         ) : null}

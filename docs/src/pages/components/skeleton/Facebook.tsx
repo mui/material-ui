@@ -1,5 +1,9 @@
 import React from 'react';
-import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
+import {
+  createStyles,
+  Theme,
+  makeStyles,
+} from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
@@ -35,7 +39,12 @@ function Media(props: MediaProps) {
       <CardHeader
         avatar={
           loading ? (
-            <Skeleton animation="wave" variant="circle" width={40} height={40} />
+            <Skeleton
+              animation="wave"
+              variant="circle"
+              width={40}
+              height={40}
+            />
           ) : (
             <Avatar
               alt="Ted talk"
@@ -52,15 +61,34 @@ function Media(props: MediaProps) {
         }
         title={
           loading ? (
-            <Skeleton animation="wave" height={10} width="80%" style={{ marginBottom: 6 }} />
+            <Skeleton
+              animation="wave"
+              height={10}
+              width="80%"
+              style={{ marginBottom: 6 }}
+            />
           ) : (
             'Ted'
           )
         }
-        subheader={loading ? <Skeleton animation="wave" height={10} width="40%" /> : '5 hours ago'}
+        subheader={
+          loading ? (
+            <Skeleton
+              animation="wave"
+              height={10}
+              width="40%"
+            />
+          ) : (
+            '5 hours ago'
+          )
+        }
       />
       {loading ? (
-        <Skeleton animation="wave" variant="rect" className={classes.media} />
+        <Skeleton
+          animation="wave"
+          variant="rect"
+          className={classes.media}
+        />
       ) : (
         <CardMedia
           className={classes.media}
@@ -71,11 +99,23 @@ function Media(props: MediaProps) {
       <CardContent>
         {loading ? (
           <React.Fragment>
-            <Skeleton animation="wave" height={10} style={{ marginBottom: 6 }} />
-            <Skeleton animation="wave" height={10} width="80%" />
+            <Skeleton
+              animation="wave"
+              height={10}
+              style={{ marginBottom: 6 }}
+            />
+            <Skeleton
+              animation="wave"
+              height={10}
+              width="80%"
+            />
           </React.Fragment>
         ) : (
-          <Typography variant="body2" color="textSecondary" component="p">
+          <Typography
+            variant="body2"
+            color="textSecondary"
+            component="p"
+          >
             {
               "Why First Minister of Scotland Nicola Sturgeon thinks GDP is the wrong measure of a country's success:"
             }

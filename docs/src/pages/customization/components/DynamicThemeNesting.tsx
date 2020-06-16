@@ -1,6 +1,10 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
-import { createMuiTheme, ThemeProvider, Theme } from '@material-ui/core/styles';
+import {
+  createMuiTheme,
+  ThemeProvider,
+  Theme,
+} from '@material-ui/core/styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { blue } from '@material-ui/core/colors';
 import Switch from '@material-ui/core/Switch';
@@ -8,7 +12,9 @@ import Switch from '@material-ui/core/Switch';
 export default function DynamicThemeNesting() {
   const [color, setColor] = React.useState('default');
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
     setColor(event.target.checked ? 'blue' : 'default');
   };
 

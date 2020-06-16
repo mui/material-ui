@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, useTheme } from '@material-ui/core/styles';
+import {
+  withStyles,
+  useTheme,
+} from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Fab from '@material-ui/core/Fab';
@@ -62,8 +65,14 @@ function ColorDemo(props) {
   return (
     <div className={classes.root}>
       <div className={classes.appFrame}>
-        <div className={classes.statusBar} style={{ backgroundColor: primary.dark }} />
-        <AppBar position="static" style={{ backgroundColor: primary.main }}>
+        <div
+          className={classes.statusBar}
+          style={{ backgroundColor: primary.dark }}
+        />
+        <AppBar
+          position="static"
+          style={{ backgroundColor: primary.main }}
+        >
           <Toolbar style={{ color: primary.contrastText }}>
             <IconButton
               edge="start"
@@ -73,7 +82,11 @@ function ColorDemo(props) {
             >
               <MenuIcon />
             </IconButton>
-            <Typography component="div" variant="h6" color="inherit">
+            <Typography
+              component="div"
+              variant="h6"
+              color="inherit"
+            >
               Color
             </Typography>
           </Toolbar>
@@ -86,7 +99,11 @@ function ColorDemo(props) {
   },
 }`}
         </pre>
-        <Fab className={classes.fab} style={{ backgroundColor: secondary.main }} aria-label="add">
+        <Fab
+          className={classes.fab}
+          style={{ backgroundColor: secondary.main }}
+          aria-label="add"
+        >
           <AddIcon htmlColor={secondary.contrastText} />
         </Fab>
       </div>

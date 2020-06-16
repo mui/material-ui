@@ -17,7 +17,9 @@ function sleep(delay = 0) {
 
 export default function Asynchronous() {
   const [open, setOpen] = React.useState(false);
-  const [options, setOptions] = React.useState<CountryType[]>([]);
+  const [options, setOptions] = React.useState<
+    CountryType[]
+  >([]);
   const loading = open && options.length === 0;
 
   React.useEffect(() => {
@@ -28,12 +30,18 @@ export default function Asynchronous() {
     }
 
     (async () => {
-      const response = await fetch('https://country.register.gov.uk/records.json?page-size=5000');
+      const response = await fetch(
+        'https://country.register.gov.uk/records.json?page-size=5000',
+      );
       await sleep(1e3); // For demo purposes.
       const countries = await response.json();
 
       if (active) {
-        setOptions(Object.keys(countries).map((key) => countries[key].item[0]) as CountryType[]);
+        setOptions(
+          Object.keys(countries).map(
+            (key) => countries[key].item[0],
+          ) as CountryType[],
+        );
       }
     })();
 
@@ -59,7 +67,9 @@ export default function Asynchronous() {
       onClose={() => {
         setOpen(false);
       }}
-      getOptionSelected={(option, value) => option.name === value.name}
+      getOptionSelected={(option, value) =>
+        option.name === value.name
+      }
       getOptionLabel={(option) => option.name}
       options={options}
       loading={loading}
@@ -72,7 +82,12 @@ export default function Asynchronous() {
             ...params.InputProps,
             endAdornment: (
               <React.Fragment>
-                {loading ? <CircularProgress color="inherit" size={20} /> : null}
+                {loading ? (
+                  <CircularProgress
+                    color="inherit"
+                    size={20}
+                  />
+                ) : null}
                 {params.InputProps.endAdornment}
               </React.Fragment>
             ),

@@ -1,6 +1,10 @@
 /* eslint-disable no-nested-ternary */
 import React from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import {
+  makeStyles,
+  Theme,
+  createStyles,
+} from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import Link, { LinkProps } from '@material-ui/core/Link';
 import ListItem from '@material-ui/core/ListItem';
@@ -27,15 +31,28 @@ const breadcrumbNameMap: { [key: string]: string } = {
   '/drafts': 'Drafts',
 };
 
-function ListItemLink(props: Omit<ListItemLinkProps, 'ref'>) {
+function ListItemLink(
+  props: Omit<ListItemLinkProps, 'ref'>,
+) {
   const { to, open, ...other } = props;
   const primary = breadcrumbNameMap[to];
 
   return (
     <li>
-      <ListItem button component={RouterLink} to={to} {...other}>
+      <ListItem
+        button
+        component={RouterLink}
+        to={to}
+        {...other}
+      >
         <ListItemText primary={primary} />
-        {open != null ? open ? <ExpandLess /> : <ExpandMore /> : null}
+        {open != null ? (
+          open ? (
+            <ExpandLess />
+          ) : (
+            <ExpandMore />
+          )
+        ) : null}
       </ListItem>
     </li>
   );
@@ -63,7 +80,9 @@ interface LinkRouterProps extends LinkProps {
   replace?: boolean;
 }
 
-const LinkRouter = (props: LinkRouterProps) => <Link {...props} component={RouterLink as any} />;
+const LinkRouter = (props: LinkRouterProps) => (
+  <Link {...props} component={RouterLink as any} />
+);
 
 export default function RouterBreadcrumbs() {
   const classes = useStyles();
@@ -74,11 +93,16 @@ export default function RouterBreadcrumbs() {
   };
 
   return (
-    <MemoryRouter initialEntries={['/inbox']} initialIndex={0}>
+    <MemoryRouter
+      initialEntries={['/inbox']}
+      initialIndex={0}
+    >
       <div className={classes.root}>
         <Route>
           {({ location }) => {
-            const pathnames = location.pathname.split('/').filter((x) => x);
+            const pathnames = location.pathname
+              .split('/')
+              .filter((x) => x);
 
             return (
               <Breadcrumbs aria-label="breadcrumb">
@@ -86,15 +110,25 @@ export default function RouterBreadcrumbs() {
                   Home
                 </LinkRouter>
                 {pathnames.map((value, index) => {
-                  const last = index === pathnames.length - 1;
-                  const to = `/${pathnames.slice(0, index + 1).join('/')}`;
+                  const last =
+                    index === pathnames.length - 1;
+                  const to = `/${pathnames
+                    .slice(0, index + 1)
+                    .join('/')}`;
 
                   return last ? (
-                    <Typography color="textPrimary" key={to}>
+                    <Typography
+                      color="textPrimary"
+                      key={to}
+                    >
                       {breadcrumbNameMap[to]}
                     </Typography>
                   ) : (
-                    <LinkRouter color="inherit" to={to} key={to}>
+                    <LinkRouter
+                      color="inherit"
+                      to={to}
+                      key={to}
+                    >
                       {breadcrumbNameMap[to]}
                     </LinkRouter>
                   );
@@ -103,12 +137,27 @@ export default function RouterBreadcrumbs() {
             );
           }}
         </Route>
-        <nav className={classes.lists} aria-label="mailbox folders">
+        <nav
+          className={classes.lists}
+          aria-label="mailbox folders"
+        >
           <List>
-            <ListItemLink to="/inbox" open={open} onClick={handleClick} />
-            <Collapse component="li" in={open} timeout="auto" unmountOnExit>
+            <ListItemLink
+              to="/inbox"
+              open={open}
+              onClick={handleClick}
+            />
+            <Collapse
+              component="li"
+              in={open}
+              timeout="auto"
+              unmountOnExit
+            >
               <List disablePadding>
-                <ListItemLink to="/inbox/important" className={classes.nested} />
+                <ListItemLink
+                  to="/inbox/important"
+                  className={classes.nested}
+                />
               </List>
             </Collapse>
             <ListItemLink to="/trash" />

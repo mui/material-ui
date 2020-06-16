@@ -22,26 +22,52 @@ export default function Sidebar(props) {
 
   return (
     <Grid item xs={12} md={4}>
-      <Paper elevation={0} className={classes.sidebarAboutBox}>
+      <Paper
+        elevation={0}
+        className={classes.sidebarAboutBox}
+      >
         <Typography variant="h6" gutterBottom>
           {title}
         </Typography>
         <Typography>{description}</Typography>
       </Paper>
-      <Typography variant="h6" gutterBottom className={classes.sidebarSection}>
+      <Typography
+        variant="h6"
+        gutterBottom
+        className={classes.sidebarSection}
+      >
         Archives
       </Typography>
       {archives.map((archive) => (
-        <Link display="block" variant="body1" href={archive.url} key={archive.title}>
+        <Link
+          display="block"
+          variant="body1"
+          href={archive.url}
+          key={archive.title}
+        >
           {archive.title}
         </Link>
       ))}
-      <Typography variant="h6" gutterBottom className={classes.sidebarSection}>
+      <Typography
+        variant="h6"
+        gutterBottom
+        className={classes.sidebarSection}
+      >
         Social
       </Typography>
       {social.map((network) => (
-        <Link display="block" variant="body1" href="#" key={network}>
-          <Grid container direction="row" spacing={1} alignItems="center">
+        <Link
+          display="block"
+          variant="body1"
+          href="#"
+          key={network}
+        >
+          <Grid
+            container
+            direction="row"
+            spacing={1}
+            alignItems="center"
+          >
             <Grid item>
               <network.icon />
             </Grid>

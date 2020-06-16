@@ -1,5 +1,9 @@
 import React from 'react';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import {
+  makeStyles,
+  createStyles,
+  Theme,
+} from '@material-ui/core/styles';
 import Switch from '@material-ui/core/Switch';
 import Paper from '@material-ui/core/Paper';
 import Grow from '@material-ui/core/Grow';
@@ -39,14 +43,22 @@ export default function SimpleGrow() {
   return (
     <div className={classes.root}>
       <FormControlLabel
-        control={<Switch checked={checked} onChange={handleChange} />}
+        control={
+          <Switch
+            checked={checked}
+            onChange={handleChange}
+          />
+        }
         label="Show"
       />
       <div className={classes.container}>
         <Grow in={checked}>
           <Paper elevation={4} className={classes.paper}>
             <svg className={classes.svg}>
-              <polygon points="0,100 50,00, 100,100" className={classes.polygon} />
+              <polygon
+                points="0,100 50,00, 100,100"
+                className={classes.polygon}
+              />
             </svg>
           </Paper>
         </Grow>
@@ -58,7 +70,10 @@ export default function SimpleGrow() {
         >
           <Paper elevation={4} className={classes.paper}>
             <svg className={classes.svg}>
-              <polygon points="0,100 50,00, 100,100" className={classes.polygon} />
+              <polygon
+                points="0,100 50,00, 100,100"
+                className={classes.polygon}
+              />
             </svg>
           </Paper>
         </Grow>

@@ -39,7 +39,10 @@ const styles = (theme) => ({
 });
 
 function stableSort(array, cmp) {
-  const stabilizedThis = array.map((el, index) => [el, index]);
+  const stabilizedThis = array.map((el, index) => [
+    el,
+    index,
+  ]);
   stabilizedThis.sort((a, b) => {
     const order = cmp(a[0], b[0]);
     if (order !== 0) return order;
@@ -69,7 +72,10 @@ const sortFunctions = {
 
 function Showcase(props) {
   const { classes } = props;
-  const [sortFunctionName, setSortFunctionName] = React.useState('dateAdded');
+  const [
+    sortFunctionName,
+    setSortFunctionName,
+  ] = React.useState('dateAdded');
   const sortFunction = sortFunctions[sortFunctionName];
   const t = useSelector((state) => state.options.t);
 
@@ -81,24 +87,41 @@ function Showcase(props) {
     <div className={classes.root}>
       <FormControl className={classes.formControl}>
         <InputLabel htmlFor="sort">Sort by</InputLabel>
-        <Select value={sortFunctionName} onChange={handleChangeSort} inputProps={{ id: 'sort' }}>
-          <MenuItem value="dateAdded">{t('newest')}</MenuItem>
-          <MenuItem value="similarWebVisits">{t('traffic')}</MenuItem>
+        <Select
+          value={sortFunctionName}
+          onChange={handleChangeSort}
+          inputProps={{ id: 'sort' }}
+        >
+          <MenuItem value="dateAdded">
+            {t('newest')}
+          </MenuItem>
+          <MenuItem value="similarWebVisits">
+            {t('traffic')}
+          </MenuItem>
           <MenuItem value="stars">{t('stars')}</MenuItem>
         </Select>
       </FormControl>
       {stableSort(
-        appList.filter((item) => item[sortFunctionName] !== undefined),
+        appList.filter(
+          (item) => item[sortFunctionName] !== undefined,
+        ),
         sortFunction,
       ).map((app) => (
         <div key={app.title}>
-          <Typography component="h2" variant="h4" gutterBottom className={classes.title}>
+          <Typography
+            component="h2"
+            variant="h4"
+            gutterBottom
+            className={classes.title}
+          >
             <span>{app.title}</span>
             {app.source ? (
               <IconButton
                 href={app.source}
                 target="_blank"
-                aria-label={`${app.title} ${t('sourceCode')}`}
+                aria-label={`${app.title} ${t(
+                  'sourceCode',
+                )}`}
               >
                 <GitHubIcon />
               </IconButton>
@@ -127,7 +150,9 @@ function Showcase(props) {
               {t('visit')}
             </Link>
           )}
-          <Typography gutterBottom>{app.description}</Typography>
+          <Typography gutterBottom>
+            {app.description}
+          </Typography>
           <Typography
             variant="caption"
             display="block"

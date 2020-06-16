@@ -1,7 +1,10 @@
 import React from 'react';
 import Badge from '@material-ui/core/Badge';
 import Avatar from '@material-ui/core/Avatar';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import {
+  makeStyles,
+  withStyles,
+} from '@material-ui/core/styles';
 
 const StyledBadge = withStyles((theme) => ({
   badge: {
@@ -62,7 +65,10 @@ export default function BadgeAvatars() {
         }}
         variant="dot"
       >
-        <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+        <Avatar
+          alt="Remy Sharp"
+          src="/static/images/avatar/1.jpg"
+        />
       </StyledBadge>
       <Badge
         overlap="circle"
@@ -70,9 +76,17 @@ export default function BadgeAvatars() {
           vertical: 'bottom',
           horizontal: 'right',
         }}
-        badgeContent={<SmallAvatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />}
+        badgeContent={
+          <SmallAvatar
+            alt="Remy Sharp"
+            src="/static/images/avatar/1.jpg"
+          />
+        }
       >
-        <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
+        <Avatar
+          alt="Travis Howard"
+          src="/static/images/avatar/2.jpg"
+        />
       </Badge>
     </div>
   );

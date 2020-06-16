@@ -12,22 +12,26 @@ const ErrorMessageSection = styled('div')({
 });
 
 // use elevation={2}
-const ErrorMessageMarkdown = styled(MarkdownElement)(({ theme }) => {
-  return {
-    boxShadow: theme.shadows['2'],
-    color: theme.palette.error.main,
-    padding: theme.spacing(1, 2),
-  };
-});
+const ErrorMessageMarkdown = styled(MarkdownElement)(
+  ({ theme }) => {
+    return {
+      boxShadow: theme.shadows['2'],
+      color: theme.palette.error.main,
+      padding: theme.spacing(1, 2),
+    };
+  },
+);
 
 export default function ErrorDecoder() {
   const {
     query: { code, ...query },
   } = useRouter();
   const queryArgs = query['args[]'];
-  const args = React.useMemo(() => (Array.isArray(queryArgs) ? queryArgs : [queryArgs]), [
-    queryArgs,
-  ]);
+  const args = React.useMemo(
+    () =>
+      Array.isArray(queryArgs) ? queryArgs : [queryArgs],
+    [queryArgs],
+  );
 
   const [data, dispatch] = React.useReducer(
     (previousState, action) => {
@@ -35,9 +39,14 @@ export default function ErrorDecoder() {
         case 'rejected':
           return { errorCodes: null, state: 'rejected' };
         case 'resolved':
-          return { errorCodes: action.payload, state: 'resolved' };
+          return {
+            errorCodes: action.payload,
+            state: 'resolved',
+          };
         default:
-          throw new Error(`We made a mistake passing an unknown action.`);
+          throw new Error(
+            `We made a mistake passing an unknown action.`,
+          );
       }
     },
     { errorCodes: null, state: 'loading' },
@@ -71,19 +80,22 @@ export default function ErrorDecoder() {
     }
 
     let replacementIndex = -1;
-    const readableMessage = rawMessage.replace(/%s/g, () => {
-      replacementIndex += 1;
-      const dangerousArgument = args[replacementIndex];
-      if (dangerousArgument === undefined) {
-        return '[missing argument]';
-      }
-      // String will be injected into innerHTML.
-      // We need to escape first
-      // https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML#Security_considerations
-      const div = document.createElement('div');
-      div.innerText = dangerousArgument;
-      return div.innerHTML;
-    });
+    const readableMessage = rawMessage.replace(
+      /%s/g,
+      () => {
+        replacementIndex += 1;
+        const dangerousArgument = args[replacementIndex];
+        if (dangerousArgument === undefined) {
+          return '[missing argument]';
+        }
+        // String will be injected into innerHTML.
+        // We need to escape first
+        // https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML#Security_considerations
+        const div = document.createElement('div');
+        div.innerText = dangerousArgument;
+        return div.innerHTML;
+      },
+    );
 
     return renderMarkdown(readableMessage);
   }, [args, code, data.errorCodes]);
@@ -95,8 +107,9 @@ export default function ErrorDecoder() {
   if (data.state === 'rejected') {
     return (
       <Typography color="error">
-        Seems like we&apos;re having some issues loading the original message. Try reloading the
-        page. If the error persists please report this isse on our{' '}
+        Seems like we&apos;re having some issues loading the
+        original message. Try reloading the page. If the
+        error persists please report this isse on our{' '}
         <Link
           href="https://github.com/mui-org/material-ui/issues/new?template=1.bug.md"
           target="_blank"
@@ -111,8 +124,9 @@ export default function ErrorDecoder() {
   if (errorMessage === undefined) {
     return (
       <Typography>
-        When you encounter an error, you&apos;ll receive a link to this page for that specific error
-        and we&apos;ll show you the full error text.
+        When you encounter an error, you&apos;ll receive a
+        link to this page for that specific error and
+        we&apos;ll show you the full error text.
       </Typography>
     );
   }
@@ -120,7 +134,9 @@ export default function ErrorDecoder() {
   return (
     <ErrorMessageSection>
       <p>The original text of the error you encountered:</p>
-      <ErrorMessageMarkdown renderedMarkdown={errorMessage} />
+      <ErrorMessageMarkdown
+        renderedMarkdown={errorMessage}
+      />
     </ErrorMessageSection>
   );
 }

@@ -1,5 +1,8 @@
 import React from 'react';
-import { makeStyles, Theme } from '@material-ui/core/styles';
+import {
+  makeStyles,
+  Theme,
+} from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -48,7 +51,12 @@ function LinkTab(props: LinkTabProps) {
   return (
     <Tab
       component="a"
-      onClick={(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+      onClick={(
+        event: React.MouseEvent<
+          HTMLAnchorElement,
+          MouseEvent
+        >,
+      ) => {
         event.preventDefault();
       }}
       {...props}
@@ -67,7 +75,10 @@ export default function NavTabs() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
-  const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
+  const handleChange = (
+    event: React.ChangeEvent<{}>,
+    newValue: number,
+  ) => {
     setValue(newValue);
   };
 
@@ -80,9 +91,21 @@ export default function NavTabs() {
           onChange={handleChange}
           aria-label="nav tabs example"
         >
-          <LinkTab label="Page One" href="/drafts" {...a11yProps(0)} />
-          <LinkTab label="Page Two" href="/trash" {...a11yProps(1)} />
-          <LinkTab label="Page Three" href="/spam" {...a11yProps(2)} />
+          <LinkTab
+            label="Page One"
+            href="/drafts"
+            {...a11yProps(0)}
+          />
+          <LinkTab
+            label="Page Two"
+            href="/trash"
+            {...a11yProps(1)}
+          />
+          <LinkTab
+            label="Page Three"
+            href="/spam"
+            {...a11yProps(2)}
+          />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>

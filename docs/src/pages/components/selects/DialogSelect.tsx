@@ -1,5 +1,9 @@
 import React from 'react';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import {
+  createStyles,
+  makeStyles,
+  Theme,
+} from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -29,7 +33,9 @@ export default function DialogSelect() {
   const [open, setOpen] = React.useState(false);
   const [age, setAge] = React.useState<number | string>('');
 
-  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+  const handleChange = (
+    event: React.ChangeEvent<{ value: unknown }>,
+  ) => {
     setAge(Number(event.target.value) || '');
   };
 
@@ -43,13 +49,22 @@ export default function DialogSelect() {
 
   return (
     <div>
-      <Button onClick={handleClickOpen}>Open select dialog</Button>
-      <Dialog disableBackdropClick disableEscapeKeyDown open={open} onClose={handleClose}>
+      <Button onClick={handleClickOpen}>
+        Open select dialog
+      </Button>
+      <Dialog
+        disableBackdropClick
+        disableEscapeKeyDown
+        open={open}
+        onClose={handleClose}
+      >
         <DialogTitle>Fill the form</DialogTitle>
         <DialogContent>
           <form className={classes.container}>
             <FormControl className={classes.formControl}>
-              <InputLabel htmlFor="demo-dialog-native">Age</InputLabel>
+              <InputLabel htmlFor="demo-dialog-native">
+                Age
+              </InputLabel>
               <Select
                 native
                 value={age}
@@ -63,7 +78,9 @@ export default function DialogSelect() {
               </Select>
             </FormControl>
             <FormControl className={classes.formControl}>
-              <InputLabel id="demo-dialog-select-label">Age</InputLabel>
+              <InputLabel id="demo-dialog-select-label">
+                Age
+              </InputLabel>
               <Select
                 labelId="demo-dialog-select-label"
                 id="demo-dialog-select"

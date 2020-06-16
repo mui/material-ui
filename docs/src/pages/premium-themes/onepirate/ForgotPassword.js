@@ -51,7 +51,12 @@ function ForgotPassword() {
       <AppAppBar />
       <AppForm>
         <React.Fragment>
-          <Typography variant="h3" gutterBottom marked="center" align="center">
+          <Typography
+            variant="h3"
+            gutterBottom
+            marked="center"
+            align="center"
+          >
             Forgot your password?
           </Typography>
           <Typography variant="body2" align="center">
@@ -59,9 +64,17 @@ function ForgotPassword() {
               'send you a link to reset your password.'}
           </Typography>
         </React.Fragment>
-        <Form onSubmit={handleSubmit} subscription={{ submitting: true }} validate={validate}>
+        <Form
+          onSubmit={handleSubmit}
+          subscription={{ submitting: true }}
+          validate={validate}
+        >
           {({ handleSubmit2, submitting }) => (
-            <form onSubmit={handleSubmit2} className={classes.form} noValidate>
+            <form
+              onSubmit={handleSubmit2}
+              className={classes.form}
+              noValidate
+            >
               <Field
                 autoFocus
                 autoComplete="email"
@@ -77,7 +90,10 @@ function ForgotPassword() {
               <FormSpy subscription={{ submitError: true }}>
                 {({ submitError }) =>
                   submitError ? (
-                    <FormFeedback className={classes.feedback} error>
+                    <FormFeedback
+                      className={classes.feedback}
+                      error
+                    >
                       {submitError}
                     </FormFeedback>
                   ) : null
@@ -90,7 +106,9 @@ function ForgotPassword() {
                 color="secondary"
                 fullWidth
               >
-                {submitting || sent ? 'In progress…' : 'Send reset link'}
+                {submitting || sent
+                  ? 'In progress…'
+                  : 'Send reset link'}
               </FormButton>
             </form>
           )}

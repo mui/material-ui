@@ -38,10 +38,17 @@ function ProductSmokingHero(props) {
           Got any questions? Need help?
         </Typography>
       </Button>
-      <Typography variant="subtitle1" className={classes.link}>
+      <Typography
+        variant="subtitle1"
+        className={classes.link}
+      >
         We are here to help. Get in touch!
       </Typography>
-      <img src="/static/themes/onepirate/producBuoy.svg" className={classes.buoy} alt="buoy" />
+      <img
+        src="/static/themes/onepirate/producBuoy.svg"
+        className={classes.buoy}
+        alt="buoy"
+      />
     </Container>
   );
 }

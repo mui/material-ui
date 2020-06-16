@@ -1,5 +1,10 @@
 import React from 'react';
-import { createStyles, makeStyles, withStyles, Theme } from '@material-ui/core/styles';
+import {
+  createStyles,
+  makeStyles,
+  withStyles,
+  Theme,
+} from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
@@ -21,7 +26,10 @@ const BootstrapInput = withStyles((theme: Theme) =>
       border: '1px solid #ced4da',
       fontSize: 16,
       padding: '10px 26px 10px 12px',
-      transition: theme.transitions.create(['border-color', 'box-shadow']),
+      transition: theme.transitions.create([
+        'border-color',
+        'box-shadow',
+      ]),
       // Use the system font instead of the default Roboto font.
       fontFamily: [
         '-apple-system',
@@ -55,17 +63,23 @@ const useStyles = makeStyles((theme: Theme) =>
 export default function CustomizedSelects() {
   const classes = useStyles();
   const [age, setAge] = React.useState('');
-  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+  const handleChange = (
+    event: React.ChangeEvent<{ value: unknown }>,
+  ) => {
     setAge(event.target.value as string);
   };
   return (
     <div>
       <FormControl className={classes.margin}>
-        <InputLabel htmlFor="demo-customized-textbox">Age</InputLabel>
+        <InputLabel htmlFor="demo-customized-textbox">
+          Age
+        </InputLabel>
         <BootstrapInput id="demo-customized-textbox" />
       </FormControl>
       <FormControl className={classes.margin}>
-        <InputLabel id="demo-customized-select-label">Age</InputLabel>
+        <InputLabel id="demo-customized-select-label">
+          Age
+        </InputLabel>
         <Select
           labelId="demo-customized-select-label"
           id="demo-customized-select"
@@ -82,7 +96,9 @@ export default function CustomizedSelects() {
         </Select>
       </FormControl>
       <FormControl className={classes.margin}>
-        <InputLabel htmlFor="demo-customized-select-native">Age</InputLabel>
+        <InputLabel htmlFor="demo-customized-select-native">
+          Age
+        </InputLabel>
         <NativeSelect
           id="demo-customized-select-native"
           value={age}

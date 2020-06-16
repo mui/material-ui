@@ -25,13 +25,17 @@ export default function TypographyMenu() {
           <ListItemIcon>
             <SendIcon fontSize="small" />
           </ListItemIcon>
-          <Typography variant="inherit">A short message</Typography>
+          <Typography variant="inherit">
+            A short message
+          </Typography>
         </MenuItem>
         <MenuItem>
           <ListItemIcon>
             <PriorityHighIcon fontSize="small" />
           </ListItemIcon>
-          <Typography variant="inherit">A very long text that overflows</Typography>
+          <Typography variant="inherit">
+            A very long text that overflows
+          </Typography>
         </MenuItem>
         <MenuItem>
           <ListItemIcon>

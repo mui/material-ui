@@ -15,14 +15,24 @@ const useStyles = makeStyles({
 
 export default function ControlledTreeView() {
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState<string[]>([]);
-  const [selected, setSelected] = React.useState<string[]>([]);
+  const [expanded, setExpanded] = React.useState<string[]>(
+    [],
+  );
+  const [selected, setSelected] = React.useState<string[]>(
+    [],
+  );
 
-  const handleToggle = (event: React.ChangeEvent<{}>, nodeIds: string[]) => {
+  const handleToggle = (
+    event: React.ChangeEvent<{}>,
+    nodeIds: string[],
+  ) => {
     setExpanded(nodeIds);
   };
 
-  const handleSelect = (event: React.ChangeEvent<{}>, nodeIds: string[]) => {
+  const handleSelect = (
+    event: React.ChangeEvent<{}>,
+    nodeIds: string[],
+  ) => {
     setSelected(nodeIds);
   };
 

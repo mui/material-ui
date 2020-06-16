@@ -1,5 +1,9 @@
 import React from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import {
+  makeStyles,
+  Theme,
+  createStyles,
+} from '@material-ui/core/styles';
 import Popper from '@material-ui/core/Popper';
 import { useSpring, animated } from 'react-spring/web.cjs'; // web.cjs is required for IE 11 support
 
@@ -20,35 +24,48 @@ interface FadeProps {
   onExited?: () => {};
 }
 
-const Fade = React.forwardRef<HTMLDivElement, FadeProps>(function Fade(props, ref) {
-  const { in: open, children, onEnter, onExited, ...other } = props;
-  const style = useSpring({
-    from: { opacity: 0 },
-    to: { opacity: open ? 1 : 0 },
-    onStart: () => {
-      if (open && onEnter) {
-        onEnter();
-      }
-    },
-    onRest: () => {
-      if (!open && onExited) {
-        onExited();
-      }
-    },
-  });
+const Fade = React.forwardRef<HTMLDivElement, FadeProps>(
+  function Fade(props, ref) {
+    const {
+      in: open,
+      children,
+      onEnter,
+      onExited,
+      ...other
+    } = props;
+    const style = useSpring({
+      from: { opacity: 0 },
+      to: { opacity: open ? 1 : 0 },
+      onStart: () => {
+        if (open && onEnter) {
+          onEnter();
+        }
+      },
+      onRest: () => {
+        if (!open && onExited) {
+          onExited();
+        }
+      },
+    });
 
-  return (
-    <animated.div ref={ref} style={style} {...other}>
-      {children}
-    </animated.div>
-  );
-});
+    return (
+      <animated.div ref={ref} style={style} {...other}>
+        {children}
+      </animated.div>
+    );
+  },
+);
 
 export default function SpringPopper() {
   const classes = useStyles();
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [
+    anchorEl,
+    setAnchorEl,
+  ] = React.useState<null | HTMLElement>(null);
 
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+  const handleClick = (
+    event: React.MouseEvent<HTMLElement>,
+  ) => {
     setAnchorEl(anchorEl ? null : event.currentTarget);
   };
 
@@ -57,13 +74,24 @@ export default function SpringPopper() {
 
   return (
     <div>
-      <button aria-describedby={id} type="button" onClick={handleClick}>
+      <button
+        aria-describedby={id}
+        type="button"
+        onClick={handleClick}
+      >
         Toggle Popper
       </button>
-      <Popper id={id} open={open} anchorEl={anchorEl} transition>
+      <Popper
+        id={id}
+        open={open}
+        anchorEl={anchorEl}
+        transition
+      >
         {({ TransitionProps }) => (
           <Fade {...TransitionProps}>
-            <div className={classes.paper}>The content of the Popper.</div>
+            <div className={classes.paper}>
+              The content of the Popper.
+            </div>
           </Fade>
         )}
       </Popper>

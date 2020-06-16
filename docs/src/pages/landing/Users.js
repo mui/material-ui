@@ -128,29 +128,53 @@ export default function Users() {
   return (
     <div className={classes.root}>
       <NoSsr defer>
-        <Container maxWidth="md" className={classes.container} disableGutters>
+        <Container
+          maxWidth="md"
+          className={classes.container}
+          disableGutters
+        >
           <Divider />
           <div className={classes.users}>
-            <Typography variant="h4" component="h2" align="center" gutterBottom>
+            <Typography
+              variant="h4"
+              component="h2"
+              align="center"
+              gutterBottom
+            >
               {t('whosUsing')}
             </Typography>
-            <Typography variant="body1" align="center" gutterBottom>
+            <Typography
+              variant="body1"
+              align="center"
+              gutterBottom
+            >
               {t('joinThese')}
             </Typography>
-            <Grid container justify="center" className={classes.grid}>
+            <Grid
+              container
+              justify="center"
+              className={classes.grid}
+            >
               {users.map((user) => (
                 <img
                   key={user.caption}
                   src={`/static/images/users/${user.logo}`}
                   alt={user.caption}
-                  className={clsx(classes.img, classes[user.class])}
+                  className={clsx(
+                    classes.img,
+                    classes[user.class],
+                  )}
                   loading="lazy"
                   width={user.logoWidth}
                   height={user.logoHeight}
                 />
               ))}
             </Grid>
-            <Typography variant="body1" align="center" gutterBottom>
+            <Typography
+              variant="body1"
+              align="center"
+              gutterBottom
+            >
               {t('usingMui')}
             </Typography>
             <Grid container justify="center">

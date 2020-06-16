@@ -1,5 +1,9 @@
 import React from 'react';
-import { ThemeProvider, useTheme, createMuiTheme } from '@material-ui/core/styles';
+import {
+  ThemeProvider,
+  useTheme,
+  createMuiTheme,
+} from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 /**
@@ -13,7 +17,9 @@ function useWidth() {
   return (
     keys.reduce((output, key) => {
       // eslint-disable-next-line react-hooks/rules-of-hooks
-      const matches = useMediaQuery(theme.breakpoints.up(key));
+      const matches = useMediaQuery(
+        theme.breakpoints.up(key),
+      );
       return !output && matches ? key : output;
     }, null) || 'xs'
   );

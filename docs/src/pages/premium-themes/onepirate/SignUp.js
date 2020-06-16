@@ -32,7 +32,10 @@ function SignUp() {
   const [sent, setSent] = React.useState(false);
 
   const validate = (values) => {
-    const errors = required(['firstName', 'lastName', 'email', 'password'], values);
+    const errors = required(
+      ['firstName', 'lastName', 'email', 'password'],
+      values,
+    );
 
     if (!errors.email) {
       const emailError = email(values.email, values);
@@ -53,18 +56,34 @@ function SignUp() {
       <AppAppBar />
       <AppForm>
         <React.Fragment>
-          <Typography variant="h3" gutterBottom marked="center" align="center">
+          <Typography
+            variant="h3"
+            gutterBottom
+            marked="center"
+            align="center"
+          >
             Sign Up
           </Typography>
           <Typography variant="body2" align="center">
-            <Link href="/premium-themes/onepirate/sign-in/" underline="always">
+            <Link
+              href="/premium-themes/onepirate/sign-in/"
+              underline="always"
+            >
               Already have an account?
             </Link>
           </Typography>
         </React.Fragment>
-        <Form onSubmit={handleSubmit} subscription={{ submitting: true }} validate={validate}>
+        <Form
+          onSubmit={handleSubmit}
+          subscription={{ submitting: true }}
+          validate={validate}
+        >
           {({ handleSubmit2, submitting }) => (
-            <form onSubmit={handleSubmit2} className={classes.form} noValidate>
+            <form
+              onSubmit={handleSubmit2}
+              className={classes.form}
+              noValidate
+            >
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
                   <Field
@@ -112,7 +131,10 @@ function SignUp() {
               <FormSpy subscription={{ submitError: true }}>
                 {({ submitError }) =>
                   submitError ? (
-                    <FormFeedback className={classes.feedback} error>
+                    <FormFeedback
+                      className={classes.feedback}
+                      error
+                    >
                       {submitError}
                     </FormFeedback>
                   ) : null
@@ -124,7 +146,9 @@ function SignUp() {
                 color="secondary"
                 fullWidth
               >
-                {submitting || sent ? 'In progress…' : 'Sign Up'}
+                {submitting || sent
+                  ? 'In progress…'
+                  : 'Sign Up'}
               </FormButton>
             </form>
           )}

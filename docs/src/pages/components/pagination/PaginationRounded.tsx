@@ -1,5 +1,8 @@
 import React from 'react';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
+import {
+  makeStyles,
+  createStyles,
+} from '@material-ui/core/styles';
 import Pagination from '@material-ui/lab/Pagination';
 
 const useStyles = makeStyles((theme) =>
@@ -18,7 +21,11 @@ export default function PaginationRounded() {
   return (
     <div className={classes.root}>
       <Pagination count={10} shape="rounded" />
-      <Pagination count={10} variant="outlined" shape="rounded" />
+      <Pagination
+        count={10}
+        variant="outlined"
+        shape="rounded"
+      />
     </div>
   );
 }

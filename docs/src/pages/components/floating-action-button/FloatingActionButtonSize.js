@@ -19,13 +19,27 @@ export default function FloatingActionButtonSize() {
   return (
     <div>
       <div>
-        <Fab size="small" color="secondary" aria-label="add" className={classes.margin}>
+        <Fab
+          size="small"
+          color="secondary"
+          aria-label="add"
+          className={classes.margin}
+        >
           <AddIcon />
         </Fab>
-        <Fab size="medium" color="secondary" aria-label="add" className={classes.margin}>
+        <Fab
+          size="medium"
+          color="secondary"
+          aria-label="add"
+          className={classes.margin}
+        >
           <AddIcon />
         </Fab>
-        <Fab color="secondary" aria-label="add" className={classes.margin}>
+        <Fab
+          color="secondary"
+          aria-label="add"
+          className={classes.margin}
+        >
           <AddIcon />
         </Fab>
       </div>
@@ -37,7 +51,9 @@ export default function FloatingActionButtonSize() {
           aria-label="add"
           className={classes.margin}
         >
-          <NavigationIcon className={classes.extendedIcon} />
+          <NavigationIcon
+            className={classes.extendedIcon}
+          />
           Extended
         </Fab>
         <Fab
@@ -47,11 +63,20 @@ export default function FloatingActionButtonSize() {
           aria-label="add"
           className={classes.margin}
         >
-          <NavigationIcon className={classes.extendedIcon} />
+          <NavigationIcon
+            className={classes.extendedIcon}
+          />
           Extended
         </Fab>
-        <Fab variant="extended" color="primary" aria-label="add" className={classes.margin}>
-          <NavigationIcon className={classes.extendedIcon} />
+        <Fab
+          variant="extended"
+          color="primary"
+          aria-label="add"
+          className={classes.margin}
+        >
+          <NavigationIcon
+            className={classes.extendedIcon}
+          />
           Extended
         </Fab>
       </div>

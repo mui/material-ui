@@ -6,7 +6,9 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 function MyComponent() {
   const matches = useMediaQuery('(min-width:600px)');
 
-  return <span>{`(min-width:600px) matches: ${matches}`}</span>;
+  return (
+    <span>{`(min-width:600px) matches: ${matches}`}</span>
+  );
 }
 
 export default function ServerSide() {

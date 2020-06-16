@@ -29,7 +29,9 @@ function BreakpointUp(props) {
 
   return (
     <div className={classes.root}>
-      <Typography variant="subtitle1">Current width: {width}</Typography>
+      <Typography variant="subtitle1">
+        Current width: {width}
+      </Typography>
       <div className={classes.container}>
         <Hidden xsUp>
           <Paper className={classes.paper}>xsUp</Paper>
@@ -52,7 +54,8 @@ function BreakpointUp(props) {
 }
 
 BreakpointUp.propTypes = {
-  width: PropTypes.oneOf(['lg', 'md', 'sm', 'xl', 'xs']).isRequired,
+  width: PropTypes.oneOf(['lg', 'md', 'sm', 'xl', 'xs'])
+    .isRequired,
 };
 
 export default withWidth()(BreakpointUp);

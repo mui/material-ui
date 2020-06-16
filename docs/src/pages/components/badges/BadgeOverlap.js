@@ -23,20 +23,37 @@ export default function BadgeOverlap() {
   const classes = useStyles();
 
   const rectangle = <div className={classes.shape} />;
-  const circle = <div className={clsx(classes.shape, classes.shapeCircle)} />;
+  const circle = (
+    <div
+      className={clsx(classes.shape, classes.shapeCircle)}
+    />
+  );
 
   return (
     <div className={classes.root}>
       <Badge color="secondary" badgeContent=" ">
         {rectangle}
       </Badge>
-      <Badge color="secondary" badgeContent=" " variant="dot">
+      <Badge
+        color="secondary"
+        badgeContent=" "
+        variant="dot"
+      >
         {rectangle}
       </Badge>
-      <Badge color="secondary" overlap="circle" badgeContent=" ">
+      <Badge
+        color="secondary"
+        overlap="circle"
+        badgeContent=" "
+      >
         {circle}
       </Badge>
-      <Badge color="secondary" overlap="circle" badgeContent=" " variant="dot">
+      <Badge
+        color="secondary"
+        overlap="circle"
+        badgeContent=" "
+        variant="dot"
+      >
         {circle}
       </Badge>
     </div>

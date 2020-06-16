@@ -30,7 +30,9 @@ const useStyles = makeStyles(
 
 export default function Sponsors({ docs }) {
   const classes = useStyles();
-  const userLanguage = useSelector((state) => state.options.userLanguage);
+  const userLanguage = useSelector(
+    (state) => state.options.userLanguage,
+  );
   const { rendered } = docs[userLanguage];
 
   return (
@@ -60,6 +62,9 @@ Sponsors.propTypes = {
 const requireRaw = require.context('./', false, /\.md$/);
 
 export async function getInitialProps() {
-  const { docs } = prepareMarkdown({ pageFilename: '/', requireRaw });
+  const { docs } = prepareMarkdown({
+    pageFilename: '/',
+    requireRaw,
+  });
   return { docs };
 }

@@ -28,13 +28,22 @@ export default function CheckboxLabels() {
   });
 
   const handleChange = (event) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
+    setState({
+      ...state,
+      [event.target.name]: event.target.checked,
+    });
   };
 
   return (
     <FormGroup row>
       <FormControlLabel
-        control={<Checkbox checked={state.checkedA} onChange={handleChange} name="checkedA" />}
+        control={
+          <Checkbox
+            checked={state.checkedA}
+            onChange={handleChange}
+            name="checkedA"
+          />
+        }
         label="Secondary"
       />
       <FormControlLabel
@@ -48,9 +57,20 @@ export default function CheckboxLabels() {
         }
         label="Primary"
       />
-      <FormControlLabel control={<Checkbox name="checkedC" />} label="Uncontrolled" />
-      <FormControlLabel disabled control={<Checkbox name="checkedD" />} label="Disabled" />
-      <FormControlLabel disabled control={<Checkbox checked name="checkedE" />} label="Disabled" />
+      <FormControlLabel
+        control={<Checkbox name="checkedC" />}
+        label="Uncontrolled"
+      />
+      <FormControlLabel
+        disabled
+        control={<Checkbox name="checkedD" />}
+        label="Disabled"
+      />
+      <FormControlLabel
+        disabled
+        control={<Checkbox checked name="checkedE" />}
+        label="Disabled"
+      />
       <FormControlLabel
         control={
           <Checkbox
@@ -63,17 +83,31 @@ export default function CheckboxLabels() {
         label="Indeterminate"
       />
       <FormControlLabel
-        control={<GreenCheckbox checked={state.checkedG} onChange={handleChange} name="checkedG" />}
+        control={
+          <GreenCheckbox
+            checked={state.checkedG}
+            onChange={handleChange}
+            name="checkedG"
+          />
+        }
         label="Custom color"
       />
       <FormControlLabel
-        control={<Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite />} name="checkedH" />}
+        control={
+          <Checkbox
+            icon={<FavoriteBorder />}
+            checkedIcon={<Favorite />}
+            name="checkedH"
+          />
+        }
         label="Custom icon"
       />
       <FormControlLabel
         control={
           <Checkbox
-            icon={<CheckBoxOutlineBlankIcon fontSize="small" />}
+            icon={
+              <CheckBoxOutlineBlankIcon fontSize="small" />
+            }
             checkedIcon={<CheckBoxIcon fontSize="small" />}
             name="checkedI"
           />

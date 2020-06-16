@@ -17,7 +17,10 @@ function ListItemLink(props) {
   const { icon, primary, to } = props;
 
   const renderLink = React.useMemo(
-    () => React.forwardRef((itemProps, ref) => <RouterLink to={to} ref={ref} {...itemProps} />),
+    () =>
+      React.forwardRef((itemProps, ref) => (
+        <RouterLink to={to} ref={ref} {...itemProps} />
+      )),
     [to],
   );
 
@@ -47,17 +50,30 @@ export default function ListRouter() {
   const classes = useStyles();
 
   return (
-    <MemoryRouter initialEntries={['/drafts']} initialIndex={0}>
+    <MemoryRouter
+      initialEntries={['/drafts']}
+      initialIndex={0}
+    >
       <div className={classes.root}>
         <Route>
           {({ location }) => (
-            <Typography gutterBottom>Current route: {location.pathname}</Typography>
+            <Typography gutterBottom>
+              Current route: {location.pathname}
+            </Typography>
           )}
         </Route>
         <Paper elevation={0}>
           <List aria-label="main mailbox folders">
-            <ListItemLink to="/inbox" primary="Inbox" icon={<InboxIcon />} />
-            <ListItemLink to="/drafts" primary="Drafts" icon={<DraftsIcon />} />
+            <ListItemLink
+              to="/inbox"
+              primary="Inbox"
+              icon={<InboxIcon />}
+            />
+            <ListItemLink
+              to="/drafts"
+              primary="Drafts"
+              icon={<DraftsIcon />}
+            />
           </List>
           <Divider />
           <List aria-label="secondary mailbox folders">

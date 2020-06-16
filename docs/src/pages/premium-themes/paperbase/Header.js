@@ -46,7 +46,11 @@ function Header(props) {
 
   return (
     <React.Fragment>
-      <AppBar color="primary" position="sticky" elevation={0}>
+      <AppBar
+        color="primary"
+        position="sticky"
+        elevation={0}
+      >
         <Toolbar>
           <Grid container spacing={1} alignItems="center">
             <Hidden smUp>
@@ -63,7 +67,11 @@ function Header(props) {
             </Hidden>
             <Grid item xs />
             <Grid item>
-              <Link className={classes.link} href="#" variant="body2">
+              <Link
+                className={classes.link}
+                href="#"
+                variant="body2"
+              >
                 Go to docs
               </Link>
             </Grid>
@@ -75,8 +83,14 @@ function Header(props) {
               </Tooltip>
             </Grid>
             <Grid item>
-              <IconButton color="inherit" className={classes.iconButtonAvatar}>
-                <Avatar src="/static/images/avatar/1.jpg" alt="My Avatar" />
+              <IconButton
+                color="inherit"
+                className={classes.iconButtonAvatar}
+              >
+                <Avatar
+                  src="/static/images/avatar/1.jpg"
+                  alt="My Avatar"
+                />
               </IconButton>
             </Grid>
           </Grid>
@@ -92,12 +106,21 @@ function Header(props) {
         <Toolbar>
           <Grid container alignItems="center" spacing={1}>
             <Grid item xs>
-              <Typography color="inherit" variant="h5" component="h1">
+              <Typography
+                color="inherit"
+                variant="h5"
+                component="h1"
+              >
                 Authentication
               </Typography>
             </Grid>
             <Grid item>
-              <Button className={classes.button} variant="outlined" color="inherit" size="small">
+              <Button
+                className={classes.button}
+                variant="outlined"
+                color="inherit"
+                size="small"
+              >
                 Web setup
               </Button>
             </Grid>

@@ -25,7 +25,10 @@ export default function LabTabs() {
     <div className={classes.root}>
       <TabContext value={value}>
         <AppBar position="static">
-          <TabList onChange={handleChange} aria-label="simple tabs example">
+          <TabList
+            onChange={handleChange}
+            aria-label="simple tabs example"
+          >
             <Tab label="Item One" value="1" />
             <Tab label="Item Two" value="2" />
             <Tab label="Item Three" value="3" />

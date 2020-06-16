@@ -113,7 +113,13 @@ function Templates(props) {
   return (
     <Grid container spacing={2}>
       {layouts(t).map((layout) => (
-        <Grid item sm={6} md={4} className={classes.item} key={layout.title}>
+        <Grid
+          item
+          sm={6}
+          md={4}
+          className={classes.item}
+          key={layout.title}
+        >
           <Card className={classes.card}>
             <CardMedia
               component="a"
@@ -125,13 +131,25 @@ function Templates(props) {
               target="_blank"
             />
             <CardContent className={classes.cardContent}>
-              <Typography gutterBottom variant="h5" align="left" component="h2">
+              <Typography
+                gutterBottom
+                variant="h5"
+                align="left"
+                component="h2"
+              >
                 {layout.title}
               </Typography>
-              <Typography component="p">{layout.description}</Typography>
+              <Typography component="p">
+                {layout.description}
+              </Typography>
             </CardContent>
             <CardActions>
-              <Button component="a" href={layout.source} size="small" color="primary">
+              <Button
+                component="a"
+                href={layout.source}
+                size="small"
+                color="primary"
+              >
                 {t('sourceCode')}
               </Button>
             </CardActions>

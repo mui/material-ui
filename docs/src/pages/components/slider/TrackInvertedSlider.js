@@ -51,7 +51,10 @@ export default function TrackInvertedSlider() {
         marks={marks}
       />
       <div className={classes.margin} />
-      <Typography id="track-inverted-range-slider" gutterBottom>
+      <Typography
+        id="track-inverted-range-slider"
+        gutterBottom
+      >
         Inverted track range
       </Typography>
       <Slider

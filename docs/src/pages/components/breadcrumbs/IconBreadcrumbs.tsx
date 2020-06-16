@@ -1,5 +1,9 @@
 import React from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import {
+  makeStyles,
+  Theme,
+  createStyles,
+} from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Link from '@material-ui/core/Link';
@@ -20,7 +24,9 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function handleClick(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
+function handleClick(
+  event: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
+) {
   event.preventDefault();
   console.info('You clicked a breadcrumb.');
 }
@@ -30,7 +36,12 @@ export default function IconBreadcrumbs() {
 
   return (
     <Breadcrumbs aria-label="breadcrumb">
-      <Link color="inherit" href="/" onClick={handleClick} className={classes.link}>
+      <Link
+        color="inherit"
+        href="/"
+        onClick={handleClick}
+        className={classes.link}
+      >
         <HomeIcon className={classes.icon} />
         Material-UI
       </Link>
@@ -43,7 +54,10 @@ export default function IconBreadcrumbs() {
         <WhatshotIcon className={classes.icon} />
         Core
       </Link>
-      <Typography color="textPrimary" className={classes.link}>
+      <Typography
+        color="textPrimary"
+        className={classes.link}
+      >
         <GrainIcon className={classes.icon} />
         Breadcrumb
       </Typography>

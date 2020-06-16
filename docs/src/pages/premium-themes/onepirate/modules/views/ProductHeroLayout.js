@@ -63,7 +63,12 @@ function ProductHeroLayout(props) {
         />
         {children}
         <div className={classes.backdrop} />
-        <div className={clsx(classes.background, backgroundClassName)} />
+        <div
+          className={clsx(
+            classes.background,
+            backgroundClassName,
+          )}
+        />
         <img
           className={classes.arrowDown}
           src="/static/themes/onepirate/productHeroArrowDown.png"

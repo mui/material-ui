@@ -8,8 +8,15 @@ import FormLabel from '@material-ui/core/FormLabel';
 export default function FormControlLabelPlacement() {
   return (
     <FormControl component="fieldset">
-      <FormLabel component="legend">labelPlacement</FormLabel>
-      <RadioGroup row aria-label="position" name="position" defaultValue="top">
+      <FormLabel component="legend">
+        labelPlacement
+      </FormLabel>
+      <RadioGroup
+        row
+        aria-label="position"
+        name="position"
+        defaultValue="top"
+      >
         <FormControlLabel
           value="top"
           control={<Radio color="primary" />}
@@ -28,7 +35,11 @@ export default function FormControlLabelPlacement() {
           label="Bottom"
           labelPlacement="bottom"
         />
-        <FormControlLabel value="end" control={<Radio color="primary" />} label="End" />
+        <FormControlLabel
+          value="end"
+          control={<Radio color="primary" />}
+          label="End"
+        />
       </RadioGroup>
     </FormControl>
   );

@@ -57,11 +57,21 @@ export default function BadgeVisibility() {
         </ButtonGroup>
       </div>
       <div>
-        <Badge color="secondary" variant="dot" invisible={invisible}>
+        <Badge
+          color="secondary"
+          variant="dot"
+          invisible={invisible}
+        >
           <MailIcon />
         </Badge>
         <FormControlLabel
-          control={<Switch color="primary" checked={!invisible} onChange={handleBadgeVisibility} />}
+          control={
+            <Switch
+              color="primary"
+              checked={!invisible}
+              onChange={handleBadgeVisibility}
+            />
+          }
           label="Show Badge"
         />
       </div>

@@ -14,7 +14,9 @@ const useStyles = makeStyles((theme) => ({
 export default function ConsecutiveSnackbars() {
   const [snackPack, setSnackPack] = React.useState([]);
   const [open, setOpen] = React.useState(false);
-  const [messageInfo, setMessageInfo] = React.useState(undefined);
+  const [messageInfo, setMessageInfo] = React.useState(
+    undefined,
+  );
 
   React.useEffect(() => {
     if (snackPack.length && !messageInfo) {
@@ -29,7 +31,10 @@ export default function ConsecutiveSnackbars() {
   }, [snackPack, messageInfo, open]);
 
   const handleClick = (message) => () => {
-    setSnackPack((prev) => [...prev, { message, key: new Date().getTime() }]);
+    setSnackPack((prev) => [
+      ...prev,
+      { message, key: new Date().getTime() },
+    ]);
   };
 
   const handleClose = (event, reason) => {
@@ -46,8 +51,12 @@ export default function ConsecutiveSnackbars() {
   const classes = useStyles();
   return (
     <div>
-      <Button onClick={handleClick('Message A')}>Show message A</Button>
-      <Button onClick={handleClick('Message B')}>Show message B</Button>
+      <Button onClick={handleClick('Message A')}>
+        Show message A
+      </Button>
+      <Button onClick={handleClick('Message B')}>
+        Show message B
+      </Button>
       <Snackbar
         key={messageInfo ? messageInfo.key : undefined}
         anchorOrigin={{
@@ -58,10 +67,16 @@ export default function ConsecutiveSnackbars() {
         autoHideDuration={6000}
         onClose={handleClose}
         onExited={handleExited}
-        message={messageInfo ? messageInfo.message : undefined}
+        message={
+          messageInfo ? messageInfo.message : undefined
+        }
         action={
           <React.Fragment>
-            <Button color="secondary" size="small" onClick={handleClose}>
+            <Button
+              color="secondary"
+              size="small"
+              onClick={handleClose}
+            >
               UNDO
             </Button>
             <IconButton

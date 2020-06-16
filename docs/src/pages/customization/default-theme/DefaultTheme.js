@@ -7,7 +7,12 @@ import CollapseIcon from '@material-ui/icons/ChevronRight';
 import TreeView from '@material-ui/lab/TreeView';
 import TreeItem from '@material-ui/lab/TreeItem';
 import clsx from 'clsx';
-import { makeStyles, withStyles, createMuiTheme, lighten } from '@material-ui/core/styles';
+import {
+  makeStyles,
+  withStyles,
+  createMuiTheme,
+  lighten,
+} from '@material-ui/core/styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 
@@ -99,11 +104,19 @@ function ObjectEntryLabel(props) {
     <React.Fragment>
       {`${objectKey}: `}
       {type === 'color' ? (
-        <span className={classes.color} style={{ borderColor: lighten(label, 0.7) }}>
-          <span className={classes.colorInner} style={{ backgroundColor: label }} />
+        <span
+          className={classes.color}
+          style={{ borderColor: lighten(label, 0.7) }}
+        >
+          <span
+            className={classes.colorInner}
+            style={{ backgroundColor: label }}
+          />
         </span>
       ) : null}
-      <span className={clsx('token', tokenType)}>{label}</span>
+      <span className={clsx('token', tokenType)}>
+        {label}
+      </span>
     </React.Fragment>
   );
 }
@@ -133,7 +146,8 @@ function ObjectEntry(props) {
   let children = null;
 
   if (
-    (objectValue !== null && typeof objectValue === 'object') ||
+    (objectValue !== null &&
+      typeof objectValue === 'object') ||
     typeof objectValue === 'function'
   ) {
     children =
@@ -155,9 +169,17 @@ function ObjectEntry(props) {
 
   return (
     <TreeItem
-      classes={{ root: classes.treeItem, content: classes.treeItemContent }}
+      classes={{
+        root: classes.treeItem,
+        content: classes.treeItemContent,
+      }}
       nodeId={nodeId}
-      label={<ObjectEntryLabel objectKey={objectKey} objectValue={objectValue} />}
+      label={
+        <ObjectEntryLabel
+          objectKey={objectKey}
+          objectValue={objectValue}
+        />
+      }
     >
       {children}
     </TreeItem>
@@ -175,11 +197,16 @@ function Inspector(props) {
   const keyPrefix = '$ROOT';
   const defaultExpanded = React.useMemo(() => {
     return Array.isArray(expandPaths)
-      ? expandPaths.map((expandPath) => `${keyPrefix}.${expandPath}`)
+      ? expandPaths.map(
+          (expandPath) => `${keyPrefix}.${expandPath}`,
+        )
       : [];
   }, [keyPrefix, expandPaths]);
   // for default*  to take effect we need to remount
-  const key = React.useMemo(() => defaultExpanded.join(''), [defaultExpanded]);
+  const key = React.useMemo(
+    () => defaultExpanded.join(''),
+    [defaultExpanded],
+  );
 
   return (
     <TreeView
@@ -225,10 +252,16 @@ const styles = (theme) => ({
 });
 
 function computeNodeIds(object, prefix) {
-  if ((object !== null && typeof object === 'object') || typeof object === 'function') {
+  if (
+    (object !== null && typeof object === 'object') ||
+    typeof object === 'function'
+  ) {
     const ids = [];
     Object.keys(object).forEach((key) => {
-      ids.push(`${prefix}${key}`, ...computeNodeIds(object[key], `${prefix}${key}.`));
+      ids.push(
+        `${prefix}${key}`,
+        ...computeNodeIds(object[key], `${prefix}${key}.`),
+      );
     });
 
     return ids;
@@ -251,14 +284,17 @@ function useNodeIdsLazy(object) {
 function DefaultTheme(props) {
   const { classes } = props;
   const [checked, setChecked] = React.useState(false);
-  const [expandPaths, setExpandPaths] = React.useState(null);
+  const [expandPaths, setExpandPaths] = React.useState(
+    null,
+  );
   const t = useSelector((state) => state.options.t);
   const [darkTheme, setDarkTheme] = React.useState(false);
 
   React.useEffect(() => {
     const URL = url.parse(document.location.href, true);
     // 'expend-path' is for backwards compatibility of any external links with a prior typo.
-    const expandPath = URL.query['expand-path'] || URL.query['expend-path'];
+    const expandPath =
+      URL.query['expand-path'] || URL.query['expend-path'];
 
     if (!expandPath) {
       return;
@@ -269,7 +305,8 @@ function DefaultTheme(props) {
         .replace('$.', '')
         .split('.')
         .reduce((acc, path) => {
-          const last = acc.length > 0 ? `${acc[acc.length - 1]}.` : '';
+          const last =
+            acc.length > 0 ? `${acc[acc.length - 1]}.` : '';
           acc.push(last + path);
           return acc;
         }, []),
@@ -277,7 +314,9 @@ function DefaultTheme(props) {
   }, []);
 
   const data = React.useMemo(() => {
-    return createMuiTheme({ palette: { type: darkTheme ? 'dark' : 'light' } });
+    return createMuiTheme({
+      palette: { type: darkTheme ? 'dark' : 'light' },
+    });
   }, [darkTheme]);
 
   const allNodeIds = useNodeIdsLazy(data);
@@ -316,7 +355,11 @@ function DefaultTheme(props) {
         }
         label={t('useDarkTheme')}
       />
-      <Inspector className={classes.inspector} data={data} expandPaths={expandPaths} />
+      <Inspector
+        className={classes.inspector}
+        data={data}
+        expandPaths={expandPaths}
+      />
     </div>
   );
 }

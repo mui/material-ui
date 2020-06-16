@@ -106,11 +106,18 @@ export default function ScrollPlayground() {
   const [arrowRef, setArrowRef] = React.useState(null);
 
   const [arrow, setArrow] = React.useState(false);
-  const [disablePortal, setDisablePortal] = React.useState(false);
+  const [disablePortal, setDisablePortal] = React.useState(
+    false,
+  );
   const [flip, setFlip] = React.useState(true);
   const [open, setOpen] = React.useState(false);
-  const [placement, setPlacement] = React.useState('bottom');
-  const [preventOverflow, setPreventOverflow] = React.useState('scrollParent');
+  const [placement, setPlacement] = React.useState(
+    'bottom',
+  );
+  const [
+    preventOverflow,
+    setPreventOverflow,
+  ] = React.useState('scrollParent');
 
   const handleClickButton = () => {
     setOpen((prevOpen) => !prevOpen);
@@ -138,7 +145,11 @@ export default function ScrollPlayground() {
       },
       preventOverflow: {
         enabled: ${preventOverflow !== 'disabled'},
-        boundariesElement: '${preventOverflow === 'disabled' ? 'scrollParent' : preventOverflow}',
+        boundariesElement: '${
+          preventOverflow === 'disabled'
+            ? 'scrollParent'
+            : preventOverflow
+        }',
       },
       arrow: {
         enabled: ${arrow},
@@ -169,7 +180,8 @@ export default function ScrollPlayground() {
               Toggle Popper
             </Button>
             <Typography className={classes.legend}>
-              Scroll around this container to experiment with flip and preventOverflow modifiers.
+              Scroll around this container to experiment
+              with flip and preventOverflow modifiers.
             </Typography>
             <Popper
               id={id}
@@ -189,21 +201,38 @@ export default function ScrollPlayground() {
                 preventOverflow: {
                   enabled: preventOverflow !== 'disabled',
                   boundariesElement:
-                    preventOverflow === 'disabled' ? 'scrollParent' : preventOverflow,
+                    preventOverflow === 'disabled'
+                      ? 'scrollParent'
+                      : preventOverflow,
                 },
               }}
             >
-              {arrow ? <span className={classes.arrow} ref={setArrowRef} /> : null}
+              {arrow ? (
+                <span
+                  className={classes.arrow}
+                  ref={setArrowRef}
+                />
+              ) : null}
               <Paper className={classes.paper}>
-                <DialogTitle>{"Use Google's location service?"}</DialogTitle>
+                <DialogTitle>
+                  {"Use Google's location service?"}
+                </DialogTitle>
                 <DialogContent>
-                  <DialogContentText>Let Google help apps determine location.</DialogContentText>
+                  <DialogContentText>
+                    Let Google help apps determine location.
+                  </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                  <Button onClick={handleClickButton} color="primary">
+                  <Button
+                    onClick={handleClickButton}
+                    color="primary"
+                  >
                     Disagree
                   </Button>
-                  <Button onClick={handleClickButton} color="primary">
+                  <Button
+                    onClick={handleClickButton}
+                    color="primary"
+                  >
                     Agree
                   </Button>
                 </DialogActions>
@@ -223,10 +252,15 @@ export default function ScrollPlayground() {
               className={classes.select}
               label="Placement"
               select
-              InputLabelProps={{ id: 'scroll-playground-placement-label' }}
+              InputLabelProps={{
+                id: 'scroll-playground-placement-label',
+              }}
               SelectProps={{
                 native: true,
-                inputProps: { 'aria-labelledby': 'scroll-playground-placement-label' },
+                inputProps: {
+                  'aria-labelledby':
+                    'scroll-playground-placement-label',
+                },
               }}
               value={placement}
               onChange={(event) => {
@@ -239,10 +273,14 @@ export default function ScrollPlayground() {
               <option value="left-start">left-start</option>
               <option value="left">left</option>
               <option value="left-end">left-end</option>
-              <option value="right-start">right-start</option>
+              <option value="right-start">
+                right-start
+              </option>
               <option value="right">right</option>
               <option value="right-end">right-end</option>
-              <option value="bottom-start">bottom-start</option>
+              <option value="bottom-start">
+                bottom-start
+              </option>
               <option value="bottom">bottom</option>
               <option value="bottom-end">bottom-end</option>
             </TextField>
@@ -270,10 +308,15 @@ export default function ScrollPlayground() {
               className={classes.select}
               label="Prevent overflow"
               select
-              InputLabelProps={{ id: 'scroll-playground-overflow-label' }}
+              InputLabelProps={{
+                id: 'scroll-playground-overflow-label',
+              }}
               SelectProps={{
                 native: true,
-                inputProps: { 'aria-labelledby': 'scroll-playground-overflow-label' },
+                inputProps: {
+                  'aria-labelledby':
+                    'scroll-playground-overflow-label',
+                },
               }}
               value={preventOverflow}
               onChange={(event) => {
@@ -281,7 +324,9 @@ export default function ScrollPlayground() {
               }}
             >
               <option value="disabled">disabled</option>
-              <option value="scrollParent">scrollParent</option>
+              <option value="scrollParent">
+                scrollParent
+              </option>
               <option value="viewport">viewport</option>
               <option value="window">window</option>
             </TextField>

@@ -42,7 +42,13 @@ export default function PositionedTooltips() {
             <Button>left-end</Button>
           </Tooltip>
         </Grid>
-        <Grid item container xs={6} alignItems="flex-end" direction="column">
+        <Grid
+          item
+          container
+          xs={6}
+          alignItems="flex-end"
+          direction="column"
+        >
           <Grid item>
             <Tooltip title="Add" placement="right-start">
               <Button>right-start</Button>

@@ -1,5 +1,9 @@
 import React from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import {
+  makeStyles,
+  Theme,
+  createStyles,
+} from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 
@@ -53,7 +57,10 @@ export default function TrackInvertedSlider() {
         marks={marks}
       />
       <div className={classes.margin} />
-      <Typography id="track-inverted-range-slider" gutterBottom>
+      <Typography
+        id="track-inverted-range-slider"
+        gutterBottom
+      >
         Inverted track range
       </Typography>
       <Slider

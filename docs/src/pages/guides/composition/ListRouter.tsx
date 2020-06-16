@@ -10,7 +10,10 @@ import InboxIcon from '@material-ui/icons/Inbox';
 import DraftsIcon from '@material-ui/icons/Drafts';
 import Typography from '@material-ui/core/Typography';
 import { Route, MemoryRouter } from 'react-router';
-import { Link as RouterLink, LinkProps as RouterLinkProps } from 'react-router-dom';
+import {
+  Link as RouterLink,
+  LinkProps as RouterLinkProps,
+} from 'react-router-dom';
 import { Omit } from '@material-ui/types';
 
 interface ListItemLinkProps {
@@ -24,9 +27,11 @@ function ListItemLink(props: ListItemLinkProps) {
 
   const renderLink = React.useMemo(
     () =>
-      React.forwardRef<any, Omit<RouterLinkProps, 'to'>>((itemProps, ref) => (
-        <RouterLink to={to} ref={ref} {...itemProps} />
-      )),
+      React.forwardRef<any, Omit<RouterLinkProps, 'to'>>(
+        (itemProps, ref) => (
+          <RouterLink to={to} ref={ref} {...itemProps} />
+        ),
+      ),
     [to],
   );
 
@@ -50,17 +55,30 @@ export default function ListRouter() {
   const classes = useStyles();
 
   return (
-    <MemoryRouter initialEntries={['/drafts']} initialIndex={0}>
+    <MemoryRouter
+      initialEntries={['/drafts']}
+      initialIndex={0}
+    >
       <div className={classes.root}>
         <Route>
           {({ location }) => (
-            <Typography gutterBottom>Current route: {location.pathname}</Typography>
+            <Typography gutterBottom>
+              Current route: {location.pathname}
+            </Typography>
           )}
         </Route>
         <Paper elevation={0}>
           <List aria-label="main mailbox folders">
-            <ListItemLink to="/inbox" primary="Inbox" icon={<InboxIcon />} />
-            <ListItemLink to="/drafts" primary="Drafts" icon={<DraftsIcon />} />
+            <ListItemLink
+              to="/inbox"
+              primary="Inbox"
+              icon={<InboxIcon />}
+            />
+            <ListItemLink
+              to="/drafts"
+              primary="Drafts"
+              icon={<DraftsIcon />}
+            />
           </List>
           <Divider />
           <List aria-label="secondary mailbox folders">

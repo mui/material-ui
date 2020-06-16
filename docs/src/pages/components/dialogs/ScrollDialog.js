@@ -22,7 +22,9 @@ export default function ScrollDialog() {
   const descriptionElementRef = React.useRef(null);
   React.useEffect(() => {
     if (open) {
-      const { current: descriptionElement } = descriptionElementRef;
+      const {
+        current: descriptionElement,
+      } = descriptionElementRef;
       if (descriptionElement !== null) {
         descriptionElement.focus();
       }
@@ -31,8 +33,12 @@ export default function ScrollDialog() {
 
   return (
     <div>
-      <Button onClick={handleClickOpen('paper')}>scroll=paper</Button>
-      <Button onClick={handleClickOpen('body')}>scroll=body</Button>
+      <Button onClick={handleClickOpen('paper')}>
+        scroll=paper
+      </Button>
+      <Button onClick={handleClickOpen('body')}>
+        scroll=body
+      </Button>
       <Dialog
         open={open}
         onClose={handleClose}
@@ -40,7 +46,9 @@ export default function ScrollDialog() {
         aria-labelledby="scroll-dialog-title"
         aria-describedby="scroll-dialog-description"
       >
-        <DialogTitle id="scroll-dialog-title">Subscribe</DialogTitle>
+        <DialogTitle id="scroll-dialog-title">
+          Subscribe
+        </DialogTitle>
         <DialogContent dividers={scroll === 'paper'}>
           <DialogContentText
             id="scroll-dialog-description"

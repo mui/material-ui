@@ -22,7 +22,9 @@ export default function NestedStylesHook() {
       This is red since it is inside the root.
       <p>
         This is green since it is inside the paragraph{' '}
-        <span>and this is blue since it is inside the span</span>
+        <span>
+          and this is blue since it is inside the span
+        </span>
       </p>
     </div>
   );

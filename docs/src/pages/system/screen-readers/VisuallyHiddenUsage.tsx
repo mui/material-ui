@@ -16,7 +16,9 @@ export default function VisuallyHiddenUsage() {
     <Link href="#foo">
       Read more
       {/* always visually hidden because the parent is focusable element */}
-      <span className={classes.span}>about how to visually hide elements</span>
+      <span className={classes.span}>
+        about how to visually hide elements
+      </span>
     </Link>
   );
 }

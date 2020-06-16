@@ -1,12 +1,18 @@
 import React from 'react';
-import { createMuiTheme, ThemeProvider, useTheme } from '@material-ui/core/styles';
+import {
+  createMuiTheme,
+  ThemeProvider,
+  useTheme,
+} from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 function MyComponent() {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('sm'));
 
-  return <span>{`theme.breakpoints.up('sm') matches: ${matches}`}</span>;
+  return (
+    <span>{`theme.breakpoints.up('sm') matches: ${matches}`}</span>
+  );
 }
 
 const theme = createMuiTheme();

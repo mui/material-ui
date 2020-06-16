@@ -8,7 +8,8 @@ const data = [
   {
     src:
       'https://i.ytimg.com/vi/pLqipJNItIo/hqdefault.jpg?sqp=-oaymwEYCNIBEHZIVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLBkklsyaw9FxDmMKapyBYCn9tbPNQ',
-    title: 'Don Diablo @ Tomorrowland Main Stage 2019 | Official…',
+    title:
+      'Don Diablo @ Tomorrowland Main Stage 2019 | Official…',
     channel: 'Don Diablo',
     views: '396 k views',
     createdAt: 'a week ago',
@@ -24,7 +25,8 @@ const data = [
   {
     src:
       'https://i.ytimg.com/vi/kkLk2XWMBf8/hqdefault.jpg?sqp=-oaymwEYCNIBEHZIVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLB4GZTFu1Ju2EPPPXnhMZtFVvYBaw',
-    title: 'Calvin Harris, Sam Smith - Promises (Official Video)',
+    title:
+      'Calvin Harris, Sam Smith - Promises (Official Video)',
     channel: 'Calvin Harris',
     views: '130 M views',
     createdAt: '10 months ago',
@@ -40,33 +42,55 @@ function Media(props: MediaProps) {
 
   return (
     <Grid container wrap="nowrap">
-      {(loading ? Array.from(new Array(3)) : data).map((item, index) => (
-        <Box key={index} width={210} marginRight={0.5} my={5}>
-          {item ? (
-            <img style={{ width: 210, height: 118 }} alt={item.title} src={item.src} />
-          ) : (
-            <Skeleton variant="rect" width={210} height={118} />
-          )}
-          {item ? (
-            <Box pr={2}>
-              <Typography gutterBottom variant="body2">
-                {item.title}
-              </Typography>
-              <Typography display="block" variant="caption" color="textSecondary">
-                {item.channel}
-              </Typography>
-              <Typography variant="caption" color="textSecondary">
-                {`${item.views} • ${item.createdAt}`}
-              </Typography>
-            </Box>
-          ) : (
-            <Box pt={0.5}>
-              <Skeleton />
-              <Skeleton width="60%" />
-            </Box>
-          )}
-        </Box>
-      ))}
+      {(loading ? Array.from(new Array(3)) : data).map(
+        (item, index) => (
+          <Box
+            key={index}
+            width={210}
+            marginRight={0.5}
+            my={5}
+          >
+            {item ? (
+              <img
+                style={{ width: 210, height: 118 }}
+                alt={item.title}
+                src={item.src}
+              />
+            ) : (
+              <Skeleton
+                variant="rect"
+                width={210}
+                height={118}
+              />
+            )}
+            {item ? (
+              <Box pr={2}>
+                <Typography gutterBottom variant="body2">
+                  {item.title}
+                </Typography>
+                <Typography
+                  display="block"
+                  variant="caption"
+                  color="textSecondary"
+                >
+                  {item.channel}
+                </Typography>
+                <Typography
+                  variant="caption"
+                  color="textSecondary"
+                >
+                  {`${item.views} • ${item.createdAt}`}
+                </Typography>
+              </Box>
+            ) : (
+              <Box pt={0.5}>
+                <Skeleton />
+                <Skeleton width="60%" />
+              </Box>
+            )}
+          </Box>
+        ),
+      )}
     </Grid>
   );
 }

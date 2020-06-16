@@ -20,7 +20,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function getSteps() {
-  return ['Select campaign settings', 'Create an ad group', 'Create an ad'];
+  return [
+    'Select campaign settings',
+    'Create an ad group',
+    'Create an ad',
+  ];
 }
 
 function getStepContent(step) {
@@ -69,7 +73,9 @@ export default function HorizontalLinearStepper() {
     if (!isStepOptional(activeStep)) {
       // You probably want to guard against something like this,
       // it should never occur unless someone's actively trying to break something.
-      throw new Error("You can't skip a step that isn't optional.");
+      throw new Error(
+        "You can't skip a step that isn't optional.",
+      );
     }
 
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -91,7 +97,11 @@ export default function HorizontalLinearStepper() {
           const stepProps = {};
           const labelProps = {};
           if (isStepOptional(index)) {
-            labelProps.optional = <Typography variant="caption">Optional</Typography>;
+            labelProps.optional = (
+              <Typography variant="caption">
+                Optional
+              </Typography>
+            );
           }
           if (isStepSkipped(index)) {
             stepProps.completed = false;
@@ -109,15 +119,24 @@ export default function HorizontalLinearStepper() {
             <Typography className={classes.instructions}>
               All steps completed - you&apos;re finished
             </Typography>
-            <Button onClick={handleReset} className={classes.button}>
+            <Button
+              onClick={handleReset}
+              className={classes.button}
+            >
               Reset
             </Button>
           </div>
         ) : (
           <div>
-            <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
+            <Typography className={classes.instructions}>
+              {getStepContent(activeStep)}
+            </Typography>
             <div>
-              <Button disabled={activeStep === 0} onClick={handleBack} className={classes.button}>
+              <Button
+                disabled={activeStep === 0}
+                onClick={handleBack}
+                className={classes.button}
+              >
                 Back
               </Button>
               {isStepOptional(activeStep) && (
@@ -137,7 +156,9 @@ export default function HorizontalLinearStepper() {
                 onClick={handleNext}
                 className={classes.button}
               >
-                {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+                {activeStep === steps.length - 1
+                  ? 'Finish'
+                  : 'Next'}
               </Button>
             </div>
           </div>

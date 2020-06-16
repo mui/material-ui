@@ -48,7 +48,10 @@ const BootstrapInput = withStyles((theme) => ({
     fontSize: 16,
     width: 'auto',
     padding: '10px 12px',
-    transition: theme.transitions.create(['border-color', 'box-shadow']),
+    transition: theme.transitions.create([
+      'border-color',
+      'box-shadow',
+    ]),
     // Use the system font instead of the default Roboto font.
     fontFamily: [
       '-apple-system',
@@ -63,7 +66,10 @@ const BootstrapInput = withStyles((theme) => ({
       '"Segoe UI Symbol"',
     ].join(','),
     '&:focus': {
-      boxShadow: `${fade(theme.palette.primary.main, 0.25)} 0 0 0 0.2rem`,
+      boxShadow: `${fade(
+        theme.palette.primary.main,
+        0.25,
+      )} 0 0 0 0.2rem`,
       borderColor: theme.palette.primary.main,
     },
   },
@@ -75,13 +81,19 @@ const useStylesReddit = makeStyles((theme) => ({
     overflow: 'hidden',
     borderRadius: 4,
     backgroundColor: '#fcfcfb',
-    transition: theme.transitions.create(['border-color', 'box-shadow']),
+    transition: theme.transitions.create([
+      'border-color',
+      'box-shadow',
+    ]),
     '&:hover': {
       backgroundColor: '#fff',
     },
     '&$focused': {
       backgroundColor: '#fff',
-      boxShadow: `${fade(theme.palette.primary.main, 0.25)} 0 0 0 2px`,
+      boxShadow: `${fade(
+        theme.palette.primary.main,
+        0.25,
+      )} 0 0 0 2px`,
       borderColor: theme.palette.primary.main,
     },
   },
@@ -91,7 +103,12 @@ const useStylesReddit = makeStyles((theme) => ({
 function RedditTextField(props) {
   const classes = useStylesReddit();
 
-  return <TextField InputProps={{ classes, disableUnderline: true }} {...props} />;
+  return (
+    <TextField
+      InputProps={{ classes, disableUnderline: true }}
+      {...props}
+    />
+  );
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -132,7 +149,11 @@ export default function CustomizedInputs() {
 
   return (
     <form className={classes.root} noValidate>
-      <CssTextField className={classes.margin} id="custom-css-standard-input" label="Custom CSS" />
+      <CssTextField
+        className={classes.margin}
+        id="custom-css-standard-input"
+        label="Custom CSS"
+      />
       <CssTextField
         className={classes.margin}
         label="Custom CSS"
@@ -156,7 +177,10 @@ export default function CustomizedInputs() {
         <InputLabel shrink htmlFor="bootstrap-input">
           Bootstrap
         </InputLabel>
-        <BootstrapInput defaultValue="react-bootstrap" id="bootstrap-input" />
+        <BootstrapInput
+          defaultValue="react-bootstrap"
+          id="bootstrap-input"
+        />
       </FormControl>
       <RedditTextField
         label="Reddit"

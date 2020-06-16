@@ -1,5 +1,9 @@
 import React from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import {
+  makeStyles,
+  Theme,
+  createStyles,
+} from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -23,14 +27,24 @@ const options = [
 
 export default function SimpleListMenu() {
   const classes = useStyles();
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const [selectedIndex, setSelectedIndex] = React.useState(1);
+  const [
+    anchorEl,
+    setAnchorEl,
+  ] = React.useState<null | HTMLElement>(null);
+  const [selectedIndex, setSelectedIndex] = React.useState(
+    1,
+  );
 
-  const handleClickListItem = (event: React.MouseEvent<HTMLElement>) => {
+  const handleClickListItem = (
+    event: React.MouseEvent<HTMLElement>,
+  ) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleMenuItemClick = (event: React.MouseEvent<HTMLElement>, index: number) => {
+  const handleMenuItemClick = (
+    event: React.MouseEvent<HTMLElement>,
+    index: number,
+  ) => {
     setSelectedIndex(index);
     setAnchorEl(null);
   };
@@ -49,7 +63,10 @@ export default function SimpleListMenu() {
           aria-label="when device is locked"
           onClick={handleClickListItem}
         >
-          <ListItemText primary="When device is locked" secondary={options[selectedIndex]} />
+          <ListItemText
+            primary="When device is locked"
+            secondary={options[selectedIndex]}
+          />
         </ListItem>
       </List>
       <Menu
@@ -64,7 +81,9 @@ export default function SimpleListMenu() {
             key={option}
             disabled={index === 0}
             selected={index === selectedIndex}
-            onClick={(event) => handleMenuItemClick(event, index)}
+            onClick={(event) =>
+              handleMenuItemClick(event, index)
+            }
           >
             {option}
           </MenuItem>

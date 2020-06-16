@@ -1,6 +1,8 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import Rating, { IconContainerProps } from '@material-ui/lab/Rating';
+import Rating, {
+  IconContainerProps,
+} from '@material-ui/lab/Rating';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import SentimentVeryDissatisfiedIcon from '@material-ui/icons/SentimentVeryDissatisfied';
@@ -20,7 +22,12 @@ const StyledRating = withStyles({
   },
 })(Rating);
 
-const customIcons: { [index: string]: { icon: React.ReactElement; label: string } } = {
+const customIcons: {
+  [index: string]: {
+    icon: React.ReactElement;
+    label: string;
+  };
+} = {
   1: {
     icon: <SentimentVeryDissatisfiedIcon />,
     label: 'Very Dissatisfied',
@@ -51,8 +58,14 @@ function IconContainer(props: IconContainerProps) {
 export default function CustomizedRatings() {
   return (
     <div>
-      <Box component="fieldset" mb={3} borderColor="transparent">
-        <Typography component="legend">Custom empty icon</Typography>
+      <Box
+        component="fieldset"
+        mb={3}
+        borderColor="transparent"
+      >
+        <Typography component="legend">
+          Custom empty icon
+        </Typography>
         <Rating
           name="customized-empty"
           defaultValue={2}
@@ -60,26 +73,50 @@ export default function CustomizedRatings() {
           emptyIcon={<StarBorderIcon fontSize="inherit" />}
         />
       </Box>
-      <Box component="fieldset" mb={3} borderColor="transparent">
-        <Typography component="legend">Custom icon and color</Typography>
+      <Box
+        component="fieldset"
+        mb={3}
+        borderColor="transparent"
+      >
+        <Typography component="legend">
+          Custom icon and color
+        </Typography>
         <StyledRating
           name="customized-color"
           defaultValue={2}
-          getLabelText={(value: number) => `${value} Heart${value !== 1 ? 's' : ''}`}
+          getLabelText={(value: number) =>
+            `${value} Heart${value !== 1 ? 's' : ''}`
+          }
           precision={0.5}
           icon={<FavoriteIcon fontSize="inherit" />}
         />
       </Box>
-      <Box component="fieldset" mb={3} borderColor="transparent">
+      <Box
+        component="fieldset"
+        mb={3}
+        borderColor="transparent"
+      >
         <Typography component="legend">10 stars</Typography>
-        <Rating name="customized-10" defaultValue={2} max={10} />
+        <Rating
+          name="customized-10"
+          defaultValue={2}
+          max={10}
+        />
       </Box>
-      <Box component="fieldset" mb={3} borderColor="transparent">
-        <Typography component="legend">Custom icon set</Typography>
+      <Box
+        component="fieldset"
+        mb={3}
+        borderColor="transparent"
+      >
+        <Typography component="legend">
+          Custom icon set
+        </Typography>
         <Rating
           name="customized-icons"
           defaultValue={2}
-          getLabelText={(value: number) => customIcons[value].label}
+          getLabelText={(value: number) =>
+            customIcons[value].label
+          }
           IconContainerComponent={IconContainer}
         />
       </Box>

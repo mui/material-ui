@@ -1,7 +1,12 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
-import { makeStyles, ThemeProvider, useTheme, createMuiTheme } from '@material-ui/core/styles';
+import {
+  makeStyles,
+  ThemeProvider,
+  useTheme,
+  createMuiTheme,
+} from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,12 +37,25 @@ function Demo() {
   const classes = useStyles();
   const theme = useTheme();
 
-  const item = (color, name, expanded = false, border = false) => (
-    <Grid item xs={12} sm={6} md={expanded ? 8 : 4} className={classes.color}>
+  const item = (
+    color,
+    name,
+    expanded = false,
+    border = false,
+  ) => (
+    <Grid
+      item
+      xs={12}
+      sm={6}
+      md={expanded ? 8 : 4}
+      className={classes.color}
+    >
       <div
         style={{
           backgroundColor: color,
-          border: border ? `1px solid ${theme.palette.divider}` : undefined,
+          border: border
+            ? `1px solid ${theme.palette.divider}`
+            : undefined,
         }}
       />
       <div>
@@ -53,26 +71,59 @@ function Demo() {
     <div className={classes.root}>
       <Typography gutterBottom>Typography</Typography>
       <Grid container spacing={1}>
-        {item(theme.palette.text.primary, 'palette.text.primary')}
-        {item(theme.palette.text.secondary, 'palette.text.secondary')}
-        {item(theme.palette.text.disabled, 'palette.text.disabled')}
+        {item(
+          theme.palette.text.primary,
+          'palette.text.primary',
+        )}
+        {item(
+          theme.palette.text.secondary,
+          'palette.text.secondary',
+        )}
+        {item(
+          theme.palette.text.disabled,
+          'palette.text.disabled',
+        )}
       </Grid>
       <Typography gutterBottom className={classes.group}>
         Buttons
       </Typography>
       <Grid container spacing={1}>
-        {item(theme.palette.action.active, 'palette.action.active')}
-        {item(theme.palette.action.hover, 'palette.action.hover')}
-        {item(theme.palette.action.selected, 'palette.action.selected')}
-        {item(theme.palette.action.disabled, 'palette.action.disabled')}
-        {item(theme.palette.action.disabledBackground, 'palette.action.disabledBackground', true)}
+        {item(
+          theme.palette.action.active,
+          'palette.action.active',
+        )}
+        {item(
+          theme.palette.action.hover,
+          'palette.action.hover',
+        )}
+        {item(
+          theme.palette.action.selected,
+          'palette.action.selected',
+        )}
+        {item(
+          theme.palette.action.disabled,
+          'palette.action.disabled',
+        )}
+        {item(
+          theme.palette.action.disabledBackground,
+          'palette.action.disabledBackground',
+          true,
+        )}
       </Grid>
       <Typography gutterBottom className={classes.group}>
         Background
       </Typography>
       <Grid container spacing={1}>
-        {item(theme.palette.background.default, 'palette.background.default', false, true)}
-        {item(theme.palette.background.paper, 'palette.background.paper')}
+        {item(
+          theme.palette.background.default,
+          'palette.background.default',
+          false,
+          true,
+        )}
+        {item(
+          theme.palette.background.paper,
+          'palette.background.paper',
+        )}
       </Grid>
       <Typography gutterBottom className={classes.group}>
         Divider

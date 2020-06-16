@@ -1,5 +1,9 @@
 import React from 'react';
-import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
+import {
+  createStyles,
+  Theme,
+  makeStyles,
+} from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import Chip from '@material-ui/core/Chip';
 import FaceIcon from '@material-ui/icons/Face';
@@ -40,7 +44,12 @@ export default function OutlinedChips() {
         variant="outlined"
       />
       <Chip
-        avatar={<Avatar alt="Natacha" src="/static/images/avatar/1.jpg" />}
+        avatar={
+          <Avatar
+            alt="Natacha"
+            src="/static/images/avatar/1.jpg"
+          />
+        }
         label="Deletable"
         onDelete={handleDelete}
         variant="outlined"
@@ -59,7 +68,13 @@ export default function OutlinedChips() {
         deleteIcon={<DoneIcon />}
         variant="outlined"
       />
-      <Chip label="Clickable link" component="a" href="#chip" clickable variant="outlined" />
+      <Chip
+        label="Clickable link"
+        component="a"
+        href="#chip"
+        clickable
+        variant="outlined"
+      />
       <Chip
         avatar={<Avatar>M</Avatar>}
         label="Primary clickable"
@@ -78,7 +93,12 @@ export default function OutlinedChips() {
         deleteIcon={<DoneIcon />}
         variant="outlined"
       />
-      <Chip label="Deletable primary" onDelete={handleDelete} color="primary" variant="outlined" />
+      <Chip
+        label="Deletable primary"
+        onDelete={handleDelete}
+        color="primary"
+        variant="outlined"
+      />
       <Chip
         icon={<FaceIcon />}
         label="Deletable secondary"

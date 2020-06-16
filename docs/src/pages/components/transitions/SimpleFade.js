@@ -37,14 +37,22 @@ export default function SimpleFade() {
   return (
     <div className={classes.root}>
       <FormControlLabel
-        control={<Switch checked={checked} onChange={handleChange} />}
+        control={
+          <Switch
+            checked={checked}
+            onChange={handleChange}
+          />
+        }
         label="Show"
       />
       <div className={classes.container}>
         <Fade in={checked}>
           <Paper elevation={4} className={classes.paper}>
             <svg className={classes.svg}>
-              <polygon points="0,100 50,00, 100,100" className={classes.polygon} />
+              <polygon
+                points="0,100 50,00, 100,100"
+                className={classes.polygon}
+              />
             </svg>
           </Paper>
         </Fade>

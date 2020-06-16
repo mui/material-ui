@@ -1,5 +1,9 @@
 import React from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import {
+  makeStyles,
+  Theme,
+  createStyles,
+} from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
@@ -22,7 +26,11 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 function getSteps() {
-  return ['Select campaign settings', 'Create an ad group', 'Create an ad'];
+  return [
+    'Select campaign settings',
+    'Create an ad group',
+    'Create an ad',
+  ];
 }
 
 function getStepContent(step: number) {
@@ -41,7 +49,9 @@ function getStepContent(step: number) {
 export default function HorizontalNonLinearStepperWithError() {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
-  const [skipped, setSkipped] = React.useState(new Set<number>());
+  const [skipped, setSkipped] = React.useState(
+    new Set<number>(),
+  );
   const steps = getSteps();
 
   const isStepOptional = (step: number) => {
@@ -75,7 +85,9 @@ export default function HorizontalNonLinearStepperWithError() {
     if (!isStepOptional(activeStep)) {
       // You probably want to guard against something like this,
       // it should never occur unless someone's actively trying to break something.
-      throw new Error("You can't skip a step that isn't optional.");
+      throw new Error(
+        "You can't skip a step that isn't optional.",
+      );
     }
 
     setSkipped((prevSkipped) => {
@@ -95,7 +107,10 @@ export default function HorizontalNonLinearStepperWithError() {
       <Stepper activeStep={activeStep}>
         {steps.map((label, index) => {
           const stepProps: { completed?: boolean } = {};
-          const labelProps: { optional?: React.ReactNode; error?: boolean } = {};
+          const labelProps: {
+            optional?: React.ReactNode;
+            error?: boolean;
+          } = {};
           if (isStepOptional(index)) {
             labelProps.optional = (
               <Typography variant="caption" color="error">
@@ -122,15 +137,24 @@ export default function HorizontalNonLinearStepperWithError() {
             <Typography className={classes.instructions}>
               All steps completed - you&apos;re finished
             </Typography>
-            <Button onClick={handleReset} className={classes.button}>
+            <Button
+              onClick={handleReset}
+              className={classes.button}
+            >
               Reset
             </Button>
           </div>
         ) : (
           <div>
-            <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
+            <Typography className={classes.instructions}>
+              {getStepContent(activeStep)}
+            </Typography>
             <div>
-              <Button disabled={activeStep === 0} onClick={handleBack} className={classes.button}>
+              <Button
+                disabled={activeStep === 0}
+                onClick={handleBack}
+                className={classes.button}
+              >
                 Back
               </Button>
               {isStepOptional(activeStep) && (
@@ -149,7 +173,9 @@ export default function HorizontalNonLinearStepperWithError() {
                 onClick={handleNext}
                 className={classes.button}
               >
-                {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+                {activeStep === steps.length - 1
+                  ? 'Finish'
+                  : 'Next'}
               </Button>
             </div>
           </div>

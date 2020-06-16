@@ -7,8 +7,13 @@ export default function Switches() {
     checkedB: true,
   });
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
+  const handleChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    setState({
+      ...state,
+      [event.target.name]: event.target.checked,
+    });
   };
 
   return (
@@ -26,13 +31,24 @@ export default function Switches() {
         name="checkedB"
         inputProps={{ 'aria-label': 'primary checkbox' }}
       />
-      <Switch inputProps={{ 'aria-label': 'primary checkbox' }} />
-      <Switch disabled inputProps={{ 'aria-label': 'disabled checkbox' }} />
-      <Switch disabled checked inputProps={{ 'aria-label': 'primary checkbox' }} />
+      <Switch
+        inputProps={{ 'aria-label': 'primary checkbox' }}
+      />
+      <Switch
+        disabled
+        inputProps={{ 'aria-label': 'disabled checkbox' }}
+      />
+      <Switch
+        disabled
+        checked
+        inputProps={{ 'aria-label': 'primary checkbox' }}
+      />
       <Switch
         defaultChecked
         color="default"
-        inputProps={{ 'aria-label': 'checkbox with default color' }}
+        inputProps={{
+          'aria-label': 'checkbox with default color',
+        }}
       />
     </div>
   );

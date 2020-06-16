@@ -31,9 +31,18 @@ export default function Chips() {
     <div className={classes.root}>
       <Chip label="Basic" />
       <Chip label="Disabled" disabled />
-      <Chip avatar={<Avatar>M</Avatar>} label="Clickable" onClick={handleClick} />
       <Chip
-        avatar={<Avatar alt="Natacha" src="/static/images/avatar/1.jpg" />}
+        avatar={<Avatar>M</Avatar>}
+        label="Clickable"
+        onClick={handleClick}
+      />
+      <Chip
+        avatar={
+          <Avatar
+            alt="Natacha"
+            src="/static/images/avatar/1.jpg"
+          />
+        }
         label="Deletable"
         onDelete={handleDelete}
       />
@@ -49,7 +58,12 @@ export default function Chips() {
         onDelete={handleDelete}
         deleteIcon={<DoneIcon />}
       />
-      <Chip label="Clickable Link" component="a" href="#chip" clickable />
+      <Chip
+        label="Clickable Link"
+        component="a"
+        href="#chip"
+        clickable
+      />
       <Chip
         avatar={<Avatar>M</Avatar>}
         label="Primary clickable"
@@ -66,7 +80,11 @@ export default function Chips() {
         onDelete={handleDelete}
         deleteIcon={<DoneIcon />}
       />
-      <Chip label="Deletable primary" onDelete={handleDelete} color="primary" />
+      <Chip
+        label="Deletable primary"
+        onDelete={handleDelete}
+        color="primary"
+      />
       <Chip
         icon={<FaceIcon />}
         label="Deletable secondary"

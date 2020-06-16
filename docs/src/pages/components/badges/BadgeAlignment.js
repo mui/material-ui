@@ -27,7 +27,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function BadgeAlignment() {
   const classes = useStyles();
-  const [horizontal, setHorizontal] = React.useState('right');
+  const [horizontal, setHorizontal] = React.useState(
+    'right',
+  );
   const [vertical, setVertical] = React.useState('top');
 
   const handleHorizontalChange = (event) => {
@@ -50,18 +52,50 @@ export default function BadgeAlignment() {
   return (
     <div className={classes.root}>
       <div className={classes.row}>
-        <FormControl component="fieldset" className={classes.formControl}>
+        <FormControl
+          component="fieldset"
+          className={classes.formControl}
+        >
           <FormLabel component="legend">Vertical</FormLabel>
-          <RadioGroup name="vertical" value={vertical} onChange={handleVerticalChange}>
-            <FormControlLabel value="top" control={<Radio />} label="Top" />
-            <FormControlLabel value="bottom" control={<Radio />} label="Bottom" />
+          <RadioGroup
+            name="vertical"
+            value={vertical}
+            onChange={handleVerticalChange}
+          >
+            <FormControlLabel
+              value="top"
+              control={<Radio />}
+              label="Top"
+            />
+            <FormControlLabel
+              value="bottom"
+              control={<Radio />}
+              label="Bottom"
+            />
           </RadioGroup>
         </FormControl>
-        <FormControl component="fieldset" className={classes.formControl}>
-          <FormLabel component="legend">Horizontal</FormLabel>
-          <RadioGroup name="horizontal" value={horizontal} onChange={handleHorizontalChange}>
-            <FormControlLabel value="right" control={<Radio />} label="Right" />
-            <FormControlLabel value="left" control={<Radio />} label="Left" />
+        <FormControl
+          component="fieldset"
+          className={classes.formControl}
+        >
+          <FormLabel component="legend">
+            Horizontal
+          </FormLabel>
+          <RadioGroup
+            name="horizontal"
+            value={horizontal}
+            onChange={handleHorizontalChange}
+          >
+            <FormControlLabel
+              value="right"
+              control={<Radio />}
+              label="Right"
+            />
+            <FormControlLabel
+              value="left"
+              control={<Radio />}
+              label="Left"
+            />
           </RadioGroup>
         </FormControl>
       </div>

@@ -78,7 +78,9 @@ import mediaQuery from 'css-mediaquery';
 
 function createMatchMedia(width) {
   return (query) => ({
-    matches: mediaQuery.match(query, { width }),
+    matches: mediaQuery.match(query, {
+      width,
+    }),
     addListener: () => {},
     removeListener: () => {},
   });
@@ -138,7 +140,9 @@ function handleRender(req, res) {
       theme={{
         props: {
           // Change the default options of useMediaQuery
-          MuiUseMediaQuery: { ssrMatchMedia },
+          MuiUseMediaQuery: {
+            ssrMatchMedia,
+          },
         },
       }}
     >

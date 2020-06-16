@@ -1,5 +1,9 @@
 import React from 'react';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import {
+  createStyles,
+  makeStyles,
+  Theme,
+} from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 
@@ -37,12 +41,18 @@ export default function MultilineTextFields() {
   const classes = useStyles();
   const [currency, setCurrency] = React.useState('EUR');
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
     setCurrency(event.target.value);
   };
 
   return (
-    <form className={classes.root} noValidate autoComplete="off">
+    <form
+      className={classes.root}
+      noValidate
+      autoComplete="off"
+    >
       <div>
         <TextField
           id="standard-select-currency"
@@ -53,7 +63,10 @@ export default function MultilineTextFields() {
           helperText="Please select your currency"
         >
           {currencies.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
+            <MenuItem
+              key={option.value}
+              value={option.value}
+            >
               {option.label}
             </MenuItem>
           ))}
@@ -87,7 +100,10 @@ export default function MultilineTextFields() {
           variant="filled"
         >
           {currencies.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
+            <MenuItem
+              key={option.value}
+              value={option.value}
+            >
               {option.label}
             </MenuItem>
           ))}
@@ -122,7 +138,10 @@ export default function MultilineTextFields() {
           variant="outlined"
         >
           {currencies.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
+            <MenuItem
+              key={option.value}
+              value={option.value}
+            >
               {option.label}
             </MenuItem>
           ))}

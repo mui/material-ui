@@ -33,7 +33,9 @@ function valuetext(value: number) {
 }
 
 function valueLabelFormat(value: number) {
-  return marks.findIndex((mark) => mark.value === value) + 1;
+  return (
+    marks.findIndex((mark) => mark.value === value) + 1
+  );
 }
 
 export default function DiscreteSlider() {
@@ -41,7 +43,10 @@ export default function DiscreteSlider() {
 
   return (
     <div className={classes.root}>
-      <Typography id="discrete-slider-restrict" gutterBottom>
+      <Typography
+        id="discrete-slider-restrict"
+        gutterBottom
+      >
         Restricted values
       </Typography>
       <Slider

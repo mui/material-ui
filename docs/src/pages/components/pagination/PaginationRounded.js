@@ -16,7 +16,11 @@ export default function PaginationRounded() {
   return (
     <div className={classes.root}>
       <Pagination count={10} shape="rounded" />
-      <Pagination count={10} variant="outlined" shape="rounded" />
+      <Pagination
+        count={10}
+        variant="outlined"
+        shape="rounded"
+      />
     </div>
   );
 }

@@ -1,5 +1,9 @@
 import React from 'react';
-import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
+import {
+  createStyles,
+  Theme,
+  makeStyles,
+} from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -20,7 +24,11 @@ export default function InsetList() {
   const classes = useStyles();
 
   return (
-    <List component="nav" className={classes.root} aria-label="contacts">
+    <List
+      component="nav"
+      className={classes.root}
+      aria-label="contacts"
+    >
       <ListItem button>
         <ListItemIcon>
           <StarIcon />

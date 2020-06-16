@@ -104,7 +104,11 @@ export default function Blog() {
               <FeaturedPost key={post.title} post={post} />
             ))}
           </Grid>
-          <Grid container spacing={5} className={classes.mainGrid}>
+          <Grid
+            container
+            spacing={5}
+            className={classes.mainGrid}
+          >
             <Main title="From the firehose" posts={posts} />
             <Sidebar
               title={sidebar.title}
@@ -115,7 +119,10 @@ export default function Blog() {
           </Grid>
         </main>
       </Container>
-      <Footer title="Footer" description="Something here to give the footer a purpose!" />
+      <Footer
+        title="Footer"
+        description="Something here to give the footer a purpose!"
+      />
     </React.Fragment>
   );
 }

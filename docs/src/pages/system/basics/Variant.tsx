@@ -1,7 +1,12 @@
 import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import NoSsr from '@material-ui/core/NoSsr';
-import { PropsFor, style, typography, TypographyProps } from '@material-ui/system';
+import {
+  PropsFor,
+  style,
+  typography,
+  TypographyProps,
+} from '@material-ui/system';
 
 const variant = style({
   prop: 'variant',
@@ -11,7 +16,9 @@ const variant = style({
 
 // ⚠ Text is already defined in the global context:
 // https://developer.mozilla.org/en-US/docs/Web/API/Text/Text.
-const Text = styled.span<PropsFor<typeof variant> & TypographyProps>`
+const Text = styled.span<
+  PropsFor<typeof variant> & TypographyProps
+>`
   font-family: Helvetica;
   ${variant}
   ${typography}

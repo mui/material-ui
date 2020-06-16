@@ -104,7 +104,10 @@ export default function PlainCssButtonDeep() {
     <div>
       <Button>Default</Button>
       <Button
-        classes={{ root: 'button', label: 'button-label' }}
+        classes={{
+          root: 'button',
+          label: 'button-label',
+        }}
       >
         Customized
       </Button>

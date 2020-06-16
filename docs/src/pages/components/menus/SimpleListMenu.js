@@ -22,7 +22,9 @@ const options = [
 export default function SimpleListMenu() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [selectedIndex, setSelectedIndex] = React.useState(1);
+  const [selectedIndex, setSelectedIndex] = React.useState(
+    1,
+  );
 
   const handleClickListItem = (event) => {
     setAnchorEl(event.currentTarget);
@@ -47,7 +49,10 @@ export default function SimpleListMenu() {
           aria-label="when device is locked"
           onClick={handleClickListItem}
         >
-          <ListItemText primary="When device is locked" secondary={options[selectedIndex]} />
+          <ListItemText
+            primary="When device is locked"
+            secondary={options[selectedIndex]}
+          />
         </ListItem>
       </List>
       <Menu
@@ -62,7 +67,9 @@ export default function SimpleListMenu() {
             key={option}
             disabled={index === 0}
             selected={index === selectedIndex}
-            onClick={(event) => handleMenuItemClick(event, index)}
+            onClick={(event) =>
+              handleMenuItemClick(event, index)
+            }
           >
             {option}
           </MenuItem>

@@ -8,7 +8,11 @@ export default function FontFamily() {
       <Box fontFamily="fontFamily" m={1}>
         Default
       </Box>
-      <Box fontFamily="Monospace" fontSize="h6.fontSize" m={1}>
+      <Box
+        fontFamily="Monospace"
+        fontSize="h6.fontSize"
+        m={1}
+      >
         Monospace
       </Box>
     </Typography>

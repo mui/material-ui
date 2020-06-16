@@ -1,5 +1,8 @@
 import React from 'react';
-import { emphasize, withStyles } from '@material-ui/core/styles';
+import {
+  emphasize,
+  withStyles,
+} from '@material-ui/core/styles';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Chip from '@material-ui/core/Chip';
 import HomeIcon from '@material-ui/icons/Home';
@@ -16,7 +19,10 @@ const StyledBreadcrumb = withStyles((theme) => ({
     },
     '&:active': {
       boxShadow: theme.shadows[1],
-      backgroundColor: emphasize(theme.palette.grey[300], 0.12),
+      backgroundColor: emphasize(
+        theme.palette.grey[300],
+        0.12,
+      ),
     },
   },
 }))(Chip); // TypeScript only: need a type cast here because https://github.com/Microsoft/TypeScript/issues/26591
@@ -36,7 +42,12 @@ export default function CustomizedBreadcrumbs() {
         icon={<HomeIcon fontSize="small" />}
         onClick={handleClick}
       />
-      <StyledBreadcrumb component="a" href="#" label="Catalog" onClick={handleClick} />
+      <StyledBreadcrumb
+        component="a"
+        href="#"
+        label="Catalog"
+        onClick={handleClick}
+      />
       <StyledBreadcrumb
         label="Accessories"
         deleteIcon={<ExpandMoreIcon />}

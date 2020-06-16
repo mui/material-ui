@@ -30,7 +30,11 @@ export default function ContinuousSlider() {
           <VolumeDown />
         </Grid>
         <Grid item xs>
-          <Slider value={value} onChange={handleChange} aria-labelledby="continuous-slider" />
+          <Slider
+            value={value}
+            onChange={handleChange}
+            aria-labelledby="continuous-slider"
+          />
         </Grid>
         <Grid item>
           <VolumeUp />
@@ -39,7 +43,11 @@ export default function ContinuousSlider() {
       <Typography id="disabled-slider" gutterBottom>
         Disabled slider
       </Typography>
-      <Slider disabled defaultValue={30} aria-labelledby="disabled-slider" />
+      <Slider
+        disabled
+        defaultValue={30}
+        aria-labelledby="disabled-slider"
+      />
     </div>
   );
 }

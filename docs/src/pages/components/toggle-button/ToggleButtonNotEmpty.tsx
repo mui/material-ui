@@ -19,15 +19,23 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ToggleButtonNotEmpty() {
   const [alignment, setAlignment] = React.useState('left');
-  const [formats, setFormats] = React.useState(() => ['phone']);
+  const [formats, setFormats] = React.useState(() => [
+    'phone',
+  ]);
 
-  const handleFormat = (event: React.MouseEvent<HTMLElement>, newFormats: string[]) => {
+  const handleFormat = (
+    event: React.MouseEvent<HTMLElement>,
+    newFormats: string[],
+  ) => {
     if (newFormats.length) {
       setFormats(newFormats);
     }
   };
 
-  const handleAlignment = (event: React.MouseEvent<HTMLElement>, newAlignment: string | null) => {
+  const handleAlignment = (
+    event: React.MouseEvent<HTMLElement>,
+    newAlignment: string | null,
+  ) => {
     if (newAlignment !== null) {
       setAlignment(newAlignment);
     }
@@ -45,16 +53,29 @@ export default function ToggleButtonNotEmpty() {
             onChange={handleAlignment}
             aria-label="text alignment"
           >
-            <ToggleButton value="left" aria-label="left aligned">
+            <ToggleButton
+              value="left"
+              aria-label="left aligned"
+            >
               <FormatAlignLeftIcon />
             </ToggleButton>
-            <ToggleButton value="center" aria-label="centered">
+            <ToggleButton
+              value="center"
+              aria-label="centered"
+            >
               <FormatAlignCenterIcon />
             </ToggleButton>
-            <ToggleButton value="right" aria-label="right aligned">
+            <ToggleButton
+              value="right"
+              aria-label="right aligned"
+            >
               <FormatAlignRightIcon />
             </ToggleButton>
-            <ToggleButton value="justify" aria-label="justified" disabled>
+            <ToggleButton
+              value="justify"
+              aria-label="justified"
+              disabled
+            >
               <FormatAlignJustifyIcon />
             </ToggleButton>
           </ToggleButtonGroup>
@@ -62,8 +83,15 @@ export default function ToggleButtonNotEmpty() {
       </Grid>
       <Grid item sm={12} md={6}>
         <div className={classes.toggleContainer}>
-          <ToggleButtonGroup value={formats} onChange={handleFormat} aria-label="device">
-            <ToggleButton value="laptop" aria-label="laptop">
+          <ToggleButtonGroup
+            value={formats}
+            onChange={handleFormat}
+            aria-label="device"
+          >
+            <ToggleButton
+              value="laptop"
+              aria-label="laptop"
+            >
               <LaptopIcon />
             </ToggleButton>
             <ToggleButton value="tv" aria-label="tv">

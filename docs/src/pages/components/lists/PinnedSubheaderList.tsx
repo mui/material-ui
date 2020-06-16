@@ -1,5 +1,9 @@
 import React from 'react';
-import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
+import {
+  createStyles,
+  Theme,
+  makeStyles,
+} from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -31,7 +35,10 @@ export default function PinnedSubheaderList() {
   return (
     <List className={classes.root} subheader={<li />}>
       {[0, 1, 2, 3, 4].map((sectionId) => (
-        <li key={`section-${sectionId}`} className={classes.listSection}>
+        <li
+          key={`section-${sectionId}`}
+          className={classes.listSection}
+        >
           <ul className={classes.ul}>
             <ListSubheader>{`I'm sticky ${sectionId}`}</ListSubheader>
             {[0, 1, 2].map((item) => (

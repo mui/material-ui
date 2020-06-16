@@ -40,7 +40,11 @@ export default function MultilineTextFields() {
   };
 
   return (
-    <form className={classes.root} noValidate autoComplete="off">
+    <form
+      className={classes.root}
+      noValidate
+      autoComplete="off"
+    >
       <div>
         <TextField
           id="standard-select-currency"
@@ -51,7 +55,10 @@ export default function MultilineTextFields() {
           helperText="Please select your currency"
         >
           {currencies.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
+            <MenuItem
+              key={option.value}
+              value={option.value}
+            >
               {option.label}
             </MenuItem>
           ))}
@@ -85,7 +92,10 @@ export default function MultilineTextFields() {
           variant="filled"
         >
           {currencies.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
+            <MenuItem
+              key={option.value}
+              value={option.value}
+            >
               {option.label}
             </MenuItem>
           ))}
@@ -120,7 +130,10 @@ export default function MultilineTextFields() {
           variant="outlined"
         >
           {currencies.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
+            <MenuItem
+              key={option.value}
+              value={option.value}
+            >
               {option.label}
             </MenuItem>
           ))}

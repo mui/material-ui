@@ -1,5 +1,9 @@
 import React from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import {
+  makeStyles,
+  Theme,
+  createStyles,
+} from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
@@ -27,7 +31,11 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 function getSteps() {
-  return ['Select campaign settings', 'Create an ad group', 'Create an ad'];
+  return [
+    'Select campaign settings',
+    'Create an ad group',
+    'Create an ad',
+  ];
 }
 
 function getStepContent(step: number) {
@@ -67,16 +75,27 @@ export default function VerticalLinearStepper() {
 
   return (
     <div className={classes.root}>
-      <Stepper activeStep={activeStep} orientation="vertical">
+      <Stepper
+        activeStep={activeStep}
+        orientation="vertical"
+      >
         {steps.map((label, index) => (
           <Step key={label}>
             <StepLabel
-              optional={index === 2 ? <Typography variant="caption">Last step</Typography> : null}
+              optional={
+                index === 2 ? (
+                  <Typography variant="caption">
+                    Last step
+                  </Typography>
+                ) : null
+              }
             >
               {label}
             </StepLabel>
             <StepContent>
-              <Typography>{getStepContent(index)}</Typography>
+              <Typography>
+                {getStepContent(index)}
+              </Typography>
               <div className={classes.actionsContainer}>
                 <div>
                   <Button
@@ -92,7 +111,9 @@ export default function VerticalLinearStepper() {
                     onClick={handleNext}
                     className={classes.button}
                   >
-                    {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+                    {activeStep === steps.length - 1
+                      ? 'Finish'
+                      : 'Next'}
                   </Button>
                 </div>
               </div>
@@ -101,9 +122,18 @@ export default function VerticalLinearStepper() {
         ))}
       </Stepper>
       {activeStep === steps.length && (
-        <Paper square elevation={0} className={classes.resetContainer}>
-          <Typography>All steps completed - you&apos;re finished</Typography>
-          <Button onClick={handleReset} className={classes.button}>
+        <Paper
+          square
+          elevation={0}
+          className={classes.resetContainer}
+        >
+          <Typography>
+            All steps completed - you&apos;re finished
+          </Typography>
+          <Button
+            onClick={handleReset}
+            className={classes.button}
+          >
             Reset
           </Button>
         </Paper>

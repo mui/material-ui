@@ -1,6 +1,9 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import {
+  makeStyles,
+  useTheme,
+} from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
@@ -42,10 +45,19 @@ export default function Themes() {
     <div className={classes.root}>
       <NoSsr defer>
         <Container maxWidth="md">
-          <Typography variant="h4" component="h2" align="center" gutterBottom>
+          <Typography
+            variant="h4"
+            component="h2"
+            align="center"
+            gutterBottom
+          >
             {t('themes')}
           </Typography>
-          <Typography variant="body1" align="center" gutterBottom>
+          <Typography
+            variant="body1"
+            align="center"
+            gutterBottom
+          >
             {t('themesDescr')}
           </Typography>
           <Link

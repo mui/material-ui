@@ -1,5 +1,9 @@
 import React from 'react';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import {
+  createStyles,
+  makeStyles,
+  Theme,
+} from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
@@ -44,10 +48,15 @@ export default function CheckboxListSecondary() {
             <ListItemAvatar>
               <Avatar
                 alt={`Avatar n°${value + 1}`}
-                src={`/static/images/avatar/${value + 1}.jpg`}
+                src={`/static/images/avatar/${
+                  value + 1
+                }.jpg`}
               />
             </ListItemAvatar>
-            <ListItemText id={labelId} primary={`Line item ${value + 1}`} />
+            <ListItemText
+              id={labelId}
+              primary={`Line item ${value + 1}`}
+            />
             <ListItemSecondaryAction>
               <Checkbox
                 edge="end"

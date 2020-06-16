@@ -73,10 +73,19 @@ export default function SpeedDials() {
   return (
     <div className={classes.root}>
       <FormControlLabel
-        control={<Switch checked={hidden} onChange={handleHiddenChange} color="primary" />}
+        control={
+          <Switch
+            checked={hidden}
+            onChange={handleHiddenChange}
+            color="primary"
+          />
+        }
         label="Hidden"
       />
-      <FormLabel className={classes.radioGroup} component="legend">
+      <FormLabel
+        className={classes.radioGroup}
+        component="legend"
+      >
         Direction
       </FormLabel>
       <RadioGroup
@@ -86,10 +95,26 @@ export default function SpeedDials() {
         onChange={handleDirectionChange}
         row
       >
-        <FormControlLabel value="up" control={<Radio />} label="Up" />
-        <FormControlLabel value="right" control={<Radio />} label="Right" />
-        <FormControlLabel value="down" control={<Radio />} label="Down" />
-        <FormControlLabel value="left" control={<Radio />} label="Left" />
+        <FormControlLabel
+          value="up"
+          control={<Radio />}
+          label="Up"
+        />
+        <FormControlLabel
+          value="right"
+          control={<Radio />}
+          label="Right"
+        />
+        <FormControlLabel
+          value="down"
+          control={<Radio />}
+          label="Down"
+        />
+        <FormControlLabel
+          value="left"
+          control={<Radio />}
+          label="Left"
+        />
       </RadioGroup>
       <div className={classes.exampleWrapper}>
         <SpeedDial

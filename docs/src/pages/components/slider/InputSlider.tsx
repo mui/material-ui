@@ -17,14 +17,25 @@ const useStyles = makeStyles({
 
 export default function InputSlider() {
   const classes = useStyles();
-  const [value, setValue] = React.useState<number | string | Array<number | string>>(30);
+  const [value, setValue] = React.useState<
+    number | string | Array<number | string>
+  >(30);
 
-  const handleSliderChange = (event: any, newValue: number | number[]) => {
+  const handleSliderChange = (
+    event: any,
+    newValue: number | number[],
+  ) => {
     setValue(newValue);
   };
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value === '' ? '' : Number(event.target.value));
+  const handleInputChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    setValue(
+      event.target.value === ''
+        ? ''
+        : Number(event.target.value),
+    );
   };
 
   const handleBlur = () => {

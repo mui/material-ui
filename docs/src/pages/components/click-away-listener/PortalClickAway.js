@@ -37,7 +37,8 @@ export default function PortalClickAway() {
         {open ? (
           <Portal>
             <div className={classes.dropdown}>
-              Click me, I will stay visible until you click outside.
+              Click me, I will stay visible until you click
+              outside.
             </div>
           </Portal>
         ) : null}
