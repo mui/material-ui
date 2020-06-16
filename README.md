@@ -20,7 +20,7 @@
 [![PeerDependencies](https://david-dm.org/mui-org/material-ui/master/peer-status.svg?path=packages/material-ui)](https://david-dm.org/mui-org/material-ui/master?type=peer&path=packages/material-ui)
 [![Dependencies](https://david-dm.org/mui-org/material-ui/master/status.svg?path=packages/material-ui)](https://david-dm.org/mui-org/material-ui/master?path=packages/material-ui)
 [![DevDependencies](https://david-dm.org/mui-org/material-ui/master/dev-status.svg?path=packages/material-ui)](https://david-dm.org/mui-org/material-ui/master?type=dev)
-[![Average time to resolve an issue](https://isitmaintained.com/badge/resolution/mui-org/material-ui.svg)](https://isitmaintained.com/project/mui-org/material-ui "Average time to resolve an issue")
+[![Average time to resolve an issue](https://isitmaintained.com/badge/resolution/mui-org/material-ui.svg)](https://isitmaintained.com/project/mui-org/material-ui 'Average time to resolve an issue')
 [![Crowdin](https://d322cqt584bo4o.cloudfront.net/material-ui-docs/localized.svg?cache=v1)](https://translate.material-ui.com/project/material-ui-docs)
 
 </div>
@@ -30,6 +30,7 @@
 Material-UI is available as an [npm package](https://www.npmjs.com/package/@material-ui/core).
 
 **[Stable channel v4](https://material-ui.com/)**
+
 ```sh
 // with npm
 npm install @material-ui/core
@@ -52,7 +53,7 @@ Please note that `@next` will only point to pre-releases; to get the latest stab
   <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="sencha" href="https://www.sencha.com/products/extreact/extreact-for-material-ui/?utm_source=materialui&utm_medium=referral&utm_content=product-200429-extreactmaterialui" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="128" width="128" src="https://material-ui.com/static/in-house/sencha-256x256.png" alt="sencha" title="UI Components for Productive Dev Teams" loading="lazy" /></a>
 </p>
 
-Diamond Sponsors are those who have pledged $1,500/month or more to Material-UI.
+Diamond Sponsors are those who have pledged \$1,500/month or more to Material-UI.
 
 ### Gold 🏆
 
@@ -69,7 +70,7 @@ via [OpenCollective](https://opencollective.com/material-ui)
   <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="callemall" href="https://www.call-em-all.com" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img src="https://images.opencollective.com/callemall/a6946da/logo/96.png" srcset="https://images.opencollective.com/callemall/a6946da/logo/192.png 2x" alt="call-em-all" title="The easy way to message your group" height="96" width="96" loading="lazy"></a>
 </p>
 
-Gold Sponsors are those who have pledged $500/month or more to Material-UI.
+Gold Sponsors are those who have pledged \$500/month or more to Material-UI.
 
 ### There is more!
 
@@ -101,7 +102,7 @@ Yes, it's really all you need to get started as you can see in this live and int
 
 ## Questions
 
-For *how-to* questions and other non-issues,
+For _how-to_ questions and other non-issues,
 please use [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui) instead of Github issues.
 There is a StackOverflow tag called "material-ui" that you can use to tag your questions.
 

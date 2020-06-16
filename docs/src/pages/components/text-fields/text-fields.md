@@ -133,10 +133,13 @@ In some circumstances, we can't determine the "shrink" state (number input, date
 ![shrink](/static/images/text-fields/shrink.png)
 
 To workaround the issue, you can force the "shrink" state of the label.
+
 ```jsx
 <TextField InputLabelProps={{ shrink: true }} />
 ```
+
 or
+
 ```jsx
 <InputLabel shrink>Count</InputLabel>
 ```

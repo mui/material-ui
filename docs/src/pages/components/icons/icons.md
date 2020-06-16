@@ -82,7 +82,7 @@ This component extends the native `<svg>` element:
 - It comes with built-in accessibility.
 - SVG elements should be scaled for a 24x24px viewport, so the resulting icon can be used as is, or included as a child for other Material-UI components that use icons. (This can be customized with the `viewBox` attribute).
 - By default, the component inherits the current color.
-Optionally, you can apply one of the theme colors using the `color` prop.
+  Optionally, you can apply one of the theme colors using the `color` prop.
 
 ```jsx
 function HomeIcon(props) {
@@ -168,7 +168,7 @@ for example:
 ```jsx
 import Icon from '@material-ui/core/Icon';
 
-<Icon>star</Icon>
+<Icon>star</Icon>;
 ```
 
 By default, an Icon will inherit the current text color.
@@ -195,10 +195,11 @@ For more details, you can check out [why GitHub migrated from font icons to SVG 
 
 Icons can convey all sorts of meaningful information, so it’s important that they reach the largest amount of people possible.
 There are two use cases you’ll want to consider:
+
 - **Decorative Icons** are only being used for visual or branding reinforcement.
-If they were removed from the page, users would still understand and be able to use your page.
+  If they were removed from the page, users would still understand and be able to use your page.
 - **Semantic Icons** are ones that you’re using to convey meaning, rather than just pure decoration.
-This includes icons without text next to them used as interactive controls — buttons, form elements, toggles, etc.
+  This includes icons without text next to them used as interactive controls — buttons, form elements, toggles, etc.
 
 ### Decorative SVG Icons
 
@@ -222,7 +223,7 @@ import SvgIcon from '@material-ui/core/SvgIcon';
   <SvgIcon>
     <path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z" />
   </SvgIcon>
-</IconButton>
+</IconButton>;
 ```
 
 ### Decorative Font Icons

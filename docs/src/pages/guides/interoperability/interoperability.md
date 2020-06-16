@@ -22,6 +22,7 @@ Nothing fancy, just plain CSS.
 [![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/plain-css-mtzri)
 
 **PlainCssButton.css**
+
 ```css
 .button {
   background-color: #6772e5;
@@ -35,6 +36,7 @@ Nothing fancy, just plain CSS.
 ```
 
 **PlainCssButton.js**
+
 ```jsx
 import React from 'react';
 import Button from '@material-ui/core/Button';
@@ -57,10 +59,8 @@ export default function PlainCssButton() {
 ```jsx
 import { StylesProvider } from '@material-ui/core/styles';
 
-<StylesProvider injectFirst>
-  {/* Your component tree.
-      Now, you can override Material-UI's styles. */}
-</StylesProvider>
+<StylesProvider injectFirst>{/* Your component tree.
+      Now, you can override Material-UI's styles. */}</StylesProvider>;
 ```
 
 ### Deeper elements
@@ -75,6 +75,7 @@ The following example overrides the `label` style of `Button` in addition to the
 {{"demo": "pages/guides/interoperability/StyledComponents.js", "hideToolbar": true}}
 
 **PlainCssButtonDeep.css**
+
 ```css
 .button {
   background-color: #6772e5;
@@ -100,9 +101,7 @@ export default function PlainCssButtonDeep() {
   return (
     <div>
       <Button>Default</Button>
-      <Button classes={{ root: 'button', label: 'button-label' }}>
-        Customized
-      </Button>
+      <Button classes={{ root: 'button', label: 'button-label' }}>Customized</Button>
     </div>
   );
 }
@@ -116,6 +115,7 @@ Explicitly providing the class names to the component is too much effort?
 [![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/global-css-bir9e)
 
 **GlobalCssButton.css**
+
 ```css
 .MuiButton-root {
   background-color: #6772e5;
@@ -131,6 +131,7 @@ Explicitly providing the class names to the component is too much effort?
 ```
 
 **GlobalCssButton.js**
+
 ```jsx
 import React from 'react';
 import Button from '@material-ui/core/Button';
@@ -148,10 +149,8 @@ export default function GlobalCssButton() {
 ```jsx
 import { StylesProvider } from '@material-ui/core/styles';
 
-<StylesProvider injectFirst>
-  {/* Your component tree.
-      Now, you can override Material-UI's styles. */}
-</StylesProvider>
+<StylesProvider injectFirst>{/* Your component tree.
+      Now, you can override Material-UI's styles. */}</StylesProvider>;
 ```
 
 ## Styled Components
@@ -188,7 +187,6 @@ export default function StyledComponents() {
     </div>
   );
 }
-
 ```
 
 ### Controlling priority ⚠️
@@ -199,10 +197,8 @@ The best approach to ensuring styled-components styles are loaded last is to cha
 ```jsx
 import { StylesProvider } from '@material-ui/core/styles';
 
-<StylesProvider injectFirst>
-  {/* Your component tree.
-      Now, you can override Material-UI's styles. */}
-</StylesProvider>
+<StylesProvider injectFirst>{/* Your component tree.
+      Now, you can override Material-UI's styles. */}</StylesProvider>;
 ```
 
 Another approach is to use the `&&` characters in styled-components to [bump up specificity](https://www.styled-components.com/docs/advanced#issues-with-specificity) by repeating the class name. Avoid the usage of `!important`.
@@ -347,6 +343,7 @@ bundling solution people are using.
 [![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/css-modules-3j29h)
 
 **CssModulesButton.css**
+
 ```css
 .button {
   background-color: #6772e5;
@@ -360,6 +357,7 @@ bundling solution people are using.
 ```
 
 **CssModulesButton.js**
+
 ```jsx
 import React from 'react';
 // webpack, parcel or else will inject the CSS into the page
@@ -383,10 +381,8 @@ export default function CssModulesButton() {
 ```jsx
 import { StylesProvider } from '@material-ui/core/styles';
 
-<StylesProvider injectFirst>
-  {/* Your component tree.
-      Now, you can override Material-UI's styles. */}
-</StylesProvider>
+<StylesProvider injectFirst>{/* Your component tree.
+      Now, you can override Material-UI's styles. */}</StylesProvider>;
 ```
 
 ### Deeper elements
@@ -401,6 +397,7 @@ The following example overrides the `label` style of `Button` in addition to the
 {{"demo": "pages/guides/interoperability/StyledComponents.js", "hideToolbar": true}}
 
 **CssModulesButtonDeep.css**
+
 ```css
 .root {
   background-color: #6772e5;
@@ -480,10 +477,8 @@ export default function EmotionCSS() {
 ```jsx
 import { StylesProvider } from '@material-ui/core/styles';
 
-<StylesProvider injectFirst>
-  {/* Your component tree.
-      Now, you can override Material-UI's styles. */}
-</StylesProvider>
+<StylesProvider injectFirst>{/* Your component tree.
+      Now, you can override Material-UI's styles. */}</StylesProvider>;
 ```
 
 ### Theme
@@ -495,7 +490,7 @@ We encourage to share the same theme object between Material-UI and your styles.
 
 ```jsx
 <Button
-  css={theme => css`
+  css={(theme) => css`
     background-color: ${theme.palette.primary.main};
     color: #fff;
     box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);

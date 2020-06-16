@@ -12,9 +12,9 @@ Here are the most significant improvements in August:
 
   ![Material Icons](/static/blog/august-2019-update/material-icons.png)
 
- Developers spend a lot of time finding the right icons for each context. We have seen an opportunity to make it simpler. We keep a close eye on the "no results" search event to improve our synonyms list.
+Developers spend a lot of time finding the right icons for each context. We have seen an opportunity to make it simpler. We keep a close eye on the "no results" search event to improve our synonyms list.
 
- At the same time, the list of icons has grown. You can find 10 new brand icons and 61 new official material icons.
+At the same time, the list of icons has grown. You can find 10 new brand icons and 61 new official material icons.
 
 - 🦴 We have introduced a new [Skeleton component](/components/skeleton/) in the lab.
 
@@ -31,7 +31,7 @@ But this summary is just scratching the surface. We have accepted 193 commits fr
 
 ## Our roadmap intent for September
 
-*(We'll do our best, no guarantee!)*
+_(We'll do our best, no guarantee!)_
 
 - 🔍 We will keep working on providing ready to use autocomplete, combo box, and multi-select components. We announced it last month but have made little progress so far due to focusing on fixing bugs in existing components. Let's make it happen!
 

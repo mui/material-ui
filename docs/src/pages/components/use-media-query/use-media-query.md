@@ -46,7 +46,7 @@ Alternatively, you can use a callback function, accepting the theme as a first a
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 function MyComponent() {
-  const matches = useMediaQuery(theme => theme.breakpoints.up('sm'));
+  const matches = useMediaQuery((theme) => theme.breakpoints.up('sm'));
 
   return <span>{`theme.breakpoints.up('sm') matches: ${matches}`}</span>;
 }
@@ -71,7 +71,7 @@ Using [css-mediaquery](https://github.com/ericf/css-mediaquery) to emulate it is
 import mediaQuery from 'css-mediaquery';
 
 function createMatchMedia(width) {
-  return query => ({
+  return (query) => ({
     matches: mediaQuery.match(query, { width }),
     addListener: () => {},
     removeListener: () => {},
@@ -88,7 +88,7 @@ describe('MyTests', () => {
 ## Server-side rendering
 
 > ⚠️ Server-side rendering and client-side media queries are fundamentally at odds.
-Be aware of the tradeoff. The support can only be partial.
+> Be aware of the tradeoff. The support can only be partial.
 
 Try relying on client-side CSS media queries first.
 For instance, you could use:
@@ -118,7 +118,7 @@ import { ThemeProvider } from '@material-ui/core/styles';
 
 function handleRender(req, res) {
   const deviceType = parser(req.headers['user-agent']).device.type || 'desktop';
-  const ssrMatchMedia = query => ({
+  const ssrMatchMedia = (query) => ({
     matches: mediaQuery.match(query, {
       // The estimated CSS width of the browser.
       width: deviceType === 'mobile' ? '0px' : '1024px',
@@ -159,18 +159,19 @@ You can reproduce the same behavior with a `useWidth` hook:
 
 #### Arguments
 
-1. `query` (*String* | *Function*): A string representing the media query to handle or a callback function accepting the theme (in the context) that returns a string.
-2. `options` (*Object* [optional]):
-  - `options.defaultMatches` (*Boolean* [optional]):
+1. `query` (_String_ | _Function_): A string representing the media query to handle or a callback function accepting the theme (in the context) that returns a string.
+2. `options` (_Object_ [optional]):
+
+- `options.defaultMatches` (_Boolean_ [optional]):
   As `window.matchMedia()` is unavailable on the server,
   we return a default matches during the first mount. The default value is `false`.
-  - `options.matchMedia` (*Function* [optional]) You can provide your own implementation of *matchMedia*. This can be used for handling an iframe content window.
-  - `options.noSsr` (*Boolean* [optional]): Defaults to `false`.
+- `options.matchMedia` (_Function_ [optional]) You can provide your own implementation of _matchMedia_. This can be used for handling an iframe content window.
+- `options.noSsr` (_Boolean_ [optional]): Defaults to `false`.
   In order to perform the server-side rendering reconciliation, it needs to render twice.
   A first time with nothing and a second time with the children.
   This double pass rendering cycle comes with a drawback. It's slower.
   You can set this flag to `true` if you are **not doing server-side rendering**.
-  - `options.ssrMatchMedia` (*Function* [optional]) You can provide your own implementation of *matchMedia* in a [server-side rendering context](#server-side-rendering).
+- `options.ssrMatchMedia` (_Function_ [optional]) You can provide your own implementation of _matchMedia_ in a [server-side rendering context](#server-side-rendering).
 
 Note: You can change the default options using the [`default props`](/customization/globals/#default-props) feature of the theme with the `MuiUseMediaQuery` key.
 

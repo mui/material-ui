@@ -8,9 +8,9 @@ Material-UI supports the latest, stable releases of all major browsers and platf
 It also supports Internet Explorer 11.
 You don't need to provide any JavaScript polyfill as it manages unsupported browser features internally and in isolation.
 
-| IE    | Edge   | Firefox | Chrome | Safari | Googlebot |
-|:------|:-------|:--------|:-------|:-------|:----------|
-| 11    | >= 14  | >= 52   | >= 49  | >= 10  | ✅        |
+| IE  | Edge  | Firefox | Chrome | Safari | Googlebot |
+| :-- | :---- | :------ | :----- | :----- | :-------- |
+| 11  | >= 14 | >= 52   | >= 49  | >= 10  | ✅        |
 
 Because Googlebot uses a web rendering service (WRS) to index the page content, it's critical that Material-UI supports it.
 [WRS regularly updates the rendering engine it uses](https://webmasters.googleblog.com/2019/05/the-new-evergreen-googlebot.html).

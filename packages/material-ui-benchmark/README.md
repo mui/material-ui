@@ -2,7 +2,7 @@
 
 ## `@material-ui/core`
 
-*Synthetic benchmark*
+_Synthetic benchmark_
 
 ```sh
 yarn core
@@ -17,7 +17,7 @@ Markdown x 954 ops/sec ±1.35% (187 runs sampled)
 
 ## `@material-ui/docs`
 
-*Synthetic benchmark*
+_Synthetic benchmark_
 
 ```sh
 yarn docs
@@ -28,7 +28,7 @@ MarkdownElement x 3,941 ops/sec ±5.53% (185 runs sampled)
 
 ## `@material-ui/styles`
 
-*Synthetic benchmark*
+_Synthetic benchmark_
 
 ```sh
 yarn styles
@@ -46,7 +46,7 @@ Naked x 58,694 ops/sec ±0.86% (188 runs sampled)
 
 ## `@material-ui/system`
 
-*Synthetic benchmark*
+_Synthetic benchmark_
 
 ```sh
 yarn system

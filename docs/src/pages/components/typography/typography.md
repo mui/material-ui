@@ -11,7 +11,7 @@ A [typographic scale](https://material.io/design/typography/#type-scale) has a l
 
 ## General
 
-The *Roboto* font will **not** be automatically loaded by Material-UI.
+The _Roboto_ font will **not** be automatically loaded by Material-UI.
 The developer is responsible for loading all fonts used in their application.
 Roboto Font has a few easy ways to get started. For more advanced configuration, check out
 [the theme customization section](/customization/typography/).
@@ -21,7 +21,10 @@ Roboto Font has a few easy ways to get started. For more advanced configuration,
 Shown below is a sample link markup used to load the Roboto font from a CDN:
 
 ```html
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+/>
 ```
 
 ## Install with npm
@@ -62,10 +65,12 @@ It’s important to realize that the style of a typography is independent from t
 - You can change the underlying element for a one time occasion with the `component` property:
 
 ```jsx
-{/* There is already an h1 in the page, let's not duplicate it. */}
+{
+  /* There is already an h1 in the page, let's not duplicate it. */
+}
 <Typography variant="h1" component="h2">
   h1. Heading
-</Typography>
+</Typography>;
 ```
 
 - You can change the mapping [globally using the theme](/customization/globals/#default-props):

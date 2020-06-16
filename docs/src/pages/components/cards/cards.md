@@ -35,7 +35,7 @@ Example of a card using an image to reinforce the content.
 
 {{"demo": "pages/components/cards/MediaCard.js", "bg": true}}
 
-By default, we use the combination of a `<div>` element and a *background image* to display the media. It can be problematic in some situations. For instance, you might want to display a video or a responsive image. Use the `component` property for these use cases:
+By default, we use the combination of a `<div>` element and a _background image_ to display the media. It can be problematic in some situations. For instance, you might want to display a video or a responsive image. Use the `component` property for these use cases:
 
 {{"demo": "pages/components/cards/ImgMediaCard.js", "bg": true}}
 
@@ -52,4 +52,3 @@ Here's an example of a media control card.
 ## Customization
 
 🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/components/card).
-

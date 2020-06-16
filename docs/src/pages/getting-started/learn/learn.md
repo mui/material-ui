@@ -40,6 +40,7 @@ Here are some recommended resources, some of which are free.
 ### Paid
 
 - **Apply Google Material Design**: This course teaches the fundamentals of Google Material Design and how to develop an end-to-end flight search and booking application using Material-UI and React.
+
   - 📹 [Watch Course Trailer](https://www.youtube.com/watch?v=hhZ6yFvCWho)
   - 💻 [The Course](https://bonsaiilabs.com/courseDetail/material-ui-with-react)
 
