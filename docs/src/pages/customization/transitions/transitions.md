@@ -10,7 +10,7 @@ theme.transitions.create(['background-color', 'transform']);
 
 ## Custom duration
 
-You can change some of the durations by providing a number.
+You can change some or all of the duration values, or provide your own (for use in the `create()` helper). This example uses the default values which are in milliseconds. You only need to provide the keys you wish to change or add a value for. 
 
 ```js
 const theme = createMuiTheme({
