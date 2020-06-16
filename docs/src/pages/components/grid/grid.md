@@ -89,15 +89,15 @@ There are 3 available workarounds:
 1. Not using the spacing feature and implementing it in user space `spacing={0}` (default).
 2. Applying padding to the parent with at least half the spacing value applied to the child:
 
-```jsx
-<body>
-  <div style={{ padding: 20 }}>
-    <Grid container spacing={5}>
-      //...
-    </Grid>
-  </div>
-</body>
-```
+   ```jsx
+   <body>
+     <div style={{ padding: 20 }}>
+       <Grid container spacing={5}>
+         //...
+       </Grid>
+     </div>
+   </body>
+   ```
 
 3. Adding `overflow-x: hidden;` to the parent.
 

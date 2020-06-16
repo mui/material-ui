@@ -17,8 +17,8 @@ Where _sides_ is one of:
 - `b` - for classes that set _margin-bottom_ or _padding-bottom_
 - `l` - for classes that set _margin-left_ or _padding-left_
 - `r` - for classes that set _margin-right_ or _padding-right_
-- `x` - for classes that set both **-left\* and **-right\*
-- `y` - for classes that set both **-top\* and **-bottom\*
+- `x` - for classes that set both _\*-left_ and _\*-right_
+- `y` - for classes that set both _\*-top_ and _\*-bottom_
 - blank - for classes that set a margin or padding on all 4 sides of the element
 
 ## Transformation

@@ -102,8 +102,8 @@ Here is an example with the _disable_ state and the button component using a **p
 .Button {
   color: black;
 }
+/* Increase the specificity */
 .Button:disabled {
-  /* Increase the specificity */
   color: white;
 }
 ```
@@ -120,8 +120,8 @@ Aside from accessing nested elements, the `classes` property can be used to cust
 .MenuItem {
   color: black;
 }
+/* Increase the specificity */
 .MenuItem.selected {
-  /* Increase the specificity */
   color: blue;
 }
 ```

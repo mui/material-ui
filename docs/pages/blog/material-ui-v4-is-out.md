@@ -78,8 +78,8 @@ import { StylesProvider } from '@material-ui/styles';
 .MenuItem {
   color: black;
 }
+/* We increase the specificity */
 .MenuItem.Mui-selected {
-  /* We increase the specificity */
   color: blue;
 }
 ```
