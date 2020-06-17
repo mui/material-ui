@@ -93,11 +93,15 @@ async function transpileFile(tsxPath, program, ignoreCache = false) {
     const prettierConfig = prettier.resolveConfig.sync(jsPath, {
       config: path.join(workspaceRoot, 'prettier.config.js'),
     });
-    const prettified = prettier.format(codeWithPropTypes, { ...prettierConfig, filepath: jsPath });
+    const prettierFormat = (jsSource) =>
+      prettier.format(jsSource, { ...prettierConfig, filepath: jsPath });
+
+    const prettified = prettierFormat(codeWithPropTypes);
     const formatted = fixBabelGeneratorIssues(prettified);
     const correctedLineEndings = fixLineEndings(source, formatted);
 
-    await fse.writeFile(jsPath, correctedLineEndings);
+    // removed blank lines change potential formatting
+    await fse.writeFile(jsPath, prettierFormat(correctedLineEndings));
     return TranspileResult.Success;
   } catch (err) {
     console.error('Something went wrong transpiling %s\n%s\n', tsxPath, err);
