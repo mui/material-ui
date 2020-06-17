@@ -164,6 +164,7 @@
     "/components/tables": "Table",
     "/components/tabs": "Tabs",
     "/components/text-fields": "Text Field",
+    "/components/timeline": "Timeline",
     "/components/toggle-button": "Toggle Button",
     "/components/tooltips": "Tooltip",
     "/components/transfer-list": "Transfer List",
