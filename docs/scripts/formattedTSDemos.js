@@ -31,10 +31,6 @@ const babelConfig = {
 
 const workspaceRoot = path.join(__dirname, '../../');
 
-const prettierConfig = prettier.resolveConfig.sync(process.cwd(), {
-  config: path.join(workspaceRoot, 'prettier.config.js'),
-});
-
 async function getFiles(root) {
   const files = [];
 
@@ -94,7 +90,10 @@ async function transpileFile(tsxPath, program, ignoreCache = false) {
     });
     const codeWithPropTypes = typescriptToProptypes.inject(propTypesAST, code);
 
-    const prettified = prettier.format(codeWithPropTypes, { ...prettierConfig, filepath: tsxPath });
+    const prettierConfig = prettier.resolveConfig.sync(jsPath, {
+      config: path.join(workspaceRoot, 'prettier.config.js'),
+    });
+    const prettified = prettier.format(codeWithPropTypes, { ...prettierConfig, filepath: jsPath });
     const formatted = fixBabelGeneratorIssues(prettified);
     const correctedLineEndings = fixLineEndings(source, formatted);
 

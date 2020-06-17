@@ -22,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SpacingGrid() {
   const [spacing, setSpacing] = React.useState(2);
+
   const classes = useStyles();
 
   const handleChange = (event) => {

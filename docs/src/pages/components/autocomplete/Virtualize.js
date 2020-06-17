@@ -27,6 +27,7 @@ const OuterElementContext = React.createContext({});
 
 const OuterElementType = React.forwardRef((props, ref) => {
   const outerProps = React.useContext(OuterElementContext);
+
   return <div ref={ref} {...props} {...outerProps} />;
 });
 
@@ -49,6 +50,7 @@ const ListboxComponent = React.forwardRef(
     const smUp = useMediaQuery(theme.breakpoints.up('sm'), {
       noSsr: true,
     });
+
     const itemCount = itemData.length;
     const itemSize = smUp ? 36 : 48;
 

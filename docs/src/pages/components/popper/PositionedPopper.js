@@ -20,6 +20,7 @@ export default function PositionedPopper() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [open, setOpen] = React.useState(false);
   const [placement, setPlacement] = React.useState();
+
   const classes = useStyles();
 
   const handleClick = (newPlacement) => (event) => {

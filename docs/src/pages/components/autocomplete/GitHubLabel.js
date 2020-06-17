@@ -133,6 +133,7 @@ export default function GitHubLabel() {
     labels[1],
     labels[11],
   ]);
+
   const [pendingValue, setPendingValue] = React.useState(
     [],
   );

@@ -34,6 +34,7 @@ export default function GoogleMaps() {
   const [value, setValue] = React.useState(null);
   const [inputValue, setInputValue] = React.useState('');
   const [options, setOptions] = React.useState([]);
+
   const loaded = React.useRef(false);
 
   if (typeof window !== 'undefined' && !loaded.current) {
@@ -114,6 +115,7 @@ export default function GoogleMaps() {
         setOptions(
           newValue ? [newValue, ...options] : options,
         );
+
         setValue(newValue);
       }}
       onInputChange={(event, newInputValue) => {

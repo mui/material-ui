@@ -6,6 +6,7 @@ const options = ['Option 1', 'Option 2'];
 
 export default function ControllableStates() {
   const [value, setValue] = React.useState(options[0]);
+
   const [inputValue, setInputValue] = React.useState('');
 
   return (

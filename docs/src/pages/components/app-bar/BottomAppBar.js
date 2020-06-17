@@ -126,6 +126,7 @@ export default function BottomAppBar() {
                     Today
                   </ListSubheader>
                 )}
+
                 {id === 3 && (
                   <ListSubheader
                     className={classes.subheader}
@@ -133,6 +134,7 @@ export default function BottomAppBar() {
                     Yesterday
                   </ListSubheader>
                 )}
+
                 <ListItem button>
                   <ListItemAvatar>
                     <Avatar

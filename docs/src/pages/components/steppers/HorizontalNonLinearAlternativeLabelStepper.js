@@ -52,7 +52,9 @@ export default function HorizontalNonLinearAlternativeLabelStepper() {
   const [completed, setCompleted] = React.useState(
     new Set(),
   );
+
   const [skipped, setSkipped] = React.useState(new Set());
+
   const steps = getSteps();
 
   const totalSteps = () => {

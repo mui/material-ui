@@ -72,6 +72,7 @@ function stableSort(array, comparator) {
     el,
     index,
   ]);
+
   stabilizedThis.sort((a, b) => {
     const order = comparator(a[0], b[0]);
     if (order !== 0) return order;
@@ -281,7 +282,9 @@ export default function EnhancedTable() {
   const classes = useStyles();
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('calories');
+
   const [selected, setSelected] = React.useState([]);
+
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
@@ -378,6 +381,7 @@ export default function EnhancedTable() {
                   const isItemSelected = isSelected(
                     row.name,
                   );
+
                   const labelId = `enhanced-table-checkbox-${index}`;
 
                   return (

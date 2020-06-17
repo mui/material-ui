@@ -27,6 +27,7 @@ export default function Asynchronous() {
       const response = await fetch(
         'https://country.register.gov.uk/records.json?page-size=5000',
       );
+
       await sleep(1e3); // For demo purposes.
       const countries = await response.json();
 
