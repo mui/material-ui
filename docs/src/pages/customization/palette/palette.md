@@ -53,7 +53,7 @@ interface PaletteColor {
 ### Using a color object
 
 The simplest way to customize a palette color is to import one or more of the provided colors
-and apply them to a palette:
+and apply them:
 
 ```js
 import { createMuiTheme } from '@material-ui/core/styles';
