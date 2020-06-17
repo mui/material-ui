@@ -23,7 +23,7 @@ You can explore the default values of the palette using [the theme explorer](/cu
 {{"demo": "pages/customization/palette/Intentions.js", "bg": "inline", "hideToolbar": true}}
 
 The default palette uses the shades prefixed with `A` (`A200`, etc.) for the secondary palette color,
-and the un-prefixed shades for the other colors.
+and the un-prefixed shades for the other palette colors.
 
 ## Customization
 
