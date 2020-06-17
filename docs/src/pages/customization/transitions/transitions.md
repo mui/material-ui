@@ -1,6 +1,6 @@
 # Transitions
 
-<p class="description">The transitions inside the theme, enable you to customze durations and easings of the varios transitions used across the components, and offer utility for creating custom transitions.</p>
+<p class="description">The theme key enables you to customize the durations and easings of the various transitions used across Material-UI components, and offers a utility for creating custom transitions.</p>
 
 ## Durations
 
