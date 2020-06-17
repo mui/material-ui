@@ -70,7 +70,7 @@ const theme = createMuiTheme({
 
 ## `create`
 
-Use the <code>theme.transitions.create()</code> helper to create consistent transitions on the elements of your UI.</p>
+Use the <code>theme.transitions.create()</code> helper to create consistent transitions for the elements of your UI.</p>
 
 ```js
 theme.transitions.create(['background-color', 'transform']);
