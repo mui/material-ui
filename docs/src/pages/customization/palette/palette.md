@@ -4,7 +4,7 @@
 
 ## Palette colors
 
-A color is a mapping of a palette to a given meaning within your application.
+A "palette color" is a mapping of colors to a given intention within your application.
 The theme exposes the following palette colors (accessible under `theme.palette.`):
 
 - *primary* - used to represent primary interface elements for a user. It's the color displayed most frequently across your app's screens and components.
