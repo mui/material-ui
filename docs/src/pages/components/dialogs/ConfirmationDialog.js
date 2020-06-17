@@ -31,12 +31,7 @@ const options = [
 ];
 
 function ConfirmationDialogRaw(props) {
-  const {
-    onClose,
-    value: valueProp,
-    open,
-    ...other
-  } = props;
+  const { onClose, value: valueProp, open, ...other } = props;
   const [value, setValue] = React.useState(valueProp);
   const radioGroupRef = React.useRef(null);
 
@@ -74,9 +69,7 @@ function ConfirmationDialogRaw(props) {
       open={open}
       {...other}
     >
-      <DialogTitle id="confirmation-dialog-title">
-        Phone Ringtone
-      </DialogTitle>
+      <DialogTitle id="confirmation-dialog-title">Phone Ringtone</DialogTitle>
       <DialogContent dividers>
         <RadioGroup
           ref={radioGroupRef}
@@ -96,11 +89,7 @@ function ConfirmationDialogRaw(props) {
         </RadioGroup>
       </DialogContent>
       <DialogActions>
-        <Button
-          autoFocus
-          onClick={handleCancel}
-          color="primary"
-        >
+        <Button autoFocus onClick={handleCancel} color="primary">
           Cancel
         </Button>
         <Button onClick={handleOk} color="primary">
@@ -161,10 +150,7 @@ export default function ConfirmationDialog() {
           onClick={handleClickListItem}
           role="listitem"
         >
-          <ListItemText
-            primary="Phone ringtone"
-            secondary={value}
-          />
+          <ListItemText primary="Phone ringtone" secondary={value} />
         </ListItem>
         <ListItem button divider disabled role="listitem">
           <ListItemText

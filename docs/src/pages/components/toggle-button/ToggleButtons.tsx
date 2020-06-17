@@ -7,9 +7,7 @@ import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 
 export default function ToggleButtons() {
-  const [alignment, setAlignment] = React.useState<
-    string | null
-  >('left');
+  const [alignment, setAlignment] = React.useState<string | null>('left');
 
   const handleAlignment = (
     event: React.MouseEvent<HTMLElement>,
@@ -31,17 +29,10 @@ export default function ToggleButtons() {
       <ToggleButton value="center" aria-label="centered">
         <FormatAlignCenterIcon />
       </ToggleButton>
-      <ToggleButton
-        value="right"
-        aria-label="right aligned"
-      >
+      <ToggleButton value="right" aria-label="right aligned">
         <FormatAlignRightIcon />
       </ToggleButton>
-      <ToggleButton
-        value="justify"
-        aria-label="justified"
-        disabled
-      >
+      <ToggleButton value="justify" aria-label="justified" disabled>
         <FormatAlignJustifyIcon />
       </ToggleButton>
     </ToggleButtonGroup>

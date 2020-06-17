@@ -1,10 +1,6 @@
 import React from 'react';
 import Portal from '@material-ui/core/Portal';
-import {
-  makeStyles,
-  Theme,
-  createStyles,
-} from '@material-ui/core/styles';
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  createStyles,
-  makeStyles,
-  Theme,
-} from '@material-ui/core/styles';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -31,11 +27,7 @@ export default function OutlinedButtons() {
       <Button variant="outlined" disabled>
         Disabled
       </Button>
-      <Button
-        variant="outlined"
-        color="primary"
-        href="#outlined-buttons"
-      >
+      <Button variant="outlined" color="primary" href="#outlined-buttons">
         Link
       </Button>
     </div>

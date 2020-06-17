@@ -1,10 +1,6 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
-import {
-  SnackbarProvider,
-  VariantType,
-  useSnackbar,
-} from 'notistack';
+import { SnackbarProvider, VariantType, useSnackbar } from 'notistack';
 
 function MyApp() {
   const { enqueueSnackbar } = useSnackbar();
@@ -13,9 +9,7 @@ function MyApp() {
     enqueueSnackbar('I love snacks.');
   };
 
-  const handleClickVariant = (
-    variant: VariantType,
-  ) => () => {
+  const handleClickVariant = (variant: VariantType) => () => {
     // variant could be success, error, warning, info, or default
     enqueueSnackbar('This is a success message!', {
       variant,

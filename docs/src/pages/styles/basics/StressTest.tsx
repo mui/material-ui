@@ -44,10 +44,7 @@ const Component = React.memo((props: ComponentProps) => {
 });
 
 export default function StressTest() {
-  const [
-    backgroundColor,
-    setBackgroundColor,
-  ] = React.useState('#2196f3');
+  const [backgroundColor, setBackgroundColor] = React.useState('#2196f3');
   const handleBackgroundColorChange = (
     event: React.ChangeEvent<HTMLInputElement>,
   ) => {
@@ -55,9 +52,7 @@ export default function StressTest() {
   };
 
   const [color, setColor] = React.useState('#ffffff');
-  const handleColorChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
+  const handleColorChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setColor(event.target.value);
   };
 

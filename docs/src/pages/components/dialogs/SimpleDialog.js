@@ -40,9 +40,7 @@ function SimpleDialog(props) {
       aria-labelledby="simple-dialog-title"
       open={open}
     >
-      <DialogTitle id="simple-dialog-title">
-        Set backup account
-      </DialogTitle>
+      <DialogTitle id="simple-dialog-title">Set backup account</DialogTitle>
       <List>
         {emails.map((email) => (
           <ListItem
@@ -84,9 +82,7 @@ SimpleDialog.propTypes = {
 
 export default function SimpleDialogDemo() {
   const [open, setOpen] = React.useState(false);
-  const [selectedValue, setSelectedValue] = React.useState(
-    emails[1],
-  );
+  const [selectedValue, setSelectedValue] = React.useState(emails[1]);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -99,15 +95,9 @@ export default function SimpleDialogDemo() {
 
   return (
     <div>
-      <Typography variant="subtitle1">
-        Selected: {selectedValue}
-      </Typography>
+      <Typography variant="subtitle1">Selected: {selectedValue}</Typography>
       <br />
-      <Button
-        variant="outlined"
-        color="primary"
-        onClick={handleClickOpen}
-      >
+      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
         Open simple dialog
       </Button>
       <SimpleDialog

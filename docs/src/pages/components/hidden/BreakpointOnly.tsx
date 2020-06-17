@@ -1,14 +1,8 @@
 import React from 'react';
-import {
-  makeStyles,
-  createStyles,
-  Theme,
-} from '@material-ui/core/styles';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Hidden from '@material-ui/core/Hidden';
-import withWidth, {
-  WithWidth,
-} from '@material-ui/core/withWidth';
+import withWidth, { WithWidth } from '@material-ui/core/withWidth';
 import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -36,24 +30,16 @@ function BreakpointOnly(props: WithWidth) {
 
   return (
     <div className={classes.root}>
-      <Typography variant="subtitle1">
-        Current width: {width}
-      </Typography>
+      <Typography variant="subtitle1">Current width: {width}</Typography>
       <div className={classes.container}>
         <Hidden only="lg">
-          <Paper className={classes.paper}>
-            Hidden on lg
-          </Paper>
+          <Paper className={classes.paper}>Hidden on lg</Paper>
         </Hidden>
         <Hidden only="sm">
-          <Paper className={classes.paper}>
-            Hidden on sm
-          </Paper>
+          <Paper className={classes.paper}>Hidden on sm</Paper>
         </Hidden>
         <Hidden only={['sm', 'lg']}>
-          <Paper className={classes.paper}>
-            Hidden on sm and lg
-          </Paper>
+          <Paper className={classes.paper}>Hidden on sm and lg</Paper>
         </Hidden>
       </div>
     </div>

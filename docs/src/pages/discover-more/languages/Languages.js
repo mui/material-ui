@@ -25,20 +25,14 @@ export default function Languages() {
           {LANGUAGES_LABEL.map((language) => (
             <TableRow key={language.code}>
               <TableCell>
-                <Typography variant="body2">
-                  {language.text}
-                </Typography>
+                <Typography variant="body2">{language.text}</Typography>
               </TableCell>
               <TableCell>
                 <Link
                   variant="body2"
                   color="secondary"
                   data-no-link="true"
-                  href={
-                    language.code === 'en'
-                      ? '/'
-                      : `/${language.code}/`
-                  }
+                  href={language.code === 'en' ? '/' : `/${language.code}/`}
                 >
                   Documentation
                 </Link>

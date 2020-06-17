@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-  typography,
-  breakpoints,
-} from '@material-ui/system';
+import { typography, breakpoints } from '@material-ui/system';
 import styled from 'styled-components';
 
 // can't be inlined in the template string for proper type inference in TypeScript
@@ -24,11 +21,7 @@ const Box = styled.div`
  */
 export default function CollocationApi() {
   return (
-    <Box
-      xs={{ fontSize: 12 }}
-      sm={{ fontSize: 18 }}
-      md={{ fontSize: 24 }}
-    >
+    <Box xs={{ fontSize: 12 }} sm={{ fontSize: 18 }} md={{ fontSize: 24 }}>
       Collocation API
     </Box>
   );

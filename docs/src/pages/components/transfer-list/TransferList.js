@@ -34,9 +34,7 @@ function intersection(a, b) {
 export default function TransferList() {
   const classes = useStyles();
   const [checked, setChecked] = React.useState([]);
-
   const [left, setLeft] = React.useState([0, 1, 2, 3]);
-
   const [right, setRight] = React.useState([4, 5, 6, 7]);
 
   const leftChecked = intersection(checked, left);
@@ -100,10 +98,7 @@ export default function TransferList() {
                   }}
                 />
               </ListItemIcon>
-              <ListItemText
-                id={labelId}
-                primary={`List item ${value + 1}`}
-              />
+              <ListItemText id={labelId} primary={`List item ${value + 1}`} />
             </ListItem>
           );
         })}
@@ -122,11 +117,7 @@ export default function TransferList() {
     >
       <Grid item>{customList(left)}</Grid>
       <Grid item>
-        <Grid
-          container
-          direction="column"
-          alignItems="center"
-        >
+        <Grid container direction="column" alignItems="center">
           <Button
             variant="outlined"
             size="small"

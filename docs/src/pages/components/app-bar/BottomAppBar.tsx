@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  createStyles,
-  Theme,
-  makeStyles,
-} from '@material-ui/core/styles';
+import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -47,8 +43,7 @@ const messages = [
   {
     id: 4,
     primary: 'Yes!',
-    secondary:
-      'I have the tickets to the ReactConf for this year.',
+    secondary: 'I have the tickets to the ReactConf for this year.',
     person: '/static/images/avatar/3.jpg',
   },
   {
@@ -114,66 +109,38 @@ export default function BottomAppBar() {
     <React.Fragment>
       <CssBaseline />
       <Paper square className={classes.paper}>
-        <Typography
-          className={classes.text}
-          variant="h5"
-          gutterBottom
-        >
+        <Typography className={classes.text} variant="h5" gutterBottom>
           Inbox
         </Typography>
         <List className={classes.list}>
-          {messages.map(
-            ({ id, primary, secondary, person }) => (
-              <React.Fragment key={id}>
-                {id === 1 && (
-                  <ListSubheader
-                    className={classes.subheader}
-                  >
-                    Today
-                  </ListSubheader>
-                )}
-                {id === 3 && (
-                  <ListSubheader
-                    className={classes.subheader}
-                  >
-                    Yesterday
-                  </ListSubheader>
-                )}
-                <ListItem button>
-                  <ListItemAvatar>
-                    <Avatar
-                      alt="Profile Picture"
-                      src={person}
-                    />
-                  </ListItemAvatar>
-                  <ListItemText
-                    primary={primary}
-                    secondary={secondary}
-                  />
-                </ListItem>
-              </React.Fragment>
-            ),
-          )}
+          {messages.map(({ id, primary, secondary, person }) => (
+            <React.Fragment key={id}>
+              {id === 1 && (
+                <ListSubheader className={classes.subheader}>
+                  Today
+                </ListSubheader>
+              )}
+              {id === 3 && (
+                <ListSubheader className={classes.subheader}>
+                  Yesterday
+                </ListSubheader>
+              )}
+              <ListItem button>
+                <ListItemAvatar>
+                  <Avatar alt="Profile Picture" src={person} />
+                </ListItemAvatar>
+                <ListItemText primary={primary} secondary={secondary} />
+              </ListItem>
+            </React.Fragment>
+          ))}
         </List>
       </Paper>
-      <AppBar
-        position="fixed"
-        color="primary"
-        className={classes.appBar}
-      >
+      <AppBar position="fixed" color="primary" className={classes.appBar}>
         <Toolbar>
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-          >
+          <IconButton edge="start" color="inherit" aria-label="open drawer">
             <MenuIcon />
           </IconButton>
-          <Fab
-            color="secondary"
-            aria-label="add"
-            className={classes.fabButton}
-          >
+          <Fab color="secondary" aria-label="add" className={classes.fabButton}>
             <AddIcon />
           </Fab>
           <div className={classes.grow} />

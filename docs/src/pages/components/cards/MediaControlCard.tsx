@@ -53,10 +53,7 @@ export default function MediaControlCard() {
           <Typography component="h5" variant="h5">
             Live From Space
           </Typography>
-          <Typography
-            variant="subtitle1"
-            color="textSecondary"
-          >
+          <Typography variant="subtitle1" color="textSecondary">
             Mac Miller
           </Typography>
         </CardContent>

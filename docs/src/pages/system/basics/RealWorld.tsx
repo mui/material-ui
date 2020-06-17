@@ -11,12 +11,7 @@ export default function RealWorld() {
   return (
     <Box clone pt={2} pr={1} pb={1} pl={2}>
       <Paper elevation={0}>
-        <Grid
-          container
-          spacing={2}
-          alignItems="center"
-          wrap="nowrap"
-        >
+        <Grid container spacing={2} alignItems="center" wrap="nowrap">
           <Grid item>
             <Box bgcolor="primary.main" clone>
               <Avatar>
@@ -26,8 +21,7 @@ export default function RealWorld() {
           </Grid>
           <Grid item>
             <Typography>
-              You have lost connection to the internet. This
-              app is offline.
+              You have lost connection to the internet. This app is offline.
             </Typography>
           </Grid>
         </Grid>

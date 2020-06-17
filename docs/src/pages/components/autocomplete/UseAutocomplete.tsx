@@ -1,11 +1,7 @@
 /* eslint-disable no-use-before-define */
 import React from 'react';
 import useAutocomplete from '@material-ui/lab/useAutocomplete';
-import {
-  makeStyles,
-  Theme,
-  createStyles,
-} from '@material-ui/core/styles';
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -57,26 +53,15 @@ export default function UseAutocomplete() {
   return (
     <div>
       <div {...getRootProps()}>
-        <label
-          className={classes.label}
-          {...getInputLabelProps()}
-        >
+        <label className={classes.label} {...getInputLabelProps()}>
           useAutocomplete
         </label>
-        <input
-          className={classes.input}
-          {...getInputProps()}
-        />
+        <input className={classes.input} {...getInputProps()} />
       </div>
       {groupedOptions.length > 0 ? (
-        <ul
-          className={classes.listbox}
-          {...getListboxProps()}
-        >
+        <ul className={classes.listbox} {...getListboxProps()}>
           {groupedOptions.map((option, index) => (
-            <li {...getOptionProps({ option, index })}>
-              {option.title}
-            </li>
+            <li {...getOptionProps({ option, index })}>{option.title}</li>
           ))}
         </ul>
       ) : null}
@@ -100,8 +85,7 @@ const top100Films = [
   { title: 'The Good, the Bad and the Ugly', year: 1966 },
   { title: 'Fight Club', year: 1999 },
   {
-    title:
-      'The Lord of the Rings: The Fellowship of the Ring',
+    title: 'The Lord of the Rings: The Fellowship of the Ring',
     year: 2001,
   },
   {

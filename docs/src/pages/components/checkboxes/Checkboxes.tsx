@@ -4,9 +4,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 export default function Checkboxes() {
   const [checked, setChecked] = React.useState(true);
 
-  const handleChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setChecked(event.target.checked);
   };
 
@@ -27,10 +25,7 @@ export default function Checkboxes() {
           'aria-label': 'uncontrolled-checkbox',
         }}
       />
-      <Checkbox
-        disabled
-        inputProps={{ 'aria-label': 'disabled checkbox' }}
-      />
+      <Checkbox disabled inputProps={{ 'aria-label': 'disabled checkbox' }} />
       <Checkbox
         disabled
         checked

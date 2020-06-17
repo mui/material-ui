@@ -6,10 +6,7 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 
 export default function FixedTags() {
   const fixedOptions = [top100Films[6]];
-  const [value, setValue] = React.useState([
-    ...fixedOptions,
-    top100Films[13],
-  ]);
+  const [value, setValue] = React.useState([...fixedOptions, top100Films[13]]);
 
   return (
     <Autocomplete
@@ -19,9 +16,7 @@ export default function FixedTags() {
       onChange={(event, newValue) => {
         setValue([
           ...fixedOptions,
-          ...newValue.filter(
-            (option) => fixedOptions.indexOf(option) === -1,
-          ),
+          ...newValue.filter((option) => fixedOptions.indexOf(option) === -1),
         ]);
       }}
       options={top100Films}
@@ -64,8 +59,7 @@ const top100Films = [
   { title: 'The Good, the Bad and the Ugly', year: 1966 },
   { title: 'Fight Club', year: 1999 },
   {
-    title:
-      'The Lord of the Rings: The Fellowship of the Ring',
+    title: 'The Lord of the Rings: The Fellowship of the Ring',
     year: 2001,
   },
   {

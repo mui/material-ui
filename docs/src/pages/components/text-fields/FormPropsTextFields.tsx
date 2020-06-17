@@ -1,10 +1,6 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
-import {
-  createStyles,
-  makeStyles,
-  Theme,
-} from '@material-ui/core/styles';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -21,11 +17,7 @@ export default function FormPropsTextFields() {
   const classes = useStyles();
 
   return (
-    <form
-      className={classes.root}
-      noValidate
-      autoComplete="off"
-    >
+    <form className={classes.root} noValidate autoComplete="off">
       <div>
         <TextField
           required
@@ -61,11 +53,7 @@ export default function FormPropsTextFields() {
             shrink: true,
           }}
         />
-        <TextField
-          id="standard-search"
-          label="Search field"
-          type="search"
-        />
+        <TextField id="standard-search" label="Search field" type="search" />
         <TextField
           id="standard-helperText"
           label="Helper text"

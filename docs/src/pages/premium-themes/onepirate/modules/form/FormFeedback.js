@@ -30,9 +30,7 @@ function FormFeedback(props) {
         props.className,
       )}
     >
-      <Typography color="inherit">
-        {props.children}
-      </Typography>
+      <Typography color="inherit">{props.children}</Typography>
     </div>
   );
 }

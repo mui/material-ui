@@ -24,9 +24,7 @@ export default function SimpleSnackbar() {
 
   return (
     <div>
-      <Button onClick={handleClick}>
-        Open simple snackbar
-      </Button>
+      <Button onClick={handleClick}>Open simple snackbar</Button>
       <Snackbar
         anchorOrigin={{
           vertical: 'bottom',
@@ -38,11 +36,7 @@ export default function SimpleSnackbar() {
         message="Note archived"
         action={
           <React.Fragment>
-            <Button
-              color="secondary"
-              size="small"
-              onClick={handleClose}
-            >
+            <Button color="secondary" size="small" onClick={handleClose}>
               UNDO
             </Button>
             <IconButton

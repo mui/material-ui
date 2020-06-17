@@ -22,9 +22,7 @@ const options = [
 export default function SimpleListMenu() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [selectedIndex, setSelectedIndex] = React.useState(
-    1,
-  );
+  const [selectedIndex, setSelectedIndex] = React.useState(1);
 
   const handleClickListItem = (event) => {
     setAnchorEl(event.currentTarget);
@@ -67,9 +65,7 @@ export default function SimpleListMenu() {
             key={option}
             disabled={index === 0}
             selected={index === selectedIndex}
-            onClick={(event) =>
-              handleMenuItemClick(event, index)
-            }
+            onClick={(event) => handleMenuItemClick(event, index)}
           >
             {option}
           </MenuItem>

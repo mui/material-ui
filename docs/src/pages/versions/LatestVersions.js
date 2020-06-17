@@ -23,9 +23,7 @@ function LatestVersions(props) {
         <TableBody>
           <TableRow>
             <TableCell>
-              <Typography variant="body2">
-                master branch
-              </Typography>
+              <Typography variant="body2">master branch</Typography>
             </TableCell>
             <TableCell>
               <Link
@@ -49,9 +47,7 @@ function LatestVersions(props) {
           </TableRow>
           <TableRow>
             <TableCell>
-              <Typography variant="body2">
-                next branch
-              </Typography>
+              <Typography variant="body2">next branch</Typography>
             </TableCell>
             <TableCell>
               <Link

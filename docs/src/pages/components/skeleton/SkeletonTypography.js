@@ -12,11 +12,7 @@ function TypographyDemo(props) {
   return (
     <div>
       {variants.map((variant) => (
-        <Typography
-          component="div"
-          key={variant}
-          variant={variant}
-        >
+        <Typography component="div" key={variant} variant={variant}>
           {loading ? <Skeleton /> : variant}
         </Typography>
       ))}

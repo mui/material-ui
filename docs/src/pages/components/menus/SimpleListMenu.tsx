@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  makeStyles,
-  Theme,
-  createStyles,
-} from '@material-ui/core/styles';
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -27,17 +23,10 @@ const options = [
 
 export default function SimpleListMenu() {
   const classes = useStyles();
-  const [
-    anchorEl,
-    setAnchorEl,
-  ] = React.useState<null | HTMLElement>(null);
-  const [selectedIndex, setSelectedIndex] = React.useState(
-    1,
-  );
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [selectedIndex, setSelectedIndex] = React.useState(1);
 
-  const handleClickListItem = (
-    event: React.MouseEvent<HTMLElement>,
-  ) => {
+  const handleClickListItem = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -81,9 +70,7 @@ export default function SimpleListMenu() {
             key={option}
             disabled={index === 0}
             selected={index === selectedIndex}
-            onClick={(event) =>
-              handleMenuItemClick(event, index)
-            }
+            onClick={(event) => handleMenuItemClick(event, index)}
           >
             {option}
           </MenuItem>

@@ -21,9 +21,7 @@ export default function SimpleBreadcrumbs() {
       >
         Core
       </Link>
-      <Typography color="textPrimary">
-        Breadcrumb
-      </Typography>
+      <Typography color="textPrimary">Breadcrumb</Typography>
     </Breadcrumbs>
   );
 }

@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  createStyles,
-  Theme,
-  makeStyles,
-} from '@material-ui/core/styles';
+import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
@@ -51,8 +47,8 @@ export default function MiddleDividers() {
           </Grid>
         </Grid>
         <Typography color="textSecondary" variant="body2">
-          Pinstriped cornflower blue cotton blouse takes you
-          on a walk to the park or just down the hall.
+          Pinstriped cornflower blue cotton blouse takes you on a walk to the
+          park or just down the hall.
         </Typography>
       </div>
       <Divider variant="middle" />
@@ -61,15 +57,8 @@ export default function MiddleDividers() {
           Select type
         </Typography>
         <div>
-          <Chip
-            className={classes.chip}
-            label="Extra Soft"
-          />
-          <Chip
-            className={classes.chip}
-            color="primary"
-            label="Soft"
-          />
+          <Chip className={classes.chip} label="Extra Soft" />
+          <Chip className={classes.chip} color="primary" label="Soft" />
           <Chip className={classes.chip} label="Medium" />
           <Chip className={classes.chip} label="Hard" />
         </div>

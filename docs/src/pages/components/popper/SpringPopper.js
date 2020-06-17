@@ -13,13 +13,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Fade = React.forwardRef(function Fade(props, ref) {
-  const {
-    in: open,
-    children,
-    onEnter,
-    onExited,
-    ...other
-  } = props;
+  const { in: open, children, onEnter, onExited, ...other } = props;
   const style = useSpring({
     from: { opacity: 0 },
     to: { opacity: open ? 1 : 0 },
@@ -62,24 +56,13 @@ export default function SpringPopper() {
 
   return (
     <div>
-      <button
-        aria-describedby={id}
-        type="button"
-        onClick={handleClick}
-      >
+      <button aria-describedby={id} type="button" onClick={handleClick}>
         Toggle Popper
       </button>
-      <Popper
-        id={id}
-        open={open}
-        anchorEl={anchorEl}
-        transition
-      >
+      <Popper id={id} open={open} anchorEl={anchorEl} transition>
         {({ TransitionProps }) => (
           <Fade {...TransitionProps}>
-            <div className={classes.paper}>
-              The content of the Popper.
-            </div>
+            <div className={classes.paper}>The content of the Popper.</div>
           </Fade>
         )}
       </Popper>

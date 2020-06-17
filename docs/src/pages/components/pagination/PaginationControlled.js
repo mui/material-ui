@@ -21,11 +21,7 @@ export default function PaginationControlled() {
   return (
     <div className={classes.root}>
       <Typography>Page: {page}</Typography>
-      <Pagination
-        count={10}
-        page={page}
-        onChange={handleChange}
-      />
+      <Pagination count={10} page={page} onChange={handleChange} />
     </div>
   );
 }

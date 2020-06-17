@@ -27,25 +27,13 @@ export default function VariableWidth() {
   return (
     <div>
       <Tooltip title={longText}>
-        <Button className={classes.button}>
-          Default Width [300px]
-        </Button>
+        <Button className={classes.button}>Default Width [300px]</Button>
       </Tooltip>
-      <Tooltip
-        title={longText}
-        classes={{ tooltip: classes.customWidth }}
-      >
-        <Button className={classes.button}>
-          Custom Width [500px]
-        </Button>
+      <Tooltip title={longText} classes={{ tooltip: classes.customWidth }}>
+        <Button className={classes.button}>Custom Width [500px]</Button>
       </Tooltip>
-      <Tooltip
-        title={longText}
-        classes={{ tooltip: classes.noMaxWidth }}
-      >
-        <Button className={classes.button}>
-          No wrapping
-        </Button>
+      <Tooltip title={longText} classes={{ tooltip: classes.noMaxWidth }}>
+        <Button className={classes.button}>No wrapping</Button>
       </Tooltip>
     </div>
   );

@@ -170,11 +170,7 @@ interface InputElement {
 
 ```jsx
 function MyInputComponent(props) {
-  const {
-    component: Component,
-    inputRef,
-    ...other
-  } = props;
+  const { component: Component, inputRef, ...other } = props;
 
   // implement `InputElement` interface
   React.useImperativeHandle(inputRef, () => ({
@@ -207,9 +203,7 @@ In order for the text field to be accessible, **the input should be linked to th
 <div class="form-control">
   <label for="my-input">Email address</label>
   <input id="my-input" aria-describedby="my-helper-text" />
-  <span id="my-helper-text">
-    We'll never share your email.
-  </span>
+  <span id="my-helper-text">We'll never share your email.</span>
 </div>
 ```
 

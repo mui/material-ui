@@ -72,17 +72,11 @@ const useStyles = makeStyles((theme: Theme) =>
         borderRadius: 4,
         backgroundColor: theme.palette.common.white,
         padding: 8,
-        transition: theme.transitions.create([
-          'border-color',
-          'box-shadow',
-        ]),
+        transition: theme.transitions.create(['border-color', 'box-shadow']),
         border: '1px solid #ced4da',
         fontSize: 14,
         '&:focus': {
-          boxShadow: `${fade(
-            theme.palette.primary.main,
-            0.25,
-          )} 0 0 0 0.2rem`,
+          boxShadow: `${fade(theme.palette.primary.main, 0.25)} 0 0 0 0.2rem`,
           borderColor: theme.palette.primary.main,
         },
       },
@@ -134,22 +128,15 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function GitHubLabel() {
   const classes = useStyles();
-  const [
-    anchorEl,
-    setAnchorEl,
-  ] = React.useState<null | HTMLElement>(null);
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [value, setValue] = React.useState<LabelType[]>([
     labels[1],
     labels[11],
   ]);
-  const [pendingValue, setPendingValue] = React.useState<
-    LabelType[]
-  >([]);
+  const [pendingValue, setPendingValue] = React.useState<LabelType[]>([]);
   const theme = useTheme();
 
-  const handleClick = (
-    event: React.MouseEvent<HTMLElement>,
-  ) => {
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setPendingValue(value);
     setAnchorEl(event.currentTarget);
   };
@@ -189,9 +176,7 @@ export default function GitHubLabel() {
             className={classes.tag}
             style={{
               backgroundColor: label.color,
-              color: theme.palette.getContrastText(
-                label.color,
-              ),
+              color: theme.palette.getContrastText(label.color),
             }}
           >
             {label.name}
@@ -205,9 +190,7 @@ export default function GitHubLabel() {
         placement="bottom-start"
         className={classes.popper}
       >
-        <div className={classes.header}>
-          Apply labels to this pull request
-        </div>
+        <div className={classes.header}>Apply labels to this pull request</div>
         <Autocomplete
           open
           onClose={handleClose}
@@ -215,15 +198,13 @@ export default function GitHubLabel() {
           classes={{
             paper: classes.paper,
             option: classes.option,
-            popperDisablePortal:
-              classes.popperDisablePortal,
+            popperDisablePortal: classes.popperDisablePortal,
           }}
           value={pendingValue}
           onChange={(event, newValue, reason) => {
             if (
               event.type === 'keydown' &&
-              (event as React.KeyboardEvent).key ===
-                'Backspace' &&
+              (event as React.KeyboardEvent).key === 'Backspace' &&
               reason === 'remove-option'
             ) {
               return;
@@ -239,9 +220,7 @@ export default function GitHubLabel() {
               <DoneIcon
                 className={classes.iconSelected}
                 style={{
-                  visibility: selected
-                    ? 'visible'
-                    : 'hidden',
+                  visibility: selected ? 'visible' : 'hidden',
                 }}
               />
               <span
@@ -256,9 +235,7 @@ export default function GitHubLabel() {
               <CloseIcon
                 className={classes.close}
                 style={{
-                  visibility: selected
-                    ? 'visible'
-                    : 'hidden',
+                  visibility: selected ? 'visible' : 'hidden',
                 }}
               />
             </React.Fragment>
@@ -266,15 +243,9 @@ export default function GitHubLabel() {
           options={[...labels].sort((a, b) => {
             // Display the selected labels first.
             let ai = value.indexOf(a);
-            ai =
-              ai === -1
-                ? value.length + labels.indexOf(a)
-                : ai;
+            ai = ai === -1 ? value.length + labels.indexOf(a) : ai;
             let bi = value.indexOf(b);
-            bi =
-              bi === -1
-                ? value.length + labels.indexOf(b)
-                : bi;
+            bi = bi === -1 ? value.length + labels.indexOf(b) : bi;
             return ai - bi;
           })}
           getOptionLabel={(option) => option.name}
@@ -343,8 +314,7 @@ const labels = [
   {
     name: 'status: duplicate',
     color: '#cfd3d7',
-    description:
-      'This issue or pull request already exists',
+    description: 'This issue or pull request already exists',
   },
   {
     name: 'status: needs information',

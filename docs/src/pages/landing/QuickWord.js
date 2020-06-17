@@ -10,8 +10,7 @@ const backers = [
     href:
       'https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=homepage',
     alt: 'tidelift',
-    title:
-      'Tidelift — Enterprise-ready open source software',
+    title: 'Tidelift — Enterprise-ready open source software',
   },
   {
     href: 'https://bit.dev',
@@ -21,15 +20,13 @@ const backers = [
   {
     href: 'https://www.call-em-all.com',
     alt: 'callemall',
-    title:
-      'Call-Em-All - The easy way to message your group',
+    title: 'Call-Em-All - The easy way to message your group',
   },
   {
     href:
       'https://www.sencha.com/products/extreact/extreact-for-material-ui/?utm_source=materialui&utm_medium=referral&utm_content=product-200429-extreactmaterialui',
     alt: 'sencha',
-    title:
-      'Sencha - UI Components for Productive Dev Teams',
+    title: 'Sencha - UI Components for Productive Dev Teams',
   },
 ];
 
@@ -47,14 +44,11 @@ const useStyles = makeStyles(
 export default function QuickWord() {
   const classes = useStyles();
   const t = useSelector((state) => state.options.t);
-  const backer =
-    backers[Math.floor(backers.length * Math.random())];
+  const backer = backers[Math.floor(backers.length * Math.random())];
 
   return (
     <div className={classes.root}>
-      <Typography variant="caption">
-        {t('homeQuickWord')}
-      </Typography>
+      <Typography variant="caption">{t('homeQuickWord')}</Typography>
       <NoSsr defer>
         <Link
           variant="body2"

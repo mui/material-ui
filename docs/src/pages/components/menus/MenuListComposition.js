@@ -27,10 +27,7 @@ export default function MenuListComposition() {
   };
 
   const handleClose = (event) => {
-    if (
-      anchorRef.current &&
-      anchorRef.current.contains(event.target)
-    ) {
+    if (anchorRef.current && anchorRef.current.contains(event.target)) {
       return;
     }
 
@@ -66,9 +63,7 @@ export default function MenuListComposition() {
       <div>
         <Button
           ref={anchorRef}
-          aria-controls={
-            open ? 'menu-list-grow' : undefined
-          }
+          aria-controls={open ? 'menu-list-grow' : undefined}
           aria-haspopup="true"
           onClick={handleToggle}
         >
@@ -86,29 +81,19 @@ export default function MenuListComposition() {
               {...TransitionProps}
               style={{
                 transformOrigin:
-                  placement === 'bottom'
-                    ? 'center top'
-                    : 'center bottom',
+                  placement === 'bottom' ? 'center top' : 'center bottom',
               }}
             >
               <Paper>
-                <ClickAwayListener
-                  onClickAway={handleClose}
-                >
+                <ClickAwayListener onClickAway={handleClose}>
                   <MenuList
                     autoFocusItem={open}
                     id="menu-list-grow"
                     onKeyDown={handleListKeyDown}
                   >
-                    <MenuItem onClick={handleClose}>
-                      Profile
-                    </MenuItem>
-                    <MenuItem onClick={handleClose}>
-                      My account
-                    </MenuItem>
-                    <MenuItem onClick={handleClose}>
-                      Logout
-                    </MenuItem>
+                    <MenuItem onClick={handleClose}>Profile</MenuItem>
+                    <MenuItem onClick={handleClose}>My account</MenuItem>
+                    <MenuItem onClick={handleClose}>Logout</MenuItem>
                   </MenuList>
                 </ClickAwayListener>
               </Paper>

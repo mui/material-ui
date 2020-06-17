@@ -38,12 +38,7 @@ export default function OutlinedChips() {
         variant="outlined"
       />
       <Chip
-        avatar={
-          <Avatar
-            alt="Natacha"
-            src="/static/images/avatar/1.jpg"
-          />
-        }
+        avatar={<Avatar alt="Natacha" src="/static/images/avatar/1.jpg" />}
         label="Deletable"
         onDelete={handleDelete}
         variant="outlined"

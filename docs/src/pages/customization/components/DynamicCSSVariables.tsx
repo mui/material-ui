@@ -33,9 +33,7 @@ export default function DynamicCSSVariables() {
   const classes = useStyles();
   const [color, setColor] = React.useState(defaultColor);
 
-  const handleChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setColor(event.target.checked ? blue : defaultColor);
   };
 

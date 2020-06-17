@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  makeStyles,
-  Theme,
-  createStyles,
-} from '@material-ui/core/styles';
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 
@@ -57,10 +53,7 @@ export default function TrackFalseSlider() {
         marks={marks}
       />
       <div className={classes.margin} />
-      <Typography
-        id="track-false-range-slider"
-        gutterBottom
-      >
+      <Typography id="track-false-range-slider" gutterBottom>
         Removed track range slider
       </Typography>
       <Slider

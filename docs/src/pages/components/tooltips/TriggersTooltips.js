@@ -29,18 +29,12 @@ export default function TriggersTooltips() {
           </Tooltip>
         </Grid>
         <Grid item>
-          <Tooltip
-            disableFocusListener
-            disableTouchListener
-            title="Add"
-          >
+          <Tooltip disableFocusListener disableTouchListener title="Add">
             <Button>Hover</Button>
           </Tooltip>
         </Grid>
         <Grid item>
-          <ClickAwayListener
-            onClickAway={handleTooltipClose}
-          >
+          <ClickAwayListener onClickAway={handleTooltipClose}>
             <div>
               <Tooltip
                 PopperProps={{
@@ -53,9 +47,7 @@ export default function TriggersTooltips() {
                 disableTouchListener
                 title="Add"
               >
-                <Button onClick={handleTooltipOpen}>
-                  Click
-                </Button>
+                <Button onClick={handleTooltipOpen}>Click</Button>
               </Tooltip>
             </div>
           </ClickAwayListener>

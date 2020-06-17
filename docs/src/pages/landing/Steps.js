@@ -12,24 +12,12 @@ import BuildIcon from '@material-ui/icons/Build';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import Link from 'docs/src/modules/components/Link';
 
-const InstallationLink = React.forwardRef(
-  (buttonProps, ref) => (
-    <Link
-      naked
-      href="/getting-started/installation"
-      ref={ref}
-      {...buttonProps}
-    />
-  ),
-);
+const InstallationLink = React.forwardRef((buttonProps, ref) => (
+  <Link naked href="/getting-started/installation" ref={ref} {...buttonProps} />
+));
 
 const UsageLink = React.forwardRef((buttonProps, ref) => (
-  <Link
-    naked
-    href="/getting-started/usage"
-    ref={ref}
-    {...buttonProps}
-  />
+  <Link naked href="/getting-started/usage" ref={ref} {...buttonProps} />
 ));
 
 const useStyles = makeStyles(
@@ -108,19 +96,13 @@ function HomeSteps() {
           className={clsx(classes.step, classes.leftStep)}
         >
           <div className={classes.stepTitle}>
-            <FileDownloadIcon
-              className={classes.stepIcon}
-            />
+            <FileDownloadIcon className={classes.stepIcon} />
             <Typography variant="h6" component="h2">
               {t('installation')}
             </Typography>
           </div>
           <div className={classes.stepBody}>
-            <Typography
-              variant="subtitle1"
-              component="div"
-              gutterBottom
-            >
+            <Typography variant="subtitle1" component="div" gutterBottom>
               {t('installDescr')}
             </Typography>
             <HighlightedCode
@@ -135,11 +117,7 @@ function HomeSteps() {
             >
               {t('cdn')}
             </Link>
-            <Typography
-              variant="subtitle1"
-              component="div"
-              gutterBottom
-            >
+            <Typography variant="subtitle1" component="div" gutterBottom>
               {t('loadFont')}
             </Typography>
             <HighlightedCode
@@ -148,9 +126,7 @@ function HomeSteps() {
             />
           </div>
           <Divider className={classes.divider} />
-          <Button component={InstallationLink}>
-            {t('installButton')}
-          </Button>
+          <Button component={InstallationLink}>{t('installButton')}</Button>
         </Grid>
         <Grid
           item
@@ -165,11 +141,7 @@ function HomeSteps() {
             </Typography>
           </div>
           <div className={classes.stepBody}>
-            <Typography
-              variant="subtitle1"
-              component="div"
-              gutterBottom
-            >
+            <Typography variant="subtitle1" component="div" gutterBottom>
               {t('usageDescr')}
             </Typography>
             <HighlightedCode
@@ -184,9 +156,7 @@ function App() {
             />
           </div>
           <Divider className={classes.divider} />
-          <Button component={UsageLink}>
-            {t('usageButton')}
-          </Button>
+          <Button component={UsageLink}>{t('usageButton')}</Button>
         </Grid>
       </Grid>
     </Container>

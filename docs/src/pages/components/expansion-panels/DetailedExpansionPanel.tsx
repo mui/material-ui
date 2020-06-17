@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  Theme,
-  createStyles,
-  makeStyles,
-} from '@material-ui/core/styles';
+import { Theme, createStyles, makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
@@ -64,14 +60,10 @@ export default function DetailedExpansionPanel() {
           id="panel1c-header"
         >
           <div className={classes.column}>
-            <Typography className={classes.heading}>
-              Location
-            </Typography>
+            <Typography className={classes.heading}>Location</Typography>
           </div>
           <div className={classes.column}>
-            <Typography
-              className={classes.secondaryHeading}
-            >
+            <Typography className={classes.secondaryHeading}>
               Select trip destination
             </Typography>
           </div>
@@ -81,16 +73,11 @@ export default function DetailedExpansionPanel() {
           <div className={classes.column}>
             <Chip label="Barbados" onDelete={() => {}} />
           </div>
-          <div
-            className={clsx(classes.column, classes.helper)}
-          >
+          <div className={clsx(classes.column, classes.helper)}>
             <Typography variant="caption">
               Select your destination of choice
               <br />
-              <a
-                href="#secondary-heading-and-columns"
-                className={classes.link}
-              >
+              <a href="#secondary-heading-and-columns" className={classes.link}>
                 Learn more
               </a>
             </Typography>

@@ -16,92 +16,74 @@ import Divider from '@material-ui/core/Divider';
 
 const quotes = [
   {
-    avatar:
-      'https://pbs.twimg.com/profile_images/1134188599170215936/9CUB-yeB',
+    avatar: 'https://pbs.twimg.com/profile_images/1134188599170215936/9CUB-yeB',
     name: 'Aumit Leon',
     username: '@aumitleon',
-    tweet:
-      'https://twitter.com/aumitleon/status/1210396946566963200',
+    tweet: 'https://twitter.com/aumitleon/status/1210396946566963200',
     quote:
       'Material-UI continues to blow my mind how easily I can put together really aesthetic and functional components and minimize overhead.',
   },
   {
-    avatar:
-      'https://pbs.twimg.com/profile_images/1231452795368329216/GhjrxYH2',
+    avatar: 'https://pbs.twimg.com/profile_images/1231452795368329216/GhjrxYH2',
     name: 'Derek Shanks',
     username: '@fragileglass',
-    tweet:
-      'https://twitter.com/fragileglass/status/1205256087290753025',
+    tweet: 'https://twitter.com/fragileglass/status/1205256087290753025',
     quote:
       'It’s a game changer with how nicely it works with React. It’s made working with React so much more enjoyable. Everything is configurable and predictable. Bootstrap was killing me. It was hijacking my whole project.',
   },
   {
-    avatar:
-      'https://pbs.twimg.com/profile_images/1214337550791299072/ybsFasgV',
+    avatar: 'https://pbs.twimg.com/profile_images/1214337550791299072/ybsFasgV',
     name: 'Andréa',
     username: '@azza_314',
-    tweet:
-      'https://twitter.com/azza_314/status/1247384522238259205',
+    tweet: 'https://twitter.com/azza_314/status/1247384522238259205',
     quote:
       "Started using @MaterialUI for #ReactJS & I'm ridiculously impressed. They put a ton of work into their documentation and their library is incredibly user friendly. Was able to add a sidebar, header, & modal  quickly!",
   },
   {
-    avatar:
-      'https://pbs.twimg.com/profile_images/1220819548523331584/3T1G8g1q',
+    avatar: 'https://pbs.twimg.com/profile_images/1220819548523331584/3T1G8g1q',
     name: 'Mohamed EL AYADI',
     username: '@MohamedELAYAD19',
-    tweet:
-      'https://twitter.com/MohamedELAYAD19/status/1208118580430229504',
+    tweet: 'https://twitter.com/MohamedELAYAD19/status/1208118580430229504',
     quote:
       "Such a great library. I have used Material-UI for the last two years as the main react ui library in my projects (in more than 4 companies!) and I find that it's really great! A lot of good work and dedication are put in there. Salute to the team!",
   },
   {
-    avatar:
-      'https://pbs.twimg.com/profile_images/1144184864754851840/WIVBqpWM',
+    avatar: 'https://pbs.twimg.com/profile_images/1144184864754851840/WIVBqpWM',
     name: 'Matthias Margot',
     username: '@matthiasmargot',
-    tweet:
-      'https://twitter.com/matthiasmargot/status/1215482285681795072',
+    tweet: 'https://twitter.com/matthiasmargot/status/1215482285681795072',
     quote:
       'The DX on Material-UI is absolutely insane and that package has shaped my approach to Component API Design / Composition Design & Style System Design. I think those guys got it idiomatically right, wonderful product.',
   },
   {
-    avatar:
-      'https://pbs.twimg.com/profile_images/1129370929409056769/Zkwjy9_I',
+    avatar: 'https://pbs.twimg.com/profile_images/1129370929409056769/Zkwjy9_I',
     name: 'Samantha Durrant',
     username: '@SamDurrant_',
-    tweet:
-      'https://twitter.com/SamDurrant_/status/1214741763455209473',
+    tweet: 'https://twitter.com/SamDurrant_/status/1214741763455209473',
     quote:
       'Began coding out the front end of my app today. Used MaterialUI for the first time and love how easy it is to make things look nice. It’s also really cool to see all the hard work building out the backend of my app come to life in the front end!',
   },
   {
-    avatar:
-      'https://pbs.twimg.com/profile_images/849731047625502720/nudIAz2B',
+    avatar: 'https://pbs.twimg.com/profile_images/849731047625502720/nudIAz2B',
     name: 'Rodrigo Ciprian',
     username: '@rodrigocipriani',
-    tweet:
-      'https://twitter.com/rodrigocipriani/status/1215578130217340929',
+    tweet: 'https://twitter.com/rodrigocipriani/status/1215578130217340929',
     quote:
       'I always use Material-UI, it is really awesome, and it have a looot of very good and easy to use components.',
   },
   {
-    avatar:
-      'https://pbs.twimg.com/profile_images/1231452795368329216/GhjrxYH2',
+    avatar: 'https://pbs.twimg.com/profile_images/1231452795368329216/GhjrxYH2',
     name: 'Derek Shanks',
     username: '@fragileglass',
-    tweet:
-      'https://twitter.com/fragileglass/status/1255170173226680320',
+    tweet: 'https://twitter.com/fragileglass/status/1255170173226680320',
     quote:
       'Sometimes a library is so incredibly awesome. You don’t want to use anything else. I absolutely love that I can have the Material look or completely customize @MaterialUI to any look I desire.',
   },
   {
-    avatar:
-      'https://pbs.twimg.com/profile_images/1214337550791299072/ybsFasgV',
+    avatar: 'https://pbs.twimg.com/profile_images/1214337550791299072/ybsFasgV',
     name: 'Andréa',
     username: '@azza_314',
-    tweet:
-      'https://twitter.com/azza_314/status/1250595347543371776',
+    tweet: 'https://twitter.com/azza_314/status/1250595347543371776',
     quote:
       "Becoming more obsessed with @MaterialUI for #React. Along with #TypeScript support, they have phenomenal documentation, and an impressive design section with customizable themes and case studies. This is the best front-end library I've ever worked with!",
   },
@@ -238,14 +220,10 @@ Quote.propTypes = {
   userName: PropTypes.string,
 };
 
-const startIndex = Math.floor(
-  Math.random() * quotes.length,
-);
+const startIndex = Math.floor(Math.random() * quotes.length);
 const selectedQuotes = [];
 for (let i = 0; i < 3; i += 1) {
-  selectedQuotes.push(
-    quotes[(startIndex + i) % quotes.length],
-  );
+  selectedQuotes.push(quotes[(startIndex + i) % quotes.length]);
 }
 
 export default function Quotes() {
@@ -255,40 +233,18 @@ export default function Quotes() {
   return (
     <div className={classes.root}>
       <NoSsr defer>
-        <Container
-          maxWidth="md"
-          className={classes.container}
-          disableGutters
-        >
+        <Container maxWidth="md" className={classes.container} disableGutters>
           <Divider />
           <div className={classes.users}>
-            <Typography
-              variant="h4"
-              component="h2"
-              align="center"
-              gutterBottom
-            >
+            <Typography variant="h4" component="h2" align="center" gutterBottom>
               {t('praise')}
             </Typography>
-            <Typography
-              variant="body1"
-              align="center"
-              gutterBottom
-            >
+            <Typography variant="body1" align="center" gutterBottom>
               {t('praiseDescr')}
             </Typography>
-            <Grid
-              container
-              spacing={2}
-              className={classes.grid}
-            >
+            <Grid container spacing={2} className={classes.grid}>
               {selectedQuotes.map((quote) => (
-                <Grid
-                  item
-                  xs={12}
-                  md={4}
-                  key={quote.username}
-                >
+                <Grid item xs={12} md={4} key={quote.username}>
                   <Quote
                     avatar={quote.avatar}
                     href={quote.tweet}

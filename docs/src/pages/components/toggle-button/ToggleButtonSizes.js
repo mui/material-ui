@@ -15,12 +15,7 @@ export default function ToggleButtonSizes() {
   };
 
   return (
-    <Grid
-      container
-      spacing={2}
-      direction="column"
-      alignItems="center"
-    >
+    <Grid container spacing={2} direction="column" alignItems="center">
       <Grid item>
         <ToggleButtonGroup
           size="small"

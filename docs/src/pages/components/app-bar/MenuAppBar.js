@@ -66,10 +66,7 @@ export default function MenuAppBar() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography
-            variant="h6"
-            className={classes.title}
-          >
+          <Typography variant="h6" className={classes.title}>
             Photos
           </Typography>
           {auth && (
@@ -98,12 +95,8 @@ export default function MenuAppBar() {
                 open={open}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose}>
-                  Profile
-                </MenuItem>
-                <MenuItem onClick={handleClose}>
-                  My account
-                </MenuItem>
+                <MenuItem onClick={handleClose}>Profile</MenuItem>
+                <MenuItem onClick={handleClose}>My account</MenuItem>
               </Menu>
             </div>
           )}

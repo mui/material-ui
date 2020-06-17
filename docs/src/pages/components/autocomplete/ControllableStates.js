@@ -6,14 +6,11 @@ const options = ['Option 1', 'Option 2'];
 
 export default function ControllableStates() {
   const [value, setValue] = React.useState(options[0]);
-
   const [inputValue, setInputValue] = React.useState('');
 
   return (
     <div>
-      <div>{`value: ${
-        value !== null ? `'${value}'` : 'null'
-      }`}</div>
+      <div>{`value: ${value !== null ? `'${value}'` : 'null'}`}</div>
       <div>{`inputValue: '${inputValue}'`}</div>
       <br />
       <Autocomplete
@@ -29,11 +26,7 @@ export default function ControllableStates() {
         options={options}
         style={{ width: 300 }}
         renderInput={(params) => (
-          <TextField
-            {...params}
-            label="Controllable"
-            variant="outlined"
-          />
+          <TextField {...params} label="Controllable" variant="outlined" />
         )}
       />
     </div>

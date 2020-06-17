@@ -27,9 +27,7 @@ import synonyms from './synonyms';
 if (process.env.NODE_ENV !== 'production') {
   Object.keys(synonyms).forEach((icon) => {
     if (!mui[icon]) {
-      throw new Error(
-        `The icon ${icon} does no longer exist.`,
-      );
+      throw new Error(`The icon ${icon} does no longer exist.`);
     }
   });
 }
@@ -103,10 +101,7 @@ let Icons = (props) => {
     <div>
       {icons.map((icon) => {
         return (
-          <span
-            key={icon.key}
-            className={clsx('markdown-body', classes.icon)}
-          >
+          <span key={icon.key} className={clsx('markdown-body', classes.icon)}>
             <icon.Icon
               tabIndex={-1}
               onClick={handleClickOpen}
@@ -206,10 +201,7 @@ let DialogDetails = (props) => {
     >
       {selectedIcon ? (
         <React.Fragment>
-          <DialogTitle
-            id="icon-dialog-title"
-            onClick={handleClick}
-          >
+          <DialogTitle id="icon-dialog-title" onClick={handleClick}>
             {selectedIcon.key}
           </DialogTitle>
           <HighlightedCode
@@ -230,17 +222,11 @@ let DialogDetails = (props) => {
             <Grid container className={classes.container}>
               <Grid item xs={12} sm="auto">
                 <Grid container justify="center">
-                  <selectedIcon.Icon
-                    className={classes.canvas}
-                  />
+                  <selectedIcon.Icon className={classes.canvas} />
                 </Grid>
               </Grid>
               <Grid item xs>
-                <Grid
-                  container
-                  alignItems="flex-end"
-                  justify="center"
-                >
+                <Grid container alignItems="flex-end" justify="center">
                   <Grid item>
                     <Tooltip title="fontSize small">
                       <selectedIcon.Icon
@@ -251,9 +237,7 @@ let DialogDetails = (props) => {
                   </Grid>
                   <Grid item>
                     <Tooltip title="fontSize medium">
-                      <selectedIcon.Icon
-                        className={classes.fontSize}
-                      />
+                      <selectedIcon.Icon className={classes.fontSize} />
                     </Tooltip>
                   </Grid>
                   <Grid item>
@@ -267,10 +251,7 @@ let DialogDetails = (props) => {
                 </Grid>
                 <Grid container justify="center">
                   <selectedIcon.Icon
-                    className={clsx(
-                      classes.context,
-                      classes.contextPrimary,
-                    )}
+                    className={clsx(classes.context, classes.contextPrimary)}
                   />
                   <selectedIcon.Icon
                     className={clsx(
@@ -374,12 +355,9 @@ const useStyles = makeStyles((theme) => ({
     cursor: 'pointer',
     color: theme.palette.text.primary,
     borderRadius: theme.shape.borderRadius,
-    transition: theme.transitions.create(
-      ['background-color', 'box-shadow'],
-      {
-        duration: theme.transitions.duration.shortest,
-      },
-    ),
+    transition: theme.transitions.create(['background-color', 'box-shadow'], {
+      duration: theme.transitions.duration.shortest,
+    }),
     fontSize: 40,
     padding: theme.spacing(2),
     margin: theme.spacing(0.5, 0),
@@ -415,10 +393,7 @@ const allIcons = Object.keys(mui)
       tag = 'Filled';
     }
 
-    let searchable = key.replace(
-      /(Outlined|TwoTone|Rounded|Sharp)$/,
-      '',
-    );
+    let searchable = key.replace(/(Outlined|TwoTone|Rounded|Sharp)$/, '');
     if (synonyms[searchable]) {
       searchable += ` ${synonyms[searchable]}`;
     }
@@ -438,16 +413,10 @@ export default function SearchIcons() {
   const [tag, setTag] = React.useState('Filled');
   const [keys, setKeys] = React.useState(null);
   const [open, setOpen] = React.useState(false);
-  const [selectedIcon, setSelectedIcon] = React.useState(
-    null,
-  );
+  const [selectedIcon, setSelectedIcon] = React.useState(null);
 
   const handleClickOpen = React.useCallback((event) => {
-    setSelectedIcon(
-      allIconsMap[
-        event.currentTarget.getAttribute('title')
-      ],
-    );
+    setSelectedIcon(allIconsMap[event.currentTarget.getAttribute('title')]);
     setOpen(true);
   }, []);
 
@@ -493,10 +462,9 @@ export default function SearchIcons() {
 
   const icons = React.useMemo(
     () =>
-      (keys === null
-        ? allIcons
-        : keys.map((key) => allIconsMap[key])
-      ).filter((icon) => tag === icon.tag),
+      (keys === null ? allIcons : keys.map((key) => allIconsMap[key])).filter(
+        (icon) => tag === icon.tag,
+      ),
     [tag, keys],
   );
 
@@ -505,36 +473,29 @@ export default function SearchIcons() {
       <Grid item xs={12} sm={3}>
         <form className={classes.form}>
           <RadioGroup>
-            {[
-              'Filled',
-              'Outlined',
-              'Rounded',
-              'Two tone',
-              'Sharp',
-            ].map((key) => {
-              return (
-                <FormControlLabel
-                  key={key}
-                  control={
-                    <Radio
-                      checked={tag === key}
-                      onChange={() => setTag(key)}
-                      value={key}
-                    />
-                  }
-                  label={key}
-                />
-              );
-            })}
+            {['Filled', 'Outlined', 'Rounded', 'Two tone', 'Sharp'].map(
+              (key) => {
+                return (
+                  <FormControlLabel
+                    key={key}
+                    control={
+                      <Radio
+                        checked={tag === key}
+                        onChange={() => setTag(key)}
+                        value={key}
+                      />
+                    }
+                    label={key}
+                  />
+                );
+              },
+            )}
           </RadioGroup>
         </form>
       </Grid>
       <Grid item xs={12} sm={9}>
         <Paper className={classes.paper}>
-          <IconButton
-            className={classes.iconButton}
-            aria-label="search"
-          >
+          <IconButton className={classes.iconButton} aria-label="search">
             <SearchIcon />
           </IconButton>
           <InputBase

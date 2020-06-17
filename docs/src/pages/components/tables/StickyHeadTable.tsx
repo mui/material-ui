@@ -25,16 +25,14 @@ const columns: Column[] = [
     label: 'Population',
     minWidth: 170,
     align: 'right',
-    format: (value: number) =>
-      value.toLocaleString('en-US'),
+    format: (value: number) => value.toLocaleString('en-US'),
   },
   {
     id: 'size',
     label: 'Size\u00a0(km\u00b2)',
     minWidth: 170,
     align: 'right',
-    format: (value: number) =>
-      value.toLocaleString('en-US'),
+    format: (value: number) => value.toLocaleString('en-US'),
   },
   {
     id: 'density',
@@ -95,10 +93,7 @@ export default function StickyHeadTable() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
-  const handleChangePage = (
-    event: unknown,
-    newPage: number,
-  ) => {
+  const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
   };
 
@@ -128,27 +123,15 @@ export default function StickyHeadTable() {
           </TableHead>
           <TableBody>
             {rows
-              .slice(
-                page * rowsPerPage,
-                page * rowsPerPage + rowsPerPage,
-              )
+              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row) => {
                 return (
-                  <TableRow
-                    hover
-                    role="checkbox"
-                    tabIndex={-1}
-                    key={row.code}
-                  >
+                  <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
                     {columns.map((column) => {
                       const value = row[column.id];
                       return (
-                        <TableCell
-                          key={column.id}
-                          align={column.align}
-                        >
-                          {column.format &&
-                          typeof value === 'number'
+                        <TableCell key={column.id} align={column.align}>
+                          {column.format && typeof value === 'number'
                             ? column.format(value)
                             : value}
                         </TableCell>

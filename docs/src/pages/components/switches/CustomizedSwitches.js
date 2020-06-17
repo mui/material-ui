@@ -53,10 +53,7 @@ const IOSSwitch = withStyles((theme) => ({
     border: `1px solid ${theme.palette.grey[400]}`,
     backgroundColor: theme.palette.grey[50],
     opacity: 1,
-    transition: theme.transitions.create([
-      'background-color',
-      'border',
-    ]),
+    transition: theme.transitions.create(['background-color', 'border']),
   },
   checked: {},
   focusVisible: {},
@@ -148,12 +145,7 @@ export default function CustomizedSwitches() {
         label="iOS style"
       />
       <Typography component="div">
-        <Grid
-          component="label"
-          container
-          alignItems="center"
-          spacing={1}
-        >
+        <Grid component="label" container alignItems="center" spacing={1}>
           <Grid item>Off</Grid>
           <Grid item>
             <AntSwitch

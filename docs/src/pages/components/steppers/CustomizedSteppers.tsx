@@ -168,11 +168,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 function getSteps() {
-  return [
-    'Select campaign settings',
-    'Create an ad group',
-    'Create an ad',
-  ];
+  return ['Select campaign settings', 'Create an ad group', 'Create an ad'];
 }
 
 function getStepContent(step: number) {
@@ -221,9 +217,7 @@ export default function CustomizedSteppers() {
       >
         {steps.map((label) => (
           <Step key={label}>
-            <StepLabel StepIconComponent={QontoStepIcon}>
-              {label}
-            </StepLabel>
+            <StepLabel StepIconComponent={QontoStepIcon}>{label}</StepLabel>
           </Step>
         ))}
       </Stepper>
@@ -234,9 +228,7 @@ export default function CustomizedSteppers() {
       >
         {steps.map((label) => (
           <Step key={label}>
-            <StepLabel StepIconComponent={ColorlibStepIcon}>
-              {label}
-            </StepLabel>
+            <StepLabel StepIconComponent={ColorlibStepIcon}>{label}</StepLabel>
           </Step>
         ))}
       </Stepper>
@@ -246,10 +238,7 @@ export default function CustomizedSteppers() {
             <Typography className={classes.instructions}>
               All steps completed - you&apos;re finished
             </Typography>
-            <Button
-              onClick={handleReset}
-              className={classes.button}
-            >
+            <Button onClick={handleReset} className={classes.button}>
               Reset
             </Button>
           </div>
@@ -272,9 +261,7 @@ export default function CustomizedSteppers() {
                 onClick={handleNext}
                 className={classes.button}
               >
-                {activeStep === steps.length - 1
-                  ? 'Finish'
-                  : 'Next'}
+                {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
               </Button>
             </div>
           </div>

@@ -29,24 +29,16 @@ function BreakpointOnly(props) {
 
   return (
     <div className={classes.root}>
-      <Typography variant="subtitle1">
-        Current width: {width}
-      </Typography>
+      <Typography variant="subtitle1">Current width: {width}</Typography>
       <div className={classes.container}>
         <Hidden only="lg">
-          <Paper className={classes.paper}>
-            Hidden on lg
-          </Paper>
+          <Paper className={classes.paper}>Hidden on lg</Paper>
         </Hidden>
         <Hidden only="sm">
-          <Paper className={classes.paper}>
-            Hidden on sm
-          </Paper>
+          <Paper className={classes.paper}>Hidden on sm</Paper>
         </Hidden>
         <Hidden only={['sm', 'lg']}>
-          <Paper className={classes.paper}>
-            Hidden on sm and lg
-          </Paper>
+          <Paper className={classes.paper}>Hidden on sm and lg</Paper>
         </Hidden>
       </div>
     </div>
@@ -54,8 +46,7 @@ function BreakpointOnly(props) {
 }
 
 BreakpointOnly.propTypes = {
-  width: PropTypes.oneOf(['lg', 'md', 'sm', 'xl', 'xs'])
-    .isRequired,
+  width: PropTypes.oneOf(['lg', 'md', 'sm', 'xl', 'xs']).isRequired,
 };
 
 export default withWidth()(BreakpointOnly);

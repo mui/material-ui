@@ -30,10 +30,7 @@ export default function LinearDeterminate() {
 
   return (
     <div className={classes.root}>
-      <LinearProgress
-        variant="determinate"
-        value={progress}
-      />
+      <LinearProgress variant="determinate" value={progress} />
     </div>
   );
 }

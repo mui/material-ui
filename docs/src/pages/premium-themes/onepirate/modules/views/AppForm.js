@@ -8,8 +8,7 @@ import Paper from '../components/Paper';
 const styles = (theme) => ({
   root: {
     display: 'flex',
-    backgroundImage:
-      'url(/static/onepirate/appCurvyLines.png)',
+    backgroundImage: 'url(/static/onepirate/appCurvyLines.png)',
     backgroundRepeat: 'no-repeat',
   },
   paper: {
@@ -27,9 +26,7 @@ function AppForm(props) {
     <div className={classes.root}>
       <Container maxWidth="sm">
         <Box mt={7} mb={12}>
-          <Paper className={classes.paper}>
-            {children}
-          </Paper>
+          <Paper className={classes.paper}>{children}</Paper>
         </Box>
       </Container>
     </div>

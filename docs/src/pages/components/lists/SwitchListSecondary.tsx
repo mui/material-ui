@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  makeStyles,
-  Theme,
-  createStyles,
-} from '@material-ui/core/styles';
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -50,10 +46,7 @@ export default function SwitchListSecondary() {
         <ListItemIcon>
           <WifiIcon />
         </ListItemIcon>
-        <ListItemText
-          id="switch-list-label-wifi"
-          primary="Wi-Fi"
-        />
+        <ListItemText id="switch-list-label-wifi" primary="Wi-Fi" />
         <ListItemSecondaryAction>
           <Switch
             edge="end"
@@ -69,18 +62,14 @@ export default function SwitchListSecondary() {
         <ListItemIcon>
           <BluetoothIcon />
         </ListItemIcon>
-        <ListItemText
-          id="switch-list-label-bluetooth"
-          primary="Bluetooth"
-        />
+        <ListItemText id="switch-list-label-bluetooth" primary="Bluetooth" />
         <ListItemSecondaryAction>
           <Switch
             edge="end"
             onChange={handleToggle('bluetooth')}
             checked={checked.indexOf('bluetooth') !== -1}
             inputProps={{
-              'aria-labelledby':
-                'switch-list-label-bluetooth',
+              'aria-labelledby': 'switch-list-label-bluetooth',
             }}
           />
         </ListItemSecondaryAction>

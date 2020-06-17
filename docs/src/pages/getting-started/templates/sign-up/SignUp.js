@@ -15,11 +15,7 @@ import Container from '@material-ui/core/Container';
 
 function Copyright() {
   return (
-    <Typography
-      variant="body2"
-      color="textSecondary"
-      align="center"
-    >
+    <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
         Your Website
@@ -113,12 +109,7 @@ export default function SignUp() {
             </Grid>
             <Grid item xs={12}>
               <FormControlLabel
-                control={
-                  <Checkbox
-                    value="allowExtraEmails"
-                    color="primary"
-                  />
-                }
+                control={<Checkbox value="allowExtraEmails" color="primary" />}
                 label="I want to receive inspiration, marketing promotions and updates via email."
               />
             </Grid>

@@ -88,10 +88,7 @@ export default function AppFooter() {
               spacing={2}
             >
               <Grid item className={classes.icons}>
-                <a
-                  href="https://material-ui.com/"
-                  className={classes.icon}
-                >
+                <a href="https://material-ui.com/" className={classes.icon}>
                   <img
                     src="/static/themes/onepirate/appFooterFacebook.png"
                     alt="Facebook"
@@ -113,32 +110,20 @@ export default function AppFooter() {
             </Grid>
           </Grid>
           <Grid item xs={6} sm={4} md={2}>
-            <Typography
-              variant="h6"
-              marked="left"
-              gutterBottom
-            >
+            <Typography variant="h6" marked="left" gutterBottom>
               Legal
             </Typography>
             <ul className={classes.list}>
               <li className={classes.listItem}>
-                <Link href="/premium-themes/onepirate/terms/">
-                  Terms
-                </Link>
+                <Link href="/premium-themes/onepirate/terms/">Terms</Link>
               </li>
               <li className={classes.listItem}>
-                <Link href="/premium-themes/onepirate/privacy/">
-                  Privacy
-                </Link>
+                <Link href="/premium-themes/onepirate/privacy/">Privacy</Link>
               </li>
             </ul>
           </Grid>
           <Grid item xs={6} sm={8} md={4}>
-            <Typography
-              variant="h6"
-              marked="left"
-              gutterBottom
-            >
+            <Typography variant="h6" marked="left" gutterBottom>
               Language
             </Typography>
             <TextField
@@ -149,10 +134,7 @@ export default function AppFooter() {
               className={classes.language}
             >
               {LANGUAGES.map((language) => (
-                <option
-                  value={language.code}
-                  key={language.code}
-                >
+                <option value={language.code} key={language.code}>
                   {language.name}
                 </option>
               ))}

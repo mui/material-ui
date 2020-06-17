@@ -1,11 +1,7 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
-import {
-  makeStyles,
-  createStyles,
-  Theme,
-} from '@material-ui/core/styles';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -25,10 +21,7 @@ export default function GroupSizesColors() {
 
   return (
     <div className={classes.root}>
-      <ButtonGroup
-        size="small"
-        aria-label="small outlined button group"
-      >
+      <ButtonGroup size="small" aria-label="small outlined button group">
         <Button>One</Button>
         <Button>Two</Button>
         <Button>Three</Button>

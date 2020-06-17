@@ -40,9 +40,7 @@ export default function HideAppBar(props: Props) {
       <HideOnScroll {...props}>
         <AppBar>
           <Toolbar>
-            <Typography variant="h6">
-              Scroll to Hide App Bar
-            </Typography>
+            <Typography variant="h6">Scroll to Hide App Bar</Typography>
           </Toolbar>
         </AppBar>
       </HideOnScroll>

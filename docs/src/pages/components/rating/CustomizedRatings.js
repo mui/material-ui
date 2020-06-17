@@ -56,14 +56,8 @@ IconContainer.propTypes = {
 export default function CustomizedRatings() {
   return (
     <div>
-      <Box
-        component="fieldset"
-        mb={3}
-        borderColor="transparent"
-      >
-        <Typography component="legend">
-          Custom empty icon
-        </Typography>
+      <Box component="fieldset" mb={3} borderColor="transparent">
+        <Typography component="legend">Custom empty icon</Typography>
         <Rating
           name="customized-empty"
           defaultValue={2}
@@ -71,44 +65,22 @@ export default function CustomizedRatings() {
           emptyIcon={<StarBorderIcon fontSize="inherit" />}
         />
       </Box>
-      <Box
-        component="fieldset"
-        mb={3}
-        borderColor="transparent"
-      >
-        <Typography component="legend">
-          Custom icon and color
-        </Typography>
+      <Box component="fieldset" mb={3} borderColor="transparent">
+        <Typography component="legend">Custom icon and color</Typography>
         <StyledRating
           name="customized-color"
           defaultValue={2}
-          getLabelText={(value) =>
-            `${value} Heart${value !== 1 ? 's' : ''}`
-          }
+          getLabelText={(value) => `${value} Heart${value !== 1 ? 's' : ''}`}
           precision={0.5}
           icon={<FavoriteIcon fontSize="inherit" />}
         />
       </Box>
-      <Box
-        component="fieldset"
-        mb={3}
-        borderColor="transparent"
-      >
+      <Box component="fieldset" mb={3} borderColor="transparent">
         <Typography component="legend">10 stars</Typography>
-        <Rating
-          name="customized-10"
-          defaultValue={2}
-          max={10}
-        />
+        <Rating name="customized-10" defaultValue={2} max={10} />
       </Box>
-      <Box
-        component="fieldset"
-        mb={3}
-        borderColor="transparent"
-      >
-        <Typography component="legend">
-          Custom icon set
-        </Typography>
+      <Box component="fieldset" mb={3} borderColor="transparent">
+        <Typography component="legend">Custom icon set</Typography>
         <Rating
           name="customized-icons"
           defaultValue={2}

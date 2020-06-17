@@ -30,12 +30,7 @@ function ValueLabelComponent(props: Props) {
   const { children, open, value } = props;
 
   return (
-    <Tooltip
-      open={open}
-      enterTouchDelay={0}
-      placement="top"
-      title={value}
-    >
+    <Tooltip open={open} enterTouchDelay={0} placement="top" title={value}>
       {children}
     </Tooltip>
   );
@@ -207,9 +202,7 @@ export default function CustomizedSlider() {
         defaultValue={20}
       />
       <div className={classes.margin} />
-      <Typography gutterBottom>
-        Tooltip value label
-      </Typography>
+      <Typography gutterBottom>Tooltip value label</Typography>
       <Slider
         ValueLabelComponent={ValueLabelComponent}
         aria-label="custom thumb label"

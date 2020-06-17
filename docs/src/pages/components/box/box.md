@@ -48,9 +48,7 @@ The Box component has a `clone` property to enable the usage of the clone elemen
 The Box children accepts a render props function. You can pull out the `className`.
 
 ```jsx
-<Box color="text.primary">
-  {(props) => <Button {...props} />}
-</Box>
+<Box color="text.primary">{(props) => <Button {...props} />}</Box>
 ```
 
 > ⚠️ The CSS specificity relies on the import order.

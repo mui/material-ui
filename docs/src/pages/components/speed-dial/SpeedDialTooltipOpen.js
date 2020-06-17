@@ -51,9 +51,7 @@ export default function SpeedDialTooltipOpen() {
 
   return (
     <div className={classes.root}>
-      <Button onClick={handleVisibility}>
-        Toggle Speed Dial
-      </Button>
+      <Button onClick={handleVisibility}>Toggle Speed Dial</Button>
       <Backdrop open={open} />
       <SpeedDial
         ariaLabel="SpeedDial tooltip example"

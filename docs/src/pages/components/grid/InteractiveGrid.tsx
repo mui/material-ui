@@ -10,11 +10,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import Radio from '@material-ui/core/Radio';
 import Paper from '@material-ui/core/Paper';
-import {
-  makeStyles,
-  createStyles,
-  Theme,
-} from '@material-ui/core/styles';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -38,15 +34,11 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function InteractiveGrid() {
   const classes = useStyles();
-  const [direction, setDirection] = React.useState<
-    GridDirection
-  >('row');
-  const [justify, setJustify] = React.useState<
-    GridJustification
-  >('center');
-  const [alignItems, setAlignItems] = React.useState<
-    GridItemsAlignment
-  >('center');
+  const [direction, setDirection] = React.useState<GridDirection>('row');
+  const [justify, setJustify] = React.useState<GridJustification>('center');
+  const [alignItems, setAlignItems] = React.useState<GridItemsAlignment>(
+    'center',
+  );
 
   const jsx = `
 <Grid
@@ -96,8 +88,7 @@ export default function InteractiveGrid() {
                   value={direction}
                   onChange={(event) => {
                     setDirection(
-                      (event.target as HTMLInputElement)
-                        .value as GridDirection,
+                      (event.target as HTMLInputElement).value as GridDirection,
                     );
                   }}
                 >

@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  makeStyles,
-  Theme,
-  createStyles,
-} from '@material-ui/core/styles';
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Alert from '@material-ui/lab/Alert';
 import CheckIcon from '@material-ui/icons/Check';
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
@@ -24,17 +20,12 @@ export default function IconAlerts() {
 
   return (
     <div className={classes.root}>
-      <Alert
-        icon={<CheckIcon fontSize="inherit" />}
-        severity="success"
-      >
+      <Alert icon={<CheckIcon fontSize="inherit" />} severity="success">
         This is a success alert — check it out!
       </Alert>
       <Alert
         iconMapping={{
-          success: (
-            <CheckCircleOutlineIcon fontSize="inherit" />
-          ),
+          success: <CheckCircleOutlineIcon fontSize="inherit" />,
         }}
       >
         This is a success alert — check it out!

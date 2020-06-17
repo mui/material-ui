@@ -24,11 +24,7 @@ export default function InputSlider() {
   };
 
   const handleInputChange = (event) => {
-    setValue(
-      event.target.value === ''
-        ? ''
-        : Number(event.target.value),
-    );
+    setValue(event.target.value === '' ? '' : Number(event.target.value));
   };
 
   const handleBlur = () => {

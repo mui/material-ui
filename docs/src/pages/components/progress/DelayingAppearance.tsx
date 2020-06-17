@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  makeStyles,
-  createStyles,
-  Theme,
-} from '@material-ui/core/styles';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Fade from '@material-ui/core/Fade';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -69,10 +65,7 @@ export default function DelayingAppearance() {
           <CircularProgress />
         </Fade>
       </div>
-      <Button
-        onClick={handleClickLoading}
-        className={classes.button}
-      >
+      <Button onClick={handleClickLoading} className={classes.button}>
         {loading ? 'Stop loading' : 'Loading'}
       </Button>
       <div className={classes.placeholder}>
@@ -82,8 +75,7 @@ export default function DelayingAppearance() {
           <Fade
             in={query === 'progress'}
             style={{
-              transitionDelay:
-                query === 'progress' ? '800ms' : '0ms',
+              transitionDelay: query === 'progress' ? '800ms' : '0ms',
             }}
             unmountOnExit
           >
@@ -91,10 +83,7 @@ export default function DelayingAppearance() {
           </Fade>
         )}
       </div>
-      <Button
-        onClick={handleClickQuery}
-        className={classes.button}
-      >
+      <Button onClick={handleClickQuery} className={classes.button}>
         {query !== 'idle' ? 'Reset' : 'Simulate a load'}
       </Button>
     </div>

@@ -32,11 +32,7 @@ export default function DraggableDialog() {
 
   return (
     <div>
-      <Button
-        variant="outlined"
-        color="primary"
-        onClick={handleClickOpen}
-      >
+      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
         Open form dialog
       </Button>
       <Dialog
@@ -45,25 +41,17 @@ export default function DraggableDialog() {
         PaperComponent={PaperComponent}
         aria-labelledby="draggable-dialog-title"
       >
-        <DialogTitle
-          style={{ cursor: 'move' }}
-          id="draggable-dialog-title"
-        >
+        <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">
           Subscribe
         </DialogTitle>
         <DialogContent>
           <DialogContentText>
-            To subscribe to this website, please enter your
-            email address here. We will send updates
-            occasionally.
+            To subscribe to this website, please enter your email address here.
+            We will send updates occasionally.
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button
-            autoFocus
-            onClick={handleClose}
-            color="primary"
-          >
+          <Button autoFocus onClick={handleClose} color="primary">
             Cancel
           </Button>
           <Button onClick={handleClose} color="primary">

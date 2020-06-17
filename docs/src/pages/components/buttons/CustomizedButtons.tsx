@@ -85,11 +85,7 @@ export default function CustomizedButtons() {
         Custom CSS
       </ColorButton>
       <ThemeProvider theme={theme}>
-        <Button
-          variant="contained"
-          color="primary"
-          className={classes.margin}
-        >
+        <Button variant="contained" color="primary" className={classes.margin}>
           Theme Provider
         </Button>
       </ThemeProvider>

@@ -1,10 +1,6 @@
 /* eslint-disable no-use-before-define */
 import React from 'react';
-import {
-  useTheme,
-  fade,
-  makeStyles,
-} from '@material-ui/core/styles';
+import { useTheme, fade, makeStyles } from '@material-ui/core/styles';
 import Popper from '@material-ui/core/Popper';
 import SettingsIcon from '@material-ui/icons/Settings';
 import CloseIcon from '@material-ui/icons/Close';
@@ -67,17 +63,11 @@ const useStyles = makeStyles((theme) => ({
       borderRadius: 4,
       backgroundColor: theme.palette.common.white,
       padding: 8,
-      transition: theme.transitions.create([
-        'border-color',
-        'box-shadow',
-      ]),
+      transition: theme.transitions.create(['border-color', 'box-shadow']),
       border: '1px solid #ced4da',
       fontSize: 14,
       '&:focus': {
-        boxShadow: `${fade(
-          theme.palette.primary.main,
-          0.25,
-        )} 0 0 0 0.2rem`,
+        boxShadow: `${fade(theme.palette.primary.main, 0.25)} 0 0 0 0.2rem`,
         borderColor: theme.palette.primary.main,
       },
     },
@@ -129,14 +119,9 @@ const useStyles = makeStyles((theme) => ({
 export default function GitHubLabel() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [value, setValue] = React.useState([
-    labels[1],
-    labels[11],
-  ]);
+  const [value, setValue] = React.useState([labels[1], labels[11]]);
 
-  const [pendingValue, setPendingValue] = React.useState(
-    [],
-  );
+  const [pendingValue, setPendingValue] = React.useState([]);
   const theme = useTheme();
 
   const handleClick = (event) => {
@@ -176,9 +161,7 @@ export default function GitHubLabel() {
             className={classes.tag}
             style={{
               backgroundColor: label.color,
-              color: theme.palette.getContrastText(
-                label.color,
-              ),
+              color: theme.palette.getContrastText(label.color),
             }}
           >
             {label.name}
@@ -192,9 +175,7 @@ export default function GitHubLabel() {
         placement="bottom-start"
         className={classes.popper}
       >
-        <div className={classes.header}>
-          Apply labels to this pull request
-        </div>
+        <div className={classes.header}>Apply labels to this pull request</div>
         <Autocomplete
           open
           onClose={handleClose}
@@ -202,8 +183,7 @@ export default function GitHubLabel() {
           classes={{
             paper: classes.paper,
             option: classes.option,
-            popperDisablePortal:
-              classes.popperDisablePortal,
+            popperDisablePortal: classes.popperDisablePortal,
           }}
           value={pendingValue}
           onChange={(event, newValue, reason) => {
@@ -225,9 +205,7 @@ export default function GitHubLabel() {
               <DoneIcon
                 className={classes.iconSelected}
                 style={{
-                  visibility: selected
-                    ? 'visible'
-                    : 'hidden',
+                  visibility: selected ? 'visible' : 'hidden',
                 }}
               />
               <span
@@ -242,9 +220,7 @@ export default function GitHubLabel() {
               <CloseIcon
                 className={classes.close}
                 style={{
-                  visibility: selected
-                    ? 'visible'
-                    : 'hidden',
+                  visibility: selected ? 'visible' : 'hidden',
                 }}
               />
             </React.Fragment>
@@ -252,15 +228,9 @@ export default function GitHubLabel() {
           options={[...labels].sort((a, b) => {
             // Display the selected labels first.
             let ai = value.indexOf(a);
-            ai =
-              ai === -1
-                ? value.length + labels.indexOf(a)
-                : ai;
+            ai = ai === -1 ? value.length + labels.indexOf(a) : ai;
             let bi = value.indexOf(b);
-            bi =
-              bi === -1
-                ? value.length + labels.indexOf(b)
-                : bi;
+            bi = bi === -1 ? value.length + labels.indexOf(b) : bi;
             return ai - bi;
           })}
           getOptionLabel={(option) => option.name}
@@ -323,8 +293,7 @@ const labels = [
   {
     name: 'status: duplicate',
     color: '#cfd3d7',
-    description:
-      'This issue or pull request already exists',
+    description: 'This issue or pull request already exists',
   },
   {
     name: 'status: needs information',

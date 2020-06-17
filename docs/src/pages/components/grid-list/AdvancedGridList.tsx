@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  createStyles,
-  Theme,
-  makeStyles,
-} from '@material-ui/core/styles';
+import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
@@ -60,11 +56,7 @@ export default function AdvancedGridList() {
 
   return (
     <div className={classes.root}>
-      <GridList
-        cellHeight={200}
-        spacing={1}
-        className={classes.gridList}
-      >
+      <GridList cellHeight={200} spacing={1} className={classes.gridList}>
         {tileData.map((tile) => (
           <GridListTile
             key={tile.img}

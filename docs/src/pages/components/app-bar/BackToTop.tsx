@@ -2,11 +2,7 @@ import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import {
-  makeStyles,
-  Theme,
-  createStyles,
-} from '@material-ui/core/styles';
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import Box from '@material-ui/core/Box';
@@ -46,12 +42,9 @@ function ScrollTop(props: Props) {
     threshold: 100,
   });
 
-  const handleClick = (
-    event: React.MouseEvent<HTMLDivElement>,
-  ) => {
+  const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
     const anchor = (
-      (event.target as HTMLDivElement).ownerDocument ||
-      document
+      (event.target as HTMLDivElement).ownerDocument || document
     ).querySelector('#back-to-top-anchor');
 
     if (anchor) {
@@ -64,11 +57,7 @@ function ScrollTop(props: Props) {
 
   return (
     <Zoom in={trigger}>
-      <div
-        onClick={handleClick}
-        role="presentation"
-        className={classes.root}
-      >
+      <div onClick={handleClick} role="presentation" className={classes.root}>
         {children}
       </div>
     </Zoom>
@@ -81,9 +70,7 @@ export default function BackToTop(props: Props) {
       <CssBaseline />
       <AppBar>
         <Toolbar>
-          <Typography variant="h6">
-            Scroll to see button
-          </Typography>
+          <Typography variant="h6">Scroll to see button</Typography>
         </Toolbar>
       </AppBar>
       <Toolbar id="back-to-top-anchor" />
@@ -100,11 +87,7 @@ Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`,
         </Box>
       </Container>
       <ScrollTop {...props}>
-        <Fab
-          color="secondary"
-          size="small"
-          aria-label="scroll back to top"
-        >
+        <Fab color="secondary" size="small" aria-label="scroll back to top">
           <KeyboardArrowUpIcon />
         </Fab>
       </ScrollTop>

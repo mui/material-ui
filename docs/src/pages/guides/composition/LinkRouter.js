@@ -5,11 +5,7 @@ import { Link as RouterLink } from 'react-router-dom';
 import Link from '@material-ui/core/Link';
 
 const LinkBehavior = React.forwardRef((props, ref) => (
-  <RouterLink
-    ref={ref}
-    to="/getting-started/installation/"
-    {...props}
-  />
+  <RouterLink ref={ref} to="/getting-started/installation/" {...props} />
 ));
 
 export default function LinkRouter() {
@@ -20,9 +16,7 @@ export default function LinkRouter() {
           With prop forwarding
         </Link>
         <br />
-        <Link component={LinkBehavior}>
-          Without prop forwarding
-        </Link>
+        <Link component={LinkBehavior}>Without prop forwarding</Link>
       </div>
     </Router>
   );

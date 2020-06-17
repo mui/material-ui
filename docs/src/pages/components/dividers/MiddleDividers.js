@@ -45,8 +45,8 @@ export default function MiddleDividers() {
           </Grid>
         </Grid>
         <Typography color="textSecondary" variant="body2">
-          Pinstriped cornflower blue cotton blouse takes you
-          on a walk to the park or just down the hall.
+          Pinstriped cornflower blue cotton blouse takes you on a walk to the
+          park or just down the hall.
         </Typography>
       </div>
       <Divider variant="middle" />
@@ -55,15 +55,8 @@ export default function MiddleDividers() {
           Select type
         </Typography>
         <div>
-          <Chip
-            className={classes.chip}
-            label="Extra Soft"
-          />
-          <Chip
-            className={classes.chip}
-            color="primary"
-            label="Soft"
-          />
+          <Chip className={classes.chip} label="Extra Soft" />
+          <Chip className={classes.chip} color="primary" label="Soft" />
           <Chip className={classes.chip} label="Medium" />
           <Chip className={classes.chip} label="Hard" />
         </div>

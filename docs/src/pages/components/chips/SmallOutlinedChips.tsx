@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  createStyles,
-  Theme,
-  makeStyles,
-} from '@material-ui/core/styles';
+import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import Chip from '@material-ui/core/Chip';
 import FaceIcon from '@material-ui/icons/Face';
@@ -46,12 +42,7 @@ export default function SmallOutlinedChips() {
       <Chip
         variant="outlined"
         size="small"
-        avatar={
-          <Avatar
-            alt="Natacha"
-            src="/static/images/avatar/1.jpg"
-          />
-        }
+        avatar={<Avatar alt="Natacha" src="/static/images/avatar/1.jpg" />}
         label="Deletable"
         onDelete={handleDelete}
       />

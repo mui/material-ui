@@ -32,36 +32,22 @@ export default function CheckboxesGroup() {
   };
 
   const { gilad, jason, antoine } = state;
-  const error =
-    [gilad, jason, antoine].filter((v) => v).length !== 2;
+  const error = [gilad, jason, antoine].filter((v) => v).length !== 2;
 
   return (
     <div className={classes.root}>
-      <FormControl
-        component="fieldset"
-        className={classes.formControl}
-      >
-        <FormLabel component="legend">
-          Assign responsibility
-        </FormLabel>
+      <FormControl component="fieldset" className={classes.formControl}>
+        <FormLabel component="legend">Assign responsibility</FormLabel>
         <FormGroup>
           <FormControlLabel
             control={
-              <Checkbox
-                checked={gilad}
-                onChange={handleChange}
-                name="gilad"
-              />
+              <Checkbox checked={gilad} onChange={handleChange} name="gilad" />
             }
             label="Gilad Gray"
           />
           <FormControlLabel
             control={
-              <Checkbox
-                checked={jason}
-                onChange={handleChange}
-                name="jason"
-              />
+              <Checkbox checked={jason} onChange={handleChange} name="jason" />
             }
             label="Jason Killian"
           />
@@ -88,21 +74,13 @@ export default function CheckboxesGroup() {
         <FormGroup>
           <FormControlLabel
             control={
-              <Checkbox
-                checked={gilad}
-                onChange={handleChange}
-                name="gilad"
-              />
+              <Checkbox checked={gilad} onChange={handleChange} name="gilad" />
             }
             label="Gilad Gray"
           />
           <FormControlLabel
             control={
-              <Checkbox
-                checked={jason}
-                onChange={handleChange}
-                name="jason"
-              />
+              <Checkbox checked={jason} onChange={handleChange} name="jason" />
             }
             label="Jason Killian"
           />
@@ -117,9 +95,7 @@ export default function CheckboxesGroup() {
             label="Antoine Llorca"
           />
         </FormGroup>
-        <FormHelperText>
-          You can display an error
-        </FormHelperText>
+        <FormHelperText>You can display an error</FormHelperText>
       </FormControl>
     </div>
   );

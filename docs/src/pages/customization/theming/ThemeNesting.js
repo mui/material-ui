@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-  createMuiTheme,
-  ThemeProvider,
-} from '@material-ui/core/styles';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import Checkbox from '@material-ui/core/Checkbox';
 import { green, orange } from '@material-ui/core/colors';
 

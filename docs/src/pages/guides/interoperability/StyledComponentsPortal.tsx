@@ -17,14 +17,9 @@ const StyledMenu = styled(({ className, ...props }) => (
 `;
 
 export default function StyledComponentsPortal() {
-  const [
-    anchorEl,
-    setAnchorEl,
-  ] = React.useState<EventTarget | null>(null);
+  const [anchorEl, setAnchorEl] = React.useState<EventTarget | null>(null);
 
-  const handleClick = (
-    event: React.MouseEvent<HTMLButtonElement>,
-  ) => {
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -59,9 +54,7 @@ export default function StyledComponentsPortal() {
         }}
       >
         <MenuItem onClick={handleClose}>Profile</MenuItem>
-        <MenuItem onClick={handleClose}>
-          My account
-        </MenuItem>
+        <MenuItem onClick={handleClose}>My account</MenuItem>
         <MenuItem onClick={handleClose}>Logout</MenuItem>
       </StyledMenu>
     </div>

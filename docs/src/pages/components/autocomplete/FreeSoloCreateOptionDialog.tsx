@@ -14,10 +14,7 @@ import Autocomplete, {
 const filter = createFilterOptions<FilmOptionType>();
 
 export default function FreeSoloCreateOptionDialog() {
-  const [
-    value,
-    setValue,
-  ] = React.useState<FilmOptionType | null>(null);
+  const [value, setValue] = React.useState<FilmOptionType | null>(null);
   const [open, toggleOpen] = React.useState(false);
 
   const handleClose = () => {
@@ -33,9 +30,7 @@ export default function FreeSoloCreateOptionDialog() {
     year: '',
   });
 
-  const handleSubmit = (
-    event: React.FormEvent<HTMLFormElement>,
-  ) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setValue({
       title: dialogValue.title,
@@ -69,10 +64,7 @@ export default function FreeSoloCreateOptionDialog() {
           }
         }}
         filterOptions={(options, params) => {
-          const filtered = filter(
-            options,
-            params,
-          ) as FilmOptionType[];
+          const filtered = filter(options, params) as FilmOptionType[];
 
           if (params.inputValue !== '') {
             filtered.push({
@@ -102,11 +94,7 @@ export default function FreeSoloCreateOptionDialog() {
         style={{ width: 300 }}
         freeSolo
         renderInput={(params) => (
-          <TextField
-            {...params}
-            label="Free solo dialog"
-            variant="outlined"
-          />
+          <TextField {...params} label="Free solo dialog" variant="outlined" />
         )}
       />
       <Dialog
@@ -115,13 +103,10 @@ export default function FreeSoloCreateOptionDialog() {
         aria-labelledby="form-dialog-title"
       >
         <form onSubmit={handleSubmit}>
-          <DialogTitle id="form-dialog-title">
-            Add a new film
-          </DialogTitle>
+          <DialogTitle id="form-dialog-title">Add a new film</DialogTitle>
           <DialogContent>
             <DialogContentText>
-              Did you miss any film in our list? Please, add
-              it!
+              Did you miss any film in our list? Please, add it!
             </DialogContentText>
             <TextField
               autoFocus
@@ -187,8 +172,7 @@ const top100Films: FilmOptionType[] = [
   { title: 'The Good, the Bad and the Ugly', year: 1966 },
   { title: 'Fight Club', year: 1999 },
   {
-    title:
-      'The Lord of the Rings: The Fellowship of the Ring',
+    title: 'The Lord of the Rings: The Fellowship of the Ring',
     year: 2001,
   },
   {

@@ -15,11 +15,7 @@ export default function TextFieldSizes() {
   const classes = useStyles();
 
   return (
-    <form
-      className={classes.root}
-      noValidate
-      autoComplete="off"
-    >
+    <form className={classes.root} noValidate autoComplete="off">
       <div>
         <TextField
           label="Size"

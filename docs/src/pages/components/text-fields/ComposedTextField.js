@@ -16,10 +16,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ComposedTextField() {
-  const [name, setName] = React.useState(
-    'Composed TextField',
-  );
-
+  const [name, setName] = React.useState('Composed TextField');
   const classes = useStyles();
 
   const handleChange = (event) => {
@@ -27,25 +24,13 @@ export default function ComposedTextField() {
   };
 
   return (
-    <form
-      className={classes.root}
-      noValidate
-      autoComplete="off"
-    >
+    <form className={classes.root} noValidate autoComplete="off">
       <FormControl>
-        <InputLabel htmlFor="component-simple">
-          Name
-        </InputLabel>
-        <Input
-          id="component-simple"
-          value={name}
-          onChange={handleChange}
-        />
+        <InputLabel htmlFor="component-simple">Name</InputLabel>
+        <Input id="component-simple" value={name} onChange={handleChange} />
       </FormControl>
       <FormControl>
-        <InputLabel htmlFor="component-helper">
-          Name
-        </InputLabel>
+        <InputLabel htmlFor="component-helper">Name</InputLabel>
         <Input
           id="component-helper"
           value={name}
@@ -57,34 +42,22 @@ export default function ComposedTextField() {
         </FormHelperText>
       </FormControl>
       <FormControl disabled>
-        <InputLabel htmlFor="component-disabled">
-          Name
-        </InputLabel>
-        <Input
-          id="component-disabled"
-          value={name}
-          onChange={handleChange}
-        />
+        <InputLabel htmlFor="component-disabled">Name</InputLabel>
+        <Input id="component-disabled" value={name} onChange={handleChange} />
         <FormHelperText>Disabled</FormHelperText>
       </FormControl>
       <FormControl error>
-        <InputLabel htmlFor="component-error">
-          Name
-        </InputLabel>
+        <InputLabel htmlFor="component-error">Name</InputLabel>
         <Input
           id="component-error"
           value={name}
           onChange={handleChange}
           aria-describedby="component-error-text"
         />
-        <FormHelperText id="component-error-text">
-          Error
-        </FormHelperText>
+        <FormHelperText id="component-error-text">Error</FormHelperText>
       </FormControl>
       <FormControl variant="outlined">
-        <InputLabel htmlFor="component-outlined">
-          Name
-        </InputLabel>
+        <InputLabel htmlFor="component-outlined">Name</InputLabel>
         <OutlinedInput
           id="component-outlined"
           value={name}
@@ -93,9 +66,7 @@ export default function ComposedTextField() {
         />
       </FormControl>
       <FormControl variant="filled">
-        <InputLabel htmlFor="component-filled">
-          Name
-        </InputLabel>
+        <InputLabel htmlFor="component-filled">Name</InputLabel>
         <FilledInput
           id="component-filled"
           value={name}

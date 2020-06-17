@@ -33,10 +33,7 @@ function StableVersions(props) {
               <TableCell>
                 <Typography variant="body2">
                   {doc.version}
-                  {doc.version ===
-                  `v${process.env.LIB_VERSION}`
-                    ? ' ✓'
-                    : ''}
+                  {doc.version === `v${process.env.LIB_VERSION}` ? ' ✓' : ''}
                 </Typography>
               </TableCell>
               <TableCell>

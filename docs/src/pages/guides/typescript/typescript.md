@@ -179,10 +179,7 @@ interface Props {
 However this isn't very [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) because it requires you to maintain the class names (`'root'`, `'paper'`, `'button'`, ...) in two different places. We provide a type operator `WithStyles` to help with this, so that you can just write:
 
 ```ts
-import {
-  WithStyles,
-  createStyles,
-} from '@material-ui/core';
+import { WithStyles, createStyles } from '@material-ui/core';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -210,11 +207,7 @@ Applying `withStyles(styles)` as a function works as expected:
 ```tsx
 const DecoratedSFC = withStyles(styles)(
   ({ text, type, color, classes }: Props) => (
-    <Typography
-      variant={type}
-      color={color}
-      classes={classes}
-    >
+    <Typography variant={type} color={color} classes={classes}>
       {text}
     </Typography>
   ),
@@ -225,11 +218,7 @@ const DecoratedClass = withStyles(styles)(
     render() {
       const { text, type, color, classes } = this.props;
       return (
-        <Typography
-          variant={type}
-          color={color}
-          classes={classes}
-        >
+        <Typography variant={type} color={color} classes={classes}>
           {text}
         </Typography>
       );
@@ -273,14 +262,9 @@ And a custom theme factory with additional defaulted options:
 **./styles/createMyTheme**:
 
 ```ts
-import {
-  createMuiTheme,
-  ThemeOptions,
-} from '@material-ui/core/styles';
+import { createMuiTheme, ThemeOptions } from '@material-ui/core/styles';
 
-export default function createMyTheme(
-  options: ThemeOptions,
-) {
+export default function createMyTheme(options: ThemeOptions) {
   return createMuiTheme({
     appDrawer: {
       width: 225,
@@ -315,9 +299,7 @@ The examples below use `TypographyProps` but the same will work for any componen
 The following `CustomComponent` component has the same props as the `Typography` component.
 
 ```ts
-function CustomComponent(
-  props: TypographyProps<'a', { component: 'a' }>,
-) {
+function CustomComponent(props: TypographyProps<'a', { component: 'a' }>) {
   /* ... */
 }
 ```
@@ -327,9 +309,9 @@ Now the `CustomComponent` can be used with a `component` prop which should be se
 It is possible to have generic `CustomComponent` which will accept any React component, custom and HTML elements.
 
 ```ts
-function GenericCustomComponent<
-  C extends React.ElementType
->(props: TypographyProps<C, { component?: C }>) {
+function GenericCustomComponent<C extends React.ElementType>(
+  props: TypographyProps<C, { component?: C }>,
+) {
   /* ... */
 }
 ```
@@ -341,10 +323,7 @@ function ThirdPartyComponent({ prop1 }: { prop1: string }) {
   return <div />;
 }
 // ...
-<GenericCustomComponent
-  component={ThirdPartyComponent}
-  prop1="some value"
-/>;
+<GenericCustomComponent component={ThirdPartyComponent} prop1="some value" />;
 ```
 
 The `prop1` became required for the `GenericCustomComponent` as the `ThirdPartyComponent` has it as a requirement.

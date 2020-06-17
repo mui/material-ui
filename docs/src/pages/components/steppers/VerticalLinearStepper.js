@@ -25,11 +25,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function getSteps() {
-  return [
-    'Select campaign settings',
-    'Create an ad group',
-    'Create an ad',
-  ];
+  return ['Select campaign settings', 'Create an ad group', 'Create an ad'];
 }
 
 function getStepContent(step) {
@@ -69,27 +65,20 @@ export default function VerticalLinearStepper() {
 
   return (
     <div className={classes.root}>
-      <Stepper
-        activeStep={activeStep}
-        orientation="vertical"
-      >
+      <Stepper activeStep={activeStep} orientation="vertical">
         {steps.map((label, index) => (
           <Step key={label}>
             <StepLabel
               optional={
                 index === 2 ? (
-                  <Typography variant="caption">
-                    Last step
-                  </Typography>
+                  <Typography variant="caption">Last step</Typography>
                 ) : null
               }
             >
               {label}
             </StepLabel>
             <StepContent>
-              <Typography>
-                {getStepContent(index)}
-              </Typography>
+              <Typography>{getStepContent(index)}</Typography>
               <div className={classes.actionsContainer}>
                 <div>
                   <Button
@@ -105,9 +94,7 @@ export default function VerticalLinearStepper() {
                     onClick={handleNext}
                     className={classes.button}
                   >
-                    {activeStep === steps.length - 1
-                      ? 'Finish'
-                      : 'Next'}
+                    {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
                   </Button>
                 </div>
               </div>
@@ -116,18 +103,9 @@ export default function VerticalLinearStepper() {
         ))}
       </Stepper>
       {activeStep === steps.length && (
-        <Paper
-          square
-          elevation={0}
-          className={classes.resetContainer}
-        >
-          <Typography>
-            All steps completed - you&apos;re finished
-          </Typography>
-          <Button
-            onClick={handleReset}
-            className={classes.button}
-          >
+        <Paper square elevation={0} className={classes.resetContainer}>
+          <Typography>All steps completed - you&apos;re finished</Typography>
+          <Button onClick={handleReset} className={classes.button}>
             Reset
           </Button>
         </Paper>

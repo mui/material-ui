@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  createStyles,
-  Theme,
-  makeStyles,
-} from '@material-ui/core/styles';
+import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -20,11 +16,7 @@ export default function Inputs() {
   const classes = useStyles();
 
   return (
-    <form
-      className={classes.root}
-      noValidate
-      autoComplete="off"
-    >
+    <form className={classes.root} noValidate autoComplete="off">
       <Input
         defaultValue="Hello world"
         inputProps={{ 'aria-label': 'description' }}

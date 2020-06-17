@@ -44,11 +44,7 @@ export default function FullScreenDialog() {
 
   return (
     <div>
-      <Button
-        variant="outlined"
-        color="primary"
-        onClick={handleClickOpen}
-      >
+      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
         Open full-screen dialog
       </Button>
       <Dialog
@@ -67,27 +63,17 @@ export default function FullScreenDialog() {
             >
               <CloseIcon />
             </IconButton>
-            <Typography
-              variant="h6"
-              className={classes.title}
-            >
+            <Typography variant="h6" className={classes.title}>
               Sound
             </Typography>
-            <Button
-              autoFocus
-              color="inherit"
-              onClick={handleClose}
-            >
+            <Button autoFocus color="inherit" onClick={handleClose}>
               save
             </Button>
           </Toolbar>
         </AppBar>
         <List>
           <ListItem button>
-            <ListItemText
-              primary="Phone ringtone"
-              secondary="Titania"
-            />
+            <ListItemText primary="Phone ringtone" secondary="Titania" />
           </ListItem>
           <Divider />
           <ListItem button>

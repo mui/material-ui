@@ -1,9 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  withStyles,
-  useTheme,
-} from '@material-ui/core/styles';
+import { withStyles, useTheme } from '@material-ui/core/styles';
 import * as colors from '@material-ui/core/colors';
 
 const mainColors = [
@@ -25,18 +22,7 @@ const mainColors = [
   'Deep Orange',
 ];
 const neutralColors = ['Brown', 'Grey', 'Blue Grey'];
-const mainPalette = [
-  50,
-  100,
-  200,
-  300,
-  400,
-  500,
-  600,
-  700,
-  800,
-  900,
-];
+const mainPalette = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
 const altPalette = ['A100', 'A200', 'A400', 'A700'];
 
 export const styles = (theme) => ({
@@ -72,21 +58,13 @@ export const styles = (theme) => ({
   body2: theme.typography.body2,
 });
 
-function getColorBlock(
-  classes,
-  theme,
-  colorName,
-  colorValue,
-  colorTitle,
-) {
+function getColorBlock(classes, theme, colorName, colorValue, colorTitle) {
   const bgColor = colors[colorName][colorValue];
   const fgColor = theme.palette.getContrastText(bgColor);
 
   let blockTitle;
   if (colorTitle) {
-    blockTitle = (
-      <div className={classes.name}>{colorName}</div>
-    );
+    blockTitle = <div className={classes.name}>{colorName}</div>;
   }
 
   let rowStyle = {
@@ -104,17 +82,11 @@ function getColorBlock(
   }
 
   return (
-    <li
-      style={rowStyle}
-      key={colorValue}
-      className={classes.body2}
-    >
+    <li style={rowStyle} key={colorValue} className={classes.body2}>
       {blockTitle}
       <div className={classes.colorContainer}>
         <span>{colorValue}</span>
-        <span className={classes.colorValue}>
-          {bgColor}
-        </span>
+        <span className={classes.colorValue}>{bgColor}</span>
       </div>
     </li>
   );
@@ -124,10 +96,7 @@ function getColorGroup(options) {
   const { classes, theme, color, showAltPalette } = options;
   const cssColor = color
     .replace(' ', '')
-    .replace(
-      color.charAt(0),
-      color.charAt(0).toLowerCase(),
-    );
+    .replace(color.charAt(0), color.charAt(0).toLowerCase());
   let colorsList = [];
   colorsList = mainPalette.map((mainValue) =>
     getColorBlock(classes, theme, cssColor, mainValue),
@@ -135,9 +104,7 @@ function getColorGroup(options) {
 
   if (showAltPalette) {
     altPalette.forEach((altValue) => {
-      colorsList.push(
-        getColorBlock(classes, theme, cssColor, altValue),
-      );
+      colorsList.push(getColorBlock(classes, theme, cssColor, altValue));
     });
   }
 

@@ -3,11 +3,7 @@ import Switch from '@material-ui/core/Switch';
 import Paper from '@material-ui/core/Paper';
 import Zoom from '@material-ui/core/Zoom';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import {
-  makeStyles,
-  createStyles,
-  Theme,
-} from '@material-ui/core/styles';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -43,12 +39,7 @@ export default function SimpleZoom() {
   return (
     <div className={classes.root}>
       <FormControlLabel
-        control={
-          <Switch
-            checked={checked}
-            onChange={handleChange}
-          />
-        }
+        control={<Switch checked={checked} onChange={handleChange} />}
         label="Show"
       />
       <div className={classes.container}>

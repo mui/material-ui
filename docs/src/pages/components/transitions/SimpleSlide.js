@@ -40,20 +40,10 @@ export default function SimpleSlide() {
     <div className={classes.root}>
       <div className={classes.wrapper}>
         <FormControlLabel
-          control={
-            <Switch
-              checked={checked}
-              onChange={handleChange}
-            />
-          }
+          control={<Switch checked={checked} onChange={handleChange} />}
           label="Show"
         />
-        <Slide
-          direction="up"
-          in={checked}
-          mountOnEnter
-          unmountOnExit
-        >
+        <Slide direction="up" in={checked} mountOnEnter unmountOnExit>
           <Paper elevation={4} className={classes.paper}>
             <svg className={classes.svg}>
               <polygon

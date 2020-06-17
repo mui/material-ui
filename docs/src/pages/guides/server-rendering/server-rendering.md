@@ -98,10 +98,7 @@ We will see how this is passed along in the `renderFullPage` function.
 import express from 'express';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
-import {
-  ServerStyleSheets,
-  ThemeProvider,
-} from '@material-ui/core/styles';
+import { ServerStyleSheets, ThemeProvider } from '@material-ui/core/styles';
 import App from './App';
 import theme from './theme';
 
@@ -172,9 +169,7 @@ import theme from './theme';
 
 function Main() {
   React.useEffect(() => {
-    const jssStyles = document.querySelector(
-      '#jss-server-side',
-    );
+    const jssStyles = document.querySelector('#jss-server-side');
     if (jssStyles) {
       jssStyles.parentElement.removeChild(jssStyles);
     }

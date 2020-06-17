@@ -27,10 +27,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: theme.shape.borderRadius,
     backgroundColor: fade(theme.palette.common.white, 0.15),
     '&:hover': {
-      backgroundColor: fade(
-        theme.palette.common.white,
-        0.25,
-      ),
+      backgroundColor: fade(theme.palette.common.white, 0.25),
     },
     marginLeft: 0,
     width: '100%',
@@ -81,11 +78,7 @@ export default function SearchAppBar() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography
-            className={classes.title}
-            variant="h6"
-            noWrap
-          >
+          <Typography className={classes.title} variant="h6" noWrap>
             Material-UI
           </Typography>
           <div className={classes.search}>

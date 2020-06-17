@@ -24,11 +24,7 @@ export default function LimitTags() {
         id="multiple-limit-tags"
         options={top100Films}
         getOptionLabel={(option) => option.title}
-        defaultValue={[
-          top100Films[13],
-          top100Films[12],
-          top100Films[11],
-        ]}
+        defaultValue={[top100Films[13], top100Films[12], top100Films[11]]}
         renderInput={(params) => (
           <TextField
             {...params}
@@ -58,8 +54,7 @@ const top100Films = [
   { title: 'The Good, the Bad and the Ugly', year: 1966 },
   { title: 'Fight Club', year: 1999 },
   {
-    title:
-      'The Lord of the Rings: The Fellowship of the Ring',
+    title: 'The Lord of the Rings: The Fellowship of the Ring',
     year: 2001,
   },
   {

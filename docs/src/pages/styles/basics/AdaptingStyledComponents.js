@@ -2,9 +2,7 @@ import React from 'react';
 import { styled } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
-const MyButton = styled(({ color, ...other }) => (
-  <Button {...other} />
-))({
+const MyButton = styled(({ color, ...other }) => <Button {...other} />)({
   background: (props) =>
     props.color === 'red'
       ? 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)'

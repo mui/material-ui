@@ -38,12 +38,7 @@ export default function SmallChips() {
       />
       <Chip
         size="small"
-        avatar={
-          <Avatar
-            alt="Natacha"
-            src="/static/images/avatar/1.jpg"
-          />
-        }
+        avatar={<Avatar alt="Natacha" src="/static/images/avatar/1.jpg" />}
         label="Deletable"
         onDelete={handleDelete}
       />

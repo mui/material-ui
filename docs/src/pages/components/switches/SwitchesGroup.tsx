@@ -13,9 +13,7 @@ export default function SwitchesGroup() {
     antoine: true,
   });
 
-  const handleChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setState({
       ...state,
       [event.target.name]: event.target.checked,
@@ -24,9 +22,7 @@ export default function SwitchesGroup() {
 
   return (
     <FormControl component="fieldset">
-      <FormLabel component="legend">
-        Assign responsibility
-      </FormLabel>
+      <FormLabel component="legend">Assign responsibility</FormLabel>
       <FormGroup>
         <FormControlLabel
           control={

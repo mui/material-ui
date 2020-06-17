@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  Theme,
-  makeStyles,
-  createStyles,
-} from '@material-ui/core/styles';
+import { Theme, makeStyles, createStyles } from '@material-ui/core/styles';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import Typography from '@material-ui/core/Typography';
 
@@ -86,9 +82,9 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     imageTitle: {
       position: 'relative',
-      padding: `${theme.spacing(2)}px ${theme.spacing(
-        4,
-      )}px ${theme.spacing(1) + 6}px`,
+      padding: `${theme.spacing(2)}px ${theme.spacing(4)}px ${
+        theme.spacing(1) + 6
+      }px`,
     },
     imageMarked: {
       height: 3,

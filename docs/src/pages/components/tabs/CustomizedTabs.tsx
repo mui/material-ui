@@ -51,16 +51,11 @@ const AntTab = withStyles((theme: Theme) =>
     },
     selected: {},
   }),
-)((props: StyledTabProps) => (
-  <Tab disableRipple {...props} />
-));
+)((props: StyledTabProps) => <Tab disableRipple {...props} />);
 
 interface StyledTabsProps {
   value: number;
-  onChange: (
-    event: React.ChangeEvent<{}>,
-    newValue: number,
-  ) => void;
+  onChange: (event: React.ChangeEvent<{}>, newValue: number) => void;
 }
 
 const StyledTabs = withStyles({
@@ -75,10 +70,7 @@ const StyledTabs = withStyles({
     },
   },
 })((props: StyledTabsProps) => (
-  <Tabs
-    {...props}
-    TabIndicatorProps={{ children: <span /> }}
-  />
+  <Tabs {...props} TabIndicatorProps={{ children: <span /> }} />
 ));
 
 interface StyledTabProps {
@@ -98,9 +90,7 @@ const StyledTab = withStyles((theme: Theme) =>
       },
     },
   }),
-)((props: StyledTabProps) => (
-  <Tab disableRipple {...props} />
-));
+)((props: StyledTabProps) => <Tab disableRipple {...props} />);
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -121,21 +111,14 @@ export default function CustomizedTabs() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
-  const handleChange = (
-    event: React.ChangeEvent<{}>,
-    newValue: number,
-  ) => {
+  const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setValue(newValue);
   };
 
   return (
     <div className={classes.root}>
       <div className={classes.demo1}>
-        <AntTabs
-          value={value}
-          onChange={handleChange}
-          aria-label="ant example"
-        >
+        <AntTabs value={value} onChange={handleChange} aria-label="ant example">
           <AntTab label="Tab 1" />
           <AntTab label="Tab 2" />
           <AntTab label="Tab 3" />

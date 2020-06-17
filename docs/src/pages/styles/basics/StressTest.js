@@ -1,10 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  ThemeProvider,
-  useTheme,
-  makeStyles,
-} from '@material-ui/core/styles';
+import { ThemeProvider, useTheme, makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   root: (props) => ({
@@ -38,10 +34,7 @@ Component.propTypes = {
 };
 
 export default function StressTest() {
-  const [
-    backgroundColor,
-    setBackgroundColor,
-  ] = React.useState('#2196f3');
+  const [backgroundColor, setBackgroundColor] = React.useState('#2196f3');
   const handleBackgroundColorChange = (event) => {
     setBackgroundColor(event.target.value);
   };

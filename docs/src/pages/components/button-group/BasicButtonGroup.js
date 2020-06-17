@@ -19,10 +19,7 @@ export default function BasicButtonGroup() {
 
   return (
     <div className={classes.root}>
-      <ButtonGroup
-        color="primary"
-        aria-label="outlined primary button group"
-      >
+      <ButtonGroup color="primary" aria-label="outlined primary button group">
         <Button>One</Button>
         <Button>Two</Button>
         <Button>Three</Button>

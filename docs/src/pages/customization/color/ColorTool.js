@@ -1,10 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  rgbToHex,
-  withStyles,
-  useTheme,
-} from '@material-ui/core/styles';
+import { rgbToHex, withStyles, useTheme } from '@material-ui/core/styles';
 import * as colors from '@material-ui/core/colors';
 import Grid from '@material-ui/core/Grid';
 import Input from '@material-ui/core/Input';
@@ -103,9 +99,7 @@ function ColorTool(props) {
 
   const handleChangeColor = (name) => (event) => {
     const isRgb = (string) =>
-      /rgb\([0-9]{1,3}\s*,\s*[0-9]{1,3}\s*,\s*[0-9]{1,3}\)/i.test(
-        string,
-      );
+      /rgb\([0-9]{1,3}\s*,\s*[0-9]{1,3}\s*,\s*[0-9]{1,3}\)/i.test(string);
 
     const isHex = (string) =>
       /^#?([0-9a-f]{3})$|^#?([0-9a-f]){6}$/i.test(string);
@@ -140,8 +134,7 @@ function ColorTool(props) {
 
   const handleChangeHue = (name) => (event) => {
     const hue = event.target.value;
-    const color =
-      colors[hue][shades[state[`${name}Shade`]]];
+    const color = colors[hue][shades[state[`${name}Shade`]]];
 
     setState({
       ...state,
@@ -152,8 +145,7 @@ function ColorTool(props) {
   };
 
   const handleChangeShade = (name) => (event, shade) => {
-    const color =
-      colors[state[`${name}Hue`]][shades[shade]];
+    const color = colors[state[`${name}Hue`]][shades[shade]];
     setState({
       ...state,
       [`${name}Shade`]: shade,
@@ -200,9 +192,7 @@ function ColorTool(props) {
             <Typography
               variant="caption"
               style={{
-                color: theme.palette.getContrastText(
-                  background[key],
-                ),
+                color: theme.palette.getContrastText(background[key]),
               }}
             >
               {rgbToHex(background[key])}
@@ -235,9 +225,7 @@ function ColorTool(props) {
           fullWidth
         />
         <div className={classes.sliderContainer}>
-          <Typography id={`${intent}ShadeSliderLabel`}>
-            Shade:
-          </Typography>
+          <Typography id={`${intent}ShadeSliderLabel`}>Shade:</Typography>
           <Slider
             className={classes.slider}
             value={intentShade}
@@ -258,17 +246,11 @@ function ColorTool(props) {
             const backgroundColor = colors[hue][shade];
 
             return (
-              <Tooltip
-                placement="right"
-                title={hue}
-                key={hue}
-              >
+              <Tooltip placement="right" title={hue} key={hue}>
                 <Radio
                   className={classes.radio}
                   color="default"
-                  checked={
-                    state[intent] === backgroundColor
-                  }
+                  checked={state[intent] === backgroundColor}
                   onChange={handleChangeHue(intent)}
                   value={hue}
                   name={intent}

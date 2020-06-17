@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  createStyles,
-  makeStyles,
-  Theme,
-} from '@material-ui/core/styles';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
 import Paper from '@material-ui/core/Paper';
 import TagFacesIcon from '@material-ui/icons/TagFaces';
@@ -31,9 +27,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function ChipsArray() {
   const classes = useStyles();
-  const [chipData, setChipData] = React.useState<
-    ChipData[]
-  >([
+  const [chipData, setChipData] = React.useState<ChipData[]>([
     { key: 0, label: 'Angular' },
     { key: 1, label: 'jQuery' },
     { key: 2, label: 'Polymer' },
@@ -61,11 +55,7 @@ export default function ChipsArray() {
             <Chip
               icon={icon}
               label={data.label}
-              onDelete={
-                data.label === 'React'
-                  ? undefined
-                  : handleDelete(data)
-              }
+              onDelete={data.label === 'React' ? undefined : handleDelete(data)}
               className={classes.chip}
             />
           </li>

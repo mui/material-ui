@@ -29,10 +29,7 @@ export default function ImageAvatars() {
         src="/static/images/avatar/1.jpg"
         className={classes.small}
       />
-      <Avatar
-        alt="Remy Sharp"
-        src="/static/images/avatar/1.jpg"
-      />
+      <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
       <Avatar
         alt="Remy Sharp"
         src="/static/images/avatar/1.jpg"

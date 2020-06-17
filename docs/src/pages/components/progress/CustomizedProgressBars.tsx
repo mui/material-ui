@@ -18,9 +18,7 @@ const BorderLinearProgress = withStyles((theme: Theme) =>
     },
     colorPrimary: {
       backgroundColor:
-        theme.palette.grey[
-          theme.palette.type === 'light' ? 200 : 700
-        ],
+        theme.palette.grey[theme.palette.type === 'light' ? 200 : 700],
     },
     bar: {
       borderRadius: 5,
@@ -36,10 +34,7 @@ const useStylesFacebook = makeStyles((theme: Theme) =>
       position: 'relative',
     },
     bottom: {
-      color:
-        theme.palette.grey[
-          theme.palette.type === 'light' ? 200 : 700
-        ],
+      color: theme.palette.grey[theme.palette.type === 'light' ? 200 : 700],
     },
     top: {
       color: '#1a90ff',
@@ -53,9 +48,7 @@ const useStylesFacebook = makeStyles((theme: Theme) =>
   }),
 );
 
-function FacebookCircularProgress(
-  props: CircularProgressProps,
-) {
+function FacebookCircularProgress(props: CircularProgressProps) {
   const classes = useStylesFacebook();
 
   return (
@@ -96,10 +89,7 @@ export default function CustomizedProgressBars() {
     <div className={classes.root}>
       <FacebookCircularProgress />
       <br />
-      <BorderLinearProgress
-        variant="determinate"
-        value={50}
-      />
+      <BorderLinearProgress variant="determinate" value={50} />
     </div>
   );
 }

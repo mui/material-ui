@@ -11,9 +11,7 @@ import { useTheme } from '@material-ui/core/styles';
 export default function ResponsiveDialog() {
   const [open, setOpen] = React.useState(false);
   const theme = useTheme();
-  const fullScreen = useMediaQuery(
-    theme.breakpoints.down('sm'),
-  );
+  const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -25,11 +23,7 @@ export default function ResponsiveDialog() {
 
   return (
     <div>
-      <Button
-        variant="outlined"
-        color="primary"
-        onClick={handleClickOpen}
-      >
+      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
         Open responsive dialog
       </Button>
       <Dialog
@@ -43,24 +37,15 @@ export default function ResponsiveDialog() {
         </DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Let Google help apps determine location. This
-            means sending anonymous location data to Google,
-            even when no apps are running.
+            Let Google help apps determine location. This means sending
+            anonymous location data to Google, even when no apps are running.
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button
-            autoFocus
-            onClick={handleClose}
-            color="primary"
-          >
+          <Button autoFocus onClick={handleClose} color="primary">
             Disagree
           </Button>
-          <Button
-            onClick={handleClose}
-            color="primary"
-            autoFocus
-          >
+          <Button onClick={handleClose} color="primary" autoFocus>
             Agree
           </Button>
         </DialogActions>

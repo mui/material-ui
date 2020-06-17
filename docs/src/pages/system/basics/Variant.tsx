@@ -16,9 +16,7 @@ const variant = style({
 
 // ⚠ Text is already defined in the global context:
 // https://developer.mozilla.org/en-US/docs/Web/API/Text/Text.
-const Text = styled.span<
-  PropsFor<typeof variant> & TypographyProps
->`
+const Text = styled.span<PropsFor<typeof variant> & TypographyProps>`
   font-family: Helvetica;
   ${variant}
   ${typography}

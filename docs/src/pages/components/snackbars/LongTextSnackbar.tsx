@@ -1,10 +1,6 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
-import {
-  createStyles,
-  Theme,
-  makeStyles,
-} from '@material-ui/core/styles';
+import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import SnackbarContent from '@material-ui/core/SnackbarContent';
 
 const action = (
@@ -29,10 +25,7 @@ export default function LongTextSnackbar() {
 
   return (
     <div className={classes.root}>
-      <SnackbarContent
-        message="I love snacks."
-        action={action}
-      />
+      <SnackbarContent message="I love snacks." action={action} />
       <SnackbarContent
         message={
           'I love candy. I love cookies. I love cupcakes. \

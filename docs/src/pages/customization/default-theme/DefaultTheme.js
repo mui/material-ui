@@ -114,9 +114,7 @@ function ObjectEntryLabel(props) {
           />
         </span>
       ) : null}
-      <span className={clsx('token', tokenType)}>
-        {label}
-      </span>
+      <span className={clsx('token', tokenType)}>{label}</span>
     </React.Fragment>
   );
 }
@@ -146,8 +144,7 @@ function ObjectEntry(props) {
   let children = null;
 
   if (
-    (objectValue !== null &&
-      typeof objectValue === 'object') ||
+    (objectValue !== null && typeof objectValue === 'object') ||
     typeof objectValue === 'function'
   ) {
     children =
@@ -175,10 +172,7 @@ function ObjectEntry(props) {
       }}
       nodeId={nodeId}
       label={
-        <ObjectEntryLabel
-          objectKey={objectKey}
-          objectValue={objectValue}
-        />
+        <ObjectEntryLabel objectKey={objectKey} objectValue={objectValue} />
       }
     >
       {children}
@@ -197,16 +191,11 @@ function Inspector(props) {
   const keyPrefix = '$ROOT';
   const defaultExpanded = React.useMemo(() => {
     return Array.isArray(expandPaths)
-      ? expandPaths.map(
-          (expandPath) => `${keyPrefix}.${expandPath}`,
-        )
+      ? expandPaths.map((expandPath) => `${keyPrefix}.${expandPath}`)
       : [];
   }, [keyPrefix, expandPaths]);
   // for default*  to take effect we need to remount
-  const key = React.useMemo(
-    () => defaultExpanded.join(''),
-    [defaultExpanded],
-  );
+  const key = React.useMemo(() => defaultExpanded.join(''), [defaultExpanded]);
 
   return (
     <TreeView
@@ -284,17 +273,14 @@ function useNodeIdsLazy(object) {
 function DefaultTheme(props) {
   const { classes } = props;
   const [checked, setChecked] = React.useState(false);
-  const [expandPaths, setExpandPaths] = React.useState(
-    null,
-  );
+  const [expandPaths, setExpandPaths] = React.useState(null);
   const t = useSelector((state) => state.options.t);
   const [darkTheme, setDarkTheme] = React.useState(false);
 
   React.useEffect(() => {
     const URL = url.parse(document.location.href, true);
     // 'expend-path' is for backwards compatibility of any external links with a prior typo.
-    const expandPath =
-      URL.query['expand-path'] || URL.query['expend-path'];
+    const expandPath = URL.query['expand-path'] || URL.query['expend-path'];
 
     if (!expandPath) {
       return;
@@ -305,8 +291,7 @@ function DefaultTheme(props) {
         .replace('$.', '')
         .split('.')
         .reduce((acc, path) => {
-          const last =
-            acc.length > 0 ? `${acc[acc.length - 1]}.` : '';
+          const last = acc.length > 0 ? `${acc[acc.length - 1]}.` : '';
           acc.push(last + path);
           return acc;
         }, []),

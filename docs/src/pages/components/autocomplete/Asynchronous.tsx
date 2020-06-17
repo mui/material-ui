@@ -17,9 +17,7 @@ function sleep(delay = 0) {
 
 export default function Asynchronous() {
   const [open, setOpen] = React.useState(false);
-  const [options, setOptions] = React.useState<
-    CountryType[]
-  >([]);
+  const [options, setOptions] = React.useState<CountryType[]>([]);
   const loading = open && options.length === 0;
 
   React.useEffect(() => {
@@ -67,9 +65,7 @@ export default function Asynchronous() {
       onClose={() => {
         setOpen(false);
       }}
-      getOptionSelected={(option, value) =>
-        option.name === value.name
-      }
+      getOptionSelected={(option, value) => option.name === value.name}
       getOptionLabel={(option) => option.name}
       options={options}
       loading={loading}
@@ -83,10 +79,7 @@ export default function Asynchronous() {
             endAdornment: (
               <React.Fragment>
                 {loading ? (
-                  <CircularProgress
-                    color="inherit"
-                    size={20}
-                  />
+                  <CircularProgress color="inherit" size={20} />
                 ) : null}
                 {params.InputProps.endAdornment}
               </React.Fragment>

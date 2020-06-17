@@ -63,10 +63,7 @@ export default function DelayingAppearance() {
           <CircularProgress />
         </Fade>
       </div>
-      <Button
-        onClick={handleClickLoading}
-        className={classes.button}
-      >
+      <Button onClick={handleClickLoading} className={classes.button}>
         {loading ? 'Stop loading' : 'Loading'}
       </Button>
       <div className={classes.placeholder}>
@@ -76,8 +73,7 @@ export default function DelayingAppearance() {
           <Fade
             in={query === 'progress'}
             style={{
-              transitionDelay:
-                query === 'progress' ? '800ms' : '0ms',
+              transitionDelay: query === 'progress' ? '800ms' : '0ms',
             }}
             unmountOnExit
           >
@@ -85,10 +81,7 @@ export default function DelayingAppearance() {
           </Fade>
         )}
       </div>
-      <Button
-        onClick={handleClickQuery}
-        className={classes.button}
-      >
+      <Button onClick={handleClickQuery} className={classes.button}>
         {query !== 'idle' ? 'Reset' : 'Simulate a load'}
       </Button>
     </div>

@@ -36,16 +36,11 @@ export default function ControlledOpenSelect() {
 
   return (
     <div>
-      <Button
-        className={classes.button}
-        onClick={handleOpen}
-      >
+      <Button className={classes.button} onClick={handleOpen}>
         Open the select
       </Button>
       <FormControl className={classes.formControl}>
-        <InputLabel id="demo-controlled-open-select-label">
-          Age
-        </InputLabel>
+        <InputLabel id="demo-controlled-open-select-label">Age</InputLabel>
         <Select
           labelId="demo-controlled-open-select-label"
           id="demo-controlled-open-select"

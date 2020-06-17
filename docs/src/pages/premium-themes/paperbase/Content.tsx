@@ -41,8 +41,7 @@ const styles = (theme: Theme) =>
     },
   });
 
-export interface ContentProps
-  extends WithStyles<typeof styles> {}
+export interface ContentProps extends WithStyles<typeof styles> {}
 
 function Content(props: ContentProps) {
   const { classes } = props;
@@ -58,10 +57,7 @@ function Content(props: ContentProps) {
         <Toolbar>
           <Grid container spacing={2} alignItems="center">
             <Grid item>
-              <SearchIcon
-                className={classes.block}
-                color="inherit"
-              />
+              <SearchIcon className={classes.block} color="inherit" />
             </Grid>
             <Grid item xs>
               <TextField
@@ -83,10 +79,7 @@ function Content(props: ContentProps) {
               </Button>
               <Tooltip title="Reload">
                 <IconButton>
-                  <RefreshIcon
-                    className={classes.block}
-                    color="inherit"
-                  />
+                  <RefreshIcon className={classes.block} color="inherit" />
                 </IconButton>
               </Tooltip>
             </Grid>

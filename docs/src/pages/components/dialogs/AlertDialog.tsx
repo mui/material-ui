@@ -19,11 +19,7 @@ export default function AlertDialog() {
 
   return (
     <div>
-      <Button
-        variant="outlined"
-        color="primary"
-        onClick={handleClickOpen}
-      >
+      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
         Open alert dialog
       </Button>
       <Dialog
@@ -37,20 +33,15 @@ export default function AlertDialog() {
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Let Google help apps determine location. This
-            means sending anonymous location data to Google,
-            even when no apps are running.
+            Let Google help apps determine location. This means sending
+            anonymous location data to Google, even when no apps are running.
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
             Disagree
           </Button>
-          <Button
-            onClick={handleClose}
-            color="primary"
-            autoFocus
-          >
+          <Button onClick={handleClose} color="primary" autoFocus>
             Agree
           </Button>
         </DialogActions>

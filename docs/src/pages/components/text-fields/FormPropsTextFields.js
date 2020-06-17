@@ -15,11 +15,7 @@ export default function FormPropsTextFields() {
   const classes = useStyles();
 
   return (
-    <form
-      className={classes.root}
-      noValidate
-      autoComplete="off"
-    >
+    <form className={classes.root} noValidate autoComplete="off">
       <div>
         <TextField
           required
@@ -55,11 +51,7 @@ export default function FormPropsTextFields() {
             shrink: true,
           }}
         />
-        <TextField
-          id="standard-search"
-          label="Search field"
-          type="search"
-        />
+        <TextField id="standard-search" label="Search field" type="search" />
         <TextField
           id="standard-helperText"
           label="Helper text"

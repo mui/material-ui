@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-  makeStyles,
-  withStyles,
-} from '@material-ui/core/styles';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
@@ -60,12 +57,7 @@ const StyledTabs = withStyles({
       backgroundColor: '#635ee7',
     },
   },
-})((props) => (
-  <Tabs
-    {...props}
-    TabIndicatorProps={{ children: <span /> }}
-  />
-));
+})((props) => <Tabs {...props} TabIndicatorProps={{ children: <span /> }} />);
 
 const StyledTab = withStyles((theme) => ({
   root: {
@@ -106,11 +98,7 @@ export default function CustomizedTabs() {
   return (
     <div className={classes.root}>
       <div className={classes.demo1}>
-        <AntTabs
-          value={value}
-          onChange={handleChange}
-          aria-label="ant example"
-        >
+        <AntTabs value={value} onChange={handleChange} aria-label="ant example">
           <AntTab label="Tab 1" />
           <AntTab label="Tab 2" />
           <AntTab label="Tab 3" />

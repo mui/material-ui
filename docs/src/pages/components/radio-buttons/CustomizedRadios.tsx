@@ -42,8 +42,7 @@ const useStyles = makeStyles({
       display: 'block',
       width: 16,
       height: 16,
-      backgroundImage:
-        'radial-gradient(#fff,#fff 28%,transparent 32%)',
+      backgroundImage: 'radial-gradient(#fff,#fff 28%,transparent 32%)',
       content: '""',
     },
     'input:hover ~ &': {
@@ -61,14 +60,7 @@ function StyledRadio(props: RadioProps) {
       className={classes.root}
       disableRipple
       color="default"
-      checkedIcon={
-        <span
-          className={clsx(
-            classes.icon,
-            classes.checkedIcon,
-          )}
-        />
-      }
+      checkedIcon={<span className={clsx(classes.icon, classes.checkedIcon)} />}
       icon={<span className={classes.icon} />}
       {...props}
     />
@@ -89,11 +81,7 @@ export default function CustomizedRadios() {
           control={<StyledRadio />}
           label="Female"
         />
-        <FormControlLabel
-          value="male"
-          control={<StyledRadio />}
-          label="Male"
-        />
+        <FormControlLabel value="male" control={<StyledRadio />} label="Male" />
         <FormControlLabel
           value="other"
           control={<StyledRadio />}

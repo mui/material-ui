@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  makeStyles,
-  createStyles,
-  Theme,
-} from '@material-ui/core/styles';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import SpeedDial from '@material-ui/lab/SpeedDial';
 import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon';
@@ -57,9 +53,7 @@ export default function OpenIconSpeedDial() {
 
   return (
     <div className={classes.root}>
-      <Button onClick={handleVisibility}>
-        Toggle Speed Dial
-      </Button>
+      <Button onClick={handleVisibility}>Toggle Speed Dial</Button>
       <SpeedDial
         ariaLabel="SpeedDial openIcon example"
         className={classes.speedDial}

@@ -96,20 +96,11 @@ function Navigator(props) {
     <Drawer variant="permanent" {...other}>
       <List disablePadding>
         <ListItem
-          className={clsx(
-            classes.firebase,
-            classes.item,
-            classes.itemCategory,
-          )}
+          className={clsx(classes.firebase, classes.item, classes.itemCategory)}
         >
           Paperbase
         </ListItem>
-        <ListItem
-          className={clsx(
-            classes.item,
-            classes.itemCategory,
-          )}
-        >
+        <ListItem className={clsx(classes.item, classes.itemCategory)}>
           <ListItemIcon className={classes.itemIcon}>
             <HomeIcon />
           </ListItemIcon>
@@ -132,31 +123,22 @@ function Navigator(props) {
                 {id}
               </ListItemText>
             </ListItem>
-            {children.map(
-              ({ id: childId, icon, active }) => (
-                <ListItem
-                  key={childId}
-                  button
-                  className={clsx(
-                    classes.item,
-                    active && classes.itemActiveItem,
-                  )}
+            {children.map(({ id: childId, icon, active }) => (
+              <ListItem
+                key={childId}
+                button
+                className={clsx(classes.item, active && classes.itemActiveItem)}
+              >
+                <ListItemIcon className={classes.itemIcon}>{icon}</ListItemIcon>
+                <ListItemText
+                  classes={{
+                    primary: classes.itemPrimary,
+                  }}
                 >
-                  <ListItemIcon
-                    className={classes.itemIcon}
-                  >
-                    {icon}
-                  </ListItemIcon>
-                  <ListItemText
-                    classes={{
-                      primary: classes.itemPrimary,
-                    }}
-                  >
-                    {childId}
-                  </ListItemText>
-                </ListItem>
-              ),
-            )}
+                  {childId}
+                </ListItemText>
+              </ListItem>
+            ))}
 
             <Divider className={classes.divider} />
           </React.Fragment>

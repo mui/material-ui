@@ -19,9 +19,7 @@ const options = [
 export default function SplitButton() {
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef<HTMLDivElement>(null);
-  const [selectedIndex, setSelectedIndex] = React.useState(
-    1,
-  );
+  const [selectedIndex, setSelectedIndex] = React.useState(1);
 
   const handleClick = () => {
     console.info(`You clicked ${options[selectedIndex]}`);
@@ -39,14 +37,10 @@ export default function SplitButton() {
     setOpen((prevOpen) => !prevOpen);
   };
 
-  const handleClose = (
-    event: React.MouseEvent<Document, MouseEvent>,
-  ) => {
+  const handleClose = (event: React.MouseEvent<Document, MouseEvent>) => {
     if (
       anchorRef.current &&
-      anchorRef.current.contains(
-        event.target as HTMLElement,
-      )
+      anchorRef.current.contains(event.target as HTMLElement)
     ) {
       return;
     }
@@ -63,15 +57,11 @@ export default function SplitButton() {
           ref={anchorRef}
           aria-label="split button"
         >
-          <Button onClick={handleClick}>
-            {options[selectedIndex]}
-          </Button>
+          <Button onClick={handleClick}>{options[selectedIndex]}</Button>
           <Button
             color="primary"
             size="small"
-            aria-controls={
-              open ? 'split-button-menu' : undefined
-            }
+            aria-controls={open ? 'split-button-menu' : undefined}
             aria-expanded={open ? 'true' : undefined}
             aria-label="select merge strategy"
             aria-haspopup="menu"
@@ -92,24 +82,18 @@ export default function SplitButton() {
               {...TransitionProps}
               style={{
                 transformOrigin:
-                  placement === 'bottom'
-                    ? 'center top'
-                    : 'center bottom',
+                  placement === 'bottom' ? 'center top' : 'center bottom',
               }}
             >
               <Paper>
-                <ClickAwayListener
-                  onClickAway={handleClose}
-                >
+                <ClickAwayListener onClickAway={handleClose}>
                   <MenuList id="split-button-menu">
                     {options.map((option, index) => (
                       <MenuItem
                         key={option}
                         disabled={index === 2}
                         selected={index === selectedIndex}
-                        onClick={(event) =>
-                          handleMenuItemClick(event, index)
-                        }
+                        onClick={(event) => handleMenuItemClick(event, index)}
                       >
                         {option}
                       </MenuItem>

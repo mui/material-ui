@@ -30,9 +30,7 @@ const useStyles = makeStyles(
 
 export default function Sponsors({ docs }) {
   const classes = useStyles();
-  const userLanguage = useSelector(
-    (state) => state.options.userLanguage,
-  );
+  const userLanguage = useSelector((state) => state.options.userLanguage);
   const { rendered } = docs[userLanguage];
 
   return (

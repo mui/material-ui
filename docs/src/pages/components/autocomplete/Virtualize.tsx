@@ -5,14 +5,8 @@ import Autocomplete, {
 } from '@material-ui/lab/Autocomplete';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import ListSubheader from '@material-ui/core/ListSubheader';
-import {
-  useTheme,
-  makeStyles,
-} from '@material-ui/core/styles';
-import {
-  VariableSizeList,
-  ListChildComponentProps,
-} from 'react-window';
+import { useTheme, makeStyles } from '@material-ui/core/styles';
+import { VariableSizeList, ListChildComponentProps } from 'react-window';
 import { Typography } from '@material-ui/core';
 
 const LISTBOX_PADDING = 8; // px
@@ -29,14 +23,10 @@ function renderRow(props: ListChildComponentProps) {
 
 const OuterElementContext = React.createContext({});
 
-const OuterElementType = React.forwardRef<HTMLDivElement>(
-  (props, ref) => {
-    const outerProps = React.useContext(
-      OuterElementContext,
-    );
-    return <div ref={ref} {...props} {...outerProps} />;
-  },
-);
+const OuterElementType = React.forwardRef<HTMLDivElement>((props, ref) => {
+  const outerProps = React.useContext(OuterElementContext);
+  return <div ref={ref} {...props} {...outerProps} />;
+});
 
 function useResetCache(data: any) {
   const ref = React.useRef<VariableSizeList>(null);
@@ -61,10 +51,7 @@ const ListboxComponent = React.forwardRef<HTMLDivElement>(
     const itemSize = smUp ? 36 : 48;
 
     const getChildSize = (child: React.ReactNode) => {
-      if (
-        React.isValidElement(child) &&
-        child.type === ListSubheader
-      ) {
+      if (React.isValidElement(child) && child.type === ListSubheader) {
         return 48;
       }
 
@@ -75,9 +62,7 @@ const ListboxComponent = React.forwardRef<HTMLDivElement>(
       if (itemCount > 8) {
         return 8 * itemSize;
       }
-      return itemData
-        .map(getChildSize)
-        .reduce((a, b) => a + b, 0);
+      return itemData.map(getChildSize).reduce((a, b) => a + b, 0);
     };
 
     const gridRef = useResetCache(itemCount);
@@ -92,9 +77,7 @@ const ListboxComponent = React.forwardRef<HTMLDivElement>(
             ref={gridRef}
             outerElementType={OuterElementType}
             innerElementType="ul"
-            itemSize={(index) =>
-              getChildSize(itemData[index])
-            }
+            itemSize={(index) => getChildSize(itemData[index])}
             overscanCount={5}
             itemCount={itemCount}
           >
@@ -112,9 +95,7 @@ function random(length: number) {
   let result = '';
 
   for (let i = 0; i < length; i += 1) {
-    result += characters.charAt(
-      Math.floor(Math.random() * characters.length),
-    );
+    result += characters.charAt(Math.floor(Math.random() * characters.length));
   }
 
   return result;
@@ -136,9 +117,7 @@ const OPTIONS = Array.from(new Array(10000))
     a.toUpperCase().localeCompare(b.toUpperCase()),
   );
 
-const renderGroup = (
-  params: AutocompleteRenderGroupParams,
-) => [
+const renderGroup = (params: AutocompleteRenderGroupParams) => [
   <ListSubheader key={params.key} component="div">
     {params.group}
   </ListSubheader>,
@@ -163,15 +142,9 @@ export default function Virtualize() {
       options={OPTIONS}
       groupBy={(option) => option[0].toUpperCase()}
       renderInput={(params) => (
-        <TextField
-          {...params}
-          variant="outlined"
-          label="10,000 options"
-        />
+        <TextField {...params} variant="outlined" label="10,000 options" />
       )}
-      renderOption={(option) => (
-        <Typography noWrap>{option}</Typography>
-      )}
+      renderOption={(option) => <Typography noWrap>{option}</Typography>}
     />
   );
 }

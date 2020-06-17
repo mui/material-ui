@@ -1,21 +1,13 @@
 import React from 'react';
-import {
-  withStyles,
-  Theme,
-  createStyles,
-} from '@material-ui/core/styles';
+import { withStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { purple } from '@material-ui/core/colors';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Switch, {
-  SwitchClassKey,
-  SwitchProps,
-} from '@material-ui/core/Switch';
+import Switch, { SwitchClassKey, SwitchProps } from '@material-ui/core/Switch';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
-interface Styles
-  extends Partial<Record<SwitchClassKey, string>> {
+interface Styles extends Partial<Record<SwitchClassKey, string>> {
   focusVisible?: string;
 }
 
@@ -70,10 +62,7 @@ const IOSSwitch = withStyles((theme: Theme) =>
       border: `1px solid ${theme.palette.grey[400]}`,
       backgroundColor: theme.palette.grey[50],
       opacity: 1,
-      transition: theme.transitions.create([
-        'background-color',
-        'border',
-      ]),
+      transition: theme.transitions.create(['background-color', 'border']),
     },
     checked: {},
     focusVisible: {},
@@ -138,9 +127,7 @@ export default function CustomizedSwitches() {
     checkedC: true,
   });
 
-  const handleChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setState({
       ...state,
       [event.target.name]: event.target.checked,
@@ -170,12 +157,7 @@ export default function CustomizedSwitches() {
         label="iOS style"
       />
       <Typography component="div">
-        <Grid
-          component="label"
-          container
-          alignItems="center"
-          spacing={1}
-        >
+        <Grid component="label" container alignItems="center" spacing={1}>
           <Grid item>Off</Grid>
           <Grid item>
             <AntSwitch

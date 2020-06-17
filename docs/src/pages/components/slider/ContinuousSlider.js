@@ -43,11 +43,7 @@ export default function ContinuousSlider() {
       <Typography id="disabled-slider" gutterBottom>
         Disabled slider
       </Typography>
-      <Slider
-        disabled
-        defaultValue={30}
-        aria-labelledby="disabled-slider"
-      />
+      <Slider disabled defaultValue={30} aria-labelledby="disabled-slider" />
     </div>
   );
 }

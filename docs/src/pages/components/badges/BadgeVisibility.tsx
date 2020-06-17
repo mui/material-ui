@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  Theme,
-  createStyles,
-  makeStyles,
-} from '@material-ui/core/styles';
+import { Theme, createStyles, makeStyles } from '@material-ui/core/styles';
 import Badge from '@material-ui/core/Badge';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Button from '@material-ui/core/Button';
@@ -63,11 +59,7 @@ export default function BadgeVisibility() {
         </ButtonGroup>
       </div>
       <div>
-        <Badge
-          color="secondary"
-          variant="dot"
-          invisible={invisible}
-        >
+        <Badge color="secondary" variant="dot" invisible={invisible}>
           <MailIcon />
         </Badge>
         <FormControlLabel

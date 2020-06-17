@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-  makeStyles,
-  Theme,
-} from '@material-ui/core/styles';
+import { makeStyles, Theme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -61,10 +58,7 @@ export default function ScrollableTabsButtonForce() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
-  const handleChange = (
-    event: React.ChangeEvent<{}>,
-    newValue: number,
-  ) => {
+  const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setValue(newValue);
   };
 
@@ -80,41 +74,13 @@ export default function ScrollableTabsButtonForce() {
           textColor="primary"
           aria-label="scrollable force tabs example"
         >
-          <Tab
-            label="Item One"
-            icon={<PhoneIcon />}
-            {...a11yProps(0)}
-          />
-          <Tab
-            label="Item Two"
-            icon={<FavoriteIcon />}
-            {...a11yProps(1)}
-          />
-          <Tab
-            label="Item Three"
-            icon={<PersonPinIcon />}
-            {...a11yProps(2)}
-          />
-          <Tab
-            label="Item Four"
-            icon={<HelpIcon />}
-            {...a11yProps(3)}
-          />
-          <Tab
-            label="Item Five"
-            icon={<ShoppingBasket />}
-            {...a11yProps(4)}
-          />
-          <Tab
-            label="Item Six"
-            icon={<ThumbDown />}
-            {...a11yProps(5)}
-          />
-          <Tab
-            label="Item Seven"
-            icon={<ThumbUp />}
-            {...a11yProps(6)}
-          />
+          <Tab label="Item One" icon={<PhoneIcon />} {...a11yProps(0)} />
+          <Tab label="Item Two" icon={<FavoriteIcon />} {...a11yProps(1)} />
+          <Tab label="Item Three" icon={<PersonPinIcon />} {...a11yProps(2)} />
+          <Tab label="Item Four" icon={<HelpIcon />} {...a11yProps(3)} />
+          <Tab label="Item Five" icon={<ShoppingBasket />} {...a11yProps(4)} />
+          <Tab label="Item Six" icon={<ThumbDown />} {...a11yProps(5)} />
+          <Tab label="Item Seven" icon={<ThumbUp />} {...a11yProps(6)} />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>

@@ -21,21 +21,12 @@ export default function InputSlider() {
     number | string | Array<number | string>
   >(30);
 
-  const handleSliderChange = (
-    event: any,
-    newValue: number | number[],
-  ) => {
+  const handleSliderChange = (event: any, newValue: number | number[]) => {
     setValue(newValue);
   };
 
-  const handleInputChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
-    setValue(
-      event.target.value === ''
-        ? ''
-        : Number(event.target.value),
-    );
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(event.target.value === '' ? '' : Number(event.target.value));
   };
 
   const handleBlur = () => {

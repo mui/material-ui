@@ -7,8 +7,7 @@ import Switch from '@material-ui/core/Switch';
 
 const useStyles = makeStyles({
   button: {
-    background:
-      'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
     borderRadius: 3,
     border: 0,
     color: 'white',
@@ -17,21 +16,16 @@ const useStyles = makeStyles({
     boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
   },
   buttonBlue: {
-    background:
-      'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
+    background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
     boxShadow: '0 3px 5px 2px rgba(33, 203, 243, .3)',
   },
 });
 
 export default function DynamicClassName() {
   const classes = useStyles();
-  const [color, setColor] = React.useState<string>(
-    'default',
-  );
+  const [color, setColor] = React.useState<string>('default');
 
-  const handleChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setColor(event.target.checked ? 'blue' : 'default');
   };
 

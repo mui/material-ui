@@ -20,11 +20,7 @@ export default function MultilineTextFields() {
   };
 
   return (
-    <form
-      className={classes.root}
-      noValidate
-      autoComplete="off"
-    >
+    <form className={classes.root} noValidate autoComplete="off">
       <div>
         <TextField
           id="standard-multiline-flexible"

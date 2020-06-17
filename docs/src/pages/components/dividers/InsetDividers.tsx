@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  Theme,
-  createStyles,
-  makeStyles,
-} from '@material-ui/core/styles';
+import { Theme, createStyles, makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -35,10 +31,7 @@ export default function InsetDividers() {
             <ImageIcon />
           </Avatar>
         </ListItemAvatar>
-        <ListItemText
-          primary="Photos"
-          secondary="Jan 9, 2014"
-        />
+        <ListItemText primary="Photos" secondary="Jan 9, 2014" />
       </ListItem>
       <Divider variant="inset" component="li" />
       <ListItem>
@@ -47,10 +40,7 @@ export default function InsetDividers() {
             <WorkIcon />
           </Avatar>
         </ListItemAvatar>
-        <ListItemText
-          primary="Work"
-          secondary="Jan 7, 2014"
-        />
+        <ListItemText primary="Work" secondary="Jan 7, 2014" />
       </ListItem>
       <Divider variant="inset" component="li" />
       <ListItem>
@@ -59,10 +49,7 @@ export default function InsetDividers() {
             <BeachAccessIcon />
           </Avatar>
         </ListItemAvatar>
-        <ListItemText
-          primary="Vacation"
-          secondary="July 20, 2014"
-        />
+        <ListItemText primary="Vacation" secondary="July 20, 2014" />
       </ListItem>
     </List>
   );

@@ -3,9 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { green } from '@material-ui/core/colors';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox, {
-  CheckboxProps,
-} from '@material-ui/core/Checkbox';
+import Checkbox, { CheckboxProps } from '@material-ui/core/Checkbox';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import Favorite from '@material-ui/icons/Favorite';
@@ -19,9 +17,7 @@ const GreenCheckbox = withStyles({
     },
   },
   checked: {},
-})((props: CheckboxProps) => (
-  <Checkbox color="default" {...props} />
-));
+})((props: CheckboxProps) => <Checkbox color="default" {...props} />);
 
 export default function CheckboxLabels() {
   const [state, setState] = React.useState({
@@ -31,9 +27,7 @@ export default function CheckboxLabels() {
     checkedG: true,
   });
 
-  const handleChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setState({
       ...state,
       [event.target.name]: event.target.checked,
@@ -111,9 +105,7 @@ export default function CheckboxLabels() {
       <FormControlLabel
         control={
           <Checkbox
-            icon={
-              <CheckBoxOutlineBlankIcon fontSize="small" />
-            }
+            icon={<CheckBoxOutlineBlankIcon fontSize="small" />}
             checkedIcon={<CheckBoxIcon fontSize="small" />}
             name="checkedI"
           />

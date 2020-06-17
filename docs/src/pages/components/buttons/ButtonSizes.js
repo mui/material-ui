@@ -83,29 +83,16 @@ export default function ButtonSizes() {
         </Button>
       </div>
       <div>
-        <IconButton
-          aria-label="delete"
-          className={classes.margin}
-          size="small"
-        >
+        <IconButton aria-label="delete" className={classes.margin} size="small">
           <ArrowDownwardIcon fontSize="inherit" />
         </IconButton>
-        <IconButton
-          aria-label="delete"
-          className={classes.margin}
-        >
+        <IconButton aria-label="delete" className={classes.margin}>
           <DeleteIcon fontSize="small" />
         </IconButton>
-        <IconButton
-          aria-label="delete"
-          className={classes.margin}
-        >
+        <IconButton aria-label="delete" className={classes.margin}>
           <DeleteIcon />
         </IconButton>
-        <IconButton
-          aria-label="delete"
-          className={classes.margin}
-        >
+        <IconButton aria-label="delete" className={classes.margin}>
           <DeleteIcon fontSize="large" />
         </IconButton>
       </div>

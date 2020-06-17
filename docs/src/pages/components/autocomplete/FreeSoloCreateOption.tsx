@@ -8,10 +8,7 @@ import Autocomplete, {
 const filter = createFilterOptions<FilmOptionType>();
 
 export default function FreeSoloCreateOption() {
-  const [
-    value,
-    setValue,
-  ] = React.useState<FilmOptionType | null>(null);
+  const [value, setValue] = React.useState<FilmOptionType | null>(null);
 
   return (
     <Autocomplete
@@ -96,8 +93,7 @@ const top100Films: FilmOptionType[] = [
   { title: 'The Good, the Bad and the Ugly', year: 1966 },
   { title: 'Fight Club', year: 1999 },
   {
-    title:
-      'The Lord of the Rings: The Fellowship of the Ring',
+    title: 'The Lord of the Rings: The Fellowship of the Ring',
     year: 2001,
   },
   {

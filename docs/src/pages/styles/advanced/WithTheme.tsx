@@ -15,9 +15,7 @@ function DeepChildRaw(props: Props) {
   return <span>{`spacing ${props.theme.spacing}`}</span>;
 }
 
-const DeepChild = withTheme<Theme, typeof DeepChildRaw>(
-  DeepChildRaw,
-);
+const DeepChild = withTheme<Theme, typeof DeepChildRaw>(DeepChildRaw);
 
 function WithTheme() {
   return (

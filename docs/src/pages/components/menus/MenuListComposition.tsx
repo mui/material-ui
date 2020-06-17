@@ -6,11 +6,7 @@ import Paper from '@material-ui/core/Paper';
 import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
-import {
-  makeStyles,
-  createStyles,
-  Theme,
-} from '@material-ui/core/styles';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -32,14 +28,10 @@ export default function MenuListComposition() {
     setOpen((prevOpen) => !prevOpen);
   };
 
-  const handleClose = (
-    event: React.MouseEvent<EventTarget>,
-  ) => {
+  const handleClose = (event: React.MouseEvent<EventTarget>) => {
     if (
       anchorRef.current &&
-      anchorRef.current.contains(
-        event.target as HTMLElement,
-      )
+      anchorRef.current.contains(event.target as HTMLElement)
     ) {
       return;
     }
@@ -76,9 +68,7 @@ export default function MenuListComposition() {
       <div>
         <Button
           ref={anchorRef}
-          aria-controls={
-            open ? 'menu-list-grow' : undefined
-          }
+          aria-controls={open ? 'menu-list-grow' : undefined}
           aria-haspopup="true"
           onClick={handleToggle}
         >
@@ -96,29 +86,19 @@ export default function MenuListComposition() {
               {...TransitionProps}
               style={{
                 transformOrigin:
-                  placement === 'bottom'
-                    ? 'center top'
-                    : 'center bottom',
+                  placement === 'bottom' ? 'center top' : 'center bottom',
               }}
             >
               <Paper>
-                <ClickAwayListener
-                  onClickAway={handleClose}
-                >
+                <ClickAwayListener onClickAway={handleClose}>
                   <MenuList
                     autoFocusItem={open}
                     id="menu-list-grow"
                     onKeyDown={handleListKeyDown}
                   >
-                    <MenuItem onClick={handleClose}>
-                      Profile
-                    </MenuItem>
-                    <MenuItem onClick={handleClose}>
-                      My account
-                    </MenuItem>
-                    <MenuItem onClick={handleClose}>
-                      Logout
-                    </MenuItem>
+                    <MenuItem onClick={handleClose}>Profile</MenuItem>
+                    <MenuItem onClick={handleClose}>My account</MenuItem>
+                    <MenuItem onClick={handleClose}>Logout</MenuItem>
                   </MenuList>
                 </ClickAwayListener>
               </Paper>

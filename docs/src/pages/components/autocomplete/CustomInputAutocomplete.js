@@ -10,11 +10,7 @@ export default function CustomInputAutocomplete() {
       options={options}
       renderInput={(params) => (
         <div ref={params.InputProps.ref}>
-          <input
-            style={{ width: 200 }}
-            type="text"
-            {...params.inputProps}
-          />
+          <input style={{ width: 200 }} type="text" {...params.inputProps} />
         </div>
       )}
     />

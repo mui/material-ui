@@ -10,9 +10,7 @@ function MyComponent() {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('sm'));
 
-  return (
-    <span>{`theme.breakpoints.up('sm') matches: ${matches}`}</span>
-  );
+  return <span>{`theme.breakpoints.up('sm') matches: ${matches}`}</span>;
 }
 
 const theme = createMuiTheme();

@@ -40,11 +40,7 @@ export default function LinearBuffer() {
 
   return (
     <div className={classes.root}>
-      <LinearProgress
-        variant="buffer"
-        value={progress}
-        valueBuffer={buffer}
-      />
+      <LinearProgress variant="buffer" value={progress} valueBuffer={buffer} />
     </div>
   );
 }

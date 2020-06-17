@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  makeStyles,
-  Theme,
-  createStyles,
-} from '@material-ui/core/styles';
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -42,15 +38,8 @@ export interface ConfirmationDialogRawProps {
   onClose: (value?: string) => void;
 }
 
-function ConfirmationDialogRaw(
-  props: ConfirmationDialogRawProps,
-) {
-  const {
-    onClose,
-    value: valueProp,
-    open,
-    ...other
-  } = props;
+function ConfirmationDialogRaw(props: ConfirmationDialogRawProps) {
+  const { onClose, value: valueProp, open, ...other } = props;
   const [value, setValue] = React.useState(valueProp);
   const radioGroupRef = React.useRef<HTMLElement>(null);
 
@@ -74,9 +63,7 @@ function ConfirmationDialogRaw(
     onClose(value);
   };
 
-  const handleChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue((event.target as HTMLInputElement).value);
   };
 
@@ -90,9 +77,7 @@ function ConfirmationDialogRaw(
       open={open}
       {...other}
     >
-      <DialogTitle id="confirmation-dialog-title">
-        Phone Ringtone
-      </DialogTitle>
+      <DialogTitle id="confirmation-dialog-title">Phone Ringtone</DialogTitle>
       <DialogContent dividers>
         <RadioGroup
           ref={radioGroupRef}
@@ -112,11 +97,7 @@ function ConfirmationDialogRaw(
         </RadioGroup>
       </DialogContent>
       <DialogActions>
-        <Button
-          autoFocus
-          onClick={handleCancel}
-          color="primary"
-        >
+        <Button autoFocus onClick={handleCancel} color="primary">
           Cancel
         </Button>
         <Button onClick={handleOk} color="primary">
@@ -173,10 +154,7 @@ export default function ConfirmationDialog() {
           onClick={handleClickListItem}
           role="listitem"
         >
-          <ListItemText
-            primary="Phone ringtone"
-            secondary={value}
-          />
+          <ListItemText primary="Phone ringtone" secondary={value} />
         </ListItem>
         <ListItem button divider disabled role="listitem">
           <ListItemText

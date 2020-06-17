@@ -37,12 +37,7 @@ export default function SimpleZoom() {
   return (
     <div className={classes.root}>
       <FormControlLabel
-        control={
-          <Switch
-            checked={checked}
-            onChange={handleChange}
-          />
-        }
+        control={<Switch checked={checked} onChange={handleChange} />}
         label="Show"
       />
       <div className={classes.container}>

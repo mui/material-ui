@@ -1,10 +1,6 @@
 import React from 'react';
 import SwipeableViews from 'react-swipeable-views';
-import {
-  makeStyles,
-  Theme,
-  useTheme,
-} from '@material-ui/core/styles';
+import { makeStyles, Theme, useTheme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -57,10 +53,7 @@ export default function FullWidthTabs() {
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
 
-  const handleChange = (
-    event: React.ChangeEvent<{}>,
-    newValue: number,
-  ) => {
+  const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setValue(newValue);
   };
 
@@ -89,25 +82,13 @@ export default function FullWidthTabs() {
         index={value}
         onChangeIndex={handleChangeIndex}
       >
-        <TabPanel
-          value={value}
-          index={0}
-          dir={theme.direction}
-        >
+        <TabPanel value={value} index={0} dir={theme.direction}>
           Item One
         </TabPanel>
-        <TabPanel
-          value={value}
-          index={1}
-          dir={theme.direction}
-        >
+        <TabPanel value={value} index={1} dir={theme.direction}>
           Item Two
         </TabPanel>
-        <TabPanel
-          value={value}
-          index={2}
-          dir={theme.direction}
-        >
+        <TabPanel value={value} index={2} dir={theme.direction}>
           Item Three
         </TabPanel>
       </SwipeableViews>

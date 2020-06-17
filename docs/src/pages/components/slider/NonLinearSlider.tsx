@@ -11,14 +11,9 @@ function valueLabelFormat(value: number) {
 }
 
 export default function NonLinearSlider() {
-  const [value, setValue] = React.useState<
-    number | number[]
-  >(1);
+  const [value, setValue] = React.useState<number | number[]>(1);
 
-  const handleChange = (
-    event: any,
-    newValue: number | number[],
-  ) => {
+  const handleChange = (event: any, newValue: number | number[]) => {
     setValue(newValue);
   };
 

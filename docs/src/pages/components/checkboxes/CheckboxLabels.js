@@ -105,9 +105,7 @@ export default function CheckboxLabels() {
       <FormControlLabel
         control={
           <Checkbox
-            icon={
-              <CheckBoxOutlineBlankIcon fontSize="small" />
-            }
+            icon={<CheckBoxOutlineBlankIcon fontSize="small" />}
             checkedIcon={<CheckBoxIcon fontSize="small" />}
             name="checkedI"
           />

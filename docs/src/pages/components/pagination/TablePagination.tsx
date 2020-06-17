@@ -13,9 +13,7 @@ export default function TablePaginationDemo() {
   };
 
   const handleChangeRowsPerPage = (
-    event: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement
-    >,
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);

@@ -25,10 +25,7 @@ export default function SimpleList() {
 
   return (
     <div className={classes.root}>
-      <List
-        component="nav"
-        aria-label="main mailbox folders"
-      >
+      <List component="nav" aria-label="main mailbox folders">
         <ListItem button>
           <ListItemIcon>
             <InboxIcon />
@@ -43,10 +40,7 @@ export default function SimpleList() {
         </ListItem>
       </List>
       <Divider />
-      <List
-        component="nav"
-        aria-label="secondary mailbox folders"
-      >
+      <List component="nav" aria-label="secondary mailbox folders">
         <ListItem button>
           <ListItemText primary="Trash" />
         </ListItem>

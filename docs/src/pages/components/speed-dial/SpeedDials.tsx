@@ -1,17 +1,11 @@
 import React from 'react';
-import {
-  makeStyles,
-  createStyles,
-  Theme,
-} from '@material-ui/core/styles';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormLabel from '@material-ui/core/FormLabel';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import Switch from '@material-ui/core/Switch';
-import SpeedDial, {
-  SpeedDialProps,
-} from '@material-ui/lab/SpeedDial';
+import SpeedDial, { SpeedDialProps } from '@material-ui/lab/SpeedDial';
 import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon';
 import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
 import FileCopyIcon from '@material-ui/icons/FileCopyOutlined';
@@ -58,9 +52,9 @@ const actions = [
 
 export default function SpeedDials() {
   const classes = useStyles();
-  const [direction, setDirection] = React.useState<
-    SpeedDialProps['direction']
-  >('up');
+  const [direction, setDirection] = React.useState<SpeedDialProps['direction']>(
+    'up',
+  );
   const [open, setOpen] = React.useState(false);
   const [hidden, setHidden] = React.useState(false);
 
@@ -68,14 +62,11 @@ export default function SpeedDials() {
     event: React.ChangeEvent<HTMLInputElement>,
   ) => {
     setDirection(
-      (event.target as HTMLInputElement)
-        .value as SpeedDialProps['direction'],
+      (event.target as HTMLInputElement).value as SpeedDialProps['direction'],
     );
   };
 
-  const handleHiddenChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
+  const handleHiddenChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setHidden(event.target.checked);
   };
 
@@ -99,10 +90,7 @@ export default function SpeedDials() {
         }
         label="Hidden"
       />
-      <FormLabel
-        className={classes.radioGroup}
-        component="legend"
-      >
+      <FormLabel className={classes.radioGroup} component="legend">
         Direction
       </FormLabel>
       <RadioGroup
@@ -112,26 +100,10 @@ export default function SpeedDials() {
         onChange={handleDirectionChange}
         row
       >
-        <FormControlLabel
-          value="up"
-          control={<Radio />}
-          label="Up"
-        />
-        <FormControlLabel
-          value="right"
-          control={<Radio />}
-          label="Right"
-        />
-        <FormControlLabel
-          value="down"
-          control={<Radio />}
-          label="Down"
-        />
-        <FormControlLabel
-          value="left"
-          control={<Radio />}
-          label="Left"
-        />
+        <FormControlLabel value="up" control={<Radio />} label="Up" />
+        <FormControlLabel value="right" control={<Radio />} label="Right" />
+        <FormControlLabel value="down" control={<Radio />} label="Down" />
+        <FormControlLabel value="left" control={<Radio />} label="Left" />
       </RadioGroup>
       <div className={classes.exampleWrapper}>
         <SpeedDial

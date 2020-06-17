@@ -66,13 +66,7 @@ You should either provide an array of:
 - **objects**, the `value` and `label` keys will be used respectively for the value and label of the option (useful for language strings such as 'All').
 
   ```jsx
-  <TablePagination
-    rowsPerPageOptions={[
-      10,
-      50,
-      { value: -1, label: 'All' },
-    ]}
-  />
+  <TablePagination rowsPerPageOptions={[10, 50, { value: -1, label: 'All' }]} />
   ```
 
 ### Custom pagination actions

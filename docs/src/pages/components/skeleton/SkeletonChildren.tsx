@@ -12,9 +12,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-function SkeletonChildrenDemo(props: {
-  loading?: boolean;
-}) {
+function SkeletonChildrenDemo(props: { loading?: boolean }) {
   const { loading = false } = props;
   const classes = useStyles();
 

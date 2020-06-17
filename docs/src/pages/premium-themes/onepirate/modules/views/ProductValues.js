@@ -56,10 +56,7 @@ function ProductValues(props) {
                 src="/static/themes/onepirate/productValues1.svg"
                 alt="suitcase"
               />
-              <Typography
-                variant="h6"
-                className={classes.title}
-              >
+              <Typography variant="h6" className={classes.title}>
                 The best luxury hotels
               </Typography>
               <Typography variant="h5">
@@ -79,10 +76,7 @@ function ProductValues(props) {
                 src="/static/themes/onepirate/productValues2.svg"
                 alt="graph"
               />
-              <Typography
-                variant="h6"
-                className={classes.title}
-              >
+              <Typography variant="h6" className={classes.title}>
                 New experiences
               </Typography>
               <Typography variant="h5">
@@ -100,16 +94,11 @@ function ProductValues(props) {
                 src="/static/themes/onepirate/productValues3.svg"
                 alt="clock"
               />
-              <Typography
-                variant="h6"
-                className={classes.title}
-              >
+              <Typography variant="h6" className={classes.title}>
                 Exclusive rates
               </Typography>
               <Typography variant="h5">
-                {
-                  'By registering, you will access specially negotiated rates '
-                }
+                {'By registering, you will access specially negotiated rates '}
                 {'that you will not find anywhere else.'}
               </Typography>
             </div>

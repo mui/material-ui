@@ -31,15 +31,7 @@ const colors = [
   '#63780d',
   '#996600',
 ];
-const variants = [
-  'h1',
-  'h2',
-  'h3',
-  'h4',
-  'h5',
-  'h6',
-  'subtitle1',
-];
+const variants = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'subtitle1'];
 
 const useStyles = makeStyles({
   root: {
@@ -51,9 +43,7 @@ const useStyles = makeStyles({
 
 export default function ResponsiveFontSizes() {
   const classes = useStyles();
-  const convert = convertLength(
-    theme.typography.htmlFontSize,
-  );
+  const convert = convertLength(theme.typography.htmlFontSize);
   const toPx = (rem) => parseFloat(convert(rem, 'px'));
 
   const series = variants.map((variantName) => {

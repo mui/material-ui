@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  Theme,
-  createStyles,
-  makeStyles,
-} from '@material-ui/core/styles';
+import { Theme, createStyles, makeStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
@@ -68,12 +64,8 @@ export default function SingleLineGridList() {
                 title: classes.title,
               }}
               actionIcon={
-                <IconButton
-                  aria-label={`star ${tile.title}`}
-                >
-                  <StarBorderIcon
-                    className={classes.title}
-                  />
+                <IconButton aria-label={`star ${tile.title}`}>
+                  <StarBorderIcon className={classes.title} />
                 </IconButton>
               }
             />

@@ -8,10 +8,7 @@ import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 
 export default function ToggleButtonsMultiple() {
-  const [formats, setFormats] = React.useState(() => [
-    'bold',
-    'italic',
-  ]);
+  const [formats, setFormats] = React.useState(() => ['bold', 'italic']);
 
   const handleFormat = (event, newFormats) => {
     setFormats(newFormats);
@@ -29,17 +26,10 @@ export default function ToggleButtonsMultiple() {
       <ToggleButton value="italic" aria-label="italic">
         <FormatItalicIcon />
       </ToggleButton>
-      <ToggleButton
-        value="underlined"
-        aria-label="underlined"
-      >
+      <ToggleButton value="underlined" aria-label="underlined">
         <FormatUnderlinedIcon />
       </ToggleButton>
-      <ToggleButton
-        value="color"
-        aria-label="color"
-        disabled
-      >
+      <ToggleButton value="color" aria-label="color" disabled>
         <FormatColorFillIcon />
         <ArrowDropDownIcon />
       </ToggleButton>

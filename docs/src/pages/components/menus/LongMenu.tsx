@@ -24,15 +24,10 @@ const options = [
 const ITEM_HEIGHT = 48;
 
 export default function LongMenu() {
-  const [
-    anchorEl,
-    setAnchorEl,
-  ] = React.useState<null | HTMLElement>(null);
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
-  const handleClick = (
-    event: React.MouseEvent<HTMLElement>,
-  ) => {
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
 

@@ -96,11 +96,7 @@ export default function FreeSoloCreateOptionDialog() {
         style={{ width: 300 }}
         freeSolo
         renderInput={(params) => (
-          <TextField
-            {...params}
-            label="Free solo dialog"
-            variant="outlined"
-          />
+          <TextField {...params} label="Free solo dialog" variant="outlined" />
         )}
       />
       <Dialog
@@ -109,13 +105,10 @@ export default function FreeSoloCreateOptionDialog() {
         aria-labelledby="form-dialog-title"
       >
         <form onSubmit={handleSubmit}>
-          <DialogTitle id="form-dialog-title">
-            Add a new film
-          </DialogTitle>
+          <DialogTitle id="form-dialog-title">Add a new film</DialogTitle>
           <DialogContent>
             <DialogContentText>
-              Did you miss any film in our list? Please, add
-              it!
+              Did you miss any film in our list? Please, add it!
             </DialogContentText>
             <TextField
               autoFocus
@@ -175,8 +168,7 @@ const top100Films = [
   { title: 'The Good, the Bad and the Ugly', year: 1966 },
   { title: 'Fight Club', year: 1999 },
   {
-    title:
-      'The Lord of the Rings: The Fellowship of the Ring',
+    title: 'The Lord of the Rings: The Fellowship of the Ring',
     year: 2001,
   },
   {

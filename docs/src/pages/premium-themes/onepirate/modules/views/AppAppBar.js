@@ -4,9 +4,7 @@ import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
 import Link from '@material-ui/core/Link';
 import AppBar from '../components/AppBar';
-import Toolbar, {
-  styles as toolbarStyles,
-} from '../components/Toolbar';
+import Toolbar, { styles as toolbarStyles } from '../components/Toolbar';
 
 const styles = (theme) => ({
   title: {
@@ -67,10 +65,7 @@ function AppAppBar(props) {
             <Link
               variant="h6"
               underline="none"
-              className={clsx(
-                classes.rightLink,
-                classes.linkSecondary,
-              )}
+              className={clsx(classes.rightLink, classes.linkSecondary)}
               href="/premium-themes/onepirate/sign-up/"
             >
               {'Sign Up'}

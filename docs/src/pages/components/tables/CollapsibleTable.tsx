@@ -52,9 +52,7 @@ function createData(
   };
 }
 
-function Row(props: {
-  row: ReturnType<typeof createData>;
-}) {
+function Row(props: { row: ReturnType<typeof createData> }) {
   const { row } = props;
   const [open, setOpen] = React.useState(false);
   const classes = useRowStyles();
@@ -68,11 +66,7 @@ function Row(props: {
             size="small"
             onClick={() => setOpen(!open)}
           >
-            {open ? (
-              <KeyboardArrowUpIcon />
-            ) : (
-              <KeyboardArrowDownIcon />
-            )}
+            {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
         <TableCell component="th" scope="row">
@@ -84,17 +78,10 @@ function Row(props: {
         <TableCell align="right">{row.protein}</TableCell>
       </TableRow>
       <TableRow>
-        <TableCell
-          style={{ paddingBottom: 0, paddingTop: 0 }}
-          colSpan={6}
-        >
+        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box margin={1}>
-              <Typography
-                variant="h6"
-                gutterBottom
-                component="div"
-              >
+              <Typography variant="h6" gutterBottom component="div">
                 History
               </Typography>
               <Table size="small" aria-label="purchases">
@@ -102,12 +89,8 @@ function Row(props: {
                   <TableRow>
                     <TableCell>Date</TableCell>
                     <TableCell>Customer</TableCell>
-                    <TableCell align="right">
-                      Amount
-                    </TableCell>
-                    <TableCell align="right">
-                      Total price ($)
-                    </TableCell>
+                    <TableCell align="right">Amount</TableCell>
+                    <TableCell align="right">Total price ($)</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -116,18 +99,10 @@ function Row(props: {
                       <TableCell component="th" scope="row">
                         {historyRow.date}
                       </TableCell>
-                      <TableCell>
-                        {historyRow.customerId}
-                      </TableCell>
+                      <TableCell>{historyRow.customerId}</TableCell>
+                      <TableCell align="right">{historyRow.amount}</TableCell>
                       <TableCell align="right">
-                        {historyRow.amount}
-                      </TableCell>
-                      <TableCell align="right">
-                        {Math.round(
-                          historyRow.amount *
-                            row.price *
-                            100,
-                        ) / 100}
+                        {Math.round(historyRow.amount * row.price * 100) / 100}
                       </TableCell>
                     </TableRow>
                   ))}
@@ -158,15 +133,9 @@ export default function CollapsibleTable() {
             <TableCell />
             <TableCell>Dessert (100g serving)</TableCell>
             <TableCell align="right">Calories</TableCell>
-            <TableCell align="right">
-              Fat&nbsp;(g)
-            </TableCell>
-            <TableCell align="right">
-              Carbs&nbsp;(g)
-            </TableCell>
-            <TableCell align="right">
-              Protein&nbsp;(g)
-            </TableCell>
+            <TableCell align="right">Fat&nbsp;(g)</TableCell>
+            <TableCell align="right">Carbs&nbsp;(g)</TableCell>
+            <TableCell align="right">Protein&nbsp;(g)</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

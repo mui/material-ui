@@ -32,11 +32,7 @@ export default function Asynchronous() {
       const countries = await response.json();
 
       if (active) {
-        setOptions(
-          Object.keys(countries).map(
-            (key) => countries[key].item[0],
-          ),
-        );
+        setOptions(Object.keys(countries).map((key) => countries[key].item[0]));
       }
     })();
 
@@ -62,9 +58,7 @@ export default function Asynchronous() {
       onClose={() => {
         setOpen(false);
       }}
-      getOptionSelected={(option, value) =>
-        option.name === value.name
-      }
+      getOptionSelected={(option, value) => option.name === value.name}
       getOptionLabel={(option) => option.name}
       options={options}
       loading={loading}
@@ -78,10 +72,7 @@ export default function Asynchronous() {
             endAdornment: (
               <React.Fragment>
                 {loading ? (
-                  <CircularProgress
-                    color="inherit"
-                    size={20}
-                  />
+                  <CircularProgress color="inherit" size={20} />
                 ) : null}
                 {params.InputProps.endAdornment}
               </React.Fragment>

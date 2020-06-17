@@ -11,11 +11,7 @@ export default function ComboBox() {
       getOptionLabel={(option) => option.title}
       style={{ width: 300 }}
       renderInput={(params) => (
-        <TextField
-          {...params}
-          label="Combo box"
-          variant="outlined"
-        />
+        <TextField {...params} label="Combo box" variant="outlined" />
       )}
     />
   );
@@ -37,8 +33,7 @@ const top100Films = [
   { title: 'The Good, the Bad and the Ugly', year: 1966 },
   { title: 'Fight Club', year: 1999 },
   {
-    title:
-      'The Lord of the Rings: The Fellowship of the Ring',
+    title: 'The Lord of the Rings: The Fellowship of the Ring',
     year: 2001,
   },
   {

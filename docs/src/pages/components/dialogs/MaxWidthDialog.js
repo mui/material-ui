@@ -53,11 +53,7 @@ export default function MaxWidthDialog() {
 
   return (
     <React.Fragment>
-      <Button
-        variant="outlined"
-        color="primary"
-        onClick={handleClickOpen}
-      >
+      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
         Open max-width dialog
       </Button>
       <Dialog
@@ -67,19 +63,14 @@ export default function MaxWidthDialog() {
         onClose={handleClose}
         aria-labelledby="max-width-dialog-title"
       >
-        <DialogTitle id="max-width-dialog-title">
-          Optional sizes
-        </DialogTitle>
+        <DialogTitle id="max-width-dialog-title">Optional sizes</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            You can set my maximum width and whether to
-            adapt or not.
+            You can set my maximum width and whether to adapt or not.
           </DialogContentText>
           <form className={classes.form} noValidate>
             <FormControl className={classes.formControl}>
-              <InputLabel htmlFor="max-width">
-                maxWidth
-              </InputLabel>
+              <InputLabel htmlFor="max-width">maxWidth</InputLabel>
               <Select
                 autoFocus
                 value={maxWidth}
@@ -100,10 +91,7 @@ export default function MaxWidthDialog() {
             <FormControlLabel
               className={classes.formControlLabel}
               control={
-                <Switch
-                  checked={fullWidth}
-                  onChange={handleFullWidthChange}
-                />
+                <Switch checked={fullWidth} onChange={handleFullWidthChange} />
               }
               label="Full width"
             />

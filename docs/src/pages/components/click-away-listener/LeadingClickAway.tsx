@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  makeStyles,
-  createStyles,
-  Theme,
-} from '@material-ui/core/styles';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -48,8 +44,7 @@ export default function LeadingClickAway() {
         </button>
         {open ? (
           <div className={classes.dropdown}>
-            Click me, I will stay visible until you click
-            outside.
+            Click me, I will stay visible until you click outside.
           </div>
         ) : null}
       </div>

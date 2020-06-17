@@ -9,9 +9,7 @@ export default function SwitchLabels() {
     checkedB: true,
   });
 
-  const handleChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setState({
       ...state,
       [event.target.name]: event.target.checked,
@@ -41,15 +39,8 @@ export default function SwitchLabels() {
         }
         label="Primary"
       />
-      <FormControlLabel
-        control={<Switch />}
-        label="Uncontrolled"
-      />
-      <FormControlLabel
-        disabled
-        control={<Switch />}
-        label="Disabled"
-      />
+      <FormControlLabel control={<Switch />} label="Uncontrolled" />
+      <FormControlLabel disabled control={<Switch />} label="Disabled" />
       <FormControlLabel
         disabled
         control={<Switch checked />}

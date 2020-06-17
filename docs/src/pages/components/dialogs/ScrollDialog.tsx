@@ -1,8 +1,6 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
-import Dialog, {
-  DialogProps,
-} from '@material-ui/core/Dialog';
+import Dialog, { DialogProps } from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
@@ -10,13 +8,9 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 
 export default function ScrollDialog() {
   const [open, setOpen] = React.useState(false);
-  const [scroll, setScroll] = React.useState<
-    DialogProps['scroll']
-  >('paper');
+  const [scroll, setScroll] = React.useState<DialogProps['scroll']>('paper');
 
-  const handleClickOpen = (
-    scrollType: DialogProps['scroll'],
-  ) => () => {
+  const handleClickOpen = (scrollType: DialogProps['scroll']) => () => {
     setOpen(true);
     setScroll(scrollType);
   };
@@ -25,14 +19,10 @@ export default function ScrollDialog() {
     setOpen(false);
   };
 
-  const descriptionElementRef = React.useRef<HTMLElement>(
-    null,
-  );
+  const descriptionElementRef = React.useRef<HTMLElement>(null);
   React.useEffect(() => {
     if (open) {
-      const {
-        current: descriptionElement,
-      } = descriptionElementRef;
+      const { current: descriptionElement } = descriptionElementRef;
       if (descriptionElement !== null) {
         descriptionElement.focus();
       }
@@ -41,12 +31,8 @@ export default function ScrollDialog() {
 
   return (
     <div>
-      <Button onClick={handleClickOpen('paper')}>
-        scroll=paper
-      </Button>
-      <Button onClick={handleClickOpen('body')}>
-        scroll=body
-      </Button>
+      <Button onClick={handleClickOpen('paper')}>scroll=paper</Button>
+      <Button onClick={handleClickOpen('body')}>scroll=body</Button>
       <Dialog
         open={open}
         onClose={handleClose}
@@ -54,9 +40,7 @@ export default function ScrollDialog() {
         aria-labelledby="scroll-dialog-title"
         aria-describedby="scroll-dialog-description"
       >
-        <DialogTitle id="scroll-dialog-title">
-          Subscribe
-        </DialogTitle>
+        <DialogTitle id="scroll-dialog-title">Subscribe</DialogTitle>
         <DialogContent dividers={scroll === 'paper'}>
           <DialogContentText
             id="scroll-dialog-description"

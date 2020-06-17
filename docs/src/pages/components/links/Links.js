@@ -21,18 +21,10 @@ export default function Links() {
       <Link href="#" onClick={preventDefault}>
         Link
       </Link>
-      <Link
-        href="#"
-        onClick={preventDefault}
-        color="inherit"
-      >
+      <Link href="#" onClick={preventDefault} color="inherit">
         {'color="inherit"'}
       </Link>
-      <Link
-        href="#"
-        onClick={preventDefault}
-        variant="body2"
-      >
+      <Link href="#" onClick={preventDefault} variant="body2">
         {'variant="body2"'}
       </Link>
     </Typography>

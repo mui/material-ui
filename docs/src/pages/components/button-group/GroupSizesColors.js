@@ -19,10 +19,7 @@ export default function GroupSizesColors() {
 
   return (
     <div className={classes.root}>
-      <ButtonGroup
-        size="small"
-        aria-label="small outlined button group"
-      >
+      <ButtonGroup size="small" aria-label="small outlined button group">
         <Button>One</Button>
         <Button>Two</Button>
         <Button>Three</Button>

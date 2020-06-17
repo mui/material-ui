@@ -18,10 +18,7 @@ export default function IconTabs() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
-  const handleChange = (
-    event: React.ChangeEvent<{}>,
-    newValue: number,
-  ) => {
+  const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setValue(newValue);
   };
 
@@ -36,10 +33,7 @@ export default function IconTabs() {
         aria-label="icon tabs example"
       >
         <Tab icon={<PhoneIcon />} aria-label="phone" />
-        <Tab
-          icon={<FavoriteIcon />}
-          aria-label="favorite"
-        />
+        <Tab icon={<FavoriteIcon />} aria-label="favorite" />
         <Tab icon={<PersonPinIcon />} aria-label="person" />
       </Tabs>
     </Paper>

@@ -15,11 +15,7 @@ import Header from './Header';
 
 function Copyright() {
   return (
-    <Typography
-      variant="body2"
-      color="textSecondary"
-      align="center"
-    >
+    <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
         Your Website
@@ -191,9 +187,7 @@ function Paperbase(props) {
             />
           </Hidden>
           <Hidden xsDown implementation="css">
-            <Navigator
-              PaperProps={{ style: { width: drawerWidth } }}
-            />
+            <Navigator PaperProps={{ style: { width: drawerWidth } }} />
           </Hidden>
         </nav>
         <div className={classes.app}>

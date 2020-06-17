@@ -78,10 +78,7 @@ export default function FloatingActionButtonZoom() {
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
 
-  const handleChange = (
-    event: unknown,
-    newValue: number,
-  ) => {
+  const handleChange = (event: unknown, newValue: number) => {
     setValue(newValue);
   };
 
@@ -136,25 +133,13 @@ export default function FloatingActionButtonZoom() {
         index={value}
         onChangeIndex={handleChangeIndex}
       >
-        <TabPanel
-          value={value}
-          index={0}
-          dir={theme.direction}
-        >
+        <TabPanel value={value} index={0} dir={theme.direction}>
           Item One
         </TabPanel>
-        <TabPanel
-          value={value}
-          index={1}
-          dir={theme.direction}
-        >
+        <TabPanel value={value} index={1} dir={theme.direction}>
           Item Two
         </TabPanel>
-        <TabPanel
-          value={value}
-          index={2}
-          dir={theme.direction}
-        >
+        <TabPanel value={value} index={2} dir={theme.direction}>
           Item Three
         </TabPanel>
       </SwipeableViews>

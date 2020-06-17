@@ -18,11 +18,7 @@ export default function InsetList() {
   const classes = useStyles();
 
   return (
-    <List
-      component="nav"
-      className={classes.root}
-      aria-label="contacts"
-    >
+    <List component="nav" className={classes.root} aria-label="contacts">
       <ListItem button>
         <ListItemIcon>
           <StarIcon />

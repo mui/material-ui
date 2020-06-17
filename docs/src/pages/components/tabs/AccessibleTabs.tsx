@@ -40,12 +40,7 @@ interface DemoTabsProps {
 }
 
 function DemoTabs(props: DemoTabsProps) {
-  const {
-    labelId,
-    onChange,
-    selectionFollowsFocus,
-    value,
-  } = props;
+  const { labelId, onChange, selectionFollowsFocus, value } = props;
 
   return (
     <AppBar position="static">
@@ -55,16 +50,8 @@ function DemoTabs(props: DemoTabsProps) {
         selectionFollowsFocus={selectionFollowsFocus}
         value={value}
       >
-        <Tab
-          label="Item One"
-          aria-controls="a11y-tabpanel-0"
-          id="a11y-tab-0"
-        />
-        <Tab
-          label="Item Two"
-          aria-controls="a11y-tabpanel-1"
-          id="a11y-tab-1"
-        />
+        <Tab label="Item One" aria-controls="a11y-tabpanel-0" id="a11y-tab-0" />
+        <Tab label="Item Two" aria-controls="a11y-tabpanel-1" id="a11y-tab-1" />
         <Tab
           label="Item Three"
           aria-controls="a11y-tabpanel-2"
@@ -85,10 +72,7 @@ export default function AccessibleTabs() {
   const classes = useStyles();
 
   const [value, setValue] = React.useState(0);
-  const handleChange = (
-    event: unknown,
-    newValue: number,
-  ) => {
+  const handleChange = (event: unknown, newValue: number) => {
     setValue(newValue);
   };
 

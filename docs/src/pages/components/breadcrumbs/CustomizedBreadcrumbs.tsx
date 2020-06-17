@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  emphasize,
-  withStyles,
-  Theme,
-} from '@material-ui/core/styles';
+import { emphasize, withStyles, Theme } from '@material-ui/core/styles';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Chip from '@material-ui/core/Chip';
 import HomeIcon from '@material-ui/icons/Home';
@@ -20,17 +16,12 @@ const StyledBreadcrumb = withStyles((theme: Theme) => ({
     },
     '&:active': {
       boxShadow: theme.shadows[1],
-      backgroundColor: emphasize(
-        theme.palette.grey[300],
-        0.12,
-      ),
+      backgroundColor: emphasize(theme.palette.grey[300], 0.12),
     },
   },
 }))(Chip) as typeof Chip; // TypeScript only: need a type cast here because https://github.com/Microsoft/TypeScript/issues/26591
 
-function handleClick(
-  event: React.MouseEvent<Element, MouseEvent>,
-) {
+function handleClick(event: React.MouseEvent<Element, MouseEvent>) {
   event.preventDefault();
   console.info('You clicked a breadcrumb.');
 }

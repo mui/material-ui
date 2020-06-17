@@ -20,11 +20,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function getSteps() {
-  return [
-    'Select campaign settings',
-    'Create an ad group',
-    'Create an ad',
-  ];
+  return ['Select campaign settings', 'Create an ad group', 'Create an ad'];
 }
 
 function getStepContent(step) {
@@ -44,7 +40,6 @@ export default function HorizontalNonLinearStepperWithError() {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set());
-
   const steps = getSteps();
 
   const isStepOptional = (step) => {
@@ -78,9 +73,7 @@ export default function HorizontalNonLinearStepperWithError() {
     if (!isStepOptional(activeStep)) {
       // You probably want to guard against something like this,
       // it should never occur unless someone's actively trying to break something.
-      throw new Error(
-        "You can't skip a step that isn't optional.",
-      );
+      throw new Error("You can't skip a step that isn't optional.");
     }
 
     setSkipped((prevSkipped) => {
@@ -127,10 +120,7 @@ export default function HorizontalNonLinearStepperWithError() {
             <Typography className={classes.instructions}>
               All steps completed - you&apos;re finished
             </Typography>
-            <Button
-              onClick={handleReset}
-              className={classes.button}
-            >
+            <Button onClick={handleReset} className={classes.button}>
               Reset
             </Button>
           </div>
@@ -164,9 +154,7 @@ export default function HorizontalNonLinearStepperWithError() {
                 onClick={handleNext}
                 className={classes.button}
               >
-                {activeStep === steps.length - 1
-                  ? 'Finish'
-                  : 'Next'}
+                {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
               </Button>
             </div>
           </div>

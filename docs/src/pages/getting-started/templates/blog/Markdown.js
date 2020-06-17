@@ -41,13 +41,11 @@ const options = {
     },
     a: { component: Link },
     li: {
-      component: withStyles(styles)(
-        ({ classes, ...props }) => (
-          <li className={classes.listItem}>
-            <Typography component="span" {...props} />
-          </li>
-        ),
-      ),
+      component: withStyles(styles)(({ classes, ...props }) => (
+        <li className={classes.listItem}>
+          <Typography component="span" {...props} />
+        </li>
+      )),
     },
   },
 };

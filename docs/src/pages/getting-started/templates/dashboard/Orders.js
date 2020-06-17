@@ -9,14 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Title from './Title';
 
 // Generate Order Data
-function createData(
-  id,
-  date,
-  name,
-  shipTo,
-  paymentMethod,
-  amount,
-) {
+function createData(id, date, name, shipTo, paymentMethod, amount) {
   return { id, date, name, shipTo, paymentMethod, amount };
 }
 
@@ -95,19 +88,13 @@ export default function Orders() {
               <TableCell>{row.name}</TableCell>
               <TableCell>{row.shipTo}</TableCell>
               <TableCell>{row.paymentMethod}</TableCell>
-              <TableCell align="right">
-                {row.amount}
-              </TableCell>
+              <TableCell align="right">{row.amount}</TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
       <div className={classes.seeMore}>
-        <Link
-          color="primary"
-          href="#"
-          onClick={preventDefault}
-        >
+        <Link color="primary" href="#" onClick={preventDefault}>
           See more orders
         </Link>
       </div>

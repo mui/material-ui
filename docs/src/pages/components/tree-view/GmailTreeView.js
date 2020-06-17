@@ -79,14 +79,8 @@ function StyledTreeItem(props) {
     <TreeItem
       label={
         <div className={classes.labelRoot}>
-          <LabelIcon
-            color="inherit"
-            className={classes.labelIcon}
-          />
-          <Typography
-            variant="body2"
-            className={classes.labelText}
-          >
+          <LabelIcon color="inherit" className={classes.labelIcon} />
+          <Typography variant="body2" className={classes.labelText}>
             {labelText}
           </Typography>
           <Typography variant="caption" color="inherit">
@@ -138,21 +132,9 @@ export default function GmailTreeView() {
       defaultExpandIcon={<ArrowRightIcon />}
       defaultEndIcon={<div style={{ width: 24 }} />}
     >
-      <StyledTreeItem
-        nodeId="1"
-        labelText="All Mail"
-        labelIcon={MailIcon}
-      />
-      <StyledTreeItem
-        nodeId="2"
-        labelText="Trash"
-        labelIcon={DeleteIcon}
-      />
-      <StyledTreeItem
-        nodeId="3"
-        labelText="Categories"
-        labelIcon={Label}
-      >
+      <StyledTreeItem nodeId="1" labelText="All Mail" labelIcon={MailIcon} />
+      <StyledTreeItem nodeId="2" labelText="Trash" labelIcon={DeleteIcon} />
+      <StyledTreeItem nodeId="3" labelText="Categories" labelIcon={Label}>
         <StyledTreeItem
           nodeId="5"
           labelText="Social"
@@ -186,11 +168,7 @@ export default function GmailTreeView() {
           bgColor="#e6f4ea"
         />
       </StyledTreeItem>
-      <StyledTreeItem
-        nodeId="4"
-        labelText="History"
-        labelIcon={Label}
-      />
+      <StyledTreeItem nodeId="4" labelText="History" labelIcon={Label} />
     </TreeView>
   );
 }

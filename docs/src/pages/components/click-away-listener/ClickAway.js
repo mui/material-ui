@@ -38,8 +38,7 @@ export default function ClickAway() {
         </button>
         {open ? (
           <div className={classes.dropdown}>
-            Click me, I will stay visible until you click
-            outside.
+            Click me, I will stay visible until you click outside.
           </div>
         ) : null}
       </div>

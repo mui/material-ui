@@ -25,9 +25,7 @@ export default function TypographyMenu() {
           <ListItemIcon>
             <SendIcon fontSize="small" />
           </ListItemIcon>
-          <Typography variant="inherit">
-            A short message
-          </Typography>
+          <Typography variant="inherit">A short message</Typography>
         </MenuItem>
         <MenuItem>
           <ListItemIcon>

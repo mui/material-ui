@@ -21,23 +21,13 @@ export default function IconButtons() {
       <IconButton aria-label="delete">
         <DeleteIcon />
       </IconButton>
-      <IconButton
-        aria-label="delete"
-        disabled
-        color="primary"
-      >
+      <IconButton aria-label="delete" disabled color="primary">
         <DeleteIcon />
       </IconButton>
-      <IconButton
-        color="secondary"
-        aria-label="add an alarm"
-      >
+      <IconButton color="secondary" aria-label="add an alarm">
         <AlarmIcon />
       </IconButton>
-      <IconButton
-        color="primary"
-        aria-label="add to shopping cart"
-      >
+      <IconButton color="primary" aria-label="add to shopping cart">
         <AddShoppingCartIcon />
       </IconButton>
     </div>

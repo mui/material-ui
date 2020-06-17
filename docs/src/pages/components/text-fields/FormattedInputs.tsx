@@ -1,11 +1,7 @@
 import React from 'react';
 import MaskedInput from 'react-text-mask';
 import NumberFormat from 'react-number-format';
-import {
-  createStyles,
-  Theme,
-  makeStyles,
-} from '@material-ui/core/styles';
+import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import TextField from '@material-ui/core/TextField';
@@ -58,15 +54,11 @@ function TextMaskCustom(props: TextMaskCustomProps) {
 
 interface NumberFormatCustomProps {
   inputRef: (instance: NumberFormat | null) => void;
-  onChange: (event: {
-    target: { name: string; value: string };
-  }) => void;
+  onChange: (event: { target: { name: string; value: string } }) => void;
   name: string;
 }
 
-function NumberFormatCustom(
-  props: NumberFormatCustomProps,
-) {
+function NumberFormatCustom(props: NumberFormatCustomProps) {
   const { inputRef, onChange, ...other } = props;
 
   return (
@@ -100,9 +92,7 @@ export default function FormattedInputs() {
     numberformat: '1320',
   });
 
-  const handleChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValues({
       ...values,
       [event.target.name]: event.target.value,

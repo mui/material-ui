@@ -21,21 +21,15 @@ export default function ErrorRadios() {
   const classes = useStyles();
   const [value, setValue] = React.useState('');
   const [error, setError] = React.useState(false);
-  const [helperText, setHelperText] = React.useState(
-    'Choose wisely',
-  );
+  const [helperText, setHelperText] = React.useState('Choose wisely');
 
-  const handleRadioChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
+  const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue((event.target as HTMLInputElement).value);
     setHelperText(' ');
     setError(false);
   };
 
-  const handleSubmit = (
-    event: React.FormEvent<HTMLFormElement>,
-  ) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (value === 'best') {
@@ -57,9 +51,7 @@ export default function ErrorRadios() {
         error={error}
         className={classes.formControl}
       >
-        <FormLabel component="legend">
-          Pop quiz: Material-UI is...
-        </FormLabel>
+        <FormLabel component="legend">Pop quiz: Material-UI is...</FormLabel>
         <RadioGroup
           aria-label="quiz"
           name="quiz"

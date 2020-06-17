@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  makeStyles,
-  Theme,
-  createStyles,
-} from '@material-ui/core/styles';
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
@@ -55,9 +51,7 @@ export default function InteractiveList() {
           control={
             <Checkbox
               checked={dense}
-              onChange={(event) =>
-                setDense(event.target.checked)
-              }
+              onChange={(event) => setDense(event.target.checked)}
             />
           }
           label="Enable dense"
@@ -66,9 +60,7 @@ export default function InteractiveList() {
           control={
             <Checkbox
               checked={secondary}
-              onChange={(event) =>
-                setSecondary(event.target.checked)
-              }
+              onChange={(event) => setSecondary(event.target.checked)}
             />
           }
           label="Enable secondary text"
@@ -76,10 +68,7 @@ export default function InteractiveList() {
       </FormGroup>
       <Grid container spacing={2}>
         <Grid item xs={12} md={6}>
-          <Typography
-            variant="h6"
-            className={classes.title}
-          >
+          <Typography variant="h6" className={classes.title}>
             Text only
           </Typography>
           <div className={classes.demo}>
@@ -88,9 +77,7 @@ export default function InteractiveList() {
                 <ListItem>
                   <ListItemText
                     primary="Single-line item"
-                    secondary={
-                      secondary ? 'Secondary text' : null
-                    }
+                    secondary={secondary ? 'Secondary text' : null}
                   />
                 </ListItem>,
               )}
@@ -98,10 +85,7 @@ export default function InteractiveList() {
           </div>
         </Grid>
         <Grid item xs={12} md={6}>
-          <Typography
-            variant="h6"
-            className={classes.title}
-          >
+          <Typography variant="h6" className={classes.title}>
             Icon with text
           </Typography>
           <div className={classes.demo}>
@@ -113,9 +97,7 @@ export default function InteractiveList() {
                   </ListItemIcon>
                   <ListItemText
                     primary="Single-line item"
-                    secondary={
-                      secondary ? 'Secondary text' : null
-                    }
+                    secondary={secondary ? 'Secondary text' : null}
                   />
                 </ListItem>,
               )}
@@ -125,10 +107,7 @@ export default function InteractiveList() {
       </Grid>
       <Grid container spacing={2}>
         <Grid item xs={12} md={6}>
-          <Typography
-            variant="h6"
-            className={classes.title}
-          >
+          <Typography variant="h6" className={classes.title}>
             Avatar with text
           </Typography>
           <div className={classes.demo}>
@@ -142,9 +121,7 @@ export default function InteractiveList() {
                   </ListItemAvatar>
                   <ListItemText
                     primary="Single-line item"
-                    secondary={
-                      secondary ? 'Secondary text' : null
-                    }
+                    secondary={secondary ? 'Secondary text' : null}
                   />
                 </ListItem>,
               )}
@@ -152,10 +129,7 @@ export default function InteractiveList() {
           </div>
         </Grid>
         <Grid item xs={12} md={6}>
-          <Typography
-            variant="h6"
-            className={classes.title}
-          >
+          <Typography variant="h6" className={classes.title}>
             Avatar with text and icon
           </Typography>
           <div className={classes.demo}>
@@ -169,15 +143,10 @@ export default function InteractiveList() {
                   </ListItemAvatar>
                   <ListItemText
                     primary="Single-line item"
-                    secondary={
-                      secondary ? 'Secondary text' : null
-                    }
+                    secondary={secondary ? 'Secondary text' : null}
                   />
                   <ListItemSecondaryAction>
-                    <IconButton
-                      edge="end"
-                      aria-label="delete"
-                    >
+                    <IconButton edge="end" aria-label="delete">
                       <DeleteIcon />
                     </IconButton>
                   </ListItemSecondaryAction>

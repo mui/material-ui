@@ -161,12 +161,8 @@ function AnchorPlayground(props) {
             <div
               className={classes.anchor}
               style={{
-                ...inlineStyles.anchorVertical[
-                  anchorOriginVertical
-                ],
-                ...inlineStyles.anchorHorizontal[
-                  anchorOriginHorizontal
-                ],
+                ...inlineStyles.anchorVertical[anchorOriginVertical],
+                ...inlineStyles.anchorHorizontal[anchorOriginHorizontal],
               }}
             />
           )}
@@ -197,9 +193,7 @@ function AnchorPlayground(props) {
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6}>
           <FormControl component="fieldset">
-            <FormLabel component="legend">
-              anchorReference
-            </FormLabel>
+            <FormLabel component="legend">anchorReference</FormLabel>
             <RadioGroup
               row
               aria-label="anchor reference"
@@ -222,38 +216,28 @@ function AnchorPlayground(props) {
         </Grid>
         <Grid item xs={12} sm={6}>
           <FormControl className={classes.formControl}>
-            <InputLabel htmlFor="position-top">
-              anchorPosition.top
-            </InputLabel>
+            <InputLabel htmlFor="position-top">anchorPosition.top</InputLabel>
             <Input
               id="position-top"
               type="number"
               value={positionTop}
-              onChange={handleNumberInputChange(
-                'positionTop',
-              )}
+              onChange={handleNumberInputChange('positionTop')}
             />
           </FormControl>
           &nbsp;
           <FormControl className={classes.formControl}>
-            <InputLabel htmlFor="position-left">
-              anchorPosition.left
-            </InputLabel>
+            <InputLabel htmlFor="position-left">anchorPosition.left</InputLabel>
             <Input
               id="position-left"
               type="number"
               value={positionLeft}
-              onChange={handleNumberInputChange(
-                'positionLeft',
-              )}
+              onChange={handleNumberInputChange('positionLeft')}
             />
           </FormControl>
         </Grid>
         <Grid item xs={12} sm={6}>
           <FormControl component="fieldset">
-            <FormLabel component="legend">
-              anchorOrigin.vertical
-            </FormLabel>
+            <FormLabel component="legend">anchorOrigin.vertical</FormLabel>
             <RadioGroup
               aria-label="anchor origin vertical"
               name="anchorOriginVertical"
@@ -262,23 +246,17 @@ function AnchorPlayground(props) {
             >
               <FormControlLabel
                 value="top"
-                control={
-                  <Radio classes={radioAnchorClasses} />
-                }
+                control={<Radio classes={radioAnchorClasses} />}
                 label="Top"
               />
               <FormControlLabel
                 value="center"
-                control={
-                  <Radio classes={radioAnchorClasses} />
-                }
+                control={<Radio classes={radioAnchorClasses} />}
                 label="Center"
               />
               <FormControlLabel
                 value="bottom"
-                control={
-                  <Radio classes={radioAnchorClasses} />
-                }
+                control={<Radio classes={radioAnchorClasses} />}
                 label="Bottom"
               />
             </RadioGroup>
@@ -286,9 +264,7 @@ function AnchorPlayground(props) {
         </Grid>
         <Grid item xs={12} sm={6}>
           <FormControl component="fieldset">
-            <FormLabel component="legend">
-              transformOrigin.vertical
-            </FormLabel>
+            <FormLabel component="legend">transformOrigin.vertical</FormLabel>
             <RadioGroup
               aria-label="transform origin vertical"
               name="transformOriginVertical"
@@ -315,9 +291,7 @@ function AnchorPlayground(props) {
         </Grid>
         <Grid item xs={12} sm={6}>
           <FormControl component="fieldset">
-            <FormLabel component="legend">
-              anchorOrigin.horizontal
-            </FormLabel>
+            <FormLabel component="legend">anchorOrigin.horizontal</FormLabel>
             <RadioGroup
               row
               aria-label="anchor origin horizontal"
@@ -327,23 +301,17 @@ function AnchorPlayground(props) {
             >
               <FormControlLabel
                 value="left"
-                control={
-                  <Radio classes={radioAnchorClasses} />
-                }
+                control={<Radio classes={radioAnchorClasses} />}
                 label="Left"
               />
               <FormControlLabel
                 value="center"
-                control={
-                  <Radio classes={radioAnchorClasses} />
-                }
+                control={<Radio classes={radioAnchorClasses} />}
                 label="Center"
               />
               <FormControlLabel
                 value="right"
-                control={
-                  <Radio classes={radioAnchorClasses} />
-                }
+                control={<Radio classes={radioAnchorClasses} />}
                 label="Right"
               />
             </RadioGroup>
@@ -351,9 +319,7 @@ function AnchorPlayground(props) {
         </Grid>
         <Grid item xs={12} sm={6}>
           <FormControl component="fieldset">
-            <FormLabel component="legend">
-              transformOrigin.horizontal
-            </FormLabel>
+            <FormLabel component="legend">transformOrigin.horizontal</FormLabel>
             <RadioGroup
               row
               aria-label="transform origin horizontal"

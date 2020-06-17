@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  makeStyles,
-  Theme,
-  createStyles,
-} from '@material-ui/core/styles';
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Popper from '@material-ui/core/Popper';
 import Fade from '@material-ui/core/Fade';
 
@@ -19,14 +15,9 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function TransitionsPopper() {
   const classes = useStyles();
-  const [
-    anchorEl,
-    setAnchorEl,
-  ] = React.useState<null | HTMLElement>(null);
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
-  const handleClick = (
-    event: React.MouseEvent<HTMLElement>,
-  ) => {
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(anchorEl ? null : event.currentTarget);
   };
 
@@ -35,24 +26,13 @@ export default function TransitionsPopper() {
 
   return (
     <div>
-      <button
-        aria-describedby={id}
-        type="button"
-        onClick={handleClick}
-      >
+      <button aria-describedby={id} type="button" onClick={handleClick}>
         Toggle Popper
       </button>
-      <Popper
-        id={id}
-        open={open}
-        anchorEl={anchorEl}
-        transition
-      >
+      <Popper id={id} open={open} anchorEl={anchorEl} transition>
         {({ TransitionProps }) => (
           <Fade {...TransitionProps} timeout={350}>
-            <div className={classes.paper}>
-              The content of the Popper.
-            </div>
+            <div className={classes.paper}>The content of the Popper.</div>
           </Fade>
         )}
       </Popper>

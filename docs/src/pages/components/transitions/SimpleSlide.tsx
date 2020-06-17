@@ -3,11 +3,7 @@ import Switch from '@material-ui/core/Switch';
 import Paper from '@material-ui/core/Paper';
 import Slide from '@material-ui/core/Slide';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import {
-  makeStyles,
-  createStyles,
-  Theme,
-} from '@material-ui/core/styles';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -46,20 +42,10 @@ export default function SimpleSlide() {
     <div className={classes.root}>
       <div className={classes.wrapper}>
         <FormControlLabel
-          control={
-            <Switch
-              checked={checked}
-              onChange={handleChange}
-            />
-          }
+          control={<Switch checked={checked} onChange={handleChange} />}
           label="Show"
         />
-        <Slide
-          direction="up"
-          in={checked}
-          mountOnEnter
-          unmountOnExit
-        >
+        <Slide direction="up" in={checked} mountOnEnter unmountOnExit>
           <Paper elevation={4} className={classes.paper}>
             <svg className={classes.svg}>
               <polygon

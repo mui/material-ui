@@ -22,9 +22,7 @@ export default function SwitchesGroup() {
 
   return (
     <FormControl component="fieldset">
-      <FormLabel component="legend">
-        Assign responsibility
-      </FormLabel>
+      <FormLabel component="legend">Assign responsibility</FormLabel>
       <FormGroup>
         <FormControlLabel
           control={

@@ -19,11 +19,7 @@ export default function LoadingButtons() {
       <LoadingButton variant="outlined" pending>
         Submit
       </LoadingButton>
-      <LoadingButton
-        variant="outlined"
-        pending
-        pendingIndicator="Loading..."
-      >
+      <LoadingButton variant="outlined" pending pendingIndicator="Loading...">
         Fetch data
       </LoadingButton>
       <LoadingButton

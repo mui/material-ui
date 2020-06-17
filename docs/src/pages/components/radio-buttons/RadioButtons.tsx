@@ -11,18 +11,12 @@ const GreenRadio = withStyles({
     },
   },
   checked: {},
-})((props: RadioProps) => (
-  <Radio color="default" {...props} />
-));
+})((props: RadioProps) => <Radio color="default" {...props} />);
 
 export default function RadioButtons() {
-  const [selectedValue, setSelectedValue] = React.useState(
-    'a',
-  );
+  const [selectedValue, setSelectedValue] = React.useState('a');
 
-  const handleChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedValue(event.target.value);
   };
 

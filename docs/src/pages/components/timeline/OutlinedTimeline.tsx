@@ -25,10 +25,7 @@ export default function OutlinedTimeline() {
       </TimelineItem>
       <TimelineItem>
         <TimelineSeparator>
-          <TimelineDot
-            variant="outlined"
-            color="secondary"
-          />
+          <TimelineDot variant="outlined" color="secondary" />
           <TimelineConnector />
         </TimelineSeparator>
         <TimelineContent>Sleep</TimelineContent>

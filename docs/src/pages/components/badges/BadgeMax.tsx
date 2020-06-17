@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  makeStyles,
-  createStyles,
-  Theme,
-} from '@material-ui/core/styles';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Badge from '@material-ui/core/Badge';
 import MailIcon from '@material-ui/icons/Mail';
 
@@ -29,11 +25,7 @@ export default function BadgeMax() {
     <div className={classes.root}>
       <Badge badgeContent={99} {...defaultProps} />
       <Badge badgeContent={100} {...defaultProps} />
-      <Badge
-        badgeContent={1000}
-        max={999}
-        {...defaultProps}
-      />
+      <Badge badgeContent={1000} max={999} {...defaultProps} />
     </div>
   );
 }

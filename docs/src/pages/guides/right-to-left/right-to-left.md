@@ -40,10 +40,7 @@ The [`StylesProvider`](/styles/api/#stylesprovider) component enables this:
 ```jsx
 import { create } from 'jss';
 import rtl from 'jss-rtl';
-import {
-  StylesProvider,
-  jssPreset,
-} from '@material-ui/core/styles';
+import { StylesProvider, jssPreset } from '@material-ui/core/styles';
 
 // Configure JSS
 const jss = create({
@@ -51,11 +48,7 @@ const jss = create({
 });
 
 function RTL(props) {
-  return (
-    <StylesProvider jss={jss}>
-      {props.children}
-    </StylesProvider>
-  );
+  return <StylesProvider jss={jss}>{props.children}</StylesProvider>;
 }
 ```
 

@@ -8,9 +8,7 @@ import FormLabel from '@material-ui/core/FormLabel';
 export default function RadioButtonsGroup() {
   const [value, setValue] = React.useState('female');
 
-  const handleChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue((event.target as HTMLInputElement).value);
   };
 
@@ -23,21 +21,9 @@ export default function RadioButtonsGroup() {
         value={value}
         onChange={handleChange}
       >
-        <FormControlLabel
-          value="female"
-          control={<Radio />}
-          label="Female"
-        />
-        <FormControlLabel
-          value="male"
-          control={<Radio />}
-          label="Male"
-        />
-        <FormControlLabel
-          value="other"
-          control={<Radio />}
-          label="Other"
-        />
+        <FormControlLabel value="female" control={<Radio />} label="Female" />
+        <FormControlLabel value="male" control={<Radio />} label="Male" />
+        <FormControlLabel value="other" control={<Radio />} label="Other" />
         <FormControlLabel
           value="disabled"
           disabled

@@ -44,9 +44,7 @@ function union(a, b) {
 export default function TransferList() {
   const classes = useStyles();
   const [checked, setChecked] = React.useState([]);
-
   const [left, setLeft] = React.useState([0, 1, 2, 3]);
-
   const [right, setRight] = React.useState([4, 5, 6, 7]);
 
   const leftChecked = intersection(checked, left);
@@ -65,8 +63,7 @@ export default function TransferList() {
     setChecked(newChecked);
   };
 
-  const numberOfChecked = (items) =>
-    intersection(checked, items).length;
+  const numberOfChecked = (items) => intersection(checked, items).length;
 
   const handleToggleAll = (items) => () => {
     if (numberOfChecked(items) === items.length) {
@@ -96,8 +93,7 @@ export default function TransferList() {
           <Checkbox
             onClick={handleToggleAll(items)}
             checked={
-              numberOfChecked(items) === items.length &&
-              items.length !== 0
+              numberOfChecked(items) === items.length && items.length !== 0
             }
             indeterminate={
               numberOfChecked(items) !== items.length &&
@@ -110,17 +106,10 @@ export default function TransferList() {
           />
         }
         title={title}
-        subheader={`${numberOfChecked(items)}/${
-          items.length
-        } selected`}
+        subheader={`${numberOfChecked(items)}/${items.length} selected`}
       />
       <Divider />
-      <List
-        className={classes.list}
-        dense
-        component="div"
-        role="list"
-      >
+      <List className={classes.list} dense component="div" role="list">
         {items.map((value) => {
           const labelId = `transfer-list-all-item-${value}-label`;
 
@@ -141,10 +130,7 @@ export default function TransferList() {
                   }}
                 />
               </ListItemIcon>
-              <ListItemText
-                id={labelId}
-                primary={`List item ${value + 1}`}
-              />
+              <ListItemText id={labelId} primary={`List item ${value + 1}`} />
             </ListItem>
           );
         })}
@@ -163,11 +149,7 @@ export default function TransferList() {
     >
       <Grid item>{customList('Choices', left)}</Grid>
       <Grid item>
-        <Grid
-          container
-          direction="column"
-          alignItems="center"
-        >
+        <Grid container direction="column" alignItems="center">
           <Button
             variant="outlined"
             size="small"

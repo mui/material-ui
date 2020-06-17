@@ -16,11 +16,7 @@ import Review from './Review';
 
 function Copyright() {
   return (
-    <Typography
-      variant="body2"
-      color="textSecondary"
-      align="center"
-    >
+    <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
         Your Website
@@ -68,11 +64,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const steps = [
-  'Shipping address',
-  'Payment details',
-  'Review your order',
-];
+const steps = ['Shipping address', 'Payment details', 'Review your order'];
 
 function getStepContent(step) {
   switch (step) {
@@ -102,11 +94,7 @@ export default function Checkout() {
   return (
     <React.Fragment>
       <CssBaseline />
-      <AppBar
-        position="absolute"
-        color="default"
-        className={classes.appBar}
-      >
+      <AppBar position="absolute" color="default" className={classes.appBar}>
         <Toolbar>
           <Typography variant="h6" color="inherit" noWrap>
             Company name
@@ -115,17 +103,10 @@ export default function Checkout() {
       </AppBar>
       <main className={classes.layout}>
         <Paper className={classes.paper}>
-          <Typography
-            component="h1"
-            variant="h4"
-            align="center"
-          >
+          <Typography component="h1" variant="h4" align="center">
             Checkout
           </Typography>
-          <Stepper
-            activeStep={activeStep}
-            className={classes.stepper}
-          >
+          <Stepper activeStep={activeStep} className={classes.stepper}>
             {steps.map((label) => (
               <Step key={label}>
                 <StepLabel>{label}</StepLabel>
@@ -139,9 +120,8 @@ export default function Checkout() {
                   Thank you for your order.
                 </Typography>
                 <Typography variant="subtitle1">
-                  Your order number is #2001539. We have
-                  emailed your order confirmation, and will
-                  send you an update when your order has
+                  Your order number is #2001539. We have emailed your order
+                  confirmation, and will send you an update when your order has
                   shipped.
                 </Typography>
               </React.Fragment>
@@ -150,10 +130,7 @@ export default function Checkout() {
                 {getStepContent(activeStep)}
                 <div className={classes.buttons}>
                   {activeStep !== 0 && (
-                    <Button
-                      onClick={handleBack}
-                      className={classes.button}
-                    >
+                    <Button onClick={handleBack} className={classes.button}>
                       Back
                     </Button>
                   )}
@@ -163,9 +140,7 @@ export default function Checkout() {
                     onClick={handleNext}
                     className={classes.button}
                   >
-                    {activeStep === steps.length - 1
-                      ? 'Place order'
-                      : 'Next'}
+                    {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
                   </Button>
                 </div>
               </React.Fragment>

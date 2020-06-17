@@ -68,27 +68,14 @@ export default function CustomizedTables() {
 
   return (
     <TableContainer component={Paper}>
-      <Table
-        className={classes.table}
-        aria-label="customized table"
-      >
+      <Table className={classes.table} aria-label="customized table">
         <TableHead>
           <TableRow>
-            <StyledTableCell>
-              Dessert (100g serving)
-            </StyledTableCell>
-            <StyledTableCell align="right">
-              Calories
-            </StyledTableCell>
-            <StyledTableCell align="right">
-              Fat&nbsp;(g)
-            </StyledTableCell>
-            <StyledTableCell align="right">
-              Carbs&nbsp;(g)
-            </StyledTableCell>
-            <StyledTableCell align="right">
-              Protein&nbsp;(g)
-            </StyledTableCell>
+            <StyledTableCell>Dessert (100g serving)</StyledTableCell>
+            <StyledTableCell align="right">Calories</StyledTableCell>
+            <StyledTableCell align="right">Fat&nbsp;(g)</StyledTableCell>
+            <StyledTableCell align="right">Carbs&nbsp;(g)</StyledTableCell>
+            <StyledTableCell align="right">Protein&nbsp;(g)</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -97,18 +84,10 @@ export default function CustomizedTables() {
               <StyledTableCell component="th" scope="row">
                 {row.name}
               </StyledTableCell>
-              <StyledTableCell align="right">
-                {row.calories}
-              </StyledTableCell>
-              <StyledTableCell align="right">
-                {row.fat}
-              </StyledTableCell>
-              <StyledTableCell align="right">
-                {row.carbs}
-              </StyledTableCell>
-              <StyledTableCell align="right">
-                {row.protein}
-              </StyledTableCell>
+              <StyledTableCell align="right">{row.calories}</StyledTableCell>
+              <StyledTableCell align="right">{row.fat}</StyledTableCell>
+              <StyledTableCell align="right">{row.carbs}</StyledTableCell>
+              <StyledTableCell align="right">{row.protein}</StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>

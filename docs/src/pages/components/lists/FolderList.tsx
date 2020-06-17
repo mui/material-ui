@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  createStyles,
-  Theme,
-  makeStyles,
-} from '@material-ui/core/styles';
+import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -34,10 +30,7 @@ export default function FolderList() {
             <ImageIcon />
           </Avatar>
         </ListItemAvatar>
-        <ListItemText
-          primary="Photos"
-          secondary="Jan 9, 2014"
-        />
+        <ListItemText primary="Photos" secondary="Jan 9, 2014" />
       </ListItem>
       <ListItem>
         <ListItemAvatar>
@@ -45,10 +38,7 @@ export default function FolderList() {
             <WorkIcon />
           </Avatar>
         </ListItemAvatar>
-        <ListItemText
-          primary="Work"
-          secondary="Jan 7, 2014"
-        />
+        <ListItemText primary="Work" secondary="Jan 7, 2014" />
       </ListItem>
       <ListItem>
         <ListItemAvatar>
@@ -56,10 +46,7 @@ export default function FolderList() {
             <BeachAccessIcon />
           </Avatar>
         </ListItemAvatar>
-        <ListItemText
-          primary="Vacation"
-          secondary="July 20, 2014"
-        />
+        <ListItemText primary="Vacation" secondary="July 20, 2014" />
       </ListItem>
     </List>
   );

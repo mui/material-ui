@@ -32,14 +32,7 @@ function ChipsPlayground(props) {
     variant: 'default',
     size: 'medium',
   });
-  const {
-    color,
-    onDelete,
-    avatar,
-    icon,
-    variant,
-    size,
-  } = state;
+  const { color, onDelete, avatar, icon, variant, size } = state;
 
   const handleChange = (event) => {
     setState({
@@ -52,12 +45,9 @@ function ChipsPlayground(props) {
     console.info('You clicked the delete icon.');
   };
 
-  const colorToCode =
-    color !== 'default' ? `color="${color}" ` : '';
-  const sizeToCode =
-    size === 'small' ? `size="small" ` : '';
-  const variantToCode =
-    variant !== 'default' ? `variant="${variant}" ` : '';
+  const colorToCode = color !== 'default' ? `color="${color}" ` : '';
+  const sizeToCode = size === 'small' ? `size="small" ` : '';
+  const variantToCode = variant !== 'default' ? `variant="${variant}" ` : '';
 
   let onDeleteToCode;
   switch (onDelete) {
@@ -65,8 +55,7 @@ function ChipsPlayground(props) {
       onDeleteToCode = '';
       break;
     case 'custom':
-      onDeleteToCode =
-        'deleteIcon={<DoneIcon />} onDelete={handleDelete} ';
+      onDeleteToCode = 'deleteIcon={<DoneIcon />} onDelete={handleDelete} ';
       break;
     default:
       onDeleteToCode = 'onDelete={handleDelete} ';
@@ -92,11 +81,8 @@ function ChipsPlayground(props) {
       avatarToCode = '';
       break;
     case 'img':
-      avatarToCode =
-        'avatar={<Avatar src="/static/images/avatar/1.jpg" />} ';
-      avatarToPlayground = (
-        <Avatar src="/static/images/avatar/1.jpg" />
-      );
+      avatarToCode = 'avatar={<Avatar src="/static/images/avatar/1.jpg" />} ';
+      avatarToPlayground = <Avatar src="/static/images/avatar/1.jpg" />;
       break;
     case 'letter':
       avatarToCode = 'avatar={<Avatar>F</Avatar>} ';
@@ -118,25 +104,13 @@ function ChipsPlayground(props) {
   return (
     <Grid container className={classes.root}>
       <Grid item xs={12}>
-        <Grid
-          container
-          justify="center"
-          alignItems="center"
-        >
+        <Grid container justify="center" alignItems="center">
           <Grid item className={classes.chipWrapper}>
             <Chip
               label="Chip Component"
               color={color}
-              deleteIcon={
-                onDelete === 'custom' ? (
-                  <DoneIcon />
-                ) : undefined
-              }
-              onDelete={
-                onDelete !== 'none'
-                  ? handleDeleteExample
-                  : undefined
-              }
+              deleteIcon={onDelete === 'custom' ? <DoneIcon /> : undefined}
+              onDelete={onDelete !== 'none' ? handleDeleteExample : undefined}
               avatar={avatarToPlayground}
               icon={iconToPlayground}
               variant={variant}
@@ -264,11 +238,7 @@ function ChipsPlayground(props) {
                   control={<Radio />}
                   label="letter"
                 />
-                <FormControlLabel
-                  value="img"
-                  control={<Radio />}
-                  label="img"
-                />
+                <FormControlLabel value="img" control={<Radio />} label="img" />
               </RadioGroup>
             </FormControl>
           </Grid>

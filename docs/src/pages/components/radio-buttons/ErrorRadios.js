@@ -21,9 +21,7 @@ export default function ErrorRadios() {
   const classes = useStyles();
   const [value, setValue] = React.useState('');
   const [error, setError] = React.useState(false);
-  const [helperText, setHelperText] = React.useState(
-    'Choose wisely',
-  );
+  const [helperText, setHelperText] = React.useState('Choose wisely');
 
   const handleRadioChange = (event) => {
     setValue(event.target.value);
@@ -53,9 +51,7 @@ export default function ErrorRadios() {
         error={error}
         className={classes.formControl}
       >
-        <FormLabel component="legend">
-          Pop quiz: Material-UI is...
-        </FormLabel>
+        <FormLabel component="legend">Pop quiz: Material-UI is...</FormLabel>
         <RadioGroup
           aria-label="quiz"
           name="quiz"

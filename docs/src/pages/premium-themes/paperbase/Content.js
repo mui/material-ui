@@ -50,10 +50,7 @@ function Content(props) {
         <Toolbar>
           <Grid container spacing={2} alignItems="center">
             <Grid item>
-              <SearchIcon
-                className={classes.block}
-                color="inherit"
-              />
+              <SearchIcon className={classes.block} color="inherit" />
             </Grid>
             <Grid item xs>
               <TextField
@@ -75,10 +72,7 @@ function Content(props) {
               </Button>
               <Tooltip title="Reload">
                 <IconButton>
-                  <RefreshIcon
-                    className={classes.block}
-                    color="inherit"
-                  />
+                  <RefreshIcon className={classes.block} color="inherit" />
                 </IconButton>
               </Tooltip>
             </Grid>

@@ -148,11 +148,7 @@ function Group(props) {
         {title}
       </Typography>
       <Typography>{description}</Typography>
-      <Grid
-        container
-        spacing={2}
-        className={classes.container}
-      >
+      <Grid container spacing={2} className={classes.container}>
         {members.map((member) => (
           <Grid key={member.name} item xs={12} md={6}>
             <Paper variant="outlined">
@@ -169,16 +165,10 @@ function Group(props) {
                     <Typography component="h3" variant="h6">
                       {member.name}
                     </Typography>
-                    <Typography
-                      variant="body2"
-                      color="textSecondary"
-                    >
+                    <Typography variant="body2" color="textSecondary">
                       {member.flag}
                     </Typography>
-                    <Typography
-                      variant="body2"
-                      color="textSecondary"
-                    >
+                    <Typography variant="body2" color="textSecondary">
                       {member.city}
                     </Typography>
                     <Grid container>

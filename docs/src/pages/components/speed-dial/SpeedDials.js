@@ -51,6 +51,7 @@ const actions = [
 export default function SpeedDials() {
   const classes = useStyles();
   const [direction, setDirection] = React.useState('up');
+
   const [open, setOpen] = React.useState(false);
   const [hidden, setHidden] = React.useState(false);
 
@@ -82,10 +83,7 @@ export default function SpeedDials() {
         }
         label="Hidden"
       />
-      <FormLabel
-        className={classes.radioGroup}
-        component="legend"
-      >
+      <FormLabel className={classes.radioGroup} component="legend">
         Direction
       </FormLabel>
       <RadioGroup
@@ -95,26 +93,10 @@ export default function SpeedDials() {
         onChange={handleDirectionChange}
         row
       >
-        <FormControlLabel
-          value="up"
-          control={<Radio />}
-          label="Up"
-        />
-        <FormControlLabel
-          value="right"
-          control={<Radio />}
-          label="Right"
-        />
-        <FormControlLabel
-          value="down"
-          control={<Radio />}
-          label="Down"
-        />
-        <FormControlLabel
-          value="left"
-          control={<Radio />}
-          label="Left"
-        />
+        <FormControlLabel value="up" control={<Radio />} label="Up" />
+        <FormControlLabel value="right" control={<Radio />} label="Right" />
+        <FormControlLabel value="down" control={<Radio />} label="Down" />
+        <FormControlLabel value="left" control={<Radio />} label="Left" />
       </RadioGroup>
       <div className={classes.exampleWrapper}>
         <SpeedDial

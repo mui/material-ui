@@ -19,11 +19,7 @@ export default function Filter() {
       filterOptions={filterOptions}
       style={{ width: 300 }}
       renderInput={(params) => (
-        <TextField
-          {...params}
-          label="Custom filter"
-          variant="outlined"
-        />
+        <TextField {...params} label="Custom filter" variant="outlined" />
       )}
     />
   );
@@ -50,8 +46,7 @@ const top100Films = [
   { title: 'The Good, the Bad and the Ugly', year: 1966 },
   { title: 'Fight Club', year: 1999 },
   {
-    title:
-      'The Lord of the Rings: The Fellowship of the Ring',
+    title: 'The Lord of the Rings: The Fellowship of the Ring',
     year: 2001,
   },
   {

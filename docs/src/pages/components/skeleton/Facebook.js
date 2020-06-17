@@ -64,22 +64,14 @@ function Media(props) {
         }
         subheader={
           loading ? (
-            <Skeleton
-              animation="wave"
-              height={10}
-              width="40%"
-            />
+            <Skeleton animation="wave" height={10} width="40%" />
           ) : (
             '5 hours ago'
           )
         }
       />
       {loading ? (
-        <Skeleton
-          animation="wave"
-          variant="rect"
-          className={classes.media}
-        />
+        <Skeleton animation="wave" variant="rect" className={classes.media} />
       ) : (
         <CardMedia
           className={classes.media}
@@ -96,18 +88,10 @@ function Media(props) {
               height={10}
               style={{ marginBottom: 6 }}
             />
-            <Skeleton
-              animation="wave"
-              height={10}
-              width="80%"
-            />
+            <Skeleton animation="wave" height={10} width="80%" />
           </React.Fragment>
         ) : (
-          <Typography
-            variant="body2"
-            color="textSecondary"
-            component="p"
-          >
+          <Typography variant="body2" color="textSecondary" component="p">
             {
               "Why First Minister of Scotland Nicola Sturgeon thinks GDP is the wrong measure of a country's success:"
             }

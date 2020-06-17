@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  createStyles,
-  Theme,
-  makeStyles,
-} from '@material-ui/core/styles';
+import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
@@ -56,10 +52,7 @@ export default function InputWithIcon() {
             <AccountCircle />
           </Grid>
           <Grid item>
-            <TextField
-              id="input-with-icon-grid"
-              label="With a grid"
-            />
+            <TextField id="input-with-icon-grid" label="With a grid" />
           </Grid>
         </Grid>
       </div>

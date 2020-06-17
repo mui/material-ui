@@ -26,17 +26,10 @@ export default function ToggleButtons() {
       <ToggleButton value="center" aria-label="centered">
         <FormatAlignCenterIcon />
       </ToggleButton>
-      <ToggleButton
-        value="right"
-        aria-label="right aligned"
-      >
+      <ToggleButton value="right" aria-label="right aligned">
         <FormatAlignRightIcon />
       </ToggleButton>
-      <ToggleButton
-        value="justify"
-        aria-label="justified"
-        disabled
-      >
+      <ToggleButton value="justify" aria-label="justified" disabled>
         <FormatAlignJustifyIcon />
       </ToggleButton>
     </ToggleButtonGroup>

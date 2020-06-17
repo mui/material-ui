@@ -39,15 +39,8 @@ export default function SwitchLabels() {
         }
         label="Primary"
       />
-      <FormControlLabel
-        control={<Switch />}
-        label="Uncontrolled"
-      />
-      <FormControlLabel
-        disabled
-        control={<Switch />}
-        label="Disabled"
-      />
+      <FormControlLabel control={<Switch />} label="Uncontrolled" />
+      <FormControlLabel disabled control={<Switch />} label="Disabled" />
       <FormControlLabel
         disabled
         control={<Switch checked />}

@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  makeStyles,
-  Theme,
-  createStyles,
-} from '@material-ui/core/styles';
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import InputBase from '@material-ui/core/InputBase';
 import Divider from '@material-ui/core/Divider';
@@ -39,10 +35,7 @@ export default function CustomizedInputBase() {
 
   return (
     <Paper component="form" className={classes.root}>
-      <IconButton
-        className={classes.iconButton}
-        aria-label="menu"
-      >
+      <IconButton className={classes.iconButton} aria-label="menu">
         <MenuIcon />
       </IconButton>
       <InputBase
@@ -57,10 +50,7 @@ export default function CustomizedInputBase() {
       >
         <SearchIcon />
       </IconButton>
-      <Divider
-        className={classes.divider}
-        orientation="vertical"
-      />
+      <Divider className={classes.divider} orientation="vertical" />
       <IconButton
         color="primary"
         className={classes.iconButton}

@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  makeStyles,
-  createStyles,
-  Theme,
-} from '@material-ui/core/styles';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Switch from '@material-ui/core/Switch';
 import Paper from '@material-ui/core/Paper';
 import Collapse from '@material-ui/core/Collapse';
@@ -43,12 +39,7 @@ export default function SimpleCollapse() {
   return (
     <div className={classes.root}>
       <FormControlLabel
-        control={
-          <Switch
-            checked={checked}
-            onChange={handleChange}
-          />
-        }
+        control={<Switch checked={checked} onChange={handleChange} />}
         label="Show"
       />
       <div className={classes.container}>

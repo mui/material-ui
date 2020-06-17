@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  makeStyles,
-  Theme,
-  createStyles,
-} from '@material-ui/core/styles';
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -39,21 +35,9 @@ function intersection(a: number[], b: number[]) {
 
 export default function TransferList() {
   const classes = useStyles();
-  const [checked, setChecked] = React.useState<number[]>(
-    [],
-  );
-  const [left, setLeft] = React.useState<number[]>([
-    0,
-    1,
-    2,
-    3,
-  ]);
-  const [right, setRight] = React.useState<number[]>([
-    4,
-    5,
-    6,
-    7,
-  ]);
+  const [checked, setChecked] = React.useState<number[]>([]);
+  const [left, setLeft] = React.useState<number[]>([0, 1, 2, 3]);
+  const [right, setRight] = React.useState<number[]>([4, 5, 6, 7]);
 
   const leftChecked = intersection(checked, left);
   const rightChecked = intersection(checked, right);
@@ -116,10 +100,7 @@ export default function TransferList() {
                   }}
                 />
               </ListItemIcon>
-              <ListItemText
-                id={labelId}
-                primary={`List item ${value + 1}`}
-              />
+              <ListItemText id={labelId} primary={`List item ${value + 1}`} />
             </ListItem>
           );
         })}
@@ -138,11 +119,7 @@ export default function TransferList() {
     >
       <Grid item>{customList(left)}</Grid>
       <Grid item>
-        <Grid
-          container
-          direction="column"
-          alignItems="center"
-        >
+        <Grid container direction="column" alignItems="center">
           <Button
             variant="outlined"
             size="small"

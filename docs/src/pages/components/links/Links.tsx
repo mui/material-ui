@@ -1,10 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
-import {
-  makeStyles,
-  createStyles,
-  Theme,
-} from '@material-ui/core/styles';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 
@@ -28,18 +24,10 @@ export default function Links() {
       <Link href="#" onClick={preventDefault}>
         Link
       </Link>
-      <Link
-        href="#"
-        onClick={preventDefault}
-        color="inherit"
-      >
+      <Link href="#" onClick={preventDefault} color="inherit">
         {'color="inherit"'}
       </Link>
-      <Link
-        href="#"
-        onClick={preventDefault}
-        variant="body2"
-      >
+      <Link href="#" onClick={preventDefault} variant="body2">
         {'variant="body2"'}
       </Link>
     </Typography>

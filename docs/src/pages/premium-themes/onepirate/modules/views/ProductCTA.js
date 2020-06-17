@@ -45,8 +45,7 @@ const styles = (theme) => ({
     right: 0,
     bottom: 0,
     width: '100%',
-    background:
-      'url(/static/onepirate/productCTAImageDots.png)',
+    background: 'url(/static/onepirate/productCTAImageDots.png)',
   },
   image: {
     position: 'absolute',
@@ -75,27 +74,14 @@ function ProductCTA(props) {
   return (
     <Container className={classes.root} component="section">
       <Grid container>
-        <Grid
-          item
-          xs={12}
-          md={6}
-          className={classes.cardWrapper}
-        >
+        <Grid item xs={12} md={6} className={classes.cardWrapper}>
           <div className={classes.card}>
-            <form
-              onSubmit={handleSubmit}
-              className={classes.cardContent}
-            >
-              <Typography
-                variant="h2"
-                component="h2"
-                gutterBottom
-              >
+            <form onSubmit={handleSubmit} className={classes.cardContent}>
+              <Typography variant="h2" component="h2" gutterBottom>
                 Receive offers
               </Typography>
               <Typography variant="h5">
-                Taste the holidays of the everyday close to
-                home.
+                Taste the holidays of the everyday close to home.
               </Typography>
               <TextField
                 noBorder
@@ -113,12 +99,7 @@ function ProductCTA(props) {
             </form>
           </div>
         </Grid>
-        <Grid
-          item
-          xs={12}
-          md={6}
-          className={classes.imagesWrapper}
-        >
+        <Grid item xs={12} md={6} className={classes.imagesWrapper}>
           <Hidden smDown>
             <div className={classes.imageDots} />
             <img

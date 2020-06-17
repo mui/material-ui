@@ -69,16 +69,8 @@ export default function TabsWrappedLabel() {
             wrapped
             {...a11yProps('one')}
           />
-          <Tab
-            value="two"
-            label="Item Two"
-            {...a11yProps('two')}
-          />
-          <Tab
-            value="three"
-            label="Item Three"
-            {...a11yProps('three')}
-          />
+          <Tab value="two" label="Item Two" {...a11yProps('two')} />
+          <Tab value="three" label="Item Three" {...a11yProps('three')} />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index="one">

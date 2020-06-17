@@ -8,11 +8,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import parse from 'autosuggest-highlight/parse';
 import throttle from 'lodash/throttle';
 
-function loadScript(
-  src: string,
-  position: HTMLElement | null,
-  id: string,
-) {
+function loadScript(src: string, position: HTMLElement | null, id: string) {
   if (!position) {
     return;
   }
@@ -49,14 +45,9 @@ interface PlaceType {
 
 export default function GoogleMaps() {
   const classes = useStyles();
-  const [
-    value,
-    setValue,
-  ] = React.useState<PlaceType | null>(null);
+  const [value, setValue] = React.useState<PlaceType | null>(null);
   const [inputValue, setInputValue] = React.useState('');
-  const [options, setOptions] = React.useState<PlaceType[]>(
-    [],
-  );
+  const [options, setOptions] = React.useState<PlaceType[]>([]);
   const loaded = React.useRef(false);
 
   if (typeof window !== 'undefined' && !loaded.current) {
@@ -91,10 +82,7 @@ export default function GoogleMaps() {
   React.useEffect(() => {
     let active = true;
 
-    if (
-      !autocompleteService.current &&
-      (window as any).google
-    ) {
+    if (!autocompleteService.current && (window as any).google) {
       autocompleteService.current = new (window as any).google.maps.places.AutocompleteService();
     }
     if (!autocompleteService.current) {
@@ -106,24 +94,21 @@ export default function GoogleMaps() {
       return undefined;
     }
 
-    fetch(
-      { input: inputValue },
-      (results?: PlaceType[]) => {
-        if (active) {
-          let newOptions = [] as PlaceType[];
+    fetch({ input: inputValue }, (results?: PlaceType[]) => {
+      if (active) {
+        let newOptions = [] as PlaceType[];
 
-          if (value) {
-            newOptions = [value];
-          }
-
-          if (results) {
-            newOptions = [...newOptions, ...results];
-          }
-
-          setOptions(newOptions);
+        if (value) {
+          newOptions = [value];
         }
-      },
-    );
+
+        if (results) {
+          newOptions = [...newOptions, ...results];
+        }
+
+        setOptions(newOptions);
+      }
+    });
 
     return () => {
       active = false;
@@ -135,9 +120,7 @@ export default function GoogleMaps() {
       id="google-map-demo"
       style={{ width: 300 }}
       getOptionLabel={(option) =>
-        typeof option === 'string'
-          ? option
-          : option.description
+        typeof option === 'string' ? option : option.description
       }
       filterOptions={(x) => x}
       options={options}
@@ -145,13 +128,8 @@ export default function GoogleMaps() {
       includeInputInList
       filterSelectedOptions
       value={value}
-      onChange={(
-        event: any,
-        newValue: PlaceType | null,
-      ) => {
-        setOptions(
-          newValue ? [newValue, ...options] : options,
-        );
+      onChange={(event: any, newValue: PlaceType | null) => {
+        setOptions(newValue ? [newValue, ...options] : options);
         setValue(newValue);
       }}
       onInputChange={(event, newInputValue) => {
@@ -167,8 +145,7 @@ export default function GoogleMaps() {
       )}
       renderOption={(option) => {
         const matches =
-          option.structured_formatting
-            .main_text_matched_substrings;
+          option.structured_formatting.main_text_matched_substrings;
         const parts = parse(
           option.structured_formatting.main_text,
           matches.map((match: any) => [
@@ -193,14 +170,8 @@ export default function GoogleMaps() {
                   {part.text}
                 </span>
               ))}
-              <Typography
-                variant="body2"
-                color="textSecondary"
-              >
-                {
-                  option.structured_formatting
-                    .secondary_text
-                }
+              <Typography variant="body2" color="textSecondary">
+                {option.structured_formatting.secondary_text}
               </Typography>
             </Grid>
           </Grid>

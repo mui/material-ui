@@ -26,11 +26,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function getSteps() {
-  return [
-    'Select campaign settings',
-    'Create an ad group',
-    'Create an ad',
-  ];
+  return ['Select campaign settings', 'Create an ad group', 'Create an ad'];
 }
 
 function getStepContent(step) {
@@ -49,12 +45,8 @@ function getStepContent(step) {
 export default function HorizontalNonLinearAlternativeLabelStepper() {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
-  const [completed, setCompleted] = React.useState(
-    new Set(),
-  );
-
+  const [completed, setCompleted] = React.useState(new Set());
   const [skipped, setSkipped] = React.useState(new Set());
-
   const steps = getSteps();
 
   const totalSteps = () => {
@@ -69,9 +61,7 @@ export default function HorizontalNonLinearAlternativeLabelStepper() {
     if (!isStepOptional(activeStep)) {
       // You probably want to guard against something like this
       // it should never occur unless someone's actively trying to break something.
-      throw new Error(
-        "You can't skip a step that isn't optional.",
-      );
+      throw new Error("You can't skip a step that isn't optional.");
     }
 
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -91,9 +81,7 @@ export default function HorizontalNonLinearAlternativeLabelStepper() {
   };
 
   const allStepsCompleted = () => {
-    return (
-      completedSteps() === totalSteps() - skippedSteps()
-    );
+    return completedSteps() === totalSteps() - skippedSteps();
   };
 
   const isLastStep = () => {
@@ -150,19 +138,13 @@ export default function HorizontalNonLinearAlternativeLabelStepper() {
 
   return (
     <div className={classes.root}>
-      <Stepper
-        alternativeLabel
-        nonLinear
-        activeStep={activeStep}
-      >
+      <Stepper alternativeLabel nonLinear activeStep={activeStep}>
         {steps.map((label, index) => {
           const stepProps = {};
           const buttonProps = {};
           if (isStepOptional(index)) {
             buttonProps.optional = (
-              <Typography variant="caption">
-                Optional
-              </Typography>
+              <Typography variant="caption">Optional</Typography>
             );
           }
           if (isStepSkipped(index)) {
@@ -210,24 +192,20 @@ export default function HorizontalNonLinearAlternativeLabelStepper() {
               >
                 Next
               </Button>
-              {isStepOptional(activeStep) &&
-                !completed.has(activeStep) && (
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={handleSkip}
-                    className={classes.button}
-                  >
-                    Skip
-                  </Button>
-                )}
+              {isStepOptional(activeStep) && !completed.has(activeStep) && (
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={handleSkip}
+                  className={classes.button}
+                >
+                  Skip
+                </Button>
+              )}
 
               {activeStep !== steps.length &&
                 (completed.has(activeStep) ? (
-                  <Typography
-                    variant="caption"
-                    className={classes.completed}
-                  >
+                  <Typography variant="caption" className={classes.completed}>
                     Step {activeStep + 1} already completed
                   </Typography>
                 ) : (

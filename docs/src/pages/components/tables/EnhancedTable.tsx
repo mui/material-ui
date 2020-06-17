@@ -67,11 +67,7 @@ const rows = [
   createData('Oreo', 437, 18.0, 63, 4.0),
 ];
 
-function descendingComparator<T>(
-  a: T,
-  b: T,
-  orderBy: keyof T,
-) {
+function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
   if (b[orderBy] < a[orderBy]) {
     return -1;
   }
@@ -95,13 +91,8 @@ function getComparator<Key extends keyof any>(
     : (a, b) => -descendingComparator(a, b, orderBy);
 }
 
-function stableSort<T>(
-  array: T[],
-  comparator: (a: T, b: T) => number,
-) {
-  const stabilizedThis = array.map(
-    (el, index) => [el, index] as [T, number],
-  );
+function stableSort<T>(array: T[], comparator: (a: T, b: T) => number) {
+  const stabilizedThis = array.map((el, index) => [el, index] as [T, number]);
   stabilizedThis.sort((a, b) => {
     const order = comparator(a[0], b[0]);
     if (order !== 0) return order;
@@ -157,9 +148,7 @@ interface EnhancedTableProps {
     event: React.MouseEvent<unknown>,
     property: keyof Data,
   ) => void;
-  onSelectAllClick: (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => void;
+  onSelectAllClick: (event: React.ChangeEvent<HTMLInputElement>) => void;
   order: Order;
   orderBy: string;
   rowCount: number;
@@ -186,12 +175,8 @@ function EnhancedTableHead(props: EnhancedTableProps) {
       <TableRow>
         <TableCell padding="checkbox">
           <Checkbox
-            indeterminate={
-              numSelected > 0 && numSelected < rowCount
-            }
-            checked={
-              rowCount > 0 && numSelected === rowCount
-            }
+            indeterminate={numSelected > 0 && numSelected < rowCount}
+            checked={rowCount > 0 && numSelected === rowCount}
             onChange={onSelectAllClick}
             inputProps={{
               'aria-label': 'select all desserts',
@@ -202,26 +187,18 @@ function EnhancedTableHead(props: EnhancedTableProps) {
           <TableCell
             key={headCell.id}
             align={headCell.numeric ? 'right' : 'left'}
-            padding={
-              headCell.disablePadding ? 'none' : 'default'
-            }
-            sortDirection={
-              orderBy === headCell.id ? order : false
-            }
+            padding={headCell.disablePadding ? 'none' : 'default'}
+            sortDirection={orderBy === headCell.id ? order : false}
           >
             <TableSortLabel
               active={orderBy === headCell.id}
-              direction={
-                orderBy === headCell.id ? order : 'asc'
-              }
+              direction={orderBy === headCell.id ? order : 'asc'}
               onClick={createSortHandler(headCell.id)}
             >
               {headCell.label}
               {orderBy === headCell.id ? (
                 <span className={classes.sortSpan}>
-                  {order === 'desc'
-                    ? 'sorted descending'
-                    : 'sorted ascending'}
+                  {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
                 </span>
               ) : null}
             </TableSortLabel>
@@ -242,10 +219,7 @@ const useToolbarStyles = makeStyles((theme: Theme) =>
       theme.palette.type === 'light'
         ? {
             color: theme.palette.secondary.main,
-            backgroundColor: lighten(
-              theme.palette.secondary.light,
-              0.85,
-            ),
+            backgroundColor: lighten(theme.palette.secondary.light, 0.85),
           }
         : {
             color: theme.palette.text.primary,
@@ -261,9 +235,7 @@ interface EnhancedTableToolbarProps {
   numSelected: number;
 }
 
-const EnhancedTableToolbar = (
-  props: EnhancedTableToolbarProps,
-) => {
+const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
   const classes = useToolbarStyles();
   const { numSelected } = props;
 
@@ -329,12 +301,8 @@ const useStyles = makeStyles((theme: Theme) =>
 export default function EnhancedTable() {
   const classes = useStyles();
   const [order, setOrder] = React.useState<Order>('asc');
-  const [orderBy, setOrderBy] = React.useState<keyof Data>(
-    'calories',
-  );
-  const [selected, setSelected] = React.useState<string[]>(
-    [],
-  );
+  const [orderBy, setOrderBy] = React.useState<keyof Data>('calories');
+  const [selected, setSelected] = React.useState<string[]>([]);
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
@@ -348,9 +316,7 @@ export default function EnhancedTable() {
     setOrderBy(property);
   };
 
-  const handleSelectAllClick = (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
+  const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
       const newSelecteds = rows.map((n) => n.name);
       setSelected(newSelecteds);
@@ -359,10 +325,7 @@ export default function EnhancedTable() {
     setSelected([]);
   };
 
-  const handleClick = (
-    event: React.MouseEvent<unknown>,
-    name: string,
-  ) => {
+  const handleClick = (event: React.MouseEvent<unknown>, name: string) => {
     const selectedIndex = selected.indexOf(name);
     let newSelected: string[] = [];
 
@@ -371,9 +334,7 @@ export default function EnhancedTable() {
     } else if (selectedIndex === 0) {
       newSelected = newSelected.concat(selected.slice(1));
     } else if (selectedIndex === selected.length - 1) {
-      newSelected = newSelected.concat(
-        selected.slice(0, -1),
-      );
+      newSelected = newSelected.concat(selected.slice(0, -1));
     } else if (selectedIndex > 0) {
       newSelected = newSelected.concat(
         selected.slice(0, selectedIndex),
@@ -384,10 +345,7 @@ export default function EnhancedTable() {
     setSelected(newSelected);
   };
 
-  const handleChangePage = (
-    event: unknown,
-    newPage: number,
-  ) => {
+  const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
   };
 
@@ -398,25 +356,19 @@ export default function EnhancedTable() {
     setPage(0);
   };
 
-  const handleChangeDense = (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
+  const handleChangeDense = (event: React.ChangeEvent<HTMLInputElement>) => {
     setDense(event.target.checked);
   };
 
-  const isSelected = (name: string) =>
-    selected.indexOf(name) !== -1;
+  const isSelected = (name: string) => selected.indexOf(name) !== -1;
 
   const emptyRows =
-    rowsPerPage -
-    Math.min(rowsPerPage, rows.length - page * rowsPerPage);
+    rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
-        <EnhancedTableToolbar
-          numSelected={selected.length}
-        />
+        <EnhancedTableToolbar numSelected={selected.length} />
         <TableContainer>
           <Table
             className={classes.table}
@@ -434,26 +386,16 @@ export default function EnhancedTable() {
               rowCount={rows.length}
             />
             <TableBody>
-              {stableSort(
-                rows,
-                getComparator(order, orderBy),
-              )
-                .slice(
-                  page * rowsPerPage,
-                  page * rowsPerPage + rowsPerPage,
-                )
+              {stableSort(rows, getComparator(order, orderBy))
+                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
-                  const isItemSelected = isSelected(
-                    row.name,
-                  );
+                  const isItemSelected = isSelected(row.name);
                   const labelId = `enhanced-table-checkbox-${index}`;
 
                   return (
                     <TableRow
                       hover
-                      onClick={(event) =>
-                        handleClick(event, row.name)
-                      }
+                      onClick={(event) => handleClick(event, row.name)}
                       role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
@@ -476,18 +418,10 @@ export default function EnhancedTable() {
                       >
                         {row.name}
                       </TableCell>
-                      <TableCell align="right">
-                        {row.calories}
-                      </TableCell>
-                      <TableCell align="right">
-                        {row.fat}
-                      </TableCell>
-                      <TableCell align="right">
-                        {row.carbs}
-                      </TableCell>
-                      <TableCell align="right">
-                        {row.protein}
-                      </TableCell>
+                      <TableCell align="right">{row.calories}</TableCell>
+                      <TableCell align="right">{row.fat}</TableCell>
+                      <TableCell align="right">{row.carbs}</TableCell>
+                      <TableCell align="right">{row.protein}</TableCell>
                     </TableRow>
                   );
                 })}
@@ -514,12 +448,7 @@ export default function EnhancedTable() {
         />
       </Paper>
       <FormControlLabel
-        control={
-          <Switch
-            checked={dense}
-            onChange={handleChangeDense}
-          />
-        }
+        control={<Switch checked={dense} onChange={handleChangeDense} />}
         label="Dense padding"
       />
     </div>

@@ -26,7 +26,6 @@ const useStyles = makeStyles({
 
 export default function HoverRating() {
   const [value, setValue] = React.useState(2);
-
   const [hover, setHover] = React.useState(-1);
   const classes = useStyles();
 
@@ -44,9 +43,7 @@ export default function HoverRating() {
         }}
       />
       {value !== null && (
-        <Box ml={2}>
-          {labels[hover !== -1 ? hover : value]}
-        </Box>
+        <Box ml={2}>{labels[hover !== -1 ? hover : value]}</Box>
       )}
     </div>
   );

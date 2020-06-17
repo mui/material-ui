@@ -52,12 +52,7 @@ function SignIn() {
       <AppAppBar />
       <AppForm>
         <React.Fragment>
-          <Typography
-            variant="h3"
-            gutterBottom
-            marked="center"
-            align="center"
-          >
+          <Typography variant="h3" gutterBottom marked="center" align="center">
             Sign In
           </Typography>
           <Typography variant="body2" align="center">
@@ -77,11 +72,7 @@ function SignIn() {
           validate={validate}
         >
           {({ handleSubmit2, submitting }) => (
-            <form
-              onSubmit={handleSubmit2}
-              className={classes.form}
-              noValidate
-            >
+            <form onSubmit={handleSubmit2} className={classes.form} noValidate>
               <Field
                 autoComplete="email"
                 autoFocus
@@ -109,10 +100,7 @@ function SignIn() {
               <FormSpy subscription={{ submitError: true }}>
                 {({ submitError }) =>
                   submitError ? (
-                    <FormFeedback
-                      className={classes.feedback}
-                      error
-                    >
+                    <FormFeedback className={classes.feedback} error>
                       {submitError}
                     </FormFeedback>
                   ) : null
@@ -125,9 +113,7 @@ function SignIn() {
                 color="secondary"
                 fullWidth
               >
-                {submitting || sent
-                  ? 'In progress…'
-                  : 'Sign In'}
+                {submitting || sent ? 'In progress…' : 'Sign In'}
               </FormButton>
             </form>
           )}

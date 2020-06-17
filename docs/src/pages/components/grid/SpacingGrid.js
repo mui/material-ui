@@ -22,7 +22,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SpacingGrid() {
   const [spacing, setSpacing] = React.useState(2);
-
   const classes = useStyles();
 
   const handleChange = (event) => {
@@ -52,16 +51,14 @@ export default function SpacingGrid() {
                 onChange={handleChange}
                 row
               >
-                {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(
-                  (value) => (
-                    <FormControlLabel
-                      key={value}
-                      value={value.toString()}
-                      control={<Radio />}
-                      label={value.toString()}
-                    />
-                  ),
-                )}
+                {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((value) => (
+                  <FormControlLabel
+                    key={value}
+                    value={value.toString()}
+                    control={<Radio />}
+                    label={value.toString()}
+                  />
+                ))}
               </RadioGroup>
             </Grid>
           </Grid>

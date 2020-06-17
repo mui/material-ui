@@ -150,21 +150,11 @@ export default function CustomizedHook() {
     <NoSsr>
       <div>
         <div {...getRootProps()}>
-          <Label {...getInputLabelProps()}>
-            Customized hook
-          </Label>
-          <InputWrapper
-            ref={setAnchorEl}
-            className={focused ? 'focused' : ''}
-          >
-            {value.map(
-              (option: FilmOptionType, index: number) => (
-                <Tag
-                  label={option.title}
-                  {...getTagProps({ index })}
-                />
-              ),
-            )}
+          <Label {...getInputLabelProps()}>Customized hook</Label>
+          <InputWrapper ref={setAnchorEl} className={focused ? 'focused' : ''}>
+            {value.map((option: FilmOptionType, index: number) => (
+              <Tag label={option.title} {...getTagProps({ index })} />
+            ))}
             <input {...getInputProps()} />
           </InputWrapper>
         </div>
@@ -204,8 +194,7 @@ const top100Films = [
   { title: 'The Good, the Bad and the Ugly', year: 1966 },
   { title: 'Fight Club', year: 1999 },
   {
-    title:
-      'The Lord of the Rings: The Fellowship of the Ring',
+    title: 'The Lord of the Rings: The Fellowship of the Ring',
     year: 2001,
   },
   {

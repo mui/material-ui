@@ -46,10 +46,7 @@ export default function IconBreadcrumbs() {
         <WhatshotIcon className={classes.icon} />
         Core
       </Link>
-      <Typography
-        color="textPrimary"
-        className={classes.link}
-      >
+      <Typography color="textPrimary" className={classes.link}>
         <GrainIcon className={classes.icon} />
         Breadcrumb
       </Typography>

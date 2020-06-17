@@ -18,10 +18,7 @@ export default function DiscreteSlider() {
 
   return (
     <div className={classes.root}>
-      <Typography
-        id="discrete-slider-small-steps"
-        gutterBottom
-      >
+      <Typography id="discrete-slider-small-steps" gutterBottom>
         Small steps
       </Typography>
       <Slider

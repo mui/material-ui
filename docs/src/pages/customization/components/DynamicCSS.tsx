@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-  withStyles,
-  WithStyles,
-} from '@material-ui/core/styles';
+import { withStyles, WithStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
@@ -24,18 +21,15 @@ interface ButtonStyles extends WithStyles<typeof styles> {
 }
 
 // Like https://github.com/brunobertolini/styled-by
-const styledBy = (
-  property: string,
-  mapping: ColorsMapping,
-) => (props: Styles) => mapping[props[property]];
+const styledBy = (property: string, mapping: ColorsMapping) => (
+  props: Styles,
+) => mapping[props[property]];
 
 const styles = {
   root: {
     background: styledBy('color', {
-      default:
-        'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-      blue:
-        'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
+      default: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+      blue: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
     }),
     borderRadius: 3,
     border: 0,
@@ -58,9 +52,7 @@ const StyledButton = withStyles(
 export default function DynamicCSS() {
   const [color, setColor] = React.useState('default');
 
-  const handleChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setColor(event.target.checked ? 'blue' : 'default');
   };
 

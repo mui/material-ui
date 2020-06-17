@@ -23,11 +23,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function getSteps() {
-  return [
-    'Select campaign settings',
-    'Create an ad group',
-    'Create an ad',
-  ];
+  return ['Select campaign settings', 'Create an ad group', 'Create an ad'];
 }
 
 function getStepContent(step) {
@@ -140,10 +136,7 @@ export default function HorizontalNonLinearStepper() {
               </Button>
               {activeStep !== steps.length &&
                 (completed[activeStep] ? (
-                  <Typography
-                    variant="caption"
-                    className={classes.completed}
-                  >
+                  <Typography variant="caption" className={classes.completed}>
                     Step {activeStep + 1} already completed
                   </Typography>
                 ) : (

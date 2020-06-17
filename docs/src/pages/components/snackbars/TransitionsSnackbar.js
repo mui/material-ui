@@ -35,15 +35,9 @@ export default function TransitionsSnackbar() {
 
   return (
     <div>
-      <Button onClick={handleClick(GrowTransition)}>
-        Grow Transition
-      </Button>
-      <Button onClick={handleClick(Fade)}>
-        Fade Transition
-      </Button>
-      <Button onClick={handleClick(SlideTransition)}>
-        Slide Transition
-      </Button>
+      <Button onClick={handleClick(GrowTransition)}>Grow Transition</Button>
+      <Button onClick={handleClick(Fade)}>Fade Transition</Button>
+      <Button onClick={handleClick(SlideTransition)}>Slide Transition</Button>
       <Snackbar
         open={state.open}
         onClose={handleClose}

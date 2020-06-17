@@ -4,11 +4,7 @@ import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
 import TableCell from '@material-ui/core/TableCell';
 import Paper from '@material-ui/core/Paper';
-import {
-  AutoSizer,
-  Column,
-  Table,
-} from 'react-virtualized';
+import { AutoSizer, Column, Table } from 'react-virtualized';
 
 const styles = (theme) => ({
   flexContainer: {
@@ -21,10 +17,7 @@ const styles = (theme) => ({
     // https://github.com/bvaughn/react-virtualized/issues/454
     '& .ReactVirtualized__Table__headerRow': {
       flip: false,
-      paddingRight:
-        theme.direction === 'rtl'
-          ? '0 !important'
-          : undefined,
+      paddingRight: theme.direction === 'rtl' ? '0 !important' : undefined,
     },
   },
   tableRow: {
@@ -53,34 +46,22 @@ class MuiVirtualizedTable extends React.PureComponent {
     const { classes, onRowClick } = this.props;
 
     return clsx(classes.tableRow, classes.flexContainer, {
-      [classes.tableRowHover]:
-        index !== -1 && onRowClick != null,
+      [classes.tableRowHover]: index !== -1 && onRowClick != null,
     });
   };
 
   cellRenderer = ({ cellData, columnIndex }) => {
-    const {
-      columns,
-      classes,
-      rowHeight,
-      onRowClick,
-    } = this.props;
+    const { columns, classes, rowHeight, onRowClick } = this.props;
     return (
       <TableCell
         component="div"
-        className={clsx(
-          classes.tableCell,
-          classes.flexContainer,
-          {
-            [classes.noClick]: onRowClick == null,
-          },
-        )}
+        className={clsx(classes.tableCell, classes.flexContainer, {
+          [classes.noClick]: onRowClick == null,
+        })}
         variant="body"
         style={{ height: rowHeight }}
         align={
-          (columnIndex != null &&
-            columns[columnIndex].numeric) ||
-          false
+          (columnIndex != null && columns[columnIndex].numeric) || false
             ? 'right'
             : 'left'
         }
@@ -103,11 +84,7 @@ class MuiVirtualizedTable extends React.PureComponent {
         )}
         variant="head"
         style={{ height: headerHeight }}
-        align={
-          columns[columnIndex].numeric || false
-            ? 'right'
-            : 'left'
-        }
+        align={columns[columnIndex].numeric || false ? 'right' : 'left'}
       >
         <span>{label}</span>
       </TableCell>
@@ -176,9 +153,7 @@ MuiVirtualizedTable.propTypes = {
   rowHeight: PropTypes.number,
 };
 
-const VirtualizedTable = withStyles(styles)(
-  MuiVirtualizedTable,
-);
+const VirtualizedTable = withStyles(styles)(MuiVirtualizedTable);
 
 // ---
 
@@ -190,22 +165,14 @@ const sample = [
   ['Gingerbread', 356, 16.0, 49, 3.9],
 ];
 
-function createData(
-  id,
-  dessert,
-  calories,
-  fat,
-  carbs,
-  protein,
-) {
+function createData(id, dessert, calories, fat, carbs, protein) {
   return { id, dessert, calories, fat, carbs, protein };
 }
 
 const rows = [];
 
 for (let i = 0; i < 200; i += 1) {
-  const randomSelection =
-    sample[Math.floor(Math.random() * sample.length)];
+  const randomSelection = sample[Math.floor(Math.random() * sample.length)];
   rows.push(createData(i, ...randomSelection));
 }
 

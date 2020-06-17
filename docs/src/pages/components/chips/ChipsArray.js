@@ -48,11 +48,7 @@ export default function ChipsArray() {
             <Chip
               icon={icon}
               label={data.label}
-              onDelete={
-                data.label === 'React'
-                  ? undefined
-                  : handleDelete(data)
-              }
+              onDelete={data.label === 'React' ? undefined : handleDelete(data)}
               className={classes.chip}
             />
           </li>

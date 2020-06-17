@@ -1,9 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  makeStyles,
-  useTheme,
-} from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -43,10 +40,7 @@ function TablePaginationActions(props) {
   };
 
   const handleLastPageButtonClick = (event) => {
-    onChangePage(
-      event,
-      Math.max(0, Math.ceil(count / rowsPerPage) - 1),
-    );
+    onChangePage(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
   };
 
   return (
@@ -56,11 +50,7 @@ function TablePaginationActions(props) {
         disabled={page === 0}
         aria-label="first page"
       >
-        {theme.direction === 'rtl' ? (
-          <LastPageIcon />
-        ) : (
-          <FirstPageIcon />
-        )}
+        {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
       </IconButton>
       <IconButton
         onClick={handleBackButtonClick}
@@ -75,9 +65,7 @@ function TablePaginationActions(props) {
       </IconButton>
       <IconButton
         onClick={handleNextButtonClick}
-        disabled={
-          page >= Math.ceil(count / rowsPerPage) - 1
-        }
+        disabled={page >= Math.ceil(count / rowsPerPage) - 1}
         aria-label="next page"
       >
         {theme.direction === 'rtl' ? (
@@ -88,16 +76,10 @@ function TablePaginationActions(props) {
       </IconButton>
       <IconButton
         onClick={handleLastPageButtonClick}
-        disabled={
-          page >= Math.ceil(count / rowsPerPage) - 1
-        }
+        disabled={page >= Math.ceil(count / rowsPerPage) - 1}
         aria-label="last page"
       >
-        {theme.direction === 'rtl' ? (
-          <FirstPageIcon />
-        ) : (
-          <LastPageIcon />
-        )}
+        {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
       </IconButton>
     </div>
   );
@@ -142,8 +124,7 @@ export default function CustomPaginationActionsTable() {
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
   const emptyRows =
-    rowsPerPage -
-    Math.min(rowsPerPage, rows.length - page * rowsPerPage);
+    rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -156,32 +137,20 @@ export default function CustomPaginationActionsTable() {
 
   return (
     <TableContainer component={Paper}>
-      <Table
-        className={classes.table}
-        aria-label="custom pagination table"
-      >
+      <Table className={classes.table} aria-label="custom pagination table">
         <TableBody>
           {(rowsPerPage > 0
-            ? rows.slice(
-                page * rowsPerPage,
-                page * rowsPerPage + rowsPerPage,
-              )
+            ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             : rows
           ).map((row) => (
             <TableRow key={row.name}>
               <TableCell component="th" scope="row">
                 {row.name}
               </TableCell>
-              <TableCell
-                style={{ width: 160 }}
-                align="right"
-              >
+              <TableCell style={{ width: 160 }} align="right">
                 {row.calories}
               </TableCell>
-              <TableCell
-                style={{ width: 160 }}
-                align="right"
-              >
+              <TableCell style={{ width: 160 }} align="right">
                 {row.fat}
               </TableCell>
             </TableRow>
@@ -196,12 +165,7 @@ export default function CustomPaginationActionsTable() {
         <TableFooter>
           <TableRow>
             <TablePagination
-              rowsPerPageOptions={[
-                5,
-                10,
-                25,
-                { label: 'All', value: -1 },
-              ]}
+              rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
               colSpan={3}
               count={rows.length}
               rowsPerPage={rowsPerPage}

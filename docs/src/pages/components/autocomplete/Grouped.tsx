@@ -7,9 +7,7 @@ export default function Grouped() {
   const options = top100Films.map((option) => {
     const firstLetter = option.title[0].toUpperCase();
     return {
-      firstLetter: /[0-9]/.test(firstLetter)
-        ? '0-9'
-        : firstLetter,
+      firstLetter: /[0-9]/.test(firstLetter) ? '0-9' : firstLetter,
       ...option,
     };
   });
@@ -18,18 +16,13 @@ export default function Grouped() {
     <Autocomplete
       id="grouped-demo"
       options={options.sort(
-        (a, b) =>
-          -b.firstLetter.localeCompare(a.firstLetter),
+        (a, b) => -b.firstLetter.localeCompare(a.firstLetter),
       )}
       groupBy={(option) => option.firstLetter}
       getOptionLabel={(option) => option.title}
       style={{ width: 300 }}
       renderInput={(params) => (
-        <TextField
-          {...params}
-          label="With categories"
-          variant="outlined"
-        />
+        <TextField {...params} label="With categories" variant="outlined" />
       )}
     />
   );
@@ -51,8 +44,7 @@ const top100Films = [
   { title: 'The Good, the Bad and the Ugly', year: 1966 },
   { title: 'Fight Club', year: 1999 },
   {
-    title:
-      'The Lord of the Rings: The Fellowship of the Ring',
+    title: 'The Lord of the Rings: The Fellowship of the Ring',
     year: 2001,
   },
   {

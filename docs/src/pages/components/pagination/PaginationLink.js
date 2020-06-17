@@ -6,21 +6,11 @@ import PaginationItem from '@material-ui/lab/PaginationItem';
 
 export default function PaginationLink() {
   return (
-    <MemoryRouter
-      initialEntries={['/inbox']}
-      initialIndex={0}
-    >
+    <MemoryRouter initialEntries={['/inbox']} initialIndex={0}>
       <Route>
         {({ location }) => {
-          const query = new URLSearchParams(
-            location.search,
-          );
-
-          const page = parseInt(
-            query.get('page') || '1',
-            10,
-          );
-
+          const query = new URLSearchParams(location.search);
+          const page = parseInt(query.get('page') || '1', 10);
           return (
             <Pagination
               page={page}
@@ -28,11 +18,7 @@ export default function PaginationLink() {
               renderItem={(item) => (
                 <PaginationItem
                   component={Link}
-                  to={`/inbox${
-                    item.page === 1
-                      ? ''
-                      : `?page=${item.page}`
-                  }`}
+                  to={`/inbox${item.page === 1 ? '' : `?page=${item.page}`}`}
                   {...item}
                 />
               )}

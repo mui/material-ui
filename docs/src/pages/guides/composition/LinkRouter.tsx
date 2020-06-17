@@ -8,16 +8,11 @@ import {
 import Link from '@material-ui/core/Link';
 import { Omit } from '@material-ui/types';
 
-const LinkBehavior = React.forwardRef<
-  any,
-  Omit<RouterLinkProps, 'to'>
->((props, ref) => (
-  <RouterLink
-    ref={ref}
-    to="/getting-started/installation/"
-    {...props}
-  />
-));
+const LinkBehavior = React.forwardRef<any, Omit<RouterLinkProps, 'to'>>(
+  (props, ref) => (
+    <RouterLink ref={ref} to="/getting-started/installation/" {...props} />
+  ),
+);
 
 export default function LinkRouter() {
   return (
@@ -27,9 +22,7 @@ export default function LinkRouter() {
           With prop forwarding
         </Link>
         <br />
-        <Link component={LinkBehavior}>
-          Without prop forwarding
-        </Link>
+        <Link component={LinkBehavior}>Without prop forwarding</Link>
       </div>
     </Router>
   );
