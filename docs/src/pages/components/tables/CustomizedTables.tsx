@@ -26,6 +26,10 @@ const StyledTableRow = withStyles((theme: Theme) =>
       '&:nth-of-type(odd)': {
         backgroundColor: theme.palette.action.hover,
       },
+      // hide last border
+      '&:last-child td, &:last-child th': {
+        border: 0,
+      },
     },
   }),
 )(TableRow);
@@ -64,23 +68,15 @@ export default function CustomizedTables() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row, index) => (
+          {rows.map((row) => (
             <StyledTableRow key={row.name}>
-              <StyledTableCell component="th" scope="row" hideBorder={rows.length - 1 === index}>
+              <StyledTableCell component="th" scope="row">
                 {row.name}
               </StyledTableCell>
-              <StyledTableCell align="right" hideBorder={rows.length - 1 === index}>
-                {row.calories}
-              </StyledTableCell>
-              <StyledTableCell align="right" hideBorder={rows.length - 1 === index}>
-                {row.fat}
-              </StyledTableCell>
-              <StyledTableCell align="right" hideBorder={rows.length - 1 === index}>
-                {row.carbs}
-              </StyledTableCell>
-              <StyledTableCell align="right" hideBorder={rows.length - 1 === index}>
-                {row.protein}
-              </StyledTableCell>
+              <StyledTableCell align="right">{row.calories}</StyledTableCell>
+              <StyledTableCell align="right">{row.fat}</StyledTableCell>
+              <StyledTableCell align="right">{row.carbs}</StyledTableCell>
+              <StyledTableCell align="right">{row.protein}</StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>

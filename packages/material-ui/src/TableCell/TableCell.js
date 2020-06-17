@@ -99,10 +99,6 @@ export const styles = (theme) => ({
     zIndex: 2,
     backgroundColor: theme.palette.background.default,
   },
-  /* Styles applied to the root element if if `hideBorder={true}`. */
-  hideBorder: {
-    borderBottom: 0,
-  },
 });
 
 /**
@@ -115,7 +111,6 @@ const TableCell = React.forwardRef(function TableCell(props, ref) {
     classes,
     className,
     component,
-    hideBorder = false,
     padding: paddingProp,
     scope: scopeProp,
     size: sizeProp,
@@ -161,7 +156,6 @@ const TableCell = React.forwardRef(function TableCell(props, ref) {
           [classes[`align${capitalize(align)}`]]: align !== 'inherit',
           [classes[`padding${capitalize(padding)}`]]: padding !== 'default',
           [classes[`size${capitalize(size)}`]]: size !== 'medium',
-          [classes.hideBorder]: hideBorder,
         },
         className,
       )}
@@ -203,10 +197,6 @@ TableCell.propTypes = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
-  /**
-   * Hide the border of the cell.
-   */
-  hideBorder: PropTypes.bool,
   /**
    * Sets the padding applied to the cell.
    * By default, the Table parent component set the value (`default`).

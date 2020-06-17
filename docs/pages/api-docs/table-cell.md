@@ -33,7 +33,6 @@ The `MuiTableCell` name can be used for providing [default props](/customization
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The table cell contents. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">component</span> | <span class="prop-type">elementType</span> |  | The component used for the root node. Either a string to use a HTML element or a component. |
-| <span class="prop-name">hideBorder</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Hide the border of the cell. |
 | <span class="prop-name">padding</span> | <span class="prop-type">'checkbox'<br>&#124;&nbsp;'default'<br>&#124;&nbsp;'none'</span> |  | Sets the padding applied to the cell. By default, the Table parent component set the value (`default`). |
 | <span class="prop-name">scope</span> | <span class="prop-type">string</span> |  | Set scope attribute. |
 | <span class="prop-name">size</span> | <span class="prop-type">'medium'<br>&#124;&nbsp;'small'</span> |  | Specify the size of the cell. By default, the Table parent component set the value (`medium`). |
@@ -60,7 +59,6 @@ Any other props supplied will be provided to the root element (native element).
 | <span class="prop-name">alignRight</span> | <span class="prop-name">.MuiTableCell-alignRight</span> | Styles applied to the root element if `align="right"`.
 | <span class="prop-name">alignJustify</span> | <span class="prop-name">.MuiTableCell-alignJustify</span> | Styles applied to the root element if `align="justify"`.
 | <span class="prop-name">stickyHeader</span> | <span class="prop-name">.MuiTableCell-stickyHeader</span> | Styles applied to the root element if `context.table.stickyHeader={true}`.
-| <span class="prop-name">hideBorder</span> | <span class="prop-name">.MuiTableCell-hideBorder</span> | Styles applied to the root element if if `hideBorder={true}`.
 
 You can override the style of the component thanks to one of these customization points:
 

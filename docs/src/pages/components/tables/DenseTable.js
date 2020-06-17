@@ -12,6 +12,11 @@ const useStyles = makeStyles({
   table: {
     minWidth: 650,
   },
+  hideLastBorder: {
+    '&:last-child td, &:last-child th': {
+      border: 0,
+    },
+  },
 });
 
 function createData(name, calories, fat, carbs, protein) {
@@ -42,23 +47,15 @@ export default function DenseTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row, index) => (
-            <TableRow key={row.name}>
-              <TableCell component="th" scope="row" hideBorder={rows.length - 1 === index}>
+          {rows.map((row) => (
+            <TableRow key={row.name} className={classes.hideLastBorder}>
+              <TableCell component="th" scope="row">
                 {row.name}
               </TableCell>
-              <TableCell align="right" hideBorder={rows.length - 1 === index}>
-                {row.calories}
-              </TableCell>
-              <TableCell align="right" hideBorder={rows.length - 1 === index}>
-                {row.fat}
-              </TableCell>
-              <TableCell align="right" hideBorder={rows.length - 1 === index}>
-                {row.carbs}
-              </TableCell>
-              <TableCell align="right" hideBorder={rows.length - 1 === index}>
-                {row.protein}
-              </TableCell>
+              <TableCell align="right">{row.calories}</TableCell>
+              <TableCell align="right">{row.fat}</TableCell>
+              <TableCell align="right">{row.carbs}</TableCell>
+              <TableCell align="right">{row.protein}</TableCell>
             </TableRow>
           ))}
         </TableBody>

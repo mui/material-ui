@@ -39,36 +39,28 @@ function createData(name, calories, fat, carbs, protein, price) {
 }
 
 function Row(props) {
-  const { row, hideBorder } = props;
+  const { row } = props;
   const [open, setOpen] = React.useState(false);
   const classes = useRowStyles();
 
   return (
     <React.Fragment>
       <TableRow className={classes.root}>
-        <TableCell hideBorder={hideBorder}>
+        <TableCell>
           <IconButton aria-label="expand row" size="small" onClick={() => setOpen(!open)}>
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
-        <TableCell component="th" scope="row" hideBorder={hideBorder}>
+        <TableCell component="th" scope="row">
           {row.name}
         </TableCell>
-        <TableCell align="right" hideBorder={hideBorder}>
-          {row.calories}
-        </TableCell>
-        <TableCell align="right" hideBorder={hideBorder}>
-          {row.fat}
-        </TableCell>
-        <TableCell align="right" hideBorder={hideBorder}>
-          {row.carbs}
-        </TableCell>
-        <TableCell align="right" hideBorder={hideBorder}>
-          {row.protein}
-        </TableCell>
+        <TableCell align="right">{row.calories}</TableCell>
+        <TableCell align="right">{row.fat}</TableCell>
+        <TableCell align="right">{row.carbs}</TableCell>
+        <TableCell align="right">{row.protein}</TableCell>
       </TableRow>
       <TableRow>
-        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6} hideBorder={hideBorder}>
+        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box margin={1}>
               <Typography variant="h6" gutterBottom component="div">
@@ -84,22 +76,14 @@ function Row(props) {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {row.history.map((historyRow, index) => (
+                  {row.history.map((historyRow) => (
                     <TableRow key={historyRow.date}>
-                      <TableCell
-                        component="th"
-                        scope="row"
-                        hideBorder={row.history.length - 1 === index}
-                      >
+                      <TableCell component="th" scope="row">
                         {historyRow.date}
                       </TableCell>
-                      <TableCell hideBorder={row.history.length - 1 === index}>
-                        {historyRow.customerId}
-                      </TableCell>
-                      <TableCell align="right" hideBorder={row.history.length - 1 === index}>
-                        {historyRow.amount}
-                      </TableCell>
-                      <TableCell align="right" hideBorder={row.history.length - 1 === index}>
+                      <TableCell>{historyRow.customerId}</TableCell>
+                      <TableCell align="right">{historyRow.amount}</TableCell>
+                      <TableCell align="right">
                         {Math.round(historyRow.amount * row.price * 100) / 100}
                       </TableCell>
                     </TableRow>
@@ -115,7 +99,6 @@ function Row(props) {
 }
 
 Row.propTypes = {
-  hideBorder: PropTypes.bool.isRequired,
   row: PropTypes.shape({
     calories: PropTypes.number.isRequired,
     carbs: PropTypes.number.isRequired,
@@ -156,8 +139,8 @@ export default function CollapsibleTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row, index) => (
-            <Row key={row.name} row={row} hideBorder={rows.length - 1 === index} />
+          {rows.map((row) => (
+            <Row key={row.name} row={row} />
           ))}
         </TableBody>
       </Table>
