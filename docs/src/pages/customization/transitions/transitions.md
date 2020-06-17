@@ -105,4 +105,4 @@ theme.transitions.create(['background-color', 'transform']);
 `duration`: The calculated duration based on the height.
 
 ## References
-Visit the [Transitions](/components/transitions/) page for exploring the different transitions which are already available as part of Material-UI.
+Check out the [Transitions](/components/transitions/) page to explore the transition components that are included with Material-UI.
