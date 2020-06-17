@@ -553,10 +553,10 @@ This vulnerability would allow the attacker to execute anything. However, with a
 
 You can read more about CSP on the [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP).
 
-### Does Material UI support CSP?
+### Does Material-UI support CSP?
 
-Many Material UI components support a strict CSP. Specifically, this means you will not need to use `'unsafe-inline'`. However, some components still use inline styles which require that `'unsafe-inline'` is set in the `style-src` directive. To test if your CSP is compatible with the components used in your project, you can use [Content-Security-Policy-Report-Only](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy-Report-Only).
-Updating Material UI to fully support a strict CSP is being tracked in [#19938](https://github.com/mui-org/material-ui/issues/19938).
+Many Material-UI components support a strict CSP. Specifically, this means you will not need to use `'unsafe-inline'`. However, some components still use inline styles which require that `'unsafe-inline'` is set in the `style-src` directive. To test if your CSP is compatible with the components used in your project, you can use [Content-Security-Policy-Report-Only](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy-Report-Only).
+Updating Material-UI to fully support a strict CSP is being tracked in [#19938](https://github.com/mui-org/material-ui/issues/19938).
 
 ### How does one implement CSP?
 
