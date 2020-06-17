@@ -141,7 +141,7 @@ SvgIcon.propTypes = {
    */
   htmlColor: PropTypes.string,
   /**
-   * Applies a rotation to the icon.
+   * Applies a rotation on the icon.
    */
   rotate: PropTypes.oneOf([90, 180, 270]),
   /**

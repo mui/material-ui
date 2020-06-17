@@ -21,7 +21,7 @@ export interface SvgIconTypeMap<P = {}, D extends React.ElementType = 'svg'> {
      */
     htmlColor?: string;
     /**
-     * Applies a rotation to the icon.
+     * Applies a rotation on the icon.
      */
     rotate?: 90 | 180 | 270;
     /**

@@ -48,6 +48,18 @@ export const styles = (theme) => ({
   fontSizeLarge: {
     fontSize: theme.typography.pxToRem(36),
   },
+  /* Styles applied to the root element if `rotate={90}`. */
+  rotate90deg: {
+    transform: `rotate(90deg)`,
+  },
+  /* Styles applied to the root element if `rotate={180}`. */
+  rotate180deg: {
+    transform: `rotate(180deg)`,
+  },
+  /* Styles applied to the root element if `rotate={270}`. */
+  rotate270deg: {
+    transform: `rotate(270deg)`,
+  },
 });
 
 const Icon = React.forwardRef(function Icon(props, ref) {
@@ -57,6 +69,7 @@ const Icon = React.forwardRef(function Icon(props, ref) {
     color = 'inherit',
     component: Component = 'span',
     fontSize = 'default',
+    rotate,
     ...other
   } = props;
 
@@ -68,6 +81,7 @@ const Icon = React.forwardRef(function Icon(props, ref) {
         {
           [classes[`color${capitalize(color)}`]]: color !== 'inherit',
           [classes[`fontSize${capitalize(fontSize)}`]]: fontSize !== 'default',
+          [classes[`rotate${rotate}deg`]]: !!rotate,
         },
         className,
       )}
@@ -105,6 +119,10 @@ Icon.propTypes = {
    * The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size.
    */
   fontSize: PropTypes.oneOf(['inherit', 'default', 'small', 'large']),
+  /**
+   * Applies a rotation on the icon.
+   */
+  rotate: PropTypes.oneOf([90, 180, 270]),
 };
 
 Icon.muiName = 'Icon';

@@ -18,10 +18,6 @@ import Button from '@material-ui/core/Button';
 import FlexSearch from 'flexsearch';
 import SearchIcon from '@material-ui/icons/Search';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import Radio from '@material-ui/core/Radio';
 import Link from 'docs/src/modules/components/Link';
@@ -95,7 +91,7 @@ function selectNode(node) {
 }
 
 let Icons = (props) => {
-  const { icons, classes, rotate, handleClickOpen } = props;
+  const { icons, classes, handleClickOpen } = props;
 
   const handleClick = (event) => {
     selectNode(event.currentTarget);
@@ -114,7 +110,6 @@ let Icons = (props) => {
               data-ga-event-category="material-icons"
               data-ga-event-action="click"
               data-ga-event-label={icon.key}
-              rotate={rotate}
             />
             {/* eslint-disable jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/click-events-have-key-events */}
             <p onClick={handleClick}>{icon.key}</p>
@@ -308,7 +303,6 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     marginBottom: theme.spacing(2),
     width: '100%',
-    zIndex: 3,
   },
   input: {
     marginLeft: 8,
@@ -350,12 +344,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   results: {
-    marginBottom: theme.spacing(4),
-    display: 'inline-block',
-  },
-  rotate: {
-    minWidth: 100,
-    float: 'right',
+    marginBottom: theme.spacing(1),
   },
 }));
 
@@ -402,7 +391,6 @@ export default function SearchIcons() {
   const [keys, setKeys] = React.useState(null);
   const [open, setOpen] = React.useState(false);
   const [selectedIcon, setSelectedIcon] = React.useState(null);
-  const [rotate, setRotate] = React.useState(0);
 
   const handleClickOpen = React.useCallback((event) => {
     setSelectedIcon(allIconsMap[event.currentTarget.getAttribute('title')]);
@@ -490,25 +478,7 @@ export default function SearchIcons() {
           />
         </Paper>
         <Typography className={classes.results}>{`${icons.length} matching results`}</Typography>
-        <FormControl className={classes.rotate}>
-          <InputLabel htmlFor="rotate">Rotation</InputLabel>
-          <Select
-            value={rotate}
-            onChange={(e) => setRotate(e.target.value)}
-            inputProps={{
-              name: 'rotate',
-              id: 'rotate',
-            }}
-          >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            <MenuItem value={90}>90</MenuItem>
-            <MenuItem value={180}>180</MenuItem>
-            <MenuItem value={270}>270</MenuItem>
-          </Select>
-        </FormControl>
-        <Icons icons={icons} classes={classes} rotate={rotate} handleClickOpen={handleClickOpen} />
+        <Icons icons={icons} classes={classes} handleClickOpen={handleClickOpen} />
       </Grid>
       <DialogDetails open={open} selectedIcon={selectedIcon} handleClose={handleClose} />
     </Grid>

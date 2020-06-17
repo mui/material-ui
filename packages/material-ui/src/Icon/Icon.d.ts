@@ -6,6 +6,7 @@ export interface IconTypeMap<P = {}, D extends React.ElementType = 'span'> {
   props: P & {
     color?: PropTypes.Color | 'action' | 'disabled' | 'error';
     fontSize?: 'inherit' | 'default' | 'small' | 'large';
+    rotate?: 90 | 180 | 270;
   };
   defaultComponent: D;
   classKey: IconClassKey;
@@ -32,7 +33,10 @@ export type IconClassKey =
   | 'colorPrimary'
   | 'fontSizeInherit'
   | 'fontSizeSmall'
-  | 'fontSizeLarge';
+  | 'fontSizeLarge'
+  | 'rotate90deg'
+  | 'rotate180deg'
+  | 'rotate270deg';
 
 export type IconProps<
   D extends React.ElementType = IconTypeMap['defaultComponent'],

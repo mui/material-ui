@@ -102,6 +102,10 @@ function HomeIcon(props) {
 
 {{"demo": "pages/components/icons/SvgIconsSize.js"}}
 
+### Rotate
+
+{{"demo": "pages/components/icons/SvgIconsRotate.js"}}
+
 ### Component prop
 
 You can use the `SvgIcon` wrapper even if your icons are saved in the `.svg` format.
