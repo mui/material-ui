@@ -50,7 +50,7 @@ const theme = createMuiTheme({
 
 ## `getAutoHeightDuration`
 
-You can customize the default function for calculating the duration based on the height of the elments (useful for collapsing/expanding) components.
+You can customize the default function for calculating the duration based on the height of the element (useful for collapsing/expanding transitions).
 
 ```js
 const theme = createMuiTheme({
