@@ -4,7 +4,6 @@
 
 ## Palette colors
 
-A "palette color" is a mapping of colors to a given intention within your application.
 The theme exposes the following palette colors (accessible under `theme.palette.`):
 
 - *primary* - used to represent primary interface elements for a user. It's the color displayed most frequently across your app's screens and components.
@@ -69,7 +68,7 @@ const theme = createMuiTheme({
 ### Providing the colors directly
 
 If you wish to provide more customized colors, you can either create your own palette color,
-or directly supply colors to some or all of the `theme.palette`'s keys:
+or directly supply colors to some or all of the `theme.palette` keys:
 
 ```js
 import { createMuiTheme } from '@material-ui/core/styles';
