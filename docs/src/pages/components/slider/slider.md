@@ -91,7 +91,7 @@ The track can be inverted with `track="inverted"`.
 ## Non-linear scale
 
 You can use the `scale` prop to represent the `value` on a different scale.
-For instance, in the following demo, the value *x* represents the power of *10^x*.
+For instance, in the following demo, the value _x_ represents the power of _10^x_.
 
 {{"demo": "pages/components/slider/NonLinearSlider.js"}}
 
@@ -104,5 +104,5 @@ However, you need to make sure that:
 
 - Each thumb has a user-friendly label (`aria-label`, `aria-labelledby` or `getAriaLabel` prop).
 - Each thumb has a user-friendly text for its current value.
-This is not required if the value matches the semantics of the label.
-You can change the name with the `getAriaValueText` or `aria-valuetext` prop.
+  This is not required if the value matches the semantics of the label.
+  You can change the name with the `getAriaValueText` or `aria-valuetext` prop.

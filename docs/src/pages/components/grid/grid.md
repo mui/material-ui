@@ -15,7 +15,7 @@ Material Design’s responsive UI is based on a 12-column grid layout.
 The grid system is implemented with the `Grid` component:
 
 - It uses [CSS’s Flexible Box module](https://www.w3.org/TR/css-flexbox-1/) for high flexibility.
-- There are two types of layout: *containers* and *items*.
+- There are two types of layout: _containers_ and _items_.
 - Item widths are set in percentages, so they’re always fluid and sized relative to their parent element.
 - Items have padding to create the spacing between individual items.
 - There are five grid breakpoints: xs, sm, md, lg, and xl.
@@ -57,8 +57,8 @@ Below is an interactive demo that lets you explore the visual results of the dif
 
 ## Auto-layout
 
-The Auto-layout makes the *items* equitably share the available space.
-That also means you can set the width of one *item* and the others will automatically resize around it.
+The Auto-layout makes the _items_ equitably share the available space.
+That also means you can set the width of one _item_ and the others will automatically resize around it.
 
 {{"demo": "pages/components/grid/AutoGrid.js", "bg": true}}
 
@@ -85,17 +85,20 @@ https://www.w3.org/TR/css-flexbox-1/#box-model
 There is one limitation with the negative margin we use to implement the spacing between items.
 A horizontal scroll will appear if a negative margin goes beyond the `<body>`.
 There are 3 available workarounds:
+
 1. Not using the spacing feature and implementing it in user space `spacing={0}` (default).
 2. Applying padding to the parent with at least half the spacing value applied to the child:
-```jsx
-  <body>
-    <div style={{ padding: 20 }}>
-      <Grid container spacing={5}>
-        //...
-      </Grid>
-    </div>
-  </body>
-```
+
+   ```jsx
+   <body>
+     <div style={{ padding: 20 }}>
+       <Grid container spacing={5}>
+         //...
+       </Grid>
+     </div>
+   </body>
+   ```
+
 3. Adding `overflow-x: hidden;` to the parent.
 
 ### white-space: nowrap;
@@ -103,6 +106,7 @@ There are 3 available workarounds:
 The initial setting on flex items is `min-width: auto`.
 It's causing a positioning conflict when the children is using `white-space: nowrap;`.
 You can experience the issue with:
+
 ```jsx
 <Grid item xs>
   <Typography noWrap>
@@ -110,6 +114,7 @@ You can experience the issue with:
 
 In order for the item to stay within the container you need to set `min-width: 0`.
 In practice, you can set the `zeroMinWidth` property:
+
 ```jsx
 <Grid item xs zeroMinWidth>
   <Typography noWrap>

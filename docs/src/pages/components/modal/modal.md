@@ -19,8 +19,8 @@ The `Modal` offers important features:
 - 📦 [5 kB gzipped](/size-snapshot).
 
 > **Terminology note**. The term "modal" is sometimes used to mean "dialog", but this is a misnomer.
-A modal window describes parts of a UI.
-An element is considered modal if [it blocks interaction with the rest of the application](https://en.wikipedia.org/wiki/Modal_window).
+> A modal window describes parts of a UI.
+> An element is considered modal if [it blocks interaction with the rest of the application](https://en.wikipedia.org/wiki/Modal_window).
 
 If you are creating a modal dialog, you probably want to use the [Dialog](/components/dialogs/) component rather than directly using Modal.
 Modal is a lower-level construct that is leveraged by the following components:
@@ -45,7 +45,7 @@ This component should respect the following conditions:
 - Have an `in` prop. This corresponds to the open / close state.
 - Call the `onEnter` callback prop when the enter transition starts.
 - Call the `onExited` callback prop when the exit transition is completed.
-These two callbacks allow the modal to unmount the child content when closed and fully transitioned.
+  These two callbacks allow the modal to unmount the child content when closed and fully transitioned.
 
 Modal has built-in support for [react-transition-group](https://github.com/reactjs/react-transition-group).
 
@@ -80,20 +80,17 @@ In the event the users need to interact with another part of the page, e.g. with
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#dialog_modal)
 
 - Be sure to add `aria-labelledby="id..."`, referencing the modal title, to the `Modal`.
-Additionally, you may give a description of your modal with the `aria-describedby="id..."` prop on the `Modal`.
+  Additionally, you may give a description of your modal with the `aria-describedby="id..."` prop on the `Modal`.
 
   ```jsx
   <Modal
     aria-labelledby="modal-title"
     aria-describedby="modal-description"
   >
-    <h2 id="modal-title">
-      My Title
-    </h2>
-    <p id="modal-description">
-      My Description
-    </p>
+    <h2 id="modal-title">My Title</h2>
+    <p id="modal-description">My Description</p>
   </Modal>
   ```
+
 - The [WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/dialog.html) can help you set the initial focus on the most relevant element, based on your modal content.
 - Keep in mind that a "modal window" overlays on either the primary window or another modal window. Windows under a modal are **inert**. That is, users cannot interact with content outside an active modal window. This might create [conflicting behaviors](#focus-trap).

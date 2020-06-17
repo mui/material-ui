@@ -176,13 +176,14 @@ import { createFilterOptions } from '@material-ui/lab/Autocomplete';
 
 #### Arguments
 
-1. `config` (*Object* [optional]):
-  - `config.ignoreAccents` (*Boolean* [optional]): Defaults to `true`. Remove diacritics.
-  - `config.ignoreCase` (*Boolean* [optional]): Defaults to `true`. Lowercase everything.
-  - `config.limit` (*Number* [optional]): Default to null. Limit the number of suggested options to be shown. For example, if `config.limit` is `100`, only the first `100` matching options are shown. It can be useful if a lot of options match and virtualization wasn't set up.
-  - `config.matchFrom` (*'any' | 'start'* [optional]): Defaults to `'any'`.
-  - `config.stringify` (*Func* [optional]): Controls how an option is converted into a string so that it can be matched against the input text fragment.
-  - `config.trim` (*Boolean* [optional]): Defaults to `false`. Remove trailing spaces.
+1. `config` (_Object_ [optional]):
+
+- `config.ignoreAccents` (_Boolean_ [optional]): Defaults to `true`. Remove diacritics.
+- `config.ignoreCase` (_Boolean_ [optional]): Defaults to `true`. Lowercase everything.
+- `config.limit` (_Number_ [optional]): Default to null. Limit the number of suggested options to be shown. For example, if `config.limit` is `100`, only the first `100` matching options are shown. It can be useful if a lot of options match and virtualization wasn't set up.
+- `config.matchFrom` (_'any' | 'start'_ [optional]): Defaults to `'any'`.
+- `config.stringify` (_Func_ [optional]): Controls how an option is converted into a string so that it can be matched against the input text fragment.
+- `config.trim` (_Boolean_ [optional]): Defaults to `false`. Remove trailing spaces.
 
 #### Returns
 
@@ -193,10 +194,10 @@ In the following demo, the options need to start with the query prefix:
 ```js
 const filterOptions = createFilterOptions({
   matchFrom: 'start',
-  stringify: option => option.title,
+  stringify: (option) => option.title,
 });
 
-<Autocomplete filterOptions={filterOptions} />
+<Autocomplete filterOptions={filterOptions} />;
 ```
 
 {{"demo": "pages/components/autocomplete/Filter.js", "defaultCodeOpen": false}}
@@ -211,7 +212,7 @@ import matchSorter from 'match-sorter';
 const filterOptions = (options, { inputValue }) =>
   matchSorter(options, inputValue);
 
-<Autocomplete filterOptions={filterOptions} />
+<Autocomplete filterOptions={filterOptions} />;
 ```
 
 ## Virtualization

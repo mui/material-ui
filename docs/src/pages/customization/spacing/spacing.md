@@ -7,7 +7,7 @@ Material-UI uses [a recommended 8px scaling factor](https://material.io/design/l
 ```js
 const theme = createMuiTheme();
 
-theme.spacing(2) // = 8 * 2
+theme.spacing(2); // = 8 * 2
 ```
 
 ## Custom spacing
@@ -21,14 +21,14 @@ const theme = createMuiTheme({
   spacing: 4,
 });
 
-theme.spacing(2) // = 4 * 2
+theme.spacing(2); // = 4 * 2
 ```
 
 - a function
 
 ```js
 const theme = createMuiTheme({
-  spacing: factor => `${0.25 * factor}rem`, // (Bootstrap strategy)
+  spacing: (factor) => `${0.25 * factor}rem`, // (Bootstrap strategy)
 });
 
 theme.spacing(2); // = 0.25 * 2rem = 0.5rem = 8px

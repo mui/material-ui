@@ -13,11 +13,17 @@ The component is designed to be used **directly in your components**.
 For instance:
 
 ```jsx
-{item ? (
-  <img style={{ width: 210, height: 118 }} alt={item.title} src={item.src} />
-) : (
-  <Skeleton variant="rect" width={210} height={118} />
-)}
+{
+  item ? (
+    <img
+      style={{ width: 210, height: 118 }}
+      alt={item.title}
+      src={item.src}
+    />
+  ) : (
+    <Skeleton variant="rect" width={210} height={118} />
+  );
+}
 ```
 
 ## Variants
@@ -59,9 +65,13 @@ height. In these instances, you can pass `children` and it will
 infer its width and height from them.
 
 ```jsx
-loading
-  ? <Skeleton><Avatar /></Skeleton>
-  : <Avatar src={data.avatar} />
+loading ? (
+  <Skeleton>
+    <Avatar />
+  </Skeleton>
+) : (
+  <Avatar src={data.avatar} />
+);
 ```
 
 {{"demo": "pages/components/skeleton/SkeletonChildren.js", "defaultCodeOpen": false}}

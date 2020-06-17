@@ -54,10 +54,8 @@ After listening to v3 customization experiences of hundreds of developers, we re
 ```jsx
 import { StylesProvider } from '@material-ui/styles';
 
-<StylesProvider injectFirst>
-  {/* Your component tree.
-      Styled components can override Material-UI's styles. */}
-</StylesProvider>
+<StylesProvider injectFirst>{/* Your component tree.
+      Styled components can override Material-UI's styles. */}</StylesProvider>;
 ```
 
 ![injectFirst](/static/blog/material-ui-v4-is-out/injectFirst.png)
@@ -65,45 +63,53 @@ import { StylesProvider } from '@material-ui/styles';
 <p class="blog-description">The DOM output once injectFirst is used.</p>
 
 - **classes boilerplate**. Early in the v1 effort, we [decided](https://github.com/oliviertassinari/a-journey-toward-better-style) to use a CSS-in-JS styling solution: [JSS](https://cssinjs.org/). The large majority of the CSS-in-JS solutions output non-deterministic class names, e.g. `.fHmkjM`. This design decision helps the isolation of the style of each component, however, it makes the overrides harder. We introduced a `classes` API in v1 to target all our elements as an attempt to mitigate this problem.
-We have observed the use of this API for months and have seen many people struggling with it. It can be challenging to apply the class name on the right element and requires boilerplate as well.
-As an attempt to further improve the situation, we have changed the class name generation to [output global class names](/styles/advanced/#with-material-ui-core), while keeping the `classes` API working as before 💅.
+  We have observed the use of this API for months and have seen many people struggling with it. It can be challenging to apply the class name on the right element and requires boilerplate as well.
+  As an attempt to further improve the situation, we have changed the class name generation to [output global class names](/styles/advanced/#with-material-ui-core), while keeping the `classes` API working as before 💅.
 
 ![styled-components](/static/blog/material-ui-v4-is-out/styled-components.png)
 
 <p class="blog-description">side by side comparison of both valid classes vs global approaches.</p>
 
-  ⚠️ Using global class names provide more power but comes with responsibility. We encourage patterns that increase your custom style isolation.
+⚠️ Using global class names provide more power but comes with responsibility. We encourage patterns that increase your custom style isolation.
+
 - **Pseudo-classes.** A pseudo-class is a keyword added to a selector that specifies a special state of the selected element. The native elements support a wide range of pseudo-classes, the most popular ones being: `:focus`, `:hover`, `:active`. Sometimes, Material-UI can't use a pseudo-class as the state doesn't exist in the platform, e.g. the selected state of a menu item. Material-UI implements support of eight different [custom pseudo-classes](/customization/components/#pseudo-classes). It's important to understand that you need to increase the specificity when using a pseudo-class. For instance:
 
 ```css
 .MenuItem {
   color: black;
 }
-.MenuItem.Mui-selected { /* We increase the specificity */
+/* We increase the specificity */
+.MenuItem.Mui-selected {
   color: blue;
 }
 ```
+
 - **Dynamic variations.** As one of the most requested features, we have added the support for style functions:
 
 ```jsx
 const useStyles = makeStyles({
   // style rule
-  foo: props => ({
+  foo: (props) => ({
     backgroundColor: props.backgroundColor,
   }),
   bar: {
     // CSS property
-    color: props => props.color,
+    color: (props) => props.color,
   },
 });
 
 function MyComponent() {
   // Simulated props for the purpose of the example
-  const props = { backgroundColor: 'black', color: 'white' };
+  const props = {
+    backgroundColor: 'black',
+    color: 'white',
+  };
   // Pass the props as the first argument of useStyles()
   const classes = useStyles(props);
 
-  return <div className={`${classes.foo} ${classes.bar}`} />
+  return (
+    <div className={`${classes.foo} ${classes.bar}`} />
+  );
 }
 ```
 
@@ -124,12 +130,14 @@ Documentation was reported as the 3rd most critical pain point in the developer 
 - **i18n**. Developers come to Material-UI's documentation from all around the world. We want to include as many people as possible 🌎🌍🌏. We have completed the effort started in v3 by working on the Algolia search support, Google search indexing, Table Of Contents and Side Nav infrastructure.
 
   We would like to thank [Danica Shen](https://github.com/DDDDDanica), [Dominik Engel](https://github.com/Domino987), and [Jairon Alves Lima](https://github.com/jaironalves) for their heroic work on the 🇨🇳, 🇩🇪 and 🇧🇷 translations, while not forgetting the other 348 (and growing) translators.
+
 - **Best practices**. We are now recommending the use of the hooks API over the classes API wherever possible. We have migrated a large portion of the demos to showcase a single approach.
 - **A better UX**. We have changed the menu organization to group all the components under a single navigation item. We have changed the background color to white to increase the text contrast and readability.
 
 ### Performance
 
 You may be afraid that using Material-UI's components will bloat and slow down your website/application. Would you be better off writing your own components? Well, it's our mission to make this cost as minimal as possible 🚀.
+
 - **Tree shaking**. Material-UI v4 is the first version to support native tree shaking with ES modules. This has one important DX benefit—you can now use destructured imports when importing multiple components:
 
 ```js
@@ -142,7 +150,8 @@ import {
   Paper,
 } from '@material-ui/core';
 ```
-- **Bundle size reduction**. The bundle size went from 95 kB gzipped to below 80 kB gzipped between the last v3 release and the first v4 beta release. This is *remarkable* considering that we have added new features and components along the way 😍! This was made possible by many small incremental changes: tree shaking, removal of [multiple](https://github.com/timoxley/keycode) [internal](https://github.com/oliviertassinari/react-event-listener) dependencies, hooks migration, clsx migration, [smart Babel plugin](https://github.com/merceyz/babel-plugin-optimize-clsx), etc.
+
+- **Bundle size reduction**. The bundle size went from 95 kB gzipped to below 80 kB gzipped between the last v3 release and the first v4 beta release. This is _remarkable_ considering that we have added new features and components along the way 😍! This was made possible by many small incremental changes: tree shaking, removal of [multiple](https://github.com/timoxley/keycode) [internal](https://github.com/oliviertassinari/react-event-listener) dependencies, hooks migration, clsx migration, [smart Babel plugin](https://github.com/merceyz/babel-plugin-optimize-clsx), etc.
 
 ![bundle-size](/static/blog/material-ui-v4-is-out/bundle-size.png)
 
@@ -172,10 +181,11 @@ function MyButton() {
   return <Button ref={myRef}>;
 }
 ```
+
 - **Hooks migration**. While there is [no plan](https://reactjs.org/docs/hooks-intro.html#gradual-adoption-strategy) to remove classes from React, the React Team [encourages](https://reactjs.org/docs/hooks-faq.html#do-i-need-to-rewrite-all-my-class-components) new code to be written with the hooks API.
   Josh has led an effort to rewrite the vast majority of our components with the hooks API. The change has a couple of advantages.
 
-  Not all [the platforms we support](/getting-started/supported-platforms/) can use the class API natively, so we transpile the syntax with Babel. Functions are supported everywhere, they require fewer line of code. We have observed a -2% gzipped bundle reduction by removing the need to transpile classes. 
+  Not all [the platforms we support](/getting-started/supported-platforms/) can use the class API natively, so we transpile the syntax with Babel. Functions are supported everywhere, they require fewer line of code. We have observed a -2% gzipped bundle reduction by removing the need to transpile classes.
 
   It reduces the noise in the React Dev Tools ⚛️, since we could reduce the number of intermediary elements from 5 to 2 in the most common cases. 
   We have found the hooks API easier to work with: to write, to read, and to change. This is a net positive for everyone's productivity.
@@ -205,7 +215,8 @@ The Material Design "v2" announcement caught us by surprise when we released Mat
 ## What's new?
 
 There are so many new things, we can't be exhaustive. Aside from what we have already announced, you will find:
-- A new **strapline** "*React components for faster and easier web development. Build your own design system, or start with Material Design.*" that better embodies our mission and emphasize the [customizability potential](https://techcrunch.com/2018/05/08/google-makes-its-material-design-system-easier-to-customize/).
+
+- A new **strapline** "_React components for faster and easier web development. Build your own design system, or start with Material Design._" that better embodies our mission and emphasize the [customizability potential](https://techcrunch.com/2018/05/08/google-makes-its-material-design-system-easier-to-customize/).
 - New [templates](/getting-started/templates/).
 
 ![layout](/static/blog/material-ui-v4-is-out/layout.png)
@@ -246,7 +257,8 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
   root: {
-    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    background:
+      'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
     border: 0,
     borderRadius: 3,
     boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
@@ -262,9 +274,9 @@ export default function Hook() {
 }
 ```
 
-⚠️ Be aware of the difference between *@material-ui/styles* and *@material-ui/core/styles*. The latter contains the [default theme](/customization/default-theme/#material-ui-core-styles-vs-material-ui-styles).
+⚠️ Be aware of the difference between _@material-ui/styles_ and _@material-ui/core/styles_. The latter contains the [default theme](/customization/default-theme/#material-ui-core-styles-vs-material-ui-styles).
 
-- A well supported [Gatsby plugin](https://github.com/hupe1980/gatsby-plugin-material-ui) for *@material-ui/styles*.
+- A well supported [Gatsby plugin](https://github.com/hupe1980/gatsby-plugin-material-ui) for _@material-ui/styles_.
 - A [Cookbook](https://www.amazon.com/gp/product/1789615224/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1789615224&linkCode=as2&tag=oliviertassin-20&linkId=79aec1cb9db829135838614ac1953380) published by Packt and written by Adam Boduch.
 
 ![cookbook](/static/blog/material-ui-v4-is-out/cookbook.png)
@@ -272,6 +284,7 @@ export default function Hook() {
 ## What's next?
 
 Together, we have accomplished most of the objectives we defined a year ago in the v1 release [blog post](https://medium.com/material-ui/material-ui-v1-is-out-e73ce13463eb). We're proud of everyone who contributed. We're going to try to execute these new objectives with the same regularity:
+
 - **More components.** This is, by far, the most requested improvement dimension of the library. We have identified a few useful components we are interested in building:
   - Layout components
   - AutoComplete/ ComboBox / Dropdown List / MultiSelect
@@ -293,12 +306,12 @@ Let us know the components you want! 🚀
 ```jsx
 import { Button } from '@material-ui/core';
 
-<Button mt={{ xs: 2, md: 3 }}>Hello worlds</Button>
+<Button mt={{ xs: 2, md: 3 }}>Hello worlds</Button>;
 ```
 
 - **Styled components.** We have seen many people asking for migration to styled components. We want Material-UI v5 to be better aligned with the community's best-loved tools, but at the same time, we don't want to break your code.
-So we will work on isolating the components from the styling solution. The new *@material-ui/styles* package is the first step in this direction. We envision a world where you can use Material-UI styled with styled components, linaria, and JSS or without any styles.
-Developers should be able to use their preferred styling solution without paying the cost of two CSS-in-JS runtimes.
+  So we will work on isolating the components from the styling solution. The new _@material-ui/styles_ package is the first step in this direction. We envision a world where you can use Material-UI styled with styled components, linaria, and JSS or without any styles.
+  Developers should be able to use their preferred styling solution without paying the cost of two CSS-in-JS runtimes.
 - **Accessibility.** While we try to fix all accessibility issues as they are reported by our users, we feel that we can do better. We want to run a professional ADA audit of all our components ♿️.
 
 ## Premium themes store ✨
@@ -317,4 +330,4 @@ I'm so excited about this release! It's just the beginning. We will keep working
 
 <hr />
 
-*You can find the [same post on Medium](https://medium.com/material-ui/material-ui-v4-is-out-4b7587d1e701).*
+_You can find the [same post on Medium](https://medium.com/material-ui/material-ui-v4-is-out-4b7587d1e701)._

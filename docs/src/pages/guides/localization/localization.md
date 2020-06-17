@@ -9,18 +9,24 @@ The default locale of Material-UI is English (United States). If you want to use
 Use the theme to configure the locale text globally:
 
 ```jsx
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import {
+  createMuiTheme,
+  ThemeProvider,
+} from '@material-ui/core/styles';
 import { zhCN } from '@material-ui/core/locale';
 
-const theme = createMuiTheme({
-  palette: {
-    primary: { main: '#1976d2' },
+const theme = createMuiTheme(
+  {
+    palette: {
+      primary: { main: '#1976d2' },
+    },
   },
-}, zhCN);
+  zhCN,
+);
 
 <ThemeProvider theme={theme}>
   <App />
-</ThemeProvider>
+</ThemeProvider>;
 ```
 
 ### Example
@@ -29,40 +35,40 @@ const theme = createMuiTheme({
 
 ### Supported locales
 
-| Locale | BCP 47 language tag | Import name
-|:-------|:---------|:---------|
-| Armenian | hy-AM | `hyAM` |
-| Azerbaijani | az-AZ | `azAZ` |
-| Bulgarian | bg-BG | `bgBG` |
-| Catalan | ca-ES | `caES` |
-| Chinese (Simplified) | zh-CN | `zhCN` |
-| Czech | cs-CZ | `csCZ` |
-| Dutch | nl-NL | `nlNL` |
-| English (United States) | en-US | `enUS` |
-| Estonian | et-EE | `etEE` |
-| Finnish | fi-FI | `fiFI` |
-| French | fr-FR | `frFR` |
-| German | de-DE | `deDE` |
-| Hebrew | he-IL | `heIL` |
-| Hindi | hi-IN | `hiIN` |
-| Hungarian | hu-HU | `huHU` |
-| Icelandic | is-IS | `isIS` |
-| Indonesian | id-ID | `idID` |
-| Italian | it-IT | `itIT` |
-| Japanese | ja-JP | `jaJP` |
-| Korean | ko-KR | `koKR` |
-| Persian | fa-IR | `faIR` |
-| Polish | pl-PL | `plPL` |
-| Portuguese (Brazil) | pt-BR | `ptBR` |
-| Portuguese | pt-PT | `ptPT` |
-| Romanian | ro-RO | `roRO` |
-| Russian | ru-RU | `ruRU` |
-| Slovak | sk-SK | `skSK` |
-| Spanish | es-ES | `esES` |
-| Swedish | sv-SE | `svSE` |
-| Turkish | tr-TR | `trTR` |
-| Ukrainian | uk-UA | `ukUA` |
-| Vietnamese | vi-VN | `viVN` |
+| Locale                  | BCP 47 language tag | Import name |
+| :---------------------- | :------------------ | :---------- |
+| Armenian                | hy-AM               | `hyAM`      |
+| Azerbaijani             | az-AZ               | `azAZ`      |
+| Bulgarian               | bg-BG               | `bgBG`      |
+| Catalan                 | ca-ES               | `caES`      |
+| Chinese (Simplified)    | zh-CN               | `zhCN`      |
+| Czech                   | cs-CZ               | `csCZ`      |
+| Dutch                   | nl-NL               | `nlNL`      |
+| English (United States) | en-US               | `enUS`      |
+| Estonian                | et-EE               | `etEE`      |
+| Finnish                 | fi-FI               | `fiFI`      |
+| French                  | fr-FR               | `frFR`      |
+| German                  | de-DE               | `deDE`      |
+| Hebrew                  | he-IL               | `heIL`      |
+| Hindi                   | hi-IN               | `hiIN`      |
+| Hungarian               | hu-HU               | `huHU`      |
+| Icelandic               | is-IS               | `isIS`      |
+| Indonesian              | id-ID               | `idID`      |
+| Italian                 | it-IT               | `itIT`      |
+| Japanese                | ja-JP               | `jaJP`      |
+| Korean                  | ko-KR               | `koKR`      |
+| Persian                 | fa-IR               | `faIR`      |
+| Polish                  | pl-PL               | `plPL`      |
+| Portuguese (Brazil)     | pt-BR               | `ptBR`      |
+| Portuguese              | pt-PT               | `ptPT`      |
+| Romanian                | ro-RO               | `roRO`      |
+| Russian                 | ru-RU               | `ruRU`      |
+| Slovak                  | sk-SK               | `skSK`      |
+| Spanish                 | es-ES               | `esES`      |
+| Swedish                 | sv-SE               | `svSE`      |
+| Turkish                 | tr-TR               | `trTR`      |
+| Ukrainian               | uk-UA               | `ukUA`      |
+| Vietnamese              | vi-VN               | `viVN`      |
 
 You can [find the source](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/locale/index.ts) in the GitHub repository.
 

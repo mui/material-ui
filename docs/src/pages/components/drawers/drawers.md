@@ -31,16 +31,22 @@ You can use the `disableBackdropTransition` property to help.
 {{"demo": "pages/components/drawers/SwipeableTemporaryDrawer.js"}}
 
 The following properties are used in this documentation website for optimal usability of the component:
+
 - iOS is hosted on high-end devices.
-The backdrop transition can be enabled without dropping frames.
-The performance will be good enough.
+  The backdrop transition can be enabled without dropping frames.
+  The performance will be good enough.
 - iOS has a "swipe to go back" feature that interferes
-with the discovery feature, so discovery has to be disabled.
+  with the discovery feature, so discovery has to be disabled.
 
 ```jsx
-const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
+const iOS =
+  process.browser &&
+  /iPad|iPhone|iPod/.test(navigator.userAgent);
 
-<SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} />
+<SwipeableDrawer
+  disableBackdropTransition={!iOS}
+  disableDiscovery={iOS}
+/>;
 ```
 
 ## Responsive drawer

@@ -9,10 +9,10 @@ If you still can't find what you're looking for, you can refer to our [support p
 There are many ways to support Material-UI:
 
 - **Spread the word**. Evangelize Material-UI by [linking to material-ui.com](https://material-ui.com/) on your website, every backlink matters.
-Follow us on [Twitter](https://twitter.com/MaterialUI), like and retweet the important news. Or just talk about us with your friends.
+  Follow us on [Twitter](https://twitter.com/MaterialUI), like and retweet the important news. Or just talk about us with your friends.
 - **Give us feedback**. Tell us what we're doing well or where we can improve. Please upvote (👍) the issues that you are the most interested in seeing solved.
 - **Help new users**. You can answer questions on
-[StackOverflow](https://stackoverflow.com/questions/tagged/material-ui).
+  [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui).
 - **Make changes happen**.
   - Edit the documentation. Every page has an "EDIT THIS PAGE" link in the top right.
   - Report bugs or missing features by [creating an issue](https://github.com/mui-org/material-ui/issues/new).
@@ -108,7 +108,9 @@ Notice that the usage of `CssBaseline` is required for the above approach to wor
 If you choose not to use it, you can still disable transitions and animations by including these CSS rules:
 
 ```css
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   transition: 'none !important';
   animation: 'none !important';
 }
@@ -156,6 +158,7 @@ const element = ref.current;
 If you're not sure if the Material-UI component in question forwards its ref you
 can check the API documentation under "Props" e.g. the [Button API](/api/button/#props)
 includes
+
 > The ref is forwarded to the root element.
 
 indicating that you can access the DOM element with a ref.
@@ -264,7 +267,8 @@ The styling solution relies on a cache, the _sheets manager_, to only inject the
 (if you use two buttons, you only need the CSS of the button one time).
 You need to create **a new `sheets` instance for each request**.
 
-*example of fix:*
+_example of fix:_
+
 ```diff
 -// Create a sheets instance.
 -const sheets = new ServerStyleSheets();
@@ -291,9 +295,10 @@ The whole page needs to be rendered with **a single generator**.
 This generator needs to behave identically on the server and on the client. For instance:
 
 - You need to provide a new class name generator for each request.
-But you shouldn't share a `createGenerateClassName()` between different requests:
+  But you shouldn't share a `createGenerateClassName()` between different requests:
 
-*example of fix:*
+_example of fix:_
+
 ```diff
 -// Create a new class name generator.
 -const generateClassName = createGenerateClassName();
@@ -309,12 +314,13 @@ function handleRender(req, res) {
 ```
 
 - You need to verify that your client and server are running the **exactly the same version** of Material-UI.
-It is possible that a mismatch of even minor versions can cause styling problems.
-To check version numbers, run `npm list @material-ui/core` in the environment where you build your application and also in your deployment environment.
+  It is possible that a mismatch of even minor versions can cause styling problems.
+  To check version numbers, run `npm list @material-ui/core` in the environment where you build your application and also in your deployment environment.
 
   You can also ensure the same version in different environments by specifying a specific MUI version in the dependencies of your package.json.
 
-*example of fix (package.json):*
+_example of fix (package.json):_
+
 ```diff
   "dependencies": {
     ...
@@ -384,7 +390,10 @@ when the `Portal` should re-render:
 ```jsx
 function App() {
   const [container, setContainer] = React.useState(null);
-  const handleRef = React.useCallback(instance => setContainer(instance), [setContainer])
+  const handleRef = React.useCallback(
+    (instance) => setContainer(instance),
+    [setContainer],
+  );
 
   return (
     <div className="App">
@@ -408,7 +417,9 @@ Instead of writing:
 
 return (
   <div
-    className={`MuiButton-root ${disabled ? 'Mui-disabled' : ''} ${selected ? 'Mui-selected' : ''}`}
+    className={`MuiButton-root ${
+      disabled ? 'Mui-disabled' : ''
+    } ${selected ? 'Mui-selected' : ''}`}
   />
 );
 ```

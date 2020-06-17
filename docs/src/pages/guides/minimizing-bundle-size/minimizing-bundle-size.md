@@ -79,7 +79,10 @@ If you're using `eslint` you can catch problematic imports with the [`no-restric
     "no-restricted-imports": [
       "error",
       {
-        "patterns": ["@material-ui/*/*/*", "!@material-ui/core/test-utils/*"]
+        "patterns": [
+          "@material-ui/*/*/*",
+          "!@material-ui/core/test-utils/*"
+        ]
       }
     ]
   }
@@ -93,7 +96,8 @@ This option provides the best User Experience and Developer Experience:
 - UX: The Babel plugin enables top level tree-shaking even if your bundler doesn't support it.
 - DX: The Babel plugin makes startup time in dev mode as fast as Option 1.
 - DX: This syntax reduces the duplication of code, requiring only a single import for multiple modules.
-Overall, the code is easier to read, and you are less likely to make a mistake when importing a new module.
+  Overall, the code is easier to read, and you are less likely to make a mistake when importing a new module.
+
 ```js
 import { Button, TextField } from '@material-ui/core';
 ```
@@ -115,26 +119,26 @@ Pick one of the following plugins:
     [
       'babel-plugin-import',
       {
-        'libraryName': '@material-ui/core',
+        libraryName: '@material-ui/core',
         // Use "'libraryDirectory': ''," if your bundler does not support ES modules
-        'libraryDirectory': 'esm',
-        'camel2DashComponentName': false
+        libraryDirectory: 'esm',
+        camel2DashComponentName: false,
       },
-      'core'
+      'core',
     ],
     [
       'babel-plugin-import',
       {
-        'libraryName': '@material-ui/icons',
+        libraryName: '@material-ui/icons',
         // Use "'libraryDirectory': ''," if your bundler does not support ES modules
-        'libraryDirectory': 'esm',
-        'camel2DashComponentName': false
+        libraryDirectory: 'esm',
+        camel2DashComponentName: false,
       },
-      'icons'
-    ]
+      'icons',
+    ],
   ];
 
-  module.exports = {plugins};
+  module.exports = { plugins };
   ```
 
 - [babel-plugin-transform-imports](https://www.npmjs.com/package/babel-plugin-transform-imports) with the following configuration:
@@ -150,39 +154,37 @@ Pick one of the following plugins:
       {
         '@material-ui/core': {
           // Use "transform: '@material-ui/core/${member}'," if your bundler does not support ES modules
-          'transform': '@material-ui/core/esm/${member}',
-          'preventFullImport': true
+          transform: '@material-ui/core/esm/${member}',
+          preventFullImport: true,
         },
         '@material-ui/icons': {
           // Use "transform: '@material-ui/icons/${member}'," if your bundler does not support ES modules
-          'transform': '@material-ui/icons/esm/${member}',
-          'preventFullImport': true
-        }
-      }
-    ]
+          transform: '@material-ui/icons/esm/${member}',
+          preventFullImport: true,
+        },
+      },
+    ],
   ];
 
-  module.exports = {plugins};
+  module.exports = { plugins };
   ```
 
 If you are using Create React App, you will need to use a couple of projects that let you use `.babelrc` configuration, without ejecting.
 
-  `yarn add -D react-app-rewired customize-cra`
+`yarn add -D react-app-rewired customize-cra`
 
-  Create a `config-overrides.js` file in the root directory:
+Create a `config-overrides.js` file in the root directory:
 
-  ```js
-  /* config-overrides.js */
-  const { useBabelRc, override } = require('customize-cra')
+```js
+/* config-overrides.js */
+const { useBabelRc, override } = require('customize-cra');
 
-  module.exports = override(
-    useBabelRc()
-  );
-  ```
+module.exports = override(useBabelRc());
+```
 
-  If you wish, `babel-plugin-import` can be configured through `config-overrides.js` instead of `.babelrc` by using this [configuration](https://github.com/arackaf/customize-cra/blob/master/api.md#fixbabelimportslibraryname-options).
+If you wish, `babel-plugin-import` can be configured through `config-overrides.js` instead of `.babelrc` by using this [configuration](https://github.com/arackaf/customize-cra/blob/master/api.md#fixbabelimportslibraryname-options).
 
-  Modify your `package.json` start command:
+Modify your `package.json` start command:
 
 ```diff
   "scripts": {
@@ -191,25 +193,31 @@ If you are using Create React App, you will need to use a couple of projects tha
   }
 ```
 
-  Note: You may run into errors like these:
+Note: You may run into errors like these:
 
-  > Module not found: Can't resolve '@material-ui/core/makeStyles' in '/your/project'
+> Module not found: Can't resolve '@material-ui/core/makeStyles' in '/your/project'
 
-  This is because `@material-ui/styles` is re-exported through `core`, but the full import is not allowed.
+This is because `@material-ui/styles` is re-exported through `core`, but the full import is not allowed.
 
-  You have an import like this in your code:
+You have an import like this in your code:
 
-  ```js
-  import { makeStyles, createStyles } from '@material-ui/core';
-  ```
+```js
+import {
+  makeStyles,
+  createStyles,
+} from '@material-ui/core';
+```
 
-  The fix is simple, define the import separately:
+The fix is simple, define the import separately:
 
-  ```js
-  import { makeStyles, createStyles } from '@material-ui/core/styles';
-  ```
+```js
+import {
+  makeStyles,
+  createStyles,
+} from '@material-ui/core/styles';
+```
 
-  Enjoy significantly faster start times.
+Enjoy significantly faster start times.
 
 #### 2. Convert all your imports
 

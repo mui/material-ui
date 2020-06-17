@@ -31,7 +31,7 @@ But this summary is just scratching the surface. We have accepted 146 commits fr
 
 ## Our roadmap intent for August
 
-*(We'll do our best, no guarantee!)*
+_(We'll do our best, no guarantee!)_
 
 - 🔍 We will work on providing ready to use autocomplete, combo box, and multi-select components.
 

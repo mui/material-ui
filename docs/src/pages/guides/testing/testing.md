@@ -47,13 +47,14 @@ Please refer to the [enzyme API documentation](https://airbnb.io/enzyme/docs/api
 
 #### Arguments
 
-1. `options` (*Object* [optional])
-  - `options.mount` (*Function* [optional]): The mount function to enhance, it uses **enzyme by default**.
-  - The other keys are forwarded to the options argument of `enzyme.mount()`.
+1. `options` (_Object_ [optional])
+
+- `options.mount` (_Function_ [optional]): The mount function to enhance, it uses **enzyme by default**.
+- The other keys are forwarded to the options argument of `enzyme.mount()`.
 
 #### Returns
 
-`mount` (*mount*): A mount function.
+`mount` (_mount_): A mount function.
 
 #### Examples
 
@@ -81,29 +82,32 @@ describe('<MyComponent />', () => {
   });
 
   it('should work', () => {
-    const wrapper = mount(<MockedTheme><MySuccessButton /></MockedTheme>);
+    const wrapper = mount(
+      <MockedTheme>
+        <MySuccessButton />
+      </MockedTheme>,
+    );
   });
 });
 ```
-
 
 ### `createShallow([options]) => shallow`
 
 Generate an enhanced shallow function with the needed context.
 Please refer to the [enzyme API documentation](https://airbnb.io/enzyme/docs/api/shallow.html) for further details on the `shallow` function.
 
-
 #### Arguments
 
-1. `options` (*Object* [optional])
-  - `options.shallow` (*Function* [optional]): The shallow function to enhance, it uses **enzyme by default**.
-  - `options.untilSelector` (*String* [optional]): Recursively shallow renders the children until it can find the provided selector. It's useful to drill down higher-order components.
-  - `options.dive` (*Boolean* [optional]): Shallow function renders the one non-DOM child of the current wrapper, and returns a wrapper around the result.
-  - The other keys are forwarded to the options argument of `enzyme.shallow()`.
+1. `options` (_Object_ [optional])
+
+- `options.shallow` (_Function_ [optional]): The shallow function to enhance, it uses **enzyme by default**.
+- `options.untilSelector` (_String_ [optional]): Recursively shallow renders the children until it can find the provided selector. It's useful to drill down higher-order components.
+- `options.dive` (_Boolean_ [optional]): Shallow function renders the one non-DOM child of the current wrapper, and returns a wrapper around the result.
+- The other keys are forwarded to the options argument of `enzyme.shallow()`.
 
 #### Returns
 
-`shallow` (*shallow*): A shallow function.
+`shallow` (_shallow_): A shallow function.
 
 #### Examples
 
@@ -113,7 +117,8 @@ import { createShallow } from '@material-ui/core/test-utils';
 describe('<MyComponent />', () => {
   let shallow;
 
-  before(() => {  // This is Mocha; in Jest, use beforeAll
+  before(() => {
+    // This is Mocha; in Jest, use beforeAll
     shallow = createShallow();
   });
 
@@ -130,13 +135,14 @@ Please refer to the [enzyme API documentation](https://airbnb.io/enzyme/docs/api
 
 #### Arguments
 
-1. `options` (*Object* [optional])
-  - `options.render` (*Function* [optional]): The render function to enhance, it uses **enzyme by default**.
-  - The other keys are forwarded to the options argument of `enzyme.render()`.
+1. `options` (_Object_ [optional])
+
+- `options.render` (_Function_ [optional]): The render function to enhance, it uses **enzyme by default**.
+- The other keys are forwarded to the options argument of `enzyme.render()`.
 
 #### Returns
 
-`render` (*Function*): A render to string function.
+`render` (_Function_): A render to string function.
 
 #### Examples
 

@@ -43,6 +43,7 @@ Here are the most significant improvements since the beginning of the year:
   </video>
 
 - ⚛️ We have worked on improving developer experience inside text editors.
+
   - We have migrated prop descriptions from JSDoc to TypeScript for 60% of the components. Back-and-forths with the documentation API will be less frequent:
 
   ![props](/static/blog/2020-q1-update/props.png)
@@ -65,11 +66,11 @@ But this summary is just scratching the surface. We have accepted 572 commits fr
 
 We are thrilled to welcome two new full-time developers on Material-UI:
 
-  - [Dmitriy Kovalenko](https://github.com/dmtrKovalenko), the author of @material-ui/pickers.
-    <img src="https://avatars0.githubusercontent.com/u/16926049" alt="dmitriy" style="max-width: 160px; margin: unset; margin-bottom: 24px; border-radius: 2px;" />
+- [Dmitriy Kovalenko](https://github.com/dmtrKovalenko), the author of @material-ui/pickers.
+  <img src="https://avatars0.githubusercontent.com/u/16926049" alt="dmitriy" style="max-width: 160px; margin: unset; margin-bottom: 24px; border-radius: 2px;" />
 
-  - [Damien Tassone](https://github.com/dtassone/), an experienced developer in the finance industry.
-    <img src="https://avatars0.githubusercontent.com/u/936978" alt="damien" style="max-width: 160px; margin: unset; margin-bottom: 24px; border-radius: 2px;" />
+- [Damien Tassone](https://github.com/dtassone/), an experienced developer in the finance industry.
+  <img src="https://avatars0.githubusercontent.com/u/936978" alt="damien" style="max-width: 160px; margin: unset; margin-bottom: 24px; border-radius: 2px;" />
 
 ### Growth between Q4 2019 and Q1 2020
 
@@ -93,12 +94,13 @@ We'll do our best, no guarantee!
   <img src="/static/blog/2020-q1-update/chinese.png" alt="chinese" style="max-width: 134px; margin-bottom: 24px;" />
 
 - 🔥 We will start to work on the [next major: v5](https://github.com/mui-org/material-ui/issues/20012).
-You can expect the following:
+  You can expect the following:
 
   - A feature freeze on v4.
   - The introduction of deprecation messages in the next v4 minors. These messages will help developers upgrade to v5.
   - A progressive bug fixes freeze on v4, with the exception of security issues and important bugs.
   - At least 6 months of work on v5 to get to a stable release (probably more). You can follow our progress using our [milestone](https://github.com/mui-org/material-ui/milestone/35).
+
 - 🧑‍💻 We will likely look to hire a new full-time member on the core team to help deliver v5 and new features faster.
 - ⌗ We announced, back in [October 2019](/blog/september-2019-update/#our-roadmap-intent-for-october), our intention to work on an advanced data grid component. The task was bigger than anticipated, but we are making progress. It might take us 12 months to do it right. Damien is now leading and fully dedicated to this effort. You can follow our early-stage progress on [finui.io](https://finui.io/#/grid) and later, integration into the mono-repository on [#18872](https://github.com/mui-org/material-ui/pull/18872).
 

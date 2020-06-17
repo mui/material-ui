@@ -68,12 +68,12 @@ Generate a theme base on the options received.
 
 #### Arguments
 
-1. `options` (*Object*): Takes an incomplete theme object and adds the missing parts.
-2. `...args` (*Array*): Deep merge the arguments with the about to be returned theme.
+1. `options` (_Object_): Takes an incomplete theme object and adds the missing parts.
+2. `...args` (_Array_): Deep merge the arguments with the about to be returned theme.
 
 #### Returns
 
-`theme` (*Object*): A complete, ready to use theme object.
+`theme` (_Object_): A complete, ready to use theme object.
 
 #### Examples
 
@@ -100,25 +100,28 @@ Generate responsive typography settings based on the options received.
 
 #### Arguments
 
-1. `theme` (*Object*): The theme object to enhance.
-2. `options` (*Object* [optional]):
+1. `theme` (_Object_): The theme object to enhance.
+2. `options` (_Object_ [optional]):
 
-  - `breakpoints` (*Array\<String\>* [optional]): Default to `['sm', 'md', 'lg']`. Array of [breakpoints](/customization/breakpoints/) (identifiers).
-  - `disableAlign` (*Boolean* [optional]): Default to `false`. Whether font sizes change slightly so line
-    heights are preserved and align to Material Design's 4px line height grid.
-    This requires a unitless line height in the theme's styles.
-  - `factor` (*Number* [optional]): Default to `2`. This value determines the strength of font size resizing. The higher the value, the less difference there is between font sizes on small screens.
+- `breakpoints` (_Array\<String\>_ [optional]): Default to `['sm', 'md', 'lg']`. Array of [breakpoints](/customization/breakpoints/) (identifiers).
+- `disableAlign` (_Boolean_ [optional]): Default to `false`. Whether font sizes change slightly so line
+  heights are preserved and align to Material Design's 4px line height grid.
+  This requires a unitless line height in the theme's styles.
+- `factor` (_Number_ [optional]): Default to `2`. This value determines the strength of font size resizing. The higher the value, the less difference there is between font sizes on small screens.
   The lower the value, the bigger font sizes for small screens. The value must be greater than 1.
-  - `variants` (*Array\<String\>* [optional]): Default to all. The typography variants to handle.
+- `variants` (_Array\<String\>_ [optional]): Default to all. The typography variants to handle.
 
 #### Returns
 
-`theme` (*Object*): The new theme with a responsive typography.
+`theme` (_Object_): The new theme with a responsive typography.
 
 #### Examples
 
 ```js
-import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
+import {
+  createMuiTheme,
+  responsiveFontSizes,
+} from '@material-ui/core/styles';
 
 let theme = createMuiTheme();
 theme = responsiveFontSizes(theme);
@@ -196,12 +199,12 @@ function Fade() {
 
 #### Arguments
 
-1. `options` (*Object*): Takes an incomplete theme object and adds the missing parts.
-2. `...args` (*Array*): Deep merge the arguments with the about to be returned theme.
+1. `options` (_Object_): Takes an incomplete theme object and adds the missing parts.
+2. `...args` (_Array_): Deep merge the arguments with the about to be returned theme.
 
 #### Returns
 
-`theme` (*Object*): A complete, ready to use theme object.
+`theme` (_Object_): A complete, ready to use theme object.
 
 #### Examples
 

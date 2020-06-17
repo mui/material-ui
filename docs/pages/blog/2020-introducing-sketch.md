@@ -30,7 +30,7 @@ For a long time, we have ignored the problem. We were recommending users to try 
 
 - **Sketch** has [some symbols](https://i.stack.imgur.com/vEEAA.png) for Material Design. Unfortunately, they cover <30% of the components available in Material-UI, use an outdated version of the specification, and focus on mobile (leaving desktop behind).
 - **Material Design** had a [Sketch plugin](https://material.io/resources/theme-editor/).
-Unfortunately, it was recently retired, was supporting fewer components than Material-UI, and didn't use the same wording/structure as Material-UI that made it harder to move from design to implementation.
+  Unfortunately, it was recently retired, was supporting fewer components than Material-UI, and didn't use the same wording/structure as Material-UI that made it harder to move from design to implementation.
 - Anything else is paid.
 
 ### Gain efficiency

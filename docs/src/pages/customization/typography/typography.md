@@ -134,7 +134,10 @@ To automate this setup, you can use the [`responsiveFontSizes()`](/customization
 You can see this in action in the example below. adjust your browser's window size, and notice how the font size changes as the width crosses the different [breakpoints](/customization/breakpoints/):
 
 ```js
-import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
+import {
+  createMuiTheme,
+  responsiveFontSizes,
+} from '@material-ui/core/styles';
 
 let theme = createMuiTheme();
 theme = responsiveFontSizes(theme);
@@ -171,7 +174,7 @@ html {
 }
 ```
 
-*You need to apply the above CSS on the html element of this page to see the below demo rendered correctly*
+_You need to apply the above CSS on the html element of this page to see the below demo rendered correctly_
 
 {{"demo": "pages/customization/typography/FontSizeTheme.js"}}
 

@@ -9,7 +9,7 @@ components: List, ListItem, Checkbox, Switch
 
 ## Simple Transfer List
 
- For completeness, this example includes buttons for "move all", but not every transfer list needs these.
+For completeness, this example includes buttons for "move all", but not every transfer list needs these.
 
 {{"demo": "pages/components/transfer-list/TransferList.js", "bg": true}}
 

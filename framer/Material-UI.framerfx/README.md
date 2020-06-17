@@ -69,7 +69,7 @@ If multiple options are supplied, they take the following priority:
 - Add variant (elevation or outlined) to the Paper component.
 - Add color (primary or secondary) to the TextField component.
 - Fix an issue that caused the Material-UI Framer package to appear to have no components,
-and existing projects using Material-UI to break.
+  and existing projects using Material-UI to break.
 
 ### 1.0.0 2019-11-11
 

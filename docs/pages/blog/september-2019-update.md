@@ -15,9 +15,7 @@ Here are the most significant improvements in September:
   ```jsx
   import DeleteIcon from '@material-ui/icons/Delete';
 
-  <Button startIcon={<DeleteIcon />}>
-    Delete
-  </Button>
+  <Button startIcon={<DeleteIcon />}>Delete</Button>;
   ```
 
 - 🔐 Add support for Chrome autofill. The `InputBase` component detects Chrome autofill events and updates the label position accordingly.
@@ -44,7 +42,7 @@ But this summary is just scratching the surface. We have accepted 199 commits fr
 
 ## Our roadmap intent for October
 
-*(We'll do our best, no guarantee!)*
+_(We'll do our best, no guarantee!)_
 
 - 🔍 We will provide a ready to use autocomplete, combo box, and multi-select components in the lab. You can already [preview it](https://deploy-preview-17037--material-ui.netlify.app/components/autocomplete/).
 
@@ -60,6 +58,6 @@ But this summary is just scratching the surface. We have accepted 199 commits fr
 - 📅 We will start to work on a [major upgrade](https://github.com/mui-org/material-ui-pickers/issues/1293) of the date/time picker components.
 
 - 🧮 We will start to work on a Data Table component.
-⭐️ Notice that the advanced features of the data grid will be paid, behind an enterprise subscription. This is an effort part of [our roadmap](/discover-more/roadmap/) to answer enterprise needs.
+  ⭐️ Notice that the advanced features of the data grid will be paid, behind an enterprise subscription. This is an effort part of [our roadmap](/discover-more/roadmap/) to answer enterprise needs.
 
 - ❓ Please upvote our [GitHub issues](https://github.com/mui-org/material-ui/issues) if you want something specific. The number of 👍 helps us to prioritize.

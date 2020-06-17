@@ -9,7 +9,7 @@ You can use it, but you don't have to, since Material-UI is also [interoperable 
 ## Why use Material-UI's styling solution?
 
 In previous versions, Material-UI has used LESS, then a custom inline-style solution to write the component styles, but these approaches have proven to be limited.
-[A *CSS-in-JS* solution](https://github.com/oliviertassinari/a-journey-toward-better-style) overcomes many of those limitations,
+[A _CSS-in-JS_ solution](https://github.com/oliviertassinari/a-journey-toward-better-style) overcomes many of those limitations,
 and **unlocks many great features** (theme nesting, dynamic styles, self-support, etc.).
 
 Material-UI's styling solution is inspired by many other styling libraries such as [styled-components](https://www.styled-components.com/) and [emotion](https://emotion.sh/).
@@ -47,7 +47,8 @@ import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles({
   root: {
-    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    background:
+      'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
     border: 0,
     borderRadius: 3,
     boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
@@ -76,7 +77,8 @@ import { styled } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
 const MyButton = styled(Button)({
-  background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+  background:
+    'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
   border: 0,
   borderRadius: 3,
   boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
@@ -102,7 +104,8 @@ import Button from '@material-ui/core/Button';
 
 const styles = {
   root: {
-    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    background:
+      'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
     border: 0,
     borderRadius: 3,
     boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
@@ -114,7 +117,11 @@ const styles = {
 
 function HigherOrderComponent(props) {
   const { classes } = props;
-  return <Button className={classes.root}>Higher-order component</Button>;
+  return (
+    <Button className={classes.root}>
+      Higher-order component
+    </Button>
+  );
 }
 
 HigherOrderComponent.propTypes = {
@@ -138,9 +145,9 @@ const useStyles = makeStyles({
     '& p': {
       color: 'green',
       '& span': {
-        color: 'blue'
-      }
-    }
+        color: 'blue',
+      },
+    },
   },
 });
 ```
@@ -156,22 +163,27 @@ The function can be provided at the style rule level, or at the CSS property lev
 ```jsx
 const useStyles = makeStyles({
   // style rule
-  foo: props => ({
+  foo: (props) => ({
     backgroundColor: props.backgroundColor,
   }),
   bar: {
     // CSS property
-    color: props => props.color,
+    color: (props) => props.color,
   },
 });
 
 function MyComponent() {
   // Simulated props for the purpose of the example
-  const props = { backgroundColor: 'black', color: 'white' };
+  const props = {
+    backgroundColor: 'black',
+    color: 'white',
+  };
   // Pass the props as the first argument of useStyles()
   const classes = useStyles(props);
 
-  return <div className={`${classes.foo} ${classes.bar}`} />
+  return (
+    <div className={`${classes.foo} ${classes.bar}`} />
+  );
 }
 ```
 
@@ -191,11 +203,11 @@ This button component has a color property that changes its color:
 
 ### Stress test
 
-In the following stress test, you can update the *theme color* and the *background-color property* live:
+In the following stress test, you can update the _theme color_ and the _background-color property_ live:
 
 ```js
-const useStyles = makeStyles(theme => ({
-  root: props => ({
+const useStyles = makeStyles((theme) => ({
+  root: (props) => ({
     backgroundColor: props.backgroundColor,
     color: theme.color,
   }),

@@ -10,5 +10,12 @@ module.exports = {
         trailingComma: 'es5',
       },
     },
+    {
+      files: 'docs/**/*.md',
+      options: {
+        // otherwise code blocks overflow on the docs website
+        printWidth: 60,
+      },
+    },
   ],
 };
