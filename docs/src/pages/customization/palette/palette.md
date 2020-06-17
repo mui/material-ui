@@ -99,7 +99,7 @@ const theme = createMuiTheme({
 });
 ```
 
-As in the example above, if the color object contains custom colors using any of the
+As in the example above, if the palette color contains custom colors using any of the
 "main", "light", "dark" or "contrastText" keys, these map as follows:
 
 - If the "dark" and / or "light" keys are omitted, their value(s) will be calculated from "main",
