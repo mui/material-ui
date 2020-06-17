@@ -68,7 +68,7 @@ const theme = createMuiTheme({
 
 ### Providing the colors directly
 
-If you wish to provide more customized colors, you can either create your own color object,
+If you wish to provide more customized colors, you can either create your own palette color,
 or directly supply colors to some or all of the color's keys:
 
 ```js
