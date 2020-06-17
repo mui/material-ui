@@ -52,7 +52,7 @@ interface PaletteColor {
 
 ### Using a color object
 
-The simplest way to customize a color object is to import one or more of the provided colors
+The simplest way to customize a palette color is to import one or more of the provided colors
 and apply them to a palette:
 
 ```js
