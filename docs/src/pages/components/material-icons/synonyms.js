@@ -572,7 +572,7 @@ const synonyms = {
   Pool: 'swimming water',
   PortableWifiOff: 'connected connection device internet network service usage',
   PostAdd: 'document item page plus',
-  Power: 'plug socket',
+  Power: 'plug socket online',
   PowerInput: 'dc',
   PowerSettingsNew: 'information off save shutdown',
   PregnantWoman: 'baby birth female human lady maternity person user',
