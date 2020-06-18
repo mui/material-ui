@@ -113,21 +113,21 @@ yarn add @material-ui/core
   +<Accordion>
   -  <ExpansionPanelSummary>  
   +  <AccordionSummary>
-  +    <Typography>Location</Typography>
-  +    <Typography>Select trip destination</Typography>
+       <Typography>Location</Typography>
+       <Typography>Select trip destination</Typography>
   -  </ExpansionPanelSummary>  
   +  </AccordionSummary>
   -  <ExpansionPanelDetails>
   +  <AccordionDetails>
-  +    Chip label="Barbados" onDelete={() => {}} />
-  +    <Typography variant="caption">Select your destination of choice</Typography>
+       Chip label="Barbados" onDelete={() => {}} />
+       <Typography variant="caption">Select your destination of choice</Typography>
   -  </ExpansionPanelDetails>  
   +  </AccordionDetails>
-  +  <Divider />
+     <Divider />
   -  <ExpansionPanelActions>  
   +  <AccordionActions>
-  +    <Button size="small">Cancel</Button>
-  +    <Button size="small" color="primary">Save</Button>
+       <Button size="small">Cancel</Button>
+       <Button size="small" color="primary">Save</Button>
   -  </ExpansionPanelActions>   
   +  </AccordionActions>
   -</ExpansionPanel>
