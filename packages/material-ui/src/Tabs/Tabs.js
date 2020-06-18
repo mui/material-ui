@@ -338,10 +338,12 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
     };
   }, [updateIndicatorState, updateScrollButtonState]);
 
-  const handleTabsScroll = React.useCallback(
-    debounce(() => {
-      updateScrollButtonState();
-    }),
+  const handleTabsScroll = React.useMemo(
+    () =>
+      debounce(() => {
+        updateScrollButtonState();
+      }),
+    [updateScrollButtonState],
   );
 
   React.useEffect(() => {
