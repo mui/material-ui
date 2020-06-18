@@ -338,13 +338,9 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
     };
   }, [updateIndicatorState, updateScrollButtonState]);
 
-  const handleTabsScroll = React.useMemo(
-    () =>
-      debounce(() => {
-        updateScrollButtonState();
-      }),
-    [updateScrollButtonState],
-  );
+  const handleTabsScroll = React.useMemo(() => debounce(updateScrollButtonState), [
+    updateScrollButtonState,
+  ]);
 
   React.useEffect(() => {
     return () => {
