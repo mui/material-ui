@@ -48,7 +48,39 @@ const theme = createMuiTheme({
 });
 ```
 
-## `getAutoHeightDuration`
+## API
+
+### `theme.transitions.create(props, options) => transition`
+
+#### Arguments
+
+1. `props` (*String* | *String[]*): Defaults to `['all']`. Provides a CSS property, or a list of CSS properties that should be transitioned.
+2.  `options` (*Object* [optional]):
+  - `options.duration` (*String* | *Number* [optional]): Defaults to `theme.transitions.duration.standard`. Provides the duration of the transition.
+  - `options.easing` (*String* [optional]): Defaults to `theme.transitions.easing.easeInOut`. Provides the easing for the transition.
+  - `options.delay` (*String* | *Number* [optional]): Defaults to `0`. Provides the delay for the transition.
+
+#### Returns
+
+`transition`: A transition CSS value, which composes all properties which should be transitioned, together with the defined duration, easing and duration.
+
+Use the <code>theme.transitions.create()</code> helper to create consistent transitions for the elements of your UI.</p>
+
+```js
+theme.transitions.create(['background-color', 'transform']);
+```
+
+{{"demo": "pages/customization/transitions/TransitionHover.js", "defaultCodeOpen": false}}
+
+### `theme.transitions.getAutoHeightDuration(height) => duration`
+
+#### Arguments
+
+1. `height` (*Number*): The height of the component.
+
+#### Returns
+
+`duration`: The calculated duration based on the height.
 
 You can customize the default function for calculating the duration based on the height of the element (useful for collapsing/expanding transitions).
 
@@ -67,42 +99,6 @@ const theme = createMuiTheme({
   },
 })
 ```
-
-## `create`
-
-Use the <code>theme.transitions.create()</code> helper to create consistent transitions for the elements of your UI.</p>
-
-```js
-theme.transitions.create(['background-color', 'transform']);
-```
-
-{{"demo": "pages/customization/transitions/TransitionHover.js", "defaultCodeOpen": false}}
-
-## API
-
-### `theme.transitions.create(props, options) => transition`
-
-#### Arguments
-
-1. `props` (*String* | *String[]*): Defaults to `['all']`. Provides a CSS property, or a list of CSS properties that should be transitioned.
-2.  `options` (*Object* [optional]):
-  - `options.duration` (*String* | *Number* [optional]): Defaults to `theme.transitions.duration.standard`. Provides the duration of the transition.
-  - `options.easing` (*String* [optional]): Defaults to `theme.transitions.easing.easeInOut`. Provides the easing for the transition.
-  - `options.delay` (*String* | *Number* [optional]): Defaults to `0`. Provides the delay for the transition.
-
-#### Returns
-
-`transition`: A transition CSS value, which composes all properties which should be transitioned, together with the defined duration, easing and duration.
-
-### `theme.transitions.getAutoHeightDuration(height) => duration`
-
-#### Arguments
-
-1. `height` (*Number*): The height of the component.
-
-#### Returns
-
-`duration`: The calculated duration based on the height.
 
 ## References
 Check out the [Transitions](/components/transitions/) page to explore the transition components that are included with Material-UI.
