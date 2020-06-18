@@ -51,6 +51,46 @@ export interface GenerateOptions {
    * }
    */
   comment?: string;
+
+  /**
+   * Overrides the given `sortLiteralUnions` based on the proptype.
+   * If `undefined` is returned the default `sortLiteralUnions` will be used.
+   */
+  getSortLiteralUnions?: (
+    component: t.ComponentNode,
+    propType: t.PropTypeNode,
+  ) => ((a: t.LiteralNode, b: t.LiteralNode) => number) | undefined;
+
+  /**
+   * By default literals in unions are sorted by:
+   * - numbers last, ascending
+   * - anything else by their stringified value using localeCompare
+   */
+  sortLiteralUnions?: (a: t.LiteralNode, b: t.LiteralNode) => number;
+
+  /**
+   * The component of the given `node`.
+   * Must be defined for anything but programs and components
+   */
+  component?: t.ComponentNode;
+}
+
+function defaultSortLiteralUnions(a: t.LiteralNode, b: t.LiteralNode) {
+  const { value: valueA } = a;
+  const { value: valueB } = b;
+  // numbers ascending
+  if (typeof valueA === 'number' && typeof valueB === 'number') {
+    return valueA - valueB;
+  }
+  // numbers last
+  if (typeof valueA === 'number') {
+    return 1;
+  }
+  if (typeof valueB === 'number') {
+    return -1;
+  }
+  // sort anything else by their stringified value
+  return String(valueA).localeCompare(String(valueB));
 }
 
 /**
@@ -60,12 +100,15 @@ export interface GenerateOptions {
  */
 export function generate(node: t.Node | t.PropTypeNode[], options: GenerateOptions = {}): string {
   const {
+    component,
     sortProptypes = true,
     importedName = 'PropTypes',
     includeJSDoc = true,
     previousPropTypesSource = new Map<string, string>(),
     reconcilePropTypes = (_prop: t.PropTypeNode, _previous: string, generated: string) => generated,
     shouldInclude,
+    getSortLiteralUnions = () => defaultSortLiteralUnions,
+    sortLiteralUnions = defaultSortLiteralUnions,
   } = options;
 
   function jsDoc(node: t.PropTypeNode | t.LiteralNode) {
@@ -105,7 +148,7 @@ export function generate(node: t.Node | t.PropTypeNode[], options: GenerateOptio
   }
 
   if (t.isComponentNode(node)) {
-    const generated = generate(node.types, options);
+    const generated = generate(node.types, { ...options, component: node });
     if (generated.length === 0) {
       return '';
     }
@@ -115,6 +158,10 @@ export function generate(node: t.Node | t.PropTypeNode[], options: GenerateOptio
       `// ${options.comment.split(/\r?\n/gm).reduce((prev, curr) => `${prev}\n// ${curr}`)}\n`;
 
     return `${node.name}.propTypes = {\n${comment ? comment : ''}${generated}\n}`;
+  }
+
+  if (component === undefined) {
+    throw new TypeError('Missing component context. This is likely a bug. Please open an issue.');
   }
 
   if (t.isPropTypeNode(node)) {
@@ -140,7 +187,10 @@ export function generate(node: t.Node | t.PropTypeNode[], options: GenerateOptio
     const validatorSource = reconcilePropTypes(
       node,
       previousPropTypesSource.get(node.name),
-      `${generate(propType, options)}${isOptional ? '' : '.isRequired'}`,
+      `${generate(propType, {
+        ...options,
+        sortLiteralUnions: getSortLiteralUnions(component, node) || sortLiteralUnions,
+      })}${isOptional ? '' : '.isRequired'}`,
     );
 
     return `${jsDoc(node)}"${node.name}": ${validatorSource},`;
@@ -214,23 +264,7 @@ export function generate(node: t.Node | t.PropTypeNode[], options: GenerateOptio
   if (t.isUnionNode(node)) {
     let [literals, rest] = _.partition(t.uniqueUnionTypes(node).types, t.isLiteralNode);
 
-    literals = literals.sort((a, b) => {
-      const { value: valueA } = a;
-      const { value: valueB } = b;
-      // numbers ascending
-      if (typeof valueA === 'number' && typeof valueB === 'number') {
-        return valueA - valueB;
-      }
-      // numbers last
-      if (typeof valueA === 'number') {
-        return 1;
-      }
-      if (typeof valueB === 'number') {
-        return -1;
-      }
-      // sort anything else by their stringified value
-      return String(valueA).localeCompare(String(valueB));
-    });
+    literals = literals.sort(sortLiteralUnions);
 
     const nodeToStringName = (obj: t.Node): string => {
       if (t.isInstanceOfNode(obj)) {
