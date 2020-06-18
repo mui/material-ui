@@ -40,7 +40,7 @@ async function run() {
 
       // Some MD tags have multiple words in a string, so we separate those out to dedupe them
       const materialIconStrings = materialIcons[icon]
-        ? materialIcons[icon].reduce((tags, tag) => tags.concat(tag.split(' ')), [])
+        ? materialIcons[icon].reduce((tags, tag) => tags.concat(tag.replace('\n', ' ').split(' ')), [])
         : [];
 
       let mergedStrings = union(synonymsIconStrings, materialIconStrings);
