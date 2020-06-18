@@ -146,6 +146,22 @@ or
 The floating label is absolutely positioned, it won't impact the layout of the page.
 You need to make sure that the input is larger than the label to display correctly.
 
+### Number inputs allowing non-numeric characters
+
+By specification, inputs of type "number" allow the character 'e' (and other characters such as '+', '-', '.') to be entered.
+
+```jsx
+<TextField inputProps={{ type: 'number' }} />
+```
+
+If you are looking to validate that the input contains only numeric characters, consider using a field of type "text" with the _pattern_ attribute:
+
+```jsx
+<TextField inputProps={{ inputmode: 'numeric', pattern: '[0-9]*' }} />
+```
+
+If you are looking to completely prevent the user from entering non-numeric characters, one approach would be to use a library such as [react-number-format](https://github.com/s-yadav/react-number-format). See [Integration with 3rd party input libraries](#integration-with-3rd-party-input-libraries) below for a demo.
+
 ## Integration with 3rd party input libraries
 
 You can use third-party libraries to format an input.
