@@ -1,19 +1,19 @@
 import * as React from 'react';
 
 export interface BaseProps {
-	value?: unknown;
+  value?: unknown;
 }
 
 export interface StandardProps extends BaseProps {
-	variant?: 'standard';
+  variant?: 'standard';
 }
 
 export interface OutlinedProps extends BaseProps {
-	variant: 'outlined';
+  variant: 'outlined';
 }
 
 export interface FilledProps extends BaseProps {
-	variant: 'filled';
+  variant: 'filled';
 }
 
 export type TextFieldProps = StandardProps | OutlinedProps | FilledProps;

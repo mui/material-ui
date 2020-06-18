@@ -1,6 +1,6 @@
 import path from 'path';
 import fs from 'fs';
-
+import { expect } from 'chai';
 import glob from 'glob';
 import prettier from 'prettier';
 import * as ttp from '../src';
@@ -12,97 +12,63 @@ const testCases = glob.sync('**/input.{d.ts,ts,tsx}', { absolute: true, cwd: __d
 
 // Create program for all files to speed up tests
 const program = ttp.createProgram(
-	testCases,
-	ttp.loadConfig(path.resolve(__dirname, '../tsconfig.json'))
+  testCases,
+  ttp.loadConfig(path.resolve(__dirname, '../tsconfig.json')),
 );
 
 for (const testCase of testCases) {
-	const dirname = path.dirname(testCase);
-	const testName = dirname.substr(__dirname.length + 1);
-	const astPath = path.join(dirname, 'output.json');
-	const outputPath = path.join(dirname, 'output.js');
-	const optionsPath = path.join(dirname, 'options.ts');
-	const inputJS = path.join(dirname, 'input.js');
+  const dirname = path.dirname(testCase);
+  const testName = dirname.substr(__dirname.length + 1);
+  const outputPath = path.join(dirname, 'output.js');
+  const optionsPath = path.join(dirname, 'options.ts');
+  const inputJS = path.join(dirname, 'input.js');
 
-	it(testName, () => {
-		const options: TestOptions = fs.existsSync(optionsPath) ? require(optionsPath).default : {};
+  it(testName, () => {
+    const options: TestOptions = fs.existsSync(optionsPath) ? require(optionsPath).default : {};
 
-		const ast = ttp.parseFromProgram(testCase, program, options.parser);
+    const ast = ttp.parseFromProgram(testCase, program, options.parser);
 
-		//#region Check AST matches
-		// propsFilename will be different depending on where the project is on disk
-		// Manually check that it's correct and then delete it
-		const newAST = ttp.programNode(
-			ast.body.map((component) => {
-				expect(component.propsFilename).toBe(testCase);
-				return { ...component, propsFilename: undefined };
-			})
-		);
+    let inputSource = null;
+    if (testCase.endsWith('.d.ts')) {
+      try {
+        inputSource = fs.readFileSync(inputJS, 'utf8');
+      } catch (error) {
+        // ignore
+      }
+    } else {
+      inputSource = ttp.ts.transpileModule(fs.readFileSync(testCase, 'utf8'), {
+        compilerOptions: {
+          target: ttp.ts.ScriptTarget.ESNext,
+          jsx: ttp.ts.JsxEmit.Preserve,
+        },
+      }).outputText;
+    }
 
-		if (fs.existsSync(astPath)) {
-			expect(newAST).toMatchObject(JSON.parse(fs.readFileSync(astPath, 'utf8')));
-		} else {
-			fs.writeFileSync(
-				astPath,
-				prettier.format(
-					JSON.stringify(newAST, (key, value) => {
-						// These are TypeScript internals that change depending on the number of symbols created during test
-						if (key === '$$id') {
-							return undefined;
-						}
-						return value;
-					}),
-					{
-						...prettierConfig,
-						filepath: astPath,
-					}
-				)
-			);
-		}
-		//#endregion
+    let result = '';
+    // For d.ts files we just generate the AST
+    if (!inputSource) {
+      result = ttp.generate(ast, options.generator);
+    } else {
+      // For .tsx? files we transpile them and inject the proptypesu
+      const injected = ttp.inject(ast, inputSource, options.injector);
+      if (!injected) {
+        throw new Error('Injection failed');
+      }
 
-		let inputSource = null;
-		if (testCase.endsWith('.d.ts')) {
-			try {
-				inputSource = fs.readFileSync(inputJS, 'utf8');
-			} catch (error) {}
-		} else {
-			inputSource = ttp.ts.transpileModule(fs.readFileSync(testCase, 'utf8'), {
-				compilerOptions: {
-					target: ttp.ts.ScriptTarget.ESNext,
-					jsx: ttp.ts.JsxEmit.Preserve,
-				},
-			}).outputText;
-		}
+      result = injected;
+    }
 
-		let result = '';
-		// For d.ts files we just generate the AST
-		if (!inputSource) {
-			result = ttp.generate(ast, options.generator);
-		}
-		// For .tsx? files we transpile them and inject the proptypes
-		else {
-			const injected = ttp.inject(ast, inputSource, options.injector);
-			if (!injected) {
-				throw new Error('Injection failed');
-			}
+    const propTypes = prettier.format(result, {
+      ...prettierConfig,
+      filepath: outputPath,
+    });
 
-			result = injected;
-		}
-
-		//#region Check generated and/or injected proptypes
-		const propTypes = prettier.format(result, {
-			...prettierConfig,
-			filepath: outputPath,
-		});
-
-		if (fs.existsSync(outputPath)) {
-			expect(propTypes.replace(/\r?\n/, '\n')).toMatch(
-				fs.readFileSync(outputPath, 'utf8').replace(/\r?\n/, '\n')
-			);
-		} else {
-			fs.writeFileSync(outputPath, propTypes);
-		}
-		//#endregion
-	});
+    if (fs.existsSync(outputPath)) {
+      expect(propTypes.replace(/\r?\n/, '\n')).to.include(
+        fs.readFileSync(outputPath, 'utf8').replace(/\r?\n/, '\n'),
+      );
+    } else {
+      fs.writeFileSync(outputPath, propTypes);
+    }
+  });
 }

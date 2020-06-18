@@ -1,11 +1,11 @@
 import * as React from 'react';
 interface ButtonProps {
-	variant?: string;
+  variant?: string;
 }
 
 interface Component<C extends React.ElementType = 'div'> {
-	(props: ButtonProps): JSX.Element;
-	(props: { component: C } & ButtonProps): JSX.Element;
+  (props: ButtonProps): JSX.Element;
+  (props: { component: C } & ButtonProps): JSX.Element;
 }
 
 // a component using overloading and intersection of function signature

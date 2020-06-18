@@ -4,16 +4,16 @@ const typeString = 'ElementNode';
 type ElementType = 'element' | 'node' | 'elementType';
 
 interface ElementNode extends Node {
-	elementType: ElementType;
+  elementType: ElementType;
 }
 
 export function elementNode(elementType: ElementType): ElementNode {
-	return {
-		type: typeString,
-		elementType,
-	};
+  return {
+    type: typeString,
+    elementType,
+  };
 }
 
 export function isElementNode(node: Node): node is ElementNode {
-	return node.type === typeString;
+  return node.type === typeString;
 }

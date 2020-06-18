@@ -1,9 +1,9 @@
 import { PropTypeNode } from './proptype';
 
 export interface Node {
-	type: string;
+  type: string;
 }
 
 export interface DefinitionHolder extends Node {
-	types: PropTypeNode[];
+  types: PropTypeNode[];
 }

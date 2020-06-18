@@ -99,6 +99,21 @@ jobs:
               echo "no changes"
             fi
       - run:
+          name: typescript-to-proptypes
+          command: |
+            # latest commit
+            LATEST_COMMIT=$(git rev-parse HEAD)
+
+            # latest commit where packages/typescript-to-proptypes was changed
+            FOLDER_COMMIT=$(git log -1 --format=format:%H --full-diff packages/typescript-to-proptypes)
+
+            if [ $FOLDER_COMMIT = $LATEST_COMMIT ]; then
+              echo "changes, let's run the tests"
+              yarn workspace typescript-to-proptypes test
+            else
+              echo "no changes"
+            fi
+      - run:
           name: Coverage
           command: bash <(curl -s https://codecov.io/bash) -Z -C $CIRCLE_SHA1
   test_static:

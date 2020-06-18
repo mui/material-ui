@@ -1,56 +1,54 @@
 {
-	"name": "typescript-to-proptypes",
-	"version": "2.0.1",
-	"description": "Generate proptypes from typescript declarations",
-	"main": "dist/index.js",
-	"engines": {
-		"node": ">=10.3.0"
-	},
-	"files": [
-		"dist"
-	],
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/merceyz/typescript-to-proptypes.git"
-	},
-	"author": "merceyz <merceyz@users.noreply.github.com>",
-	"license": "MIT",
-	"keywords": [
-		"proptypes",
-		"typescript",
-		"react"
-	],
-	"scripts": {
-		"test": "jest",
-		"build": "rm -rf dist && tsc",
-		"release": "run build && standard-version",
-		"prepack": "run build"
-	},
-	"devDependencies": {
-		"@types/babel__core": "^7.1.2",
-		"@types/doctrine": "^0.0.3",
-		"@types/glob": "^7.1.1",
-		"@types/jest": "^24.0.15",
-		"@types/lodash": "^4.14.136",
-		"@types/node": "^12.6.2",
-		"@types/prettier": "^1.19.1",
-		"@types/react": "^16.8.23",
-		"@types/uuid": "^8.0.0",
-		"glob": "^7.1.6",
-		"jest": "^26.0.1",
-		"react": "^16.8.6",
-		"standard-version": "^8.0.0",
-		"ts-jest": "^26.1.0"
-	},
-	"dependencies": {
-		"@babel/core": "^7.5.4",
-		"@babel/plugin-syntax-class-properties": "^7.2.0",
-		"@babel/plugin-syntax-jsx": "^7.2.0",
-		"@babel/types": "^7.5.0",
-		"doctrine": "^3.0.0",
-		"lodash": "^4.17.14",
-		"tslib": "^1.13.0",
-		"typescript": "3.5.2",
-		"uuid": "^8.1.0"
-	}
+  "name": "typescript-to-proptypes",
+  "version": "2.0.1",
+  "private": true,
+  "description": "Generate proptypes from typescript declarations",
+  "main": "build/index.js",
+  "engines": {
+    "node": ">=10.3.0"
+  },
+  "files": [
+    "build"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mui-org/material-ui.git",
+    "directory": "packages/typescript-to-proptypes"
+  },
+  "author": "merceyz <merceyz@users.noreply.github.com>",
+  "license": "MIT",
+  "keywords": [
+    "proptypes",
+    "typescript",
+    "react"
+  ],
+  "scripts": {
+    "build": "rimraf build && tsc",
+    "postinstall": "yarn build",
+    "test": "cd ../../ && cross-env NODE_ENV=test mocha --config packages/typescript-to-proptypes/.mocharc.js 'packages/typescript-to-proptypes/**/*.test.ts' --exclude '**/node_modules/**'"
+  },
+  "devDependencies": {
+    "@types/babel__core": "^7.1.2",
+    "@types/doctrine": "^0.0.3",
+    "@types/glob": "^7.1.1",
+    "@types/lodash": "^4.14.136",
+    "@types/node": "^12.6.2",
+    "@types/prettier": "^2.0.1",
+    "@types/react": "^16.8.23",
+    "@types/uuid": "^8.0.0",
+    "glob": "^7.1.6",
+    "prettier": "^2.0.5",
+    "react": "^16.8.6",
+    "rimraf": "^3.0.2"
+  },
+  "dependencies": {
+    "@babel/core": "^7.5.4",
+    "@babel/plugin-syntax-class-properties": "^7.2.0",
+    "@babel/plugin-syntax-jsx": "^7.2.0",
+    "@babel/types": "^7.5.0",
+    "doctrine": "^3.0.0",
+    "lodash": "^4.17.14",
+    "typescript": "3.5.2",
+    "uuid": "^8.1.0"
+  }
 }

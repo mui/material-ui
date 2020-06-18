@@ -1,9 +1,9 @@
 import { TestOptions } from '../types';
 
 const options: TestOptions = {
-	parser: {
-		checkDeclarations: true,
-	},
+  parser: {
+    checkDeclarations: true,
+  },
 };
 
 export default options;

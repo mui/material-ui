@@ -1,3 +1,3 @@
 export function Foo(props) {
-	return <div className={props.className}></div>;
+  return <div className={props.className}></div>;
 }

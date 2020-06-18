@@ -7,19 +7,19 @@ import path from 'path';
  * @param tsConfigPath The location for a `tsconfig.json` file
  */
 export function loadConfig(tsConfigPath: string) {
-	const { config, error } = ts.readConfigFile(tsConfigPath, (filePath) =>
-		fs.readFileSync(filePath).toString()
-	);
+  const { config, error } = ts.readConfigFile(tsConfigPath, (filePath) =>
+    fs.readFileSync(filePath).toString(),
+  );
 
-	if (error) throw error;
+  if (error) throw error;
 
-	const { options, errors } = ts.parseJsonConfigFileContent(
-		config,
-		ts.sys,
-		path.dirname(tsConfigPath)
-	);
+  const { options, errors } = ts.parseJsonConfigFileContent(
+    config,
+    ts.sys,
+    path.dirname(tsConfigPath),
+  );
 
-	if (errors.length > 0) throw errors[0];
+  if (errors.length > 0) throw errors[0];
 
-	return options;
+  return options;
 }

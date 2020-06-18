@@ -1,24 +1,24 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 function Snackbar(props) {
-	return <div {...props} />;
+  return <div {...props} />;
 }
 // here we don't care about `key`
 
 Snackbar.propTypes = {
-	/**
-	 * some hints about state reset that relates to prop of this component
-	 */
-	key: PropTypes.any,
+  /**
+   * some hints about state reset that relates to prop of this component
+   */
+  key: PropTypes.any,
 };
 
 export { Snackbar };
 function SomeOtherComponent(props) {
-	return <div>{props.children}</div>;
+  return <div>{props.children}</div>;
 }
 
 SomeOtherComponent.propTypes = {
-	children: PropTypes.node,
+  children: PropTypes.node,
 };
 
 export { SomeOtherComponent };

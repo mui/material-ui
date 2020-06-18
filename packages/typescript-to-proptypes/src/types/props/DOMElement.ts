@@ -3,16 +3,16 @@ import { Node } from '../nodes/baseNodes';
 const typeString = 'DOMElementNode';
 
 interface DOMElementNode extends Node {
-	optional?: boolean;
+  optional?: boolean;
 }
 
 export function DOMElementNode(optional?: boolean): DOMElementNode {
-	return {
-		type: typeString,
-		optional,
-	};
+  return {
+    type: typeString,
+    optional,
+  };
 }
 
 export function isDOMElementNode(node: Node): node is DOMElementNode {
-	return node.type === typeString;
+  return node.type === typeString;
 }

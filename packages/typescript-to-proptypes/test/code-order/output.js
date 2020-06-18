@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function Component(props) {
-	const { value } = props;
-	return <div>{value}</div>;
+  const { value } = props;
+  return <div>{value}</div>;
 }
 
 const someValidator = () => new Error();
 
 Component.propTypes = {
-	value: PropTypes.any.isRequired,
+  value: PropTypes.any.isRequired,
 };
 
 export default Component;

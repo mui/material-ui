@@ -3,11 +3,11 @@ import { Node } from '../nodes/baseNodes';
 const typeString = 'FunctionNode';
 
 export function functionNode(): Node {
-	return {
-		type: typeString,
-	};
+  return {
+    type: typeString,
+  };
 }
 
 export function isFunctionNode(node: Node) {
-	return node.type === typeString;
+  return node.type === typeString;
 }
