@@ -1,0 +1,18 @@
+{
+	"type": "ProgramNode",
+	"body": [
+		{
+			"type": "ComponentNode",
+			"name": "Foo",
+			"types": [
+				{
+					"type": "PropTypeNode",
+					"name": "PropA",
+					"jsDoc": "This jsdoc will be ignored",
+					"propType": { "type": "StringNode" }
+				},
+				{ "type": "PropTypeNode", "name": "TestProps", "propType": { "type": "ObjectNode" } }
+			]
+		}
+	]
+}

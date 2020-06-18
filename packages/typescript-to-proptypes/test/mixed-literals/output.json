@@ -1,0 +1,29 @@
+{
+	"type": "ProgramNode",
+	"body": [
+		{
+			"type": "ComponentNode",
+			"name": "Grid",
+			"types": [
+				{
+					"type": "PropTypeNode",
+					"name": "spacing",
+					"propType": {
+						"type": "UnionNode",
+						"types": [
+							{ "type": "UndefinedNode" },
+							{ "type": "LiteralNode", "value": "\"initial\"" },
+							{ "type": "LiteralNode", "value": 1 },
+							{ "type": "LiteralNode", "value": 2 },
+							{ "type": "LiteralNode", "value": 3 },
+							{ "type": "LiteralNode", "value": 4 },
+							{ "type": "LiteralNode", "value": 5 },
+							{ "type": "LiteralNode", "value": "\"auto\"" }
+						]
+					},
+					"filenames": {}
+				}
+			]
+		}
+	]
+}

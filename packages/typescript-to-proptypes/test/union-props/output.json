@@ -1,0 +1,34 @@
+{
+	"type": "ProgramNode",
+	"body": [
+		{
+			"type": "ComponentNode",
+			"name": "TextField",
+			"types": [
+				{
+					"type": "PropTypeNode",
+					"name": "variant",
+					"propType": {
+						"type": "UnionNode",
+						"types": [
+							{ "type": "UndefinedNode" },
+							{ "type": "LiteralNode", "value": "\"standard\"" },
+							{ "type": "LiteralNode", "value": "\"outlined\"" },
+							{ "type": "LiteralNode", "value": "\"filled\"" }
+						]
+					},
+					"filenames": {}
+				},
+				{
+					"type": "PropTypeNode",
+					"name": "value",
+					"propType": {
+						"type": "UnionNode",
+						"types": [{ "type": "UndefinedNode" }, { "type": "AnyNode" }]
+					},
+					"filenames": {}
+				}
+			]
+		}
+	]
+}

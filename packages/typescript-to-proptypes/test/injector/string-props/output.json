@@ -1,0 +1,12 @@
+{
+	"type": "ProgramNode",
+	"body": [
+		{
+			"type": "ComponentNode",
+			"name": "Dialog",
+			"types": [
+				{ "type": "PropTypeNode", "name": "aria-describedby", "propType": { "type": "StringNode" } }
+			]
+		}
+	]
+}

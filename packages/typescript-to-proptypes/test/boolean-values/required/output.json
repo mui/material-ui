@@ -1,0 +1,32 @@
+{
+	"type": "ProgramNode",
+	"body": [
+		{
+			"type": "ComponentNode",
+			"name": "Foo",
+			"types": [
+				{
+					"type": "PropTypeNode",
+					"name": "foo",
+					"propType": {
+						"type": "UnionNode",
+						"types": [
+							{ "type": "LiteralNode", "value": "false" },
+							{ "type": "LiteralNode", "value": "true" }
+						]
+					}
+				},
+				{
+					"type": "PropTypeNode",
+					"name": "bar",
+					"propType": { "type": "LiteralNode", "value": "true" }
+				},
+				{
+					"type": "PropTypeNode",
+					"name": "baz",
+					"propType": { "type": "LiteralNode", "value": "false" }
+				}
+			]
+		}
+	]
+}

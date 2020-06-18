@@ -1,0 +1,10 @@
+{
+	"type": "ProgramNode",
+	"body": [
+		{
+			"type": "ComponentNode",
+			"name": "Component",
+			"types": [{ "type": "PropTypeNode", "name": "value", "propType": { "type": "AnyNode" } }]
+		}
+	]
+}
