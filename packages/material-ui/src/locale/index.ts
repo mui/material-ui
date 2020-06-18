@@ -210,9 +210,8 @@ export const caES: Localization = {
     //     if (type === 'next') {
     //       return 'Go to next page';
     //     }
-    //     if (type === 'previous') {
-    //       return 'Go to previous page';
-    //     }
+    //     // if (type === 'previous') {
+    //     return 'Go to previous page';
     //   },
     // },
   },
@@ -756,9 +755,8 @@ export const heIL: Localization = {
     //     if (type === 'next') {
     //       return 'Go to next page';
     //     }
-    //     if (type === 'previous') {
-    //       return 'Go to previous page';
-    //     }
+    //     // if (type === 'previous') {
+    //     return 'Go to previous page';
     //   },
     // },
   },
@@ -934,9 +932,8 @@ export const hyAM: Localization = {
     //     if (type === 'next') {
     //       return 'Go to next page';
     //     }
-    //     if (type === 'previous') {
-    //       return 'Go to previous page';
-    //     }
+    //     // if (type === 'previous') {
+    //     return 'Go to previous page';
     //   },
     // },
   },
@@ -994,9 +991,8 @@ export const idID: Localization = {
     //     if (type === 'next') {
     //       return 'Go to next page';
     //     }
-    //     if (type === 'previous') {
-    //       return 'Go to previous page';
-    //     }
+    //     // if (type === 'previous') {
+    //     return 'Go to previous page';
     //   },
     // },
   },
@@ -1054,9 +1050,8 @@ export const isIS: Localization = {
     //     if (type === 'next') {
     //       return 'Go to next page';
     //     }
-    //     if (type === 'previous') {
-    //       return 'Go to previous page';
-    //     }
+    //     // if (type === 'previous') {
+    //     return 'Go to previous page';
     //   },
     // },
   },
@@ -1173,9 +1168,8 @@ export const jaJP: Localization = {
     //     if (type === 'next') {
     //       return 'Go to next page';
     //     }
-    //     if (type === 'previous') {
-    //       return 'Go to previous page';
-    //     }
+    //     // if (type === 'previous') {
+    //     return 'Go to previous page';
     //   },
     // },
   },
@@ -1233,9 +1227,8 @@ export const koKR: Localization = {
     //     if (type === 'next') {
     //       return 'Go to next page';
     //     }
-    //     if (type === 'previous') {
-    //       return 'Go to previous page';
-    //     }
+    //     // if (type === 'previous') {
+    //     return 'Go to previous page';
     //   },
     // },
   },
@@ -1293,9 +1286,8 @@ export const nlNL: Localization = {
     //     if (type === 'next') {
     //       return 'Go to next page';
     //     }
-    //     if (type === 'previous') {
-    //       return 'Go to previous page';
-    //     }
+    //     // if (type === 'previous') {
+    //     return 'Go to previous page';
     //   },
     // },
   },
@@ -1550,23 +1542,23 @@ export const roRO: Localization = {
 
 export const ruRU: Localization = {
   props: {
-    // MuiBreadcrumbs: {
-    //   expandText: 'Show path',
-    // },
+    MuiBreadcrumbs: {
+      expandText: 'Показать полный путь',
+    },
     MuiTablePagination: {
-      // getItemAriaLabel: (type) => {
-      //   if (type === 'first') {
-      //     return 'Go to first page';
-      //   }
-      //   if (type === 'last') {
-      //     return 'Go to last page';
-      //   }
-      //   if (type === 'next') {
-      //     return 'Go to next page';
-      //   }
-      //   // if (type === 'previous') {
-      //   return 'Go to previous page';
-      // },
+      getItemAriaLabel: (type) => {
+        if (type === 'first') {
+          return 'Перейти на первую страницу';
+        }
+        if (type === 'last') {
+          return 'Перейти на последнюю страницу';
+        }
+        if (type === 'next') {
+          return 'Перейти на следующую страницу';
+        }
+        // if (type === 'previous') {
+        return 'Перейти на предыдущую страницу';
+      },
       labelRowsPerPage: 'Строк на странице:',
       labelDisplayedRows: ({ from, to, count }) =>
         `${from}-${to} из ${count !== -1 ? count : `более чем ${to}`}`,
@@ -1584,7 +1576,7 @@ export const ruRU: Localization = {
 
         return `${value} ${pluralForm}`;
       },
-      // emptyLabelText: 'Empty',
+      emptyLabelText: 'Рейтинг отсутствует',
     },
     MuiAutocomplete: {
       clearText: 'Очистить',
@@ -1596,26 +1588,26 @@ export const ruRU: Localization = {
     MuiAlert: {
       closeText: 'Закрыть',
     },
-    // MuiPagination: {
-    //   'aria-label': 'Pagination navigation',
-    //   getItemAriaLabel: (type, page, selected) => {
-    //     if (type === 'page') {
-    //       return `${selected ? '' : 'Go to '}page ${page}`;
-    //     }
-    //     if (type === 'first') {
-    //       return 'Go to first page';
-    //     }
-    //     if (type === 'last') {
-    //       return 'Go to last page';
-    //     }
-    //     if (type === 'next') {
-    //       return 'Go to next page';
-    //     }
-    //     if (type === 'previous') {
-    //       return 'Go to previous page';
-    //     }
-    //   },
-    // },
+    MuiPagination: {
+      'aria-label': 'Навигация по страницам',
+      getItemAriaLabel: (type, page, selected) => {
+        if (type === 'page') {
+          if (selected) return `${page} страница`;
+          return `Перейти на ${page} страницу`;
+        }
+        if (type === 'first') {
+          return 'Перейти на первую страницу';
+        }
+        if (type === 'last') {
+          return 'Перейти на последнюю страницу';
+        }
+        if (type === 'next') {
+          return 'Перейти на следующую страницу';
+        }
+        // if (type === 'previous') {
+        return 'Перейти на предыдущую страницу';
+      },
+    },
   },
 };
 
@@ -1679,9 +1671,8 @@ export const skSK: Localization = {
     //     if (type === 'next') {
     //       return 'Go to next page';
     //     }
-    //     if (type === 'previous') {
-    //       return 'Go to previous page';
-    //     }
+    //     // if (type === 'previous') {
+    //     return 'Go to previous page';
     //   },
     // },
   },
@@ -1739,9 +1730,8 @@ export const svSE: Localization = {
     //     if (type === 'next') {
     //       return 'Go to next page';
     //     }
-    //     if (type === 'previous') {
-    //       return 'Go to previous page';
-    //     }
+    //     // if (type === 'previous') {
+    //     return 'Go to previous page';
     //   },
     // },
   },
@@ -1928,9 +1918,8 @@ export const viVN: Localization = {
     //     if (type === 'next') {
     //       return 'Go to next page';
     //     }
-    //     if (type === 'previous') {
-    //       return 'Go to previous page';
-    //     }
+    //     // if (type === 'previous') {
+    //     return 'Go to previous page';
     //   },
     // },
   },
@@ -1988,9 +1977,8 @@ export const zhCN: Localization = {
     //     if (type === 'next') {
     //       return 'Go to next page';
     //     }
-    //     if (type === 'previous') {
-    //       return 'Go to previous page';
-    //     }
+    //     // if (type === 'previous') {
+    //     return 'Go to previous page';
     //   },
     // },
   },
