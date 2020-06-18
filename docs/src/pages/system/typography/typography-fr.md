@@ -77,7 +77,7 @@
 import { typography } from '@material-ui/system';
 ```
 
-| Import name     | Prop            | Propriété CSS    | Clé du thème                                                           |
+| Import name     | Prop            | CSS property     | Theme key                                                              |
 |:--------------- |:--------------- |:---------------- |:---------------------------------------------------------------------- |
 | `fontFamily`    | `fontFamily`    | `font-family`    | [`typography`](/customization/default-theme/?expand-path=$.typography) |
 | `fontSize`      | `fontSize`      | `font-size`      | [`typography`](/customization/default-theme/?expand-path=$.typography) |

@@ -89,7 +89,9 @@ After 1.0 second, you can display a loader to keep user's flow of thought uninte
 
 ## Limitations
 
-Under heavy load, you might lose the stroke dash animation or see random CircularProgress ring widths.
+### High CPU load
+
+Under heavy load, you might lose the stroke dash animation or see random `CircularProgress` ring widths.
 You should run processor intensive operations in a web worker or by batch in order not to block the main rendering thread.
 
 ![heavy load](/static/images/progress/heavy-load.gif)
@@ -98,3 +100,17 @@ When it's not possible, you can leverage the `disableShrink` property to mitigat
 See [this issue](https://github.com/mui-org/material-ui/issues/10327).
 
 {{"demo": "pages/components/progress/CircularUnderLoad.js"}}
+
+### High frequency updates
+
+The `LinearProgress` uses a transition on the CSS transform property to provide a smooth update between different values.
+The default transition duration is 200ms.
+In the event a parent component updates the `value` prop too quickly, you will at least experience a 200ms delay between the re-render and the progress bar fully updated.
+
+If you need to perform 30 re-renders per second or more, we recommend disabling the transition:
+
+```css
+.MuiLinearProgress-bar {
+  transition: none;
+}
+```

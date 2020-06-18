@@ -109,9 +109,9 @@ Os componentes implementam a navegação do teclado usando o comportamento de "a
 As duas demonstrações seguintes diferem apenas no seu comportamento de navegação por teclado. Foque em uma aba e navegue com as teclas de seta para notar a diferença.
 
 ```jsx
-/* Abas onde a seleção segue o foco */
+/* Tabs where selection follows focus */
 <Tabs selectionFollowsFocus />
-/* Abas onde cada aba precisa ser selecionada manualmente */
+/* Tabs where each tab needs to be selected manually */
 <Tabs />
 ```
 

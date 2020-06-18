@@ -121,17 +121,17 @@ const theme = createMuiTheme({
 });
 ```
 
-Se você estiver usando TypeScript, você também deverá usar a [extensão de módulos](/guides/typescript/#customization-of-theme) para que o tema aceite os valores acima.
+If you are using TypeScript, you would also need to use [module augmentation](/guides/typescript/#customization-of-theme) for the theme to accept the above values.
 
 ```ts
 declare module "@material-ui/core/styles/createBreakpoints" {
   interface BreakpointOverrides {
-    xs: false; // remove o ponto de quebra `xs`
+    xs: false; // removes the `xs` breakpoint
     sm: false;
     md: false;
     lg: false;
     xl: false;
-    tablet: true; // adiciona o ponto de quebra `tablet`
+    tablet: true; // adds the `tablet` breakpoint
     laptop: true;
     desktop: true;
   }

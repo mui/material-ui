@@ -1,6 +1,6 @@
 # Palette 调色
 
-<p class="description">使用调色板，您可以修改组件的颜色以适应您的品牌。</p>
+<p class="description">The palette enables you to modify the color of the components to suit your brand.</p>
 
 ## Palette colors
 
