@@ -1931,7 +1931,6 @@ export const zhCN: Localization = {
         expandText: '展开',
       },
       MuiTablePagination: {
-        'aria-label': '分页导航',
         getItemAriaLabel: (type) => {
           if (type === 'first') {
             return '第一页';
@@ -1971,7 +1970,6 @@ export const zhTW: Localization = {
         expandText: '展開',
       },
       MuiTablePagination: {
-        'aria-label': '分頁導航',
         getItemAriaLabel: (type) => {
           if (type === 'first') {
             return '第一頁';
