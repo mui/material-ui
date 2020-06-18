@@ -3,8 +3,7 @@ import { StandardProps } from '..';
 import { TransitionProps } from '../transitions/transition';
 import { PaperProps } from '../Paper';
 
-export interface AccordionProps
-  extends StandardProps<PaperProps, AccordionClassKey, 'onChange'> {
+export interface AccordionProps extends StandardProps<PaperProps, AccordionClassKey, 'onChange'> {
   /**
    * The content of the accordion.
    */

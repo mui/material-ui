@@ -36,8 +36,8 @@ export default function ActionsInAccordionSummary() {
         </AccordionSummary>
         <AccordionDetails>
           <Typography color="textSecondary">
-            The click event of the nested action will propagate up and expand the accordion unless you
-            explicitly stop it.
+            The click event of the nested action will propagate up and expand the accordion unless
+            you explicitly stop it.
           </Typography>
         </AccordionDetails>
       </Accordion>
@@ -58,7 +58,7 @@ export default function ActionsInAccordionSummary() {
         </AccordionSummary>
         <AccordionDetails>
           <Typography color="textSecondary">
-            The focus event of the nested action will propagate up and also focus the accordion 
+            The focus event of the nested action will propagate up and also focus the accordion
             unless you explicitly stop it.
           </Typography>
         </AccordionDetails>
@@ -81,7 +81,8 @@ export default function ActionsInAccordionSummary() {
         <AccordionDetails>
           <Typography color="textSecondary">
             If you forget to put an aria-label on the nested action, the label of the action will
-            also be included in the label of the parent button that controls the accordion expansion.
+            also be included in the label of the parent button that controls the accordion
+            expansion.
           </Typography>
         </AccordionDetails>
       </Accordion>

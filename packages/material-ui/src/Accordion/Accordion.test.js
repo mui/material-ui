@@ -64,9 +64,7 @@ describe('<Accordion />', () => {
 
   it('should call onChange when clicking the summary element', () => {
     const handleChange = spy();
-    const wrapper = mount(
-      <Accordion onChange={handleChange}>{minimalChildren}</Accordion>,
-    );
+    const wrapper = mount(<Accordion onChange={handleChange}>{minimalChildren}</Accordion>);
     wrapper.find(AccordionSummary).simulate('click');
     expect(handleChange.callCount).to.equal(1);
   });
