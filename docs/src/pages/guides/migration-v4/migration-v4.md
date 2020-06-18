@@ -130,6 +130,6 @@ yarn add @material-ui/core
   +    <Button size="small" color="primary">Save</Button>
   -  </ExpansionPanelActions>   
   +  </AccordionActions>
-  +</ExpansionPanel>
+  -</ExpansionPanel>
   +</Accordion>
   ```
