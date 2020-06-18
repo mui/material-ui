@@ -12,10 +12,10 @@ If you wish to add support for a component or feature not highlighted
 here, please search for the relevant [GitHub Issue](https://github.com/mui-org/material-ui/issues), or create a new one
 to discuss the approach before submitting a pull request.
 
+- **[Accordions](https://material.io/archive/guidelines/components/accordions.html) ✓** (_Legacy Material v1_)
 - App bars
   - **[Top](https://material.io/design/components/app-bars-top.html) ✓**
   - **[Bottom](https://material.io/design/components/app-bars-bottom.html) ✓**
-- **[Accordions](https://material.io/archive/guidelines/components/accordions.html) ✓** (_Legacy Material v1_)
 - **[Banners](https://material.io/design/components/banners.html)** ([Can be composed](https://medium.com/material-ui/introducing-material-ui-design-system-93e921beb8df))
 - **[Bottom navigation](https://material.io/design/components/bottom-navigation.html) ✓**
 - **[Buttons](https://material.io/design/components/buttons.html) ✓**
