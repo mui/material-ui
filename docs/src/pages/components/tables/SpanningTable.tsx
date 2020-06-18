@@ -14,6 +14,9 @@ const useStyles = makeStyles({
   table: {
     minWidth: 700,
   },
+  hideBorder: {
+    border: 0,
+  },
 });
 
 function ccyFormat(num: number) {
