@@ -37,10 +37,7 @@
 		"@types/react": "^16.8.23",
 		"@types/uuid": "^8.0.0",
 		"glob": "^7.1.6",
-		"husky": "^4.2.3",
 		"jest": "^26.0.1",
-		"prettier": "^2.0.1",
-		"pretty-quick": "^2.0.1",
 		"react": "^16.8.6",
 		"standard-version": "^8.0.0",
 		"ts-jest": "^26.1.0"
@@ -55,15 +52,5 @@
 		"tslib": "^1.13.0",
 		"typescript": "3.5.2",
 		"uuid": "^8.1.0"
-	},
-	"dependenciesMeta": {
-		"core-js": {
-			"built": false
-		}
-	},
-	"husky": {
-		"hooks": {
-			"pre-commit": "yarn pretty-quick --staged"
-		}
 	}
 }

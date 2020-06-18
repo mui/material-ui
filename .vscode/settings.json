@@ -1,4 +1,0 @@
-{
-	"typescript.tsdk": ".vscode/pnpify/typescript/lib",
-	"prettier.prettierPath": ".vscode/pnpify/prettier/index.js"
-}
