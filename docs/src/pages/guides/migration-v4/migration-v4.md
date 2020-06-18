@@ -119,7 +119,7 @@ yarn add @material-ui/core
   +  </AccordionSummary>
   -  <ExpansionPanelDetails>
   +  <AccordionDetails>
-       Chip label="Barbados" onDelete={() => {}} />
+       <Chip label="Barbados" onDelete={() => {}} />
        <Typography variant="caption">Select your destination of choice</Typography>
   -  </ExpansionPanelDetails>  
   +  </AccordionDetails>
