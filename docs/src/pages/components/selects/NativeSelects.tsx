@@ -20,12 +20,20 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function NativeSelects() {
   const classes = useStyles();
-  const [state, setState] = React.useState<{ age: string | number; name: string }>({
+  const [state, setState] = React.useState<{
+    age: string | number;
+    name: string;
+  }>({
     age: '',
     name: 'hai',
   });
 
-  const handleChange = (event: React.ChangeEvent<{ name?: string; value: unknown }>) => {
+  const handleChange = (
+    event: React.ChangeEvent<{
+      name?: string;
+      value: unknown;
+    }>,
+  ) => {
     const name = event.target.name as keyof typeof state;
     setState({
       ...state,

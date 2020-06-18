@@ -100,7 +100,9 @@ function RedditTextField(props: TextFieldProps) {
 
   return (
     <TextField
-      InputProps={{ classes, disableUnderline: true } as Partial<OutlinedInputProps>}
+      InputProps={
+        { classes, disableUnderline: true } as Partial<OutlinedInputProps>
+      }
       {...props}
     />
   );
@@ -146,7 +148,11 @@ export default function CustomizedInputs() {
 
   return (
     <form className={classes.root} noValidate>
-      <CssTextField className={classes.margin} id="custom-css-standard-input" label="Custom CSS" />
+      <CssTextField
+        className={classes.margin}
+        id="custom-css-standard-input"
+        label="Custom CSS"
+      />
       <CssTextField
         className={classes.margin}
         label="Custom CSS"

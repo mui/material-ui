@@ -54,10 +54,7 @@ import Button from '@material-ui/core/Button'; // v1.x
 
 ```jsx
 import React from 'react';
-import {
-  MuiThemeProvider,
-  createMuiTheme,
-} from '@material-ui/core/styles'; // v1.x
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'; // v1.x
 import { MuiThemeProvider as V0MuiThemeProvider } from 'material-ui';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 

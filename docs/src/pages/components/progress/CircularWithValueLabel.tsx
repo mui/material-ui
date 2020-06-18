@@ -1,9 +1,13 @@
 import React from 'react';
-import CircularProgress, { CircularProgressProps } from '@material-ui/core/CircularProgress';
+import CircularProgress, {
+  CircularProgressProps,
+} from '@material-ui/core/CircularProgress';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
-function CircularProgressWithLabel(props: CircularProgressProps & { value: number }) {
+function CircularProgressWithLabel(
+  props: CircularProgressProps & { value: number },
+) {
   return (
     <Box position="relative" display="inline-flex">
       <CircularProgress variant="static" {...props} />
@@ -17,9 +21,11 @@ function CircularProgressWithLabel(props: CircularProgressProps & { value: numbe
         alignItems="center"
         justifyContent="center"
       >
-        <Typography variant="caption" component="div" color="textSecondary">{`${Math.round(
-          props.value,
-        )}%`}</Typography>
+        <Typography
+          variant="caption"
+          component="div"
+          color="textSecondary"
+        >{`${Math.round(props.value)}%`}</Typography>
       </Box>
     </Box>
   );
@@ -30,7 +36,9 @@ export default function CircularStatic() {
 
   React.useEffect(() => {
     const timer = setInterval(() => {
-      setProgress((prevProgress) => (prevProgress >= 100 ? 10 : prevProgress + 10));
+      setProgress((prevProgress) =>
+        prevProgress >= 100 ? 10 : prevProgress + 10,
+      );
     }, 800);
     return () => {
       clearInterval(timer);

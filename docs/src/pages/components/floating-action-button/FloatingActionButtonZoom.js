@@ -142,11 +142,17 @@ export default function FloatingActionButtonZoom() {
           in={value === index}
           timeout={transitionDuration}
           style={{
-            transitionDelay: `${value === index ? transitionDuration.exit : 0}ms`,
+            transitionDelay: `${
+              value === index ? transitionDuration.exit : 0
+            }ms`,
           }}
           unmountOnExit
         >
-          <Fab aria-label={fab.label} className={fab.className} color={fab.color}>
+          <Fab
+            aria-label={fab.label}
+            className={fab.className}
+            color={fab.color}
+          >
             {fab.icon}
           </Fab>
         </Zoom>

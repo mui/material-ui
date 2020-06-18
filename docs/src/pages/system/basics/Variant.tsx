@@ -1,7 +1,12 @@
 import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import NoSsr from '@material-ui/core/NoSsr';
-import { PropsFor, style, typography, TypographyProps } from '@material-ui/system';
+import {
+  PropsFor,
+  style,
+  typography,
+  TypographyProps,
+} from '@material-ui/system';
 
 const variant = style({
   prop: 'variant',

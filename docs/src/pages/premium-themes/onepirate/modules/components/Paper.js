@@ -21,7 +21,13 @@ const styles = (theme) => ({
 });
 
 function Paper(props) {
-  const { background = 'light', classes, className, padding = false, ...other } = props;
+  const {
+    background = 'light',
+    classes,
+    className,
+    padding = false,
+    ...other
+  } = props;
   return (
     <MuiPaper
       elevation={0}

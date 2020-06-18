@@ -87,7 +87,12 @@ function ConfirmationDialogRaw(props: ConfirmationDialogRawProps) {
           onChange={handleChange}
         >
           {options.map((option) => (
-            <FormControlLabel value={option} key={option} control={<Radio />} label={option} />
+            <FormControlLabel
+              value={option}
+              key={option}
+              control={<Radio />}
+              label={option}
+            />
           ))}
         </RadioGroup>
       </DialogContent>
@@ -152,7 +157,10 @@ export default function ConfirmationDialog() {
           <ListItemText primary="Phone ringtone" secondary={value} />
         </ListItem>
         <ListItem button divider disabled role="listitem">
-          <ListItemText primary="Default notification ringtone" secondary="Tethys" />
+          <ListItemText
+            primary="Default notification ringtone"
+            secondary="Tethys"
+          />
         </ListItem>
         <ConfirmationDialogRaw
           classes={{

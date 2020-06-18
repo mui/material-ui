@@ -27,7 +27,9 @@ export default function DirectionSnackbar() {
     React.ComponentType<TransitionProps> | undefined
   >(undefined);
 
-  const handleClick = (Transition: React.ComponentType<TransitionProps>) => () => {
+  const handleClick = (
+    Transition: React.ComponentType<TransitionProps>,
+  ) => () => {
     setTransition(() => Transition);
     setOpen(true);
   };

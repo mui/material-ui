@@ -83,10 +83,7 @@ In the event the users need to interact with another part of the page, e.g. with
   Additionally, you may give a description of your modal with the `aria-describedby="id..."` prop on the `Modal`.
 
   ```jsx
-  <Modal
-    aria-labelledby="modal-title"
-    aria-describedby="modal-description"
-  >
+  <Modal aria-labelledby="modal-title" aria-describedby="modal-description">
     <h2 id="modal-title">My Title</h2>
     <p id="modal-description">My Description</p>
   </Modal>

@@ -42,8 +42,8 @@ export default function ControlledAccordions() {
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            Nulla facilisi. Phasellus sollicitudin nulla et quam mattis feugiat. Aliquam eget
-            maximus est, id dignissim quam.
+            Nulla facilisi. Phasellus sollicitudin nulla et quam mattis feugiat.
+            Aliquam eget maximus est, id dignissim quam.
           </Typography>
         </AccordionDetails>
       </Accordion>
@@ -60,8 +60,9 @@ export default function ControlledAccordions() {
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            Donec placerat, lectus sed mattis semper, neque lectus feugiat lectus, varius pulvinar
-            diam eros in elit. Pellentesque convallis laoreet laoreet.
+            Donec placerat, lectus sed mattis semper, neque lectus feugiat
+            lectus, varius pulvinar diam eros in elit. Pellentesque convallis
+            laoreet laoreet.
           </Typography>
         </AccordionDetails>
       </Accordion>
@@ -78,8 +79,8 @@ export default function ControlledAccordions() {
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            Nunc vitae orci ultricies, auctor nunc in, volutpat nisl. Integer sit amet egestas eros,
-            vitae egestas augue. Duis vel est augue.
+            Nunc vitae orci ultricies, auctor nunc in, volutpat nisl. Integer
+            sit amet egestas eros, vitae egestas augue. Duis vel est augue.
           </Typography>
         </AccordionDetails>
       </Accordion>
@@ -93,8 +94,8 @@ export default function ControlledAccordions() {
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            Nunc vitae orci ultricies, auctor nunc in, volutpat nisl. Integer sit amet egestas eros,
-            vitae egestas augue. Duis vel est augue.
+            Nunc vitae orci ultricies, auctor nunc in, volutpat nisl. Integer
+            sit amet egestas eros, vitae egestas augue. Duis vel est augue.
           </Typography>
         </AccordionDetails>
       </Accordion>

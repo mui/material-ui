@@ -8,7 +8,10 @@ interface MyButtonProps {
 }
 
 const MyButton = styled(
-  ({ color, ...other }: MyButtonProps & Omit<ButtonProps, keyof MyButtonProps>) => (
+  ({
+    color,
+    ...other
+  }: MyButtonProps & Omit<ButtonProps, keyof MyButtonProps>) => (
     <Button {...other} />
   ),
 )({

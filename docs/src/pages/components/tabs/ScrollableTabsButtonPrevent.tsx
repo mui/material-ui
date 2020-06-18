@@ -73,10 +73,18 @@ export default function ScrollableTabsButtonPrevent() {
           aria-label="scrollable prevent tabs example"
         >
           <Tab icon={<PhoneIcon />} aria-label="phone" {...a11yProps(0)} />
-          <Tab icon={<FavoriteIcon />} aria-label="favorite" {...a11yProps(1)} />
+          <Tab
+            icon={<FavoriteIcon />}
+            aria-label="favorite"
+            {...a11yProps(1)}
+          />
           <Tab icon={<PersonPinIcon />} aria-label="person" {...a11yProps(2)} />
           <Tab icon={<HelpIcon />} aria-label="help" {...a11yProps(3)} />
-          <Tab icon={<ShoppingBasket />} aria-label="shopping" {...a11yProps(4)} />
+          <Tab
+            icon={<ShoppingBasket />}
+            aria-label="shopping"
+            {...a11yProps(4)}
+          />
           <Tab icon={<ThumbDown />} aria-label="up" {...a11yProps(5)} />
           <Tab icon={<ThumbUp />} aria-label="down" {...a11yProps(6)} />
         </Tabs>

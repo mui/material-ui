@@ -60,6 +60,8 @@ Here is an example of customizing the component. You can learn more about this i
 ```jsx
 <Checkbox
   value="checkedA"
-  inputProps={{ 'aria-label': 'Checkbox A' }}
+  inputProps={{
+    'aria-label': 'Checkbox A',
+  }}
 />
 ```

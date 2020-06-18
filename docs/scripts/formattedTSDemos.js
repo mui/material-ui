@@ -31,10 +31,6 @@ const babelConfig = {
 
 const workspaceRoot = path.join(__dirname, '../../');
 
-const prettierConfig = prettier.resolveConfig.sync(process.cwd(), {
-  config: path.join(workspaceRoot, 'prettier.config.js'),
-});
-
 async function getFiles(root) {
   const files = [];
 
@@ -94,11 +90,18 @@ async function transpileFile(tsxPath, program, ignoreCache = false) {
     });
     const codeWithPropTypes = typescriptToProptypes.inject(propTypesAST, code);
 
-    const prettified = prettier.format(codeWithPropTypes, { ...prettierConfig, filepath: tsxPath });
+    const prettierConfig = prettier.resolveConfig.sync(jsPath, {
+      config: path.join(workspaceRoot, 'prettier.config.js'),
+    });
+    const prettierFormat = (jsSource) =>
+      prettier.format(jsSource, { ...prettierConfig, filepath: jsPath });
+
+    const prettified = prettierFormat(codeWithPropTypes);
     const formatted = fixBabelGeneratorIssues(prettified);
     const correctedLineEndings = fixLineEndings(source, formatted);
 
-    await fse.writeFile(jsPath, correctedLineEndings);
+    // removed blank lines change potential formatting
+    await fse.writeFile(jsPath, prettierFormat(correctedLineEndings));
     return TranspileResult.Success;
   } catch (err) {
     console.error('Something went wrong transpiling %s\n%s\n', tsxPath, err);

@@ -79,10 +79,7 @@ If you're using `eslint` you can catch problematic imports with the [`no-restric
     "no-restricted-imports": [
       "error",
       {
-        "patterns": [
-          "@material-ui/*/*/*",
-          "!@material-ui/core/test-utils/*"
-        ]
+        "patterns": ["@material-ui/*/*/*", "!@material-ui/core/test-utils/*"]
       }
     ]
   }
@@ -202,19 +199,13 @@ This is because `@material-ui/styles` is re-exported through `core`, but the ful
 You have an import like this in your code:
 
 ```js
-import {
-  makeStyles,
-  createStyles,
-} from '@material-ui/core';
+import { makeStyles, createStyles } from '@material-ui/core';
 ```
 
 The fix is simple, define the import separately:
 
 ```js
-import {
-  makeStyles,
-  createStyles,
-} from '@material-ui/core/styles';
+import { makeStyles, createStyles } from '@material-ui/core/styles';
 ```
 
 Enjoy significantly faster start times.

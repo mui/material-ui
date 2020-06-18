@@ -22,7 +22,12 @@ export default function LoadingButtons() {
       <LoadingButton variant="outlined" pending pendingIndicator="Loading...">
         Fetch data
       </LoadingButton>
-      <LoadingButton variant="outlined" pending pendingPosition="start" startIcon={<SaveIcon />}>
+      <LoadingButton
+        variant="outlined"
+        pending
+        pendingPosition="start"
+        startIcon={<SaveIcon />}
+      >
         Save
       </LoadingButton>
     </div>

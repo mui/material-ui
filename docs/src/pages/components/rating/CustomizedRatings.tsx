@@ -20,7 +20,12 @@ const StyledRating = withStyles({
   },
 })(Rating);
 
-const customIcons: { [index: string]: { icon: React.ReactElement; label: string } } = {
+const customIcons: {
+  [index: string]: {
+    icon: React.ReactElement;
+    label: string;
+  };
+} = {
   1: {
     icon: <SentimentVeryDissatisfiedIcon />,
     label: 'Very Dissatisfied',
@@ -65,7 +70,9 @@ export default function CustomizedRatings() {
         <StyledRating
           name="customized-color"
           defaultValue={2}
-          getLabelText={(value: number) => `${value} Heart${value !== 1 ? 's' : ''}`}
+          getLabelText={(value: number) =>
+            `${value} Heart${value !== 1 ? 's' : ''}`
+          }
           precision={0.5}
           icon={<FavoriteIcon fontSize="inherit" />}
         />

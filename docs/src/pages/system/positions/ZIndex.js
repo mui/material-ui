@@ -7,7 +7,11 @@ export default function ZIndex() {
     <Typography
       component="div"
       variant="body1"
-      style={{ height: 100, width: '100%', position: 'relative' }}
+      style={{
+        height: 100,
+        width: '100%',
+        position: 'relative',
+      }}
     >
       <Box
         bgcolor="grey.700"

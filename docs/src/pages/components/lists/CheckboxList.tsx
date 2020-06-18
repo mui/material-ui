@@ -42,7 +42,13 @@ export default function CheckboxList() {
         const labelId = `checkbox-list-label-${value}`;
 
         return (
-          <ListItem key={value} role={undefined} dense button onClick={handleToggle(value)}>
+          <ListItem
+            key={value}
+            role={undefined}
+            dense
+            button
+            onClick={handleToggle(value)}
+          >
             <ListItemIcon>
               <Checkbox
                 edge="start"

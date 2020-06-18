@@ -6,7 +6,8 @@ import Switch from '@material-ui/core/Switch';
 
 const useStyles = makeStyles({
   button: {
-    background: 'linear-gradient(45deg, var(--background-start) 30%, var(--background-end) 90%)',
+    background:
+      'linear-gradient(45deg, var(--background-start) 30%, var(--background-end) 90%)',
     borderRadius: 3,
     border: 0,
     color: 'white',

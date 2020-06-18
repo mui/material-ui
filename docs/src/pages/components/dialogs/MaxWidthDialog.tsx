@@ -45,11 +45,15 @@ export default function MaxWidthDialog() {
     setOpen(false);
   };
 
-  const handleMaxWidthChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+  const handleMaxWidthChange = (
+    event: React.ChangeEvent<{ value: unknown }>,
+  ) => {
     setMaxWidth(event.target.value as DialogProps['maxWidth']);
   };
 
-  const handleFullWidthChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFullWidthChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
     setFullWidth(event.target.checked);
   };
 
@@ -92,7 +96,9 @@ export default function MaxWidthDialog() {
             </FormControl>
             <FormControlLabel
               className={classes.formControlLabel}
-              control={<Switch checked={fullWidth} onChange={handleFullWidthChange} />}
+              control={
+                <Switch checked={fullWidth} onChange={handleFullWidthChange} />
+              }
               label="Full width"
             />
           </form>

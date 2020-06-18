@@ -46,7 +46,11 @@ export default function FeaturedPost(props) {
             </CardContent>
           </div>
           <Hidden xsDown>
-            <CardMedia className={classes.cardMedia} image={post.image} title={post.imageTitle} />
+            <CardMedia
+              className={classes.cardMedia}
+              image={post.image}
+              title={post.imageTitle}
+            />
           </Hidden>
         </Card>
       </CardActionArea>

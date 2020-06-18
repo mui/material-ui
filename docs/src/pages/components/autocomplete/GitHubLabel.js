@@ -120,6 +120,7 @@ export default function GitHubLabel() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [value, setValue] = React.useState([labels[1], labels[11]]);
+
   const [pendingValue, setPendingValue] = React.useState([]);
   const theme = useTheme();
 
@@ -203,9 +204,14 @@ export default function GitHubLabel() {
             <React.Fragment>
               <DoneIcon
                 className={classes.iconSelected}
-                style={{ visibility: selected ? 'visible' : 'hidden' }}
+                style={{
+                  visibility: selected ? 'visible' : 'hidden',
+                }}
               />
-              <span className={classes.color} style={{ backgroundColor: option.color }} />
+              <span
+                className={classes.color}
+                style={{ backgroundColor: option.color }}
+              />
               <div className={classes.text}>
                 {option.name}
                 <br />
@@ -213,7 +219,9 @@ export default function GitHubLabel() {
               </div>
               <CloseIcon
                 className={classes.close}
-                style={{ visibility: selected ? 'visible' : 'hidden' }}
+                style={{
+                  visibility: selected ? 'visible' : 'hidden',
+                }}
               />
             </React.Fragment>
           )}

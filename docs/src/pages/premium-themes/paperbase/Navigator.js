@@ -23,12 +23,19 @@ const categories = [
   {
     id: 'Develop',
     children: [
-      { id: 'Authentication', icon: <PeopleIcon />, active: true },
+      {
+        id: 'Authentication',
+        icon: <PeopleIcon />,
+        active: true,
+      },
       { id: 'Database', icon: <DnsRoundedIcon /> },
       { id: 'Storage', icon: <PermMediaOutlinedIcon /> },
       { id: 'Hosting', icon: <PublicIcon /> },
       { id: 'Functions', icon: <SettingsEthernetIcon /> },
-      { id: 'ML Kit', icon: <SettingsInputComponentIcon /> },
+      {
+        id: 'ML Kit',
+        icon: <SettingsInputComponentIcon />,
+      },
     ],
   },
   {
@@ -88,7 +95,9 @@ function Navigator(props) {
   return (
     <Drawer variant="permanent" {...other}>
       <List disablePadding>
-        <ListItem className={clsx(classes.firebase, classes.item, classes.itemCategory)}>
+        <ListItem
+          className={clsx(classes.firebase, classes.item, classes.itemCategory)}
+        >
           Paperbase
         </ListItem>
         <ListItem className={clsx(classes.item, classes.itemCategory)}>

@@ -60,6 +60,9 @@ Sponsors.propTypes = {
 const requireRaw = require.context('./', false, /\.md$/);
 
 export async function getInitialProps() {
-  const { docs } = prepareMarkdown({ pageFilename: '/', requireRaw });
+  const { docs } = prepareMarkdown({
+    pageFilename: '/',
+    requireRaw,
+  });
   return { docs };
 }

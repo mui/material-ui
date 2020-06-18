@@ -22,7 +22,8 @@ const messages = [
   {
     id: 1,
     primary: 'Brunch this week?',
-    secondary: "I'll be in the neighbourhood this week. Let's grab a bite to eat",
+    secondary:
+      "I'll be in the neighbourhood this week. Let's grab a bite to eat",
     person: '/static/images/avatar/5.jpg',
   },
   {
@@ -35,7 +36,8 @@ const messages = [
   {
     id: 3,
     primary: 'Recipe to try',
-    secondary: 'I am try out this new BBQ recipe, I think this might be amazing',
+    secondary:
+      'I am try out this new BBQ recipe, I think this might be amazing',
     person: '/static/images/avatar/2.jpg',
   },
   {
@@ -47,7 +49,8 @@ const messages = [
   {
     id: 5,
     primary: "Doctor's Appointment",
-    secondary: 'My appointment for the doctor was rescheduled for next Saturday.',
+    secondary:
+      'My appointment for the doctor was rescheduled for next Saturday.',
     person: '/static/images/avatar/4.jpg',
   },
   {
@@ -110,8 +113,18 @@ export default function BottomAppBar() {
         <List className={classes.list}>
           {messages.map(({ id, primary, secondary, person }) => (
             <React.Fragment key={id}>
-              {id === 1 && <ListSubheader className={classes.subheader}>Today</ListSubheader>}
-              {id === 3 && <ListSubheader className={classes.subheader}>Yesterday</ListSubheader>}
+              {id === 1 && (
+                <ListSubheader className={classes.subheader}>
+                  Today
+                </ListSubheader>
+              )}
+
+              {id === 3 && (
+                <ListSubheader className={classes.subheader}>
+                  Yesterday
+                </ListSubheader>
+              )}
+
               <ListItem button>
                 <ListItemAvatar>
                   <Avatar alt="Profile Picture" src={person} />

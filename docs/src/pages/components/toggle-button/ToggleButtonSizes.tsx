@@ -10,14 +10,22 @@ import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 export default function ToggleButtonSizes() {
   const [alignment, setAlignment] = React.useState('left');
 
-  const handleChange = (event: React.MouseEvent<HTMLElement>, newAlignment: string) => {
+  const handleChange = (
+    event: React.MouseEvent<HTMLElement>,
+    newAlignment: string,
+  ) => {
     setAlignment(newAlignment);
   };
 
   return (
     <Grid container spacing={2} direction="column" alignItems="center">
       <Grid item>
-        <ToggleButtonGroup size="small" value={alignment} exclusive onChange={handleChange}>
+        <ToggleButtonGroup
+          size="small"
+          value={alignment}
+          exclusive
+          onChange={handleChange}
+        >
           <ToggleButton value="left">
             <FormatAlignLeftIcon fontSize="small" />
           </ToggleButton>
@@ -33,7 +41,12 @@ export default function ToggleButtonSizes() {
         </ToggleButtonGroup>
       </Grid>
       <Grid item>
-        <ToggleButtonGroup size="medium" value={alignment} exclusive onChange={handleChange}>
+        <ToggleButtonGroup
+          size="medium"
+          value={alignment}
+          exclusive
+          onChange={handleChange}
+        >
           <ToggleButton value="left">
             <FormatAlignLeftIcon />
           </ToggleButton>
@@ -49,7 +62,12 @@ export default function ToggleButtonSizes() {
         </ToggleButtonGroup>
       </Grid>
       <Grid item>
-        <ToggleButtonGroup size="large" value={alignment} exclusive onChange={handleChange}>
+        <ToggleButtonGroup
+          size="large"
+          value={alignment}
+          exclusive
+          onChange={handleChange}
+        >
           <ToggleButton value="left">
             <FormatAlignLeftIcon />
           </ToggleButton>

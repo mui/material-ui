@@ -1,11 +1,19 @@
 /* eslint-disable no-use-before-define */
 import React from 'react';
-import { useTheme, fade, makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import {
+  useTheme,
+  fade,
+  makeStyles,
+  Theme,
+  createStyles,
+} from '@material-ui/core/styles';
 import Popper from '@material-ui/core/Popper';
 import SettingsIcon from '@material-ui/icons/Settings';
 import CloseIcon from '@material-ui/icons/Close';
 import DoneIcon from '@material-ui/icons/Done';
-import Autocomplete, { AutocompleteCloseReason } from '@material-ui/lab/Autocomplete';
+import Autocomplete, {
+  AutocompleteCloseReason,
+} from '@material-ui/lab/Autocomplete';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import InputBase from '@material-ui/core/InputBase';
 
@@ -121,7 +129,10 @@ const useStyles = makeStyles((theme: Theme) =>
 export default function GitHubLabel() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const [value, setValue] = React.useState<LabelType[]>([labels[1], labels[11]]);
+  const [value, setValue] = React.useState<LabelType[]>([
+    labels[1],
+    labels[11],
+  ]);
   const [pendingValue, setPendingValue] = React.useState<LabelType[]>([]);
   const theme = useTheme();
 
@@ -130,7 +141,10 @@ export default function GitHubLabel() {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = (event: React.ChangeEvent<{}>, reason: AutocompleteCloseReason) => {
+  const handleClose = (
+    event: React.ChangeEvent<{}>,
+    reason: AutocompleteCloseReason,
+  ) => {
     if (reason === 'toggleInput') {
       return;
     }
@@ -205,9 +219,14 @@ export default function GitHubLabel() {
             <React.Fragment>
               <DoneIcon
                 className={classes.iconSelected}
-                style={{ visibility: selected ? 'visible' : 'hidden' }}
+                style={{
+                  visibility: selected ? 'visible' : 'hidden',
+                }}
               />
-              <span className={classes.color} style={{ backgroundColor: option.color }} />
+              <span
+                className={classes.color}
+                style={{ backgroundColor: option.color }}
+              />
               <div className={classes.text}>
                 {option.name}
                 <br />
@@ -215,7 +234,9 @@ export default function GitHubLabel() {
               </div>
               <CloseIcon
                 className={classes.close}
-                style={{ visibility: selected ? 'visible' : 'hidden' }}
+                style={{
+                  visibility: selected ? 'visible' : 'hidden',
+                }}
               />
             </React.Fragment>
           )}

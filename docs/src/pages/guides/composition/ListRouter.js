@@ -17,7 +17,10 @@ function ListItemLink(props) {
   const { icon, primary, to } = props;
 
   const renderLink = React.useMemo(
-    () => React.forwardRef((itemProps, ref) => <RouterLink to={to} ref={ref} {...itemProps} />),
+    () =>
+      React.forwardRef((itemProps, ref) => (
+        <RouterLink to={to} ref={ref} {...itemProps} />
+      )),
     [to],
   );
 
@@ -51,7 +54,9 @@ export default function ListRouter() {
       <div className={classes.root}>
         <Route>
           {({ location }) => (
-            <Typography gutterBottom>Current route: {location.pathname}</Typography>
+            <Typography gutterBottom>
+              Current route: {location.pathname}
+            </Typography>
           )}
         </Route>
         <Paper elevation={0}>

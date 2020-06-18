@@ -143,7 +143,9 @@ export default function HorizontalNonLinearAlternativeLabelStepper() {
           const stepProps = {};
           const buttonProps = {};
           if (isStepOptional(index)) {
-            buttonProps.optional = <Typography variant="caption">Optional</Typography>;
+            buttonProps.optional = (
+              <Typography variant="caption">Optional</Typography>
+            );
           }
           if (isStepSkipped(index)) {
             stepProps.completed = false;
@@ -171,9 +173,15 @@ export default function HorizontalNonLinearAlternativeLabelStepper() {
           </div>
         ) : (
           <div>
-            <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
+            <Typography className={classes.instructions}>
+              {getStepContent(activeStep)}
+            </Typography>
             <div>
-              <Button disabled={activeStep === 0} onClick={handleBack} className={classes.button}>
+              <Button
+                disabled={activeStep === 0}
+                onClick={handleBack}
+                className={classes.button}
+              >
                 Back
               </Button>
               <Button
@@ -201,8 +209,14 @@ export default function HorizontalNonLinearAlternativeLabelStepper() {
                     Step {activeStep + 1} already completed
                   </Typography>
                 ) : (
-                  <Button variant="contained" color="primary" onClick={handleComplete}>
-                    {completedSteps() === totalSteps() - 1 ? 'Finish' : 'Complete Step'}
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={handleComplete}
+                  >
+                    {completedSteps() === totalSteps() - 1
+                      ? 'Finish'
+                      : 'Complete Step'}
                   </Button>
                 ))}
             </div>

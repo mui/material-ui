@@ -116,24 +116,43 @@ export default function CustomizedSwitches() {
   });
 
   const handleChange = (event) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
+    setState({
+      ...state,
+      [event.target.name]: event.target.checked,
+    });
   };
 
   return (
     <FormGroup>
       <FormControlLabel
-        control={<PurpleSwitch checked={state.checkedA} onChange={handleChange} name="checkedA" />}
+        control={
+          <PurpleSwitch
+            checked={state.checkedA}
+            onChange={handleChange}
+            name="checkedA"
+          />
+        }
         label="Custom color"
       />
       <FormControlLabel
-        control={<IOSSwitch checked={state.checkedB} onChange={handleChange} name="checkedB" />}
+        control={
+          <IOSSwitch
+            checked={state.checkedB}
+            onChange={handleChange}
+            name="checkedB"
+          />
+        }
         label="iOS style"
       />
       <Typography component="div">
         <Grid component="label" container alignItems="center" spacing={1}>
           <Grid item>Off</Grid>
           <Grid item>
-            <AntSwitch checked={state.checkedC} onChange={handleChange} name="checkedC" />
+            <AntSwitch
+              checked={state.checkedC}
+              onChange={handleChange}
+              name="checkedC"
+            />
           </Grid>
           <Grid item>On</Grid>
         </Grid>

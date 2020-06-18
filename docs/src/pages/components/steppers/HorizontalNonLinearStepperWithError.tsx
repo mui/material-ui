@@ -95,7 +95,10 @@ export default function HorizontalNonLinearStepperWithError() {
       <Stepper activeStep={activeStep}>
         {steps.map((label, index) => {
           const stepProps: { completed?: boolean } = {};
-          const labelProps: { optional?: React.ReactNode; error?: boolean } = {};
+          const labelProps: {
+            optional?: React.ReactNode;
+            error?: boolean;
+          } = {};
           if (isStepOptional(index)) {
             labelProps.optional = (
               <Typography variant="caption" color="error">
@@ -128,9 +131,15 @@ export default function HorizontalNonLinearStepperWithError() {
           </div>
         ) : (
           <div>
-            <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
+            <Typography className={classes.instructions}>
+              {getStepContent(activeStep)}
+            </Typography>
             <div>
-              <Button disabled={activeStep === 0} onClick={handleBack} className={classes.button}>
+              <Button
+                disabled={activeStep === 0}
+                onClick={handleBack}
+                className={classes.button}
+              >
                 Back
               </Button>
               {isStepOptional(activeStep) && (

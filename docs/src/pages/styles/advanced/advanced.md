@@ -13,8 +13,7 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import DeepChild from './my_components/DeepChild';
 
 const theme = {
-  background:
-    'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+  background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
 };
 
 function Theming() {
@@ -109,9 +108,7 @@ function Nested(props) {
   return (
     <button className={classes.root}>
       {/* 'jss1' */}
-      <span className={classes.label}>
-        {/* 'jss2' nested */}
-      </span>
+      <span className={classes.label}>{/* 'jss2' nested */}</span>
     </button>
   );
 }
@@ -125,7 +122,7 @@ However, the class names are often non-deterministic. How can a parent component
 
 ### `withStyles`
 
-This is the simplest case. the wrapped component accepts a `classes` prop,
+This is the simplest case. The wrapped component accepts a `classes` prop,
 it simply merges the class names provided with the style sheet.
 
 ```jsx
@@ -134,9 +131,7 @@ const Nested = withStyles({
   label: {}, // a nested style rule
 })(({ classes }) => (
   <button className={classes.root}>
-    <span className={classes.label}>
-      {/* 'jss2 my-label' Nested*/}
-    </span>
+    <span className={classes.label}>{/* 'jss2 my-label' Nested*/}</span>
   </button>
 ));
 
@@ -159,9 +154,7 @@ function Nested(props) {
   const classes = useStyles(props);
   return (
     <button className={classes.root}>
-      <span className={classes.label}>
-        {/* 'jss2 my-label' nested */}
-      </span>
+      <span className={classes.label}>{/* 'jss2 my-label' nested */}</span>
     </button>
   );
 }
@@ -191,10 +184,7 @@ Of course, you are free to use additional plugins. Here is an example with the [
 
 ```jsx
 import { create } from 'jss';
-import {
-  StylesProvider,
-  jssPreset,
-} from '@material-ui/core/styles';
+import { StylesProvider, jssPreset } from '@material-ui/core/styles';
 import rtl from 'jss-rtl';
 
 const jss = create({
@@ -302,10 +292,7 @@ The simplest approach is to add an HTML comment to the `<head>` that determines 
 
 ```jsx
 import { create } from 'jss';
-import {
-  StylesProvider,
-  jssPreset,
-} from '@material-ui/core/styles';
+import { StylesProvider, jssPreset } from '@material-ui/core/styles';
 
 const jss = create({
   ...jssPreset(),
@@ -332,17 +319,12 @@ To get around this issue, you can provide a DOM element (other than a comment) a
 
 ```jsx
 import { create } from 'jss';
-import {
-  StylesProvider,
-  jssPreset,
-} from '@material-ui/core/styles';
+import { StylesProvider, jssPreset } from '@material-ui/core/styles';
 
 const jss = create({
   ...jssPreset(),
   // Define a custom insertion point that JSS will look for when injecting the styles into the DOM.
-  insertionPoint: document.getElementById(
-    'jss-insertion-point',
-  ),
+  insertionPoint: document.getElementById('jss-insertion-point'),
 });
 
 export default function App() {
@@ -357,18 +339,10 @@ To get around this issue, you can use the JavaScript `document.createComment()` 
 
 ```jsx
 import { create } from 'jss';
-import {
-  StylesProvider,
-  jssPreset,
-} from '@material-ui/core/styles';
+import { StylesProvider, jssPreset } from '@material-ui/core/styles';
 
-const styleNode = document.createComment(
-  'jss-insertion-point',
-);
-document.head.insertBefore(
-  styleNode,
-  document.head.firstChild,
-);
+const styleNode = document.createComment('jss-insertion-point');
+document.head.insertBefore(styleNode, document.head.firstChild);
 
 const jss = create({
   ...jssPreset(),
@@ -392,9 +366,7 @@ import { ServerStyleSheets } from '@material-ui/core/styles';
 function render() {
   const sheets = new ServerStyleSheets();
 
-  const html = ReactDOMServer.renderToString(
-    sheets.collect(<App />),
-  );
+  const html = ReactDOMServer.renderToString(sheets.collect(<App />));
   const css = sheets.toString();
 
   return `
@@ -593,6 +565,11 @@ This vulnerability would allow the attacker to execute anything. However, with a
 
 You can read more about CSP on the [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP).
 
+### Does Material-UI support CSP?
+
+Many Material-UI components support a strict CSP. Specifically, this means you will not need to use `'unsafe-inline'`. However, some components still use inline styles which require that `'unsafe-inline'` is set in the `style-src` directive. To test if your CSP is compatible with the components used in your project, you can use [Content-Security-Policy-Report-Only](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy-Report-Only).
+Updating Material-UI to fully support a strict CSP is being tracked in [#19938](https://github.com/mui-org/material-ui/issues/19938).
+
 ### How does one implement CSP?
 
 In order to use CSP with Material-UI (and JSS), you need to use a nonce. A nonce is a randomly generated string that is only used once, therefore you need to add server middleware to generate one on each request. JSS has a [great tutorial](https://github.com/cssinjs/jss/blob/master/docs/csp.md) on how to achieve this with Express and React Helmet. For a basic rundown, continue reading.
@@ -620,7 +597,9 @@ If you are using Server-Side Rendering (SSR), you should pass the nonce in the `
 <style
   id="jss-server-side"
   nonce={nonce}
-  dangerouslySetInnerHTML={{ __html: sheets.toString() }}
+  dangerouslySetInnerHTML={{
+    __html: sheets.toString(),
+  }}
 />
 ```
 
@@ -632,9 +611,6 @@ You must include this header regardless of whether or not SSR is used. Here is a
 
 ```html
 <head>
-  <meta
-    property="csp-nonce"
-    content="this-is-a-nonce-123"
-  />
+  <meta property="csp-nonce" content="this-is-a-nonce-123" />
 </head>
 ```

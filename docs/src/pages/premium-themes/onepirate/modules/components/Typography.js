@@ -52,7 +52,11 @@ function Typography(props) {
     <MuiTypography variantMapping={variantMapping} variant={variant} {...other}>
       {children}
       {marked ? (
-        <span className={classes[`marked${capitalize(variant) + capitalize(marked)}`]} />
+        <span
+          className={
+            classes[`marked${capitalize(variant) + capitalize(marked)}`]
+          }
+        />
       ) : null}
     </MuiTypography>
   );

@@ -44,7 +44,12 @@ export default function DialogSelect() {
   return (
     <div>
       <Button onClick={handleClickOpen}>Open select dialog</Button>
-      <Dialog disableBackdropClick disableEscapeKeyDown open={open} onClose={handleClose}>
+      <Dialog
+        disableBackdropClick
+        disableEscapeKeyDown
+        open={open}
+        onClose={handleClose}
+      >
         <DialogTitle>Fill the form</DialogTitle>
         <DialogContent>
           <form className={classes.container}>

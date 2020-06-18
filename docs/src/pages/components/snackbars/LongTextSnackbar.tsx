@@ -32,7 +32,10 @@ export default function LongTextSnackbar() {
           I love cheesecake. I love chocolate.'
         }
       />
-      <SnackbarContent message="I love candy. I love cookies. I love cupcakes." action={action} />
+      <SnackbarContent
+        message="I love candy. I love cookies. I love cupcakes."
+        action={action}
+      />
       <SnackbarContent
         message={
           'I love candy. I love cookies. I love cupcakes. \
