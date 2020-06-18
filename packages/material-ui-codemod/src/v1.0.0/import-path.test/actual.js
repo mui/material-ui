@@ -23,11 +23,11 @@ import {
 import Slide from '@material-ui/core/transitions/Slide';
 import Radio, { RadioGroup } from '@material-ui/core/Radio';
 import { FormControlLabel } from '@material-ui/core/Form';
-import Accordion, {
-  AccordionSummary,
-  AccordionDetails,
-  AccordionActions,
-} from '@material-ui/core/Accordion';
+import ExpansionPanel, {
+  ExpansionPanelSummary,
+  ExpansionPanelDetails,
+  ExpansionPanelActions,
+} from '@material-ui/core/ExpansionPanel';
 import GridList, { GridListTile } from '@material-ui/core/GridList';
 import { CircularProgress } from '@material-ui/core/Progress';
 import { LinearProgress as MuiLinearProgress } from '@material-ui/core/Progress';

@@ -63,10 +63,10 @@ const pages = [
         pathname: '/components',
         subheader: '/components/surfaces',
         children: [
-          { pathname: '/components/accordions' },
           { pathname: '/components/app-bar' },
           { pathname: '/components/paper' },
           { pathname: '/components/cards' },
+          { pathname: '/components/accordions' },
         ],
       },
       {
