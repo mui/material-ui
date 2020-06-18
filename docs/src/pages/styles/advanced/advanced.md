@@ -593,6 +593,11 @@ This vulnerability would allow the attacker to execute anything. However, with a
 
 You can read more about CSP on the [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP).
 
+### Does Material-UI support CSP?
+
+Many Material-UI components support a strict CSP. Specifically, this means you will not need to use `'unsafe-inline'`. However, some components still use inline styles which require that `'unsafe-inline'` is set in the `style-src` directive. To test if your CSP is compatible with the components used in your project, you can use [Content-Security-Policy-Report-Only](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy-Report-Only).
+Updating Material-UI to fully support a strict CSP is being tracked in [#19938](https://github.com/mui-org/material-ui/issues/19938).
+
 ### How does one implement CSP?
 
 In order to use CSP with Material-UI (and JSS), you need to use a nonce. A nonce is a randomly generated string that is only used once, therefore you need to add server middleware to generate one on each request. JSS has a [great tutorial](https://github.com/cssinjs/jss/blob/master/docs/csp.md) on how to achieve this with Express and React Helmet. For a basic rundown, continue reading.
