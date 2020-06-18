@@ -15,6 +15,7 @@ to discuss the approach before submitting a pull request.
 - App bars
   - **[Top](https://material.io/design/components/app-bars-top.html) ✓**
   - **[Bottom](https://material.io/design/components/app-bars-bottom.html) ✓**
+- **[Accordions](https://material.io/archive/guidelines/components/accordions.html) ✓** (_Legacy Material v1_)
 - **[Banners](https://material.io/design/components/banners.html)** ([Can be composed](https://medium.com/material-ui/introducing-material-ui-design-system-93e921beb8df))
 - **[Bottom navigation](https://material.io/design/components/bottom-navigation.html) ✓**
 - **[Buttons](https://material.io/design/components/buttons.html) ✓**
@@ -49,7 +50,6 @@ to discuss the approach before submitting a pull request.
   - **[Inset](https://material.io/design/components/dividers.html#types) ✓**
   - **[Middle](https://material.io/design/components/dividers.html#types) ✓**
   - **[Subheader](https://material.io/design/components/dividers.html#types) ✓**
-- **[Expansion Panels](https://material.io/archive/guidelines/components/expansion-panels.html) ✓** (_Legacy Material v1_)
 - **[Image lists](https://material.io/design/components/image-lists.html) ✓** (AKA Grid Lists)
 - **[Lists](https://material.io/design/components/lists.html) ✓**
   - [Types:](https://material.io/design/components/lists.html#types)

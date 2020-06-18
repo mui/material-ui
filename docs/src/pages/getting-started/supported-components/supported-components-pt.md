@@ -43,7 +43,7 @@ Se você deseja adicionar suporte a um componente ou recurso não destacado aqui
   - **[Inset](https://material.io/design/components/dividers.html#types) ✓**
   - **[Middle](https://material.io/design/components/dividers.html#types) ✓**
   - **[Subheader](https://material.io/design/components/dividers.html#types) ✓**
-- **[Painéis de Expansão](https://material.io/archive/guidelines/components/expansion-panels.html) ✓** (*Legado Material v1*)
+- **[Painéis de Expansão](https://material.io/archive/guidelines/components/accordions.html) ✓** (*Legado Material v1*)
 - **[Listas de Imagem](https://material.io/design/components/image-lists.html) ✓** (também conhecido como Grade Lista)
 - **[Lists](https://material.io/design/components/lists.html) ✓** 
   - [Types:](https://material.io/design/components/chips.html#action-chips) 

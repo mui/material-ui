@@ -24,10 +24,10 @@ import {
   DialogContentText,
   Divider,
   Drawer,
-  ExpansionPanel,
-  ExpansionPanelActions,
-  ExpansionPanelDetails,
-  ExpansionPanelSummary,
+  Accordion,
+  AccordionActions,
+  AccordionDetails,
+  AccordionSummary,
   Fade,
   FormControlLabel,
   FormGroup,
@@ -488,23 +488,23 @@ const SwipeableDrawerTest = () => {
   );
 };
 
-const ExpansionPanelTest = () => (
+const AccordionTest = () => (
   <div>
-    <ExpansionPanel onChange={(e) => log(e)} expanded disabled>
-      <ExpansionPanelSummary />
-      <ExpansionPanelDetails />
-    </ExpansionPanel>
-    <ExpansionPanel defaultExpanded>
-      <ExpansionPanelSummary expandIcon={<FakeIcon />}>
+    <Accordion onChange={(e) => log(e)} expanded disabled>
+      <AccordionSummary />
+      <AccordionDetails />
+    </Accordion>
+    <Accordion defaultExpanded>
+      <AccordionSummary expandIcon={<FakeIcon />}>
         <Typography>...</Typography>
-      </ExpansionPanelSummary>
-      <ExpansionPanelDetails>
+      </AccordionSummary>
+      <AccordionDetails>
         <Typography>...</Typography>
-      </ExpansionPanelDetails>
-      <ExpansionPanelActions>
+      </AccordionDetails>
+      <AccordionActions>
         <Button size="small">Save</Button>
-      </ExpansionPanelActions>
-    </ExpansionPanel>
+      </AccordionActions>
+    </Accordion>
   </div>
 );
 

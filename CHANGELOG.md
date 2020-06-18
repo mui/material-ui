@@ -381,7 +381,7 @@ Here are some highlights ✨:
 - [ButtonBase] Fix ripple size when clientX or clientY is 0 (#20654) @jin60641
 - [ButtonGroup] Add disableElevation prop (#20747) @Andrew5569
 - [ClickAwayListener] Fix support of leading edge (#20647) @oliviertassinari
-- [ExpansionPanel] Increase contrast for focus state (#20720) @petermikitsh
+- [Accordion] Increase contrast for focus state (#20720) @petermikitsh
 - [l10n] Document how far Material-UI should go (#20737) @eloyrubinos
 - [l10n] Improve az-AZ locale (#20659) @rommelmamedov
 - [l10n] Improve bg-BG locale (#20668) @panayotoff
@@ -467,7 +467,7 @@ Big thanks to the 25 contributors who made this release possible.
 
 - [Backdrop] Document Fade inherited component (#20500) @Josh-Weston
 - [Checkbox] Add test showcase for checked checkbox (#20571) @eps1lon
-- [ExpansionPanel] Unify paddings with ListItem and similar components (#20586) @esseswann
+- [Accordion] Unify paddings with ListItem and similar components (#20586) @esseswann
 - [l10n] Improve persian (fa-IR) locale (#20543) @ali4heydari
 - [List] Fix ListItemIcon `children` type from element to Node (#20577) @alielkhateeb
 - [Popper] Fix support for TypeScript 3.2 (#20550) @NMinhNguyen
@@ -605,7 +605,7 @@ Big thanks to the 20 contributors who made this release possible.
 - [Card] Fix TypeScript not recognizing "component" prop (#20179) @rart
 - [Chip] Fix input integration (#20368) @chaudharykiran
 - [Drawer] Fix clipped scroll overflow (#20396) @maksimgm
-- [ExpansionPanel] Use theme.spacing in summary (#20344) @eps1lon
+- [Accordion] Use theme.spacing in summary (#20344) @eps1lon
 - [MenuItem] Fix prop ListItemClasses (#20377) @netochaves
 - [Select] Fix onChange fired with current value (#20361) @ksrb
 - [Select] Fix validator.w3.org error (#20356) @mfsjr
@@ -1521,7 +1521,7 @@ Here are some highlights ✨:
 - [docs] Improve the SvgIcon documentation (#18560) @oliviertassinari
 - [docs] Reduce confusion in picker link (#18566) @BGehrels
 - [docs] Include mention to Persian in localization.md (#18513) @uxitten
-- [docs] Update v3 migration guide for ExpansionPanel (#18612) @NMinhNguyen
+- [docs] Update v3 migration guide for Accordion (#18612) @NMinhNguyen
 
 ### Core
 
@@ -1738,7 +1738,7 @@ We are proud of the community. Let's keep this trend going 🚀.
 - [Chip] Add ripple when clickable (#17829) @Tarun047
 - [Chip] Fix Avatar CSS issue (#18156) @oliviertassinari
 - [Drawer] Improve "ResponsiveDrawer" demo (#18045) @gorjan-mishevski
-- [ExpansionPanel] Use context instead of cloneElement (#18085) @eps1lon
+- [Accordion] Use context instead of cloneElement (#18085) @eps1lon
 - [InputBase] Fix onChange event handler callback of inputProps (#18131) @sjsingh85
 - [OutlinedInput] Simplify customizations (#18127) @gregjoeval
 - [Slider] Improve UX for pointing device with limited accuracy (#18174) @oliviertassinari
@@ -1814,7 +1814,7 @@ Here are some highlights ✨:
 - [Checkbox] Add TS demo for FormControlLabelPosition (#17964) @burtyish
 - [Dialog] Fix labelledby and describedby placement (#18032) @eps1lon
 - [Dialog] Reduce margins (#17867) @rahulkotha18
-- [ExpansionPanelSummary] Test in StrictMode (#17873) @eps1lon
+- [AccordionSummary] Test in StrictMode (#17873) @eps1lon
 - [FormControlLabel] Add missing CSS class keys to TS (#17963) @itayyehezkel
 - [Link] Warn when using plain function component in `component` (#17825) @Nikhil-Pavan-Sai
 - [ListSubheader] Reduce specificity of typescript type (#17715) @sakulstra
@@ -1859,7 +1859,7 @@ Here are some highlights ✨:
 - [docs] Add TS demo for WithWidth (#17930) @burtyish
 - [docs] Add TS demos for SimpleNoSsr and FrameDeferring (#17913) @ganes1410
 - [docs] Add TS demos for SplitButton in components/buttons (#17862) @rahmatrhd
-- [docs] Add demo for actions in ExpansionPanelSummary (#17969) @ayliao
+- [docs] Add demo for actions in AccordionSummary (#17969) @ayliao
 - [docs] Add demo for prominent app bar (#17894) @burtyish
 - [docs] Add notification about the date picker survey @oliviertassinari
 - [docs] Clarify aria role of Switch (#17870) @eps1lon
@@ -3609,7 +3609,7 @@ We hope 2-3 weeks of beta will be enough. We plan on releasing v4 stable in May.
   - [CardActions] Rename the `action` CSS class `spacing`.
   - [DialogActions] Rename the `disableActionSpacing` prop `disableSpacing`.
   - [DialogActions] Rename the `action` CSS class `spacing`.
-  - [ExpansionPanelActions] Rename the `action` CSS class `spacing`.
+  - [AccordionActions] Rename the `action` CSS class `spacing`.
 
 - [Tooltip] Convert to function component (#15291) @joshwooding
   The child of the `Tooltip` needs to be able to hold a ref
@@ -3807,7 +3807,7 @@ Here are some highlights ✨:
 - [docs] Add Breadcrumbs TypeScript demos (#15139) @Adherentman
 - [docs] Fix anchor link (#15174) @eps1lon
 - [docs] Convert customized select component to use hooks (#15177) @Tevinthuku
-- [docs] Add ExpansionPanels TypeScript Demo (#15162) @Adherentman
+- [docs] Add Accordions TypeScript Demo (#15162) @Adherentman
 - [docs] Add ref forwarding to API docs (#15135) @eps1lon
 - [docs] Add ImgMediaCard TypeScript demo (#15130) @jasondashwang
 - [docs] Link 'React Material-UI Cookbook' (#15211) @oliviertassinari
@@ -3904,7 +3904,7 @@ Here are some highlights ✨:
 - [ToggleButton] Convert to function component (#14965) @joshwooding
 - [Fade] Convert to function component (#15027) @joshwooding
 - [performance] Add live pages (#15046) @oliviertassinari
-- [ExpansionPanelSummary] Convert to function component (#15043) @joshwooding
+- [AccordionSummary] Convert to function component (#15043) @joshwooding
 - [test] Add conformance suite (#14958) @eps1lon
 - [Menu] Convert to function component (#15068) @joshwooding
 - [test] Update enzyme (#14987) @eps1lon
@@ -4075,7 +4075,7 @@ Here are some highlights ✨:
 - [Popover] Fix PaperProps classname concat (#14902) @vitkon
 - [MenuItem] Add buttonRef (and other button props) type (#14772) @VincentLanglet
 - [TouchRipple] Remove findDOMNode usage (#14825) @eps1lon
-- [ExpansionPanelSummary] Simplify overrides (#14828) @TroySchmidt
+- [AccordionSummary] Simplify overrides (#14828) @TroySchmidt
 - [Popper] Use refs instead of findDOMNode (#14829) @eps1lon
 - [Tab] Fix alignment when using multiple children (#14844) @HaNdTriX
 - [TextField] Convert to function component (#14833) @eps1lon
@@ -4096,7 +4096,7 @@ Here are some highlights ✨:
 
 - [docs] Prepare full TypeScript demos (#14896) @eps1lon
 - [docs] Improve documentation for new component + ref behavior (#14883) @eps1lon
-- [docs] Add perf section to ExpansionPanel (#14903) @eps1lon
+- [docs] Add perf section to Accordion (#14903) @eps1lon
 - [docs] Simplify the /examples (#14822) @oliviertassinari
 - [docs] Add ssr-next example (#14823) @oliviertassinari
 - [docs] Add missing breaking changes from #14795 (#14824) @eps1lon
@@ -4268,10 +4268,10 @@ Here are some highlights ✨:
 
 #### Changes
 
-- [core] Improve a11y for Collapse, ExpansionPanel and Grow (#14598) @eps1lon
+- [core] Improve a11y for Collapse, Accordion and Grow (#14598) @eps1lon
 - [Transitions] Increase minimal version of react-transition-group to 2.5.3 (#14612) @wilcoschoneveld
-- [ExpansionPanelSummary] Update docs (#14606) @ifndefdeadmau5
-- [ExpansionPanel] Add TransitionComponent prop (#14617) @ptbrowne
+- [AccordionSummary] Update docs (#14606) @ifndefdeadmau5
+- [Accordion] Add TransitionComponent prop (#14617) @ptbrowne
 - [Link] Color property is defined with a wrong type (#14631) @akellan
 - [Tooltip] Improve legibility (#14651) @leMaik
 - [Tabs] Fix variant missing in Tabs.d.ts (#14659) @Deturium
@@ -4282,7 +4282,7 @@ Here are some highlights ✨:
 - [InputLabel] display: block as default (#14676) @johnloven
 - [InputBase] Add missing TypeScript class keys (#14684) @dmtrKovalenko
 - [ListItem] Fix listItem focus (#14680) @xs9627
-- [ExpansionPanel] Improve a11y (#14682) @eps1lon
+- [Accordion] Improve a11y (#14682) @eps1lon
 
 ### `@material-ui/styles@v4.0.0-alpha.2`
 
@@ -4681,7 +4681,7 @@ Here are some highlights ✨:
 - [NativeSelect] Fix option background for dark theme (#14340) @ryancogswell
 - [Button] Add color inherit to outlined variant of button component (#14332) @EndiM
 - [ListItem] Improve ListItemSecondaryAction DX (#14350) @eps1lon
-- [ExpansionPanel] Fix userAgent check (#14361) @Floriferous
+- [Accordion] Fix userAgent check (#14361) @Floriferous
 
 ### `@material-ui/styles@v3.0.0-alpha.10`
 
@@ -4747,7 +4747,7 @@ Here are some highlights ✨:
 - [GridListTileBar] Add missing titleWrap key (#14275) @nroot86vml
 - [Pickers] Promote material-ui-pickers (#14277) @oliviertassinari
 - [Select] Add customization demo (#14281) @bemineni
-- [ExpansionPanel] Fix square support (#14282) @brandonvilla21
+- [Accordion] Fix square support (#14282) @brandonvilla21
 - [Dialog] Fix scrollbar (#14288) @joshwooding
 - [LinearProgress] Remove dead bar2Determinate CSS class (#14298) @lmcarreiro
 - [Select] Help automated UI testing (#14289) @oumaima1234
@@ -4992,7 +4992,7 @@ The Tabs `fullWidth` and `scrollable` properties can't be used at the same time.
 - [Fab] Add styles to make size property work with extended property (#13973) @rfbotto
 - [CardHeader] Change action element to have a fixed right margin (#13992) @inv8der
 - [SvgIcon] Add createSvgIcon type definition (#13994) @yifei-fu
-- [ExpansionPanel] Add customized demo (#13998) @rfbotto
+- [Accordion] Add customized demo (#13998) @rfbotto
 - [Button] Fix vertical text alignment by reducing padding (#13931) @adipascu
 - [Card] Update the action spacing to better match the spec (#14005) @oliviertassinari
 - [LinearProgress] Change height from 5 to 4 pixels (#14009) @almondj
@@ -5309,7 +5309,7 @@ import Divider from '@material-ui/core/Divider';
 #### Changes
 
 - [FormControlLabel] Fix documentation warnings (#13583) @dsbrutha777
-- [ExpansionPanelSummary] Fix event forwarding (#13582) @jmetev1
+- [AccordionSummary] Fix event forwarding (#13582) @jmetev1
 - [Button] Move deprecated variants to the end of the list (#13584) @avetisk
 - [FormControl] Use stable context API (#13590) @eps1lon
 - [TablePagination] Improve TypeScript definition (#13601) @xiaoyu-tamu
@@ -6628,7 +6628,7 @@ N/A
 - [Menu] Fix scrolling issue (#12003) @stephenway
 - [Stepper] Merge StepPositionIcon in StepIcon (#12026) @bousejin
 - [Input] Add read only demo (#12024) @oliviertassinari
-- [ExpansionPanelSummary] Add IconButtonProps property (#12035) @dakotamurphyucf
+- [AccordionSummary] Add IconButtonProps property (#12035) @dakotamurphyucf
 - [Dialog] Document the scroll property (#12025) @oliviertassinari
 
 #### Docs
@@ -7454,7 +7454,7 @@ Here are some highlights ✨:
 - [Input] Allow div props on InputAdornment in TypeScript (#11077) @mtandersson
 - [Dialog] Fix iOS momentum scroll (#11066) @greenwombat
 - [Portal] Global option to disable the portal (#11086) @oliviertassinari
-- [ExpansionPanel] Fix display on IE11 and Edge (#11087) @oliviertassinari
+- [Accordion] Fix display on IE11 and Edge (#11087) @oliviertassinari
 - [CardActions] Fix CSS override (#11092) @oliviertassinari
 
 #### Docs
@@ -7855,7 +7855,7 @@ For instance, it's not about adding JavaScript polyfills.
 #### Component Fixes / Enhancements
 
 - [Select] Fix wrong onBlur onFocus logic (#10538) @oliviertassinari
-- [ExpansionPanel] Fix controlled behavior (#10546) @oliviertassinari
+- [Accordion] Fix controlled behavior (#10546) @oliviertassinari
 - [Autocomplete] Add multiple downshift example (#10550) @oliviertassinari
 - [Autocomplete] selectedItem can be null (#10565) @caub
 - [core] Improve IE11 support (#10568) @oliviertassinari
@@ -8249,7 +8249,7 @@ Umbrella pull request for: #10084, #10086, #10088.
 - [Stepper] Add StepIcon to Stepper exports (#10119) @melissanoelle
 - [ButtonBase] Fix keyDown handled (#10136) @strayiker
 - [Fade] Simplify implementation (#10137) @oliviertassinari
-- [typescript] Add missing ExpansionPanel style overrides (#10142) @simonvizzini
+- [typescript] Add missing Accordion style overrides (#10142) @simonvizzini
 - [Dialog] PaperProps TypeScript definition (#10143) @daniel-rabe
 - [InputAdornment] Remove hack (#10157) @oliviertassinari
 - [Hidden] css implementation handle custom className (#10165) @Vincz
@@ -8655,7 +8655,7 @@ To style the root element in these components, a `className` prop can be passed,
 - [Transition] Extend children propTypes (#9819) @oliviertassinari
 - [TablePagination] Remove dead code (#9831) @leMaik
 - [theme] Polish background scale (#9829) @oliviertassinari
-- [ExpansionPanel] Fix TypeScript definitions of onChange event (#9832) @Jocaetano
+- [Accordion] Fix TypeScript definitions of onChange event (#9832) @Jocaetano
 - [GridList] Remove named export (#9836) @remcohaszing
 - [GridList] Export through main index.js (#9833) @remcohaszing
 - [Portal] Document default value (#9841) @oliviertassinari
@@ -9046,7 +9046,7 @@ There is no logic attached to the `optional` boolean property. So, we can reduce
 - [MuiThemeProvider] Add a new warning (#9518) @oliviertassinari
 - [TextField] Improve the API documentation (#9514) @oliviertassinari
 - [TableCell] Add missing aria-sort (#9504) @gregnb
-- [ExpansionPanelSummary] Eliminate extra invocation of onClick (#9523) @kgregory
+- [AccordionSummary] Eliminate extra invocation of onClick (#9523) @kgregory
 
 #### Docs
 
@@ -9111,7 +9111,7 @@ Here are some highlights ✨:
 - [Tabs] Fix SSR regression (#9413) @oliviertassinari
 - [theme] Fix mixins.gutter override (#9417) @oliviertassinari
 - [ButtonBase] Remove some code (#9419) @oliviertassinari
-- [ExpansionPanel] Prevent call onChange event from the root element (#9402) @andrzejbk
+- [Accordion] Prevent call onChange event from the root element (#9402) @andrzejbk
 - [Hidden] Improve the docs (#9420) @oliviertassinari
 - [typescript] Add anchorPosition and anchorReference to PopoverProps (#9428) @brandonlee781
 - [Input] Specify target FlowType for SyntheticInputEvents (#9394) @dhui
@@ -9158,7 +9158,7 @@ Big thanks to the 26 contributors who made this release possible.
 Here are some highlights ✨:
 
 - Wait, what? A new component is coming, again 🎉.
-  @andrzejbk has been implementing the `ExpansionPanel` component with the help of the community. Big thanks to him!
+  @andrzejbk has been implementing the `Accordion` component with the help of the community. Big thanks to him!
 - Support TypeScript@2.6 (#9124) @pelotom
 - Support Flow@0.57.x (#8983) @rsolomon, @rosskevin
 - A new organization: `mui-org` @hai-cea
@@ -9207,7 +9207,7 @@ It was a breaking change and not needed.
 - [ButtonBase] Bookkeep the disable state (#9220) @oliviertassinari
 - [TextField] Better select support (#9224) @oliviertassinari
 - [TableCell] Use solid version of theme divider (#9229) @mbrookes
-- [ExpansionPanel] New component (#7651) @andrzejbk
+- [Accordion] New component (#7651) @andrzejbk
 
 #### Docs
 
