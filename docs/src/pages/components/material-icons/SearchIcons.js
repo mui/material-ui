@@ -27,7 +27,7 @@ import synonyms from './synonyms';
 if (process.env.NODE_ENV !== 'production') {
   Object.keys(synonyms).forEach((icon) => {
     if (!mui[icon]) {
-      throw new Error(`The icon ${icon} does no longer exist.`);
+      throw new Error(`The icon ${icon} no longer exists.`);
     }
   });
 }
