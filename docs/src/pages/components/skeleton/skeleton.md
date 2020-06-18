@@ -37,7 +37,7 @@ The component supports 3 shape variants.
 
 ## Animations
 
-By default, the skeleton pulsate, but you can change the animation for a wave or disable it entirely.
+By default, the skeleton pulsates, but you can change the animation to a wave or disable it entirely.
 
 {{"demo": "pages/components/skeleton/Animations.js"}}
 

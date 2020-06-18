@@ -122,7 +122,7 @@ However, the class names are often non-deterministic. How can a parent component
 
 ### `withStyles`
 
-This is the simplest case. the wrapped component accepts a `classes` prop,
+This is the simplest case. The wrapped component accepts a `classes` prop,
 it simply merges the class names provided with the style sheet.
 
 ```jsx

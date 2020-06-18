@@ -4,7 +4,6 @@
 
 ## Palette colors
 
-A color intention is a mapping of a palette color to a given intention within your application.
 The theme exposes the following palette colors (accessible under `theme.palette.`):
 
 - _primary_ - used to represent primary interface elements for a user. It's the color displayed most frequently across your app's screens and components.
@@ -22,8 +21,8 @@ You can explore the default values of the palette using [the theme explorer](/cu
 
 {{"demo": "pages/customization/palette/Intentions.js", "bg": "inline", "hideToolbar": true}}
 
-The default palette uses the shades prefixed with `A` (`A200`, etc.) for the secondary intention,
-and the un-prefixed shades for the other intentions.
+The default palette uses the shades prefixed with `A` (`A200`, etc.) for the secondary palette color,
+and the un-prefixed shades for the other palette colors.
 
 ## Customization
 
@@ -37,7 +36,7 @@ If any of the:
 - [`palette.info`](/customization/default-theme/?expand-path=$.palette.info)
 - [`palette.success`](/customization/default-theme/?expand-path=$.palette.success)
 
-palette color objects are provided, they will replace the defaults.
+palette color objects are provided, they will replace the default ones.
 
 The palette color value can either be a [color](/customization/color/#2014-material-design-color-palettes) object, or an object with one or more of the keys specified by the following TypeScript interface:
 
@@ -52,8 +51,8 @@ interface PaletteColor {
 
 ### Using a color object
 
-The simplest way to customize an intention is to import one or more of the provided colors
-and apply them to a palette intention:
+The simplest way to customize a palette color is to import one or more of the provided colors
+and apply them:
 
 ```js
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -68,8 +67,8 @@ const theme = createMuiTheme({
 
 ### Providing the colors directly
 
-If you wish to provide more customized colors, you can either create your own color object,
-or directly supply colors to some or all of the intention's keys:
+If you wish to provide more customized colors, you can either create your own palette color,
+or directly supply colors to some or all of the `theme.palette` keys:
 
 ```js
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -99,7 +98,7 @@ const theme = createMuiTheme({
 });
 ```
 
-As in the example above, if the intention object contains custom colors using any of the
+As in the example above, if the palette color contains custom colors using any of the
 "main", "light", "dark" or "contrastText" keys, these map as follows:
 
 - If the "dark" and / or "light" keys are omitted, their value(s) will be calculated from "main",
