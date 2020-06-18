@@ -1926,60 +1926,82 @@ export const viVN: Localization = {
 };
 
 export const zhCN: Localization = {
-  props: {
-    // MuiBreadcrumbs: {
-    //   expandText: 'Show path',
-    // },
-    MuiTablePagination: {
-      // getItemAriaLabel: (type) => {
-      //   if (type === 'first') {
-      //     return 'Go to first page';
-      //   }
-      //   if (type === 'last') {
-      //     return 'Go to last page';
-      //   }
-      //   if (type === 'next') {
-      //     return 'Go to next page';
-      //   }
-      //   // if (type === 'previous') {
-      //   return 'Go to previous page';
-      // },
-      labelRowsPerPage: '每页行数:',
-      labelDisplayedRows: ({ from, to, count }) =>
-        `${from}-${to} 的 ${count !== -1 ? count : `超过 ${to}`}`,
+    props: {
+      MuiBreadcrumbs: {
+        expandText: '展开',
+      },
+      MuiTablePagination: {
+        'aria-label': '分页导航',
+        getItemAriaLabel: (type) => {
+          if (type === 'first') {
+            return '第一页';
+          }
+          if (type === 'last') {
+            return '最后一页';
+          }
+          if (type === 'next') {
+            return '下一页';
+          }
+          return '上一页';
+        },
+        labelRowsPerPage: '每页行数:',
+        labelDisplayedRows: ({ from, to, count }) =>
+          `第 ${from} 项到第 ${to} 项，${count === -1 ? `共 ${count} 项` : `至少 ${to} 项`}`,
+      },
+      MuiRating: {
+        getLabelText: (value) => `${value} 星`,
+        emptyLabelText: '无标签',
+      },
+      MuiAutocomplete: {
+        clearText: '清空',
+        closeText: '关闭',
+        loadingText: '载入中…',
+        noOptionsText: '没有可用选项',
+        openText: '打开',
+      },
+      MuiAlert: {
+        closeText: '关闭',
+      },
     },
-    MuiRating: {
-      getLabelText: (value) => `${value} 星${value !== 1 ? '星' : ''}`,
-      // emptyLabelText: 'Empty',
+  };
+  
+export const zhTW: Localization = {
+    props: {
+      MuiBreadcrumbs: {
+        expandText: '展開',
+      },
+      MuiTablePagination: {
+        'aria-label': '分頁導航',
+        getItemAriaLabel: (type) => {
+          if (type === 'first') {
+            return '第一頁';
+          }
+          if (type === 'last') {
+            return '最後一頁';
+          }
+          if (type === 'next') {
+            return '下一頁';
+          }
+          return '上一頁';
+        },
+        labelRowsPerPage: '每行行數:',
+          labelDisplayedRows: ({ from, to, count }) =>
+              `第 ${from} 項到第 ${to} 項，${count === -1 ? `共 ${count} 項` : `至少 ${to} 項`}`,
+      },
+      MuiRating: {
+        getLabelText: (value) => `${value} 星`,
+        emptyLabelText: '無標簽',
+      },
+      MuiAutocomplete: {
+        clearText: '清空',
+        closeText: '關閉',
+        loadingText: '載入中…',
+        noOptionsText: '没有可用選項',
+        openText: '打开',
+      },
+      MuiAlert: {
+        closeText: '關閉',
+      },
     },
-    MuiAutocomplete: {
-      clearText: '明确',
-      closeText: '关',
-      loadingText: '载入中…',
-      noOptionsText: '没有选择',
-      openText: '打开',
-    },
-    MuiAlert: {
-      closeText: '关',
-    },
-    // MuiPagination: {
-    //   'aria-label': 'Pagination navigation',
-    //   getItemAriaLabel: (type, page, selected) => {
-    //     if (type === 'page') {
-    //       return `${selected ? '' : 'Go to '}page ${page}`;
-    //     }
-    //     if (type === 'first') {
-    //       return 'Go to first page';
-    //     }
-    //     if (type === 'last') {
-    //       return 'Go to last page';
-    //     }
-    //     if (type === 'next') {
-    //       return 'Go to next page';
-    //     }
-    //     // if (type === 'previous') {
-    //     return 'Go to previous page';
-    //   },
-    // },
-  },
-};
+  };
+  
