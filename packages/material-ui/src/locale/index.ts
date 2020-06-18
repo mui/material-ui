@@ -1946,7 +1946,7 @@ export const zhCN: Localization = {
         },
         labelRowsPerPage: '每页行数:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `第 ${from} 项到第 ${to} 项，${count === -1 ? `共 ${count} 项` : `至少 ${to} 项`}`,
+          `第 ${from} 项到第 ${to} 项，${count !== -1 ? `共 ${count} 项` : `至少 ${to} 项`}`,
       },
       MuiRating: {
         getLabelText: (value) => `${value} 星`,
@@ -1986,7 +1986,7 @@ export const zhTW: Localization = {
         },
         labelRowsPerPage: '每行行數:',
           labelDisplayedRows: ({ from, to, count }) =>
-              `第 ${from} 項到第 ${to} 項，${count === -1 ? `共 ${count} 項` : `至少 ${to} 項`}`,
+              `第 ${from} 項到第 ${to} 項，${count !== -1 ? `共 ${count} 項` : `至少 ${to} 項`}`,
       },
       MuiRating: {
         getLabelText: (value) => `${value} 星`,
