@@ -134,7 +134,12 @@ export interface TimeValidationProps {
 export const validateTime = (
   utils: MuiPickersAdapter,
   value: MaterialUiPickersDate | ParsableDate,
-  { minTime, maxTime, shouldDisableTime, disableIgnoringDatePartForTimeValidation }: TimeValidationProps
+  {
+    minTime,
+    maxTime,
+    shouldDisableTime,
+    disableIgnoringDatePartForTimeValidation,
+  }: TimeValidationProps
 ) => {
   const date = utils.date(value);
   const isAfterComparingFn = createIsAfterIgnoreDatePart(
