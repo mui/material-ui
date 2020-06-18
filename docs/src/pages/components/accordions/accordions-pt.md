@@ -7,7 +7,7 @@ components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
 
 <p class="description">Os painéis de expansão contêm fluxos de criação e permitem a edição simplificada de um elemento.</p>
 
-[Um painel de expansão](https://material.io/archive/guidelines/components/accordions.html) é um contêiner leve que pode estar sozinho ou conectado em uma superfície maior, como um cartão.
+[Um painel de expansão](https://material.io/archive/guidelines/components/expansion-panels.html) é um contêiner leve que pode estar sozinho ou conectado em uma superfície maior, como um cartão.
 
 > **Nota:** Os painéis de expansão não estão mais documentados nas [diretrizes do Material Design](https://material.io/), mas o Material-UI continuará a suportá-los.
 

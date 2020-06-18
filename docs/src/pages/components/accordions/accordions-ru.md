@@ -7,7 +7,7 @@ components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
 
 <p class="description">Панель расширения содержит потоки создания и позволяет легко редактировать элементы.</p>
 
-[Expansion panel](https://material.io/archive/guidelines/components/accordions.html) это простой контейнер, который может использоваться отдельно, либо как часть более крупного компонента, такого как Card (карточка).
+[Accordion](https://material.io/archive/guidelines/components/expansion-panels.html) это простой контейнер, который может использоваться отдельно, либо как часть более крупного компонента, такого как Card (карточка).
 
 > **Note:** Expansion panels are no longer documented in the [Material Design guidelines](https://material.io/), but Material-UI will continue to support them.
 

@@ -7,7 +7,7 @@ components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
 
 <p class="description">Expansion panels(拡張パネル) には作成フローが含まれ、要素を簡単に編集できます。</p>
 
-[拡張パネル](https://material.io/archive/guidelines/components/accordions.html)は 独立した軽量のコンテナであるか、カードなどの大きなサーフェスに接続されています。
+[拡張パネル](https://material.io/archive/guidelines/components/expansion-panels.html)は 独立した軽量のコンテナであるか、カードなどの大きなサーフェスに接続されています。
 
 > **注：** 拡張パネルについては、[Material Design guidelines](https://material.io/)では説明されていませんが、Material-UIでは引き続きサポートされます。
 

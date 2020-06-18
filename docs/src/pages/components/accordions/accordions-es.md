@@ -7,7 +7,7 @@ components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
 
 <p class="description">Los paneles de expansión contienen flujos de creación y permiten una edición simple de un elemento.</p>
 
-Un [panel de expansión](https://material.io/archive/guidelines/components/accordions.html) es un contenedor liviano que puede ser ya sea único o estar conectado a una superficie más grande, como una tarjeta.
+Un [panel de expansión](https://material.io/archive/guidelines/components/expansion-panels.html) es un contenedor liviano que puede ser ya sea único o estar conectado a una superficie más grande, como una tarjeta.
 
 > **Note:** Expansion panels are no longer documented in the [Material Design guidelines](https://material.io/), but Material-UI will continue to support them.
 

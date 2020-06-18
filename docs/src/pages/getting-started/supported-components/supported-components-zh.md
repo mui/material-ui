@@ -43,7 +43,7 @@
   - **[Inset](https://material.io/design/components/dividers.html#types) ✓**
   - **[Middle](https://material.io/design/components/dividers.html#types) ✓**
   - **[Subheader](https://material.io/design/components/dividers.html#types) ✓**
-- **[Expansion Panels](https://material.io/archive/guidelines/components/accordions.html) ✓** (*旧 Material v1*)
+- **[Expansion Panels](https://material.io/archive/guidelines/components/expansion-panels.html) ✓** (*旧 Material v1*)
 - **[Image lists](https://material.io/design/components/image-lists.html) ✓** (又名 Grid Lists)
 - **[Lists](https://material.io/design/components/lists.html) ✓** 
   - [Types:](https://material.io/design/components/lists.html#types) 

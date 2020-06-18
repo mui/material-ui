@@ -7,7 +7,7 @@ components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
 
 <p class="description">Les panneaux d’extension contiennent des flux de création et permettent une édition légère d’un élément.</p>
 
-[Un panneau d'extension](https://material.io/archive/guidelines/components/accordions.html) est un conteneur léger pouvant être autonome ou connecté à une surface plus grande, telle qu'une carte.
+[Un panneau d'extension](https://material.io/archive/guidelines/components/expansion-panels.html) est un conteneur léger pouvant être autonome ou connecté à une surface plus grande, telle qu'une carte.
 
 > **Note:** Expansion panels are no longer documented in the [Material Design guidelines](https://material.io/), but Material-UI will continue to support them.
 
