@@ -27,7 +27,9 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 const Transition = React.forwardRef(function Transition(
-  props: TransitionProps & { children?: React.ReactElement },
+  props: TransitionProps & {
+    children?: React.ReactElement;
+  },
   ref: React.Ref<unknown>,
 ) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -50,10 +52,20 @@ export default function FullScreenDialog() {
       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
         Open full-screen dialog
       </Button>
-      <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
+      <Dialog
+        fullScreen
+        open={open}
+        onClose={handleClose}
+        TransitionComponent={Transition}
+      >
         <AppBar className={classes.appBar}>
           <Toolbar>
-            <IconButton edge="start" color="inherit" onClick={handleClose} aria-label="close">
+            <IconButton
+              edge="start"
+              color="inherit"
+              onClick={handleClose}
+              aria-label="close"
+            >
               <CloseIcon />
             </IconButton>
             <Typography variant="h6" className={classes.title}>
@@ -70,7 +82,10 @@ export default function FullScreenDialog() {
           </ListItem>
           <Divider />
           <ListItem button>
-            <ListItemText primary="Default notification ringtone" secondary="Tethys" />
+            <ListItemText
+              primary="Default notification ringtone"
+              secondary="Tethys"
+            />
           </ListItem>
         </List>
       </Dialog>

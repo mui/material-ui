@@ -67,7 +67,11 @@ describe('<MyComponent />', () => {
 
   function MySuccessButton({ children }) {
     return (
-      <ThemeProvider theme={{ success: { main: '#fff' } }}>
+      <ThemeProvider
+        theme={{
+          success: { main: '#fff' },
+        }}
+      >
         {children}
       </ThemeProvider>
     );

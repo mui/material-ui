@@ -62,7 +62,12 @@ function ProductHowItWorks(props) {
           className={classes.curvyLines}
           alt="curvy lines"
         />
-        <Typography variant="h4" marked="center" className={classes.title} component="h2">
+        <Typography
+          variant="h4"
+          marked="center"
+          className={classes.title}
+          component="h2"
+        >
           How it works
         </Typography>
         <div>
@@ -89,7 +94,8 @@ function ProductHowItWorks(props) {
                   className={classes.image}
                 />
                 <Typography variant="h5" align="center">
-                  First come, first served. Our offers are in limited quantities, so be quick.
+                  First come, first served. Our offers are in limited
+                  quantities, so be quick.
                 </Typography>
               </div>
             </Grid>

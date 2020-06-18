@@ -27,7 +27,9 @@ interface MyButtonRawProps {
 }
 
 function MyButtonRaw(
-  props: WithStyles<typeof styles> & Omit<ButtonProps, keyof MyButtonRawProps> & MyButtonRawProps,
+  props: WithStyles<typeof styles> &
+    Omit<ButtonProps, keyof MyButtonRawProps> &
+    MyButtonRawProps,
 ) {
   const { classes, color, ...other } = props;
   return <Button className={classes.root} {...other} />;

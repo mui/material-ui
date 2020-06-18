@@ -22,14 +22,20 @@ export default function PopperPopupState() {
     <PopupState variant="popper" popupId="demo-popup-popper">
       {(popupState) => (
         <div>
-          <Button variant="contained" color="primary" {...bindToggle(popupState)}>
+          <Button
+            variant="contained"
+            color="primary"
+            {...bindToggle(popupState)}
+          >
             Toggle Popper
           </Button>
           <Popper {...bindPopper(popupState)} transition>
             {({ TransitionProps }) => (
               <Fade {...TransitionProps} timeout={350}>
                 <Paper>
-                  <Typography className={classes.typography}>The content of the Popper.</Typography>
+                  <Typography className={classes.typography}>
+                    The content of the Popper.
+                  </Typography>
                 </Paper>
               </Fade>
             )}

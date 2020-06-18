@@ -1,5 +1,10 @@
 import React from 'react';
-import { withStyles, Theme, createStyles, makeStyles } from '@material-ui/core/styles';
+import {
+  withStyles,
+  Theme,
+  createStyles,
+  makeStyles,
+} from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -34,7 +39,13 @@ const StyledTableRow = withStyles((theme: Theme) =>
   }),
 )(TableRow);
 
-function createData(name: string, calories: number, fat: number, carbs: number, protein: number) {
+function createData(
+  name: string,
+  calories: number,
+  fat: number,
+  carbs: number,
+  protein: number,
+) {
   return { name, calories, fat, carbs, protein };
 }
 

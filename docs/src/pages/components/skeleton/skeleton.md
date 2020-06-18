@@ -16,7 +16,10 @@ For instance:
 {
   item ? (
     <img
-      style={{ width: 210, height: 118 }}
+      style={{
+        width: 210,
+        height: 118,
+      }}
       alt={item.title}
       src={item.src}
     />
@@ -53,9 +56,7 @@ In addition to accepting `width` and `height` props, the component can also infe
 It works well when it comes to typography as its height is set using `em` units.
 
 ```jsx
-<Typography variant="h1">
-  {loading ? <Skeleton /> : 'h1'}
-</Typography>
+<Typography variant="h1">{loading ? <Skeleton /> : 'h1'}</Typography>
 ```
 
 {{"demo": "pages/components/skeleton/SkeletonTypography.js", "defaultCodeOpen": false}}

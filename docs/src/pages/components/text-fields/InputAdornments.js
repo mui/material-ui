@@ -44,7 +44,10 @@ export default function InputAdornments() {
   };
 
   const handleClickShowPassword = () => {
-    setValues({ ...values, showPassword: !values.showPassword });
+    setValues({
+      ...values,
+      showPassword: !values.showPassword,
+    });
   };
 
   const handleMouseDownPassword = (event) => {
@@ -59,10 +62,18 @@ export default function InputAdornments() {
           id="standard-start-adornment"
           className={clsx(classes.margin, classes.textField)}
           InputProps={{
-            startAdornment: <InputAdornment position="start">Kg</InputAdornment>,
+            startAdornment: (
+              <InputAdornment position="start">Kg</InputAdornment>
+            ),
           }}
         />
-        <FormControl className={clsx(classes.margin, classes.withoutLabel, classes.textField)}>
+        <FormControl
+          className={clsx(
+            classes.margin,
+            classes.withoutLabel,
+            classes.textField,
+          )}
+        >
           <Input
             id="standard-adornment-weight"
             value={values.weight}
@@ -73,10 +84,14 @@ export default function InputAdornments() {
               'aria-label': 'weight',
             }}
           />
-          <FormHelperText id="standard-weight-helper-text">Weight</FormHelperText>
+          <FormHelperText id="standard-weight-helper-text">
+            Weight
+          </FormHelperText>
         </FormControl>
         <FormControl className={clsx(classes.margin, classes.textField)}>
-          <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
+          <InputLabel htmlFor="standard-adornment-password">
+            Password
+          </InputLabel>
           <Input
             id="standard-adornment-password"
             type={values.showPassword ? 'text' : 'password'}
@@ -111,11 +126,16 @@ export default function InputAdornments() {
           id="filled-start-adornment"
           className={clsx(classes.margin, classes.textField)}
           InputProps={{
-            startAdornment: <InputAdornment position="start">Kg</InputAdornment>,
+            startAdornment: (
+              <InputAdornment position="start">Kg</InputAdornment>
+            ),
           }}
           variant="filled"
         />
-        <FormControl className={clsx(classes.margin, classes.textField)} variant="filled">
+        <FormControl
+          className={clsx(classes.margin, classes.textField)}
+          variant="filled"
+        >
           <FilledInput
             id="filled-adornment-weight"
             value={values.weight}
@@ -128,7 +148,10 @@ export default function InputAdornments() {
           />
           <FormHelperText id="filled-weight-helper-text">Weight</FormHelperText>
         </FormControl>
-        <FormControl className={clsx(classes.margin, classes.textField)} variant="filled">
+        <FormControl
+          className={clsx(classes.margin, classes.textField)}
+          variant="filled"
+        >
           <InputLabel htmlFor="filled-adornment-password">Password</InputLabel>
           <FilledInput
             id="filled-adornment-password"
@@ -165,11 +188,16 @@ export default function InputAdornments() {
           id="outlined-start-adornment"
           className={clsx(classes.margin, classes.textField)}
           InputProps={{
-            startAdornment: <InputAdornment position="start">Kg</InputAdornment>,
+            startAdornment: (
+              <InputAdornment position="start">Kg</InputAdornment>
+            ),
           }}
           variant="outlined"
         />
-        <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
+        <FormControl
+          className={clsx(classes.margin, classes.textField)}
+          variant="outlined"
+        >
           <OutlinedInput
             id="outlined-adornment-weight"
             value={values.weight}
@@ -181,10 +209,17 @@ export default function InputAdornments() {
             }}
             labelWidth={0}
           />
-          <FormHelperText id="outlined-weight-helper-text">Weight</FormHelperText>
+          <FormHelperText id="outlined-weight-helper-text">
+            Weight
+          </FormHelperText>
         </FormControl>
-        <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
-          <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+        <FormControl
+          className={clsx(classes.margin, classes.textField)}
+          variant="outlined"
+        >
+          <InputLabel htmlFor="outlined-adornment-password">
+            Password
+          </InputLabel>
           <OutlinedInput
             id="outlined-adornment-password"
             type={values.showPassword ? 'text' : 'password'}

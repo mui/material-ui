@@ -38,7 +38,10 @@ export default function SwitchListSecondary() {
   };
 
   return (
-    <List subheader={<ListSubheader>Settings</ListSubheader>} className={classes.root}>
+    <List
+      subheader={<ListSubheader>Settings</ListSubheader>}
+      className={classes.root}
+    >
       <ListItem>
         <ListItemIcon>
           <WifiIcon />
@@ -49,7 +52,9 @@ export default function SwitchListSecondary() {
             edge="end"
             onChange={handleToggle('wifi')}
             checked={checked.indexOf('wifi') !== -1}
-            inputProps={{ 'aria-labelledby': 'switch-list-label-wifi' }}
+            inputProps={{
+              'aria-labelledby': 'switch-list-label-wifi',
+            }}
           />
         </ListItemSecondaryAction>
       </ListItem>
@@ -63,7 +68,9 @@ export default function SwitchListSecondary() {
             edge="end"
             onChange={handleToggle('bluetooth')}
             checked={checked.indexOf('bluetooth') !== -1}
-            inputProps={{ 'aria-labelledby': 'switch-list-label-bluetooth' }}
+            inputProps={{
+              'aria-labelledby': 'switch-list-label-bluetooth',
+            }}
           />
         </ListItemSecondaryAction>
       </ListItem>

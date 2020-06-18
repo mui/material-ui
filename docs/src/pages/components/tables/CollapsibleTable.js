@@ -32,8 +32,16 @@ function createData(name, calories, fat, carbs, protein, price) {
     protein,
     price,
     history: [
-      { date: '2020-01-05', customerId: '11091700', amount: 3 },
-      { date: '2020-01-02', customerId: 'Anonymous', amount: 1 },
+      {
+        date: '2020-01-05',
+        customerId: '11091700',
+        amount: 3,
+      },
+      {
+        date: '2020-01-02',
+        customerId: 'Anonymous',
+        amount: 1,
+      },
     ],
   };
 }
@@ -47,7 +55,11 @@ function Row(props) {
     <React.Fragment>
       <TableRow className={classes.root}>
         <TableCell>
-          <IconButton aria-label="expand row" size="small" onClick={() => setOpen(!open)}>
+          <IconButton
+            aria-label="expand row"
+            size="small"
+            onClick={() => setOpen(!open)}
+          >
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>

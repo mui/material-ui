@@ -6,7 +6,8 @@ const synonyms = {
   Accessible: 'accessibility body help human person user wheelchair',
   AccessibleForward: 'accessibility body help human person wheelchair',
   AccessTime: 'clock time',
-  AccountBalance: 'bank building court money payment structure temple transaction',
+  AccountBalance:
+    'bank building court money payment structure temple transaction',
   AccountBalanceWallet: 'money payment transaction',
   AccountBox: 'avatar person profile square thumbnail user',
   AccountCircle: 'avatar person profile thumbnail user',
@@ -29,7 +30,8 @@ const synonyms = {
   AirlineSeatIndividualSuite: 'bed sleep',
   AirplanemodeActive: 'flying',
   AirplanemodeInactive: 'flying',
-  Airplay: 'apple arrow connect control device monitor screen signal television',
+  Airplay:
+    'apple arrow connect control device monitor screen signal television',
   AirportShuttle: 'bus car vehicle',
   Alarm: 'clock countdown time',
   AlarmAdd: 'clock plus time',
@@ -40,7 +42,8 @@ const synonyms = {
   AllInclusive: 'infinite',
   AllOut: 'arrows circle directional expand shape',
   Android: 'brand character logo mascot operating system toy',
-  Announcement: 'alert balloon bubble chat comment exclamation message news speech',
+  Announcement:
+    'alert balloon bubble chat comment exclamation message news speech',
   Apartment: 'building',
   Apple: 'brand logo',
   Apps: 'grid homescreen icons',
@@ -153,7 +156,8 @@ const synonyms = {
   ContactMail: 'address information person profile user',
   ContactPhone: 'information number person profile user',
   Contacts: 'address information number person phone profile user',
-  ContactSupport: 'alert announcement bubble help information mark question speech',
+  ContactSupport:
+    'alert announcement bubble help information mark question speech',
   ControlCamera: 'adjust arrows direction left move right',
   ControlPoint: 'circle plus',
   ControlPointDuplicate: 'circle plus',
@@ -225,17 +229,21 @@ const synonyms = {
   EmojiTransportation: 'building car commute company office vehicle',
   EnhancedEncryption: 'lock security',
   Equalizer: 'adjustment chart graph noise sound static volume',
-  Error: 'alert announcement circle danger exclamation feedback problem warning',
-  ErrorOutline: 'alert announcement circle danger exclamation feedback problem warning',
+  Error:
+    'alert announcement circle danger exclamation feedback problem warning',
+  ErrorOutline:
+    'alert announcement circle danger exclamation feedback problem warning',
   Euro: 'cash currency finance money price profit',
   EuroSymbol: 'cash currency dollar finance money price profit',
-  Event: 'agenda calendar date item mark month range remember reminder today week',
+  Event:
+    'agenda calendar date item mark month range remember reminder today week',
   EventAvailable: 'agenda calendar date item',
   EventBusy: 'agenda calendar date item',
   EventNote: 'agenda calendar date item',
   EventSeat: 'assigned bench chair reservation row section sit',
   EvStation: 'car charge filling fuel gasoline power station vehicle',
-  ExitToApp: 'arrow back leave login logout pointing quit right signin signup register signout',
+  ExitToApp:
+    'arrow back leave login logout pointing quit right signin signup register signout',
   ExpandLess: 'arrow up',
   ExpandMore: 'arrow down',
   Explicit: 'adult content language',
@@ -254,7 +262,8 @@ const synonyms = {
   FastRewind: 'control music speed time video',
   Favorite: 'health heart like love remember save shape success',
   FavoriteBorder: 'health heart like love remember save shape success',
-  FeaturedPlayList: 'audio collection highlighted item music playlist recommended',
+  FeaturedPlayList:
+    'audio collection highlighted item music playlist recommended',
   FeaturedVideo: 'highlighted item play recommended watch,advertised',
   Feedback: 'alert announcement bubble chat comment exclamation message speech',
   FiberDvr: 'digital electronics network recorder tv video',
@@ -268,7 +277,8 @@ const synonyms = {
   FilterList: 'lines',
   FilterVintage: 'flower',
   FindInPage: 'document glass look magnifying paper search see',
-  FindReplace: 'arrows glass inprogress look magnifying refresh rotate search see',
+  FindReplace:
+    'arrows glass inprogress look magnifying refresh rotate search see',
   Fingerprint: 'biometrics identification identity reader thumbprint touchid',
   Fireplace: 'flame',
   FirstPage: 'arrow',
@@ -279,7 +289,8 @@ const synonyms = {
   FlashOn: 'lightning',
   Flight: 'airplane flying',
   FlightLand: 'airplane arrival arriving flying landing transportation travel',
-  FlightTakeoff: 'airplane departed departing flying landing transportation travel',
+  FlightTakeoff:
+    'airplane departed departing flying landing transportation travel',
   FlipCameraAndroid: 'front rear reverse',
   FlipCameraIos: 'front rear reverse',
   FlipToBack: 'arrangement front move order sort',
@@ -310,8 +321,10 @@ const synonyms = {
   FourK: '4000 display pixels resolution',
   FreeBreakfast: 'coffee drink tea',
   Functions: 'math sigma',
-  Games: 'adjust arrows controller direction dpad left move nintendo playstation right xbox',
-  Gavel: 'court document government hammer judge law mallet official police rules',
+  Games:
+    'adjust arrows controller direction dpad left move nintendo playstation right xbox',
+  Gavel:
+    'court document government hammer judge law mallet official police rules',
   Gesture: 'drawing line',
   GetApp: 'arrow download pointing retrieve',
   Gif: 'animated animation bitmap format graphics interchange',
@@ -323,8 +336,10 @@ const synonyms = {
   GridOn: 'sheet',
   Group: 'people person team users',
   GroupAdd: 'people person users',
-  GroupWork: 'alliance circle collaboration film partnership reel teamwork together',
-  GTranslate: 'emblem google language logo mark speaking speech translator words',
+  GroupWork:
+    'alliance circle collaboration film partnership reel teamwork together',
+  GTranslate:
+    'emblem google language logo mark speaking speech translator words',
   Hd: 'definition high movies resolution tv',
   Headset: 'earmuffs headphones',
   HeadsetMic: 'headphones',
@@ -334,7 +349,8 @@ const synonyms = {
   Help: 'alert announcement information mark question support',
   HelpOutline: 'alert announcement information mark question support',
   Highlight: 'flashlight marker',
-  HighlightOff: 'circle clear click close delete disable focus remove stop target times x',
+  HighlightOff:
+    'circle clear click close delete disable focus remove stop target times x',
   HighQuality: 'definition hq movies resolution tv',
   History: 'arrow backwards clock refresh reverse revert rotate time undo',
   Home: 'address building house place residence structure unit',
@@ -345,7 +361,8 @@ const synonyms = {
   HourglassEmpty: 'countdown loading minutes start time waiting',
   HourglassFull: 'countdown loading minutes time waiting',
   Http: 'internet network transfer url website',
-  Https: 'connection encrypt internet key locked network secure security ssl web',
+  Https:
+    'connection encrypt internet key locked network secure security ssl web',
   Image: 'picture',
   ImportantDevices: 'cell computer monitor phone star',
   ImportContacts: 'address book friends information magazine open',
@@ -389,8 +406,10 @@ const synonyms = {
   LinkedIn: 'brand logo social',
   LinkOff: 'anchor',
   List: 'editor file format index menu task todo',
-  ListAlt: 'box contained editor format lines reorder stacked task title todo sheet',
-  LiveHelp: 'alert announcement bubble comment faq information mark question support',
+  ListAlt:
+    'box contained editor format lines reorder stacked task title todo sheet',
+  LiveHelp:
+    'alert announcement bubble comment faq information mark question support',
   LiveTv: 'monitor television',
   LocalActivity: 'star',
   LocalAirport: 'airplane flying',
@@ -415,11 +434,13 @@ const synonyms = {
   LocationOff: 'gps',
   LocationOn: 'gps',
   Lock: 'connection key locked logout padlock password secure security signout',
-  LockOpen: 'connection key login padlock password secure security signin signup register unlocked',
+  LockOpen:
+    'connection key login padlock password secure security signin signup register unlocked',
   Looks: 'rainbow',
   Loop: 'arrows loader loading music refresh repeat rotate',
   LowPriority: 'arrow list task todo',
-  Loyalty: 'badge card credit heart love membership miles points program sale tag travel trip',
+  Loyalty:
+    'badge card credit heart love membership miles points program sale tag travel trip',
   Mail: 'envelope letter',
   MailOutline: 'email envelope letter message note post receive send write',
   Markunread: 'envelope letter',
@@ -448,7 +469,8 @@ const synonyms = {
   More: 'badge tag',
   MoreHoriz: 'dots',
   MoreVert: 'dots',
-  Motorcycle: 'bicycle moped motorbike ride riding transportation vehicle wheels',
+  Motorcycle:
+    'bicycle moped motorbike ride riding transportation vehicle wheels',
   Movie: 'film screen show tv video watch',
   MovieCreation: 'film video',
   MovieFilter: 'film video',
@@ -476,7 +498,8 @@ const synonyms = {
   NotificationsNone: 'alert bell ring',
   NotificationsOff: 'alert bell ring',
   NotificationsPaused: 'aleet bell ring',
-  NotInterested: 'allowed banned circle disabled dislike interested not off prohibited x',
+  NotInterested:
+    'allowed banned circle disabled dislike interested not off prohibited x',
   NotListedLocation: 'map pin questionmark',
   OfflineBolt: 'circle flash lightning spark',
   OfflinePin: 'checkmark circle',
@@ -500,12 +523,14 @@ const synonyms = {
   PeopleOutline: 'group person team users',
   PermCameraMic: 'microphone photo speaker',
   PermContactCalendar: 'agenda human person profile user',
-  PermDataSetting: 'cellular configure information network settings wifi wireless',
+  PermDataSetting:
+    'cellular configure information network settings wifi wireless',
   PermDeviceInformation: 'alert announcement cell important mobile phone',
   PermIdentity: 'human information person profile save, user',
   PermMedia: 'collection directories folders images mountain save',
   PermPhoneMsg: 'bubble chat message mobile recording save speech voice',
-  PermScanWifi: 'alert announcement information internet network service wireless',
+  PermScanWifi:
+    'alert announcement information internet network service wireless',
   Person: 'avatar profile user',
   PersonAdd: 'user',
   PersonAddDisabled: 'profile user',
@@ -557,17 +582,20 @@ const synonyms = {
   Public: 'earth globe world country language',
   Publish: 'arrow submit upload',
   QueryBuilder: 'clock hour minute save time',
-  QuestionAnswer: 'bubble chat comment conversation converse message speech talk',
+  QuestionAnswer:
+    'bubble chat comment conversation converse message speech talk',
   Queue: 'add collection music playlist stream video',
   QueueMusic: 'add collection playlist stream',
-  QueuePlayNext: 'add arrow collection device monitor music playlist plus screen video',
+  QueuePlayNext:
+    'add arrow collection device monitor music playlist plus screen video',
   Radio: 'antenna device listen music player tune',
   RadioButtonChecked: 'circle',
   RadioButtonUnchecked: 'circle',
   RateReview: 'chat comment message',
   Receipt: 'bill credit invoice paper payment sale transaction',
   RecentActors: 'cards carousel contacts human profile user',
-  RecordVoiceOver: 'human person profile recording sound speaking speech transcript user',
+  RecordVoiceOver:
+    'human person profile recording sound speaking speech transcript user',
   Reddit: 'brand logo social',
   Redeem: 'certificate credit giftcard present',
   Redo: 'arrow',
@@ -586,7 +614,8 @@ const synonyms = {
   Reply: 'arrow',
   ReplyAll: 'arrows',
   Report: 'exclamation',
-  ReportProblem: 'alert announcement danger exclamation feedback triangle warning',
+  ReportProblem:
+    'alert announcement danger exclamation feedback triangle warning',
   Restaurant: 'cutlery fork knife',
   Restore: 'arrow backwards clock history refresh reverse rotate time undo',
   RestoreFromTrash: 'arrow can delete garbage remove up',
@@ -621,14 +650,17 @@ const synonyms = {
   SentimentVerySatisfied: 'emoji emoticon happy like smiley',
   Settings: 'gear',
   SettingsApplications: 'details gear information personal save service',
-  SettingsBackupRestore: 'arrow backwards history refresh reverse rotate time undo',
+  SettingsBackupRestore:
+    'arrow backwards history refresh reverse rotate time undo',
   SettingsBluetooth: 'connection connectivity network wifi',
   SettingsBrightness: 'dark light mode sun',
   SettingsCell: 'cellphone device mobile',
-  SettingsEthernet: 'arrows brackets connection connectivity dots network parenthesis wifi',
+  SettingsEthernet:
+    'arrows brackets connection connectivity dots network parenthesis wifi',
   SettingsInputAntenna: 'connection connectivity network wifi',
   SettingsInputComponent: 'cable connection connectivity plugs points',
-  SettingsInputComposite: 'cable component connection connectivity plugs points',
+  SettingsInputComposite:
+    'cable component connection connectivity plugs points',
   SettingsInputHdmi: 'cable connection connectivity plugin points',
   SettingsInputSvideo: 'connection connectivity plugin plugs points svideo,',
   SettingsOverscan: 'arrows expand image photo picture',
@@ -714,7 +746,8 @@ const synonyms = {
   Subtitles: 'accessibility accessible captions language translate',
   Subway: 'metro',
   SupervisedUserCircle: 'avatar human people person profile supervisor',
-  SupervisorAccount: 'administrator avatar human people person profile supervised user',
+  SupervisorAccount:
+    'administrator avatar human people person profile supervised user',
   SurroundSound: 'audio circle speaker system volumn',
   SwapCalls: 'arrow',
   SwapHoriz: 'arrows back direction horizontal',
@@ -745,7 +778,8 @@ const synonyms = {
   ThumbsUpDown: 'dislike favorite finger hand rate rating vote',
   ThumbUp: 'approve dislike down favorite finger hand rate rating success vote',
   ThumbUpAlt: 'approve hand like success vote',
-  Timeline: 'analytics chart graph history line movement points trending zigzap',
+  Timeline:
+    'analytics chart graph history line movement points trending zigzap',
   Timer: 'clock stopwatch wait',
   TimerOff: 'clock stopwatch',
   Toc: 'content format lines list reorder stacked table text titles',
@@ -753,7 +787,8 @@ const synonyms = {
   Toll: 'booth car circles payment ticket',
   TouchApp: 'arrow finger gesture hand swipe',
   Toys: 'fan',
-  TrackChanges: 'bullseye circle evolve lines movement radar rotate shift target',
+  TrackChanges:
+    'bullseye circle evolve lines movement radar rotate shift target',
   Traffic: 'light',
   TransferWithinAStation: 'man person transit',
   Translate: 'alphabet language letter speaking speech text translator words',
@@ -797,7 +832,8 @@ const synonyms = {
   ViewWeek: 'bars blocks columns day format',
   Vignette: 'effect photo',
   Visibility: 'eye on password reveal see shown view visability preview',
-  VisibilityOff: 'eye hidden invisible on password reveal see show view visability',
+  VisibilityOff:
+    'eye hidden invisible on password reveal see show view visability',
   VoiceChat: 'camera',
   VolumeDown: 'control sound',
   VolumeMute: 'control sound',
@@ -806,7 +842,8 @@ const synonyms = {
   VpnKey: 'login password security signin signup register',
   VpnLock: 'earth globe password security world',
   Wallpaper: 'image picture',
-  Warning: 'alert announcement danger error exclamation feedback problem triangle',
+  Warning:
+    'alert announcement danger error exclamation feedback problem triangle',
   Watch: 'smartwatch',
   WatchLater: 'clock hour minute time',
   WbIncandescent: 'lamp lightbulb',

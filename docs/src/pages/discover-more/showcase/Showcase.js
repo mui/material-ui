@@ -81,7 +81,11 @@ function Showcase(props) {
     <div className={classes.root}>
       <FormControl className={classes.formControl}>
         <InputLabel htmlFor="sort">Sort by</InputLabel>
-        <Select value={sortFunctionName} onChange={handleChangeSort} inputProps={{ id: 'sort' }}>
+        <Select
+          value={sortFunctionName}
+          onChange={handleChangeSort}
+          inputProps={{ id: 'sort' }}
+        >
           <MenuItem value="dateAdded">{t('newest')}</MenuItem>
           <MenuItem value="similarWebVisits">{t('traffic')}</MenuItem>
           <MenuItem value="stars">{t('stars')}</MenuItem>
@@ -92,7 +96,12 @@ function Showcase(props) {
         sortFunction,
       ).map((app) => (
         <div key={app.title}>
-          <Typography component="h2" variant="h4" gutterBottom className={classes.title}>
+          <Typography
+            component="h2"
+            variant="h4"
+            gutterBottom
+            className={classes.title}
+          >
             <span>{app.title}</span>
             {app.source ? (
               <IconButton

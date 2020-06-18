@@ -165,7 +165,11 @@ function Quote(props) {
 
   return (
     <Card variant="outlined" className={classes.card}>
-      <CardActionArea component={QuoteLink} href={href} className={classes.cardAction}>
+      <CardActionArea
+        component={QuoteLink}
+        href={href}
+        className={classes.cardAction}
+      >
         <CardContent>
           <Grid container spacing={3}>
             <Grid item>
@@ -177,10 +181,19 @@ function Quote(props) {
               />
             </Grid>
             <Grid item>
-              <Typography component="div" variant="h6" color="textPrimary" className={classes.name}>
+              <Typography
+                component="div"
+                variant="h6"
+                color="textPrimary"
+                className={classes.name}
+              >
                 {name}
               </Typography>
-              <Typography component="div" variant="subtitle2" color="textSecondary">
+              <Typography
+                component="div"
+                variant="subtitle2"
+                color="textSecondary"
+              >
                 {userName}
               </Typography>
             </Grid>

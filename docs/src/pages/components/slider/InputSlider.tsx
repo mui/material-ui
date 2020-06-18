@@ -17,7 +17,9 @@ const useStyles = makeStyles({
 
 export default function InputSlider() {
   const classes = useStyles();
-  const [value, setValue] = React.useState<number | string | Array<number | string>>(30);
+  const [value, setValue] = React.useState<
+    number | string | Array<number | string>
+  >(30);
 
   const handleSliderChange = (event: any, newValue: number | number[]) => {
     setValue(newValue);

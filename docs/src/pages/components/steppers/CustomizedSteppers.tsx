@@ -1,5 +1,10 @@
 import React from 'react';
-import { makeStyles, Theme, createStyles, withStyles } from '@material-ui/core/styles';
+import {
+  makeStyles,
+  Theme,
+  createStyles,
+  withStyles,
+} from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
@@ -69,7 +74,11 @@ function QontoStepIcon(props: StepIconProps) {
         [classes.active]: active,
       })}
     >
-      {completed ? <Check className={classes.completed} /> : <div className={classes.circle} />}
+      {completed ? (
+        <Check className={classes.completed} />
+      ) : (
+        <div className={classes.circle} />
+      )}
     </div>
   );
 }
@@ -201,14 +210,22 @@ export default function CustomizedSteppers() {
           </Step>
         ))}
       </Stepper>
-      <Stepper alternativeLabel activeStep={activeStep} connector={<QontoConnector />}>
+      <Stepper
+        alternativeLabel
+        activeStep={activeStep}
+        connector={<QontoConnector />}
+      >
         {steps.map((label) => (
           <Step key={label}>
             <StepLabel StepIconComponent={QontoStepIcon}>{label}</StepLabel>
           </Step>
         ))}
       </Stepper>
-      <Stepper alternativeLabel activeStep={activeStep} connector={<ColorlibConnector />}>
+      <Stepper
+        alternativeLabel
+        activeStep={activeStep}
+        connector={<ColorlibConnector />}
+      >
         {steps.map((label) => (
           <Step key={label}>
             <StepLabel StepIconComponent={ColorlibStepIcon}>{label}</StepLabel>
@@ -227,9 +244,15 @@ export default function CustomizedSteppers() {
           </div>
         ) : (
           <div>
-            <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
+            <Typography className={classes.instructions}>
+              {getStepContent(activeStep)}
+            </Typography>
             <div>
-              <Button disabled={activeStep === 0} onClick={handleBack} className={classes.button}>
+              <Button
+                disabled={activeStep === 0}
+                onClick={handleBack}
+                className={classes.button}
+              >
                 Back
               </Button>
               <Button

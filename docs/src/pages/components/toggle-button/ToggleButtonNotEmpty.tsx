@@ -21,13 +21,19 @@ export default function ToggleButtonNotEmpty() {
   const [alignment, setAlignment] = React.useState('left');
   const [formats, setFormats] = React.useState(() => ['phone']);
 
-  const handleFormat = (event: React.MouseEvent<HTMLElement>, newFormats: string[]) => {
+  const handleFormat = (
+    event: React.MouseEvent<HTMLElement>,
+    newFormats: string[],
+  ) => {
     if (newFormats.length) {
       setFormats(newFormats);
     }
   };
 
-  const handleAlignment = (event: React.MouseEvent<HTMLElement>, newAlignment: string | null) => {
+  const handleAlignment = (
+    event: React.MouseEvent<HTMLElement>,
+    newAlignment: string | null,
+  ) => {
     if (newAlignment !== null) {
       setAlignment(newAlignment);
     }
@@ -62,7 +68,11 @@ export default function ToggleButtonNotEmpty() {
       </Grid>
       <Grid item sm={12} md={6}>
         <div className={classes.toggleContainer}>
-          <ToggleButtonGroup value={formats} onChange={handleFormat} aria-label="device">
+          <ToggleButtonGroup
+            value={formats}
+            onChange={handleFormat}
+            aria-label="device"
+          >
             <ToggleButton value="laptop" aria-label="laptop">
               <LaptopIcon />
             </ToggleButton>

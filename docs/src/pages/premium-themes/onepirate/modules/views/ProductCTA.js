@@ -83,8 +83,17 @@ function ProductCTA(props) {
               <Typography variant="h5">
                 Taste the holidays of the everyday close to home.
               </Typography>
-              <TextField noBorder className={classes.textField} placeholder="Your email" />
-              <Button type="submit" color="primary" variant="contained" className={classes.button}>
+              <TextField
+                noBorder
+                className={classes.textField}
+                placeholder="Your email"
+              />
+              <Button
+                type="submit"
+                color="primary"
+                variant="contained"
+                className={classes.button}
+              >
                 Keep me updated
               </Button>
             </form>

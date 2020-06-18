@@ -62,7 +62,10 @@ function ColorDemo(props) {
   return (
     <div className={classes.root}>
       <div className={classes.appFrame}>
-        <div className={classes.statusBar} style={{ backgroundColor: primary.dark }} />
+        <div
+          className={classes.statusBar}
+          style={{ backgroundColor: primary.dark }}
+        />
         <AppBar position="static" style={{ backgroundColor: primary.main }}>
           <Toolbar style={{ color: primary.contrastText }}>
             <IconButton
@@ -86,7 +89,11 @@ function ColorDemo(props) {
   },
 }`}
         </pre>
-        <Fab className={classes.fab} style={{ backgroundColor: secondary.main }} aria-label="add">
+        <Fab
+          className={classes.fab}
+          style={{ backgroundColor: secondary.main }}
+          aria-label="add"
+        >
           <AddIcon htmlColor={secondary.contrastText} />
         </Fab>
       </div>

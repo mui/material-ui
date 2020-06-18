@@ -55,10 +55,7 @@ Import icons using one of these two options:
 - Option 2:
 
   ```jsx
-  import {
-    AccessAlarm,
-    ThreeDRotation,
-  } from '@material-ui/icons';
+  import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
   ```
 
 The safest is Option 1 but Option 2 can yield the best developer experience.

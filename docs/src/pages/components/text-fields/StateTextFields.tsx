@@ -23,8 +23,17 @@ export default function StateTextFields() {
   return (
     <form className={classes.root} noValidate autoComplete="off">
       <div>
-        <TextField id="standard-name" label="Name" value={name} onChange={handleChange} />
-        <TextField id="standard-uncontrolled" label="Uncontrolled" defaultValue="foo" />
+        <TextField
+          id="standard-name"
+          label="Name"
+          value={name}
+          onChange={handleChange}
+        />
+        <TextField
+          id="standard-uncontrolled"
+          label="Uncontrolled"
+          defaultValue="foo"
+        />
       </div>
       <div>
         <TextField

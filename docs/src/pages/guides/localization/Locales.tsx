@@ -14,10 +14,14 @@ export default function Locales() {
 
   return (
     <div>
-      <ThemeProvider theme={(outerTheme) => createMuiTheme(outerTheme, locales[locale])}>
+      <ThemeProvider
+        theme={(outerTheme) => createMuiTheme(outerTheme, locales[locale])}
+      >
         <Autocomplete
           options={Object.keys(locales)}
-          getOptionLabel={(key) => `${key.substring(0, 2)}-${key.substring(2, 4)}`}
+          getOptionLabel={(key) =>
+            `${key.substring(0, 2)}-${key.substring(2, 4)}`
+          }
           style={{ width: 300 }}
           value={locale}
           disableClearable
@@ -25,7 +29,12 @@ export default function Locales() {
             setLocale(newValue as SupportedLocales);
           }}
           renderInput={(params) => (
-            <TextField {...params} label="自动完成" variant="outlined" fullWidth />
+            <TextField
+              {...params}
+              label="自动完成"
+              variant="outlined"
+              fullWidth
+            />
           )}
         />
         <TablePagination

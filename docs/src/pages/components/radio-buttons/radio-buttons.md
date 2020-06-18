@@ -60,6 +60,8 @@ Here is an example of customizing the component. You can learn more about this i
 ```jsx
 <RadioButton
   value="radioA"
-  inputProps={{ 'aria-label': 'Radio A' }}
+  inputProps={{
+    'aria-label': 'Radio A',
+  }}
 />
 ```

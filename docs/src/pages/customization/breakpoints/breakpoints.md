@@ -307,9 +307,7 @@ const theme = createMuiTheme({
 #### Examples
 
 ```jsx
-import withWidth, {
-  isWidthUp,
-} from '@material-ui/core/withWidth';
+import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 
 function MyComponent(props) {
   if (isWidthUp('sm', props.width)) {

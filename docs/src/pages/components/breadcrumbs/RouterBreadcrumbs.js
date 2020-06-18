@@ -101,7 +101,10 @@ export default function RouterBreadcrumbs() {
             <ListItemLink to="/inbox" open={open} onClick={handleClick} />
             <Collapse component="li" in={open} timeout="auto" unmountOnExit>
               <List disablePadding>
-                <ListItemLink to="/inbox/important" className={classes.nested} />
+                <ListItemLink
+                  to="/inbox/important"
+                  className={classes.nested}
+                />
               </List>
             </Collapse>
             <ListItemLink to="/trash" />

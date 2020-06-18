@@ -37,7 +37,9 @@ export default function ComposedTextField() {
           onChange={handleChange}
           aria-describedby="component-helper-text"
         />
-        <FormHelperText id="component-helper-text">Some important helper text</FormHelperText>
+        <FormHelperText id="component-helper-text">
+          Some important helper text
+        </FormHelperText>
       </FormControl>
       <FormControl disabled>
         <InputLabel htmlFor="component-disabled">Name</InputLabel>
@@ -56,11 +58,20 @@ export default function ComposedTextField() {
       </FormControl>
       <FormControl variant="outlined">
         <InputLabel htmlFor="component-outlined">Name</InputLabel>
-        <OutlinedInput id="component-outlined" value={name} onChange={handleChange} label="Name" />
+        <OutlinedInput
+          id="component-outlined"
+          value={name}
+          onChange={handleChange}
+          label="Name"
+        />
       </FormControl>
       <FormControl variant="filled">
         <InputLabel htmlFor="component-filled">Name</InputLabel>
-        <FilledInput id="component-filled" value={name} onChange={handleChange} />
+        <FilledInput
+          id="component-filled"
+          value={name}
+          onChange={handleChange}
+        />
       </FormControl>
     </form>
   );

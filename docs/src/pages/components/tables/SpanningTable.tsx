@@ -89,7 +89,9 @@ export default function SpanningTable() {
           </TableRow>
           <TableRow>
             <TableCell>Tax</TableCell>
-            <TableCell align="right">{`${(TAX_RATE * 100).toFixed(0)} %`}</TableCell>
+            <TableCell align="right">{`${(TAX_RATE * 100).toFixed(
+              0,
+            )} %`}</TableCell>
             <TableCell align="right">{ccyFormat(invoiceTaxes)}</TableCell>
           </TableRow>
           <TableRow>

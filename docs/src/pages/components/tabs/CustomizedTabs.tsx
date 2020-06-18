@@ -1,5 +1,10 @@
 import React from 'react';
-import { makeStyles, withStyles, Theme, createStyles } from '@material-ui/core/styles';
+import {
+  makeStyles,
+  withStyles,
+  Theme,
+  createStyles,
+} from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
@@ -64,7 +69,9 @@ const StyledTabs = withStyles({
       backgroundColor: '#635ee7',
     },
   },
-})((props: StyledTabsProps) => <Tabs {...props} TabIndicatorProps={{ children: <span /> }} />);
+})((props: StyledTabsProps) => (
+  <Tabs {...props} TabIndicatorProps={{ children: <span /> }} />
+));
 
 interface StyledTabProps {
   label: string;
@@ -119,7 +126,11 @@ export default function CustomizedTabs() {
         <Typography className={classes.padding} />
       </div>
       <div className={classes.demo2}>
-        <StyledTabs value={value} onChange={handleChange} aria-label="styled tabs example">
+        <StyledTabs
+          value={value}
+          onChange={handleChange}
+          aria-label="styled tabs example"
+        >
           <StyledTab label="Workflows" />
           <StyledTab label="Datasets" />
           <StyledTab label="Connections" />

@@ -7,7 +7,12 @@ import CollapseIcon from '@material-ui/icons/ChevronRight';
 import TreeView from '@material-ui/lab/TreeView';
 import TreeItem from '@material-ui/lab/TreeItem';
 import clsx from 'clsx';
-import { makeStyles, withStyles, createMuiTheme, lighten } from '@material-ui/core/styles';
+import {
+  makeStyles,
+  withStyles,
+  createMuiTheme,
+  lighten,
+} from '@material-ui/core/styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 
@@ -99,8 +104,14 @@ function ObjectEntryLabel(props) {
     <React.Fragment>
       {`${objectKey}: `}
       {type === 'color' ? (
-        <span className={classes.color} style={{ borderColor: lighten(label, 0.7) }}>
-          <span className={classes.colorInner} style={{ backgroundColor: label }} />
+        <span
+          className={classes.color}
+          style={{ borderColor: lighten(label, 0.7) }}
+        >
+          <span
+            className={classes.colorInner}
+            style={{ backgroundColor: label }}
+          />
         </span>
       ) : null}
       <span className={clsx('token', tokenType)}>{label}</span>
@@ -155,9 +166,14 @@ function ObjectEntry(props) {
 
   return (
     <TreeItem
-      classes={{ root: classes.treeItem, content: classes.treeItemContent }}
+      classes={{
+        root: classes.treeItem,
+        content: classes.treeItemContent,
+      }}
       nodeId={nodeId}
-      label={<ObjectEntryLabel objectKey={objectKey} objectValue={objectValue} />}
+      label={
+        <ObjectEntryLabel objectKey={objectKey} objectValue={objectValue} />
+      }
     >
       {children}
     </TreeItem>
@@ -225,10 +241,16 @@ const styles = (theme) => ({
 });
 
 function computeNodeIds(object, prefix) {
-  if ((object !== null && typeof object === 'object') || typeof object === 'function') {
+  if (
+    (object !== null && typeof object === 'object') ||
+    typeof object === 'function'
+  ) {
     const ids = [];
     Object.keys(object).forEach((key) => {
-      ids.push(`${prefix}${key}`, ...computeNodeIds(object[key], `${prefix}${key}.`));
+      ids.push(
+        `${prefix}${key}`,
+        ...computeNodeIds(object[key], `${prefix}${key}.`),
+      );
     });
 
     return ids;
@@ -277,7 +299,9 @@ function DefaultTheme(props) {
   }, []);
 
   const data = React.useMemo(() => {
-    return createMuiTheme({ palette: { type: darkTheme ? 'dark' : 'light' } });
+    return createMuiTheme({
+      palette: { type: darkTheme ? 'dark' : 'light' },
+    });
   }, [darkTheme]);
 
   const allNodeIds = useNodeIdsLazy(data);
@@ -316,7 +340,11 @@ function DefaultTheme(props) {
         }
         label={t('useDarkTheme')}
       />
-      <Inspector className={classes.inspector} data={data} expandPaths={expandPaths} />
+      <Inspector
+        className={classes.inspector}
+        data={data}
+        expandPaths={expandPaths}
+      />
     </div>
   );
 }

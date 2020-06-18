@@ -19,7 +19,13 @@ const useStyles = makeStyles({
   },
 });
 
-function createData(name: string, calories: number, fat: number, carbs: number, protein: number) {
+function createData(
+  name: string,
+  calories: number,
+  fat: number,
+  carbs: number,
+  protein: number,
+) {
   return { name, calories, fat, carbs, protein };
 }
 

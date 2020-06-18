@@ -28,7 +28,12 @@ export default function Sizes() {
         getOptionLabel={(option) => option.title}
         defaultValue={top100Films[13]}
         renderInput={(params) => (
-          <TextField {...params} variant="standard" label="Size small" placeholder="Favorites" />
+          <TextField
+            {...params}
+            variant="standard"
+            label="Size small"
+            placeholder="Favorites"
+          />
         )}
       />
       <Autocomplete
@@ -39,7 +44,12 @@ export default function Sizes() {
         getOptionLabel={(option) => option.title}
         defaultValue={[top100Films[13]]}
         renderInput={(params) => (
-          <TextField {...params} variant="standard" label="Size small" placeholder="Favorites" />
+          <TextField
+            {...params}
+            variant="standard"
+            label="Size small"
+            placeholder="Favorites"
+          />
         )}
       />
       <Autocomplete
@@ -49,7 +59,12 @@ export default function Sizes() {
         getOptionLabel={(option) => option.title}
         defaultValue={top100Films[13]}
         renderInput={(params) => (
-          <TextField {...params} variant="outlined" label="Size small" placeholder="Favorites" />
+          <TextField
+            {...params}
+            variant="outlined"
+            label="Size small"
+            placeholder="Favorites"
+          />
         )}
       />
       <Autocomplete
@@ -60,7 +75,12 @@ export default function Sizes() {
         getOptionLabel={(option) => option.title}
         defaultValue={[top100Films[13]]}
         renderInput={(params) => (
-          <TextField {...params} variant="outlined" label="Size small" placeholder="Favorites" />
+          <TextField
+            {...params}
+            variant="outlined"
+            label="Size small"
+            placeholder="Favorites"
+          />
         )}
       />
       <Autocomplete
@@ -80,7 +100,12 @@ export default function Sizes() {
           ))
         }
         renderInput={(params) => (
-          <TextField {...params} variant="filled" label="Size small" placeholder="Favorites" />
+          <TextField
+            {...params}
+            variant="filled"
+            label="Size small"
+            placeholder="Favorites"
+          />
         )}
       />
       <Autocomplete
@@ -101,7 +126,12 @@ export default function Sizes() {
           ))
         }
         renderInput={(params) => (
-          <TextField {...params} variant="filled" label="Size small" placeholder="Favorites" />
+          <TextField
+            {...params}
+            variant="filled"
+            label="Size small"
+            placeholder="Favorites"
+          />
         )}
       />
     </div>
@@ -117,19 +147,34 @@ const top100Films = [
   { title: '12 Angry Men', year: 1957 },
   { title: "Schindler's List", year: 1993 },
   { title: 'Pulp Fiction', year: 1994 },
-  { title: 'The Lord of the Rings: The Return of the King', year: 2003 },
+  {
+    title: 'The Lord of the Rings: The Return of the King',
+    year: 2003,
+  },
   { title: 'The Good, the Bad and the Ugly', year: 1966 },
   { title: 'Fight Club', year: 1999 },
-  { title: 'The Lord of the Rings: The Fellowship of the Ring', year: 2001 },
-  { title: 'Star Wars: Episode V - The Empire Strikes Back', year: 1980 },
+  {
+    title: 'The Lord of the Rings: The Fellowship of the Ring',
+    year: 2001,
+  },
+  {
+    title: 'Star Wars: Episode V - The Empire Strikes Back',
+    year: 1980,
+  },
   { title: 'Forrest Gump', year: 1994 },
   { title: 'Inception', year: 2010 },
-  { title: 'The Lord of the Rings: The Two Towers', year: 2002 },
+  {
+    title: 'The Lord of the Rings: The Two Towers',
+    year: 2002,
+  },
   { title: "One Flew Over the Cuckoo's Nest", year: 1975 },
   { title: 'Goodfellas', year: 1990 },
   { title: 'The Matrix', year: 1999 },
   { title: 'Seven Samurai', year: 1954 },
-  { title: 'Star Wars: Episode IV - A New Hope', year: 1977 },
+  {
+    title: 'Star Wars: Episode IV - A New Hope',
+    year: 1977,
+  },
   { title: 'City of God', year: 2002 },
   { title: 'Se7en', year: 1995 },
   { title: 'The Silence of the Lambs', year: 1991 },
@@ -162,7 +207,11 @@ const top100Films = [
   { title: 'Apocalypse Now', year: 1979 },
   { title: 'Alien', year: 1979 },
   { title: 'Sunset Boulevard', year: 1950 },
-  { title: 'Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb', year: 1964 },
+  {
+    title:
+      'Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb',
+    year: 1964,
+  },
   { title: 'The Great Dictator', year: 1940 },
   { title: 'Cinema Paradiso', year: 1988 },
   { title: 'The Lives of Others', year: 2006 },
@@ -182,7 +231,10 @@ const top100Films = [
   { title: 'Citizen Kane', year: 1941 },
   { title: 'North by Northwest', year: 1959 },
   { title: 'Vertigo', year: 1958 },
-  { title: 'Star Wars: Episode VI - Return of the Jedi', year: 1983 },
+  {
+    title: 'Star Wars: Episode VI - Return of the Jedi',
+    year: 1983,
+  },
   { title: 'Reservoir Dogs', year: 1992 },
   { title: 'Braveheart', year: 1995 },
   { title: 'M', year: 1931 },
@@ -193,7 +245,10 @@ const top100Films = [
   { title: 'Taxi Driver', year: 1976 },
   { title: 'Lawrence of Arabia', year: 1962 },
   { title: 'Double Indemnity', year: 1944 },
-  { title: 'Eternal Sunshine of the Spotless Mind', year: 2004 },
+  {
+    title: 'Eternal Sunshine of the Spotless Mind',
+    year: 2004,
+  },
   { title: 'Amadeus', year: 1984 },
   { title: 'To Kill a Mockingbird', year: 1962 },
   { title: 'Toy Story 3', year: 2010 },

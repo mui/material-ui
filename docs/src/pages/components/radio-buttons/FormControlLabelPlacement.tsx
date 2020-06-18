@@ -28,7 +28,11 @@ export default function FormControlLabelPlacement() {
           label="Bottom"
           labelPlacement="bottom"
         />
-        <FormControlLabel value="end" control={<Radio color="primary" />} label="End" />
+        <FormControlLabel
+          value="end"
+          control={<Radio color="primary" />}
+          label="End"
+        />
       </RadioGroup>
     </FormControl>
   );

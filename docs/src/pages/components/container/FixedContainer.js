@@ -8,7 +8,13 @@ export default function FixedContainer() {
     <React.Fragment>
       <CssBaseline />
       <Container fixed>
-        <Typography component="div" style={{ backgroundColor: '#cfe8fc', height: '100vh' }} />
+        <Typography
+          component="div"
+          style={{
+            backgroundColor: '#cfe8fc',
+            height: '100vh',
+          }}
+        />
       </Container>
     </React.Fragment>
   );

@@ -1,7 +1,12 @@
 import React from 'react';
 import clsx from 'clsx';
 import SwipeableViews from 'react-swipeable-views';
-import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
+import {
+  makeStyles,
+  useTheme,
+  Theme,
+  createStyles,
+} from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -144,11 +149,17 @@ export default function FloatingActionButtonZoom() {
           in={value === index}
           timeout={transitionDuration}
           style={{
-            transitionDelay: `${value === index ? transitionDuration.exit : 0}ms`,
+            transitionDelay: `${
+              value === index ? transitionDuration.exit : 0
+            }ms`,
           }}
           unmountOnExit
         >
-          <Fab aria-label={fab.label} className={fab.className} color={fab.color}>
+          <Fab
+            aria-label={fab.label}
+            className={fab.className}
+            color={fab.color}
+          >
             {fab.icon}
           </Fab>
         </Zoom>

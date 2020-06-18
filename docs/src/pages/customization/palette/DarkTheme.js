@@ -1,7 +1,12 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
-import { makeStyles, ThemeProvider, useTheme, createMuiTheme } from '@material-ui/core/styles';
+import {
+  makeStyles,
+  ThemeProvider,
+  useTheme,
+  createMuiTheme,
+} from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -65,13 +70,22 @@ function Demo() {
         {item(theme.palette.action.hover, 'palette.action.hover')}
         {item(theme.palette.action.selected, 'palette.action.selected')}
         {item(theme.palette.action.disabled, 'palette.action.disabled')}
-        {item(theme.palette.action.disabledBackground, 'palette.action.disabledBackground', true)}
+        {item(
+          theme.palette.action.disabledBackground,
+          'palette.action.disabledBackground',
+          true,
+        )}
       </Grid>
       <Typography gutterBottom className={classes.group}>
         Background
       </Typography>
       <Grid container spacing={1}>
-        {item(theme.palette.background.default, 'palette.background.default', false, true)}
+        {item(
+          theme.palette.background.default,
+          'palette.background.default',
+          false,
+          true,
+        )}
         {item(theme.palette.background.paper, 'palette.background.paper')}
       </Grid>
       <Typography gutterBottom className={classes.group}>

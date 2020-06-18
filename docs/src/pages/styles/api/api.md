@@ -33,9 +33,7 @@ const generateClassName = createGenerateClassName({
 
 export default function App() {
   return (
-    <StylesProvider generateClassName={generateClassName}>
-      ...
-    </StylesProvider>
+    <StylesProvider generateClassName={generateClassName}>...</StylesProvider>
   );
 }
 ```
@@ -121,9 +119,7 @@ import ReactDOMServer from 'react-dom/server';
 import { ServerStyleSheets } from '@material-ui/core/styles';
 
 const sheets = new ServerStyleSheets();
-const html = ReactDOMServer.renderToString(
-  sheets.collect(<App />),
-);
+const html = ReactDOMServer.renderToString(sheets.collect(<App />));
 const cssString = sheets.toString();
 
 const response = `

@@ -19,7 +19,12 @@ export default function ValidationTextFields() {
   return (
     <form className={classes.root} noValidate autoComplete="off">
       <div>
-        <TextField error id="standard-error" label="Error" defaultValue="Hello World" />
+        <TextField
+          error
+          id="standard-error"
+          label="Error"
+          defaultValue="Hello World"
+        />
         <TextField
           error
           id="standard-error-helper-text"

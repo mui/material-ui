@@ -25,7 +25,22 @@ function TextMaskCustom(props) {
       ref={(ref) => {
         inputRef(ref ? ref.inputElement : null);
       }}
-      mask={['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
+      mask={[
+        '(',
+        /[1-9]/,
+        /\d/,
+        /\d/,
+        ')',
+        ' ',
+        /\d/,
+        /\d/,
+        /\d/,
+        '-',
+        /\d/,
+        /\d/,
+        /\d/,
+        /\d/,
+      ]}
       placeholderChar={'\u2000'}
       showMask
     />
@@ -81,7 +96,9 @@ export default function FormattedInputs() {
   return (
     <div className={classes.root}>
       <FormControl>
-        <InputLabel htmlFor="formatted-text-mask-input">react-text-mask</InputLabel>
+        <InputLabel htmlFor="formatted-text-mask-input">
+          react-text-mask
+        </InputLabel>
         <Input
           value={values.textmask}
           onChange={handleChange}

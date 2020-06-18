@@ -32,7 +32,10 @@ function SignUp() {
   const [sent, setSent] = React.useState(false);
 
   const validate = (values) => {
-    const errors = required(['firstName', 'lastName', 'email', 'password'], values);
+    const errors = required(
+      ['firstName', 'lastName', 'email', 'password'],
+      values,
+    );
 
     if (!errors.email) {
       const emailError = email(values.email, values);
@@ -62,7 +65,11 @@ function SignUp() {
             </Link>
           </Typography>
         </React.Fragment>
-        <Form onSubmit={handleSubmit} subscription={{ submitting: true }} validate={validate}>
+        <Form
+          onSubmit={handleSubmit}
+          subscription={{ submitting: true }}
+          validate={validate}
+        >
           {({ handleSubmit2, submitting }) => (
             <form onSubmit={handleSubmit2} className={classes.form} noValidate>
               <Grid container spacing={2}>

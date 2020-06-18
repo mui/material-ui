@@ -31,8 +31,8 @@ export default function SimpleExpansionPanel() {
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-            sit amet blandit leo lobortis eget.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+            malesuada lacus ex, sit amet blandit leo lobortis eget.
           </Typography>
         </ExpansionPanelDetails>
       </ExpansionPanel>
@@ -46,8 +46,8 @@ export default function SimpleExpansionPanel() {
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-            sit amet blandit leo lobortis eget.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+            malesuada lacus ex, sit amet blandit leo lobortis eget.
           </Typography>
         </ExpansionPanelDetails>
       </ExpansionPanel>
@@ -57,7 +57,9 @@ export default function SimpleExpansionPanel() {
           aria-controls="panel3a-content"
           id="panel3a-header"
         >
-          <Typography className={classes.heading}>Disabled Expansion Panel</Typography>
+          <Typography className={classes.heading}>
+            Disabled Expansion Panel
+          </Typography>
         </ExpansionPanelSummary>
       </ExpansionPanel>
     </div>

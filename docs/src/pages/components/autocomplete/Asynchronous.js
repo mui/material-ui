@@ -24,7 +24,10 @@ export default function Asynchronous() {
     }
 
     (async () => {
-      const response = await fetch('https://country.register.gov.uk/records.json?page-size=5000');
+      const response = await fetch(
+        'https://country.register.gov.uk/records.json?page-size=5000',
+      );
+
       await sleep(1e3); // For demo purposes.
       const countries = await response.json();
 
@@ -68,7 +71,9 @@ export default function Asynchronous() {
             ...params.InputProps,
             endAdornment: (
               <React.Fragment>
-                {loading ? <CircularProgress color="inherit" size={20} /> : null}
+                {loading ? (
+                  <CircularProgress color="inherit" size={20} />
+                ) : null}
                 {params.InputProps.endAdornment}
               </React.Fragment>
             ),

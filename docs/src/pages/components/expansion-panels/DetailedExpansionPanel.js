@@ -61,7 +61,9 @@ export default function DetailedExpansionPanel() {
             <Typography className={classes.heading}>Location</Typography>
           </div>
           <div className={classes.column}>
-            <Typography className={classes.secondaryHeading}>Select trip destination</Typography>
+            <Typography className={classes.secondaryHeading}>
+              Select trip destination
+            </Typography>
           </div>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails className={classes.details}>
