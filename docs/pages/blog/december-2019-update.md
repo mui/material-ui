@@ -32,7 +32,7 @@ But this summary is just scratching the surface. We have accepted 168 commits fr
 
 ## Our roadmap intent for January
 
-*(We'll do our best, no guarantee!)*
+_(We'll do our best, no guarantee!)_
 
 - 💄 We will keep working on a new [pagination](https://github.com/mui-org/material-ui/pull/19049) component. You can already [preview it](https://deploy-preview-19049--material-ui.netlify.app/components/pagination/) (lead by [**@mbrookes**](https://github.com/mbrookes)).
 

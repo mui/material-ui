@@ -17,19 +17,34 @@ export interface TablePaginationTypeMap<P, D extends React.ElementType> {
   props: P &
     TablePaginationBaseProps & {
       ActionsComponent?: React.ElementType<TablePaginationActionsProps>;
-      backIconButtonText?: string;
       backIconButtonProps?: Partial<IconButtonProps>;
       count: number;
+      /**
+       * Accepts a function which returns a string value that provides a user-friendly name for the current page.
+       *
+       * For localization purposes, you can use the provided [translations](/guides/localization/).
+       *
+       * @param {string} type The link or button type to format ('first' | 'last' | 'next' | 'previous').
+       * @returns {string}
+       */
+      getItemAriaLabel?: (type: 'first' | 'last' | 'next' | 'previous') => string;
       labelDisplayedRows?: (paginationInfo: LabelDisplayedRowsArgs) => React.ReactNode;
       labelRowsPerPage?: React.ReactNode;
       nextIconButtonProps?: Partial<IconButtonProps>;
-      nextIconButtonText?: string;
       onChangePage: (event: React.MouseEvent<HTMLButtonElement> | null, page: number) => void;
       onChangeRowsPerPage?: React.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>;
       page: number;
       rowsPerPage: number;
       rowsPerPageOptions?: Array<number | { value: number; label: string }>;
       SelectProps?: Partial<SelectProps>;
+      /**
+       * If `true`, show the first-page button.
+       */
+      showFirstButton?: boolean;
+      /**
+       * If `true`, show the last-page button.
+       */
+      showLastButton?: boolean;
     };
   defaultComponent: D;
   classKey: TablePaginationClassKey;

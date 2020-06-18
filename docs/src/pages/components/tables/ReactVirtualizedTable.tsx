@@ -1,9 +1,20 @@
 import React from 'react';
 import clsx from 'clsx';
-import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
+import {
+  createStyles,
+  Theme,
+  withStyles,
+  WithStyles,
+} from '@material-ui/core/styles';
 import TableCell from '@material-ui/core/TableCell';
 import Paper from '@material-ui/core/Paper';
-import { AutoSizer, Column, Table, TableCellRenderer, TableHeaderProps } from 'react-virtualized';
+import {
+  AutoSizer,
+  Column,
+  Table,
+  TableCellRenderer,
+  TableHeaderProps,
+} from 'react-virtualized';
 
 declare module '@material-ui/core/styles/withStyles' {
   // Augment the BaseCSSProperties so that we can control jss-rtl
@@ -66,7 +77,9 @@ interface MuiVirtualizedTableProps extends WithStyles<typeof styles> {
   rowHeight?: number;
 }
 
-class MuiVirtualizedTable extends React.PureComponent<MuiVirtualizedTableProps> {
+class MuiVirtualizedTable extends React.PureComponent<
+  MuiVirtualizedTableProps
+> {
   static defaultProps = {
     headerHeight: 48,
     rowHeight: 48,
@@ -90,20 +103,31 @@ class MuiVirtualizedTable extends React.PureComponent<MuiVirtualizedTableProps> 
         })}
         variant="body"
         style={{ height: rowHeight }}
-        align={(columnIndex != null && columns[columnIndex].numeric) || false ? 'right' : 'left'}
+        align={
+          (columnIndex != null && columns[columnIndex].numeric) || false
+            ? 'right'
+            : 'left'
+        }
       >
         {cellData}
       </TableCell>
     );
   };
 
-  headerRenderer = ({ label, columnIndex }: TableHeaderProps & { columnIndex: number }) => {
+  headerRenderer = ({
+    label,
+    columnIndex,
+  }: TableHeaderProps & { columnIndex: number }) => {
     const { headerHeight, columns, classes } = this.props;
 
     return (
       <TableCell
         component="div"
-        className={clsx(classes.tableCell, classes.flexContainer, classes.noClick)}
+        className={clsx(
+          classes.tableCell,
+          classes.flexContainer,
+          classes.noClick,
+        )}
         variant="head"
         style={{ height: headerHeight }}
         align={columns[columnIndex].numeric || false ? 'right' : 'left'}
@@ -114,7 +138,13 @@ class MuiVirtualizedTable extends React.PureComponent<MuiVirtualizedTableProps> 
   };
 
   render() {
-    const { classes, columns, rowHeight, headerHeight, ...tableProps } = this.props;
+    const {
+      classes,
+      columns,
+      rowHeight,
+      headerHeight,
+      ...tableProps
+    } = this.props;
     return (
       <AutoSizer>
         {({ height, width }) => (

@@ -20,7 +20,7 @@ as the parent component may need to control the wrapped components props.
 Let's see an example:
 
 ```jsx
-const WrappedIcon = props => <Icon {...props} />;
+const WrappedIcon = (props) => <Icon {...props} />;
 WrappedIcon.muiName = Icon.muiName;
 ```
 
@@ -35,7 +35,7 @@ Material-UI allows you to change the root element that will be rendered via a pr
 The custom component will be rendered by Material-UI like this:
 
 ```js
-return React.createElement(props.component, props)
+return React.createElement(props.component, props);
 ```
 
 For example, by default a `List` component will render a `<ul>` element.
@@ -67,7 +67,7 @@ import { Link } from 'react-router-dom';
 function ListItemLink(props) {
   const { icon, primary, to } = props;
 
-  const CustomLink = props => <Link to={to} {...props} />;
+  const CustomLink = (props) => <Link to={to} {...props} />;
 
   return (
     <li>
@@ -165,12 +165,14 @@ ref forwarding. However, only the following component types can be given a `ref`
 
 If you don't use one of the above types when using your components in conjunction with Material-UI, you might see a warning from
 React in your console similar to:
+
 > Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
 
 Be aware that you will still get this warning for `lazy` and `memo` components if their
 wrapped component can't hold a ref.
 
 In some instances an additional warning is issued to help with debugging, similar to:
+
 > Invalid prop `component` supplied to `ComponentName`. Expected an element type that can hold a ref.
 
 Only the two most common use cases are covered. For more information see [this section in the official React docs](https://reactjs.org/docs/forwarding-refs.html).
@@ -211,4 +213,3 @@ class Component extends React.Component {
 -export default Component;
 +export default React.forwardRef((props, ref) => <Component {...props} forwardedRef={ref} />);
 ```
-

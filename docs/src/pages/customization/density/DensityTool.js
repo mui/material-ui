@@ -18,11 +18,17 @@ const maxSpacing = 20;
 export default function DensityTool() {
   const dispatch = React.useContext(DispatchContext);
   const handleDensityChange = (event) => {
-    dispatch({ type: 'SET_DENSE', payload: event.target.checked });
+    dispatch({
+      type: 'SET_DENSE',
+      payload: event.target.checked,
+    });
   };
 
   const handleSpacingChange = (event, value) => {
-    dispatch({ type: 'SET_SPACING', payload: value || +event.target.value });
+    dispatch({
+      type: 'SET_SPACING',
+      payload: value || +event.target.value,
+    });
   };
 
   const increaseSpacing = () => {
@@ -64,7 +70,10 @@ export default function DensityTool() {
           </Typography>
         </Grid>
         <Grid item>
-          <IconButton aria-label={t('increaseSpacing')} onClick={decreaseSpacing}>
+          <IconButton
+            aria-label={t('increaseSpacing')}
+            onClick={decreaseSpacing}
+          >
             <DecreaseIcon />
           </IconButton>
           <Input
@@ -79,7 +88,10 @@ export default function DensityTool() {
               'aria-labelledby': 'input-slider',
             }}
           />
-          <IconButton aria-label={t('decreaseSpacing')} onClick={increaseSpacing}>
+          <IconButton
+            aria-label={t('decreaseSpacing')}
+            onClick={increaseSpacing}
+          >
             <IncreaseIcon />
           </IconButton>
         </Grid>

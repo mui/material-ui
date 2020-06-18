@@ -85,14 +85,14 @@ The end result? All of the capabilities you expect from commercial-grade softwar
   data-ga-event-category="support"
   data-ga-event-action="tidelift"
   href="https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise">
-  Get more details
+Get more details
 </a>
 
 <a
   data-ga-event-category="support"
   data-ga-event-action="tidelift"
   href="https://tidelift.com/subscription/request-a-demo?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise">
-  Request a demo
+Request a demo
 </a>
 
 ### Custom work 🛠

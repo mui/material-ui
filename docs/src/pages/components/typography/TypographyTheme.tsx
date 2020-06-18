@@ -14,5 +14,9 @@ const useStyles = makeStyles((theme: Theme) =>
 export default function TypographyTheme() {
   const classes = useStyles();
 
-  return <div className={classes.root}>{"This div's text looks like that of a button."}</div>;
+  return (
+    <div className={classes.root}>
+      {"This div's text looks like that of a button."}
+    </div>
+  );
 }

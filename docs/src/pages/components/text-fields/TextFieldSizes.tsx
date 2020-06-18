@@ -19,8 +19,17 @@ export default function TextFieldSizes() {
   return (
     <form className={classes.root} noValidate autoComplete="off">
       <div>
-        <TextField label="Size" id="standard-size-small" defaultValue="Small" size="small" />
-        <TextField label="Size" id="standard-size-normal" defaultValue="Normal" />
+        <TextField
+          label="Size"
+          id="standard-size-small"
+          defaultValue="Small"
+          size="small"
+        />
+        <TextField
+          label="Size"
+          id="standard-size-normal"
+          defaultValue="Normal"
+        />
       </div>
       <div>
         <TextField
@@ -30,7 +39,12 @@ export default function TextFieldSizes() {
           variant="filled"
           size="small"
         />
-        <TextField label="Size" id="filled-size-normal" defaultValue="Normal" variant="filled" />
+        <TextField
+          label="Size"
+          id="filled-size-normal"
+          defaultValue="Normal"
+          variant="filled"
+        />
       </div>
       <div>
         <TextField

@@ -9,7 +9,8 @@ import Typography from '@material-ui/core/Typography';
 import Link from 'docs/src/modules/components/Link';
 import PageContext from 'docs/src/modules/components/PageContext';
 
-const GITHUB_RELEASE_BASE_URL = 'https://github.com/mui-org/material-ui/releases/tag/';
+const GITHUB_RELEASE_BASE_URL =
+  'https://github.com/mui-org/material-ui/releases/tag/';
 
 const styles = {
   root: {
@@ -36,7 +37,12 @@ function StableVersions(props) {
                 </Typography>
               </TableCell>
               <TableCell>
-                <Link variant="body2" color="secondary" rel="nofollow" href={doc.url}>
+                <Link
+                  variant="body2"
+                  color="secondary"
+                  rel="nofollow"
+                  href={doc.url}
+                >
                   Documentation
                 </Link>
               </TableCell>

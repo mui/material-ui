@@ -30,7 +30,12 @@ function Media(props) {
       <CardHeader
         avatar={
           loading ? (
-            <Skeleton animation="wave" variant="circle" width={40} height={40} />
+            <Skeleton
+              animation="wave"
+              variant="circle"
+              width={40}
+              height={40}
+            />
           ) : (
             <Avatar
               alt="Ted talk"
@@ -47,12 +52,23 @@ function Media(props) {
         }
         title={
           loading ? (
-            <Skeleton animation="wave" height={10} width="80%" style={{ marginBottom: 6 }} />
+            <Skeleton
+              animation="wave"
+              height={10}
+              width="80%"
+              style={{ marginBottom: 6 }}
+            />
           ) : (
             'Ted'
           )
         }
-        subheader={loading ? <Skeleton animation="wave" height={10} width="40%" /> : '5 hours ago'}
+        subheader={
+          loading ? (
+            <Skeleton animation="wave" height={10} width="40%" />
+          ) : (
+            '5 hours ago'
+          )
+        }
       />
       {loading ? (
         <Skeleton animation="wave" variant="rect" className={classes.media} />
@@ -67,7 +83,11 @@ function Media(props) {
       <CardContent>
         {loading ? (
           <React.Fragment>
-            <Skeleton animation="wave" height={10} style={{ marginBottom: 6 }} />
+            <Skeleton
+              animation="wave"
+              height={10}
+              style={{ marginBottom: 6 }}
+            />
             <Skeleton animation="wave" height={10} width="80%" />
           </React.Fragment>
         ) : (

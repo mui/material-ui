@@ -52,14 +52,26 @@ export default function BadgeAlignment() {
       <div className={classes.row}>
         <FormControl component="fieldset" className={classes.formControl}>
           <FormLabel component="legend">Vertical</FormLabel>
-          <RadioGroup name="vertical" value={vertical} onChange={handleVerticalChange}>
+          <RadioGroup
+            name="vertical"
+            value={vertical}
+            onChange={handleVerticalChange}
+          >
             <FormControlLabel value="top" control={<Radio />} label="Top" />
-            <FormControlLabel value="bottom" control={<Radio />} label="Bottom" />
+            <FormControlLabel
+              value="bottom"
+              control={<Radio />}
+              label="Bottom"
+            />
           </RadioGroup>
         </FormControl>
         <FormControl component="fieldset" className={classes.formControl}>
           <FormLabel component="legend">Horizontal</FormLabel>
-          <RadioGroup name="horizontal" value={horizontal} onChange={handleHorizontalChange}>
+          <RadioGroup
+            name="horizontal"
+            value={horizontal}
+            onChange={handleHorizontalChange}
+          >
             <FormControlLabel value="right" control={<Radio />} label="Right" />
             <FormControlLabel value="left" control={<Radio />} label="Left" />
           </RadioGroup>

@@ -10,7 +10,11 @@ import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 
-const options = ['Create a merge commit', 'Squash and merge', 'Rebase and merge'];
+const options = [
+  'Create a merge commit',
+  'Squash and merge',
+  'Rebase and merge',
+];
 
 export default function SplitButton() {
   const [open, setOpen] = React.useState(false);
@@ -34,7 +38,10 @@ export default function SplitButton() {
   };
 
   const handleClose = (event: React.MouseEvent<Document, MouseEvent>) => {
-    if (anchorRef.current && anchorRef.current.contains(event.target as HTMLElement)) {
+    if (
+      anchorRef.current &&
+      anchorRef.current.contains(event.target as HTMLElement)
+    ) {
       return;
     }
 
@@ -44,7 +51,12 @@ export default function SplitButton() {
   return (
     <Grid container direction="column" alignItems="center">
       <Grid item xs={12}>
-        <ButtonGroup variant="contained" color="primary" ref={anchorRef} aria-label="split button">
+        <ButtonGroup
+          variant="contained"
+          color="primary"
+          ref={anchorRef}
+          aria-label="split button"
+        >
           <Button onClick={handleClick}>{options[selectedIndex]}</Button>
           <Button
             color="primary"
@@ -58,12 +70,19 @@ export default function SplitButton() {
             <ArrowDropDownIcon />
           </Button>
         </ButtonGroup>
-        <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
+        <Popper
+          open={open}
+          anchorEl={anchorRef.current}
+          role={undefined}
+          transition
+          disablePortal
+        >
           {({ TransitionProps, placement }) => (
             <Grow
               {...TransitionProps}
               style={{
-                transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom',
+                transformOrigin:
+                  placement === 'bottom' ? 'center top' : 'center bottom',
               }}
             >
               <Paper>

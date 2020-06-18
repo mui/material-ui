@@ -14,9 +14,27 @@ import { capitalize } from '@material-ui/core/utils';
 import ColorDemo from './ColorDemo';
 import { DispatchContext } from 'docs/src/modules/components/ThemeContext';
 
-const defaults = { primary: '#2196f3', secondary: '#f50057' };
+const defaults = {
+  primary: '#2196f3',
+  secondary: '#f50057',
+};
 const hues = Object.keys(colors).slice(1, 17);
-const shades = [900, 800, 700, 600, 500, 400, 300, 200, 100, 50, 'A700', 'A400', 'A200', 'A100'];
+const shades = [
+  900,
+  800,
+  700,
+  600,
+  500,
+  400,
+  300,
+  200,
+  100,
+  50,
+  'A700',
+  'A400',
+  'A200',
+  'A100',
+];
 
 const styles = (theme) => ({
   radio: {
@@ -80,9 +98,11 @@ function ColorTool(props) {
   });
 
   const handleChangeColor = (name) => (event) => {
-    const isRgb = (string) => /rgb\([0-9]{1,3}\s*,\s*[0-9]{1,3}\s*,\s*[0-9]{1,3}\)/i.test(string);
+    const isRgb = (string) =>
+      /rgb\([0-9]{1,3}\s*,\s*[0-9]{1,3}\s*,\s*[0-9]{1,3}\)/i.test(string);
 
-    const isHex = (string) => /^#?([0-9a-f]{3})$|^#?([0-9a-f]){6}$/i.test(string);
+    const isHex = (string) =>
+      /^#?([0-9a-f]{3})$|^#?([0-9a-f]){6}$/i.test(string);
 
     let {
       target: { value: color },
@@ -145,7 +165,9 @@ function ColorTool(props) {
       payload: { paletteColors },
     });
 
-    document.cookie = `paletteColors=${JSON.stringify(paletteColors)};path=/;max-age=31536000`;
+    document.cookie = `paletteColors=${JSON.stringify(
+      paletteColors,
+    )};path=/;max-age=31536000`;
   };
 
   const handleResetDocsColors = () => {
@@ -155,7 +177,9 @@ function ColorTool(props) {
   };
 
   const colorBar = (color) => {
-    const background = theme.palette.augmentColor({ main: color });
+    const background = theme.palette.augmentColor({
+      main: color,
+    });
 
     return (
       <Grid container className={classes.colorBar}>
@@ -167,7 +191,9 @@ function ColorTool(props) {
           >
             <Typography
               variant="caption"
-              style={{ color: theme.palette.getContrastText(background[key]) }}
+              style={{
+                color: theme.palette.getContrastText(background[key]),
+              }}
             >
               {rgbToHex(background[key])}
             </Typography>
@@ -184,10 +210,20 @@ function ColorTool(props) {
 
     return (
       <Grid item xs={12} sm={6} md={4}>
-        <Typography component="label" gutterBottom htmlFor={intent} variant="h6">
+        <Typography
+          component="label"
+          gutterBottom
+          htmlFor={intent}
+          variant="h6"
+        >
           {capitalize(intent)}
         </Typography>
-        <Input id={intent} value={intentInput} onChange={handleChangeColor(intent)} fullWidth />
+        <Input
+          id={intent}
+          value={intentInput}
+          onChange={handleChangeColor(intent)}
+          fullWidth
+        />
         <div className={classes.sliderContainer}>
           <Typography id={`${intent}ShadeSliderLabel`}>Shade:</Typography>
           <Slider
@@ -204,7 +240,9 @@ function ColorTool(props) {
         <div className={classes.swatch}>
           {hues.map((hue) => {
             const shade =
-              intent === 'primary' ? shades[state.primaryShade] : shades[state.secondaryShade];
+              intent === 'primary'
+                ? shades[state.primaryShade]
+                : shades[state.secondaryShade];
             const backgroundColor = colors[hue][shade];
 
             return (
@@ -217,9 +255,17 @@ function ColorTool(props) {
                   value={hue}
                   name={intent}
                   aria-labelledby={`tooltip-${intent}-${hue}`}
-                  icon={<div className={classes.radioIcon} style={{ backgroundColor }} />}
+                  icon={
+                    <div
+                      className={classes.radioIcon}
+                      style={{ backgroundColor }}
+                    />
+                  }
                   checkedIcon={
-                    <div className={classes.radioIconSelected} style={{ backgroundColor }}>
+                    <div
+                      className={classes.radioIconSelected}
+                      style={{ backgroundColor }}
+                    >
                       <CheckIcon style={{ fontSize: 30 }} />
                     </div>
                   }
@@ -241,7 +287,11 @@ function ColorTool(props) {
         <ColorDemo data={state} />
       </Grid>
       <Grid item xs={12}>
-        <Button variant="contained" color="primary" onClick={handleChangeDocsColors}>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleChangeDocsColors}
+        >
           Set Docs Colors
         </Button>
         <Button

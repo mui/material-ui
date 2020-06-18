@@ -46,14 +46,36 @@ export default function ErrorRadios() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <FormControl component="fieldset" error={error} className={classes.formControl}>
+      <FormControl
+        component="fieldset"
+        error={error}
+        className={classes.formControl}
+      >
         <FormLabel component="legend">Pop quiz: Material-UI is...</FormLabel>
-        <RadioGroup aria-label="quiz" name="quiz" value={value} onChange={handleRadioChange}>
-          <FormControlLabel value="best" control={<Radio />} label="The best!" />
-          <FormControlLabel value="worst" control={<Radio />} label="The worst." />
+        <RadioGroup
+          aria-label="quiz"
+          name="quiz"
+          value={value}
+          onChange={handleRadioChange}
+        >
+          <FormControlLabel
+            value="best"
+            control={<Radio />}
+            label="The best!"
+          />
+          <FormControlLabel
+            value="worst"
+            control={<Radio />}
+            label="The worst."
+          />
         </RadioGroup>
         <FormHelperText>{helperText}</FormHelperText>
-        <Button type="submit" variant="outlined" color="primary" className={classes.button}>
+        <Button
+          type="submit"
+          variant="outlined"
+          color="primary"
+          className={classes.button}
+        >
           Check Answer
         </Button>
       </FormControl>

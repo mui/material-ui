@@ -10,12 +10,19 @@ import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 export default function ToggleButtonsMultiple() {
   const [formats, setFormats] = React.useState(() => ['bold', 'italic']);
 
-  const handleFormat = (event: React.MouseEvent<HTMLElement>, newFormats: string[]) => {
+  const handleFormat = (
+    event: React.MouseEvent<HTMLElement>,
+    newFormats: string[],
+  ) => {
     setFormats(newFormats);
   };
 
   return (
-    <ToggleButtonGroup value={formats} onChange={handleFormat} aria-label="text formatting">
+    <ToggleButtonGroup
+      value={formats}
+      onChange={handleFormat}
+      aria-label="text formatting"
+    >
       <ToggleButton value="bold" aria-label="bold">
         <FormatBoldIcon />
       </ToggleButton>

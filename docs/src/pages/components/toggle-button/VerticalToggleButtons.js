@@ -13,7 +13,12 @@ export default function VerticalToggleButtons() {
   };
 
   return (
-    <ToggleButtonGroup orientation="vertical" value={view} exclusive onChange={handleChange}>
+    <ToggleButtonGroup
+      orientation="vertical"
+      value={view}
+      exclusive
+      onChange={handleChange}
+    >
       <ToggleButton value="list" aria-label="list">
         <ViewListIcon />
       </ToggleButton>

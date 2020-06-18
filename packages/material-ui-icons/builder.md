@@ -25,12 +25,12 @@ generates the appropriate `.js` files in the `build` folder, and creates a `pack
 You can build your own SVG icons as well as collections like [game-icons](https://game-icons.net/)
 through command line options.
 
-* `--output-dir` - Directory to output generated components.
-* `--svg-dir` - Directory containing the source SVG icons.
-* `--inner-path` - "Reach into" subdirs, since libraries like material-design-icons
+- `--output-dir` - Directory to output generated components.
+- `--svg-dir` - Directory containing the source SVG icons.
+- `--inner-path` - "Reach into" subdirs, since libraries like material-design-icons
   use arbitrary build directories to organize icons, e.g. "action/svg/production/".
-* `--file-suffix` - Process only files ending with the specified suffix/
-* `--rename-filter`  - Apply a custom filter to rename the generated icons.
+- `--file-suffix` - Process only files ending with the specified suffix/
+- `--rename-filter` - Apply a custom filter to rename the generated icons.
   The default and Material Design filters can be found in `filters/rename`.
 
 If you experience any issues building icons or would like a feature added,

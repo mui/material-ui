@@ -46,7 +46,11 @@ function DemoTabs(props) {
       >
         <Tab label="Item One" aria-controls="a11y-tabpanel-0" id="a11y-tab-0" />
         <Tab label="Item Two" aria-controls="a11y-tabpanel-1" id="a11y-tab-1" />
-        <Tab label="Item Three" aria-controls="a11y-tabpanel-2" id="a11y-tab-2" />
+        <Tab
+          label="Item Three"
+          aria-controls="a11y-tabpanel-2"
+          id="a11y-tab-2"
+        />
       </Tabs>
     </AppBar>
   );
@@ -87,7 +91,11 @@ export default function AccessibleTabs() {
       <Typography id="demo-a11y-tabs-manual-label">
         Tabs where each tab needs to be selected manually
       </Typography>
-      <DemoTabs labelId="demo-a11y-tabs-manual-label" onChange={handleChange} value={value} />
+      <DemoTabs
+        labelId="demo-a11y-tabs-manual-label"
+        onChange={handleChange}
+        value={value}
+      />
       <TabPanel value={value} index={0}>
         Item One
       </TabPanel>

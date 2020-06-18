@@ -1,12 +1,17 @@
 import React from 'react';
 import { MemoryRouter as Router } from 'react-router';
-import { Link as RouterLink, LinkProps as RouterLinkProps } from 'react-router-dom';
+import {
+  Link as RouterLink,
+  LinkProps as RouterLinkProps,
+} from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import { Omit } from '@material-ui/types';
 
-const LinkBehavior = React.forwardRef<any, Omit<RouterLinkProps, 'to'>>((props, ref) => (
-  <RouterLink ref={ref} to="/getting-started/installation/" {...props} />
-));
+const LinkBehavior = React.forwardRef<any, Omit<RouterLinkProps, 'to'>>(
+  (props, ref) => (
+    <RouterLink ref={ref} to="/getting-started/installation/" {...props} />
+  ),
+);
 
 export default function ButtonRouter() {
   return (

@@ -51,6 +51,7 @@ const actions = [
 export default function SpeedDials() {
   const classes = useStyles();
   const [direction, setDirection] = React.useState('up');
+
   const [open, setOpen] = React.useState(false);
   const [hidden, setHidden] = React.useState(false);
 
@@ -73,7 +74,13 @@ export default function SpeedDials() {
   return (
     <div className={classes.root}>
       <FormControlLabel
-        control={<Switch checked={hidden} onChange={handleHiddenChange} color="primary" />}
+        control={
+          <Switch
+            checked={hidden}
+            onChange={handleHiddenChange}
+            color="primary"
+          />
+        }
         label="Hidden"
       />
       <FormLabel className={classes.radioGroup} component="legend">

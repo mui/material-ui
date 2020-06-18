@@ -6,12 +6,12 @@
 
 The theme exposes the following palette colors (accessible under `theme.palette.`):
 
-- *primary* - used to represent primary interface elements for a user. It's the color displayed most frequently across your app's screens and components.
-- *secondary* - used to represent secondary interface elements for a user. It provides more ways to accent and distinguish your product. Having it is optional.
-- *error* - used to represent interface elements that the user should be made aware of.
-- *warning* - used to represent potentially dangerous actions or important messages.
-- *info* - used to present information to the user that is neutral and not necessarily important.
-- *success* - used to indicate the successful completion of an action that user triggered.
+- _primary_ - used to represent primary interface elements for a user. It's the color displayed most frequently across your app's screens and components.
+- _secondary_ - used to represent secondary interface elements for a user. It provides more ways to accent and distinguish your product. Having it is optional.
+- _error_ - used to represent interface elements that the user should be made aware of.
+- _warning_ - used to represent potentially dangerous actions or important messages.
+- _info_ - used to present information to the user that is neutral and not necessarily important.
+- _success_ - used to indicate the successful completion of an action that user triggered.
 
 If you want to learn more about color, you can check out [the color section](/customization/color/).
 
@@ -110,10 +110,12 @@ Both the "tonalOffset" and "contrastThreshold" values may be customized as neede
 The "tonalOffset" value can either be a number between 0 and 1, which will apply to both light and dark variants, or an object with light and dark variants specified by the following TypeScript type:
 
 ```ts
-type PaletteTonalOffset = number | {
-  light: number;
-  dark: number;
-};
+type PaletteTonalOffset =
+  | number
+  | {
+      light: number;
+      dark: number;
+    };
 ```
 
 A higher value for "tonalOffset" will make calculated values for "light" lighter, and "dark" darker.
@@ -155,8 +157,8 @@ If you are using TypeScript, you would also need to use [module augmentation](/g
 declare module '@material-ui/core/styles/createMuiTheme' {
   interface Theme {
     status: {
-      danger: React.CSSProperties['color'],
-    }
+      danger: React.CSSProperties['color'];
+    };
   }
   interface PaletteColor {
     darker?: string;
@@ -166,12 +168,12 @@ declare module '@material-ui/core/styles/createMuiTheme' {
   }
   interface ThemeOptions {
     status: {
-      danger: React.CSSProperties['color']
-    }
+      danger: React.CSSProperties['color'];
+    };
   }
 }
 
-declare module "@material-ui/core/styles/createPalette" {
+declare module '@material-ui/core/styles/createPalette' {
   interface Palette {
     neutral: Palette['primary'];
   }
@@ -233,7 +235,7 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline/>
+      <CssBaseline />
       <Routes />
     </ThemeProvider>
   );

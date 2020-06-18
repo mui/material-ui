@@ -69,6 +69,17 @@ yarn add @material-ui/core
 />
 ```
 
+### TablePagination
+
+- The customization of the table pagination's actions labels must be done with the `getItemAriaLabel` prop.
+
+  ```diff
+  <TablePagination
+  - backIconButtonText="Avant"
+  - nextIconButtonText="Après
+  + getItemAriaLabel={…}
+  ```
+
 ### Typography
 
 - Replace `srOnly` prop support with a style util:

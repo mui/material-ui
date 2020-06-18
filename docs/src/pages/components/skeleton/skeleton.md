@@ -13,11 +13,20 @@ The component is designed to be used **directly in your components**.
 For instance:
 
 ```jsx
-{item ? (
-  <img style={{ width: 210, height: 118 }} alt={item.title} src={item.src} />
-) : (
-  <Skeleton variant="rect" width={210} height={118} />
-)}
+{
+  item ? (
+    <img
+      style={{
+        width: 210,
+        height: 118,
+      }}
+      alt={item.title}
+      src={item.src}
+    />
+  ) : (
+    <Skeleton variant="rect" width={210} height={118} />
+  );
+}
 ```
 
 ## Variants
@@ -47,9 +56,7 @@ In addition to accepting `width` and `height` props, the component can also infe
 It works well when it comes to typography as its height is set using `em` units.
 
 ```jsx
-<Typography variant="h1">
-  {loading ? <Skeleton /> : 'h1'}
-</Typography>
+<Typography variant="h1">{loading ? <Skeleton /> : 'h1'}</Typography>
 ```
 
 {{"demo": "pages/components/skeleton/SkeletonTypography.js", "defaultCodeOpen": false}}
@@ -59,9 +66,13 @@ height. In these instances, you can pass `children` and it will
 infer its width and height from them.
 
 ```jsx
-loading
-  ? <Skeleton><Avatar /></Skeleton>
-  : <Avatar src={data.avatar} />
+loading ? (
+  <Skeleton>
+    <Avatar />
+  </Skeleton>
+) : (
+  <Avatar src={data.avatar} />
+);
 ```
 
 {{"demo": "pages/components/skeleton/SkeletonChildren.js", "defaultCodeOpen": false}}

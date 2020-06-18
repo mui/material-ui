@@ -229,7 +229,10 @@ let DialogDetails = (props) => {
                 <Grid container alignItems="flex-end" justify="center">
                   <Grid item>
                     <Tooltip title="fontSize small">
-                      <selectedIcon.Icon className={classes.fontSize} fontSize="small" />
+                      <selectedIcon.Icon
+                        className={classes.fontSize}
+                        fontSize="small"
+                      />
                     </Tooltip>
                   </Grid>
                   <Grid item>
@@ -239,30 +242,50 @@ let DialogDetails = (props) => {
                   </Grid>
                   <Grid item>
                     <Tooltip title="fontSize large">
-                      <selectedIcon.Icon className={classes.fontSize} fontSize="large" />
+                      <selectedIcon.Icon
+                        className={classes.fontSize}
+                        fontSize="large"
+                      />
                     </Tooltip>
                   </Grid>
                 </Grid>
                 <Grid container justify="center">
-                  <selectedIcon.Icon className={clsx(classes.context, classes.contextPrimary)} />
                   <selectedIcon.Icon
-                    className={clsx(classes.context, classes.contextPrimaryInverse)}
+                    className={clsx(classes.context, classes.contextPrimary)}
+                  />
+                  <selectedIcon.Icon
+                    className={clsx(
+                      classes.context,
+                      classes.contextPrimaryInverse,
+                    )}
                   />
                 </Grid>
                 <Grid container justify="center">
                   <selectedIcon.Icon
-                    className={clsx(classes.context, classes.contextTextPrimary)}
+                    className={clsx(
+                      classes.context,
+                      classes.contextTextPrimary,
+                    )}
                   />
                   <selectedIcon.Icon
-                    className={clsx(classes.context, classes.contextTextPrimaryInverse)}
+                    className={clsx(
+                      classes.context,
+                      classes.contextTextPrimaryInverse,
+                    )}
                   />
                 </Grid>
                 <Grid container justify="center">
                   <selectedIcon.Icon
-                    className={clsx(classes.context, classes.contextTextSecondary)}
+                    className={clsx(
+                      classes.context,
+                      classes.contextTextSecondary,
+                    )}
                   />
                   <selectedIcon.Icon
-                    className={clsx(classes.context, classes.contextTextSecondaryInverse)}
+                    className={clsx(
+                      classes.context,
+                      classes.contextTextSecondaryInverse,
+                    )}
                   />
                 </Grid>
               </Grid>
@@ -450,15 +473,23 @@ export default function SearchIcons() {
       <Grid item xs={12} sm={3}>
         <form className={classes.form}>
           <RadioGroup>
-            {['Filled', 'Outlined', 'Rounded', 'Two tone', 'Sharp'].map((key) => {
-              return (
-                <FormControlLabel
-                  key={key}
-                  control={<Radio checked={tag === key} onChange={() => setTag(key)} value={key} />}
-                  label={key}
-                />
-              );
-            })}
+            {['Filled', 'Outlined', 'Rounded', 'Two tone', 'Sharp'].map(
+              (key) => {
+                return (
+                  <FormControlLabel
+                    key={key}
+                    control={
+                      <Radio
+                        checked={tag === key}
+                        onChange={() => setTag(key)}
+                        value={key}
+                      />
+                    }
+                    label={key}
+                  />
+                );
+              },
+            )}
           </RadioGroup>
         </form>
       </Grid>
@@ -477,10 +508,20 @@ export default function SearchIcons() {
             inputProps={{ 'aria-label': 'search icons' }}
           />
         </Paper>
-        <Typography className={classes.results}>{`${icons.length} matching results`}</Typography>
-        <Icons icons={icons} classes={classes} handleClickOpen={handleClickOpen} />
+        <Typography
+          className={classes.results}
+        >{`${icons.length} matching results`}</Typography>
+        <Icons
+          icons={icons}
+          classes={classes}
+          handleClickOpen={handleClickOpen}
+        />
       </Grid>
-      <DialogDetails open={open} selectedIcon={selectedIcon} handleClose={handleClose} />
+      <DialogDetails
+        open={open}
+        selectedIcon={selectedIcon}
+        handleClose={handleClose}
+      />
     </Grid>
   );
 }

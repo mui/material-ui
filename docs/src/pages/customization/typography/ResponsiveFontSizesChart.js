@@ -3,7 +3,11 @@ import React from 'react';
 // bundle size and module duplication is negligible
 /* eslint-disable-next-line no-restricted-imports */
 import { convertLength } from '@material-ui/core/styles/cssUtils';
-import { makeStyles, createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
+import {
+  makeStyles,
+  createMuiTheme,
+  responsiveFontSizes,
+} from '@material-ui/core/styles';
 import {
   Legend,
   Tooltip,
@@ -18,7 +22,15 @@ import {
 let theme = createMuiTheme();
 theme = responsiveFontSizes(theme);
 
-const colors = ['#443dc2', '#2060df', '#277e91', '#378153', '#4d811d', '#63780d', '#996600'];
+const colors = [
+  '#443dc2',
+  '#2060df',
+  '#277e91',
+  '#378153',
+  '#4d811d',
+  '#63780d',
+  '#996600',
+];
 const variants = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'subtitle1'];
 
 const useStyles = makeStyles({

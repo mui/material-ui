@@ -11,7 +11,10 @@ export default function SimpleSnackbar() {
     setOpen(true);
   };
 
-  const handleClose = (event: React.SyntheticEvent | React.MouseEvent, reason?: string) => {
+  const handleClose = (
+    event: React.SyntheticEvent | React.MouseEvent,
+    reason?: string,
+  ) => {
     if (reason === 'clickaway') {
       return;
     }
@@ -36,7 +39,12 @@ export default function SimpleSnackbar() {
             <Button color="secondary" size="small" onClick={handleClose}>
               UNDO
             </Button>
-            <IconButton size="small" aria-label="close" color="inherit" onClick={handleClose}>
+            <IconButton
+              size="small"
+              aria-label="close"
+              color="inherit"
+              onClick={handleClose}
+            >
               <CloseIcon fontSize="small" />
             </IconButton>
           </React.Fragment>

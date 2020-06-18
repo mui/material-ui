@@ -11,12 +11,17 @@ const useStyles = makeStyles({
 });
 
 function LargeTree(): any {
-  return Array.from(new Array(5000)).map((_, index) => <span key={index}>.</span>);
+  return Array.from(new Array(5000)).map((_, index) => (
+    <span key={index}>.</span>
+  ));
 }
 
 export default function FrameDeferring() {
   const classes = useStyles();
-  const [state, setState] = React.useState({ open: false, defer: false });
+  const [state, setState] = React.useState({
+    open: false,
+    defer: false,
+  });
 
   return (
     <div>

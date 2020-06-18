@@ -37,7 +37,7 @@ const styles = {
   root: {
     display: 'flex',
     flexDirection: 'column',
-  }
+  },
 };
 
 withStyles(styles);
@@ -85,15 +85,16 @@ const styles = createStyles({
 });
 
 // Theme-dependent styles
-const styles = ({ palette, spacing }: Theme) => createStyles({
-  root: {
-    display: 'flex',
-    flexDirection: 'column',
-    padding: spacing.unit,
-    backgroundColor: palette.background.default,
-    color: palette.primary.main,
-  },
-});
+const styles = ({ palette, spacing }: Theme) =>
+  createStyles({
+    root: {
+      display: 'flex',
+      flexDirection: 'column',
+      padding: spacing.unit,
+      backgroundColor: palette.background.default,
+      color: palette.primary.main,
+    },
+  });
 ```
 
 `createStyles` is just the identity function; it doesn't "do anything" at runtime, just helps guide type inference at compile time.
@@ -149,11 +150,18 @@ const ambiguousStyles = createStyles({
 Since a component decorated with `withStyles(styles)` gets a special `classes` prop injected, you will want to define its props accordingly:
 
 ```ts
-const styles = (theme: Theme) => createStyles({
-  root: { /* ... */ },
-  paper: { /* ... */ },
-  button: { /* ... */ },
-});
+const styles = (theme: Theme) =>
+  createStyles({
+    root: {
+      /* ... */
+    },
+    paper: {
+      /* ... */
+    },
+    button: {
+      /* ... */
+    },
+  });
 
 interface Props {
   // non-style props
@@ -173,11 +181,18 @@ However this isn't very [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yours
 ```ts
 import { WithStyles, createStyles } from '@material-ui/core';
 
-const styles = (theme: Theme) => createStyles({
-  root: { /* ... */ },
-  paper: { /* ... */ },
-  button: { /* ... */ },
-});
+const styles = (theme: Theme) =>
+  createStyles({
+    root: {
+      /* ... */
+    },
+    paper: {
+      /* ... */
+    },
+    button: {
+      /* ... */
+    },
+  });
 
 interface Props extends WithStyles<typeof styles> {
   foo: number;
@@ -190,23 +205,25 @@ interface Props extends WithStyles<typeof styles> {
 Applying `withStyles(styles)` as a function works as expected:
 
 ```tsx
-const DecoratedSFC = withStyles(styles)(({ text, type, color, classes }: Props) => (
-  <Typography variant={type} color={color} classes={classes}>
-    {text}
-  </Typography>
-));
+const DecoratedSFC = withStyles(styles)(
+  ({ text, type, color, classes }: Props) => (
+    <Typography variant={type} color={color} classes={classes}>
+      {text}
+    </Typography>
+  ),
+);
 
 const DecoratedClass = withStyles(styles)(
   class extends React.Component<Props> {
     render() {
-      const { text, type, color, classes } = this.props
+      const { text, type, color, classes } = this.props;
       return (
         <Typography variant={type} color={color} classes={classes}>
           {text}
         </Typography>
       );
     }
-  }
+  },
 );
 ```
 
@@ -226,16 +243,16 @@ import { Breakpoint } from '@material-ui/core/styles/createBreakpoints';
 declare module '@material-ui/core/styles/createMuiTheme' {
   interface Theme {
     appDrawer: {
-      width: React.CSSProperties['width']
-      breakpoint: Breakpoint
-    }
+      width: React.CSSProperties['width'];
+      breakpoint: Breakpoint;
+    };
   }
   // allow configuration using `createMuiTheme`
   interface ThemeOptions {
     appDrawer?: {
-      width?: React.CSSProperties['width']
-      breakpoint?: Breakpoint
-    }
+      width?: React.CSSProperties['width'];
+      breakpoint?: Breakpoint;
+    };
   }
 }
 ```
@@ -243,6 +260,7 @@ declare module '@material-ui/core/styles/createMuiTheme' {
 And a custom theme factory with additional defaulted options:
 
 **./styles/createMyTheme**:
+
 ```ts
 import { createMuiTheme, ThemeOptions } from '@material-ui/core/styles';
 
@@ -253,7 +271,7 @@ export default function createMyTheme(options: ThemeOptions) {
       breakpoint: 'lg',
     },
     ...options,
-  })
+  });
 }
 ```
 
@@ -262,7 +280,9 @@ This could be used like:
 ```ts
 import createMyTheme from './styles/createMyTheme';
 
-const theme = createMyTheme({ appDrawer: { breakpoint: 'md' }});
+const theme = createMyTheme({
+  appDrawer: { breakpoint: 'md' },
+});
 ```
 
 ## Usage of `component` prop
@@ -299,8 +319,8 @@ function GenericCustomComponent<C extends React.ElementType>(
 Now if the `GenericCustomComponent` will be used with a `component` prop provided, it should also have all props required by the provided component.
 
 ```ts
-function ThirdPartyComponent({ prop1 } : { prop1: string }) {
-  return <div />
+function ThirdPartyComponent({ prop1 }: { prop1: string }) {
+  return <div />;
 }
 // ...
 <GenericCustomComponent component={ThirdPartyComponent} prop1="some value" />;

@@ -47,8 +47,8 @@ export default function MiddleDividers() {
           </Grid>
         </Grid>
         <Typography color="textSecondary" variant="body2">
-          Pinstriped cornflower blue cotton blouse takes you on a walk to the park or just down the
-          hall.
+          Pinstriped cornflower blue cotton blouse takes you on a walk to the
+          park or just down the hall.
         </Typography>
       </div>
       <Divider variant="middle" />

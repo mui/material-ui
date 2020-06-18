@@ -94,9 +94,13 @@ function getColorBlock(classes, theme, colorName, colorValue, colorTitle) {
 
 function getColorGroup(options) {
   const { classes, theme, color, showAltPalette } = options;
-  const cssColor = color.replace(' ', '').replace(color.charAt(0), color.charAt(0).toLowerCase());
+  const cssColor = color
+    .replace(' ', '')
+    .replace(color.charAt(0), color.charAt(0).toLowerCase());
   let colorsList = [];
-  colorsList = mainPalette.map((mainValue) => getColorBlock(classes, theme, cssColor, mainValue));
+  colorsList = mainPalette.map((mainValue) =>
+    getColorBlock(classes, theme, cssColor, mainValue),
+  );
 
   if (showAltPalette) {
     altPalette.forEach((altValue) => {

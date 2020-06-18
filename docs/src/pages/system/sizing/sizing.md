@@ -44,12 +44,12 @@ The sizing style functions support different property input type:
 import { sizing } from '@material-ui/system';
 ```
 
-| Import name | Prop | CSS property | Theme key |
-|:------------|:-----|:-------------|:----------|
-| `width` | `width` | `width` | none |
-| `maxWidth` | `maxWidth` | `max-width` | none |
-| `minWidth` | `minWidth` | `min-width` | none |
-| `height` | `height` | `height` | none |
-| `maxHeight` | `maxHeight`| `max-height` | none |
-| `minHeight` | `minHeight`| `min-height` | none |
-| `boxSizing` | `boxSizing`| `box-sizing` | none |
+| Import name | Prop        | CSS property | Theme key |
+| :---------- | :---------- | :----------- | :-------- |
+| `width`     | `width`     | `width`      | none      |
+| `maxWidth`  | `maxWidth`  | `max-width`  | none      |
+| `minWidth`  | `minWidth`  | `min-width`  | none      |
+| `height`    | `height`    | `height`     | none      |
+| `maxHeight` | `maxHeight` | `max-height` | none      |
+| `minHeight` | `minHeight` | `min-height` | none      |
+| `boxSizing` | `boxSizing` | `box-sizing` | none      |

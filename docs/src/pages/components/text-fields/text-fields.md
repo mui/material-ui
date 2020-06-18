@@ -133,10 +133,13 @@ In some circumstances, we can't determine the "shrink" state (number input, date
 ![shrink](/static/images/text-fields/shrink.png)
 
 To workaround the issue, you can force the "shrink" state of the label.
+
 ```jsx
 <TextField InputLabelProps={{ shrink: true }} />
 ```
+
 or
+
 ```jsx
 <InputLabel shrink>Count</InputLabel>
 ```
@@ -185,7 +188,9 @@ function MyInputComponent(props) {
 <TextField
   InputProps={{
     inputComponent: MyInputComponent,
-    inputProps: { component: SomeThirdPartyComponent },
+    inputProps: {
+      component: SomeThirdPartyComponent,
+    },
   }}
 />;
 ```
@@ -209,7 +214,9 @@ In order for the text field to be accessible, **the input should be linked to th
 <FormControl>
   <InputLabel htmlFor="my-input">Email address</InputLabel>
   <Input id="my-input" aria-describedby="my-helper-text" />
-  <FormHelperText id="my-helper-text">We'll never share your email.</FormHelperText>
+  <FormHelperText id="my-helper-text">
+    We'll never share your email.
+  </FormHelperText>
 </FormControl>
 ```
 

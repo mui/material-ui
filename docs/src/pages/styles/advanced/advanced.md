@@ -106,16 +106,15 @@ const useStyles = makeStyles({
 function Nested(props) {
   const classes = useStyles();
   return (
-    <button className={classes.root}> // 'jss1'
-      <span className={classes.label}> // 'jss2'
-        nested
-      </span>
+    <button className={classes.root}>
+      {/* 'jss1' */}
+      <span className={classes.label}>{/* 'jss2' nested */}</span>
     </button>
   );
 }
 
 function Parent() {
-  return <Nested />
+  return <Nested />;
 }
 ```
 
@@ -132,14 +131,12 @@ const Nested = withStyles({
   label: {}, // a nested style rule
 })(({ classes }) => (
   <button className={classes.root}>
-    <span className={classes.label}> // 'jss2 my-label'
-      Nested
-    </span>
+    <span className={classes.label}>{/* 'jss2 my-label' Nested*/}</span>
   </button>
 ));
 
 function Parent() {
-  return <Nested classes={{ label: 'my-label' }} />
+  return <Nested classes={{ label: 'my-label' }} />;
 }
 ```
 
@@ -157,15 +154,13 @@ function Nested(props) {
   const classes = useStyles(props);
   return (
     <button className={classes.root}>
-      <span className={classes.label}> // 'jss2 my-label'
-        nested
-      </span>
+      <span className={classes.label}>{/* 'jss2 my-label' nested */}</span>
     </button>
   );
 }
 
 function Parent() {
-  return <Nested classes={{ label: 'my-label' }} />
+  return <Nested classes={{ label: 'my-label' }} />;
 }
 ```
 
@@ -190,18 +185,14 @@ Of course, you are free to use additional plugins. Here is an example with the [
 ```jsx
 import { create } from 'jss';
 import { StylesProvider, jssPreset } from '@material-ui/core/styles';
-import rtl from 'jss-rtl'
+import rtl from 'jss-rtl';
 
 const jss = create({
   plugins: [...jssPreset().plugins, rtl()],
 });
 
 export default function App() {
-  return (
-    <StylesProvider jss={jss}>
-      ...
-    </StylesProvider>
-  );
+  return <StylesProvider jss={jss}>...</StylesProvider>;
 }
 ```
 
@@ -231,8 +222,8 @@ Note that this doesn't support selectors, or nested rules.
 ## CSS injection order
 
 > It's **really important** to understand how the CSS specificity is calculated by the browser,
-as it's one of the key elements to know when overriding styles.
-You are encouraged to read this MDN paragraph: [How is specificity calculated?](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity#How_is_specificity_calculated)
+> as it's one of the key elements to know when overriding styles.
+> You are encouraged to read this MDN paragraph: [How is specificity calculated?](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity#How_is_specificity_calculated)
 
 By default, the style tags are injected **last** in the `<head>` element of the page.
 They gain more specificity than any other style tags on your page e.g. CSS modules, styled components.
@@ -244,10 +235,8 @@ The `StylesProvider` component has an `injectFirst` prop to inject the style tag
 ```jsx
 import { StylesProvider } from '@material-ui/core/styles';
 
-<StylesProvider injectFirst>
-  {/* Your component tree.
-      Styled components can override Material-UI's styles. */}
-</StylesProvider>
+<StylesProvider injectFirst>{/* Your component tree.
+      Styled components can override Material-UI's styles. */}</StylesProvider>;
 ```
 
 ### `makeStyles` / `withStyles` / `styled`
@@ -276,7 +265,7 @@ export default function MyComponent() {
   const classesBase = useStylesBase();
 
   // Order doesn't matter
-  const className = clsx(classes.root, classesBase.root)
+  const className = clsx(classes.root, classesBase.root);
 
   // color: red 🔴 wins.
   return <div className={className} />;
@@ -297,7 +286,7 @@ The simplest approach is to add an HTML comment to the `<head>` that determines 
 ```html
 <head>
   <!-- jss-insertion-point -->
-  <link href="...">
+  <link href="..." />
 </head>
 ```
 
@@ -462,33 +451,56 @@ These conditions are met with the most common use cases of `@material-ui/core`.
 For instance, this style sheet:
 
 ```jsx
-const useStyles = makeStyles({
-  root: { /* … */ },
-  label: { /* … */ },
-  outlined: {
-    /* … */
-    '&$disabled': { /* … */ },
+const useStyles = makeStyles(
+  {
+    root: {
+      /* … */
+    },
+    label: {
+      /* … */
+    },
+    outlined: {
+      /* … */
+      '&$disabled': {
+        /* … */
+      },
+    },
+    outlinedPrimary: {
+      /* … */
+      '&:hover': {
+        /* … */
+      },
+    },
+    disabled: {},
   },
-  outlinedPrimary: {
-    /* … */
-    '&:hover': { /* … */ },
-  },
-  disabled: {},
-}, { name: 'MuiButton' });
+  { name: 'MuiButton' },
+);
 ```
 
 generates the following class names that you can override:
 
 ```css
-.MuiButton-root { /* … */ }
-.MuiButton-label { /* … */ }
-.MuiButton-outlined { /* … */ }
-.MuiButton-outlined.Mui-disabled { /* … */ }
-.MuiButton-outlinedPrimary: { /* … */ }
-.MuiButton-outlinedPrimary:hover { /* … */ }
+.MuiButton-root {
+  /* … */
+}
+.MuiButton-label {
+  /* … */
+}
+.MuiButton-outlined {
+  /* … */
+}
+.MuiButton-outlined.Mui-disabled {
+  /* … */
+}
+.muibutton-outlinedprimary: {
+  /* … */
+}
+.MuiButton-outlinedPrimary:hover {
+  /* … */
+}
 ```
 
-*This is a simplification of the `@material-ui/core/Button` component's style sheet.*
+_This is a simplification of the `@material-ui/core/Button` component's style sheet._
 
 Customization of the TextField can be cumbersome with the [`classes` API](#overriding-styles-classes-prop), where you have to define the the classes prop.
 It's easier to use the default values, as described above. For example:
@@ -553,6 +565,11 @@ This vulnerability would allow the attacker to execute anything. However, with a
 
 You can read more about CSP on the [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP).
 
+### Does Material-UI support CSP?
+
+Many Material-UI components support a strict CSP. Specifically, this means you will not need to use `'unsafe-inline'`. However, some components still use inline styles which require that `'unsafe-inline'` is set in the `style-src` directive. To test if your CSP is compatible with the components used in your project, you can use [Content-Security-Policy-Report-Only](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy-Report-Only).
+Updating Material-UI to fully support a strict CSP is being tracked in [#19938](https://github.com/mui-org/material-ui/issues/19938).
+
 ### How does one implement CSP?
 
 In order to use CSP with Material-UI (and JSS), you need to use a nonce. A nonce is a randomly generated string that is only used once, therefore you need to add server middleware to generate one on each request. JSS has a [great tutorial](https://github.com/cssinjs/jss/blob/master/docs/csp.md) on how to achieve this with Express and React Helmet. For a basic rundown, continue reading.
@@ -569,8 +586,9 @@ It is very important that you use UUID version 4, as it generates an **unpredict
 You then apply this nonce to the CSP header. A CSP header might look like this with the nonce applied:
 
 ```js
-header('Content-Security-Policy')
-  .set(`default-src 'self'; style-src: 'self' 'nonce-${nonce}';`);
+header('Content-Security-Policy').set(
+  `default-src 'self'; style-src: 'self' 'nonce-${nonce}';`,
+);
 ```
 
 If you are using Server-Side Rendering (SSR), you should pass the nonce in the `<style>` tag on the server.
@@ -579,13 +597,15 @@ If you are using Server-Side Rendering (SSR), you should pass the nonce in the `
 <style
   id="jss-server-side"
   nonce={nonce}
-  dangerouslySetInnerHTML={{ __html: sheets.toString() }}
+  dangerouslySetInnerHTML={{
+    __html: sheets.toString(),
+  }}
 />
 ```
 
 Then, you must pass this nonce to JSS so it can add it to subsequent `<style>` tags.
 
-The way that you do this is by passing a `<meta property="csp-nonce" content={nonce} />` tag in the `<head>` of your HTML.  JSS will then, by convention, look for a `<meta property="csp-nonce"` tag and use the `content` value as the nonce.
+The way that you do this is by passing a `<meta property="csp-nonce" content={nonce} />` tag in the `<head>` of your HTML. JSS will then, by convention, look for a `<meta property="csp-nonce"` tag and use the `content` value as the nonce.
 
 You must include this header regardless of whether or not SSR is used. Here is an example of what a fictional header could look like:
 

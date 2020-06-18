@@ -12,13 +12,25 @@ const styles = (theme) => ({
 
 const options = {
   overrides: {
-    h1: { component: (props) => <Typography gutterBottom variant="h4" {...props} /> },
-    h2: { component: (props) => <Typography gutterBottom variant="h6" {...props} /> },
-    h3: { component: (props) => <Typography gutterBottom variant="subtitle1" {...props} /> },
-    h4: {
-      component: (props) => <Typography gutterBottom variant="caption" paragraph {...props} />,
+    h1: {
+      component: (props) => <Typography gutterBottom variant="h4" {...props} />,
     },
-    p: { component: (props) => <Typography paragraph {...props} /> },
+    h2: {
+      component: (props) => <Typography gutterBottom variant="h6" {...props} />,
+    },
+    h3: {
+      component: (props) => (
+        <Typography gutterBottom variant="subtitle1" {...props} />
+      ),
+    },
+    h4: {
+      component: (props) => (
+        <Typography gutterBottom variant="caption" paragraph {...props} />
+      ),
+    },
+    p: {
+      component: (props) => <Typography paragraph {...props} />,
+    },
     a: { component: Link },
     li: {
       component: withStyles(styles)(({ classes, ...props }) => (

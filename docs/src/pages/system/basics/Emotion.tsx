@@ -1,6 +1,11 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { palette, PaletteProps, spacing, SpacingProps } from '@material-ui/system';
+import {
+  palette,
+  PaletteProps,
+  spacing,
+  SpacingProps,
+} from '@material-ui/system';
 import NoSsr from '@material-ui/core/NoSsr';
 
 const Box = styled.div<PaletteProps & SpacingProps>`

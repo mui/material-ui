@@ -11,6 +11,11 @@ const path = require('path');
 const yargs = require('yargs');
 const listChangedFiles = require('./listChangedFiles');
 
+function isTranslatedDocument(filename) {
+  // markdown files from crowdin end with a 2 letter locale
+  return /-\w{2}\.md$/.test(filename);
+}
+
 function runPrettier(options) {
   const { changedFiles, shouldWrite } = options;
 
@@ -24,8 +29,22 @@ function runPrettier(options) {
     .filter((notEmpty) => notEmpty);
 
   const files = glob
-    .sync('**/*.{js,tsx,ts}', { ignore: ['**/node_modules/**', ...ignoredFiles] })
-    .filter((f) => !changedFiles || changedFiles.has(f));
+    .sync('**/*.{js,md,tsx,ts}', {
+      ignore: [
+        '**/node_modules/**',
+        // these are auto-generated
+        'docs/pages/api-docs/**/*.md',
+        ...ignoredFiles,
+      ],
+    })
+    .filter(
+      (f) =>
+        (!changedFiles || changedFiles.has(f)) &&
+        // These come from crowdin.
+        // If we would commit changes crowdin would immediately try to revert.
+        // If we want to format these files we'd need to do it in crowdin
+        !isTranslatedDocument(f),
+    );
 
   if (!files.length) {
     return;

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
+import { spy } from 'sinon';
 import PropTypes from 'prop-types';
 import { getClasses } from '@material-ui/core/test-utils';
 import createMount from 'test/utils/createMount';
@@ -197,7 +198,7 @@ describe('<TablePagination />', () => {
         </table>,
       );
 
-      const nextButton = getByRole('button', { name: 'Next page' });
+      const nextButton = getByRole('button', { name: 'Go to next page' });
       fireEvent.click(nextButton);
       expect(page).to.equal(2);
     });
@@ -222,7 +223,7 @@ describe('<TablePagination />', () => {
         </table>,
       );
 
-      const backButton = getByRole('button', { name: 'Previous page' });
+      const backButton = getByRole('button', { name: 'Go to previous page' });
       fireEvent.click(backButton);
       expect(page).to.equal(0);
     });
@@ -296,8 +297,56 @@ describe('<TablePagination />', () => {
       const { container, getByRole } = render(<Test />);
 
       expect(container).to.have.text('Rows per page:101-10 of more than 10');
-      fireEvent.click(getByRole('button', { name: 'Next page' }));
+      fireEvent.click(getByRole('button', { name: 'Go to next page' }));
       expect(container).to.have.text('Rows per page:1011-20 of more than 20');
+    });
+  });
+
+  describe('prop: showFirstButton', () => {
+    it('should change the page', () => {
+      const handleChangePage = spy();
+      const { getByRole } = render(
+        <table>
+          <TableFooter>
+            <TableRow>
+              <TablePagination
+                showFirstButton
+                page={1}
+                rowsPerPage={10}
+                count={98}
+                onChangePage={handleChangePage}
+              />
+            </TableRow>
+          </TableFooter>
+        </table>,
+      );
+
+      fireEvent.click(getByRole('button', { name: 'Go to first page' }));
+      expect(handleChangePage.args[0][1]).to.equal(0);
+    });
+  });
+
+  describe('prop: showLastButton', () => {
+    it('should change the page', () => {
+      const handleChangePage = spy();
+      const { getByRole } = render(
+        <table>
+          <TableFooter>
+            <TableRow>
+              <TablePagination
+                showLastButton
+                page={0}
+                rowsPerPage={10}
+                count={98}
+                onChangePage={handleChangePage}
+              />
+            </TableRow>
+          </TableFooter>
+        </table>,
+      );
+
+      fireEvent.click(getByRole('button', { name: 'Go to last page' }));
+      expect(handleChangePage.args[0][1]).to.equal(9);
     });
   });
 

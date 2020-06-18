@@ -27,7 +27,10 @@ export default function CheckboxesGroup() {
   });
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
+    setState({
+      ...state,
+      [event.target.name]: event.target.checked,
+    });
   };
 
   const { gilad, jason, antoine } = state;
@@ -39,33 +42,58 @@ export default function CheckboxesGroup() {
         <FormLabel component="legend">Assign responsibility</FormLabel>
         <FormGroup>
           <FormControlLabel
-            control={<Checkbox checked={gilad} onChange={handleChange} name="gilad" />}
+            control={
+              <Checkbox checked={gilad} onChange={handleChange} name="gilad" />
+            }
             label="Gilad Gray"
           />
           <FormControlLabel
-            control={<Checkbox checked={jason} onChange={handleChange} name="jason" />}
+            control={
+              <Checkbox checked={jason} onChange={handleChange} name="jason" />
+            }
             label="Jason Killian"
           />
           <FormControlLabel
-            control={<Checkbox checked={antoine} onChange={handleChange} name="antoine" />}
+            control={
+              <Checkbox
+                checked={antoine}
+                onChange={handleChange}
+                name="antoine"
+              />
+            }
             label="Antoine Llorca"
           />
         </FormGroup>
         <FormHelperText>Be careful</FormHelperText>
       </FormControl>
-      <FormControl required error={error} component="fieldset" className={classes.formControl}>
+      <FormControl
+        required
+        error={error}
+        component="fieldset"
+        className={classes.formControl}
+      >
         <FormLabel component="legend">Pick two</FormLabel>
         <FormGroup>
           <FormControlLabel
-            control={<Checkbox checked={gilad} onChange={handleChange} name="gilad" />}
+            control={
+              <Checkbox checked={gilad} onChange={handleChange} name="gilad" />
+            }
             label="Gilad Gray"
           />
           <FormControlLabel
-            control={<Checkbox checked={jason} onChange={handleChange} name="jason" />}
+            control={
+              <Checkbox checked={jason} onChange={handleChange} name="jason" />
+            }
             label="Jason Killian"
           />
           <FormControlLabel
-            control={<Checkbox checked={antoine} onChange={handleChange} name="antoine" />}
+            control={
+              <Checkbox
+                checked={antoine}
+                onChange={handleChange}
+                name="antoine"
+              />
+            }
             label="Antoine Llorca"
           />
         </FormGroup>

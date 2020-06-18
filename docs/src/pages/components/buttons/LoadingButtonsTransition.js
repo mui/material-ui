@@ -38,7 +38,11 @@ export default function LoadingButtonsTransition() {
       <LoadingButton variant="outlined" pending={pending}>
         Submit
       </LoadingButton>
-      <LoadingButton variant="outlined" pending={pending} pendingIndicator="Loading...">
+      <LoadingButton
+        variant="outlined"
+        pending={pending}
+        pendingIndicator="Loading..."
+      >
         Fetch data
       </LoadingButton>
       <LoadingButton

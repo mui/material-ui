@@ -142,7 +142,8 @@ const appList = [
   },
   {
     title: 'EQ3',
-    description: 'Modern Furniture & Accessories, designed in Canada, for everyday living.',
+    description:
+      'Modern Furniture & Accessories, designed in Canada, for everyday living.',
     image: 'eq3.jpg',
     link: 'https://www.eq3.com/ca/en/',
     similarWebVisits: 256,
@@ -240,7 +241,8 @@ const appList = [
   },
   {
     title: 'LessWrong',
-    description: 'LessWrong is a community blog devoted to the art of human rationality.',
+    description:
+      'LessWrong is a community blog devoted to the art of human rationality.',
     image: 'lesswrong.jpg',
     link: 'https://www.lesswrong.com/',
     similarWebVisits: 774,
@@ -347,7 +349,8 @@ const appList = [
     dateAdded: '2019-01-01',
   },
   {
-    title: 'Cryptoverview: A friendly Dashboard for your cryptocurrency portfolio',
+    title:
+      'Cryptoverview: A friendly Dashboard for your cryptocurrency portfolio',
     description:
       "Cryptoverview is a responsive webapp that displays a user's Bittrex portfolio, " +
       'trending currencies and market caps. It provides some fancy charts, ' +
@@ -374,14 +377,16 @@ const appList = [
   },
   {
     title: 'Rare Bits',
-    description: 'Rare Bits is a marketplace where users can buy, sell and discover crypto assets.',
+    description:
+      'Rare Bits is a marketplace where users can buy, sell and discover crypto assets.',
     image: 'rarebits.jpg',
     link: 'https://rarebits.io/',
     dateAdded: '2019-01-01',
   },
   {
     title: 'Roast',
-    description: 'Roast.io makes web hosting HTML and JS single-page apps fast, secure, and easy.',
+    description:
+      'Roast.io makes web hosting HTML and JS single-page apps fast, secure, and easy.',
     image: 'roast.jpg',
     link: 'https://www.roast.io/',
     dateAdded: '2019-01-01',
@@ -452,7 +457,8 @@ const appList = [
   },
   {
     title: 'SlidesUp',
-    description: 'SlidesUp is a platform to help conference organizers plan their events.',
+    description:
+      'SlidesUp is a platform to help conference organizers plan their events.',
     image: 'slidesup.jpg',
     link: 'https://slidesup.com/',
     dateAdded: '2018-01-03',
@@ -483,7 +489,8 @@ const appList = [
   },
   {
     title: 'Typekev',
-    description: 'The personal site of Kevin Gonzalez, featuring his witty chatbot.',
+    description:
+      'The personal site of Kevin Gonzalez, featuring his witty chatbot.',
     image: 'typekev.jpg',
     link: 'https://typekev.com/',
     source: 'https://github.com/typekev/typekev-site',
@@ -545,7 +552,8 @@ const appList = [
       'An open source Chrome extension allowing you to import and execute JavaScript code ' +
       'snippets from GitHub.',
     image: 'snippets.jpg',
-    link: 'https://chrome.google.com/webstore/detail/snippets/dcibnkkafifbanoclgjbkmkbogijndin',
+    link:
+      'https://chrome.google.com/webstore/detail/snippets/dcibnkkafifbanoclgjbkmkbogijndin',
     source: 'https://github.com/richardscarrott/snippets',
     stars: 42,
     dateAdded: '2018-01-19',
@@ -593,7 +601,8 @@ const appList = [
   },
   {
     title: 'TradeNBA',
-    description: 'NBA trade machine and social analysis tools for the basketball community.',
+    description:
+      'NBA trade machine and social analysis tools for the basketball community.',
     image: 'tradenba.jpg',
     link: 'https://tradenba.com/',
     similarWebVisits: 160,
@@ -601,7 +610,8 @@ const appList = [
   },
   {
     title: 'CinemaPlus',
-    description: 'Cinema Plus is an online Movie Ticket Booking web app with MERN Stack.',
+    description:
+      'Cinema Plus is an online Movie Ticket Booking web app with MERN Stack.',
     image: 'cinemaplus.jpg',
     link: 'https://elcinema.herokuapp.com/',
     similarWebVisits: 100,

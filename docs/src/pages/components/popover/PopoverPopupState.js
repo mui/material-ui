@@ -10,7 +10,11 @@ export default function PopoverPopupState() {
     <PopupState variant="popover" popupId="demo-popup-popover">
       {(popupState) => (
         <div>
-          <Button variant="contained" color="primary" {...bindTrigger(popupState)}>
+          <Button
+            variant="contained"
+            color="primary"
+            {...bindTrigger(popupState)}
+          >
             Open Popover
           </Button>
           <Popover

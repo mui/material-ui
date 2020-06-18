@@ -87,6 +87,6 @@ It should respect the following conditions:
 - Accepts an `in` prop. This corresponds to the open/close state.
 - Call the `onEnter` callback prop when the enter transition starts.
 - Call the `onExited` callback prop when the exit transition is completed.
-These two callbacks allow to unmount the children when in a closed state and fully transitioned.
+  These two callbacks allow to unmount the children when in a closed state and fully transitioned.
 
 For more information on creating a custom transition, visit the [React Transition Group Transition docs](http://reactcommunity.org/react-transition-group/transition).

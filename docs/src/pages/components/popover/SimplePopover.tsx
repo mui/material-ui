@@ -14,7 +14,9 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function SimplePopover() {
   const classes = useStyles();
-  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
+  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
+    null,
+  );
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -29,7 +31,12 @@ export default function SimplePopover() {
 
   return (
     <div>
-      <Button aria-describedby={id} variant="contained" color="primary" onClick={handleClick}>
+      <Button
+        aria-describedby={id}
+        variant="contained"
+        color="primary"
+        onClick={handleClick}
+      >
         Open Popover
       </Button>
       <Popover
@@ -46,7 +53,9 @@ export default function SimplePopover() {
           horizontal: 'center',
         }}
       >
-        <Typography className={classes.typography}>The content of the Popover.</Typography>
+        <Typography className={classes.typography}>
+          The content of the Popover.
+        </Typography>
       </Popover>
     </div>
   );

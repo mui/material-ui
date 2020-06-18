@@ -56,7 +56,10 @@ export default function InteractiveGrid() {
             <Grid key={value} item>
               <Paper
                 className={classes.paper}
-                style={{ paddingTop: (value + 1) * 10, paddingBottom: (value + 1) * 10 }}
+                style={{
+                  paddingTop: (value + 1) * 10,
+                  paddingBottom: (value + 1) * 10,
+                }}
               >
                 {`Cell ${value + 1}`}
               </Paper>
@@ -79,9 +82,21 @@ export default function InteractiveGrid() {
                     setDirection(event.target.value);
                   }}
                 >
-                  <FormControlLabel value="row" control={<Radio />} label="row" />
-                  <FormControlLabel value="row-reverse" control={<Radio />} label="row-reverse" />
-                  <FormControlLabel value="column" control={<Radio />} label="column" />
+                  <FormControlLabel
+                    value="row"
+                    control={<Radio />}
+                    label="row"
+                  />
+                  <FormControlLabel
+                    value="row-reverse"
+                    control={<Radio />}
+                    label="row-reverse"
+                  />
+                  <FormControlLabel
+                    value="column"
+                    control={<Radio />}
+                    label="column"
+                  />
                   <FormControlLabel
                     value="column-reverse"
                     control={<Radio />}
@@ -102,16 +117,36 @@ export default function InteractiveGrid() {
                     setJustify(event.target.value);
                   }}
                 >
-                  <FormControlLabel value="flex-start" control={<Radio />} label="flex-start" />
-                  <FormControlLabel value="center" control={<Radio />} label="center" />
-                  <FormControlLabel value="flex-end" control={<Radio />} label="flex-end" />
+                  <FormControlLabel
+                    value="flex-start"
+                    control={<Radio />}
+                    label="flex-start"
+                  />
+                  <FormControlLabel
+                    value="center"
+                    control={<Radio />}
+                    label="center"
+                  />
+                  <FormControlLabel
+                    value="flex-end"
+                    control={<Radio />}
+                    label="flex-end"
+                  />
                   <FormControlLabel
                     value="space-between"
                     control={<Radio />}
                     label="space-between"
                   />
-                  <FormControlLabel value="space-around" control={<Radio />} label="space-around" />
-                  <FormControlLabel value="space-evenly" control={<Radio />} label="space-evenly" />
+                  <FormControlLabel
+                    value="space-around"
+                    control={<Radio />}
+                    label="space-around"
+                  />
+                  <FormControlLabel
+                    value="space-evenly"
+                    control={<Radio />}
+                    label="space-evenly"
+                  />
                 </RadioGroup>
               </FormControl>
             </Grid>
@@ -127,11 +162,31 @@ export default function InteractiveGrid() {
                     setAlignItems(event.target.value);
                   }}
                 >
-                  <FormControlLabel value="flex-start" control={<Radio />} label="flex-start" />
-                  <FormControlLabel value="center" control={<Radio />} label="center" />
-                  <FormControlLabel value="flex-end" control={<Radio />} label="flex-end" />
-                  <FormControlLabel value="stretch" control={<Radio />} label="stretch" />
-                  <FormControlLabel value="baseline" control={<Radio />} label="baseline" />
+                  <FormControlLabel
+                    value="flex-start"
+                    control={<Radio />}
+                    label="flex-start"
+                  />
+                  <FormControlLabel
+                    value="center"
+                    control={<Radio />}
+                    label="center"
+                  />
+                  <FormControlLabel
+                    value="flex-end"
+                    control={<Radio />}
+                    label="flex-end"
+                  />
+                  <FormControlLabel
+                    value="stretch"
+                    control={<Radio />}
+                    label="stretch"
+                  />
+                  <FormControlLabel
+                    value="baseline"
+                    control={<Radio />}
+                    label="baseline"
+                  />
                 </RadioGroup>
               </FormControl>
             </Grid>

@@ -141,13 +141,20 @@ function AnchorPlayground(props) {
 </Popover>
 `;
 
-  const radioAnchorClasses = { root: classes.radioAnchor, checked: classes.checked };
+  const radioAnchorClasses = {
+    root: classes.radioAnchor,
+    checked: classes.checked,
+  };
 
   return (
     <div>
       <Grid container justify="center">
         <Grid item className={classes.buttonWrapper}>
-          <Button ref={anchorRef} variant="contained" onClick={handleClickButton}>
+          <Button
+            ref={anchorRef}
+            variant="contained"
+            onClick={handleClickButton}
+          >
             Open Popover
           </Button>
           {anchorReference === 'anchorEl' && (
@@ -165,7 +172,10 @@ function AnchorPlayground(props) {
         open={open}
         anchorEl={anchorRef.current}
         anchorReference={anchorReference}
-        anchorPosition={{ top: positionTop, left: positionLeft }}
+        anchorPosition={{
+          top: positionTop,
+          left: positionLeft,
+        }}
         onClose={handleClose}
         anchorOrigin={{
           vertical: anchorOriginVertical,
@@ -176,7 +186,9 @@ function AnchorPlayground(props) {
           horizontal: transformOriginHorizontal,
         }}
       >
-        <Typography className={classes.typography}>The content of the Popover.</Typography>
+        <Typography className={classes.typography}>
+          The content of the Popover.
+        </Typography>
       </Popover>
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6}>
@@ -189,8 +201,16 @@ function AnchorPlayground(props) {
               value={anchorReference}
               onChange={handleChange}
             >
-              <FormControlLabel value="anchorEl" control={<Radio />} label="anchorEl" />
-              <FormControlLabel value="anchorPosition" control={<Radio />} label="anchorPosition" />
+              <FormControlLabel
+                value="anchorEl"
+                control={<Radio />}
+                label="anchorEl"
+              />
+              <FormControlLabel
+                value="anchorPosition"
+                control={<Radio />}
+                label="anchorPosition"
+              />
             </RadioGroup>
           </FormControl>
         </Grid>
@@ -251,9 +271,21 @@ function AnchorPlayground(props) {
               value={transformOriginVertical}
               onChange={handleChange}
             >
-              <FormControlLabel value="top" control={<Radio color="primary" />} label="Top" />
-              <FormControlLabel value="center" control={<Radio color="primary" />} label="Center" />
-              <FormControlLabel value="bottom" control={<Radio color="primary" />} label="Bottom" />
+              <FormControlLabel
+                value="top"
+                control={<Radio color="primary" />}
+                label="Top"
+              />
+              <FormControlLabel
+                value="center"
+                control={<Radio color="primary" />}
+                label="Center"
+              />
+              <FormControlLabel
+                value="bottom"
+                control={<Radio color="primary" />}
+                label="Bottom"
+              />
             </RadioGroup>
           </FormControl>
         </Grid>
@@ -295,9 +327,21 @@ function AnchorPlayground(props) {
               value={transformOriginHorizontal}
               onChange={handleChange}
             >
-              <FormControlLabel value="left" control={<Radio color="primary" />} label="Left" />
-              <FormControlLabel value="center" control={<Radio color="primary" />} label="Center" />
-              <FormControlLabel value="right" control={<Radio color="primary" />} label="Right" />
+              <FormControlLabel
+                value="left"
+                control={<Radio color="primary" />}
+                label="Left"
+              />
+              <FormControlLabel
+                value="center"
+                control={<Radio color="primary" />}
+                label="Center"
+              />
+              <FormControlLabel
+                value="right"
+                control={<Radio color="primary" />}
+                label="Right"
+              />
             </RadioGroup>
           </FormControl>
         </Grid>

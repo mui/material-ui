@@ -12,9 +12,9 @@ The core of Material-UI is a crowd-funded open-source project, licensed under th
   <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="sencha" href="https://www.sencha.com/products/extreact/extreact-for-material-ui/?utm_source=materialui&utm_medium=referral&utm_content=product-200429-extreactmaterialui" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="128" width="128" src="/static/in-house/sencha-256x256.png" alt="sencha" title="UI Components for Productive Dev Teams" loading="lazy" /></a>
 </p>
 
-*2/3 slots available*
+_2/3 slots available_
 
-Diamond Sponsors are those who have pledged $1,500/month or more to Material-UI.
+Diamond Sponsors are those who have pledged \$1,500/month or more to Material-UI.
 Please contact us at diamond@material-ui.com to subscribe to this tier.
 
 ### Gold 🏆
@@ -32,7 +32,7 @@ via [OpenCollective](https://opencollective.com/material-ui)
   <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="callemall" href="https://www.call-em-all.com" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img src="https://images.opencollective.com/callemall/a6946da/logo/96.png" srcset="https://images.opencollective.com/callemall/a6946da/logo/192.png 2x" alt="call-em-all" title="The easy way to message your group" height="96" width="96" loading="lazy"></a>
 </p>
 
-Gold Sponsors are those who have pledged $500/month or more to Material-UI.
+Gold Sponsors are those who have pledged \$500/month or more to Material-UI.
 
 ### Silver
 

@@ -12,9 +12,20 @@ const useStyles = makeStyles({
   table: {
     minWidth: 650,
   },
+  hideLastBorder: {
+    '&:last-child td, &:last-child th': {
+      border: 0,
+    },
+  },
 });
 
-function createData(name: string, calories: number, fat: number, carbs: number, protein: number) {
+function createData(
+  name: string,
+  calories: number,
+  fat: number,
+  carbs: number,
+  protein: number,
+) {
   return { name, calories, fat, carbs, protein };
 }
 
@@ -43,7 +54,7 @@ export default function SimpleTable() {
         </TableHead>
         <TableBody>
           {rows.map((row) => (
-            <TableRow key={row.name}>
+            <TableRow key={row.name} className={classes.hideLastBorder}>
               <TableCell component="th" scope="row">
                 {row.name}
               </TableCell>
