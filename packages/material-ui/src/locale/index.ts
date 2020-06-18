@@ -1945,10 +1945,10 @@ export const zhCN: Localization = {
       },
       labelRowsPerPage: '每页行数:',
       labelDisplayedRows: ({ from, to, count }) =>
-        `第 ${from} 项到第 ${to} 项，${count !== -1 ? `共 ${count} 项` : `至少 ${to} 项`}`,
+        `第 ${from} 条到第 ${to} 条，${count !== -1 ? `共 ${count} 条` : `至少 ${to} 条`}`,
     },
     MuiRating: {
-      getLabelText: (value) => `${value} 星`,
+      getLabelText: (value) => `${value} 颗星`,
       emptyLabelText: '无标签',
     },
     MuiAutocomplete: {
@@ -1984,10 +1984,10 @@ export const zhTW: Localization = {
       },
       labelRowsPerPage: '每行行數:',
       labelDisplayedRows: ({ from, to, count }) =>
-        `第 ${from} 項到第 ${to} 項，${count !== -1 ? `共 ${count} 項` : `至少 ${to} 項`}`,
+        `第 ${from} 條到第 ${to} 條，${count !== -1 ? `共 ${count} 條` : `至少 ${to} 條`}`,
     },
     MuiRating: {
-      getLabelText: (value) => `${value} 星`,
+      getLabelText: (value) => `${value} 顆星`,
       emptyLabelText: '無標簽',
     },
     MuiAutocomplete: {
