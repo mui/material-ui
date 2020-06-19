@@ -32,8 +32,13 @@ Basic DateRangePicker example, make sure that you can pass almost any prop of [D
 
 #### Responsiveness
 
-Date/Time pickers experience is extremely different on mobile and desktop. Here is how components will look on different devices.
-The default `DateRangePicker` component is responsive, which means that `Mobile` or `Desktop` mode will be rendered according to device viewport.
+The date range picker component is designed and optimized for the device it runs on.
+
+- The "Mobile" version works best for touch devices and small screens.
+- The "Desktop" version works best for mouse devices and large screens.
+
+By default, the `DateRangePicker` component uses a `@media (pointer: fine)` media query to determine which version to use.
+This can be customized by `desktopModeMediaQuery` prop.
 
 <Example source={ResponsiveDateRangePicker} />
 

@@ -26,7 +26,13 @@ Allows choosing date then time. There are too many views, so tabs are required t
 
 #### Responsiveness
 
-DateTimePicker is a complex control, so you may consider using `MobileDateTimePicker` for desktop users as well.
+The date time picker component is designed and optimized for the device it runs on.
+
+- The "Mobile" version works best for touch devices and small screens.
+- The "Desktop" version works best for mouse devices and large screens.
+
+By default, the `DateTimePicker` component uses a `@media (pointer: fine)` media query to determine which version to use.
+This can be customized by `desktopModeMediaQuery` prop.
 
 <Example source={DateTimePickers} />
 
