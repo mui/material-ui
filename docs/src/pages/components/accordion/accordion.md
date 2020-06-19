@@ -11,7 +11,7 @@ components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
 
 > **Note:** Accordions are no longer documented in the [Material Design guidelines](https://material.io/), but Material-UI will continue to support them.
 
-## Simple Accordion
+## Simple accordion
 
 {{"demo": "pages/components/accordion/SimpleAccordion.js", "bg": true}}
 
