@@ -22,7 +22,8 @@
       "@material-ui/styles/*": ["./packages/material-ui-styles/src/*"],
       "@material-ui/system": ["./packages/material-ui-system/src"],
       "@material-ui/types": ["./packages/material-ui-types"],
-      "test/*": ["./test/*"]
+      "test/*": ["./test/*"],
+      "typescript-to-proptypes": ["./packages/typescript-to-proptypes/src"]
     }
   },
   "exclude": ["**/build/"]
