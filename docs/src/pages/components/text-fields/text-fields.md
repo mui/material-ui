@@ -146,21 +146,22 @@ or
 The floating label is absolutely positioned, it won't impact the layout of the page.
 You need to make sure that the input is larger than the label to display correctly.
 
-### Number inputs allowing non-numeric characters
+### type="number"
 
-By specification, inputs of type "number" allow the character 'e' (and other characters such as '+', '-', '.') to be entered.
+Inputs of type="number" have potential usability issues:
 
-```jsx
-<TextField inputProps={{ type: 'number' }} />
-```
+- Allowing certain non-numeric characters ('e', '+', '-', '.') and silently discarding others
+- The functionality of scrolling to increment/decrement the number can cause accidental and hard-to-notice changes
 
-If you are looking to validate that the input contains only numeric characters, consider using a field of type "text" with the _pattern_ attribute:
+and more - see [this article](https://technology.blog.gov.uk/2020/02/24/why-the-gov-uk-design-system-team-changed-the-input-type-for-numbers/) by the GOV.UK Design System team for a more detailed explanation.
+
+For number validation, one viable alternative is to use the default input type="text" with the _pattern_ attribute, for example:
 
 ```jsx
 <TextField inputProps={{ inputmode: 'numeric', pattern: '[0-9]*' }} />
 ```
 
-If you are looking to completely prevent the user from entering non-numeric characters, one approach would be to use a library such as [react-number-format](https://github.com/s-yadav/react-number-format). See [Integration with 3rd party input libraries](#integration-with-3rd-party-input-libraries) below for a demo.
+In the future, we might provide an [input number component](https://github.com/mui-org/material-ui/issues/19154).
 
 ## Integration with 3rd party input libraries
 
