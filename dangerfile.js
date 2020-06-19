@@ -135,7 +135,7 @@ async function run() {
       markdown(importantChanges.join('\n'));
     }
 
-    const details = `[Details of bundle changes](https://mui-dashboard.netlify.app/size-comparison?buildId=${process.env.AZURE_BUILD_ID}&baseRef=${danger.github.pr.base.ref}&baseCommit=${mergeBaseCommit})`;
+    const details = `[Details of bundle changes](https://mui-dashboard.netlify.app/size-comparison?buildId=${process.env.AZURE_BUILD_ID}&baseRef=${danger.github.pr.base.ref}&baseCommit=${mergeBaseCommit}&prNumber=${danger.github.pr.number})`;
 
     markdown(details);
   } else {
