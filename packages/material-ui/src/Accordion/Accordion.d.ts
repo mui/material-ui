@@ -47,7 +47,7 @@ export type AccordionClassKey = 'root' | 'rounded' | 'expanded' | 'disabled';
  *
  * Demos:
  *
- * - [Accordions](https://material-ui.com/components/accordion/)
+ * - [Accordion](https://material-ui.com/components/accordion/)
  *
  * API:
  *

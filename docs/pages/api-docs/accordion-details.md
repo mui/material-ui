@@ -51,5 +51,5 @@ If that's not sufficient, you can check the [implementation of the component](ht
 
 ## Demos
 
-- [Accordions](/components/accordion/)
+- [Accordion](/components/accordion/)
 

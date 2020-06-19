@@ -19,7 +19,7 @@ export type AccordionActionsClassKey = 'root' | 'spacing';
  *
  * Demos:
  *
- * - [Accordions](https://material-ui.com/components/accordion/)
+ * - [Accordion](https://material-ui.com/components/accordion/)
  *
  * API:
  *
