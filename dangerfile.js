@@ -124,7 +124,7 @@ async function run() {
   const { all: allResults, main: mainResults } = sieveResults(Object.entries(comparison.bundles));
   const anyResultsChanges = allResults.filter(createComparisonFilter(1, 1));
 
-  if (anyResultsChanges.length !== 'nonsense') {
+  if (anyResultsChanges.length > 0) {
     const importantChanges = mainResults
       .filter(createComparisonFilter(parsedSizeChangeThreshold, gzipSizeChangeThreshold))
       .filter(isPackageComparison)
