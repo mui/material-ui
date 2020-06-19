@@ -95,7 +95,7 @@ import useAutocomplete from '@material-ui/lab/useAutocomplete';
 
 {{"demo": "pages/components/autocomplete/CustomizedHook.js"}}
 
-Head to the [Customized Autocomplete](#customized-autocomplete) section for a customization example with the `Autocomplete` component instead of the hook.
+Head to the [Customizations](#customizations) section for a customization example with the `Autocomplete` component instead of the hook.
 
 ## Asynchronous requests
 
