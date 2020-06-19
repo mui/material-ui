@@ -24,6 +24,8 @@ Use the <code>theme.transitions.create()</code> helper to create consistent tran
 theme.transitions.create(['background-color', 'transform']);
 ```
 
+#### Example
+
 {{"demo": "pages/customization/transitions/TransitionHover.js", "defaultCodeOpen": false}}
 
 ### `theme.transitions.getAutoHeightDuration(height) => duration`
