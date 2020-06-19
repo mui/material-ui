@@ -84,10 +84,10 @@ export default function MultipleSelect() {
   return (
     <div>
       <FormControl className={classes.formControl}>
-        <InputLabel id="demo-mutiple-name-label">Name</InputLabel>
+        <InputLabel id="demo-multiple-name-label">Name</InputLabel>
         <Select
-          labelId="demo-mutiple-name-label"
-          id="demo-mutiple-name"
+          labelId="demo-multiple-name-label"
+          id="demo-multiple-name"
           multiple
           value={personName}
           onChange={handleChange}
@@ -106,10 +106,10 @@ export default function MultipleSelect() {
         </Select>
       </FormControl>
       <FormControl className={classes.formControl}>
-        <InputLabel id="demo-mutiple-checkbox-label">Tag</InputLabel>
+        <InputLabel id="demo-multiple-checkbox-label">Tag</InputLabel>
         <Select
-          labelId="demo-mutiple-checkbox-label"
-          id="demo-mutiple-checkbox"
+          labelId="demo-multiple-checkbox-label"
+          id="demo-multiple-checkbox"
           multiple
           value={personName}
           onChange={handleChange}
@@ -126,10 +126,10 @@ export default function MultipleSelect() {
         </Select>
       </FormControl>
       <FormControl className={classes.formControl}>
-        <InputLabel id="demo-mutiple-chip-label">Chip</InputLabel>
+        <InputLabel id="demo-multiple-chip-label">Chip</InputLabel>
         <Select
-          labelId="demo-mutiple-chip-label"
-          id="demo-mutiple-chip"
+          labelId="demo-multiple-chip-label"
+          id="demo-multiple-chip"
           multiple
           value={personName}
           onChange={handleChange}
