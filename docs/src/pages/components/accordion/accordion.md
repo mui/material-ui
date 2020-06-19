@@ -15,7 +15,7 @@ components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
 
 {{"demo": "pages/components/accordion/SimpleAccordion.js", "bg": true}}
 
-## Controlled Accordion
+## Controlled accordion
 
 Extend the default behavior to create an accordion with the `Accordion` component.
 
