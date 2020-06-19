@@ -161,7 +161,7 @@ For number validation, one viable alternative is to use the default input type="
 <TextField inputProps={{ inputmode: 'numeric', pattern: '[0-9]*' }} />
 ```
 
-In the future, we might provide an [input number component](https://github.com/mui-org/material-ui/issues/19154).
+In the future, we might provide a [number input component](https://github.com/mui-org/material-ui/issues/19154).
 
 ## Integration with 3rd party input libraries
 
