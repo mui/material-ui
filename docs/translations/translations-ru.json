@@ -130,7 +130,7 @@
     "/components/dialogs": "Dialog",
     "/components/dividers": "Divider",
     "/components/drawers": "Панель",
-    "/components/accordions": "Accordion (панель расширения)",
+    "/components/accordion": "Accordion (панель расширения)",
     "/components/feedback": "Обратная связь",
     "/components/grid": "Grid",
     "/components/hidden": "Hidden",

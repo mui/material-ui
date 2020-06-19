@@ -55,7 +55,7 @@ https://material-ui.dev/* https://material-ui.com/:splat 301!
 /utils/popovers/ /components/popover/ 301
 /utils/* /components/:splat 301
 /api/mui-theme-provider/ /styles/api/ 301
-/components/expansion-panels/ /components/accordions/ 301
+/components/expansion-panels/ /components/accordion/ 301
 
 # To remove at some point (2022).
 /premium-themes* https://material-ui.com/store/ 301

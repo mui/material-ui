@@ -13,25 +13,25 @@ components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
 
 ## Einfaches Erweiterungspanel
 
-{{"demo": "pages/components/accordions/SimpleAccordion.js", "bg": true}}
+{{"demo": "pages/components/accordion/SimpleAccordion.js", "bg": true}}
 
 ## Kontrolliertes Akkordeon
 
 Erweitern Sie das Standardbedienfeldverhalten, um ein Akkordeon mit der Komponente `Accordion` zu erstellen.
 
-{{"demo": "pages/components/accordions/ControlledAccordions.js", "bg": true}}
+{{"demo": "pages/components/accordion/ControlledAccordions.js", "bg": true}}
 
 ## Individuelles Erweiterungspanel
 
 Hier ist ein Beispiel zum Anpassen der Komponente. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/components/).
 
-{{"demo": "pages/components/accordions/CustomizedAccordions.js"}}
+{{"demo": "pages/components/accordion/CustomizedAccordions.js"}}
 
 ## Zusätzliche Aktionen
 
 In order to put an action such as a `Checkbox` or a button inside of the `AccordionSummary`, you need to stop the propagation of the focus and click events to prevent the panel from expanding/collapsing when using the action. You should also provide an `aria-label` for the action, otherwise the label of the nested action will be included in the label of the parent button that controls the accordion expansion.
 
-{{"demo": "pages/components/accordions/ActionsInAccordionSummary.js", "bg": true}}
+{{"demo": "pages/components/accordion/ActionsInAccordionSummary.js", "bg": true}}
 
 ## Performance
 
@@ -47,7 +47,7 @@ Wie bei jeder Leistungsoptimierung ist dies keine Silberkugel. Stellen Sie siche
 
 Zur Strukturierung des Inhalts können mehrere Spalten verwendet werden. Dem Bedienfeld kann ein Hilfetext hinzugefügt werden, welches den Benutzer unterstützt.
 
-{{"demo": "pages/components/accordions/DetailedAccordion.js", "bg": true}}
+{{"demo": "pages/components/accordion/DetailedAccordion.js", "bg": true}}
 
 ## Barrierefreiheit
 

@@ -66,7 +66,7 @@ const pages = [
           { pathname: '/components/app-bar' },
           { pathname: '/components/paper' },
           { pathname: '/components/cards' },
-          { pathname: '/components/accordions' },
+          { pathname: '/components/accordion' },
         ],
       },
       {

@@ -13,25 +13,25 @@ components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
 
 ## Painel de Expansão Simples
 
-{{"demo": "pages/components/accordions/SimpleAccordion.js", "bg": true}}
+{{"demo": "pages/components/accordion/SimpleAccordion.js", "bg": true}}
 
 ## Acordeão Controlado
 
 Estenda o comportamento padrão do painel para criar um acordeão com o componente `Accordion`.
 
-{{"demo": "pages/components/accordions/ControlledAccordions.js", "bg": true}}
+{{"demo": "pages/components/accordion/ControlledAccordions.js", "bg": true}}
 
 ## Painéis de Expansão Customizados
 
 Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
 
-{{"demo": "pages/components/accordions/CustomizedAccordions.js"}}
+{{"demo": "pages/components/accordion/CustomizedAccordions.js"}}
 
 ## Ações adicionais
 
 Para colocar uma ação como um `Checkbox` ou um botão dentro do `AccordionSummary`, você precisa parar a propogação do foco e eventos de clique para previnir o painel de expandir/colapsar quando usar a ação. Você deve fornecer também um `aria-label` para a ação, caso contrário, o rótulo da ação aninhada será incluído no rótulo do botão pai que controla a expansão do painel.
 
-{{"demo": "pages/components/accordions/ActionsInAccordionSummary.js", "bg": true}}
+{{"demo": "pages/components/accordion/ActionsInAccordionSummary.js", "bg": true}}
 
 ## Performance
 
@@ -47,7 +47,7 @@ Como acontece com qualquer otimização de desempenho, isso não é uma bala de 
 
 Várias colunas podem ser usadas para estruturar o conteúdo, e um texto auxiliar pode ser adicionado ao painel para ajudar o usuário.
 
-{{"demo": "pages/components/accordions/DetailedAccordion.js", "bg": true}}
+{{"demo": "pages/components/accordion/DetailedAccordion.js", "bg": true}}
 
 ## Acessibilidade
 

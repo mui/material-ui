@@ -13,25 +13,25 @@ components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
 
 ## Panneau d'extension simple
 
-{{"demo": "pages/components/accordions/SimpleAccordion.js", "bg": true}}
+{{"demo": "pages/components/accordion/SimpleAccordion.js", "bg": true}}
 
 ## Accordéon contrôlé
 
 Étendez le comportement du panneau par défaut pour créer un accordéon avec le composant `Accordion`.
 
-{{"demo": "pages/components/accordions/ControlledAccordions.js", "bg": true}}
+{{"demo": "pages/components/accordion/ControlledAccordions.js", "bg": true}}
 
 ## Customized accordions
 
 Voici un exemple de personnalisation du composant. Vous pouvez en savoir plus dans la [page de documentation des overrides](/customization/components/).
 
-{{"demo": "pages/components/accordions/CustomizedAccordions.js"}}
+{{"demo": "pages/components/accordion/CustomizedAccordions.js"}}
 
 ## Additional actions
 
 In order to put an action such as a `Checkbox` or a button inside of the `AccordionSummary`, you need to stop the propagation of the focus and click events to prevent the panel from expanding/collapsing when using the action. You should also provide an `aria-label` for the action, otherwise the label of the nested action will be included in the label of the parent button that controls the accordion expansion.
 
-{{"demo": "pages/components/accordions/ActionsInAccordionSummary.js", "bg": true}}
+{{"demo": "pages/components/accordion/ActionsInAccordionSummary.js", "bg": true}}
 
 ## Performances
 
@@ -47,7 +47,7 @@ As with any performance optimization this is not a silver bullet. Be sure to ide
 
 Plusieurs colonnes peuvent être utilisées pour structurer le contenu et un texte d'assistance peut être ajouté au panneau pour aider l'utilisateur.
 
-{{"demo": "pages/components/accordions/DetailedAccordion.js", "bg": true}}
+{{"demo": "pages/components/accordion/DetailedAccordion.js", "bg": true}}
 
 ## Accessibilité
 

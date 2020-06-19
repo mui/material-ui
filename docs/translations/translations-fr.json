@@ -130,7 +130,7 @@
     "/components/dialogs": "Dialog",
     "/components/dividers": "Divider",
     "/components/drawers": "Drawer",
-    "/components/accordions": "Accordion",
+    "/components/accordion": "Accordion",
     "/components/feedback": "Feedback",
     "/components/grid": "Grid",
     "/components/hidden": "Hidden",

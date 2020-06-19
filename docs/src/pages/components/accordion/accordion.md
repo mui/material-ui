@@ -13,20 +13,20 @@ components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
 
 ## Simple Accordion
 
-{{"demo": "pages/components/accordions/SimpleAccordion.js", "bg": true}}
+{{"demo": "pages/components/accordion/SimpleAccordion.js", "bg": true}}
 
 ## Controlled Accordion
 
 Extend the default behavior to create an accordion with the `Accordion` component.
 
-{{"demo": "pages/components/accordions/ControlledAccordions.js", "bg": true}}
+{{"demo": "pages/components/accordion/ControlledAccordions.js", "bg": true}}
 
 ## Customized accordions
 
 Here is an example of customizing the component. You can learn more about this in the
 [overrides documentation page](/customization/components/).
 
-{{"demo": "pages/components/accordions/CustomizedAccordions.js"}}
+{{"demo": "pages/components/accordion/CustomizedAccordions.js"}}
 
 ## Additional actions
 
@@ -35,7 +35,7 @@ expanding/collapsing when using the action.
 You should also provide an `aria-label` for the action, otherwise the label of the nested action will be included in
 the label of the parent button that controls the accordion expansion.
 
-{{"demo": "pages/components/accordions/ActionsInAccordionSummary.js", "bg": true}}
+{{"demo": "pages/components/accordion/ActionsInAccordionSummary.js", "bg": true}}
 
 ## Performance
 
@@ -56,7 +56,7 @@ bottlenecks first and then try out these optimization strategies.
 
 Multiple columns can be used to structure the content, and a helper text may be added to the accordion to assist the user.
 
-{{"demo": "pages/components/accordions/DetailedAccordion.js", "bg": true}}
+{{"demo": "pages/components/accordion/DetailedAccordion.js", "bg": true}}
 
 ## Accessibility
 

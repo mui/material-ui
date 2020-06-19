@@ -13,25 +13,25 @@ components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
 
 ## Simple Accordion
 
-{{"demo": "pages/components/accordions/SimpleAccordion.js", "bg": true}}
+{{"demo": "pages/components/accordion/SimpleAccordion.js", "bg": true}}
 
 ## Controlled Accordion
 
 パネルのデフォルトの動作を拡張し、`Accordion`コンポーネントを使用してアコーディオンを作成します。
 
-{{"demo": "pages/components/accordions/ControlledAccordions.js", "bg": true}}
+{{"demo": "pages/components/accordion/ControlledAccordions.js", "bg": true}}
 
 ## カスタマイズされた拡張パネル
 
 コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
 
-{{"demo": "pages/components/accordions/CustomizedAccordions.js"}}
+{{"demo": "pages/components/accordion/CustomizedAccordions.js"}}
 
 ## Additional actions
 
 In order to put an action such as a `Checkbox` or a button inside of the `AccordionSummary`, you need to stop the propagation of the focus and click events to prevent the panel from expanding/collapsing when using the action. You should also provide an `aria-label` for the action, otherwise the label of the nested action will be included in the label of the parent button that controls the accordion expansion.
 
-{{"demo": "pages/components/accordions/ActionsInAccordionSummary.js", "bg": true}}
+{{"demo": "pages/components/accordion/ActionsInAccordionSummary.js", "bg": true}}
 
 ## パフォーマンス
 
@@ -47,7 +47,7 @@ Accordionsのコンテンツは、パネルが展開されていない場合で�
 
 複数の列を使用してコンテンツを構成でき、ユーザーを支援するためにヘルパーテキストをパネルに追加できます。
 
-{{"demo": "pages/components/accordions/DetailedAccordion.js", "bg": true}}
+{{"demo": "pages/components/accordion/DetailedAccordion.js", "bg": true}}
 
 ## アクセシビリティ
 
