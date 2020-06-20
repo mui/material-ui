@@ -1954,7 +1954,7 @@ export const zhCN: Localization = {
     MuiAutocomplete: {
       clearText: '清空',
       closeText: '关闭',
-      loadingText: '载入中...',
+      loadingText: '加载中……',
       noOptionsText: '没有可用选项',
       openText: '打开',
     },
@@ -1993,7 +1993,7 @@ export const zhTW: Localization = {
     MuiAutocomplete: {
       clearText: '清空',
       closeText: '關閉',
-      loadingText: '載入中...',
+      loadingText: '加載中……',
       noOptionsText: '没有可用選項',
       openText: '打开',
     },
