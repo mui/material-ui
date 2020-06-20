@@ -103,7 +103,7 @@ The `ExpansionPanel` components were replaced with `Accordion` components. Here 
 3. Break free from MD, help with future themes.
 4. The query has, at least, x5 more SEO traffic.
 
-- Replace the `ExpansionPanel` name (and prefix) on the components with `Accordion`:
+- Rename the `ExpansionPanel` components with `Accordion` to match the naming convention of the community:
 
   ```diff
   -import ExpansionPanel from '@material-ui/core/ExpansionPanel';
