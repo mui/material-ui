@@ -9,7 +9,7 @@ components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
 
 [An accordion](https://material.io/archive/guidelines/components/expansion-panels.html) is a lightweight container that may either stand alone or be connected to a larger surface, such as a card.
 
-> **Note:** Accordions are no longer documented in the [Material Design guidelines](https://material.io/), but Material-UI will continue to support them. It was formerly known as the "expansion panel". 
+> **Note:** Accordions are no longer documented in the [Material Design guidelines](https://material.io/), but Material-UI will continue to support them. It was formerly known as the "expansion panel".
 
 ## Simple accordion
 
