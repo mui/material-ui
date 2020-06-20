@@ -97,11 +97,6 @@ yarn add @material-ui/core
 
 ### Expansion Panel
 
-1. Help users migrating from Bootstrap to Material-UI: https://getbootstrap.com/docs/4.4/components/collapse/#accordion-example.
-2. Help users already familiar with a11y components: https://www.w3.org/TR/wai-aria-practices-1.1/examples/accordion/accordion.html.
-3. Break free from MD, help with future themes.
-4. The query has, at least, x5 more SEO traffic.
-
 - Rename the `ExpansionPanel` components with `Accordion` to match the naming convention of the community:
 
   ```diff
