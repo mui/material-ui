@@ -97,7 +97,6 @@ yarn add @material-ui/core
 
 ### Expansion Panel
 
-The `ExpansionPanel` components were replaced with `Accordion` components. Here are the motivations:
 1. Help users migrating from Bootstrap to Material-UI: https://getbootstrap.com/docs/4.4/components/collapse/#accordion-example.
 2. Help users already familiar with a11y components: https://www.w3.org/TR/wai-aria-practices-1.1/examples/accordion/accordion.html.
 3. Break free from MD, help with future themes.
