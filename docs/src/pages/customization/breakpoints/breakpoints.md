@@ -280,9 +280,7 @@ For instance, it can be used to defined a `getInitialProps()` static method (nex
   we default to rendering an empty component during the first mount.
   You might want to use an heuristic to approximate
   the screen width of the client browser screen width.
-  For instance, you could be using the user-agent or the client-hints.
-  https://caniuse.com/#search=client%20hint, we also can set the initial width
-  globally using [`custom properties`](/customization/globals/#default-props) on the theme.
+  For instance, you could be using the user-agent or [the client-hints](https://caniuse.com/#search=client%20hint). We also can set the initial width globally using [`custom properties`](/customization/globals/#default-props) on the theme.
   In order to set the initialWidth we need to pass a custom property with this shape:
 
 ```js
