@@ -6,6 +6,18 @@ export * from './styles';
 
 export * from './utils';
 
+export { default as Accordion } from './Accordion';
+export * from './Accordion';
+
+export { default as AccordionActions } from './AccordionActions';
+export * from './AccordionActions';
+
+export { default as AccordionDetails } from './AccordionDetails';
+export * from './AccordionDetails';
+
+export { default as AccordionSummary } from './AccordionSummary';
+export * from './AccordionSummary';
+
 export { default as AppBar } from './AppBar';
 export * from './AppBar';
 
@@ -99,17 +111,17 @@ export * from './Divider';
 export { default as Drawer } from './Drawer';
 export * from './Drawer';
 
-export { default as Accordion } from './Accordion';
-export * from './Accordion';
+export { default as ExpansionPanel } from './ExpansionPanel';
+export * from './ExpansionPanel';
 
-export { default as AccordionActions } from './AccordionActions';
-export * from './AccordionActions';
+export { default as ExpansionPanelActions } from './ExpansionPanelActions';
+export * from './ExpansionPanelActions';
 
-export { default as AccordionDetails } from './AccordionDetails';
-export * from './AccordionDetails';
+export { default as ExpansionPanelDetails } from './ExpansionPanelDetails';
+export * from './ExpansionPanelDetails';
 
-export { default as AccordionSummary } from './AccordionSummary';
-export * from './AccordionSummary';
+export { default as ExpansionPanelSummary } from './ExpansionPanelSummary';
+export * from './ExpansionPanelSummary';
 
 export { default as Fab } from './Fab';
 export * from './Fab';
