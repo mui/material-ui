@@ -95,7 +95,7 @@ import useAutocomplete from '@material-ui/lab/useAutocomplete';
 
 {{"demo": "pages/components/autocomplete/CustomizedHook.js"}}
 
-Head to the [Customized Autocomplete](#customized-autocomplete) section for a customization example with the `Autocomplete` component instead of the hook.
+Head to the [customization](#customization) section for an example with the `Autocomplete` component instead of the hook.
 
 ## Asynchronous requests
 
@@ -139,7 +139,7 @@ Fancy smaller inputs? Use the `size` prop.
 
 {{"demo": "pages/components/autocomplete/Sizes.js"}}
 
-## Customizations
+## Customization
 
 ### Custom input
 
