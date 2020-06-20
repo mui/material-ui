@@ -11,11 +11,11 @@ components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
 
 > **Note:** Accordions are no longer documented in the [Material Design guidelines](https://material.io/), but Material-UI will continue to support them.
 
-## Simple Accordion
+## Simple accordion
 
 {{"demo": "pages/components/accordion/SimpleAccordion.js", "bg": true}}
 
-## Controlled Accordion
+## Controlled accordion
 
 Extend the default behavior to create an accordion with the `Accordion` component.
 
@@ -52,7 +52,7 @@ accordions it might be a good idea to change this default behavior by enabling t
 As with any performance optimization this is not a silver bullet. Be sure to identify
 bottlenecks first and then try out these optimization strategies.
 
-## Secondary heading and Columns
+## Secondary heading and columns
 
 Multiple columns can be used to structure the content, and a helper text may be added to the accordion to assist the user.
 
