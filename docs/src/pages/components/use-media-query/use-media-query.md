@@ -169,13 +169,13 @@ You can reproduce the same behavior with a `useWidth` hook:
 - `options.defaultMatches` (_Boolean_ [optional]):
   As `window.matchMedia()` is unavailable on the server,
   we return a default matches during the first mount. The default value is `false`.
-- `options.matchMedia` (_Function_ [optional]) You can provide your own implementation of _matchMedia_. This can be used for handling an iframe content window.
+- `options.matchMedia` (_Function_ [optional]): You can provide your own implementation of _matchMedia_. This can be used for handling an iframe content window.
 - `options.noSsr` (_Boolean_ [optional]): Defaults to `false`.
   In order to perform the server-side rendering reconciliation, it needs to render twice.
   A first time with nothing and a second time with the children.
   This double pass rendering cycle comes with a drawback. It's slower.
   You can set this flag to `true` if you are **not doing server-side rendering**.
-- `options.ssrMatchMedia` (_Function_ [optional]) You can provide your own implementation of _matchMedia_ in a [server-side rendering context](#server-side-rendering).
+- `options.ssrMatchMedia` (_Function_ [optional]): You can provide your own implementation of _matchMedia_ in a [server-side rendering context](#server-side-rendering).
 
 Note: You can change the default options using the [`default props`](/customization/globals/#default-props) feature of the theme with the `MuiUseMediaQuery` key.
 
