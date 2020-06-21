@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { useControlled } from '@material-ui/core/utils';
 import TreeViewContext from './TreeViewContext';
+import { DescendantProvider, useDescendantsInit } from './descendants';
 
 export const styles = {
   /* Styles applied to the root element. */
@@ -395,7 +396,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
    * Mapping Helpers
    */
 
-  const addNodeToNodeMap = (id, childrenIds) => {
+  const registerNode = (id, childrenIds) => {
     const currentMap = nodeMap.current[id];
     nodeMap.current[id] = { ...currentMap, children: childrenIds, id };
 
@@ -430,7 +431,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     firstCharMap.current = newMap;
   }, []);
 
-  const removeNodeFromNodeMap = React.useCallback(
+  const unregisterNode = React.useCallback(
     (id) => {
       const nodes = getNodesToRemove(id);
       cleanUpFirstCharMap(nodes);
@@ -513,6 +514,8 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     return false;
   };
 
+  const [descendants, setDescendants] = useDescendantsInit();
+
   return (
     <TreeViewContext.Provider
       value={{
@@ -539,19 +542,21 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
         multiSelect,
         getParent,
         mapFirstChar,
-        addNodeToNodeMap,
-        removeNodeFromNodeMap,
+        registerNode,
+        unregisterNode,
       }}
     >
-      <ul
-        role="tree"
-        aria-multiselectable={multiSelect}
-        className={clsx(classes.root, className)}
-        ref={ref}
-        {...other}
-      >
-        {children}
-      </ul>
+      <DescendantProvider items={descendants} set={setDescendants}>
+        <ul
+          role="tree"
+          aria-multiselectable={multiSelect}
+          className={clsx(classes.root, className)}
+          ref={ref}
+          {...other}
+        >
+          {children}
+        </ul>
+      </DescendantProvider>
     </TreeViewContext.Provider>
   );
 });

@@ -7,6 +7,7 @@ import Collapse from '@material-ui/core/Collapse';
 import { fade, withStyles, useTheme } from '@material-ui/core/styles';
 import { useForkRef } from '@material-ui/core/utils';
 import TreeViewContext from '../TreeView/TreeViewContext';
+import { useDescendant } from '../TreeView/descendants';
 
 export const styles = (theme) => ({
   /* Styles applied to the root element. */
@@ -135,13 +136,17 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     multiSelect,
     getParent,
     mapFirstChar,
-    addNodeToNodeMap,
-    removeNodeFromNodeMap,
+    registerNode,
+    unregisterNode,
   } = React.useContext(TreeViewContext);
 
   const nodeRef = React.useRef(null);
   const contentRef = React.useRef(null);
   const handleRef = useForkRef(nodeRef, ref);
+
+  const index = useDescendant({
+    element: nodeRef.current,
+  });
 
   let icon = iconProp;
 
@@ -337,25 +342,25 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
   };
 
   React.useEffect(() => {
-    if (addNodeToNodeMap) {
+    if (registerNode) {
       const childIds = [];
       React.Children.forEach(children, (child) => {
         if (React.isValidElement(child) && child.props.nodeId) {
           childIds.push(child.props.nodeId);
         }
       });
-      addNodeToNodeMap(nodeId, childIds);
+      registerNode(nodeId, childIds);
     }
-  }, [children, nodeId, addNodeToNodeMap]);
+  }, [children, nodeId, registerNode]);
 
   React.useEffect(() => {
-    if (removeNodeFromNodeMap) {
+    if (unregisterNode) {
       return () => {
-        removeNodeFromNodeMap(nodeId);
+        unregisterNode(nodeId);
       };
     }
     return undefined;
-  }, [nodeId, removeNodeFromNodeMap]);
+  }, [nodeId, unregisterNode]);
 
   React.useEffect(() => {
     if (mapFirstChar && label) {
