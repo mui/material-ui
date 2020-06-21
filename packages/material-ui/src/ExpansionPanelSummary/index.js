@@ -1,5 +1,5 @@
 /**
- * Use `AccordionSummary` instead. This component will be removed in v6.
+ * Use `AccordionSummary` instead. This component will be removed in v5.
  *
  * @deprecated
  */

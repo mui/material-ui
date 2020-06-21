@@ -1,5 +1,5 @@
 /**
- * Use `Accordion` instead. This component will be removed in v6.
+ * Use `Accordion` instead. This component will be removed in v5.
  *
  * @deprecated
  */
