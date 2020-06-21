@@ -279,7 +279,7 @@ Some implementation details that might be interesting to being aware of:
 - `options.initialWidth` (_Breakpoint_ [optional]):
   As `window.innerWidth` is unavailable on the server,
   we default to rendering an empty component during the first mount.
-  You might want to use an heuristic to approximate
+  You might want to use a heuristic to approximate
   the screen width of the client browser screen width.
   For instance, you could be using the user-agent or the [client-hints](https://caniuse.com/#search=client%20hint).
   we also can set the initial width globally using [`custom properties`](/customization/globals/#default-props) on the theme.
