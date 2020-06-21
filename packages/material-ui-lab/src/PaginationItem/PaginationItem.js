@@ -39,7 +39,7 @@ export const styles = (theme) => ({
     },
     '&$selected': {
       backgroundColor: theme.palette.action.selected,
-      '&:hover, &$focusVisible': {
+      '&:hover': {
         backgroundColor: fade(
           theme.palette.action.selected,
           theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
@@ -48,6 +48,12 @@ export const styles = (theme) => ({
         '@media (hover: none)': {
           backgroundColor: theme.palette.action.selected,
         },
+      },
+      '&$focusVisible': {
+        backgroundColor: fade(
+          theme.palette.action.selected,
+          theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
+        ),
       },
       '&$disabled': {
         opacity: 1,
@@ -135,7 +141,7 @@ export const styles = (theme) => ({
       '&:hover, &$focusVisible': {
         backgroundColor: fade(
           theme.palette.primary.main,
-          theme.palette.action.activatedOpacity + theme.palette.action.hoverOpacity,
+          theme.palette.action.activatedOpacity + theme.palette.action.focusOpacity,
         ),
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
@@ -156,7 +162,7 @@ export const styles = (theme) => ({
       '&:hover, &$focusVisible': {
         backgroundColor: fade(
           theme.palette.secondary.main,
-          theme.palette.action.activatedOpacity + theme.palette.action.hoverOpacity,
+          theme.palette.action.activatedOpacity + theme.palette.action.focusOpacity,
         ),
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {

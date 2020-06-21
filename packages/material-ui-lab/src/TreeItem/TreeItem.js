@@ -37,19 +37,25 @@ export const styles = (theme) => ({
       },
     },
     '&$focused': {
-      backgroundColor: theme.palette.action.hover,
+      backgroundColor: theme.palette.action.focus,
     },
     '&$selected': {
       backgroundColor: fade(theme.palette.primary.main, theme.palette.action.selectedOpacity),
-    },
-    '&$selected:hover, &$selected$focused': {
-      backgroundColor: fade(
-        theme.palette.primary.main,
-        theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
-      ),
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        backgroundColor: 'transparent',
+      '&:hover': {
+        backgroundColor: fade(
+          theme.palette.primary.main,
+          theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+        ),
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          backgroundColor: fade(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+        },
+      },
+      '&$focused': {
+        backgroundColor: fade(
+          theme.palette.primary.main,
+          theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
+        ),
       },
     },
   },

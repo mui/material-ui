@@ -46,8 +46,8 @@ const useTreeItemStyles = makeStyles((theme: Theme) =>
       '&:hover': {
         backgroundColor: theme.palette.action.hover,
       },
-      '&$focused, &$selected': {
-        backgroundColor: `var(--tree-view-bg-color, ${theme.palette.grey[400]})`,
+      '&$focused, &$selected, &$selected$focused': {
+        backgroundColor: `var(--tree-view-bg-color, ${theme.palette.action.selected})`,
         color: 'var(--tree-view-color)',
       },
     },
@@ -82,11 +82,11 @@ const useTreeItemStyles = makeStyles((theme: Theme) =>
 function StyledTreeItem(props: StyledTreeItemProps) {
   const classes = useTreeItemStyles();
   const {
-    labelText,
+    bgColor,
+    color,
     labelIcon: LabelIcon,
     labelInfo,
-    color,
-    bgColor,
+    labelText,
     ...other
   } = props;
 
