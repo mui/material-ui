@@ -8,9 +8,25 @@ export type TableSortLabelTypeMap<
   D extends React.ElementType = 'span'
 > = ExtendButtonBaseTypeMap<{
   props: P & {
+    /**
+     * If `true`, the label will have the active styling (should be true for the sorted column).
+     */
     active?: boolean;
+    /**
+     * Label contents, the arrow will be appended automatically.
+     */
+    children?: React.ReactNode;
+    /**
+     * The current sort direction.
+     */
     direction?: 'asc' | 'desc';
+    /**
+     * Hide sort icon when active is false.
+     */
     hideSortIcon?: boolean;
+    /**
+     * Sort icon to use.
+     */
     IconComponent?: React.ComponentType<{ className: string }>;
   };
   defaultComponent: D;

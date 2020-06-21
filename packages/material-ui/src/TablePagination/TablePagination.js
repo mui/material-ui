@@ -120,6 +120,7 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
             {labelRowsPerPage}
           </Typography>
         )}
+
         {rowsPerPageOptions.length > 1 && (
           <Select
             classes={{
@@ -144,6 +145,7 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
             ))}
           </Select>
         )}
+
         <Typography color="inherit" variant="body2" className={classes.caption}>
           {labelDisplayedRows({
             from: count === 0 ? 0 : page * rowsPerPage + 1,
@@ -170,6 +172,10 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
 });
 
 TablePagination.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * The component used for displaying the actions.
    * Either a string to use a HTML element or a component.
@@ -183,7 +189,7 @@ TablePagination.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -269,7 +275,15 @@ TablePagination.propTypes = {
    * Customizes the options of the rows per page select field. If less than two options are
    * available, no select field will be displayed.
    */
-  rowsPerPageOptions: PropTypes.array,
+  rowsPerPageOptions: PropTypes.arrayOf(
+    PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.shape({
+        label: PropTypes.string.isRequired,
+        value: PropTypes.number.isRequired,
+      }),
+    ]),
+  ),
   /**
    * Props applied to the rows per page [`Select`](/api/select/) element.
    */

@@ -56,15 +56,19 @@ const Table = React.forwardRef(function Table(props, ref) {
 });
 
 Table.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * The content of the table, normally `TableHead` and `TableBody`.
    */
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -77,11 +81,11 @@ Table.propTypes = {
   /**
    * Allows TableCells to inherit padding of the Table.
    */
-  padding: PropTypes.oneOf(['default', 'checkbox', 'none']),
+  padding: PropTypes.oneOf(['checkbox', 'default', 'none']),
   /**
    * Allows TableCells to inherit size of the Table.
    */
-  size: PropTypes.oneOf(['small', 'medium']),
+  size: PropTypes.oneOf(['medium', 'small']),
   /**
    * Set the header sticky.
    *
