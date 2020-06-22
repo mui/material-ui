@@ -17,6 +17,10 @@ function myDestRewriter(svgPathObj) {
     fileName = `FourK${fileName.slice(2)}`;
   }
 
+  if (fileName.indexOf('5g') === 0) {
+    fileName = `FiveG${fileName.slice(2)}`;
+  }
+
   return fileName;
 }
 
