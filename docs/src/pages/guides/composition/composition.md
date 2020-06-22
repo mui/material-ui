@@ -190,7 +190,7 @@ Only the two most common use cases are covered. For more information see [this s
 ```
 
 To find out if the Material-UI component you're using has this requirement, check
-out the the props API documentation for that component. If you need to forward refs
+out the props API documentation for that component. If you need to forward refs
 the description will link to this section.
 
 ### Caveat with StrictMode

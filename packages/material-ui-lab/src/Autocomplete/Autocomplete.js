@@ -609,7 +609,7 @@ Autocomplete.propTypes = {
   disableListWrap: PropTypes.bool,
   /**
    * Disable the portal behavior.
-   * The children stay within it's parent DOM hierarchy.
+   * The children stay within its parent DOM hierarchy.
    */
   disablePortal: PropTypes.bool,
   /**

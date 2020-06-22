@@ -232,7 +232,7 @@ const styles = (theme) => ({
 
 #### Returns
 
-`media query`: A media query string ready to be used with most styling solutions, which matches screen widths greater than the screen size given by the breakpoint key in the first argument and less than the the screen size given by the breakpoint key in the second argument.
+`media query`: A media query string ready to be used with most styling solutions, which matches screen widths greater than the screen size given by the breakpoint key in the first argument and less than the screen size given by the breakpoint key in the second argument.
 
 #### Examples
 

@@ -31,7 +31,7 @@ The `MuiFormControlLabel` name can be used for providing [default props](/custom
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">checked</span> | <span class="prop-type">bool</span> |  | If `true`, the component appears selected. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <span class="prop-name required">control<abbr title="required">*</abbr></span> | <span class="prop-type">element</span> |  | A control element. For instance, it can be be a `Radio`, a `Switch` or a `Checkbox`. |
+| <span class="prop-name required">control<abbr title="required">*</abbr></span> | <span class="prop-type">element</span> |  | A control element. For instance, it can be a `Radio`, a `Switch` or a `Checkbox`. |
 | <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> |  | If `true`, the control will be disabled. |
 | <span class="prop-name">inputRef</span> | <span class="prop-type">ref</span> |  | Pass a ref to the `input` element. |
 | <span class="prop-name">label</span> | <span class="prop-type">node</span> |  | The text to be used in an enclosing label element. |
