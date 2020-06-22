@@ -84,7 +84,7 @@
     "@cypress/webpack-preprocessor": "^4.1.1",
     "@material-ui/core": "^4.9.14",
     "@material-ui/icons": "^4.9.1",
-    "@rollup/plugin-babel": "^5.0.2",
+    "@rollup/plugin-babel": "^5.0.3",
     "@rollup/plugin-commonjs": "^12.0.0",
     "@rollup/plugin-node-resolve": "^8.0.0",
     "@testing-library/jest-dom": "^5.10.1",
