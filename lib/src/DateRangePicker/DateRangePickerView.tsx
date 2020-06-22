@@ -45,28 +45,30 @@ interface DateRangePickerViewProps
 }
 
 export const DateRangePickerView: React.FC<DateRangePickerViewProps> = ({
-  open,
   calendars = 2,
+  className,
   currentlySelectingRangeEnd,
   date,
+  DateInputProps,
   disableAutoMonthSwitching = false,
   disableFuture,
   disableHighlightToday,
   disablePast,
+  endText,
+  isMobileKeyboardViewOpen,
   maxDate: unparsedMaxDate = defaultMaxDate,
   minDate: unparsedMinDate = defaultMinDate,
   onDateChange,
   onMonthChange,
+  open,
   reduceAnimations = defaultReduceAnimations,
   setCurrentlySelectingRangeEnd,
   shouldDisableDate,
-  toggleMobileKeyboardView,
-  isMobileKeyboardViewOpen,
   showToolbar,
   startText,
-  endText,
-  className,
-  DateInputProps,
+  toggleMobileKeyboardView,
+  toolbarFormat,
+  toolbarTitle,
   ...other
 }) => {
   const now = useNow();
@@ -201,6 +203,8 @@ export const DateRangePickerView: React.FC<DateRangePickerViewProps> = ({
           setCurrentlySelectingRangeEnd={setCurrentlySelectingRangeEnd}
           startText={startText}
           endText={endText}
+          toolbarTitle={toolbarTitle}
+          toolbarFormat={toolbarFormat}
         />
       )}
 
