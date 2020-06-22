@@ -77,8 +77,14 @@ steps:
       yarn size:snapshot
     displayName: 'create a size snapshot'
 
+  - task: PublishPipelineArtifact@1
+    displayName: 'persist size snapshot as pipeline artifact'
+    inputs:
+      artifactName: 'size-snapshot'
+      targetPath: 'size-snapshot.json'
+
   - task: AmazonWebServices.aws-vsts-tools.S3Upload.S3Upload@1
-    displayName: 'persist size snapshot'
+    displayName: 'persist size snapshot on S3'
     condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
     inputs:
       awsCredentials: 's3 artifacts'
@@ -112,4 +118,5 @@ steps:
     displayName: 'run danger on PRs'
     condition: and(succeeded(), eq(variables['Build.Reason'], 'PullRequest'))
     env:
+      AZURE_BUILD_ID: $(Build.BuildId)
       DANGER_GITHUB_API_TOKEN: $(GITHUB_API_TOKEN)
