@@ -91,7 +91,7 @@ export interface BaseTextFieldProps
    */
   placeholder?: string;
   /**
-   * If `true`, the label is displayed as required and the `input` element` will be required.
+   * If `true`, the label is displayed as required and the `input` element will be required.
    */
   required?: boolean;
   /**
