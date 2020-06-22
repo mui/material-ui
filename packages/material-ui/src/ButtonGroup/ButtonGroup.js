@@ -126,6 +126,9 @@ export const styles = (theme) => ({
   /* Styles applied to the children if `variant="contained"`. */
   groupedContained: {
     boxShadow: 'none',
+    '&:hover': {
+      boxShadow: 'none',
+    },
   },
   /* Styles applied to the children if `variant="contained"` and `orientation="horizontal"`. */
   groupedContainedHorizontal: {
