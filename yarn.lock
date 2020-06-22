@@ -11033,10 +11033,10 @@ reusify@^1.0.0:
   resolved "https://registry.yarnpkg.com/reusify/-/reusify-1.0.4.tgz#90da382b1e126efc02146e90845a88db12925d76"
   integrity sha512-U9nH88a3fc/ekCF1l0/UP1IosiuIjyTh7hBvXVMHYgVcfGvt897Xguj2UOLDeI5BG2m7/uwyaLVT6fbtCwTyzw==
 
-rifm@^0.11.0:
-  version "0.11.0"
-  resolved "https://registry.yarnpkg.com/rifm/-/rifm-0.11.0.tgz#817a3f3319f2c3461ca42630dfe9f0c5cb84288b"
-  integrity sha512-h1bkVl1n69e7hYErPZF1rdhq6mTeUKecSsfimo++caU/gkAje5M8wepyKVaoQ8oLSgoC1L/2EGCr+vYAYgaM3A==
+rifm@^0.12.0:
+  version "0.12.0"
+  resolved "https://registry.yarnpkg.com/rifm/-/rifm-0.12.0.tgz#8d3a9dc0de9c190e0de9bdc8861a91a221dc1341"
+  integrity sha512-PqOl+Mo2lyqrKiD34FPlnQ+ksD3F+a62TQlphiZshgriyHdfjn6jGyqUZhd+s3nsMYXwXYDdjrrv8wX7QsOG3g==
 
 rimraf@2.6.3:
   version "2.6.3"
