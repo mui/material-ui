@@ -33,7 +33,7 @@ function WeekPicker(props) {
   const classes = useStyles(props);
   const [selectedDate, handleDateChange] = useState(new Date());
 
-  const renderWeekPickerDay = (date, selectedDate, DayComponentProps) => {
+  const renderWeekPickerDay = (date, selectedDates, DayComponentProps) => {
     let dateClone = makeJSDateObject(date);
     let selectedDateClone = makeJSDateObject(selectedDate);
 
