@@ -130,6 +130,10 @@ const IconButton = React.forwardRef(function IconButton(props, ref) {
 });
 
 IconButton.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * The icon element.
    */
@@ -156,7 +160,7 @@ IconButton.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -175,6 +179,9 @@ IconButton.propTypes = {
   disableFocusRipple: PropTypes.bool,
   /**
    * If `true`, the ripple effect will be disabled.
+   *
+   * ⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure
+   * to highlight the element by applying separate styles with the `focusVisibleClassName`.
    */
   disableRipple: PropTypes.bool,
   /**
@@ -183,12 +190,12 @@ IconButton.propTypes = {
    * side of the icon with content above or below, without ruining the border
    * size and shape).
    */
-  edge: PropTypes.oneOf(['start', 'end', false]),
+  edge: PropTypes.oneOf(['end', 'start', false]),
   /**
    * The size of the button.
    * `small` is equivalent to the dense button styling.
    */
-  size: PropTypes.oneOf(['small', 'medium']),
+  size: PropTypes.oneOf(['medium', 'small']),
 };
 
 export default withStyles(styles, { name: 'MuiIconButton' })(IconButton);

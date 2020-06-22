@@ -98,15 +98,19 @@ const InputAdornment = React.forwardRef(function InputAdornment(props, ref) {
 });
 
 InputAdornment.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * The content of the component, normally an `IconButton` or string.
    */
-  children: PropTypes.node.isRequired,
+  children: PropTypes /* @typescript-to-proptypes-ignore */.node.isRequired,
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -126,19 +130,15 @@ InputAdornment.propTypes = {
    */
   disableTypography: PropTypes.bool,
   /**
-   * @ignore
-   */
-  muiFormControl: PropTypes.object,
-  /**
    * The position this adornment should appear relative to the `Input`.
    */
-  position: PropTypes.oneOf(['start', 'end']),
+  position: PropTypes.oneOf(['end', 'start']),
   /**
    * The variant to use.
    * Note: If you are using the `TextField` component or the `FormControl` component
    * you do not have to set this manually.
    */
-  variant: PropTypes.oneOf(['standard', 'outlined', 'filled']),
+  variant: PropTypes.oneOf(['filled', 'outlined', 'standard']),
 };
 
 export default withStyles(styles, { name: 'MuiInputAdornment' })(InputAdornment);

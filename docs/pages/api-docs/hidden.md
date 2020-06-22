@@ -27,7 +27,7 @@ Responsively hides children based on the selected implementation.
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The content of the component. |
-| <span class="prop-name">implementation</span> | <span class="prop-type">'js'<br>&#124;&nbsp;'css'</span> | <span class="prop-default">'js'</span> | Specify which implementation to use.  'js' is the default, 'css' works better for server-side rendering. |
+| <span class="prop-name">implementation</span> | <span class="prop-type">'css'<br>&#124;&nbsp;'js'</span> | <span class="prop-default">'js'</span> | Specify which implementation to use.  'js' is the default, 'css' works better for server-side rendering. |
 | <span class="prop-name">initialWidth</span> | <span class="prop-type">'xs'<br>&#124;&nbsp;'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;'xl'</span> |  | You can use this prop when choosing the `js` implementation with server-side rendering.<br>As `window.innerWidth` is unavailable on the server, we default to rendering an empty component during the first mount. You might want to use a heuristic to approximate the screen width of the client browser screen width.<br>For instance, you could be using the user-agent or the client-hints. https://caniuse.com/#search=client%20hint |
 | <span class="prop-name">lgDown</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, screens this size and down will be hidden. |
 | <span class="prop-name">lgUp</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, screens this size and up will be hidden. |

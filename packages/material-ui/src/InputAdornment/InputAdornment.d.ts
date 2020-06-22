@@ -3,9 +3,28 @@ import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
 export interface InputAdornmentTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
+    /**
+     * The content of the component, normally an `IconButton` or string.
+     */
+    children: NonNullable<React.ReactNode>;
+    /**
+     * Disable pointer events on the root.
+     * This allows for the content of the adornment to focus the input on click.
+     */
     disablePointerEvents?: boolean;
+    /**
+     * If children is a string then disable wrapping in a Typography component.
+     */
     disableTypography?: boolean;
-    position: 'start' | 'end';
+    /**
+     * The position this adornment should appear relative to the `Input`.
+     */
+    position?: 'start' | 'end';
+    /**
+     * The variant to use.
+     * Note: If you are using the `TextField` component or the `FormControl` component
+     * you do not have to set this manually.
+     */
     variant?: 'standard' | 'outlined' | 'filled';
   };
   defaultComponent: D;

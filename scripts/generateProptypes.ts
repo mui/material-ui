@@ -25,14 +25,6 @@ const todoComponents = [
   'TabList',
   'ToggleButton',
   // core
-  // requires https://github.com/merceyz/typescript-to-proptypes/pull/21
-  'Grid',
-  'GridList',
-  'GridListTile',
-  'Hidden',
-  'Icon',
-  'IconButton',
-  'InputAdornment',
   'Link',
   'List',
   'ListItem',
@@ -96,6 +88,7 @@ const useExternalDocumentation: Record<string, string[]> = {
   // Therefore it's considered "unused" in the actual component but we still want to document it.
   DialogContentText: ['classes'],
   FilledInput: useExternalPropsFromInputBase,
+  IconButton: ['disableRipple'],
   Input: useExternalPropsFromInputBase,
   OutlinedInput: useExternalPropsFromInputBase,
   Radio: ['disableRipple', 'id', 'inputProps', 'inputRef', 'required'],
@@ -141,6 +134,22 @@ const ignoreExternalDocumentation: Record<string, string[]> = {
   Slide: transitionCallbacks,
   TextField: ['hiddenLabel'],
   Zoom: transitionCallbacks,
+};
+
+function sortBreakpointsLiteralByViewportAscending(a: ttp.LiteralNode, b: ttp.LiteralNode) {
+  // default breakpoints ordered by their size ascending
+  const breakpointOrder: unknown[] = ['"xs"', '"sm"', '"md"', '"lg"', '"xl"'];
+
+  return breakpointOrder.indexOf(a.value) - breakpointOrder.indexOf(b.value);
+}
+// Custom order of literal unions by component
+const getSortLiteralUnions: ttp.InjectOptions['getSortLiteralUnions'] = (component, propType) => {
+  if (
+    component.name === 'Hidden' &&
+    (propType.name === 'initialWidth' || propType.name === 'only')
+  ) {
+    return sortBreakpointsLiteralByViewportAscending;
+  }
 };
 
 const tsconfig = ttp.loadConfig(path.resolve(__dirname, '../tsconfig.json'));
@@ -195,6 +204,7 @@ async function generateProptypes(
       '|     To update them edit the d.ts file and run "yarn proptypes"     |',
       '----------------------------------------------------------------------',
     ].join('\n'),
+    getSortLiteralUnions,
     reconcilePropTypes: (prop, previous, generated) => {
       const usedCustomValidator = previous !== undefined && !previous.startsWith('PropTypes');
       const ignoreGenerated =

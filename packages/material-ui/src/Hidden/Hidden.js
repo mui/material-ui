@@ -58,19 +58,19 @@ function Hidden(props) {
 }
 
 Hidden.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * The content of the component.
    */
   children: PropTypes.node,
   /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
    * Specify which implementation to use.  'js' is the default, 'css' works better for
    * server-side rendering.
    */
-  implementation: PropTypes.oneOf(['js', 'css']),
+  implementation: PropTypes.oneOf(['css', 'js']),
   /**
    * You can use this prop when choosing the `js` implementation with server-side rendering.
    *
