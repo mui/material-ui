@@ -991,7 +991,11 @@ const SelectTest = () => (
   </Select>
 );
 
-const InputAdornmentTest = () => <InputAdornment position="end" onClick={() => alert('Hello')} />;
+const InputAdornmentTest = () => (
+  <InputAdornment position="end" onClick={() => alert('Hello')}>
+    Some Icon
+  </InputAdornment>
+);
 
 const TooltipComponentTest = () => (
   <div>
