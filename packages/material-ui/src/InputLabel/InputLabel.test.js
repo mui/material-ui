@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
+import { useFakeTimers } from 'sinon';
 import { getClasses } from '@material-ui/core/test-utils';
 import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
@@ -14,9 +15,15 @@ describe('<InputLabel />', () => {
   const mount = createMount();
   const render = createClientRender();
   let classes;
+  let clock;
 
   before(() => {
     classes = getClasses(<InputLabel />);
+    clock = useFakeTimers();
+  });
+
+  after(() => {
+    clock.restore();
   });
 
   describeConformance(<InputLabel>Foo</InputLabel>, () => ({
@@ -80,9 +87,11 @@ describe('<InputLabel />', () => {
         expect(getByTestId('root')).to.have.class(classes.shrink);
 
         setProps({ shrink: false });
+        clock.tick(1);
         expect(getByTestId('root')).not.to.have.class(classes.shrink);
 
         setProps({ shrink: true });
+        clock.tick(1);
         expect(getByTestId('root')).to.have.class(classes.shrink);
       });
     });
@@ -103,13 +112,16 @@ describe('<InputLabel />', () => {
           wrapper: Wrapper,
         });
         container.querySelector('input').focus();
+        clock.tick(1);
 
         expect(getByTestId('root')).to.have.class(classes.shrink);
 
         setProps({ shrink: false });
+        clock.tick(1);
         expect(getByTestId('root')).not.to.have.class(classes.shrink);
 
         setProps({ shrink: true });
+        clock.tick(1);
         expect(getByTestId('root')).to.have.class(classes.shrink);
       });
     });

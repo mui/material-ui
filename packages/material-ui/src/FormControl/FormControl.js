@@ -156,6 +156,14 @@ const FormControl = React.forwardRef(function FormControl(props, ref) {
     setFilled(false);
   }, []);
 
+  const focusTimeout = React.useRef(false);
+
+  React.useEffect(() => {
+    return () => {
+      clearTimeout(focusTimeout.current);
+    };
+  });
+
   const childContext = {
     adornedStart,
     setAdornedStart,
@@ -168,12 +176,18 @@ const FormControl = React.forwardRef(function FormControl(props, ref) {
     hiddenLabel,
     margin: (size === 'small' ? 'dense' : undefined) || margin,
     onBlur: () => {
-      setFocused(false);
+      clearTimeout(focusTimeout.current);
+      focusTimeout.current = setTimeout(() => {
+        setFocused(false);
+      });
     },
     onEmpty,
     onFilled,
     onFocus: () => {
-      setFocused(true);
+      clearTimeout(focusTimeout.current);
+      focusTimeout.current = setTimeout(() => {
+        setFocused(true);
+      });
     },
     registerEffect,
     required,

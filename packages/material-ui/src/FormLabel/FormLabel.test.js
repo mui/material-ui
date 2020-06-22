@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
+import { useFakeTimers } from 'sinon';
 import { getClasses } from '@material-ui/core/test-utils';
 import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
@@ -12,9 +13,15 @@ describe('<FormLabel />', () => {
   const mount = createMount();
   const render = createClientRender();
   let classes;
+  let clock;
 
   before(() => {
     classes = getClasses(<FormLabel />);
+    clock = useFakeTimers();
+  });
+
+  after(() => {
+    clock.restore();
   });
 
   describeConformance(<FormLabel />, () => ({
@@ -101,6 +108,7 @@ describe('<FormLabel />', () => {
         expect(container.querySelector('label')).not.to.have.class(classes.focused);
 
         formControlRef.current.onFocus();
+        clock.tick(1);
         expect(container.querySelector('label')).to.have.class(classes.focused);
       });
 
@@ -119,13 +127,16 @@ describe('<FormLabel />', () => {
           wrapper: Wrapper,
         });
         formControlRef.current.onFocus();
+        clock.tick(1);
 
         expect(container.querySelector('label')).to.have.class(classes.focused);
 
         setProps({ focused: false });
+        clock.tick(1);
         expect(container.querySelector('label')).not.to.have.class(classes.focused);
 
         setProps({ focused: true });
+        clock.tick(1);
         expect(container.querySelector('label')).to.have.class(classes.focused);
       });
     });

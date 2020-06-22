@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy } from 'sinon';
+import { spy, useFakeTimers } from 'sinon';
 import { getClasses } from '@material-ui/core/test-utils';
 import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
@@ -14,6 +14,7 @@ describe('<FormControl />', () => {
   const mount = createMount();
   const render = createClientRender();
   let classes;
+  let clock;
 
   function TestComponent(props) {
     const context = useFormControl();
@@ -25,6 +26,11 @@ describe('<FormControl />', () => {
 
   before(() => {
     classes = getClasses(<FormControl />);
+    clock = useFakeTimers();
+  });
+
+  after(() => {
+    clock.restore();
   });
 
   describeConformance(<FormControl />, () => ({
@@ -97,14 +103,18 @@ describe('<FormControl />', () => {
           <TestComponent contextCallback={readContext} />
         </FormControl>,
       );
+      clock.tick(1);
       expect(readContext.args[0][0]).to.have.property('focused', false);
 
       act(() => {
         container.querySelector('input').focus();
+        clock.tick(1);
       });
+
       expect(readContext.args[1][0]).to.have.property('focused', true);
 
       setProps({ disabled: true });
+      clock.tick(1);
       expect(readContext.args[2][0]).to.have.property('focused', false);
     });
   });
@@ -288,12 +298,15 @@ describe('<FormControl />', () => {
         it('should set the focused state', () => {
           const formControlRef = React.createRef();
           render(<FormControlled ref={formControlRef} />);
+          clock.tick(1);
           expect(formControlRef.current).to.have.property('focused', false);
 
           formControlRef.current.onFocus();
+          clock.tick(1);
           expect(formControlRef.current).to.have.property('focused', true);
 
           formControlRef.current.onFocus();
+          clock.tick(1);
           expect(formControlRef.current).to.have.property('focused', true);
         });
       });
@@ -305,12 +318,15 @@ describe('<FormControl />', () => {
           expect(formControlRef.current).to.have.property('focused', false);
 
           formControlRef.current.onFocus();
+          clock.tick(1);
           expect(formControlRef.current).to.have.property('focused', true);
 
           formControlRef.current.onBlur();
+          clock.tick(1);
           expect(formControlRef.current).to.have.property('focused', false);
 
           formControlRef.current.onBlur();
+          clock.tick(1);
           expect(formControlRef.current).to.have.property('focused', false);
         });
       });

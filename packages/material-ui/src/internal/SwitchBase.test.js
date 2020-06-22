@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy } from 'sinon';
+import { spy, useFakeTimers } from 'sinon';
 import { getClasses } from '@material-ui/core/test-utils';
 import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
-import { createClientRender } from 'test/utils/createClientRender';
+import { createClientRender, waitFor } from 'test/utils/createClientRender';
 import SwitchBase from './SwitchBase';
 import FormControl, { useFormControl } from '../FormControl';
 import IconButton from '../IconButton';
@@ -23,9 +23,15 @@ describe('<SwitchBase />', () => {
   const render = createClientRender();
   const mount = createMount();
   let classes;
+  let clock;
 
   before(() => {
     classes = getClasses(<SwitchBase icon="unchecked" checkedIcon="checked" type="checkbox" />);
+    clock = useFakeTimers();
+  });
+
+  after(() => {
+    clock.restore();
   });
 
   describeConformance(
@@ -341,11 +347,14 @@ describe('<SwitchBase />', () => {
       const checkbox = getByRole('checkbox');
 
       checkbox.focus();
+      clock.tick(1);
 
       expect(getByTestId('focus-monitor')).to.have.text('focused: true');
+      clock.tick(1);
       expect(handleFocus.callCount).to.equal(1);
 
       checkbox.blur();
+      clock.tick(1);
 
       expect(getByTestId('focus-monitor')).to.have.text('focused: false');
       expect(handleBlur.callCount).to.equal(1);

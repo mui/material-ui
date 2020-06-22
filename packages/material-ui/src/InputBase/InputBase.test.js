@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
-import { spy } from 'sinon';
+import { spy, useFakeTimers } from 'sinon';
 import { getClasses } from '@material-ui/core/test-utils';
 import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
@@ -16,11 +16,17 @@ import Select from '../Select';
 
 describe('<InputBase />', () => {
   let classes;
+  let clock;
   const mount = createMount();
   const render = createClientRender();
 
   before(() => {
     classes = getClasses(<InputBase />);
+    clock = useFakeTimers();
+  });
+
+  after(() => {
+    clock.restore();
   });
 
   describeConformance(<InputBase />, () => ({
@@ -394,12 +400,15 @@ describe('<InputBase />', () => {
         act(() => {
           getByRole('textbox').focus();
         });
+        clock.tick(1);
         expect(getByTestId('root')).to.have.class(classes.focused);
 
         controlRef.current.onBlur();
+        clock.tick(1);
         expect(getByTestId('root')).not.to.have.class(classes.focused);
 
         controlRef.current.onFocus();
+        clock.tick(1);
         expect(getByTestId('root')).to.have.class(classes.focused);
       });
 
@@ -414,16 +423,21 @@ describe('<InputBase />', () => {
             <InputBase id="input" />
           </FormControl>,
         );
+        clock.tick(1);
         expect(getByTestId('label')).to.have.text('focused: false');
 
         act(() => {
           getByRole('textbox').focus();
+          clock.tick(1);
         });
+
         expect(getByTestId('label')).to.have.text('focused: true');
 
         act(() => {
           getByRole('textbox').blur();
+          clock.tick(1);
         });
+
         expect(getByTestId('label')).to.have.text('focused: false');
       });
     });

@@ -12,6 +12,18 @@ describe('<Select> integration', () => {
   // StrictModeViolation: uses Fade
   const render = createClientRender({ strict: false });
 
+  /**
+   * @type {ReturnType<typeof useFakeTimers>}
+   */
+  let clock;
+  beforeEach(() => {
+    clock = useFakeTimers();
+  });
+
+  afterEach(() => {
+    clock.restore();
+  });
+
   describe('with Dialog', () => {
     function SelectAndDialog() {
       const [value, setValue] = React.useState(10);
@@ -39,18 +51,6 @@ describe('<Select> integration', () => {
         </Dialog>
       );
     }
-
-    /**
-     * @type {ReturnType<typeof useFakeTimers>}
-     */
-    let clock;
-    beforeEach(() => {
-      clock = useFakeTimers();
-    });
-
-    afterEach(() => {
-      clock.restore();
-    });
 
     it('should focus the selected item', () => {
       const { getByTestId, getAllByRole, getByRole, queryByRole } = render(<SelectAndDialog />);
@@ -128,6 +128,7 @@ describe('<Select> integration', () => {
       const trigger = getByRole('button');
       trigger.focus();
       fireEvent.keyDown(trigger, { key: 'Enter' });
+      clock.tick(1);
 
       expect(getByTestId('label')).to.have.class('focused-label');
     });
@@ -150,14 +151,16 @@ describe('<Select> integration', () => {
       const trigger = getByRole('button');
 
       trigger.focus();
-
+      clock.tick(1);
       expect(container.querySelector('[for="age-simple"]')).to.have.class('focused-label');
 
       fireEvent.keyDown(trigger, { key: 'Enter' });
+      clock.tick(1);
 
       expect(container.querySelector('[for="age-simple"]')).to.have.class('focused-label');
 
       trigger.blur();
+      clock.tick(1);
 
       expect(container.querySelector('[for="age-simple"]')).not.to.have.class('focused-label');
     });
