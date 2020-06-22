@@ -16,9 +16,11 @@ export const styles = (theme) => ({
     marginTop: 0,
     marginBottom: 0,
     height: 'auto',
-    transformOrigin: '0 60%',
+    transformOrigin: '0 55%',
     transform: 'scale(1, 0.60)',
-    borderRadius: theme.shape.borderRadius,
+    borderRadius: `${theme.shape.borderRadius}px/${
+      Math.round((theme.shape.borderRadius / 0.6) * 10) / 10
+    }px`,
     '&:empty:before': {
       content: '"\\00a0"',
     },
