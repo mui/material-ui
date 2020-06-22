@@ -34,7 +34,7 @@ describe('<Typography />', () => {
 
   it('should render the text', () => {
     const { container } = render(<Typography>Hello</Typography>);
-    expect(container.firstChild.firstChild).to.have.text('Hello');
+    expect(container.firstChild).to.have.text('Hello');
   });
 
   it('should render body1 root by default', () => {
@@ -56,6 +56,7 @@ describe('<Typography />', () => {
   ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'subtitle1', 'body2', 'body1', 'caption', 'button'].forEach(
     (variant) => {
       it(`should render ${variant} text`, () => {
+        // @ts-ignore literal/tuple type widening
         const { container } = render(<Typography variant={variant}>Hello</Typography>);
 
         expect(classes[variant] != null).to.equal(true);
@@ -72,6 +73,7 @@ describe('<Typography />', () => {
     ['error', 'colorError'],
   ].forEach(([color, className]) => {
     it(`should render ${color} color`, () => {
+      // @ts-ignore literal/tuple type widening
       const { container } = render(<Typography color={color}>Hello</Typography>);
 
       expect(classes[className] != null).to.equal(true);
