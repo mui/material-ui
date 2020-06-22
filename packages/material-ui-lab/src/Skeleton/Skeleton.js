@@ -19,7 +19,7 @@ export const styles = (theme) => ({
     transformOrigin: '0 55%',
     transform: 'scale(1, 0.60)',
     borderRadius: `${theme.shape.borderRadius}px/${
-      Math.round(((theme.shape.borderRadius * 1) / 0.6) * 10) / 10
+      Math.round((theme.shape.borderRadius / 0.6) * 10) / 10
     }px`,
     '&:empty:before': {
       content: '"\\00a0"',
