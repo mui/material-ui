@@ -43,19 +43,19 @@ Abaixo está uma demonstração interativa que permite explorar os resultados vi
 
 {{"demo": "pages/components/lists/InteractiveList.js", "bg": true}}
 
-## Lista - Item Selecionado
+## Lista com item selecionado
 
 {{"demo": "pages/components/lists/SelectedListItem.js", "bg": true}}
 
 ## Alinhar itens da lista
 
-Você deve alterar o alinhamento do item da lista ao exibir 3 linhas ou mais, alterando a propriedade `alignItems = "flex-start"`.
+Você deve alterar o alinhamento do item da lista ao exibir 3 linhas ou mais, alterando a propriedade `alignItems="flex-start"`.
 
 {{"demo": "pages/components/lists/AlignItemsList.js", "bg": true}}
 
 ## Controles de Lista
 
-### Caixa de Seleção
+### Caixa de seleção
 
 Uma caixa de seleção pode ser uma ação primária ou uma ação secundária.
 
@@ -73,25 +73,25 @@ O interruptor é uma ação secundária, sem interferir com o estado do item da 
 
 {{"demo": "pages/components/lists/SwitchListSecondary.js", "bg": true}}
 
-## Lista de Subpastas Fixadas
+## Lista com subtítulo fixado
 
-Após a rolagem, os subtítulos permanecem fixos na parte superior da tela até serem empurrados para fora da tela pelo próximo subtítulo.
+Após a rolagem, os subtítulos permanecem fixos na parte superior da tela até serem empurrados para fora da área de visualização pelo próximo subtítulo.
 
 Esse recurso depende do posicionamento fixo do CSS. Infelizmente, [não é implementado](https://caniuse.com/#search=sticky) por todos os navegadores. O padrão é `disableSticky` quando não é suportado.
 
 {{"demo": "pages/components/lists/PinnedSubheaderList.js", "bg": true}}
 
-## Lista de Inserção
+## Lista de inclusão
 
 {{"demo": "pages/components/lists/InsetList.js", "bg": true}}
 
-## Lista Virtualizada
+## Lista virtualizada
 
-No exemplo a seguir, nós demonstramos como usar [react-window](https://github.com/bvaughn/react-window) com o componente `List`. Ela renderiza 200 linhas e pode facilmente lidar com mais. A virtualização ajuda a lidar com problemas de desempenho.
+No exemplo a seguir, nós demonstramos como usar a biblioteca [react-window](https://github.com/bvaughn/react-window) com o componente `List`. Ela renderiza 200 linhas e pode facilmente lidar com mais. A virtualização ajuda a lidar com problemas de desempenho.
 
 {{"demo": "pages/components/lists/VirtualizedList.js", "bg": true}}
 
-O uso de [react-window](https://github.com/bvaughn/react-window), quando possível, é recomendado. Se no seu caso esta biblioteca não resolver, você deve considerar o uso de [react-virtualized](https://github.com/bvaughn/react-virtualized), e em seguida, como alternativa [react-virtuoso](https://github.com/petyosi/react-virtuoso).
+O uso da biblioteca [react-window](https://github.com/bvaughn/react-window), quando possível, é recomendado. Se no seu caso esta biblioteca não resolver, você deve considerar o uso de [react-virtualized](https://github.com/bvaughn/react-virtualized), e em seguida, como alternativa [react-virtuoso](https://github.com/petyosi/react-virtuoso).
 
 ## Customização
 

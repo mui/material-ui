@@ -28,7 +28,7 @@ Chips Delineados oferecem um estilo alternativo.
 
 ## Matriz de Chip (Array)
 
-Um exemplo de renderização de vários Chips em uma matriz de valores. Deletando um chip irá remove-lo da matriz. Observe que mesmo que a propriedade `onClick` não esteja definida, o Chip pode ser focado, mas não irá ganhar efeito de profundidade quando clicado ou tocado.
+Um exemplo de renderização de vários Chips a partir de uma matriz de valores. Deletando um chip irá remove-lo da matriz. Observe que mesmo que a propriedade `onClick` não esteja definida, o Chip pode ser focado, mas não irá ganhar efeito de profundidade quando clicado ou tocado.
 
 {{"demo": "pages/components/chips/ChipsArray.js", "bg": true}}
 

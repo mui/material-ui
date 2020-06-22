@@ -4,11 +4,11 @@
 
 使用 Material Design 的[颜色系统](https://material.io/design/color/)，您可创建表现独特品牌或风格的颜色主题。
 
-## Picking colors
+## 选取颜色
 
 ### 官方色彩工具
 
-The Material Design team has also built an awesome palette configuration tool: [material.io/resources/color/](https://material.io/resources/color/). 它会帮助你为你的 UI 建立自己的色彩集合，同时也会帮助测量每个颜色组合的可访问性。
+Material Design 团队还构建了一个非常棒的调色板配置工具：[material.io/resources/color/](https://material.io/resources/color/)。 它可以帮助您为您的 UI 创建调色板，以及检测任何颜色组合的无障碍水平。
 
 <a href="https://material.io/resources/color/#!/?view.left=0&view.right=0&primary.color=3F51B5&secondary.color=F44336" target="_blank" rel="noopener nofollow">
   <img src="/static/images/color/colorTool.png" alt="官方色彩工具" style="width: 574px" />
@@ -17,7 +17,7 @@ The Material Design team has also built an awesome palette configuration tool: [
   
 
 
-它的输出可以使用在` createMuiTheme() ` 函数：
+输出的结果可以被传入到 `createMuiTheme()` 函数中：
 
 ```js
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -42,11 +42,11 @@ const theme = createMuiTheme({
 
 ### 练习
 
-To test a [material.io/design/color](https://material.io/design/color/) color scheme with the Material-UI documentation, simply select colors using the palette and sliders below. 或者, 您可以在“Primary”和“Secondary”文本字段中输入十六进制值.
+要使用 Material-UI 文档来测试 [material.io/design/color](https://material.io/design/color/) 的配色方案，您只需使用下面的调色板和滑块来选取颜色即可。 另外，您也可以在主要（Primary）和次要（Secondary）文本字段中输入十六进制（hex）值。
 
 {{"demo": "pages/customization/color/ColorTool.js", "hideToolbar": true, "bg": true}}
 
-您能直接把在颜色的例子显示的输出结果直接粘贴到一个 [` createMuiTheme()`](/customization/theming/#createmuitheme-options-theme) 函数里(需要与 [` MuiThemeProvider`](/customization/theming/#theme-provider) 配合使用)：
+您可以直接把在颜色的例子显示的输出结果直接粘贴到 [`createMuiTheme()`](/customization/theming/#createmuitheme-options-theme) 函数里（需要与 [`ThemeProvider`](/customization/theming/#theme-provider) 配合使用）：
 
 ```jsx
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -64,7 +64,7 @@ const theme = createMuiTheme({
 });
 ```
 
-您只需提供 `主要的` 阴影（除非您希望进一步自定义 `light`，`dark` 或 `contrastText` 这几个属性）。在 [自定义主题](/customization/palette/) 章节提到了这样的原因是其他颜色会由 `createMuiTheme()` 自动计算。
+您只需提供 `主要的` 深度（shades）（除非您希望进一步自定义 `light`，`dark` 或 `contrastText` 这几个属性），在 [定制主题](/customization/palette/) 章节中提到了这样做的原因是因为其他颜色会由 `createMuiTheme()` 自动计算。
 
 如果你通过提供 color object 的方式 使用默认的主要阴影 和/或 次要阴影，`createMuiTheme()` 将会根据 主、亮和暗 三种 material 颜色选择合适的阴影。
 

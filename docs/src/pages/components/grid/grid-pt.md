@@ -13,7 +13,7 @@ Uma [grade](https://material.io/design/layout/responsive-layout-grid.html) cria 
 
 O sistema de grade é implementado com o componente `Grid`:
 
-- Ele usa [CSS’s Flexible Box](https://www.w3.org/TR/css-flexbox-1/) para alta flexibilidade.
+- Ele usa [Box flexível CSS](https://www.w3.org/TR/css-flexbox-1/) para alta flexibilidade.
 - Existem dois tipos de leiautes: *contêineres* e *itens*.
 - Larguras de itens são definidas em porcentagens, então elas são sempre fluidas e dimensionadas em relação ao elemento pai.
 - Itens têm preenchimento para criar o espaçamento entre itens individuais.
@@ -23,7 +23,7 @@ Se você é **novo ou não está familiarizado com o flexbox**, nós recomendamo
 
 ## Espaçamento
 
-A grade responsiva se concentra em larguras de espaçamento consistentes, em vez de largura de coluna. As margens e colunas do Material Design seguem uma grade de linha de base quadrada de **8px**. A propriedade de espaçamento é um inteiro entre 0 e 10. Por padrão, o espaçamento entre dois itens de grade segue uma função linear: `output (espaçamento) = espaçamento * 8px`, por exemplo, `espaçamento ={2}` criando um intervalo de 16px.
+A grade responsiva se concentra em larguras de espaçamento consistentes, em vez de largura de coluna. As margens e colunas do Material Design seguem uma grade de base quadrada de **8px**. A propriedade de espaçamento é um inteiro entre 0 e 10. Por padrão, o espaçamento entre dois itens de grade segue uma função linear: `output(spacing) = spacing * 8px`, por exemplo, `spacing={2}` cria um espaçamento de 16px.
 
 Esta função de transformação de saída pode ser customizada [usando o tema](/customization/spacing/).
 
@@ -35,13 +35,13 @@ As grades fluídas usam colunas que dimensionam e redimensionam o conteúdo. O l
 
 ### Grade básica
 
-As larguras de coluna se aplicam-se a todos os pontos de quebra (breakpoints) (i.e. `xs` e acima).
+As larguras de coluna se aplicam a todos os pontos de quebra (por exemplo, `xs` e acima).
 
 {{"demo": "pages/components/grid/CenteredGrid.js", "bg": true}}
 
 ### Grade com pontos de quebra
 
-Algumas colunas têm várias larguras definidas, fazendo com que o leiaute seja alterado no ponto de interrupção definido.
+Algumas colunas têm várias larguras definidas, fazendo com que o leiaute seja alterado no ponto de quebra definido.
 
 {{"demo": "pages/components/grid/FullWidthGrid.js", "bg": true}}
 
@@ -53,7 +53,7 @@ Abaixo está uma demonstração interativa que permite explorar os resultados vi
 
 ## Leiaute Automático
 
-O leiaute automático faz com que os *items* compartilhem equitativamente o espaço disponível. Isso também significa que você pode definir a largura de um *item* e os outros automaticamente se redimensionarão em torno dele.
+O leiaute automático faz com que os *itens* compartilhem equitativamente o espaço disponível. Isso também significa que você pode definir a largura de um *item* e os outros automaticamente se redimensionarão em torno dele.
 
 {{"demo": "pages/components/grid/AutoGrid.js", "bg": true}}
 
@@ -67,7 +67,7 @@ A demonstração a seguir não segue a especificação do Material Design, mas i
 
 As propriedades `container` e `item` são boleanas e independentes. Elas podem ser combinados.
 
-> Um **container** flex é a caixa gerada por um elemento com uma exibição definida por `flex` ou `inline-flex`. Os filhos em um fluxo de um container flex são chamados de flex **items** e são dispostos usando o modelo de leiaute flex (flex layout).
+> Um **contêiner** flex é a caixa gerada por um elemento com uma exibição definida por `flex` ou `inline-flex`. Os filhos em um fluxo de um contêiner flex são chamados de **flex itens** e são dispostos usando o modelo de leiaute flex.
 
 https://www.w3.org/TR/css-flexbox-1/#box-model
 
@@ -114,7 +114,7 @@ Para que o item permaneça dentro do contêiner, você precisa definir `min-widt
 
 ### direction: column | column-reverse
 
-Embora o componente `Grid` tenha uma propriedade `direction` que permite valores de `row`, `row-reverse`, `column`, e `column-reverse`, existem algumas funcionalidades que não são suportadas dentro de containers `column` e `column-reverse`. As propriedades que definem o número de grades que o componente usará para um determinado ponto de interrupção (`xs`, `sm`, `md`, `lg`, and `xl`) são focadas no controle da largura e **não** tem efeitos similares na altura dentro de containers `column` e `column-reverse`. Se usados dentro de containers `column` e `column-reverse`, estas propriedades apresentam efeitos indesejáveis na largura dos elementos do `Grid`.
+Embora o componente `Grid` tenha uma propriedade `direction` que permite valores de `row`, `row-reverse`, `column`, e `column-reverse`, existem algumas funcionalidades que não são suportadas dentro de contêineres `column` e `column-reverse`. As propriedades que definem o número de grades que o componente usará para um determinado ponto de quebra (`xs`, `sm`, `md`, `lg`, e `xl`) são focadas no controle da largura e **não** tem efeitos similares na altura dentro de contêineres `column` e `column-reverse`. Se usados dentro de contêineres `column` e `column-reverse`, estas propriedades apresentam efeitos indesejáveis na largura dos elementos do `Grid`.
 
 ## Leiaute de Grade CSS
 

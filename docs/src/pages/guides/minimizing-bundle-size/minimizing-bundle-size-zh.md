@@ -4,41 +4,41 @@
 
 ## 打包文件的大小是很重要的
 
-Material-UI 的打包文件大小至关重要。 Size snapshots are taken on every commit for every package and critical parts of those packages ([view the latest snapshot](/size-snapshot)). 结合 [dangerJS](https://danger.systems/js/) 一起，我们可以在每个 Pull Request 中都可以查看[详细的打包文件的大小变化](https://github.com/mui-org/material-ui/pull/14638#issuecomment-466658459) 。
+Material-UI 的打包文件大小至关重要。 每一次代码提交我们都会对每个包和这些包的关键部分的大小进行快照（[查看最新的快照](/size-snapshot)）。 结合 [dangerJS](https://danger.systems/js/) 一起，我们可以在每个 Pull Request 中都可以查看[详细的打包文件的大小变化](https://github.com/mui-org/material-ui/pull/14638#issuecomment-466658459) 。
 
-## When and how to use tree-shaking?
+## 何时以及如何使用 tree-shaking?
 
-Tree-shaking of Material-UI works out of the box in modern frameworks. Material-UI exposes its full API on the top-level `material-ui` import. If you're using ES6 modules and a bundler that supports tree-shaking ([`webpack` >= 2.x](https://webpack.js.org/guides/tree-shaking/), [`parcel` with a flag](https://en.parceljs.org/cli.html#enable-experimental-scope-hoisting/tree-shaking-support)) you can safely use named imports and still get an optimised bundle size automatically:
+在现代框架中，Material-UI 的 Tree-shaking 可开箱即用。 Material-UI 在导入顶层的 `material-ui` 时会暴露出其完整的 API。 如果您使用的是 ES6 模块和支持 tree-shaking 的模块打包器（[`webpack` >= 2.x](https://webpack.js.org/guides/tree-shaking/), [`parcel` with a flag](https://en.parceljs.org/cli.html#enable-experimental-scope-hoisting/tree-shaking-support)），那么您就可以安全的使用模块的名字进行导入并且自动获得压缩过的打包大小：
 
 ```js
 import { Button, TextField } from '@material-ui/core';
 ```
 
-⚠️ The following instructions are only needed if you want to optimize your development startup times or if you are using an older bundler that doesn't support tree-shaking.
+⚠️ 只有当您想要优化您的开发启动时间，或者您使用的是不支持 tree-shaking 的较旧的模块打包器时，才需要以下说明。
 
-## Development environment
+## 开发者环境
 
-Development bundles can contain the full library which can lead to **slower startup times**. This is especially noticeable if you import from `@material-ui/icons`. 加载时间会大约比那些从顶层 API 的命名导入方式慢六倍。
+开发者环境下的模块打包器能够包含完整的库，但这可能会导致**较慢的启动时间**。 如果您从 `@material-ui/icons` 这个库进行导入操作时，这一点尤其明显。 加载时间会大约比那些从顶层 API 的命名导入方式慢六倍。
 
 如果您觉得这样不妥，您还有以下几个选择：
 
 ### 选项1
 
-您可以使用路径导入，这样可以避免导入用不到的模块。 For instance, use:
+您可以使用路径导入，这样可以避免导入用不到的模块。 例如，使用：
 
 ```js
-// 🚀 Fast
+// 🚀 快速的
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 ```
 
-instead of top level imports (without a Babel plugin):
+而不是像这样通过顶层的方式进行导入（不使用 Babel 插件）：
 
 ```js
 import { Button, TextField } from '@material-ui/core';
 ```
 
-This is the option we document in all the demos, since it requires no configuration. It is encouraged for library authors extending the components. Head to [Option 2](#option-2) for the approach that yields the best DX and UX.
+这是我们在所有演示中记录的选项，因为它不需要配置。 It is encouraged for library authors extending the components. Head to [Option 2](#option-2) for the approach that yields the best DX and UX.
 
 尽管这样直接导入并不会使用 [`@material-ui/core/index.js`](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/index.js) 中的导出模式，但是对于那些公开的模块来说，此文件仍可以作为一个方便的参考。
 

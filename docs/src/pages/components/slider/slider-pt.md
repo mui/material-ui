@@ -1,5 +1,5 @@
 ---
-title: Componente React Slider
+title: Componente React para Slider
 components: Slider
 ---
 
@@ -7,7 +7,7 @@ components: Slider
 
 <p class="description">Sliders permitem que os usuários façam seleções a partir de um intervalo de valores.</p>
 
-[Sliders](https://material.io/design/components/sliders.html) refletem um intervalo de valores ao longo de uma barra, a partir do qual os usuários podem selecionar um único valor. Eles são ideais para ajustar configurações como volume, brilho ou aplicação de filtros de imagem.
+Os [Sliders](https://material.io/design/components/sliders.html) refletem um intervalo de valores ao longo de uma barra, a partir do qual os usuários podem selecionar um único valor. Eles são ideais para ajustar configurações como volume, brilho ou aplicação de filtros de imagem.
 
 - 📦 [22 kB gzipped](/size-snapshot) (mas apenas +8 kB quando usado junto com outros componentes de Material-UI).
 

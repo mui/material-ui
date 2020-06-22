@@ -58,7 +58,7 @@
 import { borders } from '@material-ui/system';
 ```
 
-| 导入名称           | Prop           | CSS 属性          | Theme key                                                        |
+| 导入名称           | 属性             | CSS 属性          | Theme key                                                        |
 |:-------------- |:-------------- |:--------------- |:---------------------------------------------------------------- |
 | `border`       | `border`       | `border`        | `borders`                                                        |
 | `borderTop`    | `borderTop`    | `border-top`    | `borders`                                                        |

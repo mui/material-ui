@@ -53,7 +53,7 @@ Ele funciona bem quando se trata de tipografia, pois sua altura é definida usan
 
 {{"demo": "pages/components/skeleton/SkeletonTypography.js", "defaultCodeOpen": false}}
 
-Mas quando se trata de outros componentes, você pode não querer repetir a largura e a altura. Nesses casos, você pode passar componentes como `children`, e ele vai inferir a sua largura e a altura a partir deles.
+Mas quando se trata de outros componentes, você pode não querer repetir a largura e a altura. Nessas situações, você pode passar componentes como `children`, e ele vai inferir a sua largura e a altura a partir deles.
 
 ```jsx
 loading

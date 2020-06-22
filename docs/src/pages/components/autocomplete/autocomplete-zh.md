@@ -36,35 +36,35 @@ components: TextField, Popper, Autocomplete
 
 此组件有两种可控的状态：
 
-1. “value” 状态，使用 `value`/`onChange` 属性组合。 这个状态表示用户选择的值，例如，当按 <kbd>Enter</kbd> 键时.
-2. “input value” 状态，使用 `inputValue`/`onInputChange` 属性组合。 这个状态表示展示在文本框中的值。
+1. “value” 状态（state）包含了 `value`/`onChange` 两种属性的组合。 这个状态表示用户选择的值，如当按下 <kbd>Enter</kbd> 键时。
+2. “input value” 状态（state) 则包含了 `inputValue`/`onInputChange` 两种属性的组合。 这个状态展示了在文本框中显示的值。
 
 > ⚠️ 以上两种状态互不干涉，它们应该被单独控制着。
 
 {{"demo": "pages/components/autocomplete/ControllableStates.js"}}
 
-## 免费工具
+## Free solo
 
-将 `freeSolo` 设置为true，以便在文本框中输入任意值。
+当将 `freeSolo` 设置为 true 时，用户可以文本框中输入任意值。
 
 ### 搜索输入栏
 
-该属性的主要使用方式是创建一个带有搜索建议的 **输入栏**，例如 Google 搜索 或 react-autowhatever。
+该属性的主要使用方式是创建一个带有搜索建议的 **输入文本框**，例如 Google 搜索 或 react-autowhatever。
 
 {{"demo": "pages/components/autocomplete/FreeSolo.js"}}
 
 ### Creatable （可创造性）
 
-如果您打算将此模块用于类似 [组合框](#combo-box) 的体验（选择控件元素的增强版），我们建议设置：
+如果您打算将此模块用于类似 [组合框](#combo-box) 的体验（一个选择控件元素的增强版），我们则建议如下的设置：
 
 - `selectOnFocus` 帮助用户清除所选值。
 - `clearOnBlur` 帮助用户输入一个新的值。
 - `handleHomeEndKeys` 使用<kbd>Home</kbd> 和 <kbd>End</kbd> 键在弹出窗口内移动焦点。
-- 最后一个选项，例如 `Add "YOUR SEARCH"`。
+- 最后一个选项，例如 `加上 "你的搜索结果"`。
 
 {{"demo": "pages/components/autocomplete/FreeSoloCreateOption.js"}}
 
-您也可以在用户想要添加一个新的值时显示一个对话框
+您也可以在用户想要加入一个新值的时候显示一个对话框。
 
 {{"demo": "pages/components/autocomplete/FreeSoloCreateOptionDialog.js"}}
 
@@ -78,7 +78,7 @@ components: TextField, Popper, Autocomplete
 
 ## `useAutocomplete`
 
-作为一种高级定制方式，我们公开了一个 `useAutocomplete()` 钩子方法。 它接受几乎与Autocomplete组件相同的参数，辅以与JSX渲染有关的所有参数。 Autocomplete组件内部也是使用的此钩子方法。
+作为一种高级定制方式，我们提供了一个 `useAutocomplete()` hook。 它接受几乎与 Autocomplete 组件相同的参数，辅以与 JSX 渲染有关的所有参数。 Autocomplete 组件内部也是使用的此 hook。
 
 ```jsx
 import useAutocomplete from '@material-ui/lab/useAutocomplete';
@@ -88,39 +88,39 @@ import useAutocomplete from '@material-ui/lab/useAutocomplete';
 
 {{"demo": "pages/components/autocomplete/UseAutocomplete.js", "defaultCodeOpen": false}}
 
-### 自定义钩子
+### 自定义的 hook
 
 {{"demo": "pages/components/autocomplete/CustomizedHook.js"}}
 
-转到[自定义自动完成](#customized-autocomplete)部分，查看使用 `Autocomplete` 组件（而不是钩子）的例子。
+请转到 [自定义自动完成组件](#customized-autocomplete) 的部分，来查看使用 `Autocomplete` 组件（而不是 hook）的例子。
 
 ## 异步请求
 
 {{"demo": "pages/components/autocomplete/Asynchronous.js"}}
 
-### 谷歌地图位置
+### Google Maps Places
 
-一个为谷歌地图位置自动补全功能设计的 UI。
+一个为 Google Maps Places 自动补全功能设计的 UI。
 
 {{"demo": "pages/components/autocomplete/GoogleMaps.js"}}
 
-对于这个演示，我们需要加载 [谷歌地图JavaScript](https://developers. google. com/maps/documentation/javascript/tutorial) API。
+在这个演示中，我们需要加载 [谷歌地图 JavaScript](https://developers. google. com/maps/documentation/javascript/tutorial) 的 API。
 
 > ⚠️在你开始使用 Google Maps JavaScript API 之前，你必须注册并且创建一个可支付的账户。
 
 ## 多个值
 
-这也称为标签，允许用户输入多个值。
+这也称为标签（tags)，用户可以输入多个的值。
 
 {{"demo": "pages/components/autocomplete/Tags.js"}}
 
-### 固定选项
+### 固定的选项
 
 有时候你需要锁定某个标签，这样他们不会被从界面中移除，这时你可以将 chips 设置为禁用。
 
 {{"demo": "pages/components/autocomplete/FixedTags.js"}}
 
-### 复选框
+### Checkboxes 复选框
 
 {{"demo": "pages/components/autocomplete/CheckboxesTags.js"}}
 
@@ -132,25 +132,25 @@ import useAutocomplete from '@material-ui/lab/useAutocomplete';
 
 ## 尺寸
 
-想要使用外观看起来比较小的输入框吗？ 您可以使用 `size` 属性。
+想要使用外观看起来比较小的输入框吗？ 试着使用 `size` 属性吧。
 
 {{"demo": "pages/components/autocomplete/Sizes.js"}}
 
-## 自定义设置
+## 个性化
 
 ### 自定义输入
 
-`renderInput` 属性允许你对输入内容进行自定义渲染 The first argument of this render prop contains props that you need to forward. 请特别注意 `ref` 和 `inputProps` 键(key)。
+使用 `renderInput` 属性，您可以对输入内容进行自定义渲染。 此 render 属性的第一个参数包含了你想要传递的那些属性。 请特别注意 `ref` 和 `inputProps` 键（key）。
 
 {{"demo": "pages/components/autocomplete/CustomInputAutocomplete.js"}}
 
-### GitHub 标签选择器 
+### GitHub 标签选择器
 
-该演示再现了GitHub的标签选择器：
+该演示再现了 GitHub 的标签选择器：
 
 {{"demo": "pages/components/autocomplete/GitHubLabel.js"}}
 
-你也可以转到[自定义 hook](#customized-hook) 章节，查看一下使用 `useAutocomplete` hook 的自定义例子，而不是使用自动补全组件（Autocomplete）。
+你也可以转到[自定义 hook](#customized-hook) 章节，查看一下使用 `useAutocomplete` hook 的自定义例子，而不是使用组件。
 
 ## 高亮显示
 
@@ -160,7 +160,7 @@ import useAutocomplete from '@material-ui/lab/useAutocomplete';
 
 ## 自定义筛选
 
-此组件提供了一个工厂来构建一个筛选的方法，供给 `filterOptions` 属性使用。 用此你可以更改默认的筛选行为。
+此组件提供了一个 factory 来构建一个筛选的方法，供给 `filterOptions` 属性使来用。 用此你可以更改默认的筛选行为。
 
 ```js
 import { createFilterOptions } from '@material-ui/lab/Autocomplete';
@@ -171,18 +171,18 @@ import { createFilterOptions } from '@material-ui/lab/Autocomplete';
 #### 参数
 
 1. `config` (*Object* [optional]): 
-  - `config.ignoreAccents` (*Boolean* [optional]): 默认值为` true `。 移除字母的变音符号。
+  - `config.ignoreAccents` (*Boolean* [optional])：默认值为 `true`。 移除字母的变音符号。
   - `config.ignoreCase` (*Boolean* [optional]): 默认值为` true `。 所有字母都小写。
-  - `config.limit` (*Number* [optional]): 默认值为 null。 显示限定数量的建议选项。 譬如，如果 `config.limit` 为 `100`，那么只显示前`100` 个匹配的选项。 如果存在很多选项匹配，并且虚拟化设置还没建立成时，这样的限制是非常有效的。
-  - `config.matchFrom` (*'any' | 'start'* [optional]): 默认值为 `'any'`。
-  - `config.stringify` (*Func* [optional]): 控制如何将一个选项转换成一个字符串，这样，选项就能够和输入文本的片段相匹配。
-  - `config.trim` (*Boolean* [optional]): 默认值为`false`。 删除尾随空格。
+  - `config.limit` (*Number* [optional])：默认值为 null。 显示限定数量的建议选项。 例如，如果 `config.limit` 是 `100`,，那么只显示前 `100 个` 匹配的选项。 如果存在很多选项匹配，并且虚拟化设置还没建立成时，这样的限制是非常有效的。
+  - `config.matchFrom` (*'any' | 'start'* [optional])：默认值为 `'any'`。
+  - `config.stringify` (*Func* [optional])：控制如何将一个选项转换成一个字符串，这样，选项就能够和输入文本的片段相匹配。
+  - `config.trim` (*Boolean* [optional])：默认值为 `false`。 删除尾随空格。
 
 #### 返回结果
 
-`过滤选项`: 返回的过滤器方法可以直接提供给`自动补全` 组件的 ` filterOptions ` 属性， 或者可以传给 hook 的同名参数。
+`过滤选项`：返回的过滤器方法可以直接提供给 ` Autocomplete` 组件的 `filterOptions` 属性， 或者可以传给 hook 的同名参数。
 
-以下的例子中，选项必须有一个查询的前缀：
+在以下的例子中，选项必须有一个查询的前缀：
 
 ```js
 const filterOptions = createFilterOptions({
@@ -210,7 +210,7 @@ const filterOptions = (options, { inputValue }) =>
 
 ## 可视化
 
-在 10000个随机生成的选项中搜索。 多亏了[react-window](https://github.com/bvaughn/react-window)，这个列表得以可视化。
+在 10000 个随机生成的选项中搜索。 多亏了[react-window](https://github.com/bvaughn/react-window)，这个列表得以可视化。
 
 {{"demo": "pages/components/autocomplete/Virtualize.js"}}
 
@@ -224,7 +224,7 @@ const filterOptions = (options, { inputValue }) =>
 
 然而，除了记住过去已经输入的值，浏览器可能也会给出 **自动填充（autofill）** 的建议（譬如有保存的登录信息，地址，或者支付方式等）。 若您不需要自动填充，您可以尝试以下的方式：
 
-- 给输入框一个不同的名字，这样不会泄露任何信息给浏览器使用。 例如：`id="field1"` 而不是 `id="country"`。 若你不填写 id，该组件则会使用一个随机的 id。
+- 给输入框一个不同的名字，这样不会给浏览器泄露任何可以滥用的信息。 例如：`id="field1"` 而不是 `id="country"`。 若你不填写 id 的话，该组件则会使用一个随机的 id。
 - 设置为 `autoComplete="new-password"`： 
         jsx
         <TextField
@@ -235,7 +235,7 @@ const filterOptions = (options, { inputValue }) =>
         }}
         />
 
-### iOS VoiceOver
+### iOS VoiceOver 辅助功能
 
 iOS Safari 中的 VoiceOver 对 `aria-owns` 属性的支持并不是很到位。 你可以用 `disablePortal` 属性来解决这个问题。
 

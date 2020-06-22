@@ -65,7 +65,7 @@ components: Tabs, Tab, TabScrollButton, TabContext, TabList, TabPanel
 
 ## 自定义的选项卡
 
-以下是自定义组件的一个示例。 您可以在[重写文档页面](/customization/components/)中了解更多有关此内容的信息。
+以下是自定义组件的一个示例。 您可以在 [重写文档页面](/customization/components/) 中了解更多有关此内容的信息。
 
 {{"demo": "pages/components/tabs/CustomizedTabs.js", "bg": true}}
 
@@ -89,7 +89,7 @@ components: Tabs, Tab, TabScrollButton, TabContext, TabList, TabPanel
 
 {{"demo": "pages/components/tabs/IconLabelTabs.js", "bg": true}}
 
-## 可访问性
+## 无障碍设计
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#tabpanel)
 
@@ -109,9 +109,9 @@ components: Tabs, Tab, TabScrollButton, TabContext, TabList, TabPanel
 下面的两个演示只是在键盘导航行为上有所区别。 聚焦到其中一个选项卡，然后用方向键导航你就可以注意到其中的差异。
 
 ```jsx
-/* Tabs where selection follows focus */
+/* 选择跟随焦点的选项卡 */
 <Tabs selectionFollowsFocus />
-/* Tabs where each tab needs to be selected manually */
+/* 需要手动选择选项卡中的每一部分 */
 <Tabs />
 ```
 

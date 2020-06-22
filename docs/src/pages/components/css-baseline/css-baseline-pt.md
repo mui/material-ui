@@ -56,13 +56,13 @@ Os elementos `<html>` e `<body>` são atualizados para fornecer melhores padrõe
 
 ### Leiaute
 
-- `box-sizing` é definido globalmente no elemento `<html>` para `border-box`. Todos elementos —incluindo `*::before` e `*::after` são declarados para herdar essa propriedade, que garante que a largura declarada do elemento nunca seja excedida devido ao preenchimento da borda.
+- `box-sizing` é definido globalmente no elemento `<html>` para `border-box`. Todos elementos—incluindo `*::before` e `*::after` são declarados para herdar essa propriedade, que garante que a largura declarada do elemento nunca seja excedida devido ao preenchimento da borda.
 
 ### Tipografia
 
-- Nenhum tamanho de fonte base é declarado no `<html>`, mas 16px é assumido (o padrão do navegador). Você pode aprender mais sobre as implicações da mudança do padrão de tamanho de fonte do `<html>` na página de [documentação de tema](/customization/typography/#typography-html-font-size).
+- Nenhum tamanho de fonte base é declarado no `<html>`, mas 16px é assumido (o padrão do navegador). Você pode aprender mais sobre as implicações da mudança do padrão de tamanho da fonte do `<html>` na página de [documentação do tema](/customization/typography/#typography-html-font-size).
 - Define o estilo `theme.typography.body2` no elemento `<body>`.
-- Define o font-weight no `theme.typography.fontWeightBold` para elementos `<b>` e `<strong>`.
+- Define o font-weight para `theme.typography.fontWeightBold` em elementos `<b>` e `<strong>`.
 - Uma customização da suavização da fonte (font-smoothing) é ativada para melhor exibição da fonte Roboto.
 
 ## Customização

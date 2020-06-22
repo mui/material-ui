@@ -99,7 +99,7 @@ No exemplo a seguir, nós demonstramos como usar [react-virtualized](https://git
 
 ## Projetos Complementares
 
-Para usos mais avançados, você pode tirar vantagem com:
+Para situações de uso mais avançadas, você pode tirar proveito com:
 
 ### material-table
 

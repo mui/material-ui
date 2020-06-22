@@ -19,13 +19,13 @@ components: Select, NativeSelect
 
 コンボボックス、複数選択、自動補完、非同期、作成可能のサポートといったさらに高度な機能をお探しなら、[`Autocomplete`コンポーネント](/components/autocomplete/)を参照してください。 It's meant to be an improved version of the "react-select" and "downshift" packages.
 
-## ネイティブを選択
+## ネイティブ選択
 
 プラットフォームのネイティブ選択を使用することで、モバイルでのユーザーエクスペリエンスを向上させることができます。 このようなパターンを許容します。
 
 {{"demo": "pages/components/selects/NativeSelects.js"}}
 
-## Text Fields
+## テキストフィールド
 
 `TextField` ラッパーコンポーネントは、ラベル、入力、およびヘルプテキストを含む完全なフォームコントロールです。 このセクション</a>で、選択モード 例を見つけることができます。</p> 
 
@@ -59,7 +59,7 @@ Material Designの仕様では推奨されていませんが、ダイアログ�
 
 ## Grouping
 
-Display categories with the `ListSubheader` component or the native `<optgroup>` element.
+`ListSubheader`コンポーネントまたはネイティブの`<optgroup>`要素でカテゴリを表示します。
 
 {{"demo": "pages/components/selects/GroupedSelect.js"}}
 

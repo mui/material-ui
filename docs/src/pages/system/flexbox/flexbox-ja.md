@@ -1,6 +1,6 @@
 # Flexbox
 
-<p class="description">Quickly manage the layout, alignment, and sizing of grid columns, navigation, components, and more with a full suite of responsive flexbox utilities.</p>
+<p class="description">レスポンシブなflexboxユーティリティのフルスイートを使用して、グリッドカラム、ナビゲーション、コンポーネントなどのレイアウト、整列、サイズ調整をすばやく管理できます。</p>
 
 **flexboxに不慣れ**な場合、 [CSS-Tricks flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) を読むことをおすすめします。
 

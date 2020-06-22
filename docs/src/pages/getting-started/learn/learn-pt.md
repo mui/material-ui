@@ -1,16 +1,16 @@
 # Aprenda Material-UI
 
-<p class="description">Novo no Material-UI? É fácil de aprender, se você souber por onde começar! Este guia irá ajudá-lo a começar rapidamente.</p>
+<p class="description">Novo no Material-UI? É fácil de aprender, se você souber por onde começar! Este guia irá ajudá-lo a dar o pontapé inicial.</p>
 
 Desenvolvedores chegam ao Material-UI de diferentes culturas e com diferentes estilos de aprendizagem. Caso você prefira uma abordagem mais teórica ou prática, esperamos que você ache esta seção útil. Como qualquer tecnologia desconhecida, o Material-UI tem uma curva de aprendizagem. Com prática e paciência, você logo vai pegar o jeito.
 
 ## Primeiro Exemplo
 
-A [página de uso](/getting-started/usage/#quick-start) contém um pequeno exemplo de Material-UI com um editor. Mesmo que você ainda não saiba nada sobre o Material-UI, tente alterar o código e veja como isso afeta o resultado.
+A [página de uso](/getting-started/usage/#quick-start) contém um pequeno exemplo de Material-UI com um editor interativo. Mesmo que você ainda não saiba nada sobre o Material-UI, tente alterar o código e veja como isso afeta o resultado.
 
-## Exemplos de Projetos
+## Projetos de exemplo
 
-Há [alguns exemplos de projetos](/getting-started/example-projects/) disponíveis, fornecendo a infraestrutura necessária para desenvolver e implantar sites em React.
+Há [alguns projetos de exemplo](/getting-started/example-projects/) disponíveis, fornecendo a infraestrutura necessária para desenvolver e implantar sites em React.
 
 ## Modelos
 
@@ -18,7 +18,7 @@ Esta [seleção de modelos básicos](/getting-started/templates/) pode ajudar vo
 
 ## Recursos recomendados
 
-Ao começar a aprender o Material-UI, você pode encontrar postagens de blogs de terceiros, livros e cursos em vídeo mais úteis do que a documentação oficial. Aqui estão alguns recursos recomendados, alguns dos quais são gratuitos.
+Ao começar a aprender o Material-UI, você pode encontrar postagens de blogs de terceiros, livros e cursos em vídeo mais úteis do que a documentação oficial. Aqui estão alguns recursos recomendados, uma parte deles é gratuita.
 
 ### Grátis
 

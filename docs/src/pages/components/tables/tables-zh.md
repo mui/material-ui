@@ -69,7 +69,7 @@ components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead,
 
 ### 自定义表格分页操作
 
-The `ActionsComponent` prop of the `TablePagination` component allows the implementation of custom actions.
+`表格分页`组件中的`行为组件`允许实现自定义的行为
 
 {{"demo": "pages/components/tables/CustomPaginationActionsTable.js", "bg": true}}
 
@@ -115,7 +115,7 @@ The `ActionsComponent` prop of the `TablePagination` component allows the implem
 - [mui-datatables](https://github.com/gregnb/mui-datatables)：Material-UI 的响应式数据表格，包括筛选，排序，搜索等功能。
 - [tubular-react](https://github.com/unosquare/tubular-react): 一个带有本地或者远程的数据来源的 Material-UI 表格。 它能够对数据进行筛选、排序、自由搜索、导出为本地 CSV 以及汇总。
 
-## 可访问性
+## 无障碍设计
 
 （WAI 教程：https://www.w3.org/WAI/tutorials/tables/）
 

@@ -94,7 +94,7 @@
   "viewGitHub": "在 GitHub 中查看源代码",
   "visit": "访问网站",
   "whosUsing": "谁在使用 Material-UI 呢？",
-  "initialFocusLabel": "一个旨在测试我们的组件的键盘导航功能的程序化的通用容器",
+  "initialFocusLabel": "我们将一个通用的容器编译成测试我们组件的键盘导航功能。",
   "resetFocus": "重置焦点以测试键盘导航功能",
   "pages": {
     "/getting-started": "快速上手",

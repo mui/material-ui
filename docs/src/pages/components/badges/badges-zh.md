@@ -15,7 +15,7 @@ components: Badge
 
 ## 自定义徽章
 
-以下是自定义组件的一个示例。 您可以在[重写文档页面](/customization/components/)中了解更多有关此内容的信息。
+以下是自定义组件的一个示例。 您可以在 [重写文档页面](/customization/components/) 中了解更多有关此内容的信息。
 
 {{"demo": "pages/components/badges/CustomizedBadges.js"}}
 

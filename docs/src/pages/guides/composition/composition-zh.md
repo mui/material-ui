@@ -122,7 +122,7 @@ The integration with third-party routing libraries is achieved with the `compone
 
 {{"demo": "pages/guides/composition/ButtonRouter.js"}}
 
-### Link 链接组件
+### Link
 
 {{"demo": "pages/guides/composition/LinkRouter.js"}}
 

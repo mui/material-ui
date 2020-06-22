@@ -63,7 +63,7 @@ In this example an input allows a discrete value to be set.
 
 ## Benutzerdefinierte Auswahl
 
-Hier sind einige Beispiele, wie man die Komponente anpassen kann. You can learn more about this in the [overrides documentation page](/customization/components/).
+Hier einige Beispiele zum Anpassen der Komponente. You can learn more about this in the [overrides documentation page](/customization/components/).
 
 {{"demo": "pages/components/slider/CustomizedSlider.js"}}
 
