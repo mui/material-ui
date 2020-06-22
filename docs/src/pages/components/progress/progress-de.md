@@ -9,56 +9,46 @@ components: CircularProgress, LinearProgress
 
 [Fortschrittsanzeigen](https://material.io/design/components/progress-indicators.html) informieren Benutzer über den Status laufender Prozesse, z. B. Laden einer App, Senden eines Formulars oder Speichern von Updates. Sie kommunizieren den Status der App und zeigen verfügbare Aktionen an, beispielsweise, ob Benutzer vom aktuellen Bildschirm weg navigieren können.
 
-**Bestimmte** Indikatoren zeigen an, wie lange eine Operation dauert.
-
-**Unbestimmt** Indikatoren visualisieren eine nicht angegebene Wartezeit.
-
-#### Fortschritt als Gruppe
+- **Bestimmte** Indikatoren zeigen an, wie lange eine Operation dauert.
+- **Unbestimmt** Indikatoren visualisieren eine nicht angegebene Wartezeit.
 
 Wenn Sie den Fortschritt für eine Folge von Prozessen anzeigen, geben Sie den Gesamtfortschritt und nicht den Fortschritt der einzelnen Aktivitäten an.
 
 ## Kreisförmig
 
-[Zirkulärer Fortschritt](https://material.io/design/components/progress-indicators.html#circular-progress-indicators) unterstützt sowohl bestimmte als auch unbestimmte Prozesse.
-
-- **Bestimmte** zirkuläre Fortschritte füllen die unsichtbare, kreisförmige Spur mit Farbe, wenn sich der Indikator von 0 bis 360 Grad bewegt.
-- **Unbestimmte** zirkuläree Fortschritte vergrößern und verkleinern sich, während sie sich entlang der unsichtbaren Spur bewegen.
-
-### Zirkular Unbestimmt
+### Circular indeterminate
 
 {{"demo": "pages/components/progress/CircularIndeterminate.js"}}
 
-### Interaktive Integration
-
-{{"demo": "pages/components/progress/CircularIntegration.js"}}
-
-### Zirkular Bestimmt
-
-{{"demo": "pages/components/progress/CircularDeterminate.js"}}
-
-### Zirkular Statisch
+### Circular determinate
 
 {{"demo": "pages/components/progress/CircularStatic.js"}}
 
+### Interactive integration
+
+{{"demo": "pages/components/progress/CircularIntegration.js"}}
+
+### Circular with label
+
+{{"demo": "pages/components/progress/CircularWithValueLabel.js"}}
+
 ## Linear
 
-[Linearer Fortschritt](https://material.io/design/components/progress-indicators.html#linear-progress-indicators) Indikator.
-
-### Linear Unbestimmt
+### Linear indeterminate
 
 {{"demo": "pages/components/progress/LinearIndeterminate.js"}}
 
-### Linear Bestimmt
+### Linear determinate
 
 {{"demo": "pages/components/progress/LinearDeterminate.js"}}
 
-### Linearer Puffer
+### Linear buffer
 
 {{"demo": "pages/components/progress/LinearBuffer.js"}}
 
-### Linear Abfrage
+### Linear with label
 
-{{"demo": "pages/components/progress/LinearQuery.js"}}
+{{"demo": "pages/components/progress/LinearWithValueLabel.js"}}
 
 ## Nicht-standardmäßige Bereiche
 
@@ -81,9 +71,9 @@ function Progress(props) {
 }
 ```
 
-## Individueller Fortschritt
+## Customized progress
 
-Hier sind einige Beispiele, wie man die Komponente anpassen kann. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/components/).
+Hier einige Beispiele zum Anpassen der Komponente. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/components/).
 
 {{"demo": "pages/components/progress/CustomizedProgressBars.js", "defaultCodeOpen": false}}
 

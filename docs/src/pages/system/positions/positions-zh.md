@@ -17,7 +17,7 @@
 import { positions } from '@material-ui/system';
 ```
 
-| 导入名称       | Prop       | CSS 属性     | Theme key                                                      |
+| 导入名称       | 属性         | CSS 属性     | Theme key                                                      |
 |:---------- |:---------- |:---------- |:-------------------------------------------------------------- |
 | `position` | `position` | `position` | none                                                           |
 | `zIndex`   | `zIndex`   | `z-index`  | [`zIndex`](/customization/default-theme/?expand-path=$.zIndex) |

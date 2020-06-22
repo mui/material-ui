@@ -1,8 +1,8 @@
 # Flexbox
 
-<p class="description">使用一整套响应式Flexbox实用程序，快速管理网格列，导航，组件等的布局，对齐和大小调整。</p>
+<p class="description">借助一整套的响应式 flex 的小方法，实现快速地管理布局，对齐，网格栏的大小，导航，组件等等。</p>
 
-如果你**对 flexbox 不熟悉**，我们建议你阅读：[CSS-Tricks flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) 手册。
+如果你**对 flexbox 不熟悉**，我们建议你阅读 [CSS-Tricks flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) 手册。
 
 ## 父元素的属性
 
@@ -109,7 +109,7 @@
 import { flexbox } from '@material-ui/system';
 ```
 
-| 导入名称             | Prop             | CSS 属性            | Theme key |
+| 导入名称             | 属性               | CSS 属性            | Theme key |
 |:---------------- |:---------------- |:----------------- |:--------- |
 | `flexDirection`  | `flexDirection`  | `flex-direction`  | none      |
 | `flexWrap`       | `flexWrap`       | `flex-wrap`       | none      |

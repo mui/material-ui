@@ -17,7 +17,7 @@ components: Button, IconButton, ButtonBase
 
 ## Contained Buttons 实心按钮
 
-[实心按钮](https://material.io/design/components/buttons.html#contained-button)表示高度的强调，你根据它们的立体效果和填充颜色来区分彼此。 它们用于触发应用程序所具有的主要功能。
+[实心按钮](https://material.io/design/components/buttons.html#contained-button) 表示高度的强调，你根据它们的立体效果和填充颜色来区分彼此。 它们用于触发应用程序所具有的主要功能。
 
 {{"demo": "pages/components/buttons/ContainedButtons.js"}}
 
@@ -52,7 +52,7 @@ components: Button, IconButton, ButtonBase
 <Button onClick={() => { alert('clicked') }}>请点击我</Button>
 ```
 
-请注意，文档里组件的 API 部分[避免](/guides/api/#native-properties)提到原生的属性（还是有很多）。
+请注意，文档里组件的 API 部分 [避免](/guides/api/#native-properties) 提到原生的属性（还是有很多）。
 
 ## Upload button 上传按钮
 
@@ -80,7 +80,7 @@ components: Button, IconButton, ButtonBase
 
 ## Customized Buttons（自定义按钮）
 
-以下是自定义组件的一些例子。 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
+你可以参考以下一些例子来自定义组件。 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
 
 {{"demo": "pages/components/buttons/CustomizedButtons.js", "defaultCodeOpen": false}}
 
@@ -117,7 +117,7 @@ components: Button, IconButton, ButtonBase
 
 然而：
 
-- 如您要[在 disabled 不可用元素上显示提示文本](/components/tooltips/#disabled-elements)，则需添加 `pointer-events: none;`
+- 如您要 [在 disabled 不可用元素上显示提示文本](/components/tooltips/#disabled-elements)，则需添加 `pointer-events: none;`
 - 若您加载除了一个 button 元素之外的元素， 例如，一个链接 `<a>` 元素，指针是不会改变的。
 
 2. **改变 DOM**。 您可以这样封装按钮：

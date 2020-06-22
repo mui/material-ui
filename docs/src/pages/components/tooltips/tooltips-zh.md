@@ -21,7 +21,7 @@ components: Tooltip
 
 ## 自定义文字提示
 
-以下是自定义组件的一些例子。 您可以在 [重写文档页](/customization/components/) 中了解有关此内容的更多信息。
+你可以参考以下一些例子来自定义组件。 您可以在 [重写文档页](/customization/components/) 中了解有关此内容的更多信息。
 
 {{"demo": "pages/components/tooltips/CustomizedTooltips.js"}}
 

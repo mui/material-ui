@@ -1,19 +1,19 @@
 ---
-title: 评分 React 组件
+title: React Rating 评分组件
 components: Rating
 ---
 
 # Rating 评分
 
-<p class="description">评分可以展现用户对某一产品的大致态度和使用体验。 用户也可以为他们购买过的产品打分。</p>
+<p class="description">评分组件带我们深入了解他人对产品的意见和体验。 用户还可以对自己购买的产品进行评价。</p>
 
-## 简单评分
+## 简单的评分组件
 
 {{"demo": "pages/components/rating/SimpleRating.js"}}
 
-## 自定义评分
+## 自定义的评分组件
 
-这是一些自定义样式开关的例子 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
+你可以参考以下一些例子来自定义组件。 您可以在 [重写文档页](/customization/components/) 中了解有关此内容的更多信息。
 
 {{"demo": "pages/components/rating/CustomizedRatings.js"}}
 
@@ -23,23 +23,23 @@ components: Rating
 
 {{"demo": "pages/components/rating/HoverRating.js"}}
 
-## 半个评分
+## 一半的评分
 
-这种评分组件可以展示任何浮点数。此功能可通过 `value` 属性实现。 您可以使用 `precision` 属性定义最小步进值。
+使用 `value` 属性可以让评分组件展示任何的浮点的评分值。 您可以使用 `precision` 属性定义可变化的最小增量值。
 
 {{"demo": "pages/components/rating/HalfRating.js"}}
 
 ## 尺寸
 
-想把评分组件变大或变小？ 您可以使用 `size` 属性。
+您想要一个大一点或者小一点的评分组件吗？ 试着使用 `size` 属性吧。
 
 {{"demo": "pages/components/rating/RatingSize.js"}}
 
-## 可访问性
+## 无障碍设计
 
 （WAI 教程：https://www.w3.org/WAI/tutorials/forms/custom-controls/#a-star-rating）
 
 这个组件的可访问性依赖于：
 
-- 使用 radio group 时，其字段在视觉上是隐藏的。 它包含六个单选按钮，其中五个用于每个评分等级，另一个用于"显示" 0 个评分，其默认情况下处于选中状态。 确保您提供的 `name` prop 在父表单中唯一。
-- 单选按钮的标签需要包含确切的文本（“一星”，“两星”，…）。当页面的语言不是英文时，请使用 `getLabelText` 这一属性。
+- 在使用单选框组（radio group）时，其字段在视觉上是被隐藏的。 它包含六个单选按钮，其中五个用于每个星，另一个用于 0 星，其默认情况下处于选中状态。 请确保您提供的 `name` 属性在父级表单中是独特的。
+- 单选按钮的标签需要包含一个确切的文本（“一星”，“两星”，.......），并请确认当页面语言不是英语时，您提供了一个 `getLabelText` 属性。

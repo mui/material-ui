@@ -35,7 +35,7 @@
 
 ### 资源📖
 
-您是第一次接触 Material-UI 吗? 如果你知道从哪里开始, 就很容易学会!
+您是第一次接触 Material-UI 吗? 如果你知道从哪里开始，就很容易学会！
 
 [学习使用 Material-UI](/getting-started/learn/)
 

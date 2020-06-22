@@ -45,11 +45,11 @@ Uma barra de aplicativos proeminente.
 
 {{"demo": "pages/components/app-bar/BottomAppBar.js", "iframe": true, "maxWidth": 400}}
 
-## Local de filtros
+## Posicionamento fixo
 
-Quando você renderiza a posição da barra de apps fixa, a dimensão do elemento não afeta o resto da página. Isso pode fazer com que parte do seu conteúdo fique invisível, atrás da barra de aplicativos. Aqui estão 3 soluções possíveis:
+Quando você renderiza a barra de aplicativos com um posicionamento fixo, a dimensão do elemento não afeta o resto da página. Isso pode fazer com que parte do seu conteúdo pareça estar invisível, atrás da barra de aplicativos. Aqui estão 3 soluções possíveis:
 
-1. Você pode usar `posição="sticky"` ao invés de fixed. ⚠️ sticky não é suportado pelo IE 11.
+1. Você pode usar `position="sticky"` ao invés de fixed. ⚠️ sticky não é suportado pelo IE 11.
 2. Você pode renderizar um segundo componente `<Toolbar />`:
 
 ```jsx
@@ -65,7 +65,7 @@ function App() {
 }
 ```
 
-3. Você pode usar `theme.mixins.toolbar` CSS:
+3. Você pode usar o CSS `theme.mixins.toolbar`:
 
 ```jsx
 const useStyles = makeStyles(theme => ({
@@ -91,7 +91,7 @@ Você pode usar o hook `useScrollTrigger()` para responder às ações de rolage
 
 ### Barra de aplicativos oculta
 
-A barra de aplicativos sumirá ao descer a página para deixar mais espaço de leitura.
+A barra de aplicativos ficará oculta ao rolar a página para baixo, deixando mais espaço de leitura.
 
 {{"demo": "pages/components/app-bar/HideAppBar.js", "iframe": true}}
 
@@ -113,7 +113,7 @@ Um botão de ação flutuante aparece na rolagem para facilitar o retorno ao top
 
 1. `options` (*Object* [opcional]):
 
-- `options.disableHysteresis` (*Boolean* [opcional]): Padrão `false`. Desabilita a histerese. Ignora a direção de rolagem ao determinar o valor `trigger`.
+- `options.disableHysteresis` (*Boolean* [opcional]): Padrão `false`. Desabilita a histerese. Ignora a direção de rolagem ao determinar o valor de `trigger`.
 - `options.target` (*Node* [opcional]): Padrão `window`.
 - `options.threshold` (*Number* [opcional]): Padrão `100`. Modifica o valor limite que aciona a `trigger` quando a barra de rolagem vertical cruzar ou chegar a este limite.
 

@@ -19,6 +19,7 @@ crwdns130992:0crwdne130992:0
 
 <p style="display: flex; justify-content: center; flex-wrap: wrap;">
   <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="callemall" href="crwdns132430:0crwdne132430:0" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img src="crwdns132432:0crwdne132432:0" srcset="https://images.opencollective.com/callemall/a6946da/logo/192.png 2x" alt="crwdns132434:0crwdne132434:0" title="crwdns132436:0crwdne132436:0" height="96" width="96" loading="lazy"></a>
+  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="canadacasino" href="crwdns133662:0crwdne133662:0" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="96" width="96" src="crwdns133664:0crwdne133664:0" srcset="https://images.opencollective.com/canadacasino/5b19004/logo/192.png 2x" alt="crwdns133666:0crwdne133666:0" title="" loading="lazy" /></a>
 </p>
 
 ### crwdns131024:0crwdne131024:0

@@ -56,11 +56,11 @@ Drawers de navegação persistentes são aceitáveis para todos os tamanhos maio
 
 {{"demo": "pages/components/drawers/PersistentDrawerRight.js", "iframe": true}}
 
-## Mini variant drawer
+## Variação mini drawer
 
 Nesta variação, o drawer de navegação persistente muda sua largura. Seu estado de recolhido é como um mini-drawer no mesmo plano de elevação do conteúdo, recortado pela barra de aplicativos. Quando expandido, ele aparece da forma padrão de um drawer de navegação persistente.
 
-A mini variação é recomendada para seções de aplicativos que necessitam ser selecionadas por um acesso rápido ao lado do conteúdo.
+A variação mini é recomendada para seções de aplicativos que necessitam ser selecionadas por um acesso rápido ao lado do conteúdo.
 
 {{"demo": "pages/components/drawers/MiniDrawer.js", "iframe": true}}
 
@@ -70,7 +70,7 @@ Drawers de navegação permanentes são sempre visíveis e fixados na borda esqu
 
 Drawers de navegação permanente são **recomendados por padrão para aplicações desktop**.
 
-### Navegação em altura cheia
+### Navegação em altura total
 
 Aplicativos focados no consumo de informações que usam uma hierarquia da esquerda para a direita.
 
@@ -78,7 +78,7 @@ Aplicativos focados no consumo de informações que usam uma hierarquia da esque
 
 {{"demo": "pages/components/drawers/PermanentDrawerRight.js", "iframe": true}}
 
-### Cortado sob a barra de aplicativos
+### Cortado por baixo da barra de aplicativos
 
 Aplicativos focados em produtividade que exigem consistência na tela.
 

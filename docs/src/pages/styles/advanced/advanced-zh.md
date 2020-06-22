@@ -277,7 +277,7 @@ Hook 的调用顺序和类名连接顺序都**不会影响**注入顺序的权�
 
 ### insertionPoint
 
-JSS [提供了一种机制](https://github.com/cssinjs/jss/blob/master/docs/setup.md#specify-the-dom-insertion-point)来控制这种情况。 通过在 HTML 中添加 `insertionPoint`，您就可以[控制](https://cssinjs.org/jss-api#attach-style-sheets-in-a-specific-order) CSS 规则应用到组件中的顺序。
+JSS [提供了一种机制](https://github.com/cssinjs/jss/blob/master/docs/setup.md#specify-the-dom-insertion-point) 来控制这种情况。 通过在 HTML 中添加 `insertionPoint`，您就可以[控制](https://cssinjs.org/jss-api#attach-style-sheets-in-a-specific-order) CSS 规则应用到组件中的顺序。
 
 #### HTML 注释
 
@@ -385,7 +385,7 @@ function render() {
 
 ### Gatsby
 
-这个[一个官方的 Gatsby 插件](https://github.com/hupe1980/gatsby-plugin-material-ui)，可以利用它来实现 `@material-ui/style` 的服务器端渲染。 请参考插件页面的设置和使用说明。
+这个 [官方的 Gatsby 插件](https://github.com/hupe1980/gatsby-plugin-material-ui)，可以利用它来实现 `@material-ui/style` 的服务器端渲染。 请参考插件页面的设置和使用说明。
 
 请参考 [Gatsby 项目案例](https://github.com/mui-org/material-ui/blob/master/examples/gatsby)以了解最新的使用方法。
 
@@ -397,7 +397,7 @@ function render() {
 
 ## 类名（Class names）
 
-类名（class names）由[类名生成器](/styles/api/#creategenerateclassname-options-class-name-generator)生成。
+类名（class names）由 [类名生成器](/styles/api/#creategenerateclassname-options-class-name-generator) 生成。
 
 ### 默认值
 

@@ -1,5 +1,5 @@
 ---
-title: Componente React de Campo de Texto
+title: Componente React para Campo de Texto
 components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField
 ---
 
@@ -13,7 +13,7 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 
 O componente wrapper `TextField` é um controle de formulário completo, incluindo um rótulo, entrada e texto de ajuda.
 
-O `TextField` suporta 3 variações: O estilo padrão, com contorno e preenchido.
+Ele suporta 3 variações: O estilo padrão, com contorno e preenchido.
 
 {{"demo": "pages/components/text-fields/BasicTextFields.js"}}
 
@@ -33,13 +33,13 @@ A propriedade `error` habilita o estado de erro, e, utilizando a propriedade `he
 
 ## Multilinha
 
-A propriedade `multiline` transforma o `textfield` em um `<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea">TextArea</a>.</p>
+A propriedade `multiline` transforma o campo de texto em um [textarea](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) ou em um componente [TextareaAutosize](/components/textarea-autosize/).
 
-<p>{{"demo": "pages/components/text-fields/MultilineTextFields.js"}}</p>
+{{"demo": "pages/components/text-fields/MultilineTextFields.js"}}
 
-<h2>Seleção</h2>
+## Seleção
 
-<p>A propriedade <code>select` transforma o `textfield` em um componente [Select](/components/selects/).
+A propriedade `select` transforma o `textfield` em um componente [Select](/components/selects/).
 
 {{"demo": "pages/components/text-fields/SelectTextFields.js"}}
 
@@ -109,7 +109,7 @@ A customização não para no CSS, você pode usar composição para criar compo
 
 ### Reduzir
 
-O label de entrada "shrink" nem sempre está correto. O input label deve encolher assim que o input estiver exibindo algo. Em algumas circunstâncias, não podemos determinar o estado de "srink" (input numérico, input datetime, input Stripe). Você pode notar uma sobreposição.
+O label de entrada "shrink" nem sempre está correto. O input label deve encolher assim que o input estiver exibindo algo. Em algumas circunstâncias, não podemos determinar o estado de "shrink" (input numérico, input datetime, input Stripe). Você pode notar uma sobreposição.
 
 ![minimizar](/static/images/text-fields/shrink.png)
 
@@ -196,7 +196,7 @@ Para que o campo de texto seja acessível, **a entrada deve estar vinculada ao r
 
 ## Projetos Complementares
 
-Para usos mais avançados, você pode tirar vantagem com:
+Para situações de uso mais avançadas, você pode tirar proveito com:
 
 - [formik-material-ui](https://github.com/stackworx/formik-material-ui) Bindings para usar Material-UI com [formik](https://jaredpalmer.com/formik).
 - [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui) Bindings para usar Material-UI com [Redux Form](https://redux-form.com/).

@@ -1,12 +1,12 @@
 # Typography 文字铸排
 
-<p class="description">The theme provides a set of type sizes that work well together, and also with the layout grid.</p>
+<p class="description">主题会提供一套能够一起协调工作的类型大小，也提供了布局网格。</p>
 
-## 字体系列
+## Font family
 
-You can change the font family with the `theme.typography.fontFamily` property.
+您可以使用 `theme.gypography.fontFamily` 属性来更改 font family。
 
-For instance, this demo uses the system font instead of the default Roboto font:
+例如，此演示使用了系统的字体而不是默认的 Roboto 字体：
 
 ```js
 const theme = createMuiTheme({
@@ -27,11 +27,11 @@ const theme = createMuiTheme({
 });
 ```
 
-### Self-hosted fonts
+### 自托管的字体
 
-To self-host fonts, download the font files in `ttf`, `woff`, and/or `woff2` formats and import them into your code.
+若想使用自托管的字体，请下载`ttf`，`woff`，以及/或者 `woff2` 格式的字体文件，然后将它们导入到你的代码中去。
 
-⚠️ This requires that you have a plugin or loader in your build process that can handle loading `ttf`, `woff`, and `woff2` files. Fonts will *not* be embedded within your bundle. They will be loaded from your webserver instead of a CDN.
+⚠️ 这则需要在你的生成过程中有一个插件或者加载器，用它们可以处理 `ttf`， `woff` 和 `woff2` 文件的加载。 字体将*不会*内嵌入你的资源文件包（bundle）。 它们将从您的网络服务器上而不是 CDN 中加载。
 
 ```js
 import RalewayWoff2 from './fonts/Raleway-Regular.woff2';
@@ -51,7 +51,7 @@ const raleway = {
 };
 ```
 
-Next, you need to change the theme to use this new font. In order to globally define Raleway as a font face, the [`CssBaseline`](/components/css-baseline/) component can be used (or any other CSS solution of your choice).
+接下来，您需要做的是修改主题，来使用这一个新的字体。 如果想在全局定义 Raleway 作为一个字体，您可以使用 [`CssBaseline`](/components/css-baseline/) 组件（或者你也可以选择你想要的任意其他 CSS 方案)。
 
 ```jsx
 const theme = createMuiTheme({
@@ -78,21 +78,21 @@ return (
 
 ## 字体大小 
 
-Material-UI uses `rem` units for the font size. The browser `<html>` element default font size is `16px`, but browsers have an option to change this value, so `rem` units allow us to accommodate the user's settings, resulting in a better accessibility support. Users change font size settings for all kinds of reasons, from poor eyesight to choosing optimum settings for devices that can be vastly different in size and viewing distance.
+Material-UI 使用 `rem` 单元来定义字体的大小。 浏览器 `<html>` 元素的默认字体大小为 `16px`，但是浏览器提供了一个改变这个值的选项，所以 `rem` 单元能够让我们适应用户的设置，从而提供更好的无障碍设计的支持。 其实用户改变字体大小设置的原因多种多样，有不太好的视力，或者选择适应设备的最佳设置，这样在大小和查看距离上会有很大的差异。
 
-To change the font-size of Material-UI you can provide a `fontSize` property. The default value is `14px`.
+若想更改 Material-UI 的字体大小，您可以提供一个 `fontSize ` 属性。 它的默认值为 `14px`。
 
 ```js
 const theme = createMuiTheme({
   typography: {
-    // In Chinese and Japanese the characters are usually larger,
-    // so a smaller fontsize may be appropriate.
+    // 中文字符和日文字符通常比较大，
+    // 所以选用一个略小的 fontsize 会比较合适。
     fontSize: 12,
   },
 });
 ```
 
-The computed font size by the browser follows this mathematical equation:
+有浏览器计算出来的字体大小遵循了以下数学方程式：
 
 ![font-size](/static/images/font-size.gif)
 
@@ -100,7 +100,7 @@ The computed font size by the browser follows this mathematical equation:
 
 ### 响应的字体大小
 
-The typography variants properties map directly to the generated CSS. You can use [media queries](/customization/breakpoints/#api) inside them:
+Typography 变量的属性直接映射到生成的 CSS 中。 您可以在当中使用 [媒体查询（media queries）](/customization/breakpoints/#api)：
 
 ```js
 const theme = createMuiTheme();
@@ -118,11 +118,11 @@ theme.typography.h3 = {
 
 {{"demo": "pages/customization/typography/CustomResponsiveFontSizes.js"}}
 
-To automate this setup, you can use the [`responsiveFontSizes()`](/customization/theming/#responsivefontsizes-theme-options-theme) helper to make Typography font sizes in the theme responsive.
+若你想实现此设置的自动化，则可以使用 [` responsiveFontSizes()`](/customization/theming/#responsivefontsizes-theme-options-theme) 的帮助程序将 Typography 的字体大小在主题设置为响应性。
 
 {{"demo": "pages/customization/typography/ResponsiveFontSizesChart.js", "hideToolbar": true}}
 
-You can see this in action in the example below. adjust your browser's window size, and notice how the font size changes as the width crosses the different [breakpoints](/customization/breakpoints/):
+您可以在下面的示例中看到这个操作。 请尝试调整浏览器的窗口大小，您可以注意到当切换到不同的 [breakpoints](/customization/breakpoints/) 设置的宽度，字体的大小也随之改变。
 
 ```js
 import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
@@ -133,22 +133,22 @@ theme = responsiveFontSizes(theme);
 
 {{"demo": "pages/customization/typography/ResponsiveFontSizes.js"}}
 
-### Fluid font sizes
+### 流式文字大小
 
-To be done: [#15251](https://github.com/mui-org/material-ui/issues/15251).
+待完成：[#15251](https://github.com/mui-org/material-ui/issues/15251)。
 
-### HTML字体大小
+### HTML 的字体大小
 
-You might want to change the `<html>` element default font size. For instance, when using the [10px simplification](https://www.sitepoint.com/understanding-and-using-rem-units-in-css/).
+您可能想要更改 `<html>` 元素的默认字体大小。 例如，当您使用 [10px 简化](https://www.sitepoint.com/understanding-and-using-rem-units-in-css/) 时。
 
-> ⚠️ Changing the font size can harm accessibility ♿️. Most browsers agreed on the default size of 16 pixels, but the user can change it. For instance, someone with an impaired vision could have set their browser’s default font size to something larger.
+> ⚠️ 更改字体的大小会对无障碍设计造成影响 ♿️。 大多数浏览器遵循默认的 16 pixels 的字体大小，但是用户可以改变这个值。 譬如，一个视力受损的客户可以将浏览器的默认字体值设置的更大一些。
 
-An `htmlFontSize` theme property is provided for this use case, which tells Material-UI what the font-size on the `<html>` element is. This is used to adjust the `rem` value so the calculated font-size always match the specification.
+这样的情况下，我们提供了一个 `htmlFontsize` 主题属性，它可以告知 Material-UI 此 `<html>` 元素的具体字体大小。 这可以用于调整 `rem` 值，如此一来计算后的 font-size 总是与规范相符合。
 
 ```js
 const theme = createMuiTheme({
   typography: {
-    // 告诉Material-UI html元素的字体大小是什么。
+    // 告知 Material-UI 此 html 元素的具体字体大小。
     htmlFontSize: 10,
   },
 });
@@ -160,13 +160,13 @@ html {
 }
 ```
 
-*You need to apply the above CSS on the html element of this page to see the below demo rendered correctly*
+*您需要在此页面的 html 元素上应用上述的 CSS 才能看到以下演示正确的渲染了。*
 
 {{"demo": "pages/customization/typography/FontSizeTheme.js"}}
 
-## 变种
+## 变体
 
-The typography object comes with [13 variants](/components/typography/#component) by default:
+默认情况下，typography object 为带有 [13 种变体](/components/typography/#component) ：
 
 - h1
 - h2
@@ -182,7 +182,7 @@ The typography object comes with [13 variants](/components/typography/#component
 - caption
 - overline
 
-Each of these variants can be customized individually:
+每个变体都可以被单独地定制：
 
 ```js
 const theme = createMuiTheme({
@@ -204,4 +204,4 @@ const theme = createMuiTheme({
 
 ## 默认值
 
-You can explore the default values of the typography using [the theme explorer](/customization/default-theme/?expand-path=$.typography) or by opening the dev tools console on this page (`window.theme.typography`).
+您可以使用 [主题探索功能](/customization/default-theme/?expand-path=$.typography) ，或者在此页面上打开 dev 工具控制（`window.theme.typogry`）来查看 typography 的默认值。

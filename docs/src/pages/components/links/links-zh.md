@@ -1,5 +1,5 @@
 ---
-components: Link 链接组件
+components: Link
 ---
 
 # Links 链接

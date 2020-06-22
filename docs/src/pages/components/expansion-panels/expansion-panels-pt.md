@@ -21,7 +21,7 @@ Estenda o comportamento padrão do painel para criar um acordeão com o componen
 
 {{"demo": "pages/components/expansion-panels/ControlledExpansionPanels.js", "bg": true}}
 
-## Painéis de Expansão Customizados
+## Painéis de expansão customizados
 
 Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
 
@@ -43,7 +43,7 @@ O conteúdo dos painéis de expansão é montado por padrão, mesmo que o painel
 
 Como acontece com qualquer otimização de desempenho, isso não é uma bala de prata. Certifique-se de identificar gargalos primeiro e, em seguida, experimente essas estratégias de otimização.
 
-## Cabeçalho Secundário e Colunas
+## Cabeçalho secundário e colunas
 
 Várias colunas podem ser usadas para estruturar o conteúdo, e um texto auxiliar pode ser adicionado ao painel para ajudar o usuário.
 

@@ -7,7 +7,7 @@ components: Radio, RadioGroup, FormControl, FormLabel, FormControlLabel
 
 <p class="description">用户可以通过单选按钮从一组中选择一个选项。</p>
 
-当用户想要看到所有的选项时，可以使用[单选按钮](https://material.io/design/components/selection-controls.html#radio-buttons)。 如果可用选项可以折叠，请您考虑使用占用空间更少的下拉菜单。
+当用户想要看到所有的选项时，可以使用 [单选按钮](https://material.io/design/components/selection-controls.html#radio-buttons)。 如果可用选项可以折叠，请您考虑使用占用空间更少的下拉菜单。
 
 默认情况下，单选按钮应该选择了最常用的选项。
 
@@ -39,7 +39,7 @@ components: Radio, RadioGroup, FormControl, FormLabel, FormControlLabel
 
 ## Customized radios 自定义单选框
 
-以下是自定义组件的一个示例。 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
+以下是自定义组件的一个示例。 您可以在 [重写文档页](/customization/components/) 中了解有关此内容的更多信息。
 
 {{"demo": "pages/components/radio-buttons/CustomizedRadios.js"}}
 

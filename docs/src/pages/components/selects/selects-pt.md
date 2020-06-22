@@ -29,11 +29,11 @@ Como a experiência do usuário pode ser melhorada em dispositivos móveis usand
 
 O componente wrapper `TextField` é um controle de formulário completo, incluindo um rótulo, entrada e texto de ajuda. Você pode encontrar um exemplo de seleção [nesta seção](/components/text-fields/#select).
 
-## Seleções Customizados
+## Seleções customizadas
 
 Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
 
-O primeiro passo é modelar o componente `InputBase`. Uma vez estilizado, você pode usá-lo diretamente como um campo de texto ou fornecê-lo à propriedade `input` da seleção para ter um campo `select`.
+O primeiro passo é estilizar o componente `InputBase`. Uma vez estilizado, você pode usá-lo diretamente como um campo de texto ou fornecê-lo à propriedade `input` da seleção para ter um campo `select`.
 
 {{"demo": "pages/components/selects/CustomizedSelects.js"}}
 
@@ -41,19 +41,19 @@ O primeiro passo é modelar o componente `InputBase`. Uma vez estilizado, você 
 
 ## Seleção Múltipla
 
-O componente `Select` pode lidar com várias seleções. É ativado com a propriedade `multiple`.
+O componente `Select` pode lidar com múltiplas seleções. É ativado com a propriedade `multiple`.
 
 Como na seleção única, você pode extrair o novo valor acessando `event.target.value` na chamada `onChange`. É sempre uma matriz.
 
 {{"demo": "pages/components/selects/MultipleSelect.js"}}
 
-## Seleção Aberta Controlada
+## Seleção - Controladando abertura
 
 {{"demo": "pages/components/selects/ControlledOpenSelect.js"}}
 
-## Com uma caixa de Diálogo
+## Com um diálogo
 
-Embora não seja recomendado pela especificação do Material Design, você pode usar uma seleção dentro de uma caixa de diálogo.
+Embora não seja recomendado pela especificação do Material Design, você pode usar uma seleção dentro de um diálogo.
 
 {{"demo": "pages/components/selects/DialogSelect.js"}}
 

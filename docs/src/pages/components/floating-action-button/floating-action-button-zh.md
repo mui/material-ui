@@ -9,7 +9,7 @@ components: Fab
 
 ## Floating Action Buttons 浮动操作按钮
 
-[浮动操作按钮](https://material.io/design/components/buttons-floating-action-button.html)出现在当前屏幕的所有内容之上，并且通常是中间有一个图标的圆形状。 FAB 有两种类型：常规的和扩展的。
+一个 [浮动操作按钮](https://material.io/design/components/buttons-floating-action-button.html) 出现在当前屏幕的所有内容之上，并且通常是中间有一个图标的圆形状。 FAB 有两种类型：常规的和扩展的。
 
 仅当 FAB 属于最适合呈现屏幕主要操作的方式时，才使用它。
 

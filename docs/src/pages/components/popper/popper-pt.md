@@ -55,10 +55,10 @@ Selecione parte do texto para ver o popper:
 
 ## Projetos Complementares
 
-Para usos mais avançados, você pode tirar vantagem com:
+Para situações de uso mais avançadas, você pode tirar proveito com:
 
 ### PopupState helper
 
-Existe um pacote de terceiros [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) que cuida do estado popover para você na maioria dos casos.
+Existe um pacote de terceiros [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) que cuida do estado popover para você na maioria das situações.
 
 {{"demo": "pages/components/popper/PopperPopupState.js"}}

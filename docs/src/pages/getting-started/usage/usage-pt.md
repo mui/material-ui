@@ -1,12 +1,12 @@
-# Utilização
+# Uso
 
 <p class="description">Comece com React e Material-UI em pouco tempo.</p>
 
-Componentes do Material-UI funcionam isoladamente. **Eles são auto-suficientes**, e só irão injetar os estilos que eles precisam para exibir. Eles não contam com qualquer folha de estilo global como [normalize.css](https://github.com/necolas/normalize.css/).
+Componentes do Material-UI funcionam isoladamente. **Eles são independentes**, e só irão injetar os estilos que eles precisam para exibir. Eles não contam com qualquer folha de estilo global como [normalize.css](https://github.com/necolas/normalize.css/).
 
 Você pode usar qualquer um dos componentes conforme demonstrado na documentação. Por favor, consulte a [página de demonstração](/components/buttons/) de cada componente para ver como eles devem ser importados.
 
-## Inicio rápido
+## Vamos começar!
 
 Aqui está um exemplo rápido para você começar, **é literalmente tudo que você precisa**:
 
@@ -32,7 +32,7 @@ Sim, isso é tudo o que você precisa para começar, como você pode ver nesta d
 
 ## Globais
 
-A experiência de uso com o Material-UI pode ser melhorada com um punhado de configurações globais importantes, das quais você precisa estar ciente.
+A experiência de uso com o Material-UI pode ser melhorada com algumas configurações globais importantes, das quais você precisa estar ciente.
 
 ### Meta tag para responsividade
 
@@ -59,4 +59,4 @@ Agora que você tem uma ideia da configuração básica, é hora de aprender mai
 
 - Como aplicar [a fonte e a tipografia do Material Design](/components/typography/).
 - Como tirar proveito da [solução de tema](/customization/theming/).
-- Como [sobrescrever](/customization/components/) o visual e a aparência dos componentes.
+- Como [customizar](/customization/components/) o visual e a aparência dos componentes.

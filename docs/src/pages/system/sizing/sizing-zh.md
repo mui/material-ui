@@ -44,7 +44,7 @@ Sizing样式函数支持不同的属性输入类型：
 import { sizing } from '@material-ui/system';
 ```
 
-| 导入名称        | Prop        | CSS 属性       | Theme key |
+| 导入名称        | 属性          | CSS 属性       | Theme key |
 |:----------- |:----------- |:------------ |:--------- |
 | `width`     | `width`     | `width`      | none      |
 | `maxWidth`  | `maxWidth`  | `max-width`  | none      |
