@@ -16,8 +16,20 @@ export interface LabelDisplayedRowsArgs {
 export interface TablePaginationTypeMap<P, D extends React.ElementType> {
   props: P &
     TablePaginationBaseProps & {
+      /**
+       * The component used for displaying the actions.
+       * Either a string to use a HTML element or a component.
+       */
       ActionsComponent?: React.ElementType<TablePaginationActionsProps>;
+      /**
+       * Props applied to the back arrow [`IconButton`](/api/icon-button/) component.
+       */
       backIconButtonProps?: Partial<IconButtonProps>;
+      /**
+       * The total number of rows.
+       *
+       * To enable server side pagination for an unknown number of items, provide -1.
+       */
       count: number;
       /**
        * Accepts a function which returns a string value that provides a user-friendly name for the current page.
@@ -28,14 +40,52 @@ export interface TablePaginationTypeMap<P, D extends React.ElementType> {
        * @returns {string}
        */
       getItemAriaLabel?: (type: 'first' | 'last' | 'next' | 'previous') => string;
+      /**
+       * Customize the displayed rows label. Invoked with a `{ from, to, count, page }`
+       * object.
+       *
+       * For localization purposes, you can use the provided [translations](/guides/localization/).
+       */
       labelDisplayedRows?: (paginationInfo: LabelDisplayedRowsArgs) => React.ReactNode;
+      /**
+       * Customize the rows per page label.
+       *
+       * For localization purposes, you can use the provided [translations](/guides/localization/).
+       */
       labelRowsPerPage?: React.ReactNode;
+      /**
+       * Props applied to the next arrow [`IconButton`](/api/icon-button/) element.
+       */
       nextIconButtonProps?: Partial<IconButtonProps>;
+      /**
+       * Callback fired when the page is changed.
+       *
+       * @param {object} event The event source of the callback.
+       * @param {number} page The page selected.
+       */
       onChangePage: (event: React.MouseEvent<HTMLButtonElement> | null, page: number) => void;
+      /**
+       * Callback fired when the number of rows per page is changed.
+       *
+       * @param {object} event The event source of the callback.
+       */
       onChangeRowsPerPage?: React.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>;
+      /**
+       * The zero-based index of the current page.
+       */
       page: number;
+      /**
+       * The number of rows per page.
+       */
       rowsPerPage: number;
+      /**
+       * Customizes the options of the rows per page select field. If less than two options are
+       * available, no select field will be displayed.
+       */
       rowsPerPageOptions?: Array<number | { value: number; label: string }>;
+      /**
+       * Props applied to the rows per page [`Select`](/api/select/) element.
+       */
       SelectProps?: Partial<SelectProps>;
       /**
        * If `true`, show the first-page button.
@@ -78,7 +128,7 @@ export type TablePaginationClassKey =
   | 'selectIcon'
   | 'actions';
 
-export type TablePaginationBaseProps = Omit<TableCellProps, 'classes' | 'component'>;
+export type TablePaginationBaseProps = Omit<TableCellProps, 'classes' | 'component' | 'children'>;
 
 export type TablePaginationProps<
   D extends React.ElementType = React.ComponentType<TablePaginationBaseProps>,

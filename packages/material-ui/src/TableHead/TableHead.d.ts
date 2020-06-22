@@ -2,7 +2,12 @@ import * as React from 'react';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
 export interface TableHeadTypeMap<P = {}, D extends React.ElementType = 'thead'> {
-  props: P;
+  props: P & {
+    /**
+     * The content of the component, normally `TableRow`.
+     */
+    children?: React.ReactNode;
+  };
   defaultComponent: D;
   classKey: TableHeadClassKey;
 }

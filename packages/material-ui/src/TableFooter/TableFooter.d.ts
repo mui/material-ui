@@ -2,7 +2,12 @@ import * as React from 'react';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
 export interface TableFooterTypeMap<P = {}, D extends React.ElementType = 'tfoot'> {
-  props: P;
+  props: P & {
+    /**
+     * The content of the component, normally `TableRow`.
+     */
+    children?: React.ReactNode;
+  };
   defaultComponent: D;
   classKey: TableFooterClassKey;
 }

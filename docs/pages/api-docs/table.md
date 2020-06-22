@@ -28,11 +28,11 @@ The `MuiTable` name can be used for providing [default props](/customization/glo
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name required">children<abbr title="required">*</abbr></span> | <span class="prop-type">node</span> |  | The content of the table, normally `TableHead` and `TableBody`. |
+| <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The content of the table, normally `TableHead` and `TableBody`. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'table'</span> | The component used for the root node. Either a string to use a HTML element or a component. |
-| <span class="prop-name">padding</span> | <span class="prop-type">'default'<br>&#124;&nbsp;'checkbox'<br>&#124;&nbsp;'none'</span> | <span class="prop-default">'default'</span> | Allows TableCells to inherit padding of the Table. |
-| <span class="prop-name">size</span> | <span class="prop-type">'small'<br>&#124;&nbsp;'medium'</span> | <span class="prop-default">'medium'</span> | Allows TableCells to inherit size of the Table. |
+| <span class="prop-name">padding</span> | <span class="prop-type">'checkbox'<br>&#124;&nbsp;'default'<br>&#124;&nbsp;'none'</span> | <span class="prop-default">'default'</span> | Allows TableCells to inherit padding of the Table. |
+| <span class="prop-name">size</span> | <span class="prop-type">'medium'<br>&#124;&nbsp;'small'</span> | <span class="prop-default">'medium'</span> | Allows TableCells to inherit size of the Table. |
 | <span class="prop-name">stickyHeader</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Set the header sticky.<br>⚠️ It doesn't work with IE 11. |
 
 The `ref` is forwarded to the root element.

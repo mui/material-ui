@@ -3,7 +3,17 @@ import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
 export interface TableRowTypeMap<P = {}, D extends React.ElementType = 'tr'> {
   props: P & {
+    /**
+     * Should be valid <tr> children such as `TableCell`.
+     */
+    children?: React.ReactNode;
+    /**
+     * If `true`, the table row will shade on hover.
+     */
     hover?: boolean;
+    /**
+     * If `true`, the table row will have the selected shading.
+     */
     selected?: boolean;
   };
   defaultComponent: D;

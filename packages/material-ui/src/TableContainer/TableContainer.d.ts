@@ -2,7 +2,12 @@ import * as React from 'react';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
 export interface TableContainerTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P;
+  props: P & {
+    /**
+     * The table itself, normally `<Table />`.
+     */
+    children?: React.ReactNode;
+  };
   defaultComponent: D;
   classKey: TableContainerClassKey;
 }
