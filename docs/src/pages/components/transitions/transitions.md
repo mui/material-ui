@@ -37,8 +37,9 @@ export default Main() {
 
 ## Collapse
 
-Expand vertically from the top of the child element.
-The `collapsedHeight` property can be used to set the minimum height when not expanded.
+Expand from the start edge of the child element.
+Use the `orientation` prop if you need a horizontal collapse.
+The `collapsedSize` prop can be used to set the minimum width/height when not expanded.
 
 {{"demo": "pages/components/transitions/SimpleCollapse.js", "bg": true}}
 
