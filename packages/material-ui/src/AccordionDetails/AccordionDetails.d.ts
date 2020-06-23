@@ -1,24 +1,24 @@
 import * as React from 'react';
 import { StandardProps } from '..';
 
-export interface ExpansionPanelDetailsProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, ExpansionPanelDetailsClassKey> {
+export interface AccordionDetailsProps
+  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, AccordionDetailsClassKey> {
   /**
-   * The content of the expansion panel details.
+   * The content of the accordion details.
    */
   children?: React.ReactNode;
 }
 
-export type ExpansionPanelDetailsClassKey = 'root';
+export type AccordionDetailsClassKey = 'root';
 
 /**
  *
  * Demos:
  *
- * - [Expansion Panels](https://material-ui.com/components/expansion-panels/)
+ * - [Accordion](https://material-ui.com/components/accordion/)
  *
  * API:
  *
- * - [ExpansionPanelDetails API](https://material-ui.com/api/expansion-panel-details/)
+ * - [AccordionDetails API](https://material-ui.com/api/accordion-details/)
  */
-export default function ExpansionPanelDetails(props: ExpansionPanelDetailsProps): JSX.Element;
+export default function AccordionDetails(props: AccordionDetailsProps): JSX.Element;
