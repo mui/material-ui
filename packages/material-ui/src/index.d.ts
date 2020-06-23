@@ -58,6 +58,18 @@ export * from './styles';
 
 export * from './utils';
 
+export { default as Accordion } from './Accordion';
+export * from './Accordion';
+
+export { default as AccordionActions } from './AccordionActions';
+export * from './AccordionActions';
+
+export { default as AccordionDetails } from './AccordionDetails';
+export * from './AccordionDetails';
+
+export { default as AccordionSummary } from './AccordionSummary';
+export * from './AccordionSummary';
+
 export { default as AppBar } from './AppBar';
 export * from './AppBar';
 
