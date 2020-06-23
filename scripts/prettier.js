@@ -29,7 +29,7 @@ function runPrettier(options) {
     .filter((notEmpty) => notEmpty);
 
   const files = glob
-    .sync('**/*.{js,md,tsx,ts}', {
+    .sync('**/*.{js,md,tsx,ts,json}', {
       ignore: [
         '**/node_modules/**',
         // these are auto-generated

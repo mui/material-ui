@@ -8,11 +8,12 @@
 
 #### Arguments
 
-1. `props` (*String* | *String[]*): Defaults to `['all']`. Provides a CSS property, or a list of CSS properties that should be transitioned.
-2.  `options` (*Object* [optional]):
-  - `options.duration` (*String* | *Number* [optional]): Defaults to `theme.transitions.duration.standard`. Provides the duration of the transition.
-  - `options.easing` (*String* [optional]): Defaults to `theme.transitions.easing.easeInOut`. Provides the easing for the transition.
-  - `options.delay` (*String* | *Number* [optional]): Defaults to `0`. Provides the delay for the transition.
+1. `props` (_String_ | _String[]_): Defaults to `['all']`. Provides a CSS property, or a list of CSS properties that should be transitioned.
+2. `options` (_Object_ [optional]):
+
+- `options.duration` (_String_ | _Number_ [optional]): Defaults to `theme.transitions.duration.standard`. Provides the duration of the transition.
+- `options.easing` (_String_ [optional]): Defaults to `theme.transitions.easing.easeInOut`. Provides the easing for the transition.
+- `options.delay` (_String_ | _Number_ [optional]): Defaults to `0`. Provides the delay for the transition.
 
 #### Returns
 
@@ -32,7 +33,7 @@ theme.transitions.create(['background-color', 'transform']);
 
 #### Arguments
 
-1. `height` (*Number*): The height of the component.
+1. `height` (_Number_): The height of the component.
 
 #### Returns
 
@@ -79,10 +80,11 @@ const theme = createMuiTheme({
       easeIn: 'cubic-bezier(0.4, 0, 1, 1)',
       // The sharp curve is used by objects that may return to the screen at any time.
       sharp: 'cubic-bezier(0.4, 0, 0.6, 1)',
-    },    
+    },
   },
 });
 ```
 
 ## References
+
 Check out the [Transitions](/components/transitions/) page to explore the transition components that are included with Material-UI.
