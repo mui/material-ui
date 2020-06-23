@@ -22,6 +22,8 @@ export type InputClassKey =
   | 'fullWidth'
   | 'input'
   | 'inputMarginDense'
+  | 'adornedEnd'
+  | 'adornedStart'
   | 'inputMultiline'
   | 'inputTypeSearch';
 
