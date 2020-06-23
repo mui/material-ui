@@ -1,6 +1,7 @@
 import * as React from 'react';
 import ButtonBase from '../ButtonBase';
 import { TabScrollButtonProps } from '../TabScrollButton';
+import { TabProps } from '../Tab';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
 export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof ButtonBase> {
@@ -41,7 +42,7 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof Button
      * @param {object} event The event source of the callback
      * @param {any} value We default to the index of the child (number)
      */
-    onChange?: (event: React.ChangeEvent<{}>, value: any) => void;
+    onChange?: TabProps['onChange'];
     /**
      * The tabs orientation (layout flow direction).
      */
