@@ -28,7 +28,7 @@ we want to focus on making even more of you "very disappointed", as it were!
 
 ### 2. How likely is it that you would recommend Material-UI to a friend or colleague?
 
-<img src="/static/blog/2020-survey/2a.png" style="display: block; margin: 0 auto;" alt="Bar chart: 0.20% -	1, 0% - 2, 0.20% - 3, 0.20% - 4, 1.02% - 5, 1.97% - 6, 8.71% - 7, 22.52% - 8, 20.88% - 9, 44.29% - 10" />
+<img src="/static/blog/2020-survey/2a.png" style="display: block; margin: 0 auto;" alt="Bar chart: 0.20% - 1, 0% - 2, 0.20% - 3, 0.20% - 4, 1.02% - 5, 1.97% - 6, 8.71% - 7, 22.52% - 8, 20.88% - 9, 44.29% - 10" />
 <br />
 <img src="/static/blog/2020-survey/2b.png" style="display: block; margin: 0 auto;" alt="Pie chart: 73.3% Very disappointed, 21.3% somewhat disappointed, 5.4% not disappointed." />
 
@@ -191,12 +191,113 @@ It’s sorted descending, with the most important concerns first:
 
 ### 6. What're your most important criteria for choosing a UI library?
 
-<img src="/static/blog/2020-survey/6.png" style="display: block; margin: 0 auto;" alt="Bar chart: 21.99% - The design, look & feel, 21.64% - Documentation quality, 16.38% - Customizability, 8.42% - TypeScript integration, 6.89% - Comprehensiveness, 5.35% - Enterprise ready, 4.68% - Bundle size, 4.92% - Popularity, 4.45% - Accessibility, 2.62% - Documentation quality, 1.88% - Offered support & help, 0.12% - Performance, 0.67% - Other." />
+<img src="/static/blog/2020-survey/6.png" style="display: block; margin: 0 auto;" alt="Bar chart: 21.99% The design, look & feel, 21.64% Documentation quality, 16.38% Customizability, 8.42% TypeScript integration, 6.89% Comprehensiveness, 5.35% Enterprise ready, 4.68% Bundle size, 4.92% Popularity, 4.45% Accessibility, 2.62% Documentation quality, 1.88% Offered support & help, 0.12% Performance, 0.67% Other." />
 
 ## About you
 
 ### 7. How did you hear about Material-UI?
 
-<img src="/static/blog/2020-survey/7.png" style="display: block; margin: 0 auto;" alt="Bar chart: 74.3% search, 29.6% word of mouth, 8.2% Social, 4.3% blog." />
+<img src="/static/blog/2020-survey/7.png" style="display: block; margin: 0 auto;" alt="Bar chart: 50.65%	Search, 26.18%	Word of mouth, 10.76%	Social, 5.10%	Blog, 7.31%	Other." />
 
-No surprises here!
+### 8. Which of the following best describes your current job role?
+
+<img src="/static/blog/2020-survey/8.png" style="display: block; margin: 0 auto;" alt="Bar chart: 52.18%	Full-stack developer, 27.11%	Frontend developer, 11.65%	Entrepreneur (I do it all), 3.47%	Beginner learning web development, 1.23%	Backend Developer, 1.16%	UX Designer, 0.34%	Student, 0.20%	CTO, 2.66%	Other." />
+
+No huge surprises here!
+
+### 9. How big is your organization?
+
+<img  src="/static/blog/2020-survey/9.png" style="display: block; margin: 0 auto;" alt="Bar chart: 12.30%	Hobby / side project, 13.40%	Self-employed, 35.60%	2-5 people, 16.10%	6-10, 10.30%	11-20, 5.10%	21-50, 2.50%	51-100, 4.60%	100+" />
+
+Material-UI is most popular with small to medium sized organisations,
+perhaps because beyond a certain size, organizations have teams building their own design system and framework.
+We want to continue to make it easy to use the component logic of Material-UI while allowing
+designers to give it a bespoke look and feel for their organization.
+
+### 10. How long have you been developing with JavaScript
+
+<img src="/static/blog/2020-survey/10.png" style="display: block; margin: 0 auto;" alt="Bar chart: 3.60%	I'm just getting started!, 7.40%	6 months +, 20.80%	1 year +, 27.80%	3 years +, 24.30%	5 years +, 9.80%	10 years +, 4.10%	15 years +, 2.30%	20 years +" />
+
+A nice bell curve, with the majority of developers having 1 to 5 years experience with Javascript.
+
+### 11. How long have you been developing with React?
+
+<img src="/static/blog/2020-survey/11.png" style="display: block; margin: 0 auto;" alt="Bar chart: 10.70%	I'm just getting started!, 15.60%	6 months +, 24.60%	1 year +, 21.40%	2 years +, 23.10%	3 years +, 4.60%	Bleeding edge baby! 5 years +" />
+
+### 12. How long have you been developing with Material-UI?
+
+<img src="/static/blog/2020-survey/12.png" style="display: block; margin: 0 auto;" alt="Bar chart: 20.50%	I'm just getting started!, 24.90%	6 months +, 28%	1 year +, 17.40%	2 years +, 7.50%	3 years +, 1.70%	I'm a pioneer! 4 years +" />
+
+### 13. What were you primarily using before Material-UI?
+
+<img src="/static/blog/2020-survey/13.png" style="display: block; margin: 0 auto;" alt="Bar chart: 47.08%	Bootstrap, 16.04%	Custom system, 13.68%	Started with Material-UI, 6.67%	Angular Material, 4.44%	Semantic-UI, 3.19%	Ant Design, 8.89%	Other" />
+
+Given its relative popularity, and the move from CSS / HTML / jQuery towards front-end frameworks,
+it should come as no big surprise to see that the majority of respondents were previously using Bootstrap.
+Custom solutions have also been replaced by Material-UI as your go-to UI library, along with a
+long-tail of other frameworks.
+
+### 14. How many Material-UI based projects have you built?
+
+<img src="/static/blog/2020-survey/14.png" style="display: block; margin: 0 auto;" alt="Bar chart: 11.50%	0 (I’m just getting started), 23%	1, 54.80%	2-5, 7.80%	6-10, 2.90%	10+" />
+
+## Your product
+
+### 15. What are you building?
+
+<img src="/static/blog/2020-survey/15.png" style="display: block; margin: 0 auto;" alt="Bar chart: 23.43%	Enterprise application, 20.31%	Dashboard admin app, 7.40%	A design system, 7.40%	A set of UI components, 7.37%	playing with tech, 7.34%	A prototype, 6.40%	Landing page, 5.41%	e-commerce site, 4.80%	CMS, 3.59%	Portfolio or resume, 1.88%	Blog, 4.69%	Other" />
+
+Enterprises and dashboards are at the top of the heap, and we've long known that many of you are building internal
+systems that can't feature in [the showcase](/discover-more/showcase/). Let us know by opening a PR
+if you're bucking that trend, and have something sparkly to share! And if you're in the 40% building UI
+components, we'd be happy to give you a shout out in the [related projects](/discover-more/related-projects/)
+section.
+
+### 16. What “delivery mechanism” are you using?
+
+<img src="/static/blog/2020-survey/16.png" style="display: block; margin: 0 auto;" alt="Bar chart: 68.37%	Single page app (Create React App, etc), 18.24%	Server-side rendered website (Next.js, Gatsby, etc), 6.22%	Desktop app (Electron, etc), 4.65%	Native mobile app (Cordova, etc), 0.10%	React Native, 2.40%	Other" />
+
+### 17. Who are you building it for?
+
+<img src="/static/blog/2020-survey/17.png" style="display: block; margin: 0 auto;" alt="Pie chart: 55.17%	For my company
+22.86%	For a client, 16.94%	Side project, 5.03%	More than one of these." />
+
+### 18. Which JS framework are you using, if any?
+
+<img src="/static/blog/2020-survey/18.png" style="display: block; margin: 0 auto;" alt="Pie chart: 57.34%	Create React App, 16.40%	Custom webpack, 12.35%	Next.js, 5.40%	Gatsby, 8.51%	Other." />
+
+### 19. What styling system are you using?
+
+<img src="/static/blog/2020-survey/19.png" style="display: block; margin: 0 auto;" alt="Pie chart: 53.84%	Material-UI styles (JSS), 20.41%	Styled components, 13.01%	Good plain CSS, 8.31%	CSS Modules, 1.96%	Emotion, 0.59%	scss, 0.59%	sass, 0.09%	less, 1.19%	Other" />
+
+The trends seems to be similar to the one from the last year's survey, so we will push with better support for styled components.
+
+### 20. Has your organization ever paid for UI components??
+
+<img src="/static/blog/2020-survey/20.png" style="display: block; margin: 0 auto;" alt="Pie chart: 89.90%	No, 10.10% Yes" />
+
+### 21. What type system are you using?
+
+<img src="/static/blog/2020-survey/21.png" style="display: block; margin: 0 auto;" alt="Bar chart: 54.08%	None
+30.87%	TypeScript 3.8, 7.31%	TypeScript 3.7, 1.90%	Flow, 1.55%	TypeScript 3.6, 0.98%	TypeScript 3.5, 3.31%	Other" />
+
+## Conclusion
+
+This data is **incredibly valuable** for our team.
+Again, thank you for participating!
+We want to work on the problems that resonate the most with our users.
+[It's clear](#4-how-can-we-improve-material-ui-for-you) that we should:
+
+1. Support more components
+2. Improve the customization
+3. Improve the documentation
+4. Improve the static typings
+5. Reduce the overhead of the library
+
+**We will update [our ROADMAP](/discover-more/roadmap/) in the coming days**.
+We will run a similar survey next year to keep track of our progress.
+
+If you want to continue to influence our roadmap, please upvote 👍 the issues you are the most interested in on GitHub.
+
+<img src="/static/blog/2019-survey/vote.gif" style="display: block; margin: 0 auto;" alt="How to upvote on GitHub" />
+<p class="blog-description">Help us prioritize by upvoting.</p>
