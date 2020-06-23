@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { StandardProps } from '..';
 
-export interface ExpansionPanelActionsProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, ExpansionPanelActionsClassKey> {
+export interface AccordionActionsProps
+  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, AccordionActionsClassKey> {
   /**
    * The content of the component.
    */
@@ -13,16 +13,16 @@ export interface ExpansionPanelActionsProps
   disableSpacing?: boolean;
 }
 
-export type ExpansionPanelActionsClassKey = 'root' | 'spacing';
+export type AccordionActionsClassKey = 'root' | 'spacing';
 
 /**
  *
  * Demos:
  *
- * - [Expansion Panels](https://material-ui.com/components/expansion-panels/)
+ * - [Accordion](https://material-ui.com/components/accordion/)
  *
  * API:
  *
- * - [ExpansionPanelActions API](https://material-ui.com/api/expansion-panel-actions/)
+ * - [AccordionActions API](https://material-ui.com/api/accordion-actions/)
  */
-export default function ExpansionPanelActions(props: ExpansionPanelActionsProps): JSX.Element;
+export default function AccordionActions(props: AccordionActionsProps): JSX.Element;
