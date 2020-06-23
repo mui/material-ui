@@ -141,8 +141,8 @@ export default function ConfirmationDialog() {
 
   return (
     <div className={classes.root}>
-      <List component="div" role="list">
-        <ListItem button divider disabled role="listitem">
+      <List component="div" role="group">
+        <ListItem button divider disabled>
           <ListItemText primary="Interruptions" />
         </ListItem>
         <ListItem
@@ -152,11 +152,10 @@ export default function ConfirmationDialog() {
           aria-controls="ringtone-menu"
           aria-label="phone ringtone"
           onClick={handleClickListItem}
-          role="listitem"
         >
           <ListItemText primary="Phone ringtone" secondary={value} />
         </ListItem>
-        <ListItem button divider disabled role="listitem">
+        <ListItem button divider disabled>
           <ListItemText
             primary="Default notification ringtone"
             secondary="Tethys"
