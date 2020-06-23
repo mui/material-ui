@@ -19,7 +19,6 @@ The grid system is implemented with the `Grid` component:
 - Item widths are set in percentages, so they’re always fluid and sized relative to their parent element.
 - Items have padding to create the spacing between individual items.
 - There are five grid breakpoints: xs, sm, md, lg, and xl.
-- Integer values can be given to each breakpoint, indicating how many of the 12 available columns are occupied by the component when the viewport width satisfies the [breakpoint contraints](/customization/breakpoints/#default-breakpoints).
 
 If you are **new to or unfamiliar with flexbox**, we encourage you to read this [CSS-Tricks flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) guide.
 
@@ -40,17 +39,13 @@ Fluid grids use columns that scale and resize content. A fluid grid’s layout c
 
 ### Basic grid
 
-Column widths are integer values between 1 and 12; they apply at any breakpoint and indicate how many columns are occupied by the component.
-
-A value given to a breakpoint applies to all the other breakpoints wider than it (unless overridden, as you can read later in this page). For example, `xs={12}` sizes a component to occupy the whole viewport width regardless of its size.
+The column widths apply at all breakpoints (i.e. `xs` and up).
 
 {{"demo": "pages/components/grid/CenteredGrid.js", "bg": true}}
 
-### Grid with multiple breakpoints
+### Grid with breakpoints
 
-Components may have multiple widths defined, causing the layout to change at the defined breakpoint. Width values given to larger breakpoints override those given to smaller breakpoints.
-
-For example, `xs={12} sm={6}` sizes a component to occupy half of the viewport width (6 columns) when viewport width is [600 or more pixels](/customization/breakpoints/#default-breakpoints). For smaller viewports, the component fills all 12 available columns.
+Some columns have multiple widths defined, causing the layout to change at the defined breakpoint.
 
 {{"demo": "pages/components/grid/FullWidthGrid.js", "bg": true}}
 
