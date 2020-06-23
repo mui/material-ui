@@ -117,7 +117,7 @@ const ignoreExternalDocumentation: Record<string, string[]> = {
   Button: ['focusVisibleClassName', 'type'],
   Collapse: transitionCallbacks,
   CardActionArea: ['focusVisibleClassName'],
-  ExpansionPanelSummary: ['onFocusVisible'],
+  AccordionSummary: ['onFocusVisible'],
   Fab: ['focusVisibleClassName'],
   Fade: transitionCallbacks,
   Grow: transitionCallbacks,

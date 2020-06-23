@@ -12,6 +12,7 @@ If you wish to add support for a component or feature not highlighted
 here, please search for the relevant [GitHub Issue](https://github.com/mui-org/material-ui/issues), or create a new one
 to discuss the approach before submitting a pull request.
 
+- **[Accordion](https://material.io/archive/guidelines/components/expansion-panels.html) ✓** (_Legacy Material v1_)
 - App bars
   - **[Top](https://material.io/design/components/app-bars-top.html) ✓**
   - **[Bottom](https://material.io/design/components/app-bars-bottom.html) ✓**
@@ -49,7 +50,6 @@ to discuss the approach before submitting a pull request.
   - **[Inset](https://material.io/design/components/dividers.html#types) ✓**
   - **[Middle](https://material.io/design/components/dividers.html#types) ✓**
   - **[Subheader](https://material.io/design/components/dividers.html#types) ✓**
-- **[Expansion Panels](https://material.io/archive/guidelines/components/expansion-panels.html) ✓** (_Legacy Material v1_)
 - **[Image lists](https://material.io/design/components/image-lists.html) ✓** (AKA Grid Lists)
 - **[Lists](https://material.io/design/components/lists.html) ✓**
   - [Types:](https://material.io/design/components/lists.html#types)

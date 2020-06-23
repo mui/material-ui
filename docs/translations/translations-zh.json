@@ -130,7 +130,7 @@
     "/components/dialogs": "Dialog 对话框",
     "/components/dividers": "Divider 分隔线",
     "/components/drawers": "Drawer 抽屉",
-    "/components/expansion-panels": "Expansion Panel 拓展面板",
+    "/components/accordion": "Accordion 拓展面板",
     "/components/feedback": "Feedback 用户反馈",
     "/components/grid": "Grid 栅格",
     "/components/hidden": "Hidden 隐藏",

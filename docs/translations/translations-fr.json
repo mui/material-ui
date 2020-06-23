@@ -130,7 +130,7 @@
     "/components/dialogs": "Dialog",
     "/components/dividers": "Divider",
     "/components/drawers": "Drawer",
-    "/components/expansion-panels": "Expansion Panel",
+    "/components/accordion": "Accordion",
     "/components/feedback": "Feedback",
     "/components/grid": "Grid",
     "/components/hidden": "Hidden",
