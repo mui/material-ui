@@ -152,11 +152,11 @@ export const styles = (theme) => ({
 });
 
 const usePreviousProps = (value) => {
-  const ref = React.useRef();
+  const ref = React.useRef({});
   React.useEffect(() => {
     ref.current = value;
   });
-  return ref.current || {};
+  return ref.current;
 };
 
 const Badge = React.forwardRef(function Badge(props, ref) {
