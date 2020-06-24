@@ -43,7 +43,7 @@ This word cloud was generated with [wordclouds.com](https://wordclouds.com).
 <img src="/static/blog/2020-survey/3.jpg" style="display: block; margin: 0 auto;" alt="Word cloud of who would benefit most" />
 
 Developers, developers, developers! (And "people" and "teams" in general, apparently! ) This is understandable, given the
-[job role demographic](#7-which-of-the-following-best-describes-your-current-job-role)
+[job role demographic](#8-which-of-the-following-best-describes-your-current-job-role)
 of the majority of respondents. We'll continue to work on the developer experience, making it
 easier to get started with, use, and customize Material-UI.
 
