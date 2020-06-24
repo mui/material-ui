@@ -5,7 +5,7 @@ function testOnChange() {
   function handleTabsChange(event: React.SyntheticEvent, tabsValue: unknown) {}
   <Tabs onChange={handleTabsChange} />;
 
-  function handleElementChange(event: React.ChangeEvent<Element>) {}
+  function handleElementChange(event: React.ChangeEvent) {}
   // @ts-expect-error internally it's either FocusEvent or ClickEvent
   <Tabs onChange={handleElementChange} />;
 
