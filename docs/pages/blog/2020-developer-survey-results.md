@@ -19,7 +19,7 @@ on the things that will make it even better.
 
 ### 1. How would you feel if you could no longer use Material-UI?
 
-<img src="/static/blog/2020-survey/1.png" style="display: block; margin: 0 auto;" alt="Pie chart: 73.3% Very disappointed, 21.3% somewhat disappointed, 5.4% not disappointed." />
+<img src="/static/blog/2020-survey/1.png" style="width: 552px; margin-top: 32px; margin-bottom: 24px;" alt="Pie chart: 73.3% Very disappointed, 21.3% somewhat disappointed, 5.4% not disappointed." />
 
 An overwhelming majority of respondents (over 94%), would be disappointed or very disappointed if
 they could no longer use Material-UI. The benchmark for "very disappointed" is 40%,
