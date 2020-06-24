@@ -55,6 +55,7 @@ export type TreeItemClassKey =
   | 'root'
   | 'expanded'
   | 'selected'
+  | 'focused'
   | 'group'
   | 'content'
   | 'iconContainer'

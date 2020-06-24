@@ -17,16 +17,6 @@ import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 const useTreeItemStyles = makeStyles((theme) => ({
   root: {
     color: theme.palette.text.secondary,
-    '&:hover > $content': {
-      backgroundColor: theme.palette.action.hover,
-    },
-    '&:focus > $content, &$selected > $content': {
-      backgroundColor: `var(--tree-view-bg-color, ${theme.palette.grey[400]})`,
-      color: 'var(--tree-view-color)',
-    },
-    '&:focus > $content $label, &:hover > $content $label, &$selected > $content $label': {
-      backgroundColor: 'transparent',
-    },
   },
   content: {
     color: theme.palette.text.secondary,
@@ -34,8 +24,15 @@ const useTreeItemStyles = makeStyles((theme) => ({
     borderBottomRightRadius: theme.spacing(2),
     paddingRight: theme.spacing(1),
     fontWeight: theme.typography.fontWeightMedium,
-    '$expanded > &': {
+    '&$expanded': {
       fontWeight: theme.typography.fontWeightRegular,
+    },
+    '&:hover': {
+      backgroundColor: theme.palette.action.hover,
+    },
+    '&$focused, &$selected, &$selected$focused': {
+      backgroundColor: `var(--tree-view-bg-color, ${theme.palette.action.selected})`,
+      color: 'var(--tree-view-color)',
     },
   },
   group: {
@@ -46,6 +43,7 @@ const useTreeItemStyles = makeStyles((theme) => ({
   },
   expanded: {},
   selected: {},
+  focused: {},
   label: {
     fontWeight: 'inherit',
     color: 'inherit',
@@ -53,7 +51,7 @@ const useTreeItemStyles = makeStyles((theme) => ({
   labelRoot: {
     display: 'flex',
     alignItems: 'center',
-    padding: theme.spacing(0.5, 0),
+    padding: theme.spacing(0.5, 0, 0.5, 0.5),
   },
   labelIcon: {
     marginRight: theme.spacing(1),
@@ -67,11 +65,11 @@ const useTreeItemStyles = makeStyles((theme) => ({
 function StyledTreeItem(props) {
   const classes = useTreeItemStyles();
   const {
-    labelText,
+    bgColor,
+    color,
     labelIcon: LabelIcon,
     labelInfo,
-    color,
-    bgColor,
+    labelText,
     ...other
   } = props;
 
@@ -97,6 +95,7 @@ function StyledTreeItem(props) {
         content: classes.content,
         expanded: classes.expanded,
         selected: classes.selected,
+        focused: classes.focused,
         group: classes.group,
         label: classes.label,
       }}
