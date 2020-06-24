@@ -106,7 +106,7 @@ yarn add @material-ui/core
 
 ### Typography
 
-- Replace `srOnly` prop support with a style util to not duplicate with the capabilities of the system:
+- Replace the `srOnly` prop so as to not duplicate the capabilities of [System](https://material-ui.com/system/basics/):
 
   ```diff
   -import Typography from '@material-ui/core/Typography';
