@@ -1,18 +1,19 @@
 /.git
-/docs/.next
 /coverage
+/docs/.next
 /docs/export
 /examples/create-react-app*/src/serviceWorker.js
 /examples/gatsby/public/
 /examples/preact/config
 /examples/preact/scripts
+/framer/Material-UI.framerfx/design/document.json
 /packages/babel-plugin-unwrap-createStyles/test/__fixtures__/
 /packages/material-ui-codemod/lib
 /packages/material-ui-codemod/src/*/*.test
 /packages/material-ui-codemod/src/*/*.test.js
 /packages/material-ui-icons/fixtures
-/packages/material-ui-icons/src
 /packages/material-ui-icons/legacy
+/packages/material-ui-icons/src
 /packages/material-ui-icons/templateSvgIcon.js
 # Ignore fixtures
 /packages/typescript-to-proptypes/test/**/*.js
