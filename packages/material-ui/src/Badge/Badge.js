@@ -151,34 +151,60 @@ export const styles = (theme) => ({
   },
 });
 
+const usePreviousProps = (value) => {
+  const ref = React.useRef();
+  React.useEffect(() => {
+    ref.current = value;
+  });
+  return ref.current || {};
+}
+
 const Badge = React.forwardRef(function Badge(props, ref) {
+  const {
+    anchorOrigin: anchorOriginProp,
+    badgeContent: badgeContentProp,
+    children,
+    classes,
+    className,
+    color: colorProp,
+    component: ComponentProp = 'span',
+    invisible: invisibleProp,
+    max: mapProp,
+    overlap: overlapProp,
+    showZero = false,
+    variant: variantProp,
+    ...other
+  } = props;
+
+  const prevProps = usePreviousProps({
+    anchorOrigin: anchorOriginProp,
+    badgeContent: badgeContentProp,
+    color: colorProp,
+    max: mapProp,
+    overlap: overlapProp,
+    variant: variantProp,
+  });
+
+  let invisible = invisibleProp;
+
+  if (
+    invisibleProp == null &&
+    ((badgeContentProp === 0 && !showZero) || (badgeContentProp == null && variantProp !== 'dot'))
+  ) {
+    invisible = true;
+  }
+
   const {
     anchorOrigin = {
       vertical: 'top',
       horizontal: 'right',
     },
     badgeContent,
-    children,
-    classes,
-    className,
     color = 'default',
-    component: ComponentProp = 'span',
-    invisible: invisibleProp,
     max = 99,
     overlap = 'rectangle',
-    showZero = false,
     variant = 'standard',
-    ...other
-  } = props;
-
-  let invisible = invisibleProp;
-
-  if (
-    invisibleProp == null &&
-    ((badgeContent === 0 && !showZero) || (badgeContent == null && variant !== 'dot'))
-  ) {
-    invisible = true;
-  }
+  } = invisible ? prevProps : props;
 
   let displayValue = '';
 
