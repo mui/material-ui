@@ -83,13 +83,13 @@ As the answers to this questions were pretty different, we grouped them into dif
   <tr><td>85</td><td>customization - easier</td><tr>
   <tr><td>22</td><td>customization - docs</td><tr>
   <tr><td>16</td><td>customization - dynamic color & variant</td><tr>
-  <tr><td>15</td><td>customization - custom themes</td><tr>
-  <tr><td>13</td><td>customization - a new theme</td><tr>
+  <tr><td>15</td><td>customization - improve custom themes</td><tr>
+  <tr><td>13</td><td>customization - provide more themes (not just Material Design)</td><tr>
   <tr><td>11</td><td>customization - ?</td><tr>
-  <tr><td>9</td><td>customization - unstyled</td><tr>
+  <tr><td>9</td><td>customization - unstyled components</td><tr>
   <tr><td>8</td><td>customization - support system in all components</td><tr>
-  <tr><td>8</td><td>customization - theme editor</td><tr>
-  <tr><td>2</td><td>customization - theme gallery</td><tr>
+  <tr><td>8</td><td>customization - theme editor (visual tool)</td><tr>
+  <tr><td>2</td><td>customization - theme gallery (coming from the community)</td><tr>
   <tr><th> 155 </th><th> docs</th><tr>
   <tr><td>46</td><td>docs - ?</td><tr>
   <tr><td>45</td><td>docs - more examples</td><tr>
@@ -120,7 +120,7 @@ As the answers to this questions were pretty different, we grouped them into dif
   <tr><td>5</td><td>styles - simpler</td><tr>
   <tr><td>4</td><td>styles - ?</td><tr>
   <tr><td>3</td><td>styles - CSS syntax</td><tr>
-  <tr><td>3</td><td>styles - dark/light switch</td><tr>
+  <tr><td>3</td><td>styles - better dark/light switch</td><tr>
   <tr><td>3</td><td>styles - emotion</td><tr>
   <tr><td>3</td><td>styles - performance</td><tr>
   <tr><td>2</td><td>styles - agnostic to engine</td><tr>
@@ -136,7 +136,7 @@ As the answers to this questions were pretty different, we grouped them into dif
   <tr><th>21</th><th> date picker - improve</th><tr>
   <tr><th>19</th><th> react native</th><tr>
   <tr><th>13</th><th> form</th><tr>
-  <tr><th>13</th><th> material design</th><tr>
+  <tr><th>13</th><th> material design updates</th><tr>
   <tr><th>12</th><th> animations</th><tr>
   <tr><td>8</td><td>animations - ?</td><tr>
   <tr><td>2</td><td>animations - docs</td><tr>
@@ -153,7 +153,7 @@ As the answers to this questions were pretty different, we grouped them into dif
   <tr><th>8</th><th> simplify</th><tr>
   <tr><th>7</th><th> class components</th><tr>
   <tr><th>7</th><th> mobile</th><tr>
-  <tr><th>7</th><th> less breaking changes</th><tr>
+  <tr><th>7</th><th> fewer breaking changes</th><tr>
   <tr><th>7</th><th> designers</th><tr>
   <tr><td>2</td><td>designers - bridge design tools and code</td><tr>
   <tr><td>2</td><td>designers - Adobe XD material</td><tr>
