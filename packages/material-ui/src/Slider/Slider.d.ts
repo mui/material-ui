@@ -26,8 +26,8 @@ export interface SliderTypeMap<P = {}, D extends React.ElementType = 'span'> {
     max?: number;
     min?: number;
     name?: string;
-    onChange?: (event: React.ChangeEvent<{}>, value: number | number[]) => void;
-    onChangeCommitted?: (event: React.ChangeEvent<{}>, value: number | number[]) => void;
+    onChange?: (event: React.SyntheticEvent, value: number | number[]) => void;
+    onChangeCommitted?: (event: React.SyntheticEvent, value: number | number[]) => void;
     orientation?: 'horizontal' | 'vertical';
     step?: number | null;
     scale?: (value: number) => number;
