@@ -30,7 +30,7 @@ https://material-ui.dev/* https://material-ui.com/:splat 301!
 /store/* https://material-ui-store.netlify.app/:splat 200
 /store-staging/* https://master--material-ui-store.netlify.app/:splat 200
 
-# Added in chronological order, to remove at some point.
+# Added in chronological order, to be removed at some point.
 /css-in-js/* /styles/:splat 301
 /customization/css-in-js/ /styles/basics/ 301
 /customization/overrides/ /customization/components/ 301
