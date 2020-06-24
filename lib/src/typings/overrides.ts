@@ -34,35 +34,35 @@ type Classes<T> = T extends string
   : never;
 
 export interface MuiPickersComponentsToClassName {
-  MuiPickersDay?: Classes<typeof DayStyles>;
-  MuiPickerDTHeader?: Classes<typeof DTHeaderStyles>;
-  MuiPickerDTTabs?: Classes<typeof DTTabsStyles>;
-  MuiPickersCalendar?: Classes<typeof CalendarStyles>;
-  MuiPickersCalendarView?: Classes<typeof CalendarViewStyles>;
-  MuiPickersCalendarHeader?: Classes<typeof CalendarHeaderStyles>;
-  MuiPickersSlideTransition?: Classes<typeof SlideTransitionStyles>;
-  MuiPickersYearSelection?: Classes<typeof MuiPickersYearSelectionStyles>;
-  MuiPickersYear?: Classes<typeof MuiPickersYearStyles>;
-  MuiPickersMonthSelection?: Classes<typeof MuiPickersMonthSelectionStyles>;
-  MuiPickersMonth?: Classes<typeof MuiPickersMonthStyles>;
-  MuiPickersTimePickerToolbar?: Classes<typeof TimePickerToolbarStyles>;
-  MuiPickersClock?: Classes<typeof ClockStyles>;
-  MuiPickersClockNumber?: Classes<typeof ClockNumberStyles>;
-  MuiPickersClockPointer?: Classes<typeof ClockPointerStyles>;
-  MuiPickersToolbar?: Classes<typeof PickerToolbarStyles>;
-  MuiPickersToolbarButton?: Classes<typeof ToolbarButtonStyles>;
-  MuiPickersToolbarText?: Classes<typeof MuiPickersToolbarTextStyles>;
-  MuiPickersDatePickerRoot?: Classes<typeof DatePickerRootStyles>;
-  MuiPickerDTToolbar?: Classes<typeof MuiPickerDTToolbarStyles>;
-  MuiBasePickerStyles?: Classes<typeof MuiBasePickerStyles>;
+  MuiPickersDay: Classes<typeof DayStyles>;
+  MuiPickerDTHeader: Classes<typeof DTHeaderStyles>;
+  MuiPickerDTTabs: Classes<typeof DTTabsStyles>;
+  MuiPickersCalendar: Classes<typeof CalendarStyles>;
+  MuiPickersCalendarView: Classes<typeof CalendarViewStyles>;
+  MuiPickersCalendarHeader: Classes<typeof CalendarHeaderStyles>;
+  MuiPickersSlideTransition: Classes<typeof SlideTransitionStyles>;
+  MuiPickersYearSelection: Classes<typeof MuiPickersYearSelectionStyles>;
+  MuiPickersYear: Classes<typeof MuiPickersYearStyles>;
+  MuiPickersMonthSelection: Classes<typeof MuiPickersMonthSelectionStyles>;
+  MuiPickersMonth: Classes<typeof MuiPickersMonthStyles>;
+  MuiPickersTimePickerToolbar: Classes<typeof TimePickerToolbarStyles>;
+  MuiPickersClock: Classes<typeof ClockStyles>;
+  MuiPickersClockNumber: Classes<typeof ClockNumberStyles>;
+  MuiPickersClockPointer: Classes<typeof ClockPointerStyles>;
+  MuiPickersToolbar: Classes<typeof PickerToolbarStyles>;
+  MuiPickersToolbarButton: Classes<typeof ToolbarButtonStyles>;
+  MuiPickersToolbarText: Classes<typeof MuiPickersToolbarTextStyles>;
+  MuiPickersDatePickerRoot: Classes<typeof DatePickerRootStyles>;
+  MuiPickerDTToolbar: Classes<typeof MuiPickerDTToolbarStyles>;
+  MuiBasePickerStyles: Classes<typeof MuiBasePickerStyles>;
   // consider using inline import type notation
-  MuiPickersDesktopDateRangeCalendar?: Classes<
+  MuiPickersDesktopDateRangeCalendar: Classes<
     typeof import('../DateRangePicker/DateRangePickerViewDesktop').useStyles
   >;
-  MuiPickersArrowSwitcher?: Classes<typeof import('../_shared/ArrowSwitcher').useStyles>;
-  MuiPickersDateRangePickerInput?: Classes<
+  MuiPickersArrowSwitcher: Classes<typeof import('../_shared/ArrowSwitcher').useStyles>;
+  MuiPickersDateRangePickerInput: Classes<
     typeof import('../DateRangePicker/DateRangePickerInput').useStyles
   >;
-  MuiPickersModalDialog?: Classes<typeof import('../_shared/PickerModalDialog').useStyles>;
-  MuiPickersCalendarSkeleton?: Classes<typeof import('../CalendarSkeleton').useStyles>;
+  MuiPickersModalDialog: Classes<typeof import('../_shared/PickerModalDialog').useStyles>;
+  MuiPickersCalendarSkeleton: Classes<typeof import('../CalendarSkeleton').useStyles>;
 }
