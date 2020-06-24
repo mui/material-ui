@@ -177,7 +177,7 @@ As the answers to this questions were pretty different, we grouped them into dif
   <tr><th>3</th><th> grid - improve</th><tr>
 </table>
 
-### 6. What're your most important criteria for choosing a UI library?
+### 6. What are your key criteria when choosing a UI library?
 
 <img src="/static/blog/2020-survey/6.png" style="width: 550px;" alt="Bar chart: 21.99% The design, look & feel, 21.64% Documentation quality, 16.38% Customizability, 8.42% TypeScript integration, 6.89% Comprehensiveness, 5.35% Enterprise ready, 4.68% Bundle size, 4.92% Popularity, 4.45% Accessibility, 2.62% Documentation quality, 1.88% Offered support & help, 0.12% Performance, 0.67% Other." />
 
