@@ -79,8 +79,7 @@ Portal.propTypes = {
     PropTypes.func,
   ]),
   /**
-   * Disable the portal behavior.
-   * The children stay within its parent DOM hierarchy.
+   * The `children` will be children in the DOM.
    */
   disablePortal: PropTypes.bool,
   /**

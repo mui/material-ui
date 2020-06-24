@@ -82,8 +82,7 @@ export interface AutocompleteProps<
    */
   disabled?: boolean;
   /**
-   * Disable the portal behavior.
-   * The children stay within its parent DOM hierarchy.
+   * The `children` will be children in the DOM.
    */
   disablePortal?: boolean;
   /**
