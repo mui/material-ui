@@ -24,10 +24,10 @@ export interface AccordionProps extends StandardProps<PaperProps, AccordionClass
   /**
    * Callback fired when the expand/collapse state is changed.
    *
-   * @param {object} event The event source of the callback.
+   * @param {object} event The event source of the callback. **Warning**: This is a generic event not a change event.
    * @param {boolean} expanded The `expanded` state of the accordion.
    */
-  onChange?: (event: React.ChangeEvent<{}>, expanded: boolean) => void;
+  onChange?: (event: React.SyntheticEvent, expanded: boolean) => void;
   /**
    * The component used for the collapse effect.
    * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.

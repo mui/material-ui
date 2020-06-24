@@ -21,7 +21,10 @@ export default function InputSlider() {
     number | string | Array<number | string>
   >(30);
 
-  const handleSliderChange = (event: any, newValue: number | number[]) => {
+  const handleSliderChange = (
+    event: React.SyntheticEvent,
+    newValue: number | number[],
+  ) => {
     setValue(newValue);
   };
 

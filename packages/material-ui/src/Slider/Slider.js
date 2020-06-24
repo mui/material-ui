@@ -884,14 +884,14 @@ Slider.propTypes = {
   /**
    * Callback function that is fired when the slider's value changed.
    *
-   * @param {object} event The event source of the callback.
+   * @param {object} event The event source of the callback. **Warning**: This is a generic event not a change event.
    * @param {number | number[]} value The new value.
    */
   onChange: PropTypes.func,
   /**
    * Callback function that is fired when the `mouseup` is triggered.
    *
-   * @param {object} event The event source of the callback.
+   * @param {object} event The event source of the callback. **Warning**: This is a generic event not a change event.
    * @param {number | number[]} value The new value.
    */
   onChangeCommitted: PropTypes.func,

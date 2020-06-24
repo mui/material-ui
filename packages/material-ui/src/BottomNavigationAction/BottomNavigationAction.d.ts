@@ -20,7 +20,6 @@ export type BottomNavigationActionTypeMap<
      * The label element.
      */
     label?: React.ReactNode;
-    onChange?: (event: React.ChangeEvent<{}>, value: any) => void;
     onClick?: React.ReactEventHandler<any>;
     selected?: boolean;
     /**

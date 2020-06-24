@@ -10,10 +10,10 @@ export interface BottomNavigationTypeMap<P = {}, D extends React.ElementType = '
     /**
      * Callback fired when the value changes.
      *
-     * @param {object} event The event source of the callback.
+     * @param {object} event The event source of the callback. **Warning**: This is a generic event not a change event.
      * @param {any} value We default to the index of the child.
      */
-    onChange?: (event: React.ChangeEvent<{}>, value: any) => void;
+    onChange?: (event: React.SyntheticEvent, value: any) => void;
     /**
      * If `true`, all `BottomNavigationAction`s will show their labels.
      * By default, only the selected `BottomNavigationAction` will show its label.

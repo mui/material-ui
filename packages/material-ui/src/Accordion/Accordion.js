@@ -193,7 +193,7 @@ Accordion.propTypes = {
   /**
    * Callback fired when the expand/collapse state is changed.
    *
-   * @param {object} event The event source of the callback.
+   * @param {object} event The event source of the callback. **Warning**: This is a generic event not a change event.
    * @param {boolean} expanded The `expanded` state of the accordion.
    */
   onChange: PropTypes.func,

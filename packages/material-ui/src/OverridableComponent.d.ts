@@ -29,7 +29,7 @@ export type OverrideProps<
   C extends React.ElementType
 > = (
   & BaseProps<M>
-  & Omit<React.ComponentPropsWithRef<C>, keyof CommonProps<M>>
+  & Omit<React.ComponentPropsWithRef<C>, keyof BaseProps<M>>
 );
 
 /**

@@ -133,7 +133,8 @@ declare const Foo: OverridableComponent<{
   numberProp={3}
 />;
 
-// @ts-expect-error
+// inconsistent typing of base vs override prop
+// but the assumption is that `Foo` intercepts `inconsistentProp` and doesn't forward it
 <Foo
   component={MyIncompatibleComponent1} // inconsistent typing of base vs override prop
   numberProp={3}
