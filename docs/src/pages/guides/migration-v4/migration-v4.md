@@ -131,28 +131,28 @@ yarn add @material-ui/core
   +import Accordion from '@material-ui/core/Accordion';
   +import AccordionSummary from '@material-ui/core/AccordionSummary';
   +import AccordionDetails from '@material-ui/core/AccordionDetails';
-  +import AccordionActions from '@material-ui/core/AccordionActions';  
+  +import AccordionActions from '@material-ui/core/AccordionActions';
 
   -<ExpansionPanel>
   +<Accordion>
-  -  <ExpansionPanelSummary>  
+  -  <ExpansionPanelSummary>
   +  <AccordionSummary>
        <Typography>Location</Typography>
        <Typography>Select trip destination</Typography>
-  -  </ExpansionPanelSummary>  
+  -  </ExpansionPanelSummary>
   +  </AccordionSummary>
   -  <ExpansionPanelDetails>
   +  <AccordionDetails>
        <Chip label="Barbados" onDelete={() => {}} />
        <Typography variant="caption">Select your destination of choice</Typography>
-  -  </ExpansionPanelDetails>  
+  -  </ExpansionPanelDetails>
   +  </AccordionDetails>
      <Divider />
-  -  <ExpansionPanelActions>  
+  -  <ExpansionPanelActions>
   +  <AccordionActions>
        <Button size="small">Cancel</Button>
        <Button size="small" color="primary">Save</Button>
-  -  </ExpansionPanelActions>   
+  -  </ExpansionPanelActions>
   +  </AccordionActions>
   -</ExpansionPanel>
   +</Accordion>
