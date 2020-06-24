@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { getClasses } from '@material-ui/core/test-utils';
 import createMount from 'test/utils/createMount';
-import { createClientRender } from 'test/utils/createClientRender';
+import { act, createClientRender } from 'test/utils/createClientRender';
 import describeConformance from '../test-utils/describeConformance';
 import Badge from './Badge';
 
@@ -169,5 +169,26 @@ describe('<Badge />', () => {
       const { container } = render(<Badge {...defaultProps} badgeContent={50} max={1000} />);
       expect(findBadge(container)).to.have.text('50');
     });
+  });
+
+  it('retains anchorOrigin, content, color, max, overlap and variant when invisible is true for consistent disappearing transition', () => {
+    const wrapper = render(<Badge {...defaultProps} color="secondary" variant="dot" />);
+
+    act(() => {
+      wrapper.setProps({
+        badgeContent: 0,
+        color: 'primary',
+        variant: 'standard',
+        overlap: 'circle',
+        anchorOrigin: {
+          vertical: 'bottom',
+          horizontal: 'left',
+        },
+      });
+    });
+    expect(findBadge(wrapper.container)).to.have.text('');
+    expect(findBadge(wrapper.container)).to.have.class(classes.colorSecondary);
+    expect(findBadge(wrapper.container)).to.have.class(classes.dot);
+    expect(findBadge(wrapper.container)).to.have.class(classes.anchorOriginTopRightRectangle);
   });
 });

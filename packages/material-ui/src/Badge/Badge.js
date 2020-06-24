@@ -157,7 +157,7 @@ const usePreviousProps = (value) => {
     ref.current = value;
   });
   return ref.current || {};
-}
+};
 
 const Badge = React.forwardRef(function Badge(props, ref) {
   const {
@@ -218,7 +218,7 @@ const Badge = React.forwardRef(function Badge(props, ref) {
       <span
         className={clsx(
           classes.badge,
-          classes[`${anchorOrigin.horizontal}${capitalize(anchorOrigin.vertical)}}`],
+          classes[`${anchorOrigin.horizontal}${capitalize(anchorOrigin.vertical)}`],
           classes[
             `anchorOrigin${capitalize(anchorOrigin.vertical)}${capitalize(
               anchorOrigin.horizontal,
