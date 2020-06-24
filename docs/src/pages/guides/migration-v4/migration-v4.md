@@ -45,6 +45,14 @@ yarn add @material-ui/core
 
 ## Handling breaking changes
 
+### BottomNavigation
+
+- typescript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
+  ```diff
+  -<BottomNavigation onChange={(event: React.ChangEvent<{}>) => {}} />
+  +<BottomNavigation onChange={(event: React.SyntheticEvent) => {}} />
+  ```
+
 ### Divider
 
 - Use border instead of background color. It prevents inconsistent height on scaled screens. For people customizing the color of the border, the change requires changing the override CSS property:
@@ -69,6 +77,14 @@ yarn add @material-ui/core
 />
 ```
 
+### Slider
+
+- typescript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
+  ```diff
+  -<Slider onChange={(event: React.ChangEvent<{}>, value: unknown) => {}} />
+  +<Slider onChange={(event: React.SyntheticEvent, value: unknown) => {}} />
+  ```
+
 ### TablePagination
 
 - The customization of the table pagination's actions labels must be done with the `getItemAriaLabel` prop.
@@ -78,6 +94,14 @@ yarn add @material-ui/core
   - backIconButtonText="Avant"
   - nextIconButtonText="Après
   + getItemAriaLabel={…}
+  ```
+
+### Tabs
+
+- typescript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
+  ```diff
+  -<Tabs onChange={(event: React.ChangEvent<{}>, value: unknown) => {}} />
+  +<Tabs onChange={(event: React.SyntheticEvent, value: unknown) => {}} />
   ```
 
 ### Typography
@@ -132,4 +156,10 @@ yarn add @material-ui/core
   +  </AccordionActions>
   -</ExpansionPanel>
   +</Accordion>
+  ```
+
+- typescript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
+  ```diff
+  -<Accordion onChange={(event: React.ChangEvent<{}>, expanded: boolean) => {}} />
+  +<Accordion onChange={(event: React.SyntheticEvent, expanded: boolean) => {}} />
   ```
