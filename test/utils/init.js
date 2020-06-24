@@ -1,7 +1,6 @@
 import enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import * as testingLibrary from '@testing-library/react/pure';
-import consoleError from './consoleError';
 import './initMatchers';
 
 enzyme.configure({ adapter: new Adapter() });
@@ -14,5 +13,3 @@ const defaultHidden = !process.env.CI;
 // adds verbosity for something that might be confusing
 console.warn(`${defaultHidden ? 'including' : 'excluding'} inaccessible elements by default`);
 testingLibrary.configure({ defaultHidden });
-
-consoleError();

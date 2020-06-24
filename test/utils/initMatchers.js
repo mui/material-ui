@@ -3,6 +3,7 @@ import chaiDom from 'chai-dom';
 import { isInaccessible } from '@testing-library/dom';
 import { prettyDOM } from '@testing-library/react/pure';
 import { computeAccessibleName } from 'dom-accessibility-api';
+import formatUtil from 'format-util';
 
 // chai#utils.elToString that looks like stringified elements in testing-library
 function elementToString(element) {
@@ -150,4 +151,84 @@ chai.use((chaiAPI, utils) => {
     // eslint-disable-next-line no-underscore-dangle, no-unused-expressions
     new chai.Assertion(this._obj).to.be.visible;
   });
+});
+
+chai.use(() => {
+  function createConsoleMatcher(methodName) {
+    /**
+     * @param {string[]} expectedMessages
+     */
+    function matcher(expectedMessages) {
+      // documented pattern to get the actual value of the assertion
+      // eslint-disable-next-line no-underscore-dangle
+      const callback = this._obj;
+      const remainingMessages =
+        typeof expectedMessages === 'string' ? [expectedMessages] : expectedMessages.slice();
+
+      if (process.env.NODE_ENV !== 'production') {
+        let caughtError = null;
+
+        // eslint-disable-next-line no-console
+        const originalMethod = console[methodName];
+
+        const fakeConsole = (format, ...args) => {
+          const actualMessage = formatUtil(format, ...args);
+          const expectedMessage = remainingMessages.shift();
+
+          this.assert(
+            expectedMessage !== undefined,
+            'Expected no error message but got #{act}',
+            '',
+            expectedMessage,
+            actualMessage,
+          );
+          this.assert(
+            actualMessage.includes(expectedMessage),
+            'Expected #{act} to include #{exp}',
+            expectedMessage,
+            actualMessage,
+          );
+        };
+        // eslint-disable-next-line no-console
+        console[methodName] = fakeConsole;
+
+        try {
+          callback();
+        } catch (error) {
+          caughtError = error;
+        } finally {
+          // eslint-disable-next-line no-console
+          console[methodName] = originalMethod;
+
+          // unexpected thrown error takes precedence over unexpected console call
+          if (caughtError !== null) {
+            // not the same pattern as described in the block because we don't rethrow in the catch
+            // eslint-disable-next-line no-unsafe-finally
+            throw caughtError;
+          }
+
+          this.assert(
+            remainingMessages.length === 0,
+            `Could not match the following console.${methodName} calls:\n\n${remainingMessages.join(
+              '\n\n',
+            )}`,
+          );
+        }
+      } else {
+        // nothing to do in prod
+        // If there are still console calls than our test setup throws.
+        callback();
+      }
+    }
+
+    return matcher;
+    /* eslint-enable no-console */
+  }
+
+  /**
+   * @example expect(() => render()).toWarnDev('single message')
+   * @example expect(() => render()).toWarnDev(['first warning', 'then the second'])
+   */
+  chai.Assertion.addMethod('toWarnDev', createConsoleMatcher('warn'));
+  chai.Assertion.addMethod('toErrorDev', createConsoleMatcher('error'));
 });
