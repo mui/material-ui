@@ -161,18 +161,21 @@ const usePreviousProps = (value) => {
 
 const Badge = React.forwardRef(function Badge(props, ref) {
   const {
-    anchorOrigin: anchorOriginProp,
+    anchorOrigin: anchorOriginProp = {
+      vertical: 'top',
+      horizontal: 'right',
+    },
     badgeContent: badgeContentProp,
     children,
     classes,
     className,
-    color: colorProp,
+    color: colorProp = 'default',
     component: ComponentProp = 'span',
     invisible: invisibleProp,
-    max: mapProp,
-    overlap: overlapProp,
+    max: maxProp = 99,
+    overlap: overlapProp = 'rectangle',
     showZero = false,
-    variant: variantProp,
+    variant: variantProp = 'standard',
     ...other
   } = props;
 
@@ -180,7 +183,7 @@ const Badge = React.forwardRef(function Badge(props, ref) {
     anchorOrigin: anchorOriginProp,
     badgeContent: badgeContentProp,
     color: colorProp,
-    max: mapProp,
+    max: maxProp,
     overlap: overlapProp,
     variant: variantProp,
   });
@@ -195,15 +198,12 @@ const Badge = React.forwardRef(function Badge(props, ref) {
   }
 
   const {
-    anchorOrigin = {
-      vertical: 'top',
-      horizontal: 'right',
-    },
+    anchorOrigin = anchorOriginProp,
     badgeContent,
-    color = 'default',
-    max = 99,
-    overlap = 'rectangle',
-    variant = 'standard',
+    color = colorProp,
+    max = maxProp,
+    overlap = overlapProp,
+    variant = variantProp,
   } = invisible ? prevProps : props;
 
   let displayValue = '';
