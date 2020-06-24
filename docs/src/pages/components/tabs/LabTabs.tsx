@@ -17,7 +17,7 @@ export default function LabTabs() {
   const classes = useStyles();
   const [value, setValue] = React.useState('1');
 
-  const handleChange = (event: React.ChangeEvent<{}>, newValue: string) => {
+  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
 

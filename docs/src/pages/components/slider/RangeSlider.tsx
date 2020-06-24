@@ -17,7 +17,10 @@ export default function RangeSlider() {
   const classes = useStyles();
   const [value, setValue] = React.useState<number[]>([20, 37]);
 
-  const handleChange = (event: any, newValue: number | number[]) => {
+  const handleChange = (
+    event: React.SyntheticEvent,
+    newValue: number | number[],
+  ) => {
     setValue(newValue as number[]);
   };
 

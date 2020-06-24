@@ -5,7 +5,12 @@ function testOnChange() {
   function handleSliderChange(event: React.SyntheticEvent, tabsValue: unknown) {}
   <Slider onChange={handleSliderChange} onChangeCommitted={handleSliderChange} />;
 
-  function handleChange(event: React.ChangeEvent<Element>) {}
+  function handleElementChange(event: React.ChangeEvent<Element>) {}
   // @ts-expect-error internally it's whatever even lead to a change in value
-  <Slider onChange={handleChange} onChangeCommitted={handleChange} />;
+  <Slider onChange={handleElementChange} onChangeCommitted={handleElementChange} />;
+
+  // this is structurally equal to `React.SyntheticEvent`
+  // It works but we don't recommend it since it has some non-structural implications: changeEvent.target === changeEvent.currentTarget
+  function handleChange(event: React.ChangeEvent<{}>) {}
+  <Slider onChange={handleChange} />;
 }
