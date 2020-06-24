@@ -6,8 +6,10 @@ function testOnChange() {
   <Tabs onChange={handleTabsChange} />;
 
   function handleElementChange(event: React.ChangeEvent) {}
-  // @ts-expect-error internally it's either FocusEvent or ClickEvent
-  <Tabs onChange={handleElementChange} />;
+  <Tabs
+    // @ts-expect-error internally it's either FocusEvent or ClickEvent
+    onChange={handleElementChange}
+  />;
 
   // this is structurally equal to `React.SyntheticEvent`
   // It works but we don't recommend it since it has some non-structural implications: changeEvent.target === changeEvent.currentTarget
