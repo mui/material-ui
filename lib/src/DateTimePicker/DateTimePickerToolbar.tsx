@@ -45,17 +45,17 @@ export const useStyles = makeStyles(
 export const DateTimePickerToolbar: React.FC<ToolbarComponentProps> = withDefaultProps(
   muiComponentConfig,
   ({
+    ampm,
     date,
+    dateRangeIcon,
+    hideTabs,
+    isMobileKeyboardViewOpen,
     openView,
     setOpenView,
-    ampm,
-    hideTabs,
-    dateRangeIcon,
     timeIcon,
+    toggleMobileKeyboardView,
     toolbarFormat,
     toolbarPlaceholder = '––',
-    isMobileKeyboardViewOpen,
-    toggleMobileKeyboardView,
     toolbarTitle = 'SELECT DATE & TIME',
   }) => {
     const utils = useUtils();

@@ -78,12 +78,12 @@ export const DateRangePickerInput: React.FC<DateRangeInputProps> = ({
   open,
   openPicker,
   rawValue,
+  rawValue: [start, end],
   readOnly,
   renderInput,
   setCurrentlySelectingRangeEnd,
   startText,
   TextFieldProps,
-  rawValue: [start, end],
   validationError: [startValidationError, endValidationError],
   ...other
 }) => {

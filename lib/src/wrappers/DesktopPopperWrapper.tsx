@@ -51,13 +51,13 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export const DesktopPopperWrapper: React.FC<DesktopPopperWrapperProps> = ({
-  open,
   children,
-  PopperProps,
-  onDismiss,
   DateInputProps,
-  TransitionComponent = Grow,
   KeyboardDateInputComponent = KeyboardDateInput,
+  onDismiss,
+  open,
+  PopperProps,
+  TransitionComponent = Grow,
 }) => {
   const classes = useStyles();
   const inputRef = React.useRef<HTMLDivElement>(null);

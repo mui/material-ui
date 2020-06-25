@@ -128,25 +128,25 @@ export interface DayProps extends ExtendMui<ButtonBaseProps> {
 }
 
 const PureDay: React.FC<DayProps> = ({
+  allowKeyboardControl,
   className,
   day,
   disabled,
+  disableHighlightToday = false,
+  disableMargin = false,
+  focusable = false,
+  focused = false,
   hidden,
   inCurrentMonth: isInCurrentMonth,
-  today: isToday,
-  selected,
-  focused = false,
-  focusable = false,
   isAnimating,
+  onClick,
   onDayFocus,
   onDaySelect,
   onFocus,
-  onClick,
   onKeyDown,
-  disableMargin = false,
-  allowKeyboardControl,
-  disableHighlightToday = false,
+  selected,
   showDaysOutsideCurrentMonth = false,
+  today: isToday,
   ...other
 }) => {
   const ref = React.useRef<HTMLButtonElement>(null);
@@ -166,23 +166,23 @@ const PureDay: React.FC<DayProps> = ({
     }
   }, [allowKeyboardControl, disabled, focused, isAnimating, isInCurrentMonth]);
 
-  const handleFocus = (e: React.FocusEvent<HTMLButtonElement>) => {
+  const handleFocus = (event: React.FocusEvent<HTMLButtonElement>) => {
     if (!focused) {
       onDayFocus(day);
     }
 
     if (onFocus) {
-      onFocus(e);
+      onFocus(event);
     }
   };
 
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     if (!disabled) {
       onDaySelect(day, true);
     }
 
     if (onClick) {
-      onClick(e);
+      onClick(event);
     }
   };
 

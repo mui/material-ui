@@ -99,18 +99,18 @@ export const useStyles = makeStyles(
 export const Clock: React.FC<ClockProps> = withDefaultProps(
   muiComponentConfig,
   ({
-    date,
-    ampmInClock = false,
-    value,
-    children: numbersElementsArray,
-    type,
-    ampm,
-    isTimeDisabled,
-    minutesStep = 1,
     allowKeyboardControl,
-    onChange,
-    meridiemMode,
+    ampm,
+    ampmInClock = false,
+    children: numbersElementsArray,
+    date,
     handleMeridiemChange,
+    isTimeDisabled,
+    meridiemMode,
+    minutesStep = 1,
+    onChange,
+    type,
+    value,
   }) => {
     const utils = useUtils();
     const classes = useStyles();

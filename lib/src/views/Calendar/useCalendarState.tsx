@@ -79,14 +79,14 @@ type CalendarStateInput = Pick<
 
 export function useCalendarState({
   date,
-  reduceAnimations,
-  onMonthChange,
-  disablePast,
   disableFuture,
-  minDate,
-  maxDate,
-  shouldDisableDate,
+  disablePast,
   disableSwitchToMonthOnDayFocus = false,
+  maxDate,
+  minDate,
+  onMonthChange,
+  reduceAnimations,
+  shouldDisableDate,
 }: CalendarStateInput) {
   const now = useNow();
   const utils = useUtils();

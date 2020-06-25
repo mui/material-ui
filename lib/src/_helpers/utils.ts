@@ -11,18 +11,18 @@ export function arrayIncludes<T>(array: T[] | readonly T[], itemOrItems: T | T[]
 
 export const onSpaceOrEnter = (
   innerFn: () => void,
-  onFocus?: (e: React.KeyboardEvent<any>) => void
-) => (e: React.KeyboardEvent) => {
-  if (e.key === 'Enter' || e.key === ' ') {
+  onFocus?: (event: React.KeyboardEvent<any>) => void
+) => (event: React.KeyboardEvent) => {
+  if (event.key === 'Enter' || event.key === ' ') {
     innerFn();
 
     // prevent any side effects
-    e.preventDefault();
-    e.stopPropagation();
+    event.preventDefault();
+    event.stopPropagation();
   }
 
   if (onFocus) {
-    onFocus(e);
+    onFocus(event);
   }
 };
 

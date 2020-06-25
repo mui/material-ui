@@ -69,10 +69,10 @@ export const useStyles = makeStyles(
 
 export const SlideTransition: React.SFC<SlideTransitionProps> = ({
   children,
-  transKey,
+  className,
   reduceAnimations,
   slideDirection,
-  className = undefined,
+  transKey,
   ...other
 }) => {
   const classes = useStyles();

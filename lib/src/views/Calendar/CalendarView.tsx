@@ -78,21 +78,21 @@ export const defaultReduceAnimations =
 export const CalendarView: React.FC<CalendarViewProps> = withDefaultProps(
   muiComponentConfig,
   ({
-    date,
-    view,
-    onChange,
-    changeView,
-    onMonthChange,
-    minDate: __minDate,
-    maxDate: __maxDate,
-    reduceAnimations = defaultReduceAnimations,
-    shouldDisableDate,
     allowKeyboardControl: __allowKeyboardControlProp,
-    disablePast,
+    changeView,
+    date,
     disableFuture,
-    shouldDisableYear,
+    disablePast,
     loading,
+    maxDate: __maxDate,
+    minDate: __minDate,
+    onChange,
+    onMonthChange,
+    reduceAnimations = defaultReduceAnimations,
     renderLoading,
+    shouldDisableDate,
+    shouldDisableYear,
+    view,
     ...other
   }) => {
     const utils = useUtils();

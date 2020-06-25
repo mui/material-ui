@@ -77,17 +77,17 @@ const clockTypographyVariant = 'h3';
 export const TimePickerToolbar: React.FC<ToolbarComponentProps> = withDefaultProps(
   muiComponentConfig,
   ({
-    date,
-    views,
     ampm,
-    openView,
-    onChange,
-    isLandscape,
-    setOpenView,
     ampmInClock,
+    date,
+    isLandscape,
     isMobileKeyboardViewOpen,
+    onChange,
+    openView,
+    setOpenView,
     toggleMobileKeyboardView,
     toolbarTitle = 'SELECT TIME',
+    views,
   }) => {
     const utils = useUtils();
     const theme = useTheme();

@@ -29,12 +29,15 @@ export function useIsLandscape(
     getOrientation()
   );
 
-  const eventHandler = React.useCallback(() => setOrientation(getOrientation()), []);
-
   useIsomorphicEffect(() => {
+    const eventHandler = () => {
+      setOrientation(getOrientation());
+    };
     window.addEventListener('orientationchange', eventHandler);
-    return () => window.removeEventListener('orientationchange', eventHandler);
-  }, [eventHandler]);
+    return () => {
+      window.removeEventListener('orientationchange', eventHandler);
+    };
+  }, []);
 
   if (arrayIncludes(views, ['hours', 'minutes', 'seconds'])) {
     // could not display 13:34:44 in landscape mode

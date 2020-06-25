@@ -41,11 +41,11 @@ export const useStyles = makeStyles(
 );
 
 export const Month: React.FC<MonthProps> = ({
-  selected,
-  onSelect,
-  disabled,
-  value,
   children,
+  disabled,
+  onSelect,
+  selected,
+  value,
   ...other
 }) => {
   const classes = useStyles();

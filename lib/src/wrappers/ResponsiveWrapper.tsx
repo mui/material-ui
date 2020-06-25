@@ -23,18 +23,18 @@ export const makeResponsiveWrapper = (
   MobileWrapperComponent: React.FC<MobileWrapperProps>
 ) => {
   const ResponsiveWrapper: React.FC<ResponsiveWrapperProps> = ({
-    desktopModeMediaQuery = IS_TOUCH_DEVICE_MEDIA,
-    okText,
     cancelText,
-    clearText,
-    todayText,
-    showTodayButton,
     clearable,
+    clearText,
+    desktopModeMediaQuery = IS_TOUCH_DEVICE_MEDIA,
     DialogProps,
+    displayStaticWrapperAs,
+    okText,
     PopoverProps,
     PopperProps,
+    showTodayButton,
+    todayText,
     TransitionComponent,
-    displayStaticWrapperAs,
     ...other
   }) => {
     const isDesktop = useMediaQuery(desktopModeMediaQuery);

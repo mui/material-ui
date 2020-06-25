@@ -47,16 +47,16 @@ export interface BaseDateTimePickerProps
 
 function useInterceptProps({
   ampm,
-  mask,
   inputFormat,
-  orientation = 'portrait',
-  minTime: __minTime,
-  maxTime: __maxTime,
-  minDate: __minDate = defaultMinDate,
+  mask,
   maxDate: __maxDate = defaultMaxDate,
   maxDateTime: __maxDateTime,
+  maxTime: __maxTime,
+  minDate: __minDate = defaultMinDate,
   minDateTime: __minDateTime,
+  minTime: __minTime,
   openTo = 'date',
+  orientation = 'portrait',
   views = ['year', 'date', 'hours', 'minutes'],
   ...other
 }: BaseDateTimePickerProps & AllSharedPickerProps) {

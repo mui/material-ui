@@ -28,17 +28,17 @@ interface DesktopDateRangeCalendarProps
 const onlyDateView = ['date'] as ['date'];
 
 export const DateRangePickerViewMobile: React.FC<DesktopDateRangeCalendarProps> = ({
-  date,
   changeMonth,
+  date,
   leftArrowButtonProps,
   leftArrowButtonText,
   leftArrowIcon,
+  maxDate: __maxDate,
+  minDate: __minDate,
+  onChange,
   rightArrowButtonProps,
   rightArrowButtonText,
   rightArrowIcon,
-  onChange,
-  minDate: __minDate,
-  maxDate: __maxDate,
   ...other
 }) => {
   const utils = useUtils();

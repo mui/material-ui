@@ -19,15 +19,15 @@ export interface ExportedYearSelectionProps {
 }
 
 export interface YearSelectionProps extends ExportedYearSelectionProps {
-  date: MaterialUiPickersDate;
-  minDate: MaterialUiPickersDate;
-  maxDate: MaterialUiPickersDate;
-  onChange: (date: MaterialUiPickersDate, isFinish: boolean) => void;
-  disablePast?: boolean | null | undefined;
-  disableFuture?: boolean | null | undefined;
   allowKeyboardControl?: boolean;
-  isDateDisabled: (day: MaterialUiPickersDate) => boolean;
   changeFocusedDay: (day: MaterialUiPickersDate) => void;
+  date: MaterialUiPickersDate;
+  disableFuture?: boolean | null | undefined;
+  disablePast?: boolean | null | undefined;
+  isDateDisabled: (day: MaterialUiPickersDate) => boolean;
+  maxDate: MaterialUiPickersDate;
+  minDate: MaterialUiPickersDate;
+  onChange: (date: MaterialUiPickersDate, isFinish: boolean) => void;
 }
 
 export const useStyles = makeStyles(
@@ -44,15 +44,15 @@ export const useStyles = makeStyles(
 );
 
 export const YearSelection: React.FC<YearSelectionProps> = ({
+  allowKeyboardControl,
+  changeFocusedDay,
   date: __dateOrNull,
+  isDateDisabled,
+  maxDate,
+  minDate,
   onChange,
   onYearChange,
-  minDate,
-  maxDate,
-  isDateDisabled,
   shouldDisableYear,
-  changeFocusedDay,
-  allowKeyboardControl,
 }) => {
   const now = useNow();
   const theme = useTheme();

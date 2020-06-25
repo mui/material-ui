@@ -21,7 +21,7 @@ import {
 
 export interface ExportedDesktopDateRangeCalendarProps {
   /**
-   * How many calendars render on **desktop** DateRangePicker
+   * How many calendars render on **desktop** DateRangePicker.
    * @default 2
    */
   calendars?: 1 | 2 | 3;

@@ -8,28 +8,28 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 
 export interface ExportedArrowSwitcherProps {
   /**
-   * Left arrow icon
+   * Left arrow icon.
    */
   leftArrowIcon?: React.ReactNode;
   /**
-   * Right arrow icon
+   * Right arrow icon.
    */
   rightArrowIcon?: React.ReactNode;
   /**
-   * Left arrow icon aria-label text
+   * Left arrow icon aria-label text.
    */
   leftArrowButtonText?: string;
   /**
-   * Right arrow icon aria-label text
+   * Right arrow icon aria-label text.
    */
   rightArrowButtonText?: string;
   /**
-   * Props to pass to left arrow button
+   * Props to pass to left arrow button.
    * @type {Partial<IconButtonProps>}
    */
   leftArrowButtonProps?: Partial<IconButtonProps>;
   /**
-   * Props to pass to right arrow button
+   * Props to pass to right arrow button.
    * @type {Partial<IconButtonProps>}
    */
   rightArrowButtonProps?: Partial<IconButtonProps>;
@@ -47,6 +47,7 @@ interface ArrowSwitcherProps extends ExportedArrowSwitcherProps, React.HTMLProps
 
 export const useStyles = makeStyles(
   theme => ({
+    root: {},
     iconButton: {
       zIndex: 1,
       backgroundColor: theme.palette.background.paper,
@@ -83,7 +84,7 @@ const PureArrowSwitcher: React.FC<ArrowSwitcherProps> = ({
   const isRtl = theme.direction === 'rtl';
 
   return (
-    <div className={className} {...other}>
+    <div className={clsx(classes.root, className)} {...other}>
       <IconButton
         data-mui-test="previous-arrow-button"
         size="small"

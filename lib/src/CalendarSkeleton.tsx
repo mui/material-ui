@@ -43,11 +43,11 @@ export const CalendarSkeleton: React.FC<CalendarSkeletonProps> = withDefaultProp
 
     return (
       <div className={clsx(classes.root, className)} {...other}>
-        {monthMap.map((week, i) => (
-          <div key={i} className={calendarClasses.week}>
-            {week.map((day, i) => (
+        {monthMap.map((week, index) => (
+          <div key={index} className={calendarClasses.week}>
+            {week.map((day, index) => (
               <Skeleton
-                key={i}
+                key={index}
                 variant="circle"
                 width={DAY_SIZE}
                 height={DAY_SIZE}

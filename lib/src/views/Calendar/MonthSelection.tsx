@@ -28,13 +28,13 @@ export const useStyles = makeStyles(
 );
 
 export const MonthSelection: React.FC<MonthSelectionProps> = ({
-  disablePast,
-  disableFuture,
-  minDate,
-  maxDate,
   date,
-  onMonthChange,
+  disableFuture,
+  disablePast,
+  maxDate,
+  minDate,
   onChange,
+  onMonthChange,
 }) => {
   const utils = useUtils();
   const classes = useStyles();

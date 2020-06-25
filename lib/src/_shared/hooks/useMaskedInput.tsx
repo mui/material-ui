@@ -24,20 +24,20 @@ type MaskedInputProps = Omit<
 > & { inputProps?: Partial<React.HTMLProps<HTMLInputElement>> };
 
 export function useMaskedInput({
-  disableMaskedInput,
-  rawValue,
-  validationError,
-  onChange,
-  mask,
   acceptRegex = /[\d]/gi,
-  inputFormat,
   disabled,
-  rifmFormatter,
+  disableMaskedInput,
   ignoreInvalidInputs,
-  readOnly,
-  TextFieldProps,
-  label,
+  inputFormat,
   inputProps,
+  label,
+  mask,
+  onChange,
+  rawValue,
+  readOnly,
+  rifmFormatter,
+  TextFieldProps,
+  validationError,
 }: MaskedInputProps): MuiTextFieldProps {
   const utils = useUtils();
   const isFocusedRef = React.useRef(false);
@@ -96,7 +96,9 @@ export function useMaskedInput({
     ? rifmProps
     : {
         value: innerInputValue,
-        onChange: (e: React.ChangeEvent<HTMLInputElement>) => handleChange(e.currentTarget.value),
+        onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
+          handleChange(event.currentTarget.value);
+        },
       };
 
   return {

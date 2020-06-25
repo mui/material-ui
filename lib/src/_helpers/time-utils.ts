@@ -125,7 +125,7 @@ export interface TimeValidationProps {
    */
   shouldDisableTime?: (timeValue: number, clockType: 'hours' | 'minutes' | 'seconds') => boolean;
   /**
-   * Do not ignore date part when validating min/max time
+   * Do not ignore date part when validating min/max time.
    * @default false
    */
   disableIgnoringDatePartForTimeValidation?: boolean;

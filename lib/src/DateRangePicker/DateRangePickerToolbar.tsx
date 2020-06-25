@@ -38,14 +38,14 @@ interface DateRangePickerToolbarProps
 export const DateRangePickerToolbar: React.FC<DateRangePickerToolbarProps> = withDefaultProps(
   muiComponentConfig,
   ({
-    date: [start, end],
-    toolbarFormat,
-    isMobileKeyboardViewOpen,
-    toggleMobileKeyboardView,
     currentlySelectingRangeEnd,
+    date: [start, end],
+    endText,
+    isMobileKeyboardViewOpen,
     setCurrentlySelectingRangeEnd,
     startText,
-    endText,
+    toggleMobileKeyboardView,
+    toolbarFormat,
     toolbarTitle = 'SELECT DATE RANGE',
   }) => {
     const utils = useUtils();

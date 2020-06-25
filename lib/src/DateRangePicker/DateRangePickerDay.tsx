@@ -97,16 +97,16 @@ const useStyles = makeStyles(
 );
 
 export const PureDateRangeDay = ({
-  day,
   className,
-  selected,
-  isPreviewing,
-  isStartOfPreviewing,
+  day,
+  inCurrentMonth,
+  isEndOfHighlighting,
   isEndOfPreviewing,
   isHighlighting,
-  isEndOfHighlighting,
+  isPreviewing,
   isStartOfHighlighting,
-  inCurrentMonth,
+  isStartOfPreviewing,
+  selected,
   ...other
 }: DateRangeDayProps) => {
   const utils = useUtils();

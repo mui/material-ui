@@ -34,12 +34,12 @@ const useStyles = makeStyles({
 });
 
 export const DesktopWrapper: React.FC<DesktopWrapperProps> = ({
-  open,
   children,
-  PopoverProps,
-  onDismiss,
   DateInputProps,
   KeyboardDateInputComponent = KeyboardDateInput,
+  onDismiss,
+  open,
+  PopoverProps,
 }) => {
   const ref = React.useRef<HTMLDivElement>(null);
   const classes = useStyles();

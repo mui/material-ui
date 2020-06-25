@@ -90,20 +90,20 @@ const isTimePickerByViews = (views: DateTimePickerView[]) =>
   !views.some(view => view === 'year' || view === 'month' || view === 'date');
 
 function Picker({
+  className,
   date,
-  openTo = 'date',
-  views = ['year', 'month', 'date', 'hours', 'minutes', 'seconds'],
-  toolbarTitle,
-  showToolbar,
-  onDateChange,
-  ToolbarComponent = () => null,
-  orientation,
   DateInputProps,
   isMobileKeyboardViewOpen,
+  onDateChange,
+  openTo = 'date',
+  orientation,
+  showToolbar,
   toggleMobileKeyboardView,
+  ToolbarComponent = () => null,
   toolbarFormat,
-  className,
   toolbarPlaceholder,
+  toolbarTitle,
+  views = ['year', 'month', 'date', 'hours', 'minutes', 'seconds'],
   ...other
 }: PickerProps<AnyPickerView>) {
   const classes = useStyles();

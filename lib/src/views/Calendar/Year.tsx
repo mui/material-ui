@@ -60,14 +60,14 @@ export const useStyles = makeStyles(
 );
 
 export const Year: React.FC<YearProps> = ({
-  onSelect,
-  forwardedRef,
-  value,
-  selected,
-  disabled,
-  children,
-  focused,
   allowKeyboardControl,
+  children,
+  disabled,
+  focused,
+  forwardedRef,
+  onSelect,
+  selected,
+  value,
   ...other
 }) => {
   const classes = useStyles();

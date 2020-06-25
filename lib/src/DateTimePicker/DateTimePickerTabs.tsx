@@ -26,10 +26,10 @@ const tabIndexToView = (tab: DateTimePickerView) => {
 };
 
 export interface DateTimePickerTabsProps {
-  view: DateTimePickerView;
-  onChange: (view: DateTimePickerView) => void;
   dateRangeIcon?: React.ReactNode;
+  onChange: (view: DateTimePickerView) => void;
   timeIcon?: React.ReactNode;
+  view: DateTimePickerView;
 }
 
 export const useStyles = makeStyles(
@@ -53,10 +53,10 @@ export const useStyles = makeStyles(
 );
 
 export const DateTimePickerTabs: React.FC<DateTimePickerTabsProps> = ({
-  view,
+  dateRangeIcon = <DateRangeIcon />,
   onChange,
   timeIcon = <TimeIcon />,
-  dateRangeIcon = <DateRangeIcon />,
+  view,
 }) => {
   const classes = useStyles();
   const theme = useTheme();
