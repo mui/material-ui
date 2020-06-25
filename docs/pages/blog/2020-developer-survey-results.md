@@ -196,7 +196,7 @@ Decreasing pain:
 - x0.5: Date picker. We did a lot for it this year. We probably still need the range feature, and to move it into the main repository (docs migration, etc.) for consistency.
 - x0.7: Performance. We didn't do much this year, so perhaps developers are leveraging React more effectively with virtualization, update pruning, etc?
 
-Growing pain:
+Growing pains:
 - ∞: Form is a new item. It seems that we should at least work more closely with react-hook-form, formik, and react-final-form.
 - ∞: Charts is a new item. Material Design even has a page dedicated to [date visualization](https://material.io/design/communication/data-visualization.html) since recently.
 - x5: Custom themes.
