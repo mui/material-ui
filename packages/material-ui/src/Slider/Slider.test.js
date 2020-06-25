@@ -7,7 +7,6 @@ import createMount from 'test/utils/createMount';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { createClientRender, fireEvent } from 'test/utils/createClientRender';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
 import Slider from './Slider';
 
 function createTouches(touches) {
@@ -481,47 +480,37 @@ describe('<Slider />', () => {
 
   describe('warnings', () => {
     beforeEach(() => {
-      consoleErrorMock.spy();
       PropTypes.resetWarningCache();
     });
 
-    afterEach(() => {
-      consoleErrorMock.reset();
-    });
-
     it('should warn if aria-valuetext is provided', () => {
-      PropTypes.checkPropTypes(
-        Slider.Naked.propTypes,
-        { classes: {}, value: [20, 50], 'aria-valuetext': 'hot' },
-        'prop',
-        'MockedSlider',
-      );
-
-      expect(consoleErrorMock.callCount()).to.equal(1);
-      expect(consoleErrorMock.messages()[0]).to.include(
-        'Material-UI: You need to use the `getAriaValueText` prop instead of',
-      );
+      expect(() => {
+        PropTypes.checkPropTypes(
+          Slider.Naked.propTypes,
+          { classes: {}, value: [20, 50], 'aria-valuetext': 'hot' },
+          'prop',
+          'MockedSlider',
+        );
+      }).toErrorDev('Material-UI: You need to use the `getAriaValueText` prop instead of');
     });
 
     it('should warn if aria-label is provided', () => {
-      PropTypes.checkPropTypes(
-        Slider.Naked.propTypes,
-        { classes: {}, value: [20, 50], 'aria-label': 'hot' },
-        'prop',
-        'MockedSlider',
-      );
-
-      expect(consoleErrorMock.callCount()).to.equal(1);
-      expect(consoleErrorMock.messages()[0]).to.include(
-        'Material-UI: You need to use the `getAriaLabel` prop instead of',
-      );
+      expect(() => {
+        PropTypes.checkPropTypes(
+          Slider.Naked.propTypes,
+          { classes: {}, value: [20, 50], 'aria-label': 'hot' },
+          'prop',
+          'MockedSlider',
+        );
+      }).toErrorDev('Material-UI: You need to use the `getAriaLabel` prop instead of');
     });
 
     it('should warn when switching from controlled to uncontrolled', () => {
       const { setProps } = render(<Slider value={[20, 50]} />);
 
-      setProps({ value: undefined });
-      expect(consoleErrorMock.messages()[0]).to.include(
+      expect(() => {
+        setProps({ value: undefined });
+      }).toErrorDev(
         'Material-UI: A component is changing the controlled value state of Slider to be uncontrolled.',
       );
     });
@@ -529,8 +518,9 @@ describe('<Slider />', () => {
     it('should warn when switching between uncontrolled to controlled', () => {
       const { setProps } = render(<Slider />);
 
-      setProps({ value: [20, 50] });
-      expect(consoleErrorMock.messages()[0]).to.include(
+      expect(() => {
+        setProps({ value: [20, 50] });
+      }).toErrorDev(
         'Material-UI: A component is changing the uncontrolled value state of Slider to be controlled.',
       );
     });

@@ -3,7 +3,6 @@ import { expect } from 'chai';
 import { getClasses } from '@material-ui/core/test-utils';
 import createMount from 'test/utils/createMount';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
-import consoleErrorMock, { consoleWarnMock } from 'test/utils/consoleErrorMock';
 import { spy } from 'sinon';
 import { act, createClientRender, fireEvent, screen } from 'test/utils/createClientRender';
 import { createFilterOptions } from '../useAutocomplete/useAutocomplete';
@@ -1021,16 +1020,6 @@ describe('<Autocomplete />', () => {
   });
 
   describe('warnings', () => {
-    beforeEach(() => {
-      consoleErrorMock.spy();
-      consoleWarnMock.spy();
-    });
-
-    afterEach(() => {
-      consoleErrorMock.reset();
-      consoleWarnMock.reset();
-    });
-
     it('warn if getOptionLabel do not return a string', () => {
       const handleChange = spy();
       render(
@@ -1045,14 +1034,18 @@ describe('<Autocomplete />', () => {
       );
       const textbox = screen.getByRole('textbox');
 
-      fireEvent.change(textbox, { target: { value: 'a' } });
-      fireEvent.keyDown(textbox, { key: 'Enter' });
+      expect(() => {
+        fireEvent.change(textbox, { target: { value: 'a' } });
+        fireEvent.keyDown(textbox, { key: 'Enter' });
+      }).toErrorDev([
+        'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
+        // strict mode renders twice
+        'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
+        'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
+        'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
+      ]);
       expect(handleChange.callCount).to.equal(1);
       expect(handleChange.args[0][1]).to.equal('a');
-      expect(consoleErrorMock.callCount()).to.equal(4); // strict mode renders twice
-      expect(consoleErrorMock.messages()[0]).to.include(
-        'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
-      );
     });
 
     it('warn if getOptionSelected match multiple values for a given option', () => {
@@ -1079,11 +1072,10 @@ describe('<Autocomplete />', () => {
       );
       const textbox = screen.getByRole('textbox');
 
-      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-      fireEvent.keyDown(textbox, { key: 'Enter' });
-
-      expect(consoleErrorMock.callCount()).to.equal(1);
-      expect(consoleErrorMock.messages()[0]).to.include(
+      expect(() => {
+        fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+        fireEvent.keyDown(textbox, { key: 'Enter' });
+      }).toErrorDev(
         'The component expects a single value to match a given option but found 2 matches.',
       );
     });
@@ -1092,19 +1084,22 @@ describe('<Autocomplete />', () => {
       const value = 'not a good value';
       const options = ['first option', 'second option'];
 
-      render(
-        <Autocomplete
-          {...defaultProps}
-          value={value}
-          options={options}
-          renderInput={(params) => <TextField {...params} />}
-        />,
-      );
-
-      expect(consoleWarnMock.callCount()).to.equal(4); // strict mode renders twice
-      expect(consoleWarnMock.messages()[0]).to.include(
+      expect(() => {
+        render(
+          <Autocomplete
+            {...defaultProps}
+            value={value}
+            options={options}
+            renderInput={(params) => <TextField {...params} />}
+          />,
+        );
+      }).toWarnDev([
         'None of the options match with `"not a good value"`',
-      );
+        // strict mode renders twice
+        'None of the options match with `"not a good value"`',
+        'None of the options match with `"not a good value"`',
+        'None of the options match with `"not a good value"`',
+      ]);
     });
 
     it('warn if groups options are not sorted', () => {
@@ -1117,21 +1112,24 @@ describe('<Autocomplete />', () => {
         { group: 2, value: 'F' },
         { group: 1, value: 'C' },
       ];
-      const { getAllByRole } = render(
-        <Autocomplete
-          {...defaultProps}
-          options={data}
-          getOptionLabel={(option) => option.value}
-          renderInput={(params) => <TextField {...params} autoFocus />}
-          groupBy={(option) => option.group}
-        />,
-      );
-
-      const options = getAllByRole('option').map((el) => el.textContent);
+      expect(() => {
+        render(
+          <Autocomplete
+            {...defaultProps}
+            options={data}
+            getOptionLabel={(option) => option.value}
+            renderInput={(params) => <TextField {...params} autoFocus />}
+            groupBy={(option) => option.group}
+          />,
+        );
+      }).toWarnDev([
+        // strict mode renders twice
+        'returns duplicated headers',
+        'returns duplicated headers',
+      ]);
+      const options = screen.getAllByRole('option').map((el) => el.textContent);
       expect(options).to.have.length(7);
       expect(options).to.deep.equal(['A', 'D', 'E', 'B', 'G', 'F', 'C']);
-      expect(consoleWarnMock.callCount()).to.equal(2); // strict mode renders twice
-      expect(consoleWarnMock.messages()[0]).to.include('returns duplicated headers');
     });
   });
 

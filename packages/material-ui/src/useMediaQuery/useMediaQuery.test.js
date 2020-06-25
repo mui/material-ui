@@ -1,7 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { ThemeProvider } from '@material-ui/styles';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
 import { act, createClientRender } from 'test/utils/createClientRender';
 import createServerRender from 'test/utils/createServerRender';
 import mediaQuery from 'css-mediaquery';
@@ -269,26 +268,19 @@ describe('useMediaQuery', () => {
   });
 
   describe('warnings', () => {
-    beforeEach(() => {
-      consoleErrorMock.spy();
-    });
-
-    afterEach(() => {
-      consoleErrorMock.reset();
-    });
-
     it('warns on invalid `query` argument', () => {
       function MyComponent() {
         useMediaQuery(() => '(min-width:2000px)');
         return null;
       }
 
-      render(<MyComponent />);
-      // logs warning twice in StrictMode
-      expect(consoleErrorMock.callCount()).to.equal(2); // strict mode renders twice
-      expect(consoleErrorMock.messages()[0]).to.include(
+      expect(() => {
+        render(<MyComponent />);
+      }).toErrorDev([
         'Material-UI: The `query` argument provided is invalid',
-      );
+        // logs warning twice in StrictMode
+        'Material-UI: The `query` argument provided is invalid',
+      ]);
     });
   });
 });

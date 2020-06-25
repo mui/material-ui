@@ -4,7 +4,6 @@ import { createShallow, getClasses } from '@material-ui/core/test-utils';
 import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
 import GridList from './GridList';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
 
 const tilesData = [
   {
@@ -157,26 +156,13 @@ describe('<GridList />', () => {
     });
   });
 
-  describe('warnings', () => {
-    before(() => {
-      consoleErrorMock.spy();
-    });
-
-    after(() => {
-      consoleErrorMock.reset();
-    });
-
-    it('warns a Fragment is passed as a child', () => {
+  it('warns a Fragment is passed as a child', () => {
+    expect(() => {
       mount(
         <GridList>
           <React.Fragment />
         </GridList>,
       );
-
-      expect(consoleErrorMock.callCount()).to.equal(1);
-      expect(consoleErrorMock.messages()[0]).to.include(
-        "Material-UI: The GridList component doesn't accept a Fragment as a child.",
-      );
-    });
+    }).toErrorDev("Material-UI: The GridList component doesn't accept a Fragment as a child.");
   });
 });

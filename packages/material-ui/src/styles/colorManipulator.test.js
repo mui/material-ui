@@ -1,5 +1,4 @@
 import { expect } from 'chai';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
 import {
   recomposeColor,
   hexToRgb,
@@ -15,14 +14,6 @@ import {
 } from './colorManipulator';
 
 describe('utils/colorManipulator', () => {
-  beforeEach(() => {
-    consoleErrorMock.spy();
-  });
-
-  afterEach(() => {
-    consoleErrorMock.reset();
-  });
-
   describe('recomposeColor', () => {
     it('converts a decomposed rgb color object to a string` ', () => {
       expect(
@@ -246,13 +237,15 @@ describe('utils/colorManipulator', () => {
     });
 
     it("doesn't overshoot if an above-range coefficient is supplied", () => {
-      expect(darken('rgb(0, 127, 255)', 1.5)).to.equal('rgb(0, 0, 0)');
-      expect(consoleErrorMock.callCount()).to.equal(1);
+      expect(() => {
+        expect(darken('rgb(0, 127, 255)', 1.5)).to.equal('rgb(0, 0, 0)');
+      }).toErrorDev('Material-UI: The value provided 1.5 is out of range [0, 1].');
     });
 
     it("doesn't overshoot if a below-range coefficient is supplied", () => {
-      expect(darken('rgb(0, 127, 255)', -0.1)).to.equal('rgb(0, 127, 255)');
-      expect(consoleErrorMock.callCount()).to.equal(1);
+      expect(() => {
+        expect(darken('rgb(0, 127, 255)', -0.1)).to.equal('rgb(0, 127, 255)');
+      }).toErrorDev('Material-UI: The value provided -0.1 is out of range [0, 1].');
     });
 
     it('darkens rgb white to black when coefficient is 1', () => {
@@ -298,13 +291,15 @@ describe('utils/colorManipulator', () => {
     });
 
     it("doesn't overshoot if an above-range coefficient is supplied", () => {
-      expect(lighten('rgb(0, 127, 255)', 1.5)).to.equal('rgb(255, 255, 255)');
-      expect(consoleErrorMock.callCount()).to.equal(1);
+      expect(() => {
+        expect(lighten('rgb(0, 127, 255)', 1.5)).to.equal('rgb(255, 255, 255)');
+      }).toErrorDev('Material-UI: The value provided 1.5 is out of range [0, 1].');
     });
 
     it("doesn't overshoot if a below-range coefficient is supplied", () => {
-      expect(lighten('rgb(0, 127, 255)', -0.1)).to.equal('rgb(0, 127, 255)');
-      expect(consoleErrorMock.callCount()).to.equal(1);
+      expect(() => {
+        expect(lighten('rgb(0, 127, 255)', -0.1)).to.equal('rgb(0, 127, 255)');
+      }).toErrorDev('Material-UI: The value provided -0.1 is out of range [0, 1].');
     });
 
     it('lightens rgb black to white when coefficient is 1', () => {

@@ -4,20 +4,12 @@ import { spy } from 'sinon';
 import { getClasses } from '@material-ui/core/test-utils';
 import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
 import { createClientRender } from 'test/utils/createClientRender';
 import SwitchBase from './SwitchBase';
 import FormControl, { useFormControl } from '../FormControl';
 import IconButton from '../IconButton';
 
-const shouldSuccessOnce = (name) => (func) => () => {
-  global.successOnce = global.successOnce || {};
-
-  if (!global.successOnce[name]) {
-    func();
-    global.successOnce[name] = true;
-  }
-};
+let didWarnControlledToUncontrolled;
 
 describe('<SwitchBase />', () => {
   const render = createClientRender();
@@ -353,51 +345,44 @@ describe('<SwitchBase />', () => {
   });
 
   describe('check transitioning between controlled states throws errors', () => {
-    beforeEach(() => {
-      consoleErrorMock.spy();
-    });
+    it('should error when uncontrolled and changed to controlled', function test() {
+      if (didWarnControlledToUncontrolled) {
+        this.skip();
+      }
 
-    afterEach(() => {
-      consoleErrorMock.reset();
-    });
-
-    it(
-      'should error when uncontrolled and changed to controlled',
-      shouldSuccessOnce('didWarnUncontrolledToControlled')(() => {
-        const wrapper = render(
+      let setProps;
+      expect(() => {
+        ({ setProps } = render(
           <SwitchBase icon="unchecked" checkedIcon="checked" type="checkbox" />,
-        );
+        ));
+      }).not.toErrorDev();
 
-        expect(consoleErrorMock.callCount()).to.equal(0);
+      expect(() => {
+        setProps({ checked: true });
+      }).toErrorDev([
+        'Warning: A component is changing an uncontrolled input of type checkbox to be controlled.',
+        'Material-UI: A component is changing the uncontrolled checked state of SwitchBase to be controlled.',
+      ]);
+    });
 
-        wrapper.setProps({ checked: true });
-        expect(consoleErrorMock.callCount()).to.equal(2);
-        expect(consoleErrorMock.messages()[0]).to.include(
-          'Warning: A component is changing an uncontrolled input of type checkbox to be controlled.',
-        );
-        expect(consoleErrorMock.messages()[1]).to.include(
-          'Material-UI: A component is changing the uncontrolled checked state of SwitchBase to be controlled.',
-        );
-      }),
-    );
+    it('should error when controlled and changed to uncontrolled', function test() {
+      if (didWarnControlledToUncontrolled) {
+        this.skip();
+      }
 
-    it(
-      'should error when controlled and changed to uncontrolled',
-      shouldSuccessOnce('didWarnControlledToUncontrolled')(() => {
-        const { setProps } = render(
+      let setProps;
+      expect(() => {
+        ({ setProps } = render(
           <SwitchBase icon="unchecked" checkedIcon="checked" type="checkbox" checked={false} />,
-        );
-        expect(consoleErrorMock.callCount()).to.equal(0);
+        ));
+      }).not.toErrorDev();
 
+      expect(() => {
         setProps({ checked: undefined });
-        expect(consoleErrorMock.callCount()).to.equal(2);
-        expect(consoleErrorMock.messages()[0]).to.include(
-          'Warning: A component is changing a controlled input of type checkbox to be uncontrolled.',
-        );
-        expect(consoleErrorMock.messages()[1]).to.include(
-          'Material-UI: A component is changing the controlled checked state of SwitchBase to be uncontrolled.',
-        );
-      }),
-    );
+      }).toErrorDev([
+        'Warning: A component is changing a controlled input of type checkbox to be uncontrolled.',
+        'Material-UI: A component is changing the controlled checked state of SwitchBase to be uncontrolled.',
+      ]);
+    });
   });
 });

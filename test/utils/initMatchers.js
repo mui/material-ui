@@ -1,5 +1,6 @@
 import chai from 'chai';
 import chaiDom from 'chai-dom';
+import chalk from 'chalk';
 import { isInaccessible } from '@testing-library/dom';
 import { prettyDOM } from '@testing-library/react/pure';
 import { computeAccessibleName } from 'dom-accessibility-api';
@@ -153,44 +154,41 @@ chai.use((chaiAPI, utils) => {
   });
 });
 
-chai.use(() => {
-  function createConsoleMatcher(methodName) {
+chai.use((chaiAPI, utils) => {
+  function addConsoleMatcher(matcherName, methodName) {
     /**
      * @param {string[]} expectedMessages
      */
-    function matcher(expectedMessages) {
+    function matcher(expectedMessages = []) {
       // documented pattern to get the actual value of the assertion
       // eslint-disable-next-line no-underscore-dangle
       const callback = this._obj;
-      const remainingMessages =
-        typeof expectedMessages === 'string' ? [expectedMessages] : expectedMessages.slice();
 
       if (process.env.NODE_ENV !== 'production') {
+        const remainingMessages =
+          typeof expectedMessages === 'string' ? [expectedMessages] : expectedMessages.slice();
+        const unexpectedMessages = [];
         let caughtError = null;
 
         // eslint-disable-next-line no-console
         const originalMethod = console[methodName];
 
-        const fakeConsole = (format, ...args) => {
+        const consoleMatcher = (format, ...args) => {
           const actualMessage = formatUtil(format, ...args);
           const expectedMessage = remainingMessages.shift();
 
-          this.assert(
-            expectedMessage !== undefined,
-            'Expected no error message but got #{act}',
-            '',
-            expectedMessage,
-            actualMessage,
-          );
-          this.assert(
-            actualMessage.includes(expectedMessage),
-            'Expected #{act} to include #{exp}',
-            expectedMessage,
-            actualMessage,
-          );
+          if (expectedMessage === undefined) {
+            unexpectedMessages.push(
+              new Error(`Expected no more error messages but got:\n"${actualMessage}"`),
+            );
+          } else if (!actualMessage.includes(expectedMessage)) {
+            unexpectedMessages.push(
+              new Error(`Expected "${actualMessage}" to include "${expectedMessage}"`),
+            );
+          }
         };
         // eslint-disable-next-line no-console
-        console[methodName] = fakeConsole;
+        console[methodName] = consoleMatcher;
 
         try {
           callback();
@@ -207,12 +205,55 @@ chai.use(() => {
             throw caughtError;
           }
 
-          this.assert(
-            remainingMessages.length === 0,
-            `Could not match the following console.${methodName} calls:\n\n${remainingMessages.join(
-              '\n\n',
-            )}`,
-          );
+          const formatMessages = (messages) => {
+            const formattedMessages = messages.map((message) => {
+              if (typeof message === 'string') {
+                return `"${message}"`;
+              }
+              // full Error
+              return `${message.stack}`;
+            });
+            return `\n\n  - ${formattedMessages.join('\n\n-  ')}`;
+          };
+
+          // in expect().not.toWarnDev() this statement is unreachable
+          // unless it was erroneously called with toWarnDev(messages)
+          const shouldHaveWarned = utils.flag(this, 'negate') === true;
+
+          if (unexpectedMessages.length > 0) {
+            const unexpectedMessageRecordedMessage = `Recorded unexpected ${chalk.bold(
+              `console.${methodName}`,
+            )} calls: ${formatMessages(unexpectedMessages)}`;
+            // chai will duplicate the stack frames from the unexpected calls in their assertion error
+            // it's not ideal but the test failure is located the second to last stack frame
+            // and the origin of the call is the second stackframe in the stack
+            this.assert(
+              // force chai to always trigger an assertion error
+              shouldHaveWarned,
+              unexpectedMessageRecordedMessage,
+              unexpectedMessageRecordedMessage,
+            );
+          }
+
+          if (!shouldHaveWarned) {
+            this.assert(
+              remainingMessages.length === 0,
+              `Could not match the following console.${methodName} calls. ` +
+                `Make sure previous actions didn't call console.${methodName} by wrapping them in ${chalk.bold(
+                  `expect(() => {}).not.${matcherName}()`,
+                )}: ${formatMessages(remainingMessages)}`,
+              `Impossible state reached in \`expect().${matcherName}()\`. ` +
+                `This is a bug in the matcher.`,
+            );
+          } else {
+            this.assert(
+              // when negated the assertion needs to be false
+              // i.e. we want remainingMessages to be empty but in order for chai to throw an AssertionError we need to negate that assertion
+              !(remainingMessages.length === 0),
+              `Impossible state reached in \`expect().not.${matcherName}()\`. This is a bug in the matcher.`,
+              `Negated ${matcherName} while also expecting messages. Prefer \`expect().not.${matcherName}();\``,
+            );
+          }
         }
       } else {
         // nothing to do in prod
@@ -221,7 +262,7 @@ chai.use(() => {
       }
     }
 
-    return matcher;
+    chai.Assertion.addMethod(matcherName, matcher);
     /* eslint-enable no-console */
   }
 
@@ -229,6 +270,6 @@ chai.use(() => {
    * @example expect(() => render()).toWarnDev('single message')
    * @example expect(() => render()).toWarnDev(['first warning', 'then the second'])
    */
-  chai.Assertion.addMethod('toWarnDev', createConsoleMatcher('warn'));
-  chai.Assertion.addMethod('toErrorDev', createConsoleMatcher('error'));
+  addConsoleMatcher('toWarnDev', 'warn');
+  addConsoleMatcher('toErrorDev', 'error');
 });

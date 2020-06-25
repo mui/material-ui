@@ -13,47 +13,54 @@ const mochaHooks = {
 };
 
 function throwOnUnexpectedConsoleMessages(methodName, expectedMatcher) {
-  /* eslint-disable no-console */
   const unexpectedCalls = [];
 
-  function fakeConsole(format, ...args) {
+  function logUnexpectedConsoleCalls(format, ...args) {
     const message = formatUtil(format, ...args);
     // Safe stack so that test dev can track where the unexpected console message was created.
     const { stack } = new Error();
 
-    unexpectedCalls.push([stack, message]);
+    unexpectedCalls.push([
+      // first line includes the (empty) error message
+      // i.e. Remove the `Error:` line
+      // second line is this frame
+      stack.split('\n').slice(2).join('\n'),
+      message,
+    ]);
   }
-  console[methodName] = fakeConsole;
+  // eslint-disable-next-line no-console
+  console[methodName] = logUnexpectedConsoleCalls;
 
   mochaHooks.beforeEach.push(function resetUnexpectedCalls() {
     unexpectedCalls.length = 0;
   });
 
   mochaHooks.afterEach.push(function flushUnexpectedCalls() {
-    if (console[methodName] !== fakeConsole) {
+    const hadUnexpectedCalls = unexpectedCalls.length > 0;
+    const formattedCalls = unexpectedCalls.map(
+      ([stack, message]) =>
+        `${chalk.red(message)}\n` +
+        `${stack
+          .split('\n')
+          .map((line) => chalk.gray(line))
+          .join('\n')}`,
+    );
+    unexpectedCalls.length = 0;
+
+    // eslint-disable-next-line no-console
+    if (console[methodName] !== logUnexpectedConsoleCalls) {
       throw new Error(`Did not tear down spy or stub of console.${methodName} in your test.`);
     }
-    if (unexpectedCalls.length > 0) {
-      const messages = unexpectedCalls.map(
-        ([stack, message]) =>
-          `${chalk.red(message)}\n` +
-          `${stack
-            .split('\n')
-            .map((line) => chalk.gray(line))
-            .join('\n')}`,
-      );
-
+    if (hadUnexpectedCalls) {
+      const location = this.currentTest.file;
       const message =
         `Expected test not to call ${chalk.bold(`console.${methodName}()`)}.\n\n` +
         'If the warning is expected, test for it explicitly by ' +
         `using the ${chalk.bold(`.${expectedMatcher}()`)} matcher.`;
 
-      throw new Error(`${message}\n\n${messages.join('\n\n')}`);
+      throw new Error(`${location}: ${message}\n\n${formattedCalls.join('\n\n')}`);
     }
-
-    unexpectedCalls.length = 0;
   });
-  /* eslint-enable no-console */
 }
 
 throwOnUnexpectedConsoleMessages('warn', 'toWarnDev');

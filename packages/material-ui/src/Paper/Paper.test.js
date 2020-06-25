@@ -6,7 +6,6 @@ import * as PropTypes from 'prop-types';
 import describeConformance from '../test-utils/describeConformance';
 import Paper from './Paper';
 import { createMuiTheme, ThemeProvider } from '../styles';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
 
 describe('<Paper />', () => {
   const mount = createMount();
@@ -68,26 +67,18 @@ describe('<Paper />', () => {
 
   describe('warnings', () => {
     beforeEach(() => {
-      consoleErrorMock.spy();
       PropTypes.resetWarningCache();
     });
 
-    afterEach(() => {
-      consoleErrorMock.reset();
-    });
-
     it('warns if the given `elevation` is not implemented in the theme', () => {
-      PropTypes.checkPropTypes(
-        Paper.Naked.propTypes,
-        { classes: { elevation24: 'elevation-24', elevation26: 'elevation-26' }, elevation: 25 },
-        'prop',
-        'MockedPaper',
-      );
-
-      expect(consoleErrorMock.callCount()).to.equal(1);
-      expect(consoleErrorMock.messages()[0]).to.include(
-        'Material-UI: This elevation `25` is not implemented.',
-      );
+      expect(() => {
+        PropTypes.checkPropTypes(
+          Paper.Naked.propTypes,
+          { classes: { elevation24: 'elevation-24', elevation26: 'elevation-26' }, elevation: 25 },
+          'prop',
+          'MockedPaper',
+        );
+      }).toErrorDev('Material-UI: This elevation `25` is not implemented.');
     });
   });
 });

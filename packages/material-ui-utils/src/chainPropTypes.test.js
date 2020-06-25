@@ -1,6 +1,5 @@
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
 import chainPropTypes from './chainPropTypes';
 
 describe('chainPropTypes', () => {
@@ -10,12 +9,7 @@ describe('chainPropTypes', () => {
   const location = 'prop';
 
   beforeEach(() => {
-    consoleErrorMock.spy();
     PropTypes.resetWarningCache();
-  });
-
-  afterEach(() => {
-    consoleErrorMock.reset();
   });
 
   it('should have the right shape', () => {
@@ -31,19 +25,19 @@ describe('chainPropTypes', () => {
       location,
       componentName,
     );
-    expect(consoleErrorMock.callCount()).to.equal(0);
+    expect(() => {}).not.toErrorDev();
   });
 
   it('should return an error for unsupported props', () => {
-    PropTypes.checkPropTypes(
-      {
-        [propName]: chainPropTypes(PropTypes.string, () => new Error('something is wrong')),
-      },
-      props,
-      location,
-      componentName,
-    );
-    expect(consoleErrorMock.callCount()).to.equal(1);
-    expect(consoleErrorMock.messages()[0]).to.match(/something is wrong/);
+    expect(() => {
+      PropTypes.checkPropTypes(
+        {
+          [propName]: chainPropTypes(PropTypes.string, () => new Error('something is wrong')),
+        },
+        props,
+        location,
+        componentName,
+      );
+    }).toErrorDev(['something is wrong']);
   });
 });

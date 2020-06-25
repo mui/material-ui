@@ -3,7 +3,6 @@ import { expect } from 'chai';
 import * as PropTypes from 'prop-types';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
 import elementTypeAcceptingRef from './elementTypeAcceptingRef';
 
 describe('elementTypeAcceptingRef', () => {
@@ -17,12 +16,7 @@ describe('elementTypeAcceptingRef', () => {
   }
 
   beforeEach(() => {
-    consoleErrorMock.spy();
     PropTypes.resetWarningCache();
-  });
-
-  afterEach(() => {
-    consoleErrorMock.reset();
   });
 
   describe('acceptance', () => {
@@ -31,20 +25,23 @@ describe('elementTypeAcceptingRef', () => {
     function assertPass(Component, options = {}) {
       const { failsOnMount = false, shouldMount = true } = options;
 
-      checkPropType(Component);
-      if (shouldMount) {
-        ReactDOM.render(
-          <React.Suspense fallback={<p />}>
-            <Component ref={React.createRef()} />
-          </React.Suspense>,
-          rootNode,
-        );
+      function testAct() {
+        checkPropType(Component);
+        if (shouldMount) {
+          ReactDOM.render(
+            <React.Suspense fallback={<p />}>
+              <Component ref={React.createRef()} />
+            </React.Suspense>,
+            rootNode,
+          );
+        }
       }
 
-      expect(consoleErrorMock.callCount()).to.equal(
-        failsOnMount ? 1 : 0,
-        `but got '${consoleErrorMock.messages()[0]}'`,
-      );
+      if (failsOnMount) {
+        expect(testAct).toErrorDev('');
+      } else {
+        expect(testAct).not.toErrorDev();
+      }
     }
 
     before(() => {
@@ -118,10 +115,9 @@ describe('elementTypeAcceptingRef', () => {
 
   describe('rejections', () => {
     function assertFail(Component, hint) {
-      checkPropType(Component);
-
-      expect(consoleErrorMock.callCount()).to.equal(1);
-      expect(consoleErrorMock.messages()[0]).to.include(
+      expect(() => {
+        checkPropType(Component);
+      }).toErrorDev(
         'Invalid props `component` supplied to `DummyComponent`. ' +
           `Expected an element type that can hold a ref. ${hint}`,
       );

@@ -4,8 +4,7 @@ import PropTypes from 'prop-types';
 import { getClasses } from '@material-ui/core/test-utils';
 import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
-import { act, createClientRender, fireEvent, queries } from 'test/utils/createClientRender';
+import { act, createClientRender, fireEvent, queries, screen } from 'test/utils/createClientRender';
 import ListItemText from '../ListItemText';
 import ListItemSecondaryAction from '../ListItemSecondaryAction';
 import ListItem from './ListItem';
@@ -155,39 +154,30 @@ describe('<ListItem />', () => {
 
     describe('warnings', () => {
       beforeEach(() => {
-        consoleErrorMock.spy();
         PropTypes.resetWarningCache();
       });
 
-      afterEach(() => {
-        consoleErrorMock.reset();
-      });
-
       it('warns if it cant detect the secondary action properly', () => {
-        PropTypes.checkPropTypes(
-          ListItem.Naked.propTypes,
-          {
-            classes: {},
-            children: [
-              <ListItemSecondaryAction>I should have come last :(</ListItemSecondaryAction>,
-              <ListItemText>My position doesn not matter.</ListItemText>,
-            ],
-          },
-          'prop',
-          'MockedName',
-        );
-
-        expect(consoleErrorMock.callCount()).to.equal(1);
-        expect(consoleErrorMock.messages()[0]).to.include(
-          'Warning: Failed prop type: Material-UI: You used an element',
-        );
+        expect(() => {
+          PropTypes.checkPropTypes(
+            ListItem.Naked.propTypes,
+            {
+              classes: {},
+              children: [
+                <ListItemSecondaryAction>I should have come last :(</ListItemSecondaryAction>,
+                <ListItemText>My position doesn not matter.</ListItemText>,
+              ],
+            },
+            'prop',
+            'MockedName',
+          );
+        }).toErrorDev('Warning: Failed prop type: Material-UI: You used an element');
       });
 
       it('should warn (but not error) with autoFocus with a function component with no content', () => {
-        render(<ListItem component={NoContent} autoFocus />);
-
-        expect(consoleErrorMock.callCount()).to.equal(1);
-        expect(consoleErrorMock.messages()[0]).to.include(
+        expect(() => {
+          render(<ListItem component={NoContent} autoFocus />);
+        }).toErrorDev(
           'Material-UI: Unable to set focus to a ListItem whose component has not been rendered.',
         );
       });
@@ -205,18 +195,16 @@ describe('<ListItem />', () => {
             return <div role="listitem" tabIndex={-1} {...this.props} />;
           }
         }
-        const { getByRole } = render(
-          <ListItem autoFocus ContainerComponent={CustomListItemContainer}>
-            <ListItemText primary="primary" />
-            <ListItemSecondaryAction />
-          </ListItem>,
-        );
+        expect(() => {
+          render(
+            <ListItem autoFocus ContainerComponent={CustomListItemContainer}>
+              <ListItemText primary="primary" />
+              <ListItemSecondaryAction />
+            </ListItem>,
+          );
+        }).toErrorDev('findDOMNode is deprecated in StrictMode');
 
-        expect(getByRole('listitem')).toHaveFocus();
-        expect(consoleErrorMock.callCount()).to.equal(1);
-        expect(consoleErrorMock.messages()[0]).to.include(
-          'findDOMNode is deprecated in StrictMode',
-        );
+        expect(screen.getByRole('listitem')).toHaveFocus();
       });
     });
   });

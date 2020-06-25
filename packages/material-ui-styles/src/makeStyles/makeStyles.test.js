@@ -6,7 +6,6 @@ import { act } from 'react-dom/test-utils';
 import createMount from 'test/utils/createMount';
 import { createMuiTheme } from '@material-ui/core/styles';
 import createGenerateClassName from '../createGenerateClassName';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
 import makeStyles from './makeStyles';
 import useTheme from '../useTheme';
 import StylesProvider from '../StylesProvider';
@@ -69,76 +68,63 @@ describe('makeStyles', () => {
   describe('warnings', () => {
     const mountWithProps = createGetClasses({ root: {} });
 
-    beforeEach(() => {
-      consoleErrorMock.spy();
-    });
-
-    afterEach(() => {
-      consoleErrorMock.reset();
-    });
-
     it('should warn if providing a unknown key', () => {
       const output = mountWithProps();
+
+      expect(() => {
+        output.wrapper.setProps({ classes: { bar: 'foo' } });
+      }).toErrorDev('Material-UI: The key `bar` provided to the classes prop is not implemented');
+
       const baseClasses = output.classes;
-      output.wrapper.setProps({ classes: { bar: 'foo' } });
       const extendedClasses = output.classes;
       expect(extendedClasses).to.deep.equal({ root: baseClasses.root, bar: 'undefined foo' });
-      expect(consoleErrorMock.callCount()).to.equal(1);
-      expect(consoleErrorMock.messages()[0]).to.include(
-        'Material-UI: The key `bar` provided to the classes prop is not implemented',
-      );
     });
 
     it('should warn if providing a string', () => {
       const output = mountWithProps();
-      output.wrapper.setProps({ classes: 'foo' });
-      expect(consoleErrorMock.callCount() >= 1).to.equal(true);
-      const messages = consoleErrorMock.messages();
-      expect(messages[messages.length - 1]).to.include(
-        'You might want to use the className prop instead',
-      );
+
+      expect(() => {
+        output.wrapper.setProps({ classes: 'foo' });
+      }).toErrorDev(['You might want to use the className prop instead']);
     });
 
     it('should warn if providing a non string', () => {
       const output = mountWithProps();
       const baseClasses = output.classes;
-      output.wrapper.setProps({ classes: { root: {} } });
+
+      expect(() => {
+        output.wrapper.setProps({ classes: { root: {} } });
+      }).toErrorDev('Material-UI: The key `root` provided to the classes prop is not valid');
+
       const extendedClasses = output.classes;
       expect(extendedClasses).to.deep.equal({ root: `${baseClasses.root} [object Object]` });
-      expect(consoleErrorMock.callCount()).to.equal(1);
-      expect(consoleErrorMock.messages()[0]).to.include(
-        'Material-UI: The key `root` provided to the classes prop is not valid',
-      );
     });
 
     it('should warn if missing theme', () => {
       const styles = (theme) => ({ root: { padding: theme.spacing(2) } });
       const mountWithProps2 = createGetClasses(styles);
+
       expect(() => {
-        mountWithProps2({});
-      }).to.throw('theme.spacing is not a function');
-      expect(consoleErrorMock.callCount()).to.equal(4);
-      expect(consoleErrorMock.messages()[0]).to.include(
+        expect(() => {
+          mountWithProps2({});
+        }).to.throw('theme.spacing is not a function');
+      }).toErrorDev([
         'Material-UI: The `styles` argument provided is invalid.\nYou are providing a function without a theme in the context.',
-      );
-      expect(consoleErrorMock.messages()[1]).to.include(
         'Material-UI: The `styles` argument provided is invalid.\nYou are providing a function without a theme in the context.',
-      );
-      expect(consoleErrorMock.messages()[2]).to.include(
         'Uncaught [TypeError: theme.spacing is not a function',
-      );
-      expect(consoleErrorMock.messages()[3]).to.include(
         'The above error occurred in the <TestComponent> component',
-      );
+      ]);
     });
 
     it('should warn but not throw if providing an invalid styles type', () => {
-      const mountWithProps2 = createGetClasses(undefined);
+      let mountWithProps2;
 
-      expect(consoleErrorMock.messages()).to.have.length(1);
-      expect(consoleErrorMock.messages()[0]).to.include(
+      expect(() => {
+        mountWithProps2 = createGetClasses(undefined);
+      }).toErrorDev(
         'Material-UI: The `styles` argument provided is invalid.\nYou need to provide a function generating the styles or a styles object.',
       );
+
       expect(() => {
         mountWithProps2({});
       }).not.to.throw();
