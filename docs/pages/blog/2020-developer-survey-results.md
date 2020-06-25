@@ -188,7 +188,7 @@ Each item is prefixed by the multiplicator factor of pain point between 2019 and
 Decreasing pain:
 - x0: Slider. No requests. The requirements are mostly met, especially with the introduction of the range feature.
 - x0.1: Strict mode. We did a lot for it this year. However, since Create React App has made this mode a default, we have seen a lot more requests for it.
-- x0.1: Autocomplete. We did a lot for it this year. The component will be moved to the core in v5.
+- x0.1: Autocomplete. We added a new component, and have resolved a large number of issues opened since. This will be moved from lab to the core in v5.
 - x0.2: Fewer breaking changes. Only releasing minor versions under v4 for over a year helps a lot. However, we still need to be careful with CSS changes.
 - x0.3: Accessibility. We did a lot for it this year. One of our best leverage has been GitHub's issue opened by a11y expert, often coming from large companies using Material-UI at scale.
 - x0.4: Material design. We didn't do much for it this year, at least not as much as we could have. Maybe fewer people care? It seems that we resonate better with developers going for custom design systems.
