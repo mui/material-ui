@@ -205,7 +205,7 @@ It seems we are consistently popular with small to medium sized organisations, s
 
 <img src="/static/blog/2020-survey/10.png" style="width: 506px; margin-top: 32px; margin-bottom: 24px;" alt="Bar chart: 3.60%	I'm just getting started!, 7.40%	6 months +, 20.80%	1 year +, 27.80%	3 years +, 24.30%	5 years +, 9.80%	10 years +, 4.10%	15 years +, 2.30%	20 years +" />
 
-We can see the normal distrubution of the developers experience here, where most of them have a "mid" level of experience (between 1 and 5 years).
+We can see the normal distribution of developer experience here, where most have moderate level of experience (between 1 and 5 years).
 
 ### 11. How long have you been developing with React?
 
