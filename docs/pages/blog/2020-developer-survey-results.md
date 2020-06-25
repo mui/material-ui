@@ -194,7 +194,7 @@ Decreasing pain:
 - x0.4: Material design. We didn't do much for it this year, at least not as much as we could have. Maybe the reduction is because fewer people care? It seems that we start to resonate more with developers building custom design systems.
 - x0.4: TypeScript. Our effort is paying off with the migration of all the demos to TypeScript and the migration of all the props to IntelliSense.
 - x0.5: Date picker. We did a lot for it this year. We probably still need the range feature, and to move it into the main repository (docs migration, etc.) for consistency.
-- x0.7: Performance. We didn't do much this year, maybe more developers are used to leverage React effectively? Virtualization updates pruning, etc.
+- x0.7: Performance. We didn't do much this year, so perhaps developers are leveraging React more effectively with virtualization, update pruning, etc?
 
 Growing pain:
 - ∞: Form is a new item. It seems that we should at least work more closely with react-hook-form, formik, and react-final-form.
