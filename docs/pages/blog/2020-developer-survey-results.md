@@ -21,7 +21,7 @@ In this section we mostly wanted to hear what developers think is going well and
 
 Similar to last year, over 94% of the respondents would be disappointed if they can no longer use Material-UI, which is very encouraging. We will keep working hard to hopefully move more of you into the "very disappointed" category!
 
-The number who would not be disappointed has moved down from 6.5% to 5.4%, which is a 17% improvement! We'd love to understand more about those who use Material-UI, but would happily use other solutions, so a follow up question might be needed next year.
+The number who would not be disappointed has moved down from 6.5% to 5.4%, which is technically a 17% improvement! 🙂 We'd love to understand more about those who use Material-UI, but would happily use other solutions, so a follow up question might be needed next year.
 
 ### 2. How likely is it that you would recommend Material-UI to a friend or colleague?
 
