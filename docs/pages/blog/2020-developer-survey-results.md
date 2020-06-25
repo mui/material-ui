@@ -292,7 +292,7 @@ The trend seems to be similar to the one from the last year's survey, so we will
 <img src="/static/blog/2020-survey/21.png" style="width: 614px; margin-top: 32px;" alt="Bar chart: 54.08%	None
 30.87%	TypeScript 3.8, 7.31%	TypeScript 3.7, 1.90%	Flow, 1.55%	TypeScript 3.6, 0.98%	TypeScript 3.5, 3.31%	Other" />
 
-Almost half of the community is using TypeScript. Next year, it might even get more popular than JavaScript.
+Almost half of the community is using TypeScript. Next year, it might even become more popular than JavaScript.
 
 ## Conclusion
 
