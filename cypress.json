@@ -4,5 +4,7 @@
   "supportFile": "e2e/support/index.js",
   "pluginsFile": "e2e/plugins/index.js",
   "chromeWebSecurity": false,
-  "projectId": "qow28y"
+  "projectId": "qow28y",
+  "experimentalComponentTesting": true,
+  "componentFolder": "./e2e/component"
 }

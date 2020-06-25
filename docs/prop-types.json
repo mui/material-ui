@@ -10,7 +10,7 @@
       },
       "required": false,
       "type": {
-        "name": "Partial<MuiDialogProps>"
+        "name": "{Partial<MuiDialogProps>}"
       }
     },
     "okText": {
@@ -156,7 +156,7 @@
       },
       "required": false,
       "type": {
-        "name": "Partial<MuiDialogProps>"
+        "name": "{Partial<MuiDialogProps>}"
       }
     },
     "okText": {
@@ -397,7 +397,7 @@
       },
       "required": false,
       "type": {
-        "name": "Partial<IconButtonProps>"
+        "name": "{Partial<IconButtonProps>}"
       }
     },
     "rightArrowButtonProps": {
@@ -410,7 +410,7 @@
       },
       "required": false,
       "type": {
-        "name": "Partial<IconButtonProps>"
+        "name": "{Partial<IconButtonProps>}"
       }
     },
     "leftArrowButtonText": {
@@ -928,7 +928,7 @@
       },
       "required": false,
       "type": {
-        "name": "Partial<InputAdornmentProps>"
+        "name": "{Partial<InputAdornmentProps>}"
       }
     },
     "OpenPickerButtonProps": {
@@ -941,7 +941,7 @@
       },
       "required": false,
       "type": {
-        "name": "Partial<IconButtonProps>"
+        "name": "{Partial<IconButtonProps>}"
       }
     },
     "rifmFormatter": {
@@ -1025,7 +1025,7 @@
       },
       "required": false,
       "type": {
-        "name": "Partial<MuiDialogProps>"
+        "name": "{Partial<MuiDialogProps>}"
       }
     },
     "okText": {
@@ -1633,7 +1633,7 @@
       },
       "required": false,
       "type": {
-        "name": "Partial<InputAdornmentProps>"
+        "name": "{Partial<InputAdornmentProps>}"
       }
     },
     "OpenPickerButtonProps": {
@@ -1646,7 +1646,7 @@
       },
       "required": false,
       "type": {
-        "name": "Partial<IconButtonProps>"
+        "name": "{Partial<IconButtonProps>}"
       }
     },
     "rifmFormatter": {
@@ -1730,7 +1730,7 @@
       },
       "required": false,
       "type": {
-        "name": "Partial<MuiDialogProps>"
+        "name": "{Partial<MuiDialogProps>}"
       }
     },
     "okText": {
@@ -2191,7 +2191,7 @@
       },
       "required": false,
       "type": {
-        "name": "Partial<IconButtonProps>"
+        "name": "{Partial<IconButtonProps>}"
       }
     },
     "rightArrowButtonProps": {
@@ -2204,7 +2204,7 @@
       },
       "required": false,
       "type": {
-        "name": "Partial<IconButtonProps>"
+        "name": "{Partial<IconButtonProps>}"
       }
     },
     "leftArrowButtonText": {
@@ -2694,7 +2694,7 @@
       },
       "required": false,
       "type": {
-        "name": "Partial<InputAdornmentProps>"
+        "name": "{Partial<InputAdornmentProps>}"
       }
     },
     "OpenPickerButtonProps": {
@@ -2707,7 +2707,7 @@
       },
       "required": false,
       "type": {
-        "name": "Partial<IconButtonProps>"
+        "name": "{Partial<IconButtonProps>}"
       }
     },
     "rifmFormatter": {
@@ -2791,7 +2791,7 @@
       },
       "required": false,
       "type": {
-        "name": "Partial<MuiDialogProps>"
+        "name": "{Partial<MuiDialogProps>}"
       }
     },
     "okText": {
@@ -3066,7 +3066,7 @@
       },
       "required": false,
       "type": {
-        "name": "Partial<IconButtonProps>"
+        "name": "{Partial<IconButtonProps>}"
       }
     },
     "rightArrowButtonProps": {
@@ -3079,7 +3079,7 @@
       },
       "required": false,
       "type": {
-        "name": "Partial<IconButtonProps>"
+        "name": "{Partial<IconButtonProps>}"
       }
     },
     "leftArrowButtonText": {
@@ -3612,7 +3612,7 @@
       },
       "required": false,
       "type": {
-        "name": "Partial<InputAdornmentProps>"
+        "name": "{Partial<InputAdornmentProps>}"
       }
     },
     "OpenPickerButtonProps": {
@@ -3625,7 +3625,7 @@
       },
       "required": false,
       "type": {
-        "name": "Partial<IconButtonProps>"
+        "name": "{Partial<IconButtonProps>}"
       }
     },
     "rifmFormatter": {
@@ -3709,7 +3709,7 @@
       },
       "required": false,
       "type": {
-        "name": "Partial<MuiDialogProps>"
+        "name": "{Partial<MuiDialogProps>}"
       }
     },
     "okText": {
@@ -4218,7 +4218,9 @@
       }
     },
     "getHoursClockNumberText": {
-      "defaultValue": null,
+      "defaultValue": {
+        "value": null
+      },
       "description": "Get clock number aria-text for hours.",
       "name": "getHoursClockNumberText",
       "parent": {
@@ -4231,7 +4233,9 @@
       }
     },
     "getMinutesClockNumberText": {
-      "defaultValue": null,
+      "defaultValue": {
+        "value": null
+      },
       "description": "Get clock number aria-text for minutes.",
       "name": "getMinutesClockNumberText",
       "parent": {
@@ -4244,7 +4248,9 @@
       }
     },
     "getSecondsClockNumberText": {
-      "defaultValue": null,
+      "defaultValue": {
+        "value": null
+      },
       "description": "Get clock number aria-text for seconds.",
       "name": "getSecondsClockNumberText",
       "parent": {
@@ -4273,7 +4279,7 @@
     },
     "minutesStep": {
       "defaultValue": {
-        "value": "1"
+        "value": 1
       },
       "description": "Step over minutes",
       "name": "minutesStep",
@@ -4397,7 +4403,9 @@
       }
     },
     "leftArrowButtonText": {
-      "defaultValue": null,
+      "defaultValue": {
+        "value": "open previous view"
+      },
       "description": "Left arrow icon aria-label text",
       "name": "leftArrowButtonText",
       "parent": {
@@ -4410,7 +4418,9 @@
       }
     },
     "rightArrowButtonText": {
-      "defaultValue": null,
+      "defaultValue": {
+        "value": "open next view"
+      },
       "description": "Right arrow icon aria-label text",
       "name": "rightArrowButtonText",
       "parent": {
@@ -4432,7 +4442,7 @@
       },
       "required": false,
       "type": {
-        "name": "Partial<IconButtonProps>"
+        "name": "{Partial<IconButtonProps>}"
       }
     },
     "rightArrowButtonProps": {
@@ -4445,7 +4455,7 @@
       },
       "required": false,
       "type": {
-        "name": "Partial<IconButtonProps>"
+        "name": "{Partial<IconButtonProps>}"
       }
     }
   }

@@ -31,27 +31,6 @@ describe('DatePicker', () => {
       cy.get(`input${ids.clearable}`).should('have.value', '01/21/2019');
     });
 
-    it('Should change the value to the next month', () => {
-      cy.get(ids.basic).click({ force: true });
-      // return back in 2 month
-      cy.get('svg[data-arrow="left"]')
-        .click()
-        .click();
-      // go to the next month
-      cy.get('svg[data-arrow="right"]')
-        .click()
-        .click()
-        .click();
-
-      cy.get('[data-day="11/02/2019"]').click();
-      cy.get('h4').should('have.text', 'Mon, Feb 11');
-
-      cy.get('button')
-        .contains('OK')
-        .click();
-      cy.get(`input${ids.basic}`).should('have.value', '02/11/2019');
-    });
-
     it('Should clear the input by clear button', () => {
       cy.get(ids.clearable).click({ force: true });
 

@@ -13,8 +13,8 @@
 // https://on.cypress.io/configuration
 // ***********************************************************
 
-// Import commands.js using ES2015 syntax:
-require('./commands');
+import { configure } from '@testing-library/cypress';
+configure({ testIdAttribute: 'data-mui-test' });
 
-// Alternatively you can use CommonJS syntax:
-// require('./commands')
+require('./commands');
+require('cypress-react-unit-test/support');

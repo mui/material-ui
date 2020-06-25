@@ -9,7 +9,13 @@
     "resolveJsonModule": true,
     "jsx": "react",
     "lib": ["es5", "dom"],
-    "types": ["cypress", "@percy/cypress"]
+    "types": [
+      "cypress",
+      "@percy/cypress",
+      "@types/testing-library__cypress",
+      "@material-ui/core",
+      "@material-ui/pickers"
+    ]
   },
-  "include": ["./**/*.ts", "../docs/**/*"]
+  "include": ["./**/*.ts", "../docs/**/*", "component/**/*.tsx"]
 }

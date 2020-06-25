@@ -1,4 +1,6 @@
 import '@percy/cypress';
+import 'cypress-plugin-tab';
+import '@testing-library/cypress/add-commands';
 
 declare global {
   namespace Cypress {
