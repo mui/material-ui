@@ -6,7 +6,7 @@ description: 2020 Material-UI Developer Survey results
 
 Marija Najdova, Olivier Tassinari, Matt Brookes. June 24, 2019.
 
-Continuing the tradition from last year, we launched a developer survey few months ago, to which we received 1488 contrivutions. This is twice as many as last year, so we thank you all for the participation!
+Continuing the tradition from last year, we launched a developer survey few months ago, to which we received 1488 contributions. This is twice as many as last year, so we thank you all for the participation!
 The survey is now closed and here we will give a detailed summary of the results.
 
 The survey again was broken into three sections, "Introduction", "About you" and "Your product".
