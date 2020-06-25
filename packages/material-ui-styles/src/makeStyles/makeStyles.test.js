@@ -116,11 +116,32 @@ describe('makeStyles', () => {
       const mountWithProps2 = createGetClasses(styles);
       expect(() => {
         mountWithProps2({});
-      }).to.throw();
+      }).to.throw('theme.spacing is not a function');
       expect(consoleErrorMock.callCount()).to.equal(4);
-      expect(consoleErrorMock.messages()[1]).to.include(
-        'Material-UI: The `styles` argument provided is invalid',
+      expect(consoleErrorMock.messages()[0]).to.include(
+        'Material-UI: The `styles` argument provided is invalid.\nYou are providing a function without a theme in the context.',
       );
+      expect(consoleErrorMock.messages()[1]).to.include(
+        'Material-UI: The `styles` argument provided is invalid.\nYou are providing a function without a theme in the context.',
+      );
+      expect(consoleErrorMock.messages()[2]).to.include(
+        'Uncaught [TypeError: theme.spacing is not a function',
+      );
+      expect(consoleErrorMock.messages()[3]).to.include(
+        'The above error occurred in the <TestComponent> component',
+      );
+    });
+
+    it('should warn but not throw if providing an invalid styles type', () => {
+      const mountWithProps2 = createGetClasses(undefined);
+
+      expect(consoleErrorMock.messages()).to.have.length(1);
+      expect(consoleErrorMock.messages()[0]).to.include(
+        'Material-UI: The `styles` argument provided is invalid.\nYou need to provide a function generating the styles or a styles object.',
+      );
+      expect(() => {
+        mountWithProps2({});
+      }).not.to.throw();
     });
   });
 
