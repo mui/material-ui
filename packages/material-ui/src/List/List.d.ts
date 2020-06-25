@@ -3,6 +3,7 @@ import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
 export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
   props: P & {
+    component?: React.ElementType;
     dense?: boolean;
     disablePadding?: boolean;
     subheader?: React.ReactElement;
