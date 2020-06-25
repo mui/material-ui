@@ -333,13 +333,10 @@ describe('<TreeItem />', () => {
 
       it('should work with programmatic focus', () => {
         const { getByTestId } = render(
-          <React.Fragment>
-            <div data-testid="start" tabIndex={0} />
-            <TreeView>
-              <TreeItem nodeId="1" label="one" data-testid="one" />
-              <TreeItem nodeId="2" label="two" data-testid="two" />
-            </TreeView>
-          </React.Fragment>,
+          <TreeView>
+            <TreeItem nodeId="1" label="one" data-testid="one" />
+            <TreeItem nodeId="2" label="two" data-testid="two" />
+          </TreeView>,
         );
 
         expect(getByTestId('one')).to.have.attribute('tabindex', '0');
@@ -853,6 +850,7 @@ describe('<TreeItem />', () => {
                   <TreeItem nodeId="seven" label="seven" data-testid="seven" />
                 </TreeItem>
               </TreeItem>
+              <TreeItem nodeId="eight" label="eight" data-testid="eight" />
             </TreeView>,
           );
 
@@ -868,6 +866,7 @@ describe('<TreeItem />', () => {
           expect(getByTestId('three')).to.have.attribute('aria-expanded', 'true');
           expect(getByTestId('five')).to.have.attribute('aria-expanded', 'true');
           expect(getByTestId('six')).to.have.attribute('aria-expanded', 'false');
+          expect(getByTestId('eight')).not.to.have.attribute('aria-expanded');
         });
       });
     });

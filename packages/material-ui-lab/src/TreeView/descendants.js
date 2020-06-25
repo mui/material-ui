@@ -59,6 +59,7 @@ export function useDescendant(descendant) {
     registerDescendant = noop,
     unregisterDescendant = noop,
     descendants = [],
+    parentId = null,
   } = React.useContext(DescendantContext);
 
   // This will initially return -1 because we haven't registered the descendant
@@ -72,8 +73,7 @@ export function useDescendant(descendant) {
 
   // We also need to re-register descendants any time ANY of the other
   // descendants have changed. My brain was melting when I wrote this and it
-  // feels a little off, but checking in render and using the result in the
-  // effect's dependency array works well enough.
+  // feels a little off, but checking in render and usin  // effect's dependency array works well enough.g the result in the
   const someDescendantsHaveChanged = descendants.some((d, i) => {
     return d.element !== previousDescendants?.[i]?.element;
   });
@@ -96,38 +96,25 @@ export function useDescendant(descendant) {
     ...Object.values(descendant),
   ]);
 
-  return index;
+  return { parentId, index };
 }
 
 export function useDescendantsInit() {
   return React.useState([]);
 }
 
-export function useDescendants() {
-  return React.useContext(DescendantContext).descendants;
-}
-
 export function DescendantProvider(props) {
-  const { children, items, set } = props;
+  const { children, items, set, id } = props;
 
   const registerDescendant = React.useCallback(
-    ({ element, index: explicitIndex, ...rest }) => {
+    ({ element, ...rest }) => {
       if (!element) {
         return;
       }
 
       set((oldItems) => {
         let newItems;
-        if (explicitIndex != null) {
-          newItems = [
-            ...oldItems,
-            {
-              ...rest,
-              element,
-              index: explicitIndex,
-            },
-          ];
-        } else if (oldItems.length === 0) {
+        if (oldItems.length === 0) {
           // If there are no items, register at index 0 and bail.
           newItems = [
             ...oldItems,
@@ -210,8 +197,9 @@ export function DescendantProvider(props) {
       descendants: items,
       registerDescendant,
       unregisterDescendant,
+      parentId: id,
     }),
-    [items, registerDescendant, unregisterDescendant],
+    [items, registerDescendant, unregisterDescendant, id],
   );
 
   return <DescendantContext.Provider value={value}>{children}</DescendantContext.Provider>;
@@ -219,6 +207,7 @@ export function DescendantProvider(props) {
 
 DescendantProvider.propTypes = {
   children: PropTypes.node,
+  id: PropTypes.string,
   items: PropTypes.array,
   set: PropTypes.func,
 };
