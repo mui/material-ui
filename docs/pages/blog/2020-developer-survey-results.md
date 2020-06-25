@@ -286,7 +286,6 @@ The trend seems to be similar to the one from the last year's survey, so we will
 <img src="/static/blog/2020-survey/20.png" style="width: 553px; margin-top: 32px;" alt="Pie chart: 89.90%	No, 10.10% Yes" />
 
 
-
 ### 21. What type system are you using?
 
 <img src="/static/blog/2020-survey/21.png" style="width: 614px; margin-top: 32px;" alt="Bar chart: 54.08%	None
