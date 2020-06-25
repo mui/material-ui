@@ -14,7 +14,7 @@ export interface PortalProps {
    */
   container?: React.ReactInstance | (() => React.ReactInstance | null) | null;
   /**
-   * The `children` will be children in the DOM.
+   * The `children` content will be inside the DOM hierarchy of the parent component.
    */
   disablePortal?: boolean;
   /**

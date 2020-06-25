@@ -608,7 +608,7 @@ Autocomplete.propTypes = {
    */
   disableListWrap: PropTypes.bool,
   /**
-   * The `children` will be children in the DOM.
+   * The `Popper` content will be inside the DOM hierarchy of the parent component.
    */
   disablePortal: PropTypes.bool,
   /**
