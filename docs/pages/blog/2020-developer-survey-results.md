@@ -6,10 +6,10 @@ description: 2020 Material-UI Developer Survey results
 
 Marija Najdova, Olivier Tassinari, Matt Brookes. June 24, 2019.
 
-Continuing the tradition from last year, we launched a developer survey few months ago, to which we received 1488 contributions. This is twice as many as last year, so we thank you all for the participation!
+Continuing the tradition from last year, we launched a developer survey few months ago, to which we received 1488 contributions. This is twice as many as last year (734), so we thank you all for the participation!
 The survey is now closed and here we will give a detailed summary of the results.
 
-Like last year, the survey was again broken into three sections: "Introduction", "About you" and "Your product".
+Like last year, the survey was again broken into three sections: ["Introduction"](#Introduction), ["About you"](#about-you) and ["Your product"](#your-product).
 
 ## Introduction
 
@@ -21,7 +21,7 @@ In this section we mostly wanted to hear what developers think is going well and
 
 Similar to last year, over 94% of the respondents would be disappointed if they can no longer use Material-UI, which is very encouraging. We will keep working hard to hopefully move more of you into the "very disappointed" category!
 
-The number who would not be disappointed has moved down from 6.5% to 5.4%, which is technically a 17% improvement! 🙂 We'd love to understand more about those who use Material-UI, but would happily use other solutions, so a follow up question might be needed next year.
+The number who would not be disappointed has moved down from 6.5% to 5.4%, which is technically a 17% improvement! 🙂 We'd love to understand more about those who use Material-UI, but would happily use other solutions, so a follow-up question might be needed next year.
 
 ### 2. How likely is it that you would recommend Material-UI to a friend or colleague?
 
@@ -49,7 +49,7 @@ The responses to this question are a very clear indicator to us about what we ne
 
 ### 5. How can we improve Material-UI for you?
 
-As the answers to this questions were pretty different, we grouped them into different categories and counted the different number of times the concern was mentioned. You can see all of them sorted in descending order:
+As the answers to these questions were pretty different, we grouped them into different categories and counted the different number of times the concern was mentioned. You can see all of them sorted in descending order:
 
 <style>th { text-align: left; background-color: #f2f2f2; }</style>
 
@@ -179,9 +179,37 @@ As the answers to this questions were pretty different, we grouped them into dif
   <tr><th>3</th><th> grid - improve</th><tr>
 </table>
 
+### Comparison with last year
+
+There are a couple of noticeable differences compared to last year.
+Some can be explained by our work, others by an evolution of the ecosystem.
+Each item is prefixed by the multiplicator factor of pain point between 2019 and 2020.
+
+Decreasing pain:
+- x0: Slider. No requests, the problem is almost solved since the introduction of the range feature.
+- x0.1: Strict mode. We did a lot for it this year. However, since Create React App has made this mode a default, we have seen a lot more requests for it.
+- x0.1: Autocomplete. We did a lot for it this year. The component will be moved to the core in v5.
+- x0.2: Fewer breaking changes. Only releasing minor versions under v4 for over a year helps a lot. However, we still need to be careful with CSS changes.
+- x0.3: Accessibility. We did a lot for it this year. One of our best leverage has been GitHub's issue opened by a11y expert, often coming from large companies using Material-UI at scale.
+- x0.4: Material design. We didn't do much for it this year, at least not as much as we could have. Maybe fewer people care? It seems that we resonate better with developers going for custom design systems.
+- x0.4: TypeScript. Our effort is paying off with the migration of all the demos to TypeScript and the migration of all the props to IntelliSense.
+- x0.5: Date picker. We did a lot for it this year. We probably still need the range feature and the integration in the main repository (docs migration, etc.) for consistency to get is much lower, to the level of the "Slider".
+- x0.7: Performance. We didn't do much this year, maybe more developers are used to leverage React effectively? Virtualization updates pruning, etc.
+
+Growing pain:
+- ∞: Form is a new item. It seems that we should at least work more closely with react-hook-form, formik, and react-final-form.
+- ∞: Charts is a new item. Material Design even has a page dedicated to [date visualization](https://material.io/design/communication/data-visualization.html) since recently.
+- x5: Custom themes.
+- x5: Simpler customization. We have improved customizability this year by introducing global class names and reducing the CSS specificity of some selectors. However, it seems that we are now tapping into a new audience. We need to do better.
+- x1.5: Animations.
+- x1.2: React native. We still have no plans for it. The [market is too small](https://npm-stat.com/charts.html?package=react-dom,react-native) to make it sustainable with our model.
+- x1.1: More components, the more we give, the more developer asks for, we will fully solve this with the enterprise version. The first early access will land this year.
+
 ### 6. What are your key criteria when choosing a UI library?
 
 <img src="/static/blog/2020-survey/6.png" style="width: 680px; margin-top: 32px; margin-bottom: 8px;" alt="Bar chart: 21.99% The design, look & feel, 21.64% Documentation quality, 16.38% Customizability, 8.42% TypeScript integration, 6.89% Comprehensiveness, 5.35% Enterprise ready, 4.68% Bundle size, 4.92% Popularity, 4.45% Accessibility, 2.62% Documentation quality, 1.88% Offered support & help, 0.12% Performance, 0.67% Other." />
+
+The number of answers was limited to 3.
 
 ## About you
 
@@ -199,7 +227,7 @@ This was expected :)
 
 <img  src="/static/blog/2020-survey/9.png" style="width: 589px; margin-top: 32px; margin-bottom: 8px;" alt="Bar chart: 12.30%	Hobby / side project, 13.40%	Self-employed, 35.60%	2-5 people, 16.10%	6-10, 10.30%	11-20, 5.10%	21-50, 2.50%	51-100, 4.60%	100+" />
 
-It seems we are consistently popular with small to medium sized organisations, so we will keep working on the ease of use of the components, while at the same time, allowing designers to style them to match their organisations brand.
+It seems we are consistently popular with small to medium-sized organizations, so we will keep working on the ease of use of the components, while at the same time, allowing designers to style them to match their organizations brand.
 
 ### 10. How long have you been developing with JavaScript
 
@@ -251,29 +279,32 @@ section.
 
 <img src="/static/blog/2020-survey/19.png" style="width: 728px; margin-top: 32px; margin-bottom: 24px;" alt="Pie chart: 53.84%	Material-UI styles (JSS), 20.41%	Styled components, 13.01%	Good plain CSS, 8.31%	CSS Modules, 1.96%	Emotion, 0.59%	scss, 0.59%	sass, 0.09%	less, 1.19%	Other" />
 
-The trends seems to be similar to the one from the last year's survey, so we will push with better support for styled components.
+The trend seems to be similar to the one from the last year's survey, so we will push with better support for styled components.
 
 ### 20. Has your organization ever paid for UI components?
 
 <img src="/static/blog/2020-survey/20.png" style="width: 553px; margin-top: 32px;" alt="Pie chart: 89.90%	No, 10.10% Yes" />
+
+
 
 ### 21. What type system are you using?
 
 <img src="/static/blog/2020-survey/21.png" style="width: 614px; margin-top: 32px;" alt="Bar chart: 54.08%	None
 30.87%	TypeScript 3.8, 7.31%	TypeScript 3.7, 1.90%	Flow, 1.55%	TypeScript 3.6, 0.98%	TypeScript 3.5, 3.31%	Other" />
 
+Almost half of the community is using TypeScript. Next year, it might even get more popular than JavaScript.
+
 ## Conclusion
 
 This data is **incredibly valuable** for our team.
 Thank you again for participating!
 We want to work on the problems that resonate the most with our users.
-[It's clear](#4-how-can-we-improve-material-ui-for-you) that we should:
+[It's clear](#5-how-can-we-improve-material-ui-for-you) that we should:
 
-1. Support more components
-2. Improve the customization
-3. Improve the documentation
-4. Improve the static typings
-5. Reduce the overhead of the library
+1. Increase the front-end user base by providing more flexibility on the components, unstyled components (pure hooks?).
+1. Increase the designer user base by making it easier to customize and implement custom themes with Material-UI. Maybe provide a theme builder.
+1. Increase the full-stack user base by ironing the details out, providing a second theme, updates to match Material Design, providing more simple components and features (e.g. dropzone, carousel), providing a better DX (they are good ideas to apply from other UI libraries to Material-UI v5).
+1. Increase the enterprise user base by improving on the paid advanced version of the components (e.g. complex data grid, data range picker, tree view drag & drop, virtualization, etc).
 
 **We will update [our ROADMAP](/discover-more/roadmap/) in the coming days**.
 We will run a similar survey next year to keep track of our progress.
