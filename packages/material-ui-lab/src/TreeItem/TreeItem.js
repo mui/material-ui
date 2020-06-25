@@ -24,7 +24,7 @@ export const styles = (theme) => ({
   },
   /* Styles applied to the tree node content. */
   content: {
-    padding: '0px 8px',
+    padding: '0 8px',
     width: '100%',
     display: 'flex',
     alignItems: 'center',
