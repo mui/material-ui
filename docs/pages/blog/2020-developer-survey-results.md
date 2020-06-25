@@ -38,7 +38,7 @@ As previous year, we again calculated the [Net Promoter Score](https://en.wikipe
 
 <p class="blog-description">This word cloud was generated with <a href="https://wordclouds.com">wordclouds.com</a>.</p>
 
-Developers are again in the center of our universe :) (And "people" and "teams" in general, of course!) This is understandable, given the [job role demographic](#8-which-of-the-following-best-describes-your-current-job-role)
+Developers are again at the center of our universe 🙂 (And "people" and "teams" in general, of course!) This is understandable, given the [job role demographic](#8-which-of-the-following-best-describes-your-current-job-role)
 of the majority of respondents. We will push hard on making the experience for you even better over the next year.
 
 ### 4. What is the main benefit you receive from Material-UI?
