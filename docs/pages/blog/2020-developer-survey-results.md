@@ -199,7 +199,7 @@ This was expected :)
 
 <img  src="/static/blog/2020-survey/9.png" style="width: 589px; margin-top: 32px; margin-bottom: 8px;" alt="Bar chart: 12.30%	Hobby / side project, 13.40%	Self-employed, 35.60%	2-5 people, 16.10%	6-10, 10.30%	11-20, 5.10%	21-50, 2.50%	51-100, 4.60%	100+" />
 
-Seems like we are continiosly most popular with small to medium sized organisations, so we will keep working on the ease of use of the components, while at the same time, allowing designers to give the appearence of their organization into each one of them.
+It seems we are consistently popular with small to medium sized organisations, so we will keep working on the ease of use of the components, while at the same time, allowing designers to style them to match their organisations brand.
 
 ### 10. How long have you been developing with JavaScript
 
