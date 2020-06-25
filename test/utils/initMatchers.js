@@ -1,6 +1,5 @@
 import chai from 'chai';
 import chaiDom from 'chai-dom';
-import chalk from 'chalk';
 import { isInaccessible } from '@testing-library/dom';
 import { prettyDOM } from '@testing-library/react/pure';
 import { computeAccessibleName } from 'dom-accessibility-api';
@@ -221,9 +220,9 @@ chai.use((chaiAPI, utils) => {
           const shouldHaveWarned = utils.flag(this, 'negate') === true;
 
           if (unexpectedMessages.length > 0) {
-            const unexpectedMessageRecordedMessage = `Recorded unexpected ${chalk.bold(
-              `console.${methodName}`,
-            )} calls: ${formatMessages(unexpectedMessages)}`;
+            const unexpectedMessageRecordedMessage = `Recorded unexpected console.${methodName} calls: ${formatMessages(
+              unexpectedMessages,
+            )}`;
             // chai will duplicate the stack frames from the unexpected calls in their assertion error
             // it's not ideal but the test failure is located the second to last stack frame
             // and the origin of the call is the second stackframe in the stack
@@ -239,9 +238,9 @@ chai.use((chaiAPI, utils) => {
             this.assert(
               remainingMessages.length === 0,
               `Could not match the following console.${methodName} calls. ` +
-                `Make sure previous actions didn't call console.${methodName} by wrapping them in ${chalk.bold(
-                  `expect(() => {}).not.${matcherName}()`,
-                )}: ${formatMessages(remainingMessages)}`,
+                `Make sure previous actions didn't call console.${methodName} by wrapping them in expect(() => {}).not.${matcherName}(): ${formatMessages(
+                  remainingMessages,
+                )}`,
               `Impossible state reached in \`expect().${matcherName}()\`. ` +
                 `This is a bug in the matcher.`,
             );
