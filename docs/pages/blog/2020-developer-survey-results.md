@@ -49,7 +49,7 @@ The responses to this question are a very clear indicator to us about what we ne
 
 ### 5. How can we improve Material-UI for you?
 
-As the answers to this questions were pretty different, we grouped them into different categories and counted the different number of times the concern was mention. You can see all of them sorted by descending order, where the most important concerns are listed first:
+As the answers to this questions were pretty different, we grouped them into different categories and counted the different number of times the concern was mentioned. You can see all of them sorted in descending order:
 
 <style>th { text-align: left; background-color: #f2f2f2; }</style>
 
