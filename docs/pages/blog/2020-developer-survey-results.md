@@ -30,7 +30,7 @@ The number who would not be disappointed has moved down from 6.5% to 5.4%, which
 <img src="/static/blog/2020-survey/2b.png" style="width: 466px; margin-top: 24px; margin-bottom: 32px;" alt="Pie chart: 73.3% Very disappointed, 21.3% somewhat disappointed, 5.4% not disappointed." />
 
 As previous year, we again calculated the [Net Promoter Score](https://en.wikipedia.org/wiki/Net_Promoter)
-(promoters less detractors). This year it is again a pretty high number 61.54%! (As the values for the NPS range are between -100 and +100, a “positive” score or NPS is considered “good”, +50 is “Excellent”, and above 70 is considered “world class”).
+(promoters less detractors). This year it is again a pretty high number 61.54%! (As the values for NPS range between -100 and +100, a “positive” score is considered “good”, greater than 50 is “excellent”, and above 70 is considered “world class”).
 
 ### 3. Who do you think would most benefit from Material-UI?
 
