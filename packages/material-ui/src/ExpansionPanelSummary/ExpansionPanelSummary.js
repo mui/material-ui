@@ -65,6 +65,12 @@ export const styles = (theme) => {
   };
 };
 
+/**
+ * ⚠️ The ExpansionPanelSummary component was renamed to AccordionSummary to match the naming convention of the community.
+ *
+ * You should use `import { AccordionSummary } from '@material-ui/core'`
+ * or `import AccordionSummary from '@material-ui/core/AccordionSummary'`.
+ */
 const ExpansionPanelSummary = React.forwardRef(function ExpansionPanelSummary(props, ref) {
   if (process.env.NODE_ENV !== 'production') {
     console.error(
@@ -76,7 +82,6 @@ const ExpansionPanelSummary = React.forwardRef(function ExpansionPanelSummary(pr
       ].join('\n'),
     );
   }
-
   const {
     children,
     classes,
@@ -192,7 +197,8 @@ ExpansionPanelSummary.propTypes = {
    */
   onClick: PropTypes.func,
   /**
-   * @ignore
+   * Callback fired when the component is focused with a keyboard.
+   * We trigger a `onFocus` callback too.
    */
   onFocusVisible: PropTypes.func,
 };

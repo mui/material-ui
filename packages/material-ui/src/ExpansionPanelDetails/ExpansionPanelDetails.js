@@ -11,6 +11,12 @@ export const styles = (theme) => ({
   },
 });
 
+/**
+ * ⚠️ The ExpansionPanelDetails component was renamed to AccordionDetails to match the naming convention of the community.
+ *
+ * You should use `import { AccordionDetails } from '@material-ui/core'`
+ * or `import AccordionDetails from '@material-ui/core/AccordionDetails'`.
+ */
 const ExpansionPanelDetails = React.forwardRef(function ExpansionPanelDetails(props, ref) {
   if (process.env.NODE_ENV !== 'production') {
     console.error(
@@ -18,11 +24,10 @@ const ExpansionPanelDetails = React.forwardRef(function ExpansionPanelDetails(pr
         'Material-UI: the ExpansionPanelDetails component was renamed to AccordionDetails to match the naming convention of the community.',
         '',
         "You should use `import { AccordionDetails } from '@material-ui/core'`",
-        "or `import AccordionDetails from '@material-ui/core/AccordionDetails'`",
+        "or `import AccordionDetails from '@material-ui/core/AccordionActions'`",
       ].join('\n'),
     );
   }
-
   const { classes, className, ...other } = props;
 
   return <div className={clsx(classes.root, className)} ref={ref} {...other} />;

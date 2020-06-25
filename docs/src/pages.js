@@ -67,7 +67,7 @@ const pages = [
           { pathname: '/components/paper' },
           { pathname: '/components/cards' },
           { pathname: '/components/accordion' },
-          { pathname: '/components/expansion-panel', title: 'Expansion Panel' },
+          { pathname: '/components/expansion-panels' },
         ],
       },
       {

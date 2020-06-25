@@ -18,7 +18,10 @@ import { ExpansionPanelSummary } from '@material-ui/core';
 
 You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).
 
+⚠️ The ExpansionPanelSummary component was renamed to AccordionSummary to match the naming convention of the community.
 
+You should use `import { AccordionSummary } from '@material-ui/core'`
+or `import AccordionSummary from '@material-ui/core/AccordionSummary'`.
 
 ## Component name
 
@@ -32,6 +35,7 @@ The `MuiExpansionPanelSummary` name can be used for providing [default props](/c
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">expandIcon</span> | <span class="prop-type">node</span> |  | The icon to display as the expand indicator. |
 | <span class="prop-name">IconButtonProps</span> | <span class="prop-type">object</span> |  | Props applied to the `IconButton` element wrapping the expand icon. |
+| <span class="prop-name">onFocusVisible</span> | <span class="prop-type">func</span> |  | Callback fired when the component is focused with a keyboard. We trigger a `onFocus` callback too. |
 
 The `ref` is forwarded to the root element.
 

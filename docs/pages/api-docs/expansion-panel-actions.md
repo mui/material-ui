@@ -18,7 +18,10 @@ import { ExpansionPanelActions } from '@material-ui/core';
 
 You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).
 
+⚠️ The ExpansionPanelActions component was renamed to AccordionActions to match the naming convention of the community.
 
+You should use `import { AccordionActions } from '@material-ui/core'`
+or `import AccordionActions from '@material-ui/core/AccordionActions'`.
 
 ## Component name
 

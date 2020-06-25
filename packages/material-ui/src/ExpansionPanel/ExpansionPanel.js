@@ -80,6 +80,12 @@ export const styles = (theme) => {
   };
 };
 
+/**
+ * ⚠️ The ExpansionPanel component was renamed to Accordion to match the naming convention of the community.
+ *
+ * You should use `import { Accordion } from '@material-ui/core'`
+ * or `import Accordion from '@material-ui/core/Accordion'`.
+ */
 const ExpansionPanel = React.forwardRef(function ExpansionPanel(props, ref) {
   if (process.env.NODE_ENV !== 'production') {
     console.error(
