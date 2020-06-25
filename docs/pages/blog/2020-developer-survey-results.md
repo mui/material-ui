@@ -183,7 +183,7 @@ As the answers to these questions were pretty different, we grouped them into di
 
 There are a couple of noticeable differences compared to last year.
 Some can be explained by our work, others by an evolution of the ecosystem.
-Each item is prefixed by the multiplicator factor of pain point between 2019 and 2020.
+Each item is prefixed by the multiplication factor of the pain point for 2020 relative to 2019.
 
 Decreasing pain:
 - x0: Slider. No requests. The requirements are mostly met, especially with the introduction of the range feature.
