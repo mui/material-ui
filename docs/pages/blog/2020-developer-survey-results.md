@@ -193,7 +193,7 @@ Decreasing pain:
 - x0.3: Accessibility. We did a lot for it this year. One of our best leverages has been GitHub's issue opened by a11y experts, often coming from large companies using Material-UI at scale.
 - x0.4: Material design. We didn't do much for it this year, at least not as much as we could have. Maybe the reduction is because fewer people care? It seems that we start to resonate more with developers building custom design systems.
 - x0.4: TypeScript. Our effort is paying off with the migration of all the demos to TypeScript and the migration of all the props to IntelliSense.
-- x0.5: Date picker. We did a lot for it this year. We probably still need the range feature and the integration in the main repository (docs migration, etc.) for consistency to get is much lower, to the level of the "Slider".
+- x0.5: Date picker. We did a lot for it this year. We probably still need the range feature, and to move it into the main repository (docs migration, etc.) for consistency.
 - x0.7: Performance. We didn't do much this year, maybe more developers are used to leverage React effectively? Virtualization updates pruning, etc.
 
 Growing pain:
