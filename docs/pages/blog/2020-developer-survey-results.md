@@ -45,7 +45,7 @@ of the majority of respondents. We will push hard on making the experience for y
 
 <img src="/static/blog/2020-survey/4.jpg" style="width: 512px; margin-top: 32px; margin-bottom: 32px; " alt="Word cloud of the main benefit of Material-UI" />
 
-These responses on this question are very clear indicator to us about what we need to continue to do more. Some of the most repetating points were the palette of components, the ease of use, the documentation, as well as the design. We will for sure continue to work on all of these.
+The responses to this question are a very clear indicator to us about what we need to continue to do more of. Some of the most common points were the range of components, ease of use, documentation quality, as well as the design. We will of course continue to work on all of these.
 
 ### 5. How can we improve Material-UI for you?
 
