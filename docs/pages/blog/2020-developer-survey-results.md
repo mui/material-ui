@@ -219,7 +219,7 @@ We can see the normal distribution of developer experience here, where most have
 
 <img src="/static/blog/2020-survey/13.png" style="width: 667px; margin-top: 32px; margin-bottom: 8px;" alt="Bar chart: 47.08%	Bootstrap, 16.04%	Custom system, 13.68%	Started with Material-UI, 6.67%	Angular Material, 4.44%	Semantic-UI, 3.19%	Ant Design, 8.89%	Other" />
 
-Similar to last year, it seems that still most of the responders were previously using Bootstrap. We can see that also the custom solutions were replaced with Material-UI as well as some other frameworks.
+Similar to last year, it seems that most respondents were previously using Bootstrap. We can see also that custom solutions, as well as some other frameworks, were replaced with Material-UI.
 
 ### 14. How many Material-UI based projects have you built?
 
