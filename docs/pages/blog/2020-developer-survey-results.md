@@ -186,7 +186,7 @@ Some can be explained by our work, others by an evolution of the ecosystem.
 Each item is prefixed by the multiplicator factor of pain point between 2019 and 2020.
 
 Decreasing pain:
-- x0: Slider. No requests, the problem is almost solved since the introduction of the range feature.
+- x0: Slider. No requests. The requirements are mostly met, especially with the introduction of the range feature.
 - x0.1: Strict mode. We did a lot for it this year. However, since Create React App has made this mode a default, we have seen a lot more requests for it.
 - x0.1: Autocomplete. We did a lot for it this year. The component will be moved to the core in v5.
 - x0.2: Fewer breaking changes. Only releasing minor versions under v4 for over a year helps a lot. However, we still need to be careful with CSS changes.
