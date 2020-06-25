@@ -119,8 +119,20 @@ describe('makeStyles', () => {
       }).to.throw();
       expect(consoleErrorMock.callCount()).to.equal(4);
       expect(consoleErrorMock.messages()[1]).to.include(
-        'Material-UI: The `styles` argument provided is invalid',
+        'Material-UI: The `styles` argument provided is invalid.\nYou are providing a function without a theme in the context.',
       );
+    });
+
+    it('should warn but not throw if providing an invalid styles type', () => {
+      const mountWithProps2 = createGetClasses(undefined);
+
+      expect(consoleErrorMock.messages()).to.have.length(1);
+      expect(consoleErrorMock.messages()[0]).to.include(
+        'Material-UI: The `styles` argument provided is invalid.\nYou need to provide a function generating the styles or a styles object.',
+      );
+      expect(() => {
+        mountWithProps2({});
+      }).not.to.throw();
     });
   });
 
