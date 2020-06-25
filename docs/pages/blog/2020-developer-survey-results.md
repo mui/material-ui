@@ -191,7 +191,7 @@ Decreasing pain:
 - x0.1: Autocomplete. We added a new component, and have resolved a large number of issues opened since. This will be moved from lab to the core in v5.
 - x0.2: Fewer breaking changes. Only releasing minor versions under v4 for over a year helps a lot. However, we still need to be careful with CSS changes.
 - x0.3: Accessibility. We did a lot for it this year. One of our best leverages has been GitHub's issue opened by a11y experts, often coming from large companies using Material-UI at scale.
-- x0.4: Material design. We didn't do much for it this year, at least not as much as we could have. Maybe fewer people care? It seems that we resonate better with developers going for custom design systems.
+- x0.4: Material design. We didn't do much for it this year, at least not as much as we could have. Maybe the reduction is because fewer people care? It seems that we start to resonate more with developers building custom design systems.
 - x0.4: TypeScript. Our effort is paying off with the migration of all the demos to TypeScript and the migration of all the props to IntelliSense.
 - x0.5: Date picker. We did a lot for it this year. We probably still need the range feature and the integration in the main repository (docs migration, etc.) for consistency to get is much lower, to the level of the "Slider".
 - x0.7: Performance. We didn't do much this year, maybe more developers are used to leverage React effectively? Virtualization updates pruning, etc.
