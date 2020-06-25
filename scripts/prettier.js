@@ -9,11 +9,12 @@ const prettier = require('prettier');
 const fs = require('fs');
 const path = require('path');
 const yargs = require('yargs');
+const { LANGUAGES } = require('docs/src/modules/constants');
 const listChangedFiles = require('./listChangedFiles');
 
 function isTranslatedDocument(filename) {
   // markdown files from crowdin end with a 2 letter locale
-  return /-\w{2}\.md$/.test(filename);
+  return new RegExp(String.raw`-(${LANGUAGES.join('|')})\.md$`).test(filename);
 }
 
 function runPrettier(options) {

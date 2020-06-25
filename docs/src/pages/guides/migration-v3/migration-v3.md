@@ -5,8 +5,8 @@
 Looking for the v3 docs? [Find them here](https://material-ui.com/versions/).
 
 > This document is a work in progress.
-Have you upgraded your site and run into something that's not covered here?
-[Add your changes on GitHub](https://github.com/mui-org/material-ui/blob/master/docs/src/pages/guides/migration-v3/migration-v3.md).
+> Have you upgraded your site and run into something that's not covered here?
+> [Add your changes on GitHub](https://github.com/mui-org/material-ui/blob/master/docs/src/pages/guides/migration-v3/migration-v3.md).
 
 ## Introduction
 
@@ -16,8 +16,8 @@ We'll do our best to keep things easy to follow, and as sequential as possible s
 
 ## Why you should migrate
 
-This documentation page covers the *how* of migrating from v3 to v4.
-The *why* is covered in the [release blog post on Medium](https://medium.com/material-ui/material-ui-v4-is-out-4b7587d1e701).
+This documentation page covers the _how_ of migrating from v3 to v4.
+The _why_ is covered in the [release blog post on Medium](https://medium.com/material-ui/material-ui-v4-is-out-4b7587d1e701).
 
 ## Updating your dependencies
 
@@ -132,6 +132,7 @@ yarn add @material-ui/styles
 
   console.log({ background });
   ```
+
 - You can safely remove the next variant from the theme creation:
 
   ```diff
@@ -151,7 +152,7 @@ yarn add @material-ui/styles
   }
   ```
 
-  *Tip: you can provide more than 1 argument: `theme.spacing(1, 2) // = '8px 16px'`*.
+  _Tip: you can provide more than 1 argument: `theme.spacing(1, 2) // = '8px 16px'`_.
 
   You can use [the migration helper](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod/README.md#theme-spacing-api) on your project to make this smoother.
 
@@ -167,7 +168,9 @@ yarn add @material-ui/styles
   -  spacing: PropTypes.oneOf([0, 8, 16, 24, 32, 40]),
   +  spacing: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
   ```
+
   Going forward, you can use the theme to implement [a custom Grid spacing transformation function](https://material-ui.com/system/spacing/#transformation).
+
 - [Container] Moved from `@material-ui/lab` to `@material-ui/core`.
 
   ```diff
@@ -180,7 +183,7 @@ yarn add @material-ui/styles
 #### `value` type
 
 Normalized `value` prop type for input components to use `unknown`. This affects
-`InputBase`, `NativeSelect`, `OutlinedInput`, `Radio`, `RadioGroup`, `Select`, `SelectInput`, `Switch`, `TextArea`,  and `TextField`.
+`InputBase`, `NativeSelect`, `OutlinedInput`, `Radio`, `RadioGroup`, `Select`, `SelectInput`, `Switch`, `TextArea`, and `TextField`.
 
 ```diff
 function MySelect({ children }) {
@@ -283,6 +286,7 @@ This change is explained in more detail in the [TypeScript guide](/guides/typesc
   the migration strategy.
 
   This also applies to `Dialog` and `Popover`.
+
 - [Modal] Remove the classes customization API for the Modal component (-74% bundle size reduction when used standalone).
 - [Modal] event.defaultPrevented is now ignored.
   The new logic closes the Modal even if `event.preventDefault()` is called on the key down escape event.
@@ -333,7 +337,6 @@ This change is explained in more detail in the [TypeScript guide](/guides/typesc
   +track
   ```
 
-
 ### Snackbar
 
 - [Snackbar] Match the new specification.
@@ -344,19 +347,18 @@ This change is explained in more detail in the [TypeScript guide](/guides/typesc
 ### SvgIcon
 
 - [SvgIcon] Rename nativeColor -> htmlColor.
-  React solved the same problem with the `for` HTML attribute, they have decided to call the prop  `htmlFor`. This change follows the same reasoning.
+  React solved the same problem with the `for` HTML attribute, they have decided to call the prop `htmlFor`. This change follows the same reasoning.
 
   ```diff
   -<AddIcon nativeColor="#fff" />
   +<AddIcon htmlColor="#fff" />
   ```
 
-
 ### Tabs
 
 - [Tab] Remove the `labelContainer`, `label` and `labelWrapped` class keys for simplicity.
-This has allowed us to remove 2 intermediary DOM elements.
-You should be able to move the custom styles to the `root` class key.
+  This has allowed us to remove 2 intermediary DOM elements.
+  You should be able to move the custom styles to the `root` class key.
 
   ![A simpler tab item DOM structure](https://user-images.githubusercontent.com/3165635/53287870-53a35500-3782-11e9-9431-2d1a14a41be0.png)
 
@@ -375,6 +377,7 @@ You should be able to move the custom styles to the `root` class key.
   -<TableCell numeric>{row.calories}</TableCell>
   +<TableCell align="right">{row.calories}</TableCell>
   ```
+
 - [TableRow] Remove the fixed height CSS property.
   The cell height is computed by the browser using the padding and line-height.
 - [TableCell] Move the `dense` mode to a different property:
@@ -383,6 +386,7 @@ You should be able to move the custom styles to the `root` class key.
   -<TableCell padding="dense" />
   +<TableCell size="small" />
   ```
+
 - [TablePagination] The component no longer tries to fix invalid (`page`, `count`, `rowsPerPage`) property combinations. It raises a warning instead.
 
 ### TextField
@@ -398,13 +402,16 @@ You should be able to move the custom styles to the `root` class key.
     Foo
   </InputLabel>
   ```
+
 - [InputBase] Change the default box sizing model.
   It uses the following CSS now:
 
   ```css
   box-sizing: border-box;
   ```
+
   This solves issues with the `fullWidth` prop.
+
 - [InputBase] Remove the `inputType` class from `InputBase`.
 
 ### Tooltip
@@ -433,6 +440,7 @@ You should be able to move the custom styles to the `root` class key.
   -<Typography headlineMapping={headlineMapping}>
   +<Typography variantMapping={variantMapping}>
   ```
+
 - [Typography] Change the default variant from `body2` to `body1`.
   A font size of 16px is a better default than 14px.
   Bootstrap, material.io, and even the documentation use 16px as a default font size.
@@ -441,12 +449,11 @@ You should be able to move the custom styles to the `root` class key.
 - [Typography] Remove the default color from the typography variants.
   The color should inherit most of the time. It's the default behavior of the web.
 - [Typography] Rename `color="default"` to `color="initial"` following the logic of [this thread](https://github.com/mui-org/material-ui/issues/13028).
-  The usage of *default* should be avoided, it lacks semantic.
+  The usage of _default_ should be avoided, it lacks semantic.
 
 ### Node
 
 - [Drop node 6 support](https://github.com/nodejs/Release/blob/eb91c94681ea968a69bf4a4fe85c656ed44263b3/README.md#release-schedule), you should upgrade to node 8.
-
 
 ### UMD
 
