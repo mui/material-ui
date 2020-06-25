@@ -77,3 +77,8 @@ affecting performance and bandwidth utilization.
 ⚠️ The UMD links are using the `latest` tag to point to the latest version of the library.
 This pointer is **unstable**, it shifts as we release new versions.
 You should consider pointing to a specific version, such as [v4.4.0](https://unpkg.com/@material-ui/core@4.4.0/umd/material-ui.development.js).
+
+## Automatic config tool
+
+You can set up a new React project with Material-UI preconfigured at [createapp.dev](https://createapp.dev)
+
