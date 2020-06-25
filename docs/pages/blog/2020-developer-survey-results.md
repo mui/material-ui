@@ -231,7 +231,7 @@ Similar to last year, it seems that most respondents were previously using Boots
 
 <img src="/static/blog/2020-survey/15.png" style="width: 716px; margin-top: 32px; margin-bottom: 8px;" alt="Bar chart: 23.43%	Enterprise application, 20.31%	Dashboard admin app, 7.40%	A design system, 7.40%	A set of UI components, 7.37%	playing with tech, 7.34%	A prototype, 6.40%	Landing page, 5.41%	e-commerce site, 4.80%	CMS, 3.59%	Portfolio or resume, 1.88%	Blog, 4.69%	Other" />
 
-Enterprises and dashboards are at the top of the heap, and yes, we know that for many of you, the system you are building are internal, but if some of you have an system that you would like to share as part of [the showcase](/discover-more/showcase/), let us know by opening a PR. Also for those of you building UI components, we'd be happy to give you a shout out in the [related projects](/discover-more/related-projects/)
+Enterprises and dashboards are at the top of the heap, and yes, we know that for many of you, the systems you are building are internal, but if you have something that you would like to share as part of [the showcase](/discover-more/showcase/), let us know by opening a PR. Also for those of you building UI components, we'd be happy to give you a shout out in the [related projects](/discover-more/related-projects/)
 section.
 
 ### 16. What “delivery mechanism” are you using?
