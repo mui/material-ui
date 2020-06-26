@@ -11,6 +11,8 @@ export const styles = (theme) => ({
   },
 });
 
+let warnedOnce = false;
+
 /**
  * ⚠️ The ExpansionPanelDetails component was renamed to AccordionDetails to match the naming convention of the community.
  *
@@ -19,14 +21,17 @@ export const styles = (theme) => ({
  */
 const ExpansionPanelDetails = React.forwardRef(function ExpansionPanelDetails(props, ref) {
   if (process.env.NODE_ENV !== 'production') {
-    console.error(
-      [
-        'Material-UI: the ExpansionPanelDetails component was renamed to AccordionDetails to match the naming convention of the community.',
-        '',
-        "You should use `import { AccordionDetails } from '@material-ui/core'`",
-        "or `import AccordionDetails from '@material-ui/core/AccordionActions'`",
-      ].join('\n'),
-    );
+    if (!warnedOnce) {
+      warnedOnce = true;
+      console.error(
+        [
+          'Material-UI: the ExpansionPanelDetails component was renamed to AccordionDetails to match the naming convention of the community.',
+          '',
+          "You should use `import { AccordionDetails } from '@material-ui/core'`",
+          "or `import AccordionDetails from '@material-ui/core/AccordionActions'`",
+        ].join('\n'),
+      );
+    }
   }
   const { classes, className, ...other } = props;
 

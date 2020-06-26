@@ -19,6 +19,8 @@ export const styles = {
   },
 };
 
+let warnedOnce = false;
+
 /**
  * ⚠️ The ExpansionPanelActions component was renamed to AccordionActions to match the naming convention of the community.
  *
@@ -27,14 +29,17 @@ export const styles = {
  */
 const ExpansionPanelActions = React.forwardRef(function ExpansionPanelActions(props, ref) {
   if (process.env.NODE_ENV !== 'production') {
-    console.error(
-      [
-        'Material-UI: the ExpansionPanelActions component was renamed to AccordionActions to match the naming convention of the community.',
-        '',
-        "You should use `import { AccordionActions } from '@material-ui/core'`",
-        "or `import AccordionActions from '@material-ui/core/AccordionActions'`",
-      ].join('\n'),
-    );
+    if (!warnedOnce) {
+      warnedOnce = true;
+      console.error(
+        [
+          'Material-UI: the ExpansionPanelActions component was renamed to AccordionActions to match the naming convention of the community.',
+          '',
+          "You should use `import { AccordionActions } from '@material-ui/core'`",
+          "or `import AccordionActions from '@material-ui/core/AccordionActions'`",
+        ].join('\n'),
+      );
+    }
   }
   const { classes, className, disableSpacing = false, ...other } = props;
 

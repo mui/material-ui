@@ -80,6 +80,8 @@ export const styles = (theme) => {
   };
 };
 
+let warnedOnce = false;
+
 /**
  * ⚠️ The ExpansionPanel component was renamed to Accordion to match the naming convention of the community.
  *
@@ -88,14 +90,17 @@ export const styles = (theme) => {
  */
 const ExpansionPanel = React.forwardRef(function ExpansionPanel(props, ref) {
   if (process.env.NODE_ENV !== 'production') {
-    console.error(
-      [
-        'Material-UI: the ExpansionPanel component was renamed to Accordion to match the naming convention of the community.',
-        '',
-        "You should use `import { Accordion } from '@material-ui/core'`",
-        "or `import Accordion from '@material-ui/core/Accordion'`",
-      ].join('\n'),
-    );
+    if (!warnedOnce) {
+      warnedOnce = true;
+      console.error(
+        [
+          'Material-UI: the ExpansionPanel component was renamed to Accordion to match the naming convention of the community.',
+          '',
+          "You should use `import { Accordion } from '@material-ui/core'`",
+          "or `import Accordion from '@material-ui/core/Accordion'`",
+        ].join('\n'),
+      );
+    }
   }
 
   const {
