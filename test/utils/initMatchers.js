@@ -190,7 +190,7 @@ chai.use((chaiAPI, utils) => {
           if (expectedMessage === undefined) {
             message = `Expected no more error messages but got:\n"${actualMessage}"`;
           } else if (!actualMessage.includes(expectedMessage)) {
-            message = `Expected "${actualMessage}" to include "${expectedMessage}"`;
+            message = `Expected "${actualMessage}"\nto include\n"${expectedMessage}"`;
           }
 
           if (message !== null) {

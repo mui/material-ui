@@ -64,7 +64,9 @@ describe('custom matchers', () => {
       expect(caughtError).to.have.property('stack');
       expect(caughtError.stack).to.include(
         'Recorded unexpected console.error calls: \n\n' +
-          '  - Expected "expected Message" to include "expected message"\n' +
+          '  - Expected "expected Message"\n' +
+          'to include\n' +
+          '"expected message"\n' +
           '    at callback',
       );
       // check that the top stackframe points to this test
