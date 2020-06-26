@@ -27,5 +27,21 @@ declare namespace Chai {
      * checks if the element is focused
      */
     toHaveFocus(): void;
+    /**
+     * Matches calls to `console.warn` in the asserted callback.
+     *
+     * @example expect(() => render()).not.toWarnDev()
+     * @example expect(() => render()).toWarnDev('single message')
+     * @example expect(() => render()).toWarnDev(['first warning', 'then the second'])
+     */
+    toWarnDev(messages?: string | string[]): void;
+    /**
+     * Matches calls to `console.error` in the asserted callback.
+     *
+     * @example expect(() => render()).not.toErrorDev()
+     * @example expect(() => render()).toErrorDev('single message')
+     * @example expect(() => render()).toErrorDev(['first warning', 'then the second'])
+     */
+    toErrorDev(messages?: string | string[]): void;
   }
 }
