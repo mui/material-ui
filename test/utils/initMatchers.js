@@ -169,6 +169,16 @@ chai.use((chaiAPI, utils) => {
         const unexpectedMessages = [];
         let caughtError = null;
 
+        this.assert(
+          remainingMessages.length > 0,
+          `Expected to call console.${methodName} but didn't provide messages. ` +
+            `If you don't expect any messages prefer \`expect().not.${matcherName}();\`.`,
+          `Expected no call to console.${methodName} while also expecting messages.` +
+            'Expected no call to console.error but provided messages. ' +
+            "If you want to make sure a certain message isn't logged prefer the positive. " +
+            'By expecting certain messages you automatically expect that no other messages are logged',
+        );
+
         // eslint-disable-next-line no-console
         const originalMethod = console[methodName];
 
@@ -176,14 +186,27 @@ chai.use((chaiAPI, utils) => {
           const actualMessage = formatUtil(format, ...args);
           const expectedMessage = remainingMessages.shift();
 
+          let message = null;
           if (expectedMessage === undefined) {
-            unexpectedMessages.push(
-              new Error(`Expected no more error messages but got:\n"${actualMessage}"`),
-            );
+            message = `Expected no more error messages but got:\n"${actualMessage}"`;
           } else if (!actualMessage.includes(expectedMessage)) {
-            unexpectedMessages.push(
-              new Error(`Expected "${actualMessage}" to include "${expectedMessage}"`),
-            );
+            message = `Expected "${actualMessage}" to include "${expectedMessage}"`;
+          }
+
+          if (message !== null) {
+            const error = new Error(message);
+
+            const { stack: fullStack } = error;
+            const fullStacktrace = fullStack.replace(`Error: ${message}\n`, '').split('\n');
+
+            const usefulStacktrace = fullStacktrace
+              //
+              // first line points to this frame which is irrelevant for the tester
+              .slice(1);
+            const usefulStack = `${message}\n${usefulStacktrace.join('\n')}`;
+
+            error.stack = usefulStack;
+            unexpectedMessages.push(error);
           }
         };
         // eslint-disable-next-line no-console
@@ -215,10 +238,9 @@ chai.use((chaiAPI, utils) => {
             return `\n\n  - ${formattedMessages.join('\n\n-  ')}`;
           };
 
-          // in expect().not.toWarnDev() this statement is unreachable
-          // unless it was erroneously called with toWarnDev(messages)
-          const shouldHaveWarned = utils.flag(this, 'negate') === true;
+          const shouldHaveWarned = utils.flag(this, 'negate') !== true;
 
+          // unreachable from expect().not.toWarnDev(messages)
           if (unexpectedMessages.length > 0) {
             const unexpectedMessageRecordedMessage = `Recorded unexpected console.${methodName} calls: ${formatMessages(
               unexpectedMessages,
@@ -228,13 +250,13 @@ chai.use((chaiAPI, utils) => {
             // and the origin of the call is the second stackframe in the stack
             this.assert(
               // force chai to always trigger an assertion error
-              shouldHaveWarned,
+              !shouldHaveWarned,
               unexpectedMessageRecordedMessage,
               unexpectedMessageRecordedMessage,
             );
           }
 
-          if (!shouldHaveWarned) {
+          if (shouldHaveWarned) {
             this.assert(
               remainingMessages.length === 0,
               `Could not match the following console.${methodName} calls. ` +
@@ -243,14 +265,6 @@ chai.use((chaiAPI, utils) => {
                 )}`,
               `Impossible state reached in \`expect().${matcherName}()\`. ` +
                 `This is a bug in the matcher.`,
-            );
-          } else {
-            this.assert(
-              // when negated the assertion needs to be false
-              // i.e. we want remainingMessages to be empty but in order for chai to throw an AssertionError we need to negate that assertion
-              !(remainingMessages.length === 0),
-              `Impossible state reached in \`expect().not.${matcherName}()\`. This is a bug in the matcher.`,
-              `Negated ${matcherName} while also expecting messages. Prefer \`expect().not.${matcherName}();\``,
             );
           }
         }
