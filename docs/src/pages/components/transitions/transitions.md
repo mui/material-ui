@@ -6,7 +6,7 @@ githubLabel: 'component: Transition'
 
 # Transitions
 
-<p class="description">Transition helps make a UI expressive and easy to use.</p>
+<p class="description">Transitions help to make a UI expressive and easy to use.</p>
 
 Material-UI provides a number of transitions that can be used to introduce some basic
 [motion](https://material.io/design/motion/)
@@ -14,7 +14,7 @@ to your applications components.
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-To better support server rendering Material-UI provides a `style` prop to the children of some transition components (Fade, Grow, Zoom, Slide).
+To better support server rendering, Material-UI provides a `style` prop to the children of some transition components, (Fade, Grow, Zoom, Slide).
 The `style` prop must be applied to the DOM for the animation to work as expected.
 
 ```jsx
@@ -83,7 +83,7 @@ This example also demonstrates how to delay the enter transition.
 
 ## TransitionComponent prop
 
-The components accept a `TransitionComponent` prop to customize the default transitions.
+Some Material-UI components use these transitions internally. These accept a `TransitionComponent` prop to customize the default transition.
 You can use any of the above components or your own.
 It should respect the following conditions:
 
