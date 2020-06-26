@@ -79,7 +79,7 @@ Portal.propTypes = {
     PropTypes.func,
   ]),
   /**
-   * The `children` content will be inside the DOM hierarchy of the parent component.
+   * The `children` will be inside the DOM hierarchy of the parent component.
    */
   disablePortal: PropTypes.bool,
   /**
