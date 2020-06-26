@@ -72,7 +72,7 @@ const StyledTreeItem = withStyles((theme: Theme) =>
       },
     },
     group: {
-      marginLeft: 7,
+      marginLeft: 15,
       paddingLeft: 18,
       borderLeft: `1px dashed ${fade(theme.palette.text.primary, 0.4)}`,
     },
