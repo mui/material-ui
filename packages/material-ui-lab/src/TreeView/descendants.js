@@ -1,6 +1,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 
+/** Credit: https://github.com/reach/reach-ui/blob/86a046f54d53b6420e392b3fa56dd991d9d4e458/packages/descendants/README.md
+ *  Modified slightly to suit our purposes.
+ */
+
 // To replace with .findIndex() once we stop IE 11 support.
 function findIndex(array, comp) {
   for (let i = 0; i < array.length; i += 1) {

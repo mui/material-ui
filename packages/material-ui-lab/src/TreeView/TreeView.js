@@ -94,6 +94,8 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     [expanded],
   );
 
+  const isExpandable = React.useCallback((id) => nodeMap.current[id]?.expandable, []);
+
   const isSelected = React.useCallback(
     (id) => (Array.isArray(selected) ? selected.indexOf(id) !== -1 : selected === id),
     [selected],
@@ -295,7 +297,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
       newExpanded = expanded.filter((id) => id !== value);
       setTabbable((oldTabbable) => {
         const map = nodeMap.current[oldTabbable];
-        if (oldTabbable && map && map.parentId === value) {
+        if (oldTabbable && map?.parentId === value) {
           return value;
         }
         return oldTabbable;
@@ -315,7 +317,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     const map = nodeMap.current[id];
     const siblings = getChildren(map.parentId);
 
-    const diff = siblings.filter((child) => !isExpanded(child));
+    const diff = siblings.filter((child) => isExpandable(child) && !isExpanded(child));
 
     const newExpanded = expanded.concat(diff);
 
@@ -495,9 +497,9 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
    * Mapping Helpers
    */
   const registerNode = React.useCallback((node) => {
-    const { id, index, parentId } = node;
+    const { id, index, parentId, expandable } = node;
 
-    nodeMap.current[id] = { id, index, parentId };
+    nodeMap.current[id] = { id, index, parentId, expandable };
   }, []);
 
   const getNodesToRemove = React.useCallback((id) => {
@@ -555,7 +557,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
   React.useEffect(() => {
     setTabbable((oldTabbable) => {
       if (!oldTabbable) {
-        return descendants[0] ? descendants[0].id : null;
+        return descendants[0]?.id;
       }
 
       return oldTabbable;

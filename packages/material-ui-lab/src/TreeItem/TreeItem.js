@@ -343,11 +343,13 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
   };
 
   React.useEffect(() => {
+    // On the first render a node's index will be -1. We want to wait for the real index.
     if (registerNode && unregisterNode && index !== -1) {
       registerNode({
         id: nodeId,
         index,
         parentId,
+        expandable,
       });
 
       return () => {
@@ -356,7 +358,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     }
 
     return undefined;
-  }, [registerNode, unregisterNode, parentId, index, nodeId]);
+  }, [registerNode, unregisterNode, parentId, index, nodeId, expandable]);
 
   React.useEffect(() => {
     if (mapFirstChar && label) {

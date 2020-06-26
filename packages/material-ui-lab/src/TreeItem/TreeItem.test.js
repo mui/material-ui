@@ -837,8 +837,9 @@ describe('<TreeItem />', () => {
 
       describe('asterisk key interaction', () => {
         it('expands all siblings that are at the same level as the current node', () => {
+          const toggleSpy = spy();
           const { getByTestId } = render(
-            <TreeView>
+            <TreeView onNodeToggle={toggleSpy}>
               <TreeItem nodeId="one" label="one" data-testid="one">
                 <TreeItem nodeId="two" label="two" data-testid="two" />
               </TreeItem>
@@ -861,6 +862,8 @@ describe('<TreeItem />', () => {
           expect(getByTestId('five')).to.have.attribute('aria-expanded', 'false');
 
           fireEvent.keyDown(getByTestId('one'), { key: '*' });
+
+          expect(toggleSpy.args[0][1]).to.have.length(3);
 
           expect(getByTestId('one')).to.have.attribute('aria-expanded', 'true');
           expect(getByTestId('three')).to.have.attribute('aria-expanded', 'true');
@@ -989,27 +992,27 @@ describe('<TreeItem />', () => {
           fireEvent.keyDown(getByTestId('three'), { key: 'ArrowDown', shiftKey: true });
 
           expect(getByTestId('four')).toHaveFocus();
-          expect(container.querySelectorAll('[aria-selected=true]').length).to.equal(2);
+          expect(container.querySelectorAll('[aria-selected=true]')).to.have.length(2);
 
           fireEvent.keyDown(getByTestId('four'), { key: 'ArrowDown', shiftKey: true });
 
           expect(getByTestId('three')).to.have.attribute('aria-selected', 'true');
           expect(getByTestId('four')).to.have.attribute('aria-selected', 'true');
           expect(getByTestId('five')).to.have.attribute('aria-selected', 'true');
-          expect(container.querySelectorAll('[aria-selected=true]').length).to.equal(3);
+          expect(container.querySelectorAll('[aria-selected=true]')).to.have.length(3);
 
           fireEvent.keyDown(getByTestId('five'), { key: 'ArrowUp', shiftKey: true });
 
           expect(getByTestId('four')).toHaveFocus();
-          expect(container.querySelectorAll('[aria-selected=true]').length).to.equal(2);
+          expect(container.querySelectorAll('[aria-selected=true]')).to.have.length(2);
 
           fireEvent.keyDown(getByTestId('four'), { key: 'ArrowUp', shiftKey: true });
 
-          expect(container.querySelectorAll('[aria-selected=true]').length).to.equal(1);
+          expect(container.querySelectorAll('[aria-selected=true]')).to.have.length(1);
 
           fireEvent.keyDown(getByTestId('three'), { key: 'ArrowUp', shiftKey: true });
 
-          expect(container.querySelectorAll('[aria-selected=true]').length).to.equal(2);
+          expect(container.querySelectorAll('[aria-selected=true]')).to.have.length(2);
 
           fireEvent.keyDown(getByTestId('two'), { key: 'ArrowUp', shiftKey: true });
 
@@ -1018,7 +1021,7 @@ describe('<TreeItem />', () => {
           expect(getByTestId('three')).to.have.attribute('aria-selected', 'true');
           expect(getByTestId('four')).to.have.attribute('aria-selected', 'false');
           expect(getByTestId('five')).to.have.attribute('aria-selected', 'false');
-          expect(container.querySelectorAll('[aria-selected=true]').length).to.equal(3);
+          expect(container.querySelectorAll('[aria-selected=true]')).to.have.length(3);
         });
 
         specify('keyboard arrow does not select when selectionDisabled', () => {
@@ -1036,11 +1039,11 @@ describe('<TreeItem />', () => {
           fireEvent.keyDown(getByTestId('three'), { key: 'ArrowDown', shiftKey: true });
 
           expect(getByTestId('four')).toHaveFocus();
-          expect(container.querySelectorAll('[aria-selected=true]').length).to.equal(0);
+          expect(container.querySelectorAll('[aria-selected=true]')).to.have.length(0);
 
           fireEvent.keyDown(getByTestId('four'), { key: 'ArrowUp', shiftKey: true });
 
-          expect(container.querySelectorAll('[aria-selected=true]').length).to.equal(0);
+          expect(container.querySelectorAll('[aria-selected=true]')).to.have.length(0);
         });
 
         specify('keyboard arrow merge', () => {
@@ -1066,12 +1069,12 @@ describe('<TreeItem />', () => {
           fireEvent.keyDown(getByTestId('four'), { key: 'ArrowUp', shiftKey: true });
           fireEvent.keyDown(getByTestId('three'), { key: 'ArrowUp', shiftKey: true });
 
-          expect(container.querySelectorAll('[aria-selected=true]').length).to.equal(5);
+          expect(container.querySelectorAll('[aria-selected=true]')).to.have.length(5);
 
           fireEvent.keyDown(getByTestId('two'), { key: 'ArrowDown', shiftKey: true });
           fireEvent.keyDown(getByTestId('three'), { key: 'ArrowDown', shiftKey: true });
 
-          expect(container.querySelectorAll('[aria-selected=true]').length).to.equal(3);
+          expect(container.querySelectorAll('[aria-selected=true]')).to.have.length(3);
         });
 
         specify('keyboard space', () => {
@@ -1178,11 +1181,11 @@ describe('<TreeItem />', () => {
           getByTestId('five').focus();
           fireEvent.keyDown(getByTestId('five'), { key: 'End', shiftKey: true, ctrlKey: true });
 
-          expect(container.querySelectorAll('[aria-selected=true]').length).to.equal(0);
+          expect(container.querySelectorAll('[aria-selected=true]')).to.have.length(0);
 
           fireEvent.keyDown(getByTestId('nine'), { key: 'Home', shiftKey: true, ctrlKey: true });
 
-          expect(container.querySelectorAll('[aria-selected=true]').length).to.equal(0);
+          expect(container.querySelectorAll('[aria-selected=true]')).to.have.length(0);
         });
 
         specify('mouse', () => {
@@ -1236,7 +1239,7 @@ describe('<TreeItem />', () => {
 
           fireEvent.click(getByText('five'));
           fireEvent.click(getByText('nine'), { shiftKey: true });
-          expect(container.querySelectorAll('[aria-selected=true]').length).to.equal(0);
+          expect(container.querySelectorAll('[aria-selected=true]')).to.have.length(0);
         });
       });
 
@@ -1317,7 +1320,7 @@ describe('<TreeItem />', () => {
         getByTestId('one').focus();
         fireEvent.keyDown(getByTestId('one'), { key: 'a', ctrlKey: true });
 
-        expect(container.querySelectorAll('[aria-selected=true]').length).to.equal(5);
+        expect(container.querySelectorAll('[aria-selected=true]')).to.have.length(5);
       });
 
       specify('ctrl + a does not select all when disableSelection', () => {
@@ -1334,7 +1337,7 @@ describe('<TreeItem />', () => {
         getByTestId('one').focus();
         fireEvent.keyDown(getByTestId('one'), { key: 'a', ctrlKey: true });
 
-        expect(container.querySelectorAll('[aria-selected=true]').length).to.equal(0);
+        expect(container.querySelectorAll('[aria-selected=true]')).to.have.length(0);
       });
     });
   });
