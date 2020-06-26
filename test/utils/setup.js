@@ -1,4 +1,3 @@
-const chalk = require('chalk');
 const formatUtil = require('format-util');
 const createDOM = require('./createDOM');
 
@@ -37,14 +36,7 @@ function throwOnUnexpectedConsoleMessages(methodName, expectedMatcher) {
 
   mochaHooks.afterEach.push(function flushUnexpectedCalls() {
     const hadUnexpectedCalls = unexpectedCalls.length > 0;
-    const formattedCalls = unexpectedCalls.map(
-      ([stack, message]) =>
-        `${chalk.red(message)}\n` +
-        `${stack
-          .split('\n')
-          .map((line) => chalk.gray(line))
-          .join('\n')}`,
-    );
+    const formattedCalls = unexpectedCalls.map(([stack, message]) => `${message}\n${stack}`);
     unexpectedCalls.length = 0;
 
     // eslint-disable-next-line no-console
@@ -54,9 +46,9 @@ function throwOnUnexpectedConsoleMessages(methodName, expectedMatcher) {
     if (hadUnexpectedCalls) {
       const location = this.currentTest.file;
       const message =
-        `Expected test not to call ${chalk.bold(`console.${methodName}()`)}.\n\n` +
+        `Expected test not to call console.${methodName}()\n\n` +
         'If the warning is expected, test for it explicitly by ' +
-        `using the ${chalk.bold(`.${expectedMatcher}()`)} matcher.`;
+        `using the ${expectedMatcher}() matcher.`;
 
       throw new Error(`${location}: ${message}\n\n${formattedCalls.join('\n\n')}`);
     }
