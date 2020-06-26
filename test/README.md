@@ -40,6 +40,52 @@ Deciding where to put a test is (like naming things) a hard problem:
   a lot of styles consider adding a component (that doesn't require any interaction)
   to `test/regressions/tests/` e.g. `test/regressions/tests/List/ListWithSomeStyleProp`
 
+### Writing a test for console.error or console.warn
+
+If you add a new warning via `console.error` or `console.warn` you should add tests that expect this message.
+For tests that expect a call you can use our custom `toWarnDev` or `toErrorDev` matchers.
+The expected messages must be a subset of the actual messages and match the casing.
+The order of these message must match as well.
+
+Example:
+
+```jsx
+function SomeComponent({ variant }) {
+  if (process.env.NODE_ENV !== 'production') {
+    if (variant === 'unexpected') {
+      console.error("That variant doesn't make sense.");
+    }
+    console.error('The component is deprecated');
+  }
+
+  return <div />;
+}
+expect(() => {
+  render(<SomeComponent variant="unexpected" />);
+}).toErrorDev(["That variant doesn't make sense.", 'The component is deprecated']);
+```
+
+By default our test suite fails if any test recorded `console.error` or `console.warn` calls.
+However, in watchmode (`yarn test:unit --watch`) unexpected calls are ignored (see https://github.com/mochajs/mocha/issues/4347).
+You can explicitly expect no console calls for when you're adding a regression test.
+This makes the test more readable and properly fails the test in watchmode if the test had unexpected `console` calls.
+
+```js
+function SomeComponent({ variant }) {
+  if (process.env.NODE_ENV !== 'production') {
+    if (variant === 'unexpected') {
+      console.error("That variant doesn't make sense.");
+    }
+    console.error('The component is deprecated');
+  }
+
+  return <div />;
+}
+expect(() => {
+  render(<SomeComponent variant="valid" />);
+}).not.toErrorDev();
+```
+
 #### Visual regression tests
 
 We try to use as many demos from the documentation as possible;
