@@ -33,7 +33,7 @@ const ExpansionPanelActions = React.forwardRef(function ExpansionPanelActions(pr
       warnedOnce = true;
       console.error(
         [
-          'Material-UI: the ExpansionPanelActions component was renamed to AccordionActions to match the naming convention of the community.',
+          'Material-UI: the ExpansionPanelActions component was renamed to AccordionActions to use a more common naming convention.',
           '',
           "You should use `import { AccordionActions } from '@material-ui/core'`",
           "or `import AccordionActions from '@material-ui/core/AccordionActions'`",
