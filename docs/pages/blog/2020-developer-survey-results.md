@@ -182,7 +182,7 @@ As the answers to these questions were pretty different, we grouped them into di
 ### Comparison with last year
 
 There are a couple of noticeable differences compared to last year.
-Some can be explained by our work, others by an evolution of the ecosystem.
+Some can be explained by our work, others by the evolution of the ecosystem.
 Each item is prefixed by the multiplication factor of the pain point for 2020 relative to 2019.
 
 Decreasing pain:
