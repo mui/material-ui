@@ -145,13 +145,22 @@ function Unstable_TrapFocus(props) {
     };
   }, [disableAutoFocus, disableEnforceFocus, disableRestoreFocus, isEnabled, open]);
 
-  const onFocus = () => {
+  const onFocus = (event) => {
     syntheticEventRef.current = true;
-  }
 
-  const onBlur = () => {
+    const childrenPropsHandler = children.props['onFocus'];
+    if (childrenPropsHandler) {
+      childrenPropsHandler(event);
+    }
+  };
+  const onBlur = (event) => {
     syntheticEventRef.current = false;
-  }
+
+    const childrenPropsHandler = children.props['onBlur'];
+    if (childrenPropsHandler) {
+      childrenPropsHandler(event);
+    }
+  };
 
   return (
     <React.Fragment>
