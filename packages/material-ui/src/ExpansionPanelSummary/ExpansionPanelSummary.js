@@ -79,7 +79,7 @@ const ExpansionPanelSummary = React.forwardRef(function ExpansionPanelSummary(pr
       warnedOnce = true;
       console.error(
         [
-          'Material-UI: the ExpansionPanelSummary component was renamed to AccordionSummary to match the naming convention of the community.',
+          'Material-UI: the ExpansionPanelSummary component was renamed to AccordionSummary to use a more common naming convention.',
           '',
           "You should use `import { AccordionSummary } from '@material-ui/core'`",
           "or `import AccordionSummary from '@material-ui/core/AccordionSummary'`",
