@@ -24,6 +24,7 @@ function Unstable_TrapFocus(props) {
   const sentinelEnd = React.useRef(null);
   const nodeToRestore = React.useRef();
   const syntheticEventRef = React.useRef(false);
+  const syntheticEventRelatedTarget = React.useRef();
 
   const rootRef = React.useRef(null);
   // can be removed once we drop support for non ref forwarding class components
@@ -74,7 +75,7 @@ function Unstable_TrapFocus(props) {
       rootRef.current.focus();
     }
 
-    const contain = () => {
+    const contain = (e) => {
       if (
         !doc.hasFocus() ||
         disableEnforceFocus ||
@@ -86,13 +87,13 @@ function Unstable_TrapFocus(props) {
       }
 
       if (rootRef.current && !rootRef.current.contains(doc.activeElement)) {
-        // ideally we should reset the syntheticEventRef on this line, but the contain
-        // method is inside set interval, so we are resetting it onBlur... This, however 
-        // can bring issues, because between the onBlur and onFocus is invoked again
-        // in the child (if the focus is still somehwere inside the react tree) the 
-        // contain method may run again and false decide that the focus is no longer
-        // inside the child :(((
         const insideReactTree = syntheticEventRef.current;
+
+        // if the focus event is different than the last syntheticEvent from the children, reset
+        if(e && syntheticEventRelatedTarget.current !== e.relatedTarget) { 
+          console.log(e);
+          syntheticEventRef.current = false;
+        }
         if(insideReactTree) return;
 
         rootRef.current.focus();
@@ -154,17 +155,9 @@ function Unstable_TrapFocus(props) {
   const onFocus = (event) => {
     // detect focus inside children
     syntheticEventRef.current = true;
+    syntheticEventRelatedTarget.current = event.relatedTarget;
 
     const childrenPropsHandler = children.props['onFocus'];
-    if (childrenPropsHandler) {
-      childrenPropsHandler(event);
-    }
-  };
-  const onBlur = (event) => {
-    // detect blur inside children
-    syntheticEventRef.current = false;
-
-    const childrenPropsHandler = children.props['onBlur'];
     if (childrenPropsHandler) {
       childrenPropsHandler(event);
     }
@@ -173,7 +166,7 @@ function Unstable_TrapFocus(props) {
   return (
     <React.Fragment>
       <div tabIndex={0} ref={sentinelStart} data-test="sentinelStart" />
-      {React.cloneElement(children, { ref: handleRef, onFocus, onBlur })}
+      {React.cloneElement(children, { ref: handleRef, onFocus })}
       <div tabIndex={0} ref={sentinelEnd} data-test="sentinelEnd" />
     </React.Fragment>
   );
