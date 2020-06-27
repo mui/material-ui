@@ -279,7 +279,7 @@ section.
 
 <img src="/static/blog/2020-survey/19.png" style="width: 728px; margin-top: 32px; margin-bottom: 24px;" alt="Pie chart: 53.84%	Material-UI styles (JSS), 20.41%	Styled components, 13.01%	Good plain CSS, 8.31%	CSS Modules, 1.96%	Emotion, 0.59%	scss, 0.59%	sass, 0.09%	less, 1.19%	Other" />
 
-The trend seems to be similar to the one from the last year's survey, so we will push with better support for styled components.
+The response seems to be similar to the one from the last year's survey, so we will push with better support for styled components.
 
 ### 20. Has your organization ever paid for UI components?
 
