@@ -54,7 +54,7 @@ As the answers to these questions were pretty different, we grouped them into di
 <style>th { text-align: left; background-color: #f2f2f2; }</style>
 
 <table>
-  <tr><th>306</th><th> more components</th><tr>
+  <tr><th>306</th><th>more components</th><tr>
   <tr><td>202</td><td>more components - ?</td><tr>
   <tr><td>15</td><td>more components - data grid</td><tr>
   <tr><td>12</td><td>more components - carousel</td><tr>
@@ -81,7 +81,7 @@ As the answers to these questions were pretty different, we grouped them into di
   <tr><td>1</td><td>more components - drag and drop</td><tr>
   <tr><td>1</td><td>more components - dropdown</td><tr>
   <tr><td>1</td><td>more components - image</td><tr>
-  <tr><th> 189 </th><th> customization</th><tr>
+  <tr><th>189</th><th>customization</th><tr>
   <tr><td>85</td><td>customization - easier</td><tr>
   <tr><td>22</td><td>customization - docs</td><tr>
   <tr><td>16</td><td>customization - dynamic color & variant</td><tr>
@@ -92,7 +92,7 @@ As the answers to these questions were pretty different, we grouped them into di
   <tr><td>8</td><td>customization - support system in all components</td><tr>
   <tr><td>8</td><td>customization - theme editor (visual tool)</td><tr>
   <tr><td>2</td><td>customization - theme gallery (coming from the community)</td><tr>
-  <tr><th> 155 </th><th> docs</th><tr>
+  <tr><th>155</th><th>docs</th><tr>
   <tr><td>46</td><td>docs - ?</td><tr>
   <tr><td>45</td><td>docs - more examples</td><tr>
   <tr><td>33</td><td>docs - more templates</td><tr>
@@ -112,11 +112,11 @@ As the answers to these questions were pretty different, we grouped them into di
   <tr><td>1</td><td>docs - nested props</td><tr>
   <tr><td>1</td><td>docs - plugins</td><tr>
   <tr><td>1</td><td>docs - ssr</td><tr>
-  <tr><th>64</th><th> performance</th><tr>
+  <tr><th>64</th><th>performance</th><tr>
   <tr><td>31</td><td>performance - ?</td><tr>
   <tr><td>32</td><td>performance - bundle size</td><tr>
   <tr><td>1</td><td>performance - DOM size</td><tr>
-  <tr><th>56</th><th> styles</th><tr>
+  <tr><th>56</th><th>styles</th><tr>
   <tr><td>19</td><td>styles - styled components</td><tr>
   <tr><td>7</td><td>styles - docs</td><tr>
   <tr><td>5</td><td>styles - simpler</td><tr>
@@ -131,52 +131,52 @@ As the answers to these questions were pretty different, we grouped them into di
   <tr><td>1</td><td>styles - atomic compiled css-in-js</td><tr>
   <tr><td>1</td><td>styles - keep jss</td><tr>
   <tr><td>1</td><td>styles - remove JSS</td><tr>
-  <tr><th>25</th><th> typescript</th><tr>
+  <tr><th>25</th><th>typescript</th><tr>
   <tr><td>19</td><td>typescript - ?</td><tr>
   <tr><td>3</td><td>typescript - docs</td><tr>
   <tr><td>3</td><td>typescript - faster check</td><tr>
-  <tr><th>21</th><th> date picker - improve</th><tr>
-  <tr><th>19</th><th> react native</th><tr>
-  <tr><th>13</th><th> form</th><tr>
-  <tr><th>13</th><th> material design updates</th><tr>
-  <tr><th>12</th><th> animations</th><tr>
+  <tr><th>21</th><th>date picker - improve</th><tr>
+  <tr><th>19</th><th>react native</th><tr>
+  <tr><th>13</th><th>form</th><tr>
+  <tr><th>13</th><th>material design updates</th><tr>
+  <tr><th>12</th><th>animations</th><tr>
   <tr><td>8</td><td>animations - ?</td><tr>
   <tr><td>2</td><td>animations - docs</td><tr>
   <tr><td>1</td><td>animations - declarative API</td><tr>
   <tr><td>1</td><td>animations - SVG</td><tr>
-  <tr><th>11</th><th> test</th><tr>
+  <tr><th>11</th><th>test</th><tr>
   <tr><td>4</td><td>test - jest</td><tr>
   <tr><td>3</td><td>test - stable snapshot</td><tr>
   <tr><td>1</td><td>test - ?</td><tr>
   <tr><td>1</td><td>test - docs</td><tr>
   <tr><td>1</td><td>test - styles</td><tr>
   <tr><td>1</td><td>test - testing library integration</td><tr>
-  <tr><th>8</th><th> more opinionated</th><tr>
-  <tr><th>8</th><th> simplify</th><tr>
-  <tr><th>7</th><th> class components</th><tr>
-  <tr><th>7</th><th> mobile</th><tr>
-  <tr><th>7</th><th> fewer breaking changes</th><tr>
-  <tr><th>7</th><th> designers</th><tr>
+  <tr><th>8</th><th>more opinionated</th><tr>
+  <tr><th>8</th><th>simplify</th><tr>
+  <tr><th>7</th><th>class components</th><tr>
+  <tr><th>7</th><th>mobile</th><tr>
+  <tr><th>7</th><th>fewer breaking changes</th><tr>
+  <tr><th>7</th><th>designers</th><tr>
   <tr><td>2</td><td>designers - bridge design tools and code</td><tr>
   <tr><td>2</td><td>designers - Adobe XD material</td><tr>
   <tr><td>2</td><td>designers - Figma material</td><tr>
   <tr><td>1</td><td>designers - ?</td><tr>
-  <tr><th>6</th><th> free vs paid balance</th><tr>
-  <tr><th>6</th><th> tree view - improve</th><tr>
-  <tr><th>6</th><th> less abstracted components</th><tr>
-  <tr><th>5</th><th> more abstracted components</th><tr>
-  <tr><th>4</th><th> accessibility</th><tr>
+  <tr><th>6</th><th>free vs paid balance</th><tr>
+  <tr><th>6</th><th>tree view - improve</th><tr>
+  <tr><th>6</th><th>less abstracted components</th><tr>
+  <tr><th>5</th><th>more abstracted components</th><tr>
+  <tr><th>4</th><th>accessibility</th><tr>
   <tr><td>1</td><td>accessibility - ?</td><tr>
   <tr><td>1</td><td>accessibility - auto id</td><tr>
   <tr><td>1</td><td>accessibility - full audit</td><tr>
   <tr><td>1</td><td>accessibility - more examples</td><tr>
-  <tr><th>4</th><th> system</th><tr>
+  <tr><th>4</th><th>system</th><tr>
   <tr><td>1</td><td>system - CSS grid</td><tr>
   <tr><td>1</td><td>system - docs</td><tr>
   <tr><td>1</td><td>system - performance</td><tr>
   <tr><td>1</td><td>system - rework breakpoints</td><tr>
-  <tr><th>3</th><th> components consistency</th><tr>
-  <tr><th>3</th><th> grid - improve</th><tr>
+  <tr><th>3</th><th>components consistency</th><tr>
+  <tr><th>3</th><th>grid - improve</th><tr>
 </table>
 
 ### Comparison with last year
