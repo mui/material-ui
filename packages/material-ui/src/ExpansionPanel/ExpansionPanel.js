@@ -83,7 +83,7 @@ export const styles = (theme) => {
 let warnedOnce = false;
 
 /**
- * ⚠️ The ExpansionPanel component was renamed to Accordion to match the naming convention of the community.
+ * ⚠️ The ExpansionPanel component was renamed to Accordion to use a more common naming convention.
  *
  * You should use `import { Accordion } from '@material-ui/core'`
  * or `import Accordion from '@material-ui/core/Accordion'`.
