@@ -69,14 +69,16 @@ function SomeComponent({ variant }) {
     if (variant === 'unexpected') {
       console.error("That variant doesn't make sense.");
     }
-    console.error('The component is deprecated');
+    if (variant !== undefined) {
+      console.error('`variant` is deprecated.');
+    }
   }
 
   return <div />;
 }
 expect(() => {
   render(<SomeComponent variant="unexpected" />);
-}).toErrorDev(["That variant doesn't make sense.", 'The component is deprecated']);
+}).toErrorDev(["That variant doesn't make sense.", '`variant` is deprecated.']);
 ```
 
 ```js
@@ -85,13 +87,15 @@ function SomeComponent({ variant }) {
     if (variant === 'unexpected') {
       console.error("That variant doesn't make sense.");
     }
-    console.error('The component is deprecated');
+    if (variant !== undefined) {
+      console.error('`variant` is deprecated.');
+    }
   }
 
   return <div />;
 }
 expect(() => {
-  render(<SomeComponent variant="valid" />);
+  render(<SomeComponent />);
 }).not.toErrorDev();
 ```
 
