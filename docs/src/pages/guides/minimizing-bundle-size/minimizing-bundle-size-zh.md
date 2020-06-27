@@ -40,7 +40,7 @@ import { Button, TextField } from '@material-ui/core';
 
 This is the option we document in all the demos, since it requires no configuration. It is encouraged for library authors extending the components. Head to [Option 2](#option-2) for the approach that yields the best DX and UX.
 
-尽管这样直接导入并不会使用 [`@material-ui/core/index.js`](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/index.js) 中的导出模式，但是对于那些公开的模块来说，此文件仍可以作为一个方便的参考。
+尽管这样直接导入并不会使用 [`@material-ui/core/index.js`](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/index.js) 中的导出模式，但是对于那些公开的模块来说，此文件仍可以作为一个方便的参考。
 
 请注意，我们只支持第一级和第二级的导入。 Anything deeper is considered private and can cause issues, such as module duplication in your bundle.
 
@@ -201,7 +201,7 @@ If you are using Create React App, you will need to use a couple of projects tha
 
 #### 2。 Convert all your imports
 
-Finally, you can convert your existing codebase to this option with this [top-level-imports](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-codemod/README.md#top-level-imports) codemod. It will perform the following diffs:
+Finally, you can convert your existing codebase to this option with this [top-level-imports](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-codemod/README.md#top-level-imports) codemod. It will perform the following diffs:
 
 ```diff
 -import Button from '@material-ui/core/Button';

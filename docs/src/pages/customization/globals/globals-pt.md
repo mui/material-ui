@@ -23,7 +23,7 @@ const theme = createMuiTheme({
 
 {{"demo": "pages/customization/globals/GlobalCss.js"}}
 
-A lista desses pontos de customização de cada componente está documentada na seção **API do componente**. Por exemplo, você pode dar uma olhada no [Botão](/api/button/#css). Alternativamente, você pode sempre dar uma olhada na [implementação](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Button/Button.js).
+A lista desses pontos de customização de cada componente está documentada na seção **API do componente**. Por exemplo, você pode dar uma olhada no [Botão](/api/button/#css). Alternativamente, você pode sempre dar uma olhada na [implementação](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/Button/Button.js).
 
 ## CSS global
 

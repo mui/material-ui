@@ -161,7 +161,7 @@ import {
 
 <p class="blog-description">Fine level tracking</p>
 
-- **Preact X.** We have introduced a working [integration example with Preact](https://github.com/mui-org/material-ui/blob/master/examples/preact/README.md). Preact is a fast, 1/10 smaller alternative to React, with the same modern API. We will do our best to support it.
+- **Preact X.** We have introduced a working [integration example with Preact](https://github.com/mui-org/material-ui/blob/next/examples/preact/README.md). Preact is a fast, 1/10 smaller alternative to React, with the same modern API. We will do our best to support it.
 - **Runtime performance**. We have heard that some people struggle with the runtime cost of using Material-UI. We have solved a few problems reported, but nothing systematic. We have observed [a slight gain](https://github.com/mui-org/material-ui/pull/15023) by moving from the classes API to the hooks API. However, it's hard to make progress as we lack a properly setup performance bench. It's something to consider for v5.
 
 ### Preparing for the future

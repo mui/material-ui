@@ -6,7 +6,7 @@
 
 ## 内部
 
-Material-UI 的 测试范围 **很广**，因此我们有信心 对组件进行迭代，例如，[Argos-CI](https://www.argos-ci.com/mui-org/material-ui) 提供的可视化回归测试已被证明非常有用。 若您想要进一步了解内部测试，您可以查看 [README](https://github.com/mui-org/material-ui/blob/master/test/README.md)。
+Material-UI 的 测试范围 **很广**，因此我们有信心 对组件进行迭代，例如，[Argos-CI](https://www.argos-ci.com/mui-org/material-ui) 提供的可视化回归测试已被证明非常有用。 若您想要进一步了解内部测试，您可以查看 [README](https://github.com/mui-org/material-ui/blob/next/test/README.md)。
 
 ## 用户空间
 

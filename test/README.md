@@ -68,11 +68,11 @@ If you want to `grep` for certain tests add `-g STRING_TO_GREP`.
 
 First, we have the **unit test** suite.
 It uses [mocha](https://mochajs.org) and a thin wrapper around `@testing-library/react`.
-Here is an [example](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Dialog/Dialog.test.js#L87) with the `Dialog` component.
+Here is an [example](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/Dialog/Dialog.test.js#L87) with the `Dialog` component.
 
 Next, we have the **integration** tests. They are mostly used for components that
 act as composite widgets like `Select` or `Menu`.
-Here is an [example](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/test/integration/Menu.test.js#L28) with the `Menu` component.
+Here is an [example](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/test/integration/Menu.test.js#L28) with the `Menu` component.
 
 #### Create HTML coverage reports
 
@@ -110,7 +110,7 @@ Next, we are using [docker](https://github.com/docker/docker) to take screenshot
 ![before](/test/docs-regressions-before.png)
 ![diff](/test/docs-regressions-diff.png)
 
-Here is an [example](https://github.com/mui-org/material-ui/blob/master/test/regressions/tests/Menu/SimpleMenuList.js#L6) with the `Menu` component.
+Here is an [example](https://github.com/mui-org/material-ui/blob/next/test/regressions/tests/Menu/SimpleMenuList.js#L6) with the `Menu` component.
 
 #### Installation
 
