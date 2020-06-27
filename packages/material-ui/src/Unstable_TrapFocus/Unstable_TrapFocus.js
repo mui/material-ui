@@ -23,6 +23,7 @@ function Unstable_TrapFocus(props) {
   const sentinelStart = React.useRef(null);
   const sentinelEnd = React.useRef(null);
   const nodeToRestore = React.useRef();
+  const syntheticEventRef = React.useRef(false);
 
   const rootRef = React.useRef(null);
   // can be removed once we drop support for non ref forwarding class components
@@ -85,6 +86,9 @@ function Unstable_TrapFocus(props) {
       }
 
       if (rootRef.current && !rootRef.current.contains(doc.activeElement)) {
+        const insideReactTree = syntheticEventRef.current;
+        if(insideReactTree) return;
+
         rootRef.current.focus();
       }
     };
@@ -141,10 +145,18 @@ function Unstable_TrapFocus(props) {
     };
   }, [disableAutoFocus, disableEnforceFocus, disableRestoreFocus, isEnabled, open]);
 
+  const onFocus = () => {
+    syntheticEventRef.current = true;
+  }
+
+  const onBlur = () => {
+    syntheticEventRef.current = false;
+  }
+
   return (
     <React.Fragment>
       <div tabIndex={0} ref={sentinelStart} data-test="sentinelStart" />
-      {React.cloneElement(children, { ref: handleRef })}
+      {React.cloneElement(children, { ref: handleRef, onFocus, onBlur })}
       <div tabIndex={0} ref={sentinelEnd} data-test="sentinelEnd" />
     </React.Fragment>
   );
