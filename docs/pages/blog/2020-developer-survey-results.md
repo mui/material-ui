@@ -203,7 +203,7 @@ Growing pains:
 - x5: Simpler customization. We have improved customizability this year by introducing global class names and reducing the CSS specificity of some selectors. However, it seems that we are now tapping into a new audience. We need to do better.
 - x1.5: Animations.
 - x1.2: React native. We still have no plans for it. The [market is too small](https://npm-stat.com/charts.html?package=react-dom,react-native) to make it sustainable with our model.
-- x1.1: More components, the more we give, the more developers ask for. We will fully solve this with the enterprise version. The first early access will land this year.
+- x1.1: More components. The more we offer, the more developers ask for! We will try to help solve this with the enterprise version, both because it's the best model we have found that can sustain the development of advanced components, and because it allows us to reinvest in the open source components. The first early access will land this year.
 
 ### 6. What are your key criteria when choosing a UI library?
 
