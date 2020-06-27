@@ -187,7 +187,7 @@ Each item is prefixed by the multiplication factor of the pain point for 2020 re
 
 Decreasing pain:
 - x0: Slider. No requests. The requirements are mostly met, especially with the introduction of the range feature.
-- x0.1: Strict mode. We did a lot for it this year. However, since Create React App has made this mode a default, we have seen a lot more requests for it.
+- x0.1: Strict mode. We fixed a lot of strict mode compatibility issues this year. However, since Create React App has made this mode a default, we have seen a lot more requests for it.
 - x0.1: Autocomplete. We added a new component, and have resolved a large number of issues opened since. This will be moved from lab to the core in v5.
 - x0.2: Fewer breaking changes. Only releasing minor versions under v4 for over a year helps a lot. However, we still need to be careful with CSS changes.
 - x0.3: Accessibility. We have been able to leverage GitHub issues opened by a11y experts, often coming from large companies using Material-UI at scale to improve it a lot this year.
