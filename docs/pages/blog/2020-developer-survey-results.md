@@ -303,7 +303,7 @@ We want to work on the problems that resonate the most with our users.
 1. Provide more flexibility on the components, unstyled components (pure hooks?).
 1. Make the customization easier and implement custom themes with Material-UI. Maybe provide a theme builder.
 1. Irone the details out by providing a second theme, updates to match Material Design, providing more simple components and features (e.g. dropzone, carousel), providing a better DX (they are good ideas to apply from other UI libraries to Material-UI v5).
-1. Improve on the paid advanced version of the components (e.g. complex data grid, data range picker, tree view drag & drop, virtualization, etc).
+1. Improve upon the paid advanced versions of the components (e.g. complex data grid, date range picker, tree view drag & drop, virtualization, etc).
 
 **We will update [our ROADMAP](/discover-more/roadmap/) in the coming days**.
 We will run a similar survey next year to keep track of our progress.
