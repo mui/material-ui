@@ -86,6 +86,12 @@ function Unstable_TrapFocus(props) {
       }
 
       if (rootRef.current && !rootRef.current.contains(doc.activeElement)) {
+        // ideally we should reset the syntheticEventRef on this line, but the contain
+        // method is inside set interval, so we are resetting it onBlur... This, however 
+        // can bring issues, because between the onBlur and onFocus is invoked again
+        // in the child (if the focus is still somehwere inside the react tree) the 
+        // contain method may run again and false decide that the focus is no longer
+        // inside the child :(((
         const insideReactTree = syntheticEventRef.current;
         if(insideReactTree) return;
 
@@ -146,6 +152,7 @@ function Unstable_TrapFocus(props) {
   }, [disableAutoFocus, disableEnforceFocus, disableRestoreFocus, isEnabled, open]);
 
   const onFocus = (event) => {
+    // detect focus inside children
     syntheticEventRef.current = true;
 
     const childrenPropsHandler = children.props['onFocus'];
@@ -154,6 +161,7 @@ function Unstable_TrapFocus(props) {
     }
   };
   const onBlur = (event) => {
+    // detect blur inside children
     syntheticEventRef.current = false;
 
     const childrenPropsHandler = children.props['onBlur'];
