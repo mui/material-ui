@@ -9,7 +9,7 @@
     "build:clean": "rimraf .next && yarn build",
     "build-sw": "node ./scripts/buildServiceWorker.js",
     "dev": "rimraf ./node_modules/.cache/babel-loader && next dev",
-    "deploy": "git push material-ui-docs master:latest",
+    "deploy": "git push material-ui-docs next:next",
     "export": "rimraf docs/export && next export --threads=3 -o export && yarn build-sw",
     "icons": "rimraf public/static/icons/* && node ./scripts/buildIcons.js",
     "start": "next start",

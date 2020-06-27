@@ -1,5 +1,199 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 5.0.0-alpha.1
+
+###### _June 27, 2020_
+
+Big thanks to the 33 contributors who made this release possible. Here are some highlights ✨:
+
+- 🔄 Introduce a new `LoadingButton` component in the lab (#21389) @mnajdova.
+- 📍 Synchronize icons with Google, add 200 new icons (#21498) @alecananian
+- 💥 Start working on breaking changes.
+
+### `@material-ui/core@v5.0.0-alpha.1`
+
+#### Breaking changes
+
+- [Divider] Use border instead of background color (#18965) @mikejav.
+  It prevents inconsistent height on scaled screens. For people customizing the color of the border, the change requires changing the override CSS property:
+
+  ```diff
+  .MuiDivider-root {
+  - background-color: #f00;
+  + border-color: #f00;
+  }
+  ```
+- [Rating] Rename `visuallyhidden` to `visuallyHidden` for consistency (#21413) @mnajdova.
+
+  ```diff
+  <Rating
+    classes={{
+  -    visuallyhidden: 'custom-visually-hidden-classname',
+  +    visuallyHidden: 'custom-visually-hidden-classname',
+    }}
+  />
+  ```
+- [Typography] Replace the `srOnly` prop so as to not duplicate the capabilities of [System](https://material-ui.com/system/basics/) (#21413) @mnajdova.
+
+  ```diff
+  -import Typography from '@material-ui/core/Typography';
+  +import { visuallyHidden } from '@material-ui/system';
+  +import styled from 'styled-component';
+
+  +const Span = styled('span')(visuallyHidden);
+
+  -<Typography variant="srOnly">Create a user</Typography>
+  +<Span>Create a user</Span>
+  ```
+- [TablePagination] Add showFirstButton and showLastButton support (#20750) @ShahAnuj2610.
+  The customization of the table pagination's actions labels must be done with the `getItemAriaLabel` prop. This increases consistency with the `Pagination` component.
+
+  ```diff
+  <TablePagination
+  - backIconButtonText="Avant"
+  - nextIconButtonText="Après
+  + getItemAriaLabel={…}
+  ```
+- [ExpansionPanel] Rename to Accordion (#21494) @mnajdova.
+  Use a more common the naming convention:
+
+  ```diff
+  -import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+  -import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+  -import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+  -import ExpansionPanelActions from '@material-ui/core/ExpansionPanelActions';
+  +import Accordion from '@material-ui/core/Accordion';
+  +import AccordionSummary from '@material-ui/core/AccordionSummary';
+  +import AccordionDetails from '@material-ui/core/AccordionDetails';
+  +import AccordionActions from '@material-ui/core/AccordionActions';
+
+  -<ExpansionPanel>
+  +<Accordion>
+  -  <ExpansionPanelSummary>
+  +  <AccordionSummary>
+       <Typography>Location</Typography>
+       <Typography>Select trip destination</Typography>
+  -  </ExpansionPanelSummary>
+  +  </AccordionSummary>
+  -  <ExpansionPanelDetails>
+  +  <AccordionDetails>
+       <Chip label="Barbados" onDelete={() => {}} />
+       <Typography variant="caption">Select your destination of choice</Typography>
+  -  </ExpansionPanelDetails>
+  +  </AccordionDetails>
+     <Divider />
+  -  <ExpansionPanelActions>
+  +  <AccordionActions>
+       <Button size="small">Cancel</Button>
+       <Button size="small" color="primary">Save</Button>
+  -  </ExpansionPanelActions>
+  +  </AccordionActions>
+  -</ExpansionPanel>
+  +</Accordion>
+  ```
+- [BottomNavigation] typescript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
+
+  ```diff
+  -<BottomNavigation onChange={(event: React.ChangEvent<{}>) => {}} />
+  +<BottomNavigation onChange={(event: React.SyntheticEvent) => {}} />
+  ```
+- [Slider] typescript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
+
+  ```diff
+  -<Slider onChange={(event: React.ChangEvent<{}>, value: unknown) => {}} />
+  +<Slider onChange={(event: React.SyntheticEvent, value: unknown) => {}} />
+  ```
+- [Tabs] typescript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
+
+  ```diff
+  -<Tabs onChange={(event: React.ChangEvent<{}>, value: unknown) => {}} />
+  +<Tabs onChange={(event: React.SyntheticEvent, value: unknown) => {}} />
+  ```
+- [Accordion] typescript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
+  ```diff
+  -<Accordion onChange={(event: React.ChangEvent<{}>, expanded: boolean) => {}} />
+  +<Accordion onChange={(event: React.SyntheticEvent, expanded: boolean) => {}} />
+  ```
+
+#### Changes
+
+- [Badge] Fix transition flicker (#21557) @mnajdova
+- [ButtonGroup] Improve contained hover style (#21532) @alecananian
+- [l10n] Improve Russian translation (#21480) @AntonLukichev
+- [l10n] Improve zh-CN, add zh-TW (#21493) @Jack-Works
+- [LinearProgress] High frequency updates (#21416) @dnicerio
+- [Stepper] Fix optional label alignment (#21420) @curtislin7
+- [Table] Move prop docs into IntelliSense (#21530) @oliviertassinari
+- [TablePagination] Add showFirstButton and showLastButton support (#20750) @ShahAnuj2610
+- [Tabs] Fix useCallback missing arguments (#21471) @KitsonBroadhurst
+- [TextField] Fix FilledInput disable hover style when disabled (#21457) @tchmnn
+
+### `@material-ui/lab@v5.0.0-alpha.1`
+
+- [Autocomplete] Fix support for renderTags={() => null} (#21460) @matthenschke
+- [LoadingButton] Introduce new component (#21389) @mnajdova
+- [Pagination] Fix display when boundaryCount={0} (#21446) @guimacrf
+- [Skeleton] Fix text border (#21543) @el1f
+- [Timeline] Align dots with content (#21402) @mnajdova
+- [TreeView] Minor styling changes (#21573) @joshwooding
+- [TreeView] Simplify customization (#21514) @joshwooding
+
+### `@material-ui/icons@v5.0.0-alpha.1`
+
+- [icons] Synchronize icons with Google (#21498) @alecananian
+
+### `@material-ui/system@v5.0.0-alpha.1`
+
+- [system] Introduce visuallyHidden style utility (#21413) @mnajdova
+
+### Docs
+
+- [docs] Add CSP support section to docs (#21479) @razor-x
+- [docs] Add explicit example for extending existing palette colors (#21458) @BennyHinrichs
+- [docs] Add more details about breakpoint widths (#21545) @Muzietto
+- [docs] Add new gold sponsor @oliviertassinari
+- [docs] Add transitions customization page (#21456) @mnajdova
+- [docs] Correct syntax errors to improve document readability (#21515) @AGDholo
+- [docs] Document type="number" limitation (#21500) @IwalkAlone
+- [docs] Entry for translations and fix grammar error (#21478) @jaironalves
+- [docs] Fix broken "customization" anchor link (#21506) @connorads
+- [docs] Fix typo in MultipleSelects.js (#21510) @ShiyuCheng2018
+- [docs] Fix typo in SpeedDialIcon classes comment (#21398) @zachbradshaw
+- [docs] Fix typo in TextField required prop (#21538) @HumbertoL
+- [docs] Fix version in localized urls (#21442) @tchmnn
+- [docs] Format english markdown files (#21463) @eps1lon
+- [docs] Format some previously unformatted, untranslated files (#21558) @eps1lon
+- [docs] Hide duplicate table borders (#20809) @marcosvega91
+- [docs] Improve docs for useMediaQuery and breakpoint (#21512) @DDDDDanica
+- [docs] Improve npm homepage links (#21452) @eps1lon
+- [docs] Move more prop docs into IntelliSense (#21383) @eps1lon
+- [docs] Restrict docs markdown and demos to 80ch (#21481) @eps1lon
+- [docs] Reword palette intention and fix format (#21477) @DDDDDanica
+- [docs] Update v4 migration guide (#21462) @eps1lon
+
+### Core
+
+- [typescript-to-proptypes] Integrate into monorepo @eps1lon
+- [test] Add type test CardHeader title component (#21590) @eps1lon
+- [test] Fix type tests not being type checked (#21539) @eps1lon
+- [test] Ignore empty vrtests (#21450) @eps1lon
+- [test] Improve makeStyles error coverage (#21568) @eps1lon
+- [test] Migrate Typography to testing-library (#21534) @marcosvega91
+- [test] Move size comparison details to separate page (#21504) @eps1lon
+- [test] Use testing-library in MenuItem (#21391) @eps1lon
+- [test] Use testing-library in StepButton (#21406) @baterson
+- [test] Use testing-library in Stepper (#21400) @baterson
+- [core] Batch small changes (#21419) @oliviertassinari
+- [core] Batch small changes (#21553) @oliviertassinari
+- [core] Disable caching for yarn proptypes permanently (#21414) @eps1lon
+- [core] Extend env for build script (#21403) @eps1lon
+- [core] Fix react next patch and prevent regression (#21495) @eps1lon
+- [core] Fork typescript-to-proptypes (#21497) @eps1lon
+- [core] Misc branch cleaning (#21459) @eps1lon
+- [core] Misc prettier changes (#21484) @eps1lon
+- [core] Run prettier on the JSON sources (#21556) @oliviertassinari
+- [core] Type custom `onChange` implementations with a generic react event (#21552) @eps1lon
+
 ## 4.10.2
 
 ###### _June 11, 2020_
