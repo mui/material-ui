@@ -26,7 +26,7 @@ export type ExpansionPanelSummaryTypeMap<
 }>;
 
 /**
- * ⚠️ The ExpansionPanelSummary component was renamed to AccordionSummary to match the naming convention of the community.
+ * ⚠️ The ExpansionPanelSummary component was renamed to AccordionSummary to use a more common naming convention.
  *
  * You should use `import { AccordionSummary } from '@material-ui/core'`
  * or `import AccordionSummary from '@material-ui/core/AccordionSummary'`.
