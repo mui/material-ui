@@ -25,7 +25,7 @@ const ExpansionPanelDetails = React.forwardRef(function ExpansionPanelDetails(pr
       warnedOnce = true;
       console.error(
         [
-          'Material-UI: the ExpansionPanelDetails component was renamed to AccordionDetails to match the naming convention of the community.',
+          'Material-UI: the ExpansionPanelDetails component was renamed to AccordionDetails to use a more common naming convention.',
           '',
           "You should use `import { AccordionDetails } from '@material-ui/core'`",
           "or `import AccordionDetails from '@material-ui/core/AccordionActions'`",
