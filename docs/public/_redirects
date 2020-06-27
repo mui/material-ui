@@ -2,7 +2,6 @@
 /fr/* /:splat 200
 /de/* /:splat 200
 /ja/* /:splat 200
-/aa/* /:splat 200
 
 # For Google
 /drafts / 301

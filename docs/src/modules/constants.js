@@ -9,7 +9,7 @@ const ACTION_TYPES = {
 };
 
 // Valid languages to server-side render in production
-const LANGUAGES = ['en', 'zh', 'ru', 'pt', 'es', 'fr', 'de', 'ja', 'aa'];
+const LANGUAGES = ['en', 'zh', 'ru', 'pt', 'es', 'ja'];
 
 // Server side rendered languages
 const LANGUAGES_SSR = ['en', 'zh', 'ru', 'pt', 'es'];
@@ -38,14 +38,6 @@ const LANGUAGES_LABEL = [
   {
     code: 'es',
     text: 'Español',
-  },
-  {
-    code: 'fr',
-    text: 'Français',
-  },
-  {
-    code: 'de',
-    text: 'Deutsch',
   },
   {
     code: 'ja',
