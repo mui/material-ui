@@ -19,7 +19,7 @@ In this section, we wanted to hear what developers think is going well, what we 
 
 <img src="/static/blog/2020-survey/1.png" style="width: 552px; margin-top: 32px; margin-bottom: 32px;" alt="Pie chart: 73.3% Very disappointed, 21.3% somewhat disappointed, 5.4% not disappointed." />
 
-Similar to last year, over 94% of the respondents would be disappointed if they can no longer use Material-UI, which is very encouraging. We will keep working hard to hopefully move more of you into the "very disappointed" category!
+Similar to last year, over 94% of the respondents would be disappointed if they could no longer use Material-UI, which is very encouraging. We will keep working hard to hopefully move more of you into the "very disappointed" category!
 
 The number of respondents who would not be disappointed has moved down from 6.5% to 5.4%, which is technically a 17% improvement! 🙂 We'd love to understand more about those who use Material-UI, but would happily use other solutions, so a follow-up question might be needed next year.
 
