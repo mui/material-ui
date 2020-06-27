@@ -22,7 +22,7 @@ export const styles = {
 let warnedOnce = false;
 
 /**
- * ⚠️ The ExpansionPanelActions component was renamed to AccordionActions to use a more common naming convention..
+ * ⚠️ The ExpansionPanelActions component was renamed to AccordionActions to use a more common naming convention.
  *
  * You should use `import { AccordionActions } from '@material-ui/core'`
  * or `import AccordionActions from '@material-ui/core/AccordionActions'`.

@@ -18,7 +18,7 @@ import { ExpansionPanelDetails } from '@material-ui/core';
 
 You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).
 
-⚠️ The ExpansionPanelDetails component was renamed to AccordionDetails to match the naming convention of the community.
+⚠️ The ExpansionPanelDetails component was renamed to AccordionDetails to use a more common naming convention.
 
 You should use `import { AccordionDetails } from '@material-ui/core'`
 or `import AccordionDetails from '@material-ui/core/AccordionDetails'`.
