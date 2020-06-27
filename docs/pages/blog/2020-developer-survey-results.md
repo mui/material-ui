@@ -13,7 +13,7 @@ Like last year, the survey was again broken into three sections: ["Introduction"
 
 ## Introduction
 
-In this section we mostly wanted to hear what developers think is going well and that we should keep doing, and which are the areas where we need to improve the library to make it even better.
+In this section, we wanted to hear what developers think is going well, what we should keep doing, and which areas need improving to make the library even better.
 
 ### 1. How would you feel if you could no longer use Material-UI?
 
