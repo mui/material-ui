@@ -4,7 +4,7 @@ description: 2020 Material-UI Developer Survey results
 
 # 2020 Material-UI Developer Survey results
 
-Marija Najdova, Olivier Tassinari, Matt Brookes. June 24, 2019.
+Marija Najdova, Olivier Tassinari, Matt Brookes. June 27, 2020.
 
 Continuing the tradition from last year, we launched a developer survey a few months ago, to which we received 1488 responses. This is twice as many as last year (734), so we thank you all for the participation!
 The survey is now closed and here we will give a detailed summary of the results.
