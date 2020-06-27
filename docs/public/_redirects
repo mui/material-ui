@@ -30,7 +30,7 @@ https://material-ui.dev/* https://material-ui.com/:splat 301!
 /store/* https://material-ui-store.netlify.app/:splat 200
 /store-staging/* https://master--material-ui-store.netlify.app/:splat 200
 
-# To remove at some point (2021).
+# Added in chronological order, to be removed at some point.
 /css-in-js/* /styles/:splat 301
 /customization/css-in-js/ /styles/basics/ 301
 /customization/overrides/ /customization/components/ 301
@@ -60,8 +60,6 @@ https://material-ui.dev/* https://material-ui.com/:splat 301!
 /api/expansion-panel-actions/ /api/accordion-actions/ 301
 /api/expansion-panel-details/ /api/accordion-details/ 301
 /api/expansion-panel-summary/ /api/accordion-summary/ 301
-
-# To remove at some point (2022).
 /premium-themes* https://material-ui.com/store/ 301
 /customization/themes/ /customization/theming/ 301
 https://v1-5-0.material-ui.com/* https://v1.material-ui.com/:splat 301!

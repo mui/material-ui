@@ -65,7 +65,7 @@ The `direction` property controls which edge of the screen the transition starts
 
 The Transition component's `mountOnEnter` property prevents the child component from being mounted
 until `in` is `true`. This prevents the relatively positioned component from scrolling into view
-from it's off-screen position. Similarly the `unmountOnExit` property removes the component
+from its off-screen position. Similarly the `unmountOnExit` property removes the component
 from the DOM after it has been transition off screen.
 
 {{"demo": "pages/components/transitions/SimpleSlide.js", "bg": true}}

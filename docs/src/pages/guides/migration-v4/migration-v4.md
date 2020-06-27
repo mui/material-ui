@@ -66,16 +66,16 @@ yarn add @material-ui/core
 
 ### Rating
 
-- Rename `visuallyhidden` to `visuallyHidden`
+- Rename `visuallyhidden` to `visuallyHidden` for consistency:
 
-```diff
-<Rating
-  classes={{
--    visuallyhidden: 'custom-visually-hidden-classname',
-+    visuallyHidden: 'custom-visually-hidden-classname',
-  }}
-/>
-```
+  ```diff
+  <Rating
+    classes={{
+  -    visuallyhidden: 'custom-visually-hidden-classname',
+  +    visuallyHidden: 'custom-visually-hidden-classname',
+    }}
+  />
+  ```
 
 ### Slider
 
@@ -87,7 +87,7 @@ yarn add @material-ui/core
 
 ### TablePagination
 
-- The customization of the table pagination's actions labels must be done with the `getItemAriaLabel` prop.
+- The customization of the table pagination's actions labels must be done with the `getItemAriaLabel` prop. This increases consistency with the `Pagination` component.
 
   ```diff
   <TablePagination
@@ -106,7 +106,7 @@ yarn add @material-ui/core
 
 ### Typography
 
-- Replace `srOnly` prop support with a style util:
+- Replace the `srOnly` prop so as to not duplicate the capabilities of [System](https://material-ui.com/system/basics/):
 
   ```diff
   -import Typography from '@material-ui/core/Typography';

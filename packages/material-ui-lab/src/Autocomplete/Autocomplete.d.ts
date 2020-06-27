@@ -82,8 +82,7 @@ export interface AutocompleteProps<
    */
   disabled?: boolean;
   /**
-   * Disable the portal behavior.
-   * The children stay within it's parent DOM hierarchy.
+   * The `Popper` content will be inside the DOM hierarchy of the parent component.
    */
   disablePortal?: boolean;
   /**

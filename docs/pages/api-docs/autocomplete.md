@@ -46,7 +46,7 @@ The `MuiAutocomplete` name can be used for providing [default props](/customizat
 | <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the input will be disabled. |
 | <span class="prop-name">disabledItemsFocusable</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, will allow focus on disabled items. |
 | <span class="prop-name">disableListWrap</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the list box in the popup will not wrap focus. |
-| <span class="prop-name">disablePortal</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Disable the portal behavior. The children stay within it's parent DOM hierarchy. |
+| <span class="prop-name">disablePortal</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | The `Popper` content will be inside the DOM hierarchy of the parent component. |
 | <span class="prop-name">filterOptions</span> | <span class="prop-type">func</span> |  | A filter function that determines the options that are eligible.<br><br>**Signature:**<br>`function(options: T[], state: object) => undefined`<br>*options:* The options to render.<br>*state:* The state of the component. |
 | <span class="prop-name">filterSelectedOptions</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, hide the selected options from the list box. |
 | <span class="prop-name">forcePopupIcon</span> | <span class="prop-type">'auto'<br>&#124;&nbsp;bool</span> | <span class="prop-default">'auto'</span> | Force the visibility display of the popup icon. |

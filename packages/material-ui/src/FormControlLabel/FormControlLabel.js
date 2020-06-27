@@ -130,7 +130,7 @@ FormControlLabel.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * A control element. For instance, it can be be a `Radio`, a `Switch` or a `Checkbox`.
+   * A control element. For instance, it can be a `Radio`, a `Switch` or a `Checkbox`.
    */
   control: PropTypes.element.isRequired,
   /**

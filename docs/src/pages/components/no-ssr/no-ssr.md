@@ -21,7 +21,7 @@ This component can be useful in a variety of situations:
 
 ## Frame deferring
 
-In it's core, the NoSsr component purpose is to **defer rendering**.
+At its core, the NoSsr component's purpose is to **defer rendering**.
 As it's illustrated in the previous demo, you can use it to defer the rendering from the server to the client.
 
 But you can also use it to defer the rendering within the client itself.

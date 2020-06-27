@@ -311,8 +311,7 @@ Modal.propTypes = {
    */
   disableEscapeKeyDown: PropTypes.bool,
   /**
-   * Disable the portal behavior.
-   * The children stay within it's parent DOM hierarchy.
+   * The `children` will be inside the DOM hierarchy of the parent component.
    */
   disablePortal: PropTypes.bool,
   /**
