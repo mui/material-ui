@@ -16,7 +16,7 @@ export interface ExpansionPanelActionsProps
 export type ExpansionPanelActionsClassKey = 'root' | 'spacing';
 
 /**
- * ⚠️ The ExpansionPanelActions component was renamed to AccordionActions to match the naming convention of the community.
+ * ⚠️ The ExpansionPanelActions component was renamed to AccordionActions to use a more common naming convention.
  *
  * You should use `import { AccordionActions } from '@material-ui/core'`
  * or `import AccordionActions from '@material-ui/core/AccordionActions'`.
