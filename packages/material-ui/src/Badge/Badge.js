@@ -151,34 +151,60 @@ export const styles = (theme) => ({
   },
 });
 
+const usePreviousProps = (value) => {
+  const ref = React.useRef({});
+  React.useEffect(() => {
+    ref.current = value;
+  });
+  return ref.current;
+};
+
 const Badge = React.forwardRef(function Badge(props, ref) {
   const {
-    anchorOrigin = {
+    anchorOrigin: anchorOriginProp = {
       vertical: 'top',
       horizontal: 'right',
     },
-    badgeContent,
+    badgeContent: badgeContentProp,
     children,
     classes,
     className,
-    color = 'default',
+    color: colorProp = 'default',
     component: ComponentProp = 'span',
     invisible: invisibleProp,
-    max = 99,
-    overlap = 'rectangle',
+    max: maxProp = 99,
+    overlap: overlapProp = 'rectangle',
     showZero = false,
-    variant = 'standard',
+    variant: variantProp = 'standard',
     ...other
   } = props;
+
+  const prevProps = usePreviousProps({
+    anchorOrigin: anchorOriginProp,
+    badgeContent: badgeContentProp,
+    color: colorProp,
+    max: maxProp,
+    overlap: overlapProp,
+    variant: variantProp,
+  });
 
   let invisible = invisibleProp;
 
   if (
     invisibleProp == null &&
-    ((badgeContent === 0 && !showZero) || (badgeContent == null && variant !== 'dot'))
+    ((badgeContentProp === 0 && !showZero) || (badgeContentProp == null && variantProp !== 'dot'))
   ) {
     invisible = true;
   }
+
+  const {
+    anchorOrigin = anchorOriginProp,
+    badgeContent,
+    color = colorProp,
+    max = maxProp,
+    overlap = overlapProp,
+    variant = variantProp,
+  } = invisible ? prevProps : props;
 
   let displayValue = '';
 
@@ -192,7 +218,6 @@ const Badge = React.forwardRef(function Badge(props, ref) {
       <span
         className={clsx(
           classes.badge,
-          classes[`${anchorOrigin.horizontal}${capitalize(anchorOrigin.vertical)}}`],
           classes[
             `anchorOrigin${capitalize(anchorOrigin.vertical)}${capitalize(
               anchorOrigin.horizontal,

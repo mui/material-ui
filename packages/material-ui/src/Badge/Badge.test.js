@@ -170,4 +170,24 @@ describe('<Badge />', () => {
       expect(findBadge(container)).to.have.text('50');
     });
   });
+
+  it('retains anchorOrigin, content, color, max, overlap and variant when invisible is true for consistent disappearing transition', () => {
+    const wrapper = render(<Badge {...defaultProps} color="secondary" variant="dot" />);
+
+    wrapper.setProps({
+      badgeContent: 0,
+      color: 'primary',
+      variant: 'standard',
+      overlap: 'circle',
+      anchorOrigin: {
+        vertical: 'bottom',
+        horizontal: 'left',
+      },
+    });
+
+    expect(findBadge(wrapper.container)).to.have.text('');
+    expect(findBadge(wrapper.container)).to.have.class(classes.colorSecondary);
+    expect(findBadge(wrapper.container)).to.have.class(classes.dot);
+    expect(findBadge(wrapper.container)).to.have.class(classes.anchorOriginTopRightRectangle);
+  });
 });
