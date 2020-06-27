@@ -12,7 +12,7 @@
 - 🦎可以和任何主题对象 (theme object) 配合
 - 💅使用广为流行的 CSS-in-JS 样式方案
 - 📦体积小 [4KB gzipped](https://bundlephobia.com/result?p=@material-ui/system)
-- 🚀 [快速](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-benchmark/README.md#material-uisystem)，性能不是运行时问题
+- 🚀 [快速](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-benchmark/README.md#material-uisystem)，性能不是运行时问题
 
 值得关注的是，整个仓库的函数都是无副作用的(side-effect free)，它们拥有这样的类型签名： `({ theme, ...style })=> style`。
 

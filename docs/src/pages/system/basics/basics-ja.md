@@ -12,7 +12,7 @@
 - 🦎 どのようなテーマでも使用できます。
 - 💅 最も一般的なCSS-in-JSソリューションを使用します。
 - 📦 Less than [4 KB gzipped](https://bundlephobia.com/result?p=@material-ui/system).
-- 🚀[実行時にボトルネックにならないほど高速](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-benchmark/README.md#material-uisystem)。
+- 🚀[実行時にボトルネックにならないほど高速](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-benchmark/README.md#material-uisystem)。
 
 It's important to understand that this package exposes pure (side-effect free) style functions with this signature: `({ theme, ...style }) => style`, **that's it**.
 

@@ -165,7 +165,7 @@ function AppFooter(props) {
                 license: (
                   <Link
                     color="inherit"
-                    href="https://github.com/mui-org/material-ui/blob/master/LICENSE"
+                    href="https://github.com/mui-org/material-ui/blob/next/LICENSE"
                   >
                     {t('license')}
                   </Link>

@@ -65,7 +65,7 @@ You can override the style of the component thanks to one of these customization
 - With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
 - With a theme and an [`overrides` property](/customization/globals/#css).
 
-If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/CircularProgress/CircularProgress.js) for more detail.
+If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/CircularProgress/CircularProgress.js) for more detail.
 
 ## Demos
 

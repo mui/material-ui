@@ -6,7 +6,7 @@ Exemplos neste guia usam [métodos globais do Mocha](https://mochajs.org/api/glo
 
 ## Interno
 
-Material-UI tem **uma vasta gama** de testes para que possamos liberar os componentes com confiança, por exemplo, os testes de regressão visual são feitos através da [Argos-CI](https://www.argos-ci.com/mui-org/material-ui), provaram ser realmente úteis. Para saber mais sobre os testes internos, você pode dar uma olhada no [LEIA-ME](https://github.com/mui-org/material-ui/blob/master/test/README.md).
+Material-UI tem **uma vasta gama** de testes para que possamos liberar os componentes com confiança, por exemplo, os testes de regressão visual são feitos através da [Argos-CI](https://www.argos-ci.com/mui-org/material-ui), provaram ser realmente úteis. Para saber mais sobre os testes internos, você pode dar uma olhada no [LEIA-ME](https://github.com/mui-org/material-ui/blob/next/test/README.md).
 
 ## Espaço do usuário
 

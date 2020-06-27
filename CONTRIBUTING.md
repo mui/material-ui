@@ -83,7 +83,7 @@ Make sure the following is true:
 - If a feature is being added:
   - If the result was already achievable with the core library, explain why this feature needs to be added to the core.
   - If this is a common use case, consider adding an example to the documentation.
-- When adding new features or modifying existing, please include tests to confirm the new behavior. You can read more about our test setup in our test [README](https://github.com/mui-org/material-ui/blob/master/test/README.md).
+- When adding new features or modifying existing, please include tests to confirm the new behavior. You can read more about our test setup in our test [README](https://github.com/mui-org/material-ui/blob/next/test/README.md).
 - If props were added or prop types were changed, the TypeScript declarations were updated.
 - When submitting a new component, please add it to the [lab](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-lab).
 - The branch is not behind its target.

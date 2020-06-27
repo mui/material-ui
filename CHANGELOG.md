@@ -23,6 +23,7 @@ Big thanks to the 33 contributors who made this release possible. Here are some 
   + border-color: #f00;
   }
   ```
+
 - [Rating] Rename `visuallyhidden` to `visuallyHidden` for consistency (#21413) @mnajdova.
 
   ```diff
@@ -33,6 +34,7 @@ Big thanks to the 33 contributors who made this release possible. Here are some 
     }}
   />
   ```
+
 - [Typography] Replace the `srOnly` prop so as to not duplicate the capabilities of [System](https://material-ui.com/system/basics/) (#21413) @mnajdova.
 
   ```diff
@@ -45,6 +47,7 @@ Big thanks to the 33 contributors who made this release possible. Here are some 
   -<Typography variant="srOnly">Create a user</Typography>
   +<Span>Create a user</Span>
   ```
+
 - [TablePagination] Add showFirstButton and showLastButton support (#20750) @ShahAnuj2610.
   The customization of the table pagination's actions labels must be done with the `getItemAriaLabel` prop. This increases consistency with the `Pagination` component.
 
@@ -54,6 +57,7 @@ Big thanks to the 33 contributors who made this release possible. Here are some 
   - nextIconButtonText="Après
   + getItemAriaLabel={…}
   ```
+
 - [ExpansionPanel] Rename to Accordion (#21494) @mnajdova.
   Use a more common the naming convention:
 
@@ -91,24 +95,28 @@ Big thanks to the 33 contributors who made this release possible. Here are some 
   -</ExpansionPanel>
   +</Accordion>
   ```
+
 - [BottomNavigation] typescript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
 
   ```diff
   -<BottomNavigation onChange={(event: React.ChangEvent<{}>) => {}} />
   +<BottomNavigation onChange={(event: React.SyntheticEvent) => {}} />
   ```
+
 - [Slider] typescript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
 
   ```diff
   -<Slider onChange={(event: React.ChangEvent<{}>, value: unknown) => {}} />
   +<Slider onChange={(event: React.SyntheticEvent, value: unknown) => {}} />
   ```
+
 - [Tabs] typescript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
 
   ```diff
   -<Tabs onChange={(event: React.ChangEvent<{}>, value: unknown) => {}} />
   +<Tabs onChange={(event: React.SyntheticEvent, value: unknown) => {}} />
   ```
+
 - [Accordion] typescript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
   ```diff
   -<Accordion onChange={(event: React.ChangEvent<{}>, expanded: boolean) => {}} />
@@ -11531,7 +11539,7 @@ We are releasing sooner than we use to for this **special day** :christmas_tree:
 That wouldn't have been possible without this awesome community.
 **Thank you!**
 
-But this's just the beginning, some [exciting stuff](https://github.com/mui-org/material-ui/blob/master/ROADMAP.md) is coming in 2017 :sparkles:.
+But this's just the beginning, some [exciting stuff](https://github.com/mui-org/material-ui/blob/next/ROADMAP.md) is coming in 2017 :sparkles:.
 You can preview a **very early** version of the `next` branch following [this link](https://material-ui-next.com).
 
 #### Component Fixes / Enhancements

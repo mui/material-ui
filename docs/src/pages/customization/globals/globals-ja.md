@@ -23,7 +23,7 @@
 
 {{"demo": "pages/customization/globals/GlobalCss.js"}}
 
-各コンポーネントのカスタマイズポイントの一覧は、 **Component API**のセクションに記載されています。 たとえば、 [Button](/api/button/#css)はこちらです。 あるいは、いつでも[実装を調べることができます](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Button/Button.js)。
+各コンポーネントのカスタマイズポイントの一覧は、 **Component API**のセクションに記載されています。 たとえば、 [Button](/api/button/#css)はこちらです。 あるいは、いつでも[実装を調べることができます](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/Button/Button.js)。
 
 ## Global CSS
 
