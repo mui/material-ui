@@ -136,7 +136,6 @@ export default function Checkout() {
                   )}
                   <Button
                     variant="contained"
-                    color="primary"
                     onClick={handleNext}
                     className={classes.button}
                   >

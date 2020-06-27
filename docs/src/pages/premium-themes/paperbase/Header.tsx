@@ -128,7 +128,6 @@ function Header(props: HeaderProps) {
       <AppBar
         component="div"
         className={classes.secondaryBar}
-        color="primary"
         position="static"
         elevation={0}
       >

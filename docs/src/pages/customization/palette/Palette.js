@@ -20,7 +20,7 @@ const theme = createMuiTheme({
 export default function Palette() {
   return (
     <ThemeProvider theme={theme}>
-      <Button color="primary">Primary</Button>
+      <Button>Primary</Button>
       <Button color="secondary">Secondary</Button>
     </ThemeProvider>
   );

@@ -70,11 +70,7 @@ function Content(props: ContentProps) {
               />
             </Grid>
             <Grid item>
-              <Button
-                variant="contained"
-                color="primary"
-                className={classes.addUser}
-              >
+              <Button variant="contained" className={classes.addUser}>
                 Add user
               </Button>
               <Tooltip title="Reload">

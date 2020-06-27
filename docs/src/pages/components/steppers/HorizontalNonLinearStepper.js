@@ -128,7 +128,6 @@ export default function HorizontalNonLinearStepper() {
               </Button>
               <Button
                 variant="contained"
-                color="primary"
                 onClick={handleNext}
                 className={classes.button}
               >
@@ -140,11 +139,7 @@ export default function HorizontalNonLinearStepper() {
                     Step {activeStep + 1} already completed
                   </Typography>
                 ) : (
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={handleComplete}
-                  >
+                  <Button variant="contained" onClick={handleComplete}>
                     {completedSteps() === totalSteps() - 1
                       ? 'Finish'
                       : 'Complete Step'}

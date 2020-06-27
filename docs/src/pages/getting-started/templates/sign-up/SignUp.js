@@ -118,7 +118,6 @@ export default function SignUp() {
             type="submit"
             fullWidth
             variant="contained"
-            color="primary"
             className={classes.submit}
           >
             Sign Up

@@ -97,12 +97,10 @@ function ConfirmationDialogRaw(props: ConfirmationDialogRawProps) {
         </RadioGroup>
       </DialogContent>
       <DialogActions>
-        <Button autoFocus onClick={handleCancel} color="primary">
+        <Button autoFocus onClick={handleCancel}>
           Cancel
         </Button>
-        <Button onClick={handleOk} color="primary">
-          Ok
-        </Button>
+        <Button onClick={handleOk}>Ok</Button>
       </DialogActions>
     </Dialog>
   );

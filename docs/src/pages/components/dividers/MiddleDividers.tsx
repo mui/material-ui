@@ -64,7 +64,7 @@ export default function MiddleDividers() {
         </div>
       </div>
       <div className={classes.section3}>
-        <Button color="primary">Add to cart</Button>
+        <Button>Add to cart</Button>
       </div>
     </div>
   );

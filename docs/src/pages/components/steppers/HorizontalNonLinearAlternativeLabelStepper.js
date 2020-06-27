@@ -186,7 +186,6 @@ export default function HorizontalNonLinearAlternativeLabelStepper() {
               </Button>
               <Button
                 variant="contained"
-                color="primary"
                 onClick={handleNext}
                 className={classes.button}
               >
@@ -195,7 +194,6 @@ export default function HorizontalNonLinearAlternativeLabelStepper() {
               {isStepOptional(activeStep) && !completed.has(activeStep) && (
                 <Button
                   variant="contained"
-                  color="primary"
                   onClick={handleSkip}
                   className={classes.button}
                 >
@@ -209,11 +207,7 @@ export default function HorizontalNonLinearAlternativeLabelStepper() {
                     Step {activeStep + 1} already completed
                   </Typography>
                 ) : (
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={handleComplete}
-                  >
+                  <Button variant="contained" onClick={handleComplete}>
                     {completedSteps() === totalSteps() - 1
                       ? 'Finish'
                       : 'Complete Step'}

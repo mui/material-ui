@@ -145,7 +145,6 @@ export default function HorizontalNonLinearStepperWithError() {
               {isStepOptional(activeStep) && (
                 <Button
                   variant="contained"
-                  color="primary"
                   onClick={handleSkip}
                   className={classes.button}
                 >
@@ -154,7 +153,6 @@ export default function HorizontalNonLinearStepperWithError() {
               )}
               <Button
                 variant="contained"
-                color="primary"
                 onClick={handleNext}
                 className={classes.button}
               >

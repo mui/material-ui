@@ -17,13 +17,11 @@ export default function ButtonRouter() {
   return (
     <Router>
       <div>
-        <Button color="primary" component={RouterLink} to="/">
+        <Button component={RouterLink} to="/">
           With prop forwarding
         </Button>
         <br />
-        <Button color="primary" component={LinkBehavior}>
-          Without prop forwarding
-        </Button>
+        <Button component={LinkBehavior}>Without prop forwarding</Button>
       </div>
     </Router>
   );

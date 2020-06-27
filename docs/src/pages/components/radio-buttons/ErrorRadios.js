@@ -70,12 +70,7 @@ export default function ErrorRadios() {
           />
         </RadioGroup>
         <FormHelperText>{helperText}</FormHelperText>
-        <Button
-          type="submit"
-          variant="outlined"
-          color="primary"
-          className={classes.button}
-        >
+        <Button type="submit" variant="outlined" className={classes.button}>
           Check Answer
         </Button>
       </FormControl>

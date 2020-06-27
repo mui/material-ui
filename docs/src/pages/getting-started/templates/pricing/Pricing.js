@@ -191,12 +191,7 @@ export default function Pricing() {
               Support
             </Link>
           </nav>
-          <Button
-            href="#"
-            color="primary"
-            variant="outlined"
-            className={classes.link}
-          >
+          <Button href="#" variant="outlined" className={classes.link}>
             Login
           </Button>
         </Toolbar>
@@ -269,11 +264,7 @@ export default function Pricing() {
                   </ul>
                 </CardContent>
                 <CardActions>
-                  <Button
-                    fullWidth
-                    variant={tier.buttonVariant}
-                    color="primary"
-                  >
+                  <Button fullWidth variant={tier.buttonVariant}>
                     {tier.buttonText}
                   </Button>
                 </CardActions>

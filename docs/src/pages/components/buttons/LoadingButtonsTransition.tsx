@@ -47,7 +47,6 @@ export default function LoadingButtonsTransition() {
       </LoadingButton>
       <LoadingButton
         variant="contained"
-        color="primary"
         pending={pending}
         pendingPosition="end"
         endIcon={<SendIcon />}

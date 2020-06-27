@@ -59,7 +59,6 @@ export default function SplitButton() {
         >
           <Button onClick={handleClick}>{options[selectedIndex]}</Button>
           <Button
-            color="primary"
             size="small"
             aria-controls={open ? 'split-button-menu' : undefined}
             aria-expanded={open ? 'true' : undefined}

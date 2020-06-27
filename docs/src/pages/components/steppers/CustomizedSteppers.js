@@ -276,7 +276,6 @@ export default function CustomizedSteppers() {
               </Button>
               <Button
                 variant="contained"
-                color="primary"
                 onClick={handleNext}
                 className={classes.button}
               >

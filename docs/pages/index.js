@@ -147,7 +147,6 @@ export default function LandingPage(props) {
                   component={GettingStartedLink}
                   className={classes.button}
                   variant="outlined"
-                  color="primary"
                 >
                   {t('getStarted')}
                 </Button>

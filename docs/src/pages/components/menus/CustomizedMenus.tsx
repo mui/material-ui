@@ -57,7 +57,6 @@ export default function CustomizedMenus() {
         aria-controls="customized-menu"
         aria-haspopup="true"
         variant="contained"
-        color="primary"
         onClick={handleClick}
       >
         Open Menu

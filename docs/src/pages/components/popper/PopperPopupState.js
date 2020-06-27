@@ -20,11 +20,7 @@ export default function PopperPopupState() {
     <PopupState variant="popper" popupId="demo-popup-popper">
       {(popupState) => (
         <div>
-          <Button
-            variant="contained"
-            color="primary"
-            {...bindToggle(popupState)}
-          >
+          <Button variant="contained" {...bindToggle(popupState)}>
             Toggle Popper
           </Button>
           <Popper {...bindPopper(popupState)} transition>

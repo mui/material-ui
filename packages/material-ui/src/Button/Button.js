@@ -14,7 +14,6 @@ export const styles = (theme) => ({
     minWidth: 64,
     padding: '6px 16px',
     borderRadius: theme.shape.borderRadius,
-    color: theme.palette.text.primary,
     transition: theme.transitions.create(['background-color', 'box-shadow', 'border'], {
       duration: theme.transitions.duration.short,
     }),
@@ -264,7 +263,7 @@ const Button = React.forwardRef(function Button(props, ref) {
     children,
     classes,
     className,
-    color = 'default',
+    color = 'primary',
     component = 'button',
     disabled = false,
     disableElevation = false,
@@ -297,7 +296,7 @@ const Button = React.forwardRef(function Button(props, ref) {
         classes.root,
         classes[variant],
         {
-          [classes[`${variant}${capitalize(color)}`]]: color !== 'default' && color !== 'inherit',
+          [classes[`${variant}${capitalize(color)}`]]: color !== 'inherit',
           [classes[`${variant}Size${capitalize(size)}`]]: size !== 'medium',
           [classes[`size${capitalize(size)}`]]: size !== 'medium',
           [classes.disableElevation]: disableElevation,
@@ -351,7 +350,7 @@ Button.propTypes = {
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    */
-  color: PropTypes.oneOf(['default', 'inherit', 'primary', 'secondary']),
+  color: PropTypes.oneOf(['inherit', 'primary', 'secondary']),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.

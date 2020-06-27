@@ -287,16 +287,11 @@ function ColorTool(props) {
         <ColorDemo data={state} />
       </Grid>
       <Grid item xs={12}>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={handleChangeDocsColors}
-        >
+        <Button variant="contained" onClick={handleChangeDocsColors}>
           Set Docs Colors
         </Button>
         <Button
           variant="outlined"
-          color="primary"
           onClick={handleResetDocsColors}
           className={classes.button}
         >

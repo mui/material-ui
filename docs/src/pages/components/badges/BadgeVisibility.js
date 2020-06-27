@@ -62,11 +62,7 @@ export default function BadgeVisibility() {
         </Badge>
         <FormControlLabel
           control={
-            <Switch
-              color="primary"
-              checked={!invisible}
-              onChange={handleBadgeVisibility}
-            />
+            <Switch checked={!invisible} onChange={handleBadgeVisibility} />
           }
           label="Show Badge"
         />
