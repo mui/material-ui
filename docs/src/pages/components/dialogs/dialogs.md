@@ -121,10 +121,6 @@ Try the demo below to see what we mean:
 
 {{"demo": "pages/components/dialogs/ScrollDialog.js"}}
 
-## Dialog with portals inside
-
-{{"demo": "pages/components/dialogs/DialogWithPortalsInside.js"}}
-
 ## Limitations
 
 Follow the [Modal limitations section](/components/modal/#limitations).
