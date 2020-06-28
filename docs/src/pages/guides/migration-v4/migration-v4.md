@@ -64,10 +64,6 @@ yarn add @material-ui/core@next
   +<Button />
   ```
 
-  ```
-  /(<Button(\n*.*?)*?)color="primary"/$1/g
-  ```
-
 ### Divider
 
 - Use border instead of background color. It prevents inconsistent height on scaled screens. For people customizing the color of the border, the change requires changing the override CSS property:
