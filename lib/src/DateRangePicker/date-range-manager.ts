@@ -41,8 +41,5 @@ export function calculateRangePreview(options: CalculateRangeChangeOptions): Dat
   }
 
   const [previewStart, previewEnd] = newRange;
-  // prettier-ignore
-  return options.currentlySelectingRangeEnd === 'end'
-    ? [end, previewEnd]
-    : [previewStart, start];
+  return options.currentlySelectingRangeEnd === 'end' ? [end, previewEnd] : [previewStart, start];
 }

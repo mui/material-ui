@@ -137,12 +137,11 @@ export const ClockView: React.FC<ClockViewProps> = withDefaultProps(
             utils
           );
 
-          // prettier-ignore
           return Boolean(
-          (minTime && isAfterComparingFn(minTime, getRequestedTimePoint('end'))) ||
-          (maxTime && isAfterComparingFn(getRequestedTimePoint('start'), maxTime)) ||
-          (shouldDisableTime && shouldDisableTime(rawValue, type))
-        );
+            (minTime && isAfterComparingFn(minTime, getRequestedTimePoint('end'))) ||
+              (maxTime && isAfterComparingFn(getRequestedTimePoint('start'), maxTime)) ||
+              (shouldDisableTime && shouldDisableTime(rawValue, type))
+          );
         };
 
         switch (type) {

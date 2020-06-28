@@ -34,10 +34,10 @@ export interface DateTimePickerTabsProps {
 
 export const useStyles = makeStyles(
   theme => {
-    // prettier-ignore
-    const tabsBackground = theme.palette.type === 'light'
-    ? theme.palette.primary.main
-    : theme.palette.background.default;
+    const tabsBackground =
+      theme.palette.type === 'light'
+        ? theme.palette.primary.main
+        : theme.palette.background.default;
 
     return {
       container: {
