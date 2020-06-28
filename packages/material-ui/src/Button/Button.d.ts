@@ -1,6 +1,6 @@
 import { PropTypes } from '..';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
-import { OverrideProps, OverridableComponent, OverridableTypeMap } from '../OverridableComponent';
+import { OverrideProps } from '../OverridableComponent';
 
 export type ButtonTypeMap<
   P = {},
@@ -14,7 +14,7 @@ export type ButtonTypeMap<
     /**
      * The color of the component. It supports those theme colors that make sense for this component.
      */
-    color?: PropTypes.Color;
+    color?: 'inherit' | 'primary' | 'secondary';
     /**
      * If `true`, the button will be disabled.
      */
@@ -57,22 +57,6 @@ export type ButtonTypeMap<
   defaultComponent: D;
   classKey: ButtonClassKey;
 }>;
-
-/**
- * utility to create component types that inherit props from ButtonBase.
- * This component has an additional overload if the `href` prop is set which
- * can make extension quite tricky
- */
-export interface ExtendButtonTypeMap<M extends OverridableTypeMap> {
-  props: M['props'] & ButtonTypeMap['props'];
-  defaultComponent: M['defaultComponent'];
-  classKey: M['classKey'];
-}
-
-export type ExtendButton<M extends OverridableTypeMap> = ((
-  props: { href: string } & OverrideProps<ExtendButtonBaseTypeMap<M>, 'a'>
-) => JSX.Element) &
-  OverridableComponent<ExtendButtonBaseTypeMap<M>>;
 
 /**
  *
