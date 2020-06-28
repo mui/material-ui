@@ -63,7 +63,7 @@ describe('<TrapFocus />', () => {
   it('should focus first focusable child in portal', () => {
     const { getByTestId } = render(
       <TrapFocus open {...sharedProps}>
-        <div tabIndex={-1} data-testid="modal">
+        <div tabIndex={-1}>
           <Portal>
             <input autoFocus data-testid="auto-focus" />
           </Portal>
