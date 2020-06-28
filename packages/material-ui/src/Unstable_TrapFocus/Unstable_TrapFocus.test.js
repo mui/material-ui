@@ -165,7 +165,7 @@ describe('<TrapFocus />', () => {
       expect(toggleButton).toHaveFocus();
 
       setProps({ hideButton: true });
-      // expect(dialog).not.toHaveFocus();
+      expect(dialog).not.toHaveFocus();
       clock.tick(500); // wait for the interval check to kick in.
       expect(dialog).toHaveFocus();
     });
