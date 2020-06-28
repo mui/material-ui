@@ -7,6 +7,7 @@ import describeConformance from '../test-utils/describeConformance';
 import { createClientRender, fireEvent } from 'test/utils/createClientRender';
 import Modal from '../Modal';
 import Dialog from './Dialog';
+import Portal from '../Portal';
 
 /**
  * more comprehensive simulation of a user click (mousedown + click)
@@ -140,6 +141,18 @@ describe('<Dialog />', () => {
     );
     const modal = document.querySelector('[data-mui-test="Modal"]');
     expect(modal).to.have.attribute('data-my-prop', 'woofDialog');
+  });
+
+  it('should not close if clicked on a portal inside the content', () => {
+    const onClose = spy();
+    render(
+      <Dialog open onClose={onClose}>
+        <Portal><input autoFocus data-my-prop="inputInPortal" /></Portal>
+      </Dialog>,
+    );
+
+    userClick(document.querySelector('[data-my-prop="inputInPortal"]'))
+    expect(onClose.calledOnce).to.equal(false);
   });
 
   describe('backdrop', () => {
