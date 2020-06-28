@@ -34,7 +34,7 @@ export default function AdCodeFund() {
   React.useEffect(() => {
     loadScript(
       `https://codefund.io/properties/137/funder.js?theme=unstyled${
-        adShape === 'inline' ? '&template=horizontal' : ''
+        adShape.indexOf('inline') === 0 ? '&template=horizontal' : ''
       }`,
       ref.current,
     );

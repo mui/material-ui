@@ -26,7 +26,6 @@ export default function AdInHouse(props) {
   return (
     <span className={classes.root}>
       <a
-        className={classes.link}
         href={ad.link}
         target="_blank"
         rel="noopener sponsored"
