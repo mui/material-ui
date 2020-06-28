@@ -36,7 +36,6 @@ export default function IconLabelButtons() {
       </Button>
       <Button
         variant="contained"
-        color="default"
         className={classes.button}
         startIcon={<CloudUploadIcon />}
       >
