@@ -58,8 +58,10 @@ yarn add @material-ui/core@next
 - The button `color` prop is now "primary" by default, and "default" has been removed.
 
   ```diff
-  <Button color="primary">Primary</Button>
-  <Button>Primary</Button>
+  -<Button color="primary" />
+  -<Button color="default" />
+  +<Button />
+  +<Button />
   ```
 
   ```
