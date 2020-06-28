@@ -160,7 +160,7 @@ function Unstable_TrapFocus(props) {
     syntheticEventRef.current = true;
     syntheticEventTarget.current = event.target;
 
-    const childrenPropsHandler = children && children.props && children.props.onFocus;
+    const childrenPropsHandler = children.props.onFocus;
     if (childrenPropsHandler) {
       childrenPropsHandler(event);
     }
