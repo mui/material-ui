@@ -77,19 +77,24 @@ export function useDescendant(descendant) {
 
   // We also need to re-register descendants any time ANY of the other
   // descendants have changed. My brain was melting when I wrote this and it
-  // feels a little off, but checking in render and usin  // effect's dependency array works well enough.g the result in the
-  const someDescendantsHaveChanged = descendants.some((d, i) => {
-    return d.element !== previousDescendants?.[i]?.element;
+  // feels a little off, but checking in render and using the result in the
+  // effect's dependency array works well enough.
+  const someDescendantsHaveChanged = descendants.some((newDescendant, position) => {
+    return newDescendant.element !== previousDescendants?.[position]?.element;
   });
 
   // Prevent any flashing
   useEnhancedEffect(() => {
-    if (!descendant.element) forceUpdate({});
+    if (!descendant.element) {
+      forceUpdate({});
+    }
     registerDescendant({
       ...descendant,
       index,
     });
-    return () => unregisterDescendant(descendant.element);
+    return () => {
+      unregisterDescendant(descendant.element);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     registerDescendant,
@@ -174,11 +179,7 @@ export function DescendantProvider(props) {
         return newItems.map((item, index) => ({ ...item, index }));
       });
     },
-    // set is a state setter initialized by the useDescendants hook.
-    // We can safely ignore the lint warning here because it will not change
-    // between renders.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [],
+    [set],
   );
 
   const unregisterDescendant = React.useCallback(
@@ -189,11 +190,7 @@ export function DescendantProvider(props) {
 
       set((oldItems) => oldItems.filter((item) => element !== item.element));
     },
-    // set is a state setter initialized by the useDescendants hook.
-    // We can safely ignore the lint warning here because it will not change
-    // between renders.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [],
+    [set],
   );
 
   const value = React.useMemo(
