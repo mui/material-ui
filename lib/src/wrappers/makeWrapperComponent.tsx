@@ -47,7 +47,7 @@ export function makeWrapperComponent<
       onClose,
       onOpen,
       open,
-      PopoverProps,
+      PopperProps,
       showTabs,
       todayText,
       value,
@@ -63,6 +63,7 @@ export function makeWrapperComponent<
         clearable={clearable}
         clearText={clearText}
         DialogProps={DialogProps}
+        PopperProps={PopperProps}
         okText={okText}
         todayText={todayText}
         cancelText={cancelText}

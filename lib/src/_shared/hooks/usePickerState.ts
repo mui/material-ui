@@ -79,6 +79,7 @@ export function usePickerState<TInput, TDateValue>(
 
   const pickerProps = React.useMemo(
     () => ({
+      // canAutoFocus,
       date: pickerDate,
       isMobileKeyboardViewOpen,
       toggleMobileKeyboardView: () => {

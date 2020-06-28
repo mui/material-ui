@@ -7,10 +7,10 @@ import { DateRangeInputProps } from './DateRangePickerInput';
 import { withDefaultProps } from '../_shared/withDefaultProps';
 import { useParsedDate } from '../_shared/hooks/date-helpers-hooks';
 import { withDateAdapterProp } from '../_shared/withDateAdapterProp';
-import { DesktopPopperWrapper } from '../wrappers/DesktopPopperWrapper';
 import { makeWrapperComponent } from '../wrappers/makeWrapperComponent';
 import { ResponsivePopperWrapper } from '../wrappers/ResponsiveWrapper';
 import { defaultMinDate, defaultMaxDate } from '../constants/prop-types';
+import { DesktopTooltipWrapper } from '../wrappers/DesktopTooltipWrapper';
 import { SomeWrapper, ExtendWrapper, StaticWrapper } from '../wrappers/Wrapper';
 import { makeValidationHook, ValidationProps } from '../_shared/hooks/useValidation';
 import { usePickerState, PickerStateValueManager } from '../_shared/hooks/usePickerState';
@@ -164,7 +164,7 @@ export type DateRangePickerProps = React.ComponentProps<typeof DateRangePicker>;
 
 export const DesktopDateRangePicker = makeRangePicker(
   'MuiPickersDesktopDateRangePicker',
-  DesktopPopperWrapper
+  DesktopTooltipWrapper
 );
 
 export type DesktopDateRangePickerProps = React.ComponentProps<typeof DesktopDateRangePicker>;

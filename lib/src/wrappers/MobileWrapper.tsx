@@ -36,7 +36,7 @@ export const MobileWrapper: React.FC<MobileWrapperProps> = ({
   onDismiss,
   onSetToday,
   open,
-  PopoverProps,
+  PopperProps,
   PureDateInputComponent = PureDateInput,
   showTabs,
   showTodayButton,

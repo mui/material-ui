@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import Typography from '@material-ui/core/Typography';
 import { onSpaceOrEnter } from '../../_helpers/utils';
 import { makeStyles, fade } from '@material-ui/core/styles';
+import { useCanAutoFocus } from '../../_shared/hooks/useCanAutoFocus';
 import { WrapperVariantContext } from '../../wrappers/WrapperVariantContext';
 
 export interface YearProps {
@@ -71,14 +72,15 @@ export const Year: React.FC<YearProps> = ({
   ...other
 }) => {
   const classes = useStyles();
+  const canAutoFocus = useCanAutoFocus();
   const ref = React.useRef<HTMLSpanElement>(null);
   const wrapperVariant = React.useContext(WrapperVariantContext);
 
   React.useEffect(() => {
-    if (focused && ref.current && !disabled && allowKeyboardControl) {
+    if (canAutoFocus && focused && ref.current && !disabled && allowKeyboardControl) {
       ref.current.focus();
     }
-  }, [allowKeyboardControl, disabled, focused]);
+  }, [allowKeyboardControl, canAutoFocus, disabled, focused]);
 
   return (
     <button

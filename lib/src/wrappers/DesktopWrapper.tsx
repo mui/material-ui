@@ -1,37 +1,20 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import Popover, { PopoverProps } from '@material-ui/core/Popover';
 import { WrapperProps } from './Wrapper';
 import { StaticWrapperProps } from './StaticWrapper';
-import { makeStyles } from '@material-ui/core/styles';
 import { InnerMobileWrapperProps } from './MobileWrapper';
 import { WrapperVariantContext } from './WrapperVariantContext';
-import { IS_TOUCH_DEVICE_MEDIA } from '../constants/dimensions';
 import { KeyboardDateInput } from '../_shared/KeyboardDateInput';
-import { InnerDesktopPopperWrapperProps } from './DesktopPopperWrapper';
+import { InnerDesktopTooltipWrapperProps } from './DesktopTooltipWrapper';
+import { PickerPopper, ExportedPickerPopperProps } from '../_shared/PickerPopper';
+import { CanAutoFocusContext, useAutoFocusControl } from '../_shared/hooks/useCanAutoFocus';
 
-export interface InnerDesktopWrapperProps {
-  /**
-   * Popover props passed to material-ui Popover.
-   */
-  PopoverProps?: Partial<PopoverProps>;
-}
+export interface InnerDesktopWrapperProps extends ExportedPickerPopperProps {}
 
 export interface DesktopWrapperProps
   extends InnerDesktopWrapperProps,
     WrapperProps,
-    Partial<InnerMobileWrapperProps & InnerDesktopPopperWrapperProps & StaticWrapperProps> {}
-
-const useStyles = makeStyles({
-  popover: {
-    '&:focus': {
-      outline: 'auto',
-      [IS_TOUCH_DEVICE_MEDIA]: {
-        outline: 0,
-      },
-    },
-  },
-});
+    Partial<InnerMobileWrapperProps & InnerDesktopTooltipWrapperProps & StaticWrapperProps> {}
 
 export const DesktopWrapper: React.FC<DesktopWrapperProps> = ({
   children,
@@ -39,33 +22,29 @@ export const DesktopWrapper: React.FC<DesktopWrapperProps> = ({
   KeyboardDateInputComponent = KeyboardDateInput,
   onDismiss,
   open,
-  PopoverProps,
+  PopperProps,
+  TransitionComponent,
 }) => {
-  const ref = React.useRef<HTMLDivElement>(null);
-  const classes = useStyles();
+  const inputRef = React.useRef<HTMLInputElement>(null);
+  const { canAutoFocus, onOpen } = useAutoFocusControl(open);
 
   return (
     <WrapperVariantContext.Provider value="desktop">
-      <KeyboardDateInputComponent {...DateInputProps} containerRef={ref} />
+      <CanAutoFocusContext.Provider value={canAutoFocus}>
+        <KeyboardDateInputComponent {...DateInputProps} inputRef={inputRef} />
 
-      <Popover
-        role="dialog"
-        open={open}
-        onClose={onDismiss}
-        anchorEl={ref.current}
-        classes={{ paper: classes.popover }}
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'center',
-        }}
-        transformOrigin={{
-          vertical: 'top',
-          horizontal: 'center',
-        }}
-        {...PopoverProps}
-      >
-        {children}
-      </Popover>
+        <PickerPopper
+          role="dialog"
+          open={open}
+          anchorEl={inputRef.current}
+          TransitionComponent={TransitionComponent}
+          PopperProps={PopperProps}
+          onClose={onDismiss}
+          onOpen={onOpen}
+        >
+          {children}
+        </PickerPopper>
+      </CanAutoFocusContext.Provider>
     </WrapperVariantContext.Provider>
   );
 };
@@ -73,5 +52,4 @@ export const DesktopWrapper: React.FC<DesktopWrapperProps> = ({
 DesktopWrapper.propTypes = {
   onOpen: PropTypes.func,
   onClose: PropTypes.func,
-  PopoverProps: PropTypes.object,
 } as any;

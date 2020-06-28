@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Picker from '../Picker/Picker';
 import CalendarSkeleton from '../CalendarSkeleton';
 import { ReactWrapper } from 'enzyme';
 import { TextField } from '@material-ui/core';
@@ -8,7 +7,6 @@ import { mount, utilsToUse, mountPickerWithState } from './test-utils';
 import {
   DatePicker,
   MobileDatePicker,
-  DesktopDatePicker,
   DatePickerProps,
   StaticDatePicker,
 } from '../DatePicker/DatePicker';
@@ -23,8 +21,6 @@ describe('e2e - DatePicker default year format', () => {
     component = mount(
       <DatePicker
         renderInput={props => <TextField {...props} />}
-        DialogProps={{}}
-        PopoverProps={{}}
         desktopModeMediaQuery="(min-width:720px)"
         value={utilsToUse.date('2018-01-01T00:00:00.000')}
         onChange={onChangeMock}
@@ -77,57 +73,6 @@ describe('e2e - DatePicker default year month day format', () => {
 
   it('Should use default for year & month & day views', () => {
     expect(component.find('input').props().value).toBe(utilsToUse.format(date, 'keyboardDate'));
-  });
-});
-
-describe('e2e - DatePicker inline variant', () => {
-  let component: ReactWrapper<DatePickerProps>;
-  const onChangeMock = jest.fn();
-  const onCloseMock = jest.fn();
-  const onOpenMock = jest.fn();
-
-  beforeEach(() => {
-    jest.clearAllMocks();
-    component = mount(
-      <DesktopDatePicker
-        renderInput={props => <TextField {...props} />}
-        autoOk
-        onChange={onChangeMock}
-        onClose={onCloseMock}
-        onOpen={onOpenMock}
-        value={utilsToUse.date('2018-01-01T00:00:00.000Z')}
-      />
-    );
-  });
-
-  it('Should open modal with picker on click', () => {
-    component.find('button[data-mui-test="open-picker-from-keyboard"]').simulate('click');
-
-    expect(component.find(Picker)).toHaveLength(1);
-    expect(onOpenMock).toHaveBeenCalled();
-  });
-
-  it.skip('Should close on popover close request', () => {
-    component.find('button[data-mui-test="open-picker-from-keyboard"]').simulate('click');
-    const popoverOnClose = component
-      .find('WithStyles(ForwardRef(Popover))')
-      .prop('onClose') as () => void;
-
-    popoverOnClose();
-
-    expect(component.find(Picker)).toHaveLength(0);
-    expect(onCloseMock).toHaveBeenCalled();
-  });
-
-  it('Should dispatch onChange and close on day select', () => {
-    component.find('button[data-mui-test="open-picker-from-keyboard"]').simulate('click');
-    component
-      .find('Day button')
-      .at(10)
-      .simulate('click');
-
-    expect(onChangeMock).toHaveBeenCalled();
-    expect(component.find('WithStyles(ForwardRef(Popover))').props().open).toBeFalsy();
   });
 });
 

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import Skeleton from '@material-ui/lab/Skeleton';
-import { makeStyles } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import { DAY_SIZE, DAY_MARGIN } from './constants/dimensions';
 import { withDefaultProps } from './_shared/withDefaultProps';
 import { useStyles as useCalendarStyles } from './views/Calendar/Calendar';

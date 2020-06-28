@@ -4,6 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import { onSpaceOrEnter } from '../../_helpers/utils';
 import { makeStyles, fade } from '@material-ui/core/styles';
+import { useCanAutoFocus } from '../../_shared/hooks/useCanAutoFocus';
 import { FORCE_FINISH_PICKER } from '../../_shared/hooks/usePickerState';
 
 const positions: Record<number, [number, number]> = {
@@ -87,8 +88,9 @@ export const ClockNumber: React.FC<ClockNumberProps> = ({
   onSelect,
   selected,
 }) => {
-  const ref = React.useRef<HTMLSpanElement>(null);
   const classes = useStyles();
+  const canAutoFocus = useCanAutoFocus();
+  const ref = React.useRef<HTMLSpanElement>(null);
   const className = clsx(classes.clockNumber, {
     [classes.clockNumberSelected]: selected,
     [classes.clockNumberDisabled]: disabled,
@@ -103,10 +105,10 @@ export const ClockNumber: React.FC<ClockNumberProps> = ({
   }, [index]);
 
   React.useEffect(() => {
-    if (selected && ref.current) {
+    if (canAutoFocus && selected && ref.current) {
       ref.current.focus();
     }
-  }, [selected]);
+  }, [canAutoFocus, selected]);
 
   return (
     <ButtonBase

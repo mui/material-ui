@@ -95,6 +95,7 @@ export type ExportedDateInputProps<TInputValue, TDateValue> = Omit<
 >;
 
 export interface DateInputRefs {
+  inputRef?: React.Ref<HTMLInputElement>;
   containerRef?: React.Ref<HTMLDivElement>;
   forwardedRef?: React.Ref<HTMLInputElement>;
 }

@@ -65,4 +65,5 @@ export interface MuiPickersComponentsToClassName {
   >;
   MuiPickersModalDialog: Classes<typeof import('../_shared/PickerModalDialog').useStyles>;
   MuiPickersCalendarSkeleton: Classes<typeof import('../CalendarSkeleton').useStyles>;
+  MuiPickersPopper: Classes<typeof import('../_shared/PickerPopper').useStyles>;
 }

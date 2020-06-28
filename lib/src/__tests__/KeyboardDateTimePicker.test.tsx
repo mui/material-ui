@@ -34,7 +34,7 @@ describe('e2e - DesktopDateTimePicker', () => {
 
   it('Should open modal with picker on click', () => {
     component.find('button#keyboard-button').simulate('click');
-    expect(component.find('WithStyles(ForwardRef(Popover))').props().open).toBeTruthy();
+    expect(component.find('div[role="dialog"]').length).toBe(1);
     expect(onOpenMock).toHaveBeenCalled();
   });
 

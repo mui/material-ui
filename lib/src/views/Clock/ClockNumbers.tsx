@@ -8,7 +8,7 @@ interface GetHourNumbersOptions {
   date: MaterialUiPickersDate;
   getClockNumberText: (hour: string) => string;
   isDisabled: (value: number) => boolean;
-  onChange: (value: number, isFinish?: boolean) => void;
+  onChange: (value: number, isFinish?: boolean | symbol) => void;
   utils: IUtils<MaterialUiPickersDate>;
 }
 
@@ -68,18 +68,12 @@ export const getHourNumbers = ({
 };
 
 export const getMinutesNumbers = ({
-  getClockNumberText,
-  isDisabled,
-  onChange,
   utils,
   value,
-}: {
-  value: number;
-  utils: IUtils<MaterialUiPickersDate>;
-  onChange: (value: number, isFinish?: boolean | symbol) => void;
-  getClockNumberText: (hour: string) => string;
-  isDisabled: (value: number) => boolean;
-}) => {
+  onChange,
+  isDisabled,
+  getClockNumberText,
+}: Omit<GetHourNumbersOptions, 'ampm' | 'date'> & { value: number }) => {
   const f = utils.formatNumber;
 
   return ([

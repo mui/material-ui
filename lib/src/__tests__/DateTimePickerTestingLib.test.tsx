@@ -3,7 +3,7 @@ import { utilsToUse } from './test-utils';
 import { TextField } from '@material-ui/core';
 import { DesktopDateTimePicker } from '../DateTimePicker';
 import { createClientRender } from './createClientRender';
-import { fireEvent, screen } from '@testing-library/react';
+import { fireEvent, screen, waitFor } from '@testing-library/react';
 
 describe('<DateTimePicker />', () => {
   const render = createClientRender({ strict: false });
@@ -28,7 +28,7 @@ describe('<DateTimePicker />', () => {
     expect(textbox.value).toBe('12');
   });
 
-  it('prop: maxDateTime – minutes is disabled by date part', () => {
+  it('prop: maxDateTime – minutes is disabled by date part', async () => {
     render(
       <DesktopDateTimePicker
         open
@@ -41,11 +41,13 @@ describe('<DateTimePicker />', () => {
       />
     );
 
+    await waitFor(() => screen.getByRole('dialog'));
+
     expect(screen.getByLabelText('25 minutes').getAttribute('aria-disabled')).toBe('true');
     expect(screen.getByLabelText('35 minutes').getAttribute('aria-disabled')).toBe('false');
   });
 
-  it('prop: minDateTime – hours is disabled by date part', () => {
+  it('prop: minDateTime – hours is disabled by date part', async () => {
     render(
       <DesktopDateTimePicker
         open
@@ -58,6 +60,7 @@ describe('<DateTimePicker />', () => {
       />
     );
 
+    await waitFor(() => screen.getByRole('dialog'));
     expect(screen.getByLabelText('11 hours').getAttribute('aria-disabled')).toBe('true');
   });
 });

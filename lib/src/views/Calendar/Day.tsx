@@ -9,6 +9,7 @@ import { MaterialUiPickersDate } from '../../typings/date';
 import { makeStyles, fade } from '@material-ui/core/styles';
 import { DAY_SIZE, DAY_MARGIN } from '../../constants/dimensions';
 import { withDefaultProps } from '../../_shared/withDefaultProps';
+import { useCanAutoFocus } from '../../_shared/hooks/useCanAutoFocus';
 import { FORCE_FINISH_PICKER } from '../../_shared/hooks/usePickerState';
 
 const muiComponentConfig = { name: 'MuiPickersDay' };
@@ -149,9 +150,10 @@ const PureDay: React.FC<DayProps> = ({
   today: isToday,
   ...other
 }) => {
-  const ref = React.useRef<HTMLButtonElement>(null);
   const utils = useUtils();
   const classes = useStyles();
+  const canAutoFocus = useCanAutoFocus();
+  const ref = React.useRef<HTMLButtonElement>(null);
 
   React.useEffect(() => {
     if (
@@ -160,11 +162,12 @@ const PureDay: React.FC<DayProps> = ({
       !isAnimating &&
       isInCurrentMonth &&
       ref.current &&
-      allowKeyboardControl
+      allowKeyboardControl &&
+      canAutoFocus
     ) {
       ref.current.focus();
     }
-  }, [allowKeyboardControl, disabled, focused, isAnimating, isInCurrentMonth]);
+  }, [allowKeyboardControl, canAutoFocus, disabled, focused, isAnimating, isInCurrentMonth]);
 
   const handleFocus = (event: React.FocusEvent<HTMLButtonElement>) => {
     if (!focused) {

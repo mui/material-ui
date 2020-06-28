@@ -3,11 +3,11 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { IS_TOUCH_DEVICE_MEDIA } from '../constants/dimensions';
 import { MobileWrapperProps, MobileWrapper } from './MobileWrapper';
 import { DesktopWrapperProps, DesktopWrapper } from './DesktopWrapper';
-import { DesktopPopperWrapperProps, DesktopPopperWrapper } from './DesktopPopperWrapper';
+import { DesktopTooltipWrapperProps, DesktopTooltipWrapper } from './DesktopTooltipWrapper';
 
 export interface ResponsiveWrapperProps
   extends DesktopWrapperProps,
-    DesktopPopperWrapperProps,
+    DesktopTooltipWrapperProps,
     MobileWrapperProps {
   /**
    * CSS media query when `Mobile` mode will be changed to `Desktop`.
@@ -19,7 +19,7 @@ export interface ResponsiveWrapperProps
 }
 
 export const makeResponsiveWrapper = (
-  DesktopWrapperComponent: React.FC<DesktopWrapperProps | DesktopPopperWrapperProps>,
+  DesktopWrapperComponent: React.FC<DesktopWrapperProps | DesktopTooltipWrapperProps>,
   MobileWrapperComponent: React.FC<MobileWrapperProps>
 ) => {
   const ResponsiveWrapper: React.FC<ResponsiveWrapperProps> = ({
@@ -30,7 +30,6 @@ export const makeResponsiveWrapper = (
     DialogProps,
     displayStaticWrapperAs,
     okText,
-    PopoverProps,
     PopperProps,
     showTodayButton,
     todayText,
@@ -43,7 +42,6 @@ export const makeResponsiveWrapper = (
       <DesktopWrapperComponent
         PopperProps={PopperProps}
         TransitionComponent={TransitionComponent}
-        PopoverProps={PopoverProps}
         {...other}
       />
     ) : (
@@ -65,4 +63,4 @@ export const makeResponsiveWrapper = (
 
 export const ResponsiveWrapper = makeResponsiveWrapper(DesktopWrapper, MobileWrapper);
 
-export const ResponsivePopperWrapper = makeResponsiveWrapper(DesktopPopperWrapper, MobileWrapper);
+export const ResponsivePopperWrapper = makeResponsiveWrapper(DesktopTooltipWrapper, MobileWrapper);

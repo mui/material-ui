@@ -3,7 +3,7 @@ import { StaticWrapper, StaticWrapperProps } from './StaticWrapper';
 import { MobileWrapper, MobileWrapperProps } from './MobileWrapper';
 import { DesktopWrapper, DesktopWrapperProps } from './DesktopWrapper';
 import { ResponsiveWrapper, ResponsiveWrapperProps } from './ResponsiveWrapper';
-import { DesktopPopperWrapper, DesktopPopperWrapperProps } from './DesktopPopperWrapper';
+import { DesktopTooltipWrapper, DesktopTooltipWrapperProps } from './DesktopTooltipWrapper';
 
 export type DateInputPropsLike<TInputValue, TDateValue> = Omit<
   DateInputProps<TInputValue, TDateValue>,
@@ -31,7 +31,7 @@ export type SomeWrapper =
   | typeof StaticWrapper
   | typeof MobileWrapper
   | typeof DesktopWrapper
-  | typeof DesktopPopperWrapper;
+  | typeof DesktopTooltipWrapper;
 
 export type ExtendWrapper<TWrapper extends SomeWrapper> = TWrapper extends typeof StaticWrapper
   ? StaticWrapperProps
@@ -43,8 +43,8 @@ export type ExtendWrapper<TWrapper extends SomeWrapper> = TWrapper extends typeo
   ? OmitInnerWrapperProps<DesktopWrapperProps>
   : TWrapper extends typeof DesktopWrapper
   ? OmitInnerWrapperProps<DesktopWrapperProps>
-  : TWrapper extends typeof DesktopPopperWrapper
-  ? OmitInnerWrapperProps<DesktopPopperWrapperProps>
+  : TWrapper extends typeof DesktopTooltipWrapper
+  ? OmitInnerWrapperProps<DesktopTooltipWrapperProps>
   : never;
 
 export function getWrapperVariant(wrapper: SomeWrapper) {

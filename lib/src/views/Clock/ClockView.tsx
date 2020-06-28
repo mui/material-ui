@@ -242,6 +242,7 @@ export const ClockView: React.FC<ClockViewProps> = withDefaultProps(
     }, [
       type,
       utils,
+      dateOrNow,
       date,
       ampm,
       getHoursClockNumberText,
@@ -249,7 +250,6 @@ export const ClockView: React.FC<ClockViewProps> = withDefaultProps(
       getSecondsClockNumberText,
       meridiemMode,
       onChange,
-      dateOrNow,
       isTimeDisabled,
     ]);
 

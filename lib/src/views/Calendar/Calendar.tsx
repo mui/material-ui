@@ -53,8 +53,8 @@ export interface CalendarProps extends ExportedCalendarProps {
   changeFocusedDay: (newFocusedDay: MaterialUiPickersDate) => void;
   isMonthSwitchingAnimating: boolean;
   onMonthSwitchingAnimationEnd: () => void;
-  className?: string;
   TransitionProps?: Partial<SlideTransitionProps>;
+  className?: string;
 }
 
 const muiComponentConfig = { name: 'MuiPickersCalendar' };
