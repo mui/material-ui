@@ -85,6 +85,14 @@ function Unstable_TrapFocus(props) {
         return;
       }
 
+      // Support focused nodes removed from DOM with an interval call.
+      if (!nativeEvent) {
+        if (doc.activeElement.tagName === 'BODY') {
+          rootRef.current.focus();
+        }
+        return;
+      }
+
       if (rootRef.current && !rootRef.current.contains(doc.activeElement)) {
         // if the focus event is not coming from inside the children's react tree, reset the refs
         if (
