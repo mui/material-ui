@@ -55,7 +55,7 @@ describe('<ButtonGroup />', () => {
     expect(button).to.have.class('MuiButton-outlined');
     expect(button).to.have.class(classes.grouped);
     expect(button).to.have.class(classes.groupedOutlined);
-    expect(button).to.not.have.class(classes.groupedOutlinedPrimary);
+    expect(button).to.have.class(classes.groupedOutlinedPrimary);
     expect(button).to.not.have.class(classes.groupedOutlinedSecondary);
   });
 
@@ -83,7 +83,7 @@ describe('<ButtonGroup />', () => {
     expect(button).to.have.class('MuiButton-contained');
     expect(button).to.have.class(classes.grouped);
     expect(button).to.have.class(classes.groupedContained);
-    expect(button).to.not.have.class(classes.groupedContainedPrimary);
+    expect(button).to.have.class(classes.groupedContainedPrimary);
     expect(button).to.not.have.class(classes.groupedContainedSecondary);
   });
 

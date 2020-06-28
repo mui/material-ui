@@ -25,13 +25,13 @@ describe('<Button />', () => {
     skip: ['componentProp'],
   }));
 
-  it('should render with the root & text classes but no others', () => {
+  it('should render with the root, text, and textPrimary classes but no others', () => {
     const { getByRole } = render(<Button>Hello World</Button>);
     const button = getByRole('button');
 
     expect(button).to.have.class(classes.root);
     expect(button).to.have.class(classes.text);
-    expect(button).not.to.have.class(classes.textPrimary);
+    expect(button).to.have.class(classes.textPrimary);
     expect(button).not.to.have.class(classes.textSecondary);
     expect(button).not.to.have.class(classes.outlined);
     expect(button).not.to.have.class(classes.outlinedPrimary);
