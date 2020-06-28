@@ -88,7 +88,10 @@ function Unstable_TrapFocus(props) {
 
       if (rootRef.current && !rootRef.current.contains(doc.activeElement)) {
         // if the focus event is different than the last syntheticEvent from the children, reset
-        if (e && syntheticEventTarget.current !== e.target || doc.activeElement !== syntheticEventTarget.current) {
+        if (
+          (e && syntheticEventTarget.current !== e.target) ||
+          doc.activeElement !== syntheticEventTarget.current
+        ) {
           syntheticEventRef.current = false;
         }
 
