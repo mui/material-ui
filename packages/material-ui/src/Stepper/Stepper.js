@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import Paper from '../Paper';
 import StepConnector from '../StepConnector';
+import StepperContext from './StepperContext'
 
 export const styles = {
   /* Styles applied to the root element. */
@@ -42,7 +43,7 @@ const Stepper = React.forwardRef(function Stepper(props, ref) {
   } = props;
 
   const connector = React.isValidElement(connectorProp)
-    ? React.cloneElement(connectorProp, { orientation })
+    ? connectorProp
     : null;
   const childrenArray = React.Children.toArray(children);
   const steps = childrenArray.map((step, index) => {
@@ -52,7 +53,7 @@ const Stepper = React.forwardRef(function Stepper(props, ref) {
       completed: false,
       disabled: false,
     };
-
+    
     if (activeStep === index) {
       state.active = true;
     } else if (!nonLinear && activeStep > index) {
@@ -60,16 +61,16 @@ const Stepper = React.forwardRef(function Stepper(props, ref) {
     } else if (!nonLinear && activeStep < index) {
       state.disabled = true;
     }
-
+    
     return React.cloneElement(step, {
-      alternativeLabel,
-      connector,
       last: index + 1 === childrenArray.length,
-      orientation,
       ...state,
       ...step.props,
     });
   });
+  const contextValue = React.useMemo(() => ({ activeStep, alternativeLabel, connector, nonLinear, orientation }), [
+    activeStep, alternativeLabel, connector, nonLinear, orientation
+  ]);
 
   return (
     <Paper
@@ -86,7 +87,9 @@ const Stepper = React.forwardRef(function Stepper(props, ref) {
       ref={ref}
       {...other}
     >
-      {steps}
+      <StepperContext.Provider value={contextValue}>
+        {steps}
+      </StepperContext.Provider>
     </Paper>
   );
 });

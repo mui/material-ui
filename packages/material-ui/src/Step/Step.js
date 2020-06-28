@@ -3,6 +3,8 @@ import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
+import StepperContext from '../Stepper/StepperContext'
+import StepContext from './StepContext'
 
 export const styles = {
   /* Styles applied to the root element. */
@@ -26,35 +28,21 @@ export const styles = {
 const Step = React.forwardRef(function Step(props, ref) {
   const {
     active = false,
-    // eslint-disable-next-line react/prop-types
-    alternativeLabel,
     children,
     classes,
     className,
     completed = false,
-    // eslint-disable-next-line react/prop-types
-    connector: connectorProp,
     disabled = false,
     expanded = false,
-    // eslint-disable-next-line react/prop-types
     index,
-    // eslint-disable-next-line react/prop-types
     last,
-    // eslint-disable-next-line react/prop-types
-    orientation,
     ...other
   } = props;
 
-  const connector = connectorProp
-    ? React.cloneElement(connectorProp, {
-        orientation,
-        alternativeLabel,
-        index,
-        active,
-        completed,
-        disabled,
-      })
-    : null;
+  const { connector, alternativeLabel, orientation } = React.useContext(StepperContext)
+  const contextValue = React.useMemo(() => ({ index, active, last, completed, disabled, expanded, icon: index + 1 }), [
+    index, active, last, completed, disabled, expanded
+  ]);
 
   const newChildren = (
     <div
@@ -70,6 +58,8 @@ const Step = React.forwardRef(function Step(props, ref) {
       ref={ref}
       {...other}
     >
+      <StepContext.Provider value={contextValue}>
+
       {connector && alternativeLabel && index !== 0 ? connector : null}
 
       {React.Children.map(children, (child) => {
@@ -89,17 +79,10 @@ const Step = React.forwardRef(function Step(props, ref) {
         }
 
         return React.cloneElement(child, {
-          active,
-          alternativeLabel,
-          completed,
-          disabled,
-          expanded,
-          last,
-          icon: index + 1,
-          orientation,
           ...child.props,
         });
       })}
+      </StepContext.Provider>
     </div>
   );
 
