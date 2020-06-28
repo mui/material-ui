@@ -203,7 +203,7 @@ Growing pains:
 - x5: Simpler customization. We have improved customizability this year by introducing global class names and reducing the CSS specificity of some selectors. However, it seems that we are now tapping into a new audience. We need to do better.
 - x1.5: Animations.
 - x1.2: React native. We still have no plans for it. The [market is too small](https://npm-stat.com/charts.html?package=react-dom,react-native) to make it sustainable with our model.
-- x1.1: More components, the more we give, the more developers ask for. We will fully solve this with the enterprise version. The first early access will land this year.
+- x1.1: More components. The more we offer, the more developers ask for! We will try to help solve this with the enterprise version, both because it's the best model we have found that can sustain the development of advanced components, and because it allows us to reinvest in the open source components. The first early access will land this year.
 
 ### 6. What are your key criteria when choosing a UI library?
 
@@ -279,7 +279,7 @@ section.
 
 <img src="/static/blog/2020-survey/19.png" style="width: 728px; margin-top: 32px; margin-bottom: 24px;" alt="Pie chart: 53.84%	Material-UI styles (JSS), 20.41%	Styled components, 13.01%	Good plain CSS, 8.31%	CSS Modules, 1.96%	Emotion, 0.59%	scss, 0.59%	sass, 0.09%	less, 1.19%	Other" />
 
-The trend seems to be similar to the one from the last year's survey, so we will push with better support for styled components.
+The response seems to be similar to the one from the last year's survey, so we will push with better support for styled components.
 
 ### 20. Has your organization ever paid for UI components?
 
@@ -302,7 +302,7 @@ We want to work on the problems that resonate the most with our users.
 
 1. Provide more flexibility on the components, unstyled components (pure hooks?).
 1. Make the customization easier and implement custom themes with Material-UI. Maybe provide a theme builder.
-1. Irone the details out by providing a second theme, updates to match Material Design, providing more simple components and features (e.g. dropzone, carousel), providing a better DX (they are good ideas to apply from other UI libraries to Material-UI v5).
+1. Provide a second theme, update the current components to better match Material Design, provide more simple components and features (e.g. dropzone, carousel) as well as provide a better DX (there are good ideas from other UI libraries to apply to Material-UI v5).
 1. Improve upon the paid advanced versions of the components (e.g. complex data grid, date range picker, tree view drag & drop, virtualization, etc).
 
 **We will update [our ROADMAP](/discover-more/roadmap/) in the coming days**.
