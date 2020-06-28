@@ -75,7 +75,7 @@ function Unstable_TrapFocus(props) {
       rootRef.current.focus();
     }
 
-    const contain = (e) => {
+    const contain = (event) => {
       if (
         !doc.hasFocus() ||
         disableEnforceFocus ||
