@@ -51,7 +51,7 @@ The responses to this question are a very clear indicator to us about what we ne
 
 As the answers to these questions were pretty different, we grouped them into different categories and counted the different number of times the concern was mentioned. You can see all of them sorted in descending order:
 
-<style>th { text-align: left; background-color: #f2f2f2; }</style>
+<style>th { text-align: left; border-bottom: 3px solid !important; }</style>
 
 <table>
   <tr><th>306</th><th>more components</th><tr>
