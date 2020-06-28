@@ -64,7 +64,9 @@ describe('<TrapFocus />', () => {
     const { getByTestId } = render(
       <TrapFocus open {...sharedProps}>
         <div tabIndex={-1} data-testid="modal">
-          <Portal><input autoFocus data-testid="auto-focus" /></Portal>
+          <Portal>
+            <input autoFocus data-testid="auto-focus" />
+          </Portal>
         </div>
       </TrapFocus>,
     );
