@@ -38,6 +38,18 @@ export interface TreeViewPropsBase
    */
   expanded?: string[];
   /**
+   * This prop is used to help implement the accessibility logic.
+   * If you don't provide this prop. It falls back to a randomly generated id.
+   */
+  id?: string;
+  /**
+   * Callback fired when tree items are focused.
+   *
+   * @param {object} event The event source of the callback
+   * @param {string} value of the focused node.
+   */
+  onNodeFocus?: (event: React.ChangeEvent<{}>, nodeId: string) => void;
+  /**
    * Callback fired when tree items are expanded/collapsed.
    *
    * @param {object} event The event source of the callback.
