@@ -18,7 +18,10 @@ import { ExpansionPanelDetails } from '@material-ui/core';
 
 You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).
 
+⚠️ The ExpansionPanelDetails component was renamed to AccordionDetails to use a more common naming convention.
 
+You should use `import { AccordionDetails } from '@material-ui/core'`
+or `import AccordionDetails from '@material-ui/core/AccordionDetails'`.
 
 ## Component name
 
@@ -48,8 +51,4 @@ You can override the style of the component thanks to one of these customization
 - With a theme and an [`overrides` property](/customization/globals/#css).
 
 If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/ExpansionPanelDetails/ExpansionPanelDetails.js) for more detail.
-
-## Demos
-
-- [Expansion Panels](/components/expansion-panels/)
 

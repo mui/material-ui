@@ -130,7 +130,7 @@
     "/components/dialogs": "Dialog",
     "/components/dividers": "Divider",
     "/components/drawers": "Drawer",
-    "/components/expansion-panels": "Expansion Panel (拡張パネル)",
+    "/components/accordion": "Accordion (拡張パネル)",
     "/components/feedback": "フィードバック",
     "/components/grid": "Grid",
     "/components/hidden": "Hidden",

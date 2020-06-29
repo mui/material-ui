@@ -12,11 +12,10 @@ export interface ExpansionPanelDetailsProps
 export type ExpansionPanelDetailsClassKey = 'root';
 
 /**
+ * ⚠️ The ExpansionPanelDetails component was renamed to AccordionDetails to use a more common naming convention.
  *
- * Demos:
- *
- * - [Expansion Panels](https://material-ui.com/components/expansion-panels/)
- *
+ * You should use `import { AccordionDetails } from '@material-ui/core'`
+ * or `import AccordionDetails from '@material-ui/core/AccordionDetails'`.
  * API:
  *
  * - [ExpansionPanelDetails API](https://material-ui.com/api/expansion-panel-details/)

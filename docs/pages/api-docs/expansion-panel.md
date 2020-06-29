@@ -18,7 +18,10 @@ import { ExpansionPanel } from '@material-ui/core';
 
 You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).
 
+⚠️ The ExpansionPanel component was renamed to Accordion to use a more common naming convention.
 
+You should use `import { Accordion } from '@material-ui/core'`
+or `import Accordion from '@material-ui/core/Accordion'`.
 
 ## Component name
 
@@ -63,8 +66,4 @@ If that's not sufficient, you can check the [implementation of the component](ht
 
 The props of the [Paper](/api/paper/) component are also available.
 You can take advantage of this behavior to [target nested components](/guides/api/#spread).
-
-## Demos
-
-- [Expansion Panels](/components/expansion-panels/)
 

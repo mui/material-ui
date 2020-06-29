@@ -45,11 +45,10 @@ export interface ExpansionPanelProps
 export type ExpansionPanelClassKey = 'root' | 'rounded' | 'expanded' | 'disabled';
 
 /**
+ * ⚠️ The ExpansionPanel component was renamed to Accordion to use a more common naming convention.
  *
- * Demos:
- *
- * - [Expansion Panels](https://material-ui.com/components/expansion-panels/)
- *
+ * You should use `import { Accordion } from '@material-ui/core'`
+ * or `import Accordion from '@material-ui/core/Accordion'`.
  * API:
  *
  * - [ExpansionPanel API](https://material-ui.com/api/expansion-panel/)
