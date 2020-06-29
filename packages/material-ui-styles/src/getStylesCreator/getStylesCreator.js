@@ -55,7 +55,7 @@ export default function getStylesCreator(stylesOrCreator) {
           }
         }
 
-        stylesWithOverrides[key] = deepmerge(stylesWithOverrides[key], overrides[key]);
+        stylesWithOverrides[key] = deepmerge(stylesWithOverrides[key] || {}, overrides[key]);
       });
 
       return stylesWithOverrides;
