@@ -26,7 +26,7 @@ Here are the most significant improvements in December:
 
   ![Vertical button](/static/blog/december-2019-update/vertical-buttons.png)
 
-- 🌎 We have almost doubled the number of supported [locales](/guides/localization/#localization) from 13 to 22, thanks to our awesome contributors. [Help us](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/locale/index.js) double this number next month 🚀!
+- 🌎 We have almost doubled the number of supported [locales](/guides/localization/#localization) from 13 to 22, thanks to our awesome contributors. [Help us](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/locale/index.js) double this number next month 🚀!
 
 But this summary is just scratching the surface. We have accepted 168 commits from 73 different contributors. We have changed 1,059 files with 13,468 additions and 8,584 deletions.
 

@@ -12,7 +12,7 @@
 - 🦎 Arbeiten Sie mit beliebigen Themeobjekten.
 - 💅 Arbeite mit den bekanntesten CSS-in-JS Lösungen.
 - 📦 Weniger als [4 KB gzipped](https://bundlephobia.com/result?p=@material-ui/system).
-- 🚀 [ Schnell genug ](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-benchmark/README.md#material-uisystem) kein Flaschenhals zur Laufzeit zu sein.
+- 🚀 [ Schnell genug ](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-benchmark/README.md#material-uisystem) kein Flaschenhals zur Laufzeit zu sein.
 
 Es ist wichtig zu verstehen, dass dieses Paket mit dieser Signatur reine (nebenwirkungsfreie) Stilfunktionen bereitstellt: `({ theme, ...style }) => style` ** das ist alles** .
 

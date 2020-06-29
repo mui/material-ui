@@ -6,7 +6,7 @@
 
 Add a `ThemeProvider` to the top level of your app to pass a theme down the React component tree. Then, you can access the theme object in style functions.
 
-> This example creates a theme object for custom-built components. If you intend to use some of the Material-UI's components you need to provide a richer theme structure using the `createMuiTheme()` method. Head to the the [theming section](/customization/theming/) to learn how to build your custom Material-UI theme.
+> This example creates a theme object for custom-built components. If you intend to use some of the Material-UI's components you need to provide a richer theme structure using the `createMuiTheme()` method. Head to the [theming section](/customization/theming/) to learn how to build your custom Material-UI theme.
 
 ```jsx
 import { ThemeProvider } from '@material-ui/core/styles';
@@ -390,13 +390,13 @@ You can [follow the server side guide](/guides/server-rendering/) for a more det
 There is [an official Gatsby plugin](https://github.com/hupe1980/gatsby-plugin-material-ui) that enables server-side rendering for `@material-ui/styles`.
 Refer to the plugin's page for setup and usage instructions.
 
-Refer to [this example Gatsby project](https://github.com/mui-org/material-ui/blob/master/examples/gatsby) for an up-to-date usage example.
+Refer to [this example Gatsby project](https://github.com/mui-org/material-ui/blob/next/examples/gatsby) for an up-to-date usage example.
 
 ### Next.js
 
-You need to have a custom `pages/_document.js`, then copy [this logic](https://github.com/mui-org/material-ui/blob/master/examples/nextjs/pages/_document.js) to inject the server-side rendered styles into the `<head>` element.
+You need to have a custom `pages/_document.js`, then copy [this logic](https://github.com/mui-org/material-ui/blob/next/examples/nextjs/pages/_document.js) to inject the server-side rendered styles into the `<head>` element.
 
-Refer to [this example project](https://github.com/mui-org/material-ui/blob/master/examples/nextjs) for an up-to-date usage example.
+Refer to [this example project](https://github.com/mui-org/material-ui/blob/next/examples/nextjs) for an up-to-date usage example.
 
 ## Class names
 
@@ -502,7 +502,7 @@ generates the following class names that you can override:
 
 _This is a simplification of the `@material-ui/core/Button` component's style sheet._
 
-Customization of the TextField can be cumbersome with the [`classes` API](#overriding-styles-classes-prop), where you have to define the the classes prop.
+Customization of the TextField can be cumbersome with the [`classes` API](#overriding-styles-classes-prop), where you have to define the classes prop.
 It's easier to use the default values, as described above. For example:
 
 ```jsx

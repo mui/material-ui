@@ -4,7 +4,7 @@
 
 在 Material-UI 中一些组件利用 `z-index` 来应用默认的 z-index 比例尺， 它被用来将 layer drawers, modals, snackbars, tooltips 等等组件正确地进行分层。
 
-[这些值](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/styles/zIndex.js)从任意数字开始，足够大和特别来避免冲突。
+[这些值](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/styles/zIndex.js)从任意数字开始，足够大和特别来避免冲突。
 
 - mobile stepper（移动设备起步）: 1000
 - speed dial（快速拨号）: 1050 

@@ -1768,7 +1768,7 @@ describe('<Autocomplete />', () => {
   });
 
   describe('prop: getOptionLabel', () => {
-    it('is considered for falsy values when filtering the the list of options', () => {
+    it('is considered for falsy values when filtering the list of options', () => {
       const { getAllByRole } = render(
         <Autocomplete
           {...defaultProps}

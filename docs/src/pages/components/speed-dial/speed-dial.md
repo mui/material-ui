@@ -24,7 +24,7 @@ of the `SpeedDialIcon` component.
 
 ## Persistent action tooltips
 
-The SpeedDialActions tooltips can be be displayed persistently so that users don't have to long-press in order to see the tooltip on touch devices.
+The SpeedDialActions tooltips can be displayed persistently so that users don't have to long-press in order to see the tooltip on touch devices.
 
 It is enabled here across all devices for demo purposes, but in production it could use the `isTouch` logic to conditionally set the property.
 

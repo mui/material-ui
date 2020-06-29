@@ -156,7 +156,7 @@ export default function AppSearch() {
         indexName: 'material-ui',
         inputSelector: '#docsearch-input',
         algoliaOptions: {
-          facetFilters: ['version:master', `language:${userLanguage}`],
+          facetFilters: ['version:next', `language:${userLanguage}`],
         },
         autocompleteOptions: {
           openOnFocus: true,

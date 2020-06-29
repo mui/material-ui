@@ -176,7 +176,6 @@ function MarkdownDocs(props) {
                 </React.Fragment>
               );
             })}
-            <div data-ad="slot" />
             <footer className={classes.footer}>
               {!currentPage ||
               currentPage.displayNav === false ||

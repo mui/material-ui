@@ -40,7 +40,7 @@ import { Button, TextField } from '@material-ui/core';
 
 Esta é a opção que apresentamos em todas as demonstrações, pois não exige qualquer configuração. É o mais recomendável para autores de biblioteca que estendem os componentes. Vá até [Opção 2](#option-2) para uma abordagem que produz uma melhor DX e UX.
 
-Ao importar diretamente dessa maneira, não utiliza as exportações em [`@material-ui/core/index.js`](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/index.js), esse arquivo pode servir como uma referência útil para quais módulos são públicos.
+Ao importar diretamente dessa maneira, não utiliza as exportações em [`@material-ui/core/index.js`](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/index.js), esse arquivo pode servir como uma referência útil para quais módulos são públicos.
 
 Esteja ciente de que apenas damos suporte para as importações de primeiro e segundo nível. Qualquer coisa em níveis mais profundos é considerado privado e pode causar problemas, como a duplicação de módulos em seu pacote.
 
@@ -201,7 +201,7 @@ Se você estiver usando Create React App, você precisará usar alguns projetos 
 
 #### 2. Converta todas as suas importações
 
-Finalmeny, você pode converter sua base de código existente com esse modificador de código [top-level-imports](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-codemod/README.md#top-level-imports). Ele executará as seguintes alterações:
+Finalmeny, você pode converter sua base de código existente com esse modificador de código [top-level-imports](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-codemod/README.md#top-level-imports). Ele executará as seguintes alterações:
 
 ```diff
 -import Button from '@material-ui/core/Button';

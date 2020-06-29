@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/utils",
-  "version": "4.10.2",
+  "version": "5.0.0-alpha.1",
   "private": false,
   "author": "Material-UI Team",
   "description": "Material-UI Utils - Utility functions for Material-UI.",
@@ -29,7 +29,7 @@
     "build:es": "node ../../scripts/build es",
     "build:copy-files": "node ../../scripts/copy-files.js",
     "prebuild": "rimraf build",
-    "release": "yarn build && npm publish build --tag latest",
+    "release": "yarn build && npm publish build --tag next",
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/material-ui-utils/**/*.test.js' --exclude '**/node_modules/**'"
   },
   "peerDependencies": {

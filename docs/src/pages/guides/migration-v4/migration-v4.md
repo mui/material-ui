@@ -6,7 +6,7 @@ Looking for the v4 docs? [Find them here](https://material-ui.com/versions/).
 
 > This document is a work in progress.
 > Have you upgraded your site and run into something that's not covered here?
-> [Add your changes on GitHub](https://github.com/mui-org/material-ui/blob/master/docs/src/pages/guides/migration-v3/migration-v3.md).
+> [Add your changes on GitHub](https://github.com/mui-org/material-ui/blob/next/docs/src/pages/guides/migration-v3/migration-v3.md).
 
 ## Introduction
 
@@ -29,18 +29,18 @@ You need to update your `package.json` to use the latest version of Material-UI.
 
 ```json
 "dependencies": {
-  "@material-ui/core": "^5.0.0"
+  "@material-ui/core": "^5.0.0-alpha.1"
 }
 ```
 
 Or run
 
 ```sh
-npm install @material-ui/core
+npm install @material-ui/core@next
 
 or
 
-yarn add @material-ui/core
+yarn add @material-ui/core@next
 ```
 
 ## Handling breaking changes
@@ -66,16 +66,16 @@ yarn add @material-ui/core
 
 ### Rating
 
-- Rename `visuallyhidden` to `visuallyHidden`
+- Rename `visuallyhidden` to `visuallyHidden` for consistency:
 
-```diff
-<Rating
-  classes={{
--    visuallyhidden: 'custom-visually-hidden-classname',
-+    visuallyHidden: 'custom-visually-hidden-classname',
-  }}
-/>
-```
+  ```diff
+  <Rating
+    classes={{
+  -    visuallyhidden: 'custom-visually-hidden-classname',
+  +    visuallyHidden: 'custom-visually-hidden-classname',
+    }}
+  />
+  ```
 
 ### Slider
 
@@ -87,7 +87,7 @@ yarn add @material-ui/core
 
 ### TablePagination
 
-- The customization of the table pagination's actions labels must be done with the `getItemAriaLabel` prop.
+- The customization of the table pagination's actions labels must be done with the `getItemAriaLabel` prop. This increases consistency with the `Pagination` component.
 
   ```diff
   <TablePagination
@@ -106,7 +106,7 @@ yarn add @material-ui/core
 
 ### Typography
 
-- Replace `srOnly` prop support with a style util:
+- Replace the `srOnly` prop so as to not duplicate the capabilities of [System](https://material-ui.com/system/basics/):
 
   ```diff
   -import Typography from '@material-ui/core/Typography';
@@ -121,7 +121,7 @@ yarn add @material-ui/core
 
 ### Expansion Panel
 
-- Rename the `ExpansionPanel` components with `Accordion` to match the naming convention of the community:
+- Rename the `ExpansionPanel` components with `Accordion` to use a more common naming convention:
 
   ```diff
   -import ExpansionPanel from '@material-ui/core/ExpansionPanel';
