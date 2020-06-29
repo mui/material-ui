@@ -409,7 +409,7 @@ Button.propTypes = {
   /**
    * The variant to use.
    */
-  variant: PropTypes.oneOf(['contained', 'outlined', 'text']),
+  variant: PropTypes.oneOfType([PropTypes.oneOf(['contained', 'outlined', 'text']), PropTypes.string]),
 };
 
 export default withStyles(styles, { name: 'MuiButton' })(Button);

@@ -52,7 +52,7 @@ export type ButtonTypeMap<
     /**
      * The variant to use.
      */
-    variant?: 'text' | 'outlined' | 'contained';
+    variant?: 'text' | 'outlined' | 'contained' | string;
   };
   defaultComponent: D;
   classKey: ButtonClassKey;

@@ -66,6 +66,44 @@ const theme = createMuiTheme({
   palette: {
     primary: green,
   },
+  overrides: {
+    MuiButton: {
+      dashed: {
+        padding: '5px 15px',
+        border: "5px dashed red",
+        '&$disabled': {
+          border: `5px dashed red`,
+        },
+      },
+      // dashedPrimary: {
+      //   color: theme.palette.primary.main,
+      //   border: `1px solid ${fade(theme.palette.primary.main, 0.5)}`,
+      //   '&:hover': {
+      //     border: `1px solid ${theme.palette.primary.main}`,
+      //     backgroundColor: fade(theme.palette.primary.main, theme.palette.action.hoverOpacity),
+      //     // Reset on touch devices, it doesn't add specificity
+      //     '@media (hover: none)': {
+      //       backgroundColor: 'transparent',
+      //     },
+      //   },
+      // },
+      // dashedSecondary: {
+      //   color: theme.palette.secondary.main,
+      //   border: `1px dashed ${fade(theme.palette.secondary.main, 0.5)}`,
+      //   '&:hover': {
+      //     border: `1px dashed ${theme.palette.secondary.main}`,
+      //     backgroundColor: fade(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
+      //     // Reset on touch devices, it doesn't add specificity
+      //     '@media (hover: none)': {
+      //       backgroundColor: 'transparent',
+      //     },
+      //   },
+      //   '&$disabled': {
+      //     border: `1px dashed ${theme.palette.action.disabled}`,
+      //   },
+      // },
+    },
+  },
 });
 
 export default function CustomizedButtons() {
@@ -83,6 +121,9 @@ export default function CustomizedButtons() {
       <ThemeProvider theme={theme}>
         <Button variant="contained" color="primary" className={classes.margin}>
           Theme Provider
+        </Button>
+        <Button variant="dashed" color="primary" className={classes.margin}>
+          Dashed Provider
         </Button>
       </ThemeProvider>
       <BootstrapButton
