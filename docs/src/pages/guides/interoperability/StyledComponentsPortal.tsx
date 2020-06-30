@@ -33,7 +33,6 @@ export default function StyledComponentsPortal() {
         aria-owns={anchorEl ? 'simple-menu' : undefined}
         aria-haspopup="true"
         variant="contained"
-        color="primary"
         onClick={handleClick}
       >
         Open Menu

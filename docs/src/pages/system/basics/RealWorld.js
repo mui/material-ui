@@ -27,7 +27,7 @@ export default function RealWorld() {
         </Grid>
         <Grid container justify="flex-end" spacing={1}>
           <Grid item>
-            <Button color="primary">Turn on wifi</Button>
+            <Button>Turn on wifi</Button>
           </Grid>
         </Grid>
       </Paper>

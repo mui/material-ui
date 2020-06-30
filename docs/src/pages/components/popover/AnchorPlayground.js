@@ -271,11 +271,7 @@ function AnchorPlayground(props) {
               value={transformOriginVertical}
               onChange={handleChange}
             >
-              <FormControlLabel
-                value="top"
-                control={<Radio color="primary" />}
-                label="Top"
-              />
+              <FormControlLabel value="top" control={<Radio />} label="Top" />
               <FormControlLabel
                 value="center"
                 control={<Radio color="primary" />}

@@ -87,7 +87,6 @@ export default function CircularIntegration() {
       <div className={classes.wrapper}>
         <Button
           variant="contained"
-          color="primary"
           className={buttonClassname}
           disabled={loading}
           onClick={handleButtonClick}

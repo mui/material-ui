@@ -14,7 +14,7 @@ const theme = createMuiTheme({
     // Style sheet name ⚛️
     MuiButton: {
       // Name of the rule
-      text: {
+      textPrimary: {
         // Some CSS
         color: 'white',
       },

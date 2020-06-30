@@ -3,7 +3,7 @@ import Button from '@material-ui/core/Button';
 
 export default function DisableElevation() {
   return (
-    <Button variant="contained" color="primary" disableElevation>
+    <Button variant="contained" disableElevation>
       Disable elevation
     </Button>
   );

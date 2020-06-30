@@ -19,7 +19,7 @@ const ButtonTest = () => (
     <Button href="#link-button">Link</Button>
     <Button size="small">Small</Button>
     <Button variant="contained">Contained</Button>
-    <Button variant="outlined" color="primary" aria-label="add">
+    <Button variant="outlined" aria-label="add">
       Outlined
     </Button>
     <Button tabIndex={1} title="some button">
@@ -90,18 +90,14 @@ const ReactRouterLinkTest = () => {
     <Button {...props} component={ReactRouterLink} />
   );
 
-  const reactRouterButtonLink1 = (
-    <ButtonLink color="primary" to="/">
-      Go Home
-    </ButtonLink>
-  );
+  const reactRouterButtonLink1 = <ButtonLink to="/">Go Home</ButtonLink>;
 
   const MyLink = React.forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => {
     return <ReactRouterLink innerRef={ref} {...props} />;
   });
 
   const reactRouterButtonLink2 = (
-    <Button color="primary" component={MyLink} to="/router-future">
+    <Button component={MyLink} to="/router-future">
       Go Home
     </Button>
   );

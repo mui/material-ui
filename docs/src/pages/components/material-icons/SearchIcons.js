@@ -292,9 +292,7 @@ let DialogDetails = (props) => {
             </Grid>
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleClose} color="primary">
-              Close
-            </Button>
+            <Button onClick={handleClose}>Close</Button>
           </DialogActions>
         </React.Fragment>
       ) : (

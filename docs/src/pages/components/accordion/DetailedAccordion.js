@@ -84,9 +84,7 @@ export default function DetailedAccordion() {
         <Divider />
         <AccordionActions>
           <Button size="small">Cancel</Button>
-          <Button size="small" color="primary">
-            Save
-          </Button>
+          <Button size="small">Save</Button>
         </AccordionActions>
       </Accordion>
     </div>

@@ -38,12 +38,8 @@ export default function ImgMediaCard() {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
-          Share
-        </Button>
-        <Button size="small" color="primary">
-          Learn More
-        </Button>
+        <Button size="small">Share</Button>
+        <Button size="small">Learn More</Button>
       </CardActions>
     </Card>
   );

@@ -17,13 +17,10 @@ export default function TextButtons() {
 
   return (
     <div className={classes.root}>
-      <Button>Default</Button>
-      <Button color="primary">Primary</Button>
+      <Button>Primary</Button>
       <Button color="secondary">Secondary</Button>
       <Button disabled>Disabled</Button>
-      <Button href="#text-buttons" color="primary">
-        Link
-      </Button>
+      <Button href="#text-buttons">Link</Button>
     </div>
   );
 }

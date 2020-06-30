@@ -6,7 +6,7 @@ Looking for the v4 docs? [Find them here](https://material-ui.com/versions/).
 
 > This document is a work in progress.
 > Have you upgraded your site and run into something that's not covered here?
-> [Add your changes on GitHub](https://github.com/mui-org/material-ui/blob/next/docs/src/pages/guides/migration-v3/migration-v3.md).
+> [Add your changes on GitHub](https://github.com/mui-org/material-ui/blob/next/docs/src/pages/guides/migration-v4/migration-v4.md).
 
 ## Introduction
 
@@ -51,6 +51,17 @@ yarn add @material-ui/core@next
   ```diff
   -<BottomNavigation onChange={(event: React.ChangEvent<{}>) => {}} />
   +<BottomNavigation onChange={(event: React.SyntheticEvent) => {}} />
+  ```
+
+### Button
+
+- The button `color` prop is now "primary" by default, and "default" has been removed. This makes the button closer to the Material Design specification and simplifies the API.
+
+  ```diff
+  -<Button color="primary" />
+  -<Button color="default" />
+  +<Button />
+  +<Button />
   ```
 
 ### Divider
@@ -151,7 +162,7 @@ yarn add @material-ui/core@next
   -  <ExpansionPanelActions>
   +  <AccordionActions>
        <Button size="small">Cancel</Button>
-       <Button size="small" color="primary">Save</Button>
+       <Button size="small">Save</Button>
   -  </ExpansionPanelActions>
   +  </AccordionActions>
   -</ExpansionPanel>
