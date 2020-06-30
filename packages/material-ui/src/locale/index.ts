@@ -1699,7 +1699,7 @@ export const svSE: Localization = {
       },
       labelRowsPerPage: 'Rader per sida:',
       labelDisplayedRows: ({ from, to, count }) =>
-        `${from}-${to} av ${count !== -1 ? count : `mer än ${to}`}`,
+        `${from}-${to} av ${count !== -1 ? count : `fler än ${to}`}`,
     },
     MuiRating: {
       getLabelText: (value) => `${value} ${value !== 1 ? 'Stjärnor' : 'Stjärna'}`,
