@@ -55,7 +55,7 @@ yarn add @material-ui/core@next
 
 ### Button
 
-- The button `color` prop is now "primary" by default, and "default" has been removed.
+- The button `color` prop is now "primary" by default, and "default" has been removed. This makes the button closer to the Material Design specification and simplifies the API.
 
   ```diff
   -<Button color="primary" />
