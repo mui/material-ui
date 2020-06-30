@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
-import AdCodeFund from 'docs/src/modules/components/AdCodeFund';
 import AdCarbon from 'docs/src/modules/components/AdCarbon';
 import AdInHouse from 'docs/src/modules/components/AdInHouse';
 import { AdContext, adShape } from 'docs/src/modules/components/AdManager';
@@ -133,13 +132,9 @@ function Ad(props) {
     }
   }
 
-  const { current: randomSplit } = React.useRef(Math.random());
-
   if (!children) {
     if (carbonOut || codeFundOut) {
       children = <AdInHouse ad={inHouseAds[Math.floor(inHouseAds.length * randomInHouse)]} />;
-    } else if (randomSplit < 0.4) {
-      children = <AdCodeFund />;
     } else {
       children = <AdCarbon />;
     }
@@ -148,9 +143,7 @@ function Ad(props) {
   const getNetwork = () => {
     let label;
 
-    if (children.type === AdCodeFund) {
-      label = 'codefund';
-    } else if (children.type === AdCarbon) {
+    if (children.type === AdCarbon) {
       label = 'carbon';
     } else if (children.type === AdInHouse) {
       if (!adblock && codeFundOut) {
