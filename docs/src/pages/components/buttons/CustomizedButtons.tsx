@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   createMuiTheme,
   createStyles,
@@ -7,7 +8,7 @@ import {
   Theme,
   ThemeProvider,
 } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
+import Button, { ButtonProps } from '@material-ui/core/Button';
 import { green, purple } from '@material-ui/core/colors';
 
 const BootstrapButton = withStyles({
@@ -70,6 +71,43 @@ const theme = createMuiTheme({
   palette: {
     primary: green,
   },
+  overrides: {
+    MuiButton: {
+      // @ts-ignore
+      dashed: {
+        padding: '5px 15px',
+        border: "5px dashed red",
+        '&$disabled': {
+          border: `5px dashed red`,
+        },
+      },
+      // @ts-ignore
+      tertiery: {
+        backgroundColor: 'yellow',
+        padding: 20,
+      }
+    },
+  },
+});
+
+function styled<Props, BaseProps = {}>(BaseComponent: any, propTypesOverrides: object) {
+  // we are creating tere wrapper, but that can be improved
+  const Component = React.forwardRef(
+    // (props, ref) => BaseComponent.render && typeof BaseComponent.render === 'function' ? BaseComponent.reder(props, ref) : BaseComponent({...props, ref})
+  (props, ref) => { const allProps = {...props, ref}; return <BaseComponent {...allProps} /> }
+  )as unknown as React.FunctionComponent<Props>;
+
+  Component.displayName = BaseComponent.displayName;
+  Component.propTypes = { ...(BaseComponent.Naked ? BaseComponent.Naked.propTypes : BaseComponent.propTypes), ...propTypesOverrides}
+  return Component;
+}
+
+type CustomButtonProps = ButtonProps & {
+  variant?: ButtonProps['variant'] | 'tertiary'
+}
+
+const CustomButton = styled<CustomButtonProps>(Button, {
+  variant: PropTypes.oneOf(['contained', 'outlined', 'text', 'tertiery']),
 });
 
 export default function CustomizedButtons() {
@@ -88,6 +126,10 @@ export default function CustomizedButtons() {
         <Button variant="contained" color="primary" className={classes.margin}>
           Theme Provider
         </Button>
+        <Button variant="dashed" color="primary" className={classes.margin}>
+          Dashed Provider
+        </Button>
+        <CustomButton variant="tertiery">Tertiery button</CustomButton>
       </ThemeProvider>
       <BootstrapButton
         variant="contained"

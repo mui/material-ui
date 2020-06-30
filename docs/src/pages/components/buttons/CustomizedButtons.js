@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   createMuiTheme,
   withStyles,
@@ -75,8 +76,27 @@ const theme = createMuiTheme({
           border: `5px dashed red`,
         },
       },
+      tertiery: {
+        backgroundColor: 'yellow',
+        padding: 20,
+      }
     },
   },
+});
+
+function styled(BaseComponent, propTypesOverrides) {
+  // we are creating here wrapper, but that can be improved
+  const Component = React.forwardRef(
+  (props, ref) => { const allProps = {...props, ref}; return <BaseComponent {...allProps} /> }
+  );
+
+  Component.displayName = BaseComponent.displayName;
+  Component.propTypes = { ...(BaseComponent.Naked ? BaseComponent.Naked.propTypes : BaseComponent.propTypes), ...propTypesOverrides}
+  return Component;
+}
+
+const CustomButton = styled(Button, {
+  variant: PropTypes.oneOf(['contained', 'outlined', 'text', 'tertiery']),
 });
 
 export default function CustomizedButtons() {
@@ -98,6 +118,7 @@ export default function CustomizedButtons() {
         <Button variant="dashed" color="primary" className={classes.margin}>
           Dashed Provider
         </Button>
+        <CustomButton variant="tertiery">Tertiery button</CustomButton>
       </ThemeProvider>
       <BootstrapButton
         variant="contained"
