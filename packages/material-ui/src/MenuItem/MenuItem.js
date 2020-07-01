@@ -13,7 +13,6 @@ export const styles = (theme) => ({
     paddingBottom: 6,
     boxSizing: 'border-box',
     width: 'auto',
-    overflow: 'hidden',
     whiteSpace: 'nowrap',
     [theme.breakpoints.up('sm')]: {
       minHeight: 'auto',
