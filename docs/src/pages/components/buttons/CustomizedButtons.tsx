@@ -73,7 +73,6 @@ const theme = createMuiTheme({
   },
   overrides: {
     MuiButton: {
-      // @ts-ignore
       dashed: {
         padding: '5px 15px',
         border: "5px dashed red",
@@ -81,7 +80,6 @@ const theme = createMuiTheme({
           border: `5px dashed red`,
         },
       },
-      // @ts-ignore
       tertiery: {
         backgroundColor: 'yellow',
         padding: 20,
