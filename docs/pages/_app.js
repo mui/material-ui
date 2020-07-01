@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle */
 import 'docs/src/modules/components/bootstrap';
 // --- Post bootstrap -----
 import React from 'react';
