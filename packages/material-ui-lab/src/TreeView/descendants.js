@@ -16,10 +16,7 @@ function findIndex(array, comp) {
   return -1;
 }
 
-const useEnhancedEffect =
-  typeof window !== 'undefined' && process.env.NODE_ENV !== 'test'
-    ? React.useLayoutEffect
-    : React.useEffect;
+const useEnhancedEffect = typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
 
 const DescendantContext = React.createContext({});
 

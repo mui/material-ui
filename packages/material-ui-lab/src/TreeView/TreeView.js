@@ -15,18 +15,6 @@ export const styles = {
   },
 };
 
-// To replace with Object.values() once we stop IE 11 support.
-function objectValues(obj) {
-  const res = [];
-  // eslint-disable-next-line no-restricted-syntax
-  for (const i in obj) {
-    if (obj.hasOwnProperty(i)) {
-      res.push(obj[i]);
-    }
-  }
-  return res;
-}
-
 const findNextFirstChar = (firstChars, startIndex, char) => {
   for (let i = startIndex; i < firstChars.length; i += 1) {
     if (char === firstChars[i]) {
@@ -80,11 +68,18 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     state: 'selected',
   });
 
-  const getChildren = (id) =>
-    objectValues(nodeMap.current)
-      .filter((node) => node.parentId === id)
-      .sort((a, b) => a.index - b.index)
-      .map((child) => child.id);
+  const getChildrenIds = (id) => {
+    const childIds = [];
+
+    Object.keys(nodeMap.current).forEach((key) => {
+      const value = nodeMap.current[key];
+      if (value.parentId === id) {
+        childIds.splice(value.index, 0, value.id);
+      }
+    });
+
+    return childIds;
+  };
 
   /*
    * Status Helpers
@@ -110,13 +105,13 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
 
   const getNextNode = (id) => {
     // If expanded get first child
-    if (isExpanded(id) && getChildren(id).length > 0) {
-      return getChildren(id)[0];
+    if (isExpanded(id) && getChildrenIds(id).length > 0) {
+      return getChildrenIds(id)[0];
     }
 
     // Try to get next sibling
     const node = nodeMap.current[id];
-    const siblings = getChildren(node.parentId);
+    const siblings = getChildrenIds(node.parentId);
 
     const nextSibling = siblings[siblings.indexOf(id) + 1];
 
@@ -127,7 +122,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     // try to get parent's next sibling
     const parent = nodeMap.current[node.parentId];
     if (parent) {
-      const parentSiblings = getChildren(parent.parentId);
+      const parentSiblings = getChildrenIds(parent.parentId);
       return parentSiblings[parentSiblings.indexOf(parent.id) + 1];
     }
     return null;
@@ -135,34 +130,44 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
 
   const getPreviousNode = (id) => {
     const node = nodeMap.current[id];
-    const siblings = getChildren(node.parentId);
+    const siblings = getChildrenIds(node.parentId);
     const nodeIndex = siblings.indexOf(id);
 
     if (nodeIndex === 0) {
       return node.parentId;
     }
 
-    // start with previous node
     let currentNode = siblings[nodeIndex - 1];
-    while (isExpanded(currentNode) && getChildren(currentNode).length > 0) {
-      currentNode = getChildren(currentNode).pop();
+    while (isExpanded(currentNode) && getChildrenIds(currentNode).length > 0) {
+      currentNode = getChildrenIds(currentNode).pop();
     }
 
     return currentNode;
   };
 
   const getLastNode = () => {
-    let lastNode = getChildren(null).pop();
+    let lastNode = getChildrenIds(null).pop();
 
     while (isExpanded(lastNode)) {
-      lastNode = getChildren(lastNode).pop();
+      lastNode = getChildrenIds(lastNode).pop();
     }
     return lastNode;
   };
-  const getFirstNode = () => getChildren(null)[0];
+  const getFirstNode = () => getChildrenIds(null)[0];
   const getParent = (id) => nodeMap.current[id].parentId;
 
-  const getOrder = (nodeAId, nodeBId) => {
+  /**
+   * This is used to determine the start and end of a selection range so
+   * we can get the nodes between the two border nodes.
+   *
+   * It finds the nodes' common ancestor using
+   * a naive implementation of a lowest common ancestor algorithm
+   * (https://en.wikipedia.org/wiki/Lowest_common_ancestor) and
+   * then compares the ancestors below it that are also above the
+   * given nodes so we can compare their indexes to work out which
+   * node is higher in the tree view.
+   */
+  const getOrderOfNodesInTree = (nodeAId, nodeBId) => {
     if (nodeAId === nodeBId) {
       return [nodeAId, nodeBId];
     }
@@ -207,7 +212,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     }
 
     const commonAncestor = aAncestorIsCommon ? aAncestor : bAncestor;
-    const ancestorFamily = getChildren(commonAncestor);
+    const ancestorFamily = getChildrenIds(commonAncestor);
 
     const aSide = aFamily[aFamily.indexOf(commonAncestor) - 1];
     const bSide = bFamily[bFamily.indexOf(commonAncestor) - 1];
@@ -218,7 +223,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
   };
 
   const getNodesInRange = (a, b) => {
-    const [start, end] = getOrder(a, b);
+    const [start, end] = getOrderOfNodesInTree(a, b);
     const nodes = [start];
 
     let current = start;
@@ -315,7 +320,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
 
   const expandAllSiblings = (event, id) => {
     const map = nodeMap.current[id];
-    const siblings = getChildren(map.parentId);
+    const siblings = getChildrenIds(map.parentId);
 
     const diff = siblings.filter((child) => isExpandable(child) && !isExpanded(child));
 
@@ -507,7 +512,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     const nodes = [];
     if (map) {
       nodes.push(id);
-      const childNodes = getChildren(id);
+      const childNodes = getChildrenIds(id);
       if (childNodes.length > 0) {
         nodes.concat(childNodes);
         childNodes.forEach((node) => {
