@@ -229,9 +229,7 @@ function AppFrame(props) {
             >
               <LanguageIcon />
               <span className={classes.language}>
-                {userLanguage === 'aa'
-                  ? 'Translating'
-                  : LANGUAGES_LABEL.filter((language) => language.code === userLanguage)[0].text}
+                {LANGUAGES_LABEL.filter((language) => language.code === userLanguage)[0].text}
               </span>
               <ExpandMoreIcon fontSize="small" />
             </Button>
@@ -264,7 +262,7 @@ function AppFrame(props) {
                 component="a"
                 data-no-link="true"
                 href={
-                  userLanguage === 'en' || userLanguage === 'aa'
+                  userLanguage === 'en'
                     ? `${CROWDIN_ROOT_URL}`
                     : `${CROWDIN_ROOT_URL}${crowdInLocale}#/staging`
                 }
