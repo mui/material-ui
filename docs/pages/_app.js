@@ -39,22 +39,10 @@ function useFirstRender() {
 
 acceptLanguage.languages(['en', 'zh', 'pt', 'ru']);
 
-function loadCrowdin() {
-  window._jipt = [];
-  window._jipt.push(['project', 'material-ui-docs']);
-  loadScript('https://cdn.crowdin.com/jipt/jipt.js', document.querySelector('head'));
-}
-
 function LanguageNegotiation() {
   const dispatch = useDispatch();
   const router = useRouter();
   const userLanguage = useSelector((state) => state.options.userLanguage);
-
-  React.useEffect(() => {
-    if (userLanguage === 'aa') {
-      loadCrowdin();
-    }
-  }, [userLanguage]);
 
   React.useEffect(() => {
     const { userLanguage: userLanguageUrl, canonical } = pathnameToLanguage(
