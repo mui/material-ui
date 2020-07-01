@@ -5892,10 +5892,10 @@ eslint-plugin-pretty-imports@^1.1.3:
   resolved "https://registry.yarnpkg.com/eslint-plugin-pretty-imports/-/eslint-plugin-pretty-imports-1.1.3.tgz#5e0310c59e1474132d760e09d3db7828e34dcc87"
   integrity sha512-V3cwhmzi37Brfmpj6s6oVd/nNP1d8NHQndeG0FloH1EeW2QW6srtucVFYnRaAFAME9sCdIOF5TsQq+4TQQ93Mw==
 
-eslint-plugin-react-hooks@^1.6.0:
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-1.7.0.tgz#6210b6d5a37205f0b92858f895a4e827020a7d04"
-  integrity sha512-iXTCFcOmlWvw4+TOE8CLWj6yX1GwzT0Y6cUfHHZqWnSk144VmVIRcVGtUAzrLES7C798lmvnt02C7rxaOX1HNA==
+eslint-plugin-react-hooks@^4.0.4:
+  version "4.0.4"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-4.0.4.tgz#aed33b4254a41b045818cacb047b81e6df27fa58"
+  integrity sha512-equAdEIsUETLFNCmmCkiCGq6rkSK5MoJhXFPFYeUebcjKgBmWWcgVOqZyQC8Bv1BwVCnTq9tBxgJFgAJTWoJtA==
 
 eslint-plugin-react@^7.19.0:
   version "7.19.0"
