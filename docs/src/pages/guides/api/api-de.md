@@ -44,7 +44,7 @@ All components accept a [`classes`](/customization/components/#overriding-styles
 - Alle Standardstile sind in einer einzigen Klasse zusammengefasst.
 - Die auf Nicht-Root-Elemente angewendeten Klassen wird der Name des Elements vorangestellt, z. B. `paperWidthXs` in der Dialogkomponente.
 - Die von einer booleschen Eigenschaft angewendeten Varianten sind **nicht** vorangestellt, zB die `rounded` Klasse wird durch die `rounded` Eigenschaft angewendet.
-- Die von einer Enumeneigenschaft angewendeten Varianten **sind** vorangestellt, z. B. die `colorPrimary` Klasse wird von der Farbe `color= "primary" ` Eigenschaft angewendet.
+- Die von einer Enumeneigenschaft angewendeten Varianten **sind** vorangestellt, z. B. die `colorPrimary` Klasse wird von der Farbe `color= "primary"` Eigenschaft angewendet.
 - Eine Variante hat **eine Spezifitätsebene**. Die `color` und `variant` Eigenscahft werden als Variant betrachtet. Je geringer die Stilspezifität ist, desto einfacher ist es, sie zu überschreiben.
 - Wir erhöhen die Spezifität für einen Variantenmodifikator. Wir ** müssen es schon ** für die Pseudoklassen (`:hover`, `:focus`, usw.) anwenden. Es ermöglicht viel mehr Kontrolle auf Kosten von mehr Boilerplate. Hoffentlich ist es auch intuitiver.
 
@@ -65,9 +65,9 @@ const styles = {
 Verschachtelte Komponenten in einer Komponente haben:
 
 - their own flattened properties when these are key to the top level component abstraction, for instance an `id` prop for the `Input` component.
-- ihre eigenen `xxxProps ` Eigenschaft, falls Benutzer möglicherweise die Unterkomponenten der internen Render-Methode anpassen müssen, z. B. die `inputProps` und `InputProps` Eigenschaften für Komponenten, die `Input` intern verwenden.
+- ihre eigenen `xxxProps` Eigenschaft, falls Benutzer möglicherweise die Unterkomponenten der internen Render-Methode anpassen müssen, z. B. die `inputProps` und `InputProps` Eigenschaften für Komponenten, die `Input` intern verwenden.
 - ihre eigene `xxxComponent` Eigenschaft zum Durchführen der Komponenteninjektion.
-- their own `xxxRef` prop when you might need to perform imperative actions, for instance, exposing an `inputRef` prop to access the native `input` on the `Input` component. Dies hilft bei der Beantwortung der Frage ["Wie kann ich auf das DOM-Element zugreifen?"](/getting-started/faq/#how-can-i-access-the-dom-element)
+- Siehe auch [React Implementation Notes](https://reactjs.org/docs/implementation-notes.html#mounting-host-elements). **host component**: ein DOM-Knotentype im Kontext von `react-dom`, z.B. ein `'div'`.
 
 ### Benennung der Eigenschaften
 
@@ -107,7 +107,7 @@ Es gibt zwei Möglichkeiten, die API für die Variationen einer Komponente zu en
     
     Diese API ist ausführlicher: `<Button>`, `<Button variant="contained">`, `<Button variant="fab">`.
     
-    However it prevents an invalid combination from being used, bounds the number of properties exposed, and can easily support new values in the future.
+    Diese API ist ausführlicher: `<Button>`, `<Button variant="contained">`, `<Button variant="fab">`.
 
 Die Komponenten der Material-UI verwenden eine Kombination der beiden Ansätze gemäß den folgenden Regeln:
 

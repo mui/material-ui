@@ -4,7 +4,7 @@
 
 ## はじめに
 
-`@material-ui/system`は、 "*style functions*" と呼ばれる低レベルのユーティリティ関数を提供し、強力な設計システムを構築します。 主な機能の一部：
+`@material-ui/system`は、 "*style functions*" と呼ばれる低レベルのユーティリティ関数を提供し、強力な設計システムを構築します。 主な機能の一部： 主な機能の一部：
 
 - ⚛️コンポーネントのpropsからテーマの値に直接アクセスします。
 - 🦋 UIの一貫性を促進します。
@@ -45,7 +45,7 @@ const Box = styled.div`${spacing}${palette}`;
 export default Box;
 ```
 
-このボックスコンポーネントは、新しい[間隔プロパティ](/system/spacing/#api)および[色プロパティ](/system/palette/#api)をサポートするようになりました。 For instance, you can provide a padding property: `p` and a color property: `color`.
+You can create a component that supports some CSS grid properties like `grid-gap`. By supplying `spacing` as the `themeKey` you can reuse logic enabling the behavior we see in other spacing properties like `padding`.
 
 ```jsx
 <Box p="1rem" color="grey">Give me some space!</Box>
@@ -314,7 +314,7 @@ The `style()` helper can also be used to maps properties to style objects in a t
 
 ## CSS property
 
-If you want to support custom CSS values, you can use the `css()` helper. It will process the `css` property.
+It will process the `css` property. If you want to support custom CSS values, you can use the `css()` helper.
 
 {{"demo": "pages/system/basics/CssProp.js", "defaultCodeOpen": true}}
 

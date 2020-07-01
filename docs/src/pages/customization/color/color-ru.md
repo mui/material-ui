@@ -81,7 +81,7 @@ These color palettes, originally created by Material Design in 2014, are compris
 ### Важные термины
 
 - **Palette**: A palette is a collection of colors, i.e. hues and their shades. Материал-UI предоставляет все цвета из руководящих принципов Material Design. [This color palette](#color-palette) has been designed with colors that work harmoniously with each other.
-- **Hue" & "Shade**: A single color within the palette is made up of a hue such as "red", and shade, such as "500". «red 50» - самый светлый оттенок красного (* розовый! *), а «red 900» самый темный. Кроме того, большинство тонов имеют «акцентные» оттенки с префиксом `A`.
+- Зная тон *HUE* (red, pink и т. д.) и оттенок *SHADE* (500, 600 и т. д.), можно импортировать цвет следующим образом:
 
 ### Цветовая палитра
 

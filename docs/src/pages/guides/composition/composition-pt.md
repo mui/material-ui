@@ -48,7 +48,7 @@ Esse padrão é muito poderoso e permite uma grande flexibilidade, além de uma 
 
 ### Advertência com o uso de funções em linha
 
-Usando uma função em linha como um argumento para a propriedade `component` pode resultar em **desmontagem inesperada**, já que um novo componente é passado cada vez que o React renderiza. Por exemplo, se você quiser cria um `ListItem` customizado que atua como link, você poderia fazer o seguinte:
+Não só irá o React atualizar o DOM desnecessariamente, como o efeito cascata do `ListItem` também não funcionará corretamente. ⚠️ No entanto, como estamos usando uma função em linha para alterar o componente renderizado, o React desmontará o link toda vez que o `ListItemLink` é renderizado.
 
 ```jsx
 import { Link } from 'react-router-dom';

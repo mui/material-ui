@@ -11,7 +11,7 @@ components: Divider
 
 ## Listentrenner
 
-Der Trenner gibt per Standard ein `<hr>`-Element aus. Sie können sich dieses zusätzliche Element sparen, in dem sie die `divider`-Eigenschaft bei der `ListItem`-Komponente verwenden.
+Sie können sich dieses zusätzliche Element sparen, in dem sie die `divider`-Eigenschaft bei der `ListItem`-Komponente verwenden. Der Trenner gibt per Standard ein `<hr>`-Element aus.
 
 {{"demo": "pages/components/dividers/ListDividers.js", "bg": true}}
 

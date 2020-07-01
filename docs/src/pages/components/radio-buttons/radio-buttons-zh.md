@@ -1,5 +1,5 @@
 ---
-title: React 单选按钮组件（Radio buttons）
+title: React 单选按钮组件
 components: Radio, RadioGroup, FormControl, FormLabel, FormControlLabel
 ---
 

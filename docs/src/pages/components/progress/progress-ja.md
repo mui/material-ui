@@ -7,7 +7,7 @@ components: CircularProgress, LinearProgress
 
 <p class="description">一般にスピナーと呼ばれる進行状況インジケータは、指定されていない待機時間を表したり、プロセスの長さを表示します。 アニメーションはJavaScriptではなくCSSで動作します。</p>
 
-[進行状況インジケータ](https://material.io/design/components/progress-indicators.html) 、アプリの読み込み、フォームの送信、更新の保存など、進行中のプロセスのステータスについてユーザーに通知します。 アプリの状態を伝え、ユーザーが現在の画面から移動できるかどうかなど、利用可能なアクションを示します。
+[進行状況インジケータ](https://material.io/design/components/progress-indicators.html) 、アプリの読み込み、フォームの送信、更新の保存など、進行中のプロセスのステータスについてユーザーに通知します。 アプリの状態を伝え、ユーザーが現在の画面から移動できるかどうかなど、利用可能なアクションを示します。 アプリの状態を伝え、ユーザーが現在の画面から移動できるかどうかなど、利用可能なアクションを示します。
 
 - **Determinate** インジケータは、操作にかかる時間を表示します。
 - **Indeterminate**インジケータは、不特定の待機時間を視覚化します。
@@ -89,6 +89,6 @@ function Progress(props) {
 
 ![heavy load](/static/images/progress/heavy-load.gif)
 
-不可能な場合は、 `disableShrink` プロパティを活用して問題を軽減できます。 [この問題](https://github.com/mui-org/material-ui/issues/10327)参照してください。
+不可能な場合は、 `disableShrink` プロパティを活用して問題を軽減できます。 [この問題](https://github.com/mui-org/material-ui/issues/10327)参照してください。 不可能な場合は、 `disableShrink` プロパティを活用して問題を軽減できます。 [この問題](https://github.com/mui-org/material-ui/issues/10327)参照してください。
 
 {{"demo": "pages/components/progress/CircularUnderLoad.js"}}

@@ -27,7 +27,7 @@ The open/close state of the popper can be animated with a render prop child and 
 
 - Be a direct child descendent of the popper.
 - Call the `onEnter` callback prop when the enter transition starts.
-- Call the `onExited` callback prop when the exit transition is completed. These two callbacks allow the popper to unmount the child content when closed and fully transitioned.
+- Call the `onExited` callback prop when the exit transition is completed. Call the `onExited` callback prop when the exit transition is completed.
 
 Popper has built-in support for [react-transition-group](https://github.com/reactjs/react-transition-group).
 

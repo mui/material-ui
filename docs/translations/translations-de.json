@@ -153,7 +153,7 @@
     "/components/portal": "Portal",
     "/components/progress": "Fortschritt (Progress)",
     "/components/progress-validation": "Feedback",
-    "/components/radio-buttons": "Radio",
+    "/components/radio-buttons": "Auswahlfeld",
     "/components/selects": "Selects (auswähler)",
     "/components/slider": "Regler",
     "/components/snackbars": "Snackbar",

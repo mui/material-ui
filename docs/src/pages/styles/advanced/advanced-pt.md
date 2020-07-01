@@ -232,11 +232,12 @@ Por padrão, os estilos são inseridos **por último** no elemento `<head>` da s
 O componente `StylesProvider` tem uma propriedade `injectFirst` para injetar as tags de estilo em **primeiro** no cabeçalho (menor prioridade):
 
 ```jsx
-import { StylesProvider } from '@material-ui/core/styles';
+*/}
+</StylesProvider>
+      import { StylesProvider } from '@material-ui/core/styles';
 
 <StylesProvider injectFirst>
-  {/* Sua árvore de componentes.
-      Componentes com estilo podem sobrescrever os estilos de Material-UI. */}
+  {/* Sua árvore de componentes. */}
 </StylesProvider>
 ```
 
@@ -323,12 +324,12 @@ import { StylesProvider, jssPreset } from '@material-ui/core/styles';
 const jss = create({
   ...jssPreset(),
   // Defina um ponto de inserção customizado que o JSS irá procurar para injetar os estilos no DOM.
-  insertionPoint: document.getElementById('jss-insertion-point'),
-});
+  import { create } from 'jss';
+import { StylesProvider, jssPreset } from '@material-ui/core/styles';
 
-export default function App() {
-  return <StylesProvider jss={jss}>...</StylesProvider>;
-}
+const jss = create({
+  ...jssPreset(),
+  // Defina um ponto de inserção customizado que o JSS irá procurar para injetar os estilos no DOM.
 ```
 
 #### JS createComment
@@ -425,7 +426,7 @@ const identifier = 123;
 const className = `${sheetName}-${ruleName}-${identifier}`;
 ```
 
-- Em **produção**, o nome da classe é: `.jss123 ` seguindo esta lógica:
+- Em **produção**, o nome da classe é: `.jss123` seguindo esta lógica:
 
 ```js
 const productionPrefix = 'jss';
@@ -436,7 +437,7 @@ const className = `${productionPrefix}-${identifier}`;
 
 ### Com `@material-ui/core`
 
-Os nomes de classe gerados dos componentes `@material-ui/core ` se comportam de maneira diferente. Quando as seguintes condições são atendidas, os nomes das classes são **determinísticos**:
+Os nomes de classe gerados dos componentes `@material-ui/core` se comportam de maneira diferente. Quando as seguintes condições são atendidas, os nomes das classes são **determinísticos**:
 
 - Apenas um provedor de tema é usado (**Sem aninhamento de tema **)
 - A folha de estilo tem um nome que começa com `Mui` (todos os componentes de Material-UI).

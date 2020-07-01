@@ -1,6 +1,6 @@
 # 位置
 
-<p class="description">使用这些速记实用程序快速配置元素的位置。</p>
+<p class="description">使用这些简写的小程程序来快速配置元素的位置。</p>
 
 ## z-index
 

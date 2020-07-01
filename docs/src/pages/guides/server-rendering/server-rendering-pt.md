@@ -81,33 +81,24 @@ app.listen(port);
 
 A primeira coisa que precisamos fazer em cada solicitação é criar um novo `ServerStyleSheets`.
 
-Quando renderizando, vamos encapsular `App`, o componente raiz, dentro de um [`StylesProvider`](/styles/api/#stylesprovider) e [` ThemeProvider`](/styles/api/#themeprovider) para tornar a configuração de estilo e o ` theme` disponíveis para todos os componentes na árvore de componentes.
+Quando renderizando, vamos encapsular `App`, o componente raiz, dentro de um [`StylesProvider`](/styles/api/#stylesprovider) e [`ThemeProvider`](/styles/api/#themeprovider) para tornar a configuração de estilo e o `theme` disponíveis para todos os componentes na árvore de componentes.
 
 A etapa principal na renderização do lado do servidor, é renderizar o HTML inicial do componente **antes** de enviarmos para o lado do cliente. Para fazer isso, usamos [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html).
 
 Em seguida, obtemos o CSS `sheets` usando `sheets.toString()`. Vamos ver como isso é passado na função `renderFullPage`.
 
 ```jsx
-import express from 'express';
-import React from 'react';
-import ReactDOMServer from 'react-dom/server';
-import { ServerStyleSheets, ThemeProvider } from '@material-ui/core/styles';
-import App from './App';
-import theme from './theme';
+res.send(renderFullPage(html, css));
+}
 
-function handleRender(req, res) {
-  const sheets = new ServerStyleSheets();
+const app = express();
 
-  // Renderiza o componente para string.
-  const html = ReactDOMServer.renderToString(
-    sheets.collect(
-      <ThemeProvider theme={theme}>
-        <App />
-      </ThemeProvider>,
-    ),
-  );
+app.use('/build', express.static('build'));
 
-  // Pega o CSS das folhas de estilo.
+// Isso é acionado toda vez que o servidor recebe uma solicitação.
+  const css = sheets.toString();
+
+  // Envia a página renderizada de volta ao cliente.
   const css = sheets.toString();
 
   // Envia a página renderizada de volta ao cliente.

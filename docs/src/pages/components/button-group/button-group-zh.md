@@ -1,5 +1,5 @@
 ---
-title: React ButtonGroup 按钮组组件
+title: React 按钮组组件
 components: Button, ButtonGroup
 ---
 

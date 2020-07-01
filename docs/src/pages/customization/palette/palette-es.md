@@ -85,13 +85,13 @@ const theme = createMuiTheme({
     },
     // Used by `getContrastText()` to maximize the contrast between
     // the background and the text.
+    tonalOffset: 0.2,
+  },
+});
     contrastThreshold: 3,
     // Used by the functions below to shift a color's luminance by approximately
     // two indexes within its tonal palette.
     // E.g., shift from Red 500 to Red 300 or Red 700.
-    tonalOffset: 0.2,
-  },
-});
 ```
 
 Como en el ejemplo anterior, si el objeto de propósito de color contiene colores personalizados usando cualquiera de las claves "main", "light", "dark" o "contrastText", se mapean de la siguiente manera:

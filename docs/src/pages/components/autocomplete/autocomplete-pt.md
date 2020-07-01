@@ -224,16 +224,10 @@ Por padrão, o componente desabilita o recurso de **autocomplete** (recurso que 
 
 No entanto, além de relembrar valores fornecidos anteriormente, o navegador também pode propor sugestões de **autofill** (preenchimento automático para informações de login, endereço ou detalhes de pagamento). No caso de você querer evitar o recurso de preenchimento automático, tente o seguinte:
 
-- Nomeie o campo sem fornecer informações para o navegador do que ele representa. ex. `id="field1"` ao invés de `id="country"`. Se você deixar o id do vazio, o componente utiliza um id aleatório.
-- Defina `autoComplete="new-password"`: 
-        jsx
-        <TextField
-        {...params}
-        inputProps={{
-          ...params.inputProps,
-          autoComplete: 'new-password',
-        }}
-        />
+- Nomeie o campo sem fornecer informações para o navegador do que ele representa. `id="field1"` ao invés de `id="country"`. Se você deixar o id do vazio, o componente utiliza um id aleatório.
+- Defina `autoComplete="new-password"`: jsx 
+        Defina <code>autoComplete="new-password": 
+            jsx</code>
 
 ### iOS VoiceOver
 

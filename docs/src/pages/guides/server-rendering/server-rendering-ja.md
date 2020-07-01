@@ -2,11 +2,11 @@
 
 <p class="description">サーバー側レンダリングの最も一般的な使用例は、ユーザー（または検索エンジンのクローラー）が最初にアプリを要求したときに最初のレンダリングを処理することです。</p>
 
-サーバーは要求を受信すると、必要なコンポーネントをHTMLストリングにレンダリングし、それを応答としてクライアントに送信します。 それ以降は、クライアントがレンダリング作業を引き継ぎます。
+The key step in server-side rendering is to render the initial HTML of the component **before** we send it to the client side. To do this, we use [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html).
 
 ## サーバー上のMaterial-UI
 
-Material-UIは、サーバーでのレンダリングの制約を考慮してゼロから設計されましたが、正しく統合されるかどうかはユーザー次第です。 必要なCSSをページに提供することが重要です。そうしないと、ページはHTMLだけでレンダリングされ、クライアントによってCSSが注入されるのを待って、ちらつきが発生します (FOUC)。 クライアントにスタイルを注入するには、次のことが必要です。
+The client side is straightforward. All we need to do is remove the server-side generated CSS. Let's take a look at the client file:
 
 1. Create a fresh, new [`ServerStyleSheets`](/styles/api/#serverstylesheets) instance on every request.
 2. Render the React tree with the server-side collector.
@@ -88,7 +88,18 @@ The key step in server-side rendering is to render the initial HTML of the compo
 We then get the CSS from the `sheets` using `sheets.toString()`. We will see how this is passed along in the `renderFullPage` function.
 
 ```jsx
-import express from 'express';
+res.send(renderFullPage(html, css));
+}
+
+const app = express();
+
+app.use('/build', express.static('build'));
+
+// This is fired every time the server-side receives a request.
+  const css = sheets.toString();
+
+  // Send the rendered page back to the client.
+  import express from 'express';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { ServerStyleSheets, ThemeProvider } from '@material-ui/core/styles';
@@ -108,17 +119,6 @@ function handleRender(req, res) {
   );
 
   // Grab the CSS from the sheets.
-  const css = sheets.toString();
-
-  // Send the rendered page back to the client.
-  res.send(renderFullPage(html, css));
-}
-
-const app = express();
-
-app.use('/build', express.static('build'));
-
-// This is fired every time the server-side receives a request.
 app.use(handleRender);
 
 const port = 3000;

@@ -1,6 +1,6 @@
-# Palette 调色
+# Palette 调色板
 
-<p class="description">通过一些颜色实用程序类的颜色传达意义。 还包括支持带悬停状态的样式链接。</p>
+<p class="description">通过一些实用的颜色程序类的颜色传达意义。 这也包括了支持带悬停状态（hover states）的样式链接。</p>
 
 ## Color 颜色
 

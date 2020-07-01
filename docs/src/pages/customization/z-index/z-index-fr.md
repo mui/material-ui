@@ -14,4 +14,4 @@ Several Material-UI components utilize `z-index`, employing a default z-index sc
 - snackbar: 1400
 - tooltip: 1500
 
-Ces valeurs peuvent être personnalisées. You will find them in the theme under the [`zIndex`](/customization/default-theme/?expand-path=$.zIndex) key of the theme. Customization of individual values is discouraged; should you change one, you likely need to change them all.
+Ces valeurs peuvent être personnalisées. Customization of individual values is discouraged; should you change one, you likely need to change them all. You will find them in the theme under the [`zIndex`](/customization/default-theme/?expand-path=$.zIndex) key of the theme.

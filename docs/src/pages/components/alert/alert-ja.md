@@ -35,7 +35,7 @@ You can use a [transition component](/components/transitions/) such as `Collapse
 
 {{"demo": "pages/components/alert/TransitionAlerts.js"}}
 
-## アイコン
+## Icons
 
 The `icon` prop allows you to add an icon to the beginning of the alert component. This will override the default icon for the specified severity.
 

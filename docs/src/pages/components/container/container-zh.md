@@ -1,5 +1,5 @@
 ---
-title: React Container 容器组件
+title: React 容器组件
 components: Container
 ---
 
@@ -11,7 +11,7 @@ components: Container
 
 ## Fluid 流体布局
 
-一个 fluid 容器所能达到的宽度被 `maxWidth` 属性的值所限制。
+您可以通过 `maxWidth` 属性的值来设置一个 fluid 容器的最大宽度。
 
 {{"demo": "pages/components/container/SimpleContainer.js", "iframe": true, "defaultCodeOpen": false}}
 

@@ -85,13 +85,13 @@ const theme = createMuiTheme({
     },
     // Used by `getContrastText()` to maximize the contrast between
     // the background and the text.
+    tonalOffset: 0.2,
+  },
+});
     contrastThreshold: 3,
     // Used by the functions below to shift a color's luminance by approximately
     // two indexes within its tonal palette.
     // Zum Beispiel von Red 500 zu Red 300 oder Red 700 zu wechseln.
-    tonalOffset: 0.2,
-  },
-});
 ```
 
 As in the example above, if the intention object contains custom colors using any of the "main", "light", "dark" or "contrastText" keys, these map as follows:

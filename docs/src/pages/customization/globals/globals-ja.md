@@ -4,22 +4,14 @@
 
 ## CSS
 
-設定変数が十分に強力でない場合は、 `theme` の</code>キーを`overrides</0> し、Material-UIによってDOMに注入される<strong>every single style</strong>を変更できるようにします。
-それは本当に強力な機能です。</p>
+設定変数が十分に強力でない場合は、 `theme` の</code>キーを`overrides</0> し、Material-UIによってDOMに注入される**every single style**を変更できるようにします。 それは本当に強力な機能です。 それは本当に強力な機能です。
 
-<pre><code class="js">const theme = createMuiTheme({
-  overrides: {
-    // Style sheet name ⚛️
-    MuiButton: {
-      // Name of the rule
-      text: {
-        // Some CSS
-        color: 'white',
-      },
-    },
-  },
-});
-`</pre> 
+```js
+設定変数が十分に強力でない場合は、 <code>theme</code> の</code>キーを`overrides</0> し、Material-UIによってDOMに注入される<strong>every single style</strong>を変更できるようにします。
+それは本当に強力な機能です。
+``` の</code>キーを`overrides</0> し、Material-UIによってDOMに注入される**every single style**を変更できるようにします。
+それは本当に強力な機能です。
+</code>
 
 {{"demo": "pages/customization/globals/GlobalCss.js"}}
 
@@ -53,7 +45,7 @@ return (
 
 ## Default props
 
-すべての Material-UI コンポーネントのdefault propsを変更できます。 A `props` key is exposed in the `theme` for this use case.
+const theme = createMuiTheme({ props: { // Name of the component ⚛️ MuiButtonBase: { // The default props to change disableRipple: true, // No more ripple, on the whole application 💣! }, }, });
 
 ```js
 const theme = createMuiTheme({

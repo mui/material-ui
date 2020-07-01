@@ -1,5 +1,5 @@
 ---
-title: React Badge 徽章组件
+title: React 徽章组件
 components: Badge
 ---
 

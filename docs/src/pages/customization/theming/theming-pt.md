@@ -97,7 +97,7 @@ Gera configurações de tipografia responsivas com base nas opções recebidas.
 1. `theme` (*Object*): O objeto de tema a ser aplicado as alterações.
 2. `options` (*Object* [opcional]):
 
-- `breakpoints` (*Array\<String\>* [opcional]): Padrão `['sm', 'md', 'lg']`. Array de [pontos de quebra](/customization/breakpoints/) (identificadores).
+- Array de [pontos de quebra](/customization/breakpoints/) (identificadores). Array de [pontos de quebra](/customization/breakpoints/) (identificadores).
 - `disableAlign` (*Boolean* [opcional]): Padrão `false`. Se os tamanhos de fonte mudam pouco, as alturas da linha são preservadas e alinhadas à altura da linha da grade em 4px do Material Design. Isso requer uma altura de linha sem unidade nos estilos do tema.
 - `factor` (*Number* [opcional]): Padrão `2`. Este valor determina o fator de redimensionamento do tamanho da fonte. Quanto maior o valor, menor a diferença entre tamanhos de fonte em telas pequenas. Quanto menor o valor, maiores os tamanhos de fonte para telas pequenas. O valor deve ser maior que 1.
 - `variants` (*Array\<String\>* [opcional]): Padrão todos. As variantes de tipografia para manipular.

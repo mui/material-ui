@@ -11,7 +11,7 @@
 1. `オプション` (*オプジェクト* [任意]): 
   - `options.disableGlobal` (*Boolean* [optional]): Defaults `false`. 確定的なクラス名の生成を無効にします。
   - `options.productionPrefix` (*String* [optional]): Defaults to `'jss'`. プロダクションでクラス名のプレフィックスに使用される文字列。
-  - `options.seed` (*String* [optional]): Defaults to `''`. ジェネレータを一意に識別するために使用される文字列。 同じドキュメントで複数のジェネレーターを使用する場合、クラス名の衝突を避けるために使用できます。
+  - `options.name` (*String* [optional]): The name of the style sheet. Useful for debugging. If the value isn't provided, it will try to fallback to the name of the component.
 
 ### 戻り値
 
@@ -141,13 +141,13 @@ The method returns the collected styles.
 ### `
 sheets.getStyleElement() => CSS React element`
 
-The method is an alternative to `.toString()` when you are rendering the whole page with React.
+sheets.getStyleElement() => CSS React element`
 
 ⚠️ You must call `.collect()` before using this method.
 
 ## `styled(Component)(styles, [options]) => Component`
 
-Link a style sheet with a function component using the **styled components** pattern.
+⚠️ You must call `.collect()` before using this method.
 
 ### 引数
 
@@ -162,7 +162,7 @@ Link a style sheet with a function component using the **styled components** pat
 
 ### 戻り値
 
-`Component` ：作成された新しいコンポーネント。
+Link a style sheet with a function component using the **styled components** pattern.
 
 ### 例
 
@@ -254,11 +254,11 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 
 ## `useTheme() => theme`
 
-This hook returns the `theme` object so it can be used inside a function component.
+Provide the `theme` object as a property of the input component so it can be used in the render method.
 
 ### 戻り値
 
-`theme`：以前にコンテキストに挿入されたテーマオブジェクト。
+This hook returns the `theme` object so it can be used inside a function component.
 
 ### 例
 
@@ -296,7 +296,7 @@ Link a style sheet with a component using the **higher-order component** pattern
 
 ### 戻り値
 
-`higher-order component` ：コンポーネントをラップするために使用する必要があります。
+注意が必要な実装の詳細は、次のとおりです。
 
 ### 例
 
@@ -317,7 +317,7 @@ function MyComponent(props) {
 export default withStyles(styles)(MyComponent);
 ```
 
-また、[デコレータ](https://babeljs.io/docs/en/babel-plugin-proposal-decorators)などとしてしても使用できます。
+`higher-order component` ：コンポーネントをラップするために使用する必要があります。
 
 ```jsx
 import React from 'react';
@@ -341,7 +341,7 @@ export default MyComponent
 
 ## `withTheme(Component) => Component`
 
-Provide the `theme` object as a property of the input component so it can be used in the render method.
+また、[デコレータ](https://babeljs.io/docs/en/babel-plugin-proposal-decorators)などとしてしても使用できます。
 
 ### 引数
 

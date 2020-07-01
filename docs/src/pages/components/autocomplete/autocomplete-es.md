@@ -225,15 +225,9 @@ Por defecto, el componente deshabilita la característica de **autocompletar** (
 Sin embargo, además de recordar el valor introducido anteriormente, el navegador también puede proponer sugerencias **autorellenadas** (inicio de sesión guardado, la dirección o detalles de pago). En el caso de que desees evitar el autorellenar, puedes intentar lo siguiente:
 
 - Nombra la entrada sin filtrar ninguna información que el navegador pueda utilizar. p.e. `id="field1"` en vez de `id="country"`. Si dejas el id de vacío, el componente utiliza un identificador aleatorio.
-- Establecer `autoComplete="new-password"`: 
-        jsx
-        <TextField
-        {...params}
-        inputProps={{
-          ...params.inputProps,
-          autoComplete: 'new-password',
-        }}
-        />
+- Establecer `autoComplete="new-password"`: jsx 
+        Establecer <code>autoComplete="new-password": 
+            jsx</code>
 
 ### iOS VoiceOver
 

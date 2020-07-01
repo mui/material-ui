@@ -1,5 +1,5 @@
 ---
-title: React Rating 评分组件
+title: React 评分组件
 components: Rating
 ---
 

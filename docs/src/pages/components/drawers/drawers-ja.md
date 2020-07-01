@@ -29,7 +29,7 @@ components: Drawer, SwipeableDrawer
 
 このドキュメントのWebサイトでは、コンポーネントの操作性を最適化するために、次のプロパティが使用されています。
 
-- iOSはハイエンドデバイスでホストされています。 The backdrop transition can be enabled without dropping frames. 性能は十分良いでしょう。
+- iOSはハイエンドデバイスでホストされています。 iOSはハイエンドデバイスでホストされています。 The backdrop transition can be enabled without dropping frames. 性能は十分良いでしょう。
 - iOS has a "swipe to go back" feature that interferes with the discovery feature, so discovery has to be disabled.
 
 ```jsx

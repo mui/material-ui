@@ -53,10 +53,10 @@ The Typography component uses the `variantMapping` property to associate a UI va
 - You can change the underlying element for a one time occasion with the `component` property:
 
 ```jsx
-{/* There is already an h1 in the page, let's not duplicate it. */}
+Heading
+</Typography> {/* There is already an h1 in the page, let's not duplicate it. */}
 <Typography variant="h1" component="h2">
-  h1. Heading
-</Typography>
+  h1.
 ```
 
 - You can change the mapping [globally using the theme](/customization/globals/#default-props):

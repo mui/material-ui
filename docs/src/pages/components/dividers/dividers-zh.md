@@ -1,5 +1,5 @@
 ---
-title: React Divider 分隔线组件
+title: React 分隔线组件
 components: Divider
 ---
 
@@ -19,7 +19,7 @@ components: Divider
 
 在一个列表中，请确保您将 `Divider` 渲染成一个 `<li>` 元素，这样才能遵循 HTML5 规范。 下面的例子展示了两种实现方式。
 
-## 内嵌分隔线
+## 内凹分隔线
 
 {{"demo": "pages/components/dividers/InsetDividers.js", "bg": true}}
 
@@ -31,7 +31,7 @@ components: Divider
 
 {{"demo": "pages/components/dividers/MiddleDividers.js", "bg": true}}
 
-## 垂直分割线
+## 垂直分隔线
 
 您也可以使用 `orientation` 属性将分割线渲染成垂直形状。 请注意这其中使用了 `flexItem` 属性来适应 flex 容器。
 

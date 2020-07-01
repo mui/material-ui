@@ -1,10 +1,10 @@
-# 显示
+# Display 显示
 
-<p class="description">使用 显示(display) 工具集来快速、灵敏地切换组件的 显示(display) 状态等。 包括对一些更常见值的支持，以及一些用于在打印时控制显示的附加功能。</p>
+<p class="description">使用显示（display）工具集来快速、灵敏地切换组件的显示状态等。 这样包括对一些更常见值的支持，以及一些用于在打印时控制显示的附加功能。</p>
 
 ## 例子
 
-### Inline（内嵌元素）
+### 内嵌元素（Inline）
 
 {{"demo": "pages/system/display/Inline.js", "defaultCodeOpen": false, "bg": true}}
 
@@ -13,7 +13,7 @@
 <Box component="div" display="inline">inline</Box>
 ```
 
-### Block（块级元素）
+### 块级元素（Block）
 
 {{"demo": "pages/system/display/Block.js", "defaultCodeOpen": false, "bg": true}}
 
@@ -22,98 +22,98 @@
 <Box component="span" display="block">block</Box>
 ```
 
-## 隐藏元素
+## 隐藏元素（Hiding elements）
 
-为了更快地进行移动设备开发，请使用响应式显示类来按设备显示和隐藏元素。 避免创建相同站点的完全不同版本，而是相应地为每个屏幕大小隐藏元素。
+为了更快速地进行移动端的开发，您可以使用响应式的显示类来按设备显示和隐藏元素。 避免为同一站点创建完全不同的版本，您只需要根据不同的屏幕大小来相应地隐藏元素。
 
-| 屏幕大小     | 类别                                                   |
-|:-------- |:---------------------------------------------------- |
-| 隐藏在所有人身上 | `display="none"`                                     |
-| 仅隐藏在xs上  | `display={{ xs: 'none', sm: 'block' }}`              |
-| 隐藏在sm上   | `display={{ xs: 'block', sm: 'none', md: 'block' }}` |
-| 只在md上隐藏  | `display={{ xs: 'block', md: 'none', lg: 'block' }}` |
-| 隐藏在lg上   | `display={{ xs: 'block', lg: 'none', xl: 'block' }}` |
-| 只在xl上隐藏  | `display={{ xs: 'block', xl: 'none' }}`              |
-| 仅在xs上可见  | `display={{ xs: 'block', sm: 'none' }}`              |
-| 仅在sm上可见  | `display={{ xs: 'none', sm: 'block', md: 'none' }}`  |
-| 仅在md上可见  | `display={{ xs: 'none', md: 'block', lg: 'none' }}`  |
-| 仅在lg上可见  | `display={{ xs: 'none', lg: 'block', xl: 'none' }}`  |
-| 仅在xl上可见  | `display={{ xs: 'none', xl: 'block' }}`              |
+| 屏幕大小        | 类别                                                   |
+|:----------- |:---------------------------------------------------- |
+| 在所有设备上隐藏    | `display="none"`                                     |
+| 仅在 xs 大小时隐藏 | `display={{ xs: 'none', sm: 'block' }}`              |
+| 仅在 sm 大小时隐藏 | `display={{ xs: 'block', sm: 'none', md: 'block' }}` |
+| 仅在 md 大小时隐藏 | `display={{ xs: 'block', md: 'none', lg: 'block' }}` |
+| 仅在 lg 大小时隐藏 | `display={{ xs: 'block', lg: 'none', xl: 'block' }}` |
+| 仅在 xl 大小时隐藏 | `display={{ xs: 'block', xl: 'none' }}`              |
+| 仅在 xs 大小时可见 | `display={{ xs: 'block', sm: 'none' }}`              |
+| 仅在 sm 大小时可见 | `display={{ xs: 'none', sm: 'block', md: 'none' }}`  |
+| 仅在 md 大小时可见 | `display={{ xs: 'none', md: 'block', lg: 'none' }}`  |
+| 仅在 lg 大小时可见 | `display={{ xs: 'none', lg: 'block', xl: 'none' }}`  |
+| 仅在 xl 大小时可见 | `display={{ xs: 'none', xl: 'block' }}`              |
 
 
 {{"demo": "pages/system/display/Hiding.js", "defaultCodeOpen": false}}
 
 ```jsx
 <Box display={{ xs: 'block', md: 'none' }}>
-  隐藏在比md宽的屏幕上
+  在宽度大于 md 的屏幕上隐藏
 </Box>
 <Box display={{ xs: 'none', md: 'block' }}>
-  隐藏在小于md屏幕上
+  在宽度小于 md 的屏幕上隐藏
 </Box>
 ```
 
-## 显示在打印中
+## 控制打印设备中的显示
 
 {{"demo": "pages/system/display/Print.js", "defaultCodeOpen": false}}
 
 ```jsx
 <Box display="block" displayPrint="none">
-  Screen Only (Hide on print only)
+  仅在屏幕上显示（仅在打印时隐藏）
 </Box>
 <Box display="none" displayPrint="block">
-  Print Only (Hide on screen only)
+  仅打印上显示（仅在屏幕上隐藏）
 </Box>
 ```
 
-## Overflow（溢出）
+## 溢出（Overflow）
 
 {{"demo": "pages/system/display/Overflow.js", "defaultCodeOpen": false}}
 
 ```jsx
 <Box component="div" overflow="hidden">
-  Overflow Hidden
+  隐藏溢出的元素
 </Box>
 <Box component="div" overflow="visible">
-  Overflow visible
+  显示溢出的元素
 </Box>
 ```
 
-## Text Overflow（文本溢出）
+## 文本溢出（Text Overflow）
 
 {{"demo": "pages/system/display/TextOverflow.js", "defaultCodeOpen": false}}
 
 ```jsx
 <Box component="div" textOverflow="clip">
-  Text Overflow Clip
+  文本溢出时直接剪切
 </Box>
 <Box component="div" textOverflow="ellipsis">
-  Text Overflow Ellipsis
+  文本溢出时显示省略号
 </Box>
 ```
 
-## Visibility（可见性）
+## 可见性（Visibility）
 
 {{"demo": "pages/system/display/Visibility.js", "defaultCodeOpen": false}}
 
 ```jsx
 <Box component="div" visibility="visible">
-  Visibility Visible
+  可见
 </Box>
 <Box component="div" visibility="hidden">
-  Visibility Hidden
+  不可见
 </Box>
 ```
 
-## White Space（空格）
+## 空格（White Space）
 
 {{"demo": "pages/system/display/WhiteSpace.js", "defaultCodeOpen": false}}
 
 ```jsx
 <Box component="div" whiteSpace="nowrap">
-  White Space Nowrap
+  不换行的空格
 </Box>
 <Box component="div" whiteSpace="normal">
-  White Space Normal
+  普通的空格
 </Box>
 ```
 
@@ -123,7 +123,7 @@
 import { display } from '@material-ui/system';
 ```
 
-| 导入名称           | Prop           | CSS 属性          | Theme key |
+| 导入名称           | 属性             | CSS 属性          | Theme key |
 |:-------------- |:-------------- |:--------------- |:--------- |
 | `displayPrint` | `displayPrint` | `display`       | none      |
 | `displayRaw`   | `display`      | `display`       | none      |

@@ -105,7 +105,8 @@ Por fim, você precisa fornecer uma implementação de [matchMedia](https://deve
 Por exemplo, no lado do servidor:
 
 ```js
-import ReactDOMServer from 'react-dom/server';
+width: deviceType === 'mobile' ?
+      import ReactDOMServer from 'react-dom/server';
 import parser from 'ua-parser-js';
 import mediaQuery from 'css-mediaquery';
 import { ThemeProvider } from '@material-ui/core/styles';
@@ -114,8 +115,7 @@ function handleRender(req, res) {
   const deviceType = parser(req.headers['user-agent']).device.type || 'desktop';
   const ssrMatchMedia = query => ({
     matches: mediaQuery.match(query, {
-      // O CSS estimado pelo navegador.
-      width: deviceType === 'mobile' ? '0px' : '1024px',
+      // O CSS estimado pelo navegador. '0px' : '1024px',
     }),
   });
 

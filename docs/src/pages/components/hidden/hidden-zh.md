@@ -1,6 +1,6 @@
 ---
-title: React Hidden 隐藏组件
-components: Hidden 隐藏
+title: React 隐藏组件
+components: Hidden
 ---
 
 # Hidden 隐藏组件

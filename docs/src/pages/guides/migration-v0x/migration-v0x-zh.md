@@ -6,7 +6,7 @@
 
 ### 哇—— API 看起来完全不一样！ 这是否意味着1.0完全不同，而我得重新学习基础知识，而迁移是几乎不可能的？
 
-我很高兴你问了！ 答案是不。我们的核心概念并没有改变。 You will notice that the API provides more flexibility, but this has a cost – lower-level components that abstract less complexity.
+我很高兴你问了！ 答案是不。我们的核心概念并没有改变。 我很高兴你问了！ 答案是不。我们的核心概念并没有改变。 You will notice that the API provides more flexibility, but this has a cost – lower-level components that abstract less complexity.
 
 ### 到底是什么带来了如此巨大的改变呢？
 
@@ -43,7 +43,7 @@ Material-UI 这个项目是从[4年前](https://github.com/mui-org/material-ui/c
   import Button from '@material-ui/core/Button'; // v1.x
   ```
 
-2. 在你的项目上运行 [迁移助手](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod) 
+2. 您是否已成功迁移您的应用，并助社区一臂之力？ 要完成本迁移指南 <a href="https://github.com/mui-org/material-ui/issues/7195">#7195</a>，还存在一个未决问题。 我们欢迎任何 pull request。
 3。 `MuiThemeProvider` is optional for v1.x., but if you have a custom theme, you are free to use v0.x and v1.x versions of the component at the same time, like this:
 
   ```jsx
@@ -187,4 +187,4 @@ This will apply a change such as the following:
 
 ### 未完待续...
 
-您是否已成功迁移您的应用，并助社区一臂之力？ 要完成本迁移指南 [#7195](https://github.com/mui-org/material-ui/issues/7195)，还存在一个未决问题。 我们欢迎任何 pull request。
+您是否已成功迁移您的应用，并助社区一臂之力？ 您是否已成功迁移您的应用，并助社区一臂之力？ 要完成本迁移指南 [#7195](https://github.com/mui-org/material-ui/issues/7195)，还存在一个未决问题。 我们欢迎任何 pull request。 我们欢迎任何 pull request。

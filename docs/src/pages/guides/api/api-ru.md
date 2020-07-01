@@ -67,7 +67,7 @@ Nested components inside a component have:
 - their own flattened properties when these are key to the top level component abstraction, for instance an `id` prop for the `Input` component.
 - their own `xxxProps` property when users might need to tweak the internal render method's sub-components, for instance, exposing the `inputProps` and `InputProps` properties on components that use `Input` internally.
 - their own `xxxComponent` property for performing component injection.
-- their own `xxxRef` prop when you might need to perform imperative actions, for instance, exposing an `inputRef` prop to access the native `input` on the `Input` component. This helps answer the question ["How can I access the DOM element?"](/getting-started/faq/#how-can-i-access-the-dom-element)
+- экземляр `window.HTMLDivElement`. **host element**: DOM-нода в контексте `react-dom`, т.е.
 
 ### Property naming
 
@@ -107,7 +107,7 @@ There are two options to design the API for the variations of a component: with 
     
     This API is more verbose: `<Button>`, `<Button variant="contained">`, `<Button variant="fab">`.
     
-    However it prevents an invalid combination from being used, bounds the number of properties exposed, and can easily support new values in the future.
+    This API is more verbose: `<Button>`, `<Button variant="contained">`, `<Button variant="fab">`.
 
 The Material-UI components use a combination of the two approaches according to the following rules:
 
@@ -122,7 +122,7 @@ The `ref` is forwarded to the root element. This means that, without changing th
 
 ## Словарь
 
-- **host component**: a DOM node type in the context of `react-dom`, e.g. a `'div'`. См. также [React Implementation Notes:](https://reactjs.org/docs/implementation-notes.html#mounting-host-elements).
+- **host element**: DOM-нода в контексте `react-dom`, т.е. экземляр `window.HTMLDivElement`.
 - **host element**: DOM-нода в контексте `react-dom`, т.е. экземляр `window.HTMLDivElement`.
 - **outermost**: The first component when reading the component tree from top to bottom i.e. breadth-first search.
 - **root component**: the outermost component that renders a host component.

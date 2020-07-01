@@ -1,5 +1,5 @@
 ---
-title: React Stepper 步骤条组件
+title: React 步骤条组件
 components: MobileStepper, Step, StepButton, StepConnector, StepContent, StepIcon, StepLabel, Stepper
 ---
 

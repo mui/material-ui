@@ -70,7 +70,7 @@ yarn add @material-ui/styles
 
 ### スタイル
 
-- ⚠️ Material-UI depends on JSS v10. JSS v10 is not backward compatible with v9. Make sure JSS v9 is not installed in your environment. (Removing `react-jss` from your `package.json` can help). The StylesProvider component replaces the JssProvider one.
+- ⚠️ Material-UI depends on JSS v10. JSS v10 is not backward compatible with v9. Make sure JSS v9 is not installed in your environment. The StylesProvider component replaces the JssProvider one. (Removing `react-jss` from your `package.json` can help).
 - Remove the first option argument of `withTheme()`. (The first argument was a placeholder for a potential future option that never arose.)
   
     It matches the [emotion API](https://emotion.sh/docs/introduction) and the [styled-components API](https://www.styled-components.com).
@@ -406,7 +406,7 @@ This change is explained in more detail in the [TypeScript guide](/guides/typesc
   +<Typography variantMapping={variantMapping}>
   ```
 
-- [Typography] Change the default variant from `body2` to `body1`. A font size of 16px is a better default than 14px. Bootstrap, material.io, and even the documentation use 16px as a default font size. 14px like Ant Design uses is understandable, as Chinese users have a different alphabet. 12px is recommended as the default font size for Japanese.
+- [Typography] Change the default variant from `body2` to `body1`. A font size of 16px is a better default than 14px. 14px like Ant Design uses is understandable, as Chinese users have a different alphabet. Bootstrap, material.io, and even the documentation use 16px as a default font size. 12px is recommended as the default font size for Japanese.
 - [Typography] Remove the default color from the typography variants. The color should inherit most of the time. It's the default behavior of the web.
 - [Typography] Rename `color="default"` to `color="initial"` following the logic of [this thread](https://github.com/mui-org/material-ui/issues/13028). The usage of *default* should be avoided, it lacks semantic.
 

@@ -15,11 +15,11 @@ Como o Googlebot usa um serviço de renderização da Web (WRS) para indexar o c
 
 ## Servidor
 
-Por suportar renderização no lado do servidor, o Material-UI precisa oferecer suporte as versões mais recentes e estáveis do Node.js. Sempre que possível, as versões [ LTS que estão em manutenção ](https://github.com/nodejs/Release#lts-schedule1) são suportados. Recomendamos usar o **node v10.x** ou mais recente. No entanto, ainda suportamos **node v8.x**. O suporte do **node v8.x** será interrompido na Versão 5 do Material-UI.
+Por suportar renderização no lado do servidor, o Material-UI precisa oferecer suporte as versões mais recentes e estáveis do Node.js. Sempre que possível, as versões [ LTS que estão em manutenção ](https://github.com/nodejs/Release#lts-schedule1) são suportados. O suporte do **node v8.x** será interrompido na Versão 5 do Material-UI. Recomendamos usar o **node v10.x** ou mais recente. No entanto, ainda suportamos **node v8.x**.
 
 ### Prefixos CSS
 
-Esteja ciente de que alguns recursos do CSS [ exigem ](https://github.com/cssinjs/jss/issues/279) uma etapa adicional de pós-processamento que adiciona prefixos específicos do browser. Estes prefixos são adicionados automaticamente no cliente graças ao [` jss-plugin-vendor-prefixer `](https://www.npmjs.com/package/jss-plugin-vendor-prefixer).
+Esteja ciente de que alguns recursos do CSS [ exigem ](https://github.com/cssinjs/jss/issues/279) uma etapa adicional de pós-processamento que adiciona prefixos específicos do browser. Estes prefixos são adicionados automaticamente no cliente graças ao [`jss-plugin-vendor-prefixer`](https://www.npmjs.com/package/jss-plugin-vendor-prefixer).
 
 O CSS exibido nesta documentação é processado com [`autoprefixer`](https://www.npmjs.com/package/autoprefixer). Você pode usar [ a implementação encontrada na documentação ](https://github.com/mui-org/material-ui/blob/47aa5aeaec1d4ac2c08fd0e84277d6b91e497557/pages/_document.js#L123) como inspiração. Esteja ciente de que isso tem uma implicação no desempenho da página. É algo essencial para páginas estáticas, mas precisa ser equilibrado com não fazer nada ao renderizar páginas dinâmicas.
 

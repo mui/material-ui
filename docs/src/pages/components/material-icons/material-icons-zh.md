@@ -1,5 +1,5 @@
 ---
-title: Material Icons 图标
+title: Material 图标
 components: Icon, SvgIcon
 ---
 

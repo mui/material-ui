@@ -46,7 +46,7 @@ theme.spacing(2); // = 8
 
 ## Multiple arity
 
-`theme.spacing()` ヘルパーは最大4つの引数を受け入れます。 You can use the arguments to reduce the boilerplate.
+`theme.spacing()` ヘルパーは最大4つの引数を受け入れます。 You can use the arguments to reduce the boilerplate. You can use the arguments to reduce the boilerplate.
 
 ```diff
 -padding: `${theme.spacing(1)}px ${theme.spacing(2)}px`, // '8px 16px'

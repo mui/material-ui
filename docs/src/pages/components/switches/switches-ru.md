@@ -1,5 +1,5 @@
 ---
-title: Switch React component
+title: React-компонент Переключатель
 components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel
 ---
 
@@ -9,11 +9,11 @@ components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel
 
 [Переключатели](https://material.io/design/components/selection-controls.html#switches) – предпочтительный способ установки параметров на мобильных устройствах. Опция, которую контролирует переключатель, и её состояние должны быть четко описаны в соответствующей метке.
 
-## Basic switches
+## Основные переключатели
 
 {{"demo": "pages/components/switches/Switches.js"}}
 
-## Switch with FormControlLabel
+## Переключатель с FormControlLabel
 
 `Switch` can be provided with a description thanks to the `FormControlLabel` component.
 
@@ -35,7 +35,7 @@ components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel
 
 ## Размеры
 
-Fancy smaller switches? Use the `size` property.
+Fancy smaller switches? Использовать свойство `size`.
 
 {{"demo": "pages/components/switches/SwitchesSize.js"}}
 

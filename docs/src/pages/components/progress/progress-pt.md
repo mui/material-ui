@@ -16,37 +16,37 @@ Ao exibir o progresso de uma sequência de processos, indique o progresso geral 
 
 ## Circular
 
-### Circular indeterminate
+### Circular indeterminado
 
 {{"demo": "pages/components/progress/CircularIndeterminate.js"}}
 
-### Circular determinate
+### Circular determinado
 
 {{"demo": "pages/components/progress/CircularStatic.js"}}
 
-### Interactive integration
+### Integração interativa
 
 {{"demo": "pages/components/progress/CircularIntegration.js"}}
 
-### Circular with label
+### Circular com rótulo
 
 {{"demo": "pages/components/progress/CircularWithValueLabel.js"}}
 
 ## Linear
 
-### Linear indeterminate
+### Linear indeterminado
 
 {{"demo": "pages/components/progress/LinearIndeterminate.js"}}
 
-### Linear determinate
+### Linear determinado
 
 {{"demo": "pages/components/progress/LinearDeterminate.js"}}
 
-### Linear buffer
+### Linear bufferizado
 
 {{"demo": "pages/components/progress/LinearBuffer.js"}}
 
-### Linear with label
+### Linear com rótulo
 
 {{"demo": "pages/components/progress/LinearWithValueLabel.js"}}
 
@@ -71,7 +71,7 @@ function Progress(props) {
 }
 ```
 
-## Customized progress
+## Progresso customizado
 
 Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
 
@@ -79,7 +79,7 @@ Aqui estão alguns exemplos de customização do componente. Você pode aprender
 
 ## Aparência atrasada
 
-Existem [3 limites importantes](https://www.nngroup.com/articles/response-times-3-important-limits/) para saber sobre o tempo de resposta. O efeito cascata do componente `ButtonBase` garante que o usuário experimente um sistema de feedback em tempo real. Normalmente, nenhum feedback é necessário durante atrasos de mais de 0,1 segundos e menos de 1,0 segundos. Mas após 1,0 segundo, você pode exibir um carregador para garantir que o fluxo de pensamento do usuário não seja interrompido.
+Existem [3 limites importantes](https://www.nngroup.com/articles/response-times-3-important-limits/) para saber sobre tempo de resposta. O efeito cascata do componente `ButtonBase` garante que o usuário experimente um sistema de feedback em tempo real. Normalmente, nenhum feedback é necessário durante atrasos de mais de 0,1 segundos e menos de 1,0 segundos. Mas após 1,0 segundo, você pode exibir um carregador para garantir que o fluxo de pensamento do usuário não seja interrompido.
 
 {{"demo": "pages/components/progress/DelayingAppearance.js"}}
 

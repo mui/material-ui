@@ -11,7 +11,7 @@ components: Divider
 
 ## Divisores de lista
 
-El divisor renderiza un `<hr>` por defecto. You can save rendering this DOM element by using the `divider` property on the `ListItem` component.
+You can save rendering this DOM element by using the `divider` property on the `ListItem` component. El divisor renderiza un `<hr>` por defecto.
 
 {{"demo": "pages/components/dividers/ListDividers.js", "bg": true}}
 

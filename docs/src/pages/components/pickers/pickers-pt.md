@@ -1,5 +1,5 @@
 ---
-title: Componentes React para Seletor de Data e Seletor de Hora
+title: Componente React para Data e Hora
 components: TextField
 ---
 

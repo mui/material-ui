@@ -251,7 +251,7 @@ const theme = createMuiTheme({
 
 ### Global CSS override
 
-You can also customize all instances of a component with CSS. Components expose [global class names](/styles/advanced/#with-material-ui-core) to enable this. It's very similar to how you would customize Bootstrap.
+You can also customize all instances of a component with CSS. It's very similar to how you would customize Bootstrap. Components expose [global class names](/styles/advanced/#with-material-ui-core) to enable this.
 
 ```jsx
 const GlobalCss = withStyles({

@@ -1,5 +1,5 @@
 ---
-title: React Date Picker 日期选择器和 Time Picker时间选择器组件
+title: React 日期和时间选择器组件
 components: TextField
 ---
 
@@ -24,7 +24,7 @@ components: TextField
 
 ### Datepickers 日期选择器
 
-示例展示了当 `type="time"` 时的原生的日期选择器 。
+示例展示了当 `type="date"` 时的原生的日期选择器 。
 
 {{"demo": "pages/components/pickers/DatePickers.js"}}
 

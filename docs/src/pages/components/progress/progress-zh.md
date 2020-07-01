@@ -1,5 +1,5 @@
 ---
-title: React Circular progress（进度环组件），React Linear progress （进度条组件）
+title: React 进度环和进度条组件
 components: CircularProgress, LinearProgress
 ---
 
@@ -16,43 +16,43 @@ components: CircularProgress, LinearProgress
 
 ## 环状进度条
 
-### Circular indeterminate
+### 不定量的环形进度条
 
 {{"demo": "pages/components/progress/CircularIndeterminate.js"}}
 
-### Circular determinate
+### 定量的环形进度条
 
 {{"demo": "pages/components/progress/CircularStatic.js"}}
 
-### Interactive integration
+### 交互集成
 
 {{"demo": "pages/components/progress/CircularIntegration.js"}}
 
-### Circular with label
+### 带标签的环状进度条
 
 {{"demo": "pages/components/progress/CircularWithValueLabel.js"}}
 
 ## 线性进度条
 
-### Linear indeterminate
+### 不定量的线性进度条
 
 {{"demo": "pages/components/progress/LinearIndeterminate.js"}}
 
-### Linear determinate
+### 定量的线性进度条
 
 {{"demo": "pages/components/progress/LinearDeterminate.js"}}
 
-### Linear buffer
+### 线性缓冲条
 
 {{"demo": "pages/components/progress/LinearBuffer.js"}}
 
-### Linear with label
+### 带标签的线性进度条
 
 {{"demo": "pages/components/progress/LinearWithValueLabel.js"}}
 
 ## 非标准区间
 
-进度条组件采用一个在0—100区间内的值。 作为默认的最小/最大值，屏幕阅读用户能够更便利地阅读。 但是有时，您可能会使用一些值超出这个范围的数据源。 通过这个例子，您可以轻松地将一个任意区间的值转换为0—100区间的值：
+进度条组件采用一个在 0 — 100 区间内的值。 作为默认的最小/最大值，屏幕阅读用户能够更便利地阅读。 但是有时，您可能会使用超出这个范围的数据源的一些值。 通过这个例子，您可以轻松地将一个任意区间的值转换为 0 — 100 区间的值：
 
 ```jsx
 // MIN = 最小值
@@ -71,7 +71,7 @@ function Progress(props) {
 }
 ```
 
-## Customized progress
+## 定制的进度条
 
 你可以参考以下一些例子来自定义组件。 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
 
@@ -79,13 +79,13 @@ function Progress(props) {
 
 ## 延时的出现
 
-关于响应时间，有 [3个重要限制](https://www.nngroup.com/articles/response-times-3-important-limits/)。 `ButtonBase`组件的波纹效果确保用户感受到系统是实时反馈的。 通常情况下，在多余0.1秒且小于1.0秒期间不需要特殊的反馈。 在1.0秒后，你可以显示一个加载器来保持用户的思考流程不被打断。
+关于响应时间，有 [3个重要限制](https://www.nngroup.com/articles/response-times-3-important-limits/)。 `ButtonBase` 组件的波纹效果确保用户感受到系统是实时反馈的。 通常情况下，在多余0.1秒且小于1.0秒期间不需要特殊的反馈。 在1.0秒后，你可以显示一个加载器来保持用户的思考流程不被打断。
 
 {{"demo": "pages/components/progress/DelayingAppearance.js"}}
 
 ## 局限性
 
-在特别慢的加载时，可能丢失stroke dash动画或看到环形进度的半径随机的情况。 为了不阻碍主渲染进程，您应该在web worker中或批处理中运行密集操作的处理器。
+在特别慢的加载时，可能丢失路径描边动画（stroke dash animation）或看到随机的环状进度条（CircularProgress）的环宽。 为了不阻碍主渲染进程，您应该在 web worker 中或批处理中运行密集操作的处理器。
 
 ![高负载](/static/images/progress/heavy-load.gif)
 

@@ -1,5 +1,5 @@
 ---
-title: React Skeleton 骨架屏组件
+title: React 骨架屏组件
 components: Skeleton
 ---
 

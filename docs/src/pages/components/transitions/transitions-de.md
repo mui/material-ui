@@ -47,7 +47,7 @@ Blende von Transparent zu Undurchsichtig ein.
 
 Erweitert sich von der Mitte des untergeordneten Elements nach außen, während es von transparent nach opak einblendet.
 
-Das zweite Beispiel zeigt, wie Sie die `transform-origin` ändern können und bedingt die ` Timeout` Eigenschaft anpassen, um die Eintrittsgeschwindigkeit zu beeinflussen.
+Das zweite Beispiel zeigt, wie Sie die `transform-origin` ändern können und bedingt die `Timeout` Eigenschaft anpassen, um die Eintrittsgeschwindigkeit zu beeinflussen.
 
 {{"demo": "pages/components/transitions/SimpleGrow.js", "bg": true}}
 
@@ -55,7 +55,7 @@ Das zweite Beispiel zeigt, wie Sie die `transform-origin` ändern können und be
 
 Slide in from the edge of the screen. The `direction` property controls which edge of the screen the transition starts from.
 
-The Transition component's `mountOnEnter` property prevents the child component from being mounted until `in` is `true`. Dadurch wird verhindert, dass die relativ positionierte Komponente von der Off-Screen-Position in die Ansicht gescrollt wird. In ähnlicher Weise entfernt die `unmountOnExit` -Eigenschaft die Komponente aus dem DOM, nachdem der Übergang vom Bildschirm beendet wurde.
+In ähnlicher Weise entfernt die `unmountOnExit` -Eigenschaft die Komponente aus dem DOM, nachdem der Übergang vom Bildschirm beendet wurde. The Transition component's `mountOnEnter` property prevents the child component from being mounted until `in` is `true`. Dadurch wird verhindert, dass die relativ positionierte Komponente von der Off-Screen-Position in die Ansicht gescrollt wird.
 
 {{"demo": "pages/components/transitions/SimpleSlide.js", "bg": true}}
 
@@ -73,6 +73,6 @@ The components accept a `TransitionComponent` prop to customize the default tran
 
 - Accepts an `in` prop. This corresponds to the open/close state.
 - Call the `onEnter` callback prop when the enter transition starts.
-- Call the `onExited` callback prop when the exit transition is completed. These two callbacks allow to unmount the children when in a closed state and fully transitioned.
+- Call the `onExited` callback prop when the exit transition is completed. Call the `onExited` callback prop when the exit transition is completed.
 
 For more information on creating a custom transition, visit the [React Transition Group Transition docs](http://reactcommunity.org/react-transition-group/transition).
