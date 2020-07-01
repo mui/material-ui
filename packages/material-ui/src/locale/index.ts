@@ -1680,60 +1680,60 @@ export const skSK: Localization = {
 
 export const svSE: Localization = {
   props: {
-    // MuiBreadcrumbs: {
-    //   expandText: 'Show path',
-    // },
+    MuiBreadcrumbs: {
+      expandText: 'Visa sökväg',
+    },
     MuiTablePagination: {
-      // getItemAriaLabel: (type) => {
-      //   if (type === 'first') {
-      //     return 'Go to first page';
-      //   }
-      //   if (type === 'last') {
-      //     return 'Go to last page';
-      //   }
-      //   if (type === 'next') {
-      //     return 'Go to next page';
-      //   }
-      //   // if (type === 'previous') {
-      //   return 'Go to previous page';
-      // },
+      getItemAriaLabel: (type) => {
+        if (type === 'first') {
+          return 'Gå till första sidan';
+        }
+        if (type === 'last') {
+          return 'Gå till sista sidan';
+        }
+        if (type === 'next') {
+          return 'Gå till nästa sida';
+        }
+        // if (type === 'previous') {
+        return 'Gå till föregående sida';
+      },
       labelRowsPerPage: 'Rader per sida:',
       labelDisplayedRows: ({ from, to, count }) =>
-        `${from}-${to} av ${count !== -1 ? count : `more than ${to}`}`,
+        `${from}-${to} av ${count !== -1 ? count : `fler än ${to}`}`,
     },
     MuiRating: {
       getLabelText: (value) => `${value} ${value !== 1 ? 'Stjärnor' : 'Stjärna'}`,
-      // emptyLabelText: 'Empty',
+      emptyLabelText: 'Tom',
     },
     MuiAutocomplete: {
       clearText: 'Rensa',
       closeText: 'Stäng',
       loadingText: 'Laddar…',
       noOptionsText: 'Inga alternativ',
-      openText: 'Öppen',
+      openText: 'Öppna',
     },
     MuiAlert: {
       closeText: 'Stäng',
     },
-    // MuiPagination: {
-    //   'aria-label': 'Pagination navigation',
-    //   getItemAriaLabel: (type, page, selected) => {
-    //     if (type === 'page') {
-    //       return `${selected ? '' : 'Go to '}page ${page}`;
-    //     }
-    //     if (type === 'first') {
-    //       return 'Go to first page';
-    //     }
-    //     if (type === 'last') {
-    //       return 'Go to last page';
-    //     }
-    //     if (type === 'next') {
-    //       return 'Go to next page';
-    //     }
-    //     // if (type === 'previous') {
-    //     return 'Go to previous page';
-    //   },
-    // },
+    MuiPagination: {
+      'aria-label': 'Sidnavigering',
+      getItemAriaLabel: (type, page, selected) => {
+        if (type === 'page') {
+          return `${selected ? '' : 'Gå till '}sida ${page}`;
+        }
+        if (type === 'first') {
+          return 'Gå till första sidan';
+        }
+        if (type === 'last') {
+          return 'Gå till sista sidan';
+        }
+        if (type === 'next') {
+          return 'Gå till nästa sida';
+        }
+        // if (type === 'previous') {
+        return 'Gå till föregående sida';
+      },
+    },
   },
 };
 
