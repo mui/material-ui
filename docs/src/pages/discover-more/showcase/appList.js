@@ -13,6 +13,16 @@
  */
 const appList = [
   {
+    title: 'd-cide',
+    description:
+      'A progressive Web App helps that helps to make rational decisions in workshops.' +
+      'It uses Material-UI with a neumorphic custom theme.',
+    image: 'dcide.jpg',
+    link: 'https://d-cide.me/',
+    source: 'https://github.com/cjoecker/d-cide',
+    dateAdded: '2020-07-01',
+  },
+  {
     title: 'QuintoAndar',
     description:
       'QuintoAndar is a company that uses technology and ' +
