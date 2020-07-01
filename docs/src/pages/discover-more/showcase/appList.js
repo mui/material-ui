@@ -20,7 +20,6 @@ const appList = [
     image: 'dcide.jpg',
     link: 'https://d-cide.me/',
     source: 'https://github.com/cjoecker/d-cide',
-    similarWebVisits: 90,
     dateAdded: '2020-07-01',
   },
   {
