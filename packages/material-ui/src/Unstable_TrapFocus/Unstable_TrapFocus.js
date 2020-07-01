@@ -75,7 +75,7 @@ function Unstable_TrapFocus(props) {
       rootRef.current.focus();
     }
 
-    const contain = (event) => {
+    const contain = (nativeEvent) => {
       if (
         !doc.hasFocus() ||
         disableEnforceFocus ||
@@ -89,7 +89,7 @@ function Unstable_TrapFocus(props) {
       if (rootRef.current && !rootRef.current.contains(doc.activeElement)) {
         // if the focus event is not coming from inside the children's react tree, reset the refs
         if (
-          (event && reactFocusEventTarget.current !== event.target) ||
+          (nativeEvent && reactFocusEventTarget.current !== nativeEvent.target) ||
           doc.activeElement !== reactFocusEventTarget.current
         ) {
           insideReactTreeRef.current = false;
