@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ReactWrapper } from 'enzyme';
-import { TextField } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
 import { mount, utilsToUse } from './test-utils';
 import { DesktopDateTimePicker, DateTimePickerProps } from '../DateTimePicker/DateTimePicker';
 

@@ -3,7 +3,7 @@ import addWeeks from 'date-fns/addWeeks';
 import { Dayjs } from 'dayjs';
 import { Moment } from 'moment';
 import { DateTime } from 'luxon';
-import { TextField } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
 import { makeJSDateObject } from '../../../utils/helpers';
 import { DateRangePicker, DateRangeDelimiter, DateRange } from '@material-ui/pickers';
 
@@ -23,11 +23,11 @@ function MinMaxDateRangePicker() {
       maxDate={getWeeksAfter(selectedRange[0], 4)}
       onChange={date => handleDateChange(date)}
       renderInput={(startProps, endProps) => (
-        <>
+        <React.Fragment>
           <TextField {...startProps} />
           <DateRangeDelimiter> to </DateRangeDelimiter>
           <TextField {...endProps} />
-        </>
+        </React.Fragment>
       )}
     />
   );

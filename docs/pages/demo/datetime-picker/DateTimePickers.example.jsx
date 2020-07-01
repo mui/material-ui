@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { TextField } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
 import { MobileDateTimePicker, DesktopDateTimePicker, DateTimePicker } from '@material-ui/pickers';
 
 function DateTimePickerDemo(props) {
   const [selectedDate, handleDateChange] = useState(new Date('2018-01-01T00:00:00.000Z'));
 
   return (
-    <>
+    <React.Fragment>
       <MobileDateTimePicker
         autoOk
         disableFuture
@@ -38,7 +38,7 @@ function DateTimePickerDemo(props) {
         })}
         mask="___/__/__ __:__"
       />
-    </>
+    </React.Fragment>
   );
 }
 

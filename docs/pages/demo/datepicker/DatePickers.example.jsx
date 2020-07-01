@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react';
-import { TextField } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
 import { MobileDatePicker, DesktopDatePicker, DatePicker } from '@material-ui/pickers';
 
 function DatePickersVariants(props) {

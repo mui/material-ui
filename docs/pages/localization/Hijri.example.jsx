@@ -2,7 +2,7 @@ import 'moment/locale/ar-sa';
 import moment from 'moment';
 import React, { useState } from 'react';
 import HijriAdapter from '@date-io/hijri';
-import { TextField } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
 import { TimePicker, DateTimePicker, DatePicker, LocalizationProvider } from '@material-ui/pickers';
 
 function HijriExample() {

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { DatePicker } from '../DatePicker';
-import { TextField } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
 import { screen } from '@testing-library/react';
 import { createClientRender } from './createClientRender';
 

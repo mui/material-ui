@@ -2,7 +2,7 @@
 import React from 'react';
 import { date, object } from 'yup';
 import { Grid } from '@material-ui/core';
-import { TextField } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
 import { Formik, Form, Field, FieldProps } from 'formik';
 import { DatePicker, BaseDatePickerProps } from '@material-ui/pickers';
 

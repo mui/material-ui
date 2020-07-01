@@ -159,7 +159,7 @@ export const Calendar: React.FC<CalendarProps> = withDefaultProps(
       .map(selectedDateItem => utils.startOfDay(selectedDateItem));
 
     return (
-      <>
+      <React.Fragment>
         <div className={classes.daysHeader}>
           {utils.getWeekdays().map((day, i) => (
             <Typography
@@ -227,7 +227,7 @@ export const Calendar: React.FC<CalendarProps> = withDefaultProps(
             </div>
           </SlideTransition>
         )}
-      </>
+      </React.Fragment>
     );
   }
 );

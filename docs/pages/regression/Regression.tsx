@@ -88,7 +88,7 @@ function Regression() {
         value={range}
         onChange={changeRange}
         renderInput={(startProps, endProps) => (
-          <>
+          <React.Fragment>
             <TextField
               {...startProps}
               inputProps={{ ...startProps.inputProps, 'data-mui-test': 'desktop-range-picker' }}
@@ -98,7 +98,7 @@ function Regression() {
               {...endProps}
               inputProps={{ ...endProps.inputProps, 'data-mui-test': 'desktop-range-picker-end' }}
             />
-          </>
+          </React.Fragment>
         )}
       />
     </div>

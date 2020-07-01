@@ -41,11 +41,11 @@ export interface ExportedDateRangePickerInputProps {
    * ```jsx
    * <DateRangePicker
    * renderInput={(startProps, endProps) => (
-       <>
+       <React.Fragment>
          <TextField {...startProps} />
          <Typography> to <Typography>
          <TextField {...endProps} />
-       </>;
+       </React.Fragment>;
      )}
      />
    * ````

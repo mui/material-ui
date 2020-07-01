@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { TextField } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
 import { mount, utilsToUse } from './test-utils';
 import { StaticDatePicker, DatePicker, MobileDatePicker } from '../DatePicker/DatePicker';
 
@@ -99,7 +99,7 @@ describe('DatePicker - different props', () => {
       };
 
       return (
-        <>
+        <React.Fragment>
           <DatePicker
             ref={ref}
             value={null}
@@ -108,7 +108,7 @@ describe('DatePicker - different props', () => {
           />
 
           <button id="focus-picker" onClick={focusPicker} />
-        </>
+        </React.Fragment>
       );
     };
 

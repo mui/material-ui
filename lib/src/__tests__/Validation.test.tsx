@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { isWeekend } from 'date-fns';
 import { act } from 'react-dom/test-utils';
-import { TextField } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
 import { MaterialUiPickersDate } from '../typings/date';
 import { DesktopDatePicker } from '../DatePicker/DatePicker';
 import { mountPickerWithState, utilsToUse } from './test-utils';
@@ -123,10 +123,10 @@ describe('DateRangePicker validation', () => {
         {...props}
         onError={onErrorMock}
         renderInput={(startProps, endProps) => (
-          <>
+          <React.Fragment>
             <TextField {...startProps} />
             <TextField {...endProps} />
-          </>
+          </React.Fragment>
         )}
       />
     ));

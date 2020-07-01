@@ -2,7 +2,7 @@ import moment from 'moment';
 import jMoment from 'moment-jalaali';
 import React, { useState } from 'react';
 import JalaliAdapter from '@date-io/jalaali';
-import { TextField } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
 import { TimePicker, DateTimePicker, DatePicker, LocalizationProvider } from '@material-ui/pickers';
 
 jMoment.loadPersian({ dialect: 'persian-modern', usePersianDigits: true });

@@ -27,7 +27,7 @@ const Docs: React.FC<WithRouterProps> = ({ router }) => {
   const description = `Here you can find the full list and description for ${componentName} props.`;
 
   return (
-    <>
+    <React.Fragment>
       <PageMeta title={title} description={description} />
 
       <Grid container justify="space-between" alignItems="center">
@@ -52,7 +52,7 @@ const Docs: React.FC<WithRouterProps> = ({ router }) => {
       <PropTypesTable src={componentName} />
 
       {!internalComponents.includes(componentName) && (
-        <>
+        <React.Fragment>
           <h4> Mobile Wrapper </h4>
           <Typography gutterBottom>
             Props available on mobile device with {componentName} or with `Mobile{componentName}`
@@ -66,9 +66,9 @@ const Docs: React.FC<WithRouterProps> = ({ router }) => {
           </Typography>
 
           <PropTypesTable disableHeader src="DesktopWrapper" />
-        </>
+        </React.Fragment>
       )}
-    </>
+    </React.Fragment>
   );
 };
 

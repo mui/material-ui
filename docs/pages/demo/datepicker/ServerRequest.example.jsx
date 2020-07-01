@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { Badge } from '@material-ui/core';
-import { TextField } from '@material-ui/core';
+import Badge from '@material-ui/core/Badge';
+import TextField from '@material-ui/core/TextField';
 import { DatePicker, Day } from '@material-ui/pickers';
 import { makeJSDateObject } from '../../../utils/helpers';
 import { CalendarSkeleton } from '@material-ui/pickers/CalendarSkeleton';
 
-function ServerRequest() {
+export default function ServerRequest() {
   const requestAbortController = React.useRef(null);
   const [highlightedDays, setHighlightedDays] = React.useState([1, 2, 15]);
   const [selectedDate, handleDateChange] = React.useState(new Date());
@@ -36,33 +36,29 @@ function ServerRequest() {
   };
 
   return (
-    <>
-      <DatePicker
-        value={selectedDate}
-        loading={highlightedDays === null}
-        onChange={date => handleDateChange(date)}
-        onMonthChange={handleMonthChange}
-        // loading
-        renderInput={props => <TextField {...props} />}
-        renderLoading={() => <CalendarSkeleton />}
-        renderDay={(day, selectedDate, DayComponentProps) => {
-          const date = makeJSDateObject(day); // skip this step, it is required to support date libs
-          const isSelected =
-            DayComponentProps.inCurrentMonth && highlightedDays.includes(date.getDate());
+    <DatePicker
+      value={selectedDate}
+      loading={highlightedDays === null}
+      onChange={date => handleDateChange(date)}
+      onMonthChange={handleMonthChange}
+      // loading
+      renderInput={props => <TextField {...props} />}
+      renderLoading={() => <CalendarSkeleton />}
+      renderDay={(day, selectedDate, DayComponentProps) => {
+        const date = makeJSDateObject(day); // skip this step, it is required to support date libs
+        const isSelected =
+          DayComponentProps.inCurrentMonth && highlightedDays.includes(date.getDate());
 
-          return (
-            <Badge
-              key={date.toString()}
-              overlap="circle"
-              badgeContent={isSelected ? '🌚' : undefined}
-            >
-              <Day {...DayComponentProps} />
-            </Badge>
-          );
-        }}
-      />
-    </>
+        return (
+          <Badge
+            key={date.toString()}
+            overlap="circle"
+            badgeContent={isSelected ? '🌚' : undefined}
+          >
+            <Day {...DayComponentProps} />
+          </Badge>
+        );
+      }}
+    />
   );
 }
-
-export default ServerRequest;

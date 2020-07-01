@@ -14,11 +14,11 @@ function CalendarsDateRangePicker() {
         value={selectedDate}
         onChange={date => handleDateChange(date)}
         renderInput={(startProps, endProps) => (
-          <>
+          <React.Fragment>
             <TextField {...startProps} />
             <DateRangeDelimiter> to </DateRangeDelimiter>
             <TextField {...endProps} />
-          </>
+          </React.Fragment>
         )}
       />
 
@@ -28,11 +28,11 @@ function CalendarsDateRangePicker() {
         value={selectedDate}
         onChange={date => handleDateChange(date)}
         renderInput={(startProps, endProps) => (
-          <>
+          <React.Fragment>
             <TextField {...startProps} />
             <DateRangeDelimiter> to </DateRangeDelimiter>
             <TextField {...endProps} />
-          </>
+          </React.Fragment>
         )}
       />
 
@@ -42,11 +42,11 @@ function CalendarsDateRangePicker() {
         value={selectedDate}
         onChange={date => handleDateChange(date)}
         renderInput={(startProps, endProps) => (
-          <>
+          <React.Fragment>
             <TextField {...startProps} />
             <DateRangeDelimiter> to </DateRangeDelimiter>
             <TextField {...endProps} />
-          </>
+          </React.Fragment>
         )}
       />
     </Grid>

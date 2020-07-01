@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import DateFnsAdapter from '@material-ui/pickers/adapter/date-fns';
-import { TextField } from '@material-ui/core';
-import { DatePicker } from '@material-ui/pickers';
-import { LocalizationProvider } from '@material-ui/pickers';
+import TextField from '@material-ui/core/TextField';
+import { LocalizationProvider, DatePicker } from '@material-ui/pickers';
 
 class OverriddenAdapter extends DateFnsAdapter {
   getYearRange(start, end) {
@@ -10,7 +9,7 @@ class OverriddenAdapter extends DateFnsAdapter {
   }
 }
 
-function DateFnsLocalizationExample() {
+export default function DateFnsLocalizationExample() {
   const [selectedDate, handleDateChange] = useState(new Date());
 
   return (
@@ -24,5 +23,3 @@ function DateFnsLocalizationExample() {
     </LocalizationProvider>
   );
 }
-
-export default DateFnsLocalizationExample;

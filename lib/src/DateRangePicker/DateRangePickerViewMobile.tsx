@@ -46,7 +46,7 @@ export const DateRangePickerViewMobile: React.FC<DesktopDateRangeCalendarProps> 
   const maxDate = __maxDate || utils.date(defaultMaxDate);
 
   return (
-    <>
+    <React.Fragment>
       <CalendarHeader
         view="date"
         views={onlyDateView}
@@ -79,6 +79,6 @@ export const DateRangePickerViewMobile: React.FC<DesktopDateRangeCalendarProps> 
           />
         )}
       />
-    </>
+    </React.Fragment>
   );
 };

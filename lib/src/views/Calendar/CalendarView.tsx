@@ -144,7 +144,7 @@ export const CalendarView: React.FC<CalendarViewProps> = withDefaultProps(
     }, [date]); // eslint-disable-line
 
     return (
-      <>
+      <React.Fragment>
         <CalendarHeader
           {...other}
           view={view}
@@ -208,7 +208,7 @@ export const CalendarView: React.FC<CalendarViewProps> = withDefaultProps(
             )}
           </div>
         </FadeTransitionGroup>
-      </>
+      </React.Fragment>
     );
   }
 );

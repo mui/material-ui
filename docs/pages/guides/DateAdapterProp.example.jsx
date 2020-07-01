@@ -1,23 +1,22 @@
-import React, { useState } from 'react';
+import * as React from 'react';
 import ruLocale from 'date-fns/locale/ru';
 import deLocale from 'date-fns/locale/de';
 import DateFnsAdapter from '@material-ui/pickers/adapter/date-fns';
-import { useMemo } from 'react';
-import { TextField } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
 import { DatePicker } from '@material-ui/pickers';
 
 const staticDateAdapter = new DateFnsAdapter({ locale: ruLocale });
 
-function UsingDateAdapterProp() {
-  const [locale] = useState(deLocale);
-  const [selectedDate, handleDateChange] = useState(new Date());
+export default function UsingDateAdapterProp() {
+  const [locale] = React.useState(deLocale);
+  const [selectedDate, handleDateChange] = React.useState(new Date());
 
-  const memoizedDateAdapter = useMemo(() => {
+  const memoizedDateAdapter = React.useMemo(() => {
     return new DateFnsAdapter({ locale });
   }, [locale]);
 
   return (
-    <>
+    <React.Fragment>
       <DatePicker
         renderInput={props => <TextField {...props} />}
         value={selectedDate}
@@ -33,8 +32,6 @@ function UsingDateAdapterProp() {
           <TextField helperText="In case you need to generate adapter from state" {...props} />
         )}
       />
-    </>
+    </React.Fragment>
   );
 }
-
-export default UsingDateAdapterProp;

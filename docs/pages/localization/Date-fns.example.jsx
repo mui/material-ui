@@ -3,8 +3,9 @@ import frLocale from 'date-fns/locale/fr';
 import ruLocale from 'date-fns/locale/ru';
 import enLocale from 'date-fns/locale/en-US';
 import DateFnsAdapter from '@material-ui/pickers/adapter/date-fns';
-import { TextField } from '@material-ui/core';
-import { Button, ButtonGroup } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
 import { DatePicker, LocalizationProvider } from '@material-ui/pickers';
 
 const localeMap = {
@@ -23,8 +24,8 @@ function DateFnsLocalizationExample() {
   const [locale, setLocale] = React.useState('ru');
   const [selectedDate, handleDateChange] = React.useState(new Date());
 
-  const selectLocale = React.useCallback(locale => {
-    setLocale(locale);
+  const selectLocale = React.useCallback(newLocale => {
+    setLocale(newLocale);
   }, []);
 
   return (

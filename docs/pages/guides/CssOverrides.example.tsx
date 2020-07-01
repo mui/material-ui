@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import lightBlue from '@material-ui/core/colors/lightBlue';
-import { TextField } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 import { DatePicker, DatePickerProps } from '@material-ui/pickers';
 

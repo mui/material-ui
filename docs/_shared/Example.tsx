@@ -93,7 +93,7 @@ function Example({ source, testId, paddingBottom }: ExampleProps) {
   );
 
   return (
-    <>
+    <React.Fragment>
       <Collapse key="code" in={expanded}>
         <div className={classes.sourceToolbar}>
           <Tooltip title="Propose file change">
@@ -136,7 +136,7 @@ function Example({ source, testId, paddingBottom }: ExampleProps) {
 
         <ExampleComponent key={currentLib} />
       </div>
-    </>
+    </React.Fragment>
   );
 }
 

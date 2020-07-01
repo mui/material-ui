@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import lime from '@material-ui/core/colors/lime';
-import { TextField } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
 import { DateTimePicker } from '@material-ui/pickers';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
@@ -10,7 +10,7 @@ const defaultMaterialTheme = createMuiTheme({
   },
 });
 
-function CssThemeExample() {
+export default function CssThemeExample() {
   const [selectedDate, handleDateChange] = useState(new Date());
 
   return (
@@ -24,5 +24,3 @@ function CssThemeExample() {
     </ThemeProvider>
   );
 }
-
-export default CssThemeExample;

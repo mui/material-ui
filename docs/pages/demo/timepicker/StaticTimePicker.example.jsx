@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { TextField } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
 import { StaticTimePicker } from '@material-ui/pickers';
 
-const StaticTimePickerExample = () => {
+export default function StaticTimePickerExample() {
   const [date, handleDateChange] = useState(new Date());
 
   return (
-    <>
+    <React.Fragment>
       <StaticTimePicker
         autoOk
         openTo="hours"
@@ -23,8 +23,6 @@ const StaticTimePickerExample = () => {
         onChange={date => handleDateChange(date)}
         renderInput={props => <TextField {...props} />}
       />
-    </>
+    </React.Fragment>
   );
-};
-
-export default StaticTimePickerExample;
+}

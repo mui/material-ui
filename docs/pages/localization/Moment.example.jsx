@@ -3,8 +3,9 @@ import 'moment/locale/ru';
 import moment from 'moment';
 import React, { useState, useCallback } from 'react';
 import MomentAdapter from '@material-ui/pickers/adapter/moment';
-import { TextField } from '@material-ui/core';
-import { Button, ButtonGroup } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
 import { DatePicker, LocalizationProvider } from '@material-ui/pickers';
 
 moment.locale('fr'); // it is required to select default locale manually
@@ -21,14 +22,14 @@ const maskMap = {
   ru: '__.__.____',
 };
 
-function MomentLocalizationExample() {
+export default function MomentLocalizationExample() {
   const [locale, setLocale] = useState('fr');
   const [selectedDate, handleDateChange] = useState(new Date());
 
-  const selectLocale = useCallback(locale => {
-    moment.locale(locale);
+  const selectLocale = useCallback(newLocale => {
+    moment.locale(newLocale);
 
-    setLocale(locale);
+    setLocale(newLocale);
   }, []);
 
   return (
@@ -50,5 +51,3 @@ function MomentLocalizationExample() {
     </LocalizationProvider>
   );
 }
-
-export default MomentLocalizationExample;

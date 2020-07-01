@@ -85,7 +85,7 @@ class MyDocument extends Document<{ theme?: ThemeType }> {
           />
 
           {process.env.NODE_ENV === 'production' && (
-            <>
+            <React.Fragment>
               <script async src="https://www.googletagmanager.com/gtag/js?id=UA-115548316-2" />
               <script
                 dangerouslySetInnerHTML={{
@@ -98,7 +98,7 @@ class MyDocument extends Document<{ theme?: ThemeType }> {
                   `,
                 }}
               />
-            </>
+            </React.Fragment>
           )}
         </Head>
         <body>

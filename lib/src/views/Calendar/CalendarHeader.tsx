@@ -125,7 +125,7 @@ export const CalendarHeader: React.SFC<CalendarHeaderProps> = ({
   };
 
   return (
-    <>
+    <React.Fragment>
       <div className={classes.switchHeader}>
         <div className={classes.monthTitleContainer} onClick={toggleView}>
           <FadeTransitionGroup
@@ -186,7 +186,7 @@ export const CalendarHeader: React.SFC<CalendarHeaderProps> = ({
           />
         </Fade>
       </div>
-    </>
+    </React.Fragment>
   );
 };
 

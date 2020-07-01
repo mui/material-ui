@@ -36,7 +36,7 @@ const Releases: NextFC<ReleasesProps> = ({ tags }) => {
   const classes = useStyles();
 
   return (
-    <>
+    <React.Fragment>
       <PageMeta
         title="Releases - @material-ui/pickers"
         description="List of @material-ui/pickers releases with a link to per-release documentation site."
@@ -113,7 +113,7 @@ const Releases: NextFC<ReleasesProps> = ({ tags }) => {
           </TableBody>
         </Table>
       </Paper>
-    </>
+    </React.Fragment>
   );
 };
 

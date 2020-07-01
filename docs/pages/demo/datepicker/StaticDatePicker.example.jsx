@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import * as React from 'react';
 import isWeekend from 'date-fns/isWeekend';
-import { TextField } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
 import { StaticDatePicker } from '@material-ui/pickers';
 import { makeJSDateObject } from '../../../utils/helpers';
 
@@ -9,11 +9,11 @@ function disableWeekends(date) {
   return isWeekend(makeJSDateObject(date));
 }
 
-const StaticDatePickerExample = () => {
-  const [date, handleDateChange] = useState(new Date());
+export default function StaticDatePickerExample() {
+  const [date, handleDateChange] = React.useState(new Date());
 
   return (
-    <>
+    <React.Fragment>
       <StaticDatePicker
         autoOk
         displayStaticWrapperAs="desktop"
@@ -32,8 +32,6 @@ const StaticDatePickerExample = () => {
         onChange={date => handleDateChange(date)}
         renderInput={props => <TextField {...props} />}
       />
-    </>
+    </React.Fragment>
   );
-};
-
-export default StaticDatePickerExample;
+}

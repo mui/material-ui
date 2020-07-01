@@ -13,7 +13,7 @@ function StaticPickers() {
   });
 
   return (
-    <>
+    <React.Fragment>
       <div>
         <Paper style={{ overflow: 'hidden' }}>
           <Calendar {...pickerProps} />
@@ -34,7 +34,7 @@ function StaticPickers() {
           onHourChange={date => handleDateChange(date)}
         />
       </div>
-    </>
+    </React.Fragment>
   );
 }
 

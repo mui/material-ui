@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { mount } from './test-utils';
 import { ReactWrapper } from 'enzyme';
-import { TextField } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
 import { DesktopDatePicker, DatePickerProps } from '../DatePicker/DatePicker';
 
 describe('e2e -- DatePicker keyboard input', () => {

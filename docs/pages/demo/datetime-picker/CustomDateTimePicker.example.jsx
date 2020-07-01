@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import AlarmIcon from '@material-ui/icons/Alarm';
 import SnoozeIcon from '@material-ui/icons/Snooze';
 import ClockIcon from '@material-ui/icons/AccessTime';
-import { TextField } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
 import { DateTimePicker, MobileDateTimePicker } from '@material-ui/pickers';
 
 function CustomDateTimePicker(props) {
@@ -10,7 +10,7 @@ function CustomDateTimePicker(props) {
   const [selectedDate, handleDateChange] = useState(new Date('2019-01-01T18:54'));
 
   return (
-    <>
+    <React.Fragment>
       <DateTimePicker
         autoOk
         disableFuture
@@ -53,7 +53,7 @@ function CustomDateTimePicker(props) {
         onChange={handleClearedDateChange}
         renderInput={props => <TextField {...props} helperText="Clear Initial State" />}
       />
-    </>
+    </React.Fragment>
   );
 }
 

@@ -24,10 +24,10 @@ const useStyles = makeStyles({
   },
 });
 
-const PatreonSponsors = () => {
+export default function PatreonSponsors() {
   const classes = useStyles();
   if (patrons.length === 0) {
-    return <>There is no sponsors yet 😢</>;
+    return <React.Fragment>There is no sponsors yet 😢</React.Fragment>;
   }
 
   function getPatronSecondaryText(patron) {
@@ -65,6 +65,4 @@ const PatreonSponsors = () => {
       ))}
     </List>
   );
-};
-
-export default PatreonSponsors;
+}
