@@ -37,7 +37,7 @@ function useFirstRender() {
   return firstRenderRef.current;
 }
 
-acceptLanguage.languages(['en', 'zh', 'pt']);
+acceptLanguage.languages(['en', 'zh', 'pt', 'ru']);
 
 function loadCrowdin() {
   window._jipt = [];
