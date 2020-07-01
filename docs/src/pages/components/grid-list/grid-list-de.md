@@ -23,7 +23,7 @@ In diesem Beispiel wird die Verwendung der `GridListTileBar` veranschaulicht, um
 
 ## Einzeilige Rasterliste
 
-Dieses Beispiel zeigt eine horizontale, durchlaufbare, einzeilige Rasterliste von Bildern. Horizontales Scrollen von Rasterlisten wird empfohlen, da das Scrollen typische Lesemuster stört und das Verständnis beeinträchtigt. Eine Ausnahme ist eine horizontal scrollende, einzeilige Rasterliste von Bildern, z. B. einer Galerie.
+Dieses Beispiel zeigt eine horizontale, durchlaufbare, einzeilige Rasterliste von Bildern. Horizontales Scrollen von Rasterlisten wird empfohlen, da das Scrollen typische Lesemuster stört und das Verständnis beeinträchtigt. Eine Ausnahme ist eine horizontal scrollende, einzeilige Rasterliste von Bildern, z.
 
 {{"demo": "pages/components/grid-list/SingleLineGridList.js", "hideEditButton": true}}
 

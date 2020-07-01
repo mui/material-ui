@@ -1,89 +1,89 @@
 # 常见问题解答
 
-<p class="description">您在一个特定的问题上停滞不前吗？ 您可以先在我们的常见 FAQ (问题解答) 中检索一下常见问题。</p>
+<p class="description">您在一个特定的问题上停滞不前吗？ 您可以先在常见 FAQ（问题解答）中检索一下常见问题。</p>
 
-如果仍然找不到所需的内容，可以参考我们的[支持页面](/getting-started/support/) 。
+如果仍然找不到所需的内容，您可以参考我们的 [支持页面](/getting-started/support/) 。
 
-## Material-UI 很棒。 我该如何支持该项目？
+## Material-UI 超赞。 我该如何支持该项目？
 
-有很多方法可以支持 Material-UI：
+其实有很多方法可以支持 Material-UI：
 
-- **口口相传**。 通过[链接到material-ui.com来传播Material-UI ](https://material-ui.com/)在您的网站上，每个反向链接都很重要。 在[ Twitter上关注我们](https://twitter.com/MaterialUI) ，点赞并转发重要新闻。 或者只是与您的朋友谈论我们。
-- **给我们反馈** 。 告诉我们我们做得好或可以改进的地方。 请投票（👍）您最想解决的问题。
-- **帮助新用户** 。 您可以在 [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui) 中回答问题
-- **Make changes happen**. 
-  - Edit the documentation. Every page has an "EDIT THIS PAGE" link in the top right.
-  - 通过[创建问题](https://github.com/mui-org/material-ui/issues/new)来报告错误或缺少的功能 。
-  - Review and comment on existing [pull requests](https://github.com/mui-org/material-ui/pulls) and [issues](https://github.com/mui-org/material-ui/issues).
-  - 帮忙[翻译文档](https://translate.material-ui.com)
-  - [Improve our documentation](https://github.com/mui-org/material-ui/tree/master/docs), fix bugs, or add features by [submitting a pull request](https://github.com/mui-org/material-ui/pulls).
-- **在[OpenCollective](https://opencollective.com/material-ui)**上资助我们。 如果您在商业项目中使用了Material-UI，并希望通过成为我们的赞助商 来支持我们的持续发展，或者您一个业余项目或者爱好项目，并想成为我们的支持者， 您都可以通过OpenCollective实现。 筹集的所有资金都是透明管理的，赞助商在README和Material-UI主页上获得认可。
+- **口口相传**。 通过在您的网站上 [链接到 material-ui.com](https://material-ui.com/) 来传播 Material-UI ，每个反向链接对我们来说都很重要。 在 [Twitter 上关注我们](https://twitter.com/MaterialUI) ，点赞并转发一些重要的新闻。 或者只是与您的朋友谈论我们。
+- **给我们反馈** 。 告诉我们一些做得好的地方或者可以改进的地方。 请给您最希望看到能够解决的问题投票（👍）。
+- **帮助新的用户** 。 您可以在 [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui) 中回答一些问题。
+- **做出一些改变吧**。 
+  - 编辑文档。 每个页面右上角都有一个“编辑此页面”的链接。
+  - 通过 [创建一个问题](https://github.com/mui-org/material-ui/issues/new) 来报告错误或缺少的功能 。
+  - 查看和评论一些现有的 [pull requests](https://github.com/mui-org/material-ui/pulls) 和 [issues](https://github.com/mui-org/material-ui/issues)。
+  - 帮助我们 [翻译](https://translate.material-ui.com) 文档。
+  - 通过 [提交的一个 pull request](https://github.com/mui-org/material-ui/pulls) 来 [优化我们的文档](https://github.com/mui-org/material-ui/tree/master/docs)，修复错误，或者添加功能。
+- **在 [OpenCollective](https://opencollective.com/material-ui)** 上资助我们。 如果您在商业项目中使用了 Material-UI，并希望通过成为我们的赞助商来支持我们的持续发展，或者在一个业余的或者爱好的项目中使用了，并想成为我们的一个支持者， 您都可以通过 OpenCollective 来资助我们。 筹集的所有资金都是透明管理的，赞助商在 README 和 Material-UI 主页上都会获得认可。
 
-## 为什么我的组件在生产版本中没有正确地渲染？
+## 为什么我的组件在生产构造中没有正确地渲染？
 
-The #1 reason this likely happens is due to class name conflicts once your code is in a production bundle. 如果想要 Material-UI 正常工作, 页面上所有组件的 `classname` 值必须由 [类名称生成器](/styles/advanced/#class-names) 的单个实例生成。
+发生这种情况的首要原因，很有可能是您的代码在生产环境中的捆绑包中出现了类名冲突。 如果想要 Material-UI 正常工作，页面上所有组件的 `classname` 值必须由单个实例的 [类名称生成器](/styles/advanced/#class-names) 生成。
 
-To correct this issue, all components on the page need to be initialized such that there is only ever **one class name generator** among them.
+要纠正这个问题，您需要对页面上的所有组件进行初始化，使它们之间永远只有**一个类名生成器**。
 
 在很多情况下，您可能最终会意外地使用两个类名生成器：
 
-- 比如你一不小心 **打包**了 两个版本的 Material-UI。 你可能错误地将一个依赖和 material-ui 设置为同版本依赖了。
-- You are using `StylesProvider` for a **subset** of your React tree.
-- 您正在使用打包的代码分割功能，这会生成多个 class 名字
+- 您不小心**打包**了两个版本的 Material-UI。 您没有正确设置某个和 material-ui 的同等依赖的依赖包。
+- 对于你的 React 树控件而言，你在使用 `JssProvider` 构建一个 **subject（分支）**。
+- 您正在使用打包根据，而它拆分代码的方式导致创建了多个类名生成器的实例。
 
-> 如果你正使用带有[SplitChunksPlugin](https://webpack.js.org/plugins/split-chunks-plugin/) 的webpack，请尝试在[`优化项(optimizations)`下配置 `runtimeChunk`](https://webpack.js.org/configuration/optimization/#optimization-runtimechunk) 。
+> 如果你正使用的 webpack 带有 [SplitChunksPlugin](https://webpack.js.org/plugins/split-chunks-plugin/) 插件 ，请尝试在设置里的 [`optimizations` 下配置 `runtimeChunk`](https://webpack.js.org/configuration/optimization/#optimization-runtimechunk) 。
 
-Overall, it's simple to recover from this problem by wrapping each Material-UI application with [`StylesProvider`](/styles/api/#stylesprovider) components at the top of their component trees **and using a single class name generator shared among them**.
+总的来说，您只需要在每个 Material-UI 应用程序的组件树顶部使用 [`StylesProvider`](/styles/api/#stylesprovider) 组件进行包装，**并在它们之间共享一个单一的类名生成器**，就可以很容易地解决这个问题。
 
-## 为什么当打开Modal（模态框）时，fixed positioned（位置固定的）元素会移动？
+## 为什么当打开一个 Modal（模态框）时，位置固定的元素会移动？
 
-当Modal（模态框）打开时，滚动会被禁止。 This prevents interacting with the background when the modal should be the only interactive content. However, removing the scrollbar can make your **fixed positioned elements** move. 在这种情况下，您可以应用全局`.mui-fixed`类名称来告知 Material-UI 来处理这些元素。
+当模态框打开的那一刹那，滚动行为就会被禁止。 这样就能够阻止用户与下层背景内容进行交互，而模态框应该是唯一的交互内容。 然而，移除滚动条会移动一些**固定位置的元素**。 在这种情况下，您可以应用全局 `.mui-fixed` 类名来告知 Material-UI 去处理这些元素。
 
 ## 如何在全局禁用 ripple effect（涟漪效果）？
 
-涟漪效果完全来自` BaseButton `零件。 您可以通过在您的主题中提供以下内容，来全局地禁用涟漪效果：
+涟漪效果完全来自 `BaseButton` 组件。 您可以通过在您的主题中提供以下内容，来全局地禁用涟漪效果：
 
 ```js
 import { createMuiTheme } from '@material-ui/core';
 
 const theme = createMuiTheme({
   props: {
-    // Name of the component ⚛️
+    // 组件的名字 ⚛️
     MuiButtonBase: {
-      // The properties to apply
-      disableRipple: true, // No more ripple, on the whole application 💣!
+      // 需要应用的属性
+      disableRipple: true, // 在整个应用中都不会有涟漪效果 💣！
     },
   },
 });
 ```
 
-## 如何禁用全局transition
+## 如何禁用全局过渡动画？
 
-Material-UI uses the same theme helper for creating all its transitions. Therefore you can disable all transitions by overriding the helper in your theme:
+Material-UI 使用相同的主题助手来创建其所有的过渡动画。 因此，您可以通过覆盖主题助手来禁用所有的过渡：
 
 ```js
 import { createMuiTheme } from '@material-ui/core';
 
 const theme = createMuiTheme({
   transitions: {
-    // 这样就得到了全局的 `transition: none;`
+    // 这样就设定了全局的 `transition: none;`
     create: () => 'none',
   },
 });
 ```
 
-It can be useful to disable transitions during visual testing or to improve performance on low-end devices.
+而在视觉测试过程，或者在低端设备上提高性能的时候，禁用过渡动画是很有帮助的。
 
-You can go one step further by disabling all transitions and animations effects:
+您可以更进一步地禁用所有的过渡和动画效果。
 
 ```js
 import { createMuiTheme } from '@material-ui/core';
 
 const theme = createMuiTheme({
   overrides: {
-    // Name of the component ⚛️
+    // 组件名称 ⚛️
     MuiCssBaseline: {
-      // Name of the rule
+      // 规则名称
       '@global': {
         '*, *::before, *::after': {
           transition: 'none !important',
@@ -95,7 +95,7 @@ const theme = createMuiTheme({
 });
 ```
 
-Notice that the usage of `CssBaseline` is required for the above approach to work. If you choose not to use it, you can still disable transitions and animations by including these CSS rules:
+请注意，若想使用上述方法，您必须使用 `CssBaseline` 使其奏效。 如果您选择不使用它，您仍然可以通过加入这些 CSS 规则来禁用过渡和动画：
 
 ```css
 *, *::before, *::after {
@@ -104,69 +104,69 @@ Notice that the usage of `CssBaseline` is required for the above approach to wor
 }
 ```
 
-## 我是否必须使用 JSS 给 app 来设置样式呢？
+## 我是否必须使用 JSS 给我的应用程序来设置样式呢？
 
-No, it's not required. But this dependency comes built in, so carries no additional bundle size overhead.
+不用的，JSS 不是一个必须选择。 但是它是一个内置的插件，所以使用它并不会产生额外的捆绑包尺寸。
 
-Perhaps, however, you're adding some Material-UI components to an app that already uses another styling solution, or are already familiar with a different API, and don't want to learn a new one? 在这种情况下，请转到[Style Library Interoperability（样式库互用）](/guides/interoperability/) 部分，在哪里你可以找到我们提供的用其他样式库来替换 Material-UI 组件样式的简单方法。
+然而，也许您正在给应用程序添加一些 Material-UI 组件，而应用程序以及使用了其他的样式解决方案，或者您已经熟悉了不同的 API，而不想学习一个新的 API？ 在这种情况下，请访问 [样式库互用](/guides/interoperability/) 章节，在那你可以发现我们使用了一些替代样式库来重新设置 Material-UI 组件的样式，而这是多么的简单。
 
-## When should I use inline-style vs CSS?
+## 内联样式与 CSS 之间我应该怎么选择使用的时机？
 
-根据经验，仅对动态样式属性使用内联样式。 CSS 替代方案也有更多优势，例如：
+根据经验，仅对动态的样式属性使用内联样式。 CSS 的替代方案也有诸多优势，例如：
 
 - 自动前缀
 - 更好地调试
 - 媒体查询
 - keyframes
 
-## 如何使用 react-router？
+## 我应该怎么使用 react-router？
 
-We detail the [integration with third-party routing libraries](/guides/composition/#routing-libraries) like react-router, Gatsby or Next.js in our guide.
+在我们的指南中详细介绍了如何与 react-router、Gatsby 或 Next.js 这样的 [第三方路由库](/guides/composition/#routing-libraries) 整合。
 
-## 如何访问 DOM 元素？
+## 我应该怎么访问 DOM 元素？
 
-All Material-UI components that should render something in the DOM forward their ref to the underlying DOM component. This means that you can get DOM elements by reading the ref attached to Material-UI components:
+所有应该在 DOM 中渲染内容的 Material-UI 组件都会都将其 ref 转发给底层的 DOM 组件。 这意味着您可以通过读取附加在 Material-UI 组件上的 ref 来获取 DOM 元素。
 
 ```jsx
-// or a ref setter function
+// 或者使用一个 ref setter 函数
 const ref = React.createRef();
-// render
+// 渲染
 <Button ref={ref} />;
-// usage
+// 使用
 const element = ref.current;
 ```
 
-If you're not sure if the Material-UI component in question forwards its ref you can check the API documentation under "Props" e.g. the [Button API](/api/button/#props) includes
+如果您对相关 Material-UI 组件是否转发了它的 ref 存在疑问的时候，你可以查看“Props”下的 API 文档，例如 [Button API](/api/button/#props) 包含了
 
-> The ref is forwarded to the root element.
+> ref 会被转发到根元素。
 
-indicating that you can access the DOM element with a ref.
+这就表明您可以使用一个 ref 来访问这个 DOM 元素。
 
-## I have several instances of styles on the page
+## 我的页面上有多个样式实例。
 
-If you are seeing a warning message in the console like the one below, you probably have several instances of `@material-ui/styles` initialized on the page.
+如果您在控制台中看到类似下面的警告消息，那么您可能已经在页面上初始化了多个 `@material-ui/styles` 实例。
 
-> It looks like there are several instances of `@material-ui/styles` initialized in this application. This may cause theme propagation issues, broken class names, specificity issues, and make your application bigger without a good reason.
+> It looks like there are several instances of `@material-ui/styles` initialized in this application. This may cause theme propagation issues, broken class names, specificity issues, and make your application bigger without a good reason. 
 
-### Possible reasons
+### 可能的原因
 
-There are several common reasons for this to happen:
+出现这些问题通常有几个常见的原因：
 
-- You have another `@material-ui/styles` library somewhere in your dependencies.
-- You have a monorepo structure for your project (e.g, lerna, yarn workspaces) and `@material-ui/styles` module is a dependency in more than one package (this one is more or less the same as the previous one).
-- You have several applications that are using `@material-ui/styles` running on the same page (e.g., several entry points in webpack are loaded on the same page).
+- 在您的依赖包中还存在另一个 `@material-ui/styles` 库。
+- 您的项目是 monorepo 结构（例如，lerna，yarn workspaces），并且有多个包依赖着 `@material-ui/styles` 模块（这与前一个包或多或少相同）。
+- 您有几个使用 `@material-ui/styles` 的应用程序在同一页面上运行（例如，webpack 中的几个入口点被加载在同一页面上）。
 
-### Duplicated module in node_modules
+### 在 node_modules 中重复的模块
 
-If you think that the issue may be in the duplication of the @material-ui/styles module somewhere in your dependencies, there are several ways to check this. You can use `npm ls @material-ui/styles`, `yarn list @material-ui/styles` or `find -L ./node_modules | grep /@material-ui/styles/package.json` commands in your application folder.
+如果您认为问题可能出现在您的依赖关系中的 @material-ui/styles 模块的重复，那么有几种方法可以检查。 您可以在应用程序文件夹中使用 `npm ls @material-ui/styles`、`yarn list @material-ui/styles` 或 `find -L ./node_modules | grep /@material-ui/styles/package.json` 这些命令行来检查。
 
-If none of these commands identified the duplication, try analyzing your bundle for multiple instances of @material-ui/styles. You can just check your bundle source, or use a tool like [source-map-explorer](https://github.com/danvk/source-map-explorer) or [webpack-bundle-analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer).
+如果使用了这些命令之后都没有发现重复的依赖，请尝试分析您的捆绑包中是否有多个 @material-ui/styles 实例。 您可以直接去检查捆绑包的源代码，或者使用 [source-map-explorer](https://github.com/danvk/source-map-explorer) 或 [webpack-bundle-analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer) 这样的工具来帮助检查。
 
-If you identified that duplication is the issue that you are encountering there are several things you can try to solve it:
+如果您确定当前遇到的问题是模块重复，那么您可以尝试这样解决：
 
-If you are using npm you can try running `npm dedupe`. This command searches the local dependencies and tries to simplify the structure by moving common dependencies further up the tree.
+如果您正在使用的是 npm，那么您可以尝试运行 `npm dedupe` 命令。 这条命令将会搜索本地的依赖关系，并试图通过将共同的依赖包移到树的更上层，这样来简化结构。
 
-If you are using webpack, you can change the way it will [resolve](https://webpack.js.org/configuration/resolve/#resolve-modules) the @material-ui/styles module. You can overwrite the default order in which webpack will look for your dependencies and make your application node_modules more prioritized than default node module resolution order:
+如果您使用的是 webpack，您可以更改 [解析](https://webpack.js.org/configuration/resolve/#resolve-modules) @material-ui/styles 模块的方式。 您可以使用覆盖 webpack 查找依赖项的默认顺序这个方法，这样应用程序中的 node_modules 比默认的 node module 解析顺序更优先地进行渲染。
 
 ```diff
   resolve: {
@@ -176,17 +176,17 @@ If you are using webpack, you can change the way it will [resolve](https://webpa
   }
 ```
 
-### Usage with Lerna
+### 和 Learn 一起使用
 
-One possible fix to get @material-ui/styles to run in a Lerna monorepo across packages is to [hoist](https://github.com/lerna/lerna/blob/master/doc/hoist.md) shared dependencies to the root of your monorepo file. Try running the bootstrap option with the --hoist flag.
+如果您想要让 @material-ui/styles 在 Lerna monorepo 中跨包运行，一个可行的修复方法是 [提升（hoist）](https://github.com/lerna/lerna/blob/master/doc/hoist.md)共享的依赖包到 monorepo 文件的根部。 您可以尝试使用 --hoist 标识运行引导的选项。
 
 ```sh
 lerna bootstrap --hoist
 ```
 
-Alternatively, you can remove @material-ui/styles from your package.json file and hoist it manually to your top-level package.json file.
+另外，您也可以从 package.json 文件中删除 @material-ui/styles 项，然后手动将它移动到您顶层的 package.json 文件中。
 
-Example of a package.json file in a Lerna root folder
+Lerna 根目录下的 package.json 文件示例： 
 
 ```json
 {
@@ -206,9 +206,9 @@ Example of a package.json file in a Lerna root folder
 }
 ```
 
-### Running multiple applications on one page
+### 在一个页面上运行多个应用程序
 
-If you have several applications running on one page, consider using one @material-ui/styles module for all of them. If you are using webpack, you can use [CommonsChunkPlugin](https://webpack.js.org/plugins/commons-chunk-plugin/) to create an explicit [vendor chunk](https://webpack.js.org/plugins/commons-chunk-plugin/#explicit-vendor-chunk), that will contain the @material-ui/styles module:
+如果您在一个页面上需要运行多个程序，那么请考虑在所有程序中使用一个 @material-ui/styles 模块。 如果您正在使用 webpack，那么您可以使用 [CommonsChunkPlugin](https://webpack.js.org/plugins/commons-chunk-plugin/) 来创建一个显式的 [第三方代码块（vendor chunk）](https://webpack.js.org/plugins/commons-chunk-plugin/#explicit-vendor-chunk)，其中将包含 @material-ui/styles 模块：
 
 ```diff
   module.exports = {
@@ -226,49 +226,50 @@ If you have several applications running on one page, consider using one @materi
   }
 ```
 
-## 我的应用程序在服务器上没有正确渲染
+## 我的应用没有在服务器上正确的渲染。
 
-If it doesn't work, in 99% of cases it's a configuration issue. A missing property, a wrong call order, or a missing component – server-side rendering is strict about configuration, and the best way to find out what's wrong is to compare your project to an already working setup. Check out the [reference implementations](/guides/server-rendering/#reference-implementations), bit by bit.
+如果您的程序渲染不正常，99% 的情况下都是配置问题： 缺少属性、调用顺序错误或缺少组件 — 服务端渲染对配置的要求是很严格的，要找出问题的最好方法是将您的项目与一个已经正常运行的项目配置进行比较。 请逐位查看 [参考实现](/guides/server-rendering/#reference-implementations)。
 
-### CSS works only on first load then is missing
+### CSS 仅在第一次加载时生效，然后就消失了
 
-The CSS is only generated on the first load of the page. Then, the CSS is missing on the server for consecutive requests.
+CSS 只在页面第一次加载时生成。 那么，若连续地请求服务器，就会导致 CSS 的丢失。
 
-#### 要采取的行动
+#### 要运行的操作
 
-The styling solution relies on a cache, the *sheets manager*, to only inject the CSS once per component type (if you use two buttons, you only need the CSS of the button one time). You need to create **a new `sheets` instance for each request**.
+样式解决方案依赖于缓存，即 *sheets manager*，来为每个组件类只注入一次 CSS（如果您使用了两个按钮，则只需要应用一次按钮的 CSS）。 您需要为每个请求创建 **一个新的 `sheet` 实例**。
 
-*example of fix:*
+*修复示例：*
 
 ```diff
--// Create a sheets instance.
+-// 创建一个 sheets 实例
+
 -const sheets = new ServerStyleSheets();
 
 function handleRender(req, res) {
 
-+ // Create a sheets instance.
++ // 创建一个 sheets 实例。
 + const sheets = new ServerStyleSheets();
 
   //…
 
-  // Render the component to a string.
+  // 将组件渲染成一个字符串。
   const html = ReactDOMServer.renderToString(
 ```
 
-### React class name hydration mismatch
+### React 类名渲染不匹配
 
-There is a class name mismatch between the client and the server. It might work for the first request. Another symptom is that the styling changes between initial page load and the downloading of the client scripts.
+您会遇到客户端和服务端之间存在类名不匹配的情况。 可能在第一次请求时会出现这种情况。 另一个征兆是，在初始页面加载和下载客户端脚本之间，样式会发生变化。
 
-#### 要采取的行动
+#### 要运行的操作
 
-The class names value relies on the concept of [class name generator](/styles/advanced/#class-names). The whole page needs to be rendered with **a single generator**. This generator needs to behave identically on the server and on the client. 就像这样：
+类名值依赖于 [类名生成器](/styles/advanced/#class-names) 的概念。 整个页面需要用**一个类名生成器**来渲染。 这个生成器需要在服务端和客户端上的行为一致。 就像这样：
 
-- You need to provide a new class name generator for each request. But you shouldn't share a `createGenerateClassName()` between different requests:
+- 您需要为每个请求提供一个新的类名生成器。 但是您不应该在不同的请求之间共享 `createGenerateClassName()`：
 
-*example of fix:*
+*修复示例：*
 
 ```diff
--  //创建一个新的类名生成器。
+-  // 创建一个新的类名生成器。
 -const generateClassName = createGenerateClassName();
 
 function handleRender(req, res) {
@@ -278,15 +279,15 @@ function handleRender(req, res) {
 
   //…
 
-  // 将组件渲染为字符串。
+  // 将组件渲染为一个字符串。
   const html = ReactDOMServer.renderToString(
 ```
 
-- You need to verify that your client and server are running the **exactly the same version** of Material-UI. It is possible that a mismatch of even minor versions can cause styling problems. 要检查版本号，请在构建应用程序的环境中以及部署环境中运行 `npm list @material-ui/core`。
+- 您需要验证您的客户端和服务端运行的 Material-UI 的**版本** 是否完全相同。 即使是小小的版本的不匹配也可能导致样式问题。 若想检查版本号，您可以在搭建应用程序的环境以及部署环境中都运行 `npm list @material-ui/core`。
   
-    You can also ensure the same version in different environments by specifying a specific MUI version in the dependencies of your package.json.
+    您也可以通过在 package.json 的依赖项中指定某一个特定的 MUI 版本，这样能够确保在不同环境中使用的版本是一致的。
 
-*修复示例 (package.json）：*
+*修复（package.json）的示例：*
 
 ```diff
   "dependencies": {
@@ -298,15 +299,15 @@ function handleRender(req, res) {
   },
 ```
 
-- You need to make sure that the server and the client share the same `process.env.NODE_ENV` value.
+- 请确保服务端和客户端之间所共享的是相同的 `process.env.NODE_ENV` 值。
 
-## 为什么我的应用程序看到的颜色和文档里的颜色大相径庭？
+## 为什么我看到的颜色和文档这里的颜色大相径庭？
 
-文档网站使用了一个自定义的主题。 因此，调色板和 Material-UI 传播的默认的主题是截然不同的。 请参考[这页](/customization/theming/) 来了解自定义主题。
+这是因为文档网站使用了一个自定义的主题。 因此，调色板和 Material-UI 的默认的主题所展示的效果是截然不同的。 请参考 [这个页面](/customization/theming/) 来了解自定义主题。
 
-## 为什么组件X 需要一个 DOM 节点，而不是 ref 对象？
+## 为什么组件 X 需要属性中的 DOM 节点而不是一个 ref 对象？
 
-Components like the [Portal](/api/portal/#props) or [Popper](/api/popper/#props) require a DOM node in the `container` or `anchorEl` prop respectively. It seems convenient to simply pass a ref object in those props and let Material-UI access the current value. This works in a simple scenario:
+像 [Portal](/api/portal/#props) 或 [Popper](/api/popper/#props) 这样的组件分别需要 `container` 或 `anchorEl` 属性中的 DOM 节点。 若需在这些属性中传递一个 ref 对象，并让 Material-UI 访问当前值，这看起来更加简洁有效。 这在一个简单的方案中就可以实现：
 
 ```jsx
 function App() {
@@ -315,7 +316,7 @@ function App() {
   return (
     <div className="App">
       <Portal container={container}>
-        <span>portaled children</span>
+        <span>传送门的子组件</span>
       </Portal>
       <div ref={container} />
     </div>
@@ -323,7 +324,7 @@ function App() {
 }
 ```
 
-where `Portal` would only mount the children into the container when `container.current` is available. Here is a naive implementation of Portal:
+其中，`Portal` 仅在 `container.current` 可用时才会将其子项挂载到容器中。 下面是一个简单的 Portal 实现例子：
 
 ```jsx
 function Portal({ children, container }) {
@@ -340,9 +341,9 @@ function Portal({ children, container }) {
 }
 ```
 
-With this simple heuristic `Portal` might re-render after it mounts because refs are up-to-date before any effects run. However, just because a ref is up-to-date doesn't mean it points to a defined instance. If the ref is attached to a ref forwarding component it is not clear when the DOM node will be available. In the example above, the `Portal` would run an effect once, but might not re-render because `ref.current` is still `null`. This is especially apparent for React.lazy components in Suspense. The above implementation could also not account for a change in the DOM node.
+这个简单的方法可能会启发您，`Portal` 可能会在挂载后重新渲染，因为在任何效果运行之前，refs 都是最新的。 然而，仅仅因为 ref 是最新的并不意味着它会指向一个定义好的实例。 如果 ref 是附着在一个 ref 所转发组件上的话，那么 DOM 节点何时可用是不明确的。 在上面的例子中，`Portal` 将产生一次效果，但可能不会重新渲染，因为 `ref.current` 的值仍然是 `null`。 而 Suspense 中的 React.lazy 组件中，这一点尤为明显。 上述实现也并不能代表 DOM 节点的一个变化。 
 
-This is why we require a prop with the actual DOM node so that React can take care of determining when the `Portal` should re-render:
+综上所述，这就是为什么我们需要一个具有实际 DOM 节点的属性，这样 React 就可以负责确定 `Portal` 何时应该重新渲染。 
 
 ```jsx
 function App() {
@@ -352,7 +353,7 @@ function App() {
   return (
     <div className="App">
       <Portal container={container}>
-        <span>Portaled</span>
+        <span>传送的子组件</span>
       </Portal>
       <div ref={handleRef} />
     </div>
@@ -360,11 +361,11 @@ function App() {
 }
 ```
 
-## clsx 依赖什么？
+## clsx 依赖是用于什么？
 
-[clsx](https://github.com/lukeed/clsx) is a tiny utility for constructing `className` strings conditionally, out of an object with keys being the class strings, and values being booleans.
+[clsx](https://github.com/lukeed/clsx)是一个小型工具集，用于有条件地从一个对象中构造 `className` 字符串，此对象的键是类字符串（class strings），而值是布尔值（booleans）。 
 
-Instead of writing:
+请不要这样写：
 
 ```jsx
 // let disabled = false, selected = true;
@@ -376,7 +377,7 @@ return (
 );
 ```
 
-你可以这样做：
+您可以这样做：
 
 ```jsx
 import clsx from 'clsx';

@@ -1,5 +1,5 @@
 ---
-title: Componente React Stepper
+title: Componente React para Assistente
 components: MobileStepper, Step, StepButton, StepConnector, StepContent, StepIcon, StepLabel, Stepper
 ---
 
@@ -7,7 +7,7 @@ components: MobileStepper, Step, StepButton, StepConnector, StepContent, StepIco
 
 <p class="description">Assistentes transmitem progresso através de etapas numeradas. Ele fornece um fluxo de trabalho com etapas.</p>
 
-[Assistentes](https://material.io/archive/guidelines/components/steppers.html) exibem o progresso através de uma sequência de etapas lógicas e numeradas. Elas também podem ser usadas para navegação. Assistentes podem exibir uma mensagem de feedback transiente depois que uma etapa é salva.
+[Assistentes](https://material.io/archive/guidelines/components/steppers.html) exibem o progresso através de uma sequência de etapas lógicas e numeradas. Eles também podem ser usados para navegação. Assistentes podem exibir uma mensagem de feedback transiente depois que uma etapa é salva.
 
 - **Tipos de etapas**: Editável, Somente leitura, Mobile, Opcional
 - **Tipos de assistentes**: Horizontal, Vertical, Linear, Não linear
@@ -18,7 +18,7 @@ components: MobileStepper, Step, StepButton, StepConnector, StepContent, StepIco
 
 ### Linear
 
-O assistente (`Stepper`) pode ser controlado passando o índice da etapa atual (baseado em zero) com a propriedade `activeStep`. A orientação do asisstente (`Stepper`) é definida usando a propriedade `orientation`.
+O componente `Stepper` pode ser controlado passando o índice da etapa atual (baseado em zero) com a propriedade `activeStep`. A orientação do `Stepper` é definida usando a propriedade `orientation`.
 
 Este exemplo também mostra o uso de uma etapa opcional, colocando a propriedade `optional` no segundo componente de `Step`. Observe que cabe a você gerenciar quando uma etapa opcional é ignorada. Depois de determinar isso para uma etapa específica, você deve definir `completed={false}` para indicar que, embora o índice da etapa ativa tenha ultrapassado a etapa opcional, ele não está realmente concluído.
 
@@ -38,9 +38,9 @@ Aqui está um exemplo de customização do componente. Você pode aprender mais 
 
 ### Não linear
 
-Os assistentes não lineares permitem que os usuários insiram um fluxo de várias etapas a qualquer momento.
+Os assistentes não lineares permitem que os usuários entrem em um fluxo de várias etapas a qualquer momento.
 
-Este exemplo é semelhante ao não linear, porém as etapas não são mais automaticamente definidas `disabled={true}` com base na propriedade `activeStep`.
+Este exemplo é semelhante ao horizontal linear, porém as etapas não são mais automaticamente definidas para `disabled={true}` com base na propriedade `activeStep`.
 
 O uso do `StepButton` aqui, demonstra rótulos de etapas clicáveis, além de definir a propriedade sinalizadora `completed`. No entanto, como as etapas podem ser acessadas de maneira não linear, cabe a sua própria implementação determinar quando todas as etapas são concluídas (ou mesmo se precisam ser concluídas).
 

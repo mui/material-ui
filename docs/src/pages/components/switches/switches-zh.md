@@ -1,5 +1,5 @@
 ---
-title: React 开关组件（Switch)
+title: React 开关组件
 components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel
 ---
 

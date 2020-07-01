@@ -17,7 +17,7 @@ components: Button, IconButton, ButtonBase
 
 ## Contained Buttons
 
-[Contained button](https://material.io/design/components/buttons.html#contained-button)は、力強く、強調と塗りつぶしによって区別されるようなボタンです。 アプリケーションの初歩的なアクションが含まれます。
+[Contained buttons](https://material.io/design/components/buttons.html#contained-button) are high-emphasis, distinguished by their use of elevation and fill. 重要なアクションを含みますが、アプリ内では最も重要ではない、といった場合に使われます。
 
 {{"demo": "pages/components/buttons/ContainedButtons.js"}}
 
@@ -66,7 +66,7 @@ Note that the documentation [avoids](/guides/api/#native-properties) mentioning 
 
 ## Buttons with icons and label
 
-ロゴはプレーンテキストよりも認識しやすいため、ボタンにアイコンを追加してアプリケーションのUXを強化したい場合があります。 たとえば、削除ボタンにごみ箱アイコンを付けるような場合です。
+ロゴはプレーンテキストよりも認識しやすいため、ボタンにアイコンを追加してアプリケーションのUXを強化したい場合があります。 たとえば、削除ボタンにごみ箱アイコンを付けるような場合です。 たとえば、削除ボタンにごみ箱アイコンを付けるような場合です。
 
 {{"demo": "pages/components/buttons/IconLabelButtons.js"}}
 
@@ -88,7 +88,7 @@ Note that the documentation [avoids](/guides/api/#native-properties) mentioning 
 
 ## 複雑なButton
 
-テキストボタン、包含ボタン、フローティングアクションボタン、およびアイコンボタンは、同じコンポーネント（ `ButtonBase`上に構築されています。 この低レベルのコンポーネントを利用してカスタムインタラクションを構築できます。
+テキストボタン、包含ボタン、フローティングアクションボタン、およびアイコンボタンは、同じコンポーネント（ `ButtonBase`上に構築されています。 この低レベルのコンポーネントを利用してカスタムインタラクションを構築できます。 この低レベルのコンポーネントを利用してカスタムインタラクションを構築できます。
 
 {{"demo": "pages/components/buttons/ButtonBase.js"}}
 

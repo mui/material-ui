@@ -1,27 +1,27 @@
 ---
-title: React Slide 滑块组件
+title: React 滑块控件
 components: Slider
 ---
 
-# Slider 滑块组件
+# Slider 滑块控件
 
-<p class="description">用户可以使用滑块组件在某一范围内取值。</p>
+<p class="description">用户可以使用滑块控件在某一范围内取值。</p>
 
-[滑块组件](https://material.io/design/components/sliders.html)反映了条形图上的一系列值，用户可以从中选择单个值。 它们通常适用于调节一些设置，譬如调节设备音量、调整屏幕亮度，或者改变图像的滤镜。
+[滑块控件](https://material.io/design/components/sliders.html) 反映了条形图上的一系列值，用户可以从中选择单个值。 它们通常适用于调节一些设置，譬如调节设备音量、调整屏幕亮度，或者改变图像的滤镜。
 
 - 📦 [22 kB 压缩大小](/size-snapshot) (但与其他 Material-UI 组件使用时只有+8 kB)。
 
-## 连续的滑块组件
+## 连续滑块（Continuous sliders）
 
 用户可以使用连续的滑块组件在给定的范围内选择一个值。
 
 {{"demo": "pages/components/slider/ContinuousSlider.js"}}
 
-## 离散的滑块组件
+## 间续滑块（Discrete sliders）
 
-用户可以通过参考其值指示器，来将离散的滑块组件调整为某一特定值。 以下是一些案例：
+用户可以通过参考其值指示器，来将间续滑块调整为某一特定值。 以下是一些案例：
 
-通过设置 `marks={true}`，你可以针对每个步骤产生一个标记。
+通过设置 `marks={true}`，你可以针对每个步骤产生一个标记（mark）。
 
 {{"demo": "pages/components/slider/DiscreteSlider.js"}}
 
@@ -33,7 +33,7 @@ components: Slider
 
 ### 自定义标记
 
-通过将一个丰富的数组提供给 `marks`属性，您可以定制标记。
+通过将一个丰富的数组提供给 `marks` 属性，您可以定制标记。
 
 {{"demo": "pages/components/slider/DiscreteSliderMarks.js"}}
 
@@ -63,7 +63,7 @@ components: Slider
 
 ## 自定义滑块
 
-你可以参考以下一些例子来自定义组件。 您可以在 [重写文档页面](/customization/components/) 中了解更多有关此内容的信息。
+你可以参考以下一些例子来自定义组件。 你可以参考以下一些例子来自定义组件。 您可以在 [重写文档页面](/customization/components/) 中了解更多有关此内容的信息。
 
 {{"demo": "pages/components/slider/CustomizedSlider.js"}}
 

@@ -16,7 +16,7 @@ Le composant affiche ses nœuds `children` devant un composant d'arrière-plan. 
 - ♿️ Adds the appropriate ARIA roles automatically.
 - 📦 [5 kB gzipped](/size-snapshot).
 
-> **Note de terminologie**. Le terme "modal" est parfois utilisé pour signifier "dialogue", mais c'est un terme impropre. A modal window describes parts of a UI. Un élément est considéré modal si [il bloque l'interaction avec le reste de l'application](https://en.wikipedia.org/wiki/Modal_window).
+> **Note de terminologie**. Le terme "modal" est parfois utilisé pour signifier "dialogue", mais c'est un terme impropre. Un élément est considéré modal si [il bloque l'interaction avec le reste de l'application](https://en.wikipedia.org/wiki/Modal_window). A modal window describes parts of a UI.
 
 If you are creating a modal dialog, you probably want to use the [Dialog](/components/dialogs/) component rather than directly using Modal. Modal est un élément de construction de niveau faible exploitée par les composants suivants :
 
@@ -87,4 +87,4 @@ This is done for accessibility purposes, however, it might create issues. In the
     ```
 
 - The [WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/dialog.html) can help you set the initial focus on the most relevant element, based on your modal content.
-- Keep in mind that a "modal window" overlays on either the primary window or another modal window. Windows under a modal are **inert**. That is, users cannot interact with content outside an active modal window. This might create [conflicting behaviors](#focus-trap).
+- That is, users cannot interact with content outside an active modal window. Keep in mind that a "modal window" overlays on either the primary window or another modal window. Windows under a modal are **inert**. This might create [conflicting behaviors](#focus-trap).

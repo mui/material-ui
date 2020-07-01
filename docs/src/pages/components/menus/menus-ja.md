@@ -7,21 +7,21 @@ components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper
 
 <p class="description">メニューには、一時的なサーフェスの選択肢のリストが表示されます。</p>
 
-[Menu](https://material.io/design/components/menus.html)には、一時サーフェス上の選択項目のリストが表示されます。 ユーザーがボタンやその他のコントロールを操作すると表示されます。
+[Menu](https://material.io/design/components/menus.html)には、一時サーフェス上の選択項目のリストが表示されます。 ユーザーがボタンやその他のコントロールを操作すると表示されます。 ユーザーがボタンやその他のコントロールを操作すると表示されます。
 
 ## シンプルなメニュー
 
-デフォルトでは、アンカー要素の上にシンプルなメニューが開きます（このオプションはpropsを介して変更できます）。 画面の端に近づくと、シンプルメニューが垂直方向に再配置され、すべてのメニュー項目が完全に表示されます。
+デフォルトでは、アンカー要素の上にシンプルなメニューが開きます（このオプションはpropsを介して変更できます）。 画面の端に近づくと、シンプルメニューが垂直方向に再配置され、すべてのメニュー項目が完全に表示されます。 画面の端に近づくと、シンプルメニューが垂直方向に再配置され、すべてのメニュー項目が完全に表示されます。
 
 オプションを選択したら、そのオプションをすぐにコミットしてメニューを閉じるのが理想的です。
 
-**曖昧さ回避**: 単純なメニューとは対照的に、単純なダイアログでは、リスト項目で使用可能なオプションに関連する追加の詳細を表示したり、主要なタスクに関連するナビゲーションまたは直交アクションを提供することができます。 シンプルメニューは同じ内容を表示できますが、ユーザーの現在のコンテキストを混乱させないため、シンプルダイアログよりも好まれます。
+The `MenuItem` is a wrapper around `ListItem` with some additional styles. You can use the same list composition features with the `MenuItem` component:
 
 {{"demo": "pages/components/menus/SimpleMenu.js"}}
 
 ## 選択したメニュー
 
-項目の選択に使用した場合、シンプルメニューを開くと、現在選択されているメニュー項目がアンカー要素に垂直に配置されます。 選択したメニュー項目に初期フォーカスが移ります。 現在選択されているメニュー項目は、 `selected` プロパティ（[ListItem](/api/list-item/)）を使用して設定されます。 選択したメニュー項目を、初期フォーカスやメニューの縦位置に影響を与えずに使用するには、`variant`プロパティを `menu`に設定します。
+項目の選択に使用した場合、シンプルメニューを開くと、現在選択されているメニュー項目がアンカー要素に垂直に配置されます。 選択したメニュー項目に初期フォーカスが移ります。 現在選択されているメニュー項目は、 `selected` プロパティ（[ListItem](/api/list-item/)）を使用して設定されます。 項目の選択に使用した場合、シンプルメニューを開くと、現在選択されているメニュー項目がアンカー要素に垂直に配置されます。 選択したメニュー項目に初期フォーカスが移ります。 現在選択されているメニュー項目は、 `selected` プロパティ（[ListItem](/api/list-item/)）を使用して設定されます。 選択したメニュー項目を、初期フォーカスやメニューの縦位置に影響を与えずに使用するには、`variant`プロパティを `menu`に設定します。
 
 {{"demo": "pages/components/menus/SimpleListMenu.js"}}
 
@@ -35,7 +35,7 @@ The primary responsibility of the `MenuList` component is to handle the focus.
 
 ## Customized menus
 
-コンポーネントのカスタマイズ例を次に示します。 詳細については、 [overrides documentation page](/customization/components/)を参照してください。
+コンポーネントのカスタマイズ例を次に示します。 コンポーネントのカスタマイズ例を次に示します。 詳細については、 [overrides documentation page](/customization/components/)を参照してください。
 
 {{"demo": "pages/components/menus/CustomizedMenus.js"}}
 

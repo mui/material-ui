@@ -55,12 +55,9 @@ export default function PlainCssButton() {
 **Hinweis:** JSS fügt seine Styles am unteren Rand von `<head>` ein. Wenn Sie Stilattribute nicht mit **!important** markieren möchten, ist das wichtig, dass Sie die [ CSS-Injektionsreihenfolge ](/styles/advanced/#css-injection-order) wie in der Demo ändern:
 
 ```jsx
-import { StylesProvider } from '@material-ui/core/styles';
-
-<StylesProvider injectFirst>
-  {/* Your component tree.
-      Now, you can override Material-UI's styles. */}
+*/}
 </StylesProvider>
+      Now, you can override Material-UI's styles. Mit Stil versehene Komponenten können die Stile von Material-UI überschreiben.
 ```
 
 ### Tiefere Elemente
@@ -145,12 +142,9 @@ export default function GlobalCssButton() {
 **Hinweis:** JSS fügt seine Styles am unteren Rand von `<head>` ein. Wenn Sie Stilattribute nicht mit **!important** markieren möchten, ist das wichtig, dass Sie die [ CSS-Injektionsreihenfolge ](/styles/advanced/#css-injection-order) wie in der Demo ändern:
 
 ```jsx
-import { StylesProvider } from '@material-ui/core/styles';
-
-<StylesProvider injectFirst>
-  {/* Your component tree.
-      Now, you can override Material-UI's styles. */}
+*/}
 </StylesProvider>
+      Now, you can override Material-UI's styles. Mit Stil versehene Komponenten können die Stile von Material-UI überschreiben.
 ```
 
 ## Styled Components
@@ -194,12 +188,9 @@ export default function StyledComponents() {
 **Hinweis:** Sowohl styled-components als auch JSS fügen ihre Stile unten in `<head>` ein. Um sicherzustellen, dass styled-components-Stile zuletzt geladen werden, ändern Sie die [CSS-Injektionsreihenfolge](/styles/advanced/#css-injection-order), wie in der Demo:
 
 ```jsx
-import { StylesProvider } from '@material-ui/core/styles';
-
-<StylesProvider injectFirst>
-  {/* Your component tree.
-      Now, you can override Material-UI's styles. */}
+*/}
 </StylesProvider>
+      Now, you can override Material-UI's styles. Mit Stil versehene Komponenten können die Stile von Material-UI überschreiben.
 ```
 
 Ein anderer Ansatz ist die Verwendung von `&&` Zeichen in Stilkomponenten, um, durch Wiederholen des Klassennamens, die [Spezifität zu erhöhen ](https://www.styled-components.com/docs/advanced#issues-with-specificity). Avoid the usage of `!important`.
@@ -371,12 +362,9 @@ export default function CssModulesButton() {
 **Hinweis:** JSS fügt seine Styles am unteren Rand von `<head>` ein. Wenn Sie Stilattribute nicht mit **!important** markieren möchten, ist das wichtig, dass Sie die [ CSS-Injektionsreihenfolge ](/styles/advanced/#css-injection-order) wie in der Demo ändern:
 
 ```jsx
-import { StylesProvider } from '@material-ui/core/styles';
-
-<StylesProvider injectFirst>
-  {/* Your component tree.
-      Now, you can override Material-UI's styles. */}
+*/}
 </StylesProvider>
+      Now, you can override Material-UI's styles. Mit Stil versehene Komponenten können die Stile von Material-UI überschreiben.
 ```
 
 ### Tiefere Elemente
@@ -465,12 +453,9 @@ export default function EmotionCSS() {
 **Hinweis:** JSS fügt seine Styles am unteren Rand von `<head>` ein. Wenn Sie Stilattribute nicht mit **!important** markieren möchten, ist das wichtig, dass Sie die [ CSS-Injektionsreihenfolge ](/styles/advanced/#css-injection-order) wie in der Demo ändern:
 
 ```jsx
-import { StylesProvider } from '@material-ui/core/styles';
-
-<StylesProvider injectFirst>
-  {/* Your component tree.
-      Now, you can override Material-UI's styles. */}
+*/}
 </StylesProvider>
+      Now, you can override Material-UI's styles. Mit Stil versehene Komponenten können die Stile von Material-UI überschreiben.
 ```
 
 ### Theme

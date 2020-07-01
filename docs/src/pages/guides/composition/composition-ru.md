@@ -47,7 +47,7 @@ This pattern is very powerful and allows for great flexibility, as well as a way
 
 ### Caveat with inlining
 
-Using an inline function as an argument for the `component` prop may result in **unexpected unmounting**, since a new component is passed every time React renders. Например, если вы хотите создать собственный `ListItem`, который работает как ссылка, вы можете сделать следующее:
+Не только React сделает ненужное обновление DOM, но и ripple эффект `ListItem` будет работать неправильно. ⚠️ Однако, поскольку мы используем встроенную функцию для изменения отрисованного компонента, React будет демонтировать ссылку каждый раз, когда `ListItemLink` отрисован.
 
 ```jsx
 import { Link } from 'react-router-dom';
@@ -68,7 +68,7 @@ function ListItemLink(props) {
 }
 ```
 
-⚠️ Однако, поскольку мы используем встроенную функцию для изменения отрисованного компонента, React будет демонтировать ссылку каждый раз, когда ` ListItemLink ` отрисован. Не только React сделает ненужное обновление DOM, но и ripple эффект `ListItem` будет работать неправильно.
+⚠️ Однако, поскольку мы используем встроенную функцию для изменения отрисованного компонента, React будет демонтировать ссылку каждый раз, когда `ListItemLink` отрисован. Не только React сделает ненужное обновление DOM, но и ripple эффект `ListItem` будет работать неправильно.
 
 The solution is simple: **avoid inline functions and pass a static component to the `component` prop** instead. Let's change the `ListItemLink` component so `CustomLink` always reference the same component:
 

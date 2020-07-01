@@ -23,7 +23,7 @@ Une table de données contient en haut une ligne d’en-tête qui répertorie le
 
 Des cases à cocher doivent accompagner chaque ligne si l'utilisateur doit sélectionner ou manipuler des données.
 
-For accessibility, the first column is set to be a `<th>` element, with a `scope` of `"col"`. Cela permet aux lecteurs d'écran d'identifier la valeur d'une cellule par son nom de ligne et de colonne.
+It utilizes the [`Collapse`](/api/collapse/) component. An example of a table with expandable rows, revealing more information.
 
 ## Tableau simple
 

@@ -1,5 +1,5 @@
 ---
-title: React Table 表格组件
+title: React 表格组件
 components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel
 ---
 
@@ -69,7 +69,7 @@ components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead,
 
 ### 自定义表格分页操作
 
-`表格分页`组件中的`行为组件`允许实现自定义的行为
+`TablePagination` 组件的 ` ActionsComponent ` 属性能够让您实现一些自定义的行为。
 
 {{"demo": "pages/components/tables/CustomPaginationActionsTable.js", "bg": true}}
 
@@ -79,21 +79,21 @@ components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead,
 
 {{"demo": "pages/components/tables/StickyHeadTable.js", "bg": true}}
 
-## 可折叠表格
+## 可折叠的表格
 
 以可扩展行的表格为例，揭示更多信息。 它利用了 [`Collapse`](/api/collapse/) 组件。
 
 {{"demo": "pages/components/tables/CollapsibleTable.js", "bg": true}}
 
-## 跨越表格
+## 跨越表格（Spanning Table）
 
-一个行 & 列跨越的简单例子
+一个行和列跨越的简单例子。
 
 {{"demo": "pages/components/tables/SpanningTable.js", "bg": true}}
 
 ## 大型列表渲染（Virtualized Table）
 
-以下例子展示了将 [react-virtualized](https://github.com/bvaughn/react-virtualized) 与 `表格` 组件一起使用的方法。 它渲染了200多行，并且可以轻松的延展到更多行。 可视化优化了整体的性能。
+以下例子展示了将 [react-virtualized](https://github.com/bvaughn/react-virtualized) 与 `Table` 组件一起使用的方法。 它渲染了200多行，并且可以轻松的延展到更多行。 可视化优化了整体的性能。
 
 {{"demo": "pages/components/tables/ReactVirtualizedTable.js", "bg": true}}
 

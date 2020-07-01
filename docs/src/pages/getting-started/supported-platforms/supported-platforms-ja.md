@@ -4,7 +4,7 @@
 
 ## ブラウザ
 
-Material-UIは主要なブラウザとプラットフォームの最新の安定版リリースをサポートしています。 Internet Explorer 11もサポートしています。 JavaScriptポリフィルは、サポートされていないブラウザー機能を内部で個別に管理するため、提供する必要はありません。
+Material-UIは主要なブラウザとプラットフォームの最新の安定版リリースをサポートしています。 Internet Explorer 11もサポートしています。 JavaScriptポリフィルは、サポートされていないブラウザー機能を内部で個別に管理するため、提供する必要はありません。 Internet Explorer 11もサポートしています。 JavaScriptポリフィルは、サポートされていないブラウザー機能を内部で個別に管理するため、提供する必要はありません。
 
 | IE | Edge  | Firefox | Chrome | Safari | Googlebot |
 |:-- |:----- |:------- |:------ |:------ |:--------- |
@@ -15,7 +15,7 @@ Googlebotはページコンテンツのインデックス作成にweb rendering 
 
 ## サーバ
 
-Material-UIはサーバ側レンダリングをサポートしているため、[Nodeの最新の安定したリリースをサポートする必要があります。js](https://github.com/nodejs/node)。 Where possible, the [LTS versions that are in maintenance](https://github.com/nodejs/Release#lts-schedule1) are supported. We recommend using **node v10.x** or newer. However we still support **node v8.x**. The support of **node v8.x** will be stopped in Material-UI Version 5.
+Material-UIはサーバ側レンダリングをサポートしているため、[Nodeの最新の安定したリリースをサポートする必要があります。js](https://github.com/nodejs/node)。 Where possible, the [LTS versions that are in maintenance](https://github.com/nodejs/Release#lts-schedule1) are supported. Where possible, the [LTS versions that are in maintenance](https://github.com/nodejs/Release#lts-schedule1) are supported. We recommend using **node v10.x** or newer. However we still support **node v8.x**. The support of **node v8.x** will be stopped in Material-UI Version 5.
 
 ### CSSプレフィックス
 
@@ -25,7 +25,7 @@ Be aware that some CSS features [require](https://github.com/cssinjs/jss/issues/
 
 ## React
 
-Material-UIは、^16.8. 0(フックのついた方) 以降のReactの最新バージョンをサポートします。 Have a look at the older [versions](https://material-ui.com/versions/) for backward compatibility.
+Material-UIは、^16.8. 0(フックのついた方) 以降のReactの最新バージョンをサポートします。 Have a look at the older [versions](https://material-ui.com/versions/) for backward compatibility. Material-UIは、^16.8. 0(フックのついた方) 以降のReactの最新バージョンをサポートします。 Have a look at the older [versions](https://material-ui.com/versions/) for backward compatibility.
 
 ## TypeScript
 

@@ -7,7 +7,7 @@ components: Snackbar, SnackbarContent
 
 <p class="description">Snackbars fornecem mensagens breves sobre os processos de aplicativos. O componente também é conhecido como toast(torrada).</p>
 
-[Snackbars](https://material.io/design/components/snackbars.html) informam aos usuários de um processo que a aplicação realizou ou irá executar. Eles aparecem temporariamente, na parte inferior da tela. Eles não devem interromper a experiência do usuário e não exigem ação do usuário para que desapareça.
+[Snackbars](https://material.io/design/components/snackbars.html) informam aos usuários de um processo que a aplicação realizou ou irá executar. Eles aparecem temporariamente, na parte inferior da tela. Eles não devem interromper a experiência do usuário e não exigem ação do usuário para desaparecerem.
 
 Snackbars contêm uma única linha de texto diretamente relacionada à operação realizada. Eles podem conter uma ação de texto, mas não ícones. Você pode usá-los para exibir notificações.
 
@@ -21,7 +21,7 @@ Um snackbar básico que tem como objetivo reproduzir o comportamento do Google K
 
 {{"demo": "pages/components/snackbars/SimpleSnackbar.js"}}
 
-## Snackbars personalizados
+## Snackbars customizados
 
 Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
 
@@ -33,7 +33,7 @@ Em leiautes amplos, os snackbars podem ser alinhados para a esquerda ou alinhado
 
 {{"demo": "pages/components/snackbars/PositionedSnackbar.js"}}
 
-## Comprimento da Mensagem
+## Comprimento da mensagem
 
 Alguns snackbars com tamanho variável de mensagem.
 
@@ -43,7 +43,7 @@ Alguns snackbars com tamanho variável de mensagem.
 
 ### Snackbars Consecutivos
 
-Quando várias atualizações de snackbar são necessárias, elas devem aparecer uma por vez.
+Quando várias atualizações de snackbar são necessárias, eles devem aparecer um por vez.
 
 {{"demo": "pages/components/snackbars/ConsecutiveSnackbars.js"}}
 
@@ -59,7 +59,7 @@ Snackbars devem aparecer acima de BAFs (no mobile).
 
 {{"demo": "pages/components/snackbars/TransitionsSnackbar.js"}}
 
-### Controle de direção do Slide
+### Controlando a direção do Slide
 
 Você pode alterar a direção da transição do [Slide](/components/transitions/#slide).
 
@@ -67,7 +67,7 @@ Você pode alterar a direção da transição do [Slide](/components/transitions
 
 ## Projetos Complementares
 
-Para usos mais avançados, você pode tirar vantagem com:
+Para situações de uso mais avançadas, você pode tirar proveito com:
 
 ### notistack
 

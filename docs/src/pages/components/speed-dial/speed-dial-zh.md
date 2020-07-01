@@ -1,5 +1,5 @@
 ---
-title: React Speed Dial 快速拨号组件
+title: React 快速拨号组件
 components: SpeedDial, SpeedDialAction, SpeedDialIcon
 ---
 

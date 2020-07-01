@@ -12,7 +12,7 @@
 
 Если вы хотите настроить тему, вам нужно использовать компонент `ThemeProvider`, чтобы добавить тему в ваше приложение. Однако это необязательно; компоненты Material-UI поставляются с базовой темой, по умолчанию.
 
-`ThemeProvider` relies on the [context feature of React](https://reactjs.org/docs/context.html) to pass the theme down to the components, so you need to make sure that `ThemeProvider` is a parent of the components you are trying to customize. Вы можете узнать больше об этом в [ разделе API](/styles/api/#themeprovider).
+Вы можете узнать больше об этом в [ разделе API](/styles/api/#themeprovider). `ThemeProvider` relies on the [context feature of React](https://reactjs.org/docs/context.html) to pass the theme down to the components, so you need to make sure that `ThemeProvider` is a parent of the components you are trying to customize.
 
 ## Переменные конфигурации темы
 
@@ -97,7 +97,7 @@ Generate responsive typography settings based on the options received.
 1. `theme` (*Object*): The theme object to enhance.
 2. `варианты` (*объекта* [optional]):
 
-- `breakpoints` (*Array\<String\>* [optional]): Default to `['sm', 'md', 'lg']`. Array of [breakpoints](/customization/breakpoints/) (identifiers).
+- Array of [breakpoints](/customization/breakpoints/) (identifiers). `breakpoints` (*Array\<String\>* [optional]): Default to `['sm', 'md', 'lg']`.
 - `disableAlign` (*Boolean* [optional]): Default to `false`. Whether font sizes change slightly so line heights are preserved and align to Material Design's 4px line height grid. This requires a unitless line height in the theme's styles.
 - `factor` (*Number* [optional]): Default to `2`. This value determines the strength of font size resizing. The higher the value, the less difference there is between font sizes on small screens. The lower the value, the bigger font sizes for small screens. The value must be greater than 1.
 - `variants` (*Array\<String\>* [optional]): Default to all. The typography variants to handle.

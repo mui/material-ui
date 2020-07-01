@@ -10,7 +10,7 @@
 4. [Material Design 的变体](#4-material-design-variations)，例如按钮组件
 5. [全局化主题变体](#5-global-theme-variation)
 
-## 1、 一次性使用的特定变体
+## 1. 一次性使用的特定变体
 
 您可能需要为实现特定的组件而更改样式，以下有几种解决方案：
 
@@ -189,7 +189,7 @@ const styles = {
 
 [和 classes 比起来，我什么时候应该使用内嵌样式？](/getting-started/faq/#when-should-i-use-inline-style-vs-css)
 
-## 2。 一次性使用的动态变体
+## 2. 一次性使用的动态变体
 
 您在上一节中，已经学习了如何覆盖 Material-UI 组件的样式。 现在，让我们看看我们如何使动态地应用这个覆盖。 以下是五种选择，各有利弊。
 

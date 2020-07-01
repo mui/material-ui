@@ -146,8 +146,8 @@ const ambiguousStyles = createStyles({
 Desde que um componente seja decorado com `withStyles(styles)`, ele recebe uma propriedade injetada `classes`, você pode querer definir estas propriedades de acordo com:
 
 ```ts
-const styles = (theme: Theme) => createStyles({
-  root: { /* ... */ },
+*/ },
+  button: { /* ... */ },
   paper: { /* ... */ },
   button: { /* ... */ },
 });
@@ -174,12 +174,7 @@ const styles = (theme: Theme) => createStyles({
   root: { /* ... */ },
   paper: { /* ... */ },
   button: { /* ... */ },
-});
-
-interface Props extends WithStyles<typeof styles> {
-  foo: number;
-  bar: boolean;
-}
+  paper: { /* ...
 ```
 
 ### Decorando componentes

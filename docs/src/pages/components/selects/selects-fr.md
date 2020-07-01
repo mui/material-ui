@@ -27,7 +27,7 @@ As the user experience can be improved on mobile using the native select of the 
 
 ## Text Fields (Champs de texte)
 
-Le composant d'encapsulation `TextField` est un contrôle de formulaire complet comprenant une étiquette, une entrée et un texte d'aide. You can find an example with the select mode [in this section](/components/text-fields/#select).
+Le composant d'encapsulation `TextField` est un contrôle de formulaire complet comprenant une étiquette, une entrée et un texte d'aide. The first step is to style the `InputBase` component.
 
 ## Customized selects
 

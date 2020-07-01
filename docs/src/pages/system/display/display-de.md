@@ -1,6 +1,6 @@
 # Anzeige
 
-<p class="description">Quickly and responsively toggle the display value of components and more with the display utilities. Unterstützt einige der gebräuchlichsten Werte sowie einige Extras zur Steuerung der Anzeige beim Drucken.</p>
+<p class="description">Unterstützt einige der gebräuchlichsten Werte sowie einige Extras zur Steuerung der Anzeige beim Drucken. Quickly and responsively toggle the display value of components and more with the display utilities.</p>
 
 ## Beispiele
 

@@ -2,9 +2,9 @@
 
 <p class="description">Material-UIとReactを今すぐ始めましょう。</p>
 
-Material-UIコンポーネントは独立して機能します。 **They are self-supporting**, and will only inject the styles they need to display. それらは[normalize.css](https://github.com/necolas/normalize.css/)のようなグローバルのスタイルシートには依存しません。
+Material-UIコンポーネントは独立して機能します。 Material-UIコンポーネントは独立して機能します。 **They are self-supporting**, and will only inject the styles they need to display. それらは[normalize.css](https://github.com/necolas/normalize.css/)のようなグローバルのスタイルシートには依存しません。
 
-ドキュメントに示されているように、任意のコンポーネントを使用できます。 どのようにインポートされるか確認する為にそれぞれのコンポーネントの[デモページ](/components/buttons/)を参照してください。
+ドキュメントに示されているように、任意のコンポーネントを使用できます。 ドキュメントに示されているように、任意のコンポーネントを使用できます。 どのようにインポートされるか確認する為にそれぞれのコンポーネントの[デモページ](/components/buttons/)を参照してください。
 
 ## 今すぐ始める
 
@@ -36,7 +36,7 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 
 ### Responsive meta tag
 
-Material-UI is developed mobile-first, a strategy in which we first write code for mobile devices, and then scale up components as necessary using CSS media queries. すべてのデバイスで適切なレンダリングとタッチズームを確実なものにするには、responsive viewport metaタグを`<head>`に追加します。
+すべてのデバイスで適切なレンダリングとタッチズームを確実なものにするには、responsive viewport metaタグを`<head>`に追加します。 Material-UI is developed mobile-first, a strategy in which we first write code for mobile devices, and then scale up components as necessary using CSS media queries.
 
 ```html
 <meta
@@ -47,11 +47,11 @@ Material-UI is developed mobile-first, a strategy in which we first write code f
 
 ### CssBaseline
 
-Material-UIはオプションで[CssBaseline](/components/css-baseline/)コンポーネントを提供しています。 これは、ブラウザやデバイス間の不整合を修正すると同時に、一般的なHTML要素に対して少しだけ独自のリセットを提供します。
+Material-UIコンポーネントは独立して機能します。 **They are self-supporting**, and will only inject the styles they need to display. それらは[normalize.css](https://github.com/necolas/normalize.css/)のようなグローバルのスタイルシートには依存しません。
 
 ## バージョン管理されたドキュメント
 
-このドキュメントは常に最新の安定版のMaterial-UIを反映しています。 古いバージョンのドキュメントは、[別のページ ](https://material-ui.com/versions/)にあります。
+このドキュメントは常に最新の安定版のMaterial-UIを反映しています。 古いバージョンのドキュメントは、[別のページ ](https://material-ui.com/versions/)にあります。 このドキュメントは常に最新の安定版のMaterial-UIを反映しています。 古いバージョンのドキュメントは、[別のページ ](https://material-ui.com/versions/)にあります。
 
 ## 次のステップ
 

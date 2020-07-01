@@ -70,7 +70,7 @@ yarn add @material-ui/styles
 
 ### Styles（样式表单）
 
-- ⚠️ Material-UI 依赖于 JSS v10版本。 JSS v10版本与v9版本不向后兼容。 请保证您的开发环境中未安装 JSS v9版本。 (Removing `react-jss` from your `package.json` can help). StylesProvider 组件替代了 JssProvider 组件。
+- ⚠️ Material-UI 依赖于 JSS v10版本。 JSS v10版本与v9版本不向后兼容。 请保证您的开发环境中未安装 JSS v9版本。 （在您的 `package.json` 中删除 `react-jss` 会有所帮助）。 StylesProvider 组件替代了 JssProvider 组件。
 - 请移除 `withTheme()` 中的第一个可选的参数。 （第一个参数是从未出现的可能会是未来选项的占位符。）
   
     它与[emotion 的 API](https://emotion.sh/docs/introduction) 以及 [styled-components 的 API ](https://www.styled-components.com) 相匹配。
@@ -228,8 +228,8 @@ function MySelect({ children }) {
 ### ExpansionPanel（扩展面板）
 
 - [ExpansionPanelActions] 将 CSS 类 `action` 重命名为 `spacing`。
-- [ExpansionPanel] Increase the CSS specificity of the `disabled` and `expanded` style rules.
-- [ExpansionPanel] Rename the `CollapseProps` prop to `TransitionProps`.
+- [ExpansionPanel] 提高 `disabled` 和 `expanded` 样式规则的 CSS 优先级。
+- [ExpansionPanel] 将 `CollapseProps` 属性重命名为 `TransitionProps`。
 
 ### Lists（列表）
 
@@ -391,9 +391,9 @@ function MySelect({ children }) {
   +<Typography variantMapping={variantMapping}>
   ```
 
-- [Typography] 将默认的字体从 `body2` 换成 `body1`。 默认为16px的字体大小比默认为14px好。 Bootstrap, material.io, and even the documentation use 16px as a default font size. 像 Ant Design 一样使用14px是可以理解的，因为中国的用户使用了不同的字母表。 12px is recommended as the default font size for Japanese.
+- [Typography] 将默认的字体从 `body2` 换成 `body1`。 默认为16px的字体大小比默认为14px好。 Bootstrap，material.io，甚至本文档都使用的是 16px 作为默认字体大小。 像 Ant Design 一样使用14px是可以理解的，因为中国的用户使用了不同的字母表。 建议将 12px 作为日语的默认字体大小。
 - [Typography] 移除了铸排变体的默认颜色。 大多数情况下，字体颜色应该是继承而来的。 这是网站的默认行为。
-- [Typography] Rename `color="default"` to `color="initial"` following the logic of [this thread](https://github.com/mui-org/material-ui/issues/13028). 您不应该再使用 *default*，它缺少明确的语义。
+- [Typography] 按照 [该讨论](https://github.com/mui-org/material-ui/issues/13028) 的逻辑，我们将 `color="default"` 重命名为 `color="initial"`。 您不应该再使用 *default*，它缺少明确的语义。
 
 ### Node
 

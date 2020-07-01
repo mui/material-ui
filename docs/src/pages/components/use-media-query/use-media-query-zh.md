@@ -1,5 +1,5 @@
 ---
-title: 用于响应式设计的 React 中的媒体查询（Media queries）
+title: 用于响应式设计的 React 中的媒体查询
 ---
 
 # useMediaQuery
@@ -138,7 +138,7 @@ function handleRender(req, res) {
 
 {{"demo": "pages/components/use-media-query/ServerSide.js", "defaultCodeOpen": false}}
 
-Make sure you provide the same custom match media implementation to the client-side to guarantee a hydration match.
+确保您提供相同的自定义匹配媒体实现到客户端，这样能够保证注水渲染的匹配。
 
 ## 从 `withWidth()` 迁移
 

@@ -55,10 +55,8 @@ export default function PlainCssButton() {
 **Nota:** O JSS injeta seus estilos na parte inferior do `<head>`. Se você não quiser marcar atributos de estilo com **!important**, você precisa alterar [a ordem de injeção do CSS](/styles/advanced/#css-injection-order), como na demonstração:
 
 ```jsx
-import { StylesProvider } from '@material-ui/core/styles';
-
-<StylesProvider injectFirst>
-  {/* Sua árvore de componentes.
+*/}
+</StylesProvider>
       Agora, você pode sobrescrever os estilos do Material-UI. */}
 </StylesProvider>
 ```
@@ -140,15 +138,13 @@ export default function GlobalCssButton() {
 }
 ```
 
-### Controlar prioridade ⚠️
+### Controlando prioridade ⚠️
 
 **Nota:** O JSS injeta seus estilos na parte inferior do `<head>`. Se você não quiser marcar atributos de estilo com **!important**, você precisa alterar [a ordem de injeção do CSS](/styles/advanced/#css-injection-order), como na demonstração:
 
 ```jsx
-import { StylesProvider } from '@material-ui/core/styles';
-
-<StylesProvider injectFirst>
-  {/* Sua árvore de componentes.
+*/}
+</StylesProvider>
       Agora, você pode sobrescrever os estilos do Material-UI. */}
 </StylesProvider>
 ```
@@ -465,10 +461,8 @@ export default function EmotionCSS() {
 **Nota:** O JSS injeta seus estilos na parte inferior do `<head>`. Se você não quiser marcar atributos de estilo com **!important**, você precisa alterar [a ordem de injeção do CSS](/styles/advanced/#css-injection-order), como na demonstração:
 
 ```jsx
-import { StylesProvider } from '@material-ui/core/styles';
-
-<StylesProvider injectFirst>
-  {/* Sua árvore de componentes.
+*/}
+</StylesProvider>
       Agora, você pode sobrescrever os estilos do Material-UI. */}
 </StylesProvider>
 ```

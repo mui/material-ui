@@ -8,17 +8,17 @@ Die Abstand-Utility konvertiert die Abkürzung für Marginals und Padding-Eigens
 
 Die *Eigenschaften* ist eine von:
 
-- ` m ` - für Klassen mit *margin*
+- `m` - für Klassen mit *margin*
 - `p` - für Klassen mit *padding*
 
 Die *sides* ist eine von:
 
-- ` t ` - für Klassen, die * margin-top* oder *padding-top* setzen
+- `t` - für Klassen, die * margin-top* oder *padding-top* setzen
 - `b` - für Klassen, die * margin-bottom* oder *padding-bottom* setzen
-- ` l ` - für Klassen, die * margin-links* oder *padding-links* setzen
-- ` r ` - für Klassen, die * margin-rechts* oder *padding-rechts* setzen
-- ` x ` - für Klassen, die sowohl **-links* als auch **-rechts* setzen
-- ` y ` - für Klassen, die sowohl **-top* als auch **-bottom* setzen
+- `l` - für Klassen, die * margin-links* oder *padding-links* setzen
+- `r` - für Klassen, die * margin-rechts* oder *padding-rechts* setzen
+- `x` - für Klassen, die sowohl **-links* als auch **-rechts* setzen
+- `y` - für Klassen, die sowohl **-top* als auch **-bottom* setzen
 - leerzeichen - für Klassen, die auf allen vier Seiten des Elements ein margin oder ein padding festlegen
 
 ## Transformation

@@ -21,7 +21,7 @@ The `Tooltip` has 12 **placements** choice. They don’t have directional arrows
 
 ## Customized tooltips
 
-Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+Here are some examples of customizing the component. Here are some examples of customizing the component.
 
 {{"demo": "pages/components/tooltips/CustomizedTooltips.js"}}
 

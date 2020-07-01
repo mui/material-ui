@@ -21,13 +21,13 @@ components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel
 
 ## Switches with FormGroup
 
-`FormGroup` es un contenedor muy útil usado para agrupar componentes de controles de selección que proporciona una API más sencilla. However, you are encouraged you to use [Checkboxes](/components/checkboxes/) instead if multiple related controls are required. (See: [When to use](#when-to-use)).
+`FormGroup` es un contenedor muy útil usado para agrupar componentes de controles de selección que proporciona una API más sencilla. `FormGroup` es un contenedor muy útil usado para agrupar componentes de controles de selección que proporciona una API más sencilla. However, you are encouraged you to use [Checkboxes](/components/checkboxes/) instead if multiple related controls are required.
 
 {{"demo": "pages/components/switches/SwitchesGroup.js"}}
 
 ## Customized switches
 
-Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+Here are some examples of customizing the component. Here are some examples of customizing the component.
 
 {{"demo": "pages/components/switches/CustomizedSwitches.js"}}
 

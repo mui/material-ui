@@ -2,19 +2,19 @@
 
 <p class="description">从社区帮助到高级的商业化支持，我们愿意帮忙。</p>
 
-## 社区帮助 
+## 社区帮助
 
-社区是您对框架提问或给出建议的第一站。 欢迎来到社区！
+社区是您对框架提问或给出建议的第一站。 社区是您对框架提问或给出建议的第一站。 欢迎来到社区！
 
 ### StackOverflow <img src="/static/images/logos/stackoverflow.svg" width="24" height="24" alt="StackOverflow " loading="lazy" />
 
-对于来自社区Material-UI开发专家，对于众包的技术问题。 以及Material-UI核心团队回答的常见问题。
+对于来自社区Material-UI开发专家，对于众包的技术问题。 以及Material-UI核心团队回答的常见问题。 以及Material-UI核心团队回答的常见问题。
 
 [提交一个问题](https://stackoverflow.com/questions/tagged/material-ui)
 
 ### GitHub <img src="/static/images/logos/github.svg" width="24" height="24" alt="GitHub" loading="lazy" />
 
-我们用GitHub issues作为唯一的记录BUG或特性需求的跟踪方式。 如果你认为发现了BUG，或有一个新特性的想法，请在开始前先确保它没有被[报告过或解决过](https://github.com/mui-org/material-ui/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aclosed)。 您可以在现存的Issues或Pull Requests中搜索，以了解是否有人报告过类似的问题。
+我们用GitHub issues作为唯一的记录BUG或特性需求的跟踪方式。 我们用GitHub issues作为唯一的记录BUG或特性需求的跟踪方式。 如果你认为发现了BUG，或有一个新特性的想法，请在开始前先确保它没有被[报告过或解决过](https://github.com/mui-org/material-ui/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aclosed)。 您可以在现存的Issues或Pull Requests中搜索，以了解是否有人报告过类似的问题。 您可以在现存的Issues或Pull Requests中搜索，以了解是否有人报告过类似的问题。
 
 [打开一个Issue](https://github.com/mui-org/material-ui/issues/new/choose)
 
@@ -47,47 +47,47 @@
 
 ### 支持的版本
 
-The Material-UI CE (Community Edition) has been 100% open-source (MIT) since the very beginning, and always will be. Developers can ensure Material-UI is the right choice for their React applications through Material-UI’s community maintenance strategy. The Material-UI team regularly ships new releases, bug fixes, and is very welcoming to community pull requests.
+Material-UI CE（社区版本）从最开始就是 100% 的开源项目（MIT 开源协议）并且永远都会是。 开发者可以通过 Material-UI 的社区维护策略来确保选择他们的 React 应用是可靠的。 Material-UI 团队会定期发布新版本，修复 bug，并非常欢迎社区的拉取请求（pull requests）。
 
-Given the reality of time and resource constraints, as well as the desire to keep innovating, over time it becomes necessary to shift focus to newer versions of the framework ([our release schedule](https://material-ui.com/versions/#release-frequency)), while making the transition to newer versions as smooth as possible, including publishing migration guides such as [this one for v4](/guides/migration-v3/). The open-source community is always welcome to submit new features and bug fixes as well.
+我们考虑到时间和资源限制的现实，以及需要不断创新的愿望，所以随着时间的推移，我们有必要将更新的重点转移到框架的最新版本（[我们的版本发布时间表](https://material-ui.com/versions/#release-frequency)），同时让用户尽可能平稳地过渡到新的版本，所以我们做了包括迁移指南在内的多个工作，例如 [这个 v4](/guides/migration-v3/) 迁移指南。 我们始终欢迎开源社区提交新特性和错误修复。
 
-The current status of each Material-UI version is as follows:
+各个 Material-UI 版本的当前状态如下所示： 
 
-- Material-UI v4 (hooks): ✅ In active development.
-- Material-UI v3 (change supported browsers): ⚠️ Only handle security fixes.
-- ~Material-UI v2 (never existed)~.
-- Material-UI v1 (rewrite): ❌ Inactive.
-- Material-UI v0.x: ❌ Inactive.
+- Material-UI v4 (hooks)：✅ 积极开发。
+- Material-UI v3（更改支持的浏览器）：⚠️ 只处理安全修复。
+- ~Material-UI v2 （根本不存在）~. 
+- Material-UI v1（重写）: ❌ 闲置. 
+- Material-UI v0.x：❌闲置
 
-For teams and organizations that require additional support for older versions, Material-UI has [options available](#enterprise).
+对于需要对旧版本提供额外支持的团队和组织，Material-UI 提供了 [可选方案](#enterprise)。
 
-## Professional support (premium)
+## 专业支持（高级）
 
-### Tidelift subscription <img src="/static/images/logos/tidelift.svg" width="24" height="24" alt="Tidelift" loading="lazy" />
+### Tidelift 订阅 <img src="/static/images/logos/tidelift.svg" width="24" height="24" alt="Tidelift" loading="lazy" />
 
-Material-UI and the maintainers of thousands of other packages are working with Tidelift to deliver one enterprise subscription that covers all of the open-source you use.
+Material-UI 同其他数千种软件包的维护者一样都在与 Tidelift 合作，目的是提供一个维护涵盖您使用的所有开源软件的企业订阅。 
 
-If you want the flexibility of open-source and the confidence of commercial-grade software, this is worth looking at.
+如果您想要开源的灵活性和商业级软件的信心，这是值得一试的。
 
-The Tidelift Subscription manages your dependencies for you:
+Tidelift 订阅为您管理您的依赖关系： 
 
-- Get the tools you need to continuously catalog and understand the open-source software that your application depends on.
-- Your subscription helps pay the open-source community maintainers of the packages you use, to ensure they meet the standards you require.
-- Address issues proactively, with tools that scan for new security, licensing, and maintenance issues, and alert participating open-source maintainers so they can resolve them on your behalf.
-- Tidelift helps measure and improve your open-source dependencies' health – which improves your app's health – and gives a shortlist of high-impact steps your team can take to improve them even more.
-- Get commercial assurances that don't come for free with open-source packages, such as intellectual property indemnification and support under a service level agreement. You expect these guarantees from proprietary software, and you can get them when using open-source as well.
+- 获取所需的工具，来不断地分类和了解您的应用程序所依赖的开源软件。
+- 您的订阅有助于向您使用的软件包的开源社区维护者支付费用，以确保它们符合您要求的标准。
+- 您可以利用可扫描软件安全、许可和维护问题的工具来主动解决问题，并且也可以向参与的开源维护者发出警告，以便他们能够帮助您解决这些问题。 
+- Tidelift 有助于衡量和改善你使用的开源软件依赖项的健康状况 — 从而改善您的应用程序的健康状况 — 并会给出一个简短的列表，列出您的团队可以采取的积极影响的步骤，以便您进一步改进它们。 
+- 您可以获得商业保证，而不是只使用免费的开源软件包，例如知识产权赔偿和服务级别协议（SLA）的支持。 您可以期望从专有软件中获得这些商业保证，并且在使用开源软件时也可以获得这些商业保证。
 
-The end result? All of the capabilities you expect from commercial-grade software, for the full breadth of open-source you use. That means less time grappling with esoteric open-source trivia, and more time building your own applications – and your business.
-
-<a
-  data-ga-event-category="support"
-  data-ga-event-action="tidelift"
-  href="https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise"> Get more details </a>
+最终结果是什么？ 所有您期望从商业级软件中获得的功能都可以适用于您所使用的所有开源软件。 这意味着花更少的时间来处理深奥的开源软件的琐事，并且能够花更多的时间处理您自己的应用程序 — 以及您的业务。
 
 <a
   data-ga-event-category="support"
   data-ga-event-action="tidelift"
-  href="https://tidelift.com/subscription/request-a-demo?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise"> Request a demo </a>
+  href="https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise"> 获得更多详细信息 </a>
+
+<a
+  data-ga-event-category="support"
+  data-ga-event-action="tidelift"
+  href="https://tidelift.com/subscription/request-a-demo?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise"> 请求演示 </a>
 
 ### 定制工作🛠
 
@@ -97,6 +97,6 @@ The end result? All of the capabilities you expect from commercial-grade softwar
 - 建议可能不需要 Material-UI 的替代方法
 - 由于时间或相关性而拒绝合作
 
-请注意，工作必须与 Material-UI 相关。 我们不接受一般的 React 开发工作。 Our contracting price is $200/hour or $1,500/day.
+请注意，工作必须与 Material-UI 相关。 我们不接受一般的 React 开发工作。 我们的合同价格是 200美元/小时 或 1500美元/天。
 
 [给我们发送电子邮件](mailto:custom-work@material-ui.com)

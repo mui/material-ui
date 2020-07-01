@@ -1,5 +1,5 @@
 ---
-title: React Transfer List 传递列表组件
+title: React 传递列表组件
 components: List, ListItem, Checkbox, Switch
 ---
 

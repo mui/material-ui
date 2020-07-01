@@ -27,7 +27,7 @@ Da die Benutzererfahrung auf mobilen Geräten durch die native Auswahl der Platt
 
 ## Text Felder (Text Fields)
 
-Die `TextField` Wrapper-Komponente ist ein vollständiges Formularsteuerelement, das eine Beschriftung, Eingabe und Hilfetext enthält. Ein Beispiel für den Auswahlmodus [in diesem Abschnitt](/components/text-fields/#select).
+Die `TextField` Wrapper-Komponente ist ein vollständiges Formularsteuerelement, das eine Beschriftung, Eingabe und Hilfetext enthält. The `Select` component can handle multiple selections.
 
 ## Benutzerdefinierte Auswahl
 

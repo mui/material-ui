@@ -7,7 +7,7 @@ components: ToggleButton, ToggleButtonGroup
 
 <p class="description">トグルボタンを使用して、関連するオプションをグループ化できます。</p>
 
-関連する [Toggle buttons](https://material.io/components/buttons#toggle-button)のグループを強調するには、次の操作を行います。 グループは共通のコンテナーを共用する必要があります。 The `ToggleButtonGroup` controls the selected state of its child buttons when given its own `value` prop.
+ToggleButton sets `aria-pressed="<bool>"` according to the button state. You should label each button with `aria-label`.
 
 ## Exclusive selection
 

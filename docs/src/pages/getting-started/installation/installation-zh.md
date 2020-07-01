@@ -2,7 +2,7 @@
 
 <p class="description">安装 Material-UI —— 世界上最受欢迎的 React UI 框架。</p>
 
-Material-UI 可以通过 [npm 包](https://www.npmjs.com/package/@material-ui/core)来安装。
+Material-UI 可以通过 [npm 包](https://www.npmjs.com/package/@material-ui/core) 来安装。
 
 ## npm
 

@@ -60,7 +60,7 @@ Note that the documentation [avoids](/guides/api/#native-properties) mentioning 
 
 ## Размеры
 
-Fancy larger or smaller buttons? Use the `size` property.
+Fancy larger or smaller buttons? Использовать свойство `size`.
 
 {{"demo": "pages/components/buttons/ButtonSizes.js"}}
 

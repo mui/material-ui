@@ -12,7 +12,7 @@ Um die Konsistenz zwischen Apps zu erhöhen, stehen helle und dunkle Themenarten
 
 Wenn Sie das Design anpassen möchten, müssen Sie die `ThemeProvider` Komponente verwenden, um ein Theme in Ihre Anwendung einzufügen. Dies ist jedoch optional. Material-UI-Komponenten werden mit einem Standarddesign geliefert.
 
-`ThemeProvider` relies on the [context feature of React](https://reactjs.org/docs/context.html) to pass the theme down to the components, so you need to make sure that `ThemeProvider` is a parent of the components you are trying to customize. Mehr darüber erfahren Sie im [API](/styles/api/#themeprovider) Abschnitt.
+Mehr darüber erfahren Sie im [API](/styles/api/#themeprovider) Abschnitt. `ThemeProvider` relies on the [context feature of React](https://reactjs.org/docs/context.html) to pass the theme down to the components, so you need to make sure that `ThemeProvider` is a parent of the components you are trying to customize.
 
 ## Theme-Konfigurationsvariablen
 
@@ -97,7 +97,7 @@ Generieren Sie responsive Typografieeinstellungen basierend auf den erhaltenen O
 1. `theme` (*Object*): Das zu verbessernde Themeobjekt.
 2. `options` (*Object* [optional]):
 
-- `breakpoints` (*Array\<String\>* [optional]): Default to `['sm', 'md', 'lg']`. Array von [Haltepunkten](/customization/breakpoints/) (Bezeichner).
+- Array von [Haltepunkten](/customization/breakpoints/) (Bezeichner). Array von [Haltepunkten](/customization/breakpoints/) (Bezeichner).
 - `disableAlign` (*Boolean* [optional]): Standardmäßig auf `false`. Ob sich die Schriftgrößen geringfügig ändern, um die Höhen der Linie beizubehalten und an das 4px-Linienhöhenraster von Material Design anzupassent. Dies erfordert eine einheitlose Zeilenhöhe in den Stilen des Designs.
 - `factor` (*Nummer* [optional]): Standardmäßig auf `2`. Dieser Wert bestimmt die Stärke der Größenänderung der Schriftgröße. Je höher der Wert, desto geringer ist der Unterschied zwischen den Schriftgrößen auf kleinen Bildschirmen. Je niedriger der Wert, desto größer die Schriftgröße für kleine Bildschirme. The value must be greater than 1.
 - `variants` (*Array\<String\>* [optional]): Default to all. Die zu behandelnden Typografie-Varianten.

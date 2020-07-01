@@ -23,7 +23,7 @@ Una tabla de datos contiene una cabecera en la parte superior con los nombres de
 
 Un checkbox debe acompañar a cada fila por si el usuario necesita seleccionar o manipular datos.
 
-For accessibility, the first column is set to be a `<th>` element, with a `scope` of `"col"`. Esto permite a los lectores de pantalla identificar el valor de una celda por el nombre de su fila y columna.
+Utiliza el componente `TableSortLabel` para ayudar a dar estilo a las cabeceras de las columnas. Esto permite a los lectores de pantalla identificar el valor de una celda por el nombre de su fila y columna.
 
 ## Tabla Sencilla
 

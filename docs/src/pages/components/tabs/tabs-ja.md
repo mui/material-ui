@@ -17,7 +17,7 @@ components: Tabs, Tab, TabScrollButton, TabContext, TabList, TabPanel
 
 ### ラップされたラベル
 
-長いラベルはタブで自動的に折り返されます。 ラベルがタブに対して長すぎる場合、ラベルはオーバーフローし、テキストは表示されません。
+長いラベルはタブで自動的に折り返されます。 ラベルがタブに対して長すぎる場合、ラベルはオーバーフローし、テキストは表示されません。 長いラベルはタブで自動的に折り返されます。 ラベルがタブに対して長すぎる場合、ラベルはオーバーフローし、テキストは表示されません。
 
 {{"demo": "pages/components/tabs/TabsWrappedLabel.js", "bg": true}}
 
@@ -33,7 +33,7 @@ components: Tabs, Tab, TabScrollButton, TabContext, TabList, TabPanel
 
 ### 最大幅
 
-小さいビューには、 `variant = "fullWidth"` プロパティを使用する必要があります。 このデモでは、 [react-swipeable-views](https://github.com/oliviertassinari/react-swipeable-views) を使用してタブの遷移をアニメーション化し、タッチデバイスでタブをスワイプできるようにします。
+小さいビューには、 `variant = "fullWidth"` プロパティを使用する必要があります。 小さいビューには、 `variant = "fullWidth"` プロパティを使用する必要があります。 このデモでは、 [react-swipeable-views](https://github.com/oliviertassinari/react-swipeable-views) を使用してタブの遷移をアニメーション化し、タッチデバイスでタブをスワイプできるようにします。
 
 {{"demo": "pages/components/tabs/FullWidthTabs.js", "bg": true}}
 
@@ -47,7 +47,7 @@ components: Tabs, Tab, TabScrollButton, TabContext, TabList, TabPanel
 
 ### 自動スクロールボタン
 
-左右のスクロールボタンはデスクトップに自動的に表示され、モバイルでは非表示になります。 （ビューポート幅に基づく）
+左右のスクロールボタンはデスクトップに自動的に表示され、モバイルでは非表示になります。 （ビューポート幅に基づく） （ビューポート幅に基づく）
 
 {{"demo": "pages/components/tabs/ScrollableTabsButtonAuto.js", "bg": true}}
 
@@ -59,13 +59,13 @@ components: Tabs, Tab, TabScrollButton, TabContext, TabList, TabPanel
 
 ### スクロールボタンを防ぐ
 
-左右のスクロールボタンは表示されません。 すべてのスクロールは、ユーザーエージェントのスクロールメカニズム(たとえば、左右のスワイプ、Shift-マウスホイールなど。)を使用して開始する必要があります。
+左右のスクロールボタンは表示されません。 左右のスクロールボタンは表示されません。 すべてのスクロールは、ユーザーエージェントのスクロールメカニズム(たとえば、左右のスワイプ、Shift-マウスホイールなど。)を使用して開始する必要があります。
 
 {{"demo": "pages/components/tabs/ScrollableTabsButtonPrevent.js", "bg": true}}
 
 ## カスタマイズされたタブ
 
-コンポーネントのカスタマイズ例を次に示します。 詳細については、 [overrides documentation page](/customization/components/)を参照してください。
+An example for the current implementation can be found in the demos on this page. We've also published [an experimental API](#experimental-api) in `@material-ui/lab` that does not require extra work.
 
 {{"demo": "pages/components/tabs/CustomizedTabs.js", "bg": true}}
 
@@ -77,7 +77,7 @@ components: Tabs, Tab, TabScrollButton, TabContext, TabList, TabPanel
 
 ## ナビゲーションタブ
 
-デフォルトでは、タブは `button`要素を使用しますが、独自のカスタムタグまたはコンポーネントを提供できます。 次に、タブナビゲーションを実装する例を示します。
+デフォルトでは、タブは `button`要素を使用しますが、独自のカスタムタグまたはコンポーネントを提供できます。 次に、タブナビゲーションを実装する例を示します。 次に、タブナビゲーションを実装する例を示します。
 
 {{"demo": "pages/components/tabs/NavTabs.js", "bg": true}}
 

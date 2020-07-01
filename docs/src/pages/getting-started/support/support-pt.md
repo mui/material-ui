@@ -1,6 +1,6 @@
 # Suporte
 
-<p class="description">Desde a ajuda da comunidade até o suporte essencial aos negócios, estamos aqui para ajudar.</p>
+<p class="description">Desde a ajuda da comunidade até o suporte premium essencial aos negócios, estamos aqui para ajudar.</p>
 
 ## Ajuda da comunidade (grátis)
 
@@ -93,7 +93,7 @@ O resultado final? Todas as capacidades que você espera de um software de níve
 
 Ajuste Material-UI para atender requisitos específicos. Nos dê um resumo das suas necessidades e ajudaremos você se pudermos. Nós poderíamos:
 
-- Dar a você uma estimativa de tempo e preço, se o trabalho é simples
+- Dar a você uma estimativa de tempo e preço se o trabalho for simples
 - Sugerir alternativas que podem não exigir Material-UI
 - Recusar o trabalho devido a tempo ou relevância
 

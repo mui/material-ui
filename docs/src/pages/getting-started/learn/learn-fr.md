@@ -2,7 +2,7 @@
 
 <p class="description">Nouveau sur Material-UI ? C'est facile à apprendre si vous savez par où commencer ! Ce guide vous aidera à démarrer rapidement.</p>
 
-Developers come to Material-UI from different backgrounds and with different learning styles. Whether you prefer a more theoretical or practical approach, we hope you’ll find this section helpful. Comme toute technologie inconnue, Material-UI a une courbe d'apprentissage. Avec de la pratique et un peu de patience, vous comprendrez vite.
+Comme toute technologie inconnue, Material-UI a une courbe d'apprentissage. Avec de la pratique et un peu de patience, vous comprendrez vite. Developers come to Material-UI from different backgrounds and with different learning styles. Whether you prefer a more theoretical or practical approach, we hope you’ll find this section helpful.
 
 ## Premier exemple
 

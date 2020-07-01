@@ -18,17 +18,17 @@ Möglicherweise müssen Sie den Stil einer Komponente für eine bestimmte Implem
 
 Die erste Möglichkeit, den Stil einer Komponente zu überschreiben, besteht in der Verwendung von **Klassennamen**. Jede Komponente stellt eine `Klassennamen` Eigenschaft bereit, die immer auf das unterste Element angewendet wird.
 
-In diesem Beispiel wird die [`withStyles()`](/styles/basics/#higher-order-component-api) höherer Ordnung Komponente verwendet um benutzerdefinierte Stile in den DOM einzufügen und den Klassennamen mittels ihre `classes` Eigenschaftan die ` ClassNames` Komponente zu übergeben. Sie können sich [für jede andere Styling-Lösung](/guides/interoperability/) entscheiden oder sogar Standard CSS benutzen, um die Stile zu schaffen. Stellen Sie aber sicher, die [CSS - Injektionsreihenfolge](/styles/advanced/#css-injection-order) zu prüfen, da das CSS, welches durch die Material UI-Komponente in den DOM injiziert wird, die höchste Spezifität hat, da der `<link>` am Ende des `<4 />` injiziert wird, um sicherzustellen, dass die Komponenten immer richtig gerendert werden.
+Das obige Codebeispiel kann durch Verwendung **derselben CSS-API** als untergeordnete Komponente komprimiert werden. In diesem Beispiel injiziert die `withStyles()` höherer Ordnung Komponente eine `classes` Eigenschaft, die von der [`Button` Komponente](/api/button/#css) verwendet wird.
 
 {{"demo": "pages/customization/components/ClassNames.js"}}
 
 ### Überschreiben des styles mit Klassennamen
 
-Wenn die ` Klassennamen`-Eigenschaft nicht genug ist, und Sie auf tiefere Elemente zugreifen müssen, können Sie die ` classes`-Eigenschaft nutzen, um alle von Material-UI für eine bestimmte Komponente eingefügtes CSS anzupassen.
+Wenn die `Klassennamen`-Eigenschaft nicht genug ist, und Sie auf tiefere Elemente zugreifen müssen, können Sie die `classes`-Eigenschaft nutzen, um alle von Material-UI für eine bestimmte Komponente eingefügtes CSS anzupassen.
 
 The list of classes for each component is documented in the component API page, you should refer to the **CSS section** and **rule name column**. Zum Beispiel können Sie sich die [ Button CSS-API](/api/button/#css) anschauen. Alternativ können Sie die [Browser-Entwicklungswerkzeuge](#using-the-dev-tools) verwenden.
 
-In diesem Beispiel wird auch `withStyles()` verwendet (siehe oben), aber hier verwendet `ClassesNesting` die `Button` `classes` Eigenschaft, welche ein Objekt liefert, das die **Namen der zu überschreibenden Klassen** (Stilregeln) auf die anzuwendenden **CSS-Klassennamen ** (Werte) abbildet. Die vorhandenen Klassen der Komponente werden weiterhin eingefügt. Daher müssen nur die spezifischen Styles gesetzt werden die Sie hinzufügen oder überschreiben möchten.
+Das obige Codebeispiel kann durch Verwendung **derselben CSS-API** als untergeordnete Komponente komprimiert werden. In diesem Beispiel injiziert die `withStyles()` höherer Ordnung Komponente eine `classes` Eigenschaft, die von der [`Button` Komponente](/api/button/#css) verwendet wird.
 
 Beachten Sie, dass zusätzlich zum Buttonstil die Großschreibung der Buttonbeschriftung geändert wurde:
 
@@ -251,7 +251,7 @@ const theme = createMuiTheme({
 
 ### Globales CSS überschreiben
 
-Sie können auch alle Instanzen einer Komponente mit CSS anpassen. Components expose [global class names](/styles/advanced/#with-material-ui-core) to enable this. Es ist sehr ähnlich, wie Sie Bootstrap anpassen würden.
+Sie können auch alle Instanzen einer Komponente mit CSS anpassen. Es ist sehr ähnlich, wie Sie Bootstrap anpassen würden. Components expose [global class names](/styles/advanced/#with-material-ui-core) to enable this.
 
 ```jsx
 const GlobalCss = withStyles({

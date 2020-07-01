@@ -55,7 +55,7 @@ The second example demonstrates how to change the `transform-origin`, and condit
 
 Slide in from the edge of the screen. The `direction` property controls which edge of the screen the transition starts from.
 
-The Transition component's `mountOnEnter` property prevents the child component from being mounted until `in` is `true`. This prevents the relatively positioned component from scrolling into view from it's off-screen position. Similarly the `unmountOnExit` property removes the component from the DOM after it has been transition off screen.
+Similarly the `unmountOnExit` property removes the component from the DOM after it has been transition off screen. The Transition component's `mountOnEnter` property prevents the child component from being mounted until `in` is `true`. This prevents the relatively positioned component from scrolling into view from it's off-screen position.
 
 {{"demo": "pages/components/transitions/SimpleSlide.js", "bg": true}}
 
@@ -73,6 +73,6 @@ The components accept a `TransitionComponent` prop to customize the default tran
 
 - Accepts an `in` prop. This corresponds to the open/close state.
 - Call the `onEnter` callback prop when the enter transition starts.
-- Call the `onExited` callback prop when the exit transition is completed. These two callbacks allow to unmount the children when in a closed state and fully transitioned.
+- Call the `onExited` callback prop when the exit transition is completed. Call the `onExited` callback prop when the exit transition is completed.
 
 For more information on creating a custom transition, visit the [React Transition Group Transition docs](http://reactcommunity.org/react-transition-group/transition).

@@ -88,7 +88,18 @@ The key step in server-side rendering is to render the initial HTML of the compo
 We then get the CSS from the `sheets` using `sheets.toString()`. We will see how this is passed along in the `renderFullPage` function.
 
 ```jsx
-import express from 'express';
+res.send(renderFullPage(html, css));
+}
+
+const app = express();
+
+app.use('/build', express.static('build'));
+
+// This is fired every time the server-side receives a request.
+  const css = sheets.toString();
+
+  // Send the rendered page back to the client.
+  import express from 'express';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { ServerStyleSheets, ThemeProvider } from '@material-ui/core/styles';
@@ -108,17 +119,6 @@ function handleRender(req, res) {
   );
 
   // Grab the CSS from the sheets.
-  const css = sheets.toString();
-
-  // Send the rendered page back to the client.
-  res.send(renderFullPage(html, css));
-}
-
-const app = express();
-
-app.use('/build', express.static('build'));
-
-// This is fired every time the server-side receives a request.
 app.use(handleRender);
 
 const port = 3000;

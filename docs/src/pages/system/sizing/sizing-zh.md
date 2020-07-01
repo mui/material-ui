@@ -1,17 +1,17 @@
-# Sizing
+# Sizing 大小
 
-<p class="description">使用 width 和 height 工具集轻松地将元素设置宽或高（相对于其父元素）。</p>
+<p class="description">使用设置宽和高的辅助功能，您能够轻松的将一个元素的宽度或者高度设置为相对于父级元素一样。</p>
 
 ## 支持的值
 
-Sizing样式函数支持不同的属性输入类型：
+大小调整样式函数支持不同的属性输入类型：
 
 {{"demo": "pages/system/sizing/Values.js", "defaultCodeOpen": false}}
 
 ```jsx
-<Box width={1/4}> // Numbers in [0,1] are multiplied by 100 and converted to % values.
-<Box width={300}> // Numbers are converted to pixel values.
-<Box width="75%"> // String values are used as raw CSS.
+<Box width={1/4}> // 在 [0，1] 区间的数字，乘以 100 在转换成百分数（%）。
+<Box width={300}> // 转换成像素值的数字。
+<Box width="75%"> // 字符串的值作为原始的 CSS 使用。
 <Box width={1}>   // 100%
 ```
 

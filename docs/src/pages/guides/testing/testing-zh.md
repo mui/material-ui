@@ -6,7 +6,7 @@
 
 ## 内部
 
-Material-UI 的 测试范围 **很广**，因此我们有信心 对组件进行迭代，例如，[Argos-CI](https://www.argos-ci.com/mui-org/material-ui) 提供的可视化回归测试已被证明非常有用。 若您想要进一步了解内部测试，您可以查看 [README](https://github.com/mui-org/material-ui/blob/master/test/README.md)。
+Material-UI 的 测试范围 **很广**，因此我们有信心 对组件进行迭代，例如，[Argos-CI](https://www.argos-ci.com/mui-org/material-ui) 提供的可视化回归测试已被证明非常有用。 若您想要进一步了解内部测试，您可以查看 [README](https://github.com/mui-org/material-ui/blob/master/test/README.md)。 Material-UI 的 测试范围 **很广**，因此我们有信心 对组件进行迭代，例如，[Argos-CI](https://www.argos-ci.com/mui-org/material-ui) 提供的可视化回归测试已被证明非常有用。 若您想要进一步了解内部测试，您可以查看 [README](https://github.com/mui-org/material-ui/blob/master/test/README.md)。
 
 ## 用户空间
 
@@ -16,19 +16,19 @@ Material-UI 的 测试范围 **很广**，因此我们有信心 对组件进行�
 
 当你有组件可能会与 DOM API 产生交互，或者当为了完整测试组件而要求完整的生命周期时，用例会更趋向使用完整的 DOM 渲染（例如，`componentDidMount` 等等。）。
 
-为这种情况提供了 `createMount()` 函数。 除了封装 enzyme 的 API，它还提供了一个 `cleanUp` 函数。
+为这种情况提供了 `createMount()` 函数。 除了封装 enzyme 的 API，它还提供了一个 `cleanUp` 函数。 为这种情况提供了 `createMount()` 函数。 除了封装 enzyme 的 API，它还提供了一个 `cleanUp` 函数。
 
 ### Shallow rendering（浅层渲染）
 
 当把测试的组件当做一个小的单元时，浅层渲染起到了很好的约束作用。 这样也确保了你的测试不会间接地断言子组件的行为。 浅层渲染的目的是单独测试组件。 也就是说子元素的具体实现，如上下文信息，不会被泄漏。
 
-`createShallow()` 函数可用于此情况。 除了包装酶API，它提供 `dive`untilSelector`直到选择` 选项。
+`createShallow()` 函数可用于此情况。 `createShallow()` 函数可用于此情况。 除了包装酶API，它提供 `dive`untilSelector`直到选择` 选项。
 
 ### 渲染为字符串
 
 当在测试服务器组件行为时，渲染为字符串会有帮助。 你可以依此来断言所生成的 HTML 字符串。
 
-`createRender()` 函数非常适合这种情况。 这只是enzyme API的别名，只是为了保持一致性而暴露。
+`createRender()` 函数非常适合这种情况。 这只是enzyme API的别名，只是为了保持一致性而暴露。 这只是enzyme API的别名，只是为了保持一致性而暴露。
 
 ## API
 

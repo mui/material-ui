@@ -4,7 +4,7 @@
 
 ## Theming
 
-Add a `ThemeProvider` to the top level of your app to pass a theme down the React component tree. Anschließend können Sie in den Stilfunktionen auf das Designobjekt zugreifen.
+Sie können das äußere Theme erweitern, indem Sie eine Funktion bereitstellen: Das innere Theme ** überschreibt** das äußere Theme.
 
 > This example creates a theme object for custom-built components. If you intend to use some of the Material-UI's components you need to provide a richer theme structure using the `createMuiTheme()` method. Head to the the [theming section](/customization/theming/) to learn how to build your custom Material-UI theme.
 
@@ -232,12 +232,12 @@ Standardmäßig werden die Style-Tags **zuletzt** im `<head>` -Element der Seite
 Der `StylesProvider` Komponente hat eine `injectFirst` Eigenschaft, um **zuerst** die Style-Tags im Kopf einzufügen (weniger Priorität):
 
 ```jsx
-import { StylesProvider } from '@material-ui/core/styles';
+*/}
+</StylesProvider>
+      import { StylesProvider } from '@material-ui/core/styles';
 
 <StylesProvider injectFirst>
-  {/* Your component tree.
-      Mit Stil versehene Komponenten können die Stile von Material-UI überschreiben. */}
-</StylesProvider>
+  {/* Your component tree. Mit Stil versehene Komponenten können die Stile von Material-UI überschreiben.
 ```
 
 ### `makeStyles` / `withStyles` / `styled`
@@ -245,33 +245,10 @@ import { StylesProvider } from '@material-ui/core/styles';
 Das Einfügen von Style-Tags erfolgt in der **gleichen Reihenfolge** wie die `makeStyles`/`withStyles`/`styled` Aufrufe. Zum Beispiel gewinnt die Farbe Rot in diesem Fall:
 
 ```jsx
-import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
-
-const useStylesBase = makeStyles({
-  root: {
-    color: 'blue', // 🔵
-  },
-});
-
-const useStyles = makeStyles({
-  root: {
-    color: 'red', // 🔴
-  },
-});
-
-export default function MyComponent() {
-  // Order doesn't matter
-  const classes = useStyles();
-  const classesBase = useStylesBase();
-
-  // Order doesn't matter
-  const className = clsx(classes.root, classesBase.root)
-
-  // color: red 🔴 wins.
-  return <div className={className} />;
-}
-```
+Die nicht deterministische Natur der Klassennamen ermöglicht die Stilisolation.
+  Sie müssen die <code>Klassen</code> Eigenschaft einer Komponente verwenden, um die Styles zu überschreiben.
+``` Eigenschaft einer Komponente verwenden, um die Styles zu überschreiben.
+</code>
 
 Die Hook-Aufrufreihenfolge und die Klassennamensverkettungsreihenfolge **spielen keine Rolle**.
 
@@ -307,7 +284,7 @@ export default function App() {
 
 #### Other HTML elements
 
-[Create React App](https://github.com/facebook/create-react-app) entfernt HTML-Kommentare beim Erstellen des Produktions-Builds. Um dieses Problem zu umgehen, können Sie ein DOM-Element (nicht einen Kommentar) als JSS-Einfügepunkt angeben, z. B. `<noscript>`:
+The way that you do this is by passing a `<meta property="csp-nonce" content={nonce} />` tag in the `<head>` of your HTML. JSS will then, by convention, look for a `<meta property="csp-nonce"` tag and use the `content` value as the nonce.
 
 ```jsx
 <head>
@@ -323,12 +300,12 @@ import { StylesProvider, jssPreset } from '@material-ui/core/styles';
 const jss = create({
   ...jssPreset(),
   // Define a custom insertion point that JSS will look for when injecting the styles into the DOM.
-  insertionPoint: document.getElementById('jss-insertion-point'),
-});
+  import { create } from 'jss';
+import { StylesProvider, jssPreset } from '@material-ui/core/styles';
 
-export default function App() {
-  return <StylesProvider jss={jss}>...</StylesProvider>;
-}
+const jss = create({
+  ...jssPreset(),
+  // Define a custom insertion point that JSS will look for when injecting the styles into the DOM.
 ```
 
 #### JS createComment
@@ -397,7 +374,7 @@ Siehe [dieses Beispielprojekt](https://github.com/mui-org/material-ui/blob/maste
 
 ## Klassennamen
 
-Die Klassennamen werden von dem [Klassennamengenerator](/styles/api/#creategenerateclassname-options-class-name-generator) generiert. Nehmen wir den folgenden Stil als Beispiel.
+Die Klassennamen werden von dem [Klassennamengenerator](/styles/api/#creategenerateclassname-options-class-name-generator) generiert.
 
 ### Standard
 

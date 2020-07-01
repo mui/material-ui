@@ -1,8 +1,8 @@
 # 样式库的互通性
 
-<p class="description">While you can use the JSS based styling solution provided by Material-UI to style your application, you can also use the one you already know and love (from plain CSS to styled-components).</p>
+<p class="description">当您可以使用 Materal-UI 提供的基于 JSS 的样式解决方案来装饰应用程序，也可以用您已经熟知和喜欢的工具（从纯 CSS 到 styled-components）。 </p>
 
-This guide aims to document the most popular alternatives, but you should find that the principles applied here can be adapted to other libraries. 我们为以下的样式方案提供了一些方案：
+本指南旨在归档当前比较流行的一些替代方案，但是您会发现在这里运用的法则，也可以在其他库里适用。 我们为以下的样式方案提供了一些示例：
 
 - [纯 CSS](#plain-css)
 - [全局 CSS](#global-css)
@@ -13,7 +13,7 @@ This guide aims to document the most popular alternatives, but you should find t
 
 ## 纯 CSS
 
-没有什么特别花哨的，只是普通的旧版 CSS。
+没有什么特别花哨的，只是纯 CSS。
 
 {{"demo": "pages/guides/interoperability/StyledComponents.js", "hideToolbar": true}}
 
@@ -43,31 +43,31 @@ import './PlainCssButton.css';
 export default function PlainCssButton() {
   return (
     <div>
-      <Button>Default</Button>
-      <Button className="button">Customized</Button>
+      <Button>默认的按钮</Button>
+      <Button className="button">自定义按钮</Button>
     </div>
   );
 }
 ```
 
-### Controlling priority ⚠️
+### 控制的优先权 ⚠️
 
-**请注意：** JSS 在 `<head>` 底部注入其样式表。 If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/styles/advanced/#css-injection-order), as in the demo:
+**请注意：** JSS 在 `<head>` 底部注入其样式表。 如果您不想使用 **!important** 来标记样式属性的话，则需要更改 [CSS 的注入顺序](/styles/advanced/#css-injection-order)，如下所示：
 
 ```jsx
 import { StylesProvider } from '@material-ui/core/styles';
 
 <StylesProvider injectFirst>
   {/* 你的组件树。
-      Now, you can override Material-UI's styles. */}
+      现在，您可以覆盖 Material-UI 的样式。 */}
 </StylesProvider>
 ```
 
 ### 更深层的元素
 
-如果您尝试赋予Drawer（抽屉）组件以永久的变体的样式，您很可能会需要涉及抽屉组件的子纸张元素。 但是，这不是抽屉组件的根元素，因此上面的样式组件自定义将不起作用。 您则需要使用 Material-UI 的 API 中的 [`classes`](/styles/advanced/#overriding-styles-classes-prop) 来达到目的。
+如果您尝试赋予 Drawer（抽屉）组件以永久的变体的样式，这很可能会影响到抽屉组件的子纸张元素。 但是，纸张元素不是抽屉组件的根元素，因此上面的自定义 styled-components 将不起作用。 您则需要使用 Material-UI 的 [`classes`](/styles/advanced/#overriding-styles-classes-prop) API 来达到目的。
 
-以下示例除了按钮本身的自定义样式外，还会覆盖 `label` 的 `Button` 样式。
+以下示例除了自定义按钮本身的样式外，还会覆盖 `Button` 的`标签（label）`的样式。
 
 {{"demo": "pages/guides/interoperability/StyledComponents.js", "hideToolbar": true}}
 
@@ -97,9 +97,9 @@ import './PlainCssButtonDeep.css';
 export default function PlainCssButtonDeep() {
   return (
     <div>
-      <Button>Default</Button>
+      <Button>默认的</Button>
       <Button classes={{ root: 'button', label: 'button-label' }}>
-        Customized
+        自定义的
       </Button>
     </div>
   );
@@ -136,20 +136,20 @@ import Button from '@material-ui/core/Button';
 import './GlobalCssButton.css';
 
 export default function GlobalCssButton() {
-  return <Button>Customized</Button>;
+  return <Button>自定义的</Button>;
 }
 ```
 
-### Controlling priority ⚠️
+### 控制的优先权 ⚠️
 
-**请注意：** JSS 在 `<head>` 底部注入其样式表。 If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/styles/advanced/#css-injection-order), as in the demo:
+**请注意：** JSS 在 `<head>` 底部注入其样式表。 如果您不想使用 **!important** 来标记样式属性的话，则需要更改 [CSS 的注入顺序](/styles/advanced/#css-injection-order)，如下所示：
 
 ```jsx
 import { StylesProvider } from '@material-ui/core/styles';
 
 <StylesProvider injectFirst>
   {/* 你的组件树。
-      Now, you can override Material-UI's styles. */}
+      现在，您可以覆盖 Material-UI 的样式。 */}
 </StylesProvider>
 ```
 
@@ -157,7 +157,7 @@ import { StylesProvider } from '@material-ui/core/styles';
 
 ![stars](https://img.shields.io/github/stars/styled-components/styled-components.svg?style=social&label=Star) ![npm](https://img.shields.io/npm/dm/styled-components.svg?)
 
-The `styled()` method works perfectly on all of the components.
+`styled()` 方法完美适用于我们所有的组件。
 
 {{"demo": "pages/guides/interoperability/StyledComponents.js", "hideToolbar": true}}
 
@@ -181,15 +181,15 @@ const StyledButton = styled(Button)`
 export default function StyledComponents() {
   return (
     <div>
-      <Button>Default</Button>
-      <StyledButton>Customized</StyledButton>
+      <Button>默认的</Button>
+      <StyledButton>自定义的</StyledButton>
     </div>
   );
 }
 
 ```
 
-### Controlling priority ⚠️
+### 控制的优先权 ⚠️
 
 **请注意：** styled-components 和 JSS 都在 `<head>` 的底部注入其样式表。 若想要 styled-components 的样式在最后加载，我们推荐的最佳方法是更改 [CSS 的注入顺序](/styles/advanced/#css-injection-order)，如下演示：
 
@@ -200,15 +200,17 @@ import { StylesProvider } from '@material-ui/core/styles';
   {/* 你的组件树。
       Now, you can override Material-UI's styles. */}
 </StylesProvider>
+      现在，您可以覆盖 Material-UI 的样式。 */}
+</StylesProvider>
 ```
 
-另外一个在 styled-components 中使用 `&&` 字符的方案则是通过重复类名来[增强特征](https://www.styled-components.com/docs/advanced#issues-with-specificity)。 Avoid the usage of `!important`.
+另外一个在 styled-components 中使用 `&&` 字符的方案则是通过重复类名来 [增强其优先级](https://www.styled-components.com/docs/advanced#issues-with-specificity)。 您应该避免使用 `!imporant`。
 
 ### 更深层的元素
 
 如果您尝试赋予Drawer（抽屉）组件以永久的变体的样式，您很可能会需要涉及抽屉组件的子纸张元素。 但是，这不是抽屉组件的根元素，因此上面的样式组件自定义将不起作用。 您则需要使用 Material-UI 的 API 中的 [`classes`](/styles/advanced/#overriding-styles-classes-prop) 来达到目的。
 
-以下示例除了按钮本身的自定义样式外，还会覆盖 `label` 的 `Button` 样式。 它还解决了 [这个styled-components问题](https://github.com/styled-components/styled-components/issues/439) 由不应该在底层组件来通过“消耗”的特性。
+以下示例除了按钮本身的自定义样式外，还会覆盖 `label` 的 `Button` 样式。 通过“消费”不应该传递到底层的那些属性，它还解决了 [这个 styled-components 问题](https://github.com/styled-components/styled-components/issues/439)，
 
 {{"demo": "pages/guides/interoperability/StyledComponentsDeep.js"}}
 
@@ -239,7 +241,7 @@ export default function StyledComponentsDeep() {
 }
 ```
 
-以上的例子依赖于[默认的`类`的值](/styles/advanced/#with-material-ui-core)，但是您也可以提供自定义的类名：`.label`。
+以上的例子依赖于 [默认的`类`的值](/styles/advanced/#with-material-ui-core)，但是您也可以提供自定义的类名：`.label`。
 
 ```jsx
 import React from 'react';
@@ -274,7 +276,7 @@ export default function StyledComponentsDeep() {
 
 Material-UI 有着一个丰富的主题架构，而您可以利用它来做一些颜色的处理，过渡动画，媒体查询等等。
 
-We encourage to share the same theme object between Material-UI and your styles.
+我们鼓励在 Materal-UI 和您的样式之间分享相同的主题对象（theme object）。
 
 ```jsx
 const StyledButton = styled(Button)`
@@ -328,7 +330,7 @@ const StyledMenu = styled(({ className, ...props }) => (
 
 ![stars](https://img.shields.io/github/stars/css-modules/css-modules.svg?style=social&label=Star)
 
-鉴于它全权依赖于大家使用的打包方案，我们很难得知[此种样式方案](https://github.com/css-modules/css-modules)的市场占有率。
+鉴于它全权依赖于大家使用的打包方案，我们很难得知 [此种样式方案](https://github.com/css-modules/css-modules) 的市场占有率。
 
 {{"demo": "pages/guides/interoperability/StyledComponents.js", "hideToolbar": true}}
 
@@ -352,15 +354,15 @@ const StyledMenu = styled(({ className, ...props }) => (
 
 ```jsx
 import React from 'react';
-// webpack, parcel or else will inject the CSS into the page
+// webpack，parcel 或者其他会将 CSS 注入页面
 import styles from './CssModulesButton.css';
 import Button from '@material-ui/core/Button';
 
 export default function CssModulesButton() {
   return (
     <div>
-      <Button>Default</Button>
-      <Button className={styles.button}>Customized</Button>
+      <Button>默认</Button>
+      <Button className={styles.button}>自定义</Button>
     </div>
   );
 }
@@ -368,7 +370,7 @@ export default function CssModulesButton() {
 
 ### Controlling priority ⚠️
 
-**请注意：** JSS 在 `<head>` 底部注入其样式表。 If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/styles/advanced/#css-injection-order), as in the demo:
+**请注意：** JSS 在 `<head>` 底部注入其样式表。 如果您不想使用 **!important** 来标记样式属性的话，则需要更改 [CSS 的注入顺序](/styles/advanced/#css-injection-order)，如下所示：
 
 ```jsx
 import { StylesProvider } from '@material-ui/core/styles';
@@ -376,6 +378,8 @@ import { StylesProvider } from '@material-ui/core/styles';
 <StylesProvider injectFirst>
   {/* 你的组件树。
       Now, you can override Material-UI's styles. */}
+</StylesProvider>
+      现在，您可以覆盖 Material-UI 的样式。 */}
 </StylesProvider>
 ```
 
@@ -427,7 +431,7 @@ export default function CssModulesButtonDeep() {
 
 ### `css` 属性
 
-Emotion的 **css()** 方法与Material-UI无缝协作。
+Emotion的 **css()** 方法与 Material-UI 无缝协作。
 
 {{"demo": "pages/guides/interoperability/EmotionCSS.js", "hideToolbar": true}}
 
@@ -460,16 +464,16 @@ export default function EmotionCSS() {
 }
 ```
 
-### Controlling priority ⚠️
+### 控制的优先权 ⚠️
 
-**请注意：** JSS 在 `<head>` 底部注入其样式表。 If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/styles/advanced/#css-injection-order), as in the demo:
+**请注意：** JSS 在 `<head>` 底部注入其样式表。 如果您不想使用 **!important** 来标记样式属性的话，则需要更改 [CSS 的注入顺序](/styles/advanced/#css-injection-order)，如下所示：
 
 ```jsx
 import { StylesProvider } from '@material-ui/core/styles';
 
 <StylesProvider injectFirst>
   {/* 你的组件树。
-      Now, you can override Material-UI's styles. */}
+      现在，您可以覆盖 Material-UI 的样式。 */}
 </StylesProvider>
 ```
 
@@ -477,7 +481,7 @@ import { StylesProvider } from '@material-ui/core/styles';
 
 Material-UI 有着一个丰富的主题架构，而您可以利用它来做一些颜色的处理，过渡动画，媒体查询等等。
 
-We encourage to share the same theme object between Material-UI and your styles.
+我们鼓励在 Materal-UI 和您的样式之间分享相同的主题对象（theme object）。
 
 ```jsx
 <Button
@@ -502,6 +506,6 @@ We encourage to share the same theme object between Material-UI and your styles.
 
 {{"demo": "pages/guides/interoperability/EmotionTheme.js"}}
 
-### `styled()` 的 API
+### `styled()` API
 
-它完全和 styled components 一样起作用。 您可以[使用相同的指南](/guides/interoperability/#styled-components) 。
+它会像 styled components 一样起作用。 您可以 [使用相同的指南](/guides/interoperability/#styled-components) 。

@@ -21,7 +21,7 @@ Material-UI 最初设计受到了在服务器端渲染的约束，但是您可�
 
 ### 主题
 
-Create a theme that will be shared between the client and the server:
+创建一个客户端和服务端之间共享的主题。
 
 `theme.js`
 
@@ -50,7 +50,7 @@ const theme = createMuiTheme({
 
 ### 服务器端
 
-The following is the outline for what the server-side is going to look like. We are going to set up an [Express middleware](https://expressjs.com/en/guide/using-middleware.html) using [app.use](https://expressjs.com/en/api.html) to handle all requests that come in to the server. If you're unfamiliar with Express or middleware, just know that the handleRender function will be called every time the server receives a request.
+以下是服务端渲染的概要。 我们将使用 [app.use](https://expressjs.com/en/api.html) 建立一个 [Express 中间件](https://expressjs.com/en/guide/using-middleware.html) 来处理所有进入服务器的请求。 如果您不熟悉 Express 或中间件的概念，那么只需要知道每次服务器收到请求时都会调用 handleRender 函数就可以了。
 
 `server.js`
 
@@ -79,11 +79,11 @@ app.listen(port);
 
 对于每次请求，我们首先需要做的是创建一个 `ServerStyleSheets`。
 
-When rendering, we will wrap `App`, the root component, inside a [`StylesProvider`](/styles/api/#stylesprovider) and [`ThemeProvider`](/styles/api/#themeprovider) to make the style configuration and the `theme` available to all components in the component tree.
+当渲染时，我们将把根组件 `App` 包裹在 [`StylesProvider`](/styles/api/#stylesprovider) 和 [`ThemeProvider`](/styles/api/#themeprovider) 中，以使样式配置和 `主题` 对组件树中的所有组件都可用。
 
-The key step in server-side rendering is to render the initial HTML of the component **before** we send it to the client side. 我们用 [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html) 来实现此操作。
+服务端渲染的关键步骤是在我们将组件的初始 HTML 发送到客户端**之前**就开始进行渲染。 我们用 [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html) 来实现此操作。
 
-We then get the CSS from the `sheets` using `sheets.toString()`. We will see how this is passed along in the `renderFullPage` function.
+然后我们就可以使用 `sheets.toString()` 方法从 `sheets` 中获取 CSS。 我们将看到这是如何在 `renderFullPage` 函数中传递这些信息的。
 
 ```jsx
 import express from 'express';
@@ -96,7 +96,7 @@ import theme from './theme';
 function handleRender(req, res) {
   const sheets = new ServerStyleSheets();
 
-  // Render the component to a string.
+  // 将组件渲染成字符串。
   const html = ReactDOMServer.renderToString(
     sheets.collect(
       <ThemeProvider theme={theme}>
@@ -105,7 +105,7 @@ function handleRender(req, res) {
     ),
   );
 
-  // Grab the CSS from the sheets.
+  // 从 sheet 中抓取 CSS。
   const css = sheets.toString();
 
   // 将渲染的页面送回到客户端。
@@ -125,7 +125,7 @@ app.listen(port);
 
 ### 注入组件的初始 HTML 和 CSS
 
-The final step on the server-side is to inject the initial component HTML and CSS into a template to be rendered on the client side.
+服务端渲染的最后一步是将初始组件的 HTML 和 CSS 注入到客户端要渲染的模板中。
 
 ```js
 function renderFullPage(html, css) {
@@ -146,7 +146,7 @@ function renderFullPage(html, css) {
 
 ### 客户端
 
-客户端则是简单明了的。 我们只需要移除服务器端生成的 CSS。 Let's take a look at the client file:
+客户端则是简单明了的。 我们只需要移除服务器端生成的 CSS。 让我们来看看客户端的文件：
 
 `client.js`
 
@@ -185,4 +185,4 @@ ReactDOM.hydrate(<Main />, document.querySelector('#root'));
 
 ## 故障排除（Troubleshooting）
 
-Check out the FAQ answer: [My App doesn't render correctly on the server](/getting-started/faq/#my-app-doesnt-render-correctly-on-the-server).
+查看常见问题解答：[我的应用程序在服务端上不能正确渲染](/getting-started/faq/#my-app-doesnt-render-correctly-on-the-server)。

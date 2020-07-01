@@ -21,7 +21,7 @@ Você pode fornecer um ícone alternativo para os estados de aberto e fechado us
 
 {{"demo": "pages/components/speed-dial/OpenIconSpeedDial.js"}}
 
-## Sugestões de ação fixadas
+## Dicas de ação fixadas
 
 Os SpeedDialActions podem exibir dicas de forma fixadas para que os usuários não precisem manter as ações pressionadas para ver a dica nos dispositivos de toque.
 

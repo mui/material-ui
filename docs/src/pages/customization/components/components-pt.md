@@ -251,7 +251,7 @@ const theme = createMuiTheme({
 
 ### Sobrescrita do CSS Global
 
-Você também pode customizar todas as instâncias de um componente com CSS. Componentes expõe [nomes de classe globais](/styles/advanced/#with-material-ui-core) para habilitar isso. É muito semelhante a como você customizaria o Bootstrap.
+Você também pode customizar todas as instâncias de um componente com CSS. É muito semelhante a como você customizaria o Bootstrap. Componentes expõe [nomes de classe globais](/styles/advanced/#with-material-ui-core) para habilitar isso.
 
 ```jsx
 const GlobalCss = withStyles({

@@ -1,8 +1,8 @@
-# 活版印刷
+# Typography 文字铸排
 
-<p class="description">用于控制对齐，包装，重量等的常用文本实用程序的文档和示例。</p>
+<p class="description">用于控制对齐（alignment），封装（wrapping），以及字体权重（weight）等等的常用文本实用辅助工具的文档和示例。</p>
 
-## 文本对齐
+## 文本对齐（Text alignment）
 
 {{"demo": "pages/system/typography/TextAlignment.js", "defaultCodeOpen": false}}
 
@@ -12,7 +12,7 @@
 <Box textAlign="right">…
 ```
 
-## 字体高度
+## 字体权重（Font weight）
 
 {{"demo": "pages/system/typography/FontWeight.js", "defaultCodeOpen": false}}
 
@@ -24,7 +24,7 @@
 <Box fontWeight="fontWeightBold">…
 ```
 
-## 字体大小 
+## 字体大小（Font size）
 
 {{"demo": "pages/system/typography/FontSize.js", "defaultCodeOpen": false}}
 
@@ -34,7 +34,7 @@
 <Box fontSize={16}>…
 ```
 
-## 字体样式
+## 字体样式（Font Style）
 
 {{"demo": "pages/system/typography/FontStyle.js", "defaultCodeOpen": false}}
 
@@ -44,7 +44,7 @@
 <Box fontStyle="oblique">…
 ```
 
-## 字体系列
+## 字体系列（Font family）
 
 {{"demo": "pages/system/typography/FontFamily.js", "defaultCodeOpen": false}}
 
@@ -53,7 +53,7 @@
 <Box fontFamily="Monospace">…
 ```
 
-## 字符间距
+## 字符间距（Letter Spacing）
 
 {{"demo": "pages/system/typography/LetterSpacing.js", "defaultCodeOpen": false}}
 
@@ -62,7 +62,7 @@
 <Box letterSpacing={10}>…
 ```
 
-## 行高
+## 行高（Line Height）
 
 {{"demo": "pages/system/typography/LineHeight.js", "defaultCodeOpen": false}}
 
@@ -77,7 +77,7 @@
 import { typography } from '@material-ui/system';
 ```
 
-| 导入名称            | Prop            | CSS 属性           | Theme key                                                              |
+| 导入名称            | 属性              | CSS 属性           | Theme key                                                              |
 |:--------------- |:--------------- |:---------------- |:---------------------------------------------------------------------- |
 | `fontFamily`    | `fontFamily`    | `font-family`    | [`typography`](/customization/default-theme/?expand-path=$.typography) |
 | `fontSize`      | `fontSize`      | `font-size`      | [`typography`](/customization/default-theme/?expand-path=$.typography) |

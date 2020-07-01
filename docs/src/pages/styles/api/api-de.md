@@ -9,8 +9,8 @@ Eine Funktion, die eine [Klassennamengeneratorfunktion](https://cssinjs.org/jss-
 ### Parameter
 
 1. `options` (*Object* [optional]): 
-  - `options.disableGlobal ` (*Boolean* [optional]): Standardeinstellung ist `false`. Deaktivieren Sie die Generierung deterministischer Klassennamen.
-  - `options.productionPrefix` (*String* [optional]): Standardeinstellung ist ` 'jss' `. Ein String, der den Klassennamen in der Produktion vorangestellt wird.
+  - `options.disableGlobal` (*Boolean* [optional]): Standardeinstellung ist `false`. Deaktivieren Sie die Generierung deterministischer Klassennamen.
+  - `options.productionPrefix` (*String* [optional]): Standardeinstellung ist `'jss'`. Ein String, der den Klassennamen in der Produktion vorangestellt wird.
   - `options.seed` (*String* [optional]): Standardeinstellung ist `''`. Der String, mit der der Generator eindeutig identifiziert wird. Dies kann verwendet werden, um Klassennamenskollisionen bei Verwendung mehrerer Generatoren in einem Dokument zu vermeiden.
 
 ### Rückgabewerte
@@ -223,7 +223,7 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 
 ## `ThemeProvider`
 
-Diese Komponente hat eine `Theme` Eigenschaft. Diese wird durch den Kontext in der React-Struktur verfügbar gemacht. Es sollte vorzugsweise an der **Wurzel Ihres Komponentenbaums** verwendet werden.
+Die `innerRef` Eigenschaft ist veraltet. Es sollte vorzugsweise an der **Wurzel Ihres Komponentenbaums** verwendet werden.
 
 ### Eigenschaften
 

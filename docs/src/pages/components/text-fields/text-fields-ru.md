@@ -21,7 +21,7 @@ It supports standard, outlined and filled styling.
 
 ## Form props
 
-Standard form attributes are supported e.g. `required`, `disabled`, `type`, etc. as well as a `helperText` which is used to give context about a field’s input, such as how the input will be used.
+The underlying DOM nodes should have this structure: In order for the text field to be accessible, **the input should be linked to the label and the helper text**.
 
 {{"demo": "pages/components/text-fields/FormPropsTextFields.js"}}
 
@@ -51,7 +51,7 @@ There are multiple ways to display an icon with a text field.
 
 ### Украшения поля ввода (Input)
 
-The main way is with an `InputAdornment`. This can be used to add a prefix, a suffix or an action to an input. Например, вы можете использовать кнопку-иконку, чтобы скрыть или показать пароль.
+The main way is with an `InputAdornment`. Например, вы можете использовать кнопку-иконку, чтобы скрыть или показать пароль. This can be used to add a prefix, a suffix or an action to an input.
 
 {{"demo": "pages/components/text-fields/InputAdornments.js"}}
 
@@ -63,7 +63,7 @@ Fancy smaller inputs? Use the `size` prop.
 
 ## Расположение
 
-`margin` prop can be used to alter the vertical spacing of inputs. Using `none` (default) will not apply margins to the `FormControl`, whereas `dense` and `normal` will. `dense` and `normal` alter other styles to meet the specification.
+`dense` and `normal` alter other styles to meet the specification. `margin` prop can be used to alter the vertical spacing of inputs. Using `none` (default) will not apply margins to the `FormControl`, whereas `dense` and `normal` will.
 
 `fullWidth` can be used to make the input take up the full width of its container.
 

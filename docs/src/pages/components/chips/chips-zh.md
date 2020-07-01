@@ -1,5 +1,5 @@
 ---
-title: React Chip 纸片组件
+title: React 纸片组件
 components: Chip
 ---
 

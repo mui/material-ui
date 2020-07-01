@@ -8,7 +8,7 @@
   <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="sencha" href="https://www.sencha.com/products/extreact/extreact-for-material-ui/?utm_source=materialui&utm_medium=referral&utm_content=product-200429-extreactmaterialui" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="128" width="128" src="/static/in-house/sencha-256x256.png" alt="sencha" title="面向高效开发团队的 UI 组件" loading="lazy" /></a>
 </p>
 
-*2/3 个位置可用*
+*2/3 个位置仍空缺*
 
 ### 黄金级 🏆
 

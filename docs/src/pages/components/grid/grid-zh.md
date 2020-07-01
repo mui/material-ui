@@ -1,5 +1,5 @@
 ---
-title: React Grid 栅格组件
+title: React 栅格组件
 components: Grid
 ---
 

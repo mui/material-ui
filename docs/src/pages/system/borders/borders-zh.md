@@ -1,12 +1,12 @@
-# 边距
+# Borders 边框
 
-<p class="description">使用边框实用程序快速设置元素的边框和边框半径的样式。 非常适合图像，按钮或任何其他元素。</p>
+<p class="description">使用边框的辅助功能，您能够快速设置元素的边框和边框圆角（border-radius）的样式。 这非常适合图像，按钮或任何其他元素。</p>
 
-## 描边
+## 边框
 
-使用边框实用程序添加或删除元素的边框。 选择所有边框或一次一个。
+使用边框的辅助功能来添加或删除一个元素的边框。 选择所有边框或一次选择一个。
 
-### 添加剂
+### 添加
 
 {{"demo": "pages/system/borders/BorderAdditive.js", "defaultCodeOpen": false, "bg": true}}
 
@@ -18,7 +18,7 @@
 <Box borderLeft={1}>…
 ```
 
-### 减法
+### 相减
 
 {{"demo": "pages/system/borders/BorderSubtractive.js", "defaultCodeOpen": false, "bg": true}}
 
@@ -30,7 +30,7 @@
 <Box borderLeft={0}>…
 ```
 
-## 描边颜色
+## 边框颜色
 
 {{"demo": "pages/system/borders/BorderColor.js", "defaultCodeOpen": false}}
 
@@ -42,7 +42,7 @@
 <Box borderColor="text.primary">…
 ```
 
-## 边界半径
+## Border-radius
 
 {{"demo": "pages/system/borders/BorderRadius.js", "defaultCodeOpen": false}}
 

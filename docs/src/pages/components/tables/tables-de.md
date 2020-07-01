@@ -23,7 +23,7 @@ Eine Daten-Tabelle enthält oben eine Kopfzeile, welche die Spaltennamen auflist
 
 Jede Zeile sollte ein Optionsfeld begleiten, falls die Nutzer die Daten auswählen oder ändern müssen.
 
-For accessibility, the first column is set to be a `<th>` element, with a `scope` of `"col"`. Dies ermöglicht es Lesern, mithilfe von Zeilen- und Spaltenname den Inhalt einer Zelle zu ermitteln.
+Es verwendet die `TableSortLabel` Komponente, um Spaltenüberschriften zu formatieren. Dieses Beispiel demonstriert die Nutzung von `Optionsfeld` und klickbaren Zeilen zur Auswahl mit einer benutzerdefinierten `Werkzeugleiste`.
 
 ## Einfache Tabelle
 

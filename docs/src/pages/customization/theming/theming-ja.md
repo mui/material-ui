@@ -10,13 +10,13 @@
 
 ## テーマプロバイダー
 
-テーマをカスタマイズする場合は、`ThemeProvider`コンポーネントを使用して、アプリケーションにテーマを挿入する必要があります。 ただし、これはオプションです。 Material-UIコンポーネントにはデフォルトのテーマが付属しています。
-
 `ThemeProvider` relies on the [context feature of React](https://reactjs.org/docs/context.html) to pass the theme down to the components, so you need to make sure that `ThemeProvider` is a parent of the components you are trying to customize. 詳細については、[ APIセクション](/styles/api/#themeprovider) をご覧ください。
+
+詳細については、[ APIセクション](/styles/api/#themeprovider) をご覧ください。 `ThemeProvider` relies on the [context feature of React](https://reactjs.org/docs/context.html) to pass the theme down to the components, so you need to make sure that `ThemeProvider` is a parent of the components you are trying to customize.
 
 ## テーマ構成変数(Theme configuration variables)
 
-テーマの構成変数を変更することは、Material-UIをニーズに合わせる最も効果的な方法です。 以下のセクションでは、最も重要なテーマ変数について説明します。
+テーマの構成変数を変更することは、Material-UIをニーズに合わせる最も効果的な方法です。 以下のセクションでは、最も重要なテーマ変数について説明します。 以下のセクションでは、最も重要なテーマ変数について説明します。
 
 - [パレット](/customization/palette/)
 - [タイポグラフィ](/customization/typography/)
@@ -43,15 +43,15 @@ Reactコンポーネント内のテーマ変数に[アクセスできます](/st
 
 {{"demo": "pages/customization/theming/ThemeNesting.js"}}
 
-内部テーマは外側のテーマを**オーバーライドします**。 関数を提供することにより、外側のテーマを拡張できます。
+内部テーマは外側のテーマを**オーバーライドします**。 関数を提供することにより、外側のテーマを拡張できます。 内部テーマは外側のテーマを**オーバーライドします**。 関数を提供することにより、外側のテーマを拡張できます。
 
 {{"demo": "pages/customization/theming/ThemeNestingExtend.js"}}
 
 ### パフォーマンスに関する注意
 
-`ThemeProvider`コンポーネントをネストすることによるパフォーマンスへの影響は、JSSの背後で行われる作業に関連しています。 理解すべき主な点は、挿入されたCSSが次のタプル`（styles、theme）`でキャッシュされることです 。
+Otherwise you'll encounter `Error: Function component cannot be given refs`. See also: [Composition: Caveat with refs](/guides/composition/#caveat-with-refs).
 
-- `theme`: レンダリングのたびに新しいテーマを指定すると、新しいCSSオブジェクトが計算されて注入されます。 UIの一貫性とパフォーマンスの両方のために、限られた数のテーマオブジェクトをレンダリングすることをお勧めします。
+- `theme`: レンダリングのたびに新しいテーマを指定すると、新しいCSSオブジェクトが計算されて注入されます。 UIの一貫性とパフォーマンスの両方のために、限られた数のテーマオブジェクトをレンダリングすることをお勧めします。 UIの一貫性とパフォーマンスの両方のために、限られた数のテーマオブジェクトをレンダリングすることをお勧めします。
 - `styles` ：スタイルオブジェクトが大きいほど、より多くの作業が必要になります。
 
 ## API
@@ -97,10 +97,10 @@ const theme = createMuiTheme({
 1. `theme` (*Object*): 強化するテーマオブジェクト。
 2. `オプション` (*オプジェクト* [任意]):
 
-- `breakpoints` (*Array\<String\>* [optional]): Default to `['sm', 'md', 'lg']`. Array of [breakpoints](/customization/breakpoints/) (identifiers).
-- `disableAlign` (*Boolean* [optional]): Default to `false`. フォントサイズがわずかに変化して線が表示されるかどうか 高さは保持され、Material Designの4pxライン高さグリッドに位置合わせされます。 これには、テーマのスタイルで単位なしの行の高さが必要です。
-- `factor` (*Number* [optional]): Default to `2`. この値は、フォントサイズのサイズ変更の強度を決定します。 値が大きいほど、小さな画面のフォントサイズの差は小さくなります。 値が小さいほど、小さい画面のフォントサイズが大きくなります。 値は1より大きくなければなりません。
-- `variants` (*Array\<String\>* [optional]): Default to all. 処理するタイポグラフィバリアント。
+- Array of [breakpoints](/customization/breakpoints/) (identifiers). `breakpoints` (*Array\<String\>* [optional]): Default to `['sm', 'md', 'lg']`.
+- `variants` (*Array\<String\>* [optional]): Default to all. フォントサイズがわずかに変化して線が表示されるかどうか 高さは保持され、Material Designの4pxライン高さグリッドに位置合わせされます。 これには、テーマのスタイルで単位なしの行の高さが必要です。 これには、テーマのスタイルで単位なしの行の高さが必要です。
+- `variants` (*Array\<String\>* [optional]): Default to all. この値は、フォントサイズのサイズ変更の強度を決定します。 値が大きいほど、小さな画面のフォントサイズの差は小さくなります。 値が小さいほど、小さい画面のフォントサイズが大きくなります。 値は1より大きくなければなりません。
+- `factor` (*Number* [optional]): Default to `2`. 処理するタイポグラフィバリアント。
 
 #### 戻り値
 

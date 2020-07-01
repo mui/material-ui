@@ -85,13 +85,13 @@ const theme = createMuiTheme({
     },
     // Used by `getContrastText()` to maximize the contrast between
     // the background and the text.
+    tonalOffset: 0.2,
+  },
+});
     contrastThreshold: 3,
     // Used by the functions below to shift a color's luminance by approximately
     // two indexes within its tonal palette.
     // E.g., shift from Red 500 to Red 300 or Red 700.
-    tonalOffset: 0.2,
-  },
-});
 ```
 
 As in the example above, if the intention object contains custom colors using any of the "main", "light", "dark" or "contrastText" keys, these map as follows:
@@ -163,7 +163,7 @@ declare module "@material-ui/core/styles/createPalette" {
 
 ## Picking colors
 
-インスピレーションが必要ですか？ The Material Design team has built an [palette configuration tool](/customization/color/#picking-colors) to help you.
+インスピレーションが必要ですか？ インスピレーションが必要ですか？ The Material Design team has built an [palette configuration tool](/customization/color/#picking-colors) to help you.
 
 ## Dark mode
 
