@@ -1,5 +1,5 @@
 import * as React from 'react';
-import type { ComponentsPropsList } from '../styles/props';
+import { ComponentsPropsList } from '../styles/props';
 
 export interface Localization {
   props?: {
