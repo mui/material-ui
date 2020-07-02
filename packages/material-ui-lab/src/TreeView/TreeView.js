@@ -89,7 +89,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     [expanded],
   );
 
-  const isExpandable = React.useCallback((id) => nodeMap.current[id]?.expandable, []);
+  const isExpandable = React.useCallback((id) => nodeMap.current[id].expandable, []);
 
   const isSelected = React.useCallback(
     (id) => (Array.isArray(selected) ? selected.indexOf(id) !== -1 : selected === id),
@@ -162,12 +162,15 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
    *
    * It finds the nodes' common ancestor using
    * a naive implementation of a lowest common ancestor algorithm
-   * (https://en.wikipedia.org/wiki/Lowest_common_ancestor) and
-   * then compares the ancestors below it that are also above the
-   * given nodes so we can compare their indexes to work out which
-   * node is higher in the tree view.
+   * (https://en.wikipedia.org/wiki/Lowest_common_ancestor).
+   * Then compares the ancestor's 2 children that are ancestors of nodeA and NodeB
+   * so we can compare their indexes to work out which node comes first in a depth first search.
+   * (https://en.wikipedia.org/wiki/Depth-first_search)
+   *
+   * Another way to put it is which node is shallower in a trémaux tree
+   * https://en.wikipedia.org/wiki/Tr%C3%A9maux_tree
    */
-  const getOrderOfNodesInTree = (nodeAId, nodeBId) => {
+  const findOrderInTremauxTree = (nodeAId, nodeBId) => {
     if (nodeAId === nodeBId) {
       return [nodeAId, nodeBId];
     }
@@ -222,13 +225,13 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
       : [nodeBId, nodeAId];
   };
 
-  const getNodesInRange = (a, b) => {
-    const [start, end] = getOrderOfNodesInTree(a, b);
-    const nodes = [start];
+  const getNodesInRange = (nodeA, nodeB) => {
+    const [first, last] = findOrderInTremauxTree(nodeA, nodeB);
+    const nodes = [first];
 
-    let current = start;
+    let current = first;
 
-    while (current !== end) {
+    while (current !== last) {
       current = getNextNode(current);
       nodes.push(current);
     }
