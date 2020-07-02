@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {
   createMuiTheme,
   createStyles,
@@ -8,7 +7,7 @@ import {
   Theme,
   ThemeProvider,
 } from '@material-ui/core/styles';
-import Button, { ButtonProps } from '@material-ui/core/Button';
+import Button from '@material-ui/core/Button';
 import { green, purple } from '@material-ui/core/colors';
 
 const BootstrapButton = withStyles({
