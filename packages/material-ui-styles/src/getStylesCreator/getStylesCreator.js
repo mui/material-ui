@@ -36,7 +36,11 @@ export default function getStylesCreator(stylesOrCreator) {
         throw err;
       }
 
-      if (!name || ((!theme.overrides || !theme.overrides[name]) && (!theme.additions || !theme.additions[name]))) {
+      if (
+        !name ||
+        ((!theme.overrides || !theme.overrides[name]) &&
+          (!theme.additions || !theme.additions[name]))
+      ) {
         return styles;
       }
 

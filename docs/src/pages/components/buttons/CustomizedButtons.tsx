@@ -74,7 +74,7 @@ const theme = createMuiTheme({
     MuiButton: {
       dashed: {
         padding: '5px 15px',
-        border: "5px dashed red",
+        border: '5px dashed red',
         '&$disabled': {
           border: `5px dashed red`,
         },
@@ -82,7 +82,7 @@ const theme = createMuiTheme({
       tertiery: {
         backgroundColor: 'yellow',
         padding: 20,
-      }
+      },
     },
   },
 });
