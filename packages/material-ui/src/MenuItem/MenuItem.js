@@ -72,6 +72,14 @@ const MenuItem = React.forwardRef(function MenuItem(props, ref) {
 });
 
 MenuItem.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
+  /**
+   * @ignore
+   */
+  button: PropTypes.bool,
   /**
    * Menu item contents.
    */
@@ -80,7 +88,7 @@ MenuItem.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -117,7 +125,7 @@ MenuItem.propTypes = {
   /**
    * @ignore
    */
-  tabIndex: PropTypes.number,
+  tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
 
 export default withStyles(styles, { name: 'MuiMenuItem' })(MenuItem);

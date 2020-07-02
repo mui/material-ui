@@ -3,9 +3,24 @@ import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
 export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
   props: P & {
+    /**
+     * The content of the component.
+     */
+    children?: React.ReactNode;
+    /**
+     * If `true`, compact vertical padding designed for keyboard and mouse input will be used for
+     * the list and list items.
+     * The prop is available to descendant components as the `dense` context.
+     */
     dense?: boolean;
+    /**
+     * If `true`, vertical padding will be removed from the list.
+     */
     disablePadding?: boolean;
-    subheader?: React.ReactElement;
+    /**
+     * The content of the subheader, normally `ListSubheader`.
+     */
+    subheader?: React.ReactNode;
   };
   defaultComponent: D;
   classKey: ListClassKey;
