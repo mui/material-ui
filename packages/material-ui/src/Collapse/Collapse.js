@@ -11,13 +11,12 @@ import { useForkRef } from '../utils';
 export const styles = (theme) => ({
   /* Styles applied to the container element. */
   container: {
-    position: 'relative',
-    overflow: 'hidden',
     height: 0,
+    overflow: 'hidden',
     transition: theme.transitions.create('height'),
     '&$horizontal': {
-      width: 0,
       height: 'auto',
+      width: 0,
       transition: theme.transitions.create('width'),
     },
   },
