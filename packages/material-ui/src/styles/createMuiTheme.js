@@ -25,6 +25,7 @@ function createMuiTheme(options = {}, ...args) {
 
   let muiTheme = deepmerge(
     {
+      additions: {},
       breakpoints,
       direction: 'ltr',
       mixins: createMixins(breakpoints, spacing, mixinsInput),
@@ -95,6 +96,7 @@ function createMuiTheme(options = {}, ...args) {
     };
 
     traverse(muiTheme.overrides);
+    traverse(muiTheme.additions);
   }
 
   return muiTheme;

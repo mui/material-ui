@@ -8,12 +8,14 @@ import { Spacing, SpacingOptions } from './createSpacing';
 import { Transitions, TransitionsOptions } from './transitions';
 import { ZIndex, ZIndexOptions } from './zIndex';
 import { Overrides } from './overrides';
+import { Additions } from './additions';
 import { ComponentsProps } from './props';
 
 export type Direction = 'ltr' | 'rtl';
 
 export interface ThemeOptions {
   shape?: ShapeOptions;
+  additions?: Additions;
   breakpoints?: BreakpointsOptions;
   direction?: Direction;
   mixins?: MixinsOptions;
@@ -30,6 +32,7 @@ export interface ThemeOptions {
 
 export interface Theme {
   shape: Shape;
+  additions?: Additions;
   breakpoints: Breakpoints;
   direction: Direction;
   mixins: Mixins;

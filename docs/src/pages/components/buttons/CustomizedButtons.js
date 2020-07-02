@@ -67,7 +67,7 @@ const theme = createMuiTheme({
   palette: {
     primary: green,
   },
-  overrides: {
+  additions: {
     MuiButton: {
       dashed: {
         padding: '5px 15px',
@@ -81,7 +81,7 @@ const theme = createMuiTheme({
         padding: 20,
       }
     },
-  },
+  }
 });
 
 function styled(BaseComponent, propTypesOverrides) {

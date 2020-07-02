@@ -36,11 +36,12 @@ export default function getStylesCreator(stylesOrCreator) {
         throw err;
       }
 
-      if (!name || !theme.overrides || !theme.overrides[name]) {
+      if (!name || ((!theme.overrides || !theme.overrides[name]) && (!theme.additions || !theme.additions[name]))) {
         return styles;
       }
 
-      const overrides = theme.overrides[name];
+      const additions = theme.additions[name] || {};
+      const overrides = theme.overrides[name] || {};
       const stylesWithOverrides = { ...styles };
 
       Object.keys(overrides).forEach((key) => {
@@ -50,12 +51,17 @@ export default function getStylesCreator(stylesOrCreator) {
               [
                 'Material-UI: You are trying to override a style that does not exist.',
                 `Fix the \`${key}\` key of \`theme.overrides.${name}\`.`,
+                'If you intentionally wanted to add new key, please use the theme.additions option',
               ].join('\n'),
             );
           }
         }
 
         stylesWithOverrides[key] = deepmerge(stylesWithOverrides[key] || {}, overrides[key]);
+      });
+
+      Object.keys(additions).forEach((key) => {
+        stylesWithOverrides[key] = deepmerge(stylesWithOverrides[key] || {}, additions[key]);
       });
 
       return stylesWithOverrides;

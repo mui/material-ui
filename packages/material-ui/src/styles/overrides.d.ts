@@ -96,10 +96,8 @@ import { TooltipClassKey } from '../Tooltip';
 import { TouchRippleClassKey } from '../ButtonBase/TouchRipple';
 import { TypographyClassKey } from '../Typography';
 
-export type Extended<T> = T | string
-
 export type Overrides = {
-  [Name in keyof ComponentNameToClassKey]?: Partial<StyleRules<Extended<ComponentNameToClassKey[Name]>>>;
+  [Name in keyof ComponentNameToClassKey]?: Partial<StyleRules<ComponentNameToClassKey[Name]>>;
 } & {
   MuiCssBaseline?: {
     '@global'?: {
