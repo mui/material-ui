@@ -1,3 +1,4 @@
+// @ts-check
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
@@ -10,6 +11,9 @@ import ListItemSecondaryAction from '../ListItemSecondaryAction';
 import MenuItem from './MenuItem';
 
 describe('<MenuItem />', () => {
+  /**
+   * @type {Record<string, string>}
+   */
   let classes;
   const mount = createMount();
   const render = createClientRender();
@@ -58,6 +62,9 @@ describe('<MenuItem />', () => {
   });
 
   describe('event callbacks', () => {
+    /**
+     * @type {Array<keyof typeof fireEvent>}
+     */
     const events = ['click', 'mouseDown', 'mouseEnter', 'mouseLeave', 'mouseUp', 'touchEnd'];
 
     events.forEach((eventName) => {
