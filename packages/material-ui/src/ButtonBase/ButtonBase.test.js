@@ -7,7 +7,6 @@ import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
 import TouchRipple from './TouchRipple';
 import ButtonBase from './ButtonBase';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
 import { act, createClientRender, fireEvent } from 'test/utils/createClientRender';
 import * as PropTypes from 'prop-types';
 
@@ -923,12 +922,7 @@ describe('<ButtonBase />', () => {
 
   describe('warnings', () => {
     beforeEach(() => {
-      consoleErrorMock.spy();
       PropTypes.resetWarningCache();
-    });
-
-    afterEach(() => {
-      consoleErrorMock.reset();
     });
 
     it('warns on invalid `component` prop: ref forward', () => {
@@ -945,15 +939,15 @@ describe('<ButtonBase />', () => {
         return <button type="button" {...props} />;
       }
 
-      PropTypes.checkPropTypes(
-        // @ts-ignore `Naked` is internal
-        ButtonBase.Naked.propTypes,
-        { classes: {}, component: Component },
-        'prop',
-        'MockedName',
-      );
-
-      expect(consoleErrorMock.messages()[0]).to.include(
+      expect(() => {
+        PropTypes.checkPropTypes(
+          // @ts-ignore `Naked` is internal
+          ButtonBase.Naked.propTypes,
+          { classes: {}, component: Component },
+          'prop',
+          'MockedName',
+        );
+      }).toErrorDev(
         'Invalid prop `component` supplied to `MockedName`. Expected an element type that can hold a ref',
       );
     });
@@ -966,10 +960,10 @@ describe('<ButtonBase />', () => {
       ));
 
       // cant match the error message here because flakiness with mocha watchmode
-      render(<ButtonBase component={Component} />);
-      expect(consoleErrorMock.messages()[0]).to.include(
-        'Please make sure the children prop is rendered in this custom component.',
-      );
+
+      expect(() => {
+        render(<ButtonBase component={Component} />);
+      }).toErrorDev('Please make sure the children prop is rendered in this custom component.');
     });
   });
 });

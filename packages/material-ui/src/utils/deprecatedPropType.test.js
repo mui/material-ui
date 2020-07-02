@@ -1,6 +1,5 @@
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
 import deprecatedPropType from './deprecatedPropType';
 
 describe('deprecatedPropType', () => {
@@ -8,12 +7,7 @@ describe('deprecatedPropType', () => {
   const location = 'prop';
 
   beforeEach(() => {
-    consoleErrorMock.spy();
     PropTypes.resetWarningCache();
-  });
-
-  afterEach(() => {
-    consoleErrorMock.reset();
   });
 
   it('should not warn', () => {
@@ -27,7 +21,7 @@ describe('deprecatedPropType', () => {
       location,
       componentName,
     );
-    expect(consoleErrorMock.callCount()).to.equal(0);
+    expect(() => {}).not.toErrorDev();
   });
 
   it('should warn once', () => {
@@ -35,24 +29,27 @@ describe('deprecatedPropType', () => {
     const props = {
       [propName]: 'yolo',
     };
-    PropTypes.checkPropTypes(
-      {
-        [propName]: deprecatedPropType(PropTypes.string, 'give me a reason'),
-      },
-      props,
-      location,
-      componentName,
-    );
-    expect(consoleErrorMock.callCount()).to.equal(1);
-    expect(consoleErrorMock.messages()[0]).to.match(/give me a reason/);
-    PropTypes.checkPropTypes(
-      {
-        [propName]: deprecatedPropType(PropTypes.string, 'give me a reason'),
-      },
-      props,
-      location,
-      componentName,
-    );
-    expect(consoleErrorMock.callCount()).to.equal(1);
+
+    expect(() => {
+      PropTypes.checkPropTypes(
+        {
+          [propName]: deprecatedPropType(PropTypes.string, 'give me a reason'),
+        },
+        props,
+        location,
+        componentName,
+      );
+    }).toErrorDev('give me a reason');
+
+    expect(() => {
+      PropTypes.checkPropTypes(
+        {
+          [propName]: deprecatedPropType(PropTypes.string, 'give me a reason'),
+        },
+        props,
+        location,
+        componentName,
+      );
+    }).not.toErrorDev();
   });
 });

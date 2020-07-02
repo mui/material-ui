@@ -6,7 +6,6 @@ import { getClasses } from '@material-ui/core/test-utils';
 import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
 import { act, createClientRender, fireEvent } from 'test/utils/createClientRender';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
 import FormControl, { useFormControl } from '../FormControl';
 import InputAdornment from '../InputAdornment';
 import TextareaAutosize from '../TextareaAutosize';
@@ -479,39 +478,28 @@ describe('<InputBase />', () => {
     });
 
     describe('registering input', () => {
-      beforeEach(() => {
-        consoleErrorMock.spy();
-      });
-
-      afterEach(() => {
-        consoleErrorMock.reset();
-      });
-
       it("should warn if more than one input is rendered regarless how it's nested", () => {
-        render(
-          <FormControl>
-            <InputBase />
-            <div>
-              {/* should work regarless how it's nested */}
+        expect(() => {
+          render(
+            <FormControl>
               <InputBase />
-            </div>
-          </FormControl>,
-        );
-
-        expect(consoleErrorMock.callCount()).to.eq(1);
-        expect(consoleErrorMock.messages()[0]).to.include(
-          'Material-UI: There are multiple InputBase components inside a FormControl.',
-        );
+              <div>
+                {/* should work regarless how it's nested */}
+                <InputBase />
+              </div>
+            </FormControl>,
+          );
+        }).toErrorDev('Material-UI: There are multiple InputBase components inside a FormControl.');
       });
 
       it('should not warn if only one input is rendered', () => {
-        render(
-          <FormControl>
-            <InputBase />
-          </FormControl>,
-        );
-
-        expect(consoleErrorMock.callCount()).to.eq(0);
+        expect(() => {
+          render(
+            <FormControl>
+              <InputBase />
+            </FormControl>,
+          );
+        }).not.toErrorDev();
       });
 
       it('should not warn when toggling between inputs', () => {
@@ -536,9 +524,9 @@ describe('<InputBase />', () => {
         };
 
         const { getByText } = render(<ToggleFormInputs />);
-        fireEvent.click(getByText('toggle'));
-
-        expect(consoleErrorMock.callCount()).to.eq(0);
+        expect(() => {
+          fireEvent.click(getByText('toggle'));
+        }).not.toErrorDev();
       });
     });
   });

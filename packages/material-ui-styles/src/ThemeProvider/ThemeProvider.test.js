@@ -1,6 +1,5 @@
 import React from 'react';
 import { expect } from 'chai';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
 import { createClientRender } from 'test/utils/createClientRender';
 import makeStyles from '../makeStyles';
 import useTheme from '../useTheme';
@@ -121,37 +120,35 @@ describe('ThemeProvider', () => {
   });
 
   describe('warnings', () => {
-    beforeEach(() => {
-      consoleErrorMock.spy();
-    });
-
-    afterEach(() => {
-      consoleErrorMock.reset();
-    });
-
     it('should warn about missing provider', () => {
-      render(
-        <ThemeProvider theme={(theme) => theme}>
-          <div />
-        </ThemeProvider>,
-      );
-      expect(consoleErrorMock.callCount()).to.equal(2); // strict mode renders twice
-      expect(consoleErrorMock.messages()[0]).to.include('However, no outer theme is present.');
+      expect(() => {
+        render(
+          <ThemeProvider theme={(theme) => theme}>
+            <div />
+          </ThemeProvider>,
+        );
+      }).toErrorDev([
+        'However, no outer theme is present.',
+        // strict mode renders twice
+        'However, no outer theme is present.',
+      ]);
     });
 
     it('should warn about wrong theme function', () => {
-      render(
-        <ThemeProvider theme={{ bar: 'bar' }}>
-          <ThemeProvider theme={() => {}}>
-            <div />
-          </ThemeProvider>
-          ,
-        </ThemeProvider>,
-      );
-      expect(consoleErrorMock.callCount()).to.equal(2); // strict mode renders twice
-      expect(consoleErrorMock.messages()[0]).to.include(
+      expect(() => {
+        render(
+          <ThemeProvider theme={{ bar: 'bar' }}>
+            <ThemeProvider theme={() => {}}>
+              <div />
+            </ThemeProvider>
+            ,
+          </ThemeProvider>,
+        );
+      }).toErrorDev([
         'Material-UI: You should return an object from your theme function',
-      );
+        // strict mode renders twice
+        'Material-UI: You should return an object from your theme function',
+      ]);
     });
   });
 });

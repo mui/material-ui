@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
 import { getClasses } from '@material-ui/core/test-utils';
 import { createClientRender, screen } from 'test/utils/createClientRender';
 import createMount from 'test/utils/createMount';
@@ -151,31 +150,19 @@ describe('<LinearProgress />', () => {
   });
 
   describe('prop: value', () => {
-    before(() => {
-      consoleErrorMock.spy();
-    });
-
-    after(() => {
-      consoleErrorMock.reset();
-    });
-
     it('should warn when not used as expected', () => {
-      const { rerender } = render(<LinearProgress variant="determinate" value={undefined} />);
+      let rerender;
 
-      expect(consoleErrorMock.callCount()).to.equal(1);
-      expect(consoleErrorMock.messages()[0]).to.match(
-        /Material-UI: You need to provide a value prop/,
-      );
+      expect(() => {
+        ({ rerender } = render(<LinearProgress variant="determinate" value={undefined} />));
+      }).toErrorDev('Material-UI: You need to provide a value prop');
 
-      rerender(<LinearProgress variant="buffer" value={undefined} />);
-
-      expect(consoleErrorMock.callCount()).to.equal(3);
-      expect(consoleErrorMock.messages()[1]).to.match(
-        /Material-UI: You need to provide a value prop/,
-      );
-      expect(consoleErrorMock.messages()[2]).to.match(
-        /Material-UI: You need to provide a valueBuffer prop/,
-      );
+      expect(() => {
+        rerender(<LinearProgress variant="buffer" value={undefined} />);
+      }).toErrorDev([
+        'Material-UI: You need to provide a value prop',
+        'Material-UI: You need to provide a valueBuffer prop',
+      ]);
     });
   });
 });

@@ -4,7 +4,6 @@ import createMount from 'test/utils/createMount';
 import { Input } from '@material-ui/core';
 import { isMuiElement } from '@material-ui/core/utils';
 import PropTypes from 'prop-types';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
 import withTheme from './withTheme';
 import ThemeProvider from '../ThemeProvider';
 
@@ -75,27 +74,20 @@ describe('withTheme', () => {
 
     describe('innerRef', () => {
       beforeEach(() => {
-        consoleErrorMock.spy();
         PropTypes.resetWarningCache();
-      });
-
-      afterEach(() => {
-        consoleErrorMock.reset();
       });
 
       it('is deprecated', () => {
         const ThemedDiv = withTheme('div');
-        PropTypes.checkPropTypes(
-          ThemedDiv.propTypes,
-          { innerRef: React.createRef() },
-          'prop',
-          'ThemedDiv',
-        );
 
-        expect(consoleErrorMock.callCount()).to.equal(1);
-        expect(consoleErrorMock.messages()[0]).to.include(
-          'Warning: Failed prop type: Material-UI: The `innerRef` prop is deprecated',
-        );
+        expect(() => {
+          PropTypes.checkPropTypes(
+            ThemedDiv.propTypes,
+            { innerRef: React.createRef() },
+            'prop',
+            'ThemedDiv',
+          );
+        }).toErrorDev('Warning: Failed prop type: Material-UI: The `innerRef` prop is deprecated');
       });
     });
   });

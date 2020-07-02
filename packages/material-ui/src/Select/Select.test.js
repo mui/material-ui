@@ -4,7 +4,7 @@ import { getClasses } from '@material-ui/core/test-utils';
 import createMount from 'test/utils/createMount';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import { act, createClientRender, fireEvent, screen } from 'test/utils/createClientRender';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
+import { ErrorBoundary } from 'test/utils/components';
 import MenuItem from '../MenuItem';
 import Input from '../Input';
 import InputLabel from '../InputLabel';
@@ -808,30 +808,34 @@ describe('<Select />', () => {
     });
 
     describe('errors', () => {
-      beforeEach(() => {
-        consoleErrorMock.spy();
-      });
-
-      afterEach(() => {
-        consoleErrorMock.reset();
-      });
-
       it('should throw if non array', function test() {
+        // TODO is this fixed?
         if (!/jsdom/.test(window.navigator.userAgent)) {
           // can't catch render errors in the browser for unknown reason
           // tried try-catch + error boundary + window onError preventDefault
           this.skip();
         }
 
+        const errorRef = React.createRef();
         expect(() => {
           render(
-            <Select multiple value="10,20">
-              <MenuItem value="10">Ten</MenuItem>
-              <MenuItem value="20">Twenty</MenuItem>
-              <MenuItem value="30">Thirty</MenuItem>
-            </Select>,
+            <ErrorBoundary ref={errorRef}>
+              <Select multiple value="10,20">
+                <MenuItem value="10">Ten</MenuItem>
+                <MenuItem value="20">Twenty</MenuItem>
+                <MenuItem value="30">Thirty</MenuItem>
+              </Select>
+            </ErrorBoundary>,
           );
-        }).to.throw(/Material-UI: The `value` prop must be an array/);
+        }).toErrorDev([
+          'Material-UI: The `value` prop must be an array',
+          'The above error occurred in the <ForwardRef(SelectInput)> component',
+        ]);
+        const {
+          current: { errors },
+        } = errorRef;
+        expect(errors).to.have.length(1);
+        expect(errors[0].toString()).to.include('Material-UI: The `value` prop must be an array');
       });
     });
 

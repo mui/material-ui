@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { getClasses } from '@material-ui/core/test-utils';
 import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
 import { createClientRender } from 'test/utils/createClientRender';
 import Icon from '../Icon';
 import ButtonBase from '../ButtonBase';
@@ -124,28 +123,14 @@ describe('<IconButton />', () => {
     });
   });
 
-  describe('Firefox onClick', () => {
-    beforeEach(() => {
-      consoleErrorMock.spy();
-      PropTypes.resetWarningCache();
-    });
-
-    afterEach(() => {
-      consoleErrorMock.reset();
-    });
-
-    it('should raise a warning', () => {
+  it('should raise a warning about onClick in children because of Firefox', () => {
+    expect(() => {
       PropTypes.checkPropTypes(
         IconButton.Naked.propTypes,
         { classes: {}, children: <svg onClick={() => {}} /> },
         'prop',
         'MockedName',
       );
-
-      expect(consoleErrorMock.callCount()).to.equal(1);
-      expect(consoleErrorMock.messages()[0]).to.include(
-        'Material-UI: You are providing an onClick event listener',
-      );
-    });
+    }).toErrorDev(['Material-UI: You are providing an onClick event listener']);
   });
 });

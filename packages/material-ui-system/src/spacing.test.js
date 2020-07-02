@@ -1,5 +1,4 @@
 import { expect } from 'chai';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
 import spacing from './spacing';
 
 describe('spacing', () => {
@@ -40,47 +39,37 @@ describe('spacing', () => {
   });
 
   describe('warnings', () => {
-    beforeEach(() => {
-      consoleErrorMock.spy();
-    });
-
-    afterEach(() => {
-      consoleErrorMock.reset();
-    });
-
     it('should warn if the value overflow', () => {
-      const output = spacing({
-        theme: {
-          spacing: [0, 3, 5],
-        },
-        p: 3,
-      });
+      let output;
+      expect(() => {
+        output = spacing({
+          theme: {
+            spacing: [0, 3, 5],
+          },
+          p: 3,
+        });
+      }).toErrorDev(
+        'Material-UI: The value provided (3) overflows.\n' +
+          'The supported values are: [0,3,5].\n' +
+          '3 > 2, you need to add the missing values.',
+      );
       expect(output).to.deep.equal({ padding: undefined });
-      expect(consoleErrorMock.callCount()).to.equal(1);
-      expect(consoleErrorMock.messages()[0]).to.match(
-        /Material-UI: The value provided \(3\) overflows\./,
-      );
-      expect(consoleErrorMock.messages()[0]).to.match(/The supported values are: \[0,3,5\]\./);
-      expect(consoleErrorMock.messages()[0]).to.match(
-        /3 > 2, you need to add the missing values\./,
-      );
     });
 
     it('should warn if the theme transformer is invalid', () => {
-      const output = spacing({
-        theme: {
-          spacing: {},
-        },
-        p: 3,
-      });
+      let output;
+      expect(() => {
+        output = spacing({
+          theme: {
+            spacing: {},
+          },
+          p: 3,
+        });
+      }).toErrorDev(
+        'Material-UI: The `theme.spacing` value ([object Object]) is invalid.\n' +
+          'It should be a number, an array or a function.',
+      );
       expect(output).to.deep.equal({ padding: undefined });
-      expect(consoleErrorMock.callCount()).to.equal(1);
-      expect(consoleErrorMock.messages()[0]).to.match(
-        /Material-UI: The `theme.spacing` value \(\[object Object\]\) is invalid\./,
-      );
-      expect(consoleErrorMock.messages()[0]).to.match(
-        /It should be a number, an array or a function\./,
-      );
     });
   });
 

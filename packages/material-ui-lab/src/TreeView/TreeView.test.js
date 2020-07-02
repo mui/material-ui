@@ -2,10 +2,10 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createClientRender, fireEvent, screen } from 'test/utils/createClientRender';
+import { ErrorBoundary } from 'test/utils/components';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import { getClasses } from '@material-ui/core/test-utils';
 import createMount from 'test/utils/createMount';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
 import TreeView from './TreeView';
 import TreeItem from '../TreeItem';
 
@@ -28,14 +28,6 @@ describe('<TreeView />', () => {
   }));
 
   describe('warnings', () => {
-    beforeEach(() => {
-      consoleErrorMock.spy();
-    });
-
-    afterEach(() => {
-      consoleErrorMock.reset();
-    });
-
     it('should warn when switching from controlled to uncontrolled of the expanded prop', () => {
       const { setProps } = render(
         <TreeView expanded={[]}>
@@ -43,8 +35,9 @@ describe('<TreeView />', () => {
         </TreeView>,
       );
 
-      setProps({ expanded: undefined });
-      expect(consoleErrorMock.messages()[0]).to.include(
+      expect(() => {
+        setProps({ expanded: undefined });
+      }).toErrorDev(
         'Material-UI: A component is changing the controlled expanded state of TreeView to be uncontrolled.',
       );
     });
@@ -56,8 +49,9 @@ describe('<TreeView />', () => {
         </TreeView>,
       );
 
-      setProps({ selected: undefined });
-      expect(consoleErrorMock.messages()[0]).to.include(
+      expect(() => {
+        setProps({ selected: undefined });
+      }).toErrorDev(
         'Material-UI: A component is changing the controlled selected state of TreeView to be uncontrolled.',
       );
     });
@@ -65,26 +59,6 @@ describe('<TreeView />', () => {
     // should not throw eventually or with a better error message
     // FIXME: https://github.com/mui-org/material-ui/issues/20832
     it('crashes when unmounting with duplicate ids', () => {
-      class ErrorBoundary extends React.Component {
-        state = { error: null };
-
-        errors = [];
-
-        static getDerivedStateFromError(error) {
-          return { error };
-        }
-
-        componentDidCatch(error) {
-          this.errors.push(error);
-        }
-
-        render() {
-          if (this.state.error) {
-            return null;
-          }
-          return this.props.children;
-        }
-      }
       const CustomTreeItem = () => {
         return <TreeItem nodeId="iojerogj" />;
       };
@@ -113,7 +87,12 @@ describe('<TreeView />', () => {
         </ErrorBoundary>,
       );
 
-      screen.getByRole('button').click();
+      expect(() => {
+        screen.getByRole('button').click();
+      }).toErrorDev([
+        'RangeError: Maximum call stack size exceeded',
+        'The above error occurred in the <ForwardRef(TreeItem)> component',
+      ]);
 
       const {
         current: { errors },
