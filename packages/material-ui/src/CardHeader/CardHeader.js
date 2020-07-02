@@ -20,8 +20,9 @@ export const styles = {
   action: {
     flex: '0 0 auto',
     alignSelf: 'flex-start',
-    marginTop: -8,
+    marginTop: -4,
     marginRight: -8,
+    marginBottom: -4,
   },
   /* Styles applied to the content wrapper element. */
   content: {
