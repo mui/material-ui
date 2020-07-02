@@ -88,26 +88,6 @@ const theme = createMuiTheme({
   },
 });
 
-function styled<Props, BaseProps = {}>(BaseComponent: any, propTypesOverrides: object) {
-  // we are creating tere wrapper, but that can be improved
-  const Component = React.forwardRef(
-    // (props, ref) => BaseComponent.render && typeof BaseComponent.render === 'function' ? BaseComponent.reder(props, ref) : BaseComponent({...props, ref})
-  (props, ref) => { const allProps = {...props, ref}; return <BaseComponent {...allProps} /> }
-  )as unknown as React.FunctionComponent<Props>;
-
-  Component.displayName = BaseComponent.displayName;
-  Component.propTypes = { ...(BaseComponent.Naked ? BaseComponent.Naked.propTypes : BaseComponent.propTypes), ...propTypesOverrides}
-  return Component;
-}
-
-type CustomButtonProps = ButtonProps & {
-  variant?: ButtonProps['variant'] | 'tertiary'
-}
-
-const CustomButton = styled<CustomButtonProps>(Button, {
-  variant: PropTypes.oneOf(['contained', 'outlined', 'text', 'tertiery']),
-});
-
 export default function CustomizedButtons() {
   const classes = useStyles();
 
@@ -125,9 +105,8 @@ export default function CustomizedButtons() {
           Theme Provider
         </Button>
         <Button variant="dashed" color="primary" className={classes.margin}>
-          Dashed Provider
+          Dashed Variant
         </Button>
-        <CustomButton variant="tertiery">Tertiery button</CustomButton>
       </ThemeProvider>
       <BootstrapButton
         variant="contained"
