@@ -153,7 +153,6 @@ function Unstable_TrapFocus(props) {
   }, [disableAutoFocus, disableEnforceFocus, disableRestoreFocus, isEnabled, open]);
 
   const onFocus = (event) => {
-    // detect focus inside children
     reactFocusEventTarget.current = event.target;
 
     const childrenPropsHandler = children.props.onFocus;
