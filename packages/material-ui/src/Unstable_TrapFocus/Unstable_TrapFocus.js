@@ -23,8 +23,7 @@ function Unstable_TrapFocus(props) {
   const sentinelStart = React.useRef(null);
   const sentinelEnd = React.useRef(null);
   const nodeToRestore = React.useRef();
-  const insideReactTreeRef = React.useRef(false);
-  const reactFocusEventTarget = React.useRef();
+  const reactFocusEventTarget = React.useRef(null);
 
   const rootRef = React.useRef(null);
   // can be removed once we drop support for non ref forwarding class components
@@ -92,13 +91,10 @@ function Unstable_TrapFocus(props) {
           (nativeEvent && reactFocusEventTarget.current !== nativeEvent.target) ||
           doc.activeElement !== reactFocusEventTarget.current
         ) {
-          insideReactTreeRef.current = false;
           reactFocusEventTarget.current = null;
+        } else if (reactFocusEventTarget.current !== null) {
+          return;
         }
-
-        const insideReactTree = insideReactTreeRef.current;
-
-        if (insideReactTree) return;
 
         rootRef.current.focus();
       }
@@ -158,7 +154,6 @@ function Unstable_TrapFocus(props) {
 
   const onFocus = (event) => {
     // detect focus inside children
-    insideReactTreeRef.current = true;
     reactFocusEventTarget.current = event.target;
 
     const childrenPropsHandler = children.props.onFocus;
