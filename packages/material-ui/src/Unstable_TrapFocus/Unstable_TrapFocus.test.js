@@ -3,6 +3,7 @@ import { useFakeTimers } from 'sinon';
 import { expect } from 'chai';
 import TrapFocus from './Unstable_TrapFocus';
 import { createClientRender, fireEvent, screen } from 'test/utils/createClientRender';
+import Portal from '../Portal';
 
 describe('<TrapFocus />', () => {
   const render = createClientRender({ strict: false });
@@ -53,6 +54,20 @@ describe('<TrapFocus />', () => {
     initialFocus.focus();
 
     expect(initialFocus).toHaveFocus();
+  });
+
+  it('should focus first focusable child in portal', () => {
+    const { getByTestId } = render(
+      <TrapFocus open {...sharedProps}>
+        <div tabIndex={-1}>
+          <Portal>
+            <input autoFocus data-testid="auto-focus" />
+          </Portal>
+        </div>
+      </TrapFocus>,
+    );
+
+    expect(getByTestId('auto-focus')).toHaveFocus();
   });
 
   it('should warn if the modal content is not focusable', () => {
