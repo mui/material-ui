@@ -1,20 +1,20 @@
 import { ListItemTypeMap, ListItemProps } from '../ListItem';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { ExtendButtonBase } from '../ButtonBase';
-import { Omit } from '@material-ui/types';
 
 export type MenuItemClassKey = 'root' | 'gutters' | 'selected' | 'dense';
 
-export type MenuItemTypeMap<P = {}, D extends React.ElementType = 'li'> = Omit<
-  ListItemTypeMap<P, D>,
-  'classKey'
-> & {
+export interface MenuItemTypeMap<P = {}, D extends React.ElementType = 'li'> {
+  props: P &
+    ListItemTypeMap<P, D>['props'] & {
+      /**
+       * `classes` prop applied to the [`ListItem`](/api/list-item/) element.
+       */
+      ListItemClasses?: ListItemProps['classes'];
+    };
+  defaultComponent: D;
   classKey: MenuItemClassKey;
-  /**
-   * `classes` prop applied to the [`ListItem`](/api/list-item/) element.
-   */
-  ListItemClasses: ListItemProps['classes'];
-};
+}
 
 /**
  *
