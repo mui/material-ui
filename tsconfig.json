@@ -11,7 +11,7 @@
     "experimentalDecorators": true,
     "baseUrl": "./",
     "allowSyntheticDefaultImports": true,
-    "noErrorTruncation": true,
+    "noErrorTruncation": false,
     "allowJs": true,
     "paths": {
       "@material-ui/core": ["./packages/material-ui/src"],
