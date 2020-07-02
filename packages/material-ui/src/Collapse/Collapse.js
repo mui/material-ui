@@ -27,7 +27,6 @@ export const styles = (theme) => ({
     height: 'auto',
     overflow: 'visible',
     '&$horizontal': {
-      height: 'initial',
       width: 'auto',
     },
   },
@@ -41,7 +40,7 @@ export const styles = (theme) => ({
     display: 'flex',
     width: '100%',
     '&$horizontal': {
-      width: 'initial',
+      width: 'auto',
       height: '100%',
     },
   },
@@ -49,7 +48,7 @@ export const styles = (theme) => ({
   wrapperInner: {
     width: '100%',
     '&$horizontal': {
-      width: 'initial',
+      width: 'auto',
       height: '100%',
     },
   },
