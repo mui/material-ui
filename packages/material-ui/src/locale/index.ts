@@ -238,7 +238,7 @@ export const csCZ: Localization = {
       },
       labelRowsPerPage: 'Řádků na stránce:',
       labelDisplayedRows: ({ from, to, count }) =>
-        `${from}-${to} z ${count !== -1 ? count : `more than ${to}`}`,
+        `${from}-${to} z ${count !== -1 ? count : `více než ${to}`}`,
     },
     MuiRating: {
       getLabelText: (value) => {
@@ -1613,26 +1613,26 @@ export const ruRU: Localization = {
 
 export const skSK: Localization = {
   props: {
-    // MuiBreadcrumbs: {
-    //   expandText: 'Show path',
-    // },
+    MuiBreadcrumbs: {
+      expandText: 'Ukázať cestu ',
+    },
     MuiTablePagination: {
-      // getItemAriaLabel: (type) => {
-      //   if (type === 'first') {
-      //     return 'Go to first page';
-      //   }
-      //   if (type === 'last') {
-      //     return 'Go to last page';
-      //   }
-      //   if (type === 'next') {
-      //     return 'Go to next page';
-      //   }
-      //   // if (type === 'previous') {
-      //   return 'Go to previous page';
-      // },
+      getItemAriaLabel: (type) => {
+        if (type === 'first') {
+          return 'Ísť na prvú stránku';
+        }
+        if (type === 'last') {
+          return 'Ísť na poslednú stránku';
+        }
+        if (type === 'next') {
+          return 'Ísť na ďaľšiu stránku';
+        }
+        // if (type === 'previous') {
+        return 'Ísť na predchádzajúcu stránku';
+      },
       labelRowsPerPage: 'Riadkov na stránke:',
       labelDisplayedRows: ({ from, to, count }) =>
-        `${from}-${to} z ${count !== -1 ? count : `more than ${to}`}`,
+        `${from}-${to} z ${count !== -1 ? count : `viac ako ${to}`}`,
     },
     MuiRating: {
       getLabelText: (value) => {
@@ -1644,7 +1644,7 @@ export const skSK: Localization = {
         }
         return `${value} hviezdičiek`;
       },
-      // emptyLabelText: 'Empty',
+      emptyLabelText: 'Prázdne',
     },
     MuiAutocomplete: {
       clearText: 'Vymazať',
@@ -1656,25 +1656,25 @@ export const skSK: Localization = {
     MuiAlert: {
       closeText: 'Zavrieť',
     },
-    // MuiPagination: {
-    //   'aria-label': 'Pagination navigation',
-    //   getItemAriaLabel: (type, page, selected) => {
-    //     if (type === 'page') {
-    //       return `${selected ? '' : 'Go to '}page ${page}`;
-    //     }
-    //     if (type === 'first') {
-    //       return 'Go to first page';
-    //     }
-    //     if (type === 'last') {
-    //       return 'Go to last page';
-    //     }
-    //     if (type === 'next') {
-    //       return 'Go to next page';
-    //     }
-    //     // if (type === 'previous') {
-    //     return 'Go to previous page';
-    //   },
-    // },
+    MuiPagination: {
+      'aria-label': 'Navigácia stránkovanim',
+      getItemAriaLabel: (type, page, selected) => {
+        if (type === 'page') {
+          return `${selected ? '' : 'Ísť na '}stránku ${page}`;
+        }
+        if (type === 'first') {
+          return 'Ísť na prvú stránku';
+        }
+        if (type === 'last') {
+          return 'Ísť na poslednú stránku';
+        }
+        if (type === 'next') {
+          return 'Ísť na ďaľšiu stránku';
+        }
+        // if (type === 'previous') {
+        return 'Ísť na predchádzajúcu stránku';
+      },
+    },
   },
 };
 
