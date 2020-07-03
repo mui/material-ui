@@ -64,6 +64,15 @@ yarn add @material-ui/core@next
   +<Button />
   ```
 
+### Collapse
+
+- The `collapsedHeight` prop was renamed `collapsedSize` to support the horizontal direction.
+
+  ```diff
+  -<Collapse collapsedHeight={40}>
+  +<Collapse collapsedSize={40}>
+  ```
+
 ### Divider
 
 - Use border instead of background color. It prevents inconsistent height on scaled screens. For people customizing the color of the border, the change requires changing the override CSS property:
