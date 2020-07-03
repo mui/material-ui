@@ -68,19 +68,15 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     state: 'selected',
   });
 
-  const getChildrenIds = (id) => {
-    const childIds = [];
-
-    Object.keys(nodeMap.current).forEach((key) => {
-      const value = nodeMap.current[key];
-      if (value.parentId === id) {
-        childIds.splice(value.index, 0, value.id);
-      }
-    });
-
-    return childIds;
-  };
-
+  // Using Object.keys -> .map to mimic Object.values we should replace with Object.values() once we stop IE 11 support.
+  const getChildrenIds = (id) =>
+    Object.keys(nodeMap.current)
+      .map((key) => {
+        return nodeMap.current[key];
+      })
+      .filter((node) => node.parentId === id)
+      .sort((a, b) => a.index - b.index)
+      .map((child) => child.id);
   /*
    * Status Helpers
    */
@@ -401,7 +397,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
   };
 
   const handleMultipleSelect = (event, value) => {
-    let newSelected = [];
+    let newSelected;
     if (selected.indexOf(value) !== -1) {
       newSelected = selected.filter((id) => id !== value);
     } else {
