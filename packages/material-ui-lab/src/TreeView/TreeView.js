@@ -71,7 +71,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
 
   const theme = useTheme();
 
-  const nodeMap = React.useRef({});
+  const [nodeMap, setNodeMap] = React.useState({});
 
   const firstCharMap = React.useRef({});
 
@@ -90,14 +90,18 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
   });
 
   // Using Object.keys -> .map to mimic Object.values we should replace with Object.values() once we stop IE 11 support.
-  const getChildrenIds = (id) =>
-    Object.keys(nodeMap.current)
-      .map((key) => {
-        return nodeMap.current[key];
-      })
-      .filter((node) => node.parentId === id)
-      .sort((a, b) => a.index - b.index)
-      .map((child) => child.id);
+  const getChildrenIds = React.useCallback(
+    (id) =>
+      Object.keys(nodeMap)
+        .map((key) => {
+          return nodeMap[key];
+        })
+        .filter((node) => node.parentId === id)
+        .sort((a, b) => a.index - b.index)
+        .map((child) => child.id),
+    [nodeMap],
+  );
+
   /*
    * Status Helpers
    */
@@ -106,7 +110,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     [expanded],
   );
 
-  const isExpandable = React.useCallback((id) => nodeMap.current[id].expandable, []);
+  const isExpandable = React.useCallback((id) => nodeMap[id].expandable, [nodeMap]);
 
   const isSelected = React.useCallback(
     (id) => (Array.isArray(selected) ? selected.indexOf(id) !== -1 : selected === id),
@@ -126,7 +130,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     }
 
     // Try to get next sibling
-    const node = nodeMap.current[id];
+    const node = nodeMap[id];
     const siblings = getChildrenIds(node.parentId);
 
     const nextSibling = siblings[siblings.indexOf(id) + 1];
@@ -136,7 +140,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     }
 
     // try to get parent's next sibling
-    const parent = nodeMap.current[node.parentId];
+    const parent = nodeMap[node.parentId];
     if (parent) {
       const parentSiblings = getChildrenIds(parent.parentId);
       return parentSiblings[parentSiblings.indexOf(parent.id) + 1];
@@ -145,7 +149,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
   };
 
   const getPreviousNode = (id) => {
-    const node = nodeMap.current[id];
+    const node = nodeMap[id];
     const siblings = getChildrenIds(node.parentId);
     const nodeIndex = siblings.indexOf(id);
 
@@ -170,7 +174,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     return lastNode;
   };
   const getFirstNode = () => getChildrenIds(null)[0];
-  const getParent = (id) => nodeMap.current[id].parentId;
+  const getParent = (id) => nodeMap[id].parentId;
 
   /**
    * This is used to determine the start and end of a selection range so
@@ -191,8 +195,8 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
       return [nodeAId, nodeBId];
     }
 
-    const nodeA = nodeMap.current[nodeAId];
-    const nodeB = nodeMap.current[nodeBId];
+    const nodeA = nodeMap[nodeAId];
+    const nodeB = nodeMap[nodeBId];
 
     if (nodeA.parentId === nodeB.id || nodeB.parentId === nodeA.id) {
       return nodeB.parentId === nodeA.id ? [nodeA.id, nodeB.id] : [nodeB.id, nodeA.id];
@@ -216,7 +220,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
         aAncestorIsCommon = bFamily.indexOf(aAncestor) !== -1;
         continueA = aAncestor !== null;
         if (!aAncestorIsCommon && continueA) {
-          aAncestor = nodeMap.current[aAncestor].parentId;
+          aAncestor = nodeMap[aAncestor].parentId;
         }
       }
 
@@ -225,7 +229,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
         bAncestorIsCommon = aFamily.indexOf(bAncestor) !== -1;
         continueB = bAncestor !== null;
         if (!bAncestorIsCommon && continueB) {
-          bAncestor = nodeMap.current[bAncestor].parentId;
+          bAncestor = nodeMap[bAncestor].parentId;
         }
       }
     }
@@ -284,7 +288,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     // This really only works since the ids are strings
     Object.keys(firstCharMap.current).forEach((nodeId) => {
       const firstChar = firstCharMap.current[nodeId];
-      const map = nodeMap.current[nodeId];
+      const map = nodeMap[nodeId];
       const visible = map.parentId ? isExpanded(map.parentId) : true;
 
       if (visible) {
@@ -295,7 +299,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
 
     // Get start index for search based on position of currentItem
     start = firstCharIds.indexOf(id) + 1;
-    if (start === nodeMap.current.length) {
+    if (start >= firstCharIds.length) {
       start = 0;
     }
 
@@ -334,7 +338,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
   };
 
   const expandAllSiblings = (event, id) => {
-    const map = nodeMap.current[id];
+    const map = nodeMap[id];
     const siblings = getChildrenIds(map.parentId);
 
     const diff = siblings.filter((child) => isExpandable(child) && !isExpanded(child));
@@ -518,48 +522,22 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
    */
   const registerNode = React.useCallback((node) => {
     const { id, index, parentId, expandable } = node;
-    nodeMap.current[id] = { id, index, parentId, expandable };
-  }, []);
-
-  const getNodesToRemove = React.useCallback((id) => {
-    const map = nodeMap.current[id];
-    const nodes = [];
-    if (map) {
-      nodes.push(id);
-      const childNodes = getChildrenIds(id);
-      if (childNodes.length > 0) {
-        nodes.concat(childNodes);
-        childNodes.forEach((node) => {
-          nodes.concat(getNodesToRemove(node));
-        });
-      }
-    }
-    return nodes;
-  }, []);
-
-  const cleanUpFirstCharMap = React.useCallback((nodes) => {
-    const newMap = { ...firstCharMap.current };
-    nodes.forEach((node) => {
-      delete newMap[node];
+    setNodeMap((oldMap) => {
+      oldMap[id] = { id, index, parentId, expandable };
+      return oldMap;
     });
-    firstCharMap.current = newMap;
-  }, []);
-
-  const cleanUpNodeMap = React.useCallback((nodes) => {
-    const newMap = { ...nodeMap.current };
-    nodes.forEach((node) => {
-      delete newMap[node];
-    });
-    nodeMap.current = newMap;
   }, []);
 
   const unregisterNode = React.useCallback(
     (id) => {
-      delete nodeMap.current[id];
+      setNodeMap((oldNodeMap) => {
+        delete oldNodeMap[id];
+        return oldNodeMap;
+      });
 
       setFocusedNodeId((oldFocusedNodeId) => {
         if (
-          nodeMap.current[oldFocusedNodeId] === undefined &&
+          oldFocusedNodeId === id &&
           treeRef.current === ownerDocument(treeRef.current).activeElement
         ) {
           return getChildrenIds(null)[0];
@@ -583,7 +561,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
   };
 
   const handleNextArrow = (event) => {
-    if (nodeMap.current[focusedNodeId].expandable) {
+    if (nodeMap[focusedNodeId].expandable) {
       if (isExpanded(focusedNodeId)) {
         focusNextNode(event, focusedNodeId);
       } else {
@@ -631,7 +609,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
         event.stopPropagation();
         break;
       case 'Enter':
-        if (nodeMap.current[focusedNodeId].expandable) {
+        if (nodeMap[focusedNodeId].expandable) {
           toggleExpansion(event);
           flag = true;
         }

@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import Collapse from '@material-ui/core/Collapse';
 import { fade, withStyles } from '@material-ui/core/styles';
-import { useForkRef } from '@material-ui/core/utils';
 import TreeViewContext from '../TreeView/TreeViewContext';
 import { DescendantProvider, useDescendant } from '../TreeView/descendants';
 
@@ -122,14 +121,9 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     treeId,
   } = React.useContext(TreeViewContext);
 
-  const nodeRef = React.useRef(null);
   const contentRef = React.useRef(null);
-  const handleRef = useForkRef(nodeRef, ref);
 
-  const { index, parentId } = useDescendant({
-    element: nodeRef.current,
-    id: nodeId,
-  });
+  const { index, parentId } = useDescendant({ id: nodeId });
 
   let icon = iconProp;
 
@@ -198,7 +192,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     if (registerNode && unregisterNode && index !== -1) {
       registerNode({
         id: nodeId,
-        index,
+        index: index.current,
         parentId,
         expandable,
       });
@@ -241,7 +235,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
       role="treeitem"
       aria-expanded={expandable ? expanded : null}
       aria-selected={ariaSelected}
-      ref={handleRef}
+      ref={ref}
       id={`${treeId}-${nodeId}`}
       {...other}
     >
