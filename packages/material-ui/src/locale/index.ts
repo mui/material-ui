@@ -238,7 +238,7 @@ export const csCZ: Localization = {
       },
       labelRowsPerPage: 'Řádků na stránce:',
       labelDisplayedRows: ({ from, to, count }) =>
-        `${from}-${to} z ${count !== -1 ? count : `more than ${to}`}`,
+        `${from}-${to} z ${count !== -1 ? count : `víc jako ${to}`}`,
     },
     MuiRating: {
       getLabelText: (value) => {
