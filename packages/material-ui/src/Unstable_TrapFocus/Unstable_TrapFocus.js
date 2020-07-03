@@ -85,7 +85,8 @@ function Unstable_TrapFocus(props) {
         return;
       }
 
-      // Support focused nodes removed from DOM with an interval call.
+      // A focused element that becomes unfocusable doesn't fire any events.
+      // While we can't listen to any events, we can check if the active element was moved to the body.
       if (!nativeEvent) {
         if (doc.activeElement.tagName === 'BODY') {
           rootRef.current.focus();
