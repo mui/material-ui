@@ -56,9 +56,7 @@ describe('<TreeView />', () => {
       );
     });
 
-    // should not throw eventually or with a better error message
-    // FIXME: https://github.com/mui-org/material-ui/issues/20832
-    it('crashes when unmounting with duplicate ids', () => {
+    it('should not crash when unmounting with duplicate ids', () => {
       const CustomTreeItem = () => {
         return <TreeItem nodeId="iojerogj" />;
       };
@@ -89,16 +87,7 @@ describe('<TreeView />', () => {
 
       expect(() => {
         screen.getByRole('button').click();
-      }).toErrorDev([
-        'RangeError: Maximum call stack size exceeded',
-        'The above error occurred in the <ForwardRef(TreeItem)> component',
-      ]);
-
-      const {
-        current: { errors },
-      } = errorRef;
-      expect(errors).to.have.length(1);
-      expect(errors[0].toString()).to.include('RangeError: Maximum call stack size exceeded');
+      }).not.toErrorDev();
     });
   });
 

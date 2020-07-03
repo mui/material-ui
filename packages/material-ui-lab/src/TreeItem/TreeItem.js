@@ -7,6 +7,7 @@ import Collapse from '@material-ui/core/Collapse';
 import { fade, withStyles, useTheme } from '@material-ui/core/styles';
 import { useForkRef } from '@material-ui/core/utils';
 import TreeViewContext from '../TreeView/TreeViewContext';
+import { DescendantProvider, useDescendant, useDescendantsInit } from '../TreeView/descendants';
 
 export const styles = (theme) => ({
   /* Styles applied to the root element. */
@@ -135,13 +136,18 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     multiSelect,
     getParent,
     mapFirstChar,
-    addNodeToNodeMap,
-    removeNodeFromNodeMap,
+    registerNode,
+    unregisterNode,
   } = React.useContext(TreeViewContext);
 
   const nodeRef = React.useRef(null);
   const contentRef = React.useRef(null);
   const handleRef = useForkRef(nodeRef, ref);
+
+  const { index, parentId } = useDescendant({
+    element: nodeRef.current,
+    id: nodeId,
+  });
 
   let icon = iconProp;
 
@@ -337,25 +343,22 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
   };
 
   React.useEffect(() => {
-    if (addNodeToNodeMap) {
-      const childIds = [];
-      React.Children.forEach(children, (child) => {
-        if (React.isValidElement(child) && child.props.nodeId) {
-          childIds.push(child.props.nodeId);
-        }
+    // On the first render a node's index will be -1. We want to wait for the real index.
+    if (registerNode && unregisterNode && index !== -1) {
+      registerNode({
+        id: nodeId,
+        index,
+        parentId,
+        expandable,
       });
-      addNodeToNodeMap(nodeId, childIds);
-    }
-  }, [children, nodeId, addNodeToNodeMap]);
 
-  React.useEffect(() => {
-    if (removeNodeFromNodeMap) {
       return () => {
-        removeNodeFromNodeMap(nodeId);
+        unregisterNode(nodeId);
       };
     }
+
     return undefined;
-  }, [nodeId, removeNodeFromNodeMap]);
+  }, [registerNode, unregisterNode, parentId, index, nodeId, expandable]);
 
   React.useEffect(() => {
     if (mapFirstChar && label) {
@@ -381,6 +384,8 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
      */
     ariaSelected = true;
   }
+
+  const [descendants, setDescendants] = useDescendantsInit();
 
   return (
     <li
@@ -412,16 +417,18 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
         </Typography>
       </div>
       {children && (
-        <TransitionComponent
-          unmountOnExit
-          className={classes.group}
-          in={expanded}
-          component="ul"
-          role="group"
-          {...TransitionProps}
-        >
-          {children}
-        </TransitionComponent>
+        <DescendantProvider items={descendants} set={setDescendants} id={nodeId}>
+          <TransitionComponent
+            unmountOnExit
+            className={classes.group}
+            in={expanded}
+            component="ul"
+            role="group"
+            {...TransitionProps}
+          >
+            {children}
+          </TransitionComponent>
+        </DescendantProvider>
       )}
     </li>
   );
