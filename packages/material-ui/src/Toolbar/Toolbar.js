@@ -54,6 +54,10 @@ const Toolbar = React.forwardRef(function Toolbar(props, ref) {
 });
 
 Toolbar.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * Toolbar children, usually a mixture of `IconButton`, `Button` and `Typography`.
    */
@@ -62,7 +66,7 @@ Toolbar.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -79,7 +83,7 @@ Toolbar.propTypes = {
   /**
    * The variant to use.
    */
-  variant: PropTypes.oneOf(['regular', 'dense']),
+  variant: PropTypes.oneOf(['dense', 'regular']),
 };
 
 export default withStyles(styles, { name: 'MuiToolbar' })(Toolbar);

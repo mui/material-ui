@@ -66,6 +66,10 @@ class RootRef extends React.Component {
 }
 
 RootRef.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * The wrapped element.
    */

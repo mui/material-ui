@@ -155,10 +155,14 @@ const Typography = React.forwardRef(function Typography(props, ref) {
 });
 
 Typography.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * Set the text-align on the component.
    */
-  align: PropTypes.oneOf(['inherit', 'left', 'center', 'right', 'justify']),
+  align: PropTypes.oneOf(['center', 'inherit', 'justify', 'left', 'right']),
   /**
    * The content of the component.
    */
@@ -167,7 +171,7 @@ Typography.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -176,24 +180,23 @@ Typography.propTypes = {
    * The color of the component. It supports those theme colors that make sense for this component.
    */
   color: PropTypes.oneOf([
-    'initial',
+    'error',
     'inherit',
+    'initial',
     'primary',
     'secondary',
     'textPrimary',
     'textSecondary',
-    'error',
   ]),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
-   * Overrides the behavior of the `variantMapping` prop.
    */
   component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
   /**
    * Controls the display type
    */
-  display: PropTypes.oneOf(['initial', 'block', 'inline']),
+  display: PropTypes.oneOf(['block', 'initial', 'inline']),
   /**
    * If `true`, the text will have a bottom margin.
    */
@@ -213,20 +216,20 @@ Typography.propTypes = {
    * Applies the theme typography styles.
    */
   variant: PropTypes.oneOf([
+    'body1',
+    'body2',
+    'button',
+    'caption',
     'h1',
     'h2',
     'h3',
     'h4',
     'h5',
     'h6',
+    'inherit',
+    'overline',
     'subtitle1',
     'subtitle2',
-    'body1',
-    'body2',
-    'caption',
-    'button',
-    'overline',
-    'inherit',
   ]),
   /**
    * The component maps the variant prop to a range of different HTML element types.
@@ -234,7 +237,21 @@ Typography.propTypes = {
    * If you wish to change that mapping, you can provide your own.
    * Alternatively, you can use the `component` prop.
    */
-  variantMapping: PropTypes.object,
+  variantMapping: PropTypes.shape({
+    body1: PropTypes.string,
+    body2: PropTypes.string,
+    button: PropTypes.string,
+    caption: PropTypes.string,
+    h1: PropTypes.string,
+    h2: PropTypes.string,
+    h3: PropTypes.string,
+    h4: PropTypes.string,
+    h5: PropTypes.string,
+    h6: PropTypes.string,
+    overline: PropTypes.string,
+    subtitle1: PropTypes.string,
+    subtitle2: PropTypes.string,
+  }),
 };
 
 export default withStyles(styles, { name: 'MuiTypography' })(Typography);

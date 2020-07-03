@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { TouchRippleProps } from './TouchRipple';
 import { OverrideProps, OverridableComponent, OverridableTypeMap } from '../OverridableComponent';
+import { Omit } from '@material-ui/types';
 
 export interface ButtonBaseTypeMap<P = {}, D extends React.ElementType = 'button'> {
   props: P & {
@@ -74,8 +75,11 @@ export interface ButtonBaseTypeMap<P = {}, D extends React.ElementType = 'button
  * This component has an additional overload if the `href` prop is set which
  * can make extension quite tricky
  */
-export interface ExtendButtonBaseTypeMap<M extends OverridableTypeMap> {
-  props: M['props'] & ButtonBaseTypeMap['props'];
+export interface ExtendButtonBaseTypeMap<
+  M extends OverridableTypeMap,
+  UnsupportedProps extends keyof ButtonBaseTypeMap['props'] = never
+> {
+  props: M['props'] & Omit<ButtonBaseTypeMap['props'], UnsupportedProps>;
   defaultComponent: M['defaultComponent'];
   classKey: M['classKey'];
 }

@@ -4,15 +4,35 @@ import { OverrideProps } from '../OverridableComponent';
 
 export type TabTypeMap<P = {}, D extends React.ElementType = 'div'> = ExtendButtonBaseTypeMap<{
   props: P & {
+    /**
+     * This prop isn't supported.
+     * Use the `component` prop if you need to change the children structure.
+     */
+    children?: null;
+    /**
+     * If `true`, the tab will be disabled.
+     */
+    disabled?: boolean;
+    /**
+     * If `true`, the  keyboard focus ripple will be disabled.
+     */
     disableFocusRipple?: boolean;
-    fullWidth?: boolean;
+    /**
+     * The icon element.
+     */
     icon?: string | React.ReactElement;
+    /**
+     * The label element.
+     */
     label?: React.ReactNode;
-    onClick?: React.EventHandler<any>;
-    selected?: boolean;
-    style?: React.CSSProperties;
-    textColor?: string | 'secondary' | 'primary' | 'inherit';
+    /**
+     * You can provide your own value. Otherwise, we fallback to the child position index.
+     */
     value?: any;
+    /**
+     * Tab labels appear in a single row.
+     * They can use a second line if needed.
+     */
     wrapped?: boolean;
   };
   defaultComponent: D;
