@@ -6,8 +6,26 @@ import { TypographyProps } from '../Typography';
 export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
   props: P &
     LinkBaseProps & {
+      /**
+       * The content of the link.
+       */
+      children?: React.ReactNode;
+      /**
+       * The color of the link.
+       */
+      color?: TypographyProps['color'];
+      /**
+       * `classes` prop applied to the [`Typography`](/api/typography/) element.
+       */
       TypographyClasses?: TypographyProps['classes'];
+      /**
+       * Controls when the link should have an underline.
+       */
       underline?: 'none' | 'hover' | 'always';
+      /**
+       * Applies the theme typography styles.
+       */
+      variant?: TypographyProps['variant'];
     };
   defaultComponent: D;
   classKey: LinkClassKey;
@@ -36,7 +54,7 @@ export type LinkClassKey =
   | 'focusVisible';
 
 export type LinkBaseProps = React.AnchorHTMLAttributes<HTMLAnchorElement> &
-  Omit<TypographyProps, 'component'>;
+  Omit<TypographyProps, 'children' | 'component' | 'color' | 'variant'>;
 
 export type LinkProps<
   D extends React.ElementType = LinkTypeMap['defaultComponent'],
