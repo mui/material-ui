@@ -184,6 +184,24 @@ describe('<Slider />', () => {
     });
   });
 
+  it('should not break when initial value is out of range', () => {
+    const { container } = render(<Slider value={[19, 41]} min={20} max={40} />);
+
+    stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+      width: 100,
+      height: 10,
+      bottom: 10,
+      left: 0,
+    }));
+
+    fireEvent.touchStart(
+      container.firstChild,
+      createTouches([{ identifier: 1, clientX: 100, clientY: 0 }]),
+    );
+
+    fireEvent.touchMove(document.body, createTouches([{ identifier: 1, clientX: 20, clientY: 0 }]));
+  });
+
   describe('prop: step', () => {
     it('should handle a null step', () => {
       const { getByRole, container } = render(

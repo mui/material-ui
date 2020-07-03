@@ -86,7 +86,7 @@ function roundValueToStep(value, step, min) {
 
 function setValueIndex({ values, source, newValue, index }) {
   // Performance shortcut
-  if (values[index] === newValue) {
+  if (source[index] === newValue) {
     return source;
   }
 
