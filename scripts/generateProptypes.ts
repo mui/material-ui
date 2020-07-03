@@ -91,6 +91,7 @@ const useExternalDocumentation: Record<string, string[]> = {
     'transitionDuration',
     'variant',
   ],
+  Tab: ['disableRipple'],
 };
 const transitionCallbacks = [
   'onEnter',
