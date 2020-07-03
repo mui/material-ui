@@ -64,8 +64,9 @@ describe('<TrapFocus />', () => {
             <input autoFocus data-testid="auto-focus" />
           </Portal>
         </div>
-      </TrapFocus>
+      </TrapFocus>,
     );
+
     expect(getByTestId('auto-focus')).toHaveFocus();
   });
 
