@@ -85,8 +85,6 @@ function Unstable_TrapFocus(props) {
         return;
       }
 
-      // A focused element that becomes unfocusable doesn't fire any events.
-      // While we can't listen to any events, we can check if the active element was moved to the body.
       if (!nativeEvent) {
         if (doc.activeElement.tagName === 'BODY') {
           rootRef.current.focus();
@@ -128,8 +126,9 @@ function Unstable_TrapFocus(props) {
     doc.addEventListener('focus', contain, true);
     doc.addEventListener('keydown', loopFocus, true);
 
-    // With Edge, Safari and Firefox, no focus related events are fired when the focused area stops being a focused area
+    // With Edge, Safari and Firefox, no focus related events are fired when the focused area stops being a focused area.
     // e.g. https://bugzilla.mozilla.org/show_bug.cgi?id=559561.
+    // Instead, we can look if the active element was restored on the BODY element.
     //
     // The whatwg spec defines how the browser should behave but does not explicitly mention any events:
     // https://html.spec.whatwg.org/multipage/interaction.html#focus-fixup-rule.
