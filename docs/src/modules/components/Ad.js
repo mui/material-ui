@@ -113,7 +113,6 @@ function Ad(props) {
 
   const [adblock, setAdblock] = React.useState(null);
   const [carbonOut, setCarbonOut] = React.useState(null);
-  const [codeFundOut, setCodeFundOut] = React.useState(null);
 
   let children;
 
@@ -134,7 +133,7 @@ function Ad(props) {
   }
 
   if (!children) {
-    if (carbonOut || codeFundOut) {
+    if (carbonOut) {
       children = <AdInHouse ad={inHouseAds[Math.floor(inHouseAds.length * randomInHouse)]} />;
     } else {
       children = <AdCarbon />;
@@ -147,9 +146,7 @@ function Ad(props) {
     if (children.type === AdCarbon) {
       label = 'carbon';
     } else if (children.type === AdInHouse) {
-      if (!adblock && codeFundOut) {
-        label = 'in-house-codefund';
-      } else if (!adblock && carbonOut) {
+      if (!adblock && carbonOut) {
         label = 'in-house-carbon';
       } else {
         label = 'in-house';
@@ -171,7 +168,6 @@ function Ad(props) {
       if (
         document.querySelector('.cf-wrapper') ||
         document.querySelector('#carbonads') ||
-        codeFundOut ||
         carbonOut
       ) {
         if (
@@ -196,7 +192,7 @@ function Ad(props) {
         setAdblock(true);
       }
     },
-    [codeFundOut, carbonOut],
+    [carbonOut],
   );
 
   React.useEffect(() => {
@@ -209,18 +205,6 @@ function Ad(props) {
       clearTimeout(timerAdblock.current);
     };
   }, [checkAdblock]);
-
-  React.useEffect(() => {
-    const handler = (nativeEvent) => {
-      if (nativeEvent.detail.status === 'no-advertiser') {
-        setCodeFundOut(true);
-      }
-    };
-    window.addEventListener('codefund', handler);
-    return () => {
-      window.removeEventListener('codefund', handler);
-    };
-  }, []);
 
   React.useEffect(() => {
     // Avoid an exceed on the Google Analytics quotas.
