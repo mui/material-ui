@@ -191,7 +191,7 @@ import { createFilterOptions } from '@material-ui/lab/Autocomplete';
 
 In the following demo, the options need to start with the query prefix:
 
-```js
+```jsx
 const filterOptions = createFilterOptions({
   matchFrom: 'start',
   stringify: (option) => option.title,
@@ -235,6 +235,7 @@ In the event you want the avoid autofill, you can try the following:
 
 - Name the input without leaking any information the browser can use. e.g. `id="field1"` instead of `id="country"`. If you leave the id empty, the component uses a random id.
 - Set `autoComplete="new-password"`:
+
   ```jsx
   <TextField
     {...params}
