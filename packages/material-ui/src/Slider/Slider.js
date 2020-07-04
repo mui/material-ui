@@ -558,8 +558,8 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     return { newValue, activeIndex };
   };
 
-  const handleTouchMove = useEventCallback((event) => {
-    const finger = trackFinger(event, touchId);
+  const handleTouchMove = useEventCallback((nativeEvent) => {
+    const finger = trackFinger(nativeEvent, touchId);
 
     if (!finger) {
       return;
@@ -576,12 +576,12 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     setValueState(newValue);
 
     if (onChange) {
-      onChange(event, newValue);
+      onChange(nativeEvent, newValue);
     }
   });
 
-  const handleTouchEnd = useEventCallback((event) => {
-    const finger = trackFinger(event, touchId);
+  const handleTouchEnd = useEventCallback((nativeEvent) => {
+    const finger = trackFinger(nativeEvent, touchId);
 
     if (!finger) {
       return;
@@ -590,12 +590,12 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     const { newValue } = getFingerNewValue({ finger, values, source: valueDerived });
 
     setActive(-1);
-    if (event.type === 'touchend') {
+    if (nativeEvent.type === 'touchend') {
       setOpen(-1);
     }
 
     if (onChangeCommitted) {
-      onChangeCommitted(event, newValue);
+      onChangeCommitted(nativeEvent, newValue);
     }
 
     touchId.current = undefined;

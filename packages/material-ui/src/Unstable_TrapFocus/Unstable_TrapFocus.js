@@ -100,9 +100,9 @@ function Unstable_TrapFocus(props) {
       }
     };
 
-    const loopFocus = (event) => {
+    const loopFocus = (nativeEvent) => {
       // 9 = Tab
-      if (disableEnforceFocus || !isEnabled() || event.keyCode !== 9) {
+      if (disableEnforceFocus || !isEnabled() || nativeEvent.keyCode !== 9) {
         return;
       }
 
@@ -111,7 +111,7 @@ function Unstable_TrapFocus(props) {
         // We need to ignore the next contain as
         // it will try to move the focus back to the rootRef element.
         ignoreNextEnforceFocus.current = true;
-        if (event.shiftKey) {
+        if (nativeEvent.shiftKey) {
           sentinelEnd.current.focus();
         } else {
           sentinelStart.current.focus();

@@ -122,17 +122,17 @@ export default function AppSearch() {
   useLazyCSS('https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css', '#app-search');
 
   React.useEffect(() => {
-    const handleKeyDown = (event) => {
-      // Use event.keyCode to support IE 11
+    const handleKeyDown = (nativeEvent) => {
+      // Use nativeEvent.keyCode to support IE 11
       if (
         [
           191, // '/'
           83, // 's'
-        ].indexOf(event.keyCode) !== -1 &&
+        ].indexOf(nativeEvent.keyCode) !== -1 &&
         document.activeElement.nodeName === 'BODY' &&
         document.activeElement !== inputRef.current
       ) {
-        event.preventDefault();
+        nativeEvent.preventDefault();
         inputRef.current.focus();
       }
     };
